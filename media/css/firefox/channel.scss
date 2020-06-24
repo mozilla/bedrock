@@ -14,10 +14,13 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/components/emphasis-box';
 
 //* -------------------------------------------------------------------------- */
-// Global
+// Content
 
-.mzp-l-narrow {
-    max-width: $content-lg;
+#beta .mzp-l-content,
+#developer .mzp-l-content,
+#nightly .mzp-l-content,
+#testflight .mzp-l-content {
+    max-width: $content-md;
 }
 
 //* -------------------------------------------------------------------------- */

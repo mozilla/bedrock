@@ -30,7 +30,7 @@
   heading_level=1) %}
   {% endcall %}
 
-  <aside class="mzp-l-content mzp-t-narrow">
+  <aside class="mzp-l-content mzp-t-content-sm">
     <form id="newsletter-form" class="mzp-c-newsletter-form" action="{{ url('newsletter.subscribe') }}" method="post" data-spinner-color="#fff">
       {{ newsletter_form.newsletters|safe }}
       {# test flight program is only available in english #}
@@ -50,16 +50,13 @@
 
           <fieldset class="mzp-u-inline">
             <legend>Format</legend>
-            <p>
               <label for="format-html" class="mzp-u-inline">
                 <input type="radio" id="format-html" name="fmt" value="H" checked> HTML
               </label>
               <label for="format-text" class="mzp-u-inline">
                 <input type="radio" id="format-text" name="fmt" value="T"> Text
               </label>
-            </p>
           </fieldset>
-          <p>
             <label for="id_terms" class="mzp-u-inline">
               <input id="id_terms" name="terms" required aria-required="true" type="checkbox">
               {% trans url='#terms-conditions' %}
@@ -67,7 +64,6 @@
               <a href="{{ url }}">Terms and Conditions</a>
               {% endtrans %}
             </label>
-          </p>
           <p>
             {{ newsletter_form.privacy|safe }}
           </p>
@@ -96,7 +92,7 @@
     </div>
   </aside>
 
-  <section class="mzp-l-content mzp-t-narrow" id="terms-conditions">
+  <section class="mzp-l-content mzp-t-content-md" id="terms-conditions">
     <h4>{{ _('Terms and Conditions') }}</h4>
     <ol class="mzp-u-list-styled">
       <li>
