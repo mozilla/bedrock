@@ -5,6 +5,7 @@
 {% from "macros.html" import send_to_device with context %}
 
 {% extends "firefox/whatsnew/base.html" %}
+{% add_lang_files "firefox/whatsnew" %}
 
 {% block page_title %}Lade jetzt Firefox für Android und iOS herunter{% endblock %}
 
@@ -25,10 +26,7 @@
 {% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
 {% set page_heading = page_heading|default('Firefox gefällt dir? Hol’s dir auf dein Smartphone.') -%}
 
-
-
 {% block content %}
-
 <main class="content-wrapper mzp-t-firefox mzp-t-dark">
   <header class="c-page-header main-header">
     <div class="mzp-l-content c-page-header-inner">
@@ -57,4 +55,10 @@
 
 {% block js %}
   {{ js_bundle('firefox_whatsnew') }}
+{% endblock %}
+
+{% block experiments %}
+  {% if switch('whatsnew-78-exp') and request.locale in target_locales %}
+    {{ js_bundle('firefox_whatsnew_78_exp') }}
+  {% endif %}
 {% endblock %}

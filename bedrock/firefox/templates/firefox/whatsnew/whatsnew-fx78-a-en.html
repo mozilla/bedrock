@@ -5,6 +5,7 @@
 {% from "macros.html" import send_to_device with context %}
 
 {% extends "firefox/whatsnew/base.html" %}
+{% add_lang_files "firefox/whatsnew" %}
 
 {% block page_title %}Download Firefox for Android and iOS{% endblock %}
 
@@ -23,8 +24,7 @@
 {% endblock %}
 
 {% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
-
-
+{% set page_heading = page_heading|default('Loving Firefox? Get it on your phone.') -%}
 
 {% block content %}
 
@@ -42,7 +42,7 @@
     <div class="mzp-l-content t-content-lg mzp-c-emphasis-box">
       <div>
         {{ high_res_img('protocol/img/logos/firefox/browser/logo-sm.png', {'alt': 'Firefox', 'width': '50', 'height': '50', 'class': 'c-emphasis-box-logo'}) }}
-        <h1 class="c-emphasis-box-title">Loving Firefox? Get it on your phone.</h1>
+        <h1 class="c-emphasis-box-title">{{page_heading}}</h1>
         <p class="main-tagline">Send a download link to your phone.</p>
       </div>
       <div id="send-to-device-wrapper" class="primary-cta">
@@ -56,4 +56,10 @@
 
 {% block js %}
   {{ js_bundle('firefox_whatsnew_78') }}
+{% endblock %}
+
+{% block experiments %}
+  {% if switch('whatsnew-78-exp') and request.locale in target_locales %}
+    {{ js_bundle('firefox_whatsnew_78_exp') }}
+  {% endif %}
 {% endblock %}

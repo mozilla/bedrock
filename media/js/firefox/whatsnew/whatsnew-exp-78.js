@@ -7,8 +7,6 @@
 
     /* update dataLayer with experiment info */
     var href = window.location.href;
-    var platform = window.site.platform;
-    var isMobile = /^(android|ios|fxos)$/.test(platform);
 
     var initTrafficCop = function () {
         if (href.indexOf('v=') !== -1) {
@@ -20,7 +18,7 @@
             } else if (href.indexOf('v=2') !== -1) {
                 window.dataLayer.push({
                     'data-ex-variant': 'whatsnew-78-v1',
-                    'data-ex-name': 'whatsnew-77-Experiment'
+                    'data-ex-name': 'whatsnew-78-Experiment'
                 });
             } else if (href.indexOf('v=3') !== -1) {
                 window.dataLayer.push({
@@ -54,9 +52,6 @@
             cop.init();
         }
     };
-
-    if (!isMobile) {
-        initTrafficCop();
-    }
+    initTrafficCop();
 
 })(window.Mozilla);

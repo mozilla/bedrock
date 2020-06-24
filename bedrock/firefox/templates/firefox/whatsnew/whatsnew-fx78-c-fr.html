@@ -4,56 +4,12 @@
 
 {% from "macros.html" import send_to_device with context %}
 
-{% extends "firefox/whatsnew/base.html" %}
+{% extends "firefox/whatsnew/whatsnew-fx78-a-fr.html" %}
 
-{% block page_title %}Télécharger Firefox pour Android et iOS{% endblock %}
+{% set page_heading = 'Faites-en encore plus. Utilisez Firefox sur votre téléphone.'%}
 
-{#- This will appear as <meta property="og:description"> which can be used for social share -#}
-{% block page_og_desc %}
-  Ce qui est nouveau chez Firefox
-{% endblock %}
-
-{% block body_id %}firefox-whatsnew{% endblock %}
-{% block body_class %}{% endblock %}
-
-{% block site_header %}{% endblock %}
-
-{% block page_css %}
-  {{ css_bundle('firefox_whatsnew_78') }}
-{% endblock %}
-
-{% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
-
-
-
-{% block content %}
-
-<main class="content-wrapper mzp-t-firefox mzp-t-dark">
-  <header class="c-page-header main-header">
-    <div class="mzp-l-content c-page-header-inner">
-      {{ high_res_img('protocol/img/logos/firefox/browser/logo-word-hor-white-sm.png', {'alt': 'Firefox', 'width': '216', 'height': '40', 'class': 'c-page-header-logo-fx'}) }}
-      <div class="mzp-c-notification-bar mzp-t-success up-to-date">
-        <p>Félicitations ! Vous utilisez la version la plus récente de Firefox.</p>
-      </div>
-    </div>
-  </header>
-
-  <section class="main-content">
-    <div class="mzp-l-content t-content-lg mzp-c-emphasis-box">
-      <div>
-        {{ high_res_img('protocol/img/logos/firefox/browser/logo-sm.png', {'alt': 'Firefox', 'width': '50', 'height': '50', 'class': 'c-emphasis-box-logo'}) }}
-        <h1 class="c-emphasis-box-title">Faites-en encore plus. Utilisez Firefox sur votre téléphone. </h1>
-        <p class="main-tagline">Envoyez un lien de téléchargement sur votre téléphone.</p>
-      </div>
-      <div id="send-to-device-wrapper" class="primary-cta">
-        {{ send_to_device(include_title=False, message_set='fx-whatsnew', class='vertical') }}
-      </div>
-    </div>
-  </section>
-
-</main>
-{% endblock %}
-
-{% block js %}
-  {{ js_bundle('firefox_whatsnew') }}
+{% block experiments %}
+  {% if switch('whatsnew-78-exp') %}
+    {{ js_bundle('firefox_whatsnew_78_exp') }}
+  {% endif %}
 {% endblock %}
