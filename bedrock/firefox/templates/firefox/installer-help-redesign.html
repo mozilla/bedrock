@@ -54,7 +54,7 @@
     <section class="installer-channel-card mzp-c-card mzp-c-card-extra-small">
       {{ high_res_img(channel_logo, {'alt': ftl('installer-help-firefox-release-title'), 'width': '347', 'height': '64'}) }}
       <div class="mzp-c-card-content">
-        {{ download_firefox(installer_channel, force_direct=True, force_full_installer=True, locale=installer_lang, button_color='mzp-t-small', alt_copy=ftl('download-button-download-now')) }}
+        {{ download_firefox(installer_channel, force_direct=True, force_full_installer=True, locale=installer_lang, button_color='mzp-t-md', alt_copy=ftl('download-button-download-now')) }}
       </div>
     </section>
   {% else %}
@@ -65,7 +65,7 @@
           <p class="mzp-c-card-desc">
             {{ ftl('installer-help-firefox-release-desc', trackers=2000) }}
           </p>
-          {{ download_firefox(force_direct=True, force_full_installer=True, locale=installer_lang, button_color='mzp-t-secondary mzp-t-small', alt_copy=ftl('download-button-download-now')) }}
+          {{ download_firefox(force_direct=True, force_full_installer=True, locale=installer_lang, button_color='mzp-t-secondary mzp-t-md', alt_copy=ftl('download-button-download-now')) }}
         </div>
       </section>
 
@@ -75,7 +75,7 @@
           <p class="mzp-c-card-desc">
             {{ ftl('installer-help-firefox-beta-desc') }}
           </p>
-          {{ download_firefox('beta', force_direct=True, force_full_installer=True, locale=installer_lang, button_color='mzp-t-secondary mzp-t-small', alt_copy=ftl('download-button-download-now')) }}
+          {{ download_firefox('beta', force_direct=True, force_full_installer=True, locale=installer_lang, button_color='mzp-t-secondary mzp-t-md', alt_copy=ftl('download-button-download-now')) }}
         </div>
       </section>
 
@@ -85,7 +85,7 @@
           <p class="mzp-c-card-desc">
             {{ ftl('installer-help-firefox-developer-desc') }}
           </p>
-          {{ download_firefox('alpha', platform='desktop', force_direct=True, force_full_installer=True, locale=installer_lang, button_color='mzp-t-secondary mzp-t-small', alt_copy=ftl('download-button-download-now')) }}
+          {{ download_firefox('alpha', platform='desktop', force_direct=True, force_full_installer=True, locale=installer_lang, button_color='mzp-t-secondary mzp-t-md', alt_copy=ftl('download-button-download-now')) }}
         </div>
       </section>
 
@@ -95,7 +95,7 @@
           <p class="mzp-c-card-desc">
             {{ ftl('installer-help-firefox-nightly-desc') }}
           </p>
-          {{ download_firefox('nightly', platform='desktop', force_direct=True, force_full_installer=True, locale=installer_lang, button_color='mzp-t-secondary mzp-t-small', alt_copy=ftl('download-button-download-now')) }}
+          {{ download_firefox('nightly', platform='desktop', force_direct=True, force_full_installer=True, locale=installer_lang, button_color='mzp-t-secondary mzp-t-md', alt_copy=ftl('download-button-download-now')) }}
         </div>
       </section>
     </div>

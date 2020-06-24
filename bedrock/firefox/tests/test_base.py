@@ -47,13 +47,13 @@ class TestInstallerHelp(TestCase):
             'installer_lang': 'fr'
         })
         self.button_mock.assert_has_calls([
-            call(alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
+            call(alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-md', force_direct=True,
                  force_full_installer=True, locale='fr'),
-            call('beta', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
+            call('beta', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-md', force_direct=True,
                  force_full_installer=True, locale='fr'),
-            call('alpha', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
+            call('alpha', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-md', force_direct=True,
                  force_full_installer=True, locale='fr', platform='desktop'),
-            call('nightly', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
+            call('nightly', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-md', force_direct=True,
                  force_full_installer=True, locale='fr', platform='desktop'),
         ])
 
@@ -65,13 +65,13 @@ class TestInstallerHelp(TestCase):
             'installer_lang': 'not-a-locale'
         })
         self.button_mock.assert_has_calls([
-            call(alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
+            call(alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-md', force_direct=True,
                  force_full_installer=True, locale=None),
-            call('beta', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
+            call('beta', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-md', force_direct=True,
                  force_full_installer=True, locale=None),
-            call('alpha', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
+            call('alpha', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-md', force_direct=True,
                  force_full_installer=True, locale=None, platform='desktop'),
-            call('nightly', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
+            call('nightly', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-md', force_direct=True,
                  force_full_installer=True, locale=None, platform='desktop'),
         ])
 
@@ -83,13 +83,13 @@ class TestInstallerHelp(TestCase):
             'channel': 'dude',
         })
         self.button_mock.assert_has_calls([
-            call(alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
+            call(alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-md', force_direct=True,
                  force_full_installer=True, locale=None),
-            call('beta', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
+            call('beta', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-md', force_direct=True,
                  force_full_installer=True, locale=None),
-            call('alpha', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
+            call('alpha', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-md', force_direct=True,
                  force_full_installer=True, locale=None, platform='desktop'),
-            call('nightly', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
+            call('nightly', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-md', force_direct=True,
                  force_full_installer=True, locale=None, platform='desktop'),
         ])
 
@@ -101,7 +101,7 @@ class TestInstallerHelp(TestCase):
             'channel': 'beta',
         })
         self.button_mock.assert_called_once_with('beta',
-                                                 alt_copy=Markup('Download Now'), button_color='mzp-t-small',
+                                                 alt_copy=Markup('Download Now'), button_color='mzp-t-md',
                                                  force_direct=True,
                                                  force_full_installer=True,
                                                  locale=None)
