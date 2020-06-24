@@ -755,11 +755,11 @@ button.mzp-c-cta-link {
 // colours
 
 .t-outline-purple {
-    border-color: #7542E5;
+    border-color: $color-violet-60;
 }
 
 .t-fill-purple {
-    background: linear-gradient(to left, #9059FF, #621ED3);
+    background: linear-gradient(to left, $color-violet-50, $color-violet-70);
 }
 
 .t-fill-orange {
@@ -767,7 +767,7 @@ button.mzp-c-cta-link {
 }
 
 .t-outline-yellow {
-    border-color: #ff9640;
+    border-color: $color-orange-40;
 }
 
 // position & animation
@@ -1356,7 +1356,7 @@ button.mzp-c-cta-link {
     @media #{$mq-sm} {
         &:after {
             background-repeat: no-repeat;
-            border-radius: 4px;
+            border-radius: $border-radius-sm;
             content: '';
             display: block;
             position: absolute;
