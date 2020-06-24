@@ -26,7 +26,7 @@
 {% endblock %}
 
 {% block experiments %}
-  {% if switch('desktop-download', ['en-US']) %}
+  {% if switch('experiment-new-redesign', ['en-US']) %}
     {{ js_bundle('firefox_new_exp') }}
   {% endif %}
 {% endblock %}
