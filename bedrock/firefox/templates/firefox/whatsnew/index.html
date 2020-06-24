@@ -77,9 +77,3 @@
 {% block js %}
   {{ js_bundle('firefox_whatsnew') }}
 {% endblock %}
-
-{% block experiments %}
-  {% if switch('whatsnew-78-exp') %}
-    {{ js_bundle('firefox_whatsnew_78_exp') }}
-  {% endif %}
-{% endblock %}
