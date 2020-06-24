@@ -592,30 +592,12 @@ class WhatsnewView(L10nTemplateView):
         elif locale == 'id':
             template = 'firefox/whatsnew/index-lite.id.html'
         elif version.startswith('78.'):
-            if variation == '2' and locale in ['en-US', 'en-CA', 'en-GB']:
-                template = 'firefox/whatsnew/whatsnew-fx78-a-en.html'
-            elif variation == '3' and locale in ['en-US', 'en-CA', 'en-GB']:
-                template = 'firefox/whatsnew/whatsnew-fx78-b-en.html'
-            elif variation == '4' and locale in ['en-US', 'en-CA', 'en-GB']:
-                template = 'firefox/whatsnew/whatsnew-fx78-c-en.html'
-            elif variation == '5' and locale in ['en-US', 'en-CA', 'en-GB']:
-                template = 'firefox/whatsnew/whatsnew-fx78-d-en.html'
-            elif variation == '2' and locale == 'de':
-                template = 'firefox/whatsnew/whatsnew-fx78-a-de.html'
-            elif variation == '3' and locale == 'de':
-                template = 'firefox/whatsnew/whatsnew-fx78-b-de.html'
-            elif variation == '4' and locale == 'de':
-                template = 'firefox/whatsnew/whatsnew-fx78-c-de.html'
-            elif variation == '5' and locale == 'de':
-                template = 'firefox/whatsnew/whatsnew-fx78-d-de.html'
-            elif variation == '2' and locale == 'fr':
-                template = 'firefox/whatsnew/whatsnew-fx78-a-fr.html'
-            elif variation == '3' and locale == 'fr':
-                template = 'firefox/whatsnew/whatsnew-fx78-b-fr.html'
-            elif variation == '4' and locale == 'fr':
-                template = 'firefox/whatsnew/whatsnew-fx78-c-fr.html'
-            elif variation == '5' and locale == 'fr':
-                template = 'firefox/whatsnew/whatsnew-fx78-d-fr.html'
+            variations = ['2', '3', '4', '5']
+            locales = ['en-US', 'en-CA', 'en-GB', 'de', 'fr']
+
+            if variation in variations and locale in locales:
+                locale = locale.split('-')[0]
+                template = 'firefox/whatsnew/whatsnew-fx78-{0}-{1}.html'.format(variation, locale)
             else:
                 template = 'firefox/whatsnew/whatsnew-fx78.html'
         elif version.startswith('77.') and lang_file_is_active('firefox/whatsnew_77', locale):

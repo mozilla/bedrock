@@ -4,14 +4,12 @@
 
 {% from "macros.html" import send_to_device with context %}
 
-{% extends "firefox/whatsnew/whatsnew-fx78-a-en.html" %}
+{% extends "firefox/whatsnew/whatsnew-fx78-2-de.html" %}
 
-{% set page_heading = 'Get more done. Use Firefox for mobile.'%}
+{% set page_heading = 'Warum warten? Hol den den superschnellen Firefox für Mobile.'%}
 
 {% block experiments %}
   {% if switch('whatsnew-78-exp') %}
     {{ js_bundle('firefox_whatsnew_78_exp') }}
   {% endif %}
 {% endblock %}
-
-
