@@ -25,6 +25,12 @@
   {% endif %}
 {% endblock %}
 
+{% block experiments %}
+  {% if switch('desktop-download', ['en-US']) %}
+    {{ js_bundle('firefox_new_exp') }}
+  {% endif %}
+{% endblock %}
+
 {% block content %}
 <main role="main" class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
   {% call hero(

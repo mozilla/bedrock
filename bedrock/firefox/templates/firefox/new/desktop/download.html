@@ -12,6 +12,12 @@
   {{ css_bundle('firefox_desktop_download') }}
 {% endblock %}
 
+{% block experiments %}
+  {% if switch('desktop-download', ['en-US']) %}
+    {{ js_bundle('firefox_new_exp') }}
+  {% endif %}
+{% endblock %}
+
 {% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-desktop' %}
 
 {% block content %}
