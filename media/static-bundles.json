@@ -896,16 +896,6 @@
     },
     {
       "files": [
-        "js/base/uitour-lib.js",
-        "js/libs/spin.min.js",
-        "js/base/send-to-device.js",
-        "js/firefox/whatsnew/up-to-date.js",
-        "js/firefox/whatsnew/whatsnew.js"
-      ],
-      "name": "firefox_whatsnew_78"
-    },
-    {
-      "files": [
         "protocol/js/protocol-newsletter.js"
       ],
       "name": "legal"

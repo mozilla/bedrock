@@ -4,8 +4,8 @@
 
 {% from "macros.html" import send_to_device with context %}
 
-{% extends "firefox/whatsnew/base.html" %}
 {% add_lang_files "firefox/whatsnew" %}
+{% extends "firefox/whatsnew/base.html" %}
 
 {% block page_title %}Télécharger Firefox pour Android et iOS{% endblock %}
 
@@ -23,7 +23,6 @@
   {{ css_bundle('firefox_whatsnew_78') }}
 {% endblock %}
 
-{% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
 {% set page_heading = page_heading|default('Vous aimez aussi Firefox ? Téléchargez-le sur votre téléphone.') -%}
 
 
@@ -61,7 +60,7 @@
 {% endblock %}
 
 {% block experiments %}
-  {% if switch('whatsnew-78-exp') and request.locale in target_locales %}
+  {% if switch('whatsnew-78-exp', ['en', 'fr', 'de']) %}
     {{ js_bundle('firefox_whatsnew_78_exp') }}
   {% endif %}
 {% endblock %}

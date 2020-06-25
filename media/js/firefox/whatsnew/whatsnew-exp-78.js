@@ -17,22 +17,22 @@
                 });
             } else if (href.indexOf('v=2') !== -1) {
                 window.dataLayer.push({
-                    'data-ex-variant': 'whatsnew-78-v1',
+                    'data-ex-variant': 'whatsnew-78-v2',
                     'data-ex-name': 'whatsnew-78-Experiment'
                 });
             } else if (href.indexOf('v=3') !== -1) {
                 window.dataLayer.push({
-                    'data-ex-variant': 'whatsnew-78-v2',
+                    'data-ex-variant': 'whatsnew-78-v3',
                     'data-ex-name': 'whatsnew-78-Experiment'
                 });
             } else if (href.indexOf('v=4') !== -1) {
                 window.dataLayer.push({
-                    'data-ex-variant': 'whatsnew-78-v3',
+                    'data-ex-variant': 'whatsnew-78-v4',
                     'data-ex-name': 'whatsnew-78-Experiment'
                 });
             } else if (href.indexOf('v=5') !== -1) {
                 window.dataLayer.push({
-                    'data-ex-variant': 'whatsnew-78-v4',
+                    'data-ex-variant': 'whatsnew-78-v5',
                     'data-ex-name': 'whatsnew-78-Experiment'
                 });
             }
