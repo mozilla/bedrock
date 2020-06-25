@@ -424,6 +424,13 @@
     },
     {
       "files": [
+        "css/protocol/components/send-to-device.scss",
+        "css/firefox/whatsnew/whatsnew-78.scss"
+      ],
+      "name": "firefox_whatsnew_78"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -1225,6 +1232,13 @@
         "js/firefox/whatsnew/whatsnew.js"
       ],
       "name": "firefox_whatsnew"
+    },
+    {
+      "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/firefox/whatsnew/whatsnew-exp-78.js"
+      ],
+      "name": "firefox_whatsnew_78_exp"
     },
     {
       "files": [
