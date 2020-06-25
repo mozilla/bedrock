@@ -9,6 +9,8 @@ from django.conf import settings
 from django.utils.html import strip_tags
 from django.utils.text import slugify
 
+from fluent.runtime import FluentResource, FluentBundle
+
 from ._fluent import (
     migration_name,
     get_lang_files,
@@ -57,7 +59,6 @@ REPLACE_TEMPLATE = '''\
                     {from_path},
                     "{lang_string}",
                     {{
-                        "%%": "%",
 {replacements}
                     }}
                 )
@@ -67,6 +68,39 @@ REPLACE_TEMPLATE = '''\
 VAR_REPLACE = '''\
                         "{lit}": VARIABLE_REFERENCE("{var}"),\
 '''
+
+TERM_REPLACE = '''\
+                        "{lit}": TERM_REFERENCE("{var}"),\
+'''
+BRAND_TERMS = None
+
+
+def get_brand_terms():
+    """Return a dict of term IDs and english strings ordered with strings longest to shortest"""
+    global BRAND_TERMS
+    if BRAND_TERMS is None:
+        bundle = FluentBundle(['en'])
+        brands_path = settings.FLUENT_LOCAL_PATH / 'en' / 'brands.ftl'
+        with brands_path.open(encoding='utf-8') as brands_file:
+            resource = FluentResource(brands_file.read())
+
+        bundle.add_resource(resource)
+        tmp_dict = {k: bundle._lookup(k, term=True).value.value
+                    for k, v in bundle._terms.items()}
+        BRAND_TERMS = {k: tmp_dict[k] for k in
+                       sorted(tmp_dict, key=lambda k: len(tmp_dict[k]), reverse=True)}
+
+    return BRAND_TERMS
+
+
+def brand_terms_in_string(lang_string):
+    terms = []
+    for term_id, value in get_brand_terms().items():
+        if value in lang_string:
+            terms.append(term_id)
+            lang_string = lang_string.replace(value, '')
+
+    return terms
 
 
 class Recipe:
@@ -129,7 +163,8 @@ class Recipe:
         replaces = []
         for lang_string in lang_ids:
             fluent_id = self.string_to_ftl_id(id_stem, lang_string)
-            if STR_VARIABLE_RE.search(lang_string):
+            brands_in_string = brand_terms_in_string(lang_string)
+            if STR_VARIABLE_RE.search(lang_string) or brands_in_string:
                 if simple_transforms:
                     if transforms:
                         transforms += ' + '
@@ -138,7 +173,7 @@ class Recipe:
                         from_path=from_path
                     )
                     simple_transforms = []
-                replaces.append(self.create_replace(from_path, fluent_id, lang_string))
+                replaces.append(self.create_replace(from_path, fluent_id, lang_string, brands_in_string))
             else:
                 if replaces:
                     if transforms:
@@ -175,8 +210,9 @@ class Recipe:
 
         return slug
 
-    def create_replace(self, from_path, fluent_id, lang_string):
+    def create_replace(self, from_path, fluent_id, lang_string, brands_in_string):
         replacers = {}
+        replacements = ''
         for m in STR_VARIABLE_RE.finditer(lang_string):
             varname = m.group('var')
             if varname is None:
@@ -185,10 +221,23 @@ class Recipe:
                 varname = varname[1:-1]
             if varname not in replacers:
                 replacers[varname] = m.group()
-        replacements = '\n'.join(
-            VAR_REPLACE.format(lit=lit, var=var)
-            for var, lit in replacers.items()
-        )
+
+        if replacers:
+            replacements += '                        "%%": "%",\n'
+            replacements += '\n'.join(
+                VAR_REPLACE.format(lit=lit, var=var)
+                for var, lit in replacers.items()
+            )
+
+        if brands_in_string:
+            brands = get_brand_terms()
+            if replacements:
+                replacements += '\n'
+            replacements += '\n'.join(
+                TERM_REPLACE.format(lit=brands[brand], var=brand)
+                for brand in brands_in_string
+            )
+
         return REPLACE_TEMPLATE.format(
             fluent_id=fluent_id,
             from_path=from_path,
