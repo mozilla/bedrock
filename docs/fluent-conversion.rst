@@ -49,9 +49,10 @@ The existing recipe will already have the template name as prefix, though.
 You can also choose to remove strings from the conversion, if you just
 want to convert a subset of the strings.
 
-If you want to handle things such as updating existing translations to use
-brand terms as placeholders, you can update the recipe to replace existing
-string content by using the ``REPLACE()`` helper:
+The migrations will automatically add ``REPLACE()`` helpers when it detects
+that any of the strings in ``brands.ftl`` are in the text. Make sure these
+are correct, and remove any of them that shouldn't be used. If you need
+to add any that it missed they should look like the following:
 
 .. code-block:: python
 
