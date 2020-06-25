@@ -10,22 +10,20 @@ from unittest.mock import patch
 from django.conf import settings
 from django.test import TestCase, override_settings
 
-from fluent.runtime import FluentResourceLoader
-
 from lib.l10n_utils import fluent
 from lib.l10n_utils import translation
 
 
 L10N_PATH = Path(__file__).with_name('test_files').joinpath('l10n')
-TEST_LOADER = FluentResourceLoader(f'{L10N_PATH}/{{locale}}/')
 
 
 def get_l10n(locales=None, ftl_files=None):
     locales = locales or ['de', 'en']
-    ftl_files = ftl_files or ['mozorg/fluent.ftl']
-    return fluent.FluentL10n(locales, ftl_files, TEST_LOADER)
+    ftl_files = ftl_files or ['mozorg/fluent', 'brands']
+    return fluent.fluent_l10n(locales, ftl_files)
 
 
+@override_settings(FLUENT_PATHS=[L10N_PATH])
 class TestFluentL10n(TestCase):
     def test_localized_bundles(self):
         l10n = get_l10n()
@@ -37,7 +35,7 @@ class TestFluentL10n(TestCase):
 
     def test_localized_messages(self):
         l10n = get_l10n()
-        assert len(l10n._localized_message_ids) == 3
+        assert len(l10n._localized_message_ids) == 4
         assert 'brand-new-string' not in l10n._localized_message_ids
 
     def test_has_message(self):
@@ -55,7 +53,7 @@ class TestFluentL10n(TestCase):
 
     def test_percent_translated(self):
         l10n = get_l10n()
-        assert l10n.percent_translated == 75.0
+        assert l10n.percent_translated == 80.0
 
     def test_has_required_messages(self):
         l10n = get_l10n()
@@ -64,6 +62,8 @@ class TestFluentL10n(TestCase):
         assert not l10n.has_required_messages
 
 
+@override_settings(FLUENT_PATHS=[L10N_PATH],
+                   FLUENT_LOCAL_PATH=L10N_PATH)
 class TestFluentTranslationUtils(TestCase):
     def setUp(self):
         fluent.cache.clear()
@@ -79,6 +79,18 @@ class TestFluentTranslationUtils(TestCase):
             'New string not yet available in all languages'
         # will use fallback string
         assert fluent.translate(l10n, 'brand-new-string', fallback='fluent-title') == 'Title in German'
+
+    def test_translate_term_fallback(self):
+        """Test that translation will get the brand term from english"""
+        # English works
+        l10n = get_l10n(['en-US', 'en'])
+        assert fluent.translate(l10n, 'fluent-brand') == 'English Fluent'
+        # German has no brands.ftl at all so falls back to English
+        l10n = get_l10n(['de', 'en'])
+        assert fluent.translate(l10n, 'fluent-brand') == 'German Fluent'
+        # French has a translation for the term
+        l10n = get_l10n(['fr', 'en'])
+        assert fluent.translate(l10n, 'fluent-brand') == 'French Couramment'
 
     def test_has_all_messages(self):
         l10n = get_l10n()
