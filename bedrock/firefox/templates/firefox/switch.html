@@ -50,7 +50,7 @@
       <ul class="c-share-options">
         <li>
           <a class="facebook" data-link-type="social share" data-link-name="Facebook" href="https://www.facebook.com/sharer/sharer.php?s=100&p[url]={{ share_url|urlencode }}">
-            {{ ftl('switch-share-to-facebook') }}
+            {{ ftl('switch-share-to-facebook-updated', fallback='switch-share-to-facebook') }}
           </a>
         </li>
         <li>
