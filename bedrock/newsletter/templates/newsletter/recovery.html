@@ -14,7 +14,7 @@
 {% block content %}
   <main role="main" class="mzp-l-content mzp-t-content-sm">
     {% block messages %}
-    <h1>{{ _('Manage your <span>Newsletter Subscriptions</span>') }}</h1>
+    <h1 class="mzp-u-title-sm">{{ _('Manage your <span>Newsletter Subscriptions</span>') }}</h1>
       {% if messages %}
         <ul>
           {% for message in messages %}
@@ -37,11 +37,11 @@
         {% endif %}
 
         <div class="mzp-c-newsletter-content">
-          <p>
+          <div>
             <label for="id_email">{{ _('Your email address:') }}</label>
             {{ form.email }}
             {{ form.email.errors }}
-          </p>
+          </div>
           <p class="mzp-c-form-submit">
             <button class="mzp-c-button" id="newsletter-submit" type="submit">{{ _('Send me a link') }}</button>
           </p>
