@@ -632,6 +632,7 @@ class TestSendToDeviceView(TestCase):
 
 
 @override_settings(DEV=False)
+@patch.dict(os.environ, SWITCH_EXPERIMENT_NEW_REDESIGN='False')
 @patch('bedrock.firefox.views.l10n_utils.render')
 class TestFirefoxNew(TestCase):
     @patch.object(views, 'ftl_file_is_active', lambda *x: True)

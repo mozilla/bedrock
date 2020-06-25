@@ -928,6 +928,13 @@
     },
     {
       "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/firefox/new/desktop/exp.js"
+      ],
+      "name": "firefox_new_exp"
+    },
+    {
+      "files": [
         "js/firefox/new/trailhead/thanks.js"
       ],
       "name": "firefox_new_thanks"

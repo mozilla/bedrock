@@ -738,7 +738,7 @@ class NewView(L10nTemplateView):
 
         if locale == 'ru' and switch('firefox-yandex'):
             template = 'firefox/new/trailhead/download-yandex.html'
-        elif locale == 'en-US' and switch('desktop-download') and variant == 'b':
+        elif locale == 'en-US' and switch('experiment-new-redesign') and variant == 'b':
             template = 'firefox/new/desktop/download.html'
         elif ftl_file_is_active('firefox/new/download'):
             template = 'firefox/new/trailhead/download.html'
