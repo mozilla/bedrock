@@ -8,7 +8,7 @@ from django.core.cache import caches
 from django.utils.encoding import force_bytes
 from django.utils.functional import lazy, cached_property
 
-from fluent.runtime import FluentLocalization, FluentResourceLoader
+from fluent.runtime import FluentLocalization, FluentResource
 from fluent.syntax.ast import GroupComment, Message
 
 from lib.l10n_utils import translation
@@ -25,6 +25,7 @@ __all__ = [
 ]
 cache = caches['fluent']
 REQUIRED_RE = re.compile(r'^required\b', re.MULTILINE | re.IGNORECASE)
+TERM_RE = re.compile(r'\{\s*-[a-z-]+\s*\}')
 
 
 class FluentL10n(FluentLocalization):
@@ -92,6 +93,28 @@ class FluentL10n(FluentLocalization):
             return True
 
         return message_id in self._localized_message_ids
+
+
+class FluentResourceLoader:
+    """A resource loader that will add english brand terms to every bundle"""
+    @staticmethod
+    def resources(locale, resource_ids):
+        for root in settings.FLUENT_PATHS:
+            resources = []
+            for resource_id in resource_ids:
+                path = root.joinpath(locale, resource_id)
+                if not path.is_file():
+                    continue
+
+                with path.open(encoding='utf-8') as ftl_file:
+                    resources.append(FluentResource(ftl_file.read()))
+            if resources:
+                if locale != 'en':
+                    path = settings.FLUENT_LOCAL_PATH.joinpath('en', 'brands.ftl')
+                    with path.open(encoding='utf-8') as ftl_file:
+                        resources.append(FluentResource(ftl_file.read()))
+
+                yield resources
 
 
 def _cache_key(*args, **kwargs):
@@ -190,9 +213,7 @@ def fluent_l10n(locales, files):
 
     # file IDs may not have file extension
     files = [f'{f}.ftl' if not f.endswith('.ftl') else f for f in files]
-    paths = [f'{path}/{{locale}}/' for path in settings.FLUENT_PATHS]
-    loader = FluentResourceLoader(paths)
-    return FluentL10n(locales, files, loader)
+    return FluentL10n(locales, files, FluentResourceLoader)
 
 
 @memoize
