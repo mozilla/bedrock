@@ -14,9 +14,9 @@ whatsnew_re_all = latest_re % (version_re, 'whatsnew/all')
 
 urlpatterns = (
     page('opt-out', 'exp/opt-out.html'),
-    page('firefox', 'exp/firefox/index.html', active_locales=['en-US', 'en-GB', 'en-CA', 'de']),
+    page('firefox', 'exp/firefox/index.html', active_locales=['en-US', 'en-GB', 'en-CA', 'de', 'fr'], ftl_files=['firefox/home']),
     url(r'^firefox/new/$', views.new, name='exp.firefox.new'),
-    page('firefox', 'exp/firefox/index.html', active_locales=['en-US', 'en-GB', 'en-CA', 'de']),
     page('firefox/mobile', 'exp/firefox/mobile.html'),
     url(r'^$', views.home_view, name='exp.mozorg.home'),
+    page('firefox/accounts', 'exp/firefox/accounts.html', ftl_files=['firefox/accounts']),
 )

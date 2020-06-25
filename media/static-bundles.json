@@ -648,6 +648,13 @@
     },
     {
       "files": [
+        "css/base/mozilla-fxa-state.scss",
+        "css/exp/firefox/accounts.scss"
+      ],
+      "name": "exp_firefox_accounts"
+    },
+    {
+      "files": [
         "css/privacy/privacy-protocol.scss"
       ],
       "name": "privacy_protocol"
@@ -1182,6 +1189,16 @@
         "js/firefox/accounts-2019.js"
       ],
       "name": "firefox_accounts_2019"
+    },
+    {
+      "files": [
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js",
+        "js/base/mozilla-fxa-form.js",
+        "js/base/mozilla-fxa-product-button.js",
+        "js/exp/firefox/accounts.js"
+      ],
+      "name": "exp_firefox_accounts"
     },
     {
       "files": [

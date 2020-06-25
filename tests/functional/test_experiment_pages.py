@@ -21,7 +21,8 @@ def pytest_generate_tests(metafunc):
         '/exp/firefox/',
         '/exp/firefox/new/',
         '/exp/firefox/mobile/',
-        '/exp/'
+        '/exp/',
+        '/exp/firefox/accounts'
     )
     metafunc.parametrize('url', [base_url + path for path in paths])
 

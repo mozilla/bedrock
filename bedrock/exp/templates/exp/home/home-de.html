@@ -9,6 +9,8 @@
   <link rel="canonical" href="{{ settings.CANONICAL_URL }}/{{ LANG }}/">
 {% endblock %}
 
+{% block page_og_url %}{{ settings.CANONICAL_URL }}/{{ LANG }}/{% endblock %}
+
 {% block page_title %}{{ _('Internet für Menschen, nicht für Profit') }}{% endblock %}
 
 {% block page_desc %}

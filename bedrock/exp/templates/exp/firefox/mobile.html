@@ -16,6 +16,8 @@
   <link rel="canonical" href="{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/mobile/">
 {% endblock %}
 
+{% block page_og_url %}{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/mobile/{% endblock %}
+
 {% block page_title %}{{ _('Download the Firefox Browser on your Mobile for iOS and Android') }} | {{ _('Firefox') }}{% endblock %}
 {% block page_desc %}{{ _('Firefox Browser for Mobile blocks over 2000 trackers by default, giving you the privacy you deserve and the speed you need in a private mobile browser.') }}{% endblock %}
 {% block page_og_title %}{{ _('Get the mobile browser built for you, not advertisers') }} | {{ _('Firefox') }}{% endblock %}

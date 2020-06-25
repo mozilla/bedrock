@@ -12,6 +12,8 @@
   <link rel="canonical" href="{{ settings.CANONICAL_URL }}/{{ LANG }}/">
 {% endblock %}
 
+{% block page_og_url %}{{ settings.CANONICAL_URL }}/{{ LANG }}/{% endblock %}
+
 {% block gtm_page_id %}data-gtm-page-id="Homepage"{% endblock %}
 
 {% block page_title %}{{ _('Internet for people, not profit') }}{% endblock %}
