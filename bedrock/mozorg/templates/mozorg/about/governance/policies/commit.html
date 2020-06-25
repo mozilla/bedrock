@@ -74,13 +74,10 @@ You will need one or more vouchers. The <a href="{{ policy }}">Commit Access Pol
 <p>{{ _('If your account in a particular SCM is inactive for more than 6 months, it may be deactivated. However, the knowledge that you have achieved a particular level of access is retained. Therefore, getting your account reactivated is a simple matter of filing a bug asking IT to turn it back on. Such bugs should be dealt with extremely quickly.') }}</p>
 
 <h2 id="problems">{{ _('Useful Information') }}</h2>
-<ul class="mzp-u-list-styled">
-  <li>{% trans rheeet='https://ftp.mozilla.org/pub/mozilla.org/mozilla/libraries/bonus-tracks/rheet.wav' %}
-    Need to hear a <a href="{{ rheeet }}">rheeet</a>?
-  {% endtrans %}</li>
-  <li>{% trans mercurial='https://developer.mozilla.org/docs/Mercurial/Using_Mercurial#How_do_I_check_stuff_in.3F' %}
-    We have a document on <a href="{{ mercurial }}">checking in using Hg</a>.
-  {% endtrans %}</li>
-</ul>
+<p>
+{% trans docs='https://firefox-source-docs.mozilla.org/', setup='https://firefox-source-docs.mozilla.org/setup/index.html', chat='https://chat.mozilla.org/#/room/#introduction:mozilla.org' %}
+  You can see the <a href="{{ docs }}">Firefox Source Documentation</a> and learn <a href="{{ setup }}">how to get set up to work in it here</a>. You can also <a href="{{ chat }}">join us on our Matrix instance</a> if you're just getting started.
+{% endtrans %}
+</p>
 
 {% endblock %}
