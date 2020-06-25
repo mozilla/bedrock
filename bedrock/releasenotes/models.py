@@ -43,6 +43,7 @@ ALLOWED_TAGS = [
     'ol',
     'p',
     'small',
+    'strike',
     'strong',
     'ul',
 ]
