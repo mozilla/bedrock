@@ -1,0 +1,47 @@
+
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base/base-protocol.html" %}
+{% from "macros-protocol.html" import hero, picto_card with context %}
+
+{% block page_title %}{{ ftl('set-as-default-landing-make-firefox-your-default') }}{% endblock %}
+{% block page_desc %}{{ ftl('set-as-default-landing-choose-the-browser') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox-default-landing') }}
+{% endblock %}
+
+{% block content %}
+  <main role="main">
+    {% call hero(
+      title=ftl('set-as-default-landing-make-sure-youre-protected'),
+      desc=ftl('set-as-default-landing-thanks-for-using-the'),
+      class='mzp-c-hero',
+      include_cta=True,
+      heading_level=1,
+    ) %}
+    <div class="cta-container">
+      <div class="mzp-c-button-download-container">
+        <a id="set-as-default-button" href="{{ url('firefox.set-as-default.thanks') }}" class="mzp-c-button mzp-t-product" data-cta-text="Make Firefox your default browser" data-cta-type="button">
+          {{ ftl('set-as-default-landing-make-firefox-your-default') }}
+        </a>
+      </div>
+    </div>
+    {% endcall %}
+    <section class="card-set">
+      <ul class="mzp-l-card-third mzp-l-content">
+      {% if l10n_has_tag('default-browser-012020') %}
+        {{ picto_card(title=ftl('set-as-default-landing-choose-automatic-privacy'), desc=ftl('set-as-default-landing-companies-keep-finding'), class='privacy') }}
+        {{ picto_card(title=ftl('set-as-default-landing-choose-freedom-on-every'), desc=ftl('set-as-default-landing-firefox-is-fast-and'), class='freedom') }}
+        {{ picto_card(title=ftl('set-as-default-landing-choose-corporate-independence'), desc=ftl('set-as-default-landing-firefox-is-the-only'), class='independence') }}
+      {% else %}
+        {{ picto_card(title=ftl('set-as-default-landing-choose-automatic-privacy'), desc=ftl('set-as-default-landing-the-internet-keeps'), class='privacy') }}
+        {{ picto_card(title=ftl('set-as-default-landing-choose-freedom-on-every'), desc=ftl('set-as-default-landing-firefox-is-fast-no-interest'), class='freedom') }}
+        {{ picto_card(title=ftl('set-as-default-landing-choose-corporate-independence'), desc=ftl('set-as-default-landing-firefox-is-the-only-major'), class='independence') }}
+      {% endif %}
+      </ul>
+    </section>
+  </main>
+{% endblock %}

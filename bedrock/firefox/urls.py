@@ -160,9 +160,9 @@ urlpatterns = (
     page('firefox/privacy/products', 'firefox/privacy/products.html', ftl_files=['firefox/privacy-hub']),
 
     # Issue 8432
-    page('firefox/set-as-default/thanks', 'firefox/set-as-default/thanks.html'),
+    page('firefox/set-as-default/thanks', 'firefox/set-as-default/thanks.html', ftl_files='firefox/set-as-default/thanks'),
     # Default browser campaign
-    page('firefox/set-as-default', 'firefox/set-as-default/landing-page.html'),
+    page('firefox/set-as-default', 'firefox/set-as-default/landing.html', ftl_files='firefox/set-as-default/landing'),
 
     # Issue 8536
     page('firefox/retention/thank-you', 'firefox/retention/thank-you.html'),

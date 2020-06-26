@@ -4,14 +4,12 @@
 
 {% from "macros-protocol.html" import hero with context %}
 
-{% add_lang_files "firefox/set-default-thanks" %}
-
 {% extends "firefox/base/base-protocol.html" %}
 
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
-{% block page_title %}{{ _('Thanks for choosing Firefox') }}{% endblock %}
+{% block page_title %}{{ ftl('set-as-default-thanks-set-as-default-thanks-for-choosing-firefox') }}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('firefox-default-thanks') }}
@@ -23,44 +21,41 @@
 <main role="main">
   <div class="mzp-l-content">
     <div class="mzp-c-notification-bar mzp-t-success thanks-state-is-default hide-from-legacy-ie">
-      <p>{{ _('Success! Your default browser is set to Firefox.') }}</p>
+      <p>{{ ftl('set-as-default-thanks-success-your-default-browser') }}</p>
     </div>
   </div>
 
   {% call hero(
-    title=_('Thanks for choosing Firefox'),
+    title=ftl('set-as-default-thanks-set-as-default-thanks-for-choosing-firefox'),
     class='mzp-t-product-firefox thanks-hero',
     include_cta=True,
     heading_level=1
   ) %}
     <div class="thanks-state-not-firefox">
       <p class="mzp-c-hero-desc">
-        {{ _('Looks like you’re using a different browser right now. Make sure you have Firefox downloaded on your device.') }}
+        {{ ftl('set-as-default-thanks-looks-like-youre-using-a') }}
       </p>
       {{ download_firefox(alt_copy=ftl('download-button-download-firefox'), download_location='primary cta') }}
     </div>
     <div class="mzp-c-hero-desc thanks-state-not-default-desktop hide-from-legacy-ie">
-      {# L10n: When a visitor sees this message a system dialog will also open on screen. #}
-      <p>{{ _('You’re almost done. Just change your default browser to Firefox in the settings panel on your screen.') }}</p>
+      <p>{{ ftl('set-as-default-thanks-youre-almost-done-just-change') }}</p>
 
       <p class="thanks-help-text">
         <a href="https://support.mozilla.org/kb/make-firefox-your-default-browser{{ utms }}">
-          {{ _('Having trouble setting your default browser?') }}
+          {{ ftl('set-as-default-thanks-having-trouble-setting-your') }}
         </a>
       </p>
     </div>
     <p class="mzp-c-hero-desc thanks-state-not-default-android hide-from-legacy-ie"">
-    {% trans android = 'https://support.mozilla.org/kb/make-firefox-default-browser-android' ~ utms %}
-      Here’s everything you need to know about setting your default browser on <a href="{{ android }}">Android devices</a>.
-    {% endtrans %}
+    {{ ftl('set-as-default-thanks-heres-everything-you-need-android',
+           android='https://support.mozilla.org/kb/make-firefox-default-browser-android' ~ utms) }}
     </p>
     <p class="mzp-c-hero-desc thanks-state-not-default-ios hide-from-legacy-ie"">
-    {% trans ios = 'https://support.mozilla.org/en-US/kb/unable-set-firefox-default-browser-ios' ~ utms %}
-      Here’s everything you need to know about setting your default browser on <a href="{{ ios }}">iOS devices</a>.
-    {% endtrans %}
+    {{ ftl('set-as-default-thanks-heres-everything-you-need-ios',
+           ios='https://support.mozilla.org/en-US/kb/unable-set-firefox-default-browser-ios' ~ utms) }}
     </p>
     <p class="mzp-c-hero-desc thanks-state-is-default hide-from-legacy-ie">
-      {{ _('You’re all set.') }}
+      {{ ftl('set-as-default-thanks-youre-all-set') }}
     </p>
   {% endcall %}
 
@@ -68,30 +63,28 @@
     <div class="mzp-l-content">
       <section class="thanks-extra-links-item mobile">
         <h2 class="thanks-extra-links-heading">
-          {{ _('Get Firefox for mobile') }}
+          {{ ftl('set-as-default-thanks-get-firefox-for-mobile') }}
         </h2>
-        <p>{{ _('Travel the internet with protection on all your devices.') }}</p>
-        <a href="{{ url('firefox.mobile.index') }}">{{ _('Download the app') }}</a>
+        <p>{{ ftl('set-as-default-thanks-travel-the-internet-with') }}</p>
+        <a href="{{ url('firefox.mobile.index') }}">{{ ftl('set-as-default-thanks-download-the-app') }}</a>
       </section>
 
       <section class="thanks-extra-links-item join">
         <h2 class="thanks-extra-links-heading">
-          {{ _('Join Firefox') }}
+          {{ ftl('set-as-default-thanks-join-firefox') }}
         </h2>
-        <p>{{ _('Sign up for a free account and sync all your passwords, browsing history, and preferences across your devices.') }}</p>
-        <a href="{{ url('firefox.accounts') }}">{{ _('Get an Account') }}</a>
+        <p>{{ ftl('set-as-default-thanks-sign-up-for-a-free-account') }}</p>
+        <a href="{{ url('firefox.accounts') }}">{{ ftl('set-as-default-thanks-get-an-account') }}</a>
       </section>
 
       <section class="thanks-extra-links-item help">
         <h2 class="thanks-extra-links-heading">
-          {{ _('Having trouble?') }}
+          {{ ftl('set-as-default-thanks-having-trouble') }}
         </h2>
         <p>
-        {% trans android = 'https://support.mozilla.org/kb/make-firefox-default-browser-android' ~ utms,
-                 desktop = 'https://support.mozilla.org/kb/make-firefox-your-default-browser' ~ utms %}
-          Here’s everything you need to know about setting your default browser on
-          <a href="{{ android }}">Android devices</a> or <a href="{{ desktop }}">desktop computers</a>.
-        {% endtrans %}
+        {{ ftl('set-as-default-thanks-heres-everything-you-need-android-desktop',
+               android='https://support.mozilla.org/kb/make-firefox-default-browser-android' ~ utms,
+               desktop='https://support.mozilla.org/kb/make-firefox-your-default-browser' ~ utms) }}
         </p>
       </section>
     </div>
