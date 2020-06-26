@@ -20,6 +20,8 @@
 
 {% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-desktop' %}
 
+{% set ios_url = app_store_url('firefox') %}
+
 {% block content %}
 <main role="main" class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
 
