@@ -19,98 +19,62 @@ html {
     min-height: 100vh;
 }
 
-section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
-    display: inline-block;
-    max-width: 320px;
-    @include bidi(((text-align, left, right),));
-}
+.page-content {
+    padding-bottom: $layout-xl;
 
-.agreement {
-    padding-bottom: $spacing-sm;
+    .mzp-l-content {
+        max-width: $content-sm;
+    }
 }
 
 .browser-logo img {
     display: block;
-    max-width: 250px;
+    max-width: 260px;
     padding: $spacing-lg 0 $spacing-xl;
 }
 
-.field {
-    margin: 0;
-    padding: 0;
-}
-
-.mzp-c-button {
-    width: 100%;
-}
-
-.mzp-c-hero-desc {
+.hero-desc {
     padding-bottom: $spacing-md;
 }
 
-.mzp-c-hero-image {
+.hero-form {
+    margin-bottom: $layout-sm;
+    text-align: center;
+}
+
+.hero-image {
     margin-top: $spacing-sm;
 }
 
-.mzp-c-hero-title {
+.hero-title {
     @include text-title-lg;
 }
 
-.fxa-email-field {
-    width: 100%;
-}
-
-.fxa-email-form-intro, .fxa-email-form-intro strong {
-    font-weight: bold;
-    @include text-title-xs;
-    display: inline;
-}
-
-.fxa-email-field-container {
-    margin-top: $spacing-lg;
-}
-
-.fxa-signin {
-    @include text-body-xs;
-    margin-top: $spacing-sm;
-}
-
-.fxa-signin, .agreement {
-    color: $color-marketing-gray-70;
-}
-
-.page-content {
-    margin-bottom: $spacing-xl;
-    text-align: center;
-}
-
-.mzp-c-emphasis-box {
-    text-align: center;
-}
-
-@media #{$mq-sm} {
-
-    div.mzp-c-hero-image {
-       height: 100%;
-       vertical-align: top;
-    }
-
-    section .mzp-l-content, div.mzp-c-hero-image {
-        max-width: 600px;
-        position: relative;
+.fxa-email-form-intro {
+    &,
+    & strong{
+        @include text-title-xs;
+        font-weight: bold;
+        color: $color-ink-80;
     }
 }
 
 @media #{$mq-lg} {
 
-    section .mzp-l-content, div.mzp-c-hero-image {
-        max-width: 700px;
+    .page-content .mzp-l-content {
+        max-width: $content-xl;
     }
-}
 
-@media screen and (min-width: $break-large) { // This is custom in order to make sure that the image doesn't bounce when screen size changes.
-    div.mzp-c-hero-image {
-        margin-top: $layout-2xl;
+    .hero-form, .hero-image {
+        @include border-box;
+        display: inline-block;
+        width: 49%; // not 50% because of the whitespace between the two
+        vertical-align: middle;
     }
-}
 
+    .hero-form {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+}
