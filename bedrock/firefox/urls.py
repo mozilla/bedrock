@@ -111,7 +111,7 @@ urlpatterns = (
     page('firefox/welcome/3', 'firefox/welcome/page3.html', ftl_files=['firefox/welcome/page3']),
     page('firefox/welcome/4', 'firefox/welcome/page4.html', ftl_files=['firefox/welcome/page4']),
     page('firefox/welcome/5', 'firefox/welcome/page5.html', ftl_files=['firefox/welcome/page5']),
-    page('firefox/welcome/6', 'firefox/welcome/page6.html'),
+    page('firefox/welcome/6', 'firefox/welcome/page6.html', ftl_files=['firefox/welcome/page6']),
     page('firefox/welcome/7', 'firefox/welcome/page7.html'),
     page('firefox/welcome/8', 'firefox/welcome/page8.html'),
 
