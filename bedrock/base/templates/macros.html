@@ -127,7 +127,7 @@
 
 {# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#signup-form #}
 {% macro fxa_email_form(entrypoint, entrypoint_experiment, entrypoint_variation, context=None, utm_campaign=None, utm_content=None, utm_term=None, style=None, class_name='fxa-email-form', form_title=None, intro_text=none, button_text=None, button_class='button button-blue') -%}
-  <form action="{{ settings.FXA_ENDPOINT }}" data-mozillaonline-action="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}" id="fxa-email-form" class="{{ class_name }}">
+  <form action="{{ settings.FXA_ENDPOINT }}" data-mozillaonline-action="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}" id="fxa-email-form" class="mzp-c-form {{ class_name }}">
     <input type="hidden" name="action" value="email" />
     <input type="hidden" name="entrypoint" value="{{ entrypoint }}" id="fxa-email-form-entrypoint" />
     <input type="hidden" name="form_type" value="email" />
@@ -167,42 +167,45 @@
       <input type="hidden" name="style" value="{{ style }}" />
     {% endif %}
 
-    {% if form_title %}
-      <h2 class="fxa-email-form-title">{{ form_title }}</h2>
-    {% endif %}
+    <header class="mzp-c-form-header">
+      {% if form_title %}
+        <h2 class="mzp-c-form-heading">{{ form_title }}</h2>
+      {% endif %}
 
-    <p class="fxa-email-form-intro">
-    {% if intro_text %}
-      {{ intro_text }}
-    {% else %}
-      {{ ftl('fxa-form-enter-your-email') }}
-    {% endif %}
-    </p>
+      <p class="fxa-email-form-intro">
+      {% if intro_text %}
+        {{ intro_text }}
+      {% else %}
+        {{ ftl('fxa-form-enter-your-email') }}
+      {% endif %}
+      </p>
+    </header>
 
     <div class="fxa-email-field-container">
-      <div class="field">
-        <label for="fxa-email-field">{{ ftl('fxa-form-email-address') }}</label>
-        <input type="email" name="email" id="fxa-email-field" class="fxa-email-field" placeholder="user@example.com" required>
+      <div class="mzp-c-field mzp-l-stretch">
+        <label for="mzp-c-field-label">{{ ftl('fxa-form-email-address') }}</label>
+        <input type="email" name="email" id="fxa-email-field" class="mzp-c-field-control" placeholder="user@example.com" required>
+        <p class="mzp-c-field-info">
+          {{ ftl('fxa-form-by-proceeding', url1='https://accounts.firefox.com/legal/terms', url2='https://accounts.firefox.com/legal/privacy') }}
+        </p>
       </div>
 
-      <p class="agreement">
-        {{ ftl('fxa-form-by-proceeding', url1='https://accounts.firefox.com/legal/terms', url2='https://accounts.firefox.com/legal/privacy') }}
-      </p>
-
-      <button
-        type="submit"
-        class="{{ button_class }}"
-        id="fxa-email-form-submit"
-        data-cta-type="fxa-sync"
-        data-cta-text="Register"
-        data-cta-position="primary"
-      >
-      {% if button_text %}
-        {{ button_text }}
-      {% else %}
-        {{ ftl('fxa-form-continue') }}
-      {% endif %}
-      </button>
+      <div class="mzp-c-button-container mzp-l-stretch">
+        <button
+          type="submit"
+          class="{{ button_class }}"
+          id="fxa-email-form-submit"
+          data-cta-type="fxa-sync"
+          data-cta-text="Register"
+          data-cta-position="primary"
+        >
+        {% if button_text %}
+          {{ button_text }}
+        {% else %}
+          {{ ftl('fxa-form-continue') }}
+        {% endif %}
+        </button>
+      </div>
     </div>
 
   </form>
