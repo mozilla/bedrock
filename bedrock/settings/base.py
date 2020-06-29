@@ -347,6 +347,7 @@ NOINDEX_URLS = [
     r'^about/legal/impressum/$',
     r'^security/announce/',
     r'^exp/',
+    r'^prometheus/',
 ]
 
 # Pages we do want indexed but don't show up in automated URL discovery
