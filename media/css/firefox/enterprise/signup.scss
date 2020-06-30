@@ -7,6 +7,10 @@ $image-path: '/media/protocol/img';
 
 @import "../../../protocol/css/includes/lib";
 @import '../../../protocol/css/components/article';
+@import '../../../protocol/css/components/forms/button-container';
+@import '../../../protocol/css/components/forms/choice';
+@import '../../../protocol/css/components/forms/field';
+@import '../../../protocol/css/components/forms/form';
 
 .enterprise-head {
     @include clearfix;
@@ -26,77 +30,17 @@ $image-path: '/media/protocol/img';
 }
 
 .enterprise-form {
-    @include font-firefox;
     margin-bottom: 60px;
-
-    h1 {
-        @include text-title-md;
-        margin-bottom: 20px;
-    }
-
-    label {
-        @include font-firefox;
-        display: block;
-        font-weight: bold;
-        margin-bottom: 5px;
-        width: 100%;
-    }
-
-    input[type=text],
-    input[type=email],
-    input[type=tel],
-    textarea,
-    select {
-        @include text-body-md;
-        margin-bottom: 40px;
-        max-width: 100%;
-        width: 430px;
-        padding: 0.25em 8px;
-    }
-
-    input[type=text],
-    input[type=email],
-    input[type=tel],
-    textarea {
-        border: 1px solid $color-marketing-gray-40;
-    }
-
-    input[type=tel] {
-        width: auto;
-    }
-}
-
-.enterprise-compare-list {
-    @include text-body-sm;
-    @include clearfix;
-    column-width: 300px;
-
-    > li {
-        padding: 0 10px;
-        display: inline-block;
-
-        li {
-            list-style-type: disc;
-            margin-left: 20px;
-            margin-bottom: 5px;
-        }
-    }
-}
-
-.enterprise-check {
-    margin-bottom: 20px;
-
-    label {
-        display: inline;
-        padding-left: 10px;
-        font-weight: normal;
-    }
 }
 
 @media #{$mq-md} {
     .enterprise-form {
-        h1 {
-            margin-bottom: 40px;
+        input[type=text],
+        input[type=email],
+        input[type=tel],
+        textarea,
+        select {
+            width: 430px;
         }
     }
 }
@@ -114,10 +58,5 @@ $image-path: '/media/protocol/img';
 }
 
 h1.thanks-head {
-    @include text-title-md;
     margin-bottom: 60px;
-}
-
-h2.thanks-subhead {
-    @include text-title-sm;
 }

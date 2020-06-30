@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "base-protocol.html" %}
+{% extends "firefox/base/base-protocol.html" %}
 
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}Request more information | Firefox Browser for Enterprise{% endblock %}
@@ -31,9 +31,11 @@
 <div id="main-content" class="mzp-l-content">
   <main class="mzp-l-main">
     <article class="mzp-c-article">
-      <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" class="enterprise-form">
-        <h1>Request more information</h1>
-        <p>Required fields are indicated with an <em>*</em>.</p>
+      <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" class="mzp-c-form enterprise-form">
+        <header class="mzp-c-form-header">
+          <h1 class="mzp-c-form-heading">Request more information</h1>
+          <p>Required fields are indicated with an <em>*</em>.</p>
+        </header>
 
         <input type="hidden" name="oid" value="00DU0000000IrgO">
         <input type="hidden" name="retURL" value="{{ request.build_absolute_uri('thanks') }}">
@@ -49,54 +51,73 @@
         <!-- <input type="hidden" name="debugEmail" value="example@example.com">      -->
         <!--  ----------------------------------------------------------------------  -->
 
-        <label for="first_name">First Name <em>*</em></label>
-        <input id="first_name" maxlength="40" name="first_name" size="20" type="text" required /><br>
+        <div class="mzp-c-field">
+          <label class="mzp-c-field-label" for="first_name">First Name <em>*</em></label>
+          <input class="mzp-c-field-control" id="first_name" maxlength="40" name="first_name" size="20" type="text" required />
+        </div>
 
-        <label for="last_name">Last Name <em>*</em></label>
-        <input id="last_name" maxlength="80" name="last_name" size="20" type="text" required /><br>
+        <div class="mzp-c-field">
+          <label class="mzp-c-field-label" for="last_name">Last Name <em>*</em></label>
+          <input class="mzp-c-field-control" id="last_name" maxlength="80" name="last_name" size="20" type="text" required />
+        </div>
 
-        <label for="email">Email <em>*</em></label>
-        <input id="email" maxlength="80" name="email" size="20" type="email" required /><br>
+        <div class="mzp-c-field">
+          <label class="mzp-c-field-label" for="email">Email <em>*</em></label>
+          <input class="mzp-c-field-control" id="email" maxlength="80" name="email" size="20" type="email" required />
+        </div>
 
-        <label for="company">Company/Organization <em>*</em></label>
-        <input id="company" maxlength="40" name="company" size="20" type="text" required /><br>
+        <div class="mzp-c-field">
+          <label class="mzp-c-field-label" for="company">Company/Organization <em>*</em></label>
+          <input class="mzp-c-field-control" id="company" maxlength="40" name="company" size="20" type="text" required />
+        </div>
 
-        <label for="title">Job Title <em>*</em></label>
-        <input id="title" maxlength="40" name="title" size="20" type="text" required /><br>
+        <div class="mzp-c-field">
+          <label class="mzp-c-field-label" for="title">Job Title <em>*</em></label>
+          <input class="mzp-c-field-control" id="title" maxlength="40" name="title" size="20" type="text" required />
+        </div>
 
-        <label for="00N0B000006DrBZ">Do you already use Firefox in your organization? <em>*</em></label>
-        <select id="00N0B000006DrBZ" name="00N0B000006DrBZ" title="Previous Firefox Deployment" required>
-    		  <option value=""></option>
-    		  <option value="No">No</option>
-          <option value="Yes, ESR">Yes, Extended Support Release</option>
-          <option value="Yes, Rapid Release">Yes, Rapid Release</option>
-        </select><br>
+        <div class="mzp-c-field">
+          <label class="mzp-c-field-label" for="00N0B000006DrBZ">Do you already use Firefox in your organization? <em>*</em></label>
+          <select class="mzp-c-field-control" id="00N0B000006DrBZ" name="00N0B000006DrBZ" title="Previous Firefox Deployment" required>
+            <option value=""></option>
+            <option value="No">No</option>
+            <option value="Yes, ESR">Yes, Extended Support Release</option>
+            <option value="Yes, Rapid Release">Yes, Rapid Release</option>
+          </select>
+        </div>
 
-        <label for="00N0B000006DrC5">Why are you interested in deploying Firefox in your organization? <em>*</em></label>
-        <textarea id="00N0B000006DrC5" name="00N0B000006DrC5" rows="3" type="text" wrap="soft" required></textarea><br>
+        <div class="mzp-c-field">
+          <label class="mzp-c-field-label" for="00N0B000006DrC5">Why are you interested in deploying Firefox in your organization? <em>*</em></label>
+          <textarea class="mzp-c-field-control" id="00N0B000006DrC5" name="00N0B000006DrC5" rows="3" type="text" wrap="soft" required></textarea>
+        </div>
 
-        <label for="00N0B000006DrBW">How many workstations are you responsible for in your enterprise software deployment? <em>*</em></label>
-        <select id="00N0B000006DrBW" name="00N0B000006DrBW" title="Approx Num of Computers" required>
-          <option value=""></option>
-          <option value="50 or less">50 or less</option>
-          <option value="51-500">51-500</option>
-          <option value="501-1,000">501-1,000</option>
-          <option value="1,001-5,000">1,001-5,000</option>
-          <option value="5,001-9,999">5,001-9,999</option>
-          <option value="10,000 or more">10,000 or more</option>
-        </select><br>
+        <div class="mzp-c-field">
+          <label class="mzp-c-field-label" for="00N0B000006DrBW">How many workstations are you responsible for in your enterprise software deployment? <em>*</em></label>
+          <select class="mzp-c-field-control" id="00N0B000006DrBW" name="00N0B000006DrBW" title="Approx Num of Computers" required>
+            <option value=""></option>
+            <option value="50 or less">50 or less</option>
+            <option value="51-500">51-500</option>
+            <option value="501-1,000">501-1,000</option>
+            <option value="1,001-5,000">1,001-5,000</option>
+            <option value="5,001-9,999">5,001-9,999</option>
+            <option value="10,000 or more">10,000 or more</option>
+          </select>
+        </div>
 
-        <label for="00N4O000006UyTn">Are you interested in learning more about enterprise offerings, such as paid support, from Mozilla? <em>*</em></label>
-        <select id="00N4O000006UyTn" name="00N4O000006UyTn" title="Firefox Enterprise Offerings Opt-in" required>
-		  <option value=""></option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select><br>
+        <div class="mzp-c-field">
+          <label class="mzp-c-field-label" for="00N4O000006UyTn">Are you interested in learning more about enterprise offerings, such as paid support, from Mozilla? <em>*</em></label>
+          <select class="mzp-c-field-control" id="00N4O000006UyTn" name="00N4O000006UyTn" title="Firefox Enterprise Offerings Opt-in" required>
+            <option value=""></option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
 
         <!-- Firefox Enterprise -->
-        <div class="enterprise-check">
-          <input id="00N0B000006DrBb" name="00N0B000006DrBb" type="checkbox" value="1" required>
-          <label for="00N0B000006DrBb">By signing up you agree to Mozilla communicating with you about Firefox Enterprise. We’ll treat your information as described in our <a href="{{ url('privacy.notices.websites') }}">Privacy Policy</a>. <em>*</em></label>
+
+        <div class="mzp-c-choice ">
+          <input class="mzp-c-choice-control" id="00N0B000006DrBb" name="00N0B000006DrBb" type="checkbox" value="1" required>
+          <label class="mzp-c-choice-label mzp-t-sm" for="00N0B000006DrBb">By signing up you agree to Mozilla communicating with you about Firefox Enterprise. We’ll treat your information as described in our <a href="{{ url('privacy.notices.websites') }}">Privacy Policy</a>. <em>*</em></label>
         </div>
         <input type="submit" name="submit" class="mzp-c-button mzp-t-product" value="Submit">
       </form>
