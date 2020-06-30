@@ -8,6 +8,9 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/includes/lib';
 @import '../../protocol/css/components/notification-bar';
 @import '../../protocol/css/components/emphasis-box';
+@import '../../protocol/css/components/forms/form';
+@import '../../protocol/css/components/forms/field';
+@import '../../protocol/css/components/forms/set';
 
 .mzp-c-article {
     min-height: $content-sm;
@@ -17,50 +20,26 @@ $image-path: '/media/protocol/img';
     }
 }
 
+
 .mzp-c-emphasis-box {
     margin-top: $spacing-xl;
+    margin-bottom: $layout-md;
 }
 
 //* -------------------------------------------------------------------------- */
 // Form
 
-fieldset {
-    margin-top: $spacing-lg;
-    padding: $spacing-sm;
-
-    label {
-        margin: $spacing-sm 0;
-    }
-
-    textarea {
-        min-height: 200px;
-        width: 100%;
-    }
-
-    @media #{$mq-md} {
-        textarea {
-            width: $content-sm;
-        }
-    }
-}
-
-.mzp-c-button {
-    margin-top: $spacing-md;
+textarea {
+    min-height: 200px;
+    width: 100%;
+    max-width: $content-sm;
 }
 
 .super-priority-field {
     display: none;
 }
 
-.error-msg, .mzp-c-form-errors {
-    @include text-title-xxs;
-    color: $color-red-60;
-    display: block;
-    font-weight: bold;
-    margin: $spacing-sm 0;
-}
-
-.mzp-c-notification-bar {
+#outer-wrapper .mzp-c-notification-bar {
     margin: $spacing-lg 0;
 }
 
