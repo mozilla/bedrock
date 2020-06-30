@@ -66,13 +66,4 @@ blockquote.t-small {
     @media #{$mq-lg} {
         padding-top: 0;
     }
-
-    // mozilla/protocol#370
-    input[type='email'] {
-        @include border-box;
-        @include text-body-md;
-        border-radius: $border-radius-xs;
-        padding: ($spacing-md - 2px) ($spacing-xl - 2px); //2px extra padding removed to compensate for 2px border.
-        width: 100%;
-    }
 }

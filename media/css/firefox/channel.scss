@@ -97,16 +97,19 @@ $image-path: '/media/protocol/img';
         box-shadow: $box-shadow-md;
     }
 
+    .mzp-c-newsletter-content {
+        margin-bottom: 0;
+    }
+
     .mzp-c-newsletter-form {
         padding-top: 0;
         @include font-size(14px);
 
-        input[type=email] {
-            border: 2px solid $color-marketing-gray-30;
-            border-radius: $border-radius-xs;
-            padding-top: 10px; // to make input match button height
-            padding-bottom: 10px; // to make input match button height
+        input[type=email],
+        select {
+            min-width: 0; // https://github.com/mozilla/protocol/issues/607
         }
+
         label[for=id_email]{
             @include visually-hidden;
         }
@@ -163,7 +166,7 @@ $image-path: '/media/protocol/img';
         .mzp-c-newsletter-form {
             display: grid;
             grid-column-gap: $layout-md;
-            grid-template-columns: auto 285px;
+            grid-template-columns: auto $content-xs;
         }
 
         .mzp-c-newsletter-tagline,
