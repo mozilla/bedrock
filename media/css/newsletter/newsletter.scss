@@ -36,7 +36,7 @@ main {
     margin-bottom: $spacing-2xl;
 }
 
-.error-msg, .errorlist {
+.error-msg, .mzp-c-form-errors {
     @include text-title-xxs;
     color: $color-red-60;
     display: block;

@@ -32,7 +32,7 @@
       {% if form %}
         <form method="post" action="{{ url('newsletter.opt-out-confirmation') }}">
           {% if form.non_field_errors() %}
-            <div class="errorlist">
+            <div class="mzp-c-form-error">
               {{ form.non_field_errors() }}
             </div>
           {% endif %}

@@ -14,14 +14,6 @@ $image-path: '/media/protocol/img';
 @import 'components/footer';
 
 
-// This bug fix can be removed in the next Protocol version greater 11.0.2
-// Already fixed upstream in https://github.com/mozilla/protocol/commit/548e7ce3070372e7fe92f268fb3847e911d5038e
-@media #{$mq-sm} {
-    #outer-wrapper .mzp-c-notification-bar {
-        margin: $layout-xs auto 0;
-    }
-}
-
 // Temporary styling until the newsletter component is updated in Protocol
 // https://github.com/mozilla/protocol/issues/578
 .mzp-c-newsletter-subtitle {
@@ -30,4 +22,16 @@ $image-path: '/media/protocol/img';
 
 .mzp-c-newsletter-desc {
     @include text-body-md;
+}
+
+
+// style classes automatically added by python to match Protocol form error styles
+.errorlist,
+.error-msg {
+    @include light-links;
+    background-color: $form-red;
+    border-radius: $field-border-radius;
+    color: $color-white;
+    padding: $spacing-sm;
+    margin-bottom: $spacing-xl;
 }
