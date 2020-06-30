@@ -1,29 +1,17 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "firefox/channel/base.html" %}
-
-{% add_lang_files "firefox/channel/index" %}
 
 {% block page_title_suffix %}{% endblock %}
 
 {% block page_title %}
-{% if l10n_has_tag('firefox_title_meta_bug1345338') %}
-  {{ _('Try New Features in a Pre-Release Android Browser | Firefox') }}
-{% else %}
-  {{ _('Download and test future releases of Firefox for desktop, Android and iOS.') }}
-{% endif %}
+  {{ ftl('firefox-channel-try-new-features-in-a-pre', fallback='firefox-channel-download-and-test-future') }}
 {% endblock %}
 
 {% block page_desc %}
-{% if l10n_has_tag('firefox_title_meta_bug1357373') %}
-  {{_('Experience cutting-edge features in a pre-release browser for Android: Firefox Beta and Firefox Nightly. Install now!')}}
-{% elif l10n_has_tag('firefox_title_meta_bug1345338') %}
-  {{_('Experience cutting-edge features in a pre-release browser for Android: Firefox Beta, Firefox Aurora and Firefox Nightly. Install now!')}}
-{% else %}
-  {{_('Download and test the latest Firefox for Android features with Aurora, Beta and Nightly builds.')}}
-{% endif %}
+  {{ ftl('firefox-channel-experience-cutting-edge-android-updated', fallback='firefox-channel-experience-cutting-edge-android')}}
 {% endblock %}
 
 {#- This will appear as <meta property="og:description"> which can be used for social share -#}
@@ -32,8 +20,8 @@
 {% block channels %}
 <section id="beta">
   {% call call_out_compact(
-    title=_('Beta'),
-    desc=_('Try the latest Android features, before they get released to the rest of the world.'),
+    title=ftl('firefox-channel-beta'),
+    desc=ftl('firefox-channel-try-the-latest-android-features'),
     class='mzp-t-product-beta mzp-t-firefox') %}
 
     {{ download_firefox('beta', platform='android', alt_copy=ftl('download-button-download'), dom_id="android-beta-download") }}
@@ -41,41 +29,31 @@
 
   <div class="l-notes mzp-l-content">
     <ul>
-      <li><a href="{{ firefox_url('android', 'notes', 'beta') }}">{{_('Release Notes')}}</a></li>
+      <li><a href="{{ firefox_url('android', 'notes', 'beta') }}">{{ ftl('firefox-channel-release-notes') }}</a></li>
       <li>
         <a href="{{ firefox_url('android', 'all', 'beta') }}">
-          {% if l10n_has_tag('firefox_channel_bug1387466') %}
-            {{_('All Languages and Platforms')}}
-          {% else %}
-            {{_('All Languages and Builds')}}
-          {% endif %}</a>
+          {{ ftl('firefox-channel-all-languages-and-platforms', fallback='firefox-channel-all-languages-and-builds') }}
+        </a>
       </li>
     </ul>
     <p>
-      {% if l10n_has_tag('privacy_201806') %}
-        {% trans link=url('privacy.notices.firefox') + '#pre-release' %}
-        Beta is an unstable testing and development platform. By default, Beta sends data to Mozilla
-        — and sometimes our partners — to help us handle problems and try ideas.
-        <a href="{{ link }}">Learn what is shared</a>.
-        {% endtrans %}
+      {% if ftl_has_messages('firefox-channel-beta-is-an-unstable-testing') %}
+        {{ ftl('firefox-channel-beta-is-an-unstable-testing', link=url('privacy.notices.firefox') + '#pre-release') }}
       {% else %}
-        {{_('Firefox Beta automatically sends feedback to Mozilla.')}}
+        {{ ftl('firefox-channel-firefox-beta-automatically') }}
         <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{ ftl('ui-learn-more') }}</a>
       {% endif %}
     </p>
     <p>
-      {% trans feedback='https://input.mozilla.com/feedback' %}
-      <a rel="external" href="{{ feedback }}">Give us feedback</a> to help us put the final tweaks on performance and
-      functionality in a stable environment.
-      {% endtrans %}
+      {{ ftl('firefox-channel-give-us-feedback-to-help', feedback='https://input.mozilla.com/feedback') }}
     </p>
   </div>
 </section>
 
 <section id="nightly">
   {% call call_out_compact(
-    title=_('Nightly'),
-    desc=_('Check out new Android features in their earliest stages. Enjoy at your own risk.'),
+    title=ftl('firefox-channel-nightly'),
+    desc=ftl('firefox-channel-check-out-new-android-features'),
     class='mzp-t-product-nightly mzp-t-firefox') %}
 
     {{ download_firefox('nightly', platform='android', alt_copy=ftl('download-button-download'), dom_id="android-nightly-download") }}
@@ -83,17 +61,13 @@
 
   <div class="l-notes mzp-l-content">
     <ul>
-      <li><a rel="external" href="https://blog.nightly.mozilla.org/">{{_('Nightly Blog')}}</a></li>
-      <li><a href="{{ firefox_url('android', 'all', 'nightly') }}">{{_('All Languages and Builds')}}</a></li>
+      <li><a rel="external" href="https://blog.nightly.mozilla.org/">{{ ftl('firefox-channel-nightly-blog') }}</a></li>
+      <li><a href="{{ firefox_url('android', 'all', 'nightly') }}">{{ ftl('firefox-channel-all-languages-and-builds') }}</a></li>
     </ul>
-    {% if l10n_has_tag('privacy_201806') %}
-      {% trans link=url('privacy.notices.firefox') + '#pre-release' %}
-      Nightly is an unstable testing and development platform. By default, Nightly sends data to Mozilla
-      — and sometimes our partners — to help us handle problems and try ideas.
-      <a href="{{ link }}">Learn what is shared</a>.
-      {% endtrans %}
+    {% if ftl_has_messages('firefox-channel-nightly-is-an-unstable-testing') %}
+      {{ ftl('firefox-channel-nightly-is-an-unstable-testing', link=url('privacy.notices.firefox') + '#pre-release') }}
     {% else %}
-      {{_('Firefox Nightly automatically sends feedback to Mozilla.')}}
+      {{ ftl('firefox-channel-firefox-nightly-automatically') }}
       <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{ ftl('ui-learn-more') }}</a>
     {% endif %}
   </div>

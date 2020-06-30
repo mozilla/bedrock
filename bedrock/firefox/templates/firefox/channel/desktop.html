@@ -4,22 +4,12 @@
 
 {% extends "firefox/channel/base.html" %}
 
-{% add_lang_files "firefox/channel/index" %}
-
 {% block page_title %}
-{% if l10n_has_tag('firefox_title_meta_bug1345338') %}
-  {{ _('Try New Browser Features in Pre-Release Versions | Firefox') }}
-{% else %}
-  {{ _('Download and test future releases of Firefox for desktop, Android and iOS.') }}
-{% endif %}
+  {{ ftl('firefox-channel-try-new-features-in-a-pre', fallback='firefox-channel-download-and-test-future')}}
 {% endblock %}
 
 {% block page_desc %}
-{% if l10n_has_tag('firefox_title_meta_bug1345338') %}
-  {{_('Experience cutting-edge browser features in pre-release versions: Firefox Developer Edition, Firefox Beta and Firefox Nightly. Download now!')}}
-{% else %}
-  {{_('Download and test the latest Firefox for desktop features with Developer Edition, Beta and Nightly builds.')}}
-{% endif %}
+  {{ ftl('firefox-channel-experience-cutting-edge-desktop', fallback='firefox-channel-download-and-test-the-latest-desktop')}}
 {% endblock %}
 
 {% block page_og_desc %}{{ self.page_desc() }}{% endblock %}
@@ -27,8 +17,8 @@
 {% block channels %}
 <section id="beta">
   {% call call_out_compact(
-    title=_('Beta'),
-    desc=_('Test about-to-be-released features in the most stable pre-release build.'),
+    title=ftl('firefox-channel-beta'),
+    desc=ftl('firefox-channel-test-about-to-be-released'),
     class='mzp-t-product-beta mzp-t-firefox') %}
 
     {{ download_firefox('beta', platform='desktop', force_direct=True, alt_copy=ftl('download-button-download'), dom_id="desktop-beta-download") }}
@@ -36,40 +26,31 @@
 
   <div class="l-notes mzp-l-content">
     <ul>
-      <li><a href="{{ firefox_url('desktop', 'notes', 'beta') }}">{{_('Release Notes')}}</a></li>
+      <li><a href="{{ firefox_url('desktop', 'notes', 'beta') }}">{{ ftl('firefox-channel-release-notes') }}</a></li>
       <li>
         <a href="{{ firefox_url('desktop', 'all', 'beta') }}">
-        {% if l10n_has_tag('firefox_channel_bug1387466') %}
-          {{_('All Languages and Platforms')}}
-        {% else %}
-          {{_('All Languages and Builds')}}
-        {% endif %}</a>
+          {{ ftl('firefox-channel-all-languages-and-platforms', fallback='firefox-channel-all-languages-and-builds') }}
+        </a>
       </li>
     </ul>
     <p>
-      {% if l10n_has_tag('privacy_201806') %}
-        {% trans link=url('privacy.notices.firefox') + '#pre-release' %}
-          Beta is an unstable testing and development platform. By default, Beta sends data to Mozilla
-          — and sometimes our partners — to help us handle problems and try ideas.
-          <a href="{{ link }}">Learn what is shared</a>.
-        {% endtrans %}
+      {% if ftl_has_messages('firefox-channel-beta-is-an-unstable-testing') %}
+        {{ ftl('firefox-channel-beta-is-an-unstable-testing', link=url('privacy.notices.firefox') + '#pre-release') }}
       {% else %}
-        {{_('Firefox Beta automatically sends feedback to Mozilla.')}}
+        {{ ftl('firefox-channel-firefox-beta-automatically') }}
         <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{ ftl('ui-learn-more') }}</a>
       {% endif %}
     </p>
     <p>
-      {% trans feedback='https://input.mozilla.com/feedback' %}
-      <a rel="external" href="{{ feedback }}">Give us feedback</a> to help us put the final tweaks on performance and functionality in a stable environment.
-      {% endtrans %}
+      {{ ftl('firefox-channel-give-us-feedback-to-help', feedback='https://input.mozilla.com/feedback') }}
     </p>
   </div>
 </section>
 
 <section id="developer">
   {% call call_out_compact(
-    title=_('Developer Edition'),
-    desc=_('Build, test, scale and more with the only browser built just for developers.'),
+    title=ftl('firefox-channel-developer-edition'),
+    desc=ftl('firefox-channel-build-test-scale-and-more'),
     class='mzp-t-product-developer mzp-t-firefox') %}
 
     {{ download_firefox('alpha', platform='desktop', force_direct=True, alt_copy=ftl('download-button-download'), dom_id="desktop-developer-download") }}
@@ -78,26 +59,19 @@
 
   <div class="l-notes mzp-l-content">
     <ul>
-      <li><a href="{{ firefox_url('desktop', 'notes', 'developer') }}">{{_('Release Notes')}}</a></li>
+      <li><a href="{{ firefox_url('desktop', 'notes', 'developer') }}">{{ ftl('firefox-channel-release-notes') }}</a></li>
       <li><a href="{{ url('firefox.developer.index') }}">{{ ftl('ui-learn-more') }}</a></li>
       <li>
         <a href="{{ firefox_url('desktop', 'all', 'developer') }}">
-        {% if l10n_has_tag('firefox_channel_bug1387466') %}
-          {{_('All Languages and Platforms')}}
-        {% else %}
-          {{_('All Languages and Builds')}}
-        {% endif %}</a>
+          {{ ftl('firefox-channel-all-languages-and-platforms', fallback='firefox-channel-all-languages-and-builds') }}
+        </a>
       </li>
     </ul>
     <p>
-    {% if l10n_has_tag('privacy_201806') %}
-      {%- trans link=url('privacy.notices.firefox') + '#pre-release' -%}
-      Developer Edition is an unstable testing and development platform. By default,
-      Developer Edition sends data to Mozilla  — and sometimes our partners —
-      to help us handle problems and try ideas. <a href="{{ link }}">Learn what is shared</a>.
-      {%- endtrans -%}
+    {% if ftl_has_messages('firefox-channel-developer-edition-is-an') %}
+      {{ ftl('firefox-channel-developer-edition-is-an', link=url('privacy.notices.firefox') + '#pre-release') }}
     {% else %}
-      {{_('Firefox Developer Edition automatically sends feedback to Mozilla.')}}
+      {{ ftl('firefox-channel-firefox-developer-edition') }}
       <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{ ftl('ui-learn-more') }}</a>
     {% endif %}
     </p>
@@ -105,46 +79,29 @@
 </section>
 
 <section id="nightly">
-  {% if l10n_has_tag('nightly_description_bug1375100') %}
     {% call call_out_compact(
-      title=_('Nightly'),
-      desc=_('Get a sneak peek at our next generation web browser, and help us make it the best browser it can be: try Firefox Nightly.'),
+      title=ftl('firefox-channel-nightly'),
+      desc=ftl('firefox-channel-get-a-sneak-peek-at-our', fallback='firefox-channel-test-brand-new-features'),
       class='mzp-t-product-nightly mzp-t-firefox') %}
 
       {{ download_firefox('nightly', platform='desktop', force_direct=True, alt_copy=ftl('download-button-download'), dom_id="desktop-nightly-download") }}
     {% endcall %}
-  {% else %}
-    {% call call_out_compact(
-      title=_('Nightly'),
-      desc=_('Test brand new features daily (or… nightly). Enjoy at your own risk.'),
-      class='mzp-t-product-nightly mzp-t-firefox') %}
-
-      {{ download_firefox('nightly', platform='desktop', force_direct=True, alt_copy=ftl('download-button-download'), dom_id="desktop-nightly-download") }}
-    {% endcall %}
-  {% endif %}
 
   <div class="l-notes mzp-l-content">
     <ul>
-      <li><a href="{{ firefox_url('desktop', 'notes', 'nightly') }}">{{_('Release Notes')}}</a></li>
-      <li><a rel="external" href="https://blog.nightly.mozilla.org/">{{_('Nightly Blog')}}</a></li>
+      <li><a href="{{ firefox_url('desktop', 'notes', 'nightly') }}">{{ ftl('firefox-channel-release-notes') }}</a></li>
+      <li><a rel="external" href="https://blog.nightly.mozilla.org/">{{ ftl('firefox-channel-nightly-blog') }}</a></li>
       <li>
         <a href="{{ firefox_url('desktop', 'all', 'nightly') }}">
-        {% if l10n_has_tag('firefox_channel_bug1387466') %}
-          {{_('All Languages and Platforms')}}
-        {% else %}
-          {{_('All Languages and Builds')}}
-        {% endif %}</a>
+          {{ ftl('firefox-channel-all-languages-and-platforms', fallback='firefox-channel-all-languages-and-builds') }}
+        </a>
       </li>
     </ul>
     <p>
-      {% if l10n_has_tag('privacy_201806') %}
-        {% trans link=url('privacy.notices.firefox') + '#pre-release' %}
-          Nightly is an unstable testing and development platform. By default, Nightly sends data to Mozilla
-          — and sometimes our partners — to help us handle problems and try ideas.
-          <a href="{{ link }}">Learn what is shared</a>.
-        {% endtrans %}
+      {% if ftl_has_messages('firefox-channel-nightly-is-an-unstable-testing') %}
+        {{ ftl('firefox-channel-nightly-is-an-unstable-testing', link=url('privacy.notices.firefox') + '#pre-release')}}
       {% else %}
-        {{_('Firefox Nightly automatically sends feedback to Mozilla.')}}
+        {{ ftl('firefox-channel-firefox-nightly-automatically') }}
         <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{ ftl('ui-learn-more') }}</a>
       {% endif %}
     </p>
