@@ -65,9 +65,9 @@
         {% endif %}
         </h2>
       {% endif %}
-      <h2 class="thank-you hidden">{{ ftl('send-to-device-your-download-link') }}</h2>
+      <h2 class="mzp-u-title-xs thank-you hidden">{{ ftl('send-to-device-your-download-link') }}</h2>
       <form class="send-to-device-form" action="{{ url('firefox.send-to-device-post') }}" method="post">
-        <ul class="error-list hidden">
+        <ul class="mzp-c-form-errors hidden">
           <li class="sms">
             {{ ftl('send-to-device-sorry-we-cant-send', fallback='send-to-device-sorry-this-number') }}
           </li>
@@ -81,22 +81,20 @@
             <input type="hidden" name="message-set" value="{{ message_set }}">
             <input type="hidden" name="product" value="{{ product }}">
           </div>
-          <div class="inline-field">
-            <label class="form-input-label" for="{{ id }}-input" data-alt="{% if input_label_alt %}{{ input_label_alt }}{% else %}{{ ftl('send-to-device-enter-your-email-or-phone', fallback='send-to-device-enter-your-email-or-phone-10-digit') }}{% endif %}"">
+          <div class="mzp-c-field mzp-l-stretch">
+            <label class="mzp-c-field-label" for="{{ id }}-input" data-alt="{{ ftl('send-to-device-enter-your-email-or-phone', fallback='send-to-device-enter-your-email-or-phone-10-digit') }}">
               {% if input_label %}
                 {{ input_label }}
               {% else %}
                 {{ ftl('send-to-device-enter-your-email') }}
               {% endif %}
             </label>
-            <div class="form-input">
-              <input id="{{ id }}-input" class="send-to-device-input" name="phone-or-email" type="text" required>
-            </div>
-            <div class="form-submit">
-              <button type="submit" class="button mzp-c-button mzp-t-product">{{ ftl('send-to-device-send') }}</button>
-            </div>
+            <input id="{{ id }}-input" class="mzp-c-field-control send-to-device-input" name="phone-or-email" type="text" required>
           </div>
-          <p class="legal sms">
+          <div class="mzp-c-button-container mzp-l-stretch">
+            <button type="submit" class="button mzp-c-button mzp-t-product">{{ ftl('send-to-device-send') }}</button>
+          </div>
+          <p class="mzp-c-button-info sms">
             {% if legal_note_sms %}
               {{ legal_note_sms }}
             {% else %}
@@ -105,7 +103,7 @@
             {% endif %}
             <a href="{{ url('privacy.notices.websites') }}#campaigns" class="more">{{ ftl('ui-learn-more') }}</a>
           </p>
-          <p class="legal email">
+          <p class="mzp-c-button-info email">
             {% if legal_note_email %}
               {{ legal_note_email }}
             {% else %}

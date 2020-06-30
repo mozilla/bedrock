@@ -6,12 +6,21 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/forms/form';
+@import '../../../protocol/css/components/forms/field';
+@import '../../../protocol/css/components/forms/button-container';
 
 .send-to-device {
+    color: $form-text;
     max-width: 500px;
+    @include clearfix;
 
-    h2.thank-you {
-        @include text-title-xs;
+    .mzp-c-field {
+        padding-bottom: $label-v-spacing;
+    }
+
+    .mzp-c-button-container {
+        margin-bottom: 0;
     }
 
     .thank-you p {
@@ -19,35 +28,6 @@ $image-path: '/media/protocol/img';
         color: $color-black;
         padding: $spacing-sm;
         border-radius: $border-radius-xs;
-    }
-
-    .error-list {
-        background: lighten($color-red-50, 30%);
-        color: $color-black;
-        padding: $spacing-sm;
-        border-radius: $border-radius-xs;
-    }
-
-    .form-input input {
-        @include border-box;
-        @include text-body-md;
-        border-radius: $border-radius-xs;
-        padding: ($spacing-md - 2px) ($spacing-xl - 2px); //2px extra padding removed to compensate for 2px border.
-        margin-bottom: $spacing-sm;
-        width: 100%;
-    }
-
-    .form-submit button {
-        margin-bottom: $spacing-sm;
-        width: 100%;
-    }
-
-    .legal {
-        @include text-body-sm;
-    }
-
-    .email {
-        display: block;
     }
 
     .more {
@@ -71,66 +51,51 @@ $image-path: '/media/protocol/img';
     }
 }
 
-// horizontal layout -- this is the default
-.horizontal {
+// horizontal
 
-    @media #{$mq-lg} {
-        max-width: none;
-
-        .inline-field {
-            @include clearfix;
-
-            .send-to-device-input {
-                @include bidi(((float, left, right),));
-                width: 70%;
-                margin-bottom: 0;
+@media #{$mq-md} {
+    @supports(display:grid) {
+        .horizontal {
+            &.send-to-device {
+                max-width: 100%;
             }
 
-            .form-submit {
-                @include bidi(((float, right, left),));
-                width: 25%;
-            }
-        }
-    }
-}
+            & .send-to-device-form-fields {
+                & {
+                    @include grid-column-gap($spacing-lg);
+                    display: grid;
+                    grid-template-columns: 1fr min-content;
+                    grid-template-rows: auto auto;
+                }
 
-// vertical layout option
-.vertical {
+                &.hidden {
+                    display: none;
+                }
 
-    footer {
-        @include clearfix;
+                .platform-container {
+                    grid-column-start: 1;
+                    grid-column-end: 3;
+                }
 
-        li {
-            float: left;
-            width: 50%;
+                .mzp-c-field {
+                    padding-bottom: 0;
+                }
 
-            a {
-                padding: $spacing-sm;
-            }
+                .mzp-c-button-container {
+                    display: block; // not flex
+                    margin-bottom: 0;
 
-            &.app-store {
-                text-align: right;
-            }
+                    // put in fake form label to push button down height of real form label next to it
+                    &:before {
+                        @include field-label();
+                        content: '.';
+                        visibility: hidden;
+                    }
+                }
 
-            &.google-play {
-                text-align: left;
-            }
-        }
-
-        &.ios .google-play {
-            display: none;
-        }
-
-        &.android .app-store {
-            display: none;
-        }
-
-        &.ios,
-        &.android {
-            li {
-                float: none;
-                width: 100%;
-                text-align: center;
+                .mzp-c-button {
+                    min-width: 200px;
+                }
             }
         }
     }

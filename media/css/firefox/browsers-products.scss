@@ -586,7 +586,7 @@ $url-download-link-hover: svg-url($download-link-hover);
             & {
                 @include grid-column-gap($spacing-lg);
                 display: grid;
-                grid-template-columns: 1fr min-content;
+                grid-template-columns: 1fr 100px;
             }
 
             .mzp-c-field {

@@ -19,13 +19,13 @@ describe('send-to-device.js', function() {
             '<section id="send-to-device" class="send-to-device" data-countries="|us|gb|">' +
                 '<div class="form-container">' +
                     '<form class="send-to-device-form">' +
-                        '<ul class="error-list hidden"></ul>' +
+                        '<ul class="mzp-c-form-errors hidden"></ul>' +
                         '<div class="send-to-device-form-fields">' +
                             '<input type="hidden" value="all">' +
-                            '<label id="form-input-label" for="send-to-device-input" data-alt="Enter your email or 10-digit phone number.">Enter your email.</label>' +
-                            '<div class="inline-field">' +
-                                '<input id="send-to-device-input" class="send-to-device-input" type="text" required>' +
-                                '<button type="submit">Send</button>' +
+                            '<label id="mzp-c-field-label" for="send-to-device-input" data-alt="Enter your email or 10-digit phone number.">Enter your email.</label>' +
+                            '<div class="mzp-c-field mzp-l-stretch">' +
+                                '<input id="send-to-device-input" class="mzp-c-field-control send-to-device-input" type="text" required>' +
+                                '<button type="submit" class="button mzp-c-button mzp-t-product">Send</button>' +
                             '</div>' +
                         '</div>' +
                         '<div class="thank-you hidden"></div>' +

@@ -25,7 +25,7 @@ if (typeof window.Mozilla === 'undefined') {
         this.$formFields = this.$form.find('.send-to-device-form-fields');
         this.$input = this.$formFields.find('.send-to-device-input');
         this.$thankyou = this.$widget.find('.thank-you');
-        this.$errorList = this.$form.find('.error-list');
+        this.$errorList = this.$form.find('.mzp-c-form-errors');
         this.$spinnerTarget = this.$form.find('.loading-spinner');
         this.$footerLinks = this.$widget.find('footer > ul');
         this.$sendAnotherLink = this.$form.find('.send-another');
@@ -134,7 +134,7 @@ if (typeof window.Mozilla === 'undefined') {
      * Updates the form fields to include SMS messaging
      */
     SendToDevice.prototype.showSMS = function() {
-        var $label = this.$formFields.find('.form-input-label');
+        var $label = this.$formFields.find('.mzp-c-field-label');
         this.$form.addClass('sms-country');
         $label.html($label.data('alt'));
         this.$input.attr('placeholder', this.$input.data('alt'));
