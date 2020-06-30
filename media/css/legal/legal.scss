@@ -8,6 +8,8 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/components/newsletter-form';
 @import '../../protocol/css/components/emphasis-box';
 @import '../../protocol/css/components/notification-bar';
+@import '../../protocol/css/components/forms/form';
+@import '../../protocol/css/components/forms/field';
 
 /* -------------------------------------------------------------------------- */
 // Article
@@ -73,12 +75,4 @@ $image-path: '/media/protocol/img';
 
 .super-priority-field {
     display: none;
-}
-
-.mzp-l-form-field {
-    margin: $spacing-lg 0;
-}
-
-input, select {
-    max-width: 100%;
 }
