@@ -25,9 +25,9 @@
     {% endblock messages %}
 
     {% if form %}
-      <form method="post" action="{{ url('newsletter.recovery') }}" id="newsletter-recovery-form" class="mzp-c-newsletter-form">
+      <form method="post" action="{{ url('newsletter.recovery') }}" id="newsletter-recovery-form" class="mzp-c-form">
         <header class="mzp-c-newsletter-header">
-          <p class="mzp-c-newsletter-tagline">{{ _('Enter your email address and we’ll send you a link to your email preference center.') }}</p>
+          <p>{{ _('Enter your email address and we’ll send you a link to your email preference center.') }}</p>
         </header>
 
         {% if form.non_field_errors() %}
@@ -36,15 +36,17 @@
           </div>
         {% endif %}
 
-        <div class="mzp-c-newsletter-content">
-          <div>
-            <label for="id_email">{{ _('Your email address:') }}</label>
-            {{ form.email }}
-            {{ form.email.errors }}
-          </div>
-          <p class="mzp-c-form-submit">
-            <button class="mzp-c-button" id="newsletter-submit" type="submit">{{ _('Send me a link') }}</button>
-          </p>
+        <div class="mzp-c-field mzp-l-stretch {% if form.email.errors %} mzp-is-error{% endif %}">
+          <label for="id_email" class="mzp-c-field-label">
+            {{ _('Your email address:') }}
+            {% if form.email.errors %}
+              <em class="mzp-c-fieldnote">{{ form.email.errors }}</em>
+            {% endif %}
+          </label>
+          {{ field_with_attrs(form.email, class='mzp-c-field-control'|safe) }}
+        </div>
+        <div class="mzp-c-button-container mzp-l-stretch">
+          <button class="mzp-c-button" id="newsletter-submit" type="submit">{{ _('Send me a link') }}</button>
         </div>
       </form>
     {% endif %}

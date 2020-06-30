@@ -41,21 +41,19 @@
       </div>
       {% endif %}
 
-      <p>
-        <label for="id_email">
-        {% if email_label %}
-          {{ email_label }}
-        {% else %}
-          {{ ftl('newsletter-form-your-email-address') }}
-        {% endif %}
-        </label>
-        {% if email_placeholder %}
-          {% set placeholder = email_placeholder %}
-        {% else %}
-          {% set placeholder = ftl('newsletter-form-yournameexamplecom', fallback='newsletter-form-your-email-here') %}
-        {% endif %}
-        {{ field_with_attrs(form.email, placeholder=placeholder, class='mzp-js-email-field')|safe }}
-      </p>
+      <label for="id_email">
+      {% if email_label %}
+        {{ email_label }}
+      {% else %}
+        {{ ftl('newsletter-form-your-email-address') }}
+      {% endif %}
+      </label>
+      {% if email_placeholder %}
+        {% set placeholder = email_placeholder %}
+      {% else %}
+        {% set placeholder = ftl('newsletter-form-yournameexamplecom', fallback='newsletter-form-your-email-here') %}
+      {% endif %}
+      {{ field_with_attrs(form.email, placeholder=placeholder, class='mzp-js-email-field')|safe }}
 
       <div id="newsletter-details" class="mzp-c-newsletter-details">
         {% if include_country %}

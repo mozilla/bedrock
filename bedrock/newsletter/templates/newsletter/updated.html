@@ -43,9 +43,14 @@
                 {{ reason }}
               </label>
             {% endfor %}
-            <input type="checkbox" id="unsub99" name="reason-text-p">
-            <textarea placeholder="{{ _('Other…') }}" cols="35" rows="3" name="reason-text"></textarea>
-            <input type="submit" value="{{_('Submit') }}" class="mzp-c-button" name="feedback" />
+            <label>
+              <input type="checkbox" id="unsub99" name="reason-text-p">
+              {{ _('Other…') }}<br>
+              <textarea cols="35" rows="3" name="reason-text"></textarea>
+            </label>
+            <div class="mzp-c-button-container mzp-l-align-center">
+              <input type="submit" value="{{_('Submit') }}" class="mzp-c-button" name="feedback" />
+            </div>
           </form>
         </section>
       </div>
