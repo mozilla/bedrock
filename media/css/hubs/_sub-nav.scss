@@ -240,9 +240,7 @@
         visibility: visible;
     }
 
-    .other .moz-sub-nav.stuck #sub-nav-download-firefox,
-    .oldwin .moz-sub-nav.stuck #sub-nav-download-firefox,
-    .oldmac .moz-sub-nav.stuck #sub-nav-download-firefox {
+    .other .moz-sub-nav.stuck #sub-nav-download-firefox {
         display: none;
     }
 }

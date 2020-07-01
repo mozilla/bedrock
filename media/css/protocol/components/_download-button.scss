@@ -65,8 +65,6 @@ ul.download-list {
     .ios-download,
     .linux-arm-download,
     .unrecognized-download,
-    .unsupported-download,
-    .unsupported-download-osx,
     .nojs-download {
         display: none;
     }
@@ -78,8 +76,6 @@ ul.download-list {
 .download-button .os_win64-aarch64,
 .download-button .os_linux,
 .download-button .os_linux64,
-// Uncomment this to enable the win64 download buttons:
-// .win7up.x86.x64 .download-button .os_win,
 .android .download-button-desktop,
 .windows.arm .download-button .os_win,
 .linux.arm .download-button .os_linux,
@@ -94,8 +90,6 @@ ul.download-list {
     display: none !important;
 }
 
-// Uncomment this to enable the win64 download buttons:
-// .win7up.x86.x64 .download-button .os_win64,
 .linux .download-button .os_linux,
 .linux.x86.x64 .download-button .os_linux64,
 .windows .download-button .os_win,
@@ -104,27 +98,21 @@ ul.download-list {
 .android .download-button .os_android,
 .download-button-android .os_android,
 .android .download-button-desktop .download-list,
-.android .download-button-desktop small.os_win,
 .download-button-ios .os_ios,
 .ios .download-button .os_ios,
 .ios .download-button .ios-download,
 .ios .download-button-desktop .download-list,
-.other .download-button-android .download-list,
-.other .download-button small.os_win {
+.other .download-button-android .download-list {
     display: block !important;
 }
 
-.linux.arm .download-button .linux-arm-download,
-.oldwin .download-button .unsupported-download,
-.oldmac .download-button .unsupported-download {
+.linux.arm .download-button .linux-arm-download {
     display: block;
     max-width: 250px;
 }
 
 // Hide the privacy link if platform is unsupported.
-.linux.arm .download-button .fx-privacy-link,
-.oldwin .download-button .fx-privacy-link,
-.oldmac .download-button .fx-privacy-link {
+.linux.arm .download-button .fx-privacy-link {
     display: none;
 }
 
@@ -140,22 +128,6 @@ ul.download-list {
     .unrecognized-download {
         display: block;
     }
-}
-
-// Android architecture detection
-.download-button .download-list .os_android.x86,
-.download-button .download-other.os_android .arm,
-.android.x86 .download-button .download-list .os_android.armv7up,
-.android.x86 .download-button .download-other.os_android .x86 {
-    display: none !important;
-}
-
-.android.x86 .download-button .download-list .os_android.x86 {
-    display: block !important;
-}
-
-.android.x86 .download-button .download-other.os_android .armv7up {
-    display: inline !important;
 }
 
 /* stylelint-enable */
