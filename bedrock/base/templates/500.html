@@ -18,7 +18,7 @@
   {% if l10n_has_tag('404_update_2020') %}
     <main role="main">
       <section class="mzp-l-content">
-        <h1 class="error_header">{{ _('Something went wrong') }}</h2>
+        <h1 class="error_header">{{ _('Something went wrong') }}</h1>
         <p>{{ _('It’s probably just a server error and we’re working to fix it.') }}<br>
         {% trans firefox="https://firefox.com", mozilla=url('mozorg.home') %}
           You can also try refreshing this page or go to <a href={{ firefox }}>firefox.com</a> or <a href={{ mozilla }}>mozilla.org</a>
@@ -29,7 +29,7 @@
     <main>
       <div class="mzp-l-content message-section">
         <header>
-          <h1 class="error_header">{{ _('An error occurred.') }}</h2>
+          <h1 class="error_header">{{ _('An error occurred.') }}</h1>
         </header>
         <div class="error-content">
           <p class="error-helper">
