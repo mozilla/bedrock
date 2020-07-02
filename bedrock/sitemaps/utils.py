@@ -7,7 +7,6 @@ import re
 from django.urls import resolvers
 from django.conf import settings
 from django.http import HttpResponse
-from django.template.loader import get_template
 from django.test import override_settings
 from django.test.client import Client
 
@@ -166,7 +165,6 @@ def update_sitemaps():
     urls.update(get_grants_urls())
     # Output static files
     output_json(urls)
-    output_xml(urls)
 
 
 def output_json(urls):
@@ -175,36 +173,3 @@ def output_json(urls):
     # Output the data as a JSON file for convenience
     with output_file.open('w') as json_file:
         json.dump(urls, json_file)
-
-
-def output_xml(urls):
-    urls_by_locale = {}
-    for url, locales in urls.items():
-        if not locales:
-            urls_by_locale.setdefault('none', [])
-            urls_by_locale['none'].append(url)
-
-        for locale in locales:
-            urls_by_locale.setdefault(locale, [])
-            urls_by_locale[locale].append(url)
-
-    for locale, urls in urls_by_locale.items():
-        if locale != 'none':
-            output_file = settings.ROOT_PATH.joinpath('root_files', locale, 'sitemap.xml')
-            output_file.parent.mkdir(exist_ok=True)
-        else:
-            output_file = settings.ROOT_PATH.joinpath('root_files', 'sitemap_none.xml')
-
-        sitemap_tmpl = get_template('sitemaps/sitemap.xml').template
-        ctx = {
-            'canonical_url': settings.CANONICAL_URL,
-            'paths': sorted(urls),
-            'locale': locale,
-        }
-        sitemap_tmpl.stream(ctx).dump(str(output_file))
-
-    output_file = settings.ROOT_PATH.joinpath('root_files', 'sitemap.xml')
-    sitemap_tmpl = get_template('sitemaps/sitemap_index.xml').template
-
-    ctx = {'canonical_url': settings.CANONICAL_URL, 'locales': sorted(urls_by_locale.keys())}
-    sitemap_tmpl.stream(ctx).dump(str(output_file))

@@ -357,6 +357,10 @@ EXTRA_INDEX_URLS = {
     '/about/legal/impressum/': ['de'],
 }
 
+SITEMAPS_REPO = config('SITEMAPS_REPO',
+                       default='https://github.com/mozmeao/www-sitemap-generator.git')
+SITEMAPS_PATH = GIT_REPOS_PATH / 'sitemaps'
+
 # Pages that have different URLs for different locales, e.g.
 #   'firefox/private-browsing/': {
 #       'en-US': '/firefox/features/private-browsing/',
