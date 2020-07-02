@@ -85,15 +85,27 @@
       desc='Firefox is the fast, lightweight, privacy-focused browser that works across all your devices.',
       class='mzp-has-image',
       include_cta=True,
-      image_url='img/firefox/new/trailhead/browser-window.svg',
+      image_url='img/firefox/features/index/features_hero.png',
       heading_level=1
     ) %}
       {{ download_firefox(alt_copy='Download the latest Firefox', download_location='primary cta') }}
   {% endcall %}
-  <section class="mzp-l-content">
-    <h2 class="mzp-u-title-md section-title">{{_('A better internetting experience')}}
-    <section class="features mzp-l-content mzp-l-card-third">
-      <section class="mzp-c-card-picto">
+  <section class="mzp-l-content main-content">
+    <h2 class="mzp-u-title-md section-title">{{_('A better internetting experience')}}</h2>
+
+    <section class="features mzp-l-card-third">
+
+      <section class="mzp-c-card-picto faster">
+        <div class="mzp-c-card-picto-content ">
+          <h3 class="mzp-c-card-picto-title">{{ _('Browse faster') }}</h3>
+          <div class="mzp-c-card-picto-desc">
+            <p>{{ _('Firefox uses less memory  than Chrome, so your other programs can keep running at top speed.') }}</p>
+            <a href="#" rel="external"><strong>{{ _('Learn more') }}</strong></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="mzp-c-card-picto extensions">
         <div class="mzp-c-card-picto-content">
           <h3 class="mzp-c-card-picto-title">{{ _('Your favorite extensions') }}</h3>
           <div class="mzp-c-card-picto-desc">
@@ -102,70 +114,8 @@
           </div>
         </div>
       </section>
-      <section class="mzp-c-card-picto">
-        <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ _('Customize your browser') }}</h3>
-          <div class="mzp-c-card-picto-desc">
-            <p>{{ _('Give your browser the look you want  with thousands of different themes.') }}</p>
-            <a href="#" rel="external"><strong>{{ _('See top themes') }}</strong></a>
-          </div>
-        </div>
-      </section>
-      <section class="mzp-c-card-picto">
-        <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ _('Sync between devices') }}</h3>
-          <div class="mzp-c-card-picto-desc">
-            <p>{{ _('Make sure all your important stuff — internet searches, passwords, open tabs — appears where you need it on every device.') }}</p>
-            <a href="#" rel="external"><strong>{{ _('Get a Firefox Account') }}</strong></a>
-          </div>
-        </div>
-      </section>
-      <section class="mzp-c-card-picto">
-        <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ _('Browse faster') }}</h3>
-          <div class="mzp-c-card-picto-desc">
-            <p>{{ _('Firefox uses less memory  than Chrome, so your other programs can keep running at top speed.') }}</p>
-            <a href="#" rel="external"><strong>{{ _('Learn more') }}</strong></a>
-          </div>
-        </div>
-      </section>
-      <section class="mzp-c-card-picto">
-        <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ _('Better bookmarks') }}</h3>
-          <div class="mzp-c-card-picto-desc">
-            <p>{{ _('Use the bookmark star icon to stay organized and add custom names and folders quickly.') }}</p>
-            <a href="#" rel="external"><strong>{{ _('Learn more') }}</strong></a>
-          </div>
-        </div>
-      </section>
-      <section class="mzp-c-card-picto">
-        <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ _('More powerful Private Browsing') }}</h3>
-          <div class="mzp-c-card-picto-desc">
-            <p>{{ _('Private Browsing mode deletes cookie data and your browsing history every time you close it.') }}</p>
-            <a href="#" rel="external"><strong>{{ _('Learn more') }}</strong></a>
-          </div>
-        </div>
-      </section>
-      <section class="mzp-c-card-picto">
-        <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ _('Ad tracker blocking') }}</h3>
-          <div class="mzp-c-card-picto-desc">
-            <p>{{ _('Firefox automatically blocks 2000+ ad trackers from following you around the internet.') }}</p>
-            <a href="" rel="external"><strong>{{ _('Learn more') }}</strong></a>
-          </div>
-        </div>
-      </section>
-      <section class="mzp-c-card-picto">
-        <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ _('Password manager') }}</h3>
-          <div class="mzp-c-card-picto-desc">
-            <p>{{ _('Firefox Lockwise lets you access all the passwords you’ve saved in Firefox — and it’s free.') }}</p>
-            <a href="#" rel="external"><strong>{{ _('Learn more') }}</strong></a>
-          </div>
-        </div>
-      </section>
-      <section class="mzp-c-card-picto">
+
+      <section class="mzp-c-card-picto memory">
         <div class="mzp-c-card-picto-content">
           <h3 class="mzp-c-card-picto-title">{{ _('Balanced memory') }}</h3>
           <div class="mzp-c-card-picto-desc">
@@ -176,10 +126,79 @@
       </section>
     </section>
 
+    <section class="features mzp-l-card-third">
+
+      <section class="mzp-c-card-picto browsing">
+        <div class="mzp-c-card-picto-content">
+          <h3 class="mzp-c-card-picto-title">{{ _('More powerful Private Browsing') }}</h3>
+          <div class="mzp-c-card-picto-desc">
+            <p>{{ _('Private Browsing mode deletes cookie data and your browsing history every time you close it.') }}</p>
+            <a href="#" rel="external"><strong>{{ _('Learn more') }}</strong></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="mzp-c-card-picto blocking">
+        <div class="mzp-c-card-picto-content">
+          <h3 class="mzp-c-card-picto-title">{{ _('Ad tracker blocking') }}</h3>
+          <div class="mzp-c-card-picto-desc">
+            <p>{{ _('Firefox automatically blocks 2000+ ad trackers from following you around the internet.') }}</p>
+            <a href="" rel="external"><strong>{{ _('Learn more') }}</strong></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="mzp-c-card-picto password">
+        <div class="mzp-c-card-picto-content">
+          <h3 class="mzp-c-card-picto-title">{{ _('Password manager') }}</h3>
+          <div class="mzp-c-card-picto-desc">
+            <p>{{ _('Firefox Lockwise lets you access all the passwords you’ve saved in Firefox — and it’s free.') }}</p>
+            <a href="#" rel="external"><strong>{{ _('Learn more') }}</strong></a>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="features mzp-l-card-third">
+
+      <section class="mzp-c-card-picto customize">
+        <div class="mzp-c-card-picto-content">
+          <h3 class="mzp-c-card-picto-title">{{ _('Customize your browser') }}</h3>
+          <div class="mzp-c-card-picto-desc">
+            <p>{{ _('Give your browser the look you want  with thousands of different themes.') }}</p>
+            <a href="#" rel="external"><strong>{{ _('See top themes') }}</strong></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="mzp-c-card-picto sync">
+        <div class="mzp-c-card-picto-content">
+          <h3 class="mzp-c-card-picto-title">{{ _('Sync between devices') }}</h3>
+          <div class="mzp-c-card-picto-desc">
+            <p>{{ _('Make sure all your important stuff — internet searches, passwords, open tabs — appears where you need it on every device.') }}</p>
+            <a href="#" rel="external"><strong>{{ _('Get a Firefox Account') }}</strong></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="mzp-c-card-picto bookmarks">
+        <div class="mzp-c-card-picto-content">
+          <h3 class="mzp-c-card-picto-title">{{ _('Better bookmarks') }}</h3>
+          <div class="mzp-c-card-picto-desc">
+            <p>{{ _('Use the bookmark star icon to stay organized and add custom names and folders quickly.') }}</p>
+            <a href="#" rel="external"><strong>{{ _('Learn more') }}</strong></a>
+          </div>
+        </div>
+      </section>
+    </section>
+  </section>
+
+  <section class="mzp-l-content secondary-content">
     <h2 class="mzp-u-title-md section-title">From a company that puts people before profit</h2>
 
-    <section class="features mzp-l-content mzp-l-card-third">
-      <section class="mzp-c-card-picto mzp-c-card-picto-compact">
+    <section class="features mzp-l-card-third">
+
+      <section class="mzp-c-card-picto mzp-c-card-picto-compact open-source">
         <div class="mzp-c-card-picto-content">
           <h3 class="mzp-c-card-picto-title">{{ _('Open source. Open Minds.') }}</h3>
           <div class="mzp-c-card-picto-desc">
@@ -188,7 +207,7 @@
           </div>
         </div>
       </section>
-      <section class="mzp-c-card-picto mzp-c-card-picto-compact">
+      <section class="mzp-c-card-picto mzp-c-card-picto-compact non-profit">
         <div class="mzp-c-card-picto-content">
           <h3 class="mzp-c-card-picto-title">{{ _('By non-profit, Mozilla') }}</h3>
           <div class="mzp-c-card-picto-desc">
@@ -197,7 +216,7 @@
           </div>
         </div>
       </section>
-      <section class="mzp-c-card-picto mzp-c-card-picto-compact">
+      <section class="mzp-c-card-picto mzp-c-card-picto-compact independence">
         <div class="mzp-c-card-picto-content">
           <h3 class="mzp-c-card-picto-title">{{ _('Keep corporate power in check') }}</h3>
           <div class="mzp-c-card-picto-desc">
@@ -206,7 +225,7 @@
           </div>
         </div>
       </section>
-      <section class="mzp-c-card-picto mzp-c-card-picto-compact">
+      <section class="mzp-c-card-picto mzp-c-card-picto-compact private">
         <div class="mzp-c-card-picto-content">
           <h3 class="mzp-c-card-picto-title">{{ _('Private by default') }}</h3>
           <div class="mzp-c-card-picto-desc">
@@ -215,7 +234,7 @@
           </div>
         </div>
       </section>
-      <section class="mzp-c-card-picto mzp-c-card-picto-compact">
+      <section class="mzp-c-card-picto mzp-c-card-picto-compact tracking-protection">
         <div class="mzp-c-card-picto-content">
           <h3 class="mzp-c-card-picto-title">{{ _('Enhanced tracking protection') }}</h3>
           <div class="mzp-c-card-picto-desc">
@@ -224,7 +243,7 @@
           </div>
         </div>
       </section>
-      <section class="mzp-c-card-picto mzp-c-card-picto-compact">
+      <section class="mzp-c-card-picto mzp-c-card-picto-compact stacks-up">
         <div class="mzp-c-card-picto-content">
           <h3 class="mzp-c-card-picto-title">{{ _('Firefox vs. other browsers') }}</h3>
           <div class="mzp-c-card-picto-desc">

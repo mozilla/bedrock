@@ -10,3 +10,129 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/components/picto-card';
 @import '../../../protocol/css/templates/card-layout';
 
+
+.mzp-c-card-picto-content {
+    text-align: left;
+}
+
+h2.section-title {
+    text-align: center;
+    margin: $spacing-xl;
+}
+
+section.features.mzp-l-card-third {
+    margin-bottom: $layout-lg;
+}
+
+section.main-content {
+    margin-bottom: $layout-lg;
+}
+
+section.secondary-content {
+    margin-bottom: $layout-lg;
+    background-color: #f9f9fa;
+    width: 100%;
+}
+
+.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content {
+    padding-left: 50px;
+    .mzp-c-card-picto-title {
+        @include text-title-xs;
+    }
+}
+
+.faster .mzp-c-card-picto-content::before {
+    background: url('/media/img/firefox/features/index/feature_icons/performance_orange.svg') no-repeat;
+    background-position: center;
+    background-size: 56px;
+    margin-left: 0;
+    left: auto;
+}
+.extensions .mzp-c-card-picto-content::before {
+    background: url('/media/img/firefox/features/index/feature_icons/extensions_orange.svg') no-repeat;
+    background-position: center;
+    background-size: 56px;
+    margin-left: 0;
+    left: auto;
+}
+.memory .mzp-c-card-picto-content::before {
+    background: url('/media/img/firefox/features/index/feature_icons/memory_orange.svg') no-repeat;
+    background-position: center;
+    background-size: 56px;
+    margin-left: 0;
+    left: auto;
+}
+.browsing .mzp-c-card-picto-content::before {
+    background: url('/media/img/firefox/features/index/feature_icons/private-browsing_violet.svg') no-repeat;
+    background-position: center;
+    background-size: 56px;
+    margin-left: 0;
+    left: auto;
+}
+.blocking .mzp-c-card-picto-content::before {
+    background: url('/media/img/firefox/features/index/feature_icons/tracking-protection_violet.svg') no-repeat;
+    background-position: center;
+    background-size: 46px;
+    margin-left: 0;
+    left: auto;
+}
+.password .mzp-c-card-picto-content::before {
+    background: url('/media/img/firefox/features/index/feature_icons/password-manager_violet.svg') no-repeat;
+    background-position: center;
+    background-size: 54px;
+    margin-left: 0;
+    left: auto;
+}
+.customize .mzp-c-card-picto-content::before {
+    background: url('/media/img/firefox/features/index/feature_icons/customize_pink.svg') no-repeat;
+    background-position: center;
+    background-size: 56px;
+    margin-left: 0;
+    left: auto;
+}
+.sync .mzp-c-card-picto-content::before {
+    background: url('/media/img/firefox/features/index/feature_icons/sync_pink.svg') no-repeat;
+    background-position: center;
+    background-size: 56px;
+    margin-left: 0;
+    left: auto;
+}
+.bookmarks .mzp-c-card-picto-content::before {
+    background: url('/media/img/firefox/features/index/feature_icons/bookmarks_pink.svg') no-repeat;
+    background-position: center;
+    background-size: 56px;
+    margin-left: 0;
+    left: auto;
+}
+
+
+
+
+
+
+.open-source.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
+    background: url('/media/img/firefox/features/index/benefit_icons/opensource.svg') no-repeat;
+    background-size: 24px;
+}
+.non-profit.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
+    background: url('/media/img/firefox/features/index/benefit_icons/mozilla.svg') no-repeat;
+    background-size: 24px;
+}
+.independence.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
+    background: url('/media/img/firefox/features/index/benefit_icons/mountain.svg') no-repeat;
+    background-size: 24px;
+
+}
+.private.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
+    background: url('/media/img/firefox/features/index/benefit_icons/lock.svg') no-repeat;
+    background-size: 24px;
+}
+.tracking-protection.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
+    background: url('/media/img/firefox/features/index/benefit_icons/shield.svg') no-repeat;
+    background-size: 24px;
+}
+.stacks-up.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
+    background: url('/media/img/firefox/features/index/benefit_icons/browser.svg') no-repeat;
+    background-size: 24px;
+}
+
