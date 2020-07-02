@@ -4,65 +4,164 @@
 
 {% add_lang_files "firefox/shared" %}
 
+{% from "macros-protocol.html" import feature_card, hero, picto_card with context %}
+
 {% extends "firefox/base/base-protocol.html" %}
 
 {% block page_title %}{{ _('Get more done. Browse faster and lighter with multiple tabs') }} | {{ _('Firefox') }}{% endblock %}
 {% block page_desc %}{{ _('Our new, powerful multi-process platform handles all your tabs without slowing down your computer.') }}{% endblock %}
 
 {% block page_css %}
-  {{ super() }}
   {{ css_bundle('firefox-features-hub-detail') }}
 {% endblock %}
 
 {% block body_id %}firefox-features-fast{% endblock %}
 
-{% block features_header_content %}
-  <h1><span>{{ _('Firefox is now faster and leaner') }}</span></h1>
-  <p class="tagline">{{ _('We’ve been working out, so you can get more done.') }}</p>
-{% endblock %}
 
-{% block features_list %}
-<section class="key-features-section main">
-  <div class="content">
-    <section class="key-feature fast-feature-1">
-      <div class="key-feature-content">
-        <h2>{{ _('Use less memory') }}</h2>
-        <p>
-        {% trans %}
-          No one likes a computer hog! Firefox is a lean, mean (actually we’re pretty nice)
-          browsing machine. Since we use less RAM than Chrome, your other programs can keep
-          running at top speed.
-        {% endtrans %}
-        </p>
+{% block content %}
+
+<div class="mzp-c-hero">
+  <div class="hero-content">
+    <img src="{{ static('img/firefox/features/index/feature_icons/performance_orange.svg')}}" alt="">
+    <h1>Firefox is now faster and leaner</h1>
+    <p>We’ve been working out, so you can get more done.</p>
+    <div class="download-firefox">
+      {{ download_firefox(dom_id='fast-hero-download', download_location='primary cta') }}
+    </div>
+  </div>
+</div>
+
+
+<section class="mzp-l-content main-content">
+  <div class="feature-1">
+    {% call feature_card(
+      title='Use less memory',
+      image_url='img/firefox/features/thumbnails/fast/low-memory.jpg',
+      aspect_ratio='mzp-has-aspect-1-1',
+      class='mzp-l-card-feature-right-half mzp-t-firefox',
+    ) %}
+    <p>
+    No one likes a computer hog! Firefox is a lean, mean (actually we’re pretty nice)
+    browsing machine. Since we use less RAM than Chrome, your other programs can keep
+    running at top speed.
+    </p>
+    {% endcall %}
+  </div>
+
+  <div class="feature-2">
+    {% call feature_card(
+      title='Get all the tabs without lags',
+      image_url='img/firefox/features/thumbnails/fast/multi-tabs.jpg',
+      aspect_ratio='mzp-has-aspect-1-1',
+      class='mzp-l-card-feature-left-half mzp-t-firefox',
+    ) %}
+    <p>
+    Multi-tasking with multiple tabs just got easier. Firefox is now a multi-process
+    browser, which means that your tabs stay fresh and won’t take forever to reload.
+    With 86% less hang time, switch quickly between tabs even as you open more.
+    </p>
+    {% endcall %}
+  </div>
+
+  <div class="feature-3">
+    {% call feature_card(
+      title='Level-up browser gameplay',
+      image_url='img/firefox/features/thumbnails/fast/gaming.jpg',
+      aspect_ratio='mzp-has-aspect-1-1',
+      class='mzp-l-card-feature-right-half mzp-t-firefox',
+    ) %}
+    <p>
+    We led the tech to run 3D games at near-native speeds, and now Firefox is
+    bringing better performance to online gaming. Our powerful browser reduces
+    lags, speeds up ping times and optimizes overall gameplay through faster,
+    leaner browsing.
+    </p>
+    {% endcall %}
+  </div>
+</section>
+
+<section class="mzp-l-content">
+  <h2 class="mzp-u-title-md section-title">A better internetting experience</h2>
+
+  <section class="features mzp-l-card-third">
+
+    <section class="mzp-c-card-picto faster">
+      <div class="mzp-c-card-picto-content ">
+        <div class="mzp-c-card-picto-desc">
+          <a href="#" rel="external"><strong>Browse faster</strong></a>
+        </div>
       </div>
     </section>
 
-    <section class="key-feature fast-feature-2">
-      <div class="key-feature-content">
-        <h2>{{ _('Get all the tabs without lags') }}</h2>
-        <p>
-        {% trans %}
-          Multi-tasking with multiple tabs just got easier. Firefox is now a multi-process
-          browser, which means that your tabs stay fresh and won’t take forever to reload.
-          With 86% less hang time, switch quickly between tabs even as you open more.
-        {% endtrans %}
-        </p>
+    <section class="mzp-c-card-picto extensions">
+      <div class="mzp-c-card-picto-content">
+        <div class="mzp-c-card-picto-desc">
+          <a href="#" rel="external"><strong>Your favorite extensions</strong></a>
+        </div>
       </div>
     </section>
 
-    <section class="key-feature fast-feature-3">
-      <div class="key-feature-content">
-        <h2>{{ _('Level-up browser gameplay') }}</h2>
-        <p>
-        {% trans %}
-          We led the tech to run 3D games at near-native speeds, and now Firefox is
-          bringing better performance to online gaming. Our powerful browser reduces
-          lags, speeds up ping times and optimizes overall gameplay through faster,
-          leaner browsing.
-        {% endtrans %}
+    <section class="mzp-c-card-picto memory">
+      <div class="mzp-c-card-picto-content">
+        <div class="mzp-c-card-picto-desc">
+          <a href="#" rel="external"><strong>Balanced memory</strong></a>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section class="features mzp-l-card-third">
+
+    <section class="mzp-c-card-picto browsing">
+      <div class="mzp-c-card-picto-content">
+        <div class="mzp-c-card-picto-desc">
+          <a href="#" rel="external"><strong>More powerful Private Browsing</strong></a>
+        </div>
       </div>
     </section>
 
-  </div> {#--/.content--#}
+    <section class="mzp-c-card-picto blocking">
+      <div class="mzp-c-card-picto-content">
+        <div class="mzp-c-card-picto-desc">
+          <a href="" rel="external"><strong>Ad tracker blocking</strong></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mzp-c-card-picto password">
+      <div class="mzp-c-card-picto-content">
+        <div class="mzp-c-card-picto-desc">
+          <a href="#" rel="external"><strong>Password manager</strong></a>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section class="features mzp-l-card-third">
+
+    <section class="mzp-c-card-picto customize">
+      <div class="mzp-c-card-picto-content">
+        <div class="mzp-c-card-picto-desc">
+          <a href="#" rel="external"><strong>Customize your browser</strong></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mzp-c-card-picto sync">
+      <div class="mzp-c-card-picto-content">
+        <div class="mzp-c-card-picto-desc">
+          <a href="#" rel="external"><strong>Sync between devices</strong></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mzp-c-card-picto bookmarks">
+      <div class="mzp-c-card-picto-content">
+        <div class="mzp-c-card-picto-desc">
+          <a href="#" rel="external"><strong>Better bookmarks</strong></a>
+        </div>
+      </div>
+    </section>
+  </section>
 </section>
 {% endblock %}

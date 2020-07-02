@@ -22,6 +22,10 @@ h2.section-title {
     margin: $spacing-xl;
 }
 
+.mzp-c-hero h1 {
+    @include text-title-xl;
+}
+
 
 
 
@@ -44,13 +48,13 @@ h2.section-title {
     //     background-image: url('/media/img/firefox/features/thumbnails/bookmarks/bookmarks-addons.png');
     // }
 
-    &.fast-feature-1 {
-        background-image: url('/media/img/firefox/features/thumbnails/fast/low-memory.jpg');
-    }
+    // &.fast-feature-1 {
+    //     background-image: url('/media/img/firefox/features/thumbnails/fast/low-memory.jpg');
+    // }
 
-    &.fast-feature-2 {
-        background-image: url('/media/img/firefox/features/thumbnails/fast/multi-tabs.jpg');
-    }
+    // &.fast-feature-2 {
+    //     background-image: url('/media/img/firefox/features/thumbnails/fast/multi-tabs.jpg');
+    // }
 
     &.fast-feature-3 {
         background-image: url('/media/img/firefox/features/thumbnails/fast/gaming.jpg');
