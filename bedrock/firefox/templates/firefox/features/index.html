@@ -93,15 +93,13 @@
           <h3>{{ _('Browse faster') }}</h3>
         </a>
       </li>
-    {# Temporarily remove comparison pages
-     # {% if l10n_has_tag('firefox_features_compare_browsers') %}
-     # <li class="features-list-item compare">
-     #   <a href="{{ url('firefox.compare.index') }}" data-link-type="link" data-link-name="Compare Browsers">
-     #     <h3>{{ _('Compare Browsers') }}</h3>
-     #   </a>
-     # </li>
-     # {% endif %}
-     #}
+     {% if l10n_has_tag('firefox_features_compare_browsers') %}
+     <li class="features-list-item compare">
+        <a href="{{ url('firefox.browsers.compare.index') }}" data-link-type="link" data-link-name="Compare Browsers">
+          <h3>{{ _('Compare Browsers') }}</h3>
+        </a>
+      </li>
+      {% endif %}
     </ul>
   </div>
 </section>
