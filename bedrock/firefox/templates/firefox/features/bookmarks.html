@@ -23,8 +23,8 @@
 <div class="mzp-c-hero">
   <div class="hero-content">
     <img src="{{ static('img/firefox/features/index/feature_icons/bookmarks_pink.svg')}}" alt="">
-    <h1>Better bookmarks</h1>
-    <p>Don’t agonize, lovers of bookmarking. Organize with Firefox.</p>
+    <h1>{{ _('Better bookmarks')}}</h1>
+    <p>{{ _('Don’t agonize, lovers of bookmarking. Organize with Firefox.')}}</p>
     <div class="download-firefox">
       {{ download_firefox(dom_id='bookmarks-hero-download', download_location='primary cta') }}
     </div>
@@ -53,9 +53,9 @@
       aspect_ratio='mzp-has-aspect-1-1',
       class='mzp-l-card-feature-left-half mzp-t-firefox',
     ) %}
-    <p> Take your favorites on the fly. Use Firefox Sync to access your bookmarks across all
+    <p>{{ _('Take your favorites on the fly. Use Firefox Sync to access your bookmarks across all
         your devices, from desktop to mobile. Or try <a href="{{ pocket }}">Pocket</a> to save
-        any online article, or page and come back to later – even without internet.</p>
+        any online article, or page and come back to later – even without internet.')}}</p>
     {% endcall %}
   </div>
 
@@ -67,97 +67,12 @@
       aspect_ratio='mzp-has-aspect-1-1',
       class='mzp-l-card-feature-right-half mzp-t-firefox',
     ) %}
-    <p> Practice your exactitude with every bookmark manager <a href="{{ bookmark }}">add-on</a> you can think of, from
-        full page snapshots to quick-switch sidebars to locked-down-tight private bookmarks.</p>
+    <p>{{ _('Practice your exactitude with every bookmark manager <a href="{{ bookmark }}">add-on</a> you can think of, from
+        full page snapshots to quick-switch sidebars to locked-down-tight private bookmarks.')}}</p>
     {% endcall %}
   </div>
 </section>
-
-<section class="mzp-l-content">
-  <h2 class="mzp-u-title-md section-title">A better internetting experience</h2>
-
-  <section class="features mzp-l-card-third">
-
-    <section class="mzp-c-card-picto faster">
-      <div class="mzp-c-card-picto-content ">
-        <div class="mzp-c-card-picto-desc">
-          <a href="#" rel="external"><strong>Browse faster</strong></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="mzp-c-card-picto extensions">
-      <div class="mzp-c-card-picto-content">
-        <div class="mzp-c-card-picto-desc">
-          <a href="#" rel="external"><strong>Your favorite extensions</strong></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="mzp-c-card-picto memory">
-      <div class="mzp-c-card-picto-content">
-        <div class="mzp-c-card-picto-desc">
-          <a href="#" rel="external"><strong>Balanced memory</strong></a>
-        </div>
-      </div>
-    </section>
-  </section>
-
-  <section class="features mzp-l-card-third">
-
-    <section class="mzp-c-card-picto browsing">
-      <div class="mzp-c-card-picto-content">
-        <div class="mzp-c-card-picto-desc">
-          <a href="#" rel="external"><strong>More powerful Private Browsing</strong></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="mzp-c-card-picto blocking">
-      <div class="mzp-c-card-picto-content">
-        <div class="mzp-c-card-picto-desc">
-          <a href="" rel="external"><strong>Ad tracker blocking</strong></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="mzp-c-card-picto password">
-      <div class="mzp-c-card-picto-content">
-        <div class="mzp-c-card-picto-desc">
-          <a href="#" rel="external"><strong>Password manager</strong></a>
-        </div>
-      </div>
-    </section>
-  </section>
-
-  <section class="features mzp-l-card-third">
-
-    <section class="mzp-c-card-picto customize">
-      <div class="mzp-c-card-picto-content">
-        <div class="mzp-c-card-picto-desc">
-          <a href="#" rel="external"><strong>Customize your browser</strong></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="mzp-c-card-picto sync">
-      <div class="mzp-c-card-picto-content">
-        <div class="mzp-c-card-picto-desc">
-          <a href="#" rel="external"><strong>Sync between devices</strong></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="mzp-c-card-picto bookmarks">
-      <div class="mzp-c-card-picto-content">
-        <div class="mzp-c-card-picto-desc">
-          <a href="#" rel="external"><strong>Better bookmarks</strong></a>
-        </div>
-      </div>
-    </section>
-  </section>
-</section>
-
-
-
+{% include "firefox/features/features-content.html" %}
 {% endblock %}
+
+

@@ -1,6 +1,9 @@
 @import '../../../protocol/css/components/picto-card';
 
-
+h2.section-title {
+    text-align: center;
+    margin: $spacing-xl;
+}
 
 .mzp-c-card-picto-content {
     text-align: left;

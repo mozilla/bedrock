@@ -12,22 +12,25 @@ $image-path: '/media/protocol/img';
 
 @import '../../hubs/news-feed';
 
-
-
-/* -------------------------------------------------------------------------- */
-// Bookmarks page
-
-h2.section-title {
-    text-align: center;
-    margin: $spacing-xl;
-}
-
 .mzp-c-hero h1 {
     @include text-title-xl;
+    padding-top: $spacing-lg;
 }
 
-
-
+.hero-content {
+    margin: 0 auto;
+    max-width: $content-lg;
+    text-align: center;
+    @media #{$mq-xs} {
+        max-width: $content-xs;
+    }
+    @media #{$mq-sm} {
+        max-width: $content-sm;
+    }
+    @media #{$mq-md} {
+        max-width: $content-md;
+    }
+}
 
 /* -------------------------------------------------------------------------- */
 // Key features sections
@@ -56,21 +59,21 @@ h2.section-title {
     //     background-image: url('/media/img/firefox/features/thumbnails/fast/multi-tabs.jpg');
     // }
 
-    &.fast-feature-3 {
-        background-image: url('/media/img/firefox/features/thumbnails/fast/gaming.jpg');
-    }
+    // &.fast-feature-3 {
+    //     background-image: url('/media/img/firefox/features/thumbnails/fast/gaming.jpg');
+    // }
 
-    &.independent-feature-1 {
-        background-image: url('/media/img/firefox/features/thumbnails/independent/no-strings.jpg');
-    }
+    // &.independent-feature-1 {
+    //     background-image: url('/media/img/firefox/features/thumbnails/independent/no-strings.jpg');
+    // }
 
-    &.independent-feature-2 {
-        background-image: url('/media/img/firefox/features/thumbnails/independent/what-you-see.jpg');
-    }
+    // &.independent-feature-2 {
+    //     background-image: url('/media/img/firefox/features/thumbnails/independent/what-you-see.jpg');
+    // }
 
-    &.independent-feature-3 {
-        background-image: url('/media/img/firefox/features/thumbnails/independent/mission.jpg');
-    }
+    // &.independent-feature-3 {
+    //     background-image: url('/media/img/firefox/features/thumbnails/independent/mission.jpg');
+    // }
 
     &.memory-feature-1 {
         background-image: url('/media/img/firefox/features/thumbnails/memory/fast.png');
