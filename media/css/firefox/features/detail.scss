@@ -2,74 +2,46 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../../pebbles/includes/lib';
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/hero';
+@import '../../../protocol/css/templates/card-layout';
+
 @import '../../hubs/news-feed';
-@import '../../hubs/cards-block';
-@import '../../quantum/key-features';
 
 
-.main-header h1:before {
-    background-position: center center;
-    background-repeat: no-repeat;
-    content: '';
-    display: block;
-    height: 80px;
-    margin: 0 auto 20px;
-    width: 70px;
+
+/* -------------------------------------------------------------------------- */
+// Bookmarks page
+
+h2.section-title {
+    text-align: center;
+    margin: $spacing-xl;
 }
 
-#firefox-features-bookmarks .main-header h1:before {
-    background-image: url('/media/img/firefox/features/quantum/icons/bookmarks-white.svg');
-}
 
-#firefox-features-fast .main-header h1:before {
-    background-image: url('/media/img/firefox/features/quantum/icons/fast-white.svg');
-}
 
-#firefox-features-independent .main-header h1:before {
-    background-image: url('/media/protocol/img/logos/firefox/browser/logo-md.png');
-    background-size: 70px 70px;
-}
-
-#firefox-features-memory .main-header h1:before {
-    background-image: url('/media/img/firefox/features/quantum/icons/memory-white.svg');
-}
-
-#firefox-features-password-manager .main-header h1:before {
-    background-image: url('/media/img/firefox/features/quantum/icons/password-manager-white.svg');
-    width: 124px;
-}
-
-#firefox-features-private .main-header h1:before {
-    background-image: url('/media/img/firefox/features/quantum/icons/private-white.svg');
-}
-
-#firefox-features-send-tabs .main-header h1:before {
-    background-image: url('/media/img/firefox/features/quantum/icons/send-tabs-white.svg');
-}
-
-#firefox-features-sync .main-header h1:before {
-    background-image: url('/media/img/firefox/features/quantum/icons/sync-white.svg');
-}
 
 /* -------------------------------------------------------------------------- */
 // Key features sections
 
 .key-features-section .key-feature {
-    background-size: 420px 270px;
-    padding-top: 290px;
+    // background-size: 420px 270px;
+    // padding-top: 290px;
 
-    &.bookmarks-feature-1 {
-        background-image: url('/media/img/firefox/features/thumbnails/bookmarks.png');
-    }
+    // &.bookmarks-feature-1 {
+    //     background-image: url('/media/img/firefox/features/thumbnails/bookmarks.png');
+    // }
 
-    &.bookmarks-feature-2 {
-        background-image: url('/media/img/firefox/features/thumbnails/bookmarks/bookmarks-sync.png');
-    }
+    // &.bookmarks-feature-2 {
+    //     background-image: url('/media/img/firefox/features/thumbnails/bookmarks/bookmarks-sync.png');
+    // }
 
-    &.bookmarks-feature-3 {
-        background-image: url('/media/img/firefox/features/thumbnails/bookmarks/bookmarks-addons.png');
-    }
+    // &.bookmarks-feature-3 {
+    //     background-image: url('/media/img/firefox/features/thumbnails/bookmarks/bookmarks-addons.png');
+    // }
 
     &.fast-feature-1 {
         background-image: url('/media/img/firefox/features/thumbnails/fast/low-memory.jpg');
@@ -153,36 +125,6 @@
 
     &.sync-feature-3 {
         background-image: url('/media/img/firefox/features/thumbnails/sync/accessible.jpg');
-    }
-
-    @media #{$mq-tablet} {
-        background-position: top 40px right;
-        background-size: 300px auto;
-        min-height: 240px;
-        padding-top: 0;
-
-        &:nth-child(2n) {
-            background-position: top 40px left;
-        }
-    }
-
-    @media #{$mq-desktop} {
-        background-position: top right;
-        background-size: 400px auto;
-        min-height: 300px;
-
-        &:nth-child(2n) {
-            background-position: top left;
-        }
-    }
-
-    @media #{$mq-desktop-wide} {
-        background-size: 500px auto;
-        min-height: 400px;
-
-        .key-feature-content {
-            padding-top: 40px;
-        }
     }
 }
 
@@ -295,22 +237,5 @@
         @include font-size-level4;
         font-weight: bold;
         line-height: 1.3;
-    }
-}
-
-html[dir='rtl'] {
-    .news-feed .entry .cta-link {
-        padding-left: 30px;
-        padding-right: 0;
-
-        &:before {
-            background: url('/media/img/firefox/quantum/left-arrow-blue.svg');
-            left: 0;
-            right: auto;
-        }
-
-        &:hover:before {
-            transform: translateX(-11px);
-        }
     }
 }

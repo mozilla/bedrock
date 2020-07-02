@@ -4,67 +4,162 @@
 
 {% add_lang_files "firefox/shared" %}
 
-{% extends "firefox/features/base.html" %}
+{% from "macros-protocol.html" import feature_card, hero, picto_card with context %}
+
+{% extends "firefox/base/base-protocol.html" %}
 
 {% block page_title %}{{ _('Firefox Browser: Better bookmarks everywhere you go') }}{% endblock %}
-{% block page_title_suffix %}{% endblock %}
 {% block page_desc %}{{ _('Easily organize your bookmarks into folder and access them across all your devices, from desktop to mobile.') }}{% endblock %}
 
 {% block page_css %}
-  {{ super() }}
   {{ css_bundle('firefox-features-hub-detail') }}
 {% endblock %}
 
 {% block body_id %}firefox-features-bookmarks{% endblock %}
 
-{% block features_header_content %}
-  <h1><span>{{ _('Better bookmarks') }}</span></h1>
-  <p class="tagline">{{ _('Don’t agonize, lovers of bookmarking. Organize with Firefox.') }}</p>
-{% endblock %}
 
-{% block features_list %}
-<section class="key-features-section main">
-  <div class="content">
-    <section class="key-feature bookmarks-feature-1">
-      <div class="key-feature-content">
-        <h2>{{ _('File that bookmark') }}</h2>
-        <p>
-        {% trans %}
-          Get your faves all sorted with the bookmark star icon, which lets you add custom names
-          and folders quickly. Then dial in your bookmarks toolbar to make sure you never lose
-          sight of the links you love.
-        {% endtrans %}
-        </p>
-      </div>
-    </section>
+{% block content %}
 
-    <section class="key-feature bookmarks-feature-2">
-      <div class="key-feature-content">
-        {# L10n Note: “Fly” is being used here as an expression for taking bookmarks with you on mobile. Should this not translate easily an alternate string could be “Sync that bookmark” #}
-        <h2>{{ _('Fly with that bookmark') }}</h2>
-        <p>
-        {% trans url='https://getpocket.com/firefox/' %}
-          Take your favorites on the fly. Use Firefox Sync to access your bookmarks across all
-          your devices, from desktop to mobile. Or try <a href="{{ url }}">Pocket</a> to save
-          any online article, or page and come back to later – even without internet.
-        {% endtrans %}
-        </p>
-      </div>
-    </section>
+<div class="mzp-c-hero">
+  <div class="hero-content">
+    <img src="{{ static('img/firefox/features/index/feature_icons/bookmarks_pink.svg')}}" alt="">
+    <h1>Better bookmarks</h1>
+    <p>Don’t agonize, lovers of bookmarking. Organize with Firefox.</p>
+    <div class="download-firefox">
+      {{ download_firefox(dom_id='bookmarks-hero-download', download_location='primary cta') }}
+    </div>
+  </div>
+</div>
 
-    <section class="key-feature bookmarks-feature-3">
-      <div class="key-feature-content">
-        {# L10n Note: “Futz” is an American slang word meaning “Fool around” or “Mess with”. Should this not translate easily an alternate string could be “Organize that bookmark” #}
-        <h2>{{ _('Futz with that bookmark') }}</h2>
-        <p>
-        {% trans url='https://addons.mozilla.org/firefox/collections/mozilla/bookmark-managers/' %}
-          Practice your exactitude with every bookmark manager <a href="{{ url }}">add-on</a> you can think of, from
-          full page snapshots to quick-switch sidebars to locked-down-tight private bookmarks.
-        {% endtrans %}
-        </p>
-      </div>
-    </section>
-
-  </div> {#--/.content--#}
 </section>
+
+<section class="mzp-l-content main-content">
+  <div class="feature-1">
+    {% call feature_card(
+      title=_('File that bookmark'),
+      image_url='img/firefox/features/thumbnails/bookmarks.png',
+      aspect_ratio='mzp-has-aspect-1-1',
+      class='mzp-l-card-feature-right-half mzp-t-firefox',
+    ) %}
+    <p>{{ _('Get your faves all sorted with the bookmark star icon, which lets you add custom names
+      and folders quickly. Then dial in your bookmarks toolbar to make sure you never lose
+      sight of the links you love.') }}</p>
+    {% endcall %}
+  </div>
+
+  <div class="feature-2">
+    {% set pocket='https://getpocket.com/firefox/' %}
+    {% call feature_card(
+      title=_('File that bookmark'),
+      image_url='img/firefox/features/thumbnails/bookmarks/bookmarks-sync.png',
+      aspect_ratio='mzp-has-aspect-1-1',
+      class='mzp-l-card-feature-left-half mzp-t-firefox',
+    ) %}
+    <p> Take your favorites on the fly. Use Firefox Sync to access your bookmarks across all
+        your devices, from desktop to mobile. Or try <a href="{{ pocket }}">Pocket</a> to save
+        any online article, or page and come back to later – even without internet.</p>
+    {% endcall %}
+  </div>
+
+  <div class="feature-3">
+    {% set bookmark='https://addons.mozilla.org/firefox/collections/mozilla/bookmark-managers/' %}
+    {% call feature_card(
+      title=_('Futz with that bookmark'),
+      image_url='img/firefox/features/thumbnails/bookmarks/bookmarks-addons.png',
+      aspect_ratio='mzp-has-aspect-1-1',
+      class='mzp-l-card-feature-right-half mzp-t-firefox',
+    ) %}
+    <p> Practice your exactitude with every bookmark manager <a href="{{ bookmark }}">add-on</a> you can think of, from
+        full page snapshots to quick-switch sidebars to locked-down-tight private bookmarks.</p>
+    {% endcall %}
+  </div>
+</section>
+
+<section class="mzp-l-content">
+  <h2 class="mzp-u-title-md section-title">A better internetting experience</h2>
+
+  <section class="features mzp-l-card-third">
+
+    <section class="mzp-c-card-picto faster">
+      <div class="mzp-c-card-picto-content ">
+        <div class="mzp-c-card-picto-desc">
+          <a href="#" rel="external"><strong>Browse faster</strong></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mzp-c-card-picto extensions">
+      <div class="mzp-c-card-picto-content">
+        <div class="mzp-c-card-picto-desc">
+          <a href="#" rel="external"><strong>Your favorite extensions</strong></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mzp-c-card-picto memory">
+      <div class="mzp-c-card-picto-content">
+        <div class="mzp-c-card-picto-desc">
+          <a href="#" rel="external"><strong>Balanced memory</strong></a>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section class="features mzp-l-card-third">
+
+    <section class="mzp-c-card-picto browsing">
+      <div class="mzp-c-card-picto-content">
+        <div class="mzp-c-card-picto-desc">
+          <a href="#" rel="external"><strong>More powerful Private Browsing</strong></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mzp-c-card-picto blocking">
+      <div class="mzp-c-card-picto-content">
+        <div class="mzp-c-card-picto-desc">
+          <a href="" rel="external"><strong>Ad tracker blocking</strong></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mzp-c-card-picto password">
+      <div class="mzp-c-card-picto-content">
+        <div class="mzp-c-card-picto-desc">
+          <a href="#" rel="external"><strong>Password manager</strong></a>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section class="features mzp-l-card-third">
+
+    <section class="mzp-c-card-picto customize">
+      <div class="mzp-c-card-picto-content">
+        <div class="mzp-c-card-picto-desc">
+          <a href="#" rel="external"><strong>Customize your browser</strong></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mzp-c-card-picto sync">
+      <div class="mzp-c-card-picto-content">
+        <div class="mzp-c-card-picto-desc">
+          <a href="#" rel="external"><strong>Sync between devices</strong></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mzp-c-card-picto bookmarks">
+      <div class="mzp-c-card-picto-content">
+        <div class="mzp-c-card-picto-desc">
+          <a href="#" rel="external"><strong>Better bookmarks</strong></a>
+        </div>
+      </div>
+    </section>
+  </section>
+</section>
+
+
+
 {% endblock %}
