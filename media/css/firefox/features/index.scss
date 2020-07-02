@@ -29,9 +29,10 @@ section.main-content {
 }
 
 section.secondary-content {
-    margin-bottom: $layout-lg;
+    padding-top: $spacing-xl;
+    padding-bottom: $spacing-xl;
     background-color: #f9f9fa;
-    width: 100%;
+    background-clip: padding-box;
 }
 
 .mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content {
