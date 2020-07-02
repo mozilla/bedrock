@@ -112,7 +112,7 @@ GOOGLE_PLAY_LOCKWISE_LINK = 'https://play.google.com/store/apps/details?id=mozil
 GOOGLE_PLAY_FIREFOX_BETA_LINK = 'https://play.google.com/store/apps/details?id=org.mozilla.firefox_beta'
 
 # Link to Firefox Nightly on the Google Play Store.
-GOOGLE_PLAY_FIREFOX_NIGHTLY_LINK = 'https://play.google.com/store/apps/details?id=org.mozilla.fennec_aurora'
+GOOGLE_PLAY_FIREFOX_NIGHTLY_LINK = 'https://play.google.com/store/apps/details?id=org.mozilla.fenix'
 
 # Link to Firefox for Fire TV on Amazon Store.
 AMAZON_FIREFOX_FIRE_TV_LINK = 'https://www.amazon.com/Mozilla-Firefox-for-Fire-TV/dp/B078B5YMPD'
