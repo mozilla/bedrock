@@ -43,7 +43,7 @@
         }
     }
 
-    function initFxAButton() {
+    function initNavButton() {
         if (typeof Mozilla.Client === 'undefined') {
             return false;
         }
@@ -51,13 +51,13 @@
         var nav = document.querySelector('.mzp-c-navigation');
         var fxaButton = document.querySelector('.mzp-c-navigation .c-navigation-fxa-cta');
 
-        // User should be on Firefox desktop, nav should be present on page, and the FxA button should exist.
-        if (!Mozilla.Client.isFirefoxDesktop || !nav || !fxaButton) {
+        // Nav should be present on page.
+        if (!nav) {
             return false;
         }
 
-        // Button is hidden from most locales for now so make sure it exists before we mess with it.
-        if (fxaButton) {
+        // Check that FxA button exists on the page, and visitor is using Firefox Desktop.
+        if (fxaButton && Mozilla.Client.isFirefoxDesktop) {
             var fxaButtonAltHref = fxaButton.getAttribute('data-alt-href');
 
             // Update the button if user is signed in
@@ -68,9 +68,12 @@
                 }
             });
         }
+
+        // Add a CSS hook for animating the nav button (issue #9009)
+        nav.classList.add('nav-button-is-ready');
     }
 
-    initFxAButton();
+    initNavButton();
 
     Mzp.Menu.init({
         onMenuOpen: handleOnMenuOpen

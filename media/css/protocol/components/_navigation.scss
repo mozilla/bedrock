@@ -100,3 +100,34 @@ html.is-firefox.android .mzp-c-navigation {
         display: none;
     }
 }
+
+// Animate the navigation secondary CTA button.
+@keyframes bounce {
+    10%, 25%, 40%, 49% {
+        animation-timing-function: cubic-bezier(.39, .58, .57, 1);
+        transform: translate3d(0, 0, 0);
+    }
+    20%, 22% {
+        animation-timing-function: ease-in-out;
+        transform: translate3d(0, -8px, 0);
+    }
+    35% {
+        animation-timing-function: ease-in-out;
+        transform: translate3d(0, -5px, 0);
+    }
+    45% {
+        animation-timing-function: ease-in-out;
+        transform: translate3d(0, -1.5px, 0);
+    }
+}
+
+.nav-button-is-ready .mzp-c-navigation-download .mzp-c-button {
+    animation: bounce 2s .5s;
+    transform-origin: center bottom;
+
+    @media (prefers-reduced-motion: reduce) {
+        animation: none;
+    }
+}
+
+
