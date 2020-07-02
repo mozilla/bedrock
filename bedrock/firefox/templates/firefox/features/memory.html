@@ -4,53 +4,96 @@
 
 {% add_lang_files "firefox/shared" %}
 
+{% from "macros-protocol.html" import feature_card, hero, picto_card with context %}
+
 {% extends "firefox/base/base-protocol.html" %}
 
 {% block page_title %}{{ _('Firefox Browser: Use less memory, get more speed') }}{% endblock %}
 {% block page_desc %}{{ _('Is your computer slow? Your browser might be using too much memory. Switch to Firefox today for more speed.') }}{% endblock %}
 
 {% block page_css %}
-  {{ super() }}
   {{ css_bundle('firefox-features-hub-detail') }}
 {% endblock %}
 
 {% block body_id %}firefox-features-memory{% endblock %}
 
-{% block features_header_content %}
-  <h1><span>{{ _('Less memory usage than Chrome') }}</span></h1>
-  <p class="tagline">{{ _('If your web browser uses too much memory, switch to Firefox.') }}</p>
+{% block content %}
+<div class="mzp-c-hero independent-hero">
+  <div class="hero-content">
+    <img src="{{ static('img/firefox/features/index/feature_icons/memory_orange.svg')}}" alt="">
+    <h1>{{ _('Less memory usage than Chrome') }}</h1>
+    <p>{{ _('If your web browser uses too much memory, switch to Firefox.') }}</p>
+    <div class="download-firefox">
+      {{ download_firefox(dom_id='memory-hero-download', download_location='primary cta') }}
+    </div>
+  </div>
+</div>
+
+<section class="mzp-l-content main-content">
+
+  <div class="feature-1">
+    {% call feature_card(
+      title=_('Speed up your computer'),
+      image_url='img/firefox/features/thumbnails/memory/fast.png',
+      aspect_ratio='mzp-has-aspect-1-1',
+      class='mzp-l-card-feature-right-half mzp-t-firefox',
+    ) %}
+    <p>
+   {% trans %}
+      Every computer program you run takes up some memory. When too much is used,
+      your system can slooooowww down. Firefox aims for a balance — using enough
+      memory to let you browse smoothly and leaving plenty of memory to keep your
+      computer responsive.
+    {% endtrans %}
+    </p>
+    {% endcall %}
+  </div>
+
+  <div class="feature-2">
+    {% call feature_card(
+      title=_('Stop running out of memory'),
+      image_url='img/firefox/features/thumbnails/memory.png',
+      aspect_ratio='mzp-has-aspect-1-1',
+      class='mzp-l-card-feature-left-half mzp-t-firefox',
+    ) %}
+    <p>
+    {% trans url='https://blog.mozilla.org/firefox/fx54memorytest/' %}
+      <a href="{{ url }}">Chrome uses up to 1.77x more memory than Firefox</a>.
+      If your computer is already low on memory, this can cause a significant slowdown.
+      Using Firefox’s latest version with multi-process can result in more available
+      memory to run your favorite programs.
+    {% endtrans %}
+    </p>
+    {% endcall %}
+  </div>
+
+  <div class="feature-3">
+    {% call feature_card(
+      title=_('Browse faster, privately'),
+      image_url='img/firefox/features/thumbnails/private-browsing.jpg',
+      aspect_ratio='mzp-has-aspect-1-1',
+      class='mzp-l-card-feature-right-half mzp-t-firefox',
+    ) %}
+    <p>
+      {% trans url=url('firefox.features.private-browsing') %}
+        Explore the web faster with <a href="{{ url }}">Firefox Private Browsing</a>.
+        Only Firefox’s private mode includes tracking protection which blocks ads with
+        trackers from loading on pages. Decluttering sites means web pages can load
+        faster.
+      {% endtrans %}
+    </p>
+    {% endcall %}
+  </div>
+</section>
+{% include "firefox/features/features-content.html" %}
 {% endblock %}
 
 {% block features_list %}
 <section class="key-features-section main">
   <div class="content">
-    <section class="key-feature memory-feature-1">
-      <div class="key-feature-content">
-        <h2>{{ _('Speed up your computer') }}</h2>
-        <p>
-        {% trans %}
-          Every computer program you run takes up some memory. When too much is used,
-          your system can slooooowww down. Firefox aims for a balance — using enough
-          memory to let you browse smoothly and leaving plenty of memory to keep your
-          computer responsive.
-        {% endtrans %}
-        </p>
-      </div>
-    </section>
 
-    <section class="key-feature memory-feature-2">
-      <div class="key-feature-content">
-        <h2>{{ _('Stop running out of memory') }}</h2>
-        <p>
-        {% trans url='https://blog.mozilla.org/firefox/fx54memorytest/' %}
-          <a href="{{ url }}">Chrome uses up to 1.77x more memory than Firefox</a>.
-          If your computer is already low on memory, this can cause a significant slowdown.
-          Using Firefox’s latest version with multi-process can result in more available
-          memory to run your favorite programs.
-        {% endtrans %}
-        </p>
-      </div>
-    </section>
+
+
 
     <section class="key-feature memory-feature-3">
       <div class="key-feature-content">
