@@ -1,16 +1,13 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% from "macros.html" import google_play_button, send_to_device with context %}
 {% from "macros-protocol.html" import hero with context %}
 
-{% add_lang_files "firefox/welcome/page5" %}
-
 {% extends "firefox/welcome/base.html" %}
 
-{# L10n: HTML page title #}
-{% block page_title %}{{ _('Firefox Lockwise — password manager — take your passwords everywhere') }}{% endblock %}
+{% block page_title %}{{ ftl('welcome-page5-firefox-lockwise-password') }}{% endblock %}
 
 {% block page_image %}{{ static('protocol/img/logos/firefox/lockwise/og.png') }}{% endblock %}
 
@@ -25,8 +22,8 @@
 
 {% block content_intro %}
 {% call hero(
-    title=_('There’s an easier way to deal with your passwords'),
-    desc=_('Let Firefox save them for you. Then use Firefox Lockwise to safely access your passwords across all your apps, on all of your devices.'),
+    title=ftl('welcome-page5-theres-an-easier-way-to-deal'),
+    desc=ftl('welcome-page5-let-firefox-save-them-for'),
     class='mzp-t-firefox mzp-t-dark',
     include_cta=True,
     heading_level=1
@@ -34,22 +31,22 @@
 
   <p class="primary-cta">
     <button class="js-modal-link mzp-c-button mzp-t-product" data-cta-position="primary" data-cta-type="button" data-cta-text="Get the Lockwise App">
-      {{ _('Get the Lockwise App') }}
+      {{ ftl('welcome-page5-get-the-lockwise-app') }}
     </button>
   </p>
 
   {% endcall %}
 
   <div id="modal" class="mzp-u-modal-content mzp-l-content">
-    <h2 class="modal-title">{{ _('Get Firefox Lockwise on your Phone') }}</h2>
+    <h2 class="modal-title">{{ ftl('welcome-page5-get-firefox-lockwise-on-your') }}</h2>
 
   {% if show_send_to_device %}
-    <p>{{ _('Send the download link right to your phone or email.') }}</p>
+    <p>{{ ftl('welcome-page5-send-the-download-link-right') }}</p>
     {{ send_to_device(include_title=False, class='vertical', message_set='lockwise-welcome-download') }}
   {% else %}
-    <p>{{ _('Download Firefox Lockwise for your smartphone and tablet.') }}</p>
+    <p>{{ ftl('welcome-page5-download-firefox-lockwise') }}</p>
     <div class="qr-code-wrapper">
-      <img src="{{ static('img/firefox/welcome/welcome-qr-lockwise.png') }}" id="lockwise-qr" alt="{{ _('Scan this QR code') }}">
+      <img src="{{ static('img/firefox/welcome/welcome-qr-lockwise.png') }}" id="lockwise-qr" alt="{{ ftl('welcome-page5-scan-this-qr-code') }}">
     </div>
   {% endif %}
 
@@ -68,7 +65,9 @@
 
 {% block content_primary %}
   <div class="body-primary">
-    <h2 class="body-primary-title"><img src="{{ static('protocol/img/logos/firefox/lockwise/logo-word-ver.svg') }}" width="208" height="" alt="Firefox Lockwise"></h2>
+    <h2 class="body-primary-title">
+      <img src="{{ static('protocol/img/logos/firefox/lockwise/logo-word-ver.svg') }}" width="208" height="" alt="{{ ftl('welcome-page5-firefox-lockwise') }}">
+    </h2>
   </div>
 {% endblock %}
 
@@ -79,9 +78,9 @@
         <img src="{{ static('img/icons/key.svg') }}" alt="">
       </div>
 
-      <h3 class="c-picto-block-title">{{ _('Sync up safely') }}</h3>
+      <h3 class="c-picto-block-title">{{ ftl('welcome-page5-sync-up-safely') }}</h3>
       <div class="c-picto-block-body">
-        <p>{{ _('With 256-bit encryption, your passwords always travel to your devices securely.') }}</p>
+        <p>{{ ftl('welcome-page5-with-256-bit-encryption-your') }}</p>
       </div>
     </div>
 
@@ -89,9 +88,9 @@
       <div class="c-picto-block-image">
         <img src="{{ static('img/icons/password.svg') }}" alt="">
       </div>
-      <h3 class="c-picto-block-title">{{ _('No more making up new passwords') }}</h3>
+      <h3 class="c-picto-block-title">{{ ftl('welcome-page5-no-more-making-up-new-passwords') }}</h3>
       <div class="c-picto-block-body">
-        <p>{{ _('Lockwise will recommend new, strong passwords whenever you set up a new login.') }}</p>
+        <p>{{ ftl('welcome-page5-lockwise-will-recommend-new') }}</p>
       </div>
     </div>
 
@@ -99,9 +98,9 @@
       <div class="c-picto-block-image">
         <img src="{{ static('img/icons/email-alert.svg') }}" alt="">
       </div>
-      <h3 class="c-picto-block-title">{{ _('Help during a breach') }}</h3>
+      <h3 class="c-picto-block-title">{{ ftl('welcome-page5-help-during-a-breach') }}</h3>
       <div class="c-picto-block-body">
-        <p>{{ _('Lockwise will let you know if your saved logins have been part of a corporate data breach, so you can change them asap.') }}</p>
+        <p>{{ ftl('welcome-page5-lockwise-will-let-you-know') }}</p>
       </div>
     </div>
   </div>
@@ -110,7 +109,7 @@
 {% block secondary_cta %}
 <p class="secondary-cta">
   <button class="js-modal-link mzp-c-button mzp-t-product" data-cta-position="secondary" data-cta-type="button" data-cta-text="Get the Lockwise App">
-    {{ _('Get the Lockwise App') }}
+    {{ ftl('welcome-page5-get-the-lockwise-app') }}
   </button>
 </p>
 {% endblock %}
@@ -118,11 +117,13 @@
 {% block content_utility %}
 <p>
   <strong>
-    <a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">{{ _('Why am I seeing this?') }}</a>
+    <a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">
+      {{ ftl('welcome-page5-why-am-i-seeing-this') }}
+    </a>
   </strong>
 </p>
 {% endblock %}
 
 {% block js %}
-{{ js_bundle('firefox_welcome_page5') }}
+  {{ js_bundle('firefox_welcome_page5') }}
 {% endblock %}
