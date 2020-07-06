@@ -1491,7 +1491,9 @@ if CSP_EXTRA_FRAME_SRC:
     CSP_CHILD_SRC += tuple(CSP_EXTRA_FRAME_SRC)
 
 # support older browsers (mainly Safari)
-CSP_FRAME_SRC = CSP_CHILD_SRC
+CSP_FRAME_SRC = CSP_CHILD_SRC + [
+    'mozilla.org'
+]
 
 # Bug 1331069 - Double Click tracking pixel for download page.
 AVAILABLE_TRACKING_PIXELS = {
