@@ -1,35 +1,32 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% from "macros-protocol.html" import hero with context %}
 
-{% add_lang_files "firefox/welcome/page8" %}
-
 {% extends "firefox/welcome/base.html" %}
 
-{# L10n: HTML page title #}
-{% block page_title %}{{ _('Firefox protects your privacy automatically') }}{% endblock %}
+{% block page_title %}{{ ftl('welcome-page8-firefox-protects-your-privacy') }}{% endblock %}
 
 {% block body_class %}{{ super() }} welcome-page8{% endblock %}
 
 {% set _entrypoint = 'mozilla.org-firefox-welcome-8' %}
 {% set _utm_campaign = 'welcome-8-protection' %}
 
-
 {% block content_intro %}
-{% call hero(
-    title=_('Your privacy respected, <strong>automatically</strong>'),
-    desc=_('Firefox automatically protects your privacy, so you’re free to live your life every time you get online.'),
-    class='mzp-t-firefox mzp-t-dark',
-    include_cta=True,
-    heading_level=1
-  ) %}
+  {% call hero(
+      title=ftl('welcome-page8-your-privacy-respected'),
+      desc=ftl('welcome-page8-firefox-automatically-protects'),
+      class='mzp-t-firefox mzp-t-dark',
+      include_cta=True,
+      heading_level=1
+    ) %}
 
-  <p class="primary-cta protection-report">
-    <a href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?src=external-www.mozilla.org-welcom-7&utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}" class="mzp-c-button mzp-t-product" id="button" rel="external">{{ _('View your protection report') }}</a>
-  </p>
-
+    <p class="primary-cta protection-report">
+      <a href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?src=external-www.mozilla.org-welcom-7&utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}" class="mzp-c-button mzp-t-product" id="button" rel="external">
+        {{ ftl('welcome-page8-view-your-protection-report') }}
+      </a>
+    </p>
   {% endcall %}
 {% endblock %}
 
@@ -40,10 +37,12 @@
         <img class="c-emphasis-box-logo" src="{{ static('img/icons/tracking-protection.svg') }}" width="48px" alt="">
       </div>
 
-      <h3 class="c-picto-block-title">{{ _('Enhanced Tracking Protection') }}</h3>
+      <h3 class="c-picto-block-title">{{ ftl('welcome-page8-enhanced-tracking-protection') }}</h3>
       <div class="c-picto-block-body">
-        <p>{{ _('Automatically block sites from following you around the internet.') }}</p>
-        <a class="protection-report" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?src=external-www.mozilla.org-welcom-7&utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}" data-cta-text="See what’s blocked" data-cta-type="button"><strong>{{ _('See what’s blocked') }}</strong></a>
+        <p>{{ ftl('welcome-page8-automatically-block-sites') }}</p>
+        <a class="protection-report" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?src=external-www.mozilla.org-welcom-7&utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}" data-cta-text="See what’s blocked" data-cta-type="button">
+          <strong>{{ ftl('welcome-page8-see-whats-blocked') }}</strong>
+        </a>
       </div>
     </div>
 
@@ -51,10 +50,12 @@
       <div class="c-picto-block-image">
         <img src="{{ static('protocol/img/logos/firefox/monitor/logo.svg') }}" width="48px" alt="">
       </div>
-      <h3 class="c-picto-block-title">{{ _('Firefox Monitor') }}</h3>
+      <h3 class="c-picto-block-title">{{ ftl('welcome-page8-firefox-monitor') }}</h3>
       <div class="c-picto-block-body">
-        <p>{{ _('See if you’ve been involved in known online data breaches and take action to resolve them.') }}</p>
-        <a href="https://monitor.firefox.com/?src=external-www.mozilla.org-welcom-7&utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}" ><strong>{{ _('Go to Monitor') }}</strong></a>
+        <p>{{ ftl('welcome-page8-see-what-youve-been') }}</p>
+        <a href="https://monitor.firefox.com/?src=external-www.mozilla.org-welcom-7&utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}" >
+          <strong>{{ ftl('welcome-page8-go-to-monitor') }}</strong>
+        </a>
       </div>
     </div>
 
@@ -62,10 +63,12 @@
       <div class="c-picto-block-image">
         <img src="{{ static('protocol/img/logos/firefox/send/logo.svg') }}" width="48px" alt="">
       </div>
-      <h3 class="c-picto-block-title">{{ _('Firefox Send') }}</h3>
+      <h3 class="c-picto-block-title">{{ ftl('welcome-page8-firefox-send') }}</h3>
       <div class="c-picto-block-body">
-        <p>{{ _('Share large files with end-to-end encryption, using a link that expires automatically.') }}</p>
-        <a href="https://send.firefox.com/?src=external-www.mozilla.org-welcom-7&utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}" ><strong>{{ _('Try Send') }}</strong></a>
+        <p>{{ ftl('welcome-page8-share-large-files') }}</p>
+        <a href="https://send.firefox.com/?src=external-www.mozilla.org-welcom-7&utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}" >
+          <strong>{{ ftl('welcome-page8-try-send')}}</strong>
+        </a>
       </div>
     </div>
 
@@ -74,10 +77,12 @@
         <div class="c-picto-block-image">
           <img src="{{ static('img/logos/fbcontainer/logo-fbcontainer.svg') }}" width="48px" alt="">
         </div>
-        <h3 class="c-picto-block-title">{{ _('Facebook Container') }}</h3>
+        <h3 class="c-picto-block-title">{{ ftl('welcome-page8-facebook-container') }}</h3>
         <div class="c-picto-block-body">
-          <p>{{ _('Stay connected to the people you can’t be with in real life, and stop Facebook from following you online.') }}</p>
-          <a href="https://addons.mozilla.org/firefox/addon/facebook-container/?src=external-www.mozilla.org-welcom-7&utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}" ><strong>{{ _('Add Facebook Container') }}</strong></a>
+          <p>{{ ftl('welcome-page8-stay-connected') }}</p>
+          <a href="https://addons.mozilla.org/firefox/addon/facebook-container/?src=external-www.mozilla.org-welcom-7&utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}" >
+            <strong>{{ ftl('welcome-page8-add-facebook-container') }}</strong>
+          </a>
         </div>
       </div>
     {% endif %}
@@ -89,7 +94,9 @@
 {% block content_utility %}
 <p>
   <strong>
-    <a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">{{ _('Why am I seeing this?') }}</a>
+    <a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">
+      {{ ftl('welcome-page8-why-am-i') }}
+    </a>
   </strong>
 </p>
 {% endblock %}
