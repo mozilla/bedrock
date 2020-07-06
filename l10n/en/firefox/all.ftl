@@ -37,6 +37,8 @@ firefox-all-get-a-sneak-peek-at = Get a sneak peek at the latest { -brand-name-f
 firefox-all-test-your-sites-against = Test your sites against soon-to-be-released { -brand-name-firefox } browser features with powerful, flexible DevTools that are on by default.
 firefox-all-count-on-stability-and = Count on stability and ease of use with this { -brand-name-firefox } browser built for enterprise.
 firefox-all-windows-installers-for = Windows installers for corporate IT that simplify the configuration, deployment and management of the { -brand-name-firefox-browser }.
+firefox-all-arm64-installers = ARM64/AArch64 installers
+firefox-all-arm64-installers-optimized = ARM64/AArch64 installers optimized for Snapdragon-powered { -brand-name-windows } PCs.
 
 # Variables:
 #   $url (url) - link to https://support.mozilla.org/kb/choosing-firefox-cpu-architecture-windows-os
