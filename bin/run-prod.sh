@@ -8,6 +8,12 @@ function run-gunicorn () {
     fi
 }
 
+# look for the database and fail quickly if it's not there
+if [[ ! -f "data/bedrock.db" ]]; then
+    echo "Database file not found";
+    exit 1
+fi
+
 run-gunicorn wsgi.app:application -b 0.0.0.0:${PORT:-8000} \
                                   -w ${WEB_CONCURRENCY:-2} \
                                   --error-logfile - \
