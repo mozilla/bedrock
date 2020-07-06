@@ -100,7 +100,7 @@
           <h3 class="mzp-c-card-picto-title">{{ _('Browse faster') }}</h3>
           <div class="mzp-c-card-picto-desc">
             <p>{{ _('Firefox uses less memory  than Chrome, so your other programs can keep running at top speed.') }}</p>
-            <a href="#" rel="external"><strong>{{ _('Learn more') }}</strong></a>
+            <a href="{{ url('firefox.features.fast') }}" rel="external"><strong>{{ _('Learn more') }}</strong></a>
           </div>
         </div>
       </section>
@@ -110,7 +110,7 @@
           <h3 class="mzp-c-card-picto-title">{{ _('Your favorite extensions') }}</h3>
           <div class="mzp-c-card-picto-desc">
             <p>{{ _('Add powerful functions useful features and even a little fun to your Firefox browser.') }}</p>
-            <a href="#" rel="external"><strong>{{ _('See all extensions') }}</strong></a>
+            <a href="https://addons.mozilla.org/firefox/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-content-hub" rel="external"><strong>{{ _('See all extensions') }}</strong></a>
           </div>
         </div>
       </section>
@@ -120,7 +120,7 @@
           <h3 class="mzp-c-card-picto-title">{{ _('Balanced memory') }}</h3>
           <div class="mzp-c-card-picto-desc">
             <p>{{ _('Firefox uses just enough memory to create a smooth experience so your computer stays responsive to other tasks.') }}</p>
-            <a href="#" rel="external"><strong>{{ _('Learn more') }}</strong></a>
+            <a href="{{ url('firefox.features.memory') }}" rel="external"><strong>{{ _('Learn more') }}</strong></a>
           </div>
         </div>
       </section>
@@ -133,7 +133,7 @@
           <h3 class="mzp-c-card-picto-title">{{ _('More powerful Private Browsing') }}</h3>
           <div class="mzp-c-card-picto-desc">
             <p>{{ _('Private Browsing mode deletes cookie data and your browsing history every time you close it.') }}</p>
-            <a href="#" rel="external"><strong>{{ _('Learn more') }}</strong></a>
+            <a href="{{ url('firefox.features.private-browsing') }}" rel="external"><strong>{{ _('Learn more') }}</strong></a>
           </div>
         </div>
       </section>
@@ -143,7 +143,7 @@
           <h3 class="mzp-c-card-picto-title">{{ _('Ad tracker blocking') }}</h3>
           <div class="mzp-c-card-picto-desc">
             <p>{{ _('Firefox automatically blocks 2000+ ad trackers from following you around the internet.') }}</p>
-            <a href="" rel="external"><strong>{{ _('Learn more') }}</strong></a>
+            <a href="{{ url('firefox.features.adblocker') }}" rel="external"><strong>{{ _('Learn more') }}</strong></a>
           </div>
         </div>
       </section>
@@ -153,7 +153,7 @@
           <h3 class="mzp-c-card-picto-title">{{ _('Password manager') }}</h3>
           <div class="mzp-c-card-picto-desc">
             <p>{{ _('Firefox Lockwise lets you access all the passwords you’ve saved in Firefox — and it’s free.') }}</p>
-            <a href="#" rel="external"><strong>{{ _('Learn more') }}</strong></a>
+            <a href="{{ url('firefox.features.password-manager') }}" rel="external"><strong>{{ _('Learn more') }}</strong></a>
           </div>
         </div>
       </section>
@@ -166,7 +166,7 @@
           <h3 class="mzp-c-card-picto-title">{{ _('Customize your browser') }}</h3>
           <div class="mzp-c-card-picto-desc">
             <p>{{ _('Give your browser the look you want  with thousands of different themes.') }}</p>
-            <a href="#" rel="external"><strong>{{ _('See top themes') }}</strong></a>
+            <a href="https://addons.mozilla.org/firefox/themes/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-content-hub" rel="external"><strong>{{ _('See top themes') }}</strong></a>
           </div>
         </div>
       </section>
@@ -176,7 +176,7 @@
           <h3 class="mzp-c-card-picto-title">{{ _('Sync between devices') }}</h3>
           <div class="mzp-c-card-picto-desc">
             <p>{{ _('Make sure all your important stuff — internet searches, passwords, open tabs — appears where you need it on every device.') }}</p>
-            <a href="#" rel="external"><strong>{{ _('Get a Firefox Account') }}</strong></a>
+            <a href="{{ url('firefox.accounts') }}" rel="external"><strong>{{ _('Get a Firefox Account') }}</strong></a>
           </div>
         </div>
       </section>
@@ -186,7 +186,7 @@
           <h3 class="mzp-c-card-picto-title">{{ _('Better bookmarks') }}</h3>
           <div class="mzp-c-card-picto-desc">
             <p>{{ _('Use the bookmark star icon to stay organized and add custom names and folders quickly.') }}</p>
-            <a href="#" rel="external"><strong>{{ _('Learn more') }}</strong></a>
+            <a href="{{ url('firefox.features.bookmarks') }}" rel="external"><strong>{{ _('Learn more') }}</strong></a>
           </div>
         </div>
       </section>
@@ -203,7 +203,7 @@
           <h3 class="mzp-c-card-picto-title">{{ _('Open source. Open Minds.') }}</h3>
           <div class="mzp-c-card-picto-desc">
             <p>{{ _('Mozilla creates powerful web tech for everyone.') }}</p>
-            <a href="#" rel="external"><strong>{{ _('See what makes us different') }}</strong></a>
+            <a href="{{ url('firefox.features.independent') }}" rel="external"><strong>{{ _('See what makes us different') }}</strong></a>
           </div>
         </div>
       </section>
@@ -212,7 +212,7 @@
           <h3 class="mzp-c-card-picto-title">{{ _('By non-profit, Mozilla') }}</h3>
           <div class="mzp-c-card-picto-desc">
             <p>{{ _('On a mission to keep the internet open and accessible to all.') }}</p>
-            <a href="#" rel="external"><strong>{{ _('Read Mozilla’s mission') }}</strong></a>
+            <a href="{{ url('mozorg.mission') }}" rel="external"><strong>{{ _('Read Mozilla’s mission') }}</strong></a>
           </div>
         </div>
       </section>
@@ -221,7 +221,7 @@
           <h3 class="mzp-c-card-picto-title">{{ _('Keep corporate power in check') }}</h3>
           <div class="mzp-c-card-picto-desc">
             <p>{{ _('Firefox is the only major independent browser.') }}</p>
-            <a href="#" rel="external"><strong>{{ _('Choose independence') }}</strong></a>
+            <a href="{{ url('firefox.features.independent') }}" rel="external"><strong>{{ _('Choose independence') }}</strong></a>
           </div>
         </div>
       </section>
@@ -230,7 +230,7 @@
           <h3 class="mzp-c-card-picto-title">{{ _('Private by default') }}</h3>
           <div class="mzp-c-card-picto-desc">
             <p>{{ _('Opted-in to privacy, so you can browse freely.') }}</p>
-            <a href="#" rel="external"><strong>{{ _(' Read our privacy policy') }}</strong></a>
+            <a href="{{ url('privacy') }}" rel="external"><strong>{{ _(' Read our privacy policy') }}</strong></a>
           </div>
         </div>
       </section>
@@ -239,7 +239,7 @@
           <h3 class="mzp-c-card-picto-title">{{ _('Enhanced tracking protection') }}</h3>
           <div class="mzp-c-card-picto-desc">
             <p>{{ _('We don’t sell access to your online data. Period.') }}</p>
-            <a href="#" rel="external"><strong>{{ _('Get Firefox for privacy') }}</strong></a>
+            <a href="{{ url('firefox.features.private-browsing') }}" rel="external"><strong>{{ _('Get Firefox for privacy') }}</strong></a>
           </div>
         </div>
       </section>
@@ -248,7 +248,7 @@
           <h3 class="mzp-c-card-picto-title">{{ _('Firefox vs. other browsers') }}</h3>
           <div class="mzp-c-card-picto-desc">
             <p>{{ _('See how Firefox stacks up against other popular browsers.') }}</p>
-            <a href="#" rel="external"><strong>{{ _('Compare browsers') }}</strong></a>
+            <a href="{{ url('firefox.browsers.compare.index') }}" rel="external"><strong>{{ _('Compare browsers') }}</strong></a>
           </div>
         </div>
       </section>

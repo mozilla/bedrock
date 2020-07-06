@@ -10,8 +10,6 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/templates/card-layout';
 @import '../../../protocol/css/components/feature-card';
 
-@import '../../hubs/news-feed';
-
 .mzp-c-hero h1 {
     @include text-title-xl;
     padding-top: $spacing-lg;
@@ -30,6 +28,14 @@ $image-path: '/media/protocol/img';
     @media #{$mq-md} {
         max-width: $content-md;
     }
+}
+
+.features {
+    margin-bottom: $spacing-2xl;
+}
+
+.features.feature-3 {
+    margin-bottom: none;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -87,17 +93,17 @@ $image-path: '/media/protocol/img';
     //     background-image: url('/media/img/firefox/features/thumbnails/private-browsing.jpg');
     // }
 
-    &.password-manager-feature-1 {
-        background-image: url('/media/img/firefox/features/thumbnails/password-manager.png');
-    }
+    // &.password-manager-feature-1 {
+    //     background-image: url('/media/img/firefox/features/thumbnails/password-manager.png');
+    // }
 
-    &.password-manager-feature-2 {
-        background-image: url('/media/img/firefox/features/thumbnails/password-manager/firefox-account.png');
-    }
+    // &.password-manager-feature-2 {
+    //     background-image: url('/media/img/firefox/features/thumbnails/password-manager/firefox-account.png');
+    // }
 
-    &.password-manager-feature-3 {
-        background-image: url('/media/img/firefox/features/thumbnails/password-manager/addons.png');
-    }
+    // &.password-manager-feature-3 {
+    //     background-image: url('/media/img/firefox/features/thumbnails/password-manager/addons.png');
+    // }
 
     &.private-browsing-feature-1 {
         background-image: url('/media/img/firefox/features/thumbnails/private/no-trace.jpg');
@@ -133,117 +139,5 @@ $image-path: '/media/protocol/img';
 
     &.sync-feature-3 {
         background-image: url('/media/img/firefox/features/thumbnails/sync/accessible.jpg');
-    }
-}
-
-/* -------------------------------------------------------------------------- */
-// News section
-
-.news {
-    // show the full-width title and hide the other one
-    .section-title-full-width {
-        @include font-size-level3;
-        background: #0060df;
-        background: url('/media/img/firefox/quantum/fox-tail-fresh-from-our-blog.png') bottom -300px center no-repeat,
-                    linear-gradient(148deg, #0080ff 7%, #00edff 100%);
-        color: #fff;
-        display: block;
-        margin: 40px 0;
-        max-width: none;
-        text-align: center;
-    }
-
-    .content .section-title {
-        display: none;
-    }
-}
-
-.news-feed {
-    .entry {
-        a.entry-block {
-            &:link,
-            &:visited {
-                h2,
-                h3 {
-                    color: #000;
-                }
-            }
-
-            &:hover,
-            &:active,
-            &:focus {
-                h2,
-                h3 {
-                    color: #0a84ff;
-                }
-            }
-        }
-
-        .cta-link {
-            color: #0a84ff;
-            display: inline-block;
-            font-weight: bold;
-            padding-right: 30px;
-            position: relative;
-            text-decoration: none;
-            width: auto;
-
-            &:before {
-                background: url('/media/img/firefox/quantum/right-arrow-blue.svg');
-                background-repeat: no-repeat;
-                content: '';
-                height: 19px;
-                position: absolute;
-                right: 0;
-                transition: transform 0.2s ease;
-                top: 4px;
-                width: 13px;
-            }
-
-            &:after {
-                background: #0a84ff;
-                border-radius: 10px;
-                content: '';
-                display: block;
-                height: 5px;
-                margin-top: 8px;
-                transition: transform 0.2s ease;
-                width: calc(100% + 30px);
-            }
-
-            &:active,
-            &:focus,
-            &:hover {
-                &:before {
-                    transform: translateX(11px);
-                }
-
-                &:after {
-                    transform: translateY(-5px);
-                }
-            }
-        }
-
-        @media #{$mq-tablet} {
-            padding-left: 320px;
-
-            img {
-                margin-left: -320px;
-            }
-        }
-
-        @media #{$mq-desktop} {
-            padding-left: 520px;
-
-            img {
-                margin-left: -520px;
-            }
-        }
-    }
-
-    .entry-title {
-        @include font-size-level4;
-        font-weight: bold;
-        line-height: 1.3;
     }
 }

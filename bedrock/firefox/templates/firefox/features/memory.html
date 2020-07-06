@@ -31,7 +31,7 @@
 
 <section class="mzp-l-content main-content">
 
-  <div class="feature-1">
+  <div class="features feature-1">
     {% call feature_card(
       title=_('Speed up your computer'),
       image_url='img/firefox/features/thumbnails/memory/fast.png',
@@ -49,7 +49,7 @@
     {% endcall %}
   </div>
 
-  <div class="feature-2">
+  <div class="features feature-2">
     {% call feature_card(
       title=_('Stop running out of memory'),
       image_url='img/firefox/features/thumbnails/memory.png',
@@ -67,7 +67,7 @@
     {% endcall %}
   </div>
 
-  <div class="feature-3">
+  <div class="features feature-3">
     {% call feature_card(
       title=_('Browse faster, privately'),
       image_url='img/firefox/features/thumbnails/private-browsing.jpg',
@@ -88,27 +88,3 @@
 {% include "firefox/features/features-content.html" %}
 {% endblock %}
 
-{% block features_list %}
-<section class="key-features-section main">
-  <div class="content">
-
-
-
-
-    <section class="key-feature memory-feature-3">
-      <div class="key-feature-content">
-        <h2>{{ _('Browse faster, privately') }}</h2>
-        <p>
-        {% trans url=url('firefox.features.private-browsing') %}
-          Explore the web faster with <a href="{{ url }}">Firefox Private Browsing</a>.
-          Only Firefox’s private mode includes tracking protection which blocks ads with
-          trackers from loading on pages. Decluttering sites means web pages can load
-          faster.
-        {% endtrans %}
-        </p>
-      </div>
-    </section>
-
-  </div> {#--/.content--#}
-</section>
-{% endblock %}
