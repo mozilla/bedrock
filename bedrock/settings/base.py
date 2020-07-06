@@ -36,9 +36,7 @@ def data_path(*args):
 # Is this a dev instance?
 DEV = config('DEV', parser=bool, default='false')
 PROD = config('PROD', parser=bool, default='false')
-
 DEBUG = config('DEBUG', parser=bool, default='false')
-
 DATABASES = {
     'default': {
         'ENGINE': 'django_prometheus.db.backends.sqlite3',

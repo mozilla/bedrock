@@ -20,6 +20,7 @@ class WSGIHTTPSRequest(WSGIRequest):
 
         return super(WSGIHTTPSRequest, self)._get_scheme()
 
+
 application = get_wsgi_application()
 application.request_class = WSGIHTTPSRequest
 application = DjangoWhiteNoise(application)
