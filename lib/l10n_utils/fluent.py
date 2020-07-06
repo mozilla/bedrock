@@ -100,20 +100,8 @@ class FluentResourceLoader:
     @staticmethod
     def resources(locale, resource_ids):
         for root in settings.FLUENT_PATHS:
-            resources = []
-            for resource_id in resource_ids:
-                path = root.joinpath(locale, resource_id)
-                if not path.is_file():
-                    continue
-
-                with path.open(encoding='utf-8') as ftl_file:
-                    resources.append(FluentResource(ftl_file.read()))
+            resources = load_fluent_resources(root, locale, resource_ids)
             if resources:
-                if locale != 'en':
-                    path = settings.FLUENT_LOCAL_PATH.joinpath('en', 'brands.ftl')
-                    with path.open(encoding='utf-8') as ftl_file:
-                        resources.append(FluentResource(ftl_file.read()))
-
                 yield resources
 
 
@@ -154,6 +142,29 @@ def l10nize(f):
         return f(l10n, *args, **kwargs)
 
     return inner
+
+
+@memoize
+def load_fluent_resources(root, locale, resource_ids):
+    resources = []
+    for resource_id in resource_ids:
+        path = root.joinpath(locale, resource_id)
+        if not path.is_file():
+            continue
+
+        resources.append(load_fluent_file(path))
+    if resources:
+        if locale != 'en':
+            path = settings.FLUENT_LOCAL_PATH.joinpath('en', 'brands.ftl')
+            resources.append(load_fluent_file(path))
+
+    return resources
+
+
+@memoize
+def load_fluent_file(path):
+    with path.open(encoding='utf-8') as ftl_file:
+        return FluentResource(ftl_file.read())
 
 
 def get_metadata_file_path(ftl_file):
@@ -206,7 +217,6 @@ def ftl_file_is_active(ftl_file, locale=None):
     return locale in get_active_locales(ftl_file)
 
 
-@memoize
 def fluent_l10n(locales, files):
     if isinstance(locales, str):
         locales = [locales]
@@ -216,13 +226,11 @@ def fluent_l10n(locales, files):
     return FluentL10n(locales, files, FluentResourceLoader)
 
 
-@memoize
 def ftl_has_messages(l10n, *message_ids, require_all=True):
     test = all if require_all else any
     return test([l10n.has_message(mid) for mid in message_ids])
 
 
-@memoize
 def translate(l10n, message_id, fallback=None, **kwargs):
     # check the `locale` bundle for the message if we have a fallback defined
     if fallback and not l10n.has_message(message_id):
