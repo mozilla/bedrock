@@ -131,23 +131,23 @@ class TestFirefoxAll(TestCase):
 
         desktop_release_builds = len(self.firefox_desktop.get_filtered_full_builds('release'))
         assert len(doc('.c-locale-list[data-product="desktop_release"] > li')) == desktop_release_builds
-        assert len(doc('.c-locale-list[data-product="desktop_release"] > li[data-language="en-US"] > ul > li > a')) == 7
+        assert len(doc('.c-locale-list[data-product="desktop_release"] > li[data-language="en-US"] > ul > li > a')) == 8
 
         desktop_beta_builds = len(self.firefox_desktop.get_filtered_full_builds('beta'))
         assert len(doc('.c-locale-list[data-product="desktop_beta"] > li')) == desktop_beta_builds
-        assert len(doc('.c-locale-list[data-product="desktop_beta"] > li[data-language="en-US"] > ul > li > a')) == 7
+        assert len(doc('.c-locale-list[data-product="desktop_beta"] > li[data-language="en-US"] > ul > li > a')) == 8
 
         desktop_developer_builds = len(self.firefox_desktop.get_filtered_full_builds('alpha'))
         assert len(doc('.c-locale-list[data-product="desktop_developer"] > li')) == desktop_developer_builds
-        assert len(doc('.c-locale-list[data-product="desktop_developer"] > li[data-language="en-US"] > ul > li > a')) == 7
+        assert len(doc('.c-locale-list[data-product="desktop_developer"] > li[data-language="en-US"] > ul > li > a')) == 8
 
         desktop_nightly_builds = len(self.firefox_desktop.get_filtered_full_builds('nightly'))
         assert len(doc('.c-locale-list[data-product="desktop_nightly"] > li')) == desktop_nightly_builds
-        assert len(doc('.c-locale-list[data-product="desktop_nightly"] > li[data-language="en-US"] > ul > li > a')) == 7
+        assert len(doc('.c-locale-list[data-product="desktop_nightly"] > li[data-language="en-US"] > ul > li > a')) == 8
 
         desktop_esr_builds = len(self.firefox_desktop.get_filtered_full_builds('esr'))
         assert len(doc('.c-locale-list[data-product="desktop_esr"] > li')) == desktop_esr_builds
-        assert len(doc('.c-locale-list[data-product="desktop_esr"] > li[data-language="en-US"] > ul > li > a')) == 7
+        assert len(doc('.c-locale-list[data-product="desktop_esr"] > li[data-language="en-US"] > ul > li > a')) == 8
 
         android_release_builds = len(self.firefox_android.get_filtered_full_builds('release'))
         assert len(doc('.c-locale-list[data-product="android_release"] > li')) == android_release_builds

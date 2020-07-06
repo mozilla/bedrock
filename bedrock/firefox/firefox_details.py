@@ -30,6 +30,7 @@ class FirefoxDesktop(_ProductDetails):
     platform_labels = OrderedDict([
         ('win64', 'Windows 64-bit'),
         ('win64-msi', 'Windows 64-bit MSI'),
+        ('win64-aarch64', 'Windows ARM64/AArch64'),
         ('win', 'Windows 32-bit'),
         ('win-msi', 'Windows 32-bit MSI'),
         ('osx', 'macOS'),
@@ -39,7 +40,7 @@ class FirefoxDesktop(_ProductDetails):
 
     # Recommended/modern vs traditional/legacy platforms
     platform_classification = OrderedDict([
-        ('recommended', ('win64', 'win64-msi', 'osx', 'linux64')),
+        ('recommended', ('win64', 'win64-msi', 'win64-aarch64', 'osx', 'linux64')),
         ('traditional', ('linux', 'win', 'win-msi')),
     ])
 
