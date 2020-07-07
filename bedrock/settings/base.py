@@ -1462,7 +1462,7 @@ CSP_STYLE_SRC = CSP_DEFAULT_SRC + [
     "'unsafe-inline'",
     'app.convert.com',
 ]
-CSP_CHILD_SRC = [
+CSP_CHILD_SRC = CSP_DEFAULT_SRC + [
     'www.googletagmanager.com',
     'www.google-analytics.com',
     'www.youtube-nocookie.com',
@@ -1491,9 +1491,7 @@ if CSP_EXTRA_FRAME_SRC:
     CSP_CHILD_SRC += tuple(CSP_EXTRA_FRAME_SRC)
 
 # support older browsers (mainly Safari)
-CSP_FRAME_SRC = CSP_CHILD_SRC + [
-    'mozilla.org'
-]
+CSP_FRAME_SRC = CSP_CHILD_SRC
 
 # Bug 1331069 - Double Click tracking pixel for download page.
 AVAILABLE_TRACKING_PIXELS = {
