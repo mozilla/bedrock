@@ -1,0 +1,36 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}The new Firefox Lite{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox-whatsnew-lite') }}
+{% endblock %}
+
+{% block content %}
+<main role="main" class="lite-main">
+  <div class="mzp-l-content">
+    <header class="lite-header">
+      <img class="lite-header-logo" src="{{ static('img/logos/firefox/logo-lite.png') }}" alt="" width="132" height="124">
+      <h1 class="lite-header-title">{% block header_title %}The new <strong>Firefox</strong> Lite{% endblock %}</h1>
+    </header>
+    <div class="lite-content">
+      <div class="lite-product-image">
+        <img src="{{ l10n_img('img/firefox/whatsnew/lite/device.png') }}" alt="" height="805" width="494">
+      </div>
+      <div class="lite-copy">
+        <p class="lite-tagline">{% block tagline %}The only Android browser with the Awesome Bar for faster, more intelligent search.{% endblock %}</p>
+        <div class="lite-qrcode-container">
+          <img src="{{ static('img/firefox/whatsnew/lite/qrcode.png') }}" alt="QR code" width="250" height="249">
+          <p class="lite-qrcode-copy-small">{% block qrcode_copy %}Scan the QR code to get started.{% endblock %}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

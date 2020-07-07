@@ -513,8 +513,17 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
 
 
 class WhatsNewRedirectorView(GeoRedirectView):
+    # https://bedrock.readthedocs.io/en/latest/coding.html#geo-redirect-view
     geo_urls = {
-        'IN': 'firefox.whatsnew.india'
+        'IN': 'firefox.whatsnew.india',
+        'NG': 'firefox.whatsnew.africa',
+        'ZA': 'firefox.whatsnew.africa',
+        'KE': 'firefox.whatsnew.africa',
+        'GH': 'firefox.whatsnew.africa',
+        'UG': 'firefox.whatsnew.africa',
+        'TZ': 'firefox.whatsnew.africa',
+        'ZW': 'firefox.whatsnew.africa',
+        'ZM': 'firefox.whatsnew.africa',
     }
     default_url = 'firefox.whatsnew.all'
 
@@ -534,17 +543,24 @@ class WhatsnewView(L10nTemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super(WhatsnewView, self).get_context_data(**kwargs)
+        version = self.kwargs.get('version') or ''
+        pre_release_channels = ['nightly', 'developer', 'beta']
+        channel = detect_channel(version)
+
+        # add active_locales for hard-coded locale templates
+        locale = l10n_utils.get_locale(self.request)
+        hard_coded_templates = ['id']
+        if locale in hard_coded_templates and channel not in pre_release_channels:
+            ctx['active_locales'] = locale
 
         # add version to context for use in templates
-        version = self.kwargs.get('version') or ''
         match = re.match(r'\d{1,2}', version)
         num_version = int(match.group(0)) if match else ''
         ctx['version'] = version
         ctx['num_version'] = num_version
 
         # add analytics parameters to context for use in templates
-        channel = detect_channel(version)
-        if channel not in ['nightly', 'developer', 'beta']:
+        if channel not in pre_release_channels:
             channel = ''
 
         analytics_version = str(num_version) + channel
@@ -593,7 +609,7 @@ class WhatsnewView(L10nTemplateView):
             else:
                 template = 'firefox/whatsnew/index.html'
         elif locale == 'id':
-            template = 'firefox/whatsnew/index-lite.id.html'
+            template = 'firefox/whatsnew/firefox-lite.id.html'
         elif version.startswith('79.') and ftl_file_is_active('firefox/whatsnew/whatsnew-fx79'):
             template = 'firefox/whatsnew/whatsnew-fx79.html'
         elif version.startswith('78.'):
@@ -649,15 +665,15 @@ class WhatsnewView(L10nTemplateView):
         return [template]
 
 
-class WhatsNewIndiaView(WhatsnewView):
+class WhatsNewFirefoxLiteView(WhatsnewView):
     def get_template_names(self):
         locale = l10n_utils.get_locale(self.request)
         version = self.kwargs.get('version') or ''
         channel = detect_channel(version)
 
-        if locale.startswith('en-') and channel not in ['nightly', 'alpha', 'beta']:
+        if locale == 'en-US' and channel not in ['nightly', 'alpha', 'beta']:
             # return a list to conform with original intention
-            template = ['firefox/whatsnew/index-lite.html']
+            template = ['firefox/whatsnew/firefox-lite.html']
         else:
             template = super().get_template_names()
 

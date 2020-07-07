@@ -14,6 +14,7 @@ from bedrock.utils import views as utils_views
 latest_re = r'^firefox(?:/(?P<version>%s))?/%s/$'
 firstrun_re = latest_re % (version_re, 'firstrun')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
+whatsnew_re_africa = latest_re % (version_re, 'whatsnew/africa')
 whatsnew_re_india = latest_re % (version_re, 'whatsnew/india')
 whatsnew_re_all = latest_re % (version_re, 'whatsnew/all')
 platform_re = '(?P<platform>android|ios)'
@@ -73,7 +74,8 @@ urlpatterns = (
     url(r'^firefox/installer-help/$', views.InstallerHelpView.as_view(), name='firefox.installer-help'),
     url(firstrun_re, views.FirstrunView.as_view(), name='firefox.firstrun'),
     url(whatsnew_re, views.WhatsNewRedirectorView.as_view(), name='firefox.whatsnew'),
-    url(whatsnew_re_india, views.WhatsNewIndiaView.as_view(), name='firefox.whatsnew.india'),
+    url(whatsnew_re_africa, views.WhatsNewFirefoxLiteView.as_view(), name='firefox.whatsnew.africa'),
+    url(whatsnew_re_india, views.WhatsNewFirefoxLiteView.as_view(), name='firefox.whatsnew.india'),
     url(whatsnew_re_all, views.WhatsnewView.as_view(), name='firefox.whatsnew.all'),
 
     # Release notes
