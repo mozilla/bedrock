@@ -27,7 +27,7 @@ urlpatterns = (
     url(r'^websites/$', views.websites_notices, name='privacy.notices.websites'),
     url(r'^facebook/$', views.facebook_notices, name='privacy.notices.facebook'),
     url(r'^firefox-monitor/$', views.firefox_monitor_notices, name='privacy.notices.firefox-monitor'),
-    page('firefox-private-network', 'privacy/notices/firefox-private-network.html'),
+    url(r'^firefox-private-network/$', views.firefox_private_network, name='privacy.notices.firefox-private-network'),
     url(r'^firefox-relay/$', views.firefox_relay_notices, name='privacy.notices.firefox-relay'),
 
     page('archive', 'privacy/archive/index.html'),
