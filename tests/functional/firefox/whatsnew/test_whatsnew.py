@@ -31,5 +31,4 @@ def test_send_to_device_fails_when_missing_required_fields(base_url, selenium):
 @pytest.mark.nondestructive
 def test_firefox_lite_qr_code(base_url, selenium):
     page = FirefoxWhatsNewPage(selenium, base_url, locale='id').open()
-    assert not page.send_to_device.is_displayed
     assert page.is_firefox_lite_qr_code_displayed
