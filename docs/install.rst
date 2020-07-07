@@ -248,6 +248,8 @@ To view them or update to a more recent version update the submodule::
 
 To add a new commit of the git submodule to bedrock:
 
+.. code-block:: bash
+
     $ cd vendor-local/src/legal-docs
     $ git checkout master
     $ git pull

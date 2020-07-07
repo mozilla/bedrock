@@ -40,7 +40,8 @@ urlpatterns = (
     url(r'^terms/firefox-reality/$', LegalDocView.as_view(template_name='legal/terms/firefox-reality.html',
         legal_doc_name='firefox_reality_about_rights'), name='legal.terms.firefox-reality'),
 
-    page('terms/firefox-private-network', 'legal/terms/firefox-private-network.html'),
+    url(r'^terms/firefox-private-network/$', LegalDocView.as_view(template_name='legal/terms/firefox-private-network.html',
+        legal_doc_name='Firefox_Private_Network_ToS'), name='legal.terms.firefox-private-network'),
 
     url(r'^terms/thunderbird/$', LegalDocView.as_view(template_name='legal/terms/thunderbird.html', legal_doc_name='thunderbird_about_rights'),
         name='legal.terms.thunderbird'),
