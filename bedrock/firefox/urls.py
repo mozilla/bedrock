@@ -49,7 +49,7 @@ urlpatterns = (
     page('firefox/features/bookmarks', 'firefox/features/bookmarks.html',
         ftl_files=['firefox/features/shared']),
     page('firefox/features/fast', 'firefox/features/fast.html',
-        ftl_files=['firefox/features/shared']),
+        ftl_files=['firefox/features/shared', 'firefox/features/fast']),
     page('firefox/features/indepdendent', 'firefox/features/independent.html',
         ftl_files=['firefox/features/shared']),
     page('firefox/features/memory', 'firefox/features/memory.html',

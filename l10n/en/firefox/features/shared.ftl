@@ -16,3 +16,5 @@ features-shared-password-manager = Password manager
 features-shared-customize-your-browser = Customize your browser
 features-shared-sync-between-devices = Sync between devices
 features-shared-better-bookmarks = Better bookmarks
+
+brand-name-firefox = { -brand-name-firefox }

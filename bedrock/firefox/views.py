@@ -34,7 +34,6 @@ from bedrock.firefox.firefox_details import firefox_android, firefox_desktop
 from bedrock.firefox.forms import SendToDeviceWidgetForm
 from bedrock.newsletter.forms import NewsletterFooterForm
 from bedrock.releasenotes import version_re
-from bedrock.wordpress.views import BlogPostsView
 from bedrock.base.views import GeoRedirectView
 
 UA_REGEXP = re.compile(r"Firefox/(%s)" % version_re)
