@@ -4,12 +4,12 @@
 
 {% add_lang_files "firefox/shared" %}
 
-{% from "macros-protocol.html" import feature_card, hero, picto_card with context %}
+{% from "macros-protocol.html" import feature_card, picto_card with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% block page_title %}{{ _('Private Browser with extra tracking protection') }} | {{ _('Download Firefox') }}{% endblock %}
-{% block page_desc %}{{ _('Firefox protects your online privacy and blocks trackers that follow you around the web.') }}{% endblock %}
+{% block page_title %}{{ ftl('features-private-browsing-private-browser') }} | {{ _('Download Firefox') }}{% endblock %}
+{% block page_desc %}{{ ftl('features-private-browsing-firefox-protects') }}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('firefox-features-hub-detail') }}
@@ -19,73 +19,55 @@
 
 
 {% block content %}
-<div class="mzp-c-hero independent-hero">
+<header class="mzp-c-hero">
   <div class="hero-content">
     <img src="{{ static('img/firefox/features/index/feature_icons/private-browsing_violet.svg')}}" alt="">
-    <h1>{{ _('Firefox: More protection. Less worry.') }}</h1>
+    <h1>{{ ftl('features-private-browsing-firefox-more-protection') }}</h1>
     <p class="tagline">
-      {% trans %}
-        We’re obsessed with protecting your privacy. That’s why we’ve made Firefox Private
-        Browsing more powerful than the others.
-      {% endtrans %}
+      {{ ftl('features-private-browsing-were-obsessed-with') }}
     </p>
     <div class="download-firefox">
       {{ download_firefox(dom_id='private-browsing-download', download_location='primary cta') }}
     </div>
   </div>
-</div>
-<section class="mzp-l-content main-content">
+</header>
 
-  <div class="features feature-1">
+<section class="mzp-l-content main-content">
     {% call feature_card(
-      title=_('Browse without a trace'),
+      title=ftl('features-private-browsing-browse-without'),
       image_url='img/firefox/features/thumbnails/private/no-trace.jpg',
       aspect_ratio='mzp-has-aspect-1-1',
       class='mzp-l-card-feature-right-half mzp-t-firefox',
     ) %}
     <p>
-      {% trans %}
-        Sharing is caring, but that should be your call. Firefox Private Browsing
-        automatically erases your online info like passwords, cookies and history
-        from your computer. So that when you close out, you leave no trace.
-      {% endtrans %}
+      {{ ftl('features-private-browsing-sharing-is-caring') }}
     </p>
     {% endcall %}
-  </div>
 
-  <div class="features feature-2">
     {% call feature_card(
-      title=_('Catch those hidden trackers'),
+      title=ftl('features-private-browsing-catch-those-hidden'),
       image_url='img/firefox/features/thumbnails/private/zero-chill.jpg',
       aspect_ratio='mzp-has-aspect-1-1',
       class='mzp-l-card-feature-left-half mzp-t-firefox',
     ) %}
     <p>
-      {% trans %}
-        Some websites and ads attach hidden trackers that collect your browsing info
-        long after you’ve left. Only Firefox Private Browsing has tracking protection
-        to block them automatically.
-      {% endtrans %}
+      {{ ftl('features-private-browsing-some-websites-and') }}
     </p>
     {% endcall %}
-  </div>
 
-  <div class="features feature-3">
+
+
     {% call feature_card(
-      title=_('Shake off tracking weight'),
+      title=ftl('features-private-browsing-shake-off-tracking'),
       image_url='img/firefox/features/thumbnails/private/baggage.jpg',
       aspect_ratio='mzp-has-aspect-1-1',
       class='mzp-l-card-feature-right-half mzp-t-firefox',
     ) %}
     <p>
-      {% trans %}
-        Not only do trackers collect info, they can weigh down your browsing speeds.
-        Only Firefox Private Browsing blocks ads with hidden trackers, so you can drop
-        the baggage and browse freely.
-      {% endtrans %}
+      {{ ftl('features-private-browsing-not-only-do-trackers') }}
     </p>
     {% endcall %}
-  </div>
+
 </section>
 {% include "firefox/features/features-content.html" %}
 
