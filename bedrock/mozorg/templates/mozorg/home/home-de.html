@@ -12,6 +12,14 @@
   {{ _('Mozilla ist die gemeinnützige Organisation hinter Firefox. Menschen sollten auch online die Kontrolle über ihr Leben haben. Dafür setzen wir uns ein.') }}
 {% endblock %}
 
+{% block page_css %}
+  {{ css_bundle('home-2018') }}
+
+  {% if switch('fundraising-banner') %}
+    {{ css_bundle('fundraising-banner') }}
+  {% endif %}
+{% endblock %}
+
 {% block main %}
 <main>
   <header class="main-page-heading">
