@@ -536,12 +536,6 @@
     },
     {
       "files": [
-        "css/firefox/features/common.scss"
-      ],
-      "name": "firefox-features-hub-common"
-    },
-    {
-      "files": [
         "css/firefox/home/quantum.scss",
         "css/base/mozilla-lazy-image.scss"
       ],
