@@ -2,8 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import billboard, card, call_out_compact, content_card with context %}
-{% from "mozorg/home/includes/macros.html" import download_banner, download_banner_secondary, fxa_banner %}
+{% from "macros-protocol.html" import hero, billboard, card, call_out_compact, content_card with context %}
+{% from "mozorg/home/includes/macros.html" import download_banner_secondary %}
 
 {% extends "base-protocol.html" %}
 
@@ -61,18 +61,16 @@
     <h1>{{ self.page_title() }}</h1>
   </header>
 
-  {% call download_banner(
-    title=_('Take back your privacy'),
-    desc=_('Get the browser that blocks 2000+ trackers — automatically'),
-    ) %}
-    {{ download_firefox(dom_id='download-primary', download_location='primary cta') }}
+  {% call hero(
+    title='Firefox products are designed to protect your privacy',
+    class='privacy-promise-hero mzp-has-image mzp-t-dark mzp-t-firefox',
+    image_url='img/firefox/privacy/promise/privacy-hero.png',
+    include_highres_image=True,
+    include_cta=True,
+    heading_level=2
+  ) %}
+    <a href="{{ url('firefox.privacy.index') }}" class="mzp-c-button mzp-t-product">Learn more</a>
   {% endcall %}
-
-  {{ fxa_banner(
-    title=_('Firefox is more<br> than a browser')|safe,
-    desc=_('Meet our family of privacy-first products'),
-    link_cta=_('Meet the Family'),
-  )}}
 
   <div class="mozilla-content">
     <div class="mzp-l-content mzp-t-mozilla">
@@ -84,29 +82,27 @@
         {{ content_card('card_5') }}
       </div>
 
+      <div class="mzp-l-card-quarter">
+        {{ content_card('card_6') }}
+        {{ content_card('card_7') }}
+        {{ content_card('card_8') }}
+        {{ content_card('card_9') }}
+      </div>
+
       {{ billboard(
-        title=_('More power to you.'),
-        ga_title='More power to you.',
-        desc=_('Mozilla puts people before profit, creating products, technologies and programs that make the internet healthier for everyone.'),
-        link_cta=_('Learn more about us'),
-        link_url=url('mozorg.about'),
-        image_url='img/home/2018/billboard-more-power.png',
+        title=_('Open source. <br>Open minds.'),
+        ga_title='Open source. <br>Open minds.',
+        desc=_('Mozilla creates powerful web tech for everyone.'),
+        link_cta=_('Explore Mozilla technology'),
+        link_url='https://labs.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=billboard',
+        image_url='img/home/2018/billboard-open-minds.png',
         include_highres_image=True
       )}}
 
-      {% if get_content_card(content_cards or page_content_cards, 'card_17') %}
-        <div class="mzp-l-card-quarter">
-          {{ content_card('card_14') }}
-          {{ content_card('card_15') }}
-          {{ content_card('card_16') }}
-          {{ content_card('card_17') }}
-        </div>
-      {% else %}
-        <div class="mzp-l-card-half">
-          {{ content_card('card_6') }}
-          {{ content_card('card_7') }}
-        </div>
-      {% endif %}
+      <div class="mzp-l-card-half">
+        {{ content_card('card_10') }}
+        {{ content_card('card_11') }}
+      </div>
     </div>
 
     {% if switch('show_pocket_feed', ['en']) and pocket_articles %}
@@ -132,10 +128,6 @@
     {% endif %}
 
     <div class="mzp-l-content mzp-t-mozilla">
-      <div class="mzp-l-card-half">
-        {{ content_card('card_8') }}
-        {{ content_card('card_9') }}
-      </div>
 
       {{ billboard(
         title=_('Support a healthy internet.'),
@@ -148,24 +140,28 @@
         reverse=True
       )}}
 
-      <div class="mzp-l-card-half">
-        {{ content_card('card_10') }}
-        {{ content_card('card_11') }}
+      <div class="mzp-l-card-hero">
+        {{ content_card('card_12') }}
+        {{ content_card('card_13') }}
+        {{ content_card('card_14') }}
+        {{ content_card('card_15') }}
+        {{ content_card('card_16') }}
       </div>
 
       {{ billboard(
-        title=_('Open source. <br>Open minds.'),
-        ga_title='Open source. <br>Open minds.',
-        desc=_('Mozilla creates powerful web tech for everyone.'),
-        link_cta=_('Explore Mozilla technology'),
-        link_url='https://labs.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=billboard',
-        image_url='img/home/2018/billboard-open-minds.png',
+        title=_('More power to you.'),
+        ga_title='More power to you.',
+        desc=_('Mozilla puts people before profit, creating products, technologies and programs that make the internet healthier for everyone.'),
+        link_cta=_('Learn more about us'),
+        link_url=url('mozorg.about'),
+        image_url='img/home/2018/billboard-more-power.png',
         include_highres_image=True
       )}}
 
-      <div class="mzp-l-card-half">
-        {{ content_card('card_12') }}
-        {{ content_card('card_13') }}
+      <div class="mzp-l-card-third">
+        {{ content_card('card_17') }}
+        {{ content_card('card_18') }}
+        {{ content_card('card_19') }}
       </div>
 
       <aside class="mzp-c-newsletter">

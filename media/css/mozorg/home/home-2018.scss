@@ -8,6 +8,7 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/includes/lib';
 @import '../../../protocol/css/components/billboard';
 @import '../../../protocol/css/components/call-out';
+@import '../../../protocol/css/components/hero';
 @import '../../../protocol/css/components/modal';
 @import '../../../protocol/css/components/newsletter-form';
 @import '../../../protocol/css/templates/card-layout';
@@ -20,120 +21,54 @@ $image-path: '/media/protocol/img';
     margin-top: $spacing-lg;
 }
 
-
 //* -------------------------------------------------------------------------- */
 // Primary CTA (page top)
 
-.c-primary-cta {
-    background-color: $color-white;
-    min-height: 359px;
-    position: relative;
-    text-align: center;
-    z-index: 2; // so it hides the sticky CTA
-}
+.privacy-promise-hero.mzp-c-hero.mzp-t-dark {
+    background-color: $color-ink-80;
+    overflow: hidden;
+    padding-bottom: 0;
+    text-align: left;
 
-.c-primary-cta-wrapper {
-    position: relative;
-    padding-top: $layout-sm;
+    .mzp-c-hero-body {
+        max-width: none;
+    }
 
-    p {
+    .privacy-promise-hero-desc {
+        @include text-body-lg;
         margin-bottom: 0;
     }
-}
 
-.c-primary-cta-logo {
-    margin: 0 auto $spacing-lg auto;
-}
-
-.c-primary-cta-title {
-    @include text-title-lg;
-    margin-bottom: 0;
-}
-
-h3,
-h4 {
-    &.c-primary-cta-title-sub {
-        @include font-base;
-        @include text-title-sm;
-        max-width: 430px;
-        margin: 0 auto;
-    }
-}
-
-.c-primary-cta-desc {
-    @include text-body-lg;
-}
-
-.c-primary-cta-button {
-    margin-top: $layout-sm;
-}
-
-.mzp-c-button-download-container {
-    margin-bottom: 0;
-}
-
-@media #{$mq-md} {
-    .c-primary-cta-wrapper {
-        padding-bottom: $layout-sm;
-    }
-
-    .c-primary-cta-logo {
-        margin-bottom: $spacing-xl;
-    }
-}
-
-@media #{$mq-lg} {
-    .c-primary-cta {
-        @include bidi(((text-align, left, right),));
-        position: relative;
-
-        .c-primary-cta-wrapper {
-            @include border-box;
-            max-width: 50%;
-        }
-
-        .c-primary-cta-title-sub {
-            margin: 0;
-        }
-    }
-
-    .download-firefox-primary-cta {
-        background-image: url('/media/img/home/2018/browser.png'), url('/media/img/home/2018/bg-primary.svg');
-        background-size: 400px 278px, auto;
-        background-position: calc(50vw + 34px) 60px, calc(50vw - 41px) -78px;
-        background-repeat: no-repeat;
-
-        @media #{$mq-high-res} {
-            background-image: url('/media/img/home/2018/browser-high-res.png'), url('/media/img/home/2018/bg-primary.svg');
-        }
-    }
-
-    .fxaccount-primary-cta {
-        @include at2x('/media/img/home/2018/home.jpg', 815px, 362px);
-        background-position: 50vw 0;
-        background-repeat: no-repeat;
-    }
-}
-
-//* -------------------------------------------------------------------------- */
-// Conditional content
-
-// Hide Firefox Account CTAs by default; show download unless we know otherwise.
-.fxaccount-primary-cta,
-.fxaccount-secondary-cta {
-    display: none;
-}
-
-// Hide download CTAs for people already using Firefox; promote Firefox Accounts instead.
-.is-firefox {
-    .download-firefox-primary-cta,
-    .download-firefox-secondary-cta {
+    .mzp-c-hero-image {
         display: none;
     }
 
-    .fxaccount-primary-cta,
-    .fxaccount-secondary-cta {
-        display: block;
+    @media #{$mq-md} {
+        .mzp-c-hero-title {
+            @include font-size(32px);
+        }
+
+        .privacy-promise-hero-desc {
+            margin-bottom: $spacing-lg;
+        }
+
+        .mzp-c-hero-image {
+            display: block;
+            height: 100%;
+            margin: 0;
+
+            img {
+                @include bidi(((left, $spacing-xl, right, auto),));
+            }
+        }
+    }
+
+    @media #{$mq-lg} {
+        padding-bottom: $spacing-lg;
+
+        .mzp-c-hero-title {
+            @include font-size(48px);
+        }
     }
 }
 
