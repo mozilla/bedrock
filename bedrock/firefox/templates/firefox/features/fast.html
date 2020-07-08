@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import feature_card, hero, picto_card with context %}
+{% from "macros-protocol.html" import feature_card, picto_card with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -28,45 +28,40 @@
 </header>
 
 <div class="mzp-l-content main-content">
-  <section class="feature-1">
-    {% call feature_card(
-      title=ftl('features-fast-use-less-memory'),
-      image_url='img/firefox/features/thumbnails/fast/low-memory.jpg',
-      aspect_ratio='mzp-has-aspect-1-1',
-      class='mzp-l-card-feature-right-half mzp-t-firefox',
-    ) %}
-    <p>
-    {{ ftl('features-fast-no-one-likes-a-computer-hog') }}
-    </p>
-    {% endcall %}
-  </section>
+  {% call feature_card(
+    title=ftl('features-fast-use-less-memory'),
+    image_url='img/firefox/features/thumbnails/fast/low-memory.jpg',
+    aspect_ratio='mzp-has-aspect-1-1',
+    class='mzp-l-card-feature-right-half mzp-t-firefox feature-1',
+  ) %}
+  <p>
+  {{ ftl('features-fast-no-one-likes-a-computer-hog') }}
+  </p>
+  {% endcall %}
 
-  <section class="feature-2">
-    {% call feature_card(
-      title=ftl('features-fast-get-all-the-tabs-without-lags'),
-      image_url='img/firefox/features/thumbnails/fast/multi-tabs.jpg',
-      aspect_ratio='mzp-has-aspect-1-1',
-      class='mzp-l-card-feature-left-half mzp-t-firefox',
-    ) %}
-    <p>
-    {{ ftl('features-fast-multi-tasking-with-multiple') }}
-    </p>
-    {% endcall %}
-  </section>
+  {% call feature_card(
+    title=ftl('features-fast-get-all-the-tabs-without-lags'),
+    image_url='img/firefox/features/thumbnails/fast/multi-tabs.jpg',
+    aspect_ratio='mzp-has-aspect-1-1',
+    class='mzp-l-card-feature-left-half mzp-t-firefox feature-2',
+  ) %}
+  <p>
+  {{ ftl('features-fast-multi-tasking-with-multiple') }}
+  </p>
+  {% endcall %}
 
-  <section class="feature-3">
-    {% call feature_card(
-      title=ftl('features-fast-level-up-browser-gameplay'),
-      image_url='img/firefox/features/thumbnails/fast/gaming.jpg',
-      aspect_ratio='mzp-has-aspect-1-1',
-      class='mzp-l-card-feature-right-half mzp-t-firefox',
-    ) %}
-    <p>
-    {{ ftl('features-fast-we-led-the-tech-to-run-3d-games') }}
-    </p>
-    {% endcall %}
-  </section>
+  {% call feature_card(
+    title=ftl('features-fast-level-up-browser-gameplay'),
+    image_url='img/firefox/features/thumbnails/fast/gaming.jpg',
+    aspect_ratio='mzp-has-aspect-1-1',
+    class='mzp-l-card-feature-right-half mzp-t-firefox feature-3',
+  ) %}
+  <p>
+  {{ ftl('features-fast-we-led-the-tech-to-run-3d-games') }}
+  </p>
+  {% endcall %}
 </div>
 
 {% include "firefox/features/includes/features-content.html" %}
+
 {% endblock %}

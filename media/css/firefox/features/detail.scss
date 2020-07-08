@@ -19,21 +19,20 @@ $image-path: '/media/protocol/img';
     margin: 0 auto;
     max-width: $content-lg;
     text-align: center;
+
     @media #{$mq-xs} {
         max-width: $content-xs;
     }
+
     @media #{$mq-sm} {
         max-width: $content-sm;
     }
+
     @media #{$mq-md} {
         max-width: $content-md;
     }
 }
 
-.features {
-    margin-bottom: $spacing-2xl;
-}
-
-.features.feature-3 {
-    margin-bottom: none;
+.c-features-links .mzp-c-card-picto-desc {
+    font-weight: bold;
 }
