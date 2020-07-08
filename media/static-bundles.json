@@ -228,6 +228,12 @@
     },
     {
       "files": [
+        "css/mozorg/home/home-en.scss"
+      ],
+      "name": "home-en"
+    },
+    {
+      "files": [
         "css/exp/home/home-2018.scss"
       ],
       "name": "exp-home-2018"

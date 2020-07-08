@@ -12,6 +12,15 @@
 Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, une ressource publique mondiale, demeure ouverte et accessible à tous.
 {% endblock %}
 
+{% block page_css %}
+  {{ css_bundle('home-2018') }}
+
+  {% if switch('fundraising-banner') %}
+    {{ css_bundle('fundraising-banner') }}
+  {% endif %}
+{% endblock %}
+
+
 {% block main %}
 <main>
   <header class="main-page-heading">
