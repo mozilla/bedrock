@@ -47,7 +47,7 @@ urlpatterns = (
          ftl_files=['firefox/features/shared']),
     page('firefox/features/adblocker', 'firefox/features/adblocker.html'),
     page('firefox/features/bookmarks', 'firefox/features/bookmarks.html',
-         ftl_files=['firefox/features/shared']),
+         ftl_files=['firefox/features/shared', 'firefox/features/bookmarks']),
     page('firefox/features/fast', 'firefox/features/fast.html',
          ftl_files=['firefox/features/shared', 'firefox/features/fast']),
     page('firefox/features/independent', 'firefox/features/independent.html',

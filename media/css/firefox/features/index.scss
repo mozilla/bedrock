@@ -10,9 +10,12 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/templates/card-layout';
 
 
-h2.section-title {
+.section-title {
     text-align: center;
-    margin: $spacing-xl;
+
+    @media #{$mq-md} {
+        margin: $spacing-xl 0;
+    }
 }
 
 section.features.mzp-l-card-third {
