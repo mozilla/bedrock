@@ -776,58 +776,6 @@ def ios_testflight(request):
     )
 
 
-def ad_blocker(request):
-    return l10n_utils.render(request, 'firefox/features/adblocker.html')
-
-
-class FeaturesBookmarksView(BlogPostsView):
-    blog_posts_limit = 3
-    blog_posts_template_variable = 'articles'
-    blog_slugs = 'firefox'
-    blog_tags = ['modern', 'privacy', 'featured']
-    template_name = 'firefox/features/bookmarks.html'
-
-
-class FeaturesFastView(BlogPostsView):
-    blog_posts_limit = 3
-    blog_posts_template_variable = 'articles'
-    blog_slugs = 'firefox'
-    blog_tags = ['fastest', 'featured']
-    template_name = 'firefox/features/fast.html'
-
-
-class FeaturesIndependentView(BlogPostsView):
-    blog_posts_limit = 3
-    blog_posts_template_variable = 'articles'
-    blog_slugs = 'firefox'
-    blog_tags = ['browser', 'featured']
-    template_name = 'firefox/features/independent.html'
-
-
-class FeaturesMemoryView(BlogPostsView):
-    blog_posts_limit = 3
-    blog_posts_template_variable = 'articles'
-    blog_slugs = 'firefox'
-    blog_tags = ['memory', 'featured']
-    template_name = 'firefox/features/memory.html'
-
-
-class FeaturesPasswordManagerView(BlogPostsView):
-    blog_posts_limit = 3
-    blog_posts_template_variable = 'articles'
-    blog_slugs = 'firefox'
-    blog_tags = ['modern', 'privacy', 'featured']
-    template_name = 'firefox/features/password-manager.html'
-
-
-class FeaturesPrivateBrowsingView(BlogPostsView):
-    blog_posts_limit = 3
-    blog_posts_template_variable = 'articles'
-    blog_slugs = 'firefox'
-    blog_tags = ['privacy', 'security', 'featured']
-    template_name = 'firefox/features/private-browsing.html'
-
-
 class FirefoxHomeView(L10nTemplateView):
     ftl_files_map = {
         'firefox/home/index-master.html': ['firefox/home']
