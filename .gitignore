@@ -48,6 +48,7 @@ tests/functional/assets
 root_files/sitemap*.xml
 root_files/*/sitemap.xml
 root_files/sitemap.json
+root_files/etags.json
 node_modules
 package-lock.json
 .vscode/
