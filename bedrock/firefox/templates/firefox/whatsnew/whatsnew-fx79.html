@@ -1,0 +1,155 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import google_play_button, send_to_device with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew79-page-title') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_79') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% set android_url = firefox_adjust_url('android', campaign) %}
+{% set ios_url = firefox_adjust_url('ios', campaign) %}
+{% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
+{% set utm_campaign = 'mozilla-vpn-v1-0-announcement' %}
+
+{% block content %}
+<main class="content-wrapper mzp-t-firefox mzp-t-dark">
+  <header class="c-page-header">
+    <div class="mzp-l-content c-page-header-inner">
+      {{ high_res_img('protocol/img/logos/firefox/browser/logo-word-hor-white-sm.png', {'alt': 'Firefox', 'width': '216', 'height': '40', 'class': 'c-page-header-logo-fx'}) }}
+      <div class="mzp-c-notification-bar mzp-t-success up-to-date">
+        <p>{{ ftl('whatsnew-up-to-date-notification') }}</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="content-main">
+    <div class="mzp-l-content">
+      <div class="mzp-c-emphasis-box">
+        <img class="c-emphasis-box-hero" src="{{ static('img/firefox/whatsnew/whatsnew79/skyshield.svg') }}" alt="" width="230">
+        <h2 class="c-emphasis-box-title">
+          {{ ftl('whatsnew79-main-title') }}
+        </h2>
+        <p>{{ ftl('whatsnew79-main-intro') }}</p>
+
+        <div class="state-not-default">
+          <a id="set-as-default-button" href="{{ url('firefox.set-as-default.thanks') }}" class="mzp-c-button mzp-t-product mzp-t-small" data-cta-text="Make Firefox your default browser" data-cta-type="button">{{ ftl('whatsnew79-primary-cta') }}</a>
+        </div>
+
+        <div class="state-is-default">
+          <button class="mzp-c-button mzp-t-product mzp-t-small js-modal-link">{{ ftl('whatsnew79-fallback-cta') }}</button>
+        </div>
+      </div>
+    </div>
+
+    <aside id="modal" class="mzp-u-modal-content mzp-l-content">
+      <h2 class="modal-logo">{{ ftl('brand-name-firefox') }}</h2>
+      <h3>{{ ftl('whatsnew79-get-firefox-on-your-phone') }}</h3>
+
+      {% if show_send_to_device %}
+        {{ send_to_device(include_title=False, message_set='fx-whatsnew', class='vertical') }}
+      {% else %}
+        <p>{{ ftl('whatsnew79-scan-the-qr-code') }}</p>
+        <div class="qr-code-wrapper">
+          <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}"
+              id="firefox-qr"
+              data-mozillaonline-link="{{ static('img/firefox/mobile/protocol/qr-firefox-mozillaonline.png') }}"
+              alt="{{ ftl('whatsnew79-qr-code-to-scan') }}">
+        </div>
+      {% endif %}
+
+      <ul class="mobile-download-buttons" id="mobile-download-buttons-firefox">
+        <li>
+          {{ google_play_button(href=android_url, id='playStoreLink') }}
+        </li>
+        <li>
+          <a id="appStoreLink" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
+            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
+          </a>
+        </li>
+      </ul>
+    </aside>
+  </section>
+
+  <section class="content-extra">
+    <div class="mzp-l-content">
+      <div class="{% if LANG.startswith('en-') %}l-columns-three{% else %}l-columns-two{% endif %}">
+
+        {% if LANG.startswith('en-') %}
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
+            <img src="{{ static('img/icons/connection-red.svg') }}" alt="">
+          </div>
+          <h3 class="c-picto-block-title">{{ ftl('whatsnew79-secure-your-connection') }}</h3>
+          <div class="c-picto-block-body">
+            <p>{{ ftl('whatsnew79-with-one-tap-mozilla-vpn') }}</p>
+            <a class="mzp-c-cta-link" href="https://vpn.mozilla.org/?{{ utm_params }}">{{ ftl('whatsnew79-get-started') }}</a>
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
+            <img src="{{ static('img/icons/tracking-protection.svg') }}" alt="">
+          </div>
+
+          <h3 class="c-picto-block-title">{{ ftl('whatsnew79-get-more-control-over') }}</h3>
+          <div class="c-picto-block-body">
+            <p>{{ ftl('whatsnew79-firefox-blocks-more') }}</p>
+            <a class="mzp-c-cta-link show-firefox-desktop-70 js-open-about-protections" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?{{ utm_params }}" data-link-type="link" data-link-name="See your Report">{{ ftl('whatsnew79-see-your-report') }}</a>
+
+            <a class="mzp-c-cta-link show-firefox-desktop-old" href="https://support.mozilla.org/kb/update-firefox-latest-release/?{{ utm_params }}" data-link-type="link" data-link-name="Update your Firefox browser">{{ ftl('whatsnew79-update-your-firefox') }}</a>
+
+            <div class="show-fxa-not-fx show-fxa-unsupported">
+              {{ download_firefox(alt_copy=ftl('whatsnew79-download-the-firefox'), download_location='secondary cta', button_color='mzp-c-button mzp-t-small mzp-t-primary mzp-t-product') }}
+            </div>
+          </div>
+        </div>
+
+      {% if LANG == 'zh-CN' %}
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
+            <img src="{{ static('img/icons/privacy-eye-violet.svg') }}" alt="">
+          </div>
+
+          <h3 class="c-picto-block-title">{{ ftl('whatsnew79-read-our-privacy-promise') }}</h3>
+          <div class="c-picto-block-body">
+            <p>{{ ftl('whatsnew79-take-less-keep-it-safe') }}</p>
+            <a class="mzp-c-cta-link" href="{{ url('firefox.privacy.index') }}">{{ ftl('whatsnew79-read-more') }}</a>
+          </div>
+        </div>
+      {% else %}
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
+            <img src="{{ static('img/logos/fbcontainer/logo-fbcontainer.svg') }}" alt="" width="45" height="45">
+          </div>
+
+          <h3 class="c-picto-block-title">{{ ftl('whatsnew79-keep-facebook-contained') }}</h3>
+          <div class="c-picto-block-body">
+            <p>{{ ftl('whatsnew79-get-the-power-to-prevent') }}</p>
+            <a class="mzp-c-cta-link" href="https://addons.mozilla.org/firefox/addon/facebook-container/?{{ utm_params }}">{{ ftl('whatsnew79-add-facebook-container') }}</a>
+          </div>
+        </div>
+      {% endif %}
+
+      </div>
+    </div>
+  </section>
+
+  <aside class="mzp-l-content c-utilities">
+    {% set releasenotes_url = url('firefox.releases.index') if not version else '/firefox/%s/releasenotes/'|format(version) %}
+    <p>{{ ftl('whatsnew-release-notes', url=releasenotes_url) }}</p>
+  </aside>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_79') }}
+{% endblock %}

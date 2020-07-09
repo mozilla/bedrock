@@ -529,7 +529,8 @@ class WhatsNewRedirectorView(GeoRedirectView):
 class WhatsnewView(L10nTemplateView):
 
     ftl_files_map = {
-        'firefox/whatsnew/index-account.html': ['firefox/whatsnew/whatsnew-account', 'firefox/whatsnew/whatsnew']
+        'firefox/whatsnew/index-account.html': ['firefox/whatsnew/whatsnew-account', 'firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx79.html': ['send_to_device', 'firefox/whatsnew/whatsnew', 'firefox/whatsnew/whatsnew-fx79']
     }
 
     def get_context_data(self, **kwargs):
@@ -549,7 +550,10 @@ class WhatsnewView(L10nTemplateView):
 
         analytics_version = str(num_version) + channel
         entrypoint = 'mozilla.org-whatsnew' + analytics_version
-        campaign = 'whatsnew' + analytics_version
+        if version.startswith('79.'):
+            campaign = 'mozilla-vpn-v1-0-announcement'
+        else:
+            campaign = 'whatsnew' + analytics_version
         ctx['analytics_version'] = analytics_version
         ctx['entrypoint'] = entrypoint
         ctx['campaign'] = campaign
@@ -591,6 +595,8 @@ class WhatsnewView(L10nTemplateView):
                 template = 'firefox/whatsnew/index.html'
         elif locale == 'id':
             template = 'firefox/whatsnew/index-lite.id.html'
+        elif version.startswith('79.') and ftl_file_is_active('firefox/whatsnew/whatsnew-fx79'):
+            template = 'firefox/whatsnew/whatsnew-fx79.html'
         elif version.startswith('78.'):
             variations = ['2', '3', '4', '5']
             locales = ['en-US', 'en-CA', 'en-GB', 'de', 'fr']

@@ -1,0 +1,291 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+@import '../../protocol/components/state-fxa';
+@import '../../../protocol/css/components/modal';
+@import '../../../protocol/css/components/emphasis-box';
+@import '../../../protocol/css/components/notification-bar';
+@import 'includes/header';
+
+.content-main {
+    padding: 0;
+    @media #{$mq-md} {
+        padding-top: $spacing-2xl;
+    }
+}
+
+.content-wrapper {
+    background: $color-ink-80 url('/media/img/firefox/whatsnew/whatsnew_background.svg') no-repeat;
+    @include background-size(100%);
+    color: $color-white;
+}
+
+.c-utilities {
+    @include text-body-sm;
+    max-width: $content-md;
+    text-align: center;
+}
+
+//* -------------------------------------------------------------------------- */
+// Emphasis box
+
+.mzp-c-emphasis-box {
+    @include border-box;
+    color: $color-ink-80;
+    margin: 0 auto $layout-sm;
+    max-width: $content-md - ($layout-md * 2);
+    padding: $spacing-xl;
+    text-align: center;
+
+    :link {
+        color: $color-ink-80;
+    }
+
+    abbr {
+        text-decoration: none;
+    }
+
+    .c-emphasis-box-hero {
+        display: block;
+        margin: 0 auto $spacing-lg;
+        width: 230px;
+    }
+
+    .c-emphasis-box-title {
+        @include text-title-sm;
+    }
+
+    .c-emphasis-box-tagline {
+        @include text-title-xs;
+    }
+
+    .cta {
+        margin: $spacing-xl 0 $spacing-sm;
+    }
+
+    @media #{$mq-md} {
+        padding: $spacing-xl $layout-md;
+
+        .c-emphasis-box-title br {
+            display: block;
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Conditional CTA
+
+.state-is-default {
+    display: none;
+}
+
+.is-firefox-default {
+    .state-is-default {
+        display: inline-block;
+    }
+
+    .state-not-default {
+        display: none;
+    }
+}
+
+// no-JS
+.no-js {
+    .content-main {
+        padding: 0;
+    }
+
+    .mzp-c-emphasis-box {
+        display: none;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Extra content
+// To be replaced by revamped picto card. See https://github.com/mozilla/protocol/issues/382
+
+.c-picto-block {
+    @include border-box;
+    margin: 0 auto $spacing-2xl;
+    max-width: $content-md - ($layout-md * 2);
+    padding: 0 $layout-md;
+
+    .c-picto-block-title {
+        @include text-title-xs;
+    }
+
+    .c-picto-block-image {
+        align-items: center;
+        display: flex;
+        margin-bottom: $spacing-md;
+        min-height: $layout-md;
+    }
+}
+
+@media #{$mq-md} {
+    .l-columns-two,
+    .l-columns-three {
+        display: flex;
+        margin: 0 auto;
+        max-width: $content-md - ($layout-md * 2);
+        padding: 0 $layout-md;
+        flex-wrap: wrap;
+
+        .c-picto-block {
+            flex: 1 1 50%;
+            padding: 0 $spacing-lg;
+        }
+    }
+}
+
+@media #{$mq-lg} {
+    .l-columns-three {
+        display: flex;
+        margin: 0 auto;
+        max-width: $content-lg;
+
+        .c-picto-block {
+            flex: 1 1 33.3%;
+            padding: 0 $spacing-lg;
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+//  Modal
+
+.mzp-u-modal-content {
+    text-align: center;
+}
+
+.mzp-c-modal-window {
+    padding-left: $spacing-sm;
+    padding-right: $spacing-sm;
+}
+
+.mzp-c-modal-inner {
+    background-color: transparent;
+    padding-left: 0;
+    padding-right: 0;
+
+    h3 {
+        @include text-title-md;
+        color: $color-ink-80;
+        margin-bottom: 0;
+    }
+
+    .mzp-c-modal-overlay-contents {
+        background: #fff;
+        color: #000;
+        padding: $layout-xs;
+        text-align: center;
+    }
+
+    a:link,
+    a:visited {
+        color: $color-link;
+        text-decoration: underline;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        color: $color-link-hover;
+        text-decoration: none;
+    }
+}
+
+@media #{$mq-sm} {
+    .mzp-c-modal-window {
+        padding: $spacing-lg $layout-xs;
+    }
+}
+
+@media #{$mq-md} {
+    .mzp-c-modal-inner {
+        max-width: 800px;
+        margin: 0 auto;
+        padding-left: $layout-md;
+        padding-right: $layout-md;
+
+        .mzp-c-modal-overlay-contents {
+            background: #fff;
+            color: #000;
+            padding: $layout-md;
+        }
+    }
+}
+
+.modal-logo {
+    @include at2x('/media/protocol/img/logos/firefox/browser/logo-lg.png', auto, 100%);
+    @include image-replaced;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.mobile-download-buttons li {
+    padding-top: $spacing-sm;
+    display: inline-block;
+}
+
+#send-to-device {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.qr-code-wrapper {
+    margin: 0 auto;
+    width: $content-xs;
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Conditional Content
+
+body.state-fxa-supported-signed-in {
+    span.show-fxa-supported-signed-in {
+        display: inline;
+    }
+}
+
+.show-firefox-desktop-70,
+.show-firefox-desktop-old {
+    display: none;
+
+    &.mzp-c-button {
+        display: none;
+    }
+}
+
+.state-firefox-desktop-70 {
+    .show-firefox-desktop-70 {
+        display: inline-block;
+
+        &.mzp-c-cta-link {
+            display: inline;
+        }
+    }
+
+    .show-firefox-desktop-old {
+        display: none;
+    }
+}
+
+.state-firefox-desktop-old {
+    .show-firefox-desktop-old {
+        display: inline-block;
+
+        &.mzp-c-cta-link {
+            display: inline;
+        }
+    }
+
+    .show-firefox-desktop-70 {
+        display: none;
+    }
+}
