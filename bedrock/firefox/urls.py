@@ -55,7 +55,7 @@ urlpatterns = (
     page('firefox/features/memory', 'firefox/features/memory.html',
          ftl_files=['firefox/features/shared', 'firefox/features/memory']),
     page('firefox/features/password-manager', 'firefox/features/password-manager.html',
-         ftl_files=['firefox/features/shared']),
+         ftl_files=['firefox/features/shared', 'firefox/features/password-manager']),
     page('firefox/features/private-browsing', 'firefox/features/private-browsing.html',
          ftl_files=['firefox/features/shared', 'firefox/features/private-browsing']),
     page('firefox/features/safebrowser', 'firefox/features/safebrowser.html'),
