@@ -16,12 +16,12 @@
 {% block body_id %}firefox-features-memory{% endblock %}
 
 {% block content %}
-<header class="mzp-c-hero independent-hero">
-  <div class="hero-content">
-    <img src="{{ static('img/firefox/features/index/feature_icons/memory_orange.svg')}}" alt="">
-    <h1>{{ ftl('features-memory-less-memory-usage-than-chrome') }}</h1>
-    <p>{{ ftl('features-memory-if-your-web-browser-uses') }}</p>
-    <div class="download-firefox">
+<header class="c-hero">
+  <div class="mzp-l-content c-hero-content">
+    <img class="c-hero-icon" src="{{ static('img/firefox/features/index/feature_icons/memory_orange.svg')}}" alt="">
+    <h1 class="c-hero-title">{{ ftl('features-memory-less-memory-usage-than-chrome') }}</h1>
+    <p class="c-hero-desc">{{ ftl('features-memory-if-your-web-browser-uses') }}</p>
+    <div class="c-hero-cta">
       {{ download_firefox(dom_id='memory-hero-download', download_location='primary cta') }}
     </div>
   </div>
@@ -34,9 +34,7 @@
     aspect_ratio='mzp-has-aspect-1-1',
     class='mzp-l-card-feature-right-half mzp-t-firefox',
   ) %}
-  <p>
- {{ ftl('features-memory-every-computer-program-you') }}
-  </p>
+    <p>{{ ftl('features-memory-every-computer-program-you') }}</p>
   {% endcall %}
 
   {% call feature_card(
@@ -45,9 +43,7 @@
     aspect_ratio='mzp-has-aspect-1-1',
     class='mzp-l-card-feature-left-half mzp-t-firefox',
   ) %}
-  <p>
-  {{ ftl('features-memory-chrome-uses-up-to-177x-more', url='https://blog.mozilla.org/firefox/fx54memorytest/') }}
-  </p>
+    <p>{{ ftl('features-memory-chrome-uses-up-to-177x-more', url='https://blog.mozilla.org/firefox/fx54memorytest/') }}</p>
   {% endcall %}
 
   {% call feature_card(
@@ -56,9 +52,7 @@
     aspect_ratio='mzp-has-aspect-1-1',
     class='mzp-l-card-feature-right-half mzp-t-firefox',
   ) %}
-  <p>
-    {{ ftl('features-memory-explore-the-web-faster-with', url=url('firefox.features.private-browsing')) }}
-  </p>
+    <p>{{ ftl('features-memory-explore-the-web-faster-with', url=url('firefox.features.private-browsing')) }}</p>
   {% endcall %}
 </div>
 

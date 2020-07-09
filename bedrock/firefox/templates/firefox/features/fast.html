@@ -16,12 +16,12 @@
 {% block body_id %}firefox-features-fast{% endblock %}
 
 {% block content %}
-<header class="mzp-c-hero">
-  <div class="hero-content">
-    <img src="{{ static('img/firefox/features/index/feature_icons/performance_orange.svg')}}" alt="">
-    <h1>{{ ftl('features-fast-firefox-is-now-faster-and-leaner') }}</h1>
-    <p>{{ ftl('features-fast-weve-been-working-out-so-you') }}</p>
-    <div class="download-firefox">
+<header class="c-hero">
+  <div class="mzp-l-content c-hero-content">
+    <img class="c-hero-icon" src="{{ static('img/firefox/features/index/feature_icons/performance_orange.svg')}}" alt="">
+    <h1 class="c-hero-title">{{ ftl('features-fast-firefox-is-now-faster-and-leaner') }}</h1>
+    <p class="c-hero-desc">{{ ftl('features-fast-weve-been-working-out-so-you') }}</p>
+    <div class="c-hero-cta">
       {{ download_firefox(dom_id='fast-hero-download', download_location='primary cta') }}
     </div>
   </div>
@@ -34,9 +34,7 @@
     aspect_ratio='mzp-has-aspect-1-1',
     class='mzp-l-card-feature-right-half mzp-t-firefox feature-1',
   ) %}
-  <p>
-  {{ ftl('features-fast-no-one-likes-a-computer-hog') }}
-  </p>
+    <p>{{ ftl('features-fast-no-one-likes-a-computer-hog') }}</p>
   {% endcall %}
 
   {% call feature_card(
@@ -45,9 +43,7 @@
     aspect_ratio='mzp-has-aspect-1-1',
     class='mzp-l-card-feature-left-half mzp-t-firefox feature-2',
   ) %}
-  <p>
-  {{ ftl('features-fast-multi-tasking-with-multiple') }}
-  </p>
+    <p>{{ ftl('features-fast-multi-tasking-with-multiple') }}</p>
   {% endcall %}
 
   {% call feature_card(
@@ -56,9 +52,7 @@
     aspect_ratio='mzp-has-aspect-1-1',
     class='mzp-l-card-feature-right-half mzp-t-firefox feature-3',
   ) %}
-  <p>
-  {{ ftl('features-fast-we-led-the-tech-to-run-3d-games') }}
-  </p>
+    <p>{{ ftl('features-fast-we-led-the-tech-to-run-3d-games') }}</p>
   {% endcall %}
 </div>
 

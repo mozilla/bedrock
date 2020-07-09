@@ -10,26 +10,31 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/templates/card-layout';
 @import '../../../protocol/css/components/feature-card';
 
-.mzp-c-hero h1 {
-    @include text-title-xl;
-    padding-top: $spacing-lg;
+.c-hero {
+    .c-hero-icon {
+        margin-bottom: $spacing-xl;
+    }
+
+    .c-hero-title {
+        @include text-title-xl;
+    }
+
+    .c-hero-desc {
+        @include text-body-lg;
+        margin-bottom: $spacing-xl;
+    }
 }
 
-.hero-content {
+.c-hero-content {
     margin: 0 auto;
-    max-width: $content-lg;
     text-align: center;
-
-    @media #{$mq-xs} {
-        max-width: $content-xs;
-    }
-
-    @media #{$mq-sm} {
-        max-width: $content-sm;
-    }
 
     @media #{$mq-md} {
         max-width: $content-md;
+    }
+
+    @media #{$mq-lg} {
+        max-width: $content-lg;
     }
 }
 

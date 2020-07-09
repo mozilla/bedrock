@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import feature_card, hero, picto_card with context %}
+{% from "macros-protocol.html" import feature_card, picto_card with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -16,25 +16,25 @@
 {% block body_id %}firefox-features-bookmarks{% endblock %}
 
 {% block content %}
-<header class="mzp-c-hero">
-  <div class="hero-content">
-    <img src="{{ static('img/firefox/features/index/feature_icons/bookmarks_pink.svg')}}" alt="">
-    <h1>{{ ftl('features-bookmarks-better-bookmarks')}}</h1>
-    <p>{{ ftl('features-bookmarks-dont-agonize-lovers-of')}}</p>
-    <div class="download-firefox">
+<header class="c-hero">
+  <div class="mzp-l-content c-hero-content">
+    <img class="c-hero-icon" src="{{ static('img/firefox/features/index/feature_icons/bookmarks_pink.svg')}}" alt="">
+    <h1 class="c-hero-title">{{ ftl('features-bookmarks-better-bookmarks')}}</h1>
+    <p class="c-hero-desc">{{ ftl('features-bookmarks-dont-agonize-lovers-of')}}</p>
+    <div class="c-hero-cta">
       {{ download_firefox(dom_id='bookmarks-hero-download', download_location='primary cta') }}
     </div>
   </div>
 </header>
 
-<section class="mzp-l-content main-content">
+<div class="mzp-l-content main-content">
   {% call feature_card(
     title=ftl('features-bookmarks-file-that-bookmark'),
     image_url='img/firefox/features/thumbnails/bookmarks.png',
     aspect_ratio='mzp-has-aspect-1-1',
     class='mzp-l-card-feature-right-half mzp-t-firefox',
   ) %}
-  <p>{{ ftl('features-bookmarks-get-your-faves-all-sorted') }}</p>
+    <p>{{ ftl('features-bookmarks-get-your-faves-all-sorted') }}</p>
   {% endcall %}
 
   {% set pocket='https://getpocket.com/firefox/' %}
@@ -44,9 +44,7 @@
     aspect_ratio='mzp-has-aspect-1-1',
     class='mzp-l-card-feature-left-half mzp-t-firefox',
   ) %}
-  <p>
-  {{ ftl('features-bookmarks-take-your-favorites-on', url=url('firefox.pocket')) }}
-    </p>
+    <p>{{ ftl('features-bookmarks-take-your-favorites-on', url=url('firefox.pocket')) }}</p>
   {% endcall %}
 
   {% call feature_card(
@@ -55,11 +53,9 @@
     aspect_ratio='mzp-has-aspect-1-1',
     class='mzp-l-card-feature-right-half mzp-t-firefox',
   ) %}
-  <p>
-    {{ ftl('features-bookmarks-practice-your-exactitude', url='https://addons.mozilla.org/firefox/search/?q=bookmark%20managers') }}
-  </p>
+    <p>{{ ftl('features-bookmarks-practice-your-exactitude', url='https://addons.mozilla.org/firefox/search/?q=bookmark%20managers') }}</p>
   {% endcall %}
-</section>
+</div>
 
 {% include "firefox/features/includes/features-content.html" %}
 
