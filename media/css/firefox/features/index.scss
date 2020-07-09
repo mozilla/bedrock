@@ -9,6 +9,9 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/components/hero';
 @import '../../../protocol/css/templates/card-layout';
 
+.mzp-c-hero.mzp-has-image {
+    min-height: 450px;
+}
 
 .section-title {
     text-align: center;
