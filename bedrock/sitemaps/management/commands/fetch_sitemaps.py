@@ -14,7 +14,6 @@ ROOT_FILES = settings.ROOT_PATH / 'root_files'
 
 class Command(BaseCommand):
     help = 'Clones or updates sitemaps info from github'
-    data_path = settings.SITEMAPS_PATH.joinpath('data', 'sitemaps')
 
     def add_arguments(self, parser):
         parser.add_argument('-q', '--quiet', action='store_true', dest='quiet', default=False,
@@ -24,11 +23,14 @@ class Command(BaseCommand):
         if options['quiet']:
             self.stdout._out = StringIO()
 
+        data_path = settings.SITEMAPS_PATH.joinpath('data')
         repo = GitRepo(settings.SITEMAPS_PATH, settings.SITEMAPS_REPO)
         repo.update()
 
-        for src_path in self.data_path.rglob('*.xml'):
-            rel_path = src_path.relative_to(self.data_path)
+        for src_path in data_path.rglob('*.*'):
+            rel_path = src_path.relative_to(data_path)
+            if rel_path.parts[0] == 'sitemaps':
+                rel_path = rel_path.relative_to('sitemaps')
             target_path = ROOT_FILES.joinpath(rel_path)
             if target_path.exists():
                 if target_path.is_symlink():
