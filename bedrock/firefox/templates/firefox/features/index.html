@@ -2,14 +2,12 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% add_lang_files "firefox/shared" %}
-
 {% from "macros-protocol.html" import hero, picto_card with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% block page_title %}{{_('Protect your privacy and browse faster with Firefox features')}}{% endblock %}
-{% block page_desc %}{{ _('You’re in control with Firefox’s easy-to-use features that protect your privacy and browsing speeds.') }}{% endblock %}
+{% block page_title %}{{ftl('features-index-protect-your-privacy-and-browse')}}{% endblock %}
+{% block page_desc %}{{ ftl('features-index-youre-in-control-with-firefoxs') }}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('firefox-features-index') }}
@@ -17,46 +15,45 @@
 
 {% block content %}
   {% call hero(
-      title='Firefox features',
-      desc='Firefox is the fast, lightweight, privacy-focused browser that works across all your devices.',
+      title=ftl('features-index-firefox-features'),
+      desc=ftl('features-index-firefox-is-fast', fallback='features-index-explore-the-features-of-the'),
       class='mzp-has-image',
       include_cta=True,
       image_url='img/firefox/features/index/features_hero.png',
       heading_level=1
     ) %}
-      {{ download_firefox(alt_copy='Download the latest Firefox', download_location='primary cta') }}
+      {{ download_firefox(alt_copy=ftl('features-index-download-latest'), download_location='primary cta') }}
   {% endcall %}
+
   <section class="mzp-l-content main-content">
-    <h2 class="mzp-u-title-md section-title">{{_('A better internetting experience')}}</h2>
-
+    <h2 class="mzp-u-title-md section-title">{{ftl('features-index-a-better-internetting')}}</h2>
     <section class="features mzp-l-card-third index">
-
       <section class="mzp-c-card-picto faster">
         <div class="mzp-c-card-picto-content ">
-          <h3 class="mzp-c-card-picto-title">{{ _('Browse faster') }}</h3>
+          <h3 class="mzp-c-card-picto-title">{{ ftl('features-index-browse-faster') }}</h3>
           <div class="mzp-c-card-picto-desc">
-            <p>{{ _('Firefox uses less memory  than Chrome, so your other programs can keep running at top speed.') }}</p>
-            <a href="{{ url('firefox.features.fast') }}" rel="external"><strong>{{ _('Learn more') }}</strong></a>
+            <p>{{ ftl('features-index-use-less-memory') }}</p>
+            <a href="{{ url('firefox.features.fast') }}" rel="external"><strong>{{ ftl('features-index-learn-more') }}</strong></a>
           </div>
         </div>
       </section>
 
       <section class="mzp-c-card-picto extensions">
         <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ _('Your favorite extensions') }}</h3>
+          <h3 class="mzp-c-card-picto-title">{{ ftl('features-index-your-favorite-extensions', fallback='features-index-your-favorite-add-ons-and') }}</h3>
           <div class="mzp-c-card-picto-desc">
-            <p>{{ _('Add powerful functions useful features and even a little fun to your Firefox browser.') }}</p>
-            <a href="https://addons.mozilla.org/firefox/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-content-hub" rel="external"><strong>{{ _('See all extensions') }}</strong></a>
+            <p>{{ ftl('features-index-add-powerful-functions') }}</p>
+            <a href="https://addons.mozilla.org/firefox/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-content-hub" rel="external"><strong>{{ ftl('features-index-see-all') }}</strong></a>
           </div>
         </div>
       </section>
 
       <section class="mzp-c-card-picto memory">
         <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ _('Balanced memory') }}</h3>
+          <h3 class="mzp-c-card-picto-title">{{ ftl('features-index-balanced-memory', fallback='features-index-balanced-memory-usage') }}</h3>
           <div class="mzp-c-card-picto-desc">
-            <p>{{ _('Firefox uses just enough memory to create a smooth experience so your computer stays responsive to other tasks.') }}</p>
-            <a href="{{ url('firefox.features.memory') }}" rel="external"><strong>{{ _('Learn more') }}</strong></a>
+            <p>{{ ftl('features-index-just-enough') }}</p>
+            <a href="{{ url('firefox.features.memory') }}" rel="external"><strong>{{ ftl('features-index-learn-more') }}</strong></a>
           </div>
         </div>
       </section>
@@ -66,30 +63,30 @@
 
       <section class="mzp-c-card-picto browsing">
         <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ _('More powerful Private Browsing') }}</h3>
+          <h3 class="mzp-c-card-picto-title">{{ ftl('features-index-more-powerful-private-browsing') }}</h3>
           <div class="mzp-c-card-picto-desc">
-            <p>{{ _('Private Browsing mode deletes cookie data and your browsing history every time you close it.') }}</p>
-            <a href="{{ url('firefox.features.private-browsing') }}" rel="external"><strong>{{ _('Learn more') }}</strong></a>
+            <p>{{ ftl('features-index-private-browsing-mode') }}</p>
+            <a href="{{ url('firefox.features.private-browsing') }}" rel="external"><strong>{{ ftl('features-index-learn-more') }}</strong></a>
           </div>
         </div>
       </section>
 
       <section class="mzp-c-card-picto blocking">
         <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ _('Ad tracker blocking') }}</h3>
+          <h3 class="mzp-c-card-picto-title">{{ ftl('features-index-ad-tracker-blocking') }}</h3>
           <div class="mzp-c-card-picto-desc">
-            <p>{{ _('Firefox automatically blocks 2000+ ad trackers from following you around the internet.') }}</p>
-            <a href="{{ url('firefox.features.adblocker') }}" rel="external"><strong>{{ _('Learn more') }}</strong></a>
+            <p>{{ ftl('features-index-firefox-automatically') }}</p>
+            <a href="{{ url('firefox.features.adblocker') }}" rel="external"><strong>{{ ftl('features-index-learn-more') }}</strong></a>
           </div>
         </div>
       </section>
 
       <section class="mzp-c-card-picto password">
         <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ _('Password manager') }}</h3>
+          <h3 class="mzp-c-card-picto-title">{{ ftl('features-index-password-manager-updated', fallback='features-index-password-manager') }}</h3>
           <div class="mzp-c-card-picto-desc">
-            <p>{{ _('Firefox Lockwise lets you access all the passwords you’ve saved in Firefox — and it’s free.') }}</p>
-            <a href="{{ url('firefox.features.password-manager') }}" rel="external"><strong>{{ _('Learn more') }}</strong></a>
+            <p>{{ ftl('features-index-access-all-passwords') }}</p>
+            <a href="{{ url('firefox.features.password-manager') }}" rel="external"><strong>{{ ftl('features-index-learn-more') }}</strong></a>
           </div>
         </div>
       </section>
@@ -99,30 +96,30 @@
 
       <section class="mzp-c-card-picto customize">
         <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ _('Customize your browser') }}</h3>
+          <h3 class="mzp-c-card-picto-title">{{ ftl('features-index-customize-your-browser') }}</h3>
           <div class="mzp-c-card-picto-desc">
-            <p>{{ _('Give your browser the look you want  with thousands of different themes.') }}</p>
-            <a href="https://addons.mozilla.org/firefox/themes/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-content-hub" rel="external"><strong>{{ _('See top themes') }}</strong></a>
+            <p>{{ ftl('features-index-give-your-browser') }}</p>
+            <a href="https://addons.mozilla.org/firefox/themes/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-content-hub" rel="external"><strong>{{ ftl('features-index-see-themes') }}</strong></a>
           </div>
         </div>
       </section>
 
       <section class="mzp-c-card-picto sync">
         <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ _('Sync between devices') }}</h3>
+          <h3 class="mzp-c-card-picto-title">{{ ftl('features-index-sync-between-devices') }}</h3>
           <div class="mzp-c-card-picto-desc">
-            <p>{{ _('Make sure all your important stuff — internet searches, passwords, open tabs — appears where you need it on every device.') }}</p>
-            <a href="{{ url('firefox.accounts') }}" rel="external"><strong>{{ _('Get a Firefox Account') }}</strong></a>
+            <p>{{ ftl('features-index-important-stuff') }}</p>
+            <a href="{{ url('firefox.accounts') }}" rel="external"><strong>{{ ftl('features-index-get-an-account') }}</strong></a>
           </div>
         </div>
       </section>
 
       <section class="mzp-c-card-picto bookmarks">
         <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ _('Better bookmarks') }}</h3>
+          <h3 class="mzp-c-card-picto-title">{{ ftl('features-index-better-bookmarks') }}</h3>
           <div class="mzp-c-card-picto-desc">
-            <p>{{ _('Use the bookmark star icon to stay organized and add custom names and folders quickly.') }}</p>
-            <a href="{{ url('firefox.features.bookmarks') }}" rel="external"><strong>{{ _('Learn more') }}</strong></a>
+            <p>{{ ftl('features-index-use-the-bookmark') }}</p>
+            <a href="{{ url('firefox.features.bookmarks') }}" rel="external"><strong>{{ ftl('features-index-learn-more') }}</strong></a>
           </div>
         </div>
       </section>
@@ -130,61 +127,61 @@
   </section>
 
   <section class="secondary-content">
-    <h2 class="mzp-u-title-md section-title">{{ _('From a company that puts people before profit')}}</h2>
+    <h2 class="mzp-u-title-md section-title">{{ ftl('features-index-from-the-company')}}</h2>
 
     <section class="features mzp-l-card-third mzp-l-content">
 
       <section class="mzp-c-card-picto mzp-c-card-picto-compact open-source">
         <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ _('Open source. Open Minds.') }}</h3>
+          <h3 class="mzp-c-card-picto-title">{{ ftl('features-index-open-source-minds', fallback='features-index-open-source') }}</h3>
           <div class="mzp-c-card-picto-desc">
-            <p>{{ _('Mozilla creates powerful web tech for everyone.') }}</p>
-            <a href="{{ url('firefox.features.independent') }}" rel="external"><strong>{{ _('See what makes us different') }}</strong></a>
+            <p>{{ ftl('features-index-mozilla-creates') }}</p>
+            <a href="{{ url('firefox.features.independent') }}" rel="external"><strong>{{ ftl('features-index-see-what-makes-us-different') }}</strong></a>
           </div>
         </div>
       </section>
       <section class="mzp-c-card-picto mzp-c-card-picto-compact non-profit">
         <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ _('By non-profit, Mozilla') }}</h3>
+          <h3 class="mzp-c-card-picto-title">{{ ftl('features-index-by-non-profit-mozilla') }}</h3>
           <div class="mzp-c-card-picto-desc">
-            <p>{{ _('On a mission to keep the internet open and accessible to all.') }}</p>
-            <a href="{{ url('mozorg.mission') }}" rel="external"><strong>{{ _('Read Mozilla’s mission') }}</strong></a>
+            <p>{{ ftl('features-index-on-a-mission') }}</p>
+            <a href="{{ url('mozorg.mission') }}" rel="external"><strong>{{ ftl('features-index-read-mozillas-mission') }}</strong></a>
           </div>
         </div>
       </section>
       <section class="mzp-c-card-picto mzp-c-card-picto-compact independence">
         <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ _('Keep corporate power in check') }}</h3>
+          <h3 class="mzp-c-card-picto-title">{{ ftl('features-index-keep-corporate-power') }}</h3>
           <div class="mzp-c-card-picto-desc">
-            <p>{{ _('Firefox is the only major independent browser.') }}</p>
-            <a href="{{ url('firefox.features.independent') }}" rel="external"><strong>{{ _('Choose independence') }}</strong></a>
+            <p>{{ ftl('features-index-independent-browser') }}</p>
+            <a href="{{ url('firefox.features.independent') }}" rel="external"><strong>{{ ftl('features-index-choose-independence') }}</strong></a>
           </div>
         </div>
       </section>
       <section class="mzp-c-card-picto mzp-c-card-picto-compact private">
         <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ _('Private by default') }}</h3>
+          <h3 class="mzp-c-card-picto-title">{{ ftl('features-index-private-by-default', fallback='features-index-more-private') }}</h3>
           <div class="mzp-c-card-picto-desc">
-            <p>{{ _('Opted-in to privacy, so you can browse freely.') }}</p>
-            <a href="{{ url('privacy') }}" rel="external"><strong>{{ _(' Read our privacy policy') }}</strong></a>
+            <p>{{ ftl('features-index-opted-in-to-privacy-so-you') }}</p>
+            <a href="{{ url('privacy') }}" rel="external"><strong>{{ ftl('features-index-read-our-privacy-policy') }}</strong></a>
           </div>
         </div>
       </section>
       <section class="mzp-c-card-picto mzp-c-card-picto-compact tracking-protection">
         <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ _('Enhanced tracking protection') }}</h3>
+          <h3 class="mzp-c-card-picto-title">{{ ftl('features-index-enhanced-tracking') }}</h3>
           <div class="mzp-c-card-picto-desc">
-            <p>{{ _('We don’t sell access to your online data. Period.') }}</p>
-            <a href="{{ url('firefox.features.private-browsing') }}" rel="external"><strong>{{ _('Get Firefox for privacy') }}</strong></a>
+            <p>{{ ftl('features-index-we-dont-sell-access-to-your') }}</p>
+            <a href="{{ url('firefox.features.private-browsing') }}" rel="external"><strong>{{ ftl('features-index-get-firefox-for-privacy') }}</strong></a>
           </div>
         </div>
       </section>
       <section class="mzp-c-card-picto mzp-c-card-picto-compact stacks-up">
         <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ _('Firefox vs. other browsers') }}</h3>
+          <h3 class="mzp-c-card-picto-title">{{ ftl('features-index-firefox-vs') }}</h3>
           <div class="mzp-c-card-picto-desc">
-            <p>{{ _('See how Firefox stacks up against other popular browsers.') }}</p>
-            <a href="{{ url('firefox.browsers.compare.index') }}" rel="external"><strong>{{ _('Compare browsers') }}</strong></a>
+            <p>{{ ftl('features-index-stack-up') }}</p>
+            <a href="{{ url('firefox.browsers.compare.index') }}" rel="external"><strong>{{ ftl('features-index-compare-browsers') }}</strong></a>
           </div>
         </div>
       </section>
