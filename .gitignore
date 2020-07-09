@@ -1,7 +1,9 @@
 settings_local.py
 settings/local.py
 */settings/local.py
-*.py[co]
+__pycache__/
+*.py[cod]
+*$py.class
 *.sw[po]
 .coverage
 .jshintrc
