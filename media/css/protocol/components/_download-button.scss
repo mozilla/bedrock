@@ -99,6 +99,7 @@ ul.download-list {
 .linux .download-button .os_linux,
 .linux.x86.x64 .download-button .os_linux64,
 .windows .download-button .os_win,
+.windows.arm .download-button .os_win64-aarch64,
 .osx .download-button .os_osx,
 .android .download-button .os_android,
 .download-button-android .os_android,
@@ -113,7 +114,6 @@ ul.download-list {
     display: block !important;
 }
 
-.windows.arm .download-button .unsupported-download,
 .linux.arm .download-button .linux-arm-download,
 .oldwin .download-button .unsupported-download,
 .oldmac .download-button .unsupported-download {
@@ -122,7 +122,6 @@ ul.download-list {
 }
 
 // Hide the privacy link if platform is unsupported.
-.windows.arm .download-button .fx-privacy-link,
 .linux.arm .download-button .fx-privacy-link,
 .oldwin .download-button .fx-privacy-link,
 .oldmac .download-button .fx-privacy-link {
