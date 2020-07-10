@@ -48,12 +48,12 @@
   {% endcall %}
 
   {% call feature_card(
-    title=ftl('features-bookmarks-futz-with-that-bookmark'),
+    title=ftl('features-bookmarks-customize-that-bookmark', fallback='features-bookmarks-futz-with-that-bookmark'),
     image_url='img/firefox/features/thumbnails/bookmarks/bookmarks-addons.png',
     aspect_ratio='mzp-has-aspect-1-1',
     class='mzp-l-card-feature-right-half mzp-t-firefox',
   ) %}
-    <p>{{ ftl('features-bookmarks-practice-your-exactitude', url='https://addons.mozilla.org/firefox/search/?q=bookmark%20managers') }}</p>
+    <p>{{ ftl('features-bookmarks-practice-your-precision', fallback='features-bookmarks-practice-your-exactitude', url='https://addons.mozilla.org/firefox/search/?q=bookmark%20managers') }}</p>
   {% endcall %}
 </div>
 
