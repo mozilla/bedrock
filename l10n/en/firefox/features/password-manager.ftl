@@ -33,7 +33,7 @@ password-manager-password-champion = Password champion
 password-manager-earn-your-security-gold-medal = Earn your security gold medal with { -brand-name-firefox }’s vast array of password manager <a href="{ $addons }">add-ons</a>. Choose an existing favorite or find a next-level one through expert community ratings and reviews.
 
 # Obsolete string
-# A way of saying this password manager is really good at what is does master here = mastery of subject
+# "Master" here means mastery of a subject, to be highly skilled at managing passwords.
 password-manager-password-master = Password master
 
 # Obsolete string
