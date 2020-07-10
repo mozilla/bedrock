@@ -1,0 +1,39 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% block page_title_prefix %}{{ ftl('firefox-desktop-download-meta-title-prefix') }} — {% endblock %}
+
+{%- block page_title -%}{{ ftl('firefox-desktop-download-meta-title') }}{%- endblock -%}
+
+{# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
+{%- block page_title_suffix -%}
+  {% if LANG == 'en-CA' %}
+    — from Mozilla (CA)
+  {% elif LANG == 'en-GB' %}
+    — from Mozilla (UK)
+  {% else %}
+    — {{ ftl('firefox-desktop-download-meta-title-sufix') }}
+  {% endif %}
+{%- endblock -%}
+
+{% block page_desc %}{{ ftl('firefox-desktop-download-meta-desc') }}{% endblock %}
+
+{#- This will appear as <meta property="og:title"> which can be used for social share -#}
+{% block page_og_title %}{{ ftl('firefox-desktop-download-og-title') }}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ ftl('firefox-desktop-download-og-desc') }}{% endblock %}
+
+{% block old_ie_styles %}{% endblock %}
+{% block site_css %}{% endblock %}
+{% block page_css %}{% endblock %}
+
+{# All stylesheets are loaded in extrahead to serve legacy IE basic styles #}
+{% block extrahead %}
+  {{ css_bundle('protocol-core') }}
+{% endblock %}
+
+{% block body_class %}mzp-t-firefox{% endblock %}
