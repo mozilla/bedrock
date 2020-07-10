@@ -57,18 +57,7 @@ def migrate(ctx):
         ] + transforms_from("""
 features-index-your-favorite-add-ons-and = {COPY(index, "Your favorite add-ons and extensions",)}
 features-index-customize-your-browser = {COPY(index, "Customize your browser",)}
-""", index=index) + [
-            FTL.Message(
-                id=FTL.Identifier("features-index-sync-between-devices"),
-                value=REPLACE(
-                    index,
-                    "Sync between devices",
-                    {
-                        "Sync": TERM_REFERENCE("brand-name-sync"),
-                    }
-                )
-            ),
-        ] + transforms_from("""
+features-index-sync-between-devices = {COPY(index, "Sync between devices",)}
 features-index-tabs-that-travel = {COPY(index, "Tabs that travel",)}
 features-index-better-bookmarks = {COPY(index, "Better bookmarks",)}
 features-index-more-powerful-private-browsing = {COPY(index, "More powerful Private Browsing",)}

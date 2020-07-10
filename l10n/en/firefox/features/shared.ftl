@@ -4,8 +4,7 @@
 
 ### URL: https://www-dev.allizom.org/firefox/features/
 
-# "Internetting" is a slang way to say "using the internet". Alternative: "A better internet experience"
-features-shared-a-better-internetting-experience = A better internetting experience
+features-shared-a-better-internet-experience = A better internet experience
 
 features-shared-browse-faster = Browse faster
 features-shared-your-favorite-extensions = Your favorite extensions
