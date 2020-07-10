@@ -91,12 +91,12 @@ main {
 // button container
 
 .mzp-c-button-download-container {
-    main & { // target main to avoid conflicting with nav
+    .main-download & { // target main to avoid conflicting with nav
         margin-bottom: 0;
     }
 
     .t-intro & {
-        text-align: left;
+        @include bidi(((text-align, left, right),));
     }
 
     .t-features &,
@@ -104,6 +104,7 @@ main {
         display: block;
     }
 }
+
 
 // cta link
 
@@ -281,12 +282,16 @@ button.mzp-c-cta-link {
 
 .c-logo.t-browser-word-hor-xs,
 .c-logo.t-browser-word-hor-white-xs {
-    @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-sm.png', auto, 40px);
+    @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-xs.png', auto, 40px);
+    @include bidi(((background-position, top left, top right),));
     @include image-replaced;
-    background-position: top left;
     background-repeat: no-repeat;
-    height: 40px;
+    height: 48px; // for IE8
     margin-bottom: 40px;
+
+    @media all and (min-width: 0) {
+        height: 40px;
+    }
 
     @media #{$mq-md} {
         background-size: auto 48px;
@@ -453,44 +458,67 @@ button.mzp-c-cta-link {
 // --------------------------------------
 // side by side layout, float based fall back
 
-@media #{$mq-md} {
-    .c-block-body {
-        @include border-box;
+// no media queries, IE8
+.c-block-body {
+    @include border-box;
+    @include bidi(((float, left, right),));
+    padding: 0 ($h-grid-lg / 2);
+    width: 50%;
+
+    > *:first-child {
+        margin-top: 0;
+    }
+
+    > *:last-child {
+        margin-bottom: 0;
+    }
+
+    .l-reversed & {
+        @include bidi(((float, right, left),));
+    }
+}
+
+.c-block-media {
+    @include border-box;
+    @include bidi(((float, right, left),));
+    padding: 0 ($h-grid-lg / 2);
+    width: 50%;
+
+    .l-reversed & {
         @include bidi(((float, left, right),));
-        width: 50%;
-        padding: 0 ($h-grid-lg / 2);
+    }
+}
 
-        > *:first-child {
-            margin-top: 0;
-        }
-
-        > *:last-child {
-            margin-bottom: 0;
-        }
+// take it away only on small screens
+@media (max-width: #{$content-md - 1px}) {
+    .c-block-body {
+        @include bidi(((float, none, none),));
+        padding: 0;
+        width: 100%;
 
         .l-reversed & {
-            @include bidi(((float, right, left),));
+            @include bidi(((float, none, none),));
         }
     }
 
     .c-block-media {
         @include border-box;
-        @include bidi(((float, right, left),));
-        width: 50%;
-        padding: 0 ($h-grid-lg / 2);
+        @include bidi(((float, none, none),));
+        padding: 0;
+        width: 100%;
 
         .l-reversed & {
-            @include bidi(((float, left, right),));
+            @include bidi(((float, none, none),));
         }
     }
-
 }
+
 
 // --------------------------------------
 // side by side layout, grid based
 
 @media #{$mq-md} {
-    @supports(display:grid) {
+    @supports (display:grid) {
         .c-block-container {
             // grid is all start/end based we don't need bidi declarations for RTL support \o/
             display: grid;
@@ -730,89 +758,95 @@ button.mzp-c-cta-link {
     left: -30px;
     max-width: none;
     position: absolute;
-    top: 100px;
+    top: 0;
     width: 512px;
 }
 
-// shapes
+@media all and (min-width: 0) { // no noodles for IE8
+    .noodle-browser {
+        top: 100px;
+    }
 
-.noodle-pill {
-    border: 1px solid transparent;
-    border-radius: 500px;
-    position: absolute;
-}
+    // shapes
 
-.noodle-circle {
-    border: 1px solid transparent;
-    border-radius: 100%;
-    position: absolute;
-}
+    .noodle-pill {
+        border: 1px solid transparent;
+        border-radius: 500px;
+        position: absolute;
+    }
 
-.noodle-svg {
-    position: absolute;
-}
+    .noodle-circle {
+        border: 1px solid transparent;
+        border-radius: 100%;
+        position: absolute;
+    }
 
-// colours
+    .noodle-svg {
+        position: absolute;
+    }
 
-.t-outline-purple {
-    border-color: $color-violet-60;
-}
+    // colours
 
-.t-fill-purple {
-    background: linear-gradient(to left, $color-violet-50, $color-violet-70);
-}
+    .t-outline-purple {
+        border-color: $color-violet-60;
+    }
 
-.t-fill-orange {
-    background-color: #FF7139;
-}
+    .t-fill-purple {
+        background: linear-gradient(to left, $color-violet-50, $color-violet-70);
+    }
 
-.t-outline-yellow {
-    border-color: $color-orange-40;
-}
+    .t-fill-orange {
+        background-color: #FF7139;
+    }
 
-// position & animation
+    .t-outline-yellow {
+        border-color: $color-orange-40;
+    }
 
-.noodle-svg {
-    animation: curl 10s infinite alternate;
-    position: absolute;
-    transform-origin: top right;
-}
+    // position & animation
 
-.noodle-circle {
-    animation: round 10s infinite linear;
-    height: 20px;
-    left: 296px;
-    top: 40px;
-    transform-origin: 5px;
-    width: 20px;
-}
+    .noodle-svg {
+        animation: curl 10s infinite alternate;
+        position: absolute;
+        transform-origin: top right;
+    }
 
-.noodle-circle.t-fill-orange {
-    animation-duration: 10s;
-    animation-delay: -3s;
-    height: 165px;
-    left: 135px;
-    top: 342px;
-    transform-origin: 80px 80px;
-    width: 165px;
-}
+    .noodle-circle {
+        animation: round 9s infinite linear;
+        height: 20px;
+        left: 296px;
+        top: 40px;
+        transform-origin: 5px;
+        width: 20px;
+    }
 
-.noodle-pill.t-outline-purple {
-    animation: pill 7s infinite alternate;
-    animation-delay: -5s;
-    height: 145px;
-    top: 320px;
-    transform: rotate(-34deg);
-    width: 348px;
-}
+    .noodle-circle.t-fill-orange {
+        animation-duration: 10s;
+        animation-delay: -3s;
+        height: 165px;
+        left: 135px;
+        top: 342px;
+        transform-origin: 80px 80px;
+        width: 165px;
+    }
 
-.noodle-pill.t-fill-purple {
-    animation: pill 7s infinite alternate;
-    height: 145px;
-    left: 100px;
-    top: 120px;
-    transform: rotate(-34deg);
-    width: 370px;
+    .noodle-pill.t-outline-purple {
+        animation: pill 7s infinite alternate;
+        animation-delay: -5s;
+        height: 145px;
+        top: 320px;
+        transform: rotate(-34deg);
+        width: 348px;
+    }
+
+    .noodle-pill.t-fill-purple {
+        animation: pill 7s infinite alternate;
+        height: 145px;
+        left: 100px;
+        top: 120px;
+        transform: rotate(-34deg);
+        width: 370px;
+    }
 }
 
 @media screen and (prefers-reduced-motion: reduce) {
@@ -910,9 +944,11 @@ button.mzp-c-cta-link {
         margin-bottom: $spacing-xl;
     }
 
-    @media #{$mq-lg} {
-        .c-block-body {
-            max-width: ($content-lg - $h-grid-lg) / 2;
+    @supports(display:grid) {
+        @media #{$mq-lg} {
+            .c-block-body {
+                max-width: ($content-lg - $h-grid-lg) / 2;
+            }
         }
     }
 }
@@ -937,7 +973,11 @@ button.mzp-c-cta-link {
     background-image: url('/media/img/firefox/new/desktop/comparison-noodles.svg');
     background-repeat: no-repeat;
     background-size: contain;
-    padding: 65px $layout-sm 0;
+
+    // IE 8 doesn't have the noodles, so don't push it down
+    @media all and (min-width: 0) {
+        padding: 65px $layout-sm 0;
+    }
 
     @media #{$mq-md} {
         background-size: 600px;
@@ -965,6 +1005,14 @@ button.mzp-c-cta-link {
     max-width: $content-lg;
     width: 100%;
 
+    caption {
+        display: none; // IE8 display the entire table, hide the buttons
+
+        @media all and (min-width: 0) {
+            display: table-caption;
+        }
+    }
+
     thead {
         th {
             @include font-firefox;
@@ -990,14 +1038,17 @@ button.mzp-c-cta-link {
     th,
     td {
         @include text-body-sm;
-        border-left: 1px solid $color-marketing-gray-20;
+        @include bidi((
+            (border-left, 1px solid $color-marketing-gray-20, border-right, 0),
+            (text-align, center, center), // needs higher specificity for RTL
+        ));
         border-top: 1px solid $color-marketing-gray-20;
         font-weight: normal;
         padding: $spacing-xs;
-        text-align: center;
+
 
         &:first-child {
-            border-left: none;
+            @include bidi(((border-left-width, 0, border-right-width, 1px),));
             text-align: start;
         }
 
@@ -1141,8 +1192,8 @@ button.mzp-c-cta-link {
     }
 
     .mzp-u-list-styled {
+        @include bidi(((margin-left, $spacing-md, margin-right, 0),));
         margin-bottom: 0;
-        margin-left: $spacing-md;
     }
 }
 
@@ -1178,12 +1229,12 @@ button.mzp-c-cta-link {
 }
 
 .c-screenshot {
+    @include bidi(((left, 0, right, auto),));
     @include border-box;
     margin: 0 auto;
     display: block;
     position: absolute;
     bottom: 0;
-    left: 0;
     width: 100%;
     text-align: center;
 
@@ -1279,6 +1330,7 @@ button.mzp-c-cta-link {
 .c-support {
     @include text-title-xs;
     background-color: $color-light-gray-10;
+    display: block; // IE8
     font-weight: bold;
     padding: $spacing-lg;
     text-align: center;
@@ -1355,17 +1407,19 @@ button.mzp-c-cta-link {
 
     @media #{$mq-sm} {
         &:after {
+            @include bidi((
+                (left, 60%, right, auto),
+                (margin-left, $h-grid-xs / 2, margin-left, 0),
+            ));
             background-repeat: no-repeat;
             border-radius: $border-radius-sm;
             content: '';
             display: block;
             position: absolute;
             top: $layout-lg;
-            left: 60%;
             bottom: $layout-lg;
             width: 100%;
             max-width: 275px;
-            margin-left: $h-grid-xs / 2;
 
             &,
             .android & {
@@ -1378,31 +1432,33 @@ button.mzp-c-cta-link {
         }
 
         .c-mobile-text {
+            @include bidi(((padding-right, $h-grid-xs / 2, padding-left, 0),));
             @include border-box;
             max-width: 60%;
-            padding-right: $h-grid-xs / 2;
         }
     }
 
     @media #{$mq-md} {
         &:after {
-            left: 50%;
-            margin-left: $h-grid-md / 2;
+            @include bidi((
+                (left, 50%, right, auto),
+                (margin-left, $h-grid-md / 2, margin-right, 0),
+            ));
         }
 
         .c-mobile-text {
+            @include bidi(((padding-right, $h-grid-md / 2, padding-left, 0),));
             max-width: 50%;
-            padding-right: $h-grid-md / 2;
         }
     }
 
     @media #{$mq-lg} {
         &:after {
-            margin-left: $h-grid-lg / 2;
+            @include bidi(((margin-left, $h-grid-lg / 2, margin-right, 0),));
         }
 
         .c-mobile-text {
-            padding-right: $h-grid-lg / 2;
+            @include bidi(((padding-right, $h-grid-lg / 2, padding-left, 0),));
         }
     }
 }
@@ -1446,3 +1502,4 @@ button.mzp-c-cta-link {
         }
     }
 }
+

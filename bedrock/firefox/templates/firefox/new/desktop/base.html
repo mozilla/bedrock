@@ -6,33 +6,35 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% block page_title_prefix %}{{_('Download Firefox')}} — {% endblock %}
+{% block page_title_prefix %}{{ ftl('firefox-desktop-download-meta-title-prefix') }} — {% endblock %}
 
-{%- block page_title -%}{{_('Free Web Browser')}}{%- endblock -%}
+{%- block page_title -%}{{ ftl('firefox-desktop-download-meta-title') }}{%- endblock -%}
 
 {# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
 {%- block page_title_suffix -%}
   {% if LANG == 'en-CA' %}
-    — Mozilla (CA)
+    — from Mozilla (CA)
   {% elif LANG == 'en-GB' %}
-    — Mozilla (UK)
+    — from Mozilla (UK)
   {% else %}
-    — Mozilla
+    — {{ ftl('firefox-desktop-download-meta-title-sufix') }}
   {% endif %}
 {%- endblock -%}
 
-{% block page_desc %}{{_('Download Mozilla Firefox, a free Web browser. Firefox is created by a global non-profit dedicated to putting individuals in control online. Get Firefox for Windows, macOS, Linux, Android and iOS today!')}}{% endblock %}
+{% block page_desc %}{{ ftl('firefox-desktop-download-meta-desc') }}{% endblock %}
 
 {#- This will appear as <meta property="og:title"> which can be used for social share -#}
-{% block page_og_title %}{{_('Download the fastest Firefox ever')}}{% endblock %}
+{% block page_og_title %}{{ ftl('firefox-desktop-download-og-title') }}{% endblock %}
 
 {#- This will appear as <meta property="og:description"> which can be used for social share -#}
-{% block page_og_desc %}{{_('Faster page loading, less memory usage and packed with features, the new Firefox is here.')}}{% endblock %}
+{% block page_og_desc %}{{ ftl('firefox-desktop-download-og-desc') }}{% endblock %}
 
 {# All stylesheets are loaded in extrahead to serve legacy IE basic styles #}
 {% block extrahead %}
   {{ css_bundle('protocol-core') }}
 {% endblock %}
+
+{% block body_class %}mzp-t-firefox{% endblock %}
 
 {% block old_ie_styles %}{% endblock %}
 {% block site_css %}{% endblock %}

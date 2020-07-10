@@ -663,6 +663,7 @@ class DownloadThanksView(L10nTemplateView):
     ftl_files_map = {
         'firefox/new/trailhead/thanks.html': ['firefox/new/download'],
         'firefox/new/trailhead/thanks-b.html': ['firefox/new/download'],
+        'firefox/new/desktop/thanks.html': ['firefox/new/desktop'],
     }
 
     # place expected ?v= values in this list
@@ -688,9 +689,9 @@ class DownloadThanksView(L10nTemplateView):
             variant = None
 
         if ftl_file_is_active('firefox/new/download'):
-            template = 'firefox/new/trailhead/thanks.html'
+            template = 'firefox/new/desktop/thanks.html'
         else:
-            template = 'firefox/new/protocol/thanks.html'
+            template = 'firefox/new/desktop/thanks.html'
 
         return [template]
 
@@ -699,6 +700,7 @@ class NewView(L10nTemplateView):
     ftl_files_map = {
         'firefox/new/trailhead/download.html': ['firefox/new/download', 'banners/firefox-mobile'],
         'firefox/new/trailhead/download-yandex.html': ['firefox/new/download', 'banners/firefox-mobile'],
+        'firefox/new/desktop/download.html': ['firefox/new/desktop'],
     }
 
     # place expected ?v= values in this list

@@ -1,0 +1,288 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+@import '../../../../protocol/css/includes/lib';
+
+@import '../../../../protocol/css/components/notification-bar';
+@import '../../../../protocol/css/components/zap';
+@import '../../../../protocol/css/templates/card-layout';
+
+
+// --------------------------------------------------------------------------
+// Protocol over-rides
+
+$content-xs: 304px;
+$content-sm: 432px;
+$content-md: 688px;
+$content-lg: 928px;
+$content-xl: 1152px;
+$content-max: 1440px;
+
+$screen-xs: 320px;
+$screen-sm: 480px;
+$screen-md: 768px;
+$screen-lg: 1024px;
+$screen-xl: 1312px;
+
+// xs
+$v-grid-xs: $layout-md;
+$h-grid-xs: $layout-xs;
+
+//md
+$v-grid-md: $layout-xl / 2;
+$h-grid-md: 64px;
+
+//lg
+$v-grid-lg: 192px / 2;
+$h-grid-lg: 80px;
+
+main {
+    color: $color-dark-gray-30;
+
+    .mzp-l-content {
+        padding-top: $v-grid-xs;
+        padding-bottom: $v-grid-xs;
+
+        @media #{$mq-md} {
+            padding-top: $v-grid-md;
+            padding-bottom: $v-grid-md;
+        }
+
+        @media #{$mq-lg} {
+            padding-top: $v-grid-lg;
+            padding-bottom: $v-grid-lg;
+        }
+    }
+
+    h1 {
+        color: $color-marketing-gray-99;
+        margin-bottom: $spacing-md;
+    }
+
+    img {
+        .mzp-c-card & {
+            display: block;
+            margin-bottom: $spacing-lg;
+        }
+    }
+}
+
+// cards
+
+.mzp-c-card {
+    background-color: transparent;
+    margin-bottom: $v-grid-xs;
+
+    @media #{$mq-md} {
+        margin-bottom: $v-grid-md;
+    }
+
+    @media #{$mq-lg} {
+        margin-bottom: $v-grid-lg;
+    }
+}
+
+.mzp-l-card-third {
+    margin: 0 auto;
+    max-width: $content-lg;
+
+    .mzp-c-card {
+        @media #{$mq-sm} {
+            @include bidi((
+                (margin-left, 0, $h-grid-xs),
+                (margin-right, $h-grid-xs, 0),
+            ));
+            width: calc(50% - (#{$h-grid-xs} / 2));
+
+            &:nth-child(even) {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+
+        @media #{$mq-md} {
+            @include bidi((
+                (margin-left, 0, $h-grid-md),
+                (margin-right, $h-grid-md, 0),
+            ));
+            width: calc(50% - (#{$h-grid-md} / 2));
+        }
+
+        @media #{$mq-lg} {
+            width: calc(33.3% - (#{$h-grid-lg} - (#{$h-grid-lg} / 3)));
+
+            &:nth-child(even) {
+                @include bidi((
+                    (margin-left, 0, $h-grid-lg),
+                    (margin-right, $h-grid-lg, 0),
+                ));
+            }
+
+            &:nth-child(3n) {
+                @include bidi(((margin-right, 0, margin-left, 0),));
+            }
+        }
+    }
+}
+
+
+// --------------------------------------------------------------------------
+// conditional content classes
+
+// keep the button technically visible to grab correct download link for
+// backup download link
+.js #download-button-wrapper-desktop {
+    height: 1px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+
+    #primary-download-button {
+        margin: 1px 0 0 1px;
+    }
+}
+
+// Notification bar for unsupported systems
+.mzp-c-notification-bar {
+    &.unsupported {
+        display: none;
+    }
+
+    .windows.xpvista & {
+        &.unsupported {
+            display: block;
+        }
+    }
+}
+
+// instructions
+.show-windows,
+.show-mac {
+    display: none !important; /* stylelint-disable-line declaration-no-important */
+}
+
+.osx .show-mac {
+    display: block !important; /* stylelint-disable-line declaration-no-important */
+}
+
+.windows .show-windows {
+    display: block !important; /* stylelint-disable-line declaration-no-important */
+}
+
+.show-else {
+    .osx &,
+    .windows & {
+        display: none !important; /* stylelint-disable-line declaration-no-important */
+    }
+}
+
+
+// --------------------------------------------------------------------------
+// logo
+
+.c-logo {
+    @include at2x('/media/protocol/img/logos/firefox/browser/logo-sm.png', auto, 64px);
+    @include bidi(((background-position, top left, top right),));
+    @include image-replaced;
+    background-repeat: no-repeat;
+    display: block;
+    height: 64px;
+    margin: 0 auto $layout-sm;
+    width: 64px;
+}
+
+// --------------------------------------------------------------------------
+// section titles
+
+.c-section-title {
+    @include text-title-md;
+    margin: 0 auto $layout-lg;
+    padding: 0 $layout-sm;
+    max-width: $content-lg + $layout-lg * 2;
+    text-align: center;
+
+    strong {
+        white-space: nowrap;
+    }
+}
+
+// --------------------------------------------------------------------------
+// Install instructions
+
+.c-howto {
+    counter-reset: section;
+
+    strong {
+        display: block;
+        margin-bottom: $layout-sm;
+
+        &:before {
+            @include bidi((
+                (float, left, right),
+                (margin-right, $spacing-sm, margin-left, 0),
+            ));
+            @include font-size(24px);
+            background-color: $color-violet-60;
+            border-radius: 100%;
+            color: $color-white;
+            content: counter(section);
+            counter-increment: section;
+            display: block;
+            height: 1.8em;
+            line-height: 1.8em;
+            text-align: center;
+            width: 1.8em;
+        }
+    }
+
+    span {
+        display: block;
+        margin-top: $layout-sm;
+    }
+
+    @supports(display:grid) {
+        li {
+            @include grid-row-gap($layout-sm);
+            display: grid;
+            grid-template-rows: 3em 160px min-content;
+            align-items: center;
+        }
+
+        strong {
+            align-items: center;
+            display: grid;
+            grid-template-columns: min-content 1fr;
+            margin-bottom: 0;
+        }
+
+        span {
+            margin-top: 0;
+        }
+
+        br {
+            display: none;
+        }
+
+        img {
+            max-height: 100%;
+            margin: 0 auto;
+        }
+    }
+}
+
+// --------------------------------------------------------------------------
+
+.c-support-lang {
+    padding: $spacing-lg;
+    text-align: center;
+}
+
+.c-support-install {
+    background-color: $color-light-gray-10;
+    padding: $spacing-lg;
+    text-align: center;
+}

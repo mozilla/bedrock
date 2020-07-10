@@ -116,6 +116,12 @@
     },
     {
       "files": [
+        "css/firefox/new/desktop/thanks.scss"
+      ],
+      "name": "firefox_desktop_download_thanks"
+    },
+    {
+      "files": [
         "css/firefox/new/trailhead/thanks.scss",
         "css/firefox/new/protocol/mobile-sync.scss"
       ],
