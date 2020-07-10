@@ -14,10 +14,10 @@ features-independent-firefox-is-independent = { -brand-name-firefox } is indepen
 
 # This phrase means without conditions or restrictions, expecting nothing in return
 features-independent-no-strings-attached = No strings attached
-features-independent-firefox-is-built-by = { -brand-name-firefox } is built by a non-profit. That means we can do things that others can’t, like build new products and features without a hidden agenda. We champion your right to privacy with tools like Private Browsing with Tracking Protection.
+features-independent-firefox-is-built-by-v2 = { -brand-name-firefox } is built by a non-profit. That means we can do things that others can’t, like build new products and features without a hidden agenda. We champion your right to privacy with tools like Private Browsing with Tracking Protection.
 
 # Obsolete string
-features-independent-firefox-is-built-by-old = { -brand-name-firefox } is built by a non-profit. That means we can do things that others can’t, like build new products and features without a hidden agenda. We champion your right to privacy with tools like Private Browsing with Tracking Protection, which go beyond what { -brand-name-google } { -brand-name-chrome } and { -brand-name-microsoft } { -brand-name-edge } offer.
+features-independent-firefox-is-built-by = { -brand-name-firefox } is built by a non-profit. That means we can do things that others can’t, like build new products and features without a hidden agenda. We champion your right to privacy with tools like Private Browsing with Tracking Protection, which go beyond what { -brand-name-google } { -brand-name-chrome } and { -brand-name-microsoft } { -brand-name-edge } offer.
 features-independent-what-you-see-is-what = What you see is what you get
 features-independent-we-believe-the-internet = We believe the Internet is for people, not profit. Unlike other companies, we don’t sell access to your data. <em>You’re</em> in control over who sees your search and browsing history. Choice — that’s what a healthy Internet is all about!
 features-independent-a-browser-on-a-mission = A browser on a mission
