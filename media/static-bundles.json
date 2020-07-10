@@ -825,6 +825,8 @@
     },
     {
       "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/base/uitour-lib.js",
         "js/firefox/welcome/welcome8.js"
       ],
       "name": "firefox_welcome_page8"
