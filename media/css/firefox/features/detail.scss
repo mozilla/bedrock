@@ -41,3 +41,11 @@ $image-path: '/media/protocol/img';
 .c-features-links .mzp-c-card-picto-desc {
     font-weight: bold;
 }
+
+.section-title {
+    text-align: center;
+
+    @media #{$mq-md} {
+        margin: $spacing-xl 0;
+    }
+}

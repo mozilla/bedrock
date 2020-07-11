@@ -1,103 +1,65 @@
 @import '../../../protocol/css/components/picto-card';
 
-h2.section-title {
-    text-align: center;
-    margin: $spacing-xl;
-}
+.main-content,
+.c-features-links {
+    .mzp-c-card-picto-content {
+        &::before {
+            @include background-size(56px);
+            background-color: transparent;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
 
-.mzp-c-card-picto-content {
-    text-align: left;
+        @media #{$mq-md} {
+            @include bidi(((text-align, left, right),));
+
+            &::before {
+                @include bidi((
+                    (left, $spacing-lg, auto),
+                    (right, auto, $spacing-lg),
+                ));
+                margin: 0;
+            }
+        }
+    }
 }
 
 .faster .mzp-c-card-picto-content::before {
-    background: url('/media/img/firefox/features/index/feature_icons/performance_orange.svg') no-repeat;
-    background-position: center;
-    background-size: 56px;
-    margin-left: 0;
-    left: auto;
+    background-image: url('/media/img/firefox/features/index/feature_icons/performance_orange.svg');
 }
+
 .extensions .mzp-c-card-picto-content::before {
-    background: url('/media/img/firefox/features/index/feature_icons/extensions_orange.svg') no-repeat;
-    background-position: center;
-    background-size: 56px;
-    margin-left: 0;
-    left: auto;
+    background-image: url('/media/img/firefox/features/index/feature_icons/extensions_orange.svg');
 }
+
 .memory .mzp-c-card-picto-content::before {
-    background: url('/media/img/firefox/features/index/feature_icons/memory_orange.svg') no-repeat;
-    background-position: center;
-    background-size: 56px;
-    margin-left: 0;
-    left: auto;
+    background-image: url('/media/img/firefox/features/index/feature_icons/memory_orange.svg');
 }
+
 .browsing .mzp-c-card-picto-content::before {
-    background: url('/media/img/firefox/features/index/feature_icons/private-browsing_violet.svg') no-repeat;
-    background-position: center;
-    background-size: 56px;
-    margin-left: 0;
-    left: auto;
+    background-image: url('/media/img/firefox/features/index/feature_icons/private-browsing_violet.svg');
 }
+
 .blocking .mzp-c-card-picto-content::before {
-    background: url('/media/img/firefox/features/index/feature_icons/tracking-protection_violet.svg') no-repeat;
-    background-position: center;
-    background-size: 46px;
-    margin-left: 0;
-    left: auto;
+    background-image: url('/media/img/firefox/features/index/feature_icons/tracking-protection_violet.svg');
+    @include background-size(46px);
 }
+
 .password .mzp-c-card-picto-content::before {
-    background: url('/media/img/firefox/features/index/feature_icons/password-manager_violet.svg') no-repeat;
-    background-position: center;
-    background-size: 54px;
-    margin-left: 0;
-    left: auto;
+    background-image: url('/media/img/firefox/features/index/feature_icons/password-manager_violet.svg');
+    @include background-size(54px);
 }
+
 .customize .mzp-c-card-picto-content::before {
-    background: url('/media/img/firefox/features/index/feature_icons/customize_pink.svg') no-repeat;
-    background-position: center;
-    background-size: 56px;
-    margin-left: 0;
-    left: auto;
+    background-image: url('/media/img/firefox/features/index/feature_icons/customize_pink.svg');
 }
+
 .sync .mzp-c-card-picto-content::before {
-    background: url('/media/img/firefox/features/index/feature_icons/sync_pink.svg') no-repeat;
-    background-position: center;
-    background-size: 56px;
-    margin-left: 0;
-    left: auto;
+    background-image: url('/media/img/firefox/features/index/feature_icons/sync_pink.svg');
 }
+
 .bookmarks .mzp-c-card-picto-content::before {
-    background: url('/media/img/firefox/features/index/feature_icons/bookmarks_pink.svg') no-repeat;
-    background-position: center;
-    background-size: 56px;
-    margin-left: 0;
-    left: auto;
-}
-
-
-.open-source.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
-    background: url('/media/img/firefox/features/index/benefit_icons/opensource.svg') no-repeat;
-    background-size: 24px;
-}
-.non-profit.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
-    background: url('/media/img/firefox/features/index/benefit_icons/mozilla.svg') no-repeat;
-    background-size: 24px;
-}
-.independence.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
-    background: url('/media/img/firefox/features/index/benefit_icons/mountain.svg') no-repeat;
-    background-size: 24px;
-
-}
-.private.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
-    background: url('/media/img/firefox/features/index/benefit_icons/lock.svg') no-repeat;
-    background-size: 24px;
-}
-.tracking-protection.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
-    background: url('/media/img/firefox/features/index/benefit_icons/shield.svg') no-repeat;
-    background-size: 24px;
-}
-.stacks-up.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
-    background: url('/media/img/firefox/features/index/benefit_icons/browser.svg') no-repeat;
-    background-size: 24px;
+    background-image: url('/media/img/firefox/features/index/feature_icons/bookmarks_pink.svg');
 }
 
 

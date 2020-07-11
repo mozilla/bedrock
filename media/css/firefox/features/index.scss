@@ -21,25 +21,57 @@ $image-path: '/media/protocol/img';
     }
 }
 
-section.features.mzp-l-card-third {
+.features.mzp-l-card-third {
     margin-bottom: $layout-lg;
 }
 
-section.main-content {
-    margin-bottom: $layout-lg;
-}
-
-section.secondary-content {
-    padding-top: $spacing-xl;
-    padding-bottom: $spacing-xl;
-    background-color: #f9f9fa;
-    background-clip: padding-box;
+@media #{$mq-lg} {
+    .main-content {
+        margin-bottom: $layout-lg;
+    }
 }
 
 .mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content {
     padding-left: 50px;
+
     .mzp-c-card-picto-title {
         @include text-title-xs;
     }
 }
 
+// Secondary content
+.secondary-content {
+    padding: $spacing-xl 0;
+    background-color: $color-marketing-gray-10;
+
+    .mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
+        @include background-size(24px);
+        @include bidi(((background-position, right top, left top),));
+        background-color: transparent;
+        background-repeat: no-repeat;
+    }
+}
+
+.open-source.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
+    background-image: url('/media/img/firefox/features/index/benefit_icons/opensource.svg');
+}
+
+.non-profit.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
+    background-image: url('/media/img/firefox/features/index/benefit_icons/mozilla.svg');
+}
+
+.independence.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
+    background-image: url('/media/img/firefox/features/index/benefit_icons/mountain.svg');
+}
+
+.private.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
+    background-image: url('/media/img/firefox/features/index/benefit_icons/lock.svg');
+}
+
+.tracking-protection.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
+    background-image: url('/media/img/firefox/features/index/benefit_icons/shield.svg');
+}
+
+.stacks-up.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
+    background-image: url('/media/img/firefox/features/index/benefit_icons/browser.svg');
+}
