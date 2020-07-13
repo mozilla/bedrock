@@ -29,6 +29,7 @@ urlpatterns = (
     url(r'^firefox-monitor/$', views.firefox_monitor_notices, name='privacy.notices.firefox-monitor'),
     url(r'^firefox-private-network/$', views.firefox_private_network, name='privacy.notices.firefox-private-network'),
     url(r'^firefox-relay/$', views.firefox_relay_notices, name='privacy.notices.firefox-relay'),
+    url(r'^mozilla-vpn/$', views.mozilla_vpn, name='privacy.notices.mozilla-vpn'),
 
     page('archive', 'privacy/archive/index.html'),
     page('archive/firefox/2006-10', 'privacy/archive/firefox-2006-10.html'),
