@@ -4,10 +4,12 @@
 .c-features-links {
     .mzp-c-card-picto-content {
         &::before {
-            @include background-size(56px);
+            @include background-size(65px);
             background-color: transparent;
             background-position: center center;
             background-repeat: no-repeat;
+            width: 65px;
+            height: 65px;
         }
 
         @media #{$mq-md} {
@@ -42,12 +44,11 @@
 
 .blocking .mzp-c-card-picto-content::before {
     background-image: url('/media/img/firefox/features/index/feature_icons/tracking-protection_violet.svg');
-    @include background-size(46px);
+    @include background-size(55px);
 }
 
 .password .mzp-c-card-picto-content::before {
     background-image: url('/media/img/firefox/features/index/feature_icons/password-manager_violet.svg');
-    @include background-size(54px);
 }
 
 .customize .mzp-c-card-picto-content::before {

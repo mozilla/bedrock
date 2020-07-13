@@ -13,16 +13,17 @@ $image-path: '/media/protocol/img';
     min-height: 450px;
 }
 
+.mzp-c-hero-title {
+    @include text-title-xl;
+}
+
 .section-title {
     text-align: center;
+    @include text-title-sm;
 
     @media #{$mq-md} {
         margin: $spacing-xl 0;
     }
-}
-
-.features.mzp-l-card-third {
-    margin-bottom: $layout-lg;
 }
 
 @media #{$mq-lg} {
