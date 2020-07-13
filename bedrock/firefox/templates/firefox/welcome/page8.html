@@ -13,6 +13,21 @@
 {% set _entrypoint = 'mozilla.org-firefox-welcome-8' %}
 {% set _utm_campaign = 'welcome-8-protection' %}
 
+{% if LANG == 'de' %}
+  {% set prying_eyes = 'DE prying eyes' %}
+  {% set prevent_profit = 'DE profit' %}
+  {% set block_automatically = 'DE automatically.' %}
+{% elif LANG == 'fr' %}
+  {% set prying_eyes = 'Emp\u00EAchez les regards indiscrets de suivre vos moindres faits et gestes.' %}
+  {% set prevent_profit = 'Emp\u00EAchez les entreprises tiers de tirer profit de vos informations personnelles.' %}
+  {% set block_automatically = 'Bloquez automatiquement les traqueurs. Sans vous emm\u00EAler les pinceaux avec les param\u00E9tres.' %}
+{% else %}
+  {% set prying_eyes = 'Keep prying eyes from tracking your every move.' %}
+  {% set prevent_profit = 'Prevent companies from profiting off your personal info.' %}
+  {% set block_automatically = 'Block trackers automatically. No messing with settings.' %}
+{% endif %}
+
+
 {% block experiments %}
   {% if switch('hvt-visual-test') %}
     <script src="{{ static('js/libs/mozilla-traffic-cop.js') }}"></script>
@@ -41,7 +56,7 @@
           <div class="image-container">
             <div class="image-wrapper">
               <img src="{{ static('img/firefox/welcome/trackers-magnify.svg') }}" alt="stop trackers from watching you" />
-              <p>Keep prying eyes from tracking your every move.</p>
+              <p>{{ prying_eyes }}</p>
               <div id="arrow-right">
                 <img src="{{ static('img/firefox/welcome/arrows-right.svg') }}" alt="arrows pointing right" />
               </div>
@@ -51,11 +66,11 @@
             </div>
             <div class="image-wrapper">
               <img src="{{ static('img/firefox/welcome/trackers-money.svg') }}" alt="stop trackers from selling your data" />
-              <p>Prevent companies from profiting off your personal info.</p>
+              <p>{{ prevent_profit }}</p>
             </div>
             <div class="image-wrapper">
               <img src="{{ static('img/firefox/welcome/trackers-shield.svg') }}" alt="block trackers by default" />
-              <p>Block trackers automatically. No messing with settings.</p>
+              <p>{{ block_automatically }}</p>
             </div>
           </div>
 
@@ -75,7 +90,7 @@
           <h1 class="mzp-c-hero-title">{{ ftl('welcome-page8-your-privacy-respected') }}</h1>
           <div class="image-container">
             <video autoplay loop playsinline muted>
-              <source src="https://assets.mozilla.net/video/animation.mp4" type="video/mp4">
+              <source src="https://assets.mozilla.net/video/tracker-blocking.webm" type="video/webm">
             </video>
           </div>
 
