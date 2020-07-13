@@ -13,6 +13,12 @@
 {% set _entrypoint = 'mozilla.org-firefox-welcome-8' %}
 {% set _utm_campaign = 'welcome-8-protection' %}
 
+{% block experiments %}
+  {% if switch('hvt-visual-test') %}
+    <script src="{{ static('js/libs/mozilla-traffic-cop.js') }}"></script>
+  {% endif %}
+{% endblock %}
+
 {% block content_intro %}
 
   {% call hero(
@@ -22,23 +28,34 @@
       include_cta=True,
       heading_level=1
     ) %}
+    <p class="primary-cta protection-report">
+      <a href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?src=external-www.mozilla.org-welcom-7&utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}" class="mzp-c-button mzp-t-product" id="button" rel="external">
+        {{ ftl('welcome-page8-view-your-protection-report') }}
+      </a>
+    </p>
     {% endcall %}
     <section class="mzp-c-hero mzp-t-firefox mzp-t-dark" id="hero-image">
       <div class="mzp-l-content">
         <div class="mzp-c-hero-body">
           <h1 class="mzp-c-hero-title">{{ ftl('welcome-page8-your-privacy-respected') }}</h1>
           <div class="image-container">
-            <div>
+            <div class="image-wrapper">
               <img src="{{ static('img/firefox/welcome/trackers-magnify.svg') }}" alt="stop trackers from watching you" />
-              <p>{{ ftl('welcome-page8-tracker-watching-description') }}</p>
+              <p>Keep prying eyes from tracking your every move.</p>
+              <div id="arrow-right">
+                <img src="{{ static('img/firefox/welcome/arrows-right.svg') }}" alt="arrows pointing right" />
+              </div>
+              <div id="arrow-down">
+                <img src="{{ static('img/firefox/welcome/arrows-down.svg') }}" alt="arrows pointing down" />
+              </div>
             </div>
-            <div>
+            <div class="image-wrapper">
               <img src="{{ static('img/firefox/welcome/trackers-money.svg') }}" alt="stop trackers from selling your data" />
-              <p>{{ ftl('welcome-page8-tracker-money-description') }}</p>
+              <p>Prevent companies from profiting off your personal info.</p>
             </div>
-            <div>
-              <img src="{{ static('img/firefox/welcome/trackers-shield.svg') }}" alt="auto-block trackers by default" />
-              <p>{{ ftl('welcome-page8-tracker-auto-blocking-description') }}</p>
+            <div class="image-wrapper">
+              <img src="{{ static('img/firefox/welcome/trackers-shield.svg') }}" alt="block trackers by default" />
+              <p>Block trackers automatically. No messing with settings.</p>
             </div>
           </div>
 
@@ -58,7 +75,7 @@
           <h1 class="mzp-c-hero-title">{{ ftl('welcome-page8-your-privacy-respected') }}</h1>
           <div class="image-container">
             <video autoplay loop playsinline muted>
-              <source src="{{ static('img/firefox/welcome/Animation@1x.mp4') }}" type="video/mp4">
+              <source src="https://assets.mozilla.net/video/animation.mp4" type="video/mp4">
             </video>
           </div>
 
@@ -70,15 +87,6 @@
         </div>
       </div>
     </section>
-
-    {% call hero(
-      title=ftl('welcome-page8-alternate-title'),
-      desc=ftl('welcome-page8-firefox-automatically-protects'),
-      class='mzp-t-firefox mzp-t-dark variation-text',
-      include_cta=True,
-      heading_level=1
-    ) %}
-    {% endcall %}
 {% endblock %}
 
 {% block content_primary %}
@@ -104,7 +112,7 @@
       <h3 class="c-picto-block-title">{{ ftl('welcome-page8-firefox-monitor') }}</h3>
       <div class="c-picto-block-body">
         <p>{{ ftl('welcome-page8-see-what-youve-been') }}</p>
-        <a href="https://monitor.firefox.com/?src=external-www.mozilla.org-welcom-7&utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}" >
+        <a id="monitor-link" href="https://monitor.firefox.com/?src=external-www.mozilla.org-welcom-7&utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}" >
           <strong>{{ ftl('welcome-page8-go-to-monitor') }}</strong>
         </a>
       </div>
@@ -118,7 +126,7 @@
         <h3 class="c-picto-block-title">{{ ftl('welcome-page8-facebook-container') }}</h3>
         <div class="c-picto-block-body">
           <p>{{ ftl('welcome-page8-stay-connected') }}</p>
-          <a href="https://addons.mozilla.org/firefox/addon/facebook-container/?src=external-www.mozilla.org-welcom-7&utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}" >
+          <a id="fb-container-link" href="https://addons.mozilla.org/firefox/addon/facebook-container/?src=external-www.mozilla.org-welcom-7&utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}" >
             <strong>{{ ftl('welcome-page8-add-facebook-container') }}</strong>
           </a>
         </div>

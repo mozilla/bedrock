@@ -12,11 +12,6 @@ welcome-page8-your-privacy-respected = Your privacy respected, <strong>automatic
 
 welcome-page8-firefox-automatically-protects = { -brand-name-firefox } automatically protects your privacy, so you’re free to live your life every time you get online.
 welcome-page8-view-your-protection-report = View your protection report
-welcome-page8-tracker-watching-description = Keep prying eyes from tracking your every move.
-welcome-page8-tracker-money-description = Prevent companies from profiting off your personal info.
-welcome-page8-tracker-auto-blocking-description = Block trackers automatically. No messing with settings.
-welcome-page8-alternate-title = Alternate Title Will go <strong>Here</strong>
-
 
 # "Enhanced Tracking Protection" is a feature name; it should be capitalized
 welcome-page8-enhanced-tracking-protection = Enhanced Tracking Protection

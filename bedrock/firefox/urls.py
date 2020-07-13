@@ -114,7 +114,6 @@ urlpatterns = (
     page('firefox/welcome/6', 'firefox/welcome/page6.html', ftl_files=['firefox/welcome/page6']),
     page('firefox/welcome/7', 'firefox/welcome/page7.html', ftl_files=['firefox/welcome/page7']),
     page('firefox/welcome/8', 'firefox/welcome/page8.html', ftl_files=['firefox/welcome/page8']),
-    page('firefox/welcome/9', 'firefox/welcome/page9.html', ftl_files=['firefox/welcome/page9']),
 
     page('firefox/privacy-by-default', 'firefox/messaging-experiment/privacy_by_default.html'),
     page('firefox/privacy-tools', 'firefox/messaging-experiment/privacy_tools.html'),

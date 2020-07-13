@@ -9,42 +9,51 @@
     var href = window.location.href;
 
     var initTrafficCop = function () {
-        if (href.indexOf('server-variation=') !== -1) {
-            if (href.indexOf('server-variation=1') !== -1) {
+        if (href.indexOf('v=') !== -1) {
+          var fbContainerLink = document.getElementById('fb-container-link');
+          var monitorLink =  document.getElementById('monitor-link');
+          var utm_source = "";
+            if (href.indexOf('v=text') !== -1) {
+              utm_source = "mozilla.org-firefox-welcome-8-text";
               // default, no special class needed
                 window.dataLayer.push({
-                    'data-ex-variant': 'experiment-hvt-visual-v1',
+                    'data-ex-variant': 'experiment-hvt-visual-text',
                     'data-ex-name': 'experiment-hvt-visual'
                 });
-            } else if (href.indexOf('server-variation=2') !== -1) {
+            } else if (href.indexOf('v=image') !== -1) {
+              utm_source = "mozilla.org-firefox-welcome-8-image";
               document.body.classList.add("variation-2-image");
                 window.dataLayer.push({
-                    'data-ex-variant': 'experiment-hvt-visual-v2',
+                    'data-ex-variant': 'experiment-hvt-visual-image',
                     'data-ex-name': 'experiment-hvt-visual'
                 });
-            } else if (href.indexOf('server-variation=3') !== -1) {
+            } else if (href.indexOf('v=animation') !== -1) {
+              utm_source = "mozilla.org-firefox-welcome-8-animation";
               document.body.classList.add("variation-3-animation");
                 window.dataLayer.push({
-                    'data-ex-variant': 'experiment-hvt-visual-v3',
+                    'data-ex-variant': 'experiment-hvt-visual-animation',
                     'data-ex-name': 'experiment-hvt-visual'
                 });
-            } else if (href.indexOf('server-variation=4') !== -1) {
-              document.body.classList.add("variation-4-text");
+            } else if (href.indexOf('v=header-text') !== -1) {
+              utm_source = "mozilla.org-firefox-welcome-8-header-text";
+              document.getElementsByClassName('mzp-c-hero-title')[0].innerHTML = "Your privacy is on <strong>autopilot</strong>"
                 window.dataLayer.push({
-                    'data-ex-variant': 'experiment-hvt-visual-v4',
+                    'data-ex-variant': 'experiment-hvt-visual-header-text',
                     'data-ex-name': 'experiment-hvt-visual'
                 });
             }
 
-          } else {
+            monitorLink.href = "https://monitor.firefox.com/?utm_source=" + utm_source + "&utm_medium=referral&utm_campaign=hvt-welcome-8";
+            fbContainerLink.href = "https://addons.mozilla.org/firefox/addon/facebook-container/?utm_source=" + utm_source + "&utm_medium=referral&utm_campaign=hvt-welcome-8";
+          } else if (Mozilla.TrafficCop) {
             var cop = new Mozilla.TrafficCop({
                 id: 'experiment_hvt_visual',
                 cookieExpires: 0,
                 variations: {
-                    'server-variation=1': 1,
-                    'server-variation=2': 20,
-                    'server-variation=3': 20,
-                    'server-variation=4': 20,
+                    'v=text': 1,
+                    'v=image': 20,
+                    'v=animation': 20,
+                    'v=header-text': 20,
                 }
             });
 
