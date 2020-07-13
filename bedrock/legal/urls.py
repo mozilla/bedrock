@@ -28,6 +28,9 @@ urlpatterns = (
     url(r'^terms/mozilla/$', LegalDocView.as_view(template_name='legal/terms/mozilla.html', legal_doc_name='Websites_ToU'),
         name='legal.terms.mozilla'),
 
+    url(r'^terms/mozilla-vpn/$', LegalDocView.as_view(template_name='legal/terms/mozilla-vpn.html',
+        legal_doc_name='Mozilla_VPN_ToS'), name='legal.terms.mozilla-vpn'),
+
     url(r'^terms/firefox/$', LegalDocView.as_view(template_name='legal/terms/firefox.html', legal_doc_name='firefox_about_rights'),
         name='legal.terms.firefox'),
 
