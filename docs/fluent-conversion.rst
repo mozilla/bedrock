@@ -167,10 +167,11 @@ from ``locale`` and write the generated Fluent files for each locale into the ``
 
 Append each locale you wish to convert in a space-separated list. You can find the full
 list of supported locales in the `Pontoon configuration file`_ and below in a space-separated
-format for easier copy and paste (note this list may differ from the current list if these
-docs fall out of sync; compare to the latest Pontoon configuration to be safe.)
+format for easier copy and paste (note this list may differ from the current list of active locales
+if these docs fall out of sync; compare to the latest Pontoon configuration to be safe.)
 
 .. code-block::
+
     ach af am an ar ast az azz be bg bn br bs ca cak crh cs cy da de dsb el en-CA en-GB eo es-AR es-CL es-ES es-MX et eu fa ff fi fr fy-NL ga-IE gd gl gn gu-IN he hi-IN hr hsb hto hu hy-AM ia id is it ja ka kab kk km kn ko lij lo lt ltg lv mk ml mr ms my nb-NO ne-NP nl nn-NO nv oc pa-IN pai pbb pl pt-BR pt-PT qvi rm ro ru si sk sl son sq sr sv-SE sw ta te th tl tr trs uk ur uz vi wo xh zam zh-CN zh-TW zu
 
 .. _Pontoon configuration file: https://github.com/mozilla/bedrock/blob/master/l10n/configs/pontoon.toml
