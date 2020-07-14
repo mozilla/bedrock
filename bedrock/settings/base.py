@@ -451,6 +451,20 @@ ENABLE_VARY_NOCACHE_MIDDLEWARE = config('ENABLE_VARY_NOCACHE_MIDDLEWARE',
 # e.g. BASIC_AUTH_CREDS="thedude:thewalrus"
 BASIC_AUTH_CREDS = config('BASIC_AUTH_CREDS', default='')
 
+# reduce the number of latency buckets for prom
+# see https://github.com/korfuri/django-prometheus#configuration
+PROMETHEUS_LATENCY_BUCKETS = (
+    0.05,
+    0.1,
+    0.5,
+    1.0,
+    5.0,
+    10.0,
+    50.0,
+    float("inf"),
+)
+PROMETHEUS_METRIC_NAMESPACE = APP_NAME
+
 MIDDLEWARE = [
     'django_prometheus.middleware.PrometheusBeforeMiddleware',
     'allow_cidr.middleware.AllowCIDRMiddleware',

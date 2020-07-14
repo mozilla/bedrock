@@ -315,9 +315,9 @@ packaging==20.4 \
 pyparsing==2.4.7 \
     --hash=sha256:c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1 \
     --hash=sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b
-django-prometheus==2.0.0 \
-    --hash=sha256:4c30aa8eb944fcf3cf10e20dfabbbe11ad5a84fce62abb3658feffa4e2ac2b97 \
-    --hash=sha256:8f25e86a3c310f40cf32cfa1b56a2b6df9cb2521e4cb794844958697d98fb3d1
+django-prometheus==2.1.0.dev52 \
+    --hash=sha256:441bd85531ecdeddacbe73c930f16de926c426869ce388fa1e8c8092f7ee5a1b \
+    --hash=sha256:6e824cd407b56c01810c69d2e296940d00afe609b58818794525f9760a9a5364
 prometheus-client==0.8.0 \
     --hash=sha256:983c7ac4b47478720db338f1491ef67a100b474e3bc7dafcbaefb7d0b8f9b01c \
     --hash=sha256:c6e6b706833a6bd1fd51711299edee907857be10ece535126a158f911ee80915

@@ -120,6 +120,9 @@ FROM app-base AS release
 COPY --from=assets /app/static_final /app/static_final
 RUN honcho run --env docker/envfiles/prod.env docker/bin/build_staticfiles.sh
 
+# prometheus metrics aggregation for multiple processes
+ENV prometheus_multiproc_dir=/app/prometheus_metrics
+
 # build args
 ARG GIT_SHA=latest
 ARG BRANCH_NAME=master
