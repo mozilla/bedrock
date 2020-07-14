@@ -4,12 +4,12 @@
 .c-features-links {
     .mzp-c-card-picto-content {
         &::before {
-            @include background-size(65px);
+            @include background-size(32px);
             background-color: transparent;
             background-position: center center;
             background-repeat: no-repeat;
-            width: 65px;
-            height: 65px;
+            width: 32px;
+            height: 32px;
         }
 
         @media #{$mq-md} {
@@ -23,6 +23,13 @@
                 margin: 0;
             }
         }
+    }
+}
+
+.mzp-l-content.subpages {
+    .mzp-c-card-picto {
+        padding-top: 32px;
+        padding-bottom: 32px;
     }
 }
 
@@ -49,7 +56,7 @@
 
 .blocking .mzp-c-card-picto-content::before {
     background-image: url('/media/img/firefox/features/index/feature_icons/tracking-protection_violet.svg');
-    @include background-size(55px);
+    @include background-size(26px);
 }
 
 .password .mzp-c-card-picto-content::before {
