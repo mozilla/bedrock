@@ -5,6 +5,7 @@
 ### URL: https://www-dev.allizom.org/firefox/features/
 
 features-shared-a-better-internet-experience = A better internet experience
+features-shared-more-firefox-features = More Firefox browser features
 
 features-shared-browse-faster = Browse faster
 features-shared-your-favorite-extensions = Your favorite extensions

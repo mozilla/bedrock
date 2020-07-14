@@ -42,6 +42,11 @@ $image-path: '/media/protocol/img';
     font-weight: bold;
 }
 
+.mzp-l-content {
+    padding-top: $layout-lg;
+    padding-bottom: $layout-lg;
+}
+
 .section-title {
     text-align: center;
 

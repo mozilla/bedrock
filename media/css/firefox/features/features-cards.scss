@@ -26,6 +26,11 @@
     }
 }
 
+
+.section-title {
+    @include text-title-sm;
+}
+
 .faster .mzp-c-card-picto-content::before {
     background-image: url('/media/img/firefox/features/index/feature_icons/performance_orange.svg');
 }
