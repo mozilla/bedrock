@@ -23,7 +23,7 @@ rm -rf "${TMP_DIR}"
 rm -rf "${TMP_DIR_HASHED}"
 
 # have to rerun staticfiles without symlinks or we just copy broken symlinks
-docker rm -f "$CONTAINER_NAME"
+docker rm -f "$CONTAINER_NAME" || true
 docker-compose run --name "$CONTAINER_NAME" release docker/bin/build_staticfiles.sh --nolink
 docker cp "${CONTAINER_NAME}:/app/static" "${TMP_DIR}"
 docker rm -f "$CONTAINER_NAME"
