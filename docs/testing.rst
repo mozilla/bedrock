@@ -279,18 +279,12 @@ Using the above email addresses enables newsletter form testing without actually
 the Basket instance, which reduces automated newsletter spam and improves test
 reliability due to any potential network flakiness.
 
-Link Checks
------------
+Headless tests
+--------------
 
-A full link checker is run over the production environments, which uses a tool named
-`LinkChecker`_ to crawl the entire website and reports any broken or malformed links both
-internally and externally. These jobs are run once a day in the `Jenkins instance`_ and
-are named with the ``bedrock_linkchecker_`` prefix.
-
-In addition, there are targeted functional tests for the `download`_ and `localized
-download`_ pages. These tests do not use the LinkChecker tool, and are run as part of
-the pipeline, which ensures that any broken download links are noticed much earlier,
-and also do not depend on a crawler to find them.
+There are targeted headless tests for the `download`_ and `localized download`_ pages.
+These tests and are run as part of the pipeline to ensure that download links constructed
+via product details are well formed and return valid 200 responses.
 
 .. _Jasmine: https://jasmine.github.io/1.3/introduction.html
 .. _Karma: https://karma-runner.github.io/
@@ -306,8 +300,6 @@ and also do not depend on a crawler to find them.
 .. _waits: http://seleniumhq.github.io/selenium/docs/api/py/webdriver_support/selenium.webdriver.support.wait.html
 .. _expected conditions: http://seleniumhq.github.io/selenium/docs/api/py/webdriver_support/selenium.webdriver.support.expected_conditions.html
 .. _Web QA style guide: https://wiki.mozilla.org/QA/Execution/Web_Testing/Docs/Automation/StyleGuide
-.. _LinkChecker: http://wummel.github.io/linkchecker/
-.. _Jenkins instance: https://ci.vpn1.moz.works/
 .. _download: https://github.com/mozilla/bedrock/blob/master/tests/functional/test_download.py
 .. _localized download: https://github.com/mozilla/bedrock/blob/master/tests/functional/test_download_l10n.py
 .. _Basket: https://github.com/mozilla/basket
