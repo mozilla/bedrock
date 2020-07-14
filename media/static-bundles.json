@@ -518,7 +518,7 @@
     {
       "files": [
         "css/firefox/features/index.scss",
-        "css/firefox/features/features-cards.scss"
+        "css/firefox/features/features-cards-index.scss"
       ],
       "name": "firefox-features-index"
     },
