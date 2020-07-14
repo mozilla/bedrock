@@ -3,8 +3,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 (function (Mozilla) {
-  'use strict';
-   /* update dataLayer with experiment info */
+    'use strict';
+    /* update dataLayer with experiment info */
     var href = window.location.href;
 
     var initTrafficCop = function () {
@@ -35,10 +35,10 @@
                 id: 'welcome8_experiment_hvt_visual',
                 cookieExpires: 0,
                 variations: {
-                    'v=text': 1,
-                    'v=image': 20,
-                    'v=animation': 20,
-                    'v=header-text': 20,
+                    'v=text': 12.5,
+                    'v=image': 12.5,
+                    'v=animation': 12.5,
+                    'v=header-text': 12.5,
                 }
             });
             cop.init();
@@ -46,4 +46,4 @@
     };
     initTrafficCop();
 
-  })(window.Mozilla);
+})(window.Mozilla);
