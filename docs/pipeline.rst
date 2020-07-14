@@ -110,38 +110,36 @@ Adding test runs
 ~~~~~~~~~~~~~~~~
 
 Test runs can be added by creating a new job in the `.gitlab-ci.yml file in the www-config repository`_
-with the desired variables
-For example, if you wanted to run tests in Firefox on both Windows 10 and
+with the desired variables. For example, if you wanted to run tests in Firefox on both Windows 10 and
 OS X, against our dev environment, you could create the following clauses:
 
 .. code-block:: yaml
 
-dev-test-firefox-osx:
-  extends:
-    - .dev
-    - .test
-  variables:
-    BROWSER_NAME: firefox
-    BROWSER_VERSION: latest
-    PLATFORM: OS X 10.11
+  dev-test-firefox-osx:
+    extends:
+      - .dev
+      - .test
+    variables:
+      BROWSER_NAME: firefox
+      BROWSER_VERSION: latest
+      PLATFORM: OS X 10.11
 
-dev-test-firefox-win10:
-  extends:
-    - .dev
-    - .test
-  variables:
-    BROWSER_NAME: firefox
-    BROWSER_VERSION: latest
-    PLATFORM: Windows 10
+  dev-test-firefox-win10:
+    extends:
+      - .dev
+      - .test
+    variables:
+      BROWSER_NAME: firefox
+      BROWSER_VERSION: latest
+      PLATFORM: Windows 10
 
 You can use `Sauce Labs platform configurator`_ to help with the parameter values.
 
 If you have commit rights to our Github repo (mozilla/bedrock) you can simply push
-your branch to the branch named ``run-integration-tests``, and the ``bedrock-integration-tests``
-app will be deployed and all of the integration tests defined in the ``jenkins.yml``
-file for that branch will be run. Please announce in our IRC channel (#www on irc.mozilla.org)
-that you'll be doing this so that we don't get conflicts.
-
+your branch to the branch named ``run-integration-tests``, and the ``bedrock-test.moz.works``
+app will be deployed and the full suite of integration tests for that branch will be run.
+Please announce in our Slack channel (#www on mozilla.slack.com) that you'll be doing this so
+that we don't get conflicts.
 
 .. _Deployment Pipeline: https://ci.vpn1.moz.works/blue/organizations/jenkins/bedrock_multibranch_pipeline/branches/
 .. _CircleCI: https://circleci.com/
