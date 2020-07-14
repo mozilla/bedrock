@@ -832,6 +832,14 @@
     },
     {
       "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/firefox/welcome/welcome8-traffic-cop.js"
+      ],
+      "name": "firefox_welcome_page8_traffic_cop"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
         "js/firefox/privacy/messaging-experiment.js"
       ],
       "name": "default_privacy_messaging"

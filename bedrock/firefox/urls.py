@@ -8,6 +8,7 @@ from bedrock.mozorg.util import page
 from bedrock.releasenotes import version_re
 
 from bedrock.firefox import views
+from bedrock.utils import views as utils_views
 
 
 latest_re = r'^firefox(?:/(?P<version>%s))?/%s/$'
@@ -113,7 +114,12 @@ urlpatterns = (
     page('firefox/welcome/5', 'firefox/welcome/page5.html', ftl_files=['firefox/welcome/page5']),
     page('firefox/welcome/6', 'firefox/welcome/page6.html', ftl_files=['firefox/welcome/page6']),
     page('firefox/welcome/7', 'firefox/welcome/page7.html', ftl_files=['firefox/welcome/page7']),
-    page('firefox/welcome/8', 'firefox/welcome/page8.html', ftl_files=['firefox/welcome/page8']),
+    url(r'^firefox/welcome/8/$',
+        utils_views.VariationTemplateView.as_view(template_name='firefox/welcome/page8.html',
+                                      ftl_files=['firefox/welcome/page8'],
+                                      template_context_variations=['text', 'image', 'animation', 'header-text'],
+                                      variation_locales=['en-US', 'en-CA', 'en-GB', 'de', 'fr']),
+                                      name='firefox.welcome.page8'),
 
     page('firefox/privacy-by-default', 'firefox/messaging-experiment/privacy_by_default.html'),
     page('firefox/privacy-tools', 'firefox/messaging-experiment/privacy_tools.html'),
