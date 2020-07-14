@@ -131,9 +131,6 @@ RUN bin/run-sync-all.sh
 
 RUN echo "${GIT_SHA}" > ./root_files/revision.txt
 
-# prometheus metrics aggregation for multiple processes
-ENV prometheus_multiproc_dir=/app/prometheus_metrics
-
 # Change User
 RUN chown webdev.webdev -R .
 USER webdev
