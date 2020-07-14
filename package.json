@@ -4,7 +4,7 @@
   "description": "Making mozilla.org awesome, one pebble at a time",
   "private": true,
   "dependencies": {
-    "@mozilla-protocol/core": "12.0.0",
+    "@mozilla-protocol/core": "12.0.1",
     "@mozilla-protocol/eslint-config": "^1.1.0",
     "ansi-colors": "4.1.1",
     "clean-css-cli": "4.3.0",
