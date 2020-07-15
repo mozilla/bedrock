@@ -1,17 +1,15 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "firefox/base/base-protocol.html" %}
 
 {% from "macros-protocol.html" import hero, feature_card, call_out_compact, picto_card with context %}
 
-{% add_lang_files "firefox/channel/index" %}
-
 {% block page_og_title %}{{ self.page_title() }}{% endblock %}
 
 {% block page_css %}
-{{ css_bundle('firefox_channel') }}
+  {{ css_bundle('firefox_channel') }}
 {% endblock %}
 
 {% block body_class %}{% endblock %}
@@ -24,19 +22,19 @@
         <h2 class="c-sub-navigation-title"></h2>
         <ul class="c-sub-navigation-list">
           <li class="c-sub-navigation-item"><a href="{{ url('firefox.channel.desktop') }}" data-link-type="nav"
-              data-link-position="subnav" data-link-name="Desktop">{{ _('Desktop') }}</a></li>
+              data-link-position="subnav" data-link-name="Desktop">{{ ftl('firefox-channel-desktop') }}</a></li>
           <li class="c-sub-navigation-item"><a href="{{ url('firefox.channel.android') }}" data-link-type="nav"
-              data-link-position="subnav" data-link-name="Android">{{ _('Android') }}</a></li>
+              data-link-position="subnav" data-link-name="Android">{{ ftl('firefox-channel-android') }}</a></li>
           <li class="c-sub-navigation-item"><a href="{{ url('firefox.channel.ios') }}" data-link-type="nav"
-              data-link-position="subnav" data-link-name="iOS">{{ _('iOS') }}</a></li>
+              data-link-position="subnav" data-link-name="iOS">{{ ftl('firefox-channel-ios') }}</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
   {% call hero(
-    title=_('Take a browse on the wild side.'),
-    desc=_('Be among the first to explore future releases of Firefox for desktop, Android and iOS.'),
+    title=ftl('firefox-channel-take-a-browse-on-the-wild-side'),
+    desc=ftl('firefox-channel-be-among-the-first-to-explore'),
     class='mzp-t-firefox mzp-t-product-firefox',
     include_cta=False,
     heading_level=1) %}
@@ -45,15 +43,15 @@
   {% block channels %}{% endblock %}
 
   {% call picto_card(
-    title=_('See something that isn’t working? Let us know.'),
+    title=ftl('firefox-channel-see-something-that-isnt-working'),
     heading_level=2,
     class='bugzilla',
     base_el='section',
     custom_desc=True) %}
 
   <ul>
-    <li><a class="mzp-c-cta-link" href="https://bugzilla.mozilla.org/enter_bug.cgi">{{ _('File a bug now') }}</a></li>
-    <li><a class="mzp-c-cta-link" href="https://developer.mozilla.org/docs/Mozilla/QA/Bug_writing_guidelines">{{ _('Tips for filing a bug') }}</a></li>
+    <li><a class="mzp-c-cta-link" href="https://bugzilla.mozilla.org/enter_bug.cgi">{{ ftl('firefox-channel-file-a-bug-now') }}</a></li>
+    <li><a class="mzp-c-cta-link" href="https://developer.mozilla.org/docs/Mozilla/QA/Bug_writing_guidelines">{{ ftl('firefox-channel-tips-for-filing-a-bug') }}</a></li>
   </ul>
   {% endcall %}
 
@@ -68,9 +66,7 @@
 </main>
 {% endblock %}
 
-{% block email_form %}{% endblock %}
-
 {% block js %}
-{{ super() }}
-{{ js_bundle('firefox_channel') }}
+  {{ super() }}
+  {{ js_bundle('firefox_channel') }}
 {% endblock %}
