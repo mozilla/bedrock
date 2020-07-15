@@ -463,7 +463,7 @@ PROMETHEUS_LATENCY_BUCKETS = (
     50.0,
     float("inf"),
 )
-PROMETHEUS_METRIC_NAMESPACE = APP_NAME
+PROMETHEUS_METRIC_NAMESPACE = APP_NAME.replace('-', '_')
 
 MIDDLEWARE = [
     'django_prometheus.middleware.PrometheusBeforeMiddleware',
