@@ -28,21 +28,20 @@
 
 .mzp-l-content.subpages {
     .mzp-c-card-picto {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        margin-left: -16px;
-    }
-
-    @media #{$mq-md} {
-        .mzp-c-card-picto {
-            padding-top: 32px;
-            padding-bottom: 32px;
-            margin-left: -28px;
+        .mzp-c-card-picto-content::before {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            margin-left: -16px;
+        }
+        @media #{$mq-md} {
+            .mzp-c-card-picto-content::before {
+                margin-left: 0;
+            }
         }
     }
 
     .mzp-c-card-picto .mzp-c-card-picto-content {
-        padding: 50px 24px 0;
+        padding: 55px 24px 0;
     }
 }
 
