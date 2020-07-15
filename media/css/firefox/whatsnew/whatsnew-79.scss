@@ -173,15 +173,29 @@ $image-path: '/media/protocol/img';
     padding-left: 0;
     padding-right: 0;
 
-    h3 {
+    .modal-title {
         @include text-title-md;
         color: $color-ink-80;
-        margin-bottom: 0;
+        margin-bottom: $spacing-md;
+        position: relative;
+        padding-top: $layout-lg;
+
+        &:before {
+            @include at2x('/media/protocol/img/logos/firefox/browser/logo-lg.png', auto, 100%);
+            content: '';
+            display: block;
+            height: 48px;
+            left: 50%;
+            margin-left: -24px;
+            position: absolute;
+            top: 0;
+            width: 48px;
+        }
     }
 
     .mzp-c-modal-overlay-contents {
-        background: #fff;
-        color: #000;
+        background: $color-white;
+        color: $color-ink-80;
         padding: $layout-xs;
         text-align: center;
     }
@@ -214,18 +228,11 @@ $image-path: '/media/protocol/img';
         padding-right: $layout-md;
 
         .mzp-c-modal-overlay-contents {
-            background: #fff;
-            color: #000;
+            background: $color-white;
+            color: $color-ink-80;
             padding: $layout-md;
         }
     }
-}
-
-.modal-logo {
-    @include at2x('/media/protocol/img/logos/firefox/browser/logo-lg.png', auto, 100%);
-    @include image-replaced;
-    background-repeat: no-repeat;
-    background-position: center;
 }
 
 .mobile-download-buttons li {

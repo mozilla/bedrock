@@ -530,7 +530,7 @@ class WhatsnewView(L10nTemplateView):
 
     ftl_files_map = {
         'firefox/whatsnew/index-account.html': ['firefox/whatsnew/whatsnew-account', 'firefox/whatsnew/whatsnew'],
-        'firefox/whatsnew/whatsnew-fx79.html': ['send_to_device', 'firefox/whatsnew/whatsnew', 'firefox/whatsnew/whatsnew-fx79']
+        'firefox/whatsnew/whatsnew-fx79.html': ['firefox/whatsnew/whatsnew-fx79', 'firefox/whatsnew/whatsnew']
     }
 
     def get_context_data(self, **kwargs):
@@ -550,7 +550,7 @@ class WhatsnewView(L10nTemplateView):
 
         analytics_version = str(num_version) + channel
         entrypoint = 'mozilla.org-whatsnew' + analytics_version
-        if version.startswith('79.'):
+        if version.startswith('79.') and channel not in ['nightly', 'developer', 'beta']:
             campaign = 'mozilla-vpn-v1-0-announcement'
         else:
             campaign = 'whatsnew' + analytics_version

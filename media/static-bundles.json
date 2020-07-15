@@ -911,7 +911,6 @@
     },
     {
       "files": [
-        "js/base/uitour-lib.js",
         "js/firefox/whatsnew/up-to-date.js",
         "js/libs/spin.min.js",
         "protocol/js/protocol-modal.js",
