@@ -217,3 +217,22 @@ $image-path: '/media/protocol/img';
         width: 100%;
     }
 }
+
+//* -------------------------------------------------------------------------- */
+// Conditional content
+
+// Hide Firefox Account CTAs by default; show download unless we know otherwise.
+.fxaccount-secondary-cta {
+    display: none;
+}
+
+// Hide download CTAs for people already using Firefox; promote Firefox Accounts instead.
+.is-firefox {
+    .download-firefox-secondary-cta {
+        display: none;
+    }
+
+    .fxaccount-secondary-cta {
+        display: block;
+    }
+}

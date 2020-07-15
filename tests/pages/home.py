@@ -10,11 +10,16 @@ from pages.regions.download_button import DownloadButton
 
 class HomePage(BasePage):
 
+    _privacy_hero_button_locator = (By.CSS_SELECTOR, '.privacy-promise-hero .mzp-c-button')
     _intro_download_button_locator = (By.ID, 'download-intro')  # legacy home page
     _primary_download_button_locator = (By.ID, 'download-primary')
     _secondary_download_button_locator = (By.ID, 'download-secondary')
     _primary_accounts_button_locator = (By.ID, 'fxa-learn-primary')
     _secondary_accounts_button_locator = (By.ID, 'fxa-learn-secondary')
+
+    @property
+    def is_privacy_hero_button_displayed(self):
+        return self.is_element_displayed(*self._privacy_hero_button_locator)
 
     @property
     def intro_download_button(self):
@@ -32,9 +37,9 @@ class HomePage(BasePage):
         return DownloadButton(self, root=el)
 
     @property
-    def is_primary_accounts_button(self):
+    def is_primary_accounts_button_displayed(self):
         return self.is_element_displayed(*self._primary_accounts_button_locator)
 
     @property
-    def is_secondary_accounts_button(self):
+    def is_secondary_accounts_button_displayed(self):
         return self.is_element_displayed(*self._secondary_accounts_button_locator)
