@@ -9,7 +9,6 @@ from pages.home import HomePage
 from pages.about import AboutPage
 from pages.contribute.contribute import ContributePage
 from pages.mission import MissionPage
-from pages.firefox.features.landing import FeaturesLandingPage
 from pages.firefox.whatsnew.whatsnew_developer_70 import FirefoxWhatsNewDeveloper70Page
 from pages.newsletter.developer import DeveloperNewsletterPage
 from pages.newsletter.firefox import FirefoxNewsletterPage
@@ -70,37 +69,3 @@ def test_newsletter_sign_up_fails_when_missing_required_fields(page_class, base_
     page.newsletter.expand_form()
     with pytest.raises(TimeoutException):
         page.newsletter.click_sign_me_up()
-
-
-@pytest.mark.nondestructive
-@pytest.mark.parametrize(('page_class', 'url_kwargs'), [(FeaturesLandingPage, None)])
-def test_legacy_newsletter_default_values(page_class, url_kwargs, base_url, selenium):
-    url_kwargs = url_kwargs or {}
-    page = page_class(selenium, base_url, **url_kwargs).open()
-    page.legacy_newsletter.expand_form()
-    assert '' == page.legacy_newsletter.email
-    assert 'United States' == page.legacy_newsletter.country
-    assert not page.legacy_newsletter.privacy_policy_accepted
-    assert page.legacy_newsletter.is_privacy_policy_link_displayed
-
-
-@pytest.mark.nondestructive
-@pytest.mark.parametrize('page_class', [FeaturesLandingPage])
-def test_legacy_newsletter_successful_sign_up(page_class, base_url, selenium):
-    page = page_class(selenium, base_url).open()
-    page.legacy_newsletter.expand_form()
-    page.legacy_newsletter.type_email('success@example.com')
-    page.legacy_newsletter.select_country('United Kingdom')
-    page.legacy_newsletter.select_text_format()
-    page.legacy_newsletter.accept_privacy_policy()
-    page.legacy_newsletter.click_sign_me_up()
-    assert page.legacy_newsletter.sign_up_successful
-
-
-@pytest.mark.nondestructive
-@pytest.mark.parametrize('page_class', [FeaturesLandingPage])
-def test_legacy_newsletter_sign_up_fails_when_missing_required_fields(page_class, base_url, selenium):
-    page = page_class(selenium, base_url).open()
-    page.legacy_newsletter.expand_form()
-    with pytest.raises(TimeoutException):
-        page.legacy_newsletter.click_sign_me_up()
