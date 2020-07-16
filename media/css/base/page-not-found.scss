@@ -7,8 +7,11 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-.list-content a:link, .list-content a:visited, .list-content a:hover, .list-content a:active {
-    color: black;
+.list-content a:link,
+.list-content a:visited,
+.list-content a:hover,
+.list-content a:active {
+    color: $color-black;
 }
 
 main {
@@ -62,14 +65,36 @@ main {
 }
 
 .header-image {
-    padding-top: 32px;
-    width: 220px;
+    padding-top: $spacing-md;
+
+    .logo-mozilla {
+        display: inline-block;
+        height: 50px;
+        transform: translateY(-6px);
+
+        &:after {
+            @include bidi(((float, right, left),));
+            background: $color-marketing-gray-30;
+            content: '';
+            height: 50px;
+            margin: -10px $spacing-lg 0;
+            width: 2px;
+        }
+    }
+
+    .logo-firefox {
+        @include bidi(((transform, translateX(-5px), translateX(5px)),));
+        display: inline-block;
+        height: 50px;
+    }
+
 }
 
 .prose { // Fallback content only
     list-style-type: disc;
     padding-left: $spacing-xl;
 }
+
 .fallback-list-content { // Fallback content only
     @include font-size(16px);
     padding-bottom: $spacing-md;
@@ -89,8 +114,4 @@ main {
     }
 }
 
-@media #{$mq-lg}{
-    .header-image {
-        width: 290px;
-    }
-}
+

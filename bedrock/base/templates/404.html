@@ -40,7 +40,7 @@
           </li>
           <li>
             <section class="has-icon">
-              <img class="list-icon" alt="" src="{{ static('img/base-error/firefox_logomark_black.svg') }}" width="30" height="30">
+              <img class="list-icon" alt="" src="{{ static('protocol/img/logos/firefox/logo-flat.svg') }}" width="30" height="30">
               <p class="list-content">
               {% trans explore=url('firefox') %}
                 <a href={{ explore }}>Explore</a> the entire family for Firefox products designed to respect your privacy.
@@ -50,7 +50,7 @@
           </li>
           <li>
             <section class="has-icon">
-              <img class="list-icon" alt="" src="{{ static('protocol/img/icons/desktop.svg') }}" width="30" height="30" color="black">
+              <img class="list-icon" alt="" src="{{ static('protocol/img/icons/desktop.svg') }}" width="30" height="30">
               <p class="list-content">
               {% trans download=url('firefox.new') %}
                 <a href={{ download }}>Download</a> the Firefox browser for your mobile device or desktop
@@ -71,7 +71,7 @@
           <p class="error-helper">{{ _('Did you make a left at that last URL instead of a right? No problem. Here are some tips to get you back on your way:') }}</p>
         </header>
         <div class="error-content">
-          <ul class="prose">
+          <ul class="mzp-u-list-style">
             <li class="fallback-list-content">{{ _('If you typed in the address, check your spelling. Could just be a typo.') }}</li>
             <li class="fallback-list-content">
             {% trans bugzilla='https://bugzilla.mozilla.org/enter_bug.cgi?product=www.mozilla.org' %}
