@@ -22,7 +22,7 @@
   {% set _utm_content = 'none' %}
 {% endif %}
 
-{% if variation %} 
+{% if variation %}
   {% set _utm_campaign = 'hvt-welcome-8' %}
 {% else %}
   {% set _utm_campaign = 'welcome-8-protection' %}
@@ -32,7 +32,7 @@
 {% block body_class %}{{ super() }} welcome-page8 {{variation_name}} {% endblock %}
 
 {% block experiments %}
-  {% if switch('welcome-8-experiment'), ['en', 'de', 'fr']%}
+  {% if switch('welcome-8-experiment', ['en', 'de', 'fr']) %}
     {{ js_bundle('firefox_welcome_page8_traffic_cop') }}
   {% endif %}
 {% endblock %}
