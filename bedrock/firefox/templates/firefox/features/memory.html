@@ -2,70 +2,60 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% add_lang_files "firefox/shared" %}
+{% from "macros-protocol.html" import feature_card, picto_card with context %}
 
-{% extends "firefox/features/base.html" %}
+{% extends "firefox/base/base-protocol.html" %}
 
-{% block page_title %}{{ _('Firefox Browser: Use less memory, get more speed') }}{% endblock %}
-{% block page_desc %}{{ _('Is your computer slow? Your browser might be using too much memory. Switch to Firefox today for more speed.') }}{% endblock %}
+{% block page_title %}{{ ftl('features-memory-firefox-browser-use-less') }}{% endblock %}
+{% block page_desc %}{{ ftl('features-memory-is-your-computer-slow-your') }}{% endblock %}
 
 {% block page_css %}
-  {{ super() }}
   {{ css_bundle('firefox-features-hub-detail') }}
 {% endblock %}
 
 {% block body_id %}firefox-features-memory{% endblock %}
 
-{% block features_header_content %}
-  <h1><span>{{ _('Less memory usage than Chrome') }}</span></h1>
-  <p class="tagline">{{ _('If your web browser uses too much memory, switch to Firefox.') }}</p>
-{% endblock %}
+{% block content %}
+<header class="c-hero">
+  <div class="mzp-l-content c-hero-content">
+    <img class="c-hero-icon" src="{{ static('img/firefox/features/index/feature_icons/memory_orange.svg')}}" alt="">
+    <h1 class="c-hero-title">{{ ftl('features-memory-less-memory-usage-than-chrome') }}</h1>
+    <p class="c-hero-desc">{{ ftl('features-memory-if-your-web-browser-uses') }}</p>
+    <div class="c-hero-cta">
+      {{ download_firefox(dom_id='features-header-download', download_location='primary cta') }}
+    </div>
+  </div>
+</header>
 
-{% block features_list %}
-<section class="key-features-section main">
-  <div class="content">
-    <section class="key-feature memory-feature-1">
-      <div class="key-feature-content">
-        <h2>{{ _('Speed up your computer') }}</h2>
-        <p>
-        {% trans %}
-          Every computer program you run takes up some memory. When too much is used,
-          your system can slooooowww down. Firefox aims for a balance — using enough
-          memory to let you browse smoothly and leaving plenty of memory to keep your
-          computer responsive.
-        {% endtrans %}
-        </p>
-      </div>
-    </section>
+<div class="mzp-l-content main-content">
+  {% call feature_card(
+    title=ftl('features-memory-speed-up-your-computer'),
+    image_url='img/firefox/features/thumbnails/memory/fast.png',
+    aspect_ratio='mzp-has-aspect-1-1',
+    class='mzp-l-card-feature-right-half mzp-t-firefox',
+  ) %}
+    <p>{{ ftl('features-memory-every-computer-program-you') }}</p>
+  {% endcall %}
 
-    <section class="key-feature memory-feature-2">
-      <div class="key-feature-content">
-        <h2>{{ _('Stop running out of memory') }}</h2>
-        <p>
-        {% trans url='https://blog.mozilla.org/firefox/fx54memorytest/' %}
-          <a href="{{ url }}">Chrome uses up to 1.77x more memory than Firefox</a>.
-          If your computer is already low on memory, this can cause a significant slowdown.
-          Using Firefox’s latest version with multi-process can result in more available
-          memory to run your favorite programs.
-        {% endtrans %}
-        </p>
-      </div>
-    </section>
+  {% call feature_card(
+    title=ftl('features-memory-stop-running-out-of-memory'),
+    image_url='img/firefox/features/thumbnails/memory.png',
+    aspect_ratio='mzp-has-aspect-1-1',
+    class='mzp-l-card-feature-left-half mzp-t-firefox',
+  ) %}
+    <p>{{ ftl('features-memory-chrome-uses-up-to-177x-more', url='https://blog.mozilla.org/firefox/fx54memorytest/') }}</p>
+  {% endcall %}
 
-    <section class="key-feature memory-feature-3">
-      <div class="key-feature-content">
-        <h2>{{ _('Browse faster, privately') }}</h2>
-        <p>
-        {% trans url=url('firefox.features.private-browsing') %}
-          Explore the web faster with <a href="{{ url }}">Firefox Private Browsing</a>.
-          Only Firefox’s private mode includes tracking protection which blocks ads with
-          trackers from loading on pages. Decluttering sites means web pages can load
-          faster.
-        {% endtrans %}
-        </p>
-      </div>
-    </section>
+  {% call feature_card(
+    title=ftl('features-memory-browse-faster-privately'),
+    image_url='img/firefox/features/thumbnails/private-browsing.jpg',
+    aspect_ratio='mzp-has-aspect-1-1',
+    class='mzp-l-card-feature-right-half mzp-t-firefox',
+  ) %}
+    <p>{{ ftl('features-memory-explore-the-web-faster-with', url=url('firefox.features.private-browsing')) }}</p>
+  {% endcall %}
+</div>
 
-  </div> {#--/.content--#}
-</section>
+{% include "firefox/features/includes/features-content.html" %}
+
 {% endblock %}

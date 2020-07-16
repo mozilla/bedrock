@@ -189,7 +189,8 @@
     },
     {
       "files": [
-        "css/firefox/features/detail.scss"
+        "css/firefox/features/detail.scss",
+        "css/firefox/features/features-cards.scss"
       ],
       "name": "firefox-features-hub-detail"
     },
@@ -516,7 +517,8 @@
     },
     {
       "files": [
-        "css/firefox/features/index.scss"
+        "css/firefox/features/index.scss",
+        "css/firefox/features/features-cards-index.scss"
       ],
       "name": "firefox-features-index"
     },
@@ -531,12 +533,6 @@
         "css/protocol/protocol.scss"
       ],
       "name": "protocol-core"
-    },
-    {
-      "files": [
-        "css/firefox/features/common.scss"
-      ],
-      "name": "firefox-features-hub-common"
     },
     {
       "files": [
