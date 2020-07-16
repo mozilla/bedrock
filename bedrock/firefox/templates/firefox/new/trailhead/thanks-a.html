@@ -1,0 +1,83 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros-protocol.html" import hero, picto_card with context %}
+
+{% extends "firefox/new/trailhead/thanks.html" %}
+
+{% block extrahead %}
+  {{ css_bundle('protocol-core') }}
+  {{ css_bundle('firefox_exp_thanks') }}
+{% endblock %}
+
+{% block site_header %}
+  {% include 'includes/protocol/navigation/menu-firefox/index.html' %}
+{% endblock %}
+
+{% block content %}
+<main role="main">
+  <div class="mzp-c-notification-bar mzp-t-warning unsupported">
+    <p>
+      {{ ftl('firefox-new-youre-using-an-insecure-outdated', url='https://support.mozilla.org/kb/end-support-windows-xp-and-vista') }}
+    </p>
+  </div>
+  <div class="mzp-c-notification-bar mzp-t-success auto-download">
+    {# fallback_url is replaced by the platform download link via JS, but if
+       something fails the user should still get a link to a working download path. #}
+    <p>
+      {{ ftl('firefox-new-your-firefox-new-should-begin', id='direct-download-link', fallback_url=url('firefox.all'))}}
+    </p>
+  </div>
+
+  {% call hero(
+    title='Great decision! Your download has started.',
+    desc='Follow the easy steps below to complete your switch.',
+    class='mzp-has-image mzp-t-product-firefox t-switch',
+    include_cta=True,
+    heading_level=1
+  ) %}
+
+    <div id="download-button-wrapper-desktop">
+      {{ download_firefox(force_direct=true, dom_id='primary-download-button') }}
+    </div>
+
+  {% endcall %}
+
+  <section class="c-steps mzp-l-content">
+    <ol class="c-steps-list">
+      <li class="c-steps-item">Install Firefox and open it up.</li>
+      <li class="c-steps-item">Follow <a href="https://support.mozilla.org/kb/import-bookmarks-google-chrome">this tutorial</a> to import your passwords, bookmarks, browsing history, and other data from Chrome.</li>
+      <li class="c-steps-item">Enjoy exploring the internet with more speed and privacy.</li>
+    </ol>
+  </section>
+
+  <section class="c-share">
+    <div class="mzp-l-content">
+      <h2 class="c-share-title">Spread the word about Firefox and help your favorite people say goodbye to Chrome.</h2>
+
+      {% set share_url = settings.CANONICAL_URL + '/firefox/new/' %}
+      <ul class="c-share-options">
+        <li>
+          <a class="facebook" data-link-type="social share" data-link-name="Facebook" href="https://www.facebook.com/sharer/sharer.php?s=100&p[url]={{ share_url|urlencode }}">Share to Facebook</a>
+        </li>
+        <li>
+          {% set tweet_text = '🔥 Firefox makes switching from Chrome really fast. Try it out!' %}
+          <a class="twitter" data-link-type="social share" data-link-name="Twitter" href="https://www.twitter.com/intent/tweet?url={{ share_url|urlencode }}&text={{ tweet_text|urlencode }}">Send a tweet</a>
+        </li>
+        <li>
+          {% set email_subject = 'Switch to Firefox'|mailtoencode %}
+          {% set email_intro = 'Hey,'|mailtoencode %}
+          {% set email_start = 'Firefox makes switching from Chrome really fast. I like it a lot, and you should try it.'|mailtoencode %}
+          {% set email_end = 'Check it out and let me know what you think:'|mailtoencode %}
+
+          {% set email_body = email_intro + '%0D%0A%0D%0A' + email_start + '%0D%0A%0D%0A' + email_end + '%20' + share_url|urlencode %}
+          <a class="email" data-link-type="social share" data-link-name="Email" href="{{ 'mailto:?subject=%s&body=%s'|format(email_subject, email_body)|e }}">Send an email</a>
+        </li>
+      </ul>
+
+      <p>Still not convinced that switching to Firefox is easy? <a href="https://support.mozilla.org/kb/switching-chrome-firefox">Learn More</a></p>
+    </div>
+  </section>
+</main>
+{% endblock %}

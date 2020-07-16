@@ -662,6 +662,15 @@ class TestFirefoxNew(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ['firefox/new/trailhead/thanks.html']
 
+    @patch.object(views, 'ftl_file_is_active', lambda *x: True)
+    def test_thanks_a_template(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?v=a')
+        req.locale = 'en-US'
+        view = views.DownloadThanksView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/new/trailhead/thanks-a.html']
+
     @patch.object(views, 'ftl_file_is_active', lambda *x: False)
     def test_thanks_old_template(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/')

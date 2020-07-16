@@ -129,6 +129,12 @@
     },
     {
       "files": [
+        "css/firefox/new/trailhead/exp-thanks.scss"
+      ],
+      "name": "firefox_exp_thanks"
+    },
+    {
+      "files": [
         "css/firefox/new/trailhead/download-yandex.scss"
       ],
       "name": "firefox_new_download_yandex"
