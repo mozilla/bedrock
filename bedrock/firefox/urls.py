@@ -43,7 +43,7 @@ urlpatterns = (
     page('firefox/enterprise', 'firefox/enterprise/index.html'),
     page('firefox/enterprise/signup', 'firefox/enterprise/signup.html'),
     page('firefox/enterprise/signup/thanks', 'firefox/enterprise/signup-thanks.html'),
-    page('firefox/facebookcontainer', 'firefox/facebookcontainer/index.html'),
+    page('firefox/facebookcontainer', 'firefox/facebookcontainer/index.html', ftl_files=['firefox/facebook_container']),
 
     page('firefox/features', 'firefox/features/index.html',
          ftl_files=['firefox/features/shared', 'firefox/features/index']),

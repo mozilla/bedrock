@@ -9,8 +9,8 @@
 
 {% set addon_url = "https://addons.mozilla.org/firefox/addon/facebook-container/?src=external-www.mozilla.org-facebookcontainer&utm_source=www.mozilla.org-facebookcontainer&utm_medium=referral" %}
 
-{% block page_title %}{{_('Facebook Container for Firefox | Prevent Facebook from seeing what websites you visit.')}}{% endblock %}
-{% block page_desc %}{{_('Millions of people around the world trust Firefox Web browsers on Android, iOS and desktop computers. Fast. Private. Download now!')}}{% endblock %}
+{% block page_title %}{{ ftl('facebook-container-facebook-container-for-firefox') }}{% endblock %}
+{% block page_desc %}{{ ftl('facebook-container-millions-of-people-around') }}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('firefox_facebook_container') }}
@@ -19,24 +19,22 @@
 {% block content %}
 <main role="main">
   {% call hero(
-    title=_('Facebook. Well contained. Keep the rest of your life to yourself.'),
+    title=ftl('facebook-container-facebook-well-contained-keep'),
     class='mzp-t-dark mzp-has-image mzp-t-product-firefox',
     include_cta=True,
     heading_level=1) %}
 
   <div class="mzp-c-hero-desc">
-    <a class="mzp-c-cta-link extension-cta" href="{{ addon_url }}">{{ _('Get the Facebook Container Extension') }}</a>
+    <a class="mzp-c-cta-link extension-cta" href="{{ addon_url }}">{{ ftl('facebook-container-get-the-facebook-container') }}</a>
 
     <div class="firefox-cta">
-      <p>{{ _('Download Firefox and get the Facebook Container Extension') }}</p>
+      <p>{{ ftl('facebook-container-download-firefox-and-get-the') }}</p>
       {{ download_firefox(alt_copy=ftl('download-button-download-firefox'), locale_in_transition=true, dom_id="download-firefox-cta") }}
     </div>
 
     <div class="mobile-cta">
-      <p>{{ _('The Facebook Container Extension is not available on mobile devices.') }}</p>
-      {# L10n: For German, all instances of the string 'Firefox Focus' must be 'Firefox Klar' (as done on https://www.mozilla.org/de/firefox/focus/) #}
-
-      <p>{{ _('Try <strong>Firefox Focus</strong>, the privacy browser for Android and iOS.') }}</p>
+      <p>{{ ftl('facebook-container-the-facebook-container-extension') }}</p>
+      <p>{{ ftl('facebook-container-try-firefox-focus-the-privacy') }}</p>
 
       <ul>
         <li>
@@ -74,34 +72,28 @@
 
   <section class="mzp-l-content mzp-l-card-third">
     <div class="mzp-c-card">
-      <h3 class="mzp-c-card-title">{{ _('Opt out on your terms') }}</h3>
+      <h3 class="mzp-c-card-title">{{ ftl('facebook-container-opt-out-on-your-terms') }}</h3>
       <p>
-      {% trans fbcontainer=addon_url %}
-        Facebook can track almost all your web activity and tie it to your Facebook identity. If that’s too much for you, the <a href="{{ fbcontainer }}">Facebook Container extension</a> isolates your identity into a separate container tab, making it harder for Facebook to track you on the web outside of Facebook.
-      {% endtrans %}
+      {{ ftl('facebook-container-facebook-can-track-almost', fbcontainer=addon_url) }}
       </p>
     </div>
     <div class="mzp-c-card">
-      <h3 class="mzp-c-card-title">{{ _('Install and contain') }}</h3>
+      <h3 class="mzp-c-card-title">{{ ftl('facebook-container-install-and-contain') }}</h3>
       <p>
-      {% trans fbcontainer=addon_url %}
-        Installing the <a href="{{ fbcontainer }}">extension</a> is easy and, once activated, will open Facebook in a blue tab each time you use it. Use and enjoy Facebook normally. Facebook will still be able to send you advertising and recommendations on their site, but it will be much harder for Facebook to use your activity collected <strong>off Facebook</strong> to send you ads and other targeted messages.
-      {% endtrans %}
+      {{ ftl('facebook-container-installing-the-extension-is', fbcontainer=addon_url) }}
       </p>
     </div>
     <div class="mzp-c-card">
-      <h3 class="mzp-c-card-title">{{ _('About Firefox and Mozilla') }}</h3>
+      <h3 class="mzp-c-card-title">{{ ftl('facebook-container-about-firefox-and-mozilla') }}</h3>
       <p>
-      {% trans mozilla=url('mozorg.home') %}
-        We’re backed by <a href="{{ mozilla }}">Mozilla</a>, the not-for-profit organization that puts people over profit to give everyone more power online. We created this extension because we believe that you should have easy-to-use tools that help you manage your privacy and security.
-      {% endtrans %}
+      {{ ftl('facebook-container-were-backed-by-mozilla-the', mozilla=url('mozorg.home')) }}
       </p>
     </div>
   </section>
 
   <section class="firefox-cta">
     {% call call_out_compact(
-      title=_('Browse freely with Firefox today.'),
+      title=ftl('facebook-container-browse-freely-with-firefox'),
       class='mzp-t-dark',
       heading_level=2)
     %}
