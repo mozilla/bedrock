@@ -51,9 +51,9 @@ $image-path: '/media/protocol/img';
 
     .welcome-page8.variation-2-image &,
     .welcome-page8.variation-3-animation & {
-      max-width: $content-max;
-      padding-right: 0;
-      padding-left: 0;
+        max-width: $content-max;
+        padding-right: 0;
+        padding-left: 0;
     }
 
     @media #{$mq-md} {
@@ -508,7 +508,7 @@ $image-path: '/media/protocol/img';
 .welcome-page8.variation-3-animation {
     .image-container {
         margin: 35px auto 70px auto;
-        max-width: 1100px;
+        max-width: 1000px;
 
         @media (max-width: 767px) {
             margin: 35px auto 45px auto;
