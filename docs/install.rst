@@ -24,6 +24,11 @@ There are two primary methods of installing bedrock: Docker and Local. Whichever
 After these basic steps you can choose your install method below. Docker is the easiest and recommended way, but local is also possible
 and may be preferred by people for various reasons.
 
+You should also install our git pre-commit hooks. Our setup uses the `pre-commit <https://pre-commit.com/>`_
+framework. Install the framework using the instructions on their site depending on your platform, then run
+``pre-commit install``. After that it will check your Python, JS, and CSS files before you commit to save you
+time waiting for the tests to run in our CI before noticing a linting error.
+
 Docker Installation
 -------------------
 
