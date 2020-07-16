@@ -1,0 +1,217 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../../protocol/css/includes/lib';
+@import '../../../../protocol/css/components/notification-bar';
+@import '../../../../protocol/css/components/hero';
+
+// keep the button technically visible to grab correct download link for
+// backup download link
+.js #download-button-wrapper-desktop {
+    height: 1px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+
+    #primary-download-button {
+        margin: 1px 0 0 1px;
+    }
+}
+
+// Notification bar for unsupported systems
+.mzp-c-notification-bar {
+    &.unsupported {
+        display: none;
+    }
+
+    .windows.xpvista & {
+        &.unsupported {
+            display: block;
+        }
+    }
+}
+
+.download-another-language-link {
+    @include text-body-sm;
+    padding: $layout-sm 0;
+    text-align: center;
+}
+
+@media #{$mq-sm} {
+    #outer-wrapper .mzp-c-notification-bar {
+        height: 53px;
+        left: 0;
+        margin: $layout-2xs auto;
+        position: absolute;
+        right: 0;
+        width: $content-md;
+        z-index: 2;
+    }
+
+    .mzp-c-hero-body {
+        margin-top: $layout-xl;
+    }
+}
+
+// Switch from Chrome styles.
+
+.t-switch.mzp-c-hero {
+    &.mzp-t-product-firefox .mzp-c-hero-title {
+        @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-sm.png', auto, 48px);
+        padding-top: $layout-md + 48px;
+    }
+
+    @media #{$mq-md} {
+        &:before {
+            background-image: url('/media/img/firefox/switch/switch.png'), url('/media/img/firefox/switch/bg.svg');
+            background-position: 14px center, top left;
+            background-size: 592px 302px, auto 100%;
+            background-repeat: no-repeat;
+            bottom: 0;
+            content: '';
+            display: block;
+            left: 50%;
+            position: absolute;
+            top: 0;
+            width: 50%;
+
+            @media #{$mq-high-res} {
+                background-image: url('/media/img/firefox/switch/switch-high-res.png'), url('/media/img/firefox/switch/bg.svg');
+
+                html[dir=rtl] & {
+                    background-image: url('/media/img/firefox/switch/switch-rtl-high-res.png'), url('/media/img/firefox/switch/bg-rtl.svg');
+                }
+            }
+        }
+    }
+
+    @media #{$mq-lg} {
+        .mzp-l-content {
+            padding-top: 0;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Steps
+
+.c-steps {
+    text-align: center;
+}
+
+.c-steps-list {
+    counter-reset: step-counter;
+}
+
+.c-steps-item {
+    @include font-size(18px);
+    font-weight: bold;
+    display: inline-block;
+    width: 214px;
+    vertical-align: top;
+    margin: 0 $layout-sm $layout-sm;
+
+    &:before {
+        @include font-size(42px);
+        align-items: center;
+        background-color: $color-violet-50;
+        background-image: url('/media/img/firefox/switch/one.svg');
+        background-size: 1.8em auto;
+        background-position: center center;
+        background-repeat: no-repeat;
+        border-radius: 100%;
+        color: #fff;
+        content: counter(step-counter);
+        counter-increment: step-counter;
+        display: flex;
+        font-weight: bold;
+        height: 1.7em;
+        justify-content: center;
+        margin: 0 auto $spacing-md auto;
+        width: 1.7em;
+    }
+
+    &:nth-child(2):before {
+        background-image: url('/media/img/firefox/switch/two.svg');
+    }
+
+    &:nth-child(3):before {
+        background-image: url('/media/img/firefox/switch/three.svg');
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Social Share
+
+.c-share-title {
+    @include text-body-lg;
+    @include font-firefox;
+}
+
+.c-share {
+    margin-top: $layout-md;
+    padding-top: $layout-sm;
+    background-color: $color-marketing-gray-20;
+}
+
+.c-share-options li a {
+    @include bidi(((padding-left, 24px + $spacing-sm, padding-right, 0),));
+    display: inline-block;
+    position: relative;
+
+    &:before {
+        @include bidi(((left, 0, right, auto),));
+        background-image: url('/media/img/logos/social/social-icon-sprite-dark.svg');
+        background-size: 24px auto;
+        background-repeat: no-repeat;
+        content: '';
+        display: inline-block;
+        height: 22px;
+        width: 24px;
+        vertical-align: bottom;
+        position: absolute;
+        bottom: 0;
+    }
+
+    &.twitter:before {
+        background-position: 0 3px;
+    }
+
+    &.facebook {
+        &:before {
+            background-position: 4px -81px;
+        }
+
+        @media #{$mq-md} {
+            @include bidi(((padding-left, 18px + $spacing-sm, padding-right, 0),));
+
+            &:before {
+                background-position: 0 -81px;
+                width: 18px;
+            }
+
+        }
+    }
+
+    &.email:before {
+        background-position: 0 -109px;
+    }
+}
+
+@media #{$mq-md} {
+
+    @supports (display: grid) {
+        .c-share-options {
+            margin: $layout-sm 0;
+            display: grid;
+            grid-gap: $layout-lg;
+            grid-template-columns: repeat(3, max-content);
+            grid-template-rows: auto;
+        }
+    }
+}

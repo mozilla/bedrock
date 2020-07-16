@@ -667,11 +667,11 @@ class WhatsNewIndiaView(WhatsnewView):
 class DownloadThanksView(L10nTemplateView):
     ftl_files_map = {
         'firefox/new/trailhead/thanks.html': ['firefox/new/download'],
-        'firefox/new/trailhead/thanks-b.html': ['firefox/new/download'],
+        'firefox/new/trailhead/thanks-a.html': ['firefox/new/download']
     }
 
     # place expected ?v= values in this list
-    variations = []
+    variations = ['a']
 
     def get_context_data(self, **kwargs):
         ctx = super(DownloadThanksView, self).get_context_data(**kwargs)
@@ -687,12 +687,15 @@ class DownloadThanksView(L10nTemplateView):
 
     def get_template_names(self):
         variant = self.request.GET.get('v', None)
+        locale = l10n_utils.get_locale(self.request)
 
         # ensure variant matches pre-defined value
         if variant not in self.variations:
             variant = None
 
-        if ftl_file_is_active('firefox/new/download'):
+        if locale == 'en-US' and variant == 'a':
+            template = 'firefox/new/trailhead/thanks-a.html'
+        elif ftl_file_is_active('firefox/new/download'):
             template = 'firefox/new/trailhead/thanks.html'
         else:
             template = 'firefox/new/protocol/thanks.html'
