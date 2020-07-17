@@ -733,7 +733,7 @@ The English source template, created by a developer, lives under
 
 .. code-block:: jinja
 
-    {% extends "base-pebbles.html" %}
+    {% extends "base-protocol.html" %}
 
     {% block content %}
       <img src="someimage.jpg">
