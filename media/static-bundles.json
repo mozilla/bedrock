@@ -233,14 +233,6 @@
     },
     {
       "files": [
-        "css/pebbles/global.scss",
-        "css/pebbles/protocol-nav.scss",
-        "css/pebbles/protocol-footer.scss"
-      ],
-      "name": "pebbles"
-    },
-    {
-      "files": [
         "css/mozorg/mpl-1-1.scss"
       ],
       "name": "mpl-1-1"
@@ -277,15 +269,9 @@
     },
     {
       "files": [
-        "css/pebbles/base/oldIE.scss"
+        "css/protocol/common-old-ie.scss"
       ],
-      "name": "oldIE-pebbles"
-    },
-    {
-      "files": [
-        "css/protocol/oldIE.scss"
-      ],
-      "name": "protocol-oldIE"
+      "name": "common-old-ie"
     },
     {
       "files": [
@@ -322,12 +308,6 @@
         "css/foundation/feed-icon-guidelines.scss"
       ],
       "name": "foundation-feed-icon-guidelines"
-    },
-    {
-      "files": [
-        "css/pebbles/basic.scss"
-      ],
-      "name": "pebbles-basic"
     },
     {
       "files": [
@@ -518,7 +498,7 @@
       "files": [
         "css/protocol/protocol.scss"
       ],
-      "name": "protocol-core"
+      "name": "common"
     },
     {
       "files": [
@@ -1226,9 +1206,7 @@
     {
       "files": [
         "js/libs/jquery-3.4.1.min.js",
-        "js/libs/spin.min.js",
         "js/base/mozilla-utils.js",
-        "js/newsletter/form.js",
         "js/base/mozilla-client.js",
         "js/base/class-list-polyfill.js",
         "js/base/mozilla-run.js",
@@ -1255,7 +1233,6 @@
     },
     {
       "files": [
-        "js/libs/jquery-3.4.1.min.js",
         "js/base/mozilla-utils.js",
         "js/base/mozilla-client.js",
         "js/base/class-list-polyfill.js",
@@ -1279,34 +1256,7 @@
         "js/base/fxa-utm-referral.js",
         "js/base/fxa-utm-referral-init.js"
       ],
-      "name": "common-protocol"
-    },
-    {
-      "files": [
-        "js/base/mozilla-utils.js",
-        "js/base/mozilla-client.js",
-        "js/base/class-list-polyfill.js",
-        "js/base/mozilla-run.js",
-        "protocol/js/protocol-supports.js",
-        "protocol/js/protocol-utils.js",
-        "protocol/js/protocol-menu.js",
-        "protocol/js/protocol-navigation.js",
-        "js/base/protocol/init-navigation.js",
-        "protocol/js/protocol-lang-switcher.js",
-        "js/base/protocol/init-lang-switcher.js",
-        "protocol/js/protocol-details.js",
-        "protocol/js/protocol-footer.js",
-        "js/base/base-page-init.js",
-        "js/base/core-datalayer.js",
-        "js/base/core-datalayer-init.js",
-        "js/base/search-params.js",
-        "js/base/uitour-lib.js",
-        "js/base/mozilla-fxa-link.js",
-        "js/base/mozilla-fxa-link-init.js",
-        "js/base/fxa-utm-referral.js",
-        "js/base/fxa-utm-referral-init.js"
-      ],
-      "name": "common-protocol-no-jquery"
+      "name": "common-no-jquery"
     },
     {
       "files": [
