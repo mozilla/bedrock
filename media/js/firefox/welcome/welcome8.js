@@ -16,10 +16,26 @@
         });
     }
 
+    function handleOpenProtectionReportLink(e) {
+        e.preventDefault();
+        Mozilla.UITour.showProtectionReport();
+
+        window.dataLayer.push({
+            'event': 'in-page-interaction',
+            'eAction': 'link click',
+            'eLabel': 'See what`s blocked'
+        });
+    }
+
     Mozilla.UITour.ping(function() {
-        document.querySelectorAll('.protection-report').forEach(
+        document.querySelectorAll('.protection-report.primary-cta').forEach(
             function(button) {
                 button.addEventListener('click', handleOpenProtectionReport, false);
+            }
+        );
+        document.querySelectorAll('.protection-report:not(.primary-cta)').forEach(
+            function(button) {
+                button.addEventListener('click', handleOpenProtectionReportLink, false);
             }
         );
     });
