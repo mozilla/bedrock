@@ -2044,11 +2044,6 @@ escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
   integrity sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
 
-eslint-plugin-no-jquery@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-no-jquery/-/eslint-plugin-no-jquery-2.5.0.tgz#6c12e3aae172bfd3363b7ac8c3f3e944704867f4"
-  integrity sha512-RrQ380mUJJKdjgpQ/tZAJ3B3W1n3LbVmULooS2Pv5pUDcc5uVHVSJMTdUlsbvQyfo6hWP2LJ4FbOoDzENWcF7A==
-
 eslint-plugin-json@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-json/-/eslint-plugin-json-2.1.1.tgz#7b9c4da2121f6f48d44efceb9a99ac0d4d12b299"
@@ -2056,6 +2051,11 @@ eslint-plugin-json@^2.1.1:
   dependencies:
     lodash "^4.17.15"
     vscode-json-languageservice "^3.5.1"
+
+eslint-plugin-no-jquery@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-no-jquery/-/eslint-plugin-no-jquery-2.5.0.tgz#6c12e3aae172bfd3363b7ac8c3f3e944704867f4"
+  integrity sha512-RrQ380mUJJKdjgpQ/tZAJ3B3W1n3LbVmULooS2Pv5pUDcc5uVHVSJMTdUlsbvQyfo6hWP2LJ4FbOoDzENWcF7A==
 
 eslint-scope@^5.0.0:
   version "5.0.0"
@@ -3988,9 +3988,9 @@ lodash.isfinite@^3.3.2:
   integrity sha1-+4m2WpqAKBgz8LdHizpRBPiY67M=
 
 lodash@^4.0.0, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@~4.17.10:
-  version "4.17.15"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
-  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
+  version "4.17.19"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
+  integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
 
 log-symbols@^2.2.0:
   version "2.2.0"
