@@ -4,18 +4,16 @@
 
 {% from "macros.html" import google_play_button, send_to_device with context %}
 
-{% add_lang_files "firefox/mobile-2019" %}
-
 {% extends "firefox/base/base-protocol.html" %}
 
 {% block page_css %}
   {{ css_bundle('firefox-mobile-get-app') }}
 {% endblock %}
 
-{% block page_title %}{{ _('Download the Firefox Browser on your Mobile for iOS and Android') }} | {{ _('Firefox') }}{% endblock %}
-{% block page_desc %}{{ _('Firefox Browser for Mobile blocks over 2000 trackers by default, giving you the privacy you deserve and the speed you need in a private mobile browser.') }}{% endblock %}
-{% block page_og_title %}{{ _('Get the mobile browser built for you, not advertisers') }} | {{ _('Firefox') }}{% endblock %}
-{% block page_og_desc %}{{ _('Check out Firefox again. It’s fast, private and on your side. For iOS and Android.') }}{% endblock %}
+{% block page_title %}{{ ftl('firefox-mobile-download-the-firefox-browser') }} | {{ ftl('firefox-mobile-firefox') }}{% endblock %}
+{% block page_desc %}{{ ftl('firefox-mobile-firefox-browser-for-mobile') }}{% endblock %}
+{% block page_og_title %}{{ ftl('firefox-mobile-get-the-mobile-browser-built') }} | {{ ftl('firefox-mobile-firefox') }}{% endblock %}
+{% block page_og_desc %}{{ ftl('firefox-mobile-check-out-firefox-again-its') }}{% endblock %}
 
 {% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
 {% set android_url = firefox_adjust_url('android', 'mobile-get-app-page') %}
@@ -30,14 +28,14 @@
 {% block content %}
 <main role="main" class="mzp-l-content mzp-t-narrow mzp-t-firefox">
   <section>
-    <h1>{{ _('Get Firefox for mobile') }}</h1>
+    <h1>{{ ftl('firefox-mobile-get-firefox-mobile') }}</h1>
     {% if show_send_to_device %}
-      <p>{{ _('Send a download link to your phone. ') }}</p>
+      <p>{{ ftl('firefox-mobile-send-a-download-link-to-your') }}</p>
       {{ send_to_device(include_title=False, message_set='fx-mobile-download-desktop', class='vertical') }}
     {% else %}
-      <p>{{ _('Scan the QR code to get started') }}</p>
+      <p>{{ ftl('firefox-mobile-scan-the-qr-code-to-get-started') }}</p>
       <div class="qr-code-wrapper">
-        <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}" id="firefox-qr" data-mozillaonline-link="{{ static('img/firefox/mobile/protocol/qr-firefox-mozillaonline.png') }}" alt="{{ _('QR code to scan for Firefox') }}">
+        <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}" id="firefox-qr" data-mozillaonline-link="{{ static('img/firefox/mobile/protocol/qr-firefox-mozillaonline.png') }}" alt="">
       </div>
     {% endif %}
   </section>
