@@ -549,6 +549,7 @@ $url-download-link-hover: svg-url($download-link-hover);
             right: $layout-md;
             bottom: $layout-md;
             left: calc(560px + #{$layout-md * 2});
+            z-index:0;
         }
     }
 
@@ -561,6 +562,8 @@ $url-download-link-hover: svg-url($download-link-hover);
 
 // form
 .fxa-form-cta {
+    position:relative;
+    z-index:1;
     @include text-body-xs;
     max-width: 560px;
     margin: 0 auto;
