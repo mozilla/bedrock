@@ -6,7 +6,7 @@ from pypom import Page, Region
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
-from pages.regions.newsletter import NewsletterEmbedForm, LegacyNewsletterEmbedForm
+from pages.regions.newsletter import NewsletterEmbedForm
 
 
 class ScrollElementIntoView:
@@ -46,10 +46,6 @@ class BasePage(ScrollElementIntoView, Page):
     @property
     def newsletter(self):
         return NewsletterEmbedForm(self)
-
-    @property
-    def legacy_newsletter(self):
-        return LegacyNewsletterEmbedForm(self)
 
     class Navigation(BaseRegion):
 

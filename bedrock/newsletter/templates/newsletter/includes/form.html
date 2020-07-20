@@ -5,124 +5,127 @@
 {% from "newsletter/includes/macros.html" import email_form_thankyou with context %}
 
 {% if not success %}
-  {% if form.errors %}
-    <div id="footer-email-errors">
-      {{ form.non_field_errors()|safe }}
-
-      <ul class="errorlist">
-        {% if form.email.errors %}
-          <li>{{ ftl('newsletter-form-please-enter-a-valid') }}</li>
-        {% endif %}
-
-        {% if form.lang.errors %}
-          <li>{{ form.lang.errors }}</li>
-        {% endif %}
-
-        {% if form.privacy.errors %}
-          <li>{{ ftl('newsletter-form-you-must-agree-to') }}</li>
-        {% endif %}
-      </ul>
-    </div>
-  {% else %}
-    <div id="footer-email-errors" class="hidden">
-      <ul class="errorlist"></ul>
-    </div>
-  {% endif %}
-
-  <form class="billboard newsletter-form{% if footer %} footer-newsletter-form{% endif %}{% if form.errors %} has-errors{% endif %}"
-        id="newsletter-form" action="{{ url('newsletter.subscribe') }}" method="post"{% if spinner_color %} data-spinner-color="{{ spinner_color }}"{% endif %}>
+  <form id="newsletter-form" class="mzp-c-newsletter-form" action="{{ url('newsletter.subscribe') }}" method="post">
     {{ form.newsletters|safe }}
     <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
 
     {% if include_title %}
-      <div class="form-title">
-        <h3>{{ title|d(ftl('newsletter-form-get-firefox-news'), true) }}</h3>
+    <header class="mzp-c-newsletter-header">
+      <h3 class="mzp-c-newsletter-title">{{ title|d(ftl('newsletter-form-get-firefox-news'), true) }}</h3>
       {% if subtitle %}
-        <h4>{{ subtitle }}</h4>
+      <h4 class="mzp-c-newsletter-subtitle">{{ subtitle }}</h4>
       {% endif %}
       {% if desc %}
-        <p>{{ desc }}</p>
+      <p class="mzp-c-newsletter-desc">{{ desc }}</p>
       {% endif %}
-      </div>
+    </header>
     {% endif %}
 
-    <div class="form-contents">
-      <div class="field field-email {% if form.email.errors %}form-field-error{% endif %}">
-        {% if email_placeholder and email_label %}
-          <label for="id_email">{{ email_label }}</label>
-          {{ field_with_attrs(form.email, placeholder=email_placeholder)|safe }}
-        {% else %}
-          {{ field_with_attrs(form.email, placeholder=ftl('newsletter-form-yournameexamplecom', fallback='newsletter-form-your-email-here'))|safe }}
-        {% endif %}
+    <fieldset class="mzp-c-newsletter-content">
+      {% if form.errors %}
+      <div class="mzp-c-form-errors" id="newsletter-errors">
+        {{ form.non_field_errors()|safe }}
+        <ul class="mzp-u-list-styled">
+          {% if form.email.errors %}
+            <li>{{ ftl('newsletter-form-please-enter-a-valid') }}</li>
+          {% endif %}
+
+          {% if form.lang.errors %}
+            <li>{{ form.lang.errors }}</li>
+          {% endif %}
+
+          {% if form.privacy.errors %}
+            <li>{{ ftl('newsletter-form-you-must-agree-to') }}</li>
+          {% endif %}
+        </ul>
       </div>
-
-      <div id="form-details">
-        {% if include_country %}
-          <div class="field field-country">
-            {{ form.country|safe }}
-          </div>
-        {% endif %}
-        {% if include_language %}
-          <div class="field field-language {% if form.lang.errors %}form-field-error{% endif %}">
-            {{ form.lang|safe }}
-          </div>
-        {% endif %}
-        <div class="field field-format">
-          {{ form.fmt|safe }}
-        </div>
-        <div class="field field-privacy {% if form.privacy.errors %}form-field-error{% endif %}">
-          {{ form.privacy|safe }}
-        </div>
-      </div>
-    </div>
-
-    <div class="form-submit">
-      <button type="submit" id="footer_email_submit" class="form-button {{ button_class }}" data-cta-type="Newsletter-{{ id }}" data-cta-text="Newsletter Sign Up">
-        {% if submit_text %}
-          {{ submit_text }}
-        {% else %}
-          {{ ftl('newsletter-form-sign-up-now', fallback='newsletter-form-sign-me-up') }}
-        {% endif %}
-      </button>
-
-      {% if details %}
-        <p class="form-details">
-          <small>{{ details }}</small>
-        </p>
-      {% else %}
-        <p class="form-details">
-          <small>
-            {# Issue 7460 `mozilla-and-you` is the ID for the Firefox newsletter, because history... #}
-            {% if id == 'mozilla-and-you' %}
-              {{ ftl('newsletter-form-we-will-only-send-firefox', fallback='newsletter-form-we-will-only-send') }}
-            {% else %}
-              {{ ftl('newsletter-form-we-will-only-send') }}
-            {% endif %}
-          </small>
-        </p>
       {% endif %}
 
-    </div>
+      <p>
+        <label for="id_email">
+        {% if email_label %}
+          {{ email_label }}
+        {% else %}
+          {{ ftl('newsletter-form-your-email-address') }}
+        {% endif %}
+        </label>
+        {% if email_placeholder %}
+          {% set placeholder = email_placeholder %}
+        {% else %}
+          {% set placeholder = ftl('newsletter-form-yournameexamplecom', fallback='newsletter-form-your-email-here') %}
+        {% endif %}
+        {{ field_with_attrs(form.email, placeholder=placeholder, class='mzp-js-email-field')|safe }}
+      </p>
 
-    <div id="newsletter-spinner" class="hidden"></div>
+      <div id="newsletter-details" class="mzp-c-newsletter-details">
+        {% if include_country %}
+          <p>{{ form.country|safe }}</p>
+        {% endif %}
+
+        {% if include_language %}
+          <p>{{ form.lang|safe }}</p>
+        {% else %}
+          <input type="hidden" name="lang" id="id_lang"  value="en">
+        {% endif %}
+
+        <fieldset class="mzp-u-inline">
+          <legend>{{ ftl('newsletter-form-format') }}</legend>
+          <p>
+            <label for="format-html" class="mzp-u-inline">
+              <input type="radio" id="format-html" name="fmt" value="H" checked> {{ ftl('newsletter-form-html') }}
+            </label>
+            <label for="format-text" class="mzp-u-inline">
+              <input type="radio" id="format-text" name="fmt" value="T"> {{ ftl('newsletter-form-text') }}
+            </label>
+          </p>
+        </fieldset>
+
+        <p>
+          <label for="privacy" class="mzp-u-inline">
+            <input type="checkbox" id="privacy" name="privacy" required aria-required="true"> {{ ftl('newsletter-form-im-okay-with-mozilla', url=url('privacy.notices.websites')) }}
+          </label>
+        </p>
+      </div>
+
+      <p class="mzp-c-form-submit">
+        <button type="submit" id="newsletter-submit" class="mzp-c-button {{ button_class }}" data-cta-type="Newsletter-{{ id }}" data-cta-text="Newsletter Sign Up">
+          {% if submit_text %}
+            {{ submit_text }}
+          {% else %}
+            {{ ftl('newsletter-form-sign-up-now', fallback='newsletter-form-sign-me-up') }}
+          {% endif %}
+        </button>
+
+        {% if details %}
+          <span class="mzp-c-fieldnote">{{ details }}</span>
+        {% else %}
+            <span class="mzp-c-fieldnote">
+              {# Issue 7460 `mozilla-and-you` is the ID for the Firefox newsletter, because history... #}
+              {% if id == 'mozilla-and-you' %}
+                {{ ftl('newsletter-form-we-will-only-send-firefox', fallback='newsletter-form-we-will-only-send') }}
+              {% else %}
+                {{ ftl('newsletter-form-we-will-only-send') }}
+              {% endif %}
+            </span>
+        {% endif %}
+      </p>
+    </fieldset>
   </form>
-  <div id="newsletter-form-thankyou" class="thank billboard newsletter-form hidden">
+
+  <div id="newsletter-thanks" class="mzp-c-newsletter-thanks">
     {% if thankyou_content %}
-    <div class="form-title">
       <h3>{{ thankyou_head }}</h3>
       <p>{{ thankyou_content }}</p>
-    </div>
     {% else %}
       {{ email_form_thankyou() }}
     {% endif %}
   </div>
+
 {% elif use_thankyou %}
-  <div id="newsletter-form" class="thank billboard newsletter-form footer-newsletter-form">
+  <div id="newsletter-thanks" class="mzp-c-newsletter-thanks">
     {% if thankyou_content %}
-    <div class="form-title">
       <h3>{{ thankyou_head }}</h3>
       <p>{{ thankyou_content }}</p>
-    </div>
     {% else %}
       {{ email_form_thankyou() }}
     {% endif %}

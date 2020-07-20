@@ -85,11 +85,9 @@
           title='Get the most out of Firefox Developer Edition',
           desc='Learn about Dev Edition and subscribe to the Mozilla Developer Newsletter.',
           button_class='mzp-t-product mzp-t-small',
-          include_language=False,
-          protocol_component=True) }}
+          include_language=False) }}
       {% else %}
         {{ email_newsletter_form(
-          protocol_component=True,
           spinner_color='#fff',
           button_class='mzp-c-button mzp-t-product') }}
       {% endif %}

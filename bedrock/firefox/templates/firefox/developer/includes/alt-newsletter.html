@@ -7,11 +7,9 @@
         title='Mozilla Developer Newsletter',
         desc=_('Get developer news, tricks and resources <br /> sent straight to your inbox.'),
         button_class='mzp-t-product',
-        include_language=False,
-        protocol_component=True) }}
+        include_language=False) }}
     {% else %}
       {{ email_newsletter_form(
-        protocol_component=True,
         spinner_color='#fff',
         button_class='mzp-c-button mzp-t-product') }}
     {% endif %}

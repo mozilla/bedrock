@@ -15,9 +15,9 @@
 
     <div class="newsletter-content">
       {% if LANG.startswith('en-') %}
-        {{ email_newsletter_form(protocol_component=true, newsletters='mozilla-foundation', title=ftl('newsletter-form-get-mozilla-updates')) }}
+        {{ email_newsletter_form(newsletters='mozilla-foundation', title=ftl('newsletter-form-get-mozilla-updates')) }}
       {% else %}
-        {{ email_newsletter_form(protocol_component=true) }}
+        {{ email_newsletter_form() }}
       {% endif %}
     </div>
   </aside>
