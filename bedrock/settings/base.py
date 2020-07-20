@@ -1509,6 +1509,7 @@ CSP_CONNECT_SRC = CSP_DEFAULT_SRC + [
     'logs.convertexperiments.com',
     '1003350.metrics.convertexperiments.com',
     '1003343.metrics.convertexperiments.com',
+    'sentry.prod.mozaws.net',
     FXA_ENDPOINT,
     FXA_ENDPOINT_MOZILLAONLINE,
 ]
