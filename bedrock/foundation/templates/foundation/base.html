@@ -47,9 +47,9 @@
 
       <div class="newsletter-content">
         {% if LANG.startswith('en-') %}
-          {{ email_newsletter_form(protocol_component=true, newsletters='mozilla-foundation', title=_('Sign up. Read up.<br> Make a difference.'), desc=_('Get the Mozilla newsletter and help us keep the Web free and open.'), button_class='button-red') }}
+          {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Sign up. Read up.<br> Make a difference.'), desc=_('Get the Mozilla newsletter and help us keep the Web free and open.'), button_class='button-red') }}
         {% else %}
-          {{ email_newsletter_form(protocol_component=true, button_class='button-red') }}
+          {{ email_newsletter_form(button_class='button-red') }}
         {% endif %}
       </div>
     </aside>

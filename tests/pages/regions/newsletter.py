@@ -93,17 +93,3 @@ class NewsletterEmbedForm(Region):
     def sign_up_successful(self):
         el = self.selenium.find_element(*self._thank_you_locator)
         return el.is_displayed()
-
-
-class LegacyNewsletterEmbedForm(NewsletterEmbedForm):
-
-    _root_locator = (By.ID, 'newsletter-form')
-    _email_locator = (By.ID, 'id_email')
-    _form_details_locator = (By.ID, 'form-details')
-    _country_locator = (By.ID, 'id_country')
-    _html_format_locator = (By.ID, 'id_fmt_0')
-    _text_format_locator = (By.ID, 'id_fmt_1')
-    _privacy_policy_checkbox_locator = (By.ID, 'id_privacy')
-    _privacy_policy_link_locator = (By.CSS_SELECTOR, 'label[for="id_privacy"] a')
-    _submit_button_locator = (By.ID, 'footer_email_submit')
-    _thank_you_locator = (By.CSS_SELECTOR, '#newsletter-form-thankyou h3')

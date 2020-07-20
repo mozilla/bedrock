@@ -94,7 +94,6 @@
     <div class="newsletter-content">
       {% if LANG.startswith('en-') %}
       {{ email_newsletter_form(
-            protocol_component=True,
             title=_('Love the Web?'),
             desc=_('Get the Mozilla newsletter and help us keep it open and free.')) }}
       {% else %}
