@@ -346,7 +346,7 @@ class TestWhatsNew(TestCase):
         """Should use id locale specific template for Firefox Lite"""
         req = self.rf.get('/firefox/whatsnew/')
         req.locale = 'id'
-        self.view(req, version='63.0')
+        self.view(req, version='79.0')
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/firefox-lite.id.html']
 
@@ -544,7 +544,7 @@ class TestWhatsNewFirefoxLite(TestCase):
         """Should use firefox-lite template for Africa for en-US locale"""
         req = self.rf.get('/firefox/whatsnew/africa/')
         req.locale = 'en-US'
-        self.view(req, version='78.0')
+        self.view(req, version='79.0')
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/firefox-lite.html']
 
@@ -552,7 +552,7 @@ class TestWhatsNewFirefoxLite(TestCase):
         """Should use firefox-lite template for India for en-US locale"""
         req = self.rf.get('/firefox/whatsnew/india/')
         req.locale = 'en-US'
-        self.view(req, version='78.0')
+        self.view(req, version='79.0')
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/firefox-lite.html']
 
@@ -561,9 +561,9 @@ class TestWhatsNewFirefoxLite(TestCase):
         """Should use regular whatsnew templates for other locales"""
         req = self.rf.get('/firefox/whatsnew/india/')
         req.locale = 'de'
-        self.view(req, version='78.0')
+        self.view(req, version='79.0')
         template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/whatsnew-fx78.html']
+        assert template == ['firefox/whatsnew/whatsnew-fx79.html']
 
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
