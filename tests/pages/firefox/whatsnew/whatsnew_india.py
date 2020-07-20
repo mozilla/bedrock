@@ -9,7 +9,7 @@ from pages.base import BasePage
 
 class FirefoxWhatsNewIndiaPage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/whatsnew/india/'
+    URL_TEMPLATE = '/{locale}/firefox/79.0/whatsnew/india/'
 
     _qr_code_locator = (By.CSS_SELECTOR, '.lite-qrcode-container > img')
 

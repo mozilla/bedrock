@@ -25,10 +25,3 @@ def test_send_to_device_fails_when_missing_required_fields(base_url, selenium):
     page = FirefoxWhatsNewPage(selenium, base_url).open()
     with pytest.raises(TimeoutException):
         page.send_to_device.click_send()
-
-
-@pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
-@pytest.mark.nondestructive
-def test_firefox_lite_qr_code(base_url, selenium):
-    page = FirefoxWhatsNewPage(selenium, base_url, locale='id').open()
-    assert page.is_firefox_lite_qr_code_displayed
