@@ -461,7 +461,8 @@ redirectpatterns = (
     # Bug 654614 /blocklist -> addons.m.o/blocked
     redirect(r'^blocklist(/.*)?$', 'https://addons.mozilla.org/blocked/'),
 
-    redirect(r'^products/firebird$', 'firefox'),
+    redirect(r'^products/firebird/compare/?$', '/firefox/browsers/compare/'),
+    redirect(r'^products/firebird/?$', 'firefox'),
     redirect(r'^products/firebird/download/$', 'firefox.new'),
     redirect(r'^products/firefox/add-engines\.html$',
              'https://addons.mozilla.org/search-engines.php'),
