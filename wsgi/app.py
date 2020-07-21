@@ -10,7 +10,6 @@ from django.core.handlers.wsgi import WSGIRequest
 from django.core.wsgi import get_wsgi_application
 
 from whitenoise.django import DjangoWhiteNoise
-from raven.contrib.django.raven_compat.middleware.wsgi import Sentry
 
 
 class WSGIHTTPSRequest(WSGIRequest):
@@ -24,4 +23,3 @@ class WSGIHTTPSRequest(WSGIRequest):
 application = get_wsgi_application()
 application.request_class = WSGIHTTPSRequest
 application = DjangoWhiteNoise(application)
-application = Sentry(application)

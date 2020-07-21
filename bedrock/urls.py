@@ -33,8 +33,6 @@ urlpatterns = (
     url(r'^healthz/$', watchman_views.ping, name="watchman.ping"),
     url(r'^readiness/$', watchman_views.status, name="watchman.status"),
     url(r'^healthz-cron/$', base_views.cron_health_check),
-    url(r'^csp-violation-capture$', base_views.csp_violation_capture,
-        name='csp-violation-capture'),
     url(r'^country-code\.json$', base_views.geolocate,
         name='geolocate'),
 )

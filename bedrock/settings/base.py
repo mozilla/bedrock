@@ -12,8 +12,10 @@ from os.path import abspath
 
 from django.utils.functional import lazy
 
+import sentry_sdk
 from everett.manager import ListOf
 from pathlib import Path
+from sentry_sdk.integrations.django import DjangoIntegration
 
 from bedrock.base.config_manager import config
 
@@ -308,7 +310,6 @@ SUPPORTED_NONLOCALES = [
     'keymaster',
     'microsummaries',
     'xbl',
-    'csp-violation-capture',
     'country-code.json',
     'revision.txt',
     'locales',
@@ -322,7 +323,6 @@ NOINDEX_URLS = [
     r'^(404|500)/',
     r'^firefox/welcome/',
     r'^contribute/(embed|event)/',
-    r'^csp-violation-capture',
     r'^firefox/retention/thank-you/',
     r'^firefox/set-as-default/thanks/',
     r'^firefox/sms/sent/',
@@ -517,7 +517,6 @@ INSTALLED_APPS = (
     'pagedown',
     'localflavor',
     'django_jinja',
-    'raven.contrib.django.raven_compat',
     'watchman',
     'django_prometheus',
 
@@ -1445,11 +1444,14 @@ MOZILLA_LOCATION_SERVICES_KEY = 'a9b98c12-d9d5-4015-a2db-63536c26dc14'
 
 DEAD_MANS_SNITCH_URL = config('DEAD_MANS_SNITCH_URL', default='')
 
-RAVEN_CONFIG = {
-    'dsn': config('SENTRY_DSN', default=''),
-    'site': '.'.join(x for x in [APP_NAME, CLUSTER_NAME] if x),
-    'release': config('GIT_SHA', default=''),
-}
+SENTRY_DSN = config('SENTRY_DSN', default='')
+if SENTRY_DSN:
+    sentry_sdk.init(
+        dsn=SENTRY_DSN,
+        release=config('GIT_SHA', default=''),
+        server_name=".".join(x for x in [APP_NAME, CLUSTER_NAME] if x),
+        integrations=[DjangoIntegration()],
+    )
 
 # Django-CSP
 CSP_DEFAULT_SRC = ["'self'", '*.mozilla.net', '*.mozilla.org', '*.mozilla.com']
@@ -1511,9 +1513,7 @@ CSP_CONNECT_SRC = CSP_DEFAULT_SRC + [
     FXA_ENDPOINT_MOZILLAONLINE,
 ]
 CSP_REPORT_ONLY = config('CSP_REPORT_ONLY', default='false', parser=bool)
-CSP_REPORT_ENABLE = config('CSP_REPORT_ENABLE', default='false', parser=bool)
-if CSP_REPORT_ENABLE:
-    CSP_REPORT_URI = config('CSP_REPORT_URI', default='/csp-violation-capture')
+CSP_REPORT_URI = config('CSP_REPORT_URI', default='') or None
 
 CSP_EXTRA_FRAME_SRC = config('CSP_EXTRA_FRAME_SRC', default='', parser=ListOf(str))
 if CSP_EXTRA_FRAME_SRC:
