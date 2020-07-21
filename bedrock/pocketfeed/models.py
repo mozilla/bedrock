@@ -4,7 +4,7 @@ from django.db import models
 from django.db.utils import DatabaseError
 
 from jinja2 import Markup
-from sentry_sdk import capture_exception
+from raven.contrib.django.raven_compat.models import client as sentry_client
 
 from bedrock.pocketfeed.api import get_articles_data, complete_articles_data
 
@@ -68,7 +68,7 @@ class PocketArticleManager(models.Manager):
                     self.create(**article)
                     update_count += 1
             except DatabaseError:
-                capture_exception()
+                sentry_client.captureException()
                 raise
 
         # clean up after changes
