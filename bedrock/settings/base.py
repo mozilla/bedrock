@@ -1430,12 +1430,13 @@ MOZILLA_LOCATION_SERVICES_KEY = 'a9b98c12-d9d5-4015-a2db-63536c26dc14'
 DEAD_MANS_SNITCH_URL = config('DEAD_MANS_SNITCH_URL', default='')
 
 SENTRY_DSN = config('SENTRY_DSN', default='')
-sentry_sdk.init(
-    dsn=SENTRY_DSN,
-    release=config('GIT_SHA', default=''),
-    server_name=".".join(x for x in [APP_NAME, CLUSTER_NAME] if x),
-    integrations=[DjangoIntegration()],
-)
+if SENTRY_DSN:
+    sentry_sdk.init(
+        dsn=SENTRY_DSN,
+        release=config('GIT_SHA', default=''),
+        server_name=".".join(x for x in [APP_NAME, CLUSTER_NAME] if x),
+        integrations=[DjangoIntegration()],
+    )
 
 # Django-CSP
 CSP_DEFAULT_SRC = ["'self'", '*.mozilla.net', '*.mozilla.org', '*.mozilla.com']
