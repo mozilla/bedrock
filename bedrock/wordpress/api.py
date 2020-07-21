@@ -1,7 +1,7 @@
 from django.conf import settings
 
 import requests
-from raven.contrib.django.raven_compat.models import client as sentry_client
+from sentry_sdk import capture_exception
 
 
 def _request(api_url, limit=None, page=1):
@@ -39,7 +39,7 @@ def get_wp_data(feed_id, data_type, data_id=None, limit=None):
 
         return data
     except Exception:
-        sentry_client.captureException()
+        capture_exception()
         return None
 
 

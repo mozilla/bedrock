@@ -2,9 +2,10 @@ import datetime
 import re
 import requests
 
+from sentry_sdk import capture_exception
+
 from django.conf import settings
 from django.utils.timezone import make_aware, utc
-from raven.contrib.django.raven_compat.models import client as sentry_client
 
 
 def get_articles_data(count=8):
@@ -20,7 +21,7 @@ def get_articles_data(count=8):
         resp.raise_for_status()
         return resp.json()
     except Exception:
-        sentry_client.captureException()
+        capture_exception()
         return None
 
 
@@ -50,7 +51,7 @@ def check_article_image(article):
             resp = requests.get(article['image_src'])
             resp.raise_for_status()
         except Exception:
-            sentry_client.captureException()
+            capture_exception()
             article['image_src'] = None
     else:
         article['image_src'] = None

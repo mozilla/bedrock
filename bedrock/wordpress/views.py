@@ -1,9 +1,9 @@
 from django.views.generic import TemplateView
 
+from sentry_sdk import capture_exception
+
 from bedrock.wordpress.models import BlogPost
 from lib.l10n_utils import LangFilesMixin
-
-from raven.contrib.django.raven_compat.models import client as sentry_client
 
 
 class BlogPostsMixin:
@@ -36,7 +36,7 @@ class BlogPostsMixin:
             # and render the page without blog posts
             ctx[self.blog_posts_template_variable] = list(blog)
         except Exception:
-            sentry_client.captureException()
+            capture_exception()
             ctx[self.blog_posts_template_variable] = []
 
         return ctx

@@ -13,7 +13,7 @@ from django.utils.timezone import make_aware, utc
 import bleach
 from django_extensions.db.fields.json import JSONField
 from jinja2 import Markup
-from raven.contrib.django.raven_compat.models import client as sentry_client
+from sentry_sdk import capture_exception
 
 from bedrock.wordpress.api import get_posts_data, complete_posts_data
 from functools import reduce
@@ -113,7 +113,7 @@ class BlogPostManager(models.Manager):
                 else:
                     self.create(**post)
             except DatabaseError:
-                sentry_client.captureException()
+                capture_exception()
                 raise
 
             update_count += 1
