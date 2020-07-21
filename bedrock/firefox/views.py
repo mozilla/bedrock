@@ -605,9 +605,7 @@ class WhatsnewView(L10nTemplateView):
                 template = 'firefox/developer/whatsnew.html'
             else:
                 template = 'firefox/whatsnew/index.html'
-        elif channel == 'beta':
-            template = 'firefox/whatsnew/index.html'
-        elif locale == 'id':
+        elif locale == 'id' and show_firefox_lite_whatsnew(version):
             template = 'firefox/whatsnew/firefox-lite.id.html'
         elif version.startswith('79.') and ftl_file_is_active('firefox/whatsnew/whatsnew-fx79'):
             template = 'firefox/whatsnew/whatsnew-fx79.html'
