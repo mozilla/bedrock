@@ -386,6 +386,7 @@ class TestWhatsNewFirefoxLite(TestCase):
         self.view = fx_views.WhatsNewFirefoxLiteView.as_view()
         self.rf = RequestFactory(HTTP_USER_AGENT='Firefox')
 
+    @patch.dict(os.environ, SWITCH_FIREFOX_LITE_WHATSNEW='True')
     def test_fx_lite_africa(self, render_mock):
         """Should use firefox-lite template for Africa for en-US locale"""
         req = self.rf.get('/firefox/whatsnew/africa/')
@@ -394,6 +395,7 @@ class TestWhatsNewFirefoxLite(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/firefox-lite.html']
 
+    @patch.dict(os.environ, SWITCH_FIREFOX_LITE_WHATSNEW='True')
     def test_fx_lite_india(self, render_mock):
         """Should use firefox-lite template for India for en-US locale"""
         req = self.rf.get('/firefox/whatsnew/india/')
