@@ -15,6 +15,10 @@ $image-path: '/media/protocol/img';
     max-width: 500px;
     @include clearfix;
 
+    &.mzp-t-dark {
+        color: $color-white;
+    }
+
     .mzp-c-field {
         padding-bottom: $label-v-spacing;
     }
