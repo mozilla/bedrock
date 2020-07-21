@@ -64,6 +64,11 @@ During review, the engineer will compare the following to the experiment plan:
 #. The distribution percentages are configured.
 #. The target URLs are configured.
 
+.. Note::
+
+    If you select more than one audience in convert it is joined in an OR fashion, not AND.
+
+
 Once the engineer is satisfied, the engineer (or someone else with write privileges) will:
 
 #. Add ``https://www.mozilla.org/*`` to the list of urls the experiment can run on.
