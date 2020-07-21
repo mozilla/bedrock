@@ -7,6 +7,7 @@ import pytest
 from pages.firefox.whatsnew.whatsnew_id import FirefoxWhatsNewIDPage
 
 
+@pytest.mark.skip(reason='https://github.com/mozilla/bedrock/issues/9189')
 @pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
 @pytest.mark.nondestructive
 def test_firefox_lite_qr_code(base_url, selenium):

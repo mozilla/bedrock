@@ -485,6 +485,9 @@ def show_firefox_lite_whatsnew(version):
     except ValueError:
         return False
 
+    if not switch('firefox-lite-whatsnew'):
+        return False
+
     return version >= Version('79.0')
 
 

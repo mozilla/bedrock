@@ -7,6 +7,7 @@ import pytest
 from pages.firefox.whatsnew.whatsnew_india import FirefoxWhatsNewIndiaPage
 
 
+@pytest.mark.skip(reason='https://github.com/mozilla/bedrock/issues/9189')
 @pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
 @pytest.mark.nondestructive
 def test_india_qr_code_displayed(base_url, selenium):
