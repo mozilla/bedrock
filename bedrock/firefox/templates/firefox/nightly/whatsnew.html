@@ -1,0 +1,60 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('nightly_whatsnew') }}
+{% endblock %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_image %}{{ static('protocol/img/logos/firefox/browser/nightly/og.png') }}{% endblock %}
+{% block page_favicon %}{{ static('img/favicons/firefox/browser/nightly/favicon.ico') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/favicons/firefox/browser/nightly/favicon-196x196.png') }}{% endblock %}
+{% block page_ios_icon %}{{ static('img/favicons/firefox/browser/nightly/apple-touch-icon.png') }}{% endblock %}
+{% block page_title %}{{ ftl('nightly-whatsnew-youve-just-been', version=num_version) }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+{% block page_og_url %}{{ firefox_url('desktop', 'all', 'nightly') }}{% endblock %}
+
+{% block body_id %}nightly-whatsnew{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main class="content-wrapper mzp-t-firefox mzp-t-dark">
+  <header class="c-page-header">
+    <div class="mzp-l-content c-page-header-inner">
+      {{ high_res_img('protocol/img/logos/firefox/browser/nightly/logo-word-hor-white-sm.png', {'alt': ftl('nightly-whatsnew-firefox-nightly'), 'width': '216', 'height': '40', 'class': 'c-page-header-logo-fx'}) }}
+      <div class="mzp-c-notification-bar mzp-t-success up-to-date">
+        {% set message = ftl('nightly-whatsnew-your-firefox-nightly') if ftl_has_messages('nightly-whatsnew-your-firefox-nightly') else self.page_title() %}
+        <p>{{ message }}</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="mzp-l-content">
+    <div class="mzp-c-emphasis-box">
+      <h2 class="c-emphasis-box-title">{{ self.page_title() }}</h2>
+      <p>{{ ftl('nightly-whatsnew-every-4-to-5-weeks', fallback='nightly-whatsnew-every-6-to-8-weeks') }}</p>
+
+      <p>{{ ftl('nightly-whatsnew-this-is-a-good') }}</p>
+
+      <p>{{ ftl('nightly-whatsnew-if-you-want-to', blog='https://blog.nightly.mozilla.org/', twitter='https://twitter.com/FirefoxNightly') }}</p>
+
+      <p>{{ ftl('nightly-whatsnew-want-to-know-which', mdn='https://developer.mozilla.org/Firefox/Experimental_features?utm_source=firefox&utm_medium=whatsnew&utm_campaign=nightly') }}</p>
+
+      <p>{{ ftl('nightly-whatsnew-do-you-experience', bugzilla='https://bugzilla.mozilla.org') }}</p>
+
+      <p>{{ ftl('nightly-whatsnew-go-community') }}</p>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew') }}
+{% endblock %}

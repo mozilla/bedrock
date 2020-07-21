@@ -550,7 +550,8 @@ class WhatsnewView(L10nTemplateView):
 
     ftl_files_map = {
         'firefox/whatsnew/index-account.html': ['firefox/whatsnew/whatsnew-account', 'firefox/whatsnew/whatsnew'],
-        'firefox/whatsnew/whatsnew-fx79.html': ['firefox/whatsnew/whatsnew-fx79', 'firefox/whatsnew/whatsnew']
+        'firefox/whatsnew/whatsnew-fx79.html': ['firefox/whatsnew/whatsnew-fx79', 'firefox/whatsnew/whatsnew'],
+        'firefox/nightly/whatsnew.html': ['firefox/nightly/whatsnew', 'firefox/whatsnew/whatsnew'],
     }
 
     def get_context_data(self, **kwargs):
@@ -602,7 +603,7 @@ class WhatsnewView(L10nTemplateView):
         channel = detect_channel(version)
 
         if channel == 'nightly':
-            template = 'firefox/nightly_whatsnew.html'
+            template = 'firefox/nightly/whatsnew.html'
         elif channel == 'developer':
             if show_57_dev_whatsnew(version):
                 template = 'firefox/developer/whatsnew.html'

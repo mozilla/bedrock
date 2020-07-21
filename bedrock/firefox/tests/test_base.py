@@ -218,7 +218,7 @@ class TestWhatsNew(TestCase):
         self.view(req, version='72.0a1')
         template = render_mock.call_args[0][1]
         ctx = render_mock.call_args[0][2]
-        assert template == ['firefox/nightly_whatsnew.html']
+        assert template == ['firefox/nightly/whatsnew.html']
         assert ctx['version'] == '72.0a1'
         assert ctx['analytics_version'] == '72nightly'
         assert ctx['entrypoint'] == 'mozilla.org-whatsnew72nightly'
@@ -236,7 +236,7 @@ class TestWhatsNew(TestCase):
         req = self.rf.get('/en-US/firefox/whatsnew/')
         self.view(req, version='68.0a1')
         template = render_mock.call_args[0][1]
-        assert template == ['firefox/nightly_whatsnew.html']
+        assert template == ['firefox/nightly/whatsnew.html']
 
     # end nightly whatsnew tests
 
