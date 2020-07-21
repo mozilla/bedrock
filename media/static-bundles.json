@@ -110,12 +110,6 @@
     },
     {
       "files": [
-        "css/firefox/new/desktop/download.scss"
-      ],
-      "name": "firefox_desktop_download"
-    },
-    {
-      "files": [
         "css/firefox/new/trailhead/thanks.scss",
         "css/firefox/new/protocol/mobile-sync.scss"
       ],
@@ -869,19 +863,6 @@
         "js/firefox/new/trailhead/join-modal.js"
       ],
       "name": "firefox_new_download_join_modal"
-    },
-    {
-      "files": [
-        "js/firefox/new/desktop/download.js"
-      ],
-      "name": "firefox_desktop_download"
-    },
-    {
-      "files": [
-        "js/libs/mozilla-traffic-cop.js",
-        "js/firefox/new/desktop/exp.js"
-      ],
-      "name": "firefox_new_exp"
     },
     {
       "files": [
