@@ -540,15 +540,17 @@ $url-download-link-hover: svg-url($download-link-hover);
         max-width: 100%;
 
         &:after {
+            @include bidi((
+                (right, $layout-md, calc(560px + #{$layout-md * 2})),
+                (left, calc(560px + #{$layout-md * 2}), $layout-md),
+            ));
             content: '';
             background: url('/media/img/firefox/browsers/fxa.svg') center center no-repeat;
             background-size: contain;
             display: block;
             position: absolute;
             top: $layout-md;
-            right: $layout-md;
             bottom: $layout-md;
-            left: calc(560px + #{$layout-md * 2});
         }
     }
 
