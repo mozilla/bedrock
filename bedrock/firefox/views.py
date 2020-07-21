@@ -605,18 +605,6 @@ class WhatsnewView(L10nTemplateView):
                 template = 'firefox/developer/whatsnew.html'
             else:
                 template = 'firefox/whatsnew/index.html'
-        elif channel == 'beta':
-            if version.startswith('74.'):
-                if locale in ['en-US', 'en-CA', 'en-GB']:
-                    template = 'firefox/whatsnew/whatsnew-fx70-en.html'
-                elif locale == 'de':
-                    template = 'firefox/whatsnew/whatsnew-fx70-de.html'
-                elif locale == 'fr':
-                    template = 'firefox/whatsnew/whatsnew-fx70-fr.html'
-                else:
-                    template = 'firefox/whatsnew/index.html'
-            else:
-                template = 'firefox/whatsnew/index.html'
         elif locale == 'id' and show_firefox_lite_whatsnew(version):
             template = 'firefox/whatsnew/firefox-lite.id.html'
         elif version.startswith('79.') and ftl_file_is_active('firefox/whatsnew/whatsnew-fx79'):
@@ -639,31 +627,6 @@ class WhatsnewView(L10nTemplateView):
                 template = 'firefox/whatsnew/whatsnew-fx77.html'
         elif version.startswith('76.') and lang_file_is_active('firefox/whatsnew_76', locale):
             template = 'firefox/whatsnew/whatsnew-fx76.html'
-        elif version.startswith('75.') and lang_file_is_active('firefox/whatsnew_75', locale):
-            template = 'firefox/whatsnew/whatsnew-fx75.html'
-        elif version.startswith('74.'):
-            # Facebook isn't used in China so zh-CN should fall back to more relevant content
-            if locale != 'zh-CN' and lang_file_is_active('firefox/whatsnew_74', locale):
-                template = 'firefox/whatsnew/whatsnew-fx74.html'
-            elif lang_file_is_active('firefox/whatsnew_73', locale):
-                template = 'firefox/whatsnew/whatsnew-fx73.html'
-            else:
-                template = 'firefox/whatsnew/index.html'
-        elif version.startswith('73.') and lang_file_is_active('firefox/whatsnew_73', locale):
-            template = 'firefox/whatsnew/whatsnew-fx73.html'
-        elif version.startswith('72.') and lang_file_is_active('firefox/whatsnew_71', locale):
-            template = 'firefox/whatsnew/whatsnew-fx71.html'
-        elif version.startswith('71.') and lang_file_is_active('firefox/whatsnew_71', locale):
-            template = 'firefox/whatsnew/whatsnew-fx71.html'
-        elif version.startswith('70.'):
-            if locale in ['en-US', 'en-CA', 'en-GB']:
-                template = 'firefox/whatsnew/whatsnew-fx70-en.html'
-            elif locale == 'de':
-                template = 'firefox/whatsnew/whatsnew-fx70-de.html'
-            elif locale == 'fr':
-                template = 'firefox/whatsnew/whatsnew-fx70-fr.html'
-            else:
-                template = 'firefox/whatsnew/index.html'
         else:
             if show_default_account_whatsnew(version) and ftl_file_is_active('firefox/whatsnew/whatsnew-account'):
                 template = 'firefox/whatsnew/index-account.html'

@@ -387,37 +387,6 @@
     },
     {
       "files": [
-        "css/firefox/whatsnew/whatsnew-70.scss"
-      ],
-      "name": "firefox_whatsnew_70"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-71.scss"
-      ],
-      "name": "firefox_whatsnew_71"
-    },
-    {
-      "files": [
-        "css/protocol/components/send-to-device.scss",
-        "css/firefox/whatsnew/whatsnew-73.scss"
-      ],
-      "name": "firefox_whatsnew_73"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-74.scss"
-      ],
-      "name": "firefox_whatsnew_74"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-75.scss"
-      ],
-      "name": "firefox_whatsnew_75"
-    },
-    {
-      "files": [
         "css/firefox/whatsnew/whatsnew-76.scss"
       ],
       "name": "firefox_whatsnew_76"
@@ -843,51 +812,6 @@
         "js/firefox/privacy/messaging-experiment.js"
       ],
       "name": "default_privacy_messaging"
-    },
-    {
-      "files": [
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js",
-        "js/base/mozilla-fxa-product-button.js",
-        "js/base/mozilla-fxa-product-button-init.js",
-        "js/firefox/whatsnew/up-to-date.js",
-        "js/firefox/whatsnew/whatsnew-70.js"
-      ],
-      "name": "firefox_whatsnew_70_variants"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/up-to-date.js",
-        "js/base/mozilla-fxa-product-button.js",
-        "js/base/mozilla-fxa-product-button-init.js"
-      ],
-      "name": "firefox_whatsnew_71"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/up-to-date.js",
-        "js/libs/spin.min.js",
-        "protocol/js/protocol-modal.js",
-        "js/base/send-to-device.js",
-        "js/firefox/whatsnew/whatsnew-73.js"
-      ],
-      "name": "firefox_whatsnew_73"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/up-to-date.js",
-        "js/firefox/whatsnew/whatsnew-74.js"
-      ],
-      "name": "firefox_whatsnew_74"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/up-to-date.js",
-        "js/base/mozilla-fxa-product-button.js",
-        "js/base/mozilla-fxa-product-button-init.js",
-        "js/firefox/whatsnew/whatsnew-75.js"
-      ],
-      "name": "firefox_whatsnew_75"
     },
     {
       "files": [
