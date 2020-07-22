@@ -3,6 +3,11 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import pytest
+import requests
+from bs4 import BeautifulSoup
+
+
+TIMEOUT = 60
 
 
 @pytest.fixture
@@ -64,3 +69,32 @@ def selenium(selenium):
 def selenium_mobile(selenium):
     selenium.set_window_size(320, 480)  # width, height
     return selenium
+
+
+def pytest_generate_tests(metafunc):
+    markexpr = metafunc.config.getoption('markexpr')
+    if markexpr == 'download':
+        base_url = metafunc.config.getoption('base_url')
+        if "download_path" in metafunc.fixturenames:
+            soup = get_web_page(f'{base_url}/en-US/firefox/download/thanks/')
+            urls = [a['href'] for a in soup.find('ul', class_='download-list').find_all('a')]
+            # Bug 1266682 remove links to Play Store to avoid rate limiting in automation.
+            urls = [url for url in urls if 'play.google.com' not in url]
+            assert urls
+            metafunc.parametrize('download_path', urls)
+
+        elif "download_path_l10n" in metafunc.fixturenames:
+            soup = get_web_page(f'{base_url}/en-US/firefox/all/')
+            lists = soup.find('div', class_='c-all-downloads')
+            urls = [a['href'] for a in lists.find_all(attrs={'data-link-type': 'download'})]
+            assert urls
+            metafunc.parametrize('download_path_l10n', urls)
+
+
+def get_web_page(url):
+    try:
+        r = requests.get(url, timeout=TIMEOUT)
+    except requests.RequestException:
+        # retry
+        r = requests.get(url, timeout=TIMEOUT)
+    return BeautifulSoup(r.content, 'html.parser')

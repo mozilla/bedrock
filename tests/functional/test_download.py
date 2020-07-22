@@ -2,38 +2,25 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from bs4 import BeautifulSoup
 import pytest
 import requests
 
 
-PAGE_PATHS = (
-    '/firefox/download/thanks/',
-)
-
 TIMEOUT = 60
+
+
+def run_download_link_check(url):
+    r = requests.head(url, allow_redirects=True, timeout=TIMEOUT)
+    assert requests.codes.ok == r.status_code
 
 
 @pytest.mark.download
 @pytest.mark.nondestructive
-@pytest.mark.parametrize('path', PAGE_PATHS)
-def test_download_links(path, base_url):
-    if not base_url:
-        pytest.skip(
-            'This test requires a base URL to be specified on the command '
-            'line or in a configuration file.')
+def test_download_links(download_path):
+    run_download_link_check(download_path)
 
-    full_url = base_url + '/en-US' + path
-    try:
-        r = requests.get(full_url, timeout=TIMEOUT)
-    except requests.RequestException:
-        # retry
-        r = requests.get(full_url, timeout=TIMEOUT)
-    soup = BeautifulSoup(r.content, 'html.parser')
-    urls = [a['href'] for a in soup.find('ul', class_='download-list').find_all('a')]
-    # Bug 1266682 remove links to Play Store to avoid rate limiting in automation.
-    urls = [url for url in urls if 'play.google.com' not in url]
-    assert urls
-    for url in urls:
-        r = requests.head(url, allow_redirects=True, timeout=TIMEOUT)
-        assert requests.codes.ok == r.status_code
+
+@pytest.mark.download
+@pytest.mark.nondestructive
+def test_localized_download_links(download_path_l10n):
+    run_download_link_check(download_path_l10n)
