@@ -10,10 +10,6 @@ if [[ ! -f .env ]]; then
     cp .env-dist .env
 fi
 
-# get legal-docs
-git submodule sync
-git submodule update --init --recursive
-
 # get fresh database
 ./bin/run-db-download.py --force
 

@@ -40,7 +40,6 @@ services:
       - ./media/:/app/media:delegated
       - ./root_files/:/app/root_files:delegated
       - ./scripts/:/app/scripts:delegated
-      - ./vendor-local/:/app/vendor-local:delegated
       - ./wsgi/:/app/wsgi:delegated
       - ./locale/:/app/locale:delegated
       - ./l10n/:/app/l10n:delegated
@@ -60,7 +59,6 @@ services:
       - ./root_files/:/app/root_files:delegated
       - ./scripts/:/app/scripts:delegated
       - ./tests/:/app/tests:delegated
-      - ./vendor-local/:/app/vendor-local:delegated
       - ./wsgi/:/app/wsgi:delegated
       - ./l10n/:/app/l10n:delegated
       - ./git-repos/:/app/git-repos:delegated
@@ -93,7 +91,6 @@ services:
       - ./lib/:/app/lib:delegated
       - ./root_files/:/app/root_files:delegated
       - ./scripts/:/app/scripts:delegated
-      - ./vendor-local/:/app/vendor-local:delegated
       - ./wsgi/:/app/wsgi:delegated
       - ./locale/:/app/locale:delegated
       - ./l10n/:/app/l10n:delegated

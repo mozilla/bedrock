@@ -52,8 +52,6 @@ choice and modify things and you should see those changes reflected in your brow
 If you don't have or want to use Make you can call the docker and compose commands directly::
 
     $ docker-compose pull
-    $ git submodule sync
-    $ git submodule update --init --recursive
     $ [[ ! -f .env ]] && cp .env-dist .env
 
 Then starting it all is simply::
@@ -235,28 +233,8 @@ image first:
 .. code-block:: bash
 
     $ make build-prod run-prod
-
-Legal Docs
-==========
-
-Legal docs (for example: the privacy policy) are generated from markdown files in the
-`legal-docs repo <https://github.com/mozilla/legal-docs>`_.
-
-To view them or update to a more recent version update the submodule::
-
-    $ git submodule update --init --recursive
-
-To add a new commit of the git submodule to bedrock:
-
-.. code-block:: bash
-
-    $ cd vendor-local/src/legal-docs
-    $ git checkout master
-    $ git pull
-    $ cd .. (back to project root)
-    $ git commit -am "Update legal-docs git submodule"
-
 Localization
+
 ============
 
 Localization (or L10n) files were fetched by the `bootstrap.sh` command your ran earlier and are

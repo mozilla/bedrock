@@ -2,95 +2,50 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from os.path import join
-
 from django.http import Http404, HttpResponse
 from django.test import override_settings, RequestFactory
 
-from mock import patch, ANY
+from mock import patch
 
 from bedrock.mozorg.tests import TestCase
 
 from bedrock.legal_docs import views
+from bedrock.legal_docs.models import LegalDoc
 
 
 @override_settings(PROD_LANGUAGES=['en-US', 'de', 'hi-IN'])
 class TestLoadLegalDoc(TestCase):
-    @patch.object(views, 'listdir')
-    def test_legal_doc_not_found(self, listdir_mock):
-        listdir_mock.return_value = ['en-US.md']
+    def test_legal_doc_not_found(self):
+        """Missing doc should be None"""
         doc = views.load_legal_doc('the_dude_is_legal', 'de')
-        self.assertIsNone(doc['content'])
+        self.assertIsNone(doc)
+
+    def test_legal_doc_exists(self):
+        """Should return the content of the en-US file if it exists."""
+        LegalDoc.objects.create(
+            name='the_dude_exists',
+            locale='en-US',
+            content="You're not wrong Walter...",
+        )
+        doc = views.load_legal_doc('the_dude_exists', 'de')
+        self.assertEqual(doc['content'], "You're not wrong Walter...")
         self.assertEqual(doc['active_locales'], ['en-US'])
 
-    @patch('os.path.exists')
-    @patch.object(views, 'listdir')
-    @patch.object(views.io, 'BytesIO')
-    @patch.object(views, 'md')
-    def test_legal_doc_exists(self, md_mock, bio_mock, listdir_mock, exists_mock):
-        """Should return the content of the en-US file if it exists."""
-        bio_mock().getvalue.return_value = b"You're not wrong Walter..."
-        exists_mock.return_value = False
-        listdir_mock.return_value = ['.mkdir', 'de.md', 'en-US.md']
-        doc = views.load_legal_doc('the_dude_exists', 'de')
-        good_path = join(views.LEGAL_DOCS_PATH, 'the_dude_exists', 'en-US.md')
-        md_mock.markdownFromFile.assert_called_with(
-            input=good_path, output=ANY, extensions=ANY)
-        self.assertEqual(doc['content'], "You're not wrong Walter...")
-        self.assertEqual(doc['active_locales'], ['de', 'en-US'])
-
-    @patch('os.path.exists')
-    @patch.object(views, 'listdir')
-    @patch.object(views.io, 'BytesIO')
-    @patch.object(views, 'md')
-    def test_localized_legal_doc_exists(self, md_mock, bio_mock, listdir_mock, exists_mock):
+    def test_localized_legal_doc_exists(self):
         """Localization works, and list of translations doesn't include non .md files and non-prod locales."""
-        bio_mock().getvalue.return_value = b"You're not wrong Walter..."
-        exists_mock.return_value = True
-        listdir_mock.return_value = ['.mkdir', 'de.md', 'en-US.md', 'sw.md']
+        LegalDoc.objects.create(
+            name='the_dude_exists',
+            locale='en-US',
+            content="You're not wrong Walter...",
+        )
+        LegalDoc.objects.create(
+            name='the_dude_exists',
+            locale='de',
+            content="You're in German Walter...",
+        )
         doc = views.load_legal_doc('the_dude_exists', 'de')
-        good_path = join(views.LEGAL_DOCS_PATH, 'the_dude_exists', 'de.md')
-        md_mock.markdownFromFile.assert_called_with(
-            input=good_path, output=ANY, extensions=ANY)
-        self.assertEqual(doc['content'], "You're not wrong Walter...")
-        self.assertEqual(doc['active_locales'], ['de', 'en-US'])
-
-    @patch('os.path.exists')
-    @patch.object(views, 'listdir')
-    @patch.object(views.io, 'BytesIO')
-    @patch.object(views, 'md')
-    def test_localized_legal_doc_mapped_locale(self, md_mock, bio_mock, listdir_mock, exists_mock):
-        """Should output bedrock locale when legal-docs locale exists"""
-        bedrock_locale = 'hi-IN'
-        ld_locale = 'hi'
-        ld_filename = '%s.md' % ld_locale
-        bio_mock().getvalue.return_value = b"You're not wrong Walter..."
-        exists_mock.return_value = True
-        listdir_mock.return_value = [ld_filename, 'en-US.md']
-        doc = views.load_legal_doc('the_dude_exists', bedrock_locale)
-        good_path = join(views.LEGAL_DOCS_PATH, 'the_dude_exists', ld_filename)
-        md_mock.markdownFromFile.assert_called_with(
-            input=good_path, output=ANY, extensions=ANY)
-        self.assertEqual(doc['content'], "You're not wrong Walter...")
-        self.assertEqual(doc['active_locales'], ['hi-IN', 'en-US'])
-
-    @patch('os.path.exists')
-    @patch.object(views, 'listdir')
-    @patch.object(views.io, 'BytesIO')
-    @patch.object(views, 'md')
-    def test_localized_legal_doc_mapped_locale_fixed(self, md_mock, bio_mock, listdir_mock, exists_mock):
-        """Should fallback to bedrock locale when legal-docs locale changes to match"""
-        bedrock_locale = 'hi-IN'
-        ld_filename = '%s.md' % bedrock_locale
-        bio_mock().getvalue.return_value = b"You're not wrong Walter..."
-        exists_mock.side_effect = [False, True]
-        listdir_mock.return_value = [ld_filename, 'en-US.md']
-        doc = views.load_legal_doc('the_dude_exists', bedrock_locale)
-        good_path = join(views.LEGAL_DOCS_PATH, 'the_dude_exists', ld_filename)
-        md_mock.markdownFromFile.assert_called_with(
-            input=good_path, output=ANY, extensions=ANY)
-        self.assertEqual(doc['content'], "You're not wrong Walter...")
-        self.assertEqual(doc['active_locales'], ['hi-IN', 'en-US'])
+        self.assertEqual(doc['content'], "You're in German Walter...")
+        self.assertEqual(set(doc['active_locales']), {'de', 'en-US'})
 
 
 class TestLegalDocView(TestCase):
