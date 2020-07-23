@@ -28,6 +28,7 @@ python manage.py update_content_cards --quiet
 python manage.py update_externalfiles --quiet
 python manage.py update_newsletter_data --quiet
 python manage.py update_www_config --quiet
+python manage.py update_legal_docs --quiet
 
 if [[ "$AUTH" == true ]]; then
     # jobs that require some auth. don't run these during build.

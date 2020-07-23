@@ -517,6 +517,7 @@ INSTALLED_APPS = (
     'bedrock.foundation',
     'bedrock.grants',
     'bedrock.legal',
+    'bedrock.legal_docs',
     'bedrock.mozorg',
     'bedrock.newsletter',
     'bedrock.press',
@@ -1358,6 +1359,11 @@ RELEASE_NOTES_BRANCH = config('RELEASE_NOTES_BRANCH', default='master')
 WWW_CONFIG_PATH = config('WWW_CONFIG_PATH', default=git_repo_path('www_config'))
 WWW_CONFIG_REPO = config('WWW_CONFIG_REPO', default='https://github.com/mozmeao/www-config.git')
 WWW_CONFIG_BRANCH = config('WWW_CONFIG_BRANCH', default='master')
+
+LEGAL_DOCS_PATH = GIT_REPOS_PATH / 'legal_docs'
+LEGAL_DOCS_REPO = config('LEGAL_DOCS_REPO', default='https://github.com/mozilla/legal-docs.git')
+LEGAL_DOCS_BRANCH = config('LEGAL_DOCS_BRANCH', default='master' if DEV else 'prod')
+LEGAL_DOCS_DMS_URL = config('LEGAL_DOCS_DMS_URL', default='')
 
 MOFO_SECURITY_ADVISORIES_PATH = config('MOFO_SECURITY_ADVISORIES_PATH',
                                        default=git_repo_path('mofo_security_advisories'))
