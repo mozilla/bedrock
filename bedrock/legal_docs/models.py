@@ -44,11 +44,20 @@ def get_data_from_file_path(file_path):
 
 class LegalDocsManager(models.Manager):
     def get_doc(self, doc_name, locale):
+        """
+        Return the HTML content of a legal doc in the requested locale.
+
+        :param doc_name: name of the legal doc folder
+        :param locale: preferred language version of the doc
+        :return: dict containing string content of the file (or None), a boolean
+                 value indicating whether the file is localized into the specified
+                 locale, and a dict of all available locales for that document
+        """
         doc = self.get(name=doc_name, locale=locale)
         all_locales = self.filter(name=doc_name).values_list('locale', flat=True)
         return {
             'content': doc.content,
-            'active_locales': list(all_locales),
+            'active_locales': sorted(all_locales),
         }
 
     def refresh(self):

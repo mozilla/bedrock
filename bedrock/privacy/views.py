@@ -37,7 +37,8 @@ def process_legal_doc(content):
 class PrivacyDocView(LegalDocView):
     def get_legal_doc(self):
         doc = super(PrivacyDocView, self).get_legal_doc()
-        doc['content'] = process_legal_doc(doc['content'])
+        if doc is not None:
+            doc['content'] = process_legal_doc(doc['content'])
         return doc
 
 

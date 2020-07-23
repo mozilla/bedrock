@@ -2,28 +2,15 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from os import path, listdir
-import io
-
 from django.conf import settings
 from django.http import Http404
 from django.views.decorators.cache import cache_page
 from django.views.generic import TemplateView
 
-import markdown as md
-from mdx_outline import OutlineExtension
-
-from bedrock.settings import path as base_path
+from bedrock.legal_docs.models import LegalDoc
 from lib import l10n_utils
 
-LEGAL_DOCS_PATH = base_path('vendor-local', 'src', 'legal-docs')
 CACHE_TIMEOUT = getattr(settings, 'LEGAL_DOCS_CACHE_TIMEOUT', 60 * 60)
-# legal-docs locales mapped to bedrock locales when they differ
-# https://github.com/mozilla/bedrock/issues/6000
-LEGAL_DOCS_LOCALES_TO_BEDROCK = {
-    'hi': 'hi-IN',
-}
-BEDROCK_LOCALES_TO_LEGAL_DOCS = {v: k for k, v in LEGAL_DOCS_LOCALES_TO_BEDROCK.items()}
 
 
 def load_legal_doc(doc_name, locale):
@@ -36,46 +23,15 @@ def load_legal_doc(doc_name, locale):
              value indicating whether the file is localized into the specified
              locale, and a dict of all available locales for that document
     """
-    # for file access convert bedrock locale to legal-docs equivalent
-    if locale in BEDROCK_LOCALES_TO_LEGAL_DOCS:
-        locale = BEDROCK_LOCALES_TO_LEGAL_DOCS[locale]
-
-    source_dir = path.join(LEGAL_DOCS_PATH, doc_name)
-    source_file = path.join(source_dir, locale + '.md')
-    output = io.BytesIO()
-    locales = [f.replace('.md', '') for f in listdir(source_dir) if f.endswith('.md')]
-    # convert legal-docs locales to bedrock equivalents
-    locales = [LEGAL_DOCS_LOCALES_TO_BEDROCK.get(l, l) for l in locales]
-    # filter out non-production locales
-    locales = [l for l in locales if l in settings.PROD_LANGUAGES]
-
-    # it's possible the legal-docs repo changed the filename to match our locale.
-    # this makes it work for mapped locales even if the map becomes superfluous.
-    if not path.exists(source_file) and locale in LEGAL_DOCS_LOCALES_TO_BEDROCK:
-        locale = LEGAL_DOCS_LOCALES_TO_BEDROCK[locale]
-        source_file = path.join(source_dir, locale + '.md')
-
-    if not path.exists(source_file):
-        source_file = path.join(LEGAL_DOCS_PATH, doc_name, 'en-US.md')
-
     try:
-        # Parse the Markdown file
-        md.markdownFromFile(
-            input=source_file, output=output, extensions=[
-                'markdown.extensions.attr_list',
-                'markdown.extensions.toc',
-                OutlineExtension((('wrapper_cls', ''),))
-            ])
-        content = output.getvalue().decode('utf-8')
-    except IOError:
-        content = None
-    finally:
-        output.close()
+        doc = LegalDoc.objects.get_doc(doc_name, locale)
+    except LegalDoc.DoesNotExist:
+        try:
+            doc = LegalDoc.objects.get_doc(doc_name, 'en-US')
+        except LegalDoc.DoesNotExist:
+            doc = None
 
-    return {
-        'content': content,
-        'active_locales': locales,
-    }
+    return doc
 
 
 class LegalDocView(TemplateView):

@@ -16,7 +16,6 @@ help:
 	@echo "  fresh-data    - pull the latest database and update all external data"
 	@echo "  clean         - remove all build, test, coverage and Python artifacts"
 	@echo "  rebuild       - force a rebuild of all of the docker images"
-	@echo "  submodules    - resync and fetch the latest git submodules"
 	@echo "  lint          - check style with flake8, eslint, and stylelint"
 	@echo "  test          - run tests against local files"
 	@echo "  test-image    - run tests against files in docker image"
@@ -43,7 +42,7 @@ build: .docker-build-pull
 build-prod: .docker-build-pull
 	${DC} build --pull release
 
-pull: .env submodules
+pull: .env
 	-GIT_COMMIT= ${DC} pull release app assets builder app-base
 	touch .docker-build-pull
 
@@ -60,10 +59,6 @@ stop:
 
 kill:
 	${DC} kill
-
-submodules:
-	git submodule sync
-	git submodule update -f --init --recursive
 
 fresh-data:
 	${DC} exec app bin/sync-all.sh
@@ -121,4 +116,4 @@ build-ci: .docker-build-pull
 test-ci: .docker-build-ci
 	${DC_CI} run test-image
 
-.PHONY: all clean build pull submodules docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod build-prod
+.PHONY: all clean build pull docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod build-prod

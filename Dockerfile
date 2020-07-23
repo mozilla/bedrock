@@ -77,7 +77,6 @@ COPY manage.py LICENSE newrelic.ini contribute.json ./
 
 # changes more frequently
 COPY ./docker ./docker
-COPY ./vendor-local ./vendor-local
 COPY ./bedrock ./bedrock
 COPY ./l10n ./l10n
 COPY ./media ./media
@@ -105,9 +104,6 @@ ENV BRANCH_NAME=${BRANCH_NAME}
 
 # rely on build args
 RUN bin/run-sync-all.sh
-
-# get fresh l10n files
-RUN ./manage.py l10n_update
 
 RUN chown webdev.webdev -R .
 USER webdev
