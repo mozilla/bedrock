@@ -9,13 +9,13 @@
 {%- block page_title -%}{{ ftl('firefox-desktop-download-meta-title') }}{%- endblock -%}
 
 {# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
-{%- block page_title_suffix -%}
+{%- block page_title_full -%}
   {% if LANG == 'en-CA' %}
-    — from Mozilla (CA)
+    Download Firefox — Fast, Private & Free — from Mozilla (CA)
   {% elif LANG == 'en-GB' %}
-    — from Mozilla (UK)
+    Download Firefox — Fast, Private & Free — from Mozilla (UK)
   {% else %}
-    — {{ ftl('firefox-desktop-download-meta-title-sufix') }}
+    {{ ftl('firefox-desktop-download-meta-title') }}
   {% endif %}
 {%- endblock -%}
 

@@ -4,9 +4,11 @@
 
 ### URL: https://www-dev.allizom.org/firefox/new/
 
-firefox-desktop-download-meta-title-prefix = Download { -brand-name-firefox-browser }
-firefox-desktop-download-meta-title = Fast, Private & Free
-firefox-desktop-download-meta-title-sufix = from { -brand-name-mozilla }
+# meta title, this shows as the link in search results
+# the em dash is used in English to show a change of thought and
+# the em dash is used in meta titles to separate the title of a page from the title of the whole site
+# this title could also be written as "Download Firefox (Fast, Private & Free) — Mozilla"
+firefox-desktop-download-meta-title = Download { -brand-name-firefox-browser } — Fast, Private & Free — from { -brand-name-mozilla }
 firefox-desktop-download-meta-desc = Get { -brand-name-firefox }, a free web browser backed by { -brand-name-mozilla }, a non-profit dedicated to internet health and privacy. Available now on { -brand-name-windows }, { -brand-name-mac-short }, { -brand-name-linux }, { -brand-name-android } and { -brand-name-ios }.
 firefox-desktop-download-og-title = Download the fastest { -brand-name-firefox } ever
 firefox-desktop-download-og-desc = Faster page loading, less memory usage and packed with features, the new { -brand-name-firefox } is here.
@@ -15,19 +17,24 @@ firefox-desktop-download-get-the-browser = Get the browser that protects what's 
 firefox-desktop-download-no-shady = No shady privacy policies or back doors for advertisers. Just a lightning fast browser that doesn’t sell you out.
 firefox-desktop-download-download-options = Download options and other languages
 firefox-desktop-download-browser-support = { -brand-name-firefox-browser } support
+# The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
 firefox-desktop-download-do-what-you-do = Do what you do online.<br> { -brand-name-firefox-browser } <strong>isn’t</strong> watching.
 firefox-desktop-download-how-firefox-compares = How { -brand-name-firefox } compares to other browsers
 firefox-desktop-download-get-all-the-speed = Get all the speed and tools with none of the invasions of privacy. { -brand-name-firefox-browser } collects so little data about you, we don’t even require your email address to download. That’s because unlike other browsers, we have no financial stake in following you around the web.
 firefox-desktop-download-how-we-compare = How we compare to other browsers
 firefox-desktop-download-compare-firefox-to = Compare { -brand-name-firefox } to:
+firefox-desktop-download-compare-chrome = { -brand-name-chrome }
+firefox-desktop-download-compare-edge = { -brand-name-edge }
+firefox-desktop-download-compare-safari = { -brand-name-safari }
 firefox-desktop-download-yes = Yes
 firefox-desktop-download-no = No
 firefox-desktop-download-blocks-third-party = Blocks third-party tracking cookies
 firefox-desktop-download-autoplay-blocking = Autoplay blocking
 firefox-desktop-download-blocks-social-trackers = Blocks social trackers
+# OS is short for "Operating System"
 firefox-desktop-download-os-availability = OS availability
 firefox-desktop-download-in-browser-screenshot = In-browser screenshot tool
-firefox-desktop-download-master-password = Master Password
+firefox-desktop-download-master-password = Master password
 firefox-desktop-download-we-block-the-ad = We block the ad trackers. You explore the internet faster.
 firefox-desktop-download-ads-are-distracting = Ads are distracting and make web pages load slower, while their trackers watch every move you make online. The { -brand-name-firefox-browser } blocks most trackers automatically, so there’s no need to dig into your security settings.
 firefox-desktop-download-see-your-report = See your protection report
@@ -36,6 +43,7 @@ firefox-desktop-download-available-in-over = Available in over 90 languages, and
 firefox-desktop-download-review-system-req = Review system requirements
 firefox-desktop-download-all-your-devices = Put { -brand-name-firefox } on all your devices
 firefox-desktop-download-take-your-privacy = Take your privacy with you everywhere. { -brand-name-firefox-browser }s for { -brand-name-ios } and { -brand-name-android } have the same strong privacy settings to block trackers from following you around the web, no matter where you are.
+# The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
 firefox-desktop-download-do-it-all = Do it <strong>all</strong> with { -brand-name-firefox }
 firefox-desktop-download-search-smarter = Search smarter, faster
 firefox-desktop-download-search-from-address = Search from address bar
@@ -52,7 +60,9 @@ firefox-desktop-download-reader-mode = Reader mode
 firefox-desktop-download-spell-check = Spell check
 firefox-desktop-download-pinned-tabs = Pinned Tabs
 firefox-desktop-download-stream-share-play = Stream, share and play
+# Autoplay is a feature names and so is capitalized in English
 firefox-desktop-download-block-autoplay-of = Block Autoplay of video & audio
+# Picture-in-Picture is a feature names and so is capitalized in English
 firefox-desktop-download-picture-in-picture = Picture-in-Picture
 firefox-desktop-download-curated-content-on = Curated content on new tab
 firefox-desktop-download-share-links = Share links
@@ -74,24 +84,31 @@ firefox-desktop-download-dark-mode = Dark mode
 firefox-desktop-download-library-of-extensions = Library of extensions
 firefox-desktop-download-adjust-search-bar = Adjust search bar settings
 firefox-desktop-download-change-new-tab = Change new tab layout
+# The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
 firefox-desktop-download-make-firefox-your = Make <strong>{ -brand-name-firefox }</strong> your own
 firefox-desktop-download-extensions-for-every = Extensions for every interest
 firefox-desktop-download-change-up-your = Change up your look
 firefox-desktop-download-go-from-light = Go from light mode to dark mode depending on your mood or preference, or liven things up with a custom theme (rainbow unicorn, perhaps).
 firefox-desktop-download-tweak-your-settings = Tweak your settings
 firefox-desktop-download-theres-no-need = There’s no need to settle. Change up the new tab page, search bar, bookmarks and more to explore the internet the way you want.
+# The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
 firefox-desktop-download-backed-by-the = Backed by the <strong>non-profit</strong> that puts people first
 firefox-desktop-download-challenging-the-status = Challenging the status quo since 1998
 firefox-desktop-download-your-privacy-comes = Your privacy comes first
+# The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
 firefox-desktop-download-keep-all-your = Keep all your favorite browser features — and <strong>discover</strong> new ones.
+# Gmail and Docs are product names and should not be translated
 firefox-desktop-download-all-your-favourite = All your favorite { -brand-name-google } tools (like Gmail and Docs) work seamlessly in the { -brand-name-firefox-browser }.
 firefox-desktop-download-facebook-container = { -brand-name-facebook-container }
 firefox-desktop-download-download-this-browser = Download this browser extension</a> to stop { -brand-name-facebook } (and { -brand-name-instagram }) from tracking you around the web.
 firefox-desktop-download-sync-your-devices = Sync your devices
 firefox-desktop-download-screenshots = Screenshots
+# Enhanced Tracking Protection is a feature names and so is capitalized in English
 firefox-desktop-download-enhanced-tracking-protection = Enhanced Tracking Protection (ETP)
 firefox-desktop-download-from-watching-a = From watching a web tutorial to keeping an eye on your favorite team, your video follows you while you multitask.
 firefox-desktop-download-firefox-browser = { -brand-name-firefox-browser }
+# The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
+# The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
 firefox-desktop-download-get-firefox-android = Get { -brand-name-firefox-browser } for <strong>{ -brand-name-android }</strong>
 firefox-desktop-download-get-firefox-ios = Get { -brand-name-firefox-browser } for <strong>{ -brand-name-ios }</strong>
 firefox-desktop-download-download-the-mobile = Download the { -brand-name-firefox } mobile browser for automatic protection on all your devices.
@@ -128,6 +145,7 @@ firefox-desktop-download-questions = Questions? <a { $attrs }>{ -brand-name-mozi
 
 ## URL: https://www-dev.allizom.org/firefox/new/thanks/
 
+# The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
 firefox-desktop-download-now-finish = Almost there! Now finish <strong>installing</strong> { -brand-name-firefox }.
 firefox-desktop-download-click-installer = Click on the { -brand-name-firefox } Installer
 firefox-desktop-download-click-installer-bottom = Click the { -brand-name-firefox } installer in the bottom left corner of your browser.

@@ -43,7 +43,7 @@
         <p>{{ ftl('firefox-desktop-download-no-shady') }}</p>
 
         <div class="c-intro-download">
-          {{ download_firefox(dom_id='download-primary', download_location='primary cta') }}
+          {{ download_firefox(dom_id='download-primary', locale_in_transition=True, download_location='primary cta') }}
 
           <a class="c-intro-download-alt" href="{{ url('firefox.all') }}">{{ ftl('firefox-desktop-download-download-options') }}</a>
 
@@ -119,7 +119,7 @@
           <div class="c-block-media-img">
             <div class="c-chart">
               <table id="compare-table" class="mzp-u-data-table c-compare-table">
-                <caption><span class="u-visually-hidden">{{ ftl('firefox-desktop-download-compare-firefox-to') }}</span><div class="c-compare-buttons"><button id="js-compare-chrome" class="c-compare-button" value="chrome" type="button" aria-pressed="true">Chrome</button><button id="js-compare-edge" class="c-compare-button"  value="edge" type="button" aria-pressed="false">Edge</button><button id="js-compare-safari" class="c-compare-button"  value="safari" type="button" aria-pressed="false">Safari</button></div></caption>
+                <caption><span class="u-visually-hidden">{{ ftl('firefox-desktop-download-compare-firefox-to') }}</span><div class="c-compare-buttons"><button id="js-compare-chrome" class="c-compare-button" value="chrome" type="button" aria-pressed="true">{{ ftl('firefox-desktop-download-compare-chrome') }}</button><button id="js-compare-edge" class="c-compare-button"  value="edge" type="button" aria-pressed="false">{{ ftl('firefox-desktop-download-compare-edge') }}</button><button id="js-compare-safari" class="c-compare-button"  value="safari" type="button" aria-pressed="false">{{ ftl('firefox-desktop-download-compare-safari') }}</button></div></caption>
                 <thead>
                   <tr>
                     <th></th>
@@ -309,7 +309,7 @@
         </div>
       </div>
 
-      {{ download_firefox(dom_id='download-features', download_location='features cta') }}
+      {{ download_firefox(dom_id='download-features', locale_in_transition=True, download_location='features cta') }}
 
     </div>
   </section>
@@ -378,7 +378,7 @@
   </section>
 
   <section id="non-profit" class="mzp-l-content t-company">
-    <h2 class="c-section-title mzp-has-zap-9">Backed by the <strong>non-profit</strong> that puts people first</h2>
+    <h2 class="c-section-title mzp-has-zap-9">{{ ftl('firefox-desktop-download-backed-by-the') }}</h2>
 
     <div class="mzp-l-card-half">
       <div class="mzp-c-card">
@@ -442,7 +442,7 @@
       </div>
     </div>
 
-    {{ download_firefox(dom_id='download-discover', download_location='discover cta') }}
+    {{ download_firefox(dom_id='download-discover', locale_in_transition=True, download_location='discover cta') }}
   </section>
 
   <section class="c-support">

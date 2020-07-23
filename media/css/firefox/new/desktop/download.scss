@@ -169,6 +169,11 @@ button.mzp-c-cta-link {
                 (margin-right, $h-grid-md, 0),
             ));
             width: calc(50% - (#{$h-grid-md} / 2));
+
+            &:nth-child(even) {
+                margin-left: 0;
+                margin-right: 0;
+            }
         }
 
         @media #{$mq-lg} {
@@ -713,6 +718,10 @@ button.mzp-c-cta-link {
         max-width: $content-xl + $layout-xl * 2;
     }
 
+    [lang=ar] & h2 {
+        @include font-size(40px);
+    }
+
     p {
         margin-bottom: $v-grid-md;
     }
@@ -969,6 +978,7 @@ button.mzp-c-cta-link {
 }
 
 .t-compare .c-block-media-img {
+    @include bidi(((background-position, top left, top right),));
     background-image: url('/media/img/firefox/new/desktop/comparison-noodles.svg');
     background-repeat: no-repeat;
     background-size: contain;
@@ -1433,6 +1443,7 @@ button.mzp-c-cta-link {
             @include bidi(((padding-right, $h-grid-xs / 2, padding-left, 0),));
             @include border-box;
             max-width: 60%;
+            margin: 0 auto;
         }
     }
 
@@ -1457,6 +1468,7 @@ button.mzp-c-cta-link {
 
         .c-mobile-text {
             @include bidi(((padding-right, $h-grid-lg / 2, padding-left, 0),));
+            max-width: $content-xl;
         }
     }
 }
