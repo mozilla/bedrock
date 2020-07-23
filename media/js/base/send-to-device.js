@@ -9,29 +9,28 @@ if (typeof window.Mozilla === 'undefined') {
     window.Mozilla = {};
 }
 
-(function($) {
+(function() {
     'use strict';
 
     var SendToDevice = function(id) {
 
-        this.formId = typeof id !== 'undefined' ? '#' + id : '#send-to-device';
+        this.formId = typeof id !== 'undefined' ? id : 'send-to-device';
 
         this.formLoaded = false;
         this.formTimeout = null;
         this.smsEnabled = false;
 
-        this.$widget = $(this.formId);
-        this.$form = this.$widget.find('.send-to-device-form');
-        this.$formFields = this.$form.find('.send-to-device-form-fields');
-        this.$input = this.$formFields.find('.send-to-device-input');
-        this.$thankyou = this.$widget.find('.thank-you');
-        this.$errorList = this.$form.find('.error-list');
-        this.$spinnerTarget = this.$form.find('.loading-spinner');
-        this.$footerLinks = this.$widget.find('footer > ul');
-        this.$sendAnotherLink = this.$form.find('.send-another');
-        this.$formHeading = this.$widget.find('.form-heading');
-        this.spinnerColor = this.$widget.data('spinnerColor') || '#000';
-        this.countries = this.$widget.data('countries');
+        this.$widget = document.getElementById(this.formId);
+        this.$form = document.querySelector('.send-to-device-form');
+        this.$formFields = document.querySelector('.send-to-device-form-fields');
+        this.$input = document.querySelector('.send-to-device-input');
+        this.$thankyou = document.querySelectorAll('.thank-you');
+        this.$errorList = document.querySelector('.error-list');
+        this.$spinnerTarget = document.querySelector('.loading-spinner');
+        this.$sendAnotherLink = document.querySelector('.send-another');
+        this.$formHeading = document.querySelector('.form-heading');
+        this.spinnerColor = this.$widget.dataset.spinnerColor || '#000';
+        this.countries = this.$widget.dataset.countries;
 
         this.spinner = new Spinner({
             lines: 12, // The number of lines to draw
@@ -58,7 +57,7 @@ if (typeof window.Mozilla === 'undefined') {
      * Initialise the form messaging and bind events.
      */
     SendToDevice.prototype.init = function() {
-        if (this.$widget.length === 1) {
+        if (this.$widget instanceof HTMLElement) {
             this.getLocation();
             this.bindEvents();
         }
@@ -90,17 +89,19 @@ if (typeof window.Mozilla === 'undefined') {
         // just show the email messaging after 5 seconds waiting.
         this.formTimeout = setTimeout(self.updateMessaging, 5000);
 
-        $.get('/country-code.json')
-            .done(function(data) {
+        window.fetch('/country-code.json')
+            .then(function(data) {
                 if (data && data.country_code) {
                     SendToDevice.COUNTRY_CODE = data.country_code.toLowerCase();
                 }
                 self.updateMessaging();
             })
-            .fail(function() {
+            .catch(function() {
                 // something went wrong, show only the email messaging.
                 self.updateMessaging();
-            }).always(function() {
+            })
+            .then(function() {
+                // then acts like a finally block
                 if (typeof self.geoCallback === 'function') {
                     self.geoCallback(SendToDevice.COUNTRY_CODE);
                 }
@@ -123,7 +124,7 @@ if (typeof window.Mozilla === 'undefined') {
         if (!this.formLoaded) {
             this.formLoaded = true;
 
-            // if the page visitor is in a supportec country, show the SMS messaging / copy
+            // if the page visitor is in a supported country, show the SMS messaging / copy
             if (this.inSupportedCountry()) {
                 this.showSMS();
             }
@@ -134,10 +135,10 @@ if (typeof window.Mozilla === 'undefined') {
      * Updates the form fields to include SMS messaging
      */
     SendToDevice.prototype.showSMS = function() {
-        var $label = this.$formFields.find('.form-input-label');
-        this.$form.addClass('sms-country');
-        $label.html($label.data('alt'));
-        this.$input.attr('placeholder', this.$input.data('alt'));
+        var $label = document.querySelector('.form-input-label');
+        this.$form.classList.add('sms-country');
+        $label.innerHTML = $label.dataset.alt;
+        this.$input.setAttribute('placeholder', this.$input.dataset.alt);
         this.smsEnabled = true;
     };
 
@@ -145,17 +146,26 @@ if (typeof window.Mozilla === 'undefined') {
      * Binds form submission and click events
      */
     SendToDevice.prototype.bindEvents = function() {
-        this.$form.on('submit', $.proxy(this.onFormSubmit, this));
-        this.$sendAnotherLink.on('click', $.proxy(this.sendAnother, this));
+        this.eventFormSubmit = this.onFormSubmit.bind(this);
+        this.$form.addEventListener('submit', this.eventFormSubmit);
+
+        if(this.$sendAnotherLink) {
+            // Check that the Element exists, as it's not present in unit test spec file
+            this.eventClickSendAnotherLink = this.sendAnother.bind(this);
+            this.$sendAnotherLink.addEventListener('click', this.eventClickSendAnotherLink);
+        }
     };
 
     /**
      * Remove all form event handlers
      */
     SendToDevice.prototype.unbindEvents = function() {
-        this.$form.off('submit');
-        this.$footerLinks.off('click');
-        this.$sendAnotherLink.off('click');
+        this.$form.removeEventListener('submit', this.eventFormSubmit);
+
+        if(this.$sendAnotherLink) {
+            // Check that the Element exists, as it's not present in unit test spec file
+            this.$sendAnotherLink.removeEventListener('click', this.eventClickSendAnotherLink);
+        }
     };
 
     /**
@@ -163,30 +173,38 @@ if (typeof window.Mozilla === 'undefined') {
      */
     SendToDevice.prototype.sendAnother = function(e) {
         e.preventDefault();
-        this.$input.val('');
-        this.$errorList.addClass('hidden');
-        this.$thankyou.addClass('hidden');
-        this.$formHeading.removeClass('hidden');
-        this.$formFields.removeClass('hidden');
-        this.$input.trigger('focus');
+        this.$input.value = '';
+        this.$errorList.classList.add('hidden');
+        this.$thankyou.forEach(
+            function(currentValue){
+                currentValue.classList.add('hidden');
+            });
+
+        if(this.$formHeading) {
+            // Check that the Element exists, as it's not present in unit test spec file
+            this.$formHeading.classList.remove('hidden');
+        }
+
+        this.$formFields.classList.remove('hidden');
+        this.$input.focus();
     };
 
     /**
      * Enable form fields and hide loading indicator
      */
     SendToDevice.prototype.enableForm = function() {
-        this.$input.prop('disabled', false);
-        this.$form.removeClass('loading');
-        this.$spinnerTarget.hide();
+        this.$input.disabled = false;
+        this.$form.classList.remove('loading');
+        this.$spinnerTarget.style.display = 'none';
     };
 
     /**
      * Disable form fields and show loading indicator
      */
     SendToDevice.prototype.disableForm = function() {
-        this.$input.prop('disabled', true);
-        this.$form.addClass('loading');
-        this.spinner.spin(this.$spinnerTarget.show()[0]);
+        this.$input.disabled = true;
+        this.$form.classList.add('loading');
+        this.spinner.spin(this.$spinnerTarget);
     };
 
     /**
@@ -205,14 +223,24 @@ if (typeof window.Mozilla === 'undefined') {
         e.preventDefault();
 
         var self = this;
-        var action = this.$form.attr('action');
-        var formData = this.$form.serialize();
+        var action = this.$form.getAttribute('action');
 
+        // Rough implementation of jQuery.serialize()
+        // i.e. make a url-encoded string from the form fields
+        var q = [];
+        var fi;
+        for(fi = 0; fi < this.$form.elements.length; fi++) {
+            var fe = this.$form.elements[fi];
+            if(fe.name) {
+                q.push(fe.name + '=' + encodeURIComponent(fe.value));
+            }
+        }
+        var formData = q.join('&');
         this.disableForm();
 
         // if we know the user has not been prompted to enter an SMS number,
         // perform some basic email validation before submitting the form.
-        if (!this.smsEnabled && !this.checkEmailValidity(this.$input.val())) {
+        if (!this.smsEnabled && !this.checkEmailValidity(this.$input.value)) {
             this.onFormError(['email']);
             return;
         }
@@ -223,28 +251,45 @@ if (typeof window.Mozilla === 'undefined') {
 
         // else POST and let the server work out whether the input is a
         // valid email address or US phone number.
-        $.post(action, formData)
-            .done(function(data) {
-                if (data.success) {
-                    self.onFormSuccess(data.success);
-                } else if (data.errors) {
-                    self.onFormError(data.errors);
-                }
-            })
-            .fail(function(error) {
-                self.onFormFailure(error);
-            });
+        window.fetch(action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+            },
+        }).then(function(data) { 
+            return data.json();
+        }).then(function(data) {
+            if (data.success) {
+                self.onFormSuccess(data.success);
+            } else if (data.errors) {
+                self.onFormError(data.errors);
+            }
+        }).catch(function(error) {
+            self.onFormFailure(error);
+        });
     };
 
     SendToDevice.prototype.onFormSuccess = function() {
-        this.$errorList.addClass('hidden');
-        this.$formFields.addClass('hidden');
-        this.$formHeading.addClass('hidden');
-        this.$thankyou.removeClass('hidden');
+
+        this.$errorList.classList.add('hidden');
+
+        this.$formFields.classList.add('hidden');
+
+        if(this.$formHeading) {
+            // Check that the Element exists, as it's not present in unit test spec file
+            this.$formHeading.classList.add('hidden');
+        }
+
+        this.$thankyou.forEach(
+            function(currentValue){
+                currentValue.classList.remove('hidden');
+            });
+
         this.enableForm();
 
         // track signup type in GA
-        var isEmail = this.checkEmailValidity(this.$input.val());
+        var isEmail = this.checkEmailValidity(this.$input.value);
 
         window.dataLayer.push({
             'event': 'send-to-device-success',
@@ -254,28 +299,42 @@ if (typeof window.Mozilla === 'undefined') {
 
     SendToDevice.prototype.onFormError = function(errors) {
         var errorClass;
-        this.$errorList.find('li').hide();
-        this.$errorList.removeClass('hidden');
+        this.$errorList.querySelectorAll('li')
+            .forEach(function(li){
+                li.style.display = 'none';
+            });
 
-        if ($.inArray('platform', errors) !== -1) {
+        this.$errorList.classList.remove('hidden');
+
+        if (errors.indexOf('platform') !== -1) {
             errorClass = '.system';
-        } else if (this.smsEnabled && $.inArray('number', errors) !== -1) {
+        } else if (this.smsEnabled && errors.indexOf('number') !== -1) {
             errorClass = '.sms';
         } else {
             errorClass = '.email';
         }
 
-        this.$errorList.find(errorClass).show();
+        this.$errorList.querySelectorAll(errorClass)
+            .forEach(function(eClass){
+                eClass.style.display = '';
+            });
         this.enableForm();
     };
 
     SendToDevice.prototype.onFormFailure = function() {
-        this.$errorList.find('li').hide();
-        this.$errorList.removeClass('hidden');
-        this.$errorList.find('.system').show();
+        this.$errorList.querySelectorAll('li')
+            .forEach(function(li){
+                li.style.display = 'none';
+            });
+        this.$errorList.classList.remove('hidden');
+
+        this.$errorList.querySelectorAll('.system')
+            .forEach(function(sysEle){
+                sysEle.style.display = '';
+            });
         this.enableForm();
     };
 
     window.Mozilla.SendToDevice = SendToDevice;
 
-})(window.jQuery);
+})();
