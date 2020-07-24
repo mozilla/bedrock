@@ -5,6 +5,11 @@
 {% from "macros.html" import google_play_button, fxa_email_form with context %}
 {% from "macros-protocol.html" import hero, picto_card with context %}
 
+{% set show_firefox_join_modal = ftl_has_messages('firefox-desktop-download-youve-already-got-the-browser',
+                                                  'firefox-desktop-download-watch-for-hackers-with',
+                                                  'firefox-desktop-download-just-download-the-browser',
+                                                  'firefox-desktop-download-get-more-from-firefox') %}
+
 {% extends "firefox/new/desktop/base.html" %}
 
 {% block extrahead %}
@@ -42,7 +47,7 @@
 
         <p>{{ ftl('firefox-desktop-download-no-shady') }}</p>
 
-        <div class="c-intro-download">
+        <div id="download-button-desktop-release" class="c-intro-download">
           {{ download_firefox(dom_id='download-primary', locale_in_transition=True, download_location='primary cta') }}
 
           <a class="c-intro-download-alt" href="{{ url('firefox.all') }}">{{ ftl('firefox-desktop-download-download-options') }}</a>
@@ -475,11 +480,26 @@
     <span id="next"></span>
   </aside>
 
+  {% if show_firefox_join_modal %}
+  <aside class="mzp-u-modal-content join-firefox-content">
+    <h4 class="join-firefox-title">{{ ftl('firefox-desktop-download-youve-already-got-the-browser') }}</h4>
+    <p class="join-firefox-intro">{{ ftl('firefox-desktop-download-watch-for-hackers-with') }}</p>
+
+    <a href="{{ url('firefox.accounts') }}" class="mzp-c-button mzp-t-product join-firefox-button" data-link-name="Get More From Firefox" data-link-type="button">{{ ftl('firefox-desktop-download-get-more-from-firefox') }}</a>
+
+    {{ download_firefox(dom_id='download-join-firefox-modal', alt_copy=ftl('firefox-desktop-download-just-download-the-browser'), button_color='mzp-t-secondary', locale_in_transition=True, download_location='other') }}
+  </aside>
+  {% endif %}
+
 </main>
 {% endblock %}
 
 {% block js %}
   {{ js_bundle('firefox_desktop_download') }}
+
+  {% if show_firefox_join_modal %}
+    {{ js_bundle('firefox_new_desktop_join_modal') }}
+  {% endif %}
 
   {% if switch('stub-attribution-macos') %}
     {{ js_bundle('stub-attribution-macos') }}

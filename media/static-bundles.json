@@ -896,6 +896,13 @@
     },
     {
       "files": [
+        "protocol/js/protocol-modal.js",
+        "js/firefox/new/desktop/join-modal.js"
+      ],
+      "name": "firefox_new_desktop_join_modal"
+    },
+    {
+      "files": [
         "js/firefox/new/trailhead/thanks.js"
       ],
       "name": "firefox_new_thanks"
