@@ -6,6 +6,7 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 @import '../../../../protocol/css/includes/lib';
 
+$h-grid-lg: 80px;
 
 .mzp-c-navigation-menu {
     display: none;
@@ -41,4 +42,36 @@ $image-path: '/media/protocol/img';
 
 .c-compare-table caption {
     display: none;
+}
+
+// block
+
+.c-block-body {
+    @include border-box;
+    @include bidi(((float, left, right),));
+    padding: 0 ($h-grid-lg / 2);
+    width: 50%;
+
+    > *:first-child {
+        margin-top: 0;
+    }
+
+    > *:last-child {
+        margin-bottom: 0;
+    }
+
+    .l-reversed & {
+        @include bidi(((float, right, left),));
+    }
+}
+
+.c-block-media {
+    @include border-box;
+    @include bidi(((float, right, left),));
+    padding: 0 ($h-grid-lg / 2);
+    width: 50%;
+
+    .l-reversed & {
+        @include bidi(((float, left, right),));
+    }
 }

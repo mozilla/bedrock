@@ -469,61 +469,37 @@ button.mzp-c-cta-link {
 // --------------------------------------
 // side by side layout, float based fall back
 
-// no media queries, IE8
-.c-block-body {
-    @include border-box;
-    @include bidi(((float, left, right),));
-    padding: 0 ($h-grid-lg / 2);
-    width: 50%;
-
-    > *:first-child {
-        margin-top: 0;
-    }
-
-    > *:last-child {
-        margin-bottom: 0;
-    }
-
-    .l-reversed & {
-        @include bidi(((float, right, left),));
-    }
-}
-
-.c-block-media {
-    @include border-box;
-    @include bidi(((float, right, left),));
-    padding: 0 ($h-grid-lg / 2);
-    width: 50%;
-
-    .l-reversed & {
-        @include bidi(((float, left, right),));
-    }
-}
-
-// take it away only on small screens
-@media (max-width: #{$content-md - 1px}) {
+@media #{$mq-md} {
     .c-block-body {
-        @include bidi(((float, none, none),));
-        padding: 0;
-        width: 100%;
+        @include border-box;
+        @include bidi(((float, left, right),));
+        width: 50%;
+        padding: 0 ($h-grid-lg / 2);
+
+        > *:first-child {
+            margin-top: 0;
+        }
+
+        > *:last-child {
+            margin-bottom: 0;
+        }
 
         .l-reversed & {
-            @include bidi(((float, none, none),));
+            @include bidi(((float, right, left),));
         }
     }
 
     .c-block-media {
         @include border-box;
-        @include bidi(((float, none, none),));
-        padding: 0;
-        width: 100%;
+        @include bidi(((float, right, left),));
+        width: 50%;
+        padding: 0 ($h-grid-lg / 2);
 
         .l-reversed & {
-            @include bidi(((float, none, none),));
+            @include bidi(((float, left, right),));
         }
     }
 }
-
 
 // --------------------------------------
 // side by side layout, grid based
