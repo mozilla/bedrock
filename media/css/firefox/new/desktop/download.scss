@@ -430,28 +430,15 @@ button.mzp-c-cta-link {
     @media all and (max-width: #{$screen-md - 1}) {
         &:first-child {
             margin-bottom: $v-grid-xs;
-
-            @media all and (min-width: #{$screen-md}) {
-                margin-bottom: $v-grid-md;
-            }
         }
 
         &:last-child {
             margin-top: $v-grid-xs;
-
-            @media all and (min-width: #{$screen-md}) {
-                margin-top: $v-grid-md;
-            }
         }
 
         .mzp-has-media-hide-on-sm & {
             margin-bottom: 0;
             margin-top: 0;
-
-            @media all and (min-width: #{$screen-md}) {
-                margin-bottom: 0;
-                margin-top: 0;
-            }
         }
     }
 }
@@ -459,7 +446,7 @@ button.mzp-c-cta-link {
 .c-block-media {
     position: relative;
 
-    @media all and (max-width:#{$screen-md - 1}) {
+    @media (max-width: #{$content-md - 1px}) {
         .mzp-has-media-hide-on-sm & {
             display: none;
         }
@@ -548,9 +535,9 @@ button.mzp-c-cta-link {
 // constraints on height or width of media
 
 .c-block-media {
-    @media all and (max-width: #{$screen-lg - 1}) {
+    @media all and (max-width: #{$screen-md - 1}) {
         // center image & constrain width
-        &.l-media-constrain-on-sm-md {
+        &.l-media-constrain-on-sm {
             text-align: center;
 
             .c-block-media-img {
