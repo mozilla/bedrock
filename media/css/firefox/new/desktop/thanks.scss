@@ -222,8 +222,14 @@ main {
     counter-reset: section;
 
     strong {
-        display: block;
+        align-items: center;
+        background-size: auto 160px;
+        background-position: bottom center;
+        background-repeat: no-repeat;
+        display: grid;
+        grid-template-columns: min-content 1fr;
         margin-bottom: $layout-sm;
+        padding-bottom: 160px + $layout-sm;
 
         &:before {
             @include bidi((
@@ -242,40 +248,32 @@ main {
             text-align: center;
             width: 1.8em;
         }
+
+        &.t-one {
+            background-image: url('/media/img/firefox/new/desktop/thanks/win-1.svg');
+
+            .osx & {
+                @include at2x('/media/img/firefox/new/desktop/thanks/mac-1.jpg', auto, 160px);
+            }
+        }
+        &.t-two {
+            background-image: url('/media/img/firefox/new/desktop/thanks/win-2.svg');
+
+            .osx & {
+                background-image: url('/media/img/firefox/new/desktop/thanks/mac-2.svg');
+            }
+        }
+        &.t-three {
+            background-image: url('/media/img/firefox/new/desktop/thanks/both-3.svg');
+        }
     }
 
     span {
         display: block;
-        margin-top: $layout-sm;
     }
 
-    @supports(display:grid) {
-        li {
-            @include grid-row-gap($layout-sm);
-            display: grid;
-            grid-template-rows: 3em 160px min-content;
-            align-items: center;
-        }
-
-        strong {
-            align-items: center;
-            display: grid;
-            grid-template-columns: min-content 1fr;
-            margin-bottom: 0;
-        }
-
-        span {
-            margin-top: 0;
-        }
-
-        br {
-            display: none;
-        }
-
-        img {
-            max-height: 100%;
-            margin: 0 auto;
-        }
+    br {
+        display: none;
     }
 }
 

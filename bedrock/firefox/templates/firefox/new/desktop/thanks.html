@@ -45,27 +45,26 @@
     <span class="c-logo show-else"></span>
     <h1 class="mzp-has-zap-8 c-section-title">{{ ftl('firefox-desktop-download-now-finish') }}</h1>
 
+    {#
     <div id="download-button-wrapper-desktop">
       {{ download_firefox(force_direct=true, dom_id='primary-download-button') }}
     </div>
+    #}
 
     <div class="show-windows">
       <ol class="mzp-l-card-third c-howto">
         <li class="mzp-c-card">
-          <strong>{{ ftl('firefox-desktop-download-click-installer') }}</strong><br>
-          <img src="{{ static('img/firefox/new/desktop/thanks/win-1.svg') }}" alt="">
-          <span>{{ ftl('firefox-desktop-download-click-installer-bottom') }}</span>
+          <strong class="t-one">{{ ftl('firefox-desktop-download-run-installer') }}</strong><br>
+          <span>{{ ftl('firefox-desktop-download-run-installer-bottom') }}</span>
         </li>
 
         <li class="mzp-c-card">
-          <strong>{{ ftl('firefox-desktop-download-select-yes') }}</strong><br>
-          <img src="{{ static('img/firefox/new/desktop/thanks/win-2.svg') }}" alt="">
+          <strong class="t-two">{{ ftl('firefox-desktop-download-select-yes') }}</strong><br>
           <span>{{ ftl('firefox-desktop-download-click-yes') }}</span>
         </li>
 
         <li class="mzp-c-card">
-          <strong>{{ ftl('firefox-desktop-download-start-using') }}</strong><br>
-          <img src="{{ static('img/firefox/new/desktop/thanks/both-3.svg') }}" alt="">
+          <strong class="t-three">{{ ftl('firefox-desktop-download-start-using') }}</strong><br>
           <span>{{ ftl('firefox-desktop-download-will-automatically-open') }}</span>
         </li>
       </ol>
@@ -74,26 +73,23 @@
     <div class="show-mac">
       <ol class="mzp-l-card-third c-howto">
         <li class="mzp-c-card">
-          <strong>{{ ftl('firefox-desktop-download-open-file') }}</strong><br>
-          {{ high_res_img('img/firefox/new/desktop/thanks/mac-1.jpg', {'alt': ''}) }}
+          <strong class="t-one">{{ ftl('firefox-desktop-download-open-file') }}</strong><br>
           <span>{{ ftl('firefox-desktop-download-find-dmg') }}</span>
         </li>
 
         <li class="mzp-c-card">
-          <strong>{{ ftl('firefox-desktop-download-click-drag-icon') }}</strong><br>
-          <img src="{{ static('img/firefox/new/desktop/thanks/mac-2.svg') }}" alt="">
+          <strong class="t-two">{{ ftl('firefox-desktop-download-click-drag-icon') }}</strong><br>
           <span>{{ ftl('firefox-desktop-download-click-drag') }}</span>
         </li>
 
         <li class="mzp-c-card">
-          <strong>{{ ftl('firefox-desktop-download-start-using') }}</strong><br>
-          <img src="{{ static('img/firefox/new/desktop/thanks/both-3.svg') }}" alt="">
+          <strong class="t-three">{{ ftl('firefox-desktop-download-start-using') }}</strong><br>
           <span>{{ ftl('firefox-desktop-download-click-logo') }}</span>
         </li>
     </div>
   </div>
   <div class="c-support-lang">
-    <a href="{{ firefox_url('desktop', 'all') }}{{ referrals }}">{{ ftl('firefox-desktop-download-in-another-language') }}</a>
+    <a href="{{ firefox_url('desktop', 'all') }}">{{ ftl('firefox-desktop-download-in-another-language') }}</a>
   </div>
   <div class="c-support-install">
     <a class="show-mac" href="https://support.mozilla.org/kb/how-download-and-install-firefox-mac{{ referrals }}">{{ ftl('firefox-desktop-download-still-need-help') }}</a>
