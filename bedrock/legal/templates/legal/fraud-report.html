@@ -27,6 +27,20 @@
 {% endblock %}
 
 {% block article %}
+
+{% if form_submitted %}
+<aside class="mzp-c-notification-bar mzp-t-success">
+  <p><strong>{{ _('Your report has been sent.') }}</strong></p>
+  <p>{{ _('Thank you for your help. It’s our community that makes us great.') }}</p>
+</aside>
+{% endif %}
+
+{% if form_error %}
+<aside class="mzp-c-notification-bar mzp-t-error">
+  <p><strong>{{ _('An error has occurred with your submission. Please review your information and try again.') }}</strong></p>
+</aside>
+{% endif %}
+
 {# L10n: The line break below is for visual formatting only #}
 <h1 class="mzp-c-article-title">{{_('Protect the Fox<br> (and More!)')}}</h1>
 <h2>{{ _('Help us safeguard Mozilla’s trademarks by reporting misuse.') }}</h2>
@@ -91,11 +105,6 @@
   {% if not form_submitted or (form_submitted and form_error) %}
   <h2>{{ _('Fraud Report') }}</h2>
 
-  {% if form_error %}
-  <aside class="mzp-c-notification-bar mzp-t-error">
-    <p><strong>{{ _('An error has occurred with your submission. Please review your information and try again.') }}</strong></p>
-  </aside>
-  {% endif %}
   <form action="{{ url('legal.fraud-report') }}" method="post" name="reportForm" id="reportForm" enctype="multipart/form-data">
 
     <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
@@ -161,11 +170,6 @@
     </div>
     <button type="submit" name="submit_form" class="mzp-c-button">{{ _('Send Report') }}</button>
   </form>
-  {% else %}
-  <aside class="mzp-c-notification-bar mzp-t-success">
-    <p><strong>{{ _('Your report has been sent.') }}</strong></p>
-    <p>{{ _('Thank you for your help. It’s our community that makes us great.') }}</p>
-  </aside>
 {% endif %}
 </section>
 
