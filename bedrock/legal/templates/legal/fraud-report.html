@@ -88,9 +88,9 @@
 </section>
 
 <section>
+  {% if not form_submitted or (form_submitted and form_error) %}
   <h2>{{ _('Fraud Report') }}</h2>
 
-  {% if not form_submitted or (form_submitted and form_error) %}
   {% if form_error %}
   <aside class="mzp-c-notification-bar mzp-t-error">
     <p><strong>{{ _('An error has occurred with your submission. Please review your information and try again.') }}</strong></p>
