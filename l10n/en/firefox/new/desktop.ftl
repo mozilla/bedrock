@@ -151,20 +151,18 @@ firefox-desktop-download-just-download-the-browser = Just Download The Browser
 ## URL: https://www-dev.allizom.org/firefox/new/thanks/
 
 # The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
-firefox-desktop-download-now-finish = Almost there! Now finish <strong>installing</strong> { -brand-name-firefox }.
-firefox-desktop-download-run-installer = Run the { -brand-name-firefox } Installer
-firefox-desktop-download-click-installer-bottom = Run the { -brand-name-firefox } installer to perform the installation.
-firefox-desktop-download-select-yes = Select YES
-firefox-desktop-download-click-yes = Click YES in the pop-up window.
-firefox-desktop-download-start-using = Start using { -brand-name-firefox }
-firefox-desktop-download-will-automatically-open = { -brand-name-firefox } will automatically open.
-firefox-desktop-download-open-file = Open the { -brand-name-firefox } file in Downloads
-firefox-desktop-download-find-dmg = Find a Firefox.dmg file in your Downloads folder. Double click the .dmg file to open.
-firefox-desktop-download-click-drag-icon = Click and drag the { -brand-name-firefox } icon
-firefox-desktop-download-click-drag = In the pop-up window, click and drag the { -brand-name-firefox } logo to the Applications folder.
-firefox-desktop-download-click-logo = Click on the { -brand-name-firefox } logo to open.
-firefox-desktop-download-in-another-language = Download in another language or for another system.
-firefox-desktop-download-still-need-help = If you still need help installing, read the tutorial in our Support section.
+firefox-desktop-download-almost-there = Almost there!
+# The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
+firefox-desktop-download-now-else = Now finish <strong>installing</strong> { -brand-name-firefox }.
+# The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
+firefox-desktop-download-now-windows = Now <strong>run</strong> the installer that just downloaded.
+# The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
+firefox-desktop-download-now-mac = Now <strong>open</strong> the file that just downloaded.
+# Variables:
+#   $attrs (attrs) - link to https://support.mozilla.org/en-US/products/firefox/download-and-install
+firefox-desktop-download-get-help = Having trouble? <a { $attrs }>Get help with your installation</a>.
+firefox-desktop-download-in-another-language = Download in another language or for another operating system.
+
 
 # Variables:
 #   $url (url) - link to https://support.mozilla.org/kb/end-support-windows-xp-and-vista

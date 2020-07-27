@@ -205,9 +205,9 @@ main {
 
 .c-section-title {
     @include text-title-md;
-    margin: 0 auto $layout-lg;
+    margin: 0 auto $layout-sm;
     padding: 0 $layout-sm;
-    max-width: $content-lg + $layout-lg * 2;
+    max-width: $content-md;
     text-align: center;
 
     strong {
@@ -216,75 +216,13 @@ main {
 }
 
 // --------------------------------------------------------------------------
-// Install instructions
 
-.c-howto {
-    counter-reset: section;
-
-    strong {
-        align-items: center;
-        background-size: auto 160px;
-        background-position: bottom center;
-        background-repeat: no-repeat;
-        display: grid;
-        grid-template-columns: min-content 1fr;
-        margin-bottom: $layout-sm;
-        padding-bottom: 160px + $layout-sm;
-
-        &:before {
-            @include bidi((
-                (float, left, right),
-                (margin-right, $spacing-sm, margin-left, 0),
-            ));
-            @include font-size(24px);
-            background-color: $color-violet-60;
-            border-radius: 100%;
-            color: $color-white;
-            content: counter(section);
-            counter-increment: section;
-            display: block;
-            height: 1.8em;
-            line-height: 1.8em;
-            text-align: center;
-            width: 1.8em;
-        }
-
-        &.t-one {
-            background-image: url('/media/img/firefox/new/desktop/thanks/win-1.svg');
-
-            .osx & {
-                @include at2x('/media/img/firefox/new/desktop/thanks/mac-1.jpg', auto, 160px);
-            }
-        }
-        &.t-two {
-            background-image: url('/media/img/firefox/new/desktop/thanks/win-2.svg');
-
-            .osx & {
-                background-image: url('/media/img/firefox/new/desktop/thanks/mac-2.svg');
-            }
-        }
-        &.t-three {
-            background-image: url('/media/img/firefox/new/desktop/thanks/both-3.svg');
-        }
-    }
-
-    span {
-        display: block;
-    }
-
-    br {
-        display: none;
-    }
-}
-
-// --------------------------------------------------------------------------
-
-.c-support-lang {
+.c-support-install {
     padding: $spacing-lg;
     text-align: center;
 }
 
-.c-support-install {
+.c-support-lang {
     background-color: $color-light-gray-10;
     padding: $spacing-lg;
     text-align: center;

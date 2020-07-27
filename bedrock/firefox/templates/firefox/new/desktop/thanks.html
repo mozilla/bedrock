@@ -42,59 +42,30 @@
   </div>
 
   <div class="mzp-l-content">
-    <span class="c-logo show-else"></span>
-    <h1 class="mzp-has-zap-8 c-section-title">{{ ftl('firefox-desktop-download-now-finish') }}</h1>
+    <span class="c-logo"></span>
 
-    {#
     <div id="download-button-wrapper-desktop">
       {{ download_firefox(force_direct=true, dom_id='primary-download-button') }}
     </div>
-    #}
 
-    <div class="show-windows">
-      <ol class="mzp-l-card-third c-howto">
-        <li class="mzp-c-card">
-          <strong class="t-one">{{ ftl('firefox-desktop-download-run-installer') }}</strong><br>
-          <span>{{ ftl('firefox-desktop-download-run-installer-bottom') }}</span>
-        </li>
+    <h1 class="mzp-has-zap-8 c-section-title show-else">{{ ftl('firefox-desktop-download-almost-there') }}<br>{{ ftl('firefox-desktop-download-now-else') }}</h1>
 
-        <li class="mzp-c-card">
-          <strong class="t-two">{{ ftl('firefox-desktop-download-select-yes') }}</strong><br>
-          <span>{{ ftl('firefox-desktop-download-click-yes') }}</span>
-        </li>
+    <h1 class="mzp-has-zap-8 c-section-title show-windows">{{ ftl('firefox-desktop-download-almost-there') }}<br>{{ ftl('firefox-desktop-download-now-windows') }}</h1>
 
-        <li class="mzp-c-card">
-          <strong class="t-three">{{ ftl('firefox-desktop-download-start-using') }}</strong><br>
-          <span>{{ ftl('firefox-desktop-download-will-automatically-open') }}</span>
-        </li>
-      </ol>
+    <h1 class="mzp-has-zap-8 c-section-title show-mac">{{ ftl('firefox-desktop-download-almost-there') }}<br>{{ ftl('firefox-desktop-download-now-mac') }}</h1>
+
+    <div class="c-support-install">
+      {% set support_mac_attrs = 'href="https://addons.mozilla.org/firefox/extensions/%s" rel="external noopener" data-cta-type="link" data-cta-text="extension for everyone"'|safe|format(referrals) %}
+      <span class="show-mac">{{ ftl('firefox-desktop-download-get-help', attrs=support_mac_attrs) }}</span>
+      {% set support_windows_attrs = 'href="https://support.mozilla.org/kb/how-download-and-install-firefox-windows%s" rel="external noopener" data-cta-type="link" data-cta-text="extension for everyone"'|safe|format(referrals) %}
+      <span class="show-windows">{{ ftl('firefox-desktop-download-get-help', attrs=support_windows_attrs) }}</span>
+      {% set support_else_attrs = 'href="https://support.mozilla.org/products/firefox/install-and-update-firefox%s" rel="external noopener" data-cta-type="link" data-cta-text="extension for everyone"'|safe|format(referrals) %}
+      <span class="show-else">{{ ftl('firefox-desktop-download-get-help', attrs=support_else_attrs) }}</span>
     </div>
 
-    <div class="show-mac">
-      <ol class="mzp-l-card-third c-howto">
-        <li class="mzp-c-card">
-          <strong class="t-one">{{ ftl('firefox-desktop-download-open-file') }}</strong><br>
-          <span>{{ ftl('firefox-desktop-download-find-dmg') }}</span>
-        </li>
-
-        <li class="mzp-c-card">
-          <strong class="t-two">{{ ftl('firefox-desktop-download-click-drag-icon') }}</strong><br>
-          <span>{{ ftl('firefox-desktop-download-click-drag') }}</span>
-        </li>
-
-        <li class="mzp-c-card">
-          <strong class="t-three">{{ ftl('firefox-desktop-download-start-using') }}</strong><br>
-          <span>{{ ftl('firefox-desktop-download-click-logo') }}</span>
-        </li>
-    </div>
   </div>
   <div class="c-support-lang">
     <a href="{{ firefox_url('desktop', 'all') }}">{{ ftl('firefox-desktop-download-in-another-language') }}</a>
-  </div>
-  <div class="c-support-install">
-    <a class="show-mac" href="https://support.mozilla.org/kb/how-download-and-install-firefox-mac{{ referrals }}">{{ ftl('firefox-desktop-download-still-need-help') }}</a>
-    <a class="show-windows" href="https://support.mozilla.org/kb/how-download-and-install-firefox-windows{{ referrals }}">{{ ftl('firefox-desktop-download-still-need-help') }}</a>
-    <a class="show-else" href="https://support.mozilla.org/products/firefox/install-and-update-firefox{{ referrals }}">{{ ftl('firefox-desktop-download-still-need-help') }}</a>
   </div>
 </main>
 {% endblock %}
