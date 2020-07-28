@@ -35,10 +35,10 @@
                 id: 'welcome8_experiment_hvt_visual',
                 cookieExpires: 0,
                 variations: {
-                    'v=text': 2.5,
-                    'v=image': 2.5,
-                    'v=animation': 2.5,
-                    'v=header-text': 2.5,
+                    'v=text': 3,
+                    'v=image': 3,
+                    'v=animation': 3,
+                    'v=header-text': 3,
                 }
             });
             cop.init();
