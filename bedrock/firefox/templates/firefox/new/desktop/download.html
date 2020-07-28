@@ -47,8 +47,8 @@
 
         <p>{{ ftl('firefox-desktop-download-no-shady') }}</p>
 
-        <div id="download-button-desktop-release" class="c-intro-download">
-          {{ download_firefox(dom_id='download-primary', locale_in_transition=True, download_location='primary cta') }}
+        <div class="c-intro-download">
+          {{ download_firefox(locale_in_transition=True, download_location='primary cta') }}
 
           <a class="c-intro-download-alt" href="{{ url('firefox.all') }}">{{ ftl('firefox-desktop-download-download-options') }}</a>
 
