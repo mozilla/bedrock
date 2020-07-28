@@ -7,24 +7,22 @@
 
     function handleOpenProtectionReport(e) {
         e.preventDefault();
-        Mozilla.UITour.showProtectionReport();
-
         window.dataLayer.push({
             'event': 'in-page-interaction',
             'eAction': 'link click',
             'eLabel': 'View your protection report'
         });
+        Mozilla.UITour.showProtectionReport();
     }
 
     function handleOpenProtectionReportLink(e) {
         e.preventDefault();
-        Mozilla.UITour.showProtectionReport();
-
         window.dataLayer.push({
             'event': 'in-page-interaction',
             'eAction': 'link click',
             'eLabel': 'See what`s blocked'
         });
+        Mozilla.UITour.showProtectionReport();
     }
 
     Mozilla.UITour.ping(function() {
