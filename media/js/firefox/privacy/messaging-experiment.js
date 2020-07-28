@@ -9,13 +9,14 @@
 
     function handleOpenProtectionReport(e) {
         e.preventDefault();
-        Mozilla.UITour.showProtectionReport();
 
         window.dataLayer.push({
             'event': 'in-page-interaction',
             'eAction': 'link click',
             'eLabel': 'Check Out Your Protections'
         });
+
+        Mozilla.UITour.showProtectionReport();
     }
 
     if (client.isFirefoxDesktop) {
