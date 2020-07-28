@@ -43,6 +43,7 @@ $v-grid-lg: 192px / 2;
 $h-grid-lg: 80px;
 
 main {
+    background-color: $color-white; // for IE6
     color: $color-dark-gray-30;
 
     .mzp-l-content {
