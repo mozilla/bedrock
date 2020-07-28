@@ -9,13 +9,14 @@
 
     function handleOpenProtectionReport(e) {
         e.preventDefault();
-        Mozilla.UITour.showProtectionReport();
 
         window.dataLayer.push({
             'event': 'in-page-interaction',
             'eAction': 'link click',
             'eLabel': 'See what Firefox has blocked for you'
         });
+
+        Mozilla.UITour.showProtectionReport();
     }
 
     if (client.isFirefoxDesktop) {
