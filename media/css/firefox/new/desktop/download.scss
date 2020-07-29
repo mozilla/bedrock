@@ -699,15 +699,15 @@ button.mzp-c-cta-link {
         margin-top: $spacing-md;
     }
 
-    &:link,
-    &:visited {
+    a:link,
+    a:visited {
         color: inherit;
         text-decoration: none;
     }
 
-    &:hover,
-    &:active,
-    &:focus {
+    a:hover,
+    a:active,
+    a:focus {
         text-decoration: underline;
     }
 }

@@ -50,9 +50,9 @@
         <div class="c-intro-download">
           {{ download_firefox(locale_in_transition=True, download_location='primary cta') }}
 
-          <a class="c-intro-download-alt" href="{{ url('firefox.all') }}">{{ ftl('firefox-desktop-download-download-options') }}</a>
+          <div class="c-intro-download-alt"><a href="{{ url('firefox.all') }}">{{ ftl('firefox-desktop-download-download-options') }}</a></div>
 
-          <a class="c-intro-download-alt" href="https://support.mozilla.org/products/firefox{{ referrals }}&utm_content=browser-support" rel="external noopener" data-cta-type="link" data-cta-text="Firefox browser support">{{ ftl('firefox-desktop-download-browser-support') }}</a>
+          <div class="c-intro-download-alt"><a href="https://support.mozilla.org/products/firefox{{ referrals }}&utm_content=browser-support" rel="external noopener" data-cta-type="link" data-cta-text="Firefox browser support">{{ ftl('firefox-desktop-download-browser-support') }}</a></div>
         </div>
       </div>
       <div class="c-block-media l-v-center">
