@@ -659,12 +659,12 @@ class WhatsNewFirefoxLiteView(WhatsnewView):
 class DownloadThanksView(L10nTemplateView):
     ftl_files_map = {
         'firefox/new/trailhead/thanks.html': ['firefox/new/download'],
-        'firefox/new/trailhead/thanks-a.html': ['firefox/new/download'],
+        'firefox/new/trailhead/exp-thanks.html': ['firefox/new/download'],
         'firefox/new/desktop/thanks.html': ['firefox/new/desktop'],
     }
 
     # place expected ?v= values in this list
-    variations = ['a']
+    variations = ['a', 'b', 'c']
 
     def get_context_data(self, **kwargs):
         ctx = super(DownloadThanksView, self).get_context_data(**kwargs)
@@ -686,8 +686,8 @@ class DownloadThanksView(L10nTemplateView):
         if variant not in self.variations:
             variant = None
 
-        if locale == 'en-US' and variant == 'a':
-            template = 'firefox/new/trailhead/thanks-a.html'
+        if locale == 'en-US' and variant:
+            template = 'firefox/new/trailhead/exp-thanks.html'
         elif ftl_file_is_active('firefox/new/desktop') and switch('new-redesign'):
             template = 'firefox/new/desktop/thanks.html'
         elif ftl_file_is_active('firefox/new/download'):
