@@ -7,12 +7,16 @@ $image-path: '/media/protocol/img';
 @import '../../../../protocol/css/includes/lib';
 
 @import '../../../../protocol/css/components/emphasis-box';
+@import '../../../../protocol/css/components/modal';
 @import '../../../../protocol/css/components/zap';
 @import '../../../../protocol/css/templates/card-layout';
 
 
 // --------------------------------------------------------------------------
 // Protocol over-rides
+// https://github.com/mozilla/protocol/issues/345
+// https://github.com/mozilla/protocol/issues/536
+// https://github.com/mozilla/bedrock/pull/9096
 
 $content-xs: 304px;
 $content-sm: 432px;
@@ -40,6 +44,7 @@ $v-grid-lg: 192px / 2;
 $h-grid-lg: 80px;
 
 main {
+    background-color: $color-white; // for IE6
     color: $color-dark-gray-30;
 
     .mzp-l-content {
@@ -91,12 +96,12 @@ main {
 // button container
 
 .mzp-c-button-download-container {
-    main & { // target main to avoid conflicting with nav
+    .main-download & { // target main to avoid conflicting with nav
         margin-bottom: 0;
     }
 
     .t-intro & {
-        text-align: left;
+        @include bidi(((text-align, left, right),));
     }
 
     .t-features &,
@@ -104,6 +109,7 @@ main {
         display: block;
     }
 }
+
 
 // cta link
 
@@ -121,6 +127,8 @@ button.mzp-c-cta-link {
 }
 
 // cards
+// https://github.com/mozilla/protocol/issues/536
+// https://github.com/mozilla/bedrock/pull/9096
 
 .mzp-c-card {
     background-color: transparent;
@@ -163,6 +171,11 @@ button.mzp-c-cta-link {
                 (margin-right, $h-grid-md, 0),
             ));
             width: calc(50% - (#{$h-grid-md} / 2));
+
+            &:nth-child(even) {
+                margin-left: 0;
+                margin-right: 0;
+            }
         }
 
         @media #{$mq-lg} {
@@ -281,12 +294,16 @@ button.mzp-c-cta-link {
 
 .c-logo.t-browser-word-hor-xs,
 .c-logo.t-browser-word-hor-white-xs {
-    @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-sm.png', auto, 40px);
+    @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-xs.png', auto, 40px);
+    @include bidi(((background-position, top left, top right),));
     @include image-replaced;
-    background-position: top left;
     background-repeat: no-repeat;
-    height: 40px;
+    height: 48px; // for IE8
     margin-bottom: 40px;
+
+    @media all and (min-width: 0) {
+        height: 40px;
+    }
 
     @media #{$mq-md} {
         background-size: auto 48px;
@@ -414,28 +431,15 @@ button.mzp-c-cta-link {
     @media all and (max-width: #{$screen-md - 1}) {
         &:first-child {
             margin-bottom: $v-grid-xs;
-
-            @media all and (min-width: #{$screen-md}) {
-                margin-bottom: $v-grid-md;
-            }
         }
 
         &:last-child {
             margin-top: $v-grid-xs;
-
-            @media all and (min-width: #{$screen-md}) {
-                margin-top: $v-grid-md;
-            }
         }
 
         .mzp-has-media-hide-on-sm & {
             margin-bottom: 0;
             margin-top: 0;
-
-            @media all and (min-width: #{$screen-md}) {
-                margin-bottom: 0;
-                margin-top: 0;
-            }
         }
     }
 }
@@ -443,7 +447,7 @@ button.mzp-c-cta-link {
 .c-block-media {
     position: relative;
 
-    @media all and (max-width:#{$screen-md - 1}) {
+    @media (max-width: #{$content-md - 1px}) {
         .mzp-has-media-hide-on-sm & {
             display: none;
         }
@@ -483,14 +487,13 @@ button.mzp-c-cta-link {
             @include bidi(((float, left, right),));
         }
     }
-
 }
 
 // --------------------------------------
 // side by side layout, grid based
 
 @media #{$mq-md} {
-    @supports(display:grid) {
+    @supports (display:grid) {
         .c-block-container {
             // grid is all start/end based we don't need bidi declarations for RTL support \o/
             display: grid;
@@ -533,9 +536,9 @@ button.mzp-c-cta-link {
 // constraints on height or width of media
 
 .c-block-media {
-    @media all and (max-width: #{$screen-lg - 1}) {
+    @media all and (max-width: #{$screen-md - 1}) {
         // center image & constrain width
-        &.l-media-constrain-on-sm-md {
+        &.l-media-constrain-on-sm {
             text-align: center;
 
             .c-block-media-img {
@@ -680,6 +683,10 @@ button.mzp-c-cta-link {
         max-width: $content-xl + $layout-xl * 2;
     }
 
+    [lang=ar] & h2 {
+        @include font-size(40px);
+    }
+
     p {
         margin-bottom: $v-grid-md;
     }
@@ -693,15 +700,15 @@ button.mzp-c-cta-link {
         margin-top: $spacing-md;
     }
 
-    &:link,
-    &:visited {
+    a:link,
+    a:visited {
         color: inherit;
         text-decoration: none;
     }
 
-    &:hover,
-    &:active,
-    &:focus {
+    a:hover,
+    a:active,
+    a:focus {
         text-decoration: underline;
     }
 }
@@ -779,7 +786,7 @@ button.mzp-c-cta-link {
 }
 
 .noodle-circle {
-    animation: round 10s infinite linear;
+    animation: round 9s infinite linear;
     height: 20px;
     left: 296px;
     top: 40px;
@@ -910,9 +917,11 @@ button.mzp-c-cta-link {
         margin-bottom: $spacing-xl;
     }
 
-    @media #{$mq-lg} {
-        .c-block-body {
-            max-width: ($content-lg - $h-grid-lg) / 2;
+    @supports(display:grid) {
+        @media #{$mq-lg} {
+            .c-block-body {
+                max-width: ($content-lg - $h-grid-lg) / 2;
+            }
         }
     }
 }
@@ -934,13 +943,19 @@ button.mzp-c-cta-link {
 }
 
 .t-compare .c-block-media-img {
+    @include bidi(((background-position, top left, top right),));
     background-image: url('/media/img/firefox/new/desktop/comparison-noodles.svg');
     background-repeat: no-repeat;
     background-size: contain;
-    padding: 65px $layout-sm 0;
+
+    // IE 8 doesn't have the noodles, so don't push it down
+    @media all and (min-width: 0) {
+        padding: 65px 0 0;
+    }
 
     @media #{$mq-md} {
         background-size: 600px;
+        padding: 65px $layout-sm 0;
         width: 100%;
     }
 
@@ -964,6 +979,10 @@ button.mzp-c-cta-link {
     margin-right: auto;
     max-width: $content-lg;
     width: 100%;
+
+    caption {
+        display: table-caption;
+    }
 
     thead {
         th {
@@ -990,14 +1009,17 @@ button.mzp-c-cta-link {
     th,
     td {
         @include text-body-sm;
-        border-left: 1px solid $color-marketing-gray-20;
+        @include bidi((
+            (border-left, 1px solid $color-marketing-gray-20, border-right, 0),
+            (text-align, center, center), // needs higher specificity for RTL
+        ));
         border-top: 1px solid $color-marketing-gray-20;
         font-weight: normal;
         padding: $spacing-xs;
-        text-align: center;
+
 
         &:first-child {
-            border-left: none;
+            @include bidi(((border-left-width, 0, border-right-width, 1px),));
             text-align: start;
         }
 
@@ -1141,8 +1163,8 @@ button.mzp-c-cta-link {
     }
 
     .mzp-u-list-styled {
+        @include bidi(((margin-left, $spacing-md, margin-right, 0),));
         margin-bottom: 0;
-        margin-left: $spacing-md;
     }
 }
 
@@ -1178,12 +1200,12 @@ button.mzp-c-cta-link {
 }
 
 .c-screenshot {
+    @include bidi(((left, 0, right, auto),));
     @include border-box;
     margin: 0 auto;
     display: block;
     position: absolute;
     bottom: 0;
-    left: 0;
     width: 100%;
     text-align: center;
 
@@ -1266,6 +1288,11 @@ button.mzp-c-cta-link {
         display: block;
         margin: 0 auto $spacing-lg;
         text-align: center;
+
+        @media #{$mq-sm} {
+            margin: 0 0 $spacing-lg;
+            text-align: left;
+        }
     }
 
     p {
@@ -1279,6 +1306,7 @@ button.mzp-c-cta-link {
 .c-support {
     @include text-title-xs;
     background-color: $color-light-gray-10;
+    display: block; // IE8
     font-weight: bold;
     padding: $spacing-lg;
     text-align: center;
@@ -1309,7 +1337,6 @@ button.mzp-c-cta-link {
                          top 15% left 100px;
     background-repeat: no-repeat;
     color: $color-white;
-    min-height: calc(95vh - 75px - #{$v-grid-xs * 2} - 150px); // minus height of nav, and invitation to read desktop page
     padding: $layout-lg $h-grid-xs;
     position: relative;
     overflow-x: hidden;
@@ -1321,7 +1348,6 @@ button.mzp-c-cta-link {
                              top 100px left,
                              bottom right,
                              top 15% center;
-        min-height: calc(95vh - 92px - #{$v-grid-md * 2} - 150px); // minus height of nav, and invitation to read desktop page
         padding: $layout-lg $layout-lg;
     }
 
@@ -1332,7 +1358,6 @@ button.mzp-c-cta-link {
                              top 100px left,
                              bottom right,
                              top 15% center;
-        min-height: calc(95vh - 92px - #{$v-grid-lg * 2} - 150px); // minus height of nav, and invitation to read desktop page
         padding: $layout-lg $layout-xl;
     }
 
@@ -1355,17 +1380,19 @@ button.mzp-c-cta-link {
 
     @media #{$mq-sm} {
         &:after {
+            @include bidi((
+                (left, 60%, right, auto),
+                (margin-left, $h-grid-xs / 2, margin-left, 0),
+            ));
             background-repeat: no-repeat;
             border-radius: $border-radius-sm;
             content: '';
             display: block;
             position: absolute;
             top: $layout-lg;
-            left: 60%;
             bottom: $layout-lg;
             width: 100%;
             max-width: 275px;
-            margin-left: $h-grid-xs / 2;
 
             &,
             .android & {
@@ -1378,44 +1405,50 @@ button.mzp-c-cta-link {
         }
 
         .c-mobile-text {
+            @include bidi(((padding-right, $h-grid-xs / 2, padding-left, 0),));
             @include border-box;
             max-width: 60%;
-            padding-right: $h-grid-xs / 2;
+            margin: 0 auto;
         }
     }
 
     @media #{$mq-md} {
         &:after {
-            left: 50%;
-            margin-left: $h-grid-md / 2;
+            @include bidi((
+                (left, 50%, right, auto),
+                (margin-left, $h-grid-md / 2, margin-right, 0),
+            ));
         }
 
         .c-mobile-text {
+            @include bidi(((padding-right, $h-grid-md / 2, padding-left, 0),));
             max-width: 50%;
-            padding-right: $h-grid-md / 2;
         }
     }
 
     @media #{$mq-lg} {
         &:after {
-            margin-left: $h-grid-lg / 2;
+            @include bidi(((margin-left, $h-grid-lg / 2, margin-right, 0),));
         }
 
         .c-mobile-text {
-            padding-right: $h-grid-lg / 2;
+            @include bidi(((padding-right, $h-grid-lg / 2, padding-left, 0),));
+            max-width: $content-xl;
         }
     }
 }
 
-.c-desktop {
+.c-desktop a {
     @include text-title-xs;
     background-image: url('/media/img/firefox/new/desktop/mobile-arrow.svg');
     background-position: bottom center;
     background-repeat: no-repeat;
     color: $color-purple-50;
+    display: block;
     font-weight: bold;
     padding: $spacing-md $h-grid-xs #{$spacing-lg + 64px};
     text-align: center;
+    text-decoration: none;
 }
 
 
@@ -1444,5 +1477,79 @@ button.mzp-c-cta-link {
             opacity: 1;
             transform: scaleX(1) scaleY(1);
         }
+    }
+}
+
+
+
+// --------------------------------------------------------------------------
+//  Join Firefox modal
+
+.join-firefox-content {
+    background: $color-white;
+    color: $color-ink-80;
+    margin-top: $spacing-lg;
+    padding: $spacing-lg;
+    text-align: center;
+
+    .join-firefox-title {
+        @include text-title-sm;
+    }
+
+    .join-firefox-button {
+        margin-bottom: $spacing-lg;
+    }
+
+    .mzp-c-button,
+    .mzp-c-button-download-container {
+        width: 100%;
+    }
+
+    .mzp-c-button-download-container {
+        margin-bottom: 0;
+
+        // Hide the privacy link as there's already a one visible prior to clicking download.
+        .fx-privacy-link {
+            display: none;
+        }
+    }
+}
+
+/**
+ * Custom narrow modal style.
+ * These should be standardized into a narrow theme.
+ * https://github.com/mozilla/protocol/issues/358
+ */
+.mzp-c-modal {
+
+    .mzp-c-modal-window > .mzp-c-modal-inner {
+        background: transparent;
+        padding: $spacing-xl 0 0;
+
+        header {
+            // Hide header visually and add top padding to compensate
+            @include visually-hidden;
+        }
+    }
+
+    .mzp-c-modal-close {
+        @include bidi(((right, 0, left, auto),));
+    }
+}
+
+/**
+ * Custom narrow modal style.
+ * These should be standardized into a narrow theme.
+ * https://github.com/mozilla/protocol/issues/358
+ */
+.other-platforms-modal {
+    .mzp-c-modal-window > .mzp-c-modal-inner {
+        max-width: 960px;
+    }
+}
+
+.join-firefox-modal {
+    .mzp-c-modal-window > .mzp-c-modal-inner {
+        max-width: 580px;
     }
 }

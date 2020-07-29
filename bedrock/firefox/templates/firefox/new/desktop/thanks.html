@@ -1,0 +1,78 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros-protocol.html" import call_out, picto_card with context %}
+
+{% extends "firefox/new/desktop/base.html" %}
+
+{# "scene2" page should not be indexed to avoid it appearing in search results: issue 7024 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block extrahead %}
+  {{ super() }}
+  {{ css_bundle('firefox_desktop_download_thanks') }}
+{% endblock %}
+
+{% block string_data %}
+  data-pixels="{% for pixel in settings.TRACKING_PIXELS %}{{ pixel }}{% if not loop.last %}::{% endif %}{% endfor %}"
+{% endblock %}
+
+{% block site_header %}
+  {% with hide_nav_download_button=True %}
+    {% include 'includes/protocol/navigation/menu-firefox/index.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-download-thanks' %}
+
+{% block content %}
+<main role="main">
+  <div class="mzp-c-notification-bar mzp-t-warning unsupported">
+    <p>
+      {{ ftl('firefox-desktop-download-youre-using-an-insecure-outdated', url='https://support.mozilla.org/kb/end-support-windows-xp-and-vista') }}
+    </p>
+  </div>
+  <div class="mzp-c-notification-bar mzp-t-success auto-download">
+    {# fallback_url is replaced by the platform download link via JS, but if
+        something fails the user should still get a link to a working download path. #}
+    <p>
+      {{ ftl('firefox-desktop-download-your-firefox-new-should-begin', id='direct-download-link', fallback_url=url('firefox.all'))}}
+    </p>
+  </div>
+
+  <div class="mzp-l-content">
+    <span class="c-logo"></span>
+
+    <div id="download-button-wrapper-desktop">
+      {{ download_firefox(force_direct=true, dom_id='primary-download-button') }}
+    </div>
+
+    <h1 class="mzp-has-zap-8 c-section-title show-else">{{ ftl('firefox-desktop-download-almost-there') }}<br>{{ ftl('firefox-desktop-download-now-else') }}</h1>
+
+    <h1 class="mzp-has-zap-8 c-section-title show-windows">{{ ftl('firefox-desktop-download-almost-there') }}<br>{{ ftl('firefox-desktop-download-now-windows') }}</h1>
+
+    <h1 class="mzp-has-zap-8 c-section-title show-mac">{{ ftl('firefox-desktop-download-almost-there') }}<br>{{ ftl('firefox-desktop-download-now-mac') }}</h1>
+
+    <div class="c-support-install">
+      {% set support_mac_attrs = 'href="https://addons.mozilla.org/firefox/extensions/%s" rel="external noopener" data-cta-type="link" data-cta-text="extension for everyone"'|safe|format(referrals) %}
+      <span class="show-mac">{{ ftl('firefox-desktop-download-get-help', attrs=support_mac_attrs) }}</span>
+      {% set support_windows_attrs = 'href="https://support.mozilla.org/kb/how-download-and-install-firefox-windows%s" rel="external noopener" data-cta-type="link" data-cta-text="extension for everyone"'|safe|format(referrals) %}
+      <span class="show-windows">{{ ftl('firefox-desktop-download-get-help', attrs=support_windows_attrs) }}</span>
+      {% set support_else_attrs = 'href="https://support.mozilla.org/products/firefox/install-and-update-firefox%s" rel="external noopener" data-cta-type="link" data-cta-text="extension for everyone"'|safe|format(referrals) %}
+      <span class="show-else">{{ ftl('firefox-desktop-download-get-help', attrs=support_else_attrs) }}</span>
+    </div>
+
+  </div>
+  <div class="c-support-lang">
+    <a href="{{ firefox_url('desktop', 'all') }}">{{ ftl('firefox-desktop-download-in-another-language') }}</a>
+  </div>
+</main>
+{% endblock %}
+
+{% block js %}
+  {% if switch('tracking-pixel') %}
+    {{ js_bundle('firefox_new_pixel') }}
+  {% endif %}
+  {{ js_bundle('firefox_new_thanks') }}
+{% endblock %}

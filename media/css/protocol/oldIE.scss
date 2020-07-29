@@ -49,6 +49,10 @@ label {
     display: none;
 }
 
+header, main, section, footer {
+    display: block;
+}
+
 /* Make sure form details are visible */
 /* stylelint-disable declaration-no-important  */
 .js .mzp-c-newsletter-details {

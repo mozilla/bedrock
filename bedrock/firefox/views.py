@@ -659,7 +659,8 @@ class WhatsNewFirefoxLiteView(WhatsnewView):
 class DownloadThanksView(L10nTemplateView):
     ftl_files_map = {
         'firefox/new/trailhead/thanks.html': ['firefox/new/download'],
-        'firefox/new/trailhead/thanks-a.html': ['firefox/new/download']
+        'firefox/new/trailhead/thanks-a.html': ['firefox/new/download'],
+        'firefox/new/desktop/thanks.html': ['firefox/new/desktop'],
     }
 
     # place expected ?v= values in this list
@@ -687,6 +688,8 @@ class DownloadThanksView(L10nTemplateView):
 
         if locale == 'en-US' and variant == 'a':
             template = 'firefox/new/trailhead/thanks-a.html'
+        elif ftl_file_is_active('firefox/new/desktop') and switch('new-redesign'):
+            template = 'firefox/new/desktop/thanks.html'
         elif ftl_file_is_active('firefox/new/download'):
             template = 'firefox/new/trailhead/thanks.html'
         else:
@@ -699,6 +702,7 @@ class NewView(L10nTemplateView):
     ftl_files_map = {
         'firefox/new/trailhead/download.html': ['firefox/new/download', 'banners/firefox-mobile'],
         'firefox/new/trailhead/download-yandex.html': ['firefox/new/download', 'banners/firefox-mobile'],
+        'firefox/new/desktop/download.html': ['firefox/new/desktop'],
     }
 
     # place expected ?v= values in this list
@@ -726,14 +730,12 @@ class NewView(L10nTemplateView):
         ctx = super(NewView, self).get_context_data(**kwargs)
 
         # note: v and xv params only allow a-z, A-Z, 0-9, -, and _ characters
-        experience = self.request.GET.get('xv', None)
         variant = self.request.GET.get('v', None)
 
         # ensure variant matches pre-defined value
         if variant not in self.variations:
             variant = None
 
-        ctx['experience'] = experience
         ctx['variant'] = variant
 
         return ctx
@@ -741,7 +743,6 @@ class NewView(L10nTemplateView):
     def get_template_names(self):
         locale = l10n_utils.get_locale(self.request)
         variant = self.request.GET.get('v', None)
-        experience = self.request.GET.get('xv', None)
 
         # ensure variant matches pre-defined value
         if variant not in self.variations:
@@ -749,9 +750,7 @@ class NewView(L10nTemplateView):
 
         if locale == 'ru' and switch('firefox-yandex'):
             template = 'firefox/new/trailhead/download-yandex.html'
-        elif locale == 'en-US' and experience == 'desktop':
-            template = 'firefox/new/desktop/download.html'
-        elif locale == 'en-US' and switch('experiment-new-redesign') and variant == 'b':
+        elif ftl_file_is_active('firefox/new/desktop') and switch('new-redesign'):
             template = 'firefox/new/desktop/download.html'
         elif ftl_file_is_active('firefox/new/download'):
             template = 'firefox/new/trailhead/download.html'

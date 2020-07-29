@@ -116,6 +116,24 @@
     },
     {
       "files": [
+        "css/firefox/new/desktop/ie9.scss"
+      ],
+      "name": "firefox_desktop_download_ie9"
+    },
+    {
+      "files": [
+        "css/firefox/new/desktop/ie8.scss"
+      ],
+      "name": "firefox_desktop_download_ie8"
+    },
+    {
+      "files": [
+        "css/firefox/new/desktop/thanks.scss"
+      ],
+      "name": "firefox_desktop_download_thanks"
+    },
+    {
+      "files": [
         "css/firefox/new/trailhead/thanks.scss",
         "css/firefox/new/protocol/mobile-sync.scss"
       ],
@@ -878,10 +896,10 @@
     },
     {
       "files": [
-        "js/libs/mozilla-traffic-cop.js",
-        "js/firefox/new/desktop/exp.js"
+        "protocol/js/protocol-modal.js",
+        "js/firefox/new/desktop/join-modal.js"
       ],
-      "name": "firefox_new_exp"
+      "name": "firefox_new_desktop_join_modal"
     },
     {
       "files": [
