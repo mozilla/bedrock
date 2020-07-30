@@ -416,7 +416,8 @@
       <div class="mzp-c-card js-animate">
         {{ picture('contain', '131', 138) }}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-facebook-container') }}</h3>
-        <p><a href="https://addons.mozilla.org/firefox/addon/facebook-container/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Download this browser extension">{{ ftl('firefox-desktop-download-download-this-browser') }}</p>
+        {% set addon_attrs = 'href="https://addons.mozilla.org/firefox/addon/facebook-container/%s" rel="external noopener" data-cta-type="link" data-cta-text="Download this browser extension"'|safe|format(referrals) %}
+        <p>{{ ftl('firefox-desktop-download-download-this-browser', attrs=addon_attrs) }}</p>
       </div>
 
       <div class="mzp-c-card js-animate">
