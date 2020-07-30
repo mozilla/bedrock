@@ -85,7 +85,6 @@ firefox-desktop-download-dark-mode = Dark mode
 firefox-desktop-download-library-of-extensions = Library of extensions
 firefox-desktop-download-adjust-search-bar = Adjust search bar settings
 firefox-desktop-download-change-new-tab = Change new tab layout
-# The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
 firefox-desktop-download-make-firefox-your = Make <strong>{ -brand-name-firefox }</strong> your own
 firefox-desktop-download-extensions-for-every = Extensions for every interest
 firefox-desktop-download-change-up-your = Change up your look
@@ -122,11 +121,11 @@ firefox-desktop-download-learn-about-the = Learn about the { -brand-name-firefox
 firefox-desktop-download-from-security-to = From security to news to gaming, there’s an <a { $attrs }>extension for everyone</a>. Add as many as you want until your browser is just right.
 
 # Variables:
-#   $attrs (attrs) - link to https://www.mozilla.org/en-US/about/
+#   $attrs (attrs) - link to https://www.mozilla.org/about/
 firefox-desktop-download-firefox-was-created = { -brand-name-firefox } was created by <a {$attrs }>{ -brand-name-mozilla }</a> as a faster, more private alternative to browsers like { -brand-name-ie }, and now { -brand-name-chrome }. Today, our mission-driven company and volunteer community continue to put your privacy above all else.
 
 # Variables:
-#   $attrs (attrs) - link to https://www.mozilla.org/en-US/firefox/privacy/
+#   $attrs (attrs) - link to https://www.mozilla.org/firefox/privacy/
 firefox-desktop-download-as-the-internet = As the internet grows and changes, { -brand-name-firefox } continues to focus on your right to privacy  — we call it the <a { $attrs }>Personal Data Promise</a>: Take less. Keep it safe. No secrets. Your data, your web activity, your life online is protected with { -brand-name-firefox }.
 
 # Variables:
@@ -134,7 +133,7 @@ firefox-desktop-download-as-the-internet = As the internet grows and changes, { 
 firefox-desktop-download-firefox-is-available = { -brand-name-firefox } is available on all your devices; take your tabs, history and bookmarks with you. All you need is a <a { $attrs }>{ -brand-name-firefox } account</a>.
 
 # Variables:
-#   $attrs (attrs) - link to https://support.mozilla.org/en-US/kb/firefox-screenshots
+#   $attrs (attrs) - link to https://support.mozilla.org/kb/firefox-screenshots
 firefox-desktop-download-grab-a-high = Grab a high-resolution image of anything online with our <a { $attrs }>screenshot</a> tool built right in the browser
 
 # Variables:
@@ -161,7 +160,7 @@ firefox-desktop-download-now-windows = Now <strong>run</strong> the installer th
 # The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
 firefox-desktop-download-now-mac = Now <strong>open</strong> the file that just downloaded.
 # Variables:
-#   $attrs (attrs) - link to https://support.mozilla.org/en-US/products/firefox/download-and-install
+#   $attrs (attrs) - link to https://support.mozilla.org/products/firefox/download-and-install
 firefox-desktop-download-get-help = Having trouble? <a { $attrs }>Get help with your installation</a>.
 firefox-desktop-download-in-another-language = Download in another language or for another operating system.
 
