@@ -6,12 +6,12 @@ import random
 
 import pytest
 
-from pages.firefox.new.download import DownloadPage
+from pages.firefox.home import FirefoxHomePage
 
 
 @pytest.mark.nondestructive
 def test_change_language(base_url, selenium):
-    page = DownloadPage(selenium, base_url, params='').open()
+    page = FirefoxHomePage(selenium, base_url, params='').open()
     initial = page.footer.language
     # avoid selecting the same language or locales that have homepage redirects
     excluded = [initial, 'ja', 'ja-JP-mac', 'zh-CN']
