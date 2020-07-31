@@ -13,7 +13,6 @@ Mozilla.smoothScroll = (function() {
     'use strict';
 
     var _smoothScroll;
-    var $htmlBody;
 
     var _init = function(unitTest) {
         var hasSmoothScroll;
@@ -29,16 +28,6 @@ Mozilla.smoothScroll = (function() {
         if (hasSmoothScroll) {
             _smoothScroll = function(opts) {
                 window.scrollTo(opts);
-            };
-        // otherwise, use jQuery if it's available
-        } else if (window.jQuery) {
-            $htmlBody = $('html, body');
-
-            _smoothScroll = function(opts) {
-                $htmlBody.animate({
-                    scrollTop: opts.top,
-                    scrollLeft: opts.left
-                }, 400);
             };
         // default to regular ol' jump scrolling
         } else {

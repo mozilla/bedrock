@@ -73,16 +73,18 @@ if (typeof window.Mozilla === 'undefined') {
      * @param _selector (String) - CSS selector for target images e.g. '.list-item img'.
      */
     LazyLoad.loadAllFallback = function(_selector) {
-        $(_selector).each(function() {
-            var srcset = this.getAttribute('data-srcset');
+        var nodeList = document.querySelectorAll(_selector);
+        for(var ni = 0; ni < nodeList.length; ni++) {
+            var self = nodeList[ni];
+            var srcset = self.getAttribute('data-srcset');
 
             if (srcset) {
-                this.srcset = srcset;
+                self.srcset = srcset;
             }
 
-            this.src = this.getAttribute('data-src');
-            this.onload = LazyLoad.onImageLoad;
-        });
+            self.src = self.getAttribute('data-src');
+            self.onload = LazyLoad.onImageLoad;
+        }
     };
 
     /**
