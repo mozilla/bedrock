@@ -348,6 +348,7 @@
     },
     {
       "files": [
+        "css/protocol/components/send-to-device.scss",
         "css/firefox/whatsnew/whatsnew-account.scss"
       ],
       "name": "firefox_whatsnew_account"
@@ -1166,8 +1167,13 @@
     {
       "files": [
         "js/firefox/whatsnew/up-to-date.js",
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-fxa-product-button.js",
-        "js/base/mozilla-fxa-product-button-init.js"
+        "js/base/mozilla-fxa-product-button-init.js",
+        "js/base/send-to-device.js",
+        "js/libs/spin.min.js",
+        "js/firefox/whatsnew/whatsnew-account.js"
       ],
       "name": "firefox_whatsnew_account"
     },

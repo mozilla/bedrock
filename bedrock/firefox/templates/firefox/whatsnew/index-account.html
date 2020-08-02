@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros.html" import send_to_device with context %}
+
 {% extends "firefox/whatsnew/base.html" %}
 
 {% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
@@ -14,12 +16,15 @@
 {% block page_og_url %}{{ url('firefox.accounts') }}{% endblock %}
 
 {% block body_id %}firefox-whatsnew-account{% endblock %}
+{% block body_class %}{{ super() }} state-fxa-default{% endblock %}
 
 {% block site_header %}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('firefox_whatsnew_account') }}
 {% endblock %}
+
+{% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
 
 {% block content %}
 <main role="main" class="content-wrapper mzp-t-firefox mzp-t-dark">
@@ -36,22 +41,52 @@
   </header>
 
   <section class="content-main">
-    <div class="mzp-l-content">
+    <div class="mzp-l-content mzp-t-content-md">
       <div class="mzp-c-emphasis-box">
-        <img class="c-emphasis-box-logo" src="{{ static('protocol/img/logos/firefox/logo-md.png') }}" alt="">
-        <h2 class="c-emphasis-box-title">
-          {{ ftl('whatsnew-account-main-headline') }}
-        </h2>
-        <p>{{ ftl('whatsnew-account-main-lead-in') }}</p>
-        <p class="cta">
-          {{ fxa_button(
-            entrypoint=entrypoint,
-            button_text=ftl('whatsnew-account-main-button'),
-            class_name='mzp-t-small',
-            optional_parameters={'utm_campaign': campaign},
-            optional_attributes={'data-cta-text': 'Sign In', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'primary'}
-          ) }}
-        </p>
+
+      {# If user is signed out (or undetermined), promote account #}
+        <div class="show-fxa-supported-signed-out">
+          <img class="c-emphasis-box-logo" src="{{ static('protocol/img/logos/firefox/logo-md.png') }}" alt="">
+          <h2 class="c-emphasis-box-title">
+            {{ ftl('whatsnew-account-main-headline') }}
+          </h2>
+          <p>{{ ftl('whatsnew-account-main-lead-in') }}</p>
+          <p class="cta">
+            {{ fxa_button(
+              entrypoint=entrypoint,
+              button_text=ftl('whatsnew-account-main-button'),
+              class_name='mzp-t-small',
+              optional_parameters={'utm_campaign': campaign},
+              optional_attributes={'data-cta-text': 'Sign In', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'primary'}
+            ) }}
+          </p>
+        </div>
+
+      {# If the user is signed in, promote mobile #}
+        <div class="show-fxa-supported-signed-in">
+          <img class="c-emphasis-box-logo" src="{{ static('protocol/img/logos/firefox/browser/logo-md.png') }}" alt="">
+        {# If user is in a locale with translated basket messages... #}
+        {% if show_send_to_device %}
+          <h2 class="c-emphasis-box-title">{{ ftl('whatsnew-account-signed-in-headline') }}</h2>
+          {# L10n: "You got it" here is a casual answer to the previous question, "Want privacy on every device?" #}
+          <p class="c-emphasis-box-tagline">{{ ftl('whatsnew-account-signed-in-lead-in') }}</p>
+          {# For users not in a locale with translated basket messages... #}
+        {% else %}
+          <h2 class="c-emphasis-box-title">{{ ftl('whatsnew-account-signed-in-qr-title') }}</h2>
+        {% endif %}
+
+        {# Only certain locales get send_to_device, else they see a QRCode. #}
+        {% if show_send_to_device %}
+          <div id="send-to-device-wrapper" class="primary-cta">
+            {{ send_to_device(include_title=False, message_set='fx-whatsnew', spinner_color='#fff;', class='vertical') }}
+          </div>
+        {% else %}
+          <div id="qr-wrapper" class="primary-cta">
+            <img src="{{ static('img/firefox/whatsnew/qrcode.png') }}" data-mozillaonline-link="{{ static('img/firefox/whatsnew/qrcode-mozillaonline.png') }}" width="250" height="250" alt="{{ ftl('whatsnew-account-qr-code-alt') }}">
+          </div>
+        {% endif %}
+        </div>
+
       </div>
     </div>
   </section>
