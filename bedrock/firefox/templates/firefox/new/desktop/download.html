@@ -480,19 +480,19 @@
     </h2>
     <span id="next"></span>
   </aside>
-
-  {% if show_firefox_join_modal %}
-  <aside class="mzp-u-modal-content join-firefox-content">
-    <h4 class="join-firefox-title">{{ ftl('firefox-desktop-download-youve-already-got-the-browser') }}</h4>
-    <p class="join-firefox-intro">{{ ftl('firefox-desktop-download-watch-for-hackers-with') }}</p>
-
-    <a href="{{ url('firefox.accounts') }}" class="mzp-c-button mzp-t-product join-firefox-button" data-link-name="Get More From Firefox" data-link-type="button">{{ ftl('firefox-desktop-download-get-more-from-firefox') }}</a>
-
-    {{ download_firefox(dom_id='download-join-firefox-modal', alt_copy=ftl('firefox-desktop-download-just-download-the-browser'), button_color='mzp-t-secondary', locale_in_transition=True, download_location='other') }}
-  </aside>
-  {% endif %}
-
 </main>
+
+{% if show_firefox_join_modal %}
+<aside class="mzp-u-modal-content join-firefox-content">
+  <h4 class="join-firefox-title">{{ ftl('firefox-desktop-download-youve-already-got-the-browser') }}</h4>
+  <p class="join-firefox-intro">{{ ftl('firefox-desktop-download-watch-for-hackers-with') }}</p>
+
+  <a href="{{ url('firefox.accounts') }}" class="mzp-c-button mzp-t-product join-firefox-button" data-link-name="Get More From Firefox" data-link-type="button">{{ ftl('firefox-desktop-download-get-more-from-firefox') }}</a>
+
+  {{ download_firefox(dom_id='download-join-firefox-modal', alt_copy=ftl('firefox-desktop-download-just-download-the-browser'), button_color='mzp-t-secondary', locale_in_transition=True, download_location='other') }}
+</aside>
+{% endif %}
+
 {% endblock %}
 
 {% block js %}
