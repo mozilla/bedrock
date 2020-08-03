@@ -21,13 +21,13 @@ if (typeof window.Mozilla === 'undefined') {
     var Pixel = {};
 
     Pixel.getPixelData = function() {
-        return $('#strings').data('pixels');
+        return document.getElementById('strings').getAttribute('data-pixels');
     };
 
     Pixel.setPixels = function() {
-        var $body = $('body');
+        var body = document.querySelector('body');
         var pixels = Pixel.getPixelData();
-        var $pixel;
+        var pixel;
 
         if (typeof pixels !== 'string' || pixels === '') {
             return;
@@ -37,13 +37,19 @@ if (typeof window.Mozilla === 'undefined') {
         pixels = pixels.split('::');
 
         for (var i = 0; i < pixels.length; i++) {
-            $pixel = $('<img />', {
-                width: '1',
-                height: '1',
-                src: pixels[i].replace(/\s/g, '')
-            });
-            $pixel.addClass('moz-px');
-            $body.append($pixel);
+            pixel = document.createElement('img');
+            pixel.width = 1;
+            pixel.height = 1;
+            pixel.src = pixels[i].replace(/\s/g, '');
+
+            // Cache bust doubleclick pixel (see issue 9128)
+            if (pixels[i].indexOf('ad.doubleclick.net') !== -1) {
+                var num = Math.random() + '' * 10000000000000;
+                pixel.src += ';num=' + num;
+            }
+
+            pixel.className = 'moz-px';
+            body.appendChild(pixel);
         }
     };
 

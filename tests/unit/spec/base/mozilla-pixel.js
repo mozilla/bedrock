@@ -3,12 +3,16 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
+/* global sinon */
+
 describe('mozilla-pixel.js', function() {
 
     'use strict';
 
     afterEach(function() {
-        $('.moz-px').remove();
+        document.querySelectorAll('.moz-px').forEach(function(e) {
+            e.parentNode.removeChild(e);
+        });
     });
 
     describe('init', function() {
@@ -25,28 +29,40 @@ describe('mozilla-pixel.js', function() {
             spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
             spyOn(Mozilla.Pixel, 'getPixelData').and.returnValue(pixels);
             Mozilla.Pixel.init();
-            expect($('.moz-px').length).toEqual(3);
+            expect(document.querySelectorAll('.moz-px').length).toEqual(3);
         });
 
         it('should add one pixel to document body', function() {
             spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
             spyOn(Mozilla.Pixel, 'getPixelData').and.returnValue('/img/foo.png');
             Mozilla.Pixel.init();
-            expect($('.moz-px').length).toEqual(1);
+            expect(document.querySelectorAll('.moz-px').length).toEqual(1);
         });
 
         it('should not add pixel if data is undefined', function() {
             spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
             spyOn(Mozilla.Pixel, 'getPixelData').and.returnValue(undefined);
             Mozilla.Pixel.init();
-            expect($('.moz-px').length).toEqual(0);
+            expect(document.querySelectorAll('.moz-px').length).toEqual(0);
         });
 
         it('should not add pixel if data is empty', function() {
             spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
             spyOn(Mozilla.Pixel, 'getPixelData').and.returnValue('');
             Mozilla.Pixel.init();
-            expect($('.moz-px').length).toEqual(0);
+            expect(document.querySelectorAll('.moz-px').length).toEqual(0);
+        });
+
+        it('should cache bust doubleclick request', function() {
+            // this is a bit of a hack to avoid making real requests to ad.doubleclick.net in test runs.
+            var pixels = '/img/foo.png?ad.doubleclick.net/src=6417015';
+            Math.random = sinon.stub().returns(0.853456456);
+            spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
+            spyOn(Mozilla.Pixel, 'getPixelData').and.returnValue(pixels);
+            Mozilla.Pixel.init();
+
+            expect(document.querySelector('.moz-px').src).toContain(';num=0.853456456');
+
         });
     });
 });
