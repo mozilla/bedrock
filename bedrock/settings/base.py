@@ -1510,7 +1510,7 @@ CSP_FRAME_SRC = CSP_CHILD_SRC
 # Bug 1331069 - Double Click tracking pixel for download page.
 AVAILABLE_TRACKING_PIXELS = {
     'doubleclick': ('https://ad.doubleclick.net/ddm/activity/src=6417015;type=deskt0;cat=mozil0;dc_lat=;dc_rdid=;'
-                    'tag_for_child_directed_treatment=;ord=1;num=1?&_dc_ck=try'),
+                    'tag_for_child_directed_treatment=;tfua=;npa=;ord=1'),
 }
 ENABLED_PIXELS = config('ENABLED_PIXELS', default='doubleclick', parser=ListOf(str))
 TRACKING_PIXELS = [AVAILABLE_TRACKING_PIXELS[x] for x in ENABLED_PIXELS if x in AVAILABLE_TRACKING_PIXELS]
