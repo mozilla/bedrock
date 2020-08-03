@@ -1,0 +1,95 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../../protocol/css/includes/lib';
+
+/**
+ * Conditional messaging for supported / unsupported
+ * platforms on the /download/thanks/ page.
+ */
+
+/* stylelint-disable declaration-no-important */
+
+ // Show unknown state messaging by default.
+.show-unknown {
+    display: block !important;
+}
+
+// Hide platform specific messaging by default.
+.show-windows,
+.show-mac,
+.show-else,
+.show-xp-vista,
+.show-linux-arm,
+.show-auto-download-notification {
+    display: none !important;
+}
+
+// Show platform specific messaging when known.
+.js {
+    &.osx {
+        .show-mac,
+        .show-auto-download-notification {
+            display: block !important;
+        }
+    }
+
+    &.windows {
+        .show-windows,
+        .show-auto-download-notification {
+            display: block !important;
+        }
+
+        &.xpvista {
+            .show-windows {
+                display: none !important;
+            }
+
+            .show-xp-vista {
+                display: block !important;
+            }
+        }
+    }
+
+    &.linux {
+        .show-else,
+        .show-auto-download-notification {
+            display: block !important;
+        }
+
+        &.arm {
+            .show-else,
+            .show-auto-download-notification {
+                display: none !important;
+            }
+
+            .show-linux-arm {
+                display: block !important;
+            }
+        }
+    }
+
+    &.android,
+    &.ios {
+        .show-else {
+            display: block !important;
+        }
+    }
+}
+
+// When platform is known, hide all unknown messaging.
+.show-unknown {
+    .js.osx &,
+    .js.windows &,
+    .js.linux &,
+    .js.android &,
+    .js.ios & {
+        display: none !important;
+    }
+}
+
+/* stylelint-enable */

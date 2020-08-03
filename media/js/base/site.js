@@ -100,7 +100,8 @@
         platform: 'other',
         platformVersion: undefined,
         archType: 'x64',
-        archSize: 32
+        archSize: 32,
+        isARM: false
     };
     (function () {
         var h = document.documentElement;
@@ -124,7 +125,7 @@
         // Add class to reflect the microprocessor architecture info
         var archType = window.site.archType = window.site.getArchType();
         var archSize = window.site.archSize = window.site.getArchSize();
-        var isARM = archType.match(/armv(\d+)/);
+        var isARM = window.site.isARM = archType.match(/armv(\d+)/);
 
         // Used for Windows and Linux ARM processor detection.
         if (archType !== 'x86') {

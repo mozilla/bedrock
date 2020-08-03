@@ -121,56 +121,9 @@ main {
     }
 }
 
-
-// --------------------------------------------------------------------------
-// conditional content classes
-
-// keep the button technically visible to grab correct download link for
-// backup download link
-.js #download-button-wrapper-desktop {
-    height: 1px;
-    margin: 0 auto;
-    overflow: hidden;
-    position: absolute;
-    width: 1px;
-
-    #primary-download-button {
-        margin: 1px 0 0 1px;
-    }
-}
-
-// Notification bar for unsupported systems
-.mzp-c-notification-bar {
-    &.unsupported {
-        display: none;
-    }
-
-    .windows.xpvista & {
-        &.unsupported {
-            display: block;
-        }
-    }
-}
-
-// instructions
-.show-windows,
-.show-mac {
-    display: none !important; /* stylelint-disable-line declaration-no-important */
-}
-
-.osx .show-mac {
-    display: block !important; /* stylelint-disable-line declaration-no-important */
-}
-
-.windows .show-windows {
-    display: block !important; /* stylelint-disable-line declaration-no-important */
-}
-
-.show-else {
-    .osx &,
-    .windows & {
-        display: none !important; /* stylelint-disable-line declaration-no-important */
-    }
+// Hide the /thanks download button as selection is made via JS automatically.
+#thanks-download-button {
+    display: none;
 }
 
 
@@ -206,6 +159,8 @@ main {
 // --------------------------------------------------------------------------
 
 .c-support-install {
+    margin: 0 auto;
+    max-width: 30em;
     padding: $spacing-lg;
     text-align: center;
 }

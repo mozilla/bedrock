@@ -28,12 +28,7 @@
 
 {% block content %}
 <main role="main">
-  <div class="mzp-c-notification-bar mzp-t-warning unsupported">
-    <p>
-      {{ ftl('firefox-desktop-download-youre-using-an-insecure-outdated', url='https://support.mozilla.org/kb/end-support-windows-xp-and-vista') }}
-    </p>
-  </div>
-  <div class="mzp-c-notification-bar mzp-t-success auto-download">
+  <div class="mzp-c-notification-bar mzp-t-success show-auto-download-notification">
     {# fallback_url is replaced by the platform download link via JS, but if
         something fails the user should still get a link to a working download path. #}
     <p>
@@ -44,15 +39,17 @@
   <div class="mzp-l-content">
     <span class="c-logo"></span>
 
-    <div id="download-button-wrapper-desktop">
-      {{ download_firefox(force_direct=true, dom_id='primary-download-button') }}
-    </div>
-
-    <h1 class="mzp-has-zap-8 c-section-title show-else">{{ ftl('firefox-desktop-download-almost-there') }}<br>{{ ftl('firefox-desktop-download-now-else') }}</h1>
-
     <h1 class="mzp-has-zap-8 c-section-title show-windows">{{ ftl('firefox-desktop-download-almost-there') }}<br>{{ ftl('firefox-desktop-download-now-windows') }}</h1>
 
     <h1 class="mzp-has-zap-8 c-section-title show-mac">{{ ftl('firefox-desktop-download-almost-there') }}<br>{{ ftl('firefox-desktop-download-now-mac') }}</h1>
+
+    <h1 class="mzp-has-zap-8 c-section-title show-else">{{ ftl('firefox-desktop-download-almost-there') }}<br>{{ ftl('firefox-desktop-download-now-else') }}</h1>
+
+    <h1 class="mzp-has-zap-8 c-section-title show-xp-vista">{{ ftl('firefox-desktop-download-almost-there') }}<br>{{ ftl('firefox-desktop-download-now-windows') }}</h1>
+
+    <h1 class="c-section-title show-linux-arm">{{ ftl('firefox-desktop-download-interrupted') }}</h1>
+
+    <h1 class="c-section-title show-unknown">{{ ftl('firefox-desktop-download-interrupted') }}</h1>
 
     <div class="c-support-install">
       {% set support_mac_attrs = 'href="https://support.mozilla.org/kb/how-download-and-install-firefox-mac%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals) %}
@@ -61,7 +58,16 @@
       <span class="show-windows">{{ ftl('firefox-desktop-download-get-help', attrs=support_windows_attrs) }}</span>
       {% set support_else_attrs = 'href="https://support.mozilla.org/products/firefox/install-and-update-firefox%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals) %}
       <span class="show-else">{{ ftl('firefox-desktop-download-get-help', attrs=support_else_attrs) }}</span>
+
+      {# Edge-case platform support messaging #}
+      <span class="show-xp-vista">{{ ftl('firefox-desktop-download-mozilla-no-longer-provides', fallback='firefox-desktop-download-youre-using-an-insecure-outdated', url='https://support.mozilla.org/kb/end-support-windows-xp-and-vista') }}</span>
+      <span class="show-linux-arm">{{ ftl('firefox-desktop-download-please-follow', fallback='download-button-please-follow-these', url='https://support.mozilla.org/kb/install-firefox-linux') }}</span>
+      <span class="show-unknown">
+        {{ ftl('firefox-desktop-download-your-system-may-not', url=firefox_url('desktop', 'all'))}}
+      </span>
     </div>
+
+    {{ download_firefox(force_direct=true, dom_id='thanks-download-button') }}
 
   </div>
   <div class="c-support-lang">

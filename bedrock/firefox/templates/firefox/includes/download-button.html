@@ -48,14 +48,12 @@
       <p>{{ ftl('download-button-your-system-may') }}</p>
       {{ alt_buttons(builds) }}
     </div>
-    <div class="linux-arm-download" data-nosnippet="true">
-      <p>{{ ftl('download-button-please-follow-these', url='https://support.mozilla.org/kb/install-firefox-linux') }}</p>
-    </div>
   {% endif %}
   <ul class="download-list">
     {% for plat in builds %}
       <li class="os_{{ plat.os }}{% if plat.arch %} {{ plat.arch }}{% endif %}">
         <a class="download-link button {{ button_class }} mzp-c-button mzp-t-product"
+           id="{{ id }}-{{ plat.os }}"
            href="{{ plat.download_link }}"{% if plat.download_link_direct %}
            data-direct-link="{{ plat.download_link_direct }}"{% endif %}
            data-link-type="download"

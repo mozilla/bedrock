@@ -142,9 +142,6 @@ class TestDownloadButtons(TestCase):
         unrecognised_message = doc('.unrecognized-download').empty().outerHtml()
         assert unrecognised_message == '<div class="unrecognized-download" data-nosnippet="true"></div>'
 
-        linux_arm_message = doc('.linux-arm-download').empty().outerHtml()
-        assert linux_arm_message == '<div class="linux-arm-download" data-nosnippet="true"></div>'
-
     def test_button_has_data_attr_if_not_direct(self):
         """
         If the button points to the thank you page, it should have a

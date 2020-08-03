@@ -63,7 +63,6 @@ ul.download-list {
 // Product download buttons
 .download-button {
     .ios-download,
-    .linux-arm-download,
     .unrecognized-download,
     .nojs-download {
         display: none;
@@ -78,7 +77,6 @@ ul.download-list {
 .download-button .os_linux64,
 .android .download-button-desktop,
 .windows.arm .download-button .os_win,
-.linux.arm .download-button .os_linux,
 .linux.x86.x64 .download-list .os_linux,
 .download-button .os_win,
 .download-button .os_win-msi,
@@ -104,16 +102,6 @@ ul.download-list {
 .ios .download-button-desktop .download-list,
 .other .download-button-android .download-list {
     display: block !important;
-}
-
-.linux.arm .download-button .linux-arm-download {
-    display: block;
-    max-width: 250px;
-}
-
-// Hide the privacy link if platform is unsupported.
-.linux.arm .download-button .fx-privacy-link {
-    display: none;
 }
 
 .android .download-button-desktop,

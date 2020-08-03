@@ -12,6 +12,15 @@ if (typeof window.Mozilla === 'undefined') {
 
     var Utils = {};
 
+    // Vanilla JS DOM Ready handler
+    Utils.onDocumentReady = function(callback) {
+        if (document.readyState !== 'loading') {
+            callback();
+        } else {
+            document.addEventListener('DOMContentLoaded', callback);
+        }
+    };
+
     // Replace Google Play links on Android devices to let them open the marketplace app
     Utils.initMobileDownloadLinks = function() {
         if (site.platform === 'android') {
