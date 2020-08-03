@@ -5,18 +5,16 @@
 {% from "macros.html" import google_play_button, send_to_device with context %}
 {% from "macros-protocol.html" import feature_card, hero, call_out_compact with context %}
 
-{% add_lang_files "firefox/mobile-2019" %}
-
 {% extends "firefox/base/base-protocol.html" %}
 
 {% block page_css %}
   {{ css_bundle('firefox-mobile') }}
 {% endblock %}
 
-{% block page_title %}{{ _('Download the Firefox Browser on your Mobile for iOS and Android') }} | {{ _('Firefox') }}{% endblock %}
-{% block page_desc %}{{ _('Firefox Browser for Mobile blocks over 2000 trackers by default, giving you the privacy you deserve and the speed you need in a private mobile browser.') }}{% endblock %}
-{% block page_og_title %}{{ _('Get the mobile browser built for you, not advertisers') }} | {{ _('Firefox') }}{% endblock %}
-{% block page_og_desc %}{{ _('Check out Firefox again. It’s fast, private and on your side. For iOS and Android.') }}{% endblock %}
+{% block page_title %}{{ ftl('firefox-mobile-download-the-firefox-browser') }} | {{ ftl('firefox-mobile-firefox') }}{% endblock %}
+{% block page_desc %}{{ ftl('firefox-mobile-firefox-browser-for-mobile') }}{% endblock %}
+{% block page_og_title %}{{ ftl('firefox-mobile-get-the-mobile-browser-built') }} | {{ ftl('firefox-mobile-firefox') }}{% endblock %}
+{% block page_og_desc %}{{ ftl('firefox-mobile-check-out-firefox-again-its') }}{% endblock %}
 
 {% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
 {% set android_url = firefox_adjust_url('android', 'mobile-page') %}
@@ -33,17 +31,17 @@
     <header class="mzp-c-hero mzp-t-firefox mzp-has-image t-hero-primary">
       <div class="mzp-l-content">
         <div class="mzp-c-hero-body">
-          <h1 class="mzp-c-hero-title"><span class="c-wordmark t-firefox">Firefox Browser</span></h1>
+          <h1 class="mzp-c-hero-title"><span class="c-wordmark t-firefox">{{ ftl('firefox-mobile-firefox-browser') }}</span></h1>
 
           <div class="mzp-c-hero-desc">
-            <h3>{{ _('Get automatic privacy on mobile') }}</h3>
-            <p>{{ _('Super fast. Private by default. Blocks 2000+ online trackers.') }}</p>
+            <h3>{{ ftl('firefox-mobile-get-automatic-privacy-on-mobile') }}</h3>
+            <p>{{ ftl('firefox-mobile-super-fast-private-by-default') }}</p>
           </div>
 
           <div class="mzp-c-hero-cta">
             <div class="header-product-ctas hide-from-legacy-ie">
               <button type="button" class="mzp-c-button mzp-t-product js-mobile" id="get-firefox" data-cta-type="button" data-cta-text="Get Firefox Mobile" data-cta-position="primary">
-                {{ _('Get Firefox Mobile') }}
+                {{ ftl('firefox-mobile-get-firefox-mobile') }}
               </button>
             <div class="mobile-download-buttons-wrapper">
               <ul class="mobile-download-buttons firefox" id="mobile-download-buttons-firefox_1">
@@ -64,17 +62,17 @@
 
     <section class="c-private t-private mzp-t-firefox">
       <div class="mzp-l-content">
-        <h2>{{ _('Block online trackers and invasive ads') }}</h2>
+        <h2>{{ ftl('firefox-mobile-block-online-trackers-and') }}</h2>
         <div class="c-private-cols">
           <div class="c-private-col">
             <img src="{{ static('img/firefox/mobile/protocol/screen-private.svg') }}" alt="" height="331" width="163">
-            <h3>{{ _('Privacy protection by default') }}</h3>
-            <p>{{ _('Leave no trace with <a href="%s">Private Browsing mode</a>. When you close out, your history and cookies are deleted.')|format(url('firefox.features.private-browsing')) }}</p>
+            <h3>{{ ftl('firefox-mobile-privacy-protection-by-default') }}</h3>
+            <p>{{ ftl('firefox-mobile-leave-no-trace-with-private', url=url('firefox.features.private-browsing')) }}</p>
           </div>
           <div class="c-private-col">
             <img src="{{ static('img/firefox/mobile/protocol/screen-tracking.svg') }}" alt="" height="331" width="163">
-            <h3>{{ _('Stop companies from following you') }}</h3>
-            <p>{{ _('Stay off their radar with <a href="%s">Firefox Tracking Protection</a>')|format(url('firefox.features.adblocker')) }}</p>
+            <h3>{{ ftl('firefox-mobile-stop-companies-from-following') }}</h3>
+            <p>{{ ftl('firefox-mobile-stay-off-their-radar-with', url=url('firefox.features.adblocker')) }}</p>
           </div>
         </div>
       </div>
@@ -83,39 +81,39 @@
     <section class="t-account">
       <div class="mzp-l-content">
           {% call feature_card(
-            title=_('Discover products that keep you safe'),
+            title=ftl('firefox-mobile-discover-products-that-keep'),
             image_url='img/firefox/mobile/protocol/account.svg',
             aspect_ratio='mzp-has-aspect-1-1',
             class='mzp-l-card-feature-right-half mzp-t-firefox',
             link_url=url('firefox.accounts'),
             link_cta=ftl('ui-learn-more')
           ) %}
-          <p>{{ _('Sync your history, passwords, and bookmarks. Send tabs across all of your devices.') }}</p>
+          <p>{{ ftl('firefox-mobile-sync-your-history-passwords') }}</p>
           {% endcall %}
       </div>
     </section>
 
     <section>
       <div class="mzp-l-content t-extend">
-        {% set extend_title = '<span>'|safe + _('Android only') + '</span><br>'|safe + _('Make Android your own') %}
+        {% set extend_title = '<span>'|safe + ftl('firefox-mobile-android-only') + '</span><br>'|safe + ftl('firefox-mobile-make-android-your-own') %}
         {% call feature_card(
           title=extend_title,
           image_url='img/firefox/mobile/protocol/screen-frame.svg',
           aspect_ratio='mzp-has-aspect-1-1',
           class='mzp-l-card-feature-right-half mzp-t-firefox',
         ) %}
-        <p>{{ _('Customize your Firefox mobile browser with <a href="%s">extensions</a> to block ads, manage passwords, stop Facebook from tracking you and more.')|format('https://addons.mozilla.org/firefox/extensions/') }}</p>
+        <p>{{ ftl('firefox-mobile-customize-your-firefox-mobile', url='https://addons.mozilla.org/firefox/extensions/') }}</p>
         {% endcall %}
       </div>
       <div class="mzp-l-content t-theme">
-        {% set theme_title = '<span>'|safe + _('Android only') + '</span><br>'|safe + _('Find it fast with a smart search bar') %}
+        {% set theme_title = '<span>'|safe + ftl('firefox-mobile-android-only') + '</span><br>'|safe + ftl('firefox-mobile-find-it-fast-with-a-smart') %}
         {% call feature_card(
           title=theme_title,
           image_url='img/firefox/mobile/protocol/screen-frame.svg',
           aspect_ratio='mzp-has-aspect-1-1',
           class='mzp-l-card-feature-left-half mzp-t-firefox',
         ) %}
-        <p>{{ _('Firefox anticipates your needs with smart search suggestions and quick access to the sites you visit most.') }}</p>
+        <p>{{ ftl('firefox-mobile-firefox-anticipates-your-needs') }}</p>
         {% endcall %}
       </div>
     </section>
@@ -123,16 +121,16 @@
     <section class="mzp-c-hero mzp-t-firefox t-hero-secondary">
       <div class="mzp-l-content">
         <div class="mzp-c-hero-body">
-          <h2 class="mzp-c-hero-title end-hero"><span class="c-wordmark t-firefox">Firefox Browser</span></h2>
+          <h2 class="mzp-c-hero-title end-hero"><span class="c-wordmark t-firefox">{{ ftl('firefox-mobile-firefox-browser') }}</span></h2>
 
           <div class="mzp-c-hero-desc">
-            <h3>{{ _('The privacy you deserve. The speed you need. ') }}</h3>
+            <h3>{{ ftl('firefox-mobile-the-privacy-you-deserve-the') }}</h3>
           </div>
 
           <div class="mzp-c-hero-cta">
             <div class="header-product-ctas hide-from-legacy-ie">
               <button type="button" class="mzp-c-button mzp-t-product js-mobile" id="get-firefox" data-cta-type="button" data-cta-text="Get Firefox Mobile" data-cta-position="secondary">
-                {{ _('Get Firefox Mobile') }}
+                {{ ftl('firefox-mobile-get-firefox-mobile') }}
               </button>
             </div>
             <div class="mobile-download-buttons-wrapper">
@@ -152,25 +150,15 @@
       </div>
     </section>
 
-    {#
-      L10n: The content below is intended to be shown in a modal window when clicking any of the
-      'Download' buttons above. Depending on the button clicked, the content below will either
-      target/display copy for Firefox.
-
-      For supported locales, the Send to Device widget will be shown. If the user's locale
-      does not suppor the widget, a QR code will be shown.
-
-      For mobile devices, only the App/Play Store badges will be shown.
-    #}
     <div id="modal" class="mzp-u-modal-content mzp-t-firefox">
       <div id="modal-download-firefox" class="desktop-download">
-        <h2 class="modal-logo">Firefox</h2>
-        <h3>{{ _('Get Firefox for mobile') }}</h3>
+        <h2 class="modal-logo">{{ ftl('firefox-mobile-firefox') }}</h2>
+        <h3>{{ ftl('firefox-mobile-get-firefox-for-mobile') }}</h3>
         {% if show_send_to_device %}
-          <p>{{ _('Send a download link to your phone. ') }}</p>
+          <p>{{ ftl('firefox-mobile-send-a-download-link-to-your') }}</p>
           {{ send_to_device(include_title=False, message_set='fx-mobile-download-desktop', class='vertical') }}
         {% else %}
-          <p>{{ _('Scan the QR code to get started') }}</p>
+          <p>{{ ftl('firefox-mobile-scan-the-qr-code-to-get-started') }}</p>
           <div class="qr-code-wrapper">
             <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}"
                  id="firefox-qr"

@@ -63,8 +63,8 @@ urlpatterns = (
     page('firefox/features/safebrowser', 'firefox/features/safebrowser.html'),
 
     url(r'^firefox/ios/testflight/$', views.ios_testflight, name='firefox.ios.testflight'),
-    page('firefox/mobile', 'firefox/mobile/index.html'),
-    page('firefox/mobile/get-app', 'firefox/mobile/get-app.html'),
+    page('firefox/mobile', 'firefox/mobile/index.html', ftl_files=['firefox/mobile']),
+    page('firefox/mobile/get-app', 'firefox/mobile/get-app.html', ftl_files=['firefox/mobile']),
     url('^firefox/send-to-device-post/$', views.send_to_device_ajax,
         name='firefox.send-to-device-post'),
     page('firefox/unsupported-systems', 'firefox/unsupported-systems.html'),
