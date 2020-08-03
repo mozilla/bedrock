@@ -140,15 +140,23 @@ class TestL10nTemplateView(TestCase):
         view = l10n_utils.L10nTemplateView.as_view(template_name='dude.html',
                                                    ftl_files='dude')
         view(self.req)
-        render_mock.assert_called_with(self.req, ['dude.html'], ANY, ftl_files='dude')
+        render_mock.assert_called_with(self.req, ['dude.html'], ANY, ftl_files='dude', ftl_activations=None)
 
     def test_ftl_files_map(self, render_mock):
         view = l10n_utils.L10nTemplateView.as_view(template_name='dude.html',
                                                    ftl_files_map={'dude.html': 'dude'})
         view(self.req)
-        render_mock.assert_called_with(self.req, ['dude.html'], ANY, ftl_files='dude')
+        render_mock.assert_called_with(self.req, ['dude.html'], ANY, ftl_files='dude', ftl_activations=None)
         # no match means no FTL files
         view = l10n_utils.L10nTemplateView.as_view(template_name='dude.html',
                                                    ftl_files_map={'donny.html': 'donny'})
         view(self.req)
-        render_mock.assert_called_with(self.req, ['dude.html'], ANY, ftl_files=None)
+        render_mock.assert_called_with(self.req, ['dude.html'], ANY, ftl_files=None, ftl_activations=None)
+
+    def test_ftl_activations(self, render_mock):
+        view = l10n_utils.L10nTemplateView.as_view(template_name='dude.html',
+                                                   ftl_files='dude',
+                                                   ftl_activations=['dude', 'donny'])
+        view(self.req)
+        render_mock.assert_called_with(self.req, ['dude.html'], ANY, ftl_files='dude',
+                                       ftl_activations=['dude', 'donny'])

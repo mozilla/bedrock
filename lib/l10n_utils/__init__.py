@@ -14,7 +14,7 @@ from django.views.generic import TemplateView
 
 from bedrock.base.urlresolvers import split_path
 from .dotlang import get_translations_native_names
-from .fluent import fluent_l10n
+from .fluent import fluent_l10n, get_active_locales as ftl_active_locales
 from .gettext import translations_for_template
 from .utils import get_l10n_path
 
@@ -32,7 +32,7 @@ def template_source_url(template):
     return '%s/tree/master/%s' % (settings.GITHUB_REPO, relative_path)
 
 
-def render(request, template, context=None, ftl_files=None, **kwargs):
+def render(request, template, context=None, ftl_files=None, ftl_activations=None, **kwargs):
     """
     Same as django's render() shortcut, but with l10n template support.
     If used like this::
@@ -86,7 +86,10 @@ def render(request, template, context=None, ftl_files=None, **kwargs):
         del context['active_locales']
     else:
         if l10n:
-            translations = l10n.active_locales
+            if ftl_activations:
+                translations = ftl_active_locales(ftl_activations)
+            else:
+                translations = l10n.active_locales
         else:
             translations = translations_for_template(template)
 
@@ -193,6 +196,9 @@ class LangFilesMixin:
     ftl_files = None
     # a dict of template names to ftl files
     ftl_files_map = None
+    # a list of ftl files to use to determine the full list of active locales
+    # mostly useful during a redesign where multiple templates are used for a single URL
+    ftl_activations = None
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
@@ -215,7 +221,8 @@ class LangFilesMixin:
     def render_to_response(self, context, **response_kwargs):
         template_names = self.get_template_names()
         return render(self.request, template_names, context,
-                      ftl_files=self.get_ftl_files(template_names), **response_kwargs)
+                      ftl_files=self.get_ftl_files(template_names),
+                      ftl_activations=self.ftl_activations, **response_kwargs)
 
 
 class L10nTemplateView(LangFilesMixin, TemplateView):

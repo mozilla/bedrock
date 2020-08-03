@@ -350,6 +350,12 @@ FTL files for that template (or a single file name if that's all you need).
 
             return [template_name]
 
+If you need for your URL to use multiple Fluent files to determine the full list of active locales,
+for example when you are redesigning a page and have multiple templates in use for a single URL depending
+on locale, you can use the `ftl_activations` parameter. This should be a list of FTL filenames that should
+all be used when determining the full list of translations for the URL. Bedrock will gather the full list
+for each file and combine them into a single list so that the footer language switcher works properly.
+
 Using in a view function
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
