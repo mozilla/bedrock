@@ -114,6 +114,22 @@ class TestFluentTranslationUtils(TestCase):
         }
         assert fluent.get_active_locales('the/dude', force=True) == ['de', 'en-US', 'fr']
 
+    @override_settings(DEV=False)
+    @patch.object(fluent, 'get_metadata')
+    def test_get_active_locales_multiple_files(self, meta_mock):
+        meta_mock.side_effect = [
+            {'active_locales': ['de', 'fr', 'it']},
+            {'active_locales': ['en-CA', 'pt-BR', 'it']},
+        ]
+        assert fluent.get_active_locales(['the/dude', 'the/walter']) == [
+            'de',
+            'en-CA',
+            'en-US',
+            'fr',
+            'it',
+            'pt-BR',
+        ]
+
 
 @override_settings(FLUENT_PATHS=[L10N_PATH])
 class TestFluentViewTranslationUtils(TestCase):

@@ -190,7 +190,7 @@ def write_metadata(ftl_file, data):
 
 
 @memoize
-def get_active_locales(ftl_file, force=False):
+def get_active_locales(ftl_files, force=False):
     """Return the list of active locales for a Fluent file.
 
     If `settings.DEV` is `True` it will just return the full list of
@@ -200,13 +200,20 @@ def get_active_locales(ftl_file, force=False):
     if settings.DEV and not force:
         return settings.DEV_LANGUAGES
 
+    if isinstance(ftl_files, str):
+        ftl_files = [ftl_files]
+
     locales = {settings.LANGUAGE_CODE}
-    metadata = get_metadata(ftl_file)
-    if metadata and 'active_locales' in metadata:
-        locales.update(metadata['active_locales'])
-        i_locales = metadata.get('inactive_locales')
-        if i_locales:
-            locales.difference_update(i_locales)
+    for ftl_file in ftl_files:
+        file_locales = set()
+        metadata = get_metadata(ftl_file)
+        if metadata and 'active_locales' in metadata:
+            file_locales.update(metadata['active_locales'])
+            i_locales = metadata.get('inactive_locales')
+            if i_locales:
+                file_locales.difference_update(i_locales)
+
+        locales.update(file_locales)
 
     return sorted(locales)
 
