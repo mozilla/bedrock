@@ -20,5 +20,5 @@ class TestExpFirefoxNew(TestCase):
         req.locale = 'en-US'
         views.new(req)
         render_mock.assert_called_once_with(
-            req, 'exp/firefox/new/download.html', ANY
+            req, 'exp/firefox/new/download.html', ANY, ftl_files='firefox/new/desktop'
         )
