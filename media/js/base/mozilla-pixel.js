@@ -43,8 +43,10 @@ if (typeof window.Mozilla === 'undefined') {
             pixel.src = pixels[i].replace(/\s/g, '');
 
             // Cache bust doubleclick pixel (see issue 9128)
+            // https://support.google.com/dcm/answer/2837746?hl=en
             if (pixels[i].indexOf('ad.doubleclick.net') !== -1) {
-                var num = Math.random() + '' * 10000000000000;
+                var axel = Math.random() + '';
+                var num = axel * 10000000000000;
                 pixel.src += ';num=' + num;
             }
 
