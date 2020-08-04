@@ -634,6 +634,7 @@ class TestSendToDeviceView(TestCase):
 @override_settings(DEV=False)
 @patch('bedrock.firefox.views.l10n_utils.render')
 class TestFirefoxNew(TestCase):
+    @patch.dict(os.environ, SWITCH_NEW_REDESIGN='True')
     @patch.object(views, 'ftl_file_is_active', lambda *x: True)
     def test_download_template(self, render_mock):
         req = RequestFactory().get('/firefox/new/')
@@ -641,8 +642,19 @@ class TestFirefoxNew(TestCase):
         view = views.NewView.as_view()
         view(req)
         template = render_mock.call_args[0][1]
-        assert template == ['firefox/new/trailhead/download.html']
+        assert template == ['firefox/new/desktop/download.html']
 
+    @patch.dict(os.environ, SWITCH_NEW_REDESIGN='True')
+    @patch.object(views, 'ftl_file_is_active', lambda *x: True)
+    def test_thanks_template(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/')
+        req.locale = 'en-US'
+        view = views.DownloadThanksView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/new/desktop/thanks.html']
+
+    @patch.dict(os.environ, SWITCH_NEW_REDESIGN='True')
     @patch.object(views, 'ftl_file_is_active', lambda *x: False)
     def test_download_old_template(self, render_mock):
         req = RequestFactory().get('/firefox/new/')
@@ -650,12 +662,13 @@ class TestFirefoxNew(TestCase):
         view = views.NewView.as_view()
         view(req)
         template = render_mock.call_args[0][1]
-        assert template == ['firefox/new/protocol/download.html']
+        assert template == ['firefox/new/trailhead/download.html']
 
-    @patch.object(views, 'ftl_file_is_active', lambda *x: True)
-    def test_thanks_template(self, render_mock):
+    @patch.dict(os.environ, SWITCH_NEW_REDESIGN='True')
+    @patch.object(views, 'ftl_file_is_active', lambda *x: False)
+    def test_thanks_old_template(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/')
-        req.locale = 'en-US'
+        req.locale = 'de'
         view = views.DownloadThanksView.as_view()
         view(req)
         template = render_mock.call_args[0][1]
@@ -687,15 +700,6 @@ class TestFirefoxNew(TestCase):
         view(req)
         template = render_mock.call_args[0][1]
         assert template == ['firefox/new/trailhead/exp-thanks.html']
-
-    @patch.object(views, 'ftl_file_is_active', lambda *x: False)
-    def test_thanks_old_template(self, render_mock):
-        req = RequestFactory().get('/firefox/download/thanks/')
-        req.locale = 'de'
-        view = views.DownloadThanksView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/new/protocol/thanks.html']
 
     def test_thanks_redirect(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2&dude=abides')

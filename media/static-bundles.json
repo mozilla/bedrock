@@ -134,13 +134,6 @@
     },
     {
       "files": [
-        "css/firefox/new/trailhead/thanks.scss",
-        "css/firefox/new/protocol/mobile-sync.scss"
-      ],
-      "name": "firefox_new_thanks_protocol"
-    },
-    {
-      "files": [
         "css/firefox/new/trailhead/thanks.scss"
       ],
       "name": "firefox_new_thanks"
