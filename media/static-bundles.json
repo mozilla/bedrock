@@ -876,6 +876,12 @@
     },
     {
       "files": [
+        "js/exp/firefox/new/desktop/download.js"
+      ],
+      "name": "exp_firefox_desktop_download"
+    },
+    {
+      "files": [
         "protocol/js/protocol-modal.js",
         "js/firefox/new/desktop/join-modal.js"
       ],

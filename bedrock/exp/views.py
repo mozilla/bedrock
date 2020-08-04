@@ -23,11 +23,14 @@ def new(request):
     if variant not in ['']:  # place expected ?v= values in this list
         variant = None
 
+    template_name = 'exp/firefox/new/download.html'
+
     # no harm done by passing 'v' to template, even when no experiment is running
     # (also makes tests easier to maintain by always sending a context)
-    return l10n_utils.render(
-        request, 'exp/firefox/new/download.html', {'experience': experience, 'v': variant, 'active_locales': ['en-US', 'en-GB', 'en-CA', 'de']}
-    )
+    context = {'experience': experience, 'v': variant}
+
+    return l10n_utils.render(request, template_name, context,
+                             ftl_files='firefox/new/desktop')
 
 
 def home_view(request):
