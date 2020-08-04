@@ -666,7 +666,6 @@ class DownloadThanksView(L10nTemplateView):
     activation_files = [
         'firefox/new/download',
         'firefox/new/desktop',
-        'firefox/new/protocol/thanks.html',
     ]
 
     # place expected ?v= values in this list
@@ -696,10 +695,8 @@ class DownloadThanksView(L10nTemplateView):
             template = 'firefox/new/trailhead/exp-thanks.html'
         elif ftl_file_is_active('firefox/new/desktop') and switch('new-redesign'):
             template = 'firefox/new/desktop/thanks.html'
-        elif ftl_file_is_active('firefox/new/download'):
-            template = 'firefox/new/trailhead/thanks.html'
         else:
-            template = 'firefox/new/protocol/thanks.html'
+            template = 'firefox/new/trailhead/thanks.html'
 
         return [template]
 
@@ -713,7 +710,6 @@ class NewView(L10nTemplateView):
     activation_files = [
         'firefox/new/download',
         'firefox/new/desktop',
-        'firefox/new/protocol/download.html',
     ]
 
     # place expected ?v= values in this list
@@ -763,10 +759,8 @@ class NewView(L10nTemplateView):
             template = 'firefox/new/trailhead/download-yandex.html'
         elif ftl_file_is_active('firefox/new/desktop') and switch('new-redesign'):
             template = 'firefox/new/desktop/download.html'
-        elif ftl_file_is_active('firefox/new/download'):
-            template = 'firefox/new/trailhead/download.html'
         else:
-            template = 'firefox/new/protocol/download.html'
+            template = 'firefox/new/trailhead/download.html'
 
         return [template]
 
