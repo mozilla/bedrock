@@ -61,7 +61,7 @@ describe('mozilla-pixel.js', function() {
             spyOn(Mozilla.Pixel, 'getPixelData').and.returnValue(pixels);
             Mozilla.Pixel.init();
 
-            expect(document.querySelector('.moz-px').src).toContain(';num=0.853456456');
+            expect(document.querySelector('.moz-px').src).toContain(';num=8534564560000');
 
         });
     });
