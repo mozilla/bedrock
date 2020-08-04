@@ -663,7 +663,11 @@ class DownloadThanksView(L10nTemplateView):
         'firefox/new/trailhead/exp-thanks.html': ['firefox/new/download'],
         'firefox/new/desktop/thanks.html': ['firefox/new/desktop'],
     }
-    ftl_activations = ['firefox/new/download', 'firefox/new/desktop']
+    activation_files = [
+        'firefox/new/download',
+        'firefox/new/desktop',
+        'firefox/new/protocol/thanks.html',
+    ]
 
     # place expected ?v= values in this list
     variations = ['a', 'b', 'c']
@@ -706,7 +710,11 @@ class NewView(L10nTemplateView):
         'firefox/new/trailhead/download-yandex.html': ['firefox/new/download', 'banners/firefox-mobile'],
         'firefox/new/desktop/download.html': ['firefox/new/desktop'],
     }
-    ftl_activations = ['firefox/new/download', 'firefox/new/desktop']
+    activation_files = [
+        'firefox/new/download',
+        'firefox/new/desktop',
+        'firefox/new/protocol/download.html',
+    ]
 
     # place expected ?v= values in this list
     variations = ['a', 'b']
@@ -776,6 +784,7 @@ class FirefoxHomeView(L10nTemplateView):
     ftl_files_map = {
         'firefox/home/index-master.html': ['firefox/home']
     }
+    activation_files = ['firefox/home', 'firefox/home/index-quantum.html']
 
     def get_template_names(self):
         if ftl_file_is_active('firefox/home'):

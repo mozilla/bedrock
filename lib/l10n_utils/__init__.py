@@ -32,7 +32,12 @@ def template_source_url(template):
     return '%s/tree/master/%s' % (settings.GITHUB_REPO, relative_path)
 
 
-def render(request, template, context=None, ftl_files=None, ftl_activations=None, **kwargs):
+def render(request,
+           template,
+           context=None,
+           ftl_files=None,
+           activation_files=None,
+           **kwargs):
     """
     Same as django's render() shortcut, but with l10n template support.
     If used like this::
@@ -85,11 +90,18 @@ def render(request, template, context=None, ftl_files=None, ftl_activations=None
         translations = context['active_locales']
         del context['active_locales']
     else:
-        if l10n:
-            if ftl_activations:
-                translations = ftl_active_locales(ftl_activations)
-            else:
-                translations = l10n.active_locales
+        if activation_files:
+            translations = set()
+            for af in activation_files:
+                if af.endswith('.html'):
+                    translations.update(translations_for_template(af))
+                else:
+                    translations.update(ftl_active_locales(af))
+
+            translations = sorted(translations)
+
+        elif l10n:
+            translations = l10n.active_locales
         else:
             translations = translations_for_template(template)
 
@@ -196,9 +208,9 @@ class LangFilesMixin:
     ftl_files = None
     # a dict of template names to ftl files
     ftl_files_map = None
-    # a list of ftl files to use to determine the full list of active locales
+    # a list of ftl or template files to use to determine the full list of active locales
     # mostly useful during a redesign where multiple templates are used for a single URL
-    ftl_activations = None
+    activation_files = None
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
@@ -222,7 +234,7 @@ class LangFilesMixin:
         template_names = self.get_template_names()
         return render(self.request, template_names, context,
                       ftl_files=self.get_ftl_files(template_names),
-                      ftl_activations=self.ftl_activations, **response_kwargs)
+                      activation_files=self.activation_files, **response_kwargs)
 
 
 class L10nTemplateView(LangFilesMixin, TemplateView):
