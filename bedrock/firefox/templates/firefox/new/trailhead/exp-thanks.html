@@ -67,10 +67,16 @@
       <li class="c-picto-block">
         <h3 class="c-picto-block-title {% if variant %}variant-{{ variant }}{% endif %}">Why not get Firefox on your phone too?</h3>
         <div class="c-picto-block-image">
-          <img src="{{ static('img/firefox/new/trailhead/QR-code.png') }}" alt="">
+          {% if variant == 'a' %}
+            <img src="{{ static('img/firefox/new/trailhead/QR-code-A.png') }}" alt="">
+          {% elif variant == 'b' %}
+            <img src="{{ static('img/firefox/new/trailhead/QR-code-B.png') }}" alt="">
+          {% elif variant == 'c' %}
+            <img src="{{ static('img/firefox/new/trailhead/QR-code-C.png') }}" alt="">
+          {% endif %}
         </div>
         <div class="c-picto-block-body">
-          <p>Scan this QR code with your phone’s QR scanner to download Firefox for mobile or click <a href="https://app.adjust.com/2uo1qc?campaign=www.mozilla.org&adgroup=CRO-QR-thanks&creative=QR">here</a> for a download link.</p>
+          <p>Scan this QR code with your phone’s QR scanner to download Firefox for mobile or click <a href="https://app.adjust.com/2uo1qc?campaign=www.mozilla.org&adgroup=CRO-QR-thanks&creative=QR-{% if variant %}{{ variant.capitalize() }}{% endif %}">here</a> for a download link.</p>
         </div>
       </li>
     </ol>
