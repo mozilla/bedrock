@@ -94,17 +94,19 @@
     </section>
 
     <section>
-      <div class="mzp-l-content t-extend">
-        {% set extend_title = '<span>'|safe + ftl('firefox-mobile-android-only') + '</span><br>'|safe + ftl('firefox-mobile-make-android-your-own') %}
-        {% call feature_card(
-          title=extend_title,
-          image_url='img/firefox/mobile/protocol/screen-frame.svg',
-          aspect_ratio='mzp-has-aspect-1-1',
-          class='mzp-l-card-feature-right-half mzp-t-firefox',
-        ) %}
-        <p>{{ ftl('firefox-mobile-customize-your-firefox-mobile', url='https://addons.mozilla.org/firefox/extensions/') }}</p>
-        {% endcall %}
-      </div>
+      {% if ftl_has_messages('firefox-mobile-customize-your-firefox-mobile-truncated') %}
+        <div class="mzp-l-content t-extend">
+          {% set extend_title = '<span>'|safe + ftl('firefox-mobile-android-only') + '</span><br>'|safe + ftl('firefox-mobile-make-android-your-own') %}
+          {% call feature_card(
+            title=extend_title,
+            image_url='img/firefox/mobile/protocol/screen-frame.svg',
+            aspect_ratio='mzp-has-aspect-1-1',
+            class='mzp-l-card-feature-right-half mzp-t-firefox',
+          ) %}
+            <p>{{ ftl('firefox-mobile-customize-your-firefox-mobile-truncated') }}</p>
+          {% endcall %}
+        </div>
+      {% endif %}
       <div class="mzp-l-content t-theme">
         {% set theme_title = '<span>'|safe + ftl('firefox-mobile-android-only') + '</span><br>'|safe + ftl('firefox-mobile-find-it-fast-with-a-smart') %}
         {% call feature_card(
