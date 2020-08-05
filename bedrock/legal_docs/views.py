@@ -10,7 +10,8 @@ from django.views.generic import TemplateView
 from bedrock.legal_docs.models import LegalDoc
 from lib import l10n_utils
 
-CACHE_TIMEOUT = getattr(settings, 'LEGAL_DOCS_CACHE_TIMEOUT', 60 * 60)
+
+CACHE_TIMEOUT = settings.LEGAL_DOCS_CACHE_TIMEOUT
 
 
 def load_legal_doc(doc_name, locale):
@@ -44,7 +45,7 @@ class LegalDocView(TemplateView):
     * legal_doc_context_name: (default 'doc') template variable name for legal doc.
 
     This view automatically adds the `cache_page` decorator. The default timeout
-    is 1 hour, configurable by setting the `LEGAL_DOCS_CACHE_TIMEOUT` setting to change
+    is 10 minutes, configurable by setting the `LEGAL_DOCS_CACHE_TIMEOUT` setting to change
     the default for all views, or the `cache_timeout` property for an single instance.
 
     See `bedrock/privacy/views.py` for usage examples.
