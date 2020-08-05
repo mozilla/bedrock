@@ -1337,7 +1337,6 @@ button.mzp-c-cta-link {
                          top 15% left 100px;
     background-repeat: no-repeat;
     color: $color-white;
-    padding: $layout-lg $h-grid-xs;
     position: relative;
     overflow-x: hidden;
 
@@ -1348,7 +1347,6 @@ button.mzp-c-cta-link {
                              top 100px left,
                              bottom right,
                              top 15% center;
-        padding: $layout-lg $layout-lg;
     }
 
     @media #{$mq-lg} {
@@ -1358,7 +1356,6 @@ button.mzp-c-cta-link {
                              top 100px left,
                              bottom right,
                              top 15% center;
-        padding: $layout-lg $layout-xl;
     }
 
     .loaded & {
@@ -1384,15 +1381,15 @@ button.mzp-c-cta-link {
                 (left, 60%, right, auto),
                 (margin-left, $h-grid-xs / 2, margin-left, 0),
             ));
+            background-position: top center;
             background-repeat: no-repeat;
             border-radius: $border-radius-sm;
+            bottom: $layout-lg;
             content: '';
             display: block;
             position: absolute;
             top: $layout-lg;
-            bottom: $layout-lg;
-            width: 100%;
-            max-width: 275px;
+            width: 40%;
 
             &,
             .android & {
@@ -1408,7 +1405,6 @@ button.mzp-c-cta-link {
             @include bidi(((padding-right, $h-grid-xs / 2, padding-left, 0),));
             @include border-box;
             max-width: 60%;
-            margin: 0 auto;
         }
     }
 
@@ -1433,7 +1429,6 @@ button.mzp-c-cta-link {
 
         .c-mobile-text {
             @include bidi(((padding-right, $h-grid-lg / 2, padding-left, 0),));
-            max-width: $content-xl;
         }
     }
 }
