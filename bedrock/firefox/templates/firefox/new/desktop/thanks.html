@@ -55,11 +55,11 @@
     <h1 class="mzp-has-zap-8 c-section-title show-mac">{{ ftl('firefox-desktop-download-almost-there') }}<br>{{ ftl('firefox-desktop-download-now-mac') }}</h1>
 
     <div class="c-support-install">
-      {% set support_mac_attrs = 'href="https://addons.mozilla.org/firefox/extensions/%s" rel="external noopener" data-cta-type="link" data-cta-text="extension for everyone"'|safe|format(referrals) %}
+      {% set support_mac_attrs = 'href="https://support.mozilla.org/kb/how-download-and-install-firefox-mac%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals) %}
       <span class="show-mac">{{ ftl('firefox-desktop-download-get-help', attrs=support_mac_attrs) }}</span>
-      {% set support_windows_attrs = 'href="https://support.mozilla.org/kb/how-download-and-install-firefox-windows%s" rel="external noopener" data-cta-type="link" data-cta-text="extension for everyone"'|safe|format(referrals) %}
+      {% set support_windows_attrs = 'href="https://support.mozilla.org/kb/how-download-and-install-firefox-windows%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals) %}
       <span class="show-windows">{{ ftl('firefox-desktop-download-get-help', attrs=support_windows_attrs) }}</span>
-      {% set support_else_attrs = 'href="https://support.mozilla.org/products/firefox/install-and-update-firefox%s" rel="external noopener" data-cta-type="link" data-cta-text="extension for everyone"'|safe|format(referrals) %}
+      {% set support_else_attrs = 'href="https://support.mozilla.org/products/firefox/install-and-update-firefox%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals) %}
       <span class="show-else">{{ ftl('firefox-desktop-download-get-help', attrs=support_else_attrs) }}</span>
     </div>
 
