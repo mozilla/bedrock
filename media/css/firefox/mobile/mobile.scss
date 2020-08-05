@@ -158,7 +158,7 @@ main .mzp-l-content {
 //  Wordmark
 
 .c-wordmark {
-    @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-sm.png', auto, 100%);
+    @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-sm.png', contain);
     @include bidi(((padding-right, $spacing-sm, padding-left, 0),));
     @include image-replaced;
     background-position: top center;
