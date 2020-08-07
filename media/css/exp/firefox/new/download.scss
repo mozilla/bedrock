@@ -16,20 +16,7 @@ $image-path: '/media/protocol/img';
 // Protocol over-rides
 // https://github.com/mozilla/protocol/issues/345
 // https://github.com/mozilla/protocol/issues/536
-// https://github.com/mozilla/bedrock/pull/9096
 
-$content-xs: 304px;
-$content-sm: 432px;
-$content-md: 688px;
-$content-lg: 928px;
-$content-xl: 1152px;
-$content-max: 1440px;
-
-$screen-xs: 320px;
-$screen-sm: 480px;
-$screen-md: 768px;
-$screen-lg: 1024px;
-$screen-xl: 1312px;
 
 // xs
 $v-grid-xs: $layout-md;
