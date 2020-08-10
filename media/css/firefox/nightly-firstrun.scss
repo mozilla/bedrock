@@ -20,7 +20,8 @@ main {
     padding-bottom: 0;
 
     .mzp-c-hero-title {
-        @include at2x('#{$image-path}/logos/firefox/browser/nightly/logo-lg-high-res.png', 124px, 124px);
+        background-image: url('#{$image-path}/logos/firefox/browser/nightly/logo-lg-high-res.png');
+        background-size: 124px 124px;
         padding-top: 120px;
     }
 

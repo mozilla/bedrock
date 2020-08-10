@@ -15,7 +15,7 @@ if [[ -f "${CLUSTER_NAME}/${NAMESPACE}/clock-${DEPLOYMENT_YAML}" ]]; then
     sed -i -e "s|image: .*|image: ${DEPLOYMENT_DOCKER_IMAGE}|" ${CLUSTER_NAME}/${NAMESPACE}/clock-${DEPLOYMENT_YAML}
     git add ${CLUSTER_NAME}/${NAMESPACE}/clock-${DEPLOYMENT_YAML}
 fi
-git commit -m "set image to ${DEPLOYMENT_DOCKER_IMAGE} in ${CLUSTER_NAME}" || echo "nothing new to commit"
+git commit -m "${NAMESPACE}: set image to ${DEPLOYMENT_DOCKER_IMAGE} in ${CLUSTER_NAME}" || echo "nothing new to commit"
 git push
 DEPLOYMENT_VERSION=$(git rev-parse --short HEAD)
 
