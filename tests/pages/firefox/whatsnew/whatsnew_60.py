@@ -13,7 +13,7 @@ class FirefoxWhatsNew60Page(BasePage):
     URL_TEMPLATE = '/{locale}/firefox/60.0/whatsnew/all/{params}'
 
     _account_button_locator = (By.CSS_SELECTOR, '.content-main .js-fxa-product-button')
-    _qr_code_locator = (By.CSS_SELECTOR, '.qr-code img')
+    _qr_code_locator = (By.CSS_SELECTOR, '#qr-wrapper img')
 
     def wait_for_page_to_load(self):
         self.wait.until(lambda s: self.seed_url in s.current_url)
