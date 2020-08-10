@@ -30,5 +30,5 @@ if (window.location.href.includes('cookies')) {
         cookieButton.setAttribute('aria-expanded', 'true');
         cookieText.classList.remove('is-closed');
         cookieText.setAttribute('aria-hidden', 'false');
-        };
-    }
+    };
+}
