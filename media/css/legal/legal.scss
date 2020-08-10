@@ -67,8 +67,8 @@ $image-path: '/media/protocol/img';
 /* -------------------------------------------------------------------------- */
 // Form
 
-.mzp-c-notification-bar {
-    margin-bottom: $spacing-md;
+#outer-wrapper .mzp-c-notification-bar {
+    margin-bottom: $spacing-xl;
 }
 
 .super-priority-field {

@@ -18,7 +18,7 @@ $image-path: '/media/protocol/img';
 // Already fixed upstream in https://github.com/mozilla/protocol/commit/548e7ce3070372e7fe92f268fb3847e911d5038e
 @media #{$mq-sm} {
     #outer-wrapper .mzp-c-notification-bar {
-        margin: $layout-xs auto $spacing-xl;
+        margin: $layout-xs auto 0;
     }
 }
 
