@@ -19,3 +19,15 @@
         buttons[i].setAttribute('data-close', closeText);
     }
 })();
+
+if (window.location.href.includes('cookies')) {
+	window.onload = function() {
+		
+		var cookieButton = document.querySelector('#user-choices button');
+		var cookieText = document.getElementById('expand-formatparagraphssummary-2');
+		
+		cookieButton.setAttribute('aria-expanded', 'true');
+		cookieText.classList.remove('is-closed');
+		cookieText.setAttribute('aria-hidden', 'false');
+		}
+	};
