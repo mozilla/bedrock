@@ -963,10 +963,10 @@ class TestFirefoxAndroid(TestCase):
         if the force_direct option is unspecified.
         """
         assert self.firefox_android.get_download_url('nightly', 'arm').startswith(
-            self.google_play_url_base + 'fennec_aurora'
+            self.google_play_url_base + 'fenix'
         )
         assert self.firefox_android.get_download_url('nightly', 'x86').startswith(
-            self.google_play_url_base + 'fennec_aurora'
+            self.google_play_url_base + 'fenix'
         )
 
     def test_get_download_url_nightly_direct(self):
