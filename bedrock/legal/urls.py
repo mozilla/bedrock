@@ -46,6 +46,9 @@ urlpatterns = (
     url(r'^terms/firefox-private-network/$', LegalDocView.as_view(template_name='legal/terms/firefox-private-network.html',
         legal_doc_name='Firefox_Private_Network_ToS'), name='legal.terms.firefox-private-network'),
 
+    url(r'^terms/firefox-relay/$', LegalDocView.as_view(template_name='legal/terms/firefox-relay.html',
+        legal_doc_name='firefox_relay_ToS'), name='legal.terms.firefox-relay'),
+
     url(r'^terms/thunderbird/$', LegalDocView.as_view(template_name='legal/terms/thunderbird.html', legal_doc_name='thunderbird_about_rights'),
         name='legal.terms.thunderbird'),
 
