@@ -189,7 +189,7 @@ class TestReleaseViews(TestCase):
 
         release = Mock(product='Firefox for Android', channel='Nightly')
         link = views.get_download_url(release)
-        assert link.startswith(store_url % 'org.mozilla.fennec_aurora')
+        assert link.startswith(store_url % 'org.mozilla.fenix')
 
     def test_check_url(self):
         with self.activate('en-US'):

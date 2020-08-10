@@ -350,7 +350,7 @@ class FirefoxAndroid(_ProductDetails):
     # Product IDs defined on Google Play
     # Nightly reuses the Aurora ID to migrate the user base
     store_product_ids = {
-        'nightly': 'org.mozilla.fennec_aurora',
+        'nightly': 'org.mozilla.fenix',
         'beta': 'org.mozilla.firefox_beta',
         'release': 'org.mozilla.firefox',
     }
