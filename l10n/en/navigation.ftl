@@ -18,7 +18,10 @@ navigation-firefox-for-fire-tv = { -brand-name-firefox } for { -brand-name-fire-
 navigation-watch-videos-and-browse = Watch videos and browse the internet on your { -brand-name-amazon } { -brand-name-fire-tv }.
 navigation-firefox-browsers-put = { -brand-name-firefox } browsers put your privacy first — and always have.
 navigation-take-the-passwords-youve = Take the passwords you’ve saved in { -brand-name-firefox } with you everywhere.
+
+# Outdated string
 navigation-firefox-is-a-whole-family = { -brand-name-firefox } is a whole family of products designed to keep you safer and smarter online.
+
 navigation-join-firefox = Join { -brand-name-firefox }
 navigation-access-all-of-firefox = Access all of { -brand-name-firefox } with a single login — and get more from every product when you do.
 navigation-meet-the-firefox-family = Meet the { -brand-name-firefox } Family
@@ -36,7 +39,10 @@ navigation-get-firefox-focus = Get { -brand-name-firefox-focus }
 navigation-android-extensions = { -brand-name-android } Extensions
 navigation-your-firefox-account = Your { -brand-name-firefox-account }
 navigation-make-the-most-of-your = Make the most of your { -brand-name-firefox } experience, across every device.
+
+# Outdated string
 navigation-learn-how-to-customize = Learn how to customize the way { -brand-name-firefox } works.
+
 navigation-explore-the-immersive = Explore the immersive web on your virtual reality headset.
 
 # Outdated string
@@ -80,7 +86,13 @@ navigation-security-tips = Security Tips
 navigation-share-large-files-safely = Share large files safely, with links that ‘self-destruct’.
 navigation-save-quality-content = Save quality content from anywhere. Fuel your mind everywhere.
 navigation-sign-up = Sign Up
+
+navigation-mozilla-vpn = { -brand-name-mozilla-vpn }: Fast. Simple. Private.
+navigation-protect-your-entire-device = Protect your entire device and all applications. Mask your real location and connect up to 5 devices. Subscribe now.
+
+# Outdated string
 navigation-connected-and-protected = Connected and protected
+
 navigation-join = Join
 navigation-close-join-menu = Close Join menu
 navigation-sign-in = Sign In
@@ -92,7 +104,10 @@ navigation-meet-the-technology-company = Meet the technology company that puts p
 navigation-new-features = New Features
 navigation-save-content-absorb-knowledge = Save content. Absorb knowledge.
 navigation-same-speed-and-safety = Same speed and safety you trust, designed just for business.
+
+# Outdated string
 navigation-add-ons = Add-ons
+
 navigation-projects = Projects
 navigation-close-projects-menu = Close Projects menu
 navigation-donate-your-voice-to = Donate your voice to help make voice recognition open to everyone.
