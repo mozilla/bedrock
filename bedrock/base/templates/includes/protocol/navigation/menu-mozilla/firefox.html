@@ -83,6 +83,22 @@
         </ul>
       </div>
       <div class="mzp-c-menu-panel-card">
+      {% if ftl_has_messages('navigation-mozilla-vpn', 'navigation-protect-your-entire-device') %}
+        <section class="mzp-c-card mzp-c-card-extra-small mzp-has-aspect-3-2">
+          <a class="mzp-c-card-block-link" href="https://vpn.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=nav&amp;utm_content=firefox" data-link-name="Mozilla VPN" data-link-type="nav" data-link-position="card" data-link-group="products">
+            <div class="mzp-c-card-media-wrapper">
+              <img class="mzp-c-card-image" src="{{ static('img/placeholder.png') }}" data-src="{{ static('img/nav/cards/mozilla-vpn.png') }}" data-srcset="{{ static('img/nav/cards/mozilla-vpn-high-res.png') }}" alt="">
+              <noscript>
+                <img class="mzp-c-card-image" src="{{ static('img/nav/cards/mozilla-vpn.png') }}" alt="">
+              </noscript>
+            </div>
+            <div class="mzp-c-card-content">
+            <h2 class="mzp-c-card-title">{{ ftl('navigation-mozilla-vpn') }}</h2>
+            <p class="mzp-c-card-desc">{{ ftl('navigation-protect-your-entire-device') }}</p>
+            </div>
+          </a>
+        </section>
+      {% else %}
         <section class="mzp-c-card mzp-c-card-extra-small mzp-has-aspect-3-2">
           <a class="mzp-c-card-block-link" href="https://addons.mozilla.org/firefox/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=nav&amp;utm_content=firefox" data-link-name="Add-ons" data-link-type="nav" data-link-position="card" data-link-group="firefox">
             <div class="mzp-c-card-media-wrapper">
@@ -97,6 +113,7 @@
             </div>
           </a>
         </section>
+      {% endif %}
       </div>
     </div><!-- close .mzp-c-menu-panel-container -->
   </div><!-- close .mzp-c-menu-panel -->

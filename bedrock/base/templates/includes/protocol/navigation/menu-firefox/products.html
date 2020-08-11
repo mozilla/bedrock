@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% set referral="?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=nav&amp;utm_content=firefox" %}
+{% set referral="?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=nav&amp;utm_content=projects" %}
 
 <li class="mzp-c-menu-category mzp-has-drop-down mzp-js-expandable">
   <a class="mzp-c-menu-title" href="{{ url('firefox.products.index') }}" aria-haspopup="true" aria-controls="mzp-c-menu-panel-products">{{ ftl('navigation-products') }}</a>
@@ -68,6 +68,22 @@
         </ul>
       </div>
       <div class="mzp-c-menu-panel-card">
+      {% if ftl_has_messages('navigation-mozilla-vpn', 'navigation-protect-your-entire-device') %}
+        <section class="mzp-c-card mzp-c-card-extra-small mzp-has-aspect-3-2">
+          <a class="mzp-c-card-block-link" href="https://vpn.mozilla.org/{{ referral|safe }}" data-link-name="Mozilla VPN" data-link-type="nav" data-link-position="card" data-link-group="products">
+            <div class="mzp-c-card-media-wrapper">
+              <img class="mzp-c-card-image" src="{{ static('img/placeholder.png') }}" data-src="{{ static('img/nav/cards/mozilla-vpn.png') }}" data-srcset="{{ static('img/nav/cards/mozilla-vpn-high-res.png') }}" alt="">
+              <noscript>
+                <img class="mzp-c-card-image" src="{{ static('img/nav/cards/mozilla-vpn.png') }}" alt="">
+              </noscript>
+            </div>
+            <div class="mzp-c-card-content">
+            <h2 class="mzp-c-card-title">{{ ftl('navigation-mozilla-vpn') }}</h2>
+            <p class="mzp-c-card-desc">{{ ftl('navigation-protect-your-entire-device') }}</p>
+            </div>
+          </a>
+        </section>
+      {% else %}
         <section class="mzp-c-card mzp-c-card-extra-small mzp-has-aspect-3-2">
           <a class="mzp-c-card-block-link" href="{{ url('firefox.products.index') }}" data-link-name="All Products" data-link-type="nav" data-link-position="card" data-link-group="products">
             <div class="mzp-c-card-media-wrapper">
@@ -82,6 +98,7 @@
             </div>
           </a>
         </section>
+      {% endif %}
       </div>
     </div><!-- close .mzp-c-menu-panel-container -->
   </div><!-- close .mzp-c-menu-panel -->
