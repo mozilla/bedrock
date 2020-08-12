@@ -18,17 +18,15 @@
         buttons[i].setAttribute('data-open', openText);
         buttons[i].setAttribute('data-close', closeText);
     }
+    
+    var cookieButton = document.querySelector('#user-choices button');
+    var cookieText = document.getElementById('expand-formatparagraphssummary-2');
+    
+    if (window.location.hash === '#cookies') {
+        if (cookieButton && cookieText) {
+            cookieButton.setAttribute('aria-expanded', 'true');
+            cookieText.classList.remove('is-closed');
+            cookieText.setAttribute('aria-hidden', 'false');
+        }
+    }
 })();
-
-if (window.location.href.includes('cookies')) {
-    window.onload = function() {
-        'use strict';
-        
-        var cookieButton = document.querySelector('#user-choices button');
-        var cookieText = document.getElementById('expand-formatparagraphssummary-2');
-        
-        cookieButton.setAttribute('aria-expanded', 'true');
-        cookieText.classList.remove('is-closed');
-        cookieText.setAttribute('aria-hidden', 'false');
-    };
-}
