@@ -660,7 +660,6 @@ class WhatsNewFirefoxLiteView(WhatsnewView):
 class DownloadThanksView(L10nTemplateView):
     ftl_files_map = {
         'firefox/new/trailhead/thanks.html': ['firefox/new/download'],
-        'firefox/new/trailhead/exp-thanks.html': ['firefox/new/download'],
         'firefox/new/desktop/thanks.html': ['firefox/new/desktop'],
     }
     activation_files = [
@@ -684,16 +683,8 @@ class DownloadThanksView(L10nTemplateView):
         return ctx
 
     def get_template_names(self):
-        variant = self.request.GET.get('v', None)
-        locale = l10n_utils.get_locale(self.request)
 
-        # ensure variant matches pre-defined value
-        if variant not in self.variations:
-            variant = None
-
-        if locale == 'en-US' and variant:
-            template = 'firefox/new/trailhead/exp-thanks.html'
-        elif ftl_file_is_active('firefox/new/desktop') and switch('new-redesign'):
+        if ftl_file_is_active('firefox/new/desktop') and switch('new-redesign'):
             template = 'firefox/new/desktop/thanks.html'
         else:
             template = 'firefox/new/trailhead/thanks.html'
