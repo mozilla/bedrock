@@ -674,33 +674,6 @@ class TestFirefoxNew(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ['firefox/new/trailhead/thanks.html']
 
-    @patch.object(views, 'ftl_file_is_active', lambda *x: True)
-    def test_thanks_a_template(self, render_mock):
-        req = RequestFactory().get('/firefox/download/thanks/?v=a')
-        req.locale = 'en-US'
-        view = views.DownloadThanksView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/new/trailhead/exp-thanks.html']
-
-    @patch.object(views, 'ftl_file_is_active', lambda *x: True)
-    def test_thanks_b_template(self, render_mock):
-        req = RequestFactory().get('/firefox/download/thanks/?v=b')
-        req.locale = 'en-US'
-        view = views.DownloadThanksView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/new/trailhead/exp-thanks.html']
-
-    @patch.object(views, 'ftl_file_is_active', lambda *x: True)
-    def test_thanks_c_template(self, render_mock):
-        req = RequestFactory().get('/firefox/download/thanks/?v=c')
-        req.locale = 'en-US'
-        view = views.DownloadThanksView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/new/trailhead/exp-thanks.html']
-
     def test_thanks_redirect(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2&dude=abides')
         req.locale = 'en-US'
