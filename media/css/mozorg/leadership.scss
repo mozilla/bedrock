@@ -16,6 +16,10 @@ $image-path: '/media/protocol/img';
     font-style: normal;
 }
 
+// This will become redundant once we update to Protocol 12
+.mzp-l-content.mzp-t-content-lg {
+    max-width: $content-lg;
+}
 
 // Navigation
 #page-nav {
@@ -72,32 +76,23 @@ $image-path: '/media/protocol/img';
 .gallery {
     @include clearfix;
     margin: 0 auto;
-
-    @media #{$mq-sm} {
-        width: $content-sm;
-    }
-
-    @media #{$mq-md} {
-        margin: 0 -10px;
-        width: auto;
-    }
 }
 
 .vcard {
     width: 160px;
-    padding: 0 20px .25em;
-    margin: 0 auto 20px;
+    padding: 0 $spacing-lg .25em;
+    margin: 0 auto $spacing-lg;
     position: relative;
 
     .headshot {
         @include transition(transform 200ms ease, box-shadow 200ms ease);
-        background: #fff;
+        background: $color-white;
         box-shadow: 2px 3px 3px rgba(0, 0, 0, .1);
         border: 2px solid $color-marketing-gray-20;
         color: $color-black;
         display: block;
         margin: 0 -20px 10px;
-        padding: 20px 20px 10px;
+        padding: $spacing-md $spacing-md $spacing-sm;
         text-align: center;
         text-decoration: none;
     }
@@ -160,8 +155,8 @@ $image-path: '/media/protocol/img';
     }
 
     .callout {
-        padding: 20px 20px 5px;
-        background: #efefef;
+        padding: $spacing-md $spacing-md $spacing-xs;
+        background: $color-light-gray-20;
         font-style: italic;
     }
 
@@ -207,48 +202,29 @@ $image-path: '/media/protocol/img';
     }
 
     @media #{$mq-sm} {
-        float: left;
-        margin: 0 10px 20px;
+        @include bidi(((float, left, right),));
+        margin: 0 $spacing-sm $spacing-lg;
 
         &:nth-child(odd) {
-            clear: left;
-        }
-    }
-
-    @media #{$mq-md} {
-        &:nth-child(odd) {
-            clear: none;
-        }
-
-        &:nth-child(3n+1) {
-            clear: left;
-        }
-    }
-
-    @media #{$mq-lg} {
-        &:nth-child(odd),
-        &:nth-child(3n+1) {
-            clear: none;
-        }
-
-        &:nth-child(4n+1) {
-            clear: left;
-        }
-    }
-
-    @media #{$mq-xl} {
-        &:nth-child(odd),
-        &:nth-child(3n+1),
-        &:nth-child(4n+1) {
-            clear: none;
-        }
-
-        &:nth-child(5n+1) {
-            clear: left;
+            @include bidi(((clear, left, right),));
         }
     }
 }
 
+@supports (display: grid) {
+    @media #{$mq-sm} {
+        .gallery {
+            display: grid;
+            grid-gap: $spacing-md $spacing-lg;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 200px));
+        }
+
+        .vcard {
+            float: none;
+            clear: none;
+        }
+    }
+}
 
 // Show the bios when JS fails.
 // Not every person has a bio, so these get some special treatment.
