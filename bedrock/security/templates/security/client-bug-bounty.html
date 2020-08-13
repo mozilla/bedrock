@@ -12,7 +12,7 @@
 
   <p>The Mozilla Client Security Bug Bounty Program is designed to encourage security research in Mozilla software and to reward those who help us create the safest Internet software in existence.</p>
 
-  <p><strong>Guidelines:</strong> In addition to our <a href="{{ url('security.bug-bounty') }}">general eligibility requirements</a>, submissions must be either a <a href="#static-analysis-bounty">static analysis submission</a> or a <a href="#security-vulnerability-bounty">security bug</a> demonstrating the ability to perform an unauthorized action or obtain access to otherwise-restricted information.</p>
+  <p><strong>Guidelines:</strong> In addition to our <a href="{{ url('security.bug-bounty') }}">general eligibility requirements</a>, submissions must be either an <a href="#static-analysis-bounty">static analysis submission</a>, <a href="#exploit-mitigation-bounty">exploit mitigation bypass</a> or a <a href="#security-vulnerability-bounty">security bug</a> demonstrating the ability to perform an unauthorized action or obtain access to otherwise-restricted information.</p>
 
   <h2 id="security-vulnerability-bounty">Security Vulnerability Bounty</h2>
 
@@ -117,7 +117,44 @@
 
   <p><sup>2</sup> For Highest importance, bypassing WebExtension Install Prompts excludes local attacks.</p>
 
-  <h2 id="static-analysis-bounty">Static Analysis Bounty</h2>
+<h2 id="exploit-mitigation-bounty">Exploit Mitigation Bug Bounty</h2>
+
+  <p>Within Firefox, we have introduced vital security features, exploit mitigations, and defense in depth measures. If you are able to bypass one of these measures, even if you are operating from privileged access within the browser, you are eligible for a bounty.</p>
+
+  <p>Privileged access means bypassing the mitigation in a testing scenario; such as <a href="https://blog.mozilla.org/security/2019/12/02/help-test-firefoxs-built-in-html-sanitizer-to-protect-against-uxss-bugs/">directly testing the HTML Sanitizer</a>. However do note that as explained above in footnote <sup>1</sup>, direct calls to an IPC method from a compromised content process is an expected attack vector and not considered a testing scenario; these are eligible for a Highest Impact bounty as well as the Bounty Bonus described below.</p>
+
+  <p>The mitigations we consider in scope for this bounty are:</p>
+
+  <ul class="mzp-u-list-styled">
+    <li>We separate strings and ArrayBuffers into separate memory arenas from DOM Nodes. A bypass would be arbitrary control of memory layout in the same <a href="https://searchfox.org/mozilla-central/rev/31d8600b73dc85b4cdbabf45ac3f1a9c11700d8e/memory/build/malloc_decls.h#108">jemalloc arena</a> as DOM nodes (i.e. full vtable overlayment). </li>
+    <li>We <a href="https://blog.mozilla.org/attack-and-defense/2019/09/29/remote-code-execution-in-firefox-beyond-memory-corruptions/">sanitize HTML fragments before using them in privileged contexts</a>. A bypass would be (i) finding a location we should be sanitizing (because it has attacker-controlled data) but aren’t or (ii) bypassing the HTML sanitizer with something that could execute JS<sup>3</sup> in Firefox.</li>
+    <li>We disallow eval() from being used in the System Principal context or the Parent Process. A bypass would be identifying a location where we still use eval that <a href="https://searchfox.org/mozilla-release/rev/42c9e6b219d64360e005268ed1471d7d603b8fa8/dom/security/nsContentSecurityUtils.cpp#279">isn’t explicitly being allowed</a><sup>4</sup>, or how to abuse a location that is allowed.</li>
+    <li>We apply a strong Content Security Policy to all internal about: pages, e.g. <a href="https://searchfox.org/mozilla-central/rev/7ec7ee4a9bde171ba195ab46ed6077e4baaef34d/toolkit/mozapps/extensions/content/aboutaddons.html#11">about:addons</a> (and <a href="https://searchfox.org/mozilla-central/rev/31d8600b73dc85b4cdbabf45ac3f1a9c11700d8e/dom/security/nsContentSecurityUtils.cpp#797">double-check we don't forget</a>). A bypass would be identifying a way to run scripts or inject meaningful content bypassing the CSP of any about: page, excluding already-filed issues.</li>
+    <li>We prevent anything except chrome://, resource:// and about: pages <a href="https://searchfox.org/mozilla-central/rev/31d8600b73dc85b4cdbabf45ac3f1a9c11700d8e/docshell/base/nsDocShell.cpp#8862-8905">from loading in the parent process</a>. A bypass would be showing a way an attacker-controlled page could be loaded, either by bypassing the checks in that function, or <a href="https://searchfox.org/mozilla-central/search?q=symbol:_ZN10nsDocShell22CanLoadInParentProcessEP6nsIURI&redirect=false">finding a place it is not correctly checked</a>. We have an analogous check for <a href="https://searchfox.org/mozilla-central/rev/31d8600b73dc85b4cdbabf45ac3f1a9c11700d8e/dom/security/nsContentSecurityManager.cpp#763">preventing loads in the System Principal Context</a> as well. (Note that Fission has recently caused refactoring to this function, but this mitigation is still in-scope with Fission disabled or enabled with (only) the fission.autostart pref.)</li>
+    <li>We do not allow attacker-controlled JavaScript to run in the Parent Process - whether delivered from the internet or provided from a compromised content process. A bypass would be finding a way to execute javascript of your control in the parent process through any mechanism except PAC scripts.</li>
+    <li>In Bugs <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1479960">1479960</a>, <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1550900">1550900</a>, and <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1550037">1550037</a> we added support for sharing memory from the parent to child processes where the child process cannot modify the memory, but the parent can. A bypass would be finding a way to modify the memory from the child process.</li>
+    <li>The Firefox UI is written in HTML/JavaScript, which means Firefox runs certain scripts with elevated privileges beyond what is ordinarily available to web content. To prevent privilege escalation attacks, Gecko implements a capability-based <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Gecko/Script_security">script security architecture</a> (primarily implemented <a href="https://searchfox.org/mozilla-central/source/js/xpconnect/wrappers">in js/xpconnect/wrappers</a>), including special Xray Wrappers which prevent lesser-privileged JavaScript from confusing higher-privileged or differently-privileged Javascript when scripts interact across privilege boundaries. A bypass would be identifying a plausible exploitation scenario that occurs due to missing or incomplete sanitizing across compartments. A scenario is more likely to be considered “plausible” if it was the source of a past bug or is a code pattern we do elsewhere in-tree (the dependencies of bug <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=929539">929539</a> show some examples which we previously worked to eliminate).</li>
+  </ul>
+
+  <p><sup>3</sup>  Some styles are currently allowed by the sanitizer, but limited by the CSP to only allow chrome:// styles, which are part of the build. We will look at style-related issues on a case-by-case basis. We explicitly discourage researchers from re-styling a page for clickjacking attacks because we have a very high bar for an attack.</p>
+
+  <p><sup>4</sup> An example of such a bypass was identifying that <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1583949">we forgot to perform the checks on workers</a>.</p>
+
+  <p>Notes:</p>
+
+  <ul class="mzp-u-list-styled">
+    <li>Bypasses that involve obtaining a mis-issued Certificate Authority certificate will be decided on a case-by-case basis, but bypasses involving administrator-installed root certificates or CA-pinned connections will be ineligible.</li>
+    <li>We believe all mitigations are present in the new Firefox Android app (previously Firefox for Android Preview - it’s the one with the URL bar at the bottom); therefore, that application is in-scope if the mitigation is present: the absence of a mitigation is something we would appreciate knowing about but may not be eligible on a bounty - it will be decided on a case-by-case basis. Our older Firefox for Android application (internal name “Fennec”) is excluded from this bounty.</li>
+    <li>Other things may be considered a mitigation as well, but before assuming they would be, please confirm with us in #security or at <a href="mailto:security@mozilla.org">security@mozilla.org</a></li>
+  </ul>
+
+  <p><strong>Bounty</strong>: Assuming the mitigation is bypassed in a testing scenario, with privileged access, we will treat a bypass of the above listed mitigations as High Impact using the table above, with the same payout range for baseline to high quality report.</p>
+
+  <p><strong>Bounty Bonus</strong>: If the mitigation is bypassed without privileged access, this would count as both a regular security vulnerability eligible for a bounty and a mitigation bypass. The vulnerability payout will be decided per the criteria and table above and the mitigation bypass adds a bonus of an additional 50% of the baseline payout for the category. e.g. a UXSS vulnerability that bypasses our HTML sanitization would earn $7K - $10K plus an additional $3500.</p>
+
+  <p><em>Note</em>: If you’re in the Bounty Bonus category, you may think submitting them separately could earn you slightly more money than submitting them together. We’re pretty sure that doing so would make the second report bounty-ineligible, but if you think each issue is fully independent, you’re welcome to submit them separately and we’ll consider it.</p>
+
+<h2 id="static-analysis-bounty">Static Analysis Bounty</h2>
 
   <p>In coordination with the GitHub Security Lab, we have launched a new program that rewards the submission of static analysis tools that identify present or historical security vulnerabilities in Firefox.  We will accept static analysis queries written in CodeQL or as clang-based checkers (clang analyzer, clang plugin using the AST API or clang-tidy). Submissions should be made following <a href="#claiming-a-bounty">our instructions below</a>.</p>
 
