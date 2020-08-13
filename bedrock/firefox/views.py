@@ -591,7 +591,6 @@ class WhatsnewView(L10nTemplateView):
         return ctx
 
     def get_template_names(self):
-        variation = self.request.GET.get('v', None)
         locale = l10n_utils.get_locale(self.request)
 
         version = self.kwargs.get('version') or ''
@@ -614,14 +613,7 @@ class WhatsnewView(L10nTemplateView):
         elif version.startswith('79.') and ftl_file_is_active('firefox/whatsnew/whatsnew-fx79'):
             template = 'firefox/whatsnew/whatsnew-fx79.html'
         elif version.startswith('78.'):
-            variations = ['2', '3', '4', '5']
-            locales = ['en-US', 'en-CA', 'en-GB', 'de', 'fr']
-
-            if variation in variations and locale in locales:
-                locale = locale.split('-')[0]
-                template = 'firefox/whatsnew/whatsnew-fx78-{0}-{1}.html'.format(variation, locale)
-            else:
-                template = 'firefox/whatsnew/whatsnew-fx78.html'
+            template = 'firefox/whatsnew/index.html'
         elif version.startswith('77.') and lang_file_is_active('firefox/whatsnew_77', locale):
             # YouTube is blocked in China so zh-CN gets an alternative, self-hosted video.
             # If we run into bandwidth trouble we can turn the video off and zh-CN falls back to the 76 page.

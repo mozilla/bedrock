@@ -182,19 +182,20 @@ class TestWhatsNew(TestCase):
     # begin context variable tests
 
     @override_settings(DEV=True)
+    @patch.object(fx_views, 'ftl_file_is_active', lambda *x: True)
     def test_context_variables_whatsnew(self, render_mock):
         """Should pass the correct context variables"""
         req = self.rf.get('/en-US/firefox/whatsnew/')
-        self.view(req, version='78.0')
+        self.view(req, version='70.0')
         template = render_mock.call_args[0][1]
         ctx = render_mock.call_args[0][2]
-        assert template == ['firefox/whatsnew/whatsnew-fx78.html']
-        assert ctx['version'] == '78.0'
-        assert ctx['analytics_version'] == '78'
-        assert ctx['entrypoint'] == 'mozilla.org-whatsnew78'
-        assert ctx['campaign'] == 'whatsnew78'
-        assert ctx['utm_params'] == ('utm_source=mozilla.org-whatsnew78&utm_medium=referral'
-                                     '&utm_campaign=whatsnew78&entrypoint=mozilla.org-whatsnew78')
+        assert template == ['firefox/whatsnew/index-account.html']
+        assert ctx['version'] == '70.0'
+        assert ctx['analytics_version'] == '70'
+        assert ctx['entrypoint'] == 'mozilla.org-whatsnew70'
+        assert ctx['campaign'] == 'whatsnew70'
+        assert ctx['utm_params'] == ('utm_source=mozilla.org-whatsnew70&utm_medium=referral'
+                                     '&utm_campaign=whatsnew70&entrypoint=mozilla.org-whatsnew70')
 
     @override_settings(DEV=True)
     def test_context_variables_whatsnew_developer(self, render_mock):
@@ -355,14 +356,13 @@ class TestWhatsNew(TestCase):
 
     # begin 78.0 whatsnew tests
 
-    @patch.object(fx_views, 'lang_file_is_active', lambda *x: True)
     def test_fx_78_0_0(self, render_mock):
-        """Should use whatsnew-fx78 template for 78.0"""
+        """Should use default template for 78.0"""
         req = self.rf.get('/firefox/whatsnew/')
         req.locale = 'en-US'
         self.view(req, version='78.0')
         template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/whatsnew-fx78.html']
+        assert template == ['firefox/whatsnew/index.html']
 
     # end 78.0 whatsnew tests
 
