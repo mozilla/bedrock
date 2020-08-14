@@ -22,6 +22,8 @@ $image-path: '/media/protocol/img';
 
     .main-title {
         @include text-title-md;
+        margin: 0 auto;
+        max-width: 15em;
 
         br {
             display: none;
@@ -33,15 +35,19 @@ $image-path: '/media/protocol/img';
     }
 
     header {
-        @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-white-sm.png', 174px, 32px);
+        @include at2x('/media/protocol/img/logos/firefox/browser/logo-sm.png', 64px, 64px);
         background-position: top center;
         background-repeat: no-repeat;
-        padding-top: 48px;
-        margin-bottom: 48px;
+        padding-top: 64px + $spacing-md;
+        margin-bottom: $spacing-xl;
     }
 
     &.show-send-to-device {
         @include bidi(((text-align, left, right),));
+
+        .main-title {
+            max-width: none;
+        }
 
         header {
             @include bidi(((background-position, left top, right top),));
@@ -56,11 +62,6 @@ $image-path: '/media/protocol/img';
 
     @media #{$mq-md} {
         padding: 10vh 0;
-
-        header {
-            background-size: 260px 48px;
-            padding-top: $layout-lg;
-        }
     }
 }
 

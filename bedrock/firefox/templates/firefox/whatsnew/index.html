@@ -4,16 +4,12 @@
 
 {% from "macros.html" import send_to_device with context %}
 
-{% add_lang_files "firefox/whatsnew" %}
-
 {% extends "firefox/whatsnew/base.html" %}
 
-{% block page_title %}{{_('Download Firefox for Android and iOS')}}{% endblock %}
+{% block page_title %}{{ftl('whatsnew-s2d-download-firefox-for-android')}}{% endblock %}
 
 {#- This will appear as <meta property="og:description"> which can be used for social share -#}
-{% block page_og_desc %}
-  {{_('Firefox is non-profit, non-corporate, non-compromised. Choosing Firefox isn’t just choosing a browser. It’s a vote for personal freedom.')}}
-{% endblock %}
+{% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
 
 {% block body_id %}firefox-whatsnew{% endblock %}
 {% block body_class %}{% endblock %}
@@ -30,31 +26,22 @@
 
 {% block content %}
 <main class="content-wrapper mzp-t-firefox">
-  <header class="c-page-header main-header">
-    <div class="mzp-l-content c-page-header-inner">
-      <img src="{{ static('protocol/img/logos/mozilla/white.svg') }}"  alt="Mozilla" width="78" height="22" class="c-page-header-logo-moz">
-      <div class="mzp-c-notification-bar mzp-t-success up-to-date">
-        <p>{{ _('Your Firefox is up to date.') }}</p>
-      </div>
-    </div>
-  </header>
+  {% include 'firefox/whatsnew/includes/header.html' %}
 
   <section class="main-content{% if show_send_to_device %} show-send-to-device{% endif %}">
     <div class="mzp-l-content t-content-lg">
       <header>
       {# If user is in a locale with translated basket messages... #}
       {% if show_send_to_device %}
-        {% if l10n_has_tag('whatsnew_headline_04112019') %}
-          <h1 class="main-title">{{ _('Want privacy on every device?') }}</h1>
-          {# L10n: "You got it" here is a casual answer to the previous question, "Want privacy on every device?" #}
-          <p class="main-tagline">{{ _('You got it. Get Firefox for mobile.') }}</p>
+        {% if ftl_has_messages('whatsnew-s2d-want-privacy-on-every-device', 'whatsnew-s2d-you-got-it-get-firefox-for') %}
+          <h1 class="main-title">{{ ftl('whatsnew-s2d-want-privacy-on-every-device') }}</h1>
+          <p class="main-tagline">{{ ftl('whatsnew-s2d-you-got-it-get-firefox-for') }}</p>
         {% else %}
-          {# L10n: Line break below is for visual formatting only #}
-          <h1 class="main-title">{{ _('Send Firefox to your phone<br> and unleash your Internet.') }}</h1>
+          <h1 class="main-title">{{ ftl('whatsnew-s2d-send-firefox-to-your-phone') }}</h1>
         {% endif %}
       {# For users not in a locale with translated basket messages... #}
       {% else %}
-        <h1 class="main-title">{{ _('Download Firefox for your smartphone and tablet.') }}</h1>
+        <h1 class="main-title">{{ ftl('whatsnew-s2d-download-firefox-for-your') }}</h1>
       {% endif %}
       </header>
 
