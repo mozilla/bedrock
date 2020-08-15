@@ -21,7 +21,6 @@ main {
 
     .mzp-c-hero-title {
         background-image: url('#{$image-path}/logos/firefox/browser/nightly/logo-lg-high-res.png');
-        padding-top: 120px;
     }
 
     @media #{$mq-md} {
