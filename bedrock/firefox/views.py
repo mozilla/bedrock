@@ -554,7 +554,6 @@ class WhatsnewView(L10nTemplateView):
         'firefox/whatsnew/index.html': ['firefox/whatsnew/whatsnew-s2d', 'firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx79.html': ['firefox/whatsnew/whatsnew-fx79', 'firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx80.html': ['firefox/whatsnew/whatsnew-fx80', 'firefox/whatsnew/whatsnew'],
-        'firefox/nightly/whatsnew.html': ['firefox/nightly/whatsnew', 'firefox/whatsnew/whatsnew'],
     }
 
     def get_context_data(self, **kwargs):
