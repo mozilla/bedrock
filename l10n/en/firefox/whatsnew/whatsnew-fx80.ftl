@@ -21,5 +21,5 @@ whatsnew80-the-average-person = The average person has 130 online accounts. { -b
 whatsnew80-privacy-you-never = Privacy you never have to ponder
 whatsnew80-firefox-for-mobile = { -brand-name-firefox } for mobile blocks most online ad trackers automatically so there’s no need to dig into your security settings.
 
-whatsnew80-new-firefox-android = New { -brand-name-firefox } for Android
+whatsnew80-new-firefox-android = New { -brand-name-firefox } for { -brand-name-android }
 whatsnew80-our-latest-version = Our latest version of { -brand-name-firefox } features lightening-fast page loads and a clean new design that makes it easier to get more things done, more quickly.

@@ -53,6 +53,8 @@ data-whatsnew80-redirect-url="{{ settings.FXA_ENDPOINT + 'sms/?' + utm_params }}
       {% else %}
         <div class="qr-code-wrapper">
           <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}"
+              width="220"
+              height="220"
               id="firefox-qr"
               data-mozillaonline-link="{{ static('img/firefox/mobile/protocol/qr-firefox-mozillaonline.png') }}"
               alt="">
