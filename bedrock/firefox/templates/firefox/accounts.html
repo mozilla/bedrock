@@ -100,7 +100,7 @@
       {% endif %}
     </h2>
 
-    <ul class="c-product-list">
+    <ul class="c-product-list {% if switch('firefox-send-active') %}l-columns-two{% else %}l-columns-three{% endif %}">
       <li class="c-product-list-item t-product-firefox">
         <a href="{{ url('firefox.new') }}">
           <h3 class="c-product-list-title">{{ ftl('firefox-accounts-firefox-browser') }}</h3>
@@ -119,12 +119,14 @@
           <p class="c-product-list-desc">{{ ftl('firefox-accounts-get-a-lookout-for') }}</p>
         </a>
       </li>
+    {% if switch('firefox-send-active') %}
       <li class="c-product-list-item t-product-send">
         <a href="https://send.firefox.com?utm_source={{ _utm_source }}&amp;utm_medium=referral&amp;utm_campaign={{ _utm_campaign }}&amp;utm_content=product-list-item&amp;entrypoint={{ _entrypoint }}" data-cta-text="Firefox Send" data-cta-type="FxA-Sync">
           <h3 class="c-product-list-title">{{ ftl('firefox-accounts-firefox-send') }}</h3>
           <p class="c-product-list-desc">{{ ftl('firefox-accounts-share-large-files') }}</p>
         </a>
       </li>
+    {% endif %}
     </ul>
 
     <p class="c-accounts-products-tagline">

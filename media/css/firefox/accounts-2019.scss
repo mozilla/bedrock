@@ -8,7 +8,7 @@
 
 .c-section-title {
     @include text-title-md;
-    max-width: $content-sm;
+    max-width: $content-sm + $layout-xl;
     margin: 0 auto $layout-xl;
     text-align: center;
 }
@@ -134,22 +134,36 @@
 // Products
 
 .c-product-list {
-    max-width: $content-md;
     margin: $spacing-2xl auto;
+    max-width: $content-sm;
 
-    @media #{$mq-sm} {
+    @media #{$mq-md} {
         @supports (display: grid) {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-gap: $layout-md $layout-lg;
+            &.l-columns-two {
+                display: grid;
+                grid-gap: $layout-md;
+                grid-template-columns: repeat(2, 1fr);
+                max-width: $content-md;
+            }
+        }
+    }
+
+    @media #{$mq-lg} {
+        @supports (display: grid) {
+            &.l-columns-three {
+                display: grid;
+                grid-gap: $layout-md;
+                grid-template-columns: repeat(3, 1fr);
+                max-width: $content-lg;
+            }
         }
     }
 }
 
 .c-product-list-item {
     margin: 0 auto $layout-lg;
-    text-align: center;
     max-width: $content-xs;
+    text-align: center;
 
     a:link,
     a:visited {
@@ -173,10 +187,10 @@
         }
     }
 
-    @media #{$mq-sm} {
-        @include bidi(((text-align, left, right),));
-
+    @media #{$mq-lg} {
         @supports (display: grid) {
+            @include bidi(((text-align, left, right),));
+            max-width: none;
             margin: 0;
         }
     }
@@ -206,13 +220,9 @@
         @include at2x('/media/protocol/img/logos/firefox/send/logo-word-hor-stack-md.png', 130px, 50px);
     }
 
-    @media #{$mq-sm} {
-        @include bidi(((background-position, left top, right top),));
-        margin: 0 0 $spacing-lg;
-    }
-
     @media #{$mq-md} {
         height: 64px;
+        margin: 0 0 $spacing-lg;
 
         .t-product-firefox & {
             @include background-size(184px,  64px);
@@ -230,6 +240,13 @@
             @include background-size(167px, 64px);
         }
     }
+
+    @media #{$mq-lg} {
+        @supports (display: grid) {
+            @include bidi(((background-position, left top, right top),));
+        }
+    }
+
 }
 
 .c-product-list-desc {

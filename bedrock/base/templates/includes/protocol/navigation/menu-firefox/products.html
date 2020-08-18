@@ -41,6 +41,7 @@
           </li>
         </ul>
         <ul>
+        {% if switch('firefox-send-active') %}
           <li>
             <section class="mzp-c-menu-item mzp-has-icon">
               <a class="mzp-c-menu-item-link" href="https://send.firefox.com/{{ referral|safe }}" data-link-name="Send" data-link-type="nav" data-link-position="topnav" data-link-group="products">
@@ -50,6 +51,7 @@
               </a>
             </section>
           </li>
+        {% endif %}
           <li>
             <section class="mzp-c-menu-item mzp-has-icon">
               <a class="mzp-c-menu-item-link" href="https://getpocket.com/{{ referral|safe }}" data-link-name="Pocket" data-link-type="nav" data-link-position="topnav" data-link-group="products">
