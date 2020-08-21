@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-<aside class="c-banner hide-from-legacy-ie {% if class_name %}{{ class_name }}{% endif %}" id="{% block banner_id %}{% endblock %}">
+<aside class="c-banner hide-from-legacy-ie {% block banner_class %}{% endblock %}" id="{% block banner_id %}{% endblock %}">
   {# Exclude banners from search result snippets using `data-nosnippet` (issue 8739) #}
   <div class="c-banner-inner" data-nosnippet="true">
     <button type="button" class="c-banner-close"><span>{{ ftl('ui-close') }}</span></button>

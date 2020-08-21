@@ -35,14 +35,14 @@ accessible to all.') }}
 {% block page_css %}
   {{ css_bundle('home') }}
 
-  {% if switch('fundraising-banner') %}
-    {{ css_bundle('fundraising-banner') }}
+  {% if switch('firefox-daylight-launch-banner') %}
+    {{ css_bundle('daylight-launch-banner') }}
   {% endif %}
 {% endblock %}
 
 {% block page_banner %}
-  {% if switch('fundraising-banner') %}
-    {% include 'includes/banners/fundraiser.html' %}
+  {% if switch('firefox-daylight-launch-banner') %}
+    {% include 'includes/banners/daylight/daylight-launch.html' %}
   {% endif %}
 {% endblock %}
 
@@ -207,8 +207,8 @@ accessible to all.') }}
 {% block js %}
   {{ js_bundle('newsletter') }}
 
-  {% if switch('fundraising-banner') %}
-    {{ js_bundle('fundraising-banner') }}
+  {% if switch('firefox-daylight-launch-banner') %}
+    {{ js_bundle('daylight-launch-banner') }}
   {% endif %}
 {% endblock %}
 

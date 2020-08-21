@@ -9,6 +9,10 @@
 
 {% block page_css %}
   {{ css_bundle('firefox-mobile') }}
+
+  {% if switch('firefox-daylight-launch-banner') %}
+    {{ css_bundle('daylight-launch-banner') }}
+  {% endif %}
 {% endblock %}
 
 {% block page_title %}{{ ftl('firefox-mobile-download-the-firefox-browser') }} | {{ ftl('firefox-mobile-firefox') }}{% endblock %}
@@ -19,6 +23,12 @@
 {% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
 {% set android_url = firefox_adjust_url('android', 'mobile-page') %}
 {% set ios_url = firefox_adjust_url('ios', 'mobile-page') %}
+
+{% block page_banner %}
+  {% if switch('firefox-daylight-launch-banner') %}
+    {% include 'includes/banners/daylight/daylight-launch.html' %}
+  {% endif %}
+{% endblock %}
 
 {% block site_header %}
   {% with hide_nav_download_button=True %}
@@ -203,5 +213,9 @@
 
 {% block js %}
   {{ js_bundle('firefox-mobile') }}
+
+  {% if switch('firefox-daylight-launch-banner') %}
+    {{ js_bundle('daylight-launch-banner') }}
+  {% endif %}
 {% endblock %}
 
