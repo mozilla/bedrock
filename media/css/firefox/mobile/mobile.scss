@@ -23,10 +23,6 @@ $image-path: '/media/protocol/img';
     padding: $spacing-lg $spacing-2xl;
     text-align: center;
 
-    .form-input-label {
-        text-align: left;
-    }
-
     .legal {
         @include text-body-xs;
     }

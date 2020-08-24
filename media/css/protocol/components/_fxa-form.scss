@@ -6,33 +6,21 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/forms/button-container';
+@import '../../../protocol/css/components/forms/form';
+@import '../../../protocol/css/components/forms/field';
+
 
 .fxa-email-form {
-    border: none;
-    color: #000;
     margin: 0 auto;
     position: relative;
 
+    .mzp-c-form-heading {
+        @include text-body-lg;
+    }
+
     label {
         @include visually-hidden;
-    }
-
-    input[type='email'] {
-        @include border-box;
-        @include text-body-md;
-        border-radius: $border-radius-xs;
-        padding: ($spacing-md - 2px) ($spacing-xl - 2px); //2px extra padding removed to compensate for 2px border.
-        width: 100%;
-    }
-
-    button[type='submit'] {
-        display: block;
-        width: 100%;
-        margin-bottom: $spacing-lg;
-    }
-
-    .agreement {
-        @include text-body-sm;
     }
 }
 
@@ -42,10 +30,12 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.fxa-email-form-title {
-    @include text-body-lg;
-}
+.fxa-signin {
+    @include text-body-xs;
+    color: $form-text;
+    margin-bottom: 0;
 
-.fxa-sign-in {
-    @include text-body-sm;
+    .mzp-t-dark & {
+        color: $color-white;
+    }
 }

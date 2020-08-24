@@ -31,22 +31,22 @@
 {% block page_image %}{{ static('img/firefox/template/page-image-master.jpg') }}{% endblock %}
 
 {% block content %}
-  <section class="hero mzp-has-image mzp-t-firefox">
+  <section class="hero mzp-t-firefox">
     <div class="page-content">
 
       <div class="mzp-l-content">
-        <div class="mzp-c-hero-body">
+        <div class="hero-body">
           <div class="browser-logo">
             <img alt="Firefox" class="browser-logo" src="{{ static('protocol/img/logos/firefox/browser/logo-word-hor-md.png') }}" width="260" height="48" />
           </div>
-          <h1 class="mzp-c-hero-title">
+          <h1 class="hero-title">
             {% if l10n_has_tag('firstrun_email_only_form') %}
               {{ _('Take Firefox with You') }}
             {% else %}
               {{_('Already using Firefox?')}}
             {% endif %}
           </h1>
-          <div class="mzp-c-hero-desc">
+          <div class="hero-desc">
             <p>
             {% if l10n_has_tag('firstrun_email_only_form') %}
               {{ _('Get your bookmarks, history, passwords and other settings on all your devices.') }}
@@ -54,7 +54,7 @@
               {{_('Sign in to your account and we’ll sync the bookmarks, passwords and other great things you’ve saved to Firefox on other devices.')}}
             {% endif %}</p>
           </div>
-          <aside class="mzp-c-emphasis-box" id="fxaccounts-wrapper">
+          <aside class="mzp-c-emphasis-box hero-form" id="fxaccounts-wrapper">
             {{ fxa_email_form(
               entrypoint=_entrypoint,
               button_class='mzp-c-button mzp-t-product')
@@ -72,10 +72,10 @@
               ) }}
             </p>
           </aside>
+          <div class="hero-image">
+            <img class="hero-photo" src="{{ static('img/firefox/firstrun/deviceSwoosh.gif') }}" alt="">
+          </div>
         </div>
-      </div>
-      <div class="mzp-c-hero-image">
-        <img class="hero-photo" src="{{ static('img/firefox/firstrun/deviceSwoosh.gif') }}" alt="">
       </div>
     </div>
   </section>

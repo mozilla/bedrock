@@ -71,11 +71,5 @@ $image-path: '/media/protocol/img';
 }
 
 .send-to-device-form {
-    label {
-        color: $color-white;
-    }
-
-    .inline-field {
-        margin-bottom: $spacing-md;
-    }
+    color: $color-white;
 }

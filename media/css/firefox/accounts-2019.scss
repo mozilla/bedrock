@@ -3,6 +3,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/emphasis-box';
 @import '../protocol/components/fxa-form';
 
 .c-section-title {
@@ -102,15 +103,11 @@
 // FxA signup form
 
 .c-accounts-form {
-    background: $color-white;
-    border-radius: $border-radius-md;
-    box-shadow: $box-shadow-md;
     margin: $layout-lg auto 0;
     max-width: 330px;
-    padding: $spacing-lg;
     text-align: center;
 
-    .fxa-email-form-title {
+    .mzp-c-form-heading {
         @include text-title-sm;
     }
 
@@ -118,13 +115,8 @@
         display: none;
     }
 
-    .mzp-c-button {
-        width: 100%;
-    }
-
     .fxa-signin {
-        @include text-body-sm;
-        margin-top: $spacing-lg;
+        margin-bottom: 0;
     }
 
     @media #{$mq-lg} {

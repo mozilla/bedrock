@@ -21,20 +21,14 @@
 {% endblock %}
 
 {% block content %}
-  <div class="mzp-l-content">
-    <header class="l-narrow">
-      <div class="c-page-section">
-        <h1>Firefox System Requirements</h1>
-      </div>
-      <h2>{{ _('{product} {channel} {version}')|f(product=release.product, channel=channel_name, version=version) }}</h2>
-    </header>
+  <main class="mzp-l-content mzp-t-content-md">
+    <h1 class="c-page-title">Firefox System Requirements</h1>
+    <h2 class="c-version-title">{{ _('{product} {channel} {version}')|f(product=release.product, channel=channel_name, version=version) }}</h2>
 
-    <main class="l-narrow">
-      <div class="mzp-c-article">
-          {{ release.system_requirements|safe }}
-      </div>
-    </main>
-  </div>
+    <div class="mzp-c-article">
+      {{ release.system_requirements|safe }}
+    </div>
+  </main>
 
   {% call call_out_compact(
     title=_('Get the most recent version'),

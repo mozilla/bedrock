@@ -12,7 +12,7 @@ class SendToDevice(BaseRegion):
 
     _root_locator = (By.CSS_SELECTOR, '.send-to-device')
     _email_locator = (By.CSS_SELECTOR, '.send-to-device-input')
-    _submit_button_locator = (By.CSS_SELECTOR, '.form-submit > button')
+    _submit_button_locator = (By.CSS_SELECTOR, '.send-to-device .mzp-c-button')
     _thank_you_locator = (By.CSS_SELECTOR, '.thank-you')
 
     def type_email(self, value):

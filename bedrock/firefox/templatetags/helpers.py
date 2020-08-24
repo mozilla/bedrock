@@ -100,7 +100,7 @@ def ios_builds(channel, builds=None):
 def download_firefox(ctx, channel='release', platform='all',
                      dom_id=None, locale=None, force_direct=False,
                      force_full_installer=False, force_funnelcake=False,
-                     alt_copy=None, button_color='button-green',
+                     alt_copy=None, button_class='mzp-t-xl',
                      locale_in_transition=False, download_location=None):
     """ Output a "download firefox" button.
 
@@ -115,7 +115,7 @@ def download_firefox(ctx, channel='release', platform='all',
     :param force_funnelcake: Force the download version for en-US Windows to be
             'latest', which bouncer will translate to the funnelcake build.
     :param alt_copy: Specifies alternate copy to use for download buttons.
-    :param button_color: Color of download button. Default to 'button-green'.
+    :param button_class: Classes to add to the download button, contains size mzp-t-xl by default
     :param locale_in_transition: Include the page locale in transitional download link.
     :param download_location: Specify the location of download button for
             GA reporting: 'primary cta', 'nav', 'sub nav', or 'other'.
@@ -163,7 +163,7 @@ def download_firefox(ctx, channel='release', platform='all',
         'show_android': show_android,
         'show_ios': show_ios,
         'alt_copy': alt_copy,
-        'button_color': button_color,
+        'button_class': button_class,
         'download_location': download_location,
         'fluent_l10n': ctx['fluent_l10n']
     }

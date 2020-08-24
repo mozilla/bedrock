@@ -105,62 +105,62 @@
   {% if not form_submitted or (form_submitted and form_error) %}
   <h2>{{ _('Fraud Report') }}</h2>
 
-  <form action="{{ url('legal.fraud-report') }}" method="post" name="reportForm" id="reportForm" enctype="multipart/form-data">
+  <form class="mzp-c-form" action="{{ url('legal.fraud-report') }}" method="post" name="reportForm" id="reportForm" enctype="multipart/form-data">
 
     <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 
-    <div class="mzp-l-form-field" id="url">
+    <div class="mzp-c-field" id="url">
       {{ form.input_url.errors }}
-      <label for="input_url" >{{ _('URL') }}</label>
+      <label for="input_url" class="mzp-c-field-label">{{ _('URL') }}</label>
       {{ form.input_url }}
-      <p>{{ _('The URL of the violating website. e.g. http://offendingsite.com/') }}</p>
+      <p class="mzp-c-field-info">{{ _('The URL of the violating website. e.g. http://offendingsite.com/') }}</p>
     </div>
 
-    <div class="mzp-l-form-field" id="category">
+    <div class="mzp-c-field" id="category">
       {{ form.input_category.errors }}
-      <label for="input_category">{{ _('Category') }}</label>
+      <label for="input_category" class="mzp-c-field-label">{{ _('Category') }}</label>
       {{ form.input_category }}
     </div>
 
     {{ form.office_fax }}
 
-    <div class="mzp-l-form-field" id="product">
+    <div class="mzp-c-field" id="product">
       {{ form.input_product.errors }}
-      <label for="input_product">{{ _('Product') }}</label>
+      <label for="input_product" class="mzp-c-field-label">{{ _('Product') }}</label>
       {{ form.input_product }}
     </div>
 
-    <div class="mzp-l-form-field" id="specific_product">
+    <div class="mzp-c-field" id="specific_product">
       {{ form.input_specific_product.errors }}
-      <label for="input_specific_product">{{ _('Name a more specific product, if needed') }}</label>
+      <label for="input_specific_product" class="mzp-c-field-label">{{ _('Name a more specific product, if needed') }}</label>
       {{ form.input_specific_product }}
     </div>
 
-    <div class="mzp-l-form-field" id="details">
+    <div class="mzp-c-field" id="details">
       {{ form.input_details.errors }}
-      <label for="input_details">{{ _('Please provide additional details') }}</label>
+      <label for="input_details" class="mzp-c-field-label">{{ _('Please provide additional details') }}</label>
       {{ form.input_details }}
     </div>
 
-    <div class="mzp-l-form-field" id="attachment">
+    <div class="mzp-c-field" id="attachment">
       {{ form.input_attachment.errors }}
-      <label for="input_attachment">{{ _('Attachment') }}</label>
+      <label for="input_attachment" class="mzp-c-field-label">{{ _('Attachment') }}</label>
       {{ form.input_attachment }}
-      <p>{{ _('Images only. Maximum file size is 5 MB.') }}</p>
+      <p class="mzp-c-field-info">{{ _('Images only. Maximum file size is 5 MB.') }}</p>
     </div>
 
-    <div class="mzp-l-form-field" id="attachment_desc">
+    <div class="mzp-c-field" id="attachment_desc">
       {{ form.input_attachment_desc.errors }}
-      <label for="input_attachment_desc">{{ _('Attachment Description') }}</label>
+      <label for="input_attachment_desc" class="mzp-c-field-label">{{ _('Attachment Description') }}</label>
       {{ form.input_attachment_desc }}
-      <p>{{ _('Please describe what you are attaching.') }}</p>
+      <p class="mzp-c-field-info">{{ _('Please describe what you are attaching.') }}</p>
     </div>
 
-    <div class="mzp-l-form-field" id="email">
+    <div class="mzp-c-field" id="email">
       {{ form.input_email.errors }}
-      <label for="input_email">{{ _('Email address (optional)') }}</label>
+      <label for="input_email" class="mzp-c-field-label">{{ _('Email address (optional)') }}</label>
       {{ form.input_email }}
-      <p>
+      <p class="mzp-c-field-info">
         {% trans url=url('privacy') %}
           If you choose to provide it, your email address will only be
           used to contact you about this report. Please see our

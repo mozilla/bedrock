@@ -6,6 +6,9 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/forms/form';
+@import '../../protocol/css/components/forms/field';
+@import '../../protocol/css/components/forms/button-container';
 
 /* -------------------------------------------------------------------------- */
 // Common elements
@@ -19,57 +22,34 @@ main {
     }
 }
 
-.inner-content {
-    max-width: 600px;
-}
-
 /* -------------------------------------------------------------------------- */
 // Main heading
 
 header {
     h1 {
-        margin-bottom: $spacing-xl;
+        margin-bottom: $spacing-sm;
     }
 
     .tagline {
         font-weight: bold;
-    }
-
-    @media #{$mq-md} {
-        .tagline {
-            @include text-title-md;
-        }
+        margin-bottom: $layout-lg;
     }
 }
 
 /* -------------------------------------------------------------------------- */
 // Email recovery form
 
-form {
-    margin-bottom: $spacing-2xl;
-
-    .form-fields {
-        max-width: 300px;
-    }
-
-    label {
-        display: block;
-        margin-bottom: 5px;
-    }
-
-    input[type="email"] {
-        margin-bottom: $spacing-sm;
-        padding: 0.75em $spacing-lg;
-        width: 100%;
-    }
-
-    button[type="submit"] {
-        width: 100%;
-    }
+.mzp-c-form {
+    margin-bottom: $layout-lg;
 }
 
-.errorlist li {
-    color: $color-red-60;
+.mzp-c-field {
+    max-width: $content-xs;
+    padding-bottom: $label-v-spacing;
+}
+
+.mzp-c-button-container {
+    max-width: $content-xs;
 }
 
 /* -------------------------------------------------------------------------- */

@@ -33,11 +33,11 @@
         <p>{{ ftl('whatsnew79-main-intro') }}</p>
 
         <div class="state-not-default">
-          <a id="set-as-default-button" href="{{ url('firefox.set-as-default.thanks') }}" class="mzp-c-button mzp-t-product mzp-t-small" data-cta-text="Make Firefox your default browser" data-cta-type="button">{{ ftl('whatsnew79-primary-cta') }}</a>
+          <a id="set-as-default-button" href="{{ url('firefox.set-as-default.thanks') }}" class="mzp-c-button mzp-t-product mzp-t-md" data-cta-text="Make Firefox your default browser" data-cta-type="button">{{ ftl('whatsnew79-primary-cta') }}</a>
         </div>
 
         <div class="state-is-default">
-          <button class="mzp-c-button mzp-t-product mzp-t-small js-modal-link">{{ ftl('whatsnew79-fallback-cta') }}</button>
+          <button class="mzp-c-button mzp-t-product mzp-t-md js-modal-link">{{ ftl('whatsnew79-fallback-cta') }}</button>
         </div>
       </div>
     </div>
@@ -100,7 +100,7 @@
             <a class="mzp-c-cta-link show-firefox-desktop-old" href="https://support.mozilla.org/kb/update-firefox-latest-release/?{{ utm_params }}" data-link-type="link" data-link-name="Update your Firefox browser">{{ ftl('whatsnew79-update-your-firefox') }}</a>
 
             <div class="show-fxa-not-fx show-fxa-unsupported">
-              {{ download_firefox(alt_copy=ftl('whatsnew79-download-the-firefox'), download_location='secondary cta', button_color='mzp-c-button mzp-t-small mzp-t-primary mzp-t-product') }}
+              {{ download_firefox(alt_copy=ftl('whatsnew79-download-the-firefox'), download_location='secondary cta', button_class='mzp-c-button mzp-t-md mzp-t-primary mzp-t-product') }}
             </div>
           </div>
         </div>

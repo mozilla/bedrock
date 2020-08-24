@@ -5,6 +5,11 @@
 @import '../../../protocol/css/includes/lib';
 
 .mzp-c-navigation {
+
+    .mzp-c-navigation-download {
+        padding-top: 4px; //https://github.com/mozilla/protocol/issues/629
+    }
+
     .mzp-c-navigation-download .download-list {
         margin-bottom: 0;
     }

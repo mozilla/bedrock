@@ -29,7 +29,7 @@
   {% include 'firefox/whatsnew/includes/header.html' %}
 
   <section class="main-content{% if show_send_to_device %} show-send-to-device{% endif %}">
-    <div class="mzp-l-content t-content-lg">
+    <div class="mzp-l-content mzp-t-content-md">
       <header>
       {# If user is in a locale with translated basket messages... #}
       {% if show_send_to_device %}
@@ -48,7 +48,7 @@
       {# Only certain locales get send_to_device, else they see a QRCode. #}
       {% if show_send_to_device %}
         <div id="send-to-device-wrapper" class="primary-cta">
-          {{ send_to_device(include_title=False, message_set=send_to_device_message_set, spinner_color='#fff;') }}
+          {{ send_to_device(include_title=False, message_set=send_to_device_message_set, spinner_color='#fff;', class='horizontal mzp-t-dark') }}
         </div>
       {% else %}
         <div id="qr-wrapper" class="primary-cta">

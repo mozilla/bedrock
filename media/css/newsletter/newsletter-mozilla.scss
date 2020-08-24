@@ -64,7 +64,6 @@ $image-path: '/media/protocol/img';
 
     h2 {
         @include text-title-xs;
-        color: $color-red-60;
         font-weight: normal;
         margin: $spacing-lg auto $spacing-xl;
         text-align: center;
