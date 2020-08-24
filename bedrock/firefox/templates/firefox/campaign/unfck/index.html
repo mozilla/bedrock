@@ -1,0 +1,151 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% from "macros-protocol.html" import card, hero with context %}
+
+{% block page_title %}Unfck{% endblock %}
+{% block page_image %}{{ static('img/firefox/campaign/unfck/og.png') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox-unfck') }}
+{% endblock %}
+
+{% block body_id %}firefox-unfck{% endblock %}
+
+{% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-unfck' %}
+
+{% macro item(title=None, info=None, link_text=None, link_url=None, tw_text=None, tw_url=None, id=None, src=None, include_cta=False) -%}
+<div class="c-item-unfck" id="{{ id }}">
+  <h3 class="c-item-title">{{ title }}</h3>
+  <div class="c-item-img">
+    <img class="c-item-gif" src="{{ src }}">
+    <ul class="c-item-share">
+      <!-- TODO: -->
+      <li><a class="c-item-link js-twitter-share" href="#"><span class="c-item-icon twitter"></span><span class="c-item-text">Share</span></a></li>
+      <li><a class="c-item-link" href="#" download><span class="c-item-icon download"></span><span class="c-item-text">Download GIF</span></a></li>
+      <li><button class="c-item-link js-copy-link" type="button"><span class="c-item-icon link"></span><span class="c-item-text">Copy Link to GIF</span></button></li>
+    </ul>
+  </div>
+  <div class="c-item-desc">
+    <p>{{ info }}</p>
+    {% if include_cta %}
+      {{ caller() }}
+    {% else %}
+      <p><a href="{{ link_url }}{{ referrals }}" class="mzp-c-cta-link">{{ link_text }}</a></p>
+    {% endif %}
+  </div>
+  <aside class="mzp-c-notification-bar mzp-t-success hidden">
+    <p>Link copied to clipboard.</p>
+  </aside>
+</div>
+{%- endmacro %}
+
+
+{% block content %}
+<main role="main" class="t-unfck">
+
+  {% call hero(
+    title='The internet: Fck Yeah',
+    desc='It’s an amazing place. But we can all feel the ways it’s fcked, too. The first and easiest thing you can do to unfck it? Start using a non-profit-backed browser that doesn’t spy on its users.',
+    class='mzp-t-firefox mzp-t-dark',
+    include_cta=True,
+    heading_level=1)
+  %}
+    {{ download_firefox(download_location='primary cta') }}
+  {% endcall %}
+
+  <h2 class="c-section-title">The Unfcking Checklist</h2>
+
+  <div class="mzp-l-content mzp-t-content-lg">
+
+    {% call item(
+      title='Take action online. Change the outcome offline.',
+      info='Where you live is one of the most common data points used to target you online. Join us in changing your location on FB and Insta to Waco, TX, so we can throw off political ads and shine a light on voter suppression.',
+      link_text='How it Works',
+      link_url='#',
+      tw_text='text_test',
+      tw_url='https://bukk.it/firecode.gif',
+      id='location',
+      src=static('img/firefox/campaign/unfck/firecode.gif')
+    ) %}{% endcall %}
+
+    {% call item(
+        title='Netflix and change',
+        info='Watch The Social Dilemma on Netflix, a doc made with our friends at the Center for Humane Tech. It explains this whole data situation in words and actions real people can understand.',
+        link_text='Watch the Doc',
+        link_url='#',
+        tw_text='text_test',
+        tw_url='https://bukk.it/howidocode.gif',
+        id='watch',
+        src=static('img/firefox/campaign/unfck/popcorn.gif')
+      ) %}{% endcall %}
+
+      {% call item(
+        title='Join the anti-establishment',
+        info='The more people who use independent tech like Firefox, the greater the unfck effect. Get yourself some unfcked search results, email providers, productivity docs and more.',
+        link_text='Unfck More',
+        link_url='#',
+        tw_text='text_test',
+        tw_url='https://giphy.com/gifs/muppets-rachel-maddow-kermit-Zaej3GIZTzCI8',
+        id='join',
+        src=static('img/firefox/campaign/unfck/kermit.gif')
+      ) %}{% endcall %}
+
+      {% call item(
+        title='Tell us what you wanna unfck',
+        info='Maybe we can find new ways to solve it together. After all, we make internet products, pressure our peers, and speak truth to government power.',
+        tw_text='text_test',
+        tw_url=request.META.HTTP_HOST + static('img/firefox/campaign/unfck/fuckthis.gif'),
+        id='tell',
+        src=static('img/firefox/campaign/unfck/fuckthis.gif'),
+        include_cta=True
+        ) %}
+        <div class="c-tell">
+          <textarea class="c-tell-input" placeholder="TODO: interaction"></textarea>
+          <button class="c-tell-button mzp-c-button mzp-t-secondary">Submit</button>
+        </div>
+      {% endcall %}
+  </div>
+
+  <div class="mzp-l-content mzp-t-content-xl">
+    <div class="mzp-l-card-third">
+      {{ card(
+        title='Here’s how using Firefox unfcks the internet',
+        ga_title='card-unfck',
+        image_url=None,
+        link_url='',
+        heading_level=3,
+        desc='The chase starts the minute we open our phones, apps or a browser window — often by the maker of that product. Because the more data they collect about you, the more there is to sell you. And the more of you there is to sell. Firefox doesn’t play that game. We keep the online lives of our 300M users out of the Almighty Algorithm.',
+        cta='learn more'
+      )}}
+
+      {{ card(
+        title='And here’s how Firefox unfcks your internetting',
+        ga_title='card-firefox',
+        image_url=None,
+        link_url='',
+        heading_level=3,
+        desc='The Firefox browser is built to protect your privacy at every turn — because that’s the fastest way to free you from slow loads, bad ads, hackers and trackers — while clearing the way for more freedom, more youness, more magic. ',
+        cta='learn more'
+      )}}
+
+      {{ card(
+        title='People over profits. Always.',
+        ga_title='card-mozilla',
+        image_url=None,
+        link_url='',
+        heading_level=3,
+        desc='Firefox was founded in 2002 for the expressed purpose of breaking up a monopoly. Our parent company is a non-profit. The Wall Street Journal has called us “the Bernie Sanders” of browsers, and we’re here for it. Because we’ll never stop fighting for what we believe in: a safe, accessible, and welcoming internet for all.',
+        cta='Meet Mozilla'
+      )}}
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox-unfck') }}
+{% endblock %}

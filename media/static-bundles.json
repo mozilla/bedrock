@@ -726,6 +726,12 @@
         "css/firefox/welcome.scss"
       ],
       "name": "firefox_welcome"
+    },
+    {
+      "files": [
+        "css/firefox/unfck.scss"
+      ],
+      "name": "firefox-unfck"
     }
   ],
   "js": [
@@ -1349,6 +1355,12 @@
         "js/base/error-pages.js"
       ],
       "name": "page_not_found"
+    },
+    {
+      "files": [
+        "js/firefox/campaign/unfck.js"
+      ],
+      "name": "firefox-unfck"
     }
   ]
 }
