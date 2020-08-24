@@ -103,6 +103,7 @@
 {% macro card(title, ga_title, image_url, link_url, desc=None, meta=None, cta=None, tag_label=None, media_icon=None, class=None, heading_level=2, aspect_ratio='mzp-has-aspect-3-2', include_highres_image=False, highres_image_url=None, youtube_id=None) -%}
 <section class="mzp-c-card {% if class %}{{ class }}{% endif %} {% if aspect_ratio %}{{ aspect_ratio }}{% endif %} {% if media_icon %}{{ media_icon }}{% endif %} {% if youtube_id %}has-video-embed{% endif %}">
   <a class="mzp-c-card-block-link" href="{{ link_url }}" data-link-name="{{ ga_title }}" data-link-type="link" data-link-group="card" {% if tag_label %}data-card-tag="{{ tag_label }}"{% endif %}>
+    {% if image_url %}
     <div class="mzp-c-card-media-wrapper">
       {# The highres_image_url parameter is for passing in a full URL to a highres image. #}
       {# While the include_highres_image is for allowing the lazy_img helper to figure out the name of the highres version. #}
@@ -112,6 +113,7 @@
         {{ lazy_img(image_url=image_url, include_highres_image=include_highres_image, placeholder_url='img/placeholder.png', optional_attributes={'class': 'mzp-c-card-image'}) }}
       {% endif %}
     </div>
+    {% endif %}
     <div class="mzp-c-card-content">
     {% if tag_label %}
       <div class="mzp-c-card-tag">{{ tag_label }}</div>

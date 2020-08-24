@@ -6,6 +6,8 @@ from django.conf.urls import url
 import bedrock.releasenotes.views
 from bedrock.mozorg.util import page
 from bedrock.releasenotes import version_re
+from django.conf import settings
+from bedrock.redirects.util import redirect
 
 from bedrock.firefox import views
 from bedrock.utils import views as utils_views
@@ -170,3 +172,12 @@ urlpatterns = (
     # Issue 8536
     page('firefox/retention/thank-you', 'firefox/retention/thank-you.html'),
 )
+
+if settings.DEV:
+    urlpatterns += (
+        page('firefox/campaign/unfck', 'firefox/campaign/unfck/index.html'),
+    )
+else:
+    urlpatterns += (
+        redirect(r'^firefox/campaign/unfck(/.*)?', 'firefox', permanent=False),
+    )
