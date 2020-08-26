@@ -1,5 +1,5 @@
 ---
-name: Sprint Task ⚡️
+name: Task ⚡️
 about: For project work and feature development
 title: ''
 labels: ''
