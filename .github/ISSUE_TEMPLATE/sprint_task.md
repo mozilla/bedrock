@@ -15,11 +15,7 @@ Description, good enough that reading the card 1 month from now, you still know 
 
 #### Success Criteria
 - [ ] An element contributing to the definition of done for the card
-- [ ] Tasks should be represented here as something like "the new design is done and approved, live on the page"
+- [ ] Tasks should be represented here as something like "Approved designs attached to this issue"
+ 
 
-#### Approvals
-- [ ] The Accountable
-- [ ] Brand - design?
-- [ ] Brand - copy?
-- [ ] Team Lead
-- [ ] Others?
+
