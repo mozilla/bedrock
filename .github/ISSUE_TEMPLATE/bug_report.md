@@ -1,6 +1,10 @@
 ---
-name: Bug Report 🐛
+name: "Bug Report \U0001F41B"
 about: Something isn't working as expected? Here is the right place to report.
+title: ''
+labels: 'Bug :bug:'
+assignees: ''
+
 ---
 
 ## Description

@@ -1,6 +1,10 @@
 ---
 name: Sprint Task ⚡️
 about: For project work and feature development
+title: ''
+labels: ''
+assignees: ''
+
 ---
 
 ## Description
