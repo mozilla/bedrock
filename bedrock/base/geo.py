@@ -19,7 +19,7 @@ def _get_geo_client():
         try:
             GEO = maxminddb.open_database(settings.MAXMIND_DB_PATH)
         except (maxminddb.InvalidDatabaseError, OSError, IOError):
-            pass
+            GEO = False
 
     return GEO
 
@@ -27,10 +27,10 @@ def _get_geo_client():
 def get_country_from_ip(ip_addr):
     """Return country info for the given IP Address."""
     geo = _get_geo_client()
-    if geo is None and settings.DEV:
+    if not geo and settings.DEV:
         return settings.MAXMIND_DEFAULT_COUNTRY.upper()
 
-    if geo is not None:
+    if geo and ip_addr:
         try:
             data = geo.get(ip_addr)
         except ValueError:
@@ -58,9 +58,11 @@ def get_country_from_request_header(request):
 
 
 def get_country_from_maxmind(request):
-    ip_addr = request.META.get('HTTP_X_CLUSTER_CLIENT_IP',
-                               request.META.get('REMOTE_ADDR'))
-    return get_country_from_ip(ip_addr)
+    ip_addr = request.META.get('HTTP_X_FORWARDED_FOR', '')
+    if ',' in ip_addr:
+        ip_addr = ip_addr.split(',', 1)[0]
+
+    return get_country_from_ip(ip_addr.strip())
 
 
 def get_country_from_request(request):
