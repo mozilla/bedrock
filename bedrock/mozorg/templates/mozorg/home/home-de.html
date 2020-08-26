@@ -31,7 +31,7 @@
     title=_('Echte Privatsphäre statt leerer Versprechen'),
     desc=_('Hol dir die Kontrolle über deine Privatsphäre auf jedes Gerät.'),
     ) %}
-    {{ download_firefox(dom_id='download-primary', download_location='primary cta') }}
+    {{ download_firefox_thanks(dom_id='download-primary', download_location='primary cta') }}
   {% endcall %}
 
   {{ fxa_banner(
@@ -108,7 +108,7 @@
     title=_('Bestimme selbst, was du teilst und mit wem.'),
     sub_title=_('Hol dir den Browser, der Tracker automatisch blockiert.')
   ) %}
-    {{ download_firefox(dom_id='download-secondary', download_location='secondary cta') }}
+    {{ download_firefox_thanks(dom_id='download-secondary', download_location='secondary cta') }}
   {% endcall %}
 
   {% call call_out_compact(

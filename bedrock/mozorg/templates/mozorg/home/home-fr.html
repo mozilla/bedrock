@@ -32,7 +32,7 @@ Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, u
     title='Nous ne mettons pas le nez dans vos données.',
     desc='Le respect de votre vie privée est notre priorité. Notre modèle financier ne dépendra jamais de la vente et de l’utilisation de vos données personnelles.',
     ) %}
-    {{ download_firefox(dom_id='download-primary', download_location='primary cta') }}
+    {{ download_firefox_thanks(dom_id='download-primary', download_location='primary cta') }}
   {% endcall %}
 
   {{ fxa_banner(
@@ -108,7 +108,7 @@ Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, u
     title='Retrouvez le respect que vous méritez.',
     sub_title='Parcourir Internet avec Firefox, c’est adopter des technologies conçues pour protéger vos données personnelles.'
   ) %}
-    {{ download_firefox(dom_id='download-secondary', download_location='secondary cta') }}
+    {{ download_firefox_thanks(dom_id='download-secondary', download_location='secondary cta') }}
   {% endcall %}
 
   {% call call_out_compact(

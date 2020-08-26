@@ -18,25 +18,45 @@ describe('mozilla-utils-ie.js', function() {
         });
     });
 
-    describe('initDownloadLinks', function () {
+    describe('initDownloadLinks (regular download button)', function () {
 
-        /* Append an HTML fixture to the document body
-         * for each test in the scope of this suite */
         beforeEach(function () {
-            $('<a class="download-link" data-direct-link="bar">foo</a>').appendTo('body');
+            var link = '<a class="download-link" data-direct-link="test-download-url">Download</a>';
+            document.body.insertAdjacentHTML('beforeend', link);
         });
 
-        /* Then after each test remove the fixture */
         afterEach(function() {
-            $('.download-link').remove();
+            document.querySelectorAll('.download-link').forEach(function(e)  {
+                e.parentNode.removeChild(e);
+            });
         });
 
         it('should call triggerIEDownload when clicked', function () {
             spyOn(Mozilla.UtilsIE, 'triggerIEDownload');
             Mozilla.UtilsIE.initDownloadLinks();
-            $('.download-link').trigger('click');
-            expect(Mozilla.UtilsIE.triggerIEDownload).toHaveBeenCalled();
+            document.querySelector('.download-link').click();
+            expect(Mozilla.UtilsIE.triggerIEDownload).toHaveBeenCalledWith('test-download-url');
+        });
+    });
+
+    describe('initDownloadLinks (/thanks download button)', function () {
+
+        beforeEach(function () {
+            var link = '<div class="c-button-download-thanks"><a data-direct-link="test-download-url">Download</a></div>';
+            document.body.insertAdjacentHTML('beforeend', link);
         });
 
+        afterEach(function() {
+            document.querySelectorAll('.c-button-download-thanks').forEach(function(e)  {
+                e.parentNode.removeChild(e);
+            });
+        });
+
+        it('should call triggerIEDownload when clicked', function () {
+            spyOn(Mozilla.UtilsIE, 'triggerIEDownload');
+            Mozilla.UtilsIE.initDownloadLinks();
+            document.querySelector('.c-button-download-thanks > a').click();
+            expect(Mozilla.UtilsIE.triggerIEDownload).toHaveBeenCalledWith('test-download-url');
+        });
     });
 });

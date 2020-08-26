@@ -26,7 +26,7 @@
     }
 
     var initFxAccountModal = function() {
-        var downloadLinkPrimary = document.querySelectorAll('.main-download .download-list .download-link[data-download-os="Desktop"]');
+        var downloadLinkPrimary = document.querySelectorAll('.main-download .c-button-download-thanks > a');
         for (var i = 0; i < downloadLinkPrimary.length; i++) {
             downloadLinkPrimary[i].addEventListener('click', showFxAModal, false);
         }

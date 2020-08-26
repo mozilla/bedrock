@@ -310,6 +310,57 @@ class TestDownloadButtons(TestCase):
         assert pq(list[0]).attr('class') == 'os_ios'
 
 
+class TestDownloadThanksButton(TestCase):
+
+    def get_l10n(self, locale):
+        return fluent_l10n([locale, 'en'], settings.FLUENT_DEFAULT_FILES)
+
+    def test_download_firefox_thanks_button(self):
+        """
+        Download link should point to /firefox/download/thanks/
+        """
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'en-US'
+        doc = pq(render("{{ download_firefox_thanks() }}",
+                        {'request': get_request, 'fluent_l10n': self.get_l10n(get_request.locale)}))
+
+        links = doc('.c-button-download-thanks > a')
+        assert links.length == 1
+
+        link = pq(links)
+        href = link.attr('href')
+
+        assert href == ('/firefox/download/thanks/')
+        assert link.attr('id') == 'download-button-thanks'
+        assert link.attr('data-link-type') == 'download'
+
+        # Direct attribute for legacy IE browsers should always be win 32bit
+        assert link.attr('data-direct-link') == 'https://download.mozilla.org/?product=firefox-stub&os=win&lang=en-US'
+
+    def test_download_firefox_thanks_attributes(self):
+        """
+        Download link should support custom attributes
+        """
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'en-US'
+        doc = pq(render("{{ download_firefox_thanks(dom_id='test-download', button_class='test-css-class', "
+                        "download_location='primary cta', locale_in_transition=True) }}",
+                        {'request': get_request, 'fluent_l10n': self.get_l10n(get_request.locale)}))
+
+        links = doc('.c-button-download-thanks > a')
+        assert links.length == 1
+
+        link = pq(links)
+        href = link.attr('href')
+
+        assert href == ('/en-US/firefox/download/thanks/')
+        assert link.attr('id') == 'test-download'
+        assert link.attr('data-download-location') == 'primary cta'
+        assert 'test-css-class' in link.attr('class')
+
+
 class TestDownloadList(TestCase):
 
     def latest_version(self):

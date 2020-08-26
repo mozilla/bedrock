@@ -175,6 +175,59 @@ def download_firefox(ctx, channel='release', platform='all',
 
 @library.global_function
 @jinja2.contextfunction
+def download_firefox_thanks(ctx, dom_id=None, locale=None, alt_copy=None, button_class=None,
+                            locale_in_transition=False, download_location=None):
+    """ Output a simple "download firefox" button that only points to /download/thanks/
+
+    :param ctx: context from calling template.
+    :param dom_id: Use this string as the id attr on the element.
+    :param locale: The locale of the download. Default to locale of request.
+    :param alt_copy: Specifies alternate copy to use for download buttons.
+    :param button_class: Classes to add to the download button, contains size mzp-t-xl by default
+    :param locale_in_transition: Include the page locale in transitional download link.
+    :param download_location: Specify the location of download button for
+            GA reporting: 'primary cta', 'nav', 'sub nav', or 'other'.
+    """
+
+    channel = 'release'
+    locale = locale or get_locale(ctx['request'])
+    funnelcake_id = ctx.get('funnelcake_id', False)
+    dom_id = dom_id or 'download-button-thanks'
+    transition_url = '/firefox/download/thanks/'
+    version = firefox_desktop.latest_version(channel)
+
+    if funnelcake_id:
+        # include funnelcake in /download/thanks/ URL
+        transition_url += '?f=%s' % funnelcake_id
+
+    if locale_in_transition:
+        transition_url = '/%s%s' % (locale, transition_url)
+
+    download_link_direct = firefox_desktop.get_download_url(
+        channel, version, 'win', locale,
+        force_direct=True,
+        force_full_installer=False,
+        force_funnelcake=False,
+        funnelcake_id=funnelcake_id,
+    )
+
+    data = {
+        'id': dom_id,
+        'transition_url': transition_url,
+        'download_link_direct': download_link_direct,
+        'alt_copy': alt_copy,
+        'button_class': button_class,
+        'download_location': download_location,
+        'fluent_l10n': ctx['fluent_l10n']
+    }
+
+    html = render_to_string('firefox/includes/download-button-thanks.html', data,
+                            request=ctx['request'])
+    return jinja2.Markup(html)
+
+
+@library.global_function
+@jinja2.contextfunction
 def download_firefox_desktop_list(ctx, channel='release', dom_id=None, locale=None,
                                   force_full_installer=False):
     """

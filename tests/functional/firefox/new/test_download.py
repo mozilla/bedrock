@@ -11,7 +11,7 @@ from pages.firefox.new.download import DownloadPage
 @pytest.mark.nondestructive
 def test_download_button_displayed(base_url, selenium):
     page = DownloadPage(selenium, base_url, params='').open()
-    assert page.download_button.is_displayed
+    assert page.is_download_button_displayed
 
 
 # Firefox and Internet Explorer don't cope well with file prompts whilst using Selenium.

@@ -21,6 +21,63 @@ if (typeof window.Mozilla === 'undefined') {
         }
     };
 
+    /**
+     * Get GA data attribute values for download_firefox_thanks() buttons.
+     * @param {Object} window.site
+     * @returns {Object} os, name, version
+     */
+    Utils.getDownloadAttributionValues = function(site) {
+        var data = {};
+        var platform = site.platform;
+
+        switch(platform) {
+        case 'windows':
+            data.os = 'Desktop';
+            data.name = site.isARM ? 'Windows ARM64/AArch64' : 'Windows 32-bit';
+            data.version = site.isARM ? 'win64-aarch64': 'win';
+            break;
+        case 'osx':
+            data.os = 'Desktop';
+            data.name = 'macOS';
+            data.version = 'osx';
+            break;
+        case 'linux':
+            data.os = 'Desktop';
+            data.name = site.archSize === 64 ? 'Linux 64-bit' : 'Linux 32-bit';
+            data.version = site.archSize === 64 ? 'linux64': 'linux';
+            break;
+        case 'ios':
+            data.os = 'iOS';
+            data.name = 'iOS';
+            data.version = 'ios';
+            break;
+        case 'android':
+            data.os = 'Android';
+            data.name = 'Android';
+            data.version = 'android';
+            break;
+        }
+
+        return data;
+    };
+
+    /**
+     * Set platfrom specific GA data attributes for download_firefox_thanks() buttons.
+     */
+    Utils.trackDownloadThanksButton = function() {
+        var downloadButton = document.querySelectorAll('.c-button-download-thanks > a');
+        var data = Utils.getDownloadAttributionValues(window.site);
+
+        for (var i = 0; i < downloadButton.length; ++i) {
+
+            if (data && data.os && data.name && data.version) {
+                downloadButton[i].setAttribute('data-display-os', data.os);
+                downloadButton[i].setAttribute('data-display-name', data.name);
+                downloadButton[i].setAttribute('data-download-version', data.version);
+            }
+        }
+    };
+
     // Replace Google Play links on Android devices to let them open the marketplace app
     Utils.initMobileDownloadLinks = function() {
         if (site.platform === 'android') {
