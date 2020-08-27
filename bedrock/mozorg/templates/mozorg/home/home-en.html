@@ -40,16 +40,14 @@
 {% block page_css %}
   {{ css_bundle('home-en') }}
 
-  {% if switch('fundraising-banner') %}
-    {{ css_bundle('fundraising-banner') }}
+  {% if switch('firefox-daylight-launch-banner') %}
+    {{ css_bundle('daylight-launch-banner') }}
   {% endif %}
 {% endblock %}
 
 {% block page_banner %}
-  {% if switch('fundraising-banner') %}
-    {% with class_name = 'mzp-t-mozilla' %}
-      {% include 'includes/banners/fundraiser.html' %}
-    {% endwith %}
+  {% if switch('firefox-daylight-launch-banner') %}
+    {% include 'includes/banners/daylight/daylight-launch.html' %}
   {% endif %}
 {% endblock %}
 
@@ -205,8 +203,8 @@
 {% block js %}
   {{ js_bundle('home') }}
 
-  {% if switch('fundraising-banner') %}
-    {{ js_bundle('fundraising-banner') }}
+  {% if switch('firefox-daylight-launch-banner') %}
+    {{ js_bundle('daylight-launch-banner') }}
   {% endif %}
 {% endblock %}
 

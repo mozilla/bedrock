@@ -256,6 +256,12 @@
     },
     {
       "files": [
+        "css/base/banners/daylight-launch.scss"
+      ],
+      "name": "daylight-launch-banner"
+    },
+    {
+      "files": [
         "css/protocol/common-old-ie.scss"
       ],
       "name": "common-old-ie"
@@ -964,6 +970,13 @@
         "js/base/banners/firefox-mobile-banner-init.js"
       ],
       "name": "firefox-mobile-banner"
+    },
+    {
+      "files": [
+        "js/base/banners/mozilla-banner.js",
+        "js/mozorg/home/daylight-launch-banner-init.js"
+      ],
+      "name": "daylight-launch-banner"
     },
     {
       "files": [

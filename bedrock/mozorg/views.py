@@ -3,7 +3,6 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from commonware.decorators import xframe_allow
-from django.conf import settings
 from django.shortcuts import render as django_render
 from django.views.decorators.http import require_safe
 from django.views.generic import TemplateView
@@ -109,14 +108,8 @@ def namespaces(request, namespace):
 
 def home_view(request):
     locale = l10n_utils.get_locale(request)
-    donate_params = settings.DONATE_PARAMS.get(
-        locale, settings.DONATE_PARAMS['en-US'])
 
-    # presets are stored as a string but, for the home banner
-    # we need it as a list.
-    donate_params['preset_list'] = donate_params['presets'].split(',')
     ctx = {
-        'donate_params': donate_params,
         'pocket_articles': PocketArticle.objects.all()[:4]
     }
 

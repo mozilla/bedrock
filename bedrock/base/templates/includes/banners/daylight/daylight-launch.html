@@ -1,0 +1,37 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import google_play_button with context %}
+
+{% set has_banner_copy = ftl_has_messages('banner-firefox-daylight-launch-title',
+                                          'banner-firefox-daylight-launch-intro',
+                                          'banner-firefox-daylight-launch-button') %}
+
+{% if has_banner_copy %}
+<aside class="c-banner hide-from-legacy-ie mzp-t-firefox" id="firefox-daylight-launch">
+  {# Exclude banners from search result snippets using `data-nosnippet` (issue 8739) #}
+  <div class="c-banner-inner" data-nosnippet="true">
+    <button type="button" class="c-banner-close"><span>{{ ftl('ui-close') }}</span></button>
+    <div class="mzp-l-content">
+      <div class="c-banner-main">
+        <h2 class="c-banner-title">{{ ftl('banner-firefox-daylight-launch-title') }}</h2>
+        <p class="c-banner-intro">{{ ftl('banner-firefox-daylight-launch-intro') }}</p>
+
+        <div class="c-cta hidden-on-mobile">
+          <a href="{{ url('firefox.mobile.get-app') }}" class="mzp-c-button mzp-t-secondary" data-cta-type="link" data-cta-text="Get It Now" data-cta-position="banner">{{ ftl('banner-firefox-daylight-launch-button') }}</a>
+        </div>
+
+        <div class="c-cta hidden-on-desktop">
+          {{ google_play_button(href=firefox_adjust_url('android', 'firefox-daylight-launch-banner')) }}
+        </div>
+      </div>
+    </div>
+
+    <div class="c-banner-image">
+      {{ high_res_img('img/banners/daylight/phones.png', {'alt': '', 'width': '549', 'height': '653'}) }}
+    </div>
+
+  </div>
+</aside>
+{% endif %}

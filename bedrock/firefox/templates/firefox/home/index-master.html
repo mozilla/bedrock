@@ -27,6 +27,10 @@
 
 {% block page_css %}
   {{ css_bundle('firefox-master') }}
+
+  {% if switch('firefox-daylight-launch-banner') %}
+    {{ css_bundle('daylight-launch-banner') }}
+  {% endif %}
 {% endblock %}
 
 {% block extrahead %}
@@ -38,6 +42,12 @@
 {% block body_id %}firefox-master{% endblock %}
 
 {% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-home' %}
+
+{% block page_banner %}
+  {% if switch('firefox-daylight-launch-banner') %}
+    {% include 'includes/banners/daylight/daylight-launch.html' %}
+  {% endif %}
+{% endblock %}
 
 {% block content %}
 <main role="main" class="firefox-home">
@@ -263,6 +273,10 @@
 
 {% block js %}
   {{ js_bundle('firefox-master') }}
+
+  {% if switch('firefox-daylight-launch-banner') %}
+    {{ js_bundle('daylight-launch-banner') }}
+  {% endif %}
 {% endblock %}
 
 {% block structured_data %}

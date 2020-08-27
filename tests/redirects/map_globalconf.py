@@ -986,8 +986,6 @@ URLS = flatten((
 
     # from mcom-tests
     url_test('/firefox/', '/en-US/firefox/'),
-    url_test('/en-US/firefox/', '/en-US/firefox/', follow_redirects=True),
-    url_test('/fr/firefox/', '/firefox/new/', follow_redirects=True),
     url_test('/firefox/new/', '/en-US/firefox/new/'),
     url_test('/mobile/37.0{,beta,a2}/releasenotes', '/firefox/android/37.0{,beta,a2}/releasenotes/'),
     url_test('/projects/firefox/3.6.13/whatsnew/', '/firefox/3.6.13/whatsnew/'),

@@ -11,6 +11,16 @@
 
 {% block page_css %}
   {{ css_bundle('firefox-browsers-products') }}
+
+  {% if switch('firefox-daylight-launch-banner') %}
+    {{ css_bundle('daylight-launch-banner') }}
+  {% endif %}
+{% endblock %}
+
+{% block page_banner %}
+  {% if switch('firefox-daylight-launch-banner') %}
+    {% include 'includes/banners/daylight/daylight-launch.html' %}
+  {% endif %}
 {% endblock %}
 
 {% set android_url = firefox_adjust_url('android', 'products-page') %}
@@ -130,6 +140,10 @@
 
 {% block js %}
   {{ js_bundle('firefox-browsers-products') }}
+
+  {% if switch('firefox-daylight-launch-banner') %}
+    {{ js_bundle('daylight-launch-banner') }}
+  {% endif %}
 {% endblock %}
 
 {% block structured_data %}

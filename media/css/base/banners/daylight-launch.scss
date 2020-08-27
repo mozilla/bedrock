@@ -1,0 +1,132 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+
+.c-banner {
+    @include clearfix;
+    background: $color-orange-70 linear-gradient(to right, #fca134, #e1294f);
+    border-bottom: 1px solid rgba(0, 0, 0, .25) inset;
+    color: $color-ink-80;
+    padding: $layout-xs 0;
+    position: relative;
+    z-index: 3;
+
+    // hide by default if JS is available to avoid flicker
+    // (if visitor previously dismissed)
+    .js & {
+        display: none;
+    }
+
+    // conditional class used to display the banner.
+    &.c-banner-is-visible {
+        display: block;
+    }
+}
+
+.c-banner-main {
+    @media #{$mq-sm} {
+        @include grid-two-thirds;
+    }
+
+    @media #{$mq-md} {
+        @include grid-half;
+    }
+}
+
+.c-banner-title {
+    @include text-title-md;
+}
+
+.c-banner-intro {
+    @include font-firefox;
+    @include font-size(21px);
+}
+
+.c-banner-image {
+    display: none;
+
+    img {
+        max-width: none;
+    }
+
+    @media #{$mq-sm} {
+        @include bidi((
+            (right, 0, auto),
+            (left, auto, 0),
+        ));
+        @include grid-third;
+        bottom: 0;
+        display: block;
+        height: 100%;
+        overflow: hidden;
+        padding: $layout-sm 0;
+        position: absolute;
+        text-align: center;
+        top: 0;
+    }
+
+    @media #{$mq-md} {
+        @include grid-half;
+    }
+}
+
+// Conditional content
+.hidden-on-desktop {
+    display: none;
+}
+
+.android {
+    .hidden-on-desktop {
+        display: block;
+    }
+
+    .hidden-on-mobile {
+        display: none;
+    }
+}
+
+// Close button
+.c-banner-close {
+    @include background-size(20px 20px);
+    @include bidi((
+        (right, $spacing-sm, auto),
+        (left, auto, $spacing-sm),
+    ));
+    @include image-replaced;
+    background: transparent url('#{$image-path}/icons/close.svg') center center no-repeat;
+    border: none;
+    cursor: pointer;
+    display: none;
+    height: 42px;
+    min-width: 0;
+    padding: 0;
+    position: absolute;
+    top: $spacing-sm;
+    width: 42px;
+    z-index: 1;
+
+    &:hover,
+    &:focus {
+        @include transition(transform .1s ease-in-out);
+        @include transform(scale(1.1));
+    }
+
+    &:focus {
+        outline: 1px dotted $color-white;
+    }
+
+    // hide the 'Close' text
+    span {
+        @include visually-hidden;
+    }
+
+    // only display when JS is available
+    .js & {
+        display: block;
+    }
+}
