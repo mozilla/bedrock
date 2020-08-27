@@ -763,7 +763,7 @@ def ios_testflight(request):
 
 class FirefoxHomeView(L10nTemplateView):
     ftl_files_map = {
-        'firefox/home/index-master.html': ['firefox/home', 'banners/firefox-daylight-launch']
+        'firefox/home/index-master.html': ['firefox/home']
     }
     activation_files = ['firefox/home', 'firefox/home/index-quantum.html']
 

@@ -115,19 +115,15 @@ def home_view(request):
 
     if locale.startswith('en-'):
         template_name = 'mozorg/home/home-en.html'
-        ctx['ftl_files'] = ['mozorg/home/home-en', 'banners/firefox-daylight-launch']
         ctx['page_content_cards'] = get_page_content_cards('home-en', 'en-US')
     elif locale == 'de':
         template_name = 'mozorg/home/home-de.html'
-        ctx['ftl_files'] = ['mozorg/home/home-de', 'banners/firefox-daylight-launch']
         ctx['page_content_cards'] = get_page_content_cards('home-de', 'de')
     elif locale == 'fr':
         template_name = 'mozorg/home/home-fr.html'
-        ctx['ftl_files'] = ['mozorg/home/home-fr', 'banners/firefox-daylight-launch']
         ctx['page_content_cards'] = get_page_content_cards('home-fr', 'fr')
     else:
         template_name = 'mozorg/home/home.html'
-        ctx['ftl_files'] = ['mozorg/home/home', 'banners/firefox-daylight-launch']
 
     return l10n_utils.render(request, template_name, ctx)
 
