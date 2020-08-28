@@ -9,10 +9,22 @@ facebook-container-millions-of-people-around = Millions of people around the wor
 facebook-container-facebook-well-contained-keep = { -brand-name-facebook }. Well contained. Keep the rest of your life to yourself.
 facebook-container-get-the-facebook-container = Get the { -brand-name-facebook-container } Extension
 facebook-container-download-firefox-and-get-the = Download { -brand-name-firefox } and get the { -brand-name-facebook-container } Extension
+facebook-container-only-available-for-desktop = The { -brand-name-facebook-container } Extension is currently only available for { -brand-name-firefox } for Desktop.
+
+# Variables:
+#   $link_copy (string) - www.mozilla.org/firefox/new/
+#   $url (url) - link to https://www.mozilla.org/firefox/new/
+facebook-container-visit-to-get-for-desktop = Visit <a href="{ $url }">{ $link_copy }</a> to get { -brand-name-firefox } for Desktop.
+
+# Outdated string
 facebook-container-the-facebook-container-extension = The { -brand-name-facebook-container } Extension is not available on mobile devices.
 
+facebook-container-get-firefox-android-ios = Get { -brand-name-firefox } for { -brand-name-android } and { -brand-name-ios } now.
+
+# Outdated string
 # For German, the brand name for 'Firefox Focus' in brands.ftl should be changed to 'Firefox Klar'.
 facebook-container-try-firefox-focus-the-privacy = Try <strong>{ -brand-name-firefox-focus }</strong>, the privacy browser for { -brand-name-android } and { -brand-name-ios }.
+
 facebook-container-opt-out-on-your-terms = Opt out on your terms
 
 # Variables:

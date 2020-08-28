@@ -35,10 +35,19 @@ $image-path: '/media/protocol/img';
 // Video
 
 .video-container {
-    @include bidi((
-        (margin-right, $spacing-md, 0),
-        (margin-left, 0, $spacing-md)
-    ));
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    width: 100%;
+
+    iframe {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
 }
 
 .fbcontainer-video {
@@ -47,16 +56,19 @@ $image-path: '/media/protocol/img';
             (left, 50%, auto),
             (right, auto, 50%)
         ));
+        align-items: center;
+        bottom: 0;
+        display: flex;
         padding: 0;
         position: absolute;
-        top: $spacing-xl;
-        width: 50%;
+        top: 0;
+        width: calc(50% - #{$spacing-xl * 2});
         z-index: 2;
     }
-}
 
-.moz-video-button {
-    visibility: hidden;
+    @media #{$mq-lg} {
+        width: calc(50% - #{$spacing-2xl * 2});
+    }
 }
 
 //* -------------------------------------------------------------------------- */
