@@ -27,8 +27,6 @@
     }
 
     function onLoad() {
-        var videoPoster = new Mozilla.VideoPosterHelper('.fbcontainer-video');
-        videoPoster.init();
         initVideoInteractionTracking();
     }
 

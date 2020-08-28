@@ -738,7 +738,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-video-poster.js",
         "js/firefox/facebook-container-video.js"
       ],
       "name": "firefox_facebook_container_video"
