@@ -18,7 +18,7 @@ services:
       - ./bedrock/:/app/bedrock:delegated
     environment:
       BS_PROXY_URL: "app:8080"
-      BS_OPEN_BROWSER: "false"
+      BS_OPEN_BROWSER: "true"
 
   # the django app
   app:
@@ -31,7 +31,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ./bedrock/:/app/bedrock:delegated
+      - ./bedrock/:/app/bedrock
       - ./bin/:/app/bin:delegated
       - ./docker/:/app/docker:delegated
       - ./etc/:/app/etc:delegated
