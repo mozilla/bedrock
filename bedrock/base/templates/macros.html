@@ -82,7 +82,7 @@
             <input type="hidden" name="product" value="{{ product }}">
           </div>
           <div class="mzp-c-field mzp-l-stretch">
-            <label class="mzp-c-field-label" for="{{ id }}-input" data-alt="{{ ftl('send-to-device-enter-your-email-or-phone', fallback='send-to-device-enter-your-email-or-phone-10-digit') }}">
+            <label class="mzp-c-field-label" for="{{ id }}-input" data-alt="{% if input_label_alt %}{{ input_label_alt }}{% else %}{{ ftl('send-to-device-enter-your-email-or-phone', fallback='send-to-device-enter-your-email-or-phone-10-digit') }}{% endif %}">
               {% if input_label %}
                 {{ input_label }}
               {% else %}

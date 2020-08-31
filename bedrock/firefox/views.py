@@ -554,6 +554,7 @@ class WhatsnewView(L10nTemplateView):
         'firefox/whatsnew/index.html': ['firefox/whatsnew/whatsnew-s2d', 'firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx79.html': ['firefox/whatsnew/whatsnew-fx79', 'firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx80.html': ['firefox/whatsnew/whatsnew-fx80', 'firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx81.html': ['firefox/whatsnew/whatsnew-fx81', 'firefox/whatsnew/whatsnew'],
     }
 
     def get_context_data(self, **kwargs):
@@ -612,6 +613,8 @@ class WhatsnewView(L10nTemplateView):
                 template = 'firefox/whatsnew/index.html'
         elif locale == 'id' and show_firefox_lite_whatsnew(version):
             template = 'firefox/whatsnew/firefox-lite.id.html'
+        elif version.startswith('81.') and ftl_file_is_active('firefox/whatsnew/whatsnew-fx81'):
+            template = 'firefox/whatsnew/whatsnew-fx81.html'
         elif version.startswith('80.') and ftl_file_is_active('firefox/whatsnew/whatsnew-fx80'):
             template = 'firefox/whatsnew/whatsnew-fx80.html'
         elif version.startswith('79.') and ftl_file_is_active('firefox/whatsnew/whatsnew-fx79'):
