@@ -17,16 +17,17 @@
 
 {% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-unfck' %}
 
-{% macro item(title=None, info=None, link_text=None, link_url=None, tw_text=None, tw_url=None, id=None, src=None, include_cta=False) -%}
+{% macro item(title=None, info=None, link_text=None, link_url=None, tw_text=None, tw_url=None, id=None, src=None, include_cta=False, include_utms=True,
+              share_text='Share', download_text='Download GIF', copy_text='Copy Link to GIF', copy_success_text='Link copied to clipboard.') -%}
 <div class="c-item-unfck" id="{{ id }}">
   <h3 class="c-item-title">{{ title }}</h3>
   <div class="c-item-img">
     <img class="c-item-gif" src="{{ src }}">
     <ul class="c-item-share">
       <!-- TODO: -->
-      <li><a class="c-item-link js-twitter-share" href="#"><span class="c-item-icon twitter"></span><span class="c-item-text">Share</span></a></li>
-      <li><a class="c-item-link" href="#" download><span class="c-item-icon download"></span><span class="c-item-text">Download GIF</span></a></li>
-      <li><button class="c-item-link js-copy-link" type="button"><span class="c-item-icon link"></span><span class="c-item-text">Copy Link to GIF</span></button></li>
+      <li><a class="c-item-link js-twitter-share" href="#"><span class="c-item-icon twitter"></span><span class="c-item-text">{{ share_text }}</span></a></li>
+      <li><a class="c-item-link" href="#" download><span class="c-item-icon download"></span><span class="c-item-text">{{ download_text }}</span></a></li>
+      <li><button class="c-item-link js-copy-link" type="button"><span class="c-item-icon link"></span><span class="c-item-text">{{ copy_text }}</span></button></li>
     </ul>
   </div>
   <div class="c-item-desc">
@@ -34,11 +35,11 @@
     {% if include_cta %}
       {{ caller() }}
     {% else %}
-      <p><a href="{{ link_url }}{{ referrals }}" class="mzp-c-cta-link">{{ link_text }}</a></p>
+      <p><a href="{{ link_url }}{% if include_utms %}{{ referrals }}{% endif %}" class="mzp-c-cta-link">{{ link_text }}</a></p>
     {% endif %}
   </div>
   <aside class="mzp-c-notification-bar mzp-t-success hidden">
-    <p>Link copied to clipboard.</p>
+    <p>{{ copy_success_text }}</p>
   </aside>
 </div>
 {%- endmacro %}
