@@ -405,6 +405,13 @@
     },
     {
       "files": [
+        "css/protocol/components/send-to-device.scss",
+        "css/firefox/whatsnew/whatsnew-81.scss"
+      ],
+      "name": "firefox_whatsnew_81"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -850,6 +857,15 @@
         "js/firefox/whatsnew/whatsnew-80.js"
       ],
       "name": "firefox_whatsnew_80"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/up-to-date.js",
+        "js/libs/spin.min.js",
+        "js/base/send-to-device.js",
+        "js/firefox/whatsnew/whatsnew-81.js"
+      ],
+      "name": "firefox_whatsnew_81"
     },
     {
       "files": [
