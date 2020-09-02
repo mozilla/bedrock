@@ -20,7 +20,6 @@ whatsnew81-the-new-firefox-for-android = The NEW { -brand-name-firefox } for { -
 # "Weirdo" refers to features that are unusual in a delightful way. "Indie" is short slang for independent.
 whatsnew81-our-latest-for-android-has = Our latest for { -brand-name-android } has lots of fun, smart and even weirdo features – like a moveable search bar. Because we’re an indie browser. We care about your thumbs.
 
-# "Phoning it in" is when someone doesn't fully commit to doing something and just does the minimum.
-whatsnew81-no-more-phoning-it-in = No more phoning it in with { -brand-name-safari }
-whatsnew81-attention-iphone-people = Attention { -brand-name-iphone } people: you can finally set { -brand-name-firefox } as your forever go-to, get-it-done, default browser. Make sure you’ve got the latest { -brand-name-firefox } for { -brand-name-ios }.
+whatsnew81-make-firefox-your-everyday = Make { -brand-name-firefox } your everyday browser on { -brand-name-ios }
+whatsnew81-attention-iphone-people = Attention { -brand-name-iphone } people: in { -brand-name-ios } 14, you can finally set { -brand-name-firefox } as your forever go-to, get-it-done, default browser. Make sure you’ve got the latest { -brand-name-firefox } for { -brand-name-ios }.
 
