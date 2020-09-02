@@ -10,7 +10,6 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/components/card';
 @import '../../protocol/css/components/feature-card';
 @import '../../protocol/css/components/hero';
-@import '../../protocol/css/components/notification-bar';
 @import '../../protocol/css/templates/card-layout';
 
 
@@ -186,24 +185,6 @@ main {
     }
 }
 
-
-// --------------------------------------------------------------------------
-// section titles
-
-.c-section-title {
-    @include font-size(40px);
-    @include text-title-md;
-    margin: 0 auto;
-    max-width: $content-lg + $layout-lg * 2;
-    padding: 0 $layout-sm;
-    text-align: center;
-
-    strong {
-        white-space: nowrap;
-    }
-}
-
-
 // --------------------------------------------------------------------------
 // checklist
 
@@ -214,6 +195,7 @@ main {
 .c-item-unfck {
     margin: $layout-md auto 0 auto;
     max-width: $content-sm;
+    position: relative;
 
     @media #{$mq-md} {
         margin-top: $v-grid-md;
@@ -407,6 +389,12 @@ main {
 
         .c-item-title {
             grid-area: title;
+
+            &:before {
+                position: absolute;
+                top: 0;
+                right: 100%;
+            }
         }
     }
 
@@ -451,6 +439,22 @@ main {
 
     &:focus {
         box-shadow: $field-focus-ring-dark;
+    }
+}
+
+// --------------------------------------------------------------------------
+// section titles
+
+.c-section-title {
+    @include font-size(40px);
+    @include text-title-md;
+    margin: 0 auto;
+    padding: 0 $layout-sm;
+    max-width: $content-lg + $layout-lg * 2;
+    text-align: center;
+
+    strong {
+        white-space: nowrap;
     }
 }
 
