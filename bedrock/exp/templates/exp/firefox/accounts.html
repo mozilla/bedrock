@@ -70,7 +70,7 @@
     </div>
     {% endif %}
 
-    <div class="c-accounts-form">
+    <div class="mzp-c-emphasis-box c-accounts-form">
       {{ fxa_email_form(
         entrypoint=_entrypoint,
         form_title=ftl('firefox-accounts-join-firefox'),
@@ -107,7 +107,7 @@
       {% endif %}
     </h2>
 
-    <ul class="c-product-list">
+    <ul class="c-product-list {% if switch('firefox-send-active') %}l-columns-two{% else %}l-columns-three{% endif %}">
       <li class="c-product-list-item t-product-firefox">
         <a href="{{ url('firefox.new') }}">
           <h3 class="c-product-list-title">{{ ftl('firefox-accounts-firefox-browser') }}</h3>
