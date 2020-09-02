@@ -1,0 +1,603 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../protocol/css/components/call-out';
+@import '../../protocol/css/components/card';
+@import '../../protocol/css/components/feature-card';
+@import '../../protocol/css/components/hero';
+@import '../../protocol/css/components/notification-bar';
+@import '../../protocol/css/includes/forms/lib';
+@import '../../protocol/css/includes/lib';
+@import '../../protocol/css/templates/card-layout';
+
+// --------------------------------------------------------------------------
+
+$svg-icon-cta: '<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><polyline vector-effect="non-scaling-stroke" stroke="#88ffd1" stroke-width="2" points="9 19 16 12 9 5"></polyline></g></svg>';
+$svg-icon-download: '<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"><g transform="translate(6.000000, 3.000000)" stroke="#88ffd1" stroke-width="2"><path d="M0,18 L12,18"></path><polyline stroke-linejoin="round" points="0 8 6 14 12 8"></polyline><path d="M6,0 L6,14"></path></g></g></svg>';
+$svg-icon-link: '<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><g transform="translate(12.000000, 12.000000) scale(-1, 1) translate(-12.000000, -12.000000) translate(2.000000, 2.000000)" stroke="#88ffd1" stroke-width="2"><path d="M8,11 C8.86895549,12.1616929 10.1996273,12.8887004 11.6466499,12.9923333 C13.0936724,13.0959663 14.5143658,12.5660061 15.54,11.54 L18.54,8.54 C20.434861,6.57810557 20.4077619,3.45957611 18.4790929,1.53090712 C16.5504239,-0.397761869 13.4318944,-0.424861048 11.47,1.47 L9.75,3.18"></path><path d="M12,9 C11.1310445,7.83830708 9.8003727,7.11129957 8.35335013,7.00766666 C6.90632757,6.90403374 5.4856342,7.43399387 4.46,8.46 L1.46,11.46 C-0.434861048,13.4218944 -0.407761869,16.5404239 1.52090712,18.4690929 C3.44957611,20.3977619 6.56810557,20.424861 8.53,18.53 L10.24,16.82"></path></g></g></svg>';
+$svg-icon-twitter-hover: '<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M5.032 14.5c6.037 0 9.34-5.002 9.34-9.34 0-.142 0-.283-.01-.424A6.679 6.679 0 0 0 16 3.037c-.6.266-1.235.44-1.885.517a3.294 3.294 0 0 0 1.443-1.816 6.579 6.579 0 0 1-2.085.797A3.286 3.286 0 0 0 7.88 5.528 9.32 9.32 0 0 1 1.114 2.1 3.285 3.285 0 0 0 2.13 6.481 3.258 3.258 0 0 1 .64 6.07v.041A3.284 3.284 0 0 0 3.274 9.33c-.484.132-.99.151-1.483.056a3.286 3.286 0 0 0 3.067 2.28A6.587 6.587 0 0 1 0 13.025a9.294 9.294 0 0 0 5.032 1.472" fill="#000000" fill-rule="nonzero"/></svg>';
+$svg-icon-twitter: '<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M5.032 14.5c6.037 0 9.34-5.002 9.34-9.34 0-.142 0-.283-.01-.424A6.679 6.679 0 0 0 16 3.037c-.6.266-1.235.44-1.885.517a3.294 3.294 0 0 0 1.443-1.816 6.579 6.579 0 0 1-2.085.797A3.286 3.286 0 0 0 7.88 5.528 9.32 9.32 0 0 1 1.114 2.1 3.285 3.285 0 0 0 2.13 6.481 3.258 3.258 0 0 1 .64 6.07v.041A3.284 3.284 0 0 0 3.274 9.33c-.484.132-.99.151-1.483.056a3.286 3.286 0 0 0 3.067 2.28A6.587 6.587 0 0 1 0 13.025a9.294 9.294 0 0 0 5.032 1.472" fill="#88ffd1" fill-rule="nonzero"/></svg>';
+
+$icon_cta: svg-url($svg-icon-cta);
+$icon_download: svg-url($svg-icon-download);
+$icon_link: svg-url($svg-icon-link);
+$icon_twitter-hover: svg-url($svg-icon-twitter-hover);
+$icon_twitter: svg-url($svg-icon-twitter);
+$icon_width: $spacing-lg;
+
+// --------------------------------------------------------------------------
+// Protocol over-rides
+// https://github.com/mozilla/protocol/issues/345
+// https://github.com/mozilla/protocol/issues/536
+// https://github.com/mozilla/bedrock/pull/9096
+
+// xs
+$v-grid-xs: $layout-md;
+$h-grid-xs: $layout-xs;
+
+//md
+$v-grid-md: $layout-xl / 2;
+$h-grid-md: 64px;
+
+//lg
+$v-grid-lg: 192px / 2;
+$h-grid-lg: 80px;
+
+main {
+    overflow-x: hidden;
+
+    .mzp-l-content {
+        padding-bottom: $v-grid-xs;
+        padding-top: $v-grid-xs;
+
+        @media #{$mq-md} {
+            padding-bottom: $v-grid-md;
+            padding-top: $v-grid-md;
+        }
+
+        @media #{$mq-lg} {
+            padding-bottom: $v-grid-lg;
+            padding-top: $v-grid-lg;
+        }
+    }
+
+    h2, h3, h4 {
+        color: $color-white;
+        margin-bottom: $spacing-md;
+    }
+
+    h1, h2 {
+        color: $color-yellow-05;
+    }
+
+    img {
+        .mzp-c-card & {
+            display: block;
+            margin-bottom: $spacing-lg;
+        }
+    }
+}
+
+// --------------------------------------------------------------------------
+// Theme colours
+
+.t-unfck {
+    &,
+    & .mzp-c-card-feature-desc,
+    & .mzp-c-hero {
+        @include light-links;
+        background-color: $color-purple-90;
+        color: $color-white;
+    }
+
+    a.mzp-c-button.download-link {
+        background-color: $color-green-30;
+        color: $color-ink-90;
+
+        &:hover {
+            background-color: $color-green-50;
+        }
+
+        &:focus {
+            box-shadow: $field-focus-ring-dark;
+        }
+    }
+
+    .fx-privacy-link {
+        display: none;
+    }
+
+    .mzp-c-cta-link {
+        background: $icon_cta top right no-repeat;
+        @include background-size($spacing-md auto);
+        margin-bottom: 0;
+        padding-right: $spacing-lg;
+
+        &:link,
+        &:visited,
+        &:hover {
+            color: $color-green-30;
+        }
+    }
+
+    .mzp-c-card-block-link {
+        &:link,
+        &:visited,
+        &:hover {
+            .mzp-c-card-cta-text {
+                color: $color-green-30;
+            }
+        }
+    }
+
+    a.mzp-c-button.c-button-fb-container {
+        background-color: $color-green-30;
+        color: $color-ink-90;
+
+        &:hover {
+            background-color: $color-green-50;
+        }
+
+        &:focus {
+            box-shadow: $field-focus-ring-dark;
+        }
+    }
+
+    h1, h2 {
+        color: #fdf2db;
+    }
+}
+
+// --------------------------------------------------------------------------
+// Banner & hero
+
+.c-banner-wrapper {
+    margin: 0 auto;
+    max-width: 1500px;
+}
+
+.c-banner {
+    @include at2x('/media/img/firefox/campaign/unfck/de/unfck-header.png', contain);
+    background-repeat: no-repeat;
+    height: 0;
+    margin: 0 auto;
+    max-width: 100%;
+    padding-top: 287 * 100% / 522;
+    position: relative;
+    top: 0;
+
+    &:after {
+        background: transparent url('/media/img/firefox/campaign/unfck/de/heart.gif') left bottom no-repeat;
+        @include background-size(contain);
+        bottom: 12%;
+        content: '';
+        display: block;
+        left: 12.8%;
+        position: absolute;
+        top: 0;
+        width: 17.9%;
+    }
+
+    @media #{$mq-md} {
+        @include at2x('/media/img/firefox/campaign/unfck/de/unfck-header-long.png', contain);
+        margin-bottom: 0;
+        padding-top: 375 * 100% / 1500;
+
+        &:after {
+            bottom: 29%;
+            left: 10%;
+            width: 10.4%;
+        }
+    }
+
+    @media #{$mq-lg} {
+        top: -$layout-sm;
+    }
+
+    @media #{$mq-xl} {
+        top: -$layout-md;
+    }
+}
+
+.mzp-c-hero {
+    padding-bottom: 0;
+    padding-top: 0;
+
+    ul.download-list,
+    .mzp-c-button-download-container {
+        margin-bottom: 0;
+    }
+
+    h2 {
+        @include text-title-md;
+        margin-bottom: $spacing-lg;
+
+        @media #{$mq-md} {
+            margin-bottom: $spacing-xl;
+        }
+    }
+
+    .mzp-l-content {
+        padding-bottom: 0;
+        padding-top: 0;
+    }
+
+    .c-button-fb-container {
+        display: none;
+    }
+
+    .is-firefox & {
+        .download-button {
+            display: none;
+        }
+
+        .c-button-fb-container {
+            display: inline-block;
+        }
+    }
+
+    @media #{$mq-lg} {
+        margin-top: -$layout-lg;
+        padding-bottom: 0;
+    }
+
+    @media #{$mq-xl} {
+        margin-top: -$layout-xl;
+
+        .mzp-c-hero-body {
+            position: relative;
+
+            &:before,
+            &:after {
+                content: '';
+                height: 410px;
+                position: absolute;
+                width: 622px;
+            }
+
+            &:before {
+                background: transparent url('/media/img/firefox/campaign/unfck/de/speckles1.png') left bottom no-repeat;
+                bottom: -170px;
+                left: -800px;
+            }
+
+            &:after {
+                background: transparent url('/media/img/firefox/campaign/unfck/de/speckles2.png') left bottom no-repeat;
+                bottom: -300px;
+                right: -800px;
+            }
+        }
+    }
+}
+
+.mzp-c-hero-title {
+    @include visually-hidden;
+}
+
+// --------------------------------------------------------------------------
+// checklist
+
+.c-item-unfck {
+    margin: $layout-lg auto 0 auto;
+    max-width: $content-sm;
+    position: relative;
+    text-align: center;
+
+    @media #{$mq-md} {
+        margin-top: $v-grid-md;
+    }
+
+    @media #{$mq-lg} {
+        margin-top: $v-grid-lg;
+    }
+
+    &:first-child {
+        margin-top: 0;
+    }
+}
+
+.c-item-gif {
+    display: block;
+    margin: 0 auto $layout-sm;
+    max-width: 280px;
+    width: 100%;
+}
+
+.c-item-actions li {
+    display: inline-block;
+}
+
+.c-item-link {
+    @include background-size($icon_width auto);
+    @include font-size(14px);
+    @include image-replaced;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: 0;
+    color: $color-white;
+    display: inline-block;
+    height: $icon_width;
+    margin-bottom: $spacing-md;
+    opacity: 0.5;
+    padding: 0;
+    text-align: left;
+    transition: opacity 0.5s ease-out;
+    vertical-align: top;
+    white-space: nowrap;
+    width: $icon_width;
+
+    &.twitter {
+        background-image: $icon_twitter;
+    }
+
+    &.download {
+        background-image: $icon_download;
+    }
+
+    &.link {
+        background-image: $icon_link;
+        display: none;
+
+        &.is-supported {
+            display: inline-block;
+        }
+    }
+
+    &:hover,
+    &:focus {
+        opacity: 1;
+    }
+}
+
+.c-item-title {
+    @include font-size(24px);
+    position: relative;
+}
+
+@supports (display:grid) {
+    .c-item-unfck {
+        @include grid-column-gap($h-grid-xs);
+        display: grid;
+        grid-template-areas:
+            "image"
+            "title"
+            "desc";
+        grid-template-rows: min-content 1fr;
+        text-align: left;
+    }
+
+    .c-item-img {
+        @include grid-column-gap($h-grid-xs);
+        display: grid;
+        grid-area: image;
+        grid-template-areas:
+            "gif actions";
+        grid-template-columns: 1fr $icon_width;
+    }
+
+    .c-item-gif {
+        grid-area: gif;
+        max-width: none;
+    }
+
+    .c-item-actions {
+        grid-area: actions;
+        max-width: $icon_width;
+    }
+
+    .c-item-title {
+        grid-area: title;
+    }
+
+    .c-item-desc {
+        grid-area: desc;
+
+        p:last-child {
+             margin-bottom: 0;
+        }
+    }
+
+    @media #{$mq-md} {
+        .c-item-unfck {
+            @include grid-column-gap($h-grid-md);
+            grid-template-areas:
+                "image title"
+                "image desc";
+            margin-left: 0;
+            margin-right: 0;
+            max-width: 100%;
+        }
+
+        .c-item-img {
+            grid-template-areas:
+                "actions gif";
+            grid-template-columns: $icon_width 1fr;
+        }
+
+        .c-item-gif {
+            margin-bottom: 0;
+            width: 280px;
+        }
+
+        .c-item-title {
+            &:before {
+                position: absolute;
+                right: 100%;
+                top: 0;
+            }
+        }
+    }
+
+    @media #{$mq-lg} {
+        .c-item-unfck {
+            @include grid-column-gap($h-grid-lg);
+            grid-template-columns: 1fr 2fr;
+        }
+
+        .c-item-img {
+            @include grid-column-gap($h-grid-lg - $icon_width);
+        }
+    }
+}
+
+// --------------------------------------------------------------------------
+// Twitter share form
+
+.c-tell-input {
+    background-color: $color-yellow-05;
+    border: none;
+    color: $color-ink-90;
+    width: 100%;
+
+    &::placeholder {
+        color: $color-dark-gray-05;
+        opacity: 1;
+    }
+
+    &:hover {
+        border-color: $color-yellow-05;
+    }
+
+    &:focus {
+        border-color: $color-yellow-05;
+        box-shadow: $field-focus-ring-dark;
+    }
+}
+
+.c-tell-button.mzp-c-button.mzp-t-secondary {
+    @include background-size(24px 24px);
+    background-image: $icon_twitter;
+    background-position: left $spacing-lg center;
+    background-repeat: no-repeat;
+    border-color: $color-green-30;
+    color: $color-green-30;
+    padding-left: $spacing-lg + 24px + $spacing-sm;
+
+    &:hover,
+    &:focus {
+        background-color: $color-green-50;
+        background-image: $icon_twitter-hover;
+        border-color: $color-green-50;
+        color: $color-ink-90;
+    }
+
+    &:focus {
+        box-shadow: $field-focus-ring-dark;
+    }
+}
+
+// --------------------------------------------------------------------------
+// section titles
+
+.c-section-title {
+    @include font-size(40px);
+    @include text-title-md;
+    margin: 0 auto;
+    max-width: $content-lg + $layout-lg * 2;
+    padding: 0 $layout-sm;
+    text-align: center;
+
+    strong {
+        white-space: nowrap;
+    }
+}
+
+// --------------------------------------------------------------------------
+// cards
+
+.t-unfck .mzp-c-card {
+    background-color: transparent;
+    margin-bottom: $v-grid-xs;
+
+    @media #{$mq-md} {
+        margin-bottom: $v-grid-md;
+    }
+
+    .mzp-c-card-desc {
+        color: $color-white;
+        margin-top: $spacing-md;
+    }
+
+    .mzp-c-card-cta {
+        margin-top: $spacing-md;
+    }
+}
+
+// --------------------------------------------------------------------------
+// Instagram section
+
+.call-out-instagram {
+    background-color: transparent;
+
+    .mzp-c-call-out-title {
+        color: $color-white;
+    }
+
+    .mzp-c-cta-link {
+        background: none;
+        padding: 0;
+    }
+
+    @media #{$mq-lg} {
+        padding: $v-grid-lg 0 0;
+    }
+}
+
+.call-out-instagram-copy li {
+    line-height: 2;
+}
+
+.c-instagram-grid-link {
+    display: block;
+}
+
+.c-instagram-grid {
+    margin-top: $spacing-2xl;
+
+    li {
+        margin-bottom: $spacing-lg;
+    }
+}
+
+@supports (display:grid) {
+    .c-instagram-grid {
+        display: grid;
+        grid-gap: $spacing-xl;
+        grid-template-columns: repeat(2, 1fr);
+
+        li {
+            margin-bottom: 0;
+        }
+
+        @media #{$mq-md} {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
+
+// --------------------------------------------------------------------------
+// Notification Bar
+
+@keyframes fade-in-out {
+    0% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.mzp-c-notification-bar.mzp-is-sticky {
+    animation: fade-in-out 5s both;
+    z-index: 1001;
+}
