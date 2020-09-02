@@ -18,38 +18,32 @@
 {% set _entrypoint = 'mozilla.org-firefox-welcome-4' %}
 {% set _utm_campaign = 'welcome-4-mobile' %}
 
-{# L10n: the strong tag here is to underline Firefox. #}
 {% block content_intro %}
 {% call hero(
-    title=ftl('welcome-page4-wallet-keys-phone-firefox'),
-    desc=ftl('welcome-page4-take-privacy-with-you-on-every'),
-    class='mzp-t-firefox mzp-t-dark',
+    title=ftl('welcome-page4-privacy-every-screen', fallback='welcome-page4-wallet-keys-phone-firefox'),
+    desc=ftl('welcome-page4-on-the-move-at-home', fallback='welcome-page4-take-privacy-with-you-on-every'),
+    class='mzp-t-firefox',
     include_cta=True,
     heading_level=1
   ) %}
 
-  <p class="primary-cta">
-    <button class="js-modal-link mzp-c-button mzp-t-product" data-cta-position="primary" data-cta-type="button" data-cta-text="Get the Firefox App">
-      {{ ftl('welcome-page4-get-the-firefox-app') }}
-    </button>
-  </p>
-
-  {% endcall %}
-
-  <div id="modal" class="mzp-u-modal-content mzp-l-content">
-    <h2 class="modal-title">{{ ftl('welcome-page4-get-firefox-on-your-phone') }}</h2>
-
+  <div class="primary-cta">
     {% if show_send_to_device %}
+      <h2 id="get-firefox">{{ ftl('welcome-page4-get-firefox-on-your-phone') }}</h2>
       <p>{{ ftl('welcome-page4-send-the-download-link-right') }}</p>
-      {{ send_to_device(include_title=False, class='vertical', message_set='firefox-mobile-welcome') }}
+      {{ send_to_device(
+        include_title=False,
+        class='vertical',
+        message_set='firefox-mobile-welcome',
+        button_class='mzp-t-lg') }}
+
     {% else %}
-      <p>{{ ftl('welcome-page4-download-firefox-for-your') }}</p>
+      <h2>{{ ftl('welcome-page4-download-firefox-for-your') }}</h2>
       <div class="qr-code-wrapper">
         <img src="{{ static('img/firefox/welcome/welcome-qr-firefox.png') }}" id="firefox-qr"
           alt="">
       </div>
     {% endif %}
-
     <ul class="c-store-badges">
       <li class="c-store-badge-google">
         {{ google_play_button(href=android_url, id='playStoreLink') }}
@@ -61,11 +55,12 @@
       </li>
     </ul>
   </div>
+{% endcall %}
 {% endblock %}
 
 {% block content_primary %}
 <div class="body-primary">
-  <img class="primary-image" src="{{ static('img/firefox/welcome/mobile-hero.png') }}" width="700" height="" alt="{{ ftl('welcome-page4-download-firefox-for-your') }}">
+  <img class="primary-image" src="{{ static('img/firefox/welcome/mobile-hero-v2.png') }}" width="700" height="" alt="{{ ftl('welcome-page4-download-firefox-for-your') }}">
   <p class="primary-image-desc">{{ ftl('welcome-page4-firefox-private-safe-browser') }}</p>
 </div>
 
@@ -94,7 +89,7 @@
 
 <div class="c-picto-block t-adjacent-image">
   <div class="c-picto-block-image">
-    <img src="{{ static('img/icons/eraser.svg') }}" alt="">
+    <img src="{{ static('img/icons/cookies_pink.svg') }}" alt="">
   </div>
 
   <h3 class="c-picto-block-title">{{ ftl('welcome-page4-leave-no-trace') }}</h3>
@@ -105,22 +100,22 @@
 
 <div class="c-picto-block t-adjacent-image">
   <div class="c-picto-block-image">
-    <img src="{{ static('img/icons/arrows.svg') }}" alt="">
+    <img src="{{ static('img/icons/performance_orange.svg') }}" alt="">
   </div>
 
-  <h3 class="c-picto-block-title">{{ ftl('welcome-page4-take-it-all-with-you') }}</h3>
+  <h3 class="c-picto-block-title">{{ ftl('welcome-page4-go-faster-do-more', fallback='welcome-page4-take-it-all-with-you') }}</h3>
   <div class="c-picto-block-body">
-    <p>{{ ftl('welcome-page4-dont-walk-out-the-door-without') }}</p>
+    <p>{{ ftl('welcome-page4-more-done-fast-smart', fallback='welcome-page4-dont-walk-out-the-door-without') }}</p>
   </div>
 </div>
 {% endblock %}
 
 {% block secondary_cta %}
-<p class="secondary-cta">
-  <button class="js-modal-link mzp-c-button mzp-t-product" data-cta-position="secondary" data-cta-type="button" data-cta-text="Get the Firefox App">
+<div class="secondary-cta">
+  <a class="mzp-c-button" data-cta-position="secondary" data-cta-type="button" data-cta-text="Get the Firefox App" href="#get-firefox">
     {{ ftl('welcome-page4-get-the-firefox-app') }}
-  </button>
-</p>
+  </a>
+</div>
 {% endblock %}
 
 {% block content_utility %}

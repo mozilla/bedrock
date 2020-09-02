@@ -9,6 +9,17 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/components/modal';
 
 //* -------------------------------------------------------------------------- */
+// Smooth Scroll
+
+html {
+    scroll-behavior: smooth;
+
+    @media (prefers-reduced-motion: reduce) {
+        scroll-behavior: auto;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
 // Page header
 
 .c-page-header {
@@ -42,6 +53,12 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Page hero
 
+.mzp-c-hero {
+    .welcome-page4 & {
+        background: $color-orange-70 radial-gradient(circle at 60% 100%, $color-yellow-50 5%, $color-orange-70 94%);
+    }
+}
+
 .mzp-c-hero-body {
     @include border-box;
     margin: 0 auto;
@@ -55,6 +72,8 @@ $image-path: '/media/protocol/img';
         padding-right: 0;
         padding-left: 0;
     }
+
+
 
     @media #{$mq-md} {
         padding: $layout-md $layout-xl;
@@ -79,6 +98,10 @@ $image-path: '/media/protocol/img';
     .primary-cta {
         margin: 0 auto;
 
+        h2 {
+            @include text-display-xs;
+        }
+
         .mzp-c-button {
             min-width: 180px;
         }
@@ -96,12 +119,6 @@ $image-path: '/media/protocol/img';
     .welcome-page7 &,
     .welcome-page8 & {
         @include text-title-md;
-    }
-
-    .welcome-page4 & {
-        strong {
-            @include zap('/media/protocol/img/zaps/zap-16.svg');
-        }
     }
 
     .welcome-page8 & {
@@ -195,6 +212,10 @@ $image-path: '/media/protocol/img';
     margin: $layout-lg auto $layout-sm;
     text-align: center;
 
+    h2 {
+        @include text-display-xs;
+    }
+
     p {
         margin: 0 auto;
     }
@@ -259,10 +280,6 @@ $image-path: '/media/protocol/img';
         position: absolute;
         top: 0;
         width: $layout-lg;
-
-        .welcome-page4 & {
-            @include at2x('/media/protocol/img/logos/firefox/browser/logo-lg.png', auto, 100%);
-        }
 
         .welcome-page5 & {
             @include at2x('/media/protocol/img/logos/firefox/lockwise/logo-lg.png', auto, 100%);
@@ -348,6 +365,15 @@ $image-path: '/media/protocol/img';
 
     footer {
         display: none;
+    }
+
+    // send to device is inline on this page.
+    .welcome-page4 & {
+        color: $color-ink-80;
+
+        .mzp-c-button-info {
+            width: unset;
+        }
     }
 }
 

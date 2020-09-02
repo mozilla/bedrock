@@ -53,7 +53,7 @@
 
 
 {# Docs: https://bedrock.readthedocs.io/en/latest/send-to-device.html #}
-{% macro send_to_device(platform='all', product='firefox', message_set='default', id='send-to-device', class='horizontal', include_title=True, title_text=None, input_label=None, legal_note_email=None, legal_note_sms=None, spinner_color='#000', input_label_alt=None) %}
+{% macro send_to_device(platform='all', product='firefox', message_set='default', id='send-to-device', class='horizontal', include_title=True, title_text=None, input_label=None, legal_note_email=None, legal_note_sms=None, spinner_color='#000', input_label_alt=None, button_class=None) %}
   <section id="{{ id }}" class="send-to-device {{ class }}" data-countries="{{ send_to_device_sms_countries(message_set) }}" data-spinner-color="{{ spinner_color }}">
     <div class="form-container">
       {% if include_title %}
@@ -92,7 +92,7 @@
             <input id="{{ id }}-input" class="mzp-c-field-control send-to-device-input" name="phone-or-email" type="text" required>
           </div>
           <div class="mzp-c-button-container mzp-l-stretch">
-            <button type="submit" class="button mzp-c-button mzp-t-product">{{ ftl('send-to-device-send') }}</button>
+            <button type="submit" class="button mzp-c-button {% if button_class %} {{ button_class }} {% else %} mzp-t-product {% endif %}">{{ ftl('send-to-device-send') }}</button>
           </div>
           <p class="mzp-c-button-info sms">
             {% if legal_note_sms %}
