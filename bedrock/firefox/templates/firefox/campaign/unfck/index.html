@@ -17,31 +17,29 @@
 
 {% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-unfck' %}
 
-{% macro item(title=None, info=None, link_text=None, link_url=None, tw_text=None, tw_url=None, id=None, src=None, include_cta=False, include_utms=True,
-              share_text='Share', download_text='Download GIF', copy_text='Copy Link to GIF', copy_success_text='Link copied to clipboard.') -%}
-<div class="c-item-unfck" id="{{ id }}">
-  <h3 class="c-item-title">{{ title }}</h3>
-  <div class="c-item-img">
-    <img class="c-item-gif" src="{{ src }}">
-    <ul class="c-item-share">
-      <!-- TODO: -->
-      <li><a class="c-item-link js-twitter-share" href="#"><span class="c-item-icon twitter"></span><span class="c-item-text">{{ share_text }}</span></a></li>
-      <li><a class="c-item-link" href="#" download><span class="c-item-icon download"></span><span class="c-item-text">{{ download_text }}</span></a></li>
-      <li><button class="c-item-link js-copy-link" type="button"><span class="c-item-icon link"></span><span class="c-item-text">{{ copy_text }}</span></button></li>
-    </ul>
+{% macro item(title=None, info=None, id=None, src=None, include_cta=False,
+              link_text=None, link_url=None, link_include_utms=True, link_is_external=True,
+              tw_text=None, share_text='Share', download_text='Download GIF') -%}
+  {% set tw_url = 'https://' + request.META.HTTP_HOST + '/firefox/campaign/unfck/' %}
+  {% set tw = 'https://www.twitter.com/intent/tweet?url=' + tw_url + '&text=' + tw_text %}
+  <div class="c-item-unfck" id="{{ id }}">
+    <h3 class="c-item-title">{{ title }}</h3>
+    <div class="c-item-img">
+      <img class="c-item-gif" src="{{ src }}">
+      <ul class="c-item-share">
+        <li><a class="c-item-link js-twitter-share" target="_blank" rel="noopener noreferrer" href="{{ tw }}"><span class="c-item-icon twitter"></span><span class="c-item-text">{{ share_text }}</span></a></li>
+        <li><a class="c-item-link js-download-gif" href="{{ src }}" download><span class="c-item-icon download"></span><span class="c-item-text">{{ download_text }}</span></a></li>
+      </ul>
+    </div>
+    <div class="c-item-desc">
+      <p>{{ info }}</p>
+      {% if include_cta %}
+        {{ caller() }}
+      {% else %}
+        <p><a class="mzp-c-cta-link" href="{{ link_url }}{% if link_include_utms %}{{ referrals }}{% endif %}" {% if link_include_utms or link_is_external %}rel="external noopener" data-cta-type="link" data-cta-text="Checklist: {{ id }}"{% endif %}>{{ link_text }}</a></p>
+      {% endif %}
+    </div>
   </div>
-  <div class="c-item-desc">
-    <p>{{ info }}</p>
-    {% if include_cta %}
-      {{ caller() }}
-    {% else %}
-      <p><a href="{{ link_url }}{% if include_utms %}{{ referrals }}{% endif %}" class="mzp-c-cta-link">{{ link_text }}</a></p>
-    {% endif %}
-  </div>
-  <aside class="mzp-c-notification-bar mzp-t-success hidden">
-    <p>{{ copy_success_text }}</p>
-  </aside>
-</div>
 {%- endmacro %}
 
 
@@ -56,19 +54,18 @@
     heading_level=1)
   %}
     {{ download_firefox(download_location='primary cta') }}
+    <br>TODO: mobile CTA if user is already in FIrefox
   {% endcall %}
 
   <h2 class="c-section-title">The Unfcking Checklist</h2>
 
   <div class="mzp-l-content mzp-t-content-lg">
-
     {% call item(
       title='Take action online. Change the outcome offline.',
       info='Where you live is one of the most common data points used to target you online. Join us in changing your location on FB and Insta to Waco, TX, so we can throw off political ads and shine a light on voter suppression.',
       link_text='How it Works',
       link_url='#',
       tw_text='text_test',
-      tw_url='https://bukk.it/firecode.gif',
       id='location',
       src=static('img/firefox/campaign/unfck/firecode.gif')
     ) %}{% endcall %}
@@ -79,7 +76,6 @@
         link_text='Watch the Doc',
         link_url='#',
         tw_text='text_test',
-        tw_url='https://bukk.it/howidocode.gif',
         id='watch',
         src=static('img/firefox/campaign/unfck/popcorn.gif')
       ) %}{% endcall %}
@@ -90,7 +86,6 @@
         link_text='Unfck More',
         link_url='#',
         tw_text='text_test',
-        tw_url='https://giphy.com/gifs/muppets-rachel-maddow-kermit-Zaej3GIZTzCI8',
         id='join',
         src=static('img/firefox/campaign/unfck/kermit.gif')
       ) %}{% endcall %}
@@ -99,7 +94,6 @@
         title='Tell us what you wanna unfck',
         info='Maybe we can find new ways to solve it together. After all, we make internet products, pressure our peers, and speak truth to government power.',
         tw_text='text_test',
-        tw_url=request.META.HTTP_HOST + static('img/firefox/campaign/unfck/fuckthis.gif'),
         id='tell',
         src=static('img/firefox/campaign/unfck/fuckthis.gif'),
         include_cta=True
