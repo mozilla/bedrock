@@ -46,7 +46,7 @@ label {
 }
 
 .hide-from-legacy-ie {
-    display: none;
+    display: none !important; /* stylelint-disable-line declaration-no-important */
 }
 
 header, main, section, footer {
@@ -54,9 +54,9 @@ header, main, section, footer {
 }
 
 /* Make sure form details are visible */
-/* stylelint-disable declaration-no-important  */
+
 .js .mzp-c-newsletter-details {
-    display: block !important;
+    display: block !important; /* stylelint-disable-line declaration-no-important */
 }
 
 .mzp-c-newsletter-thanks {
