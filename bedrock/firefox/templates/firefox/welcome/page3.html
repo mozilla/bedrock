@@ -77,7 +77,7 @@
         <p>{{ ftl('welcome-page3-trade-clickbait-and-fake-news') }}</p>
       </div>
     </div>
-
+  {% if switch('firefox-send-active') %}
     <div class="c-picto-block t-adjacent-image">
       <div class="c-picto-block-image">
         <img src="{{ static('protocol/img/logos/firefox/send/logo.svg') }}" alt="">
@@ -87,6 +87,7 @@
         <p>{{ ftl('welcome-page3-send-huge-files-to-anyone') }}</p>
       </div>
     </div>
+  {% endif %}
   </div>
 {% endblock %}
 

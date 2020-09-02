@@ -35,7 +35,9 @@
           <ul class="mzp-c-footer-list">
             <li><a href="{{ url('firefox.products.lockwise') }}" data-link-type="footer" data-link-name="Lockwise">{{ ftl('footer-lockwise') }}</a></li>
             <li><a href="https://monitor.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer&utm_content=monitor" data-link-type="footer" data-link-name="Monitor">{{ ftl('footer-monitor') }}</a></li>
+          {% if switch('firefox-send-active') %}
             <li><a href="https://send.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer&utm_content=send" data-link-type="footer" data-link-name="Send">{{ ftl('footer-send') }}</a></li>
+          {% endif %}
             <li><a href="{{ url('firefox.browsers.index') }}" data-link-type="footer" data-link-name="Browsers">{{ ftl('footer-browsers') }}</a></li>
             <li><a href="https://getpocket.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer&utm_content=pocket" data-link-type="footer" data-link-name="Pocket">{{ ftl('footer-pocket') }}</a></li>
           </ul>

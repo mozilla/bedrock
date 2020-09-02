@@ -133,6 +133,7 @@
         </p>
       {% endcall %}
 
+    {% if switch('firefox-send-active') %}
       {% call feature_card(
         title=ftl('firefox-privacy-hub-firefox-send'),
         image_url='img/firefox/privacy/products/send.svg',
@@ -146,12 +147,18 @@
           </a>
         </p>
       {% endcall %}
+    {% endif %}
+
+      {% set pocket_card_layout_class = 'privacy-products-pocket has-logo mzp-l-card-feature-left-half' %}
+    {% if switch('firefox-send-active') %}
+      {% set pocket_card_layout_class = 'privacy-products-pocket has-logo mzp-l-card-feature-right-half' %}
+    {% endif %}
 
       {% call feature_card(
         title=ftl('firefox-privacy-hub-pocket'),
         image_url='img/firefox/privacy/products/pocket.png',
         include_highres_image=True,
-        class='privacy-products-pocket has-logo mzp-l-card-feature-right-half',
+        class=pocket_card_layout_class,
         media_after=True
       ) %}
         <p>{{ ftl('firefox-privacy-hub-pocket-recommends-high') }}</p>

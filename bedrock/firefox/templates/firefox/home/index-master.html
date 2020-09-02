@@ -74,12 +74,14 @@
               {{ ftl('firefox-home-monitor') }}
             </a>
           </li>
+        {% if switch('firefox-send-active') %}
           <li>
             <a class="mzp-c-cta-link" href="https://send.firefox.com/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Send">
               <img alt="" src="{{ static('protocol/img/logos/firefox/send/logo-md.png') }}" height="40" width="40"><br>
               {{ ftl('firefox-home-send') }}
             </a>
           </li>
+        {% endif %}
           <li>
               <a class="mzp-c-cta-link" href="{{ url('firefox.products.lockwise') }}" rel="external noopener" data-cta-type="link" data-cta-text="Lockwise">
                 <img alt="" src="{{ static('protocol/img/logos/firefox/lockwise/logo-md.png') }}" height="40" width="40"><br>
@@ -180,6 +182,7 @@
       </div>
     </div>
 
+  {% if switch('firefox-send-active') %}
     <div class="mzp-l-content">
         {% call feature_card(
           title=ftl('firefox-home-firefox-send'),
@@ -194,6 +197,7 @@
         <h4>{{ ftl('firefox-home-share-large-files-without') }}</h4>
         {% endcall %}
     </div>
+  {% endif %}
 
     <div class="mzp-l-content">
         {% call feature_card(
@@ -232,12 +236,14 @@
                   {{ ftl('firefox-home-monitor') }}
                 </a>
               </li>
+            {% if switch('firefox-send-active') %}
               <li>
                 <a class="mzp-c-cta-link" href="https://send.firefox.com/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Send">
                   <img alt="" src="{{ static('protocol/img/logos/firefox/send/logo-md.png') }}" height="40" width="40"><br>
                   {{ ftl('firefox-home-send') }}
                 </a>
               </li>
+            {% endif %}
               <li>
                 <a class="mzp-c-cta-link" href="{{ url('firefox.products.lockwise') }}{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Lockwise">
                   <img alt="" src="{{ static('protocol/img/logos/firefox/lockwise/logo-md.png') }}" height="40" width="40"><br>
