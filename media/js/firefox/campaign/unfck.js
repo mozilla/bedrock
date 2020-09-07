@@ -29,22 +29,26 @@
 
     function handleShareLinkClick(e) {
         var item = e.target.closest('.c-item-unfck');
-        if(e.target.tagName == 'SPAN') {
-            var href = e.target.parentElement.href;
+        var href;
+
+        if (e.target.tagName === 'SPAN') {
+            href = e.target.parentElement.href;
         } else {
-            var href = e.target.href;
+            href = e.target.href;
         }
 
-        // Track the event in GA
-        window.dataLayer.push({
-            'event': 'in-page-interaction',
-            'eAction': 'checklist',
-            'eLabel': 'share: ' + item.id,
-        });
+        if (item && item.id && href) {
+            // Track the event in GA
+            window.dataLayer.push({
+                'event': 'in-page-interaction',
+                'eAction': 'checklist',
+                'eLabel': 'share: ' + item.id,
+            });
 
-        // Open Twitter in a sub window
-        openTwitterSubwin(href);
-        e.preventDefault();
+            // Open Twitter in a sub window
+            openTwitterSubwin(href);
+            e.preventDefault();
+        }
     }
 
     function onLoad() {
