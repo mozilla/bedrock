@@ -20,8 +20,8 @@
 {% macro item(title=None, info=None, id=None, src=None, include_cta=False,
               link_text=None, link_url=None, link_include_utms=True, link_is_external=True,
               tw_text=None, share_text='Share', download_text='Download GIF') -%}
-  {% set tw_url = 'https://' + request.META.HTTP_HOST + '/firefox/campaign/unfck/' %}
-  {% set tw = 'https://www.twitter.com/intent/tweet?url=' + tw_url + '&text=' + tw_text %}
+  {% set tw_url = settings.CANONICAL_URL + '/firefox/campaign/unfck/' %}
+  {% set tw = 'https://www.twitter.com/intent/tweet?url=' + tw_url|urlencode + '&text=' + tw_text|urlencode %}
   <div class="c-item-unfck" id="{{ id }}">
     <h3 class="c-item-title">{{ title }}</h3>
     <div class="c-item-img">
@@ -54,7 +54,7 @@
     heading_level=1)
   %}
     {{ download_firefox(download_location='primary cta') }}
-    <br>TODO: mobile CTA if user is already in FIrefox
+    <br>TODO: mobile CTA if user is already in Firefox
   {% endcall %}
 
   <h2 class="c-section-title">The Unfcking Checklist</h2>
