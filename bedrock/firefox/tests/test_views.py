@@ -7,6 +7,7 @@ import json
 import os
 from urllib.parse import parse_qs
 
+from django.core import mail
 from django.test import override_settings
 from django.test.client import RequestFactory
 
@@ -15,7 +16,9 @@ from mock import patch, ANY
 from pyquery import PyQuery as pq
 
 from bedrock.firefox import views
+from bedrock.firefox.forms import UnfckForm
 from bedrock.mozorg.tests import TestCase
+from bedrock.base.urlresolvers import reverse
 
 
 @override_settings(
@@ -758,3 +761,127 @@ class TestFirefoxWelcomePage1(TestCase):
         views.firefox_welcome_page1(req)
         render_mock.assert_called_once_with(req, 'firefox/welcome/page1.html', ANY,
                                             ftl_files='firefox/welcome/page1')
+
+
+class TestUnfckForm(TestCase):
+
+    def setUp(self):
+        self.factory = RequestFactory()
+        self.view = views.FirefoxUnfckView.as_view()
+        with self.activate('en-US'):
+            self.url = reverse('firefox.campaign.unfck')
+
+        self.data = {
+            'unfck_field': 'test message'
+        }
+
+    def tearDown(self):
+        mail.outbox = []
+
+    def test_view_post_valid_data(self):
+        """
+        A valid POST should 302 redirect.
+        """
+        request = self.factory.post(self.url, self.data)
+
+        # make sure CSRF doesn't hold us up
+        request._dont_enforce_csrf_checks = True
+
+        response = self.view(request)
+
+        assert response.status_code == 302
+        assert response['Location'] == '/en-US/firefox/campaign/unfck/?success=True'
+
+    def test_view_post_missing_data(self):
+        """
+        POST with missing data should return 200 and contain form
+        errors in the template.
+        """
+
+        self.data.update(unfck_field='')  # remove required field
+
+        request = self.factory.post(self.url, self.data)
+
+        # make sure CSRF doesn't hold us up
+        request._dont_enforce_csrf_checks = True
+
+        response = self.view(request)
+
+        assert response.status_code == 200
+        self.assertIn(b'An error has occurred with your submission.', response.content)
+
+    def test_view_post_honeypot(self):
+        """
+        POST with honeypot text box filled should return 200 and
+        contain general form error message.
+        """
+
+        self.data['office_fax'] = 'spammer'
+
+        request = self.factory.post(self.url, self.data)
+
+        # make sure CSRF doesn't hold us up
+        request._dont_enforce_csrf_checks = True
+
+        response = self.view(request)
+
+        assert response.status_code == 200
+        self.assertIn(b'An error has occurred with your submission.', response.content)
+
+    def test_form_valid_data(self):
+        """
+        Form should be valid.
+        """
+        form = UnfckForm(self.data)
+
+        # make sure form is valid
+        assert form.is_valid()
+
+    def test_form_missing_data(self):
+        """
+        With incorrect data (missing email), form should not be valid
+        """
+        self.data.update(unfck_field='')
+
+        form = UnfckForm(self.data)
+
+        # make sure form is invalid
+        assert not form.is_valid()
+
+    def test_form_honeypot(self):
+        """
+        Form with honeypot text box filled should not be valid.
+        """
+        self.data['office_fax'] = 'spammer'
+
+        form = UnfckForm(self.data)
+
+        assert not form.is_valid()
+
+    @patch('bedrock.firefox.views.render_to_string',
+           return_value='rendered')
+    @patch('bedrock.firefox.views.EmailMessage')
+    def test_email(self, mock_email_message, mock_render_to_string):
+        """
+        Make sure email is sent with expected values.
+        """
+        mock_send = mock_email_message.return_value.send
+
+        # create POST request
+        request = self.factory.post(self.url, self.data)
+
+        # make sure CSRF doesn't hold us up
+        request._dont_enforce_csrf_checks = True
+
+        # submit POST request
+        self.view(request)
+
+        # make sure email was sent
+        mock_send.assert_called_once_with()
+
+        # make sure email values are correct
+        mock_email_message.assert_called_once_with(
+            views.UNFCK_EMAIL_SUBJECT,
+            'rendered',
+            views.UNFCK_EMAIL_FROM,
+            views.UNFCK_EMAIL_TO)
