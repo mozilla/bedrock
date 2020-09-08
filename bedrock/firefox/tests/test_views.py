@@ -839,7 +839,7 @@ class TestUnfckForm(TestCase):
 
     def test_form_missing_data(self):
         """
-        With incorrect data (missing email), form should not be valid
+        With incorrect data (blank text), form should not be valid
         """
         self.data.update(unfck_field='')
 

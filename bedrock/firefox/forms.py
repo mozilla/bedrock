@@ -6,7 +6,7 @@ import re
 
 from django import forms
 
-from bedrock.mozorg.forms import (HoneyPotWidget)
+from bedrock.mozorg.forms import HoneyPotWidget
 
 
 class SendToDeviceWidgetForm(forms.Form):
@@ -28,7 +28,7 @@ class SendToDeviceWidgetForm(forms.Form):
 
 class UnfckForm(forms.Form):
     unfck_field = forms.CharField(
-        max_length=500,
+        max_length=2000,
         required=True,
         widget=forms.Textarea(),
     )
