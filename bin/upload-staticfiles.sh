@@ -22,6 +22,9 @@ CONTAINER_NAME="bedrock-${GIT_COMMIT}"
 rm -rf "${TMP_DIR}"
 rm -rf "${TMP_DIR_HASHED}"
 
+# .env file must exist for docker-compose
+touch .env
+
 # have to rerun staticfiles without symlinks or we just copy broken symlinks
 docker rm -f "$CONTAINER_NAME" || true
 docker-compose run --name "$CONTAINER_NAME" release docker/bin/build_staticfiles.sh --nolink
