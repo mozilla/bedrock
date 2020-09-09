@@ -28,7 +28,7 @@ class SendToDeviceWidgetForm(forms.Form):
 
 class UnfckForm(forms.Form):
     unfck_field = forms.CharField(
-        max_length=2000,
+        max_length=280,
         required=True,
         widget=forms.Textarea(),
     )
