@@ -96,7 +96,6 @@ RUN pip install --no-cache-dir -r requirements/docs.txt
 COPY ./setup.cfg ./
 COPY ./tests ./tests
 
-# rely on build args
 RUN bin/run-sync-all.sh
 
 RUN chown webdev.webdev -R .
@@ -112,11 +111,10 @@ ENV GIT_SHA=${GIT_SHA}
 #
 FROM app-base AS release
 
+RUN bin/run-sync-all.sh
+
 COPY --from=assets /app/static_final /app/static_final
 RUN honcho run --env docker/envfiles/prod.env docker/bin/build_staticfiles.sh
-
-# rely on build args
-RUN bin/run-sync-all.sh
 
 RUN echo "${GIT_SHA}" > ./root_files/revision.txt
 
