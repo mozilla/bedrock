@@ -1089,12 +1089,6 @@
         "js/base/mozilla-fxa-product-button.js",
         "js/base/mozilla-fxa-product-button-init.js",
         "js/base/mozilla-lazy-load.js",
-        "js/firefox/home/master.js"
-      ],
-      "name": "firefox-master"
-    },
-    {
-      "files": [
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-fxa-form.js",
