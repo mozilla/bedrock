@@ -99,8 +99,19 @@
         include_cta=True
         ) %}
         <div class="c-tell">
-          <textarea class="c-tell-input" placeholder="TODO: interaction"></textarea>
-          <button class="c-tell-button mzp-c-button mzp-t-secondary">Submit</button>
+          {% if form.errors %}
+            <p><strong>An error has occurred with your submission. Please review your information below and try again.</strong></p>
+          {% endif %}
+          {% if not form_success %}
+          <form name="firefox-unfck" id="unfck-form" class="c-unfck-form" action="{{ url('firefox.campaign.unfck') }}" method="post">
+            {{ csrf() }}
+            {{ field_with_attrs(form.unfck_field, class='c-tell-input'|safe, placeholder='TODO: some example text'|safe) }}
+            {{ field_with_attrs(form.office_fax) }}
+            <button type="submit" class="c-tell-button mzp-c-button mzp-t-secondary">Submit</button>
+          </form>
+          {% else %}
+            <p><strong>Thanks!</strong></p>
+          {% endif %}
         </div>
       {% endcall %}
   </div>
