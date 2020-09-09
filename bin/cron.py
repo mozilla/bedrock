@@ -10,6 +10,8 @@ import babis
 from apscheduler.schedulers.blocking import BlockingScheduler
 from pathlib import Path
 
+from db_s3_utils import DATA_PATH
+
 
 # ROOT path of the project. A pathlib.Path object.
 ROOT_PATH = Path(__file__).resolve().parents[1]
@@ -38,7 +40,7 @@ RUN_TIMES = {}
 DEAD_MANS_SNITCH_URL = config('DEAD_MANS_SNITCH_URL', default='')
 
 MANAGE = str(ROOT_PATH / 'manage.py')
-HEALTH_FILE_BASE = '/tmp/last-run'
+HEALTH_FILE_BASE = f'{DATA_PATH}/last-run'
 
 
 def set_updated_time(name):

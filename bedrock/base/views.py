@@ -144,7 +144,7 @@ def cron_health_check(request):
     results = []
     check_pass = True
     for fname, max_time in HEALTH_FILES:
-        fpath = '/tmp/last-run-%s' % fname
+        fpath = f'{settings.DATA_PATH}/last-run-{fname}'
         try:
             last_check = os.path.getmtime(fpath)
         except OSError:
