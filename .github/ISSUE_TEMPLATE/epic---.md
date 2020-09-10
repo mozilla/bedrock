@@ -16,5 +16,5 @@ Link to pitch, brief, or background documents.
 ---
 
 #### Issues
-- [ ] #1
-- [ ] #2
+- [ ] #issue-number
+- [ ] #issue-number
