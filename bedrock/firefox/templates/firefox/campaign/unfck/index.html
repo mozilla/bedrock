@@ -25,7 +25,7 @@
   <div class="c-item-unfck" id="{{ id }}">
     <h3 class="c-item-title">{{ title }}</h3>
     <div class="c-item-img">
-      <img class="c-item-gif" src="{{ src }}">
+      <img class="c-item-gif" src="{{ src }}" loading="lazy" width="344" height="344">
       <ul class="c-item-share">
         <li><a class="c-item-link js-twitter-share" target="_blank" rel="noopener noreferrer" href="{{ tw }}"><span class="c-item-icon twitter"></span><span class="c-item-text">{{ share_text }}</span></a></li>
         <li><a class="c-item-link js-download-gif" href="{{ src }}" download><span class="c-item-icon download"></span><span class="c-item-text">{{ download_text }}</span></a></li>
@@ -36,7 +36,7 @@
       {% if include_cta %}
         {{ caller() }}
       {% else %}
-        <p><a class="mzp-c-cta-link" href="{{ link_url }}{% if link_include_utms %}{{ referrals }}{% endif %}" {% if link_include_utms or link_is_external %}rel="external noopener" data-cta-type="link" data-cta-text="Checklist: {{ id }}"{% endif %}>{{ link_text }}</a></p>
+        <p><a class="mzp-c-cta-link" href="{{ link_url }}{% if link_include_utms %}{{ referrals }}{% endif %}" target="blank" {% if link_include_utms or link_is_external %}rel="external noopener" data-cta-type="link" data-cta-text="Checklist: {{ id }}"{% endif %}>{{ link_text }}</a></p>
       {% endif %}
     </div>
   </div>
