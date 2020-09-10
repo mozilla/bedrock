@@ -78,7 +78,7 @@ HEALTH_FILES = (
     ('download_database', 600),
     ('update_locales', 600),
 )
-DB_INFO_FILE = getenv('AWS_DB_JSON_DATA_FILE', 'bedrock_db_info.json')
+DB_INFO_FILE = getenv('AWS_DB_JSON_DATA_FILE', f'{settings.DATA_PATH}/bedrock_db_info.json')
 GIT_SHA = getenv('GIT_SHA')
 BUCKET_NAME = getenv('AWS_DB_S3_BUCKET', 'bedrock-db-dev')
 REGION_NAME = os.getenv('AWS_DB_REGION', 'us-west-2')
@@ -123,6 +123,14 @@ def get_extra_server_info():
         db_info['file_url'] = get_db_file_url(db_info['file_name'])
         for key, value in db_info.items():
             server_info['db_%s' % key] = value
+
+    # Maxmind DB File Info
+    try:
+        geo_last_mod = os.path.getmtime(settings.MAXMIND_DB_PATH)
+    except FileNotFoundError:
+        pass
+    else:
+        server_info['geo_last_update'] = timeago.format(datetime.fromtimestamp(geo_last_mod))
 
     return server_info
 
