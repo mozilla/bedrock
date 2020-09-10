@@ -368,18 +368,6 @@
     },
     {
       "files": [
-        "css/firefox/whatsnew/whatsnew-76.scss"
-      ],
-      "name": "firefox_whatsnew_76"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-77.scss"
-      ],
-      "name": "firefox_whatsnew_77"
-    },
-    {
-      "files": [
         "css/protocol/components/send-to-device.scss",
         "css/firefox/whatsnew/whatsnew-79.scss"
       ],
@@ -818,28 +806,6 @@
         "js/firefox/privacy/messaging-experiment.js"
       ],
       "name": "default_privacy_messaging"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/up-to-date.js",
-        "js/firefox/whatsnew/whatsnew-76.js"
-      ],
-      "name": "firefox_whatsnew_76"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/up-to-date.js",
-        "js/firefox/whatsnew/whatsnew-77.js"
-      ],
-      "name": "firefox_whatsnew_77"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/up-to-date.js",
-        "js/base/mozilla-video-poster.js",
-        "js/firefox/whatsnew/whatsnew-77-zhCN.js"
-      ],
-      "name": "firefox_whatsnew_77_zhCN"
     },
     {
       "files": [

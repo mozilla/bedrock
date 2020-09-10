@@ -9,67 +9,63 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/components/notification-bar';
 @import 'includes/header';
 
-.t-content-lg {
-    max-width: $content-lg;
-}
 
 //* -------------------------------------------------------------------------- */
-// Main content section
-
-.main-content {
-    color: $color-white;
+// Main content
+.wnp-content-main {
+    padding: 0;
     text-align: center;
 
-    .main-title {
-        @include text-title-md;
-        margin: 0 auto;
-        max-width: 15em;
-
-        br {
-            display: none;
-        }
-    }
-
-    .main-tagline {
-        @include text-title-sm;
-    }
-
-    header {
-        @include at2x('/media/protocol/img/logos/firefox/browser/logo-sm.png', 64px, 64px);
-        background-position: top center;
-        background-repeat: no-repeat;
-        padding-top: 64px + $spacing-md;
-        margin-bottom: $spacing-xl;
-    }
-
-    &.show-send-to-device {
-        @include bidi(((text-align, left, right),));
-
-        .main-title {
-            max-width: none;
-        }
-
-        header {
-            @include bidi(((background-position, left top, right top),));
-        }
-    }
-
-    @media #{$mq-sm} {
-        .main-title br {
-            display: inline;
-        }
-    }
-
-    @media #{$mq-md} {
-        padding: 10vh 0;
+    @media #{$mq-tall} {
+        padding-top: $layout-md;
+        margin-bottom: $layout-lg;
     }
 }
 
-.content-wrapper {
-    background: $color-ink-80 url('/media/img/firefox/whatsnew/whatsnew_background.svg') no-repeat;
-    @include background-size(100%);
+.wnp-main-image {
+    margin: 0 auto $layout-sm;
 }
 
-.send-to-device-form {
-    color: $color-white;
+.wnp-main-title {
+    @include text-title-md;
+}
+
+.wnp-main-tagline {
+    @include text-body-lg;
+}
+
+.send-to-device {
+    margin: 0 auto;
+}
+
+#qr-wrapper {
+    margin: $spacing-lg auto;
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Utilities (link to release notes)
+.c-utilities {
+    @include text-body-sm;
+    max-width: $content-md;
+    padding-bottom: $layout-xl;
+    text-align: center;
+}
+
+
+//* -------------------------------------------------------------------------- */
+// For dark mode
+@media (prefers-color-scheme: dark) {
+    .content-wrapper {
+        background: $color-dark-gray-60;
+        color: $color-white;
+    }
+
+    .send-to-device {
+        color: $color-white;
+    }
+
+    .c-utilities {
+        @include light-links;
+    }
 }

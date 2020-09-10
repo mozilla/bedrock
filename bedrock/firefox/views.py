@@ -24,7 +24,6 @@ from django.views.decorators.http import require_GET, require_POST
 from django.views.generic.base import TemplateView
 from lib import l10n_utils
 from lib.l10n_utils import L10nTemplateView
-from lib.l10n_utils.dotlang import lang_file_is_active
 from lib.l10n_utils.fluent import ftl, ftl_file_is_active
 from product_details.version_compare import Version
 
@@ -595,8 +594,6 @@ class WhatsnewView(L10nTemplateView):
         return ctx
 
     def get_template_names(self):
-        locale = l10n_utils.get_locale(self.request)
-
         version = self.kwargs.get('version') or ''
         oldversion = self.request.GET.get('oldversion', '')
         # old versions of Firefox sent a prefixed version
@@ -618,17 +615,6 @@ class WhatsnewView(L10nTemplateView):
             template = 'firefox/whatsnew/whatsnew-fx80.html'
         elif version.startswith('79.') and ftl_file_is_active('firefox/whatsnew/whatsnew-fx79'):
             template = 'firefox/whatsnew/whatsnew-fx79.html'
-        elif version.startswith('78.'):
-            template = 'firefox/whatsnew/index.html'
-        elif version.startswith('77.') and lang_file_is_active('firefox/whatsnew_77', locale):
-            # YouTube is blocked in China so zh-CN gets an alternative, self-hosted video.
-            # If we run into bandwidth trouble we can turn the video off and zh-CN falls back to the 76 page.
-            if locale == 'zh-CN' and not switch('firefox-whatsnew77-video-zhCN'):
-                template = 'firefox/whatsnew/whatsnew-fx76.html'
-            else:
-                template = 'firefox/whatsnew/whatsnew-fx77.html'
-        elif version.startswith('76.') and lang_file_is_active('firefox/whatsnew_76', locale):
-            template = 'firefox/whatsnew/whatsnew-fx76.html'
         else:
             if show_default_account_whatsnew(version) and ftl_file_is_active('firefox/whatsnew/whatsnew-account'):
                 template = 'firefox/whatsnew/index-account.html'

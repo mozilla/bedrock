@@ -35,7 +35,17 @@ $image-path: '/media/protocol/img';
 }
 
 .c-page-header-logo-fx {
-    min-width: 216px;
+    @include image-replaced;
+    background: url($image-path + '/logos/firefox/browser/logo-word-hor-sm.png') no-repeat;
+    @include background-size(216px, 40px);
+    width: 216px;
+    height: 40px;
+    margin: 0;
+
+    @media (prefers-color-scheme: dark) {
+        background: url($image-path + '/logos/firefox/browser/logo-word-hor-white-sm.png') no-repeat;
+        @include background-size(216px, 40px);
+    }
 }
 
 @media #{$mq-lg} {

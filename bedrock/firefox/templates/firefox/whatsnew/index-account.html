@@ -27,20 +27,16 @@
 {% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
 
 {% block content %}
-<main role="main" class="content-wrapper mzp-t-firefox mzp-t-dark">
+<main role="main" class="content-wrapper mzp-t-firefox">
   {% include 'firefox/whatsnew/includes/header.html' %}
 
-  <section class="content-main">
+  <section class="wnp-content-main">
     <div class="mzp-l-content mzp-t-content-md">
-      <div class="mzp-c-emphasis-box">
-
       {# If user is signed out (or undetermined), promote account #}
         <div class="show-fxa-supported-signed-out">
-          <img class="c-emphasis-box-logo" src="{{ static('protocol/img/logos/firefox/logo-md.png') }}" alt="">
-          <h2 class="c-emphasis-box-title">
-            {{ ftl('whatsnew-account-main-headline') }}
-          </h2>
-          <p>{{ ftl('whatsnew-account-main-lead-in') }}</p>
+          <img class="wnp-main-image" src="{{ static('protocol/img/logos/firefox/logo-md.png') }}" alt="">
+          <h1 class="wnp-main-title">{{ ftl('whatsnew-account-main-headline') }}</h1>
+          <p class="wnp-main-tagline">{{ ftl('whatsnew-account-main-lead-in') }}</p>
           <p class="cta">
             {{ fxa_button(
               entrypoint=entrypoint,
@@ -54,14 +50,14 @@
 
       {# If the user is signed in, promote mobile #}
         <div class="show-fxa-supported-signed-in">
-          <img class="c-emphasis-box-logo" src="{{ static('protocol/img/logos/firefox/browser/logo-md.png') }}" alt="">
+          <img class="wnp-main-image" src="{{ static('protocol/img/logos/firefox/browser/logo-md.png') }}" alt="">
         {# If user is in a locale with translated basket messages... #}
         {% if show_send_to_device %}
-          <h2 class="c-emphasis-box-title">{{ ftl('whatsnew-account-signed-in-headline', fallback='send-to-device-send-firefox') }}</h2>
-          <p class="c-emphasis-box-tagline">{{ ftl('whatsnew-account-signed-in-lead-in') }}</p>
+          <h1 class="wnp-main-title">{{ ftl('whatsnew-account-signed-in-headline', fallback='send-to-device-send-firefox') }}</h1>
+          <p class="wnp-main-tagline">{{ ftl('whatsnew-account-signed-in-lead-in') }}</p>
         {# For users not in a locale with translated basket messages... #}
         {% else %}
-          <h2 class="c-emphasis-box-title">{{ ftl('whatsnew-account-signed-in-qr-title') }}</h2>
+          <h1 class="wnp-main-title">{{ ftl('whatsnew-account-signed-in-qr-title') }}</h1>
         {% endif %}
 
         {# Only certain locales get send_to_device, else they see a QRCode. #}
@@ -75,9 +71,7 @@
           </div>
         {% endif %}
         </div>
-
       </div>
-    </div>
   </section>
 
   <aside class="mzp-l-content c-utilities">
