@@ -32,7 +32,7 @@ class GeoRedirectView(RedirectView):
     query_string = True
 
     def get_redirect_url(self, *args, **kwargs):
-        country_code = get_country_from_request(self.request)
+        country_code, _ = get_country_from_request(self.request)
         url = self.geo_urls.get(country_code, self.default_url)
         if re.match(r'https?://', url, re.I):
             self.url = url
@@ -53,7 +53,7 @@ def geolocate(request):
 
     https://mozilla.github.io/ichnaea/api/region.html
     """
-    country_code = get_country_from_request(request)
+    country_code, source = get_country_from_request(request)
     if country_code is None:
         return JsonResponse({
             "error": {
@@ -69,6 +69,7 @@ def geolocate(request):
 
     return JsonResponse({
         'country_code': country_code,
+        'data_source': source,
     })
 
 
