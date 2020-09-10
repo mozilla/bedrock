@@ -6,8 +6,9 @@
 
 {% from "macros-protocol.html" import card, hero with context %}
 
-{% block page_title %}Unfck{% endblock %}
-{% block page_image %}{{ static('img/firefox/campaign/unfck/og.png') }}{% endblock %}
+{% block page_title %}Unfck the internet{% endblock %}
+{% block page_desc %}It’s an amazing place. But we can all feel the ways it’s fcked, too. Here are some things you can do to unfck it!{% endblock %}
+{% block page_image %}{{ static('img/firefox/campaign/unfck/og.jpg') }}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('firefox-unfck') }}
@@ -18,18 +19,11 @@
 {% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-unfck' %}
 
 {% macro item(title=None, info=None, id=None, src=None, include_cta=False,
-              link_text=None, link_url=None, link_include_utms=True, link_is_external=True,
-              tw_text=None, share_text='Share', download_text='Download GIF') -%}
-  {% set tw_url = settings.CANONICAL_URL + '/firefox/campaign/unfck/' %}
-  {% set tw = 'https://www.twitter.com/intent/tweet?url=' + tw_url|urlencode + '&text=' + tw_text|urlencode %}
+              link_text=None, link_url=None, link_include_utms=True, link_is_external=True) -%}
   <div class="c-item-unfck" id="{{ id }}">
     <h3 class="c-item-title">{{ title }}</h3>
     <div class="c-item-img">
       <img class="c-item-gif" src="{{ src }}" loading="lazy" width="344" height="344">
-      <ul class="c-item-share">
-        <li><a class="c-item-link js-twitter-share" target="_blank" rel="noopener noreferrer" href="{{ tw }}"><span class="c-item-icon twitter"></span><span class="c-item-text">{{ share_text }}</span></a></li>
-        <li><a class="c-item-link js-download-gif" href="{{ src }}" download><span class="c-item-icon download"></span><span class="c-item-text">{{ download_text }}</span></a></li>
-      </ul>
     </div>
     <div class="c-item-desc">
       <p>{{ info }}</p>
@@ -46,6 +40,8 @@
 {% block content %}
 <main role="main" class="t-unfck">
 
+  <div class="c-banner"></div>
+
   {% call hero(
     title='The internet: Fck Yeah',
     desc='It’s an amazing place. But we can all feel the ways it’s fcked, too. The first and easiest thing you can do to unfck it? Start using a non-profit-backed browser that doesn’t spy on its users.',
@@ -54,78 +50,74 @@
     heading_level=1)
   %}
     {{ download_firefox(download_location='primary cta') }}
-    <br>TODO: mobile CTA if user is already in Firefox
+    <!-- TODO: mobile CTA if user is already in Firefox -->
   {% endcall %}
 
   <h2 class="c-section-title">The Unfcking Checklist</h2>
 
   <div class="mzp-l-content mzp-t-content-lg">
     {% call item(
-      title='Take action online. Change the outcome offline.',
-      info='Where you live is one of the most common data points used to target you online. Join us in changing your location on FB and Insta to Waco, TX, so we can throw off political ads and shine a light on voter suppression.',
-      link_text='How it Works',
+      title='Unfck political ads',
+      info='What you see online is not what your across-the-aisle uncle does. Copy all those hyper-targeted political ads on FB to a publicly accountable database so democracy stands a better chance.',
+      link_text='Get the Extension',
       link_url='#',
-      tw_text='text_test',
       id='location',
-      src=static('img/firefox/campaign/unfck/firecode.gif')
+      src=static('img/firefox/campaign/unfck/button.gif')
     ) %}{% endcall %}
 
     {% call item(
-        title='Netflix and change',
-        info='Watch The Social Dilemma on Netflix, a doc made with our friends at the Center for Humane Tech. It explains this whole data situation in words and actions real people can understand.',
+        title='Unfck YouTube',
+        info='Ever fall for a YouTube recommendation you regretted? This extension doesn’t give you a redo, but it might just keep it from happening to others.',
+        link_text='Get RegretsReporter',
+        link_url='#',
+        id='watch',
+        src=static('img/firefox/campaign/unfck/computer.gif')
+      ) %}{% endcall %}
+
+      {% call item(
+        title='Unfck Facebook',
+        info='We’ve got one good way to contain them, so you can keep your FB and say F you, too.',
+        link_text='Get Facebook Container',
+        link_url='#',
+        id='join',
+        src=static('img/firefox/campaign/unfck/phone.gif')
+      ) %}{% endcall %}
+
+      {% call item(
+        title='Unfck the system',
+        info='The more people who use independent tech like Firefox, the greater the effect. Get yourself some unfcked search results, email providers, productivity apps and more.',
+        link_text='Meet our Friends',
+        link_url='#',
+        id='join',
+        src=static('img/firefox/campaign/unfck/un.gif')
+      ) %}{% endcall %}
+
+      {% call item(
+        title='Unfck social media',
+        info='Watch The Social Dilemma on Netflix, an Exposure Labs production featuring our friends at the Center for Humane Tech. It unpacks the issues without judgment or jargon.',
         link_text='Watch the Doc',
         link_url='#',
-        tw_text='text_test',
-        id='watch',
-        src=static('img/firefox/campaign/unfck/popcorn.gif')
-      ) %}{% endcall %}
-
-      {% call item(
-        title='Join the anti-establishment',
-        info='The more people who use independent tech like Firefox, the greater the unfck effect. Get yourself some unfcked search results, email providers, productivity docs and more.',
-        link_text='Unfck More',
-        link_url='#',
-        tw_text='text_test',
         id='join',
-        src=static('img/firefox/campaign/unfck/kermit.gif')
+        src=static('img/firefox/campaign/unfck/highfive.gif')
       ) %}{% endcall %}
-
-      {% call item(
-        title='Tell us what you wanna unfck',
-        info='Maybe we can find new ways to solve it together. After all, we make internet products, pressure our peers, and speak truth to government power.',
-        tw_text='text_test',
-        id='tell',
-        src=static('img/firefox/campaign/unfck/fuckthis.gif'),
-        include_cta=True
-        ) %}
-        <div class="c-tell">
-          {% if form.errors %}
-            <p><strong>An error has occurred with your submission. Please review your information below and try again.</strong></p>
-          {% endif %}
-          {% if not form_success %}
-          <form name="firefox-unfck" id="unfck-form" class="c-unfck-form" action="{{ url('firefox.campaign.unfck') }}" method="post">
-            {{ csrf() }}
-            {{ field_with_attrs(form.unfck_field, class='c-tell-input'|safe, placeholder='TODO: some example text'|safe) }}
-            {{ field_with_attrs(form.office_fax) }}
-            <button type="submit" class="c-tell-button mzp-c-button mzp-t-secondary">Submit</button>
-          </form>
-          {% else %}
-            <p><strong>Thanks!</strong></p>
-          {% endif %}
-        </div>
-      {% endcall %}
   </div>
+
+  {% set tweet_text='2020 might be fcked, but the internet doesn’t have to be. Here are 5 easy ways we can all help turn things around.' %}
+  {% set tw_url = settings.CANONICAL_URL + '/firefox/campaign/unfck/' %}
+  {% set tw = 'https://www.twitter.com/intent/tweet?url=' + tw_url|urlencode + '&text=' + tweet_text|urlencode + '&hashtags=unfckTheInternet' %}
+
+  <p style="text-align: center;"><a class="js-twitter-share" target="_blank" rel="noopener noreferrer" href="{{ tw }}"><span class="c-item-icon twitter"></span><span class="c-item-text">Share this fcking shit to Twitter</span></a></p>
 
   <div class="mzp-l-content mzp-t-content-xl">
     <div class="mzp-l-card-third">
       {{ card(
-        title='Here’s how using Firefox unfcks the internet',
+        title='Here’s how Firefox unfcks the internet',
         ga_title='card-unfck',
         image_url=None,
         link_url='',
         heading_level=3,
-        desc='The chase starts the minute we open our phones, apps or a browser window — often by the maker of that product. Because the more data they collect about you, the more there is to sell you. And the more of you there is to sell. Firefox doesn’t play that game. We keep the online lives of our 300M users out of the Almighty Algorithm.',
-        cta='learn more'
+        desc='The makers of our phones, apps and browsers start chasing us the minute we open them. Because the more data they collect about you, the more there is to sell you — and the more of you there is to sell. Firefox doesn’t play that game. We keep the online lives of our 300M users out of the Almighty Algorithm.',
+        cta='Learn More'
       )}}
 
       {{ card(
@@ -134,8 +126,8 @@
         image_url=None,
         link_url='',
         heading_level=3,
-        desc='The Firefox browser is built to protect your privacy at every turn — because that’s the fastest way to free you from slow loads, bad ads, hackers and trackers — while clearing the way for more freedom, more youness, more magic. ',
-        cta='learn more'
+        desc='The Firefox browser is built to protect your privacy at every turn — because that’s the fastest way to free you from slow loads, bad ads, hackers and trackers. We get the worst of the internet out of the way so there’s more room for the best.',
+        cta='Learn More'
       )}}
 
       {{ card(
@@ -149,6 +141,8 @@
       )}}
     </div>
   </div>
+
+
 </main>
 {% endblock %}
 

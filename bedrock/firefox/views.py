@@ -13,20 +13,15 @@ import basket
 import querystringsafe_base64
 from django.conf import settings
 from django.http import (
-    HttpResponseRedirect,
     HttpResponsePermanentRedirect,
     JsonResponse,
 )
 
-from django.core.mail import EmailMessage
-from django.template.loader import render_to_string
 from django.utils.cache import patch_response_headers
 from django.utils.encoding import force_text
-from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
 from django.views.generic.base import TemplateView
-from django.utils.decorators import method_decorator
-from django.views.generic.edit import FormView
 from lib import l10n_utils
 from lib.l10n_utils import L10nTemplateView
 from lib.l10n_utils.dotlang import lang_file_is_active
@@ -41,7 +36,6 @@ from bedrock.firefox.forms import SendToDeviceWidgetForm
 from bedrock.newsletter.forms import NewsletterFooterForm
 from bedrock.releasenotes import version_re
 from bedrock.base.views import GeoRedirectView
-from .forms import (UnfckForm)
 
 
 UA_REGEXP = re.compile(r"Firefox/(%s)" % version_re)
@@ -66,11 +60,6 @@ STUB_VALUE_NAMES = [
     ('ua', '(not set)'),
 ]
 STUB_VALUE_RE = re.compile(r'^[a-z0-9-.%():_]+$', flags=re.IGNORECASE)
-
-UNFCK_EMAIL_FROM = 'Mozilla.com <noreply@mozilla.com>'
-UNFCK_EMAIL_SUBJECT = 'Tell the world what you wanna unfck'
-UNFCK_EMAIL_TO = ['TODO@mozilla.com']
-
 
 class InstallerHelpView(L10nTemplateView):
     ftl_files_map = {
@@ -836,46 +825,3 @@ def firefox_welcome_page1(request):
 
     return l10n_utils.render(request, template_name, context,
                              ftl_files='firefox/welcome/page1')
-
-
-class FirefoxUnfckView(FormView):
-    form_class = UnfckForm
-    template_name = 'firefox/campaign/unfck/index.html'
-
-    def get(self, *args, **kwargs):
-        if not switch('firefox-unfck-landing'):
-            return HttpResponseRedirect(reverse('firefox'))
-
-        return super(FirefoxUnfckView, self).get(*args, **kwargs)
-
-    @method_decorator(csrf_protect)
-    def dispatch(self, request, *args, **kwargs):
-        return super(FirefoxUnfckView, self).dispatch(request, *args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        context = super(FirefoxUnfckView, self).get_context_data(**kwargs)
-        context['form_success'] = 'success' in self.request.GET
-        return context
-
-    def get_success_url(self):
-        return reverse('firefox.campaign.unfck') + '?success=True'
-
-    def form_valid(self, form):
-        self.send_email(form)
-        return super(FirefoxUnfckView, self).form_valid(form)
-
-    def send_email(self, form):
-        subject = UNFCK_EMAIL_SUBJECT
-        sender = UNFCK_EMAIL_FROM
-        to = UNFCK_EMAIL_TO
-        msg = render_to_string('firefox/campaign/unfck/emails/unfck.txt', form.cleaned_data,
-                               request=self.request)
-
-        email = EmailMessage(subject, msg, sender, to)
-        email.send()
-
-    def render_to_response(self, context, **response_kwargs):
-        return l10n_utils.render(self.request,
-                                 self.get_template_names(),
-                                 context,
-                                 **response_kwargs)

@@ -63,29 +63,3 @@
     window.Mozilla.run(onLoad);
 })();
 
-
-/*
-    Download GIF
-*/
-(function() {
-    'use strict';
-
-    function watchDownloads() {
-        var downloadLinks = document.querySelectorAll('.js-download-gif');
-
-        for (var i = 0; i < downloadLinks.length; i++) {
-            downloadLinks[i].addEventListener('click', function(e) {
-                var item = e.target.closest('.c-item-unfck');
-                // Track the event in GA
-                window.dataLayer.push({
-                    'event': 'in-page-interaction',
-                    'eAction': 'checklist',
-                    'eLabel': 'download: ' + item.id,
-                });
-            }, false);
-        }
-    }
-
-    window.Mozilla.run(watchDownloads);
-
-})();

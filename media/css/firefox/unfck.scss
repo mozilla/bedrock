@@ -16,13 +16,9 @@ $image-path: '/media/protocol/img';
 // --------------------------------------------------------------------------
 
 $svg-icon-twitter: '<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M5.032 14.5c6.037 0 9.34-5.002 9.34-9.34 0-.142 0-.283-.01-.424A6.679 6.679 0 0 0 16 3.037c-.6.266-1.235.44-1.885.517a3.294 3.294 0 0 0 1.443-1.816 6.579 6.579 0 0 1-2.085.797A3.286 3.286 0 0 0 7.88 5.528 9.32 9.32 0 0 1 1.114 2.1 3.285 3.285 0 0 0 2.13 6.481 3.258 3.258 0 0 1 .64 6.07v.041A3.284 3.284 0 0 0 3.274 9.33c-.484.132-.99.151-1.483.056a3.286 3.286 0 0 0 3.067 2.28A6.587 6.587 0 0 1 0 13.025a9.294 9.294 0 0 0 5.032 1.472" fill="#88ffd1" fill-rule="nonzero"/></svg>';
-$svg-icon-download: '<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"><g transform="translate(6.000000, 3.000000)" stroke="#88ffd1" stroke-width="2"><path d="M0,18 L12,18"></path><polyline stroke-linejoin="round" points="0 8 6 14 12 8"></polyline><path d="M6,0 L6,14"></path></g></g></svg>';
-$svg-icon-link: '<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><g transform="translate(12.000000, 12.000000) scale(-1, 1) translate(-12.000000, -12.000000) translate(2.000000, 2.000000)" stroke="#88ffd1" stroke-width="2"><path d="M8,11 C8.86895549,12.1616929 10.1996273,12.8887004 11.6466499,12.9923333 C13.0936724,13.0959663 14.5143658,12.5660061 15.54,11.54 L18.54,8.54 C20.434861,6.57810557 20.4077619,3.45957611 18.4790929,1.53090712 C16.5504239,-0.397761869 13.4318944,-0.424861048 11.47,1.47 L9.75,3.18"></path><path d="M12,9 C11.1310445,7.83830708 9.8003727,7.11129957 8.35335013,7.00766666 C6.90632757,6.90403374 5.4856342,7.43399387 4.46,8.46 L1.46,11.46 C-0.434861048,13.4218944 -0.407761869,16.5404239 1.52090712,18.4690929 C3.44957611,20.3977619 6.56810557,20.424861 8.53,18.53 L10.24,16.82"></path></g></g></svg>';
 $svg-icon-cta: '<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><polyline vector-effect="non-scaling-stroke" stroke="#88ffd1" stroke-width="2" points="9 19 16 12 9 5"></polyline></g></svg>';
 
 $icon_twitter: svg-url($svg-icon-twitter);
-$icon_download: svg-url($svg-icon-download);
-$icon_link: svg-url($svg-icon-link);
 $icon_cta: svg-url($svg-icon-cta);
 $icon_width: $spacing-lg;
 
@@ -134,19 +130,51 @@ main {
 
 
 // --------------------------------------------------------------------------
-// hero
+// banner & hero
 
-.mzp-c-hero {
-    padding-top: 0;
-    padding-bottom: $v-grid-xs;
+.c-banner {
+    @include at2x('/media/img/firefox/campaign/unfck/hero-wide.png', contain);
+    margin: 0 auto 48px auto;
+    max-width: $content-xl;
+    position: relative;
+    top: $v-grid-xs;
+    z-index: 3;
 
     @media #{$mq-md} {
-        padding-bottom: $v-grid-md;
+        top: $v-grid-md;
     }
 
     @media #{$mq-lg} {
-        padding-bottom: $v-grid-lg;
+        top: $v-grid-lg;
     }
+
+    &:before {
+        @include at2x('/media/img/firefox/campaign/unfck/hero-wide.png', contain);
+        background-repeat: no-repeat;
+        display: block;
+        content: '';
+        height: 0;
+        width: 100%;
+        padding-top: 500 * 100% / 1152;
+    }
+
+    .loaded &:after {
+        background: transparent url('/media/img/firefox/campaign/unfck/heart.gif') left bottom no-repeat;
+        background-size: contain;
+        display: block;
+        content: '';
+        width: 17.9%;
+        position: absolute;
+        bottom: 6%;
+        top: 0;
+        left: 7.2%;
+        border-bottom-right-radius: 100px;
+    }
+}
+
+.mzp-c-hero {
+    padding-top: 0;
+    padding-bottom: 0;
 
     ul.download-list,
     .mzp-c-button-download-container {
@@ -154,46 +182,16 @@ main {
     }
 }
 
-@supports ( width: 75vw ) {
-    .mzp-c-hero-title {
-        @include visually-hidden;
-    }
-
-    .mzp-c-hero .mzp-l-content:before {
-        @include at2x('/media/img/firefox/campaign/unfck/hero-tall.png', contain);
-        background-position: top center;
-        background-repeat: no-repeat;
-        content: '';
-        display: block;
-        height: calc((100vw - #{$layout-xs} * 2) * (620 / 432)); // last two numbers are image dimensions
-        margin: 0 auto $spacing-md auto;
-        max-height: 622px;
-        max-width: $content-sm;
-        width: 100%;
-
-        @media #{$mq-md} {
-            @include at2x('/media/img/firefox/campaign/unfck/hero-wide.png', contain);
-            height: calc((100vw - #{$layout-lg} * 2) * (500 / 1152)); // last two numbers are image dimensions
-            max-height: 500px;
-            max-width: $content-xl;
-            padding-top: 0;
-        }
-
-        @media #{$mq-lg} {
-            height: calc((100vw - #{$layout-xl} * 2) * (500 / 1152)); // last two numbers are image dimensions
-        }
-    }
+.mzp-c-hero-title {
+    @include visually-hidden;
 }
+
 
 // --------------------------------------------------------------------------
 // checklist
 
-main {
-    counter-reset: checklist;
-}
-
 .c-item-unfck {
-    margin: $layout-md auto 0 auto;
+    margin: $layout-lg auto 0 auto;
     max-width: $content-sm;
     position: relative;
 
@@ -210,61 +208,19 @@ main {
     }
 }
 
+.c-item-img {
+    text-align: center;
+}
+
 .c-item-gif {
-    margin-bottom: $layout-sm;
+    display: block;
+    margin: 0 auto $layout-sm;
+    max-width: 280px;
 }
 
 .c-item-title {
     @include font-size(24px);
     position: relative;
-
-    &:before {
-        counter-increment: checklist;
-        content: counter(checklist) ". ";
-        padding-right: $spacing-sm;
-    }
-}
-
-.c-item-link {
-    @include font-size(14px);
-    background-color: transparent;
-    border: 0;
-    color: $color-white;
-    display: inline-block;
-    padding: 0;
-    text-align: left;
-    white-space: nowrap;
-
-    .c-item-share &:link,
-    .c-item-share &:visited {
-        text-decoration: none;
-    }
-
-    .c-item-share &:hover,
-    .c-item-share &:focus {
-        text-decoration: underline;
-    }
-}
-
-.c-item-icon {
-    @include image-replaced;
-    background-repeat: no-repeat;
-    background-size: $icon_width auto;
-    display: inline-block;
-    height: $icon_width;
-    margin-right: $spacing-sm;
-    vertical-align: middle;
-    width: $icon_width;
-
-    &.twitter {
-        background-image: $icon_twitter;
-    }
-    &.download {
-        background-image: $icon_download;
-    }
-    &.link {
-        background-image: $icon_link;
-    }
 }
 
 @supports (display:grid) {
@@ -274,76 +230,12 @@ main {
             "image"
             "title"
             "desc";
-        margin-left: 0;
-        margin-right: 0;
-        max-width: 100%;
     }
 
     .c-item-img {
         @include grid-column-gap($h-grid-xs);
-        display: grid;
         grid-area: image;
-        grid-template-columns: 1fr $icon_width;
         justify-items: end;
-    }
-
-    .c-item-gif {
-        justify-self: start;
-        margin-bottom: 0;
-        transition: opacity 0.5s ease-out;
-
-        .c-item-img:hover &,
-        .c-item-img:focus-within & {
-            opacity: 0.2;
-        }
-    }
-
-    .c-item-share {
-        position: relative;
-    }
-
-    .c-item-link {
-        padding-right: $icon_width + $spacing-sm;
-        position: absolute;
-        right: 0;
-        top: 0;
-
-        li:nth-child(2) & {
-            top: $layout-md;
-        }
-
-        li:nth-child(3) & {
-            top: $layout-md*2;
-        }
-    }
-
-    .c-item-text {
-        align-items: center;
-        display: flex;
-        min-height: $icon_width;
-        opacity: 0;
-        transition: opacity 0.5s ease-out;
-
-        .c-item-img:hover &,
-        .c-item-img:focus-within &,
-        .c-item-link:focus & {
-            opacity: 1;
-        }
-    }
-
-    .c-item-icon {
-        margin-right: 0;
-        opacity: 0.5;
-        position: absolute;
-        right: 0;
-        top: 0;
-        transition: opacity 0.5s ease-out;
-
-        .c-item-img:hover &,
-        .c-item-img:focus-within &,
-        .c-item-link:focus & {
-            opacity: 1;
-        }
     }
 
     .c-item-desc p:last-child {
@@ -354,10 +246,14 @@ main {
         .c-item-unfck {
             @include grid-column-gap($h-grid-md);
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: min-content 1fr;
+            grid-template-rows: min-content 1fr;
             grid-template-areas:
                 "image title"
                 "image desc";
+            max-width: 100%;
+            margin-left: 0;
+            margin-right: 0;
         }
 
         .c-item-img {
@@ -367,24 +263,7 @@ main {
         }
 
         .c-item-gif {
-            grid-column-start: 2;
-        }
-
-        .c-item-share {
-            grid-row-start: 1;
-            grid-column-start: 1;
-        }
-
-        .c-item-icon {
-            left: 0;
-            right: auto;
-        }
-
-        .c-item-link {
-            left: 0;
-            padding-left: $icon_width + $spacing-sm;
-            padding-right: 0;
-            right: auto;
+            margin-bottom: 0;
         }
 
         .c-item-title {
@@ -401,6 +280,7 @@ main {
     @media #{$mq-lg} {
         .c-item-unfck {
             @include grid-column-gap($h-grid-lg);
+            grid-template-columns: 1fr 2fr;
         }
 
         .c-item-img {
@@ -409,43 +289,6 @@ main {
     }
 }
 
-// text area
-
-.c-tell-input {
-    background-color: $color-yellow-05;
-    border-color: $color-green-30;
-    color: $color-ink-90;
-    width: 100%;
-
-    &:hover {
-        border-color: $color-yellow-05;
-    }
-
-    &:focus {
-        border-color: $color-yellow-05;
-        box-shadow: $field-focus-ring-dark;
-    }
-}
-
-.c-tell-button.mzp-c-button.mzp-t-secondary {
-    border-color: $color-green-30;
-    color: $color-green-30;
-
-    &:hover {
-        background-color: $color-green-50;
-        border-color: $color-green-50;
-        color: $color-ink-90;
-    }
-
-    &:focus {
-        box-shadow: $field-focus-ring-dark;
-    }
-}
-
-// honeypot
-.super-priority-field {
-    display: none;
-}
 
 // --------------------------------------------------------------------------
 // section titles
