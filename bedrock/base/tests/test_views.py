@@ -10,15 +10,17 @@ from bedrock.base.views import geolocate, GeoRedirectView
 class TestGeolocate(TestCase):
     def get_country(self, country):
         with patch('bedrock.base.views.get_country_from_request') as geo_mock:
-            geo_mock.return_value = country
+            geo_mock.return_value = country, 'local'
             rf = RequestFactory()
             req = rf.get('/')
             resp = geolocate(req)
             return json.loads(resp.content)
 
     def test_geo_returns(self):
-        self.assertDictEqual(self.get_country('US'), {'country_code': 'US'})
-        self.assertDictEqual(self.get_country('FR'), {'country_code': 'FR'})
+        self.assertDictEqual(self.get_country('US'), {'country_code': 'US',
+                                                      'data_source': 'local'})
+        self.assertDictEqual(self.get_country('FR'), {'country_code': 'FR',
+                                                      'data_source': 'local'})
         self.assertDictEqual(self.get_country(None), {
             "error": {
                 "errors": [{
@@ -45,7 +47,7 @@ geo_view = GeoRedirectView.as_view(
 class TestGeoRedirectView(TestCase):
     def get_response(self, country):
         with patch('bedrock.base.views.get_country_from_request') as geo_mock:
-            geo_mock.return_value = country
+            geo_mock.return_value = country, 'local'
             rf = RequestFactory()
             req = rf.get('/')
             return geo_view(req)
