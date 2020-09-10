@@ -11,31 +11,9 @@ $image-path: '/media/protocol/img';
 @import '../../../../protocol/css/components/picto-card';
 @import '../../../../protocol/css/templates/card-layout';
 
-// keep the button technically visible to grab correct download link for
-// backup download link
-.js #download-button-wrapper-desktop {
-    height: 1px;
-    margin: 0 auto;
-    overflow: hidden;
-    position: absolute;
-    width: 1px;
-
-    #primary-download-button {
-        margin: 1px 0 0 1px;
-    }
-}
-
-// Notification bar for unsupported systems
-.mzp-c-notification-bar {
-    &.unsupported {
-        display: none;
-    }
-
-    .windows.xpvista & {
-        &.unsupported {
-            display: block;
-        }
-    }
+// Hide the /thanks download button as selection is made via JS automatically.
+#thanks-download-button {
+    display: none;
 }
 
 main {
@@ -165,6 +143,17 @@ main {
                 @include bidi(((clear, left, right),));
             }
         }
+    }
+}
+
+.c-support-install {
+    margin: 0 auto;
+    max-width: 30em;
+    text-align: center;
+
+    &> span {
+        display: block;
+        margin-top: $spacing-xl;
     }
 }
 

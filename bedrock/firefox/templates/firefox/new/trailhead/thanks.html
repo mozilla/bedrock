@@ -27,12 +27,7 @@
 {% block content %}
 <main role="main">
   <div class="mzp-l-content">
-    <div class="mzp-c-notification-bar mzp-t-warning unsupported">
-      <p>
-        {{ ftl('firefox-new-youre-using-an-insecure-outdated', url='https://support.mozilla.org/kb/end-support-windows-xp-and-vista') }}
-      </p>
-    </div>
-    <div class="mzp-c-notification-bar mzp-t-success auto-download">
+    <div class="mzp-c-notification-bar mzp-t-success show-auto-download-notification">
       {# fallback_url is replaced by the platform download link via JS, but if
          something fails the user should still get a link to a working download path. #}
       <p>
@@ -41,18 +36,28 @@
     </div>
   </div>
 
-  {% call call_out(
-    title=ftl('firefox-new-firefox-is-more-than-a-browser'),
-    class='mzp-t-product-firefox',
-    heading_level=1,
-    include_cta=True
-  ) %}
-    <div id="download-button-wrapper-desktop">
-      {{ download_firefox(force_direct=true, dom_id='primary-download-button') }}
-    </div>
-  {% endcall %}
+  <section class="mzp-c-call-out mzp-t-product-firefox">
+    <div class="mzp-l-content">
+      <h1 class="mzp-c-call-out-title show-windows show-mac show-xp-vista show-else">{{ ftl('firefox-new-firefox-is-more-than-a-browser') }}</h1>
 
-  <ul class="mzp-l-card-quarter mzp-l-content">
+      <h1 class="mzp-c-call-out-title show-linux-arm">{{ ftl('firefox-new-download-interrupted') }}</h1>
+
+      <h1 class="mzp-c-call-out-title show-unknown">{{ ftl('firefox-new-download-interrupted') }}</h1>
+
+      <div class="c-support-install">
+        {# Edge-case platform support messaging #}
+        <span class="show-xp-vista">{{ ftl('firefox-new-mozilla-no-longer-provides', fallback='firefox-new-youre-using-an-insecure-outdated', url='https://support.mozilla.org/kb/end-support-windows-xp-and-vista') }}</span>
+        <span class="show-linux-arm">{{ ftl('firefox-new-please-follow', fallback='download-button-please-follow-these', url='https://support.mozilla.org/kb/install-firefox-linux') }}</span>
+        <span class="show-unknown">
+          {{ ftl('firefox-new-your-system-may-not', url=firefox_url('desktop', 'all'))}}
+        </span>
+      </div>
+
+      {{ download_firefox(force_direct=true, dom_id='thanks-download-button') }}
+    </div>
+  </section>
+
+  <ul class="mzp-l-card-quarter mzp-l-content show-windows show-mac show-else">
     {{ picto_card(desc=ftl('firefox-new-its-privacy-and-peace-of'), class='devices') }}
     {{ picto_card(desc=ftl('firefox-new-its-a-family-of-products'), class='products') }}
     {{ picto_card(desc=ftl('firefox-new-its-everything-you-need-to'), class='safety') }}

@@ -30,9 +30,7 @@
  * Hide nav download button on unsupported systems to prevent
  * taking over large amounts of screen real estate.
  */
-html.other,
-html.oldwin,
-html.oldmac {
+html.other {
     .mzp-c-navigation .mzp-c-navigation-download {
         display: none;
     }
