@@ -305,19 +305,6 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/index.html']
 
-    # begin id locale-specific tests
-
-    @override_settings(DEV=True)
-    def test_id_locale_template_lite(self, render_mock):
-        """Should use id locale specific template for Firefox Lite"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'id'
-        self.view(req, version='79.0')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/firefox-lite.id.html']
-
-    # end id locale-specific tests
-
     # begin 76.0 whatsnew tests
 
     @patch.object(fx_views, 'lang_file_is_active', lambda *x: True)
