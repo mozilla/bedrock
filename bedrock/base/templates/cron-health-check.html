@@ -94,6 +94,12 @@
         <td><a href="{{ server_info.db_file_url }}">{{ server_info.db_file_name }}</a></td>
       </tr>
       {% endif %}
+      {% if server_info.geo_last_update %}
+        <tr>
+          <td>GeoIP DB Last Updated</td>
+          <td>{{ server_info.geo_last_update }}</td>
+        </tr>
+      {% endif %}
     </tbody>
   </table>
 
