@@ -13,6 +13,7 @@ from db_s3_utils import (
     get_prev_db_data,
     set_db_data,
     JSON_DATA_FILE,
+    JSON_DATA_FILE_NAME,
     DB_FILE,
 )
 
@@ -57,7 +58,7 @@ def upload_db_data(db_data):
 
     try:
         # after successful file upload, upload json metadata
-        s3.upload_file(JSON_DATA_FILE, BUCKET_NAME, JSON_DATA_FILE,
+        s3.upload_file(JSON_DATA_FILE, BUCKET_NAME, JSON_DATA_FILE_NAME,
                        ExtraArgs={'ACL': 'public-read'})
     except Boto3Error:
         return 'ERROR: Failed to upload the new database info file: %s' % db_data
