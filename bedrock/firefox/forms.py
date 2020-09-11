@@ -6,8 +6,6 @@ import re
 
 from django import forms
 
-from bedrock.mozorg.forms import HoneyPotWidget
-
 
 class SendToDeviceWidgetForm(forms.Form):
     number = forms.CharField(max_length=20, min_length=4, required=False)
@@ -24,21 +22,3 @@ class SendToDeviceWidgetForm(forms.Form):
             number = re.sub(r'\D+', '', number)
 
         return number
-
-
-class UnfckForm(forms.Form):
-    unfck_field = forms.CharField(
-        max_length=280,
-        required=True,
-        widget=forms.Textarea(),
-    )
-
-    # honeypot
-    office_fax = forms.CharField(widget=HoneyPotWidget, required=False)
-
-    def clean_office_fax(self):
-        cleaned_data = super(UnfckForm, self).clean()
-        honeypot = cleaned_data.pop('office_fax', None)
-
-        if honeypot:
-            raise forms.ValidationError('Your submission could not be processed')

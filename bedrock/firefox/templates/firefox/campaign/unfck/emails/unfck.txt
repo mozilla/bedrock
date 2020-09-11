@@ -1,5 +1,0 @@
-Tell the world what you wanna unfck
-
-------------------------------------
-
-{{ unfck_field|bleach_tags }}
