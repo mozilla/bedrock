@@ -180,4 +180,4 @@ if settings.DEV:
 else:
     urlpatterns += (
         redirect(r'^firefox/unfck(/.*)?', 'firefox', permanent=False),
-)
+    )

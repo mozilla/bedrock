@@ -61,6 +61,7 @@ STUB_VALUE_NAMES = [
 ]
 STUB_VALUE_RE = re.compile(r'^[a-z0-9-.%():_]+$', flags=re.IGNORECASE)
 
+
 class InstallerHelpView(L10nTemplateView):
     ftl_files_map = {
         'firefox/installer-help-redesign.html': ['firefox/installer-help']
