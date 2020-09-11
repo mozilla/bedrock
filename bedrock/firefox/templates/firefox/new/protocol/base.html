@@ -8,9 +8,6 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{# FxA automated tests use this attribute to verify the page #}
-{% block html_attrs %}data-test-fxa-template="firefox-download-thanks"{% endblock %}
-
 {% block page_title_prefix %}{{_('Download Firefox')}} — {% endblock %}
 
 {%- block page_title -%}{{_('Free Web Browser')}}{%- endblock -%}
