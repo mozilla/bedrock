@@ -374,6 +374,7 @@ html {
     // send to device is inline on this page.
     .welcome-page4 & {
         color: $color-ink-80;
+        margin-top: $spacing-md;
 
         .mzp-c-button-info {
             width: unset;
