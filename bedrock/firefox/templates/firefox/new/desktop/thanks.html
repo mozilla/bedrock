@@ -6,6 +6,9 @@
 
 {% extends "firefox/new/desktop/base.html" %}
 
+{# FxA automated tests use this attribute to verify the page #}
+{% block html_attrs %}data-test-fxa-template="firefox-download-thanks"{% endblock %}
+
 {# "scene2" page should not be indexed to avoid it appearing in search results: issue 7024 #}
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
