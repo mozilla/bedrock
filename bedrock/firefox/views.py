@@ -30,7 +30,6 @@ from product_details.version_compare import Version
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.base.waffle import switch
-from bedrock.contentcards.models import get_page_content_cards
 from bedrock.firefox.firefox_details import firefox_android, firefox_desktop
 from bedrock.firefox.forms import SendToDeviceWidgetForm
 from bedrock.newsletter.forms import NewsletterFooterForm
@@ -779,26 +778,6 @@ class FirefoxHomeView(L10nTemplateView):
             template_name = 'firefox/home/index-quantum.html'
 
         return [template_name]
-
-
-def election_with_cards(request):
-    locale = l10n_utils.get_locale(request)
-    ctx = {
-        'page_content_cards': get_page_content_cards('election-en', locale),
-        'active_locales': ['de', 'fr', 'en-US'],
-    }
-
-    if locale == 'de':
-        template_name = 'firefox/election/index-de.html'
-        ctx['page_content_cards'] = get_page_content_cards('election-de', 'de')
-    elif locale == 'fr':
-        template_name = 'firefox/election/index-fr.html'
-        ctx['page_content_cards'] = get_page_content_cards('election-fr', 'fr')
-    else:
-        template_name = 'firefox/election/index.html'
-        ctx['page_content_cards'] = get_page_content_cards('election-en', 'en-US')
-
-    return l10n_utils.render(request, template_name, ctx)
 
 
 BREACH_TIPS_URLS = {
