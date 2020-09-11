@@ -66,6 +66,10 @@ html {
     padding: $layout-xs 0;
     text-align: center;
 
+    .welcome-page4 & {
+        max-width: $content-md - ($layout-md * 2);
+    }
+
     .welcome-page8.variation-2-image &,
     .welcome-page8.variation-3-animation & {
         max-width: $content-max;
@@ -370,6 +374,7 @@ html {
     // send to device is inline on this page.
     .welcome-page4 & {
         color: $color-ink-80;
+        margin-top: $spacing-md;
 
         .mzp-c-button-info {
             width: unset;
