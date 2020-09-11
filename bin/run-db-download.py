@@ -10,7 +10,7 @@ from db_s3_utils import (
     get_git_sha,
     get_prev_db_data,
     set_db_data,
-    JSON_DATA_FILE,
+    JSON_DATA_FILE_NAME,
     DB_FILE,
     DATA_PATH,
 )
@@ -30,7 +30,7 @@ def get_file_url(filename):
 
 def download_db_info():
     try:
-        resp = requests.get(get_file_url(os.path.basename(JSON_DATA_FILE)))
+        resp = requests.get(get_file_url(JSON_DATA_FILE_NAME))
         resp.raise_for_status()
     except requests.RequestException:
         return None
