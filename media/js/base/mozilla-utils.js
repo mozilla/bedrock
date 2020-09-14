@@ -65,7 +65,7 @@ if (typeof window.Mozilla === 'undefined') {
      * Set platfrom specific GA data attributes for download_firefox_thanks() buttons.
      */
     Utils.trackDownloadThanksButton = function() {
-        var downloadButton = document.querySelectorAll('.c-button-download-thanks > a');
+        var downloadButton = document.querySelectorAll('.c-button-download-thanks > .download-link');
         var data = Utils.getDownloadAttributionValues(window.site);
 
         for (var i = 0; i < downloadButton.length; ++i) {

@@ -42,7 +42,7 @@ describe('mozilla-utils-ie.js', function() {
     describe('initDownloadLinks (/thanks download button)', function () {
 
         beforeEach(function () {
-            var link = '<div class="c-button-download-thanks"><a data-direct-link="test-download-url">Download</a></div>';
+            var link = '<div class="c-button-download-thanks"><a class="download-link" data-direct-link="test-download-url">Download</a></div>';
             document.body.insertAdjacentHTML('beforeend', link);
         });
 
@@ -55,7 +55,7 @@ describe('mozilla-utils-ie.js', function() {
         it('should call triggerIEDownload when clicked', function () {
             spyOn(Mozilla.UtilsIE, 'triggerIEDownload');
             Mozilla.UtilsIE.initDownloadLinks();
-            document.querySelector('.c-button-download-thanks > a').click();
+            document.querySelector('.c-button-download-thanks > .download-link').click();
             expect(Mozilla.UtilsIE.triggerIEDownload).toHaveBeenCalledWith('test-download-url');
         });
     });

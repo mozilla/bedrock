@@ -196,8 +196,9 @@ def download_firefox_thanks(ctx, dom_id=None, locale=None, alt_copy=None, button
     transition_url = '/firefox/download/thanks/'
     version = firefox_desktop.latest_version(channel)
 
+    # if there's a funnelcake param in the page URL e.g. ?f=123
     if funnelcake_id:
-        # include funnelcake in /download/thanks/ URL
+        # include param in transitional URL e.g. /firefox/download/thanks/?f=123
         transition_url += '?f=%s' % funnelcake_id
 
     if locale_in_transition:

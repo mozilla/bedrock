@@ -26,7 +26,7 @@
     }
 
     var initFxAccountModal = function() {
-        var downloadLinkPrimary = document.querySelectorAll('.main-download .c-button-download-thanks > a');
+        var downloadLinkPrimary = document.querySelectorAll('.main-download .c-button-download-thanks > .download-link');
         for (var i = 0; i < downloadLinkPrimary.length; i++) {
             downloadLinkPrimary[i].addEventListener('click', showFxAModal, false);
         }

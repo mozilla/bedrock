@@ -10,9 +10,9 @@ from pages.base import BasePage
 class HomePage(BasePage):
 
     _privacy_hero_button_locator = (By.CSS_SELECTOR, '.privacy-promise-hero .mzp-c-button')
-    _rest_of_world_download_button_locator = (By.ID, 'download-intro')  # legacy home page
-    _primary_download_button_locator = (By.ID, 'download-primary')
-    _secondary_download_button_locator = (By.ID, 'download-secondary')
+    _rest_of_world_download_button_locator = (By.CSS_SELECTOR, '#download-intro > .download-link')  # legacy home page
+    _primary_download_button_locator = (By.CSS_SELECTOR, '#download-primary > .download-link')
+    _secondary_download_button_locator = (By.CSS_SELECTOR, '#download-secondary > .download-link')
     _primary_accounts_button_locator = (By.ID, 'fxa-learn-primary')
     _secondary_accounts_button_locator = (By.ID, 'fxa-learn-secondary')
 

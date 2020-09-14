@@ -325,14 +325,15 @@ class TestDownloadThanksButton(TestCase):
         doc = pq(render("{{ download_firefox_thanks() }}",
                         {'request': get_request, 'fluent_l10n': self.get_l10n(get_request.locale)}))
 
-        links = doc('.c-button-download-thanks > a')
+        button = doc('.c-button-download-thanks')
+        links = doc('.c-button-download-thanks > .download-link')
         assert links.length == 1
 
         link = pq(links)
         href = link.attr('href')
 
         assert href == ('/firefox/download/thanks/')
-        assert link.attr('id') == 'download-button-thanks'
+        assert button.attr('id') == 'download-button-thanks'
         assert link.attr('data-link-type') == 'download'
 
         # Direct attribute for legacy IE browsers should always be win 32bit
@@ -349,14 +350,15 @@ class TestDownloadThanksButton(TestCase):
                         "download_location='primary cta', locale_in_transition=True) }}",
                         {'request': get_request, 'fluent_l10n': self.get_l10n(get_request.locale)}))
 
-        links = doc('.c-button-download-thanks > a')
+        button = doc('.c-button-download-thanks')
+        links = doc('.c-button-download-thanks > .download-link')
         assert links.length == 1
 
         link = pq(links)
         href = link.attr('href')
 
         assert href == ('/en-US/firefox/download/thanks/')
-        assert link.attr('id') == 'test-download'
+        assert button.attr('id') == 'test-download'
         assert link.attr('data-download-location') == 'primary cta'
         assert 'test-css-class' in link.attr('class')
 

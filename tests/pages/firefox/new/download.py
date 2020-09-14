@@ -12,7 +12,7 @@ class DownloadPage(BasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/new/{params}'
 
-    _download_button_locator = (By.ID, 'download-button-thanks')
+    _download_button_locator = (By.CSS_SELECTOR, '#download-button-thanks > .download-link')
     _platforms_modal_link_locator = (By.CLASS_NAME, 'js-platform-modal-button')
     _platforms_modal_content_locator = (By.CLASS_NAME, 'mzp-u-modal-content')
     _join_firefox_modal_content_locator = (By.CLASS_NAME, 'join-firefox-content')

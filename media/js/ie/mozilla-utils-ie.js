@@ -36,11 +36,15 @@ if (typeof window.Mozilla === 'undefined') {
     // attach an event to all the download buttons to trigger the special
     // ie functionality if on ie
     UtilsIE.initDownloadLinks = function() {
-        $('.download-link, .c-button-download-thanks > a').each(function() {
+        $('.download-link').each(function() {
             var $el = $(this);
-            $el.click(function() {
-                UtilsIE.triggerIEDownload($el.data('direct-link'));
-            });
+            var directLink = $el.data('direct-link');
+
+            if (directLink) {
+                $el.click(function() {
+                    UtilsIE.triggerIEDownload(directLink);
+                });
+            }
         });
         $('.download-list').attr('role', 'presentation');
     };
