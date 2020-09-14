@@ -179,4 +179,6 @@ if settings.DEV:
 else:
     urlpatterns += (
         redirect(r'^firefox/unfck(/.*)?', 'firefox', permanent=False),
+        redirect(r'^firefox/unfuck(/.*)?', 'firefox', permanent=False),
+        redirect(r'^firefox/love(/.*)?', 'firefox', permanent=False),
     )
