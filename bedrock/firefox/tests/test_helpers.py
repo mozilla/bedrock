@@ -332,7 +332,7 @@ class TestDownloadThanksButton(TestCase):
         link = pq(links)
         href = link.attr('href')
 
-        assert href == ('/firefox/download/thanks/')
+        assert href == '/firefox/download/thanks/'
         assert button.attr('id') == 'download-button-thanks'
         assert link.attr('data-link-type') == 'download'
 
@@ -357,7 +357,7 @@ class TestDownloadThanksButton(TestCase):
         link = pq(links)
         href = link.attr('href')
 
-        assert href == ('/en-US/firefox/download/thanks/')
+        assert href == '/en-US/firefox/download/thanks/'
         assert button.attr('id') == 'test-download'
         assert link.attr('data-download-location') == 'primary cta'
         assert 'test-css-class' in link.attr('class')
