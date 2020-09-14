@@ -103,14 +103,23 @@ if (typeof window.Mozilla === 'undefined') {
 
         // target download buttons and other-platforms modal links.
         $('.download-list .download-link, .download-platform-list .download-link').each(function() {
+            var link = this;
             var version;
-            // If this is a transitional download link do nothing.
-            if (this.href && this.href.indexOf('/firefox/download/thanks/') === -1) {
+            var directLink;
+            // Append stub attribution data to direct download links.
+            if (link.href && link.href.indexOf('https://download.mozilla.org') !== -1) {
 
-                version = $(this).data('downloadVersion');
+                version = link.getAttribute('data-download-version');
                 // Append attribution params to Windows 32bit, 64bit, and MSI installer links.
                 if (version && (/win/.test(version))) {
-                    this.href = Mozilla.StubAttribution.appendToDownloadURL(this.href, data);
+                    link.href = Mozilla.StubAttribution.appendToDownloadURL(link.href, data);
+                }
+            } else if (link.href && link.href.indexOf('/firefox/download/thanks/') !== -1) {
+                // Append stub data to direct-link data attributes on transitional links for old IE browsers (Issue #9350)
+                directLink = link.getAttribute('data-direct-link');
+
+                if (directLink) {
+                    link.setAttribute('data-direct-link', Mozilla.StubAttribution.appendToDownloadURL(directLink, data));
                 }
             }
         });
