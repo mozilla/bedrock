@@ -13,6 +13,53 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/templates/card-layout';
 
 
+
+// --------------------------------------------------------------------------
+// conditional content classes
+
+.cc-mobile {
+    display: none;
+}
+
+// firefox
+.is-firefox {
+    .cc-download {
+        display: none;
+    }
+    .cc-mobile {
+        display: block;
+    }
+}
+
+// mobile
+.ios,
+.android {
+    .cc-download {
+        display: none;
+    }
+    .cc-mobile {
+        display: block;
+    }
+
+    // mobile firefox
+    &.is-firefox {
+        .cc-start,
+        .cc-download,
+        .cc-mobile {
+            display: none;
+        }
+    }
+}
+
+.android .cc-ios,
+.ios .cc-android {
+    display: none;
+}
+
+.mobile-download-buttons li {
+    display: inline-block;
+}
+
 // --------------------------------------------------------------------------
 
 $svg-icon-twitter: '<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M5.032 14.5c6.037 0 9.34-5.002 9.34-9.34 0-.142 0-.283-.01-.424A6.679 6.679 0 0 0 16 3.037c-.6.266-1.235.44-1.885.517a3.294 3.294 0 0 0 1.443-1.816 6.579 6.579 0 0 1-2.085.797A3.286 3.286 0 0 0 7.88 5.528 9.32 9.32 0 0 1 1.114 2.1 3.285 3.285 0 0 0 2.13 6.481 3.258 3.258 0 0 1 .64 6.07v.041A3.284 3.284 0 0 0 3.274 9.33c-.484.132-.99.151-1.483.056a3.286 3.286 0 0 0 3.067 2.28A6.587 6.587 0 0 1 0 13.025a9.294 9.294 0 0 0 5.032 1.472" fill="#88ffd1" fill-rule="nonzero"/></svg>';
@@ -62,10 +109,6 @@ main {
         margin-bottom: $spacing-md;
     }
 
-    h1, h2 {
-        color: $color-yellow-05;
-    }
-
     img {
         .mzp-c-card & {
             display: block;
@@ -83,8 +126,62 @@ main {
     & .mzp-c-card-feature-desc,
     & .mzp-c-hero {
         @include light-links;
-        background-color: $color-purple-90;
+        background-color: transparent;
         color: $color-white;
+    }
+
+    & {
+        background-color: $color-purple-90;
+
+        // bg texture
+        .loaded & {
+            background-image: url('/media/img/firefox/campaign/unfck/bg/top.png'),
+                              // checklist heading
+                              url('/media/img/firefox/campaign/unfck/bg/17.jpg'),
+                              url('/media/img/firefox/campaign/unfck/bg/19.jpg'),
+                              // ads
+                              url('/media/img/firefox/campaign/unfck/bg/2.jpg'),
+                              // fb
+                              url('/media/img/firefox/campaign/unfck/bg/3.jpg'),
+                              // youtube
+                              url('/media/img/firefox/campaign/unfck/bg/13.jpg'),
+                              url('/media/img/firefox/campaign/unfck/bg/20.jpg'),
+                              // giphy
+                              url('/media/img/firefox/campaign/unfck/bg/13.jpg'),
+                              url('/media/img/firefox/campaign/unfck/bg/9.jpg');
+            background-position: top center,
+                                 // checklist heading
+                                 top 700px right calc(50% + #{$content-sm / 2 }),
+                                 top 800px left calc(50% + #{$content-sm / 2 }),
+                                 // ads
+                                 top 1200px right calc(50% + #{$content-sm / 2 }),
+                                 // fb
+                                 top 1950px right calc(50% + #{$content-sm / 2 }),
+                                 // youtube
+                                 top 2500px right calc(50% + #{$content-sm / 2 }),
+                                 top 2300px left calc(50% + #{$content-sm / 2 }),
+                                 // giphy
+                                 bottom 50px right calc(50% + #{$content-sm / 2 } ),
+                                 bottom 350px left calc(50% + #{$content-sm / 2 });
+            background-repeat: no-repeat;
+
+            @media #{$mq-lg} {
+                background-position: top center,
+                                    // checklist heading
+                                    top 700px right calc(50% + #{$content-lg / 2 }),
+                                    top 800px left calc(50% + #{$content-lg / 2 }),
+                                    // ads
+                                    top 1200px right calc(50% + #{$content-lg / 2 }),
+                                    // fb
+                                    top 1950px right calc(50% + #{$content-lg / 2 }),
+                                    // youtube
+                                    top 2500px right calc(50% + #{$content-lg / 2 }),
+                                    top 2300px left calc(50% + #{$content-lg / 2 }),
+                                    // giphy
+                                    bottom 50px right calc(50% + #{$content-lg / 2 } ),
+                                    bottom 350px left calc(50% + #{$content-lg / 2 });
+            }
+        }
     }
 
     a.mzp-c-button.download-link {
@@ -101,7 +198,7 @@ main {
     }
 
     .fx-privacy-link {
-        display: none;
+        display: none; //TODO
     }
 
     .mzp-c-cta-link {
@@ -134,8 +231,10 @@ main {
 
 .c-banner {
     @include at2x('/media/img/firefox/campaign/unfck/hero-wide.png', contain);
+    background-repeat: no-repeat;
     margin: 0 auto 48px auto;
-    max-width: $content-xl;
+    width: calc(100% - #{$layout-sm * 2});
+    max-width: 536px;
     position: relative;
     top: $v-grid-xs;
     z-index: 3;
@@ -155,7 +254,7 @@ main {
         content: '';
         height: 0;
         width: 100%;
-        padding-top: 500 * 100% / 1152;
+        padding-top: 302 * 100% / 531; // dimensions of the image
     }
 
     .loaded &:after {
@@ -163,12 +262,11 @@ main {
         background-size: contain;
         display: block;
         content: '';
-        width: 17.9%;
+        width: 21%;
         position: absolute;
-        bottom: 6%;
+        bottom: 1%;
         top: 0;
-        left: 7.2%;
-        border-bottom-right-radius: 100px;
+        left: 0;
     }
 }
 
@@ -307,9 +405,74 @@ main {
 }
 
 // --------------------------------------------------------------------------
+// giphy box
+
+.c-box {
+    @include clearfix();
+    border-radius: $border-radius-md;
+    border: 1px solid $color-violet-50;
+    padding: $layout-sm;
+    text-align: center;
+    margin-bottom: $v-grid-xs;
+
+    @media #{$mq-md} {
+        padding: $layout-md;
+        margin-bottom: $v-grid-md;
+    }
+
+    @media #{$mq-lg} {
+        margin-bottom: $v-grid-lg;
+    }
+
+    @media #{$mq-xl} {
+        padding: $layout-lg;
+    }
+}
+
+.c-box-gifs {
+    margin-top: $layout-sm;
+}
+
+.c-box-gif {
+    margin-top: $layout-sm;
+
+    &:first-child {
+        margin-top: 0;
+    }
+}
+
+@media #{$mq-sm} {
+    .c-box-gif {
+        float: left;
+        margin-top: 0;
+        margin-left: $layout-sm;
+        max-width: calc(33.3% - #{$layout-sm * 2 / 3});
+
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+}
+
+@supports (display:grid) {
+    @media #{$mq-lg} {
+        .c-box {
+            @include grid-column-gap($h-grid-md);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            text-align: left;
+        }
+    }
+}
+
+// --------------------------------------------------------------------------
 // cards
 // https://github.com/mozilla/protocol/issues/536
 // https://github.com/mozilla/bedrock/pull/9096
+
+.mzp-l-content.c-cards {
+    padding-bottom: 0;
+}
 
 .mzp-c-card {
     background-color: transparent;
@@ -372,5 +535,43 @@ main {
                 @include bidi(((margin-right, 0, margin-left, 0),));
             }
         }
+    }
+}
+
+// --------------------------------------------------------------------------
+// GIF backgrounds (display while they are loading)
+
+
+#mug {
+    background-color: #fbede8;
+}
+
+#smiley {
+    background-color: #43238b;
+}
+
+#todo {
+    background-color: #fa838c;
+}
+
+.c-item-gif {
+    #poli & {
+        background-color: $color-white;
+    }
+
+    #regrets & {
+        background-color: #1e4ffc;
+    }
+
+    #contain & {
+        background-color: #198fe8;
+    }
+
+    #join & {
+        background-color: #f7f2f7;
+    }
+
+    #social & {
+        background-color: #fee0e7;
     }
 }
