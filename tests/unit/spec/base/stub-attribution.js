@@ -345,20 +345,20 @@ describe('stub-attribution.js', function() {
 
         /* eslint-disable camelcase */
         var data = {
-            attribution_code: 'foo',
-            attribution_sig: 'bar'
+            attribution_code: 'test-code',
+            attribution_sig: 'test-sig'
         };
         /* eslint-enable camelcase */
 
         var winUrl = 'https://download.mozilla.org/?product=firefox-stub&os=win&lang=en-US';
         var win64Url = 'https://download.mozilla.org/?product=firefox-50.0b11-SSL&os=win64&lang=en-US';
-        var transitionalUrl = '/firefox/download/thanks/';
+        var transitionalUrl = 'https://www.mozilla.org/firefox/download/thanks/';
 
         beforeEach(function() {
             var downloadMarkup = '<ul class="download-list">' +
-                                    '<li><a class="download-link" data-download-version="win" href="' + transitionalUrl +'">Download</a></li>' +
-                                    '<li><a class="download-link" data-download-version="win" href="' + winUrl+ '">Download</a></li>' +
-                                    '<li><a class="download-link" data-download-version="win64" href="' + win64Url + '">Download</a></li>' +
+                                    '<li><a id="link-transitional" class="download-link" data-download-version="win" href="' + transitionalUrl +'" data-direct-link="' + winUrl + '">Download</a></li>' +
+                                    '<li><a id="link-direct-win" class="download-link" data-download-version="win" href="' + winUrl+ '">Download</a></li>' +
+                                    '<li><a id="link-direct-win64" class="download-link" data-download-version="win64" href="' + win64Url + '">Download</a></li>' +
                                  '</ul>';
             $(downloadMarkup).appendTo('body');
         });
@@ -369,11 +369,12 @@ describe('stub-attribution.js', function() {
 
         it('should update download links with attribution data as expected', function() {
             spyOn(Mozilla.StubAttribution, 'meetsRequirements').and.returnValue(true);
-            spyOn(Mozilla.StubAttribution, 'appendToDownloadURL');
+            //spyOn(Mozilla.StubAttribution, 'appendToDownloadURL');
             Mozilla.StubAttribution.updateBouncerLinks(data);
-            expect(Mozilla.StubAttribution.appendToDownloadURL.calls.count()).toEqual(2);
-            expect(Mozilla.StubAttribution.appendToDownloadURL).toHaveBeenCalledWith(winUrl, data);
-            expect(Mozilla.StubAttribution.appendToDownloadURL).toHaveBeenCalledWith(win64Url, data);
+            expect(document.getElementById('link-transitional').href).toEqual('https://www.mozilla.org/firefox/download/thanks/');
+            expect(document.getElementById('link-transitional').getAttribute('data-direct-link')).toEqual('https://download.mozilla.org/?product=firefox-stub&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig');
+            expect(document.getElementById('link-direct-win').href).toEqual('https://download.mozilla.org/?product=firefox-stub&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig');
+            expect(document.getElementById('link-direct-win64').href).toEqual('https://download.mozilla.org/?product=firefox-50.0b11-SSL&os=win64&lang=en-US&attribution_code=test-code&attribution_sig=test-sig');
         });
 
         it('should do nothing if stub attribution requirements are not satisfied', function() {
