@@ -23,7 +23,7 @@ contribute-task-translate-heading = Translate content
 contribute-task-translate-desc = The internet is only global if it’s understood everywhere. Help us translate { -brand-name-mozilla } products and websites into your local language.
 contribute-task-mozilla-codebase-heading = Contribute to the { -brand-name-mozilla } codebase
 contribute-task-mozilla-codebase-desc = Actively improve { -brand-name-mozilla } products by contributing to a variety of development opportunities.
-contribute-task-support-desc = Help make { -brand-name-mozilla } products easy to use. Answer user’s "help" questions as part of the { -brand-name-mozilla } Support Community forums.
+contribute-task-support-desc = Help make { -brand-name-mozilla } products easy to use. Answer people’s “help” questions as part of the { -brand-name-mozilla } Support Community forums.
 contribute-task-join-heading = Join the community
 contribute-task-join-desc = Want to get more involved in the { -brand-name-mozilla } community? Check out all the volunteer opportunities in our Community Portal.
 
