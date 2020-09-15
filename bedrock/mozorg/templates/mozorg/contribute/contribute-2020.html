@@ -8,7 +8,7 @@
   {{ css_bundle('contribute-2020') }}
 {% endblock %}
 
-{% block page_title %}Volunteer Opportunities at Mozilla{% endblock %}
+{% block page_title %}{{ ftl('contribute-page-title') }}{% endblock %}
 
 {% block body_class %}{{ super() }} contribute{% endblock %}
 
@@ -18,11 +18,8 @@
 <main role="main">
   <div class="mzp-l-content contribute-intro">
     <header class="contribute-intro-content">
-      <h1 class="contribute-intro-heading">Your talents are needed for a better internet</h1>
-      <p>Mozilla is a non-profit organization working to ensure the internet
-        is open and welcoming to all. And we need your help. By joining our
-        community, you can help drive innovation, enhance accountability and
-        trust and make the internet a better place for everyone.</p>
+      <h1 class="contribute-intro-heading">{{ ftl('contribute-page-heading') }}</h1>
+      <p>{{ ftl('contribute-page-intro') }}</p>
     </header>
 
     <div class="contribute-intro-media-wrapper">
@@ -34,7 +31,7 @@
 
   <section class="contribute-hero">
     <div class="mzp-l-content">
-      <h2>{{ _('How you can contribute…') }}</h2>
+      <h2>{{ ftl('contribute-how-heading') }}</h2>
     </div>
 
     <div class="mzp-l-content mzp-l-card-quarter contribute-card-container">
@@ -48,13 +45,11 @@
           </div>
           <div class="mzp-c-card-content contribute-card-content">
             <div class="contribute-card-content-tags">
-              <div class="mzp-c-card-tag contribute-card-tag-bold">Non Technical</div>
-              <div class="mzp-c-card-tag">Individual and event organization</div>
+              <div class="mzp-c-card-tag contribute-card-tag-bold">{{ ftl('contribute-tag-non-technical ') }}</div>
+              <div class="mzp-c-card-tag">{{ ftl('contribute-tag-individual-event') }}</div>
             </div>
-            <h2 class="mzp-c-card-title">Translate content</h2>
-            <p class="mzp-c-card-desc">The internet is only global if it’s
-              understood everywhere. Help us translate Mozilla’s products and
-              websites into your local language.</p>
+            <h2 class="mzp-c-card-title">{{ ftl('contribute-task-translate-heading') }}</h2>
+            <p class="mzp-c-card-desc">{{ ftl('contribute-task-translate-desc') }}</p>
           </div>
         </a>
       </section>
@@ -69,12 +64,11 @@
           </div>
           <div class="mzp-c-card-content contribute-card-content">
             <div class="contribute-card-content-tags">
-              <div class="mzp-c-card-tag contribute-card-tag-bold">Technical</div>
-              <div class="mzp-c-card-tag">Individual</div>
+              <div class="mzp-c-card-tag contribute-card-tag-bold">{{ ftl('contribute-tag-technical') }}</div>
+              <div class="mzp-c-card-tag">{{ ftl('contribute-tag-individual') }}</div>
             </div>
-            <h2 class="mzp-c-card-title">Contribute to the Mozilla codebase</h2>
-            <p class="mzp-c-card-desc">Actively improve Mozilla’s products by
-              contributing to a variety of development opportunities.</p>
+            <h2 class="mzp-c-card-title">{{ ftl('contribute-task-mozilla-codebase-heading') }}</h2>
+            <p class="mzp-c-card-desc">{{ ftl('contribute-task-mozilla-codebase-desc') }}</p>
           </div>
         </a>
       </section>
@@ -89,13 +83,11 @@
           </div>
           <div class="mzp-c-card-content contribute-card-content">
             <div class="contribute-card-content-tags">
-              <div class="mzp-c-card-tag contribute-card-tag-bold">Support</div>
-              <div class="mzp-c-card-tag">Individual and event organization</div>
+              <div class="mzp-c-card-tag contribute-card-tag-bold">{{ ftl('contribute-tag-support') }}</div>
+              <div class="mzp-c-card-tag">{{ ftl('contribute-tag-individual-event') }}</div>
             </div>
-            <h2 class="mzp-c-card-title">Individual and event organization</h2>
-            <p class="mzp-c-card-desc">Help make Mozilla’s products easy to
-              use. Answer user's "help" questions as part of the Mozilla Support
-              Community forums.</p>
+            <h2 class="mzp-c-card-title">{{ ftl('contribute-tag-individual-event') }}</h2>
+            <p class="mzp-c-card-desc">{{ ftl('contribute-task-support-desc') }}</p>
           </div>
         </a>
       </section>
@@ -110,13 +102,11 @@
           </div>
           <div class="mzp-c-card-content contribute-card-content">
             <div class="contribute-card-content-tags">
-              <div class="mzp-c-card-tag contribute-card-tag-bold">Technical and Non-technical</div>
+              <div class="mzp-c-card-tag contribute-card-tag-bold">{{ ftl('contribute-tag-technical-non-technical') }}</div>
             </div>
 
-            <h2 class="mzp-c-card-title">Join the community</h2>
-            <p class="mzp-c-card-desc">Want to get more involved in the
-              Mozilla community? Check out all the volunteer opportunities in our
-              Community Portal.</p>
+            <h2 class="mzp-c-card-title">{{ ftl('contribute-task-join-heading ') }}</h2>
+            <p class="mzp-c-card-desc">{{ ftl('contribute-task-join-desc') }}</p>
           </div>
         </a>
       </section>
@@ -126,39 +116,36 @@
   <section class="mzp-l-content">
     <div class="contribute-mission">
       <div class="contribute-mission-intro">
-        <h2 class="contribute-mission-title">Our Mission</h2>
-        <p>Our mission is to ensure the internet is a global public resource,
-          open and accessible to all. An internet that truly puts people first,
-          where individuals can shape their own experience and are empowered, safe
-          and independent.</p>
+        <h2 class="contribute-mission-title">{{ ftl('contribute-mission-heading') }}</h2>
+        <p>{{ ftl('contribute-mission-desc') }}</p>
       </div>
 
       <ul class="contribute-mission-cards">
         <li class="contribute-mission-card">
           <a href="{{ url('mozorg.about') }}">
-            <h3 class="contribute-mission-learn-icon">Learn about Mozilla</h3>
-            <p>Read our manifesto</p>
+            <h3 class="contribute-mission-learn-icon">{{ ftl('contribute-learn') }}</h3>
+            <p>{{ ftl('contribute-read-manifesto') }}</p>
           </a>
         </li>
 
         <li class="contribute-mission-card">
           <a href="https://community.mozilla.org/events/{{ utm_params }}">
-            <h3 class="contribute-mission-event-icon">Find an event</h3>
-            <p>Meet our passionate volunteers</p>
+            <h3 class="contribute-mission-event-icon">{{ ftl('contribute-find-event') }}</h3>
+            <p>{{ ftl('contribute-meet-volunteers') }}</p>
           </a>
         </li>
 
         <li class="contribute-mission-card">
           <a href="{{ donate_url('contribute-page') }}">
-            <h3 class="contribute-mission-donate-icon">Donate</h3>
-            <p>Help fund our mission</p>
+            <h3 class="contribute-mission-donate-icon">{{ ftl('contribute-donate') }}</h3>
+            <p>{{ ftl('contribute-help-fund') }}</p>
           </a>
         </li>
 
         <li class="contribute-mission-card">
           <a href="https://twitter.com/mozilla">
-            <h3 class="contribute-mission-follow-icon">Follow Mozilla</h3>
-            <p>News and volunteer opportunities</p>
+            <h3 class="contribute-mission-follow-icon">{{ ftl('contribute-follow-mozilla') }}</h3>
+            <p>{{ ftl('contribute-opportunities') }}</p>
           </a>
         </li>
       </div>
@@ -176,18 +163,10 @@
 
       <div class="contribute-feature-content">
         <div class="contribute-feature-content-container">
-          <h2>Made by passionate people like you</h2>
+          <h2>{{ ftl('contribute-made-by-heading') }}</h2>
           <div class="contribute-feature-desc">
-            <p>When you contribute to Mozilla, you become part of a worldwide
-              community made up of people from around the globe who believe
-              that we all have a role in ensuring that the internet remains a force
-              for good.</p>
-
-            <p>We believe community collaboration is vital to
-              creating an internet that is diverse, innovative, and
-              accountable to the people who need it most. Whether you have a background in
-              tech, community organizing, or just a computer and some free
-              time, you can help us make the internet a better place.</p>
+            <p>{{ ftl('contribute-made-by-desc') }}</p>
+            <p>{{ ftl('contribute-made-by-desc-cont') }}</p>
           </div>
         </div>
       </div>
@@ -202,9 +181,9 @@
 
       <div class="newsletter-content">
         {{ email_newsletter_form(
-          title=_('Not sure yet?'),
-          subtitle=_('Get community and contribution news to your inbox'),
-          desc=_('Subscribe to our newsletter, join Mozillians all around the world, and learn about impactful opportunities to support Mozilla’s mission.'),
+          title=ftl('contribute-newsletter-heading'),
+          subtitle=ftl('contribute-newsletter-sub-heading'),
+          desc=ftl('contribute-newsletter-desc'),
           newsletters='about-mozilla',
           include_language=False)
         }}
@@ -215,13 +194,12 @@
   <section class="contribute-banner-wrapper">
     <div class="contribute-banner contribute-banner-gethelp">
       <div class="contribute-banner-content">
-        <h2 class="contribute-banner-gethelp-title">Get Help</h2>
-        <p>Mozilla has a dedicated team of volunteers to help with whatever
-          issues you may be experiencing.</p>
+        <h2 class="contribute-banner-gethelp-title">{{ ftl('contribute-support-heading') }}</h2>
+        <p>{{ ftl('contribute-support-desc') }}</p>
       </div>
       <div class="contribute-banner-cta">
         <a href="https://support.mozilla.org/{{ utm_params }}" class="mzp-c-button mzp-t-product">
-          Mozilla Support
+          {{ ftl('contribute-mozilla-support')}}
         </a>
       </div>
     </div>
@@ -229,15 +207,13 @@
     <div class="contribute-banner contribute-banner-problems">
       <div class="contribute-banner-content">
         <div class="contribute-banner-problems-title-wrapper">
-          <h2 class="contribute-banner-problems-title"><span>Problems with a web page?</span></h2>
+          <h2 class="contribute-banner-problems-title"><span>{{ ftl('contribute-web-compat-heading') }}</span></h2>
         </div>
-        <p>If your experience of a website differs between browsers then you may
-          have discovered a web compatibility issue. We would love to know about
-          it!</p>
+        <p>{{ ftl('contribute-web-compat-desc') }}</p>
       </div>
       <div class="contribute-banner-cta">
         <a href="https://webcompat.com/{{ utm_params }}" class="mzp-c-button">
-          Report an issue
+          {{ ftl('contribute-report-issue') }}
         </a>
       </div>
     </div>

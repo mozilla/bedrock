@@ -88,16 +88,20 @@ class TestContribute(TestCase):
     def setUp(self):
         self.rf = RequestFactory()
 
-    # Load the new page for English
+    @patch.object(views, 'ftl_file_is_active', lambda *x: True)
     def test_contribute_en_template(self, render_mock):
-        req = RequestFactory().get('/contribute/')
+        req = RequestFactory().get('/contribute')
         req.locale = 'en-US'
-        views.contribute(req)
-        render_mock.assert_called_once_with(req, 'mozorg/contribute/contribute-2020.html')
+        view = views.ContributeView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ['mozorg/contribute/contribute-2020.html']
 
-    # Load the old page for other locales
+    @patch.object(views, 'ftl_file_is_active', lambda *x: False)
     def test_contribute_locale_template(self, render_mock):
-        req = RequestFactory().get('/contribute/')
+        req = RequestFactory().get('/contribute')
         req.locale = 'es-ES'
-        views.contribute(req)
-        render_mock.assert_called_once_with(req, 'mozorg/contribute/index.html')
+        view = views.ContributeView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ['mozorg/contribute/index.html']

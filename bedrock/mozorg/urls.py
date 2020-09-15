@@ -106,7 +106,7 @@ urlpatterns = (
     page('MPL/2.0/differences', 'mozorg/mpl/2.0/differences.html'),
     page('MPL/2.0/permissive-code-into-mpl', 'mozorg/mpl/2.0/permissive-code-into-mpl.html'),
 
-    url('^contribute/$', views.contribute, name='mozorg.contribute.index'),
+    url('^contribute/$', views.ContributeView.as_view(), name='mozorg.contribute.index'),
 
     page('moss', 'mozorg/moss/index.html'),
     page('moss/foundational-technology', 'mozorg/moss/foundational-technology.html'),
