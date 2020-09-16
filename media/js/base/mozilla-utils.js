@@ -71,7 +71,7 @@ if (typeof window.Mozilla === 'undefined') {
         for (var i = 0; i < downloadButton.length; ++i) {
 
             if (data && data.os && data.name && data.version) {
-                downloadButton[i].setAttribute('data-display-os', data.os);
+                downloadButton[i].setAttribute('data-download-os', data.os);
                 downloadButton[i].setAttribute('data-display-name', data.name);
                 downloadButton[i].setAttribute('data-download-version', data.version);
             }

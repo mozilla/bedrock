@@ -102,7 +102,7 @@ if (typeof window.Mozilla === 'undefined') {
         }
 
         // target download buttons and other-platforms modal links.
-        $('.download-list .download-link, .download-platform-list .download-link').each(function() {
+        $('.download-list .download-link, .c-button-download-thanks .download-link, .download-platform-list .download-link').each(function() {
             var link = this;
             var version;
             var directLink;
