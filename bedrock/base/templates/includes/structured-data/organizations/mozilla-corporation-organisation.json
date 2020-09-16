@@ -448,36 +448,6 @@
   },
   {
     "@type": "Product",
-    "@id": "{{ structured_data_id('firefoxsend') }}",
-    "url": "https://send.firefox.com",
-    "logo": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/send/logo-lg-high-res.png') }}{% endfilter %}",
-    "image": [
-      "{% filter absolute_url %}{{ static('img/structured-data/send-1.png') }}{% endfilter %}",
-      "{% filter absolute_url %}{{ static('img/structured-data/send-2.png') }}{% endfilter %}",
-      "{% filter absolute_url %}{{ static('img/structured-data/send-3.png') }}{% endfilter %}"
-    ],
-    "name": "Firefox Send",
-    "brand":
-    {
-      "@id": "{{ structured_data_id('firefoxbrand') }}"
-    },
-    "sameAs": [
-      "https://{{ lang_short() }}.wikipedia.org/wiki/Firefox_Send",
-      "https://send.firefox.com",
-      "https://www.wikidata.org/wiki/Q62394165",
-      "{{ play_store_url('firefox_send')|safe }}"
-    ],
-    "offers":
-    {
-      "@type": "Offer",
-      "url": "https://send.firefox.com",
-      "priceCurrency": "USD",
-      "price": "0",
-      "availability": "https://schema.org/InStock"
-    }
-  },
-  {
-    "@type": "Product",
     "@id": "{{ structured_data_id('firefoxwindows') }}",
     "url": "{% filter absolute_url %}{{ url('firefox.new.protocol.download_windows') }}{% endfilter %}",
     "logo": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}{% endfilter %}",
