@@ -9,7 +9,40 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/components/feature-card';
 @import '../../protocol/css/components/hero';
 @import '../../protocol/css/components/call-out';
-@import '../../protocol/css/components/modal';
+
+//* -------------------------------------------------------------------------- */
+//  Inline form variation
+
+.c-inline-form {
+    background: $color-white;
+    border-radius: $border-radius-md;
+    box-shadow: $box-shadow-md;
+    margin: 0 auto $spacing-xl;
+    max-width: 330px;
+    padding: $spacing-lg $spacing-2xl;
+    text-align: center;
+
+    .legal {
+        @include text-body-xs;
+    }
+
+    h3 {
+        @include text-title-sm;
+        margin-bottom: $spacing-lg;
+    }
+
+    p {
+        @include text-body-lg;
+    }
+
+    @media #{$mq-lg} {
+        @include bidi(((float, right, left),));
+
+        @supports (display: grid) {
+            float: none;
+        }
+    }
+}
 
 
 //* -------------------------------------------------------------------------- */
@@ -29,16 +62,13 @@ main .mzp-l-content {
 //* -------------------------------------------------------------------------- */
 //  Download buttons
 
-.mobile-download-buttons li {
-    padding-top: $spacing-sm;
+.mobile-download-buttons-wrapper {
     display: inline-block;
 }
 
-.modal-logo {
-    @include at2x('/media/protocol/img/logos/firefox/browser/logo-lg.png', auto, 100%);
-    @include image-replaced;
-    background-repeat: no-repeat;
-    background-position: center;
+.mobile-download-buttons li {
+    padding-top: $spacing-sm;
+    display: inline-block;
 }
 
 .header-product-ctas {
@@ -49,11 +79,11 @@ main .mzp-l-content {
 .android,
 .ios {
     .mobile-download-buttons-wrapper {
-        display: block;
+        display: inline-block;
     }
 
     .qr-code-wrapper,
-    #modal-wrapper .desktop-download,
+    .c-inline-form,
     #send-to-device {
         display: none;
     }
@@ -81,7 +111,7 @@ main .mzp-l-content {
     }
 
     .mobile-download-buttons-wrapper {
-        display: block;
+        display: inline-block;
         text-align: center;
     }
 
@@ -120,7 +150,7 @@ main .mzp-l-content {
 //  Wordmark
 
 .c-wordmark {
-    @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-sm.png', auto, 100%);
+    @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-sm.png', contain);
     @include bidi(((padding-right, $spacing-sm, padding-left, 0),));
     @include image-replaced;
     background-position: top center;
@@ -147,6 +177,36 @@ main .mzp-l-content {
         &.mzp-t-firefox::after {
             display: none;
         }
+
+        .mzp-c-hero-body {
+            margin: 0 auto $spacing-2xl;
+
+            .mzp-c-hero-cta {
+                float: none;
+            }
+        }
+
+        @media #{$mq-lg} {
+            .mzp-c-hero-body {
+                @include grid-half;
+                @include bidi(((float, left, right),));
+                margin: unset;
+                width: 100%;
+            }
+
+            @supports (display: grid) {
+                & > .mzp-l-content {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    grid-column-gap: $spacing-2xl;
+                }
+
+                .mzp-c-hero-body {
+                    float: none;
+                    margin-right: auto;
+                }
+            }
+        }
     }
 
     .mzp-c-hero-desc {
@@ -163,16 +223,19 @@ main .mzp-l-content {
 
     @media #{$mq-md} {
         &.mzp-c-hero.mzp-has-image {
-            background-image: url('/media/img/firefox/mobile/img-browser-mobile.svg'), url('/media/img/firefox/mobile/img-mobile-noodles.svg');
+            @include background-size(1200px 275px);
             align-items: center;
-            text-align: left;
+            background-image: url('/media/img/firefox/mobile/img-mobile-noodles.svg');
+            background-position: top left calc(60vw + #{$spacing-md});
             background-repeat: no-repeat;
             background-size: contain;
-            background-position: top left calc(50vw + #{$layout-2xl}), top left 50vw;
             display: flex;
+            padding: 0;
+            text-align: left;
             min-height: 560px;
+
             html[dir="rtl"] &{
-                background-position: top right calc(50vw + #{$spacing-md}), top right calc(50vw + #{$spacing-md});
+                background-position: top right calc(60vw + #{$spacing-md});
                 text-align: right;
             }
         }
@@ -405,83 +468,12 @@ main .mzp-l-content {
     }
 }
 
-//* -------------------------------------------------------------------------- */
-//  Modal
-
-
-#modal-download-firefox {
-    display: none;
-}
-
-.mzp-c-modal-window {
-    padding-left: $spacing-sm;
-    padding-right: $spacing-sm;
-}
-.mzp-c-modal-inner {
-    background-color: transparent;
-    padding-left: 0;
-    padding-right: 0;
-
-    h3 {
-        @include text-title-md;
-        color: $color-ink-80;
-        margin-bottom: 0;
-
-        + p {
-            margin-bottom: $layout-md;
-        }
-    }
-
-    .mzp-c-modal-overlay-contents {
-        background: #fff;
-        color: #000;
-        padding: $layout-xs;
-        text-align: center;
-    }
-
-    a:link,
-    a:visited {
-        color: $color-link;
-        text-decoration: underline;
-    }
-
-    a:hover,
-    a:focus,
-    a:active {
-        color: $color-link-hover;
-        text-decoration: none;
-    }
-}
-
-@media #{$mq-sm} {
-    .mzp-c-modal-window {
-        padding-left: $layout-xs;
-        padding-right: $layout-xs;
-    }
-}
-
-@media #{$mq-md} {
-    .mzp-c-modal-inner {
-        max-width: 800px;
-        margin: 0 auto;
-        padding-left: $layout-md;
-        padding-right: $layout-md;
-
-        .mzp-c-modal-overlay-contents {
-            background: #fff;
-            color: #000;
-            padding: $layout-md;
-        }
-    }
-}
-
 
 //* -------------------------------------------------------------------------- */
 //  Send to Device overrides
 
 #send-to-device {
     margin: 0 auto;
-    text-align: center;
 
     footer {
         display: none;

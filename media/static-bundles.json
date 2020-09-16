@@ -1030,7 +1030,6 @@
     },
     {
       "files": [
-        "protocol/js/protocol-modal.js",
         "js/libs/spin.min.js",
         "js/base/send-to-device.js",
         "js/firefox/mobile/mobile.js"
@@ -1039,7 +1038,6 @@
     },
     {
       "files": [
-        "protocol/js/protocol-modal.js",
         "js/libs/spin.min.js",
         "js/base/send-to-device.js",
         "js/exp/mobile.js"

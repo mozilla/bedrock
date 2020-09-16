@@ -49,19 +49,13 @@
           </div>
 
           <div class="mzp-c-hero-cta">
-            <div class="header-product-ctas hide-from-legacy-ie">
-              <button type="button" class="mzp-c-button mzp-t-xl mzp-t-product js-mobile" id="get-firefox" data-cta-type="button" data-cta-text="Get Firefox Mobile" data-cta-position="primary">
-                {{ _('Get Firefox Mobile') }}
-              </button>
-            </div>
-
             <div class="mobile-download-buttons-wrapper">
               <ul class="mobile-download-buttons firefox" id="mobile-download-buttons-firefox_1">
                 <li class="android">
-                  {{ google_play_button(href=android_url, id='playStoreLink') }}
+                  {{ google_play_button(href=android_url, id='playStoreLink-primary') }}
                 </li>
                 <li class="ios">
-                  <a id="appStoreLink" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
+                  <a id="appStoreLink-primary" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
                     <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
                   </a>
                 </li>
@@ -69,6 +63,23 @@
             </div>
           </div>
         </div>
+
+        <div class="c-inline-form">
+          <h3>{{ ftl('firefox-mobile-get-firefox-for-mobile') }}</h3>
+          {% if show_send_to_device %}
+            <p>{{ ftl('firefox-mobile-send-a-download-link-to-your') }}</p>
+            {{ send_to_device(include_title=False, message_set='fx-mobile-download-desktop', class='vertical', id='s2d-primary') }}
+          {% else %}
+            <p>{{ ftl('firefox-mobile-scan-the-qr-code-to-get-started') }}</p>
+            <div class="qr-code-wrapper">
+              <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}"
+                  id="firefox-qr"
+                  data-mozillaonline-link="{{ static('img/firefox/mobile/protocol/qr-firefox-mozillaonline.png') }}"
+                  alt="{{ ftl('firefox-mobile-scan-alt-text') }}">
+            </div>
+          {% endif %}
+        </div>
+
       </div>
     </header>
 
@@ -143,18 +154,30 @@
 
           <div class="mzp-c-hero-cta">
             <div class="header-product-ctas hide-from-legacy-ie">
-              <button type="button" class="mzp-c-button mzp-t-product js-mobile" id="get-firefox" data-cta-type="button" data-cta-text="Get Firefox Mobile" data-cta-position="secondary">
-                {{ ftl('firefox-mobile-get-firefox-mobile') }}
-              </button>
+              <div class="c-inline-form">
+                <h3>{{ ftl('firefox-mobile-get-firefox-for-mobile') }}</h3>
+                {% if show_send_to_device %}
+                  <p>{{ ftl('firefox-mobile-send-a-download-link-to-your') }}</p>
+                  {{ send_to_device(include_title=False, message_set='fx-mobile-download-desktop', class='vertical', id='s2d-secondary') }}
+                {% else %}
+                  <p>{{ ftl('firefox-mobile-scan-the-qr-code-to-get-started') }}</p>
+                  <div class="qr-code-wrapper">
+                    <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}"
+                        id="firefox-qr"
+                        data-mozillaonline-link="{{ static('img/firefox/mobile/protocol/qr-firefox-mozillaonline.png') }}"
+                        alt="{{ ftl('firefox-mobile-scan-alt-text') }}">
+                  </div>
+                {% endif %}
+              </div>
             </div>
 
             <div class="mobile-download-buttons-wrapper">
               <ul class="mobile-download-buttons firefox" id="mobile-download-buttons-firefox_2">
                 <li class="android">
-                  {{ google_play_button(href=android_url, id='playStoreLink') }}
+                  {{ google_play_button(href=android_url, id='playStoreLink-secondary') }}
                 </li>
                 <li class="ios">
-                  <a id="appStoreLink" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
+                  <a id="appStoreLink-secondary" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
                     <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
                   </a>
                 </li>
@@ -164,39 +187,6 @@
         </div>
       </div>
     </section>
-
-    <div id="modal" class="mzp-u-modal-content mzp-t-firefox">
-      <div id="modal-download-firefox" class="desktop-download">
-        <h2 class="modal-logo">{{ ftl('firefox-mobile-firefox') }}</h2>
-        <h3>{{ ftl('firefox-mobile-get-firefox-for-mobile') }}</h3>
-        {% if show_send_to_device %}
-          <p>{{ ftl('firefox-mobile-send-a-download-link-to-your') }}</p>
-          {{ send_to_device(include_title=False, message_set='fx-mobile-download-desktop', class='vertical') }}
-        {% else %}
-          <p>{{ ftl('firefox-mobile-scan-the-qr-code-to-get-started') }}</p>
-          <div class="qr-code-wrapper">
-            <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}"
-                 id="firefox-qr"
-                 data-mozillaonline-link="{{ static('img/firefox/mobile/protocol/qr-firefox-mozillaonline.png') }}"
-                 alt="QR code to scan for Firefox Focus.">
-          </div>
-        {% endif %}
-      </div>
-
-      <div class="mobile-download-buttons-wrapper">
-        <ul class="mobile-download-buttons firefox" id="mobile-download-buttons-firefox_3">
-          <li class="android">
-            {{ google_play_button(href=android_url, id='playStoreLink') }}
-          </li>
-          <li class="ios">
-            <a id="appStoreLink" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
-              <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
-            </a>
-          </li>
-        </ul>
-      </div>
-
-    </div>
   </main>
 {% endblock %}
 

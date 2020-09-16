@@ -2,27 +2,22 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-(function() {
+// create namespace
+if (typeof window.Mozilla === 'undefined') {
+    window.Mozilla = {};
+}
+
+(function(Mozilla) {
     'use strict';
+    var sendToPrimary = document.getElementById('s2d-primary');
+    var sendToSecondary = document.getElementById('s2d-primary');
 
-    var modal = document.getElementById('modal');
-    var mobileButtons = document.querySelectorAll('.js-mobile');
-    var mobileContent = document.getElementById('modal-download-firefox');
+    if (sendToPrimary && sendToSecondary) {
+        var formPrimary = new Mozilla.SendToDevice('s2d-primary');
+        formPrimary.init();
 
-    for(var i = 0; i < mobileButtons.length; i++) {
-        mobileButtons[i].addEventListener('click', function() {
-            mobileContent.style.display = 'block';
-            Mzp.Modal.createModal(this, modal, {
-                closeText: window.Mozilla.Utils.trans('global-close'),
-                onDestroy: function() {
-                    mobileContent.style.display = 'none';
-                }
-            });
-        });
+        var formSecondary = new Mozilla.SendToDevice('s2d-secondary');
+        formSecondary.init();
     }
 
-    // initialize send to device widget
-    var form = new Mozilla.SendToDevice();
-    form.init();
-
-})();
+})(window.Mozilla);
