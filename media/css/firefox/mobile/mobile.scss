@@ -9,7 +9,6 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/components/feature-card';
 @import '../../../protocol/css/components/hero';
 @import '../../../protocol/css/components/call-out';
-@import '../../../protocol/css/components/modal';
 
 //* -------------------------------------------------------------------------- */
 //  Inline form variation
@@ -63,16 +62,13 @@ main .mzp-l-content {
 //* -------------------------------------------------------------------------- */
 //  Download buttons
 
-.mobile-download-buttons li {
-    padding-top: $spacing-sm;
+.mobile-download-buttons-wrapper {
     display: inline-block;
 }
 
-.modal-logo {
-    @include at2x('/media/protocol/img/logos/firefox/browser/logo-lg.png', auto, 100%);
-    @include image-replaced;
-    background-repeat: no-repeat;
-    background-position: center;
+.mobile-download-buttons li {
+    padding-top: $spacing-sm;
+    display: inline-block;
 }
 
 .header-product-ctas {
@@ -83,11 +79,11 @@ main .mzp-l-content {
 .android,
 .ios {
     .mobile-download-buttons-wrapper {
-        display: block;
+        display: inline-block;
     }
 
     .qr-code-wrapper,
-    #modal-wrapper .desktop-download,
+    .c-inline-form,
     #send-to-device {
         display: none;
     }
@@ -115,7 +111,7 @@ main .mzp-l-content {
     }
 
     .mobile-download-buttons-wrapper {
-        display: block;
+        display: inline-block;
         text-align: center;
     }
 
@@ -182,35 +178,32 @@ main .mzp-l-content {
             display: none;
         }
 
-        &.v-b {
-            .mzp-c-hero-body {
-                margin: 0 auto $spacing-2xl;
-                width: 100%;
+        .mzp-c-hero-body {
+            margin: 0 auto $spacing-2xl;
 
-                .mzp-c-hero-cta {
-                    float: none;
-                }
+            .mzp-c-hero-cta {
+                float: none;
+            }
+        }
+
+        @media #{$mq-lg} {
+            .mzp-c-hero-body {
+                @include grid-half;
+                @include bidi(((float, left, right),));
+                margin: unset;
+                width: 100%;
             }
 
-            @media #{$mq-lg} {
-                .mzp-c-hero-body {
-                    @include grid-half;
-                    @include bidi(((float, left, right),));
-                    margin: unset;
+            @supports (display: grid) {
+                & > .mzp-l-content {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    grid-column-gap: $spacing-2xl;
                 }
 
-                @supports (display: grid) {
-                    & > .mzp-l-content {
-                        display: grid;
-                        grid-template-columns: repeat(2, 1fr);
-                        grid-column-gap: $spacing-2xl;
-                    }
-
-                    .mzp-c-hero-body {
-                        float: none;
-                        width: auto;
-                        margin-right: auto;
-                    }
+                .mzp-c-hero-body {
+                    float: none;
+                    margin-right: auto;
                 }
             }
         }
@@ -230,24 +223,20 @@ main .mzp-l-content {
 
     @media #{$mq-md} {
         &.mzp-c-hero.mzp-has-image {
-            background-image: url('/media/img/firefox/mobile/img-browser-mobile.svg'), url('/media/img/firefox/mobile/img-mobile-noodles.svg');
+            @include background-size(1200px 275px);
             align-items: center;
-            text-align: left;
+            background-image: url('/media/img/firefox/mobile/img-mobile-noodles.svg');
+            background-position: top left calc(60vw + #{$spacing-md});
             background-repeat: no-repeat;
             background-size: contain;
-            background-position: top left calc(50vw + #{$layout-2xl}), top left 50vw;
             display: flex;
+            padding: 0;
+            text-align: left;
             min-height: 560px;
-            html[dir="rtl"] &{
-                background-position: top right calc(50vw + #{$spacing-md}), top right calc(50vw + #{$spacing-md});
-                text-align: right;
-            }
 
-            &.v-b {
-                @include background-size(1200px 275px);
-                background-image: url('/media/img/firefox/mobile/img-mobile-noodles.svg');
-                background-position: top left calc(50vw + #{$spacing-md});
-                padding: 0;
+            html[dir="rtl"] &{
+                background-position: top right calc(60vw + #{$spacing-md});
+                text-align: right;
             }
         }
 
@@ -476,76 +465,6 @@ main .mzp-l-content {
 
     .mzp-l-content {
         padding-bottom: $layout-lg;
-    }
-}
-
-//* -------------------------------------------------------------------------- */
-//  Modal
-
-
-#modal-download-firefox {
-    display: none;
-}
-
-.mzp-c-modal-window {
-    padding-left: $spacing-sm;
-    padding-right: $spacing-sm;
-}
-.mzp-c-modal-inner {
-    background-color: transparent;
-    padding-left: 0;
-    padding-right: 0;
-
-    h3 {
-        @include text-title-md;
-        color: $color-ink-80;
-        margin-bottom: 0;
-
-        + p {
-            margin-bottom: $layout-md;
-        }
-    }
-
-    .mzp-c-modal-overlay-contents {
-        background: #fff;
-        color: #000;
-        padding: $layout-xs;
-        text-align: center;
-    }
-
-    a:link,
-    a:visited {
-        color: $color-link;
-        text-decoration: underline;
-    }
-
-    a:hover,
-    a:focus,
-    a:active {
-        color: $color-link-hover;
-        text-decoration: none;
-    }
-}
-
-@media #{$mq-sm} {
-    .mzp-c-modal-window {
-        padding-left: $layout-xs;
-        padding-right: $layout-xs;
-    }
-}
-
-@media #{$mq-md} {
-    .mzp-c-modal-inner {
-        max-width: 800px;
-        margin: 0 auto;
-        padding-left: $layout-md;
-        padding-right: $layout-md;
-
-        .mzp-c-modal-overlay-contents {
-            background: #fff;
-            color: #000;
-            padding: $layout-md;
-        }
     }
 }
 
