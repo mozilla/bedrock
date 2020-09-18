@@ -42,7 +42,7 @@ compare-safari-like-safari-firefox-encourages = Like { -brand-name-safari }, { -
 
 # Variables:
 #   $pocket (string) - link to getpocket.com with additional attributes for analytics
-compare-safari-also-when-you-sign-up-for-updated = Also, when you sign up for a { -brand-name-firefox } account you get access to unique services like <a { $pocket }>{ -brand-name-pocket }</a> that integrate directly into the browser. The { -brand-name-pocket } for { -brand-name-firefox } button lets you save web pages and videos to { -brand-name-pocket } in just one click, so you can read a clean, distraction-free version whenever and wherever you want — even offline.
+compare-safari-also-when-you-sign-up-for-updated = Also, when you sign up for a { -brand-name-firefox } account, you get access to unique services like <a { $pocket }>{ -brand-name-pocket }</a> that integrate directly into the browser. The { -brand-name-pocket } for { -brand-name-firefox } button lets you save web pages and videos to { -brand-name-pocket } in just one click, so you can read a clean, distraction-free version whenever and wherever you want — even offline.
 
 # Obsolete string
 # Variables:
