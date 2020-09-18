@@ -93,17 +93,9 @@
       </div>
       <p><a class="mzp-c-cta-link" href="{{ url('firefox.products.lockwise') }}" rel="external noopener" data-cta-type="link" data-cta-text="Lockwise Learn More">{{ ftl('firefox-products-learn-more-about-lockwise') }}</a></p>
     </div>
-  {% if switch('firefox-send-active') %}
-    <div class="c-landing-grid-item">
-      <img src="{{ static('img/firefox/products/send.svg') }}" class="c-landing-grid-img" alt="" width="316" height="223">
-      <h2 class="c-landing-grid-title"><a href="https://send.firefox.com{{ referrals }}">{{ ftl('firefox-products-firefox-send') }}</a></h2>
-      <p>{{ ftl('firefox-products-send-your-large-files-and') }}</p>
-      <p><a class="mzp-c-cta-link" href="https://send.firefox.com{{ referrals }}" data-cta-type="link" data-cta-text="Send a file">{{ ftl('firefox-products-send-a-file') }}</a></p>
-    </div>
-  {% endif %}
     <div class="c-landing-grid-item">
       <img src="{{ static('img/firefox/products/pocket.svg') }}" class="c-landing-grid-img" alt="" width="316" height="223">
-      <h2 class="c-landing-grid-title"><a href="https://send.firefox.com{{ referrals }}">{{ ftl('firefox-products-pocket') }}</a></h2>
+      <h2 class="c-landing-grid-title"><a href="https://getpocket.com/firefox_learnmore/{{ referrals }}">{{ ftl('firefox-products-pocket') }}</a></h2>
       <p>{{ ftl('firefox-products-discover-the-best-content') }}</p>
       <div id="menu-pocket-wrapper"  class="mzp-c-menu-list mzp-t-cta mzp-t-download">
         <h3 class="mzp-c-menu-list-title">{{ ftl('firefox-products-get-pocket') }}</h3>
@@ -157,8 +149,6 @@
       {% include 'includes/structured-data/software/firefox-monitor-software.json' %}
       ,
       {% include 'includes/structured-data/software/firefox-lockwise-software.json' %}
-      ,
-      {% include 'includes/structured-data/software/firefox-send-software.json' %}
     ]
   }
 {% endblock %}

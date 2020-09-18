@@ -42,9 +42,15 @@ compare-safari-like-safari-firefox-encourages = Like { -brand-name-safari }, { -
 
 # Variables:
 #   $pocket (string) - link to getpocket.com with additional attributes for analytics
+compare-safari-also-when-you-sign-up-for-updated = Also, when you sign up for a { -brand-name-firefox } account you get access to unique services like <a { $pocket }>{ -brand-name-pocket }</a> that integrate directly into the browser. The { -brand-name-pocket } for { -brand-name-firefox } button lets you save web pages and videos to { -brand-name-pocket } in just one click, so you can read a clean, distraction-free version whenever and wherever you want — even offline.
+
+# Obsolete string
+# Variables:
+#   $pocket (string) - link to getpocket.com with additional attributes for analytics
 #   $send (string) - link to send.firefox.com with additional attributes for analytics
 compare-safari-also-when-you-sign-up-for = Also, when you sign up for a { -brand-name-firefox } account you get access to unique services like <a { $pocket }>{ -brand-name-pocket }</a> and <a { $send }>{ -brand-name-send }</a> that integrate directly into the browser. The { -brand-name-pocket } for { -brand-name-firefox } button lets you save web pages and videos to { -brand-name-pocket } in just one click, so you can read a clean, distraction-free version whenever and wherever you want — even offline. With { -brand-name-send } you can share large files with end-to-end encryption with  a variety of security controls, such as the ability to set an expiration time for a file link to expire, the number of downloads, and whether to add an optional password for an extra layer of security.
 
+# Obsolete string
 # Variables:
 #   $pocket (string) - link to getpocket.com with additional attributes for analytics
 #   $send (string) - link to send.firefox.com with additional attributes for analytics
@@ -61,16 +67,16 @@ compare-safari-firefox-and-safari-both-provide = { -brand-name-firefox } and { -
 compare-safari-both-browsers-have-a-lot = Both browsers have a lot of crossover features, as well as some unique functions. It’s worth mentioning, if you take a lot of screenshots, you’ll wonder how you ever lived without this handy feature that’s built right into { -brand-name-firefox }. But if you’re just looking for a fast, private browser for surfing and shopping, then you may want to give { -brand-name-firefox } a try — especially if you’ve been exclusively using { -brand-name-safari } because it came preloaded as the default browser on your computer. Eventually, you’ll discover which one is more suited to your needs.
 
 # Variables:
-#   $attrs (string) - link to TODO with additional attributes for analytics
+#   $attrs (string) - link to /firefox/accounts/ with additional attributes for analytics
 compare-safari-firefox-also-offers-a-similar = { -brand-name-firefox } also offers a similar sync feature when you sign up for a free <a { $attrs }>{ -brand-name-firefox-account }</a> that enables users to easily synchronize their bookmarks, browsing history, preferences, passwords, filled forms, add-ons, and the last 25 opened tabs across multiple computers. What sets { -brand-name-firefox } apart from { -brand-name-safari } is that it is available on any desktop or mobile platform, { -brand-name-ios }, { -brand-name-android }, { -brand-name-windows } or { -brand-name-macos }, boosting its portability across any device you may own.
 
 # Variables:
-#   $ios (string) - link to TODO with additional attributes for analytics
-#   $android (string) - link to TODO with additional attributes for analytics
+#   $ios (string) - link to Apple store with additional attributes for analytics
+#   $android (string) - link to Google Play store with additional attributes for analytics
 compare-safari-the-firefox-app-for-ios-and = The { -brand-name-firefox } app for <a { $ios }>{ -brand-name-ios }</a> and <a { $android }>{ -brand-name-android }</a> is one of the fastest browsers available and also has solid security and anti-tracking features — a huge plus if you’re constantly bouncing between a laptop and mobile devices.
 compare-safari-since-safari-is-apples-proprietary = Since { -brand-name-safari } is { -brand-name-apple }’s proprietary web browser, its iCloud syncing works exclusively with { -brand-name-apple } products. This can be somewhat limiting if, for example, you’re both an { -brand-name-android } user and an { -brand-name-iphone } user or if you have a { -brand-name-windows } based PC for work but use an { -brand-name-iphone } as your personal device.
 
 # Variables:
-#   $attrs (string) - link to TODO with additional attributes for analytics
+#   $attrs (string) - link to blog post with additional attributes for analytics
 compare-safari-safari-does-a-great-job-of = { -brand-name-safari } does a great job of making the browsing experience simple, fast, and seamless if you’re an { -brand-name-apple } user with multiple { -brand-name-apple } products. Like { -brand-name-safari }, { -brand-name-firefox } is a fast and utilitarian browser, but privacy and cross-platform compatibility are our defining features. { -brand-name-firefox } updates each month with new features and functionality. For example, one recent update switched on our <a { $attrs }>Enhanced Tracking Protection (ETP)</a> by default for new users, which effectively blocks cookies and cross-site trackers.
 compare-safari-in-the-end-it-just-boils = In the end, it just boils down to what you value in your browser. If you’re integrated with the { -brand-name-apple } ecosystem, { -brand-name-safari } is still a great choice. But if you value having the latest and greatest privacy protections and being able to work across multiple operating systems, we think { -brand-name-firefox } is your best bet. { -brand-name-firefox } is also a solid option as a secondary browser for those { -brand-name-apple }-exclusive users who may want to switch into a different browser for those online moments that call for extra layers of privacy protection.
