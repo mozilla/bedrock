@@ -44,7 +44,7 @@
 
   <section class="content-extra">
     <div class="mzp-l-content">
-      <div class="l-columns-two">
+      <div class="{% if LANG != 'zh-TW' %}l-columns-two{% else %}l-columns-one{% endif %}">
         <div class="c-picto-block">
           <div class="c-picto-block-image">
             <img src="{{ static('protocol/img/logos/firefox/monitor/logo.svg') }}" width="48px" alt="">
