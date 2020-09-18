@@ -12,8 +12,17 @@ from pages.firefox.whatsnew.whatsnew_76 import FirefoxWhatsNew76Page
 def test_facebook_container_picto_block_displayed(base_url, selenium):
     page = FirefoxWhatsNew76Page(selenium, base_url, params='').open()
     assert page.is_facebook_container_picto_block_displayed
-    assert page.are_three_columns_displayed
-    assert not page.are_two_columns_displayed
+    assert page.is_two_columns_displayed
+    assert not page.is_one_column_displayed
+
+
+@pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
+@pytest.mark.nondestructive
+def test_facebook_container_picto_block_not_displayed(base_url, selenium):
+    page = FirefoxWhatsNew76Page(selenium, base_url, locale='zh-TW', params='').open()
+    assert not page.is_facebook_container_picto_block_displayed
+    assert page.is_one_column_displayed
+    assert not page.is_two_columns_displayed
 
 
 @pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
