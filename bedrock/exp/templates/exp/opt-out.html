@@ -2,7 +2,9 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "exp/base/base.html" %}
+{% extends "base-protocol.html" %}
+
+{% block html_attrs %}{{ super() }} {% include 'exp/includes/id.html' %}{% endblock %}
 
 {% block page_title %}{{ _('Opt-out of Convert experiments') }}{% endblock %}
 
@@ -16,7 +18,7 @@
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
 {% block page_css %}
-{{ css_bundle('exp-opt-out') }}
+  {{ css_bundle('exp-opt-out') }}
 {% endblock %}
 
 {% block content %}
@@ -60,4 +62,12 @@
   </article>
 </div>
 
+{% endblock %}
+
+{% block stub_attribution %}
+  {% include 'exp/includes/stub.html' %}
+{% endblock %}
+
+{% block site_js %}
+  {% include 'exp/includes/js.html' %}
 {% endblock %}

@@ -154,12 +154,6 @@
     },
     {
       "files": [
-        "css/exp/firefox/new/download.scss"
-      ],
-      "name": "exp-firefox-new"
-    },
-    {
-      "files": [
         "css/security/security.scss"
       ],
       "name": "security"
@@ -231,12 +225,6 @@
         "css/mozorg/home/home-en.scss"
       ],
       "name": "home-en"
-    },
-    {
-      "files": [
-        "css/exp/home/home-2018.scss"
-      ],
-      "name": "exp-home-2018"
     },
     {
       "files": [
@@ -506,23 +494,10 @@
     },
     {
       "files": [
-        "css/exp/firefox/index-ie9.scss"
-      ],
-      "name": "exp-firefox-home-ie9"
-    },
-    {
-      "files": [
         "css/firefox/home/master.scss",
         "css/base/mozilla-lazy-image.scss"
       ],
       "name": "firefox-master"
-    },
-    {
-      "files": [
-        "css/exp/firefox/index.scss",
-        "css/base/mozilla-lazy-image.scss"
-      ],
-      "name": "exp-firefox-index"
     },
     {
       "files": [
@@ -601,13 +576,6 @@
     {
       "files": [
         "css/protocol/components/send-to-device.scss",
-        "css/exp/mobile.scss"
-      ],
-      "name": "exp-firefox-mobile"
-    },
-    {
-      "files": [
-        "css/protocol/components/send-to-device.scss",
         "css/firefox/mobile/get-app.scss"
       ],
       "name": "firefox-mobile-get-app"
@@ -618,13 +586,6 @@
         "css/firefox/accounts-2019.scss"
       ],
       "name": "firefox_accounts_2019"
-    },
-    {
-      "files": [
-        "css/base/mozilla-fxa-state.scss",
-        "css/exp/firefox/accounts.scss"
-      ],
-      "name": "exp_firefox_accounts"
     },
     {
       "files": [
@@ -890,12 +851,6 @@
     },
     {
       "files": [
-        "js/exp/firefox/new/desktop/download.js"
-      ],
-      "name": "exp_firefox_desktop_download"
-    },
-    {
-      "files": [
         "protocol/js/protocol-modal.js",
         "js/firefox/new/desktop/join-modal.js"
       ],
@@ -956,18 +911,6 @@
         "js/mozorg/home/home.js"
       ],
       "name": "home"
-    },
-    {
-      "files": [
-        "protocol/js/protocol-modal.js",
-        "protocol/js/protocol-newsletter.js",
-        "js/base/mozilla-lazy-load.js",
-        "js/libs/jquery.waypoints.min.js",
-        "js/newsletter/form-protocol.js",
-        "js/mozorg/home/youtube.js",
-        "js/exp/home.js"
-      ],
-      "name": "exp-home"
     },
     {
       "files": [
@@ -1042,14 +985,6 @@
       "files": [
         "js/libs/spin.min.js",
         "js/base/send-to-device.js",
-        "js/exp/mobile.js"
-      ],
-      "name": "exp-firefox-mobile"
-    },
-    {
-      "files": [
-        "js/libs/spin.min.js",
-        "js/base/send-to-device.js",
         "js/firefox/mobile/get-app.js"
       ],
       "name": "firefox-mobile-get-app"
@@ -1098,13 +1033,6 @@
         "js/firefox/browsers-products.js"
       ],
       "name": "firefox-browsers-products"
-    },
-    {
-      "files": [
-        "js/base/mozilla-lazy-load.js",
-        "js/exp/firefox/index.js"
-      ],
-      "name": "exp-firefox-index"
     },
     {
       "files": [
@@ -1160,16 +1088,6 @@
         "js/firefox/accounts-2019.js"
       ],
       "name": "firefox_accounts_2019"
-    },
-    {
-      "files": [
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js",
-        "js/base/mozilla-fxa-form.js",
-        "js/base/mozilla-fxa-product-button.js",
-        "js/exp/firefox/accounts.js"
-      ],
-      "name": "exp_firefox_accounts"
     },
     {
       "files": [
