@@ -171,7 +171,7 @@
 
       <p>{{ ftl('compare-safari-screenshots-is-another-popular', attrs='href="https:/screenshots.firefox.com" rel="external noopener" data-cta-text="Screenshots" data-cta-type="link"'|safe) }}</p>
     {% else %}
-      <p>{{ ftl('compare-safari-also-when-you-sign-up-for', pocket='href="https://getpocket.com/" rel="external noopener" data-cta-text="Pocket" data-cta-type="link"'|safe, send='href="https://send.firefox.com/" rel="external noopener" data-cta-text="Send" data-cta-type="link"'|safe) }}</p>
+      <p>{{ ftl('compare-safari-also-when-you-sign-up-for', fallback='compare-safari-also-when-you-sign-up-for-fallback', pocket='href="https://getpocket.com/" rel="external noopener" data-cta-text="Pocket" data-cta-type="link"'|safe, send='href="https://send.firefox.com/" rel="external noopener" data-cta-text="Send" data-cta-type="link"'|safe ) }}</p>
     {% endif %}
 
       <p>{{ ftl('compare-safari-both-browsers-have-a-lot') }}</p>
