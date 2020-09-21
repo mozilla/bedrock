@@ -7,32 +7,36 @@ $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
 @import '../../../protocol/css/components/notification-bar';
-@import '../../../protocol/css/components/emphasis-box';
 @import 'includes/header';
 
 
-.content-main {
+//* -------------------------------------------------------------------------- */
+// Main content
+.wnp-content-main {
     padding: 0;
+    text-align: center;
 
-    @media #{$mq-md} {
-        padding-top: $spacing-2xl;
+    @media #{$mq-tall} {
+        padding-top: $layout-md;
+        margin-bottom: $layout-lg;
     }
 }
 
-.content-wrapper {
-    background: $color-ink-80 url('/media/img/firefox/whatsnew/whatsnew_background.svg') no-repeat;
-    @include background-size(100%);
-    color: $color-white;
+.wnp-main-image {
+    margin: 0 auto $layout-sm;
 }
 
-.c-utilities {
-    @include light-links;
-    @include text-body-sm;
-    max-width: $content-md;
-    text-align: center;
+.wnp-main-title {
+    @include text-title-md;
 }
 
-#send-to-device {
+.wnp-main-tagline {
+    @include text-body-lg;
+}
+
+
+
+.send-to-device {
     margin: 0 auto;
     text-align: center;
 
@@ -52,47 +56,6 @@ $image-path: '/media/protocol/img';
 
 }
 
-//* -------------------------------------------------------------------------- */
-// Emphasis box
-
-.mzp-c-emphasis-box {
-    @include border-box;
-    color: $color-ink-80;
-    margin: 0 auto $layout-sm;
-    max-width: $content-md - ($layout-md * 2);
-    padding: $spacing-xl;
-    text-align: center;
-
-    :link {
-        color: $color-ink-80;
-    }
-
-    .c-emphasis-box-logo {
-        display: block;
-        margin: 0 auto $spacing-lg;
-    }
-
-    .c-emphasis-box-title {
-        @include text-title-sm;
-        margin: 0 auto .25em;
-    }
-
-    .c-emphasis-box-tagline {
-        @include text-title-xs;
-    }
-
-    .cta {
-        margin: $spacing-xl 0 $spacing-sm;
-    }
-
-    @media #{$mq-md} {
-        padding: $spacing-xl $layout-md;
-
-        .c-emphasis-box-title br {
-            display: block;
-        }
-    }
-}
 
 //* -------------------------------------------------------------------------- */
 // Extra content
@@ -111,7 +74,7 @@ $image-path: '/media/protocol/img';
     .c-picto-block-image {
         align-items: center;
         display: flex;
-        margin-bottom: $spacing-md;
+        margin-bottom: $spacing-lg;
         min-height: $layout-md;
     }
 }
@@ -121,13 +84,13 @@ $image-path: '/media/protocol/img';
     .l-columns-three {
         display: flex;
         margin: 0 auto;
-        max-width: $content-md - ($layout-md * 2);
+        max-width: $content-lg;
         padding: 0 $layout-md;
         flex-wrap: wrap;
 
         .c-picto-block {
             flex: 1 1 50%;
-            padding: 0 $spacing-lg;
+            padding: 0 $layout-lg;
         }
     }
 }
@@ -136,11 +99,61 @@ $image-path: '/media/protocol/img';
     .l-columns-three {
         display: flex;
         margin: 0 auto;
-        max-width: $content-lg;
+        max-width: none;
 
         .c-picto-block {
             flex: 1 1 33.3%;
-            padding: 0 $spacing-lg;
+            padding: 0 $layout-xs;
+        }
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Utilities (link to release notes)
+.c-utilities {
+    @include text-body-sm;
+    max-width: $content-md;
+    padding-bottom: $layout-xl;
+    text-align: center;
+}
+
+
+//* -------------------------------------------------------------------------- */
+// For dark mode
+@media (prefers-color-scheme: dark) {
+    .content-wrapper {
+        background: $color-dark-gray-60;
+        color: $color-white;
+    }
+
+    .send-to-device {
+        color: $color-white;
+
+        a.more {
+            &:link,
+            &:visited {
+                color: $color-blue-10;
+            }
+
+            &:active,
+            &:focus,
+            &:hover {
+                color: $color-white;
+            }
+        }
+    }
+
+    .c-utilities a {
+        &:link,
+        &:visited {
+            color: $color-blue-10;
+        }
+
+        &:active,
+        &:focus,
+        &:hover {
+            color: $color-white;
         }
     }
 }

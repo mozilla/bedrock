@@ -28,31 +28,33 @@
 <main class="content-wrapper mzp-t-firefox">
   {% include 'firefox/whatsnew/includes/header.html' %}
 
-  <section class="wnp-content-main">
+  <section class="content-main">
     <div class="mzp-l-content mzp-t-content-md">
-      <img class="wnp-main-image" src="{{ static('img/firefox/whatsnew/whatsnew81/hero-device.png') }}" width="95" alt="">
-      <h1 class="wnp-main-title">{{ ftl('whatsnew81-main-title') }}</h1>
-      <p class="wnp-main-tagline">{{ ftl('whatsnew81-main-intro') }}</p>
+      <div class="mzp-c-emphasis-box">
+        <img class="c-emphasis-box-logo" src="{{ static('img/firefox/whatsnew/whatsnew81/hero-device.png') }}" width="95" alt="">
+        <h1 class="c-emphasis-box-title">{{ ftl('whatsnew81-main-title') }}</h1>
+        <p class="main-tagline">{{ ftl('whatsnew81-main-intro') }}</p>
 
-    {% if show_send_to_device %}
-      <div id="send-to-device-wrapper" class="primary-cta">
-      {{ send_to_device(include_title=False, message_set='fx-whatsnew', input_label=ftl('whatsnew81-send-form-label'), input_label_alt=ftl('whatsnew81-send-form-label-alt'), class='vertical') }}
+      {% if show_send_to_device %}
+        <div id="send-to-device-wrapper" class="primary-cta">
+        {{ send_to_device(include_title=False, message_set='fx-whatsnew', input_label=ftl('whatsnew81-send-form-label'), input_label_alt=ftl('whatsnew81-send-form-label-alt'), class='vertical') }}
+        </div>
+      {% else %}
+        <div class="qr-code-wrapper">
+          <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}"
+              width="220"
+              height="220"
+              id="firefox-qr"
+              data-mozillaonline-link="{{ static('img/firefox/mobile/protocol/qr-firefox-mozillaonline.png') }}"
+              alt="{{ ftl('whatsnew81-scan-this-qr-code') }}">
+        </div>
+      {% endif %}
       </div>
-    {% else %}
-      <div class="qr-code-wrapper">
-        <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}"
-            width="220"
-            height="220"
-            id="firefox-qr"
-            data-mozillaonline-link="{{ static('img/firefox/mobile/protocol/qr-firefox-mozillaonline.png') }}"
-            alt="{{ ftl('whatsnew81-scan-this-qr-code') }}">
-      </div>
-    {% endif %}
     </div>
   </section>
 
-  <section class="wnp-content-extra">
-    <div class="mzp-l-content mzp-t-content-xl">
+  <section class="content-extra">
+    <div class="mzp-l-content">
       <div class="l-columns-two">
 
         <div class="c-picto-block">

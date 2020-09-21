@@ -555,6 +555,7 @@ class WhatsnewView(L10nTemplateView):
         'firefox/whatsnew/whatsnew-fx79.html': ['firefox/whatsnew/whatsnew-fx79', 'firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx80.html': ['firefox/whatsnew/whatsnew-fx80', 'firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx81.html': ['firefox/whatsnew/whatsnew-fx81', 'firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx82.html': ['firefox/whatsnew/whatsnew-fx80', 'firefox/whatsnew/whatsnew'],
     }
 
     def get_context_data(self, **kwargs):
@@ -609,6 +610,8 @@ class WhatsnewView(L10nTemplateView):
                 template = 'firefox/developer/whatsnew.html'
             else:
                 template = 'firefox/whatsnew/index.html'
+        elif version.startswith('82.') and ftl_file_is_active('firefox/whatsnew/whatsnew-fx80'):
+            template = 'firefox/whatsnew/whatsnew-fx82.html'
         elif version.startswith('81.') and ftl_file_is_active('firefox/whatsnew/whatsnew-fx81'):
             template = 'firefox/whatsnew/whatsnew-fx81.html'
         elif version.startswith('80.') and ftl_file_is_active('firefox/whatsnew/whatsnew-fx80'):
