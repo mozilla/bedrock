@@ -165,6 +165,12 @@ firefox-desktop-download-now-mac = Now <strong>open</strong> the file that just 
 firefox-desktop-download-get-help = Having trouble? <a { $attrs }>Get help with your installation</a>.
 firefox-desktop-download-in-another-language = Download in another language or for another operating system.
 
+firefox-desktop-download-windows-10 = { -brand-name-windows } 10
+# Variables:
+#   $attrs (attrs) - link to https://support.mozilla.org/kb/windows-10-warns-me-use-microsoft-verified-app
+firefox-desktop-download-if-you-see-a-prompt = If you see a prompt stating the app you’re trying to install isn’t a { -brand-name-microsoft }-verified app, click “Install anyway” or <a { $attrs }>change app recommendation settings</a>.
+firefox-desktop-download-visit-support-for-more = Visit Support for More Details
+
 # Variables:
 #   $url (url) - link to https://support.mozilla.org/kb/end-support-windows-xp-and-vista
 firefox-desktop-download-mozilla-no-longer-provides = { -brand-name-mozilla } <a href="{ $url }">no longer provides security updates</a> on { -brand-name-windows } { -brand-name-xp } or { -brand-name-vista }, but you can still use { -brand-name-firefox }.
