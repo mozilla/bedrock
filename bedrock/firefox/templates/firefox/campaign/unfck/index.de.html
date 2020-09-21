@@ -25,15 +25,20 @@
 {% set tw_hashtags = 'unfcktheinternet'|urlencode %}
 {% set tw_via = 'firefox_DE'|urlencode %}
 
-{% macro share_item(title=None, info=None, id=None, src=None, include_cta=False,
-  link_text=None, link_url=None, link_include_utms=True, link_is_external=True,
-  share_text='Teilen', download_text='GIF downloaden', copy_text='GIF-Link kopieren',
+{% macro share_item(title=None, info=None, id=None, src=None, src_still=None, include_cta=False,
+  link_text=None, link_url=None, link_include_utms=True, link_is_external=True, share_text='Teilen',
+  download_text='GIF downloaden', copy_text='GIF-Link kopieren',
   copy_success_text='Link in die Zwischenablage kopiert') -%}
   {% set tw = 'https://www.twitter.com/intent/tweet?url=' + tw_url + '&text=' + tw_text + '&hashtags=' + tw_hashtags + '&via=' + tw_via %}
   <div class="c-item-unfck" id="{{ id }}">
     <h3 class="c-item-title">{{ title }}</h3>
     <div class="c-item-img">
-      <img class="c-item-gif" src="{{ src }}" loading="lazy" width="280" height="280">
+      <picture class="c-item-gif">
+        {% if src_still %}
+        <source srcset="{{ src_still }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="280" height="280"></source>
+        {% endif %}
+        <img src="{{ src }}" loading="lazy" width="280" height="280">
+      </picture>
       <ul class="c-item-actions">
         <li><a class="c-item-link js-twitter-share twitter" href="{{ tw|e }}" data-id="{{ id }}" title="{{ share_text }}">{{ share_text }}</a></li>
         <li><a class="c-item-link js-download-gif download" href="{{ src }}" data-id="{{ id }}" title="{{ download_text }}" download>{{ download_text }}</a></li>
@@ -86,6 +91,7 @@
       link_url=url('firefox.facebookcontainer.index'),
       id='unfck-social-media',
       src=static('img/firefox/campaign/unfck/de/gifs/firefox1.gif'),
+      src_still=static('img/firefox/campaign/unfck/de/gifs/still/firefox1.png'),
       link_include_utms=False,
       link_is_external=False
     ) %}{% endcall %}
@@ -96,7 +102,8 @@
         link_text='Zu den Tipps',
         link_url='https://blog.mozilla.org/firefox/de/so-entlarvst-du-falschinformationen-im-web/',
         id='unfck-desinformation',
-        src=static('img/firefox/campaign/unfck/de/gifs/firefox2.gif')
+        src=static('img/firefox/campaign/unfck/de/gifs/firefox2.gif'),
+        src_still=static('img/firefox/campaign/unfck/de/gifs/still/firefox2.png'),
       ) %}{% endcall %}
 
       {% call share_item(
@@ -105,7 +112,8 @@
         link_text='Mehr zum Thema',
         link_url='https://blog.mozilla.org/firefox/de/hass-im-web-was-koennen-wir-gegen-hate-speech-tun/',
         id='unfck-hate-speech',
-        src=static('img/firefox/campaign/unfck/de/gifs/firefox3.gif')
+        src=static('img/firefox/campaign/unfck/de/gifs/firefox3.gif'),
+        src_still=static('img/firefox/campaign/unfck/de/gifs/still/firefox3.png'),
       ) %}{% endcall %}
 
       {% call share_item(
@@ -115,7 +123,8 @@
         link_url='https://www.thesocialdilemma.com/take-action/',
         link_include_utms=False,
         id='netflix-and-change',
-        src=static('img/firefox/campaign/unfck/de/gifs/firefox4.gif')
+        src=static('img/firefox/campaign/unfck/de/gifs/firefox4.gif'),
+        src_still=static('img/firefox/campaign/unfck/de/gifs/still/firefox4.png'),
       ) %}{% endcall %}
 
       {% call share_item(
@@ -123,6 +132,7 @@
         info='Je mehr wir darüber sprechen, was wir im Internet ändern müssen, desto größer der Unfck-Effekt. Sag uns und der Welt, was dich am Internet nervt und teile deine Meinung auf Twitter.',
         id='sei-teil-des-unfck-effekts',
         src=static('img/firefox/campaign/unfck/de/gifs/firefox5.gif'),
+        src_still=static('img/firefox/campaign/unfck/de/gifs/still/firefox5.png'),
         include_cta=True
         ) %}
         <form class="c-tell" action="{{ 'https://www.twitter.com/intent/tweet?url=%s&hashtags=%s&via=%s'|format(tw_url, tw_hashtags, tw_via)|e }}" method="post">

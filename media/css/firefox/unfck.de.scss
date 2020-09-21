@@ -107,10 +107,6 @@ main {
         }
     }
 
-    .fx-privacy-link {
-        display: none;
-    }
-
     .mzp-c-cta-link {
         background: $icon_cta top right no-repeat;
         @include background-size($spacing-md auto);
@@ -171,7 +167,7 @@ main {
     top: 0;
 
     &:after {
-        background: transparent url('/media/img/firefox/campaign/unfck/de/heart.gif') left bottom no-repeat;
+        background: transparent url('/media/img/firefox/campaign/unfck/de/gifs/heart.gif') left bottom no-repeat;
         @include background-size(contain);
         bottom: 12%;
         content: '';
@@ -180,6 +176,12 @@ main {
         position: absolute;
         top: 0;
         width: 17.9%;
+    }
+
+    @media (prefers-reduced-motion) {
+        &:after {
+            background-image: url('/media/img/firefox/campaign/unfck/de/gifs/still/heart.png');
+        }
     }
 
     @media #{$mq-md} {
@@ -305,6 +307,12 @@ main {
     margin: 0 auto $layout-sm;
     max-width: 280px;
     width: 100%;
+
+    source,
+    img {
+        display: block;
+        width: 100%;
+    }
 }
 
 .c-item-actions li {
@@ -344,6 +352,12 @@ main {
 
         &.is-supported {
             display: inline-block;
+        }
+
+        @media (prefers-reduced-motion) {
+            &.is-supported {
+                display: none;
+            }
         }
     }
 

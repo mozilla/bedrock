@@ -268,6 +268,12 @@ main {
         top: 0;
         left: 0;
     }
+
+    @media (prefers-reduced-motion) {
+        .loaded &:after {
+            background-image: url('/media/img/firefox/campaign/unfck/still/heart.png');
+        }
+    }
 }
 
 .mzp-c-hero {
@@ -314,6 +320,13 @@ main {
     display: block;
     margin: 0 auto $layout-sm;
     max-width: 280px;
+    width: 100%;
+
+    source,
+    img {
+        display: block;
+        width: 100%;
+    }
 }
 
 .c-item-title {
@@ -344,7 +357,6 @@ main {
         .c-item-unfck {
             @include grid-column-gap($h-grid-md);
             display: grid;
-            grid-template-columns: min-content 1fr;
             grid-template-rows: min-content 1fr;
             grid-template-areas:
                 "image title"
@@ -356,7 +368,6 @@ main {
 
         .c-item-img {
             @include grid-column-gap($h-grid-md - $icon_width);
-            grid-template-columns: $icon_width 1fr;
             justify-items: start;
         }
 

@@ -19,12 +19,17 @@
 
 {% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-unfck' %}
 
-{% macro item(title=None, info=None, id=None, src=None, include_cta=False,
+{% macro item(title=None, info=None, id=None, src=None, src_still=None, include_cta=False,
               link_text=None, link_url=None, link_include_utms=True, link_is_external=True) -%}
   <div class="c-item-unfck" id="{{ id }}">
     <h3 class="c-item-title">{{ title }}</h3>
     <div class="c-item-img">
-      <img class="c-item-gif" src="{{ src }}" loading="lazy" width="344" height="344">
+      <picture class="c-item-gif">
+        {% if src_still %}
+        <source srcset="{{ src_still }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="280" height="280"></source>
+        {% endif %}
+        <img src="{{ src }}" loading="lazy" width="344" height="344">
+      </picture>
     </div>
     <div class="c-item-desc">
       <p>{{ info }}</p>
@@ -76,7 +81,8 @@
       link_text='Tweet This',
       link_url='#',
       id='share',
-      src=static('img/firefox/campaign/unfck/button.gif')
+      src=static('img/firefox/campaign/unfck/button.gif'),
+      src_still=static('img/firefox/campaign/unfck/still/button.png'),
     ) %}{% endcall %}
 
     {% call item(
@@ -85,7 +91,8 @@
       link_text='Get the Extension',
       link_url='#',
       id='poli',
-      src=static('img/firefox/campaign/unfck/smiley.gif')
+      src=static('img/firefox/campaign/unfck/smiley.gif'),
+      src_still=static('img/firefox/campaign/unfck/still/smiley.png'),
     ) %}{% endcall %}
 
     {% call item(
@@ -94,7 +101,8 @@
       link_text='Watch the Doc',
       link_url='#',
       id='social',
-      src=static('img/firefox/campaign/unfck/highfive.gif')
+      src=static('img/firefox/campaign/unfck/highfive.gif'),
+      src_still=static('img/firefox/campaign/unfck/still/highfive.png'),
     ) %}{% endcall %}
 
     {% call item(
@@ -103,7 +111,8 @@
       link_text='Get Facebook Container',
       link_url='#',
       id='contain',
-      src=static('img/firefox/campaign/unfck/phone.gif')
+      src=static('img/firefox/campaign/unfck/phone.gif'),
+      src_still=static('img/firefox/campaign/unfck/still/phone.png'),
     ) %}{% endcall %}
 
 
@@ -113,7 +122,8 @@
       link_text='Get RegretsReporter',
       link_url='#',
       id='regrets',
-      src=static('img/firefox/campaign/unfck/computer.gif')
+      src=static('img/firefox/campaign/unfck/computer.gif'),
+      src_still=static('img/firefox/campaign/unfck/still/computer.png'),
     ) %}{% endcall %}
 
 
@@ -123,7 +133,8 @@
       link_text='Meet our Friends',
       link_url='#',
       id='join',
-      src=static('img/firefox/campaign/unfck/un.gif')
+      src=static('img/firefox/campaign/unfck/un.gif'),
+      src_still=static('img/firefox/campaign/unfck/still/un.png'),
     ) %}{% endcall %}
 
 
@@ -177,9 +188,18 @@
         <a href="" class="mzp-c-button mzp-t-dark mzp-t-secondary">Go to Giphy</a>
       </div>
       <div class="c-box-gifs">
-        <img class="c-box-gif" id="mug" src="{{ static('img/firefox/campaign/unfck/mug.gif') }}" loading="lazy" width="344" height="344">
-        <img class="c-box-gif" id="smiley" src="{{ static('img/firefox/campaign/unfck/smiley.gif') }}" loading="lazy" width="344" height="344">
-        <img class="c-box-gif" id="todo" src="{{ static('img/firefox/campaign/unfck/todo.gif') }}" loading="lazy" width="344" height="344">
+        <picture class="c-box-gif" id="mug">
+          <source srcset="{{ static('img/firefox/campaign/unfck/still/mug.png') }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="344" height="344"></source>
+          <img src="{{ static('img/firefox/campaign/unfck/mug.gif') }}" loading="lazy" width="344" height="344">
+        </picture>
+        <picture class="c-box-gif" id="smiley">
+          <source srcset="{{ static('img/firefox/campaign/unfck/still/smiley.png') }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="344" height="344"></source>
+          <img src="{{ static('img/firefox/campaign/unfck/smiley.gif') }}" loading="lazy" width="344" height="344">
+        </picture>
+        <picture class="c-box-gif" id="todo">
+          <source srcset="{{ static('img/firefox/campaign/unfck/still/todo.png') }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="344" height="344"></source>
+          <img src="{{ static('img/firefox/campaign/unfck/todo.gif') }}" loading="lazy" width="344" height="344">
+        </picture>
       </div>
     </div>
   </div>
