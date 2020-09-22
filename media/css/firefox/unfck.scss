@@ -152,7 +152,7 @@ main {
             background-position: top center,
                                  // checklist heading
                                  top 700px right calc(50% + #{$content-sm / 2 }),
-                                 top 800px left calc(50% + #{$content-sm / 2 }),
+                                 top 800px left calc(50% + #{$content-sm / 2 + 150px}),
                                  // ads
                                  top 1200px right calc(50% + #{$content-sm / 2 }),
                                  // fb
@@ -162,24 +162,24 @@ main {
                                  top 2300px left calc(50% + #{$content-sm / 2 }),
                                  // giphy
                                  bottom 50px right calc(50% + #{$content-sm / 2 } ),
-                                 bottom 350px left calc(50% + #{$content-sm / 2 });
+                                 bottom 350px left calc(50% + #{$content-sm / 2 + 150px});
             background-repeat: no-repeat;
 
             @media #{$mq-lg} {
                 background-position: top center,
                                     // checklist heading
                                     top 700px right calc(50% + #{$content-lg / 2 }),
-                                    top 800px left calc(50% + #{$content-lg / 2 }),
+                                    top 800px left calc(50% + #{$content-lg / 2 + 150px}),
                                     // ads
                                     top 1200px right calc(50% + #{$content-lg / 2 }),
                                     // fb
                                     top 1950px right calc(50% + #{$content-lg / 2 }),
                                     // youtube
                                     top 2500px right calc(50% + #{$content-lg / 2 }),
-                                    top 2300px left calc(50% + #{$content-lg / 2 }),
+                                    top 2300px left calc(50% + #{$content-lg / 2 + 70px}),
                                     // giphy
-                                    bottom 50px right calc(50% + #{$content-lg / 2 } ),
-                                    bottom 350px left calc(50% + #{$content-lg / 2 });
+                                    bottom 50px right calc(50% + #{$content-lg / 2 + 50px} ),
+                                    bottom 350px left calc(50% + #{$content-lg / 2 + 150px});
             }
         }
     }
@@ -299,6 +299,28 @@ main {
     max-width: $content-sm;
     position: relative;
 
+    .t-unfck &:link {
+        text-decoration: none;
+        &:after {
+            border-radius: $border-radius-md;
+            border: 1px solid transparent;
+            bottom: $spacing-md * -1;
+            content: '';
+            display: block;
+            left: $spacing-md * -1;
+            position: absolute;
+            right: $spacing-md * -1;
+            top: $spacing-md * -1;
+        }
+    }
+
+    .t-unfck &:hover,
+    .t-unfck &:focus {
+        &:after {
+            border: 1px solid $color-violet-50;
+        }
+    }
+
     @media #{$mq-md} {
         margin-top: $v-grid-md;
     }
@@ -332,6 +354,19 @@ main {
 .c-item-title {
     @include font-size(24px);
     position: relative;
+}
+
+.c-item-cta {
+    .c-item-unfck:link &,
+    .c-item-unfck:visited &,
+    .c-item-unfck:hover & {
+        color: $color-green-30;
+        text-decoration: none;
+    }
+    .c-item-unfck:visited &,
+    .c-item-unfck:hover & {
+        text-decoration: underline;
+    }
 }
 
 @supports (display:grid) {

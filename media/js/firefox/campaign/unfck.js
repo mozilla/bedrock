@@ -29,31 +29,23 @@
 
     function handleShareLinkClick(e) {
         var item = e.target.closest('.c-item-unfck');
-        var href;
+        var href = item.href;
 
-        if (e.target.tagName === 'SPAN') {
-            href = e.target.parentElement.href;
-        } else {
-            href = e.target.href;
-        }
+        // Track the event in GA
+        window.dataLayer.push({
+            'event': 'in-page-interaction',
+            'eAction': 'checklist',
+            'eLabel': 'share',
+        });
 
-        if (item && item.id && href) {
-            // Track the event in GA
-            window.dataLayer.push({
-                'event': 'in-page-interaction',
-                'eAction': 'checklist',
-                'eLabel': 'share: ' + item.id,
-            });
-
-            // Open Twitter in a sub window
-            openTwitterSubwin(href);
-            e.preventDefault();
-        }
+        // Open Twitter in a sub window
+        openTwitterSubwin(href);
+        e.preventDefault();
     }
 
     function onLoad() {
         // Set up twitter link handler
-        var shareLinks = document.querySelectorAll('.js-twitter-share');
+        var shareLinks = document.querySelectorAll('#share');
 
         for (var i = 0; i < shareLinks.length; i++) {
             shareLinks[i].addEventListener('click', handleShareLinkClick, false);

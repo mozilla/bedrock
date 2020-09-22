@@ -21,25 +21,22 @@
 
 {% macro item(title=None, info=None, id=None, src=None, src_still=None, include_cta=False,
               link_text=None, link_url=None, link_include_utms=True, link_is_external=True) -%}
-  <div class="c-item-unfck" id="{{ id }}">
-    <h3 class="c-item-title">{{ title }}</h3>
-    <div class="c-item-img">
-      <picture class="c-item-gif">
-        {% if src_still %}
-        <source srcset="{{ src_still }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="280" height="280"></source>
-        {% endif %}
-        <img src="{{ src }}" loading="lazy" width="344" height="344">
-      </picture>
-    </div>
-    <div class="c-item-desc">
-      <p>{{ info }}</p>
-      {% if include_cta %}
-        {{ caller() }}
-      {% else %}
-        <p><a class="mzp-c-cta-link" href="{{ link_url }}{% if link_include_utms %}{{ referrals }}{% endif %}" target="_blank" {% if link_include_utms or link_is_external %}rel="external noopener" data-cta-type="link" data-cta-text="Checklist: {{ id }}"{% endif %}>{{ link_text }}</a></p>
-      {% endif %}
-    </div>
-  </div>
+    <a id="{{ id }}" class="c-item-unfck" href="{{ link_url }}{% if link_include_utms %}{{ referrals }}{% endif %}" target="_blank" {% if link_include_utms or link_is_external %}rel="external noopener" data-cta-type="link" data-cta-text="Checklist: {{ id }}"{% endif %}>
+      <h3 class="c-item-title">{{ title }}</h3>
+      <div class="c-item-img">
+        <picture class="c-item-gif">
+          {% if src_still %}
+          <source srcset="{{ src_still }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="280" height="280"></source>
+          {% endif %}
+          <img src="{{ src }}" loading="lazy" width="344" height="344">
+        </picture>
+      </div>
+      <div class="c-item-desc">
+        <p>{{ info }}</p>
+        {% if include_cta %}{{ caller() }}{% endif %}
+        <p class="c-item-cta"><span class="mzp-c-cta-link">{{ link_text }}</span></p>
+      </div>
+    </a>
 {%- endmacro %}
 
 
@@ -72,24 +69,24 @@
     </ul>
   {% endcall %}
 
-  <h2 class="c-section-title">The Unfcking Checklist</h2>
+  <h2 class="c-section-title">The Checklist</h2>
 
   <div class="mzp-l-content mzp-t-content-lg">
+    {% set tweet_text='2020 might be fcked, but the internet doesn’t have to be. Here are 5 easy ways we can all help turn things around.' %}
+    {% set tw_url = settings.CANONICAL_URL + '/firefox/unfck/' %}
+    {% set tw = 'https://www.twitter.com/intent/tweet?url=' + tw_url|urlencode + '&text=' + tweet_text|urlencode + '&hashtags=unfckTheInternet' %}
+
     {% call item(
       title='Share the internet love',
       info='There’s a lot to unfck, but we’re powerful together. Tell your friends you browse with your values, and get them in on this conversation.',
+      link_text='Tweet this',
+      link_url=tw,
+      link_include_utms=False,
+      link_is_external=True,
       id='share',
       src=static('img/firefox/campaign/unfck/button.gif'),
-      src_still=static('img/firefox/campaign/unfck/still/button.png'),
-      include_cta=true
-    ) %}
-
-      {% set tweet_text='2020 might be fcked, but the internet doesn’t have to be. Here are 5 easy ways we can all help turn things around.' %}
-      {% set tw_url = settings.CANONICAL_URL + '/firefox/unfck/' %}
-      {% set tw = 'https://www.twitter.com/intent/tweet?url=' + tw_url|urlencode + '&text=' + tweet_text|urlencode + '&hashtags=unfckTheInternet' %}
-
-      <a class="js-twitter-share mzp-c-cta-link" target="_blank" rel="noopener noreferrer" href="{{ tw }}">Tweet this</a>
-    {% endcall %}
+      src_still=static('img/firefox/campaign/unfck/still/button.png')
+    ) %}{% endcall %}
 
     {% call item(
       title='Shine a light on political ads',
