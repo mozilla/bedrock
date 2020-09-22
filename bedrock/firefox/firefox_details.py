@@ -375,8 +375,7 @@ class FirefoxAndroid(_ProductDetails):
         platforms = OrderedDict()
 
         # Supported Android version has been changed with Firefox 56
-        version_int = self.latest_major_version(channel)
-        min_version = '4.0.3' if version_int < 56 else '4.1'
+        min_version = '4.1'
 
         # key is a bouncer platform name, value is the human-readable label
         for arch, platform in self.platform_map.items():
