@@ -184,7 +184,7 @@ main {
         }
     }
 
-    a.mzp-c-button.download-link {
+    a.mzp-c-button.mzp-t-product {
         background-color: $color-green-30;
         color: $color-ink-90;
 
@@ -194,6 +194,23 @@ main {
 
         &:focus {
             box-shadow: $field-focus-ring-dark;
+        }
+    }
+
+    a.mzp-c-button.mzp-t-dark.mzp-t-secondary {
+        border-color: $color-green-30;
+        color: $color-green-30;
+
+        &:hover,
+        &:focus {
+            background-color: $color-green-50;
+            border-color: $color-green-50;
+            color: $color-ink-90;
+        }
+
+        &:focus {
+            box-shadow: $field-focus-ring-dark;
+            color: $color-ink-90;
         }
     }
 
