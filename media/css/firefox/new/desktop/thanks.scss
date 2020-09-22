@@ -6,6 +6,7 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 @import '../../../../protocol/css/includes/lib';
 
+@import '../../../../protocol/css/components/emphasis-box';
 @import '../../../../protocol/css/components/notification-bar';
 @import '../../../../protocol/css/components/zap';
 @import '../../../../protocol/css/templates/card-layout';
@@ -155,6 +156,24 @@ main {
         white-space: nowrap;
     }
 }
+
+// --------------------------------------------------------------------------
+// windows disclaimer
+
+.c-windows-disclaimer {
+    margin: $layout-md auto $layout-sm;
+    max-width: $content-sm;
+    text-align: center;
+
+    .c-windows-disclaimer-logo {
+        margin-bottom: $layout-xs;
+    }
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+}
+
 
 // --------------------------------------------------------------------------
 

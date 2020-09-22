@@ -117,6 +117,10 @@
             // unsupported messaging on /download/thanks/ page.
             if (_version >= 5.1 && _version <= 6) {
                 h.className += ' xpvista';
+            // Add class for Windows 10 users to display
+            // disclaimer messaging on /download/thanks/ page.
+            } else if (_version >= 10.0 && _version <= 11) {
+                h.className += ' windows10';
             }
         } else {
             h.className = h.className.replace('windows', platform);
