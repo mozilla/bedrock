@@ -135,20 +135,20 @@ main {
 
         // bg texture
         .loaded & {
-            background-image: url('/media/img/firefox/campaign/unfck/bg/top.png'),
+            background-image: url('/media/img/firefox/campaign/unfck/en/bg/top.png'),
                               // checklist heading
-                              url('/media/img/firefox/campaign/unfck/bg/17.jpg'),
-                              url('/media/img/firefox/campaign/unfck/bg/19.jpg'),
+                              url('/media/img/firefox/campaign/unfck/en/bg/17.jpg'),
+                              url('/media/img/firefox/campaign/unfck/en/bg/19.jpg'),
                               // ads
-                              url('/media/img/firefox/campaign/unfck/bg/2.jpg'),
+                              url('/media/img/firefox/campaign/unfck/en/bg/2.jpg'),
                               // fb
-                              url('/media/img/firefox/campaign/unfck/bg/3.jpg'),
+                              url('/media/img/firefox/campaign/unfck/en/bg/3.jpg'),
                               // youtube
-                              url('/media/img/firefox/campaign/unfck/bg/13.jpg'),
-                              url('/media/img/firefox/campaign/unfck/bg/20.jpg'),
+                              url('/media/img/firefox/campaign/unfck/en/bg/13.jpg'),
+                              url('/media/img/firefox/campaign/unfck/en/bg/20.jpg'),
                               // giphy
-                              url('/media/img/firefox/campaign/unfck/bg/13.jpg'),
-                              url('/media/img/firefox/campaign/unfck/bg/9.jpg');
+                              url('/media/img/firefox/campaign/unfck/en/bg/13.jpg'),
+                              url('/media/img/firefox/campaign/unfck/en/bg/9.jpg');
             background-position: top center,
                                  // checklist heading
                                  top 700px right calc(50% + #{$content-sm / 2 }),
@@ -247,7 +247,7 @@ main {
 // banner & hero
 
 .c-banner {
-    @include at2x('/media/img/firefox/campaign/unfck/hero-wide.png', contain);
+    @include at2x('/media/img/firefox/campaign/unfck/en/hero-wide.png', contain);
     background-repeat: no-repeat;
     margin: 0 auto 48px auto;
     width: calc(100% - #{$layout-sm * 2});
@@ -265,7 +265,7 @@ main {
     }
 
     &:before {
-        @include at2x('/media/img/firefox/campaign/unfck/hero-wide.png', contain);
+        @include at2x('/media/img/firefox/campaign/unfck/en/hero-wide.png', contain);
         background-repeat: no-repeat;
         display: block;
         content: '';
@@ -275,7 +275,7 @@ main {
     }
 
     .loaded &:after {
-        background: transparent url('/media/img/firefox/campaign/unfck/heart.gif') left bottom no-repeat;
+        background: transparent url('/media/img/firefox/campaign/unfck/en/heart.gif') left bottom no-repeat;
         background-size: contain;
         display: block;
         content: '';
@@ -288,7 +288,7 @@ main {
 
     @media (prefers-reduced-motion) {
         .loaded &:after {
-            background-image: url('/media/img/firefox/campaign/unfck/still/heart.png');
+            background-image: url('/media/img/firefox/campaign/unfck/en/still/heart.png');
         }
     }
 }

@@ -9,7 +9,7 @@
 
 {% block page_title %}Unfck the internet{% endblock %}
 {% block page_desc %}It’s an amazing place. But we can all feel the ways it’s fcked, too. Here are some things you can do to unfck it!{% endblock %}
-{% block page_image %}{{ static('img/firefox/campaign/unfck/og.jpg') }}{% endblock %}
+{% block page_image %}{{ static('img/firefox/campaign/unfck/en/og.jpg') }}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('firefox-unfck') }}
@@ -84,8 +84,8 @@
       link_include_utms=False,
       link_is_external=True,
       id='share',
-      src=static('img/firefox/campaign/unfck/button.gif'),
-      src_still=static('img/firefox/campaign/unfck/still/button.png')
+      src=static('img/firefox/campaign/unfck/en/button.gif'),
+      src_still=static('img/firefox/campaign/unfck/en/still/button.png')
     ) %}{% endcall %}
 
     {% call item(
@@ -95,8 +95,8 @@
       link_url='https://addons.mozilla.org/firefox/addon/ad-observer/',
       link_include_utms=True,
       id='poli',
-      src=static('img/firefox/campaign/unfck/smiley.gif'),
-      src_still=static('img/firefox/campaign/unfck/still/smiley.png'),
+      src=static('img/firefox/campaign/unfck/en/smiley.gif'),
+      src_still=static('img/firefox/campaign/unfck/en/still/smiley.png'),
     ) %}{% endcall %}
 
     {% call item(
@@ -105,8 +105,8 @@
       link_text='Watch the Doc',
       link_url='#',
       id='social',
-      src=static('img/firefox/campaign/unfck/highfive.gif'),
-      src_still=static('img/firefox/campaign/unfck/still/highfive.png'),
+      src=static('img/firefox/campaign/unfck/en/highfive.gif'),
+      src_still=static('img/firefox/campaign/unfck/en/still/highfive.png'),
     ) %}{% endcall %}
 
     {% call item(
@@ -116,8 +116,8 @@
       link_url='https://addons.mozilla.org/firefox/addon/facebook-container/',
       link_include_utms=True,
       id='contain',
-      src=static('img/firefox/campaign/unfck/phone.gif'),
-      src_still=static('img/firefox/campaign/unfck/still/phone.png'),
+      src=static('img/firefox/campaign/unfck/en/phone.gif'),
+      src_still=static('img/firefox/campaign/unfck/en/still/phone.png'),
     ) %}{% endcall %}
 
 
@@ -128,8 +128,8 @@
       link_url='https://addons.mozilla.org/en-US/firefox/addon/regretsreporter/',
       link_include_utms=True,
       id='regrets',
-      src=static('img/firefox/campaign/unfck/computer.gif'),
-      src_still=static('img/firefox/campaign/unfck/still/computer.png'),
+      src=static('img/firefox/campaign/unfck/en/computer.gif'),
+      src_still=static('img/firefox/campaign/unfck/en/still/computer.png'),
     ) %}{% endcall %}
 
 
@@ -139,8 +139,8 @@
       link_text='Meet our Friends',
       link_url='#',
       id='join',
-      src=static('img/firefox/campaign/unfck/un.gif'),
-      src_still=static('img/firefox/campaign/unfck/still/un.png'),
+      src=static('img/firefox/campaign/unfck/en/un.gif'),
+      src_still=static('img/firefox/campaign/unfck/en/still/un.png'),
     ) %}{% endcall %}
 
 
@@ -190,16 +190,16 @@
       </div>
       <div class="c-box-gifs">
         <picture class="c-box-gif" id="mug">
-          <source srcset="{{ static('img/firefox/campaign/unfck/still/mug.png') }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="344" height="344"></source>
-          <img src="{{ static('img/firefox/campaign/unfck/mug.gif') }}" loading="lazy" width="344" height="344">
+          <source srcset="{{ static('img/firefox/campaign/unfck/en/still/mug.png') }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="344" height="344"></source>
+          <img src="{{ static('img/firefox/campaign/unfck/en/mug.gif') }}" loading="lazy" width="344" height="344">
         </picture>
         <picture class="c-box-gif" id="smiley">
-          <source srcset="{{ static('img/firefox/campaign/unfck/still/smiley.png') }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="344" height="344"></source>
-          <img src="{{ static('img/firefox/campaign/unfck/smiley.gif') }}" loading="lazy" width="344" height="344">
+          <source srcset="{{ static('img/firefox/campaign/unfck/en/still/smiley.png') }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="344" height="344"></source>
+          <img src="{{ static('img/firefox/campaign/unfck/en/smiley.gif') }}" loading="lazy" width="344" height="344">
         </picture>
         <picture class="c-box-gif" id="todo">
-          <source srcset="{{ static('img/firefox/campaign/unfck/still/todo.png') }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="344" height="344"></source>
-          <img src="{{ static('img/firefox/campaign/unfck/todo.gif') }}" loading="lazy" width="344" height="344">
+          <source srcset="{{ static('img/firefox/campaign/unfck/en/still/todo.png') }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="344" height="344"></source>
+          <img src="{{ static('img/firefox/campaign/unfck/en/todo.gif') }}" loading="lazy" width="344" height="344">
         </picture>
       </div>
     </div>
