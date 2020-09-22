@@ -59,6 +59,16 @@ class BasePage(ScrollElementIntoView, Page):
         _firefox_desktop_page_locator = (By.CSS_SELECTOR, '.mzp-c-menu-item-link[data-link-name="Firefox Quantum Desktop Browser"]')
         _developer_edition_page_locator = (By.CSS_SELECTOR, '.mzp-c-menu-item-link[data-link-name="Firefox Developer Edition"]')
         _about_page_locator = (By.CSS_SELECTOR, '.mzp-c-menu-item-link[data-link-name="Mozilla"]')
+        _firefox_download_button_locator = (By.CSS_SELECTOR, '#protocol-nav-download-firefox > .download-link')
+        _firefox_account_button_locator = (By.CSS_SELECTOR, '.c-navigation-fxa-cta-container > .js-fxa-cta-link')
+
+        @property
+        def is_firefox_download_button_displayed(self):
+            return self.is_element_displayed(*self._firefox_download_button_locator)
+
+        @property
+        def is_firefox_accounts_button_displayed(self):
+            return self.is_element_displayed(*self._firefox_account_button_locator)
 
         def show(self):
             assert not self.is_displayed, 'Menu is already displayed'

@@ -5,15 +5,14 @@
 from selenium.webdriver.common.by import By
 
 from pages.base import BasePage
-from pages.regions.download_button import DownloadButton
 
 
 class HomePage(BasePage):
 
     _privacy_hero_button_locator = (By.CSS_SELECTOR, '.privacy-promise-hero .mzp-c-button')
-    _intro_download_button_locator = (By.ID, 'download-intro')  # legacy home page
-    _primary_download_button_locator = (By.ID, 'download-primary')
-    _secondary_download_button_locator = (By.ID, 'download-secondary')
+    _rest_of_world_download_button_locator = (By.CSS_SELECTOR, '#download-intro > .download-link')  # legacy home page
+    _primary_download_button_locator = (By.CSS_SELECTOR, '#download-primary > .download-link')
+    _secondary_download_button_locator = (By.CSS_SELECTOR, '#download-secondary > .download-link')
     _primary_accounts_button_locator = (By.ID, 'fxa-learn-primary')
     _secondary_accounts_button_locator = (By.ID, 'fxa-learn-secondary')
 
@@ -22,19 +21,16 @@ class HomePage(BasePage):
         return self.is_element_displayed(*self._privacy_hero_button_locator)
 
     @property
-    def intro_download_button(self):
-        el = self.find_element(*self._intro_download_button_locator)
-        return DownloadButton(self, root=el)
+    def is_rest_of_world_download_button_displayed(self):
+        return self.is_element_displayed(*self._rest_of_world_download_button_locator)
 
     @property
-    def primary_download_button(self):
-        el = self.find_element(*self._primary_download_button_locator)
-        return DownloadButton(self, root=el)
+    def is_primary_download_button_displayed(self):
+        return self.is_element_displayed(*self._primary_download_button_locator)
 
     @property
-    def secondary_download_button(self):
-        el = self.find_element(*self._secondary_download_button_locator)
-        return DownloadButton(self, root=el)
+    def is_secondary_download_button_displayed(self):
+        return self.is_element_displayed(*self._secondary_download_button_locator)
 
     @property
     def is_primary_accounts_button_displayed(self):

@@ -10,6 +10,15 @@ if (typeof window.Mozilla === 'undefined') {
 (function() {
     'use strict';
 
+    /* eslint-disable no-jquery/no-attr */
+    /* eslint-disable no-jquery/no-data */
+    /* eslint-disable no-jquery/no-each-collection */
+    /* eslint-disable no-jquery/no-event-shorthand */
+    /* eslint-disable no-jquery/no-find-collection */
+    /* eslint-disable no-jquery/no-jquery-constructor */
+    /* eslint-disable no-jquery/no-other-methods */
+    /* eslint-disable no-jquery/no-visibility */
+
     var UtilsIE = {};
 
     /**
@@ -29,9 +38,13 @@ if (typeof window.Mozilla === 'undefined') {
     UtilsIE.initDownloadLinks = function() {
         $('.download-link').each(function() {
             var $el = $(this);
-            $el.click(function() {
-                UtilsIE.triggerIEDownload($el.data('direct-link'));
-            });
+            var directLink = $el.data('direct-link');
+
+            if (directLink) {
+                $el.click(function() {
+                    UtilsIE.triggerIEDownload(directLink);
+                });
+            }
         });
         $('.download-list').attr('role', 'presentation');
     };
@@ -46,5 +59,14 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     window.Mozilla.UtilsIE = UtilsIE;
+
+    /* eslint-enable no-jquery/no-attr */
+    /* eslint-enable no-jquery/no-data */
+    /* eslint-enable no-jquery/no-each-collection */
+    /* eslint-enable no-jquery/no-event-shorthand */
+    /* eslint-enable no-jquery/no-find-collection */
+    /* eslint-enable no-jquery/no-jquery-constructor */
+    /* eslint-enable no-jquery/no-other-methods */
+    /* eslint-enable no-jquery/no-visibility */
 
 })();

@@ -5,6 +5,12 @@
 /**
  * General DOM ready handler applied to all pages in base template.
  */
+
+/* eslint-disable no-jquery/no-class */
+/* eslint-disable no-jquery/no-jquery-constructor */
+/* eslint-disable no-jquery/no-other-methods */
+/* eslint-disable no-jquery/no-ready-shorthand */
+
 $(document).ready(function() {
     'use strict';
 
@@ -18,3 +24,8 @@ $(document).ready(function() {
         $('html').addClass('loaded');
     });
 });
+
+/* eslint-enable no-jquery/no-class */
+/* eslint-enable no-jquery/no-jquery-constructor */
+/* eslint-enable no-jquery/no-other-methods */
+/* eslint-enable no-jquery/no-ready-shorthand */

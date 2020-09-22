@@ -15,13 +15,12 @@ describe('mozilla-utils.js', function() {
             'data-global-previous="Previous"> ' +
             '</div>';
 
-            var container = document.createElement('div');
-            container.innerHTML = stringDiv;
-            $(container).appendTo('body');
+            document.body.insertAdjacentHTML('beforeend', stringDiv);
         });
 
         afterEach(function() {
-            $(stringDiv).remove();
+            var strings = document.getElementById('strings');
+            strings.parentNode.removeChild(strings);
         });
 
         it('should correctly return translation value', function () {
@@ -32,52 +31,148 @@ describe('mozilla-utils.js', function() {
 
     describe('initMobileDownloadLinks', function () {
 
-        var $link;
+        beforeEach(function() {
+            var link = '<a class="download-link" href="https://play.google.com/store/apps/details?id=org.mozilla.firefox">Download Firefox</a>';
+            document.body.insertAdjacentHTML('beforeend', link);
+        });
 
         afterEach(function(){
             window.site.platform = 'other';
-            $link.remove();
+
+            document.querySelectorAll('.download-link').forEach(function(e)  {
+                e.parentNode.removeChild(e);
+            });
         });
 
         it('should set a URL with the market scheme on Android', function () {
             window.site.platform = 'android';
-            $link = $('<a class="download-link" href="https://play.google.com/store/apps/details?id=org.mozilla.firefox">foo</a>').appendTo('body');
             Mozilla.Utils.initMobileDownloadLinks();
-            expect($link.attr('href')).toEqual('market://details?id=org.mozilla.firefox');
+            var link = document.querySelector('.download-link');
+            expect(link.href).toEqual('market://details?id=org.mozilla.firefox');
         });
     });
 
     describe('maybeSwitchToChinaRepackImages', function() {
 
-        var $img;
         var defaultSrc = '/img/placeholder.png';
         var partnerASrc = '/img/foo.png';
 
         beforeEach(function () {
-            $img = $([
-                '<img src="' + defaultSrc +
-                '" data-partnera-link="' + partnerASrc +
-                '">download</a>'
-            ].join()).appendTo('body');
+            var img = '<img class="test-image" src="' + defaultSrc + '" data-partnera-link="' + partnerASrc + '">';
+            document.body.insertAdjacentHTML('beforeend', img);
         });
 
         afterEach(function() {
-            $img.remove();
+            document.querySelectorAll('.test-image').forEach(function(e)  {
+                e.parentNode.removeChild(e);
+            });
         });
 
         it('should use specified image for certain distributions', function () {
             Mozilla.Utils.maybeSwitchToChinaRepackImages({
                 distribution: 'PartnerA'
             });
-            expect($img[0].src).toContain(partnerASrc);
+            var img = document.querySelector('.test-image');
+            expect(img.src).toContain(partnerASrc);
         });
 
         it('should use default image for other distributions', function () {
             Mozilla.Utils.maybeSwitchToChinaRepackImages({
                 distribution: 'PartnerB'
             });
-            expect($img[0].src).toContain(defaultSrc);
+            var img = document.querySelector('.test-image');
+            expect(img.src).toContain(defaultSrc);
+        });
+    });
+
+    describe('getDownloadAttributionValues', function() {
+
+        it('should return expected values for Windows', function () {
+            var site = {
+                platform: 'windows',
+                isARM: false
+            };
+            var result = Mozilla.Utils.getDownloadAttributionValues(site);
+            expect(result).toEqual({
+                os: 'Desktop',
+                name: 'Windows 32-bit',
+                version: 'win'
+            });
         });
 
+        it('should return expected values for Windows ARM64 builds', function () {
+            var site = {
+                platform: 'windows',
+                isARM: true
+            };
+            var result = Mozilla.Utils.getDownloadAttributionValues(site);
+            expect(result).toEqual({
+                os: 'Desktop',
+                name: 'Windows ARM64/AArch64',
+                version: 'win64-aarch64'
+            });
+        });
+
+        it('should return expected values for macOS', function () {
+            var site = {
+                platform: 'osx'
+            };
+            var result = Mozilla.Utils.getDownloadAttributionValues(site);
+            expect(result).toEqual({
+                os: 'Desktop',
+                name: 'macOS',
+                version: 'osx'
+            });
+        });
+
+        it('should return expected values for Linux', function () {
+            var site = {
+                platform: 'linux',
+                archSize: 32
+            };
+            var result = Mozilla.Utils.getDownloadAttributionValues(site);
+            expect(result).toEqual({
+                os: 'Desktop',
+                name: 'Linux 32-bit',
+                version: 'linux'
+            });
+        });
+
+        it('should return expected values for Linux 64-Bit builds', function () {
+            var site = {
+                platform: 'linux',
+                archSize: 64
+            };
+            var result = Mozilla.Utils.getDownloadAttributionValues(site);
+            expect(result).toEqual({
+                os: 'Desktop',
+                name: 'Linux 64-bit',
+                version: 'linux64'
+            });
+        });
+
+        it('should return expected values for iOS', function () {
+            var site = {
+                platform: 'ios'
+            };
+            var result = Mozilla.Utils.getDownloadAttributionValues(site);
+            expect(result).toEqual({
+                os: 'iOS',
+                name: 'iOS',
+                version: 'ios'
+            });
+        });
+
+        it('should return expected values for Android', function () {
+            var site = {
+                platform: 'android'
+            };
+            var result = Mozilla.Utils.getDownloadAttributionValues(site);
+            expect(result).toEqual({
+                os: 'Android',
+                name: 'Android',
+                version: 'android'
+            });
+        });
     });
 });

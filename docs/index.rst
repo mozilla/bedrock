@@ -36,6 +36,7 @@ Contents
    banners
    uitour
    send-to-device
+   download-buttons
    firefox-accounts
    funnelcake
    abtest

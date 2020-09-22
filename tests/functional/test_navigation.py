@@ -38,3 +38,19 @@ def test_mobile_navigation(base_url, selenium_mobile):
     page.navigation.show()
     about_page = page.navigation.open_about_page()
     assert about_page.seed_url in selenium_mobile.current_url
+
+
+@pytest.mark.nondestructive
+@pytest.mark.skip_if_firefox(reason='Firefox download button is shown only to non-Firefox users.')
+def test_navigation_download_firefox_button(base_url, selenium):
+    page = HomePage(selenium, base_url).open()
+    assert not page.navigation.is_firefox_accounts_button_displayed
+    assert page.navigation.is_firefox_download_button_displayed
+
+
+@pytest.mark.nondestructive
+@pytest.mark.skip_if_not_firefox(reason='Firefox Accounts button is shown only to Firefox users.')
+def test_navigation_firefox_account_button(base_url, selenium):
+    page = HomePage(selenium, base_url).open()
+    assert not page.navigation.is_firefox_download_button_displayed
+    assert page.navigation.is_firefox_accounts_button_displayed

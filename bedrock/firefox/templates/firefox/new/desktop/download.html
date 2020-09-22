@@ -48,7 +48,7 @@
         <p>{{ ftl('firefox-desktop-download-no-shady') }}</p>
 
         <div class="c-intro-download">
-          {{ download_firefox(locale_in_transition=True, download_location='primary cta') }}
+          {{ download_firefox_thanks(locale_in_transition=True, download_location='primary cta') }}
 
           <div class="c-intro-download-alt"><a href="{{ url('firefox.all') }}">{{ ftl('firefox-desktop-download-download-options') }}</a></div>
 
@@ -314,7 +314,7 @@
         </div>
       </div>
 
-      {{ download_firefox(dom_id='download-features', locale_in_transition=True, download_location='features cta') }}
+      {{ download_firefox_thanks(dom_id='download-features', locale_in_transition=True, download_location='features cta') }}
 
     </div>
   </section>
@@ -448,7 +448,7 @@
       </div>
     </div>
 
-    {{ download_firefox(dom_id='download-discover', locale_in_transition=True, download_location='discover cta') }}
+    {{ download_firefox_thanks(dom_id='download-discover', locale_in_transition=True, download_location='discover cta') }}
   </section>
 
   <section class="c-support">
@@ -491,7 +491,7 @@
 
   <a href="{{ url('firefox.accounts') }}" class="mzp-c-button mzp-t-product join-firefox-button" data-link-name="Get More From Firefox" data-link-type="button">{{ ftl('firefox-desktop-download-get-more-from-firefox') }}</a>
 
-  {{ download_firefox(dom_id='download-join-firefox-modal', alt_copy=ftl('firefox-desktop-download-just-download-the-browser'), button_class='mzp-t-secondary', locale_in_transition=True, download_location='other') }}
+  {{ download_firefox_thanks(dom_id='download-join-firefox-modal', alt_copy=ftl('firefox-desktop-download-just-download-the-browser'), button_class='mzp-t-secondary', locale_in_transition=True, download_location='other') }}
 </aside>
 {% endif %}
 
