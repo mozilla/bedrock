@@ -78,12 +78,18 @@
     {% call item(
       title='Share the internet love',
       info='There’s a lot to unfck, but we’re powerful together. Tell your friends you browse with your values, and get them in on this conversation.',
-      link_text='Tweet This',
-      link_url='#',
       id='share',
       src=static('img/firefox/campaign/unfck/button.gif'),
       src_still=static('img/firefox/campaign/unfck/still/button.png'),
-    ) %}{% endcall %}
+      include_cta=true
+    ) %}
+
+      {% set tweet_text='2020 might be fcked, but the internet doesn’t have to be. Here are 5 easy ways we can all help turn things around.' %}
+      {% set tw_url = settings.CANONICAL_URL + '/firefox/unfck/' %}
+      {% set tw = 'https://www.twitter.com/intent/tweet?url=' + tw_url|urlencode + '&text=' + tweet_text|urlencode + '&hashtags=unfckTheInternet' %}
+
+      <a class="js-twitter-share mzp-c-cta-link" target="_blank" rel="noopener noreferrer" href="{{ tw }}">Tweet this</a>
+    {% endcall %}
 
     {% call item(
       title='Shine a light on political ads',
@@ -143,11 +149,6 @@
 
   </div>
 
-  {% set tweet_text='2020 might be fcked, but the internet doesn’t have to be. Here are 5 easy ways we can all help turn things around.' %}
-  {% set tw_url = settings.CANONICAL_URL + '/firefox/campaign/unfck/' %}
-  {% set tw = 'https://www.twitter.com/intent/tweet?url=' + tw_url|urlencode + '&text=' + tweet_text|urlencode + '&hashtags=unfckTheInternet' %}
-
-  <p style="text-align: center;"><a class="js-twitter-share" target="_blank" rel="noopener noreferrer" href="{{ tw }}"><span class="c-item-icon twitter"></span><span class="c-item-text">Share this fcking shit to Twitter</span></a></p>
 
   <div class="mzp-l-content mzp-t-content-xl c-cards">
     <div class="mzp-l-card-third">
