@@ -8,3 +8,6 @@
 {% block body_class %}mzp-t-mozilla format-none{% endblock%}
 
 {% block article_header_logo %}{{ static('img/privacy/logo-thunderbird.png') }}{% endblock %}
+
+{# Disable GA on Thunderbird Privacy Notice. Issue 9426 #}
+{% block google_analytics %}{% endblock %}
