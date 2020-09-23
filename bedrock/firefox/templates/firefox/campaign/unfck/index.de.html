@@ -31,14 +31,16 @@
   copy_success_text='Link in die Zwischenablage kopiert') -%}
   {% set tw = 'https://www.twitter.com/intent/tweet?url=' + tw_url + '&text=' + tw_text + '&hashtags=' + tw_hashtags + '&via=' + tw_via %}
   <div class="c-item-unfck" id="{{ id }}">
-    <h3 class="c-item-title">{{ title }}</h3>
     <div class="c-item-img">
-      <picture class="c-item-gif">
-        {% if src_still %}
-        <source srcset="{{ src_still }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="280" height="280"></source>
-        {% endif %}
-        <img src="{{ src }}" loading="lazy" width="280" height="280">
-      </picture>
+      <a class="c-item-img-link" href="{{ link_url }}{% if link_include_utms %}{{ referrals }}{% endif %}" target="_blank" {% if link_include_utms or link_is_external %}rel="external noopener"{% endif %} data-cta-type="link" data-cta-text="Checklist: {{ id }}">
+        <picture class="c-item-gif">
+          {% if src_still %}
+          <source srcset="{{ src_still }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="280" height="280"></source>
+          {% endif %}
+          <img src="{{ src }}" loading="lazy" width="280" height="280">
+        </picture>
+      </a>
+
       <ul class="c-item-actions">
         <li><a class="c-item-link js-twitter-share twitter" href="{{ tw|e }}" data-id="{{ id }}" title="{{ share_text }}">{{ share_text }}</a></li>
         <li><a class="c-item-link js-download-gif download" href="{{ src }}" data-id="{{ id }}" title="{{ download_text }}" download>{{ download_text }}</a></li>
@@ -46,11 +48,16 @@
       </ul>
     </div>
     <div class="c-item-desc">
-      <p>{{ info }}</p>
       {% if include_cta %}
+        <h3 class="c-item-title">{{ title }}</h3>
+        <p>{{ info }}</p>
         {{ caller() }}
       {% else %}
-        <p><a class="mzp-c-cta-link" href="{{ link_url }}{% if link_include_utms %}{{ referrals }}{% endif %}" target="_blank" {% if link_include_utms or link_is_external %}rel="external noopener" data-cta-type="link" data-cta-text="Checklist: {{ id }}"{% endif %}>{{ link_text }}</a></p>
+        <a class="c-item-desc-link" href="{{ link_url }}{% if link_include_utms %}{{ referrals }}{% endif %}" target="_blank" {% if link_include_utms or link_is_external %}rel="external noopener"{% endif %} data-cta-type="link" data-cta-text="Checklist: {{ id }}">
+          <h3 class="c-item-title">{{ title }}</h3>
+          <p>{{ info }}</p>
+          <p><span class="c-item-cta-link">{{ link_text }}</span></p>
+        </a>
       {% endif %}
     </div>
   </div>
@@ -87,7 +94,7 @@
     {% call share_item(
       title='Unfck Social Media',
       info='Mach’s Facebook schwerer, dir durch’s Web zu folgen und deine Daten zu sammeln. (Facebook sammelt deine Daten selbst dann, wenn du gar keinen Account hast.)',
-      link_text='Hol dir den Facebook Container ',
+      link_text='Hol dir den Facebook Container',
       link_url=url('firefox.facebookcontainer.index'),
       id='unfck-social-media',
       src=static('img/firefox/campaign/unfck/de/gifs/firefox1.gif'),
@@ -118,7 +125,7 @@
 
       {% call share_item(
         title='Netflix & change',
-        info='Schau dir die Dokumentation <em>“The Social Dilemma”</em> mit unseren Freunden des Center of Human Tech an und erfahre mehr darüber, wie Milliarden von Menschen zur Handelsware der Konzerne werden.'|safe,
+        info='Schau dir die Dokumentation <em>“The Social Dilemma”</em> mit unseren Freunden des Center for Human Tech an und erfahre mehr darüber, wie Milliarden von Menschen zur Handelsware der Konzerne werden.'|safe,
         link_text='Zur Doku',
         link_url='https://www.thesocialdilemma.com/take-action/',
         link_include_utms=False,
@@ -176,7 +183,7 @@
         <li>💡 Tipps, wie du dich online schützen kannst.</li>
       </ul>
 
-      <p><a class="mzp-c-cta-link" href="https://mzl.la/Instagram_" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="instagram">mzl.la/Instagram_</a></p>
+      <p><a class="c-instagram-link" href="https://mzl.la/Instagram_" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="instagram">mzl.la/Instagram_</a></p>
 
       <a class="c-instagram-grid-link" href="https://mzl.la/Instagram_" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="instagram">
         <ul class="c-instagram-grid">

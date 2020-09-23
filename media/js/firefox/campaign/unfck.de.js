@@ -154,7 +154,7 @@
         var link;
 
         if (item) {
-            link = item.querySelector('.c-item-gif');
+            link = item.querySelector('.c-item-gif img');
         }
 
         if (link && link.src && id) {
