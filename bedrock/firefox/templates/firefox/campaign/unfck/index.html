@@ -28,7 +28,7 @@
           {% if src_still %}
           <source srcset="{{ src_still }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="280" height="280"></source>
           {% endif %}
-          <img src="{{ src }}" loading="lazy" width="344" height="344">
+          <img src="{{ src }}" loading="lazy" width="280" height="280">
         </picture>
       </div>
       <div class="c-item-desc">
@@ -73,7 +73,7 @@
 
   <div class="mzp-l-content mzp-t-content-lg">
     {% set tweet_text='2020 might be fcked, but the internet doesn’t have to be. Here are 5 easy ways we can all help turn things around.' %}
-    {% set tw_url = settings.CANONICAL_URL + '/firefox/unfck/' %}
+    {% set tw_url = 'https://firefox.com/unfck' %}
     {% set tw = 'https://www.twitter.com/intent/tweet?url=' + tw_url|urlencode + '&text=' + tweet_text|urlencode + '&hashtags=unfckTheInternet' %}
 
     {% call item(
