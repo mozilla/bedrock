@@ -55,7 +55,7 @@
             <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
           </tr>
           <tr>
-            <th scope="row">{{ ftl('compare-shared-blocks-third-party-tracking') }}</th>
+            <th scope="row">{{ ftl('compare-shared-blocks-third-party-tracking-default', fallback='compare-shared-blocks-third-party-tracking') }}</th>
             <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
           </tr>
@@ -211,7 +211,7 @@
             <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
           </tr>
           <tr>
-            <th scope="row">{{ ftl('compare-shared-master-password') }}</th>
+            <th scope="row">{{ ftl('compare-shared-primary-password', fallback='compare-shared-master-password') }}</th>
             <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
           </tr>

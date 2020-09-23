@@ -316,6 +316,10 @@ $image-path: "/media/protocol/img";
         margin-bottom: $spacing-xl;
     }
 
+    .mzp-c-button-download-container {
+        margin-bottom: 0;
+    }
+
     @media #{$mq-md} {
         display: grid;
         grid-column-gap: $spacing-xl;

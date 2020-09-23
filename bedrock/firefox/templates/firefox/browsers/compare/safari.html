@@ -32,7 +32,7 @@
 <div class="mzp-l-content l-compare-details-content">
   <article class="mzp-c-article">
     <section class="compare-details-section-summary">
-        <p class="compare-details-section-intro">{{ ftl('compare-safari-if-you-use-a-mac-or-have') }}</p>
+        <p class="compare-details-section-intro">{{ ftl('compare-safari-if-you-use-a-mac-or-have-updated', fallback='compare-safari-if-you-use-a-mac-or-have') }}</p>
 
         {{ high_res_img('img/firefox/compare/compare-browser-safari.png', {'alt': '', 'width': '544', 'height': '424', 'class': 'compare-details-image'}) }}
     </section>
@@ -57,7 +57,7 @@
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
-              <th scope="row">{{ ftl('compare-shared-blocks-third-party-tracking') }}</th>
+              <th scope="row">{{ ftl('compare-shared-blocks-third-party-tracking-default', fallback='compare-shared-blocks-third-party-tracking') }}</th>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
@@ -109,7 +109,7 @@
             <tr>
               <th scope="row">{{ ftl('compare-shared-autoplay-blocking') }}</th>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
               <th scope="row">{{ ftl('compare-shared-tab-browsing') }}</th>
@@ -166,8 +166,10 @@
       <p>{{ ftl('compare-safari-like-safari-firefox-encourages', attrs='href="https:/addons.mozilla.org" rel="external noopener" data-cta-text="add-ons and extensions" data-cta-type="link"'|safe) }}</p>
 
 
-    {% if ftl_has_messages('compare-safari-also-when-you-sign-up-for-updated', 'compare-safari-screenshots-is-another-popular') %}
+    {% if ftl_has_messages('compare-safari-also-when-you-sign-up-for-updated', 'compare-safari-firefox-is-also-great-for-video', 'compare-safari-screenshots-is-another-popular') %}
       <p>{{ ftl('compare-safari-also-when-you-sign-up-for-updated', pocket='href="https://getpocket.com/" rel="external noopener" data-cta-text="Pocket" data-cta-type="link"'|safe) }}</p>
+
+      <p>{{ ftl('compare-safari-firefox-is-also-great-for-video') }}</p>
 
       <p>{{ ftl('compare-safari-screenshots-is-another-popular', attrs='href="https:/screenshots.firefox.com" rel="external noopener" data-cta-text="Screenshots" data-cta-type="link"'|safe) }}</p>
     {% else %}
@@ -215,7 +217,7 @@
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
-              <th scope="row">{{ ftl('compare-shared-master-password') }}</th>
+              <th scope="row">{{ ftl('compare-shared-primary-password', fallback='compare-shared-master-password') }}</th>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
             </tr>
