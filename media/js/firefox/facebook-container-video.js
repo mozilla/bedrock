@@ -16,6 +16,10 @@
     function initVideoInteractionTracking() {
         var video = document.getElementById('fbcontainer-video');
 
+        if (!video) {
+            return;
+        }
+
         video.addEventListener('play', function() {
             trackVideoInteraction(this.getAttribute('data-ga-label'), 'play');
         }, false);
