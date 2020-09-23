@@ -13,6 +13,7 @@
 -brand-name-facebook = Facebook
 -brand-name-github = GitHub
 -brand-name-google = Google
+-brand-name-hulu = Hulu
 -brand-name-microsoft = Microsoft
 -brand-name-mozilla = Mozilla
 -brand-name-mozilla-corporation = Mozilla Corporation
