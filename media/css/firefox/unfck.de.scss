@@ -107,19 +107,6 @@ main {
         }
     }
 
-    .mzp-c-cta-link {
-        background: $icon_cta top right no-repeat;
-        @include background-size($spacing-md auto);
-        margin-bottom: 0;
-        padding-right: $spacing-lg;
-
-        &:link,
-        &:visited,
-        &:hover {
-            color: $color-green-30;
-        }
-    }
-
     .mzp-c-card-block-link {
         &:link,
         &:visited,
@@ -140,6 +127,19 @@ main {
 
         &:focus {
             box-shadow: $field-focus-ring-dark;
+        }
+    }
+
+    .mzp-c-button-download-privacy-link {
+        a:link,
+        a:visited {
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            text-decoration: underline;
         }
     }
 
@@ -315,6 +315,10 @@ main {
     }
 }
 
+.c-item-image-link {
+    display: block;
+}
+
 .c-item-actions li {
     display: inline-block;
 }
@@ -367,9 +371,61 @@ main {
     }
 }
 
+.c-item-desc-link {
+    display: block;
+    position: relative;
+
+    &:after {
+        border-radius: $border-radius-md;
+        border: 1px solid transparent;
+        bottom: $spacing-md * -1;
+        content: '';
+        display: block;
+        left: $spacing-md * -1;
+        position: absolute;
+        right: $spacing-md * -1;
+        top: $spacing-md * -1;
+    }
+
+    .c-item-cta-link {
+        border-bottom: 2px solid transparent;
+        color: $color-green-30;
+        font-weight: bold;
+        margin-bottom: 0;
+        position: relative;
+
+        &:after {
+            background: $icon_cta top right no-repeat;
+            @include background-size($spacing-md auto);
+            content: '';
+            height: 16px;
+            position: absolute;
+            right: -$spacing-lg;
+            top: 2px;
+            width:  16px;
+        }
+    }
+
+    .t-unfck &:link,
+    .t-unfck &:visited {
+        text-decoration: none;
+    }
+
+    .t-unfck &:hover,
+    .t-unfck &:active,
+    .t-unfck &:focus {
+        .c-item-cta-link {
+            border-bottom: 2px solid;
+        }
+
+        &:after {
+            border: 1px solid $color-violet-50;
+        }
+    }
+}
+
 .c-item-title {
     @include font-size(24px);
-    position: relative;
 }
 
 @supports (display:grid) {
@@ -539,6 +595,18 @@ main {
     .mzp-c-card-cta {
         margin-top: $spacing-md;
     }
+
+    .mzp-c-card-block-link {
+        &:hover,
+        &:active,
+        &:focus {
+            box-shadow: 0 0 0 1px $color-violet-50;
+
+            .mzp-c-card-title {
+                border-bottom: 2px transparent;
+            }
+        }
+    }
 }
 
 // --------------------------------------------------------------------------
@@ -551,9 +619,21 @@ main {
         color: $color-white;
     }
 
-    .mzp-c-cta-link {
-        background: none;
-        padding: 0;
+    .c-instagram-link {
+        &:link,
+        &:visited,
+        &:hover {
+            border-bottom: 2px solid transparent;
+            color: $color-green-30;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+            border-bottom: 2px solid;
+        }
     }
 
     @media #{$mq-lg} {
