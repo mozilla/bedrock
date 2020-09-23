@@ -9,7 +9,7 @@
 
 {% block page_title %}Unfck the internet{% endblock %}
 {% block page_desc %}It’s an amazing place. But we can all feel the ways it’s fcked, too. Here are some things you can do to unfck it!{% endblock %}
-{% block page_image %}{{ static('img/firefox/campaign/unfck/og.jpg') }}{% endblock %}
+{% block page_image %}{{ static('img/firefox/campaign/unfck/en/og.jpg') }}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('firefox-unfck') }}
@@ -21,25 +21,22 @@
 
 {% macro item(title=None, info=None, id=None, src=None, src_still=None, include_cta=False,
               link_text=None, link_url=None, link_include_utms=True, link_is_external=True) -%}
-  <div class="c-item-unfck" id="{{ id }}">
-    <h3 class="c-item-title">{{ title }}</h3>
-    <div class="c-item-img">
-      <picture class="c-item-gif">
-        {% if src_still %}
-        <source srcset="{{ src_still }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="280" height="280"></source>
-        {% endif %}
-        <img src="{{ src }}" loading="lazy" width="344" height="344">
-      </picture>
-    </div>
-    <div class="c-item-desc">
-      <p>{{ info }}</p>
-      {% if include_cta %}
-        {{ caller() }}
-      {% else %}
-        <p><a class="mzp-c-cta-link" href="{{ link_url }}{% if link_include_utms %}{{ referrals }}{% endif %}" target="_blank" {% if link_include_utms or link_is_external %}rel="external noopener" data-cta-type="link" data-cta-text="Checklist: {{ id }}"{% endif %}>{{ link_text }}</a></p>
-      {% endif %}
-    </div>
-  </div>
+    <a id="{{ id }}" class="c-item-unfck" href="{{ link_url }}{% if link_include_utms %}{{ referrals }}{% endif %}" target="_blank" {% if link_include_utms or link_is_external %}rel="external noopener" data-cta-type="link" data-cta-text="Checklist: {{ id }}"{% endif %}>
+      <h3 class="c-item-title">{{ title }}</h3>
+      <div class="c-item-img">
+        <picture class="c-item-gif">
+          {% if src_still %}
+          <source srcset="{{ src_still }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="280" height="280"></source>
+          {% endif %}
+          <img src="{{ src }}" loading="lazy" width="280" height="280">
+        </picture>
+      </div>
+      <div class="c-item-desc">
+        <p>{{ info }}</p>
+        {% if include_cta %}{{ caller() }}{% endif %}
+        <p class="c-item-cta"><span class="mzp-c-cta-link">{{ link_text }}</span></p>
+      </div>
+    </a>
 {%- endmacro %}
 
 
@@ -72,27 +69,34 @@
     </ul>
   {% endcall %}
 
-  <h2 class="c-section-title">The Unfcking Checklist</h2>
+  <h2 class="c-section-title">The Checklist</h2>
 
   <div class="mzp-l-content mzp-t-content-lg">
+    {% set tweet_text='2020 might be fcked, but the internet doesn’t have to be. Here are 5 easy ways we can all help turn things around.' %}
+    {% set tw_url = 'https://firefox.com/unfck' %}
+    {% set tw = 'https://www.twitter.com/intent/tweet?url=' + tw_url|urlencode + '&text=' + tweet_text|urlencode + '&hashtags=unfckTheInternet' %}
+
     {% call item(
       title='Share the internet love',
       info='There’s a lot to unfck, but we’re powerful together. Tell your friends you browse with your values, and get them in on this conversation.',
-      link_text='Tweet This',
-      link_url='#',
+      link_text='Tweet this',
+      link_url=tw,
+      link_include_utms=False,
+      link_is_external=True,
       id='share',
-      src=static('img/firefox/campaign/unfck/button.gif'),
-      src_still=static('img/firefox/campaign/unfck/still/button.png'),
+      src=static('img/firefox/campaign/unfck/en/button.gif'),
+      src_still=static('img/firefox/campaign/unfck/en/still/button.png')
     ) %}{% endcall %}
 
     {% call item(
       title='Shine a light on political ads',
       info='What you see online is not what your across-the-aisle uncle does. Hold Facebook advertisers accountable for misinformation by sharing the political ads you see to a public database.',
       link_text='Get the Extension',
-      link_url='#',
+      link_url='https://addons.mozilla.org/firefox/addon/ad-observer/',
+      link_include_utms=True,
       id='poli',
-      src=static('img/firefox/campaign/unfck/smiley.gif'),
-      src_still=static('img/firefox/campaign/unfck/still/smiley.png'),
+      src=static('img/firefox/campaign/unfck/en/smiley.gif'),
+      src_still=static('img/firefox/campaign/unfck/en/still/smiley.png'),
     ) %}{% endcall %}
 
     {% call item(
@@ -101,18 +105,19 @@
       link_text='Watch the Doc',
       link_url='#',
       id='social',
-      src=static('img/firefox/campaign/unfck/highfive.gif'),
-      src_still=static('img/firefox/campaign/unfck/still/highfive.png'),
+      src=static('img/firefox/campaign/unfck/en/highfive.gif'),
+      src_still=static('img/firefox/campaign/unfck/en/still/highfive.png'),
     ) %}{% endcall %}
 
     {% call item(
       title='Put a lid on Facebook',
       info='We’ve got one good way to contain them, so you can keep your FB and say F you, too.',
       link_text='Get Facebook Container',
-      link_url='#',
+      link_url='https://addons.mozilla.org/firefox/addon/facebook-container/',
+      link_include_utms=True,
       id='contain',
-      src=static('img/firefox/campaign/unfck/phone.gif'),
-      src_still=static('img/firefox/campaign/unfck/still/phone.png'),
+      src=static('img/firefox/campaign/unfck/en/phone.gif'),
+      src_still=static('img/firefox/campaign/unfck/en/still/phone.png'),
     ) %}{% endcall %}
 
 
@@ -120,10 +125,11 @@
       title='Close the YouTube rabbit hole',
       info='Ever fall for a YouTube recommendation you regretted? This extension doesn’t give you a redo, but it might just keep it from happening to others.',
       link_text='Get RegretsReporter',
-      link_url='#',
+      link_url='https://addons.mozilla.org/en-US/firefox/addon/regretsreporter/',
+      link_include_utms=True,
       id='regrets',
-      src=static('img/firefox/campaign/unfck/computer.gif'),
-      src_still=static('img/firefox/campaign/unfck/still/computer.png'),
+      src=static('img/firefox/campaign/unfck/en/computer.gif'),
+      src_still=static('img/firefox/campaign/unfck/en/still/computer.png'),
     ) %}{% endcall %}
 
 
@@ -133,18 +139,13 @@
       link_text='Meet our Friends',
       link_url='#',
       id='join',
-      src=static('img/firefox/campaign/unfck/un.gif'),
-      src_still=static('img/firefox/campaign/unfck/still/un.png'),
+      src=static('img/firefox/campaign/unfck/en/un.gif'),
+      src_still=static('img/firefox/campaign/unfck/en/still/un.png'),
     ) %}{% endcall %}
 
 
   </div>
 
-  {% set tweet_text='2020 might be fcked, but the internet doesn’t have to be. Here are 5 easy ways we can all help turn things around.' %}
-  {% set tw_url = settings.CANONICAL_URL + '/firefox/campaign/unfck/' %}
-  {% set tw = 'https://www.twitter.com/intent/tweet?url=' + tw_url|urlencode + '&text=' + tweet_text|urlencode + '&hashtags=unfckTheInternet' %}
-
-  <p style="text-align: center;"><a class="js-twitter-share" target="_blank" rel="noopener noreferrer" href="{{ tw }}"><span class="c-item-icon twitter"></span><span class="c-item-text">Share this fcking shit to Twitter</span></a></p>
 
   <div class="mzp-l-content mzp-t-content-xl c-cards">
     <div class="mzp-l-card-third">
@@ -162,7 +163,7 @@
         title='And here’s how Firefox unfcks your internetting',
         ga_title='card-firefox',
         image_url=None,
-        link_url='',
+        link_url=url('firefox.new'),
         heading_level=3,
         desc='The Firefox browser is built to protect your privacy at every turn — because that’s the fastest way to free you from slow loads, bad ads, hackers and trackers. We get the worst of the internet out of the way so there’s more room for the best.',
         cta='Meet the Browser'
@@ -172,7 +173,7 @@
         title='People over profits. Always.',
         ga_title='card-mozilla',
         image_url=None,
-        link_url='',
+        link_url='https://foundation.mozilla.org/' + referrals,
         heading_level=3,
         desc='Firefox was founded in 2002 for the expressed purpose of breaking up a monopoly. Our parent company is a non-profit. The Wall Street Journal has called us “the Bernie Sanders” of browsers, and we’re here for it. Because we’ll never stop fighting for what we believe in: a safe, accessible, and welcoming internet for all.',
         cta='Meet Mozilla'
@@ -185,20 +186,20 @@
       <div class="c-box-text">
         <h2>GIF a fck</h2>
         <p>Do you have feelings about the internet? Chances are we’ve got a GIF for that.</p>
-        <a href="" class="mzp-c-button mzp-t-dark mzp-t-secondary">Go to Giphy</a>
+        <a href="https://giphy.com/firefox" class="mzp-c-button mzp-t-dark mzp-t-secondary" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="Giphy">Go to Giphy</a>
       </div>
       <div class="c-box-gifs">
         <picture class="c-box-gif" id="mug">
-          <source srcset="{{ static('img/firefox/campaign/unfck/still/mug.png') }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="344" height="344"></source>
-          <img src="{{ static('img/firefox/campaign/unfck/mug.gif') }}" loading="lazy" width="344" height="344">
+          <source srcset="{{ static('img/firefox/campaign/unfck/en/still/mug.png') }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="344" height="344"></source>
+          <img src="{{ static('img/firefox/campaign/unfck/en/mug.gif') }}" loading="lazy" width="344" height="344">
         </picture>
         <picture class="c-box-gif" id="smiley">
-          <source srcset="{{ static('img/firefox/campaign/unfck/still/smiley.png') }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="344" height="344"></source>
-          <img src="{{ static('img/firefox/campaign/unfck/smiley.gif') }}" loading="lazy" width="344" height="344">
+          <source srcset="{{ static('img/firefox/campaign/unfck/en/still/smiley.png') }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="344" height="344"></source>
+          <img src="{{ static('img/firefox/campaign/unfck/en/smiley.gif') }}" loading="lazy" width="344" height="344">
         </picture>
         <picture class="c-box-gif" id="todo">
-          <source srcset="{{ static('img/firefox/campaign/unfck/still/todo.png') }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="344" height="344"></source>
-          <img src="{{ static('img/firefox/campaign/unfck/todo.gif') }}" loading="lazy" width="344" height="344">
+          <source srcset="{{ static('img/firefox/campaign/unfck/en/still/todo.png') }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="344" height="344"></source>
+          <img src="{{ static('img/firefox/campaign/unfck/en/todo.gif') }}" loading="lazy" width="344" height="344">
         </picture>
       </div>
     </div>

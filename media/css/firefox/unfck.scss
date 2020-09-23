@@ -135,24 +135,24 @@ main {
 
         // bg texture
         .loaded & {
-            background-image: url('/media/img/firefox/campaign/unfck/bg/top.png'),
+            background-image: url('/media/img/firefox/campaign/unfck/en/bg/top.png'),
                               // checklist heading
-                              url('/media/img/firefox/campaign/unfck/bg/17.jpg'),
-                              url('/media/img/firefox/campaign/unfck/bg/19.jpg'),
+                              url('/media/img/firefox/campaign/unfck/en/bg/17.jpg'),
+                              url('/media/img/firefox/campaign/unfck/en/bg/19.jpg'),
                               // ads
-                              url('/media/img/firefox/campaign/unfck/bg/2.jpg'),
+                              url('/media/img/firefox/campaign/unfck/en/bg/2.jpg'),
                               // fb
-                              url('/media/img/firefox/campaign/unfck/bg/3.jpg'),
+                              url('/media/img/firefox/campaign/unfck/en/bg/3.jpg'),
                               // youtube
-                              url('/media/img/firefox/campaign/unfck/bg/13.jpg'),
-                              url('/media/img/firefox/campaign/unfck/bg/20.jpg'),
+                              url('/media/img/firefox/campaign/unfck/en/bg/13.jpg'),
+                              url('/media/img/firefox/campaign/unfck/en/bg/20.jpg'),
                               // giphy
-                              url('/media/img/firefox/campaign/unfck/bg/13.jpg'),
-                              url('/media/img/firefox/campaign/unfck/bg/9.jpg');
+                              url('/media/img/firefox/campaign/unfck/en/bg/13.jpg'),
+                              url('/media/img/firefox/campaign/unfck/en/bg/9.jpg');
             background-position: top center,
                                  // checklist heading
                                  top 700px right calc(50% + #{$content-sm / 2 }),
-                                 top 800px left calc(50% + #{$content-sm / 2 }),
+                                 top 800px left calc(50% + #{$content-sm / 2 + 150px}),
                                  // ads
                                  top 1200px right calc(50% + #{$content-sm / 2 }),
                                  // fb
@@ -162,29 +162,29 @@ main {
                                  top 2300px left calc(50% + #{$content-sm / 2 }),
                                  // giphy
                                  bottom 50px right calc(50% + #{$content-sm / 2 } ),
-                                 bottom 350px left calc(50% + #{$content-sm / 2 });
+                                 bottom 350px left calc(50% + #{$content-sm / 2 + 150px});
             background-repeat: no-repeat;
 
             @media #{$mq-lg} {
                 background-position: top center,
                                     // checklist heading
                                     top 700px right calc(50% + #{$content-lg / 2 }),
-                                    top 800px left calc(50% + #{$content-lg / 2 }),
+                                    top 800px left calc(50% + #{$content-lg / 2 + 150px}),
                                     // ads
                                     top 1200px right calc(50% + #{$content-lg / 2 }),
                                     // fb
                                     top 1950px right calc(50% + #{$content-lg / 2 }),
                                     // youtube
                                     top 2500px right calc(50% + #{$content-lg / 2 }),
-                                    top 2300px left calc(50% + #{$content-lg / 2 }),
+                                    top 2300px left calc(50% + #{$content-lg / 2 + 70px}),
                                     // giphy
-                                    bottom 50px right calc(50% + #{$content-lg / 2 } ),
-                                    bottom 350px left calc(50% + #{$content-lg / 2 });
+                                    bottom 50px right calc(50% + #{$content-lg / 2 + 50px} ),
+                                    bottom 350px left calc(50% + #{$content-lg / 2 + 150px});
             }
         }
     }
 
-    a.mzp-c-button.download-link {
+    a.mzp-c-button.mzp-t-product {
         background-color: $color-green-30;
         color: $color-ink-90;
 
@@ -194,6 +194,23 @@ main {
 
         &:focus {
             box-shadow: $field-focus-ring-dark;
+        }
+    }
+
+    a.mzp-c-button.mzp-t-dark.mzp-t-secondary {
+        border-color: $color-green-30;
+        color: $color-green-30;
+
+        &:hover,
+        &:focus {
+            background-color: $color-green-50;
+            border-color: $color-green-50;
+            color: $color-ink-90;
+        }
+
+        &:focus {
+            box-shadow: $field-focus-ring-dark;
+            color: $color-ink-90;
         }
     }
 
@@ -230,7 +247,7 @@ main {
 // banner & hero
 
 .c-banner {
-    @include at2x('/media/img/firefox/campaign/unfck/hero-wide.png', contain);
+    @include at2x('/media/img/firefox/campaign/unfck/en/hero-wide.png', contain);
     background-repeat: no-repeat;
     margin: 0 auto 48px auto;
     width: calc(100% - #{$layout-sm * 2});
@@ -248,7 +265,7 @@ main {
     }
 
     &:before {
-        @include at2x('/media/img/firefox/campaign/unfck/hero-wide.png', contain);
+        @include at2x('/media/img/firefox/campaign/unfck/en/hero-wide.png', contain);
         background-repeat: no-repeat;
         display: block;
         content: '';
@@ -258,7 +275,7 @@ main {
     }
 
     .loaded &:after {
-        background: transparent url('/media/img/firefox/campaign/unfck/heart.gif') left bottom no-repeat;
+        background: transparent url('/media/img/firefox/campaign/unfck/en/heart.gif') left bottom no-repeat;
         background-size: contain;
         display: block;
         content: '';
@@ -271,7 +288,7 @@ main {
 
     @media (prefers-reduced-motion) {
         .loaded &:after {
-            background-image: url('/media/img/firefox/campaign/unfck/still/heart.png');
+            background-image: url('/media/img/firefox/campaign/unfck/en/still/heart.png');
         }
     }
 }
@@ -298,6 +315,28 @@ main {
     margin: $layout-lg auto 0 auto;
     max-width: $content-sm;
     position: relative;
+
+    .t-unfck &:link {
+        text-decoration: none;
+        &:after {
+            border-radius: $border-radius-md;
+            border: 1px solid transparent;
+            bottom: $spacing-md * -1;
+            content: '';
+            display: block;
+            left: $spacing-md * -1;
+            position: absolute;
+            right: $spacing-md * -1;
+            top: $spacing-md * -1;
+        }
+    }
+
+    .t-unfck &:hover,
+    .t-unfck &:focus {
+        &:after {
+            border: 1px solid $color-green-50;
+        }
+    }
 
     @media #{$mq-md} {
         margin-top: $v-grid-md;
@@ -332,6 +371,19 @@ main {
 .c-item-title {
     @include font-size(24px);
     position: relative;
+}
+
+.c-item-cta {
+    .c-item-unfck:link &,
+    .c-item-unfck:visited &,
+    .c-item-unfck:hover & {
+        color: $color-green-30;
+        text-decoration: none;
+    }
+    .c-item-unfck:visited &,
+    .c-item-unfck:hover & {
+        text-decoration: underline;
+    }
 }
 
 @supports (display:grid) {
