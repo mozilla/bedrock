@@ -218,8 +218,9 @@ main {
         display: none; //TODO
     }
 
-    .mzp-c-cta-link {
-        background: $icon_cta top right no-repeat;
+    .mzp-c-cta-link,
+    .mzp-c-card-cta-text {
+        background: $icon_cta bottom 1px right no-repeat;
         background-size: $spacing-md auto;
         margin-bottom: 0;
         padding-right: $spacing-lg;
@@ -344,6 +345,15 @@ main {
 
     @media #{$mq-lg} {
         margin-top: $v-grid-lg;
+
+        .t-unfck &:link {
+            &:after {
+                bottom: $spacing-xl * -1;
+                left: $spacing-xl * -1;
+                right: $spacing-xl * -1;
+                top: $spacing-xl * -1;
+            }
+        }
     }
 
     &:first-child {
@@ -547,6 +557,12 @@ main {
 
     @media #{$mq-lg} {
         margin-bottom: $v-grid-lg;
+    }
+
+    .mzp-c-card-block-link:hover,
+    .mzp-c-card-block-link:active,
+    .mzp-c-card-block-link:focus {
+        box-shadow: 0 0 0 1px $color-green-50;
     }
 }
 
