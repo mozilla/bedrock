@@ -43,7 +43,13 @@
 {% block content %}
 <main role="main" class="t-unfck">
 
-  <div class="c-banner"></div>
+  <div class="c-banner">
+    {% set sm = static('img/firefox/campaign/unfck/en/hero-320.png') %}
+    {% set md = static('img/firefox/campaign/unfck/en/hero-531.png') %}
+    {% set lg = static('img/firefox/campaign/unfck/en/hero-640.png') %}
+    {% set xl = static('img/firefox/campaign/unfck/en/hero-1062.png') %}
+    <img src="{{ md }}" width="531" height="302" srcset="{{ sm }} 320w, {{ md }} 531w, {{ lg }} 640w, {{ xl }} 1062w" alt="">
+  </div>
 
   {% call hero(
     title='Unfuck the internet',

@@ -248,14 +248,16 @@ main {
 // banner & hero
 
 .c-banner {
-    @include at2x('/media/img/firefox/campaign/unfck/en/hero-wide.png', contain);
-    background-repeat: no-repeat;
     margin: 0 auto 48px auto;
     width: calc(100% - #{$layout-sm * 2});
-    max-width: 536px;
+    max-width: 531px;
     position: relative;
     top: $v-grid-xs;
     z-index: 3;
+
+    img {
+        display: block;
+    }
 
     @media #{$mq-md} {
         top: $v-grid-md;
@@ -263,16 +265,6 @@ main {
 
     @media #{$mq-lg} {
         top: $v-grid-lg;
-    }
-
-    &:before {
-        @include at2x('/media/img/firefox/campaign/unfck/en/hero-wide.png', contain);
-        background-repeat: no-repeat;
-        display: block;
-        content: '';
-        height: 0;
-        width: 100%;
-        padding-top: 302 * 100% / 531; // dimensions of the image
     }
 
     .loaded &:after {
