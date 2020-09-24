@@ -653,4 +653,9 @@ redirectpatterns = (
     # issue 8641
     redirect(r'^/firefox/windows-64-bit/?$', 'firefox.browsers.windows-64-bit'),
     redirect(r'^/firefox/best-browser/?$', 'firefox.browsers.best-browser'),
+
+    # Unfck campaign
+    redirect(r'^firefox/unfuck/?$', 'firefox.campaign.unfck.index'),
+    redirect(r'^firefox/love/?$', 'firefox.campaign.unfck.index'),
+    redirect(r'^firefox/liebe/?$', 'firefox.campaign.unfck.index'),
 )

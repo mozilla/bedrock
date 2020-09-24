@@ -4,7 +4,7 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% from "macros.html" import twitter_share_url with context %}
+{% from "macros.html" import google_play_button with context %}
 {% from "macros-protocol.html" import card, call_out, hero with context %}
 
 {% block page_title %}Unfck the Internet - Aus Liebe zum Web{% endblock %}
@@ -20,30 +20,32 @@
 
 {% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-unfck' %}
 
-{% set tw_text = 'Aus Liebe zum Web ;)'|urlencode %}
-{% set tw_url = 'https://firefox.com/unfck'|urlencode %}
+{% set tw_text = 'Schütze das Web das du liebst. Unfck the rest.'|urlencode %}
+{% set tw_url = 'https://mzl.la/unfck-de'|urlencode %}
 {% set tw_hashtags = 'unfcktheinternet'|urlencode %}
 {% set tw_via = 'firefox_DE'|urlencode %}
 
-{% macro share_item(title=None, info=None, id=None, src=None, src_still=None, include_cta=False,
+{% macro share_item(title=None, info=None, id=None, src_name=None, include_cta=False,
   link_text=None, link_url=None, link_include_utms=True, link_is_external=True, share_text='Teilen',
-  download_text='GIF downloaden', copy_text='GIF-Link kopieren',
+  download_text='GIF downloaden', copy_text='GIF-Link kopieren', alt_text=None,
   copy_success_text='Link in die Zwischenablage kopiert') -%}
+  {% set src_still = static('img/firefox/campaign/unfck/de/gifs/still/' + src_name + '.png') %}
+  {% set src_gif = static('img/firefox/campaign/unfck/de/gifs/' + src_name + '.gif') %}
+  {% set src_high_res = static('img/firefox/campaign/unfck/de/gifs/' + src_name + '-high-res.gif') %}
   {% set tw = 'https://www.twitter.com/intent/tweet?url=' + tw_url + '&text=' + tw_text + '&hashtags=' + tw_hashtags + '&via=' + tw_via %}
   <div class="c-item-unfck" id="{{ id }}">
     <div class="c-item-img">
       <a class="c-item-img-link" href="{{ link_url }}{% if link_include_utms %}{{ referrals }}{% endif %}" target="_blank" {% if link_include_utms or link_is_external %}rel="external noopener"{% endif %} data-cta-type="link" data-cta-text="Checklist: {{ id }}">
         <picture class="c-item-gif">
-          {% if src_still %}
           <source srcset="{{ src_still }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="280" height="280"></source>
-          {% endif %}
-          <img src="{{ src }}" loading="lazy" width="280" height="280">
+          <source srcset="{{ src_gif }} 1x, {{ src_high_res }} 1.5x" loading="lazy" width="280" height="280"></source>
+          <img src="{{ src_gif }}" loading="lazy" width="280" height="280" alt="{{ alt_text }}">
         </picture>
       </a>
 
       <ul class="c-item-actions">
         <li><a class="c-item-link js-twitter-share twitter" href="{{ tw|e }}" data-id="{{ id }}" title="{{ share_text }}">{{ share_text }}</a></li>
-        <li><a class="c-item-link js-download-gif download" href="{{ src }}" data-id="{{ id }}" title="{{ download_text }}" download>{{ download_text }}</a></li>
+        <li><a class="c-item-link js-download-gif download" href="{{ src_high_res }}" data-id="{{ id }}" title="{{ download_text }}" download>{{ download_text }}</a></li>
         <li><button class="c-item-link js-copy-link link hide-from-legacy-ie" type="button" data-id="{{ id }}" data-close="{{ ftl('ui-close') }}" data-success="{{ copy_success_text }}" title="{{ copy_text }}">{{ copy_text }}</button></li>
       </ul>
     </div>
@@ -85,6 +87,17 @@
     <a href="{{ url('firefox.facebookcontainer.index') }}" class="mzp-c-button mzp-t-product mzp-t-xl c-button-fb-container hide-from-legacy-ie" data-cta-type="button" data-cta-text="Add Facebook Container">
       Facebook-Container hinzufügen
     </a>
+
+    {% set android_url = firefox_adjust_url('android', 'unfck-page') %}
+    {% set ios_url = firefox_adjust_url('ios', 'unfck-page') %}
+    <div class="c-button-android hide-from-legacy-ie">
+      {{ google_play_button(href=android_url, id='playStoreLink') }}
+    </div>
+    <div class="c-button-ios hide-from-legacy-ie">
+      <a id="appStoreLink" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
+        <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
+      </a>
+    </div>
   {% endcall %}
 
   <div class="mzp-l-content mzp-t-content-lg">
@@ -97,8 +110,8 @@
       link_text='Hol dir den Facebook Container',
       link_url=url('firefox.facebookcontainer.index'),
       id='unfck-social-media',
-      src=static('img/firefox/campaign/unfck/de/gifs/firefox1.gif'),
-      src_still=static('img/firefox/campaign/unfck/de/gifs/still/firefox1.png'),
+      src_name='unzuck-it',
+      alt_text='Swipe nach links, wenn das Internet dich nicht respektiert.',
       link_include_utms=False,
       link_is_external=False
     ) %}{% endcall %}
@@ -109,8 +122,8 @@
         link_text='Zu den Tipps',
         link_url='https://blog.mozilla.org/firefox/de/so-entlarvst-du-falschinformationen-im-web/',
         id='unfck-desinformation',
-        src=static('img/firefox/campaign/unfck/de/gifs/firefox2.gif'),
-        src_still=static('img/firefox/campaign/unfck/de/gifs/still/firefox2.png'),
+        src_name='purrfect',
+        alt_text='Unfuck the Internet. Du sitzt am Drücker.'
       ) %}{% endcall %}
 
       {% call share_item(
@@ -119,31 +132,30 @@
         link_text='Mehr dazu',
         link_url='https://blog.mozilla.org/firefox/de/hass-im-web-was-koennen-wir-gegen-hate-speech-tun/',
         id='unfck-hate-speech',
-        src=static('img/firefox/campaign/unfck/de/gifs/firefox3.gif'),
-        src_still=static('img/firefox/campaign/unfck/de/gifs/still/firefox3.png'),
+        src_name='unfck-unhate',
+        alt_text='Unfuck Hassrede. Unfollow Trolls. Unfuck the internet.'
       ) %}{% endcall %}
 
       {% call share_item(
         title='Netflix & change',
         info='Schau dir die Dokumentation <em>“The Social Dilemma”</em> mit unseren Freunden des Center for Human Tech an und erfahre mehr darüber, wie Milliarden von Menschen zur Handelsware der Konzerne werden.'|safe,
         link_text='Zur Doku',
-        link_url='https://www.thesocialdilemma.com/take-action/',
-        link_include_utms=False,
-        id='netflix-and-change',
-        src=static('img/firefox/campaign/unfck/de/gifs/firefox4.gif'),
-        src_still=static('img/firefox/campaign/unfck/de/gifs/still/firefox4.png'),
+        link_url='https://blog.mozilla.org/firefox/de/Das-Dilemma-mit-den-sozialen-Medien/',
+        id='social-dilemma',
+        src_name='button',
+        alt_text='Enter-Taste mit der Aufschrift Unfuck.'
       ) %}{% endcall %}
 
       {% call share_item(
         title='Sei Teil des Unfck-Effekts',
         info='Je mehr wir darüber sprechen, was wir im Internet ändern müssen, desto größer der Unfck-Effekt. Sag uns und der Welt, was dich am Internet nervt und teile deine Meinung auf Twitter.',
-        id='sei-teil-des-unfck-effekts',
-        src=static('img/firefox/campaign/unfck/de/gifs/firefox5.gif'),
-        src_still=static('img/firefox/campaign/unfck/de/gifs/still/firefox5.png'),
+        id='twitter-share-form',
+        src_name='one-fck-given',
+        alt_text='High five für ein besseres Internet.',
         include_cta=True
         ) %}
         <form class="c-tell" action="{{ 'https://www.twitter.com/intent/tweet?url=%s&hashtags=%s&via=%s'|format(tw_url, tw_hashtags, tw_via)|e }}" method="post">
-          <textarea class="c-tell-input" placeholder="Was nervt dich am Internet?" required maxlength="280"></textarea>
+          <textarea class="c-tell-input" placeholder="Schütze das Web das du liebst. Unfck the rest." required maxlength="280"></textarea>
           <button type="submit" class="c-tell-button mzp-c-button mzp-t-secondary js-tell-button">Teilen</button>
         </form>
       {% endcall %}

@@ -228,7 +228,10 @@ main {
         padding-top: 0;
     }
 
-    .c-button-fb-container {
+    // begin conditional CTA content
+    .c-button-fb-container,
+    .c-button-android,
+    .c-button-ios {
         display: none;
     }
 
@@ -241,6 +244,28 @@ main {
             display: inline-block;
         }
     }
+
+    .android &,
+    .ios & {
+        .download-button,
+        .c-button-fb-container {
+            display: none;
+        }
+    }
+
+    .android & {
+        .c-button-android {
+            display: inline-block;
+        }
+    }
+
+    .ios & {
+        .c-button-ios {
+            display: inline-block;
+        }
+    }
+
+    // end conditional CTA content
 
     @media #{$mq-lg} {
         margin-top: -$layout-lg;
