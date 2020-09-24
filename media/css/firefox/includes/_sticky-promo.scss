@@ -1,0 +1,60 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/sticky-promo';
+
+// Show non-Fx users a promo to download Fx
+.promo-firefox {
+    .is-firefox & {
+        display: none;
+    }
+}
+
+// Show Fx users a promo to try other products
+.promo-products {
+    display: none;
+    .is-firefox & {
+        display: block;
+        .mzp-c-sticky-promo-title {
+            background: none;
+            padding: 0;
+            margin-bottom: 0;
+            text-align: center;
+        }
+    }
+}
+
+.mzp-c-sticky-promo .mzp-c-button-download-container {
+    width: 100%;
+}
+
+//* -------------------------------------------------------------------------- */
+// Promo Products List Styles
+
+.promo-products-list {
+    list-style: none;
+    margin: 2rem 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: 2px solid rgba(255,255,255,0.5);
+    padding-top: 2rem;
+}
+
+.promo-products-link {
+    display: flex;
+    text-decoration: none !important; /* stylelint-disable-line declaration-no-important */
+    margin-bottom: 1rem;
+    align-items: center;
+    font-weight: bold;
+    img {
+        width: 1.75rem;
+        height: 100%;
+        display: block;
+        margin-right: 1rem;
+    }
+}

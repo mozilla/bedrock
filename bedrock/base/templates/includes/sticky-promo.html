@@ -1,0 +1,40 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% set promo_referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=sticky-promo' %}
+
+<aside class="mzp-c-sticky-promo mzp-t-product-firefox mzp-t-dark">
+  <button class="mzp-c-sticky-promo-close" type="button">{{ ftl('ui-close') }}</button>
+  <div class="promo-firefox">
+    <h3 class="mzp-c-sticky-promo-title">{{ ftl('firefox-sticky-promo-get-the-latest-firefox') }}</h3>
+    {{ download_firefox_thanks(dom_id='sticky-promo', download_location='other', button_class='mzp-c-button mzp-t-product mzp-t-small') }}
+  </div>
+  <div class="promo-products">
+    <h3 class="mzp-c-sticky-promo-title">{{ ftl('firefox-sticky-promo-meet-our-family-of') }}</h3>
+    <ul class="promo-products-list">
+      <li>
+        <a data-link-name="Browsers" data-link-type="link" data-link-position="sticky-promo" class="promo-products-link" href="{{ url('firefox.browsers.index') }}{{ promo_referrals }}">
+          <img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" alt="">
+          {{ ftl('firefox-sticky-promo-browsers') }}
+        </a>
+        <a data-link-name="Monitor" data-link-type="link" data-link-position="sticky-promo" class="promo-products-link" href="https://monitor.firefox.com/{{ referral|safe }}{{ promo_referrals }}" rel="external noopener">
+          <img src="{{ static('protocol/img/logos/firefox/monitor/logo.svg') }}" alt="">
+          {{ ftl('firefox-sticky-promo-monitor') }}
+        </a>
+        <a data-link-name="Lockwise" data-link-type="link" data-link-position="sticky-promo" class="promo-products-link" rel="" href="{{ url('firefox.products.lockwise') }}{{ promo_referrals }}">
+          <img src="{{ static('protocol/img/logos/firefox/lockwise/logo.svg') }}" alt="">
+          {{ ftl('firefox-sticky-promo-lockwise') }}
+        </a>
+        <a data-link-name="Pocket" data-link-type="link" data-link-position="sticky-promo" class="promo-products-link" rel="external noopener" href="https://getpocket.com/{{ referral|safe }}{{ promo_referrals }}">
+          <img src="{{ static('protocol/img/logos/pocket/pocket.svg') }}" alt="">
+          {{ ftl('firefox-sticky-promo-pocket') }}
+        </a>
+        <a data-link-name="Mozilla VPN" data-link-type="link" data-link-position="sticky-promo" class="promo-products-link" rel="external noopener" href="https://vpn.mozilla.org/{{ referral|safe }}{{ promo_referrals }}">
+          <img src="{{ static('img/icons/connection.svg') }}" alt="">
+          {{ ftl('firefox-sticky-promo-mozilla-vpn') }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
