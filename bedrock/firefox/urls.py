@@ -170,5 +170,5 @@ urlpatterns = (
     page('firefox/retention/thank-you', 'firefox/retention/thank-you.html'),
 
     # Unfck campaign
-    page('firefox/unfck', 'firefox/campaign/unfck/index.html', active_locales=['de', 'en-US']),
+    page('firefox/unfck', 'firefox/campaign/unfck/index.html', active_locales=['de', 'en-US', 'fr']),
 )

@@ -746,3 +746,13 @@ main {
         color: $color-black;
     }
 }
+
+.c-item-img-link {
+    #share &,
+    #hate-speech & {
+        &:link,
+        &:visited {
+            color: $color-black;
+        }
+    }
+}

@@ -1,0 +1,160 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/campaign/unfck/index.de.html" %}
+
+{% block page_title %}N’acceptez pas tout du Net. Rendons le Net plus net{% endblock %}
+{% block page_desc %}Quand les données personnelles deviennent une monnaie d’échange, il est temps de choisir un navigateur qui vous protège et protège le Net que vous aimez.{% endblock %}
+
+{% block page_image %}{{ static('img/firefox/campaign/unfck/fr/og.png') }}{% endblock %}
+
+{% block page_css %}
+  {{ super() }}
+  {{ css_bundle('firefox-unfck-fr') }}
+{% endblock %}
+
+{% set tw_text = '2020 est peut être foutu mais cela n’est pas une raison pour qu’Internet le soit. La bonne nouvelle est qu’on peut tous aider à faire bouger les choses'|urlencode %}
+{% set tw_url = 'https://firefox.com/unfck'|urlencode %}
+{% set tw_hashtags = 'pourunnetplusnet'|urlencode %}
+{% set tw_via = 'firefox_fr'|urlencode %}
+
+{% block content %}
+<main role="main" class="t-unfck">
+
+  <div class="c-banner-fr-wrapper">
+    <div class="c-banner-fr"></div>
+  </div>
+
+  {% call hero(
+    title='N’acceptez pas tout du Net',
+    class='mzp-t-firefox',
+    include_cta=True,
+    heading_level=1)
+  %}
+
+    <h2>Rendons le Net plus net</h2>
+    <div class="mzp-c-hero-desc">
+      <p>Nous avons tendance à accepter systématiquement tous les termes et conditions du Net. Pourtant nos données personnelles sont devenues une monnaie d’échange ce qui dégrade à la fois notre expérience de navigation et la qualité générale d’Internet. En choisissant un navigateur indépendant soutenu par une organisation à but non lucratif vous vous protégez tout en protégeant l'Internet que vous aimez.</p>
+    </div>
+    {{ download_firefox(alt_copy='Télécharger Firefox', download_location='primary cta') }}
+
+    <a href="{{ url('firefox.facebookcontainer.index') }}" class="mzp-c-button mzp-t-product mzp-t-xl c-button-fb-container hide-from-legacy-ie" data-cta-type="button" data-cta-text="Add Facebook Container">
+      Ajouter Facebook-Container
+    </a>
+
+    {% set android_url = firefox_adjust_url('android', 'unfck-page') %}
+    {% set ios_url = firefox_adjust_url('ios', 'unfck-page') %}
+    <div class="c-button-android hide-from-legacy-ie">
+      {{ google_play_button(href=android_url, id='playStoreLink') }}
+    </div>
+    <div class="c-button-ios hide-from-legacy-ie">
+      <a id="appStoreLink" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
+        <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
+      </a>
+    </div>
+  {% endcall %}
+
+  <div class="mzp-l-content mzp-t-content-lg">
+
+    <h2 class="c-section-title">La liste de l’in-net-ceptable</h2>
+
+    {% call share_item(
+      title='N’acceptez pas un réseau social en ami',
+      info='A chaque fois que vous visitez votre site d’information favori, si celui-ci utilise les boutons “j’aime” ou “commentaire” de Facebook, des informations sur vous peuvent être recueillies par Facebook. Et ce, que vous soyez connectés ou non, et même si vous n’avez pas de compte. En utilisant l’extension Facebook Container, vous rendez la collecte de données plus difficile.',
+      link_text='J’installe Facebook Container',
+      link_url=url('firefox.facebookcontainer.index'),
+      id='contain',
+      src_name='unzuck-it',
+      alt_text='Un doigt swipe, balayant les faux amis.',
+      link_include_utms=False,
+      link_is_external=False,
+      share_text='Partager',
+      download_text='Télécharger le GIF',
+      copy_text='Copier le lien du GIF',
+      copy_success_text='Lien copié'
+    ) %}{% endcall %}
+
+    {% call share_item(
+        title='N’acceptez pas d’être une cible',
+        info='Sur de nombreux sites que vous visitez, vos données sont partagées avec des entreprises tierces, certaines que vous connaissez bien, d’autres beaucoup moins. Avec Firefox, le niveau standard de protection contre le pistage  est activé par défaut.',
+        link_text='Découvrir comment Firefox vous protège',
+        link_url='https://blog.mozilla.org/firefox/fr/firefox-vous-montre-qui-vous-suit-autour-du-web/',
+        id='protect',
+        src_name='cat',
+        alt_text='Un chat rusé attrape ses profils cibles avec sa langue.',
+        share_text='Partager',
+        download_text='Télécharger le GIF',
+        copy_text='Copier le lien du GIF',
+        copy_success_text='Lien copié'
+      ) %}{% endcall %}
+
+      {% call share_item(
+        title='N’acceptez pas de faire parti d’un système',
+        info='La technologie qui nous rassemble nous monétise et nous manipule aussi. Il vous suffit de regarder le documentaire "The Social Dilemma" avec nos amis du “Center for Human Tech” pour comprendre comment le Net et les milliards de personnes qui l’utilisent sont devenus des marchandises pour les géants de la Tech.',
+        link_text='En savoir plus sur le documentaire.',
+        link_url='https://blog.mozilla.org/firefox/fr/derriere-nos-ecrans-de-fumee',
+        id='social',
+        src_name='button-fr',
+        alt_text='La souris “Fck” clique sur « Je n’accepte pas »'
+      ) %}{% endcall %}
+
+      {% call share_item(
+        title='N’acceptez pas les intox',
+        info='Qu’il s’agisse de mensonges, de fake news ou de bons vieux canulars, la désinformation se répand plus rapidement que jamais. Grâce à quelques conseils et des outils simples, vous pouvez vous en protéger ainsi que les autres.',
+        link_text='En savoir plus',
+        link_url='https://blog.mozilla.org/firefox/fr/comment-eviter-la-desinformation-en-ligne/',
+        id='misinformation',
+        src_name='purrfect',
+        alt_text='La patte d’un chat chasse les intox pour révéler les vrais infos.',
+        share_text='Partager',
+        download_text='Télécharger le GIF',
+        copy_text='Copier le lien du GIF',
+        copy_success_text='Lien copié'
+      ) %}{% endcall %}
+
+      {% call share_item(
+        title='Acceptez de faire parti du mouvement #pourunnetplusnet',
+        info='Parlons librement de ce qui n’est plus très net sur le Net. Plus les gens en parleront, plus on y verra clair.',
+        id='share',
+        src_name='one-fck-given',
+        alt_text='Deux mains se font un high five célébrant le net plus net.',
+        include_cta=True,
+        share_text='Partager',
+        download_text='Télécharger le GIF',
+        copy_text='Copier le lien du GIF',
+        copy_success_text='Lien copié'
+        ) %}
+        <form class="c-tell" action="{{ 'https://www.twitter.com/intent/tweet?url=%s&hashtags=%s&via=%s'|format(tw_url, tw_hashtags, tw_via)|e }}" method="post">
+          <textarea class="c-tell-input" placeholder="vous y voyez encore clair sur le Net ?" required maxlength="280"></textarea>
+          <button type="submit" class="c-tell-button mzp-c-button mzp-t-secondary js-tell-button">Partager</button>
+        </form>
+      {% endcall %}
+  </div>
+
+  <div class="mzp-l-content mzp-t-content-xl">
+    <div class="mzp-l-card-half">
+      {{ card(
+        title='Soutenu par une association à but non lucratif',
+        ga_title='card-non-profit',
+        image_url=None,
+        link_url=url('mozorg.about.manifesto'),
+        heading_level=3,
+        desc='Firefox a été fondé en 2002 dans le but de ne pas laisser le champ libre aux géants de la Tech. Firefox est soutenu par une organisation à but non lucratif nommée Mozilla. Firefox agit de manière indépendante et développe des produits qui ont un vrai intérêt pour l’utilisateur. Le navigateur Firefox ne fonctionne pas sur Chromium, il ne vend pas les données de ses utilisateurs et contribue à ce que chaque entreprise fasse de même.',
+        cta='En savoir plus sur Mozilla'
+      )}}
+
+      {{ card(
+        title='Plus de protection. Plus de pouvoir. Moins d’emmerdes.',
+        ga_title='card-firefox',
+        image_url=None,
+        link_url=url('firefox.new'),
+        heading_level=3,
+        desc='Firefox respecte votre vie privée par défaut. Non seulement il vous protège pendant vos recherches mais il est aussi plus rapide.',
+        cta='Télécharger Firefox'
+      )}}
+    </div>
+  </div>
+
+</main>
+{% endblock %}
