@@ -1367,4 +1367,7 @@ URLS = flatten((
 
     url_test('/about/governance/policies/security/plugin-whitelist-policy/', 'https://wiki.mozilla.org/Plugins/Firefox_Whitelist'),
     url_test('/about/governance/policies/security-group/tld-idn/', 'https://wiki.mozilla.org/IDN_Display_Algorithm'),
+
+    # Unfck campaign
+    url_test('/firefox/{unfuck,love,liebe}/', '/firefox/unfck/'),
 ))
