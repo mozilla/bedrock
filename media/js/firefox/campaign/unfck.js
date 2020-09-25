@@ -27,9 +27,14 @@
         window.open(url, 'twitter_share', window._SearchParams.objectToQueryString(options).replace(/&/g, ',')).focus();
     }
 
+    // FB Share
+    // function shareFacebook(url, text, image) {
+    //     open('http://facebook.com/sharer.php?s=100&p[url]=' + url + '&p[images][0]=' + image + '&p[title]=' + text, 'fbshare', 'height=380,width=660,resizable=0,toolbar=0,menubar=0,status=0,location=0,scrollbars=0');
+    //     // mobile: open('https://m.facebook.com/sharer/sharer.php?u=' + urlLocation + '&picture=' + image + '&description=' + text, 'facebookshare');
+    // }
+
     function handleShareLinkClick(e) {
-        var item = e.target.closest('.c-item-unfck');
-        var href = item.href;
+        var href = e.target.href;
 
         // Track the event in GA
         window.dataLayer.push({
@@ -45,7 +50,7 @@
 
     function onLoad() {
         // Set up twitter link handler
-        var shareLinks = document.querySelectorAll('#share');
+        var shareLinks = document.querySelectorAll('#js-tweet');
 
         for (var i = 0; i < shareLinks.length; i++) {
             shareLinks[i].addEventListener('click', handleShareLinkClick, false);
