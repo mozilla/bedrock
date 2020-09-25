@@ -226,7 +226,7 @@
 
       <p>{{ ftl('compare-safari-firefox-and-safari-both-provide') }}</p>
 
-      <p>{{ ftl('compare-safari-firefox-also-offers-a-similar', attrs = 'href="%s" data-cta-type="link" data-cta-name="Firefox Account"'|safe|format(url('firefox.accounts'))) }}</p>
+      <p>{{ ftl('compare-safari-firefox-also-offers-a-similar-updated', fallback='compare-safari-firefox-also-offers-a-similar', attrs = 'href="%s" data-cta-type="link" data-cta-name="Firefox Account"'|safe|format(url('firefox.accounts'))) }}</p>
 
       <p>{{ ftl('compare-safari-the-firefox-app-for-ios-and', ios='href="%s" rel="external noopener" data-cta-text="iOS" data-cta-type="link"'|safe|format(app_store_url('firefox')),
               android='href="%s" rel="external noopener" data-cta-text="Android" data-cta-type="link"'|safe|format(play_store_url('firefox'))) }}</p>
