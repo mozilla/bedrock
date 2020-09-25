@@ -30,7 +30,7 @@
 <div class="mzp-l-content l-compare-details-content">
   <article class="mzp-c-article">
     <section class="compare-details-section-summary">
-        <p class="compare-details-section-intro">{{ ftl('compare-edge-with-windows-10-microsoft-introduced') }}</p>
+        <p class="compare-details-section-intro">{{ ftl('compare-edge-with-windows-10-microsoft-introduced-updated', fallback='compare-edge-with-windows-10-microsoft-introduced') }}</p>
 
         <p>{{ ftl('compare-edge-here-well-compare-our-firefox') }}</p>
 
@@ -57,7 +57,7 @@
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
-              <th scope="row">{{ ftl('compare-shared-blocks-third-party-tracking') }}</th>
+              <th scope="row">{{ ftl('compare-shared-blocks-third-party-tracking-default', fallback='compare-shared-blocks-third-party-tracking') }}</th>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
@@ -210,7 +210,7 @@
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
-              <th scope="row">{{ ftl('compare-shared-master-password') }}</th>
+              <th scope="row">{{ ftl('compare-shared-primary-password', fallback='compare-shared-master-password') }}</th>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
@@ -240,8 +240,8 @@
         <p>
           {{ ftl('compare-shared-the-comparisons-made-here') }}
           <br>
-          {{ ftl('compare-shared-brand-name-firefox') }} (76) |
-          {{ ftl('compare-shared-brand-name-edge') }} (81)
+          {{ ftl('compare-shared-brand-name-firefox') }} (81) |
+          {{ ftl('compare-shared-brand-name-edge') }} (85)
           <br>
           {{ ftl('compare-shared-this-page-updated-semi-quarterly') }}
         </p>

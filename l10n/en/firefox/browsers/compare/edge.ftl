@@ -12,6 +12,10 @@ compare-edge-compare-microsoft-edge-to-the = Compare { -brand-name-microsoft } {
 
 # Main title.
 compare-edge-comparing-firefox-browser-with = Comparing { -brand-name-firefox-browser } with { -brand-name-microsoft } { -brand-name-edge }
+
+compare-edge-with-windows-10-microsoft-introduced-updated = With { -brand-name-windows } 10, { -brand-name-microsoft } introduced its { -brand-name-edge } browser to compete with { -brand-name-firefox } and { -brand-name-chrome }, making it the default browser pre-installed on millions of PCs sold. Even so, users were slow to adopt it and { -brand-name-microsoft } eventually announced plans to relaunch { -brand-name-edge } as a { -brand-name-chromium }-based browser ({ -brand-name-chromium } is { -brand-name-google }’s Open Source browser project). Since January of 2020, { -brand-name-microsoft }’s { -brand-name-chromium }-based { -brand-name-edge } has replaced the previous versions of { -brand-name-edge }. Although { -brand-name-edge } is now built on { -brand-name-google }’s { -brand-name-chromium }, a number of unique features do set it apart from { -brand-name-google }’s { -brand-name-chrome } browser.
+
+# Obsolete string
 compare-edge-with-windows-10-microsoft-introduced = With { -brand-name-windows } 10, { -brand-name-microsoft } introduced its { -brand-name-edge } browser to compete with { -brand-name-firefox } and { -brand-name-chrome } making it the default browser pre-installed on millions of PCs sold. Even so, users were slow to adopt it and { -brand-name-microsoft } eventually announced plans to relaunch { -brand-name-edge } as a { -brand-name-chromium }-based browser ({ -brand-name-chromium } of course being { -brand-name-google }’s Open Source browser project).
 compare-edge-here-well-compare-our-firefox = Here we’ll compare our { -brand-name-firefox-browser } to the { -brand-name-chromium }-based { -brand-name-microsoft } { -brand-name-edge } in terms of privacy, utility, and portability, to help you have a better understanding of which browser better suits your needs and preferences.
 
