@@ -28,33 +28,39 @@
     }
 
     // FB Share
-    // function shareFacebook(url, text, image) {
-    //     open('http://facebook.com/sharer.php?s=100&p[url]=' + url + '&p[images][0]=' + image + '&p[title]=' + text, 'fbshare', 'height=380,width=660,resizable=0,toolbar=0,menubar=0,status=0,location=0,scrollbars=0');
-    //     // mobile: open('https://m.facebook.com/sharer/sharer.php?u=' + urlLocation + '&picture=' + image + '&description=' + text, 'facebookshare');
-    // }
+    function openFacebookSubwin(url) {
+        open(url, 'fb_share', 'height=380,width=660,resizable=0,toolbar=0,menubar=0,status=0,location=0,scrollbars=0').focus();
+    }
 
     function handleShareLinkClick(e) {
-        var href = e.target.href;
+        var link_href = e.target.href;
+        var service = '';
+
+        if(link_href.includes('twitter')) {
+            openTwitterSubwin(link_href);
+            service = 'twitter';
+            e.preventDefault();
+        } else if(link_href.includes('facebook')) {
+            openFacebookSubwin(link_href);
+            service = 'facebook';
+            e.preventDefault();
+        }
 
         // Track the event in GA
         window.dataLayer.push({
             'event': 'in-page-interaction',
             'eAction': 'checklist',
-            'eLabel': 'share',
+            'eLabel': 'share to ' + service,
         });
-
-        // Open Twitter in a sub window
-        openTwitterSubwin(href);
-        e.preventDefault();
     }
 
     function onLoad() {
         // Set up twitter link handler
-        var shareLinks = document.querySelectorAll('#js-tweet');
+        var tw = document.getElementById('js-tw');
+        var fb = document.getElementById('js-fb');
 
-        for (var i = 0; i < shareLinks.length; i++) {
-            shareLinks[i].addEventListener('click', handleShareLinkClick, false);
-        }
+        tw.addEventListener('click', handleShareLinkClick, false);
+        fb.addEventListener('click', handleShareLinkClick, false);
     }
 
     window.Mozilla.run(onLoad);

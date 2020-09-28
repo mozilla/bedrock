@@ -85,28 +85,6 @@
   <h2 class="c-section-title">The Checklist</h2>
 
   <div class="mzp-l-content mzp-t-content-lg">
-    {% set share_text='2020 might be fcked, but the internet doesn’t have to be. Here are 5 easy ways we can all help turn things around.' %}
-    {% set share_url = 'http://mzl.la/unfck' %}
-
-    {% set tw = 'https://www.twitter.com/intent/tweet?url=' + share_url|urlencode + '&text=' + share_text|urlencode + '&hashtags=unfckTheInternet' %}
-    {% set fb = 'http://facebook.com/sharer.php?u=' + share_url|urlencode + '&quote=' + share_text|urlencode %}
-
-    {% call item(
-      title='Share the internet love',
-      info='There’s a lot to unfck, but we’re powerful together. Tell your friends you browse with your values, and get them in on this conversation.',
-      alt='Click the unfck button.',
-      include_cta=True,
-      id='share',
-      src_name='button'
-    ) %}
-      <p class="c-item-cta">
-        <a id="js-tweet" class="mzp-c-cta-link" href="{{ tw }}" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="Checklist: share">Tweet this</a></p>
-      </p>
-      <!-- <p class="c-item-cta">
-        <a id="js-fb" class="mzp-c-cta-link" href="{{ fb }}" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="Checklist: share">Facebook this</a></p>
-      </p> -->
-    {% endcall %}
-
     {% call item(
       title='Shine a light on political ads',
       info='What you see online is not what your across-the-aisle uncle does. Hold Facebook advertisers accountable for misinformation by sharing the political ads you see to a public database.',
@@ -127,7 +105,7 @@
       src_name='highfive'
       ) %}
       <p class="c-item-cta">
-        <a class="mzp-c-cta-link" href="https://www.thesocialdilemma.com/" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="Checklist: netflix">Watch the Doc</a></p>
+        <a class="mzp-c-cta-link" href="https://www.thesocialdilemma.com/take-action/" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="Checklist: netflix">Watch the Doc</a></p>
       </p>
       <!-- <p class="c-item-cta">
         <a class="mzp-c-cta-link" href="#" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="Checklist: reading list">Read Diverse Voices</a></p>
@@ -165,6 +143,28 @@
       id='join',
       src_name='un',
     ) %}{% endcall %} -->
+
+    {% set share_text='2020 might be fcked, but the internet doesn’t have to be. Here are 5 easy ways we can all help turn things around.' %}
+    {% set share_url = 'http://mzl.la/unfck' %}
+
+    {% set tw = 'https://www.twitter.com/intent/tweet?url=' + share_url|urlencode + '&text=' + share_text|urlencode + '&hashtags=unfckTheInternet' %}
+    {% set fb = 'http://facebook.com/sharer.php?u=' + share_url|urlencode + '&quote=' + share_text|urlencode %}
+
+    {% call item(
+      title='Share the internet love',
+      info='There’s a lot to unfck, but we’re powerful together. Tell your friends you browse with your values, and get them in on this conversation.',
+      alt='Click the unfck button.',
+      include_cta=True,
+      id='share',
+      src_name='button'
+    ) %}
+      <p class="c-item-cta">
+        <a id="js-tw" class="mzp-c-cta-link" href="{{ tw }}" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="Checklist: share">Tweet this</a></p>
+      </p>
+      <p class="c-item-cta">
+        <a id="js-fb" class="mzp-c-cta-link" href="{{ fb }}" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="Checklist: share">Facebook this</a></p>
+      </p>
+    {% endcall %}
 
   </div>
 
