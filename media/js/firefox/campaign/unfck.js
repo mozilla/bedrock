@@ -36,11 +36,11 @@
         var link_href = e.target.href;
         var service = '';
 
-        if(link_href.includes('twitter')) {
+        if(link_href.indexOf('twitter') > -1) {
             openTwitterSubwin(link_href);
             service = 'twitter';
             e.preventDefault();
-        } else if(link_href.includes('facebook')) {
+        } else if(link_href.indexOf('facebook') > -1) {
             openFacebookSubwin(link_href);
             service = 'facebook';
             e.preventDefault();
