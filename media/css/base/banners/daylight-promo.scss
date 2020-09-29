@@ -7,13 +7,12 @@ $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
 
-#firefox-daylight-launch {
+#firefox-daylight-promo {
     &.c-banner {
         @include clearfix;
         background: $color-orange-70 linear-gradient(to right, #fca134, #e1294f);
         border-bottom: 1px solid rgba(0, 0, 0, .25) inset;
         color: $color-ink-80;
-        padding: $layout-xs 0;
         position: relative;
         z-index: 3;
 
@@ -29,64 +28,61 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    .c-banner-main {
-        @media #{$mq-sm} {
-            @include grid-two-thirds;
-        }
-
-        @media #{$mq-md} {
-            @include grid-half;
-        }
-    }
-
     .c-banner-title {
-        @include text-title-md;
+        @include bidi(((padding-right, $spacing-lg, 0), (padding-left, 0, $spacing-lg),)); // make room for the close button
+        @include text-title-xs;
     }
 
-    .c-banner-intro {
-        @include font-firefox;
-        @include font-size(21px);
-    }
-
-    .c-banner-image {
-        display: none;
-
-        img {
-            max-width: none;
+    @media #{$mq-md} {
+        .c-banner-main {
+            display: flex;
+            align-items: center;
         }
 
-        @media #{$mq-sm} {
-            @include bidi((
-                (right, 0, auto),
-                (left, auto, 0),
-            ));
-            @include grid-third;
-            bottom: 0;
-            display: block;
-            height: 100%;
-            overflow: hidden;
-            padding: $layout-sm 0;
-            position: absolute;
-            text-align: center;
-            top: 0;
+        .c-banner-title {
+            margin: 0;
+            padding: 0;
         }
 
-        @media #{$mq-md} {
-            @include grid-half;
+        .c-cta {
+            padding: 0 $spacing-xl;
+            line-height: 0;
         }
     }
+
 
     // Conditional content
     .hidden-on-desktop {
         display: none;
     }
 
-    .android {
+    .android,
+    .ios {
         .hidden-on-desktop {
-            display: block;
+            display: inline;
         }
 
         .hidden-on-mobile {
+            display: none;
+        }
+    }
+
+    .android .mobile-download-buttons {
+        .android {
+            display: inline-block;
+        }
+
+        .ios {
+            display: none;
+        }
+    }
+
+    .ios .mobile-download-buttons {
+        .ios {
+            display: inline-block;
+        }
+
+        .android {
             display: none;
         }
     }

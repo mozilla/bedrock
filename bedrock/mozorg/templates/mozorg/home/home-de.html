@@ -18,6 +18,10 @@
   {% if switch('firefox-daylight-launch-banner') %}
     {{ css_bundle('daylight-launch-banner') }}
   {% endif %}
+
+  {% if switch('firefox-daylight-promo-banner') %}
+    {{ css_bundle('daylight-promo-banner') }}
+  {% endif %}
 {% endblock %}
 
 {% block main %}
