@@ -87,7 +87,7 @@
   <div class="mzp-l-content mzp-t-content-lg">
     {% call item(
       title='Shine a light on political ads',
-      info='What you see online is not what your across-the-aisle uncle does. Hold Facebook advertisers accountable for misinformation by sharing the political ads you see to a public database.',
+      info='What you see online is not what your across-the-aisle uncle does. Hold advertisers accountable for misinformation by sharing the political ads you see to a public database.',
       alt='An unfcked internet is a happy internet.',
       link_text='Get the Ad Observer Extension',
       link_url='https://addons.mozilla.org/firefox/addon/ad-observer/',
@@ -107,9 +107,11 @@
       <p class="c-item-cta">
         <a class="mzp-c-cta-link" href="https://www.thesocialdilemma.com/take-action/" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="Checklist: netflix">Watch the Doc</a></p>
       </p>
-      <!-- <p class="c-item-cta">
-        <a class="mzp-c-cta-link" href="#" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="Checklist: reading list">Read Diverse Voices</a></p>
-      </p> -->
+      {% if switch('unfck-social') %}
+      <p class="c-item-cta">
+        <a class="mzp-c-cta-link" href="https://foundation.mozilla.org/en/blog/social-dilemma/{{ referrals }}" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="Checklist: reading list">Read Diverse Voices</a></p>
+      </p>
+      {% endif %}
     {% endcall %}
 
     {% call item(
@@ -134,20 +136,22 @@
       src_name='computer',
     ) %}{% endcall %}
 
-    <!-- {% call item(
+    {% if switch('unfck-join') %}
+    {% call item(
       title='Choose independent tech',
-      info='The more people who use independent tech like Firefox, the greater the effect. Get yourself some unfcked messaging, email providers, productivity apps and more.',
+      info='The more people who use independent tech like Firefox, the greater the effect. Get yourself some unfcked messaging, content, email and more.',
       alt='Un-fck. Un-friend. Un-hate. Un-real. Un-follow.',
       link_text='Meet our Friends',
       link_url='#',
       id='join',
       src_name='un',
-    ) %}{% endcall %} -->
+    ) %}{% endcall %}
+    {% endif %}
 
-    {% set share_text='2020 might be fcked, but the internet doesn’t have to be. Here are 5 easy ways we can all help turn things around.' %}
+    {% set share_text='2020 might be fcked, but the internet doesn’t have to be. Read and share 5 easy ways we can all help turn things around.' %}
     {% set share_url = 'http://mzl.la/unfck' %}
 
-    {% set tw = 'https://www.twitter.com/intent/tweet?url=' + share_url|urlencode + '&text=' + share_text|urlencode + '&hashtags=unfckTheInternet' %}
+    {% set tw = 'https://www.twitter.com/intent/tweet?url=' + share_url|urlencode + '&text=' + share_text|urlencode + '&hashtags=UnfckTheInternet' %}
     {% set fb = 'http://facebook.com/sharer.php?u=' + share_url|urlencode + '&quote=' + share_text|urlencode %}
 
     {% call item(
@@ -159,10 +163,10 @@
       src_name='button'
     ) %}
       <p class="c-item-cta">
-        <a id="js-tw" class="mzp-c-cta-link" href="{{ tw }}" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="Checklist: share">Tweet this</a></p>
+        <a id="js-tw" class="mzp-c-cta-link" href="{{ tw }}" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="Checklist: twitter share">Tweet this</a></p>
       </p>
       <p class="c-item-cta">
-        <a id="js-fb" class="mzp-c-cta-link" href="{{ fb }}" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="Checklist: share">Facebook this</a></p>
+        <a id="js-fb" class="mzp-c-cta-link" href="{{ fb }}" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="Checklist: facebook share">Share on Facebook</a></p>
       </p>
     {% endcall %}
 
@@ -171,8 +175,9 @@
   <h2 class="c-section-title u-visually-hidden">What we’re doing</h2>
 
   <div class="mzp-l-content mzp-t-content-xl c-cards">
-    <div class="mzp-l-card-half">
-      <!-- {{ card(
+    <div class="{% if switch('unfck-unfck') %}mzp-l-card-third{% else %}mzp-l-card-half{% endif %}">
+      {% if switch('unfck-unfck') %}
+      {{ card(
         title='Here’s how Firefox unfcks the internet',
         ga_title='card-unfck',
         image_url=None,
@@ -180,7 +185,8 @@
         heading_level=3,
         desc='The makers of our phones, apps and browsers start chasing us the minute we open them. Because the more data they collect about you, the more there is to sell you — and the more of you there is to sell. Firefox doesn’t work that way. We keep the online lives of our 300M users out of the almighty algorithm.',
         cta='Learn More'
-      )}} -->
+      )}}
+      {% endif %}
 
       {{ card(
         title='Privacy = freedom',
