@@ -33,7 +33,6 @@ urlpatterns = (
     page('firefox/accounts', 'firefox/accounts.html', ftl_files=['firefox/accounts']),
     page('firefox/browsers', 'firefox/browsers/index.html', ftl_files=['firefox/browsers']),
     page('firefox/products', 'firefox/products/index.html', ftl_files=['firefox/products']),
-    page('firefox/campaign', 'firefox/campaign/index.html'),
     page('firefox/flashback', 'firefox/flashback/index.html', active_locales=['en-US', 'de', 'fr']),
     page('firefox/channel/desktop', 'firefox/channel/desktop.html', ftl_files=['firefox/channel']),
     page('firefox/channel/android', 'firefox/channel/android.html', ftl_files=['firefox/channel']),
