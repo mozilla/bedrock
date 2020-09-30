@@ -258,6 +258,12 @@
     },
     {
       "files": [
+        "css/base/banners/daylight-promo.scss"
+      ],
+      "name": "daylight-promo-banner"
+    },
+    {
+      "files": [
         "css/protocol/common-old-ie.scss"
       ],
       "name": "common-old-ie"
@@ -1001,6 +1007,13 @@
         "js/mozorg/home/daylight-launch-banner-init.js"
       ],
       "name": "daylight-launch-banner"
+    },
+    {
+      "files": [
+        "js/base/banners/mozilla-banner.js",
+        "js/mozorg/home/daylight-promo-banner-init.js"
+      ],
+      "name": "daylight-promo-banner"
     },
     {
       "files": [

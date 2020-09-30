@@ -1,0 +1,43 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import google_play_button with context %}
+
+{% set has_banner_copy = ftl_has_messages('banner-firefox-daylight-promo-title',
+                                          'banner-firefox-daylight-promo-button') %}
+
+{% set android_url = firefox_adjust_url('android', 'firefox-daylight-promo-banner') %}
+{% set ios_url = firefox_adjust_url('ios', 'firefox-daylight-promo-banner') %}
+
+{% if has_banner_copy %}
+<aside class="c-banner hide-from-legacy-ie mzp-t-firefox" id="firefox-daylight-promo">
+  {# Exclude banners from search result snippets using `data-nosnippet` (issue 8739) #}
+  <div class="c-banner-inner" data-nosnippet="true">
+    <button type="button" class="c-banner-close"><span>{{ ftl('ui-close') }}</span></button>
+    <div class="mzp-l-content">
+      <div class="c-banner-main">
+
+        <h2 class="c-banner-title">{{ ftl('banner-firefox-daylight-promo-title') }}</h2>
+
+        <div class="c-cta hidden-on-mobile">
+          <a href="{{ url('firefox.mobile.get-app') }}" class="mzp-c-button mzp-t-secondary" data-cta-type="link" data-cta-text="Get It Now" data-cta-position="banner">{{ ftl('banner-firefox-daylight-promo-button') }}</a>
+        </div>
+
+        <div class="c-cta hidden-on-desktop mobile-download-buttons">
+          <div class="android">
+            {{ google_play_button(href=android_url, id='play-store-link') }}
+          </div>
+
+          <div class="ios">
+            <a id="app-store-link" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
+              <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</aside>
+{% endif %}
