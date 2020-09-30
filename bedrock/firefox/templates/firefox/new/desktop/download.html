@@ -193,7 +193,7 @@
           <button id="protection-report" type="button" class="mzp-c-cta-link">{{ ftl('firefox-desktop-download-see-your-report') }}</button>
         </div>
         <div class="c-block-media l-v-end l-h-end l-media-constrain-on-sm">
-          {{ high_res_img('img/firefox/new/desktop/block.jpg', {'width': '504', 'height': '325', 'alt': '', 'loading': 'lazy', 'class': 'c-block-media-img' }) }}
+          {{ high_res_img('img/firefox/new/desktop/block.jpg', {'width': '504', 'height': '325', 'alt': 'Firefox blocks Ad Trackers', 'loading': 'lazy', 'class': 'c-block-media-img' }) }}
         </div>
       </div>
     </div>
@@ -206,7 +206,7 @@
           <p><a id="system-requirements" href="{{ url('firefox.sysreq') }}" class="mzp-c-cta-link" data-cta-type="link" data-cta-text="Review system requirements">{{ ftl('firefox-desktop-download-review-system-req') }}</a></p>
         </div>
         <div class="c-block-media l-v-center l-h-start l-media-constrain-on-sm">
-          {{ picture('everyone', 367, 302, '', 'mzp-c-block-media-img') }}
+          {{ picture('everyone', 367, 302, 'Firefox for everyone ', 'mzp-c-block-media-img') }}
         </div>
       </div>
     </div>
@@ -230,7 +230,7 @@
           </div>
         </div>
         <div class="c-block-media l-v-end l-h-end l-media-constrain-on-sm">
-          {{ high_res_img('img/firefox/new/desktop/devices.jpg', {'width': '483', 'height': '440', 'loading': 'lazy', 'class': 'c-block-media-img', 'alt': '' }) }}
+          {{ high_res_img('img/firefox/new/desktop/devices.jpg', {'width': '483', 'height': '440', 'loading': 'lazy', 'class': 'c-block-media-img', 'alt': 'Firefox on all devices' }) }}
         </div>
       </div>
     </div>
@@ -359,7 +359,7 @@
       </svg>
       <!--<![endif]-->
       <div class="c-screenshot">
-        {{ high_res_img('img/firefox/new/desktop/screen.png', {'width': '1040', 'height': '412', 'loading': 'lazy', 'alt': ''}) }}
+        {{ high_res_img('img/firefox/new/desktop/screen.png', {'width': '1040', 'height': '412', 'loading': 'lazy', 'alt': 'Firefox New Tab Screenshot'}) }}
       </div>
     </div>
 
@@ -387,14 +387,14 @@
 
     <div class="mzp-l-card-half">
       <div class="mzp-c-card">
-        {{ high_res_img('img/firefox/new/desktop/person-mozilla.jpg', {'width': '436', 'height': '463', 'loading': 'lazy', 'alt': '' }) }}
+        {{ high_res_img('img/firefox/new/desktop/person-mozilla.jpg', {'width': '436', 'height': '463', 'loading': 'lazy', 'alt': 'Two people standing' }) }}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-challenging-the-status') }}</h3>
         {% set created_attrs = 'href="%s" data-cta-type="link" data-cta-text="created by Mozilla"'|safe|format(url('mozorg.about')) %}
         <p>{{ ftl('firefox-desktop-download-firefox-was-created', attrs=created_attrs) }}</p>
       </div>
 
       <div class="mzp-c-card">
-        {{ high_res_img('img/firefox/new/desktop/person-privacy.jpg', {'width': '436', 'height': '463', 'loading': 'lazy', 'alt': '' }) }}
+        {{ high_res_img('img/firefox/new/desktop/person-privacy.jpg', {'width': '436', 'height': '463', 'loading': 'lazy', 'alt': 'Your privacy comes first' }) }}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-your-privacy-comes') }}</h3>
         {% set internet_attrs = 'href="%s" data-cta-type="link" data-cta-text="Personal Data Promise"'|safe|format(url('firefox.privacy.index')) %}
         <p>{{ ftl('firefox-desktop-download-as-the-internet', attrs=internet_attrs) }}</p>
@@ -408,41 +408,41 @@
     <div class="mzp-l-card-third">
 
       <div class="mzp-c-card js-animate">
-        {{ picture('goog', '140', 138) }}
+        {{ picture('goog', '140', 138, 'Firefox works with google products') }}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-works-with-google') }}</h3>
         <p>{{ ftl('firefox-desktop-download-all-your-favourite') }}</p>
       </div>
 
       <div class="mzp-c-card js-animate">
-        {{ picture('contain', '131', 138) }}
+        {{ picture('contain', '131', 138, 'Stop Facebook from tracking you') }}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-facebook-container') }}</h3>
         {% set addon_attrs = 'href="https://addons.mozilla.org/firefox/addon/facebook-container/%s" rel="external noopener" data-cta-type="link" data-cta-text="Download this browser extension"'|safe|format(referrals) %}
         <p>{{ ftl('firefox-desktop-download-download-this-browser', attrs=addon_attrs) }}</p>
       </div>
 
       <div class="mzp-c-card js-animate">
-        {{ picture('sync', '171', 138) }}
+        {{ picture('sync', '171', 138, 'Sync across all devices') }}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-sync-your-devices') }}</h3>
         {% set available_attrs = fxa_link_fragment(entrypoint='mozilla.org-firefox-desktop') %}
         <p>{{ ftl('firefox-desktop-download-firefox-is-available', attrs=available_attrs) }}</p>
       </div>
 
       <div class="mzp-c-card js-animate">
-        {{ picture('screenshots', '131', 138) }}
+        {{ picture('screenshots', '131', 138, 'Take Screenshots') }}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-screenshots') }}</h3>
         {% set screenshot_attrs = 'href="https://support.mozilla.org/kb/firefox-screenshots%s" rel="external noopener" data-cta-type="link" data-cta-text="screenshot"'|safe|format(referrals) %}
         <p>{{ ftl('firefox-desktop-download-grab-a-high', attrs=screenshot_attrs) }}</p>
       </div>
 
       <div class="mzp-c-card js-animate">
-        {{ picture('etp', '134', 138) }}
+        {{ picture('etp', '134', 138, 'Enhanced tracking protection') }}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-enhanced-tracking-protection') }}</h3>
         {% set automatically_attrs = 'href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop%s" rel="external noopener" data-cta-type="link" data-cta-text="block many trackers"'|safe|format(referrals) %}
         <p>{{ ftl('firefox-desktop-download-firefox-automatically', attrs=automatically_attrs) }}</p>
       </div>
 
       <div class="mzp-c-card js-animate">
-        {{ picture('pinp', '143', 138) }}
+        {{ picture('pinp', '143', 138, 'Supports picture-in-picture') }}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-picture-in-picture') }}</h3>
         <p>{{ ftl('firefox-desktop-download-from-watching-a') }}</p>
       </div>
