@@ -20,7 +20,7 @@ Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, u
   {% endif %}
 
   {% if switch('firefox-daylight-promo-banner') %}
-    {% include 'includes/banners/daylight/daylight-promo.html' %}
+    {{ css_bundle('daylight-promo-banner') }}
   {% endif %}
 {% endblock %}
 

@@ -45,8 +45,9 @@ $image-path: '/media/protocol/img';
         }
 
         .c-cta {
-            padding: 0 $spacing-xl;
             line-height: 0;
+            min-width: 180px;
+            padding: 0 $spacing-xl;
         }
     }
 
@@ -56,8 +57,8 @@ $image-path: '/media/protocol/img';
         display: none;
     }
 
-    .android,
-    .ios {
+    .android &,
+    .ios & {
         .hidden-on-desktop {
             display: inline;
         }
@@ -67,7 +68,7 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    .android .mobile-download-buttons {
+    .android & .mobile-download-buttons {
         .android {
             display: inline-block;
         }
@@ -77,7 +78,7 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    .ios .mobile-download-buttons {
+    .ios & .mobile-download-buttons {
         .ios {
             display: inline-block;
         }
