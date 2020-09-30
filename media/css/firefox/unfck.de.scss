@@ -340,7 +340,7 @@ main {
     }
 }
 
-.c-item-image-link {
+.c-item-img-link {
     display: block;
 }
 
@@ -719,4 +719,30 @@ main {
 .mzp-c-notification-bar.mzp-is-sticky {
     animation: fade-in-out 5s both;
     z-index: 1001;
+}
+
+// --------------------------------------------------------------------------
+// GIF backgrounds (display while they are loading)
+
+.c-item-gif {
+    text-align: center;
+
+    #contain & {
+        background-color: #1a90e8;
+    }
+
+    #desinformation & {
+        background-color: #2657fd;
+    }
+
+    #hate-speech &,
+    #social & {
+        background-color: $color-white;
+        color: $color-black;
+    }
+
+    #share & {
+        background-color: #fde1e8;
+        color: $color-black;
+    }
 }
