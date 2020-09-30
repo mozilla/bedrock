@@ -28,27 +28,28 @@
 <main class="content-wrapper mzp-t-firefox">
   {% include 'firefox/whatsnew/includes/header.html' %}
 
-  <section class="main-content{% if show_send_to_device %} show-send-to-device{% endif %}">
+  <section class="wnp-content-main{% if show_send_to_device %} show-send-to-device{% endif %}">
     <div class="mzp-l-content mzp-t-content-md">
       <header>
+        <img class="wnp-main-image" src="{{ static('protocol/img/logos/firefox/browser/logo-md.png') }}" alt="">
       {# If user is in a locale with translated basket messages... #}
       {% if show_send_to_device %}
         {% if ftl_has_messages('whatsnew-s2d-want-privacy-on-every-device', 'whatsnew-s2d-you-got-it-get-firefox-for') %}
-          <h1 class="main-title">{{ ftl('whatsnew-s2d-want-privacy-on-every-device') }}</h1>
-          <p class="main-tagline">{{ ftl('whatsnew-s2d-you-got-it-get-firefox-for') }}</p>
+          <h1 class="wnp-main-title">{{ ftl('whatsnew-s2d-want-privacy-on-every-device') }}</h1>
+          <p class="wnp-main-tagline">{{ ftl('whatsnew-s2d-you-got-it-get-firefox-for') }}</p>
         {% else %}
-          <h1 class="main-title">{{ ftl('whatsnew-s2d-send-firefox-to-your-phone') }}</h1>
+          <h1 class="wnp-main-title">{{ ftl('whatsnew-s2d-send-firefox-to-your-phone') }}</h1>
         {% endif %}
       {# For users not in a locale with translated basket messages... #}
       {% else %}
-        <h1 class="main-title">{{ ftl('whatsnew-s2d-download-firefox-for-your') }}</h1>
+        <h1 class="wnp-main-title">{{ ftl('whatsnew-s2d-download-firefox-for-your') }}</h1>
       {% endif %}
       </header>
 
       {# Only certain locales get send_to_device, else they see a QRCode. #}
       {% if show_send_to_device %}
         <div id="send-to-device-wrapper" class="primary-cta">
-          {{ send_to_device(include_title=False, message_set=send_to_device_message_set, spinner_color='#fff;', class='horizontal mzp-t-dark') }}
+          {{ send_to_device(include_title=False, message_set=send_to_device_message_set, spinner_color='#fff;', class='vertical') }}
         </div>
       {% else %}
         <div id="qr-wrapper" class="primary-cta">
@@ -57,6 +58,11 @@
       {% endif %}
     </div>
   </section>{#-- /.main-content --#}
+
+  <aside class="mzp-l-content c-utilities">
+    {% set releasenotes_url = url('firefox.releases.index') if not version else '/firefox/%s/releasenotes/'|format(version) %}
+    <p>{{ ftl('whatsnew-release-notes', url=releasenotes_url) }}</p>
+  </aside>
 
 </main>
 {% endblock %}
