@@ -536,6 +536,7 @@ class WhatsNewRedirectorView(GeoRedirectView):
         'TZ': 'firefox.whatsnew.africa',
         'ZW': 'firefox.whatsnew.africa',
         'ZM': 'firefox.whatsnew.africa',
+        'CN': 'firefox.whatsnew.china',
     }
     default_url = 'firefox.whatsnew.all'
 
@@ -595,6 +596,7 @@ class WhatsnewView(L10nTemplateView):
         return ctx
 
     def get_template_names(self):
+        locale = l10n_utils.get_locale(self.request)
         version = self.kwargs.get('version') or ''
         oldversion = self.request.GET.get('oldversion', '')
         # old versions of Firefox sent a prefixed version
@@ -610,7 +612,7 @@ class WhatsnewView(L10nTemplateView):
                 template = 'firefox/developer/whatsnew.html'
             else:
                 template = 'firefox/whatsnew/index.html'
-        elif version.startswith('82.') and ftl_file_is_active('firefox/whatsnew/whatsnew-fx80'):
+        elif version.startswith('82.') and locale.startswith('en-'):
             template = 'firefox/whatsnew/whatsnew-fx82.html'
         elif version.startswith('81.') and ftl_file_is_active('firefox/whatsnew/whatsnew-fx81'):
             template = 'firefox/whatsnew/whatsnew-fx81.html'
@@ -642,6 +644,26 @@ class WhatsNewFirefoxLiteView(WhatsnewView):
             template = super().get_template_names()
 
         return template
+
+
+class WhatsNewChinaView(WhatsnewView):
+    ftl_files_map = {
+        'firefox/whatsnew/index-account.html': ['firefox/whatsnew/whatsnew-account', 'firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/index.html': ['firefox/whatsnew/whatsnew-s2d', 'firefox/whatsnew/whatsnew'],
+    }
+
+    def get_template_names(self):
+        locale = l10n_utils.get_locale(self.request)
+        version = self.kwargs.get('version') or ''
+        channel = detect_channel(version)
+        pre_release_channels = ['nightly', 'alpha', 'beta']
+
+        if show_default_account_whatsnew(version) and locale.startswith('en-') and channel not in pre_release_channels:
+            template = 'firefox/whatsnew/index-account.html'
+        else:
+            template = 'firefox/whatsnew/index.html'
+
+        return [template]
 
 
 class DownloadThanksView(L10nTemplateView):

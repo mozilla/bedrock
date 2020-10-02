@@ -2,20 +2,12 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros.html" import send_to_device with context %}
-
 {% extends "firefox/whatsnew/base.html" %}
 
-{% block html_attrs %}
-data-whatsnew80-redirect-url="{{ settings.FXA_ENDPOINT + 'sms/?' + utm_params }}"
-{% endblock %}
-
-{% block page_title %}{{ ftl('whatsnew80-page-title') }}{% endblock %}
+{% block page_title %}What’s new with Firefox{% endblock %}
 
 {#- This will appear as <meta property="og:description"> which can be used for social share -#}
-{% block page_og_desc %}
-  {{ ftl('whatsnew80-page-title') }}
-{% endblock %}
+{% block page_og_desc %}What’s new with Firefox{% endblock %}
 
 {% block body_id %}firefox-whatsnew{% endblock %}
 {% block body_class %}{% endblock %}
@@ -26,70 +18,45 @@ data-whatsnew80-redirect-url="{{ settings.FXA_ENDPOINT + 'sms/?' + utm_params }}
 
 {% block site_header %}{% endblock %}
 
-{% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
-
 {% block content %}
 <main class="content-wrapper mzp-t-firefox">
   {% include 'firefox/whatsnew/includes/header.html' %}
 
   <section class="wnp-content-main">
     <div class="mzp-l-content mzp-t-content-md">
-        <img class="wnp-main-image" src="{{ static('img/firefox/whatsnew/whatsnew80/hero-fastsync.svg') }}" width="200" alt="">
-        <h1 class="wnp-main-title">{{ ftl('whatsnew80-main-title') }}</h1>
-        <p class="wnp-main-tagline">{{ ftl('whatsnew80-main-intro') }}</p>
+      <img class="wnp-main-image" src="{{ static('img/firefox/whatsnew/whatsnew82/vpn-logo.svg') }}" width="120" alt="">
+      <h1 class="wnp-main-title">Firefox protects your browsing. <strong>Mozilla VPN</strong> protects you everywhere.</h1>
+      <p class="wnp-main-tagline">Mozilla VPN (Virtual Private Network) protects your entire internet connection on your computer, your tablet, and even your phone. For even more security, it comes with a 30-day money back guarantee.</p>
 
-      {% if show_send_to_device %}
-        <div id="send-to-device-wrapper" class="primary-cta">
-        {{ send_to_device(include_title=False, message_set='fx-whatsnew', input_label_alt=ftl('whatsnew80-primary-cta-description'), class='vertical') }}
-        </div>
-      {% else %}
-        <div class="qr-code-wrapper">
-          <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}"
-              width="220"
-              height="220"
-              id="firefox-qr"
-              data-mozillaonline-link="{{ static('img/firefox/mobile/protocol/qr-firefox-mozillaonline.png') }}"
-              alt="">
-        </div>
-      {% endif %}
-
+      <div class="wnp-main-cta">
+        <a href="https://vpn.mozilla.org/?utm_source=mozilla.org-whatsnew82&utm_medium=referral&utm_campaign=whatsnew82&entrypoint=mozilla.org-whatsnew82" class="mzp-c-button mzp-t-product mzp-t-lg" rel="external" data-cta-text="Get Mozilla VPN Now" data-cta-type="button">Get Mozilla VPN Now</a>
+      </div>
     </div>
   </section>
 
   <section class="wnp-content-extra">
     <div class="mzp-l-content mzp-t-content-xl">
-      <div class="l-columns-three">
+      <div class="l-columns-two">
 
         <div class="c-picto-block">
           <div class="c-picto-block-image">
-            <img src="{{ static('img/icons/passwords-pink.svg') }}" width="48" alt="">
+            {% include 'firefox/whatsnew/includes/illo-vpn-laptop.svg' %}
           </div>
-          <h3 class="c-picto-block-title">{{ ftl('whatsnew80-password-fatigue') }}</h3>
+          <h3 class="c-picto-block-title">It’s fast, very fast</h3>
           <div class="c-picto-block-body">
-            <p>{{ ftl('whatsnew80-the-average-person') }}</p>
+            <p>Our WireGuard® powered servers are built for speed so you can stream, download, and game as usual.</p>
           </div>
         </div>
 
         <div class="c-picto-block">
           <div class="c-picto-block-image">
-            <img src="{{ static('img/icons/privacy-eye-violet.svg') }}" width="48" alt="">
+            {% include 'firefox/whatsnew/includes/illo-vpn-mobile.svg' %}
           </div>
-          <h3 class="c-picto-block-title">{{ ftl('whatsnew80-privacy-you-never') }}</h3>
+          <h3 class="c-picto-block-title">Internet without a trace</h3>
           <div class="c-picto-block-body">
-            <p>{{ ftl('whatsnew80-firefox-for-mobile') }}</p>
+            <p>We never log, track, or share your network data — your online activity won’t leave a footprint on our VPN servers.</p>
           </div>
         </div>
-
-        <div class="c-picto-block">
-          <div class="c-picto-block-image">
-            <img src="{{ static('img/firefox/whatsnew/whatsnew80/icon-fxandroid.png') }}" width="48" alt="">
-          </div>
-          <h3 class="c-picto-block-title">{{ ftl('whatsnew80-new-firefox-android') }}</h3>
-          <div class="c-picto-block-body">
-            <p>{{ ftl('whatsnew80-our-latest-version') }}</p>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
