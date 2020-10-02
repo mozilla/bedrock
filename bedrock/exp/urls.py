@@ -19,5 +19,5 @@ urlpatterns = (
     page('firefox/mobile', 'exp/firefox/mobile.html', ftl_files=['firefox/mobile']),
     url(r'^$', views.home_view, name='exp.mozorg.home'),
     page('firefox/accounts', 'exp/firefox/accounts.html', ftl_files=['firefox/accounts']),
-    page('firefox/unfck', 'exp/firefox/campaign/unfck/index.html', active_locales=['en-US', 'en-GB', 'en-CA']),
+    page('firefox/unfck', 'exp/firefox/campaign/unfck/index.html'),
 )
