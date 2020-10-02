@@ -141,35 +141,54 @@ main {
 
         // bg texture
         .loaded & {
-            background-image: url('/media/img/firefox/campaign/unfck/en/bg/top.png'),
-                              // checklist heading
-                              url('/media/img/firefox/campaign/unfck/en/bg/17.jpg'),
-                              url('/media/img/firefox/campaign/unfck/en/bg/19.jpg'),
-                              // ads
-                              url('/media/img/firefox/campaign/unfck/en/bg/2.jpg'),
-                              // fb
-                              url('/media/img/firefox/campaign/unfck/en/bg/3.jpg'),
-                              // youtube
-                              url('/media/img/firefox/campaign/unfck/en/bg/13.jpg'),
-                              url('/media/img/firefox/campaign/unfck/en/bg/20.jpg'),
-                              // giphy
-                              url('/media/img/firefox/campaign/unfck/en/bg/13.jpg'),
-                              url('/media/img/firefox/campaign/unfck/en/bg/9.jpg');
-            background-position: top center,
-                                 // checklist heading
-                                 top 700px right calc(50% + #{$content-sm / 2 }),
-                                 top 800px left calc(50% + #{$content-sm / 2 + 150px}),
-                                 // ads
-                                 top 1200px right calc(50% + #{$content-sm / 2 }),
-                                 // fb
-                                 top 1950px right calc(50% + #{$content-sm / 2 }),
-                                 // youtube
-                                 top 2500px right calc(50% + #{$content-sm / 2 }),
-                                 top 2300px left calc(50% + #{$content-sm / 2 }),
-                                 // giphy
-                                 bottom 50px right calc(50% + #{$content-sm / 2 } ),
-                                 bottom 350px left calc(50% + #{$content-sm / 2 + 150px});
-            background-repeat: no-repeat;
+
+            @media #{$mq-sm} {
+                background-image: url('/media/img/firefox/campaign/unfck/en/bg/top.png'),
+                                // checklist heading
+                                url('/media/img/firefox/campaign/unfck/en/bg/3.jpg'),
+                                url('/media/img/firefox/campaign/unfck/en/bg/4.jpg'),
+                                // ads
+                                url('/media/img/firefox/campaign/unfck/en/bg/2.jpg'),
+                                // fb
+                                url('/media/img/firefox/campaign/unfck/en/bg/6.jpg'),
+                                // youtube
+                                url('/media/img/firefox/campaign/unfck/en/bg/1.jpg'),
+                                url('/media/img/firefox/campaign/unfck/en/bg/7.jpg'),
+                                // giphy
+                                url('/media/img/firefox/campaign/unfck/en/bg/10.jpg'),
+                                url('/media/img/firefox/campaign/unfck/en/bg/9.jpg');
+                background-position: top center,
+                                    // checklist heading
+                                    top 700px right calc(50% + #{$content-sm / 2 }),
+                                    top 800px left calc(50% + #{$content-sm / 2 + 150px}),
+                                    // ads
+                                    top 1200px right calc(50% + #{$content-sm / 2 }),
+                                    // fb
+                                    top 1950px right calc(50% + #{$content-sm / 2 }),
+                                    // youtube
+                                    top 2500px right calc(50% + #{$content-sm / 2 }),
+                                    top 2300px left calc(50% + #{$content-sm / 2 }),
+                                    // giphy
+                                    bottom 50px right calc(50% + #{$content-sm / 2 } ),
+                                    bottom 350px left calc(50% + #{$content-sm / 2 + 150px});
+                background-repeat: no-repeat;
+                background-size: (1944px/2) (786px/2),
+                                //checklist heading
+                                (386px/2) (350px/2),
+                                (534px/2) (556px/2),
+                                //ads
+                                (620px/2) (662px/2),
+                                //fb
+                                (386px/2) (350px/2),
+                                //youtube
+                                (560px/2) (408px/2),
+                                (314px/2) (460px/2),
+                                //giphy
+                                (270px/2) (168px/2),
+                                (296px/2) (450px/2);
+            }
+
+
 
             @media #{$mq-lg} {
                 background-position: top center,
