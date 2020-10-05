@@ -126,4 +126,4 @@ def privacy(request):
         'active_locales': doc['active_locales'],
     }
 
-    return l10n_utils.render(request, 'privacy/index.html', template_vars)
+    return l10n_utils.render(request, 'privacy/index.html', template_vars, ftl_files='privacy/index')
