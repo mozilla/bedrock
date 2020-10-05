@@ -24,22 +24,22 @@
   {% set focus_name = 'Firefox Klar' %}
 {% else %}
   {% set focus_url = url('privacy.notices.firefox-focus') %}
-  {% set focus_name =  _('Firefox Focus') %}
+  {% set focus_name =  ftl('privacy-index-firefox-focus') %}
 {% endif %}
 
 {% set navigation_bar = [
-  (url('privacy'), 'privacy-home', _('Mozilla Privacy')),
-  (url('privacy.notices.websites'), 'privacy-websites', _('Mozilla Websites, Communications &amp; Cookies')),
-  (url('privacy.notices.firefox'), 'privacy-quantum', _('Firefox Browser')),
-  (url('privacy.notices.firefox-betterweb'), 'privacy-betterweb', _('Firefox Better Web')),
-  (url('privacy.notices.firefox-fire-tv'), 'privacy-fire-tv', _('Firefox for Fire TV')),
-  (url('privacy.notices.firefox-reality'), 'privacy-reality', _('Firefox Reality')),
-  (url('privacy.notices.firefox-os'), 'privacy-os', _('Firefox OS')),
+  (url('privacy'), 'privacy-home', ftl('privacy-index-mozilla-privacy')),
+  (url('privacy.notices.websites'), 'privacy-websites', ftl('privacy-index-mozilla-websites-communications')),
+  (url('privacy.notices.firefox'), 'privacy-quantum', ftl('privacy-index-firefox-browser')),
+  (url('privacy.notices.firefox-betterweb'), 'privacy-betterweb', ftl('privacy-index-firefox-better-web')),
+  (url('privacy.notices.firefox-fire-tv'), 'privacy-fire-tv', ftl('privacy-index-firefox-fire-tv')),
+  (url('privacy.notices.firefox-reality'), 'privacy-reality', ftl('privacy-index-firefox-reality')),
+  (url('privacy.notices.firefox-os'), 'privacy-os', ftl('privacy-index-firefox-os')),
   (focus_url, 'privacy-focus', focus_name),
-  (url('privacy.notices.firefox-private-network'), 'privacy-private-network', _('Firefox Private Network')),
-  (url('privacy.notices.firefox-relay'), 'privacy-relay', _('Firefox Relay')),
-  (url('privacy.notices.mozilla-vpn'), 'mozilla-vpn', _('Mozilla VPN')),
-  (url('privacy.notices.thunderbird'), 'privacy-thunderbird', _('Thunderbird')),
+  (url('privacy.notices.firefox-private-network'), 'privacy-private-network', ftl('privacy-index-firefox-private-network')),
+  (url('privacy.notices.firefox-relay'), 'privacy-relay', ftl('privacy-index-firefox-relay')),
+  (url('privacy.notices.mozilla-vpn'), 'mozilla-vpn', ftl('privacy-index-mozilla-vpn')),
+  (url('privacy.notices.thunderbird'), 'privacy-thunderbird', ftl('privacy-index-thunderbird')),
 ] -%}
 
 {% block content %}

@@ -10,8 +10,8 @@ from bedrock.redirects.util import redirect
 
 urlpatterns = (
     url(r'^$', views.privacy, name='privacy'),
-    page('principles', 'privacy/principles.html'),
-    page('faq', 'privacy/faq.html'),
+    page('principles', 'privacy/principles.html', ftl_files=['privacy/principles', 'privacy/index']),
+    page('faq', 'privacy/faq.html', ftl_files=['privacy/faq', 'privacy/index']),
     page('email', 'privacy/email.html', active_locales=['en-US', 'de', 'fr']),
     url(r'^betterweb/$', views.firefox_betterweb_notices, name='privacy.notices.firefox-betterweb'),
     url(r'^firefox/$', views.firefox_notices, name='privacy.notices.firefox'),
