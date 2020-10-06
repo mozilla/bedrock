@@ -52,9 +52,9 @@ urlpatterns = (
         name='newsletter.opt-out-confirmation'),
 
     # Branded signup pages for individual newsletters
-    page('newsletter/mozilla', 'newsletter/mozilla.html'),
-    page('newsletter/firefox', 'newsletter/firefox.html'),
-    page('newsletter/developer', 'newsletter/developer.html'),
-    page('newsletter/country/success', 'newsletter/country_success.html'),
-    page('newsletter/fxa-error', 'newsletter/fxa-error.html'),
+    page('newsletter/mozilla', 'newsletter/mozilla.html', ftl_files=['mozorg/newsletters']),
+    page('newsletter/firefox', 'newsletter/firefox.html', ftl_files=['mozorg/newsletters']),
+    page('newsletter/developer', 'newsletter/developer.html', ftl_files=['mozorg/newsletters']),
+    page('newsletter/country/success', 'newsletter/country_success.html', ftl_files=['mozorg/newsletters']),
+    page('newsletter/fxa-error', 'newsletter/fxa-error.html', ftl_files=['mozorg/newsletters']),
 )

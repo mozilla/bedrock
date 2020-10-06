@@ -4,11 +4,9 @@
 
 {% extends 'newsletter/recovery.html' %}
 
-{% set_lang_files "mozorg/newsletters" %}
-
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
 {% block messages %}
-  <p>{{ _('We are sorry, but there was a problem with our system. Please try again later!') }}</p>
+  <p>{{ ftl('newsletters-we-are-sorry-but-there') }}</p>
 {% endblock %}

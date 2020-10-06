@@ -9,8 +9,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import widgets
 from django.utils.safestring import mark_safe
-from lib.l10n_utils.dotlang import _
-from lib.l10n_utils.fluent import ftl_lazy
+from lib.l10n_utils.fluent import ftl, ftl_lazy
 from product_details import product_details
 
 from bedrock.mozorg.forms import (FORMATS, EmailInput, PrivacyWidget,
@@ -18,8 +17,6 @@ from bedrock.mozorg.forms import (FORMATS, EmailInput, PrivacyWidget,
 from bedrock.newsletter import utils
 
 _newsletters_re = re.compile(r'^[\w,-]+$')
-
-LANG_FILES = ['mozorg/newsletters']
 
 
 def validate_newsletters(newsletters):
@@ -74,8 +71,8 @@ class BooleanTabularRadioSelect(widgets.RadioSelect):
 
     def __init__(self, attrs=None):
         choices = (
-            ('true', _('Yes')),
-            ('false', _('No')),
+            ('true', ftl('newsletter-form-yes')),
+            ('false', ftl('newsletter-form-no')),
         )
         super(BooleanTabularRadioSelect, self).__init__(attrs, choices)
 
@@ -203,7 +200,9 @@ class ManageSubscriptionsForm(forms.Form):
         valid_newsletters = utils.get_newsletters()
         for newsletter in self.newsletters:
             if newsletter not in valid_newsletters:
-                msg = _("%s is not a valid newsletter") % newsletter
+                msg = ftl('newsletters-is-not-a-valid-newsletter',
+                          newsletter=newsletter,
+                          ftl_files=['mozorg/newsletters'])
                 raise ValidationError(msg)
         return super(ManageSubscriptionsForm, self).clean()
 
