@@ -14,12 +14,19 @@
   {{ css_bundle('firefox-unfck-fr') }}
 {% endblock %}
 
-{% set tw_text = '2020 est peut être foutu mais cela n’est pas une raison pour qu’Internet le soit. La bonne nouvelle est qu’on peut tous aider à faire bouger les choses'|urlencode %}
-{% set tw_url = 'https://firefox.com/unfck'|urlencode %}
-{% set tw_hashtags = 'pourunnetplusnet'|urlencode %}
-{% set tw_via = 'firefox_fr'|urlencode %}
-
 {% block content %}
+
+{% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-unfck' %}
+{% set tw_text = '2020 est peut être foutu mais cela n’est pas une raison pour qu’Internet le soit. La bonne nouvelle est qu’on peut tous aider à faire bouger les choses'|urlencode %}
+{% set tw_url = 'https://mzl.la/rendonslenetplusnet'|urlencode %}
+{% set tw_hashtags = 'rendonslenetplusnet'|urlencode %}
+{% set tw_via = 'firefox_fr'|urlencode %}
+{% set share_text = 'Partager' %}
+{% set download_text = 'Télécharger le GIF' %}
+{% set copy_text = 'Copier le lien du GIF' %}
+{% set copy_success_text = 'Lien copié' %}
+{% set locale = 'fr' %}
+
 <main role="main" class="t-unfck">
 
   <div class="c-banner-fr-wrapper">
@@ -69,10 +76,16 @@
       alt_text='Un doigt swipe, balayant les faux amis.',
       link_include_utms=False,
       link_is_external=False,
-      share_text='Partager',
-      download_text='Télécharger le GIF',
-      copy_text='Copier le lien du GIF',
-      copy_success_text='Lien copié'
+      referrals=referrals,
+      tw_text=tw_text,
+      tw_url=tw_url,
+      tw_hashtags=tw_hashtags,
+      tw_via=tw_via,
+      share_text=share_text,
+      download_text=download_text,
+      copy_text=copy_text,
+      copy_success_text=copy_success_text,
+      locale=locale
     ) %}{% endcall %}
 
     {% call share_item(
@@ -83,20 +96,36 @@
         id='protect',
         src_name='cat',
         alt_text='Un chat rusé attrape ses profils cibles avec sa langue.',
-        share_text='Partager',
-        download_text='Télécharger le GIF',
-        copy_text='Copier le lien du GIF',
-        copy_success_text='Lien copié'
+        referrals=referrals,
+        tw_text=tw_text,
+        tw_url=tw_url,
+        tw_hashtags=tw_hashtags,
+        tw_via=tw_via,
+        share_text=share_text,
+        download_text=download_text,
+        copy_text=copy_text,
+        copy_success_text=copy_success_text,
+        locale=locale
       ) %}{% endcall %}
 
       {% call share_item(
         title='N’acceptez pas de faire parti d’un système',
         info='La technologie qui nous rassemble nous monétise et nous manipule aussi. Il vous suffit de regarder le documentaire "The Social Dilemma" avec nos amis du “Center for Human Tech” pour comprendre comment le Net et les milliards de personnes qui l’utilisent sont devenus des marchandises pour les géants de la Tech.',
         link_text='En savoir plus sur le documentaire.',
-        link_url='https://blog.mozilla.org/firefox/fr/derriere-nos-ecrans-de-fumee',
+        link_url='https://blog.mozilla.org/firefox/fr/si-tu-nas-pas-a-payer-pour-un-produit-cest-que-tu-es-certainement-le-produit/',
         id='social',
-        src_name='button-fr',
-        alt_text='La souris “Fck” clique sur « Je n’accepte pas »'
+        src_name='button',
+        alt_text='La souris “Fck” clique sur « Je n’accepte pas »',
+        referrals=referrals,
+        tw_text=tw_text,
+        tw_url=tw_url,
+        tw_hashtags=tw_hashtags,
+        tw_via=tw_via,
+        share_text=share_text,
+        download_text=download_text,
+        copy_text=copy_text,
+        copy_success_text=copy_success_text,
+        locale=locale
       ) %}{% endcall %}
 
       {% call share_item(
@@ -107,23 +136,35 @@
         id='misinformation',
         src_name='purrfect',
         alt_text='La patte d’un chat chasse les intox pour révéler les vrais infos.',
-        share_text='Partager',
-        download_text='Télécharger le GIF',
-        copy_text='Copier le lien du GIF',
-        copy_success_text='Lien copié'
+        referrals=referrals,
+        tw_text=tw_text,
+        tw_url=tw_url,
+        tw_hashtags=tw_hashtags,
+        tw_via=tw_via,
+        share_text=share_text,
+        download_text=download_text,
+        copy_text=copy_text,
+        copy_success_text=copy_success_text,
+        locale=locale
       ) %}{% endcall %}
 
       {% call share_item(
-        title='Acceptez de faire parti du mouvement #pourunnetplusnet',
+        title='Acceptez de faire parti du mouvement #rendonslenetplusnet',
         info='Parlons librement de ce qui n’est plus très net sur le Net. Plus les gens en parleront, plus on y verra clair.',
         id='share',
         src_name='one-fck-given',
         alt_text='Deux mains se font un high five célébrant le net plus net.',
         include_cta=True,
-        share_text='Partager',
-        download_text='Télécharger le GIF',
-        copy_text='Copier le lien du GIF',
-        copy_success_text='Lien copié'
+        referrals=referrals,
+        tw_text=tw_text,
+        tw_url=tw_url,
+        tw_hashtags=tw_hashtags,
+        tw_via=tw_via,
+        share_text=share_text,
+        download_text=download_text,
+        copy_text=copy_text,
+        copy_success_text=copy_success_text,
+        locale=locale
         ) %}
         <form class="c-tell" action="{{ 'https://www.twitter.com/intent/tweet?url=%s&hashtags=%s&via=%s'|format(tw_url, tw_hashtags, tw_via)|e }}" method="post">
           <textarea class="c-tell-input" placeholder="vous y voyez encore clair sur le Net ?" required maxlength="280"></textarea>

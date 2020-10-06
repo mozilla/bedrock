@@ -1,0 +1,52 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% macro gif(src_gif, src_high_res, src_still, alt_text=None) -%}
+  <picture class="c-item-gif">
+    <source srcset="{{ src_still }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="280" height="280"></source>
+    <source srcset="{{ src_gif }} 1x, {{ src_high_res }} 1.5x" loading="lazy" width="280" height="280"></source>
+    <img src="{{ src_gif }}" loading="lazy" width="280" height="280" alt="{{ alt_text }}">
+  </picture>
+{%- endmacro %}
+
+{% macro share_item(title=None, info=None, id=None, src_name=None, locale=None,
+  include_cta=False, link_text=None, link_url=None, link_include_utms=True,
+  link_is_external=True, share_text=None, download_text=None, copy_text=None,
+  alt_text=None, copy_success_text=None, tw_text='', tw_url='', tw_hashtags='',
+  tw_via='', referrals=None) -%}
+  {% set src_still = static('img/firefox/campaign/unfck/' + locale + '/gifs/still/' + src_name + '.png') %}
+  {% set src_gif = static('img/firefox/campaign/unfck/' + locale + '/gifs/' + src_name + '.gif') %}
+  {% set src_high_res = static('img/firefox/campaign/unfck/' + locale + '/gifs/' + src_name + '-high-res.gif') %}
+  {% set tw = 'https://www.twitter.com/intent/tweet?url=' + tw_url + '&text=' + tw_text + '&hashtags=' + tw_hashtags + '&via=' + tw_via %}
+  <div class="c-item-unfck" id="{{ id }}">
+    <div class="c-item-img">
+      {% if link_url %}
+        <a class="c-item-img-link" href="{{ link_url }}{% if link_include_utms %}{{ referrals }}{% endif %}" target="_blank" {% if link_include_utms or link_is_external %}rel="external noopener"{% endif %} data-cta-type="link" data-cta-text="Checklist: {{ id }}">
+          {{ gif(src_gif, src_high_res, src_still, alt_text) }}
+        </a>
+      {% else %}
+        {{ gif(src_gif, src_high_res, src_still, alt_text) }}
+      {% endif %}
+
+      <ul class="c-item-actions">
+        <li><a class="c-item-link js-twitter-share twitter" href="{{ tw|e }}" data-id="{{ id }}" title="{{ share_text }}">{{ share_text }}</a></li>
+        <li><a class="c-item-link js-download-gif download" href="{{ src_high_res }}" data-id="{{ id }}" title="{{ download_text }}" download>{{ download_text }}</a></li>
+        <li><button class="c-item-link js-copy-link link hide-from-legacy-ie" type="button" data-id="{{ id }}" data-close="{{ ftl('ui-close') }}" data-success="{{ copy_success_text }}" title="{{ copy_text }}">{{ copy_text }}</button></li>
+      </ul>
+    </div>
+    <div class="c-item-desc">
+      {% if include_cta %}
+        <h3 class="c-item-title">{{ title }}</h3>
+        <p>{{ info }}</p>
+        {{ caller() }}
+      {% else %}
+        <a class="c-item-desc-link" href="{{ link_url }}{% if link_include_utms %}{{ referrals }}{% endif %}" target="_blank" {% if link_include_utms or link_is_external %}rel="external noopener"{% endif %} data-cta-type="link" data-cta-text="Checklist: {{ id }}">
+          <h3 class="c-item-title">{{ title }}</h3>
+          <p>{{ info }}</p>
+          <p><span class="c-item-cta-link">{{ link_text }}</span></p>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+{%- endmacro %}
