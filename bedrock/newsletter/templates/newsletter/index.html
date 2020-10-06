@@ -4,16 +4,14 @@
 
 {% extends 'newsletter/base.html' %}
 
-{% set_lang_files "mozorg/newsletters" %}
-
-{% block page_title %}{{ _('Mozilla Newsletter') }}{% endblock %}
+{% block page_title %}{{ ftl('newsletters-mozilla-newsletter') }}{% endblock %}
 
 {% block content %}
 <main role="main">
   <div class="mzp-l-content mzp-t-content-sm">
     {{ email_newsletter_form(
-      title=_('Read all about it in our <span>newsletter</span>'),
-      desc=_('Subscribe to updates and keep current with Mozilla news. It’s the perfect way for us to keep in touch!'),
+      title=ftl('newsletters-read-all-about-it-in-our-newsletter'),
+      desc=ftl('newsletters-subscribe-to-updates-and-keep'),
       newsletters='mozilla-foundation') }}
   </div>
 </main>

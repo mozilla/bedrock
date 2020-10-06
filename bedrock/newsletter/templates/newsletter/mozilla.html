@@ -4,23 +4,10 @@
 
 {% extends 'base-protocol-mozilla.html' %}
 
-{% set_lang_files "mozorg/newsletters" %}
-
-{% block page_title %}
-  {# L10n: line break for visual formatting #}
-  {% if l10n_has_tag('mozilla_newsletter_copy') %}
-    {{ _('Sign up, read up,<br> stay informed.') }}
-  {% else %}
-    {{ _('Sign up. Read up.<br> Make a difference.') }}
-  {% endif %}
-{% endblock page_title %}
+{% block page_title %}{{ ftl('newsletters-sign-up-read-up-stay-informed', fallback='newsletters-sign-up-read-up-make-a-difference') }}{% endblock page_title %}
 
 {% block page_desc %}
-  {% if l10n_has_tag('mozilla_newsletter_copy') %}
-    {{ _('Get smart on the issues affecting your life online.') }}
-  {% else %}
-    {{ _('Get the Mozilla newsletter to stay informed about issues challenging the health of the Internet and to discover how you can get involved.') }}
-  {% endif %}
+  {{ ftl('newsletters-get-smart-on-the-issues', fallback='newsletters-get-the-mozilla-newsletter') }}
 {% endblock %}
 
 {% block body_class %}{{ super() }} newsletter-mozilla{% endblock %}

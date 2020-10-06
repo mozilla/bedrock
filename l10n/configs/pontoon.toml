@@ -116,5 +116,35 @@ locales = [
 ]
 
 [[paths]]
+    reference = "en/mozorg/newsletters.ftl"
+    l10n = "{locale}/mozorg/newsletters.ftl"
+    locales = [
+        "bg",
+        "cs",
+        "de",
+        "es-ES",
+        "fr",
+        "hu",
+        "id",
+        "it",
+        "nl",
+        "pl",
+        "pt-BR",
+        "ru",
+        "zh-TW",
+    ]
+[[paths]]
+    reference = "en/newsletter/opt-out-confirmation.ftl"
+    l10n = "{locale}/newsletter/opt-out-confirmation.ftl"
+    locales = [
+        "de",
+        "es-ES",
+        "fr",
+        "id",
+        "pl",
+        "pt-BR",
+        "ru"
+    ]
+[[paths]]
     reference = "en/**/*.ftl"
     l10n = "{locale}/**/*.ftl"

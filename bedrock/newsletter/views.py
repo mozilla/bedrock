@@ -21,8 +21,7 @@ from django.shortcuts import redirect
 from django.utils.safestring import mark_safe
 from django.views.decorators.cache import never_cache
 from jinja2 import Markup
-from lib.l10n_utils.dotlang import _, _lazy, lang_file_has_tag
-from lib.l10n_utils.fluent import ftl
+from lib.l10n_utils.fluent import ftl, ftl_lazy
 
 from bedrock.base import waffle
 from bedrock.base.urlresolvers import reverse
@@ -36,163 +35,144 @@ from .forms import (CountrySelectForm, EmailForm, ManageSubscriptionsForm,
 
 log = commonware.log.getLogger('b.newsletter')
 
-LANG_FILES = ['mozorg/newsletters']
-general_error = _lazy(u'We are sorry, but there was a problem '
-                      u'with our system. Please try again later!')
-thank_you_new = _lazy(u'Your email preferences have been successfully updated.')
-thank_you = _lazy(u'Thanks for updating your email preferences.')
-bad_token = _lazy(u'The supplied link has expired or is not valid. You will '
-                  u'receive a new one in the next newsletter, or below you '
-                  u'can request an email with the link.')
-recovery_text = _lazy(
-    u'Success! An email has been sent to you with your preference center '
-    u'link. Thanks!')
+FTL_FILES = ['mozorg/newsletters']
 
-# NOTE: Must format a link into this: (https://www.mozilla.org/newsletter/)
-unknown_address_text = _lazy(
-    u'This email address is not in our system. Please double check your '
-    u'address or <a href="%s">subscribe to our newsletters.</a>')
-
-invalid_email_address = _lazy(u'This is not a valid email address. '
-                              u'Please check the spelling.')
+general_error = ftl_lazy('newsletters-we-are-sorry-but-there', ftl_files=FTL_FILES)
+thank_you = ftl_lazy('newsletters-your-email-preferences',
+                     fallback='newsletters-thanks-for-updating-your',
+                     ftl_files=FTL_FILES)
+bad_token = ftl_lazy('newsletters-the-supplied-link-has-expired-long', ftl_files=FTL_FILES)
+recovery_text = ftl_lazy('newsletters-success-an-email-has-been-sent', ftl_files=FTL_FILES)
+invalid_email_address = ftl_lazy('newsletters-this-is-not-a-valid-email', ftl_files=FTL_FILES)
 
 NEWSLETTER_STRINGS = {
     u'about-mozilla': {
-        'description': _lazy(u'Join Mozillians all around the world and learn about impactful opportunities to support Mozilla\u2019s mission.'),
-        'title': _lazy(u'Mozilla Community')},
+        'description': ftl_lazy('newsletters-join-mozillians-all-around', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-mozilla-community', ftl_files=FTL_FILES)},
     u'about-standards': {
-        'title': _lazy(u'About Standards')},
+        'title': ftl_lazy('newsletters-about-standards', ftl_files=FTL_FILES)},
     u'addon-dev': {
-        'title': _lazy(u'Addon Development')},
+        'title': ftl_lazy('newsletters-addon-development', ftl_files=FTL_FILES)},
     u'affiliates': {
-        'description': _lazy(u'A monthly newsletter to keep you up to date with the '
-                             u'Firefox Affiliates program.'),
-        'title': _lazy(u'Firefox Affiliates')},
+        'description': ftl_lazy('newsletters-a-monthly-newsletter-affiliates', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-firefox-affiliates', ftl_files=FTL_FILES)},
     u'ambassadors': {
-        'description': _lazy(u'A monthly newsletter on how to get involved with Mozilla on your campus. '),
-        'title': _lazy(u'Firefox Student Ambassadors')},
+        'description': ftl_lazy('newsletters-a-monthly-newsletter-ambassadors', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-firefox-student-ambassadors', ftl_files=FTL_FILES)},
     u'app-dev': {
-        'description': _lazy(u'A developer\u2019s guide to highlights of Web platform '
-                             u'innovations, best practices, new documentation and more.'),
-        'title': _lazy(u'Developer Newsletter')},
+        'description': ftl_lazy('newsletters-a-developers-guide', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-developer-newsletter', ftl_files=FTL_FILES)},
     u'aurora': {
-        'description': _lazy(u'Aurora'),
-        'title': _lazy(u'Aurora')},
+        'description': ftl_lazy('newsletters-aurora', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-aurora', ftl_files=FTL_FILES)},
     u'beta': {
-        'description': _lazy(u'Read about the latest features for Firefox desktop and mobile '
-                             u'before the final release.'),
-        'title': _lazy(u'Beta News')},
+        'description': ftl_lazy('newsletters-read-about-the-latest-features', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-beta-news', ftl_files=FTL_FILES)},
     u'download-firefox-android': {
-        'title': _lazy(u'Download Firefox for Android')},
+        'title': ftl_lazy('newsletters-download-firefox-for-android', ftl_files=FTL_FILES)},
     u'download-firefox-androidsn': {
-        'title': _lazy(u'Get Firefox for Android')},
+        'title': ftl_lazy('newsletters-get-firefox-for-android', ftl_files=FTL_FILES)},
     u'download-firefox-androidsnus': {
-        'title': _lazy(u'Get Firefox for Android')},
+        'title': ftl_lazy('newsletters-get-firefox-for-android', ftl_files=FTL_FILES)},
     u'download-firefox-ios': {
-        'title': _lazy(u'Download Firefox for iOS')},
+        'title': ftl_lazy('newsletters-download-firefox-for-ios', ftl_files=FTL_FILES)},
     u'download-firefox-mobile': {
-        'title': _lazy(u'Download Firefox for Mobile')},
+        'title': ftl_lazy('newsletters-download-firefox-for-mobile', ftl_files=FTL_FILES)},
     u'drumbeat': {
-        'title': _lazy(u'Drumbeat Newsgroup')},
+        'title': ftl_lazy('newsletters-drumbeat-newsgroup', ftl_files=FTL_FILES)},
     u'firefox-accounts-journey': {
-        'description': _lazy(u'Get the most out of your Firefox Account.'),
-        'title': _lazy(u'Firefox Accounts Tips')},
+        'description': ftl_lazy('newsletters-get-the-most-firefox-account', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-firefox-accounts-tips', ftl_files=FTL_FILES)},
     u'firefox-desktop': {
-        'description': _lazy(u'Don\u2019t miss the latest announcements about our desktop browser.'),
-        'title': _lazy(u'Firefox for desktop')},
+        'description': ftl_lazy('newsletters-dont-miss-the-latest', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-firefox-for-desktop', ftl_files=FTL_FILES)},
     u'firefox-flicks': {
-        'description': _lazy(u'Periodic email updates about our annual international film competition.'),
-        'title': _lazy(u'Firefox Flicks')},
+        'description': ftl_lazy('newsletters-periodic-email-updates', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-firefox-flicks', ftl_files=FTL_FILES)},
     u'firefox-ios': {
-        'description': _lazy(u'Be the first to know when Firefox is available for iOS devices.'),
-        'title': _lazy(u'Firefox iOS')},
+        'description': ftl_lazy('newsletters-be-the-first-to-know', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-firefox-ios', ftl_files=FTL_FILES)},
     u'firefox-os': {
-        'description': _lazy(u'Don\u2019t miss important news and updates about your Firefox OS device.'),
-        'title': _lazy(u'Firefox OS smartphone owner?')},
+        'description': ftl_lazy('newsletters-dont-miss-important-news', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-firefox-os-smartphone-owner', ftl_files=FTL_FILES)},
     u'firefox-os-news': {
-        'description': _lazy(u'A monthly newsletter and special announcements on how to get the most '
-                             u'from your Firefox OS device, including the latest features and coolest '
-                             u'Firefox Marketplace apps.'),
-        'title': _lazy(u'Firefox OS + You')},
+        'description': ftl_lazy('newsletters-a-monthly-newsletter-and-special', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-firefox-os-and-you', ftl_files=FTL_FILES)},
     u'firefox-tips': {
-        'description': _lazy(u'Get a weekly tip on how to super-charge your Firefox experience.'),
-        'title': _lazy(u'Firefox Weekly Tips')},
+        'description': ftl_lazy('newsletters-get-a-weekly-tip', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-firefox-weekly-tips', ftl_files=FTL_FILES)},
     u'get-android-embed': {
-        'title': _lazy(u'Get Firefox for Android')},
+        'title': ftl_lazy('newsletters-get-firefox-for-android', ftl_files=FTL_FILES)},
     u'get-android-notembed': {
-        'title': _lazy(u'Get Firefox for Android')},
+        'title': ftl_lazy('newsletters-get-firefox-for-android', ftl_files=FTL_FILES)},
     u'get-involved': {
-        'title': _lazy(u'Get Involved')},
+        'title': ftl_lazy('newsletters-get-involved', ftl_files=FTL_FILES)},
     u'internet-health-report': {
-        'title': _lazy(u'Internet Health Report'),
-        'description': _lazy(u'Keep up with our annual compilation of research and stories on the issues of privacy '
-                             u'&amp; security, openness, digital inclusion, decentralization, and web literacy.')},
+        'title': ftl_lazy('newsletters-insights',
+                          fallback='newsletters-internet-health-report',
+                          ftl_files=FTL_FILES),
+        'description': ftl_lazy('newsletters-mozilla-published-articles-and-deep',
+                                fallback='newsletters-keep-up-with-our-annual',
+                                ftl_files=FTL_FILES)},
     u'join-mozilla': {
-        'title': _lazy(u'Join Mozilla')},
+        'title': ftl_lazy('newsletters-join-mozilla', ftl_files=FTL_FILES)},
     u'knowledge-is-power': {
-        'description': _lazy(u'Get all the knowledge you need to stay safer and smarter online.'),
-        'title': _lazy(u'Knowledge is Power')},
+        'description': ftl_lazy('newsletters-get-all-the-knowledge', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-knowledge-is-power', ftl_files=FTL_FILES)},
     u'labs': {
-        'title': _lazy(u'About Labs')},
+        'title': ftl_lazy('newsletters-about-labs', ftl_files=FTL_FILES)},
     u'maker-party': {
-        'description': u"Mozilla's largest celebration of making and learning on the web.",
-        'title': _lazy(u'Maker Party')},
+        'description': ftl_lazy('newsletters-mozillas-largest-celebration', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-maker-party', ftl_files=FTL_FILES)},
     u'marketplace': {
-        'description': _lazy(u'Discover the latest, coolest HTML5 apps on Firefox OS.'),
-        'title': _lazy(u'Firefox OS')},
+        'description': ftl_lazy('newsletters-discover-the-latest', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-firefox-os', ftl_files=FTL_FILES)},
     u'marketplace-android': {
-        'title': _lazy(u'Android')},
+        'title': ftl_lazy('newsletters-android', ftl_files=FTL_FILES)},
     u'marketplace-desktop': {
-        'title': _lazy(u'Desktop')},
+        'title': ftl_lazy('newsletters-desktop', ftl_files=FTL_FILES)},
     u'mobile': {
-        'description': _lazy(u'Keep up with releases and news about Firefox for Android.'),
-        'title': _lazy(u'Firefox for Android')},
+        'description': ftl_lazy('newsletters-keep-up-with-releases', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-firefox-for-android', ftl_files=FTL_FILES)},
     u'mozilla-and-you': {
-        'description': _lazy(u'Get how-tos, advice and news to make your Firefox experience work best for you.'),
-        'title': _lazy(u'Firefox News')},
+        'description': ftl_lazy('newsletters-get-how-tos', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-firefox-news', ftl_files=FTL_FILES)},
     u'mozilla-festival': {
-        'description': u"Special announcements about Mozilla's annual, hands-on festival "
-                       u"dedicated to forging the future of the open Web.",
-        'title': _lazy(u'Mozilla Festival')},
+        'description': ftl_lazy('newsletters-special-announcements-about-mozilla', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-mozilla-festival', ftl_files=FTL_FILES)},
     u'mozilla-foundation': {
-        'description': _lazy(u'Regular updates to keep you informed and active in our fight for a better internet.'),
-        'title': _lazy(u'Mozilla News')},
+        'description': ftl_lazy('newsletters-regular-updates-to-keep', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-mozilla-news', ftl_files=FTL_FILES)},
     u'mozilla-general': {
-        'description': _lazy(u'Special announcements and messages from the team dedicated to keeping '
-                             u'the Web free and open.'),
-        'title': _lazy(u'Mozilla')},
+        'description': ftl_lazy('newsletters-special-accouncements-and-messages', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-mozilla', ftl_files=FTL_FILES)},
     u'mozilla-learning-network': {
-        'description': _lazy(u'Updates from our global community, helping people learn the most '
-                             u'important skills of our age: the ability to read, write and participate '
-                             u'in the digital world.'),
-        'title': _lazy(u'Mozilla Learning Network')},
+        'description': ftl_lazy('newsletters-updates-from-our-global', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-mozilla-learning-network', ftl_files=FTL_FILES)},
     u'mozilla-phone': {
-        'description': _lazy(u'Email updates for vouched Mozillians on mozillians.org.'),
-        'title': _lazy(u'Mozillians')},
+        'description': ftl_lazy('newsletters-email-updates-from-vouched', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-mozillians', ftl_files=FTL_FILES)},
     u'mozilla-technology': {
-        'description': _lazy(u"We're building the technology of the future. Come explore with us."),
-        'title': _lazy(u'Mozilla Labs')},
+        'description': ftl_lazy('newsletters-were-building-the-technology', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-mozilla-labs', ftl_files=FTL_FILES)},
     u'os': {
-        'description': _lazy(u'Firefox OS news, tips, launch information and where to buy.'),
-        'title': _lazy(u'Firefox OS')},
+        'description': ftl_lazy('newsletters-firefox-os-news', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-firefox-os', ftl_files=FTL_FILES)},
     u'shape-web': {
-        'description': _lazy(u'News and information related to the health of the web.'),
-        'title': _lazy(u'Shape of the Web')},
+        'description': ftl_lazy('newsletters-news-and-information', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-shapre-of-the-web', ftl_files=FTL_FILES)},
     u'student-reps': {
-        'description': _lazy(u'Former University program from 2008-2011, now retired and relaunched as '
-                             u'the Firefox Student Ambassadors program.'),
-        'title': _lazy(u'Student Reps')},
+        'description': ftl_lazy('newsletters-former-university-program', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-student-reps', ftl_files=FTL_FILES)},
     u'take-action-for-the-internet': {
-        'description': _lazy(u'Add your voice to petitions, events and initiatives '
-                             u'that fight for the future of the web.'),
-        'title': _lazy(u'Take Action for the Internet')},
+        'description': ftl_lazy('newsletters-add-your-voice', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-take-action', ftl_files=FTL_FILES)},
     u'test-pilot': {
-        'description': _lazy(u'Help us make a better Firefox for you by test-driving '
-                             u'our latest products and features.'),
-        'title': _lazy(u'New Product Testing')},
+        'description': ftl_lazy('newsletters-help-us-make-a-better', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-new-product-testing', ftl_files=FTL_FILES)},
     u'webmaker': {
-        'description': _lazy(u'Special announcements helping you get the most out of Webmaker.'),
-        'title': _lazy(u'Webmaker')},
+        'description': ftl_lazy('newsletters-special-announcements-helping-you', ftl_files=FTL_FILES),
+        'title': ftl_lazy('newsletters-webmaker', ftl_files=FTL_FILES)},
 }
 
 
@@ -270,7 +250,8 @@ def confirm(request, token):
             'newsletter/confirm.html',
             {'success': success,
              'generic_error': generic_error,
-             'token_error': token_error})
+             'token_error': token_error},
+            ftl_files=FTL_FILES)
 
 
 @never_cache
@@ -299,7 +280,7 @@ def existing(request, token=None):
         return redirect(reverse('newsletter.recovery'))
 
     if waffle.switch('newsletter-maintenance-mode'):
-        return l10n_utils.render(request, 'newsletter/existing.html')
+        return l10n_utils.render(request, 'newsletter/existing.html', ftl_files=FTL_FILES)
 
     unsub_parm = None
 
@@ -326,7 +307,7 @@ def existing(request, token=None):
             # we'd probably fail to subscribe them anyway.
             log.exception("Basket timeout")
             messages.add_message(request, messages.ERROR, general_error)
-            return l10n_utils.render(request, 'newsletter/existing.html')
+            return l10n_utils.render(request, 'newsletter/existing.html', ftl_files=FTL_FILES)
         except basket.BasketException as e:
             log.exception("FAILED to get user from token (%s)", e.desc)
 
@@ -362,11 +343,6 @@ def existing(request, token=None):
                 else:
                     title = nstrings['title']
                 description = nstrings.get('description', u'')
-            else:
-                # Firefox Marketplace for Desktop/Android/Firefox OS should be
-                # shorten in the titles
-                title = _(data['title'].replace('Firefox Marketplace for ', ''))
-                description = _(data['description'])
 
             form_data = {
                 'title': Markup(title),
@@ -449,7 +425,8 @@ def existing(request, token=None):
                         request, messages.ERROR, general_error
                     )
                     return l10n_utils.render(request,
-                                             'newsletter/existing.html')
+                                             'newsletter/existing.html',
+                                             ftl_files=FTL_FILES)
 
             # If they chose to remove all, tell basket that they've opted out
             if remove_all:
@@ -461,7 +438,8 @@ def existing(request, token=None):
                         request, messages.ERROR, general_error
                     )
                     return l10n_utils.render(request,
-                                             'newsletter/existing.html')
+                                             'newsletter/existing.html',
+                                             ftl_files=FTL_FILES)
                 # We need to pass their token to the next view
                 url = reverse('newsletter.updated') \
                     + "?unsub=%s&token=%s" % (UNSUB_UNSUBSCRIBED_ALL, token)
@@ -505,17 +483,17 @@ def existing(request, token=None):
 
     return l10n_utils.render(request,
                              'newsletter/existing.html',
-                             context)
+                             context,
+                             ftl_files=FTL_FILES)
 
 
 # Possible reasons for unsubscribing
 REASONS = [
-    _lazy(u"You send too many emails."),
-    _lazy(u"Your content wasn't relevant to me."),
-    _lazy(u"Your email design was too hard to read."),
-    _lazy(u"I didn't sign up for this."),
-    _lazy(u"I'm keeping in touch with Mozilla on Facebook and Twitter "
-          "instead."),
+    ftl_lazy('newsletters-you-send-too-many-emails', ftl_files=FTL_FILES),
+    ftl_lazy('newsletters-your-content-wasnt-relevant', ftl_files=FTL_FILES),
+    ftl_lazy('newsletters-your-email-design', ftl_files=FTL_FILES),
+    ftl_lazy('newsletters-i-didnt-sign-up', ftl_files=FTL_FILES),
+    ftl_lazy('newsletters-im-keeping-in-touch', ftl_files=FTL_FILES),
 ]
 
 
@@ -554,13 +532,7 @@ def updated(request):
 
     # Say thank you unless we're saying something more specific
     if not unsub:
-        locale = l10n_utils.get_locale(request)
-
-        if lang_file_has_tag('mozorg/newsletters', locale, 'newsletter_confirm_0320'):
-            success_message = thank_you_new
-        else:
-            success_message = thank_you
-        messages.add_message(request, messages.INFO, success_message)
+        messages.add_message(request, messages.INFO, thank_you)
 
     if request.method == 'POST' and reasons_submitted and token:
         # Tell basket about their reasons
@@ -587,7 +559,8 @@ def updated(request):
     }
     return l10n_utils.render(request,
                              'newsletter/updated.html',
-                             context)
+                             context,
+                             ftl_files=FTL_FILES)
 
 
 @never_cache
@@ -612,7 +585,9 @@ def recovery(request):
                     # Tell them, give them a link to go subscribe if they want
                     url = reverse('newsletter.subscribe')
                     form.errors['email'] = \
-                        form.error_class([unknown_address_text % url])
+                        form.error_class([ftl('newsletters-this-email-address-is-not',
+                                              url=url,
+                                              ftl_files=FTL_FILES)])
                 else:
                     # Log the details
                     log.exception("Error sending recovery message")
@@ -632,10 +607,12 @@ def recovery(request):
     # This view is shared between two different templates. For context see bug 1442129.
     if '/newsletter/opt-out-confirmation/' in request.get_full_path():
         template = "newsletter/opt-out-confirmation.html"
+        ftl_files = ['newsletter/opt-out-confirmation']
     else:
         template = "newsletter/recovery.html"
+        ftl_files = FTL_FILES
 
-    return l10n_utils.render(request, template, {'form': form})
+    return l10n_utils.render(request, template, {'form': form}, ftl_files=ftl_files)
 
 
 def newsletter_subscribe(request):
@@ -701,6 +678,6 @@ def newsletter_subscribe(request):
             if not errors:
                 ctx['success'] = True
 
-            return l10n_utils.render(request, 'newsletter/index.html', ctx)
+            return l10n_utils.render(request, 'newsletter/index.html', ctx, ftl_files=FTL_FILES)
 
-    return l10n_utils.render(request, 'newsletter/index.html')
+    return l10n_utils.render(request, 'newsletter/index.html', ftl_files=FTL_FILES)

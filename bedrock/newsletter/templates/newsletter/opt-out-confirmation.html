@@ -4,8 +4,8 @@
 
 {% extends 'base-protocol-mozilla.html' %}
 
-{% block page_title %}{{ _('Cool. We hear you.') }}{% endblock page_title %}
-{% block page_desc %}{{ _('You’re now opted out of a series of emails about setting up your account.') }}{% endblock %}
+{% block page_title %}{{ ftl('opt-out-confirmation-cool-we-hear') }}{% endblock page_title %}
+{% block page_desc %}{{ ftl('opt-out-confirmation-youre-now-opted') }}{% endblock %}
 
 {% block canonical_urls %}<meta name="robots" content="noindex">{% endblock %}
 
@@ -33,11 +33,7 @@
         <div class="mzp-c-form">
           <header class="mzp-c-form-header">
             <p>
-              {% trans %}
-                You’ll continue to receive other emails you’re subscribed to, along with occasional
-                important updates about your account. To manage all your subscriptions, enter your
-                email below — we need to make sure we’re talking to the right person.
-              {% endtrans %}
+              {{ ftl('opt-out-confirmation-youll-continue') }}
             </p>
           </header>
 
@@ -48,28 +44,28 @@
           {% endif %}
           <div class="mzp-c-field mzp-l-stretch">
             {{ form.email.errors }}
-            <label for="id_email" class="mzp-c-field-label">{{ _('Your email address:') }}</label>
-            {{ field_with_attrs(form.email, placeholder=_('yourname@example.com')|safe, class='mzp-c-field-control'|safe) }}
+            <label for="id_email" class="mzp-c-field-label">{{ ftl('opt-out-confirmation-your-email') }}</label>
+            {{ field_with_attrs(form.email, placeholder=ftl('opt-out-confirmation-yournameexamplecom')|safe, class='mzp-c-field-control'|safe) }}
           </div>
           <div class="mzp-c-button-container mzp-l-stretch">
-            <button class="mzp-c-button" type="submit">{{ _('Manage Preferences') }}</button>
+            <button class="mzp-c-button" type="submit">{{ ftl('opt-out-confirmation-manage-preferences') }}</button>
           </div>
         </div>
       </form>
 
       <aside>
-        <h2>{{ _('Prefer to get information another way?') }}</h2>
+        <h2>{{ ftl('opt-out-confirmation-prefer-to-get') }}</h2>
         <ul class="mzp-u-list-styled">
-          <li><a href="https://blog.mozilla.org/">{{ _('Check out our blogs') }}</a></li>
-          <li><a href="https://support.mozilla.org/">{{ _('Get help') }}</a></li>
-          <li><a href="{{ url('newsletter.firefox') }}">{{ _('Subscribe to occasional newsletter updates from Firefox') }}</a></li>
+          <li><a href="https://blog.mozilla.org/">{{ ftl('opt-out-confirmation-check-out-our') }}</a></li>
+          <li><a href="https://support.mozilla.org/">{{ ftl('opt-out-confirmation-get-help') }}</a></li>
+          <li><a href="{{ url('newsletter.firefox') }}">{{ ftl('opt-out-confirmation-subscribe-to') }}</a></li>
         </ul>
 
         <ul class="social-links">
-          <li><a class="instagram" href="https://www.instagram.com/mozilla/" data-link-type="footer" data-link-name="Instagram (@mozilla)">{{ _('Instagram') }}<span> (@mozilla)</span></a></li>
-          <li><a class="youtube" href="https://www.youtube.com/firefoxchannel" data-link-type="footer" data-link-name="YouTube (firefoxchannel)">{{ _('YouTube') }}<span> (firefoxchannel)</span></a></li>
-          <li><a class="facebook" href="https://www.facebook.com/Firefox" data-link-type="footer" data-link-name="Facebook (Firefox)">{{ _('Facebook') }}<span> (Firefox)</span></a></li>
-          <li><a class="twitter" href="{{ firefox_twitter_url() }}" data-link-type="footer" data-link-name="Twitter (@firefox)">{{ _('Twitter') }}<span> (@firefox)</span></a></li>
+          <li><a class="instagram" href="https://www.instagram.com/mozilla/" data-link-type="footer" data-link-name="Instagram (@mozilla)">{{ ftl('opt-out-confirmation-instagram') }}<span> (@mozilla)</span></a></li>
+          <li><a class="youtube" href="https://www.youtube.com/firefoxchannel" data-link-type="footer" data-link-name="YouTube (firefoxchannel)">{{ ftl('opt-out-confirmation-youtube') }}<span> (firefoxchannel)</span></a></li>
+          <li><a class="facebook" href="https://www.facebook.com/Firefox" data-link-type="footer" data-link-name="Facebook (Firefox)">{{ ftl('opt-out-confirmation-facebook') }}<span> (Firefox)</span></a></li>
+          <li><a class="twitter" href="{{ firefox_twitter_url() }}" data-link-type="footer" data-link-name="Twitter (@firefox)">{{ ftl('opt-out-confirmation-twitter') }}<span> (@firefox)</span></a></li>
         </ul>
       </aside>
     {% endif %}
