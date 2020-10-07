@@ -1,0 +1,35 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/browsers/chromebook" %}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% block page_title %}{{ ftl('get-firefox-browser') }}{% endblock %}
+
+{% block page_desc %} {{ ftl('so-youve-got') }} {% endblock %}
+
+{% block content %}
+
+<div class="mzp-l-content mzp-t-content-md">
+  <h1>{{ ftl('get-firefox-browser') }}</h1>
+  <p>{{ ftl('so-youve-got') }}</p>
+  <p>{{ ftl('get-firefox-for') }} {{ ftl('get-firefox-desktop') }} (https://support.mozilla.org/en-US/kb/run-firefox-chromeos)</p>
+  <p><em>{{ ftl('x86-based-chromebook') }}</em></p>
+  <h2>{{ ftl('why-get-firefox') }}</h2>
+  <p>{{ ftl('while-a-chromebook') }}</p>
+  <ul class="mzp-u-list-styled">
+    <li>{{ ftl('alwayson-tracking-protection') }}</li>
+    <li>{{ ftl('supporting-independent-technology') }}</li>
+  </ul>
+
+  <h2>{{ ftl('is-it-hard') }}</h2>
+  <p>{{ ftl('we-wish-it') }}</p>
+  <ul class="mzp-u-list-styled">
+    <li>{{ ftl('install-firefox-from') }}</li>
+    <li>{{ ftl('install-firefox-as') }}</li>
+  </ul>
+</div>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+# This Source Code Form is subject to the terms of the { -brand-name-mozilla } Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+### URL: https://www-dev.allizom.org/firefox/more/
+
+firefox-products-are = { -brand-name-firefox } products are designed to protect your privacy
+learn-more = Learn more
+the-history-of = The history of web browsers
+firefox-has-been = { -brand-name-firefox } has been there since almost the beginning.
+firefox-rebel-with = { -brand-name-firefox }: Rebel with a cause
+firefox-is-independent = { -brand-name-firefox } is independent and backed by the non-profit { -brand-name-mozilla }, which fights for your online rights and makes the Internet accessible to everyone, everywhere.
+what-is-a = What is a web browser?
+a-web-browser = A web browser takes you anywhere on the internet, letting you see text, images and video from anywhere in the world.
+update-your-browser = Update your browser to fast, safe and secure { -brand-name-firefox }.
+the-firefox-browser = The { -brand-name-firefox } browser is built to protect your privacy at every turn — because that’s the fastest way to free you from slow loads, bad ads, and trackers.
+firefox-is-more = { -brand-name-firefox } is more than a browser
+its-a-lightning = It’s a lightning fast door to the best web experience.
+get-the-browsers = Get the browsers that put your privacy first — and always have
+get-the-privacy = Get the privacy you deserve. Enhanced Tracking Protection makes privacy automatic, every time you open your browser.
+take-your-passwords = Take your passwords everywhere
+securely-access-the = Securely access the passwords you’ve saved in { -brand-name-firefox } from anywhere — even outside of the browser.
+choose-which-firefox = Choose which { -brand-name-firefox-browser } to download in your language
+we-believe-everyone = We believe everyone should have access to the internet — that’s why we make the { -brand-name-firefox-browser } available in more than 90 languages with the help of dedicated volunteers around the world.
+firefox-fights-for = { -brand-name-firefox } fights for you on { -brand-name-windows }
+easy-migration-of = Easy migration of preferences and bookmarks when you download { -brand-name-firefox } for { -brand-name-windows }.
+firefox-respects-your = { -brand-name-firefox } respects your privacy on { -brand-name-mac-short }.
+firefox-doesnt-spy = { -brand-name-firefox } doesn’t spy on searches. We stop known third-party tracking cookies and give you full control.
+firefox-for-linux = { -brand-name-firefox } for { -brand-name-linux }
+new-school-meets = New school meets old school with the fastest browser yet.
+firefox-for-windows = { -brand-name-firefox } for { -brand-name-windows } 64-bit
+we-worry-about = We worry about your data safety so you don’t have to.
+seven-of-the = Seven of the best browsers in direct comparison
+we-compare-firefox = We compare { -brand-name-firefox } with { -brand-name-chrome }, { -brand-name-edge }, { -brand-name-safari }, { -brand-name-opera }, { -brand-name-brave } and { -brand-name-ie } to help you make your decision.
+comparing-firefox-chrome = Comparing { -brand-name-firefox-browser } with { -brand-name-google } { -brand-name-chrome }
+big-isnt-always = Big isn’t always best. Choose independence instead.
+comparing-firefox-brave = Comparing { -brand-name-firefox-browser } to { -brand-name-brave }
+be-bold-and = Be bold and courageous when choosing which browser is right for you.
+comparing-firefox-edge = Comparing { -brand-name-firefox-browser } with { -brand-name-microsoft } { -brand-name-edge }
+youll-never-guess = You’ll never guess which browser has the edge when it comes to speed and features..
+comparing-firefox-ie = Comparing { -brand-name-firefox-browser } with { -brand-name-microsoft } { -brand-name-ie }
+old-habits-that = Old habits that die hard but you’ll feel better when they do.
+comparing-firefox-safari = Comparing { -brand-name-firefox-browser } with { -brand-name-apple } { -brand-name-safari }
+you-dont-have = You don’t have to default to your standard browser.
+comparing-firefox-opera = Comparing { -brand-name-firefox-browser } with { -brand-name-opera }
+be-free-to = Be free to sing the praises of { -brand-name-firefox } whenever you want.
+the-ad-blocker = The ad blocker – a secret weapon against annoying ads.
+so-many-ads = So many ads, so little patience… It’s time to stop the madness.
+firefox-more-protection = { -brand-name-firefox }: More protection. Less worry.
+were-obsessed-with = We’re obsessed with protecting your privacy. That’s why we’ve made { -brand-name-firefox } Private Browsing more powerful than the others.
+incognito-browser-what = Incognito browser: What it really means
+firefox-calls-it = { -brand-name-firefox } calls it private browsing, { -brand-name-chrome } calls it incognito mode. Both let you browse the web without saving your browsing history.
+take-the-stress = Take the stress out of finding a safe browser.
+building-a-safe = Building a safe browser is an art and a science because there are no set rules.

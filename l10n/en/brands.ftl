@@ -109,6 +109,8 @@
 ## Platforms
 
 -brand-name-android = Android
+-brand-name-chromebook = Chromebook
+-brand-name-chromeos = ChromeOS
 -brand-name-ios = iOS
 -brand-name-linux = Linux
 -brand-name-mac = macOS

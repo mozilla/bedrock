@@ -1,0 +1,34 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% block page_title %}{{ ftl('firefox-sync') }}{% endblock %}
+
+{% block page_desc %}{{ ftl('access-and-sync') }}{% endblock %}
+
+{% block content %}
+
+<div class="mzp-l-content mzp-t-content-md">
+
+  <h1>{{ ftl('sync-your-firefox') }}</h1>
+  <p>{{ ftl('access-and-sync') }}</p>
+  <h2>{{ ftl('privacy-made-easy') }}</h2>
+  <p>{{ ftl('all-you-need') }}</p>
+  <h2>{{ ftl('encrypt-your-data') }}</h2>
+  <p>{{ ftl('your-encryption-key') }}</p>
+  <h2>{{ ftl('feel-safe') }}</h2>
+  <p>{{ ftl('we-store-your') }}</p>
+  <h2>{{ ftl('start-syncing-in') }}</h2>
+  <ol class="mzp-u-list-styled">
+    <li>{{ ftl('open-the-menu') }}</li>
+    <li>{{ ftl('click-get-started') }}</li>
+    <li>{{ ftl('enter-an-email') }}</li>
+    <li>{{ ftl('click-next-to') }}</li>
+  </ol>
+  <p>{{ ftl('after-you-check') }}</p>
+  <p><a href="https://support.mozilla.org/en-US/kb/firefox-accounts-managing-account-data">{{ ftl('learn-more') }}</a></p>
+</div>
+
+{% endblock %}

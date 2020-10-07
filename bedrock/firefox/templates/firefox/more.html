@@ -1,0 +1,211 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% from "macros-protocol.html" import billboard, card, feature_card with context %}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% block content %}
+
+<div class="mzp-l-content mzp-t-content-md">
+  <h1>{{ ftl('firefox-products-are') }}</h1>
+  <p>{{ ftl('learn-more') }}</p>
+</div>
+<div class="mzp-l-content mzp-t-content-md">
+  {{ card(
+    class='mzp-c-card-medium',
+    title=ftl('the-history-of'),
+    ga_title='Browser History',
+    desc=ftl('firefox-has-been'),
+    link_url=url('firefox.browsers.browser-history')
+  )}}
+
+  {{ card(
+    class='mzp-c-card-medium',
+    title=ftl('firefox-rebel-with'),
+    ga_title="Independent",
+    desc= ftl('firefox-is-independent'),
+    link_url=url('firefox.features.independent')
+  )}}
+
+  {{ card(
+    class='mzp-c-card-medium',
+    title=ftl('what-is-a'),
+    ga_title='What is a browser',
+    desc=ftl('a-web-browser'),
+    link_url=url('firefox.browsers.what-is-a-browser')
+  )}}
+
+  {{ card(
+    class='mzp-c-card-medium',
+    title=ftl('update-your-browser'),
+    ga_title='Update Browser',
+    desc=ftl('the-firefox-browser'),
+    link_url=url('firefox.browsers.update-browser')
+  )}}
+</div>
+<div class="mzp-l-content mzp-t-content-md">
+
+  {{ card(
+    class='mzp-c-card-medium',
+    title=ftl('firefox-is-more'),
+    ga_title='Firefox Products',
+    desc=ftl('its-a-lightning'),
+    link_url=url('firefox.products.index')
+  )}}
+
+  {{ card(
+    class='mzp-c-card-medium',
+    title=ftl('get-the-browsers'),
+    ga_title='Firefox Browsers',
+    desc=ftl('get-the-privacy'),
+    link_url=url('firefox.browsers.index')
+  )}}
+
+  {{ card(
+    class='mzp-c-card-medium',
+    title=ftl('take-your-passwords'),
+    ga_title='Firefox Lockwise',
+    desc=ftl('securely-access-the'),
+    link_url=url('firefox.products.lockwise')
+  )}}
+
+  {{ card(
+    class='mzp-c-card-medium',
+    title=ftl('choose-which-firefox'),
+    ga_title='Firefox All',
+    desc=ftl('we-believe-everyone'),
+    link_url=url('firefox.all')
+  )}}
+</div>
+<div class="mzp-l-content mzp-t-content-md">
+
+  {{ card(
+    class='mzp-c-card-medium',
+    title=ftl('firefox-fights-for'),
+    ga_title='Firefox Windows',
+    desc=ftl('easy-migration-of'),
+    link_url=url('firefox.new.protocol.download_windows')
+  )}}
+
+  {{ card(
+    class='mzp-c-card-medium',
+    title=ftl('firefox-respects-your'),
+    ga_title='Firefox Mac',
+    desc=ftl('firefox-doesnt-spy'),
+    link_url=url('firefox.new.protocol.download_mac')
+  )}}
+
+  {{ card(
+    class='mzp-c-card-medium',
+    title=ftl('firefox-for-linux'),
+    ga_title='Firefox Linux',
+    desc=ftl('new-school-meets'),
+    link_url=url('firefox.new.protocol.download_linux')
+  )}}
+
+  {{ card(
+    class='mzp-c-card-medium',
+    title=ftl('firefox-for-windows'),
+    ga_title='Firefox Win 64',
+    desc=ftl('we-worry-about'),
+    link_url=url('firefox.browsers.windows-64-bit')
+  )}}
+
+</div>
+<div class="mzp-l-content mzp-t-content-md">
+  {{ card(
+    class='mzp-c-card-medium',
+    title=ftl('seven-of-the'),
+    ga_title='Compare',
+    desc=ftl('we-compare-firefox'),
+    link_url=url('firefox.browsers.compare.index')
+  )}}
+
+  {{ card(
+    class='mzp-c-card-medium',
+    title=ftl('comparing-firefox-chrome'),
+    ga_title='Compare Chrome',
+    desc=ftl('big-isnt-always'),
+    link_url=url('firefox.browsers.compare.chrome')
+  )}}
+
+  {{ card(
+    class='mzp-c-card-medium',
+    title=ftl('comparing-firefox-brave'),
+    ga_title='Compare Brave',
+    desc=ftl('be-bold-and'),
+    link_url=url('firefox.browsers.compare.brave')
+  )}}
+
+  {{ card(
+    class='mzp-c-card-medium',
+    title=ftl('comparing-firefox-edge'),
+    ga_title='Compare Edge',
+    desc=ftl('youll-never-guess'),
+    link_url=url('firefox.browsers.compare.edge')
+  )}}
+
+  {{ card(
+    class='mzp-c-card-medium',
+    title=ftl('comparing-firefox-ie'),
+    ga_title='Compare IE',
+    desc=ftl('old-habits-that'),
+    link_url=url('firefox.browsers.compare.ie')
+  )}}
+
+  {{ card(
+    class='mzp-c-card-medium',
+    title=ftl('comparing-firefox-safari'),
+    ga_title='Compare Safari',
+    desc=ftl('you-dont-have'),
+    link_url=url('firefox.browsers.compare.safari')
+  )}}
+
+  {{ card(
+    class='mzp-c-card-medium',
+    title=ftl('comparing-firefox-opera'),
+    ga_title='Compare Opera',
+    desc=ftl('be-free-to'),
+    link_url=url('firefox.browsers.compare.opera')
+  )}}
+
+</div>
+<div class="mzp-l-content mzp-t-content-md">
+
+  {{ card(
+    class='mzp-c-card-medium',
+    title=ftl('the-ad-blocker'),
+    ga_title='Featires Adblocker',
+    desc=ftl('so-many-ads'),
+    link_url=url('firefox.features.adblocker')
+  )}}
+
+  {{ card(
+    class='mzp-c-card-medium',
+    title=ftl('firefox-more-protection'),
+    ga_title='Features Private Browsing',
+    desc=ftl('were-obsessed-with'),
+    link_url=url('firefox.features.private-browsing')
+  )}}
+
+  {{ card(
+    class='mzp-c-card-medium',
+    title=ftl('incognito-browser-what'),
+    ga_title='Features Private Browsing',
+    desc=ftl('firefox-calls-it'),
+    link_url=url('firefox.browsers.incognito-browser')
+  )}}
+
+  {{ card(
+    class='mzp-c-card-medium',
+    title=ftl('take-the-stress'),
+    ga_title='Features Safe Browser',
+    desc=ftl('building-a-safe'),
+    link_url=url('firefox.features.safebrowser')
+  )}}
+
+</div>
+
+{% endblock %}

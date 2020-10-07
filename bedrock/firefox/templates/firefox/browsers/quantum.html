@@ -1,0 +1,27 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/browsers/chromebook" %}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% block page_title %}{{ ftl('the-latest-firefox') }}{% endblock %}
+
+{% block content %}
+
+<div class="mzp-l-content mzp-t-content-md">
+  <h1>{{ ftl('the-latest-firefox') }}</h1>
+  <p>{{ ftl('firefox-quantum-was') }}</p>
+  <p><a href="https://blog.mozilla.org/blog/2017/11/14/introducing-firefox-quantum/">{{ ftl('learn-more-about') }}</a></p>
+</div>
+<div class="mzp-l-content mzp-t-content-md">
+  <h2>{{ ftl('privacy-first') }}</h2>
+  <p>{{ ftl('firefox-doesnt-spy') }}</p>
+  <h2>{{ ftl('super-fast') }}</h2>
+  <p>{{ ftl('get-speed-and') }}</p>
+  <h2>{{ ftl('always-evolving') }}</h2>
+  <p>{{ ftl('find-out-about',  attrs='href="%s"'|safe|format(url('firefox'))) }} </p>
+</div>
+
+{% endblock %}
