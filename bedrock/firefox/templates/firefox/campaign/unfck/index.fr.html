@@ -17,7 +17,7 @@
 {% block content %}
 
 {% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-unfck' %}
-{% set tw_text = '2020 est peut être foutu mais cela n’est pas une raison pour qu’Internet le soit. La bonne nouvelle est qu’on peut tous aider à faire bouger les choses'|urlencode %}
+{% set tw_text = '2020 est peut-être foutu mais cela n’est pas une raison pour qu’Internet le soit. La bonne nouvelle est que nous pouvons tou·te·s aider à faire bouger les choses.'|urlencode %}
 {% set tw_url = 'https://mzl.la/rendonslenetplusnet'|urlencode %}
 {% set tw_hashtags = 'rendonslenetplusnet'|urlencode %}
 {% set tw_via = 'firefox_fr'|urlencode %}
@@ -68,8 +68,8 @@
 
     {% call share_item(
       title='N’acceptez pas un réseau social en ami',
-      info='A chaque fois que vous visitez votre site d’information favori, si celui-ci utilise les boutons “j’aime” ou “commentaire” de Facebook, des données personnelles peuvent être collectées même si vous n’êtes pas connecté à Facebook. En utilisant l’extension Facebook Container, vous rendez la collecte de données plus difficile.',
-      link_text='J’installe Facebook Container',
+      info='À chaque fois que vous visitez votre site d’information favori, si celui-ci utilise les boutons « j’aime » ou « commentaire » de Facebook, des données personnelles peuvent être collectées même si vous n’êtes pas connecté·e à Facebook. En utilisant l’extension Facebook Container, vous rendez la collecte de données plus difficile.',
+      link_text='Installer Facebook Container',
       link_url=url('firefox.facebookcontainer.index'),
       id='contain',
       src_name='unzuck-it',
@@ -90,7 +90,7 @@
 
     {% call share_item(
         title='N’acceptez pas d’être une cible',
-        info='Sur de nombreux sites que vous visitez, vos données sont partagées avec des entreprises tierces, certaines que vous connaissez bien, d’autres beaucoup moins. Avec Firefox, le niveau standard de protection contre le pistage  est activé par défaut.',
+        info='Sur de nombreux sites que vous visitez, vos données sont partagées avec des entreprises tierces, certaines que vous connaissez bien et d’autres beaucoup moins. Avec Firefox, le niveau standard de protection contre les traqueurs connus est activé par défaut.',
         link_text='Découvrir comment Firefox nous protège',
         link_url='https://blog.mozilla.org/firefox/fr/firefox-vous-montre-qui-vous-suit-autour-du-web/',
         id='protect',
@@ -109,9 +109,9 @@
       ) %}{% endcall %}
 
       {% call share_item(
-        title='N’acceptez pas de faire parti d’un système',
-        info='La technologie qui nous rassemble nous monétise et nous manipule aussi. Il vous suffit de regarder le documentaire "The Social Dilemma" avec nos amis du “Center for Human Tech” pour comprendre comment le Net et les milliards de personnes qui l’utilisent sont devenus des marchandises pour les géants de la Tech.',
-        link_text='En savoir plus sur le documentaire.',
+        title='N’acceptez pas de faire partie d’un système',
+        info='La technologie qui nous rassemble nous monétise et nous manipule aussi. Il vous suffit de regarder le documentaire « The Social Dilemma » réalisé par Exposure Labs avec le « Center for Human Tech » pour comprendre comment le Net et les milliards d’humains qui l’utilisent sont devenus des marchandises pour les géants de la Tech.',
+        link_text='En savoir plus sur le documentaire',
         link_url='https://blog.mozilla.org/firefox/fr/si-tu-nas-pas-a-payer-pour-un-produit-cest-que-tu-es-certainement-le-produit/',
         id='social',
         src_name='button',
@@ -149,7 +149,7 @@
       ) %}{% endcall %}
 
       {% call share_item(
-        title='Acceptez de faire parti du mouvement #rendonslenetplusnet',
+        title='Acceptez de faire partie du mouvement #rendonslenetplusnet',
         info='Parlons librement de ce qui n’est plus très net sur le Net. Plus les gens en parleront, plus on y verra clair.',
         id='share',
         src_name='one-fck-given',
@@ -167,7 +167,7 @@
         locale=locale
         ) %}
         <form class="c-tell" action="{{ 'https://www.twitter.com/intent/tweet?url=%s&hashtags=%s&via=%s'|format(tw_url, tw_hashtags, tw_via)|e }}" method="post">
-          <textarea class="c-tell-input" placeholder="vous y voyez encore clair sur le Net ?" required maxlength="280"></textarea>
+          <textarea class="c-tell-input" placeholder="Vous y voyez encore clair sur le Net ?" required maxlength="280"></textarea>
           <button type="submit" class="c-tell-button mzp-c-button mzp-t-secondary js-tell-button">Partager</button>
         </form>
       {% endcall %}
@@ -176,12 +176,12 @@
   <div class="mzp-l-content mzp-t-content-xl">
     <div class="mzp-l-card-half">
       {{ card(
-        title='Soutenu par une association à but non lucratif',
+        title='Soutenu par une organisation à but non lucratif',
         ga_title='card-non-profit',
         image_url=None,
         link_url=url('mozorg.about.manifesto'),
         heading_level=3,
-        desc='Firefox a été fondé en 2002 dans le but de ne pas laisser le champ libre aux géants de la Tech. Firefox est soutenu par une organisation à but non lucratif nommée Mozilla. Firefox agit de manière indépendante et développe des produits qui ont un vrai intérêt pour l’utilisateur. Le navigateur Firefox ne fonctionne pas sur Chromium, il ne vend pas les données de ses utilisateurs et contribue à ce que chaque entreprise fasse de même.',
+        desc='Firefox est sorti en 2004 dans le but de ne pas laisser le champ libre aux géants de la Tech. Firefox est soutenu par une organisation à but non lucratif nommée Mozilla. Firefox agit de manière indépendante et développe des produits qui ont un vrai intérêt pour les internautes. Le navigateur Firefox ne fonctionne pas sur Chromium, il ne vend pas les données de ses internautes et contribue à ce que chaque entreprise fasse de même.',
         cta='En savoir plus sur Mozilla'
       )}}
 
