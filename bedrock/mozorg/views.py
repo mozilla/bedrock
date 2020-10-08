@@ -1,13 +1,15 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-
+from django.http import HttpResponsePermanentRedirect
 from django.shortcuts import render as django_render
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_safe
 from django.views.generic import TemplateView
 
 from lib import l10n_utils
-from lib.l10n_utils import L10nTemplateView
+from lib.l10n_utils import L10nTemplateView, get_locale
 from lib.l10n_utils.fluent import ftl_file_is_active
 
 from bedrock.contentcards.models import get_page_content_cards
@@ -147,10 +149,32 @@ class ContributeView(L10nTemplateView):
         return [template_name]
 
 
+@method_decorator(never_cache, name='dispatch')
 class HomePagePreviewView(L10nTemplateView):
-    template_name = 'mozorg/home/home-contentful-preview.html'
+    locales_map = {
+        'en': 'en-US',
+    }
+    card_data_lang = 'en'
+
+    def get_preview_locale(self):
+        return self.locales_map.get(self.card_data_lang, self.card_data_lang)
+
+    def get_preview_url(self, page_id):
+        return f'/{self.get_preview_locale()}/homepage-preview/{page_id}/'
+
+    def get_template_names(self):
+        return [f'mozorg/home/home-contentful-{self.card_data_lang}.html']
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        ctx['card_layouts'] = contentful.get_home_page_data(ctx['content_id'])
+        page_data = contentful.get_home_page_data(ctx['content_id'])
+        ctx['card_layouts'] = page_data['layouts']
+        self.card_data_lang = page_data['lang'].lower()
         return ctx
+
+    def render_to_response(self, context, **response_kwargs):
+        locale = get_locale(self.request)
+        if not locale.startswith(self.card_data_lang):
+            return HttpResponsePermanentRedirect(self.get_preview_url(context['content_id']))
+
+        return super().render_to_response(context, **response_kwargs)

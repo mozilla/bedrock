@@ -44,6 +44,7 @@
 
   <div class="mozilla-content">
     <div class="mzp-l-content mzp-t-mozilla">
+      {% block content_cards_0 %}
       <div class="mzp-l-card-hero">
         {{ content_card('card_1') }}
         {{ content_card('card_2') }}
@@ -51,6 +52,7 @@
         {{ content_card('card_4') }}
         {{ content_card('card_5') }}
       </div>
+      {% endblock %}
 
       {{ billboard(
         title='Für Dich & das Internet. <br>Schon seit 1998.',
@@ -62,10 +64,12 @@
         include_highres_image=True
       )}}
 
+      {% block content_cards_1 %}
       <div class="mzp-l-card-half">
         {{ content_card('card_6') }}
         {{ content_card('card_7') }}
       </div>
+      {% endblock %}
 
       {{ billboard(
         title='Technologien des offenen Webs.',
@@ -78,16 +82,20 @@
         reverse=True
       )}}
 
+      {% block content_cards_2 %}
       <div class="mzp-l-card-half">
         {{ content_card('card_8') }}
         {{ content_card('card_9') }}
       </div>
+      {% endblock %}
 
+      {% block content_cards_3 %}
       <div class="mzp-l-card-third">
         {{ content_card('card_10') }}
         {{ content_card('card_11') }}
         {{ content_card('card_12') }}
       </div>
+      {% endblock %}
 
       <aside class="mzp-c-newsletter">
         <div class="mzp-c-newsletter-image">

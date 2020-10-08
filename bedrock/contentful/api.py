@@ -17,6 +17,29 @@ def get_client():
     return client
 
 
+def _get_height(width, aspect):
+    height = 0
+    if aspect == '1-1':
+        height = width
+
+    if aspect == '3-2':
+        height = width - (width / 3)
+
+    if aspect == '16-9':
+        height = width - 7 * (width / 16)
+
+    return round(height)
+
+
+def _get_image_url(image, width, aspect):
+    return 'https:' + image.url(
+        w=width,
+        h=_get_height(width, aspect),
+        fit='fill',
+        f='faces',
+    )
+
+
 class Contentful:
     client = None
     card_field_re = re.compile(r'card\d$')
@@ -30,6 +53,7 @@ class Contentful:
         'tag_label',
         'youtube_id',
     ]
+    # size, aspect
     card_layouts = {
         'fiveCardLayout': [
             ('large', '16-9'),
@@ -38,6 +62,13 @@ class Contentful:
             ('small', '3-2'),
             ('small', '3-2'),
         ],
+    }
+    # normal, high-res
+    card_image_widths = {
+        'extra-small': (450, 900),
+        'small': (450, 900),
+        'medium': (600, 1200),
+        'large': (930, 1860),
     }
     card_layout_classes = {
         'sixCardLayout': 'third',
@@ -51,19 +82,22 @@ class Contentful:
         self.client = get_client()
 
     def get_home_page_data(self, page_id):
-        cards_data = []
+        layouts = []
         page = self.client.entry(page_id, {'include': 5})
-        layouts = self.get_home_page_layouts(page)
-        for layout in layouts:
+        page_data = {'lang': page.language}
+        layouts_data = self.get_home_page_layouts(page)
+        for layout in layouts_data:
             layout_data = {
                 'type': layout.content_type.id,
                 'class': self.card_layout_classes[layout.content_type.id],
+                'lang': page.language,
             }
             cards = self.get_layout_cards(layout)
             layout_data['cards'] = self.get_card_dicts(cards, layout_data['type'])
-            cards_data.append(layout_data)
+            layouts.append(layout_data)
 
-        return cards_data
+        page_data['layouts'] = layouts
+        return page_data
 
     def get_home_page_layouts(self, page_obj):
         return [v for k, v in page_obj.fields().items() if k.startswith('card_group')]
@@ -91,7 +125,12 @@ class Contentful:
         for name, value in card.fields().items():
             if name in self.card_fields:
                 if name == 'image_url':
-                    card_data[name] = f'https:{value.url()}'
+                    width, width_highres = self.card_image_widths[size]
+                    max_width = value.file['details']['image']['width']
+                    if max_width >= width_highres:
+                        card_data['highres_image_url'] = _get_image_url(value, width_highres, aspect)
+
+                    card_data[name] = _get_image_url(value, width, aspect)
                     continue
 
                 card_data[name] = value

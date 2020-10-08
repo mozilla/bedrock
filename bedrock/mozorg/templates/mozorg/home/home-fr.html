@@ -47,6 +47,7 @@ Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, u
 
   <div class="mozilla-content">
     <div class="mzp-l-content mzp-t-mozilla">
+      {% block content_cards_0 %}
       <div class="mzp-l-card-hero">
         {{ content_card('card_1') }}
         {{ content_card('card_2') }}
@@ -54,6 +55,7 @@ Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, u
         {{ content_card('card_4') }}
         {{ content_card('card_5') }}
       </div>
+      {% endblock %}
 
       {{ billboard(
         title=_('Pour vous et pour Internet depuis 1998.'),
@@ -65,10 +67,12 @@ Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, u
         include_highres_image=True
       )}}
 
+      {% block content_cards_1 %}
       <div class="mzp-l-card-half">
         {{ content_card('card_6') }}
         {{ content_card('card_7') }}
       </div>
+      {% endblock %}
 
       {{ billboard(
         title=_('Technologies web open source :'),
@@ -81,15 +85,19 @@ Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, u
         reverse=True
       )}}
 
+      {% block content_cards_2 %}
       <div class="mzp-l-card-half">
         {{ content_card('card_8') }}
         {{ content_card('card_9') }}
       </div>
+      {% endblock %}
+      {% block content_cards_3 %}
       <div class="mzp-l-card-third">
         {{ content_card('card_10') }}
         {{ content_card('card_11') }}
         {{ content_card('card_12') }}
       </div>
+      {% endblock %}
 
       <aside class="mzp-c-newsletter">
         <div class="mzp-c-newsletter-image">
