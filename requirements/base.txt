@@ -323,3 +323,5 @@ prometheus-client==0.8.0 \
 sentry-sdk==0.16.1 \
     --hash=sha256:2f023ff348359ec5f0b73a840e8b08e6a8d3b2613a98c57d11c222ef43879237 \
     --hash=sha256:380a280cfc7c4ade5912294e6d9aa71ce776b5fca60a3782e9331b0bcd2866bf
+contentful==1.12.4 \
+    --hash=sha256:9de01305f214eeac55b2807c8f62467c5f4e93b6742f708a016c57cab1146637

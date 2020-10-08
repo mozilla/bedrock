@@ -1,0 +1,200 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros-protocol.html" import hero, billboard, card, call_out_compact, content_card_layout with context %}
+{% from "mozorg/home/includes/macros.html" import download_banner, download_banner_secondary, fxa_banner %}
+
+{% extends "base-protocol.html" %}
+
+{% add_lang_files "mozorg/home/index-quantum" %}
+
+{% block gtm_page_id %}data-gtm-page-id="Homepage"{% endblock %}
+
+{% block page_title %}{{ _('Internet for people, not profit') }}{% endblock %}
+
+{# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
+{%- block page_title_suffix -%}
+  {% if LANG == 'en-CA' %}
+    — Mozilla (CA)
+  {% elif LANG == 'en-GB' %}
+    — Mozilla (UK)
+  {% else %}
+    — Mozilla
+  {% endif %}
+{%- endblock -%}
+
+{% block page_desc %}
+  {{ _('Mozilla is the not-for-profit behind the lightning fast Firefox browser. We put people over profit to give everyone more power online.') }}
+{% endblock %}
+
+{% block body_id %}home{% endblock %}
+
+{% block extra_meta %}
+<!-- validates bing webmaster tools -->
+<meta name="msvalidate.01" content="B7B177115A634927D608514DA17B2574">
+<!-- YouTube Verification -->
+<meta name="google-site-verification" content="U9a6gH32vLIykvntaDToj-ytYhlZ1AfAgVEKstixQIE">
+{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('home-en') }}
+
+  {% if switch('firefox-daylight-launch-banner') %}
+    {{ css_bundle('daylight-launch-banner') }}
+  {% endif %}
+
+  {% if switch('firefox-daylight-promo-banner') %}
+    {{ css_bundle('daylight-promo-banner') }}
+  {% endif %}
+{% endblock %}
+
+{% block page_banner %}
+  {% if switch('firefox-daylight-launch-banner') %}
+    {% include 'includes/banners/daylight/daylight-launch.html' %}
+  {% endif %}
+
+  {% if switch('firefox-daylight-promo-banner') %}
+    {% include 'includes/banners/daylight/daylight-promo.html' %}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+{% block main %}
+<main>
+  <header class="main-page-heading visually-hidden">
+    {# Main page h1 is hidden from view and exists mainly for SEO purposes #}
+    <h1>{{ self.page_title() }}</h1>
+  </header>
+
+  {% call hero(
+    title='Firefox products are designed to protect your privacy',
+    class='privacy-promise-hero mzp-has-image mzp-t-dark mzp-t-firefox',
+    image_url='img/firefox/privacy/promise/privacy-hero.png',
+    include_highres_image=True,
+    include_cta=True,
+    heading_level=2
+  ) %}
+    <a href="{{ url('firefox.privacy.products') }}" class="mzp-c-button mzp-t-product">Learn more</a>
+  {% endcall %}
+
+  <div class="mozilla-content">
+    <div class="mzp-l-content mzp-t-mozilla">
+      {{ content_card_layout(card_layouts[0]) }}
+      {{ content_card_layout(card_layouts[1]) }}
+
+      {{ billboard(
+        title=_('Open source. <br>Open minds.'),
+        ga_title='Open source. <br>Open minds.',
+        desc=_('Mozilla creates powerful web tech for everyone.'),
+        link_cta=_('Explore Mozilla technology'),
+        link_url='https://labs.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=billboard',
+        image_url='img/home/2018/billboard-open-minds.png',
+        include_highres_image=True
+      )}}
+
+      {{ content_card_layout(card_layouts[2]) }}
+    </div>
+
+    {% if switch('show_pocket_feed', ['en']) and pocket_articles %}
+    <aside class="pocket">
+      <div class="mzp-l-content">
+        <h3 class="section-heading">{{ _('What we’re reading:') }}</h3>
+        <p class="tagline">{{ _('Like this feed? <a href="%(url)s">Subscribe</a> via Pocket')|format(url='https://getpocket.com/@MozillaHQ') }}</p>
+        <div class="mzp-l-card-quarter">
+        {% for article in pocket_articles %}
+          {{ card(
+            class='mzp-c-card-extra-small',
+            tag_label=article.domain,
+            title=article.display_title,
+            ga_title='Pocket Link {}'.format(loop.index),
+            image_url=article.image_src or 'img/pocket/pocket-feed-default.png',
+            aspect_ratio='mzp-has-aspect-16-9',
+            link_url=article.url
+          ) }}
+        {% endfor %}
+        </div>
+      </div>
+    </aside>
+    {% endif %}
+
+    <div class="mzp-l-content mzp-t-mozilla">
+
+      {{ billboard(
+        title=_('Support a healthy internet.'),
+        ga_title='Support a healthy internet.',
+        desc=_('The not-for-profit Mozilla Foundation supports open-source apps, web literacy curriculum, gender equality in tech and more.'),
+        link_cta=_('Visit the Mozilla Foundation'),
+        link_url='https://foundation.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=billboard',
+        image_url='img/home/2018/billboard-healthy-internet.png',
+        include_highres_image=True,
+        reverse=True
+      )}}
+
+      {{ content_card_layout(card_layouts[3]) }}
+
+      {{ billboard(
+        title=_('More power to you.'),
+        ga_title='More power to you.',
+        desc=_('Mozilla puts people before profit, creating products, technologies and programs that make the internet healthier for everyone.'),
+        link_cta=_('Learn more about us'),
+        link_url=url('mozorg.about'),
+        image_url='img/home/2018/billboard-more-power.png',
+        include_highres_image=True
+      )}}
+
+      {{ content_card_layout(card_layouts[4]) }}
+
+      <aside class="mzp-c-newsletter">
+        <div class="mzp-c-newsletter-image">
+          {{ high_res_img('img/home/2018/newsletter-graphic.png', {'alt': ''}) }}
+        </div>
+
+        <div class="newsletter-content">
+          {% set newsletter_id = 'mozilla-foundation' if LANG.startswith('en-') else 'mozilla-and-you' %}
+          {{ email_newsletter_form(
+            newsletters=newsletter_id,
+            title=_('Love the Web?'),
+            desc=_('Get the Mozilla newsletter and help us keep it open and free.'),
+            button_class='button-dark',
+            submit_text=_('Sign up now')
+          )}}
+        </div>
+      </aside>
+    </div>
+  </div>{#-- /.mozilla-content --#}
+
+  {% call download_banner_secondary(
+    title=_('Privacy over profit'),
+    sub_title=_('No shareholders. No data for sale.')
+  ) %}
+    {{ download_firefox_thanks(dom_id='download-secondary', download_location='secondary cta') }}
+  {% endcall %}
+
+  {% call call_out_compact(
+    title=_('The account that protects you rather than profits off you.'),
+    class='fxaccount-secondary-cta mzp-t-product-firefox mzp-t-firefox mzp-t-dark hide-from-legacy-ie',
+    heading_level=2
+  ) %}
+    <a href="{{ url('firefox.accounts') }}" class="mzp-c-button mzp-t-product mzp-t-dark" id="fxa-learn-secondary">{{ ftl('ui-learn-more') }}</a>
+  {% endcall %}
+
+</main>
+{% endblock %}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('home') }}
+
+  {% if switch('firefox-daylight-launch-banner') %}
+    {{ js_bundle('daylight-launch-banner') }}
+  {% endif %}
+
+  {% if switch('firefox-daylight-promo-banner') %}
+    {{ js_bundle('daylight-promo-banner') }}
+  {% endif %}
+{% endblock %}
+
+{% block structured_data %}
+  {% include 'includes/structured-data/organizations/mozilla-corporation-organisation.json' %}
+{% endblock %}

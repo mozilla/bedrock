@@ -2,18 +2,21 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from commonware.decorators import xframe_allow
 from django.shortcuts import render as django_render
 from django.views.decorators.http import require_safe
 from django.views.generic import TemplateView
+
 from lib import l10n_utils
 from lib.l10n_utils import L10nTemplateView
 from lib.l10n_utils.fluent import ftl_file_is_active
 
 from bedrock.contentcards.models import get_page_content_cards
+from bedrock.contentful.api import contentful
 from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.forums import ForumsFile
 from bedrock.pocketfeed.models import PocketArticle
+
+from commonware.decorators import xframe_allow
 
 credits_file = CreditsFile('credits')
 forums_file = ForumsFile('forums')
@@ -142,3 +145,12 @@ class ContributeView(L10nTemplateView):
             template_name = 'mozorg/contribute/index.html'
 
         return [template_name]
+
+
+class HomePagePreviewView(L10nTemplateView):
+    template_name = 'mozorg/home/home-contentful-preview.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx['card_layouts'] = contentful.get_home_page_data(ctx['content_id'])
+        return ctx

@@ -2,7 +2,9 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from django.conf import settings
 from django.conf.urls import url
+from django.urls import path
 
 from .util import page
 from . import views
@@ -129,3 +131,8 @@ urlpatterns = (
 
     page('locales', 'mozorg/locales.html'),
 )
+
+if settings.DEV:
+    urlpatterns += (
+        path('homepage-preview/<content_id>/', views.HomePagePreviewView.as_view()),
+    )

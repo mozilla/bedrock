@@ -1360,6 +1360,10 @@ CONTENT_CARDS_REPO = config('CONTENT_CARDS_REPO', default='https://github.com/mo
 CONTENT_CARDS_BRANCH = config('CONTENT_CARDS_BRANCH', default=content_cards_default_branch)
 CONTENT_CARDS_URL = config('CONTENT_CARDS_URL', default=STATIC_URL)
 
+CONTENTFUL_SPACE_ID = config('CONTENTFUL_SPACE_ID', raise_error=False)
+CONTENTFUL_SPACE_KEY = config('CONTENTFUL_SPACE_KEY', raise_error=False)
+CONTENTFUL_SPACE_API = ('preview' if DEV else 'cdn') + '.contentful.com'
+
 RELEASE_NOTES_PATH = config('RELEASE_NOTES_PATH', default=data_path('release_notes'))
 RELEASE_NOTES_REPO = config('RELEASE_NOTES_REPO', default='https://github.com/mozilla/release-notes.git')
 RELEASE_NOTES_BRANCH = config('RELEASE_NOTES_BRANCH', default='master')
@@ -1471,6 +1475,7 @@ CSP_IMG_SRC = CSP_DEFAULT_SRC + [
     'creativecommons.org',
     'cdn-3.convertexperiments.com',
     'logs.convertexperiments.com',
+    'images.ctfassets.net',
 ]
 CSP_SCRIPT_SRC = CSP_DEFAULT_SRC + [
     # TODO fix things so that we don't need this

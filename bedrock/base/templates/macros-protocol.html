@@ -156,6 +156,16 @@
 {%- endmacro %}
 
 
+{% macro content_card_layout(layout_data) -%}
+  {% if layout_data -%}
+    <div class="mzp-l-card-{{ layout_data.class }}">
+      {% for card_data in layout_data.cards %}
+        {{ card(**card_data) }}
+      {% endfor %}
+    </div>
+  {%- endif %}
+{%- endmacro %}
+
 {# Feature Card: https://protocol.mozilla.org/patterns/molecules/feature-card.html #}
 {% macro feature_card_media(image_url, include_highres_image=False, l10n_image=False) %}
 <div class="mzp-c-card-feature-media-wrapper">
