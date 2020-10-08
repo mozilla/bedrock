@@ -23,10 +23,10 @@ def _get_height(width, aspect):
         height = width
 
     if aspect == '3-2':
-        height = width - (width / 3)
+        height = width * 0.6666
 
     if aspect == '16-9':
-        height = width - 7 * (width / 16)
+        height = width * 0.5625
 
     return round(height)
 
