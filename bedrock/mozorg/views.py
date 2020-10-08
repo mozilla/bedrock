@@ -163,7 +163,10 @@ class HomePagePreviewView(L10nTemplateView):
         return f'/{self.get_preview_locale()}/homepage-preview/{page_id}/'
 
     def get_template_names(self):
-        return [f'mozorg/home/home-contentful-{self.card_data_lang}.html']
+        return [
+            f'mozorg/home/home-contentful-{self.card_data_lang}.html',
+            'mozorg/home/home-contentful-en.html',
+        ]
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
