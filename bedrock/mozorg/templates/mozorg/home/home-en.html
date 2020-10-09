@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import hero, billboard, card, call_out_compact, content_card with context %}
+{% from "macros-protocol.html" import hero, billboard, card, call_out_compact, content_card_layout with context %}
 {% from "mozorg/home/includes/macros.html" import download_banner, download_banner_secondary, fxa_banner %}
 
 {% extends "base-protocol.html" %}
@@ -80,24 +80,8 @@
 
   <div class="mozilla-content">
     <div class="mzp-l-content mzp-t-mozilla">
-      {% block content_cards_0 %}
-      <div class="mzp-l-card-hero">
-        {{ content_card('card_1') }}
-        {{ content_card('card_2') }}
-        {{ content_card('card_3') }}
-        {{ content_card('card_4') }}
-        {{ content_card('card_5') }}
-      </div>
-      {% endblock %}
-
-      {% block content_cards_1 %}
-      <div class="mzp-l-card-quarter">
-        {{ content_card('card_6') }}
-        {{ content_card('card_7') }}
-        {{ content_card('card_8') }}
-        {{ content_card('card_9') }}
-      </div>
-      {% endblock %}
+      {{ content_card_layout(card_layouts[0]) }}
+      {{ content_card_layout(card_layouts[1]) }}
 
       {{ billboard(
         title=_('Open source. <br>Open minds.'),
@@ -109,12 +93,7 @@
         include_highres_image=True
       )}}
 
-      {% block content_cards_2 %}
-      <div class="mzp-l-card-half">
-        {{ content_card('card_10') }}
-        {{ content_card('card_11') }}
-      </div>
-      {% endblock %}
+      {{ content_card_layout(card_layouts[2]) }}
     </div>
 
     {% if switch('show_pocket_feed', ['en']) and pocket_articles %}
@@ -152,15 +131,7 @@
         reverse=True
       )}}
 
-      {% block content_cards_3 %}
-      <div class="mzp-l-card-hero">
-        {{ content_card('card_12') }}
-        {{ content_card('card_13') }}
-        {{ content_card('card_14') }}
-        {{ content_card('card_15') }}
-        {{ content_card('card_16') }}
-      </div>
-      {% endblock %}
+      {{ content_card_layout(card_layouts[3]) }}
 
       {{ billboard(
         title=_('More power to you.'),
@@ -172,13 +143,7 @@
         include_highres_image=True
       )}}
 
-      {% block content_cards_4 %}
-      <div class="mzp-l-card-third">
-        {{ content_card('card_17') }}
-        {{ content_card('card_18') }}
-        {{ content_card('card_19') }}
-      </div>
-      {% endblock %}
+      {{ content_card_layout(card_layouts[4]) }}
 
       <aside class="mzp-c-newsletter">
         <div class="mzp-c-newsletter-image">

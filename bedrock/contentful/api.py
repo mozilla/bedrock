@@ -81,10 +81,18 @@ class Contentful:
     def __init__(self):
         self.client = get_client()
 
+    def get_all_page_data(self):
+        pages = self.client.entries({'content_type': 'homepageEn'})
+        return [self.get_home_page_data(p.id) for p in pages]
+
     def get_home_page_data(self, page_id):
         layouts = []
         page = self.client.entry(page_id, {'include': 5})
-        page_data = {'lang': page.language}
+        page_data = {
+            'lang': page.language.lower(),
+            'id': page.id,
+            'content_type': page.content_type.id,
+        }
         layouts_data = self.get_home_page_layouts(page)
         for layout in layouts_data:
             layout_data = {

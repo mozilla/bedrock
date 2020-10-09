@@ -9,6 +9,7 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.shortcuts import render as django_render
 from django.template import TemplateDoesNotExist, loader
+from django.template.loader import select_template
 from django.utils.translation.trans_real import parse_accept_lang_header
 from django.views.generic import TemplateView
 
@@ -62,8 +63,8 @@ def render(request,
     nonlocale = name_prefix in settings.SUPPORTED_NONLOCALES
 
     # Make sure we have a single template
-    if isinstance(template, list):
-        template = template[0]
+    if isinstance(template, (list, tuple)):
+        template = select_template(template).name
 
     if ftl_files:
         if isinstance(ftl_files, str):

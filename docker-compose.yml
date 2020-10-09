@@ -43,6 +43,7 @@ services:
       - ./wsgi/:/app/wsgi:delegated
       - ./locale/:/app/locale:delegated
       - ./l10n/:/app/l10n:delegated
+      - ./data/:/app/data:delegated
 
   # run the tests against local changes
   test:

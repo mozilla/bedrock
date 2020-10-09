@@ -536,6 +536,7 @@ INSTALLED_APPS = (
     'bedrock.security',
     'bedrock.releasenotes',
     'bedrock.contentcards',
+    'bedrock.contentful',
     'bedrock.utils',
     'bedrock.wordpress',
     'bedrock.sitemaps',

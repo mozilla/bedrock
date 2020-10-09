@@ -24,7 +24,7 @@ python manage.py update_product_details_files
 python manage.py update_security_advisories --quiet
 python manage.py update_wordpress --quiet
 python manage.py update_release_notes --quiet
-python manage.py update_content_cards --quiet
+python manage.py update_contentful --quiet
 python manage.py update_externalfiles --quiet
 python manage.py update_newsletter_data --quiet
 python manage.py update_www_config --quiet

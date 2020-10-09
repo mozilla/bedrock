@@ -12,8 +12,8 @@ from lib import l10n_utils
 from lib.l10n_utils import L10nTemplateView, get_locale
 from lib.l10n_utils.fluent import ftl_file_is_active
 
-from bedrock.contentcards.models import get_page_content_cards
 from bedrock.contentful.api import contentful
+from bedrock.contentful.models import ContentfulEntry
 from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.forums import ForumsFile
 from bedrock.pocketfeed.models import PocketArticle
@@ -113,28 +113,6 @@ def namespaces(request, namespace):
     return django_render(request, template, context)
 
 
-def home_view(request):
-    locale = l10n_utils.get_locale(request)
-
-    ctx = {
-        'pocket_articles': PocketArticle.objects.all()[:4]
-    }
-
-    if locale.startswith('en-'):
-        template_name = 'mozorg/home/home-en.html'
-        ctx['page_content_cards'] = get_page_content_cards('home-en', 'en-US')
-    elif locale == 'de':
-        template_name = 'mozorg/home/home-de.html'
-        ctx['page_content_cards'] = get_page_content_cards('home-de', 'de')
-    elif locale == 'fr':
-        template_name = 'mozorg/home/home-fr.html'
-        ctx['page_content_cards'] = get_page_content_cards('home-fr', 'fr')
-    else:
-        template_name = 'mozorg/home/home.html'
-
-    return l10n_utils.render(request, template_name, ctx)
-
-
 class ContributeView(L10nTemplateView):
     ftl_files_map = {
         'mozorg/contribute/contribute-2020.html': ['mozorg/contribute']
@@ -147,6 +125,31 @@ class ContributeView(L10nTemplateView):
             template_name = 'mozorg/contribute/index.html'
 
         return [template_name]
+
+
+class HomePageView(L10nTemplateView):
+    def get_lang(self):
+        locale = get_locale(self.request)
+        if '-' in locale:
+            return locale.split('-')[0]
+
+        return locale
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        lang = self.get_lang()
+        page_data = ContentfulEntry.objects.get_homepage(lang)
+        if page_data:
+            ctx['card_layouts'] = page_data['layouts']
+
+        ctx['pocket_articles'] = PocketArticle.objects.all()[:4]
+        return ctx
+
+    def get_template_names(self):
+        return [
+            f'mozorg/home/home-{self.get_lang()}.html',
+            'mozorg/home/home.html'
+        ]
 
 
 @method_decorator(never_cache, name='dispatch')
@@ -164,8 +167,8 @@ class HomePagePreviewView(L10nTemplateView):
 
     def get_template_names(self):
         return [
-            f'mozorg/home/home-contentful-{self.card_data_lang}.html',
-            'mozorg/home/home-contentful-en.html',
+            f'mozorg/home/home-{self.card_data_lang}.html',
+            'mozorg/home/home-en.html',
         ]
 
     def get_context_data(self, **kwargs):
