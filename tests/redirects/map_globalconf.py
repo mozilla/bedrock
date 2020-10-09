@@ -1369,7 +1369,7 @@ URLS = flatten((
     url_test('/about/governance/policies/security-group/tld-idn/', 'https://wiki.mozilla.org/IDN_Display_Algorithm'),
 
     # Unfck campaign
-    url_test('/firefox/{unfuck,love,liebe}/', '/firefox/unfck/'),
+    url_test('/firefox/{unfuck,love,liebe,rendonslenetplusnet}/', '/firefox/unfck/'),
 
     # issue 9148
     url_test('/firefox/campaign/', '/firefox/new/'),

@@ -658,6 +658,8 @@ redirectpatterns = (
     redirect(r'^firefox/unfuck/?$', 'firefox.campaign.unfck.index'),
     redirect(r'^firefox/love/?$', 'firefox.campaign.unfck.index'),
     redirect(r'^firefox/liebe/?$', 'firefox.campaign.unfck.index'),
+    redirect(r'^firefox/rendonslenetplusnet/?$', 'firefox.campaign.unfck.index'),
+
 
     # issue 9148
     redirect(r'^/firefox/campaign/?$', 'firefox.new'),
