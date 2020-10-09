@@ -139,9 +139,7 @@ class HomePageView(L10nTemplateView):
         ctx = super().get_context_data(**kwargs)
         lang = self.get_lang()
         page_data = ContentfulEntry.objects.get_homepage(lang)
-        if page_data:
-            ctx['card_layouts'] = page_data['layouts']
-
+        ctx['card_layouts'] = page_data['layouts'] if page_data else []
         ctx['pocket_articles'] = PocketArticle.objects.all()[:4]
         return ctx
 
