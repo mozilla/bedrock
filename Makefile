@@ -1,5 +1,7 @@
 DC_CI = "bin/docker-compose.sh"
 DC = $(shell which docker-compose)
+SSLLABS = $(shell which ssllabs-scan)
+TEST_DOMAIN = www.mozilla.org
 
 all: help
 
@@ -116,4 +118,7 @@ build-ci: .docker-build-pull
 test-ci: .docker-build-ci
 	${DC_CI} run test-image
 
-.PHONY: all clean build pull docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod build-prod
+tls-test-data:
+	${SSLLABS} --quiet https://${TEST_DOMAIN}/en-US/ > "test_infra/fixtures/tls.json"
+
+.PHONY: all clean build pull docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod build-prod tls-test-data

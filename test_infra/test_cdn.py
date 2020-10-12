@@ -1,9 +1,14 @@
+import json
+from pathlib import Path
+
 import pytest
 import requests
 
 
 MLS_URL = 'https://location.services.mozilla.com/v1/country' \
           '?key=ec4d0c4b-b9ac-4d72-9197-289160930e14'
+TESTS_PATH = Path(__file__).parent
+TLS_DATA_PATH = TESTS_PATH.joinpath('fixtures', 'tls.json')
 
 
 @pytest.mark.parametrize('url', (
@@ -37,10 +42,6 @@ def test_media(url, base_url):
     assert resp.headers['cache-control'] == 'max-age=315360000, public, immutable'
     # this means it came from s3
     assert 'x-amz-version-id' in resp.headers
-    # cloudfront
-    assert 'x-cache' in resp.headers
-    assert 'x-amz-cf-id' in resp.headers
-    assert 'cloudfront' in resp.headers['x-cache']
 
 
 @pytest.mark.nondestructive
@@ -50,3 +51,27 @@ def test_geo(base_url):
     mls_country = requests.get(MLS_URL).json()['country_code']
     cdn_country = requests.get(cdn_url).json()['country_code']
     assert cdn_country == mls_country
+
+
+@pytest.mark.skipif(not TLS_DATA_PATH.exists(), reason='TLS data file missing')
+@pytest.mark.nondestructive
+def test_tls():
+    """Check tls.json to make sure that all expected clients connected without issue
+
+    To fetch the tls.json file run `make TEST_DOMAIN=www.mozilla.org tls-test-data`
+    """
+    with TLS_DATA_PATH.open() as tls_file:
+        data = json.load(tls_file)
+
+    errors = 0
+    for endp in data[0]['endpoints']:
+        for sim in endp['details']['sims']['results']:
+            if sim['errorCode'] != 0:
+                # IE 6 is expected to fail
+                if sim['client']['name'] == 'IE' and sim['client']['version'] == '6':
+                    continue
+
+                print(sim['client'])
+                errors += 1
+
+    assert errors == 0, 'TLS SIMs Failures'
