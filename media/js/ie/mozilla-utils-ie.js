@@ -47,6 +47,13 @@ if (typeof window.Mozilla === 'undefined') {
             }
         });
         $('.download-list').attr('role', 'presentation');
+
+        $('.c-button-download-thanks > .download-link').each(function() {
+            var $el = $(this);
+            $el.attr('data-download-os', 'Desktop');
+            $el.attr('data-display-name', 'Windows 32-bit');
+            $el.attr('data-download-version', 'win');
+        });
     };
 
     UtilsIE.initNavigation = function() {

@@ -174,5 +174,17 @@ describe('mozilla-utils.js', function() {
                 version: 'android'
             });
         });
+
+        it('should return expected values for unsupported / unknown platforms', function () {
+            var site = {
+                platform: 'other'
+            };
+            var result = Mozilla.Utils.getDownloadAttributionValues(site);
+            expect(result).toEqual({
+                os: 'Unsupported',
+                name: 'Unsupported',
+                version: 'unsupported'
+            });
+        });
     });
 });
