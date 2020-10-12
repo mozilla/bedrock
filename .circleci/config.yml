@@ -2,10 +2,11 @@ version: 2
 jobs:
   test_py:
     docker:
-      - image: circleci/python:2.7-stretch
+      - image: circleci/python:3.7-stretch
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          version: 19.03.13
       - run:
           name: Python Tests
           command: make clean test-image
