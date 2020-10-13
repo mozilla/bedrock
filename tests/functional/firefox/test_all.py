@@ -9,6 +9,7 @@ import pytest
 from pages.firefox.all import FirefoxAllPage
 
 
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_firefox_release(base_url, selenium):
     page = FirefoxAllPage(selenium, base_url).open()
@@ -20,6 +21,7 @@ def test_firefox_release(base_url, selenium):
     assert 'product=firefox-latest-ssl' and 'os=win64' and 'lang=en-US' in page.download_link
 
 
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_firefox_beta(base_url, selenium):
     page = FirefoxAllPage(selenium, base_url).open()
@@ -31,6 +33,7 @@ def test_firefox_beta(base_url, selenium):
     assert 'product=firefox-beta-latest-ssl' and 'os=osx' and 'lang=de' in page.download_link
 
 
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_firefox_developer(base_url, selenium):
     page = FirefoxAllPage(selenium, base_url).open()
@@ -42,6 +45,7 @@ def test_firefox_developer(base_url, selenium):
     assert 'product=firefox-devedition-latest-ssl' and 'os=linux64' and 'lang=en-US' in page.download_link
 
 
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_firefox_nightly(base_url, selenium):
     page = FirefoxAllPage(selenium, base_url).open()
@@ -53,6 +57,7 @@ def test_firefox_nightly(base_url, selenium):
     assert 'product=firefox-nightly-latest-ssl' and 'os=win' and 'lang=de' in page.download_link
 
 
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_firefox_esr(base_url, selenium):
     page = FirefoxAllPage(selenium, base_url).open()
@@ -64,6 +69,7 @@ def test_firefox_esr(base_url, selenium):
     assert 'product=firefox-esr-latest-ssl' and 'os=linux' and 'lang=en-US' in page.download_link
 
 
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_firefox_android(base_url, selenium):
     page = FirefoxAllPage(selenium, base_url).open()
@@ -74,6 +80,7 @@ def test_firefox_android(base_url, selenium):
     assert 'product=fennec-latest' and 'os=android-x86' and 'lang=multi' in page.download_link
 
 
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_firefox_android_beta(base_url, selenium):
     page = FirefoxAllPage(selenium, base_url).open()
@@ -84,6 +91,7 @@ def test_firefox_android_beta(base_url, selenium):
     assert 'product=fennec-beta-latest' and 'os=android' and 'lang=multi' in page.download_link
 
 
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_firefox_android_nightly(base_url, selenium):
     page = FirefoxAllPage(selenium, base_url).open()

@@ -14,6 +14,7 @@ def test_facebook_container_link_is_displayed(base_url, selenium):
     assert page.is_facebook_container_link_displayed
 
 
+@pytest.mark.smoke
 @pytest.mark.skip_if_firefox(reason='Firefox download button is shown only to non-Firefox users.')
 @pytest.mark.nondestructive
 def test_firefox_download_button_is_displayed(base_url, selenium):

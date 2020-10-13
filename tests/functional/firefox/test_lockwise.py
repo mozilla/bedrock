@@ -14,6 +14,7 @@ def test_mobile_buttons_are_displayed(base_url, selenium):
     assert page.is_play_store_button_displayed
 
 
+@pytest.mark.smoke
 @pytest.mark.skip_if_firefox(reason='Download button is displayed only to non-Firefox users')
 @pytest.mark.nondestructive
 def test_download_button_is_displayed(base_url, selenium):

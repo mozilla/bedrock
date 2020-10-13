@@ -7,6 +7,7 @@ import pytest
 from pages.firefox.switch import FirefoxSwitchPage
 
 
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_download_button_displayed(base_url, selenium):
     page = FirefoxSwitchPage(selenium, base_url).open()

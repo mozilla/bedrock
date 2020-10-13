@@ -21,15 +21,8 @@ def test_tab_navigation(base_url, selenium):
 
 @pytest.mark.nondestructive
 @pytest.mark.parametrize('slug', [
-    ('mountain-view'),
-    ('beijing'),
-    ('berlin'),
-    ('london'),
-    ('paris'),
     ('portland'),
     ('san-francisco'),
-    ('taipei'),
-    ('toronto'),
     ('vancouver')])
 def test_spaces_menus(slug, base_url, selenium):
     page = SpacesPage(selenium, base_url, slug=slug).open()

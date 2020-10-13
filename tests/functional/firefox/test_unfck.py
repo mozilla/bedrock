@@ -7,6 +7,7 @@ import pytest
 from pages.firefox.unfck import FirefoxUnfckPage
 
 
+@pytest.mark.smoke
 @pytest.mark.skip_if_firefox(reason='Download button is displayed only to non-Firefox users')
 @pytest.mark.nondestructive
 @pytest.mark.parametrize('locale', [
