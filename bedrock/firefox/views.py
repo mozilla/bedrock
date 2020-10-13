@@ -648,16 +648,9 @@ class WhatsNewFirefoxLiteView(WhatsnewView):
 
 class WhatsNewChinaView(WhatsnewView):
     def get_template_names(self):
-        locale = l10n_utils.get_locale(self.request)
-        version = self.kwargs.get('version') or ''
-        channel = detect_channel(version)
-        pre_release_channels = ['nightly', 'alpha', 'beta']
-
-        if version.startswith('82.') and locale.startswith('en-') and channel not in pre_release_channels and ftl_file_is_active('firefox/whatsnew/whatsnew-account'):
-            # return a list to conform with original intention
+        template = super().get_template_names()
+        if template == ['firefox/whatsnew/whatsnew-fx82.html']:
             template = ['firefox/whatsnew/index-account.html']
-        else:
-            template = super().get_template_names()
 
         return template
 
