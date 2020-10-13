@@ -366,6 +366,7 @@ class TestWhatsNew(TestCase):
 
     def test_fx_82_0_0_china(self, render_mock):
         """Should use standard whatsnew template in China for en-US locale"""
+        self.view = fx_views.WhatsNewChinaView.as_view()
         req = self.rf.get('/firefox/whatsnew/china/')
         req.locale = 'en-US'
         self.view(req, version='82.0')
