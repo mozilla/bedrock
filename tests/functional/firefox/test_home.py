@@ -7,6 +7,7 @@ import pytest
 from pages.firefox.home import FirefoxHomePage
 
 
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_download_menu_list_displays(base_url, selenium):
     page = FirefoxHomePage(selenium, base_url).open()
@@ -19,10 +20,3 @@ def test_download_menu_list_displays(base_url, selenium):
 def test_fb_container_fx(base_url, selenium):
     page = FirefoxHomePage(selenium, base_url).open()
     assert page.fb_container_is_displayed
-
-
-@pytest.mark.nondestructive
-@pytest.mark.skip_if_firefox(reason='FB Container link hidden from non Firefox users.')
-def test_fb_container_non_fx(base_url, selenium):
-    page = FirefoxHomePage(selenium, base_url).open()
-    assert not page.fb_container_is_displayed

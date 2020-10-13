@@ -20,6 +20,7 @@ class NewsletterEmbedForm(Region):
     _privacy_policy_link_locator = (By.CSS_SELECTOR, 'label[for="privacy"] a')
     _submit_button_locator = (By.ID, 'newsletter-submit')
     _thank_you_locator = (By.CSS_SELECTOR, '#newsletter-thanks h3')
+    _error_list_locator = (By.ID, 'newsletter-errors')
 
     def expand_form(self):
         # scroll newsletter into view before expanding the form
@@ -36,6 +37,10 @@ class NewsletterEmbedForm(Region):
     @property
     def is_form_detail_displayed(self):
         return self.is_element_displayed(*self._form_details_locator)
+
+    @property
+    def is_form_error_displayed(self):
+        return self.is_element_displayed(*self._error_list_locator)
 
     @property
     def email(self):
@@ -85,9 +90,12 @@ class NewsletterEmbedForm(Region):
     def is_privacy_policy_link_displayed(self):
         return self.is_element_displayed(*self._privacy_policy_link_locator)
 
-    def click_sign_me_up(self):
+    def click_sign_me_up(self, expected_result=None):
         self.find_element(*self._submit_button_locator).click()
-        self.wait.until(expected.visibility_of_element_located(self._thank_you_locator))
+        if expected_result == 'error':
+            self.wait.until(expected.visibility_of_element_located(self._error_list_locator))
+        else:
+            self.wait.until(expected.visibility_of_element_located(self._thank_you_locator))
 
     @property
     def sign_up_successful(self):

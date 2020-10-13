@@ -7,6 +7,7 @@ import pytest
 from pages.firefox.browsers.compare import BrowserComparisonPage
 
 
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_download_buttons_are_displayed(base_url, selenium):
     page = BrowserComparisonPage(selenium, base_url, slug='/').open()

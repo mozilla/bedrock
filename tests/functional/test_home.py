@@ -15,6 +15,7 @@ def test_privacy_hero_button_is_displayed(base_url, selenium):
 
 @pytest.mark.skip_if_firefox(reason='Download button is displayed only to non-Firefox users')
 @pytest.mark.sanity
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_download_button_is_displayed(base_url, selenium):
     page = HomePage(selenium, base_url, locale='en-US').open()
@@ -23,6 +24,7 @@ def test_download_button_is_displayed(base_url, selenium):
 
 @pytest.mark.skip_if_firefox(reason='Download button is displayed only to non-Firefox users')
 @pytest.mark.sanity
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 @pytest.mark.parametrize('locale', ['de', 'fr'])
 def test_download_button_is_displayed_rest_tier_1(locale, base_url, selenium):
@@ -52,6 +54,7 @@ def test_accounts_button_is_displayed_rest_tier_1(locale, base_url, selenium):
 
 
 @pytest.mark.sanity
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_download_button_is_displayed_locales(base_url, selenium):
     page = HomePage(selenium, base_url, locale='es-ES').open()

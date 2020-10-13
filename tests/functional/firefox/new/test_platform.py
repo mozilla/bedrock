@@ -7,12 +7,15 @@ import pytest
 from pages.firefox.new.platform import PlatformDownloadPage
 
 
-@pytest.mark.sanity
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 @pytest.mark.parametrize('slug', ['windows', 'mac', 'linux'])
-def test_download_button_displayed(slug, base_url, selenium):
+def test_download_buttons_are_displayed(slug, base_url, selenium):
     page = PlatformDownloadPage(selenium, base_url, slug=slug).open()
     assert page.download_button.is_displayed
+    modal = page.open_other_platforms_modal()
+    assert modal.is_displayed
+    modal.close()
 
 
 # Firefox and Internet Explorer don't cope well with file prompts whilst using Selenium.
@@ -24,12 +27,3 @@ def test_click_download_button(slug, base_url, selenium):
     page = PlatformDownloadPage(selenium, base_url, slug=slug).open()
     thank_you_page = page.download_firefox()
     assert thank_you_page.seed_url in selenium.current_url
-
-
-@pytest.mark.nondestructive
-@pytest.mark.parametrize('slug', ['windows', 'mac', 'linux'])
-def test_other_platforms_modal(slug, base_url, selenium):
-    page = PlatformDownloadPage(selenium, base_url, slug=slug).open()
-    modal = page.open_other_platforms_modal()
-    assert modal.is_displayed
-    modal.close()

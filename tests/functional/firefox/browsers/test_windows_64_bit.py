@@ -7,6 +7,7 @@ import pytest
 from pages.firefox.browsers.windows_64_bit import Windows64BitPage
 
 
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_download_button_is_displayed(base_url, selenium):
     page = Windows64BitPage(selenium, base_url).open()

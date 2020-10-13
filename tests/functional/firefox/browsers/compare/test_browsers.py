@@ -15,20 +15,8 @@ from pages.firefox.browsers.compare import BrowserComparisonPage
     ('/opera/'),
     ('/brave/'),
     ('/ie/')])
-def test_download_buttons_is_displayed(slug, base_url, selenium):
-    page = BrowserComparisonPage(selenium, base_url, slug=slug).open()
-    assert page.secondary_download_button.is_displayed
-
-
-@pytest.mark.nondestructive
-@pytest.mark.parametrize('slug', [
-    ('/chrome/'),
-    ('/edge/'),
-    ('/safari/'),
-    ('/opera/'),
-    ('/brave/'),
-    ('/ie/')])
-def test_browser_menu_list_is_open(slug, base_url, selenium):
+def test_download_links_are_displayed(slug, base_url, selenium):
     page = BrowserComparisonPage(selenium, base_url, slug=slug).open()
     page.browser_menu_list.click()
     assert page.browser_menu_list.list_is_open
+    assert page.secondary_download_button.is_displayed

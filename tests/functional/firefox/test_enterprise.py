@@ -7,15 +7,11 @@ import pytest
 from pages.firefox.enterprise.landing import EnterprisePage
 
 
+@pytest.mark.smoke
 @pytest.mark.nondestructive
-def test_primary_download_button_displayed(base_url, selenium):
+def test_primary_download_links_are_displayed(base_url, selenium):
     page = EnterprisePage(selenium, base_url).open()
     assert page.is_primary_download_button_displayed
-
-
-@pytest.mark.nondestructive
-def test_download_lists(base_url, selenium):
-    page = EnterprisePage(selenium, base_url).open()
     page.win64_download_list.click()
     assert page.win64_download_list.list_is_open
     page.win32_download_list.click()
