@@ -16,6 +16,7 @@ firstrun_re = latest_re % (version_re, 'firstrun')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
 whatsnew_re_africa = latest_re % (version_re, 'whatsnew/africa')
 whatsnew_re_india = latest_re % (version_re, 'whatsnew/india')
+whatsnew_re_china = latest_re % (version_re, 'whatsnew/china')
 whatsnew_re_all = latest_re % (version_re, 'whatsnew/all')
 platform_re = '(?P<platform>android|ios)'
 channel_re = '(?P<channel>beta|aurora|developer|nightly|organizations)'
@@ -75,6 +76,7 @@ urlpatterns = (
     url(whatsnew_re, views.WhatsNewRedirectorView.as_view(), name='firefox.whatsnew'),
     url(whatsnew_re_africa, views.WhatsNewFirefoxLiteView.as_view(), name='firefox.whatsnew.africa'),
     url(whatsnew_re_india, views.WhatsNewFirefoxLiteView.as_view(), name='firefox.whatsnew.india'),
+    url(whatsnew_re_china, views.WhatsNewChinaView.as_view(), name='firefox.whatsnew.china'),
     url(whatsnew_re_all, views.WhatsnewView.as_view(), name='firefox.whatsnew.all'),
 
     # Release notes
