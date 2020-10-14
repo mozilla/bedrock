@@ -234,6 +234,7 @@ $image-path: '/media/protocol/img';
         border-bottom: 2px solid $color-marketing-gray-20;
         margin-bottom: $layout-sm;
         padding-bottom: $layout-sm;
+        scroll-margin-top: 88px;
 
         &:last-child {
             border-bottom: none;
