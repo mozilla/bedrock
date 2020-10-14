@@ -82,72 +82,211 @@
     </ul>
   {% endcall %}
 
-  <h2 class="c-section-title">Let’s get started</h2>
+  {% if switch('unfck-phase-two') %}
 
-  <div class="mzp-l-content mzp-t-content-lg">
-    {% call item(
-      title='Shine a light on political ads',
-      info='What you see online is not what your across-the-aisle uncle does. Hold advertisers accountable for misinformation by sharing the political ads you see to a public database.',
-      alt='An unfcked internet is a happy internet.',
-      link_text='Get the Ad Observer Extension',
-      link_url='https://addons.mozilla.org/firefox/addon/ad-observer/',
-      link_include_utms=True,
-      id='poli',
-      src_name='vote',
-    ) %}{% endcall %}
+    <h2 class="c-section-title">Demand an honest internet for the US elections</h2>
 
-    {% call item(
-      title='Watch The Social Dilemma',
-      info='Got a love-hate relationship with social media? There’s a reason. This Netflix documentary from Exposure Labs and the Center for Humane Tech unpacks the issues of attention and addiction. But they’re not the only ones. Catch the full spectrum of voices in this conversation.',
-      alt='One fck given. High five!',
-      include_cta=True,
-      id='social',
-      src_name='highfive'
+    <div class="mzp-l-content mzp-t-content-lg">
+      {% call item(
+        title='Have faith in what you read again',
+        info='Provocative headlines on social media too often lead you down a misinformation minefield. Pocket helps you find human-curated, trusted news sources so you can be an informed citizen.',
+        alt='One fck given. High five!',
+        link_text='Get Pocket',
+        link_url='https://getpocket.com/explore/',
+        link_include_utms=True,
+        id='pocket',
+        src_name='highfive'
+      ) %}{% endcall %}
+
+      {% call item(
+        title='Stop ‘trending topics’ from misleading voters',
+        info='Just because a topic is trending on Twitter does not make it true — and misinfo spreaders and conspiracy theorists capitalize on this feature. As we draw closer to the US election in November, join Mozilla in demanding that Twitter turn off trending topics.',
+        alt='An unfcked internet is a happy internet.',
+        id='trending',
+        src_name='vote',
+        include_cta=True,
       ) %}
+
+      {% set tw_jack = 'https://www.twitter.com/intent/tweet?url=' + '&text=' + 'Hey @jack: Misinformation hits Trending Topics before fact checkers can even check their feeds & you’ve got the power to do something about it!'|urlencode + '%0A%0A' + 'Stop trending topics until the US election results are certified.'|urlencode + '&hashtags=UnTrendTwitter' %}
       <p class="c-item-cta">
-        <a class="mzp-c-cta-link" href="https://www.thesocialdilemma.com/take-action/" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="Checklist: netflix">Watch the doc</a></p>
+        <a id="js-tw-jack" class="mzp-c-cta-link" href="{{ tw_jack }}" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="Checklist: twitter share">Tell @Jack now</a></p>
       </p>
-      {% if switch('unfck-social') %}
-      <p class="c-item-cta">
-        <a class="mzp-c-cta-link" href="https://foundation.mozilla.org/en/blog/social-dilemma/{{ referrals }}" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="Checklist: reading list">Get a broader perspective</a></p>
-      </p>
+
+      {% endcall %}
+
+      {% call item(
+        title='Get extremist group recommendations off FB',
+        info='Facebook Groups have become breeding grounds for misleading campaigns and extremist organizations. Tell Facebook to pause Group recommendations until the election results are certified.',
+        alt='Un-fck. Un-friend. Un-hate. Un-real. Un-follow.',
+        link_text='Sign the petition',
+        link_url='https://foundation.mozilla.org/en/campaigns/facebook-stop-group-recommendations/',
+        link_include_utms=True,
+        link_is_external=True,
+        id='group',
+        src_name='un',
+      ) %}{% endcall %}
+
+      {% call item(
+        title='Shine a light on political ads',
+        info='What you see online is not what your across-the-aisle uncle does. Hold advertisers accountable for misinformation by sharing the political ads you see to a public database.',
+        alt='An unfcked internet is a happy internet.',
+        link_text='Get the Ad Observer Extension',
+        link_url='https://addons.mozilla.org/firefox/addon/ad-observer/',
+        link_include_utms=True,
+        id='poli',
+        src_name='smiley',
+      ) %}{% endcall %}
+
+      {% call item(
+        title='Put a lid on Facebook',
+        info='This extension helps prevent Facebook from following you around the rest of the web — which they are definitely doing, even if you don’t have an account. The less data they have on you, the less they can give away to bad actors.',
+        alt='Swipe left on a fcked up internet.',
+        link_text='Get Facebook Container',
+        link_url='https://addons.mozilla.org/firefox/addon/facebook-container/',
+        link_include_utms=True,
+        id='contain',
+        src_name='phone',
+      ) %}{% endcall %}
+
+    </div>
+
+    <h2 class="c-section-title">More actions you can take</h2>
+
+    <div class="mzp-l-content mzp-t-content-lg">
+
+      {% set share_text='2020 might be fcked, but the internet doesn’t have to be. Read and share 5 easy ways we can all help turn things around.' %}
+      {% set share_url = 'http://mzl.la/unfck' %}
+
+      {% set tw = 'https://www.twitter.com/intent/tweet?url=' + share_url|urlencode + '&text=' + share_text|urlencode + '&hashtags=UnfckTheInternet' %}
+      {% set fb = 'http://facebook.com/sharer.php?u=' + share_url|urlencode + '&quote=' + share_text|urlencode %}
+
+      {% call item(
+        title='Share the internet love',
+        info='Social media is only as good as the message it spreads. Tell your friends you internet with your values, and get them in on this conversation.',
+        alt='A heart sharing love like a router shares wifi.',
+        include_cta=True,
+        id='share',
+        src_name='heart'
+      ) %}
+        <p class="c-item-cta">
+          <a id="js-tw" class="mzp-c-cta-link" href="{{ tw }}" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="Checklist: twitter share">Tweet this</a></p>
+        </p>
+        <p class="c-item-cta">
+          <a id="js-fb" class="mzp-c-cta-link" href="{{ fb }}" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="Checklist: facebook share">Share on Facebook</a></p>
+        </p>
+      {% endcall %}
+
+      {% call item(
+        title='Watch The Social Dilemma',
+        info='Got a love-hate relationship with social media? There’s a reason. This Netflix documentary from Exposure Labs and the Center for Humane Tech unpacks the issues of attention and addiction. But they’re not the only ones. Catch the full spectrum of voices in this conversation.',
+        alt='Click the unfck button.',
+        include_cta=True,
+        id='social',
+        src_name='button'
+        ) %}
+        <p class="c-item-cta">
+          <a class="mzp-c-cta-link" href="https://www.thesocialdilemma.com/take-action/" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="Checklist: netflix">Watch the doc</a></p>
+        </p>
+        {% if switch('unfck-social') %}
+        <p class="c-item-cta">
+          <a class="mzp-c-cta-link" href="https://foundation.mozilla.org/en/blog/social-dilemma/{{ referrals }}" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="Checklist: reading list">Get a broader perspective</a></p>
+        </p>
+        {% endif %}
+      {% endcall %}
+
+      {% call item(
+        title='Close the YouTube rabbit hole',
+        info='Ever fall for a YouTube video recommendation you regretted? This extension doesn’t give you a redo, but it might just keep it from happening to others.',
+        alt='Take the internet from dumpster fire to purr-fect.',
+        link_text='Get RegretsReporter',
+        link_url='https://addons.mozilla.org/en-US/firefox/addon/regretsreporter/',
+        link_include_utms=True,
+        id='regrets',
+        src_name='computer',
+      ) %}{% endcall %}
+
+      {% if switch('unfck-join') %}
+      {% call item(
+        title='Choose independent, ethical tech',
+        info='The more people who use independent tech like Firefox, the greater the effect. Get yourself some unfcked messaging, content, email and more.',
+        alt="Time to unfck the internet.",
+        link_text='Meet our Friends',
+        link_url='https://blog.mozilla.org/firefox/join-the-anti-establishment/',
+        link_include_utms=True,
+        link_is_external=True,
+        id='join',
+        src_name='mug',
+      ) %}{% endcall %}
       {% endif %}
-    {% endcall %}
+    </div>
 
-    {% call item(
-      title='Put a lid on Facebook',
-      info='This extension helps prevent Facebook from following you around the rest of the web — which they are definitely doing, even if you don’t have an account. So you can keep FB and say F you, too.',
-      alt='Swipe left on a fcked up internet.',
-      link_text='Get Facebook Container',
-      link_url='https://addons.mozilla.org/firefox/addon/facebook-container/',
-      link_include_utms=True,
-      id='contain',
-      src_name='phone',
-    ) %}{% endcall %}
+  {% else %}
+    <h2 class="c-section-title">Let’s get started</h2>
 
-    {% call item(
-      title='Close the YouTube rabbit hole',
-      info='Ever fall for a YouTube video recommendation you regretted? This extension doesn’t give you a redo, but it might just keep it from happening to others.',
-      alt='Take the internet from dumpster fire to purr-fect.',
-      link_text='Get RegretsReporter',
-      link_url='https://addons.mozilla.org/en-US/firefox/addon/regretsreporter/',
-      link_include_utms=True,
-      id='regrets',
-      src_name='computer',
-    ) %}{% endcall %}
+    <div class="mzp-l-content mzp-t-content-lg">
+      {% call item(
+        title='Shine a light on political ads',
+        info='What you see online is not what your across-the-aisle uncle does. Hold advertisers accountable for misinformation by sharing the political ads you see to a public database.',
+        alt='An unfcked internet is a happy internet.',
+        link_text='Get the Ad Observer Extension',
+        link_url='https://addons.mozilla.org/firefox/addon/ad-observer/',
+        link_include_utms=True,
+        id='poli',
+        src_name='vote',
+      ) %}{% endcall %}
 
-    {% if switch('unfck-join') %}
-    {% call item(
-      title='Choose independent tech',
-      info='The more people who use independent tech like Firefox, the greater the effect. Get yourself some unfcked messaging, content, email and more.',
-      alt='Un-fck. Un-friend. Un-hate. Un-real. Un-follow.',
-      link_text='Meet our Friends',
-      link_url='https://blog.mozilla.org/firefox/join-the-anti-establishment/',
-      link_include_utms=True,
-      link_is_external=True,
-      id='join',
-      src_name='un',
-    ) %}{% endcall %}
+      {% call item(
+        title='Watch The Social Dilemma',
+        info='Got a love-hate relationship with social media? There’s a reason. This Netflix documentary from Exposure Labs and the Center for Humane Tech unpacks the issues of attention and addiction. But they’re not the only ones. Catch the full spectrum of voices in this conversation.',
+        alt='One fck given. High five!',
+        include_cta=True,
+        id='social',
+        src_name='highfive'
+        ) %}
+        <p class="c-item-cta">
+          <a class="mzp-c-cta-link" href="https://www.thesocialdilemma.com/take-action/" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="Checklist: netflix">Watch the doc</a></p>
+        </p>
+        {% if switch('unfck-social') %}
+        <p class="c-item-cta">
+          <a class="mzp-c-cta-link" href="https://foundation.mozilla.org/en/blog/social-dilemma/{{ referrals }}" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="Checklist: reading list">Get a broader perspective</a></p>
+        </p>
+        {% endif %}
+      {% endcall %}
+
+      {% call item(
+        title='Put a lid on Facebook',
+        info='This extension helps prevent Facebook from following you around the rest of the web — which they are definitely doing, even if you don’t have an account. So you can keep FB and say F you, too.',
+        alt='Swipe left on a fcked up internet.',
+        link_text='Get Facebook Container',
+        link_url='https://addons.mozilla.org/firefox/addon/facebook-container/',
+        link_include_utms=True,
+        id='contain',
+        src_name='phone',
+      ) %}{% endcall %}
+
+      {% call item(
+        title='Close the YouTube rabbit hole',
+        info='Ever fall for a YouTube video recommendation you regretted? This extension doesn’t give you a redo, but it might just keep it from happening to others.',
+        alt='Take the internet from dumpster fire to purr-fect.',
+        link_text='Get RegretsReporter',
+        link_url='https://addons.mozilla.org/en-US/firefox/addon/regretsreporter/',
+        link_include_utms=True,
+        id='regrets',
+        src_name='computer',
+      ) %}{% endcall %}
+
+      {% if switch('unfck-join') %}
+      {% call item(
+        title='Choose independent tech',
+        info='The more people who use independent tech like Firefox, the greater the effect. Get yourself some unfcked messaging, content, email and more.',
+        alt='Un-fck. Un-friend. Un-hate. Un-real. Un-follow.',
+        link_text='Meet our Friends',
+        link_url='https://blog.mozilla.org/firefox/join-the-anti-establishment/',
+        link_include_utms=True,
+        link_is_external=True,
+        id='join',
+        src_name='un',
+      ) %}{% endcall %}
     {% endif %}
 
     {% set share_text='2020 might be fcked, but the internet doesn’t have to be. Read and share 5 easy ways we can all help turn things around.' %}
@@ -173,6 +312,7 @@
     {% endcall %}
 
   </div>
+  {% endif %}
 
   <h2 class="c-section-title u-visually-hidden">What we’re doing</h2>
 
@@ -226,8 +366,8 @@
           <img src="{{ static('img/firefox/campaign/unfck/en/mug.gif') }}" alt="Time to unfck the internet." loading="lazy" width="280" height="280">
         </picture>
         <picture class="c-box-gif" id="smiley">
-          <source srcset="{{ static('img/firefox/campaign/unfck/en/still/smiley.jpg') }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="280" height="280"></source>
-          <source srcset="{{ static('img/firefox/campaign/unfck/en/smiley.gif') }} 1x, {{ static('img/firefox/campaign/unfck/en/smiley-high-res.gif') }} 1.5x" loading="lazy" width="280" height="280"></source>
+          <source srcset="{{ static('img/firefox/campaign/unfck/en/still/smile.jpg') }}" media="(prefers-reduced-motion: reduce)" loading="lazy" width="280" height="280"></source>
+          <source srcset="{{ static('img/firefox/campaign/unfck/en/smile.gif') }} 1x, {{ static('img/firefox/campaign/unfck/en/smile-high-res.gif') }} 1.5x" loading="lazy" width="280" height="280"></source>
           <img src="{{ static('img/firefox/campaign/unfck/en/smiley.gif') }}" alt="An unfcked internet is a happy internet." loading="lazy" width="280" height="280">
         </picture>
         <picture class="c-box-gif" id="todo">

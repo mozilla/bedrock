@@ -306,7 +306,7 @@ main {
 
     @media (prefers-reduced-motion) {
         .loaded &:after {
-            background-image: url('/media/img/firefox/campaign/unfck/en/still/heart.png');
+            background-image: url('/media/img/firefox/campaign/unfck/en/still/heart.jpg');
         }
     }
 }
@@ -396,7 +396,7 @@ main {
 }
 
 .c-item-title {
-    @include font-size(24px);
+    @include text-title-xs;
     position: relative;
 }
 
@@ -469,15 +469,26 @@ main {
 // section titles
 
 .c-section-title {
-    @include font-size(40px);
     @include text-title-md;
     margin: 0 auto;
+    max-width: $content-md + $layout-lg * 2;
     padding: 0 $layout-sm;
-    max-width: $content-lg + $layout-lg * 2;
     text-align: center;
 
     strong {
         white-space: nowrap;
+    }
+
+    .mzp-l-content + & {
+        padding: $v-grid-xs $layout-sm 0;
+
+        @media #{$mq-md} {
+            padding-top: $v-grid-md;
+        }
+
+        @media #{$mq-lg} {
+            padding-top: $v-grid-lg;
+        }
     }
 }
 
@@ -629,7 +640,7 @@ main {
     background-color: #fbede8;
 }
 
-#smiley {
+#smile {
     background-color: #43238b;
 }
 
@@ -638,8 +649,20 @@ main {
 }
 
 .c-item-gif {
+    #pocket {
+        background-color: #fde2e8;
+    }
+
+    #trending & {
+        background-color: #f83839;
+    }
+
+    #group & {
+        background-color: #fbfbfb;
+    }
+
     #poli & {
-        background-color: #fa3838;
+        background-color: #43238b;
     }
 
     #regrets & {
@@ -651,14 +674,14 @@ main {
     }
 
     #join & {
-        background-color: #ffffff;
+        background-color: #fbede8;
     }
 
     #social & {
-        background-color: #fde1e8;
+        background-color: #eae5fe;
     }
 
     #share & {
-        background-color: #ebe6fe;
+        background-color: #2b1141;
     }
 }

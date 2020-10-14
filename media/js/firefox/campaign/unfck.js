@@ -57,9 +57,11 @@
     function onLoad() {
         // Set up twitter link handler
         var tw = document.getElementById('js-tw');
+        var tw_jack = document.getElementById('js-tw-jack');
         var fb = document.getElementById('js-fb');
 
         tw.addEventListener('click', handleShareLinkClick, false);
+        tw_jack.addEventListener('click', handleShareLinkClick, false);
         fb.addEventListener('click', handleShareLinkClick, false);
     }
 
