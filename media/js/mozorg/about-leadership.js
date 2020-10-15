@@ -29,7 +29,7 @@ if (typeof window.Mozilla === 'undefined') {
                     content.appendChild(modalContent);
                 },
                 onDestroy: function() {
-                    modalContent.remove();
+                    modalContent.parentNode.removeChild(modalContent);
                 }
             });
         });
