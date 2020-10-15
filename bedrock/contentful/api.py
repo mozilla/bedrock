@@ -80,12 +80,35 @@ class ContentfulHomePage(ContentfulBase):
     ]
     # size, aspect
     card_layouts = {
+        'sixCardLayout': [
+            ('small', '3-2'),
+            ('small', '3-2'),
+            ('small', '3-2'),
+            ('small', '3-2'),
+            ('small', '3-2'),
+            ('small', '3-2'),
+        ],
         'fiveCardLayout': [
             ('large', '16-9'),
             ('small', '1-1'),
             ('small', '3-2'),
             ('small', '3-2'),
             ('small', '3-2'),
+        ],
+        'fourCardLayout': [
+            ('extra-small', '16-9'),
+            ('extra-small', '16-9'),
+            ('extra-small', '16-9'),
+            ('extra-small', '16-9'),
+        ],
+        'threeCardLayout': [
+            ('small', '1-1'),
+            ('small', '3-2'),
+            ('small', '1-1'),
+        ],
+        'twoCardLayout': [
+            ('medium', '3-2'),
+            ('medium', '3-2'),
         ],
     }
     # normal, high-res
