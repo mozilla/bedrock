@@ -702,6 +702,13 @@
         "css/firefox/unfck.fr.scss"
       ],
       "name": "firefox-unfck-fr"
+    },
+    {
+      "files": [
+        "css/firefox/more.scss",
+        "css/base/mozilla-lazy-image.scss"
+      ],
+      "name": "more"
     }
   ],
   "js": [
@@ -1301,6 +1308,13 @@
         "js/firefox/campaign/unfck.de.js"
       ],
       "name": "firefox-unfck-de"
+    },
+    {
+      "files": [
+        "js/base/mozilla-lazy-load.js",
+        "js/firefox/more.js"
+      ],
+      "name": "more"
     }
   ]
 }

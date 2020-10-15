@@ -6,6 +6,7 @@ from django.conf.urls import url
 import bedrock.releasenotes.views
 from bedrock.mozorg.util import page
 from bedrock.releasenotes import version_re
+from django.conf import settings
 
 from bedrock.firefox import views
 from bedrock.utils import views as utils_views
@@ -171,4 +172,7 @@ urlpatterns = (
 
     # Unfck campaign
     page('firefox/unfck', 'firefox/campaign/unfck/index.html', active_locales=['de', 'en-US', 'fr']),
+
+    # Issue #9490 - Evergreen Content for SEO
+    page('firefox/more', 'firefox/more.html', ftl_files='firefox/more'),
 )
