@@ -171,6 +171,9 @@ class ContentfulHomePage(ContentfulBase):
         if hasattr(card, 'card'):
             card = card.card
 
+        if 'aspect_ratio' in card.fields():
+            aspect = card.aspect_ratio.replace('x', '-')
+
         card_data = {
             'class': f'mzp-c-card-{size}',
             'aspect_ratio': f'mzp-has-aspect-{aspect}',
