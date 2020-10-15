@@ -18,7 +18,9 @@ from django.http import (
 )
 
 from django.utils.cache import patch_response_headers
+from django.utils.decorators import method_decorator
 from django.utils.encoding import force_text
+from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
 from django.views.generic.base import TemplateView
@@ -29,6 +31,7 @@ from product_details.version_compare import Version
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.base.waffle import switch
+from bedrock.contentful.api import contentful_unfck_page
 from bedrock.firefox.firefox_details import firefox_android, firefox_desktop
 from bedrock.firefox.forms import SendToDeviceWidgetForm
 from bedrock.newsletter.forms import NewsletterFooterForm
@@ -803,3 +806,37 @@ def firefox_welcome_page1(request):
 
     return l10n_utils.render(request, template_name, context,
                              ftl_files='firefox/welcome/page1')
+
+
+@method_decorator(never_cache, name='dispatch')
+class UnfckPagePreviewView(L10nTemplateView):
+    locales_map = {
+        'en': 'en-US',
+    }
+    card_data_lang = 'en'
+
+    def get_preview_locale(self):
+        return self.locales_map.get(self.card_data_lang, self.card_data_lang)
+
+    def get_preview_url(self, page_id):
+        return f'/{self.get_preview_locale()}/homepage-preview/{page_id}/'
+
+    def get_template_names(self):
+        return [
+            f'firefox/campaign/unfck/index-preview-{self.card_data_lang}.html',
+            'firefox/campaign/unfck/index-preview.html',
+        ]
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        page_data = contentful_unfck_page.get_page_data(ctx['content_id'])
+        ctx['unfck_cards'] = page_data['cards']
+        self.card_data_lang = page_data['lang']
+        return ctx
+
+    def render_to_response(self, context, **response_kwargs):
+        locale = l10n_utils.get_locale(self.request)
+        if not locale.startswith(self.card_data_lang):
+            return HttpResponsePermanentRedirect(self.get_preview_url(context['content_id']))
+
+        return super().render_to_response(context, **response_kwargs)

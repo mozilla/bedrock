@@ -6,7 +6,7 @@ from django.utils.timezone import now
 
 from django_extensions.db.fields.json import JSONField
 
-from bedrock.contentful.api import contentful
+from bedrock.contentful.api import contentful_home_page
 
 
 def data_hash(data):
@@ -24,7 +24,7 @@ class ContentfulEntryManager(models.Manager):
     def refresh(self, force=False):
         updated_count = 0
         added_count = 0
-        for page in contentful.get_all_page_data():
+        for page in contentful_home_page.get_all_page_data():
             hash = data_hash(page)
             try:
                 obj = self.get(contentful_id=page['id'])

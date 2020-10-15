@@ -12,7 +12,7 @@ from lib import l10n_utils
 from lib.l10n_utils import L10nTemplateView, get_locale
 from lib.l10n_utils.fluent import ftl_file_is_active
 
-from bedrock.contentful.api import contentful
+from bedrock.contentful.api import contentful_home_page
 from bedrock.contentful.models import ContentfulEntry
 from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.forums import ForumsFile
@@ -171,7 +171,7 @@ class HomePagePreviewView(L10nTemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        page_data = contentful.get_home_page_data(ctx['content_id'])
+        page_data = contentful_home_page.get_page_data(ctx['content_id'])
         ctx['card_layouts'] = page_data['layouts']
         self.card_data_lang = page_data['lang'].lower()
         return ctx

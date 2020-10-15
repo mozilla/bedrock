@@ -1,7 +1,10 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+from django.conf import settings
 from django.conf.urls import url
+from django.urls import path
 
 import bedrock.releasenotes.views
 from bedrock.mozorg.util import page
@@ -174,3 +177,8 @@ urlpatterns = (
     # Unfck campaign
     page('firefox/unfck', 'firefox/campaign/unfck/index.html', active_locales=['de', 'en-US', 'fr']),
 )
+
+if settings.DEV:
+    urlpatterns += (
+        path('firefox/unfck-preview/<content_id>/', views.UnfckPagePreviewView.as_view()),
+    )

@@ -40,7 +40,32 @@ def _get_image_url(image, width, aspect):
     )
 
 
-class Contentful:
+class ContentfulBase:
+    def __init__(self):
+        self.client = get_client()
+
+
+class ContentfulUnfckPage(ContentfulBase):
+    def get_page_data(self, page_id):
+        page = self.client.entry(page_id, {'include': 3})
+        return {
+            'lang': page.lang.lower(),
+            'cards': [self.get_card(c) for c in page.cards],
+        }
+
+    def get_card(self, card):
+        card_data = {}
+        for name, value in card.fields().items():
+            if name == 'image':
+                card_data['src_gif'] = 'https:' + value.url(w=280, h=280)
+                card_data['src_high_res'] = 'https:' + value.url(w=350, h=350)
+            else:
+                card_data[name] = value
+
+        return card_data
+
+
+class ContentfulHomePage(ContentfulBase):
     client = None
     card_field_re = re.compile(r'card\d$')
     card_fields = [
@@ -78,14 +103,11 @@ class Contentful:
         'twoCardLayout': 'half',
     }
 
-    def __init__(self):
-        self.client = get_client()
-
     def get_all_page_data(self):
         pages = self.client.entries({'content_type': 'homepageEn'})
-        return [self.get_home_page_data(p.id) for p in pages]
+        return [self.get_page_data(p.id) for p in pages]
 
-    def get_home_page_data(self, page_id):
+    def get_page_data(self, page_id):
         layouts = []
         page = self.client.entry(page_id, {'include': 5})
         page_data = {
@@ -93,7 +115,7 @@ class Contentful:
             'id': page.id,
             'content_type': page.content_type.id,
         }
-        layouts_data = self.get_home_page_layouts(page)
+        layouts_data = self.get_page_layouts(page)
         for layout in layouts_data:
             layout_data = {
                 'type': layout.content_type.id,
@@ -107,7 +129,7 @@ class Contentful:
         page_data['layouts'] = layouts
         return page_data
 
-    def get_home_page_layouts(self, page_obj):
+    def get_page_layouts(self, page_obj):
         return [v for k, v in page_obj.fields().items() if k.startswith('card_group')]
 
     def get_layout_cards(self, layout):
@@ -152,4 +174,5 @@ class Contentful:
         return card_data
 
 
-contentful = Contentful()
+contentful_home_page = ContentfulHomePage()
+contentful_unfck_page = ContentfulUnfckPage()
