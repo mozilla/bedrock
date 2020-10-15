@@ -72,6 +72,22 @@ $image-path: '/media/protocol/img';
     }
 }
 
+//* -------------------------------------------------------------------------- */
+// Pocket Hero
+
+.pocket-sunny-hero {
+    &.mzp-t-product-firefox .mzp-c-hero-title {
+        background-image: url('/media/protocol/img/logos/pocket/logo-word-horz.svg');
+        background-size: 150px auto;
+    }
+    &.mzp-has-image.mzp-t-product-firefox .mzp-c-hero-title {
+        @media #{$mq-md} {
+            padding-top: 75px;
+        }
+    }
+}
+
+
 
 /* -------------------------------------------------------------------------- */
 // Custom card styles for lazy-loaded images.

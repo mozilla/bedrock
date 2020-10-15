@@ -88,13 +88,6 @@
         {{ content_card('card_5') }}
       </div>
 
-      <div class="mzp-l-card-quarter">
-        {{ content_card('card_6') }}
-        {{ content_card('card_7') }}
-        {{ content_card('card_8') }}
-        {{ content_card('card_9') }}
-      </div>
-
       {{ billboard(
         title=_('Open source. <br>Open minds.'),
         ga_title='Open source. <br>Open minds.',
@@ -105,10 +98,17 @@
         include_highres_image=True
       )}}
 
-      <div class="mzp-l-card-half">
-        {{ content_card('card_10') }}
-        {{ content_card('card_11') }}
-      </div>
+      {% call hero(
+        title='Welcome to the sunny side of the web.',
+        desc='Over 10 million people rely on Pocket to discover the best articles, stories and videos on the web. As part of the Firefox family, privacy is paramount.',
+        class='pocket-sunny-hero mzp-has-image mzp-t-mozilla mzp-l-reverse mzp-t-product-firefox',
+        image_url='img/home/2020/pocket-hero-square.jpg',
+        include_cta=True,
+        heading_level=3
+      ) %}
+        <a href="https://getpocket.com/" class="mzp-c-button mzp-t-product">Try Pocket</a>
+      {% endcall %}
+
     </div>
 
     {% if switch('show_pocket_feed', ['en']) and pocket_articles %}
@@ -147,11 +147,11 @@
       )}}
 
       <div class="mzp-l-card-hero">
-        {{ content_card('card_12') }}
-        {{ content_card('card_13') }}
-        {{ content_card('card_14') }}
-        {{ content_card('card_15') }}
-        {{ content_card('card_16') }}
+        {{ content_card('card_6') }}
+        {{ content_card('card_7') }}
+        {{ content_card('card_8') }}
+        {{ content_card('card_9') }}
+        {{ content_card('card_10') }}
       </div>
 
       {{ billboard(
@@ -165,9 +165,9 @@
       )}}
 
       <div class="mzp-l-card-third">
-        {{ content_card('card_17') }}
-        {{ content_card('card_18') }}
-        {{ content_card('card_19') }}
+        {{ content_card('card_11') }}
+        {{ content_card('card_12') }}
+        {{ content_card('card_13') }}
       </div>
 
       <aside class="mzp-c-newsletter">
