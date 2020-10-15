@@ -87,29 +87,20 @@
         {{ content_card('card_4') }}
         {{ content_card('card_5') }}
       </div>
-
-      {{ billboard(
-        title=_('Open source. <br>Open minds.'),
-        ga_title='Open source. <br>Open minds.',
-        desc=_('Mozilla creates powerful web tech for everyone.'),
-        link_cta=_('Explore Mozilla technology'),
-        link_url='https://labs.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=billboard',
-        image_url='img/home/2018/billboard-open-minds.png',
-        include_highres_image=True
-      )}}
-
+  </div>
+  <div class="mzp-t-mozilla">
       {% call hero(
         title='Welcome to the sunny side of the web.',
         desc='Over 10 million people rely on Pocket to discover the best articles, stories and videos on the web. As part of the Firefox family, privacy is paramount.',
         class='pocket-sunny-hero mzp-has-image mzp-t-mozilla mzp-l-reverse mzp-t-product-firefox',
-        image_url='img/home/2020/pocket-hero-square.jpg',
+        image_url='img/home/2020/pocket-hero.jpg',
+        include_highres_image=True,
         include_cta=True,
         heading_level=3
       ) %}
-        <a href="https://getpocket.com/" class="mzp-c-button mzp-t-product">Try Pocket</a>
+        <a href="https://getpocket.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=hero" class="mzp-c-button mzp-t-product">Try Pocket</a>
       {% endcall %}
-
-    </div>
+  </div>
 
     {% if switch('show_pocket_feed', ['en']) and pocket_articles %}
     <aside class="pocket">
