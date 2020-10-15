@@ -1,0 +1,63 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+@import '../../protocol/css/includes/lib';
+
+@import '../../protocol/css/components/hero';
+@import '../../protocol/css/components/card';
+@import '../../protocol/css/templates/card-layout';
+
+
+//* -------------------------------------------------------------------------- */
+// Primary CTA (page top)
+
+.privacy-promise-hero.mzp-c-hero.mzp-t-dark {
+    background-color: $color-ink-80;
+    overflow: hidden;
+    padding-bottom: 0;
+    text-align: left;
+
+    .mzp-c-hero-body {
+        max-width: none;
+    }
+
+    .privacy-promise-hero-desc {
+        @include text-body-lg;
+        margin-bottom: 0;
+    }
+
+    .mzp-c-hero-image {
+        display: none;
+    }
+
+    @media #{$mq-md} {
+        .mzp-c-hero-title {
+            @include font-size(32px);
+        }
+
+        .privacy-promise-hero-desc {
+            margin-bottom: $spacing-lg;
+        }
+
+        .mzp-c-hero-image {
+            display: block;
+            height: 100%;
+            margin: 0;
+
+            img {
+                @include bidi(((left, $spacing-xl, right, auto),));
+            }
+        }
+    }
+
+    @media #{$mq-lg} {
+        padding-bottom: $spacing-lg;
+
+        .mzp-c-hero-title {
+            @include font-size(48px);
+        }
+    }
+}
