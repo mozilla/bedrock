@@ -1376,7 +1376,7 @@ URLS = flatten((
 
     # Issue 9560
     url_test('/openletter/', 'https://foundation.mozilla.org/blog/mozilla-urges-facebook-and-twitter-halt-dangerous-recommendations/', query={
-    	'utm_source': 'mozilla.org',
-    	'utm_content': 'shortlink',
+        'utm_source': 'mozilla.org',
+        'utm_content': 'shortlink',
     }),
 ))
