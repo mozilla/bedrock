@@ -728,4 +728,10 @@ redirectpatterns = (
 
     redirect(r'^about/governance/policies/security/plugin-whitelist-policy/?$', 'https://wiki.mozilla.org/Plugins/Firefox_Whitelist'),
     redirect(r'^about/governance/policies/security-group/tld-idn/?$', 'https://wiki.mozilla.org/IDN_Display_Algorithm'),
+
+    # Issue 9560
+    redirect(r'^openletter/?$', 'https://foundation.mozilla.org/blog/mozilla-urges-facebook-and-twitter-halt-dangerous-recommendations/', query={
+        'utm_source': 'mozilla.org',
+        'utm_content': 'shortlink',
+    }),
 )
