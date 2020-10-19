@@ -18,7 +18,7 @@ set -xe
 CMD="py.test"
 CMD="${CMD} -r a"
 CMD="${CMD} --verbose"
-CMD="${CMD} -n ${PYTEST_PROCESSES}"
+CMD="${CMD} --workers ${PYTEST_PROCESSES}"
 CMD="${CMD} --base-url ${BASE_URL}"
 CMD="${CMD} --reruns 2"
 CMD="${CMD} --html ${RESULTS_PATH}/index.html"
