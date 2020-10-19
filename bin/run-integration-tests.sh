@@ -34,8 +34,8 @@ if [ "${DRIVER}" = "Remote" ]; then
   if [ -n "${PLATFORM}" ]; then CMD="${CMD} --capability platform \"${PLATFORM}\""; fi
 fi
 
-# Sauce Labs arguments
-if [ "${DRIVER}" = "SauceLabs" ]; then
+# Sauce Labs / Browser Stack arguments
+if [ "${DRIVER}" = "SauceLabs" ] || [ "${DRIVER}" = "BrowserStack" ]; then
   CMD="${CMD} --capability browserName \"${BROWSER_NAME}\""
   if [ -n "${BROWSER_VERSION}" ]; then CMD="${CMD} --capability version \"${BROWSER_VERSION}\""; fi
   if [ -n "${PLATFORM}" ]; then CMD="${CMD} --capability platform \"${PLATFORM}\""; fi
