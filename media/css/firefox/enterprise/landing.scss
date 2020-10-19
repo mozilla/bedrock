@@ -16,17 +16,6 @@ $image-path: '/media/protocol/img';
 
 
 //* -------------------------------------------------------------------------- */
-// Smooth Scroll
-
-html {
-    scroll-behavior: smooth;
-
-    @media (prefers-reduced-motion: reduce) {
-        scroll-behavior: auto;
-    }
-}
-
-//* -------------------------------------------------------------------------- */
 // Generic Container Styles
 
 .cta-container {
