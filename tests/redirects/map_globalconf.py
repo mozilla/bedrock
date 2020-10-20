@@ -1370,6 +1370,7 @@ URLS = flatten((
 
     # Unfck campaign
     url_test('/firefox/{unfuck,love,liebe,rendonslenetplusnet}/', '/firefox/unfck/'),
+    url_test('/{unfck,unfuck,love,liebe,rendonslenetplusnet}/', '/firefox/unfck/'),
 
     # issue 9148
     url_test('/firefox/campaign/', '/firefox/new/'),
