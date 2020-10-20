@@ -17,6 +17,24 @@
 
 {% set android_url = firefox_adjust_url('android', 'firefox-browsers-chromebook') %}
 
+{% block sub_navigation %}
+<nav class="c-sub-navigation">
+  <div class="mzp-l-content">
+    <div class="c-sub-navigation-content">
+      <h2 class="c-sub-navigation-title">{{ ftl('sub-navigation-firefox-for-desktop', fallback='navigation-firefox-browser-for-desktop') }}</h2>
+      <ul class="c-sub-navigation-list">
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.new.protocol.download_windows') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Windows">{{ ftl('sub-navigation-windows') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.windows-64-bit') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Windows 64-bit">{{ ftl('sub-navigation-windows-64-bit') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.new.protocol.download_mac') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Mac">{{ ftl('sub-navigation-mac') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.new.protocol.download_linux') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Linux">{{ ftl('sub-navigation-linux') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.chromebook') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Chromebook">{{ ftl('sub-navigation-chromebook') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.all') }}" data-link-type="nav" data-link-position="subnav" data-link-name="All Languages">{{ ftl('sub-navigation-all-languages', fallback='download-button-systems-languages') }}</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
 {% block content %}
 <div class="mzp-l-content">
   {% call hero(
@@ -47,7 +65,8 @@
   {% endcall %}
 
   <section>
-    <h2>{{ ftl('browsers-chromebook-why-get-firefox') }}</h2>
+    <h2 class="c-section-title">{{ ftl('browsers-chromebook-why-get-firefox') }}</h2>
+
     {% call feature_card(
       image_url='img/firefox/browsers/chromebook/shield.png',
       include_highres_image=True,

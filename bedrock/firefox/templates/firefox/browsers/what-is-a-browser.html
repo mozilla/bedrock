@@ -20,6 +20,26 @@
   {{ css_bundle('what-is-a-browser') }}
 {% endblock %}
 
+{% block sub_navigation %}
+  {% if ftl_has_messages('sub-navigation-firefox', 'sub-navigation-browser-history') %}
+    <nav class="c-sub-navigation">
+      <div class="mzp-l-content">
+        <div class="c-sub-navigation-content">
+          <h2 class="c-sub-navigation-title">
+            <a href="{{ url('firefox.browsers.index') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Firefox">
+              <img class="c-sub-navigation-icon" src="{{ static('protocol/img/logos/firefox/logo-sm.png') }}" width="24" height="24" alt="">
+             {{ ftl('sub-navigation-firefox') }}
+            </a>
+          </h2>
+          <ul class="c-sub-navigation-list">
+            <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.browser-history') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Browser History">{{ ftl('sub-navigation-browser-history') }}</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  {% endif %}
+{% endblock %}
+
 {% block content %}
   <div class="mzp-l-content">
   <article class="mzp-c-article">

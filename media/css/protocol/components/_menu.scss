@@ -1,0 +1,366 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../../protocol/css/includes/lib';
+
+@mixin highlighted {
+    &:after {
+        background: $color-black;
+        bottom: -1px;
+        content: '';
+        height: 3px;
+        left: 0;
+        position: absolute;
+        width: 100%;
+
+        @media #{$mq-md} {
+            left: 8px;
+            width: calc(100% - 16px);
+        }
+
+        @media #{$mq-lg} {
+            left: 16px;
+            width: calc(100% - 32px);
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Menu top navigation
+
+.c-menu {
+    h1, h2, h3, h4, h5, h6 {
+        @include font-base;
+    }
+
+    @media #{$mq-md} {
+        z-index: 0;
+    }
+}
+
+.c-menu-category-list {
+    margin-bottom: $spacing-sm;
+
+    @media #{$mq-md} {
+        @include clearfix;
+        margin-bottom: 0;
+        padding-top: $spacing-md;
+    }
+}
+
+.c-menu-category {
+    border-top: 1px solid $color-marketing-gray-20;
+    position: relative;
+
+    .c-menu-title {
+        @include font-base;
+        @include text-body-md;
+        color: $color-black;
+        display: block;
+        font-weight: bold;
+        margin-bottom: 0;
+        min-height: 32px;
+        padding: $spacing-sm 0;
+        position: relative;
+        text-decoration: none;
+
+        &:hover,
+        &:active,
+        &:focus {
+            color: inherit;
+            text-decoration: underline;
+        }
+
+        &:link:active {
+            background: none;
+        }
+    }
+
+    &.mzp-has-drop-down .c-menu-title {
+        text-decoration: none;
+
+        &:before {
+            background: $url-image-arrow-down-form top left no-repeat;
+            @include background-size(20px, 20px);
+            @include bidi(((right, 8px, left, auto),));
+            @include transition(transform 100ms ease-in-out);
+            content: '';
+            height: 20px;
+            margin-top: -8px;
+            position: absolute;
+            top: 50%;
+            width: 20px;
+        }
+    }
+
+    @supports(display: flex) {
+        .c-menu-title {
+            align-items: center;
+            display: flex;
+        }
+    }
+
+    @media #{$mq-md} {
+        @include bidi(((float, left, right),));
+        border-top: 0;
+        display: inline-block;
+
+        .c-menu-title {
+            border-bottom: none;
+            padding: 0 $spacing-sm;
+
+            &.mzp-has-drop-down {
+                cursor: default;
+            }
+        }
+
+        &.mzp-has-drop-down .c-menu-title:before {
+            display: none;
+        }
+
+        &.mzp-has-drop-down .c-menu-panel {
+            @include bidi(((left, 0, auto), (right, auto, 0),));
+        }
+
+        // Offset the dropdown to the other side for items 4 and up
+        &:nth-child(n+4).mzp-has-drop-down .c-menu-panel {
+            @include bidi(((left, auto, 0), (right, 0, auto),));
+        }
+    }
+
+    @media #{$mq-lg} {
+        .c-menu-title {
+            padding: 0 $spacing-md;
+        }
+    }
+}
+
+// Basic hover interactions with JavaScript disabled or not supported..
+.c-menu.mzp-is-basic .c-menu-category {
+
+    .c-menu-title:before {
+        display: none;
+    }
+
+    @media #{$mq-md} {
+        .c-menu-title:before {
+            display: none;
+        }
+
+        &.mzp-has-drop-down:hover,
+        &.mzp-has-drop-down:focus {
+            .mzp-c-menu-title {
+                @include highlighted;
+                z-index: 1001;
+            }
+
+            .c-menu-panel {
+                display: block;
+                z-index: 1000;
+            }
+        }
+
+        &.mzp-has-drop-down:focus-within {
+            .c-menu-title {
+                @include highlighted;
+                z-index: 1001;
+            }
+
+            .c-menu-panel {
+                display: block;
+                z-index: 1000;
+            }
+        }
+    }
+}
+
+// Enhanced hover interactions with JavaScript enabled.
+.c-menu.mzp-is-enhanced .c-menu-category {
+    &.mzp-is-selected {
+        .c-menu-title:before {
+            @include transform(rotate(180deg));
+        }
+
+        .c-menu-panel {
+            display: block;
+            overflow: hidden;
+        }
+    }
+
+    @media #{$mq-md} {
+        &.mzp-is-animated {
+            .c-menu-panel,
+            .c-menu-title:after {
+                @include animation(mzp-a-fade-in 80ms ease-in 0ms 1 normal both);
+            }
+        }
+
+        &.mzp-is-selected {
+            .c-menu-title {
+                @include highlighted;
+                z-index: 101;
+            }
+
+            .c-menu-panel {
+                display: block;
+                overflow: visible;
+                z-index: 100;
+            }
+        }
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Menu panel
+
+.c-menu-panel {
+    @include border-box;
+    display: none;
+
+    .c-menu-button-close {
+        display: none;
+    }
+
+    .c-menu-category-link {
+        border-top: 1px solid $color-marketing-gray-20;
+        display: block;
+        font-weight: bold;
+        margin: $spacing-sm 0 $spacing-md;
+        padding-top: $spacing-md;
+        text-align: center;
+
+        a:link,
+        a:visited {
+            color: $color-black;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+
+            &:hover,
+            &:active,
+            &:focus {
+                @include transition(border-bottom-color 100ms ease-in-out);
+                border-bottom: 2px solid $color-black;
+                color: $color-black;
+            }
+        }
+    }
+
+    .c-menu-panel-container {
+        @include border-box;
+        background: $color-white;
+        margin: 0 auto;
+        max-width: $content-max;
+        padding: 0;
+        position: relative;
+    }
+
+    .c-menu-panel-content > ul {
+        margin: 0;
+
+        li:last-child .c-menu-item {
+            border-bottom: 0;
+        }
+    }
+
+    @media #{$mq-sm} {
+        .c-menu-panel-content {
+            @include clearfix;
+            position: relative;
+
+            @supports (display:grid) {
+                &> ul {
+                    display: grid;
+                    grid-auto-flow: row;
+                    grid-template-columns: repeat(2, 1fr);
+
+                    &.mzp-l-rows-two {
+                        grid-auto-flow: column;
+                        grid-template-rows: repeat(2, max-content);
+                    }
+
+                    &.mzp-l-rows-three {
+                        grid-auto-flow: column;
+                        grid-template-rows: repeat(3, max-content);
+                    }
+
+                    &.mzp-l-rows-four {
+                        grid-auto-flow: column;
+                        grid-template-rows: repeat(4, max-content);
+                    }
+
+                    &.mzp-l-rows-five {
+                        grid-auto-flow: column;
+                        grid-template-rows: repeat(5, max-content);
+                    }
+                }
+            }
+        }
+    }
+
+    @media #{$mq-md} {
+        padding: $spacing-lg 0;
+        position: absolute;
+        z-index: 1000;
+
+        .c-menu-panel-container {
+            @include clearfix;
+            background: $color-white;
+            border-radius: $border-radius-md;
+            box-shadow: $box-shadow-md;
+            padding: $spacing-md;
+        }
+
+        // Close button is only visible when focused, for keyboard users
+        .c-menu-button-close {
+            @include bidi((
+                (right, auto, -12px),
+                (left, -12px, auto),
+            ));
+            @include image-replaced;
+            background: $color-white url('#{$image-path}/icons/close.svg') center center no-repeat;
+            @include background-size(20px, 20px);
+            border-radius: $border-radius-sm;
+            border: none;
+            box-shadow: $box-shadow-sm;
+            cursor: pointer;
+            display: inline-block;
+            height: 24px;
+            padding: $spacing-sm;
+            padding: 0;
+            position: absolute;
+            top: -40em;
+            width: 24px;
+
+            &:hover,
+            &:focus,
+            &:active {
+                top: -10px;
+            }
+        }
+
+        .c-menu-panel-content {
+            @include clearfix;
+            position: relative;
+
+            &> ul {
+                margin: 0;
+            }
+        }
+
+        .c-menu-category-link {
+            border-top: 0;
+            margin-bottom: 0;
+            padding-top: 0;
+        }
+    }
+}
+
+.c-menu.mzp-is-basic .c-menu-panel {
+    display: block;
+
+    @media #{$mq-md} {
+        display: none;
+    }
+}

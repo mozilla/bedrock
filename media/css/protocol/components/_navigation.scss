@@ -4,87 +4,246 @@
 
 @import '../../../protocol/css/includes/lib';
 
-.mzp-c-navigation {
+//* -------------------------------------------------------------------------- */
+// Navigation styles
 
-    .mzp-c-navigation-download {
-        padding-top: 4px; //https://github.com/mozilla/protocol/issues/629
-    }
+.c-navigation {
+    background: $color-white;
+    box-shadow: 0 0 1px 1px rgba(29, 17, 51, .04), 0 0 3px 2px rgba(9, 32, 77, .12), 0 0 2px -3px rgba(29, 17, 51, .12);
+    color: $color-black;
 
-    .mzp-c-navigation-download .download-list {
-        margin-bottom: 0;
-    }
+    .c-navigation-l-content {
+        @include clearfix;
+        padding: $spacing-md $spacing-lg;
+        position: relative;
 
-    .mzp-c-card {
-        .mzp-c-card-image {
-            opacity: 1;
-            transition: opacity 0.3s;
+        @media #{$mq-md} {
+            padding: 0 $layout-lg;
         }
 
-        .mzp-c-card-image[data-src] {
-            opacity: 0;
+        @media #{$mq-lg} {
+            padding: 0 $layout-xl;
+        }
+    }
+
+    .c-navigation-container {
+        @include clearfix;
+        margin: 0 auto;
+        max-width: $content-max;
+    }
+}
+
+.c-navigation-items {
+    clear: both;
+    padding-top: $spacing-md;
+
+    @media #{$mq-md} {
+        clear: none;
+        padding-top: 0;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Sticky navigation styles
+
+@supports (position: sticky) {
+    html.mzp-has-sticky-navigation {
+        .c-navigation.mzp-is-sticky {
+            @include transition(transform 300ms ease-in-out);
+            left: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            &.mzp-is-scrolling {
+                // Shadow colors are equivalent to $color-ink-90, $color-blue-90, $color-ink-90
+                box-shadow: 0 0 6px 1px rgba(29, 17, 51, .04), 0 0 8px 2px rgba(9, 32, 77, .12), 0 0 5px -3px rgba(29, 17, 51, .12);
+            }
+
+            &.mzp-is-hidden {
+                @include transform(translate(0, -110%));
+            }
+        }
+
+        // add scroll-offset for anchor links.
+        .mzp-is-anchor-link {
+            scroll-margin-top: 120px; /* stylelint-disable-line property-no-unknown */
         }
     }
 }
 
-/**
- * Hide nav download button on unsupported systems to prevent
- * taking over large amounts of screen real estate.
- */
+//* -------------------------------------------------------------------------- */
+// Mozilla Logo
+
+.c-navigation-logo {
+    @include bidi(((float, left, right),));
+    line-height: 0;
+
+    .c-navigation-logo-image {
+        display: inline-block;
+        height: 32px;
+    }
+
+    @media #{$mq-md} {
+        @include bidi(((margin, $spacing-md ($spacing-sm * 2) $spacing-md 0, $spacing-md 0 $spacing-md ($spacing-sm * 2)),));
+    }
+
+    @media #{$mq-lg} {
+        @include bidi(((margin, $spacing-md ($spacing-md * 2) $spacing-md 0, $spacing-md 0 $spacing-md ($spacing-md * 2)),));
+    }
+
+    @media #{$mq-xl} {
+        @include bidi(((margin, $spacing-md ($spacing-lg * 2) $spacing-md 0, $spacing-md 0 $spacing-md ($spacing-lg * 2)),));
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Menu molecule
+
+.c-navigation-menu {
+    vertical-align: bottom;
+    margin-bottom: -$spacing-md;
+
+    @media #{$mq-md} {
+        @include bidi(((margin-left, -$spacing-sm, margin-right, 0),));
+        display: inline-block;
+        margin-bottom: 0;
+        width: auto;
+    }
+
+    @media #{$mq-lg} {
+        @include bidi(((margin-left, -$spacing-md, margin-right, 0),));
+    }
+
+    @media #{$mq-xl} {
+        @include bidi(((margin-left, -$spacing-lg, margin-right, 0),));
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Shoulder - usually contains a button
+
+.c-navigation-shoulder {
+    margin: $spacing-xl 0 $spacing-lg;
+    text-align: center;
+
+    .mzp-c-button-download-container {
+        margin-bottom: 0;
+
+        // hide privacy link
+        .mzp-c-button-download-privacy-link {
+            display: none;
+        }
+    }
+
+    @media #{$mq-md} {
+        @include bidi((
+            (float, right, left),
+            (margin, $spacing-md 0 $spacing-md $spacing-sm, $spacing-md $spacing-sm $spacing-md 0)
+        ));
+        display: block;
+        margin: $spacing-lg 0;
+    }
+
+    @media #{$mq-lg} {
+        @include bidi(((margin, $spacing-md 0 $spacing-md $spacing-md, $spacing-md $spacing-md $spacing-md 0),));
+    }
+
+    @media #{$mq-xl} {
+        @include bidi(((margin, $spacing-md 0 $spacing-md $spacing-lg, $spacing-md $spacing-lg $spacing-md 0),));
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Mobile Navigation Icon
+
+.c-navigation-menu-button {
+    @include bidi((
+        (background-position, right 6px center, left 6px center),
+        (float, right, left),
+        (padding, 0 32px 0 6px, 0 6px 0 32px),
+    ));
+    background-color: transparent;
+    background-image: url('#{$image-path}/icons/menu.svg');
+    background-repeat: no-repeat;
+    border-radius: $border-radius-sm;
+    border: none;
+    display: none;
+    height: 32px;
+
+    &:hover,
+    &:active,
+    &:focus  {
+        background-color: $color-marketing-gray-20;
+    }
+
+    &.mzp-is-active {
+        background-color: $color-marketing-gray-20;
+        background-image: url('#{$image-path}/icons/close.svg');
+    }
+}
+
+.c-navigation-menu-button:not(.has-label) {
+    @include bidi(((background-position, center center, center center ),));
+    @include bidi(((padding, 0, 0),));
+    @include image-replaced;
+    cursor: pointer;
+    width: 32px;
+}
+
+
+.js .c-navigation-menu-button {
+    display: block;
+
+    @media #{$mq-md} {
+        display: none;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Mobile Navigation drawer
+
+.js .c-navigation-l-content {
+
+    .c-navigation-items {
+        display: none;
+
+        &.mzp-is-open {
+            display: block;
+        }
+
+        @media #{$mq-md} {
+            display: block;
+        }
+    }
+}
+
+
+//*----------------------------------------------------------------------------- */
+// Bedrock-specific stuff that doesn't belong in Protocol
+
+// Hide nav download button on unsupported systems to prevent
+// taking over large amounts of screen real estate.
 html.other {
-    .mzp-c-navigation .mzp-c-navigation-download {
+    .c-navigation .c-navigation-shoulder {
         display: none;
     }
 }
 
 // Global FxA CTA
-.mzp-c-navigation {
+.c-navigation {
     .c-navigation-fxa-cta-container {
-        display: none;
-    }
-
-    .c-navigation-fxa-cta-small-link {
-        margin-bottom: $spacing-xs;
-        text-align: center;
-
-        a:link,
-        a:visited {
-            @include text-body-xs;
-            color: $color-black;
-            text-decoration: none;
-        }
-
-        a:hover,
-        a:active,
-        a:focus {
-            color: inherit;
-            text-decoration: underline;
-        }
-    }
-
-    @media #{$mq-md} {
-        .c-navigation-fxa-cta-small-link {
-            text-align: right;
-        }
-    }
-
-    &.fxa-signed-in .c-navigation-fxa-cta-small-link {
         display: none;
     }
 }
 
 // Show FxA button to Firefoxes...
-html.is-firefox .mzp-c-navigation {
+html.is-firefox .c-navigation {
     .mzp-c-button-download-container {
         display: none;
-    }
-
-    .mzp-c-navigation-download {
-        margin-bottom: 0;
-    }
-
-    // Issue #8620
-    &.fxa-signed-in .mzp-c-navigation-download {
-        margin-bottom: $spacing-lg;
     }
 
     .c-navigation-fxa-cta-container {
@@ -93,8 +252,8 @@ html.is-firefox .mzp-c-navigation {
 }
 
 // ... but not on mobile platforms
-html.is-firefox.ios .mzp-c-navigation,
-html.is-firefox.android .mzp-c-navigation {
+html.is-firefox.ios .c-navigation,
+html.is-firefox.android .c-navigation {
     .mzp-c-button-download-container {
         display: block;
     }
@@ -124,7 +283,7 @@ html.is-firefox.android .mzp-c-navigation {
     }
 }
 
-.nav-button-is-ready .mzp-c-navigation-download .mzp-c-button {
+.nav-button-is-ready .c-navigation-shoulder .mzp-c-button {
     animation: bounce 2s .5s;
     transform-origin: center bottom;
 
@@ -133,4 +292,4 @@ html.is-firefox.android .mzp-c-navigation {
     }
 }
 
-
+//* -- end bedrock stuff --*/

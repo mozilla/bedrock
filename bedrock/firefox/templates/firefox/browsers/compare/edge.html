@@ -12,9 +12,11 @@
 {{ css_bundle('compare-details') }}
 {% endblock %}
 
-{% block content %}
-{% include '/firefox/browsers/compare/includes/subnav.html' %}
+{% block sub_navigation %}
+  {% include 'firefox/browsers/compare/includes/subnav.html' %}
+{% endblock %}
 
+{% block content %}
 <section class="mzp-c-hero compare-details-hero compare-details-hero--edge">
   <div class="mzp-l-content l-compare-details-content">
     <div class="mzp-c-hero-body">

@@ -373,6 +373,12 @@
 </main>
 {% endblock %}
 
+{% block site_footer %}
+  {% with theme_class='mzp-t-ink' %}
+    {% include 'includes/protocol/footer/footer.html' %}
+  {% endwith %}
+{% endblock %}
+
 {% block site_js %}
   {% if switch('unfck-convert') %}
     <!--[if !IE]><!-->

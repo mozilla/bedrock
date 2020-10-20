@@ -19,8 +19,8 @@ def test_navigation(base_url, selenium):
     assert developer_edition_page.seed_url in selenium.current_url
 
     page.open()
-    about_page = page.navigation.open_about_page()
-    assert about_page.seed_url in selenium.current_url
+    manifesto_page = page.navigation.open_manifesto_page()
+    assert manifesto_page.seed_url in selenium.current_url
 
 
 @pytest.mark.smoke
@@ -38,8 +38,8 @@ def test_mobile_navigation(base_url, selenium_mobile):
 
     page.open()
     page.navigation.show()
-    about_page = page.navigation.open_about_page()
-    assert about_page.seed_url in selenium_mobile.current_url
+    manifesto_page = page.navigation.open_manifesto_page()
+    assert manifesto_page.seed_url in selenium_mobile.current_url
 
 
 @pytest.mark.smoke

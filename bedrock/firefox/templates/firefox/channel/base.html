@@ -14,24 +14,28 @@
 
 {% block body_class %}{% endblock %}
 
+{% block sub_navigation %}
+<nav class="c-sub-navigation">
+  <div class="mzp-l-content">
+    <div class="c-sub-navigation-content">
+      <h2 class="c-sub-navigation-title">
+        <a href="{{ url('firefox.browsers.index') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Firefox">
+          <img class="c-sub-navigation-icon" src="{{ static('protocol/img/logos/firefox/logo-sm.png') }}" width="24" height="24" alt="">
+         {{ ftl('sub-navigation-firefox') }}
+        </a>
+      </h2>
+      <ul class="c-sub-navigation-list">
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.channel.desktop') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Nightly and Beta">{{ ftl('sub-navigation-nightly-and-beta') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.channel.android') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Android Nightly and Beta">{{ ftl('sub-navigation-android-nightly-and-beta') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.channel.ios') }}" data-link-type="nav" data-link-position="subnav" data-link-name="iOS TestFlight">{{ ftl('sub-navigation-ios-test-flight') }}</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
 {% block content %}
 <main role="main">
-  <nav class="c-sub-navigation">
-    <div class="mzp-l-content">
-      <div class="c-sub-navigation-content">
-        <h2 class="c-sub-navigation-title"></h2>
-        <ul class="c-sub-navigation-list">
-          <li class="c-sub-navigation-item"><a href="{{ url('firefox.channel.desktop') }}" data-link-type="nav"
-              data-link-position="subnav" data-link-name="Desktop">{{ ftl('firefox-channel-desktop') }}</a></li>
-          <li class="c-sub-navigation-item"><a href="{{ url('firefox.channel.android') }}" data-link-type="nav"
-              data-link-position="subnav" data-link-name="Android">{{ ftl('firefox-channel-android') }}</a></li>
-          <li class="c-sub-navigation-item"><a href="{{ url('firefox.channel.ios') }}" data-link-type="nav"
-              data-link-position="subnav" data-link-name="iOS">{{ ftl('firefox-channel-ios') }}</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
   {% call hero(
     title=ftl('firefox-channel-take-a-browse-on-the-wild-side'),
     desc=ftl('firefox-channel-be-among-the-first-to-explore'),

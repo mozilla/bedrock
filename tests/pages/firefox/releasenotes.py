@@ -32,8 +32,6 @@ class FirefoxReleaseNotesPage(BasePage):
     _secondary_play_store_button_locator = (By.ID, 'download-android-secondary')
     _primary_app_store_button_locator = (By.ID, 'download-ios-primary')
     _secondary_app_store_button_locator = (By.ID, 'download-ios-secondary')
-    _pre_releases_menu_link_locator = (By.CSS_SELECTOR, '#release-nav .mzp-c-menu-title[aria-controls="release-other"')
-    _pre_releases_menu_locator = (By.ID, 'release-other')
 
     @property
     def primary_download_button_release(self):
@@ -134,7 +132,3 @@ class FirefoxReleaseNotesPage(BasePage):
     @property
     def is_pre_releases_menu_displayed(self):
         return self.is_element_displayed(*self._pre_releases_menu_locator)
-
-    def open_pre_releases_menu(self):
-        self.scroll_element_into_view(*self._pre_releases_menu_link_locator).click()
-        self.wait.until(lambda s: self.is_pre_releases_menu_displayed)

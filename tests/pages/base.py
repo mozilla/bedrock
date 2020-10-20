@@ -54,16 +54,16 @@ class BasePage(ScrollElementIntoView, Page):
 
     class Navigation(BaseRegion):
 
-        _root_locator = (By.CLASS_NAME, 'mzp-c-navigation')
-        _toggle_locator = (By.CLASS_NAME, 'mzp-c-navigation-menu-button')
-        _menu_locator = (By.CLASS_NAME, 'mzp-c-navigation-items')
-        _firefox_menu_locator = (By.CSS_SELECTOR, '.mzp-c-menu-title[aria-controls="mzp-c-menu-panel-firefox"]')
-        _projects_menu_locator = (By.CSS_SELECTOR, '.mzp-c-menu-title[aria-controls="mzp-c-menu-panel-projects"]')
-        _developers_menu_locator = (By.CSS_SELECTOR, '.mzp-c-menu-title[aria-controls="mzp-c-menu-panel-developers"]')
-        _about_menu_locator = (By.CSS_SELECTOR, '.mzp-c-menu-title[aria-controls="mzp-c-menu-panel-about"]')
-        _firefox_desktop_page_locator = (By.CSS_SELECTOR, '.mzp-c-menu-item-link[data-link-name="Firefox Quantum Desktop Browser"]')
-        _developer_edition_page_locator = (By.CSS_SELECTOR, '.mzp-c-menu-item-link[data-link-name="Firefox Developer Edition"]')
-        _about_page_locator = (By.CSS_SELECTOR, '.mzp-c-menu-item-link[data-link-name="Mozilla"]')
+        _root_locator = (By.CLASS_NAME, 'c-navigation')
+        _toggle_locator = (By.CLASS_NAME, 'c-navigation-menu-button')
+        _menu_locator = (By.CLASS_NAME, 'c-navigation-items')
+        _firefox_menu_locator = (By.CSS_SELECTOR, '.c-menu-title[aria-controls="c-menu-panel-firefox"]')
+        _products_menu_locator = (By.CSS_SELECTOR, '.c-menu-title[aria-controls="c-menu-panel-products"]')
+        _about_menu_locator = (By.CSS_SELECTOR, '.c-menu-title[aria-controls="c-menu-panel-about"]')
+        _innovation_menu_locator = (By.CSS_SELECTOR, '.c-menu-title[aria-controls="c-menu-panel-innovation"]')
+        _firefox_desktop_page_locator = (By.CSS_SELECTOR, '.c-menu-item-link[data-link-name="Firefox Desktop Browser"]')
+        _developer_edition_page_locator = (By.CSS_SELECTOR, '.c-menu-item-link[data-link-name="Firefox Developer Edition"]')
+        _manifesto_page_locator = (By.CSS_SELECTOR, '.c-menu-item-link[data-link-name="Mozilla Manifesto"]')
         _firefox_download_button_locator = (By.CSS_SELECTOR, '#protocol-nav-download-firefox > .download-link')
         _firefox_account_button_locator = (By.CSS_SELECTOR, '.c-navigation-fxa-cta-container > .js-fxa-cta-link')
 
@@ -104,22 +104,16 @@ class BasePage(ScrollElementIntoView, Page):
             return DownloadPage(self.selenium, self.page.base_url).wait_for_page_to_load()
 
         def open_developer_edition_page(self):
-            self.open_navigation_menu(self._developers_menu_locator)
-            link = self.find_element(*self._developer_edition_page_locator)
-            href = link.get_attribute('href')
-            self.page.set_attribute(link, att_name='href', att_value=href + '?automation=true')
-            link.click()
+            self.open_navigation_menu(self._innovation_menu_locator)
+            self.find_element(*self._developer_edition_page_locator).click()
             from .firefox.developer import DeveloperPage
             return DeveloperPage(self.selenium, self.page.base_url).wait_for_page_to_load()
 
-        def open_about_page(self):
+        def open_manifesto_page(self):
             self.open_navigation_menu(self._about_menu_locator)
-            link = self.find_element(*self._about_page_locator)
-            href = link.get_attribute('href')
-            self.page.set_attribute(link, att_name='href', att_value=href + '?automation=true')
-            link.click()
-            from .about import AboutPage
-            return AboutPage(self.selenium, self.page.base_url).wait_for_page_to_load()
+            self.find_element(*self._manifesto_page_locator).click()
+            from .manifesto import ManifestoPage
+            return ManifestoPage(self.selenium, self.page.base_url).wait_for_page_to_load()
 
     class Footer(BaseRegion):
 

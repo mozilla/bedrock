@@ -43,6 +43,25 @@
 
 {% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-home' %}
 
+{% block sub_navigation %}
+{% if ftl_has_messages('sub-navigation-firefox', 'sub-navigation-faq', 'sub-navigation-learn-more') %}
+<nav class="c-sub-navigation">
+  <div class="mzp-l-content">
+    <div class="c-sub-navigation-content">
+      <h2 class="c-sub-navigation-title">
+        <img class="c-sub-navigation-icon" src="{{ static('protocol/img/logos/firefox/logo-sm.png') }}" width="24" height="24" alt="">
+        {{ ftl('sub-navigation-firefox') }}
+      </h2>
+      <ul class="c-sub-navigation-list">
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.faq') }}" data-link-type="nav" data-link-position="subnav" data-link-name="FAQ">{{ ftl('sub-navigation-faq') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.more') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Learn More">{{ ftl('sub-navigation-learn-more') }}</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endif %}
+{% endblock %}
+
 {% block page_banner %}
   {% if switch('firefox-daylight-promo-banner') %}
     {% include 'includes/banners/daylight/daylight-promo.html' %}
@@ -51,7 +70,6 @@
 
 {% block content %}
 <main role="main" class="firefox-home">
-
     <div class="c-lead">
       <div class="mzp-l-content">
         <h1 class="c-lead-title">{{ ftl('firefox-home-the-browser-is-just') }}</h1>

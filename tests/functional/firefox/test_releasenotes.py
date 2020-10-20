@@ -137,11 +137,3 @@ def test_secondary_download_button_android_nightly_displayed(base_url, selenium)
 def test_secondary_download_button_ios_displayed(base_url, selenium):
     page = FirefoxReleaseNotesPage(selenium, base_url, slug='ios/25.0').open()
     assert page.is_secondary_app_store_button_displayed
-
-
-@pytest.mark.smoke
-@pytest.mark.nondestructive
-def test_open_pre_releases_menu(base_url, selenium):
-    page = FirefoxReleaseNotesPage(selenium, base_url, slug='75.0').open()
-    page.open_pre_releases_menu()
-    assert page.is_pre_releases_menu_displayed

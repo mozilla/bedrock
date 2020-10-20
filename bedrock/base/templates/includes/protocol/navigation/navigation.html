@@ -1,0 +1,39 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
+{% if LANG == 'en-CA' %}
+  {% set logo_alt = ftl('navigation-v2-mozilla') + ' (CA)' %}
+{% elif LANG == 'en-GB' %}
+  {% set logo_alt = ftl('navigation-v2-mozilla') + ' (UK)' %}
+{% else %}
+  {% set logo_alt = ftl('navigation-v2-mozilla') %}
+{% endif %}
+
+<div class="c-navigation top-header-navigation mzp-is-sticky">
+  <div class="c-navigation-l-content">
+    <div class="c-navigation-container">
+      <button class="c-navigation-menu-button" type="button" aria-controls="c-navigation-items">{{ ftl('navigation-v2-menu') }}</button>
+      <div class="c-navigation-logo">
+        <a href="{{ url('mozorg.home') }}" data-link-name="mozilla home icon" data-link-type="nav">
+          <img class="c-navigation-logo-image" src="{{ static('protocol/img/logos/mozilla/black.svg') }}" alt="{{ logo_alt }}" width="112" height="32">
+        </a>
+      </div>
+
+      <div class="c-navigation-items" id="c-navigation-items">
+        {% include 'includes/protocol/navigation/nav-cta.html' %}
+        <div class="c-navigation-menu">
+          <nav class="c-menu mzp-is-basic">
+            <ul class="c-menu-category-list">
+              {% include 'includes/protocol/navigation/menus/firefox.html' %}
+              {% include 'includes/protocol/navigation/menus/products.html' %}
+              {% include 'includes/protocol/navigation/menus/whoweare.html' %}
+              {% include 'includes/protocol/navigation/menus/innovation.html' %}
+            </ul>
+          </nav>
+        </div><!-- close .c-navigation-menu -->
+      </div><!-- close .c-navigation-items -->
+    </div><!-- close .c-navigation-container -->
+  </div><!-- close .c-navigation-l-content -->
+</div><!-- close .c-navigation -->

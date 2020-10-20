@@ -32,8 +32,24 @@
 
 {% block site_header %}
   {% with hide_nav_download_button=True %}
-    {% include 'includes/protocol/navigation/menu-firefox/index.html' %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
   {% endwith %}
+{% endblock %}
+
+{% block sub_navigation %}
+<nav class="c-sub-navigation">
+  <div class="mzp-l-content">
+    <div class="c-sub-navigation-content">
+      <h2 class="c-sub-navigation-title">{{ ftl('sub-navigation-firefox-for-mobile', fallback='navigation-firefox-browser-for-mobile') }}</h2>
+      <ul class="c-sub-navigation-list">
+        <li class="c-sub-navigation-item"><a href="https://support.mozilla.org/products/ios/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=firefox-mobile" data-link-type="nav" data-link-position="subnav" data-link-name="iOS Support">{{ ftl('sub-navigation-ios-support', fallback='navigation-ios-support') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="https://support.mozilla.org/products/mobile/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=firefox-mobile" data-link-type="nav" data-link-position="subnav" data-link-name="Android Support">{{ ftl('sub-navigation-android-support', fallback='navigation-android-support') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="https://addons.mozilla.org/android/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=firefox-mobile" data-link-type="nav" data-link-position="subnav" data-link-name="Android Addons">{{ ftl('sub-navigation-android-addons') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.chromebook') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Chromebook">{{ ftl('sub-navigation-chromebook') }}</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 {% endblock %}
 
 {% block content %}

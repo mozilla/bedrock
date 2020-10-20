@@ -5,13 +5,37 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import '../../protocol/css/protocol.scss';
-@import '../../protocol/css/components/button';
 
-// Bedrock specific component tweaks.
-@import 'components/navigation';
+// These are general styles for elements/components that occur on every page.
+// Individual pages may include additional component styles as needed.
+
+// Fonts
+@import '../../protocol/css/includes/fonts/inter';
+@import '../../protocol/css/includes/fonts/metropolis';
+@import '../../protocol/css/includes/fonts/zilla-slab';
+
+// Base elements - general HTML elements
+@import '../../protocol/css/base/elements';
+
+// Base includes - animations
+@import '../../protocol/css/base/includes';
+
+// Utility includes
+@import '../../protocol/css/base/utilities/typography';
+
+// Global components
+@import '../../protocol/css/components/button';
+@import '../../protocol/css/components/card';
+@import '../../protocol/css/components/language-switcher';
 @import 'components/download-button';
+
+// Custom global components for nav and footer
+// These will later be backported to Protocol
 @import 'components/footer';
+@import 'components/navigation';
+@import 'components/menu';
+@import 'components/menu-item';
+@import 'components/sub-navigation';
 
 
 // Temporary styling until the newsletter component is updated in Protocol

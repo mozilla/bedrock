@@ -1,0 +1,177 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../../protocol/css/includes/lib';
+
+
+$icon-size-sm: 24px;
+$icon-size-md: 32px;
+
+.c-menu-item {
+    padding: $spacing-md 0;
+    border-bottom: 1px solid $color-marketing-gray-20;
+
+    .c-menu-item-link {
+        display: block;
+
+        &:link,
+        &:visited {
+            color: $color-black;
+            text-decoration: none;
+
+            .c-menu-item-title {
+                border-bottom: 2px solid transparent;
+            }
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+            .c-menu-item-title {
+                @include transition(border-bottom-color 100ms ease-in-out);
+                border-bottom: 2px solid $color-black;
+                color: $color-black;
+            }
+        }
+    }
+
+    .c-menu-item-head {
+        display: block;
+
+        .c-menu-item-title {
+            border-bottom: 2px solid transparent;
+        }
+    }
+
+    .c-menu-item-head,
+    .c-menu-item-link {
+        @include bidi(((padding-left, $icon-size-sm + $spacing-md, padding-right, 0),));
+        position: relative;
+
+        .c-menu-item-icon {
+            @include bidi(((left, 0, right, auto),));
+            height: $icon-size-sm;
+            margin: 0;
+            position: absolute;
+            top: 0;
+            width: $icon-size-sm;
+        }
+    }
+
+    .c-menu-item-title {
+        @include text-body-sm;
+        line-height: 1.1;
+        display: inline;
+    }
+
+    .c-menu-item-desc {
+        display: none;
+    }
+
+    @media #{$mq-sm} {
+        border-radius: $border-radius-sm;
+        border: 0;
+        height: 100%;
+        padding: 0;
+        width: auto;
+
+        &:hover,
+        &:focus,
+        &:active {
+            @include transition(background-color 100ms ease-in-out);
+            background-color: $color-marketing-gray-10;
+        }
+
+        .c-menu-item-head,
+        .c-menu-item-link {
+            padding-left: $spacing-md;
+        }
+
+        &.mzp-has-icon {
+            .c-menu-item-head,
+            .c-menu-item-link {
+                @include bidi(((padding-left, $spacing-sm + $icon-size-sm + $spacing-md, padding-right, 0),));
+                position: relative;
+
+                .c-menu-item-icon {
+                    @include bidi(((left, $spacing-sm, right, auto),));
+                    height: $icon-size-sm;
+                    margin: 0;
+                    position: absolute;
+                    top: $spacing-md;
+                    width: $icon-size-sm;
+                }
+            }
+        }
+
+        .c-menu-item-link,
+        .c-menu-item-head {
+            @include border-box;
+            height: 100%;
+            padding: $spacing-md;
+        }
+
+        .c-menu-item-desc {
+            @include text-body-xs;
+            display: block;
+            margin: $spacing-sm 0 0;
+        }
+    }
+
+    @media #{$mq-md} {
+        width: 200px;
+
+        .c-menu-item-title {
+            @include text-title-xxs;
+        }
+
+        // Hide descriptions in non-grid browsers, to shorten the menu
+        .c-menu-item-desc {
+            display: none;
+
+            @supports (display:grid) {
+                display: block;
+            }
+        }
+    }
+
+    @media #{$mq-lg} {
+        width: 260px;
+
+        &.mzp-has-icon {
+            .c-menu-item-head,
+            .c-menu-item-link {
+                @include bidi(((padding-left, $spacing-md + $icon-size-md + $spacing-md, padding-right, 0),));
+
+                .c-menu-item-icon {
+                    @include bidi(((left, $spacing-md, right, auto),));
+                    height: $icon-size-md;
+                    width: $icon-size-md;
+                }
+            }
+        }
+    }
+}
+
+// Easter egg
+@keyframes duckroll {
+    0% {
+        width: 32px;
+        height: 32px;
+    }
+
+    100% {
+        width: 300px;
+        height: 300px;
+    }
+}
+
+.c-menu-item-link[href^="https://hubs.mozilla.com"] .c-menu-item-icon {
+    transition: width 150ms ease, height 150ms ease;
+    z-index: 100;
+}
+
+.c-menu-item-link[href^="https://hubs.mozilla.com"]:hover .c-menu-item-icon {
+    animation: duckroll 23s ease-in-out 23s forwards;
+}

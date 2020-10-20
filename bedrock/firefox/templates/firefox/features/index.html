@@ -13,6 +13,10 @@
   {{ css_bundle('firefox-features-index') }}
 {% endblock %}
 
+{% block sub_navigation %}
+  {% include "firefox/features/includes/subnav.html" %}
+{% endblock %}
+
 {% block content %}
   {% call hero(
       title=ftl('features-index-firefox-features'),

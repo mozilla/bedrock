@@ -3,7 +3,7 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% if not hide_nav_cta %}
-  <div class="mzp-c-navigation-download">
+  <div class="c-navigation-shoulder">
     {% if not hide_nav_download_button %}
       {{ download_firefox_thanks(alt_copy=ftl('download-button-download-firefox'), dom_id='protocol-nav-download-firefox', button_class='mzp-t-secondary mzp-t-md', download_location='nav') }}
     {% endif %}
@@ -12,12 +12,11 @@
       {{ fxa_button(
         entrypoint='mozilla.org-globalnav',
         include_metrics=False,
-        button_text=ftl('navigation-get-a-firefox-account'),
+        button_text=ftl('navigation-v2-get-a-firefox-account'),
         class_name='mzp-t-secondary mzp-t-md c-navigation-fxa-cta',
         optional_parameters={'utm_campaign': 'navigation', 'utm_content': 'get-firefox-account'},
         optional_attributes={'data-cta-text': 'Get a Firefox Account', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'navigation', 'data-alt-href': url('firefox.accounts')}
       ) }}
-      <p class="c-navigation-fxa-cta-small-link"><a data-link-type="nav" data-link-name="Check out the Benefits" href="{{ url('firefox.accounts') }}">{{ ftl('navigation-check-out-the-benefits') }}</a></p>
     </div>
     {% endif %}
   </div>

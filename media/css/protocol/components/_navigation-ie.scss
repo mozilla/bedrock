@@ -7,11 +7,12 @@ $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Navigation styles
 
-.top-header-navigation {
+.mzp-c-navigation {
     background: $color-white;
+    box-shadow: none;
     color: $color-black;
     margin-bottom: $layout-lg;
 
@@ -24,24 +25,6 @@ $image-path: '/media/protocol/img';
         margin: 0 auto;
         max-width: $content-max;
         position: relative;
-    }
-
-    // Mozilla Logo
-    .mzp-c-navigation-logo {
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 112px;
-
-        a {
-            @include image-replaced;
-            background-image: url('/media/img/nav/logo-black.png');
-            background-repeat: no-repeat;
-            display: block;
-            height: 32px;
-            margin: 0 auto;
-            width: 112px;
-        }
     }
 
     // Download button
@@ -88,7 +71,7 @@ $image-path: '/media/protocol/img';
         left: 120px;
         padding: 1px 2px;
         position: absolute;
-        top: 0;
+        top: $spacing-md + $spacing-xs;
         width: 28px;
 
         &:hover,
@@ -118,11 +101,6 @@ $image-path: '/media/protocol/img';
 
     .mzp-c-menu-category {
         margin-bottom: $spacing-2xl;
-    }
-
-    // hide cards
-    .mzp-c-menu-panel-card {
-        display: none;
     }
 
     .mzp-c-navigation-menu {

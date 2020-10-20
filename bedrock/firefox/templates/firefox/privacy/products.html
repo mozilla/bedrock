@@ -20,12 +20,6 @@
 {% set _entrypoint = 'mozilla.org-privacy-products' %}
 {% set _utm_campaign = 'privacy-products' %}
 
-{% block sub_nav %}
-  {% with active='products' %}
-    {% include 'firefox/privacy/includes/subnav.html' %}
-  {% endwith %}
-{% endblock %}
-
 {% block hub_content %}
 
   {{ call_out(

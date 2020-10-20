@@ -18,11 +18,3 @@
 
 {% block body_class %}{{ super() }} mzp-t-firefox{% endblock %}
 {% block body_attrs %}{{ super() }} data-global-nav-current-link="firefox"{% endblock %}
-
-{% block site_header %}
-  {% include 'includes/protocol/navigation/menu-firefox/index.html' %}
-{% endblock %}
-
-{% block site_footer %}
-  {% include 'includes/protocol/footer/firefox.html' %}
-{% endblock %}
