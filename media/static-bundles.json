@@ -709,6 +709,12 @@
         "css/base/mozilla-lazy-image.scss"
       ],
       "name": "more"
+    },
+    {
+      "files": [
+        "css/firefox/browsers/quantum.scss"
+      ],
+      "name": "quantum"
     }
   ],
   "js": [
