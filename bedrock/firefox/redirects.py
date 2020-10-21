@@ -572,8 +572,8 @@ redirectpatterns = (
     redirect(r'^firefox/focus/?$', 'firefox.mobile.index'),
     redirect(r'^firefox/ios/?$', 'firefox.mobile.index'),
 
-    # bug 1416708
-    redirect(r'^firefox/quantum/?', 'firefox'),
+    # issue 9502
+    redirect(r'^firefox/quantum/?', '/firefox/browsers/quantum/'),
 
     # bug 1421584, issue 7491
     redirect(r'^firefox/organizations/faq/?$', 'firefox.enterprise.index'),
