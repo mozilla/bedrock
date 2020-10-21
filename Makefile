@@ -1,6 +1,6 @@
 DC_CI = "bin/docker-compose.sh"
 DC = $(shell which docker-compose)
-SSLLABS = $(shell which ssllabs-scan)
+DOCKER = $(shell which docker)
 TEST_DOMAIN = www.mozilla.org
 
 all: help
@@ -21,6 +21,7 @@ help:
 	@echo "  lint          - check style with flake8, eslint, and stylelint"
 	@echo "  test          - run tests against local files"
 	@echo "  test-image    - run tests against files in docker image"
+	@echo "  test-cdn      - run CDN tests against TEST_DOMAIN"
 	@echo "  docs          - generate Sphinx HTML documentation"
 	@echo "  build-ci      - build docker images for use in our CI pipeline"
 	@echo "  test-ci       - run tests against files in docker image built by CI"
@@ -97,11 +98,17 @@ lint: .docker-build-pull
 test: .docker-build-pull
 	${DC} run test
 
+test-cdn: .docker-build-pull test_infra/fixtures/tls.json
+	${DC} run test py.test --base-url https://${TEST_DOMAIN} test_infra
+
 test-image: .docker-build
 	${DC} run test-image
 
 docs: .docker-build-pull
 	${DC} run app make -C docs/ clean html
+
+test_infra/fixtures/tls.json:
+	${DOCKER} run -it --rm jumanjiman/ssllabs-scan:latest --quiet https://${TEST_DOMAIN}/en-US/ > "test_infra/fixtures/tls.json"
 
 ###############
 # For use in CI
@@ -118,7 +125,4 @@ build-ci: .docker-build-pull
 test-ci: .docker-build-ci
 	${DC_CI} run test-image
 
-tls-test-data:
-	${SSLLABS} --quiet https://${TEST_DOMAIN}/en-US/ > "test_infra/fixtures/tls.json"
-
-.PHONY: all clean build pull docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod build-prod tls-test-data
+.PHONY: all clean build pull docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod build-prod test-cdn

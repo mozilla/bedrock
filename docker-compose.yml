@@ -58,6 +58,7 @@ services:
       - ./root_files/:/app/root_files:delegated
       - ./scripts/:/app/scripts:delegated
       - ./tests/:/app/tests:delegated
+      - ./test_infra/:/app/test_infra:delegated
       - ./wsgi/:/app/wsgi:delegated
       - ./l10n/:/app/l10n:delegated
 
