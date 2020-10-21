@@ -28,8 +28,14 @@ def session_capabilities(pytestconfig, session_capabilities):
     if pytestconfig.getoption('driver') == 'SauceLabs':
         session_capabilities.setdefault('tags', []).append('bedrock')
 
-        # Avoid default SauceLabs proxy for IE8.
+        # Avoid default SauceLabs proxy for IE.
         session_capabilities['avoidProxy'] = True
+
+    if pytestconfig.getoption('driver') == 'BrowserStack':
+        session_capabilities.setdefault('tags', []).append('bedrock')
+
+        # https://www.browserstack.com/docs/automate/selenium/using-sendkeys-on-remote-IE11
+        session_capabilities['browserstack.sendKeys'] = True
 
     return session_capabilities
 
