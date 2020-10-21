@@ -31,7 +31,7 @@
   {% endcall %}
 
   <section class="mzp-l-content mzp-t-content-md">
-    <ul>
+    <ul class="faq-list">
       <li>
         <h2>{{ ftl('what-is-firefox') }}</h2>
         <p>{{ ftl('the-firefox-browser',
@@ -56,7 +56,7 @@
       <li>
         <h2>{{ ftl('is-chrome-better') }}</h2>
         <p>{{ ftl('no-we-dont') }}</p>
-        {{ ftl('see-how-firefox', url=url('firefox.browsers.compare.chrome')) }}
+        <p>{{ ftl('see-how-firefox', url=url('firefox.browsers.compare.chrome')) }}</p>
         <small>{{ ftl('related-questions-better') }}</small>
       </li>
       <li>
