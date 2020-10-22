@@ -101,12 +101,17 @@
         title='Have faith in what you read again',
         info='Provocative headlines on social media too often lead you down a misinformation minefield. Pocket helps you find human-curated, trusted news sources so you can be an informed citizen.',
         alt='One fck given. High five!',
-        link_text='Get Pocket',
-        link_url='https://getpocket.com/explore/',
-        link_include_utms=True,
         id='pocket',
-        src_name='highfive'
-      ) %}{% endcall %}
+        src_name='highfive',
+        include_cta=True,
+      ) %}
+        <p class="c-item-cta">
+          <a class="mzp-c-cta-link" href="https://getpocket.com/explore/{{ referrals }}" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="Checklist: pocket">Get Pocket</a></p>
+        </p>
+        <p class="c-item-cta">
+          <a class="mzp-c-cta-link" href="https://www.youtube.com/watch?v=zZzl649NcD0" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="Checklist: whats pocket">What’s Pocket?</a></p>
+        </p>
+      {% endcall %}
 
       {% call item(
         title='Stop ‘trending topics’ from misleading voters',
