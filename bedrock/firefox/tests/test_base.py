@@ -348,32 +348,45 @@ class TestWhatsNew(TestCase):
 
     @patch.object(fx_views, 'ftl_file_is_active', lambda *x: True)
     def test_fx_82_0_0(self, render_mock):
-        """Should use whatsnew-fx82 template for 82.0 in English"""
+        """Should use whatsnew-fx82 template for 82.0"""
         req = self.rf.get('/firefox/whatsnew/')
         req.locale = 'en-US'
         self.view(req, version='82.0')
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/whatsnew-fx82.html']
 
+    # end 82.0 whatsnew tests
+
+    # begin 83.0 whatsnew tests
+
     @patch.object(fx_views, 'ftl_file_is_active', lambda *x: True)
-    def test_fx_82_0_0_locale(self, render_mock):
-        """Should use standard whatsnew template for 82.0 in other locales"""
+    def test_fx_83_0_0(self, render_mock):
+        """Should use whatsnew-fx83 template for 83.0 in English"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'en-US'
+        self.view(req, version='83.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx83.html']
+
+    @patch.object(fx_views, 'ftl_file_is_active', lambda *x: True)
+    def test_fx_83_0_0_locale(self, render_mock):
+        """Should use standard whatsnew template for 83.0 in other locales"""
         req = self.rf.get('/firefox/whatsnew/')
         req.locale = 'es-ES'
-        self.view(req, version='82.0')
+        self.view(req, version='83.0')
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/index-account.html']
 
-    def test_fx_82_0_0_china(self, render_mock):
+    def test_fx_83_0_0_china(self, render_mock):
         """Should use standard whatsnew template in China for en-US locale"""
         self.view = fx_views.WhatsNewChinaView.as_view()
         req = self.rf.get('/firefox/whatsnew/china/')
         req.locale = 'en-US'
-        self.view(req, version='82.0')
+        self.view(req, version='83.0')
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/index-account.html']
 
-    # end 82.0 whatsnew tests
+    # end 83.0 whatsnew tests
 
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
