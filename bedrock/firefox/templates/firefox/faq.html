@@ -1,0 +1,106 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% from "macros-protocol.html" import hero with context %}
+
+{% block page_title %}{{ ftl('page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whether-you-searched-privacy') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox-faq') }}
+{% endblock %}
+
+{% block content %}
+<div class="mzp-l-content">
+
+  {% call hero(
+    title=ftl('firefox-faq'),
+    class='mzp-has-image mzp-t-firefox mzp-t-product-firefox',
+    image_url='img/firefox/browsers/quantum/browser.jpg',
+    include_highres_image=True,
+    include_cta=True,
+    heading_level=1
+  ) %}
+
+  <p>{{ ftl('whether-you-searched-independant') }}</p>
+  {{ download_firefox_thanks() }}
+
+  {% endcall %}
+
+  <section class="mzp-l-content mzp-t-content-md">
+    <ul class="faq-list">
+      <li>
+        <h2>{{ ftl('what-is-firefox') }}</h2>
+        <p>{{ ftl('the-firefox-browser',
+              url=url('firefox.browsers.index'),
+              url2=url('firefox.products.index')) }}</p>
+      </li>
+      <li>
+        <h2>{{ ftl('how-do-i') }}</h2>
+        <p>{{ ftl('you-can-easily',
+              url=url('firefox.new'),
+              url2=url('firefox.new.protocol.download_windows'),
+              url3=url('firefox.new.protocol.download_mac'),
+              url4=url('firefox.new.protocol.download_linux'),
+              url5=url('firefox.mobile.index')
+              )}}</p>
+      </li>
+      <li>
+        <h2>{{ ftl('is-firefox-free') }}</h2>
+        <p>{{ ftl('yep-the-firefox') }}</p>
+        <small>{{ ftl('related-questions-free') }}</small>
+      </li>
+      <li>
+        <h2>{{ ftl('is-chrome-better') }}</h2>
+        <p>{{ ftl('no-we-dont') }}</p>
+        <p>{{ ftl('see-how-firefox', url=url('firefox.browsers.compare.chrome')) }}</p>
+        <small>{{ ftl('related-questions-better') }}</small>
+      </li>
+      <li>
+        <h2>{{ ftl('is-firefox-safe-download') }}</h2>
+        <p>{{ ftl('protecting-your-privacy', url=url('firefox.new')) }}</p>
+      </li>
+      <li>
+        <h2>{{ ftl('is-firefox-safe') }}</h2>
+        <p>{{ ftl('not-only-is', url=url('firefox.privacy.products')) }}</p>
+        <small>{{ ftl('related-questions-safe') }}</small>
+      </li>
+      <li>
+        <h2>{{ ftl('does-firefox-sell') }}</h2>
+        <p>{{ ftl('nope-never-have', url=url('firefox.privacy.index')) }}</p>
+      </li>
+      <li>
+        <h2>{{ ftl('why-is-firefox') }}</h2>
+        <p>{{ ftl('firefox-isnt-slow') }}</p>
+      </li>
+      <li>
+        <h2>{{ ftl('is-firefox-chromium') }}</h2>
+        <p>{{ ftl('firefox-is-not') }}</p>
+      </li>
+      <li>
+        <h2>{{ ftl('does-firefox-use') }}</h2>
+        <p>{{ ftl('firefoxs-default-search',
+              url='https://support.mozilla.org/kb/change-your-default-search-settings-firefox/?utm_source=www.mozilla.org-firefox-faq&amp;utm_medium=referral&amp;utm_campaign=seo') }}</p>
+      </li>
+      <li>
+        <h2>{{ ftl('does-firefox-have') }}</h2>
+        <p>{{ ftl('firefox-does-not',
+              url='https://fpn.firefox.com/?utm_source=www.mozilla.org-firefox-faq&amp;utm_medium=referral&amp;utm_campaign=seo',
+              url2='https://vpn.mozilla.org/?utm_source=www.mozilla.org-firefox-faq&amp;utm_medium=referral&amp;utm_campaign=seo') }}</p>
+        <small>{{ ftl('related-questions-ip') }}</small>
+      </li>
+      <li>
+        <h2>{{ ftl('who-owns-firefox') }}</h2>
+        <p>{{ ftl('firefox-is-made', url='https://foundation.mozilla.org/?utm_source=www.mozilla.org-firefox-faq&amp;utm_medium=referral&amp;utm_campaign=seo', url2=url('foundation.moco')) }}</p>
+        <small>{{ ftl('related-questions-who') }}</small>
+      </li>
+    </ul>
+    {{ download_firefox_thanks() }}
+  </section>
+</div>
+
+{% include '/firefox/includes/structured-data-firefox-faq.html' %}
+{% endblock %}

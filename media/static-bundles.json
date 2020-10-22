@@ -693,6 +693,12 @@
     },
     {
       "files": [
+        "css/firefox/faq.scss"
+      ],
+      "name": "firefox-faq"
+    },
+    {
+      "files": [
         "css/firefox/unfck.de.scss"
       ],
       "name": "firefox-unfck-de"

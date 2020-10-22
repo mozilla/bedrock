@@ -5,10 +5,10 @@
 ### URL: https://www-dev.allizom.org/firefox/browsers/quantum/
 
 page-title= Download { -brand-name-firefox-quantum }
-page-description= { -brand-name-firefox-quantum } was a revolution. In 2017 we created a new, lightning fast browser that constantly improves. { -brand-name-firefox-quantum } is the { -brand-name-firefox-browser }.
+page-description= { -brand-name-firefox-quantum } was a revolution. In 2017, we created a new, lightning fast browser that constantly improves. { -brand-name-firefox-quantum } is the { -brand-name-firefox-browser }.
 
 the-latest-firefox = The latest { -brand-name-firefox } engine: { -brand-name-firefox-quantum }
-firefox-quantum-was = { -brand-name-firefox-quantum } was a revolution in { -brand-name-firefox } development. In 2017 we created a new, lightning fast browser that constantly improves. { -brand-name-firefox-quantum } is the { -brand-name-firefox-browser }.
+firefox-quantum-was = { -brand-name-firefox-quantum } was a revolution in { -brand-name-firefox } development. In 2017, we created a new, lightning fast browser that constantly improves. { -brand-name-firefox-quantum } is the { -brand-name-firefox-browser }.
 
 # https://blog.mozilla.org/blog/2017/11/14/introducing-firefox-quantum/
 learn-more-about = Learn more about { -brand-name-firefox-quantum }

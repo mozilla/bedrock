@@ -1183,8 +1183,8 @@ URLS = flatten((
     # bug 1416706
     url_test('/firefox/desktop/', '/firefox/new/'),
 
-    # bug 1416708
-    url_test('/firefox/quantum/', '/firefox/'),
+    # issue 9502
+    url_test('/firefox/quantum/', '/firefox/browsers/quantum/'),
 
     # bug 1421584, issue 7491
     url_test('/firefox/organizations/faq/', '/firefox/enterprise/'),
