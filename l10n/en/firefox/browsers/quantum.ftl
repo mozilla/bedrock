@@ -20,5 +20,5 @@ get-speed-and = Get speed and security. { -brand-name-firefox } is fast because 
 always-evolving = Always evolving
 
 # Variables:
-# $url (url) - link to https://www.mozilla.org/firefox/
+# $url (url) - link to https://www.mozilla.org/firefox/features
 find-out-about = Find out about all the amazing <a href="{ $url }">{ -brand-name-firefox } features</a>.

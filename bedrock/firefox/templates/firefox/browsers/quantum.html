@@ -7,7 +7,7 @@
 {% extends "firefox/base/base-protocol.html" %}
 
 {% block page_title %}{{ ftl('page-title') }}{% endblock %}
-{% block page_desc %}{{ ftl('page-desc') }}{% endblock %}
+{% block page_desc %}{{ ftl('page-description') }}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('quantum') }}
@@ -43,7 +43,7 @@
 
       {{ picto_card(
         title=ftl('always-evolving'),
-        desc=ftl('find-out-about', url=url('firefox')),
+        desc=ftl('find-out-about', url=url('firefox.features.index')),
         class='evolve') }}
     </ul>
   </section>
