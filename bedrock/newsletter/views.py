@@ -343,6 +343,9 @@ def existing(request, token=None):
                 else:
                     title = nstrings['title']
                 description = nstrings.get('description', u'')
+            else:
+                title = data['title']
+                description = data['description']
 
             form_data = {
                 'title': Markup(title),
