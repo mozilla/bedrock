@@ -24,39 +24,47 @@
 
   <section class="wnp-content-main">
     <div class="mzp-l-content mzp-t-content-md">
-      <img class="wnp-main-image" src="{{ static('img/firefox/whatsnew/whatsnew82/vpn-logo.svg') }}" width="120" alt="">
-      <h1 class="wnp-main-title">Firefox protects your browsing. <strong>Mozilla VPN</strong> protects you everywhere.</h1>
-      <p class="wnp-main-tagline">Mozilla VPN (Virtual Private Network) protects your entire internet connection on your computer, your tablet, and even your phone. For even more security, it comes with a 30-day money back guarantee.</p>
+      <img class="wnp-main-image" src="{{ static('protocol/img/logos/pocket/pocket.svg') }}" width="120" alt="">
+      <h1 class="wnp-main-title">{{ ftl('whatsnew83-main-title') }}</h1>
+      <p class="wnp-main-tagline">{{ ftl('whatsnew83-main-intro') }}</p>
 
       <div class="wnp-main-cta">
-        <a href="https://vpn.mozilla.org/?utm_source=mozilla.org-whatsnew82&utm_medium=referral&utm_campaign=whatsnew82&entrypoint=mozilla.org-whatsnew82" class="mzp-c-button mzp-t-product mzp-t-lg" rel="external" data-cta-text="Get Mozilla VPN Now" data-cta-type="button">Get Mozilla VPN Now</a>
+        <a href="https://getpocket.com/explore?utm_source=mozilla.org-whatsnew83&utm_medium=referral&utm_campaign=whatsnew83&entrypoint=mozilla.org-whatsnew83" class="mzp-c-button mzp-t-product mzp-t-lg" rel="external" data-cta-text="Get Mozilla VPN Now" data-cta-type="button">{{ ftl('whatsnew83-main-cta') }}</a>
       </div>
     </div>
   </section>
 
   <section class="wnp-content-extra">
     <div class="mzp-l-content mzp-t-content-xl">
-      <div class="l-columns-two">
+      <div class="l-columns-three">
 
         <div class="c-picto-block">
           <div class="c-picto-block-image">
-            {% include 'firefox/whatsnew/includes/illo-vpn-laptop.svg' %}
+            {% include 'firefox/whatsnew/includes/fx83/person1.svg' %}
           </div>
-          <h3 class="c-picto-block-title">It’s fast, very fast</h3>
-          <div class="c-picto-block-body">
-            <p>Our WireGuard® powered servers are built for speed so you can stream, download, and game as usual.</p>
+          <h3 class="c-picto-block-title">{{ ftl('whatsnew83-quality-reads') }}</h3>
+          <div class="c-picto-block-body"><p>{{ ftl('whatsnew83-algorithms') }}</p>
           </div>
         </div>
 
         <div class="c-picto-block">
           <div class="c-picto-block-image">
-            {% include 'firefox/whatsnew/includes/illo-vpn-mobile.svg' %}
+            {% include 'firefox/whatsnew/includes/fx83/person2.svg' %}
           </div>
-          <h3 class="c-picto-block-title">Internet without a trace</h3>
-          <div class="c-picto-block-body">
-            <p>We never log, track, or share your network data — your online activity won’t leave a footprint on our VPN servers.</p>
+          <h3 class="c-picto-block-title">{{ ftl('whatsnew83-hidden-gems') }}</h3>
+          <div class="c-picto-block-body"><p>{{ ftl('whatsnew83-great-stories') }}</p>
           </div>
         </div>
+
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
+            {% include 'firefox/whatsnew/includes/fx83/person3.svg' %}
+          </div>
+          <h3 class="c-picto-block-title">{{ ftl('whatsnew83-everything-youre-into') }}</h3>
+          <div class="c-picto-block-body"><p>{{ ftl('whatsnew83-add-the-pocket-app') }}</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
