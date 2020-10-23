@@ -5,9 +5,8 @@
 ### URL: https://www-dev.allizom.org/firefox/faq/
 
 # HTML page title
-page-title = There is a way to protect your privacy. Join { -brand-name-firefox }.
-
 firefox-faq = { -brand-name-firefox } FAQ
+
 whether-you-searched-privacy = Whether you searched for a fast browser that protects your privacy, this FAQ is here to answer the most pressing { -brand-name-firefox }-related questions.
 whether-you-searched-independant = Whether you searched for a fast browser, or you’re looking for independent tech that protects your privacy, this FAQ is here to answer the most pressing { -brand-name-firefox }-related questions.
 
@@ -17,7 +16,7 @@ what-is-firefox = What is { -brand-name-firefox }?
 # $url (url) - link to https://www.mozilla.org/firefox/browsers/
 # $url2 (url) - link to https://www.mozilla.org/firefox/products/
 
-the-firefox-browser = The { -brand-name-firefox-browser } is the only major browser backed by a non-profit that doesn’t sell your personal data to advertisers, while helping you protect your personal information. Learn more about the <a href="{ $url }">{ -brand-name-firefox-browsers }</a> and <a href="{ $url2 }">other products</a>.
+the-firefox-browser = The { -brand-name-firefox-browser } is the only major browser backed by a not-for-profit that doesn’t sell your personal data to advertisers while helping you protect your personal information. Learn more about the <a href="{ $url }">{ -brand-name-firefox-browsers }</a> and <a href="{ $url2 }">other products.</a>
 
 how-do-i = How do I get the { -brand-name-firefox-browser }?
 
@@ -28,7 +27,7 @@ how-do-i = How do I get the { -brand-name-firefox-browser }?
 # $url4 (url) - link to https://www.mozilla.org/firefox/linux/
 # $url5 (url) - link to https://www.mozilla.org/firefox/mobile/
 
-you-can-easily = You can easily download the { -brand-name-firefox } desktop browser <a href="{ $url }">here</a>. { -brand-name-firefox } works on <a href="{ $url2 }">{ -brand-name-windows }</a>, <a href="{ $url3 }">{ -brand-name-mac-short }</a> and <a href="{ $url4 }">{ -brand-name-linux}</a> devices, and is also available for <a href="{ $url5 }">{ -brand-name-android } and { -brand-name-ios }</a>. Make sure you’re downloading our browser from one of our trusted { -brand-name-mozilla }/{ -brand-name-firefox } pages.
+you-can-easily = You can easily download the { -brand-name-firefox } desktop browser <a href="{ $url }">here.</a> { -brand-name-firefox } works on <a href="{ $url2 }">{ -brand-name-windows },</a> <a href="{ $url3 }">{ -brand-name-mac-short }</a> and <a href="{ $url4 }">{ -brand-name-linux}</a> devices, and is also available for <a href="{ $url5 }">{ -brand-name-android } and { -brand-name-ios }.</a> Make sure you’re downloading our browser from one of our trusted { -brand-name-mozilla }/{ -brand-name-firefox } pages.
 
 is-firefox-free = Is { -brand-name-firefox } free?
 yep-the-firefox = Yep! The { -brand-name-firefox-browser } is free. Super free, actually. No hidden costs or anything. You don’t pay anything to use it, and we don’t sell your personal data.
@@ -48,16 +47,16 @@ is-firefox-safe-download = Is { -brand-name-firefox } safe to download?
 # Variables:
 # $url (url) - link to https://www.mozilla.org/firefox/new/
 
-protecting-your-privacy = Protecting your privacy is our number one priority, and we ensure that installing { -brand-name-firefox } on your devices is completely safe — but always make sure you are downloading from a trusted { -brand-name-mozilla }/{ -brand-name-firefox } site, like <a href="{ $url }">our download page</a>.
+protecting-your-privacy = Protecting your privacy is our number one priority, and we ensure that installing { -brand-name-firefox } on your devices is completely safe — but always make sure you are downloading from a trusted { -brand-name-mozilla }/{ -brand-name-firefox } site, like <a href="{ $url }">our download page.</a>
 
 is-firefox-safe = Is { -brand-name-firefox } safe?
 
 # Variables:
 # $url (url) - link to https://www.mozilla.org/firefox/privacy/products/
 
-not-only-is = Not only is { -brand-name-firefox } safe to use, it also helps keep your data and private information safe. The { -brand-name-firefox-browser } automatically blocks known third party trackers, social media trackers, cryptominers and fingerprinters from collecting your data. <a href="{ $url }">Learn more about the privacy in our products</a>.
+not-only-is = Not only is { -brand-name-firefox } safe to use, it also helps keep your data and private information safe. The { -brand-name-firefox-browser } automatically blocks known third party trackers, social media trackers, cryptominers and fingerprinters from collecting your data. <a href="{ $url }">Learn more about the privacy in our products.</a>
 
-related-questions-safe = Related questions: is { -brand-name-firefox } good for privacy, is { -brand-name-firefox } secure, Is { -brand-name-firefox } better for privacy
+related-questions-safe = Related questions: is { -brand-name-firefox } good for privacy, is { -brand-name-firefox } secure, is { -brand-name-firefox } better for privacy
 does-firefox-sell = Does { -brand-name-firefox } sell your personal data?
 
 # Variables:
@@ -76,7 +75,7 @@ does-firefox-use = Does { -brand-name-firefox } use { -brand-name-google }?
 # Variables:
 # $url (url) - link to https://support.mozilla.org/kb/change-your-default-search-settings-firefox
 
-firefoxs-default-search = { -brand-name-firefox }’s default search engine is { -brand-name-google }, which means you can search the web directly from the address bar. <a href="{ $url }">Learn more about search engine preferences and changing defaults.</a>
+firefoxs-default-search = { -brand-name-google } is the default search engine in { -brand-name-firefox }, which means you can search the web directly from the address bar. <a href="{ $url }">Learn more about search engine preferences and changing defaults.</a>
 
 does-firefox-have = Does { -brand-name-firefox } have a built-in VPN?
 
@@ -84,7 +83,7 @@ does-firefox-have = Does { -brand-name-firefox } have a built-in VPN?
 # $url (url) - link to https://fpn.firefox.com/
 # $url2 (url) - link to https://vpn.mozilla.org/
 
-firefox-does-not = { -brand-name-firefox } does not have a built-in VPN (virtual private network), but there are two products made by { -brand-name-mozilla }/{ -brand-name-firefox } that you can use in addition to the private { -brand-name-firefox-browser } that can protect either your browser (<a href="{ $url }">{ -brand-name-firefox-private-network }</a>) or device (<a href="{ $url2 }">{ -brand-name-mozilla-vpn }</a>) connections on WiFi, as well as your IP address.
+firefox-does-not = { -brand-name-firefox } does not have a built-in VPN (virtual private network), but there are two products made by { -brand-name-mozilla }/{ -brand-name-firefox } that you can use in addition to the private { -brand-name-firefox-browser } that can protect either your browser (<a href="{ $url }">{ -brand-name-firefox-private-network }</a>) or device (<a href="{ $url2 }">{ -brand-name-mozilla-vpn }</a>) connection on WiFi, as well as your IP address.
 
 related-questions-ip = Related questions: does { -brand-name-firefox } hide your IP address
 
@@ -94,6 +93,6 @@ who-owns-firefox = Who owns { -brand-name-firefox }?
 # $url (url) - link to https://foundation.mozilla.org
 # $url2 (url) - link to https://www.mozilla.org/foundation/moco/
 
-firefox-is-made = { -brand-name-firefox } is made by { -brand-name-mozilla-corporation  }, a wholly owned subsidiary of the non-profit <a href="{ $url }">{ -brand-name-mozilla-foundation }</a>, and is guided by the principles of the { -brand-name-mozilla } Manifesto. Learn more about the maker of { -brand-name-firefox } <a href="{ $url2 }">here.</a>
+firefox-is-made = { -brand-name-firefox } is made by { -brand-name-mozilla-corporation }, a wholly owned subsidiary of the not-for-profit <a href="{ $url }">{ -brand-name-mozilla-foundation },</a> and is guided by the principles of the { -brand-name-mozilla } Manifesto. Learn more about the maker of { -brand-name-firefox } <a href="{ $url2 }">here.</a>
 
 related-questions-who = Related questions: who is { -brand-name-firefox } owned by, who owns { -brand-name-firefox-browser }, is { -brand-name-firefox } owned by { -brand-name-google }, is { -brand-name-mozilla } { -brand-name-firefox } owned by { -brand-name-google }
