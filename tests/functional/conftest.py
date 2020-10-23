@@ -37,6 +37,10 @@ def session_capabilities(pytestconfig, session_capabilities):
         # https://www.browserstack.com/docs/automate/selenium/using-sendkeys-on-remote-IE11
         session_capabilities['browserstack.sendKeys'] = True
 
+        # Set Selenium and IE driver version - https://www.browserstack.com/automate/capabilities
+        session_capabilities['browserstack.selenium_version'] = '3.141.59'
+        session_capabilities['browserstack.ie.driver'] = '3.141.59'
+
     return session_capabilities
 
 
