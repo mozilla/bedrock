@@ -46,8 +46,6 @@ urlpatterns = (
          'mozorg/about/governance/policies/security/bugs.html'),
     page('about/governance/policies/security-group/membership',
          'mozorg/about/governance/policies/security/membership.html'),
-    page('about/governance/policies/security-group/certs',
-         'mozorg/about/governance/policies/security/certs/index.html'),
     page('about/governance/policies/security-group/certs/policy',
          'mozorg/about/governance/policies/security/certs/policy.html'),
     page('about/governance/organizations', 'mozorg/about/governance/organizations.html'),
