@@ -22,10 +22,22 @@ GIT_HASH = getenv('GIT_SHA', None)
 
 
 class Command(FTLRepoCommand):
-    help = "Open a pull-request on the L10n Team's reop for FTL file changes"
+    help = "Open a pull-request on the L10n Team's repo for FTL file changes"
+    branch_prefix = 'update-from-bedrock'
+    open_branch = None
+    open_pr_url = None
+    github = None
+
+    def __init__(self, stdout=None, stderr=None, no_color=False, force_color=False):
+        client = github.get_client()
+        if client:
+            self.github = client.get_repo(settings.FLUENT_L10N_TEAM_REPO)
+
+        super().__init__(stdout, stderr, no_color, force_color)
 
     def handle(self, *args, **options):
         super().handle(*args, **options)
+        self.get_open_pr()
         self.update_l10n_team_files()
         self.create_branch()
         self.sync_dirs()
@@ -36,12 +48,15 @@ class Command(FTLRepoCommand):
 
     @cached_property
     def branch_name(self):
+        if self.open_branch:
+            return self.open_branch
+
         if GIT_HASH:
             branch_suffix = GIT_HASH[:8]
         else:
             branch_suffix = slugify(datetime.now().isoformat())
 
-        return f'update-from-bedrock-{branch_suffix}'
+        return f'{self.branch_prefix}-{branch_suffix}'
 
     @property
     def commit_message(self):
@@ -57,8 +72,11 @@ class Command(FTLRepoCommand):
         sync(settings.FLUENT_LOCAL_PATH, self.l10n_repo.path, 'sync', content=True)
 
     def create_branch(self):
-        self.l10n_repo.git('checkout', '-b', self.branch_name)
-        self.stdout.write(f'Created branch: {self.branch_name}')
+        if self.open_branch:
+            self.stdout.write(f'Using existing branch: {self.branch_name}')
+        else:
+            self.l10n_repo.git('checkout', '-b', self.branch_name)
+            self.stdout.write(f'Created branch: {self.branch_name}')
 
     def commit_changes(self):
         self.config_git()
@@ -89,14 +107,27 @@ class Command(FTLRepoCommand):
 
         return self.l10n_repo.remote_url_auth(settings.FLUENT_REPO_AUTH)
 
+    def get_open_pr(self):
+        if self.github is None:
+            return
+
+        for pr in self.github.get_pulls(state='open'):
+            if pr.head.ref.startswith(self.branch_prefix):
+                self.open_branch = pr.head.ref
+                self.open_pr_url = pr.html_url
+                self.l10n_repo.branch_name = self.open_branch
+                return
+
     def open_pr(self):
-        client = github.get_client()
-        if not client:
+        if self.github is None:
+            return
+
+        if self.open_branch:
+            self.stdout.write(f'Updated existing pull-request: {self.open_pr_url}')
             return
 
         title, body = self.commit_message.split('\n\n')
-        repo = client.get_repo(settings.FLUENT_L10N_TEAM_REPO)
-        pr = repo.create_pull(
+        pr = self.github.create_pull(
             title=title,
             body=body,
             base='master',
