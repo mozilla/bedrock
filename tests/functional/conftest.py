@@ -34,7 +34,7 @@ def session_capabilities(pytestconfig, session_capabilities):
     if pytestconfig.getoption('driver') == 'BrowserStack':
         session_capabilities.setdefault('tags', []).append('bedrock')
 
-        if session_capabilities.get('browserName').lower() == 'internet explorer' and session_capabilities.get('version') == '11.0':
+        if session_capabilities.get('browser').lower() == 'internet explorer' and session_capabilities.get('browser_version') == '11.0':
             # https://www.browserstack.com/docs/automate/selenium/using-sendkeys-on-remote-IE11
             session_capabilities['browserstack.sendKeys'] = True
             session_capabilities['browserstack.use_w3c'] = True
