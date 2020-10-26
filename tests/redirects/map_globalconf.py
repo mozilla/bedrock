@@ -1380,4 +1380,7 @@ URLS = flatten((
         'utm_source': 'mozilla.org',
         'utm_content': 'shortlink',
     }),
+
+    # Bug 1673476
+    url_test('/about/governance/policies/security-group/certs/', 'https://wiki.mozilla.org/CA'),
 ))

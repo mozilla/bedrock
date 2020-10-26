@@ -734,4 +734,7 @@ redirectpatterns = (
         'utm_source': 'mozilla.org',
         'utm_content': 'shortlink',
     }),
+
+    # Bug 1673476
+    redirect(r'^/about/governance/policies/security-group/certs/?$', 'https://wiki.mozilla.org/CA'),
 )
