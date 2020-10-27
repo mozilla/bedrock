@@ -8,6 +8,7 @@ firefox-all-check-the-system-requirements = Check the system requirements
 firefox-all-release-notes = Release notes
 firefox-all-source-code = Source code
 firefox-all-need-help = Need help?
+learn-more-about-firefox = Learn more about Firefox
 firefox-all-which-browser-would = Which browser would you like to download?
 
 # Used as an accessible label for a help button. The text is replaced with a "?" icon.
