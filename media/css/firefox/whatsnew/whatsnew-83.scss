@@ -38,6 +38,21 @@ $image-path: '/media/protocol/img';
     @include text-body-lg;
 }
 
+.wnp83-hero-logo {
+    svg {
+        margin-bottom: $spacing-lg;
+        max-width: $layout-xl;
+        @media #{$mq-md} {
+            margin-bottom: $spacing-xl;
+            max-width: 100%;
+        }
+    }
+
+    p {
+        margin-bottom: $spacing-xl;
+    }
+}
+
 
 //* -------------------------------------------------------------------------- */
 // Extra content
@@ -54,7 +69,8 @@ $image-path: '/media/protocol/img';
     }
 
     .c-picto-block-image {
-        align-items: center;
+        height: 250px;
+        align-items: flex-end;
         display: flex;
         justify-content: center;
         margin: 0 auto $spacing-lg;
@@ -209,12 +225,16 @@ $image-path: '/media/protocol/img';
     }
 
     .c-picto-block-image {
-        .line {
-            fill: $color-white;
+        .paper-inner {
+            fill: $color-dark-gray-60;
         }
 
-        .building {
-            fill: #a77ffa;
+        .paper-outer {
+            fill: #FFFBE3;
+        }
+
+        .paper-outer-stroke, .drink-stroke {
+            stroke: #FFFBE3;
         }
     }
 }
