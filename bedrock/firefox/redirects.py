@@ -311,7 +311,7 @@ redirectpatterns = (
     redirect(r'^firefox/os(/.*)?$', 'https://support.mozilla.org/products/firefox-os'),
 
     # Bug 1252332
-    redirect(r'^sync/?$', 'firefox.accounts'),
+    redirect(r'^sync/?$', '/firefox/sync/'),
 
     # Bug 424204
     redirect(r'^firefox/help/?$', 'https://support.mozilla.org/'),
@@ -539,9 +539,6 @@ redirectpatterns = (
 
     # bug 1369732
     redirect(r'^Firefox/?$', 'firefox'),
-
-    # bug 1370587
-    redirect(r'^firefox/sync/?', 'firefox.accounts'),
 
     # bug 1386112
     redirect(r'^firefox/android/faq/?', 'https://support.mozilla.org/products/mobile'),

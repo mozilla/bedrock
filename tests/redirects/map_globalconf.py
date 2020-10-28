@@ -1000,8 +1000,9 @@ URLS = flatten((
     # Bug 1243060
     url_test('/firefox/tiles/',
              'https://support.mozilla.org/kb/about-tiles-new-tab'),
+
     # Bug 1252332
-    url_test('/sync/', '/firefox/accounts/'),
+    url_test('/sync/', '/firefox/sync/'),
 
     url_test('/projects/bonecho/', '/firefox/channel/desktop/'),
     url_test('/projects/bonsai/', 'https://wiki.mozilla.org/Bonsai'),
@@ -1143,9 +1144,6 @@ URLS = flatten((
 
     # Bug 1369732
     url_test('{/en-US,}/Firefox', '{/en-US,}/firefox/'),
-
-    # Bug 1370587
-    url_test('/firefox/sync/', '/firefox/accounts/'),
 
     # Bug 1380845
     url_test('/persona/privacy-policy/', '/privacy/archive/persona/2017-07/'),

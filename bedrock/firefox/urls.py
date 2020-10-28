@@ -179,4 +179,5 @@ urlpatterns = (
     page('firefox/browsers/quantum', 'firefox/browsers/quantum.html', ftl_files='firefox/browsers/quantum'),
     page('firefox/faq', 'firefox/faq.html', ftl_files='firefox/faq'),
     page('firefox/browsers/chromebook', 'firefox/browsers/chromebook.html', ftl_files='firefox/browsers/chromebook'),
+    page('firefox/sync', 'firefox/sync.html', ftl_files='firefox/sync'),
 )

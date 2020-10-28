@@ -47,7 +47,6 @@ def test_404_url(base_url):
     '/firefox/partners/',
     '/firefox/releases/',
     '/firefox/speed/',
-    '/firefox/sync/',
     '/firefox/tiles/',
     '/firefox/unsupported-systems/',
     '/firefox/unsupported/EOL/',

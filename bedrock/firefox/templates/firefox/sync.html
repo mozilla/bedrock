@@ -1,0 +1,81 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% from "macros-protocol.html" import hero, picto_card, feature_card with context %}
+
+{% block page_title %}{{ ftl('firefox-sync-firefox-sync') }}{% endblock %}
+
+{% block page_desc %}{{ ftl('firefox-sync-access-and-sync') }}{% endblock %}
+
+{% block page_css %}
+ {{ css_bundle('sync') }}
+{% endblock %}
+
+{% block content %}
+
+{% call hero(
+  title=ftl('firefox-sync-sync-your-firefox'),
+  class='mzp-has-image mzp-t-firefox mzp-t-product-firefox',
+  image_url='img/firefox/accounts/trailhead/value-knowledge.jpg',
+  include_highres_image=True,
+  include_cta=True,
+  heading_level=1
+  ) %}
+  <p>{{ ftl('firefox-sync-access-and-sync') }}</p>
+
+  {{ download_firefox_thanks() }}
+  <p class="fxa-cta">
+    {{ fxa_button(
+      entrypoint='mozilla.org-firefox-sync',
+      button_text=ftl('navigation-sign-up'),
+      optional_parameters={'utm_campaign': 'seo', 'utm_content': 'firefox-sync-sign-up'},
+      optional_attributes={'data-cta-text': 'Sign Up', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'primary'}
+    ) }}
+  </p>
+
+{% endcall %}
+
+<div class="mzp-l-content">
+  <section class="mzp-c-emphasis-box">
+    <ul class="mzp-l-card-third">
+      {{ picto_card(
+        title=ftl('firefox-sync-privacy-made-easy'),
+        desc=ftl('firefox-sync-all-you-need'),
+        class='privacy') }}
+
+      {{ picto_card(
+        title=ftl('firefox-sync-encrypt-your-data'),
+        desc=ftl('firefox-sync-your-encryption-key'),
+        class='fast') }}
+
+      {{ picto_card(
+        title=ftl('firefox-sync-feel-safe'),
+        desc=ftl('firefox-sync-we-store-your'),
+        class='evolve') }}
+    </ul>
+  </section>
+
+  <section>
+    {% call feature_card(
+      title=ftl('firefox-sync-start-syncing-in'),
+      image_url='img/firefox/accounts/trailhead/value-respect.jpg',
+      aspect_ratio='mzp-has-aspect-1-1',
+      class='mzp-l-card-feature-right-half mzp-t-firefox'
+    ) %}
+
+      <ol class="mzp-u-list-styled">
+        <li>{{ ftl('firefox-sync-open-the-menu') }}</li>
+        <li>{{ ftl('firefox-sync-click-get-started') }}</li>
+        <li>{{ ftl('firefox-sync-enter-an-email') }}</li>
+        <li>{{ ftl('firefox-sync-click-next-to') }}</li>
+      </ol>
+      <p>{{ ftl('firefox-sync-after-you-check') }}</p>
+      <a class="mzp-c-cta-link" href="https://support.mozilla.org/en-US/kb/firefox-accounts-managing-account-data?utm_source=www.mozilla.org-firefox-sync&amp;utm_medium=referral&amp;utm_campaign=seo" rel="external noopener" data-cta-text="More Help Managing your Firefox Account" data-cta-type="link">{{ ftl('firefox-sync-learn-more') }}</a>
+    {% endcall %}
+  </section>
+</div>
+
+{% endblock %}

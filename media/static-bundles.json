@@ -727,6 +727,12 @@
         "css/firefox/browsers/chromebook.scss"
       ],
       "name": "chromebook"
+    },
+    {
+      "files": [
+        "css/firefox/sync.scss"
+      ],
+      "name": "sync"
     }
   ],
   "js": [
