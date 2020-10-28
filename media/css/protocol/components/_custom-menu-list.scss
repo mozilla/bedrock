@@ -75,5 +75,6 @@ $image-path: '/media/protocol/img';
     .mzp-c-menu-list-list {
         margin-top: $spacing-sm;
         right: 0;
+        z-index: 3;
     }
 }
