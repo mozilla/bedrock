@@ -7,6 +7,7 @@ import hashlib
 import hmac
 import re
 from collections import OrderedDict
+from random import random
 from urllib.parse import urlparse
 
 import basket
@@ -14,6 +15,7 @@ import querystringsafe_base64
 from django.conf import settings
 from django.http import (
     HttpResponsePermanentRedirect,
+    HttpResponseRedirect,
     JsonResponse,
 )
 
@@ -29,6 +31,7 @@ from product_details.version_compare import Version
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.base.waffle import switch
+from bedrock.base.waffle_config import config, DictOf
 from bedrock.firefox.firefox_details import firefox_android, firefox_desktop
 from bedrock.firefox.forms import SendToDeviceWidgetForm
 from bedrock.newsletter.forms import NewsletterFooterForm
@@ -721,6 +724,36 @@ class NewView(L10nTemplateView):
             return HttpResponsePermanentRedirect(thanks_url)
 
         return super(NewView, self).get(*args, **kwargs)
+
+    def render_to_response(self, context, **response_kwargs):
+        # set experimental percentages per locale with this config
+        # e.g. EXP_CONFIG_FX_NEW=de:20,en-US:10,fr:25
+        # this would send 20% of de, 10% of en-US, and 25% of fr requests to the experiment page
+        # all other locales would be unaffected
+        redirect_percents = config('EXP_CONFIG_FX_NEW', default='', parser=DictOf(int))
+        skip_exp = 'automation' in self.request.GET
+        # only engage the experiment infra if some experiments are set
+        if redirect_percents and not skip_exp:
+            locale = l10n_utils.get_locale(self.request)
+            percent = redirect_percents.get(locale, 0)
+            if percent:
+                percent = percent / 100
+                print(percent)
+                if random() <= percent:
+                    exp_url = reverse('exp.firefox.new')
+                    query_string = self.request.META.get('QUERY_STRING', '')
+                    if query_string:
+                        exp_url = '?'.join(
+                            [exp_url, force_text(query_string, errors='ignore')]
+                        )
+                    response = HttpResponseRedirect(exp_url)
+                else:
+                    response = super().render_to_response(context, **response_kwargs)
+                # reduce cache time for better experiment results
+                patch_response_headers(response, 60)
+                return response
+
+        return super().render_to_response(context, **response_kwargs)
 
     def get_context_data(self, **kwargs):
         ctx = super(NewView, self).get_context_data(**kwargs)
