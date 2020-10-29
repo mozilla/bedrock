@@ -2,15 +2,15 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from mock import patch
+from pathlib import Path
+
 from django.http import Http404, HttpResponse
 from django.test import override_settings, RequestFactory
 
-from mock import patch
-
-from bedrock.mozorg.tests import TestCase
-
 from bedrock.legal_docs import views
-from bedrock.legal_docs.models import LegalDoc
+from bedrock.legal_docs.models import LegalDoc, get_data_from_file_path
+from bedrock.mozorg.tests import TestCase
 
 
 @override_settings(PROD_LANGUAGES=['en-US', 'de', 'hi-IN'])
@@ -28,6 +28,17 @@ class TestLoadLegalDoc(TestCase):
             content="You're not wrong Walter...",
         )
         doc = views.load_legal_doc('the_dude_exists', 'de')
+        self.assertEqual(doc['content'], "You're not wrong Walter...")
+        self.assertEqual(doc['active_locales'], ['en-US'])
+
+    def test_legal_doc_exists_snake_case_convert(self):
+        """Should return the content of the file if it exists in snake case."""
+        LegalDoc.objects.create(
+            name='the_dude_exists',
+            locale='en-US',
+            content="You're not wrong Walter...",
+        )
+        doc = views.load_legal_doc('The-Dude-Exists', 'de')
         self.assertEqual(doc['content'], "You're not wrong Walter...")
         self.assertEqual(doc['active_locales'], ['en-US'])
 
@@ -124,3 +135,49 @@ class TestLegalDocView(TestCase):
         resp = view(req)
         assert resp['cache-control'] == 'max-age=20'
         lld_mock.assert_called_with('the_dude_abides', 'es-ES')
+
+
+class TestFilePathData(TestCase):
+    def test_legacy_repo_layout(self):
+        path = Path('/repo/data/legal_docs/websites_privacy_notice/en-US.md')
+        assert get_data_from_file_path(path) == {
+            'locale': 'en-US',
+            'doc_name': 'websites_privacy_notice',
+        }
+        path = Path('/repo/data/legal_docs/websites_privacy_notice/de.md')
+        assert get_data_from_file_path(path) == {
+            'locale': 'de',
+            'doc_name': 'websites_privacy_notice',
+        }
+        path = Path('/repo/data/legal_docs/firefox_privacy_notice/es-ES_b.md')
+        assert get_data_from_file_path(path) == {
+            'locale': 'es-ES_b',
+            'doc_name': 'firefox_privacy_notice',
+        }
+        path = Path('/repo/data/legal_docs/WebRTC_ToS/cnh.md')
+        assert get_data_from_file_path(path) == {
+            'locale': 'cnh',
+            'doc_name': 'WebRTC_ToS',
+        }
+
+    def test_new_repo_layout(self):
+        path = Path('/repo/data/legal_docs/en-US/websites_privacy_notice.md')
+        assert get_data_from_file_path(path) == {
+            'locale': 'en-US',
+            'doc_name': 'websites_privacy_notice',
+        }
+        path = Path('/repo/data/legal_docs/de/websites_privacy_notice.md')
+        assert get_data_from_file_path(path) == {
+            'locale': 'de',
+            'doc_name': 'websites_privacy_notice',
+        }
+        path = Path('/repo/data/legal_docs/es-ES_b/firefox_privacy_notice.md')
+        assert get_data_from_file_path(path) == {
+            'locale': 'es-ES_b',
+            'doc_name': 'firefox_privacy_notice',
+        }
+        path = Path('/repo/data/legal_docs/cnh/WebRTC_ToS.md')
+        assert get_data_from_file_path(path) == {
+            'locale': 'cnh',
+            'doc_name': 'WebRTC_ToS',
+        }

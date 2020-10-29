@@ -1,4 +1,5 @@
 import io
+import re
 
 from django.conf import settings
 from django.db import models, transaction
@@ -10,6 +11,7 @@ from mdx_outline import OutlineExtension
 LEGAL_DOCS_LOCALES_TO_BEDROCK = {
     'hi': 'hi-IN',
 }
+LOCALE_RE = re.compile(r'[a-z]{2,3}(-[A-Z]{2}(_[a-z])?)?$')
 
 
 def process_md_file(file_path):
@@ -32,14 +34,23 @@ def process_md_file(file_path):
 
 
 def get_data_from_file_path(file_path):
-    locale = file_path.stem
+    print(file_path)
+    locale = file_path.parts[-2]
+    doc_name = file_path.stem
+    if LOCALE_RE.match(doc_name):
+        # we're dealing with the old repo format
+        locale, doc_name = doc_name, locale
+
     if locale in LEGAL_DOCS_LOCALES_TO_BEDROCK:
         locale = LEGAL_DOCS_LOCALES_TO_BEDROCK[locale]
-    doc_name = file_path.parts[-2]
     return {
         'locale': locale,
         'doc_name': doc_name,
     }
+
+
+def snake_case(name):
+    return name.lower().replace('-', '_')
 
 
 class LegalDocsManager(models.Manager):
@@ -53,7 +64,15 @@ class LegalDocsManager(models.Manager):
                  value indicating whether the file is localized into the specified
                  locale, and a dict of all available locales for that document
         """
-        doc = self.get(name=doc_name, locale=locale)
+        try:
+            doc = self.get(name=doc_name, locale=locale)
+        except LegalDoc.DoesNotExist:
+            # the new repo layout uses snake case
+            # this allows us to transition more easily
+            # TODO remove the above try and fix the doc names in the code after transition
+            doc_name = snake_case(doc_name)
+            doc = self.get(name=doc_name, locale=locale)
+
         all_locales = self.filter(name=doc_name).values_list('locale', flat=True)
         return {
             'content': doc.content,
