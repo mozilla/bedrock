@@ -3,8 +3,6 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global sinon */
-
 describe('thanks.js', function() {
     'use strict';
 

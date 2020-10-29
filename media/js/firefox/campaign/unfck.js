@@ -33,15 +33,15 @@
     }
 
     function handleShareLinkClick(e) {
-        var link_href = e.target.href;
+        var linkHref = e.target.href;
         var service = '';
 
-        if(link_href.indexOf('twitter') > -1) {
-            openTwitterSubwin(link_href);
+        if(linkHref.indexOf('twitter') > -1) {
+            openTwitterSubwin(linkHref);
             service = 'twitter';
             e.preventDefault();
-        } else if(link_href.indexOf('facebook') > -1) {
-            openFacebookSubwin(link_href);
+        } else if(linkHref.indexOf('facebook') > -1) {
+            openFacebookSubwin(linkHref);
             service = 'facebook';
             e.preventDefault();
         }
@@ -57,11 +57,11 @@
     function onLoad() {
         // Set up twitter link handler
         var tw = document.getElementById('js-tw');
-        var tw_jack = document.getElementById('js-tw-jack');
+        var twJack = document.getElementById('js-tw-jack');
         var fb = document.getElementById('js-fb');
 
         tw.addEventListener('click', handleShareLinkClick, false);
-        tw_jack.addEventListener('click', handleShareLinkClick, false);
+        twJack.addEventListener('click', handleShareLinkClick, false);
         fb.addEventListener('click', handleShareLinkClick, false);
     }
 
