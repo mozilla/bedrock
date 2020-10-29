@@ -17,8 +17,8 @@ $image-path: '/media/protocol/img';
     text-align: center;
 
     @media #{$mq-tall} {
-        padding-top: $layout-md;
         margin-bottom: $layout-lg;
+        padding-top: $layout-md;
     }
 }
 
@@ -69,9 +69,9 @@ $image-path: '/media/protocol/img';
     }
 
     .c-picto-block-image {
-        height: 250px;
         align-items: flex-end;
         display: flex;
+        height: 250px;
         justify-content: center;
         margin: 0 auto $spacing-lg;
         max-width: $content-xs;
@@ -83,10 +83,10 @@ $image-path: '/media/protocol/img';
     .l-columns-two,
     .l-columns-three {
         display: flex;
+        flex-wrap: wrap;
         margin: 0 auto;
         max-width: $content-lg;
         padding: 0 $layout-md;
-        flex-wrap: wrap;
 
         .c-picto-block {
             flex: 1 1 50%;
@@ -137,9 +137,9 @@ $image-path: '/media/protocol/img';
     }
 
     .mzp-c-footer-sections {
-        padding: $layout-md 0;
         border-top: 1px solid $color-light-gray-30;
         border-bottom: 1px solid $color-light-gray-30;
+        padding: $layout-md 0;
     }
 }
 
