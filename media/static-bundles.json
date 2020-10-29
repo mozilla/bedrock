@@ -1345,6 +1345,13 @@
         "js/firefox/browsers/chromebook.js"
       ],
       "name": "chromebook"
+    },
+    {
+      "files": [
+        "js/base/mozilla-fxa-product-button.js",
+        "js/base/mozilla-fxa-product-button-init.js"
+      ],
+      "name": "sync"
     }
   ]
 }
