@@ -30,7 +30,7 @@ enter-an-email = Enter an email address and password to <strong>“Create a { -b
 
 firefox-sync-click-next-to = Click <strong>“Next”</strong> to get a verification sent to your email.
 
-firefox-sync-after-you-check = After you check your email and click the verification link. { -brand-name-firefox } will start automatically syncing in the background.
+firefox-sync-after-you-check = After you check your email and click the verification link, { -brand-name-firefox } will start automatically syncing in the background.
 
 # https://support.mozilla.org/kb/firefox-accounts-managing-account-data
 firefox-sync-learn-more = More help managing your { -brand-name-firefox-account }

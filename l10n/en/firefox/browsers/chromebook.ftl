@@ -25,11 +25,11 @@ browsers-chromebook-while-a-chromebook = While a { -brand-name-chromebook } alre
 
 browsers-chromebook-alwayson-tracking-protection = Always-on tracking protection: by default, { -brand-name-firefox } runs Enhanced Tracking Protection (ETP) to protect your personal data from known ad trackers, social trackers and cryptomining scripts that follow you around the web.
 
-browsers-chromebook-supporting-independent-technology = Supporting independent technology: since most major browsers are now running on { -brand-name-chromium }, there are fewer options that don’t feed into the Big Tech machine. { -brand-name-firefox } is backed by a non-profit and is dedicated to fixing the internet. Using { -brand-name-firefox } makes you a part of that.
+browsers-chromebook-supporting-independent-technology = Supporting independent technology: since most major browsers are now running on { -brand-name-chromium }, there are fewer options that don’t feed into the Big Tech machine. { -brand-name-firefox } is backed by a not-for-profit and is dedicated to fixing the internet. Using { -brand-name-firefox } makes you a part of that.
 
 browsers-chromebook-is-it-hard = Is it hard to install { -brand-name-firefox } for { -brand-name-chromebook }?
 
-browsers-chromebook-we-wish-it = We wish it were more straightforward, but your { -brand-name-chromebook } would prefer to keep you in the { -brand-name-google-play } ecosystem. But, we think it’s worth the effort to install the { -brand-name-firefox } browser to your { -brand-name-chromebook } – and we’ve got resources to help you if you need them. There are two ways to get { -brand-name-firefox } on your device.
+browsers-chromebook-we-wish-it = We wish it were more straightforward, but your { -brand-name-chromebook } would prefer to keep you in the { -brand-name-google-play } ecosystem. However, we think it’s worth the effort to install the { -brand-name-firefox } browser to your { -brand-name-chromebook } – and we’ve got resources to help you if you need them. There are two ways to get { -brand-name-firefox } on your device.
 
 browsers-chromebook-install-firefox-from = Install { -brand-name-firefox } from { -brand-name-google-play } Store: on newer versions of { -brand-name-chromeos } (x86 based { -brand-name-chromebook } running { -brand-name-chromeos } 80 or later), you have the option to install the { -brand-name-firefox } for { -brand-name-android } app. This app is developed for mobile devices.
 
