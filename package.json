@@ -48,9 +48,9 @@
   },
   "scripts": {
     "start": "concurrently --kill-others \"python manage.py runserver 0.0.0.0:8080\" \"gulp\"",
-    "lint-js": "./node_modules/.bin/eslint media/js/**/*.js tests/unit/spec/**/*.js gulpfile.js",
+    "lint-js": "./node_modules/.bin/eslint \"media/js/**/*.js\" \"tests/unit/spec/**/*.js\" gulpfile.js",
     "lint-css": "./node_modules/.bin/stylelint \"media/css/**/*.{css,scss}\"",
-    "lint-json": "./node_modules/.bin/eslint bedrock/base/templates/includes/structured-data/**/*.json",
+    "lint-json": "./node_modules/.bin/eslint \"bedrock/base/templates/includes/structured-data/**/*.json\"",
     "lint": "npm run lint-js && npm run lint-css && npm run lint-json",
     "pretest": "npm run lint",
     "test": "./node_modules/.bin/karma start ./tests/unit/karma.conf.js"

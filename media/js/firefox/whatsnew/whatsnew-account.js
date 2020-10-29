@@ -10,7 +10,6 @@ if (typeof window.Mozilla === 'undefined') {
 (function(Mozilla) {
     'use strict';
 
-    var client = Mozilla.Client;
     var sendTo = document.getElementById('send-to-device');
 
     if (sendTo) {
