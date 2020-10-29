@@ -16,12 +16,11 @@
             window.Sentry.init({
                 dsn: sentryDsn ,
                 sampleRate: 0.10,
-                denyUrls: [
-                    // Chrome extensions
-                    /extensions\//i,
-                    /^chrome:\/\//i,
-                    // Firefox extensions
-                    /^resource:\/\//i
+                ignoreErrors: [
+                    'https://plugin.ucads.ucweb.com/api/flow/'
+                ],
+                allowUrls: [
+                    '/media/js/'
                 ]
             });
         }
