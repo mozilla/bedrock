@@ -652,7 +652,7 @@ class WhatsNewFirefoxLiteView(WhatsnewView):
 class WhatsNewChinaView(WhatsnewView):
     def get_template_names(self):
         template = super().get_template_names()
-        if template == ['firefox/whatsnew/whatsnew-fx83.html']:
+        if template == ['firefox/whatsnew/whatsnew-fx82.html']:
             template = ['firefox/whatsnew/index-account.html']
 
         return template
