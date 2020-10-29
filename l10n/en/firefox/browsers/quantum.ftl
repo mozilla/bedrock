@@ -4,27 +4,27 @@
 
 ### URL: https://www-dev.allizom.org/firefox/browsers/quantum/
 
-firefox-quantum-page-title= Download { -brand-name-firefox-quantum }
+page-title= Download { -brand-name-firefox-quantum }
 
-firefox-quantum-page-description= { -brand-name-firefox-quantum } was a revolution. In 2017, we created a new, lightning fast browser that constantly improves. { -brand-name-firefox-quantum } is the { -brand-name-firefox-browser }.
+page-description= { -brand-name-firefox-quantum } was a revolution. In 2017, we created a new, lightning fast browser that constantly improves. { -brand-name-firefox-quantum } is the { -brand-name-firefox-browser }.
 
-firefox-quantum-the-latest-firefox = The latest { -brand-name-firefox } engine: { -brand-name-firefox-quantum }
+the-latest-firefox = The latest { -brand-name-firefox } engine: { -brand-name-firefox-quantum }
 
-firefox-quantum-firefox-quantum-was = { -brand-name-firefox-quantum } was a revolution in { -brand-name-firefox } development. In 2017, we created a new, lightning fast browser that constantly improves. { -brand-name-firefox-quantum } is the { -brand-name-firefox-browser }.
+firefox-quantum-was = { -brand-name-firefox-quantum } was a revolution in { -brand-name-firefox } development. In 2017, we created a new, lightning fast browser that constantly improves. { -brand-name-firefox-quantum } is the { -brand-name-firefox-browser }.
 
 # https://blog.mozilla.org/blog/2017/11/14/introducing-firefox-quantum/
 learn-more-about = Learn more about { -brand-name-firefox-quantum }
 
-firefox-quantum-privacy-first = Privacy first
+privacy-first = Privacy first
 
-firefox-quantum-firefox-doesnt-spy = { -brand-name-firefox } doesn’t spy on you online. We stop many known third-party tracking cookies and give you full control.
+firefox-doesnt-spy = { -brand-name-firefox } doesn’t spy on you online. We stop many known third-party tracking cookies and give you full control.
 
-firefox-quantum-super-fast = Super Fast
+super-fast = Super Fast
 
-firefox-quantum-get-speed-and = Get speed and security. { -brand-name-firefox } is fast because we don’t track your moves.
+get-speed-and = Get speed and security. { -brand-name-firefox } is fast because we don’t track your moves.
 
-firefox-quantum-always-evolving = Always evolving
+always-evolving = Always evolving
 
 # Variables:
 # $url (url) - link to https://www.mozilla.org/firefox/features
-firefox-quantum-find-out-about = Find out about all the amazing <a href="{ $url }">{ -brand-name-firefox } features</a>.
+find-out-about = Find out about all the amazing <a href="{ $url }">{ -brand-name-firefox } features</a>.
