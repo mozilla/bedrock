@@ -311,7 +311,7 @@ redirectpatterns = (
     redirect(r'^firefox/os(/.*)?$', 'https://support.mozilla.org/products/firefox-os'),
 
     # Bug 1252332
-    redirect(r'^sync/?$', '/firefox/sync/'),
+    redirect(r'^sync/?$', 'firefox.sync'),
 
     # Bug 424204
     redirect(r'^firefox/help/?$', 'https://support.mozilla.org/'),
