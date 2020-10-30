@@ -375,6 +375,19 @@ class TestWhatsNew(TestCase):
 
     # end 82.0 whatsnew tests
 
+    # begin 83.0 whatsnew tests
+
+    @patch.object(fx_views, 'ftl_file_is_active', lambda *x: True)
+    def test_fx_83_0_0(self, render_mock):
+        """Should use whatsnew-fx83 template for 83.0"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'en-US'
+        self.view(req, version='83.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx83.html']
+
+    # end 83.0 whatsnew tests
+
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
 class TestWhatsNewFirefoxLite(TestCase):
