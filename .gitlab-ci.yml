@@ -78,7 +78,7 @@ test:
   only:
     - run-integration-tests
   variables:
-    CLUSTERS: oregon-b
+    CLUSTERS: iowa-a
     NAMESPACE: bedrock-test
 
 prod:
