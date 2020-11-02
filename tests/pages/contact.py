@@ -9,7 +9,7 @@ from pages.base import BasePage, BaseRegion
 
 class ContactPage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/contact/'
+    _URL_TEMPLATE = '/{locale}/contact/'
 
     _contact_tab_locator = (By.CSS_SELECTOR, '.category-tabs > li[data-id=contact]')
     _spaces_tab_locator = (By.CSS_SELECTOR, '.category-tabs > li[data-id=spaces]')
@@ -38,7 +38,7 @@ class ContactPage(BasePage):
 
 class SpacesPage(ContactPage):
 
-    URL_TEMPLATE = '/{locale}/contact/spaces/{slug}'
+    _URL_TEMPLATE = '/{locale}/contact/spaces/{slug}'
 
     _map_locator = (By.ID, 'map')
     _nav_locator = (By.CSS_SELECTOR, '#nav-spaces li h4')

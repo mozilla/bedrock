@@ -10,7 +10,7 @@ from pages.regions.menu_list import MenuList
 
 class FirefoxHomePage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/'
+    _URL_TEMPLATE = '/{locale}/firefox/'
 
     # browser download menu list
     _browser_menu_list_locator = (By.ID, 'test-menu-browsers-wrapper')

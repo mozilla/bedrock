@@ -8,12 +8,12 @@ from pages.base import BasePage
 from pages.regions.download_button import DownloadButton
 
 
-class FirefoxPrivacyProductsPage(BasePage):
+class BrowserComparisonLandingPage(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/firefox/privacy/products/'
+    _URL_TEMPLATE = '/{locale}/firefox/browsers/compare/'
 
-    _primary_download_button_locator = (By.ID, 'download-button-primary-non-firefox')
-    _secondary_download_button_locator = (By.ID, 'download-button-secondary-non-firefox')
+    _primary_download_button_locator = (By.ID, 'compare-hero-download')
+    _secondary_download_button_locator = (By.ID, 'download-secondary')
 
     @property
     def primary_download_button(self):

@@ -11,7 +11,7 @@ from pages.regions.send_to_device import SendToDevice
 
 class FirefoxWelcomePage5(BasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/welcome/5/'
+    _URL_TEMPLATE = '/{locale}/firefox/welcome/5/'
 
     _modal_primary_button_locator = (By.CSS_SELECTOR, '.primary-cta .js-modal-link')
     _modal_secondary_button_locator = (By.CSS_SELECTOR, '.secondary-cta .js-modal-link')

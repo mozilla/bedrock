@@ -268,3 +268,10 @@ A/B Test PRs that might have useful code to reuse
 - https://github.com/mozilla/bedrock/pull/5443/files
 - https://github.com/mozilla/bedrock/pull/5492/files
 - https://github.com/mozilla/bedrock/pull/5499/files
+
+Excluding automated tests from experiments
+------------------------------------------
+
+Automated functional tests include a `automation=true` parameter in their URLs. So
+for whichever kind of experimental redirect you're performing, automated tests can
+be excluded from the audience criteria by checking for existance of said parameter.

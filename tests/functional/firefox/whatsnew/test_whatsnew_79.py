@@ -10,5 +10,5 @@ from pages.firefox.whatsnew.whatsnew_79 import FirefoxWhatsNew79Page
 @pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
 @pytest.mark.nondestructive
 def test_default_browser_button_is_displayed(base_url, selenium):
-    page = FirefoxWhatsNew79Page(selenium, base_url, params='').open()
+    page = FirefoxWhatsNew79Page(selenium, base_url).open()
     assert page.is_default_browser_button_displayed

@@ -9,7 +9,7 @@ from pages.base import BasePage
 
 class FirefoxWelcomePage7(BasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/welcome/7/'
+    _URL_TEMPLATE = '/{locale}/firefox/welcome/7/'
 
     _facebook_container_button_locator = (By.ID, 'facebook-container-button')
 

@@ -10,7 +10,7 @@ from pages.regions.download_button import DownloadButton
 
 class FeaturesLandingPage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/features/'
+    _URL_TEMPLATE = '/{locale}/firefox/features/'
 
     _download_button_locator = (By.ID, 'features-header-download')
 

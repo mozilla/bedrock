@@ -10,7 +10,7 @@ from pages.regions.send_to_device import SendToDevice
 
 class FirefoxMobilePage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/mobile/'
+    _URL_TEMPLATE = '/{locale}/firefox/mobile/'
 
     _get_firefox_header_button_locator = (By.ID, 'get-firefox')
     _get_firefox_qr_code_locator = (By.ID, 'firefox-qr')

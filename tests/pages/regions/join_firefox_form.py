@@ -18,6 +18,10 @@ class JoinFirefoxForm(BaseRegion):
         return self.page.is_element_displayed(*self._root_locator)
 
     @property
+    def is_enabled(self):
+        return self.find_element(*self._continue_button_locator).is_enabled()
+
+    @property
     def email(self):
         el = self.find_element(*self._email_locator)
         return el.get_attribute('value')
@@ -26,5 +30,6 @@ class JoinFirefoxForm(BaseRegion):
         self.find_element(*self._email_locator).send_keys(value)
 
     def click_continue(self):
+        self.wait.until(lambda s: self.is_enabled)
         self.find_element(*self._continue_button_locator).click()
         self.wait.until(lambda s: '?action=email' in s.current_url)

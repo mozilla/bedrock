@@ -9,7 +9,7 @@ from pages.base import BasePage
 
 class FirefoxWhatsNewNightly70Page(BasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/70.0a1/whatsnew/all/'
+    _URL_TEMPLATE = '/{locale}/firefox/70.0a1/whatsnew/all/'
 
     _upgrade_message_locator = (By.CSS_SELECTOR, '.content-wrapper .c-emphasis-box-title')
 

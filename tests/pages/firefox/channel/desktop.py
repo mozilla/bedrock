@@ -10,7 +10,7 @@ from pages.regions.download_button import DownloadButton
 
 class ChannelDesktopPage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/channel/desktop/'
+    _URL_TEMPLATE = '/{locale}/firefox/channel/desktop/'
 
     _beta_download_locator = (By.ID, 'desktop-beta-download')
     _developer_download_locator = (By.ID, 'desktop-developer-download')

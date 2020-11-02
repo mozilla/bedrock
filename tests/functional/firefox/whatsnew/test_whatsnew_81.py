@@ -10,7 +10,7 @@ from pages.firefox.whatsnew.whatsnew_81 import FirefoxWhatsNew81Page
 @pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
 @pytest.mark.nondestructive
 def test_send_to_device_success(base_url, selenium):
-    page = FirefoxWhatsNew81Page(selenium, base_url, params='').open()
+    page = FirefoxWhatsNew81Page(selenium, base_url).open()
     send_to_device = page.send_to_device
     send_to_device.type_email('success@example.com')
     send_to_device.click_send()
@@ -20,7 +20,7 @@ def test_send_to_device_success(base_url, selenium):
 @pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
 @pytest.mark.nondestructive
 def test_send_to_device_failure(base_url, selenium):
-    page = FirefoxWhatsNew81Page(selenium, base_url, params='').open()
+    page = FirefoxWhatsNew81Page(selenium, base_url).open()
     send_to_device = page.send_to_device
     send_to_device.type_email('invalid@email')
     send_to_device.click_send(expected_result='error')

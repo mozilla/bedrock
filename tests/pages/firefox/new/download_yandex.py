@@ -11,7 +11,7 @@ from pages.regions.modal import ModalProtocol
 
 class YandexDownloadPage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/new/{params}'
+    _URL_TEMPLATE = '/{locale}/firefox/new/{params}'
 
     _download_button_locator = (By.ID, 'download-button-desktop-release')
     _platforms_modal_link_locator = (By.CLASS_NAME, 'js-platform-modal-button')

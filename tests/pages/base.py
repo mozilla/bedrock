@@ -24,8 +24,6 @@ class BaseRegion(ScrollElementIntoView, Region):
 
 class BasePage(ScrollElementIntoView, Page):
 
-    URL_TEMPLATE = '/{locale}/'
-
     def __init__(self, selenium, base_url, locale='en-US', **url_kwargs):
         super(BasePage, self).__init__(selenium, base_url, locale=locale, **url_kwargs)
 
@@ -34,6 +32,13 @@ class BasePage(ScrollElementIntoView, Page):
         el = self.find_element(By.TAG_NAME, 'html')
         self.wait.until(lambda s: 'loaded' in el.get_attribute('class'))
         return self
+
+    @property
+    def URL_TEMPLATE(self):
+        if '?' in self._URL_TEMPLATE:
+            return f'{self._URL_TEMPLATE}&automation=true'
+        else:
+            return f'{self._URL_TEMPLATE}?automation=true'
 
     @property
     def navigation(self):
@@ -91,19 +96,28 @@ class BasePage(ScrollElementIntoView, Page):
 
         def open_firefox_desktop_page(self):
             self.open_navigation_menu(self._firefox_menu_locator)
-            self.find_element(*self._firefox_desktop_page_locator).click()
+            link = self.find_element(*self._firefox_desktop_page_locator)
+            href = link.get_attribute('href')
+            self.page.set_attribute(link, att_name='href', att_value=href + '?automation=true')
+            link.click()
             from .firefox.new.download import DownloadPage
-            return DownloadPage(self.selenium, self.page.base_url, params='').wait_for_page_to_load()
+            return DownloadPage(self.selenium, self.page.base_url).wait_for_page_to_load()
 
         def open_developer_edition_page(self):
             self.open_navigation_menu(self._developers_menu_locator)
-            self.find_element(*self._developer_edition_page_locator).click()
+            link = self.find_element(*self._developer_edition_page_locator)
+            href = link.get_attribute('href')
+            self.page.set_attribute(link, att_name='href', att_value=href + '?automation=true')
+            link.click()
             from .firefox.developer import DeveloperPage
             return DeveloperPage(self.selenium, self.page.base_url).wait_for_page_to_load()
 
         def open_about_page(self):
             self.open_navigation_menu(self._about_menu_locator)
-            self.find_element(*self._about_page_locator).click()
+            link = self.find_element(*self._about_page_locator)
+            href = link.get_attribute('href')
+            self.page.set_attribute(link, att_name='href', att_value=href + '?automation=true')
+            link.click()
             from .about import AboutPage
             return AboutPage(self.selenium, self.page.base_url).wait_for_page_to_load()
 

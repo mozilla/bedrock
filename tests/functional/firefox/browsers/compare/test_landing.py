@@ -4,12 +4,12 @@
 
 import pytest
 
-from pages.firefox.browsers.compare import BrowserComparisonPage
+from pages.firefox.browsers.compare_landing import BrowserComparisonLandingPage
 
 
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_download_buttons_are_displayed(base_url, selenium):
-    page = BrowserComparisonPage(selenium, base_url, slug='/').open()
+    page = BrowserComparisonLandingPage(selenium, base_url).open()
     assert page.primary_download_button.is_displayed
     assert page.secondary_download_button.is_displayed

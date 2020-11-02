@@ -7,4 +7,4 @@ from pages.newsletter.base import NewsletterBasePage
 
 class MozillaNewsletterPage(NewsletterBasePage):
 
-    URL_TEMPLATE = '/{locale}/newsletter/mozilla/'
+    _URL_TEMPLATE = '/{locale}/newsletter/mozilla/'

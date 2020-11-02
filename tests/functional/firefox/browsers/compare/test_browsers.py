@@ -9,14 +9,28 @@ from pages.firefox.browsers.compare import BrowserComparisonPage
 
 @pytest.mark.nondestructive
 @pytest.mark.parametrize('slug', [
-    ('/chrome/'),
-    ('/edge/'),
-    ('/safari/'),
-    ('/opera/'),
-    ('/brave/'),
-    ('/ie/')])
-def test_download_links_are_displayed(slug, base_url, selenium):
+    ('chrome'),
+    ('edge'),
+    ('safari'),
+    ('opera'),
+    ('brave'),
+    ('ie')])
+def test_menu_list_is_displayed(slug, base_url, selenium):
     page = BrowserComparisonPage(selenium, base_url, slug=slug).open()
     page.browser_menu_list.click()
     assert page.browser_menu_list.list_is_open
+
+
+@pytest.mark.skip_if_firefox(reason='Download button only visible to non-Firefox users')
+@pytest.mark.nondestructive
+@pytest.mark.parametrize('slug', [
+    ('chrome'),
+    ('edge'),
+    ('safari'),
+    ('opera'),
+    ('brave'),
+    ('ie')])
+def test_download_buttons_are_displayed(slug, base_url, selenium):
+    page = BrowserComparisonPage(selenium, base_url, slug=slug).open()
+    assert page.primary_download_button.is_displayed
     assert page.secondary_download_button.is_displayed

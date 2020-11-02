@@ -9,7 +9,7 @@ from pages.base import BasePage
 
 class ChannelIOSPage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/channel/ios/'
+    _URL_TEMPLATE = '/{locale}/firefox/channel/ios/'
 
     _testflight_button_locator = (By.CLASS_NAME, 'testflight-cta')
 

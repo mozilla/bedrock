@@ -10,7 +10,7 @@ from pages.regions.download_button import DownloadButton
 
 class IncognitoBrowserPage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/browsers/incognito-browser/'
+    _URL_TEMPLATE = '/{locale}/firefox/browsers/incognito-browser/'
 
     _download_button_locator = (By.ID, 'download-button-desktop-release')
 

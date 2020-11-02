@@ -9,7 +9,7 @@ from pages.base import BasePage
 
 class FirefoxWhatsNew79Page(BasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/79.0/whatsnew/all/{params}'
+    _URL_TEMPLATE = '/{locale}/firefox/79.0/whatsnew/all/'
 
     _set_default_button_locator = (By.ID, 'set-as-default-button')
 
