@@ -1,0 +1,152 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/feature-card';
+@import '../../../protocol/css/components/card';
+@import '../../../protocol/css/components/hero';
+@import '../../../protocol/css/components/picto-card';
+@import '../../../protocol/css/templates/card-layout';
+@import '../../../protocol/css/components/inline-list';
+
+/* -------------------------------------------------------------------------- */
+/* Layout adjustments */
+
+.mzp-l-content {
+    &.mzp-t-dark {
+        background: $color-marketing-gray-80;
+
+        .mzp-c-card-feature-desc {
+            color: $color-white;
+        }
+    }
+
+    img {
+        display: block;
+        margin: $layout-md auto;
+        max-width: 100%;
+    }
+}
+
+
+.mzp-c-card-feature {
+    &.mzp-l-card-feature-left-half {
+        margin-bottom: 0;
+    }
+
+    .mzp-c-card-feature-title {
+        @include text-display-lg;
+    }
+
+    .mzp-c-card-feature-desc h3 {
+        @include text-display-md;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 15 tips section */
+
+body {
+    counter-reset: tips;
+}
+
+.c-tips {
+    .mzp-c-card-feature-content {
+        h2 {
+            @include text-display-xxl;
+
+            span {
+                @include text-display-md;
+                color: $color-ink-05;
+                display: block;
+            }
+        }
+    }
+
+    h3 {
+        @include text-display-lg;
+
+        &:before {
+            counter-increment: tips;
+            content: counter(tips) ". ";
+            color: $color-pink-50;
+        }
+
+        span {
+            color: $color-pink-50;
+        }
+    }
+
+    ol {
+        margin: $spacing-lg 0;
+
+        li {
+            margin-left: 30px;
+            margin-bottom: $spacing-2xl;
+            list-style-type: upper-alpha;
+
+            &::marker {
+                font-weight: bold;
+                @include text-display-xs;
+            }
+
+            strong {
+                @include text-display-xs;
+                display: block;
+                margin-bottom: $spacing-xs;
+            }
+        }
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Picto Cards
+
+// Custom Overrides pending https://github.com/mozilla/protocol/issues/382
+.mzp-c-card-picto {
+    @include bidi(((text-align, left, right),));
+    padding-top: 0;
+
+    .mzp-c-card-picto-content:before {
+        @include bidi(((left, 0, right, 0),));
+        @include background-size(56px 56px);
+        background-color: transparent;
+        margin-left: 0;
+    }
+
+    @media #{$mq-md} {
+        .mzp-c-card-picto-content:before {
+            @include bidi(((left, $spacing-lg, right, 0),));
+        }
+    }
+
+    &.search .mzp-c-card-picto-content:before {
+        background: url('/media/img/firefox/privacy/book/privacy-icon-search.svg');
+    }
+
+    &.email .mzp-c-card-picto-content:before {
+        background: url('/media/img/firefox/privacy/book/privacy-icon-email.svg');
+    }
+
+    &.messenger .mzp-c-card-picto-content:before {
+        background: url('/media/img/firefox/privacy/book/privacy-icon-messenger.svg');
+    }
+
+    &.browser .mzp-c-card-picto-content:before {
+        background: url('/media/img/firefox/privacy/book/privacy-icon-browser.svg');
+    }
+}
+
+.questions {
+    margin: $layout-xl auto;
+
+    h3 {
+        @include text-display-sm;
+        margin-top: $spacing-xl;
+    }
+}

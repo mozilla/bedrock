@@ -738,6 +738,12 @@
         "css/firefox/sync.scss"
       ],
       "name": "sync"
+    },
+    {
+      "files": [
+        "css/firefox/privacy/book.scss"
+      ],
+      "name": "privacy-book"
     }
   ],
   "js": [
