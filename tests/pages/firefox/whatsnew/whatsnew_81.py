@@ -9,7 +9,7 @@ from pages.regions.send_to_device import SendToDevice
 
 class FirefoxWhatsNew81Page(BasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/81.0/whatsnew/all/{params}'
+    _URL_TEMPLATE = '/{locale}/firefox/81.0/whatsnew/all/'
 
     @property
     def send_to_device(self):

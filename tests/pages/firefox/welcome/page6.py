@@ -11,7 +11,7 @@ from pages.regions.send_to_device import SendToDevice
 
 class FirefoxWelcomePage6(BasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/welcome/6/{params}'
+    _URL_TEMPLATE = '/{locale}/firefox/welcome/6/{params}'
 
     _set_default_button_locator = (By.ID, 'set-as-default-button')
     _modal_button_locator = (By.CSS_SELECTOR, '.primary-cta .js-modal-link')

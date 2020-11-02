@@ -8,8 +8,6 @@ from pages.lean_data import LeanDataPage
 
 
 @pytest.mark.nondestructive
-@pytest.mark.parametrize('slug', [
-    ('/')])
-def test_contact_button_is_displayed(slug, base_url, selenium):
-    page = LeanDataPage(selenium, base_url, slug=slug).open()
+def test_contact_button_is_displayed(base_url, selenium):
+    page = LeanDataPage(selenium, base_url).open()
     assert page.is_contact_button_displayed

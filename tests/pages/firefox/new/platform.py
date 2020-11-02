@@ -11,7 +11,7 @@ from pages.regions.modal import ModalProtocol
 
 class PlatformDownloadPage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/{slug}/'
+    _URL_TEMPLATE = '/{locale}/firefox/{slug}/'
 
     _download_button_locator = (By.ID, 'download-button-desktop-release')
     _platforms_modal_link_locator = (By.CLASS_NAME, 'js-platform-modal-button')
@@ -23,6 +23,8 @@ class PlatformDownloadPage(BasePage):
         return DownloadButton(self, root=el)
 
     def download_firefox(self):
+        href = self.download_button.platform_link.get_attribute('href')
+        self.set_attribute(self.download_button.platform_link, att_name='href', att_value=href + '?automation=true')
         self.download_button.click()
         from pages.firefox.new.thank_you import ThankYouPage
         return ThankYouPage(self.selenium, self.base_url).wait_for_page_to_load()

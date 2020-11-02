@@ -10,7 +10,7 @@ from pages.regions.download_button import DownloadButton
 
 class FirefoxSwitchPage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/switch/'
+    _URL_TEMPLATE = '/{locale}/firefox/switch/'
 
     _download_button_locator = (By.ID, 'download-button-desktop-release')
 

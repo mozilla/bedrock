@@ -9,7 +9,7 @@ from pages.base import BasePage
 
 class FirefoxWelcomePage3(BasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/welcome/3/'
+    _URL_TEMPLATE = '/{locale}/firefox/welcome/3/'
 
     _fxa_primary_button_locator = (By.CSS_SELECTOR, '.primary-cta .js-fxa-product-button')
     _fxa_secondary_button_locator = (By.CSS_SELECTOR, '.secondary-cta .js-fxa-product-button')

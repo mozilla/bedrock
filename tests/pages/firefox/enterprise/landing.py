@@ -10,7 +10,7 @@ from pages.regions.menu_list import MenuList
 
 class EnterprisePage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/enterprise/'
+    _URL_TEMPLATE = '/{locale}/firefox/enterprise/'
 
     _primary_download_button_locator = (By.ID, 'primary-download-button')
     _win64_download_list_locator = (By.ID, 'win64-download-list')

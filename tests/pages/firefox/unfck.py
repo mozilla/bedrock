@@ -10,7 +10,7 @@ from pages.regions.download_button import DownloadButton
 
 class FirefoxUnfckPage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/unfck/'
+    _URL_TEMPLATE = '/{locale}/firefox/unfck/'
 
     _download_button_locator = (By.ID, 'download-button-desktop-release')
     _play_store_button_locator = (By.ID, 'playStoreLink')

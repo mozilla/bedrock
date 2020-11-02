@@ -13,4 +13,11 @@ def scroll_element_into_view(self, strategy, locator, x=0, y=0):
     return el
 
 
+def set_attribute(self, el, att_name, att_value):
+    self.selenium.execute_script(
+        'arguments[0].setAttribute(arguments[1], arguments[2]);', el, att_name, att_value)
+    return el
+
+
 WebView.scroll_element_into_view = scroll_element_into_view
+WebView.set_attribute = set_attribute

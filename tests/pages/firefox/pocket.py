@@ -9,7 +9,7 @@ from pages.base import BasePage
 
 class FirefoxPocketPage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/pocket/'
+    _URL_TEMPLATE = '/{locale}/firefox/pocket/'
 
     _pocket_primary_button_locator = (By.CSS_SELECTOR, '#pocket-hero .js-fxa-product-button')
     _pocket_secondary_button_locator = (By.CSS_SELECTOR, '#pocket-sidekick .js-fxa-product-button')

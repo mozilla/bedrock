@@ -10,7 +10,7 @@ from pages.regions.download_button import DownloadButton
 
 class FirefoxReleaseNotesPage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/{slug}/releasenotes/'
+    _URL_TEMPLATE = '/{locale}/firefox/{slug}/releasenotes/'
 
     _primary_download_button_release_locator = (By.ID, 'download-release-primary')
     _secondary_download_button_release_locator = (By.ID, 'download-release-secondary')

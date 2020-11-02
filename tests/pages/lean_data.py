@@ -9,7 +9,7 @@ from pages.base import BasePage
 
 class LeanDataPage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/about/policy/lean-data{slug}'
+    _URL_TEMPLATE = '/{locale}/about/policy/lean-data/'
 
     _contact_button_locator = (By.ID, 'contact-button')
 

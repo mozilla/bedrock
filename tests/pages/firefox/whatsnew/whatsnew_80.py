@@ -10,7 +10,7 @@ from pages.regions.send_to_device import SendToDevice
 
 class FirefoxWhatsNew80Page(BasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/80.0/whatsnew/all/{params}'
+    _URL_TEMPLATE = '/{locale}/firefox/80.0/whatsnew/all/'
 
     _qr_code_locator = (By.CSS_SELECTOR, '#firefox-qr')
 

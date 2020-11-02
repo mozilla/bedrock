@@ -9,7 +9,7 @@ from pages.base import BasePage
 
 class FirefoxWelcomePage8(BasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/welcome/8/'
+    _URL_TEMPLATE = '/{locale}/firefox/welcome/8/'
 
     _protection_report_button_locator = (By.CSS_SELECTOR, '.primary-cta .mzp-c-button')
 

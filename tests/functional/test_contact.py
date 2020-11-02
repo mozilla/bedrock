@@ -16,17 +16,16 @@ def test_tab_navigation(base_url, selenium):
     spaces_page = SpacesPage(selenium, base_url, slug='').open()
     assert not spaces_page.contact_tab.is_selected
     assert spaces_page.spaces_tab.is_selected
-    assert spaces_page.seed_url in selenium.current_url
 
 
 @pytest.mark.nondestructive
 @pytest.mark.parametrize('slug', [
-    ('portland'),
-    ('san-francisco'),
-    ('vancouver')])
+    ('portland/'),
+    ('san-francisco/'),
+    ('vancouver/')])
 def test_spaces_menus(slug, base_url, selenium):
     page = SpacesPage(selenium, base_url, slug=slug).open()
-    space_menu = [s for s in page.spaces if s.id == slug]
+    space_menu = [s for s in page.spaces if s.id in slug]
     assert len(space_menu) == 1
     assert space_menu[0].is_selected
 

@@ -7,4 +7,4 @@ from pages.base import BasePage
 
 class ContributePage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/contribute/'
+    _URL_TEMPLATE = '/{locale}/contribute/'
