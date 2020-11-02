@@ -156,8 +156,11 @@
                 }
             );
 
+            // convert NodeList into array - support for Edge 15 and older
+            var jsAnimate = Array.prototype.slice.call(document.querySelectorAll('.js-animate'), 0);
+
             // add observers
-            document.querySelectorAll('.js-animate').forEach(function(element) {
+            jsAnimate.forEach(function(element) {
                 var rect = element.getBoundingClientRect();
                 var viewHeight = window.innerHeight;
                 // check element isn't above user's current position on the page
