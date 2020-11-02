@@ -28,9 +28,12 @@ def load_legal_doc(doc_name, locale):
         doc = LegalDoc.objects.get_doc(doc_name, locale)
     except LegalDoc.DoesNotExist:
         try:
-            doc = LegalDoc.objects.get_doc(doc_name, 'en-US')
+            doc = LegalDoc.objects.get_doc(doc_name, 'en')
         except LegalDoc.DoesNotExist:
-            doc = None
+            try:
+                doc = LegalDoc.objects.get_doc(doc_name, 'en-US')
+            except LegalDoc.DoesNotExist:
+                doc = None
 
     return doc
 
