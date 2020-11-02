@@ -138,7 +138,7 @@
     }();
 
     // check for support
-    if(supportsInsersectionObserver) {
+    if (supportsInsersectionObserver && window.NodeList && NodeList.prototype.forEach) {
         // needs a sec to report rect.top right if the page loaded partially scrolled already
         setTimeout(function(){
 
@@ -206,4 +206,3 @@
     }
 
 })(window.Mozilla);
-
