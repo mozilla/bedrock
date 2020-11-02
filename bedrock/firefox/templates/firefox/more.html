@@ -16,7 +16,7 @@
 {% block content %}
 <main>
   {% call hero(
-    title=ftl('learn-more-about-firefox'),
+    title=ftl('learn-more-about-firefox', fallback='firefox-products-are'),
     class='privacy-promise-hero mzp-has-image mzp-t-dark mzp-t-firefox',
     image_url='img/firefox/privacy/promise/privacy-hero.png',
     include_highres_image=True,

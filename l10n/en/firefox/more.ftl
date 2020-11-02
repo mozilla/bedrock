@@ -4,6 +4,7 @@
 
 ### URL: https://www-dev.allizom.org/firefox/more/
 
+firefox-products-are = { -brand-name-firefox } products are designed to protect your privacy
 learn-more-about-firefox = Learn more about { -brand-name-firefox }, it’s history, features and mission
 learn-more-about = Learn more about { -brand-name-firefox } browsers and products that handle your data with respect and are built for privacy anywhere you go online.
 learn-more-faq = { -brand-name-firefox } FAQ
