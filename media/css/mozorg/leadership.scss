@@ -110,7 +110,6 @@ $image-path: '/media/protocol/img';
     }
 
     .title,
-    .since,
     .note,
     .elsewhere,
     .utility {
@@ -172,10 +171,6 @@ $image-path: '/media/protocol/img';
             color: $color-link;
             text-decoration: underline;
         }
-    }
-
-    &.has-bio .since {
-        @include hidden;
     }
 
     &.has-bio:hover,
