@@ -20,7 +20,11 @@
                     'https://plugin.ucads.ucweb.com/api/flow/'
                 ],
                 allowUrls: [
-                    '/media/js/'
+                    '/media/js/',
+                    'https://www.googletagmanager.com/',
+                    'https://www.google-analytics.com/',
+                    'https://cdn-3.convertexperiments.com/'
+
                 ]
             });
         }
