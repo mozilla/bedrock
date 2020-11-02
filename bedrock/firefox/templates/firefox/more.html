@@ -16,82 +16,18 @@
 {% block content %}
 <main>
   {% call hero(
-    title=ftl('firefox-products-are'),
+    title=ftl('learn-more-about-firefox'),
     class='privacy-promise-hero mzp-has-image mzp-t-dark mzp-t-firefox',
     image_url='img/firefox/privacy/promise/privacy-hero.png',
     include_highres_image=True,
     include_cta=True,
     heading_level=2
   ) %}
-    <a href="{{ url('firefox.privacy.products') }}" class="mzp-c-button mzp-t-product">{{ ftl('learn-more') }}</a>
+    <a href="{{ url('firefox.faq') }}" class="mzp-c-button mzp-t-product">{{ ftl('learn-more-faq') }}</a>
   {% endcall %}
 
   <div class="mzp-l-content">
     <div class="mzp-l-card-quarter">
-      {{ card(
-        title=ftl('the-history-of'),
-        ga_title='Browser History',
-        image_url='img/firefox/more/browser-history.jpg',
-        desc=ftl('firefox-has-been'),
-        link_url=url('firefox.browsers.browser-history')
-      )}}
-
-      {{ card(
-        title=ftl('firefox-rebel-with'),
-        ga_title="Independent",
-        image_url='img/firefox/more/independent.jpg',
-        desc= ftl('firefox-is-independent'),
-        link_url=url('firefox.features.independent')
-      )}}
-
-      {{ card(
-        title=ftl('what-is-a'),
-        ga_title='What is a browser',
-        image_url='img/firefox/more/what-is-a-browser.jpg',
-        desc=ftl('a-web-browser'),
-        link_url=url('firefox.browsers.what-is-a-browser')
-      )}}
-
-      {{ card(
-        title=ftl('update-your-browser'),
-        ga_title='Update Browser',
-        image_url='img/firefox/more/update-browser.jpg',
-        desc=ftl('the-firefox-browser'),
-        link_url=url('firefox.browsers.update-browser')
-      )}}
-
-      {{ card(
-        title=ftl('firefox-is-more'),
-        ga_title='Firefox Products',
-        image_url='img/firefox/more/firefox-products.jpg',
-        desc=ftl('its-a-lightning'),
-        link_url=url('firefox.products.index')
-      )}}
-
-      {{ card(
-        title=ftl('get-the-browsers'),
-        ga_title='Firefox Browsers',
-        image_url='img/firefox/more/firefox-browsers.jpg',
-        desc=ftl('get-the-privacy'),
-        link_url=url('firefox.browsers.index')
-      )}}
-
-      {{ card(
-        title=ftl('take-your-passwords'),
-        ga_title='Firefox Lockwise',
-        image_url='img/firefox/more/firefox-lockwise.jpg',
-        desc=ftl('securely-access-the'),
-        link_url=url('firefox.products.lockwise')
-      )}}
-
-      {{ card(
-        title=ftl('choose-which-firefox'),
-        ga_title='Firefox All',
-        image_url='img/firefox/more/firefox-all.jpg',
-        desc=ftl('we-believe-everyone'),
-        link_url=url('firefox.all')
-      )}}
-
       {{ card(
         title=ftl('firefox-fights-for'),
         ga_title='Firefox Windows',
@@ -124,7 +60,122 @@
         link_url=url('firefox.browsers.windows-64-bit')
       )}}
     </div>
+    <div class="mzp-l-card-third">
+      {{ card(
+        title=ftl('the-history-of'),
+        ga_title='Browser History',
+        image_url='img/firefox/more/browser-history.jpg',
+        desc=ftl('firefox-has-been'),
+        link_url=url('firefox.browsers.browser-history')
+      )}}
 
+      {{ card(
+        title=ftl('what-is-a'),
+        ga_title='What is a browser',
+        image_url='img/firefox/more/what-is-a-browser.jpg',
+        desc=ftl('a-web-browser'),
+        link_url=url('firefox.browsers.what-is-a-browser')
+      )}}
+
+      {{ card(
+        title=ftl('update-your-browser'),
+        ga_title='Update Browser',
+        image_url='img/firefox/more/update-browser.jpg',
+        desc=ftl('the-firefox-browser'),
+        link_url=url('firefox.browsers.update-browser')
+      )}}
+    </div>
+    <div class="mzp-l-card-quarter">
+      {{ card(
+        title=ftl('choose-which-firefox'),
+        ga_title='Firefox All',
+        image_url='img/firefox/more/firefox-all.jpg',
+        desc=ftl('we-believe-everyone'),
+        link_url=url('firefox.all')
+      )}}
+
+      {{ card(
+        title=ftl('firefox-more-firefox-chromebook'),
+        ga_title='Firefox Products',
+        image_url='img/firefox/more/firefox-chromebook.jpg',
+        desc=ftl('while-on-chromebook'),
+        link_url=url('firefox.browsers.chromebook')
+      )}}
+
+      {{ card(
+        title=ftl('firefox-quantum'),
+        ga_title='Firefox Browsers',
+        image_url='img/firefox/more/firefox-quantum.jpg',
+        desc=ftl('quantum-was-revolution'),
+        link_url=url('firefox.browsers.quantum')
+      )}}
+
+      {{ card(
+        title=ftl('take-your-passwords'),
+        ga_title='Firefox Lockwise',
+        image_url='img/firefox/more/firefox-lockwise.jpg',
+        desc=ftl('securely-access-the'),
+        link_url=url('firefox.products.lockwise')
+      )}}
+    </div>
+    <div class="mzp-l-card-third">
+      {{ card(
+        title=ftl('firefox-rebel-with'),
+        ga_title="Independent",
+        image_url='img/firefox/more/independent.jpg',
+        desc= ftl('firefox-is-independent'),
+        link_url=url('firefox.features.independent')
+      )}}
+
+      {{ card(
+        title=ftl('little-book'),
+        ga_title='Features Private Browsing',
+        image_url='img/firefox/more/little-book-of-privacy.jpg',
+        desc= ftl('you-can-reclaim'),
+        link_url=url('firefox.privacy.book')
+      )}}
+
+      {{ card(
+        title=ftl('incognito-browser-what'),
+        ga_title='Features Private Browsing',
+        image_url='img/firefox/more/incognito-browser.jpg',
+        desc=ftl('firefox-calls-it'),
+        link_url=url('firefox.browsers.incognito-browser')
+      )}}
+    </div>
+    <div class="mzp-l-card-quarter">
+      {{ card(
+        title=ftl('the-ad-blocker'),
+        ga_title='Featires Adblocker',
+        image_url='img/firefox/more/firefox-adblocker.jpg',
+        desc=ftl('so-many-ads'),
+        link_url=url('firefox.features.adblocker')
+      )}}
+
+      {{ card(
+        title=ftl('firefox-more-protection'),
+        ga_title='Features Private Browsing',
+        image_url='img/firefox/more/private-browsing.jpg',
+        desc=ftl('were-obsessed-with'),
+        link_url=url('firefox.features.private-browsing')
+      )}}
+
+      {{ card(
+        title=ftl('take-the-stress'),
+        ga_title='Features Safe Browser',
+        image_url='img/firefox/more/safe-browser.jpg',
+        desc=ftl('building-a-safe'),
+        link_url=url('firefox.features.safebrowser')
+      )}}
+
+      {{ card(
+        title=ftl('firefox-sync'),
+        ga_title='Features Safe Browser',
+        image_url='img/firefox/more/firefox-sync.jpg',
+        desc=ftl('access-your-sync'),
+        link_url=url('firefox.sync')
+      )}}
+    </div>
     <div class="mzp-l-card-third">
       {{ card(
         title=ftl('seven-of-the'),
@@ -150,7 +201,6 @@
         link_url=url('firefox.browsers.compare.brave')
       )}}
     </div>
-
     <div class="mzp-l-card-quarter">
       {{ card(
         title=ftl('comparing-firefox-edge'),
@@ -182,38 +232,6 @@
         image_url='img/firefox/more/firefox-opera.jpg',
         desc=ftl('be-free-to'),
         link_url=url('firefox.browsers.compare.opera')
-      )}}
-
-      {{ card(
-        title=ftl('the-ad-blocker'),
-        ga_title='Featires Adblocker',
-        image_url='img/firefox/more/firefox-adblocker.jpg',
-        desc=ftl('so-many-ads'),
-        link_url=url('firefox.features.adblocker')
-      )}}
-
-      {{ card(
-        title=ftl('firefox-more-protection'),
-        ga_title='Features Private Browsing',
-        image_url='img/firefox/more/private-browsing.jpg',
-        desc=ftl('were-obsessed-with'),
-        link_url=url('firefox.features.private-browsing')
-      )}}
-
-      {{ card(
-        title=ftl('incognito-browser-what'),
-        ga_title='Features Private Browsing',
-        image_url='img/firefox/more/incognito-browser.jpg',
-        desc=ftl('firefox-calls-it'),
-        link_url=url('firefox.browsers.incognito-browser')
-      )}}
-
-      {{ card(
-        title=ftl('take-the-stress'),
-        ga_title='Features Safe Browser',
-        image_url='img/firefox/more/safe-browser.jpg',
-        desc=ftl('building-a-safe'),
-        link_url=url('firefox.features.safebrowser')
       )}}
     </div>
   </div>
