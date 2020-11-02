@@ -616,8 +616,10 @@ class WhatsnewView(L10nTemplateView):
                 template = 'firefox/developer/whatsnew.html'
             else:
                 template = 'firefox/whatsnew/index.html'
-        elif version.startswith('83.') and ftl_file_is_active('firefox/whatsnew/whatsnew-fx83'):
-            template = 'firefox/whatsnew/whatsnew-fx83.html'
+        elif version.startswith('83.') and locale.startswith('de-'):
+            template = 'firefox/whatsnew/whatsnew-fx83-de.html'
+        elif version.startswith('83.') and locale.startswith('en-'):
+            template = 'firefox/whatsnew/whatsnew-fx83-en.html'
         elif version.startswith('82.') and locale.startswith('en-'):
             template = 'firefox/whatsnew/whatsnew-fx82.html'
         elif version.startswith('81.') and ftl_file_is_active('firefox/whatsnew/whatsnew-fx81'):

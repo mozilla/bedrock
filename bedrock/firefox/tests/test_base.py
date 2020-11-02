@@ -384,7 +384,7 @@ class TestWhatsNew(TestCase):
         req.locale = 'en-US'
         self.view(req, version='83.0')
         template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/whatsnew-fx83.html']
+        assert template == ['firefox/whatsnew/whatsnew-fx83-en.html']
 
     # end 83.0 whatsnew tests
 
