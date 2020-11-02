@@ -157,10 +157,10 @@
             );
 
             // convert NodeList into array - support for Edge 15 and older
-            var jsAnimate = Array.prototype.slice.call(document.querySelectorAll('.js-animate'), 0);
+            var jsAnimateNodesArray = Array.prototype.slice.call(document.querySelectorAll('.js-animate'));
 
             // add observers
-            jsAnimate.forEach(function(element) {
+            jsAnimateNodesArray.forEach(function(element) {
                 var rect = element.getBoundingClientRect();
                 var viewHeight = window.innerHeight;
                 // check element isn't above user's current position on the page
