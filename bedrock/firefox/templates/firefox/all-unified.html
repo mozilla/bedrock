@@ -96,7 +96,7 @@
         </div>
       </div>
       <form class="c-selection-form">
-        <fieldset>
+        <fieldset class="c-selection-formset">
           <p class="c-selection c-selection-product">
             <label for="select-product" class="c-selection-label">
               {{ ftl('firefox-all-which-browser-would') }}
@@ -125,19 +125,21 @@
         </fieldset>
 
         <div id="download-info" class="c-download hidden" aria-live="polite">
-          <p class="c-download-info">
-            {{ ftl('firefox-all-you-are-about-to-download') }}
-            <br>
-            <br>
-            <span class="c-download-info-label">{{ ftl('firefox-all-browser') }}</span>
-            <b class="c-download-info-content" id="download-info-product"></b>
-            <br>
-            <span class="c-download-info-label">{{ ftl('firefox-all-platform') }}</span>
-            <b class="c-download-info-content" id="download-info-platform"></b>
-            <br>
-            <span class="c-download-info-label">{{ ftl('firefox-all-language') }}</span>
-            <b class="c-download-info-content" id="download-info-language"></b>
-          </p>
+          <table class="c-download-info mzp-u-data-table">
+            <caption class="c-download-info-caption">{{ ftl('firefox-all-you-are-about-to-download') }}</caption>
+            <tr>
+              <th class="c-download-info-label" scope="row">{{ ftl('firefox-all-browser') }}</th>
+              <td class="c-download-info-content" id="download-info-product"></td>
+            </tr>
+            <tr>
+              <th class="c-download-info-label" scope="row">{{ ftl('firefox-all-platform') }}</th>
+              <td class="c-download-info-content" id="download-info-platform"></td>
+            </tr>
+            <tr>
+              <th class="c-download-info-label" scope="row">{{ ftl('firefox-all-language') }}</th>
+              <td class="c-download-info-content" id="download-info-language"></td>
+            </tr>
+          </table>
 
           <p class="c-download-error hidden">
             { ftl('firefox-all-sorry-we-couldnt-find') }

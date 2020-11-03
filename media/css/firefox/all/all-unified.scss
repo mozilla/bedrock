@@ -6,6 +6,7 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/includes/forms/lib';
 @import '../../../protocol/css/templates/main-with-sidebar';
 @import '../../../protocol/css/components/modal';
 @import '../../../protocol/css/components/sidebar-menu';
@@ -106,6 +107,10 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.c-selection-formset {
+    margin-bottom: 0;
+}
+
 .c-intro {
     margin-bottom: $layout-md;
 
@@ -178,7 +183,31 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.c-download-info {
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+    margin-bottom: $layout-sm;
+    width: 100%;
+}
+
+.c-download-info-caption {
+    @include field-label();
+    display: table-caption;
+}
+
+.c-download-info-label {
+    font-weight: normal;
+    // make first column as narrow as possible https://stackoverflow.com/a/11267268/462195
+    width: 1%;
+    white-space: nowrap;
+}
+
+.c-download-info-content {
+    font-weight: bold;
+}
+
 .c-download {
+    @include bidi (((text-align, right, left),));
+
     .c-download-error {
         color: $color-red-60;
         display: none;
