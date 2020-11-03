@@ -28,10 +28,6 @@
 {% block page_css %}
   {{ css_bundle('firefox-master') }}
 
-  {% if switch('firefox-daylight-launch-banner') %}
-    {{ css_bundle('daylight-launch-banner') }}
-  {% endif %}
-
   {% if switch('firefox-daylight-promo-banner') %}
     {{ css_bundle('daylight-promo-banner') }}
   {% endif %}
@@ -48,10 +44,6 @@
 {% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-home' %}
 
 {% block page_banner %}
-  {% if switch('firefox-daylight-launch-banner') %}
-    {% include 'includes/banners/daylight/daylight-launch.html' %}
-  {% endif %}
-
   {% if switch('firefox-daylight-promo-banner') %}
     {% include 'includes/banners/daylight/daylight-promo.html' %}
   {% endif %}
@@ -254,10 +246,6 @@
 
 {% block js %}
   {{ js_bundle('firefox-master') }}
-
-  {% if switch('firefox-daylight-launch-banner') %}
-    {{ js_bundle('daylight-launch-banner') }}
-  {% endif %}
 
   {% if switch('firefox-daylight-promo-banner') %}
     {{ js_bundle('daylight-promo-banner') }}

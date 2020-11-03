@@ -10,10 +10,6 @@
 {% block page_css %}
   {{ css_bundle('firefox-mobile') }}
 
-  {% if switch('firefox-daylight-launch-banner') %}
-    {{ css_bundle('daylight-launch-banner') }}
-  {% endif %}
-
   {% if switch('firefox-daylight-promo-banner') %}
     {{ css_bundle('daylight-promo-banner') }}
   {% endif %}
@@ -29,10 +25,6 @@
 {% set ios_url = firefox_adjust_url('ios', 'mobile-page') %}
 
 {% block page_banner %}
-  {% if switch('firefox-daylight-launch-banner') %}
-    {% include 'includes/banners/daylight/daylight-launch.html' %}
-  {% endif %}
-
   {% if switch('firefox-daylight-promo-banner') %}
     {% include 'includes/banners/daylight/daylight-promo.html' %}
   {% endif %}
@@ -211,10 +203,6 @@
 
 {% block js %}
   {{ js_bundle('firefox-mobile') }}
-
-  {% if switch('firefox-daylight-launch-banner') %}
-    {{ js_bundle('daylight-launch-banner') }}
-  {% endif %}
 
   {% if switch('firefox-daylight-promo-banner') %}
     {{ js_bundle('daylight-promo-banner') }}
