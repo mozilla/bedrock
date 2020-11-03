@@ -663,6 +663,15 @@ class WhatsNewChinaView(WhatsnewView):
         return template
 
 
+class WhatsNewGermanView(WhatsnewView):
+    def get_template_names(self):
+        template = super().get_template_names()
+        if template == ['firefox/whatsnew/whatsnew-fx83-en.html']:
+            template = ['firefox/whatsnew/whatsnew-fx83-de.html']
+
+        return template
+
+
 class DownloadThanksView(L10nTemplateView):
     ftl_files_map = {
         'firefox/new/trailhead/thanks.html': ['firefox/new/download'],
