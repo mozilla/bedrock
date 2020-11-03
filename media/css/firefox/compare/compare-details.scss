@@ -21,12 +21,25 @@ $image-path: "/media/protocol/img";
     .mzp-c-hero-title {
         @include font-size(32px);
         margin-bottom: 0;
+
         @media #{$mq-sm} {
             @include font-size(40px);
         }
         @media #{$mq-md} {
             @include font-size(48px);
         }
+    }
+
+    .mzp-c-hero-cta {
+        margin-top: $layout-sm;
+
+        .is-firefox & {
+            display: none;
+        }
+    }
+
+    .mzp-c-button-download-container {
+        margin-bottom: 0;
     }
 }
 
@@ -141,7 +154,7 @@ $image-path: "/media/protocol/img";
 .secondary-download-cta {
     margin-top: $layout-lg;
 
-    .download-button {
+    .mzp-c-button-download-container {
         display: block;
         margin: 0 auto;
     }
