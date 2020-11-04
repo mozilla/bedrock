@@ -28,8 +28,8 @@
 {% block page_css %}
   {{ css_bundle('firefox-master') }}
 
-  {% if switch('firefox-daylight-launch-banner') %}
-    {{ css_bundle('daylight-launch-banner') }}
+  {% if switch('firefox-daylight-promo-banner') %}
+    {{ css_bundle('daylight-promo-banner') }}
   {% endif %}
 {% endblock %}
 
@@ -44,8 +44,8 @@
 {% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-home' %}
 
 {% block page_banner %}
-  {% if switch('firefox-daylight-launch-banner') %}
-    {% include 'includes/banners/daylight/daylight-launch.html' %}
+  {% if switch('firefox-daylight-promo-banner') %}
+    {% include 'includes/banners/daylight/daylight-promo.html' %}
   {% endif %}
 {% endblock %}
 
@@ -212,7 +212,7 @@
                 </a>
               </li>
               <li>
-                <a class="mzp-c-cta-link" href="{{ url('firefox.products.lockwise') }}{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Lockwise">
+                <a class="mzp-c-cta-link" href="{{ url('firefox.products.lockwise') }}" data-cta-type="link" data-cta-text="Lockwise">
                   <img alt="" src="{{ static('protocol/img/logos/firefox/lockwise/logo-md.png') }}" height="40" width="40"><br>
                   {{ ftl('firefox-home-lockwise') }}
                 </a>
@@ -247,8 +247,8 @@
 {% block js %}
   {{ js_bundle('firefox-master') }}
 
-  {% if switch('firefox-daylight-launch-banner') %}
-    {{ js_bundle('daylight-launch-banner') }}
+  {% if switch('firefox-daylight-promo-banner') %}
+    {{ js_bundle('daylight-promo-banner') }}
   {% endif %}
 {% endblock %}
 

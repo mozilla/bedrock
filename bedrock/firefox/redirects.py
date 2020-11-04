@@ -311,7 +311,7 @@ redirectpatterns = (
     redirect(r'^firefox/os(/.*)?$', 'https://support.mozilla.org/products/firefox-os'),
 
     # Bug 1252332
-    redirect(r'^sync/?$', 'firefox.accounts'),
+    redirect(r'^sync/?$', 'firefox.sync'),
 
     # Bug 424204
     redirect(r'^firefox/help/?$', 'https://support.mozilla.org/'),
@@ -540,9 +540,6 @@ redirectpatterns = (
     # bug 1369732
     redirect(r'^Firefox/?$', 'firefox'),
 
-    # bug 1370587
-    redirect(r'^firefox/sync/?', 'firefox.accounts'),
-
     # bug 1386112
     redirect(r'^firefox/android/faq/?', 'https://support.mozilla.org/products/mobile'),
 
@@ -572,8 +569,8 @@ redirectpatterns = (
     redirect(r'^firefox/focus/?$', 'firefox.mobile.index'),
     redirect(r'^firefox/ios/?$', 'firefox.mobile.index'),
 
-    # bug 1416708
-    redirect(r'^firefox/quantum/?', 'firefox'),
+    # issue 9502
+    redirect(r'^firefox/quantum/?', '/firefox/browsers/quantum/'),
 
     # bug 1421584, issue 7491
     redirect(r'^firefox/organizations/faq/?$', 'firefox.enterprise.index'),
@@ -653,4 +650,15 @@ redirectpatterns = (
     # issue 8641
     redirect(r'^/firefox/windows-64-bit/?$', 'firefox.browsers.windows-64-bit'),
     redirect(r'^/firefox/best-browser/?$', 'firefox.browsers.best-browser'),
+
+    # Unfck campaign
+    redirect(r'^firefox/unfuck/?$', 'firefox.campaign.unfck.index'),
+    redirect(r'^firefox/love/?$', 'firefox.campaign.unfck.index'),
+    redirect(r'^firefox/liebe/?$', 'firefox.campaign.unfck.index'),
+    redirect(r'^firefox/rendonslenetplusnet/?$', 'firefox.campaign.unfck.index'),
+    redirect(r'^(unfu?ck|love|liebe|rendonslenetplusnet)/?$', 'firefox.campaign.unfck.index'),
+
+
+    # issue 9148
+    redirect(r'^/firefox/campaign/?$', 'firefox.new'),
 )

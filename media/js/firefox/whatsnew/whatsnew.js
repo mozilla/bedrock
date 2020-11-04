@@ -17,15 +17,4 @@ if (typeof window.Mozilla === 'undefined') {
         form.init();
     }
 
-    var client = Mozilla.Client;
-
-    // bug 1419573 - only show "Your Firefox is up to date" if it's the latest version.
-    if (client.isFirefoxDesktop) {
-        client.getFirefoxDetails(function(data) {
-            if (data.isUpToDate) {
-                document.querySelector('.main-header').classList.add('show-up-to-date-message');
-            }
-        });
-    }
-
 })(window.jQuery, window.Mozilla);

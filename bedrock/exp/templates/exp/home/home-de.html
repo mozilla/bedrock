@@ -2,7 +2,9 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "exp/home/home-en.html" %}
+{% extends "mozorg/home/home-de.html" %}
+
+{% block html_attrs %}{{ super() }} {% include 'exp/includes/id.html' %}{% endblock %}
 
 {% block canonical_urls %}
   {# Experimental pages should set canonical to the original page URL. #}
@@ -11,112 +13,14 @@
 
 {% block page_og_url %}{{ settings.CANONICAL_URL }}/{{ LANG }}/{% endblock %}
 
-{% block page_title %}{{ _('Internet für Menschen, nicht für Profit') }}{% endblock %}
-
-{% block page_desc %}
-  {{ _('Mozilla ist die gemeinnützige Organisation hinter Firefox. Menschen sollten auch online die Kontrolle über ihr Leben haben. Dafür setzen wir uns ein.') }}
+{% block experiments %}
+  {% include 'exp/includes/convert.html' %}
 {% endblock %}
 
-{% block main %}
-<main>
-  <header class="main-page-heading">
-    {# Main page h1 is hidden from view and exists mainly for SEO purposes #}
-    <h1>{{ self.page_title() }}</h1>
-  </header>
-
-  {% call download_banner(
-    title=_('Echte Privatsphäre statt leerer Versprechen'),
-    desc=_('Hol dir die Kontrolle über deine Privatsphäre auf jedes Gerät.'),
-    ) %}
-    {{ download_firefox_thanks(dom_id='download-primary', download_location='primary cta') }}
-  {% endcall %}
-
-  {{ fxa_banner(
-    title=_('Tech mit R.E.S.P.E.K.T.'),
-    desc=_('Firefox respektiert deine Privatsphäre mit jedem einzelnen Produkt.'),
-    link_cta=_('Weitere Infos'),
-  )}}
-
-  <div class="mozilla-content">
-    <div class="mzp-l-content mzp-t-mozilla">
-      <div class="mzp-l-card-hero">
-        {{ content_card('card_1') }}
-        {{ content_card('card_2') }}
-        {{ content_card('card_3') }}
-        {{ content_card('card_4') }}
-        {{ content_card('card_5') }}
-      </div>
-
-      {{ billboard(
-        title=_('Für Dich & das Internet. <br>Schon seit 1998.'),
-        ga_title='Für Dich & das Internet. Schon seit 1998.',
-        desc=_('Mozilla setzt sich für ein gesundes Internet ein – und damit für die Menschen, die es nutzen. Damals. Heute. Morgen.'),
-        link_cta=_('Erfahre mehr über Mozilla'),
-        link_url=url('mozorg.about.manifesto'),
-        image_url='img/home/2018/billboard-more-power.png',
-        include_highres_image=True
-      )}}
-
-      <div class="mzp-l-card-half">
-        {{ content_card('card_6') }}
-        {{ content_card('card_7') }}
-      </div>
-
-      {{ billboard(
-        title=_('Technologien des offenen Webs.'),
-        ga_title='Technologien des offenen Webs.',
-        desc=_('Virtual Reality, IoT und mehr.'),
-        link_cta=_('Entdecke das Web der Zukunft'),
-        link_url='https://labs.mozilla.org/',
-        image_url='img/home/2018/billboard-open-minds.png',
-        include_highres_image=True,
-        reverse=True
-      )}}
-
-      <div class="mzp-l-card-half">
-        {{ content_card('card_8') }}
-        {{ content_card('card_9') }}
-      </div>
-
-      <div class="mzp-l-card-third">
-        {{ content_card('card_10') }}
-        {{ content_card('card_11') }}
-        {{ content_card('card_12') }}
-      </div>
-
-      <aside class="mzp-c-newsletter">
-        <div class="mzp-c-newsletter-image">
-          {{ high_res_img('img/home/2018/newsletter-graphic.png', {'alt': ''}) }}
-        </div>
-
-        <div class="newsletter-content">
-          {{ email_newsletter_form(
-            title=_('Du liebst das Internet?'),
-            desc=_('Hol dir den Firefox Newsletter und sorg mit uns zusammen dafür, dass das Web frei und offen für alle bleibt.'),
-            button_class='button-dark',
-            submit_text=_('Anmelden')
-          )}}
-        </div>
-      </aside>
-    </div>
-  </div>{#-- /.mozilla-content --#}
-
-  {% call download_banner_secondary(
-    title=_('Bestimme selbst, was du teilst und mit wem.'),
-    sub_title=_('Hol dir den Browser, der Tracker automatisch blockiert.')
-  ) %}
-    {{ download_firefox_thanks(dom_id='download-secondary', download_location='secondary cta') }}
-  {% endcall %}
-
-  {% call call_out_compact(
-      title=_('Das Konto, das dich schützt, statt Profit mit dir zu machen.'),
-      desc=None,
-      class='fxaccount-secondary-cta mzp-t-product-firefox mzp-t-firefox mzp-t-dark',
-      heading_level=2
-    ) %}
-    <a href="{{ url('firefox.accounts') }}" class="mzp-c-button mzp-t-product mzp-t-dark" id="fxa-learn-secondary">{{ ftl('ui-learn-more') }}</a>
-  {% endcall %}
-
-</main>
+{% block stub_attribution %}
+  {% include 'exp/includes/stub.html' %}
 {% endblock %}
 
+{% block site_js %}
+  {% include 'exp/includes/js.html' %}
+{% endblock %}

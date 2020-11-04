@@ -6,8 +6,6 @@ from django.conf.urls import url
 import bedrock.releasenotes.views
 from bedrock.mozorg.util import page
 from bedrock.releasenotes import version_re
-from django.conf import settings
-from bedrock.redirects.util import redirect
 
 from bedrock.firefox import views
 from bedrock.utils import views as utils_views
@@ -18,6 +16,7 @@ firstrun_re = latest_re % (version_re, 'firstrun')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
 whatsnew_re_africa = latest_re % (version_re, 'whatsnew/africa')
 whatsnew_re_india = latest_re % (version_re, 'whatsnew/india')
+whatsnew_re_china = latest_re % (version_re, 'whatsnew/china')
 whatsnew_re_all = latest_re % (version_re, 'whatsnew/all')
 platform_re = '(?P<platform>android|ios)'
 channel_re = '(?P<channel>beta|aurora|developer|nightly|organizations)'
@@ -35,7 +34,6 @@ urlpatterns = (
     page('firefox/accounts', 'firefox/accounts.html', ftl_files=['firefox/accounts']),
     page('firefox/browsers', 'firefox/browsers/index.html', ftl_files=['firefox/browsers']),
     page('firefox/products', 'firefox/products/index.html', ftl_files=['firefox/products']),
-    page('firefox/campaign', 'firefox/campaign/index.html'),
     page('firefox/flashback', 'firefox/flashback/index.html', active_locales=['en-US', 'de', 'fr']),
     page('firefox/channel/desktop', 'firefox/channel/desktop.html', ftl_files=['firefox/channel']),
     page('firefox/channel/android', 'firefox/channel/android.html', ftl_files=['firefox/channel']),
@@ -78,6 +76,7 @@ urlpatterns = (
     url(whatsnew_re, views.WhatsNewRedirectorView.as_view(), name='firefox.whatsnew'),
     url(whatsnew_re_africa, views.WhatsNewFirefoxLiteView.as_view(), name='firefox.whatsnew.africa'),
     url(whatsnew_re_india, views.WhatsNewFirefoxLiteView.as_view(), name='firefox.whatsnew.india'),
+    url(whatsnew_re_china, views.WhatsNewChinaView.as_view(), name='firefox.whatsnew.china'),
     url(whatsnew_re_all, views.WhatsnewView.as_view(), name='firefox.whatsnew.all'),
 
     # Release notes
@@ -171,15 +170,15 @@ urlpatterns = (
 
     # Issue 8536
     page('firefox/retention/thank-you', 'firefox/retention/thank-you.html'),
-)
 
-if settings.DEV:
-    urlpatterns += (
-        page('firefox/unfck', 'firefox/campaign/unfck/index.html', active_locales=['de', 'en-US']),
-    )
-else:
-    urlpatterns += (
-        redirect(r'^firefox/unfck(/.*)?', 'firefox', permanent=False),
-        redirect(r'^firefox/unfuck(/.*)?', 'firefox', permanent=False),
-        redirect(r'^firefox/love(/.*)?', 'firefox', permanent=False),
-    )
+    # Unfck campaign
+    page('firefox/unfck', 'firefox/campaign/unfck/index.html', active_locales=['de', 'en-US', 'fr']),
+
+    # Issue #9490 - Evergreen Content for SEO
+    page('firefox/more', 'firefox/more.html', ftl_files='firefox/more'),
+    page('firefox/browsers/quantum', 'firefox/browsers/quantum.html', ftl_files='firefox/browsers/quantum'),
+    page('firefox/faq', 'firefox/faq.html', ftl_files='firefox/faq'),
+    page('firefox/browsers/chromebook', 'firefox/browsers/chromebook.html', ftl_files='firefox/browsers/chromebook'),
+    page('firefox/sync', 'firefox/sync.html', ftl_files='firefox/sync'),
+    page('firefox/privacy/book', 'firefox/privacy/book.html', ftl_files='firefox/privacy/book'),
+)

@@ -247,7 +247,7 @@ DOTLANG_CACHE = config('DOTLANG_CACHE', default='1800' if DEBUG else '600', pars
 # Global L10n files.
 DOTLANG_FILES = ['main']
 FLUENT_DEFAULT_FILES = [
-    'banners/firefox-daylight-launch',
+    'banners/firefox-daylight-promo',
     'brands',
     'download_button',
     'footer',
@@ -1509,6 +1509,7 @@ CSP_CONNECT_SRC = CSP_DEFAULT_SRC + [
     'logs.convertexperiments.com',
     '1003350.metrics.convertexperiments.com',
     '1003343.metrics.convertexperiments.com',
+    'sentry.prod.mozaws.net',
     FXA_ENDPOINT,
     FXA_ENDPOINT_MOZILLAONLINE,
 ]

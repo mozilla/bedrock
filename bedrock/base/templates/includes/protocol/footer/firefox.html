@@ -44,7 +44,7 @@
             {{ ftl('footer-join') }}
           </h5>
           <ul class="mzp-c-footer-list">
-            <li class="fxa-signin">
+            <li>
               {{ fxa_button(
                 entrypoint='mozilla.org-firefoxfooter',
                 button_text=ftl('footer-sign-up'),
@@ -54,7 +54,7 @@
                 optional_attributes={'data-cta-text': 'Sign Up', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'footer'}
               ) }}
             </li>
-            <li class="fxa-signin">
+            <li>
               {{ fxa_button(
                 entrypoint='mozilla.org-firefoxfooter',
                 button_text=ftl('footer-sign-in'),

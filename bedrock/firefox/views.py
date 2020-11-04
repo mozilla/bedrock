@@ -7,6 +7,7 @@ import hashlib
 import hmac
 import re
 from collections import OrderedDict
+from random import random
 from urllib.parse import urlparse
 
 import basket
@@ -14,6 +15,7 @@ import querystringsafe_base64
 from django.conf import settings
 from django.http import (
     HttpResponsePermanentRedirect,
+    HttpResponseRedirect,
     JsonResponse,
 )
 
@@ -24,12 +26,12 @@ from django.views.decorators.http import require_GET, require_POST
 from django.views.generic.base import TemplateView
 from lib import l10n_utils
 from lib.l10n_utils import L10nTemplateView
-from lib.l10n_utils.dotlang import lang_file_is_active
 from lib.l10n_utils.fluent import ftl, ftl_file_is_active
 from product_details.version_compare import Version
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.base.waffle import switch
+from bedrock.base.waffle_config import config, DictOf
 from bedrock.firefox.firefox_details import firefox_android, firefox_desktop
 from bedrock.firefox.forms import SendToDeviceWidgetForm
 from bedrock.newsletter.forms import NewsletterFooterForm
@@ -537,6 +539,7 @@ class WhatsNewRedirectorView(GeoRedirectView):
         'TZ': 'firefox.whatsnew.africa',
         'ZW': 'firefox.whatsnew.africa',
         'ZM': 'firefox.whatsnew.africa',
+        'CN': 'firefox.whatsnew.china',
     }
     default_url = 'firefox.whatsnew.all'
 
@@ -556,6 +559,8 @@ class WhatsnewView(L10nTemplateView):
         'firefox/whatsnew/whatsnew-fx79.html': ['firefox/whatsnew/whatsnew-fx79', 'firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx80.html': ['firefox/whatsnew/whatsnew-fx80', 'firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx81.html': ['firefox/whatsnew/whatsnew-fx81', 'firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx82.html': ['firefox/whatsnew/whatsnew-fx80', 'firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx83.html': ['firefox/whatsnew/whatsnew-fx83', 'firefox/whatsnew/whatsnew'],
     }
 
     def get_context_data(self, **kwargs):
@@ -596,7 +601,6 @@ class WhatsnewView(L10nTemplateView):
 
     def get_template_names(self):
         locale = l10n_utils.get_locale(self.request)
-
         version = self.kwargs.get('version') or ''
         oldversion = self.request.GET.get('oldversion', '')
         # old versions of Firefox sent a prefixed version
@@ -612,23 +616,16 @@ class WhatsnewView(L10nTemplateView):
                 template = 'firefox/developer/whatsnew.html'
             else:
                 template = 'firefox/whatsnew/index.html'
+        elif version.startswith('83.') and ftl_file_is_active('firefox/whatsnew/whatsnew-fx83'):
+            template = 'firefox/whatsnew/whatsnew-fx83.html'
+        elif version.startswith('82.') and locale.startswith('en-'):
+            template = 'firefox/whatsnew/whatsnew-fx82.html'
         elif version.startswith('81.') and ftl_file_is_active('firefox/whatsnew/whatsnew-fx81'):
             template = 'firefox/whatsnew/whatsnew-fx81.html'
         elif version.startswith('80.') and ftl_file_is_active('firefox/whatsnew/whatsnew-fx80'):
             template = 'firefox/whatsnew/whatsnew-fx80.html'
         elif version.startswith('79.') and ftl_file_is_active('firefox/whatsnew/whatsnew-fx79'):
             template = 'firefox/whatsnew/whatsnew-fx79.html'
-        elif version.startswith('78.'):
-            template = 'firefox/whatsnew/index.html'
-        elif version.startswith('77.') and lang_file_is_active('firefox/whatsnew_77', locale):
-            # YouTube is blocked in China so zh-CN gets an alternative, self-hosted video.
-            # If we run into bandwidth trouble we can turn the video off and zh-CN falls back to the 76 page.
-            if locale == 'zh-CN' and not switch('firefox-whatsnew77-video-zhCN'):
-                template = 'firefox/whatsnew/whatsnew-fx76.html'
-            else:
-                template = 'firefox/whatsnew/whatsnew-fx77.html'
-        elif version.startswith('76.') and lang_file_is_active('firefox/whatsnew_76', locale):
-            template = 'firefox/whatsnew/whatsnew-fx76.html'
         else:
             if show_default_account_whatsnew(version) and ftl_file_is_active('firefox/whatsnew/whatsnew-account'):
                 template = 'firefox/whatsnew/index-account.html'
@@ -651,6 +648,15 @@ class WhatsNewFirefoxLiteView(WhatsnewView):
             template = ['firefox/whatsnew/firefox-lite.html']
         else:
             template = super().get_template_names()
+
+        return template
+
+
+class WhatsNewChinaView(WhatsnewView):
+    def get_template_names(self):
+        template = super().get_template_names()
+        if template == ['firefox/whatsnew/whatsnew-fx82.html']:
+            template = ['firefox/whatsnew/index-account.html']
 
         return template
 
@@ -721,6 +727,36 @@ class NewView(L10nTemplateView):
             return HttpResponsePermanentRedirect(thanks_url)
 
         return super(NewView, self).get(*args, **kwargs)
+
+    def render_to_response(self, context, **response_kwargs):
+        # set experimental percentages per locale with this config
+        # e.g. EXP_CONFIG_FX_NEW=de:20,en-US:10,fr:25
+        # this would send 20% of de, 10% of en-US, and 25% of fr requests to the experiment page
+        # all other locales would be unaffected
+        redirect_percents = config('EXP_CONFIG_FX_NEW', default='', parser=DictOf(int))
+        skip_exp = 'automation' in self.request.GET
+        # only engage the experiment infra if some experiments are set
+        if redirect_percents and not skip_exp:
+            locale = l10n_utils.get_locale(self.request)
+            percent = redirect_percents.get(locale, 0)
+            if percent:
+                percent = percent / 100
+                print(percent)
+                if random() <= percent:
+                    exp_url = reverse('exp.firefox.new')
+                    query_string = self.request.META.get('QUERY_STRING', '')
+                    if query_string:
+                        exp_url = '?'.join(
+                            [exp_url, force_text(query_string, errors='ignore')]
+                        )
+                    response = HttpResponseRedirect(exp_url)
+                else:
+                    response = super().render_to_response(context, **response_kwargs)
+                # reduce cache time for better experiment results
+                patch_response_headers(response, 60)
+                return response
+
+        return super().render_to_response(context, **response_kwargs)
 
     def get_context_data(self, **kwargs):
         ctx = super(NewView, self).get_context_data(**kwargs)

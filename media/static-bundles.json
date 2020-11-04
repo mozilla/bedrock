@@ -148,21 +148,9 @@
     },
     {
       "files": [
-        "css/firefox/campaign/download.scss"
-      ],
-      "name": "firefox_campaign"
-    },
-    {
-      "files": [
         "css/exp/opt-out.scss"
       ],
       "name": "exp-opt-out"
-    },
-    {
-      "files": [
-        "css/exp/firefox/new/download.scss"
-      ],
-      "name": "exp-firefox-new"
     },
     {
       "files": [
@@ -240,12 +228,6 @@
     },
     {
       "files": [
-        "css/exp/home/home-2018.scss"
-      ],
-      "name": "exp-home-2018"
-    },
-    {
-      "files": [
         "css/base/banners/fundraiser.scss"
       ],
       "name": "fundraising-banner"
@@ -258,9 +240,9 @@
     },
     {
       "files": [
-        "css/base/banners/daylight-launch.scss"
+        "css/base/banners/daylight-promo.scss"
       ],
-      "name": "daylight-launch-banner"
+      "name": "daylight-promo-banner"
     },
     {
       "files": [
@@ -374,18 +356,6 @@
     },
     {
       "files": [
-        "css/firefox/whatsnew/whatsnew-76.scss"
-      ],
-      "name": "firefox_whatsnew_76"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-77.scss"
-      ],
-      "name": "firefox_whatsnew_77"
-    },
-    {
-      "files": [
         "css/protocol/components/send-to-device.scss",
         "css/firefox/whatsnew/whatsnew-79.scss"
       ],
@@ -404,6 +374,18 @@
         "css/firefox/whatsnew/whatsnew-81.scss"
       ],
       "name": "firefox_whatsnew_81"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-82.scss"
+      ],
+      "name": "firefox_whatsnew_82"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-83.scss"
+      ],
+      "name": "firefox_whatsnew_83"
     },
     {
       "files": [
@@ -511,23 +493,10 @@
     },
     {
       "files": [
-        "css/exp/firefox/index-ie9.scss"
-      ],
-      "name": "exp-firefox-home-ie9"
-    },
-    {
-      "files": [
         "css/firefox/home/master.scss",
         "css/base/mozilla-lazy-image.scss"
       ],
       "name": "firefox-master"
-    },
-    {
-      "files": [
-        "css/exp/firefox/index.scss",
-        "css/base/mozilla-lazy-image.scss"
-      ],
-      "name": "exp-firefox-index"
     },
     {
       "files": [
@@ -606,13 +575,6 @@
     {
       "files": [
         "css/protocol/components/send-to-device.scss",
-        "css/exp/mobile.scss"
-      ],
-      "name": "exp-firefox-mobile"
-    },
-    {
-      "files": [
-        "css/protocol/components/send-to-device.scss",
         "css/firefox/mobile/get-app.scss"
       ],
       "name": "firefox-mobile-get-app"
@@ -623,13 +585,6 @@
         "css/firefox/accounts-2019.scss"
       ],
       "name": "firefox_accounts_2019"
-    },
-    {
-      "files": [
-        "css/base/mozilla-fxa-state.scss",
-        "css/exp/firefox/accounts.scss"
-      ],
-      "name": "exp_firefox_accounts"
     },
     {
       "files": [
@@ -737,9 +692,52 @@
     },
     {
       "files": [
+        "css/firefox/faq.scss"
+      ],
+      "name": "firefox-faq"
+    },
+    {
+      "files": [
         "css/firefox/unfck.de.scss"
       ],
       "name": "firefox-unfck-de"
+    },
+    {
+      "files": [
+        "css/firefox/unfck.fr.scss"
+      ],
+      "name": "firefox-unfck-fr"
+    },
+    {
+      "files": [
+        "css/firefox/more.scss",
+        "css/base/mozilla-lazy-image.scss"
+      ],
+      "name": "more"
+    },
+    {
+      "files": [
+        "css/firefox/browsers/quantum.scss"
+      ],
+      "name": "quantum"
+    },
+    {
+      "files": [
+        "css/firefox/browsers/chromebook.scss"
+      ],
+      "name": "chromebook"
+    },
+    {
+      "files": [
+        "css/firefox/sync.scss"
+      ],
+      "name": "sync"
+    },
+    {
+      "files": [
+        "css/firefox/privacy/book.scss"
+      ],
+      "name": "privacy-book"
     }
   ],
   "js": [
@@ -755,6 +753,13 @@
         "js/firefox/facebook-container-video.js"
       ],
       "name": "firefox_facebook_container_video"
+    },
+    {
+      "files": [
+        "js/libs/sentry/sentry.browser.5.19.2.min.js",
+        "js/base/sentry-init.js"
+      ],
+      "name": "sentry"
     },
     {
       "files": [
@@ -821,28 +826,6 @@
     {
       "files": [
         "js/firefox/whatsnew/up-to-date.js",
-        "js/firefox/whatsnew/whatsnew-76.js"
-      ],
-      "name": "firefox_whatsnew_76"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/up-to-date.js",
-        "js/firefox/whatsnew/whatsnew-77.js"
-      ],
-      "name": "firefox_whatsnew_77"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/up-to-date.js",
-        "js/base/mozilla-video-poster.js",
-        "js/firefox/whatsnew/whatsnew-77-zhCN.js"
-      ],
-      "name": "firefox_whatsnew_77_zhCN"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/up-to-date.js",
         "js/libs/spin.min.js",
         "protocol/js/protocol-modal.js",
         "js/base/send-to-device.js",
@@ -867,6 +850,18 @@
         "js/firefox/whatsnew/whatsnew-81.js"
       ],
       "name": "firefox_whatsnew_81"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/up-to-date.js"
+      ],
+      "name": "firefox_whatsnew_82"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/up-to-date.js"
+      ],
+      "name": "firefox_whatsnew_83"
     },
     {
       "files": [
@@ -898,12 +893,6 @@
         "js/firefox/new/desktop/download.js"
       ],
       "name": "firefox_desktop_download"
-    },
-    {
-      "files": [
-        "js/exp/firefox/new/desktop/download.js"
-      ],
-      "name": "exp_firefox_desktop_download"
     },
     {
       "files": [
@@ -970,18 +959,6 @@
     },
     {
       "files": [
-        "protocol/js/protocol-modal.js",
-        "protocol/js/protocol-newsletter.js",
-        "js/base/mozilla-lazy-load.js",
-        "js/libs/jquery.waypoints.min.js",
-        "js/newsletter/form-protocol.js",
-        "js/mozorg/home/youtube.js",
-        "js/exp/home.js"
-      ],
-      "name": "exp-home"
-    },
-    {
-      "files": [
         "js/base/banners/mozilla-banner.js",
         "js/mozorg/home/banner-init.js"
       ],
@@ -997,9 +974,9 @@
     {
       "files": [
         "js/base/banners/mozilla-banner.js",
-        "js/mozorg/home/daylight-launch-banner-init.js"
+        "js/mozorg/home/daylight-promo-banner-init.js"
       ],
-      "name": "daylight-launch-banner"
+      "name": "daylight-promo-banner"
     },
     {
       "files": [
@@ -1041,14 +1018,6 @@
         "js/firefox/mobile/mobile.js"
       ],
       "name": "firefox-mobile"
-    },
-    {
-      "files": [
-        "js/libs/spin.min.js",
-        "js/base/send-to-device.js",
-        "js/exp/mobile.js"
-      ],
-      "name": "exp-firefox-mobile"
     },
     {
       "files": [
@@ -1102,13 +1071,6 @@
         "js/firefox/browsers-products.js"
       ],
       "name": "firefox-browsers-products"
-    },
-    {
-      "files": [
-        "js/base/mozilla-lazy-load.js",
-        "js/exp/firefox/index.js"
-      ],
-      "name": "exp-firefox-index"
     },
     {
       "files": [
@@ -1167,16 +1129,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js",
-        "js/base/mozilla-fxa-form.js",
-        "js/base/mozilla-fxa-product-button.js",
-        "js/exp/firefox/accounts.js"
-      ],
-      "name": "exp_firefox_accounts"
-    },
-    {
-      "files": [
         "js/base/mozilla-fxa-form.js",
         "js/base/mozilla-fxa-form-init.js"
       ],
@@ -1199,6 +1151,12 @@
         "js/firefox/whatsnew/whatsnew.js"
       ],
       "name": "firefox_whatsnew"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/up-to-date.js"
+      ],
+      "name": "firefox_nightly_whatsnew"
     },
     {
       "files": [
@@ -1375,6 +1333,26 @@
         "js/firefox/campaign/unfck.de.js"
       ],
       "name": "firefox-unfck-de"
+    },
+    {
+      "files": [
+        "js/base/mozilla-lazy-load.js",
+        "js/firefox/more.js"
+      ],
+      "name": "more"
+    },
+    {
+      "files": [
+        "js/firefox/browsers/chromebook.js"
+      ],
+      "name": "chromebook"
+    },
+    {
+      "files": [
+        "js/base/mozilla-fxa-product-button.js",
+        "js/base/mozilla-fxa-product-button-init.js"
+      ],
+      "name": "sync"
     }
   ]
 }

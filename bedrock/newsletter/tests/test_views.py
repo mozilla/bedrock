@@ -19,7 +19,6 @@ from bedrock.newsletter.views import (
     invalid_email_address,
     newsletter_subscribe,
     recovery_text,
-    unknown_address_text,
     updated,
 )
 
@@ -513,10 +512,6 @@ class TestRecoveryView(TestCase):
         rsp = self.client.post(self.url, data)
         self.assertTrue(mock_basket.called)
         self.assertEqual(200, rsp.status_code)
-        form = rsp.context['form']
-        expected_error = unknown_address_text % \
-            reverse('newsletter.subscribe')
-        self.assertIn(expected_error, form.errors['email'])
 
     @patch('django.contrib.messages.add_message', autospec=True)
     @patch('basket.send_recovery_message', autospec=True)

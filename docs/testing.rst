@@ -94,14 +94,14 @@ e.g. ``tests/functional/test_newsletter.py``:
 
 .. code-block:: bash
 
-    $ py.test --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html tests/functional/test_newsletter.py
+    $ py.test --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html tests/functional/firefox/new/test_download.py
 
 To run a single test you can filter using the ``-k`` argument supplied with a keyword
-e.g. ``-k test_successful_sign_up``:
+e.g. ``-k test_download_button_displayed``:
 
 .. code-block:: bash
 
-  $ py.test --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html tests/functional/test_newsletter.py -k test_successful_sign_up
+  $ py.test --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html tests/functional/firefox/new/test_download.py -k test_download_button_displayed
 
 You can also easily run the tests against any bedrock environment by specifying the
 ``--base-url`` argument. For example, to run all functional tests against dev:
@@ -191,27 +191,44 @@ you can also read the `pytest markers`_ documentation for more options.
         assert not page.text_format_selected
         assert not page.privacy_policy_accepted
 
+Smoke tests
+~~~~~~~~~~~
+
+Smoke tests are considered to be our most critical tests that must pass in a wide range
+of web browsers, including Internet Explorer 11. The number of smoke tests we run should
+be enough to cover our most critical pages where legacy browser support is important.
+
+.. code-block:: python
+
+    import pytest
+
+    @pytest.mark.smoke
+    @pytest.mark.nondestructive
+    def test_download_button_displayed(base_url, selenium):
+        page = DownloadPage(selenium, base_url, params='').open()
+        assert page.is_download_button_displayed
+
+You can run smoke tests only by adding ``-m smoke`` when running the test suite on the
+command line.
 
 Sanity tests
 ~~~~~~~~~~~~
 
-Sanity tests are considered to be our most critical tests that must pass in a wide range
-of web browsers, including old versions of Internet Explorer. Sanity tests are run
-automatically post deployment on a wider range of browsers & platforms than we run the
-full suite against. The number of sanity tests we run should remain small, but cover our
-most critical pages where legacy browser support is important. Sanity tests are typically
-run after a tagged commit to master (see :ref:`tagged-commit`).
+Sanity tests behave in much the same way as smoke tests, but will also run against Internet
+Explorer 9, which is a browser that does not receive 1st class CSS/JS support (except on
+certain download pages such as /firefox/new/). The number of sanity tests we run should be
+small and cover only a handful key of pages.
 
 .. code-block:: python
 
     import pytest
 
     @pytest.mark.sanity
+    @pytest.mark.smoke
     @pytest.mark.nondestructive
-    def test_click_download_button(base_url, selenium):
-        page = FirefoxNewPage(base_url, selenium).open()
-        page.download_firefox()
-        assert page.is_thank_you_message_displayed
+    def test_download_button_displayed(base_url, selenium):
+        page = DownloadPage(selenium, base_url, params='').open()
+        assert page.is_download_button_displayed
 
 You can run sanity tests only by adding ``-m sanity`` when running the test suite on the
 command line.

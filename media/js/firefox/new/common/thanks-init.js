@@ -13,8 +13,11 @@
         downloadURL = Mozilla.DownloadThanks.getDownloadURL(window.site);
 
         if (downloadURL) {
-            // Pull download link from the download button and add to the 'click here' link.
-            directDownloadLink.href = downloadURL;
+            // Pull download link from the download button and add to the 'Try downloading again' link.
+            // Make sure the 'Try downloading again' link is well formatted! (issue 9615)
+            if (directDownloadLink && directDownloadLink.href) {
+                directDownloadLink.href = downloadURL;
+            }
 
             // Start the platform-detected download a second after DOM ready event.
             // We don't rely on the window load event as we have third-party tracking pixels.

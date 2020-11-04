@@ -1,1 +1,1 @@
-media/js/libs/*.js
+media/js/libs/**/*.js

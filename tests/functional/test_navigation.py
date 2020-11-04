@@ -7,6 +7,7 @@ import pytest
 from pages.home import HomePage
 
 
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_navigation(base_url, selenium):
     page = HomePage(selenium, base_url).open()
@@ -22,6 +23,7 @@ def test_navigation(base_url, selenium):
     assert about_page.seed_url in selenium.current_url
 
 
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_mobile_navigation(base_url, selenium_mobile):
     page = HomePage(selenium_mobile, base_url).open()
@@ -40,6 +42,7 @@ def test_mobile_navigation(base_url, selenium_mobile):
     assert about_page.seed_url in selenium_mobile.current_url
 
 
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 @pytest.mark.skip_if_firefox(reason='Firefox download button is shown only to non-Firefox users.')
 def test_navigation_download_firefox_button(base_url, selenium):

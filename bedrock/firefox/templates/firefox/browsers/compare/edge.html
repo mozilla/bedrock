@@ -23,6 +23,9 @@
         <img src="{{ static('img/logos/edge/logo-edge.png') }}" height="36" width="36" alt="">
       </div>
       <h1 class="mzp-c-hero-title">{{ ftl('compare-edge-comparing-firefox-browser-with') }}</h1>
+      <div class="mzp-c-hero-cta">
+        {{ download_firefox_thanks(locale_in_transition=True, download_location='primary cta') }}
+      </div>
     </div>
   </div>
 </section>
@@ -238,7 +241,7 @@
 
       <div class="compare-content compare-version-disclaimer">
         <p>
-          {{ ftl('compare-shared-the-comparisons-made-here') }}
+          {{ ftl('compare-shared-the-comparisons-made-here-updated', fallback='compare-shared-the-comparisons-made-here') }}
           <br>
           {{ ftl('compare-shared-brand-name-firefox') }} (81) |
           {{ ftl('compare-shared-brand-name-edge') }} (85)
@@ -248,7 +251,7 @@
       </div>
 
       <aside class="secondary-download-cta">
-        {{ download_firefox(dom_id='download-secondary', alt_copy=ftl('download-button-download-firefox'), download_location='secondary cta') }}
+        {{ download_firefox_thanks(dom_id='download-secondary', alt_copy=ftl('download-button-download-firefox'), download_location='secondary cta') }}
       </aside>
 
     </section>

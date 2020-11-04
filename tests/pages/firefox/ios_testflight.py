@@ -22,6 +22,11 @@ class iOSTestFlightPage(BasePage):
     _text_format_locator = (By.ID, 'format-text')
     _thank_you_locator = (By.ID, 'newsletter-thanks')
     _form_details_locator = (By.ID, 'newsletter-details')
+    _error_list_locator = (By.ID, 'newsletter-errors')
+
+    @property
+    def is_form_error_displayed(self):
+        return self.is_element_displayed(*self._error_list_locator)
 
     @property
     def email(self):
@@ -69,9 +74,12 @@ class iOSTestFlightPage(BasePage):
         el.click()
         assert el.is_selected(), 'Terms have not been accepted'
 
-    def click_sign_me_up(self):
+    def click_sign_me_up(self, expected_result=None):
         self.find_element(*self._submit_button_locator).click()
-        self.wait.until(expected.visibility_of_element_located(self._thank_you_locator))
+        if expected_result == 'error':
+            self.wait.until(expected.visibility_of_element_located(self._error_list_locator))
+        else:
+            self.wait.until(expected.visibility_of_element_located(self._thank_you_locator))
 
     def select_text_format(self):
         self.find_element(*self._text_format_locator).click()

@@ -58,5 +58,13 @@ describe('mozilla-utils-ie.js', function() {
             document.querySelector('.c-button-download-thanks > .download-link').click();
             expect(Mozilla.UtilsIE.triggerIEDownload).toHaveBeenCalledWith('test-download-url');
         });
+
+        it('should set expected data attributes for analytics', function() {
+            var link = document.querySelector('.c-button-download-thanks > .download-link');
+            Mozilla.UtilsIE.initDownloadLinks();
+            expect(link.getAttribute('data-download-os')).toEqual('Desktop');
+            expect(link.getAttribute('data-display-name')).toEqual('Windows 32-bit');
+            expect(link.getAttribute('data-download-version')).toEqual('win');
+        });
     });
 });

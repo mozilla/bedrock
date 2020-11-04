@@ -15,8 +15,8 @@ Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, u
 {% block page_css %}
   {{ css_bundle('home-2018') }}
 
-  {% if switch('firefox-daylight-launch-banner') %}
-    {{ css_bundle('daylight-launch-banner') }}
+  {% if switch('firefox-daylight-promo-banner') %}
+    {{ css_bundle('daylight-promo-banner') }}
   {% endif %}
 {% endblock %}
 
@@ -29,15 +29,15 @@ Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, u
   </header>
 
   {% call download_banner(
-    title='Nous ne mettons pas le nez dans vos données.',
-    desc='Le respect de votre vie privée est notre priorité. Notre modèle financier ne dépendra jamais de la vente et de l’utilisation de vos données personnelles.',
+    title='Par amour du Net',
+    desc='Firefox - le navigateur indépendant soutenu par une organisation à but non lucratif.',
     ) %}
-    {{ download_firefox_thanks(dom_id='download-primary', download_location='primary cta') }}
+    {{ download_firefox_thanks(alt_copy='Télécharger Firefox', dom_id='download-primary', download_location='primary cta') }}
   {% endcall %}
 
   {{ fxa_banner(
-    title='Des technologies résolument à vos côtés.',
-    desc='Bien plus qu’un navigateur, Firefox c’est toute une gamme de produits qui respectent vraiment votre vie privée.',
+    title='Par amour du Net',
+    desc='Firefox - le navigateur indépendant soutenu par une organisation à but non lucratif.',
     link_cta='En savoir plus',
   )}}
 

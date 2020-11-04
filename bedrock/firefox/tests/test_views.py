@@ -7,6 +7,7 @@ import json
 import os
 from urllib.parse import parse_qs
 
+from django.http import HttpResponse
 from django.test import override_settings
 from django.test.client import RequestFactory
 
@@ -632,7 +633,7 @@ class TestSendToDeviceView(TestCase):
 
 
 @override_settings(DEV=False)
-@patch('bedrock.firefox.views.l10n_utils.render')
+@patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
 class TestFirefoxNew(TestCase):
     @patch.dict(os.environ, SWITCH_NEW_REDESIGN='True')
     @patch.object(views, 'ftl_file_is_active', lambda *x: True)
@@ -696,7 +697,7 @@ class TestFirefoxNew(TestCase):
         assert template == ['firefox/new/trailhead/download-yandex.html']
 
     @patch.dict(os.environ, SWITCH_FIREFOX_YANDEX='False')
-    @patch.object(views, 'ftl_file_is_active', lambda *x: True)
+    @patch.object(views, 'ftl_file_is_active', lambda *x: False)
     def test_yandex_scene_1_switch_off(self, render_mock):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'ru'
@@ -704,6 +705,38 @@ class TestFirefoxNew(TestCase):
         view(req)
         template = render_mock.call_args[0][1]
         assert template == ['firefox/new/trailhead/download.html']
+
+    @patch.dict(os.environ, EXP_CONFIG_FX_NEW='de:100')
+    def test_experiment_redirect(self, render_mock):
+        req = RequestFactory().get('/firefox/new/')
+        req.locale = 'de'
+        view = views.NewView.as_view()
+        resp = view(req)
+        assert resp.status_code == 302
+        assert resp['location'].endswith('/exp/firefox/new/')
+        assert resp['cache-control'] == 'max-age=60'
+        req.locale = 'en-US'
+        resp = view(req)
+        assert resp.status_code == 200
+        assert 'cache-control' not in resp
+
+    @patch.dict(os.environ, EXP_CONFIG_FX_NEW='de:100')
+    def test_experiment_redirect_query(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?dude=abide&walter=bowl')
+        req.locale = 'de'
+        view = views.NewView.as_view()
+        resp = view(req)
+        assert resp.status_code == 302
+        assert resp['location'].endswith('/exp/firefox/new/?dude=abide&walter=bowl')
+
+    @patch.dict(os.environ, EXP_CONFIG_FX_NEW='de:100')
+    def test_experiment_redirect_automation_param(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?automation=true')
+        req.locale = 'de'
+        view = views.NewView.as_view()
+        resp = view(req)
+        assert resp.status_code == 200
+        assert 'cache-control' not in resp
 
 
 class TestFirefoxNewNoIndex(TestCase):

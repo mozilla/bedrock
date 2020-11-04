@@ -21,20 +21,51 @@ Experimental versions of our main product pages can be found under the ``/exp/``
 app within bedrock. We keep our main product pages separate from experiment
 code for the following reasons:
 
-- To maintain a separation of concerns. Code changes to our main landing pages do not need to be complicated by experiment code. Reducing the frequency of code changes related to experiments on our main landing pages also reduces the risk of accidental breakage.
-- To minimize any negative performance impact of experimentation. Convert requires additional scripts that need to be downloaded on the client. Experiments also aren't always as optimized as production code will be.
-- To minimize the percentage of our traffic exposed to experimentation. Keeping experimental versions of our pages separate means that only people who are entered into an experiment need to download and run code associated with it.
+- Performance (when an experiment is active, only those who qualify need download the Convert JS).
+- Security (keeping the experimentation surface as small as required).
 
 Creating experimental pages
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Templates within the ``/exp/`` app should have the following characteristics:
 
-- They should be simple clones of our main pages. They should look the same by duplicating CSS & JS where needed, but they do not necessarily need the same level of complex functionality (if that exists in a page). Only what's needed to facilitate basic experimentation.
-- They should not be part of our localization system. Experimental pages are mostly ``en-US`` only, so strings do not need to be wrapped for translation. Hard-coded, locale specific templates can be created if there's a need to test in German, for example.
-- They should extend the base template within the ``/exp/`` app. This facilitates loading the Convert JS in a uniform way, that respects DNT.
-- If a page is indexed by search engines, then the experimental equivalent should have a canonical URL that points back to the original page. If the page is considered to be an in-product page, then the experimental page should retain the same noindex meta tag.
-- Experimental pages should also contain an Open Graph sharing URL that points back to the original page.
+1. They should extend their respective jinja templates and live at a separate URL (e.g. /exp/firefox/new/ should extend /firefox/new/).
+
+.. code-block:: jinja
+
+    {% extends "firefox/new/desktop/download.html" %}
+
+2. They should override the following blocks required to load Convert
+
+.. code-block:: jinja
+
+    {% block html_attrs %}{{ super() }} {% include 'exp/includes/id.html' %}{% endblock %}
+
+    {% block experiments %}
+        {% include 'exp/includes/convert.html' %}
+    {% endblock %}
+
+    {% block stub_attribution %}
+        {% include 'exp/includes/stub.html' %}
+    {% endblock %}
+
+    {% block site_js %}
+        {% include 'exp/includes/js.html' %}
+    {% endblock %}
+
+3. If a page is indexed by search engines, then the experimental equivalent should have a canonical URL that points back to the original page. If the page is considered to be an in-product page, then the experimental page should retain the same noindex meta tag.
+
+.. code-block:: jinja
+
+    {% block canonical_urls %}
+        <link rel="canonical" href="{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/new/">
+    {% endblock %}
+
+4. Experimental pages should also contain an Open Graph sharing URL that points back to the original page.
+
+.. code-block:: jinja
+
+    {% block page_og_url %}{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/new/{% endblock %}
 
 Once an experimental page exists, A/B tests can then be implemented using
 the `Convert dashboard <https://convert.com>`_ and editor. Convert

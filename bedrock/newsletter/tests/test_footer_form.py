@@ -1,3 +1,4 @@
+from django.test.utils import override_settings
 from bedrock.base.urlresolvers import reverse
 from mock import patch
 from pyquery import PyQuery as pq
@@ -13,6 +14,7 @@ class TestNewsletterFooter(TestCase):
     def setUp(self):
         self.view_name = 'newsletter.subscribe'
 
+    @override_settings(DEV=True)
     def test_country_selected(self):
         """
         The correct country for the locale should be initially selected.
@@ -33,6 +35,7 @@ class TestNewsletterFooter(TestCase):
         doc = pq(resp.content)
         assert doc('#id_country option[selected="selected"]').val() == 'br'
 
+    @override_settings(DEV=True)
     def test_language_selected(self):
         """
         The correct language for the locale should be initially selected or

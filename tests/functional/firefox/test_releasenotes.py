@@ -77,6 +77,7 @@ def test_primary_download_button_ios_displayed(base_url, selenium):
     assert page.is_primary_app_store_button_displayed
 
 
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_secondary_download_button_release_displayed(base_url, selenium):
     page = FirefoxReleaseNotesPage(selenium, base_url, slug='75.0').open()
@@ -107,6 +108,7 @@ def test_secondary_download_button_nightly_displayed(base_url, selenium):
     assert page.secondary_download_button_nightly.is_displayed
 
 
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_secondary_download_button_esr_displayed(base_url, selenium):
     page = FirefoxReleaseNotesPage(selenium, base_url, slug='68.8.0').open()
@@ -137,6 +139,7 @@ def test_secondary_download_button_ios_displayed(base_url, selenium):
     assert page.is_secondary_app_store_button_displayed
 
 
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_open_pre_releases_menu(base_url, selenium):
     page = FirefoxReleaseNotesPage(selenium, base_url, slug='75.0').open()

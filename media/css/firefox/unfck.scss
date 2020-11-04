@@ -62,6 +62,12 @@ $image-path: '/media/protocol/img';
 
 // --------------------------------------------------------------------------
 
+.u-visually-hidden {
+    @include visually-hidden();
+}
+
+// --------------------------------------------------------------------------
+
 $svg-icon-twitter: '<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M5.032 14.5c6.037 0 9.34-5.002 9.34-9.34 0-.142 0-.283-.01-.424A6.679 6.679 0 0 0 16 3.037c-.6.266-1.235.44-1.885.517a3.294 3.294 0 0 0 1.443-1.816 6.579 6.579 0 0 1-2.085.797A3.286 3.286 0 0 0 7.88 5.528 9.32 9.32 0 0 1 1.114 2.1 3.285 3.285 0 0 0 2.13 6.481 3.258 3.258 0 0 1 .64 6.07v.041A3.284 3.284 0 0 0 3.274 9.33c-.484.132-.99.151-1.483.056a3.286 3.286 0 0 0 3.067 2.28A6.587 6.587 0 0 1 0 13.025a9.294 9.294 0 0 0 5.032 1.472" fill="#88ffd1" fill-rule="nonzero"/></svg>';
 $svg-icon-cta: '<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><polyline vector-effect="non-scaling-stroke" stroke="#88ffd1" stroke-width="2" points="9 19 16 12 9 5"></polyline></g></svg>';
 
@@ -135,35 +141,54 @@ main {
 
         // bg texture
         .loaded & {
-            background-image: url('/media/img/firefox/campaign/unfck/en/bg/top.png'),
-                              // checklist heading
-                              url('/media/img/firefox/campaign/unfck/en/bg/17.jpg'),
-                              url('/media/img/firefox/campaign/unfck/en/bg/19.jpg'),
-                              // ads
-                              url('/media/img/firefox/campaign/unfck/en/bg/2.jpg'),
-                              // fb
-                              url('/media/img/firefox/campaign/unfck/en/bg/3.jpg'),
-                              // youtube
-                              url('/media/img/firefox/campaign/unfck/en/bg/13.jpg'),
-                              url('/media/img/firefox/campaign/unfck/en/bg/20.jpg'),
-                              // giphy
-                              url('/media/img/firefox/campaign/unfck/en/bg/13.jpg'),
-                              url('/media/img/firefox/campaign/unfck/en/bg/9.jpg');
-            background-position: top center,
-                                 // checklist heading
-                                 top 700px right calc(50% + #{$content-sm / 2 }),
-                                 top 800px left calc(50% + #{$content-sm / 2 + 150px}),
-                                 // ads
-                                 top 1200px right calc(50% + #{$content-sm / 2 }),
-                                 // fb
-                                 top 1950px right calc(50% + #{$content-sm / 2 }),
-                                 // youtube
-                                 top 2500px right calc(50% + #{$content-sm / 2 }),
-                                 top 2300px left calc(50% + #{$content-sm / 2 }),
-                                 // giphy
-                                 bottom 50px right calc(50% + #{$content-sm / 2 } ),
-                                 bottom 350px left calc(50% + #{$content-sm / 2 + 150px});
-            background-repeat: no-repeat;
+
+            @media #{$mq-sm} {
+                background-image: url('/media/img/firefox/campaign/unfck/en/bg/top.png'),
+                                // checklist heading
+                                url('/media/img/firefox/campaign/unfck/en/bg/3.jpg'),
+                                url('/media/img/firefox/campaign/unfck/en/bg/4.jpg'),
+                                // ads
+                                url('/media/img/firefox/campaign/unfck/en/bg/2.jpg'),
+                                // fb
+                                url('/media/img/firefox/campaign/unfck/en/bg/6.jpg'),
+                                // youtube
+                                url('/media/img/firefox/campaign/unfck/en/bg/1.jpg'),
+                                url('/media/img/firefox/campaign/unfck/en/bg/7.jpg'),
+                                // giphy
+                                url('/media/img/firefox/campaign/unfck/en/bg/10.jpg'),
+                                url('/media/img/firefox/campaign/unfck/en/bg/9.jpg');
+                background-position: top center,
+                                    // checklist heading
+                                    top 700px right calc(50% + #{$content-sm / 2 }),
+                                    top 800px left calc(50% + #{$content-sm / 2 + 150px}),
+                                    // ads
+                                    top 1200px right calc(50% + #{$content-sm / 2 }),
+                                    // fb
+                                    top 1950px right calc(50% + #{$content-sm / 2 }),
+                                    // youtube
+                                    top 2500px right calc(50% + #{$content-sm / 2 }),
+                                    top 2300px left calc(50% + #{$content-sm / 2 }),
+                                    // giphy
+                                    bottom 50px right calc(50% + #{$content-sm / 2 } ),
+                                    bottom 350px left calc(50% + #{$content-sm / 2 + 150px});
+                background-repeat: no-repeat;
+                background-size: (1944px/2) (786px/2),
+                                //checklist heading
+                                (386px/2) (350px/2),
+                                (534px/2) (556px/2),
+                                //ads
+                                (620px/2) (662px/2),
+                                //fb
+                                (386px/2) (350px/2),
+                                //youtube
+                                (560px/2) (408px/2),
+                                (314px/2) (460px/2),
+                                //giphy
+                                (270px/2) (168px/2),
+                                (296px/2) (450px/2);
+            }
+
+
 
             @media #{$mq-lg} {
                 background-position: top center,
@@ -281,7 +306,7 @@ main {
 
     @media (prefers-reduced-motion) {
         .loaded &:after {
-            background-image: url('/media/img/firefox/campaign/unfck/en/still/heart.png');
+            background-image: url('/media/img/firefox/campaign/unfck/en/still/heart.jpg');
         }
     }
 }
@@ -371,21 +396,8 @@ main {
 }
 
 .c-item-title {
-    @include font-size(24px);
+    @include text-title-xs;
     position: relative;
-}
-
-.c-item-cta {
-    .c-item-unfck:link &,
-    .c-item-unfck:visited &,
-    .c-item-unfck:hover & {
-        color: $color-green-30;
-        text-decoration: none;
-    }
-    .c-item-unfck:visited &,
-    .c-item-unfck:hover & {
-        text-decoration: underline;
-    }
 }
 
 @supports (display:grid) {
@@ -457,15 +469,26 @@ main {
 // section titles
 
 .c-section-title {
-    @include font-size(40px);
     @include text-title-md;
     margin: 0 auto;
+    max-width: $content-md + $layout-lg * 2;
     padding: 0 $layout-sm;
-    max-width: $content-lg + $layout-lg * 2;
     text-align: center;
 
     strong {
         white-space: nowrap;
+    }
+
+    .mzp-l-content + & {
+        padding: $v-grid-xs $layout-sm 0;
+
+        @media #{$mq-md} {
+            padding-top: $v-grid-md;
+        }
+
+        @media #{$mq-lg} {
+            padding-top: $v-grid-lg;
+        }
     }
 }
 
@@ -617,7 +640,7 @@ main {
     background-color: #fbede8;
 }
 
-#smiley {
+#smile {
     background-color: #43238b;
 }
 
@@ -626,8 +649,20 @@ main {
 }
 
 .c-item-gif {
+    #pocket {
+        background-color: #fde2e8;
+    }
+
+    #trending & {
+        background-color: #fa838c;
+    }
+
+    #group & {
+        background-color: #fbfbfb;
+    }
+
     #poli & {
-        background-color: $color-white;
+        background-color: #43238b;
     }
 
     #regrets & {
@@ -639,10 +674,14 @@ main {
     }
 
     #join & {
-        background-color: #f7f2f7;
+        background-color: #fbede8;
     }
 
     #social & {
-        background-color: #fee0e7;
+        background-color: #eae5fe;
+    }
+
+    #share & {
+        background-color: #2b1141;
     }
 }

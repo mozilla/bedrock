@@ -34,3 +34,46 @@ class TestConfigDBEnv(TestCase):
         self.assertEqual('abides', self.config('the_dude'))
         self.assertEqual('abides', self.config('the_dude'))
         self.assertEqual(gcd_mock.call_count, 2)
+
+
+class TestDictOf(TestCase):
+    def test_dict_of(self):
+        parser = waffle_config.DictOf(int)
+        assert parser('dude:1,walter:2,donnie:3') == {
+            'dude': 1,
+            'walter': 2,
+            'donnie': 3,
+        }
+
+    def test_dict_of_whitespace(self):
+        parser = waffle_config.DictOf(int)
+        assert parser(' dude:1, walter: 2 , donnie : 3  ') == {
+            'dude': 1,
+            'walter': 2,
+            'donnie': 3,
+        }
+
+    def test_dict_of_floats(self):
+        parser = waffle_config.DictOf(float)
+        assert parser('dude:1,walter:2,donnie:3.3') == {
+            'dude': 1.0,
+            'walter': 2.0,
+            'donnie': 3.3,
+        }
+
+    def test_dict_of_strings(self):
+        parser = waffle_config.DictOf(str)
+        assert parser('dude:abides,walter:rages,donnie:bowls') == {
+            'dude': 'abides',
+            'walter': 'rages',
+            'donnie': 'bowls',
+        }
+
+    def test_wrong_type(self):
+        parser = waffle_config.DictOf(int)
+        with self.assertRaises(ValueError):
+            parser('dude:abides,walter:2,donnie:3')
+
+    def test_empty(self):
+        parser = waffle_config.DictOf(int)
+        assert parser('') == {}

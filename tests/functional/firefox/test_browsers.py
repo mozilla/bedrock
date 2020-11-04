@@ -8,6 +8,7 @@ from urllib.parse import unquote
 from pages.firefox.browsers.landing import FirefoxBrowsersPage
 
 
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_primary_download_button_displayed(base_url, selenium):
     page = FirefoxBrowsersPage(selenium, base_url).open()

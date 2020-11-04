@@ -7,6 +7,7 @@ import pytest
 from pages.firefox.pocket import FirefoxPocketPage
 
 
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_pocket_learn_more_button(base_url, selenium):
     page = FirefoxPocketPage(selenium, base_url).open()

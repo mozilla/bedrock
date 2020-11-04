@@ -1,0 +1,82 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}What’s new with Firefox{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}What’s new with Firefox{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_83') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main class="content-wrapper mzp-t-firefox">
+  {% include 'firefox/whatsnew/includes/header.html' %}
+
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-md wnp83-hero-logo">
+      {% include 'firefox/whatsnew/includes/fx83/pocket.svg' %}
+      <h1 class="wnp-main-title">{{ ftl('whatsnew83-main-title') }}</h1>
+      <p class="wnp-main-tagline">{{ ftl('whatsnew83-main-intro') }}</p>
+
+      <div class="wnp-main-cta">
+        <a href="https://getpocket.com/explore?utm_source=mozilla.org-whatsnew83&utm_medium=referral&utm_campaign=whatsnew83&entrypoint=mozilla.org-whatsnew83" class="mzp-c-button mzp-t-product mzp-t-lg" rel="external" data-cta-text="Get Pocket Now" data-cta-type="button">{{ ftl('whatsnew83-main-cta') }}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wnp-content-extra">
+    <div class="mzp-l-content mzp-t-content-xl">
+      <div class="l-columns-three">
+
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
+            {% include 'firefox/whatsnew/includes/fx83/person1.svg' %}
+          </div>
+          <h2 class="c-picto-block-title">{{ ftl('whatsnew83-quality-reads') }}</h2>
+          <div class="c-picto-block-body"><p>{{ ftl('whatsnew83-algorithms') }}</p>
+          </div>
+        </div>
+
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
+            {% include 'firefox/whatsnew/includes/fx83/person2.svg' %}
+          </div>
+          <h2 class="c-picto-block-title">{{ ftl('whatsnew83-hidden-gems') }}</h2>
+          <div class="c-picto-block-body"><p>{{ ftl('whatsnew83-great-stories') }}</p>
+          </div>
+        </div>
+
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
+            {% include 'firefox/whatsnew/includes/fx83/person3.svg' %}
+          </div>
+          <h2 class="c-picto-block-title">{{ ftl('whatsnew83-everything-youre-into') }}</h2>
+          <div class="c-picto-block-body"><p>{{ ftl('whatsnew83-add-the-pocket-app') }}</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <aside class="mzp-l-content c-utilities">
+    {% set releasenotes_url = url('firefox.releases.index') if not version else '/firefox/%s/releasenotes/'|format(version) %}
+    <p>{{ ftl('whatsnew-release-notes', url=releasenotes_url) }}</p>
+  </aside>
+
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_83') }}
+{% endblock %}

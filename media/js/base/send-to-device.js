@@ -88,7 +88,9 @@ if (typeof window.Mozilla === 'undefined') {
 
         // should /country-code.json be slow to load,
         // just show the email messaging after 5 seconds waiting.
-        this.formTimeout = setTimeout(self.updateMessaging, 5000);
+        this.formTimeout = setTimeout(function() {
+            self.updateMessaging();
+        }, 5000);
 
         $.get('/country-code.json')
             .done(function(data) {

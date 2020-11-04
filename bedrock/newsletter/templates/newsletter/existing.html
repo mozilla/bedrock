@@ -4,8 +4,6 @@
 
 {% extends 'newsletter/base.html' %}
 
-{% set_lang_files "mozorg/newsletters" %}
-
 {# Template used for a user to manage their subscriptions #}
 
 {% block gtm_page_id %}data-gtm-page-id="/newsletter/existing/"{% endblock %}
@@ -17,36 +15,36 @@
 
 {% block content %}
 <main role="main">
-  <div class="mzp-l-content">
-    <header>
-      {% if did_confirm %}
-      <h1>{{ _('Thanks for Subscribing!') }}</h1>
+  <header class="mzp-l-content mzp-t-content-lg">
+    {% if did_confirm %}
+      <h1>{{ ftl('newsletters-thanks-for-subscribing') }}</h1>
 
       <p>
-        {{ _('You’re awesome!') }}
-        {{ _('And we’re not just saying that because you trusted us with your email address.') }}
-        {{ _('Please be sure to add mozilla@e.mozilla.org to your address book to ensure we always reach your inbox.')
-        }}
+        {{ ftl('newsletters-youre-awesome') }}
+        {{ ftl('newsletters-and-were-not-just-saying') }}
+        {{ ftl('newsletters-please-be-sure-to-add-mozillaemozillaorg') }}
       </p>
 
       <p>
-        {{ _('Mozilla touches on a variety of important issues.') }}
-        {{ _('Open your inbox (and your heart) even more — take a look at other topics we cover.') }}
+        {{ ftl('newsletters-mozilla-touches-on-a-variety') }}
+        {{ ftl('newsletters-open-your-inbox-and-your') }}
       </p>
-      {% else %}
-      <h1>{{ _('Manage your Email Preferences') }}</h1>
+    {% else %}
+      <h1>{{ ftl('newsletters-manage-your-email-preferences') }}</h1>
 
       {% if switch('newsletter-maintenance-mode') %}
-      <div class="mzp-c-emphasis-box">
-        <p>{{ _('This page is in maintenance mode and is temporarily unavailable.') }}</p>
-        <p>{{ _('To update your email preferences, please check back in a little while. Thanks!') }}</p>
-      </div>
+        <div class="mzp-c-emphasis-box">
+          <p>{{ ftl('newsletters-this-page-is-in-maintenance') }}</p>
+          <p>{{ ftl('newsletters-to-update-your-email-preferences') }}</p>
+        </div>
       {% else %}
-      <p>{{ _('We love sharing updates about all the awesome things happening at Mozilla.') }}</p>
-      <p>{{ _('Set your preferences below to make sure you always receive the news you want.') }}</p>
+        <p>{{ ftl('newsletters-we-love-sharing-updates') }}</p>
+        <p>{{ ftl('newsletters-set-your-preferences-below') }}</p>
       {% endif %}
-      {% endif %}
-    </header>
+    {% endif %}
+  </header>
+
+  <div class="mzp-l-content">
 
     <section>
       {% if formset and not switch('newsletter-maintenance-mode') %}
@@ -65,51 +63,37 @@
             </div>
             {% endif %}
 
-            <label>{{ _('Your email address:') }}</label>
+            <label>{{ ftl('newsletters-your-email-address') }}</label>
             {{ email }}
 
             {% set country = form['country'] %}
             <div class="{% if country.errors %}error-msg{% endif %}">
-              {% if l10n_has_tag('country_region_122019') %}
-              {{ form.country.label_tag(_('Country or region:')) }}
-              {% else %}
-              {{ form.country.label_tag(_('Country:')) }}
-              {% endif %}
+              {{ form.country.label_tag(ftl('newsletters-country-or-region', fallback='newsletters-country')) }}
               {{ country }}
               {{ country.errors }}
             </div>
 
             {% set lang = form['lang'] %}
             <div class="{% if lang.errors %}error-msg{% endif %}">
-              {{ form.lang.label_tag(_('Language:')) }}
+              {{ form.lang.label_tag(ftl('newsletters-language')) }}
               {{ lang }}
               {{ lang.errors }}
-              <small>{{ _('Not all subscriptions are supported in all the languages listed. Almost all are
-                offered in English, German and French.') }}</small>
+              <small>{{ ftl('newsletters-not-all-subscriptions-are') }}</small>
             </div>
 
             <div>
-              {{ form.format.label_tag(_('Format:')) }}
+              {{ form.format.label_tag(ftl('newsletters-format')) }}
               {{ form['format'] }}
               {{ form['format'].errors }}
-              <small>{{ _('Text subscribers will receive an email twice a year to confirm continuation of
-                the subscription. Those emails may include HTML.') }}</small>
+              <small>{{ ftl('newsletters-text-subscribers-will-receive') }}</small>
             </div>
 
             <aside>
-              <p>{{ _('Many of our communications are related to an account you’ve signed up for, such as Firefox
-                Accounts, MDN Web Docs, or Add-on Developer. To manage one of your accounts or see a list of all the
-                accounts visit our <a href="%s">account management support page</a>.')|format('https://support.mozilla.org/kb/managing-account-data')
-                }}</p>
+              <p>{{ ftl('newsletters-many-of-our-communications', url='https://support.mozilla.org/kb/managing-account-data') }}</p>
 
-              <p>{{ _('To get access to the whole world of Firefox products, knowledge and services in one account,
-                join
-                us! Learn more about the benefits <a href="%s">here</a>.')|format(url('firefox.accounts')) }}</p>
+              <p>{{ ftl('newsletters-to-get-access-to-the-whole', url=url('firefox.accounts')) }}</p>
 
-              <p>{{ _('There are many ways to engage with Mozilla and Firefox. If you didn’t find what you were
-                looking
-                for here, check out our <a href="%s">community pages</a>.')|format(url('mozorg.about.forums.forums'))
-                }}</p>
+              <p>{{ ftl('newsletters-there-are-many-ways-to', url=url('mozorg.about.forums.forums')) }}</p>
             </aside>
           </div> <!-- close #basic-settings -->
         </div>
@@ -120,7 +104,7 @@
               <thead>
                 <tr>
                   <th></th>
-                  <th colspan="2">{{ _('Subscribe') }}</th>
+                  <th colspan="2">{{ ftl('newsletters-subscribe') }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -137,14 +121,14 @@
                     </p>
                   </th>
                   <td>
-                    {{ formpart.subscribed_check.label_tag(_('Subscribe')) }}
+                    {{ formpart.subscribed_check.label_tag(ftl('newsletters-subscribe')) }}
                     {{ formpart.subscribed_check }}
                   </td>
                 </tr>
                 {% endfor %}
                 <tr>
                   <th>
-                    {{ form.remove_all.label_tag(_('Remove me from all the subscriptions on this page')) }}
+                    {{ form.remove_all.label_tag(ftl('newsletters-remove-me-from-all-the')) }}
                   </th>
                   <td>
                     {{ form['remove_all'] }}
@@ -153,7 +137,7 @@
               </tbody>
             </table>
 
-            <input type="submit" value="{{ _('Save Preferences') }}" class="mzp-c-button">
+            <input type="submit" value="{{ ftl('newsletters-save-preferences') }}" class="mzp-c-button">
           </div>
         </div>
       </form>

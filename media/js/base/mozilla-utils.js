@@ -56,6 +56,10 @@ if (typeof window.Mozilla === 'undefined') {
             data.name = 'Android';
             data.version = 'android';
             break;
+        default:
+            data.os = 'Unsupported';
+            data.name = 'Unsupported';
+            data.version = 'unsupported';
         }
 
         return data;

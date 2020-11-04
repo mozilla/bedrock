@@ -40,14 +40,14 @@
 {% block page_css %}
   {{ css_bundle('home-en') }}
 
-  {% if switch('firefox-daylight-launch-banner') %}
-    {{ css_bundle('daylight-launch-banner') }}
+  {% if switch('firefox-daylight-promo-banner') %}
+    {{ css_bundle('daylight-promo-banner') }}
   {% endif %}
 {% endblock %}
 
 {% block page_banner %}
-  {% if switch('firefox-daylight-launch-banner') %}
-    {% include 'includes/banners/daylight/daylight-launch.html' %}
+  {% if switch('firefox-daylight-promo-banner') %}
+    {% include 'includes/banners/daylight/daylight-promo.html' %}
   {% endif %}
 {% endblock %}
 
@@ -79,29 +79,20 @@
         {{ content_card('card_4') }}
         {{ content_card('card_5') }}
       </div>
-
-      <div class="mzp-l-card-quarter">
-        {{ content_card('card_6') }}
-        {{ content_card('card_7') }}
-        {{ content_card('card_8') }}
-        {{ content_card('card_9') }}
-      </div>
-
-      {{ billboard(
-        title=_('Open source. <br>Open minds.'),
-        ga_title='Open source. <br>Open minds.',
-        desc=_('Mozilla creates powerful web tech for everyone.'),
-        link_cta=_('Explore Mozilla technology'),
-        link_url='https://labs.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=billboard',
-        image_url='img/home/2018/billboard-open-minds.png',
-        include_highres_image=True
-      )}}
-
-      <div class="mzp-l-card-half">
-        {{ content_card('card_10') }}
-        {{ content_card('card_11') }}
-      </div>
-    </div>
+  </div>
+  <div class="mzp-t-mozilla">
+      {% call hero(
+        title='Welcome to the web, sunny side up',
+        desc='Millions of people rely on Pocket to save and discover the best articles, stories and videos on the web. As part of the Firefox family, Pocket has the same dedication to privacy.',
+        class='pocket-sunny-hero mzp-has-image mzp-t-mozilla mzp-l-reverse mzp-t-product-firefox',
+        image_url='img/home/2020/pocket-hero.jpg',
+        include_highres_image=True,
+        include_cta=True,
+        heading_level=3
+      ) %}
+        <a href="https://getpocket.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=hero" class="mzp-c-button mzp-t-product">Try Pocket</a>
+      {% endcall %}
+  </div>
 
     {% if switch('show_pocket_feed', ['en']) and pocket_articles %}
     <aside class="pocket">
@@ -139,11 +130,11 @@
       )}}
 
       <div class="mzp-l-card-hero">
-        {{ content_card('card_12') }}
-        {{ content_card('card_13') }}
-        {{ content_card('card_14') }}
-        {{ content_card('card_15') }}
-        {{ content_card('card_16') }}
+        {{ content_card('card_6') }}
+        {{ content_card('card_7') }}
+        {{ content_card('card_8') }}
+        {{ content_card('card_9') }}
+        {{ content_card('card_10') }}
       </div>
 
       {{ billboard(
@@ -157,9 +148,9 @@
       )}}
 
       <div class="mzp-l-card-third">
-        {{ content_card('card_17') }}
-        {{ content_card('card_18') }}
-        {{ content_card('card_19') }}
+        {{ content_card('card_11') }}
+        {{ content_card('card_12') }}
+        {{ content_card('card_13') }}
       </div>
 
       <aside class="mzp-c-newsletter">
@@ -203,8 +194,8 @@
 {% block js %}
   {{ js_bundle('home') }}
 
-  {% if switch('firefox-daylight-launch-banner') %}
-    {{ js_bundle('daylight-launch-banner') }}
+  {% if switch('firefox-daylight-promo-banner') %}
+    {{ js_bundle('daylight-promo-banner') }}
   {% endif %}
 {% endblock %}
 

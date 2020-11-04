@@ -228,7 +228,10 @@ main {
         padding-top: 0;
     }
 
-    .c-button-fb-container {
+    // begin conditional CTA content
+    .c-button-fb-container,
+    .c-button-android,
+    .c-button-ios {
         display: none;
     }
 
@@ -241,6 +244,28 @@ main {
             display: inline-block;
         }
     }
+
+    .android &,
+    .ios & {
+        .download-button,
+        .c-button-fb-container {
+            display: none;
+        }
+    }
+
+    .android & {
+        .c-button-android {
+            display: inline-block;
+        }
+    }
+
+    .ios & {
+        .c-button-ios {
+            display: inline-block;
+        }
+    }
+
+    // end conditional CTA content
 
     @media #{$mq-lg} {
         margin-top: -$layout-lg;
@@ -315,7 +340,7 @@ main {
     }
 }
 
-.c-item-image-link {
+.c-item-img-link {
     display: block;
 }
 
@@ -694,4 +719,40 @@ main {
 .mzp-c-notification-bar.mzp-is-sticky {
     animation: fade-in-out 5s both;
     z-index: 1001;
+}
+
+// --------------------------------------------------------------------------
+// GIF backgrounds (display while they are loading)
+
+.c-item-gif {
+    text-align: center;
+
+    #contain & {
+        background-color: #1a90e8;
+    }
+
+    #desinformation & {
+        background-color: #2657fd;
+    }
+
+    #hate-speech &,
+    #social & {
+        background-color: $color-white;
+        color: $color-black;
+    }
+
+    #share & {
+        background-color: #fde1e8;
+        color: $color-black;
+    }
+}
+
+.c-item-img-link {
+    #share &,
+    #hate-speech & {
+        &:link,
+        &:visited {
+            color: $color-black;
+        }
+    }
 }

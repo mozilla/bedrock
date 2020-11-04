@@ -27,29 +27,42 @@
         window.open(url, 'twitter_share', window._SearchParams.objectToQueryString(options).replace(/&/g, ',')).focus();
     }
 
+    // FB Share
+    function openFacebookSubwin(url) {
+        open(url, 'fb_share', 'height=380,width=660,resizable=0,toolbar=0,menubar=0,status=0,location=0,scrollbars=0').focus();
+    }
+
     function handleShareLinkClick(e) {
-        var item = e.target.closest('.c-item-unfck');
-        var href = item.href;
+        var linkHref = e.target.href;
+        var service = '';
+
+        if(linkHref.indexOf('twitter') > -1) {
+            openTwitterSubwin(linkHref);
+            service = 'twitter';
+            e.preventDefault();
+        } else if(linkHref.indexOf('facebook') > -1) {
+            openFacebookSubwin(linkHref);
+            service = 'facebook';
+            e.preventDefault();
+        }
 
         // Track the event in GA
         window.dataLayer.push({
             'event': 'in-page-interaction',
             'eAction': 'checklist',
-            'eLabel': 'share',
+            'eLabel': 'share to ' + service,
         });
-
-        // Open Twitter in a sub window
-        openTwitterSubwin(href);
-        e.preventDefault();
     }
 
     function onLoad() {
         // Set up twitter link handler
-        var shareLinks = document.querySelectorAll('#share');
+        var tw = document.getElementById('js-tw');
+        var twJack = document.getElementById('js-tw-jack');
+        var fb = document.getElementById('js-fb');
 
-        for (var i = 0; i < shareLinks.length; i++) {
-            shareLinks[i].addEventListener('click', handleShareLinkClick, false);
-        }
+        tw.addEventListener('click', handleShareLinkClick, false);
+        twJack.addEventListener('click', handleShareLinkClick, false);
+        fb.addEventListener('click', handleShareLinkClick, false);
     }
 
     window.Mozilla.run(onLoad);
