@@ -4,12 +4,14 @@ set -ex
 source docker/bin/set_git_env_vars.sh
 
 if docker pull "$DEPLOYMENT_DOCKER_IMAGE"; then
-    # image already exists, skip the build
-    exit 0
+    echo "image already exists, skipping the build"
+else
+    make clean build-ci
 fi
 
-make clean build-ci
-
+# push and tag images
+# we have to do this even if we didn't build a new image so that
+# the latest and git-tag tags are pushed
 if [[ "$1" == "--push" ]]; then
     docker/bin/push2dockerhub.sh mozmeao/bedrock_test
     docker/bin/push2dockerhub.sh mozmeao/bedrock_assets
