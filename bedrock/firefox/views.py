@@ -560,7 +560,6 @@ class WhatsnewView(L10nTemplateView):
         'firefox/whatsnew/whatsnew-fx80.html': ['firefox/whatsnew/whatsnew-fx80', 'firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx81.html': ['firefox/whatsnew/whatsnew-fx81', 'firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx82.html': ['firefox/whatsnew/whatsnew-fx80', 'firefox/whatsnew/whatsnew'],
-        'firefox/whatsnew/whatsnew-fx83.html': ['firefox/whatsnew/whatsnew-fx83', 'firefox/whatsnew/whatsnew'],
     }
 
     def get_context_data(self, **kwargs):
@@ -616,7 +615,7 @@ class WhatsnewView(L10nTemplateView):
                 template = 'firefox/developer/whatsnew.html'
             else:
                 template = 'firefox/whatsnew/index.html'
-        elif version.startswith('83.') and locale.startswith('de'):
+        elif version.startswith('83.') and locale == ('de'):
             template = 'firefox/whatsnew/whatsnew-fx83-de.html'
         elif version.startswith('83.') and locale.startswith('en-'):
             template = 'firefox/whatsnew/whatsnew-fx83-en.html'
@@ -659,15 +658,6 @@ class WhatsNewChinaView(WhatsnewView):
         template = super().get_template_names()
         if template == ['firefox/whatsnew/whatsnew-fx82.html']:
             template = ['firefox/whatsnew/index-account.html']
-
-        return template
-
-
-class WhatsNewGermanView(WhatsnewView):
-    def get_template_names(self):
-        template = super().get_template_names()
-        if template == ['firefox/whatsnew/whatsnew-fx83-en.html']:
-            template = ['firefox/whatsnew/whatsnew-fx83-de.html']
 
         return template
 

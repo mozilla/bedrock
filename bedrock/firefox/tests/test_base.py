@@ -397,9 +397,8 @@ class TestWhatsNew(TestCase):
 
     def test_fx_83_0_0_german(self, render_mock):
         """Should use standard whatsnew template in German for de locale"""
-        self.view = fx_views.WhatsNewGermanView.as_view()
         req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'en-US'
+        req.locale = 'de'
         self.view(req, version='83.0')
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/whatsnew-fx83-de.html']
