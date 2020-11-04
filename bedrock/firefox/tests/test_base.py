@@ -379,12 +379,29 @@ class TestWhatsNew(TestCase):
 
     @patch.object(fx_views, 'ftl_file_is_active', lambda *x: True)
     def test_fx_83_0_0(self, render_mock):
-        """Should use whatsnew-fx83 template for 83.0"""
+        """Should use whatsnew-fx83 template for 83.0 in English"""
         req = self.rf.get('/firefox/whatsnew/')
         req.locale = 'en-US'
         self.view(req, version='83.0')
         template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/whatsnew-fx83.html']
+        assert template == ['firefox/whatsnew/whatsnew-fx83-en.html']
+
+    @patch.object(fx_views, 'ftl_file_is_active', lambda *x: True)
+    def test_fx_83_0_0_locale(self, render_mock):
+        """Should use standard whatsnew template for 83.0 in other locales"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'es-ES'
+        self.view(req, version='83.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/index-account.html']
+
+    def test_fx_83_0_0_german(self, render_mock):
+        """Should use standard whatsnew template in German for de locale"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'de'
+        self.view(req, version='83.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx83-de.html']
 
     # end 83.0 whatsnew tests
 

@@ -1,0 +1,82 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}Jetzt neu bei Firefox: Pocket{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}Jetzt neu bei Firefox: Pocket{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_83') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main class="content-wrapper mzp-t-firefox">
+  {% include 'firefox/whatsnew/includes/header.html' %}
+
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-md wnp83-hero-logo">
+      {% include 'firefox/whatsnew/includes/fx83/pocket.svg' %}
+      <h1 class="wnp-main-title">Lerne Pocket kennen – unsere verlässliche Quelle für News & Stories</h1>
+      <p class="wnp-main-tagline">Wir alle haben ein ehrliches, offenes und wunderbares Internet verdient. Deshalb lieben wir Pocket, den Shortcut zu qualitativ hochwertigen Inhalten – ausgesucht aus vielfältigen Publikationen, die für vertrauenswürdige Berichterstattung stehen. Pocket bietet dir die Möglichkeit, spannende Inhalte zu speichern und dann zu lesen, wenn es dir passt.</p>
+
+      <div class="wnp-main-cta">
+        <a href="https://getpocket.com/explore?utm_source=mozilla.org-whatsnew83&utm_medium=referral&utm_campaign=whatsnew83&entrypoint=mozilla.org-whatsnew83" class="mzp-c-button mzp-t-product mzp-t-lg" rel="external" data-cta-text="Get Pocket Now" data-cta-type="button">Hol dir Pocket</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wnp-content-extra">
+    <div class="mzp-l-content mzp-t-content-xl">
+      <div class="l-columns-three">
+
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
+            {% include 'firefox/whatsnew/includes/fx83/person1.svg' %}
+          </div>
+          <h2 class="c-picto-block-title">Qualitätsinhalte – ausgewählt von echten Menschen</h2>
+          <div class="c-picto-block-body"><p>Algorithmen haben einfach keinen Geschmack. Deshalb prüfen für Pocket echte Redakteure die am häufigsten gespeicherten und gelesenen Artikel aus diversen vertrauenswürdigen Quellen und bringen sie direkt zu dir.</p>
+          </div>
+        </div>
+
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
+            {% include 'firefox/whatsnew/includes/fx83/person2.svg' %}
+          </div>
+          <h2 class="c-picto-block-title">Empfehlungen in jedem neuen Tab</h2>
+          <div class="c-picto-block-body"><p>Es warten großartige Geschichten auf dich. Sobald du einen neuen Tab öffnest, empfiehlt dir Pocket eine Auswahl an Artikeln. Lies sie gleich oder speichere sie für später. Die empfohlenen Artikel werden stündlich aktualisiert.</p>
+          </div>
+        </div>
+
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
+            {% include 'firefox/whatsnew/includes/fx83/person3.svg' %}
+          </div>
+          <h2 class="c-picto-block-title">Alles, was du magst, egal wo du bist.</h2>
+          <div class="c-picto-block-body"><p>Hol dir die Pocket App fürs Smartphone oder Tablet und greife so von überall auf deine gespeicherten Artikel zu.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <aside class="mzp-l-content c-utilities">
+    {% set releasenotes_url = url('firefox.releases.index') if not version else '/firefox/%s/releasenotes/'|format(version) %}
+    <p>{{ ftl('whatsnew-release-notes', url=releasenotes_url) }}</p>
+  </aside>
+
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_83') }}
+{% endblock %}
