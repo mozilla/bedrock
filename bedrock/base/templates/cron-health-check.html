@@ -123,11 +123,6 @@
         <td><a href="{{ fluent_repo.repo_url }}/commit/{{ fluent_repo.latest_ref }}">{{ fluent_repo.latest_ref[:10] }}</a></td>
         <td>{{ fluent_repo.last_updated }}</td>
       </tr>
-      <tr>
-        <td><a href="{{ sitemaps_repo.repo_url }}">Sitemap Files</a></td>
-        <td><a href="{{ sitemaps_repo.repo_url }}/commit/{{ sitemaps_repo.latest_ref }}">{{ sitemaps_repo.latest_ref[:10] }}</a></td>
-        <td>{{ sitemaps_repo.last_updated }}</td>
-      </tr>
       {% for repo in git_repos %}
       <tr>
         <td><a href="{{ repo.repo_url }}">{{ repo.repo_name }}</a></td>

@@ -88,7 +88,6 @@ S3_BASE_URL = 'https://s3-{}.amazonaws.com/{}'.format(
 def get_l10n_repo_info():
     repo = git.GitRepo(settings.LOCALES_PATH, settings.LOCALES_REPO)
     fluent_repo = git.GitRepo(settings.FLUENT_REPO_PATH, settings.FLUENT_REPO_URL)
-    sitemaps_repo = git.GitRepo(settings.SITEMAPS_PATH, settings.SITEMAPS_REPO)
     return ({
         'latest_ref': repo.current_hash,
         'last_updated': repo.last_updated,
@@ -97,10 +96,6 @@ def get_l10n_repo_info():
         'latest_ref': fluent_repo.current_hash,
         'last_updated': fluent_repo.last_updated,
         'repo_url': fluent_repo.clean_remote_url,
-    }, {
-        'latest_ref': sitemaps_repo.current_hash,
-        'last_updated': sitemaps_repo.last_updated,
-        'repo_url': sitemaps_repo.clean_remote_url,
     })
 
 
@@ -167,7 +162,7 @@ def cron_health_check(request):
             continue
         unique_repos[repo.repo_name] = repo
 
-    l10n_repo, fluent_repo, sitemaps_repo = get_l10n_repo_info()
+    l10n_repo, fluent_repo = get_l10n_repo_info()
     return render(request, 'cron-health-check.html', {
         'results': results,
         'server_info': get_extra_server_info(),
@@ -175,7 +170,6 @@ def cron_health_check(request):
         'git_repos': unique_repos.values(),
         'l10n_repo': l10n_repo,
         'fluent_repo': fluent_repo,
-        'sitemaps_repo': sitemaps_repo,
     }, status=200 if check_pass else 500)
 
 
