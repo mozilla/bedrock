@@ -6,13 +6,19 @@
 
 (function(){
     'use strict';
-    // Hides back button if there is no previous page to go back to.
-    if (window.history.length > 1) {
-        var div = document.getElementById('go-back');
-        div.classList.remove('hide-back');
+    var backLink = document.getElementById('go-back');
+
+    // Issue 9642
+    if (!backLink) {
+        return;
     }
 
-    document.getElementById('go-back').addEventListener('click', function(){
+    // Hides back button if there is no previous page to go back to.
+    if (window.history.length > 1) {
+        backLink.classList.remove('hide-back');
+    }
+
+    backLink.addEventListener('click', function(){
         window.history.back();
     });
 }());
