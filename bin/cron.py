@@ -122,10 +122,6 @@ def schedule_file_jobs():
     def update_locales():
         call_command('l10n_update')
 
-    @scheduled_job('interval', hours=1)
-    def update_sitemaps():
-        call_command('fetch_sitemaps')
-
     if not LOCAL_DB_UPDATE:
         @scheduled_job('interval', minutes=DB_UPDATE_MINUTES)
         def download_database():

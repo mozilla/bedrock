@@ -45,7 +45,7 @@ class LocaleURLMiddleware:
         urlresolvers.set_url_prefix(prefixer)
         full_path = prefixer.fix(prefixer.shortened_path)
 
-        if full_path != request.path:
+        if not (request.path in settings.SUPPORTED_LOCALE_IGNORE or full_path == request.path):
             query_string = request.META.get('QUERY_STRING', '')
             full_path = urllib.parse.quote(full_path.encode('utf-8'))
 

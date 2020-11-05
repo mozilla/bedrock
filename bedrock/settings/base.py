@@ -314,6 +314,12 @@ SUPPORTED_NONLOCALES = [
     'revision.txt',
     'locales',
     'prometheus',
+    'sitemap_none.xml'
+]
+# Paths that can exist either with or without a locale code in the URL.
+# Matches the whole URL path
+SUPPORTED_LOCALE_IGNORE = [
+    '/sitemap.xml'
 ]
 
 # Pages that we don't want to be indexed by search engines.
