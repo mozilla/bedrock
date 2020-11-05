@@ -9,5 +9,3 @@ fi
 ./bin/run-db-download.py --force
 ./manage.py migrate --noinput
 ./manage.py l10n_update
-./manage.py update_legal_docs
-./manage.py fetch_sitemaps
