@@ -17,6 +17,7 @@ firefox-all-you-are-about-to-download = You are about to download:
 firefox-all-browser = Browser:
 firefox-all-platform = Platform:
 firefox-all-language = Language:
+firefox-all-lang-multi = Multiple languages
 firefox-all-sorry-we-couldnt-find = Sorry, we couldn’t find the download you’re looking for. Please try again, or select a download from the list below.
 firefox-all-the-pre-alpha-version = The pre-alpha version for power users who like to hunt crashes and test new features as they’re coded.
 firefox-all-64-bit-installers = 64-bit installers
@@ -39,6 +40,7 @@ firefox-all-count-on-stability-and = Count on stability and ease of use with thi
 firefox-all-windows-installers-for = Windows installers for corporate IT that simplify the configuration, deployment and management of the { -brand-name-firefox-browser }.
 firefox-all-arm64-installers = ARM64/AArch64 installers
 firefox-all-arm64-installers-optimized = ARM64/AArch64 installers optimized for Snapdragon-powered { -brand-name-windows } PCs.
+firefox-all-product-send-link = Send a download link to your phone
 
 # Variables:
 #   $url (url) - link to https://support.mozilla.org/kb/choosing-firefox-cpu-architecture-windows-os
@@ -63,3 +65,7 @@ firefox-all-product-firefox-esr = { -brand-name-firefox-extended-support-release
 firefox-all-product-firefox-android = { -brand-name-firefox } { -brand-name-android }
 firefox-all-product-firefox-android-beta = { -brand-name-firefox } { -brand-name-android } { -brand-name-beta }
 firefox-all-product-firefox-android-nightly = { -brand-name-firefox } { -brand-name-android } { -brand-name-nightly }
+firefox-all-product-firefox-ios = { -brand-name-firefox } { -brand-name-ios }
+
+
+

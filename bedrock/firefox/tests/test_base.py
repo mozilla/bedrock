@@ -127,7 +127,7 @@ class TestFirefoxAll(TestCase):
         """
         resp = self.client.get(reverse('firefox.all'))
         doc = pq(resp.content)
-        assert len(doc('.c-all-downloads-build')) == 8
+        assert len(doc('.c-all-downloads-build')) == 7
 
         desktop_release_builds = len(self.firefox_desktop.get_filtered_full_builds('release'))
         assert len(doc('.c-locale-list[data-product="desktop_release"] > li')) == desktop_release_builds

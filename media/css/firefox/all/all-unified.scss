@@ -15,58 +15,48 @@ $image-path: '/media/protocol/img';
     @include clearfix;
     position: relative;
 
-    &[data-current="desktop_release"] {
-        .c-selection-options[data-product="desktop_release"] {
-            display: block;
-        }
+    .c-download-button {
+        display: none;
+    }
 
-        .c-product-links[data-product="desktop_release"] {
+    &[data-current^="desktop"] {
+        #download-button-primary {
+            display: inline-block;
+        }
+    }
+
+    &[data-current="desktop_release"] {
+        [data-product="desktop_release"] {
             display: block;
         }
     }
 
     &[data-current="desktop_beta"] {
-        .c-selection-options[data-product="desktop_beta"] {
-            display: block;
-        }
-
-        .c-product-links[data-product="desktop_beta"] {
+       [data-product="desktop_beta"] {
             display: block;
         }
     }
 
     &[data-current="desktop_developer"] {
-        .c-selection-options[data-product="desktop_developer"] {
-            display: block;
-        }
-
-        .c-product-links[data-product="desktop_developer"] {
+        [data-product="desktop_developer"] {
             display: block;
         }
     }
 
     &[data-current="desktop_nightly"] {
-        .c-selection-options[data-product="desktop_nightly"] {
-            display: block;
-        }
-
-        .c-product-links[data-product="desktop_nightly"] {
+        [data-product="desktop_nightly"] {
             display: block;
         }
     }
 
     &[data-current="desktop_esr"] {
-        .c-selection-options[data-product="desktop_esr"] {
-            display: block;
-        }
-
-        .c-product-links[data-product="desktop_esr"] {
+        [data-product="desktop_esr"] {
             display: block;
         }
     }
 
     &[data-current="desktop_esr_next"] {
-        .c-selection-options[data-product="desktop_esr_next"] {
+        [data-product="desktop_esr_next"] {
             display: block;
         }
 
@@ -77,31 +67,13 @@ $image-path: '/media/protocol/img';
     }
 
     &[data-current="android_release"] {
-        .c-selection-options[data-product="android_release"] {
-            display: block;
-        }
-
-        .c-product-links[data-product="android_release"] {
+        [data-product="android_release"] {
             display: block;
         }
     }
 
-    &[data-current="android_beta"] {
-        .c-selection-options[data-product="android_beta"] {
-            display: block;
-        }
-
-        .c-product-links[data-product="android_beta"] {
-            display: block;
-        }
-    }
-
-    &[data-current="android_nightly"] {
-        .c-selection-options[data-product="android_nightly"] {
-            display: block;
-        }
-
-        .c-product-links[data-product="android_nightly"] {
+    &[data-current="ios_release"] {
+        [data-product="ios_release"] {
             display: block;
         }
     }
@@ -147,6 +119,15 @@ $image-path: '/media/protocol/img';
     padding-bottom: $spacing-sm;
     vertical-align: middle;
     width: 21px;
+}
+
+.c-get-app {
+    @include font-size(14px);
+    background: center right url('/media/img/firefox/all/icon-get.svg') no-repeat;
+    background-size: auto 1em;
+    display: inline-block;
+    padding-right: 20px;
+    margin-top: $spacing-sm;
 }
 
 .c-selection-form {

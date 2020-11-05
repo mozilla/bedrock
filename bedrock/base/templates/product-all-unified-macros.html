@@ -25,12 +25,12 @@
   </select>
 {% endmacro %}
 
-{% macro product_options(id, platforms, builds, version, disabled=False, hide_version=False, hide_language=False) %}
+{% macro product_options(id, platforms, builds, version, disabled=False, hide_version=False, hide_language=False, hide_platform=False) %}
   <div class="c-selection-options" data-product="{{ id }}">
     <p class="c-selection c-selection-version{% if hide_version %} hidden{% endif%}">
       {{ select_version_list(id, version, disabled) }}
     </p>
-    <p class="c-selection c-selection-platform">
+    <p class="c-selection c-selection-platform"{% if hide_platform %} hidden{% endif%}>
       {% set platform_select_id = 'select_' ~ id ~ '_platform' %}
       {{ select_platform_list(platform_select_id, platforms, disabled) }}
     </p>

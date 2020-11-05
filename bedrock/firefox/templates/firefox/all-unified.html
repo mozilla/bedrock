@@ -2,7 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "product-all-unified-macros.html" import build_locale_list, build_locale_list_item, build_link, select_product_list, product_options with context %}
+{% from "macros.html" import google_play_button, send_to_device with context %}
+{% from "product-all-unified-macros.html" import build_locale_list, bw, build_link, select_product_list, product_options with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -28,6 +29,9 @@
     {% include 'includes/protocol/navigation/menu-firefox/index.html' %}
   {% endwith %}
 {% endblock %}
+
+{% set android_url = firefox_adjust_url('android', 'all-page') %}
+{% set ios_url = firefox_adjust_url('ios', 'all-page') %}
 
 {% block content %}
 <main role="main">
@@ -77,15 +81,10 @@
             <li><a href="{{ firefox_url('android', 'notes', 'release') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
           </ul>
         </div>
-        <div class="c-product-links" data-product="android_beta">
+        <div class="c-product-links" data-product="ios_release">
           <ul>
-            <li><a href="{{ firefox_url('android', 'sysreq', 'beta') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
-            <li><a href="{{ firefox_url('android', 'notes', 'beta') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
-          </ul>
-        </div>
-        <div class="c-product-links" data-product="android_nightly">
-          <ul>
-            <li><a href="{{ firefox_url('android', 'sysreq', 'nightly') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
+            <li><a href="{{ firefox_url('ios', 'sysreq', 'release') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
+            <li><a href="{{ firefox_url('ios', 'notes', 'release') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
           </ul>
         </div>
         <div class="c-support-links">
@@ -119,9 +118,8 @@
             {{ product_options('desktop_esr_next', desktop_esr_platforms_next, desktop_esr_full_builds_next, desktop_esr_next_version, disabled=True, hide_version=hide_esr_version_select, hide_language=False) }}
           {% endif %}
 
-          {{ product_options('android_release', android_release_platforms, android_release_full_builds, android_release_latest_version, disabled=True, hide_version=True, hide_language=True) }}
-          {{ product_options('android_beta', android_beta_platforms, android_beta_full_builds, android_beta_latest_version, disabled=True, hide_version=True, hide_language=True) }}
-          {{ product_options('android_nightly', android_nightly_platforms, android_nightly_full_builds, android_nightly_latest_version, disabled=True, hide_version=True, hide_language=True) }}
+          {{ product_options('android_release', android_release_platforms, android_release_full_builds, android_release_latest_version, disabled=True, hide_version=True, hide_language=True, hide_platform=True) }}
+          {{ product_options('ios_release', ios_release_platforms, ios_release_full_builds, ios_release_latest_version, disabled=True, hide_version=True, hide_language=True, hide_platform=True ) }}
         </fieldset>
 
         <div id="download-info" class="c-download hidden" aria-live="polite">
@@ -142,12 +140,30 @@
           </table>
 
           <p class="c-download-error hidden">
-            { ftl('firefox-all-sorry-we-couldnt-find') }
+            {{ ftl('firefox-all-sorry-we-couldnt-find') }}
           </p>
 
-          <a href="#all-downloads" id="download-button-primary" class="mzp-c-button mzp-t-product" data-link-type="download" data-download-location="primary cta">
+          <a href="#all-downloads" id="download-button-primary" class="mzp-c-button mzp-t-product c-download-button" data-link-type="download" data-download-location="primary cta">
             {{ ftl('download-button-download-now') }}
           </a>
+
+          <div id="download-android-primary" data-product="android_release" class="c-download-button">
+            <ul class="c-download-list">
+              <li>{{ google_play_button(href=android_url, id='playStoreLink-list') }}</li>
+              <li><a href="{{ url('firefox.mobile.get-app') }}" class="c-get-app" data-cta-type="link" data-cta-text="Get It Now" data-cta-position="banner">{{ ftl('firefox-all-product-send-link') }}</a></li>
+            </ul>
+          </div>
+
+          <div id="download-ios-primary" data-product="ios_release" class="c-download-button">
+            <ul class="c-download-list">
+              <li>
+                <a id="appStoreLink-list" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
+                  <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
+                </a>
+              </li>
+              <li><a href="{{ url('firefox.mobile.get-app') }}" class="c-get-app" data-cta-type="link" data-cta-text="Get It Now" data-cta-position="primary">{{ ftl('firefox-all-product-send-link') }}</a></li>
+            </ul>
+          </div>
         </div>
       </form>
     </div>
@@ -167,8 +183,7 @@
               <li><a href="#firefox-desktop-nightly">{{ ftl('firefox-all-product-firefox-nightly') }}</a></li>
               <li><a href="#firefox-desktop-esr">{{ ftl('firefox-all-product-firefox-esr') }}</a></li>
               <li><a href="#firefox-android-release">{{ ftl('firefox-all-product-firefox-android') }}</a></li>
-              <li><a href="#firefox-android-beta">{{ ftl('firefox-all-product-firefox-android-beta') }}</a></li>
-              <li><a href="#firefox-android-nightly">{{ ftl('firefox-all-product-firefox-android-nightly') }}</a></li>
+              <li><a href="#firefox-ios-release">{{ ftl('firefox-all-product-firefox-ios') }}</a></li>
             </ul>
           </section>
         </nav>
@@ -239,25 +254,36 @@
             <li><a href="{{ firefox_url('android', 'sysreq', 'release') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
             <li><a href="{{ firefox_url('android', 'notes', 'release') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
           </ul>
-          {{ build_locale_list('android_release', android_release_channel_label, android_release_platforms, android_release_full_builds, 'release') }}
+          <ol class="c-locale-list" data-product="android_release">
+            <li class="c-locale-list-item" data-language="multi">
+              <h4 class="c-locale-label">{{ ftl('firefox-all-lang-multi') }}</h4>
+              <ul class="c-download-list">
+                <li>{{ google_play_button(href=android_url, id='playStoreLink-list') }}</li>
+                <li><a href="{{ url('firefox.mobile.get-app') }}" class="c-get-app" data-cta-type="link" data-cta-text="Get It Now" data-cta-position="banner">{{ ftl('firefox-all-product-send-link') }}</a></li>
+              </ul>
+            </li>
+          </ol>
         </section>
 
-        <section id="firefox-android-beta" class="c-all-downloads-build">
-          <h2 class="c-product-heading">{{ ftl('firefox-all-product-firefox-android-beta') }}</h2>
+        <section id="firefox-ios-release" class="c-all-downloads-build">
+          <h2 class="c-product-heading">{{ ftl('firefox-all-product-firefox-ios') }}</h2>
           <ul>
-            <li><a href="{{ firefox_url('android', 'sysreq', 'beta') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
-            <li><a href="{{ firefox_url('android', 'notes', 'beta') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
+            <li><a href="{{ firefox_url('ios', 'sysreq', 'release') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
+            <li><a href="{{ firefox_url('ios', 'notes', 'release') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
           </ul>
-          {{ build_locale_list('android_beta', android_beta_channel_label, android_beta_platforms, android_beta_full_builds, 'beta') }}
-        </section>
-
-        <section id="firefox-android-nightly" class="c-all-downloads-build">
-          <h2 class="c-product-heading">{{ ftl('firefox-all-product-firefox-android-nightly') }}</h2>
-          <ul>
-            <li><a href="{{ firefox_url('android', 'sysreq', 'nightly') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
-            <li><a href="{{ firefox_url('android', 'notes', 'nightly') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
-          </ul>
-          {{ build_locale_list('android_nightly', android_nightly_channel_label, android_nightly_platforms, android_nightly_full_builds, 'nightly') }}
+          <ol class="c-locale-list" data-product="ios_release">
+            <li class="c-locale-list-item" data-language="multi">
+              <h4 class="c-locale-label">{{ ftl('firefox-all-lang-multi') }}</h4>
+              <ul class="c-download-list">
+                <li>
+                  <a id="appStoreLink-list" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
+                    <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
+                  </a>
+                </li>
+                <li><a href="{{ url('firefox.mobile.get-app') }}" class="c-get-app" data-cta-type="link" data-cta-text="Get It Now" data-cta-position="secondary">{{ ftl('firefox-all-product-send-link') }}</a></li>
+              </ul>
+            </li>
+          </ol>
         </section>
       </div>
     </div>
