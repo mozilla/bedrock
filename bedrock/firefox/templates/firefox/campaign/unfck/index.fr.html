@@ -6,8 +6,15 @@
 
 {% block page_title %}N’acceptez pas tout du Net. Rendons le Net plus net{% endblock %}
 {% block page_desc %}Quand les données personnelles deviennent une monnaie d’échange, il est temps de choisir un navigateur qui vous protège et protège le Net que vous aimez.{% endblock %}
-
 {% block page_image %}{{ static('img/firefox/campaign/unfck/fr/og.png') }}{% endblock %}
+
+{% block experiments %}
+  {% if switch('unfck-convert-fr') %}
+    {# Pre-fetch the DNS lookup prior to loading the convert script #}
+    <link rel="dns-prefetch" href="https://cdn-3.convertexperiments.com/">
+    {{ js_bundle('convert') }}
+  {% endif %}
+{% endblock %}
 
 {% block page_css %}
   {{ super() }}
@@ -198,4 +205,30 @@
   </div>
 
 </main>
+{% endblock %}
+
+{% block site_js %}
+  {% if switch('unfck-convert-fr') %}
+    <!--[if !IE]><!-->
+      {{ js_bundle('common-no-jquery') }}
+    <!--<![endif]-->
+  {% else %}
+    <!--[if !IE]><!-->
+      {{ js_bundle('common') }}
+    <!--<![endif]-->
+  {% endif %}
+
+  <!--[if IE]>
+    {{ js_bundle('common-ie') }}
+  <![endif]-->
+{% endblock %}
+
+{% block stub_attribution %}
+  {% if settings.STUB_ATTRIBUTION_RATE %}
+    {% if switch('unfck-convert-fr') %}
+      {{ js_bundle('stub-attribution-convert') }}
+    {% else %}
+      {{ js_bundle('stub-attribution') }}
+    {% endif %}
+  {% endif %}
 {% endblock %}

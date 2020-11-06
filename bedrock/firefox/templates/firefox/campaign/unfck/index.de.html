@@ -8,10 +8,19 @@
 {% from "macros-protocol.html" import card, call_out, hero with context %}
 {% from "firefox/campaign/unfck/includes/macros.html" import share_item with context %}
 
+{% block html_attrs %}{{ super() }} {% include 'exp/includes/id.html' %}{% endblock %}
+
 {% block page_title %}Unfck the Internet - Aus Liebe zum Web{% endblock %}
 {% block page_desc %}Wenn das Internet genutzt wird, um Menschen online zu folgen und ihre persönlichen Daten zu sammeln, müssen Lösungen her, die uns alle besser schützen.{% endblock %}
-
 {% block page_image %}{{ static('img/firefox/campaign/unfck/de/og.png') }}{% endblock %}
+
+{% block experiments %}
+  {% if switch('unfck-convert-de') %}
+    {# Pre-fetch the DNS lookup prior to loading the convert script #}
+    <link rel="dns-prefetch" href="https://cdn-3.convertexperiments.com/">
+    {{ js_bundle('convert') }}
+  {% endif %}
+{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('firefox-unfck-de') }}
@@ -227,6 +236,32 @@
   </div>
 
 </main>
+{% endblock %}
+
+{% block site_js %}
+  {% if switch('unfck-convert-de') %}
+    <!--[if !IE]><!-->
+      {{ js_bundle('common-no-jquery') }}
+    <!--<![endif]-->
+  {% else %}
+    <!--[if !IE]><!-->
+      {{ js_bundle('common') }}
+    <!--<![endif]-->
+  {% endif %}
+
+  <!--[if IE]>
+    {{ js_bundle('common-ie') }}
+  <![endif]-->
+{% endblock %}
+
+{% block stub_attribution %}
+  {% if settings.STUB_ATTRIBUTION_RATE %}
+    {% if switch('unfck-convert-de') %}
+      {{ js_bundle('stub-attribution-convert') }}
+    {% else %}
+      {{ js_bundle('stub-attribution') }}
+    {% endif %}
+  {% endif %}
 {% endblock %}
 
 {% block js %}
