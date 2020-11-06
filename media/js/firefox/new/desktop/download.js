@@ -133,12 +133,12 @@
 
     var supportsInsersectionObserver = function() {
         return 'IntersectionObserver' in window &&
-               'IntersectionObserverEntry' in window &&
-               'intersectionRatio' in window.IntersectionObserverEntry.prototype;
+            'IntersectionObserverEntry' in window &&
+            'intersectionRatio' in window.IntersectionObserverEntry.prototype;
     }();
 
     // check for support
-    if(supportsInsersectionObserver) {
+    if(supportsInsersectionObserver && window.NodeList && NodeList.prototype.forEach) {
         // needs a sec to report rect.top right if the page loaded partially scrolled already
         setTimeout(function(){
 
@@ -156,11 +156,8 @@
                 }
             );
 
-            // convert NodeList into array - support for Edge 15 and older
-            var jsAnimateNodesArray = Array.prototype.slice.call(document.querySelectorAll('.js-animate'));
-
             // add observers
-            jsAnimateNodesArray.forEach(function(element) {
+            document.querySelectorAll('.js-animate').forEach(function(element) {
                 var rect = element.getBoundingClientRect();
                 var viewHeight = window.innerHeight;
                 // check element isn't above user's current position on the page
@@ -209,4 +206,3 @@
     }
 
 })(window.Mozilla);
-
