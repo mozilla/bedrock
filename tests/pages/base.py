@@ -105,13 +105,19 @@ class BasePage(ScrollElementIntoView, Page):
 
         def open_developer_edition_page(self):
             self.open_navigation_menu(self._innovation_menu_locator)
-            self.find_element(*self._developer_edition_page_locator).click()
+            link = self.find_element(*self._developer_edition_page_locator)
+            href = link.get_attribute('href')
+            self.page.set_attribute(link, att_name='href', att_value=href + '?automation=true')
+            link.click()
             from .firefox.developer import DeveloperPage
             return DeveloperPage(self.selenium, self.page.base_url).wait_for_page_to_load()
 
         def open_manifesto_page(self):
             self.open_navigation_menu(self._about_menu_locator)
-            self.find_element(*self._manifesto_page_locator).click()
+            link = self.find_element(*self._manifesto_page_locator)
+            href = link.get_attribute('href')
+            self.page.set_attribute(link, att_name='href', att_value=href + '?automation=true')
+            link.click()
             from .manifesto import ManifestoPage
             return ManifestoPage(self.selenium, self.page.base_url).wait_for_page_to_load()
 

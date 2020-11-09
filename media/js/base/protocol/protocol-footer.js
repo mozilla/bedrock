@@ -9,7 +9,6 @@
     if (typeof window.Mzp !== 'undefined') {
         var Mzp = window.Mzp;
         var footerHeadings = '.c-footer-section .c-footer-heading';
-        // var subNavTitle = '.c-sub-navigation .c-sub-navigation-title';
 
         // check we have global Supports and Details library
         if (typeof Mzp.Supports !== 'undefined' && typeof Mzp.Details !== 'undefined') {
@@ -21,17 +20,14 @@
                 // initialize details if screen is small
                 if (_mqWide.matches) {
                     Mzp.Details.init(footerHeadings);
-                    // Mzp.Details.init(subNavTitle);
                 }
 
                 // remove details if screen is big
                 _mqWide.addListener(function(mq) {
                     if (mq.matches) {
                         Mzp.Details.init(footerHeadings);
-                        // Mzp.Details.init(subNavTitle);
                     } else {
                         Mzp.Details.destroy(footerHeadings);
-                        // Mzp.Details.destroy(subNavTitle);
                     }
                 });
             }

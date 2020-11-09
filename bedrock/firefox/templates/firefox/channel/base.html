@@ -25,9 +25,9 @@
         </a>
       </h2>
       <ul class="c-sub-navigation-list">
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.channel.desktop') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Nightly and Beta">{{ ftl('sub-navigation-nightly-and-beta') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.channel.android') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Android Nightly and Beta">{{ ftl('sub-navigation-android-nightly-and-beta') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.channel.ios') }}" data-link-type="nav" data-link-position="subnav" data-link-name="iOS TestFlight">{{ ftl('sub-navigation-ios-test-flight') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.channel.desktop') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Nightly and Beta">{{ ftl('sub-navigation-nightly-and-beta', fallback='firefox-channel-desktop') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.channel.android') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Android Nightly and Beta">{{ ftl('sub-navigation-android-nightly-and-beta', fallback='firefox-channel-android') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.channel.ios') }}" data-link-type="nav" data-link-position="subnav" data-link-name="iOS TestFlight">{{ ftl('sub-navigation-ios-test-flight', fallback='firefox-channel-ios') }}</a></li>
       </ul>
     </div>
   </div>

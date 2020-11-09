@@ -37,20 +37,22 @@
 {% block body_class %}{{ super() }} mzp-t-firefox{% endblock %}
 
 {% block sub_navigation %}
+{% if ftl_has_messages('sub-navigation-firefox', 'sub-navigation-faq', 'sub-navigation-learn-more') %}
 <nav class="c-sub-navigation">
   <div class="mzp-l-content">
     <div class="c-sub-navigation-content">
       <h2 class="c-sub-navigation-title">
         <img class="c-sub-navigation-icon" src="{{ static('protocol/img/logos/firefox/logo-sm.png') }}" width="24" height="24" alt="">
-        {{ ftl('navigation-firefox') }}
+        {{ ftl('sub-navigation-firefox') }}
       </h2>
       <ul class="c-sub-navigation-list">
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.faq') }}" data-link-type="nav" data-link-position="subnav" data-link-name="FAQ">{{ ftl('navigation-faq') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.more') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Learn More">{{ ftl('navigation-learn-more') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.faq') }}" data-link-type="nav" data-link-position="subnav" data-link-name="FAQ">{{ ftl('sub-navigation-faq') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.more') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Learn More">{{ ftl('sub-navigation-learn-more') }}</a></li>
       </ul>
     </div>
   </div>
 </nav>
+{% endif %}
 {% endblock %}
 
 {% block content %}
