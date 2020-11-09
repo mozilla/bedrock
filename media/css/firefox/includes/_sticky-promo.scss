@@ -7,6 +7,11 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/includes/lib';
 @import '../../../protocol/css/components/sticky-promo';
 
+// TODO: Temporary fix for automated testing
+.mzp-c-sticky-promo {
+    animation-delay: 0s;
+}
+
 // Show non-Fx users a promo to download Fx
 .promo-firefox {
     .is-firefox & {

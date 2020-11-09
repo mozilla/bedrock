@@ -6,17 +6,17 @@
     'use strict';
 
     var StickyPromo = {};
-    var stickyPromoCookieID = 'firefoxStickyPromo';
+    var STICKY_PROMO_COOKIE_ID = 'firefox-sticky-promo';
 
     StickyPromo.setCookie = function() {
         var date = new Date();
         var cookieDuration = 1 * 24 * 60 * 60 * 1000; // 1 day expiration
         date.setTime(date.getTime() + cookieDuration); // 1 day expiration
-        Mozilla.Cookies.setItem(stickyPromoCookieID, true, date.toUTCString(), '/');
+        Mozilla.Cookies.setItem(STICKY_PROMO_COOKIE_ID, true, date.toUTCString(), '/');
     };
 
     StickyPromo.hasCookie = function() {
-        return Mozilla.Cookies.hasItem(stickyPromoCookieID);
+        return Mozilla.Cookies.hasItem(STICKY_PROMO_COOKIE_ID);
     };
 
     StickyPromo.show = function (){
@@ -26,7 +26,7 @@
         var stickyBtnClose = document.querySelector('.mzp-c-sticky-promo-close');
 
         stickyBtnClose.addEventListener('click', function(){
-            StickyPromo.setCookie(stickyPromoCookieID);
+            StickyPromo.setCookie(STICKY_PROMO_COOKIE_ID);
         });
     };
 
