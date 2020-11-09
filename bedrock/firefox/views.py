@@ -19,7 +19,7 @@ from django.http import (
     JsonResponse,
 )
 
-from django.utils.cache import patch_response_headers
+from django.utils.cache import add_never_cache_headers, patch_response_headers
 from django.utils.encoding import force_text
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
@@ -755,8 +755,8 @@ class NewView(L10nTemplateView):
                     response = HttpResponseRedirect(exp_url)
                 else:
                     response = super().render_to_response(context, **response_kwargs)
-                # reduce cache time for better experiment results
-                patch_response_headers(response, 60)
+                # remove cache for better experiment results
+                add_never_cache_headers(response)
                 return response
 
         return super().render_to_response(context, **response_kwargs)
