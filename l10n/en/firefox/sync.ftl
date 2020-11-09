@@ -21,12 +21,14 @@ firefox-sync-your-encryption-key = Your encryption key remains a secret, only kn
 firefox-sync-feel-safe = Feel safe
 
 firefox-sync-we-store-your = We store your encrypted data on our servers so we can’t read it.
-start-syncing-in = Start syncing in four easy steps:
 
-firefox-sync-open-the-menu = Open the menu in the top right of { -brand-name-firefox } and select <strong>“Sign in to { -brand-name-sync }</strong>.”
+firefox-sync-start-syncing-in = Start syncing in four easy steps:
+
+firefox-sync-open-the-menu = Open the menu in the top right of { -brand-name-firefox } and select <strong>“Sign in to { -brand-name-sync }”</strong>.
 
 firefox-sync-click-get-started = Click <strong>“Get started”</strong> in the tab that opens.
-enter-an-email = Enter an email address and password to <strong>“Create a { -brand-name-firefox-account }.”</strong>
+
+firefox-sync-enter-an-email = Enter an email address and password to <strong>“Create a { -brand-name-firefox-account }.”</strong>
 
 firefox-sync-click-next-to = Click <strong>“Next”</strong> to get a verification sent to your email.
 
