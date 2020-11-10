@@ -5,27 +5,22 @@
 from selenium.webdriver.common.by import By
 
 from pages.base import BasePage
-from pages.regions.sticky_promo import StickyPromoProtocol
+from pages.regions.sticky_promo import StickyPromo
 
 
-class StickyPromo(BasePage):
+class StickyPromoPage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/new/{params}'
+    URL_TEMPLATE = '/{locale}/firefox/new/'
 
-    _sticky_promo_modal_content_locator = (By.CLASS_NAME, 'mzp-c-sticky-promo')
+    _sticky_promo_modal_content_locator = (By.CSS_SELECTOR, '.mzp-c-sticky-promo.mzp-a-slide-in')
 
     def wait_for_page_to_load(self):
         self.wait.until(lambda s: self.seed_url in s.current_url)
+        promo = self.find_element(*self._sticky_promo_modal_content_locator)
         el = self.find_element(By.TAG_NAME, 'html')
-        self.wait.until(lambda s: 'loaded' in el.get_attribute('class'))
+        self.wait.until(lambda s: 'is-displayed' in promo.get_attribute('class'))
         return self
 
     @property
-    def is_sticky_promo_displayed(self):
-        return self.is_element_displayed(*self._sticky_promo_modal_content_locator)
-
-    # @property
-    # def open_sticky_promo_modal(self):
-    #     stickyPromo = StickyPromoProtocol(self)
-    #     self.wait.until(lambda s: stickyPromo.displays(self._sticky_promo_modal_content_locator))
-    #     return stickyPromo.wait_for_page_to_load
+    def promo(self):
+        return StickyPromo(self)

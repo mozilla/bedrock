@@ -4,21 +4,12 @@
 
 import pytest
 
-from pages.firefox.new.sticky_promo import StickyPromo
+from pages.firefox.new.sticky_promo import StickyPromoPage
 
 
-@pytest.mark.smoke
-@pytest.mark.sanity
 @pytest.mark.nondestructive
-def test_sticky_promo_displayed(base_url, selenium):
-    page = StickyPromo(selenium, base_url, params='').open()
-    assert page.is_sticky_promo_displayed
-
-#
-# @pytest.mark.nondestructive
-# @pytest.mark.skip_if_not_firefox(reason='Join Firefox form is only displayed to Firefox users')
-# def test_sticky_promo_modal(base_url, selenium):
-#     page = StickyPromo(selenium, base_url, params='').open()
-#     modal = page.open_sticky_promo_modal()
-#     assert modal.is_displayed
-#     modal.close()
+def test_sticky_promo(base_url, selenium):
+    page = StickyPromoPage(selenium, base_url).open()
+    assert page.promo.is_displayed
+    page.promo.close()
+    assert not page.promo.is_displayed
