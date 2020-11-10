@@ -68,8 +68,6 @@
   {% endif %}
 {% endblock %}
 
-{% include '/includes/sticky-promo.html' %}
-
 {% block content %}
 <main role="main" class="firefox-home">
     <div class="c-lead">
@@ -263,6 +261,8 @@
 
 </main>
 {% endblock %}
+
+{% include '/includes/sticky-promo.html' %}
 
 {% block js %}
   {{ js_bundle('firefox-master') }}

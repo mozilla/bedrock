@@ -20,7 +20,8 @@
     };
 
     StickyPromo.show = function (){
-        document.addEventListener('DOMContentLoaded', Mzp.StickyPromo.open);
+        // Open promo
+        Mzp.StickyPromo.open();
 
         // Set Close Button event
         var stickyBtnClose = document.querySelector('.mzp-c-sticky-promo-close');

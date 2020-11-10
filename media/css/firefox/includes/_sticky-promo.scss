@@ -7,11 +7,6 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/includes/lib';
 @import '../../../protocol/css/components/sticky-promo';
 
-// TODO: Temporary fix for automated testing
-.mzp-c-sticky-promo {
-    animation-delay: 0s;
-}
-
 // Show non-Fx users a promo to download Fx
 .promo-firefox {
     .is-firefox & {
@@ -42,24 +37,24 @@ $image-path: '/media/protocol/img';
 
 .promo-products-list {
     list-style: none;
-    margin: 2rem 0 0;
+    margin: $spacing-xl 0 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-top: 2px solid rgba(255,255,255,0.5);
-    padding-top: 2rem;
+    border-top: $border-radius-xs solid rgba(255,255,255,0.5);
+    padding-top: $spacing-xl;
 }
 
 .promo-products-link {
     display: flex;
     text-decoration: none !important; /* stylelint-disable-line declaration-no-important */
-    margin-bottom: 1rem;
+    margin-bottom: $spacing-md;
     align-items: center;
     font-weight: bold;
     img {
-        width: 1.75rem;
+        width: $spacing-xl;
         height: 100%;
         display: block;
-        margin-right: 1rem;
+        margin-inline-end: $spacing-md;
     }
 }
