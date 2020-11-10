@@ -246,7 +246,9 @@ if (typeof window.Mozilla === 'undefined') {
      */
     StubAttribution.meetsRequirements = function() {
 
-        if (typeof window.site === 'undefined' || typeof Mozilla.Cookies === 'undefined') {
+        if (typeof window.site === 'undefined' ||
+            typeof Mozilla.Cookies === 'undefined' ||
+            typeof window._SearchParams === 'undefined') {
             return false;
         }
 
