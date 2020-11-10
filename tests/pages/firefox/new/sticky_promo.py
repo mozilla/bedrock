@@ -17,7 +17,6 @@ class StickyPromoPage(BasePage):
     def wait_for_page_to_load(self):
         self.wait.until(lambda s: self.seed_url in s.current_url)
         promo = self.find_element(*self._sticky_promo_modal_content_locator)
-        el = self.find_element(By.TAG_NAME, 'html')
         self.wait.until(lambda s: 'is-displayed' in promo.get_attribute('class'))
         return self
 
