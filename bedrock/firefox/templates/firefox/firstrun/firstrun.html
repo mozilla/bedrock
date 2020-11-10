@@ -2,8 +2,6 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% add_lang_files "firefox/new/quantum" %}
-
 {% from "macros.html" import fxa_email_form with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
@@ -16,7 +14,7 @@
 {% block body_id %}firstrun-quantum-onboarding{% endblock %}
 
 {% block page_title %}
-  {{ _('Welcome to Firefox') }}
+  {{ ftl('firstrun-welcome-to-firefox') }}
 {% endblock %}
 
 {% block page_css %}
@@ -25,8 +23,7 @@
 
 {% block gtm_page_id %}data-gtm-page-id="/firefox/firstrun/"{% endblock %}
 
-{% block global_nav %}{% endblock %}
-{% block site_header %}   {% endblock %}
+{% block site_header %}{% endblock %}
 
 {% block page_image %}{{ static('img/firefox/template/page-image-master.jpg') }}{% endblock %}
 
@@ -37,22 +34,15 @@
       <div class="mzp-l-content">
         <div class="hero-body">
           <div class="browser-logo">
-            <img alt="Firefox" class="browser-logo" src="{{ static('protocol/img/logos/firefox/browser/logo-word-hor-md.png') }}" width="260" height="48" />
+            <img alt="{{ ftl('firstrun-firefox-browser') }}" class="browser-logo" src="{{ static('protocol/img/logos/firefox/browser/logo-word-hor-md.png') }}" width="260" height="48" />
           </div>
           <h1 class="hero-title">
-            {% if l10n_has_tag('firstrun_email_only_form') %}
-              {{ _('Take Firefox with You') }}
-            {% else %}
-              {{_('Already using Firefox?')}}
-            {% endif %}
+            {{ ftl('firstrun-take-firefox-with-you', fallback='firstrun-already-using-firefox') }}
           </h1>
           <div class="hero-desc">
             <p>
-            {% if l10n_has_tag('firstrun_email_only_form') %}
-              {{ _('Get your bookmarks, history, passwords and other settings on all your devices.') }}
-            {% else %}
-              {{_('Sign in to your account and we’ll sync the bookmarks, passwords and other great things you’ve saved to Firefox on other devices.')}}
-            {% endif %}</p>
+              {{ ftl('firstrun-get-your-bookmarks-history', fallback='firstrun-sign-in-to-your-account') }}
+            </p>
           </div>
           <aside class="mzp-c-emphasis-box hero-form" id="fxaccounts-wrapper">
             {{ fxa_email_form(
@@ -60,11 +50,11 @@
               button_class='mzp-c-button mzp-t-product')
             }}
             <p class="fxa-signin">
-              {{ _('Already have an account?') }}
+              {{ ftl('firstrun-already-have-an-account') }}
 
               {{ fxa_button(
                 entrypoint=_entrypoint,
-                button_text='Sign In',
+                button_text=ftl('firstrun-sign-in'),
                 action='signin',
                 is_button_class=False,
                 optional_parameters={'utm_campaign': 'fxa-embedded-form'},

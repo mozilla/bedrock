@@ -495,6 +495,11 @@ def show_firefox_lite_whatsnew(version):
 
 
 class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
+
+    ftl_files_map = {
+        'firefox/firstrun/firstrun.html': ['firefox/firstrun'],
+    }
+
     def get(self, *args, **kwargs):
         version = self.kwargs.get('version') or ''
 
