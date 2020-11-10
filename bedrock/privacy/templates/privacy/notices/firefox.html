@@ -15,3 +15,6 @@
 
 {# disable GA on Fx Privacy Notice. Bug 1576673 #}
 {% block google_analytics %}{% endblock %}
+
+{# Exclude stub attribution for in-product pages: issus 9620 #}
+{% block stub_attribution %}{% endblock %}
