@@ -7,35 +7,44 @@ $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
 
+
 //* -------------------------------------------------------------------------- */
 // Navigation styles
 
-.mzp-c-navigation {
+.c-navigation {
     background: $color-white;
     box-shadow: none;
     color: $color-black;
-    margin-bottom: $layout-lg;
+    margin-bottom: $layout-sm;
 
-    .mzp-c-navigation-l-content {
-        padding: $layout-xs;
-    }
-
-    .mzp-c-navigation-container {
+    .c-navigation-container {
         @include clearfix;
         margin: 0 auto;
         max-width: $content-max;
         position: relative;
     }
 
-    // Download button
-    .mzp-c-navigation-download {
+    .c-navigation-logo a {
+        @include image-replaced;
+        background: transparent url('/media/img/nav/logo-black.png') center center no-repeat;
+        display: block;
+        height: 32px;
+        width: 112px;
+
+        .c-navigation-logo-image {
+            display: none;
+        }
+    }
+
+    // Shoulder button
+    .c-navigation-shoulder {
         display: inline-block;
         *display: inline;
         margin: 0;
         position: absolute;
         right: 0;
         text-align: center;
-        top: 0;
+        top: $spacing-md;
         zoom: 1;
 
         .mzp-c-button-download-container {
@@ -56,23 +65,19 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    // Nav buttom
-    .mzp-c-navigation-menu-button {
+    // Nav button
+    .c-navigation-menu-button {
         @include image-replaced;
-        background-color: transparent;
-        background-image: url('/media/img/nav/menu.png');
-        background-position-x: center;
-        background-position-y: center;
-        background-repeat: no-repeat;
+        background: transparent url('/media/img/nav/menu.png') center center no-repeat;
         border-radius: $border-radius-sm;
         border: none;
         display: none;
         height: 32px;
-        left: 120px;
-        padding: 1px 2px;
+        left: 126px;
+        padding: 0;
         position: absolute;
-        top: $spacing-md + $spacing-xs;
-        width: 28px;
+        top: $spacing-md;
+        width: 32px;
 
         &:hover,
         &:active,
@@ -82,16 +87,26 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    .mzp-c-navigation-items {
+    .c-navigation-items {
+        @include clearfix;
+        clear: both;
         margin-top: $layout-xs;
     }
 
+    .c-menu-item-title {
+        @include text-body-lg;
+    }
+
+    .c-menu-item-icon {
+        @include bidi(((float, left, right), (margin-right, $spacing-md, margin-left, $spacing-md),));
+    }
+
     // hide panel close buttons
-    .mzp-c-menu-button-close {
+    .c-menu-button-close {
         display: none;
     }
 
-    .mzp-c-menu-title {
+    .c-menu-title {
         display: inline-block;
         *display: inline;
         font-weight: bold;
@@ -99,14 +114,13 @@ $image-path: '/media/protocol/img';
         zoom: 1;
     }
 
-    .mzp-c-menu-category {
+    .c-menu-category {
         margin-bottom: $spacing-2xl;
     }
 
-    .mzp-c-navigation-menu {
+    .c-navigation-menu {
         display: none;
-        position: relative;
-        top: $layout-lg;
+        margin-bottom: $spacing-lg;
 
         ul {
             list-style-type: none;
@@ -119,14 +133,18 @@ $image-path: '/media/protocol/img';
             }
         }
 
-        .mzp-c-menu-panel {
+        .c-menu-panel {
             padding-left: $spacing-xl;
         }
     }
 }
 
 .js .top-header-navigation {
-    .mzp-c-navigation-menu-button {
+    .c-navigation-menu-button {
+        display: block;
+    }
+
+    .c-navigation-items {
         display: block;
     }
 }

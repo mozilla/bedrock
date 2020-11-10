@@ -27,13 +27,4 @@
 {#- This will appear as <meta property="og:description"> which can be used for social share -#}
 {% block page_og_desc %}{{ ftl('firefox-desktop-download-og-desc') }}{% endblock %}
 
-{% block old_ie_styles %}{% endblock %}
-{% block site_css %}{% endblock %}
-{% block page_css %}{% endblock %}
-
-{# All stylesheets are loaded in extrahead to serve legacy IE basic styles #}
-{% block extrahead %}
-  {{ css_bundle('common') }}
-{% endblock %}
-
 {% block body_class %}mzp-t-firefox{% endblock %}
