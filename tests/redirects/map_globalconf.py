@@ -1004,6 +1004,9 @@ URLS = flatten((
     # Bug 1252332
     url_test('/sync/', '/firefox/sync/'),
 
+    # issue 9490
+    url_test('/firefox/features/sync/', '/firefox/sync/'),
+
     url_test('/projects/bonecho/', '/firefox/channel/desktop/'),
     url_test('/projects/bonsai/', 'https://wiki.mozilla.org/Bonsai'),
     url_test('/projects/camino/{,homepage.html}', 'http://caminobrowser.org/'),

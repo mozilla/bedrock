@@ -607,7 +607,10 @@ redirectpatterns = (
 
     # fxa
     redirect(r'^firefox/accounts/features/?', 'firefox.accounts'),
-    redirect(r'^firefox/features/sync/?', 'firefox.accounts'),
+
+    # issue 9490
+    redirect(r'^firefox/features/sync/?', 'firefox.sync'),
+
     # bug 1577449
     redirect(r'^firefox/features/send-tabs/?', 'https://support.mozilla.org/kb/send-tab-firefox-desktop-other-devices'),
 
