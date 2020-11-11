@@ -5,8 +5,6 @@
 {% from "macros.html" import google_play_button with context %}
 {% from "macros-protocol.html" import hero, picto_card with context %}
 
-{% add_lang_files "firefox/new/quantum" %}
-
 {% extends "firefox/new/protocol/base.html" %}
 
 {# meta #}
@@ -17,35 +15,35 @@
 {% else %}
   {% set meta_title_sufix =  '— Mozilla' %}
 {% endif %}
-{% set meta_title = meta_title or _('Free Web Browser') %}
-{% set meta_title_prefix = meta_title_prefix or _('Download Firefox') %}
-{% set meta_desc = meta_desc or _('Download Mozilla Firefox, a free Web browser. Firefox is created by a global non-profit dedicated to putting individuals in control online. Get Firefox for Windows, macOS, Linux, Android and iOS today!') %}
-{% set og_title = og_title or _('Download the fastest Firefox ever') %}
-{% set og_desc = og_desc or _('Faster page loading, less memory usage and packed with features, the new Firefox is here.') %}
+{% set meta_title = meta_title or ftl('new-platform-free-web-browser') %}
+{% set meta_title_prefix = meta_title_prefix or ftl('new-platform-download-firefox') %}
+{% set meta_desc = meta_desc or ftl('new-platform-download-mozilla-firefox-title') %}
+{% set og_title = og_title or ftl('new-platform-download-the-fastest') %}
+{% set og_desc = og_desc or ftl('new-platform-faster-page-loading') %}
 
 {# hero #}
-{% set hero_title = hero_title or _('The new <strong>Firefox</strong>') %}
+{% set hero_title = hero_title or ftl('new-platform-the-new-firefox') %}
 
 {# card1 #}
-{% set card1_title = card1_title or _('2x Faster') %}
-{% set card1_desc = card1_desc or _('The best Firefox ever') %}
+{% set card1_title = card1_title or ftl('new-platform-2x-faster') %}
+{% set card1_desc = card1_desc or ftl('new-platform-the-best-firefox-ever') %}
 {% set card1_class = card1_class or 'faster' %}
 
 {# card2 #}
-{% set card2_title = card2_title or _('Lightweight') %}
-{% set card2_desc = card2_desc or _('Uses 30% less memory than Chrome') %}
+{% set card2_title = card2_title or ftl('new-platform-lightweight') %}
+{% set card2_desc = card2_desc or ftl('new-platform-uses-30-less-memory') %}
 {% set card2_class = card2_class or 'lighter' %}
 
 {# card3 #}
-{% set card3_title = card3_title or _('Powerfully private') %}
-{% set card3_desc = card3_desc or _('Truly Private Browsing with Tracking Protection') %}
+{% set card3_title = card3_title or ftl('new-platform-powerfully-private') %}
+{% set card3_desc = card3_desc or ftl('new-platform-truly-private-browsing') %}
 {% set card3_class = card3_class or 'private' %}
 
 {%- block page_title_prefix -%}{{ meta_title_prefix }} — {%- endblock -%}
 {% block page_title %} {{ meta_title }} {% endblock %}
 {%- block page_title_suffix -%}{{ meta_title_sufix }}{%- endblock -%}
-{% block page_og_title %}{{_('Download the fastest Firefox ever')}}{% endblock %}
-{% block page_og_desc %}{{_('Faster page loading, less memory usage and packed with features, the new Firefox is here.')}}{% endblock %}
+{% block page_og_title %}{{ ftl('new-platform-download-the-fastest') }}{% endblock %}
+{% block page_og_desc %}{{ ftl('new-platform-faster-page-loading') }}{% endblock %}
 
 {% block extrahead %}
   {{ super() }}
@@ -94,21 +92,19 @@
         {{ download_firefox(alt_copy=ftl('download-button-download-now'), locale_in_transition=True, download_location='primary cta') }}
 
         <ul class="small-links desktop">
-          <li><button class="platform-modal-button js-platform-modal-button hidden" type="button">{{_('Advanced install options & other platforms') }}</button></li>
-          <li><a href="{{ firefox_url('desktop', 'all') }}">{{_('Download in another language') }}</a></li>
-          {% if l10n_has_tag('fxnew_account_032019') %}
-              <li><a href="https://support.mozilla.org/kb/refresh-firefox-reset-add-ons-and-settings?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fix-problem-link">{{ _('Fix a problem') }}</a></li>
-          {% endif %}
-          <li><a rel="external" href="https://support.mozilla.org/products/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
+          <li><button class="platform-modal-button js-platform-modal-button hidden" type="button">{{ ftl('new-platform-advanced-install-options') }}</button></li>
+          <li><a href="{{ firefox_url('desktop', 'all') }}">{{ ftl('new-platform-download-in-another') }}</a></li>
+          <li><a href="https://support.mozilla.org/kb/refresh-firefox-reset-add-ons-and-settings?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fix-problem-link">{{ ftl('new-platform-fix-a-problem') }}</a></li>
+          <li><a rel="external" href="https://support.mozilla.org/products/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{ ftl('new-platform-need-help') }}</a></li>
         </ul>
 
         <ul class="small-links android">
-            <li><a href="{{ firefox_url('android', 'all') }}">{{_('Download in another language') }}</a></li>
-            <li><a rel="external" href="https://support.mozilla.org/products/mobile/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
+            <li><a href="{{ firefox_url('android', 'all') }}">{{ ftl('new-platform-download-in-another') }}</a></li>
+            <li><a rel="external" href="https://support.mozilla.org/products/mobile/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{ ftl('new-platform-need-help') }}</a></li>
         </ul>
 
         <ul class="small-links ios">
-            <li><a rel="external" href="https://support.mozilla.org/products/ios/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
+            <li><a rel="external" href="https://support.mozilla.org/products/ios/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{ ftl('new-platform-need-help') }}</a></li>
         </ul>
     {% endcall %}
 
@@ -125,7 +121,7 @@
 
 <aside class="mzp-u-modal-content other-platforms-content">
   <section class="section-other-platforms">
-    <h4 class="other-platforms-title">{{ _('Advanced Install Options & Other Platforms') }}</h4>
+    <h4 class="other-platforms-title">{{ ftl('new-platform-advanced-install-options') }}</h4>
 
     {{ download_firefox_desktop_list(force_full_installer=True) }}
 
@@ -142,10 +138,9 @@
   </section>
 
   <section class="section-current-platform">
-    {# L10n: span's below are for visual formatting and line break. #}
-    <h4 class="other-platforms-title heading-windows">{{_('Download Firefox <br>for Windows') }}</h4>
-    <h4 class="other-platforms-title heading-mac">{{_('Download Firefox <br>for macOS') }}</h4>
-    <h4 class="other-platforms-title heading-linux">{{_('Download Firefox <br>for Linux') }}</h4>
+    <h4 class="other-platforms-title heading-windows">{{ ftl('new-platform-download-firefox-for-windows') }}</h4>
+    <h4 class="other-platforms-title heading-mac">{{ ftl('new-platform-download-firefox-for-macos') }}</h4>
+    <h4 class="other-platforms-title heading-linux">{{ ftl('new-platform-download-firefox-for-linux') }}</h4>
 
     {{ download_firefox(dom_id='download-other-platforms-modal', alt_copy=ftl('download-button-download-now'), locale_in_transition=True, download_location='other') }}
   </section>
