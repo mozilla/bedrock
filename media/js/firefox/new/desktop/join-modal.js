@@ -42,8 +42,8 @@
     };
 
     // Only Firefox desktop 57+ (post-quantum) should get the FxA modal
-    if (client.isFirefoxDesktop && client._getFirefoxMajorVersion() >= '57') {
-        initFxAccountModal();
+    if (joinFirefoxContent && client.isFirefoxDesktop && client._getFirefoxMajorVersion() >= '57') {
+        window.Mozilla.run(initFxAccountModal);
     }
 
 })();
