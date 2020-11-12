@@ -45,13 +45,12 @@ $image-path: '/media/protocol/img';
         right: 0;
         text-align: center;
         top: $spacing-md;
-        zoom: 1;
+        top: 0\0;
 
         .mzp-c-button-download-container {
             display: inline-block;
             *display: inline;
             margin-bottom: 0;
-            zoom: 1;
 
             // hide privacy link
             .mzp-c-button-download-privacy-link {
@@ -77,6 +76,7 @@ $image-path: '/media/protocol/img';
         padding: 0;
         position: absolute;
         top: $spacing-md;
+        top: 0\0;
         width: 32px;
 
         &:hover,
@@ -91,6 +91,11 @@ $image-path: '/media/protocol/img';
         @include clearfix;
         clear: both;
         margin-top: $layout-xs;
+    }
+
+    .c-menu-item {
+        padding: 10px;
+        border: 1px solid blue;
     }
 
     .c-menu-item-title {

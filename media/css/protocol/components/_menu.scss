@@ -123,8 +123,8 @@
             @include bidi(((left, 0, auto), (right, auto, 0),));
         }
 
-        // Offset the dropdown to the other side for items 4 and up
-        &:nth-child(n+4).mzp-has-drop-down .c-menu-panel {
+        // Offset the dropdown to the other side for items 3 and up
+        &:nth-child(n+3).mzp-has-drop-down .c-menu-panel {
             @include bidi(((left, auto, 0), (right, 0, auto),));
         }
     }

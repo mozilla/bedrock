@@ -9,6 +9,8 @@
 
 .c-navigation {
     background: $color-white;
+    // Shadow colors are equivalent to $color-ink-90, $color-blue-90, $color-ink-90
+    // We can't use a $box-shadow token here because it needs a different size and offset
     box-shadow: 0 0 1px 1px rgba(29, 17, 51, .04), 0 0 3px 2px rgba(9, 32, 77, .12), 0 0 2px -3px rgba(29, 17, 51, .12);
     color: $color-black;
 
@@ -57,6 +59,7 @@
 
             &.mzp-is-scrolling {
                 // Shadow colors are equivalent to $color-ink-90, $color-blue-90, $color-ink-90
+                // We can't use a $box-shadow token here because it needs a different size and offset
                 box-shadow: 0 0 6px 1px rgba(29, 17, 51, .04), 0 0 8px 2px rgba(9, 32, 77, .12), 0 0 5px -3px rgba(29, 17, 51, .12);
             }
 
