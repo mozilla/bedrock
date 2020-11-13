@@ -123,8 +123,8 @@
             @include bidi(((left, 0, auto), (right, auto, 0),));
         }
 
-        // Offset the dropdown to the other side for items 3 and up
-        &:nth-child(n+3).mzp-has-drop-down .c-menu-panel {
+        // Offset the dropdown to the other side for items 4 and up
+        &:nth-child(n+4).mzp-has-drop-down .c-menu-panel {
             @include bidi(((left, auto, 0), (right, 0, auto),));
         }
     }
@@ -309,7 +309,7 @@
             background: $color-white;
             border-radius: $border-radius-md;
             box-shadow: $box-shadow-md;
-            padding: $spacing-md;
+            padding: $spacing-sm;
         }
 
         // Close button is only visible when focused, for keyboard users
@@ -347,14 +347,59 @@
             &> ul {
                 margin: 0;
             }
+
+            // Undo the grid so items stack in one column on mid-size screens
+            @supports (display:grid) {
+                &> ul {
+                    display: block;
+                }
+            }
         }
 
         .c-menu-category-link {
             border-top: 0;
-            margin-bottom: 0;
-            padding-top: 0;
         }
     }
+
+    @media #{$mq-lg} {
+        .c-menu-panel-container {
+            padding: $spacing-md;
+        }
+
+        .c-menu-panel-content {
+            @include clearfix;
+            position: relative;
+
+            @supports (display:grid) {
+                &> ul {
+                    display: grid;
+                    grid-auto-flow: row;
+                    grid-template-columns: repeat(2, 1fr);
+
+                    &.mzp-l-rows-two {
+                        grid-auto-flow: column;
+                        grid-template-rows: repeat(2, max-content);
+                    }
+
+                    &.mzp-l-rows-three {
+                        grid-auto-flow: column;
+                        grid-template-rows: repeat(3, max-content);
+                    }
+
+                    &.mzp-l-rows-four {
+                        grid-auto-flow: column;
+                        grid-template-rows: repeat(4, max-content);
+                    }
+
+                    &.mzp-l-rows-five {
+                        grid-auto-flow: column;
+                        grid-template-rows: repeat(5, max-content);
+                    }
+                }
+            }
+        }
+    }
+
 }
 
 .c-menu.mzp-is-basic .c-menu-panel {
