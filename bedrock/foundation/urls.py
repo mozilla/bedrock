@@ -4,13 +4,9 @@
 
 from bedrock.mozorg.util import page
 from bedrock.redirects.util import redirect
-
+from django.conf import settings
 
 urlpatterns = (
-
-    # Issue 6478 /foundation/annualreport/2017/
-    redirect(r'^annualreport/$', 'foundation.annualreport.2017.index',
-             name='foundation.annualreport', locale_prefix=False),
 
     # Older annual report financial faqs - these are linked from blog posts
     # was e.g.: http://www.mozilla.org/foundation/documents/mozilla-2008-financial-faq.html
@@ -84,3 +80,18 @@ urlpatterns = (
     page('trademarks/community-edition-permitted-changes', 'foundation/trademarks/community-edition-permitted-changes.html'),
     page('trademarks/community-edition-policy', 'foundation/trademarks/community-edition-policy.html'),
 )
+
+if settings.DEV:
+    urlpatterns += (
+        page('annualreport/2019', 'foundation/annualreport/2019/index.html'),
+        page('annualreport/2019', 'foundation/annualreport/2019/index.html', ftl_files=['foundation/annualreport/annualreport-2019']),
+        redirect(r'^annualreport/$', 'foundation.annualreport.2019.index',
+                 name='foundation.annualreport', locale_prefix=False),
+    )
+else:
+    urlpatterns += (
+        redirect(r'^annualreport/2019', 'foundation.annualreport.2017.index', permanent=False),
+        # Issue 6478 /foundation/annualreport/2017/
+        redirect(r'^annualreport/$', 'foundation.annualreport.2017.index',
+                 name='foundation.annualreport', locale_prefix=False),
+    )
