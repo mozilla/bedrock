@@ -7,6 +7,11 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/includes/lib';
 @import '../../../protocol/css/components/sticky-promo';
 
+// Hide promo by default for mobile devices (<$mq-md)
+.mzp-c-sticky-promo {
+    display: none;
+}
+
 // Show non-Fx users a promo to download Fx
 .promo-firefox {
     .is-firefox & {
@@ -56,5 +61,11 @@ $image-path: '/media/protocol/img';
         height: 100%;
         display: block;
         margin-inline-end: $spacing-md;
+    }
+}
+
+@media #{$mq-md} {
+    .mzp-c-sticky-promo {
+        display: block;
     }
 }

@@ -13,9 +13,8 @@ class StickyPromo(BaseRegion):
     _close_locator = (By.CLASS_NAME, 'mzp-c-sticky-promo-close')
 
     def close(self):
-        promo = self.selenium.find_element(*self._root_locator)
         self.find_element(*self._close_locator).click()
-        self.wait.until(lambda s: 'mzp-a-fade-out' in promo.get_attribute('class'))
+        self.wait.until(lambda s: not self.is_displayed)
 
     @property
     def is_displayed(self):

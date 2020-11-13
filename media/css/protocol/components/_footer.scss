@@ -4,8 +4,14 @@
 
 @import '../../../protocol/css/includes/lib';
 
-//* -------------------------------------------------------------------------- */
-// Footer section styles
+.mzp-c-footer.sticky-overlay {
+    position: relative;
+    z-index: 11;
+}
+
+.mzp-c-footer.mzp-t-firefox {
+    background-color: $color-ink-80;
+}
 
 .c-footer {
     @include font-base;
