@@ -5,10 +5,10 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import '../../protocol/css/includes/lib';
-@import '../../protocol/css/components/picto-card';
-@import '../../protocol/css/components/hero';
-@import '../../protocol/css/templates/card-layout';
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/picto-card';
+@import '../../../protocol/css/components/hero';
+@import '../../../protocol/css/templates/card-layout';
 
 main {
     background-color: $color-ink-80;
@@ -71,9 +71,8 @@ main {
 
 .locale-specific {
     @include light-links;
-    max-width: 1060px;
-    margin-right: 0 auto;
-    padding-top: $layout-md;
+    margin: $layout-md auto 0;
+    text-align: center;
 
     h3,
     h4,

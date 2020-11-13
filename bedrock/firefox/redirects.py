@@ -37,7 +37,7 @@ redirectpatterns = (
              '/firefox/nightly/firstrun{p}'),
 
     # bug 1275483
-    redirect(r'^firefox/nightly/whatsnew/?', 'firefox.nightly_firstrun'),
+    redirect(r'^firefox/nightly/whatsnew/?', 'firefox.nightly.firstrun'),
 
     # bug 840814
     redirect(r'^projects/firefox'

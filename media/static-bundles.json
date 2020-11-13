@@ -338,7 +338,7 @@
     },
     {
       "files": [
-        "css/firefox/nightly-firstrun.scss"
+        "css/firefox/firstrun/nightly.scss"
       ],
       "name": "nightly_firstrun"
     },

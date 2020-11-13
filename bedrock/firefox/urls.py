@@ -70,7 +70,7 @@ urlpatterns = (
     page('firefox/unsupported-systems', 'firefox/unsupported-systems.html'),
     url(r'^firefox/new/$', views.NewView.as_view(), name='firefox.new'),
     url(r'^firefox/download/thanks/$', views.DownloadThanksView.as_view(), name='firefox.download.thanks'),
-    page('firefox/nightly/firstrun', 'firefox/nightly_firstrun.html'),
+    page('firefox/nightly/firstrun', 'firefox/nightly/firstrun.html', ftl_files=['firefox/nightly/firstrun']),
     url(r'^firefox/installer-help/$', views.InstallerHelpView.as_view(), name='firefox.installer-help'),
     url(firstrun_re, views.FirstrunView.as_view(), name='firefox.firstrun'),
     url(whatsnew_re, views.WhatsNewRedirectorView.as_view(), name='firefox.whatsnew'),
