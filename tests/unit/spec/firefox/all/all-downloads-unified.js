@@ -199,7 +199,7 @@ describe('all-downloads-unified.js', function() {
         });
     });
 
-    describe('setDownloadButton', function() {
+    describe('setDownloadButtonDesktop', function() {
         var product = {
             id: 'desktop_beta',
             label: 'Firefox Beta'
@@ -346,82 +346,6 @@ describe('all-downloads-unified.js', function() {
 
     });
 
-    // describe('setDownloadButton', function() {
-
-    //     var product = {
-    //         id: 'android_release',
-    //         label: 'Firefox Android'
-    //     };
-
-    //     var platform = {
-    //         id: 'android',
-    //         label: 'Android'
-    //     };
-
-    //     var language = {
-    //         id: 'all',
-    //         label: 'Multiple languages'
-    //     };
-
-    //     var options = [
-    //         '<div class="c-selection-options" data-product="android_release">' +
-    //             '<p class="c-selection c-selection-version hidden">' +
-    //                 '<label for="select_android_release_version" class="c-selection-label">Which version would you like?</label>' +
-    //                 '<select id="select_android_release_version" class="c-selection-input" aria-controls="download-info">' +
-    //                     '<option value="android_release"></option>' +
-    //                 '</select>' +
-    //             '</p>' +
-    //             '<p class="c-selection c-selection-platform">' +
-    //                 '<label for="select_android_release_platform" class="c-selection-label">Select your preferred installer</label>' +
-    //                 '<a href="#installer-help" class="c-button-help icon-installer-help" title="Learn about installers">' +
-    //                     'Get help' +
-    //                 '</a>' +
-    //                 '<select id="select_android_release_platform" class="c-selection-input" aria-controls="download-info">' +
-    //                     '<option value="android">Android</option>' +
-    //                 '</select>' +
-    //             '</p>' +
-    //             '<p class="c-selection c-selection-language">' +
-    //                 '<label for="select_android_release_language" class="c-selection-label">Select your preferred language</label>' +
-    //                 '<select id="select_android_release_language" class="c-selection-input" aria-controls="download-info">' +
-    //                     '<option value="all">Multiple languages</option>' +
-    //                 '</select>' +
-    //             '</p>' +
-    //         '</div>' +
-    //         '<ol class="c-locale-list" data-product="android_release">' +
-    //             '<li class="c-locale-list-item" data-language="multi">' +
-    //                 '<h4 class="c-locale-label">Multiple languages</h4>' +
-    //                 '<ul class="c-download-list">' +
-    //                     '<li>' +
-    //                         '<a id="playStoreLink-list" rel="external" href="https://app.adjust.com/2uo1qc?redirect=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dorg.mozilla.firefox&amp;campaign=www.mozilla.org&amp;adgroup=all-page" data-link-type="download" data-download-os="Android" data-mozillaonline-link="https://play.google.com/store/apps/details?id=cn.mozilla.firefox&amp;referrer=utm_source%3Dmozilla%26utm_medium%3DReferral%26utm_campaign%3Dmozilla-org">' +
-    //                             'Google Play' +
-    //                         '</a>' +
-    //                     '</li>' +
-    //                     '<li><a href="/en-US/firefox/mobile/get-app/" class="c-get-app" data-cta-type="link" data-cta-text="Get It Now" data-cta-position="banner">Send a download link to your phone</a></li>' +
-    //                 '</ul>' +
-    //             '</li>' +
-    //         '</ol>'
-    //     ].join();
-
-    //     beforeEach(function () {
-    //         document.body.insertAdjacentHTML('beforeend', options);
-    //     });
-
-    //     afterEach(function () {
-    //         document.querySelector('.c-selection-options').remove();
-    //         document.querySelector('.c-locale-list').remove();
-    //     });
-
-    //     it('should not error for Android', function() {
-    //         spyOn(Mozilla.FirefoxDownloader, 'getProductSelection').and.returnValue(product);
-    //         Mozilla.FirefoxDownloader.setDownloadButton();
-    //         spyOn(Mozilla.FirefoxDownloader, 'setDownloadInfo');
-    //         spyOn(Mozilla.FirefoxDownloader, 'offError');
-    //         expect(Mozilla.FirefoxDownloader.setDownloadInfo).toHaveBeenCalledWith(product.label, platform.label, language.label);
-    //         expect(Mozilla.FirefoxDownloader.offError).toHaveBeenCalled();
-
-    //     });
-    // });
-
     describe('getProductSelection', function() {
         it('should return the selected product', function() {
             var product = {
@@ -491,8 +415,8 @@ describe('all-downloads-unified.js', function() {
             expect(Mozilla.FirefoxDownloader.getHash('#product-desktop-nightly')).toEqual('desktop_nightly');
             expect(Mozilla.FirefoxDownloader.getHash('#product-desktop-esr')).toEqual('desktop_esr');
             expect(Mozilla.FirefoxDownloader.getHash('#product-android-release')).toEqual('android_release');
-            expect(Mozilla.FirefoxDownloader.getHash('#product-android-beta')).toEqual('android_release');
-            expect(Mozilla.FirefoxDownloader.getHash('#product-android-nightly')).toEqual('android_release');
+            expect(Mozilla.FirefoxDownloader.getHash('#product-android-beta')).toEqual('android_beta');
+            expect(Mozilla.FirefoxDownloader.getHash('#product-android-nightly')).toEqual('android_nightly');
             expect(Mozilla.FirefoxDownloader.getHash('#product-ios-release')).toEqual('ios_release');
         });
 

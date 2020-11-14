@@ -16,7 +16,7 @@ from jinja2 import Markup
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.firefox import views as fx_views
-from bedrock.firefox.firefox_details import FirefoxDesktop, FirefoxAndroid
+from bedrock.firefox.firefox_details import FirefoxDesktop
 from bedrock.mozorg.tests import TestCase
 
 
@@ -113,7 +113,6 @@ class TestFirefoxAll(TestCase):
     def setUp(self):
         self.pd_cache.clear()
         self.firefox_desktop = FirefoxDesktop(json_dir=PROD_DETAILS_DIR)
-        self.firefox_android = FirefoxAndroid(json_dir=PROD_DETAILS_DIR)
         self.patcher = patch.object(
             fx_views, 'firefox_desktop', self.firefox_desktop)
         self.patcher.start()
@@ -127,7 +126,7 @@ class TestFirefoxAll(TestCase):
         """
         resp = self.client.get(reverse('firefox.all'))
         doc = pq(resp.content)
-        assert len(doc('.c-all-downloads-build')) == 7
+        assert len(doc('.c-all-downloads-build')) == 9
 
         desktop_release_builds = len(self.firefox_desktop.get_filtered_full_builds('release'))
         assert len(doc('.c-locale-list[data-product="desktop_release"] > li')) == desktop_release_builds
@@ -149,17 +148,21 @@ class TestFirefoxAll(TestCase):
         assert len(doc('.c-locale-list[data-product="desktop_esr"] > li')) == desktop_esr_builds
         assert len(doc('.c-locale-list[data-product="desktop_esr"] > li[data-language="en-US"] > ul > li > a')) == 8
 
-        android_release_builds = len(self.firefox_android.get_filtered_full_builds('release'))
+        android_release_builds = 1
         assert len(doc('.c-locale-list[data-product="android_release"] > li')) == android_release_builds
         assert len(doc('.c-locale-list[data-product="android_release"] > li[data-language="multi"] > ul > li > a')) == 2
 
-        android_beta_builds = len(self.firefox_android.get_filtered_full_builds('beta'))
+        android_beta_builds = 1
         assert len(doc('.c-locale-list[data-product="android_beta"] > li')) == android_beta_builds
-        assert len(doc('.c-locale-list[data-product="android_beta"] > li[data-language="multi"] > ul > li > a')) == 2
+        assert len(doc('.c-locale-list[data-product="android_beta"] > li[data-language="multi"] > ul > li > a')) == 1
 
-        android_nightly_builds = len(self.firefox_android.get_filtered_full_builds('nightly'))
+        android_nightly_builds = 1
         assert len(doc('.c-locale-list[data-product="android_nightly"] > li')) == android_nightly_builds
-        assert len(doc('.c-locale-list[data-product="android_nightly"] > li[data-language="multi"] > ul > li > a')) == 2
+        assert len(doc('.c-locale-list[data-product="android_nightly"] > li[data-language="multi"] > ul > li > a')) == 1
+
+        ios_release_builds = 1
+        assert len(doc('.c-locale-list[data-product="ios_release"] > li')) == ios_release_builds
+        assert len(doc('.c-locale-list[data-product="ios_release"] > li[data-language="multi"] > ul > li > a')) == 2
 
     def test_no_locale_details(self):
         """

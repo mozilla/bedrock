@@ -450,10 +450,10 @@
             hash = 'android_release';
             break;
         case 'product-android-beta':
-            hash = 'android_release'; // beta removed, use release
+            hash = 'android_beta';
             break;
         case 'product-android-nightly':
-            hash = 'android_release'; // nightly removed, use release
+            hash = 'android_nightly';
             break;
         case 'product-ios-release':
             hash = 'ios_release';

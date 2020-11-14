@@ -71,6 +71,16 @@ $image-path: '/media/protocol/img';
             display: block;
         }
     }
+    &[data-current="android_beta"] {
+        [data-product="android_beta"] {
+            display: block;
+        }
+    }
+    &[data-current="android_nightly"] {
+        [data-product="android_nightly"] {
+            display: block;
+        }
+    }
 
     &[data-current="ios_release"] {
         [data-product="ios_release"] {
@@ -93,6 +103,20 @@ $image-path: '/media/protocol/img';
         background-repeat: no-repeat;
         margin-bottom: $spacing-xl;
         padding-top: 64px + $spacing-lg;
+
+        [data-current="desktop_beta"] &,
+        [data-current="android_beta"] & {
+            @include at2x('/media/protocol/img/logos/firefox/browser/beta/logo-sm.png', 64px, 64px);
+        }
+
+        [data-current="desktop_developer"] &{
+            @include at2x('/media/protocol/img/logos/firefox/browser/developer/logo-sm.png', 64px, 64px);
+        }
+
+        [data-current="desktop_nightly"] &,
+        [data-current="android_nightly"] & {
+            @include at2x('/media/protocol/img/logos/firefox/browser/nightly/logo-sm.png', 64px, 64px);
+        }
     }
 
     .c-product-links {
@@ -206,6 +230,24 @@ $image-path: '/media/protocol/img';
         #download-button-primary {
             display: none;
         }
+    }
+}
+
+.c-download-button {
+    a {
+        display:inline-block;
+    }
+
+    a[data-link-type="download"]:focus,
+    a[data-link-type="download"]:active {
+        box-shadow: 0 0 0 2px $field-border-color-hover, 0 0 0 4px mix($color-blue-40, $color-white);
+        border-radius: 6px;
+        background-color: $field-border-color-hover;
+    }
+
+    img {
+        display: block; // get rid of line height
+        border-radius: 6px;
     }
 }
 

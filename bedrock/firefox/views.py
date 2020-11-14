@@ -285,6 +285,8 @@ def firefox_all(request):
             ('desktop_nightly', ftl('firefox-all-product-firefox-nightly', ftl_files=ftl_files)),
             ('desktop_esr', ftl('firefox-all-product-firefox-esr', ftl_files=ftl_files)),
             ('android_release', ftl('firefox-all-product-firefox-android', ftl_files=ftl_files)),
+            ('android_beta', ftl('firefox-all-product-firefox-android-beta', ftl_files=ftl_files)),
+            ('android_nightly', ftl('firefox-all-product-firefox-android-nightly', ftl_files=ftl_files)),
             ('ios_release', ftl('firefox-all-product-firefox-ios', ftl_files=ftl_files)),
         ]
     )
@@ -304,6 +306,8 @@ def firefox_all(request):
     latest_esr_next_version_desktop = product_desktop.latest_version(channel_esr_next)
 
     latest_release_version_android = product_android.latest_version(channel_release)
+    latest_beta_version_android = product_android.latest_version(channel_beta)
+    latest_nightly_version_android = product_android.latest_version(channel_nightly)
     latest_release_version_ios = product_ios.latest_version(channel_release)
 
     lang_multi = ftl('firefox-all-lang-multi', ftl_files=ftl_files)
@@ -352,19 +356,39 @@ def firefox_all(request):
         'desktop_esr_latest_version': latest_esr_version_desktop,
         'android_release_platforms': [('android', 'Android')],
         'android_release_full_builds': [{
-                                            'locale': 'all',
+                                            'locale': 'multi',
                                             'name_en': lang_multi, 'name_native': lang_multi,
-                                            'platforms': {'android': {'download_url': '#'}}
+                                            'platforms': {'android': {'download_url': settings.GOOGLE_PLAY_FIREFOX_LINK_UTMS}}
                                         }],
         'android_release_channel_label': product_android.channel_labels.get(
             channel_release, 'Firefox'
         ),
         'android_release_latest_version': latest_release_version_android,
+        'android_beta_platforms': [('android', 'Android')],
+        'android_beta_full_builds': [{
+                                        'locale': 'multi',
+                                        'name_en': lang_multi, 'name_native': lang_multi,
+                                        'platforms': {'android': {'download_url': settings.GOOGLE_PLAY_FIREFOX_BETA_LINK}}
+                                    }],
+        'android_beta_channel_label': product_android.channel_labels.get(
+            channel_beta, 'Firefox'
+        ),
+        'android_beta_latest_version': latest_beta_version_android,
+        'android_nightly_platforms': [('android', 'Android')],
+        'android_nightly_full_builds': [{
+                                            'locale': 'multi',
+                                            'name_en': lang_multi, 'name_native': lang_multi,
+                                            'platforms': {'android': {'download_url': settings.GOOGLE_PLAY_FIREFOX_NIGHTLY_LINK}}
+                                        }],
+        'android_nightly_channel_label': product_android.channel_labels.get(
+            channel_nightly, 'Firefox'
+        ),
+        'android_nightly_latest_version': latest_nightly_version_android,
         'ios_release_platforms': [('ios', 'iOS')],
         'ios_release_full_builds': [{
-                                        'locale': 'all',
+                                        'locale': 'multi',
                                         'name_en': lang_multi, 'name_native': lang_multi,
-                                        'platforms': {'ios': {'download_url': '#'}}
+                                        'platforms': {'ios': {'download_url': settings.APPLE_APPSTORE_FIREFOX_LINK.replace('/{country}/', '/')}}
                                     }],
         'ios_release_channel_label': product_ios.channel_labels.get(
             channel_release, 'Firefox'
