@@ -93,11 +93,6 @@ $image-path: '/media/protocol/img';
         margin-top: $layout-xs;
     }
 
-    .c-menu-item {
-        padding: 10px;
-        border: 1px solid blue;
-    }
-
     .c-menu-item-title {
         @include text-body-lg;
     }

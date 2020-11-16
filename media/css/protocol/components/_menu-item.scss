@@ -121,6 +121,11 @@ $icon-size-md: 32px;
         .c-menu-item-title {
             @include text-title-xxs;
         }
+
+        // Hide descriptions to shorten the dropdown
+        .c-menu-item-desc {
+            display: none;
+        }
     }
 
     @media #{$mq-lg} {
@@ -146,31 +151,10 @@ $icon-size-md: 32px;
     }
 }
 
-// Hide descriptions to shorten the menu when nav is sticky
-// Otherwise long menus can't be scrolled
-@media #{$mq-md} and #{$mq-tall} {
-    .mzp-is-sticky {
-        .c-menu-item .c-menu-item-desc {
-            display: none;
-        }
-    }
-}
-
-// Show descriptions when nav is sticky but the window is tall enough for a longer menu
+// Show descriptions when the window is tall enough for the longer menu
 @media #{$mq-md} and (min-height: 800px) {
-    .mzp-is-sticky {
-        .c-menu-item .c-menu-item-desc {
-            display: block;
-        }
-    }
-}
-
-// Show descriptions when nav is sticky and window is wide enough for two columns
-@media #{$mq-lg} and #{$mq-tall} {
-    .mzp-is-sticky {
-        .c-menu-item .c-menu-item-desc {
-            display: block;
-        }
+    .c-menu-item .c-menu-item-desc {
+        display: block;
     }
 }
 
