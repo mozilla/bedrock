@@ -235,18 +235,28 @@ class TestReleaseNotesIndex(TestCase):
                 self.client.get(reverse('firefox.releases.index'))
             releases = render_mock.call_args[0][2]['releases']
             assert len(releases) == len(firefox_desktop.firefox_history_major_releases)
-            assert releases[0][0] == 36.0
-            assert releases[0][1]['major'] == '36.0'
-            assert releases[0][1]['minor'] == []
-            assert releases[3][0] == 33.1
-            assert releases[3][1]['major'] == '33.1'
-            assert releases[3][1]['minor'] == ['33.1.1']
-            assert releases[4][0] == 33.0
-            assert releases[4][1]['major'] == '33.0'
-            assert releases[4][1]['minor'] == ['33.0.1', '33.0.2', '33.0.3']
-            assert releases[6][0] == 31.0
-            assert releases[6][1]['major'] == '31.0'
-            assert releases[6][1]['minor'] == ['31.1.0', '31.1.1', '31.2.0', '31.3.0', '31.4.0', '31.5.0']
+            assert releases[0][0] == 82.0
+            assert releases[0][1]['major'] == '82.0'
+            assert releases[0][1]['minor'] == ['82.0.1', '82.0.2', '82.0.3']
+            assert releases[4][0] == 78.0
+            assert releases[4][1]['major'] == '78.0'
+            assert releases[4][1]['minor'] == ['78.0.1', '78.0.2', '78.1.0', '78.2.0', '78.3.0',
+                                               '78.3.1', '78.4.0', '78.4.1']
+            assert releases[49][0] == 33.1
+            assert releases[49][1]['major'] == '33.1'
+            assert releases[49][1]['minor'] == ['33.1.1']
+            assert releases[50][0] == 33.0
+            assert releases[50][1]['major'] == '33.0'
+            assert releases[50][1]['minor'] == ['33.0.1', '33.0.2', '33.0.3']
+            assert releases[52][0] == 31.0
+            assert releases[52][1]['major'] == '31.0'
+            assert releases[52][1]['minor'] == ['31.1.0', '31.1.1', '31.2.0', '31.3.0', '31.4.0',
+                                                '31.5.0', '31.5.2', '31.5.3', '31.6.0', '31.7.0', '31.8.0']
+            assert releases[69][1]['major'] == '14.0.1'
+            assert releases[69][1]['minor'] == []
+            # ensure v5.0 doesn't match v50.0
+            assert releases[78][1]['major'] == '5.0'
+            assert releases[78][1]['minor'] == ['5.0.1']
 
 
 class TestNotesRedirects(TestCase):

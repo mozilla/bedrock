@@ -157,12 +157,6 @@ def latest_sysreq(request, product='firefox', platform=None, channel=None):
 
 def releases_index(request, product):
     releases = {}
-    # Starting with Firefox 10, ESR had been offered every 7 major releases, but
-    # Firefox 59 wasn't ESR. Firefox 60 became the next ESR instead, and since
-    # then ESR is offered every 8 major releases.
-    esr_major_versions = (
-        list(range(10, 59, 7)) + list(range(60, int(firefox_desktop.latest_version().split('.')[0]), 8)))
-
     if product == 'Firefox':
         major_releases = firefox_desktop.firefox_history_major_releases
         minor_releases = firefox_desktop.firefox_history_stability_releases
@@ -173,11 +167,15 @@ def releases_index(request, product):
         # number has not been used since Firefox 4, then reintroduced with
         # Firefox ESR 24 (Bug 870540). On this index page, 24.1.x should be
         # fallen under 24.0. This pattern is a tricky part.
-        converter = '%g' if int(major_version) in esr_major_versions else '%s'
-        major_pattern = r'^' + re.escape(converter % round(major_version, 1))
+        # The outlier is 33.1 which is in major_releases for some reason.
+        major_pattern = r'^' + re.escape(
+            f'{major_version:.0f}.'
+            if major_version > 4 and release not in ['33.0', '33.1']
+            else f'{major_version:.1f}.'
+        )
         releases[major_version] = {
             'major': release,
-            'minor': sorted([x for x in minor_releases if re.findall(major_pattern, x)],
+            'minor': sorted([x for x in minor_releases if re.findall(major_pattern, x) if x not in major_releases],
                             key=lambda x: [int(y) for y in x.split('.')])
         }
 
