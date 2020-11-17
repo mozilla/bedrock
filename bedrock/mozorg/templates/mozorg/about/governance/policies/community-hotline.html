@@ -4,7 +4,7 @@
 
 {% extends "mozorg/about-base.html" %}
 
-{% block page_title %}{{ _('Community Participation Guidelines - How to Report') }}{% endblock %}
+{% block page_title %}{{ ftl('community-hotline-community-participation') }}{% endblock %}
 {% set body_id = "participation-reporting" %}
 
 {% block page_css %}
@@ -12,21 +12,17 @@
 {% endblock %}
 
 {% block article %}
-  <h1 class="mzp-c-article-title">{{ _('Community Participation Guidelines Hotline') }}</h1>
+  <h1 class="mzp-c-article-title">{{ ftl('community-hotline-community-participation') }}</h1>
 
   <p>
-  {% trans %}
-    The heart of Mozilla is people. We put people first and do our best to recognize, appreciate and respect the diversity of our global contributors. The Mozilla Project welcomes contributions from everyone who shares our goals and wants to contribute in a healthy and constructive manner within our community.
-  {% endtrans %}
+  {{ ftl('community-hotline-the-heart-of-mozilla') }}
   </p>
 
   <p>
-  {% trans howto=url('mozorg.about.governance.policies.reporting') %}
-    To report violations of the Community Participation Guidelines <strong>in Mozilla’s communities</strong>, please click the “Report” button below. For more information on how to take and give a report, please read “<a href="{{ howto }}">How to Report</a>”.
-  {% endtrans %}
+  {{ ftl('community-hotline-to-report-violations', howto=url('mozorg.about.governance.policies.reporting')) }}
   </p>
 
   <p>
-    <a class="mzp-c-button" href="https://app.convercent.com/en-us/Anonymous/IssueIntake/Survey?organizationId=11885ec6-e5a6-e811-80e6-000d3ab6ebad&intakeChannelId=2d885ec6-e5a6-e811-80e6-000d3ab6ebad">{{ _('Report') }}</a>
+    <a class="mzp-c-button" href="https://app.convercent.com/en-us/Anonymous/IssueIntake/Survey?organizationId=11885ec6-e5a6-e811-80e6-000d3ab6ebad&intakeChannelId=2d885ec6-e5a6-e811-80e6-000d3ab6ebad">{{ ftl('community-hotline-report') }}</a>
   </p>
 {% endblock %}
