@@ -15,7 +15,7 @@ class FirefoxUnfckPage(BasePage):
     _download_button_locator = (By.ID, 'download-button-desktop-release')
     _play_store_button_locator = (By.ID, 'playStoreLink')
     _app_store_button_locator = (By.ID, 'appStoreLink')
-    _facebook_container_button_locator = (By.CSS_SELECTOR, '.c-button-fb-container')
+    _thank_you_message_locator = (By.CSS_SELECTOR, '.mzp-c-hero.mzp-t-firefox.show-firefox')
 
     @property
     def download_button(self):
@@ -31,5 +31,5 @@ class FirefoxUnfckPage(BasePage):
         return self.is_element_displayed(*self._app_store_button_locator)
 
     @property
-    def is_facebook_container_button_displayed(self):
-        return self.is_element_displayed(*self._facebook_container_button_locator)
+    def is_thank_you_message_displayed(self):
+        return self.is_element_displayed(*self._thank_you_message_locator)

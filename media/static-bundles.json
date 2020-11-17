@@ -1336,13 +1336,6 @@
     },
     {
       "files": [
-        "protocol/js/protocol-notification-bar.js",
-        "js/firefox/campaign/unfck.de.js"
-      ],
-      "name": "firefox-unfck-de"
-    },
-    {
-      "files": [
         "js/base/mozilla-lazy-load.js",
         "js/firefox/more.js"
       ],

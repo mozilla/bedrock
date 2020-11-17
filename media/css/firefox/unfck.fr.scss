@@ -28,9 +28,34 @@ $h-grid-lg: 80px;
 
 
 // --------------------------------------------------------------------------
-// Banner & hero
+// Masthead
 
-.c-banner-fr-wrapper {
+.c-masthead {
+    &.show-firefox {
+        .c-masthead-content {
+            max-width: $content-lg;
+        }
+
+        .c-masthead-logo {
+            @include background-size(contain);
+            background-image: url('/media/img/firefox/campaign/unfck/fr/unfck-masthead-fr.png');
+            background-repeat: no-repeat;
+            height: 0;
+            margin: 0 auto;
+            max-width: 100%;
+            padding-top: 190 * 100% / 952;
+
+            @media #{$mq-md} {
+                @include at2x('/media/img/firefox/campaign/unfck/fr/unfck-masthead-fr.png', contain);
+            }
+        }
+    }
+}
+
+// --------------------------------------------------------------------------
+// Banner
+
+.c-banner-fr-wrapper.show-default {
     margin: $v-grid-md auto 0;
     max-width: 750px;
     position: relative;
@@ -58,39 +83,73 @@ $h-grid-lg: 80px;
             width: 345px;
         }
     }
-}
 
-.c-banner-fr {
-    @include at2x('/media/img/firefox/campaign/unfck/fr/header.png', contain);
-    background-repeat: no-repeat;
-    height: 0;
-    margin: 0 auto;
-    max-width: 100%;
-    padding-top: 300 * 100% / 750;
-    position: relative;
-    top: 0;
-
-    &:after {
-        background: transparent url('/media/img/firefox/campaign/unfck/fr/button-click.gif') left bottom no-repeat;
+    .c-banner-fr {
         @include background-size(contain);
-        bottom: 8.5%;
-        content: '';
-        display: block;
-        position: absolute;
-        right: 6.6%;
+        background-image: url('/media/img/firefox/campaign/unfck/fr/header.png');
+        background-repeat: no-repeat;
+        height: 0;
+        margin: 0 auto;
+        max-width: 100%;
+        padding-top: 300 * 100% / 750;
+        position: relative;
         top: 0;
-        width: 22%;
-    }
 
-    @media (prefers-reduced-motion) {
         &:after {
-            background-image: url('/media/img/firefox/campaign/unfck/fr/button-click.png');
-            bottom: 7.2%;
+            background: transparent url('/media/img/firefox/campaign/unfck/fr/button-click.gif') left bottom no-repeat;
+            @include background-size(contain);
+            bottom: 8.5%;
+            content: '';
+            display: block;
+            position: absolute;
+            right: 6.6%;
+            top: 0;
+            width: 22%;
+        }
+
+        @media (prefers-reduced-motion) {
+            &:after {
+                background-image: url('/media/img/firefox/campaign/unfck/fr/button-click.png');
+                bottom: 7.2%;
+            }
+        }
+
+        @media #{$mq-md} {
+            @include at2x('/media/img/firefox/campaign/unfck/fr/header.png', contain);
         }
     }
 }
 
+.c-banner-fr-wrapper.show-firefox {
+    margin: $v-grid-md auto $v-grid-md;
+    max-width: 650px;
+    position: relative;
+
+    .c-banner-fr {
+        @include background-size(contain);
+        background-image: url('/media/img/firefox/campaign/unfck/fr/merci.png');
+        background-repeat: no-repeat;
+        height: 0;
+        margin: 0 auto $v-grid-md;
+        max-width: 100%;
+        padding-top: 324 * 100% / 650;
+        position: relative;
+        top: 0;
+
+        @media #{$mq-md} {
+            @include at2x('/media/img/firefox/campaign/unfck/fr/merci.png', contain);
+        }
+    }
+}
+
+// --------------------------------------------------------------------------
+// Hero
+
 .mzp-c-hero {
+    .c-item-gif {
+        width: 200px;
+    }
+
     @media #{$mq-lg} {
         margin-top: 0;
     }
@@ -99,7 +158,6 @@ $h-grid-lg: 80px;
         margin-top: 0;
     }
 }
-
 
 // --------------------------------------------------------------------------
 // GIF backgrounds (display while they are loading)
@@ -122,11 +180,6 @@ $h-grid-lg: 80px;
 
     #misinformation & {
         background-color: #2657fd;
-    }
-
-    #share & {
-        background-color: #fde1e8;
-        color: $color-black;
     }
 }
 
