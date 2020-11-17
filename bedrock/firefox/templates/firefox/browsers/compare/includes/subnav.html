@@ -1,14 +1,20 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{# Subnav menu for /firefox/browsers/compare/ #}
+
 <nav class="c-sub-navigation">
   <div class="mzp-l-content">
     <div class="c-sub-navigation-content">
-      <h2 class="c-sub-navigation-title"><a href="{{ url('firefox.browsers.compare.index') }}">{{ ftl('compare-shared-compare-browsers') }}</a></h2>
+      <h2 class="c-sub-navigation-title"><a href="{{ url('firefox.browsers.compare.index') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Compare Browsers">{{ ftl('sub-navigation-compare-browsers') }}</a></h2>
       <ul class="c-sub-navigation-list">
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.compare.chrome') }}">{{ ftl('compare-shared-brand-name-chrome') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.compare.edge') }}">{{ ftl('compare-shared-brand-name-edge') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.compare.safari') }}">{{ ftl('compare-shared-brand-name-safari') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.compare.opera') }}">{{ ftl('compare-shared-brand-name-opera') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.compare.brave') }}">{{ ftl('compare-shared-brand-name-brave') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.compare.ie') }}">{{ ftl('compare-shared-brand-name-ie') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.compare.chrome') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Chrome">{{ ftl('sub-navigation-chrome') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.compare.edge') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Edge">{{ ftl('sub-navigation-edge') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.compare.safari') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Safari">{{ ftl('sub-navigation-safari') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.compare.opera') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Opera">{{ ftl('sub-navigation-opera') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.compare.brave') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Brave">{{ ftl('sub-navigation-brave') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.compare.ie') }}" data-link-type="nav" data-link-position="subnav" data-link-name="IE">{{ ftl('sub-navigation-ie') }}</a></li>
       </ul>
     </div>
   </div>

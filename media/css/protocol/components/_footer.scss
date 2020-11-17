@@ -4,130 +4,412 @@
 
 @import '../../../protocol/css/includes/lib';
 
-.mzp-c-footer.mzp-t-firefox {
-    background-color: $color-ink-80;
-}
+//* -------------------------------------------------------------------------- */
+// Footer section styles
 
-.mzp-c-footer.mzp-t-firefox {
-    .mzp-c-footer-sections {
-        padding-top: 0;
+.c-footer {
+    @include font-base;
+    background: $color-marketing-gray-10;
+    clear: both;
+    color: $color-black;
+    margin: 0;
+    padding-top: $spacing-lg;
+    width: 100%;
+
+    a:link,
+    a:visited {
+        color: $color-marketing-gray-80;
+        font-weight: normal;
+        text-decoration: underline;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: $color-marketing-gray-90;
+            text-decoration: none;
+        }
     }
-}
 
-.mzp-c-footer-section.mzp-c-has-lang {
-    position: relative;
-}
-
-.mzp-c-footer-section {
-    .mzp-c-footer-language {
-        padding-top: $layout-md;
+    &.mzp-t-dark {
+        background-color: $color-black;
     }
 
-    .mzp-c-footer-links-social {
-        margin-bottom: $layout-lg;
-        max-width: 100%;
+    &.mzp-t-ink {
+        background-color: $color-ink-80;
     }
-}
 
+    &.mzp-t-dark,
+    &.mzp-t-ink {
+        color: $color-marketing-gray-20;
 
-@media #{$mq-sm} {
-    .mzp-c-footer-section {
-        .mzp-c-footer-language {
-            @include bidi(((text-align, left, right),));
-            float: none;
-            padding-top: $spacing-md;
+        a:link,
+        a:visited {
+            color: $color-marketing-gray-20;
+            font-weight: normal;
+            text-decoration: underline;
+
+            &:hover,
+            &:focus,
+            &:active {
+                color: $color-white;
+                text-decoration: none;
+            }
         }
 
-        .mzp-c-language-switcher-link {
-            display: block;
+        .c-footer-sections {
+            border-bottom-color: $color-marketing-gray-80;
         }
 
-        .mzp-c-footer-links-social {
-            @include bidi(((text-align, left, right),));
-            margin-bottom: 0;
-            position: static;
+        .c-footer-section.is-details {
+            border-bottom-color: $color-marketing-gray-80;
 
-            > :first-child {
-                @include bidi(((padding-left, 0, padding-right, 0),));
+            &:first-child {
+                border-top-color: $color-marketing-gray-80;
+            }
+        }
+
+        .c-footer-heading.is-summary button:focus {
+            outline: 1px dotted $color-white;
+        }
+
+        .c-footer-primary-logo a {
+            background-image: url('#{$image-path}/logos/mozilla/white.svg');
+        }
+
+        .c-footer-list-social li a {
+            opacity: .75;
+
+            &:hover,
+            &:focus,
+            &:active {
+                opacity: 1;
+            }
+
+            &.twitter {
+                background-image: url('#{$image-path}/icons/social/twitter/white.svg');
+            }
+
+            &.instagram {
+                background-image: url('#{$image-path}/icons/social/instagram/white.svg');
+            }
+
+            &.youtube {
+                background-image: url('#{$image-path}/icons/social/youtube/white.svg');
             }
         }
     }
 }
 
 
-@media #{$mq-md} {
-    .mzp-c-footer.mzp-t-firefox {
+//* -------------------------------------------------------------------------- */
+// Footer primary section, contains logo and sections with links
 
-        .mzp-c-footer-primary-logo {
-            @include bidi(((float, left, right),));
-            margin-bottom: $spacing-md;
-        }
+.c-footer-primary {
+    @include text-body-md;
+    @include border-box;
+    @include clearfix;
+    margin: 0 auto $layout-md;
 
-        .mzp-c-footer-license {
-            @include bidi(((float, right, left),));
-            width: calc(50% - #{$spacing-lg});
-        }
+    @media #{$mq-lg} {
+        margin-bottom: $layout-sm;
+    }
+}
 
-        .mzp-c-footer-terms {
-            @include bidi(((clear, left, right),));
+//* -------------------------------------------------------------------------- */
+// Footer Mozilla logo
+
+.c-footer-primary-logo {
+    margin-bottom: $layout-xs;
+
+    a {
+        background: url('#{$image-path}/logos/mozilla/black.svg') no-repeat;
+        @include background-size(100px, 32px);
+        @include image-replaced;
+        display: inline-block;
+        height: 32px;
+        width: 100px;
+    }
+
+    @media #{$mq-md} {
+        @include bidi((
+            (float, left, right),
+            (margin-right, $layout-md, 0),
+            (margin-left, 0, $layout-md),
+        ));
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Footer section containing list and heading
+
+.c-footer-sections {
+    @include clearfix;
+
+    @media #{$mq-md} {
+        border-bottom: 1px solid $color-marketing-gray-30;
+        padding-bottom: $layout-lg;
+    }
+
+    @media #{$mq-lg} {
+        padding-bottom: $layout-md;
+    }
+}
+
+.c-footer-section,
+.c-footer-section-social {
+    @include clearfix;
+    margin-bottom: $spacing-sm;
+
+    &.is-details {
+        margin-bottom: 0;
+        border-bottom: 1px solid $color-marketing-gray-20;
+
+        &:first-child {
+            border-top: 1px solid $color-marketing-gray-20;
         }
     }
 
-    .mzp-c-footer-section {
-        .mzp-c-footer-language {
-            padding-top: $spacing-sm;
+    a:link,
+    a:visited {
+        text-decoration: none;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        text-decoration: underline;
+    }
+
+    @media (min-width: #{$screen-sm}) and (max-width: #{$screen-lg - 1px}) {
+        @include bidi(((float, left, right),));
+        @include grid-half;
+
+        &:nth-child(odd) {
+            @include bidi(((clear, left, right),));
+            @include bidi(((padding, 0 ($layout-md / 2) 0 0, 0 0 0 ($layout-md / 2)),));
+        }
+
+        &:nth-child(even) {
+            @include bidi(((padding, 0 0 0 ($layout-md / 2), 0 ($layout-md / 2) 0 0),));
         }
     }
 }
 
 @media #{$mq-lg} {
-    // Needs a lot of specificity to over-ride original rules
-    // https://github.com/mozilla/protocol/issues/524
-    .mzp-c-footer.mzp-t-firefox .mzp-c-footer-section[class] {
-        clear: none;
+    .c-footer-section,
+    .c-footer-section-social {
+        @include bidi(((float, left, right),));
+        padding: 0 ($layout-md / 2);
 
-        &:nth-child(3n+1) {
-            @include bidi(((clear, left, right),));
+        &:first-child {
             @include bidi(((padding, 0 ($layout-md / 2) 0 0, 0 0 0 ($layout-md / 2)),));
-            width: calc(33.33% - #{$layout-md - ($layout-md / 3)});
         }
 
-        &:nth-child(3n+2) {
-            padding: 0 ($layout-md / 2);
-            width: calc(33.33% - #{$layout-md - ($layout-md / 3)});
-        }
-
-        &:nth-child(3n+3) {
+        &:last-child {
             @include bidi(((padding, 0 0 0 ($layout-md / 2), 0 ($layout-md / 2) 0 0),));
-            width: calc(33.33% - #{$layout-md - ($layout-md / 3)});
         }
+    }
 
+    @for $cols from 2 through 6 {
+        $width: 100% / $cols;
+        // http://lea.verou.me/2011/01/styling-children-based-on-their-number-with-css3/
+        .c-footer-section:first-child:nth-last-child(n+#{$cols}),
+        .c-footer-section:first-child:nth-last-child(n+#{$cols}) ~ .c-footer-section:nth-child(1n-1) {
+            width: calc(#{$width} - (#{$layout-md} - (#{$layout-md} / #{$cols})));
+        }
     }
 }
 
-@media #{$mq-xl} {
-    // Needs a lot of specificity to over-ride original rules
-    .mzp-c-footer.mzp-t-firefox .mzp-c-footer-section[class] {
+.c-footer-heading {
+    &,
+    & button {
+        @include text-body-md;
+        @include bidi(((text-align, left, right),));
+        background-color: transparent;
+        border: 0;
+        color: inherit;
+        margin-bottom: 0;
+        padding: $spacing-md 0;
+        position: relative;
+        width: 100%;
+    }
 
-        &:nth-child(n) {
+    &.is-summary {
+        padding: 0;
+
+        button:focus {
+            outline: 1px dotted $color-black;
+        }
+
+        button:before {
+            background: $url-image-arrow-down-form top left no-repeat;
+            @include background-size(24px, 24px);
+            @include bidi(((right, 8px, left, auto),));
+            @include transition(transform 100ms ease-in-out);
+            content: '';
+            height: 24px;
+            margin-top: -12px;
+            position: absolute;
+            top: 50%;
+            width: 24px;
+        }
+
+        button[aria-expanded=true]:before {
+            @include transform(rotate(180deg));
+        }
+    }
+
+    a:link,
+    a:visited {
+        font-weight: bold;
+    }
+
+    @media #{$mq-md} {
+        padding: $spacing-sm 0;
+    }
+}
+
+.c-footer-list {
+    @include text-body-sm;
+    margin-bottom: $spacing-xl;
+
+    li {
+        list-style-type: none;
+        padding: $spacing-xs 0;
+
+        &:first-child {
+            margin-top: $spacing-sm;
+
+            @media #{$mq-md} {
+                margin-top: 0;
+            }
+        }
+    }
+
+    &.is-closed[aria-hidden="true"] {
+        display: none;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Footer secondary contains langauge selector, social icons, legal, and license
+
+.c-footer-secondary {
+    @include text-body-xs;
+    position: relative;
+}
+
+//* -------------------------------------------------------------------------- */
+// Footer language selector
+
+.c-footer-language {
+    @include clearfix;
+    margin-bottom: $spacing-lg;
+
+    @media #{$mq-md} {
+        @include bidi(((float, right, left),));
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Footer social icon links
+
+.c-footer-section-social .c-footer-heading {
+    @include text-body-sm;
+    font-weight: normal;
+    margin-top: .2em;
+}
+
+.c-footer-list-social {
+    margin-bottom: $layout-xs;
+
+    li {
+        @include bidi(((margin, 0 $spacing-md 0 0, 0 0 0 $spacing-md),));
+        display: inline-block;
+        vertical-align: bottom;
+
+        a {
+            @include background-size(20px, 20px);
+            @include image-replaced;
+            background-repeat: no-repeat;
+            border-bottom: 1px solid transparent;
+            display: block;
+            height: 20px;
+            opacity: .5;
+            padding-bottom: 2px;
+            width: 20px;
+
+            &.twitter {
+                background-image: url('#{$image-path}/icons/social/twitter/black.svg');
+            }
+
+            &.instagram {
+                background-image: url('#{$image-path}/icons/social/instagram/black.svg');
+            }
+
+            &.youtube {
+                background-image: url('#{$image-path}/icons/social/youtube/black.svg');
+            }
+
+            &:hover,
+            &:focus {
+                border-bottom-color: $color-marketing-gray-90;
+                opacity: 1;
+            }
+        }
+    }
+
+    @media #{$mq-md} {
+        margin-bottom: $layout-sm;
+
+        li {
             @include bidi((
-                (clear, none, none),
-                (padding, 0 ($layout-md / 2) 0, 0 ($layout-md / 2) 0),
+                (padding, 0 $spacing-lg $spacing-sm 0, 0 0 $spacing-sm $spacing-lg),
+                (margin, 0 , 0),
             ));
-            width: calc(15% - #{$layout-md - ($layout-md / 6)});
         }
+    }
+}
 
-        &:nth-child(6n+1) {
-            @include bidi(((padding, 0 ($layout-md / 2) 0 0, 0 0 0 ($layout-md / 2)),));
-        }
 
-        &:nth-child(6n+5) {
-            width: calc(20% - #{$layout-md - ($layout-md / 6)});
-        }
 
-        &:nth-child(6n+6) {
-            @include bidi(((padding, 0 0 0 ($layout-md / 2), 0 ($layout-md / 2) 0 0),));
-            width: calc(20% - #{$layout-md - ($layout-md / 6)});
+//* -------------------------------------------------------------------------- */
+// Footer license and terms
+
+.c-footer-legal {
+    li {
+        @include bidi(((padding, 0 $spacing-lg $spacing-md 0, 0 0 $spacing-md $spacing-lg),));
+        display: inline-block;
+
+        &:last-child {
+            @include bidi(((padding-right, 0, padding-left, 0),));
         }
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Footer license
+
+.c-footer-license {
+    margin-bottom: $spacing-xl;
+
+    @media #{$mq-md} {
+        @include bidi(((clear, left, right),));
+        max-width: 66%; // don't overlap language picker
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Footer license
+
+.c-footer-terms {
+    @media #{$mq-md} {
+        @include bidi(((float, left, right),));
+        padding-top: $spacing-xs;
+        max-width: 66%; // don't overlap language picker
     }
 }

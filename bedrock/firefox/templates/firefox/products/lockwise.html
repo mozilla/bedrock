@@ -23,6 +23,25 @@
 {% block body_id %}firefox-lockwise{% endblock %}
 {% block body_class %}firefox-lockwise{% endblock %}
 
+{% block sub_navigation %}
+<nav class="c-sub-navigation">
+  <div class="mzp-l-content">
+    <div class="c-sub-navigation-content">
+      <h2 class="c-sub-navigation-title">
+        <a href="{{ url('firefox.accounts') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Firefox Accounts">
+          <img class="c-sub-navigation-icon" src="{{ static('protocol/img/logos/firefox/logo-sm.png') }}" width="24" height="24" alt="">
+          {{ ftl('sub-navigation-firefox-accounts') }}
+        </a>
+      </h2>
+      <ul class="c-sub-navigation-list">
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.sync') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Sync">{{ ftl('sub-navigation-sync') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="https://support.mozilla.org/products/firefox-lockwise/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=lockwise-page" data-link-type="nav" data-link-position="subnav" data-link-name="Support">{{ ftl('sub-navigation-support', fallback='navigation-support') }}</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
 {% block content %}
   <main role="main">
     {% if LANG.startswith('en-') %}

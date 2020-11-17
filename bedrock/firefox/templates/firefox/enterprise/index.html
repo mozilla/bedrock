@@ -19,23 +19,32 @@
 
 {% block site_header %}
   {% with hide_nav_download_button=True %}
-    {% include 'includes/protocol/navigation/menu-firefox/index.html' %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
   {% endwith %}
+{% endblock %}
+
+{% block sub_navigation %}
+<nav class="c-sub-navigation">
+  <div class="mzp-l-content">
+    <div class="c-sub-navigation-content">
+      <h2 class="c-sub-navigation-title">
+        <a href="{{ url('firefox.browsers.index') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Firefox">
+          <img class="c-sub-navigation-icon" src="{{ static('protocol/img/logos/firefox/logo-sm.png') }}" width="24" height="24" alt="">
+         {{ ftl('sub-navigation-firefox') }}
+        </a>
+      </h2>
+      <ul class="c-sub-navigation-list">
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.developer.index') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Developer Edition">{{ ftl('sub-navigation-developer-edition') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.channel.desktop') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Nightly and Beta">{{ ftl('sub-navigation-nightly-and-beta') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.all') }}" data-link-type="nav" data-link-position="subnav" data-link-name="All Languages">{{ ftl('sub-navigation-all-languages', fallback='download-button-systems-languages') }}</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 {% endblock %}
 
 {% block content %}
 <main role="main">
-  <nav class="c-sub-navigation">
-    <div class="mzp-l-content">
-      <div class="c-sub-navigation-content">
-        <h2 class="c-sub-navigation-title">{{ ftl('firefox-enterprise-enterprise') }}</h2>
-        <ul class="c-sub-navigation-list">
-          <li class="c-sub-navigation-item"><a href="#overview">{{ ftl('firefox-enterprise-overview') }}</a></li>
-          <li class="c-sub-navigation-item"><a href="#download">{{ ftl('firefox-enterprise-downloads') }}</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
   {% call hero(
     title=ftl('firefox-enterprise-get-firefox-for-your-enterprise'),
     class='mzp-t-product-firefox mzp-has-image mzp-t-dark t-enterprise',

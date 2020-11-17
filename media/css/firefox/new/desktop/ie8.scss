@@ -4,21 +4,10 @@
 
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
+
 @import '../../../../protocol/css/includes/lib';
 
 $h-grid-lg: 80px;
-
-.mzp-c-navigation-menu {
-    display: none;
-}
-
-.js .mzp-c-navigation-l-content .mzp-c-navigation-items {
-    display: block !important; /* stylelint-disable-line declaration-no-important */
-}
-
-.mzp-t-firefox .mzp-c-navigation-logo a {
-    background-image: url('/media/protocol/img/logos/firefox/browser/logo-word-hor-xs.png');
-}
 
 .mzp-l-card-third,
 .mzp-l-card-half,

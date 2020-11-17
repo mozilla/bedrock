@@ -19,12 +19,6 @@
 {% set _entrypoint = 'mozilla.org-privacy' %}
 {% set _utm_campaign = 'privacy' %}
 
-{% block sub_nav %}
-  {% with active='promise' %}
-    {% include 'firefox/privacy/includes/subnav.html' %}
-  {% endwith %}
-{% endblock %}
-
 {% block hub_content %}
 
   {% call hero(

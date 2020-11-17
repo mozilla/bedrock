@@ -14,32 +14,9 @@
 
     var hasMediaQueries = typeof window.matchMedia !== 'undefined';
 
-    function onImageLoad(e) {
-        e.target.removeAttribute('data-src');
-        e.target.removeAttribute('data-srcset');
-    }
-
-    function handleOnMenuOpen(el) {
+    function handleOnMenuOpen() {
         if (!hasMediaQueries || !window.matchMedia('(min-width: 768px)').matches) {
             return;
-        }
-
-        var cardImage = el.querySelector('.mzp-c-card-image');
-
-        if (cardImage) {
-            var newSrc = cardImage.getAttribute('data-src');
-
-            if (newSrc) {
-                var newSrcSet = cardImage.getAttribute('data-srcset');
-
-                if (newSrcSet) {
-                    cardImage.srcset = newSrcSet;
-                }
-
-                cardImage.src = newSrc;
-                cardImage.onload = onImageLoad;
-            }
-
         }
     }
 
@@ -48,8 +25,8 @@
             return false;
         }
 
-        var nav = document.querySelector('.mzp-c-navigation');
-        var fxaButton = document.querySelector('.mzp-c-navigation .c-navigation-fxa-cta');
+        var nav = document.querySelector('.c-navigation');
+        var fxaButton = document.querySelector('.c-navigation .c-navigation-fxa-cta');
 
         // Nav should be present on page.
         if (!nav) {

@@ -3,24 +3,39 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Should be replaced by https://github.com/mozilla/protocol/issues/471
 
 .c-sub-navigation {
     background: $color-marketing-gray-10;
-    box-shadow: inset 0 10px 10px -10px rgba(32,18,58,0.24);
+    box-shadow:
+        inset 0 10px 2px -10px rgba(29, 17, 51, .04),
+        inset 0 10px 4px -10px rgba(9, 32, 77, .12),
+        inset 0 10px 3px -10px rgba(29, 17, 51, .12);
 
     .mzp-l-content {
         padding-top: 0;
+        padding-bottom: $spacing-md;
     }
 
     .c-sub-navigation-content {
-        padding-top: $spacing-lg;
+        padding-top: $spacing-md;
+    }
+
+    .c-sub-navigation-icon {
+        @include bidi((
+            (float, left, right),
+            (margin-right, $spacing-sm, margin-left, $spacing-sm),
+        ));
+        height: 24px;
+        vertical-align: middle;
+        width: 24px;
     }
 
     .c-sub-navigation-title {
         @include font-base;
-        @include font-size(20px);
+        @include text-body-md;
+        font-weight: bold;
 
         a:link,
         a:visited {
@@ -29,33 +44,78 @@
         }
 
         a:hover,
-        a:active,
-        a:focus {
+        a:focus,
+        a:active {
             text-decoration: underline;
+        }
+
+        & button {
+            @include text-body-md;
+            @include bidi(((text-align, left, right),));
+            background-color: transparent;
+            border: 0;
+            color: inherit;
+            font-weight: bold;
+            margin-bottom: 0;
+            padding: 0;
+            position: relative;
+            width: 100%;
+        }
+
+        &.is-summary {
+            padding: 0;
+            margin: 0;
+
+            button:focus {
+                outline: 1px dotted $color-black;
+            }
+
+            button:before {
+                background: $url-image-arrow-down-form top left no-repeat;
+                @include background-size(24px, 24px);
+                @include bidi(((right, $spacing-xs, left, auto),));
+                @include transition(transform 100ms ease-in-out);
+                content: '';
+                height: 24px;
+                margin-top: -12px;
+                position: absolute;
+                top: 50%;
+                width: 24px;
+            }
+
+            button[aria-expanded=true]:before {
+                @include transform(rotate(180deg));
+            }
         }
     }
 
     .c-sub-navigation-list {
         margin: 0;
+
+        &.is-closed[aria-hidden="true"] {
+            display: none;
+        }
+
+        &.mzp-js-details-wrapper {
+            margin-top: $spacing-sm;
+        }
     }
 
     .c-sub-navigation-item {
-        font-weight: bold;
-        padding: $spacing-sm 0;
+        padding: $spacing-xs 0;
 
         a:link,
         a:visited {
             @include font-base;
-            @include text-body-md;
+            @include text-body-sm;
             color: $color-black;
-            font-weight: normal;
             text-decoration: none;
-        }
 
-        a:hover,
-        a:active,
-        a:focus {
-            text-decoration: underline;
+            &:hover,
+            &:focus,
+            &:active {
+                text-decoration: underline;
+            }
         }
     }
 
@@ -72,41 +132,18 @@
 
         .c-sub-navigation-list {
             @include bidi((
-                (float, left, right),
-                (margin-left, -$spacing-sm, margin-right, 0),
+                (float, right, left),
+                (margin-right, -$spacing-sm, margin-left, 0),
             ));
+
+            &.mzp-js-details-wrapper {
+                margin-top: 0;
+            }
         }
 
         .c-sub-navigation-item {
             display: inline-block;
             padding: 0 $spacing-sm;
-        }
-    }
-
-    @media #{$mq-lg} {
-        .c-sub-navigation-list {
-            @include bidi(((margin-left, -$spacing-md, margin-right, 0),));
-        }
-        .c-sub-navigation-title {
-            @include bidi(((margin-right, $spacing-md * 2, margin-left, 0),));
-        }
-
-        .c-sub-navigation-item {
-            padding: 0 $spacing-md;
-        }
-    }
-
-    @media #{$mq-xl} {
-        .c-sub-navigation-list {
-            @include bidi(((margin-left, -$spacing-lg, margin-right, 0),));
-        }
-
-        .c-sub-navigation-title {
-            @include bidi(((margin-right, $spacing-lg * 2, margin-left, 0),));
-        }
-
-        .c-sub-navigation-item {
-            padding: 0 $spacing-lg;
         }
     }
 }

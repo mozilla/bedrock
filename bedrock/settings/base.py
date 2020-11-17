@@ -253,6 +253,8 @@ FLUENT_DEFAULT_FILES = [
     'footer',
     'fxa_form',
     'navigation',
+    'navigation_v2',
+    'sub_navigation',
     'newsletter_form',
     'send_to_device',
     'ui',

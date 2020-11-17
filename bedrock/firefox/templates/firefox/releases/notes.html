@@ -46,13 +46,51 @@
   {{ css_bundle('firefox_releasenotes') }}
 {% endblock %}
 
-{% block global_nav %}
-  {% include 'includes/protocol/navigation/menu-firefox/index.html' %}
-{% endblock %}
-
 {% set channel_name = '' if release.channel == 'Release' else release.channel %}
 
 {% set download_title = download_title|default(_('Get the most recent version')) %}
+
+{% block sub_navigation %}
+<nav class="c-sub-navigation">
+  <div class="mzp-l-content">
+    <div class="c-sub-navigation-content">
+      <h2 class="c-sub-navigation-title">{{ ftl('sub-navigation-release-notes', fallback='navigation-release-notes') }}</h2>
+      <ul class="c-sub-navigation-list">
+      {% if release.channel == 'Release' and release.product == 'Firefox for Android' and equivalent_release_url %}
+        <li class="c-sub-navigation-item">
+          <a class="mzp-c-menu-title" href="{{ equivalent_release_url }}" data-link-type="nav" data-link-position="subnav" data-link-name="Desktop">{{ ftl('sub-navigation-desktop') }}</a>
+        </li>
+      {% else %}
+        <li class="c-sub-navigation-item">
+          <a class="mzp-c-menu-title" href="{{ url('firefox.notes') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Desktop">{{ ftl('sub-navigation-desktop') }}</a>
+        </li>
+      {% endif %}
+        <li class="c-sub-navigation-item">
+          <a href="{{ url('firefox.notes', channel='beta') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Desktop Beta and Developer Edition">{{ ftl('sub-navigation-desktop-beta-and-developer') }}</a>
+        </li>
+        <li class="c-sub-navigation-item">
+          <a href="{{ url('firefox.notes', channel='nightly') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Desktop Nightly">{{ ftl('sub-navigation-desktop-nightly') }}</a>
+        </li>
+      {% if release.channel == 'Release' and release.product == 'Firefox' and equivalent_release_url %}
+        <li class="c-sub-navigation-item">
+          <a class="mzp-c-menu-title" href="{{ equivalent_release_url }}" data-link-type="nav" data-link-position="subnav" data-link-name="Android">{{ ftl('sub-navigation-android') }}</a>
+        </li>
+      {% else %}
+        <li class="c-sub-navigation-item">
+          <a class="mzp-c-menu-title" href="{{ url('firefox.notes', platform='android') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Android">{{ ftl('sub-navigation-android') }}</a>
+        </li>
+      {% endif %}
+        <li class="c-sub-navigation-item">
+          <a href="{{ url('firefox.notes', platform='android', channel='beta') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Android Beta">{{ ftl('sub-navigation-android-beta') }}</a>
+        </li>
+        <li class="c-sub-navigation-item">
+          <a class="mzp-c-menu-title" href="{{ url('firefox.notes', platform='ios') }}" data-link-type="nav" data-link-position="subnav" data-link-name="iOS">{{ ftl('sub-navigation-ios') }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endblock %}
 
 {% block content %}
 <main role="main">
@@ -88,67 +126,6 @@
               </div>
             {% endif %}
           {% endcall %}
-      </div>
-
-      <div class="mzp-c-navigation t-release">
-        <div class="mzp-c-navigation-l-content">
-          <div class="mzp-c-navigation-container">
-            <button class="mzp-c-navigation-menu-button has-label" type="button" aria-controls="release-nav">{{ _('Other Releases') }}</button>
-            <div class="mzp-c-navigation-items" id="release-nav" aria-expanded="false">
-              <div class="mzp-c-navigation-menu">
-                <nav class="mzp-c-menu mzp-is-basic">
-                  <ul class="mzp-c-menu-category-list">
-                    {% if release.channel == 'Release' and release.product == 'Firefox for Android' and equivalent_release_url %}
-                      <li class="mzp-c-menu-category"><a class="mzp-c-menu-title" href="{{ equivalent_release_url }}">{{ _('Desktop') }}</a></li>
-                    {% else %}
-                      <li class="mzp-c-menu-category"><a class="mzp-c-menu-title" href="{{ url('firefox.notes') }}">{{ _('Desktop') }}</a></li>
-                    {% endif %}
-
-                    {% if release.channel == 'Release' and release.product == 'Firefox' and equivalent_release_url %}
-                      <li class="mzp-c-menu-category"><a class="mzp-c-menu-title" href="{{ equivalent_release_url }}">{{ _('Android') }}</a></li>
-                    {% else %}
-                      <li class="mzp-c-menu-category"><a class="mzp-c-menu-title" href="{{ url('firefox.notes', platform='android') }}">{{ _('Android') }}</a></li>
-                    {% endif %}
-
-                    <li class="mzp-c-menu-category"><a class="mzp-c-menu-title" href="{{ url('firefox.notes', platform='ios') }}">{{ _('iOS') }}</a></li>
-
-                    <li class="mzp-c-menu-category mzp-has-drop-down mzp-js-expandable">
-                      <a class="mzp-c-menu-title" href="{{ url('firefox.channel.desktop') }}" aria-haspopup="true" aria-controls="release-other">{{ _('Pre-releases') }}</a>
-                      <div class="mzp-c-menu-panel" id="release-other">
-                        <div class="mzp-c-menu-panel-container">
-                          <button class="mzp-c-menu-button-close" type="button" aria-controls="mzp-c-menu-panel-about">{{ _('Close "Pre-releases" menu') }}</button>
-                          <div class="mzp-c-menu-panel-content">
-                            <ul>
-                              <li>
-                                <section class="mzp-c-menu-item">
-                                  <div class="mzp-c-menu-item-head"><h3 class="mzp-c-menu-item-title">{{ _('Recent Desktop Releases') }}</h3></div>
-                                  <ul class="mzp-c-menu-item-list">
-                                    <li><a href="{{ url('firefox.notes', channel='beta') }}">{{ _('Latest Beta &amp; Developer Edition') }}</a></li>
-                                    <li><a href="{{ url('firefox.notes', channel='nightly') }}">{{ _('Latest Nightly') }}</a></li>
-                                  </ul>
-                                </section>
-                              </li>
-                            </ul>
-                            <ul>
-                              <li>
-                                <section class="mzp-c-menu-item">
-                                  <div class="mzp-c-menu-item-head"><h3 class="mzp-c-menu-item-title">{{ _('Recent Android Releases') }}</h3></div>
-                                  <ul class="mzp-c-menu-item-list">
-                                    <li><a href="{{ url('firefox.notes', platform='android', channel='beta') }}">{{ _('Latest Beta') }}</a></li>
-                                  </ul>
-                                </section>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </nav>
-              </div><!-- close .mzp-c-navigation-menu -->
-            </div><!-- close .mzp-c-navigation-items -->
-          </div><!-- close .mzp-c-navigation-container -->
-        </div><!-- close .mzp-c-navigation-l-content -->
       </div>
 
       {% if release.version %}

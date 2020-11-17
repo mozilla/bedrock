@@ -15,8 +15,30 @@
   {{ css_bundle('privacy-book') }}
 {% endblock %}
 
-{% block content %}
+{% block sub_navigation %}
+{% if ftl_has_messages('sub-navigation-privacy', 'sub-navigation-our-promise', 'sub-navigation-our-products', 'sub-navigation-little-book-of-privacy') %}
+<nav class="c-sub-navigation">
+  <div class="mzp-l-content">
+    <div class="c-sub-navigation-content">
+      <h2 class="c-sub-navigation-title">{{ ftl('sub-navigation-privacy') }}</h2>
+      <ul class="c-sub-navigation-list">
+        <li class="c-sub-navigation-item">
+          <a href="{{ url('firefox.privacy.index') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Our Promise">{{ ftl('sub-navigation-our-promise') }}</a>
+        </li>
+        <li class="c-sub-navigation-item">
+          <a href="{{ url('firefox.privacy.products') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Our Products">{{ ftl('sub-navigation-our-products') }}</a>
+        </li>
+        <li class="c-sub-navigation-item">
+          <a href="{{ url('firefox.privacy.book') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Little Book of Privacy">{{ ftl('sub-navigation-little-book-of-privacy') }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endif %}
+{% endblock %}
 
+{% block content %}
 <section class="mzp-c-hero">
   <div class="mzp-l-content">
     <div class="mzp-c-hero-body">

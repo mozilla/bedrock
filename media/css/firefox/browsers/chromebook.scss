@@ -13,14 +13,14 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/templates/card-layout';
 
 
-h2 {
+.c-section-title {
     @include text-display-md;
     text-align: center;
     margin: $layout-lg 0 $layout-md;
-}
 
-span {
-    @include zap("/media/protocol/img/zaps/zap-09.svg");
+    span {
+        @include zap("/media/protocol/img/zaps/zap-09.svg");
+    }
 }
 
 .mzp-c-menu-list-item.t-sumo a:hover:after {

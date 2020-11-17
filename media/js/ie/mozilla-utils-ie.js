@@ -57,11 +57,11 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     UtilsIE.initNavigation = function() {
-        $('.mzp-c-navigation-menu-button').on('click', function(e) {
+        $('.c-navigation-menu-button').on('click', function(e) {
             e.preventDefault();
             var $menuButton = $(e.target);
             var $menu = $('#' + $menuButton.attr('aria-controls'));
-            $menu.find('.mzp-c-navigation-menu').toggle();
+            $menu.find('.c-navigation-menu').toggle();
         });
     };
 
