@@ -2,7 +2,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
 @import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/card';
+@import '../../protocol/css/templates/card-layout';
 
 /* -------------------------------------------------------------------------- */
 // Hero image & banner heading
@@ -341,4 +346,33 @@
         max-width: none;
         overflow-x: visible;
     }
+}
+
+.mzp-l-card-quarter.is-reverse {
+    .mzp-c-card {
+        @media #{$mq-sm} {
+            float: right;
+            margin-right: 0;
+            margin-left: $spacing-xl;
+        }
+    }
+}
+
+.mzp-l-card-half.is-reverse {
+    .mzp-c-card {
+        @media #{$mq-sm} {
+            float: right;
+            margin-right: 0;
+            margin-left: $spacing-xl;
+        }
+        // RTL Support
+        .html-rtl & {
+            @media #{$mq-sm} {
+                float: left;
+                margin-left: 0;
+                margin-right: $spacing-xl;
+            }
+        }
+    }
+
 }
