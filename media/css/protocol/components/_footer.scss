@@ -5,13 +5,9 @@
 @import '../../../protocol/css/includes/lib';
 
 // This class is added to address an issue with the sticky promo component on specific pages overlapping the language selection box in the footer.
-.mzp-c-footer.is-intersecting-sticky-overlay {
+.c-footer.is-intersecting-sticky-overlay {
     position: relative;
     z-index: 11;
-}
-
-.mzp-c-footer.mzp-t-firefox {
-    background-color: $color-ink-80;
 }
 
 .c-footer {

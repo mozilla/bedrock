@@ -39,9 +39,9 @@
             Mzp.StickyPromo.open();
 
             // Add modifier class to the footer to make sure the language selection drop-down is not obscured by the sticky promo
-            var footer = document.querySelector('.mzp-c-footer');
+            var footer = document.querySelector('.c-footer');
             if (footer) {
-                footer.classList.add('sticky-overlay');
+                footer.classList.add('is-intersecting-sticky-overlay');
             }
 
             // Set Close Button event
