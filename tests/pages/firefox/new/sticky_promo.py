@@ -15,7 +15,8 @@ class StickyPromoPage(BasePage):
     _sticky_promo_modal_content_locator = (By.CSS_SELECTOR, '.mzp-c-sticky-promo.mzp-a-slide-in')
 
     def wait_for_page_to_load(self):
-        self.wait.until(lambda s: self.seed_url in s.current_url)
+        el = self.find_element(By.TAG_NAME, 'html')
+        self.wait.until(lambda s: 'loaded' in el.get_attribute('class'))
         promo = self.find_element(*self._sticky_promo_modal_content_locator)
         self.wait.until(lambda s: 'is-displayed' in promo.get_attribute('class'))
         return self
