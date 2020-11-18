@@ -4,7 +4,6 @@ from fluent.migrate.helpers import transforms_from
 from fluent.migrate.helpers import VARIABLE_REFERENCE, TERM_REFERENCE
 from fluent.migrate import REPLACE, COPY
 
-windows_64_bit = "firefox/browsers/windows-64-bit.lang"
 windows_64_bit = "firefox/windows-64-bit.lang"
 
 def migrate(ctx):
@@ -53,9 +52,9 @@ windows-64-bit-64-bit = {COPY(windows_64_bit, "64-bit",)}
                 id=FTL.Identifier("windows-64-bit-users-on-64-bit-windows-crashes"),
                 value=REPLACE(
                     windows_64_bit,
-                    "Users on 64-bit Windows who download Firefox can get our 64-bit version by default. That means you get a more secure version of Firefox, one that also <a href=\"%(crashes)s\">crashes a whole lot less</a>. How much less? In our tests so far, 64-bit Firefox reduced crashes by 39% on machines with 4GB of RAM or more.",
+                    "Users on 64-bit Windows who download Firefox can get our 64-bit version by default. That means you get a more secure version of Firefox, one that also <a href=\"%(crashes)s\">crashes a whole lot less</a>. How much less? In our tests so far, 64-bit Firefox reduced crashes by 39%% on machines with 4GB of RAM or more.",
                     {
-                        "%%": "%",
+                        "%%": FTL.TextElement("%"),
                         "%(crashes)s": VARIABLE_REFERENCE("crashes"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Windows": TERM_REFERENCE("brand-name-windows"),

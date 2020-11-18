@@ -23,7 +23,7 @@ windows-64-bit-whats-the-difference = What’s the difference between 32-bit and
 # Variables:
 # $ASLR (url) - link to https://en.wikipedia.org/wiki/Address_space_layout_randomization
 # The term "fret not" can be translated as "not to worry", or "don’t worry".
-windows-64-bit-heres-the-key-thing = Here’s the key thing to know: 64-bit applications can access more memory and are less likely to crash than 32-bit applications. Also, with the jump from 32 to 64 bits, a security feature called <a href={ $ASLR }>Address Space Layout Randomization (ASLR)</a> works better to protect you from attackers. { -brand-name-linux } and { -brand-name-mac } users, fret not, you already enjoy a { -brand-name-firefox } that’s optimized for 64-bit.
+windows-64-bit-heres-the-key-thing = Here’s the key thing to know: 64-bit applications can access more memory and are less likely to crash than 32-bit applications. Also, with the jump from 32 to 64 bits, a security feature called <a href="{ $ASLR }">Address Space Layout Randomization (ASLR)</a> works better to protect you from attackers. { -brand-name-linux } and { -brand-name-mac } users, fret not, you already enjoy a { -brand-name-firefox } that’s optimized for 64-bit.
 windows-64-bit-how-do-you-get-64 = How do you get 64-bit { -brand-name-firefox }?
 
 # Variables:
