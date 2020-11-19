@@ -79,6 +79,22 @@ def test_firefox_android(base_url, selenium):
 
 @pytest.mark.smoke
 @pytest.mark.nondestructive
+def test_firefox_android_beta(base_url, selenium):
+    page = FirefoxAllPage(selenium, base_url).open()
+    page.select_product('Firefox Android Beta')
+    assert page.is_android_beta_download_button_displayed
+
+
+@pytest.mark.smoke
+@pytest.mark.nondestructive
+def test_firefox_android_nightly(base_url, selenium):
+    page = FirefoxAllPage(selenium, base_url).open()
+    page.select_product('Firefox Android Nightly')
+    assert page.is_android_nightly_download_button_displayed
+
+
+@pytest.mark.smoke
+@pytest.mark.nondestructive
 def test_firefox_ios(base_url, selenium):
     page = FirefoxAllPage(selenium, base_url).open()
     page.select_product('Firefox iOS')

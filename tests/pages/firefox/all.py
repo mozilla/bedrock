@@ -16,6 +16,8 @@ class FirefoxAllPage(BasePage):
     _product_options_locator = (By.CLASS_NAME, 'c-selection-options')
     _desktop_download_button_locator = (By.ID, 'download-button-primary')
     _android_download_button_locator = (By.ID, 'download-android-primary')
+    _android_beta_download_button_locator = (By.ID, 'download-android-beta-primary')
+    _android_nightly_download_button_locator = (By.ID, 'download-android-nightly-primary')
     _ios_download_button_locator = (By.ID, 'download-ios-primary')
     _download_info_platform_locator = (By.ID, 'download-info-platform')
     _download_info_language_locator = (By.ID, 'download-info-language')
@@ -66,6 +68,14 @@ class FirefoxAllPage(BasePage):
     @property
     def is_android_download_button_displayed(self):
         return self.is_element_displayed(*self._android_download_button_locator)
+
+    @property
+    def is_android_beta_download_button_displayed(self):
+        return self.is_element_displayed(*self._android_beta_download_button_locator)
+
+    @property
+    def is_android_nightly_download_button_displayed(self):
+        return self.is_element_displayed(*self._android_nightly_download_button_locator)
 
     @property
     def is_ios_download_button_displayed(self):
