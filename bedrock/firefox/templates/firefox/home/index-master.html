@@ -262,6 +262,10 @@
 </main>
 {% endblock %}
 
+{% block sticky_promo %}
+  {% include '/includes/sticky-promo.html' %}
+{% endblock %}
+
 {% block js %}
   {{ js_bundle('firefox-master') }}
 

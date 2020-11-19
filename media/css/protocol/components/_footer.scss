@@ -4,8 +4,11 @@
 
 @import '../../../protocol/css/includes/lib';
 
-//* -------------------------------------------------------------------------- */
-// Footer section styles
+// This class is added to address an issue with the sticky promo component on specific pages overlapping the language selection box in the footer.
+.c-footer.is-intersecting-sticky-overlay {
+    position: relative;
+    z-index: 11;
+}
 
 .c-footer {
     @include font-base;
