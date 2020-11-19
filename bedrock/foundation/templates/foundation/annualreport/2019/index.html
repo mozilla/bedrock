@@ -8,7 +8,11 @@
 {% block body_id %}annual-2019{% endblock %}
 
 {% block page_css %}
-{{ css_bundle('annual_report') }}
+  {{ css_bundle('annual_report') }}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('annual_report') }}
 {% endblock %}
 
 {% block content %}
@@ -25,8 +29,8 @@
 
   <div class="mzp-l-content">
     <div class="mzp-l-card-half">
-      <section class="mzp-c-card mzp-has-aspect-16-9">
-        <a class="mzp-c-card-block-link" href="#">
+      <section id="card1" data-id="card1" class="mzp-c-card mzp-has-aspect-16-9">
+        <a class="mzp-c-card-block-link has-modal" href="#">
           <div class="mzp-c-card-media-wrapper">
             <img class="mzp-c-card-image" src="https://placehold.it/800x450/F0E702/000000"/>
           </div>
@@ -34,13 +38,18 @@
             <div class="mzp-c-card-tag">Card tag</div>
             <h2 class="mzp-c-card-title">This example headline has 40 characters</h2>
             <p class="mzp-c-card-desc">A description with a maximum of 140 characters. That means we usually only have room for one or two sentences. Here is what that looks like.</p>
+          </div>
+          <div class="mzp-c-modal-content">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </div>
         </a>
+
       </section>
+
     </div>
     <div class="mzp-l-card-half is-reverse">
-      <section class="mzp-c-card mzp-has-aspect-16-9">
-        <a class="mzp-c-card-block-link" href="#">
+      <section id="card2" data-id="card2" class="mzp-c-card mzp-has-aspect-16-9">
+        <a class="mzp-c-card-block-link has-modal" href="#">
           <div class="mzp-c-card-media-wrapper">
             <img class="mzp-c-card-image" src="https://placehold.it/800x450/F0E702/000000"/>
           </div>
@@ -48,6 +57,9 @@
             <div class="mzp-c-card-tag">Card tag</div>
             <h2 class="mzp-c-card-title">This example headline has 40 characters</h2>
             <p class="mzp-c-card-desc">A description with a maximum of 140 characters. That means we usually only have room for one or two sentences. Here is what that looks like.</p>
+          </div>
+          <div class="mzp-c-modal-content">
+            Card 2 Daelp ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </div>
         </a>
       </section>
@@ -885,6 +897,9 @@
 
   </div>{#--/.mzp-l-content--#}
 </main>
+
+<div class="mzp-u-modal-content"></div>
+
 {% endblock %}
 
 {% block site_footer %}

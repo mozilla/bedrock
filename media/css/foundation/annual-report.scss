@@ -8,6 +8,7 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/includes/lib';
 @import '../../protocol/css/components/card';
 @import '../../protocol/css/templates/card-layout';
+@import '../../protocol/css/components/modal';
 
 /* -------------------------------------------------------------------------- */
 // Hero image & banner heading
@@ -348,6 +349,9 @@ $image-path: '/media/protocol/img';
     }
 }
 
+/* -------------------------------------------------------------------------- */
+// 2019 Custom Styles
+
 .mzp-l-card-quarter.is-reverse {
     .mzp-c-card {
         @media #{$mq-sm} {
@@ -375,4 +379,16 @@ $image-path: '/media/protocol/img';
         }
     }
 
+}
+
+.mzp-c-modal-content {
+    .js  & {
+        @include hidden;
+    }
+}
+
+.mzp-c-modal .mzp-c-modal-overlay-contents {
+    .mzp-c-modal-content {
+        display: block;
+    }
 }

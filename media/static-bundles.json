@@ -1287,6 +1287,13 @@
     },
     {
       "files": [
+        "protocol/js/protocol-modal.js",
+        "js/foundation/annual-report.js"
+      ],
+      "name": "annual_report"
+    },
+    {
+      "files": [
         "js/libs/jquery-3.4.1.min.js",
         "js/exp/convert.js"
       ],
