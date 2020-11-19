@@ -1239,6 +1239,12 @@ FIREFOX_TWITTER_ACCOUNTS = {
     'pt-BR': 'https://twitter.com/firefoxbrasil',
 }
 
+# Official Firefox Instagram accounts
+FIREFOX_INSTAGRAM_ACCOUNTS = {
+    'de': 'https://www.instagram.com/unfcktheinternet/',
+    'en-US': 'https://www.instagram.com/firefox/',
+}
+
 # Fx Accounts iframe-less form & JS endpoint
 # ***This URL *MUST* end in a traling slash!***
 
