@@ -439,6 +439,39 @@ def firefox_twitter_url(ctx):
     return settings.FIREFOX_TWITTER_ACCOUNTS[locale]
 
 
+@library.global_function
+@jinja2.contextfunction
+def firefox_instagram_url(ctx):
+    """Output a link to Instagram taking locales into account.
+
+    Uses the locale from the current request. Checks to see if we have
+    a Instagram account that match this locale, returns the localized account
+    url or falls back to the US account url if not.
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {{ firefox_instagram_url() }}
+
+    For en-US this would output:
+
+        https://www.instagram.com/firefox/
+
+    For DE this would output:
+
+        https://www.instagram.com/unfcktheinternet/
+
+    """
+    locale = getattr(ctx['request'], 'locale', 'en-US')
+    if locale not in settings.FIREFOX_INSTAGRAM_ACCOUNTS:
+        locale = 'en-US'
+
+    return settings.FIREFOX_INSTAGRAM_ACCOUNTS[locale]
+
+
 @library.filter
 def absolute_url(url):
     """
