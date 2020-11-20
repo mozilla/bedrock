@@ -8,6 +8,8 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/includes/lib';
 @import '../../protocol/css/components/card';
 @import '../../protocol/css/templates/card-layout';
+@import '../../protocol/css/components/feature-card';
+@import "../../protocol/css/components/hero";
 @import '../../protocol/css/components/modal';
 
 /* -------------------------------------------------------------------------- */
@@ -65,11 +67,34 @@ $image-path: '/media/protocol/img';
 }
 
 #annual-2019 {
-    .c-banner .c-banner-content {
-        @include at2x('/media/img/foundation/annualreport/2018/som-2018-small.jpg', 760px, 394px);
 
-        @media #{$mq-md} {
-            @include at2x('/media/img/foundation/annualreport/2018/som-2018-large.jpg', 1250px, 394px);
+    .c-banner {
+        background: url('/media/img/foundation/annualreport/2019/pixel-bg.svg') right center no-repeat;
+        background-size: contain;
+        h1 {
+            color: $color-black;
+            font-weight: normal;
+            span {
+                font-weight: bold;
+                color: $color-white;
+            }
+        }
+        // @include at2x('/media/img/foundation/annualreport/2019/pixel-bg.svg', 760px, 394px);
+        //
+        // @media #{$mq-md} {
+        //     @include at2x('/media/img/foundation/annualreport/2019/pixel-bg.svg', 1250px, 394px);
+        // }
+    }
+    .intro {
+        h2 {
+            @include text-title-xs;
+        }
+    }
+    .leadership {
+        h2 {
+            font-weight: 100;
+            @include text-title-md;
+            margin-bottom: $spacing-lg;
         }
     }
 }
@@ -391,4 +416,77 @@ $image-path: '/media/protocol/img';
     .mzp-c-modal-content {
         display: block;
     }
+}
+
+.has-modal {
+    cursor: pointer;
+}
+
+.highlight {
+    @include box-decoration-break(clone);
+    line-height: 1.3;
+    padding: 0 $spacing-sm;
+    &.dark {
+        background-color: $color-black;
+        color: $color-white;
+    }
+    &.lime {
+        background: $color-green-40;
+        color: $color-black;
+    }
+    &.plum {
+        background: #5A61EF;
+        color: $color-white;
+    }
+}
+
+.bg-gray-10 {
+    background-color: $color-marketing-gray-10;
+}
+
+.pixel-effect {
+    position: relative;
+    &::after {
+        content: " ";
+        background: url('/media/img/foundation/annualreport/2019/pixel-small-bg.svg') center center no-repeat;
+        background-size: contain;
+        width: $spacing-xl;
+        height: $spacing-xl;
+        top: -$spacing-xl;
+        right: 0;
+        position: absolute;
+        display: block;
+        z-index: 1;
+    }
+}
+
+.c-som-list {
+    border-left: $border-radius-xs solid $color-black;
+    margin: 0;
+    padding: $spacing-xl 0;
+    @media #{$mq-md} {
+        width: 50%;
+        margin-left: auto;
+    }
+    li {
+        margin-left: $spacing-md;
+        margin-bottom: $spacing-lg;
+    }
+}
+
+.mzp-c-modal-inner {
+    background-color: $color-white;
+}
+
+.mzp-c-modal-close {
+    background: $color-green-40;
+    border-radius: 100%;
+    .mzp-c-modal-button-close {
+        background-image: url("/media/protocol/img/icons/close.svg");
+    }
+}
+
+
+.mzp-c-modal-overlay-contents, .mzp-c-modal-overlay-contents a:link {
+    color: $color-black;
 }
