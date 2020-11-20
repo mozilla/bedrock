@@ -28,18 +28,68 @@ $image-path: '/media/protocol/img';
 
 .wnp-main-title {
     @include text-title-md;
+
+    strong {
+        color: $color-violet-50;
+    }
 }
 
 .wnp-main-tagline {
     @include text-body-lg;
 }
 
-.send-to-device {
-    margin: 0 auto;
+
+//* -------------------------------------------------------------------------- */
+// Extra content
+// To be replaced by revamped picto card. See https://github.com/mozilla/protocol/issues/382
+
+.c-picto-block {
+    @include border-box;
+    margin: 0 auto $spacing-2xl;
+    max-width: $content-md - ($layout-md * 2);
+    padding: 0 $layout-md;
+
+    .c-picto-block-title {
+        @include text-title-xs;
+    }
+
+    .c-picto-block-image {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin: 0 auto $spacing-lg;
+        max-width: $content-xs;
+        min-height: $layout-md;
+    }
 }
 
-#qr-wrapper {
-    margin: $spacing-lg auto;
+@media #{$mq-md} {
+    .l-columns-two,
+    .l-columns-three {
+        display: flex;
+        margin: 0 auto;
+        max-width: $content-lg;
+        padding: 0 $layout-md;
+        flex-wrap: wrap;
+
+        .c-picto-block {
+            flex: 1 1 50%;
+            padding: 0 $layout-lg;
+        }
+    }
+}
+
+@media #{$mq-lg} {
+    .l-columns-three {
+        display: flex;
+        margin: 0 auto;
+        max-width: none;
+
+        .c-picto-block {
+            flex: 1 1 33.3%;
+            padding: 0 $layout-xs;
+        }
+    }
 }
 
 
@@ -53,6 +103,7 @@ $image-path: '/media/protocol/img';
 }
 
 
+
 //* -------------------------------------------------------------------------- */
 // For dark mode
 @media (prefers-color-scheme: dark) {
@@ -61,12 +112,23 @@ $image-path: '/media/protocol/img';
         color: $color-white;
     }
 
-    .send-to-device {
-        color: $color-white;
+    .wnp-main-title {
+        strong {
+            color: $color-violet-20;
+        }
     }
 
-    .c-utilities {
-        @include light-links;
+    .c-utilities a {
+        &:link,
+        &:visited {
+            color: $color-blue-10;
+        }
+
+        &:active,
+        &:focus,
+        &:hover {
+            color: $color-white;
+        }
     }
 
     .c-footer {
@@ -106,5 +168,15 @@ $image-path: '/media/protocol/img';
 
     .c-footer-primary-logo a {
         background-image: url('/media/protocol/img/logos/mozilla/white.svg');
+    }
+
+    .c-picto-block-image {
+        .line {
+            fill: $color-white;
+        }
+
+        .building {
+            fill: #a77ffa;
+        }
     }
 }

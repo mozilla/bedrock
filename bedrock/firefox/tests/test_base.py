@@ -412,12 +412,12 @@ class TestWhatsNew(TestCase):
 
     @patch.object(fx_views, 'ftl_file_is_active', lambda *x: True)
     def test_fx_84_0_0(self, render_mock):
-        """Should use whatsnew-fx82 template for 84.0 in English"""
+        """Should use whatsnew-fx84 template for 84.0 in English"""
         req = self.rf.get('/firefox/whatsnew/')
         req.locale = 'en-US'
         self.view(req, version='84.0')
         template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/whatsnew-fx82.html']
+        assert template == ['firefox/whatsnew/whatsnew-fx84.html']
 
     @patch.object(fx_views, 'ftl_file_is_active', lambda *x: True)
     def test_fx_84_0_0_locale(self, render_mock):

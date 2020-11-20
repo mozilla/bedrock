@@ -389,6 +389,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-84.scss"
+      ],
+      "name": "firefox_whatsnew_84"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
