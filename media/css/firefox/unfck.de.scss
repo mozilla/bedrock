@@ -120,6 +120,25 @@ main {
             text-decoration: underline;
         }
     }
+
+    .mobile-badge {
+        a:link,
+        a:visited {
+            display: inline-block;
+        }
+        a:hover,
+        a:focus,
+        a:active {
+            box-shadow: $field-focus-ring-dark;
+            border-radius: 6px;
+            background-color: $field-border-color-hover;
+        }
+
+        img {
+            display: block; // get rid of line height
+            border-radius: 6px;
+        }
+    }
 }
 
 // --------------------------------------------------------------------------
@@ -164,6 +183,18 @@ main {
         @media #{$mq-md} {
             margin-right: $spacing-md;
         }
+    }
+}
+
+.ios.is-firefox {
+    .show-android {
+        display: none;
+    }
+}
+
+.android.is-firefox {
+    .show-ios {
+        display: none;
     }
 }
 
