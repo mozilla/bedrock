@@ -30,6 +30,6 @@ def test_app_store_buttons_displayed(base_url, selenium):
 @pytest.mark.parametrize('locale', [
     ('de'),
     ('fr')])
-def test_facebook_container_button_displayed(locale, base_url, selenium):
+def test_thank_you_message_displayed(locale, base_url, selenium):
     page = FirefoxUnfckPage(selenium, base_url, locale=locale).open()
-    assert page.is_facebook_container_button_displayed
+    assert page.is_thank_you_message_displayed
