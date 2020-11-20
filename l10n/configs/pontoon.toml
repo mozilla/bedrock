@@ -146,5 +146,13 @@ locales = [
         "ru"
     ]
 [[paths]]
+    reference = "en/firefox/privacy/book.ftl"
+    l10n = "{locale}/firefox/privacy/book.ftl"
+    locales = [
+        "de",
+        "fr"
+    ]
+[[paths]]
     reference = "en/**/*.ftl"
     l10n = "{locale}/**/*.ftl"
+
