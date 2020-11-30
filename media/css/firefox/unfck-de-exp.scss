@@ -1,0 +1,75 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../protocol/css/includes/lib';
+
+// --------------------------------------------------------------------------
+// Masthead (always display the "Unfck the Internet" version).
+
+.c-masthead {
+    &.show-default {
+        display: none !important; /* stylelint-disable-line declaration-no-important */
+    }
+
+    &.show-firefox {
+        display: block !important; /* stylelint-disable-line declaration-no-important */
+    }
+}
+
+// --------------------------------------------------------------------------
+// Banner (display "Download Firefox" header).
+
+.c-banner-wrapper {
+    &.show-default {
+        margin-bottom: 0;
+        max-width: 750px;
+
+        @media #{$mq-lg} {
+            margin-bottom: 0;
+        }
+
+        @media #{$mq-xl} {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.c-banner-wrapper.show-default {
+    .c-banner {
+        @include background-size(contain);
+        background-image: url('/media/img/firefox/campaign/unfck/de/exp/unfck-header.png');
+        padding-top: 562 * 100% / 742;
+        top: 0;
+
+        &:after {
+            content: none;
+        }
+
+        @media #{$mq-sm} {
+            @include at2x('/media/img/firefox/campaign/unfck/de/exp/unfck-header.png', contain);
+            padding-top: 562 * 100% / 742;
+        }
+
+        @media #{$mq-lg} {
+            top: 0;
+        }
+
+        @media #{$mq-xl} {
+            top: 0;
+        }
+    }
+}
+
+// --------------------------------------------------------------------------
+// Hero (hide the description but not from screen readers).
+
+.mzp-c-hero.show-default {
+    .mzp-c-hero-desc {
+        @include visually-hidden;
+    }
+}
+

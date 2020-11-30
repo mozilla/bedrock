@@ -704,6 +704,12 @@
     },
     {
       "files": [
+        "css/firefox/unfck-de-exp.scss"
+      ],
+      "name": "firefox-unfck-de-exp"
+    },
+    {
+      "files": [
         "css/firefox/unfck.fr.scss"
       ],
       "name": "firefox-unfck-fr"
@@ -1333,6 +1339,13 @@
         "js/firefox/campaign/unfck.js"
       ],
       "name": "firefox-unfck"
+    },
+    {
+      "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/firefox/campaign/unfck-de-experiment.js"
+      ],
+      "name": "firefox-unfck-de-experiment"
     },
     {
       "files": [

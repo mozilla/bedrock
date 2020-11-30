@@ -9,6 +9,7 @@ from bedrock.releasenotes import version_re
 
 from bedrock.firefox import views
 from bedrock.utils import views as utils_views
+from bedrock.utils.views import VariationTemplateView
 
 
 latest_re = r'^firefox(?:/(?P<version>%s))?/%s/$'
@@ -172,7 +173,12 @@ urlpatterns = (
     page('firefox/retention/thank-you', 'firefox/retention/thank-you.html'),
 
     # Unfck campaign
-    page('firefox/unfck', 'firefox/campaign/unfck/index.html', active_locales=['de', 'en-US', 'fr']),
+    url(r'^firefox/unfck/$',
+        VariationTemplateView.as_view(template_name='firefox/campaign/unfck/index.html',
+                                      template_name_variations=['1', '2'],
+                                      variation_locales=['de'],
+                                      active_locales=['de', 'en-US', 'fr']),
+        name='firefox.campaign.unfck.index'),
 
     # Issue #9490 - Evergreen Content for SEO
     page('firefox/more', 'firefox/more.html', ftl_files='firefox/more'),
