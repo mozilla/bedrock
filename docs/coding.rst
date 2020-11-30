@@ -126,6 +126,24 @@ Finally, for outputting an image that differs depending on the platform being us
 
 When using localization, `platform_img()` will look for images in the appropriate locale folder. In the above example, for the `es-ES` locale, all platform versions of the image should be located at `media/img/l10n/es-ES/firefox/new/`.
 
+Using Large Assets
+------------------
+
+We don't want to (and if large enough GitHub won't let us) commit large files to the bedrock repo.
+Files such as large PDFs or very-high-res JPG files (e.g. leadership team photos), or videos are not
+well-tracked in git and will make every checkout after they're added slower and this diffs less useful.
+So we have another domain at which we upload these files: assets.mozilla.net
+
+This domain is simply an AWS S3 bucket with a CloudFront CDN in front of it. It is highly available
+and fast. We've made adding files to this domain very simple using `git-lfs <https://git-lfs.github.com/>`_.
+You simply install git-lfs, clone our `assets.mozilla.net repo <https://github.com/mozmeao/assets.mozilla.net>`_,
+and then add and commit files under the ``assets`` directory there as usual. Open a PR, and once it's merged
+it will be automatically uploaded to the S3 buket and be available on the domain.
+
+For example, if you add a file to the repo under ``assets/pdf/the-dude-abides.pdf``, it will be available
+as https://assets.mozilla.net/pdf/the-dude-abides.pdf. Once that is done you can link to that URL from bedrock
+as you would any other URL.
+
 Writing Views
 -------------
 
