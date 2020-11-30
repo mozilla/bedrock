@@ -871,6 +871,12 @@
     },
     {
       "files": [
+        "js/firefox/whatsnew/up-to-date.js"
+      ],
+      "name": "firefox_whatsnew_84"
+    },
+    {
+      "files": [
         "protocol/js/protocol-newsletter.js"
       ],
       "name": "legal"
