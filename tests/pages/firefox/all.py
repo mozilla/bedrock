@@ -14,7 +14,11 @@ class FirefoxAllPage(BasePage):
 
     _product_locator = (By.ID, 'select-product')
     _product_options_locator = (By.CLASS_NAME, 'c-selection-options')
-    _download_button_locator = (By.ID, 'download-button-primary')
+    _desktop_download_button_locator = (By.ID, 'download-button-primary')
+    _android_download_button_locator = (By.ID, 'download-android-primary')
+    _android_beta_download_button_locator = (By.ID, 'download-android-beta-primary')
+    _android_nightly_download_button_locator = (By.ID, 'download-android-nightly-primary')
+    _ios_download_button_locator = (By.ID, 'download-ios-primary')
     _download_info_platform_locator = (By.ID, 'download-info-platform')
     _download_info_language_locator = (By.ID, 'download-info-language')
 
@@ -39,18 +43,18 @@ class FirefoxAllPage(BasePage):
         return language.text
 
     @property
-    def download_link(self):
-        link = self.find_element(*self._download_button_locator)
+    def desktop_download_link(self):
+        link = self.find_element(*self._desktop_download_button_locator)
         return link.get_attribute('href')
 
     @property
-    def is_download_button_displayed(self):
-        return self.is_element_displayed(*self._download_button_locator)
+    def is_desktop_download_button_displayed(self):
+        return self.is_element_displayed(*self._desktop_download_button_locator)
 
     @property
-    def is_download_link_valid(self):
+    def is_desktop_download_link_valid(self):
         return 'https://download.mozilla.org' in self.find_element(
-            *self._download_button_locator).get_attribute('href')
+            *self._desktop_download_button_locator).get_attribute('href')
 
     def select_product(self, value):
         el = self.find_element(*self._product_locator)
@@ -60,6 +64,22 @@ class FirefoxAllPage(BasePage):
         assert len(option) == 1
         self.wait.until(lambda s: option[0].is_displayed)
         return option[0]
+
+    @property
+    def is_android_download_button_displayed(self):
+        return self.is_element_displayed(*self._android_download_button_locator)
+
+    @property
+    def is_android_beta_download_button_displayed(self):
+        return self.is_element_displayed(*self._android_beta_download_button_locator)
+
+    @property
+    def is_android_nightly_download_button_displayed(self):
+        return self.is_element_displayed(*self._android_nightly_download_button_locator)
+
+    @property
+    def is_ios_download_button_displayed(self):
+        return self.is_element_displayed(*self._ios_download_button_locator)
 
 
 class ProductOptions(BaseRegion):

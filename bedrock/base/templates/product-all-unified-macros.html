@@ -25,12 +25,12 @@
   </select>
 {% endmacro %}
 
-{% macro product_options(id, platforms, builds, version, disabled=False, hide_version=False, hide_language=False) %}
+{% macro product_options(id, platforms, builds, version, disabled=False, hide_version=False, hide_language=False, hide_platform=False) %}
   <div class="c-selection-options" data-product="{{ id }}">
     <p class="c-selection c-selection-version{% if hide_version %} hidden{% endif%}">
       {{ select_version_list(id, version, disabled) }}
     </p>
-    <p class="c-selection c-selection-platform">
+    <p class="c-selection c-selection-platform"{% if hide_platform %} hidden{% endif%}>
       {% set platform_select_id = 'select_' ~ id ~ '_platform' %}
       {{ select_platform_list(platform_select_id, platforms, disabled) }}
     </p>
@@ -71,9 +71,15 @@
 {% macro build_locale_list(id, product_label, platforms, builds, channel) %}
   {% if builds %}
     <ol class="c-locale-list" data-product="{{ id }}">
-    {% for build in builds %}
-      {{ build_locale_list_item(product_label, platforms, build) }}
-    {% endfor %}
+    {% if id.startswith('desktop') %}
+      {% for build in builds %}
+        {{ build_locale_list_item(product_label, platforms, build) }}
+      {% endfor %}
+    {% else %}
+      {% for build in builds %}
+        {{ build_mobile_list_item(id, platforms, build) }}
+      {% endfor %}
+    {% endif %}
     </ol>
   {% endif %}
 {% endmacro %}
@@ -95,6 +101,35 @@
     </ul>
   </li>
 {% endmacro %}
+
+{% macro build_mobile_list_item(id, platforms, build) %}
+  <li class="c-locale-list-item" data-language="{{ build.locale }}">
+    <h4 class="c-locale-label">
+        {{ build.name_en }}
+    </h4>
+
+    {% if id.startswith('ios') %}
+      <ul class="c-download-list">
+        <li>
+          <a id="appStoreLink-list-{{ id }}" href="{{ build.platforms.ios.download_url }}" data-link-type="download" data-download-os="iOS">
+            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
+          </a>
+        </li>
+        {% if id.endswith('release') %}
+          <li><a href="{{ url('firefox.mobile.get-app') }}" class="c-get-app" data-cta-type="link" data-cta-text="Get It Now" data-cta-position="secondary">{{ ftl('firefox-all-product-send-link') }}</a></li>
+        {% endif %}
+      </ul>
+    {% else %}
+      <ul class="c-download-list">
+        <li>{{ google_play_button(href=build.platforms.android.download_url, id='playStoreLink-all-'+ id) }}</li>
+        {% if id.endswith('release') %}
+          <li><a href="{{ url('firefox.mobile.get-app') }}" class="c-get-app" data-cta-type="link" data-cta-text="Get It Now" data-cta-position="banner">{{ ftl('firefox-all-product-send-link') }}</a></li>
+        {% endif %}
+      </ul>
+    {% endif %}
+  </li>
+{% endmacro %}
+
 
 {#
   build: Locale dictionary from product details.

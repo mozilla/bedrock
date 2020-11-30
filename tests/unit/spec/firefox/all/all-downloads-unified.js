@@ -160,33 +160,6 @@ describe('all-downloads-unified.js', function() {
             expect(el.getAttribute('data-download-language')).toEqual(language.id);
             expect(el.getAttribute('data-download-os')).toEqual('Desktop');
         });
-
-        it('should set android download links as expected', function() {
-            var el = document.getElementById('download-button-primary');
-            var url = 'https://download.mozilla.org/?product=fennec-latest&os=android&lang=multi';
-
-            var product = {
-                id: 'android_release',
-                label: 'Firefox Android'
-            };
-
-            var platform = {
-                id: 'android',
-                label: 'ARM devices (Android 4.1+)'
-            };
-
-            var language = {
-                id: 'multi',
-                label: 'Multi-locale'
-            };
-
-            Mozilla.FirefoxDownloader.setDownloadLink(url, product, platform, language, el);
-            expect(el.href).toEqual(url);
-            expect(el.getAttribute('data-display-name')).toEqual(product.label);
-            expect(el.getAttribute('data-download-version')).toEqual(platform.id);
-            expect(el.getAttribute('data-download-language')).toEqual(language.id);
-            expect(el.getAttribute('data-download-os')).toEqual('Android');
-        });
     });
 
     describe('setAttributionURL', function() {
@@ -226,7 +199,7 @@ describe('all-downloads-unified.js', function() {
         });
     });
 
-    describe('generateDownloadURL', function() {
+    describe('setDownloadButtonDesktop', function() {
         var product = {
             id: 'desktop_beta',
             label: 'Firefox Beta'
@@ -288,8 +261,85 @@ describe('all-downloads-unified.js', function() {
             spyOn(Mozilla.FirefoxDownloader, 'setDownloadLink');
             spyOn(Mozilla.FirefoxDownloader, 'setDownloadInfo');
             spyOn(Mozilla.FirefoxDownloader, 'offError');
-            Mozilla.FirefoxDownloader.generateDownloadURL();
+            Mozilla.FirefoxDownloader.setDownloadButton();
             expect(Mozilla.FirefoxDownloader.setDownloadLink).toHaveBeenCalledWith('https://download.mozilla.org/?product=firefox-beta-latest-ssl&os=win64&lang=ach', product, platform, language);
+            expect(Mozilla.FirefoxDownloader.setDownloadInfo).toHaveBeenCalledWith(product.label, platform.label, language.label);
+            expect(Mozilla.FirefoxDownloader.offError).toHaveBeenCalled();
+        });
+
+    });
+
+    describe('setDownloadButtonAndroid', function() {
+        var product = {
+            id: 'android_release',
+            label: 'Firefox Android'
+        };
+
+        var platform = {
+            id: 'android',
+            label: 'Android'
+        };
+
+        var language = {
+            id: 'all',
+            label: 'Multiple languages'
+        };
+
+        var options = [
+            '<div class="c-selection-options" data-product="android_release">' +
+                '<p class="c-selection c-selection-version hidden">' +
+                    '<label for="select_android_release_version" class="c-selection-label">Which version would you like?</label>' +
+                    '<select id="select_android_release_version" class="c-selection-input" aria-controls="download-info">' +
+                        '<option value="android_release"></option>' +
+                    '</select>' +
+                '</p>' +
+                '<p class="c-selection c-selection-platform">' +
+                    '<label for="select_android_release_platform" class="c-selection-label">Select your preferred installer</label>' +
+                    '<a href="#installer-help" class="c-button-help icon-installer-help" title="Learn about installers">' +
+                        'Get help' +
+                    '</a>' +
+                    '<select id="select_android_release_platform" class="c-selection-input" aria-controls="download-info">' +
+                        '<option value="android">Android</option>' +
+                    '</select>' +
+                '</p>' +
+                '<p class="c-selection c-selection-language">' +
+                    '<label for="select_android_release_language" class="c-selection-label">Select your preferred language</label>' +
+                    '<select id="select_android_release_language" class="c-selection-input" aria-controls="download-info">' +
+                        '<option value="all">Multiple languages</option>' +
+                    '</select>' +
+                '</p>' +
+            '</div>' +
+            '<ol class="c-locale-list" data-product="android_release">' +
+                '<li class="c-locale-list-item" data-language="multi">' +
+                    '<h4 class="c-locale-label">Multiple languages</h4>' +
+                    '<ul class="c-download-list">' +
+                        '<li>' +
+                            '<a id="playStoreLink-list" rel="external" href="https://app.adjust.com/2uo1qc?redirect=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dorg.mozilla.firefox&amp;campaign=www.mozilla.org&amp;adgroup=all-page" data-link-type="download" data-download-os="Android" data-mozillaonline-link="https://play.google.com/store/apps/details?id=cn.mozilla.firefox&amp;referrer=utm_source%3Dmozilla%26utm_medium%3DReferral%26utm_campaign%3Dmozilla-org">' +
+                                'Google Play' +
+                            '</a>' +
+                        '</li>' +
+                        '<li><a href="/en-US/firefox/mobile/get-app/" class="c-get-app" data-cta-type="link" data-cta-text="Get It Now" data-cta-position="banner">Send a download link to your phone</a></li>' +
+                    '</ul>' +
+                '</li>' +
+            '</ol>'
+        ].join();
+
+        beforeEach(function () {
+            document.body.insertAdjacentHTML('beforeend', options);
+        });
+
+        afterEach(function () {
+            document.querySelector('.c-selection-options').remove();
+            document.querySelector('.c-locale-list').remove();
+        });
+
+        it('should set the download link as expected', function() {
+            spyOn(Mozilla.FirefoxDownloader, 'getProductSelection').and.returnValue(product);
+            spyOn(Mozilla.FirefoxDownloader, 'setDownloadLink');
+            spyOn(Mozilla.FirefoxDownloader, 'setDownloadInfo');
+            spyOn(Mozilla.FirefoxDownloader, 'offError');
+            Mozilla.FirefoxDownloader.setDownloadButton();
+            expect(Mozilla.FirefoxDownloader.setDownloadLink).not.toHaveBeenCalled();
             expect(Mozilla.FirefoxDownloader.setDownloadInfo).toHaveBeenCalledWith(product.label, platform.label, language.label);
             expect(Mozilla.FirefoxDownloader.offError).toHaveBeenCalled();
         });
@@ -333,12 +383,12 @@ describe('all-downloads-unified.js', function() {
 
             spyOn(Mozilla.FirefoxDownloader, 'setFormSelection');
             spyOn(Mozilla.FirefoxDownloader, 'setAllSelectOptions');
-            spyOn(Mozilla.FirefoxDownloader, 'generateDownloadURL');
+            spyOn(Mozilla.FirefoxDownloader, 'setDownloadButton');
 
             Mozilla.FirefoxDownloader.onVersionChange(e);
             expect(Mozilla.FirefoxDownloader.setFormSelection).not.toHaveBeenCalled();
             expect(Mozilla.FirefoxDownloader.setAllSelectOptions).toHaveBeenCalledWith(e.target.value, jasmine.any(Object));
-            expect(Mozilla.FirefoxDownloader.generateDownloadURL).toHaveBeenCalled();
+            expect(Mozilla.FirefoxDownloader.setDownloadButton).toHaveBeenCalled();
         });
 
         it('should update the product selection for ESR', function() {
@@ -350,7 +400,7 @@ describe('all-downloads-unified.js', function() {
 
             spyOn(Mozilla.FirefoxDownloader, 'setFormSelection');
             spyOn(Mozilla.FirefoxDownloader, 'setAllSelectOptions');
-            spyOn(Mozilla.FirefoxDownloader, 'generateDownloadURL');
+            spyOn(Mozilla.FirefoxDownloader, 'setDownloadButton');
 
             Mozilla.FirefoxDownloader.onVersionChange(e);
             expect(Mozilla.FirefoxDownloader.setFormSelection).toHaveBeenCalledWith(e.target.value);
@@ -367,6 +417,7 @@ describe('all-downloads-unified.js', function() {
             expect(Mozilla.FirefoxDownloader.getHash('#product-android-release')).toEqual('android_release');
             expect(Mozilla.FirefoxDownloader.getHash('#product-android-beta')).toEqual('android_beta');
             expect(Mozilla.FirefoxDownloader.getHash('#product-android-nightly')).toEqual('android_nightly');
+            expect(Mozilla.FirefoxDownloader.getHash('#product-ios-release')).toEqual('ios_release');
         });
 
         it('should return null if the hash identifier does not map to a valid product id', function() {
@@ -385,21 +436,21 @@ describe('all-downloads-unified.js', function() {
             var id = 'firefox_beta';
             spyOn(Mozilla.FirefoxDownloader, 'getHash').and.returnValue(id);
             spyOn(Mozilla.FirefoxDownloader, 'setProductSelection');
-            spyOn(Mozilla.FirefoxDownloader, 'generateDownloadURL');
+            spyOn(Mozilla.FirefoxDownloader, 'setDownloadButton');
 
             Mozilla.FirefoxDownloader.onHashChange();
             expect(Mozilla.FirefoxDownloader.setProductSelection).toHaveBeenCalledWith(id);
-            expect(Mozilla.FirefoxDownloader.generateDownloadURL).toHaveBeenCalled();
+            expect(Mozilla.FirefoxDownloader.setDownloadButton).toHaveBeenCalled();
         });
 
         it('should not update the product selection if a hash identifier is invalid', function() {
             spyOn(Mozilla.FirefoxDownloader, 'getHash').and.returnValue(null);
             spyOn(Mozilla.FirefoxDownloader, 'setProductSelection');
-            spyOn(Mozilla.FirefoxDownloader, 'generateDownloadURL');
+            spyOn(Mozilla.FirefoxDownloader, 'setDownloadButton');
 
             Mozilla.FirefoxDownloader.onHashChange();
             expect(Mozilla.FirefoxDownloader.setProductSelection).not.toHaveBeenCalled();
-            expect(Mozilla.FirefoxDownloader.generateDownloadURL).not.toHaveBeenCalled();
+            expect(Mozilla.FirefoxDownloader.setDownloadButton).not.toHaveBeenCalled();
         });
     });
 
@@ -415,7 +466,7 @@ describe('all-downloads-unified.js', function() {
             spyOn(Mozilla.FirefoxDownloader, 'setHash');
             spyOn(Mozilla.FirefoxDownloader, 'setFormSelection');
             spyOn(Mozilla.FirefoxDownloader, 'setAllSelectOptions');
-            spyOn(Mozilla.FirefoxDownloader, 'generateDownloadURL');
+            spyOn(Mozilla.FirefoxDownloader, 'setDownloadButton');
             spyOn(Mozilla.FirefoxDownloader, 'enableForm');
         });
 
@@ -427,7 +478,7 @@ describe('all-downloads-unified.js', function() {
 
             Mozilla.FirefoxDownloader.init();
             expect(Mozilla.FirefoxDownloader.setAllSelectOptions).toHaveBeenCalledTimes(2);
-            expect(Mozilla.FirefoxDownloader.generateDownloadURL).toHaveBeenCalled();
+            expect(Mozilla.FirefoxDownloader.setDownloadButton).toHaveBeenCalled();
             expect(Mozilla.FirefoxDownloader.enableForm).toHaveBeenCalled();
             expect(Mozilla.FirefoxDownloader.setHash).toHaveBeenCalled();
         });
@@ -455,7 +506,7 @@ describe('all-downloads-unified.js', function() {
 
             Mozilla.FirefoxDownloader.init();
             expect(Mozilla.FirefoxDownloader.setAllSelectOptions).not.toHaveBeenCalled();
-            expect(Mozilla.FirefoxDownloader.generateDownloadURL).not.toHaveBeenCalled();
+            expect(Mozilla.FirefoxDownloader.setDownloadButton).not.toHaveBeenCalled();
             expect(Mozilla.FirefoxDownloader.enableForm).not.toHaveBeenCalled();
             expect(Mozilla.FirefoxDownloader.setHash).not.toHaveBeenCalled();
             expect(Mozilla.FirefoxDownloader.onError).toHaveBeenCalled();
