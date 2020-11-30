@@ -13,6 +13,12 @@
 
 {% block page_image %}{{ static('img/firefox/campaign/unfck/de/og.png') }}{% endblock %}
 
+{% block experiments %}
+  {% if switch('firefox-unfck-de-experiment', ['de']) %}
+    {{ js_bundle('firefox-unfck-de-experiment') }}
+  {% endif %}
+{% endblock %}
+
 {% block page_css %}
   {{ css_bundle('firefox-unfck-de') }}
 {% endblock %}
@@ -57,7 +63,7 @@
     heading_level=1)
   %}
     <div class="mzp-c-hero-desc">
-      <p>Aus Liebe zum Web. Firefox ist der unabhängige Browser – unterstützt vom Non-Profit Mozilla. Schütze dich und das Web, das du liebst – Unfuck the Rest.</p>
+      <p>{% block hero_desc %}Aus Liebe zum Web. Firefox ist der unabhängige Browser – unterstützt vom Non-Profit Mozilla. Schütze dich und das Web, das du liebst – Unfuck the Rest.{% endblock %}</p>
     </div>
     {{ download_firefox(alt_copy='Download Firefox', download_location='primary cta') }}
 
