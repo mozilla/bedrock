@@ -396,6 +396,12 @@ in one or more configuration files. For example:
 
 You can read more about configuration files in the `L10n Project Configuration`_ docs.
 
+.. important::
+
+    Path definitions in Fluent configuration files are not source order dependent. A broad
+    definition using a wild card can invalidate all previous path definitions for example.
+    Paths should be defined carefully to avoid exposing .ftl files to unintended locales.
+
 Using a combination of vendor and pontoon configuration offers a flexible but specific set of
 options to choose from when it comes to defining an l10n strategy for a page. The available
 choices are:
