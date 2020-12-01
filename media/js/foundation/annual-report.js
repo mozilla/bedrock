@@ -33,7 +33,11 @@ if (typeof window.Mozilla === 'undefined') {
                     content.appendChild(modalContent);
                 },
                 onDestroy: function() {
-                    window.location.hash = '';
+                    if (window.history) {
+                        window.history.replaceState('', '', window.location.pathname);
+                    }
+                    // window.location.href = window.location.href.replace(/#.*$/, '#');
+
                     modalContent.parentNode.removeChild(modalContent);
                 }
             });
