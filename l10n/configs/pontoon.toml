@@ -156,14 +156,30 @@ locales = [
     reference = "en/firefox/whatsnew/**/*.ftl"
     l10n = "{locale}/firefox/whatsnew/**/*.ftl"
 [[paths]]
-    reference = "en/mozorg/about/**/*.ftl"
-    l10n = "{locale}/mozorg/about/**/*.ftl"
-[[paths]]
     reference = "en/mozorg/contribute.ftl"
     l10n = "{locale}/mozorg/contribute.ftl"
 [[paths]]
     reference = "en/mozorg/mission.ftl"
     l10n = "{locale}/mozorg/mission.ftl"
+[[paths]]
+    reference = "en/mozorg/about/governance/policies/*.ftl"
+    l10n = "{locale}/mozorg/about/governance/policies/*.ftl"
+    locales = [
+        "ar",
+        "de",
+        "es-ES",
+        "fr",
+        "hi-IN",
+        "id",
+        "it",
+        "ja",
+        "nl",
+        "pl",
+        "pt-BR",
+        "ru",
+        "zh-CN",
+        "zh-TW",
+    ]
 [[paths]]
     reference = "en/mozorg/newsletters.ftl"
     l10n = "{locale}/mozorg/newsletters.ftl"
