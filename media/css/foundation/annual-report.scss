@@ -430,7 +430,7 @@ $image-path: '/media/protocol/img';
         background-color: $color-black;
         color: $color-white;
     }
-    &.lime {
+    &.green {
         background: $color-green-40;
         color: $color-black;
     }
@@ -474,18 +474,37 @@ $image-path: '/media/protocol/img';
     }
 }
 
+// TODO: Fix Mobile Padding
 .mzp-c-modal-inner {
     background-color: $color-white;
+    padding-top: $layout-lg;
+}
+
+.mzp-c-modal-overlay-contents {
+    padding-top: $spacing-2xl;
 }
 
 .mzp-c-modal-close {
     background: $color-green-40;
     border-radius: 100%;
+    cursor: pointer;
     .mzp-c-modal-button-close {
         background-image: url("/media/protocol/img/icons/close.svg");
     }
 }
 
+// <div class="c-modal-next"> <button type="button" class="c-modal-button-next" title="Next">Next</button> </div>
+.c-modal-next {
+    @extend .mzp-c-modal-close;
+    top: calc(#{$spacing-2xl} + #{$spacing-sm});
+    .c-modal-button-next {
+        background-image: url("/media/protocol/img/icons/arrow-right.svg");
+    }
+}
+
+.c-modal-button-next {
+    @extend .mzp-c-modal-button-close;
+}
 
 .mzp-c-modal-overlay-contents, .mzp-c-modal-overlay-contents a:link {
     color: $color-black;

@@ -13,9 +13,30 @@ if (typeof window.Mozilla === 'undefined') {
     var modalContainers = document.getElementsByClassName('has-modal');
     var content = document.querySelector('.mzp-u-modal-content');
 
+    var modalNextButtonFragment =
+        '<div class="c-modal-next">' +
+        '    <button type="button" class="c-modal-button-next" title="Next">' +
+        '        Next' +
+        '    </button>' +
+        '</div>';
+
+    var articleArray = document.querySelectorAll('[data-modal-id]');
+
+    function showNextArticle(closeBtn, currentArticleId) {
+        closeBtn.firstElementChild.click();
+
+        var currentArticle = document.querySelector('[data-modal-id="' + currentArticleId + '"]');
+        var nextArticleId = articleArray[currentArticle.dataset.currentIndex++].dataset.modalId;
+        var nextArticle = document.querySelector('[data-modal-id="' + nextArticleId + '"]');
+
+        nextArticle.click();
+    }
+
     for (var i = 0; i < modalContainers.length; i++) {
         var modalContainer = modalContainers[i];
         modalContainer.setAttribute('aria-role', 'button');
+
+        modalContainer.dataset.currentIndex = i;
 
         modalContainer.addEventListener('click', function(e) {
             e.preventDefault();
@@ -28,16 +49,25 @@ if (typeof window.Mozilla === 'undefined') {
             modalContent.setAttribute('aria-role', 'article');
 
             Mzp.Modal.createModal(e.target, content, {
+                allowScroll: false,
                 closeText: window.Mozilla.Utils.trans('global-close'),
                 onCreate: function() {
                     content.appendChild(modalContent);
+
+                    var modalCloseButton = document.querySelector('.mzp-c-modal-close');
+                    modalCloseButton.insertAdjacentHTML('beforebegin', modalNextButtonFragment);
+
+                    var modalNextButton = document.querySelector('.c-modal-next');
+
+                    modalNextButton.addEventListener('click', function(){
+                        showNextArticle(modalCloseButton, modalId);
+                    });
                 },
                 onDestroy: function() {
+                    console.log('onDestroy');
                     if (window.history) {
                         window.history.replaceState('', '', window.location.pathname);
                     }
-                    // window.location.href = window.location.href.replace(/#.*$/, '#');
-
                     modalContent.parentNode.removeChild(modalContent);
                 }
             });
