@@ -396,6 +396,13 @@ in one or more configuration files. For example:
 
 You can read more about configuration files in the `L10n Project Configuration`_ docs.
 
+.. important::
+
+    When defining `[[paths]]` in Fluent configuration files, the order in which they appear
+    matters. The last path definition in a file will overwrite any proceeding paths should
+    they match, so make sure that broad definitions (such as paths that enable .ftl files
+    for all locales) appear first in the list, with more locale specific paths coming after.
+
 Using a combination of vendor and pontoon configuration offers a flexible but specific set of
 options to choose from when it comes to defining an l10n strategy for a page. The available
 choices are:
