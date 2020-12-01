@@ -159,11 +159,11 @@ locales = [
     reference = "en/mozorg/about/**/*.ftl"
     l10n = "{locale}/mozorg/about/**/*.ftl"
 [[paths]]
-    reference = "en/mozorg/about/contribute.ftl"
-    l10n = "{locale}/mozorg/about/contribute.ftl"
+    reference = "en/mozorg/contribute.ftl"
+    l10n = "{locale}/mozorg/contribute.ftl"
 [[paths]]
-    reference = "en/mozorg/about/mission.ftl"
-    l10n = "{locale}/mozorg/about/mission.ftl"
+    reference = "en/mozorg/mission.ftl"
+    l10n = "{locale}/mozorg/mission.ftl"
 [[paths]]
     reference = "en/mozorg/newsletters.ftl"
     l10n = "{locale}/mozorg/newsletters.ftl"
