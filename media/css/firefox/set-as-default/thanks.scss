@@ -9,7 +9,8 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/components/hero';
 @import '../../../protocol/css/components/notification-bar';
 
-/* -------------------------------------------------------------------------- */
+
+//* -------------------------------------------------------------------------- */
 // Main Hero
 
 .thanks-hero.mzp-t-product-firefox {
@@ -24,12 +25,12 @@ $image-path: '/media/protocol/img';
     }
 
     .thanks-help-text {
-        @include text-title-xxs;
+        @include text-title-2xs;
         margin-top: $layout-lg;
     }
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Conditional State
 
 .thanks-state-not-default-desktop,
@@ -93,7 +94,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Extra links section
 
 .thanks-extra-links {

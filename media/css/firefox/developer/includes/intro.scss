@@ -13,7 +13,7 @@
 }
 
 .intro-title {
-    @include text-title-lg;
+    @include text-title-md;
     background-position: top center;
     background-repeat: no-repeat;
     margin: $layout-sm auto;

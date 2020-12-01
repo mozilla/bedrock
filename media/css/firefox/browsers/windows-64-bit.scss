@@ -11,16 +11,19 @@ $image-path: '/media/protocol/img';
 
 .mzp-c-hero {
     background: $color-purple-90;
-    color: #fff;
+    color: get-theme('body-text-color-inverse');
     text-align: center;
     min-height: 500px;
     margin-bottom: $spacing-xl;
 
     .hero-content {
         padding-top: $layout-xl;
+
         h1 {
             @include text-title-lg;
+            color: get-theme('title-text-color-inverse');
             margin: 0 auto $spacing-2xl;
+
             @media #{$mq-lg} {
                 width: 400px;
             }
@@ -44,19 +47,19 @@ $image-path: '/media/protocol/img';
         margin-bottom: $layout-lg;
 
         h2 {
-            @include text-title-lg;
+            @include text-title-md;
         }
     }
 
     hr {
+        border: 2px solid $color-purple-90;
         margin: $layout-lg auto $layout-lg;
         width: 100px;
-        border: 2px solid $color-purple-90;
     }
 }
 
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Call out
 
 .mzp-c-call-out-compact.mzp-t-dark {

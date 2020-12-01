@@ -12,6 +12,12 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/components/notification-bar';
 @import 'includes/header';
 
+
+.c-page-header-logo-fx {
+    background: url($image-path + '/logos/firefox/browser/logo-word-hor-white-sm.png') no-repeat;
+    @include background-size(216px, 40px);
+}
+
 .content-main {
     padding: 0;
     @media #{$mq-md} {
@@ -36,7 +42,7 @@ $image-path: '/media/protocol/img';
 
 .mzp-c-emphasis-box {
     @include border-box;
-    color: $color-ink-80;
+    color: get-theme('body-text-color');
     margin: 0 auto $layout-sm;
     max-width: $content-md - ($layout-md * 2);
     padding: $spacing-xl;
@@ -58,6 +64,7 @@ $image-path: '/media/protocol/img';
 
     .c-emphasis-box-title {
         @include text-title-sm;
+        color: get-theme('title-text-color');
     }
 
     .c-emphasis-box-tagline {
@@ -117,6 +124,7 @@ $image-path: '/media/protocol/img';
 
     .c-picto-block-title {
         @include text-title-xs;
+        color: get-theme('title-text-color-inverse');
     }
 
     .c-picto-block-image {

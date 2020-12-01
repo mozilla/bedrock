@@ -31,6 +31,10 @@ $image-path: '/media/protocol/img';
 
 .enterprise-form {
     margin-bottom: 60px;
+
+    .mzp-c-form-title {
+        @include font-firefox;
+    }
 }
 
 @media #{$mq-md} {

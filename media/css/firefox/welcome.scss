@@ -77,8 +77,6 @@ html {
         padding-left: 0;
     }
 
-
-
     @media #{$mq-md} {
         padding: $layout-md $layout-xl;
 
@@ -91,11 +89,11 @@ html {
         }
 
         .privacy-default & {
-          padding: $layout-lg 0;
+            padding: $layout-lg 0;
 
-          p {
-              margin: 0 $layout-lg;
-          }
+            p {
+                margin: 0 $layout-lg;
+            }
         }
     }
 
@@ -150,7 +148,7 @@ html {
     }
 
     .primary-image-desc {
-        @include text-title-xxs;
+        @include text-title-2xs;
         font-style: italic;
         margin: $layout-sm 0 $layout-xl 0;
     }
@@ -247,6 +245,10 @@ html {
     @include light-links;
     background-color: $color-ink-80;
     color: $color-white;
+
+    .mzp-c-button.mzp-t-product {
+        color: $color-white;
+    }
 }
 
 

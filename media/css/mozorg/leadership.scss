@@ -98,7 +98,7 @@ $image-path: '/media/protocol/img';
     }
 
     .fn {
-        @include text-title-xxs;
+        @include text-body-md;
         font-weight: bold;
     }
 

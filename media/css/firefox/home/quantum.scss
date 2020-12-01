@@ -31,7 +31,7 @@ main .mzp-l-content {
 }
 
 .mzp-c-hero-desc {
-    @include text-title-xxl;
+    @include text-title-2xl;
     @include font-firefox;
     font-weight: bold;
     margin-bottom: $layout-md;

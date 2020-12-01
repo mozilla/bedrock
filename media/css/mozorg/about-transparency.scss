@@ -70,8 +70,12 @@ dd {
 .c-page-header {
     @include font-mozilla;
     @include text-title-xs;
-    background: $color-black;
-    color: $color-white;
+    background: get-theme('background-color-inverse');
+    color: get-theme('body-text-color-inverse');
+
+    h1 {
+        color: get-theme('title-text-color-inverse');
+    }
 
     span {
         @include text-title-xs;

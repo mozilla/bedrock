@@ -26,12 +26,12 @@ $image-path: '/media/protocol/img';
         @include text-body-xs;
     }
 
-    h3 {
-        @include text-title-sm;
-        margin-bottom: $spacing-lg;
+    .c-inline-form-title {
+        @include text-title-xs;
+        margin-bottom: $spacing-md;
     }
 
-    p {
+    .c-inline-form-body {
         @include text-body-lg;
     }
 
@@ -210,9 +210,10 @@ main .mzp-l-content {
     }
 
     .mzp-c-hero-desc {
-        @include text-title-sm;
+        @include text-title-md;
 
         p {
+            @include text-title-xs;
             margin-bottom: $spacing-lg;
         }
     }
@@ -262,17 +263,17 @@ main .mzp-l-content {
 .t-private {
     @include light-links;
     background-color: $color-ink-80;
-    color: #fff;
+    color: $color-white;
 
     h2 {
-        @include text-title-lg;
+        @include text-title-md;
         color: $color-pink-50;
         margin-top: $spacing-md;
     }
 
     // protocol/issues#335
     a:visited {
-        color: #ffffff;
+        color: $color-white;
         opacity: 0.8;
     }
 
@@ -293,7 +294,8 @@ main .mzp-l-content {
 
     h3 {
         @include bidi(((text-align, left, right),));
-        @include text-title-sm;
+        @include text-title-xs;
+        color: $color-white;
         margin-top: $spacing-2xl;
     }
 
@@ -348,7 +350,7 @@ main .mzp-l-content {
     }
 
     .mzp-c-card-feature-title {
-        @include text-title-lg;
+        @include text-title-md;
         color: $color-ink-80;
     }
 

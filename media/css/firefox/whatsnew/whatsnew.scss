@@ -28,6 +28,7 @@ $image-path: '/media/protocol/img';
 
 .wnp-main-title {
     @include text-title-md;
+    color: get-theme('title-text-color');
 }
 
 .wnp-main-tagline {
@@ -59,6 +60,11 @@ $image-path: '/media/protocol/img';
     .content-wrapper {
         background: $color-dark-gray-60;
         color: $color-white;
+    }
+
+    .wnp-main-title,
+    .c-picto-block .c-picto-block-title {
+        color: get-theme('title-text-color-inverse');
     }
 
     .send-to-device {

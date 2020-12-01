@@ -9,7 +9,7 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/components/hero';
 
 h2 {
-    @include text-display-md;
+    @include text-display-sm;
 }
 
 .faq-list li {

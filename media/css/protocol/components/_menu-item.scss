@@ -119,7 +119,7 @@ $icon-size-md: 32px;
         width: 260px;
 
         .c-menu-item-title {
-            @include text-title-xxs;
+            @include text-body-md;
         }
 
         // Hide descriptions to shorten the dropdown

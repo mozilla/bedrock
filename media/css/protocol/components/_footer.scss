@@ -227,6 +227,7 @@
 .c-footer-heading {
     &,
     & button {
+        @include font-base;
         @include text-body-md;
         @include bidi(((text-align, left, right),));
         background-color: transparent;

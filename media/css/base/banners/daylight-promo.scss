@@ -6,6 +6,7 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/includes/fonts/metropolis';
 
 #firefox-daylight-promo {
     &.c-banner {
@@ -30,7 +31,8 @@ $image-path: '/media/protocol/img';
 
     .c-banner-title {
         @include bidi(((padding-right, $spacing-lg, 0), (padding-left, 0, $spacing-lg),)); // make room for the close button
-        @include text-title-xs;
+        @include font-firefox;
+        @include font-size(24px);
     }
 
     @media #{$mq-md} {

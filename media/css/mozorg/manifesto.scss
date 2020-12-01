@@ -14,12 +14,11 @@ $image-path: '/media/protocol/img';
     margin-top: $spacing-2xl;
 }
 
-/*
-Addendum
-====================================================================== */
+//* ------------------------------------------------------------------ */
+// Addendum
 
 .addendum-subtitle {
-    @include text-title-xxl;
+    @include text-title-lg;
 }
 
 .addendum-list {
@@ -56,9 +55,9 @@ Addendum
     }
 }
 
-/*
-Share section
-====================================================================== */
+
+//* ------------------------------------------------------------------ */
+// Share section
 
 .share-addendum {
     background-color: $color-blue-05;
@@ -68,9 +67,9 @@ Share section
     margin-top: $spacing-lg;
 }
 
-/*
-Principles
-====================================================================== */
+
+//* ------------------------------------------------------------------ */
+// Principles
 
 .principles-foot {
     text-align: center;
@@ -103,7 +102,7 @@ Principles
 
 .principle-header {
     h3 {
-        @include text-title-md;
+        @include text-title-sm;
         font-weight: normal;
     }
 
@@ -118,7 +117,7 @@ Principles
     margin-top: $spacing-lg;
 
     h4 {
-        @include text-title-xxs;
+        @include text-title-3xs;
     }
 
     @media #{$mq-md} {
@@ -127,7 +126,7 @@ Principles
             (padding-left, $spacing-xl, padding-right, 0),
         ));
         @include colspan(5);
-        margin-top: 0;
+        margin-top: $spacing-sm;
     }
 
     @media #{$mq-lg} {

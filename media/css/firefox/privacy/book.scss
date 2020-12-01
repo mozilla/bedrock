@@ -13,8 +13,8 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/templates/card-layout';
 @import '../../../protocol/css/components/inline-list';
 
-/* -------------------------------------------------------------------------- */
-/* Layout adjustments */
+//* -------------------------------------------------------------------------- */
+// Layout adjustments
 
 .mzp-l-content {
     &.mzp-t-dark {
@@ -39,16 +39,16 @@ $image-path: '/media/protocol/img';
     }
 
     .mzp-c-card-feature-title {
-        @include text-display-lg;
+        @include text-title-md;
     }
 
     .mzp-c-card-feature-desc h3 {
-        @include text-display-md;
+        @include text-title-sm;
     }
 }
 
-/* -------------------------------------------------------------------------- */
-/* 15 tips section */
+//* -------------------------------------------------------------------------- */
+// 15 tips section
 
 body {
     counter-reset: tips;
@@ -57,10 +57,10 @@ body {
 .c-tips {
     .mzp-c-card-feature-content {
         h2 {
-            @include text-display-xxl;
+            @include text-title-2xl;
 
             span {
-                @include text-display-md;
+                @include text-title-md;
                 color: $color-ink-05;
                 display: block;
             }
@@ -68,7 +68,7 @@ body {
     }
 
     h3 {
-        @include text-display-lg;
+        @include text-title-md;
 
         &:before {
             counter-increment: tips;
@@ -91,11 +91,11 @@ body {
 
             &::marker {
                 font-weight: bold;
-                @include text-display-xs;
+                @include text-title-xs;
             }
 
             strong {
-                @include text-display-xs;
+                @include text-title-xs;
                 display: block;
                 margin-bottom: $spacing-xs;
             }
@@ -146,7 +146,7 @@ body {
     margin: $layout-xl auto;
 
     h3 {
-        @include text-display-sm;
+        @include text-title-sm;
         margin-top: $spacing-xl;
     }
 }

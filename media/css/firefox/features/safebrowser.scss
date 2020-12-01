@@ -11,7 +11,7 @@ $image-path: '/media/protocol/img';
 
 .mzp-c-hero {
     background: $color-purple-90;
-    color: #fff;
+    color: get-theme('body-text-color-inverse');
     text-align: center;
     min-height: 520px;
     margin-bottom: $spacing-xl;
@@ -19,9 +19,11 @@ $image-path: '/media/protocol/img';
     .hero-content {
         padding-top: $layout-xl;
         padding-bottom: $layout-xl;
+
         h1 {
             @include font-base;
             @include text-title-lg;
+            color: get-theme('title-text-color-inverse');
             margin: 0 auto $spacing-2xl;
             max-width: 580px;
         }
@@ -52,7 +54,7 @@ $image-path: '/media/protocol/img';
 
         h2 {
             @include font-base;
-            @include text-title-lg;
+            @include text-title-md;
         }
     }
 }
