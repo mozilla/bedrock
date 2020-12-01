@@ -6,6 +6,7 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/includes/fonts/metropolis';
 @import '../../../protocol/css/components/newsletter-form';
 @import '../../../protocol/css/templates/card-layout';
 
@@ -35,7 +36,7 @@ $image-path: '/media/protocol/img';
     }
 
     .contribute-intro-heading {
-        @include text-display-lg;
+        @include text-title-lg;
         padding-bottom: $spacing-md;
     }
 
@@ -179,15 +180,16 @@ $image-path: '/media/protocol/img';
 .contribute-banner-gethelp {
     background: $color-ink-80 url('/media/img/contribute/contribute-gethelp-banner-bg.jpg') center top no-repeat;
     background-size: cover;
-    color: $color-white;
+    color: get-theme('body-text-color-inverse');
 
     @media #{$mq-lg} {
         margin-bottom: $layout-lg;
     }
 
     .contribute-banner-gethelp-title {
+        @include font-firefox;
         @include font-size(24px);
-        font-family: $font-metropolis;
+        color: get-theme('title-text-color-inverse');
         position: relative;
 
         @media #{$mq-lg} {

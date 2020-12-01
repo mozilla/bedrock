@@ -486,9 +486,15 @@
     },
     {
       "files": [
-        "css/protocol/protocol.scss"
+        "css/protocol/protocol-mozilla.scss"
       ],
-      "name": "common"
+      "name": "protocol-mozilla"
+    },
+    {
+      "files": [
+        "css/protocol/protocol-firefox.scss"
+      ],
+      "name": "protocol-firefox"
     },
     {
       "files": [

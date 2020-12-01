@@ -87,7 +87,7 @@
     </fieldset>
 
     <fieldset class="mzp-c-field-set">
-      <legend class="mzp-c-form-subheading">{{ _('Contact Information') }}</legend>
+      <legend class="mzp-c-form-subtitle">{{ _('Contact Information') }}</legend>
       <div class="mzp-c-field {% if form.sr_contact_name.errors %}mzp-is-error{% endif %}">
         <label class="mzp-c-field-label" for="sr_contact_name">{{ _('Name') }}</label>
         {{ field_with_attrs(form.sr_contact_name, class='mzp-c-field-control'|safe) }}
@@ -128,7 +128,7 @@
     </fieldset>
 
     <fieldset class="mzp-c-field-set">
-      <legend class="mzp-c-form-subheading">{{ _('Event Details') }}</legend>
+      <legend class="mzp-c-form-subtitle">{{ _('Event Details') }}</legend>
 
       <div class="mzp-c-field {% if form.sr_event_venue.errors %}mzp-is-error{% endif %}">
         <label class="mzp-c-field-label" for="sr_event_venue">{{ _('Venue') }}</label>
@@ -205,7 +205,7 @@
     </fieldset>
 
     <fieldset class="mzp-c-field-set">
-      <legend class="mzp-c-form-subheading">{{ _('Presentation Details') }}</legend>
+      <legend class="mzp-c-form-subtitle">{{ _('Presentation Details') }}</legend>
 
       <div>
         <label class="mzp-c-field-label" for="sr_presentation_type">{{ _('Type of Presentation') }}</label>
@@ -227,7 +227,7 @@
     </fieldset>
 
     <fieldset class="mzp-c-field-set">
-      <legend class="mzp-c-form-subheading">{{ _('Additional Information') }}</legend>
+      <legend class="mzp-c-form-subtitle">{{ _('Additional Information') }}</legend>
 
       <div class="mzp-c-field {% if form.sr_attachment.errors %}mzp-is-error{% endif %}" id="sr_attachment">
         <label class="mzp-c-field-label" for="sr_attachment">{{ _('PDF Attachment') }}</label>

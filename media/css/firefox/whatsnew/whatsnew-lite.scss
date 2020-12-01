@@ -66,7 +66,7 @@ main {
     }
 
     .lite-header-title {
-        @include text-title-xl;
+        @include text-title-lg;
         font-weight: normal;
         text-align: center;
     }
@@ -103,7 +103,7 @@ main {
     }
 
     .lite-tagline {
-        @include text-title-sm;
+        @include text-title-xs;
         margin: 0 auto;
         max-width: 16em;
     }

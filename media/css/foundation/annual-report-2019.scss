@@ -94,6 +94,7 @@ $image-path: '/media/protocol/img';
 
 .leadership {
     .leadership-intro {
+        @include text-title-md;
         font-weight: 100;
 
         strong {
@@ -459,9 +460,6 @@ $image-path: '/media/protocol/img';
     h2 {
         @include text-title-lg;
         font-weight: 100;
-        @media #{$mq-lg} {
-            @include text-title-xl;
-        }
     }
 }
 

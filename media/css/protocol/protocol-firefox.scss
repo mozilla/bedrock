@@ -2,6 +2,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+$brand-theme: 'firefox';
+$type-scale: 'standard';
+
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
@@ -12,7 +15,6 @@ $image-path: '/media/protocol/img';
 // Fonts
 @import '../../protocol/css/includes/fonts/inter';
 @import '../../protocol/css/includes/fonts/metropolis';
-@import '../../protocol/css/includes/fonts/zilla-slab';
 
 // Base elements - general HTML elements
 @import '../../protocol/css/base/elements';
@@ -21,7 +23,7 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/base/includes';
 
 // Utility includes
-@import '../../protocol/css/base/utilities/typography';
+@import '../../protocol/css/base/utilities/titles';
 
 // Global components
 @import '../../protocol/css/components/button';

@@ -5,10 +5,10 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
+@import '../../../../protocol/css/includes/lib';
 @import '../../../../protocol/css/components/hero';
 @import '../../../../protocol/css/components/modal';
 @import '../../../../protocol/css/components/picto-card';
-@import '../../../../protocol/css/includes/lib';
 @import '../../../../protocol/css/templates/card-layout';
 
 
@@ -35,6 +35,7 @@ $image-path: '/media/protocol/img';
 
     .small-links {
         @include text-body-xs;
+        @include white-links;
         margin-top: $spacing-2xl;
 
         li {
@@ -45,7 +46,7 @@ $image-path: '/media/protocol/img';
             @include text-body-xs;
             background: none;
             border: none;
-            color: #fff;
+            color: $color-white;
             cursor: pointer;
             text-decoration: underline;
             margin: 0;

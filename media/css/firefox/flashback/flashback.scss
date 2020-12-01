@@ -30,7 +30,8 @@ $image-path: '/media/protocol/img';
     color: $color-yellow-30;
 
     h1 {
-        @include text-title-xxl;
+        @include text-title-2xl;
+        color: $color-yellow-30;
     }
 
     p {
@@ -56,6 +57,7 @@ $image-path: '/media/protocol/img';
 
     h1 {
         @include text-title-xl;
+        color: $color-yellow-30;
     }
 
     p {
@@ -95,7 +97,11 @@ $image-path: '/media/protocol/img';
 
 .t-panda {
     background-color: $color-pink-80;
-    color: #fff;
+    color: $color-white;
+
+    h3 {
+        color: inherit;
+    }
 
     .mzp-l-content:before {
         content: '✨';

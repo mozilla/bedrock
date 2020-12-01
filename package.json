@@ -4,7 +4,7 @@
   "description": "Making mozilla.org awesome, one pebble at a time",
   "private": true,
   "dependencies": {
-    "@mozilla-protocol/core": "12.1.1",
+    "@mozilla-protocol/core": "13.0.1",
     "@mozilla-protocol/eslint-config": "^1.1.0",
     "ansi-colors": "4.1.1",
     "clean-css-cli": "4.3.0",
@@ -33,10 +33,10 @@
     "url": "https://bugzilla.mozilla.org/"
   },
   "devDependencies": {
-    "browser-sync": "2.26.7",
+    "browser-sync": "^2.26.13",
     "concurrently": "4.1.2",
-    "eslint-plugin-no-jquery": "^2.5.0",
     "eslint-plugin-json": "^2.1.1",
+    "eslint-plugin-no-jquery": "^2.5.0",
     "jasmine-core": "3.4.0",
     "karma": "4.3.0",
     "karma-chrome-launcher": "3.1.0",

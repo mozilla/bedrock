@@ -20,7 +20,7 @@ $image-path: '/media/protocol/img';
     background-color: $color-white;
 
     .mzp-c-call-out-title {
-        @include text-title-lg;
+        @include text-title-md;
         margin: $spacing-md 0;
 
         strong {
@@ -51,7 +51,7 @@ $image-path: '/media/protocol/img';
     }
 
     .privacy-products-hero-sub-title {
-        @include text-title-md;
+        @include text-title-sm;
     }
 
     .privacy-products-hero-tagline {

@@ -6,11 +6,18 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/includes/fonts/metropolis';
 @import '../../../protocol/css/components/hero';
 @import '../../../protocol/css/components/billboard';
 @import '../../../protocol/css/components/newsletter-form';
 @import '../../../protocol/css/templates/card-layout';
 @import '../../../protocol/css/components/picto-card';
+
+
+.mzp-c-hero .c-primary-cta-title {
+    @include font-firefox;
+    @include text-title-md;
+}
 
 //* -------------------------------------------------------------------------- */
 // Billboard

@@ -2,8 +2,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+$brand-theme: 'firefox';
+
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
+
 @import '../../../protocol/css/includes/lib';
 @import '../../../protocol/css/components/sticky-promo';
 
@@ -22,12 +25,14 @@ $image-path: '/media/protocol/img';
 // Show Fx users a promo to try other products
 .promo-products {
     display: none;
+
     .is-firefox & {
         display: block;
+
         .mzp-c-sticky-promo-title {
             background: none;
-            padding: 0;
             margin-bottom: 0;
+            padding: 0;
             text-align: center;
         }
     }
@@ -37,30 +42,34 @@ $image-path: '/media/protocol/img';
     width: 100%;
 }
 
+
 //* -------------------------------------------------------------------------- */
 // Promo Products List Styles
 
 .promo-products-list {
-    list-style: none;
-    margin: $spacing-xl 0 0;
-    display: flex;
-    flex-direction: column;
+    @include white-links;
     align-items: center;
     border-top: $border-radius-xs solid rgba(255,255,255,0.5);
-    padding-top: $spacing-xl;
-}
-
-.promo-products-link {
     display: flex;
-    text-decoration: none !important; /* stylelint-disable-line declaration-no-important */
-    margin-bottom: $spacing-md;
-    align-items: center;
-    font-weight: bold;
-    img {
-        width: $spacing-xl;
-        height: 100%;
-        display: block;
-        margin-inline-end: $spacing-md;
+    flex-direction: column;
+    list-style: none;
+    margin: $spacing-xl 0 0;
+    padding-top: $spacing-xl;
+
+    .promo-products-link {
+        align-items: center;
+        color: $color-white;
+        display: flex;
+        font-weight: bold;
+        margin-bottom: $spacing-md;
+        text-decoration: none !important; /* stylelint-disable-line declaration-no-important */
+
+        img {
+            display: block;
+            height: 100%;
+            margin-inline-end: $spacing-md;
+            width: $spacing-xl;
+        }
     }
 }
 

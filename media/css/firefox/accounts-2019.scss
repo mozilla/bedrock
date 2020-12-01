@@ -107,7 +107,8 @@
     max-width: 330px;
     text-align: center;
 
-    .mzp-c-form-heading {
+    .mzp-c-form-title {
+        @include font-firefox;
         @include text-title-sm;
     }
 
@@ -498,7 +499,7 @@
 }
 
 .c-accounts-movement-title {
-    @include text-title-md;
+    @include text-title-sm;
 }
 
 .c-accounts-movement-desc {

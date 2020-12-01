@@ -13,7 +13,7 @@ firefox-desktop-download-meta-desc = Get { -brand-name-firefox }, a free web bro
 firefox-desktop-download-og-title = Download the fastest { -brand-name-firefox } ever
 firefox-desktop-download-og-desc = Faster page loading, less memory usage and packed with features, the new { -brand-name-firefox } is here.
 firefox-desktop-download-firefox = { -brand-name-firefox-browser }
-firefox-desktop-download-get-the-browser = Get the browser that protects what's important
+firefox-desktop-download-get-the-browser = Get the browser that protects what’s important
 # shady is slang which suggests something is untrustworthy
 firefox-desktop-download-no-shady = No shady privacy policies or back doors for advertisers. Just a lightning fast browser that doesn’t sell you out.
 firefox-desktop-download-download-options = Download options and other languages

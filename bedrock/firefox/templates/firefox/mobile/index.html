@@ -81,19 +81,19 @@
         </div>
 
         <div class="c-inline-form">
-          <h3>{{ ftl('firefox-mobile-get-firefox-for-mobile') }}</h3>
-          {% if show_send_to_device %}
-            <p>{{ ftl('firefox-mobile-send-a-download-link-to-your') }}</p>
-            {{ send_to_device(include_title=False, message_set='fx-mobile-download-desktop', class='vertical', id='s2d-primary') }}
-          {% else %}
-            <p>{{ ftl('firefox-mobile-scan-the-qr-code-to-get-started') }}</p>
-            <div class="qr-code-wrapper">
-              <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}"
-                  id="firefox-qr"
-                  data-mozillaonline-link="{{ static('img/firefox/mobile/protocol/qr-firefox-mozillaonline.png') }}"
-                  alt="{{ ftl('firefox-mobile-scan-alt-text') }}">
-            </div>
-          {% endif %}
+          <h3 class="c-inline-form-title">{{ ftl('firefox-mobile-get-firefox-for-mobile') }}</h3>
+        {% if show_send_to_device %}
+          <p class="c-inline-form-body">{{ ftl('firefox-mobile-send-a-download-link-to-your') }}</p>
+          {{ send_to_device(include_title=False, message_set='fx-mobile-download-desktop', class='vertical', id='s2d-primary') }}
+        {% else %}
+          <p class="c-inline-form-body">{{ ftl('firefox-mobile-scan-the-qr-code-to-get-started') }}</p>
+          <div class="qr-code-wrapper">
+            <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}"
+                id="firefox-qr"
+                data-mozillaonline-link="{{ static('img/firefox/mobile/protocol/qr-firefox-mozillaonline.png') }}"
+                alt="{{ ftl('firefox-mobile-scan-alt-text') }}">
+          </div>
+        {% endif %}
         </div>
 
       </div>
@@ -171,19 +171,19 @@
           <div class="mzp-c-hero-cta">
             <div class="header-product-ctas hide-from-legacy-ie">
               <div class="c-inline-form">
-                <h3>{{ ftl('firefox-mobile-get-firefox-for-mobile') }}</h3>
-                {% if show_send_to_device %}
-                  <p>{{ ftl('firefox-mobile-send-a-download-link-to-your') }}</p>
-                  {{ send_to_device(include_title=False, message_set='fx-mobile-download-desktop', class='vertical', id='s2d-secondary') }}
-                {% else %}
-                  <p>{{ ftl('firefox-mobile-scan-the-qr-code-to-get-started') }}</p>
-                  <div class="qr-code-wrapper">
-                    <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}"
-                        id="firefox-qr"
-                        data-mozillaonline-link="{{ static('img/firefox/mobile/protocol/qr-firefox-mozillaonline.png') }}"
-                        alt="{{ ftl('firefox-mobile-scan-alt-text') }}">
-                  </div>
-                {% endif %}
+                <h3 class="c-inline-form-title">{{ ftl('firefox-mobile-get-firefox-for-mobile') }}</h3>
+              {% if show_send_to_device %}
+                <p class="c-inline-form-body">{{ ftl('firefox-mobile-send-a-download-link-to-your') }}</p>
+                {{ send_to_device(include_title=False, message_set='fx-mobile-download-desktop', class='vertical', id='s2d-secondary') }}
+              {% else %}
+                <p class="c-inline-form-body">{{ ftl('firefox-mobile-scan-the-qr-code-to-get-started') }}</p>
+                <div class="qr-code-wrapper">
+                  <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}"
+                      id="firefox-qr"
+                      data-mozillaonline-link="{{ static('img/firefox/mobile/protocol/qr-firefox-mozillaonline.png') }}"
+                      alt="{{ ftl('firefox-mobile-scan-alt-text') }}">
+                </div>
+              {% endif %}
               </div>
             </div>
 

@@ -28,6 +28,7 @@ $image-path: '/media/protocol/img';
 
 .wnp-main-title {
     @include text-title-md;
+    color: get-theme('title-text-color');
 }
 
 .wnp-main-tagline {
@@ -94,6 +95,8 @@ $image-path: '/media/protocol/img';
     }
 
     .wnp-main-title {
+        color: get-theme('title-text-color-inverse');
+
         strong {
             color: $color-violet-20;
         }

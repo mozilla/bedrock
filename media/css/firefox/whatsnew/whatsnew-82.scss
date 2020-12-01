@@ -28,6 +28,7 @@ $image-path: '/media/protocol/img';
 
 .wnp-main-title {
     @include text-title-md;
+    color: get-theme('title-text-color');
 
     strong {
         color: $color-violet-50;
@@ -51,6 +52,7 @@ $image-path: '/media/protocol/img';
 
     .c-picto-block-title {
         @include text-title-xs;
+        color: get-theme('title-text-color');
     }
 
     .c-picto-block-image {
@@ -112,9 +114,15 @@ $image-path: '/media/protocol/img';
     }
 
     .wnp-main-title {
+        color: get-theme('title-text-color-inverse');
+
         strong {
             color: $color-violet-20;
         }
+    }
+
+    .c-picto-block .c-picto-block-title {
+        color: get-theme('title-text-color-inverse');
     }
 
     .c-utilities a {

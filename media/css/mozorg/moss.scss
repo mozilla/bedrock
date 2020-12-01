@@ -69,8 +69,9 @@ $image-path: '/media/protocol/img';
 
     .page-heading {
         @include text-title-md;
-        text-align: center;
+        color: $color-white;
         margin-bottom: 0;
+        text-align: center;
     }
 
     @media #{$mq-md} {

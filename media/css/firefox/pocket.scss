@@ -64,6 +64,10 @@ $image-path: '/media/protocol/img';
     background: #50aaa8 linear-gradient(to bottom, #50aaa8, #5ec4c0);
     margin-bottom: $layout-sm;
 
+    .mzp-c-hero-desc {
+        color: $color-white;
+    }
+
     @media #{$mq-md} {
         margin-bottom: $layout-xl;
 

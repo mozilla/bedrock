@@ -11,29 +11,33 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/components/call-out';
 @import '../protocol/components/sub-navigation';
 
-/* -------------------------------------------------------------------------- */
+
+//* -------------------------------------------------------------------------- */
 // Call out / page header
 
-/* nightly header gradient */
+.mzp-c-call-out.mzp-t-product-firefox,
+.mzp-c-call-out.mzp-t-product-beta {
+    background: $color-marketing-gray-20;
+}
+
+// nightly header gradient
 .mzp-c-call-out.mzp-t-product-nightly {
     background: linear-gradient(#000000, #001e44);
 }
 
-/* developer header gradient */
+// developer header gradient
 .mzp-c-call-out.mzp-t-product-developer {
     background: linear-gradient(#000000, #001e44);
 }
 
 
-
-/* old logos
-  - cannot use at2x mixin here because it will over-ride the background-size,
-    which we don't want to have to reset here because it's different for
-    mobile and desktop
-*/
+// old logos
+//  - cannot use at2x mixin here because it will over-ride the background-size,
+//    which we don't want to have to reset here because it's different for
+//    mobile and desktop
 
 .t-quantum {
-    /* firefox release */
+    // firefox release
     .mzp-c-call-out.mzp-t-product-firefox .mzp-c-call-out-title {
         background-image: url('/media/img/firefox/releasenotes/release-quantum.png');
 
@@ -42,7 +46,7 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    /*  firefox beta */
+    // firefox beta
     .mzp-c-call-out.mzp-t-product-beta .mzp-c-call-out-title {
         background-image: url('/media/img/firefox/releasenotes/beta-quantum.png');
 
@@ -51,7 +55,7 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    /* firefox nightly */
+    // firefox nightly
     .mzp-c-call-out.mzp-t-product-nightly .mzp-c-call-out-title {
         background-image: url('/media/img/firefox/releasenotes/nightly-quantum.png');
 
@@ -60,7 +64,7 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    /*  firefox developer edition */
+    // firefox developer edition
     .mzp-c-call-out.mzp-t-product-developer .mzp-c-call-out-title {
         background-image: url('/media/img/firefox/releasenotes/developer-quantum.png');
 
@@ -69,7 +73,7 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    /*  pre-dev edition firefox aurora */
+    // pre-dev edition firefox aurora
     .mzp-c-call-out.mzp-t-product-developer.t-aurora .mzp-c-call-out-title {
         background-image: url('/media/img/firefox/releasenotes/aurora.png');
 
@@ -80,7 +84,7 @@ $image-path: '/media/protocol/img';
 }
 
 .t-pre-quantum {
-    /* firefox release */
+    // firefox release
     .mzp-c-call-out.mzp-t-product-firefox .mzp-c-call-out-title {
         background-image: url('/media/img/firefox/releasenotes/firefox-old.png');
 
@@ -89,7 +93,7 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    /*  firefox beta */
+    // firefox beta
     .mzp-c-call-out.mzp-t-product-beta .mzp-c-call-out-title {
         background-image: url('/media/img/firefox/releasenotes/beta-old.png');
 
@@ -98,7 +102,7 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    /* firefox nightly */
+    // firefox nightly
     .mzp-c-call-out.mzp-t-product-nightly .mzp-c-call-out-title {
         background-image: url('/media/img/firefox/releasenotes/nightly-old.png');
 
@@ -107,7 +111,7 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    /*  firefox developer edition */
+    // firefox developer edition
     .mzp-c-call-out.mzp-t-product-developer .mzp-c-call-out-title {
         background-image: url('/media/img/firefox/releasenotes/developer-old.png');
 
@@ -116,7 +120,7 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    /*  pre-dev edition firefox aurora */
+    // pre-dev edition firefox aurora
     .mzp-c-call-out.mzp-t-product-developer.t-aurora .mzp-c-call-out-title {
         background-image: url('/media/img/firefox/releasenotes/aurora.png');
 
@@ -137,7 +141,8 @@ $image-path: '/media/protocol/img';
     }
 }
 
-/* -------------------------------------------------------------------------- */
+
+//* -------------------------------------------------------------------------- */
 // secondary navigation
 
 .t-release {
@@ -156,7 +161,8 @@ $image-path: '/media/protocol/img';
     }
 }
 
-/* -------------------------------------------------------------------------- */
+
+//* -------------------------------------------------------------------------- */
 // release notes custom typography
 
 .c-release-summary {
@@ -176,17 +182,17 @@ $image-path: '/media/protocol/img';
 .mzp-l-content {
     .c-release-product {
         @include font-base;
-        @include text-title-xxs;
+        @include text-title-2xs;
     }
      .c-release-date {
         @include font-base;
-        @include text-title-xxs;
+        @include text-title-2xs;
     }
 
     .c-release-first-title,
     .c-release-draft-title {
         @include font-base;
-        @include text-title-xxs;
+        @include text-title-2xs;
         font-weight: bold;
 
         // pushes the text down after the big release-version text
@@ -299,8 +305,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-/* icons */
-
+// icons
 .sidebar-icon {
     float: left;
     margin-right: $spacing-sm;
@@ -352,7 +357,8 @@ $image-path: '/media/protocol/img';
     }
 }
 
-/* -------------------------------------------------------------------------- */
+
+//* -------------------------------------------------------------------------- */
 // all-download link
 
 .all-download {
@@ -366,24 +372,26 @@ $image-path: '/media/protocol/img';
     }
 }
 
-/* -------------------------------------------------------------------------- */
+
+//* -------------------------------------------------------------------------- */
 // Compact call out
 
 .mzp-c-call-out-compact {
     margin-top: $layout-md;
 }
 
-/* nightly footer gradient */
+// nightly footer gradient
 .mzp-c-call-out-compact.mzp-t-product-nightly {
     background: linear-gradient(#001e44, #002d66);
 }
 
-/* developer footer gradient */
+// developer footer gradient
 .mzp-c-call-out-compact.mzp-t-product-developer {
     background: linear-gradient(#001e44, #002d66);
 }
 
-/* -------------------------------------------------------------------------- */
+
+//* -------------------------------------------------------------------------- */
 // more information links at end of page
 
 .c-release-footer {

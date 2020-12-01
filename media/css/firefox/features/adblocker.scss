@@ -11,7 +11,7 @@ $image-path: '/media/protocol/img';
 @import "../../../protocol/css/templates/card-layout";
 @import "../../../protocol/css/components/call-out";
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Custom layout
 
 ul li span {
@@ -54,19 +54,24 @@ ul li span {
 
 section.mzp-c-hero {
     padding: 0;
+
+    .mzp-c-hero-title {
+        @include text-title-md;
+    }
+
     .mzp-c-hero-subtitle {
-        @include text-title-sm;
+        @include text-title-xs;
     }
 }
 
 .section-title {
-    @include text-title-sm;
+    @include text-title-xs;
     text-align: center;
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 
 .mzp-c-call-out.tracking {
-    background-color: #fff;
+    background-color: $color-white;
     margin-bottom: 50px;
 }
