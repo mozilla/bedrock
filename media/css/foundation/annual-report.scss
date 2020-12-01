@@ -68,15 +68,38 @@ $image-path: '/media/protocol/img';
 
 #annual-2019 {
 
-    .c-banner {
+    .c-hero-banner {
         background: url('/media/img/foundation/annualreport/2019/pixel-bg.svg') right center no-repeat;
         background-size: contain;
+        margin-bottom: $spacing-2xl;
+        @media #{$mq-md} {
+            background-position: right center;
+            background-size: auto 180%;
+        }
         h1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: $color-black;
             font-weight: normal;
-            span {
+            .highlight {
                 font-weight: bold;
-                color: $color-white;
+            }
+            .left {
+                text-align: right;
+                position: relative;
+                img {
+                    right: 0;
+                    position: absolute;
+                    display: block;
+                    margin-top: $spacing-lg;
+                    max-width: $content-sm;
+                }
+            }
+            .right {
+                margin-top: $spacing-xl;
+                margin-left: $spacing-lg;
+                align-self: flex-start;
             }
         }
         // @include at2x('/media/img/foundation/annualreport/2019/pixel-bg.svg', 760px, 394px);
@@ -290,7 +313,7 @@ $image-path: '/media/protocol/img';
 /* -------------------------------------------------------------------------- */
 // Page footer
 
-.c-site-footer {
+.c-site-footer, .c-report-pdfs {
 
     ul {
         margin: 0 auto $spacing-xl;
@@ -469,8 +492,14 @@ $image-path: '/media/protocol/img';
         margin-left: auto;
     }
     li {
+        @include font-mozilla;
+        @include text-title-xs
         margin-left: $spacing-md;
         margin-bottom: $spacing-lg;
+        padding-left: $spacing-sm;
+        .highlight {
+            margin-left: -$spacing-sm;
+        }
     }
 }
 
@@ -482,6 +511,26 @@ $image-path: '/media/protocol/img';
 
 .mzp-c-modal-overlay-contents {
     padding-top: $spacing-2xl;
+    .mzp-c-card-feature-title {
+        @include text-title-md;
+    }
+    .mzp-c-card-feature-content-container {
+        position: relative;
+        img {
+            margin-top: -$spacing-2xl;
+            margin-bottom: $spacing-md;
+            width: 100%;
+            max-width: $content-sm;
+            height: auto;
+            display: none;
+            @media #{$mq-md} {
+                display: block;
+            }
+            @media #{$mq-lg} {
+                margin-top: -$layout-lg;
+            }
+        }
+    }
 }
 
 .mzp-c-modal-close {
@@ -493,7 +542,6 @@ $image-path: '/media/protocol/img';
     }
 }
 
-// <div class="c-modal-next"> <button type="button" class="c-modal-button-next" title="Next">Next</button> </div>
 .c-modal-next {
     @extend .mzp-c-modal-close;
     top: calc(#{$spacing-2xl} + #{$spacing-sm});
@@ -506,6 +554,35 @@ $image-path: '/media/protocol/img';
     @extend .mzp-c-modal-button-close;
 }
 
-.mzp-c-modal-overlay-contents, .mzp-c-modal-overlay-contents a:link {
+.mzp-c-modal-overlay-contents, .mzp-c-modal-overlay-contents a:link, .mzp-c-modal-overlay-contents a:visited {
     color: $color-black;
+}
+
+.mzp-c-button {
+    margin-top: $spacing-md;
+}
+
+.c-section-intro {
+    margin-left: 0;
+    padding-top: $layout-lg;
+    max-width: $content-md;
+    h2 {
+        @include text-title-sm;
+        font-weight: 100;
+    }
+}
+
+.c-article-list {
+    .mzp-c-card-feature-title, .mzp-c-card-title {
+        font-weight: 100;
+    }
+    .mzp-c-card-feature {
+        margin-bottom: $spacing-lg;
+    }
+    .mzp-c-card {
+        background-color: transparent;
+        &:hover {
+            background-color: $color-white;
+        }
+    }
 }

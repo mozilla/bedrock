@@ -64,7 +64,6 @@ if (typeof window.Mozilla === 'undefined') {
                     });
                 },
                 onDestroy: function() {
-                    console.log('onDestroy');
                     if (window.history) {
                         window.history.replaceState('', '', window.location.pathname);
                     }
