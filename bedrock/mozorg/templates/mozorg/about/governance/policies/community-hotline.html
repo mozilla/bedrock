@@ -12,17 +12,24 @@
 {% endblock %}
 
 {% block article %}
-  <h1 class="mzp-c-article-title">{{ ftl('community-hotline-community-participation') }}</h1>
+  <h1 class="mzp-c-article-title">{{ ftl('community-hotline-community-participation-report', fallback='community-hotline-community-participation') }}</h1>
 
   <p>
   {{ ftl('community-hotline-the-heart-of-mozilla') }}
   </p>
 
-  <p>
-  {{ ftl('community-hotline-to-report-violations', howto=url('mozorg.about.governance.policies.reporting')) }}
-  </p>
+  {% if ftl_has_messages('community-hotline-to-report-violations-email') %}
+    <p>
+    {{ ftl('community-hotline-to-report-violations-email', mailto_report='mailto:cpg-report@mozilla.com', howto=url('mozorg.about.governance.policies.reporting')) }}
+    </p>
+  {% else %}
+    <p>
+    {{ ftl('community-hotline-to-report-violations', howto=url('mozorg.about.governance.policies.reporting')) }}
+    </p>
 
-  <p>
-    <a class="mzp-c-button" href="https://app.convercent.com/en-us/Anonymous/IssueIntake/Survey?organizationId=11885ec6-e5a6-e811-80e6-000d3ab6ebad&intakeChannelId=2d885ec6-e5a6-e811-80e6-000d3ab6ebad">{{ ftl('community-hotline-report') }}</a>
-  </p>
+    <p>
+      <a class="mzp-c-button" href="https://app.convercent.com/en-us/Anonymous/IssueIntake/Survey?organizationId=11885ec6-e5a6-e811-80e6-000d3ab6ebad&intakeChannelId=2d885ec6-e5a6-e811-80e6-000d3ab6ebad">{{ ftl('community-hotline-report') }}</a>
+    </p>
+  {% endif %}
+
 {% endblock %}
