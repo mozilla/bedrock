@@ -86,5 +86,5 @@ prod:
   only:
     - prod
   variables:
-    CLUSTERS: frankfurt iowa-a
+    CLUSTERS: mozmeao-fr iowa-a
     NAMESPACE: bedrock-prod
