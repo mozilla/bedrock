@@ -378,7 +378,7 @@ $image-path: '/media/protocol/img';
 .c-media {
     margin: $spacing-lg 0;
 
-    h3 span {
+    h3  {
         @include visually-hidden;
     }
 }
@@ -513,12 +513,12 @@ $image-path: '/media/protocol/img';
 .mzp-c-modal-overlay-contents {
     padding-top: $spacing-2xl;
 
-    span, p {
+    p {
         @include text-body-md;
     }
 
     .mzp-c-card-feature-title, .highlight {
-        @include text-title-md;
+        // @include text-title-md;
     }
     .mzp-c-card-feature-content-container {
         position: relative;
@@ -535,6 +535,9 @@ $image-path: '/media/protocol/img';
             @media #{$mq-lg} {
                 margin-top: -$layout-lg;
             }
+        }
+        p {
+            margin-bottom: $spacing-md;
         }
     }
 }
@@ -584,9 +587,9 @@ $image-path: '/media/protocol/img';
     color: $color-black;
 }
 
-.mzp-c-button {
-    margin-top: $spacing-md;
-}
+// .mzp-c-button {
+//     margin-top: $spacing-md;
+// }
 
 .c-section-intro {
     margin-left: 0;
