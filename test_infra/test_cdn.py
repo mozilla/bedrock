@@ -53,6 +53,24 @@ def test_geo(base_url):
     assert cdn_country == mls_country
 
 
+@pytest.mark.nondestructive
+def test_query_params(base_url):
+    """Query params should be respected in the cache and bedrock should respond appropriately
+
+    Based on the `firefox_mobile_faq` function in `bedrock/firefox/redirects.py`.
+    """
+    url = f'{base_url}/mobile/faq/'
+    resp = requests.head(url)
+    assert resp.status_code == 301
+    assert resp.headers['location'] == 'https://support.mozilla.org/products/mobile'
+
+    # with query string
+    url = f'{base_url}/mobile/faq/?os=firefox-os'
+    resp = requests.head(url)
+    assert resp.status_code == 301
+    assert resp.headers['location'] == 'https://support.mozilla.org/products/firefox-os'
+
+
 @pytest.mark.skipif(not TLS_DATA_PATH.exists(), reason='TLS data file missing')
 @pytest.mark.nondestructive
 def test_tls():
