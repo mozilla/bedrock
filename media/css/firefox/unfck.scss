@@ -6,35 +6,45 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 @import '../../protocol/css/includes/lib';
 @import '../../protocol/css/includes/forms/lib';
-
-@import '../../protocol/css/components/card';
-@import '../../protocol/css/components/feature-card';
+@import '../../protocol/css/components/call-out';
 @import '../../protocol/css/components/hero';
-@import '../../protocol/css/templates/card-layout';
-
-
 
 // --------------------------------------------------------------------------
 // conditional content classes
 
-.cc-mobile {
+.cc-mobile,
+.cc-firefox,
+.cc-firefox-mobile,
+.cc-start,
+.cc-send-to-mobile {
     display: none;
 }
 
 // firefox
 .is-firefox {
-    .cc-download {
+    .cc-download,
+    .cc-default {
         display: none;
     }
-    .cc-mobile {
+    .cc-firefox,
+    .cc-send-to-mobile {
         display: block;
+    }
+    .cc-start {
+        display: inline;
+    }
+
+    #pni {
+        display: none;
     }
 }
 
 // mobile
 .ios,
 .android {
-    .cc-download {
+    .cc-download,
+    .cc-desktop,
+    .cc-send-to-mobile {
         display: none;
     }
     .cc-mobile {
@@ -43,10 +53,24 @@ $image-path: '/media/protocol/img';
 
     // mobile firefox
     &.is-firefox {
-        .cc-start,
         .cc-download,
+        .cc-send-to-mobile,
+        .c-download-secondary,
         .cc-mobile {
             display: none;
+        }
+
+        .cc-firefox,
+        .cc-firefox-mobile {
+            display: block;
+        }
+
+        #contain {
+            display: none;
+        }
+
+        #pni {
+            display: grid;
         }
     }
 }
@@ -315,9 +339,17 @@ main {
     padding-top: 0;
     padding-bottom: 0;
 
+    .mzp-c-hero-desc p {
+        margin-bottom: 0;
+    }
+
     ul.download-list,
     .mzp-c-button-download-container {
         margin-bottom: 0;
+    }
+
+    .mobile-download-buttons {
+        margin-top: $spacing-lg;
     }
 }
 
@@ -382,7 +414,8 @@ main {
     text-align: center;
 }
 
-.c-item-gif {
+.c-item-gif,
+.c-item-gif-noscript {
     display: block;
     margin: 0 auto $layout-sm;
     max-width: 280px;
@@ -393,6 +426,16 @@ main {
         display: block;
         width: 100%;
     }
+}
+
+// only display lazy imgs when JS is enabled
+// noscript images shown by default
+.no-js .c-item-gif {
+    display: none;
+}
+
+.js .c-item-gif {
+    display: block;
 }
 
 .c-item-title {
@@ -471,7 +514,7 @@ main {
 .c-section-title {
     @include text-title-md;
     margin: 0 auto;
-    max-width: $content-md + $layout-lg * 2;
+    max-width: $content-lg + $layout-lg * 2;
     padding: 0 $layout-sm;
     text-align: center;
 
@@ -493,195 +536,104 @@ main {
 }
 
 // --------------------------------------------------------------------------
-// giphy box
+// Sharing section (Firefox visitors only)
 
-.c-box {
-    @include clearfix();
-    border-radius: $border-radius-md;
-    border: 1px solid $color-violet-50;
-    padding: $layout-sm;
+.c-share {
     text-align: center;
-    margin-bottom: $v-grid-xs;
+    margin: $layout-xl 0 $layout-sm;
 
-    @media #{$mq-md} {
-        padding: $layout-md;
-        margin-bottom: $v-grid-md;
+    .c-share-title {
+        @include text-title-xs;
     }
 
-    @media #{$mq-lg} {
-        margin-bottom: $v-grid-lg;
+    .c-share-desc {
+        margin: 0 auto $spacing-xl;
+        max-width: 500px;
     }
 
-    @media #{$mq-xl} {
-        padding: $layout-lg;
-    }
-}
+    .c-share-link-twitter,
+    .c-share-link-facebook {
+        @include image-replaced;
+        background-color: $color-green-30;
+        background-position: center center;
+        background-repeat: no-repeat;
+        border-radius: 100%;
+        display: inline-block;
+        height: 50px;
+        margin: 0 $spacing-sm;
+        width: 50px;
 
-.c-box-gifs {
-    margin-top: $layout-sm;
-}
+        &:hover {
+            background-color: $color-green-50;
+        }
 
-.c-box-gif {
-    margin-top: $layout-sm;
-
-    &:first-child {
-        margin-top: 0;
-    }
-}
-
-@media #{$mq-sm} {
-    .c-box-gif {
-        float: left;
-        margin-top: 0;
-        margin-left: $layout-sm;
-        max-width: calc(33.3% - #{$layout-sm * 2 / 3});
-
-        &:first-child {
-            margin-left: 0;
+        &:focus {
+            box-shadow: $field-focus-ring-dark;
         }
     }
-}
 
-@supports (display:grid) {
-    @media #{$mq-lg} {
-        .c-box {
-            @include grid-column-gap($h-grid-md);
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            text-align: left;
-        }
+    .c-share-link-twitter {
+        background-image: url('/media/img/firefox/campaign/unfck/en/share/tw.svg');
+    }
+
+    .c-share-link-facebook {
+        background-image: url('/media/img/firefox/campaign/unfck/en/share/fb.svg');
     }
 }
 
 // --------------------------------------------------------------------------
-// cards
-// https://github.com/mozilla/protocol/issues/536
-// https://github.com/mozilla/bedrock/pull/9096
+// Secondary download section
 
-.mzp-l-content.c-cards {
-    padding-bottom: 0;
-}
-
-.mzp-c-card {
+.c-download-secondary.mzp-t-dark {
     background-color: transparent;
-    margin-bottom: $v-grid-xs;
+    padding-bottom: $layout-lg;
 
-    @media #{$mq-md} {
-        margin-bottom: $v-grid-md;
-    }
-
-    @media #{$mq-lg} {
-        margin-bottom: $v-grid-lg;
-    }
-
-    .mzp-c-card-block-link:hover,
-    .mzp-c-card-block-link:active,
-    .mzp-c-card-block-link:focus {
-        box-shadow: 0 0 0 1px $color-green-50;
-    }
-}
-
-.mzp-c-card-desc {
-    color: $color-white;
-}
-
-.mzp-l-card-third {
-    margin: 0 auto;
-
-    .mzp-c-card {
-        @media #{$mq-sm} {
-            @include bidi((
-                (margin-left, 0, $h-grid-xs),
-                (margin-right, $h-grid-xs, 0),
-            ));
-            width: calc(50% - (#{$h-grid-xs} / 2));
-
-            &:nth-child(even) {
-                margin-left: 0;
-                margin-right: 0;
-            }
-        }
-
-        @media #{$mq-md} {
-            @include bidi((
-                (margin-left, 0, $h-grid-md),
-                (margin-right, $h-grid-md, 0),
-            ));
-            width: calc(50% - (#{$h-grid-md} / 2));
-
-            &:nth-child(even) {
-                margin-left: 0;
-                margin-right: 0;
-            }
-        }
-
-        @media #{$mq-lg} {
-            width: calc(33.3% - (#{$h-grid-lg} - (#{$h-grid-lg} / 3)));
-
-            &:nth-child(even) {
-                @include bidi((
-                    (margin-left, 0, $h-grid-lg),
-                    (margin-right, $h-grid-lg, 0),
-                ));
-            }
-
-            &:nth-child(3n) {
-                @include bidi(((margin-right, 0, margin-left, 0),));
-            }
-        }
+    .mzp-c-call-out-title {
+        @include text-title-lg;
+        max-width: 600px;
+        margin: 0 auto $spacing-2xl;
     }
 }
 
 // --------------------------------------------------------------------------
 // GIF backgrounds (display while they are loading)
 
-
-#mug {
-    background-color: #fbede8;
-}
-
-#smile {
-    background-color: #43238b;
-}
-
-#todo {
-    background-color: #fa838c;
-}
-
 .c-item-gif {
-    #pocket {
-        background-color: #fde2e8;
+    #safe & {
+        background-color: #fb838d;
     }
 
-    #trending & {
-        background-color: #fa838c;
+    #stop-ads & {
+        background-color: #332362;
     }
 
-    #group & {
-        background-color: #fbfbfb;
+    #facebook & {
+        background-color: #198fe8;
     }
 
-    #poli & {
-        background-color: #43238b;
-    }
-
-    #regrets & {
-        background-color: #1e4ffc;
+    #non-profit & {
+        background-color: #3662ff;
     }
 
     #contain & {
         background-color: #198fe8;
     }
 
-    #join & {
-        background-color: #fbede8;
+    #pocket & {
+        background-color: $color-white;
+        color: $color-black;
     }
 
-    #social & {
-        background-color: #eae5fe;
+    #pni & {
+        background-color: #3662ff;
     }
 
-    #share & {
-        background-color: #2b1141;
+    #tell-us & {
+        background-color: #2b0f42;
+    }
+
+    #donate & {
+        background-color: #ebe6fd;
+        color: $color-black;
     }
 }

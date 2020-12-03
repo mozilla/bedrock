@@ -20,10 +20,9 @@ def test_download_button_displayed(locale, base_url, selenium):
 
 
 @pytest.mark.skip_if_not_firefox(reason='App Store badges are displayed only to Firefox users')
-def test_app_store_buttons_displayed(base_url, selenium):
+def test_get_mobile_button_displayed(base_url, selenium):
     page = FirefoxUnfckPage(selenium, base_url).open()
-    assert page.is_play_store_button_displayed
-    assert page.is_app_store_button_displayed
+    assert page.is_send_to_mobile_button_displayed
 
 
 @pytest.mark.skip_if_not_firefox(reason='Facebook Container button is displayed only to Firefox users')
