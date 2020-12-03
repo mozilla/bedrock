@@ -68,10 +68,10 @@
     {{ download_firefox(alt_copy='Download Firefox', download_location='primary cta') }}
 
     <div class="show-android mobile-badge hide-from-legacy-ie">
-      {{ google_play_button(href=android_url, id='play-store-link-primary') }}
+      {{ google_play_button(href=android_url, id='play-store-link-primary', extra_data_attributes={'data-download-location': 'primary cta'}) }}
     </div>
     <div class="show-ios mobile-badge hide-from-legacy-ie">
-      <a id="app-store-link-primary" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
+      <a id="app-store-link-primary" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS" data-download-location="primary cta">
         <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
       </a>
     </div>
@@ -149,10 +149,10 @@
         <p>Der Firefox Browser ist von Grund auf auf Privatsphäre getrimmt. Das schützt dich nicht nur beim Surfen, sondern macht dich auch schneller. Nervige Werbung und Online-Tracker werden geblockt und ziehen nicht länger deine Performance herunter.</p>
         {{ download_firefox(dom_id='secondary-download', alt_copy='Hol dir Firefox', download_location='secondary cta', button_class='') }}
         <div class="show-android mobile-badge show-firefox hide-from-legacy-ie">
-          {{ google_play_button(href=android_url, id='play-store-link-secondary') }}
+          {{ google_play_button(href=android_url, id='play-store-link-secondary', extra_data_attributes={'data-download-location': 'secondary cta'}) }}
         </div>
         <div class="show-ios mobile-badge show-firefox hide-from-legacy-ie">
-          <a id="app-store-link-secondary" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
+          <a id="app-store-link-secondary" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS" data-download-location="secondary cta">
             <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
           </a>
         </div>

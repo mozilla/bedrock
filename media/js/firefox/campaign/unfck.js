@@ -4,6 +4,43 @@
 
 
 /*
+    Image lazy loading
+*/
+(function() {
+    'use strict';
+
+    /**
+     * Safari on iOS and macOS does not yet support loading="lazy", so make sure that images
+     * with display: none; in CSS are not loaded wastefully.
+     */
+    var isFirefox = document.getElementsByTagName('html')[0].classList.contains('is-firefox');
+    var lazyImages = document.querySelectorAll('.c-item-gif');
+
+    if (isFirefox) {
+        lazyImages = document.querySelectorAll('.c-section-unfck-list.cc-firefox .c-item-gif');
+    } else {
+        lazyImages = document.querySelectorAll('.c-section-unfck-list.cc-default .c-item-gif');
+    }
+
+    for (var i = 0; i < lazyImages.length; i++) {
+        var sources = lazyImages[i].childNodes;
+
+        for (var j = 0; j < sources.length; j++) {
+            // skip text nodes
+            if (sources[j].nodeType === 3) {
+                continue;
+            }
+            if (sources[j].hasAttribute('data-srcset')) {
+                sources[j].srcset = sources[j].getAttribute('data-srcset');
+            } else if (sources[j].hasAttribute('data-src')) {
+                sources[j].src = sources[j].getAttribute('data-src');
+            }
+        }
+    }
+
+})();
+
+/*
     Twitter sharing
 */
 (function() {
@@ -49,7 +86,7 @@
         // Track the event in GA
         window.dataLayer.push({
             'event': 'in-page-interaction',
-            'eAction': 'checklist',
+            'eAction': 'share',
             'eLabel': 'share to ' + service,
         });
     }
@@ -57,14 +94,11 @@
     function onLoad() {
         // Set up twitter link handler
         var tw = document.getElementById('js-tw');
-        var twJack = document.getElementById('js-tw-jack');
         var fb = document.getElementById('js-fb');
 
         tw.addEventListener('click', handleShareLinkClick, false);
-        twJack.addEventListener('click', handleShareLinkClick, false);
         fb.addEventListener('click', handleShareLinkClick, false);
     }
 
     window.Mozilla.run(onLoad);
 })();
-
