@@ -469,6 +469,7 @@ $image-path: '/media/protocol/img';
 
 .pixel-effect {
     position: relative;
+
     &::after {
         content: " ";
         background: url('/media/img/foundation/annualreport/2019/pixel-small-bg.svg') center center no-repeat;
@@ -511,13 +512,12 @@ $image-path: '/media/protocol/img';
 
 .mzp-c-modal-overlay-contents {
     padding-top: $spacing-2xl;
-    @include font-base;
 
     span, p {
         @include text-body-md;
     }
 
-    .mzp-c-card-feature-title {
+    .mzp-c-card-feature-title, .highlight {
         @include text-title-md;
     }
     .mzp-c-card-feature-content-container {
@@ -542,21 +542,41 @@ $image-path: '/media/protocol/img';
 .mzp-c-modal-close {
     background: $color-green-40;
     border-radius: 100%;
-    cursor: pointer;
+    button {
+        cursor: pointer;
+    }
     .mzp-c-modal-button-close {
         background-image: url("/media/protocol/img/icons/close.svg");
     }
 }
 
 .c-modal-next {
+    .hide-next & {
+        display: none;
+    }
     @extend .mzp-c-modal-close;
-    top: calc(#{$spacing-2xl} + #{$spacing-sm});
+    right: 3.75rem;
     .c-modal-button-next {
         background-image: url("/media/protocol/img/icons/arrow-right.svg");
     }
 }
 
-.c-modal-button-next {
+.c-modal-prev {
+    @extend .mzp-c-modal-close;
+    right: 7.1rem;
+    .hide-next & {
+        right: 3.75rem;
+    }
+    .hide-prev & {
+        display: none;
+    }
+
+    .c-modal-button-prev {
+        background-image: url("/media/protocol/img/icons/arrow-left.svg");
+    }
+}
+
+.c-modal-button-next, .c-modal-button-prev,  {
     @extend .mzp-c-modal-button-close;
 }
 
