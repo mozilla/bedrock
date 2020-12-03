@@ -222,7 +222,7 @@
   <h2>{{ ftl('participation-reporting') }}</h2>
 
   <p>
-  {{ ftl('participation-if-you-believe-youre', hotline=url('mozorg.about.governance.policies.community-hotline')) }}
+  {{ ftl('participation-if-you-believe-youre-email', fallback='participation-if-you-believe-youre', hotline=url('mozorg.about.governance.policies.community-hotline'), mailto_report='mailto:cpg-report@mozilla.com') }}
   </p>
 
   <p>

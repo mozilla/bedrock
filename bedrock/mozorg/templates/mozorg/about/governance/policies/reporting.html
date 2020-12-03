@@ -45,7 +45,7 @@
   </p>
 
   <p>
-  {{ ftl('reporting-if-you-have-a-report-by', community_hotline=url('mozorg.about.governance.policies.community-hotline')) }}
+  {{ ftl('reporting-if-you-have-a-report-by-email', fallback='reporting-if-you-have-a-report-by', mailto_report='mailto:cpg-report@mozilla.com', community_hotline=url('mozorg.about.governance.policies.community-hotline')) }}
   </p>
 
   <p>
@@ -81,17 +81,17 @@
         <tr>
           <th scope="row">{{ ftl('reporting-contributor') }}</th>
           <td><a href="https://app.convercent.com/en-us/LandingPage/4a6ee0c0-5bc1-e611-80d5-000d3ab1117e">{{ ftl('reporting-employee-hotline') }}</a></td>
-          <td><a href="{{ url('mozorg.about.governance.policies.community-hotline') }}">{{ ftl('reporting-community-hotline') }}</a></td>
+          <td><a href="mailto:cpg-report@mozilla.com">cpg-report@mozilla.com</a></td>
         </tr>
         <tr>
           <th scope="row">{{ ftl('reporting-contractor') }}</th>
           <td><a href="https://app.convercent.com/en-us/LandingPage/4a6ee0c0-5bc1-e611-80d5-000d3ab1117e">{{ ftl('reporting-employee-hotline') }}</a></td>
-          <td><a href="{{ url('mozorg.about.governance.policies.community-hotline') }}">{{ ftl('reporting-community-hotline') }}</a></td>
+          <td><a href="mailto:cpg-report@mozilla.com">cpg-report@mozilla.com</a></td>
         </tr>
         <tr>
           <th scope="row">{{ ftl('reporting-vendor') }}</th>
           <td><a href="https://app.convercent.com/en-us/LandingPage/4a6ee0c0-5bc1-e611-80d5-000d3ab1117e">{{ ftl('reporting-employee-hotline') }}</a></td>
-          <td><a href="{{ url('mozorg.about.governance.policies.community-hotline') }}">{{ ftl('reporting-community-hotline') }}</a></td>
+          <td><a href="mailto:cpg-report@mozilla.com">cpg-report@mozilla.com</a></td>
         </tr>
       </tbody>
     </table>
@@ -103,7 +103,7 @@
     <li>{{ ftl('reporting-do-not-question-or-judge') }}</li>
     <li>{{ ftl('reporting-do-not-invite-them-to') }}</li>
     <li>{{ ftl('reporting-do-not-promise-any-particular') }}</li>
-    <li>{{ ftl('reporting-do-let-them-know-that') }}</li>
+    <li>{{ ftl('reporting-do-let-them-know-that-email', fallback='reporting-do-let-them-know-that') }}</li>
   </ul>
 
   <p>
@@ -120,7 +120,7 @@
   <h3>{{ ftl('reporting-mozilla-managers-and-community') }}</h3>
 
   <p>
-  {{ ftl('reporting-if-a-mozilla-manager-or', cpg=url('mozorg.about.governance.policies.participation')) }}
+  {{ ftl('reporting-if-a-mozilla-manager-or-email', fallback='reporting-if-a-mozilla-manager-or', cpg=url('mozorg.about.governance.policies.participation')) }}
   </p>
 
   <p><strong>{{ ftl('reporting-do-not-impose-your-own') }}</strong></p>
