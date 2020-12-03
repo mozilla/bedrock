@@ -150,7 +150,7 @@ urlpatterns = (
          ftl_files=['firefox/browsers/compare/safari', 'firefox/browsers/compare/shared']),
 
     # Issue 8641
-    page('firefox/browsers/best-browser', 'firefox/browsers/best-browser.html'),
+    page('firefox/browsers/best-browser', 'firefox/browsers/best-browser.html', ftl_files=['firefox/browsers/best-browser']),
     page('firefox/browsers/browser-history', 'firefox/browsers/browser-history.html'),
     page('firefox/browsers/incognito-browser', 'firefox/browsers/incognito-browser.html'),
     page('firefox/browsers/update-your-browser', 'firefox/browsers/update-browser.html'),
