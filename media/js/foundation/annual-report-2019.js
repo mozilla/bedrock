@@ -32,22 +32,72 @@ if (typeof window.Mozilla === 'undefined') {
 
     var articleArray = document.querySelectorAll('[data-modal-id]');
 
-    function showArticle(dir, closeBtn, currentIndex) {
+    function modalInit() {
+        // Lazy load images in the modal
+        var modalImage = document.querySelector('.mzp-c-modal-overlay-contents .mzp-c-card-image');
 
-        closeBtn.firstElementChild.click();
+        if (modalImage) {
+            var srcset = modalImage.getAttribute('data-srcset');
 
-        var newArticleIndex = currentIndex;
+            if (srcset) {
+                modalImage.srcset = srcset;
+            }
 
-        if (dir === 'next') {
-            newArticleIndex++;
-        } else {
-            newArticleIndex--;
+            modalImage.src = modalImage.getAttribute('data-src');
+            modalImage.removeAttribute('data-src');
+            modalImage.removeAttribute('data-srcset');
         }
 
-        var newArticleId = newArticleId = articleArray[newArticleIndex].dataset.modalId;
-        var newArticle = document.querySelector('[data-modal-id="' + newArticleId + '"]');
+        var modalNextButton = document.querySelector('.c-modal-next');
+        var modalPrevButton = document.querySelector('.c-modal-prev');
 
-        newArticle.click();
+        modalNextButton.removeEventListener('click', nextModalArticle, false);
+        modalPrevButton.removeEventListener('click', prevModalArticle, false);
+
+        modalNextButton.addEventListener('click', nextModalArticle, false);
+        modalPrevButton.addEventListener('click', prevModalArticle, false);
+    }
+
+    function getCurrentModalIndex(){
+        var modalContent = document.querySelector('.mzp-u-modal-content.mzp-c-modal-overlay-contents');
+        var newArticleIndex = parseInt(modalContent.dataset.currentIndex, 10);
+        return newArticleIndex;
+    }
+
+    function updateModalArticle(index) {
+        var modalContent = document.querySelector('.mzp-u-modal-content.mzp-c-modal-overlay-contents');
+        var newArticleId = newArticleId = articleArray[index].dataset.modalId;
+        var newModalContent = document.querySelector('[data-modal-parent="' + newArticleId + '"]').cloneNode(true);
+        var currentModalContent = modalContent.firstElementChild;
+
+        modalContent.replaceChild(newModalContent, currentModalContent);
+        modalContent.dataset.currentIndex = index;
+
+        modalInit();
+    }
+
+    function nextModalArticle() {
+        var newArticleIndex = getCurrentModalIndex();
+        newArticleIndex++;
+
+        // If at the end of the gallery, start over
+        if (newArticleIndex === (articleArray.length)) {
+            newArticleIndex = 0;
+        }
+
+        updateModalArticle(newArticleIndex);
+    }
+
+    function prevModalArticle() {
+        var newArticleIndex = getCurrentModalIndex();
+        newArticleIndex--;
+
+        // If at the beginning of the gallery, start over
+        if (newArticleIndex < 0) {
+            newArticleIndex = articleArray.length - 1;
+        }
+
+        updateModalArticle(newArticleIndex);
     }
 
     for (var i = 0; i < modalContainers.length; i++) {
@@ -73,46 +123,25 @@ if (typeof window.Mozilla === 'undefined') {
                 onCreate: function() {
                     content.appendChild(modalContent);
 
-                    // Lazy load images in the modal
-                    var modalImage = document.querySelector('.mzp-c-modal-overlay-contents .mzp-c-card-image');
-                    var srcset = modalImage.getAttribute('data-srcset');
-
-                    if (srcset) {
-                        modalImage.srcset = srcset;
-                    }
-
-                    modalImage.src = modalImage.getAttribute('data-src');
-                    modalImage.removeAttribute('data-src');
-                    modalImage.removeAttribute('data-srcset');
+                    content.dataset.currentIndex = currentIndex;
 
                     var modalCloseButton = document.querySelector('.mzp-c-modal-close');
                     modalCloseButton.insertAdjacentHTML('beforebegin', modalNextButtonFragment);
                     modalCloseButton.insertAdjacentHTML('beforebegin', modalPrevButtonFragment);
 
-                    var modalNextButton = document.querySelector('.c-modal-next');
-                    var modalPrevButton = document.querySelector('.c-modal-prev');
+                    // Lazy load images in the modal and set next/prev listeners
+                    modalInit();
 
-                    if (currentIndex < 1) {
-                        content.parentNode.classList.add('hide-prev');
-                    } else if (currentIndex === (articleArray.length - 1)) {
-                        content.parentNode.classList.add('hide-next');
-                    }
-                    else {
-                        content.parentNode.classList.remove('hide-prev', 'hide-next');
-                    }
-
-                    modalNextButton.addEventListener('click', function(){
-                        showArticle('next', modalCloseButton, currentIndex);
-                    });
-                    modalPrevButton.addEventListener('click', function(){
-                        showArticle('prev', modalCloseButton, currentIndex);
-                    });
                 },
                 onDestroy: function() {
                     if (window.history) {
                         window.history.replaceState('', '', window.location.pathname);
                     }
-                    modalContent.parentNode.removeChild(modalContent);
+                    // Recache the current modal content which may have changed via next/prev buttons
+                    var modalParent = document.querySelector('.mzp-u-modal-content.mzp-c-modal-overlay-contents');
+                    var currentModalContent = modalParent.firstElementChild;
+
+                    modalParent.removeChild(currentModalContent);
                 }
             });
         });
