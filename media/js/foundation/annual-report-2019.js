@@ -10,6 +10,9 @@ if (typeof window.Mozilla === 'undefined') {
 (function() {
     'use strict';
 
+    // Lazyload images
+    Mozilla.LazyLoad.init();
+
     var modalContainers = document.getElementsByClassName('has-modal');
     var content = document.querySelector('.mzp-u-modal-content');
 
@@ -70,6 +73,18 @@ if (typeof window.Mozilla === 'undefined') {
                 onCreate: function() {
                     content.appendChild(modalContent);
 
+                    // Lazy load images in the modal
+                    var modalImage = document.querySelector('.mzp-c-modal-overlay-contents .mzp-c-card-image');
+                    var srcset = modalImage.getAttribute('data-srcset');
+
+                    if (srcset) {
+                        modalImage.srcset = srcset;
+                    }
+
+                    modalImage.src = modalImage.getAttribute('data-src');
+                    modalImage.removeAttribute('data-src');
+                    modalImage.removeAttribute('data-srcset');
+
                     var modalCloseButton = document.querySelector('.mzp-c-modal-close');
                     modalCloseButton.insertAdjacentHTML('beforebegin', modalNextButtonFragment);
                     modalCloseButton.insertAdjacentHTML('beforebegin', modalPrevButtonFragment);
@@ -111,8 +126,5 @@ if (typeof window.Mozilla === 'undefined') {
             target.click();
         }
     }
-
-    // Lazyload images
-    Mozilla.LazyLoad.init();
 
 })(window.Mozilla);

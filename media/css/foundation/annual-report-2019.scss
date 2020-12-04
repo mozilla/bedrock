@@ -89,7 +89,6 @@ $image-path: '/media/protocol/img';
 
 /* -------------------------------------------------------------------------- */
 // Content sections
-
 .c-intro-section {
 
     p {
@@ -161,7 +160,6 @@ $image-path: '/media/protocol/img';
 
 //* -------------------------------------------------------------------------- */
 // Page footer
-
 .c-site-footer {
 
     ul {
@@ -224,7 +222,15 @@ $image-path: '/media/protocol/img';
     }
 }
 
+// Fade in lazy images
+.lazy-image-container .mzp-c-card-image {
+    opacity: 1;
+    transition: opacity 300ms;
+}
 
+.lazy-image-container .mzp-c-card-image[data-src] {
+    opacity: 0;
+}
 
 
 .mzp-l-card-quarter.is-reverse {
