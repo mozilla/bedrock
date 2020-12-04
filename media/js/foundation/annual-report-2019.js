@@ -112,4 +112,7 @@ if (typeof window.Mozilla === 'undefined') {
         }
     }
 
+    // Lazyload images
+    Mozilla.LazyLoad.init();
+
 })(window.Mozilla);
