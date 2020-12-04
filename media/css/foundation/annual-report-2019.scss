@@ -232,36 +232,6 @@ $image-path: '/media/protocol/img';
     opacity: 0;
 }
 
-
-.mzp-l-card-quarter.is-reverse {
-    .mzp-c-card {
-        @media #{$mq-sm} {
-            float: right;
-            margin-right: 0;
-            margin-left: $spacing-xl;
-        }
-    }
-}
-
-.mzp-l-card-half.is-reverse {
-    .mzp-c-card {
-        @media #{$mq-sm} {
-            float: right;
-            margin-right: 0;
-            margin-left: $spacing-xl;
-        }
-        // RTL Support
-        .html-rtl & {
-            @media #{$mq-sm} {
-                float: left;
-                margin-left: 0;
-                margin-right: $spacing-xl;
-            }
-        }
-    }
-
-}
-
 .mzp-c-modal-content {
     .js  & {
         @include hidden;
