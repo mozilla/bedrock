@@ -32,6 +32,45 @@ if (typeof window.Mozilla === 'undefined') {
 
     var articleArray = document.querySelectorAll('[data-modal-id]');
 
+    // Set to true when a listener it set, as to not set it multiple times.
+    // Resets when the modal is closed.
+    var kbInit = null;
+
+    function keyboardListenerInit() {
+
+        if (kbInit) {
+            return;
+            // Turn Off
+        }
+
+        document.addEventListener('keyup', keyboardNextPrev, false);
+
+
+        kbInit = true;
+    }
+
+    function keyboardNextPrev(event) {
+        if (!kbInit) {
+            return;
+        }
+
+        switch (event.keyCode) {
+        case 37: // Left arrow
+            prevModalArticle();
+            break;
+        case 38: // Up arrow
+            prevModalArticle();
+            break;
+        case 39: // Right arrow
+            nextModalArticle();
+            break;
+        case 40: // Down arrow
+            nextModalArticle();
+            break;
+        }
+
+    }
+
     function modalInit() {
         // Lazy load images in the modal
         var modalImage = document.querySelector('.mzp-c-modal-overlay-contents .mzp-c-card-image');
@@ -56,6 +95,9 @@ if (typeof window.Mozilla === 'undefined') {
 
         modalNextButton.addEventListener('click', nextModalArticle, false);
         modalPrevButton.addEventListener('click', prevModalArticle, false);
+
+        keyboardListenerInit();
+
     }
 
     function getCurrentModalIndex(){
@@ -137,6 +179,9 @@ if (typeof window.Mozilla === 'undefined') {
                     if (window.history) {
                         window.history.replaceState('', '', window.location.pathname);
                     }
+
+                    kbInit = false;
+
                     // Recache the current modal content which may have changed via next/prev buttons
                     var modalParent = document.querySelector('.mzp-u-modal-content.mzp-c-modal-overlay-contents');
                     var currentModalContent = modalParent.firstElementChild;
