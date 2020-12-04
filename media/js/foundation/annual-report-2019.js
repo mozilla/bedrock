@@ -112,6 +112,8 @@ if (typeof window.Mozilla === 'undefined') {
         var newModalContent = document.querySelector('[data-modal-parent="' + newArticleId + '"]').cloneNode(true);
         var currentModalContent = modalContent.firstElementChild;
 
+        window.location.hash = newArticleId;
+
         modalContent.replaceChild(newModalContent, currentModalContent);
         modalContent.dataset.currentIndex = index;
 
