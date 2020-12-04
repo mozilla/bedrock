@@ -61,6 +61,8 @@ urlpatterns = (
 
     page('annualreport/2018', 'foundation/annualreport/2018/index.html'),
 
+    page('annualreport/2019', 'foundation/annualreport/2019/index.html'),
+
     page('feed-icon-guidelines', 'foundation/feed-icon-guidelines/index.html'),
     page('feed-icon-guidelines/faq', 'foundation/feed-icon-guidelines/faq.html'),
 
@@ -81,17 +83,3 @@ urlpatterns = (
     page('trademarks/community-edition-policy', 'foundation/trademarks/community-edition-policy.html'),
 )
 
-if settings.DEV:
-    urlpatterns += (
-        page('annualreport/2019', 'foundation/annualreport/2019/index.html'),
-        page('annualreport/2019', 'foundation/annualreport/2019/index.html', ftl_files=['foundation/annualreport/annualreport-2019']),
-        redirect(r'^annualreport/$', 'foundation.annualreport.2019.index',
-                 name='foundation.annualreport', locale_prefix=False),
-    )
-else:
-    urlpatterns += (
-        redirect(r'^annualreport/2019', 'foundation.annualreport.2017.index', permanent=False),
-        # Issue 6478 /foundation/annualreport/2017/
-        redirect(r'^annualreport/$', 'foundation.annualreport.2017.index',
-                 name='foundation.annualreport', locale_prefix=False),
-    )
