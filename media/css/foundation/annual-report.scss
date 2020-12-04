@@ -69,21 +69,34 @@ $image-path: '/media/protocol/img';
 #annual-2019 {
 
     .c-hero-banner {
+
         background: url('/media/img/foundation/annualreport/2019/pixel-bg.svg') right center no-repeat;
-        background-size: contain;
+        background-size: auto 100%;
         margin-bottom: $spacing-2xl;
         @media #{$mq-md} {
             background-position: right center;
-            background-size: auto 180%;
+            background-size: auto 100%;
+            h1 {
+                font-size: 5rem;
+            }
+            img {
+                margin-top: $spacing-md;
+            }
         }
         h1 {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             color: $color-black;
             font-weight: normal;
-            .highlight {
+            line-height: 0.9;
+            .l-highlight {
+                background: $color-green-40;
+                color: $color-black;
+                padding: 0;
                 font-weight: bold;
+                line-height: .7;
+                display: inline-block;
             }
             .left {
                 text-align: right;
@@ -92,13 +105,12 @@ $image-path: '/media/protocol/img';
                     right: 0;
                     position: absolute;
                     display: block;
-                    margin-top: $spacing-lg;
-                    max-width: $content-sm;
+                    margin-top: $spacing-sm;
+                    max-width: $content-xs;
                 }
             }
             .right {
-                margin-top: $spacing-xl;
-                margin-left: $spacing-lg;
+                margin-left: $spacing-sm;
                 align-self: flex-start;
             }
         }
@@ -115,9 +127,16 @@ $image-path: '/media/protocol/img';
     }
     .leadership {
         h2 {
+            &.intro {
+                @include text-title-lg;
+                margin-bottom: $spacing-2xl;
+            }
             font-weight: 100;
             @include text-title-md;
             margin-bottom: $spacing-lg;
+            strong {
+                font-weight: bold;
+            }
         }
     }
 }
@@ -494,10 +513,11 @@ $image-path: '/media/protocol/img';
     }
     li {
         @include font-mozilla;
-        @include text-title-xs
+        @include text-title-sm;
         margin-left: $spacing-md;
         margin-bottom: $spacing-lg;
         padding-left: $spacing-sm;
+        font-weight: 100;
         .highlight {
             margin-left: -$spacing-sm;
         }
@@ -592,9 +612,10 @@ $image-path: '/media/protocol/img';
 // }
 
 .c-section-intro {
-    margin-left: 0;
+    margin: 0 auto;
     padding-top: $layout-lg;
     max-width: $content-md;
+    text-align: center;
     h2 {
         @include text-title-sm;
         font-weight: 100;
@@ -602,12 +623,33 @@ $image-path: '/media/protocol/img';
 }
 
 .c-article-list {
+    .mzp-l-card-quarter, .mzp-l-card-half {
+        .mzp-c-card-title {
+            @include text-title-xs;
+        }
+    }
+
+    .mzp-l-card-hero {
+        .mzp-c-card + .mzp-c-card {
+            .mzp-c-card-title {
+                @include text-title-xs;
+            }
+        }
+    }
+
     .mzp-c-card-feature-title, .mzp-c-card-title {
         font-weight: 100;
+    }
+    .mzp-c-card-feature .mzp-c-card-feature-title {
+        @include text-title-md;
+        @media #{$mq-lg} {
+            @include text-title-lg;
+        }
     }
     .mzp-c-card-feature {
         margin-bottom: $spacing-lg;
     }
+
     .mzp-c-card {
         background-color: transparent;
         &:hover {
@@ -635,6 +677,7 @@ $image-path: '/media/protocol/img';
         @include text-title-xs;
         font-weight: bold;
         display: block;
+        margin-bottom: $spacing-md;
     }
     @media #{$mq-md} {
         padding-top: $spacing-2xl;
@@ -643,6 +686,24 @@ $image-path: '/media/protocol/img';
         justify-content: space-around;
     }
 }
+
+.c-leadership-article {
+    h3 {
+        @include text-title-md;
+        border-left: 3px solid $color-black;
+        padding: $spacing-md 0 $spacing-md $spacing-lg;
+        span {
+            display: inline-block;
+            margin-right: $spacing-xs;
+        }
+    }
+    img {
+        max-width: $screen-sm;
+        display: block;
+        margin: 0 auto $spacing-xl;
+    }
+}
+
 
 .c-leadership-article-title {
     margin-top: -$spacing-2xl;
@@ -657,5 +718,11 @@ $image-path: '/media/protocol/img';
         margin-top: $spacing-lg;
         margin-bottom: 0;
         @include text-title-md;
+    }
+}
+
+.leadership {
+    .mzp-c-card-media-wrapper  {
+        background-color: transparent;
     }
 }
