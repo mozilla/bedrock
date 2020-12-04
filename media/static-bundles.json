@@ -270,15 +270,21 @@
     },
     {
       "files": [
-        "css/foundation/annual-report.scss"
+        "css/foundation/annual-report-2019.scss"
       ],
-      "name": "annual_report"
+      "name": "annual_report_2019"
     },
     {
       "files": [
         "css/foundation/annual-report-2011.scss"
       ],
       "name": "annual_report_2011"
+    },
+    {
+      "files": [
+        "css/foundation/annual-report.scss"
+      ],
+      "name": "annual_report"
     },
     {
       "files": [
@@ -1284,6 +1290,14 @@
         "protocol/js/protocol-sidemenu.js"
       ],
       "name": "basic-article"
+    },
+    {
+      "files": [
+        "protocol/js/protocol-modal.js",
+        "js/base/mozilla-lazy-load.js",
+        "js/foundation/annual-report-2019.js"
+      ],
+      "name": "annual_report_2019"
     },
     {
       "files": [

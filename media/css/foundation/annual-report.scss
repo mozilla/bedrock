@@ -2,13 +2,16 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
 @import '../../protocol/css/includes/lib';
 
-/* -------------------------------------------------------------------------- */
-// Hero image & banner heading
 
+//* -------------------------------------------------------------------------- */
+// Hero image & banner heading
 .c-banner {
-    color: #fff;
+    color: $color-white;
 
     .c-banner-content {
         background-position: top center;
@@ -58,6 +61,7 @@
     padding-top: 0;
 }
 
+// 2018
 #annual-2018 {
     .c-banner .c-banner-content {
         @include at2x('/media/img/foundation/annualreport/2018/som-2018-small.jpg', 760px, 394px);
@@ -69,6 +73,7 @@
 }
 
 
+// 2017
 #annual-2017 {
     .c-banner .c-banner-content {
         @include at2x('/media/img/foundation/annualreport/2017/som-2017-small.jpg', 760px, 394px);
@@ -79,6 +84,8 @@
     }
 }
 
+
+// 2016
 #annual-2016 {
     .c-banner .c-banner-content {
         @include at2x('/media/img/foundation/annualreport/2016/som-2016-mobile.jpg', 760px, 394px);
@@ -89,6 +96,8 @@
     }
 }
 
+
+// 2015
 #annual-2015 {
     .c-banner .c-banner-content {
         @include at2x('/media/img/foundation/annualreport/2015/bg-banner-mobile.jpg');
@@ -104,6 +113,8 @@
     }
 }
 
+
+// 2014
 #annual-2014 {
     .c-banner .c-banner-content {
         background-image: url('/media/img/foundation/annualreport/2014/bg-banner-mobile.jpg');
@@ -123,6 +134,8 @@
     }
 }
 
+
+// 2013
 #annual-2013 {
     .c-banner .c-banner-content {
         background-image: url('/media/img/foundation/annualreport/2013/bg-banner-mobile.jpg');
@@ -142,6 +155,8 @@
     }
 }
 
+
+// 2012
 #annual-2012 {
     .c-banner .c-banner-content {
         @include background-size(auto, 100%);
@@ -174,7 +189,8 @@
     }
 }
 
-/* -------------------------------------------------------------------------- */
+
+//* -------------------------------------------------------------------------- */
 // Content sections
 
 .c-intro-section {
@@ -246,11 +262,34 @@
     padding: $spacing-2xl $spacing-lg $spacing-lg;
 }
 
+.c-media {
+    margin: $spacing-lg 0;
+
+    h3  {
+        @include visually-hidden;
+    }
+}
+
+
 /* -------------------------------------------------------------------------- */
+// Financial table
+
+.financial-table {
+    max-width: 100%;
+    overflow-x: scroll;
+    margin: 40px auto;
+
+    @media #{$mq-lg} {
+        max-width: none;
+        overflow-x: visible;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
 // Page footer
 
 .c-site-footer {
-
     ul {
         margin: 0 auto $spacing-xl;
     }
@@ -289,7 +328,6 @@
     }
 
     @media #{$mq-lg} {
-
         ul {
             @include flexbox;
             @include align-items(stretch);
@@ -314,21 +352,7 @@
 .c-media {
     margin: $spacing-lg 0;
 
-    h3 span {
+    h3  {
         @include visually-hidden;
-    }
-}
-
-/* -------------------------------------------------------------------------- */
-// Financial table
-
-.financial-table {
-    max-width: 100%;
-    overflow-x: scroll;
-    margin: 40px auto;
-
-    @media #{$mq-lg} {
-        max-width: none;
-        overflow-x: visible;
     }
 }
