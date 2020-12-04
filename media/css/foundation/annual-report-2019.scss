@@ -487,18 +487,27 @@ $image-path: '/media/protocol/img';
 
 .c-leadership-article {
     h3 {
-        @include text-title-md;
+        @include text-title-sm;
         border-left: 3px solid $color-black;
         padding: $spacing-md 0 $spacing-md $spacing-lg;
+
         span {
             display: inline-block;
             margin-right: $spacing-xs;
         }
     }
+
     img {
         max-width: $screen-sm;
         display: block;
         margin: 0 auto $spacing-xl;
+    }
+
+    .mzp-c-card-image {
+        @include bidi((
+            (float, right, left),
+            (margin, 0 0 $spacing-md $spacing-lg, 0 $spacing-lg $spacing-md 0),
+        ));
     }
 }
 

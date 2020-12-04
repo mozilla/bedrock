@@ -3,8 +3,6 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from bedrock.mozorg.util import page
-from bedrock.redirects.util import redirect
-from django.conf import settings
 
 urlpatterns = (
 
@@ -82,4 +80,3 @@ urlpatterns = (
     page('trademarks/community-edition-permitted-changes', 'foundation/trademarks/community-edition-permitted-changes.html'),
     page('trademarks/community-edition-policy', 'foundation/trademarks/community-edition-policy.html'),
 )
-
