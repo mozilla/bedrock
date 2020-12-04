@@ -750,7 +750,7 @@
     </div>
 
 
-<div class="js-modal-content mzp-l-content">
+    <div class="js-modal-content mzp-l-content">
 
   <!-- mitchell-baker-named-ceo -->
   <section data-modal-parent="mitchell-baker-named-ceo" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half has-modal">
@@ -834,6 +834,7 @@
         <img src="{{ static('img/foundation/annualreport/2019/modal-dots.svg') }}" alt="">
         <h2 class="mzp-c-card-feature-title"><span class="highlight green">Mozilla Builders are moving fast and fixing things</span></h2>
         <p class="mzp-c-card-feature-desc">To build a better internet, we can’t go it alone. That’s why back in March, Mozilla put out a call for ideas to "fix-the-internet." Some 1,500 creators showed up, and well over a hundred projects are underway. Now <a href="https://techcrunch.com/2020/05/14/mozilla-goes-full-incubator-with-fix-the-internet-startup-lab-and-early-stage-investments/">we’re continuing our experimentation by launching our v2: the Mozilla Builders Incubator</a>. We are investing in <a href="https://builders.mozilla.community/who-we-fund.html">people, projects, and technologies</a> that shape the internet and have a positive impact without having to only worry about the bottom line. It’s people like that who built Firefox, and who will write the next amazing chapter of the internet.</p>
+        <!-- TODO: Add video: https://youtu.be/OarBwHc2JzY -->
         <a rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://builders.mozilla.community/{{ referrals }}">Learn more</a>
       </div>
     </div>
@@ -869,6 +870,8 @@
         <h2 class="mzp-c-card-feature-title"><span class="highlight green">Our racial justice commitments</span></h2>
         <p class="mzp-c-card-feature-desc">Mozilla, like many companies, has set goals to improve diversity and inclusion within our organization. In May, George Floyd’s murder opened the floodgates of civil rights protests, exposing many people to the painful depth and breadth of systemic racism for the first time. This moment also gave us pause to consider: <em>are we doing all that we can?</em> What we saw is that Mozilla’s progress has come up short.</p>
         <p class="mzp-c-card-feature-desc"><a href="https://blog.mozilla.org/blog/2020/06/18/first-steps-toward-lasting-change/{{ referrals }}">This set of commitments</a> published in June provides a starting point for areas where we will tenaciously drive change across Mozilla going forward. Part of making sure we live up to these commitments is <a href="https://blog.mozilla.org/careers/mozilla-diversity-inclusion-2019-results/{{ referrals }}">measuring and reporting</a>. We know we have work to do, and we'll do it with transparency.</p>
+        <!-- TODO: Add Photo Credit -->
+        <p class="mzp-c-card-feature-desc"><small><em>Photo Credit: <a target="_blank" href="https://flic.kr/p/2j7GXpB">Lorie Shaull</a></em></small></p>
         <a rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://blog.mozilla.org/blog/2020/06/18/first-steps-toward-lasting-change/{{ referrals }}">Learn more</a>
       </div>
     </div>
@@ -1096,7 +1099,24 @@
     </div>
   </section>
 
-</div>
+  <!-- investing-today-to-shape-european-ai-tomorrow -->
+<section data-modal-parent="investing-today-to-shape-european-ai-tomorrow" class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-half has-modal">
+	<div class="mzp-c-card-feature-media-wrapper">
+    <div class="mzp-c-card-feature-media">
+      {{ lazy_img(image_url='img/foundation/annualreport/2019/placeholder-3-2.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', include_highres_image=False, optional_attributes={'alt': '', 'width': '540', 'height': '360', 'class': 'mzp-c-card-image'}) }}
+    </div>
+	</div>
+	<div class="mzp-c-card-feature-content">
+		<div class="mzp-c-card-feature-content-container">
+			<h2 class="mzp-c-card-feature-title">Investing today to shape European AI tomorrow</h2>
+			<p class="mzp-c-card-feature-desc">Right now, we’re in the early stages of the next phase of computing: AI. Will the AI era be defined by individual privacy and transparency into how these systems work? Or, will the worst parts of our current internet ecosystem — invasive data collection, monopoly, opaque systems — continue to be the norm? We're helping fund projects to  shape the direction of AI in Europe.</p>
+			<a target="_blank" class="mzp-c-cta-link" href="https://foundation.mozilla.org/en/blog/launching-european-ai-fund/">Learn more</a>
+		</div>
+	</div>
+</section>
+
+
+    </div>
 
     <!-- Feature Card -->
     <div class="mzp-l-content no-js-hidden">
@@ -1118,16 +1138,19 @@
       </section>
     </div>
 
-    <!-- Link List -->
+    <!-- Link List FIX -->
     <div class="mzp-l-content no-js-hidden">
-      <ul class="c-som-list">
-        <li>
-          <a id="covid-19-solutions-fund" class="has-modal" data-modal-id="covid-19-solutions-fund" href="#covid-19-solutions-fund">COVID-19 Solutions Fund </a>
-        </li>
-        <li>
-          <a id="launched-new-tech-and-society-fellowships" class="has-modal" data-modal-id="launched-new-tech-and-society-fellowships" href="#launched-new-tech-and-society-fellowships">Launched new Tech and Society fellowships</a>
-        </li>
-      </ul>
+    	<ul class="c-som-list">
+    		<li>
+    			<a id="restructuring-to-keep-pace-with-the-future" class="has-modal" data-modal-id="restructuring-to-keep-pace-with-the-future" href="#restructuring-to-keep-pace-with-the-future">Restructuring to keep pace with the future</a>
+    		</li>
+    		<li>
+    			<a id="search-partnerships-continue-to-fuel-mozillas-mission" class="has-modal" data-modal-id="search-partnerships-continue-to-fuel-mozillas-mission" href="#search-partnerships-continue-to-fuel-mozillas-mission">Search partnerships continue to fuel Mozilla’s mission</a>
+    		</li>
+    		<li>
+    			<a id="virtu-all-hands" class="has-modal" data-modal-id="virtu-all-hands" href="#virtu-all-hands">Virtu-All Hands</a>
+    		</li>
+    	</ul>
     </div>
 
     <!-- Two Card Row -->
@@ -1159,71 +1182,74 @@
       </div>
     </div>
 
-    <!-- Link List -->
+    <!-- Link List FIX -->
     <div class="mzp-l-content no-js-hidden">
-      <ul class="c-som-list">
-        <li>
-          <a id="mozilla-partners-with-african-tech-hubs-to-explore-new-technology-ideas" class="has-modal" data-modal-id="mozilla-partners-with-african-tech-hubs-to-explore-new-technology-ideas" href="#mozilla-partners-with-african-tech-hubs-to-explore-new-technology-ideas">Mozilla partners with African tech hubs to explore new technology ideas </a>
-        </li>
-        <li>
-          <a id="our-vision-for-how-eu-digital-services-act-can-build-a-better-internet" class="has-modal" data-modal-id="our-vision-for-how-eu-digital-services-act-can-build-a-better-internet" href="#our-vision-for-how-eu-digital-services-act-can-build-a-better-internet">Our vision for how EU Digital Services Act can build a better internet </a>
-        </li>
-        <li>
-          <a id="experimenting-with-open-data" class="has-modal" data-modal-id="experimenting-with-open-data" href="#experimenting-with-open-data">Experimenting with open data</a>
-        </li>
-      </ul>
+    	<ul class="c-som-list">
+    		<li>
+    			<a id="mozilla-partners-with-african-tech-hubs-to-explore-new-technology-ideas" class="has-modal" data-modal-id="mozilla-partners-with-african-tech-hubs-to-explore-new-technology-ideas" href="#mozilla-partners-with-african-tech-hubs-to-explore-new-technology-ideas">Mozilla partners with African tech hubs to explore new technology ideas </a>
+    		</li>
+    		<li>
+    			<a id="our-vision-for-how-eu-digital-services-act-can-build-a-better-internet" class="has-modal" data-modal-id="our-vision-for-how-eu-digital-services-act-can-build-a-better-internet" href="#our-vision-for-how-eu-digital-services-act-can-build-a-better-internet">Our vision for how EU Digital Services Act can build a better internet </a>
+    		</li>
+    		<li>
+    			<a id="experimenting-with-open-data" class="has-modal" data-modal-id="experimenting-with-open-data" href="#experimenting-with-open-data">Experimenting with open data</a>
+    		</li>
+    	</ul>
     </div>
 
     <!-- Four Card Row -->
     <div class="mzp-l-content no-js-hidden">
-      <div class="mzp-l-card-quarter">
-        <section class="mzp-c-card mzp-c-card-extra-small has-aspect-3-2">
-          <a id="data-futures-lab-examines-new-models-of-data-governance" data-modal-id="data-futures-lab-examines-new-models-of-data-governance" class="mzp-c-card-block-link has-modal" href="#data-futures-lab-examines-new-models-of-data-governance">
-            <div class="mzp-c-card-media-wrapper">
-              {{ lazy_img(image_url='img/foundation/annualreport/2019/data-futures-lab.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '540', 'height': '360', 'class': 'mzp-c-card-image'}) }}
-            </div>
-            <div class="mzp-c-card-content">
-              <div class="mzp-c-card-tag">Responsible Data Use</div>
-              <h2 class="mzp-c-card-title">Data Futures Lab examines new models of data governance</h2>
-            </div>
-          </a>
-        </section>
+    	<div class="mzp-l-card-quarter">
 
-        <section class="mzp-c-card mzp-c-card-extra-small has-aspect-3-2">
-          <a id="the-future-of-web-monetization-starts-now" data-modal-id="the-future-of-web-monetization-starts-now" class="mzp-c-card-block-link has-modal" href="#the-future-of-web-monetization-starts-now">
-            <div class="mzp-c-card-media-wrapper">
-              {{ lazy_img(image_url='img/foundation/annualreport/2019/web-monetization.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '540', 'height': '360', 'class': 'mzp-c-card-image'}) }}
-            </div>
-            <div class="mzp-c-card-content">
-              <div class="mzp-c-card-tag">Responsible Data Use</div>
-              <h2 class="mzp-c-card-title">The future of web monetization starts now</h2>
-            </div>
-          </a>
-        </section>
+    		<section class="mzp-c-card mzp-c-card-extra-small has-aspect-3-2">
+    			<a id="comcast-becomes-first-isp-to-partner-with-mozilla-in-evolving-privacy-solution" data-modal-id="comcast-becomes-first-isp-to-partner-with-mozilla-in-evolving-privacy-solution" class="mzp-c-card-block-link has-modal" href="#comcast-becomes-first-isp-to-partner-with-mozilla-in-evolving-privacy-solution">
+    				<div class="mzp-c-card-media-wrapper">
+    					{{ lazy_img(image_url='img/foundation/annualreport/2019/comcast-partner.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '540', 'height': '360', 'class': 'mzp-c-card-image'}) }}
+    				</div>
+    				<div class="mzp-c-card-content">
+    					<div class="mzp-c-card-tag">Dependable Security</div>
+    					<h2 class="mzp-c-card-title">Comcast becomes first ISP to partner with Mozilla in evolving privacy solution</h2>
+    				</div>
+    			</a>
+    		</section>
 
-        <section class="mzp-c-card mzp-c-card-extra-small has-aspect-3-2">
-          <a id="comcast-becomes-first-isp-to-partner-with-mozilla-in-evolving-privacy-solution" data-modal-id="comcast-becomes-first-isp-to-partner-with-mozilla-in-evolving-privacy-solution" class="mzp-c-card-block-link has-modal" href="#comcast-becomes-first-isp-to-partner-with-mozilla-in-evolving-privacy-solution">
-            <div class="mzp-c-card-media-wrapper">
-              {{ lazy_img(image_url='img/foundation/annualreport/2019/comcast-partner.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '540', 'height': '360', 'class': 'mzp-c-card-image'}) }}
-            </div>
-            <div class="mzp-c-card-content">
-              <div class="mzp-c-card-tag">Dependable Security</div>
-              <h2 class="mzp-c-card-title">Comcast becomes first ISP to partner with Mozilla in evolving privacy solution</h2>
-            </div>
-          </a>
-        </section>
-        <section class="mzp-c-card mzp-c-card-extra-small has-aspect-3-2">
-          <a id="a-new-firefox-for-android-fast-private-by-design-and-independent-to-the-core" data-modal-id="a-new-firefox-for-android-fast-private-by-design-and-independent-to-the-core" class="mzp-c-card-block-link has-modal" href="#a-new-firefox-for-android-fast-private-by-design-and-independent-to-the-core">
-            <div class="mzp-c-card-media-wrapper">
-              {{ lazy_img(image_url='img/foundation/annualreport/2019/firefox-for-android.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '540', 'height': '360', 'class': 'mzp-c-card-image'}) }}
-            </div>
-            <div class="mzp-c-card-content">
-              <div class="mzp-c-card-tag">Products</div>
-              <h2 class="mzp-c-card-title">A new Firefox for Android, fast, private by design and independent to the core</h2>
-            </div>
-          </a>
-        </section>
-      </div>
+
+    		<section class="mzp-c-card mzp-c-card-extra-small has-aspect-3-2">
+    			<a id="data-futures-lab-examines-new-models-of-data-governance" data-modal-id="data-futures-lab-examines-new-models-of-data-governance" class="mzp-c-card-block-link has-modal" href="#data-futures-lab-examines-new-models-of-data-governance">
+    				<div class="mzp-c-card-media-wrapper">
+    					{{ lazy_img(image_url='img/foundation/annualreport/2019/data-futures-lab.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '540', 'height': '360', 'class': 'mzp-c-card-image'}) }}
+    				</div>
+    				<div class="mzp-c-card-content">
+    					<div class="mzp-c-card-tag">Responsible Data Use</div>
+    					<h2 class="mzp-c-card-title">Data Futures Lab examines new models of data governance</h2>
+    				</div>
+    			</a>
+    		</section>
+
+    		<section class="mzp-c-card mzp-c-card-extra-small has-aspect-3-2">
+    			<a id="investing-today-to-shape-european-ai-tomorrow" data-modal-id="investing-today-to-shape-european-ai-tomorrow" class="mzp-c-card-block-link has-modal" href="#investing-today-to-shape-european-ai-tomorrow">
+    				<div class="mzp-c-card-media-wrapper">
+    					{{ lazy_img(image_url='img/foundation/annualreport/2019/placeholder-3-2.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '540', 'height': '360', 'class': 'mzp-c-card-image'}) }}
+    				</div>
+    				<div class="mzp-c-card-content">
+    					<div class="mzp-c-card-tag">Future Focus</div>
+    					<h2 class="mzp-c-card-title">Investing today to shape European AI tomorrow</h2>
+    				</div>
+    			</a>
+    		</section>
+
+    		<section class="mzp-c-card mzp-c-card-extra-small has-aspect-3-2">
+    			<a id="the-future-of-web-monetization-starts-now" data-modal-id="the-future-of-web-monetization-starts-now" class="mzp-c-card-block-link has-modal" href="#the-future-of-web-monetization-starts-now">
+    				<div class="mzp-c-card-media-wrapper">
+    					{{ lazy_img(image_url='img/foundation/annualreport/2019/web-monetization.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '540', 'height': '360', 'class': 'mzp-c-card-image'}) }}
+    				</div>
+    				<div class="mzp-c-card-content">
+    					<div class="mzp-c-card-tag">Responsible Data Use</div>
+    					<h2 class="mzp-c-card-title">The future of web monetization starts now</h2>
+    				</div>
+    			</a>
+    		</section>
+    	</div>
     </div>
 
     <!-- Feature Card -->
@@ -1246,51 +1272,73 @@
       </section>
     </div>
 
-    <!-- Two Card Row -->
-    <div class="mzp-l-content no-js-hidden">
-      <div class="mzp-l-card-hero">
-        <section class="mzp-c-card mzp-c-card-large mzp-has-aspect-16-9">
-          <a id="our-racial-justice-commitments" class="mzp-c-card-block-link has-modal" data-modal-id="our-racial-justice-commitments" href="#our-racial-justice-commitments">
-            <div class="mzp-c-card-media-wrapper">
-              {{ lazy_img(image_url='img/foundation/annualreport/2019/racial-justice-commitments.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
-            </div>
-            <div class="mzp-c-card-content">
-              <div class="mzp-c-card-tag">Racial Justice</div>
-              <h2 class="mzp-c-card-title">Our racial justice commitments</h2>
-            </div>
-          </a>
-        </section>
 
-        <section class="mzp-c-card mzp-has-aspect-1-1">
-          <a id="funds-for-black-artists-exploring-the-effects-of-ai-on-racial-justice" class="mzp-c-card-block-link has-modal" data-modal-id="funds-for-black-artists-exploring-the-effects-of-ai-on-racial-justice" href="#funds-for-black-artists-exploring-the-effects-of-ai-on-racial-justice">
-            <div class="mzp-c-card-media-wrapper">
-              {{ lazy_img(image_url='img/foundation/annualreport/2019/funds-for-black-artists.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', include_highres_image=False, optional_attributes={'alt': '', 'width': '450', 'height': '450', 'class': 'mzp-c-card-image'}) }}
-            </div>
-            <div class="mzp-c-card-content">
-              <div class="mzp-c-card-tag">Racial Justice</div>
-              <h2 class="mzp-c-card-title">Funds for Black artists exploring the effects of AI on racial justice</h2>
-            </div>
-          </a>
-        </section>
-      </div>
+    <!-- Link List FIX -->
+    <div class="mzp-l-content no-js-hidden">
+    	<ul class="c-som-list">
+    		<li>
+    			<a id="covid-19-solutions-fund" class="has-modal" data-modal-id="covid-19-solutions-fund" href="#covid-19-solutions-fund">COVID-19 Solutions Fund </a>
+    		</li>
+    		<li>
+    			<a id="launched-new-tech-and-society-fellowships" class="has-modal" data-modal-id="launched-new-tech-and-society-fellowships" href="#launched-new-tech-and-society-fellowships">Launched new Tech and Society fellowships</a>
+    		</li>
+    	</ul>
     </div>
 
-    <!-- Link List -->
+
+    <!-- Four Card Row -->
     <div class="mzp-l-content no-js-hidden">
-      <ul class="c-som-list">
-        <li>
-          <a id="virtu-all-hands" class="has-modal" data-modal-id="virtu-all-hands" href="#virtu-all-hands">Virtu-All Hands</a>
-        </li>
-        <li>
-          <a id="a-journey-to-environmental-sustainability" class="has-modal" data-modal-id="a-journey-to-environmental-sustainability" href="#a-journey-to-environmental-sustainability"><span class="highlight green">A journey to environmental sustainability</span></a>
-        </li>
-        <li>
-          <a id="restructuring-to-keep-pace-with-the-future" class="has-modal" data-modal-id="restructuring-to-keep-pace-with-the-future" href="#restructuring-to-keep-pace-with-the-future">Restructuring to keep pace with the future</a>
-        </li>
-        <li>
-          <a id="search-partnerships-continue-to-fuel-mozillas-mission" class="has-modal" data-modal-id="search-partnerships-continue-to-fuel-mozillas-mission" href="#search-partnerships-continue-to-fuel-mozillas-mission">Search partnerships continue to fuel Mozilla’s mission</a>
-        </li>
-      </ul>
+    	<div class="mzp-l-card-quarter">
+
+    		<section class="mzp-c-card mzp-c-card-extra-small has-aspect-3-2">
+    			<a id="a-new-firefox-for-android-fast-private-by-design-and-independent-to-the-core" data-modal-id="a-new-firefox-for-android-fast-private-by-design-and-independent-to-the-core" class="mzp-c-card-block-link has-modal" href="#a-new-firefox-for-android-fast-private-by-design-and-independent-to-the-core">
+    				<div class="mzp-c-card-media-wrapper">
+    					{{ lazy_img(image_url='img/foundation/annualreport/2019/firefox-for-android.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '540', 'height': '360', 'class': 'mzp-c-card-image'}) }}
+    				</div>
+    				<div class="mzp-c-card-content">
+    					<div class="mzp-c-card-tag">Products</div>
+    					<h2 class="mzp-c-card-title">A new Firefox for Android, fast, private by design and independent to the core</h2>
+    				</div>
+    			</a>
+    		</section>
+
+    		<section class="mzp-c-card mzp-c-card-extra-small has-aspect-3-2">
+    		  <a id="our-racial-justice-commitments" data-modal-id="our-racial-justice-commitments" class="mzp-c-card-block-link has-modal" href="#our-racial-justice-commitments">
+    				<div class="mzp-c-card-media-wrapper">
+    					{{ lazy_img(image_url='img/foundation/annualreport/2019/racial-justice-commitments.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '540', 'height': '360', 'class': 'mzp-c-card-image'}) }}
+    				</div>
+    		    <div class="mzp-c-card-content">
+    		    	<div class="mzp-c-card-tag">Racial Justice</div>
+    					<h2 class="mzp-c-card-title">Our racial justice commitments</h2>
+    		    </div>
+    		  </a>
+    		</section>
+
+    		<section class="mzp-c-card mzp-c-card-extra-small has-aspect-3-2">
+    		  <a id="a-journey-to-environmental-sustainability" data-modal-id="a-journey-to-environmental-sustainability" class="mzp-c-card-block-link has-modal" href="#a-journey-to-environmental-sustainability">
+    				<div class="mzp-c-card-media-wrapper">
+    					{{ lazy_img(image_url='img/foundation/annualreport/2019/environmental-sustainability.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '540', 'height': '360', 'class': 'mzp-c-card-image'}) }}
+    				</div>
+    		    <div class="mzp-c-card-content">
+    		    	<div class="mzp-c-card-tag">Future Focus</div>
+    					<h2 class="mzp-c-card-title">A journey to environmental sustainability</h2>
+    		    </div>
+    		  </a>
+    		</section>
+
+    		<section class="mzp-c-card mzp-c-card-extra-small has-aspect-3-2">
+    		  <a id="funds-for-black-artists-exploring-the-effects-of-ai-on-racial-justice" data-modal-id="funds-for-black-artists-exploring-the-effects-of-ai-on-racial-justice" class="mzp-c-card-block-link has-modal" href="#funds-for-black-artists-exploring-the-effects-of-ai-on-racial-justice">
+    				<div class="mzp-c-card-media-wrapper">
+    					{{ lazy_img(image_url='img/foundation/annualreport/2019/funds-for-black-artists.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', include_highres_image=False, optional_attributes={'alt': '', 'width': '540', 'height': '360', 'class': 'mzp-c-card-image'}) }}
+    				</div>
+    		    <div class="mzp-c-card-content">
+    					<div class="mzp-c-card-tag">Racial Justice</div>
+    					<h2 class="mzp-c-card-title">Funds for Black artists exploring the effects of AI on racial
+    		    </div>
+    		  </a>
+    		</section>
+
+    	</div>
     </div>
 
     <!-- Feature Card -->
