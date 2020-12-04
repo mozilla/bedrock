@@ -232,9 +232,20 @@ $image-path: '/media/protocol/img';
     opacity: 0;
 }
 
-.mzp-c-modal-content {
+.no-js-hidden {
+    .no-js  & {
+        @include hidden;
+    }
+}
+
+.js-modal-content {
     .js  & {
         @include hidden;
+    }
+    section + section {
+        margin-top: $spacing-2xl;
+        padding-top: $spacing-2xl;
+        border-top: 1px solid $color-black;
     }
 }
 
