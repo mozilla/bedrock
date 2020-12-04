@@ -79,6 +79,12 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.c-page-intro {
+    h2 {
+        @include text-title-xs;
+    }
+}
+
 .leadership {
     .leadership-intro {
         font-weight: 100;
@@ -416,7 +422,8 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.c-modal-button-next, .c-modal-button-prev,  {
+.c-modal-button-next,
+.c-modal-button-prev,  {
     @extend .mzp-c-modal-button-close;
 }
 
@@ -425,10 +432,6 @@ $image-path: '/media/protocol/img';
 .mzp-c-modal-overlay-contents a:visited {
     color: $color-black;
 }
-
-// .mzp-c-button {
-//     margin-top: $spacing-md;
-// }
 
 .c-section-intro-bg {
     @media #{$mq-lg} {
@@ -448,7 +451,7 @@ $image-path: '/media/protocol/img';
     text-align: center;
 
     h2 {
-        @include text-title-lg;
+        @include text-title-sm;
         font-weight: 100;
     }
 }
