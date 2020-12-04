@@ -16,13 +16,16 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Hero image & banner heading
 .c-hero-banner {
-    background: url('/media/img/foundation/annualreport/2019/pixel-bg.svg') right center no-repeat;
-    background-size: auto 100%;
+    background: url('/media/img/foundation/annualreport/2019/pixel-mobile-bg.svg') right center no-repeat;
+    background-size: contain;
     margin-bottom: $spacing-2xl;
+    padding-top: $spacing-lg;
 
     @media #{$mq-md} {
+        background-image: url('/media/img/foundation/annualreport/2019/pixel-bg.svg');
         background-position: right center;
         background-size: auto 100%;
+        padding-top: $spacing-2xl;
 
         h1 {
             font-size: 5rem;
@@ -30,6 +33,12 @@ $image-path: '/media/protocol/img';
 
         img {
             margin-top: $spacing-md;
+        }
+    }
+
+    @media #{$mq-lg} {
+        h1 {
+            font-size: 7rem;
         }
     }
 
@@ -77,6 +86,12 @@ $image-path: '/media/protocol/img';
 }
 
 .leadership {
+    .leadership-intro {
+        font-weight: 100;
+        strong {
+            font-weight: bold;
+        }
+    }
     .mzp-c-card-title {
         @include text-title-md;
         margin-bottom: $spacing-2xl;
@@ -291,13 +306,16 @@ $image-path: '/media/protocol/img';
         content: " ";
         background: url('/media/img/foundation/annualreport/2019/pixel-small-bg.svg') center center no-repeat;
         background-size: contain;
-        width: $spacing-xl;
-        height: $spacing-xl;
-        top: -$spacing-xl;
+        width: 66px;
+        height: 66px;
+        top: -33px;
         right: 0;
         position: absolute;
         display: block;
         z-index: 1;
+        @media #{$mq-lg} {
+            top: -66px;
+        }
     }
 }
 
@@ -319,6 +337,9 @@ $image-path: '/media/protocol/img';
         .highlight {
             margin-left: -$spacing-sm;
         }
+    }
+    a:link {
+        color: $color-black;
     }
 }
 
@@ -409,13 +430,24 @@ $image-path: '/media/protocol/img';
 //     margin-top: $spacing-md;
 // }
 
+.c-section-intro-bg {
+    @media #{$mq-lg} {
+        background: url('/media/img/foundation/annualreport/2019/moz_site_som_fighting_for_people_left.svg') left center no-repeat, url('/media/img/foundation/annualreport/2019/moz_site_som_fighting_for_people_right.svg') right center no-repeat;
+        background-size: auto 100%;
+    }
+}
+
+.mzp-l-content + .c-section-intro-bg {
+    margin-top: $spacing-2xl;
+}
+
 .c-section-intro {
     margin: 0 auto;
     padding-top: $layout-lg;
     max-width: $content-md;
     text-align: center;
     h2 {
-        @include text-title-sm;
+        @include text-title-lg;
         font-weight: 100;
     }
 }
