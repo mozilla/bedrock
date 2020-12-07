@@ -3,8 +3,13 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from bedrock.mozorg.util import page
+from bedrock.redirects.util import redirect
 
 urlpatterns = (
+
+    # Issue 9727 /foundation/annualreport/2019/
+    redirect(r'^annualreport/$', 'foundation.annualreport.2019.index',
+             name='foundation.annualreport', locale_prefix=False),
 
     # Older annual report financial faqs - these are linked from blog posts
     # was e.g.: http://www.mozilla.org/foundation/documents/mozilla-2008-financial-faq.html
