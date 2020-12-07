@@ -39,9 +39,6 @@
     </div>{#--/.mzp-l-content--#}
   </header>
 
-{# Hide all content behind a switch so we can time our launch #}
-{% if switch('state-of-mozilla-2019') %}
-
   <div class="mzp-l-content mzp-t-content-lg c-page-intro">
     <h2><span class="highlight dark">Our impact</span></h2>
     <p>Mozilla exists to ensure the internet is open and accessible to all.
@@ -1381,15 +1378,4 @@
 </main>{# end visible content #}
 
 <div class="mzp-u-modal-content"></div>
-
-
-
-{% else %}
-<div class="mzp-l-content mzp-t-content-sm">
-  <center>
-    <h2>coming soon</h2>
-  </center>
-</div>
-{% endif %}
-
 {% endblock %}
