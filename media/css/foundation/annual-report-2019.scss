@@ -30,11 +30,9 @@ $image-path: '/media/protocol/img';
         padding: 0;
     }
 
-
-
     .right {
-        margin-left: $spacing-sm;
         align-self: flex-start;
+        margin-left: $spacing-sm;
     }
 
     h1 {
@@ -44,8 +42,6 @@ $image-path: '/media/protocol/img';
         font-weight: normal;
         justify-content: center;
         line-height: 0.9;
-
-
     }
 
     .left {
@@ -57,9 +53,9 @@ $image-path: '/media/protocol/img';
         display: block;
         margin-right: 1px;
         margin-top: $spacing-sm;
+        max-width: $layout-2xl;
         position: absolute;
         right: 0;
-        max-width: $layout-2xl;
     }
 
     @media #{$mq-md} {
@@ -76,7 +72,6 @@ $image-path: '/media/protocol/img';
         img {
             margin-top: 14px;
             max-width: $content-xs;
-;
         }
     }
 
@@ -84,13 +79,11 @@ $image-path: '/media/protocol/img';
         h1 {
             font-size: 7rem;
         }
+
         img {
             max-width: $content-sm;
         }
     }
-
-
-
 }
 
 .c-page-intro {
@@ -358,7 +351,6 @@ $image-path: '/media/protocol/img';
     }
 }
 
-// TODO: Fix Mobile Padding
 .mzp-c-modal-inner {
     background-color: $color-white;
     padding-top: $layout-lg;
@@ -552,9 +544,7 @@ $image-path: '/media/protocol/img';
 .c-leadership-article {
     h3 {
         @include text-title-md;
-        // border-left: 3px solid $color-black;
         padding: $spacing-lg 0 $spacing-sm;
-        // margin-top: $spacing-2xl;
         span {
             display: inline-block;
             margin-right: $spacing-xs;
