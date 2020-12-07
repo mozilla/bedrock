@@ -18,28 +18,23 @@ $image-path: '/media/protocol/img';
 .c-hero-banner {
     background: url('/media/img/foundation/annualreport/2019/pixel-mobile-bg.svg') right center no-repeat;
     background-size: contain;
-    margin-bottom: $spacing-2xl;
+    margin-bottom: $spacing-lg;
     padding-top: $spacing-lg;
 
-    @media #{$mq-md} {
-        background-image: url('/media/img/foundation/annualreport/2019/pixel-bg.svg');
-        background-position: right center;
-        background-size: auto 100%;
-        padding-top: $spacing-2xl;
-
-        h1 {
-            @include font-size(80px);
-        }
-
-        img {
-            margin-top: $spacing-md;
-        }
+    .l-highlight {
+        background: $color-green-40;
+        color: $color-black;
+        display: inline-block;
+        font-weight: bold;
+        line-height: .7;
+        padding: 0;
     }
 
-    @media #{$mq-lg} {
-        h1 {
-            font-size: 7rem;
-        }
+
+
+    .right {
+        margin-left: $spacing-sm;
+        align-self: flex-start;
     }
 
     h1 {
@@ -50,38 +45,57 @@ $image-path: '/media/protocol/img';
         justify-content: center;
         line-height: 0.9;
 
-        .l-highlight {
-            background: $color-green-40;
-            color: $color-black;
-            display: inline-block;
-            font-weight: bold;
-            line-height: .7;
-            padding: 0;
+
+    }
+
+    .left {
+        position: relative;
+        text-align: right;
+    }
+
+    img {
+        display: block;
+        margin-right: 1px;
+        margin-top: $spacing-sm;
+        position: absolute;
+        right: 0;
+        max-width: $layout-2xl;
+    }
+
+    @media #{$mq-md} {
+        background-image: url('/media/img/foundation/annualreport/2019/pixel-bg.svg');
+        background-position: right center;
+        background-size: auto 100%;
+        padding-top: $spacing-2xl;
+        margin-bottom: $spacing-2xl;
+
+        h1 {
+            @include font-size(80px);
         }
 
-        .left {
-            position: relative;
-            text-align: right;
-
-            img {
-                display: block;
-                margin-top: $spacing-sm;
-                max-width: $content-xs;
-                position: absolute;
-                right: 0;
-            }
-        }
-
-        .right {
-            margin-left: $spacing-sm;
-            align-self: flex-start;
+        img {
+            margin-top: 14px;
+            max-width: $content-xs;
+;
         }
     }
+
+    @media #{$mq-lg} {
+        h1 {
+            font-size: 7rem;
+        }
+        img {
+            max-width: $content-sm;
+        }
+    }
+
+
+
 }
 
 .c-page-intro {
     h2 {
-        @include text-title-xs;
+        @include text-title-md;
     }
 }
 
@@ -451,8 +465,11 @@ $image-path: '/media/protocol/img';
     text-align: center;
 
     h2 {
-        @include text-title-sm;
+        @include text-title-lg;
         font-weight: 100;
+        @media #{$mq-lg} {
+            @include text-title-xl;
+        }
     }
 }
 
@@ -534,13 +551,17 @@ $image-path: '/media/protocol/img';
 
 .c-leadership-article {
     h3 {
-        @include text-title-sm;
-        border-left: 3px solid $color-black;
-        padding: $spacing-md 0 $spacing-md $spacing-lg;
-
+        @include text-title-md;
+        // border-left: 3px solid $color-black;
+        padding: $spacing-lg 0 $spacing-sm;
+        // margin-top: $spacing-2xl;
         span {
             display: inline-block;
             margin-right: $spacing-xs;
+        }
+        @media #{$mq-md} {
+            @include text-title-sm;
+            padding-top: $spacing-2xl;
         }
     }
 
