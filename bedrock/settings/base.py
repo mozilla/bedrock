@@ -248,6 +248,7 @@ DOTLANG_CACHE = config('DOTLANG_CACHE', default='1800' if DEBUG else '600', pars
 DOTLANG_FILES = ['main']
 FLUENT_DEFAULT_FILES = [
     'banners/firefox-daylight-promo',
+    'banners/fundraising',
     'brands',
     'download_button',
     'firefox/sticky-promo',
