@@ -52,3 +52,4 @@ sub-navigation-privacy = Privacy
 sub-navigation-our-promise= Our Promise
 sub-navigation-our-products = Our Products
 sub-navigation-little-book-of-privacy = Little Book of Privacy
+sub-navigation-safe-passwords = Safe Passwords

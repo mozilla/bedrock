@@ -128,6 +128,31 @@
         </div>
       </section>
     </div>
+
+    {% if ftl_has_messages('features-index-fingerprinter-blocking', 'features-index-fingerprinting-is-a', 'features-index-translate-the-web', 'features-index-translate-more-than') %}
+    <div class="features mzp-l-card-third">
+      <section class="mzp-c-card-picto fingerprinting">
+        <div class="mzp-c-card-picto-content">
+          <h3 class="mzp-c-card-picto-title">{{ ftl('features-index-fingerprinter-blocking') }}</h3>
+          <div class="mzp-c-card-picto-desc">
+            <p>{{ ftl('features-index-fingerprinting-is-a') }}</p>
+            <a class="mzp-c-cta-link" href="{{ url('firefox.features.fingerprinting') }}">{{ ftl('features-index-block-fingerprinters') }}</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="mzp-c-card-picto translate">
+        <div class="mzp-c-card-picto-content">
+          <h3 class="mzp-c-card-picto-title">{{ ftl('features-index-translate-the-web') }}</h3>
+          <div class="mzp-c-card-picto-desc">
+            <p>{{ ftl('features-index-translate-more-than') }}</p>
+            <a class="mzp-c-cta-link" href="{{ url('firefox.features.translate') }}">{{ ftl('features-index-translate-to-your') }}</a>
+          </div>
+        </div>
+      </section>
+    </div>
+    {% endif %}
+
   </section>
 
   <section class="secondary-content">

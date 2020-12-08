@@ -1,0 +1,85 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros-protocol.html" import call_out_compact, hero with context %}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% block page_title %}{{ ftl('features-translate-translate-the-web-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('features-translate-translate-more-than') }}{% endblock %}
+{% block page_image %}{{ static('img/firefox/features/translate/og.png') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('seo') }}
+{% endblock %}
+
+{% block sub_navigation %}
+  {% include "firefox/features/includes/subnav.html" %}
+{% endblock %}
+
+{% block content %}
+<section class="mzp-c-hero mzp-has-image mzp-t-dark mzp-t-product-firefox">
+  <div class="mzp-l-content">
+    <div class="mzp-c-hero-body">
+      <h1 class="mzp-c-hero-title">{{ ftl('features-translate-translate-the-web') }}</h1>
+      <div class="mzp-c-hero-desc">
+        <p>{{ ftl('features-translate-the-google-translate') }}</p>
+      </div>
+      <div class="mzp-c-hero-cta">
+        <div class="download-firefox">
+          {{ download_firefox(dom_id='features-translate-download', download_location='primary cta') }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mzp-c-hero-image">
+    {{ high_res_img('img/firefox/features/translate/translate.png', {'alt': 'Hello, Bonjour, Hola', 'width': '930', 'height': '523'}) }}
+  </div>
+</section>
+<div class="mzp-l-content mzp-t-content-md">
+  <article class="mzp-c-article">
+
+    <p class="mzp-c-article-intro">{{ ftl('features-translate-the-internet-is', attrs='href="%s"'|safe|format(url('firefox.all'))) }}</p>
+
+    <h2>{{ ftl('features-translate-to-google-translate') }}</h2>
+    <p>{{ ftl('features-translate-google-translate-with', attrs='href="https://addons.mozilla.org/en-US/firefox/addon/to-google-translate/" rel="external noopener"') }}</p>
+
+
+    <p><a class="mzp-c-button mzp-t-product" href="https://addons.mozilla.org/firefox/addon/to-google-translate/" rel="external noopener">{{ ftl('features-translate-get-the-extension') }}</a></p>
+    <p>{{ ftl('features-translate-once-installed-simply') }}</p>
+
+    <img src="{{ static('img/firefox/features/translate/translation.png') }}">
+
+    <h2>{{ ftl('features-translate-switch-languages-in') }}</h2>
+    <p>{{ ftl('features-translate-if-you-are', attrs='href="https://support.mozilla.org/kb/use-firefox-another-language" rel="external noopener" ') }}</p>
+    <p>{{ ftl('features-translate-with-the-to', attrs='href="https://translate.google.com/about/languages/" rel="external noopener" ') }}</p>
+
+    {% if LANG.startswith('en-') %}
+      <p>Afrikaans, Albanian, Amharic, Arabic, Armenian, Azerbaijani, Basque, Belarusian, Bengali, Bosnian, Bulgarian, Catalan, Cebuano, Chichewa, Chinese, Corsican, Croatian, Czech, Danish, Dutch, English, Esperanto, Estonian, Filipino, Finnish, French, Frisian, Galician, Georgian, German, Greek, Gujarati, Haitian Creole, Hausa, Hawaiian, Hebrew, Hindi, Hmong, Hungarian, Icelandic, Igbo, Indonesian, Irish, Italian, Japanese, Javanese, Kannada, Kazakh, Khmer, Kinyarwanda, Korean, Kurdish, Kyrgyz, Lao, Latin, Latvian, Lithuanian, Luxembourgish, Macedonian, Malagasy, Malay, Malayalam, Maltese, Maori, Marathi, Mongolian, Myanmar (Burmese), Nepali, Norwegian, Odia (Oriya), Pashto, Persian, Polish, Portuguese, Punjabi, Romanian, Russian, Samoan, Scots Gaelic, Serbian, Sesotho, Shona, Sindhi, Sinhala, Slovak, Slovenian, Somali, Spanish, Sundanese, Swahili, Swedish, Tajik, Tamil, Tatar, Telugu, Thai, Turkish, Turkmen, Ukrainian, Urdu, Uyghur, Uzbek, Vietnamese, Welsh, Xhosa, Yiddish, Yoruba and Zulu.</p>
+    {% else %}
+      {% for lang in context_test -%}
+        {% set name = context_test[lang] %}
+        {% set par = name.find(' (') %}
+        {% if par > 0 %}
+          {{ name[0:par] }},
+        {% else %}
+          {{ name }},
+        {% endif %}
+      {% endfor %}
+      {{ ftl('features-translate-and-more', attrs='href="https://translate.google.com/about/languages/" rel="external noopener" ') }}
+    {% endif %}
+
+  </article>
+</div>
+
+{% call call_out_compact(
+  title=ftl('features-translate-for-everyone'),
+  class='mzp-t-product-firefox mzp-t-firefox mzp-t-dark'
+) %}
+<div class="download-firefox">
+  {{ download_firefox(dom_id='translate-bottom-download', download_location='secondary cta') }}
+</div>
+{% endcall %}
+
+{% endblock %}

@@ -26,6 +26,7 @@ from django.views.decorators.http import require_GET, require_POST
 from django.views.generic.base import TemplateView
 from lib import l10n_utils
 from lib.l10n_utils import L10nTemplateView
+from lib.l10n_utils.dotlang import get_translations_native_names
 from lib.l10n_utils.fluent import ftl, ftl_file_is_active
 from product_details.version_compare import Version
 
@@ -873,3 +874,25 @@ def firefox_welcome_page1(request):
 
     return l10n_utils.render(request, template_name, context,
                              ftl_files='firefox/welcome/page1')
+
+
+def firefox_features_translate(request):
+
+    to_translate_langs = ['af', 'sq', 'am-et', 'ar', 'hy-AM', 'az', 'eu', 'be', 'bn', 'bs',
+                          'bg', 'ca', 'zh-CN', 'hr', 'cs', 'da', 'nl', 'en-US', 'eo', 'et',
+                          'fi', 'fr', 'fy-NL', 'gl', 'ka', 'de', 'el', 'gu', 'ha', 'he', 'hi',
+                          'hu', 'is', 'ig', 'id', 'ga', 'it', 'ja', 'kn', 'kk', 'km', 'rw',
+                          'ko', 'ku', 'lo', 'la', 'lv', 'lt', 'mk', 'mg', 'ms', 'ml', 'mi',
+                          'mr', 'mn', 'my', 'ne-NP', 'nb-NO', 'or', 'fa', 'pl', 'pt-PT', 'pa',
+                          'ro', 'ru', 'gd', 'sr', 'st', 'si', 'sk', 'sl', 'es', 'sw', 'sv-SE',
+                          'ta', 'tt-RU', 'te', 'th', 'tr', 'uk', 'ur', 'uz', 'vi', 'cy', 'xh',
+                          'yo', 'zu']
+
+    names = get_translations_native_names(sorted(to_translate_langs))
+
+    context = {'context_test': names}
+
+    template_name = 'firefox/features/translate.html'
+
+    return l10n_utils.render(request, template_name, context,
+                             ftl_files=['firefox/features/shared', 'firefox/features/translate'])

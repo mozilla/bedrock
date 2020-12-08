@@ -672,6 +672,12 @@
     },
     {
       "files": [
+        "css/firefox/seo.scss"
+      ],
+      "name": "seo"
+    },
+    {
+      "files": [
         "css/firefox/browsers/best-browser.scss"
       ],
       "name": "best-browser"
