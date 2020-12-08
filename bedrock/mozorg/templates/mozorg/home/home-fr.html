@@ -15,11 +15,12 @@ Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, u
 {% block page_css %}
   {{ css_bundle('home-2018') }}
 
-  {% if switch('firefox-daylight-promo-banner') %}
+  {% if switch('firefox-daylight-promo-banner') and not switch('fundraising-banner-eoy2020') %}
     {{ css_bundle('daylight-promo-banner') }}
+  {% elif switch('fundraising-banner-eoy2020') %}
+    {{ css_bundle('fundraising-banner') }}
   {% endif %}
 {% endblock %}
-
 
 {% block main %}
 <main>
