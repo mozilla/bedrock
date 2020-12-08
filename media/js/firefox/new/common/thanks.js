@@ -39,12 +39,7 @@ if (typeof window.Mozilla === 'undefined') {
 
         switch(site.platform) {
         case 'windows':
-            if (site.isARM) {
-                // Detect ARM64 / AArch64 builds for Windows.
-                link = document.getElementById(prefix + 'win64-aarch64');
-            } else {
-                link = document.getElementById(prefix + 'win');
-            }
+            link = document.getElementById(prefix + 'win');
             break;
         case 'osx':
             link = document.getElementById(prefix + 'osx');

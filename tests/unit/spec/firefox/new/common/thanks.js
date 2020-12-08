@@ -48,20 +48,10 @@ describe('thanks.js', function() {
 
         it('should return the correct download for Windows', function() {
             var site = {
-                platform: 'windows',
-                isARM: false
+                platform: 'windows'
             };
             var result = Mozilla.DownloadThanks.getDownloadURL(site);
             expect(result).toEqual('https://download.mozilla.org/?product=firefox-stub&os=win&lang=en-US');
-        });
-
-        it('should return the correct download for Windows ARM64 / AArch64', function() {
-            var site = {
-                platform: 'windows',
-                isARM: true
-            };
-            var result = Mozilla.DownloadThanks.getDownloadURL(site);
-            expect(result).toEqual('https://download.mozilla.org/?product=firefox-latest-ssl&os=win64-aarch64&lang=en-US');
         });
 
         it('should return the correct download for macOS', function() {

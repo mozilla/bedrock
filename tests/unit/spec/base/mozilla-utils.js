@@ -89,27 +89,13 @@ describe('mozilla-utils.js', function() {
 
         it('should return expected values for Windows', function () {
             var site = {
-                platform: 'windows',
-                isARM: false
+                platform: 'windows'
             };
             var result = Mozilla.Utils.getDownloadAttributionValues(site);
             expect(result).toEqual({
                 os: 'Desktop',
                 name: 'Windows 32-bit',
                 version: 'win'
-            });
-        });
-
-        it('should return expected values for Windows ARM64 builds', function () {
-            var site = {
-                platform: 'windows',
-                isARM: true
-            };
-            var result = Mozilla.Utils.getDownloadAttributionValues(site);
-            expect(result).toEqual({
-                os: 'Desktop',
-                name: 'Windows ARM64/AArch64',
-                version: 'win64-aarch64'
             });
         });
 
