@@ -34,7 +34,6 @@ def process_md_file(file_path):
 
 
 def get_data_from_file_path(file_path):
-    print(file_path)
     locale = file_path.parts[-2]
     doc_name = file_path.stem
     if LOCALE_RE.match(doc_name):
