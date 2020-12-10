@@ -14,6 +14,14 @@
             return;
         }
 
+        // If the user is on Firefox and is NOT supposed to see sticky promo.
+        var fxUser = document.documentElement.classList.contains('is-firefox');
+        var hideFromFxUser = promo.classList.contains('hide-from-fx-user');
+
+        if ( fxUser && hideFromFxUser) {
+            return;
+        }
+
         var StickyPromo = {};
         var STICKY_PROMO_COOKIE_ID = 'firefox-sticky-promo';
 
