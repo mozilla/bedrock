@@ -24,6 +24,11 @@
 {% block page_favicon_large %}{{ static('img/favicons/firefox/favicon-196x196.png') }}{% endblock %}
 {% block page_ios_icon %}{{ static('img/favicons/firefox/apple-touch-icon.png') }}{% endblock %}
 
+{% block experiments %}
+  {% if switch('firefox-mobile-android-experiment', ['en-US']) %}
+    {{ js_bundle('firefox-mobile-android-experiment') }}
+  {% endif %}
+{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('firefox-master') }}
