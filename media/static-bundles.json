@@ -542,6 +542,7 @@
     },
     {
       "files": [
+        "css/firefox/sticky-promo.scss",
         "css/firefox/releasenotes.scss"
       ],
       "name": "firefox_releasenotes"
