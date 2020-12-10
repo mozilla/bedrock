@@ -1,0 +1,32 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% set android_url = firefox_adjust_url('android', 'native-android-exp-banner') %}
+
+<aside class="c-banner hide-from-legacy-ie mzp-t-firefox" id="native-android-banner">
+  {# Exclude banners from search result snippets using `data-nosnippet` (issue 8739) #}
+  <div class="c-banner-inner" data-nosnippet="true">
+    <button type="button" class="c-banner-close"><span>{{ ftl('ui-close') }}</span></button>
+    <div class="mzp-l-content">
+      <div class="c-banner-main">
+        <img class="smartbanner-icon" src="https://www.mozilla.org/media/cro_exp/img/nativedownload/android-icon-512.jpg" alt="Firefox icon" />
+
+        <span>
+          <h2 class="c-banner-title">Firefox: Private, Safe Browser</h2>
+          <p>Mozilla</p>
+          {% if variant == 'b' %}
+          <img class="smartbanner-rating" src="https://www.mozilla.org/media/cro_exp/img/nativedownload/stars-android.png" alt="star rating" />
+          {% endif %}
+          <p>Free &ndash; In Google Play</p>
+        </span>
+
+        <div class="c-cta android">
+          <a id="play-store-link" class="smartbanner-button" href="{{ android_url }}">View</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</aside>
+

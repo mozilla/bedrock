@@ -839,6 +839,21 @@ class FirefoxHomeView(L10nTemplateView):
     }
     activation_files = ['firefox/home', 'firefox/home/index-quantum.html']
 
+    # place expected ?v= values in this list
+    variations = ['a', 'b', 'c', 'd']
+
+    def get_context_data(self, **kwargs):
+        ctx = super(FirefoxHomeView, self).get_context_data(**kwargs)
+        variant = self.request.GET.get('v', None)
+
+        # ensure variant matches pre-defined value
+        if variant not in self.variations:
+            variant = None
+
+        ctx['variant'] = variant
+
+        return ctx
+
     def get_template_names(self):
         if ftl_file_is_active('firefox/home'):
             template_name = 'firefox/home/index-master.html'

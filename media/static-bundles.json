@@ -246,6 +246,12 @@
     },
     {
       "files": [
+        "css/base/banners/native-android-exp.scss"
+      ],
+      "name": "native-android-exp-banner"
+    },
+    {
+      "files": [
         "css/protocol/common-old-ie.scss"
       ],
       "name": "common-old-ie"
@@ -1006,6 +1012,13 @@
     },
     {
       "files": [
+        "js/base/banners/mozilla-banner.js",
+        "js/firefox/mobile/android-native-banner-init.js"
+      ],
+      "name": "native-android-exp-banner"
+    },
+    {
+      "files": [
         "protocol/js/protocol-sidemenu.js",
         "js/base/mozilla-article.js",
         "js/privacy/privacy-protocol.js"
@@ -1044,6 +1057,13 @@
         "js/firefox/mobile/mobile.js"
       ],
       "name": "firefox-mobile"
+    },
+    {
+      "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/firefox/mobile/android-experiment.js"
+      ],
+      "name": "firefox-mobile-android-experiment"
     },
     {
       "files": [

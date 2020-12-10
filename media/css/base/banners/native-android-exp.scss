@@ -1,0 +1,143 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+
+  .smartbanner-icon {
+    width: 57px;
+    height: 57px;
+    background-size: cover;
+    background-image: url("https://www.mozilla.org/media/cro_exp/img/nativedownload/android-icon-512.jpg");
+    border-radius: 8px;
+    margin-right: 10px;
+  }
+
+  .smartbanner-button {
+    padding: 4px 12px;
+    font-size: 16px;
+    font-weight: 500;
+    color: $color-white;
+    text-decoration: none;
+    border-radius: 5px;
+    background-color: #68A036;
+    text-transform: uppercase;
+  }
+
+  .smartbanner-button-text {
+    text-align: center;
+    display: block;
+    padding: 0 5px;
+    text-decoration: none;
+  }
+
+#native-android-banner {
+    &.c-banner {
+        @include text-body-sm;
+        align-items: center;
+        background: #f2f2f2;
+        border-bottom: 1px solid #ccc;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        margin-bottom: 10px;
+        padding: 10px;
+
+        // hide by default if JS is available to avoid flicker
+        // (if visitor previously dismissed)
+        .js & {
+            display: none;
+        }
+
+        // conditional class used to display the banner.
+        &.c-banner-is-visible {
+            display: block;
+        }
+    }
+
+    .c-banner-title {
+        @include bidi(((padding-right, $spacing-lg, 0), (padding-left, 0, $spacing-lg),)); // make room for the close button
+        @include text-body-md;
+        line-height: 20px;
+        color: #000;
+        font-weight: 500;
+    }
+
+    @media #{$mq-md} {
+        .c-banner-main {
+            display: flex;
+            align-items: center;
+
+            .smartbanner-rating {
+                width: 70px;
+                padding: 1px 0;
+              }
+
+            span p {
+                margin: 0;
+            }
+        }
+
+        .c-banner-title {
+            margin: 0;
+            padding: 0;
+        }
+
+        .c-cta {
+            line-height: 0;
+            min-width: 180px;
+            padding: 0 $spacing-xl;
+        }
+    }
+
+
+    // Conditional content
+
+    .android & .mobile-download-buttons {
+        .android {
+            display: inline-block;
+        }
+    }
+
+    // Close button
+    .c-banner-close {
+        @include background-size(20px 20px);
+        @include bidi((
+            (left, $spacing-sm, auto),
+            (right, auto, $spacing-sm),
+        ));
+        @include image-replaced;
+        background: transparent url('#{$image-path}/icons/close.svg') center center no-repeat;
+        border: none;
+        cursor: pointer;
+        display: none;
+        height: 42px;
+        min-width: 0;
+        padding: 0;
+        position: absolute;
+        top: $spacing-sm;
+        width: 42px;
+        z-index: 1;
+
+        &:hover,
+        &:focus {
+            @include transition(transform .1s ease-in-out);
+            @include transform(scale(1.1));
+        }
+
+        &:focus {
+            outline: 1px dotted $color-white;
+        }
+
+        // hide the 'Close' text
+        span {
+            @include visually-hidden;
+        }
+
+        // only display when JS is available
+        .js & {
+            display: block;
+        }
+    }
+}
