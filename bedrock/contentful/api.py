@@ -4,12 +4,19 @@ from django.conf import settings
 
 import contentful as api
 from rich_text_renderer import RichTextRenderer
+from rich_text_renderer.text_renderers import BaseInlineRenderer
 
 
 # Bedrock to Contentful locale map
 LOCALE_MAP = {
     'de': 'de-DE',
 }
+
+
+class StrongRenderer(BaseInlineRenderer):
+    @property
+    def _render_tag(self):
+        return 'strong'
 
 
 def get_client():
@@ -81,7 +88,9 @@ class ContentfulUnfckPage(ContentfulBase):
 
 
 class ContentfulFirefoxPage(ContentfulBase):
-    renderer = RichTextRenderer()
+    renderer = RichTextRenderer({
+        'bold': StrongRenderer,
+    })
 
     def get_page_data(self, page_id, locale):
         locale = contentful_locale(locale)
