@@ -213,6 +213,10 @@ class LangFilesMixin:
     # mostly useful during a redesign where multiple templates are used for a single URL
     activation_files = None
 
+    @property
+    def request_locale(self):
+        return get_locale(self.request)
+
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         if self.active_locales:

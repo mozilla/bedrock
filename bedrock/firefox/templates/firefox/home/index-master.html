@@ -62,13 +62,21 @@
 
     <div class="c-lead">
       <div class="mzp-l-content">
+        {% if headlines %}
+        <h1 class="c-lead-title">{{ headlines.hero_headline }}</h1>
+        {% else %}
         <h1 class="c-lead-title">{{ ftl('firefox-home-the-browser-is-just') }}</h1>
+        {% endif %}
       </div>
     </div>
 
     <div class="c-showcase">
       <div class="mzp-l-content">
-        <h2 class="c-showcase-title">{{ ftl('firefox-home-meet-our-family-of') }}</h2>
+        {% if headlines %}
+          <h2 class="c-showcase-title">{{ headlines.product_headline }}</h2>
+        {% else %}
+          <h2 class="c-showcase-title">{{ ftl('firefox-home-meet-our-family-of') }}</h2>
+        {% endif %}
         <ul class="c-showcase-list">
           <li>
             <a class="mzp-c-cta-link" href="{{ url('firefox.browsers.index') }}" data-cta-type="link" data-cta-text="Browsers">
@@ -109,7 +117,11 @@
         ga_title='Trackers',
         media_after=True
       ) %}
+        {% if headlines %}
+        <h4>{{ headlines.browser_headline }}</h4>
+        {% else %}
         <h4>{{ ftl('firefox-home-get-trackers-off') }}</h4>
+        {% endif %}
         <div id="test-menu-browsers-wrapper" class="mzp-c-menu-list mzp-t-cta mzp-t-download">
           <h5 class="mzp-c-menu-list-title">{{ ftl('firefox-home-download-the-browser') }}</h5>
           <ul class="mzp-c-menu-list-list" id="menu-browsers">
@@ -140,7 +152,11 @@
           ga_title='Monitor',
           media_after=True
         ) %}
-        <h4>{{ ftl('firefox-home-know-when-hackers-strike') }}</h4>
+        {% if headlines %}
+          <h4>{{ headlines.monitor_headline }}</h4>
+        {% else %}
+          <h4>{{ ftl('firefox-home-know-when-hackers-strike') }}</h4>
+        {% endif %}
         {% endcall %}
     </div>
 
@@ -153,7 +169,11 @@
         ga_title='Lockwise',
         media_after=True
       ) %}
-      <h4>{{ ftl('firefox-home-keep-your-passwords') }}</h4>
+      {% if headlines %}
+        <h4>{{ headlines.lockwise_headline }}</h4>
+      {% else %}
+        <h4>{{ ftl('firefox-home-keep-your-passwords') }}</h4>
+      {% endif %}
         <div class="mzp-c-menu-list mzp-t-cta mzp-t-download">
           <h5 class="mzp-c-menu-list-title">{{ ftl('firefox-home-download-the-app') }}</h5>
           <ul class="mzp-c-menu-list-list" id="menu-lockwise">
@@ -191,7 +211,11 @@
         ga_title='Pocket',
         media_after=True
       ) %}
-      <h4>{{ ftl('firefox-home-trade-clickbait-for') }}</h4>
+      {% if headlines %}
+        <h4>{{ headlines.pocket_headline }}</h4>
+      {% else %}
+        <h4>{{ ftl('firefox-home-trade-clickbait-for') }}</h4>
+      {% endif %}
         <div class="mzp-c-menu-list mzp-t-cta mzp-t-download">
           <h5 class="mzp-c-menu-list-title">{{ ftl('firefox-home-download-the-app') }}</h5>
           <ul class="mzp-c-menu-list-list" id="menu-pocket">
@@ -233,7 +257,11 @@
               </li>
             </ul>
         </div>
-        <h2 class="c-end-title">{{ ftl('firefox-home-one-login-all-your') }}</h2>
+        {% if headlines %}
+          <h2 class="c-end-title">{{ headlines.final_cta_headline|safe }}</h2>
+        {% else %}
+          <h2 class="c-end-title">{{ ftl('firefox-home-one-login-all-your') }}</h2>
+        {% endif %}
         <div class="mzp-c-button-download-container">
           {{ fxa_button(
             entrypoint='mozilla.org-firefox_home',

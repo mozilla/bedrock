@@ -181,4 +181,5 @@ urlpatterns = (
 if settings.DEV:
     urlpatterns += (
         path('firefox/unfck-preview/<content_id>/', views.UnfckPagePreviewView.as_view()),
+        path('firefox-home-preview/<content_id>/', views.FirefoxHomePreviewView.as_view()),
     )

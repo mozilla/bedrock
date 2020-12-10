@@ -16,7 +16,6 @@ from django.http import (
     HttpResponsePermanentRedirect,
     JsonResponse,
 )
-
 from django.utils.cache import patch_response_headers
 from django.utils.decorators import method_decorator
 from django.utils.encoding import force_text
@@ -24,20 +23,19 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
 from django.views.generic.base import TemplateView
-from lib import l10n_utils
-from lib.l10n_utils import L10nTemplateView
-from lib.l10n_utils.fluent import ftl, ftl_file_is_active
 from product_details.version_compare import Version
 
 from bedrock.base.urlresolvers import reverse
+from bedrock.base.views import GeoRedirectView
 from bedrock.base.waffle import switch
-from bedrock.contentful.api import contentful_unfck_page
+from bedrock.contentful.api import contentful_unfck_page, contentful_firefox_page
 from bedrock.firefox.firefox_details import firefox_android, firefox_desktop
 from bedrock.firefox.forms import SendToDeviceWidgetForm
 from bedrock.newsletter.forms import NewsletterFooterForm
 from bedrock.releasenotes import version_re
-from bedrock.base.views import GeoRedirectView
-
+from lib import l10n_utils
+from lib.l10n_utils import L10nTemplateView
+from lib.l10n_utils.fluent import ftl, ftl_file_is_active
 
 UA_REGEXP = re.compile(r"Firefox/(%s)" % version_re)
 
@@ -779,6 +777,34 @@ class FirefoxHomeView(L10nTemplateView):
             template_name = 'firefox/home/index-quantum.html'
 
         return [template_name]
+
+
+class FirefoxHomePreviewView(FirefoxHomeView):
+    locales_map = {
+        'de': 'de-DE',
+        'fr': 'fr',
+    }
+
+    @property
+    def contentful_locale(self):
+        locale = self.request_locale
+        if locale.startswith('es-'):
+            return 'es'
+
+        if locale.startswith('en-'):
+            return 'en-US'
+
+        return self.locales_map.get(locale)
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        if self.contentful_locale:
+            ctx.update(contentful_firefox_page.get_page_data(
+                ctx['content_id'],
+                self.contentful_locale),
+            )
+
+        return ctx
 
 
 BREACH_TIPS_URLS = {

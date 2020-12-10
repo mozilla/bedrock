@@ -3,6 +3,13 @@ import re
 from django.conf import settings
 
 import contentful as api
+from rich_text_renderer import RichTextRenderer
+
+
+# Bedrock to Contentful locale map
+LOCALE_MAP = {
+    'de': 'de-DE',
+}
 
 
 def get_client():
@@ -15,6 +22,14 @@ def get_client():
         )
 
     return client
+
+
+def contentful_locale(locale):
+    """Returns the Contentful locale for the Bedrock locale"""
+    if locale.startswith('es-'):
+        return 'es'
+
+    return LOCALE_MAP.get(locale, locale)
 
 
 def _get_height(width, aspect):
@@ -63,6 +78,22 @@ class ContentfulUnfckPage(ContentfulBase):
                 card_data[name] = value
 
         return card_data
+
+
+class ContentfulFirefoxPage(ContentfulBase):
+    renderer = RichTextRenderer()
+
+    def get_page_data(self, page_id, locale):
+        locale = contentful_locale(locale)
+        page = self.client.entry(page_id, {'locale': locale})
+        headlines = {}
+        for name, value in page.fields().items():
+            if isinstance(value, dict):
+                value = self.renderer.render(value)
+
+            headlines[name] = value
+
+        return {'headlines': headlines}
 
 
 class ContentfulHomePage(ContentfulBase):
@@ -202,3 +233,4 @@ class ContentfulHomePage(ContentfulBase):
 
 contentful_home_page = ContentfulHomePage()
 contentful_unfck_page = ContentfulUnfckPage()
+contentful_firefox_page = ContentfulFirefoxPage()
