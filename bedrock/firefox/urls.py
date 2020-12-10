@@ -154,7 +154,7 @@ urlpatterns = (
     page('firefox/browsers/browser-history', 'firefox/browsers/browser-history.html'),
     page('firefox/browsers/incognito-browser', 'firefox/browsers/incognito-browser.html'),
     page('firefox/browsers/update-your-browser', 'firefox/browsers/update-browser.html'),
-    page('firefox/browsers/what-is-a-browser', 'firefox/browsers/what-is-a-browser.html'),
+    page('firefox/browsers/what-is-a-browser', 'firefox/browsers/what-is-a-browser.html', ftl_files=['firefox/browsers/history/what-is-a-browser']),
     page('firefox/browsers/windows-64-bit', 'firefox/browsers/windows-64-bit.html', ftl_files=['firefox/browsers/windows-64-bit']),
 
     # Lockwise
