@@ -63,8 +63,8 @@
           <li>
             <section class="c-menu-item mzp-has-icon">
               <a class="c-menu-item-link" href="https://relay.firefox.com/?{{ utm_params }}" data-link-name="Firefox Relay" data-link-type="nav" data-link-position="topnav" data-link-group="projects">
-                <img src="{{ static('img/nav/icons/icon-relay-beta.svg') }}" class="c-menu-item-icon" width="32" height="32" alt="" loading="lazy">
-                <h4 class="c-menu-item-title">{{ ftl('navigation-v2-firefox-relay-beta') }}</h4>
+                <img src="{{ static('img/nav/icons/icon-relay.svg') }}" class="c-menu-item-icon" width="32" height="32" alt="" loading="lazy">
+                <h4 class="c-menu-item-title">{{ ftl('navigation-v2-firefox-relay', fallback='navigation-v2-firefox-relay-beta') }}</h4>
               {% if ftl_has_messages('navigation-v2-sign-up-for-new-accounts') %}
                 <p class="c-menu-item-desc">{{ ftl('navigation-v2-sign-up-for-new-accounts') }}</p>
               {% endif %}
