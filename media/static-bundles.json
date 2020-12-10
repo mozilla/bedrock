@@ -672,6 +672,12 @@
     },
     {
       "files": [
+        "css/firefox/seo.scss"
+      ],
+      "name": "seo"
+    },
+    {
+      "files": [
         "css/firefox/browsers/best-browser.scss"
       ],
       "name": "best-browser"
@@ -1263,14 +1269,13 @@
         "js/base/mozilla-run.js",
         "protocol/js/protocol-supports.js",
         "protocol/js/protocol-utils.js",
-        "js/base/protocol/protocol-menu.js",
+        "protocol/js/protocol-menu.js",
         "js/base/protocol/protocol-navigation.js",
         "js/base/protocol/init-navigation.js",
         "protocol/js/protocol-lang-switcher.js",
         "js/base/protocol/init-lang-switcher.js",
         "protocol/js/protocol-details.js",
         "js/base/protocol/protocol-footer.js",
-        "js/base/protocol/protocol-sub-navigation.js",
         "js/base/base-page-init.js",
         "js/base/core-datalayer.js",
         "js/base/core-datalayer-init.js",

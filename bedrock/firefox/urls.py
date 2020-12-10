@@ -163,6 +163,7 @@ urlpatterns = (
     # Issue 7765, 7709
     page('firefox/privacy', 'firefox/privacy/index.html', ftl_files=['firefox/privacy-hub']),
     page('firefox/privacy/products', 'firefox/privacy/products.html', ftl_files=['firefox/privacy-hub']),
+    page('firefox/privacy/safe-passwords', 'firefox/privacy/passwords.html', ftl_files=['firefox/privacy-hub', 'firefox/privacy/passwords']),
 
     # Issue 8432
     page('firefox/set-as-default/thanks', 'firefox/set-as-default/thanks.html', ftl_files='firefox/set-as-default/thanks'),
