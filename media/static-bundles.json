@@ -98,6 +98,12 @@
     },
     {
       "files": [
+        "css/firefox/sticky-promo.scss"
+      ],
+      "name": "sticky_promo"
+    },
+    {
+      "files": [
         "css/firefox/new/trailhead/download.scss"
       ],
       "name": "firefox_new_download"
@@ -933,6 +939,13 @@
         "js/firefox/new/yandex/scene1-init.js"
       ],
       "name": "firefox_new_download_yandex"
+    },
+    {
+      "files": [
+        "protocol/js/protocol-sticky-promo.js",
+        "js/firefox/sticky-promo.js"
+      ],
+      "name": "sticky_promo"
     },
     {
       "files": [
