@@ -68,7 +68,7 @@ For all generic CTA links and <button> elements, add these data attributes (* in
 |    data-cta-position     | Location of CTA on the page (e.g. 'primary', 'secondary', 'header') |
 +--------------------------+---------------------------------------------------------------------+
 
-For all download buttons, add these data attributes (* indicates a required attribute):
+For all download buttons, add these data attributes (* indicates a required attribute). Note that ``data-download-name`` and ``data-download-version`` should be included for download buttons that serve multiple platforms. For mobile specific store badges, they are not strictly required.
 
 +---------------------------+-----------------------------------------------------------------------------------------------+
 |    Data Attribute         |        Expected Value                                                                         |
