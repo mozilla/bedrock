@@ -520,6 +520,7 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
 
     ftl_files_map = {
         'firefox/firstrun/firstrun.html': ['firefox/firstrun'],
+        'firefox/developer/firstrun.html': ['firefox/developer'],
     }
 
     def get(self, *args, **kwargs):
@@ -580,6 +581,7 @@ class WhatsNewRedirectorView(GeoRedirectView):
 class WhatsnewView(L10nTemplateView):
 
     ftl_files_map = {
+        'firefox/developer/whatsnew.html': ['firefox/developer'],
         'firefox/nightly/whatsnew.html': ['firefox/nightly/whatsnew', 'firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/index-account.html': ['firefox/whatsnew/whatsnew-account', 'firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/index.html': ['firefox/whatsnew/whatsnew-s2d', 'firefox/whatsnew/whatsnew'],

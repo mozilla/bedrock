@@ -1,11 +1,10 @@
 <section class="t-newsletter">
   <div class="mzp-l-content">
     {% if LANG.startswith('en-') %}
-      {# L10n: line break for visual formatting #}
       {{ email_newsletter_form(
         'app-dev',
         title='Mozilla Developer Newsletter',
-        desc=_('Get developer news, tricks and resources <br /> sent straight to your inbox.'),
+        desc='Get developer news, tricks and resources <br /> sent straight to your inbox.'|safe,
         button_class='mzp-t-product mzp-t-lg',
         include_language=False) }}
     {% else %}
