@@ -1,80 +1,58 @@
 <section class="t-highlights mzp-l-content mzp-t-content-lg">
   <div class="c-gallery-grid">
-    {% if l10n_has_tag('new_features_20191129') %}
+    {% if ftl_has_messages('firefox-developer-new-tools', 'firefox-developer-firefox-devtools-now-grays-out') %}
       <div class="c-gallery-item" id="devtools">
         <a href="https://hacks.mozilla.org/2019/10/firefox-70-a-bountiful-release-for-all/#developertools" rel="external">
-          {{ high_res_img('img/firefox/developer/hero-inactive-css.png', {'alt': _('Inactive CSS'), 'class': 'highlight-image'}) }}
+          {{ high_res_img('img/firefox/developer/hero-inactive-css.png', {'alt': ftl('firefox-developer-inactive-css'), 'class': 'highlight-image'}) }}
         </a>
-        <h2 class="c-title">{{ _('New Tools') }}</h2>
-        <h3 class="c-subtitle">{{ _('Inactive CSS') }}</h3>
+        <h2 class="c-title">{{ ftl('firefox-developer-new-tools') }}</h2>
+        <h3 class="c-subtitle">{{ ftl('firefox-developer-inactive-css') }}</h3>
+        <p>{{ ftl('firefox-developer-firefox-devtools-now-grays-out') }}</p>
         <p>
-        {% trans %}
-          Firefox DevTools now grays out CSS declarations that don’t have an
-          effect on the page. When you hover over the info icon, you’ll see a
-          useful message about why the CSS is not being applied, including a
-          hint about how to fix the problem.
-        {% endtrans %}
+          <a class="mzp-c-cta-link" rel="external" href="https://hacks.mozilla.org/2019/10/firefox-70-a-bountiful-release-for-all/#developertools">
+            {{ ftl('ui-learn-more') }}
+          </a>
         </p>
-        <p><a class="mzp-c-cta-link" rel="external" href="https://hacks.mozilla.org/2019/10/firefox-70-a-bountiful-release-for-all/#developertools">{{ ftl('ui-learn-more') }}</a></p>
       </div>
     {% endif %}
     <div class="c-gallery-item" id="devtools">
       <a href="https://mozilladevelopers.github.io/playground/debugger/" rel="external">
-        <img class="highlight-image" src="{{ static('img/firefox/developer/hero-debugger-ani.gif') }}" alt="_('Firefox DevTools')">
+        <img class="highlight-image" src="{{ static('img/firefox/developer/hero-debugger-ani.gif') }}" alt="{{ ftl('firefox-developer-firefox-devtools') }}">
       </a>
-      <h2 class="c-title">{{ _('New Tools') }}</h2>
-      <h3 class="c-subtitle">{{ _('Firefox DevTools') }}</h3>
+      <h2 class="c-title">{{ ftl('firefox-developer-new-tools') }}</h2>
+      <h3 class="c-subtitle">{{ ftl('firefox-developer-firefox-devtools') }}</h3>
+      <p>{{ ftl('firefox-developer-the-new-firefox-devtools') }}</p>
       <p>
-      {% trans %}
-        The new Firefox DevTools are powerful, flexible, and best of all,
-        hackable. This includes a best-in-class JavaScript debugger, which
-        can target multiple browsers and is built in React and Redux.
-      {% endtrans %}
+        <a class="mzp-c-cta-link" rel="external" href="https://mozilladevelopers.github.io/playground/debugger/">
+          {{ ftl('ui-learn-more') }}
+        </a>
       </p>
-      <p><a class="mzp-c-cta-link" rel="external" href="https://mozilladevelopers.github.io/playground/debugger/">{{ ftl('ui-learn-more') }}</a></p>
     </div>
 
     <div class="c-gallery-item" id="cssgrid">
       <a href="https://mozilladevelopers.github.io/playground/css-grid/" rel="external">
-        <img class="highlight-image" src="{{ static('img/firefox/developer/hero-cssgrid-ani.gif') }}" alt="_('Master CSS Grid')">
+        <img class="highlight-image" src="{{ static('img/firefox/developer/hero-cssgrid-ani.gif') }}" alt="{{ ftl('firefox-developer-master-css-grid') }}">
       </a>
-      <h2 class="c-title">{{ _('Innovative Features') }}</h2>
-      <h3 class="c-subtitle">{{ _('Master CSS Grid') }}</h3>
+      <h2 class="c-title">{{ ftl('firefox-developer-master-innovative-features') }}</h2>
+      <h3 class="c-subtitle">{{ ftl('firefox-developer-master-css-grid') }}</h3>
+      <p>{{ ftl('firefox-developer-firefox-is-the-only-browser') }}</p>
       <p>
-      {% trans %}
-        Firefox is the only browser with tools built specifically for
-        building and designing with CSS Grid. These tools allow you to
-        visualize the grid, display associated area names, preview
-        transformations on the grid and much more.
-      {% endtrans %}
+        <a class="mzp-c-cta-link" rel="external" href="https://mozilladevelopers.github.io/playground/css-grid/">
+          {{ ftl('ui-learn-more') }}
+        </a>
       </p>
-      <p><a class="mzp-c-cta-link" rel="external" href="https://mozilladevelopers.github.io/playground/css-grid/">{{ ftl('ui-learn-more') }}</a></p>
     </div>
 
-    {% if l10n_has_tag('new_features_20180830') %}
-      {% if not l10n_has_tag('new_features_20191129') %}
+    {% if ftl_has_messages('firefox-developer-faster-innovation', 'firefox-developer-the-new-fonts-panel') %}
+      {% if not ftl_has_messages('firefox-developer-new-tools', 'firefox-developer-firefox-devtools-now-grays-out') %}
         <div class="c-gallery-item">
           <a rel="external" href="https://developer.mozilla.org/docs/Tools/Page_Inspector/How_to/Edit_CSS_shapes">
             <img class="highlight-image" src="{{ static('img/firefox/developer/hero-clip-ani.gif') }}" alt="_('Shapes Editor')">
           </a>
-          <h2 class="c-title">{{ _('Convenient Features') }}</h2>
-          <h3 class="c-subtitle">{{ _('Shapes Editor') }}</h3>
+          <h2 class="c-title">{{ ftl('firefox-developer-convenient-features') }}</h2>
+          <h3 class="c-subtitle">{{ ftl('firefox-developer-shapes-editor') }}</h3>
           <p>
-          {% if l10n_has_tag('new_features_shape_outside') %}
-            {% trans %}
-              Firefox DevTools has a brand new shape path editor that takes
-              the guesswork out of fine-tuning your shape-outside and clip-path
-              shapes by allowing you to very easily fine-tune your adjustments
-              with a visual editor.
-            {% endtrans %}
-          {% else %}
-            {% trans %}
-              Firefox DevTools has a brand new shape path editor that takes
-              the guesswork out of fine-tuning your shadow-outside and clip-path
-              shapes by allowing you to very easily fine-tune your adjustments
-              with a visual editor.
-            {% endtrans %}
-          {% endif %}
+            {{ ftl('firefox-developer-firefox-devtools-has-a-brand-new-v2', fallbacl='firefox-developer-firefox-devtools-has-a-brand-new') }}
           </p>
           <p><a class="mzp-c-cta-link" rel="external" href="https://developer.mozilla.org/docs/Tools/Page_Inspector/How_to/Edit_CSS_shapes">{{ ftl('ui-learn-more') }}</a></p>
         </div>
@@ -84,15 +62,10 @@
         <a rel="external" href="https://developer.mozilla.org/docs/Tools/Page_Inspector/How_to/Edit_fonts">
           <img class="highlight-image" src="{{ static('img/firefox/developer/hero-fonts.gif') }}" alt="_('Fonts Panel')">
         </a>
-        <h2 class="c-title">{{ _('Faster Information') }}</h2>
-        <h3 class="c-subtitle">{{ _('Fonts Panel') }}</h3>
+        <h2 class="c-title">{{ ftl('firefox-developer-faster-innovation') }}</h2>
+        <h3 class="c-subtitle">{{ ftl('firefox-developer-fonts-panel') }}</h3>
         <p>
-        {% trans %}
-          The new fonts panel in Firefox DevTools gives developers quick
-          access to all of the information they need about the fonts being
-          used in an element. It also includes valuable information such
-          as the font source, weight, style and more.
-        {% endtrans %}
+          {{ ftl('firefox-developer-the-new-fonts-panel') }}
         </p>
         <p><a class="mzp-c-cta-link" rel="external" href="https://developer.mozilla.org/docs/Tools/Page_Inspector/How_to/Edit_fonts">{{ ftl('ui-learn-more') }}</a></p>
       </div>

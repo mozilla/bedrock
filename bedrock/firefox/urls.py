@@ -39,7 +39,7 @@ urlpatterns = (
     page('firefox/channel/desktop', 'firefox/channel/desktop.html', ftl_files=['firefox/channel']),
     page('firefox/channel/android', 'firefox/channel/android.html', ftl_files=['firefox/channel']),
     page('firefox/channel/ios', 'firefox/channel/ios.html', ftl_files=['firefox/channel']),
-    page('firefox/developer', 'firefox/developer/index.html'),
+    page('firefox/developer', 'firefox/developer/index.html', ftl_files=['firefox/developer']),
     page('firefox/enterprise', 'firefox/enterprise/index.html', ftl_files=['firefox/enterprise']),
     page('firefox/enterprise/signup', 'firefox/enterprise/signup.html'),
     page('firefox/enterprise/signup/thanks', 'firefox/enterprise/signup-thanks.html'),
