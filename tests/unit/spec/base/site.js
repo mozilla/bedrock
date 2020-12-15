@@ -93,8 +93,6 @@ describe('site.js', function () {
             expect(window.site.getArchType('Mozilla/5.0 (Android 5.0.2; Mobile; rv:42.0) Gecko/42.0 Firefox/42.0', 'Linux aarch64')).toBe('armv8');
             expect(window.site.getArchType('Mozilla/5.0 (X11; U; Linux armv6l; en-US; rv:1.9.1b2pre) Gecko/20081116 Fennec/1.0a2pre', 'Linux armv6l')).toBe('armv6');
             expect(window.site.getArchType('Mozilla/5.0 (X11; Ubuntu; Linux armv7l; rv:32.0) Gecko/20100101 Firefox/32.0', 'Linux armv7l')).toBe('armv7');
-            expect(window.site.getArchType('Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; ARM; Trident/6.0)')).toBe('armv7');
-            expect(window.site.getArchType('Mozilla/5.0 (Windows Phone 8.1; ARM; Trident/7.0; Touch; rv:11; IEMobile/11.0; NOKIA; Lumia 928) like Gecko')).toBe('armv7');
         });
     });
 

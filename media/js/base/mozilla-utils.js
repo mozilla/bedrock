@@ -33,8 +33,8 @@ if (typeof window.Mozilla === 'undefined') {
         switch(platform) {
         case 'windows':
             data.os = 'Desktop';
-            data.name = site.isARM ? 'Windows ARM64/AArch64' : 'Windows 32-bit';
-            data.version = site.isARM ? 'win64-aarch64': 'win';
+            data.name = 'Windows 32-bit';
+            data.version = 'win';
             break;
         case 'osx':
             data.os = 'Desktop';

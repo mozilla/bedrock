@@ -52,16 +52,6 @@
 
             var re;
 
-            // Windows RT and Windows Phone using ARMv7
-            if (/Windows/.test(ua) && /ARM/.test(ua)) {
-                return 'armv7';
-            }
-
-            // IE-specific property
-            if (navigator.cpuClass) {
-                return navigator.cpuClass.toLowerCase();
-            }
-
             // ARM
             re = /armv\d+/i;
             if (re.test(pf) || re.test(ua)) {
@@ -131,7 +121,7 @@
         var archSize = window.site.archSize = window.site.getArchSize();
         var isARM = window.site.isARM = archType.match(/armv(\d+)/);
 
-        // Used for Windows and Linux ARM processor detection.
+        // Used for Linux ARM processor detection.
         if (archType !== 'x86') {
             h.className = h.className.replace('x86', archType);
 
