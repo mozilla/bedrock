@@ -151,7 +151,7 @@ urlpatterns = (
 
     # Issue 8641
     page('firefox/browsers/best-browser', 'firefox/browsers/best-browser.html', ftl_files=['firefox/browsers/best-browser']),
-    page('firefox/browsers/browser-history', 'firefox/browsers/browser-history.html'),
+    page('firefox/browsers/browser-history', 'firefox/browsers/browser-history.html', ftl_files=['firefox/browsers/history/browser-history']),
     page('firefox/browsers/incognito-browser', 'firefox/browsers/incognito-browser.html'),
     page('firefox/browsers/update-your-browser', 'firefox/browsers/update-browser.html'),
     page('firefox/browsers/what-is-a-browser', 'firefox/browsers/what-is-a-browser.html', ftl_files=['firefox/browsers/history/what-is-a-browser']),
