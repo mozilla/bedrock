@@ -65,7 +65,7 @@ $image-path: '/media/protocol/img';
 }
 
 @media #{$mq-md} {
-    .mzp-c-sticky-promo {
+    .mzp-c-sticky-promo.mzp-a-slide-in {
         display: block;
     }
 }
