@@ -4,8 +4,8 @@
 
 from django.conf.urls import url
 
-from .util import page
-from . import views
+from bedrock.mozorg.util import page
+from bedrock.mozorg import views
 from bedrock.redirects.util import redirect
 
 
@@ -120,6 +120,11 @@ urlpatterns = (
     page('moss/secure-open-source', 'mozorg/moss/secure-open-source.html'),
 
     url(r'^robots\.txt$', views.Robots.as_view(), name='robots.txt'),
+
+    # analytics experiment
+    url(r'^a7s-exp-2020/page-load.gif', views.tiny_gif),
+    url(r'^a7s-exp-2020/ga-page-load.json', views.page_load_ga),
+    url(r'^a7s-exp-2020/js-page-load.json', views.page_load_js),
 
     # namespaces
     url(r'^2004/em-rdf$', views.namespaces, {'namespace': 'em-rdf'}),

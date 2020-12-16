@@ -317,7 +317,8 @@ SUPPORTED_NONLOCALES = [
     'revision.txt',
     'locales',
     'prometheus',
-    'sitemap_none.xml'
+    'sitemap_none.xml',
+    'a7s-exp-2020',
 ]
 # Paths that can exist either with or without a locale code in the URL.
 # Matches the whole URL path
