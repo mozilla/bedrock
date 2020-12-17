@@ -234,6 +234,32 @@
         link_url=url('firefox.browsers.compare.opera')
       )}}
     </div>
+
+    <div class="mzp-l-card-third">
+      {{ card(
+        title=ftl('firefox-more-fingerprinter-blocking'),
+        ga_title='Fingerprinter Blocking',
+        image_url='img/firefox/more/fingerprint.png',
+        desc=ftl('firefox-more-fingerprinting-is-a'),
+        link_url=url('firefox.features.fingerprinting')
+      )}}
+
+      {{ card(
+        title=ftl('firefox-more-translate-the-web'),
+        ga_title='Translate',
+        image_url='img/firefox/more/firefox-all.jpg',
+        desc=ftl('firefox-more-translate-more-than'),
+        link_url=url('firefox.features.translate')
+      )}}
+
+      {{ card(
+        title=ftl('firefox-more-a-guide-to'),
+        ga_title='Safe Passwords',
+        desc=ftl('firefox-more-more-and-more'),
+        image_url='img/firefox/more/passwords.png',
+        link_url=url('firefox.privacy.passwords')
+      )}}
+    </div>
   </div>
 </main>
 {% endblock %}

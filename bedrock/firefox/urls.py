@@ -53,6 +53,8 @@ urlpatterns = (
          ftl_files=['firefox/features/shared', 'firefox/features/bookmarks']),
     page('firefox/features/fast', 'firefox/features/fast.html',
          ftl_files=['firefox/features/shared', 'firefox/features/fast']),
+    page('firefox/features/fingerprinting', 'firefox/features/fingerprinting.html',
+         ftl_files=['firefox/features/shared', 'firefox/features/fingerprinting']),
     page('firefox/features/independent', 'firefox/features/independent.html',
          ftl_files=['firefox/features/shared', 'firefox/features/independent']),
     page('firefox/features/memory', 'firefox/features/memory.html',
@@ -62,6 +64,8 @@ urlpatterns = (
     page('firefox/features/private-browsing', 'firefox/features/private-browsing.html',
          ftl_files=['firefox/features/shared', 'firefox/features/private-browsing']),
     page('firefox/features/safebrowser', 'firefox/features/safebrowser.html'),
+    url(r'^firefox/features/translate/$', views.firefox_features_translate, name='firefox.features.translate'),
+
 
     url(r'^firefox/ios/testflight/$', views.ios_testflight, name='firefox.ios.testflight'),
     page('firefox/mobile', 'firefox/mobile/index.html', ftl_files=['firefox/mobile']),
@@ -163,6 +167,7 @@ urlpatterns = (
     # Issue 7765, 7709
     page('firefox/privacy', 'firefox/privacy/index.html', ftl_files=['firefox/privacy-hub']),
     page('firefox/privacy/products', 'firefox/privacy/products.html', ftl_files=['firefox/privacy-hub']),
+    page('firefox/privacy/safe-passwords', 'firefox/privacy/passwords.html', ftl_files=['firefox/privacy-hub', 'firefox/privacy/passwords']),
 
     # Issue 8432
     page('firefox/set-as-default/thanks', 'firefox/set-as-default/thanks.html', ftl_files='firefox/set-as-default/thanks'),
