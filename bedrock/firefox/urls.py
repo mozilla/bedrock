@@ -53,7 +53,7 @@ urlpatterns = (
          ftl_files=['firefox/features/shared', 'firefox/features/bookmarks']),
     page('firefox/features/fast', 'firefox/features/fast.html',
          ftl_files=['firefox/features/shared', 'firefox/features/fast']),
-    page('firefox/features/fingerprinting', 'firefox/features/fingerprinting.html',
+    page('firefox/features/block-fingerprinting', 'firefox/features/fingerprinting.html',
          ftl_files=['firefox/features/shared', 'firefox/features/fingerprinting']),
     page('firefox/features/independent', 'firefox/features/independent.html',
          ftl_files=['firefox/features/shared', 'firefox/features/independent']),
