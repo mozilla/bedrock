@@ -1,0 +1,46 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import google_play_button with context %}
+{% set android_url = firefox_adjust_url('android', 'native-android-exp-banner') %}
+
+{% if variant == '2' %}
+<aside class="c-banner hide-from-legacy-ie mzp-t-firefox t-mozilla" id="native-android-banner">
+  {# Exclude banners from search result snippets using `data-nosnippet` (issue 8739) #}
+  <div class="c-banner-inner" data-nosnippet="true">
+      <button type="button" class="c-banner-close"><span>Close</span></button>
+    <div class="mzp-l-content">
+      <div class="c-banner-main">
+          <h2 class="c-banner-title">Download the Firefox browser designed for Android</h2>
+          {{ google_play_button(href=android_url, extra_data_attributes={'data-download-location': 'native app banner exp'}) }}
+      </div>
+    </div>
+  </div>
+</aside>
+{% else %}
+<aside class="c-banner hide-from-legacy-ie mzp-t-firefox t-native {% if variant in ['5', '6'] %}t-dark{% endif %}" id="native-android-banner">
+  {# Exclude banners from search result snippets using `data-nosnippet` (issue 8739) #}
+  <div class="c-banner-inner" data-nosnippet="true">
+    <div class="mzp-l-content">
+      <div class="c-banner-main">
+          <button type="button" class="c-banner-close"><span>Close</span></button>
+          {% if variant in ['5', '6'] %}
+            <img class="c-banner-icon" src="https://www.mozilla.org/media/cro_exp/img/nativedownload/android-icon-white-512.jpg" width="57" height="57" alt="" />
+          {% else %}
+            <img class="c-banner-icon" src="https://www.mozilla.org/media/cro_exp/img/nativedownload/android-icon-512.jpg" width="57" height="57" alt="" />
+          {% endif %}
+          <div class=c-banner-copy>
+            <h2 class="c-banner-title">Firefox: Private, Safe Browser</h2>
+            <p>Mozilla</p>
+            {% if variant in ['4', '5'] %}
+            <img class="c-banner-rating" src="https://www.mozilla.org/media/cro_exp/img/nativedownload/stars-android.png" width="70" alt="Rating: four and a half stars out of five" />
+            {% endif %}
+            <p>Free – In Google Play</p>
+          </div>
+          <a class="c-banner-button" href="{{ android_url }}" data-link-type="download" data-download-os="Android" data-download-location="native app banner exp">View</a>
+      </div>
+    </div>
+  </div>
+</aside>
+{% endif %}
