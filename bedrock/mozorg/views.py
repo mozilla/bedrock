@@ -2,8 +2,14 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from base64 import b64decode
+
 from commonware.decorators import xframe_allow
+from prometheus_client import Counter
+
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render as django_render
+from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_safe
 from django.views.generic import TemplateView
 from lib import l10n_utils
@@ -19,6 +25,29 @@ credits_file = CreditsFile('credits')
 forums_file = ForumsFile('forums')
 
 TECH_BLOG_SLUGS = ['hacks', 'cd', 'futurereleases']
+# 1x1 transparent gif
+TINY_GIF = b64decode('R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAEBMgA7')
+GA_COUNTER = Counter('analytics_experiment_ga', 'Count of page views for Google Analytics')
+JS_COUNTER = Counter('analytics_experiment_js', 'Count of page views for pure JS')
+IMG_COUNTER = Counter('analytics_experiment_img', 'Count of page views by image load')
+
+
+@never_cache
+def tiny_gif(request):
+    IMG_COUNTER.inc()
+    return HttpResponse(TINY_GIF, content_type='image/gif')
+
+
+@never_cache
+def page_load_ga(request):
+    GA_COUNTER.inc()
+    return JsonResponse({'response': 'OK'})
+
+
+@never_cache
+def page_load_js(request):
+    JS_COUNTER.inc()
+    return JsonResponse({'response': 'OK'})
 
 
 def csrf_failure(request, reason=''):
