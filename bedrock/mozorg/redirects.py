@@ -737,4 +737,7 @@ redirectpatterns = (
 
     # Bug 1673476
     redirect(r'^/about/governance/policies/security-group/certs/?$', 'https://wiki.mozilla.org/CA'),
+
+    # Issue 9254
+    redirect(r'^grants(/.*)?$', 'mozorg.moss.index'),
 )

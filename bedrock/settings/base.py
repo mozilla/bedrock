@@ -533,7 +533,6 @@ INSTALLED_APPS = (
     'bedrock.base',
     'bedrock.firefox',
     'bedrock.foundation',
-    'bedrock.grants',
     'bedrock.legal',
     'bedrock.legal_docs',
     'bedrock.mozorg',

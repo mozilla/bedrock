@@ -98,12 +98,6 @@
     },
     {
       "files": [
-        "css/grants/grants.scss"
-      ],
-      "name": "grants"
-    },
-    {
-      "files": [
         "css/firefox/new/trailhead/download.scss"
       ],
       "name": "firefox_new_download"

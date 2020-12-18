@@ -1387,4 +1387,7 @@ URLS = flatten((
 
     # Issue 9788
     url_test('/firefox/enterprise/signup/{,thanks/}', '/firefox/enterprise/'),
+
+    # Issue 9254
+    url_test('/grants/{,reports/gnome-haeger-report,jambu.html}/', '/moss/'),
 ))
