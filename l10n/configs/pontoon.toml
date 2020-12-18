@@ -144,6 +144,9 @@ locales = [
         "fr"
     ]
 [[paths]]
+    reference = "en/firefox/privacy/passwords.ftl"
+    l10n = "{locale}/firefox/privacy/passwords.ftl"
+[[paths]]
     reference = "en/firefox/products/**/*.ftl"
     l10n = "{locale}/firefox/products/**/*.ftl"
 [[paths]]

@@ -8,7 +8,7 @@
 privacy-passwords-security-guide-to = Security guide to safer logins and passwords
 
 # HTML page description
-privacy-passwords-more-and-more = More and more of the sensitive, valuable things in our life are guarded through password-protected online accounts. How should we protect our logins?
+privacy-passwords-more-and-more-desc = More and more of the sensitive, valuable things in our life are guarded through password-protected online accounts. How should we protect our logins?
 
 # page content
 privacy-passwords-a-security-guide = A security guide to safer logins and passwords
