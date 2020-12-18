@@ -13,12 +13,6 @@
 
 {% block page_image %}{{ static('img/firefox/campaign/unfck/de/og.png') }}{% endblock %}
 
-{% block experiments %}
-  {% if switch('firefox-unfck-de-experiment', ['de']) %}
-    {{ js_bundle('firefox-unfck-de-experiment') }}
-  {% endif %}
-{% endblock %}
-
 {% block page_css %}
   {{ css_bundle('firefox-unfck-de') }}
 {% endblock %}
@@ -36,13 +30,7 @@
 
 <main role="main" class="t-unfck">
 
-  <div class="c-masthead show-default">
-    <div class="c-masthead-content">
-      <a class="c-masthead-logo" href="{{ url('firefox') }}" data-cta-type="link" data-cta-text="Firefox">Firefox</a>
-    </div>
-  </div>
-
-  <div class="c-masthead show-firefox hide-from-legacy-ie">
+  <div class="c-masthead">
     <div class="c-masthead-content">
       <div class="c-masthead-logo"></div>
     </div>
@@ -63,7 +51,7 @@
     heading_level=1)
   %}
     <div class="mzp-c-hero-desc">
-      <p>{% block hero_desc %}Aus Liebe zum Web. Firefox ist der unabhängige Browser – unterstützt vom Non-Profit Mozilla. Schütze dich und das Web, das du liebst – Unfuck the Rest.{% endblock %}</p>
+      <p>Download Firefox: Der Unabhängige browser unterstützt vom non-profit Mozilla</p>
     </div>
     {{ download_firefox(alt_copy='Download Firefox', download_location='primary cta') }}
 
