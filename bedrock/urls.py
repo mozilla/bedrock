@@ -19,7 +19,6 @@ handler404 = 'bedrock.base.views.page_not_found_view'
 urlpatterns = (
     # Main pages
     url(r'^foundation/', include('bedrock.foundation.urls')),
-    url(r'^grants/', include('bedrock.grants.urls')),
     url(r'^about/legal/', include('bedrock.legal.urls')),
     url(r'^press/', include('bedrock.press.urls')),
     url(r'^privacy/', include('bedrock.privacy.urls')),

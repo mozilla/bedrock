@@ -12,7 +12,6 @@ from django.test.client import Client
 
 from mock import patch
 
-from bedrock.grants import grants_db
 from bedrock.releasenotes.models import ProductRelease
 from bedrock.security.models import SecurityAdvisory
 
@@ -40,14 +39,6 @@ SEC_KNOWN_VULNS = [
     '/security/known-vulnerabilities/seamonkey-1.0/',
     '/security/known-vulnerabilities/mozilla-suite/',
 ]
-
-
-def get_grants_urls():
-    urls = {}
-    for grant in grants_db.GRANTS:
-        urls['/grants/{}.html'.format(grant.url)] = ['en-US']
-
-    return urls
 
 
 def get_security_urls():
@@ -162,7 +153,6 @@ def update_sitemaps():
     urls = get_static_urls()
     urls.update(get_release_notes_urls())
     urls.update(get_security_urls())
-    urls.update(get_grants_urls())
     # Output static files
     output_json(urls)
 
