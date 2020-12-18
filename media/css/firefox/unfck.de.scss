@@ -215,14 +215,14 @@ main {
 // Masthead
 
 .c-masthead {
-    background: $color-white;
+    background: $color-purple-90;
     position: relative;
     z-index: 10;
 
     .c-masthead-content {
         @include clearfix;
         margin: 0 auto;
-        max-width: $content-max;
+        max-width: $content-md;
         min-width: $content-xs - ($layout-xs * 2);
         padding: 0 $layout-xs;
         position: relative;
@@ -236,40 +236,17 @@ main {
         }
     }
 
-    &.show-default {
-        background-color: $color-white;
-        height: 60px;
+    .c-masthead-logo {
+        @include background-size(contain);
+        background-image: url('/media/img/firefox/campaign/unfck/de/unfck-masthead.png');
+        background-repeat: no-repeat;
+        height: 0;
+        margin: 0 auto;
+        max-width: 100%;
+        padding-top: 171 * 100% / 684;
 
-        .c-masthead-logo {
-            @include at2x('/media/protocol/img/logos/firefox/logo-word-hor-sm.png', 109px, 36px);
-            @include image-replaced;
-            display: block;
-            float: left;
-            height: 36px;
-            margin-top: 12px;
-            width: 109px;
-        }
-    }
-
-    &.show-firefox {
-        background-color: $color-purple-90;
-
-        .c-masthead-content {
-            max-width: $content-md;
-        }
-
-        .c-masthead-logo {
-            @include background-size(contain);
-            background-image: url('/media/img/firefox/campaign/unfck/de/unfck-masthead.png');
-            background-repeat: no-repeat;
-            height: 0;
-            margin: 0 auto;
-            max-width: 100%;
-            padding-top: 171 * 100% / 684;
-
-            @media #{$mq-md} {
-                @include at2x('/media/img/firefox/campaign/unfck/de/unfck-masthead.png', contain);
-            }
+        @media #{$mq-md} {
+            @include at2x('/media/img/firefox/campaign/unfck/de/unfck-masthead.png', contain);
         }
     }
 }
@@ -281,16 +258,7 @@ main {
     margin: 0 auto;
 
     &.show-default {
-        margin-bottom: $layout-sm;
-        max-width: 1500px;
-
-        @media #{$mq-lg} {
-            margin-bottom: -$layout-md;
-        }
-
-        @media #{$mq-xl} {
-            margin-bottom: -$layout-xl;
-        }
+        max-width: 750px;
     }
 
     &.show-firefox {
@@ -309,46 +277,15 @@ main {
 
 .c-banner-wrapper.show-default {
     .c-banner {
-        @include at2x('/media/img/firefox/campaign/unfck/de/unfck-header.png', contain);
-        padding-top: 287 * 100% / 522;
-        top: $spacing-sm;
+        @include background-size(contain);
+        background-image: url('/media/img/firefox/campaign/unfck/de/unfck-header.png');
+        padding-top: 562 * 100% / 742;
+        top: 0;
 
-        &:after {
-            background: transparent url('/media/img/firefox/campaign/unfck/de/gifs/heart.gif') left bottom no-repeat;
-            @include background-size(contain);
-            bottom: 8%;
-            content: '';
-            display: block;
-            left: 12%;
-            position: absolute;
-            top: 0;
-            width: 17.9%;
-        }
-
-        @media (prefers-reduced-motion) {
-            &:after {
-                background-image: url('/media/img/firefox/campaign/unfck/de/gifs/still/heart.png');
-            }
-        }
-
-        @media #{$mq-md} {
-            @include at2x('/media/img/firefox/campaign/unfck/de/unfck-header-long.png', contain);
+        @media #{$mq-sm} {
+            @include at2x('/media/img/firefox/campaign/unfck/de/unfck-header.png', contain);
             margin-bottom: 0;
-            padding-top: 375 * 100% / 1500;
-
-            &:after {
-                bottom: 29%;
-                left: 10%;
-                width: 10.4%;
-            }
-        }
-
-        @media #{$mq-lg} {
-            top: -$layout-sm;
-        }
-
-        @media #{$mq-xl} {
-            top: -$layout-md;
+            padding-top: 562 * 100% / 742;
         }
     }
 }
@@ -425,6 +362,12 @@ main {
                 right: -800px;
             }
         }
+    }
+}
+
+.mzp-c-hero.show-default {
+    .mzp-c-hero-desc {
+        @include visually-hidden;
     }
 }
 
