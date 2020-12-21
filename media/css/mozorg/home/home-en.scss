@@ -31,6 +31,11 @@ $image-path: '/media/protocol/img';
     padding-bottom: 0;
     text-align: left;
 
+    .mzp-c-hero-title {
+        @include font-firefox;
+        @include font-size(32px);
+    }
+
     .mzp-c-hero-body {
         max-width: none;
     }
@@ -45,11 +50,6 @@ $image-path: '/media/protocol/img';
     }
 
     @media #{$mq-md} {
-        .mzp-c-hero-title {
-            @include font-firefox;
-            @include font-size(32px);
-        }
-
         .privacy-promise-hero-desc {
             margin-bottom: $spacing-lg;
         }
