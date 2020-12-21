@@ -1384,4 +1384,7 @@ URLS = flatten((
 
     # Bug 1673476
     url_test('/about/governance/policies/security-group/certs/', 'https://wiki.mozilla.org/CA'),
+
+    # Issue 9788
+    url_test('/firefox/enterprise/signup/{,thanks/}', '/firefox/enterprise/'),
 ))
