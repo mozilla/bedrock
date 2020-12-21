@@ -345,7 +345,6 @@ NOINDEX_URLS = [
     r'^firefox/this-browser-comes-highly-recommended/',
     r'^firefox/nightly/notes/feed/$',
     r'^firefox.*/all/$',
-    r'^firefox/enterprise/signup/',
     r'^.+/(firstrun|whatsnew)/$',
     r'^m/',
     r'^newsletter/(confirm|existing|hacks\.mozilla\.org|recovery|updated|fxa-error)/',

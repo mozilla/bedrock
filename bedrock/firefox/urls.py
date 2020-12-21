@@ -40,8 +40,6 @@ urlpatterns = (
     page('firefox/channel/ios', 'firefox/channel/ios.html', ftl_files=['firefox/channel']),
     page('firefox/developer', 'firefox/developer/index.html'),
     page('firefox/enterprise', 'firefox/enterprise/index.html', ftl_files=['firefox/enterprise']),
-    page('firefox/enterprise/signup', 'firefox/enterprise/signup.html'),
-    page('firefox/enterprise/signup/thanks', 'firefox/enterprise/signup-thanks.html'),
     page('firefox/facebookcontainer', 'firefox/facebookcontainer/index.html', ftl_files=['firefox/facebook_container']),
 
     page('firefox/features', 'firefox/features/index.html',

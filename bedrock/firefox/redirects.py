@@ -661,7 +661,9 @@ redirectpatterns = (
     redirect(r'^firefox/rendonslenetplusnet/?$', 'firefox.campaign.unfck.index'),
     redirect(r'^(unfu?ck|love|liebe|rendonslenetplusnet)/?$', 'firefox.campaign.unfck.index'),
 
-
     # issue 9148
     redirect(r'^/firefox/campaign/?$', 'firefox.new'),
+
+    # issue 9788
+    redirect(r'^/firefox/enterprise/signup(/.*)?$', 'firefox.enterprise.index'),
 )

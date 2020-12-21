@@ -549,12 +549,6 @@
     },
     {
       "files": [
-        "css/firefox/enterprise/signup.scss"
-      ],
-      "name": "firefox-enterprise-signup"
-    },
-    {
-      "files": [
         "css/firefox/releasenotes.scss"
       ],
       "name": "firefox_releasenotes"
