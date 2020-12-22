@@ -15,7 +15,7 @@ Bedrock uses Google Tag Manager (GTM) to manage and organize its Google Analytic
 
 GTM is a tag management system that allows for easy implementation of Google Analytics tags and other 3rd party marketing tags in a nice GUI experience. Tags can be added, updated, or removed directly from the GUI. GTM allows for a `one source of truth` approach to managing an analytics solution in that all analytics tracking can be inside GTM.
 
-Bedrock's GTM solution is CSP compliant and does not allow for the injection of custom HTML or JavaScript but all tags use built in templates to minimize any chance of introducing a bug into Bedrock.
+Bedrock's GTM solution is CSP compliant and does not allow for the injection of custom HTML or JavaScript but all tags use built in templates to minimize any chance of introducing a bug into Bedrock. 
 
 The GTM DataLayer
 -----------------
