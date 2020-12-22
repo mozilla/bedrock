@@ -846,7 +846,6 @@ class FirefoxHomeView(L10nTemplateView):
         'firefox/home/exp/v-5.html': ['firefox/home'],
         'firefox/home/exp/v-6.html': ['firefox/home'],
     }
-    activation_files = ['firefox/home', 'firefox/home/index-quantum.html']
 
     # place expected ?v= values in this list
     variations = ['1', '2', '3', '4', '5', '6']
@@ -871,13 +870,10 @@ class FirefoxHomeView(L10nTemplateView):
         if variant not in self.variations:
             variant = None
 
-        if ftl_file_is_active('firefox/home'):
-            if locale == 'en-US' and variant:
-                template_name = 'firefox/home/exp/v-{}.html'.format(variant)
-            else:
-                template_name = 'firefox/home/index-master.html'
+        if locale == 'en-US' and variant:
+            template_name = 'firefox/home/exp/v-{}.html'.format(variant)
         else:
-            template_name = 'firefox/home/index-quantum.html'
+            template_name = 'firefox/home/index-master.html'
 
         return [template_name]
 
