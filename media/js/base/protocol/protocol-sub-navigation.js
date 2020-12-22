@@ -14,8 +14,8 @@
         if (typeof Mzp.Supports !== 'undefined' && typeof Mzp.Details !== 'undefined') {
 
             // check browser supports matchMedia
-            if(Mzp.Supports.matchMedia) {
-                var _mqWide = matchMedia('(max-width: 768px');
+            if (Mzp.Supports.matchMedia) {
+                var _mqWide = matchMedia('(max-width: 768px)');
 
                 // initialize details if screen is small
                 if (_mqWide.matches) {
