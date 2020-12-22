@@ -773,16 +773,6 @@ class TestFirefoxHome(TestCase):
         assert template == ['firefox/home/index-master.html']
 
     @patch('bedrock.firefox.views.l10n_utils.render')
-    @patch.object(views, 'ftl_file_is_active', lambda *x: False)
-    def test_firefox_home_legacy(self, render_mock):
-        req = RequestFactory().get('/firefox/')
-        req.locale = 'fr'
-        view = views.FirefoxHomeView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/home/index-quantum.html']
-
-    @patch('bedrock.firefox.views.l10n_utils.render')
     def test_firefox_native_app_banner_exp_variant_1(self, render_mock):
         req = RequestFactory().get('/firefox/?v=1')
         req.locale = 'en-US'

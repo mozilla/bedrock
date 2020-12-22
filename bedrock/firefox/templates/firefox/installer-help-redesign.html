@@ -7,8 +7,6 @@
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
-{% add_lang_files "firefox/installer-help-redesign" %}
-
 {% block page_title %}{{ ftl('installer-help-page-title') }}{% endblock %}
 {% block body_id %}installer-help{% endblock %}
 

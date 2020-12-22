@@ -498,13 +498,6 @@
     },
     {
       "files": [
-        "css/firefox/home/quantum.scss",
-        "css/base/mozilla-lazy-image.scss"
-      ],
-      "name": "firefox-quantum"
-    },
-    {
-      "files": [
         "css/firefox/home/ie9.scss"
       ],
       "name": "firefox-home-ie9"
@@ -976,7 +969,6 @@
         "protocol/js/protocol-modal.js",
         "protocol/js/protocol-newsletter.js",
         "js/base/mozilla-lazy-load.js",
-        "js/libs/jquery.waypoints.min.js",
         "js/newsletter/form-protocol.js",
         "js/mozorg/home/youtube.js",
         "js/mozorg/home/home.js"
@@ -1083,14 +1075,6 @@
         "js/firefox/set-as-default/thanks.js"
       ],
       "name": "firefox-default-thanks"
-    },
-    {
-      "files": [
-        "js/libs/jquery.waypoints.min.js",
-        "js/base/mozilla-lazy-load.js",
-        "js/firefox/home/quantum.js"
-      ],
-      "name": "firefox-quantum"
     },
     {
       "files": [
