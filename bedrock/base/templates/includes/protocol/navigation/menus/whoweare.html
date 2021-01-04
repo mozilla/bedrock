@@ -5,7 +5,7 @@
 {% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=who-we-are' %}
 
 <li class="c-menu-category mzp-has-drop-down mzp-js-expandable">
-  <a class="c-menu-title" href="{{ url('mozorg.about') }}" aria-haspopup="true" aria-controls="c-menu-panel-about">{{ ftl('navigation-v2-who-we-are', fallback='navigation-about') }}</a>
+  <a class="c-menu-title" href="{{ url('mozorg.about.index') }}" aria-haspopup="true" aria-controls="c-menu-panel-about">{{ ftl('navigation-v2-who-we-are', fallback='navigation-about') }}</a>
   <div class="c-menu-panel" id="c-menu-panel-about">
     <div class="c-menu-panel-container">
       <button class="c-menu-button-close" type="button" aria-controls="c-menu-panel-about">{{ ftl('navigation-v2-close-who-we-are-menu', fallback='navigation-close-about-menu') }}</button>
@@ -73,7 +73,7 @@
           </li>
         </ul>
         <p class="c-menu-category-link">
-          <a href="{{ url('mozorg.about') }}" data-link-name="More About Mozilla" data-link-type="nav" data-link-position="topnav" data-link-group="who-we-are">{{ ftl('navigation-v2-more-about-mozilla') }}</a>
+          <a href="{{ url('mozorg.about.index') }}" data-link-name="More About Mozilla" data-link-type="nav" data-link-position="topnav" data-link-group="who-we-are">{{ ftl('navigation-v2-more-about-mozilla') }}</a>
         </p>
       </div>
     </div><!-- close .c-menu-panel-container -->
