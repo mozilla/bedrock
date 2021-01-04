@@ -12,9 +12,15 @@ class UpdateBrowserPage(BasePage):
 
     _URL_TEMPLATE = '/{locale}/firefox/browsers/update-your-browser/'
 
-    _download_button_locator = (By.ID, 'download-button-desktop-release')
+    _primary_download_button_locator = (By.ID, 'download-button-primary')
+    _secondary_download_button_locator = (By.ID, 'download-button-secondary')
 
     @property
-    def download_button(self):
-        el = self.find_element(*self._download_button_locator)
+    def primary_download_button(self):
+        el = self.find_element(*self._primary_download_button_locator)
+        return DownloadButton(self, root=el)
+
+    @property
+    def secondary_download_button(self):
+        el = self.find_element(*self._secondary_download_button_locator)
         return DownloadButton(self, root=el)

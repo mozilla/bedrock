@@ -11,7 +11,7 @@ $image-path: '/media/protocol/img';
 
 
 .mzp-c-article {
-    margin: 0 auto $layout-lg;
+    margin: $layout-lg auto;
 
     .mzp-c-article-title {
         @include text-title-lg;
@@ -30,6 +30,15 @@ $image-path: '/media/protocol/img';
     .c-article-image {
         display: block;
         margin: $layout-md auto;
+    }
+
+    .mzp-c-button-download-container {
+        display: block;
+        margin-bottom: 0;
+
+        .is-firefox & {
+            display: none;
+        }
     }
 }
 
