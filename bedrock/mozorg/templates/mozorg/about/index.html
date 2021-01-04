@@ -1,0 +1,184 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros-protocol.html" import billboard, card, feature_card with context %}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% block page_title %}{{ ftl('about-learn-about-mozilla') }}{% endblock %}
+
+{% block page_desc %}
+  {{ ftl('about-mozilla-makes-browsers-apps-long') }}
+{% endblock %}
+
+{% block body_id %}about{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('about') }}
+{% endblock %}
+
+{% block content %}
+<section class="mzp-c-hero t-mission" {% if variant %}data-variant="{{ variant }}"{% endif%}>
+  <div class="mzp-l-content">
+    <div class="mzp-c-hero-body">
+      <h1 class="mzp-c-hero-title">{{ ftl('about-mozilla-makes-browsers-apps') }}</h1>
+
+      <div class="mzp-c-hero-desc">
+        <p>{{ ftl('about-our-mission-keep-the-internet') }}</p>
+      </div>
+
+      <p class="mzp-c-hero-cta">
+        <a id="read-mission-button" class="mzp-c-button" href="{{ url('mozorg.mission') }}" data-link-name="Read Our Mission" data-link-type="button" data-cta-position="primary cta">
+          {{ ftl('about-read-our-mission') }}
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="t-shade">
+  <div class="mzp-l-content">
+    <h1 class="c-page-title">{{ ftl('about-our-mission-in-action') }}</h1>
+    <div class="mzp-l-card-half">
+      {{ card(
+          class='mzp-c-card-medium',
+          title=ftl('about-pioneers-of-the-open-web'),
+          ga_title='Pioneers of The Open Web',
+          desc=ftl('about-our-leadership-has-been-at'),
+          image_url='img/mozorg/about/leaders.jpg',
+          include_highres_image=True,
+          aspect_ratio='mzp-has-aspect-3-2',
+          link_url=url('mozorg.about.leadership')
+      )}}
+      {{ card(
+          class='mzp-c-card-medium',
+          title=ftl('about-firefox-fast-for-good'),
+          ga_title='Firefox: Fast for Good',
+          desc=ftl('about-when-you-use-the-new-firefox'),
+          image_url='img/mozorg/about/firefox.jpg',
+          include_highres_image=True,
+          aspect_ratio='mzp-has-aspect-3-2',
+          link_url=url('firefox.new')
+      )}}
+      {{ card(
+          class='mzp-c-card-medium',
+          title=ftl('about-walking-our-privacy-talk'),
+          ga_title='Walking Our Privacy Talk',
+          desc=ftl('about-when-the-facebook-breach-was'),
+          image_url='img/mozorg/about/container.jpg',
+          include_highres_image=True,
+          aspect_ratio='mzp-has-aspect-3-2',
+          link_url='https://blog.mozilla.org/Internetcitizen/2018/06/06/the-today-show-mozilla-firefox-facebook-container/'
+      )}}
+      {{ card(
+          class='mzp-c-card-medium',
+          title=ftl('about-talking-internet-issues-irl'),
+          ga_title='Talking Internet Issues IRL',
+          desc=ftl('about-in-mozillas-irl-podcast-host'),
+          image_url='img/mozorg/about/irl.jpg',
+          include_highres_image=True,
+          aspect_ratio='mzp-has-aspect-3-2',
+          link_url='https://irlpodcast.org/'
+      )}}
+    </div>
+  </div>
+</div>
+<div class="mzp-l-content">
+  {% call feature_card(
+      title=ftl('about-corporation-foundation-not'),
+      ga_title='Corporation. Foundation. Not-for-profit.',
+      link_cta=ftl('about-learn-about-the-mozilla-foundation'),
+      link_url='https://foundation.mozilla.org/',
+      image_url='img/mozorg/about/foundation.jpg',
+      include_highres_image=True,
+      aspect_ratio='mzp-has-aspect-3-2',
+      class='mzp-l-card-feature-left-half t-foundation'
+  ) %}
+    <p>{{ ftl('about-mozilla-puts-people-over-profit') }}</p>
+  {% endcall %}
+
+  {{ billboard(
+      title=ftl('about-the-mozilla-manifesto'),
+      ga_title='The Mozilla Manifesto',
+      desc=ftl('about-the-principles-we-wrote-in'),
+      link_cta=ftl('about-read-the-manifesto'),
+      link_url=url('mozorg.about.manifesto'),
+      image_url='img/home/2018/billboard-healthy-internet.png',
+      include_highres_image=True
+  )}}
+</div>
+<div class="mzp-l-content">
+  <section class="mzp-c-hero t-global">
+    <div class="mzp-l-content">
+      <div class="mzp-c-hero-body">
+        <h1 class="mzp-c-hero-title">{{ ftl('about-a-global-view') }}</h1>
+        <div class="mzp-c-hero-desc">
+          {{ ftl('about-with-offices-all-over-the', url=url('mozorg.contact.spaces.spaces-landing')) }}
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="c-cities">
+    <a class="c-city c-city-sf" href="{{ url('mozorg.contact.spaces.san-francisco') }}">
+      <h3 class="c-city-title">{{ ftl('about-san-francisco') }}</h3>
+      <p class="c-city-desc">{{ ftl('about-2000-non-employee-guests-welcomed') }}</p>
+    </a>
+    <a class="c-city c-city-berlin" href="{{ url('mozorg.contact.spaces.berlin') }}">
+      <h3 class="c-city-title">{{ ftl('about-berlin') }}</h3>
+      <p class="c-city-desc">{{ ftl('about-500-annual-attendees-to-the') }} </p>
+    </a>
+    <a class="c-city c-city-toronto" href="{{ url('mozorg.contact.spaces.toronto') }}">
+      <h3 class="c-city-title">{{ ftl('about-toronto') }}</h3>
+      <p class="c-city-desc">{{ ftl('about-800-bottles-of-cold-brew-coffee') }}</p>
+    </a>
+  </section>
+
+  <div class="mzp-l-card-half">
+    {{ card(
+        class='mzp-c-card-medium',
+        title=ftl('about-work-at-mozilla'),
+        ga_title='Work at Mozilla',
+        desc=ftl('about-join-a-mission-driven-organization'),
+        image_url='img/mozorg/about/careers.jpg',
+        include_highres_image=True,
+        aspect_ratio='mzp-has-aspect-3-2',
+        link_url='https://careers.mozilla.org',
+        cta=ftl('about-mozilla-careers')
+    )}}
+    {{ card(
+        class='mzp-c-card-medium',
+        title=ftl('about-how-you-can-help'),
+        ga_title='How You Can Help',
+        desc=ftl('about-your-voice-your-code-your'),
+        image_url='img/mozorg/about/involved.jpg',
+        include_highres_image=True,
+        aspect_ratio='mzp-has-aspect-3-2',
+        link_url=url('mozorg.contribute.index'),
+        cta=ftl('about-get-involved')
+    )}}
+  </div>
+</div>
+<div class="mzp-l-content">
+  <aside class="mzp-c-newsletter">
+    <div class="mzp-c-newsletter-image">
+      {{ high_res_img('img/home/2018/newsletter-graphic.png', {'alt': ''}) }}
+    </div>
+
+    <div class="newsletter-content">
+      {% set newsletter_id = 'mozilla-foundation' if LANG.startswith('en-') else 'mozilla-and-you' %}
+      {{ email_newsletter_form(
+          newsletters=newsletter_id,
+          title=ftl('about-get-the-mozilla-newsletter'),
+          desc=ftl('about-stay-informed-about-the-issues'),
+          button_class='button-dark',
+          submit_text=ftl('about-subscribe')
+      )}}
+    </div>
+  </aside>
+</div>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('about') }}
+{% endblock %}

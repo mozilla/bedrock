@@ -21,7 +21,7 @@ $image-path: '/media/protocol/img';
     @include border-box;
     background-repeat: no-repeat;
     background-position: bottom center;
-    height: 400px;
+    min-height: 400px;
 
     @media #{$mq-xs} {
         @include at2x('/media/img/mozorg/about/about-hero-xs.jpg', auto, 400px);
@@ -221,6 +221,6 @@ $city-image-size: 106px;
 
 @media #{$mq-lg} {
     .c-city {
-        @include grid-quarter;
+        @include grid-third;
     }
 }

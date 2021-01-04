@@ -550,7 +550,7 @@ redirectpatterns = (
     redirect(r'^facebookapps(/.*)?$', 'firefox.new'),
 
     # Bug 1255882
-    redirect(r'^firefox/about/?$', 'mozorg.about'),
+    redirect(r'^firefox/about/?$', 'mozorg.about.index'),
 
     # bug 453506, 1255882
     redirect(r'^editor/editor-embedding\.html$',
