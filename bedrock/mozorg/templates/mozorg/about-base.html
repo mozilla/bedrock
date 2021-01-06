@@ -6,13 +6,13 @@
 {% extends "base-article.html" %}
 
 {% set navigation_bar = [
-    (url('mozorg.about.index'), 'about-mozilla', _('About Mozilla')),
-    (url('mozorg.mission'), 'about-mission', _('Mission')),
-    (url('mozorg.about.history'), 'about-history', _('History')),
-    (url('mozorg.about.leadership'), 'about-leadership', _('Leadership')),
-    (url('mozorg.about.governance.governance'), 'about-governance', _('Governance')),
-    (url('mozorg.about.forums.forums'), 'about-forums', _('Forums')),
-    (url('mozorg.about.policy.patents.index'), 'about-patents', _('Patents')),
+  (url('mozorg.about.index'), 'about-mozilla', ftl('about-shared-about-mozilla')),
+  (url('mozorg.mission'), 'about-mission', ftl('about-shared-mission')),
+  (url('mozorg.about.history'), 'about-history', ftl('about-shared-history')),
+  (url('mozorg.about.leadership'), 'about-leadership', ftl('about-shared-leadership')),
+  (url('mozorg.about.governance.governance'), 'about-governance', ftl('about-shared-governance')),
+  (url('mozorg.about.forums.forums'), 'about-forums', ftl('about-shared-forums')),
+  (url('mozorg.about.policy.patents.index'), 'about-patents', ftl('about-shared-patents')),
 ] -%}
 
 {% block body_attrs %}{{ super() }} data-global-nav-current-link="about-us"{% endblock %}
@@ -24,14 +24,14 @@
   {{ sidemenu_lists([navigation_bar], body_id) }}
 
   <div class="side-reference">
-    <h4 class="side-reference-title">{{ _('Our Products') }}</h4>
-    <p>{{ _('Software and other innovations designed to advance our mission.') }}</p>
+    <h4 class="side-reference-title">{{ ftl('about-shared-our-products') }}</h4>
+    <p>{{ ftl('about-shared-software-innovations') }}</p>
     <a class="more" href="{{ url('firefox') }}">{{ ftl('ui-learn-more') }}</a>
   </div>
 
   <div class="side-reference">
-    <h4 class="side-reference-title">{{ _('Get Involved') }}</h4>
-    <p>{{ _('Become a volunteer contributor in a number of different areas.') }}</p>
+    <h4 class="side-reference-title">{{ ftl('about-shared-get-involved') }}</h4>
+    <p>{{ ftl('about-shared-volunteer') }}</p>
     <a class="more" href="{{ url('mozorg.contribute.index') }}">{{ ftl('ui-learn-more') }}</a>
   </div>
 
