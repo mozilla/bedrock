@@ -26,7 +26,7 @@ urlpatterns = (
     page('book', 'mozorg/book.html'),
     url('^credits/$', views.credits_view, name='mozorg.credits'),
     page('credits/faq', 'mozorg/credits-faq.html'),
-    page('about/history', 'mozorg/about/history.html'),
+    page('about/history', 'mozorg/about/history.html', ftl_files=['mozorg/about/history']),
     # Bug 981063, catch all for old calendar urls.
     # must be here to avoid overriding the above
     redirect(r'^projects/calendar/', 'https://www.thunderbird.net/calendar/', locale_prefix=False),
