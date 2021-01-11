@@ -21,7 +21,7 @@
     desc=ftl('firefox-channel-test-about-to-be-released'),
     class='mzp-t-product-beta mzp-t-firefox') %}
 
-    {{ download_firefox('beta', platform='desktop', force_direct=True, alt_copy=ftl('download-button-download'), dom_id="desktop-beta-download") }}
+    {{ download_firefox('beta', platform='desktop', force_direct=True, force_full_installer=True, alt_copy=ftl('download-button-download'), dom_id="desktop-beta-download") }}
   {% endcall %}
 
   <div class="l-notes mzp-l-content">
