@@ -17,6 +17,11 @@ password-manager-password-hero = Password hero
 
 # Variables:
 #   $url (url) = link to https://support.mozilla.org/kb/use-master-password-protect-stored-logins
+password-manager-forget-the-reset-v2 = Forget the reset. { -brand-name-firefox } Password Manager keeps all your passwords so you can log in automatically, or find saved passwords easily. For super security, give your computer a <a href="{ $url }">primary password</a>.
+
+# Obsolete string
+# Variables:
+#   $url (url) = link to https://support.mozilla.org/kb/use-master-password-protect-stored-logins
 password-manager-forget-the-reset = Forget the reset. { -brand-name-firefox } Password Manager keeps all your passwords so you can log in automatically, or find saved passwords easily. For super security, give your computer a <a href="{ $url }">master password</a>.
 
 password-manager-password-magician = Password magician
