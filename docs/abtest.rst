@@ -247,6 +247,19 @@ values may be provided by the analytics team.
 Make sure any buttons and interaction which are being compared as part of the
 test and will report into GA.
 
+Viewing the data
+~~~~~~~~~~~~~~~~~~
+
+The ``data-ex-name`` and ``data-ex-variant`` are encoded in Google Analytics as custom dimensions 69 and 70.
+
+Create a custom report.
+
+Set the "Metrics Group" to include Sessions. Configure additional metrics depending on what the experiment was measuring (downloads, events, etc.)
+
+Set the "Dimension Drilldowns to have cd69 in the top position and cd70 in the drilldown position.
+
+View the custom report and drilldown into the experiment with the matching name.
+
 Tests
 ~~~~~
 
