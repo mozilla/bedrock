@@ -1,0 +1,443 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros-protocol.html" import feature_card, picto_card with context %}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% block page_title %}The Future of the Open Web — White Paper{% endblock %}
+{% block page_desc %}As we seek solutions, we can be guided by the core values of an open internet – a system for access, opportunity, and broad-based empowerment.{% endblock %}
+
+{% block page_image %}{{ static('img/foundation/reimagine-open/social.jpg') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('reimagine-open') }}
+{% endblock %}
+
+{% block content %}
+<article>
+<header class="mzp-c-hero">
+  <div class="mzp-l-content">
+    <div class="mzp-c-hero-body">
+      <h1 class="mzp-c-hero-title">Reimagine Open: Building Better Internet Experiences</h1>
+      <div class="mzp-c-hero-desc">
+        <p class="c-hero-byline">By Mitchell Baker, Alan Davidson, Alice Munyua, and Amba Kak</p>
+        <p>The internet is at a crossroads. After decades of rapid growth and
+          global contribution to the human condition, today many are questioning
+          the health of the internet. At such a time it is natural to examine the
+          first principles that many consider key features of the internet as a
+          medium.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="intro" class="section-intro c-article-section">
+  <div class="mzp-l-content mzp-t-content-md">
+    <p>The internet’s success and impact is most often attributed to a set of
+      design choices and embedded values from the internet’s earliest days,
+      commonly grouped together under the label of “the open internet.”
+      Historically, this set of technical and architectural features distinguished
+      the early internet (and later the World Wide Web) from other communications
+      media like the telephone, broadcast television, or print. Some of these
+      features were codified directly in technical standards. Others have served
+      as design values or norms in the development of internet-related technologies,
+      including the web.</p>
+
+    <p>Today the internet has moved far beyond narrow uses into fundamental
+      infrastructure that is a central part of everyday life for at least half
+      of the world’s population. In under thirty years, it has brought access to
+      information, economic opportunity, and greater empowerment to billions of
+      people.</p>
+
+    <aside class="c-pullquote pullquote-intro">
+      <blockquote>
+        <p>Is openness still a valuable concept to draw from as we chart a future
+          path for the internet?</p>
+      </blockquote>
+    </aside>
+
+    <p>Yet today’s internet is not the internet we want. A rising tide of harmful
+      content, surveillance capitalism, security risks and other problems have
+      shaken our collective sense of optimism that the web is truly an inherent
+      force for good. A ubiquitous network, personalized data targeting, and new
+      monitoring technologies – divorced from proper oversight – have the potential
+      to enable a state of total surveillance at the hands of private actors and
+      governments. Marginalized communities have been targeted online and experienced
+      violence and intentional harm. Today people can do much more online, but not
+      without putting their privacy, security, and individual autonomy at risk.</p>
+
+    <p>We often hear that openness or being “too open” is to blame for this
+      situation. It is true that the builders of the early open internet assumed
+      that the technical features of the network would “route around” problems of
+      centralization and control, rendering legal or societal intervention
+      ineffective. An early optimism that the system might evade many of the
+      unwanted constraints of society has been replaced today with a realization
+      that the internet is all too susceptible to societal and human frailties,
+      with limited avenues for accountability or redress. “Open” has itself been
+      co-opted by a wide variety of players to defend practices that once were
+      viewed as antithetical to open values (including closed standards, walled
+      gardens, or opposition to principles of network neutrality.)</p>
+
+    <p>Is openness an outdated concept? Are the internet’s failures today an
+      unavoidable outcome of the open principles it was based on? Or is openness
+      still a valuable concept to draw from as we chart a future path for the
+      internet?</p>
+
+    <p>This paper traces the evolution of internet openness and the erosion of
+      these values. And it examines how we might reclaim openness to address
+      these real concerns about online harms while preserving the best features
+      of the internet today.</p>
+  </div>
+</section>
+
+<section id="section-one" class="section-one c-article-section">
+  <div class="mzp-l-content mzp-t-content-md">
+    <h2 class="c-section-title"><span>Section I:</span> The Early Internet and the Power of Open</h2>
+
+    <p>Historically, a set of “open” technical and architectural features distinguished
+      the Internet from other communications media like the telephone, broadcast
+      television, or print. Some of these features were codified directly in
+      technical standards. Others served as design values or norms, manifested
+      in areas like the open source and free software movements. They included:</p>
+
+    <ul class="mzp-u-list-styled">
+      <li>
+        <strong>Decentralized structure:</strong> A widely interconnected network
+        of networks, which enabled connection without the need for third parties
+        approval and radically improved access.
+      </li>
+      <li>
+        <strong>Layered software model:</strong> A level-based model of abstraction,
+        ensuring implementations at one layer do not impact other layers and enabling
+        greater innovation and participation.
+      </li>
+      <li>
+        <strong>“End to end” networks:</strong> Pushed intelligence towards the
+        endpoints to minimize reliance on particular features of underlying networks,
+        in turn enhancing innovation at the edge.
+      </li>
+      <li>
+        <strong>Open standards:</strong> Publicly available, non-proprietary
+        standards allowed developers the opportunity to create products and
+        services offering consumers more competition and choice.
+      </li>
+      <li>
+        <strong>Open source:</strong> Open source licensing offered greater access
+        to tools, empowering people with fewer resources to problem-solve and
+        create for themselves.
+      </li>
+    </ul>
+
+    <p>These early design choices translated into a set of consumer and developer
+      experiences and possibilities that reinforced (and were reinforced by) a
+      set of social values, including:</p>
+
+    <ul class="mzp-u-list-styled">
+      <li>
+        <strong>Access:</strong> the capability to reach the network, information,
+        audiences, markets, and each other.
+      </li>
+      <li>
+        <strong>Opportunity:</strong> the chance to participate in the network as
+        an individual with minimal restraint, without gatekeepers, and with the
+        ability to resist centralized control.
+      </li>
+      <li>
+        <strong>Empowerment:</strong> a broad-based ability to create, shape, and
+        participate in online experiences – in contrast with the pre-existing model
+        of broadcast TV, where the only choice was what to consume.
+      </li>
+    </ul>
+
+    <aside class="c-pullquote pullquote-section-one">
+      <blockquote>
+        <p>Openness never meant the absence of all restrictions. The open internet
+          developed against the backdrop of technical features, social norms, and
+          laws that influenced human behavior on the network.</p>
+      </blockquote>
+    </aside>
+
+    <p>Openness never meant the absence of all restrictions. The open Internet
+      developed against the backdrop of technical features, social norms, and
+      laws that influenced human behavior on the network. Together these created
+      a set of accountability mechanisms that provided a backstop and framework
+      for a successful human experience of the Internet.</p>
+
+    <p>Healthy communities, with meaningful participation on equal terms, were
+      core to the successes of the early internet. In that era, however, the
+      community was small – a small set of technically savvy people actively
+      engaged in building and operating a new medium. That community had a shared
+      purpose, personal relationships, and networks of trust. Accountability was
+      achieved as much through personal and direct connection as it was through
+      laws and regulations (although those had started to emerge as well).</p>
+
+    <p>The early accountability mechanisms were also designed for a different
+      scale of network. External attacks on the system could be thwarted by
+      “routing around” the problem – e.g. if an IP address got blocked or a
+      computer taken over, the network would adjust and was designed to be
+      resilient to individual points of failure. Actors within the system were
+      understood to be unlikely to harm the system because they were invested in
+      the health and success of the network. Harm to one would be viewed as harm
+      to all.</p>
+  </div>
+</section>
+
+<section id="section-two" class="section-two c-article-section">
+  <div class="mzp-l-content mzp-t-content-md">
+    <h2 class="c-section-title"><span>Section II</span> The Open Internet Comes of Age</h2>
+
+    <p>As the open internet scaled from millions to billions of users, and new
+      business models and network effects changed its landscape, the fault lines
+      in openness and accountability mechanisms began to show. Two broad diagnoses
+      offer explanations of the crises that today afflict the internet: an erosion
+      of technical and architectural features that uphold open values, and the
+      inability for accountability mechanisms (like law, policy and regulation)
+      to adapt and scale to meet these challenges.</p>
+
+    <p><strong>The erosion of open:</strong> Today many of the original open
+      systems have been deeply encapsulated and controlled by layers of proprietary
+      computing systems. There is more open source software than ever before,
+      and open source continues adding positive value to the overall ecosystem.
+      And yet the experiences of many internet users have migrated to closed
+      systems, most prominently today’s popular social platforms. These platforms
+      do not share the same design principles as the internet infrastructure on
+      which they were built – and don’t reinforce the same social values. Many of
+      these platforms still use the language and rhetoric of openness to describe
+      their activities and ethos, but these are often shallow commitments. Key
+      aspects include:</p>
+
+    <ul class="mzp-u-list-styled">
+      <li>
+        <strong>“Open APIs” but walled gardens?</strong> Today developers live in
+        a world of “open APIs.” Many of these open APIs are a crippled substitute
+        for an open standard. There may well be cases where APIs are justified
+        instead of an open standard. However, as a default, open APIs offer a
+        limited subset of the elements that make open standards a part of a
+        healthy ecosystem.
+      </li>
+      <li>
+        <strong>From open source to proprietary software:</strong> A similar
+        change has occurred with open source. Today open source is mainstream;
+        Google, Amazon and Facebook all use vast amounts of open source software
+        to power their business. But each surrounds the open source elements with
+        successive layers of proprietary and secret systems. As a result, these
+        companies harvest the benefit of open source, but provide a limited set
+        of broader benefits to other actors.
+      </li>
+      <li>
+        <strong>“Community” co-opted:</strong> Over time, “community” has evolved
+        from the open source ethos of a self-governing community aiming to produce
+        technology that is usable by all on equal terms. Today it is commonly used
+        to mean nothing more than “consumers who use our products.” When a single
+        corporate decision maker determines what is possible for users, and how
+        those “communities” are tracked and surveilled and sold to advertisers –
+        it is not the empowering and participatory nature of the communities that
+        built the web.
+      </li>
+    </ul>
+
+    <p><strong>Accountability falls short:</strong> The existing accountability
+      mechanisms for the giant closed platforms that dominate the landscape today
+      are not fit for purpose. This problem has manifested for a few reasons:</p>
+
+    <ul class="mzp-u-list-styled">
+      <li>
+        <strong>Unanticipated harms:</strong> The seriousness and scale of privacy
+        harms, security risks, and abuse online (to name a few) have been difficult
+        to anticipate, even for those building them. This inability to predict
+        and adequately forecast the range of threats to users means that both
+        regulation and technical solutions has been resigned to catch-up. As a
+        result, even efforts to rectify the situation have been tilted in favour
+        of maintaining (rather than disrupting) the status quo.
+      </li>
+      <li>
+        <strong>Complex solutions:</strong> Even as the problem has become clearer,
+        the question of possible solutions often prematurely ends because “it’s
+        too complex”. This in part demonstrates the competing values involved in
+        many internet policy debates today. But the resulting inertia has meant
+        insufficient protections for internet users in the meanwhile.
+      </li>
+      <li>
+        <strong>Corrosive business models and incentives:</strong> Whether privacy
+        or misinformation, the root cause of many of today’s challenges is the
+        business model that powers many of these platforms. Increasingly referred
+        to as “surveillance capitalism”, the financial incentives of businesses
+        has been to service advertisers. There has been serious and long-standing
+        push back to regulation and any other accountability mechanism from private
+        industry.
+      </li>
+    </ul>
+
+    <p>Beyond the private sector, accountability mechanisms must apply to government
+      and intelligence agencies as well, who will inevitably be reluctant to move
+      regulation against themselves.</p>
+
+    <div class="case-study">
+      <h3>Case Study</h3>
+
+      <p><strong>Reimagine Open In Practice – Illegal Content:</strong> How can
+        we address the real concerns felt today about illegal content online, while
+        preserving the best features of the internet as a foundation for communication
+        and inovation? That is a question gripping governments around the world,
+        and particularly the European Commission as it considers a proposed Digital
+        Services Act that will shape online regulation worldwide.</p>
+
+      <p>The internet’s open architecture, coupled with the legal backdrop of the EU
+        E-Commerce Directive and other innovation-friendly policies, has made it
+        a natural engine promoting access to knowledge, greater civic discourse,
+        and economic opportunity. Yet the internet’s very openness has been
+        exploited by bad actors, and the persistence of illegal content online
+        in particular remains an untenable threat to the internet’s original vision,
+        jeopardizing both the legal and cultural environments that fostered broad
+        engagement and growth. In that context,
+        <a href="https://blog.mozilla.org/netpolicy/2020/09/08/mozilla-offers-a-vision-for-how-the-eu-dsa-build-a-better-internet/">Mozilla has proposed a set of policy changes</a> to create greater accountability for the largest platforms around concerns about illegal and harmful content:</p>
+
+      <ul class="mzp-u-list-styled">
+        <li>
+          Greater transparency around advertising and algorithms that amplify content.
+        </li>
+        <li>
+          Procedural accountability to incentivize strong moderation practices,
+          using a risk-based approach that assigns greater accountability for those
+          with the largest reach.
+        </li>
+        <li>
+          Reorienting the business models that intensify harmful content
+          dissemination, starting with privacy protections and new business
+          models to attack surveillance capitalism.
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="section-three" class="section-three c-article-section">
+  <div class="mzp-l-content mzp-t-content-md">
+    <h2 class="c-section-title"><span>Section III</span> The Future of Open: 2020 and Beyond</h2>
+
+    <p>Today, society confronts powerful and accelerating technological change
+      that is simultaneously beneficial and dangerous. As we seek solutions, we
+      can be guided by the core values of an open internet — a system for access,
+      opportunity, and broad-based empowerment. It is these values that made the
+      open internet such an attractive medium to people and such a powerful engine
+      of innovation. And these values are still relevant.</p>
+
+    <p>But the original understanding of the open internet from its earliest days
+      is not sufficient. Our new conceptions of openness need to reflect the lived
+      experience of the internet to date, and with the diversity — and perversity —
+      of humanity in mind. We should also reject the co-opted and limited model
+      of “open” that has more recently taken root.</p>
+
+    <p>Achieving this better vision of open will require work on multiple fronts:</p>
+
+    <p><strong>Systems design:</strong> Technologists and the technology industry
+      need to build alternative products and experiences that return to openness
+      principles. This is easier said than done. Current business models are wildly
+      profitable, and closed, integrated platforms have been able to build ever
+      larger domains. However, consumers have been sendings signals into the
+      marketplace that open products can be successful as well. And many
+      technologists long to build products without the harmful consequences of
+      closed systems. But good open product development will require investment:
+      It took nearly a decade to build out the GNU linux free software/open source
+      operating system, and some years after that for open source applications
+      like Firefox to emerge, and even more time for open source to become a
+      standard form of software development.</p>
+
+    <p><strong>Consumers and users:</strong> Consumers must create a healthy
+      marketplace by choosing and rewarding products that protect them and the
+      broader values of openness. We need to create a culture where consumers
+      look for products that solve their problems, protect their privacy, or
+      protect them from hateful content - and a market that encourages a diversity
+      of products that meet these needs to exist and succeed. Consumers should
+      demand algorithmic transparency and accountability to support a better
+      market. Just as we ask each other if we’ve seen good films, or read any
+      good new books, we should ask each other what new products we’ve seen that
+      improve online life. And just as “shop local” and other consumer movements
+      have helped reinforce the positivity of local retail establishments against
+      the dominance of centralized conglomerates, so would “download open” or
+      “install healthy” help promote a better software ecosystem.</p>
+
+    <p><strong>Regulation:</strong> The idea that regulation would necessarily
+      be a roadblock to open values is giving way to the recognition that guardrails
+      are essential for online innovation to develop in the interests of people.
+      We need to seek out smart regulation that is consistent with and reinforces
+      open values. New data protection laws, like the GDPR, stand out as useful
+      examples. While privacy and openness are often portrayed in conflict, today’s
+      data protection laws are largely demonstrating how privacy protections can
+      further open values of access, empowerment and opportunity.</p>
+
+    <p><strong>Governance mechanisms:</strong> We still need healthy governance
+      systems, and as a start we need to reaffirm and strengthen multi-stakeholder
+      processes. Some efforts have been underway to do so. For some, the
+      multi-stakeholder process is seen as yet another way for large (mostly US)
+      companies to insert themselves in the discussion and use their wealth and
+      power to lobby for solutions that reinforce their position. Nevertheless,
+      multi-stakeholder processes continue to be a powerful tool to address a
+      range of issues.</p>
+
+    <div class="case-study">
+      <h3>Case Study</h3>
+
+      <p><strong>Reimagine Open in Practice – Digital ID:</strong> Digital ID
+        systems are increasingly impacting privacy, security, competition, and
+        social inclusion. Identity is almost always mediating our interactions
+        online, from corporate giants like Apple ID and Facebook login to
+        government IDs which are increasingly required to vote, access welfare
+        benefits, pay taxes, or receive medical care.</p>
+
+      <p>The choices governments make in designing and operating digital ID
+        systems will determine if an ID system will be empowering or exploitative
+        and exclusionary. <a href="https://blog.mozilla.org/netpolicy/files/2020/01/Mozilla-Digital-ID-White-Paper.pdf">Mozilla’s recent digital ID white paper</a>
+        shows how openness provides a useful framework to guide and critique
+        these choices. We demonstrate how five elements of openness – multiplicity
+        of choices, decentralization, accountability, inclusion, and participation –
+        can ensure that identity systems put people first.</p>
+    </div>
+  </div>
+</section>
+
+<section id="section-four" class="section-four c-article-section">
+  <div class="mzp-l-content mzp-t-content-md">
+    <h2 class="c-section-title"><span>Section IV</span> Conclusion</h2>
+
+    <p>Open internet designers, activists, pioneers and advocates have undoubtedly
+      made mistakes in pursuit of a connected world. As a community, we may have
+      been slow to respond to the accountability problems in today’s internet due
+      to our love of the values originally enshrined in “open” and “the open
+      internet.” We should examine this history closely.</p>
+
+    <p>But the broader Internet community need not break faith with the power of
+      openness principles to create the connected Internet we want. We must
+      squarely face the problems of online life today, and contribute to developing
+      solutions. We cannot cling to the original practices for fear that something
+      worse will develop. As we do this we must equally hold tightly the key
+      concepts that were originally captured in “open” and ”the open internet”
+      and made it such a powerful and successful force.</p>
+
+    <p>To build the online life we want, the Internet community itself must be
+      the voice for these values. We must build these values into new products
+      and network designs. We must provide models that policymakers can reference
+      to develop workable, measured, effective regulations, and we must give
+      consumers and citizens ways to make meaningful choices for a better future.
+      We must continue to build an internet and internet life that encourages
+      broad-based empowerment, opportunity and participation as well as human
+      decency and civility.</p>
+  </div>
+
+  <footer class="c-article-footer">
+    <div class="mzp-l-content mzp-t-content-md">
+      <p>For more information about this paper, or to offer comment, please visit
+        <a href="https://wiki.mozilla.org/Projects/Reimagine_Open">https://wiki.mozilla.org/Projects/Reimagine_Open</a>.</p>
+
+      <p>The project team behind this paper included Mitchell Baker, Alan Davidson,
+        Alice Munyua, and Amba Kak, along with Michelle Thorne and Cathleen Berger,
+        and Michael Ham on design. The team thanks the many community members and
+        allies who offered input into the ideas presented here.</p>
+    </div>
+  </footer>
+</section>
+
+</article>
+{% endblock %}
