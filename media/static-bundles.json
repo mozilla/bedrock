@@ -630,6 +630,7 @@
     },
     {
       "files": [
+        "css/firefox/sticky-promo.scss",
         "css/firefox/features/adblocker.scss"
       ],
       "name": "adblocker"
