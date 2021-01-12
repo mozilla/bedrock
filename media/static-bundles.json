@@ -190,6 +190,7 @@
     },
     {
       "files": [
+        "css/firefox/sticky-promo.scss",
         "css/firefox/features/detail.scss",
         "css/firefox/features/features-cards.scss"
       ],
@@ -479,6 +480,7 @@
     },
     {
       "files": [
+        "css/firefox/sticky-promo.scss",
         "css/firefox/features/index.scss",
         "css/firefox/features/features-cards-index.scss"
       ],
@@ -667,6 +669,7 @@
     },
     {
       "files": [
+        "css/firefox/sticky-promo.scss",
         "css/firefox/features/safebrowser.scss"
       ],
       "name": "safebrowser"
