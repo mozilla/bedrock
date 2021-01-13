@@ -639,6 +639,7 @@
     },
     {
       "files": [
+        "css/firefox/sticky-promo.scss",
         "css/firefox/browsers/what-is-a-browser.scss"
       ],
       "name": "what-is-a-browser"
@@ -651,18 +652,21 @@
     },
     {
       "files": [
+        "css/firefox/sticky-promo.scss",
         "css/firefox/browsers/incognito-browser.scss"
       ],
       "name": "incognito-browser"
     },
     {
       "files": [
+        "css/firefox/sticky-promo.scss",
         "css/firefox/browsers/browser-history.scss"
       ],
       "name": "browser-history"
     },
     {
       "files": [
+        "css/firefox/sticky-promo.scss",
         "css/firefox/browsers/windows-64-bit.scss"
       ],
       "name": "windows-64-bit"
@@ -682,18 +686,21 @@
     },
     {
       "files": [
+        "css/firefox/sticky-promo.scss",
         "css/firefox/browsers/best-browser.scss"
       ],
       "name": "best-browser"
     },
     {
       "files": [
+        "css/firefox/sticky-promo.scss",
         "css/firefox/compare/compare.scss"
       ],
       "name": "compare"
     },
     {
       "files": [
+        "css/firefox/sticky-promo.scss",
         "css/firefox/compare/compare.scss",
         "css/firefox/compare/compare-details.scss"
       ],
@@ -739,12 +746,14 @@
     },
     {
       "files": [
+        "css/firefox/sticky-promo.scss",
         "css/firefox/browsers/quantum.scss"
       ],
       "name": "quantum"
     },
     {
       "files": [
+        "css/firefox/sticky-promo.scss",
         "css/firefox/browsers/chromebook.scss"
       ],
       "name": "chromebook"
@@ -1366,6 +1375,8 @@
     },
     {
       "files": [
+        "protocol/js/protocol-sticky-promo.js",
+        "js/firefox/sticky-promo.js",
         "js/firefox/compare-details.js"
       ],
       "name": "firefox_compare_details"
@@ -1391,6 +1402,8 @@
     },
     {
       "files": [
+        "protocol/js/protocol-sticky-promo.js",
+        "js/firefox/sticky-promo.js",
         "js/firefox/browsers/chromebook.js"
       ],
       "name": "chromebook"

@@ -107,7 +107,12 @@
 
 {% endblock %}
 
+{% block sticky_promo %}
+  {% with non_fx_only=True %}
+    {% include '/includes/sticky-promo.html' %}
+  {% endwith %}
+{% endblock %}
+
 {% block js %}
   {{ js_bundle('chromebook') }}
 {% endblock %}
-
