@@ -33,7 +33,6 @@ class FirefoxReleaseNotesPage(BasePage):
     _secondary_play_store_button_locator = (By.ID, 'download-android-secondary')
     _primary_app_store_button_locator = (By.ID, 'download-ios-primary')
     _secondary_app_store_button_locator = (By.ID, 'download-ios-secondary')
-    _sticky_promo_modal_content_locator = (By.CSS_SELECTOR, '.mzp-c-sticky-promo.mzp-a-slide-in')
 
     @property
     def primary_download_button_release(self):
