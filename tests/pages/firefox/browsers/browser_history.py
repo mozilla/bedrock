@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 
 from pages.base import BasePage
 from pages.regions.download_button import DownloadButton
+from pages.regions.sticky_promo import StickyPromo
 
 
 class BrowserHistoryPage(BasePage):
@@ -24,3 +25,14 @@ class BrowserHistoryPage(BasePage):
     def secondary_download_button(self):
         el = self.find_element(*self._secondary_download_button_locator)
         return DownloadButton(self, root=el)
+
+    def wait_for_page_to_load(self):
+        el = self.find_element(By.TAG_NAME, 'html')
+        self.wait.until(lambda s: 'loaded' in el.get_attribute('class'))
+        promo = self.find_element(*self._sticky_promo_modal_content_locator)
+        self.wait.until(lambda s: 'is-displayed' in promo.get_attribute('class'))
+        return self
+
+    @property
+    def promo(self):
+        return StickyPromo(self)
