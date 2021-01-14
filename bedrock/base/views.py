@@ -175,9 +175,9 @@ def cron_health_check(request):
 
 def server_error_view(request, template_name='500.html'):
     """500 error handler that runs context processors."""
-    return l10n_utils.render(request, template_name, status=500)
+    return l10n_utils.render(request, template_name, ftl_files=['500'], status=500)
 
 
 def page_not_found_view(request, exception=None, template_name='404.html'):
     """404 error handler that runs context processors."""
-    return l10n_utils.render(request, template_name, status=404)
+    return l10n_utils.render(request, template_name, ftl_files=['404'], status=404)
