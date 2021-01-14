@@ -2,46 +2,22 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% set_lang_files "mozorg/500" %}
-
 {% extends "base-error.html" %}
 
 {% block gtm_page_id %}data-gtm-page-id="500"{% endblock %}
 
-{% block page_title %}{{ _('500: Internal Server Error') }}{% endblock %}
+{% block page_title %}{{ ftl('error-page-error-page-internal-server-error') }}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('page_not_found') }}
 {% endblock %}
 
 {% block content %}
-  {% if l10n_has_tag('404_update_2020') %}
-    <main role="main">
-      <section class="mzp-l-content">
-        <h1 class="error-header">{{ _('Something went wrong') }}</h1>
-        <p>{{ _('It’s probably just a server error and we’re working to fix it.') }}<br>
-        {% trans firefox="https://firefox.com", mozilla=url('mozorg.home') %}
-          You can also try refreshing this page or go to <a href={{ firefox }}>firefox.com</a> or <a href={{ mozilla }}>mozilla.org</a>
-        {% endtrans %}</p>
-      </section>
-    </main>
-  {% else %}
-    <main>
-      <div class="mzp-l-content message-section">
-        <header>
-          <h1 class="error_header">{{ _('An error occurred.') }}</h1>
-        </header>
-        <div class="error-content">
-          <p class="error-helper">
-          {% trans bugzilla='https://bugzilla.mozilla.org/enter_bug.cgi?product=www.mozilla.org' %}
-            If you’ve found an issue with one of our websites, we’d appreciate it if you could report the problem in Bugzilla, our <a href="{{ bugzilla }}">bug tracker</a>. One of our developers will take a look at it as soon as possible.
-          {% endtrans %}
-          </p>
-        </div>
-        <aside class="download-firefox">
-          {{ download_firefox() }}
-        </aside>
-      </div>
-    </main>
-  {% endif %}
+  <main role="main">
+    <section class="mzp-l-content">
+      <h1 class="error-header">{{ ftl('error-page-something-went-wrong') }}</h1>
+      <p>{{ ftl('error-page-its-probably-just-a-server-error') }}<br>
+      {{ ftl('error-page-you-can-also-try-refreshing', firefox="https://firefox.com", mozilla=url('mozorg.home')) }}</p>
+    </section>
+  </main>
 {% endblock %}
