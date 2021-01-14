@@ -84,4 +84,6 @@ urlpatterns = (
     page('trademarks/distribution-policy', 'foundation/trademarks/distribution-policy.html'),
     page('trademarks/community-edition-permitted-changes', 'foundation/trademarks/community-edition-permitted-changes.html'),
     page('trademarks/community-edition-policy', 'foundation/trademarks/community-edition-policy.html'),
+
+    page('reimagine-open', 'foundation/reimagine-open.html'),
 )

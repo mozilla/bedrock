@@ -1,0 +1,192 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/hero';
+
+
+.mzp-c-hero {
+    background: $color-moz-neon-green url('/media/img/foundation/reimagine-open/bg-header.png') left bottom no-repeat;
+    @include background-size(469px, 195px);
+    margin-bottom: $spacing-2xl;
+
+    .mzp-c-hero-desc {
+        @include text-body-xl;
+    }
+
+    .c-hero-byline {
+        @include text-body-sm;
+        font-style: italic;
+        margin-bottom: $spacing-2xl;
+    }
+
+    @media #{$mq-md} {
+        @include background-size(937px, 389px);
+    }
+}
+
+.c-section-title {
+    @include text-title-md;
+
+    span {
+        @include text-title-2xs;
+        background: $color-black;
+        color: $color-white;
+        display: block;
+        margin: $spacing-md 0 $spacing-2xl;
+        max-width: max-content;
+        padding: 0 $spacing-xs;
+    }
+}
+
+.case-study {
+    padding: $spacing-lg;
+
+    h3 {
+        @include text-title-sm;
+    }
+}
+
+
+// Section I: The Early Internet and the Power of Open
+.section-one {
+    background-color: $color-light-gray-10;
+
+    .mzp-l-content {
+        background: transparentize($color-light-gray-10, .15);
+    }
+
+    @media #{$mq-md} {
+        @include at2x('/media/img/foundation/reimagine-open/section-one.jpg', 500px, 750px);
+        background-position: right -60px top;
+        background-repeat: no-repeat;
+    }
+}
+
+
+// Section II: The Open Internet Comes of Age
+.section-two {
+    @include at2x('/media/img/foundation/reimagine-open/section-two.png', 960px, 540px);
+    background-position: left -650px top;
+    background-repeat: repeat-y;
+    background-attachment: fixed;
+
+    .mzp-l-content {
+        background: transparentize($color-white, .15);
+    }
+
+    .case-study {
+        background: transparentize($color-moz-warm-red, .95);
+    }
+
+    @media #{$mq-md} {
+        background-position: left -350px top;
+    }
+}
+
+
+// Section III: The Future of Open: 2020 and Beyond
+.section-three {
+    background: lighten($color-moz-lemon-yellow, 20%) url('/media/img/foundation/reimagine-open/section-three.svg') right -20% top 10% no-repeat;
+    @include background-size(600px, 514px);
+
+    .case-study {
+        background: transparentize($color-moz-lemon-yellow, .8);
+    }
+
+    @media #{$mq-md} {
+        @include background-size(1000px, 856px);
+    }
+}
+
+
+// Section IV: Conclusion
+.section-four {
+    background: url('/media/img/foundation/reimagine-open/bg-conclusion.jpg') center top no-repeat;
+    @include background-size(cover);
+
+    .c-article-footer {
+        @include text-body-sm;
+
+        .mzp-l-content {
+            border-top: 1px solid $color-light-gray-30;
+        }
+    }
+}
+
+
+// Pull quotes
+@media #{$mq-md} {
+    .c-pullquote {
+        @include bidi((
+            (float, right, left),
+            (margin-right, -$spacing-lg, $spacing-xl),
+            (margin-left, $spacing-xl, -$spacing-lg),
+        ));
+        @include border-box;
+        background: $color-dark-gray-40;
+        color: $color-white;
+        margin-bottom: $spacing-lg;
+        padding: $layout-md $layout-sm;
+        width: 50%;
+
+        blockquote {
+            @include text-title-xs;
+            border: 0;
+            color: $color-white;
+            padding: $layout-sm;
+        }
+
+        &.pullquote-intro {
+            background: #2e2c31 url('/media/img/foundation/reimagine-open/bg-quote-intro.jpg') center center no-repeat;
+            @include background-size(cover);
+
+            blockquote {
+                background: rgba(0, 0, 0, .85);
+            }
+        }
+
+        &.pullquote-section-one {
+            @include bidi((
+                (float, left, right),
+                (margin-left, -$spacing-lg, $spacing-xl),
+                (margin-right, $spacing-xl, -$spacing-lg),
+            ));
+            background: #080d13 url('/media/img/foundation/reimagine-open/bg-quote-section-one.jpg') center center no-repeat;
+            @include background-size(cover);
+
+            blockquote {
+                padding: 0;
+            }
+        }
+    }
+}
+
+@media #{$mq-lg} {
+    .c-pullquote {
+        @include bidi((
+            (margin-right, -$layout-xl, $spacing-lg),
+            (margin-left, $spacing-lg, -$layout-xl),
+            (padding-left, $layout-md, padding-right, $layout-md),
+        ));
+        width: 60%;
+
+        blockquote {
+            @include text-title-sm;
+        }
+
+        &.pullquote-section-one {
+            @include bidi((
+                (margin-left, -$layout-xl, $spacing-xl),
+                (margin-right, $spacing-xl, -$layout-xl),
+                (padding-left, $layout-md, $layout-sm),
+                (padding-right, $layout-sm, $layout-md),
+            ));
+        }
+    }
+}
+

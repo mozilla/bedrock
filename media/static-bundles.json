@@ -749,6 +749,12 @@
         "css/firefox/privacy/book.scss"
       ],
       "name": "privacy-book"
+    },
+    {
+      "files": [
+        "css/foundation/reimagine-open.scss"
+      ],
+      "name": "reimagine-open"
     }
   ],
   "js": [
