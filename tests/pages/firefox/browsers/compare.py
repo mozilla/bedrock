@@ -17,6 +17,18 @@ class BrowserComparisonPage(BasePage):
     _primary_download_button_locator = (By.ID, 'download-button-thanks')
     _secondary_download_button_locator = (By.ID, 'download-secondary')
     _browser_menu_list_locator = (By.CSS_SELECTOR, '.mzp-c-menu-list.mzp-t-download')
+    _sticky_promo_modal_content_locator = (By.CSS_SELECTOR, '.mzp-c-sticky-promo.mzp-a-slide-in')
+
+    def wait_for_page_to_load(self):
+        el = self.find_element(By.TAG_NAME, 'html')
+        self.wait.until(lambda s: 'loaded' in el.get_attribute('class'))
+
+        # Sticky promo is shown to non-Firefox browsers only.
+        if self.selenium.capabilities.get('browserName').lower() != 'firefox':
+            promo = self.find_element(*self._sticky_promo_modal_content_locator)
+            self.wait.until(lambda s: 'is-displayed' in promo.get_attribute('class'))
+
+        return self
 
     @property
     def primary_download_button(self):
@@ -32,13 +44,6 @@ class BrowserComparisonPage(BasePage):
     def browser_menu_list(self):
         el = self.find_element(*self._browser_menu_list_locator)
         return MenuList(self, root=el)
-
-    def wait_for_page_to_load(self):
-        el = self.find_element(By.TAG_NAME, 'html')
-        self.wait.until(lambda s: 'loaded' in el.get_attribute('class'))
-        promo = self.find_element(*self._sticky_promo_modal_content_locator)
-        self.wait.until(lambda s: 'is-displayed' in promo.get_attribute('class'))
-        return self
 
     @property
     def promo(self):

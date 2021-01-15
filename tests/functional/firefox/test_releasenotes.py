@@ -142,7 +142,7 @@ def test_secondary_download_button_ios_displayed(base_url, selenium):
 @pytest.mark.skip_if_firefox(reason='Sticky promo is displayed only to non-Firefox users')
 @pytest.mark.nondestructive
 def test_sticky_promo(base_url, selenium):
-    page = FirefoxReleaseNotesPage(selenium, base_url).open()
+    page = FirefoxReleaseNotesPage(selenium, base_url, slug='84.0').open()
     assert page.promo.is_displayed
     page.promo.close()
     assert not page.promo.is_displayed
