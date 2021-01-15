@@ -254,11 +254,12 @@ FLUENT_DEFAULT_FILES = [
     'firefox/sticky-promo',
     'footer',
     'fxa_form',
+    'mozorg/about/shared',
     'navigation',
     'navigation_v2',
-    'sub_navigation',
     'newsletter_form',
     'send_to_device',
+    'sub_navigation',
     'ui',
 ]
 
