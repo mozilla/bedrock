@@ -39,6 +39,8 @@
     <h1 class="mzp-c-article-title">{{ self.page_title() }}</h1>
     <p class="mzp-c-article-intro">{{ ftl('what-is-a-browser-a-web-browser') }}</p>
 
+    {{ download_firefox_thanks(dom_id='download-button-primary', download_location='primary') }}
+
     <img src="{{ static('img/firefox/browsers/what-is-a-browser/illo-browser.png') }}" alt="" class="c-article-image">
 
     <p>{{ ftl('what-is-a-browser-the-web-is-a-vast') }}</p>
@@ -79,7 +81,7 @@
     <p>{{ ftl('what-is-a-browser-nearly-all-major') }}</p>
 
     <div class="download-firefox">
-      {{ download_firefox(download_location='primary cta') }}
+      {{ download_firefox_thanks(dom_id='download-button-secondary', download_location='secondary') }}
     </div>
 
     <p>{{ ftl('what-is-a-browser-firefox-helps') }}</p>

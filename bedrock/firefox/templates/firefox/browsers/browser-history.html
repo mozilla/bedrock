@@ -48,6 +48,8 @@
     <h1 class="mzp-c-article-title">{{ ftl('browser-history-the-history-of-web') }}</h1>
     <p class="mzp-c-article-intro">{{ ftl('browser-history-world-history-is') }}</p>
 
+    {{ download_firefox_thanks(dom_id='download-button-primary', download_location='primary') }}
+
     <img src="{{ static('img/firefox/browsers/browser-history/browser-history-a.png') }}" alt="" class="c-article-image">
 
     <h2 class="c-section-title">{{ ftl('browser-history-before-web-era') }}</h2>
@@ -109,7 +111,7 @@
   class='mzp-t-product-firefox mzp-t-firefox'
 ) %}
   <div class="download-firefox">
-    {{ download_firefox(download_location='secondary cta') }}
+    {{ download_firefox_thanks(dom_id='download-button-secondary', download_location='secondary') }}
   </div>
 {% endcall %}
 
