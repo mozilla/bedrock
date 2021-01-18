@@ -362,12 +362,11 @@ class TestDonateUrl(TestCase):
                       {'request': req})
 
     def test_donate_url_no_locale(self):
-        """No locale, fallback to default page"""
+        """No locale, fallback to generic link"""
         assert self._render('', 'mozillaorg_footer') == (
-            'https://donate.mozilla.org//'
-            '?presets=100,50,25,15&amp;amount=50'
-            '&amp;utm_source=mozilla.org&amp;utm_medium=referral'
-            '&amp;utm_content=mozillaorg_footer&amp;currency=usd')
+            'https://donate.mozilla.org/'
+            '?utm_source=mozilla.org&amp;utm_medium=referral'
+            '&amp;utm_content=mozillaorg_footer')
 
     def test_donate_url_english(self):
         """en-US locale, default page"""
@@ -385,13 +384,12 @@ class TestDonateUrl(TestCase):
             '&amp;utm_source=mozilla.org&amp;utm_medium=referral'
             '&amp;utm_content=mozillaorg_footer&amp;currency=eur')
 
-    def test_donate_url_other_locale(self):
-        """No page for locale, fallback to default page"""
-        assert self._render('pt-PT', 'mozillaorg_footer') == (
-            'https://donate.mozilla.org/pt-PT/'
-            '?presets=100,50,25,15&amp;amount=50'
-            '&amp;utm_source=mozilla.org&amp;utm_medium=referral'
-            '&amp;utm_content=mozillaorg_footer&amp;currency=usd')
+    def test_donate_url_unsupported_locale(self):
+        """Unsupported locale, fallback to generic link"""
+        assert self._render('es-ES', 'mozillaorg_footer') == (
+            'https://donate.mozilla.org/'
+            '?utm_source=mozilla.org&amp;utm_medium=referral'
+            '&amp;utm_content=mozillaorg_footer')
 
 
 @override_settings(FIREFOX_TWITTER_ACCOUNTS=TEST_FIREFOX_TWITTER_ACCOUNTS)

@@ -380,15 +380,15 @@ def donate_url(ctx, source=''):
 
     For en-US this would output:
 
-        https://donate.mozilla.org/en-US/?presets=100,50,25,15&amount=50&utm_source=mozilla.org&utm_medium=referral&utm_content=footer&currency=usd
+        https://donate.mozilla.org/en-US/?presets=50,30,20,10&amount=30&utm_source=mozilla.org&utm_medium=referral&utm_content=footer&currency=usd
 
     For de this would output:
 
-        https://donate.mozilla.org/de/?presets=100,50,25,15&amount=50&utm_source=mozilla.org&utm_medium=referral&utm_content=footer&currency=eur
+        https://donate.mozilla.org/de/?presets=50,30,20,10&amount=30&utm_source=mozilla.org&utm_medium=referral&utm_content=footer&currency=eur
 
     For a locale not defined in settings.DONATE this would output:
 
-        https://donate.mozilla.org/ca/?presets=100,50,25,15&amount=50&utm_source=mozilla.org&utm_medium=referral&utm_content=footer&currency=usd
+        https://donate.mozilla.org/?utm_source=mozilla.org&utm_medium=referral&utm_content=footer
 
     """
     locale = getattr(ctx['request'], 'locale', 'en-US')
@@ -396,10 +396,15 @@ def donate_url(ctx, source=''):
     donate_url_params = settings.DONATE_PARAMS.get(
         locale, settings.DONATE_PARAMS['en-US'])
 
-    return settings.DONATE_LINK.format(
-        locale=locale, presets=donate_url_params['presets'],
-        default=donate_url_params['default'], source=source,
-        currency=donate_url_params['currency'])
+    donate_url = settings.DONATE_LINK_UNKNOWN.format(source=source)
+
+    if locale in settings.DONATE_PARAMS:
+        donate_url = settings.DONATE_LINK.format(
+            locale=locale, presets=donate_url_params['presets'],
+            default=donate_url_params['default'], source=source,
+            currency=donate_url_params['currency'])
+
+    return donate_url
 
 
 @library.global_function
