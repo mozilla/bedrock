@@ -10,6 +10,8 @@ describe('stub-attribution.js', function() {
 
     'use strict';
 
+    var GA_VISIT_ID = '1456954538.1610960957';
+
     beforeEach(function() {
         // stub out Mozilla.Cookie lib
         window.Mozilla.Cookies = sinon.stub();
@@ -17,6 +19,9 @@ describe('stub-attribution.js', function() {
         window.Mozilla.Cookies.setItem = sinon.stub();
         window.Mozilla.Cookies.getItem = sinon.stub();
         window.Mozilla.Cookies.hasItem = sinon.stub();
+
+        // stub out GA client ID
+        spyOn(Mozilla.StubAttribution, 'getGAVisitID').and.returnValue(GA_VISIT_ID);
     });
 
     describe('init', function() {
@@ -171,6 +176,16 @@ describe('stub-attribution.js', function() {
         });
     });
 
+    describe('waitForGoogleAnalytics', function() {
+
+        it('should fire a callback with the GA visit ID', function() {
+            var callback = jasmine.createSpy('callback');
+
+            Mozilla.StubAttribution.waitForGoogleAnalytics(callback);
+            expect(callback).toHaveBeenCalledWith(true);
+        });
+    });
+
     describe('getAttributionData', function() {
 
         it('should return attribution data if utm params are present', function() {
@@ -194,7 +209,8 @@ describe('stub-attribution.js', function() {
                 referrer: '',
                 ua: 'chrome',
                 experiment: undefined,
-                variation: undefined
+                variation: undefined,
+                visit_id: GA_VISIT_ID
             };
             /* eslint-enable camelcase */
 
@@ -225,7 +241,8 @@ describe('stub-attribution.js', function() {
                 referrer: 'https://www.mozilla.org/en-US/',
                 ua: 'chrome',
                 experiment: undefined,
-                variation: undefined
+                variation: undefined,
+                visit_id: GA_VISIT_ID
             };
             /* eslint-enable camelcase */
 
@@ -256,7 +273,8 @@ describe('stub-attribution.js', function() {
                 referrer: '',
                 ua: 'chrome',
                 experiment: undefined,
-                variation: undefined
+                variation: undefined,
+                visit_id: GA_VISIT_ID
             };
             /* eslint-enable camelcase */
 
@@ -287,7 +305,8 @@ describe('stub-attribution.js', function() {
                 referrer: '',
                 ua: 'chrome',
                 experiment: 'firefox-new',
-                variation: 1
+                variation: 1,
+                visit_id: GA_VISIT_ID
             };
             /* eslint-enable camelcase */
 

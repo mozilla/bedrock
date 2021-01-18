@@ -199,6 +199,48 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     /**
+     * Gets the client ID from the GA object.
+     * @returns {String} client ID.
+     */
+    StubAttribution.getGAVisitID = function() {
+        try {
+            return window.ga.getAll()[0].get('clientId');
+        } catch (e) {
+            return null;
+        }
+    };
+
+    /**
+     * A crude check to see if Google Analytics has loaded. Periodically
+     * attempts to retrieve the client ID from the global `ga` object.
+     * @param {Function} callback
+     */
+    StubAttribution.waitForGoogleAnalytics = function(callback) {
+        var timeout;
+        var pollRetry = 0;
+        var interval = 100;
+        var limit = 20; // (100 x 20) / 1000 = 2 seconds
+
+        function _checkGA() {
+            clearTimeout(timeout);
+            var clientID = StubAttribution.getGAVisitID();
+
+            if (clientID && typeof clientID === 'string') {
+                callback(true);
+            } else {
+                if (pollRetry <= limit) {
+                    pollRetry += 1;
+                    timeout = window.setTimeout(_checkGA, interval);
+                } else {
+                    callback(false);
+                }
+            }
+        }
+
+        _checkGA();
+    };
+
+    /**
      * Gets utm parameters and referrer information from the web page if they exist.
      * @param {String} ref - Optional referrer to facilitate testing.
      * @return {Object} - Stub attribution data object.
@@ -210,6 +252,7 @@ if (typeof window.Mozilla === 'undefined') {
         var variation = params.get('variation') || StubAttribution.experimentVariation;
         var referrer = typeof ref !== 'undefined' ? ref : document.referrer;
         var ua = StubAttribution.getUserAgent();
+        var visitID = StubAttribution.getGAVisitID();
 
         /* eslint-disable camelcase */
         var data = {
@@ -220,7 +263,8 @@ if (typeof window.Mozilla === 'undefined') {
             referrer: referrer,
             ua : ua,
             experiment: experiment,
-            variation: variation
+            variation: variation,
+            visit_id: visitID
         };
         /* eslint-enable camelcase */
 
@@ -290,11 +334,14 @@ if (typeof window.Mozilla === 'undefined') {
         // make the XHR request to the stub authentication service.
         } else if (!StubAttribution.isFirefoxNewScene2()) {
 
-            data = StubAttribution.getAttributionData();
+            // Wait for GA to load so that we can pass along visit ID.
+            StubAttribution.waitForGoogleAnalytics(function() {
+                data = StubAttribution.getAttributionData();
 
-            if (data && StubAttribution.withinAttributionRate()) {
-                StubAttribution.requestAuthentication(data);
-            }
+                if (data && StubAttribution.withinAttributionRate()) {
+                    StubAttribution.requestAuthentication(data);
+                }
+            });
         }
     };
 
