@@ -439,6 +439,37 @@ class TestWhatsNew(TestCase):
 
     # end 84.0 whatsnew tests
 
+    # begin 85.0 whatsnew tests
+
+    @patch.object(fx_views, 'ftl_file_is_active', lambda *x: True)
+    def test_fx_85_0_0(self, render_mock):
+        """Should use whatsnew-fx85 template for 85.0 in English"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'en-US'
+        self.view(req, version='85.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx85.html']
+
+    @patch.object(fx_views, 'ftl_file_is_active', lambda *x: True)
+    def test_fx_85_0_0_locale(self, render_mock):
+        """Should use standard whatsnew template for 85.0 in other locales"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'es-ES'
+        self.view(req, version='85.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/index-account.html']
+
+    def test_fx_85_0_0_china(self, render_mock):
+        """Should use standard whatsnew template in China for en-US locale"""
+        self.view = fx_views.WhatsNewChinaView.as_view()
+        req = self.rf.get('/firefox/whatsnew/china/')
+        req.locale = 'en-US'
+        self.view(req, version='85.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/index-account.html']
+
+    # end 85.0 whatsnew tests
+
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
 class TestWhatsNewFirefoxLite(TestCase):
