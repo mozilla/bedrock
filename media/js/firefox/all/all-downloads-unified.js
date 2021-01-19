@@ -195,13 +195,10 @@
             var languageBuild = productList.querySelector('.c-locale-list-item[data-language="' + language + '"]');
             var platformLink = languageBuild.querySelector('.c-download-list > li > a[data-download-version="' + platform + '"]');
 
-            if (platformLink) {
-                return platformLink.href;
-            } else {
-                return new Error('platformLink is ' + platformLink);
-            }
+            return platformLink.href;
         } catch(e) {
-            return e;
+            var error = new Error('A download link was not found for: ' + product + ', platform: ' + platform + ', language: ' + language);
+            FirefoxDownloader.onError(error);
         }
     };
 
@@ -263,17 +260,13 @@
     FirefoxDownloader.onError = function(e) {
         // show form error and hide download button.
         downloadInfo.classList.add('has-error');
-        FirefoxDownloader.showButton('none');
+        downloadInfo.classList.remove('hidden');
 
         // show the fallback list of locales.
         document.getElementById('all-downloads').classList.add('is-fallback');
 
         if (e instanceof Error) {
-            window.dataLayer.push({
-                'event': 'in-page-interaction',
-                'eAction': 'download error',
-                'eLabel': e.name + e.message
-            });
+            throw e;
         }
     };
 
@@ -294,7 +287,8 @@
      */
     FirefoxDownloader.isValidURL = function(url) {
         var bouncerURL = /^https:\/\/download.mozilla.org/;
-        return typeof url === 'string' && (bouncerURL).test(url);
+        var stagingURL = /^https:\/\/bouncer-bouncer.stage.mozaws.net/;
+        return typeof url === 'string' && ((bouncerURL).test(url) || (stagingURL).test(url));
     };
 
 
@@ -307,9 +301,9 @@
         var language = FirefoxDownloader.getLanguageSelection(product);
         FirefoxDownloader.setDownloadInfo(product.label, platform.label, language.label);
 
-        if(product.id.indexOf('android') === 0) {
+        if (product.id.indexOf('android') === 0) {
             FirefoxDownloader.offError();
-        } else if(product.id.indexOf('ios') === 0) {
+        } else if (product.id.indexOf('ios') === 0) {
             FirefoxDownloader.offError();
         } else {
             // Use `version.id` as ESR can sometimes offer 2 builds simultaneously.
@@ -319,7 +313,8 @@
                 FirefoxDownloader.setDownloadLink(downloadURL, product, platform, language);
                 FirefoxDownloader.offError();
             } else {
-                FirefoxDownloader.onError(downloadURL);
+                var error = new Error('An unrecognised download link was found: ' + downloadURL);
+                FirefoxDownloader.onError(error);
             }
         }
     };

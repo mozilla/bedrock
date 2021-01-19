@@ -118,8 +118,13 @@ describe('all-downloads-unified.js', function() {
         });
 
         it('should return an error if a download link is not found', function() {
-            var result = Mozilla.FirefoxDownloader.getDownloadLink('desktop_release', 'win64', 'de');
-            expect(result instanceof Error).toBeTruthy();
+            var product = 'desktop_release';
+            var platform = 'win64';
+            var language = 'de';
+            spyOn(Mozilla.FirefoxDownloader, 'onError');
+            var error = new Error('A download link was not found for: ' + product + ', platform: ' + platform + ', language: ' + language);
+            Mozilla.FirefoxDownloader.getDownloadLink(product, platform, language);
+            expect(Mozilla.FirefoxDownloader.onError).toHaveBeenCalledWith(error);
         });
     });
 
@@ -186,8 +191,13 @@ describe('all-downloads-unified.js', function() {
     });
 
     describe('isValidURL', function() {
-        it('should return true for bouncer links', function() {
+        it('should return true for bouncer prod links', function() {
             var url = 'https://download.mozilla.org/?product=firefox-latest-ssl&os=osx&lang=en-US';
+            expect(Mozilla.FirefoxDownloader.isValidURL(url)).toBeTruthy();
+        });
+
+        it('should return true for bouncer stage links', function() {
+            var url = 'https://bouncer-bouncer.stage.mozaws.net/?product=firefox-latest-ssl&os=osx&lang=en-US';
             expect(Mozilla.FirefoxDownloader.isValidURL(url)).toBeTruthy();
         });
 
@@ -265,6 +275,18 @@ describe('all-downloads-unified.js', function() {
             expect(Mozilla.FirefoxDownloader.setDownloadLink).toHaveBeenCalledWith('https://download.mozilla.org/?product=firefox-beta-latest-ssl&os=win64&lang=ach', product, platform, language);
             expect(Mozilla.FirefoxDownloader.setDownloadInfo).toHaveBeenCalledWith(product.label, platform.label, language.label);
             expect(Mozilla.FirefoxDownloader.offError).toHaveBeenCalled();
+        });
+
+        it('should throw an error if a download link is not valid', function() {
+            var badURL = 'https://download.mozilla.org.somebadactor.com/download.exe';
+            spyOn(Mozilla.FirefoxDownloader, 'getProductSelection').and.returnValue(product);
+            spyOn(Mozilla.FirefoxDownloader, 'setDownloadInfo');
+            spyOn(Mozilla.FirefoxDownloader, 'getDownloadLink').and.returnValue(badURL);
+            spyOn(Mozilla.FirefoxDownloader, 'isValidURL').and.returnValue(false);
+            spyOn(Mozilla.FirefoxDownloader, 'onError');
+            Mozilla.FirefoxDownloader.setDownloadButton();
+            var error = new Error('An unrecognised download link was found: ' + badURL);
+            expect(Mozilla.FirefoxDownloader.onError).toHaveBeenCalledWith(error);
         });
 
     });
