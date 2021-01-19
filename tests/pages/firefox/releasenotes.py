@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 
 from pages.base import BasePage
 from pages.regions.download_button import DownloadButton
+from pages.regions.sticky_promo import StickyPromo
 
 
 class FirefoxReleaseNotesPage(BasePage):
@@ -32,6 +33,18 @@ class FirefoxReleaseNotesPage(BasePage):
     _secondary_play_store_button_locator = (By.ID, 'download-android-secondary')
     _primary_app_store_button_locator = (By.ID, 'download-ios-primary')
     _secondary_app_store_button_locator = (By.ID, 'download-ios-secondary')
+    _sticky_promo_modal_content_locator = (By.CSS_SELECTOR, '.mzp-c-sticky-promo.mzp-a-slide-in')
+
+    def wait_for_page_to_load(self):
+        el = self.find_element(By.TAG_NAME, 'html')
+        self.wait.until(lambda s: 'loaded' in el.get_attribute('class'))
+
+        # Sticky promo is shown to non-Firefox browsers only.
+        if self.selenium.capabilities.get('browserName').lower() != 'firefox':
+            promo = self.find_element(*self._sticky_promo_modal_content_locator)
+            self.wait.until(lambda s: 'is-displayed' in promo.get_attribute('class'))
+
+        return self
 
     @property
     def primary_download_button_release(self):
@@ -132,3 +145,7 @@ class FirefoxReleaseNotesPage(BasePage):
     @property
     def is_pre_releases_menu_displayed(self):
         return self.is_element_displayed(*self._pre_releases_menu_locator)
+
+    @property
+    def promo(self):
+        return StickyPromo(self)

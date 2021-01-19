@@ -4,7 +4,7 @@
 
 {% from "macros-protocol.html" import call_out_compact with context %}
 
-{% extends "base-protocol.html" %}
+{% extends "firefox/base/base-protocol.html" %}
 
 {% block page_title %}{{ _('Incognito browser: What it really means') }}{% endblock %}
 
@@ -211,4 +211,14 @@
   </div>
 {% endcall %}
 
+{% endblock %}
+
+{% block sticky_promo %}
+  {% with non_fx_only=True %}
+    {% include '/includes/sticky-promo.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('sticky_promo') }}
 {% endblock %}

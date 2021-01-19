@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "base-protocol.html" %}
+{% extends "firefox/base/base-protocol.html" %}
 
 {% block page_title %}{{ ftl('what-is-a-browser-what-is-a-web') }}{% endblock %}
 
@@ -94,4 +94,14 @@
 
   </article>
 </div>
+{% endblock %}
+
+{% block sticky_promo %}
+  {% with non_fx_only=True %}
+    {% include '/includes/sticky-promo.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('sticky_promo') }}
 {% endblock %}
