@@ -408,6 +408,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-85.scss"
+      ],
+      "name": "firefox_whatsnew_85"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
