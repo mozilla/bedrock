@@ -30,8 +30,8 @@
 
   <section class="wnp-content-main">
     <div class="mzp-l-content">
-    <img class="wnp-main-image" src="{{ static('protocol/img/logos/firefox/browser/logo-md.png') }}" alt="">
-      <h1 class="wnp-main-title">Hol dir den neuen Firefox auch auf dein Smartphone.</h1>
+      {{ high_res_img('protocol/img/logos/firefox/browser/logo-md.png', {'alt': '', 'width': '96', 'height': '96', 'class': 'wnp-main-image'}) }}
+      <h1 class="wnp-main-title">Hol dir den neuen Firefox auch auf dein Smartphone</h1>
 
       <div id="send-to-device-wrapper" class="primary-cta">
         {{ send_to_device(title_text='Sende einen Download-Link an dein Handy.', message_set='fx-whatsnew', spinner_color='#fff;', class='vertical') }}
@@ -40,7 +40,7 @@
       <div class="l-columns-two">
         <div class="c-picto-block">
           <div class="c-picto-block-image">
-            <img src="{{ static('img/firefox/whatsnew/whatsnew85-de/icon-android.svg') }}" width="120" alt="">
+            <img src="{{ static('img/firefox/whatsnew/whatsnew85-de/icon-android.svg') }}" width="120" height="90" alt="">
           </div>
           <h3 class="c-picto-block-title">Firefox für Android</h3>
           <div class="c-picto-block-body">
@@ -50,7 +50,7 @@
 
         <div class="c-picto-block">
           <div class="c-picto-block-image">
-            <img src="{{ static('img/firefox/whatsnew/whatsnew85-de/icon-ios.svg') }}" width="120" alt="">
+            <img src="{{ static('img/firefox/whatsnew/whatsnew85-de/icon-ios.svg') }}" width="120" height="90" alt="">
           </div>
           <h3 class="c-picto-block-title">Firefox für iOS</h3>
           <div class="c-picto-block-body">
