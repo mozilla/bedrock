@@ -1,0 +1,12 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% block html_attrs %}data-vpn-allowed-country-codes="{{ allowed_countries }}"{% endblock %}
+
+{% block page_image %}{{ static('img/products/vpn/common/social-share.png') }}{% endblock %}
+{% block page_favicon %}{{ static('img/favicons/vpn/favicon.ico') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/favicons/vpn/favicon.png') }}{% endblock %}
+{% block page_ios_icon %}{{ static('img/favicons/vpn/favicon.png') }}{% endblock %}
