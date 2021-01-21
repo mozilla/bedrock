@@ -22,6 +22,7 @@ urlpatterns = (
     url(r'^about/legal/', include('bedrock.legal.urls')),
     url(r'^press/', include('bedrock.press.urls')),
     url(r'^privacy/', include('bedrock.privacy.urls')),
+    url(r'^products/', include('bedrock.products.urls')),
     url(r'^security/', include('bedrock.security.urls')),
     url(r'', include('bedrock.firefox.urls')),
     url(r'', include('bedrock.mozorg.urls')),

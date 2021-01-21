@@ -1,0 +1,89 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/forms/form';
+@import '../../../protocol/css/components/forms/field';
+@import '../../../protocol/css/components/forms/choice';
+@import '../../../protocol/css/components/forms/status';
+@import '../../../protocol/css/components/forms/set';
+
+//* -------------------------------------------------------------------------- */
+// Newsletter Form
+
+.mzp-c-form-header {
+    @include text-title-md;
+    text-align: center;
+}
+
+.mzp-c-form-subtitle {
+    @include text-body-lg;
+    font-weight: normal;
+    margin-bottom: $spacing-2xl;
+    text-align: center;
+}
+
+.mzp-c-newsletter-form {
+    margin: $layout-xl 0;
+
+    input[type='email'],
+    button[type='submit'],
+    select {
+        width: 100%;
+    }
+
+    label {
+        @include text-body-md;
+    }
+
+    fieldset {
+        margin: $spacing-2xl 0 $spacing-xl;
+    }
+
+    legend {
+        @include font-base;
+        @include text-body-md;
+    }
+}
+
+.vpn-invite-platform-options {
+
+    .mzp-u-inline {
+        font-weight: normal;
+    }
+
+    input[type='checkbox'] {
+        margin-bottom: $spacing-lg;
+    }
+
+    @supports (display: grid) {
+
+        @media #{$mq-md} {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: $spacing-xl;
+
+            input[type='checkbox'] {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+.vpn-invite-privacy-policy {
+    margin: $spacing-xl 0;
+}
+
+.vpn-invite-success {
+    display: none;
+    margin: $layout-xl 0;
+    min-height: 400px;
+}
+
+.mzp-c-form-errors {
+    display: none;
+}

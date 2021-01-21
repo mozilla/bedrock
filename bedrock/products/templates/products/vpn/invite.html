@@ -1,0 +1,122 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "products/vpn/base.html" %}
+
+{% block page_title %}Join the Waitlist: Mozilla VPN{% endblock %}
+
+{% block page_desc %}Get notified when Mozilla VPN is available for your device and region.{% endblock %}
+
+{% block body_id %}mozilla-vpn-invite{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('mozilla-vpn-invite') }}
+{% endblock %}
+
+{% block site_header %}
+  {% with
+    hide_nav_download_button=True,
+    hide_nav_get_account_button=True
+  %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block content %}
+<main class="mzp-l-content mzp-t-content-md">
+  <form id="newsletter-form" class="mzp-c-newsletter-form" action="{{ url('newsletter.subscribe') }}" method="post" data-spinner-color="#000">
+    <h1 class="mzp-c-form-header">Join the VPN Waitlist</h1>
+    <p class="mzp-c-form-subtitle">Get notified when Mozilla VPN is available for your device and region.</p>
+
+    {{ newsletter_form.newsletters|safe }}
+    <input type="hidden" name="lang" id="id_lang" value="en">
+    <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
+
+    <fieldset class="mzp-c-newsletter-content">
+      <div class="mzp-c-form-errors" id="newsletter-errors"></div>
+
+      <div>
+        <label for="id_email">
+          What is your email address?
+          <em class="mzp-c-fieldnote">Required</em>
+        </label>
+        <input type="email" class="mzp-js-email-field" id="id_email" name="email" required aria-required="true" placeholder="yourname@example.com">
+      </div>
+
+      <div id="newsletter-details" class="mzp-c-newsletter-details">
+        <label for="id_country">
+          What country do you live in?
+          <em class="mzp-c-fieldnote">Required</em>
+        </label>
+        {{ newsletter_form.country|safe }}
+
+        <fieldset>
+          <legend>Which platforms are you interested in?</legend>
+
+          <ul class="vpn-invite-platform-options">
+            <li>
+              <label class="mzp-u-inline">
+                <input type="checkbox" id="platforms-windows" name="platforms" value="windows">
+                Windows 10
+              </label>
+            </li>
+            <li>
+              <label class="mzp-u-inline">
+                <input type="checkbox" id="platforms-ios" name="platforms" value="ios">
+                iOS
+              </label>
+            </li>
+            <li>
+              <label class="mzp-u-inline">
+                <input type="checkbox" id="platforms-android" name="platforms" value="android">
+                Android
+              </label>
+            </li>
+            <li>
+              <label class="mzp-u-inline">
+                <input type="checkbox" id="platforms-mac" name="platforms" value="mac">
+                Mac
+              </label>
+            </li>
+            <li>
+              <label class="mzp-u-inline">
+                <input type="checkbox" id="platforms-chromebook" name="platforms" value="chromebook">
+                Chromebook
+              </label>
+            </li>
+            <li>
+              <label class="mzp-u-inline">
+                <input type="checkbox" id="platforms-linux" name="platforms" value="linux">
+                Linux
+              </label>
+            </li>
+          </ul>
+        </fieldset>
+
+        <p class="vpn-invite-privacy-policy">
+          <label for="id_privacy" class="mzp-u-inline">
+            <input type="checkbox" name="privacy" required="required" id="id_privacy">
+            I agree to the Mozilla VPN <a href="{{ url('privacy.notices.mozilla-vpn') }}">Privacy Policy</a>.
+          </label>
+        </p>
+      </div>
+
+      <p class="mzp-c-form-submit">
+        <button class="vpn-button t-dark" id="newsletter-submit" type="submit">Join the Waitlist</button>
+      </p>
+    </fieldset>
+
+  </form>
+
+  <div id="newsletter-thanks" class="vpn-invite-success">
+    <h3>Thanks! You’re on the list.</h3>
+    <p>Once Mozilla VPN becomes available for your platform and region, we’ll email you.</p>
+    <p>The VPN is currently available for Windows 10, Android and iOS devices in the US, the UK, Canada, New Zealand, Singapore and Malaysia.</p>
+  </div>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('mozilla-vpn-invite') }}
+{% endblock %}

@@ -1,0 +1,409 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+
+//* -------------------------------------------------------------------------- */
+// Shared styles
+
+.availability-copy {
+    @include text-body-md;
+}
+
+//* -------------------------------------------------------------------------- */
+// Conditional state
+
+.js-join-waitlist,
+.js-country-list {
+    display: none !important; /* stylelint-disable-line declaration-no-important */
+}
+
+.vpn-not-available {
+    .js-try-vpn {
+        display: none !important; /* stylelint-disable-line declaration-no-important */
+    }
+
+    .js-country-list {
+        display: block !important; /* stylelint-disable-line declaration-no-important */
+    }
+
+    .js-join-waitlist {
+        display: inline-block !important; /* stylelint-disable-line declaration-no-important */
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// VPN Nav CTA
+
+.vpn-nav-cta {
+    .mzp-c-cta-link {
+        @include text-body-sm;
+        display: block;
+        margin-top: $spacing-lg;
+
+        &:link,
+        &:visited {
+            color: $color-black;
+            text-decoration: none;
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+
+    @media #{$mq-md} {
+        @include bidi(((text-align, left, right),));
+        margin-top: 0;
+
+        .mzp-c-cta-link {
+            @include bidi(((margin-left, $spacing-md, margin-right, 0),));
+            display: inline;
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Hero component
+
+.vpn-hero {
+    margin: $layout-md 0;
+    text-align: center;
+}
+
+.vpn-hero-container {
+    position: relative;
+}
+
+.vpn-hero-body {
+    margin: 0 auto;
+    max-width: 480px;
+}
+
+.vpn-hero-title {
+    @include text-title-lg;
+    margin-bottom: $spacing-md;
+}
+
+.vpn-hero-desc {
+    @include text-body-xl;
+    margin-bottom: $spacing-md;
+}
+
+.vpn-hero-tagline {
+    @include text-body-lg;
+    font-weight: bold;
+    margin-top: $layout-lg;
+}
+
+.vpn-hero-image {
+    display: none;
+    position: relative;
+
+    img {
+        @include transition(opacity .5s ease-in-out);
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+    }
+
+    &[data-illustration="n-1"] .n-1 {
+        opacity: 1;
+    }
+
+    &[data-illustration="n-2"] .n-2 {
+        opacity: 1;
+    }
+
+    &[data-illustration="n-3"] .n-3 {
+        opacity: 1;
+    }
+
+    &[data-illustration="n-4"] .n-4 {
+        opacity: 1;
+    }
+
+    &[data-illustration="n-5"] .n-5 {
+        opacity: 1;
+    }
+}
+
+@media #{$mq-lg} {
+    .vpn-hero {
+        padding: $spacing-2xl 0;
+
+        .mzp-l-content {
+            min-height: 480px;
+        }
+    }
+
+    .vpn-hero-body {
+        @include bidi((
+            (float, left, right),
+            (text-align, left, right),
+            (padding-right, $spacing-2xl, 0),
+        ));
+        max-width: none;
+        width: calc(100% - 480px - #{$spacing-2xl});
+    }
+
+    .vpn-hero-title {
+        margin-bottom: $spacing-xl;
+    }
+
+    .vpn-hero-desc {
+        margin-bottom: $spacing-2xl;
+    }
+
+    .vpn-hero-tagline {
+        margin-top: $layout-xl;
+    }
+
+    .vpn-hero-image {
+        @include bidi((
+            (float, right, left),
+        ));
+        display: block;
+        height: 480px;
+        width: 480px;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Content Well component
+
+.vpn-content-well {
+    margin: 0 auto $spacing-xl;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    z-index: 0;
+
+    .vpn-content-well-image {
+        img {
+            height: auto;
+            width: 100%;
+            max-width: 480px;
+        }
+    }
+
+    .vpn-content-well-copy {
+        @include bidi(((text-align, left, right),));
+    }
+
+    .vpn-content-well-title {
+        @include text-title-md;
+        margin-bottom: $spacing-xl;
+    }
+
+    .vpn-content-well-desc {
+        @include text-body-xl;
+        color: $color-marketing-gray-90;
+    }
+
+    .vpn-content-well-copy,
+    .vpn-content-well-image-wrapper {
+        padding: $spacing-lg $spacing-xl;
+    }
+
+    &:nth-child(odd) {
+        outline: 4px solid $color-black;
+
+        &:after {
+            background: $color-marketing-gray-20;
+            content: '';
+            display: block;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: -1;
+        }
+    }
+
+    @media #{$mq-md} {
+        clear: both;
+        margin-bottom: $layout-lg;
+
+        .vpn-content-well-copy,
+        .vpn-content-well-image-wrapper {
+            margin-top: 0;
+            padding: ($spacing-xl * 2) $spacing-2xl;
+            width: calc(50% - (#{$spacing-2xl} * 2));
+        }
+
+        &:nth-child(odd) {
+            &:after {
+                left: $spacing-xl;
+                top: $spacing-xl;
+            }
+        }
+
+        &.vpn-content-well-left-half {
+            .vpn-content-well-copy {
+                @include bidi((
+                    (float, left, right),
+                ));
+            }
+
+            .vpn-content-well-image-wrapper {
+                @include bidi((
+                    (float, right, left),
+                ));
+            }
+        }
+
+        &.vpn-content-well-right-half {
+            .vpn-content-well-copy {
+                @include bidi((
+                    (float, right, left),
+                ));
+            }
+
+            .vpn-content-well-image-wrapper {
+                @include bidi((
+                    (float, left, right),
+                ));
+            }
+        }
+    }
+
+    @supports(display: grid) {
+        overflow: visible;
+
+        @media #{$mq-md} {
+            @include grid-column-gap($spacing-xl);
+            display: grid;
+
+            .vpn-content-well-copy {
+                @include flexbox;
+                align-items: center;
+            }
+
+            &.vpn-content-well-left-half {
+                .vpn-content-well-copy {
+                    grid-column: 1;
+                    grid-row: 1;
+                    width: auto;
+                }
+
+                .vpn-content-well-image-wrapper {
+                    grid-column: 2;
+                    grid-row: 1;
+                    width: auto;
+                }
+            }
+
+            &.vpn-content-well-left-half {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            &.vpn-content-well-right-half {
+                .vpn-content-well-copy {
+                    grid-column: 2;
+                    grid-row: 1;
+                    width: auto;
+                }
+
+                .vpn-content-well-image-wrapper {
+                    grid-column: 1;
+                    grid-row: 1;
+                    width: auto;
+                }
+            }
+
+            &.vpn-content-well-right-half {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+        @media #{$mq-lg} {
+            @include grid-column-gap($spacing-2xl);
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// FAQ
+
+.vpn-faq {
+    border-top: 4px solid $color-black;
+    padding-top: $layout-xl;
+}
+
+.vpn-faq-section-title {
+    @include text-title-md;
+    text-align: center;
+    margin-bottom: $spacing-2xl;
+}
+
+.vpn-faq-item-title {
+    background: $color-marketing-gray-20;
+    padding: $spacing-lg;
+    box-shadow: 8px 8px 0 $color-black;
+    margin-bottom: $spacing-lg;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    h3 {
+        @include bidi((
+            (margin-right, $spacing-xl, margin-left, 0),
+        ));
+        @include text-title-2xs;
+        font-family: $font-stack-base;
+        margin-bottom: 0;
+        line-height: 1.5;
+    }
+}
+
+.vpn-faq-item-detail {
+    @include text-body-lg;
+    padding: $spacing-lg;
+}
+
+.vpn-faq-item[open] {
+    background: $color-white;
+
+    .vpn-faq-item-title {
+        background: $color-white;
+        box-shadow: none;
+    }
+}
+
+.vpn-faq-footer {
+    margin: $layout-xl 0;
+    text-align: center;
+
+    small {
+        @include text-body-xs;
+        display: block;
+        margin-top: $spacing-xl;
+    }
+}
+
+.vpn-faq-footer-link {
+    display: block;
+    margin-bottom: $spacing-lg;
+
+    &:link,
+    &:visited {
+        color: $color-black;
+    }
+
+    @media #{$mq-md} {
+        display: inline-block;
+        margin-left: $spacing-md;
+        margin-right: $spacing-md;
+    }
+}

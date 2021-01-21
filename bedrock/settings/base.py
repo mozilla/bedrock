@@ -539,6 +539,7 @@ INSTALLED_APPS = (
     'bedrock.newsletter',
     'bedrock.press',
     'bedrock.privacy',
+    'bedrock.products',
     'bedrock.externalfiles',
     'bedrock.security',
     'bedrock.releasenotes',
@@ -1313,3 +1314,33 @@ if config('SWITCH_TRACKING_PIXEL', default=str(DEV), parser=bool):
 
 # Issue 7508 - Convert.com experiment sandbox
 CONVERT_PROJECT_ID = ('10039-1003350' if DEV else '10039-1003343')
+
+# Mozilla VPN Geo restrictions
+VPN_ALLOWED_COUNTRY_CODES = [
+  'CA', #Canada
+  'MY', #Malaysia
+  'NZ', #New Zealand
+  'SG', #Singapore
+  #United Kingdom + "Territories"
+  'GB', #United Kingdom of Great Britain and Northern Island
+  'GG', #Guernsey (a British Crown dependency)
+  'IM', #Isle of Man (a British Crown dependency)
+  'IO', #British Indian Ocean Territory
+  'JE', #Jersey (a British Crown dependency)
+  'UK', #United Kingdom
+  'VG', #Virgin Islands (British)
+  #USA + "Territories"
+  'AS', #American Samoa
+  'MP', #Northern Mariana Islands
+  'PR', #Puerto Rico
+  'UM', #United States Minor Outlying Islands
+  'US', #United States of America
+  'VI', #Virgin Islands (U.S.)
+]
+
+# Mozilla VPN subscription prices
+VPN_PRICE_MONTHLY = {
+    'en-US': {
+        'monthly': 'US$4.99'
+    }
+}

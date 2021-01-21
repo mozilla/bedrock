@@ -788,6 +788,20 @@
         "css/foundation/reimagine-open.scss"
       ],
       "name": "reimagine-open"
+    },
+    {
+      "files": [
+        "css/products/vpn/common.scss",
+        "css/products/vpn/landing.scss"
+      ],
+      "name": "mozilla-vpn-landing"
+    },
+    {
+      "files": [
+        "css/products/vpn/common.scss",
+        "css/products/vpn/invite.scss"
+      ],
+      "name": "mozilla-vpn-invite"
     }
   ],
   "js": [
@@ -1437,6 +1451,18 @@
         "js/base/mozilla-fxa-product-button-init.js"
       ],
       "name": "sync"
+    },
+    {
+      "files": [
+        "js/products/vpn/landing.js"
+      ],
+      "name": "mozilla-vpn-landing"
+    },
+    {
+      "files": [
+        "js/products/vpn/invite.js"
+      ],
+      "name": "mozilla-vpn-invite"
     }
   ]
 }
