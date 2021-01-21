@@ -441,7 +441,6 @@ class TestWhatsNew(TestCase):
 
     # begin 85.0 whatsnew tests
 
-    @patch.object(fx_views, 'ftl_file_is_active', lambda *x: True)
     def test_fx_85_0_0(self, render_mock):
         """Should use whatsnew-fx85 template for 85.0 in English"""
         req = self.rf.get('/firefox/whatsnew/')
@@ -450,7 +449,14 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/whatsnew-fx85.html']
 
-    @patch.object(fx_views, 'ftl_file_is_active', lambda *x: True)
+    def test_fx_85_0_0_de(self, render_mock):
+        """Should use whatsnew-mobile-de template for 85.0 in German"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'de'
+        self.view(req, version='85.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-mobile-de.html']
+
     def test_fx_85_0_0_locale(self, render_mock):
         """Should use standard whatsnew template for 85.0 in other locales"""
         req = self.rf.get('/firefox/whatsnew/')

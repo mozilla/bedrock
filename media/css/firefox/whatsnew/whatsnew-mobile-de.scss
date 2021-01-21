@@ -1,0 +1,169 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/notification-bar';
+@import 'includes/header';
+
+//* -------------------------------------------------------------------------- */
+// Main content
+.wnp-content-main {
+    padding: 0;
+    text-align: center;
+}
+
+.wnp-main-image {
+    margin: 0 auto $layout-sm;
+}
+
+.wnp-main-title {
+    @include text-title-md;
+    color: get-theme('title-text-color');
+    margin: 0 auto;
+    max-width: 14em;
+}
+
+.wnp-main-tagline {
+    @include text-body-lg;
+}
+
+.send-to-device {
+    margin: $spacing-2xl auto;
+
+    .form-heading {
+        @include text-title-xs;
+        color: get-theme('title-text-color');
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// To be replaced by revamped picto card. See https://github.com/mozilla/protocol/issues/382
+
+.c-picto-block {
+    @include border-box;
+    margin: 0 auto $spacing-2xl;
+    max-width: $content-md - ($layout-md * 2);
+    padding: 0 $layout-md;
+
+    .c-picto-block-title {
+        @include text-title-xs;
+        color: get-theme('title-text-color');
+    }
+
+    .c-picto-block-image {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin: 0 auto $spacing-lg;
+        max-width: $content-xs;
+        min-height: $layout-md;
+    }
+}
+
+.l-columns-two {
+    margin-top: $layout-lg;
+
+    @media #{$mq-md} {
+        display: flex;
+        flex-wrap: wrap;
+        margin: $layout-xl auto 0;
+        max-width: $content-lg;
+        padding: 0 $layout-md;
+
+        .c-picto-block {
+            flex: 1 1 50%;
+            padding: 0 $layout-lg;
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Utilities (link to release notes)
+.c-utilities {
+    @include text-body-sm;
+    max-width: $content-md;
+    padding-bottom: $layout-xl;
+    text-align: center;
+}
+
+//* -------------------------------------------------------------------------- */
+// For dark mode
+@media (prefers-color-scheme: dark) {
+    .content-wrapper {
+        background: $color-dark-gray-60;
+        color: $color-white;
+    }
+
+    .wnp-main-title {
+        color: get-theme('title-text-color-inverse');
+
+        strong {
+            color: $color-violet-20;
+        }
+    }
+
+    .c-picto-block {
+        .c-picto-block-title {
+            color: get-theme('title-text-color-inverse');
+        }
+
+        .c-picto-block-body {
+            @include light-links;
+        }
+    }
+
+    .send-to-device {
+        color: $color-white;
+
+        .form-heading {
+            color: get-theme('title-text-color-inverse');
+        }
+    }
+
+    .c-utilities {
+        @include light-links;
+    }
+
+    .c-footer {
+        background: $color-dark-gray-60;
+        color: $color-white;
+
+        a:link,
+        a:visited {
+            color: $color-light-gray-20;
+            text-decoration: underline;
+
+            &:hover,
+            &:focus,
+            &:active {
+                color: $color-white;
+            }
+        }
+
+        .c-footer-sections {
+            border-color: $color-dark-gray-30;
+        }
+    }
+
+    .c-footer-list-social li {
+        a.twitter {
+            background-image: url('/media/protocol/img/icons/social/twitter/white.svg');
+        }
+
+        a.instagram {
+            background-image: url('/media/protocol/img/icons/social/instagram/white.svg');
+        }
+
+        a.youtube {
+            background-image: url('/media/protocol/img/icons/social/youtube/white.svg');
+        }
+    }
+
+    .c-footer-primary-logo a {
+        background-image: url('/media/protocol/img/logos/mozilla/white.svg');
+    }
+}
