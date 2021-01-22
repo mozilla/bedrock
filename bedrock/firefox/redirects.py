@@ -106,7 +106,7 @@ redirectpatterns = (
              anchor='product-desktop-esr'),
 
     # bug 729329
-    redirect(r'^mobile/sync', 'firefox.accounts'),
+    redirect(r'^mobile/sync', 'firefox.sync'),
 
     # bug 882845
     redirect(r'^firefox/toolkit/download-to-your-devices', 'firefox.new'),
@@ -153,7 +153,7 @@ redirectpatterns = (
 
     # Bug 1110927
     redirect(r'^(products/)?firefox/start/central\.html$', 'firefox.new'),
-    redirect(r'^firefox/sync/firstrun\.html$', 'firefox.accounts'),
+    redirect(r'^firefox/sync/firstrun\.html$', 'firefox.sync'),
 
     # Bug 920212
     redirect(r'^firefox/fx(/.*)?', 'firefox'),
