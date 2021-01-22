@@ -66,7 +66,7 @@
         <th scope="row">Domain Takeovers</th>
         <td>$5000</td>
         <td>$2000</td>
-        <td>$500/$200<sup>5</sup></td>
+        <td>$500<sup>5</sup>/$200<sup>6</sup></td>
       </tr>
       <tr>
         <th scope="row">XSS (minor)</th>
@@ -81,7 +81,7 @@
         <td>--</td>
       </tr>
       <tr>
-        <th scope="row">Clickjacking<sup>6</sup></th>
+        <th scope="row">Clickjacking<sup>7</sup></th>
         <td>$1000</td>
         <td>$500</td>
         <td>--</td>
@@ -90,7 +90,7 @@
         <th scope="row">Open Redirects</th>
         <td><a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">HoF</a></td>
         <td><a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">HoF</a></td>
-        <td><a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">HoF</a>/--<sup>5</sup></td>
+        <td><a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">HoF</a><sup>5</sup>/--<sup>6</sup></td>
       </tr>
     </tbody>
   </table>
@@ -100,7 +100,8 @@
     <li>Includes IDORs that bypass authentication or authorization for significant actions</li>
     <li>Significant actions only, such as changing email/passwords, deleting accounts, etc.</li>
     <li>Must be able to conduct significant action (i.e., not defacement, phishing, cookie injection, etc.)</li>
-    <li>For domains falling outside *.mozilla.org, *.mozilla.com, *.mozilla.net, and *.firefox.com. *.ngrok.io and similar development-only domains are excluded.</li>
+    <li>For *.mozilla.org, *.mozilla.com, *.mozilla.net, and *.firefox.com.</li>
+    <li>For all other domains excluding *.ngrok.io and similar development-only domains.</li>
     <li>Lack of clickjacking protection (XFO, CSP) is insufficient to claim a bounty</li>
   </ol>
 
