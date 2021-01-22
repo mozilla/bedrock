@@ -216,7 +216,7 @@ URLS = flatten((
     url_test('/firefox/organizations/all.html', '/firefox/all/#product-desktop-esr'),
 
     # bug 729329
-    url_test('/mobile/sync/is/da/best/', '/firefox/accounts/'),
+    url_test('/mobile/sync/is/da/best/', '/firefox/sync/'),
 
     # bug 882845
     url_test('/firefox/toolkit/download-to-your-devices/because-i-say-so/', '/firefox/new/'),
@@ -311,7 +311,7 @@ URLS = flatten((
 
     # Bug 1110927
     url_test('/firefox/start/central.html', '/firefox/new/'),
-    url_test('/firefox/sync/firstrun.html', '/firefox/accounts/'),
+    url_test('/firefox/sync/firstrun.html', '/firefox/sync/'),
 
     # bug 876810
     url_test('/hacking/commit-access-policy/',
