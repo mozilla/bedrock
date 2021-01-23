@@ -18,7 +18,6 @@ if (typeof window.Mozilla === 'undefined') {
 
         this.formLoaded = false;
         this.formTimeout = null;
-        this.smsEnabled = false;
 
         this.$widget = $(this.formId);
         this.$form = this.$widget.find('.send-to-device-form');
@@ -49,98 +48,13 @@ if (typeof window.Mozilla === 'undefined') {
         });
     };
 
-    // static value for user country code
-    SendToDevice.COUNTRY_CODE = '';
-
-    SendToDevice.prototype.geoCallback; // jshint ignore:line
-
     /**
      * Initialise the form messaging and bind events.
      */
     SendToDevice.prototype.init = function() {
         if (this.$widget.length === 1) {
-            this.getLocation();
             this.bindEvents();
         }
-    };
-
-    /**
-     * Gets the country code of the location of the user
-     * using bedrock's /country-code.json service
-     */
-    SendToDevice.prototype.getLocation = function() {
-        var self = this;
-
-        // if a dev has added ?geo=<country code> to the URL
-        // we can skip the geo lookup and act as if it worked
-        if (window.location.search.indexOf('geo=') !== -1) {
-            var urlRe = /geo=([a-z]{2})/i;
-            var match = urlRe.exec(window.location.search);
-            if (match) {
-                SendToDevice.COUNTRY_CODE = match[1].toLowerCase();
-                self.updateMessaging();
-                if (typeof self.geoCallback === 'function') {
-                    self.geoCallback(SendToDevice.COUNTRY_CODE);
-                }
-                return;
-            }
-        }
-
-        // should /country-code.json be slow to load,
-        // just show the email messaging after 5 seconds waiting.
-        this.formTimeout = setTimeout(function() {
-            self.updateMessaging();
-        }, 5000);
-
-        $.get('/country-code.json')
-            .done(function(data) {
-                if (data && data.country_code) {
-                    SendToDevice.COUNTRY_CODE = data.country_code.toLowerCase();
-                }
-                self.updateMessaging();
-            })
-            .fail(function() {
-                // something went wrong, show only the email messaging.
-                self.updateMessaging();
-            }).always(function() {
-                if (typeof self.geoCallback === 'function') {
-                    self.geoCallback(SendToDevice.COUNTRY_CODE);
-                }
-            });
-    };
-
-    /**
-     * Returns boolean indication whether or not the user is in a supported country
-     */
-    SendToDevice.prototype.inSupportedCountry = function() {
-        var ccode = SendToDevice.COUNTRY_CODE;
-        return (ccode && this.countries.indexOf('|' + ccode + '|') !== -1);
-    };
-
-    /**
-     * Checks to update the form messaging based on the users location
-     */
-    SendToDevice.prototype.updateMessaging = function() {
-        clearTimeout(this.formTimeout);
-        if (!this.formLoaded) {
-            this.formLoaded = true;
-
-            // if the page visitor is in a supportec country, show the SMS messaging / copy
-            if (this.inSupportedCountry()) {
-                this.showSMS();
-            }
-        }
-    };
-
-    /**
-     * Updates the form fields to include SMS messaging
-     */
-    SendToDevice.prototype.showSMS = function() {
-        var $label = this.$formFields.find('.mzp-c-field-label');
-        this.$form.addClass('sms-country');
-        $label.html($label.data('alt'));
-        this.$input.attr('placeholder', this.$input.data('alt'));
-        this.smsEnabled = true;
     };
 
     /**
@@ -212,19 +126,13 @@ if (typeof window.Mozilla === 'undefined') {
 
         this.disableForm();
 
-        // if we know the user has not been prompted to enter an SMS number,
         // perform some basic email validation before submitting the form.
-        if (!this.smsEnabled && !this.checkEmailValidity(this.$input.val())) {
+        if (!this.checkEmailValidity(this.$input.val())) {
             this.onFormError(['email']);
             return;
         }
 
-        if (SendToDevice.COUNTRY_CODE) {
-            formData += '&country=' + SendToDevice.COUNTRY_CODE;
-        }
-
-        // else POST and let the server work out whether the input is a
-        // valid email address or US phone number.
+        // POST and let the server work out whether the input is a valid email address
         $.post(action, formData)
             .done(function(data) {
                 if (data.success) {
@@ -245,12 +153,9 @@ if (typeof window.Mozilla === 'undefined') {
         this.$thankyou.removeClass('hidden');
         this.enableForm();
 
-        // track signup type in GA
-        var isEmail = this.checkEmailValidity(this.$input.val());
-
         window.dataLayer.push({
             'event': 'send-to-device-success',
-            'input': isEmail ? 'email-address' : 'phone-number'
+            'input': 'email-address'
         });
     };
 
@@ -261,8 +166,6 @@ if (typeof window.Mozilla === 'undefined') {
 
         if ($.inArray('platform', errors) !== -1) {
             errorClass = '.system';
-        } else if (this.smsEnabled && $.inArray('number', errors) !== -1) {
-            errorClass = '.sms';
         } else {
             errorClass = '.email';
         }

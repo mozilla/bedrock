@@ -8,11 +8,11 @@
 Send to Device Widget
 =====================
 
-The *Send to Device* widget is a single macro form which facilitates the sending of a download link from a desktop browser to a mobile device. The form allows sending via SMS or email, although the SMS copy & messaging is shown only to those in the configured countries. Geo-location is handled in JavaScript using a `bedrock view <https://github.com/mozilla/bedrock/blob/7ae0f693ab0347057b56397462351f7085205e3c/bedrock/base/views.py#L31>`_ that gets the request country from `CloudFlare CDN headers <https://support.cloudflare.com/hc/en-us/articles/200168236-What-does-CloudFlare-IP-Geolocation-do->`_. For users without JavaScript, the widget falls back to a standard email form.
+The *Send to Device* widget is a single macro form which facilitates the sending of a download link from a desktop browser to a mobile device. The form allows sending via email.
 
 .. important:: This widget should only be shown to a limited set of locales who are set up to receive the emails. For those locales not in the list, direct links to the respective app stores should be shown instead. If a user is on iOS or Android, CTA buttons should also link directly to respective app stores instead of showing the widget. This logic should be handled on a page-by-page basis to cover individual needs.
 
-.. note:: A full list of supported locales can be found in ``settings/base.py`` under ``SEND_TO_DEVICE_LOCALES``, which can be used in the template logic for each page to show the form. The countries enabled for SMS for each message are defined in the `running configuration <https://mozmeao.github.io/www-config/configs/>`_ per the environment names in ``SEND_TO_DEVICE_MESSAGE_SETS`` in the settings file.
+.. note:: A full list of supported locales can be found in ``settings/base.py`` under ``SEND_TO_DEVICE_LOCALES``, which can be used in the template logic for each page to show the form.
 
 Usage
 -----
@@ -72,23 +72,6 @@ The Jinja macro supports parameters as follows (* indicates a required parameter
 +----------------------+------------------------------------------------------------------------+----------------------+--------------------------------------------------------------------+
 |    legal_note_email  | Provides a custom legal note for email use.                            | Localizable String.  | _('The intended recipient of the email must have consented.')      |
 +----------------------+------------------------------------------------------------------------+----------------------+--------------------------------------------------------------------+
-|    legal_note_sms    | Provides a custom legal note for SMS or email.                         | Localizable string   | _('SMS service available in select countries only.')               |
-+----------------------+------------------------------------------------------------------------+----------------------+--------------------------------------------------------------------+
 |    spinner_color     | Hex color for the form spinner. Defaults to '#000'.                    | String               | '#fff'                                                             |
 +----------------------+------------------------------------------------------------------------+----------------------+--------------------------------------------------------------------+
 
-
-Geolocation Callback
---------------------
-
-You can piggy-back on the widget's geolocation call by providing a callback function to be executed when the lookup has completed::
-
-  var form = new Mozilla.SendToDevice();
-  form.geoCallback = function(countryCode) {
-    console.log(countryCode);
-  }
-  form.init();
-
-The callback function will be passed a single argument - the country code returned from the geolocation lookup.
-
-If the geolocation lookup fails, the country code passed to the callback function will be an empty string.

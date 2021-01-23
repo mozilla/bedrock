@@ -18,15 +18,6 @@ JS_TEMPLATE = '<script type="text/javascript" src="%s" charset="utf-8"></script>
 
 
 @library.global_function
-def send_to_device_sms_countries(message_set):
-    try:
-        countries = settings.SEND_TO_DEVICE_MESSAGE_SETS[message_set]['sms_countries']
-    except KeyError:
-        countries = ['US']
-    return '|%s|' % '|'.join(cc.lower() for cc in countries)
-
-
-@library.global_function
 @jinja2.contextfunction
 def switch(cxt, name, locales=None):
     """A template helper that replaces waffle

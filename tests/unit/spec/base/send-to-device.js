@@ -22,9 +22,9 @@ describe('send-to-device.js', function() {
                         '<ul class="mzp-c-form-errors hidden"></ul>' +
                         '<div class="send-to-device-form-fields">' +
                             '<input type="hidden" value="all">' +
-                            '<label id="mzp-c-field-label" for="send-to-device-input" data-alt="Enter your email or 10-digit phone number.">Enter your email.</label>' +
+                            '<label id="mzp-c-field-label" for="send-to-device-input">Enter your email.</label>' +
                             '<div class="mzp-c-field mzp-l-stretch">' +
-                                '<input id="send-to-device-input" class="mzp-c-field-control send-to-device-input" type="text" required>' +
+                                '<input id="send-to-device-input" class="mzp-c-field-control send-to-device-input" name="s2d-email" type="text" required>' +
                                 '<button type="submit" class="button mzp-c-button mzp-t-product">Send</button>' +
                             '</div>' +
                         '</div>' +
@@ -57,110 +57,10 @@ describe('send-to-device.js', function() {
     describe('instantiation', function() {
 
         it('should create a new instance of SendToDevice', function() {
-            spyOn(form, 'getLocation');
             spyOn(form, 'bindEvents');
             form.init();
             expect(form instanceof Mozilla.SendToDevice).toBeTruthy();
-            expect(form.getLocation).toHaveBeenCalled();
             expect(form.bindEvents).toHaveBeenCalled();
-        });
-    });
-
-    describe('inSupportedCountry', function() {
-        it('should be true for countries in data-countries, and false for others', function() {
-            Mozilla.SendToDevice.COUNTRY_CODE = 'de';
-            expect(form.inSupportedCountry()).toBeFalsy();
-            Mozilla.SendToDevice.COUNTRY_CODE = 'cn';
-            expect(form.inSupportedCountry()).toBeFalsy();
-            Mozilla.SendToDevice.COUNTRY_CODE = 'gb';
-            expect(form.inSupportedCountry()).toBeTruthy();
-            Mozilla.SendToDevice.COUNTRY_CODE = 'us';
-            expect(form.inSupportedCountry()).toBeTruthy();
-        });
-    });
-
-    describe('getLocation', function() {
-
-        it('should call bedrock geo to update the messaging', function() {
-            spyOn($, 'get').and.callFake(function () {
-                var d = $.Deferred();
-                var data = {
-                    country_code: 'us'
-                };
-                d.resolve(data, 'success');
-                return d.promise();
-            });
-            spyOn(form, 'updateMessaging').and.callThrough();
-            form.init();
-            expect($.get).toHaveBeenCalledWith('/country-code.json');
-            expect(form.updateMessaging).toHaveBeenCalled();
-            expect(Mozilla.SendToDevice.COUNTRY_CODE).toEqual('us');
-        });
-    });
-
-    describe('executeGeoCallback', function() {
-
-        it('should execute the geoCallback function when provided', function() {
-            spyOn($, 'get').and.callFake(function () {
-                var d = $.Deferred();
-                var data = {
-                    country_code: 'fr'
-                };
-                d.resolve(data, 'success');
-                return d.promise();
-            });
-
-            form.geoCallback = sinon.stub();
-            spyOn(form, 'geoCallback').and.callThrough();
-            form.init();
-            expect(form.geoCallback).toHaveBeenCalledWith('fr');
-        });
-
-        it('should execute the geoCallback function when geo lookup fails', function() {
-            spyOn($, 'get').and.callFake(function () {
-                var d = $.Deferred();
-                d.reject('error');
-                return d.promise();
-            });
-
-            form.geoCallback = sinon.stub();
-            spyOn(form, 'geoCallback').and.callThrough();
-            form.init();
-            expect(form.geoCallback).toHaveBeenCalledWith('');
-        });
-    });
-
-    describe('showSMS', function() {
-
-        it('should call showSMS if users is inside the US', function() {
-            spyOn($, 'get').and.callFake(function () {
-                var d = $.Deferred();
-                var data = {
-                    country_code: 'us'
-                };
-                d.resolve(data);
-                return d.promise();
-            });
-
-            spyOn(form, 'showSMS').and.callThrough();
-            form.init();
-            expect(form.showSMS).toHaveBeenCalled();
-            expect($('.send-to-device-form').hasClass('sms-country')).toBeTruthy();
-        });
-
-        it('should not call showSMS if users is outside a supported country', function() {
-            spyOn($, 'get').and.callFake(function () {
-                var d = $.Deferred();
-                var data = {
-                    country_code: 'de'
-                };
-                d.resolve(data);
-                return d.promise();
-            });
-
-            spyOn(form, 'showSMS').and.callThrough();
-            form.init();
-            expect(form.showSMS).not.toHaveBeenCalled();
         });
     });
 
@@ -183,17 +83,6 @@ describe('send-to-device.js', function() {
 
     describe('onFormSubmit', function() {
 
-        beforeEach(function() {
-            spyOn($, 'get').and.callFake(function () {
-                var d = $.Deferred();
-                var data = {
-                    country_code: 'us'
-                };
-                d.resolve(data);
-                return d.promise();
-            });
-        });
-
         it('should handle success', function() {
 
             spyOn($, 'post').and.callFake(function () {
@@ -208,6 +97,7 @@ describe('send-to-device.js', function() {
             spyOn(form, 'onFormSuccess').and.callThrough();
 
             form.init();
+            $('#send-to-device-input').val('success@example.com');
             $('.send-to-device-form').submit();
             expect($.post).toHaveBeenCalled();
             expect(form.onFormSuccess).toHaveBeenCalledWith('success');
@@ -227,6 +117,7 @@ describe('send-to-device.js', function() {
             spyOn(form, 'onFormError').and.callThrough();
 
             form.init();
+            $('#send-to-device-input').val('invalid@email');
             $('.send-to-device-form').submit();
             expect($.post).toHaveBeenCalled();
             expect(form.onFormError).toHaveBeenCalledWith('Please enter an email address.');
@@ -244,6 +135,7 @@ describe('send-to-device.js', function() {
             spyOn(form, 'onFormFailure').and.callThrough();
 
             form.init();
+            $('#send-to-device-input').val('failure@example.com');
             $('.send-to-device-form').submit();
             expect($.post).toHaveBeenCalled();
             expect(form.onFormFailure).toHaveBeenCalledWith('An error occurred in our system. Please try again later.');
