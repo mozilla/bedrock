@@ -5,6 +5,16 @@
 (function() {
     'use strict';
 
+    function isInViewport(element) {
+        // Calculate on each scroll if the footer is in the view port.
+        var elementTop = element.offsetTop;
+        var elementBottom = elementTop + element.offsetHeight;
+        var viewportTop = window.scrollY || window.pageYOffset;
+        var viewportBottom = viewportTop + window.screen.height;
+
+        return elementBottom > viewportTop && elementTop < viewportBottom;
+    }
+
     function onLoad(){
         // Check if promo exists on the page or if smaller than tablet.
         var matchMediaDesktop = window.matchMedia('(min-width: 768px)').matches;
@@ -50,6 +60,19 @@
             var footer = document.querySelector('.c-footer');
             if (footer) {
                 footer.classList.add('is-intersecting-sticky-overlay');
+
+                document.addEventListener('scroll', function () {
+                    // If the footer is in the viewport, fade out the promo.
+                    // Animate it back in when the footer leaves the viewport
+                    // if the user did not dismiss it.
+                    if (isInViewport(footer)) {
+                        promo.classList.replace('mzp-a-slide-in', 'mzp-a-fade-out');
+                    } else if (!promo.classList.contains('user-dismiss')) {
+                        promo.classList.replace('mzp-a-fade-out', 'mzp-a-slide-in');
+                    }
+                }, {
+                    passive: true
+                });
             }
 
             // Set Close Button event
@@ -57,7 +80,11 @@
 
             stickyBtnClose.addEventListener('click', function(){
                 StickyPromo.setCookie(STICKY_PROMO_COOKIE_ID);
+                promo.classList.add('user-dismiss');
             });
+
+
+
         };
 
         // Check on page load
