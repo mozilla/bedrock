@@ -54,7 +54,7 @@
 
 {# Docs: https://bedrock.readthedocs.io/en/latest/send-to-device.html #}
 {% macro send_to_device(platform='all', product='firefox', message_set='default', id='send-to-device', class='horizontal', include_title=True, title_text=None, input_label=None, legal_note_email=None, spinner_color='#000', button_class=None) %}
-  <section id="{{ id }}" class="send-to-device {{ class }}">
+  <section id="{{ id }}" class="send-to-device {{ class }}" data-spinner-color="{{ spinner_color }}">
     <div class="form-container">
       {% if include_title %}
         <h2 class="form-heading">

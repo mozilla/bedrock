@@ -356,6 +356,7 @@ URLS = flatten((
     url_test('/firefox/{performance,happy,speed,memory}/', '/firefox/features/fast/'),
     url_test('/firefox/security/', '/firefox/features/independent/'),
     url_test('/firefox/technology/', 'https://developer.mozilla.org/docs/Tools'),
+    url_test('/firefox/sms/{,sent}', '/firefox/'),
 
     # Bug 979527
     url_test('{/products,}/firefox/central{/,.html}', '/firefox/new/',

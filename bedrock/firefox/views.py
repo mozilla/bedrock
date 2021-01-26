@@ -196,10 +196,10 @@ def send_to_device_ajax(request):
     message_set = request.POST.get('message-set', 'default')
 
     # begin collecting data to pass to form constructor
-    data = {'platform': request.POST.get('platform')}
-
-    # determine if email or phone number was submitted
-    data_type = 'email' if '@' in email else 'number'
+    data = {
+        'platform': request.POST.get('platform'),
+        'email': email,
+    }
 
     # populate data type in form data dict
     data[data_type] = email
@@ -208,7 +208,7 @@ def send_to_device_ajax(request):
     form = SendToDeviceWidgetForm(data)
 
     if form.is_valid():
-        email = form.cleaned_data.get(data_type)
+        email = form.cleaned_data.get('email')
         platform = form.cleaned_data.get('platform')
 
         # if no platform specified, default to 'all'
