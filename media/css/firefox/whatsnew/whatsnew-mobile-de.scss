@@ -119,9 +119,11 @@ $image-path: '/media/protocol/img';
     .send-to-device {
         color: $color-white;
 
-        .form-heading {
+        .form-heading,
+        h2.thank-you {
             color: get-theme('title-text-color-inverse');
         }
+
     }
 
     .c-utilities {

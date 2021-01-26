@@ -69,6 +69,10 @@ $image-path: '/media/protocol/img';
 
     .send-to-device {
         color: $color-white;
+
+        h2.thank-you {
+            color: get-theme('title-text-color-inverse');
+        }
     }
 
     .c-utilities {
