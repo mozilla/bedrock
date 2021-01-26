@@ -201,9 +201,6 @@ def send_to_device_ajax(request):
         'email': email,
     }
 
-    # populate data type in form data dict
-    data[data_type] = email
-
     # instantiate the form with processed POST data
     form = SendToDeviceWidgetForm(data)
 
