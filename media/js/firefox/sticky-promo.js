@@ -53,8 +53,14 @@
         };
 
         StickyPromo.show = function (){
-        // Open promo
-            Mzp.StickyPromo.open();
+            var stickyPromoShowInit = false;
+            document.addEventListener('scroll', function () {
+                if (!stickyPromoShowInit) {
+                    // Open promo
+                    Mzp.StickyPromo.open();
+                    stickyPromoShowInit = true;
+                }
+            });
 
             // Add modifier class to the footer to make sure the language selection drop-down is not obscured by the sticky promo
             var footer = document.querySelector('.c-footer');
@@ -82,9 +88,6 @@
                 StickyPromo.setCookie(STICKY_PROMO_COOKIE_ID);
                 promo.classList.add('user-dismiss');
             });
-
-
-
         };
 
         // Check on page load
