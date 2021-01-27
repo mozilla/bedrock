@@ -4,7 +4,7 @@
 
 import json
 import re
-from cgi import escape
+from html import escape
 from collections import defaultdict
 from operator import itemgetter
 
@@ -663,7 +663,7 @@ def newsletter_subscribe(request):
                     errors.extend(form.errors[fieldname])
 
         # form error messages may contain unsanitized user input
-        errors = list(map(escape, errors))
+        errors = [escape(e) for e in errors]
 
         if request.is_ajax():
             # return JSON
