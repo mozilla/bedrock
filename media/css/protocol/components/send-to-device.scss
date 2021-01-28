@@ -28,10 +28,10 @@ $image-path: '/media/protocol/img';
     }
 
     .thank-you p {
-        background: lighten($color-green-50, 30%);
-        color: $color-black;
+        background-color: $color-green-30;
+        color: $color-ink-80;
         padding: $spacing-sm;
-        border-radius: $border-radius-xs;
+        border-radius: $border-radius-sm;
     }
 
     .more {
