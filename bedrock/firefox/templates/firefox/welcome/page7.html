@@ -2,7 +2,6 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros.html" import google_play_button, send_to_device with context %}
 {% from "macros-protocol.html" import hero with context %}
 
 {% extends "firefox/welcome/base.html" %}
@@ -10,10 +9,6 @@
 {% block page_title %}{{ ftl('page7-make-it-harder-for-facebook') }}{% endblock %}
 
 {% block body_class %}{{ super() }} welcome-page7{% endblock %}
-
-{% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
-{% set android_url = lockwise_adjust_url('android', 'welcome-7') %}
-{% set ios_url = lockwise_adjust_url('ios', 'welcome-7') %}
 
 {% set _entrypoint = 'mozilla.org-firefox-welcome-7' %}
 {% set _utm_campaign = 'welcome-7-fbcontainer' %}
