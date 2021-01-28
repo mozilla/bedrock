@@ -1,2 +1,2 @@
 # flake8: noqa
-from bedrock.mozorg.templatetags import misc
+from bedrock.mozorg.templatetags import misc, qrcode

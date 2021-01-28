@@ -126,6 +126,21 @@ Finally, for outputting an image that differs depending on the platform being us
 
 When using localization, `platform_img()` will look for images in the appropriate locale folder. In the above example, for the `es-ES` locale, all platform versions of the image should be located at `media/img/l10n/es-ES/firefox/new/`.
 
+qrcode()
+^^^^^^^^
+This is a helper function that will output SVG data for a QR Code at the spot in the template
+where it is called. It caches the results to the ``data/qrcode_cache`` directory, so it only
+generates the SVG data one time per data and box_size combination.
+
+.. code-block:: python
+
+    qrcode('https://accounts.firefox.com', 30)
+
+The first argument is the data you'd like to encode in the QR Code (usually a URL), and the second
+is the "box size". It's a parameter that tells the generator how large to set the height and width
+parameters on the XML SVG tag, the units of which are "mm". This can be overriden with CSS so you
+may not need to use it at all. The ``box_size`` parameter is optional.
+
 Using Large Assets
 ------------------
 
