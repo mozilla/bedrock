@@ -102,12 +102,17 @@ if (typeof window.Mozilla === 'undefined') {
 
         for (var i = 0; i < fxaSigninLink.length; i++) {
             var link = fxaSigninLink[i];
-            var mozillaOnlineLink = link.getAttribute('data-mozillaonline-link');
+            var hostName = FxaLink.getHostName(link.href);
+            // check if link is in the FxA referral allowedList domains.
+            if (hostName && allowedList.indexOf(hostName) === -1) {
+                continue;
+            }
 
             // update link href.
             link.href = FxaLink.updateURL(link.href);
 
             // update china repack URL.
+            var mozillaOnlineLink = link.getAttribute('data-mozillaonline-link');
             if (mozillaOnlineLink) {
                 link.setAttribute('data-mozillaonline-link', FxaLink.updateURL(mozillaOnlineLink));
             }

@@ -19,7 +19,8 @@ if (typeof window.Mozilla === 'undefined') {
         'https://monitor.firefox.com/',
         'https://getpocket.com/',
         'https://latest.dev.lcip.org/',
-        'https://stable.dev.lcip.org/'
+        'https://stable.dev.lcip.org/',
+        'https://vpn.mozilla.org/'
     ];
 
     var utms = ['utm_source', 'utm_campaign', 'utm_content', 'utm_term', 'utm_medium'];

@@ -64,8 +64,8 @@ $image-path: '/media/protocol/img';
 
         @media #{$mq-md} {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
             grid-gap: $spacing-xl;
+            grid-template-columns: repeat(2, 1fr);
 
             input[type='checkbox'] {
                 margin-bottom: 0;
@@ -86,4 +86,9 @@ $image-path: '/media/protocol/img';
 
 .mzp-c-form-errors {
     display: none;
+}
+
+.vpn-invite-privacy {
+    @include text-body-sm;
+    text-align: center;
 }

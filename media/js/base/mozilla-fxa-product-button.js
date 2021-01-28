@@ -17,7 +17,8 @@ if (typeof window.Mozilla === 'undefined') {
         'https://monitor.firefox.com/',
         'https://getpocket.com/',
         'https://latest.dev.lcip.org/',
-        'https://accounts.firefox.com.cn/'
+        'https://accounts.firefox.com.cn/',
+        'https://vpn.mozilla.org/'
     ];
 
     var _buttons;

@@ -4,7 +4,8 @@
 
 {% extends "products/vpn/base.html" %}
 
-{% block page_title %}Join the Waitlist: Mozilla VPN{% endblock %}
+{% block page_title_full %}Join the Waitlist: Mozilla VPN{% endblock %}
+{% block page_title_suffix %}{% endblock %}
 
 {% block page_desc %}Get notified when Mozilla VPN is available for your device and region.{% endblock %}
 
@@ -30,8 +31,10 @@
     <p class="mzp-c-form-subtitle">Get notified when Mozilla VPN is available for your device and region.</p>
 
     {{ newsletter_form.newsletters|safe }}
-    <input type="hidden" name="lang" id="id_lang" value="en">
     <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
+    <input type="hidden" name="lang" id="id_lang" value="en">
+    <input type="hidden" name="privacy" id="id_privacy" value="true">
+    <input type="hidden" name="fmt" id="format-html" value="H">
 
     <fieldset class="mzp-c-newsletter-content">
       <div class="mzp-c-form-errors" id="newsletter-errors"></div>
@@ -94,17 +97,17 @@
           </ul>
         </fieldset>
 
-        <p class="vpn-invite-privacy-policy">
-          <label for="id_privacy" class="mzp-u-inline">
-            <input type="checkbox" name="privacy" required="required" id="id_privacy">
-            I agree to the Mozilla VPN <a href="{{ url('privacy.notices.mozilla-vpn') }}">Privacy Policy</a>.
-          </label>
-        </p>
       </div>
 
       <p class="mzp-c-form-submit">
         <button class="vpn-button t-dark" id="newsletter-submit" type="submit">Join the Waitlist</button>
       </p>
+
+      <div class="vpn-invite-privacy">
+        <p>By clicking “Join the waitlist” you agree to our  <a href="{{ url('privacy.notices.mozilla-vpn') }}">Privacy Policy</a>.</p>
+
+        <p>Your information will only be used to notify you about platform availability.</p>
+      </div>
     </fieldset>
 
   </form>

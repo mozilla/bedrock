@@ -15,32 +15,25 @@ from lib import l10n_utils
 from lib.l10n_utils.fluent import ftl
 
 
-def vpn_monthly_price(locale):
-    try:
-        price = settings.VPN_PRICE_MONTHLY[locale]['monthly']
-    except KeyError:
-        price = settings.VPN_PRICE_MONTHLY['en-US']['monthly']
-    return price
-
-
 def vpn_allowed_countries():
     countries = settings.VPN_ALLOWED_COUNTRY_CODES
     return '|%s|' % '|'.join(cc.lower() for cc in countries)
 
 
+def vpn_default_monthly_price():
+    return settings.VPN_PRICE_MONTHLY['US']['monthly']
+
+
 @require_safe
 def vpn_landing_page(request):
-    locale = l10n_utils.get_locale(request)
     template_name = 'products/vpn/landing.html'
 
     context = {
         'allowed_countries': vpn_allowed_countries(),
-        'monthly_price': vpn_monthly_price(locale),
-
+        'default_monthly_price': vpn_default_monthly_price(),
     }
 
-    return l10n_utils.render(request, template_name, context,
-                             ftl_files=[])
+    return l10n_utils.render(request, template_name, context)
 
 
 @require_safe
