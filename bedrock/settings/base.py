@@ -1316,6 +1316,7 @@ if config('SWITCH_TRACKING_PIXEL', default=str(DEV), parser=bool):
 CONVERT_PROJECT_ID = ('10039-1003350' if DEV else '10039-1003343')
 
 # Mozilla VPN Geo restrictions
+# https://github.com/mozilla-services/guardian-website/blob/master/server/constants.ts
 VPN_ALLOWED_COUNTRY_CODES = [
   'CA', #Canada
   'MY', #Malaysia
@@ -1340,7 +1341,7 @@ VPN_ALLOWED_COUNTRY_CODES = [
 
 # Mozilla VPN subscription prices
 VPN_PRICE_MONTHLY = {
-    'en-US': {
+    'US': {
         'monthly': 'US$4.99'
     }
 }

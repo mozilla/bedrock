@@ -36,7 +36,9 @@ body {
     text-decoration: none;
     transition: background-color .15s ease, color .15s ease;
 
-    &:hover {
+    &:hover,
+    &:active,
+    &:focus {
         background-color: $color-black;
         color: $color-white;
     }
@@ -45,7 +47,9 @@ body {
         background-color: $color-black;
         color: $color-white;
 
-        &:hover {
+        &:hover,
+        &:active,
+        &:focus {
             background-color: $color-white;
             color: $color-black;
         }

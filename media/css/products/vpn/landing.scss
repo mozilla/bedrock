@@ -87,6 +87,14 @@ $image-path: '/media/protocol/img';
 }
 
 .vpn-hero-title {
+    @include image-replaced();
+    background: transparent url('/media/img/logos/vpn/logo-with-wordmark.svg') top left no-repeat;
+    height: 32px;
+    margin: 0 auto $spacing-lg;
+    width: 94px;
+}
+
+.vpn-hero-subtitle {
     @include text-title-lg;
     margin-bottom: $spacing-md;
 }
@@ -106,30 +114,25 @@ $image-path: '/media/protocol/img';
     display: none;
     position: relative;
 
-    img {
-        @include transition(opacity .5s ease-in-out);
-        left: 0;
-        opacity: 0;
+    picture {
+        @include bidi((
+            (left, 0, right, 0),
+        ));
+        height: 480px;
         position: absolute;
         top: 0;
+        width: 480px;
+
+        img {
+            @include transition(opacity .5s ease-in-out);
+            opacity: 0;
+        }
     }
 
-    &[data-illustration="n-1"] .n-1 {
-        opacity: 1;
-    }
-
-    &[data-illustration="n-2"] .n-2 {
-        opacity: 1;
-    }
-
-    &[data-illustration="n-3"] .n-3 {
-        opacity: 1;
-    }
-
-    &[data-illustration="n-4"] .n-4 {
-        opacity: 1;
-    }
-
+    &[data-illustration="n-1"] .n-1,
+    &[data-illustration="n-2"] .n-2,
+    &[data-illustration="n-3"] .n-3,
+    &[data-illustration="n-4"] .n-4,
     &[data-illustration="n-5"] .n-5 {
         opacity: 1;
     }
@@ -155,6 +158,10 @@ $image-path: '/media/protocol/img';
     }
 
     .vpn-hero-title {
+        margin: 0 0 $spacing-lg;
+    }
+
+    .vpn-hero-subtitle {
         margin-bottom: $spacing-xl;
     }
 
@@ -168,11 +175,9 @@ $image-path: '/media/protocol/img';
 
     .vpn-hero-image {
         @include bidi((
-            (float, right, left),
+            (float, left, right),
         ));
         display: block;
-        height: 480px;
-        width: 480px;
     }
 }
 
@@ -189,8 +194,8 @@ $image-path: '/media/protocol/img';
     .vpn-content-well-image {
         img {
             height: auto;
-            width: 100%;
             max-width: 480px;
+            width: 100%;
         }
     }
 
@@ -342,15 +347,15 @@ $image-path: '/media/protocol/img';
 
 .vpn-faq-section-title {
     @include text-title-md;
-    text-align: center;
     margin-bottom: $spacing-2xl;
+    text-align: center;
 }
 
 .vpn-faq-item-title {
     background: $color-marketing-gray-20;
-    padding: $spacing-lg;
     box-shadow: 8px 8px 0 $color-black;
     margin-bottom: $spacing-lg;
+    padding: $spacing-lg;
 
     &:hover {
         cursor: pointer;
@@ -362,14 +367,14 @@ $image-path: '/media/protocol/img';
         ));
         @include text-title-2xs;
         font-family: $font-stack-base;
-        margin-bottom: 0;
         line-height: 1.5;
+        margin-bottom: 0;
     }
 }
 
 .vpn-faq-item-detail {
     @include text-body-lg;
-    padding: $spacing-lg;
+    padding: 0 $spacing-lg $spacing-lg;
 }
 
 .vpn-faq-item[open] {
@@ -405,5 +410,15 @@ $image-path: '/media/protocol/img';
         display: inline-block;
         margin-left: $spacing-md;
         margin-right: $spacing-md;
+    }
+}
+
+.vpn-footer-list {
+    margin-top: $spacing-xl;
+
+    a:link,
+    a:visited {
+        @include text-body-xs;
+        color: $color-black;
     }
 }

@@ -292,7 +292,7 @@ Set the following in your local ``.env`` file:
 
 .. code-block:: text
 
-    FXA_ENDPOINT=https://latest.dev.lcip.org/
+    FXA_ENDPOINT=https://stable.dev.lcip.org/
 
 **Configuring a demo Server:**
 

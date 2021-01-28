@@ -2,47 +2,72 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% macro try_vpn_button(button_text) -%}
-  <a class="vpn-button try js-try-vpn" href="https://vpn.mozilla.org/r/vpn/subscribe">
-    {{ button_text }}
+{% macro hero_image(low_res_img, high_res_img, class_name) -%}
+  <picture>
+    <source srcset="{{ static(low_res_img) }} 480w, {{ static(high_res_img) }} 960w" media="(min-width: 1024px)">
+    <source srcset="{{ static('img/placeholder.png') }}" media="(max-width: 1023px)">
+    <img src="{{ static(low_res_img) }}" class="{{ class_name }}" alt="" width="480" height="480">
+  </picture>
+{% endmacro %}
+
+{% macro join_waitlist_button(link_text, is_conditional=True, position=None) -%}
+  <a class="vpn-button waitlist t-dark {% if is_conditional %}js-join-waitlist hide-from-legacy-ie{% endif %}" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" {% if position %}data-cta-position="{{ position }}"{% endif %}>
+    {{ link_text }}
   </a>
 {% endmacro %}
 
-{% macro join_waitlist_button(button_text, conditional=True) -%}
-  <a class="vpn-button waitlist t-dark {% if conditional %}js-join-waitlist{% endif %}" href="{{ url('products.vpn.invite') }}">
-    {{ button_text }}
-  </a>
-{% endmacro %}
+{% macro vpn_nav_cta(link_text, alt_link_text, sign_in_link_text, utm_source, utm_campaign) -%}
+  <div class="vpn-nav-cta">
 
-{% macro vpn_nav_cta(button_text, alt_button_text, link_text) -%}
-<div class="vpn-nav-cta">
-  <a class="mzp-c-button mzp-t-secondary mzp-t-md js-try-vpn" href="https://vpn.mozilla.org/r/vpn/subscribe">
-    {{ button_text }}
-  </a>
+    {{ vpn_subscribe_link(
+      entrypoint=utm_source,
+      link_text=link_text,
+      class_name='mzp-c-button mzp-t-secondary mzp-t-md js-try-vpn',
+      optional_parameters={
+        'utm_campaign': utm_campaign
+      },
+      optional_attributes={
+        'data-cta-type': 'fxa-vpn',
+        'data-cta-text': 'Try Mozilla VPN',
+        'data-cta-position': 'navigation',
+      }
+    ) }}
 
-  <a class="mzp-c-button mzp-t-secondary mzp-t-md js-join-waitlist" href="https://vpn.mozilla.org/vpn/invite">
-    {{ alt_button_text }}
-  </a>
+    <a class="mzp-c-button mzp-t-secondary mzp-t-md js-join-waitlist hide-from-legacy-ie" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="navigation">
+      {{ alt_link_text }}
+    </a>
 
-  <a class="mzp-c-cta-link" href="https://vpn.mozilla.org/oauth/init">{{ link_text }}</a>
-</div>
+    {{ vpn_sign_in_link(
+        entrypoint=utm_source,
+        link_text=sign_in_link_text,
+        class_name='mzp-c-cta-link',
+        optional_parameters={
+          'utm_campaign': utm_campaign
+        },
+        optional_attributes={
+          'data-cta-type': 'fxa-vpn',
+          'data-cta-text': 'VPN Sign In',
+          'data-cta-position': 'navigation',
+        }
+    ) }}
+  </div>
 {% endmacro %}
 
 {% macro vpn_content_well(title, image_url, class=None) -%}
-<section class="vpn-content-well {% if class %}{{ class }}{% endif %}">
-  <div class="vpn-content-well-image-wrapper">
-    <div class="vpn-content-well-image">
-      {{ high_res_img(image_url, {'alt': image_alt, 'width': '480', 'height': '480'}) }}
-    </div>
-  </div>
-
-  <div class="vpn-content-well-copy">
-    <div class="vpn-content-well-copy-container">
-      <h2 class="vpn-content-well-title">{{ title }}</h2>
-      <div class="vpn-content-well-desc">
-        {{ caller() }}
+  <section class="vpn-content-well {% if class %}{{ class }}{% endif %}">
+    <div class="vpn-content-well-image-wrapper">
+      <div class="vpn-content-well-image">
+        {{ high_res_img(image_url, {'alt': image_alt, 'width': '480', 'height': '480'}) }}
       </div>
     </div>
-  </div>
-</section>
+
+    <div class="vpn-content-well-copy">
+      <div class="vpn-content-well-copy-container">
+        <h2 class="vpn-content-well-title">{{ title }}</h2>
+        <div class="vpn-content-well-desc">
+          {{ caller() }}
+        </div>
+      </div>
+    </div>
+  </section>
 {%- endmacro %}

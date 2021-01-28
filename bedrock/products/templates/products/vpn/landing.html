@@ -2,15 +2,20 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "products/vpn/includes/macros.html" import try_vpn_button, join_waitlist_button, vpn_nav_cta, vpn_content_well with context %}
+{% from "products/vpn/includes/macros.html" import hero_image, join_waitlist_button, vpn_nav_cta, vpn_content_well with context %}
 
 {% extends "products/vpn/base.html" %}
 
-{% block page_title %}Mozilla VPN: Protect Your Entire Device{% endblock %}
+{% block page_title_full %}Mozilla VPN: Protect Your Entire Device{% endblock %}
+{% block page_title_suffix %}{% endblock %}
 
 {% block page_desc %}Use the Mozilla VPN for full-device protection for all apps. With servers in 30+ countries, you can connect to anywhere, from anywhere.{% endblock %}
 
 {% block body_id %}mozilla-vpn-landing{% endblock %}
+
+{% set _utm_source = 'www.mozilla.org-vpn-product-page' %}
+{% set _utm_campaign = 'vpn-product-page' %}
+{% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
 
 {% block page_css %}
   {{ css_bundle('mozilla-vpn-landing') }}
@@ -19,9 +24,11 @@
 {% block site_header %}
   {% with
     custom_nav_cta=vpn_nav_cta(
-      button_text='Try Mozilla VPN',
-      alt_button_text='Join the Waitlist',
-      link_text='Sign In'
+      link_text='Try Mozilla VPN',
+      alt_link_text='Join the Waitlist',
+      sign_in_link_text='Sign In',
+      utm_source=_utm_source,
+      utm_campaign=_utm_campaign,
     )
   %}
     {% include 'includes/protocol/navigation/navigation.html' %}
@@ -34,23 +41,58 @@
     <div class="mzp-l-content mzp-t-content-xl">
       <div class="vpn-hero-container">
         <div class="vpn-hero-body">
-          <h1 class="vpn-hero-title">Security you can rely on. A name you can trust.</h1>
+          <h1 class="vpn-hero-title">Mozilla VPN</h1>
+          <h2 class="vpn-hero-subtitle">Security you can rely on. A name you can trust.</h2>
           <div class="vpn-hero-desc">
             <p>A VPN from the trusted pioneer in internet privacy.</p>
-            {{ try_vpn_button(button_text='Try Mozilla VPN') }}
-            {{ join_waitlist_button(button_text='Join the Waitlist') }}
+
+            {{ vpn_subscribe_link(
+              entrypoint=_utm_source,
+              link_text='Try Mozilla VPN',
+              class_name='vpn-button try js-try-vpn',
+              optional_parameters={
+                'utm_campaign': _utm_campaign
+              },
+              optional_attributes={
+                'data-cta-type': 'fxa-vpn',
+                'data-cta-text': 'Try Mozilla VPN',
+                'data-cta-position': 'primary',
+              }
+            ) }}
+
+            {{ join_waitlist_button(link_text='Join the Waitlist', position='primary') }}
             <p class="availability-copy js-country-list">We currently offer Mozilla VPN in the US, the UK, Canada, New Zealand, Singapore and Malaysia.</p>
             <div class="vpn-hero-tagline">
               <p class="vpn-availability">Available now: Windows 10, Mac, Android, iOS & Linux</p>
             </div>
           </div>
         </div>
-        <div class="vpn-hero-image" data-illustration="n-1">
-          {{ high_res_img('img/products/vpn/landing/vpn-hero-01.png', {'class': 'n-1', 'alt': '', 'width': '480', 'height': '480'}) }}
-          {{ high_res_img('img/products/vpn/landing/vpn-hero-02.png', {'class': 'n-2', 'alt': '', 'width': '480', 'height': '480'}) }}
-          {{ high_res_img('img/products/vpn/landing/vpn-hero-03.png', {'class': 'n-3', 'alt': '', 'width': '480', 'height': '480'}) }}
-          {{ high_res_img('img/products/vpn/landing/vpn-hero-04.png', {'class': 'n-4', 'alt': '', 'width': '480', 'height': '480'}) }}
-          {{ high_res_img('img/products/vpn/landing/vpn-hero-05.png', {'class': 'n-5', 'alt': '', 'width': '480', 'height': '480'}) }}
+        <div class="vpn-hero-image hide-from-legacy-ie" data-illustration="n-1">
+          {{ hero_image(
+            'img/products/vpn/landing/vpn-hero-01.png',
+            'img/products/vpn/landing/vpn-hero-01-high-res.png',
+            'n-1')
+          }}
+          {{ hero_image(
+            'img/products/vpn/landing/vpn-hero-02.png',
+            'img/products/vpn/landing/vpn-hero-02-high-res.png',
+            'n-2')
+          }}
+          {{ hero_image(
+            'img/products/vpn/landing/vpn-hero-03.png',
+            'img/products/vpn/landing/vpn-hero-03-high-res.png',
+            'n-3')
+          }}
+          {{ hero_image(
+            'img/products/vpn/landing/vpn-hero-04.png',
+            'img/products/vpn/landing/vpn-hero-04-high-res.png',
+            'n-4')
+          }}
+          {{ hero_image(
+            'img/products/vpn/landing/vpn-hero-05.png',
+            'img/products/vpn/landing/vpn-hero-05-high-res.png',
+            'n-5')
+          }}
         </div>
       </div>
     </div>
@@ -83,9 +125,9 @@
     {% endcall %}
 
     {% call vpn_content_well(
-      title=monthly_price + '/month',
+      title=default_monthly_price + '/month',
       image_url='img/products/vpn/landing/vpn-cntwell-04.png',
-      class='vpn-content-well-left-half'
+      class='vpn-content-well-left-half vpn-content-well-price'
     ) %}
       <ul class="mzp-u-list-styled">
         <li>Device-level encryption</li>
@@ -94,16 +136,30 @@
         <li>No logging of your network activity</li>
         <li>Connect up to 5 devices</li>
       </ul>
-      {{ try_vpn_button(button_text='Try Mozilla VPN') }}
-      {{ join_waitlist_button(button_text='Join the Waitlist') }}
+
+      {{ vpn_subscribe_link(
+        entrypoint=_utm_source,
+        link_text='Try Mozilla VPN',
+        class_name='vpn-button try js-try-vpn',
+        optional_parameters={
+          'utm_campaign': _utm_campaign
+        },
+        optional_attributes={
+          'data-cta-type': 'fxa-vpn',
+          'data-cta-text': 'Try Mozilla VPN',
+          'data-cta-position': 'secondary',
+        }
+      ) }}
+
+      {{ join_waitlist_button(link_text='Join the Waitlist', position='secondary') }}
     {% endcall %}
 
     {% call vpn_content_well(
       title='Available in 6 countries now. More regions coming soon.',
       image_url='img/products/vpn/landing/vpn-cntwell-05.png',
-      class='vpn-content-well-right-half'
+      class='vpn-content-well-right-half vpn-content-well-waitlist'
     ) %}
-      {{ join_waitlist_button(button_text='Join the Waitlist', conditional=False) }}
+      {{ join_waitlist_button(link_text='Join the Waitlist', is_conditional=False, position='secondary') }}
       <p class="availability-copy">We currently offer Mozilla VPN in the US, the UK, Canada, New Zealand, Singapore and Malaysia.</p>
     {% endcall %}
 
@@ -149,10 +205,28 @@
     </details>
 
     <footer class="vpn-faq-footer">
-      {{ try_vpn_button(button_text='Try Mozilla VPN') }}
-      {{ join_waitlist_button(button_text='Join the Waitlist') }}
+      {{ vpn_subscribe_link(
+        entrypoint=_utm_source,
+        link_text='Try Mozilla VPN',
+        class_name='vpn-button try js-try-vpn',
+        optional_parameters={
+          'utm_campaign': _utm_campaign
+        },
+        optional_attributes={
+          'data-cta-type': 'fxa-vpn',
+          'data-cta-text': 'Try Mozilla VPN',
+          'data-cta-position': 'secondary',
+        }
+      ) }}
 
-      <a class="vpn-faq-footer-link mzp-c-cta-link" href="https://support.mozilla.org/products/firefox-private-network-vpn">See more FAQs</a>
+      {{ join_waitlist_button(link_text='Join the Waitlist', position='secondary') }}
+
+      <a class="vpn-faq-footer-link mzp-c-cta-link" href="https://support.mozilla.org/products/firefox-private-network-vpn{{ _params }}&utm_content=vpn-faq-see-more-link" data-cta-type="link" data-cta-text="FAQ See More">See more FAQs</a>
+
+      <ul class="vpn-footer-list">
+        <li><a href="{{ url('privacy.notices.mozilla-vpn') }}">Privacy Notice</a></li>
+        <li><a href="{{ url('legal.terms.mozilla-vpn') }}">Terms and Conditions</a></li>
+      </ul>
 
       <p><small>WireGuard is a registered trademark of Jason A. Donenfeld</small></p>
     </footer>
