@@ -350,116 +350,15 @@ class TestSendToDeviceView(TestCase):
     def test_phone_or_email_required(self):
         resp_data = self._request({'platform': 'android'})
         assert not resp_data['success']
-        assert 'phone-or-email' in resp_data['errors']
+        assert 's2d-email' in resp_data['errors']
         assert not self.mock_send_sms.called
         assert not self.mock_subscribe.called
-
-    def test_send_android_sms(self):
-        resp_data = self._request(
-            {'platform': 'android', 'phone-or-email': '5558675309'}
-        )
-        assert resp_data['success']
-        self.mock_send_sms.assert_called_with(
-            'post',
-            'subscribe_sms',
-            data={
-                'mobile_number': '5558675309',
-                'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms'][
-                    'android'
-                ],
-                'lang': 'en-US',
-            },
-        )
-
-    def test_send_android_sms_non_en_us(self):
-        resp_data = self._request(
-            {'platform': 'android', 'phone-or-email': '015558675309'}, locale='de'
-        )
-        assert resp_data['success']
-        self.mock_send_sms.assert_called_with(
-            'post',
-            'subscribe_sms',
-            data={
-                'mobile_number': '015558675309',
-                'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms'][
-                    'android'
-                ],
-                'lang': 'de',
-            },
-        )
-
-    def test_send_android_sms_with_country(self):
-        resp_data = self._request(
-            {'platform': 'android', 'phone-or-email': '5558675309', 'country': 'de'}
-        )
-        assert resp_data['success']
-        self.mock_send_sms.assert_called_with(
-            'post',
-            'subscribe_sms',
-            data={
-                'mobile_number': '5558675309',
-                'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms'][
-                    'android'
-                ],
-                'lang': 'en-US',
-                'country': 'de',
-            },
-        )
-
-    def test_send_android_sms_with_invalid_country(self):
-        resp_data = self._request(
-            {'platform': 'android', 'phone-or-email': '5558675309', 'country': 'X2'}
-        )
-        assert resp_data['success']
-        self.mock_send_sms.assert_called_with(
-            'post',
-            'subscribe_sms',
-            data={
-                'mobile_number': '5558675309',
-                'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms'][
-                    'android'
-                ],
-                'lang': 'en-US',
-            },
-        )
-
-        resp_data = self._request(
-            {'platform': 'android', 'phone-or-email': '5558675309', 'country': 'dude'}
-        )
-        assert resp_data['success']
-        self.mock_send_sms.assert_called_with(
-            'post',
-            'subscribe_sms',
-            data={
-                'mobile_number': '5558675309',
-                'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms'][
-                    'android'
-                ],
-                'lang': 'en-US',
-            },
-        )
-
-    def test_send_android_sms_basket_error(self):
-        self.mock_send_sms.side_effect = views.basket.BasketException
-        resp_data = self._request(
-            {'platform': 'android', 'phone-or-email': '5558675309'}, 400
-        )
-        assert not resp_data['success']
-        assert 'system' in resp_data['errors']
-
-    def test_send_bad_sms_number(self):
-        self.mock_send_sms.side_effect = views.basket.BasketException(
-            'mobile_number is invalid'
-        )
-        resp_data = self._request({'platform': 'android', 'phone-or-email': '555'})
-        assert not resp_data['success']
-        assert 'number' in resp_data['errors']
 
     def test_send_android_email(self):
         resp_data = self._request(
             {
                 'platform': 'android',
-                'phone-or-email': 'dude@example.com',
+                's2d-email': 'dude@example.com',
                 'source-url': 'https://nihilism.info',
             }
         )
@@ -476,7 +375,7 @@ class TestSendToDeviceView(TestCase):
         resp_data = self._request(
             {
                 'platform': 'android',
-                'phone-or-email': 'dude@example.com',
+                's2d-email': 'dude@example.com',
                 'source-url': 'https://nihilism.info',
             },
             400,
@@ -488,7 +387,7 @@ class TestSendToDeviceView(TestCase):
         resp_data = self._request(
             {
                 'platform': 'android',
-                'phone-or-email': '@example.com',
+                's2d-email': '@example.com',
                 'source-url': 'https://nihilism.info',
             }
         )
@@ -501,19 +400,16 @@ class TestSendToDeviceView(TestCase):
         resp_data = self._request(
             {
                 'platform': 'ios',
-                'phone-or-email': '5558675309',
+                's2d-email': 'dude@example.com',
                 'message-set': 'the-dude-is-not-in',
             }
         )
         assert resp_data['success']
-        self.mock_send_sms.assert_called_with(
-            'post',
-            'subscribe_sms',
-            data={
-                'mobile_number': '5558675309',
-                'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms']['ios'],
-                'lang': 'en-US',
-            },
+        self.mock_subscribe.assert_called_with(
+            'dude@example.com',
+            views.SEND_TO_DEVICE_MESSAGE_SETS['default']['email']['ios'],
+            source_url=None,
+            lang='en-US',
         )
 
     # /firefox/android/ embedded widget (bug 1221328)
@@ -521,7 +417,7 @@ class TestSendToDeviceView(TestCase):
         resp_data = self._request(
             {
                 'platform': 'android',
-                'phone-or-email': 'dude@example.com',
+                's2d-email': 'dude@example.com',
                 'message-set': 'fx-android',
             }
         )
@@ -533,32 +429,11 @@ class TestSendToDeviceView(TestCase):
             lang='en-US',
         )
 
-    def test_android_embedded_sms(self):
-        resp_data = self._request(
-            {
-                'platform': 'android',
-                'phone-or-email': '5558675309',
-                'message-set': 'fx-android',
-            }
-        )
-        assert resp_data['success']
-        self.mock_send_sms.assert_called_with(
-            'post',
-            'subscribe_sms',
-            data={
-                'mobile_number': '5558675309',
-                'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['fx-android']['sms'][
-                    'android'
-                ],
-                'lang': 'en-US',
-            },
-        )
-
     # /firefox/mobile-download/desktop
     def test_fx_mobile_download_desktop_email(self):
         resp_data = self._request(
             {
-                'phone-or-email': 'dude@example.com',
+                's2d-email': 'dude@example.com',
                 'message-set': 'fx-mobile-download-desktop',
             }
         )
@@ -571,65 +446,6 @@ class TestSendToDeviceView(TestCase):
             source_url=None,
             lang='en-US',
         )
-
-    def test_fx_mobile_download_desktop_sms(self):
-        resp_data = self._request(
-            {
-                'phone-or-email': '5558675309',
-                'message-set': 'fx-mobile-download-desktop',
-            }
-        )
-        assert resp_data['success']
-        self.mock_send_sms.assert_called_with(
-            'post',
-            'subscribe_sms',
-            data={
-                'mobile_number': '5558675309',
-                'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS[
-                    'fx-mobile-download-desktop'
-                ]['sms']['all'],
-                'lang': 'en-US',
-            },
-        )
-
-    def test_sms_number_with_punctuation(self):
-        resp_data = self._request(
-            {
-                'phone-or-email': '(555) 867-5309',
-                'message-set': 'fx-mobile-download-desktop',
-            }
-        )
-        assert resp_data['success']
-        self.mock_send_sms.assert_called_with(
-            'post',
-            'subscribe_sms',
-            data={
-                'mobile_number': '5558675309',
-                'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS[
-                    'fx-mobile-download-desktop'
-                ]['sms']['all'],
-                'lang': 'en-US',
-            },
-        )
-
-    def test_sms_number_too_long(self):
-        resp_data = self._request(
-            {
-                'phone-or-email': '5558675309555867530912',
-                'message-set': 'fx-mobile-download-desktop',
-            }
-        )
-        assert not resp_data['success']
-        self.mock_send_sms.assert_not_called()
-        assert 'number' in resp_data['errors']
-
-    def test_sms_number_too_short(self):
-        resp_data = self._request(
-            {'phone-or-email': '555', 'message-set': 'fx-mobile-download-desktop'}
-        )
-        assert not resp_data['success']
-        self.mock_send_sms.assert_not_called()
-        assert 'number' in resp_data['errors']
 
 
 @override_settings(DEV=False)

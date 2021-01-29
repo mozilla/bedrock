@@ -11,7 +11,6 @@ whatsnew81-page-title = What’s new with { -brand-name-firefox }
 whatsnew81-main-title = A new { -brand-name-firefox } for every device
 whatsnew81-main-intro = Whatever operating system you’ve got, there’s a better-than-ever, non-profit-backed mobile browser to put on it.
 whatsnew81-send-form-label = Enter your email for a download link
-whatsnew81-send-form-label-alt = Enter your email or phone number for a download link
 whatsnew81-scan-this-qr-code = Scan this QR code to download
 
 # content blocks below hero

@@ -12,7 +12,6 @@ whatsnew80-up-to-date-banner = Congrats! You’re using the latest version of { 
 # Main title
 whatsnew80-main-title = Do just about everything, a little faster
 whatsnew80-main-intro = Move from computer to phone without missing a beat. Get { -brand-name-firefox } for mobile.
-whatsnew80-primary-cta-description = Enter your email or phone number for a download link
 
 # content buckets below hero
 whatsnew80-password-fatigue = Password fatigue is real

@@ -336,7 +336,6 @@ NOINDEX_URLS = [
     r'^contribute/(embed|event)/',
     r'^firefox/retention/thank-you/',
     r'^firefox/set-as-default/thanks/',
-    r'^firefox/sms/sent/',
     r'^firefox/unsupported/',
     r'^firefox/send-to-device-post',
     r'^firefox/feedback',
@@ -1066,11 +1065,6 @@ SEND_TO_DEVICE_LOCALES = ['de', 'en-GB', 'en-US',
 
 SEND_TO_DEVICE_MESSAGE_SETS = {
     'default': {
-        'sms_countries': config('STD_SMS_COUNTRIES_DEFAULT', default='US', parser=ListOf(str)),
-        'sms': {
-            'ios': 'ff-ios-download',
-            'android': 'SMS_Android',
-        },
         'email': {
             'android': 'download-firefox-android',
             'ios': 'download-firefox-ios',
@@ -1078,11 +1072,6 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
         }
     },
     'fx-android': {
-        'sms_countries': config('STD_SMS_COUNTRIES_ANDROID', default='US', parser=ListOf(str)),
-        'sms': {
-            'ios': 'ff-ios-download',
-            'android': 'android-download-embed',
-        },
         'email': {
             'android': 'get-android-embed',
             'ios': 'download-firefox-ios',
@@ -1090,61 +1079,36 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
         }
     },
     'fx-mobile-download-desktop': {
-        'sms_countries': config('STD_SMS_COUNTRIES_DESKTOP', default='US', parser=ListOf(str)),
-        'sms': {
-            'all': 'mobile-heartbeat',
-        },
         'email': {
             'all': 'download-firefox-mobile-reco',
         }
     },
     'fx-whatsnew': {
-        'sms_countries': config('STD_SMS_COUNTRIES_WHATSNEW50', default='US', parser=ListOf(str)),
-        'sms': {
-            'all': 'whatsnewfifty',
-        },
         'email': {
             'all': 'download-firefox-mobile-whatsnew',
         }
     },
     'fx-focus': {
-        'sms_countries': config('STD_SMS_COUNTRIES_WHATSNEW61', default='US', parser=ListOf(str)),
-        'sms': {
-            'all': 'focus_sms_whatsnew',
-        },
         'email': {
             'all': 'download-focus-mobile-whatsnew',
         }
     },
     'fx-klar': {
-        'sms_countries': config('STD_SMS_COUNTRIES_WHATSNEW61', default='US', parser=ListOf(str)),
-        'sms': {
-            'all': 'focus_sms_whatsnew',
-        },
         'email': {
             'all': 'download-klar-mobile-whatsnew',
         }
     },
     'download-firefox-rocket': {
-        'sms_countries': '',
         'email': {
             'all': 'download-firefox-rocket',
         }
     },
     'firefox-mobile-welcome': {
-        'sms_countries': config('STD_SMS_COUNTRIES_MOBILE_WELCOME', default='US,DE,FR', parser=ListOf(str)),
-        'sms': {
-            'all': 'firefox-mobile-welcome',
-        },
         'email': {
             'all': 'firefox-mobile-welcome',
         }
     },
     'lockwise-welcome-download': {
-        'sms_countries': config('STD_SMS_COUNTRIES_MOBILE_WELCOME', default='US,DE,FR', parser=ListOf(str)),
-        'sms': {
-            'all': 'lockwise-welcome-download',
-        },
         'email': {
             'all': 'lockwise-welcome-download',
         }

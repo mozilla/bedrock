@@ -186,29 +186,26 @@ def sign_attribution_codes(codes):
 @csrf_exempt
 def send_to_device_ajax(request):
     locale = l10n_utils.get_locale(request)
-    phone_or_email = request.POST.get('phone-or-email')
+    email = request.POST.get('s2d-email')
 
     # ensure a value was entered in phone or email field
-    if not phone_or_email:
-        return JsonResponse({'success': False, 'errors': ['phone-or-email']})
+    if not email:
+        return JsonResponse({'success': False, 'errors': ['s2d-email']})
 
     # pull message set from POST (not part of form, so wont be in cleaned_data)
     message_set = request.POST.get('message-set', 'default')
 
     # begin collecting data to pass to form constructor
-    data = {'platform': request.POST.get('platform')}
-
-    # determine if email or phone number was submitted
-    data_type = 'email' if '@' in phone_or_email else 'number'
-
-    # populate data type in form data dict
-    data[data_type] = phone_or_email
+    data = {
+        'platform': request.POST.get('platform'),
+        'email': email,
+    }
 
     # instantiate the form with processed POST data
     form = SendToDeviceWidgetForm(data)
 
     if form.is_valid():
-        phone_or_email = form.cleaned_data.get(data_type)
+        email = form.cleaned_data.get('email')
         platform = form.cleaned_data.get('platform')
 
         # if no platform specified, default to 'all'
@@ -221,48 +218,20 @@ def send_to_device_ajax(request):
         else:
             MESSAGES = SEND_TO_DEVICE_MESSAGE_SETS[message_set]
 
-        if data_type == 'number':
-
-            # for testing purposes return success
-            if phone_or_email == '5555555555':
-                return JsonResponse({'success': True})
-
-            if platform in MESSAGES['sms']:
-                data = {
-                    'mobile_number': phone_or_email,
-                    'msg_name': MESSAGES['sms'][platform],
-                    'lang': locale,
-                }
-                country = request.POST.get('country')
-                if country and re.match(r'^[a-z]{2}$', country, flags=re.I):
-                    data['country'] = country
-
-                try:
-                    basket.request('post', 'subscribe_sms', data=data)
-                except basket.BasketException as e:
-                    if e.desc == 'mobile_number is invalid':
-                        return JsonResponse({'success': False, 'errors': ['number']})
-                    else:
-                        return JsonResponse(
-                            {'success': False, 'errors': ['system']}, status=400
-                        )
-            else:
-                return JsonResponse({'success': False, 'errors': ['platform']})
-        else:  # email
-            if platform in MESSAGES['email']:
-                try:
-                    basket.subscribe(
-                        phone_or_email,
-                        MESSAGES['email'][platform],
-                        source_url=request.POST.get('source-url'),
-                        lang=locale,
-                    )
-                except basket.BasketException:
-                    return JsonResponse(
-                        {'success': False, 'errors': ['system']}, status=400
-                    )
-            else:
-                return JsonResponse({'success': False, 'errors': ['platform']})
+        if platform in MESSAGES['email']:
+            try:
+                basket.subscribe(
+                    email,
+                    MESSAGES['email'][platform],
+                    source_url=request.POST.get('source-url'),
+                    lang=locale,
+                )
+            except basket.BasketException:
+                return JsonResponse(
+                    {'success': False, 'errors': ['system']}, status=400
+                )
+        else:
+            return JsonResponse({'success': False, 'errors': ['platform']})
 
         resp_data = {'success': True}
     else:
