@@ -74,11 +74,14 @@
   {% call hero(
     title=hero_title,
     desc=hero_tagline,
-    class='mzp-has-image mzp-t-dark hero-firefox',
+    class='mzp-has-image hero-firefox',
     include_cta=True,
     image_url='img/firefox/new/trailhead/browser-window.svg',
     heading_level=1
   ) %}
+
+
+    <div class="c-intro-download">
 
       {# **WARNING**
 
@@ -99,13 +102,14 @@
         </ul>
 
         <ul class="small-links android">
-            <li><a href="{{ firefox_url('android', 'all') }}">{{ ftl('new-platform-download-in-another') }}</a></li>
-            <li><a rel="external" href="https://support.mozilla.org/products/mobile/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{ ftl('new-platform-need-help') }}</a></li>
+          <li><a href="{{ firefox_url('android', 'all') }}">{{ ftl('new-platform-download-in-another') }}</a></li>
+          <li><a rel="external" href="https://support.mozilla.org/products/mobile/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{ ftl('new-platform-need-help') }}</a></li>
         </ul>
 
         <ul class="small-links ios">
-            <li><a rel="external" href="https://support.mozilla.org/products/ios/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{ ftl('new-platform-need-help') }}</a></li>
+          <li><a rel="external" href="https://support.mozilla.org/products/ios/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{ ftl('new-platform-need-help') }}</a></li>
         </ul>
+      </div>
     {% endcall %}
 
   <section class="features">
