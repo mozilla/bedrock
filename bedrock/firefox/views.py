@@ -702,7 +702,7 @@ class DownloadThanksView(L10nTemplateView):
 
     def get_template_names(self):
 
-        if ftl_file_is_active('firefox/new/desktop') and switch('new-redesign'):
+        if ftl_file_is_active('firefox/new/desktop'):
             template = 'firefox/new/desktop/thanks.html'
         else:
             template = 'firefox/new/trailhead/thanks.html'
@@ -796,7 +796,7 @@ class NewView(L10nTemplateView):
 
         if locale == 'ru' and switch('firefox-yandex'):
             template = 'firefox/new/trailhead/download-yandex.html'
-        elif ftl_file_is_active('firefox/new/desktop') and switch('new-redesign'):
+        elif ftl_file_is_active('firefox/new/desktop'):
             template = 'firefox/new/desktop/download.html'
         else:
             template = 'firefox/new/trailhead/download.html'
