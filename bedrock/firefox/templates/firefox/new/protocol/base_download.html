@@ -23,6 +23,7 @@
 
 {# hero #}
 {% set hero_title = hero_title or ftl('new-platform-the-new-firefox') %}
+{% set hero_image = hero_image or 'img/firefox/new/trailhead/browser-window.svg' %}
 
 {# card1 #}
 {% set card1_title = card1_title or ftl('new-platform-2x-faster') %}
@@ -70,16 +71,16 @@
 
 {% block content %}
 <main role="main" class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
-
   {% call hero(
     title=hero_title,
     desc=hero_tagline,
     class='mzp-has-image mzp-t-dark hero-firefox',
     include_cta=True,
-    image_url='img/firefox/new/trailhead/browser-window.svg',
+    image_url=hero_image,
     heading_level=1
   ) %}
 
+    {% block hero_call %}
       {# **WARNING**
 
           The `locale_in_transition` parameter should be used very carefully. It's included
@@ -106,6 +107,7 @@
         <ul class="small-links ios">
             <li><a rel="external" href="https://support.mozilla.org/products/ios/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{ ftl('new-platform-need-help') }}</a></li>
         </ul>
+        {% endblock %}
     {% endcall %}
 
   <section class="features">

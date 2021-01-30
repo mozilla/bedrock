@@ -1,0 +1,53 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/new/protocol/base_download.html" %}
+{% from "macros-protocol.html" import call_out_compact with context %}
+
+{% block experiments %}{% endblock %}
+
+
+{% block page_title_full %}Firefox с Яндексом{% endblock %}
+{% set meta_desc = 'Версия браузера Firefox с сервисами Яндекса на русском языке доступна для пользователей в России. Сейчас в браузер встроены Дзен, Советник и Визуальные закладки. Основная версия браузера Firefox на русском языке доступна для пользователей по всему миру.' %}
+{% set og_title = 'Firefox с Яндексом' %}
+{% set og_desc = 'Версия браузера Firefox с сервисами Яндекса на русском языке доступна для пользователей в России. Сейчас в браузер встроены Дзен, Советник и Визуальные закладки. Основная версия браузера Firefox на русском языке доступна для пользователей по всему миру.' %}
+
+{# hero #}
+{% set hero_title = 'Firefox с Яндексом' %}
+{% set hero_tagline = 'Скачать версию Firefox с сервисами Яндекса на русском языке' %}
+{% set hero_image = 'img/firefox/new/yandex/yandex.jpg' %}
+
+{% block hero_call %}
+  <p><a class="mzp-c-button mzp-t-product" href="https://yandex.ru/firefox/mozilla/">Скачать Firefox с Яндексом</a></p>
+  <p><small>Для обеспечения работы этих сервисов Яндекс собирает сведения о действиях при просмотре веб-страниц и некоторые дополнительные данные. Для получения дополнительной информации обратитесь к Политике конфиденциальности Яндекса.</small></p>
+{% endblock %}
+
+{% set card1_title = 'Дзен' %}
+{% set card1_desc = 'Сервис персональных рекомендаций на основе технологий машинного обучения. Дзен формирует ленту публикаций, автоматически подстраиваясь под интересы пользователя.' %}
+{% set card1_class = 'faster' %}
+
+{% set card2_title = 'Советник' %}
+{% set card2_desc = 'Сервис, позволяющий сравнить цены на товары и выбрать предложение с наименьшей ценой.' %}
+{% set card2_class = 'lighter' %}
+
+{% set card3_title = 'Визуальные закладки' %}
+{% set card3_desc = 'Браузерное расширение, которое преобразует сохраненные закладки в графическое панно на стартовой странице браузера.' %}
+{% set card3_class = 'private' %}
+
+{% block aside %}
+
+  {% call call_out_compact(
+    title='Загрузите последнюю версию браузера Firefox.',
+    class='mzp-t-product-firefox mzp-t-firefox callout-yandex')
+  %}
+    {{ download_firefox(alt_copy='Скачать Firefox без яндекса', dom_id='download-secondary', locale_in_transition=True, download_location='secondary cta') }}
+  {% endcall %}
+
+{% endblock %}
+
+{% block js %}
+  {{ super() }}
+  {{ js_bundle('firefox_new_download_yandex_yandex') }}
+{% endblock %}
+

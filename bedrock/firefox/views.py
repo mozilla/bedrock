@@ -789,13 +789,14 @@ class NewView(L10nTemplateView):
     def get_template_names(self):
         locale = l10n_utils.get_locale(self.request)
         variant = self.request.GET.get('v', None)
+        geo = self.request.GET.get('geo', None)
 
         # ensure variant matches pre-defined value
         if variant not in self.variations:
             variant = None
 
-        if locale == 'ru' and switch('firefox-yandex'):
-            template = 'firefox/new/trailhead/download-yandex.html'
+        if locale == 'ru' and geo == 'ru' and switch('firefox-yandex'):
+            template = 'firefox/new/protocol/download_yandex.html'
         elif ftl_file_is_active('firefox/new/desktop') and switch('new-redesign'):
             template = 'firefox/new/desktop/download.html'
         else:

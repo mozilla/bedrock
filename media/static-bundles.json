@@ -967,10 +967,15 @@
     },
     {
       "files": [
-        "js/firefox/new/yandex/scene1.js",
-        "js/firefox/new/yandex/scene1-init.js"
+        "js/firefox/new/yandex/yandex-content.js"
       ],
-      "name": "firefox_new_download_yandex"
+      "name": "firefox_new_download_yandex_yandex"
+    },
+    {
+      "files": [
+        "js/firefox/new/yandex/regular-content.js"
+      ],
+      "name": "firefox_new_download_yandex_regular"
     },
     {
       "files": [
