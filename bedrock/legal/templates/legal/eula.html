@@ -4,7 +4,7 @@
 
 {% extends "base-article.html" %}
 
-{% block page_title %}{{_('Mozilla Foundation End-User Licensing Agreements')}}{% endblock %}
+{% block page_title %}Mozilla Foundation End-User Licensing Agreements{% endblock %}
 
 {% block page_css %}
 {{ css_bundle('legal') }}
@@ -18,7 +18,7 @@
 
   <section class="mzp-c-sidemenu-main" id="sidebar-menu">
     <ul>
-      <li><a href="{{ url('legal.index') }}">{{ _('Back to Legal') }}</a></li>
+      <li><a href="{{ url('legal.index') }}">Back to Legal</a></li>
     </ul>
   </section>
 </nav>
@@ -26,18 +26,16 @@
 
 {% block article %}
 <header>
-  <h1 class="mzp-c-article-title">{{_('Mozilla Foundation End-User Licensing Agreements')}}</h1>
+  <h1 class="mzp-c-article-title">Mozilla Foundation End-User Licensing Agreements</h1>
 </header>
 
 <p>
-  {% trans link=url('mozorg.mpl.2.0.index') %}
   Mozilla software is made available to you under the terms of the
-  <a href="{{ link }}">Mozilla Public License 2</a>,
+  <a href="{{ url('mozorg.mpl.2.0.index') }}">Mozilla Public License 2</a>,
   a free software license, which gives you the right to run the program
   for any purpose, to study how it works, to give copies to your friends
   and to modify it to meet your needs better. There is no
   separate End User License Agreement (EULA).
-  {% endtrans %}
 </p>
 
 <a href="{{ url('mozorg.mpl.2.0.index') }}" class="main-license">View the Mozilla Public License 2</a>
@@ -46,10 +44,10 @@
 <h3>Mozilla End-user Software License Agreements</h3>
 
 <ul class="mzp-u-list-styled">
-  <li><a href="{{ url('legal.eula.firefox-2-eula') }}">{{ _('Firefox 2.0') }}</a></li>
-  <li><a href="{{ url('legal.eula.firefox-3-eula') }}">{{ _('Firefox 3.0') }}</a></li>
-  <li><a href="{{ url('legal.eula.thunderbird-1.5-eula') }}">{{ _('Thunderbird 1.5') }}</a></li>
-  <li><a href="{{ url('legal.eula.thunderbird-2-eula') }}">{{ _('Thunderbird 2') }}</a></li>
+  <li><a href="{{ url('legal.eula.firefox-2-eula') }}">Firefox 2.0</a></li>
+  <li><a href="{{ url('legal.eula.firefox-3-eula') }}">Firefox 3.0</a></li>
+  <li><a href="{{ url('legal.eula.thunderbird-1.5-eula') }}">Thunderbird 1.5</a></li>
+  <li><a href="{{ url('legal.eula.thunderbird-2-eula') }}">Thunderbird 2</a></li>
 </ul>
 
 {% endblock %}
