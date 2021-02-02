@@ -73,7 +73,8 @@ $image-path: '/media/protocol/img';
 }
 
 @media #{$mq-md} {
-    .mzp-c-sticky-promo.mzp-a-slide-in, .mzp-c-sticky-promo.is-displayed {
+    .mzp-c-sticky-promo.mzp-a-slide-in,
+    .mzp-c-sticky-promo.is-displayed {
         display: block;
     }
 }

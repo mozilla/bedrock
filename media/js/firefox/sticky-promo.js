@@ -53,14 +53,14 @@
         };
 
         StickyPromo.show = function (){
-            var stickyPromoShowInit = false;
-            document.addEventListener('scroll', function () {
-                if (!stickyPromoShowInit) {
-                    // Open promo
-                    Mzp.StickyPromo.open();
-                    stickyPromoShowInit = true;
-                }
-            });
+
+            function openOnScroll(){
+                // Open promo
+                Mzp.StickyPromo.open();
+                document.removeEventListener('scroll', openOnScroll, false);
+            }
+
+            document.addEventListener('scroll', openOnScroll, false);
 
             // Add modifier class to the footer to make sure the language selection drop-down is not obscured by the sticky promo
             var footer = document.querySelector('.c-footer');
