@@ -3,18 +3,32 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% from "macros.html" import google_play_button, fxa_email_form with context %}
-{% from "macros-protocol.html" import hero, picto_card with context %}
+{% from "macros-protocol.html" import hero, picto_card, call_out_compact with context %}
+
+{% extends "firefox/new/desktop/base.html" %}
 
 {% set show_firefox_join_modal = ftl_has_messages('firefox-desktop-download-youve-already-got-the-browser',
                                                   'firefox-desktop-download-watch-for-hackers-with',
                                                   'firefox-desktop-download-just-download-the-browser',
                                                   'firefox-desktop-download-get-more-from-firefox') %}
+{% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-desktop' %}
+{% set ios_url = app_store_url('firefox') %}
+{% set show_yandex = (LANG == 'ru' and switch('firefox-yandex')) %}
 
-{% extends "firefox/new/desktop/base.html" %}
+{% block string_data %}
+  {% if show_yandex %}
+    data-page-title="Firefox с Яндексом"
+    data-page-desc="Версия браузера Firefox с сервисами Яндекса на русском языке доступна для пользователей в России. Сейчас в браузер встроены Дзен, Советник и Визуальные закладки. Основная версия браузера Firefox на русском языке доступна для пользователей по всему миру."
+  {% endif %}
+{% endblock %}
 
 {% block extrahead %}
   {{ super() }}
   {{ css_bundle('firefox_desktop_download') }}
+
+  {% if show_yandex %}
+    {{ css_bundle('firefox_new_download_yandex') }}
+  {% endif %}
 
   <!--[if IE 9]>
     {{ css_bundle('firefox_desktop_download_ie9') }}
@@ -26,10 +40,6 @@
   <![endif]-->
 
 {% endblock %}
-
-{% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-desktop' %}
-
-{% set ios_url = app_store_url('firefox') %}
 
 {% macro picture(src, width, height, alt='', class_name='') -%}
 <picture class="{{ class_name }}">
@@ -63,6 +73,11 @@
 {% endblock %}
 
 {% block content %}
+
+  {% if show_yandex %}
+    {% include 'firefox/new/desktop/includes/yandex.html' %}
+  {% endif %}
+
 <main role="main" class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
   <section id="desktop-banner" class="c-block t-intro show-else mzp-has-media-hide-on-sm">
     <div class="c-block-container">
@@ -523,7 +538,9 @@
 {% endblock %}
 
 {% block sticky_promo %}
-  {% include '/includes/sticky-promo.html' %}
+  {% if not show_yandex %}
+    {% include '/includes/sticky-promo.html' %}
+  {% endif %}
 {% endblock %}
 
 {% block js %}
@@ -531,6 +548,10 @@
 
   {% if show_firefox_join_modal %}
     {{ js_bundle('firefox_new_desktop_join_modal') }}
+  {% endif %}
+
+  {% if show_yandex %}
+    {{ js_bundle('firefox_new_download_yandex') }}
   {% endif %}
 
   {% if switch('stub-attribution-macos') %}

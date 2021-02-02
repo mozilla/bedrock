@@ -1,0 +1,70 @@
+<main role="main" class="main-download t-yandex">
+  <section id="desktop-banner" class="c-block t-intro show-else mzp-has-media-hide-on-sm">
+    <div class="c-block-container">
+      <div class="c-block-body">
+        <h1 class="c-logo t-browser-word-hor-xs">{{ ftl('firefox-desktop-download-firefox') }}</h1>
+        <h2>Firefox с Яндексом</h2>
+
+        <p>Скачать версию Firefox с сервисами Яндекса на русском языке</p>
+
+        <div class="c-intro-download">
+          <p><a class="mzp-c-button mzp-t-product" href="https://yandex.ru/firefox/mozilla/">Скачать Firefox с Яндексом</a></p>
+          <p><small>Для обеспечения работы этих сервисов Яндекс собирает сведения о действиях при просмотре веб-страниц и некоторые дополнительные данные. Для получения дополнительной информации обратитесь к Политике конфиденциальности Яндекса.</small></p>
+
+        </div>
+      </div>
+      <div class="c-block-media l-v-center">
+        <div class="c-block-img">
+          <div class="c-noodles">
+            <div class="noodle-browser"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mzp-l-content t-releases">
+    <div class="mzp-c-emphasis-box js-animate">
+      <ul class="c-trio">
+        <li>
+          <img src="{{ static('protocol/img/icons/reader-mode.svg') }}" height="64" width="64">
+          <h3 class="mzp-u-title-xs">Дзен</h3>
+          <p>Сервис персональных рекомендаций на основе технологий машинного обучения. Дзен формирует ленту публикаций, автоматически подстраиваясь под интересы пользователя.</p>
+        </li>
+          {#
+            Zen
+            Service of personal recommendations based on machine learning technologies. Zen forms a feed of publications, automatically adjusting to the interests of the user.
+          #}
+        <li>
+          <img src="{{ static('protocol/img/icons/turbo-mode.svg') }}" height="64" width="64">
+          <h3 class="mzp-u-title-xs">Советник</h3>
+          <p>Сервис, позволяющий сравнить цены на товары и выбрать предложение с наименьшей ценой.</p>
+          {#
+            Counselor
+            A service that allows you to compare prices for goods and select the offer with the lowest price.
+          #}
+        </li>
+
+        <li>
+          <img src="{{ static('protocol/img/icons/top-sites.svg') }}" height="64" width="64">
+          <h3 class="mzp-u-title-xs">Визуальные закладки</h3>
+          <p>Браузерное расширение, которое преобразует сохраненные закладки в графическое панно на стартовой странице браузера.</p>
+          {#
+            Visual bookmarks
+            Browser extension that converts saved bookmarks into a graphical panel on the browser start page.
+          #}
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  {% call call_out_compact(
+    title='Загрузите последнюю версию браузера Firefox.',
+    class='mzp-t-product-firefox mzp-t-firefox')
+  %}
+    {{ download_firefox(alt_copy='Скачать Firefox без яндекса', dom_id='download-secondary', locale_in_transition=True, download_location='secondary cta') }}
+  {% endcall %}
+
+  <!-- TODO: hide promo -->
+
+</main>

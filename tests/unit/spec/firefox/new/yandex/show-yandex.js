@@ -7,7 +7,7 @@
 /* eslint camelcase: [2, {properties: "never"}] */
 /* eslint new-cap: [2, {"capIsNewExceptions": ["Deferred"]}] */
 
-describe('yandex-scene1.js', function() {
+describe('show-yandex.js', function() {
     'use strict';
 
     beforeEach(function() {

@@ -142,7 +142,7 @@
     },
     {
       "files": [
-        "css/firefox/new/trailhead/download-yandex.scss"
+        "css/firefox/new/desktop/download-yandex.scss"
       ],
       "name": "firefox_new_download_yandex"
     },
@@ -967,8 +967,8 @@
     },
     {
       "files": [
-        "js/firefox/new/yandex/scene1.js",
-        "js/firefox/new/yandex/scene1-init.js"
+        "js/firefox/new/yandex/show-yandex.js",
+        "js/firefox/new/yandex/show-yandex-init.js"
       ],
       "name": "firefox_new_download_yandex"
     },

@@ -508,19 +508,25 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'ru'
         view = views.NewView.as_view()
-        view(req)
+        response = view(req)
         template = render_mock.call_args[0][1]
-        assert template == ['firefox/new/trailhead/download-yandex.html']
+        assert template == ['firefox/new/desktop/download.html']
+        doc = pq(response.content)
+        robots = doc('main[class*="t-yandex"]')
+        assert robots.length == 1
 
     @patch.dict(os.environ, SWITCH_FIREFOX_YANDEX='False')
-    @patch.object(views, 'ftl_file_is_active', lambda *x: False)
+    @patch.object(views, 'ftl_file_is_active', lambda *x: True)
     def test_yandex_scene_1_switch_off(self, render_mock):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'ru'
         view = views.NewView.as_view()
-        view(req)
+        response = view(req)
         template = render_mock.call_args[0][1]
-        assert template == ['firefox/new/trailhead/download.html']
+        assert template == ['firefox/new/desktop/download.html']
+        doc = pq(response.content)
+        robots = doc('main[class*="t-yandex"]')
+        assert robots.length == 0
 
     @patch.dict(os.environ, EXP_CONFIG_FX_NEW='de:100')
     def test_experiment_redirect(self, render_mock):
