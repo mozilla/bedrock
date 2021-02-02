@@ -2,11 +2,10 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% add_lang_files "legal/index" %}
 {% extends "base-article.html" %}
 
 {% block page_css %}
- {{ css_bundle('legal') }}
+  {{ css_bundle('legal') }}
 {% endblock %}
 
 {% block body_class %}mzp-t-mozilla{% endblock %}
@@ -27,7 +26,7 @@
 
   <section class="mzp-c-sidemenu-main" id="sidebar-menu">
     <ul>
-      <li><a href="{{ url('legal.index') }}">{{ _('Back to Legal') }}</a></li>
+      <li><a href="{{ url('legal.index') }}">{{ ftl('legal-back-to-legal') }}</a></li>
     </ul>
   </section>
 </nav>

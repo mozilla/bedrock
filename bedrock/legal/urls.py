@@ -10,7 +10,7 @@ from bedrock.legal import views
 from bedrock.legal_docs.views import LegalDocView
 
 urlpatterns = (
-    page('', 'legal/index.html'),
+    page('', 'legal/index.html', ftl_files=['mozorg/about/legal']),
 
     page('eula', 'legal/eula.html'),
     page('eula/firefox-2', 'legal/eula/firefox-2-eula.html'),

@@ -65,7 +65,8 @@ class LegalDocView(TemplateView):
         response_kwargs.setdefault('content_type', self.content_type)
         return l10n_utils.render(self.request,
                                  self.get_template_names()[0],
-                                 context, **response_kwargs)
+                                 context, ftl_files=['mozorg/about/legal'],
+                                 **response_kwargs)
 
     def get_context_data(self, **kwargs):
         legal_doc = self.get_legal_doc()
