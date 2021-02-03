@@ -1,9 +1,25 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
-
 (function() {
     'use strict';
+
+    // https://davidwalsh.name/javascript-debounce-function
+    function debounce(func, wait, immediate) {
+        var timeout;
+        return function() {
+            var context = this,
+                args = arguments;
+            var later = function() {
+                timeout = null;
+                if (!immediate) {func.apply(context, args);}
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) {func.apply(context, args);}
+        };
+    }
 
     function isInViewport(element) {
         // Calculate on each scroll if the footer is in the view port.
@@ -62,23 +78,22 @@
 
             document.addEventListener('scroll', openOnScroll, false);
 
+            var checkForFooterOnScroll = debounce(function() {
+                // If the footer is in the viewport, fade out the promo.
+                // Animate it back in when the footer leaves the viewport
+                // if the user did not dismiss it.
+                if (isInViewport(footer)) {
+                    promo.classList.replace('mzp-a-slide-in', 'mzp-a-fade-out');
+                } else if (!promo.classList.contains('user-dismiss')) {
+                    promo.classList.replace('mzp-a-fade-out', 'mzp-a-slide-in');
+                }
+            }, 100);
+
             // Add modifier class to the footer to make sure the language selection drop-down is not obscured by the sticky promo
             var footer = document.querySelector('.c-footer');
             if (footer) {
                 footer.classList.add('is-intersecting-sticky-overlay');
-
-                document.addEventListener('scroll', function () {
-                    // If the footer is in the viewport, fade out the promo.
-                    // Animate it back in when the footer leaves the viewport
-                    // if the user did not dismiss it.
-                    if (isInViewport(footer)) {
-                        promo.classList.replace('mzp-a-slide-in', 'mzp-a-fade-out');
-                    } else if (!promo.classList.contains('user-dismiss')) {
-                        promo.classList.replace('mzp-a-fade-out', 'mzp-a-slide-in');
-                    }
-                }, {
-                    passive: true
-                });
+                document.addEventListener('scroll', checkForFooterOnScroll, true);
             }
 
             // Set Close Button event
