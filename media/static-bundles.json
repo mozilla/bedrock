@@ -1172,7 +1172,7 @@
     },
     {
       "files": [
-        "js/libs/jquery-1.11.3.min.js",
+        "js/libs/jquery-1.12.4.min.js",
         "js/ie/mozilla-utils-ie.js",
         "js/base/mozilla-client.js",
         "js/ie/base-page-init-ie.js",
@@ -1270,7 +1270,7 @@
     },
     {
       "files": [
-        "js/libs/jquery-3.4.1.min.js",
+        "js/libs/jquery-3.5.1.min.js",
         "js/base/mozilla-utils.js",
         "js/base/mozilla-client.js",
         "js/base/class-list-polyfill.js",
@@ -1344,14 +1344,14 @@
     },
     {
       "files": [
-        "js/libs/jquery-3.4.1.min.js",
+        "js/libs/jquery-3.5.1.min.js",
         "js/exp/convert.js"
       ],
       "name": "convert"
     },
     {
       "files": [
-        "js/libs/jquery-3.4.1.min.js"
+        "js/libs/jquery-3.5.1.min.js"
       ],
       "name": "jquery"
     },
