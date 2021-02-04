@@ -11,12 +11,3 @@ from pages.firefox.browsers.best_browser import BestBrowserPage
 def test_download_button_is_displayed(base_url, selenium):
     page = BestBrowserPage(selenium, base_url).open()
     assert page.download_button.is_displayed
-
-
-@pytest.mark.skip_if_firefox(reason='Sticky promo is displayed only to non-Firefox users')
-@pytest.mark.nondestructive
-def test_sticky_promo(base_url, selenium):
-    page = BestBrowserPage(selenium, base_url).open()
-    assert page.promo.is_displayed
-    page.promo.close()
-    assert not page.promo.is_displayed
