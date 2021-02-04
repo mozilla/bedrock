@@ -10,6 +10,7 @@ from pages.firefox.new.sticky_promo import StickyPromoPage
 @pytest.mark.nondestructive
 def test_sticky_promo(base_url, selenium):
     page = StickyPromoPage(selenium, base_url).open()
+    page.init_promo()
     assert page.promo.is_displayed
     page.promo.close()
     assert not page.promo.is_displayed
