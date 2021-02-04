@@ -72,10 +72,18 @@ class LegalDocsManager(models.Manager):
             doc_name = snake_case(doc_name)
             doc = self.get(name=doc_name, locale=locale)
 
-        all_locales = self.filter(name=doc_name).values_list('locale', flat=True)
+        all_locales = list(self.filter(name=doc_name).values_list('locale', flat=True))
+        if 'en' in all_locales:
+            # legal-docs now uses en but the site needs en-US
+            all_locales[all_locales.index('en')] = 'en-US'
+
+        # filter locales not active on the site
+        all_locales = [l for l in all_locales if l in settings.PROD_LANGUAGES]
+
         return {
             'content': doc.content,
-            'active_locales': sorted(all_locales),
+            # sort and make unique
+            'active_locales': sorted(set(all_locales)),
         }
 
     def refresh(self):

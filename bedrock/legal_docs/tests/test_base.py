@@ -31,6 +31,17 @@ class TestLoadLegalDoc(TestCase):
         self.assertEqual(doc['content'], "You're not wrong Walter...")
         self.assertEqual(doc['active_locales'], ['en-US'])
 
+    def test_legal_doc_exists_en_locale(self):
+        """Should return the content of the en file and say it's en-US."""
+        LegalDoc.objects.create(
+            name='the_dude_exists',
+            locale='en',
+            content="You're not wrong Walter...",
+        )
+        doc = views.load_legal_doc('the_dude_exists', 'en-US')
+        self.assertEqual(doc['content'], "You're not wrong Walter...")
+        self.assertEqual(doc['active_locales'], ['en-US'])
+
     def test_legal_doc_exists_snake_case_convert(self):
         """Should return the content of the file if it exists in snake case."""
         LegalDoc.objects.create(
@@ -46,7 +57,7 @@ class TestLoadLegalDoc(TestCase):
         """Localization works, and list of translations doesn't include non .md files and non-prod locales."""
         LegalDoc.objects.create(
             name='the_dude_exists',
-            locale='en-US',
+            locale='en',
             content="You're not wrong Walter...",
         )
         LegalDoc.objects.create(
