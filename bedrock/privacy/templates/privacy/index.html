@@ -5,7 +5,7 @@
 {% extends "privacy/base-protocol.html" %}
 
 {% block page_title_suffix %}{% endblock %}
-{% block page_title %}{{ _('Mozilla Privacy') }}{% endblock %}
+{% block page_title %}{{ ftl('privacy-index-mozilla-privacy') }}{% endblock %}
 
 {% block body_class %}mzp-t-mozilla format-none{% endblock%}
 {% block body_id %}privacy-landing{% endblock %}
@@ -33,120 +33,53 @@
 {% endblock %}
 {% block footnote %}
   <section id="contact" class="section-content">
-      <h4>{{ _('Contact Mozilla') }}</h4>
+    <h4>{{ ftl('privacy-index-contact-mozilla') }}</h4>
+    <p>{{ ftl('privacy-index-if-you-want-to-make-a-correction') }}</p>
 
-      <p>
-        {%- trans -%}
-          If you want to make a correction to your information, or you have any questions about our
-          privacy policies, please get in touch with:
-        {%- endtrans -%}
-      </p>
+    <p lang="en" dir="ltr" itemscope itemtype="http://schema.org/Organization">
+      <span itemprop="name">Mozilla Corporation</span><br>
+      <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+        Attn: <span itemprop="name">Mozilla - Privacy</span><br>
+        <span itemprop="streetAddress">2 Harrison St., # 175</span>,<br>
+        <span itemprop="addressLocality">San Francisco</span>,
+        <span itemprop="addressRegion">CA</span>
+        <span itemprop="postalCode">94105</span><br>
+        <span itemprop="addressCountry">USA</span><br>
+        <span itemprop="email"><a href="mailto:compliance@mozilla.com">compliance@mozilla.com</a></span>
+      </span>
+    </p>
 
-      <p lang="en" dir="ltr" itemscope itemtype="http://schema.org/Organization">
-        <span itemprop="name">Mozilla Corporation</span><br>
-        <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-          {{ _('Attn:') }} <span itemprop="name">Legal Notices - Privacy</span><br>
-          <span itemprop="streetAddress">331 E. Evelyn Ave</span>,<br>
-          <span itemprop="addressLocality">Mountain View</span>,
-          <span itemprop="addressRegion">CA</span>
-          <span itemprop="postalCode">94041</span><br>
-          <span itemprop="email"><a href="mailto:compliance@mozilla.com">compliance@mozilla.com</a></span>
-        </span>
-      </p>
+    <p>{{ ftl('privacy-index-see-here-for-data-subject', dsar='https://app.onetrust.com/app/#/webform/4ba08202-2ede-4934-a89e-f0b0870f95f0') }}</p>
 
-    {% if l10n_has_tag('privacy_email_2019') %}
-      <p>
-      {% trans dsar='https://app.onetrust.com/app/#/webform/4ba08202-2ede-4934-a89e-f0b0870f95f0' %}
-        <a href="{{ dsar }}">See here for Data Subject Access Requests.</a>
-      {% endtrans %}
-      </p>
-    {% endif %}
-
-    {% if l10n_has_tag('privacy_sumo_032020') %}
-      <p>
-      {% trans sumo='https://support.mozilla.org/' %}
-        For product support requests, please <a href="{{ sumo }}">visit our forums</a>.
-      {% endtrans %}
-      </p>
-    {% endif %}
+    <p>{{ ftl('privacy-index-for-product-support-requests', sumo='https://support.mozilla.org/') }}</p>
   </section>
 {% endblock %}
 
 
 {% block side_extra %}
+  {% if ftl_has_messages('privacy-index-data-privacy-principles', 'privacy-index-mozillas-data-privacy-principles') %}
   <section id="side-principles" class="side-reference">
-    <h2 class="side-reference-title">{{ _('Data Privacy Principles') }}</h2>
-    <p>
-      {% if l10n_has_tag('updates-072018') %}
-      {%- trans principles=url('privacy.principles'), faq=url('privacy.faq') -%}
-        Mozilla's <a href="{{ principles }}">Data Privacy Principles</a> inspire our
-        practices that respect and protect people who use the Internet. Learn how
-        these principles shape Firefox and all of our products in this
-        <a href="{{ faq }}">FAQ</a>.
-      {%- endtrans -%}
-      {% elif l10n_has_tag('updates-052018') %}
-      {%- trans faq=url('privacy.faq') -%}
-        Mozilla's Data Privacy Principles inspire our practices that respect and
-        protect people who use the Internet. Learn how these principles shape
-        Firefox and all of our products in this <a href="{{ faq }}">FAQ</a>.
-      {%- endtrans -%}
-      {% else %}
-        {%- trans link=url('privacy.principles') -%}
-          Mozilla is an open source project with a mission to improve your Internet
-          experience. This is a driving force behind our data privacy practices.
-          <a href="{{ link }}">Read More</a>
-        {%- endtrans -%}
-      {% endif %}
-    </p>
+    <h2 class="side-reference-title">{{ ftl('privacy-index-data-privacy-principles') }}</h2>
+    <p>{{ ftl('privacy-index-mozillas-data-privacy-principles', principles=url('privacy.principles'), faq=url('privacy.faq')) }}</p>
   </section>
-  {% if l10n_has_tag('updates-052018') %}
-    <section id="side-transparency" class="side-reference">
-      <h2 class="side-reference-title">{{ _('Transparency Report') }}</h2>
-      <p>
-        {%- trans report=url('mozorg.about.policy.transparency.index') -%}
-          As an open source project, transparency and openness are an essential
-          part of Mozilla’s founding principles. Our codebases are open and
-          auditable. Our development work is open. Our bi-annual
-          <a href="{{ report }}">Transparency Report</a> also demonstrates our
-          commitment to these principles.
-        {%- endtrans -%}
-      </p>
-    </section>
   {% endif %}
 
-  <section id="side-involved" class="side-reference">
-    <h2 class="side-reference-title">{{ _('Get Involved') }}</h2>
-    <p>
-      {% set group_url = 'https://groups.google.com/forum/?fromgroups#!forum/mozilla.governance' %}
-      {% if l10n_has_tag('updates-052018') %}
-        {%- trans group=group_url -%}
-          To review and comment on proposed changes to our privacy policies, <a href="{{ group }}">
-          subscribe to Mozilla’s governance group</a>.
-        {%- endtrans -%}
-      {% else %}
-        {%- trans group=group_url -%}
-          To review and comment on proposed changes to our privacy policies <a href="{{ group }}">
-          subscribe to Mozilla’s Governance Group</a>.
-        {%- endtrans -%}
-      {% endif %}
-    </p>
-    <p>
-      {% set blog_url = 'https://blog.mozilla.org/privacy/' %}
-      {% if l10n_has_tag('updates-052018') %}
-        {%- trans blog=blog_url -%}
-          Read more about our ongoing privacy and security public policy work on
-          <a href="{{ blog }}">Mozilla's Open Policy and Advocacy Blog</a>.
-        {%- endtrans -%}
-      {% else %}
-        {%- trans blog=blog_url, wiki='https://wiki.mozilla.org/Privacy' -%}
-          Our ongoing work on privacy is covered by the <a href="{{ blog }}">Privacy &amp; Data Safety
-          Blog</a> and information about our ongoing work is available on <a href="{{ wiki }}">
-          Mozilla’s privacy team wiki</a>.
-        {%- endtrans -%}
-      {% endif %}
-    </p>
+  {% if ftl_has_messages('privacy-index-transparency-report', 'privacy-index-as-an-open-source-project') %}
+  <section id="side-transparency" class="side-reference">
+    <h2 class="side-reference-title">{{ ftl('privacy-index-transparency-report') }}</h2>
+    <p>{{ ftl('privacy-index-as-an-open-source-project', report=url('mozorg.about.policy.transparency.index')) }}</p>
   </section>
+  {% endif %}
+
+  {% if ftl_has_messages('privacy-index-get-involved', 'privacy-index-to-review-and-comment-on-proposed', 'privacy-index-read-more-about-our-ongoing') %}
+  <section id="side-involved" class="side-reference">
+    <h2 class="side-reference-title">{{ ftl('privacy-index-get-involved') }}</h2>
+    <p>{{ ftl('privacy-index-to-review-and-comment-on-proposed', group='https://groups.google.com/forum/?fromgroups#!forum/mozilla.governance') }}</p>
+    <p>{{ ftl('privacy-index-read-more-about-our-ongoing', blog='https://blog.mozilla.org/privacy/') }}</p>
+  </section>
+  {% endif %}
+
   <section id="side-archives" class="side-reference">
-    <h2 class="side-reference-title"><a href="{{ url('privacy.archive.index') }}">{{ _('Outdated Policies') }}</a></h2>
+    <h2 class="side-reference-title"><a href="{{ url('privacy.archive.index') }}">{{ ftl('privacy-index-outdated-policies') }}</a></h2>
   </section>
 {% endblock %}

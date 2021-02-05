@@ -4,8 +4,8 @@
 
 {% extends "privacy/base-protocol.html" %}
 
-{% block page_title %}{{ _('Data Privacy Principles') }}{% endblock %}
-{% block page_desc %}{{ _('Mozilla is an open source project with a mission to improve your Internet experience. This is a driving force behind our privacy practices.') }}{% endblock %}
+{% block page_title %}{{ ftl('privacy-principles-data-privacy-principles') }}{% endblock %}
+{% block page_desc %}{{ ftl('privacy-principles-mozilla-is-an-open-source') }}{% endblock %}
 
 {% block body_id %}privacy-principles{% endblock %}
 {% block body_class %}mzp-t-mozilla{% endblock %}
@@ -14,58 +14,45 @@
   <header>
     <h1 class="mzp-c-article-title" itemprop="name">{{ self.page_title() }}</h1>
     <p itemprop="description">
-      {%- trans link=url('mozorg.about.manifesto') -%}
-        The following five principles stem from the <a href="{{ link }}">Mozilla
-        Manifesto</a> and inform how we:
-      {%- endtrans -%}
+      {{ ftl('privacy-principles-the-following-five-principles', link=url('mozorg.about.manifesto')) }}
     </p>
     <ul class="mzp-u-list-styled">
-      <li>{{ _('develop our products and services') }}</li>
-      <li>{{ _('manage user data we collect') }}</li>
-      <li>{{ _('select and interact with partners') }}</li>
-      <li>{{ _('shape our public policy and advocacy work') }}</li>
+      <li>{{ ftl('privacy-principles-develop-our-products') }}</li>
+      <li>{{ ftl('privacy-principles-manage-user-data-we-collect') }}</li>
+      <li>{{ ftl('privacy-principles-select-and-interact-with') }}</li>
+      <li>{{ ftl('privacy-principles-shape-our-public-policy') }}</li>
     </ul>
   </header>
   <div itemprop="articleBody" class="mzp-c-article">
     <ol class="mzp-u-list-styled">
       <li>
-        <h2>{{ _('No surprises') }}</h2>
+        <h2>{{ ftl('privacy-principles-no-surprises') }}</h2>
         <p>
-          {%- trans -%}
-            Use and share information in a way that is transparent and benefits the user.
-          {%- endtrans -%}
+          {{ ftl('privacy-principles-use-and-share-information') }}
         </p>
       </li>
       <li>
-        <h2>{{ _('User control') }}</h2>
+        <h2>{{ ftl('privacy-principles-user-control') }}</h2>
         <p>
-          {%- trans -%}
-            Develop products and advocate for best practices that put users in control of their data and online experiences.
-          {%- endtrans -%}
+          {{ ftl('privacy-principles-develop-products-and') }}
         </p>
       </li>
       <li>
-        <h2>{{ _('Limited data') }}</h2>
+        <h2>{{ ftl('privacy-principles-limited-data') }}</h2>
         <p>
-          {%- trans -%}
-            Collect what we need, de-identify where we can and delete when no longer necessary.
-          {%- endtrans -%}
+          {{ ftl('privacy-principles-collect-what-we-need') }}
         </p>
       </li>
       <li>
-        <h2>{{ _('Sensible settings') }}</h2>
+        <h2>{{ ftl('privacy-principles-sensible-settings') }}</h2>
         <p>
-          {%- trans -%}
-            Design for a thoughtful balance of safety and user experience.
-          {%- endtrans -%}
+          {{ ftl('privacy-principles-design-for-a-thoughtful') }}
         </p>
       </li>
       <li>
-        <h2>{{ _('Defense in depth') }}</h2>
+        <h2>{{ ftl('privacy-principles-defense-in-depth') }}</h2>
         <p>
-          {%- trans -%}
-            Maintain multi-layered security controls and practices, many of which are publicly verifiable.
-          {%- endtrans -%}
+          {{ ftl('privacy-principles-maintain-multi-layered') }}
         </p>
       </li>
     </ol>

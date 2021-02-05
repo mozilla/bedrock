@@ -225,3 +225,6 @@ locales = [
         "pt-BR",
         "ru"
     ]
+[[paths]]
+    reference = "en/privacy/*.ftl"
+    l10n = "{locale}/privacy/*.ftl"
