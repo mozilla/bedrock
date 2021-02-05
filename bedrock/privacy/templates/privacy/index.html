@@ -39,7 +39,7 @@
     <p lang="en" dir="ltr" itemscope itemtype="http://schema.org/Organization">
       <span itemprop="name">Mozilla Corporation</span><br>
       <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-        {{ _('Attn:') }} <span itemprop="name">Mozilla - Privacy</span><br>
+        Attn: <span itemprop="name">Mozilla - Privacy</span><br>
         <span itemprop="streetAddress">2 Harrison St., # 175</span>,<br>
         <span itemprop="addressLocality">San Francisco</span>,
         <span itemprop="addressRegion">CA</span>
@@ -49,13 +49,9 @@
       </span>
     </p>
 
-    {% if ftl_has_messages('privacy-index-see-here-for-data-subject') %}
     <p>{{ ftl('privacy-index-see-here-for-data-subject', dsar='https://app.onetrust.com/app/#/webform/4ba08202-2ede-4934-a89e-f0b0870f95f0') }}</p>
-    {% endif %}
 
-    {% if ftl_has_messages('privacy-index-for-product-support-requests') %}
     <p>{{ ftl('privacy-index-for-product-support-requests', sumo='https://support.mozilla.org/') }}</p>
-    {% endif %}
   </section>
 {% endblock %}
 
