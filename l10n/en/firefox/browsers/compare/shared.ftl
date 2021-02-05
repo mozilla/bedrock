@@ -52,7 +52,7 @@ compare-shared-the-comparisons-made-here-updated = The comparisons made here wer
 
 # Obsolete string
 compare-shared-the-comparisons-made-here = The comparisons made here were done so across browser release versions as follows:
-compare-shared-this-page-updated-semi-quarterly = This page updated semi-quarterly to reflect latest versioning and may not always reflect latest updates.
+compare-shared-this-page-updated-semi-quarterly = This page is updated semi-quarterly to reflect latest versioning and may not always reflect latest updates.
 compare-shared-brand-name-firefox = { -brand-name-firefox }
 compare-shared-brand-name-chrome = { -brand-name-chrome }
 compare-shared-brand-name-edge = { -brand-name-edge }
