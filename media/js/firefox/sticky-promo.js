@@ -93,7 +93,7 @@
             var footer = document.querySelector('.c-footer');
             if (footer) {
                 footer.classList.add('is-intersecting-sticky-overlay');
-                document.addEventListener('scroll', checkForFooterOnScroll, true);
+                document.addEventListener('scroll', checkForFooterOnScroll, false);
             }
 
             // Set Close Button event
