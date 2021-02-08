@@ -8,7 +8,7 @@
 privacy-principles-data-privacy-principles = Data Privacy Principles
 
 # HTML page description
-privacy-principles-mozilla-is-an-open-source = { -brand-name-mozilla } is an open source project with a mission to improve your Internet experience. This is a driving force behind our privacy practices.
+privacy-principles-mozilla-is-an-open-source = { -brand-name-mozilla } is an open source project with a mission to improve your internet experience. This is a driving force behind our privacy practices.
 
 # Variables:
 #   $link (url) - link to https://www.mozilla.org/about/manifesto/
