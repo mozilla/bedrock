@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-### URL: https://www-dev.allizom.org/privacy
+### URL: https://www-dev.allizom.org/privacy/
 
 # HTML page title
 privacy-index-mozilla-privacy = { -brand-name-mozilla } Privacy
@@ -21,7 +21,7 @@ privacy-index-data-privacy-principles = Data Privacy Principles
 # Variables:
 #   $principles (url) - link to https://www.mozilla.org/privacy/principles/
 #   $faq (url) - link to https://www.mozilla.org/privacy/faq/
-privacy-index-mozillas-data-privacy-principles = { -brand-name-mozilla }'s <a href="{ $principles }">Data Privacy Principles</a> inspire our practices that respect and protect people who use the Internet. Learn how these principles shape { -brand-name-firefox } and all of our products in this <a href="{ $faq }">FAQ</a>
+privacy-index-mozillas-data-privacy-principles = { -brand-name-mozilla }’s <a href="{ $principles }">Data Privacy Principles</a> inspire our practices that respect and protect people who use the internet. Learn how these principles shape { -brand-name-firefox } and all of our products in this <a href="{ $faq }">FAQ</a>
 privacy-index-transparency-report = Transparency Report
 privacy-index-get-involved = Get Involved
 
@@ -35,7 +35,7 @@ privacy-index-to-review-and-comment-on-proposed = To review and comment on propo
 
 # Variables:
 #   $blog (url) - link to https://blog.mozilla.org/privacy/
-privacy-index-read-more-about-our-ongoing = Read more about our ongoing privacy and security public policy work on <a href="{ $blog }">{ -brand-name-mozilla }'s Open Policy and Advocacy Blog</a>.
+privacy-index-read-more-about-our-ongoing = Read more about our ongoing privacy and security public policy work on <a href="{ $blog }">{ -brand-name-mozilla }’s Open Policy and Advocacy Blog</a>.
 privacy-index-outdated-policies = Outdated Policies
 privacy-index-mozilla-websites-communications = { -brand-name-mozilla } Websites, Communications & Cookies
 privacy-index-firefox-browser = { -brand-name-firefox-browser }
