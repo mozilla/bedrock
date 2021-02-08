@@ -2,8 +2,6 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% add_lang_files "privacy/index" %}
-
 {% extends "privacy/base-protocol.html" %}
 
 {% block body_class %}{{ super() }} format-none{% endblock %}
@@ -18,8 +16,7 @@
 {% block side_extra %}
   <section id="side-archives" class="side-reference">
     <h2 class="side-reference-title">
-      <a href="{{ url('privacy.archive.index') }}">{{ _('Outdated Policies') }}</a>
+      <a href="{{ url('privacy.archive.index') }}">{{ ftl('privacy-index-outdated-policies') }}</a>
     </h2>
   </section>
 {% endblock %}
-
