@@ -18,15 +18,3 @@ from pages.firefox.features.feature import FeaturePage
 def test_download_button_is_displayed(slug, base_url, selenium):
     page = FeaturePage(selenium, base_url, slug=slug).open()
     assert page.download_button.is_displayed
-
-
-@pytest.mark.skip_if_firefox(reason='Sticky promo is displayed only to non-Firefox users')
-@pytest.mark.nondestructive
-@pytest.mark.parametrize('slug', [
-    ('private-browsing')])
-def test_sticky_promo(slug, base_url, selenium):
-    page = FeaturePage(selenium, base_url, slug=slug).open()
-    page.init_promo()
-    assert page.promo.is_displayed
-    page.promo.close()
-    assert not page.promo.is_displayed
