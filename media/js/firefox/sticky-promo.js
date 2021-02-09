@@ -83,16 +83,17 @@
                 // Animate it back in when the footer leaves the viewport
                 // if the user did not dismiss it.
                 if (isInViewport(footer)) {
-                    promo.classList.replace('mzp-a-slide-in', 'mzp-a-fade-out');
+                    promo.classList.remove('mzp-a-slide-in');
+                    promo.classList.add('mzp-a-fade-out');
                 } else if (!promo.classList.contains('user-dismiss')) {
-                    promo.classList.replace('mzp-a-fade-out', 'mzp-a-slide-in');
+                    promo.classList.remove('mzp-a-fade-out');
+                    promo.classList.add('mzp-a-slide-in');
                 }
             }, 100);
 
             // Add modifier class to the footer to make sure the language selection drop-down is not obscured by the sticky promo
             var footer = document.querySelector('.c-footer');
             if (footer) {
-                footer.classList.add('is-intersecting-sticky-overlay');
                 document.addEventListener('scroll', checkForFooterOnScroll, false);
             }
 
