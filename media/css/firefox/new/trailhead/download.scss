@@ -12,12 +12,10 @@ $image-path: '/media/protocol/img';
 @import '../../../../protocol/css/templates/card-layout';
 
 
-.mzp-c-hero.mzp-t-dark {
-    @include background-size(auto 100%);
-    background-color: $color-ink-80;
+.mzp-c-hero {
 
     .mzp-c-hero-title {
-        @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-white-sm.png', 260px, 48px);
+        @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-sm.png', 260px, 48px);
         background-position: top center;
         background-repeat: no-repeat;
         padding-top: $layout-xl;
@@ -33,33 +31,51 @@ $image-path: '/media/protocol/img';
         box-shadow: $box-shadow-sm;
     }
 
+    .c-intro-download {
+        .mzp-c-button-download-container {
+            margin-bottom: 0;
+        }
+    }
+
     .small-links {
-        @include text-body-xs;
-        @include white-links;
-        margin-top: $spacing-2xl;
+        & {
+            @include text-body-xs;
+            color: $color-dark-gray-30;
+            display: block;
+        }
 
         li {
-            line-height: 2.5;
+            margin-top: $spacing-md;
+        }
+
+        a:link,
+        a:visited {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            text-decoration: underline;
         }
 
         .platform-modal-button {
             @include text-body-xs;
             background: none;
             border: none;
-            color: $color-white;
+            color: $color-dark-gray-30;
             cursor: pointer;
-            text-decoration: underline;
             margin: 0;
             padding: 0;
 
-            @media #{$mq-md} {
-                @include bidi(((text-align, left, right),));
-            }
-
-            &:active,
             &:focus,
             &:hover {
-                text-decoration: none;
+                text-decoration: underline;
+            }
+
+            @media #{$mq-md} {
+                @include bidi(((text-align, left, right),));
             }
 
             // Hide modal link for Linux users on Arm as they already get alternate messaging.
@@ -79,13 +95,8 @@ $image-path: '/media/protocol/img';
     }
 
     @media #{$mq-md} {
-        @include bidi((
-            (background-image, url('/media/img/firefox/new/trailhead/hero-bg.svg'), url('/media/img/firefox/new/trailhead/hero-bg-rtl.svg')),
-            (background-position, top right -600px, top left -600px),
-        ));
-        background-repeat: no-repeat;
 
-        .mzp-c-hero-title {
+        &.mzp-has-image .mzp-c-hero-title {
             @include bidi(((background-position, top left, top right),));
         }
 
@@ -95,6 +106,12 @@ $image-path: '/media/protocol/img';
 
         .mzp-c-hero-desc {
             max-width: 21em;
+        }
+
+        .c-intro-download {
+            .mzp-c-button-download-container {
+                @include bidi(((text-align, left, right),));
+            }
         }
     }
 
