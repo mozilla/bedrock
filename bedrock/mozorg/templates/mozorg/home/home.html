@@ -6,18 +6,10 @@
 
 {% extends "base-protocol-mozilla.html" %}
 
-{% add_lang_files "mozorg/home/index-quantum" %}
-
 {% block gtm_page_id %}data-gtm-page-id="Homepage"{% endblock %}
 
-{% block page_title %}
-{{ _('Internet for people, not profit') }}
-{% endblock %}
-
-{% block page_desc %}
-{{ _('Did you know? Mozilla — the maker of Firefox — fights to keep the Internet a global public resource, open and
-accessible to all.') }}
-{% endblock %}
+{% block page_title %}{{ ftl('home-internet-for-people-not-profit') }}{% endblock %}
+{% block page_desc %}{{ ftl('home-did-you-know-mozilla-the-maker') }}{% endblock %}
 
 {% block body_class %}lang-{{ LANG }}{% endblock %}
 
@@ -59,11 +51,10 @@ accessible to all.') }}
   ) %}
 
   <h2 class="c-primary-cta-logo"><img alt="Firefox" src="{{ static('protocol/img/logos/firefox/logo-word-hor.svg') }}" height="40" width="125"></h2>
-  <h3 class="c-primary-cta-title">{{ _('Fast for good.') }}</h3>
+  <h3 class="c-primary-cta-title">{{ ftl('home-fast-for-good') }}</h3>
 
   <p class="c-primary-cta-desc">
-    {{ _('With 2x the speed, built-in privacy protection and Mozilla behind it, the new Firefox is the better way to
-    browse.') }}
+    {{ ftl('home-with-2x-the-speed-built-in') }}
   </p>
 
   {{ download_firefox_thanks(dom_id='download-intro', download_location='primary cta') }}
@@ -71,51 +62,29 @@ accessible to all.') }}
 
   <div class="mzp-l-content mzp-t-mozilla">
     {{ billboard(
-    title=_('We make the internet safer, healthier and faster for good.'),
-    desc=_('Mozilla is the not-for-profit behind Firefox, the original alternative
-    browser. We create products and policy to keep the internet in service
-    of people, not profit.'),
+    title=ftl('home-we-make-the-internet-safer'),
+    desc=ftl('home-mozilla-is-the-not-for-profit'),
     image_url='img/home/dino.svg'
     )}}
 
     <section class="c-column-container">
       <div class="c-column">
         <div class="c-column-content">
-          <h2>{{ _('Our impact') }}</h2>
-          <p>
-            {% if l10n_has_tag('home-update-20171116') %}
-              {% trans %}
-              When you use Firefox, you help Mozilla fight misinformation online,
-              teach digital skills and make the comments section more human.
-              Check out what helps create a healthier internet.
-              {% endtrans %}
-            {% elif l10n_has_tag('mozorg-home-impact-health') %}
-              {% trans %}
-              Working to keep the Internet healthy, open and accessible to all, we
-              teach web literacy, provide tools and advocate on behalf of every
-              individual who values the Internet as a global public resource.
-              {% endtrans %}
-            {% else %}
-              {% trans %}
-              Working at the grassroots and policy levels, we teach web literacy,
-              provide tools and advocate on behalf of every individual who values
-              an internet built on fairness, inclusion and respect.
-              {% endtrans %}
-            {% endif %}
-          </p>
+          <h2>{{ ftl('home-our-impact') }}</h2>
+          <p>{{ ftl('home-when-you-use-firefox-you-help') }}</p>
 
           <ul class="mzp-u-list-styled">
             <li>
-              <a class="mzp-c-cta-link" rel="external" href="https://blog.mozilla.org/blog/2017/08/08/mozilla-information-trust-initiative-building-movement-fight-misinformation-online/{{ referrals }}">{{ _('Mozilla Information Trust Initiative') }}</a>
+              <a class="mzp-c-cta-link" rel="external" href="https://blog.mozilla.org/blog/2017/08/08/mozilla-information-trust-initiative-building-movement-fight-misinformation-online/{{ referrals }}">{{ ftl('home-mozilla-information-trust-initiative') }}</a>
             </li>
             <li>
-              <a class="mzp-c-cta-link" rel="external" href="https://learning.mozilla.org/blog/new-partnership-with-un-women-to-teach-key-digital-skills-to-women/{{ referrals }}">{{ _('Empowering Women Online') }}</a>
+              <a class="mzp-c-cta-link" rel="external" href="https://learning.mozilla.org/blog/new-partnership-with-un-women-to-teach-key-digital-skills-to-women/{{ referrals }}">{{ ftl('home-empowering-women-online') }}</a>
             </li>
             <li>
-              <a class="mzp-c-cta-link" rel="external" href="https://blog.mozilla.org/blog/2017/09/06/mozilla-washington-post-reinventing-online-comments/{{ referrals }}">{{ _('The Coral Project') }}</a>
+              <a class="mzp-c-cta-link" rel="external" href="https://blog.mozilla.org/blog/2017/09/06/mozilla-washington-post-reinventing-online-comments/{{ referrals }}">{{ ftl('home-the-coral-project') }}</a>
             </li>
             <li>
-              <a class="mzp-c-cta-link" rel="external" href="https://internethealthreport.org/{{ referrals }}">{{ _('Read our Internet Health Report') }}</a>
+              <a class="mzp-c-cta-link" rel="external" href="https://internethealthreport.org/{{ referrals }}">{{ ftl('home-read-our-internet-health-report') }}</a>
             </li>
           </ul>
         </div>
@@ -123,21 +92,17 @@ accessible to all.') }}
 
       <div class="c-column">
         <div class="c-column-content">
-          <h2>{{ _('Our innovations') }}</h2>
+          <h2>{{ ftl('home-our-innovations') }}</h2>
           <p>
-            {% trans %}
-            Using the web as the platform, we build open, innovative
-            technologies that allow developers to work free of closed, corporate
-            ecosystems and create faster, safer web experiences for us all.
-            {% endtrans %}
+            {{ ftl('home-using-the-web-as-the-platform') }}
           </p>
 
           <ul class="mzp-u-list-styled">
             <li>
-              <a class="mzp-c-cta-link" rel="external" href="https://voice.mozilla.org/{{ referrals }}">{{ _('Common Voice') }}</a>
+              <a class="mzp-c-cta-link" rel="external" href="https://voice.mozilla.org/{{ referrals }}">{{ ftl('home-common-voice') }}</a>
             </li>
             <li>
-              <a class="mzp-c-cta-link" rel="external" href="https://vr.mozilla.org/{{ referrals }}">{{ _('Virtual Reality Platform') }}</a>
+              <a class="mzp-c-cta-link" rel="external" href="https://vr.mozilla.org/{{ referrals }}">{{ ftl('home-virtual-reality-platform') }}</a>
             </li>
             <li>
               <a class="mzp-c-cta-link" rel="external" href="https://research.mozilla.org/servo-engines/{{ referrals }}">{{ _('Servo') }}</a>
@@ -157,10 +122,10 @@ accessible to all.') }}
           custom_desc=True,
           class='extensions') %}
           <a class="mzp-c-cta-link" rel="external" href="https://addons.mozilla.org/{{ referrals }}">
-            <h2 class="mzp-c-card-picto-title">{{ _('Extensions') }}</h2>
+            <h2 class="mzp-c-card-picto-title">{{ ftl('home-extensions') }}</h2>
           </a>
           <p class="mzp-c-card-picto-desc">
-            {{ _('Personalize Firefox with your favorite extras like password managers, ad blockers and more.') }}
+            {{ ftl('home-personalize-firefox-with-your') }}
           </p>
           {% endcall %}
         </li>
@@ -169,10 +134,10 @@ accessible to all.') }}
           custom_desc=True,
           class='careers') %}
           <a class="mzp-c-cta-link" rel="external" href="https://careers.mozilla.org/{{ referrals }}">
-            <h2 class="mzp-c-card-picto-title">{{ _('Careers') }}</h2>
+            <h2 class="mzp-c-card-picto-title">{{ ftl('home-careers') }}</h2>
           </a>
           <p class="mzp-c-card-picto-desc">
-            {{ _('Learn about the benefits of working at Mozilla and view open positions around the world.') }}
+            {{ ftl('home-learn-about-the-benefits-of') }}
           </p>
           {% endcall %}
         </li>
@@ -181,10 +146,10 @@ accessible to all.') }}
           custom_desc=True,
           class='help') %}
           <a class="mzp-c-cta-link" rel="external" href="https://support.mozilla.org/{{ referrals }}">
-            <h2 class="mzp-c-card-picto-title">{{ _('Need help?') }}</h2>
+            <h2 class="mzp-c-card-picto-title">{{ ftl('home-need-help') }}</h2>
           </a>
           <p class="mzp-c-card-picto-desc">
-            {{ _('Get answers to your questions about Firefox and all Mozilla products from our support team.') }}
+            {{ ftl('home-get-answers-to-your-questions') }}
           </p>
           {% endcall %}
         </li>
@@ -200,7 +165,7 @@ accessible to all.') }}
         {{ email_newsletter_form(
         newsletters='mozilla-and-you',
         button_class='button-dark',
-        submit_text=_('Sign up now')
+        submit_text=ftl('home-sign-up-now')
         )}}
       </div>
     </aside>
