@@ -16,7 +16,9 @@ def test_download_menu_list_displays(base_url, selenium):
 
 
 @pytest.mark.nondestructive
-@pytest.mark.skip_if_not_firefox(reason='FB Container link shown only to Firefox users.')
-def test_fb_container_fx(base_url, selenium):
+def test_sticky_promo(base_url, selenium):
     page = FirefoxHomePage(selenium, base_url).open()
-    assert page.fb_container_is_displayed
+    page.init_promo()
+    assert page.promo.is_displayed
+    page.promo.close()
+    assert not page.promo.is_displayed

@@ -6,7 +6,6 @@ from selenium.webdriver.common.by import By
 
 from pages.base import BasePage
 from pages.regions.download_button import DownloadButton
-from pages.regions.sticky_promo import StickyPromo
 
 
 class WhatIsABrowserPage(BasePage):
@@ -15,7 +14,6 @@ class WhatIsABrowserPage(BasePage):
 
     _primary_download_button_locator = (By.ID, 'download-button-primary')
     _secondary_download_button_locator = (By.ID, 'download-button-secondary')
-    _sticky_promo_modal_content_locator = (By.CSS_SELECTOR, '.mzp-c-sticky-promo.mzp-a-slide-in')
 
     @property
     def primary_download_button(self):
@@ -27,22 +25,7 @@ class WhatIsABrowserPage(BasePage):
         el = self.find_element(*self._secondary_download_button_locator)
         return DownloadButton(self, root=el)
 
-    def wait_for_page_to_load(self):
-        el = self.find_element(By.TAG_NAME, 'html')
-        self.wait.until(lambda s: 'loaded' in el.get_attribute('class'))
-
-        # Sticky promo is shown to non-Firefox browsers only.
-        if self.selenium.capabilities.get('browserName').lower() != 'firefox':
-            promo = self.find_element(*self._sticky_promo_modal_content_locator)
-            self.wait.until(lambda s: 'is-displayed' in promo.get_attribute('class'))
-
-        return self
-
     @property
     def download_button(self):
         el = self.find_element(*self._download_button_locator)
         return DownloadButton(self, root=el)
-
-    @property
-    def promo(self):
-        return StickyPromo(self)

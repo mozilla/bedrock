@@ -34,14 +34,3 @@ def test_download_buttons_are_displayed(slug, base_url, selenium):
     page = BrowserComparisonPage(selenium, base_url, slug=slug).open()
     assert page.primary_download_button.is_displayed
     assert page.secondary_download_button.is_displayed
-
-
-@pytest.mark.skip_if_firefox(reason='Sticky promo is displayed only to non-Firefox users')
-@pytest.mark.nondestructive
-@pytest.mark.parametrize('slug', [
-    ('chrome')])
-def test_sticky_promo(slug, base_url, selenium):
-    page = BrowserComparisonPage(selenium, base_url, slug=slug).open()
-    assert page.promo.is_displayed
-    page.promo.close()
-    assert not page.promo.is_displayed
