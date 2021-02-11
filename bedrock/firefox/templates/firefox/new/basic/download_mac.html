@@ -1,0 +1,36 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/new/basic/base_platform.html" %}
+
+{% block experiments %}{% endblock %}
+
+{% set meta_title_prefix = ftl('firefox-new-download-firefox-for-macos', fallback='new-platform-download-mozilla-firefox-mac') %}
+{% set meta_title = ftl('firefox-new-free-web-browser', fallback='new-platform-free-web-browser') %}
+{% set og_title = ftl('new-platform-download-the-fastest-mac', fallback='firefox-new-download-firefox-for-macos') %}
+
+{% if ftl_file_is_active('firefox/new/platform') %}
+  {% set meta_desc = ftl('new-platform-download-mozilla-firefox-desc-mac') %}
+  {% set og_desc = ftl('new-platform-faster-page-loading-mac') %}
+{% endif %}
+
+{# hero #}
+{% set hero_title =  ftl('firefox-new-download-firefox-for-macos', fallback='new-platform-download-mozilla-firefox-mac')|safe %}
+
+{# cards #}
+{% set card1_title = ftl('new-platform-privacy-comes-first') %}
+{% set card1_desc = ftl('new-platform-firefox-doesnt-spy') %}
+{% set card1_class = 'private' %}
+
+{% set card2_title = ftl('new-platform-2x-faster') %}
+{% set card2_desc = ftl('new-platform-get-speed-and-security') %}
+{% set card2_class = 'faster' %}
+
+{% set card3_title = ftl('new-platform-block-trackers') %}
+{% set card3_desc = ftl('new-platform-be-the-master-of-your') %}
+{% set card3_class = 'blocker' %}
+
+{% block structured_data %}
+  {% include 'includes/structured-data/software/firefox-mac-software.json' %}
+{% endblock %}

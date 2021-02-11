@@ -4,7 +4,7 @@
 
 {% from "macros-protocol.html" import call_out, picto_card with context %}
 
-{% extends "firefox/new/trailhead/base.html" %}
+{% extends "firefox/new/basic/base.html" %}
 
 {# FxA automated tests use this attribute to verify the page #}
 {% block html_attrs %}data-test-fxa-template="firefox-download-thanks"{% endblock %}
@@ -68,13 +68,6 @@
       {{ download_firefox(force_direct=true, dom_id='thanks-download-button') }}
     </div>
   </section>
-
-  <ul class="mzp-l-card-quarter mzp-l-content show-windows show-mac show-else">
-    {{ picto_card(desc=ftl('firefox-new-its-privacy-and-peace-of'), class='devices') }}
-    {{ picto_card(desc=ftl('firefox-new-its-a-family-of-products'), class='products') }}
-    {{ picto_card(desc=ftl('firefox-new-its-everything-you-need-to'), class='safety') }}
-    {{ picto_card(desc=ftl('firefox-new-its-a-community-that-believes'), class='community') }}
-  </ul>
 
   <p class="mzp-l-content download-another-language-link">
     <a href="{{ firefox_url('desktop', 'all') }}">{{ ftl('firefox-new-download-in-another-language') }}</a>

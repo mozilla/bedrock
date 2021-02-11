@@ -31,3 +31,8 @@ def ftl(ctx, message_id, fallback=None, **kwargs):
 def ftl_has_messages(ctx, *message_ids, require_all=True):
     """Return True if the current translation has all of the message IDs."""
     return fluent.ftl_has_messages(ctx['fluent_l10n'], *message_ids, require_all=require_all)
+
+
+@library.global_function
+def ftl_file_is_active(ftl_file):
+    return fluent.ftl_file_is_active(ftl_file)

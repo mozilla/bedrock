@@ -131,9 +131,9 @@ urlpatterns = (
     page('firefox/pocket', 'firefox/pocket.html'),
 
     # Issue 6604, SEO firefox/new pages
-    page('firefox/windows', 'firefox/new/protocol/download_windows.html', ftl_files=['firefox/new/platform']),
-    page('firefox/mac', 'firefox/new/protocol/download_mac.html', ftl_files=['firefox/new/platform']),
-    page('firefox/linux', 'firefox/new/protocol/download_linux.html', ftl_files=['firefox/new/platform']),
+    url('firefox/linux', views.PlatformViewLinux.as_view(), name='firefox.linux'),
+    url('firefox/mac', views.PlatformViewMac.as_view(), name='firefox.mac'),
+    url('firefox/windows', views.PlatformViewWindows.as_view(), name='firefox.windows'),
 
     page('firefox/browsers/compare', 'firefox/browsers/compare/index.html',
          ftl_files=['firefox/browsers/compare/index', 'firefox/browsers/compare/shared']),

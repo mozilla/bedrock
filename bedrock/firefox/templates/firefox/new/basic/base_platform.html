@@ -1,0 +1,36 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/new/basic/base_download.html" %}
+
+{% block experiments %}{% endblock %}
+
+{# This template can render with EITHER 'firefox/new/download.ftl' OR 'firefox/new/platform.ftl' active
+ # download.ftl contains strings for the hero and small-links for the platform pages
+ # platform.ftl contains strings for the hero, small-links, and features sections for the platform pages
+ # the view for the platform pages will activate the locale if either language file is active  #}
+
+{% block extrahead %}
+ {{ super() }}
+ {{ css_bundle('firefox_new_platform') }}
+{% endblock %}
+
+{% if ftl_file_is_active('firefox/new/platform') %}
+  {% set small_advanced = ftl('new-platform-advanced-install-options') %}
+  {% set small_lang = ftl('new-platform-download-in-another') %}
+  {% set small_help = ftl('new-platform-need-help') %}
+{# else it will fall back to the strings from new/download.ftl specified in base_download #}
+{% endif %}
+
+{% block features %}
+  {% if ftl_file_is_active('firefox/new/platform') %}
+    <section class="features t-platform">
+      <ul class="mzp-l-card-third mzp-l-content">
+        {{ picto_card(title=card1_title, desc=card1_desc, class=card1_class) }}
+        {{ picto_card(title=card2_title, desc=card2_desc, class=card2_class) }}
+        {{ picto_card(title=card3_title, desc=card3_desc, class=card3_class) }}
+      </ul>
+    </section>
+  {% endif %}
+{% endblock %}

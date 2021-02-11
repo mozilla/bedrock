@@ -2,7 +2,7 @@
   "@context": "https://schema.org/",
   "@type": "SoftwareApplication",
   "@id": "{{ structured_data_id('firefoxwindows') }}",
-  "url": "{% filter absolute_url %}{{ url('firefox.new.protocol.download_windows') }}{% endfilter %}",
+  "url": "{% filter absolute_url %}{{ url('firefox.windows') }}{% endfilter %}",
   "name": "Firefox Browser Windows",
   "image": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}{% endfilter %}",
   "alternateName": [

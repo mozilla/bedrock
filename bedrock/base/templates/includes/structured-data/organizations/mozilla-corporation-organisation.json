@@ -116,7 +116,7 @@
     "logo": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}{% endfilter %}",
     "image": [
       "{% filter absolute_url %}{{ static('img/structured-data/browser-1.png') }}{% endfilter %}",
-      "{% filter absolute_url %}{{ static('img/firefox/new/trailhead/browser-window.svg') }}{% endfilter %}",
+      "{% filter absolute_url %}{{ static('img/firefox/new/basic/browser-window.svg') }}{% endfilter %}",
       "{% filter absolute_url %}{{ static('img/structured-data/browser-3.png') }}{% endfilter %}"
     ],
     "name": "Firefox Browser",
@@ -272,7 +272,7 @@
   {
     "@type": "Product",
     "@id": "{{ structured_data_id('firefoxlinux') }}",
-    "url": "{% filter absolute_url %}{{ url('firefox.new.protocol.download_linux') }}{% endfilter %}",
+    "url": "{% filter absolute_url %}{{ url('firefox.linux') }}{% endfilter %}",
     "logo": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}{% endfilter %}",
     "image": [
       "{% filter absolute_url %}{{ static('img/structured-data/browser-2.png') }}{% endfilter %}",
@@ -291,7 +291,7 @@
     "offers":
     {
       "@type": "Offer",
-      "url": "{% filter absolute_url %}{{ url('firefox.new.protocol.download_linux') }}{% endfilter %}",
+      "url": "{% filter absolute_url %}{{ url('firefox.linux') }}{% endfilter %}",
       "priceCurrency": "USD",
       "price": "0",
       "availability": "https://schema.org/InStock"
@@ -357,7 +357,7 @@
   {
     "@type": "Product",
     "@id": "{{ structured_data_id('firefoxmac') }}",
-    "url": "{% filter absolute_url %}{{ url('firefox.new.protocol.download_mac') }}{% endfilter %}",
+    "url": "{% filter absolute_url %}{{ url('firefox.mac') }}{% endfilter %}",
     "logo": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}{% endfilter %}",
     "image": [
       "{% filter absolute_url %}{{ static('img/structured-data/browser-2.png') }}{% endfilter %}",
@@ -376,7 +376,7 @@
     "offers":
     {
       "@type": "Offer",
-      "url": "{% filter absolute_url %}{{ url('firefox.new.protocol.download_mac') }}{% endfilter %}",
+      "url": "{% filter absolute_url %}{{ url('firefox.mac') }}{% endfilter %}",
       "priceCurrency": "USD",
       "price": "0",
       "availability": "https://schema.org/InStock"
@@ -449,11 +449,11 @@
   {
     "@type": "Product",
     "@id": "{{ structured_data_id('firefoxwindows') }}",
-    "url": "{% filter absolute_url %}{{ url('firefox.new.protocol.download_windows') }}{% endfilter %}",
+    "url": "{% filter absolute_url %}{{ url('firefox.windows') }}{% endfilter %}",
     "logo": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}{% endfilter %}",
     "image": [
       "{% filter absolute_url %}{{ static('img/structured-data/browser-2.png') }}{% endfilter %}",
-      "{% filter absolute_url %}{{ static('img/firefox/new/trailhead/browser-window.svg') }}{% endfilter %}",
+      "{% filter absolute_url %}{{ static('img/firefox/new/basic/browser-window.svg') }}{% endfilter %}",
       "{% filter absolute_url %}{{ static('img/structured-data/browser-win-3.png') }}{% endfilter %}"
     ],
     "name": "Firefox Browser Windows",
@@ -468,7 +468,7 @@
     "offers":
     {
       "@type": "Offer",
-      "url": "{% filter absolute_url %}{{ url('firefox.new.protocol.download_windows') }}{% endfilter %}",
+      "url": "{% filter absolute_url %}{{ url('firefox.windows') }}{% endfilter %}",
       "priceCurrency": "USD",
       "price": "0",
       "availability": "https://schema.org/InStock"

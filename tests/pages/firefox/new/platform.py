@@ -6,16 +6,13 @@ from selenium.webdriver.common.by import By
 
 from pages.base import BasePage
 from pages.regions.download_button import DownloadButton
-from pages.regions.modal import ModalProtocol
 
 
 class PlatformDownloadPage(BasePage):
 
     _URL_TEMPLATE = '/{locale}/firefox/{slug}/'
 
-    _download_button_locator = (By.ID, 'download-button-desktop-release')
-    _platforms_modal_link_locator = (By.CLASS_NAME, 'js-platform-modal-button')
-    _platforms_modal_content_locator = (By.CLASS_NAME, 'mzp-u-modal-content')
+    _download_button_locator = (By.ID, 'download-button-thanks')
 
     @property
     def download_button(self):
@@ -28,9 +25,3 @@ class PlatformDownloadPage(BasePage):
         self.download_button.click()
         from pages.firefox.new.thank_you import ThankYouPage
         return ThankYouPage(self.selenium, self.base_url).wait_for_page_to_load()
-
-    def open_other_platforms_modal(self):
-        modal = ModalProtocol(self)
-        self.find_element(*self._platforms_modal_link_locator).click()
-        self.wait.until(lambda s: modal.displays(self._platforms_modal_content_locator))
-        return modal

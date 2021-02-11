@@ -1,0 +1,51 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../../protocol/css/includes/lib';
+@import '../../../../protocol/css/components/picto-card';
+@import '../../../../protocol/css/templates/card-layout';
+
+
+.t-platform .mzp-c-card-picto-content {
+    padding-top: 96px + $layout-sm;
+
+    &::before {
+        @include background-size(96px 96px);
+        background-color: transparent;
+        background-position: top left;
+        background-repeat: no-repeat;
+        height: 96px;
+        margin-left: -48px;
+        width: 96px;
+    }
+}
+
+.mzp-c-card-picto-content::before {
+    .blocker & {
+        background-image: url('/media/img/firefox/new/platform/icon-blocker.svg');
+    }
+
+    .faster & {
+        background-image: url('/media/img/firefox/new/platform/icon-faster.svg');
+    }
+
+    .lighter & {
+        background-image: url('/media/img/firefox/new/platform/icon-lighter.svg');
+    }
+
+    .open-source & {
+        background-image: url('/media/img/firefox/new/platform/icon-opensource.svg');
+    }
+
+    .private & {
+        background-image: url('/media/img/firefox/new/platform/icon-private.svg');
+    }
+
+    .seamless & {
+        background-image: url('/media/img/firefox/new/platform/icon-seamless.svg');
+    }
+}

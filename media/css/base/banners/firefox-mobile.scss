@@ -15,6 +15,7 @@ $image-path: '/media/protocol/img';
 
 .c-banner-title {
     @include text-title-sm;
+    color: $color-white;
     margin: 0 auto;
     max-width: 15em;
     text-align: center;
