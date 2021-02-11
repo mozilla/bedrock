@@ -550,9 +550,9 @@ class TestFirefoxYandex(TestCase):
     @patch.object(views, 'ftl_file_is_active', lambda *x: True)
     def test_yandex_show_to_ru(self):
         req = RequestFactory().get('/firefox/new/')
-        req.locale = 'ru'
         view = views.NewView.as_view()
-        response = view(req)
+        with self.activate('ru'):
+            response = view(req)
         doc = pq(response.content)
         yandex = doc('main[class*="t-yandex"]')
         assert yandex.length == 1
@@ -561,9 +561,9 @@ class TestFirefoxYandex(TestCase):
     @patch.object(views, 'ftl_file_is_active', lambda *x: True)
     def test_yandex_hide_not_ru(self):
         req = RequestFactory().get('/firefox/new/')
-        req.locale = 'de'
         view = views.NewView.as_view()
-        response = view(req)
+        with self.activate('de'):
+            response = view(req)
         doc = pq(response.content)
         yandex = doc('main[class*="t-yandex"]')
         assert yandex.length == 0
@@ -572,9 +572,9 @@ class TestFirefoxYandex(TestCase):
     @patch.object(views, 'ftl_file_is_active', lambda *x: True)
     def test_yandex_hide_switch_off(self):
         req = RequestFactory().get('/firefox/new/')
-        req.locale = 'ru'
         view = views.NewView.as_view()
-        response = view(req)
+        with self.activate('ru'):
+            response = view(req)
         doc = pq(response.content)
         yandex = doc('main[class*="t-yandex"]')
         assert yandex.length == 0
