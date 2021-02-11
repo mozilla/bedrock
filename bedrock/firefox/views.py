@@ -562,6 +562,7 @@ class WhatsnewView(L10nTemplateView):
         'firefox/whatsnew/whatsnew-fx83-de.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx84.html': ['firefox/whatsnew/whatsnew-fx80', 'firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx85.html': ['firefox/whatsnew/whatsnew-fx80', 'firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx86-en.html': ['firefox/whatsnew/whatsnew-s2d', 'firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-mobile-de.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-mobile-qrcode-de.html': ['firefox/whatsnew/whatsnew'],
     }
@@ -619,6 +620,8 @@ class WhatsnewView(L10nTemplateView):
                 template = 'firefox/developer/whatsnew.html'
             else:
                 template = 'firefox/whatsnew/index.html'
+        elif version.startswith('86.') and locale.startswith('en-'):
+            template = 'firefox/whatsnew/whatsnew-fx86-en.html'
         elif version.startswith('86.') and locale == 'de':
             template = 'firefox/whatsnew/whatsnew-mobile-qrcode-de.html'
         elif version.startswith('86.') and locale == 'fr':
