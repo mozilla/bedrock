@@ -6,34 +6,33 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import "../../protocol/css/includes/lib";
-@import '../../protocol/css/templates/main-with-sidebar';
-@import '../../protocol/css/components/emphasis-box';
+@import '../../protocol/css/components/hero';
+@import '../../protocol/css/templates/card-layout';
 
-.installer-help-title {
-    @include text-title-md;
+.mzp-c-card {
+    .mzp-c-card-desc {
+        margin: $spacing-xl 0;
+        height: $layout-lg;
+    }
+
+    .download-button, .download-link {
+        width: 100%;
+        margin-top: $spacing-sm;
+    }
 }
 
-.installer-help-subtitle {
-    @include text-title-xs;
-    font-weight: normal;
+.installer-channel-card {
+    margin: 0 auto $spacing-2xl auto;
+    float: none;
+    text-align: center;
 }
 
-.mzp-c-emphasis-box {
-    display: inline-block;
-    margin: $spacing-xl 0;
-}
+.install-help {
+    margin: 0 auto $spacing-2xl auto;
+    max-width: $content-xs;
+    text-align: center;
 
-.installer-help-emphasis-title {
-    @include text-title-xs;
-}
-
-.installer-help-emphasis-tagline {
-    margin-bottom: 0;
-}
-
-
-.installer-help-channels {
-    @media #{$mq-md} {
-        @include bidi(((text-align, right, left),));
+    h2 {
+        @include text-title-xs;
     }
 }
