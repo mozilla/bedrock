@@ -1,6 +1,5 @@
 from hashlib import sha1
-
-from django.conf import settings
+from pathlib import Path
 
 import qrcode as qr
 from django_jinja import library
@@ -8,7 +7,7 @@ from jinja2 import Markup
 from qrcode.image.svg import SvgPathImage
 
 
-QR_CACHE_PATH = settings.DATA_PATH.joinpath('qrcode_cache')
+QR_CACHE_PATH = Path('/tmp/qrcode_cache')
 QR_CACHE_PATH.mkdir(exist_ok=True)
 
 
