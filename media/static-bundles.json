@@ -56,12 +56,6 @@
     },
     {
       "files": [
-        "css/firefox/installer-help-redesign.scss"
-      ],
-      "name": "installer_help_redesign"
-    },
-    {
-      "files": [
         "css/mozorg/participation-reporting.scss"
       ],
       "name": "participation-reporting"

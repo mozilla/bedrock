@@ -65,9 +65,8 @@ STUB_VALUE_RE = re.compile(r'^[a-z0-9-.%():_]+$', flags=re.IGNORECASE)
 
 
 class InstallerHelpView(L10nTemplateView):
-    ftl_files_map = {
-        'firefox/installer-help-redesign.html': ['firefox/installer-help']
-    }
+    template_name = 'firefox/installer-help.html'
+    ftl_files = ['firefox/installer-help']
 
     def get_context_data(self, **kwargs):
         ctx = super(InstallerHelpView, self).get_context_data(**kwargs)
@@ -86,14 +85,6 @@ class InstallerHelpView(L10nTemplateView):
                 ctx['installer_channel'] = installer_channel
 
         return ctx
-
-    def get_template_names(self):
-        if ftl_file_is_active('firefox/installer-help'):
-            template_name = 'firefox/installer-help-redesign.html'
-        else:
-            template_name = 'firefox/installer-help.html'
-
-        return [template_name]
 
 
 @require_GET

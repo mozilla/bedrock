@@ -7,7 +7,7 @@
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
-{% block page_title %}{{ _('Your download was interrupted') }}{% endblock %}
+{% block page_title %}{{ ftl('installer-help-page-title') }}{% endblock %}
 {% block body_id %}installer-help{% endblock %}
 
 {% block page_css %}
@@ -20,50 +20,95 @@
   {% endwith %}
 {% endblock %}
 
+{% if installer_channel == 'beta' %}
+  {% set channel_logo = 'protocol/img/logos/firefox/browser/beta/logo-word-hor-sm.png' %}
+{% elif installer_channel == 'alpha' %}
+  {% set channel_logo = 'protocol/img/logos/firefox/browser/developer/logo-word-hor-sm.png' %}
+{% elif installer_channel == 'nightly' %}
+  {% set channel_logo = 'protocol/img/logos/firefox/browser/nightly/logo-word-hor-sm.png' %}
+{% else %}
+  {% set channel_logo = 'protocol/img/logos/firefox/browser/logo-word-hor-sm.png' %}
+{% endif %}
+
 {% block content %}
-<main class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-right">
-  <h2><a href="{{ url('firefox.new') }}">{{ high_res_img('protocol/img/logos/firefox/browser/logo-word-hor-sm.png', {'alt': 'Firefox', 'width': '347', 'height': '64'}) }}</a></h2>
-  <div class="mzp-l-main">
-    <header>
-      <h1 class="installer-help-title">{{ _('Your download was interrupted') }}</h1>
-      {% if installer_channel %}
-        <h2 class="installer-help-subtitle">{{ _('Click the download button on the right to continue.') }}</h2>
-      {% else %}
-        <h2 class="installer-help-subtitle">{{ _('Please choose a download to continue.') }}</h2>
-      {% endif %}
-    </header>
-    <aside class="mzp-c-emphasis-box">
-      <h3 class="installer-help-emphasis-title">{{ _('Need help installing?') }}</h3>
-      <p class="installer-help-emphasis-tagline"><a href="https://support.mozilla.org/kb/install-firefox-windows">{{ _('Visit support.mozilla.org') }}</a></p>
-    </aside>
-  </div>
-
-  <div class="mzp-l-sidebar">
-    <div class="installer-help-channels">
-      {% if installer_channel %}
-        <div class="download-box">
-          {{ download_firefox(installer_channel, force_direct=True, force_full_installer=True, locale=installer_lang) }}
-        </div>
-      {% else %}
-        <div class="download-box" id="firefox-desktop">
-          {{ download_firefox(force_direct=True, force_full_installer=True, locale=installer_lang) }}
-        </div>
-
-        <div class="download-box" id="beta-desktop">
-          {{ download_firefox('beta', force_direct=True, force_full_installer=True, locale=installer_lang) }}
-        </div>
-
-        <div class="download-box" id="aurora-desktop">
-          {{ download_firefox('alpha', platform='desktop', force_direct=True, force_full_installer=True, locale=installer_lang) }}
-        </div>
-
-        <div class="download-box" id="nightly-desktop">
-          {{ download_firefox('nightly', platform='desktop', force_direct=True, force_full_installer=True, locale=installer_lang) }}
-        </div>
-      {% endif %}
+<main class="mzp-l-content">
+  <section class="mzp-c-hero">
+    <div class="mzp-c-hero-body">
+      <h1 class="mzp-c-hero-title">{{ ftl('installer-help-page-title') }}</h1>
+      <div class="mzp-c-hero-desc">
+        <p>
+          {{ ftl('installer-help-main-tagline') }}
+          {% if installer_channel %}
+            <span>{{ ftl('installer-help-action-channel') }}</span>
+          {% else %}
+            <span>{{ ftl('installer-help-action-choose') }}</span>
+          {% endif %}
+        </p>
+      </div>
     </div>
-  </div>
+  </section>
+
+  {% if installer_channel %}
+    <section class="installer-channel-card mzp-c-card mzp-c-card-extra-small">
+      {{ high_res_img(channel_logo, {'alt': ftl('installer-help-firefox-release-title'), 'width': '347', 'height': '64'}) }}
+      <div class="mzp-c-card-content">
+        {{ download_firefox(installer_channel, force_direct=True, force_full_installer=True, locale=installer_lang, button_class='mzp-t-md', alt_copy=ftl('download-button-download-now')) }}
+      </div>
+    </section>
+  {% else %}
+    <div class="mzp-l-card-quarter">
+      <section class="mzp-c-card mzp-c-card-extra-small">
+        {{ high_res_img('protocol/img/logos/firefox/browser/logo-word-hor-sm.png', {'alt': ftl('installer-help-firefox-release-title'), 'width': '347', 'height': '64', 'class': 'mzp-c-card-image'}) }}
+        <div class="mzp-c-card-content">
+          <p class="mzp-c-card-desc">
+            {{ ftl('installer-help-firefox-release-desc', trackers=2000) }}
+          </p>
+          {{ download_firefox(force_direct=True, force_full_installer=True, locale=installer_lang, button_class='mzp-t-secondary mzp-t-md', alt_copy=ftl('download-button-download-now')) }}
+        </div>
+      </section>
+
+      <section class="mzp-c-card mzp-c-card-extra-small">
+        {{ high_res_img('protocol/img/logos/firefox/browser/beta/logo-word-hor-sm.png', {'alt': ftl('installer-help-firefox-beta-title'), 'width': '347', 'height': '64', 'class': 'mzp-c-card-image'}) }}
+        <div class="mzp-c-card-content">
+          <p class="mzp-c-card-desc">
+            {{ ftl('installer-help-firefox-beta-desc') }}
+          </p>
+          {{ download_firefox('beta', force_direct=True, force_full_installer=True, locale=installer_lang, button_class='mzp-t-secondary mzp-t-md', alt_copy=ftl('download-button-download-now')) }}
+        </div>
+      </section>
+
+      <section class="mzp-c-card mzp-c-card-extra-small">
+        {{ high_res_img('protocol/img/logos/firefox/browser/developer/logo-word-hor-sm.png', {'alt': ftl('installer-help-firefox-developer-title'), 'class': 'mzp-c-card-image'}) }}
+        <div class="mzp-c-card-content">
+          <p class="mzp-c-card-desc">
+            {{ ftl('installer-help-firefox-developer-desc') }}
+          </p>
+          {{ download_firefox('alpha', platform='desktop', force_direct=True, force_full_installer=True, locale=installer_lang, button_class='mzp-t-secondary mzp-t-md', alt_copy=ftl('download-button-download-now')) }}
+        </div>
+      </section>
+
+      <section class="mzp-c-card mzp-c-card-extra-small">
+        {{ high_res_img('protocol/img/logos/firefox/browser/nightly/logo-word-hor-sm.png', {'alt': ftl('installer-help-firefox-nightly-title'), 'width': '347', 'height': '64', 'class': 'mzp-c-card-image'}) }}
+        <div class="mzp-c-card-content">
+          <p class="mzp-c-card-desc">
+            {{ ftl('installer-help-firefox-nightly-desc') }}
+          </p>
+          {{ download_firefox('nightly', platform='desktop', force_direct=True, force_full_installer=True, locale=installer_lang, button_class='mzp-t-secondary mzp-t-md', alt_copy=ftl('download-button-download-now')) }}
+        </div>
+      </section>
+    </div>
+  {% endif %}
+
+  <section class="install-help">
+    <div>
+      <h2>{{ ftl('installer-help-need-help') }}</h2>
+      <p>
+        {{ ftl('installer-help-need-help-desc', url='https://support.mozilla.org/kb/install-firefox-windows') }}
+      </p>
+    </div>
+  </section>
+
 </main>
 {% endblock %}
 
-{% block js %}{% endblock  %}
+{% block js %}{% endblock %}
