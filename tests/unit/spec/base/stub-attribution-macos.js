@@ -170,11 +170,12 @@ describe('stub-attribution-macos.js', function () {
                 '<li><a class="download-link" data-download-version="osx" href="' + transitionalUrl + '">Download</a></li>' +
                 '<li><a class="download-link" data-download-version="osx" href="' + osxUrl + '">Download</a></li>' +
                 '</ul>';
-            $(downloadMarkup).appendTo('body');
+            document.body.insertAdjacentHTML('beforeend', downloadMarkup);
         });
 
         afterEach(function () {
-            $('.download-list').remove();
+            var content = document.querySelector('.download-list');
+            content.parentNode.removeChild(content);
         });
 
         it('should update download links with attribution data as expected', function () {

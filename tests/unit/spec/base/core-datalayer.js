@@ -10,15 +10,14 @@ describe('core-datalayer.js', function() {
 
     describe('pageHasDownload', function() {
 
-        afterEach(function() {
-            $('.download').remove();
-        });
-
         it('will return "true" when download button is present on page.', function() {
             var downloadMarkup = '<a class="download" href="#" data-link-type="download" data-download-os="Desktop">';
 
-            $(downloadMarkup).appendTo('body');
+            document.body.insertAdjacentHTML('beforeend', downloadMarkup);
             expect(Mozilla.Analytics.pageHasDownload()).toBe('true');
+
+            var content = document.querySelector('.download');
+            content.parentNode.removeChild(content);
         });
 
         it('will return "false" when download button is not present on page.', function() {
@@ -28,23 +27,24 @@ describe('core-datalayer.js', function() {
 
     describe('pageHasVideo', function() {
 
-        afterEach(function() {
-            $('#htmlPlayer').remove();
-            $('#iframePlayer').remove();
-        });
-
         it('will return "true" when HTML5 video is present on page.', function() {
-            var videoMarkup = '<video id="htmlPlayer"></video>';
+            var videoMarkup = '<video id="video-content"></video>';
 
-            $(videoMarkup).appendTo('body');
+            document.body.insertAdjacentHTML('beforeend', videoMarkup);
             expect(Mozilla.Analytics.pageHasVideo()).toBe('true');
+
+            var content = document.getElementById('video-content');
+            content.parentNode.removeChild(content);
         });
 
         it('will return "true" when YouTube iframe video is present on page.', function() {
-            var videoMarkup = '<iframe id="iframePlayer" src="https://www.youtube-nocookie.com/embed/NqxUdc0P6YE?rel=0"></iframe>';
+            var videoMarkup = '<iframe id="video-content" src="https://www.youtube-nocookie.com/embed/NqxUdc0P6YE?rel=0"></iframe>';
 
-            $(videoMarkup).appendTo('body');
+            document.body.insertAdjacentHTML('beforeend', videoMarkup);
             expect(Mozilla.Analytics.pageHasVideo()).toBe('true');
+
+            var content = document.getElementById('video-content');
+            content.parentNode.removeChild(content);
         });
 
         it('will return "false" when download button is not present on page.', function() {
@@ -346,18 +346,17 @@ describe('core-datalayer.js', function() {
     });
 
     describe('updateDataLayerPush', function() {
-        var linkElement;
 
         beforeEach(function() {
             var link = '<a id="link" href="https://www.mozilla.org/en-US/firefox/new/">';
-            $(link).appendTo('body');
-            linkElement = $('#link')[0];
+            document.body.insertAdjacentHTML('beforeend', link);
 
             window.dataLayer = [];
         });
 
         afterEach(function() {
-            $('#link').remove();
+            var content = document.getElementById('link');
+            content.parentNode.removeChild(content);
             delete window.dataLayer;
         });
 
@@ -366,7 +365,7 @@ describe('core-datalayer.js', function() {
 
             window.dataLayer.push({
                 'event': 'gtm.linkClick',
-                'gtm.element': linkElement
+                'gtm.element': document.getElementById('link')
             });
 
             expect(window.dataLayer[0].newClickHref).toBeDefined();
@@ -377,7 +376,7 @@ describe('core-datalayer.js', function() {
 
             window.dataLayer.push({
                 'event': 'gtm.click',
-                'gtm.element': linkElement
+                'gtm.element': document.getElementById('link')
             });
 
             expect(window.dataLayer[0].newClickHref).toBeUndefined();
@@ -388,47 +387,50 @@ describe('core-datalayer.js', function() {
 
             window.dataLayer.push({
                 'event': 'gtm.linkClick',
-                'gtm.element': linkElement
+                'gtm.element': document.getElementById('link')
             });
 
             expect(window.dataLayer[0].newClickHref).toEqual('https://www.mozilla.org/en-US/firefox/new/');
         });
 
         it('will remove host and locale in newClickHref when clicked link\'s href value matches the page\'s', function() {
+            var link = document.getElementById('link');
             Mozilla.Analytics.updateDataLayerPush('www.mozilla.org');
 
             // Bug 1278426
-            linkElement.href = 'https://www.mozilla.org:443/en-US/firefox/new/';
+            link.href = 'https://www.mozilla.org:443/en-US/firefox/new/';
 
             window.dataLayer.push({
                 'event': 'gtm.linkClick',
-                'gtm.element': linkElement
+                'gtm.element': link
             });
 
             expect(window.dataLayer[0].newClickHref).toEqual('/firefox/new/');
         });
 
         it('will remove host and non-en-US locale', function() {
+            var link = document.getElementById('link');
             Mozilla.Analytics.updateDataLayerPush('www.mozilla.org');
 
-            linkElement.href = 'https://www.mozilla.org:443/de/firefox/new/';
+            link.href = 'https://www.mozilla.org:443/de/firefox/new/';
 
             window.dataLayer.push({
                 'event': 'gtm.linkClick',
-                'gtm.element': linkElement
+                'gtm.element': link
             });
 
             expect(window.dataLayer[0].newClickHref).toEqual('/firefox/new/');
         });
 
         it('will not remove locale if absent from the URL', function() {
+            var link = document.getElementById('link');
             Mozilla.Analytics.updateDataLayerPush('www.mozilla.org');
 
-            linkElement.href = 'https://www.mozilla.org/firefox/new/';
+            link.href = 'https://www.mozilla.org/firefox/new/';
 
             window.dataLayer.push({
                 'event': 'gtm.linkClick',
-                'gtm.element': linkElement
+                'gtm.element': link
             });
 
             expect(window.dataLayer[0].newClickHref).toEqual('/firefox/new/');
