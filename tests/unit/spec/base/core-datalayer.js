@@ -130,8 +130,14 @@ describe('core-datalayer.js', function() {
                 'legacy': false,
                 'mobile': false,
                 'setup': false,
-                'desktopDevices': false,
-                'mobileDevices': false
+                'browserServices': {
+                    'sync': {
+                        'setup': false,
+                        'desktopDevices': 'unknown',
+                        'mobileDevices': 'unknown',
+                        'totelDevices': 'unknown'
+                    }
+                }
             };
 
             var output1 = {
@@ -145,8 +151,14 @@ describe('core-datalayer.js', function() {
                 'legacy': false,
                 'mobile': false,
                 'setup': true,
-                'desktopDevices': 1,
-                'mobileDevices': 0
+                'browserServices': {
+                    'sync': {
+                        'setup': true,
+                        'desktopDevices': 1,
+                        'mobileDevices': 0,
+                        'totelDevices': 1
+                    }
+                }
             };
 
             var output2 = {
@@ -162,8 +174,14 @@ describe('core-datalayer.js', function() {
                 'legacy': false,
                 'mobile': false,
                 'setup': true,
-                'desktopDevices': 2,
-                'mobileDevices': 0
+                'browserServices': {
+                    'sync': {
+                        'setup': true,
+                        'desktopDevices': 2,
+                        'mobileDevices': 0,
+                        'totelDevices': 2
+                    }
+                }
             };
 
             var output3 = {
@@ -179,8 +197,14 @@ describe('core-datalayer.js', function() {
                 'legacy': false,
                 'mobile': false,
                 'setup': true,
-                'desktopDevices': 1,
-                'mobileDevices': 1
+                'browserServices': {
+                    'sync': {
+                        'setup': true,
+                        'desktopDevices': 1,
+                        'mobileDevices': 1,
+                        'totelDevices': 2
+                    }
+                }
             };
 
             var output4 = {
@@ -196,8 +220,14 @@ describe('core-datalayer.js', function() {
                 'legacy': false,
                 'mobile': false,
                 'setup': true,
-                'desktopDevices': 2,
-                'mobileDevices': 1
+                'browserServices': {
+                    'sync': {
+                        'setup': true,
+                        'desktopDevices': 2,
+                        'mobileDevices': 1,
+                        'totelDevices': 3
+                    }
+                }
             };
 
             var output5 = {
@@ -213,8 +243,14 @@ describe('core-datalayer.js', function() {
                 'legacy': false,
                 'mobile': false,
                 'setup': true,
-                'desktopDevices': 'unknown',
-                'mobileDevices': 'unknown'
+                'browserServices': {
+                    'sync': {
+                        'setup': true,
+                        'desktopDevices': 'unknown',
+                        'mobileDevices': 'unknown',
+                        'totelDevices': 'unknown'
+                    }
+                }
             };
 
             var output6 = {
@@ -230,8 +266,14 @@ describe('core-datalayer.js', function() {
                 'legacy': false,
                 'mobile': false,
                 'setup': false,
-                'desktopDevices': false,
-                'mobileDevices': false
+                'browserServices': {
+                    'sync': {
+                        'setup': false,
+                        'desktopDevices': 'unknown',
+                        'mobileDevices': 'unknown',
+                        'totelDevices': 'unknown'
+                    }
+                }
             };
 
             var output7 = {
@@ -245,8 +287,14 @@ describe('core-datalayer.js', function() {
                 'legacy': true,
                 'mobile': false,
                 'setup': true,
-                'desktopDevices': 'unknown',
-                'mobileDevices': 'unknown'
+                'browserServices': {
+                    'sync': {
+                        'setup': true,
+                        'desktopDevices': 'unknown',
+                        'mobileDevices': 'unknown',
+                        'totelDevices': 'unknown'
+                    }
+                }
             };
 
             var output8 = {
@@ -262,8 +310,14 @@ describe('core-datalayer.js', function() {
                 'legacy': true,
                 'mobile': false,
                 'setup': false,
-                'desktopDevices': false,
-                'mobileDevices': false
+                'browserServices': {
+                    'sync': {
+                        'setup': false,
+                        'desktopDevices': 'unknown',
+                        'mobileDevices': 'unknown',
+                        'totelDevices': 'unknown'
+                    }
+                }
             };
 
             var output9 = {
@@ -277,8 +331,14 @@ describe('core-datalayer.js', function() {
                 'legacy': true,
                 'mobile': false,
                 'setup': false,
-                'desktopDevices': false,
-                'mobileDevices': false
+                'browserServices': {
+                    'sync': {
+                        'setup': false,
+                        'desktopDevices': 'unknown',
+                        'mobileDevices': 'unknown',
+                        'totelDevices': 'unknown'
+                    }
+                }
             };
 
             var output10 = {
@@ -292,8 +352,14 @@ describe('core-datalayer.js', function() {
                 'legacy': false,
                 'mobile': 'android',
                 'setup': false,
-                'desktopDevices': false,
-                'mobileDevices': false
+                'browserServices': {
+                    'sync': {
+                        'setup': false,
+                        'desktopDevices': 'unknown',
+                        'mobileDevices': 'unknown',
+                        'totelDevices': 'unknown'
+                    }
+                }
             };
 
             var output11 = {
@@ -306,8 +372,14 @@ describe('core-datalayer.js', function() {
                 'legacy': false,
                 'mobile': 'ios',
                 'setup': false,
-                'desktopDevices': false,
-                'mobileDevices': false
+                'browserServices': {
+                    'sync': {
+                        'setup': false,
+                        'desktopDevices': 'unknown',
+                        'mobileDevices': 'unknown',
+                        'totelDevices': 'unknown'
+                    }
+                }
             };
 
             var output12 = {
@@ -320,8 +392,14 @@ describe('core-datalayer.js', function() {
                 'legacy': false,
                 'mobile': false,
                 'setup': false,
-                'desktopDevices': false,
-                'mobileDevices': false
+                'browserServices': {
+                    'sync': {
+                        'setup': false,
+                        'desktopDevices': 'unknown',
+                        'mobileDevices': 'unknown',
+                        'totelDevices': 'unknown'
+                    }
+                }
             };
 
             var output13 = {
