@@ -2,17 +2,15 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-(function($, Modernizr) {
+(function() {
     'use strict';
 
-    $(document).ready(function(){
+    if (window.Modernizr.inputtypes.date) {
+        document.querySelector('.date-note').style.display = 'none';
+    }
 
-        if (Modernizr.inputtypes.date) {
-            $('.date-note').hide();
-        }
+    if (window.Modernizr.inputtypes.time) {
+        document.querySelector('.time-note').style.display = 'none';
+    }
 
-        if (Modernizr.inputtypes.time) {
-            $('.time-note').hide();
-        }
-    });
-})(window.jQuery, window.Modernizr);
+})();

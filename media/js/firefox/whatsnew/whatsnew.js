@@ -7,14 +7,14 @@ if (typeof window.Mozilla === 'undefined') {
     window.Mozilla = {};
 }
 
-(function($, Mozilla) {
+(function() {
     'use strict';
 
     var sendTo = document.getElementById('send-to-device');
 
     if (sendTo) {
-        var form = new Mozilla.SendToDevice();
+        var form = new window.Mozilla.SendToDevice();
         form.init();
     }
 
-})(window.jQuery, window.Mozilla);
+})();

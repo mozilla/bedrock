@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 // init core dataLayer object and push into dataLayer
-$(function() {
+(function() {
     'use strict';
 
     var analytics = Mozilla.Analytics;
@@ -33,22 +33,32 @@ $(function() {
         }
     }
 
-    client.getFxaDetails(function(details) {
-        dataLayer.push(analytics.formatFxaDetails(details));
-        fxaDetailsComplete = true;
-        checkSendCoreDataLayer();
-    });
-
-    if (client.isFirefoxDesktop || client.isFirefoxAndroid) {
-        client.getFirefoxDetails(function(details) {
-            dataLayer.push(details);
-            firefoxDetailsComplete = true;
+    function initCoreDataLayer() {
+        client.getFxaDetails(function(details) {
+            dataLayer.push(analytics.formatFxaDetails(details));
+            fxaDetailsComplete = true;
             checkSendCoreDataLayer();
         });
-    } else {
-        firefoxDetailsComplete = true;
-        checkSendCoreDataLayer();
+
+        if (client.isFirefoxDesktop || client.isFirefoxAndroid) {
+            client.getFirefoxDetails(function(details) {
+                dataLayer.push(details);
+                firefoxDetailsComplete = true;
+                checkSendCoreDataLayer();
+            });
+        } else {
+            firefoxDetailsComplete = true;
+            checkSendCoreDataLayer();
+        }
+
+        analytics.updateDataLayerPush();
     }
 
-    analytics.updateDataLayerPush();
-});
+    // Init dataLayer event on DOM Ready.
+    if (typeof Mozilla.Utils !== 'undefined') {
+        Mozilla.Utils.onDocumentReady(function() {
+            initCoreDataLayer();
+        });
+    }
+
+})();

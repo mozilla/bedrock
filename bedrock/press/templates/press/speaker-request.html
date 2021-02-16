@@ -62,14 +62,14 @@
       <div class="mzp-c-field {% if form.sr_event_date.errors %}mzp-is-error{% endif %}">
         <label class="mzp-c-field-label"  for="sr_event_date">{{ _('Date') }}</label>
         {{ field_with_attrs(form.sr_event_date, class='mzp-c-field-control'|safe) }}
-        <p class="mzp-c-field-info">{{ _('2015-03-14 or March 14, 2015') }}</p>
+        <p class="mzp-c-field-info date-note">{{ _('2015-03-14 or March 14, 2015') }}</p>
         <div class="mzp-c-field-info">{{ form.sr_event_date.errors }}</div>
       </div>
 
       <div class="mzp-c-field {% if form.sr_event_time.errors %}mzp-is-error{% endif %}">
         <label class="mzp-c-field-label"  for="sr_event_time">{{ _('Time') }}</label>
         {{ field_with_attrs(form.sr_event_time, class='mzp-c-field-control'|safe) }}
-        <p class="mzp-c-field-info">{{ _('2:30 PM or 14:30') }}</p>
+        <p class="mzp-c-field-info time-note">{{ _('2:30 PM or 14:30') }}</p>
         <div class="mzp-c-field-info">{{ form.sr_event_time.errors }}</div>
       </div>
 
