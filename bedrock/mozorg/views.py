@@ -119,7 +119,9 @@ def home_view(request):
     donate_params['preset_list'] = donate_params['presets'].split(',')
     ctx = {
         'donate_params': donate_params,
-        'pocket_articles': PocketArticle.objects.all()[:4]
+        'pocket_articles': PocketArticle.objects.all()[:4],
+        'ftl_files': ['mozorg/home'],
+        'add_active_locales': ['de', 'fr']
     }
 
     if locale.startswith('en-'):
