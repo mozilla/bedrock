@@ -358,6 +358,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-mobile-qrcode-de.scss"
+      ],
+      "name": "firefox_whatsnew_mobile_qrcode_de"
+    },
+    {
+      "files": [
         "css/firefox/firstrun/nightly.scss"
       ],
       "name": "nightly_firstrun"
@@ -1223,6 +1229,12 @@
         "js/firefox/whatsnew/whatsnew.js"
       ],
       "name": "firefox_whatsnew"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/up-to-date.js"
+      ],
+      "name": "firefox_whatsnew_update"
     },
     {
       "files": [

@@ -5,6 +5,10 @@
 (function() {
     'use strict';
 
+    if (typeof Mozilla.Client === 'undefined' || typeof Mozilla.UITour === 'undefined') {
+        return;
+    }
+
     var client = Mozilla.Client;
 
     function checkUpToDate() {
