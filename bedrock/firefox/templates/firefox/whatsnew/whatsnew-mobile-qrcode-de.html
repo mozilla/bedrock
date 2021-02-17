@@ -1,0 +1,75 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{#- Override <meta property="og:url"> for social share -#}
+{% block page_og_url %}{{ url('firefox.mobile.index') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew-mobile-qr-code-de{% endblock %}
+{% block body_class %}{{ super() }}{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_mobile_qrcode_de') }}
+{% endblock %}
+
+{% block content %}
+<main role="main" class="content-wrapper mzp-t-firefox">
+  {% include 'firefox/whatsnew/includes/header.html' %}
+
+  <section class="wnp-content-main">
+    <div class="mzp-l-content">
+      {{ high_res_img('protocol/img/logos/firefox/browser/logo-md.png', {'alt': '', 'width': '96', 'height': '96', 'class': 'wnp-main-image'}) }}
+      <h1 class="wnp-main-title">Der neue Firefox jetzt auch für dein Smartphone</h1>
+      <p class="wnp-main-tagline">Superschnell. Standardmäßig privat. Individuell anpassbar.</p>
+
+      <h2 class="wnp-main-subtitle">Hol dir Firefox Mobile</h2>
+      <p>Scanne den QR Code, um loszulegen.</p>
+
+      <div class="wnp-qr-code-wrapper">
+        {{ qrcode('https://app.adjust.com/vhrf030') }}
+      </div>
+
+      <div class="l-columns-two">
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
+            <img src="{{ static('img/firefox/whatsnew/whatsnew85-de/icon-android.svg') }}" width="120" height="90" alt="">
+          </div>
+          <h3 class="c-picto-block-title">Firefox für Android</h3>
+          <div class="c-picto-block-body">
+            <p><a href="https://www.chip.de/news/Das-Android-Starterkit-2021-Absolute-Must-Have-Apps_105025279.html" target="_blank" rel="external noopener noreferrer" data-cta-type="link" data-cta-text="chip de">Chip.de</a> sagt: Eine der wichtigsten Android-Anwendungen für 2021. Firefox ist ein <em>“klasse Browser im minimalistischen Design.”</em></em></p>
+          </div>
+        </div>
+
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
+            <img src="{{ static('img/firefox/whatsnew/whatsnew85-de/icon-ios.svg') }}" width="120" height="90" alt="">
+          </div>
+          <h3 class="c-picto-block-title">Firefox für iOS</h3>
+          <div class="c-picto-block-body">
+            <p>Wir sagen: Darf auch auf iOS nicht fehlen. Mach Firefox auch auf dem iPhone zu deinem Standardbrowser.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <aside class="mzp-l-content c-utilities">
+    {% set releasenotes_url = url('firefox.releases.index') if not version else '/firefox/%s/releasenotes/'|format(version) %}
+    <p>{{ ftl('whatsnew-release-notes', url=releasenotes_url) }}</p>
+  </aside>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+{% endblock %}
