@@ -534,7 +534,7 @@ class TestFirefoxNew(TestCase):
 
     @patch.dict(os.environ, SWITCH_FIREFOX_YANDEX='False')
     @patch.object(views, 'ftl_file_is_active', lambda *x: True)
-    def test_yandex_hide_switch_off(self,render_mock):
+    def test_yandex_hide_switch_off(self, render_mock):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'ru'
         view = views.NewView.as_view()
