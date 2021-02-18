@@ -13,22 +13,13 @@
                                                   'firefox-desktop-download-get-more-from-firefox') %}
 {% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-desktop' %}
 {% set ios_url = app_store_url('firefox') %}
-{% set show_yandex = (LANG == 'ru' and switch('firefox-yandex')) %}
 
 {% block string_data %}
-  {% if show_yandex %}
-    data-page-title="Firefox с Яндексом"
-    data-page-desc="Версия браузера Firefox с сервисами Яндекса на русском языке доступна для пользователей в России. Сейчас в браузер встроены Дзен, Советник и Визуальные закладки. Основная версия браузера Firefox на русском языке доступна для пользователей по всему миру."
-  {% endif %}
 {% endblock %}
 
 {% block extrahead %}
   {{ super() }}
   {{ css_bundle('firefox_desktop_download') }}
-
-  {% if show_yandex %}
-    {{ css_bundle('firefox_new_download_yandex') }}
-  {% endif %}
 
   <!--[if IE 9]>
     {{ css_bundle('firefox_desktop_download_ie9') }}
@@ -74,11 +65,11 @@
 
 {% block content %}
 
-  {% if show_yandex %}
-    {% include 'firefox/new/desktop/includes/yandex.html' %}
-  {% endif %}
-
 <main role="main" class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
+
+  {% block yandex %}{% endblock%}
+
+
   <section id="desktop-banner" class="c-block t-intro show-else mzp-has-media-hide-on-sm">
     <div class="c-block-container">
       <div class="c-block-body">
@@ -538,9 +529,7 @@
 {% endblock %}
 
 {% block sticky_promo %}
-  {% if not show_yandex %}
     {% include '/includes/sticky-promo.html' %}
-  {% endif %}
 {% endblock %}
 
 {% block js %}
@@ -548,10 +537,6 @@
 
   {% if show_firefox_join_modal %}
     {{ js_bundle('firefox_new_desktop_join_modal') }}
-  {% endif %}
-
-  {% if show_yandex %}
-    {{ js_bundle('firefox_new_download_yandex') }}
   {% endif %}
 
   {% if switch('stub-attribution-macos') %}

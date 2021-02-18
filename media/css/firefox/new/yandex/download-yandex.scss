@@ -17,12 +17,12 @@ $image-path: '/media/protocol/img';
 }
 
 .show-yandex {
-    main {
+    main > * {
         display: none;
+    }
 
-        &.t-yandex {
-            display: block;
-        }
+    main > .t-yandex {
+        display: block;
     }
 }
 

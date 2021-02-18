@@ -510,6 +510,36 @@ class TestFirefoxNew(TestCase):
         view = views.NewView.as_view()
         view(req)
         template = render_mock.call_args[0][1]
+        assert template == ['firefox/new/desktop/download_yandex.html']
+
+    @patch.dict(os.environ, SWITCH_FIREFOX_YANDEX='True')
+    @patch.object(views, 'ftl_file_is_active', lambda *x: True)
+    def test_yandex_show_to_ru(self, render_mock):
+        req = RequestFactory().get('/firefox/new/')
+        req.locale = 'ru'
+        view = views.NewView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/new/desktop/download_yandex.html']
+
+    @patch.dict(os.environ, SWITCH_FIREFOX_YANDEX='True')
+    @patch.object(views, 'ftl_file_is_active', lambda *x: True)
+    def test_yandex_hide_not_ru(self, render_mock):
+        req = RequestFactory().get('/firefox/new/')
+        req.locale = 'de'
+        view = views.NewView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/new/desktop/download.html']
+
+    @patch.dict(os.environ, SWITCH_FIREFOX_YANDEX='False')
+    @patch.object(views, 'ftl_file_is_active', lambda *x: True)
+    def test_yandex_hide_switch_off(self,render_mock):
+        req = RequestFactory().get('/firefox/new/')
+        req.locale = 'ru'
+        view = views.NewView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
         assert template == ['firefox/new/desktop/download.html']
 
     @patch.dict(os.environ, EXP_CONFIG_FX_NEW='de:100')
@@ -543,41 +573,6 @@ class TestFirefoxNew(TestCase):
         resp = view(req)
         assert resp.status_code == 200
         assert 'cache-control' not in resp
-
-
-class TestFirefoxYandex(TestCase):
-    @patch.dict(os.environ, SWITCH_FIREFOX_YANDEX='True')
-    @patch.object(views, 'ftl_file_is_active', lambda *x: True)
-    def test_yandex_show_to_ru(self):
-        req = RequestFactory().get('/firefox/new/')
-        view = views.NewView.as_view()
-        with self.activate('ru'):
-            response = view(req)
-        doc = pq(response.content)
-        yandex = doc('main[class*="t-yandex"]')
-        assert yandex.length == 1
-
-    @patch.dict(os.environ, SWITCH_FIREFOX_YANDEX='True')
-    @patch.object(views, 'ftl_file_is_active', lambda *x: True)
-    def test_yandex_hide_not_ru(self):
-        req = RequestFactory().get('/firefox/new/')
-        view = views.NewView.as_view()
-        with self.activate('de'):
-            response = view(req)
-        doc = pq(response.content)
-        yandex = doc('main[class*="t-yandex"]')
-        assert yandex.length == 0
-
-    @patch.dict(os.environ, SWITCH_FIREFOX_YANDEX='False')
-    @patch.object(views, 'ftl_file_is_active', lambda *x: True)
-    def test_yandex_hide_switch_off(self):
-        req = RequestFactory().get('/firefox/new/')
-        view = views.NewView.as_view()
-        with self.activate('ru'):
-            response = view(req)
-        doc = pq(response.content)
-        yandex = doc('main[class*="t-yandex"]')
-        assert yandex.length == 0
 
 
 class TestFirefoxNewNoIndex(TestCase):

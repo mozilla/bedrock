@@ -713,8 +713,8 @@ class DownloadThanksView(L10nTemplateView):
 class NewView(L10nTemplateView):
     ftl_files_map = {
         'firefox/new/trailhead/download.html': ['firefox/new/download', 'banners/firefox-mobile'],
-        'firefox/new/trailhead/download-yandex.html': ['firefox/new/download', 'banners/firefox-mobile'],
         'firefox/new/desktop/download.html': ['firefox/new/desktop'],
+        'firefox/new/desktop/download_yandex.html': ['firefox/new/desktop', 'banners/firefox-mobile'],
     }
     activation_files = [
         'firefox/new/download',
@@ -787,13 +787,16 @@ class NewView(L10nTemplateView):
         return ctx
 
     def get_template_names(self):
+        locale = l10n_utils.get_locale(self.request)
         variant = self.request.GET.get('v', None)
 
         # ensure variant matches pre-defined value
         if variant not in self.variations:
             variant = None
 
-        if ftl_file_is_active('firefox/new/desktop'):
+        if locale == 'ru' and switch('firefox-yandex'):
+            template = 'firefox/new/desktop/download_yandex.html'
+        elif ftl_file_is_active('firefox/new/desktop'):
             template = 'firefox/new/desktop/download.html'
         else:
             template = 'firefox/new/trailhead/download.html'

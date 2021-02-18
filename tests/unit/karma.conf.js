@@ -38,7 +38,7 @@ module.exports = function(config) {
             'media/js/base/stub-attribution.js',
             'media/js/firefox/all/all-downloads-unified.js',
             'media/js/firefox/new/common/thanks.js',
-            'media/js/firefox/new/yandex/scene1.js',
+            'media/js/firefox/new/yandex/show-yandex.js',
             'media/js/ie/mozilla-utils-ie.js',
             'tests/unit/spec/base/mozilla-banner.js',
             'tests/unit/spec/base/mozilla-run.js',
@@ -64,7 +64,7 @@ module.exports = function(config) {
             'tests/unit/spec/base/stub-attribution.js',
             'tests/unit/spec/firefox/all/all-downloads-unified.js',
             'tests/unit/spec/firefox/new/common/thanks.js',
-            'tests/unit/spec/firefox/new/yandex/scene1.js',
+            'tests/unit/spec/firefox/new/yandex/show-yandex.js',
             'tests/unit/spec/ie/mozilla-utils-ie.js',
             {
                 pattern: 'node_modules/sinon/pkg/sinon.js',

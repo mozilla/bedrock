@@ -142,7 +142,7 @@
     },
     {
       "files": [
-        "css/firefox/new/desktop/download-yandex.scss"
+        "css/firefox/new/yandex/download-yandex.scss"
       ],
       "name": "firefox_new_download_yandex"
     },
