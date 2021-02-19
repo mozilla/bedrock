@@ -47,6 +47,44 @@ describe('fxa-utm-referral.js', function() {
             expect(Mozilla.UtmUrl.getAttributionData(validObj)).toEqual(validData);
         });
 
+        it('should return a additional entrypoint params if present', function () {
+            var validObj = {
+                'utm_source': 'desktop-snippet',
+                'utm_content': 'rel-esr',
+                'utm_medium': 'referral',
+                'utm_term': 4242,
+                'utm_campaign': 'F100_4242_otherstuff_in_here',
+                'entrypoint_experiment': 'test-id',
+                'entrypoint_variation': 'test-variation'
+            };
+
+            var validData = {
+                'utm_source': 'desktop-snippet',
+                'utm_content': 'rel-esr',
+                'utm_medium': 'referral',
+                'utm_term': '4242',
+                'utm_campaign': 'F100_4242_otherstuff_in_here',
+                'entrypoint_experiment': 'test-id',
+                'entrypoint_variation': 'test-variation'
+            };
+
+            expect(Mozilla.UtmUrl.getAttributionData(validObj)).toEqual(validData);
+        });
+
+        it('should return entrypoint params if not utms are present', function () {
+            var validObj = {
+                'entrypoint_experiment': 'test-id',
+                'entrypoint_variation': 'test-variation'
+            };
+
+            var validData = {
+                'entrypoint_experiment': 'test-id',
+                'entrypoint_variation': 'test-variation'
+            };
+
+            expect(Mozilla.UtmUrl.getAttributionData(validObj)).toEqual(validData);
+        });
+
         it('should return an object without any danagerous params', function () {
             var dangerousSource = {
                 'utm_source': 'www.mozilla.org',
@@ -203,6 +241,33 @@ describe('fxa-utm-referral.js', function() {
             var url = 'https://accounts.firefox.com:8000/grande/nofat.html?spice=pumpkin';
 
             expect(Mozilla.UtmUrl.appendToDownloadURL(url, data)).toEqual('https://accounts.firefox.com:8000/grande/nofat.html?spice=pumpkin&utm_source=test-source');
+        });
+
+        it('adds additional entrypoint parameters if present', function() {
+            var data = {
+                'utm_source': 'desktop-snippet',
+                'utm_content': 'rel-esr',
+                'utm_medium': 'referral',
+                'utm_term': 4242,
+                'utm_campaign': 'F100_4242_otherstuff_in_here',
+                'entrypoint_experiment': 'test-id',
+                'entrypoint_variation': 'test-variation'
+            };
+
+            var url = 'https://accounts.firefox.com/';
+
+            expect(Mozilla.UtmUrl.appendToDownloadURL(url, data)).toEqual('https://accounts.firefox.com/?utm_source=desktop-snippet&utm_content=rel-esr&utm_medium=referral&utm_term=4242&utm_campaign=F100_4242_otherstuff_in_here&entrypoint_experiment=test-id&entrypoint_variation=test-variation');
+        });
+
+        it('does not wipe out existing utms if only enytrpoint params are present', function() {
+            var data = {
+                'entrypoint_experiment': 'test-id',
+                'entrypoint_variation': 'test-variation'
+            };
+
+            var url = 'https://accounts.firefox.com/?utm_medium=medium-one&utm_term=term-one&utm_campaign=campaign-one&utm_source=source-one&utm_content=content-one';
+
+            expect(Mozilla.UtmUrl.appendToDownloadURL(url, data)).toEqual('https://accounts.firefox.com/?utm_medium=medium-one&utm_term=term-one&utm_campaign=campaign-one&utm_source=source-one&utm_content=content-one&entrypoint_experiment=test-id&entrypoint_variation=test-variation');
         });
 
     });

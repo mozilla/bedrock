@@ -21,7 +21,7 @@ describe('mozilla-utils-ie.js', function() {
     describe('initDownloadLinks (regular download button)', function () {
 
         beforeEach(function () {
-            var link = '<a class="download-link" data-direct-link="test-download-url">Download</a>';
+            var link = '<a href="#download" class="download-link" data-direct-link="test-download-url">Download</a>';
             document.body.insertAdjacentHTML('beforeend', link);
         });
 

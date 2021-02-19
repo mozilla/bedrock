@@ -22,6 +22,10 @@ if (typeof window.Mozilla === 'undefined') {
         'https://stable.dev.lcip.org/'
     ];
 
+    var utms = ['utm_source', 'utm_campaign', 'utm_content', 'utm_term', 'utm_medium'];
+    var entrypointParams = ['entrypoint_experiment', 'entrypoint_variation'];
+    var acceptedParams = utms.concat(entrypointParams);
+
     /**
      * Returns the hostname for a given URL.
      * @param {String} url.
@@ -33,27 +37,28 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     /**
-     * Fetch and validate utm params from the page URL for FxA referral.
+     * Fetch and validate accepted params from the page URL for FxA referral.
      * https://mozilla.github.io/application-services/docs/accounts/metrics.html#descriptions-of-metrics-related-query-parameters
-     * @returns {Object} if both utm_source and utm_campaign are valid, else {null}.
+     * @returns {Object} if params are valid, else {null}.
      */
     UtmUrl.getAttributionData = function (params) {
         var allowedChars = /^[\w/.%-]+$/;
         var finalParams = {};
-        var utms = ['utm_source', 'utm_campaign', 'utm_content', 'utm_term', 'utm_medium'];
 
-        for (var i = 0; i < utms.length; i++) {
-            var utm = utms[i];
-            if (Object.prototype.hasOwnProperty.call(params, utm)) {
-                var param = decodeURIComponent(params[utm]);
-                if ((allowedChars).test(param)) {
-                    finalParams[utm] = param;
+        for (var i = 0; i < acceptedParams.length; i++) {
+            var acceptedParam = acceptedParams[i];
+            if (Object.prototype.hasOwnProperty.call(params, acceptedParam)) {
+                var foundParam = decodeURIComponent(params[acceptedParam]);
+                if ((allowedChars).test(foundParam)) {
+                    finalParams[acceptedParam] = foundParam;
                 }
             }
         }
 
-        // Both utm_source and utm_campaign are considered required, so only pass on referral data if they exist.
-        if (Object.prototype.hasOwnProperty.call(finalParams, 'utm_source') && Object.prototype.hasOwnProperty.call(finalParams, 'utm_campaign')) {
+        // Both utm_source and utm_campaign are considered required, so only pass through referral data if they exist.
+        // Alternatively, pass through entrypoint_experiment and entrypoint_variation independently.
+        if ((Object.prototype.hasOwnProperty.call(finalParams, 'utm_source') && Object.prototype.hasOwnProperty.call(finalParams, 'utm_campaign')) ||
+            (Object.prototype.hasOwnProperty.call(finalParams, 'entrypoint_experiment') && Object.prototype.hasOwnProperty.call(finalParams, 'entrypoint_variation'))) {
             return finalParams;
         }
 
@@ -61,8 +66,8 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     /**
-     * Append an object of UTM parameters to a given URL.
-     * Object parameters will erase all existing UTM parameters, whether present or not.
+     * Append an object of accepted parameters to a given URL.
+     * Object parameters will erase all existing accepted parameters, whether present or not.
      * @param {String} URL to append parameters to.
      * @param {Object} data object consisting of one or more parameters.
      * @returns {String} URL containing updated parameters.
@@ -74,13 +79,25 @@ if (typeof window.Mozilla === 'undefined') {
         if (url.indexOf('?') > 0) {
             linkParams = window._SearchParams.queryStringToObject(url.split('?')[1]);
 
-            // If the URL query string has existing UTM parameters then remove them,
+            // If we have utm parameters then remove them from the target URL,
             // as we don't want to muddle data from different campaign sources.
-            var utms = ['utm_source', 'utm_campaign', 'utm_content', 'utm_term', 'utm_medium'];
-            for (var i = 0; i < utms.length; i++) {
-                var utm = utms[i];
-                if (Object.prototype.hasOwnProperty.call(linkParams, utm)) {
-                    delete linkParams[utm];
+            if (Object.prototype.hasOwnProperty.call(data, 'utm_source') && Object.prototype.hasOwnProperty.call(data, 'utm_campaign')) {
+                for (var i = 0; i < utms.length; i++) {
+                    var utmParam = utms[i];
+                    if (Object.prototype.hasOwnProperty.call(linkParams, utmParam)) {
+                        delete linkParams[utmParam];
+                    }
+                }
+            }
+
+            // In principle, experiments should never clobber eachother(!). However, if we have
+            // new entrypoint_* parameters then assume they take precedence in the target URL.
+            if (Object.prototype.hasOwnProperty.call(data, 'entrypoint_experiment') && Object.prototype.hasOwnProperty.call(data, 'entrypoint_variation')) {
+                for (var j = 0; j < entrypointParams.length; j++) {
+                    var entryPointParam = entrypointParams[j];
+                    if (Object.prototype.hasOwnProperty.call(linkParams, entryPointParam)) {
+                        delete linkParams[entryPointParam];
+                    }
                 }
             }
 
@@ -93,14 +110,14 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     /**
-     * If there are valid utm params on the page URL, query the
-     * DOM and update Firefox Account links with the new utm data
+     * If there are validated referral params on the page URL, query the
+     * DOM and update Firefox Account links with the new param data.
      */
     UtmUrl.init = function (urlParams) {
         var params = UtmUrl.getAttributionData(urlParams);
         var ctaLinks = document.getElementsByClassName('js-fxa-cta-link');
 
-        // If there are no utm params on the page, do nothing.
+        // If there are no accepted params on the page URL, do nothing.
         if (!params) {
             return;
         }
