@@ -3,14 +3,19 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% from "macros.html" import google_play_button, fxa_email_form with context %}
-{% from "macros-protocol.html" import hero, picto_card with context %}
+{% from "macros-protocol.html" import hero, picto_card, call_out_compact with context %}
+
+{% extends "firefox/new/desktop/base.html" %}
 
 {% set show_firefox_join_modal = ftl_has_messages('firefox-desktop-download-youve-already-got-the-browser',
                                                   'firefox-desktop-download-watch-for-hackers-with',
                                                   'firefox-desktop-download-just-download-the-browser',
                                                   'firefox-desktop-download-get-more-from-firefox') %}
+{% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-desktop' %}
+{% set ios_url = app_store_url('firefox') %}
 
-{% extends "firefox/new/desktop/base.html" %}
+{% block string_data %}
+{% endblock %}
 
 {% block extrahead %}
   {{ super() }}
@@ -26,10 +31,6 @@
   <![endif]-->
 
 {% endblock %}
-
-{% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-desktop' %}
-
-{% set ios_url = app_store_url('firefox') %}
 
 {% macro picture(src, width, height, alt='', class_name='') -%}
 <picture class="{{ class_name }}">
@@ -63,7 +64,12 @@
 {% endblock %}
 
 {% block content %}
+
 <main role="main" class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
+
+  {% block yandex %}{% endblock%}
+
+
   <section id="desktop-banner" class="c-block t-intro show-else mzp-has-media-hide-on-sm">
     <div class="c-block-container">
       <div class="c-block-body">
@@ -523,7 +529,7 @@
 {% endblock %}
 
 {% block sticky_promo %}
-  {% include '/includes/sticky-promo.html' %}
+    {% include '/includes/sticky-promo.html' %}
 {% endblock %}
 
 {% block js %}

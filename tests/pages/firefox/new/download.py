@@ -13,8 +13,6 @@ class DownloadPage(BasePage):
     _URL_TEMPLATE = '/{locale}/firefox/new/'
 
     _download_button_locator = (By.CSS_SELECTOR, '#download-button-thanks > .download-link')
-    _platforms_modal_link_locator = (By.CLASS_NAME, 'js-platform-modal-button')
-    _platforms_modal_content_locator = (By.CLASS_NAME, 'mzp-u-modal-content')
     _join_firefox_modal_content_locator = (By.CLASS_NAME, 'join-firefox-content')
 
     @property
@@ -28,12 +26,6 @@ class DownloadPage(BasePage):
         link.click()
         from pages.firefox.new.thank_you import ThankYouPage
         return ThankYouPage(self.selenium, self.base_url).wait_for_page_to_load()
-
-    def open_other_platforms_modal(self):
-        modal = ModalProtocol(self)
-        self.find_element(*self._platforms_modal_link_locator).click()
-        self.wait.until(lambda s: modal.displays(self._platforms_modal_content_locator))
-        return modal
 
     def open_join_firefox_modal(self):
         modal = ModalProtocol(self)
