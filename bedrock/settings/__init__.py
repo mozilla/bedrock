@@ -79,6 +79,17 @@ CACHES['externalfiles'] = {
     }
 }
 
+# cache for generated QR codes
+CACHES['qrcode'] = {
+    'BACKEND': 'bedrock.base.cache.SimpleDictCache',
+    'LOCATION': 'qrcode',
+    'TIMEOUT': None,
+    'OPTIONS': {
+        'MAX_ENTRIES': 20,
+        'CULL_FREQUENCY': 4,  # 1/4 entries deleted if max reached
+    }
+}
+
 MEDIA_URL = CDN_BASE_URL + MEDIA_URL
 STATIC_URL = CDN_BASE_URL + STATIC_URL
 logging.config.dictConfig(LOGGING)

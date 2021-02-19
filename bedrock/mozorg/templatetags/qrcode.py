@@ -1,5 +1,7 @@
 from hashlib import sha1
-from pathlib import Path
+from io import BytesIO
+
+from django.core.cache import caches
 
 import qrcode as qr
 from django_jinja import library
@@ -7,20 +9,20 @@ from jinja2 import Markup
 from qrcode.image.svg import SvgPathImage
 
 
-QR_CACHE_PATH = Path('/tmp/qrcode_cache')
-QR_CACHE_PATH.mkdir(exist_ok=True)
+cache = caches['qrcode']
 
 
 @library.global_function
 def qrcode(data, box_size=20):
-    name = sha1(f'{data}-{box_size}'.encode('utf-8')).hexdigest()
-    filename = f'{name}.svg'
-    filepath = QR_CACHE_PATH.joinpath(filename)
-    if not filepath.exists():
+    key = sha1(f'{data}-{box_size}'.encode('utf-8')).hexdigest()
+    svg = cache.get(key)
+    if not svg:
         img = qr.make(data,
                       image_factory=SvgPathImage,
                       box_size=box_size)
-        img.save(str(filepath))
+        svg = BytesIO()
+        img.save(svg)
+        svg = svg.getvalue().decode('utf-8')
+        cache.set(key, svg)
 
-    with filepath.open() as fp:
-        return Markup(fp.read())
+    return Markup(svg)
