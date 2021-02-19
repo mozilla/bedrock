@@ -9,6 +9,26 @@ from pages.firefox.whatsnew.whatsnew_86 import FirefoxWhatsNew86Page
 
 @pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
 @pytest.mark.nondestructive
+def test_send_to_device_success_en(base_url, selenium):
+    page = FirefoxWhatsNew86Page(selenium, base_url, locale='en-US').open()
+    send_to_device = page.send_to_device
+    send_to_device.type_email('success@example.com')
+    send_to_device.click_send()
+    assert send_to_device.send_successful
+
+
+@pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
+@pytest.mark.nondestructive
+def test_send_to_device_failure_en(base_url, selenium):
+    page = FirefoxWhatsNew86Page(selenium, base_url, locale='en-US').open()
+    send_to_device = page.send_to_device
+    send_to_device.type_email('invalid@email')
+    send_to_device.click_send(expected_result='error')
+    assert send_to_device.is_form_error_displayed
+
+
+@pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
+@pytest.mark.nondestructive
 def test_send_to_device_success(base_url, selenium):
     page = FirefoxWhatsNew86Page(selenium, base_url, locale='fr').open()
     send_to_device = page.send_to_device
