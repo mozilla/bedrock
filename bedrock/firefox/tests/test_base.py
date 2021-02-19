@@ -478,6 +478,14 @@ class TestWhatsNew(TestCase):
 
     # begin 86.0 whatsnew tests
 
+    def test_fx_86_0_0_en(self, render_mock):
+        """Should use whatsnew-fx86 template for 86.0 in English"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'en-US'
+        self.view(req, version='86.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx86-en.html']
+
     def test_fx_86_0_0_de(self, render_mock):
         """Should use whatsnew-mobile-qrcode-de template for 86.0 in German"""
         req = self.rf.get('/firefox/whatsnew/')
@@ -493,6 +501,14 @@ class TestWhatsNew(TestCase):
         self.view(req, version='86.0')
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/whatsnew-fx81.html']
+
+    def test_fx_86_0_0_locale(self, render_mock):
+        """Should use standard whatsnew template for 86.0 in other locales"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'es-ES'
+        self.view(req, version='86.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/index-account.html']
 
     # end 86.0 whatsnew tests
 
