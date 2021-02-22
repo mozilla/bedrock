@@ -16,7 +16,7 @@ describe('send-to-device.js', function() {
     beforeEach(function () {
 
         var formMarkup = [
-            '<section id="send-to-device" class="send-to-device" data-countries="|us|gb|">' +
+            '<section id="send-to-device" class="send-to-device">' +
                 '<div class="form-container">' +
                     '<form class="send-to-device-form">' +
                         '<ul class="mzp-c-form-errors hidden"></ul>' +
@@ -28,7 +28,7 @@ describe('send-to-device.js', function() {
                                 '<button type="submit" class="button mzp-c-button mzp-t-product">Send</button>' +
                             '</div>' +
                         '</div>' +
-                        '<div class="thank-you hidden"></div>' +
+                        '<div class="thank-you hidden"><a href="#" role="button" class="send-another">Send to another device</a></div>' +
                         '<div class="loading-spinner"></div>' +
                         '</form>' +
                     '</div>' +
@@ -52,7 +52,6 @@ describe('send-to-device.js', function() {
         form.unbindEvents();
         var content = document.getElementById('send-to-device');
         content.parentNode.removeChild(content);
-        Mozilla.SendToDevice.COUNTRY_CODE = '';
     });
 
     describe('instantiation', function() {
@@ -84,62 +83,49 @@ describe('send-to-device.js', function() {
 
     describe('onFormSubmit', function() {
 
+        var xhr;
+        var xhrRequests = [];
+
+        beforeEach(function() {
+            xhr = sinon.useFakeXMLHttpRequest();
+            xhr.onCreate = function(req) {
+                xhrRequests.push(req);
+            };
+        });
+
+        afterEach(function() {
+            xhr.restore();
+            xhrRequests = [];
+        });
+
         it('should handle success', function() {
-
-            spyOn(window.$, 'post').and.callFake(function () {
-                var d = window.$.Deferred();
-                var data = {
-                    'success': 'success'
-                };
-                d.resolve(data);
-                return d.promise();
-            });
-
             spyOn(form, 'onFormSuccess').and.callThrough();
-
             form.init();
             document.getElementById('send-to-device-input').value = 'success@example.com';
             document.querySelector('.send-to-device-form button[type="submit"]').click();
-            expect(window.$.post).toHaveBeenCalled();
+            xhrRequests[0].respond(200, {'Content-Type': 'application/json'}, '{"success": "success"}');
+
             expect(form.onFormSuccess).toHaveBeenCalledWith('success');
         });
 
-        it('should handle error', function() {
-
-            spyOn($, 'post').and.callFake(function () {
-                var d = window.$.Deferred();
-                var data = {
-                    'errors': 'Please enter an email address.'
-                };
-                d.resolve(data);
-                return d.promise();
-            });
-
+        it('should handle invalid email', function() {
             spyOn(form, 'onFormError').and.callThrough();
-
             form.init();
             document.getElementById('send-to-device-input').value = 'invalid@email';
             document.querySelector('.send-to-device-form button[type="submit"]').click();
-            expect(window.$.post).toHaveBeenCalled();
-            expect(form.onFormError).toHaveBeenCalledWith('Please enter an email address.');
+            xhrRequests[0].respond(200, {'Content-Type': 'application/json'}, '{"success": false, "errors": ["email"]}');
+
+            expect(form.onFormError).toHaveBeenCalledWith(['email']);
         });
 
         it('should handle failure', function() {
-
-            spyOn($, 'post').and.callFake(function () {
-                var d = window.$.Deferred();
-                var error = 'An error occurred in our system. Please try again later.';
-                d.reject(error);
-                return d.promise();
-            });
-
             spyOn(form, 'onFormFailure').and.callThrough();
-
             form.init();
             document.getElementById('send-to-device-input').value = 'failure@example.com';
             document.querySelector('.send-to-device-form button[type="submit"]').click();
-            expect($.post).toHaveBeenCalled();
-            expect(form.onFormFailure).toHaveBeenCalledWith('An error occurred in our system. Please try again later.');
+            xhrRequests[0].respond(400, {'Content-Type': 'application/json'}, '{"success": false, "errors": ["system"]}');
+
+            expect(form.onFormFailure).toHaveBeenCalled();
         });
     });
 
