@@ -12,50 +12,66 @@
 <nav role="directory">
   <p>{{ _('In this document:') }}</p>
   <ul class="mzp-u-list-styled">
-    <li><a href="#basic-policy">{{ _('Basic Policy') }}</a>: {{ _('Patch authors will be notified with a bug of regressions and have 3 days to respond or get backed out.') }}</li>
-    <li><a href="#requirements">{{ _('Requirements') }}</a>: {{ _('Requirements for bugs.') }}</li>
-    <li><a href="#outcomes">{{ _('Acceptable Outcomes') }}</a>: {{ _('Responses to regressions.') }}</li>
-    <li><a href="#other">{{ _('Other Scenarios') }}</a>: {{ _('Non standard regressions.') }}</li>
+    <li><a href="#basic-policy">Basic Policy</a>: Patch authors will be notified of a regression and must respond within 3 days or their changes will be backed out.</li>
+    <li><a href="#criteria">Sheriffing Criteria</a>: Minimum criteria to be met before tests will be monitored by sheriffs.</a></li>
+    <li><a href="#requirements">Bug Requirements</a>: Requirements for regression bugs opened by sheriffs.</li>
+    <li><a href="#outcomes">Acceptable Outcomes</a>: Responses to regressions.</li>
+    <li><a href="#other">Other Scenarios</a>: Non standard regressions.</li>
   </ul>
 </nav>
 
 <section id="basic-policy">
-  <h2>{{ _('Basic Policy: Bug filed') }}</h2>
-  <p>{{ _('Performance is a critical goal for Mozilla releases and the commercial products that will be based on Mozilla. We cannot allow performance regressions to go unnoticed or unresolved during our development cycles. When a regression is identified a bug will be filed and the patch author will be asked to provide information via the needinfo flag in bugzilla. We expect a response and reasonable dialog within 3 business days. In the unfortunate event that we cannot learn more about the regression, we will backout the offending patch(es) and the patch author can reland when they have more time to investigate.') }}</p>
+  <h2>Basic Policy</h2>
+  <p>Performance is a critical goal for Firefox releases, as well as Mozilla’s other products and services. We cannot allow performance regressions to go unnoticed or unresolved during our development cycles. When a regression is identified, a bug will be filed and the patch author will be asked to provide information via the needinfo flag in bugzilla. We expect a response and reasonable dialog within 3 business days. If a resolution is not found we will back out the offending patch(es) and the patch author can reland when they have more time to investigate.</p>
+</section>
+
+<section id="criteria">
+  <h2>Sheriffing Criteria</h2>
+
+  <p>In order to make efficient use of our performance sheriff resources, the following criteria must be met before results will be monitored for regressions:</p>
+
+  <ul class="mzp-u-list-styled">
+    <li>Test jobs run on integration or mozilla-beta.</li>
+    <li>Test jobs run as tier 2 or above.</li>
+    <li>Tests can be run and debugged locally.</li>
+    <li>Tests are documented in the <a href="https://firefox-source-docs.mozilla.org/testing/perfdocs/">Firefox Source Docs</a> or <a href="https://wiki.mozilla.org/TestEngineering/Performance">Mozilla Wiki</a>.</li>
+  </ul>
+
+  <p>In the future this list will be extended to include thresholds for noise, engineer traction, and fix ratio. In the meantime please consider these aspects when working on performance tests.</p>
 </section>
 
 <section id="requirements">
-  <h2>{{ _('Requirements') }}</h2>
-  <p>{{ _('To be fair, some initial work up front should be done prior to filing a bug and requesting a needinfo from the original author.  Here is what to expect:') }}</p>
+  <h2>Bug Requirements</h2>
+  <p>To be fair, some initial work up front should be done prior to filing a bug and requesting a <em>needinfo</em> from the original author. Here is what to expect:</p>
   <ul class="mzp-u-list-styled">
-    <li>{{ _('On integration branches (higher volume), a talos sheriff will have verified the root cause within 1 week of the patch landing.') }}</li>
-    <li>{{ _('a patch or set of patches from a bug must be identified as the root cause. This can take place through retriggers on the tree or in the case of many patches landing at once this would take place through a push to try backing out the suspected patch(es).') }}</li>
-    <li>{{ _('links in the bug to document the regression (and any related regressions/improvements).') }}</li>
-    <li>{{ _('if we are confident this is the root cause and it meets a 3% regression threshold, then the needinfo request will mention that this policy will be enforced.') }}</li>
+    <li>On integration branches (higher volume), a performance sheriff will have verified the root cause within 5 business days of the patch landing.</li>
+    <li>A patch or set of patches from a bug must be identified as the root cause. This can take place through retriggers on the tree or in the case of many patches landing at once this would take place through a push to try backing out the suspected patch(es).</li>
+    <li>Links in the bug to document the regression (and any related regressions/improvements).</li>
+    <li>If we are confident this is the root cause and it meets a 2% regression threshold, then the needinfo request will mention that this policy will be enforced.</li>
   </ul>
 </section>
 
 <section id="outcomes">
-  <h2>{{ _('Acceptable Outcomes') }}</h2>
-  <p>{{ _('What we expect from a developer when asking them to look at a regression:') }}</p>
+  <h2>Acceptable Outcomes</h2>
+  <p>What we expect from a developer when asking them to look at a regression:</p>
   <ul class="mzp-u-list-styled">
-    <li>{{ _('A promise to attempt a fix at the bug is agreed upon, the bug is assigned to someone and an estimated timeline is documented in the bug.') }}</li>
-    <li>{{ _('The bug will contain enough details and evidence to support accepting this regression, we will mark it as wontfix.') }}</li>
-    <li>{{ _('It is agreed that this should be backed out and a sheriff will verify the backout removes the regressions.') }}</li>
+    <li>A promise to attempt a fix at the bug is agreed upon, the bug is assigned to someone and an estimated timeline is documented in the bug.</li>
+    <li>The bug will contain enough details and evidence to support accepting this regression, we will mark it as wontfix.</li>
+    <li>It is agreed that this should be backed out and a sheriff will verify the backout removes the regressions.</li>
   </ul>
 </section>
 
 <section id="other">
-  <h2>{{ _('Other Scenarios') }}</h2>
-  <p>{{ _('There are many reasons why a regression will not fall into the above workflow. Here a few examples of other scenarios and how we will handle them:') }}</p>
+  <h2>Other Scenarios</h2>
+  <p>There are many reasons why a regression will not fall into the above workflow. Here a few examples of other scenarios and how we will handle them:</p>
   <ul class="mzp-u-list-styled">
-    <li>{{ _('A bug related to the alert is not filed within 1 week of the patch landing. This removes the urgency and required action.') }}</li>
-    <li>{{ _('We only caught a regression at uplift time. There is a chance this isn’t easily determined, this will be documented and identified patch authors will use their judgement to fix the bug.') }}</li>
-    <li>{{ _('Regression is unrelated to code (say pgo issue) - this should be documented in the bug and closed as wontfix.') }}</li>
-    <li>{{ _('When we uplift to Aurora or Beta, all regressions filed before the uplift that show up on the upstream branch will have a needinfo flag set and require action to be taken.') }}</li>
-    <li>{{ _('A backout or fix doesn’t fully resolve the regression. We will do our best to understand the difference and fix or document the remainder.') }}</li>
+    <li>A bug related to the alert is not filed within 5 business days of the patch landing. This removes the urgency and required action.</li>
+    <li>We only caught a regression at uplift time. There is a chance this isn’t easily determined, this will be documented and identified patch authors will use their judgement to fix the bug.</li>
+    <li>Regression is unrelated to code (e.g. infrastructure changes) - this should be documented in the bug and closed as wontfix.</li>
+    <li>When we uplift to Beta, all regressions filed before the uplift that show up on the upstream branch will have a needinfo flag set and require action to be taken.</li>
+    <li>A backout or fix doesn’t fully resolve the regression. We will do our best to understand the difference and fix or document the remainder.</li>
   </ul>
 </section>
 
-<p><strong>{{ _('Contact') }}</strong>: Joel Maher &lt;<a href="mailto:jmaher@mozilla.com">jmaher@mozilla.com</a>&gt;</p>
+<p><strong>Contact</strong>: Dave Hunt &lt;<a href="mailto:dhunt@mozilla.com">dhunt@mozilla.com</a>&gt;</p>
 {% endblock %}
