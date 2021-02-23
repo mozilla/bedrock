@@ -8,8 +8,6 @@ from django.shortcuts import render as django_render
 from django.views.decorators.http import require_safe
 from django.views.generic import TemplateView
 from lib import l10n_utils
-from lib.l10n_utils import L10nTemplateView
-from lib.l10n_utils.fluent import ftl_file_is_active
 
 from bedrock.contentcards.models import get_page_content_cards
 from bedrock.mozorg.credits import CreditsFile
@@ -137,17 +135,3 @@ def home_view(request):
         template_name = 'mozorg/home/home.html'
 
     return l10n_utils.render(request, template_name, ctx)
-
-
-class ContributeView(L10nTemplateView):
-    ftl_files_map = {
-        'mozorg/contribute/contribute-2020.html': ['mozorg/contribute']
-    }
-
-    def get_template_names(self):
-        if ftl_file_is_active('mozorg/contribute'):
-            template_name = 'mozorg/contribute/contribute-2020.html'
-        else:
-            template_name = 'mozorg/contribute/index.html'
-
-        return [template_name]
