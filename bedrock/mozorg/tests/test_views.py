@@ -81,27 +81,3 @@ class TestHomePage(TestCase):
         req.locale = 'es'
         views.home_view(req)
         render_mock.assert_called_once_with(req, 'mozorg/home/home.html', ANY)
-
-
-@patch('bedrock.mozorg.views.l10n_utils.render')
-class TestContribute(TestCase):
-    def setUp(self):
-        self.rf = RequestFactory()
-
-    @patch.object(views, 'ftl_file_is_active', lambda *x: True)
-    def test_contribute_en_template(self, render_mock):
-        req = RequestFactory().get('/contribute')
-        req.locale = 'en-US'
-        view = views.ContributeView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ['mozorg/contribute/contribute-2020.html']
-
-    @patch.object(views, 'ftl_file_is_active', lambda *x: False)
-    def test_contribute_locale_template(self, render_mock):
-        req = RequestFactory().get('/contribute')
-        req.locale = 'es-ES'
-        view = views.ContributeView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ['mozorg/contribute/index.html']

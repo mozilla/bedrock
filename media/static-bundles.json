@@ -160,15 +160,9 @@
     },
     {
       "files": [
-        "css/mozorg/contribute/contribute.scss"
+        "css/mozorg/contribute.scss"
       ],
-      "name": "contribute-base"
-    },
-    {
-      "files": [
-        "css/mozorg/contribute/contribute-2020.scss"
-      ],
-      "name": "contribute-2020"
+      "name": "contribute"
     },
     {
       "files": [
@@ -1082,19 +1076,10 @@
     },
     {
       "files": [
-        "protocol/js/protocol-modal.js",
-        "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.js",
-        "js/mozorg/contribute/contribute-landing.js"
-      ],
-      "name": "contribute-landing"
-    },
-    {
-      "files": [
         "protocol/js/protocol-newsletter.js",
         "js/newsletter/form-protocol.js"
       ],
-      "name": "contribute-2020"
+      "name": "contribute"
     },
     {
       "files": [

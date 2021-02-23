@@ -106,7 +106,7 @@ redirectpatterns = (
     redirect(r'^b2g', 'https://support.mozilla.org/products/firefox-os'),
 
     # Bug 781914
-    redirect(r'^contribute/areas\.html$', 'mozorg.contribute.index'),
+    redirect(r'^contribute/areas\.html$', 'mozorg.contribute'),
     redirect(r'^contribute/universityambassadors', 'https://campus.mozilla.community/'),
 
     # Bug 1144949
@@ -221,7 +221,7 @@ redirectpatterns = (
     redirect(r'^community/forums/?$', 'mozorg.about.forums.forums'),
 
     # bug 927442
-    redirect(r'^(firefox/)?community/?', 'mozorg.contribute.index'),
+    redirect(r'^(firefox/)?community/?', 'mozorg.contribute'),
 
     # bug 925551, issue 8374
     redirect(r'^plugincheck/more_info\.html$', 'https://support.mozilla.org/kb/npapi-plugins/'),
@@ -663,8 +663,8 @@ redirectpatterns = (
     # issue 6994
     redirect(r'^contribute/signup/?$', 'https://activate.mozilla.community/'),
     redirect(r'^/contribute/task(/.*)?', 'https://activate.mozilla.community/'),
-    redirect(r'^contribute/friends/?$', 'mozorg.contribute.index'),
-    redirect(r'^contribute/stories(/.*)?$', 'mozorg.contribute.index'),
+    redirect(r'^contribute/friends/?$', 'mozorg.contribute'),
+    redirect(r'^contribute/stories(/.*)?$', 'mozorg.contribute'),
 
     # Issue 6461
     redirect(r'^contribute/events/?$', 'https://community.mozilla.org/events/'),
