@@ -9,21 +9,21 @@ describe('mozilla-fxa.js', function() {
     describe('FxaState.applyStateToBody', function() {
 
         beforeEach(function() {
-            document.body.setAttribute('class', 'js state-fxa-default');
+            document.body.classList.add('js', 'state-fxa-default');
         });
 
         afterEach(function() {
-            document.body.removeAttribute('class');
+            document.body.classList.remove('js', 'state-fxa-default');
         });
 
         it('should add the supplied value to the body class list', function() {
             Mozilla.FxaState.applyStateToBody('state-fxa-android');
-            expect(document.body.getAttribute('class')).toContain('state-fxa-android');
+            expect(document.body.classList.contains('state-fxa-android')).toBeTruthy();
         });
 
         it('should remove state-default from the body class list', function() {
             Mozilla.FxaState.applyStateToBody('state-fxa-android');
-            expect(document.body.getAttribute('class')).not.toContain('state-fxa-default');
+            expect(document.body.classList.contains('state-fxa-default')).toBeFalsy();
         });
     });
 
