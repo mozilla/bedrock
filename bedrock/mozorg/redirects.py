@@ -426,7 +426,7 @@ redirectpatterns = (
     redirect(r'^contribute/local/southpole\.html$', '/contact/communities/antarctica/'),
 
     # bug 1393622
-    redirect(r'contact/spaces/(?:auckland|tokyo)/?$', '/contact/spaces/'),
+    redirect(r'contact/spaces/(?:auckland|tokyo|taipei|london|mountain-view|vancouver)/?$', '/contact/spaces/'),
 
     redirect('^contribute/buttons/', 'https://affiliates.mozilla.org/'),
 
