@@ -184,4 +184,7 @@ urlpatterns = (
     page('firefox/browsers/chromebook', 'firefox/browsers/chromebook.html', ftl_files='firefox/browsers/chromebook'),
     page('firefox/sync', 'firefox/sync.html', ftl_files='firefox/sync'),
     page('firefox/privacy/book', 'firefox/privacy/book.html', ftl_files='firefox/privacy/book'),
+
+    # Issue 9957
+    page('firefox/more/misinformation', 'firefox/more/misinformation.html', ftl_files='firefox/more/misinformation'),
 )

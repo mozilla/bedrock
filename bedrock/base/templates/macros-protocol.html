@@ -157,16 +157,17 @@
 
 
 {# Feature Card: https://protocol.mozilla.org/patterns/molecules/feature-card.html #}
-{% macro feature_card_media(image_url, include_highres_image=False, l10n_image=False) %}
+{% macro feature_card_media(image_url, include_highres_image=False, l10n_image=False, lazy_loading=False) %}
 <div class="mzp-c-card-feature-media-wrapper">
   <div class="mzp-c-card-feature-media">
+    {% set loading = 'lazy' if lazy_loading else 'eager' %}
     {% if include_highres_image %}
-      {{ high_res_img(image_url, {'alt': '', 'l10n': l10n_image}) }}
+      {{ high_res_img(image_url, {'alt': '', 'l10n': l10n_image, 'loading': loading}) }}
     {% else %}
       {% if l10n_image %}
-        <img src="{{ l10n_img(image_url) }}" alt="">
+        <img src="{{ l10n_img(image_url) }}" alt="" loading="{{ loading }}">
       {% else %}
-        <img src="{{ static(image_url) }}" alt="">
+        <img src="{{ static(image_url) }}" alt="" loading="{{ loading }}">
       {% endif %}
     {% endif %}
   </div>
@@ -175,10 +176,10 @@
 
 
 {# Feature Card: https://protocol.mozilla.org/patterns/molecules/feature-card.html #}
-{% macro feature_card(title, ga_title, image_url, class=None, link_url=None, link_cta=None, include_highres_image=False, l10n_image=False, aspect_ratio=None, heading_level=2, media_after=False) -%}
+{% macro feature_card(title, ga_title, image_url, class=None, link_url=None, link_cta=None, include_highres_image=False, l10n_image=False, aspect_ratio=None, heading_level=2, media_after=False, lazy_loading=False) -%}
 <section class="mzp-c-card-feature {% if aspect_ratio %}{{ aspect_ratio }}{% endif %} {% if class %}{{ class }}{% endif %}">
   {% if not media_after %}
-    {{ feature_card_media(image_url, include_highres_image, l10n_image) }}
+    {{ feature_card_media(image_url, include_highres_image, l10n_image, lazy_loading) }}
   {% endif %}
   <div class="mzp-c-card-feature-content">
     <div class="mzp-c-card-feature-content-container">

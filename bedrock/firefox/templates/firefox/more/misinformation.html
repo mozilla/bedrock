@@ -1,0 +1,175 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros-protocol.html" import call_out_compact, feature_card, hero, picto_card with context %}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% block page_title %}{{ ftl('misinformation-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('misinformation-page-desc') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('misinformation') }}
+{% endblock %}
+
+{% set _params = '?utm_source=mozilla.org&utm_medium=referral&utm_campaign=misinformation-page' %}
+
+{% block content %}
+<section class="mzp-c-hero mzp-has-image mzp-t-dark mzp-t-product-firefox">
+  <div class="mzp-l-content">
+    <div class="mzp-c-hero-body">
+      <h1 class="mzp-c-hero-title">{{ self.page_title() }}</h1>
+      <div class="mzp-c-hero-desc">
+        <p>{{ ftl('misinformation-page-subheading') }}</p>
+      </div>
+      <div class="mzp-c-hero-cta">
+        <div class="download-firefox">
+          {{ download_firefox(dom_id='misinformation-download', download_location='primary cta') }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mzp-c-hero-image">
+    {{ high_res_img('img/firefox/more/misinformation/hero.jpg', {'alt': '', 'width': '700', 'height': '385'}) }}
+  </div>
+</section>
+<article>
+  <section class="mzp-l-content mzp-t-content-md">
+    <h2>{{ ftl('misinformation-what-is-heading') }}</h2>
+
+    <p>{{ ftl('misinformation-disinformation') }}</p>
+    <p>{{ ftl('misinformation-ultimately-harmful') }}</p>
+
+    {{ high_res_img('img/firefox/more/misinformation/false-info.png', {'class': 'misinformation-article-block-img', 'alt': '', 'width': '688', 'height': '375', 'loading': 'lazy'}) }}
+
+    <h2>{{ ftl('misinformation-false-info-heading') }}</h2>
+
+    <p>{{ ftl('misinformation-widespread-online', tracking='https://blog.mozilla.org/firefox/how-to-stop-web-trackers/' + _params) }}</p>
+    <p>{{ ftl('misinformation-tracking-advertising') }}</p>
+    <p>{{ ftl('misinformation-social-newtorks') }}</p>
+  </section>
+
+  <section class="mzp-l-content mzp-t-content-md">
+
+    <div class="misinformation-help-details">
+      <h2 class="misinformation-help-heading">{{ ftl('misinformation-spot-online-heading') }}</h2>
+
+      <ol class="misinformation-help-steps">
+        <li>
+          <details>
+            <summary>
+              <h3>{{ ftl('misinformation-look-at-url') }}</h3>
+            </summary>
+            <p>{{ ftl('misinformation-known-to-br-credible') }}</p>
+          </details>
+        </li>
+        <li>
+          <details>
+            <summary>
+              <h3>{{ ftl('misinformation-overly-sensational') }}</h3>
+            </summary>
+            <p>{{ ftl('misinformation-check-out-websites') }}</p>
+          </details>
+        </li>
+        <li>
+          <details>
+            <summary>
+              <h3>{{ ftl('misinformation-content-up-to-date') }}</h3>
+            </summary>
+            <p>{{ ftl('misinformation-outdated-information') }}</p>
+          </details>
+        </li>
+        <li>
+          <details>
+            <summary>
+              <h3>{{ ftl('misinformation-credible-publication') }}</h3>
+            </summary>
+            <p>{{ ftl('misinformation-authors-name') }}</p>
+          </details>
+        </li>
+        <li>
+          <details>
+            <summary>
+              <h3>{{ ftl('misinformation-images-captions') }}</h3>
+            </summary>
+            <p>{{ ftl('misinformation-images-are-powerful') }}</p>
+          </details>
+        </li>
+      </ol>
+    </div>
+
+  </section>
+
+  <section class="mzp-l-content mzp-t-content-md misinformation-firefox-helps">
+    <h2 class="misinformation-firefox-helps-heading">{{ ftl('misinformation-how-firefox-helps-heading') }}</h2>
+
+    {% call feature_card(
+      title=ftl('misinformation-firefox-keeps-trackers-heading'),
+      image_url='img/firefox/more/misinformation/tracking-protection.svg',
+      aspect_ratio='mzp-has-aspect-1-1',
+      class='mzp-l-card-feature-right-half mzp-t-firefox',
+      lazy_loading=True
+    ) %}
+      <p>{{ ftl('misinformation-firefox-keeps-trackers-desc', firefox=url('firefox.new'), protection='https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop' + _params) }}</p>
+    {% endcall %}
+
+    {% call feature_card(
+      title=ftl('misiinformation-social-media-clean-heading'),
+      image_url='img/firefox/more/misinformation/facebook-container.svg',
+      aspect_ratio='mzp-has-aspect-1-1',
+      class='mzp-l-card-feature-right-half mzp-t-firefox',
+      lazy_loading=True
+    ) %}
+      <p>{{ ftl('misiinformation-social-media-clean-desc', container=url('firefox.facebookcontainer.index')) }}</p>
+    {% endcall %}
+
+    {% if LANG.startswith('en-') or LANG == 'de' %}
+      {% call feature_card(
+        title=ftl('misinformation-surface-content-heading'),
+        image_url='img/firefox/more/misinformation/pocket.svg',
+        aspect_ratio='mzp-has-aspect-1-1',
+        class='mzp-l-card-feature-right-half mzp-t-firefox',
+        lazy_loading=True
+      ) %}
+        <p>{{ ftl('misinformation-surface-content-desc', recommended='https://support.mozilla.org/kb/customize-new-tab-page' + _params, pocket_hits='https://getpocket.com/explore/pocket-hits-signup' + _params, pocket='https://getpocket.com/' + _params)}}</p>
+      {% endcall %}
+    {% endif %}
+  </section>
+
+  <div class="misinformation-learn-more">
+    <ul class="mzp-l-content mzp-l-card-half">
+      {% call picto_card(
+        title=ftl('misinformation-why-trust-firefox'),
+        class='trust',
+        custom_desc=True
+      ) %}
+        <p>
+          {{ ftl('misinformation-because-we-put-people-first', foundation='https://foundation.mozilla.org/' + _params) }}
+        </p>
+        <p><a href="{{ url('mozorg.mission') }}">{{ ftl('misinformation-learn-more-about-our-mission') }}</a></p>
+      {% endcall %}
+
+      {% call picto_card(
+        title=ftl('misinformation-your-privacy-by-the-product'),
+        class='privacy',
+        custom_desc=True
+      ) %}
+        <p>{{ ftl('misinformation-firefox-products-work-differently') }}</p>
+        <p><a href="{{ url('firefox.privacy.products') }}">{{ ftl('misinformation-learn-about-our-products') }}</a></p>
+      {% endcall %}
+    </ul>
+  </div>
+
+</article>
+
+{% call call_out_compact(
+  title=ftl('misinformation-designed-to-protect'),
+  class='mzp-t-product-firefox mzp-t-firefox mzp-t-dark'
+) %}
+<div class="download-firefox">
+  {{ download_firefox(dom_id='misinformation-footer-download', download_location='secondary cta') }}
+</div>
+{% endcall %}
+
+{% endblock %}

@@ -1,0 +1,188 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import "../../../protocol/css/includes/lib";
+@import "../../../protocol/css/components/hero";
+@import "../../../protocol/css/components/feature-card";
+@import "../../../protocol/css/components/call-out";
+@import "../../../protocol/css/components/picto-card";
+@import '../../../protocol/css/templates/card-layout';
+
+// -------------------------------------------------------------------------- //
+// Page Hero
+
+.mzp-c-hero.mzp-t-dark {
+    background: $color-ink-80;
+
+    @media #{$mq-lg} {
+        margin-bottom: $layout-lg;
+    }
+}
+
+.mzp-c-button-download-container {
+    margin-bottom: 0;
+}
+
+.mzp-c-hero {
+    .mzp-c-hero-image {
+        display: none;
+    }
+
+    @media #{$mq-md} {
+        .mzp-c-hero-title {
+            @include text-title-sm;
+        }
+
+        .mzp-c-hero-image {
+            display: block;
+        }
+    }
+
+    @media #{$mq-lg} {
+        .mzp-c-hero-title {
+            @include text-title-md;
+        }
+    }
+
+    @media #{$mq-xl} {
+        .mzp-c-hero-title {
+            @include text-title-lg;
+        }
+    }
+}
+
+// -------------------------------------------------------------------------- //
+// Article styles
+
+.misinformation-article-block-img {
+    display: block;
+    margin: $layout-lg auto;
+    text-align: center;
+}
+
+article {
+    h2 {
+        @include text-title-sm;
+    }
+}
+
+// -------------------------------------------------------------------------- //
+// Misinformation <details> section
+
+.misinformation-help-details {
+    margin: $layout-sm auto;
+
+    @media #{$mq-md} {
+        margin: $layout-lg auto;
+    }
+}
+
+.misinformation-help-heading {
+    display: block;
+}
+
+.misinformation-help-steps {
+    counter-reset: step-counter;
+    margin-top: $spacing-2xl;
+
+    h3 {
+        @include text-title-2xs;
+    }
+
+    li {
+        @include bidi(((padding-left, 3em, padding-right, 3em),));
+        margin-bottom: $spacing-lg;
+        position: relative;
+
+        summary:hover {
+            cursor: pointer;
+        }
+
+        &:before {
+            @include bidi(((left, 0, right, 0),));
+            border-radius: 100%;
+            border: 3px solid $color-marketing-gray-80;
+            content: counter(step-counter);
+            counter-increment: step-counter;
+            display: block;
+            font-weight: bold;
+            height: 1.5em;
+            position: absolute;
+            text-align: center;
+            top: 0;
+            width: 1.5em;
+        }
+    }
+}
+
+// -------------------------------------------------------------------------- //
+// How Firefox Helps section
+
+.misinformation-firefox-helps {
+
+    .misinformation-firefox-helps-heading {
+        margin: $layout-md 0 $layout-lg;
+        text-align: center;
+    }
+
+    .mzp-c-card-feature-title {
+        @include text-title-2xs;
+    }
+
+    .mzp-c-card-feature-media {
+        margin: 0 auto;
+        max-width: 320px;
+    }
+}
+
+// -------------------------------------------------------------------------- //
+// Picto Cards
+
+.misinformation-learn-more {
+    background-color: $color-marketing-gray-10;
+
+    .mzp-c-card-picto-content {
+        margin: 0 auto;
+        max-width: 500px;
+    }
+
+    // Custom Overrides pending https://github.com/mozilla/protocol/issues/382
+    .mzp-c-card-picto {
+
+        .mzp-c-card-picto-content {
+            padding-top: 113px + $spacing-lg;
+
+            &:before {
+                background-color: transparent;
+                background-repeat: no-repeat;
+            }
+        }
+
+        &.trust .mzp-c-card-picto-content:before {
+            background-image: url('/media/img/icons/mountain-purple.svg');
+            height: 113px;
+            margin-left: -76px;
+            width: 153px;
+        }
+
+        &.privacy .mzp-c-card-picto-content:before {
+            background-image: url('/media/img/icons/privacy-shield.svg');
+            height: 113px;
+            margin-left: -73px;
+            width: 146px;
+        }
+    }
+}
+
+// -------------------------------------------------------------------------- //
+// Call Out
+
+.mzp-c-call-out-compact.mzp-t-dark {
+    background: $color-ink-80;
+}
+
+

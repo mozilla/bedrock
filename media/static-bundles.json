@@ -700,6 +700,12 @@
     },
     {
       "files": [
+        "css/firefox/more/misinformation.scss"
+      ],
+      "name": "misinformation"
+    },
+    {
+      "files": [
         "css/firefox/sticky-promo.scss",
         "css/firefox/browsers/best-browser.scss"
       ],
