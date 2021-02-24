@@ -89,16 +89,12 @@ urlpatterns = (
 
     page('contact', 'mozorg/contact/contact-landing.html'),
     page('contact/spaces', 'mozorg/contact/spaces/spaces-landing.html'),
-    page('contact/spaces/mountain-view', 'mozorg/contact/spaces/mountain-view.html'),
     page('contact/spaces/beijing', 'mozorg/contact/spaces/beijing.html'),
     page('contact/spaces/berlin', 'mozorg/contact/spaces/berlin.html'),
-    page('contact/spaces/london', 'mozorg/contact/spaces/london.html'),
     page('contact/spaces/paris', 'mozorg/contact/spaces/paris.html'),
     page('contact/spaces/portland', 'mozorg/contact/spaces/portland.html'),
     page('contact/spaces/san-francisco', 'mozorg/contact/spaces/san-francisco.html'),
-    page('contact/spaces/taipei', 'mozorg/contact/spaces/taipei.html'),
     page('contact/spaces/toronto', 'mozorg/contact/spaces/toronto.html'),
-    page('contact/spaces/vancouver', 'mozorg/contact/spaces/vancouver.html'),
 
     page('MPL', 'mozorg/mpl/index.html'),
     page('MPL/historical', 'mozorg/mpl/historical.html'),
