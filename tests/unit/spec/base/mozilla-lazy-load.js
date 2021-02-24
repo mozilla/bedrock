@@ -61,19 +61,17 @@ describe('mozilla-lazy-load.js', function() {
 
     describe('Mozilla.LazyLoad.observe', function() {
 
-        var $target;
-
         beforeEach(function() {
             var tpl = '<div class="lazy-image-container">' +
                         '<img class="image1" src="/img/placeholder.png" data-src="/img/foo.png">' +
                         '<img class="image2" src="/img/placeholder.png" data-src="/img/foo.png">' +
                       '</div>';
-            $target = $(tpl);
-            $target.appendTo($('body'));
+            document.body.insertAdjacentHTML('beforeend', tpl);
         });
 
         afterEach(function() {
-            $target.remove();
+            var content = document.querySelector('.lazy-image-container');
+            content.parentNode.removeChild(content);
         });
 
         it('should observe elements as expected', function() {
@@ -144,48 +142,45 @@ describe('mozilla-lazy-load.js', function() {
 
     describe('Mozilla.LazyLoad.onImageLoad', function() {
 
-        var $img;
-
         beforeEach(function () {
-            var img = '<img src="/img/placeholder.png" data-src="/img/foo.png" data-srcset="/img/foo.png 2x">';
-            $img = $(img);
-            $img.appendTo($('body'));
+            var img = '<img class="test-image" src="/img/placeholder.png" data-src="/img/foo.png" data-srcset="/img/foo.png 2x">';
+            document.body.insertAdjacentHTML('beforeend', img);
         });
 
         afterEach(function(){
-            $img.remove();
+            var content = document.querySelector('.test-image');
+            content.parentNode.removeChild(content);
         });
 
         it('should remove the data-src attribute', function() {
+            var img = document.querySelector('.test-image');
             var event = {
-                target: $img[0]
+                target: img
             };
             Mozilla.LazyLoad.onImageLoad(event);
-            expect($img.attr('data-src')).toBe(undefined);
-            expect($img.attr('data-src-set')).toBe(undefined);
+            expect(img.getAttribute('data-src')).toBe(null);
+            expect(img.getAttribute('data-src-set')).toBe(null);
         });
     });
 
     describe('Mozilla.LazyLoad.loadAllFallback', function() {
-
-        var $target;
 
         beforeEach(function () {
             var tpl = '<div class="observer-list-test">' +
                         '<img class="image1" src="/img/placeholder.png" data-src="/img/foo.png" data-srcset="/img/foo.png 2x">' +
                         '<img class="image2" src="/img/placeholder.png" data-src="/img/foo.png" data-srcset="/img/foo.png 2x">' +
                       '</div>';
-            $target = $(tpl);
-            $target.appendTo($('body'));
+            document.body.insertAdjacentHTML('beforeend', tpl);
         });
 
         afterEach(function(){
-            $target.remove();
+            var content = document.querySelector('.observer-list-test');
+            content.parentNode.removeChild(content);
         });
 
         it('should register an IntersectionObserver correctly', function() {
-            var image1 = $target.find('.image1')[0];
-            var image2 = $target.find('.image2')[0];
+            var image1 = document.querySelector('.observer-list-test .image1');
+            var image2 = document.querySelector('.observer-list-test .image2');
 
             Mozilla.LazyLoad.loadAllFallback('.observer-list-test img');
 

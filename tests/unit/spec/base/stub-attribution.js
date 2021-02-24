@@ -311,8 +311,8 @@ describe('stub-attribution.js', function() {
             };
             /* eslint-enable camelcase */
 
-            spyOn($, 'get').and.callFake(function () {
-                var d = $.Deferred();
+            spyOn(window.$, 'get').and.callFake(function () {
+                var d = window.$.Deferred();
                 d.resolve(data);
                 return d.promise();
             });
@@ -360,11 +360,13 @@ describe('stub-attribution.js', function() {
                                     '<li><a id="link-direct-win" class="download-link" data-download-version="win" href="' + winUrl+ '">Download</a></li>' +
                                     '<li><a id="link-direct-win64" class="download-link" data-download-version="win64" href="' + win64Url + '">Download</a></li>' +
                                  '</ul>';
-            $(downloadMarkup).appendTo('body');
+
+            document.body.insertAdjacentHTML('beforeend', downloadMarkup);
         });
 
         afterEach(function() {
-            $('.download-list').remove();
+            var content = document.querySelector('.download-list');
+            content.parentNode.removeChild(content);
         });
 
         it('should update download links with attribution data as expected', function() {

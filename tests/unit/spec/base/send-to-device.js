@@ -35,7 +35,7 @@ describe('send-to-device.js', function() {
             '</section>'
         ].join();
 
-        $(formMarkup).appendTo('body');
+        document.body.insertAdjacentHTML('beforeend', formMarkup);
 
         // stub out spinner.js
         window.Spinner = sinon.stub();
@@ -50,7 +50,8 @@ describe('send-to-device.js', function() {
 
     afterEach(function () {
         form.unbindEvents();
-        $('#send-to-device').remove();
+        var content = document.getElementById('send-to-device');
+        content.parentNode.removeChild(content);
         Mozilla.SendToDevice.COUNTRY_CODE = '';
     });
 
@@ -85,8 +86,8 @@ describe('send-to-device.js', function() {
 
         it('should handle success', function() {
 
-            spyOn($, 'post').and.callFake(function () {
-                var d = $.Deferred();
+            spyOn(window.$, 'post').and.callFake(function () {
+                var d = window.$.Deferred();
                 var data = {
                     'success': 'success'
                 };
@@ -97,16 +98,16 @@ describe('send-to-device.js', function() {
             spyOn(form, 'onFormSuccess').and.callThrough();
 
             form.init();
-            $('#send-to-device-input').val('success@example.com');
-            $('.send-to-device-form').submit();
-            expect($.post).toHaveBeenCalled();
+            document.getElementById('send-to-device-input').value = 'success@example.com';
+            document.querySelector('.send-to-device-form button[type="submit"]').click();
+            expect(window.$.post).toHaveBeenCalled();
             expect(form.onFormSuccess).toHaveBeenCalledWith('success');
         });
 
         it('should handle error', function() {
 
             spyOn($, 'post').and.callFake(function () {
-                var d = $.Deferred();
+                var d = window.$.Deferred();
                 var data = {
                     'errors': 'Please enter an email address.'
                 };
@@ -117,16 +118,16 @@ describe('send-to-device.js', function() {
             spyOn(form, 'onFormError').and.callThrough();
 
             form.init();
-            $('#send-to-device-input').val('invalid@email');
-            $('.send-to-device-form').submit();
-            expect($.post).toHaveBeenCalled();
+            document.getElementById('send-to-device-input').value = 'invalid@email';
+            document.querySelector('.send-to-device-form button[type="submit"]').click();
+            expect(window.$.post).toHaveBeenCalled();
             expect(form.onFormError).toHaveBeenCalledWith('Please enter an email address.');
         });
 
         it('should handle failure', function() {
 
             spyOn($, 'post').and.callFake(function () {
-                var d = $.Deferred();
+                var d = window.$.Deferred();
                 var error = 'An error occurred in our system. Please try again later.';
                 d.reject(error);
                 return d.promise();
@@ -135,8 +136,8 @@ describe('send-to-device.js', function() {
             spyOn(form, 'onFormFailure').and.callThrough();
 
             form.init();
-            $('#send-to-device-input').val('failure@example.com');
-            $('.send-to-device-form').submit();
+            document.getElementById('send-to-device-input').value = 'failure@example.com';
+            document.querySelector('.send-to-device-form button[type="submit"]').click();
             expect($.post).toHaveBeenCalled();
             expect(form.onFormFailure).toHaveBeenCalledWith('An error occurred in our system. Please try again later.');
         });

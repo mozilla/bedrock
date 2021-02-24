@@ -219,11 +219,12 @@ describe('fxa-utm-referral.js', function() {
                 '<a id="test-third-expected" class="js-fxa-cta-link" href="https://getpocket.com/ff_signup?s=ffwelcome2&form_type=button&entrypoint=mozilla.org-firefox-welcome-2&utm_source=mozilla.org-firefox-welcome-2&utm_campaign=welcome-2-pocket&utm_medium=referral">Activate Pocket</a>' +
                 '</div>';
 
-            $(links).appendTo('body');
+            document.body.insertAdjacentHTML('beforeend', links);
         });
 
         afterEach(function () {
-            $('#test-links').remove();
+            var content = document.getElementById('test-links');
+            content.parentNode.removeChild(content);
         });
 
         it('updates the href of links with class js-fxa-cta-link', function () {
