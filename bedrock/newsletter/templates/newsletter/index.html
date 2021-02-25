@@ -11,7 +11,7 @@
   <div class="mzp-l-content mzp-t-content-sm">
     {{ email_newsletter_form(
       title=ftl('newsletters-read-all-about-it-in-our-newsletter'),
-      desc=ftl('newsletters-subscribe-to-updates-and-keep'),
+      desc=ftl('newsletters-subscribe-here-to-keep-current', fallback='newsletters-subscribe-to-updates-and-keep'),
       newsletters='mozilla-foundation') }}
   </div>
 </main>
