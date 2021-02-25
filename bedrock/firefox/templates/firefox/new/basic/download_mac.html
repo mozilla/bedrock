@@ -6,8 +6,8 @@
 
 {% block experiments %}{% endblock %}
 
-{% set meta_title_prefix = ftl('firefox-new-download-firefox-for-macos', fallback='new-platform-download-mozilla-firefox-mac') %}
-{% set meta_title = ftl('firefox-new-free-web-browser', fallback='new-platform-free-web-browser') %}
+{% set meta_title_prefix = ftl('new-platform-download-mozilla-firefox-mac', fallback='firefox-new-download-firefox-for-macos') %}
+{% set meta_title = ftl('new-platform-free-web-browser', fallback='firefox-new-free-web-browser') %}
 {% set og_title = ftl('new-platform-download-the-fastest-mac', fallback='firefox-new-download-firefox-for-macos') %}
 
 {% if ftl_file_is_active('firefox/new/platform') %}
@@ -16,7 +16,7 @@
 {% endif %}
 
 {# hero #}
-{% set hero_title =  ftl('firefox-new-download-firefox-for-macos', fallback='new-platform-download-mozilla-firefox-mac')|safe %}
+{% set hero_title =  ftl('new-platform-download-mozilla-firefox-mac', fallback='firefox-new-download-firefox-for-macos')|safe %}
 
 {# cards #}
 {% set card1_title = ftl('new-platform-privacy-comes-first') %}

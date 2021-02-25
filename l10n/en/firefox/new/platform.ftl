@@ -17,7 +17,6 @@ new-platform-need-help = Need help?
 
 ## Linux
 
-# /firefox/linux/ HTML page title
 new-platform-download-mozilla-linux = Download { -brand-name-mozilla } { -brand-name-firefox } for { -brand-name-linux }
 
 # /firefox/linux/ HTML page description
@@ -40,7 +39,6 @@ new-platform-look-under-the-hood = Look under the hood. Like { -brand-name-linux
 
 ## Mac
 
-# /firefox/mac/ HTML page title
 new-platform-download-mozilla-firefox-mac = Download { -brand-name-mozilla } { -brand-name-firefox } for { -brand-name-mac-short }
 
 # /firefox/mac/ HTML page description
@@ -60,7 +58,6 @@ new-platform-be-the-master-of-your = Be the master of your domain with strict co
 
 ## Windows
 
-# /firefox/windows/ HTML page title
 new-platform-download-mozilla-windows = Download { -brand-name-mozilla } { -brand-name-firefox } for { -brand-name-windows }
 
 # /firefox/windows/ HTML page description
