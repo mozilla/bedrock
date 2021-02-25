@@ -5,8 +5,8 @@
 (function () {
     'use strict';
 
-    var urlParams = new window._SearchParams().utmParams();
+    var urlParams = new window._SearchParams();
 
-    // Track external UTM referrals for Firefox Accounts related CTAs.
-    Mozilla.UtmUrl.init(urlParams);
+    // Track external URL parameter referrals for Firefox Accounts related CTAs.
+    Mozilla.UtmUrl.init(urlParams.params);
 })();
