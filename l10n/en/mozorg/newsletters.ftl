@@ -14,6 +14,9 @@ newsletters-mozilla-newsletter = { -brand-name-mozilla } Newsletter
 newsletters-read-all-about-it-in-our-newsletter = Read all about it in our <span>newsletter</span>
 
 # Subtitle for https://www-dev.allizom.org/newsletter/
+newsletters-subscribe-here-to-keep-current = Subscribe here to keep current with { -brand-name-mozilla } news, take action for a healthier internet, and get smarter about your online life.
+
+# Outdated string
 newsletters-subscribe-to-updates-and-keep = Subscribe to updates and keep current with { -brand-name-mozilla } news. It’s the perfect way for us to keep in touch!
 
 # Page title the subscription confirmation page
