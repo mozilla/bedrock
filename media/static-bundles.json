@@ -186,6 +186,12 @@
     },
     {
       "files": [
+        "css/firefox/features/picture-in-picture.scss"
+      ],
+      "name": "firefox-features-pip"
+    },
+    {
+      "files": [
         "css/newsletter/newsletter.scss",
         "css/mozorg/home/home.scss"
       ],
@@ -1271,6 +1277,12 @@
         "js/firefox/privacy/products.js"
       ],
       "name": "firefox-privacy-products"
+    },
+    {
+      "files": [
+        "js/firefox/features/picture-in-picture.js"
+      ],
+      "name": "firefox-features-pip"
     },
     {
       "files": [
