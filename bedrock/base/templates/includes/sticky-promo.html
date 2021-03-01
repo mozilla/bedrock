@@ -30,7 +30,7 @@
             <img src="{{ static('protocol/img/logos/pocket/pocket.svg') }}" width="32" height="29" alt="">
             {{ ftl('firefox-sticky-promo-pocket') }}
           </a>
-          <a data-link-name="Mozilla VPN" data-link-type="link" data-link-position="sticky-promo" class="promo-products-link" rel="external noopener" href="https://vpn.mozilla.org/{{ referral|safe }}{{ promo_referrals }}">
+          <a data-link-name="Mozilla VPN" data-link-type="link" data-link-position="sticky-promo" class="promo-products-link" rel="external noopener" href="{{ url('products.vpn.landing') }}">
             <img src="{{ static('img/icons/connection.svg') }}" width="32" height="35" alt="">
             {{ ftl('firefox-sticky-promo-mozilla-vpn') }}
           </a>
