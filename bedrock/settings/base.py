@@ -1315,6 +1315,12 @@ if config('SWITCH_TRACKING_PIXEL', default=str(DEV), parser=bool):
 # Issue 7508 - Convert.com experiment sandbox
 CONVERT_PROJECT_ID = ('10039-1003350' if DEV else '10039-1003343')
 
+# Mozilla VPN product links
+#   - https://vpn.mozilla.org/ (prod)
+#   - https://stage-vpn.guardian.nonprod.cloudops.mozgcp.net/ (stage)
+VPN_ENDPOINT = config('VPN_ENDPOINT',
+                       default='https://vpn.mozilla.org/')
+
 # Mozilla VPN Geo restrictions
 # https://github.com/mozilla-services/guardian-website/blob/master/server/constants.ts
 VPN_ALLOWED_COUNTRY_CODES = [

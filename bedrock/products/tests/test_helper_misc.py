@@ -11,6 +11,7 @@ from bedrock.mozorg.tests import TestCase
 
 
 TEST_FXA_ENDPOINT = 'https://accounts.firefox.com/'
+TEST_VPN_ENDPOINT = 'https://vpn.mozilla.org/'
 
 jinja_env = Jinja2.get_default()
 
@@ -21,6 +22,7 @@ def render(s, context=None):
 
 
 @override_settings(FXA_ENDPOINT=TEST_FXA_ENDPOINT)
+@override_settings(VPN_ENDPOINT=TEST_VPN_ENDPOINT)
 class TestVPNSubscribeLink(TestCase):
     rf = RequestFactory()
 
@@ -35,13 +37,13 @@ class TestVPNSubscribeLink(TestCase):
         """Should return expected markup"""
         markup = self._render(entrypoint='www.mozilla.org-vpn-product-page', link_text='Try Mozilla VPN',
                               class_name='vpn-button try js-try-vpn',
-                              optional_parameters={'utm_campaign': 'vpn-landing-page'},
+                              optional_parameters={'utm_campaign': 'vpn-product-page'},
                               optional_attributes={'data-cta-text': 'Try Mozilla VPN', 'data-cta-type':
                                                    'fxa-vpn', 'data-cta-position': 'primary'})
         expected = (
             u'<a href="https://vpn.mozilla.org/r/vpn/subscribe/?entrypoint=www.mozilla.org-vpn-product-page'
             u'&form_type=button&utm_source=www.mozilla.org-vpn-product-page&utm_medium=referral'
-            u'&utm_campaign=vpn-landing-page" data-action="https://accounts.firefox.com/" '
+            u'&utm_campaign=vpn-product-page" data-action="https://accounts.firefox.com/" '
             u'class="js-fxa-cta-link js-fxa-product-button vpn-button try js-try-vpn" '
             u'data-cta-text="Try Mozilla VPN" data-cta-type="fxa-vpn" data-cta-position="primary">'
             u'Try Mozilla VPN</a>')
@@ -49,6 +51,7 @@ class TestVPNSubscribeLink(TestCase):
 
 
 @override_settings(FXA_ENDPOINT=TEST_FXA_ENDPOINT)
+@override_settings(VPN_ENDPOINT=TEST_VPN_ENDPOINT)
 class TestVPNSignInLink(TestCase):
     rf = RequestFactory()
 
@@ -62,13 +65,13 @@ class TestVPNSignInLink(TestCase):
     def test_vpn_sign_in_link(self):
         """Should return expected markup"""
         markup = self._render(entrypoint='www.mozilla.org-vpn-product-page', link_text='Sign In', class_name='mzp-c-cta-link',
-                              optional_parameters={'utm_campaign': 'vpn-landing-page'},
-                              optional_attributes={'data-cta-text': 'Sign In', 'data-cta-type':
+                              optional_parameters={'utm_campaign': 'vpn-product-page'},
+                              optional_attributes={'data-cta-text': 'VPN Sign In', 'data-cta-type':
                                                    'fxa-vpn', 'data-cta-position': 'navigation'})
         expected = (
             u'<a href="https://vpn.mozilla.org/oauth/init/?entrypoint=www.mozilla.org-vpn-product-page'
             u'&form_type=button&utm_source=www.mozilla.org-vpn-product-page&utm_medium=referral'
-            u'&utm_campaign=vpn-landing-page" data-action="https://accounts.firefox.com/" '
-            u'class="js-fxa-cta-link js-fxa-product-button mzp-c-cta-link" data-cta-text="Sign In" '
+            u'&utm_campaign=vpn-product-page" data-action="https://accounts.firefox.com/" '
+            u'class="js-fxa-cta-link js-fxa-product-button mzp-c-cta-link" data-cta-text="VPN Sign In" '
             u'data-cta-type="fxa-vpn" data-cta-position="navigation">Sign In</a>')
         self.assertEqual(markup, expected)

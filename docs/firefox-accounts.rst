@@ -186,7 +186,6 @@ Usage
 For more information on the available parameters, read the "CTA button parameters"
 section below.
 
-
 CTA button parameters
 ---------------------
 
@@ -198,7 +197,7 @@ all support the same standard parameters:
 +============================+========================================================================================================================+==========================================================+========================================================================================================+
 |    entrypoint*             | Unambiguous identifier for which page of the site is the referrer. This also serves as a value for 'utm_source'.       | 'mozilla.org-firefox-pocket'                             | 'mozilla.org-firefox-pocket'                                                                           |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    button_text*            | The button copy to be used in the call to action.  Default to a well localized string.                                 | Localizable string                                       | _('Try Pocket Now')                                                                                    |
+|    button_text*            | The button copy to be used in the call to action.                                                                      | Localizable string                                       | 'Try Pocket Now'                                                                                       |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 |    class_name              | A class name to be applied to the link (typically for styling with CSS).                                               | String of one or more class names                        | 'pocket-main-cta-button'                                                                               |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
@@ -217,11 +216,43 @@ all support the same standard parameters:
     which accepts the values ``signup``, ``signin``, and ``email`` for
     configuring the type of authentication flow.
 
+Linking to vpn.mozilla.org
+--------------------------
+
+Use the ``vpn_subscribe_link`` and ``vpn_sign_in_link`` helpers to link to https://vpn.mozilla.org/ via a
+Firefox Accounts auth flow.
+
+Usage
+~~~~~
+
+.. code-block:: jinja
+
+    {{ vpn_subscribe_link(entrypoint='www.mozilla.org-vpn-product-page', link_text='Try Mozilla VPN') }}
+
+.. code-block:: jinja
+
+    {{ vpn_sign_in_link(entrypoint='www.mozilla.org-vpn-product-page', link_text='Sign In') }}
+
+Both helpers for Mozilla VPN support the same parameters (* indicates a required parameter)
+
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    Parameter name          |                                                       Definition                                                       |                          Format                          |                                                Example                                                 |
++============================+========================================================================================================================+==========================================================+========================================================================================================+
+|    entrypoint*             | Unambiguous identifier for which page of the site is the referrer. This also serves as a value for 'utm_source'.       | 'www.mozilla.org-page-name'                              | 'www.mozilla.org-vpn-product-page'                                                                     |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    link_text*              | The link copy to be used in the call to action.                                                                        | Localizable string                                       | 'Try Mozilla VPN'                                                                                      |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    class_name              | A class name to be applied to the link (typically for styling with CSS).                                               | String of one or more class names                        | 'vpn-button'                                                                                           |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    optional_parameters     | An dictionary of key value pairs containing additional parameters to append the the href.                              | Dictionary                                               | {'utm_campaign': 'vpn-product-page'}                                                                   |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    optiona_attributes      | An dictionary of key value pairs containing additional data attributes to include in the button.                       | Dictionary                                               | {'data-cta-text': 'VPN Sign In', 'data-cta-type': 'fxa-vpn', 'data-cta-position': 'navigation'}        |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 
 CTA button dependencies
 -----------------------
 
-When using any of the FxA button helpers, a templates's respective JavaScript
+When using any of the FxA or VPN button helpers, a templates's respective JavaScript
 bundle should also include the following dependencies:
 
 .. code-block:: text
@@ -293,6 +324,12 @@ Set the following in your local ``.env`` file:
 .. code-block:: text
 
     FXA_ENDPOINT=https://stable.dev.lcip.org/
+
+For Mozilla VPN links you can also set:
+
+.. code-block:: text
+
+    VPN_ENDPOINT=https://stage-vpn.guardian.nonprod.cloudops.mozgcp.net/
 
 **Configuring a demo Server:**
 
