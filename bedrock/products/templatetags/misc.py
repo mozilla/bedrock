@@ -44,9 +44,9 @@ def vpn_sign_in_link(ctx, entrypoint, link_text, class_name=None, optional_param
     In Template
     -----------
 
-        {{ vpn_sign_in_link(entrypoint='mozilla.org', button_text='Sign In') }}
+        {{ vpn_sign_in_link(entrypoint='www.mozilla.org-vpn-product-page', link_text='Sign In') }}
     """
-    product_url = 'https://vpn.mozilla.org/oauth/init/'
+    product_url = f'{settings.VPN_ENDPOINT}oauth/init/'
 
     return _vpn_product_link(product_url, entrypoint, link_text, class_name, optional_parameters, optional_attributes)
 
@@ -63,8 +63,8 @@ def vpn_subscribe_link(ctx, entrypoint, link_text, class_name=None, optional_par
     In Template
     -----------
 
-        {{ vpn_subscribe_link(entrypoint='mozilla.org', button_text='Try Mozilla VPN') }}
+        {{ vpn_subscribe_link(entrypoint='www.mozilla.org-vpn-product-page', link_text='Try Mozilla VPN') }}
     """
-    product_url = 'https://vpn.mozilla.org/r/vpn/subscribe/'
+    product_url = f'{settings.VPN_ENDPOINT}r/vpn/subscribe/'
 
     return _vpn_product_link(product_url, entrypoint, link_text, class_name, optional_parameters, optional_attributes)
