@@ -1323,7 +1323,9 @@ VPN_ENDPOINT = config('VPN_ENDPOINT',
 
 # Mozilla VPN Geo restrictions
 # https://github.com/mozilla-services/guardian-website/blob/master/server/constants.ts
-VPN_ALLOWED_COUNTRY_CODES = [
+
+# Countries where VPN is available at a fixed monthly price.
+VPN_FIXED_PRICE_COUNTRY_CODES = [
   'CA', #Canada
   'MY', #Malaysia
   'NZ', #New Zealand
@@ -1344,10 +1346,3 @@ VPN_ALLOWED_COUNTRY_CODES = [
   'US', #United States of America
   'VI', #Virgin Islands (U.S.)
 ]
-
-# Mozilla VPN subscription prices
-VPN_PRICE_MONTHLY = {
-    'US': {
-        'monthly': 'US$4.99'
-    }
-}

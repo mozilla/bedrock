@@ -31,9 +31,17 @@ $image-path: '/media/protocol/img';
     margin: $layout-xl 0;
 
     input[type='email'],
-    button[type='submit'],
     select {
         width: 100%;
+    }
+
+    .mzp-c-form-submit {
+        margin: $spacing-2xl 0;
+    }
+
+    button[type="submit"] {
+        display: block;
+        margin: 0 auto;
     }
 
     label {

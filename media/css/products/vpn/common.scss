@@ -6,52 +6,163 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
-
+@import 'includes/lib';
 
 //* -------------------------------------------------------------------------- */
-// Base styles
+// Conditional states
 
-body {
-    background-color: $color-marketing-gray-10;
+/* stylelint-disable declaration-no-important */
+.js-text-vpn-not-available,
+.js-section-vpn-not-available {
+    display: none !important;
+}
+
+.vpn-not-available {
+
+    .js-text-vpn-fixed-price-available {
+        display: none !important;
+    }
+
+    .js-section-vpn-fixed-price-available {
+        display: none !important;
+    }
+
+    .js-text-vpn-not-available {
+        display: block !important;
+
+        &.mzp-c-button {
+            display: inline-block !important;
+        }
+    }
+
+    .js-section-vpn-not-available {
+        display: block !important;
+
+        @supports(display: grid) {
+            display: grid !important;
+        }
+    }
+}
+/* stylelint-enable declaration-no-important */
+
+//* -------------------------------------------------------------------------- */
+// Guarantee / Availability Copy
+
+.availability-copy,
+.guarantee-copy {
+    @include text-body-md;
+}
+
+.guarantee-copy {
+    color: $color-vpn-brand-violet;
+    font-weight: bold;
+    margin-bottom: $spacing-xl;
+
+    &:before {
+        @include bidi((
+            (padding-right, $spacing-xs, padding-left, 0),
+        ));
+        background-image: url('/media/img/products/vpn/common/check.svg');
+        background-repeat: no-repeat;
+        content: '';
+        display: inline-block;
+        height: 16px;
+        position: relative;
+        top: 2px;
+        width: 16px;
+    }
+
+    .t-dark & {
+        color: $color-white;
+
+        &:before {
+            background-image: url('/media/img/products/vpn/common/check-white.svg');
+        }
+    }
 }
 
 //* -------------------------------------------------------------------------- */
-// VPN button
+// VPN Nav Button
 
-.vpn-button {
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    background-color: $color-white;
-    border: solid 2px $color-black;
-    box-shadow: 8px 8px 0 #6a57dc;
-    color: $color-black;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 24px;
-    font-weight: bold;
-    line-height: 32px;
-    margin-bottom: $spacing-lg;
-    padding: 16px 32px;
-    position: relative;
-    text-decoration: none;
-    transition: background-color .15s ease, color .15s ease;
+.vpn-nav-cta {
+    .mzp-c-cta-link {
+        @include text-body-sm;
+        display: block;
+        margin-top: $spacing-lg;
 
-    &:hover,
-    &:active,
-    &:focus {
-        background-color: $color-black;
-        color: $color-white;
-    }
-
-    &.t-dark {
-        background-color: $color-black;
-        color: $color-white;
+        &:link,
+        &:visited {
+            color: $color-black;
+            text-decoration: none;
+        }
 
         &:hover,
         &:active,
         &:focus {
-            background-color: $color-white;
-            color: $color-black;
+            text-decoration: underline;
         }
+    }
+
+    @media #{$mq-md} {
+        @include bidi(((text-align, left, right),));
+        margin-top: 0;
+
+        .mzp-c-cta-link {
+            @include bidi(((margin-left, $spacing-md, margin-right, 0),));
+            display: inline;
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Page VPN Button
+
+main .mzp-c-button.mzp-t-xl {
+    @include font-size(18px);
+    margin-bottom: $spacing-lg;
+}
+
+//* -------------------------------------------------------------------------- */
+// VPN Product Feature List
+
+.vpn-feature-list.mzp-u-list-styled {
+    @include bidi(((text-align, left, right),));
+    @include text-body-xl;
+    display: inline-block;
+    list-style: image;
+    list-style-image: url('/media/img/products/vpn/common/check-black.svg');
+    margin-bottom: $spacing-lg;
+
+    &.l-columns-two {
+        margin-bottom: $layout-lg;
+    }
+
+    @media #{$mq-md} {
+        margin-bottom: 0;
+
+        &.l-columns-two {
+            column-count: 2;
+            column-gap: $spacing-xl;
+            margin-bottom: $layout-xl;
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Page Footer
+
+.vpn-footer {
+    margin: 0 auto $layout-xl;
+    text-align: center;
+}
+
+.vpn-footer-subscribe-note {
+    margin-bottom: 0;
+}
+
+.vpn-footer-list {
+    a:link,
+    a:visited {
+        @include text-body-xs;
     }
 }

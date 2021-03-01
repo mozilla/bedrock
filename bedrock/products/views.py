@@ -15,34 +15,70 @@ from lib import l10n_utils
 from lib.l10n_utils.fluent import ftl
 
 
-def vpn_allowed_countries():
-    countries = settings.VPN_ALLOWED_COUNTRY_CODES
+VPN_FIXED_MONTHLY_PRICE = 'US$4.99'
+VPN_VARIABLE_MONTHLY_PRICE = '9,99‎ €'
+VPN_VARIABLE_6_MONTH_PRICE = '6,99 €'
+VPN_VARIABLE_12_MONTH_PRICE = '4,99 €'
+VPN_VARIABLE_6_MONTH_PRICE_TOTAL = '41,94 €'
+VPN_VARIABLE_12_MONTH_PRICE_TOTAL = '59,88 €'
+VPN_AVAILABLE_COUNTRIES = 6
+VPN_CONNECT_SERVERS = 280
+VPN_CONNECT_COUNTRIES = 30
+VPN_CONNECT_DEVICES = 5
+
+
+def vpn_fixed_price_countries():
+    countries = settings.VPN_FIXED_PRICE_COUNTRY_CODES
     return '|%s|' % '|'.join(cc.lower() for cc in countries)
-
-
-def vpn_default_monthly_price():
-    return settings.VPN_PRICE_MONTHLY['US']['monthly']
 
 
 @require_safe
 def vpn_landing_page(request):
-    template_name = 'products/vpn/landing.html'
+    ftl_files = ['products/vpn/landing', 'products/vpn/shared']
+
+    locale = l10n_utils.get_locale(request)
+    entrypoint_experiment = request.GET.get('entrypoint_experiment', None)
+    entrypoint_variation = request.GET.get('entrypoint_variation', None)
+
+    print(entrypoint_variation)
+
+    # ensure experiment parameters matches pre-defined values
+    if entrypoint_variation not in ['a', 'b', 'c', 'd']:
+        entrypoint_variation = None
+
+    if entrypoint_experiment != 'vpn-landing-page-heading':
+        entrypoint_variation = None
+
+    if entrypoint_experiment and entrypoint_variation and locale in ['en-US', 'de', 'fr']:
+        template_name = 'products/vpn/variants/heading-{}.html'.format(entrypoint_variation)
+    else:
+        template_name = 'products/vpn/landing.html'
 
     context = {
-        'allowed_countries': vpn_allowed_countries(),
-        'default_monthly_price': vpn_default_monthly_price(),
+        'fixed_price_countries': vpn_fixed_price_countries(),
+        'fixed_monthly_price': VPN_FIXED_MONTHLY_PRICE,
+        'variable_monthly_price': VPN_VARIABLE_MONTHLY_PRICE,
+        'variable_6_month_price': VPN_VARIABLE_6_MONTH_PRICE,
+        'variable_12_month_price': VPN_VARIABLE_12_MONTH_PRICE,
+        'variable_6_month_price_total': VPN_VARIABLE_6_MONTH_PRICE_TOTAL,
+        'variable_12_month_price_total': VPN_VARIABLE_12_MONTH_PRICE_TOTAL,
+        'available_countries': VPN_AVAILABLE_COUNTRIES,
+        'connect_servers': VPN_CONNECT_SERVERS,
+        'connect_countries': VPN_CONNECT_COUNTRIES,
+        'connect_devices': VPN_CONNECT_DEVICES
     }
 
-    return l10n_utils.render(request, template_name, context)
+    return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
 
 
 @require_safe
 def vpn_invite_page(request):
+    ftl_files = ['products/vpn/landing', 'products/vpn/shared']
     locale = l10n_utils.get_locale(request)
     newsletter_form = VPNWaitlistForm(locale)
 
     return l10n_utils.render(
-        request, 'products/vpn/invite.html', {'newsletter_form': newsletter_form}
+        request, 'products/vpn/invite.html', {'newsletter_form': newsletter_form}, ftl_files=ftl_files
     )
 
 

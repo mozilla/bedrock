@@ -4,10 +4,10 @@
 
 {% extends "products/vpn/base.html" %}
 
-{% block page_title_full %}Join the Waitlist: Mozilla VPN{% endblock %}
+{% block page_title_full %}{{ ftl('vpn-landing-invite-page-title') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
-{% block page_desc %}Get notified when Mozilla VPN is available for your device and region.{% endblock %}
+{% block page_desc %}{{ ftl('vpn-landing-invite-page-desc') }}{% endblock %}
 
 {% block body_id %}mozilla-vpn-invite{% endblock %}
 
@@ -27,8 +27,8 @@
 {% block content %}
 <main class="mzp-l-content mzp-t-content-md">
   <form id="newsletter-form" class="mzp-c-newsletter-form" action="{{ url('products.vpn.invite.waitlist') }}" method="post" data-spinner-color="#000">
-    <h1 class="mzp-c-form-header">Join the VPN Waitlist</h1>
-    <p class="mzp-c-form-subtitle">Get notified when Mozilla VPN is available for your device and region.</p>
+    <h1 class="mzp-c-form-header">{{ ftl('vpn-landing-invite-page-heading') }}</h1>
+    <p class="mzp-c-form-subtitle">{{ ftl('vpn-landing-invite-page-desc') }}</p>
 
     {{ newsletter_form.newsletters|safe }}
     <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
@@ -40,63 +40,63 @@
 
       <div>
         <label for="id_email">
-          What is your email address?
-          <em class="mzp-c-fieldnote">Required</em>
+          {{ ftl('vpn-landing-invite-email-label') }}
+          <em class="mzp-c-fieldnote">{{ ftl('vpn-landing-invite-required-label') }}</em>
         </label>
-        <input type="email" class="mzp-js-email-field" id="id_email" name="email" required aria-required="true" placeholder="yourname@example.com">
+        <input type="email" class="mzp-js-email-field" id="id_email" name="email" required aria-required="true" placeholder="{{ ftl('vpn-landing-invite-email-placeholder') }}">
       </div>
 
       <div id="newsletter-details" class="mzp-c-newsletter-details">
         <label for="id_country">
-          What country do you live in?
-          <em class="mzp-c-fieldnote">Required</em>
+          {{ ftl('vpn-landing-invite-country-label') }}
+          <em class="mzp-c-fieldnote">{{ ftl('vpn-landing-invite-required-label') }}</em>
         </label>
         {{ newsletter_form.country|safe }}
 
         <label for="id_lang">
-          Select your preferred language.
-          <em class="mzp-c-fieldnote">Required</em>
+          {{ ftl('vpn-landing-invite-language-label') }}
+          <em class="mzp-c-fieldnote">{{ ftl('vpn-landing-invite-required-label') }}</em>
         </label>
         {{ newsletter_form.lang|safe }}
 
         <fieldset>
-          <legend>Which platforms are you interested in?</legend>
+          <legend>{{ ftl('vpn-landing-invite-platform-label') }}</legend>
 
           <ul class="vpn-invite-platform-options">
             <li>
               <label class="mzp-u-inline">
                 <input type="checkbox" id="platforms-windows" name="platforms" value="windows">
-                Windows 10
+                {{ ftl('vpn-landing-invite-platform-windows-10') }}
               </label>
             </li>
             <li>
               <label class="mzp-u-inline">
                 <input type="checkbox" id="platforms-ios" name="platforms" value="ios">
-                iOS
+                {{ ftl('vpn-landing-invite-platform-ios') }}
               </label>
             </li>
             <li>
               <label class="mzp-u-inline">
                 <input type="checkbox" id="platforms-android" name="platforms" value="android">
-                Android
+                {{ ftl('vpn-landing-invite-platform-android') }}
               </label>
             </li>
             <li>
               <label class="mzp-u-inline">
                 <input type="checkbox" id="platforms-mac" name="platforms" value="mac">
-                Mac
+                {{ ftl('vpn-landing-invite-platform-mac') }}
               </label>
             </li>
             <li>
               <label class="mzp-u-inline">
                 <input type="checkbox" id="platforms-chromebook" name="platforms" value="chromebook">
-                Chromebook
+                {{ ftl('vpn-landing-invite-platform-chromebook') }}
               </label>
             </li>
             <li>
               <label class="mzp-u-inline">
                 <input type="checkbox" id="platforms-linux" name="platforms" value="linux">
-                Linux
+                {{ ftl('vpn-landing-invite-platform-linux') }}
               </label>
             </li>
           </ul>
@@ -105,22 +105,22 @@
       </div>
 
       <p class="mzp-c-form-submit">
-        <button class="vpn-button t-dark" id="newsletter-submit" type="submit">Join the Waitlist</button>
+        <button class="mzp-c-button mzp-t-xl" id="newsletter-submit" type="submit">{{ ftl('vpn-shared-waitlist-link') }}</button>
       </p>
 
       <div class="vpn-invite-privacy">
-        <p>By clicking “Join the waitlist” you agree to our  <a href="{{ url('privacy.notices.mozilla-vpn') }}">Privacy Policy</a>.</p>
+        <p>{{ ftl('vpn-landing-invite-privacy-policy', privacy=url('privacy.notices.mozilla-vpn')) }}</p>
 
-        <p>Your information will only be used to notify you about platform availability.</p>
+        <p>{{ ftl('vpn-landing-invite-your-information') }}</p>
       </div>
     </fieldset>
 
   </form>
 
   <div id="newsletter-thanks" class="vpn-invite-success">
-    <h3>Thanks! You’re on the list.</h3>
-    <p>Once Mozilla VPN becomes available for your platform and region, we’ll email you.</p>
-    <p>The VPN is currently available for Windows 10, Android and iOS devices in the US, the UK, Canada, New Zealand, Singapore and Malaysia.</p>
+    <h3>{{ ftl('vpn-landing-invite-thanks-heading') }}</h3>
+    <p>{{ ftl('vpn-landing-invite-thanks-desc') }}</p>
+    <p>{{ ftl('vpn-shared-availablity-long') }}</p>
   </div>
 </main>
 {% endblock %}

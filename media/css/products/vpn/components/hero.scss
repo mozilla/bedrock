@@ -1,0 +1,122 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../../protocol/css/includes/lib';
+@import '../includes/lib';
+
+//* -------------------------------------------------------------------------- */
+// Hero component
+
+.vpn-hero {
+    margin: $layout-md 0;
+    text-align: center;
+}
+
+.vpn-hero-container {
+    position: relative;
+}
+
+.vpn-hero-body {
+    margin: 0 auto;
+    max-width: 480px;
+}
+
+.vpn-hero-heading {
+    @include image-replaced();
+    background: transparent url('/media/img/logos/vpn/logo-with-wordmark.svg') top left no-repeat;
+    @include background-size(175px 60px);
+    height: 60px;
+    margin: 0 auto $spacing-lg;
+    width: 175px;
+}
+
+.vpn-hero-sub-heading {
+    @include text-title-lg;
+    margin-bottom: $spacing-md;
+}
+
+.vpn-hero-desc {
+    @include text-body-xl;
+    margin-bottom: $spacing-md;
+}
+
+.vpn-hero-tagline {
+    @include text-body-lg;
+    font-weight: bold;
+    margin-top: $layout-lg;
+}
+
+.vpn-hero-image {
+    display: none;
+    position: relative;
+
+    picture {
+        @include bidi((
+            (left, 0, right, 0),
+        ));
+        height: 480px;
+        position: absolute;
+        top: 0;
+        width: 480px;
+
+        img {
+            @include transition(opacity .5s ease-in-out);
+            opacity: 0;
+        }
+    }
+
+    &[data-illustration="n-1"] .n-1,
+    &[data-illustration="n-2"] .n-2,
+    &[data-illustration="n-3"] .n-3,
+    &[data-illustration="n-4"] .n-4,
+    &[data-illustration="n-5"] .n-5 {
+        opacity: 1;
+    }
+}
+
+@media #{$mq-lg} {
+    .vpn-hero {
+        padding: $spacing-2xl 0;
+
+        .mzp-l-content {
+            min-height: 480px;
+        }
+    }
+
+    .vpn-hero-body {
+        @include bidi((
+            (float, left, right),
+            (text-align, left, right),
+            (padding-right, $spacing-2xl, 0),
+        ));
+        max-width: none;
+        width: calc(100% - 480px - #{$spacing-2xl});
+    }
+
+    .vpn-hero-heading {
+        margin: 0 0 $spacing-xl;
+    }
+
+    .vpn-hero-sub-heading {
+        margin-bottom: $spacing-xl;
+    }
+
+    .vpn-hero-desc {
+        margin-bottom: $spacing-2xl;
+    }
+
+    .vpn-hero-tagline {
+        margin-top: $layout-xl;
+    }
+
+    .vpn-hero-image {
+        @include bidi((
+            (float, left, right),
+        ));
+        display: block;
+    }
+}

@@ -28,3 +28,40 @@
     }, 5000);
 
 })();
+
+(function() {
+    'use strict';
+
+    function openFaqItem(id) {
+        var faq = document.getElementById(id);
+
+        if (faq && !faq.hasAttribute('open')) {
+            faq.querySelector('summary').click();
+        }
+    }
+
+    function getHash() {
+        var hash = window.location.hash;
+        if (hash.indexOf('#') > -1) {
+            hash = hash.split('#')[1];
+        }
+
+        return hash;
+    }
+
+    function handleHashChange() {
+        var hash = getHash();
+
+        if (hash) {
+            openFaqItem(hash);
+        }
+    }
+
+    // Open relevant FAQ section is URL contains a hash.
+    if (window.location.hash) {
+        handleHashChange();
+    }
+
+    window.addEventListener('hashchange', handleHashChange, false);
+
+})();

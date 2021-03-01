@@ -1,0 +1,46 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "products/vpn/landing.html" %}
+
+{% if LANG == 'de' %}
+  {% set variant_subheading='Sicher, schnell und verlässlich – auf jedem Gerät' %}
+{% elif LANG == 'fr' %}
+  {% set variant_subheading='Sécurisé, fiable et rapide — sur chaque appareil, partout où vous allez' %}
+{% elif LANG == 'en-US' %}
+  {% set variant_subheading='Security, reliability and speed — on every device, anywhere you go' %}
+{% else %}
+  {% set variant_subheading=ftl('vpn-landing-hero-sub-heading') %}
+{% endif %}
+
+{% block hero %}
+  {% call vpn_hero(
+    heading=ftl('vpn-shared-product-name'),
+    subheading=variant_subheading,
+    desc=ftl('vpn-landing-hero-desc')
+  ) %}
+    {{ vpn_subscribe_link(
+      entrypoint=_utm_source,
+      link_text=ftl('vpn-shared-subscribe-link'),
+      class_name='mzp-c-button mzp-t-xl js-text-vpn-fixed-price-available',
+      optional_parameters={
+        'utm_campaign': _utm_campaign
+      },
+      optional_attributes={
+        'data-cta-type': 'fxa-vpn',
+        'data-cta-text': 'Get Mozilla VPN (monthly)',
+        'data-cta-position': 'primary',
+      }
+    ) }}
+    <p class="guarantee-copy js-text-vpn-fixed-price-available">
+      {{ ftl('vpn-shared-money-back-guarantee') }}
+    </p>
+
+    {{ join_waitlist_button(link_text=ftl('vpn-shared-waitlist-link'), position='primary') }}
+
+    <p class="availability-copy js-text-vpn-not-available">
+      {{ ftl('vpn-shared-available-countries') }}
+    </p>
+  {% endcall %}
+{% endblock %}

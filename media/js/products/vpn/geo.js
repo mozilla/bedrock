@@ -76,7 +76,7 @@
     };
 
     VPN.isAvailable = function(countryCode, countries) {
-        var availableCountries = document.getElementsByTagName('html')[0].getAttribute('data-vpn-allowed-country-codes') || countries;
+        var availableCountries = document.getElementsByTagName('html')[0].getAttribute('data-vpn-fixed-price-country-codes') || countries;
         if (countryCode && availableCountries.indexOf('|' + countryCode + '|') !== -1) {
 
             window.dataLayer.push({
