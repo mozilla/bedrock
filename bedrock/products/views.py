@@ -37,6 +37,18 @@ def vpn_landing_page(request):
 
 
 @require_safe
+def vpn_desktop_page(request):
+    template_name = 'products/vpn/desktop/index.html'
+
+    context = {
+        'allowed_countries': vpn_allowed_countries(),
+        'default_monthly_price': vpn_default_monthly_price(),
+    }
+
+    return l10n_utils.render(request, template_name, context, ftl_files=['products/vpn/desktop'])
+
+
+@require_safe
 def vpn_invite_page(request):
     locale = l10n_utils.get_locale(request)
     newsletter_form = VPNWaitlistForm(locale)

@@ -250,3 +250,11 @@ locales = [
 [[paths]]
     reference = "en/privacy/*.ftl"
     l10n = "{locale}/privacy/*.ftl"
+[[paths]]
+    # TODO - Limit VPN pages to locales where VPN has launched
+    reference = "en/products/vpn/**/*.ftl"
+    l10n = "{locale}/products/vpn/**/*.ftl"
+    locales = [
+        "de",
+        "fr",
+    ]
