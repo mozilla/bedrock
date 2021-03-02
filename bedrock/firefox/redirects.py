@@ -666,4 +666,7 @@ redirectpatterns = (
 
     # issue 9788
     redirect(r'^/firefox/enterprise/signup(/.*)?$', 'firefox.enterprise.index'),
+
+    # issue 9953
+    redirect(r'^/firefox/features/pip/?$', 'firefox.features.picture-in-picture'),
 )
