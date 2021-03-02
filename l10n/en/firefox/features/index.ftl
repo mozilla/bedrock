@@ -56,3 +56,5 @@ features-index-block-fingerprinters = Block fingerprinters
 features-index-translate-the-web = Translate the web
 features-index-translate-more-than = Translate from more than 100 languages to your language directly in your { -brand-name-firefox-browser } - easier than ever.
 features-index-translate-to-your = Translate to your language
+features-index-picture-in-picture = Picture-in-Picture
+features-index-got-things-to-do = Got things to do and things to watch? Do both using Picture-in-Picture in { -brand-name-firefox }.
