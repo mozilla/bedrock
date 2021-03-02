@@ -92,24 +92,30 @@
             }
         }
 
+        var platforms = '';
+        var platformOptions = document.querySelector('.vpn-invite-platform-options');
         var email = document.getElementById('id_email').value;
         var newsletter = document.getElementById('id_newsletters').value;
         var country = document.getElementById('id_country').value;
         var lang = document.getElementById('id_lang').value;
-        var windows = document.getElementById('platforms-windows');
-        var ios = document.getElementById('platforms-ios');
-        var android = document.getElementById('platforms-android');
-        var mac = document.getElementById('platforms-mac');
-        var chromebook = document.getElementById('platforms-chromebook');
-        var linux = document.getElementById('platforms-linux');
 
-        var platforms = '';
-        platforms += windows.checked ? '&platforms=' + windows.value : '';
-        platforms += ios.checked ? '&platforms=' + ios.value : '';
-        platforms += android.checked ? '&platforms=' + android.value : '';
-        platforms += mac.checked ? '&platforms=' + mac.value : '';
-        platforms += chromebook.checked ? '&platforms=' + chromebook.value : '';
-        platforms += linux.checked ? '&platforms=' + linux.value : '';
+        // platform options are not required in the form.
+        if (platformOptions) {
+            var windows = document.getElementById('platforms-windows');
+            var ios = document.getElementById('platforms-ios');
+            var android = document.getElementById('platforms-android');
+            var mac = document.getElementById('platforms-mac');
+            var chromebook = document.getElementById('platforms-chromebook');
+            var linux = document.getElementById('platforms-linux');
+
+
+            platforms += windows.checked ? '&platforms=' + windows.value : '';
+            platforms += ios.checked ? '&platforms=' + ios.value : '';
+            platforms += android.checked ? '&platforms=' + android.value : '';
+            platforms += mac.checked ? '&platforms=' + mac.value : '';
+            platforms += chromebook.checked ? '&platforms=' + chromebook.value : '';
+            platforms += linux.checked ? '&platforms=' + linux.value : '';
+        }
 
         var params = 'email=' + encodeURIComponent(email) +
                      '&newsletters=' + newsletter +

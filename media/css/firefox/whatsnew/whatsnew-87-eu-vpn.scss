@@ -1,0 +1,253 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/notification-bar';
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/forms/form';
+@import '../../../protocol/css/components/forms/field';
+@import '../../../protocol/css/components/forms/choice';
+@import '../../../protocol/css/components/forms/status';
+@import '../../../protocol/css/components/forms/set';
+@import 'includes/header';
+
+
+//* -------------------------------------------------------------------------- */
+// Waitlist form styles
+
+.mozilla-vpn-logo {
+    display: block;
+    margin: 0 auto $spacing-2xl;
+}
+
+.wnp-main-title {
+    @include text-title-md;
+    color: get-theme('title-text-color');
+    margin-bottom: $spacing-xl;
+    text-align: center;
+}
+
+.wnp-main-subtitle {
+    @include text-title-sm;
+    color: get-theme('title-text-color');
+    margin-bottom: $spacing-2xl;
+    text-align: center;
+}
+
+.wnp-main-tagline {
+    @include text-body-lg;
+    font-weight: normal;
+    margin-bottom: $spacing-2xl;
+    text-align: center;
+}
+
+.wnp-sub-tagline {
+    @include text-body-lg;
+    font-weight: normal;
+    margin-top: $spacing-2xl;
+    text-align: center;
+}
+
+.mzp-c-newsletter-form {
+    margin: $layout-sm 0 $layout-xl;
+
+    input[type='email'],
+    select {
+        width: 100%;
+    }
+
+    button[type='submit'] {
+        display: block;
+        margin: $spacing-xl auto;
+    }
+
+    label {
+        @include text-body-md;
+    }
+}
+
+.vpn-invite-privacy {
+    @include text-body-sm;
+    margin: $spacing-2xl 0 0;
+    text-align: center;
+
+    p {
+        margin-bottom: 0;
+    }
+}
+
+.vpn-invite-success {
+    @include text-body-lg;
+    display: none;
+    margin: $layout-sm 0 $layout-xl;
+    text-align: center;
+
+    h3 {
+        color: get-theme('title-text-color');
+        margin-bottom: $spacing-2xl;
+    }
+}
+
+.mzp-c-form-errors {
+    display: none;
+}
+
+//* -------------------------------------------------------------------------- */
+// Extra content
+// To be replaced by revamped picto card. See https://github.com/mozilla/protocol/issues/382
+
+.c-picto-block {
+    @include border-box;
+    margin: 0 auto $spacing-2xl;
+    max-width: $content-md - ($layout-md * 2);
+    padding: 0 $layout-md;
+
+    .c-picto-block-title {
+        @include text-title-xs;
+        color: get-theme('title-text-color');
+    }
+
+    .c-picto-block-image {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin: 0 auto $spacing-lg;
+        max-width: $content-xs;
+        min-height: $layout-md;
+    }
+}
+
+@media #{$mq-md} {
+    .l-columns-two,
+    .l-columns-three {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        max-width: $content-lg;
+        padding: 0 $layout-md;
+
+        .c-picto-block {
+            flex: 1 1 50%;
+            padding: 0 $layout-lg;
+        }
+    }
+}
+
+.wnp-more-cta {
+    margin-bottom: $layout-xl;
+    text-align: center;
+}
+
+//* -------------------------------------------------------------------------- */
+// Utilities (link to release notes)
+.c-utilities {
+    @include text-body-sm;
+    max-width: $content-md;
+    padding-bottom: $layout-xl;
+    text-align: center;
+}
+
+//* -------------------------------------------------------------------------- */
+// For dark mode
+@media (prefers-color-scheme: dark) {
+    .content-wrapper {
+        background: $color-dark-gray-60;
+        color: $color-white;
+    }
+
+    .mozilla-vpn-wordmark,
+    .mozilla-vpn-icon {
+        fill: $color-white;
+    }
+
+    .wnp-main-title,
+    .wnp-main-subtitle,
+    .vpn-invite-success h3 {
+        color: get-theme('title-text-color-inverse');
+    }
+
+    .wnp-more {
+        .mzp-c-button.mzp-t-secondary {
+            border-color: get-theme('title-text-color-inverse');
+            color: get-theme('title-text-color-inverse');
+
+            &:hover,
+            &:focus {
+                border-color: get-theme('title-text-color-inverse');
+            }
+        }
+    }
+
+    .vpn-invite-privacy a,
+    .wnp-main-subtitle a,
+    .c-picto-block-body a,
+    .c-utilities a {
+        &:link,
+        &:visited {
+            color: $color-blue-10;
+        }
+
+        &:active,
+        &:focus,
+        &:hover {
+            color: $color-white;
+        }
+    }
+
+    .c-picto-block .c-picto-block-title {
+        color: get-theme('title-text-color-inverse');
+    }
+
+    .c-picto-block-image {
+        .line {
+            fill: $color-white;
+        }
+
+        .building {
+            fill: #a77ffa;
+        }
+    }
+
+    .c-footer {
+        background: $color-dark-gray-60;
+        color: $color-white;
+
+        a:link,
+        a:visited {
+            color: $color-light-gray-20;
+            text-decoration: underline;
+
+            &:hover,
+            &:focus,
+            &:active {
+                color: $color-white;
+            }
+        }
+
+        .c-footer-sections {
+            border-color: $color-dark-gray-30;
+        }
+    }
+
+    .c-footer-list-social li {
+        a.twitter {
+            background-image: url('/media/protocol/img/icons/social/twitter/white.svg');
+        }
+
+        a.instagram {
+            background-image: url('/media/protocol/img/icons/social/instagram/white.svg');
+        }
+
+        a.youtube {
+            background-image: url('/media/protocol/img/icons/social/youtube/white.svg');
+        }
+    }
+
+    .c-footer-primary-logo a {
+        background-image: url('/media/protocol/img/logos/mozilla/white.svg');
+    }
+}

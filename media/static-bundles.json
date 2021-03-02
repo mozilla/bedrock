@@ -428,6 +428,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-87-eu-vpn.scss"
+      ],
+      "name": "firefox_whatsnew_87_eu_vpn"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -953,6 +959,14 @@
         "js/firefox/whatsnew/whatsnew-86.js"
       ],
       "name": "firefox_whatsnew_86"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/up-to-date.js",
+        "js/products/vpn/invite.js",
+        "js/firefox/whatsnew/whatsnew-87-eu-vpn.js"
+      ],
+      "name": "firefox_whatsnew_87_eu_vpn"
     },
     {
       "files": [

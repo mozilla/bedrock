@@ -36,6 +36,7 @@ from bedrock.base.waffle_config import config, DictOf
 from bedrock.firefox.firefox_details import firefox_android, firefox_desktop, firefox_ios
 from bedrock.firefox.forms import SendToDeviceWidgetForm
 from bedrock.newsletter.forms import NewsletterFooterForm
+from bedrock.products.forms import VPNWaitlistForm
 from bedrock.releasenotes import version_re
 from bedrock.base.views import GeoRedirectView
 
@@ -557,6 +558,8 @@ class WhatsnewView(L10nTemplateView):
         'firefox/whatsnew/whatsnew-fx86-en.html': ['firefox/whatsnew/whatsnew-s2d', 'firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-mobile-de.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-mobile-qrcode-de.html': ['firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx87-de.html': ['firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx87-fr.html': ['firefox/whatsnew/whatsnew'],
     }
 
     def get_context_data(self, **kwargs):
@@ -580,6 +583,10 @@ class WhatsnewView(L10nTemplateView):
         # add analytics parameters to context for use in templates
         if channel not in pre_release_channels:
             channel = ''
+
+        # add VPN waitlist form for WNP 87 (Issue 9956)
+        if version.startswith('87.') and locale in ['de', 'fr']:
+            ctx['newsletter_form'] = VPNWaitlistForm(locale)
 
         analytics_version = str(num_version) + channel
         entrypoint = 'mozilla.org-whatsnew' + analytics_version
@@ -612,6 +619,10 @@ class WhatsnewView(L10nTemplateView):
                 template = 'firefox/developer/whatsnew.html'
             else:
                 template = 'firefox/whatsnew/index.html'
+        elif version.startswith('87.') and locale == 'de':
+            template = 'firefox/whatsnew/whatsnew-fx87-de.html'
+        elif version.startswith('87.') and locale == 'fr':
+            template = 'firefox/whatsnew/whatsnew-fx87-fr.html'
         elif version.startswith('86.') and locale.startswith('en-'):
             template = 'firefox/whatsnew/whatsnew-fx86-en.html'
         elif version.startswith('86.') and locale == 'de':
