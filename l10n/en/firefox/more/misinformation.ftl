@@ -17,7 +17,7 @@ misinformation-false-info-heading = Where does false information show up?
 misinformation-widespread-online = You can come across misinformation and disinformation everywhere but it is most widespread and impactful when shared online. Algorithms and <a href="{ $tracking }">tracking</a> have increased the ability for misinformation and disinformation to reach a larger audience on websites, blogs, forums and social networks.
 
 misinformation-tracking-advertising = You may have heard about tracking primarily in the context of advertising. However, it’s also a powerful tool when it comes to the spread of false information. Why is that? When you browse the internet or your social network feed, your behavior, interests, contacts in some instances and more are tracked by various parties across websites in order to create an extremely detailed profile of you to sell to others without your knowledge or consent. These profiles are used for personalized advertising but can also serve to present any kind of targeted information to you.
-misinformation-social-newtorks = When you receive content recommendations on any website or social network, it’s often because an algorithm presents information based on your profile information. Unfortunately, although algorithms are getting smarter and smarter, they don’t check content for accuracy. This is particularly problematic with social media: These networks surface countless pieces of information for their users every day and have access to almost unlimited content including user posts, news articles, ads and sponsored content. While posts and articles may addicidently spread misinformation, ads and sponsored content can be used to target you deliberately with disinformation to manipulate you, making it essential you know how to identify misinformation.
+misinformation-social-newtorks = When you receive content recommendations on any website or social network, it’s often because an algorithm presents information based on your profile information. Unfortunately, although algorithms are getting smarter and smarter, they don’t check content for accuracy. This is particularly problematic with social media: These networks surface countless pieces of information for their users every day and have access to almost unlimited content including user posts, news articles, ads and sponsored content. While posts and articles may accidentally spread misinformation, ads and sponsored content can be used to target you deliberately with disinformation to manipulate you, making it essential you know how to identify misinformation.
 misinformation-spot-online-heading = How to spot false information online and help stop the spread
 misinformation-look-at-url = Look at the URL and/or the source.
 misinformation-known-to-br-credible = Is it known to be credible? If you’re not sure, try to find out more about the source and its reputation on the internet.
@@ -26,7 +26,7 @@ misinformation-check-out-websites = Check out websites and news outlets that you
 misinformation-content-up-to-date = Is the content up to date?
 misinformation-outdated-information = Outdated information is not necessarily meant to disinform, but it may not be factually correct any longer.
 misinformation-credible-publication = Did the author publish other articles or posts, ideally also in credible publications?
-misinformation-authors-name = If you only find the author's name on questionable sites, you should not pay too much importance to their statements.
+misinformation-authors-name = If you only find the author’s name on questionable sites, you should not pay too much importance to their statements.
 misinformation-images-captions = Do images and captions match?
 misinformation-images-are-powerful = Images are a very powerful tool for targeted disinformation. Depending on the caption, the perception can be twisted into the absolute opposite. If you are unsure, perform a reverse image search to find out how the image is described on other sites.
 misinformation-how-firefox-helps-heading = How { -brand-name-firefox } helps you avoid misinformation
@@ -37,14 +37,16 @@ misinformation-firefox-keeps-trackers-heading = { -brand-name-firefox } keeps tr
 #   $protection (url) - link to https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop
 misinformation-firefox-keeps-trackers-desc = As mentioned before, tracking plays a big role in the spread of misinformation. <a href="{ $firefox }">Using { -brand-name-firefox }</a> with <a href="{ $protection }">Enhanced Tracking Protection</a> helps by blocking third-party trackers from many advertisers and other players by default when you browse the web, so that you gain back control over your online data.
 
-misiinformation-social-media-clean-heading = { -brand-name-firefox } helps to keep your social media feeds clean:
+misinformation-social-media-clean-heading = { -brand-name-firefox } helps to keep your social media feeds clean:
 
 # Variables:
 #   $container (url) - link to https://www.mozilla.org/firefox/facebookcontainer/
-misiinformation-social-media-clean-desc = Social networks know a lot about you. Plus, they’re able to track you beyond their platforms with their Share and Like buttons despite Tracking Protection — even if you don’t have an account. The <a href="{ $container }">{ -brand-name-facebook-container }</a> for { -brand-name-firefox } makes sure that { -brand-name-facebook } and { -brand-name-instagram } can't do this so easily, which again reduces the probability of seeing misinformation via ads and promoted content significantly.
+misinformation-social-media-clean-desc = Social networks know a lot about you. Plus, they’re able to track you beyond their platforms with their Share and Like buttons despite Tracking Protection — even if you don’t have an account. The <a href="{ $container }">{ -brand-name-facebook-container }</a> for { -brand-name-firefox } makes sure that { -brand-name-facebook } and { -brand-name-instagram } can't do this so easily, which again reduces the probability of seeing misinformation via ads and promoted content significantly.
 
+# This string is currently shown to en and de locales only since it refers to Pocket recommendations in Firefox.
 misinformation-surface-content-heading = { -brand-name-firefox } helps you surface content that’s worthy of your time:
 
+# This string is currently shown to en and de locales only since it refers to Pocket recommendations in Firefox.
 # Variables:
 #   $recommended (url) - link to https://support.mozilla.org/kb/customize-new-tab-page
 #   $pocket_hits (url) - link to https://getpocket.com/explore/pocket-hits-signup

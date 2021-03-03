@@ -16,24 +16,19 @@
 {% set _params = '?utm_source=mozilla.org&utm_medium=referral&utm_campaign=misinformation-page' %}
 
 {% block content %}
-<section class="mzp-c-hero mzp-has-image mzp-t-dark mzp-t-product-firefox">
-  <div class="mzp-l-content">
-    <div class="mzp-c-hero-body">
-      <h1 class="mzp-c-hero-title">{{ self.page_title() }}</h1>
-      <div class="mzp-c-hero-desc">
-        <p>{{ ftl('misinformation-page-subheading') }}</p>
-      </div>
-      <div class="mzp-c-hero-cta">
-        <div class="download-firefox">
-          {{ download_firefox(dom_id='misinformation-download', download_location='primary cta') }}
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="mzp-c-hero-image">
-    {{ high_res_img('img/firefox/more/misinformation/hero.jpg', {'alt': '', 'width': '700', 'height': '385'}) }}
-  </div>
-</section>
+
+{% call hero(
+  title=self.page_title(),
+  desc=ftl('misinformation-page-subheading'),
+  class='mzp-has-image mzp-t-dark mzp-t-product-firefox',
+  image_url='img/firefox/more/misinformation/hero.jpg',
+  include_highres_image=True,
+  include_cta=True,
+  heading_level=1
+) %}
+  {{ download_firefox(dom_id='misinformation-download', download_location='primary cta') }}
+{% endcall %}
+
 <article>
   <section class="mzp-l-content mzp-t-content-md">
     <h2>{{ ftl('misinformation-what-is-heading') }}</h2>
@@ -115,15 +110,16 @@
     {% endcall %}
 
     {% call feature_card(
-      title=ftl('misiinformation-social-media-clean-heading'),
+      title=ftl('misinformation-social-media-clean-heading'),
       image_url='img/firefox/more/misinformation/facebook-container.svg',
       aspect_ratio='mzp-has-aspect-1-1',
       class='mzp-l-card-feature-right-half mzp-t-firefox',
       lazy_loading=True
     ) %}
-      <p>{{ ftl('misiinformation-social-media-clean-desc', container=url('firefox.facebookcontainer.index')) }}</p>
+      <p>{{ ftl('misinformation-social-media-clean-desc', container=url('firefox.facebookcontainer.index')) }}</p>
     {% endcall %}
 
+    {# Pocket recommendations in Firefox are currently shown to English and German audiences only. #}
     {% if LANG.startswith('en-') or LANG == 'de' %}
       {% call feature_card(
         title=ftl('misinformation-surface-content-heading'),
