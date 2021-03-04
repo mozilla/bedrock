@@ -26,17 +26,12 @@
 
 {% block site_header %}{% endblock %}
 
-{% if switch('nightly-doge') %}
-  {% set hero_class='mzp-t-dark mzp-t-product-nightly main-header is-doge' %}
-{% else %}
-  {% set hero_class='mzp-t-dark mzp-t-product-nightly main-header' %}
-{% endif %}
 
 {% block content %}
 <main role="main">
   {{ hero(
     title=ftl('nightly-firstrun-thank-you-for-using'),
-    class=hero_class,
+    class='mzp-t-dark mzp-t-product-nightly main-header,
     heading_level=1
   )}}
 
