@@ -80,10 +80,6 @@ h1 {
     margin-bottom: $spacing-md;
 }
 
-.hero-subheading {
-    @include text-title-md;
-}
-
 @media #{$mq-sm} {
     .mobile-download-buttons {
         margin-bottom: $spacing-lg;
