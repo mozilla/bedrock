@@ -45,7 +45,7 @@ def vpn_desktop_page(request):
         'default_monthly_price': vpn_default_monthly_price(),
     }
 
-    return l10n_utils.render(request, template_name, context, ftl_files=['products/vpn/desktop'])
+    return l10n_utils.render(request, template_name, context, ftl_files=['products/vpn/seo/desktop'])
 
 
 @require_safe
