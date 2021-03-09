@@ -18,7 +18,8 @@ if (typeof window.Mozilla === 'undefined') {
         'https://getpocket.com/',
         'https://latest.dev.lcip.org/',
         'https://accounts.firefox.com.cn/',
-        'https://vpn.mozilla.org/'
+        'https://vpn.mozilla.org/',
+        'https://stage-vpn.guardian.nonprod.cloudops.mozgcp.net/'
     ];
 
     var _buttons;
