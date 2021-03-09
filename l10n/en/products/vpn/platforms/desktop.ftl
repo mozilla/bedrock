@@ -4,25 +4,11 @@
 
 ### URL: https://www-dev.allizom.org/products/vpn/desktop/
 
-
-# Shared
-vpn-shared-cta = See pricing & availability
-vpn-shared-day-guarantee = 30-day money-back guarantee
-vpn-shared-what-youll-get = What you’ll get with { -brand-name-mozilla-vpn }:
-
-vpn-shared-feature-item-protection = Protection for up to 7 devices
-vpn-shared-feature-item-access = Access to servers in 30+ countries
-vpn-shared-feature-item-encryption = Device-level encryption
-vpn-shared-feature-item-bandwidth = No bandwidth restrictions
-vpn-shared-feature-item-logs = No online activity logs now or ever
-
 # Desktop strings
 vpn-desktop-hero-headline = Secure your internet connection with { -brand-name-mozilla-vpn } for desktop
 vpn-desktop-hero-copy = Get fast, easy security on your desktop and laptop computer through { -brand-name-mozilla }, one of the most trusted names in technology.
 
-vpn-desktop-guarantee = 30-day money-back guarantee
-
-vpn-desktop-ability = { -brand-name-mozilla-vpn } gives you the ability to connect confidently and keep your information safe from prying eyes and data thieves when you’re online. { -brand-name-mozilla-vpn } uses advanced WireGuard® protocol to encrypt personal data on your laptop or desktop computer — for up to five devices. Stream shows, play games, shop, and go about your daily life online knowing that you’re secure.
+vpn-desktop-ability = { -brand-name-mozilla-vpn } gives you the ability to connect confidently and keep your information safe from prying eyes and data thieves when you’re online. { -brand-name-mozilla-vpn } uses advanced { -brand-name-mozilla-vpn-wireguard }® protocol to encrypt personal data on your laptop or desktop computer — for up to five devices. Stream shows, play games, shop, and go about your daily life online knowing that you’re secure.
 
 vpn-desktop-maker-of-firefox = As the maker of the { -brand-name-firefox } web browser and one of the most trusted fighters for internet privacy, { -brand-name-mozilla } is committed to ensuring you feel safe and respected every time you go online.
 
@@ -33,12 +19,12 @@ vpn-desktop-about-headline = About { -brand-name-mozilla }
 vpn-desktop-about-copy = Best known for our { -brand-name-firefox-browser }, { -brand-name-mozilla } is a global community of users, contributors and developers dedicated to keeping the power of the internet in people's hands. Founded in 1998, we’re one of the pioneers of the free and open web — and it’s our mission to keep it that way.
 
 vpn-desktop-privacy-headline = Privacy in one click
-vpn-desktop-privacy-copy = The { -brand-name-mozilla-vpn } app encrypts your internet connection and hides the IP address on your mobile phone or tablet using WireGuard® advanced protocol.
+vpn-desktop-privacy-copy = The { -brand-name-mozilla-vpn } app encrypts your internet connection and hides the IP address on your mobile phone or tablet using { -brand-name-mozilla-vpn-wireguard }® advanced protocol.
 
 vpn-desktop-servers-headline = Connect to servers all over the world
-vpn-desktop-servers-copy = Browse from Brazil. Game from Japan. Stream from Mexico. { -brand-name-mozilla-vpn } lets you change your phone or computer’s location to one of 280+ servers in more than 30 countries.
+vpn-desktop-servers-copy = Browse from Brazil. Game from Japan. Stream from Mexico. { -brand-name-mozilla-vpn } lets you change your phone or computer’s location to one of { -vpn-features-servers }.
 
-vpn-desktop-devices-headline = Protect up to 7 devices
+vpn-desktop-devices-headline = Protect up to { -vpn-available-devices } devices
 vpn-desktop-devices-copy = Your subscription gets you unlimited access to our secure VPN service on your smartphone, tablet and desktop for { -brand-name-ios }, { -brand-name-android }, { -brand-name-mac-short }, { -brand-name-windows } and { -brand-name-linux }.
 
 vpn-desktop-speed-headline = Incredible speed, no restrictions

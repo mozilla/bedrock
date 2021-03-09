@@ -166,3 +166,7 @@
 -brand-name-google-play = Google Play
 -brand-name-youtube = YouTube
 -brand-name-chromebook = Chromebook
+
+## Mozilla VPN Vendors
+-brand-name-mozilla-vpn-mullvad = Mullvad
+-brand-name-mozilla-vpn-wireguard = WireGuard
