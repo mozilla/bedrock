@@ -8,7 +8,30 @@
 
 {% block page_title %}{{ ftl('features-pip-firefox-picture-in-picture-get-more') }}{% endblock %}
 {% block page_desc %}{{ ftl('features-pip-got-things-to-do-and-things-to-watch') }}{% endblock %}
-{% block page_image %}{{ static('img/firefox/features/pip/pip-hero.jpg') }}{% endblock %}
+
+{% block page_image %}
+  {% if LANG == 'en-US' %}
+    {{ static('img/firefox/features/pip/pip-hero-march.png') }}
+  {% else %}
+    {{ static('img/firefox/features/pip/pip-hero.jpg') }}
+  {% endif %}
+{% endblock %}
+
+{% block page_og_title %}
+  {%- if LANG == 'en-US' -%}
+    Firefox Picture-in-Picture: Keep an eye on the games with pop-out videos
+  {%- else -%}
+    {{ self.page_title() }}
+  {%- endif -%}
+{% endblock %}
+
+{% block page_og_desc %}
+  {%- if LANG == 'en-US' -%}
+    Got things to do and a basketball tournament to watch? Do both using Picture-in-Picture in Firefox.
+  {%- else -%}
+    {{ self.page_desc() }}
+  {%- endif -%}
+{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('firefox-features-pip') }}
@@ -22,11 +45,18 @@
 <section class="mzp-c-hero mzp-has-image mzp-t-dark">
   <div class="mzp-l-content">
     <div class="mzp-c-hero-body">
-      <h1 class="c-hero-pretitle"> {{ ftl('features-pip-cool-feature-picture-in-picture') }}</h1>
+      <h1 class="c-hero-pretitle"> {{ ftl('features-pip-new-feature-firefox-multi-picture', fallback='features-pip-cool-feature-picture-in-picture') }}</h1>
+    {% if LANG == 'en-US' %}
+      <h2 class="mzp-c-hero-title">Keep an eye on the games with pop-out videos</h2>
+      <div class="mzp-c-hero-desc">
+        <p>Got things to do and a basketball tournament to watch? Do both using Picture-in-Picture in Firefox. It lets you pop one or more videos out of their webpages and pin them to your screen so you can keep watching while you’re on other pages, tabs and apps.</p>
+      </div>
+    {% else %}
       <h2 class="mzp-c-hero-title">{{ ftl('features-pip-get-more-done-with-pop-out-videos') }}</h2>
       <div class="mzp-c-hero-desc">
         <p>{{ ftl('features-pip-got-things-to-do-do-both-with') }}</p>
       </div>
+    {% endif %}
       <div class="mzp-c-hero-cta">
         <div class="download-firefox">
           {{ download_firefox(dom_id='features-pip-download-primary', download_location='primary cta') }}
@@ -35,7 +65,11 @@
     </div>
   </div>
   <div class="mzp-c-hero-image">
+  {% if LANG == 'en-US' %}
+    <img src="{{ static('img/firefox/features/pip/pip-hero-march.png') }}" alt="">
+  {% else %}
     <img src="{{ static('img/firefox/features/pip/pip-hero.jpg') }}" alt="">
+  {% endif %}
   </div>
 </section>
 
@@ -65,9 +99,12 @@
         <h3 class="mzp-c-card-feature-title">{{ ftl('features-pip-heres-how-it-works') }}</h3>
         <div class="mzp-c-card-feature-desc">
           <ol class="mzp-u-list-styled">
-            <li>{{ ftl('features-pip-play-any-video-in-your') }}</li>
+            <li>{{ ftl('features-pip-play-any-video-in-your-updated', fallback='features-pip-play-any-video-in-your') }}</li>
             <li class="has-pip-icon">{{ ftl('features-pip-click-the-picture-in-picture-button') }}</li>
             <li>{{ ftl('features-pip-cruise-around-to-other') }}</li>
+          {% if ftl_has_messages('features-pip-repeat-steps-1-3-to-have') %}
+            <li>{{ ftl('features-pip-repeat-steps-1-3-to-have') }}</li>
+          {% endif %}
           </ol>
         </div>
       </div>
@@ -75,7 +112,7 @@
   </section>
 
   <section class="content-extra">
-    <h3 class="content-extra-title">{{ ftl('features-pip-3-ways-to-use-picture') }}</h3>
+    <h3 class="content-extra-title">{{ ftl('features-pip-3-more-ways-to-use-picture', fallback='features-pip-3-ways-to-use-picture') }}</h3>
 
     <div class="l-columns-three">
       <div class="c-picto-block">
