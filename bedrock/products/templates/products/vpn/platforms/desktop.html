@@ -18,7 +18,7 @@
 {% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
 
 {% block page_css %}
-  {{ css_bundle('mozilla-vpn-landing') }}
+  {{ css_bundle('mozilla-vpn-platforms') }}
 {% endblock %}
 
 {% block site_header %}
@@ -53,14 +53,6 @@
             <div class="vpn-hero-guarantee">
                 <em>{{ ftl('vpn-shared-day-guarantee') }}</em>
             </div>
-
-
-            <div class="vpn-hero-secondary">
-              <p>{{ ftl('vpn-desktop-ability') }}</p>
-              <p>{{ ftl('vpn-desktop-maker-of-firefox') }}</p>
-            </div>
-
-
           </div>
         </div>
         <div class="vpn-hero-image hide-from-legacy-ie" data-illustration="n-1">
@@ -69,26 +61,6 @@
             'img/products/vpn/landing/vpn-hero-01-high-res.png',
             'n-1')
           }}
-          {{ hero_image(
-            'img/products/vpn/landing/vpn-hero-02.png',
-            'img/products/vpn/landing/vpn-hero-02-high-res.png',
-            'n-2')
-          }}
-          {{ hero_image(
-            'img/products/vpn/landing/vpn-hero-03.png',
-            'img/products/vpn/landing/vpn-hero-03-high-res.png',
-            'n-3')
-          }}
-          {{ hero_image(
-            'img/products/vpn/landing/vpn-hero-04.png',
-            'img/products/vpn/landing/vpn-hero-04-high-res.png',
-            'n-4')
-          }}
-          {{ hero_image(
-            'img/products/vpn/landing/vpn-hero-05.png',
-            'img/products/vpn/landing/vpn-hero-05-high-res.png',
-            'n-5')
-          }}
         </div>
       </div>
     </div>
@@ -96,13 +68,18 @@
 
   <div class="mzp-l-content mzp-t-content-xl">
 
-  </div>
-
-  <div class="mzp-l-content mzp-t-content-xl">
+    {% call vpn_content_well(
+      title='',
+      image_url='img/products/vpn/platforms/placeholder.png',
+      class='vpn-content-well-right-half vpn-content-well-alt-layout'
+    ) %}
+      <p>{{ ftl('vpn-desktop-ability') }}</p>
+      <p>{{ ftl('vpn-desktop-maker-of-firefox') }}</p>
+    {% endcall %}
 
     {% call vpn_content_well(
       title=ftl('vpn-shared-what-youll-get'),
-      image_url='img/products/vpn/seo/placeholder.png',
+      image_url='img/products/vpn/platforms/placeholder.png',
       class='vpn-content-well-left-half'
     ) %}
       <ul class="mzp-u-list-styled">
@@ -116,7 +93,7 @@
 
     {% call vpn_content_well(
       title=ftl('vpn-desktop-wifi-headline'),
-      image_url='img/products/vpn/seo/placeholder.png',
+      image_url='img/products/vpn/platforms/placeholder.png',
       class='vpn-content-well-right-half'
     ) %}
       <p>{{ ftl('vpn-desktop-wifi-copy') }}</p>
@@ -124,7 +101,7 @@
 
     {% call vpn_content_well(
       title=ftl('vpn-desktop-privacy-headline'),
-      image_url='img/products/vpn/seo/placeholder.png',
+      image_url='img/products/vpn/platforms/placeholder.png',
       class='vpn-content-well-left-half'
     ) %}
       <p>{{ ftl('vpn-desktop-privacy-copy') }}</p>
@@ -132,7 +109,7 @@
 
     {% call vpn_content_well(
       title=ftl('vpn-desktop-servers-headline'),
-      image_url='img/products/vpn/seo/placeholder.png',
+      image_url='img/products/vpn/platforms/placeholder.png',
       class='vpn-content-well-right-half'
     ) %}
       <p>{{ ftl('vpn-desktop-servers-copy') }}</p>
@@ -140,7 +117,7 @@
 
     {% call vpn_content_well(
       title=ftl('vpn-desktop-devices-headline'),
-      image_url='img/products/vpn/seo/placeholder.png',
+      image_url='img/products/vpn/platforms/placeholder.png',
       class='vpn-content-well-left-half'
     ) %}
       <p>{{ ftl('vpn-desktop-devices-copy') }}</p>
@@ -148,7 +125,7 @@
 
     {% call vpn_content_well(
       title=ftl('vpn-desktop-speed-headline'),
-      image_url='img/products/vpn/seo/placeholder.png',
+      image_url='img/products/vpn/platforms/placeholder.png',
       class='vpn-content-well-right-half'
     ) %}
       <p>{{ ftl('vpn-desktop-speed-copy') }}</p>
@@ -156,38 +133,41 @@
 
     {% call vpn_content_well(
       title=ftl('vpn-desktop-log-headline'),
-      image_url='img/products/vpn/seo/placeholder.png',
+      image_url='img/products/vpn/platforms/placeholder.png',
       class='vpn-content-well-left-half'
     ) %}
       <p>{{ ftl('vpn-desktop-log-copy') }}</p>
     {% endcall %}
 
-
-<!-- Same -->
-
-
     {% call vpn_content_well(
+      title=ftl('vpn-cta-headline'),
+      image_url='img/products/vpn/platforms/placeholder.png',
+      class='vpn-content-well-right-half'
+    ) %}
+      <a class="vpn-button" href="{{ url('products.vpn.landing') }}" data-link-name="Mozilla VPN">{{ ftl('vpn-shared-cta') }}</a>
+      <div class="vpn-hero-guarantee">
+        <em>{{ ftl('vpn-shared-day-guarantee') }}</em>
+      </div>
+    {% endcall %}
+
+    <!-- {% call vpn_content_well(
       title='Available in 6 countries now. More regions coming soon.',
       image_url='img/products/vpn/landing/vpn-cntwell-05.png',
       class='vpn-content-well-right-half vpn-content-well-waitlist'
     ) %}
       {{ join_waitlist_button(link_text='Join the Waitlist', is_conditional=False, position='secondary') }}
       <p class="availability-copy">We currently offer Mozilla VPN in the US, the UK, Canada, New Zealand, Singapore and Malaysia.</p>
-    {% endcall %}
+    {% endcall %} -->
 
     {% call vpn_content_well(
       title='About our trusted partner',
       image_url='img/products/vpn/landing/vpn-cntwell-06.png',
-      class='vpn-content-well-left-half'
+      class='vpn-content-well-left-half vpn-content-well-alt-layout'
     ) %}
-      <p>The Mozilla VPN runs on a global network of servers powered by <a href="https://mullvad.net/help/no-logging-data-policy/">Mullvad</a> using the <a href="https://mullvad.net/help/why-wireguard/">WireGuard</a>® protocol. Mullvad puts your privacy first and does not keep logs of any kind.</p>
+      {{ ftl('vpn-shared-trust-partner', policy='https://mullvad.net/help/no-logging-data-policy/', wireguard='https://mullvad.net/help/why-wireguard/' ) }}
     {% endcall %}
 
   </div>
 
 </main>
-{% endblock %}
-
-{% block js %}
-  {{ js_bundle('mozilla-vpn-landing') }}
 {% endblock %}
