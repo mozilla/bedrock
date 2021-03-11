@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "products/vpn/includes/macros.html" import hero_image, join_waitlist_button, vpn_nav_cta, vpn_content_well with context %}
+{% from "products/vpn/includes/macros.html" import hero_image, join_waitlist_button, vpn_nav_platform_cta, vpn_content_well with context %}
 
 {% extends "products/vpn/base.html" %}
 
@@ -23,12 +23,8 @@
 
 {% block site_header %}
   {% with
-    custom_nav_cta=vpn_nav_cta(
-      link_text='Try Mozilla VPN',
-      alt_link_text='Join the Waitlist',
-      sign_in_link_text='Sign In',
-      utm_source=_utm_source,
-      utm_campaign=_utm_campaign,
+    custom_nav_cta=vpn_nav_platform_cta(
+      alt_link_text='vpn-shared-cta',
     )
   %}
     {% include 'includes/protocol/navigation/navigation.html' %}
@@ -36,7 +32,7 @@
 {% endblock %}
 
 {% block sub_navigation %}
-  {% include 'products/vpn/platforms/includes/subnav.html' %}
+  {% include 'products/vpn/platforms/includes/subnav-desktop.html' %}
 {% endblock %}
 
 {% block content %}

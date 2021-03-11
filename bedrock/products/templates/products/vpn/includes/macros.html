@@ -53,6 +53,14 @@
   </div>
 {% endmacro %}
 
+{% macro vpn_nav_platform_cta(alt_link_text) -%}
+  <div class="vpn-nav-cta">
+    <a class="mzp-c-button mzp-t-secondary mzp-t-md hide-from-legacy-ie" href="{{ url('products.vpn.landing') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="navigation">
+      {{ ftl(alt_link_text) }}
+    </a>
+  </div>
+{% endmacro %}
+
 {% macro vpn_content_well(title, image_url, class=None) -%}
   <section class="vpn-content-well {% if class %}{{ class }}{% endif %}">
     <div class="vpn-content-well-image-wrapper">
