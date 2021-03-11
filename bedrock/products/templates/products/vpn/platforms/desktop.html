@@ -70,7 +70,7 @@
       image_url='img/products/vpn/platforms/placeholder.png',
       class='vpn-content-well-right-half vpn-content-well-alt-layout'
     ) %}
-      <p>{{ ftl('vpn-desktop-ability') }}</p>
+      <p>{{ ftl('vpn-desktop-ability', devices=5) }}</p>
       <p>{{ ftl('vpn-desktop-maker-of-firefox') }}</p>
     {% endcall %}
 
@@ -80,8 +80,8 @@
       class='vpn-content-well-left-half'
     ) %}
       <ul class="mzp-u-list-styled">
-        <li>{{ ftl('vpn-shared-feature-item-protection') }}</li>
-        <li>{{ ftl('vpn-shared-feature-item-access') }}</li>
+        <li>{{ ftl('vpn-shared-feature-item-protection', devices=5) }}</li>
+        <li>{{ ftl('vpn-shared-feature-item-access', countries=30) }}</li>
         <li>{{ ftl('vpn-shared-feature-item-encryption') }}</li>
         <li>{{ ftl('vpn-shared-feature-item-bandwidth') }}</li>
         <li>{{ ftl('vpn-shared-feature-item-logs') }}</li>
@@ -109,11 +109,11 @@
       image_url='img/products/vpn/platforms/placeholder.png',
       class='vpn-content-well-right-half'
     ) %}
-      <p>{{ ftl('vpn-desktop-servers-copy') }}</p>
+      <p>{{ ftl('vpn-desktop-servers-copy', servers=280, countries=30) }}</p>
     {% endcall %}
 
     {% call vpn_platform_content_well(
-      title=ftl('vpn-desktop-devices-headline'),
+      title=ftl('vpn-desktop-devices-headline', devices=5),
       image_url='img/products/vpn/platforms/placeholder.png',
       class='vpn-content-well-left-half'
     ) %}

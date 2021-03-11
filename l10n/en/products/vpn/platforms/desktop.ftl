@@ -11,7 +11,9 @@ vpn-desktop-page-description = Get fast, easy security on your desktop and lapto
 # Desktop strings
 vpn-desktop-hero-headline = Secure your internet connection with { -brand-name-mozilla-vpn } for desktop
 
-vpn-desktop-ability = { -brand-name-mozilla-vpn } gives you the ability to connect confidently and keep your information safe from prying eyes and data thieves when you’re online. { -brand-name-mozilla-vpn } uses advanced { -brand-name-wireguard }® protocol to encrypt personal data on your laptop or desktop computer — for up to five devices. Stream shows, play games, shop, and go about your daily life online knowing that you’re secure.
+# Variables:
+#   $devices (number) - number of available devices
+vpn-desktop-ability = { -brand-name-mozilla-vpn } gives you the ability to connect confidently and keep your information safe from prying eyes and data thieves when you’re online. { -brand-name-mozilla-vpn } uses advanced { -brand-name-wireguard }® protocol to encrypt personal data on your laptop or desktop computer — for up to { $devices } devices. Stream shows, play games, shop, and go about your daily life online knowing that you’re secure.
 
 vpn-desktop-maker-of-firefox = As the maker of the { -brand-name-firefox } web browser and one of the most trusted fighters for internet privacy, { -brand-name-mozilla } is committed to ensuring you feel safe and respected every time you go online.
 
@@ -25,9 +27,14 @@ vpn-desktop-privacy-headline = Privacy in one click
 vpn-desktop-privacy-copy = The { -brand-name-mozilla-vpn } app encrypts your internet connection and hides the IP address on your mobile phone or tablet using { -brand-name-wireguard }® advanced protocol.
 
 vpn-desktop-servers-headline = Connect to servers all over the world
-vpn-desktop-servers-copy = Browse from Brazil. Game from Japan. Stream from Mexico. { -brand-name-mozilla-vpn } lets you change your phone or computer’s location to one of { -vpn-features-servers }.
 
-vpn-desktop-devices-headline = Protect up to { -vpn-available-devices } devices
+Variables:
+#   $servers (number) - number of available servers
+vpn-desktop-servers-copy = Browse from Brazil. Game from Japan. Stream from Mexico. { -brand-name-mozilla-vpn } lets you change your phone or computer’s location to one of { $servers }.
+
+# Variables:
+#   $devices (number) - number of available devices
+vpn-desktop-devices-headline = Protect up to { $devices } devices
 vpn-desktop-devices-copy = Your subscription gets you unlimited access to our secure VPN service on your smartphone, tablet and desktop for { -brand-name-ios }, { -brand-name-android }, { -brand-name-mac-short }, { -brand-name-windows } and { -brand-name-linux }.
 
 vpn-desktop-speed-headline = Incredible speed, no restrictions
