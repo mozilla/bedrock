@@ -20,6 +20,11 @@ vpn-shared-feature-item-logs = No online activity logs now or ever
 -vpn-available-countries = 280
 -vpn-features-servers = { -vpn-available-devices }+ servers in more than { -vpn-available-countries }+ countries
 
+vpn-subnav-title-desktop = { -brand-name-mozilla-vpn } for desktop
+vpn-subnav-platform-mac = { -brand-name-mac-short }
+vpn-subnav-platform-windows = { -brand-name-windows-10 }
+vpn-subnav-platform-linux = { -brand-name-linux }
+
 # Variables:
 #   $policy (url) - link to https://mullvad.net/help/no-logging-data-policy/
 #   $wireguard (url) - link to https://mullvad.net/help/why-wireguard/

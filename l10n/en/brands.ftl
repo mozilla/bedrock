@@ -140,6 +140,7 @@
 -brand-name-mac = macOS
 -brand-name-mac-short = Mac
 -brand-name-windows = Windows
+-brand-name-windows-10 = Windows 10
 -brand-name-xp = XP
 -brand-name-vista = Vista
 -brand-name-chromeos = Chrome OS
