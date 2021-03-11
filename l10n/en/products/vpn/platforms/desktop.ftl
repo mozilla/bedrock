@@ -4,11 +4,15 @@
 
 ### URL: https://www-dev.allizom.org/products/vpn/desktop/
 
+# Meta strings
+vpn-desktop-page-title = { -brand-name-mozilla-vpn } for desktop (PC & Laptop)
+vpn-desktop-page-description = Get fast, easy security on your desktop and laptop computer through { -brand-name-mozilla }, one of the most trusted names in technology.
+
 # Desktop strings
 vpn-desktop-hero-headline = Secure your internet connection with { -brand-name-mozilla-vpn } for desktop
-vpn-desktop-hero-copy = Get fast, easy security on your desktop and laptop computer through { -brand-name-mozilla }, one of the most trusted names in technology.
 
-vpn-desktop-ability = { -brand-name-mozilla-vpn } gives you the ability to connect confidently and keep your information safe from prying eyes and data thieves when you’re online. { -brand-name-mozilla-vpn } uses advanced { -brand-name-mozilla-vpn-wireguard }® protocol to encrypt personal data on your laptop or desktop computer — for up to five devices. Stream shows, play games, shop, and go about your daily life online knowing that you’re secure.
+vpn-desktop-ability-headline = { -brand-name-mozilla-vpn } gives you the ability to connect confidently and keep your information safe from prying eyes and data thieves when you’re online.
+vpn-desktop-ability = { -brand-name-mozilla-vpn } uses advanced { -brand-name-wireguard }® protocol to encrypt personal data on your laptop or desktop computer — for up to five devices. Stream shows, play games, shop, and go about your daily life online knowing that you’re secure.
 
 vpn-desktop-maker-of-firefox = As the maker of the { -brand-name-firefox } web browser and one of the most trusted fighters for internet privacy, { -brand-name-mozilla } is committed to ensuring you feel safe and respected every time you go online.
 
@@ -19,7 +23,7 @@ vpn-desktop-about-headline = About { -brand-name-mozilla }
 vpn-desktop-about-copy = Best known for our { -brand-name-firefox-browser }, { -brand-name-mozilla } is a global community of users, contributors and developers dedicated to keeping the power of the internet in people's hands. Founded in 1998, we’re one of the pioneers of the free and open web — and it’s our mission to keep it that way.
 
 vpn-desktop-privacy-headline = Privacy in one click
-vpn-desktop-privacy-copy = The { -brand-name-mozilla-vpn } app encrypts your internet connection and hides the IP address on your mobile phone or tablet using { -brand-name-mozilla-vpn-wireguard }® advanced protocol.
+vpn-desktop-privacy-copy = The { -brand-name-mozilla-vpn } app encrypts your internet connection and hides the IP address on your mobile phone or tablet using { -brand-name-wireguard }® advanced protocol.
 
 vpn-desktop-servers-headline = Connect to servers all over the world
 vpn-desktop-servers-copy = Browse from Brazil. Game from Japan. Stream from Mexico. { -brand-name-mozilla-vpn } lets you change your phone or computer’s location to one of { -vpn-features-servers }.

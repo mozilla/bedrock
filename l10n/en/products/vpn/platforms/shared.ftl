@@ -5,6 +5,7 @@
 ### URL: https://www-dev.allizom.org/products/vpn/desktop/
 
 # Shared
+vpn-shared-title = { -brand-name-mozilla-vpn }
 vpn-cta-headline = Let's get started
 vpn-shared-cta = See pricing & availability
 vpn-shared-day-guarantee = 30-day money-back guarantee
@@ -22,7 +23,7 @@ vpn-shared-feature-item-logs = No online activity logs now or ever
 
 vpn-subnav-title-desktop = { -brand-name-mozilla-vpn } for desktop
 vpn-subnav-platform-mac = { -brand-name-mac-short }
-vpn-subnav-platform-windows = { -brand-name-windows-10 }
+vpn-subnav-platform-windows = { -brand-name-windows } 10
 vpn-subnav-platform-linux = { -brand-name-linux }
 
 # Variables:

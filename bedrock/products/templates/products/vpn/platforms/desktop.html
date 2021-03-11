@@ -2,18 +2,18 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "products/vpn/includes/macros.html" import hero_image, join_waitlist_button, vpn_nav_platform_cta, vpn_content_well with context %}
+{% from "products/vpn/includes/macros.html" import vpn_nav_platform_cta, vpn_platform_content_well with context %}
 
 {% extends "products/vpn/base.html" %}
 
-{% block page_title_full %}Mozilla VPN: Protect Your Entire Device{% endblock %}
+{% block page_title_full %}{{ ftl('vpn-desktop-page-title') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
-{% block page_desc %}Use the Mozilla VPN for full-device protection for all apps. With servers in 30+ countries, you can connect to anywhere, from anywhere.{% endblock %}
+{% block page_desc %}{{ ftl('vpn-desktop-page-description') }}{% endblock %}
 
-{% block body_id %}mozilla-vpn-landing{% endblock %}
+{% block body_id %}mozilla-vpn-platforms-desktop{% endblock %}
 
-{% set _utm_source = 'www.mozilla.org-vpn-product-page' %}
+{% set _utm_source = 'www.mozilla.org-vpn-desktop-page' %}
 {% set _utm_campaign = 'vpn-product-page' %}
 {% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
 
@@ -41,14 +41,12 @@
     <div class="mzp-l-content mzp-t-content-xl">
       <div class="vpn-hero-container">
         <div class="vpn-hero-body">
-          <h1 class="vpn-hero-title">Mozilla VPN 2</h1>
+          <h1 class="vpn-hero-title">{{ ftl('vpn-shared-title') }}</h1>
           <h2 class="vpn-hero-subtitle">{{ ftl('vpn-desktop-hero-headline') }}</h2>
           <div class="vpn-hero-desc">
-            <p>{{ ftl('vpn-desktop-hero-copy') }}</p>
+            <p>{{ ftl('vpn-desktop-page-description') }}</p>
 
             <a class="vpn-button" href="{{ url('products.vpn.landing') }}" data-link-name="Mozilla VPN">{{ ftl('vpn-shared-cta') }}</a>
-
-            {{ join_waitlist_button(link_text='Join the Waitlist', position='primary') }}
 
             <div class="vpn-hero-guarantee">
                 <em>{{ ftl('vpn-shared-day-guarantee') }}</em>
@@ -56,20 +54,19 @@
           </div>
         </div>
         <div class="vpn-hero-image hide-from-legacy-ie" data-illustration="n-1">
-          {{ hero_image(
-            'img/products/vpn/platforms/placeholder.png',
-            'img/products/vpn/platforms/placeholder-high-res.png',
-            'n-1')
-          }}
+          <picture>
+            <source srcset="{{ static('img/products/vpn/platforms/placeholder.png') }} 480w, {{ static('img/products/vpn/platforms/placeholder-high-res.png') }} 960w" media="(min-width: 1024px)">
+            <source srcset="{{ static('img/placeholder.png') }}" media="(max-width: 1023px)">
+            <img src="{{ static('img/products/vpn/platforms/placeholder.png') }}" class="n-1" alt="" width="480" height="480">
+          </picture>
         </div>
       </div>
     </div>
   </section>
 
   <div class="mzp-l-content mzp-t-content-xl">
-
-    {% call vpn_content_well(
-      title='',
+    {% call vpn_platform_content_well(
+      title=ftl('vpn-desktop-ability-headline'),
       image_url='img/products/vpn/platforms/placeholder.png',
       class='vpn-content-well-right-half vpn-content-well-alt-layout'
     ) %}
@@ -77,7 +74,7 @@
       <p>{{ ftl('vpn-desktop-maker-of-firefox') }}</p>
     {% endcall %}
 
-    {% call vpn_content_well(
+    {% call vpn_platform_content_well(
       title=ftl('vpn-shared-what-youll-get'),
       image_url='img/products/vpn/platforms/placeholder.png',
       class='vpn-content-well-left-half'
@@ -91,7 +88,7 @@
       </ul>
     {% endcall %}
 
-    {% call vpn_content_well(
+    {% call vpn_platform_content_well(
       title=ftl('vpn-desktop-wifi-headline'),
       image_url='img/products/vpn/platforms/placeholder.png',
       class='vpn-content-well-right-half'
@@ -99,7 +96,7 @@
       <p>{{ ftl('vpn-desktop-wifi-copy') }}</p>
     {% endcall %}
 
-    {% call vpn_content_well(
+    {% call vpn_platform_content_well(
       title=ftl('vpn-desktop-privacy-headline'),
       image_url='img/products/vpn/platforms/placeholder.png',
       class='vpn-content-well-left-half'
@@ -107,7 +104,7 @@
       <p>{{ ftl('vpn-desktop-privacy-copy') }}</p>
     {% endcall %}
 
-    {% call vpn_content_well(
+    {% call vpn_platform_content_well(
       title=ftl('vpn-desktop-servers-headline'),
       image_url='img/products/vpn/platforms/placeholder.png',
       class='vpn-content-well-right-half'
@@ -115,7 +112,7 @@
       <p>{{ ftl('vpn-desktop-servers-copy') }}</p>
     {% endcall %}
 
-    {% call vpn_content_well(
+    {% call vpn_platform_content_well(
       title=ftl('vpn-desktop-devices-headline'),
       image_url='img/products/vpn/platforms/placeholder.png',
       class='vpn-content-well-left-half'
@@ -123,7 +120,7 @@
       <p>{{ ftl('vpn-desktop-devices-copy') }}</p>
     {% endcall %}
 
-    {% call vpn_content_well(
+    {% call vpn_platform_content_well(
       title=ftl('vpn-desktop-speed-headline'),
       image_url='img/products/vpn/platforms/placeholder.png',
       class='vpn-content-well-right-half'
@@ -131,7 +128,7 @@
       <p>{{ ftl('vpn-desktop-speed-copy') }}</p>
     {% endcall %}
 
-    {% call vpn_content_well(
+    {% call vpn_platform_content_well(
       title=ftl('vpn-desktop-log-headline'),
       image_url='img/products/vpn/platforms/placeholder.png',
       class='vpn-content-well-left-half'
@@ -139,7 +136,7 @@
       <p>{{ ftl('vpn-desktop-log-copy') }}</p>
     {% endcall %}
 
-    {% call vpn_content_well(
+    {% call vpn_platform_content_well(
       title=ftl('vpn-cta-headline'),
       image_url='img/products/vpn/platforms/placeholder.png',
       class='vpn-content-well-right-half'
@@ -150,18 +147,9 @@
       </div>
     {% endcall %}
 
-    <!-- {% call vpn_content_well(
-      title='Available in 6 countries now. More regions coming soon.',
-      image_url='img/products/vpn/landing/vpn-cntwell-05.png',
-      class='vpn-content-well-right-half vpn-content-well-waitlist'
-    ) %}
-      {{ join_waitlist_button(link_text='Join the Waitlist', is_conditional=False, position='secondary') }}
-      <p class="availability-copy">We currently offer Mozilla VPN in the US, the UK, Canada, New Zealand, Singapore and Malaysia.</p>
-    {% endcall %} -->
-
-    {% call vpn_content_well(
+    {% call vpn_platform_content_well(
       title='About our trusted partner',
-      image_url='img/products/vpn/landing/vpn-cntwell-06.png',
+      image_url='img/products/vpn/platforms/vpn-cntwell-06.png',
       class='vpn-content-well-left-half vpn-content-well-alt-layout'
     ) %}
       {{ ftl('vpn-shared-trust-partner', policy='https://mullvad.net/help/no-logging-data-policy/', wireguard='https://mullvad.net/help/why-wireguard/' ) }}
