@@ -41,7 +41,7 @@ class TestVPNSubscribeLink(TestCase):
                               optional_attributes={'data-cta-text': 'Try Mozilla VPN', 'data-cta-type':
                                                    'fxa-vpn', 'data-cta-position': 'primary'})
         expected = (
-            u'<a href="https://vpn.mozilla.org/r/vpn/subscribe/?entrypoint=www.mozilla.org-vpn-product-page'
+            u'<a href="https://vpn.mozilla.org/r/vpn/subscribe?entrypoint=www.mozilla.org-vpn-product-page'
             u'&form_type=button&utm_source=www.mozilla.org-vpn-product-page&utm_medium=referral'
             u'&utm_campaign=vpn-product-page" data-action="https://accounts.firefox.com/" '
             u'class="js-fxa-cta-link js-fxa-product-button vpn-button try js-try-vpn" '
@@ -69,7 +69,7 @@ class TestVPNSignInLink(TestCase):
                               optional_attributes={'data-cta-text': 'VPN Sign In', 'data-cta-type':
                                                    'fxa-vpn', 'data-cta-position': 'navigation'})
         expected = (
-            u'<a href="https://vpn.mozilla.org/oauth/init/?entrypoint=www.mozilla.org-vpn-product-page'
+            u'<a href="https://vpn.mozilla.org/oauth/init?entrypoint=www.mozilla.org-vpn-product-page'
             u'&form_type=button&utm_source=www.mozilla.org-vpn-product-page&utm_medium=referral'
             u'&utm_campaign=vpn-product-page" data-action="https://accounts.firefox.com/" '
             u'class="js-fxa-cta-link js-fxa-product-button mzp-c-cta-link" data-cta-text="VPN Sign In" '
