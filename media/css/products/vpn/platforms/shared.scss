@@ -8,35 +8,6 @@ $image-path: '/media/protocol/img';
 @import '../../../../protocol/css/includes/lib';
 
 //* -------------------------------------------------------------------------- */
-// Shared styles
-
-.availability-copy {
-    @include text-body-md;
-}
-
-//* -------------------------------------------------------------------------- */
-// Conditional state
-
-.js-join-waitlist,
-.js-country-list {
-    display: none !important; /* stylelint-disable-line declaration-no-important */
-}
-
-.vpn-not-available {
-    .js-try-vpn {
-        display: none !important; /* stylelint-disable-line declaration-no-important */
-    }
-
-    .js-country-list {
-        display: block !important; /* stylelint-disable-line declaration-no-important */
-    }
-
-    .js-join-waitlist {
-        display: inline-block !important; /* stylelint-disable-line declaration-no-important */
-    }
-}
-
-//* -------------------------------------------------------------------------- */
 // VPN Nav CTA
 
 .vpn-nav-cta {
@@ -104,12 +75,6 @@ $image-path: '/media/protocol/img';
     margin-bottom: $spacing-md;
 }
 
-.vpn-hero-tagline {
-    @include text-body-lg;
-    font-weight: bold;
-    margin-top: $layout-lg;
-}
-
 .vpn-hero-secondary {
     margin-top: $spacing-lg;
     @include text-body-md;
@@ -138,11 +103,7 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    &[data-illustration="n-1"] .n-1,
-    &[data-illustration="n-2"] .n-2,
-    &[data-illustration="n-3"] .n-3,
-    &[data-illustration="n-4"] .n-4,
-    &[data-illustration="n-5"] .n-5 {
+    &[data-illustration="n-1"] .n-1 {
         opacity: 1;
     }
 }
@@ -176,10 +137,6 @@ $image-path: '/media/protocol/img';
 
     .vpn-hero-desc {
         margin-bottom: $spacing-2xl;
-    }
-
-    .vpn-hero-tagline {
-        margin-top: $layout-xl;
     }
 
     .vpn-hero-image {
@@ -347,91 +304,5 @@ $image-path: '/media/protocol/img';
         @media #{$mq-lg} {
             @include grid-column-gap($spacing-2xl);
         }
-    }
-}
-
-//* -------------------------------------------------------------------------- */
-// FAQ
-
-.vpn-faq {
-    border-top: 4px solid $color-black;
-    padding-top: $layout-xl;
-}
-
-.vpn-faq-section-title {
-    @include text-title-md;
-    margin-bottom: $spacing-2xl;
-    text-align: center;
-}
-
-.vpn-faq-item-title {
-    background: $color-marketing-gray-20;
-    box-shadow: 8px 8px 0 $color-black;
-    margin-bottom: $spacing-lg;
-    padding: $spacing-lg;
-
-    &:hover {
-        cursor: pointer;
-    }
-
-    h3 {
-        @include bidi((
-            (margin-right, $spacing-xl, margin-left, 0),
-        ));
-        @include text-title-2xs;
-        font-family: $font-stack-base;
-        line-height: 1.5;
-        margin-bottom: 0;
-    }
-}
-
-.vpn-faq-item-detail {
-    @include text-body-lg;
-    padding: 0 $spacing-lg $spacing-lg;
-}
-
-.vpn-faq-item[open] {
-    background: $color-white;
-
-    .vpn-faq-item-title {
-        background: $color-white;
-        box-shadow: none;
-    }
-}
-
-.vpn-faq-footer {
-    margin: $layout-xl 0;
-    text-align: center;
-
-    small {
-        @include text-body-xs;
-        display: block;
-        margin-top: $spacing-xl;
-    }
-}
-
-.vpn-faq-footer-link {
-    display: block;
-    margin-bottom: $spacing-lg;
-
-    &:link,
-    &:visited {
-        color: $color-black;
-    }
-
-    @media #{$mq-md} {
-        display: inline-block;
-        margin-left: $spacing-md;
-        margin-right: $spacing-md;
-    }
-}
-
-.vpn-footer-list {
-    margin-top: $spacing-xl;
-
-    a:link,
-    a:visited {
-        @include text-body-xs;
-        color: $color-black;
     }
 }
