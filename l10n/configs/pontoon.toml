@@ -250,3 +250,6 @@ locales = [
 [[paths]]
     reference = "en/privacy/*.ftl"
     l10n = "{locale}/privacy/*.ftl"
+[[paths]]
+    reference = "en/products/vpn/**/*.ftl"
+    l10n = "{locale}/products/vpn/**/*.ftl"
