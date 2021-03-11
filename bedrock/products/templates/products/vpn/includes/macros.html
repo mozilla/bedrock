@@ -98,3 +98,22 @@
     </div>
   </section>
 {%- endmacro %}
+
+{% macro vpn_platform_content_well_div(title, image_url, class=None) -%}
+  <div class="vpn-content-well {% if class %}{{ class }}{% endif %}">
+    <div class="vpn-content-well-image-wrapper">
+      <div class="vpn-content-well-image">
+        {{ high_res_img(image_url, {'alt': image_alt, 'width': '480', 'height': '480'}) }}
+      </div>
+    </div>
+
+    <div class="vpn-content-well-copy">
+      <div class="vpn-content-well-copy-container">
+        {% if title %}<h2 class="vpn-content-well-title">{{ title }}</h2>{% endif %}
+        <div class="vpn-content-well-desc">
+          {{ caller() }}
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endmacro %}

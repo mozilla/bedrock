@@ -11,8 +11,7 @@ vpn-desktop-page-description = Get fast, easy security on your desktop and lapto
 # Desktop strings
 vpn-desktop-hero-headline = Secure your internet connection with { -brand-name-mozilla-vpn } for desktop
 
-vpn-desktop-ability-headline = { -brand-name-mozilla-vpn } gives you the ability to connect confidently and keep your information safe from prying eyes and data thieves when you’re online.
-vpn-desktop-ability = { -brand-name-mozilla-vpn } uses advanced { -brand-name-wireguard }® protocol to encrypt personal data on your laptop or desktop computer — for up to five devices. Stream shows, play games, shop, and go about your daily life online knowing that you’re secure.
+vpn-desktop-ability = { -brand-name-mozilla-vpn } gives you the ability to connect confidently and keep your information safe from prying eyes and data thieves when you’re online. { -brand-name-mozilla-vpn } uses advanced { -brand-name-wireguard }® protocol to encrypt personal data on your laptop or desktop computer — for up to five devices. Stream shows, play games, shop, and go about your daily life online knowing that you’re secure.
 
 vpn-desktop-maker-of-firefox = As the maker of the { -brand-name-firefox } web browser and one of the most trusted fighters for internet privacy, { -brand-name-mozilla } is committed to ensuring you feel safe and respected every time you go online.
 

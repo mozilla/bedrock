@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "products/vpn/includes/macros.html" import vpn_nav_platform_cta, vpn_platform_content_well with context %}
+{% from "products/vpn/includes/macros.html" import vpn_nav_platform_cta, vpn_platform_content_well, vpn_platform_content_well_div with context %}
 
 {% extends "products/vpn/base.html" %}
 
@@ -65,8 +65,8 @@
   </section>
 
   <div class="mzp-l-content mzp-t-content-xl">
-    {% call vpn_platform_content_well(
-      title=ftl('vpn-desktop-ability-headline'),
+    {% call vpn_platform_content_well_div(
+      title='',
       image_url='img/products/vpn/platforms/placeholder.png',
       class='vpn-content-well-right-half vpn-content-well-alt-layout'
     ) %}
