@@ -23,8 +23,7 @@ vpn-shared-feature-item-logs = No online activity logs now or ever
 # Variables:
 #   $policy (url) - link to https://mullvad.net/help/no-logging-data-policy/
 #   $wireguard (url) - link to https://mullvad.net/help/why-wireguard/
-vpn-shared-trust-partner = The { -brand-name-mozilla-vpn } runs on a global network of servers powered by <a href="{ $policy }">{ -brand-name-mozilla-vpn-mullvad }</a> using the <a href="{ $wireguard }">{ -brand-name-mozilla-vpn-wireguard }</a>® protocol. { -brand-name-mozilla-vpn-mullvad } puts your privacy first and does not keep logs of any kind.
-
+vpn-shared-trust-partner = The { -brand-name-mozilla-vpn } runs on a global network of servers powered by <a href="{ $policy }">{ -brand-name-mullvad }</a> using the <a href="{ $wireguard }">{ -brand-name-wireguard }</a>® protocol. { -brand-name-mullvad } puts your privacy first and does not keep logs of any kind.
 
 
 # Variables:
