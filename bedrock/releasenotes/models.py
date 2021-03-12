@@ -37,7 +37,14 @@ ALLOWED_TAGS = [
     'b',
     'blockquote',
     'code',
+    'div',
     'em',
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
     'i',
     'li',
     'ol',
@@ -47,10 +54,19 @@ ALLOWED_TAGS = [
     'strong',
     'ul',
 ]
+ALLOWED_ATTRS = [
+    'alt',
+    'class',
+    'href',
+    'id',
+    'title',
+]
 
 
 def process_markdown(value):
-    return markdowner.reset().convert(bleach.clean(value, tags=ALLOWED_TAGS))
+    return markdowner.reset().convert(bleach.clean(value,
+                                                   tags=ALLOWED_TAGS,
+                                                   attributes=ALLOWED_ATTRS))
 
 
 def process_notes(notes):

@@ -95,7 +95,7 @@ Once the engineer is satisfied, the engineer (or someone else with write privile
 
 #. Add ``https://www.mozilla.org/*`` to the list of urls the experiment can run on.
 #. Reset the experiment (eliminating any data gathered during QA).
-#. Activate (or schedule) the experient.
+#. Activate (or schedule) the experiment.
 
 .. Note::
 
