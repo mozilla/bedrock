@@ -164,10 +164,8 @@ redirectpatterns = (
     redirect(r'^firefox/security/?$', 'firefox.features.independent'),
     redirect(r'^firefox/technology/?$', 'https://developer.mozilla.org/docs/Tools'),
 
-    # Bug 979527
-    redirect(r'^(products/)?firefox/central(/|\.html|-lite\.html)?$', is_firefox_redirector(
-        'https://support.mozilla.org/kb/get-started-firefox-overview-main-features',
-        'firefox.new'), cache_timeout=0),
+    # Previously Bug 979527 / Github #10004 "Getting Started" Page
+    redirect(r'^(products/)?firefox/central(/|\.html|-lite\.html)?$', 'firefox'),
 
     # bug 868169
     redirect(r'^mobile/android-download\.html$',
