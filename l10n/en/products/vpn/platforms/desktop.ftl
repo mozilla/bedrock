@@ -28,7 +28,7 @@ vpn-desktop-privacy-copy = The { -brand-name-mozilla-vpn } app encrypts your int
 
 vpn-desktop-servers-headline = Connect to servers all over the world
 
-Variables:
+# Variables:
 #   $servers (number) - number of available servers
 vpn-desktop-servers-copy = Browse from Brazil. Game from Japan. Stream from Mexico. { -brand-name-mozilla-vpn } lets you change your phone or computer’s location to one of { $servers }.
 

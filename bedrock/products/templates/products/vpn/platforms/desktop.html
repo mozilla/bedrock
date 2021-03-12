@@ -2,6 +2,9 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% set vpn_devices = 5 %}
+{%  set vpn_servers = 280 %}
+
 {% from "products/vpn/includes/macros.html" import vpn_nav_platform_cta, vpn_platform_content_well, vpn_platform_content_well_div with context %}
 
 {% extends "products/vpn/base.html" %}
@@ -24,7 +27,7 @@
 {% block site_header %}
   {% with
     custom_nav_cta=vpn_nav_platform_cta(
-      alt_link_text='vpn-shared-cta',
+      alt_link_text='vpn-platforms-shared-cta',
     )
   %}
     {% include 'includes/protocol/navigation/navigation.html' %}
@@ -41,15 +44,15 @@
     <div class="mzp-l-content mzp-t-content-xl">
       <div class="vpn-hero-container">
         <div class="vpn-hero-body">
-          <h1 class="vpn-hero-title">{{ ftl('vpn-shared-title') }}</h1>
+          <h1 class="vpn-hero-title">{{ ftl('vpn-platforms-shared-title') }}</h1>
           <h2 class="vpn-hero-subtitle">{{ ftl('vpn-desktop-hero-headline') }}</h2>
           <div class="vpn-hero-desc">
             <p>{{ ftl('vpn-desktop-page-description') }}</p>
 
-            <a class="vpn-button" href="{{ url('products.vpn.landing') }}" data-link-name="Mozilla VPN">{{ ftl('vpn-shared-cta') }}</a>
+            <a class="vpn-button" href="{{ url('products.vpn.landing') }}">{{ ftl('vpn-platforms-shared-cta') }}</a>
 
             <div class="vpn-hero-guarantee">
-                <em>{{ ftl('vpn-shared-day-guarantee') }}</em>
+                <em>{{ ftl('vpn-platforms-shared-day-guarantee') }}</em>
             </div>
           </div>
         </div>
@@ -65,26 +68,26 @@
   </section>
 
   <div class="mzp-l-content mzp-t-content-xl">
-    {% call vpn_platform_content_well_div(
-      title='',
+    {% call vpn_platform_content_well(
+      title=ftl('vpn-platforms-shared-privacy-headline'),
       image_url='img/products/vpn/platforms/placeholder.png',
       class='vpn-content-well-right-half vpn-content-well-alt-layout'
     ) %}
-      <p>{{ ftl('vpn-desktop-ability', devices=5) }}</p>
+      <p>{{ ftl('vpn-desktop-ability', devices=vpn_devices) }}</p>
       <p>{{ ftl('vpn-desktop-maker-of-firefox') }}</p>
     {% endcall %}
 
     {% call vpn_platform_content_well(
-      title=ftl('vpn-shared-what-youll-get'),
+      title=ftl('vpn-platforms-shared-what-youll-get'),
       image_url='img/products/vpn/platforms/placeholder.png',
       class='vpn-content-well-left-half'
     ) %}
       <ul class="mzp-u-list-styled">
-        <li>{{ ftl('vpn-shared-feature-item-protection', devices=5) }}</li>
-        <li>{{ ftl('vpn-shared-feature-item-access', countries=30) }}</li>
-        <li>{{ ftl('vpn-shared-feature-item-encryption') }}</li>
-        <li>{{ ftl('vpn-shared-feature-item-bandwidth') }}</li>
-        <li>{{ ftl('vpn-shared-feature-item-logs') }}</li>
+        <li>{{ ftl('vpn-platforms-shared-feature-item-protection', devices=vpn_devices) }}</li>
+        <li>{{ ftl('vpn-platforms-shared-feature-item-access', countries=30) }}</li>
+        <li>{{ ftl('vpn-platforms-shared-feature-item-encryption') }}</li>
+        <li>{{ ftl('vpn-platforms-shared-feature-item-bandwidth') }}</li>
+        <li>{{ ftl('vpn-platforms-shared-feature-item-logs') }}</li>
       </ul>
     {% endcall %}
 
@@ -109,11 +112,11 @@
       image_url='img/products/vpn/platforms/placeholder.png',
       class='vpn-content-well-right-half'
     ) %}
-      <p>{{ ftl('vpn-desktop-servers-copy', servers=280) }}</p>
+      <p>{{ ftl('vpn-desktop-servers-copy', servers=vpn_servers) }}</p>
     {% endcall %}
 
     {% call vpn_platform_content_well(
-      title=ftl('vpn-desktop-devices-headline', devices=5),
+      title=ftl('vpn-desktop-devices-headline', devices=vpn_devices),
       image_url='img/products/vpn/platforms/placeholder.png',
       class='vpn-content-well-left-half'
     ) %}
@@ -137,13 +140,13 @@
     {% endcall %}
 
     {% call vpn_platform_content_well(
-      title=ftl('vpn-cta-headline'),
+      title=ftl('vpn-platforms-shared-cta-headline'),
       image_url='img/products/vpn/platforms/placeholder.png',
       class='vpn-content-well-right-half'
     ) %}
-      <a class="vpn-button" href="{{ url('products.vpn.landing') }}" data-link-name="Mozilla VPN">{{ ftl('vpn-shared-cta') }}</a>
+      <a class="vpn-button" href="{{ url('products.vpn.landing') }}" data-link-name="Mozilla VPN">{{ ftl('vpn-platforms-shared-cta') }}</a>
       <div class="vpn-hero-guarantee">
-        <em>{{ ftl('vpn-shared-day-guarantee') }}</em>
+        <em>{{ ftl('vpn-platforms-shared-day-guarantee') }}</em>
       </div>
     {% endcall %}
 
@@ -152,7 +155,7 @@
       image_url='img/products/vpn/platforms/vpn-cntwell-06.png',
       class='vpn-content-well-left-half vpn-content-well-alt-layout'
     ) %}
-      {{ ftl('vpn-shared-trust-partner', policy='https://mullvad.net/help/no-logging-data-policy/', wireguard='https://mullvad.net/help/why-wireguard/' ) }}
+      {{ ftl('vpn-platforms-shared-trust-partner', policy='https://mullvad.net/help/no-logging-data-policy/', wireguard='https://mullvad.net/help/why-wireguard/' ) }}
     {% endcall %}
 
   </div>
