@@ -2,14 +2,21 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from commonware.decorators import xframe_allow
 from django.conf import settings
 from django.shortcuts import render as django_render
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_safe
 from django.views.generic import TemplateView
-from lib import l10n_utils
 
+from commonware.decorators import xframe_allow
+from lib import l10n_utils
+from lib.l10n_utils import L10nTemplateView
+
+from bedrock.base.waffle import switch
 from bedrock.contentcards.models import get_page_content_cards
+from bedrock.contentful.api import ContentfulPage
+from bedrock.contentful.models import ContentfulEntry
 from bedrock.mozorg.credits import CreditsFile
 from bedrock.pocketfeed.models import PocketArticle
 
@@ -119,11 +126,30 @@ def home_view(request):
     }
 
     if locale.startswith('en-'):
-        template_name = 'mozorg/home/home-en.html'
-        ctx['page_content_cards'] = get_page_content_cards('home-en', 'en-US')
+        if switch('contentful-homepage-en'):
+            try:
+                template_name = 'mozorg/contentful-homepage.html'
+                # TODO: use a better system to get the pages than the ID
+                ctx.update(ContentfulEntry.objects.get_page_by_id('58YIvwDmzSDjtvpSqstDcL'))
+            except Exception:
+                # if anything goes wrong, use the old page
+                template_name = 'mozorg/home/home-en.html'
+                ctx['page_content_cards'] = get_page_content_cards('home-en', 'en-US')
+        else:
+            template_name = 'mozorg/home/home-en.html'
+            ctx['page_content_cards'] = get_page_content_cards('home-en', 'en-US')
     elif locale == 'de':
-        template_name = 'mozorg/home/home-de.html'
-        ctx['page_content_cards'] = get_page_content_cards('home-de', 'de')
+        if switch('contentful-homepage-de'):
+            try:
+                template_name = 'mozorg/contentful-homepage.html'
+                ctx.update(ContentfulEntry.objects.get_page_by_id('4k3CxqZGjxXOjR1I0dhyto'))
+            except Exception:
+                # if anything goes wrong, use the old page
+                template_name = 'mozorg/home/home-de.html'
+                ctx['page_content_cards'] = get_page_content_cards('home-de', 'de')
+        else:
+            template_name = 'mozorg/home/home-de.html'
+            ctx['page_content_cards'] = get_page_content_cards('home-de', 'de')
     elif locale == 'fr':
         template_name = 'mozorg/home/home-fr.html'
         ctx['page_content_cards'] = get_page_content_cards('home-fr', 'fr')
@@ -131,3 +157,28 @@ def home_view(request):
         template_name = 'mozorg/home/home.html'
 
     return l10n_utils.render(request, template_name, ctx)
+
+
+@method_decorator(never_cache, name='dispatch')
+class ContentfulPreviewView(L10nTemplateView):
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        content_id = ctx['content_id']
+        page = ContentfulPage(self.request, content_id)
+        ctx.update(page.get_content())
+        return ctx
+
+    def render_to_response(self, context, **response_kwargs):
+        page_type = context['page_type']
+        theme = context['info']['theme']
+        if page_type == "pageHome":
+            template = 'mozorg/contentful-homepage.html'
+        elif theme == "firefox":
+            template = 'firefox/contentful-all.html'
+        else:
+            template = 'mozorg/contentful-all.html'
+
+        return l10n_utils.render(self.request,
+                                 template,
+                                 context,
+                                 **response_kwargs)

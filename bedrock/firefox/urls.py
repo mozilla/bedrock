@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 from django.conf.urls import url
+from django.conf import settings
+from django.urls import path
 
 import bedrock.releasenotes.views
 from bedrock.mozorg.util import page
@@ -191,3 +193,9 @@ urlpatterns = (
     # Issue 9957
     page('firefox/more/misinformation', 'firefox/more/misinformation.html', ftl_files='firefox/more/misinformation'),
 )
+
+# Contentful
+if settings.DEV:
+    urlpatterns += (
+        path('firefox/more/<content_id>/', views.FirefoxContenful.as_view()),
+    )
