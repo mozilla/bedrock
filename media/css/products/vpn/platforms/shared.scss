@@ -306,3 +306,25 @@ $image-path: '/media/protocol/img';
         }
     }
 }
+
+.vpn-content-well-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-lg $spacing-xl ($spacing-2xl * 2);
+
+    .vpn-content-well-title {
+        @include text-title-md;
+        margin-bottom: $spacing-xl;
+        text-align: center;
+    }
+
+    .vpn-content-well-desc {
+        @include text-body-xl;
+        color: $color-marketing-gray-90;
+    }
+
+    @media #{$mq-md} {
+        padding: $spacing-2xl $spacing-2xl ($spacing-2xl * 4);
+    }
+}
