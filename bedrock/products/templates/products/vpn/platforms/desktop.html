@@ -2,12 +2,13 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% set vpn_devices = 5 %}
-{%  set vpn_servers = 280 %}
-
-{% from "products/vpn/includes/macros.html" import vpn_nav_platform_cta, vpn_platform_content_well, vpn_platform_content_well_div with context %}
+{% from "products/vpn/includes/macros.html" import vpn_nav_platform_cta, vpn_platform_content_well with context %}
 
 {% extends "products/vpn/base.html" %}
+
+{% set vpn_countries = 30 %}
+{% set vpn_devices = 5 %}
+{% set vpn_servers = 280 %}
 
 {% block page_title_full %}{{ ftl('vpn-desktop-page-title') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
@@ -84,7 +85,7 @@
     ) %}
       <ul class="mzp-u-list-styled">
         <li>{{ ftl('vpn-platforms-shared-feature-item-protection', devices=vpn_devices) }}</li>
-        <li>{{ ftl('vpn-platforms-shared-feature-item-access', countries=30) }}</li>
+        <li>{{ ftl('vpn-platforms-shared-feature-item-access', countries=vpn_countries) }}</li>
         <li>{{ ftl('vpn-platforms-shared-feature-item-encryption') }}</li>
         <li>{{ ftl('vpn-platforms-shared-feature-item-bandwidth') }}</li>
         <li>{{ ftl('vpn-platforms-shared-feature-item-logs') }}</li>
