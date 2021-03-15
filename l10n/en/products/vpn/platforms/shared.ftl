@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-### URL: https://www-dev.allizom.org/products/vpn/desktop/
+### URL: https://www-dev.allizom.org/products/vpn/
 
 # Shared
 vpn-platforms-shared-title = { -brand-name-mozilla-vpn }
@@ -25,9 +25,13 @@ vpn-platforms-shared-feature-item-bandwidth = No bandwidth restrictions
 vpn-platforms-shared-feature-item-logs = No online activity logs now or ever
 
 vpn-subnav-title-desktop = { -brand-name-mozilla-vpn } for desktop
-vpn-subnav-platform-mac = { -brand-name-mac-short }
-vpn-subnav-platform-windows = { -brand-name-windows } 10
+vpn-subnav-platform-android = { -brand-name-android }
+vpn-subnav-platform-desktop = Desktop
+vpn-subnav-platform-ios = { -brand-name-ios }
 vpn-subnav-platform-linux = { -brand-name-linux }
+vpn-subnav-platform-mac = { -brand-name-mac-short }
+vpn-subnav-platform-mobile = Mobile
+vpn-subnav-platform-windows = { -brand-name-windows } 10
 
 # Variables:
 #   $policy (url) - link to https://mullvad.net/help/no-logging-data-policy/

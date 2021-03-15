@@ -21,7 +21,7 @@ vpn-desktop-wifi-headline = Feel safe using public wifi
 vpn-desktop-wifi-copy = Our VPN shields your internet connection from hackers and spies, so you can shop from the coffee shop, check your bank account from the train and go about your online business anywhere without safety concerns.
 
 vpn-desktop-about-headline = About { -brand-name-mozilla }
-vpn-desktop-about-copy = Best known for our { -brand-name-firefox-browser }, { -brand-name-mozilla } is a global community of users, contributors and developers dedicated to keeping the power of the internet in people's hands. Founded in 1998, we’re one of the pioneers of the free and open web — and it’s our mission to keep it that way.
+vpn-desktop-about-copy = Best known for our { -brand-name-firefox-browser }, { -brand-name-mozilla } is a global community of users, contributors and developers dedicated to keeping the power of the internet in people’s hands. Founded in 1998, we’re one of the pioneers of the free and open web — and it’s our mission to keep it that way.
 
 vpn-desktop-privacy-headline = Privacy in one click
 vpn-desktop-privacy-copy = The { -brand-name-mozilla-vpn } app encrypts your internet connection and hides the IP address on your mobile phone or tablet using { -brand-name-wireguard }® advanced protocol.
