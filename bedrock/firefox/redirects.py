@@ -1,5 +1,4 @@
-from bedrock.redirects.util import (redirect, is_firefox_redirector,
-                                    platform_redirector, no_redirect)
+from bedrock.redirects.util import (redirect, platform_redirector, no_redirect)
 
 
 def firefox_mobile_faq(request, *args, **kwargs):
