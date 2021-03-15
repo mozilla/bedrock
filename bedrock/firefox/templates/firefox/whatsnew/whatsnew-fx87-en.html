@@ -1,0 +1,103 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}What’s new with Firefox{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}What’s new with Firefox{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_87') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main class="content-wrapper mzp-t-firefox">
+  {% include 'firefox/whatsnew/includes/header.html' %}
+
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-md">
+      <div class="wnp-main-image">
+        <div class="video-container">
+          <div class="video-content">
+            <a id="player1" class="video-play js-video-play" href="https://youtu.be/qoi9rmW4zNo" data-id="qoi9rmW4zNo" data-video-title="Firefox presents: The Cinderella Button" title="Play the video">
+              <img src="{{ static('img/firefox/whatsnew/whatsnew87/dog-poster.jpg') }}" alt="">
+            </a>
+          </div>
+        </div>
+      </div>
+      <h1 class="wnp-main-title">Watch more games at once with Multi Picture-in-Picture</h1>
+      <p class="wnp-main-tagline">Pop out one or more games from their webpages or players to pin them to your screen.</p>
+
+      <div class="wnp-main-cta">
+        <a id="try-button" class="mzp-c-button mzp-t-product" href="https://youtu.be/qoi9rmW4zNo" data-id="qoi9rmW4zNo" data-video-title="Firefox presents: The Cinderella Button">Try it out</a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="wnp-content-extra">
+    <div class="mzp-l-content mzp-t-content-xl">
+      <h2 class="wnp-section-heading">Useful ways to use Picture-in-Picture</h2>
+
+      <div class="l-columns-two">
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
+            <div class="video-container">
+              <div class="video-content">
+                <a id="player2" class="video-play js-video-play" href="https://youtu.be/7NzHRiOZ3EQ" data-id="7NzHRiOZ3EQ" data-video-title="Data Detox - Smartphones" title="Play the video">
+                  <img src="{{ static('img/firefox/whatsnew/whatsnew87/detox-poster.jpg') }}" alt="">
+                </a>
+              </div>
+            </div>
+          </div>
+          <h3 class="c-picto-block-title">Tutorials</h3>
+          <div class="c-picto-block-body">
+            <p>Keep the how-to videos front and center while digging into your settings.</p>
+          </div>
+        </div>
+
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
+            <div class="video-container">
+              <div class="video-content">
+                <a id="player3" class="video-play js-video-play" href="https://youtu.be/F-nFQryDB0s" data-id="F-nFQryDB0s" data-video-title="Red Panda Cubs - Firefox + Woodland Park Zoo" title="Play the video">
+                  <img src="{{ static('img/firefox/whatsnew/whatsnew87/panda-poster.jpg') }}" alt="">
+                </a>
+              </div>
+            </div>
+          </div>
+          <h3 class="c-picto-block-title">Serenity now</h3>
+          <div class="c-picto-block-body">
+            <p>Pop out videos of some cuddly animals to bring some peace to your day. No one needs to know.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <aside class="mzp-l-content c-utilities">
+    {% set releasenotes_url = url('firefox.releases.index') if not version else '/firefox/%s/releasenotes/'|format(version) %}
+    <p>{{ ftl('whatsnew-release-notes', url=releasenotes_url) }}</p>
+  </aside>
+
+</main>
+{% endblock %}
+
+{% block site_footer %}
+  {% with theme_class='mzp-t-ink' %}
+    {% include 'includes/protocol/footer/footer.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_87') }}
+{% endblock %}

@@ -1,0 +1,194 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/notification-bar';
+@import 'includes/header';
+
+
+// Dark color scheme, no respect for user mode this time
+.content-wrapper {
+    background: $color-ink-80;
+    color: $color-white;
+
+    h1, h2, h3 {
+        color: $color-white;
+    }
+}
+
+.c-page-header-logo-fx {
+    background-image: url('/media/protocol/img/logos/firefox/browser/logo-word-hor-white-sm.png');
+}
+
+.wnp-main-title {
+    color: get-theme('title-text-color-inverse');
+}
+
+.c-picto-block {
+    .c-picto-block-title {
+        color: get-theme('title-text-color-inverse');
+    }
+
+    .c-picto-block-image .dark {
+        fill: get-theme('body-text-color-inverse');
+    }
+}
+
+.wnp-content-extra a,
+.c-utilities a {
+    &:link,
+    &:visited {
+        color: $color-blue-10;
+    }
+
+    &:active,
+    &:focus,
+    &:hover {
+        color: $color-white;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Main content
+.wnp-content-main {
+    padding: 0;
+    text-align: center;
+
+    @media #{$mq-tall} {
+        padding-top: $layout-md;
+        margin-bottom: $layout-lg;
+    }
+}
+
+.wnp-main-image {
+    margin: 0 auto $layout-sm;
+
+    svg {
+        max-width: 200px;
+        height: auto;
+    }
+}
+
+.wnp-main-title {
+    @include text-title-md;
+    color: get-theme('title-text-color');
+
+    strong {
+        color: $color-violet-50;
+    }
+}
+
+.wnp-main-tagline {
+    @include text-title-2xs;
+    color: $color-orange-40;
+    font-weight: bold;
+}
+
+.wnp-section-heading {
+    @include text-title-xs;
+    text-align: center;
+    margin: 0 auto $layout-lg;
+}
+
+// Video
+.video-content {
+    @include aspect-ratio(16, 9);
+
+    iframe {
+        height: 100%;
+        width: 100%;
+    }
+
+    .video-play {
+        display: block;
+
+        &:after {
+            background: url('/media/img/icons/video-play.svg') top left no-repeat;
+            content: '';
+            height: 100px;
+            left: 50%;
+            margin: -50px 0 0 -50px;
+            opacity: 0.7;
+            position: absolute;
+            top: 50%;
+            transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+            width: 100px;
+            z-index: 2;
+        }
+
+        &:hover:after,
+        &:focus:after {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+    }
+}
+
+
+
+//* -------------------------------------------------------------------------- */
+// Extra content
+// To be replaced by revamped picto card. See https://github.com/mozilla/protocol/issues/382
+
+.c-picto-block {
+    @include border-box;
+    margin: 0 auto $spacing-2xl;
+    max-width: $content-md - ($layout-md * 2);
+    padding: 0 $layout-md;
+
+    .c-picto-block-title {
+        @include text-title-xs;
+        color: get-theme('title-text-color-inverse');
+    }
+
+    .c-picto-block-image {
+        margin: 0 auto $spacing-lg;
+        max-width: 100%;
+        min-height: $layout-md;
+    }
+}
+
+@media #{$mq-md} {
+    .l-columns-two,
+    .l-columns-three {
+        display: flex;
+        margin: 0 auto;
+        max-width: $content-lg;
+        padding: 0 $layout-md;
+        flex-wrap: wrap;
+
+        .c-picto-block {
+            flex: 1 1 50%;
+            padding: 0 $layout-lg;
+        }
+    }
+}
+
+@media #{$mq-lg} {
+    .l-columns-three {
+        display: flex;
+        margin: 0 auto;
+        max-width: none;
+
+        .c-picto-block {
+            flex: 1 1 33.3%;
+            padding: 0 $layout-xs;
+        }
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Utilities (link to release notes)
+.c-utilities {
+    @include text-body-sm;
+    max-width: $content-md;
+    padding-bottom: $layout-xl;
+    text-align: center;
+}
+

@@ -514,6 +514,14 @@ class TestWhatsNew(TestCase):
 
     # begin 87.0 whatsnew tests
 
+    def test_fx_87_0_0_en(self, render_mock):
+        """Should use PiP template for 87.0 in US English"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'en-US'
+        self.view(req, version='87.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx87-en.html']
+
     def test_fx_87_0_0_de(self, render_mock):
         """Should use VPN waitlist signup template for 87.0 in German"""
         req = self.rf.get('/firefox/whatsnew/')
@@ -529,6 +537,14 @@ class TestWhatsNew(TestCase):
         self.view(req, version='87.0')
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/whatsnew-fx87-fr.html']
+
+    def test_fx_87_0_0_locale(self, render_mock):
+        """Should use standard whatsnew template for 87.0 in other locales"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'es-ES'
+        self.view(req, version='87.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/index-account.html']
 
     # end 87.0 whatsnew tests
 
