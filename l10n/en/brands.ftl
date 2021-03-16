@@ -137,6 +137,7 @@
 -brand-name-android = Android
 -brand-name-ios = iOS
 -brand-name-linux = Linux
+-brand-name-ubuntu = Ubuntu
 -brand-name-mac = macOS
 -brand-name-mac-short = Mac
 -brand-name-windows = Windows

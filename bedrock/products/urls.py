@@ -20,6 +20,8 @@ if settings.DEV:
         # Pages that do not use allowed_countries or default_monthly_price contexts
         page('vpn/desktop', 'products/vpn/platforms/desktop.html',
              ftl_files=['products/vpn/platforms/shared', 'products/vpn/platforms/desktop']),
+        page('vpn/desktop/linux', 'products/vpn/platforms/linux.html',
+             ftl_files=['products/vpn/platforms/shared', 'products/vpn/platforms/linux']),
     )
 else:
     urlpatterns += (
