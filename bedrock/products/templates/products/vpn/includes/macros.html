@@ -53,7 +53,34 @@
   </div>
 {% endmacro %}
 
+{% macro vpn_nav_platform_cta(alt_link_text) -%}
+  <div class="vpn-nav-cta">
+    <a class="mzp-c-button mzp-t-secondary mzp-t-md" href="{{ url('products.vpn.landing') }}">
+      {{ ftl(alt_link_text) }}
+    </a>
+  </div>
+{% endmacro %}
+
 {% macro vpn_content_well(title, image_url, class=None) -%}
+  <section class="vpn-content-well {% if class %}{{ class }}{% endif %}">
+    <div class="vpn-content-well-image-wrapper">
+      <div class="vpn-content-well-image">
+        {{ high_res_img(image_url, {'alt': image_alt, 'width': '480', 'height': '480'}) }}
+      </div>
+    </div>
+
+    <div class="vpn-content-well-copy">
+      <div class="vpn-content-well-copy-container">
+        <h2 class="vpn-content-well-title">{{ title }}</h2>
+        <div class="vpn-content-well-desc">
+          {{ caller() }}
+        </div>
+      </div>
+    </div>
+  </section>
+{%- endmacro %}
+
+{% macro vpn_platform_content_well(title, image_url, class=None) -%}
   <section class="vpn-content-well {% if class %}{{ class }}{% endif %}">
     <div class="vpn-content-well-image-wrapper">
       <div class="vpn-content-well-image">
