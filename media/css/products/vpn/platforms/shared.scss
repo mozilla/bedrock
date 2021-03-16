@@ -179,9 +179,12 @@ $image-path: '/media/protocol/img';
         color: $color-marketing-gray-90;
     }
 
-    .vpn-content-well-copy,
+    .vpn-content-well-copy {
+        padding: 0 $spacing-xl $spacing-lg;
+    }
+
     .vpn-content-well-image-wrapper {
-        padding: $spacing-lg $spacing-xl;
+        padding: $spacing-lg $spacing-xl 0;
     }
 
     &.vpn-content-well-alt-layout {
