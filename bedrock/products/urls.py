@@ -7,7 +7,6 @@ from django.urls import path
 
 from bedrock.mozorg.util import page
 from bedrock.products import views
-from bedrock.redirects.util import redirect
 
 urlpatterns = (
     path('vpn/', views.vpn_landing_page, name='products.vpn.landing'),
@@ -30,8 +29,4 @@ if settings.DEV:
              ftl_files=['products/vpn/platforms/shared', 'products/vpn/platforms/mobile']),
         page('vpn/mobile/ios', 'products/vpn/platforms/ios.html',
              ftl_files=['products/vpn/platforms/shared', 'products/vpn/platforms/ios']),
-    )
-else:
-    urlpatterns += (
-        redirect(r'^vpn/desktop(/.*)?', 'products.vpn.landing', permanent=False),
     )
