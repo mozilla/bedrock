@@ -28,6 +28,8 @@ if settings.DEV:
              ftl_files=['products/vpn/platforms/shared', 'products/vpn/platforms/windows']),
         page('vpn/mobile', 'products/vpn/platforms/mobile.html',
              ftl_files=['products/vpn/platforms/shared', 'products/vpn/platforms/mobile']),
+        page('vpn/mobile/ios', 'products/vpn/platforms/ios.html',
+             ftl_files=['products/vpn/platforms/shared', 'products/vpn/platforms/ios']),
     )
 else:
     urlpatterns += (
