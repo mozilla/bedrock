@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{# Subnav menu for /products/vpn/desktop/ and desktop subpages #}
+{# Subnav menu for /products/vpn/mobile/ and mobile subpages #}
 
 <nav class="c-sub-navigation">
   <div class="mzp-l-content">
@@ -11,8 +11,7 @@
       <ul class="c-sub-navigation-list">
         <li class="c-sub-navigation-item"><a href="{{ url('products.vpn.platforms.desktop') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Mac">{{ ftl('vpn-subnav-platform-desktop') }}</a></li>
         <li class="c-sub-navigation-item"><a href="{{ url('products.vpn.platforms.mobile') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Mac">{{ ftl('vpn-subnav-platform-mobile') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="#" data-link-type="nav" data-link-position="subnav" data-link-name="Mac">{{ ftl('vpn-subnav-platform-ios') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="#" data-link-type="nav" data-link-position="subnav" data-link-name="Windows 10">{{ ftl('vpn-subnav-platform-android') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('products.vpn.platforms.ios') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Mac">{{ ftl('vpn-subnav-platform-ios') }}</a></li>
       </ul>
     </div>
   </div>
