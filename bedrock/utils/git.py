@@ -7,6 +7,7 @@ from hashlib import sha256
 from shutil import rmtree
 from subprocess import check_output, CalledProcessError, STDOUT
 from io import StringIO
+from time import time
 
 from django.conf import settings
 from django.utils.encoding import force_str
@@ -104,6 +105,18 @@ class GitRepo:
         self.path.mkdir(parents=True, exist_ok=True)
         self.git('clone', '--depth', '1', '--branch',
                  self.branch_name, self.remote_url, '.')
+
+    def reclone(self):
+        """Safely get a fresh clone of the repo"""
+        if self.path.exists():
+            new_path = self.path.with_suffix(f'.{int(time())}')
+            new_repo = GitRepo(new_path, self.remote_url, self.branch_name)
+            new_repo.clone()
+            # only remove the old after the new clone succeeds
+            rmtree(self.path_str, ignore_errors=True)
+            new_path.rename(self.path)
+        else:
+            self.clone()
 
     def pull(self):
         """Update the repo to the latest of the remote and branch

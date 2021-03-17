@@ -2,7 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 from io import StringIO
-from shutil import rmtree
 
 from django.core.management.base import BaseCommand
 from django.conf import settings
@@ -29,17 +28,18 @@ class Command(BaseCommand):
     def update_lang_files(self, clean=False):
         repo = GitRepo(settings.LOCALES_PATH, settings.LOCALES_REPO)
         if clean:
-            rmtree(repo.path_str, ignore_errors=True)
-            self.stdout.write('Removed old .lang repo')
+            repo.reclone()
+        else:
+            repo.update()
 
-        repo.update()
         self.stdout.write('Updated .lang files')
 
     def update_fluent_files(self, clean=False):
         repo = GitRepo(settings.FLUENT_REPO_PATH, settings.FLUENT_REPO_URL)
         if clean:
-            rmtree(repo.path_str, ignore_errors=True)
-            self.stdout.write('Removed old .ftl repo')
+            repo.reclone()
+        else:
+            repo.update()
 
         repo.update()
         self.stdout.write('Updated .ftl files')
