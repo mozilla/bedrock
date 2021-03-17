@@ -9,9 +9,9 @@ from selenium.webdriver.support import expected_conditions as expected
 from selenium.webdriver.support.select import Select
 
 
-class VPNInvitePage(BasePage):
+class FirefoxWhatsNew87Page(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/products/vpn/invite/'
+    _URL_TEMPLATE = '/{locale}/firefox/87.0/whatsnew/all/'
 
     _email_locator = (By.ID, 'id_email')
     _country_locator = (By.ID, 'id_country')

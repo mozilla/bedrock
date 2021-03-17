@@ -512,6 +512,26 @@ class TestWhatsNew(TestCase):
 
     # end 86.0 whatsnew tests
 
+    # begin 87.0 whatsnew tests
+
+    def test_fx_87_0_0_de(self, render_mock):
+        """Should use VPN waitlist signup template for 87.0 in German"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'de'
+        self.view(req, version='87.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx87-de.html']
+
+    def test_fx_87_0_0_fr(self, render_mock):
+        """Should use VPN waitlist signup template for 87.0 in French"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'fr'
+        self.view(req, version='87.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx87-fr.html']
+
+    # end 87.0 whatsnew tests
+
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
 class TestWhatsNewFirefoxLite(TestCase):

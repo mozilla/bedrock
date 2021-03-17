@@ -32,7 +32,6 @@
 
     {{ newsletter_form.newsletters|safe }}
     <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
-    <input type="hidden" name="lang" id="id_lang" value="en">
     <input type="hidden" name="privacy" id="id_privacy" value="true">
     <input type="hidden" name="fmt" id="format-html" value="H">
 
@@ -53,6 +52,12 @@
           <em class="mzp-c-fieldnote">Required</em>
         </label>
         {{ newsletter_form.country|safe }}
+
+        <label for="id_lang">
+          Select your preferred language.
+          <em class="mzp-c-fieldnote">Required</em>
+        </label>
+        {{ newsletter_form.lang|safe }}
 
         <fieldset>
           <legend>Which platforms are you interested in?</legend>
