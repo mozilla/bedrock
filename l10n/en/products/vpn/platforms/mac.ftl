@@ -28,12 +28,12 @@ vpn-mac-servers-headline = Access servers around the world
 # Variables:
 #   $countries (number) - number of available countries
 #   $servers (number) - number of available servers
-vpn-mac-servers-copy = Set your { -brand-name-mac-short }’s location to your choice of more than { $servers }+ servers in { $countries } countries. This lets you check the news, shop, stream and surf the web from just about anywhere.
+vpn-mac-servers-copy = Set your { -brand-name-mac-short }’s location to your choice of more than { $servers }+ servers in { $countries }+ countries. This lets you check the news, shop, stream and surf the web from just about anywhere.
 
 # Variables:
 #   $devices (number) - number of available devices
 vpn-mac-devices-headline = Protect { $devices } devices with one subscription
-vpn-mac-devices-copy = Your computer, table and smartphone all deserve to be secure. Use { -brand-name-mozilla-vpn } to protect up to { $devices } { -brand-name-mac-short } and { -brand-name-ios } devices (in addition to { -brand-name-windows }, { -brand-name-linux } and { -brand-name-android }).
+vpn-mac-devices-copy = Your computer, tablet and smartphone all deserve to be secure. Use { -brand-name-mozilla-vpn } to protect up to { $devices } { -brand-name-mac-short } and { -brand-name-ios } devices (in addition to { -brand-name-windows }, { -brand-name-linux } and { -brand-name-android }).
 
 vpn-mac-speed-headline = No need to sacrifice speed
 vpn-mac-speed-copy = Unlimited data and no bandwidth restrictions mean you can explore the corners of the internet like you normally do — with an extra level of security.

@@ -8,7 +8,6 @@
 
 {% set vpn_countries = 30 %}
 {% set vpn_devices = 5 %}
-{% set vpn_devices_minus_1 = 4 %}
 {% set vpn_servers = 280 %}
 
 {% block page_title_full %}{{ ftl('vpn-mac-page-title') }}{% endblock %}
@@ -75,7 +74,7 @@
       image_url='img/products/vpn/platforms/vpn-cntwell-privacy-promise.png',
       class='vpn-content-well-right-half vpn-content-well-alt-layout'
     ) %}
-      <p>{{ ftl('vpn-mac-ability', devices=vpn_devices_minus_1) }}</p>
+      <p>{{ ftl('vpn-mac-ability') }}</p>
     {% endcall %}
 
     {% call vpn_platform_content_well(
@@ -154,7 +153,7 @@
     </section>
 
     {% call vpn_platform_content_well(
-      title='About our trusted partner',
+      title=ftl('vpn-platforms-shared-trust-partner-headline'),
       image_url='img/products/vpn/platforms/vpn-cntwell-mullvad-partner.png',
       class='vpn-content-well-left-half vpn-content-well-alt-layout'
     ) %}

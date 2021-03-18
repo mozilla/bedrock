@@ -18,15 +18,15 @@ if settings.DEV:
     urlpatterns += (
         # Pages that do not use allowed_countries or default_monthly_price contexts
         page('vpn/desktop', 'products/vpn/platforms/desktop.html',
-             ftl_files=['products/vpn/platforms/shared', 'products/vpn/platforms/desktop']),
+             ftl_files=['products/vpn/platforms/desktop', 'products/vpn/platforms/shared']),
         page('vpn/desktop/linux', 'products/vpn/platforms/linux.html',
-             ftl_files=['products/vpn/platforms/shared', 'products/vpn/platforms/linux']),
+             ftl_files=['products/vpn/platforms/linux', 'products/vpn/platforms/shared']),
         page('vpn/desktop/mac', 'products/vpn/platforms/mac.html',
-             ftl_files=['products/vpn/platforms/shared', 'products/vpn/platforms/mac']),
+             ftl_files=['products/vpn/platforms/mac', 'products/vpn/platforms/shared']),
         page('vpn/desktop/windows', 'products/vpn/platforms/windows.html',
-             ftl_files=['products/vpn/platforms/shared', 'products/vpn/platforms/windows']),
+             ftl_files=['products/vpn/platforms/windows', 'products/vpn/platforms/shared']),
         page('vpn/mobile', 'products/vpn/platforms/mobile.html',
-             ftl_files=['products/vpn/platforms/shared', 'products/vpn/platforms/mobile']),
+             ftl_files=['products/vpn/platforms/mobile', 'products/vpn/platforms/shared']),
         page('vpn/mobile/ios', 'products/vpn/platforms/ios.html',
-             ftl_files=['products/vpn/platforms/shared', 'products/vpn/platforms/ios']),
+             ftl_files=['products/vpn/platforms/ios', 'products/vpn/platforms/shared']),
     )

@@ -12,9 +12,7 @@ vpn-linux-page-description = As a fan of { -brand-name-ubuntu } { -brand-name-li
 # Linux strings
 vpn-linux-hero-headline = { -brand-name-mozilla-vpn } for { -brand-name-ubuntu } { -brand-name-linux } — a perfectly private pairing
 
-# Variables:
-#   $devices (number) - number of available devices
-vpn-linux-ability = Take an extra measure of security when you’re online — both at home and out and about — with { -brand-name-mozilla-vpn }. For a small monthly fee, it uses advanced { -brand-name-wireguard }® protocol to encrypt your internet connection on your { -brand-name-linux }-based computer and { $devices } other devices, letting you stream shows, play games, shop, and go about your daily life online knowing that you’re secure.
+vpn-linux-ability = Take an extra measure of security when you’re online — both at home and out and about — with { -brand-name-mozilla-vpn }. For a small monthly fee, it uses advanced { -brand-name-wireguard }® protocol to encrypt your internet connection on your { -brand-name-linux }-based computer as well as other types of devices, letting you stream shows, play games, shop, and go about your daily life online knowing that you’re secure.
 
 vpn-linux-maker-of-firefox = As one of the most trusted names in the technology industry, { -brand-name-mozilla } is committed to ensuring you feel safe and secure every time you go online.
 
@@ -39,7 +37,7 @@ vpn-linux-servers-copy = { -brand-name-mozilla-vpn } gives you the ability to se
 # Variables:
 #   $devices (number) - number of available devices
 vpn-linux-devices-headline = Connect up to { $devices } devices
-vpn-linux-devices-copy = With one subscription, you can get { -brand-name-mozilla-vpn } on up to { $devices } different devices across operating systems, including { -brand-name-linux }, { -brand-name-windows }, { -brand-name-android }, Mac, and { -brand-name-ios } for { -brand-name-iphone } and { -brand-name-ipad }.
+vpn-linux-devices-copy = With one subscription, you can get { -brand-name-mozilla-vpn } on up to { $devices } different devices across operating systems, including { -brand-name-linux }, { -brand-name-windows }, { -brand-name-android }, { -brand-name-mac-short }, and { -brand-name-ios } for { -brand-name-iphone } and { -brand-name-ipad }.
 
 vpn-linux-speed-headline = Ultra-fast with unlimited data
 vpn-linux-speed-copy = Play games, stream movies and shows, and surf the web at ultra-fast speeds and no bandwidth throttling — { -brand-name-mozilla-vpn } is unlimited.

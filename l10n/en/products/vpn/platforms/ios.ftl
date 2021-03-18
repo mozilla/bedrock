@@ -12,9 +12,7 @@ vpn-ios-page-description = Get fast, easy security on your { -brand-name-iphone 
 # Mobile strings
 vpn-ios-hero-headline = Protect yourself online with { -brand-name-mozilla-vpn } for { -brand-name-ios }
 
-# Variables:
-#   $devices (number) - number of available devices
-vpn-ios-ability = Feel safe from hackers and prying eyes when you’re online — both at home and out and about — with { -brand-name-mozilla-vpn }. For a low monthly fee, it uses advanced { -brand-name-wireguard }® protocol to encrypt personal data on your { -brand-name-iphone }, { -brand-name-ipad } and three more devices, letting you stream shows, play games, shop, and go about your daily life online knowing that you’re secure.
+vpn-ios-ability = Feel safe from hackers and prying eyes when you’re online — both at home and out and about — with { -brand-name-mozilla-vpn }. For a low monthly fee, it uses advanced { -brand-name-wireguard }® protocol to encrypt personal data on your { -brand-name-iphone }, { -brand-name-ipad } and most other devices, letting you stream shows, play games, shop, and go about your daily life online knowing that you’re secure.
 
 vpn-ios-maker-of-firefox = As the maker of the { -brand-name-firefox } web browser and one of the most trusted fighters for internet privacy, { -brand-name-mozilla } is committed to ensuring you feel safe and respected every time you go online.
 
