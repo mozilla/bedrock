@@ -10,14 +10,14 @@
 {% set vpn_devices = 5 %}
 {% set vpn_servers = 280 %}
 
-{% block page_title_full %}{{ ftl('vpn-desktop-page-title') }}{% endblock %}
+{% block page_title_full %}{{ ftl('vpn-mobile-page-title') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
-{% block page_desc %}{{ ftl('vpn-desktop-page-description') }}{% endblock %}
+{% block page_desc %}{{ ftl('vpn-mobile-page-description') }}{% endblock %}
 
-{% block body_id %}mozilla-vpn-platforms-desktop{% endblock %}
+{% block body_id %}mozilla-vpn-platforms-mobile{% endblock %}
 
-{% set _utm_source = 'www.mozilla.org-vpn-desktop-page' %}
+{% set _utm_source = 'www.mozilla.org-vpn-mobile-page' %}
 {% set _utm_campaign = 'vpn-product-page' %}
 {% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
 
@@ -36,7 +36,7 @@
 {% endblock %}
 
 {% block sub_navigation %}
-  {% include 'products/vpn/platforms/includes/subnav-desktop.html' %}
+  {% include 'products/vpn/platforms/includes/subnav-mobile.html' %}
 {% endblock %}
 
 {% block content %}
@@ -46,9 +46,9 @@
       <div class="vpn-hero-container">
         <div class="vpn-hero-body">
           <h1 class="vpn-hero-title">{{ ftl('vpn-platforms-shared-title') }}</h1>
-          <h2 class="vpn-hero-subtitle">{{ ftl('vpn-desktop-hero-headline') }}</h2>
+          <h2 class="vpn-hero-subtitle">{{ ftl('vpn-mobile-hero-headline') }}</h2>
           <div class="vpn-hero-desc">
-            <p>{{ ftl('vpn-desktop-page-description') }}</p>
+            <p>{{ ftl('vpn-mobile-page-description') }}</p>
 
             <a class="vpn-button" href="{{ url('products.vpn.landing') }}">{{ ftl('vpn-platforms-shared-cta') }}</a>
 
@@ -59,9 +59,9 @@
         </div>
         <div class="vpn-hero-image hide-from-legacy-ie" data-illustration="n-1">
           <picture>
-            <source srcset="{{ static('img/products/vpn/platforms/vpn-hero-desktop-high-res.png') }} 480w, {{ static('img/products/vpn/platforms/vpn-hero-desktop-high-res.png') }} 960w" media="(min-width: 1024px)">
-            <source srcset="{{ static('img/products/vpn/platforms/vpn-hero-desktop.png') }}" media="(max-width: 1023px)">
-            <img src="{{ static('img/products/vpn/platforms/vpn-hero-desktop.png') }}" class="n-1" alt="" width="480" height="480">
+            <source srcset="{{ static('img/products/vpn/platforms/vpn-hero-mobile-high-res.png') }} 480w, {{ static('img/products/vpn/platforms/vpn-hero-mobile-high-res.png') }} 960w" media="(min-width: 1024px)">
+            <source srcset="{{ static('img/products/vpn/platforms/vpn-hero-mobile.png') }}" media="(max-width: 1023px)">
+            <img src="{{ static('img/products/vpn/platforms/vpn-hero-mobile.png') }}" class="n-1" alt="" width="480" height="480">
           </picture>
         </div>
       </div>
@@ -74,8 +74,8 @@
       image_url='img/products/vpn/platforms/vpn-cntwell-privacy-promise.png',
       class='vpn-content-well-right-half vpn-content-well-alt-layout'
     ) %}
-      <p>{{ ftl('vpn-desktop-ability', devices=vpn_devices) }}</p>
-      <p>{{ ftl('vpn-desktop-maker-of-firefox') }}</p>
+      <p>{{ ftl('vpn-mobile-maker-of-firefox') }}</p>
+      <p>{{ ftl('vpn-mobile-ability', devices=vpn_devices) }}</p>
     {% endcall %}
 
     {% call vpn_platform_content_well(
@@ -93,51 +93,51 @@
     {% endcall %}
 
     {% call vpn_platform_content_well(
-      title=ftl('vpn-desktop-wifi-headline'),
-      image_url='img/products/vpn/platforms/vpn-cntwell-public-wifi-desktop.png',
+      title=ftl('vpn-mobile-wifi-headline'),
+      image_url='img/products/vpn/platforms/vpn-cntwell-public-wifi-mobile.png',
       class='vpn-content-well-right-half'
     ) %}
-      <p>{{ ftl('vpn-desktop-wifi-copy') }}</p>
+      <p>{{ ftl('vpn-mobile-wifi-copy') }}</p>
     {% endcall %}
 
     {% call vpn_platform_content_well(
-      title=ftl('vpn-desktop-privacy-headline'),
+      title=ftl('vpn-mobile-privacy-headline'),
       image_url='img/products/vpn/platforms/vpn-cntwell-one-click.png',
       class='vpn-content-well-left-half'
     ) %}
-      <p>{{ ftl('vpn-desktop-privacy-copy') }}</p>
+      <p>{{ ftl('vpn-mobile-privacy-copy') }}</p>
     {% endcall %}
 
     {% call vpn_platform_content_well(
-      title=ftl('vpn-desktop-servers-headline'),
+      title=ftl('vpn-mobile-servers-headline'),
       image_url='img/products/vpn/platforms/vpn-cntwell-globe.png',
       class='vpn-content-well-right-half'
     ) %}
-      <p>{{ ftl('vpn-desktop-servers-copy', servers=vpn_servers) }}</p>
+      <p>{{ ftl('vpn-mobile-servers-copy', servers=vpn_servers, countries=vpn_countries) }}</p>
     {% endcall %}
 
     {% call vpn_platform_content_well(
-      title=ftl('vpn-desktop-devices-headline', devices=vpn_devices),
+      title=ftl('vpn-mobile-devices-headline', devices=vpn_devices),
       image_url='img/products/vpn/platforms/vpn-cntwell-devices.png',
       class='vpn-content-well-left-half'
     ) %}
-      <p>{{ ftl('vpn-desktop-devices-copy') }}</p>
+      <p>{{ ftl('vpn-mobile-devices-copy') }}</p>
     {% endcall %}
 
     {% call vpn_platform_content_well(
-      title=ftl('vpn-desktop-speed-headline'),
+      title=ftl('vpn-mobile-speed-headline'),
       image_url='img/products/vpn/platforms/vpn-cntwell-speed-guage.png',
       class='vpn-content-well-right-half'
     ) %}
-      <p>{{ ftl('vpn-desktop-speed-copy') }}</p>
+      <p>{{ ftl('vpn-mobile-speed-copy') }}</p>
     {% endcall %}
 
     {% call vpn_platform_content_well(
-      title=ftl('vpn-desktop-log-headline'),
+      title=ftl('vpn-mobile-log-headline'),
       image_url='img/products/vpn/platforms/vpn-cntwell-privacy.png',
       class='vpn-content-well-left-half'
     ) %}
-      <p>{{ ftl('vpn-desktop-log-copy') }}</p>
+      <p>{{ ftl('vpn-mobile-log-copy') }}</p>
     {% endcall %}
 
     <!-- Custom content well for the CTA -->

@@ -17,13 +17,22 @@ vpn-platforms-shared-privacy-headline = Your privacy is our promise
 vpn-platforms-shared-feature-item-protection = Protection for up to { $devices } devices
 
 # Variables:
+#   $devices (number) - number of available devices
+vpn-platforms-shared-feature-item-connect = Connect up to { $devices } devices
+
+# Variables:
 #   $countries (number) - number of available countries
 vpn-platforms-shared-feature-item-access = Access to servers in { $countries }+ countries
+
+# Variables:
+#   $countries (number) - number of available countries
+vpn-platforms-shared-feature-item-strong-servers = Strong servers in { $countries }+ countries
 
 vpn-platforms-shared-feature-item-encryption = Device-level encryption
 vpn-platforms-shared-feature-item-bandwidth = No bandwidth restrictions
 vpn-platforms-shared-feature-item-logs = No online activity logs now or ever
 
+# Subnav strings
 vpn-subnav-title = { -brand-name-mozilla-vpn }
 vpn-subnav-platform-android = { -brand-name-android }
 vpn-subnav-platform-desktop = Desktop
@@ -33,6 +42,7 @@ vpn-subnav-platform-mac = { -brand-name-mac-short }
 vpn-subnav-platform-mobile = Mobile
 vpn-subnav-platform-windows = { -brand-name-windows }
 
+vpn-platforms-shared-trust-partner-headline = About our trusted partner
 # Variables:
 #   $policy (url) - link to https://mullvad.net/help/no-logging-data-policy/
 #   $wireguard (url) - link to https://mullvad.net/help/why-wireguard/
