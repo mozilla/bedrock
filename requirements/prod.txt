@@ -3,7 +3,7 @@
 
 
 gevent==20.6.2 \
-    --hash=sha256:6c864b5604166ac8351e3128a1135b883b9e978fd24afbd75a249dcb42bc8ab5
+    --hash=sha256:6c864b5604166ac8351e3128a1135b883b9e978fd24afbd75a249dcb42bc8ab5 
 greenlet==0.4.16 \
     --hash=sha256:682328aa576ec393c1872615bcb877cf32d800d4a2f150e1a5dc7e56644010b1
 gevent-websocket==0.10.1 \
@@ -28,3 +28,9 @@ newrelic==4.4.1.104 \
     --hash=sha256:eb60752a2c2a9904ea1eaf6b25dfbe8181e02fca9c11f895c13469057971b343
 maxminddb==1.5.4 \
     --hash=sha256:f4d28823d9ca23323d113dc7af8db2087aa4f657fafc64ff8f7a8afda871425b
+
+zope.event==4.5.0 \
+    --hash=sha256:2666401939cdaa5f4e0c08cf7f20c9b21423b95e88f4675b1443973bdb080c42 \
+    # via gevent
+zope.interface==5.2.0 \
+    --hash=sha256:55465121e72e208a7b69b53de791402affe6165083b2ea71b892728bd19ba9ae
