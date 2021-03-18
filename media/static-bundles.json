@@ -816,7 +816,7 @@
     },
     {
       "files": [
-        "css/products/vpn/common.scss",
+        "css/products/vpn/platforms/common.scss",
         "css/products/vpn/platforms/shared.scss"
       ],
       "name": "mozilla-vpn-platforms"
