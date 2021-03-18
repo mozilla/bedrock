@@ -17,6 +17,7 @@
     "DEBUG": "False",
     "DEV": "True",
     "GTM_CONTAINER_ID": "GTM-MW3R8V",
+    "GUNICORN_WORKER_CLASS": "gevent",
     "LOG_LEVEL": "INFO",
     "PROD_DETAILS_STORAGE": "product_details.storage.PDDatabaseStorage",
     "RUN_SUPERVISOR": "True",
@@ -25,6 +26,7 @@
       "description": "A secret key for verifying the integrity of signed cookies, though we don't use them.",
       "generator": "secret"
     },
-    "SENTRY_DSN": "https://b89cacf912c24702a2fa6e3dc4610ade@sentry.prod.mozaws.net/156"
+    "SENTRY_DSN": "https://b89cacf912c24702a2fa6e3dc4610ade@sentry.prod.mozaws.net/156",
+    "WEB_CONCURRENCY": "2"
   }
 }
