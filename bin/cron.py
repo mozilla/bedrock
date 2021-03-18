@@ -62,7 +62,6 @@ class scheduled_job:
         self.name = fn.__name__
         self.callback = fn
         schedule.add_job(self.run, id=self.name, *self.args, **self.kwargs)
-        set_updated_time(self.name)
         self.log('Registered')
         return self.run
 
