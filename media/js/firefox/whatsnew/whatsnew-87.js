@@ -84,7 +84,6 @@ function onYouTubeIframeAPIReady() {
         }
     }
 
-
     function init() {
         var videoLinks = document.querySelectorAll('.js-video-play');
         var tryButton = document.getElementById('try-button');
@@ -94,6 +93,7 @@ function onYouTubeIframeAPIReady() {
             Mozilla.pipVideoPlay.videoId = tryButton.getAttribute('data-id');
             Mozilla.pipVideoPlay.videoTitle = tryButton.getAttribute('data-video-title');
             e.preventDefault();
+            this.setAttribute('disabled', '');
             initVideoPlayer(Mozilla.pipVideoPlay.playerId, Mozilla.pipVideoPlay.videoId, Mozilla.pipVideoPlay.videoTitle);
         });
 

@@ -129,6 +129,10 @@ $image-path: '/media/protocol/img';
     }
 }
 
+// Hide the CTA if JS fails
+.no-js .wnp-main-cta {
+    display: none;
+}
 
 
 //* -------------------------------------------------------------------------- */
