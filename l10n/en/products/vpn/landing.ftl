@@ -77,7 +77,7 @@ vpn-landing-faq-refund-question-desc = You can get your money back within 30 day
 vpn-landing-faq-manage-subscription-question-heading = How do I manage my subscription?
 
 # Variables:
-#   $url (url) - link to https://subscriptions.firefox.com/subscriptions
+#   $url (url) - link to https://vpn.mozilla.org/r/vpn/subscription
 vpn-landing-faq-manage-subscription-question-desc = If you’re already subscribed to { -brand-name-mozilla-vpn }, you can change your plan or <a href="{ $url }">manage your subscription</a> anytime.
 
 vpn-landing-faq-link = See more FAQs
