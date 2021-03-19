@@ -40,8 +40,6 @@ def vpn_landing_page(request):
     entrypoint_experiment = request.GET.get('entrypoint_experiment', None)
     entrypoint_variation = request.GET.get('entrypoint_variation', None)
 
-    print(entrypoint_variation)
-
     # ensure experiment parameters matches pre-defined values
     if entrypoint_variation not in ['a', 'b', 'c', 'd']:
         entrypoint_variation = None
