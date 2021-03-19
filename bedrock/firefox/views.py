@@ -556,6 +556,7 @@ class WhatsnewView(L10nTemplateView):
         'firefox/whatsnew/whatsnew-fx84.html': ['firefox/whatsnew/whatsnew-fx80', 'firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx85.html': ['firefox/whatsnew/whatsnew-fx80', 'firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx86-en.html': ['firefox/whatsnew/whatsnew-s2d', 'firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx87-en.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-mobile-de.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-mobile-qrcode-de.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx87-de.html': ['firefox/whatsnew/whatsnew'],
@@ -619,6 +620,8 @@ class WhatsnewView(L10nTemplateView):
                 template = 'firefox/developer/whatsnew.html'
             else:
                 template = 'firefox/whatsnew/index.html'
+        elif version.startswith('87.') and locale == 'en-US':
+            template = 'firefox/whatsnew/whatsnew-fx87-en.html'
         elif version.startswith('87.') and locale == 'de':
             template = 'firefox/whatsnew/whatsnew-fx87-de.html'
         elif version.startswith('87.') and locale == 'fr':
@@ -681,6 +684,8 @@ class WhatsNewChinaView(WhatsnewView):
         elif template == ['firefox/whatsnew/whatsnew-fx84.html']:
             template = ['firefox/whatsnew/index-account.html']
         elif template == ['firefox/whatsnew/whatsnew-fx85.html']:
+            template = ['firefox/whatsnew/index-account.html']
+        elif template == ['firefox/whatsnew/whatsnew-fx87-en.html']:
             template = ['firefox/whatsnew/index-account.html']
 
         return template
