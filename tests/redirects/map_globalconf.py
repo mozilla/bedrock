@@ -358,16 +358,8 @@ URLS = flatten((
     url_test('/firefox/technology/', 'https://developer.mozilla.org/docs/Tools'),
     url_test('/firefox/sms/{,sent}', '/firefox/'),
 
-    # Bug 979527
-    url_test('{/products,}/firefox/central{/,.html}', '/firefox/new/',
-             req_headers={'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:17.0) '
-                                        'Gecko/20121202 Firefox/17.0 Iceweasel/17.0.1'},
-             resp_headers={'Cache-Control': 'max-age=0'}),
-    url_test('{/products,}/firefox/central{/,.html}',
-             'https://support.mozilla.org/kb/get-started-firefox-overview-main-features',
-             req_headers={'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:42.0) '
-                                        'Gecko/20100101 Firefox/42.0'},
-             resp_headers={'Cache-Control': 'max-age=0'}),
+    # Previously Bug 979527 / Github #10004 "Getting Started" Page
+    url_test('{/products,}/firefox/central{/,.html}', '/firefox/'),
 
     # bug 868169
     url_test('/mobile/android-download.html?dude=abiding',
