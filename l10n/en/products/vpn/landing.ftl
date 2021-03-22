@@ -50,14 +50,14 @@ vpn-landing-faq-info-question-heading = What information does the { -brand-name-
 
 # Variables:
 #   $url (url) - link to https://www.mozilla.org/privacy/principles/
-vpn-landing-faq-info-question-desc = We don’t log, track, or share any of your network activity. We adhere strictly to { -brand-name-mozilla }’s <a href="{ $url }">Data Privacy Principles</a>, and we only collect the data required to keep the VPN healthy and operational.
+vpn-landing-faq-info-question-desc = We don’t log, track, or share any of your network activity. We adhere strictly to { -brand-name-mozilla }’s <a href="{ $url }">Data Privacy Principles</a> and we only collect the data required to keep the VPN operational and improve the product over time.
 
 vpn-landing-faq-protected-question-heading = How is my privacy protected?
 
 # Variables:
 #   $url (url) - link to https://mullvad.net/help/why-wireguard/
 #   $attrs (string) - specific attributes added to external links
-vpn-landing-faq-protected-question-desc = <a href="{ $url }" { $attrs }>{ -brand-name-wireguard }</a>® protocol encrypts your network traffic protecting all your private information. Compared to existing VPN protocols, { -brand-name-wireguard }’s lightweight code is easier for security analysts to review and audit - making it a more secure option for the VPN. In addition, your online activities can stay anonymous because we never log, track or share your network data.
+vpn-landing-faq-protected-question-desc = <a href="{ $url }" { $attrs }>{ -brand-name-wireguard }</a>® protocol encrypts your network traffic, protecting all your private information. Compared to existing VPN protocols, { -brand-name-wireguard }’s lightweight code is easier for security analysts to review and audit—making it a more secure option for the VPN. In addition, your online activities stay anonymous because we never log, track, or share your network data.
 
 vpn-landing-faq-competition-question-heading = How does { -brand-name-mozilla-vpn } compare to the competition?
 
