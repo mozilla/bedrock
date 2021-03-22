@@ -25,4 +25,6 @@ urlpatterns = (
          ftl_files=['products/vpn/platforms/mobile', 'products/vpn/platforms/shared']),
     page('vpn/mobile/ios', 'products/vpn/platforms/ios.html',
          ftl_files=['products/vpn/platforms/ios', 'products/vpn/platforms/shared']),
+    page('vpn/mobile/android', 'products/vpn/platforms/android.html',
+         ftl_files=['products/vpn/platforms/android', 'products/vpn/platforms/shared']),
 )
