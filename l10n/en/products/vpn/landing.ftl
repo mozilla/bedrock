@@ -33,7 +33,7 @@ vpn-landing-brand-trust-desc = For more than 20 years, { -brand-name-mozilla } h
 ## FAQ section
 
 vpn-landing-faq-heading = FAQs
-vpn-langing-faq-uses-question-heading = What is a VPN and its uses?
+vpn-langing-faq-uses-question-heading = What is a VPN and what are its uses?
 
 # Variables:
 #   $url (url) - link to https://blog.mozilla.org/firefox/vpns-explained/
