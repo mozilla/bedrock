@@ -4,9 +4,9 @@
 
 {% extends "base-protocol-mozilla.html" %}
 
-{% block page_title_suffix %} — Mozilla VPN{% endblock %}
+{% block page_title_suffix %} — {{ ftl('vpn-shared-product-name') }}{% endblock %}
 
-{% block html_attrs %}data-vpn-allowed-country-codes="{{ allowed_countries }}"{% endblock %}
+{% block html_attrs %}data-vpn-fixed-price-country-codes="{{ fixed_price_countries }}"{% endblock %}
 
 {% block page_image %}{{ static('img/products/vpn/common/social-share.png') }}{% endblock %}
 {% block page_favicon %}{{ static('img/favicons/vpn/favicon.ico') }}{% endblock %}

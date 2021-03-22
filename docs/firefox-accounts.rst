@@ -227,7 +227,7 @@ Usage
 
 .. code-block:: jinja
 
-    {{ vpn_subscribe_link(entrypoint='www.mozilla.org-vpn-product-page', link_text='Try Mozilla VPN') }}
+    {{ vpn_subscribe_link(entrypoint='www.mozilla.org-vpn-product-page', link_text='Get Mozilla VPN') }}
 
 .. code-block:: jinja
 
@@ -240,7 +240,7 @@ Both helpers for Mozilla VPN support the same parameters (* indicates a required
 +============================+========================================================================================================================+==========================================================+========================================================================================================+
 |    entrypoint*             | Unambiguous identifier for which page of the site is the referrer. This also serves as a value for 'utm_source'.       | 'www.mozilla.org-page-name'                              | 'www.mozilla.org-vpn-product-page'                                                                     |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    link_text*              | The link copy to be used in the call to action.                                                                        | Localizable string                                       | 'Try Mozilla VPN'                                                                                      |
+|    link_text*              | The link copy to be used in the call to action.                                                                        | Localizable string                                       | 'Get Mozilla VPN'                                                                                      |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 |    class_name              | A class name to be applied to the link (typically for styling with CSS).                                               | String of one or more class names                        | 'vpn-button'                                                                                           |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+

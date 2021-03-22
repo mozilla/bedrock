@@ -8,13 +8,57 @@
     <source srcset="{{ static('img/placeholder.png') }}" media="(max-width: 1023px)">
     <img src="{{ static(low_res_img) }}" class="{{ class_name }}" alt="" width="480" height="480">
   </picture>
-{% endmacro %}
+{%- endmacro %}
 
-{% macro join_waitlist_button(link_text, is_conditional=True, position=None) -%}
-  <a class="vpn-button waitlist t-dark {% if is_conditional %}js-join-waitlist hide-from-legacy-ie{% endif %}" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" {% if position %}data-cta-position="{{ position }}"{% endif %}>
+{% macro vpn_hero(heading, subheading, desc) -%}
+<section class="vpn-hero">
+  <div class="mzp-l-content mzp-t-content-xl">
+    <div class="vpn-hero-container">
+      <div class="vpn-hero-body">
+        <h1 class="vpn-hero-heading">{{ heading }}</h1>
+        <h2 class="vpn-hero-sub-heading">{{ subheading }}</h2>
+        <div class="vpn-hero-desc">
+          <p>{{ desc }}</p>
+          {{ caller() }}
+        </div>
+      </div>
+      <div class="vpn-hero-image hide-from-legacy-ie" data-illustration="n-1">
+        {{ hero_image(
+          'img/products/vpn/landing/vpn-hero-01.png',
+          'img/products/vpn/landing/vpn-hero-01-high-res.png',
+          'n-1')
+        }}
+        {{ hero_image(
+          'img/products/vpn/landing/vpn-hero-02.png',
+          'img/products/vpn/landing/vpn-hero-02-high-res.png',
+          'n-2')
+        }}
+        {{ hero_image(
+          'img/products/vpn/landing/vpn-hero-03.png',
+          'img/products/vpn/landing/vpn-hero-03-high-res.png',
+          'n-3')
+        }}
+        {{ hero_image(
+          'img/products/vpn/landing/vpn-hero-04.png',
+          'img/products/vpn/landing/vpn-hero-04-high-res.png',
+          'n-4')
+        }}
+        {{ hero_image(
+          'img/products/vpn/landing/vpn-hero-05.png',
+          'img/products/vpn/landing/vpn-hero-05-high-res.png',
+          'n-5')
+        }}
+      </div>
+    </div>
+  </div>
+</section>
+{%- endmacro %}
+
+{% macro join_waitlist_button(link_text, position=None, class_name=None) -%}
+  <a class="mzp-c-button mzp-t-xl {% if class_name %}{{ class_name }}{% endif %} vpn-join-waitlist js-text-vpn-not-available hide-from-legacy-ie" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" {% if position %}data-cta-position="{{ position }}"{% endif %}>
     {{ link_text }}
   </a>
-{% endmacro %}
+{%- endmacro %}
 
 {% macro vpn_nav_cta(link_text, alt_link_text, sign_in_link_text, utm_source, utm_campaign) -%}
   <div class="vpn-nav-cta">
@@ -22,18 +66,18 @@
     {{ vpn_subscribe_link(
       entrypoint=utm_source,
       link_text=link_text,
-      class_name='mzp-c-button mzp-t-secondary mzp-t-md js-try-vpn',
+      class_name='mzp-c-button mzp-t-secondary mzp-t-md js-text-vpn-fixed-price-available',
       optional_parameters={
         'utm_campaign': utm_campaign
       },
       optional_attributes={
         'data-cta-type': 'fxa-vpn',
-        'data-cta-text': 'Try Mozilla VPN',
+        'data-cta-text': 'Get Mozilla VPN monthly',
         'data-cta-position': 'navigation',
       }
     ) }}
 
-    <a class="mzp-c-button mzp-t-secondary mzp-t-md js-join-waitlist hide-from-legacy-ie" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="navigation">
+    <a class="mzp-c-button mzp-t-secondary mzp-t-md js-text-vpn-not-available hide-from-legacy-ie" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="navigation">
       {{ alt_link_text }}
     </a>
 
@@ -51,7 +95,34 @@
         }
     ) }}
   </div>
-{% endmacro %}
+{%- endmacro %}
+
+{% macro vpn_content_block(class_name=None) -%}
+<div class="vpn-content-block {% if class_name %}{{ class_name }}{% endif %}">
+  <div class="vpn-content-block-container">
+    {{ caller() }}
+  </div>
+</div>
+{%- endmacro %}
+
+{% macro vpn_content_media(heading, image_url, class_name=None, has_outline=False, loading='lazy') -%}
+  <section class="vpn-content-media {% if has_outline %}has-outline{% endif %} {% if class_name %}{{ class_name }}{% endif %}">
+    <div class="vpn-content-media-image-container">
+      <div class="vpn-content-media-image">
+        {{ high_res_img(image_url, {'alt': image_alt, 'width': '480', 'height': '480', 'loading': loading}) }}
+      </div>
+    </div>
+
+    <div class="vpn-content-media-copy">
+      <div class="vpn-content-media-copy-container">
+        <h2 class="vpn-content-media-heading">{{ heading }}</h2>
+        <div class="vpn-content-media-desc">
+          {{ caller() }}
+        </div>
+      </div>
+    </div>
+  </section>
+{%- endmacro %}
 
 {% macro vpn_nav_platform_cta(alt_link_text) -%}
   <div class="vpn-nav-cta">
@@ -59,25 +130,6 @@
       {{ ftl(alt_link_text) }}
     </a>
   </div>
-{% endmacro %}
-
-{% macro vpn_content_well(title, image_url, class=None) -%}
-  <section class="vpn-content-well {% if class %}{{ class }}{% endif %}">
-    <div class="vpn-content-well-image-wrapper">
-      <div class="vpn-content-well-image">
-        {{ high_res_img(image_url, {'alt': image_alt, 'width': '480', 'height': '480'}) }}
-      </div>
-    </div>
-
-    <div class="vpn-content-well-copy">
-      <div class="vpn-content-well-copy-container">
-        <h2 class="vpn-content-well-title">{{ title }}</h2>
-        <div class="vpn-content-well-desc">
-          {{ caller() }}
-        </div>
-      </div>
-    </div>
-  </section>
 {%- endmacro %}
 
 {% macro vpn_platform_content_well(title, image_url, class=None) -%}
