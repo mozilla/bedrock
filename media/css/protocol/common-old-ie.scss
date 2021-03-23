@@ -72,3 +72,8 @@ header, main, section, footer {
         color: $color-white;
     }
 }
+
+// hide <template> elements in the DOM.
+template {
+    display: none !important; /* stylelint-disable-line declaration-no-important */
+}

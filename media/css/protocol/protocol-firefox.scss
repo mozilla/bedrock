@@ -61,3 +61,9 @@ $image-path: '/media/protocol/img';
     padding: $spacing-sm;
     margin-bottom: $spacing-xl;
 }
+
+
+// hide <template> elements in the DOM.
+template {
+    display: none !important; /* stylelint-disable-line declaration-no-important */
+}

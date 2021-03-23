@@ -10,40 +10,75 @@ $image-path: '/media/protocol/img';
 
 //* -------------------------------------------------------------------------- */
 // Conditional states
-
 /* stylelint-disable declaration-no-important */
-.js-text-vpn-not-available,
-.js-section-vpn-not-available {
+
+// hide content that is only shown conditionally.
+.vpn-variable-pricing-block,
+.js-more-countries-coming-soon {
     display: none !important;
 }
 
-.vpn-not-available {
+// if JS is enabled then hide fixed pricing content until we know to show it.
+.js .js-vpn-fixed-pricing,
+.js .vpn-fixed-pricing-block {
+    display: none !important;
+}
 
-    .js-text-vpn-fixed-price-available {
-        display: none !important;
-    }
-
-    .js-section-vpn-fixed-price-available {
-        display: none !important;
-    }
-
-    .js-text-vpn-not-available {
+// countries where VPN is available at a fixed price.
+.show-vpn-fixed-pricing {
+    div.js-vpn-fixed-pricing {
         display: block !important;
-
-        &.mzp-c-button {
-            display: inline-block !important;
-        }
     }
 
-    .js-section-vpn-not-available {
+    span.js-vpn-fixed-pricing {
+        display: inline-block !important;
+    }
+
+    .vpn-fixed-pricing-block {
+        display: block !important;
+    }
+}
+
+// countries where VPN is available at variable pricing.
+.show-vpn-variable-pricing {
+    .vpn-variable-pricing-block,
+    .js-vpn-variable-pricing {
+        display: block !important;
+    }
+
+    .vpn-fixed-pricing-block,
+    .js-vpn-pricing-fixed {
+        display: none !important;
+    }
+}
+
+// countries where VPN is not available.
+.show-vpn-waitlist {
+
+    .js-connect-to-countries-and-servers {
+        display: none !important;
+    }
+
+    .js-more-countries-coming-soon {
         display: block !important;
 
         @supports(display: grid) {
             display: grid !important;
         }
     }
+
+    .vpn-fixed-pricing-block {
+        display: block !important;
+    }
 }
 /* stylelint-enable declaration-no-important */
+
+// fade in conditional CTA containers when they display.
+.js-vpn-fixed-pricing,
+.js-vpn-variable-pricing,
+.js-vpn-waitlist {
+    @include animation(mzp-a-fade-in 100ms ease-in 0ms 1 normal both);
+}
 
 //* -------------------------------------------------------------------------- */
 // Guarantee / Availability Copy
@@ -56,10 +91,11 @@ $image-path: '/media/protocol/img';
 .guarantee-copy {
     color: $color-vpn-brand-violet;
     font-weight: bold;
-    margin-bottom: $spacing-xl;
+    margin-bottom: $spacing-lg;
 
     &:before {
         @include bidi((
+            (background-position, top left, top right),
             (padding-right, $spacing-xs, padding-left, 0),
         ));
         background-image: url('/media/img/products/vpn/common/check.svg');
@@ -79,6 +115,10 @@ $image-path: '/media/protocol/img';
             background-image: url('/media/img/products/vpn/common/check-white.svg');
         }
     }
+}
+
+.refund-policy {
+    margin-bottom: 0;
 }
 
 //* -------------------------------------------------------------------------- */
@@ -122,6 +162,13 @@ main .mzp-c-button.mzp-t-xl {
     margin-bottom: $spacing-lg;
 }
 
+// The hover / focus color for secondary protocol button colors is the same as the
+// pricing container background color, which creates an a11y issue. So set the button
+// background color to white to give a better contrast change.
+.vpn-pricing-variable-plans .mzp-c-button.mzp-t-secondary {
+    background: $color-white;
+}
+
 //* -------------------------------------------------------------------------- */
 // VPN Product Feature List
 
@@ -129,9 +176,16 @@ main .mzp-c-button.mzp-t-xl {
     @include bidi(((text-align, left, right),));
     @include text-body-xl;
     display: inline-block;
-    list-style: image;
-    list-style-image: url('/media/img/products/vpn/common/check-black.svg');
+    list-style: none;
     margin-bottom: $spacing-lg;
+
+    li {
+        @include bidi((
+            (background-position, top 7px left, top 7px right),
+            (padding-left, (18px + $spacing-md), padding-right, 0),
+        ));
+        background: url('/media/img/products/vpn/common/check-black.svg') no-repeat;
+    }
 
     &.l-columns-two {
         margin-bottom: $layout-lg;
@@ -142,7 +196,7 @@ main .mzp-c-button.mzp-t-xl {
 
         &.l-columns-two {
             column-count: 2;
-            column-gap: $spacing-xl;
+            column-gap: $spacing-2xl;
             margin-bottom: $layout-xl;
         }
     }
@@ -154,10 +208,11 @@ main .mzp-c-button.mzp-t-xl {
 .vpn-footer {
     margin: 0 auto $layout-xl;
     text-align: center;
-}
 
-.vpn-footer-subscribe-note {
-    margin-bottom: 0;
+    .guarantee-copy,
+    .availability-copy {
+        margin-bottom: 0;
+    }
 }
 
 .vpn-footer-list {

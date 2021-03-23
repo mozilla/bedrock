@@ -36,7 +36,11 @@
         var faq = document.getElementById(id);
 
         if (faq && !faq.hasAttribute('open')) {
-            faq.querySelector('summary').click();
+            var summary = faq.querySelector('summary');
+
+            if (summary) {
+                summary.click();
+            }
         }
     }
 

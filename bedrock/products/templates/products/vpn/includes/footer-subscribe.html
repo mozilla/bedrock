@@ -3,29 +3,27 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% call vpn_content_block(
-  class_name='vpn-footer-subscribe t-dark'
+  class_name='vpn-footer-subscribe'
 ) %}
-  {{ vpn_subscribe_link(
-    entrypoint=_utm_source,
-    link_text=ftl('vpn-shared-subscribe-link'),
-    class_name='mzp-c-button mzp-t-dark mzp-t-xl js-text-vpn-fixed-price-available',
-    optional_parameters={
-      'utm_campaign': _utm_campaign
-    },
-    optional_attributes={
-      'data-cta-type': 'fxa-vpn',
-      'data-cta-text': 'Get Mozilla VPN monthly',
-      'data-cta-position': 'secondary',
-    }
-  ) }}
+  <div class="js-vpn-fixed-pricing">
+    {{ vpn_subscribe_link(
+      entrypoint=_utm_source,
+      link_text=ftl('vpn-shared-subscribe-link'),
+      class_name='mzp-c-button mzp-t-xl',
+      optional_parameters={
+        'utm_campaign': _utm_campaign
+      },
+      optional_attributes={
+        'data-cta-type': 'fxa-vpn',
+        'data-cta-text': 'Get Mozilla VPN monthly',
+        'data-cta-position': 'secondary',
+      }
+    ) }}
 
-  <p class="vpn-footer-subscribe-note guarantee-copy js-text-vpn-fixed-price-available">
-    {{ ftl('vpn-shared-money-back-guarantee') }}
-  </p>
+    <p class="guarantee-copy">
+      {{ ftl('vpn-shared-money-back-guarantee') }}
+    </p>
+  </div>
 
-  {{ join_waitlist_button(link_text=ftl('vpn-shared-waitlist-link'), class_name='mzp-t-dark', position='secondary') }}
-
-  <p class="vpn-footer-subscribe-note availability-copy js-text-vpn-not-available">
-    {{ ftl('vpn-shared-available-countries') }}
-  </p>
+  <div class="js-target-footer-cta"></div>
 {% endcall %}

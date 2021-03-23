@@ -74,32 +74,26 @@
 </section>
 {%- endmacro %}
 
-{% macro join_waitlist_button(link_text, position=None, class_name=None) -%}
-  <a class="mzp-c-button mzp-t-xl {% if class_name %}{{ class_name }}{% endif %} vpn-join-waitlist js-text-vpn-not-available hide-from-legacy-ie" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" {% if position %}data-cta-position="{{ position }}"{% endif %}>
-    {{ link_text }}
-  </a>
-{%- endmacro %}
-
 {% macro vpn_nav_cta(link_text, alt_link_text, sign_in_link_text, utm_source, utm_campaign) -%}
   <div class="vpn-nav-cta">
 
-    {{ vpn_subscribe_link(
-      entrypoint=utm_source,
-      link_text=link_text,
-      class_name='mzp-c-button mzp-t-secondary mzp-t-md js-text-vpn-fixed-price-available',
-      optional_parameters={
-        'utm_campaign': utm_campaign
-      },
-      optional_attributes={
-        'data-cta-type': 'fxa-vpn',
-        'data-cta-text': 'Get Mozilla VPN monthly',
-        'data-cta-position': 'navigation',
-      }
-    ) }}
+    <span class="js-vpn-fixed-pricing">
+      {{ vpn_subscribe_link(
+        entrypoint=utm_source,
+        link_text=link_text,
+        class_name='mzp-c-button mzp-t-secondary mzp-t-md',
+        optional_parameters={
+          'utm_campaign': utm_campaign
+        },
+        optional_attributes={
+          'data-cta-type': 'fxa-vpn',
+          'data-cta-text': 'Get Mozilla VPN monthly',
+          'data-cta-position': 'navigation',
+        }
+      ) }}
+      </span>
 
-    <a class="mzp-c-button mzp-t-secondary mzp-t-md js-text-vpn-not-available hide-from-legacy-ie" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="navigation">
-      {{ alt_link_text }}
-    </a>
+    <span class="js-target-navigation-cta"></span>
 
     {{ vpn_sign_in_link(
         entrypoint=utm_source,

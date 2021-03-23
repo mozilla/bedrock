@@ -2,20 +2,23 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "products/vpn/includes/macros.html" import vpn_hero, join_waitlist_button, vpn_nav_cta, vpn_content_media, vpn_content_block with context %}
+{% from "products/vpn/includes/macros.html" import vpn_hero, vpn_nav_cta, vpn_content_media, vpn_content_block with context %}
 
 {% extends "products/vpn/base.html" %}
 
 {% block page_title_full %}{{ ftl('vpn-landing-page-title') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
-{% block page_desc %}{{ ftl('vpn-landing-page-desc', countries=30) }}{% endblock %}
+{% block page_desc %}{{ ftl('vpn-landing-page-desc', countries=available_countries) }}{% endblock %}
 
 {% block body_id %}mozilla-vpn-landing{% endblock %}
 
 {% set _utm_source = 'www.mozilla.org-vpn-product-page' %}
 {% set _utm_campaign = 'vpn-product-page' %}
 {% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
+
+{# switches to a graphic that indludes French and German flags #}
+{% set countries_image = 'img/products/vpn/landing/vpn-cntwell-05-v2.png' if switch('vpn-launch-germany-france') else 'img/products/vpn/landing/vpn-cntwell-05.png' %}
 
 {% block page_css %}
   {{ css_bundle('mozilla-vpn-landing') }}
@@ -50,28 +53,27 @@
       subheading=ftl('vpn-landing-hero-sub-heading-v2', fallback='vpn-landing-hero-sub-heading'),
       desc=ftl('vpn-landing-hero-desc')
     ) %}
-      {{ vpn_subscribe_link(
-        entrypoint=_utm_source,
-        link_text=ftl('vpn-shared-subscribe-link'),
-        class_name='mzp-c-button mzp-t-xl js-text-vpn-fixed-price-available',
-        optional_parameters={
-          'utm_campaign': _utm_campaign
-        },
-        optional_attributes={
-          'data-cta-type': 'fxa-vpn',
-          'data-cta-text': 'Get Mozilla VPN monthly',
-          'data-cta-position': 'primary',
-        }
-      ) }}
-      <p class="guarantee-copy js-text-vpn-fixed-price-available">
-        {{ ftl('vpn-shared-money-back-guarantee') }}
-      </p>
+      <div class="js-vpn-fixed-pricing">
+        {{ vpn_subscribe_link(
+          entrypoint=_utm_source,
+          link_text=ftl('vpn-shared-subscribe-link'),
+          class_name='mzp-c-button mzp-t-xl ',
+          optional_parameters={
+            'utm_campaign': _utm_campaign
+          },
+          optional_attributes={
+            'data-cta-type': 'fxa-vpn',
+            'data-cta-text': 'Get Mozilla VPN monthly',
+            'data-cta-position': 'primary',
+          }
+        ) }}
 
-      {{ join_waitlist_button(link_text=ftl('vpn-shared-waitlist-link'), position='primary') }}
+        <p class="guarantee-copy">
+          {{ ftl('vpn-shared-money-back-guarantee') }}
+        </p>
+      </div>
 
-      <p class="availability-copy js-text-vpn-not-available">
-        {{ ftl('vpn-shared-available-countries') }}
-      </p>
+      <div class="js-target-primary-cta"></div>
     {% endcall %}
   {% endblock %}
 
@@ -106,44 +108,50 @@
 
     {% call vpn_content_media(
       heading=ftl('vpn-shared-features-server-countries', servers=connect_servers, countries=connect_countries),
-      image_url='img/products/vpn/landing/vpn-cntwell-05.png',
-      class_name='vpn-content-media-left-half js-section-vpn-fixed-price-available'
+      image_url=countries_image,
+      class_name='vpn-content-media-left-half js-connect-to-countries-and-servers'
     ) %}
       <p>{{ ftl('vpn-shared-features-full-list-servers', url='https://mullvad.net/servers/', attrs='target="_blank" rel="external noopener noreferrer"') }}</p>
 
-      {{ vpn_subscribe_link(
-        entrypoint=_utm_source,
-        link_text=ftl('vpn-shared-subscribe-link'),
-        class_name='mzp-c-button mzp-t-xl js-text-vpn-fixed-price-available',
-        optional_parameters={
-          'utm_campaign': _utm_campaign
-        },
-        optional_attributes={
-          'data-cta-type': 'fxa-vpn',
-          'data-cta-text': 'Get Mozilla VPN monthly',
-          'data-cta-position': 'secondary',
-        }
-      ) }}
+      <div class="js-vpn-fixed-pricing">
+        {{ vpn_subscribe_link(
+          entrypoint=_utm_source,
+          link_text=ftl('vpn-shared-subscribe-link'),
+          class_name='mzp-c-button mzp-t-xl',
+          optional_parameters={
+            'utm_campaign': _utm_campaign
+          },
+          optional_attributes={
+            'data-cta-type': 'fxa-vpn',
+            'data-cta-text': 'Get Mozilla VPN monthly',
+            'data-cta-position': 'secondary',
+          }
+        ) }}
 
-      <p class="guarantee-copy js-money-back-guarantee">
-        {{ ftl('vpn-shared-money-back-guarantee') }}
-      </p>
+        <p class="guarantee-copy">
+          {{ ftl('vpn-shared-money-back-guarantee') }}
+        </p>
+      </div>
+
+      <div class="js-target-secondary-cta"></div>
     {% endcall %}
 
     {% call vpn_content_media(
       heading=ftl('vpn-shared-countries-coming-soon', countries=available_countries),
-      image_url='img/products/vpn/landing/vpn-cntwell-05.png',
-      class_name='vpn-content-media-left-half js-section-vpn-not-available hide-from-legacy-ie'
+      image_url=countries_image,
+      class_name='vpn-content-media-left-half js-more-countries-coming-soon hide-from-legacy-ie'
     ) %}
 
-      {{ join_waitlist_button(link_text=ftl('vpn-shared-waitlist-link'), position='secondary') }}
-
-      <p class="availability-copy js-country-list">
-        {{ ftl('vpn-shared-available-countries') }}
-      </p>
+    <div class="js-target-secondary-cta"></div>
     {% endcall %}
 
-    {% include 'products/vpn/includes/pricing-fixed.html' %}
+    {# note: `id=#pricing` is used as an anchor link from android in-product subscription flows, so do not remove (issue 10039) #}
+    <div id="pricing" class="mzp-is-anchor-link">
+      {% include 'products/vpn/includes/pricing-fixed.html' %}
+      {% include 'products/vpn/includes/pricing-variable.html' %}
+    </div>
+
+    {% include 'products/vpn/includes/featured-press.html' %}
 
   </div>
 
@@ -229,6 +237,10 @@
   </footer>
 
 </main>
+
+{# HTML templates for common elements that are shown conditionally via JS #}
+{% include 'products/vpn/includes/templates.html' %}
+
 {% endblock %}
 
 {% block js %}
