@@ -45,4 +45,5 @@ vpn-android-speed-headline = Ultra fast speeds. Unlimited data.
 vpn-android-speed-copy = Game online, stream movies and surf the web at ultra-fast speeds on your { -brand-name-android } device — all with unlimited bandwidth.
 
 vpn-android-log-headline = No logs. No tracking. No invasions of privacy.
+# "That's not how we roll" can be simplified into "That's not how we do things" or "That's not how we operate". The intent is to show how Mozilla is different from many other VPN providers.
 vpn-android-log-copy = Many VPN providers log your activity on their servers. That’s not how we roll.  { -brand-name-mozilla-vpn } never tracks your online activity— that’s against everything we stand for as a company. We put your privacy and safety first, above anything else.
