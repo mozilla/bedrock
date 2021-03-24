@@ -121,7 +121,7 @@
       image_url='img/products/vpn/platforms/vpn-cntwell-devices.png',
       class='vpn-content-well-left-half'
     ) %}
-      <p>{{ ftl('vpn-android-devices-copy') }}</p>
+      <p>{{ ftl('vpn-android-devices-copy', devices=vpn_devices) }}</p>
     {% endcall %}
 
     {% call vpn_platform_content_well(

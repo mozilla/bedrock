@@ -20,7 +20,7 @@ vpn-android-wifi-headline = Stay safe online when you’re on the move
 vpn-android-wifi-copy = Sometimes wireless data isn’t available and public wifi is your only option. With { -brand-name-mozilla-vpn } on your { -brand-name-android } device, never worry about entering a password at the airport or making a purchase online at the corner coffeehouse — just connect with a tap, then do your thing.
 
 vpn-android-about-headline = { -brand-name-mozilla } is a name you can trust
-vpn-android-about-copy = We’re best known for our web browser, { -brand-name-firefox }, but { -brand-name-mozilla } as a larger organization has a core mission — to fight for your rights online. It’s what we’ve done all along, since 1998.  We’re the advocates of the internet, committed to making sure it stays open and free while respecting everyone’s right to privacy and security.
+vpn-android-about-copy = We’re best known for our web browser, { -brand-name-firefox }, but { -brand-name-mozilla } as a larger organization has a core mission — to fight for your rights online. It’s what we’ve done all along, since 1998. We’re the advocates of the internet, committed to making sure it stays open and free while respecting everyone’s right to privacy and security.
 
 vpn-android-privacy-headline = One tap to connect
 vpn-android-privacy-copy = Using { -brand-name-mozilla-vpn } for { -brand-name-android } is super simple. Tap a button and your connection is automatically encrypted with advanced { -brand-name-wireguard }® protocol. That’s it!
@@ -39,11 +39,13 @@ vpn-android-servers-copy = With { -brand-name-mozilla-vpn }, you can set your { 
 #   $devices (number) - number of available devices
 vpn-android-devices-headline = One subscription for up to { $devices } devices
 
-vpn-android-devices-copy = { -brand-name-mozilla-vpn } gives you the ability to connect  five different devices including { -brand-name-android }, { -brand-name-ios }, { -brand-name-mac-short }, { -brand-name-windows } and { -brand-name-linux }. Use it on your smartphone, desktop, laptop, tablet and more.
+# Variables:
+#   $devices (number) - number of available devices
+vpn-android-devices-copy = { -brand-name-mozilla-vpn } gives you the ability to connect { $devices } different devices including { -brand-name-android }, { -brand-name-ios }, { -brand-name-mac-short }, { -brand-name-windows } and { -brand-name-linux }. Use it on your smartphone, desktop, laptop, tablet and more.
 
 vpn-android-speed-headline = Ultra fast speeds. Unlimited data.
 vpn-android-speed-copy = Game online, stream movies and surf the web at ultra-fast speeds on your { -brand-name-android } device — all with unlimited bandwidth.
 
 vpn-android-log-headline = No logs. No tracking. No invasions of privacy.
 # "That's not how we roll" can be simplified into "That's not how we do things" or "That's not how we operate". The intent is to show how Mozilla is different from many other VPN providers.
-vpn-android-log-copy = Many VPN providers log your activity on their servers. That’s not how we roll.  { -brand-name-mozilla-vpn } never tracks your online activity— that’s against everything we stand for as a company. We put your privacy and safety first, above anything else.
+vpn-android-log-copy = Many VPN providers log your activity on their servers. That’s not how we roll. { -brand-name-mozilla-vpn } never tracks your online activity— that’s against everything we stand for as a company. We put your privacy and safety first, above anything else.
