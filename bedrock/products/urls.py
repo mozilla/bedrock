@@ -14,7 +14,7 @@ urlpatterns = (
 
     # Pages that do not use allowed_countries or default_monthly_price contexts
     page('vpn/desktop', 'products/vpn/platforms/desktop.html',
-         ftl_files=['products/vpn/platforms/desktop', 'products/vpn/platforms/shared']),
+         ftl_files=['products/vpn/platforms/desktop', 'products/vpn/shared']),
     page('vpn/desktop/linux', 'products/vpn/platforms/linux.html',
          ftl_files=['products/vpn/platforms/linux', 'products/vpn/platforms/shared']),
     page('vpn/desktop/mac', 'products/vpn/platforms/mac.html',

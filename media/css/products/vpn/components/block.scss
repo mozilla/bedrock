@@ -74,6 +74,36 @@ $image-path: '/media/protocol/img';
         }
     }
 
+    &.platform-get-started-cta {
+        .vpn-content-block-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .vpn-content-well-desc,
+        .vpn-content-well-title {
+            text-align: center;
+        }
+
+        .vpn-content-well-title {
+            @include text-title-md;
+        }
+
+        .mzp-c-button {
+            margin-bottom: $spacing-md;
+        }
+
+        @media #{$mq-md} {
+            .mzp-c-button {
+                @include font-size(18px);
+            }
+        }
+
+
+    }
+
     @media #{$mq-md} {
         margin-bottom: $layout-xl;
 

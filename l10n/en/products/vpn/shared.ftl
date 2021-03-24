@@ -25,10 +25,19 @@ vpn-shared-features-servers = { $servers }+ servers in { $countries }+ countries
 
 vpn-shared-features-bandwidth = No bandwidth restrictions
 vpn-shared-features-activity = No logging of your network activity
+vpn-shared-features-activity-logs = No online activity logs now or ever
+
+# Variables:
+#   $countries (number) - number of available countries
+vpn-shared-features-access-countries = Access to servers in { $countries }+ countries
 
 # Variables:
 #   $devices (number) - maximum number of connected devices
 vpn-shared-features-devices = Option to connect up to { $devices } devices
+
+# Variables:
+#   $devices (number) - number of available devices
+vpn-shared-features-protection = Protection for up to { $devices } devices
 
 # Variables:
 #   $servers (number) - number of available servers
@@ -73,5 +82,30 @@ vpn-shared-pricing-save-percent = Save { $percent }%
 # Variables:
 #   $amount (string) - a string containing the total annual subscription price together with the appropriate currency symbol e.g. '35,94 €'
 vpn-shared-pricing-total = { $amount } total
+
+# Platform subpage shared strings
+
+vpn-shared-platform-cta-headline = Let's get started
+vpn-shared-platform-cta-button = See pricing & availability
+
+vpn-shared-platform-privacy-promise = Your privacy is our promise
+
+vpn-shared-platform-trust-partner-headline = About our trusted partner
+# Variables:
+#   $policy (url) - link to https://mullvad.net/help/no-logging-data-policy/
+#   $wireguard (url) - link to https://mullvad.net/help/why-wireguard/
+vpn-shared-platform-trust-partner-copy = The { -brand-name-mozilla-vpn } runs on a global network of servers powered by <a href="{ $policy }">{ -brand-name-mullvad }</a> using the <a href="{ $wireguard }">{ -brand-name-wireguard }</a>® protocol. { -brand-name-mullvad } puts your privacy first and does not keep logs of any kind.
+
+vpn-shared-platform-what-youll-get = What you’ll get with { -brand-name-mozilla-vpn }:
+
+# Subnav strings
+vpn-subnav-title = { -brand-name-mozilla-vpn }
+vpn-subnav-platform-android = { -brand-name-android }
+vpn-subnav-platform-desktop = Desktop
+vpn-subnav-platform-ios = { -brand-name-ios }
+vpn-subnav-platform-linux = { -brand-name-linux }
+vpn-subnav-platform-mac = { -brand-name-mac-short }
+vpn-subnav-platform-mobile = Mobile
+vpn-subnav-platform-windows = { -brand-name-windows }
 
 ##

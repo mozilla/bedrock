@@ -54,6 +54,26 @@
 </section>
 {%- endmacro %}
 
+{% macro vpn_platform_hero(heading, subheading, desc, image_url) -%}
+<section class="vpn-hero">
+  <div class="mzp-l-content mzp-t-content-xl">
+    <div class="vpn-hero-container">
+      <div class="vpn-hero-body">
+        <h1 class="vpn-hero-heading">{{ heading }}</h1>
+        <h2 class="vpn-hero-sub-heading">{{ subheading }}</h2>
+        <div class="vpn-hero-desc">
+          <p>{{ desc }}</p>
+          {{ caller() }}
+        </div>
+      </div>
+      <div class="vpn-hero-image hide-from-legacy-ie" data-illustration="n-1">
+        {{ high_res_img(image_url, {'alt': image_alt, 'width': '480', 'height': '480'}) }}
+      </div>
+    </div>
+  </div>
+</section>
+{%- endmacro %}
+
 {% macro join_waitlist_button(link_text, position=None, class_name=None) -%}
   <a class="mzp-c-button mzp-t-xl {% if class_name %}{{ class_name }}{% endif %} vpn-join-waitlist js-text-vpn-not-available hide-from-legacy-ie" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" {% if position %}data-cta-position="{{ position }}"{% endif %}>
     {{ link_text }}
