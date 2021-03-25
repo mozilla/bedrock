@@ -125,8 +125,8 @@
 </div>
 {%- endmacro %}
 
-{% macro vpn_content_media(heading, image_url, class_name=None, has_outline=False, loading='lazy') -%}
-  <section class="vpn-content-media {% if has_outline %}has-outline{% endif %} {% if class_name %}{{ class_name }}{% endif %}">
+{% macro vpn_content_media(heading, image_url, class_name=None, has_outline=False, has_tight_leading=False, loading='lazy') -%}
+  <section class="vpn-content-media {% if has_outline %}has-outline{% endif %} {% if has_tight_leading %}t-leading-tight{% endif %} {% if class_name %}{{ class_name }}{% endif %}">
     <div class="vpn-content-media-image-container">
       <div class="vpn-content-media-image">
         {{ high_res_img(image_url, {'alt': image_alt, 'width': '480', 'height': '480', 'loading': loading}) }}

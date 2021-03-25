@@ -22,7 +22,7 @@
 {% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
 
 {% block page_css %}
-  {{ css_bundle('mozilla-vpn-landing') }}
+  {{ css_bundle('mozilla-vpn-platform') }}
 {% endblock %}
 
 {% block site_header %}
@@ -49,7 +49,7 @@
       image_url='img/products/vpn/platforms/vpn-hero-desktop.png'
     ) %}
       <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.landing') }}">{{ ftl('vpn-shared-platform-cta-button') }}</a>
-      <p class="guarantee-copy js-text-vpn-fixed-price-available">
+      <p class="guarantee-copy">
         {{ ftl('vpn-shared-money-back-guarantee') }}
       </p>
     {% endcall %}
@@ -60,6 +60,7 @@
       heading=ftl('vpn-shared-platform-privacy-promise'),
       image_url='img/products/vpn/platforms/vpn-cntwell-privacy-promise.png',
       class_name='vpn-content-media-right-half',
+      has_tight_leading=True,
       has_outline=True,
       loading='eager'
     ) %}
@@ -70,7 +71,8 @@
     {% call vpn_content_media(
       heading=ftl('vpn-shared-platform-what-youll-get'),
       image_url='img/products/vpn/platforms/vpn-cntwell-check-mark.png',
-      class_name='vpn-content-media-left-half'
+      class_name='vpn-content-media-left-half',
+      has_tight_leading=True,
     ) %}
       <ul class="mzp-u-list-styled vpn-feature-list">
         <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-protection', devices=vpn_devices) }}</li>
@@ -86,6 +88,7 @@
       heading=ftl('vpn-desktop-wifi-headline'),
       image_url='img/products/vpn/platforms/vpn-cntwell-public-wifi-desktop.png',
       class_name='vpn-content-media-right-half',
+      has_tight_leading=True,
     ) %}
       <p>{{ ftl('vpn-desktop-wifi-copy') }}</p>
     {% endcall %}
@@ -93,7 +96,8 @@
     {% call vpn_content_media(
       heading=ftl('vpn-desktop-privacy-headline'),
       image_url='img/products/vpn/platforms/vpn-cntwell-one-click.png',
-      class_name='vpn-content-media-left-half'
+      class_name='vpn-content-media-left-half',
+      has_tight_leading=True,
     ) %}
       <p>{{ ftl('vpn-desktop-privacy-copy') }}</p>
     {% endcall %}
@@ -102,6 +106,7 @@
       heading=ftl('vpn-desktop-servers-headline'),
       image_url='img/products/vpn/platforms/vpn-cntwell-globe.png',
       class_name='vpn-content-media-right-half',
+      has_tight_leading=True,
     ) %}
       <p>{{ ftl('vpn-desktop-servers-copy', servers=vpn_servers) }}</p>
     {% endcall %}
@@ -109,7 +114,8 @@
     {% call vpn_content_media(
       heading=ftl('vpn-desktop-devices-headline', devices=vpn_devices),
       image_url='img/products/vpn/platforms/vpn-cntwell-devices.png',
-      class_name='vpn-content-media-left-half'
+      class_name='vpn-content-media-left-half',
+      has_tight_leading=True,
     ) %}
       <p>{{ ftl('vpn-desktop-devices-copy') }}</p>
     {% endcall %}
@@ -118,6 +124,7 @@
       heading=ftl('vpn-desktop-speed-headline'),
       image_url='img/products/vpn/platforms/vpn-cntwell-speed-guage.png',
       class_name='vpn-content-media-right-half',
+      has_tight_leading=True,
     ) %}
       <p>{{ ftl('vpn-desktop-speed-copy') }}</p>
     {% endcall %}
@@ -125,13 +132,14 @@
     {% call vpn_content_media(
       heading=ftl('vpn-desktop-log-headline'),
       image_url='img/products/vpn/platforms/vpn-cntwell-privacy.png',
-      class_name='vpn-content-media-left-half'
+      class_name='vpn-content-media-left-half',
+      has_tight_leading=True,
     ) %}
       <p>{{ ftl('vpn-desktop-log-copy') }}</p>
     {% endcall %}
 
     {% call vpn_content_block(
-      class_name='t-highlight platform-get-started-cta'
+      class_name='t-highlight t-center'
     ) %}
       <h2 class="vpn-content-well-title">{{ ftl('vpn-shared-platform-cta-headline') }}</h2>
       <div class="vpn-content-well-desc">
@@ -145,7 +153,7 @@
     {% call vpn_content_media(
       heading=ftl('vpn-shared-platform-trust-partner-headline'),
       image_url='img/products/vpn/platforms/vpn-cntwell-mullvad-partner.png',
-      class_name='vpn-content-media-left-half vpn-content-well-alt-layout'
+      class_name='vpn-content-media-left-half',
     ) %}
       {{ ftl('vpn-shared-platform-trust-partner-copy', policy='https://mullvad.net/help/no-logging-data-policy/', wireguard='https://mullvad.net/help/why-wireguard/' ) }}
     {% endcall %}

@@ -74,7 +74,7 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    &.platform-get-started-cta {
+    &.t-center {
         .vpn-content-block-container {
             display: flex;
             flex-direction: column;
@@ -92,6 +92,10 @@ $image-path: '/media/protocol/img';
         }
 
         .mzp-c-button {
+            margin-bottom: $spacing-md;
+        }
+
+        .guarantee-copy {
             margin-bottom: $spacing-md;
         }
 
@@ -172,6 +176,33 @@ $image-path: '/media/protocol/img';
     .vpn-content-media-copy,
     .vpn-content-media-image-container {
         padding: $spacing-lg $spacing-xl;
+    }
+
+    &.t-leading-tight {
+     .vpn-content-media-heading {
+         margin-bottom: 0;
+     }
+     .vpn-content-media-image-container {
+        padding-bottom: 0;
+     }
+     .vpn-content-media-copy {
+         margin-top: 0;
+         padding-top: 0;
+     }
+
+     @media #{$mq-md} {
+         // Reset padding back to default on non-mobile screens
+         .vpn-content-media-heading {
+             margin-bottom: $spacing-xl;
+         }
+         .vpn-content-media-copy,
+         .vpn-content-media-image-container {
+             margin-top: 0;
+             padding: ($spacing-xl * 2) $spacing-2xl;
+             width: calc(50% - (#{$spacing-2xl} * 2));
+         }
+     }
+
     }
 
     &.has-outline {
