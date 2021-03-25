@@ -53,6 +53,15 @@ vpn-shared-countries-coming-soon = Available in { $countries } countries now. Mo
 #   $attrs (string) - specific attributes added to external links
 vpn-shared-features-full-list-servers = See our full list of <a href="{ $url }" { $attrs }>servers</a>.
 
+# Variables:
+#   $countries (number) - number of available countries
+vpn-shared-features-strong-servers = Strong servers in { $countries }+ countries
+
+# Variables:
+#   $devices (number) - number of available devices
+vpn-shared-features-connect = Connect up to { $devices } devices
+
+
 vpn-shared-refund-policy = Refund Policy
 vpn-shared-privacy-notice = Privacy Notice
 vpn-shared-terms-conditions = Terms and Conditions
