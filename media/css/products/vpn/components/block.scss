@@ -75,15 +75,8 @@ $image-path: '/media/protocol/img';
     }
 
     &.t-center {
-        .vpn-content-block-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
 
-        .vpn-content-well-desc,
-        .vpn-content-well-title {
+        .vpn-content-block-container {
             text-align: center;
         }
 
@@ -91,21 +84,9 @@ $image-path: '/media/protocol/img';
             @include text-title-md;
         }
 
-        .mzp-c-button {
-            margin-bottom: $spacing-md;
-        }
-
         .guarantee-copy {
             margin-bottom: $spacing-md;
         }
-
-        @media #{$mq-md} {
-            .mzp-c-button {
-                @include font-size(18px);
-            }
-        }
-
-
     }
 
     @media #{$mq-md} {
