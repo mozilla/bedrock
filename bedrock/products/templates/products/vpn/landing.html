@@ -43,6 +43,13 @@
 
 {% block content %}
 <main>
+  {# error message for visitors who try to sign-in without a subscription (issue 10002) #}
+  {% if sub_not_found %}
+    <div class="mzp-c-notification-bar mzp-t-error">
+      <p>{{ ftl('vpn-landing-sub-not-found') }}</p>
+    </div>
+  {% endif %}
+
   {% block hero %}
     {% call vpn_hero(
       heading=ftl('vpn-shared-product-name'),
