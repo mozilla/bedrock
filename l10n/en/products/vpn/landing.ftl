@@ -82,6 +82,9 @@ vpn-landing-faq-manage-subscription-question-desc = If you’re already subscrib
 
 vpn-landing-faq-link = See more FAQs
 
+# message shown to visitors who try to sign-in without an active subscription.
+vpn-landing-sub-not-found = Oops! It looks like you haven’t subscribed yet.
+
 ## Invite page https://www-dev.allizom.org/products/vpn/invite/
 
 vpn-landing-invite-page-title = Join the Waitlist: { -brand-name-mozilla-vpn }

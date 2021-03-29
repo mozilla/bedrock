@@ -37,8 +37,15 @@ def vpn_landing_page(request):
     ftl_files = ['products/vpn/landing', 'products/vpn/shared']
 
     locale = l10n_utils.get_locale(request)
+    sub_not_found = request.GET.get('vpn-sub-not-found', None)
     entrypoint_experiment = request.GET.get('entrypoint_experiment', None)
     entrypoint_variation = request.GET.get('entrypoint_variation', None)
+
+    # error message for visitors who try to sign-in without a subscription (issue 10002)
+    if sub_not_found == 'true':
+        sub_not_found = True
+    else:
+        sub_not_found = False
 
     # ensure experiment parameters matches pre-defined values
     if entrypoint_variation not in ['a', 'b', 'c', 'd']:
@@ -63,7 +70,8 @@ def vpn_landing_page(request):
         'available_countries': VPN_AVAILABLE_COUNTRIES,
         'connect_servers': VPN_CONNECT_SERVERS,
         'connect_countries': VPN_CONNECT_COUNTRIES,
-        'connect_devices': VPN_CONNECT_DEVICES
+        'connect_devices': VPN_CONNECT_DEVICES,
+        'sub_not_found': sub_not_found
     }
 
     return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
