@@ -585,8 +585,8 @@ class WhatsnewView(L10nTemplateView):
         if channel not in pre_release_channels:
             channel = ''
 
-        # add VPN waitlist form for WNP 87 (Issue 9956)
-        if version.startswith('87.') and locale in ['de', 'fr']:
+        # add VPN waitlist form for WNP 87/88 (Issue 9956, 10049)
+        if version.startswith('87.') or version.startswith('88.') and locale in ['de', 'fr']:
             ctx['newsletter_form'] = VPNWaitlistForm(locale)
 
         analytics_version = str(num_version) + channel
@@ -620,6 +620,10 @@ class WhatsnewView(L10nTemplateView):
                 template = 'firefox/developer/whatsnew.html'
             else:
                 template = 'firefox/whatsnew/index.html'
+        elif version.startswith('88.') and locale == 'de':
+            template = 'firefox/whatsnew/whatsnew-fx87-de.html'
+        elif version.startswith('88.') and locale == 'fr':
+            template = 'firefox/whatsnew/whatsnew-fx87-fr.html'
         elif version.startswith('87.') and locale == 'en-US':
             template = 'firefox/whatsnew/whatsnew-fx87-en.html'
         elif version.startswith('87.') and locale == 'de':
