@@ -19,7 +19,8 @@ if (typeof window.Mozilla === 'undefined') {
         'https://latest.dev.lcip.org/',
         'https://accounts.firefox.com.cn/',
         'https://vpn.mozilla.org/',
-        'https://stage-vpn.guardian.nonprod.cloudops.mozgcp.net/'
+        'https://stage-vpn.guardian.nonprod.cloudops.mozgcp.net/',
+        'https://guardian-dev.herokuapp.com/'
     ];
 
     var _buttons;

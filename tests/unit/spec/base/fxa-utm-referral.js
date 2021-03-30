@@ -85,6 +85,28 @@ describe('fxa-utm-referral.js', function() {
             expect(Mozilla.UtmUrl.getAttributionData(validObj)).toEqual(validData);
         });
 
+        it('should return entrypoint and utm params if supported source attribute is present', function() {
+            var validObj = {
+                'source': 'whatsnew88'
+            };
+
+            var validData = {
+                'entrypoint': 'www.mozilla.org-whatsnew',
+                'utm_source': 'www.mozilla.org-whatsnew',
+                'utm_campaign': 'whatsnew88'
+            };
+
+            expect(Mozilla.UtmUrl.getAttributionData(validObj)).toEqual(validData);
+        });
+
+        it('should return null if source attribute is non-specific', function() {
+            var validObj = {
+                'source': 'the-dude'
+            };
+
+            expect(Mozilla.UtmUrl.getAttributionData(validObj)).toBeNull();
+        });
+
         it('should return an object without any danagerous params', function () {
             var dangerousSource = {
                 'utm_source': 'www.mozilla.org',
@@ -152,7 +174,7 @@ describe('fxa-utm-referral.js', function() {
             expect(Mozilla.UtmUrl.getAttributionData(specialData)).toEqual(specialSource);
         });
 
-        it('decode URL components', function () {
+        it('should decode URL components', function () {
             var encodedData = {
                 'utm_source': '%25',
                 'utm_campaign': '%2F'
