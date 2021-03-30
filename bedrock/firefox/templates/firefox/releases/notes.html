@@ -23,7 +23,7 @@
 {% if release.product != 'Firefox for iOS' %}
   {% if (ver < 70) and (ver > 57) %}
     {% set theme_class = 't-quantum' %}
-  {% elif ver < 57 %}
+  {% elif ver <= 57 %}
     {% set theme_class = 't-pre-quantum' %}
   {% endif %}
 {% elif release.product == 'Firefox for iOS' %}
@@ -80,9 +80,11 @@
           <a class="mzp-c-menu-title" href="{{ url('firefox.notes', platform='android') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Android">{{ ftl('sub-navigation-android') }}</a>
         </li>
       {% endif %}
-        <li class="c-sub-navigation-item">
-          <a href="{{ url('firefox.notes', platform='android', channel='beta') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Android Beta">{{ ftl('sub-navigation-android-beta') }}</a>
-        </li>
+        {# Bug # 1701489
+          <li class="c-sub-navigation-item">
+            <a href="{{ url('firefox.notes', platform='android', channel='beta') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Android Beta">{{ ftl('sub-navigation-android-beta') }}</a>
+          </li>
+        #}
         <li class="c-sub-navigation-item">
           <a class="mzp-c-menu-title" href="{{ url('firefox.notes', platform='ios') }}" data-link-type="nav" data-link-position="subnav" data-link-name="iOS">{{ ftl('sub-navigation-ios') }}</a>
         </li>
