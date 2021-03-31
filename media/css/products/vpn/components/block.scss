@@ -74,6 +74,21 @@ $image-path: '/media/protocol/img';
         }
     }
 
+    &.t-center {
+
+        .vpn-content-block-container {
+            text-align: center;
+        }
+
+        .vpn-content-well-title {
+            @include text-title-md;
+        }
+
+        .guarantee-copy {
+            margin-bottom: $spacing-md;
+        }
+    }
+
     @media #{$mq-md} {
         margin-bottom: $layout-xl;
 
@@ -139,9 +154,14 @@ $image-path: '/media/protocol/img';
         color: $color-marketing-gray-90;
     }
 
-    .vpn-content-media-copy,
+    .vpn-content-media-copy {
+        padding: $spacing-lg $spacing-xl;
+        padding-top: 0;
+    }
+
     .vpn-content-media-image-container {
         padding: $spacing-lg $spacing-xl;
+        padding-bottom: 0;
     }
 
     &.has-outline {
@@ -172,6 +192,10 @@ $image-path: '/media/protocol/img';
             margin-top: 0;
             padding: ($spacing-xl * 2) $spacing-2xl;
             width: calc(50% - (#{$spacing-2xl} * 2));
+        }
+
+        .vpn-content-media-heading {
+            margin-bottom: $spacing-xl;
         }
 
         &.has-outline {

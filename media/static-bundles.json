@@ -824,8 +824,9 @@
     },
     {
       "files": [
-        "css/products/vpn/platforms/common.scss",
-        "css/products/vpn/platforms/shared.scss"
+        "css/products/vpn/components/hero.scss",
+        "css/products/vpn/components/block.scss",
+        "css/products/vpn/common.scss"
       ],
       "name": "mozilla-vpn-platforms"
     },
