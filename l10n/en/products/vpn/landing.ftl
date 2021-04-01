@@ -12,7 +12,11 @@ vpn-landing-page-title = { -brand-name-mozilla-vpn }: Protect Your Entire Device
 #   $countries (number) - number of available countries
 vpn-landing-page-desc = Use the { -brand-name-mozilla-vpn } for full-device protection for all apps. With servers in { $countries }+ countries, you can connect to anywhere, from anywhere.
 
+vpn-landing-hero-sub-heading-v2 = Security, reliability and speed — on every device, anywhere you go.
+
+# Obsolete string
 vpn-landing-hero-sub-heading = Security you can rely on. A name you can trust.
+
 vpn-landing-hero-desc = A Virtual Private Network from the makers of { -brand-name-firefox }.
 vpn-landing-privacy-heading = One tap to privacy
 vpn-landing-privacy-desc = Surf, stream, game, and get work done while maintaining your privacy online. Whether you’re traveling, using public WiFi, or simply looking for more online security, we will always put your privacy first.
