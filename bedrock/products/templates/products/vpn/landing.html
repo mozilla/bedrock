@@ -21,12 +21,6 @@
   {{ css_bundle('mozilla-vpn-landing') }}
 {% endblock %}
 
-{% block experiments %}
-  {% if switch('vpn-landing-page-heading-experiment', ['en-US', 'de', 'fr']) %}
-    {{ js_bundle('vpn-landing-page-heading-experiment') }}
-  {% endif %}
-{% endblock %}
-
 {% block site_header %}
   {% with
     custom_nav_cta=vpn_nav_cta(
@@ -53,7 +47,7 @@
   {% block hero %}
     {% call vpn_hero(
       heading=ftl('vpn-shared-product-name'),
-      subheading=ftl('vpn-landing-hero-sub-heading'),
+      subheading=ftl('vpn-landing-hero-sub-heading-v2', fallback='vpn-landing-hero-sub-heading'),
       desc=ftl('vpn-landing-hero-desc')
     ) %}
       {{ vpn_subscribe_link(
