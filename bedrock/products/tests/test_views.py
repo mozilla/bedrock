@@ -100,35 +100,3 @@ class TestVPNLandingPage(TestCase):
         view(req)
         template = render_mock.call_args[0][1]
         assert template == 'products/vpn/landing.html'
-
-    def test_vpn_landing_page_variant_a_template(self, render_mock):
-        req = RequestFactory().get('/products/vpn/?entrypoint_experiment=vpn-landing-page-heading&entrypoint_variation=a')
-        req.locale = 'en-US'
-        view = views.vpn_landing_page
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == 'products/vpn/variants/heading-a.html'
-
-    def test_vpn_landing_page_variant_b_template(self, render_mock):
-        req = RequestFactory().get('/products/vpn/?entrypoint_experiment=vpn-landing-page-heading&entrypoint_variation=b')
-        req.locale = 'en-US'
-        view = views.vpn_landing_page
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == 'products/vpn/variants/heading-b.html'
-
-    def test_vpn_landing_page_variant_c_template(self, render_mock):
-        req = RequestFactory().get('/products/vpn/?entrypoint_experiment=vpn-landing-page-heading&entrypoint_variation=c')
-        req.locale = 'en-US'
-        view = views.vpn_landing_page
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == 'products/vpn/variants/heading-c.html'
-
-    def test_vpn_landing_page_variant_d_template(self, render_mock):
-        req = RequestFactory().get('/products/vpn/?entrypoint_experiment=vpn-landing-page-heading&entrypoint_variation=d')
-        req.locale = 'en-US'
-        view = views.vpn_landing_page
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == 'products/vpn/variants/heading-d.html'

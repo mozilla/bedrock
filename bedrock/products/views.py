@@ -35,29 +35,14 @@ def vpn_fixed_price_countries():
 @require_safe
 def vpn_landing_page(request):
     ftl_files = ['products/vpn/landing', 'products/vpn/shared']
-
-    locale = l10n_utils.get_locale(request)
+    template_name = 'products/vpn/landing.html'
     sub_not_found = request.GET.get('vpn-sub-not-found', None)
-    entrypoint_experiment = request.GET.get('entrypoint_experiment', None)
-    entrypoint_variation = request.GET.get('entrypoint_variation', None)
 
     # error message for visitors who try to sign-in without a subscription (issue 10002)
     if sub_not_found == 'true':
         sub_not_found = True
     else:
         sub_not_found = False
-
-    # ensure experiment parameters matches pre-defined values
-    if entrypoint_variation not in ['a', 'b', 'c', 'd']:
-        entrypoint_variation = None
-
-    if entrypoint_experiment != 'vpn-landing-page-heading':
-        entrypoint_variation = None
-
-    if entrypoint_experiment and entrypoint_variation and locale in ['en-US', 'de', 'fr']:
-        template_name = 'products/vpn/variants/heading-{}.html'.format(entrypoint_variation)
-    else:
-        template_name = 'products/vpn/landing.html'
 
     context = {
         'fixed_price_countries': vpn_fixed_price_countries(),
