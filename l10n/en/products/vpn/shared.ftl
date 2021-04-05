@@ -94,7 +94,7 @@ vpn-shared-pricing-total = { $amount } total
 
 # Platform subpage shared strings
 
-vpn-shared-platform-cta-headline = Let's get started
+vpn-shared-platform-cta-headline = Let’s get started
 vpn-shared-platform-cta-button = See pricing & availability
 
 vpn-shared-platform-privacy-promise = Your privacy is our promise
