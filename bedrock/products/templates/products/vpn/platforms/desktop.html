@@ -102,7 +102,7 @@
       image_url='img/products/vpn/platforms/vpn-cntwell-globe.png',
       class_name='vpn-content-media-right-half',
     ) %}
-      <p>{{ ftl('vpn-desktop-servers-copy', servers=vpn_servers) }}</p>
+      <p>{{ ftl('vpn-desktop-servers-copy-updated', fallback='vpn-desktop-servers-copy', servers=vpn_servers) }}</p>
     {% endcall %}
 
     {% call vpn_content_media(
