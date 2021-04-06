@@ -135,7 +135,7 @@ describe('core-datalayer.js', function() {
                         'setup': false,
                         'desktopDevices': 'unknown',
                         'mobileDevices': 'unknown',
-                        'totelDevices': 'unknown'
+                        'totalDevices': 'unknown'
                     }
                 }
             };
@@ -156,7 +156,7 @@ describe('core-datalayer.js', function() {
                         'setup': true,
                         'desktopDevices': 1,
                         'mobileDevices': 0,
-                        'totelDevices': 1
+                        'totalDevices': 1
                     }
                 }
             };
@@ -179,7 +179,7 @@ describe('core-datalayer.js', function() {
                         'setup': true,
                         'desktopDevices': 2,
                         'mobileDevices': 0,
-                        'totelDevices': 2
+                        'totalDevices': 2
                     }
                 }
             };
@@ -202,7 +202,7 @@ describe('core-datalayer.js', function() {
                         'setup': true,
                         'desktopDevices': 1,
                         'mobileDevices': 1,
-                        'totelDevices': 2
+                        'totalDevices': 2
                     }
                 }
             };
@@ -225,7 +225,7 @@ describe('core-datalayer.js', function() {
                         'setup': true,
                         'desktopDevices': 2,
                         'mobileDevices': 1,
-                        'totelDevices': 3
+                        'totalDevices': 3
                     }
                 }
             };
@@ -248,7 +248,7 @@ describe('core-datalayer.js', function() {
                         'setup': true,
                         'desktopDevices': 'unknown',
                         'mobileDevices': 'unknown',
-                        'totelDevices': 'unknown'
+                        'totalDevices': 'unknown'
                     }
                 }
             };
@@ -271,7 +271,7 @@ describe('core-datalayer.js', function() {
                         'setup': false,
                         'desktopDevices': 'unknown',
                         'mobileDevices': 'unknown',
-                        'totelDevices': 'unknown'
+                        'totalDevices': 'unknown'
                     }
                 }
             };
@@ -292,7 +292,7 @@ describe('core-datalayer.js', function() {
                         'setup': true,
                         'desktopDevices': 'unknown',
                         'mobileDevices': 'unknown',
-                        'totelDevices': 'unknown'
+                        'totalDevices': 'unknown'
                     }
                 }
             };
@@ -315,7 +315,7 @@ describe('core-datalayer.js', function() {
                         'setup': false,
                         'desktopDevices': 'unknown',
                         'mobileDevices': 'unknown',
-                        'totelDevices': 'unknown'
+                        'totalDevices': 'unknown'
                     }
                 }
             };
@@ -336,7 +336,7 @@ describe('core-datalayer.js', function() {
                         'setup': false,
                         'desktopDevices': 'unknown',
                         'mobileDevices': 'unknown',
-                        'totelDevices': 'unknown'
+                        'totalDevices': 'unknown'
                     }
                 }
             };
@@ -357,7 +357,7 @@ describe('core-datalayer.js', function() {
                         'setup': false,
                         'desktopDevices': 'unknown',
                         'mobileDevices': 'unknown',
-                        'totelDevices': 'unknown'
+                        'totalDevices': 'unknown'
                     }
                 }
             };
@@ -377,7 +377,7 @@ describe('core-datalayer.js', function() {
                         'setup': false,
                         'desktopDevices': 'unknown',
                         'mobileDevices': 'unknown',
-                        'totelDevices': 'unknown'
+                        'totalDevices': 'unknown'
                     }
                 }
             };
@@ -397,7 +397,7 @@ describe('core-datalayer.js', function() {
                         'setup': false,
                         'desktopDevices': 'unknown',
                         'mobileDevices': 'unknown',
-                        'totelDevices': 'unknown'
+                        'totalDevices': 'unknown'
                     }
                 }
             };
