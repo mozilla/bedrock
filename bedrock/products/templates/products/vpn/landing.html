@@ -143,7 +143,10 @@
       </p>
     {% endcall %}
 
-    {% include 'products/vpn/includes/pricing-fixed.html' %}
+    {# note: `id=#pricing` is used as an anchor link from android in-product subscription flows, so do not remove (issue 10039) #}
+    <div id="pricing" class="mzp-is-anchor-link">
+      {% include 'products/vpn/includes/pricing-fixed.html' %}
+    </div>
 
   </div>
 
