@@ -78,7 +78,8 @@ def vpn_subscribe_link(ctx, entrypoint, link_text, plan=None, class_name=None, o
     else:
         plan_id = settings.VPN_FIXED_PRICE_MONTHLY_USD
 
-    if switch('vpn-launch-germany-france'):
+    # switching to the new subscription URLs will be time co-ordinated with the VPN product team.
+    if switch('vpn-new-subscription-url-format'):
         product_url = f'{settings.VPN_ENDPOINT}r/vpn/subscribe/products/{settings.VPN_PRODUCT_ID}?plan={plan_id}'
     else:
         product_url = f'{settings.VPN_ENDPOINT}r/vpn/subscribe'
