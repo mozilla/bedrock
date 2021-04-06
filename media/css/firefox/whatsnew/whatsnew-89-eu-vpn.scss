@@ -7,92 +7,28 @@ $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
 @import '../../../protocol/css/components/notification-bar';
-@import '../../../protocol/css/components/forms/form';
-@import '../../../protocol/css/components/forms/field';
-@import '../../../protocol/css/components/forms/choice';
-@import '../../../protocol/css/components/forms/status';
-@import '../../../protocol/css/components/forms/set';
+
 @import 'includes/header';
 
+.wnp-header-image {
+    padding-bottom: 0;
+    padding-top: 0;
+}
 
-//* -------------------------------------------------------------------------- */
-// Waitlist form styles
-
-.mozilla-vpn-logo {
-    display: block;
-    margin: 0 auto $spacing-2xl;
+.wnp-content-main {
+    text-align: center;
 }
 
 .wnp-main-title {
     @include text-title-md;
     color: get-theme('title-text-color');
     margin-bottom: $spacing-xl;
-    text-align: center;
-}
-
-.wnp-main-subtitle {
-    @include text-title-sm;
-    color: get-theme('title-text-color');
-    margin-bottom: $spacing-2xl;
-    text-align: center;
 }
 
 .wnp-main-tagline {
     @include text-body-lg;
     font-weight: normal;
     margin-bottom: $spacing-2xl;
-    text-align: center;
-}
-
-.wnp-sub-tagline {
-    @include text-body-lg;
-    font-weight: normal;
-    margin-top: $spacing-2xl;
-    text-align: center;
-}
-
-.mzp-c-newsletter-form {
-    margin: $layout-sm 0 $layout-xl;
-
-    input[type='email'],
-    select {
-        width: 100%;
-    }
-
-    button[type='submit'] {
-        display: block;
-        margin: $spacing-xl auto;
-    }
-
-    label {
-        @include text-body-md;
-    }
-}
-
-.vpn-invite-privacy {
-    @include text-body-sm;
-    margin: $spacing-2xl 0 0;
-    text-align: center;
-
-    p {
-        margin-bottom: 0;
-    }
-}
-
-.vpn-invite-success {
-    @include text-body-lg;
-    display: none;
-    margin: $layout-sm 0 $layout-xl;
-    text-align: center;
-
-    h3 {
-        color: get-theme('title-text-color');
-        margin-bottom: $spacing-2xl;
-    }
-}
-
-.mzp-c-form-errors {
-    display: none;
 }
 
 //* -------------------------------------------------------------------------- */
@@ -101,7 +37,7 @@ $image-path: '/media/protocol/img';
 
 .c-picto-block {
     @include border-box;
-    margin: 0 auto $spacing-2xl;
+    margin: $spacing-2xl auto;
     max-width: $content-md - ($layout-md * 2);
     padding: 0 $layout-md;
 
@@ -136,11 +72,6 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.wnp-more-cta {
-    margin-bottom: $layout-xl;
-    text-align: center;
-}
-
 //* -------------------------------------------------------------------------- */
 // Utilities (link to release notes)
 .c-utilities {
@@ -158,31 +89,40 @@ $image-path: '/media/protocol/img';
         color: $color-white;
     }
 
-    .mozilla-vpn-wordmark,
-    .mozilla-vpn-icon {
-        fill: $color-white;
-    }
-
     .wnp-main-title,
-    .wnp-main-subtitle,
-    .vpn-invite-success h3 {
+    .wnp-main-subtitle {
         color: get-theme('title-text-color-inverse');
     }
 
-    .wnp-more {
-        .mzp-c-button.mzp-t-secondary {
-            border-color: get-theme('title-text-color-inverse');
-            color: get-theme('title-text-color-inverse');
+    .wnp-header-image {
+        .line {
+            fill: $color-white;
+        }
 
-            &:hover,
-            &:focus {
-                border-color: get-theme('title-text-color-inverse');
-            }
+        .globe,
+        .marker,
+        .laptop,
+        .credit-card {
+            fill: $color-dark-gray-60;
+        }
+
+        .wheel {
+            fill: #a577ff;
+        }
+
+        .cloud {
+            fill: #6a3de6;
+        }
+
+        .magnifying-glass {
+            fill: transparent;
+        }
+
+        .signal {
+            fill: #c4c6fc;
         }
     }
 
-    .vpn-invite-privacy a,
-    .wnp-main-subtitle a,
     .c-picto-block-body a,
     .c-utilities a {
         &:link,
@@ -202,12 +142,23 @@ $image-path: '/media/protocol/img';
     }
 
     .c-picto-block-image {
-        .line {
+        .line,
+        .circle {
+            stroke: $color-white;
+        }
+
+        .fill-line {
             fill: $color-white;
         }
 
-        .building {
-            fill: #a77ffa;
+        .card {
+            fill: $color-dark-gray-60;
+            stroke: $color-white;
+        }
+
+        .play {
+            fill: $color-dark-gray-60;
+            stroke: none;
         }
     }
 

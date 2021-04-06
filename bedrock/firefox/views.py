@@ -561,6 +561,8 @@ class WhatsnewView(L10nTemplateView):
         'firefox/whatsnew/whatsnew-mobile-qrcode-de.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx87-de.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx87-fr.html': ['firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx89-de.html': ['firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx89-fr.html': ['firefox/whatsnew/whatsnew'],
     }
 
     def get_context_data(self, **kwargs):
@@ -611,6 +613,7 @@ class WhatsnewView(L10nTemplateView):
         if oldversion.startswith('rv:'):
             oldversion = oldversion[3:]
 
+        pre_release_channels = ['nightly', 'developer', 'beta']
         channel = detect_channel(version)
 
         if channel == 'nightly':
@@ -620,6 +623,10 @@ class WhatsnewView(L10nTemplateView):
                 template = 'firefox/developer/whatsnew.html'
             else:
                 template = 'firefox/whatsnew/index.html'
+        elif version.startswith('89.') and locale == 'de' and channel not in pre_release_channels:
+            template = 'firefox/whatsnew/whatsnew-fx89-de.html'
+        elif version.startswith('89.') and locale == 'fr' and channel not in pre_release_channels:
+            template = 'firefox/whatsnew/whatsnew-fx89-fr.html'
         elif version.startswith('88.') and locale == 'de':
             template = 'firefox/whatsnew/whatsnew-fx87-de.html'
         elif version.startswith('88.') and locale == 'fr':
@@ -690,6 +697,14 @@ class WhatsNewChinaView(WhatsnewView):
         elif template == ['firefox/whatsnew/whatsnew-fx85.html']:
             template = ['firefox/whatsnew/index-account.html']
         elif template == ['firefox/whatsnew/whatsnew-fx87-en.html']:
+            template = ['firefox/whatsnew/index-account.html']
+        elif template == ['firefox/whatsnew/whatsnew-fx87-de.html']:
+            template = ['firefox/whatsnew/index-account.html']
+        elif template == ['firefox/whatsnew/whatsnew-fx87-fr.html']:
+            template = ['firefox/whatsnew/index-account.html']
+        elif template == ['firefox/whatsnew/whatsnew-fx89-de.html']:
+            template = ['firefox/whatsnew/index-account.html']
+        elif template == ['firefox/whatsnew/whatsnew-fx89-fr.html']:
             template = ['firefox/whatsnew/index-account.html']
 
         return template

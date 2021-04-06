@@ -1,0 +1,74 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}Was ist neu in Firefox? – Mehr Privatsphäre, mehr Schutz.{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}Was ist neu in Firefox? – Mehr Privatsphäre, mehr Schutz.{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_89_eu_vpn') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main class="content-wrapper mzp-t-firefox">
+    {% include 'firefox/whatsnew/includes/header.html' %}
+
+  <section class="wnp-content-main">
+    <div class="wnp-header-image mzp-l-content mzp-t-content-lg">
+      {% include 'firefox/whatsnew/includes/fx89/vpn-header.svg' %}
+    </div>
+
+    <div class="mzp-l-content mzp-t-content-md">
+      <h2 class="wnp-main-title">Es ist soweit. <br>Mozilla VPN ist da!</h2>
+      <p class="wnp-main-tagline">Surfen, streamen, arbeiten und spielen wird jetzt noch sicherer. Schütze deine Privatsphäre in öffentlichen WLAN-Netzen, auf Reisen oder ganz grundsätzlich immer, wenn du online bist.</p>
+      {% set landing_source = '?source=' + campaign if campaign else '' %}
+      <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.landing') }}{{ landing_source }}" data-cta-type="button" data-cta-text="Go to Mozilla VPN">
+        Hier geht’s zum VPN
+      </a>
+    </div>
+  </section>
+
+  <div class="wnp-more mzp-l-content mzp-t-content-xl">
+    <div class="l-columns-two">
+      <div class="c-picto-block">
+        <div class="c-picto-block-image">
+          {% include 'firefox/whatsnew/includes/fx89/one-tap.svg' %}
+        </div>
+        <h3 class="c-picto-block-title">Privatsphäre per Fingertipp</h3>
+        <div class="c-picto-block-body">
+          <p>Mozillas Virtuelles Privates Netzwerk (VPN) nutzt die modernste Verschlüsselungstechnologie, um dir eine sichere, schnelle und zuverlässige Verbindung zum Internet zu bieten.</p>
+        </div>
+      </div>
+
+      <div class="c-picto-block">
+        <div class="c-picto-block-image">
+          {% include 'firefox/whatsnew/includes/fx89/heart.svg' %}
+        </div>
+        <h3 class="c-picto-block-title">Ein Name, der Vertrauen schafft</h3>
+        <div class="c-picto-block-body">
+          <p>Mozilla setzt sich seit über 20 Jahren für Online-Datenschutz ein und kämpft für ein besseres und gesünderes Internet für alle Menschen. Wir werden von einer gemeinnützigen Organisation unterstützt. Alles, was wir machen, ist Teil unserer Mission und folgt unseren <a href="{{ url('mozorg.about.manifesto') }}">Grundsätzen</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <aside class="mzp-l-content c-utilities">
+    {% set releasenotes_url = url('firefox.releases.index') if not version else '/firefox/%s/releasenotes/'|format(version) %}
+    <p>{{ ftl('whatsnew-release-notes', url=releasenotes_url) }}</p>
+  </aside>
+
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_89_eu_vpn') }}
+{% endblock %}

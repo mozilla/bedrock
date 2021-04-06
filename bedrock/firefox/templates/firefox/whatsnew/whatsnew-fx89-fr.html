@@ -1,0 +1,74 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}Les nouveautés de Firefox : encore plus de respect de la vie privée et de protection.{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}Les nouveautés de Firefox : encore plus de respect de la vie privée et de protection.{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_89_eu_vpn') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main class="content-wrapper mzp-t-firefox">
+  {% include 'firefox/whatsnew/includes/header.html' %}
+
+  <section class="wnp-content-main">
+    <div class="wnp-header-image mzp-l-content mzp-t-content-lg">
+      {% include 'firefox/whatsnew/includes/fx89/vpn-header.svg' %}
+    </div>
+
+    <div class="mzp-l-content mzp-t-content-md">
+      <h2 class="wnp-main-title">Ça y est. <br>Le VPN est là !</h2>
+      <p class="wnp-main-tagline">Surfer, streamer, jouer et travailler en ligne est bien plus simple maintenant. Protégez votre vie privée lorsque vous voyagez, en utilisant le WiFi public ou dès que vous vous connectez en ligne.</p>
+      {% set landing_source = '?source=' + campaign if campaign else '' %}
+      <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.landing') }}{{ landing_source }}" data-cta-type="button" data-cta-text="Go to Mozilla VPN">
+        Se connecter à Mozilla VPN
+      </a>
+    </div>
+  </section>
+
+  <div class="wnp-more mzp-l-content mzp-t-content-xl">
+    <div class="l-columns-two">
+      <div class="c-picto-block">
+        <div class="c-picto-block-image">
+          {% include 'firefox/whatsnew/includes/fx89/one-tap.svg' %}
+        </div>
+        <h3 class="c-picto-block-title">La vie privée en un clic</h3>
+        <div class="c-picto-block-body">
+          <p>Notre Virtual Private Network (VPN) utilise la technologie de cryptage la plus avancée pour vous offrir une connexion Internet sécurisée, rapide et fiable.</p>
+        </div>
+      </div>
+
+      <div class="c-picto-block">
+        <div class="c-picto-block-image">
+          {% include 'firefox/whatsnew/includes/fx89/heart.svg' %}
+        </div>
+        <h3 class="c-picto-block-title">Le VPN d’un partenaire de confiance</h3>
+        <div class="c-picto-block-body">
+          <p>Depuis plus de 20 ans, Mozilla a fait ses preuves en s’engageant pleinement pour la vie privée en ligne des gens. Soutenu par une organisation à but non lucratif, notre mission est de créer un Internet meilleur et plus sain pour tous. Tout ce que nous entreprenons, qu’il s’agisse de Firefox ou de Mozilla VPN, fait partie de notre mission et suit nos <a href="{{ url('mozorg.about.manifesto') }}">principes</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <aside class="mzp-l-content c-utilities">
+    {% set releasenotes_url = url('firefox.releases.index') if not version else '/firefox/%s/releasenotes/'|format(version) %}
+    <p>{{ ftl('whatsnew-release-notes', url=releasenotes_url) }}</p>
+  </aside>
+
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_89_eu_vpn') }}
+{% endblock %}
