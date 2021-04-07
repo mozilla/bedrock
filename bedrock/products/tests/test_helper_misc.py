@@ -115,7 +115,7 @@ class TestVPNSubscribeLink(TestCase):
             u'Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
-    @patch.dict(os.environ, SWITCH_VPN_LAUNCH_GERMANY_FRANCE='True')
+    @patch.dict(os.environ, SWITCH_VPN_NEW_SUBSCRIPTION_URL_FORMAT='True')
     def test_vpn_subscribe_link_variable_monthly_euro(self):
         """Should return expected markup for variable monthly plan in euros"""
         markup = self._render(entrypoint='www.mozilla.org-vpn-product-page', link_text='Get Mozilla VPN',
