@@ -10,7 +10,6 @@ vpn-shared-waitlist-link = Join the Waitlist
 vpn-shared-sign-in-link = Already a subscriber?
 vpn-shared-available-countries = We currently offer { -brand-name-mozilla-vpn } in the US, the UK, Canada, New Zealand, Singapore, and Malaysia.
 vpn-shared-available-countries-v2 = We currently offer { -brand-name-mozilla-vpn } in the US, the UK, Germany, France, Canada, Malaysia, New Zealand, and Singapore.
-vpn-shared-availablity-long = The VPN is currently available for { -brand-name-windows } 10, { -brand-name-android } and { -brand-name-ios } devices in the US, the UK, Canada, New Zealand, Singapore, and Malaysia.
 vpn-shared-money-back-guarantee = 30-day money-back guarantee
 
 # This string will be followed by a lockup of press logos for publications that have featured Mozilla VPN.

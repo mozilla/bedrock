@@ -49,7 +49,7 @@ describe('geo.js', function() {
 
             xhrRequests[0].respond(500, '', '');
 
-            expect(Mozilla.VPN.onRequestComplete).toHaveBeenCalledWith('none');
+            expect(Mozilla.VPN.onRequestComplete).toHaveBeenCalledWith(null);
         });
     });
 
@@ -73,40 +73,92 @@ describe('geo.js', function() {
         var country = 'de';
 
         beforeEach(function() {
-            spyOn(Mozilla.VPN, 'isAvailable').and.returnValue(false);
-            spyOn(Mozilla.VPN, 'showJoinWaitList');
+            spyOn(Mozilla.VPN, 'getAvailability').and.returnValue('variable-price');
+            spyOn(Mozilla.VPN, 'setAvailability');
         });
 
         it('should show Join the Waitlist buttons if VPN is not available', function() {
             Mozilla.VPN.onRequestComplete(country);
-            expect(Mozilla.VPN.showJoinWaitList).toHaveBeenCalled();
+            expect(Mozilla.VPN.setAvailability).toHaveBeenCalledWith('variable-price');
 
             Mozilla.VPN.onRequestComplete(country);
-            expect(Mozilla.VPN.showJoinWaitList).toHaveBeenCalledTimes(1);
+            expect(Mozilla.VPN.setAvailability).toHaveBeenCalledTimes(1);
         });
     });
 
-    describe('isAvailable', function() {
+    describe('getAvailability', function() {
 
-        var countries = '|ca|my|nz|sg|gb|gg|im|io|je|uk|vg|as|mp|pr|um|us|vi|';
+        var fixedCountries = '|ca|my|nz|sg|gb|gg|im|io|je|uk|vg|as|mp|pr|um|us|vi|';
+        var variableCountries = '|de|fr|';
 
-        it('should return true if country code is found', function() {
-            expect(Mozilla.VPN.isAvailable('us', countries)).toBeTruthy();
+        it('should return `fixed-pricce` if matching country code is found', function() {
+            expect(Mozilla.VPN.getAvailability('us', fixedCountries, variableCountries)).toEqual('fixed-price');
+            expect(Mozilla.VPN.getAvailability('gb', fixedCountries, variableCountries)).toEqual('fixed-price');
         });
 
-        it('should return false if country code is found', function() {
-            expect(Mozilla.VPN.isAvailable('de', countries)).toBeFalsy();
-            expect(Mozilla.VPN.isAvailable(null, countries)).toBeFalsy();
-            expect(Mozilla.VPN.isAvailable(undefined, countries)).toBeFalsy();
-            expect(Mozilla.VPN.isAvailable(false, countries)).toBeFalsy();
+        it('should return `variable-price` if matching country code is found', function() {
+            expect(Mozilla.VPN.getAvailability('de', fixedCountries, variableCountries)).toEqual('variable-price');
+            expect(Mozilla.VPN.getAvailability('fr', fixedCountries, variableCountries)).toEqual('variable-price');
+        });
+
+        it('should return `not-available` if no matching country code is found', function() {
+            expect(Mozilla.VPN.getAvailability('cn', fixedCountries, variableCountries)).toEqual('not-available');
+        });
+
+        it('should return `unknown` if no country code is supplied', function() {
+            expect(Mozilla.VPN.getAvailability(null, fixedCountries, variableCountries)).toEqual('unknown');
+        });
+
+        it('should return `unknown` if no country lists are supplied', function() {
+            expect(Mozilla.VPN.getAvailability('us', null, null)).toEqual('unknown');
+        });
+
+        it('should return `not-available` if either country list is empty', function() {
+            expect(Mozilla.VPN.getAvailability('us', '', variableCountries)).toEqual('not-available');
+            expect(Mozilla.VPN.getAvailability('de', fixedCountries, '')).toEqual('not-available');
+        });
+    });
+
+    describe('setAvailability', function() {
+
+        beforeEach(function() {
+            spyOn(Mozilla.VPN, 'showFixedPricing');
+            spyOn(Mozilla.VPN, 'showVariablePricing');
+            spyOn(Mozilla.VPN, 'showJoinWaitList');
+        });
+
+        it('should show fixed pricing as expected', function() {
+            Mozilla.VPN.setAvailability('fixed-price');
+            expect(Mozilla.VPN.showFixedPricing).toHaveBeenCalled();
+        });
+
+        it('should show variable pricing as expected', function() {
+            Mozilla.VPN.setAvailability('variable-price');
+            expect(Mozilla.VPN.showVariablePricing).toHaveBeenCalled();
+        });
+
+        it('should show join waitlist as expected', function() {
+            Mozilla.VPN.setAvailability('not-available');
+            expect(Mozilla.VPN.showJoinWaitList).toHaveBeenCalled();
+        });
+
+        it('should fallback to page language if availability is not known', function() {
+            Mozilla.VPN.setAvailability('unknown', 'en-US');
+            expect(Mozilla.VPN.showFixedPricing).toHaveBeenCalled();
+
+            Mozilla.VPN.setAvailability('unknown', 'de');
+            expect(Mozilla.VPN.showVariablePricing).toHaveBeenCalled();
+
+            Mozilla.VPN.setAvailability('unknown', 'fr');
+            expect(Mozilla.VPN.showVariablePricing).toHaveBeenCalled();
         });
     });
 
     describe('init', function() {
 
         beforeEach(function() {
-            spyOn(Mozilla.VPN, 'isAvailable').and.returnValue(false);
-            spyOn(Mozilla.VPN, 'showJoinWaitList');
+            spyOn(Mozilla.VPN, 'getAvailability').and.callThrough();
+            spyOn(Mozilla.VPN, 'setAvailability');
             spyOn(Mozilla.VPN, 'getLocation');
         });
 
@@ -123,8 +175,8 @@ describe('geo.js', function() {
             Mozilla.VPN.init();
 
             expect(Mozilla.VPN.getLocation).not.toHaveBeenCalled();
-            expect(Mozilla.VPN.isAvailable).toHaveBeenCalledWith(country);
-            expect(Mozilla.VPN.showJoinWaitList).toHaveBeenCalled();
+            expect(Mozilla.VPN.getAvailability).toHaveBeenCalledWith(country);
+            expect(Mozilla.VPN.setAvailability).toHaveBeenCalled();
         });
     });
 });

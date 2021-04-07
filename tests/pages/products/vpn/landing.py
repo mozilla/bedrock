@@ -11,20 +11,23 @@ class VPNLandingPage(BasePage):
 
     _URL_TEMPLATE = '/{locale}/products/vpn/{params}'
 
-    _get_vpn_hero_fixed_price_button_locator = (By.CSS_SELECTOR, '.vpn-hero .mzp-c-button.js-text-vpn-fixed-price-available')
-    _join_waitlist_hero_button_locator = (By.CSS_SELECTOR, '.vpn-hero .mzp-c-button.js-text-vpn-not-available')
+    _get_vpn_hero_fixed_price_button_locator = (By.CSS_SELECTOR, '.vpn-hero .js-vpn-fixed-pricing .mzp-c-button')
+    _join_waitlist_hero_button_locator = (By.CSS_SELECTOR, '.vpn-hero .js-vpn-waitlist .mzp-c-button')
 
-    _get_vpn_navigation_fixed_price_button_locator = (By.CSS_SELECTOR, '.c-navigation-shoulder .mzp-c-button.js-text-vpn-fixed-price-available')
-    _join_waitlist_navigation_button_locator = (By.CSS_SELECTOR, '.c-navigation-shoulder .mzp-c-button.js-text-vpn-not-available')
+    _get_vpn_navigation_fixed_price_button_locator = (By.CSS_SELECTOR,
+                                                      '.c-navigation-shoulder .mzp-c-button[data-cta-text="Get Mozilla VPN monthly"]')
+    _join_waitlist_navigation_button_locator = (By.CSS_SELECTOR,
+                                                '.c-navigation-shoulder .mzp-c-button[data-cta-text="Join the VPN Waitlist"]')
 
-    _get_vpn_conntect_now_fixed_price_button_locator = (By.CSS_SELECTOR, '.vpn-content-media.js-section-vpn-fixed-price-available')
-    _join_waitlist_coming_soon_button_locator = (By.CSS_SELECTOR, '.vpn-content-media.js-section-vpn-not-available')
+    _get_vpn_conntect_now_fixed_price_button_locator = (By.CSS_SELECTOR,
+                                                        '.js-connect-to-countries-and-servers .js-vpn-fixed-pricing .mzp-c-button')
+    _join_waitlist_coming_soon_button_locator = (By.CSS_SELECTOR, '.js-more-countries-coming-soon .js-vpn-waitlist .mzp-c-button')
 
-    _get_vpn_fixed_pricing_section_button_locator = (By.CSS_SELECTOR, '.vpn-pricing-fixed .mzp-c-button.js-text-vpn-fixed-price-available')
-    _join_waitlist_fixed_pricing_section_button_locator = (By.CSS_SELECTOR, '.vpn-pricing-fixed .mzp-c-button.js-text-vpn-not-available')
+    _get_vpn_fixed_pricing_section_button_locator = (By.CSS_SELECTOR, '.vpn-fixed-pricing-block .js-vpn-fixed-pricing .mzp-c-button')
+    _join_waitlist_fixed_pricing_section_button_locator = (By.CSS_SELECTOR, '.vpn-fixed-pricing-block .js-vpn-waitlist .mzp-c-button')
 
-    _get_vpn_footer_fixed_price_button_locator = (By.CSS_SELECTOR, '.vpn-footer .mzp-c-button.js-text-vpn-fixed-price-available')
-    _join_waitlist_footer_button_locator = (By.CSS_SELECTOR, '.vpn-footer .mzp-c-button.js-text-vpn-not-available')
+    _get_vpn_footer_fixed_price_button_locator = (By.CSS_SELECTOR, '.vpn-footer .js-vpn-fixed-pricing .mzp-c-button')
+    _join_waitlist_footer_button_locator = (By.CSS_SELECTOR, '.vpn-footer .js-vpn-waitlist .mzp-c-button')
 
     @property
     def is_get_vpn_hero_fixed_price_button_displayed(self):

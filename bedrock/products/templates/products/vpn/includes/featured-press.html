@@ -2,6 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% if switch('vpn-landing-press-logos') %}
 <aside class="vpn-featured-press-logos">
   <h3 class="vpn-featured-press-heading">{{ ftl('vpn-shared-featured-in') }}</h3>
   <ul class="mzp-c-inline-list">
@@ -12,3 +13,4 @@
     <li>{{ high_res_img('img/products/vpn/landing/logos/engadget.png', {'alt': 'Engadget', 'width': '132', 'height': '38', 'loading': 'lazy'}) }}</li>
   </ul>
 </aside>
+{% endif %}

@@ -249,6 +249,17 @@ Both helpers for Mozilla VPN support the same parameters (* indicates a required
 |    optiona_attributes      | An dictionary of key value pairs containing additional data attributes to include in the button.                       | Dictionary                                               | {'data-cta-text': 'VPN Sign In', 'data-cta-type': 'fxa-vpn', 'data-cta-position': 'navigation'}        |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 
+Linking to VPN subscription plans
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Additionally, the ``vpn_subscribe_link`` helper also has an additional ``plan`` parameter to support linking to different subscription plans. Currently the plans are limited to either a fixed monthly price in US$, or variable pricing in euros. Support for more currencies will be added in the future.
+
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    Parameter name          |                                                       Definition                                                       |                          Format                          |                                                Example                                                 |
++============================+========================================================================================================================+==========================================================+========================================================================================================+
+|    plan                    | Subscription plan ID. Defaults to fixed monthly subscription in US$                                                    | '12-month-euro'                                          | '12-month-euro', '6-month-euro', or 'monthly-euro'                                                     |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+
 CTA button dependencies
 -----------------------
 

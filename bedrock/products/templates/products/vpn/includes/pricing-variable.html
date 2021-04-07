@@ -2,7 +2,9 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-<div class="vpn-pricing-variable">
+{% from "products/vpn/includes/macros.html" import vpn_content_block with context %}
+
+<div class="vpn-variable-pricing-block hide-from-legacy-ie">
   <h2 class="vpn-pricing-variable-heading">{{ ftl('vpn-shared-pricing-variable-heading') }}</h2>
 
   <h3 class="vpn-pricing-variable-sub-heading">{{ ftl('vpn-shared-pricing-variable-sub-heading') }}</h3>
@@ -28,20 +30,20 @@
     {{ vpn_subscribe_link(
       entrypoint=_utm_source,
       link_text=ftl('vpn-shared-pricing-get-6-month'),
+      plan='6-month-euro',
       class_name='mzp-c-button mzp-t-xl ',
       optional_parameters={
         'utm_campaign': _utm_campaign
       },
       optional_attributes={
         'data-cta-type': 'fxa-vpn',
-        'data-cta-text': 'Get Mozilla VPN (6 month)'
+        'data-cta-text': 'Get Mozilla VPN 6-month'
       }
     ) }}
 
-    <p><a href="{{ url('products.vpn.landing')}}#faq-refunds">{{ ftl('vpn-shared-refund-policy') }}</a></p>
-
+    <p class="refund-policy"><a href="#faq-refunds">{{ ftl('vpn-shared-refund-policy') }}</a></p>
     <p class="vpn-pricing-variable-saving">{{ ftl('vpn-shared-pricing-save-percent', percent=30) }}</p>
-    <p>{{ ftl('vpn-shared-pricing-total', amount=variable_6_month_price_total) }}</p>
+    <p class="vpn-pricing-variable-total">{{ ftl('vpn-shared-pricing-total', amount=variable_6_month_price_total) }}</p>
   {% endcall %}
 
    {% call vpn_content_block(
@@ -53,20 +55,20 @@
      {{ vpn_subscribe_link(
        entrypoint=_utm_source,
        link_text=ftl('vpn-shared-pricing-get-12-month'),
+       plan='12-month-euro',
        class_name='mzp-c-button mzp-t-secondary mzp-t-xl ',
        optional_parameters={
          'utm_campaign': _utm_campaign
        },
        optional_attributes={
          'data-cta-type': 'fxa-vpn',
-         'data-cta-text': 'Get Mozilla VPN (12 month)'
+         'data-cta-text': 'Get Mozilla VPN 12-month'
        }
      ) }}
 
-     <p><a href="{{ url('products.vpn.landing')}}#faq-refunds">{{ ftl('vpn-shared-refund-policy') }}</a></p>
-
+     <p class="refund-policy"><a href="#faq-refunds">{{ ftl('vpn-shared-refund-policy') }}</a></p>
      <p class="vpn-pricing-variable-saving">{{ ftl('vpn-shared-pricing-save-percent', percent=50) }}</p>
-     <p>{{ ftl('vpn-shared-pricing-total', amount=variable_12_month_price_total) }}</p>
+     <p class="vpn-pricing-variable-total">{{ ftl('vpn-shared-pricing-total', amount=variable_12_month_price_total) }}</p>
    {% endcall %}
 
    {% call vpn_content_block(
@@ -78,6 +80,7 @@
      {{ vpn_subscribe_link(
        entrypoint=_utm_source,
        link_text=ftl('vpn-shared-pricing-get-monthly'),
+       plan='monthly-euro',
        class_name='mzp-c-button mzp-t-secondary mzp-t-xl ',
        optional_parameters={
          'utm_campaign': _utm_campaign
@@ -88,7 +91,7 @@
        }
      ) }}
 
-     <p><a href="{{ url('products.vpn.landing')}}#faq-refunds">{{ ftl('vpn-shared-refund-policy') }}</a></p>
+     <p class="refund-policy"><a href="#faq-refunds">{{ ftl('vpn-shared-refund-policy') }}</a></p>
    {% endcall %}
  </div>
 </div>

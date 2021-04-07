@@ -1,0 +1,34 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{# Template for "Join the Waitlist" buttons / copy in the landing page. #}
+<template id="join-waitlist-template">
+  <div class="template-container">
+    <div class="js-vpn-waitlist">
+      <a class="mzp-c-button" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist">
+        {{ ftl('vpn-shared-waitlist-link') }}
+      </a>
+
+      <p class="availability-copy">
+        {% set countries_list = 'vpn-shared-available-countries-v2' if switch('vpn-launch-germany-france') else 'vpn-shared-available-countries' %}
+        {{ ftl(countries_list) }}
+      </p>
+    </div>
+  </div>
+</template>
+
+{# Template for "Get Mozilla VPN" anchor links (scrolls to pricing section). #}
+<template id="scroll-to-pricing-template">
+  <div class="template-container">
+    <div class="js-vpn-variable-pricing">
+      <a class="mzp-c-button" href="#pricing" data-cta-type="button" data-cta-text="Scroll to pricing">
+        {{ ftl('vpn-shared-subscribe-link') }}
+      </a>
+
+      <p class="guarantee-copy">
+        {{ ftl('vpn-shared-money-back-guarantee') }}
+      </p>
+    </div>
+  </div>
+</template>
