@@ -3,7 +3,7 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% from "macros.html" import google_play_button with context %}
-{% from "macros-protocol.html" import hero, picto_card with context %}
+{% from "macros-protocol.html" import hero, picto with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -96,26 +96,56 @@
 
     {% endcall %}
 
-    <div class="mzp-t-dark">
-      <section class="mzp-l-card-third mzp-l-content">
-        {{ picto_card(title=ftl('lockwise-256-bit-encryption-protects'), class='encryption') }}
-        {{ picto_card(title=ftl('lockwise-get-to-your-passwords-securely'), class='touch') }}
-        {{ picto_card(title=ftl('lockwise-your-privacy-comes-first') ~ ' ' ~ ftl('lockwise-we-keep-your-data-safe'), class='privacy') }}
-      </section>
-      <section class="mzp-l-content">
-        <section class="links">
-          <a href="https://support.mozilla.org/products/firefox-lockwise?utm_source=www.mozilla.org-lockwise&amp;utm_campaign=Lockwise&amp;utm_medium=referral">
-            {{ ftl('lockwise-support') }}
-          </a>
-          <a href="https://support.mozilla.org/kb/firefox-lockwise-and-privacy">
-            {{ ftl('lockwise-your-privacy') }}
-          </a>
-          <a href="https://github.com/mozilla-lockwise">
-            {{ ftl('lockwise-github') }}
-          </a>
-        </section>
-      </section>
-    </div>
+    <section class="mzp-t-dark">
+      <div class="mzp-l-content mzp-t-content-lg">
+        <ul class="features mzp-l-columns mzp-t-columns-three mzp-t-picto-center">
+          {% call picto(
+            image_url='img/firefox/lockwise/arrows.svg',
+            image_width='48',
+            base_el='li',
+            body=True,
+          ) %}
+          <p>{{ ftl('lockwise-256-bit-encryption-protects') }}</p>
+          {% endcall %}
+
+          {% call picto(
+            image_url='img/firefox/lockwise/fingerprinters.svg',
+            image_width='48',
+            base_el='li',
+            body=True,
+          ) %}
+            <p>{{ ftl('lockwise-get-to-your-passwords-securely') }}</p>
+          {% endcall %}
+
+          {% call picto(
+            image_url='img/firefox/lockwise/mask.svg',
+            image_width='48',
+            base_el='li',
+            body=True,
+          ) %}
+            <p>{{ ftl('lockwise-your-privacy-comes-first') ~ ' ' ~ ftl('lockwise-we-keep-your-data-safe') }}</p>
+          {% endcall %}
+        </ul>
+
+        <ul class="links">
+          <li>
+            <a href="https://support.mozilla.org/products/firefox-lockwise?utm_source=www.mozilla.org-lockwise&amp;utm_campaign=Lockwise&amp;utm_medium=referral">
+              {{ ftl('lockwise-support') }}
+            </a>
+          </li>
+          <li>
+            <a href="https://support.mozilla.org/kb/firefox-lockwise-and-privacy">
+              {{ ftl('lockwise-your-privacy') }}
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/mozilla-lockwise">
+              {{ ftl('lockwise-github') }}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
   </main>
 {% endblock %}
 

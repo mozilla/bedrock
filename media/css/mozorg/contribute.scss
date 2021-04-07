@@ -8,6 +8,7 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/includes/lib';
 @import '../../protocol/css/includes/fonts/metropolis';
 @import '../../protocol/css/components/newsletter-form';
+@import '../../protocol/css/components/section-heading';
 @import '../../protocol/css/templates/card-layout';
 
 .contribute-intro {
@@ -49,7 +50,7 @@ $image-path: '/media/protocol/img';
         @media #{$mq-lg} {
             @include bidi(((right, -25px, auto),(left, auto, -25px),));
             left: auto;
-            top: 0;
+            top: $spacing-md;
             width: 50%;
         }
     }
@@ -60,13 +61,6 @@ $image-path: '/media/protocol/img';
 
 .contribute-hero {
     background-color: $color-marketing-gray-20;
-    margin-bottom: $layout-md;
-    padding-bottom: $layout-sm;
-    padding-top: $layout-sm;
-
-    @media #{$mq-lg} {
-        margin-bottom: $layout-lg;
-    }
 }
 
 .contribute-card-container {

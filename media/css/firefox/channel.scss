@@ -69,6 +69,10 @@ $image-path: '/media/protocol/img';
     @include text-body-sm;
     max-width: $screen-lg;
 
+    &.mzp-l-content {
+        padding-top: 0;
+    }
+
     ul li {
         @include text-body-md;
     }

@@ -6,45 +6,26 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import "../../../protocol/css/includes/lib";
-@import "../../../protocol/css/components/hero";
-@import '../../../protocol/css/templates/card-layout';
+@import "../../../protocol/css/components/split";
 @import '../../../protocol/css/components/emphasis-box';
-@import '../../../protocol/css/components/picto-card';
+@import '../../../protocol/css/components/logos/logo-product-firefox';
+@import '../../../protocol/css/components/picto';
+@import '../../../protocol/css/templates/multi-column';
+
+
+.mzp-c-split .mzp-c-logo {
+    margin: -$spacing-lg 0 $spacing-xl;
+}
 
 .mzp-c-emphasis-box {
     margin-bottom: $layout-xl;
 }
 
-//* -------------------------------------------------------------------------- */
-// Picto Cards
+.quantum-highlights {
+    margin-bottom: $layout-xl;
 
-// Custom Overrides pending https://github.com/mozilla/protocol/issues/382
-.mzp-c-card-picto {
-    @include bidi(((text-align, left, right),));
-    padding-top: 0;
-
-    .mzp-c-card-picto-content:before {
-        @include bidi(((left, 0, right, 0),));
-        @include background-size(56px 56px);
-        background-color: transparent;
-        margin-left: 0;
-    }
-
-    @media #{$mq-md} {
-        .mzp-c-card-picto-content:before {
-            @include bidi(((left, $spacing-lg, right, 0),));
-        }
-    }
-
-    &.privacy .mzp-c-card-picto-content:before {
-        background-image: url('/media/img/firefox/new/desktop/privacy.svg');
-    }
-
-    &.fast .mzp-c-card-picto-content:before {
-        background-image: url('/media/img/icons/speedometer.svg');
-    }
-
-    &.evolve .mzp-c-card-picto-content:before {
-        background-image: url('/media/img/firefox/new/desktop/highlights.svg');
+    @media #{$mq-lg} {
+        padding-left: $layout-xl;
+        padding-right: $layout-xl;
     }
 }

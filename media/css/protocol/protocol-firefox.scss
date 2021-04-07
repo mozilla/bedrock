@@ -23,6 +23,7 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/base/includes';
 
 // Utility includes
+@import '../../protocol/css/base/utilities/backgrounds';
 @import '../../protocol/css/base/utilities/titles';
 
 // Global components
@@ -50,7 +51,6 @@ $image-path: '/media/protocol/img';
     @include text-body-md;
 }
 
-
 // style classes automatically added by python to match Protocol form error styles
 .errorlist,
 .error-msg {
@@ -61,7 +61,6 @@ $image-path: '/media/protocol/img';
     padding: $spacing-sm;
     margin-bottom: $spacing-xl;
 }
-
 
 // hide <template> elements in the DOM.
 template {

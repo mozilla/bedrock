@@ -16,6 +16,11 @@ $image-path: '/media/protocol/img';
     position: relative;
     z-index: 3;
 
+    .mzp-l-content {
+        padding-top: $spacing-lg;
+        padding-bottom: $spacing-lg;
+    }
+
     a:link,
     a:visited {
         color: $color-white;
@@ -34,6 +39,12 @@ $image-path: '/media/protocol/img';
 
     @media #{$mq-lg} {
         padding-bottom: $spacing-md;
+
+        .mzp-l-content {
+            padding-top: $spacing-lg;
+            padding-bottom: $spacing-lg;
+        }
+
     }
 }
 

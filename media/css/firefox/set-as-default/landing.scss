@@ -7,8 +7,8 @@ $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
 @import '../../../protocol/css/components/hero';
-@import '../../../protocol/css/components/picto-card';
-@import '../../../protocol/css/templates/card-layout';
+@import '../../../protocol/css/components/picto';
+@import '../../../protocol/css/templates/multi-column';
 
 
 .mzp-c-hero {
@@ -20,48 +20,6 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.card-set li {
-    max-width: $content-xs;
-    margin-left: auto;
-    margin-right: auto;
-
-    @media #{$mq-md} {
-        max-width: 100%;
-    }
-}
-
 main {
     margin-bottom: $layout-xl;
-}
-
-.mzp-c-card-picto {
-    @include bidi(((text-align, left, right),));
-    padding-top: 0;
-
-    .mzp-c-card-picto-content:before {
-        @include bidi(((left, 0, right, 0),));
-        background-color: transparent;
-        margin-left: 0;
-    }
-
-    @media #{$mq-md} {
-        .mzp-c-card-picto-content:before {
-            @include bidi(((left, $spacing-lg, right, 0),));
-        }
-    }
-
-    &.privacy .mzp-c-card-picto-content:before {
-        background-image: url('/media/img/firefox/set-as-default/landing/browserdefault_privacy_icon.svg');
-        background-repeat: no-repeat;
-    }
-
-    &.freedom .mzp-c-card-picto-content:before {
-        background-image: url('/media/img/firefox/set-as-default/landing/browserdefault_freedom_icon.svg');
-        background-repeat: no-repeat;
-    }
-
-    &.independence .mzp-c-card-picto-content:before {
-        background-image: url('/media/img/firefox/set-as-default/landing/browserdefault_independence_icon.svg');
-        background-repeat: no-repeat;
-    }
 }

@@ -9,14 +9,17 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/components/feature-card';
 @import '../../../protocol/css/components/card';
 @import '../../../protocol/css/components/hero';
-@import '../../../protocol/css/components/picto-card';
+@import '../../../protocol/css/components/picto';
 @import '../../../protocol/css/templates/card-layout';
+@import '../../../protocol/css/templates/multi-column';
 @import '../../../protocol/css/components/inline-list';
 
 //* -------------------------------------------------------------------------- */
 // Layout adjustments
 
 .mzp-l-content {
+    // padding-bottom: $spacing-lg;
+
     &.mzp-t-dark {
         background: $color-marketing-gray-80;
 
@@ -27,14 +30,15 @@ $image-path: '/media/protocol/img';
 
     img {
         display: block;
-        margin: $layout-md auto;
+        margin: 0 auto;
         max-width: 100%;
     }
 }
 
 
 .mzp-c-card-feature {
-    &.mzp-l-card-feature-left-half {
+    &.mzp-l-card-feature-left-half,
+    &.mzp-l-card-feature-right-half {
         margin-bottom: 0;
     }
 
@@ -42,8 +46,13 @@ $image-path: '/media/protocol/img';
         @include text-title-md;
     }
 
+    h3.mzp-c-card-feature-title,
     .mzp-c-card-feature-desc h3 {
         @include text-title-sm;
+    }
+
+    .mzp-c-card-feature-media {
+        margin-bottom: $spacing-xl;
     }
 }
 
@@ -103,43 +112,8 @@ body {
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
-// Picto Cards
-
-// Custom Overrides pending https://github.com/mozilla/protocol/issues/382
-.mzp-c-card-picto {
-    @include bidi(((text-align, left, right),));
-    padding-top: 0;
-
-    .mzp-c-card-picto-content:before {
-        @include bidi(((left, 0, right, 0),));
-        @include background-size(56px 56px);
-        background-color: transparent;
-        margin-left: 0;
-    }
-
-    @media #{$mq-md} {
-        .mzp-c-card-picto-content:before {
-            @include bidi(((left, $spacing-lg, right, 0),));
-        }
-    }
-
-    &.search .mzp-c-card-picto-content:before {
-        background: url('/media/img/firefox/privacy/book/privacy-icon-search.svg');
-    }
-
-    &.email .mzp-c-card-picto-content:before {
-        background: url('/media/img/firefox/privacy/book/privacy-icon-email.svg');
-    }
-
-    &.messenger .mzp-c-card-picto-content:before {
-        background: url('/media/img/firefox/privacy/book/privacy-icon-messenger.svg');
-    }
-
-    &.browser .mzp-c-card-picto-content:before {
-        background: url('/media/img/firefox/privacy/book/privacy-icon-browser.svg');
-    }
+.mzp-c-picto-heading {
+    @include text-title-sm;
 }
 
 .questions {

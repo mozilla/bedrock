@@ -13,6 +13,11 @@
     padding-top: $spacing-lg;
     width: 100%;
 
+    .mzp-l-content {
+        padding-top: $spacing-lg;
+        padding-bottom: $spacing-lg;
+    }
+
     a:link,
     a:visited {
         color: $color-marketing-gray-80;
@@ -70,7 +75,7 @@
         }
 
         .c-footer-primary-logo a {
-            background-image: url('#{$image-path}/logos/mozilla/white.svg');
+            background-image: url('#{$image-path}/logos/mozilla/logo-word-hor-white.svg');
         }
 
         .c-footer-list-social li a {
@@ -119,7 +124,7 @@
     margin-bottom: $layout-xs;
 
     a {
-        background: url('#{$image-path}/logos/mozilla/black.svg') no-repeat;
+        background: url('#{$image-path}/logos/mozilla/logo-word-hor.svg') no-repeat;
         @include background-size(100px, 32px);
         @include image-replaced;
         display: inline-block;

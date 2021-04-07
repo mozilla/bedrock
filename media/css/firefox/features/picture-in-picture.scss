@@ -8,6 +8,8 @@ $image-path: '/media/protocol/img';
 @import "../../../protocol/css/includes/lib";
 @import "../../../protocol/css/components/hero";
 @import "../../../protocol/css/components/feature-card";
+@import "../../../protocol/css/components/picto";
+@import "../../../protocol/css/templates/multi-column";
 
 .mzp-c-hero.mzp-t-dark {
     background: $color-ink-80;
@@ -100,58 +102,6 @@ $image-path: '/media/protocol/img';
     margin: $layout-lg 0;
 }
 
-
-//* -------------------------------------------------------------------------- */
-// Picto block
-// To be replaced by an upstream Protocol component. See https://github.com/mozilla/protocol/issues/382
-
-.c-picto-block {
-    @include border-box;
-    margin: 0 auto $spacing-2xl;
-    max-width: $content-md - ($layout-md * 2);
-    padding: 0 $layout-md;
-    text-align: center;
-
-    .c-picto-block-title {
-        @include text-title-3xs;
-        color: get-theme('title-text-color');
-    }
-
-    .c-picto-block-image {
-        margin-bottom: $spacing-md;
-        min-height: $layout-md;
-
-        img {
-            max-width: 140px;
-        }
-    }
-}
-
-@media #{$mq-md} {
-    .l-columns-two,
-    .l-columns-three {
-        display: flex;
-        margin: 0 auto;
-        max-width: $content-md - ($layout-md * 2);
-        padding: 0 $layout-md;
-        flex-wrap: wrap;
-
-        .c-picto-block {
-            flex: 1 1 50%;
-            padding: 0 $spacing-lg;
-        }
-    }
-}
-
-@media #{$mq-lg} {
-    .l-columns-three {
-        display: flex;
-        margin: 0 auto;
-        max-width: $content-lg;
-
-        .c-picto-block {
-            flex: 1 1 33.3%;
-            padding: 0 $spacing-lg;
-        }
-    }
+.mzp-c-picto-heading {
+    @include text-title-3xs;
 }

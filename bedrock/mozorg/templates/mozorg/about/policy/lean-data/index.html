@@ -2,7 +2,9 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
- {% extends "base-protocol-mozilla.html" %}
+{% from "macros-protocol.html" import split with context %}
+
+{% extends "base-protocol-mozilla.html" %}
 
 {% block page_title %}{{ _('Lean Data Practices') }}{% endblock %}
 
@@ -17,24 +19,19 @@
 {% endblock %}
 
 {% block content %}
-<section class="mzp-c-hero mzp-has-image">
-  <div class="mzp-l-content">
-    <div class="mzp-c-hero-body">
-      <h1 class="mzp-c-hero-title">{{ self.page_title() }}</h1>
-
-      <div class="mzp-c-hero-desc">
-        <p>{{ _('Staying lean and being smart about how you collect data can build trust with your users and ultimately help grow your business.') }}</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="mzp-c-hero-image">
-    {{ high_res_img('img/mozorg/about/lean-data/lean-data-hero.png', {'alt': '', 'width': '424', 'height': '424'}) }}
-  </div>
-</section>
+{% call split(
+    image_url='img/mozorg/about/lean-data/lean-data-hero.png',
+    include_highres_image=True,
+    block_class='mzp-t-split-nospace',
+    theme_class='mzp-t-background-alt',
+    media_class='mzp-l-split-h-center',
+  ) %}
+  <h1 class="mzp-u-title-lg">{{ self.page_title() }}</h1>
+  <p>{{ _('Staying lean and being smart about how you collect data can build trust with your users and ultimately help grow your business.') }}</p>
+{% endcall %}
 
 <section>
-  <div class="mzp-l-content l-columns-two">
+  <div class="mzp-l-content mzp-t-content-lg mzp-l-columns mzp-t-columns-two">
     <div class="l-column">
       <h2 class="c-subsection-title">{{ ('More Trust') }}</h2>
       <p>{{ _('Your customers, investors, partners, and employees are more likely to use and refer you if they feel they can trust you with their data.') }}</p>
@@ -47,13 +44,10 @@
   </div>
 </section>
 
-<section class="principles">
-  <div class="mzp-l-content">
-    <h2 class="c-section-title u-center">{{ _('The Three Principles') }}</h2>
-  </div>
+<section class="mzp-l-content principles">
+  <h2 class="mzp-c-section-heading">{{ _('The Three Principles') }}</h2>
 
-  <div class="mzp-l-content mzp-l-card-third">
-
+  <div class="mzp-l-card-third">
     <div class="mzp-c-card mzp-has-aspect-1-1">
       <a class="mzp-c-card-block-link" href="{{ url('mozorg.about.policy.lean-data.stay-lean') }}">
         <div class="mzp-c-card-media-wrapper">
@@ -89,7 +83,6 @@
         </div>
       </a>
     </div>
-
   </div>
 </section>
 

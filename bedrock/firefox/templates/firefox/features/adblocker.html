@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import call_out, call_out_compact with context %}
+{% from "macros-protocol.html" import call_out_compact with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -56,64 +56,45 @@
     <p>
       {{ ftl('features-adblocker-one-of-the-most-popular', url='https://addons.mozilla.org/firefox/addon/adblock-for-firefox/?src=collection&collection_id=314d7111-6e17-485e-9946-315cb2f477e7') }}
     </p>
-  </section>
 
-  <section class="mzp-l-content mzp-t-content-md">
     <h2 class="section-title">{{ftl('features-adblocker-create-a-tracker-free') }}</h2>
     <p>
       {{ ftl('features-adblocker-on-firefox-you-can-use', privacy='https://restoreprivacy.com/firefox-privacy/', blocking='https://support.mozilla.org/kb/content-blocking') }}
     </p>
-  </section>
 
-  <section class="mzp-l-content l-content-image">
-    {{ high_res_img('img/firefox/features/adblocker/content-blocking-title.png', {'alt': '', 'class': 'mzp-c-billboard-image'}) }}
-  </section>
+    {{ high_res_img('img/firefox/features/adblocker/content-blocking-title.png', {'alt': '', 'class': 'block-image'}) }}
 
-  <section class="mzp-l-content mzp-t-content-md">
     <h2 class="section-title">{{ftl('features-adblocker-choose-your-level-of-protection') }}</h2>
     <p>
       {{ ftl('features-adblocker-to-start-click-on-the') }}
     </p>
-  </section>
 
-  <section class="mzp-l-content mzp-t-content-md">
     <h2 class="section-title">{{ftl('features-adblocker-go-easy-with-standard') }}</h2>
     <p>
       {{ ftl('features-adblocker-if-ads-dont-bother-you', url=url('firefox.features.private-browsing')) }}
     </p>
-  </section>
 
-  <section class="mzp-l-content l-content-image">
-    {{ high_res_img('img/firefox/features/adblocker/content-blocking.png', {'alt': '', 'class': 'mzp-c-billboard-image'}) }}
-  </section>
+    {{ high_res_img('img/firefox/features/adblocker/content-blocking.png', {'alt': '', 'class': 'block-image'}) }}
 
-  <section class=" mzp-l-content mzp-t-content-md">
     <h2 class="section-title">{{ftl('features-adblocker-get-tough-with-strict') }}</h2>
     <p>
       {{ ftl('features-adblocker-if-seeing-too-many-ads') }}
     </p>
-  </section>
 
-  <section class="mzp-l-content mzp-t-content-md">
     <h2 class="section-title">{{ftl('features-adblocker-do-it-yourself-custom') }}</h2>
     <p>
       {{ ftl('features-adblocker-the-custom-setting-gives') }}
     </p>
-  </section>
 
-  <section class="mzp-l-content l-content-image">
-    {{ high_res_img('img/firefox/features/adblocker/content-blocking-custom.png', {'alt': '', 'class': 'mzp-c-billboard-image'}) }}
-  </section>
+    {{ high_res_img('img/firefox/features/adblocker/content-blocking-custom.png', {'alt': '', 'class': 'block-image'}) }}
 
-  <section class="mzp-l-content mzp-t-content-md">
     <h2 class="section-title">{{ftl('features-adblocker-cover-your-trail-block') }}</h2>
     <p>
       {{ ftl('features-adblocker-click-on-the-trackers') }}
     </p>
-    {{ high_res_img('img/firefox/features/adblocker/custom-trackers.png', {'alt': ''}) }}
-  </section>
 
-  <section class="mzp-l-content mzp-t-content-md">
+    {{ high_res_img('img/firefox/features/adblocker/custom-trackers.png', {'alt': '', 'class': 'block-image'}) }}
+
     <h2 class="section-title">{{ftl('features-adblocker-take-a-bite-out-of-cookies') }}</h2>
     <p>
       {{ ftl('features-adblocker-cookies-are-sent-by-websites', url='https://support.mozilla.org/kb/storage') }}
@@ -121,26 +102,23 @@
     <p>
       {{ ftl('features-adblocker-in-firefox-you-can-block') }}
     </p>
-    {{ high_res_img('img/firefox/features/adblocker/third-party-cookies.png', {'alt': ''}) }}
-  </section>
+    {{ high_res_img('img/firefox/features/adblocker/third-party-cookies.png', {'alt': '', 'class': 'block-image'}) }}
 
-  <section class="mzp-l-content mzp-t-content-md">
     <h2 class="section-title">{{ftl('features-adblocker-send-a-do-not-track-signal') }}</h2>
     <p>
       {{ ftl('features-adblocker-if-you-dont-want-your', url='https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature') }}
     </p>
-    {{ high_res_img('img/firefox/features/adblocker/dnt_screenshot.png', {'alt': ''}) }}
-  </section>
 
-  <section class="mzp-l-content mzp-t-content-md">
-      <h2 class="section-title">{{ftl('features-adblocker-speed-up-thanks-to-ad') }}</h2>
-      <p>
-        {{ ftl('features-adblocker-in-some-cases-an-ad-blocker') }}
-      </p>
-      <p>
-        {{ ftl('features-adblocker-if-you-want-to-learn-more', url=url('firefox.new')) }}
-      </p>
-    </section>
+    {{ high_res_img('img/firefox/features/adblocker/dnt_screenshot.png', {'alt': '', 'class': 'block-image'}) }}
+
+    <h2 class="section-title">{{ftl('features-adblocker-speed-up-thanks-to-ad') }}</h2>
+    <p>
+      {{ ftl('features-adblocker-in-some-cases-an-ad-blocker') }}
+    </p>
+    <p>
+      {{ ftl('features-adblocker-if-you-want-to-learn-more', url=url('firefox.new')) }}
+    </p>
+  </section>
 
   {% call call_out_compact(
     title=ftl('features-adblocker-take-control-of-your-browser'),

@@ -6,21 +6,21 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/components/hero';
-@import '../../../protocol/css/components/feature-card';
 @import '../../../protocol/css/components/card';
+@import '../../../protocol/css/components/feature-card';
+@import '../../../protocol/css/components/logos/logo-product-firefox';
+@import '../../../protocol/css/components/section-heading';
+@import '../../../protocol/css/components/split';
 @import '../../protocol/components/custom-menu-list';
 @import '../../../protocol/css/templates/card-layout';
 
 
-.c-section-title {
-    @include text-display-md;
-    text-align: center;
-    margin: $layout-lg 0 $layout-md;
+.mzp-c-split .mzp-c-logo {
+    margin: -$spacing-lg 0 $spacing-xl;
+}
 
-    span {
-        @include zap("/media/protocol/img/zaps/zap-09.svg");
-    }
+.mzp-c-section-heading span {
+    @include zap('/media/protocol/img/zaps/zap-09.svg');
 }
 
 .mzp-c-menu-list-item.t-sumo a:hover:after {

@@ -12,6 +12,11 @@ $image-path: '/media/protocol/img';
 
 .c-page-header {
     background: transparent;
+
+    .mzp-l-content {
+        padding-top: $spacing-lg;
+        padding-bottom: $spacing-lg;
+    }
 }
 
 .mzp-c-notification-bar {

@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import feature_card, hero with context %}
+{% from "macros-protocol.html" import feature_card, split with context %}
 {% from "macros.html" import google_play_button with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
@@ -36,13 +36,13 @@
 {% endblock %}
 
 {% block content %}
-<div class="mzp-l-content">
-  {% call hero(
-    title=ftl('browsers-chromebook-get-firefox-browser'),
-    class='mzp-has-image mzp-t-firefox mzp-t-product-firefox',
+  {% call split(
     image_url='img/firefox/browsers/quantum/browser.jpg',
+    include_highres_image=True,
     heading_level=1
   ) %}
+  <div class="mzp-c-logo mzp-t-logo-lg mzp-t-product-firefox"></div>
+  <h1 class="mzp-u-title-xl">{{ ftl('browsers-chromebook-get-firefox-browser') }}</h1>
   <p>{{ ftl('browsers-chromebook-so-youve-got') }}</p>
 
   <div class="mzp-c-menu-list mzp-t-cta mzp-t-download" id="chromebook-download-list">
@@ -50,7 +50,7 @@
     <ul class="mzp-c-menu-list-list download-platform-list">
       <li class="mzp-c-menu-list-item">
         <a href="{{ firefox_adjust_url('android', 'firefox-browsers-faq') }}" rel="external noopener" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android">
-          {{ ftl('browsers-chromebook-get-firefox-for') }}
+          {{ ftl('browsers-chromebook-browsers-chromebook-get-firefox-for') }}
           <p><small>{{ ftl('browsers-chromebook-x86-based-chromebook') }}</small></p>
         </a>
       </li>
@@ -61,11 +61,10 @@
       </li>
     </ul>
   </div>
-
   {% endcall %}
 
-  <section>
-    <h2 class="c-section-title">{{ ftl('browsers-chromebook-why-get-firefox') }}</h2>
+  <section class="mzp-l-content">
+    <h2 class="mzp-c-section-heading">{{ ftl('browsers-chromebook-why-get-firefox') }}</h2>
 
     {% call feature_card(
       image_url='img/firefox/browsers/chromebook/shield.png',
@@ -82,13 +81,11 @@
     {% endcall %}
   </section>
 
-  <section>
-    <div class="mzp-l-content mzp-t-content-md">
-      <h2>{{ ftl('browsers-chromebook-is-it-hard') }}</h2>
-      <p>{{ ftl('browsers-chromebook-we-wish-it') }}</p>
-    </div>
+  <section class="mzp-l-content mzp-t-content-lg">
+    <h2>{{ ftl('browsers-chromebook-is-it-hard') }}</h2>
+    <p>{{ ftl('browsers-chromebook-we-wish-it') }}</p>
 
-    <div class="mzp-l-content mzp-l-card-half">
+    <div class="mzp-l-card-half">
       <div class="mzp-c-card">
         {{ high_res_img('img/firefox/browsers/chromebook/mobile.png', {'alt': '', 'class': 'mzp-c-billboard-image', 'width': '436', 'height': '464'}) }}
 
@@ -103,7 +100,6 @@
       </div>
     </div>
   </section>
-</div>
 
 {% endblock %}
 

@@ -8,6 +8,7 @@ $image-path: '/media/protocol/img';
 
 @import '../../../../protocol/css/components/emphasis-box';
 @import '../../../../protocol/css/components/modal';
+@import '../../../../protocol/css/components/section-heading';
 @import '../../../../protocol/css/components/zap';
 @import '../../../../protocol/css/templates/card-layout';
 @import '../../../protocol/components/sub-navigation';
@@ -48,21 +49,6 @@ $h-grid-lg: 80px;
 main {
     background-color: $color-white; // for IE6
     color: $color-dark-gray-30;
-
-    .mzp-l-content {
-        padding-top: $v-grid-xs;
-        padding-bottom: $v-grid-xs;
-
-        @media #{$mq-md} {
-            padding-top: $v-grid-md;
-            padding-bottom: $v-grid-md;
-        }
-
-        @media #{$mq-lg} {
-            padding-top: $v-grid-lg;
-            padding-bottom: $v-grid-lg;
-        }
-    }
 
     h2, h3, h4 {
         color: $color-marketing-gray-99;
@@ -196,8 +182,8 @@ button.mzp-c-cta-link {
         }
     }
 }
-.mzp-l-card-half {
 
+.mzp-l-card-half {
     .mzp-c-card {
         max-width: 100%;
 
@@ -278,16 +264,8 @@ button.mzp-c-cta-link {
 // --------------------------------------------------------------------------
 // section titles
 
-.c-section-title {
+.mzp-c-section-heading {
     @include text-title-md;
-    margin: 0 auto $layout-lg;
-    padding: 0 $layout-sm;
-    max-width: $content-lg + $layout-lg * 2;
-    text-align: center;
-
-    strong {
-        white-space: nowrap;
-    }
 }
 
 
@@ -905,16 +883,6 @@ button.mzp-c-cta-link {
 // includes t-compare, t-block, t-everone, and t-devices block components
 
 .t-highlights {
-    padding-top: $v-grid-xs;
-
-    @media #{$mq-md} {
-        padding-top: $v-grid-md;
-    }
-
-    @media #{$mq-lg} {
-        padding-top: $v-grid-lg;
-    }
-
     p {
         margin-bottom: $spacing-xl;
     }
@@ -1124,16 +1092,6 @@ button.mzp-c-cta-link {
                          bottom left calc(50vw - 600px), // circle
                          bottom 30% left, // oval
                          top right;
-
-    .loaded & {
-        background-image: url('/media/img/firefox/new/desktop/features/one.svg'),
-                          url('/media/img/firefox/new/desktop/features/two.svg'),
-                          url('/media/img/firefox/new/desktop/features/oval-one.svg'),
-                          url('/media/img/firefox/new/desktop/features/oval-two.svg'),
-                          url('/media/img/firefox/new/desktop/features/rect-one.svg'),
-                          url('/media/img/firefox/new/desktop/features/rect-two.svg');
-    }
-
     margin-bottom: $v-grid-xs;
     margin-top: $v-grid-xs;
 
@@ -1147,21 +1105,17 @@ button.mzp-c-cta-link {
         margin-top: $v-grid-lg;
     }
 
-    img {
-        margin-bottom: $spacing-lg;
+    .loaded & {
+        background-image: url('/media/img/firefox/new/desktop/features/one.svg'),
+                          url('/media/img/firefox/new/desktop/features/two.svg'),
+                          url('/media/img/firefox/new/desktop/features/oval-one.svg'),
+                          url('/media/img/firefox/new/desktop/features/oval-two.svg'),
+                          url('/media/img/firefox/new/desktop/features/rect-one.svg'),
+                          url('/media/img/firefox/new/desktop/features/rect-two.svg');
     }
 
-    .mzp-l-content {
-        padding-top: $layout-lg;
-
-        @media #{$mq-lg} {
-            padding-top: $v-grid-lg;
-        }
-
-        .android &,
-        .ios & {
-            padding-bottom: 0;
-        }
+    img {
+        margin-bottom: $spacing-lg;
     }
 
     .mzp-u-list-styled {

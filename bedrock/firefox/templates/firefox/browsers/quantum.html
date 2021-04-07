@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import hero, picto_card with context %}
+{% from "macros-protocol.html" import split, picto with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -15,36 +15,44 @@
 
 {% block content %}
 
-{% call hero(
-  title=ftl('the-latest-firefox'),
-  class='mzp-has-image mzp-t-firefox mzp-t-product-firefox',
-  image_url='img/firefox/browsers/quantum/browser.jpg',
-  include_highres_image=True,
-  include_cta=True,
-  heading_level=1
-) %}
-<p>{{ ftl('firefox-quantum-was') }}</p>
-{{ download_firefox_thanks() }}
-<p><a class="mzp-c-cta-link" href="https://blog.mozilla.org/blog/2017/11/14/introducing-firefox-quantum/?utm_source=mozilla.org-firefox-browsers-quantum&utm_medium=referral&utm_campaign=seo-quantum&amp;utm_content=hero&amp;entrypoint=mozilla.org-firefox-browsers-quantum">{{ ftl('learn-more-about') }}</a></p>
+{% call split(
+    image_url='img/firefox/browsers/quantum/browser.jpg',
+    include_highres_image=True,
+  ) %}
+  <div class="mzp-c-logo mzp-t-logo-lg mzp-t-product-firefox"></div>
+  <h1 class="mzp-u-title-xl">{{ ftl('the-latest-firefox') }}</h1>
+  <p>{{ ftl('firefox-quantum-was') }}</p>
+  {{ download_firefox_thanks() }}
+  <p><a class="mzp-c-cta-link" href="https://blog.mozilla.org/blog/2017/11/14/introducing-firefox-quantum/?utm_source=mozilla.org-firefox-browsers-quantum&utm_medium=referral&utm_campaign=seo-quantum&amp;utm_content=hero&amp;entrypoint=mozilla.org-firefox-browsers-quantum">{{ ftl('learn-more-about') }}</a></p>
 {% endcall %}
 
+
 <div class="mzp-l-content">
-  <section class="mzp-c-emphasis-box">
-    <ul class="mzp-l-card-third">
-      {{ picto_card(
+  <section class="quantum-highlights mzp-c-emphasis-box">
+    <ul class="mzp-l-columns mzp-t-columns-three">
+      {% call picto(
         title=ftl('privacy-first'),
-        desc=ftl('firefox-doesnt-spy'),
-        class='privacy') }}
+        image_url='img/firefox/new/desktop/privacy.svg',
+        body=True,
+      ) %}
+        <p>{{ ftl('firefox-doesnt-spy') }}</p>
+      {% endcall %}
 
-      {{ picto_card(
+      {% call picto(
         title=ftl('super-fast'),
-        desc=ftl('get-speed-and'),
-        class='fast') }}
+        image_url='img/icons/speedometer.svg',
+        body=True,
+      ) %}
+        <p>{{ ftl('get-speed-and') }}</p>
+      {% endcall %}
 
-      {{ picto_card(
+      {% call picto(
         title=ftl('always-evolving'),
-        desc=ftl('find-out-about', url=url('firefox.features.index')),
-        class='evolve') }}
+        image_url='img/firefox/new/desktop/highlights.svg',
+        body=True,
+      ) %}
+        <p>{{ ftl('find-out-about', url=url('firefox.features.index')) }}</p>
+      {% endcall %}
     </ul>
   </section>
 </div>
