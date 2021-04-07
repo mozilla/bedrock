@@ -1318,28 +1318,31 @@ VPN_ENDPOINT = config('VPN_ENDPOINT',
                       if DEV else 'https://vpn.mozilla.org/')
 
 # Product ID for VPN subscriptions
-# TODO this is just the staging value. We still need IDs for production!
-VPN_PRODUCT_ID = config('VPN_PRODUCT_ID', default='prod_FiJ42WCzZNRSbS')
+VPN_PRODUCT_ID = config('VPN_PRODUCT_ID', default='prod_FiJ42WCzZNRSbS'
+                                          if DEV else 'prod_FvnsFHIfezy3ZI')
 
 # Plan ID for VPN monthly fixed price VPN subscription in US$
-# TODO this is just the staging value. We still need IDs for production!
 VPN_FIXED_PRICE_MONTHLY_USD = config('VPN_FIXED_PRICE_MONTHLY_USD',
-                                     default='plan_FvPMH5lVx1vhV0')
+                                     default='plan_FvPMH5lVx1vhV0'
+                                     if DEV else 'plan_FvnxS1j9oFUZ7Y')
 
 # Plan ID for VPN 12 month subscription in Euros
-# TODO this is just the staging value. We still need IDs for production!
+# TODO: We still need IDs for production!
 VPN_VARIABLE_PRICE_12_MONTH_EURO = config('VPN_VARIABLE_PRICE_12_MONTH_EURO',
-                                          default='price_1IXw5oKb9q6OnNsLPMkWOid7')
+                                          default='price_1IXw5oKb9q6OnNsLPMkWOid7'
+                                          if DEV else '')
 
 # Plan ID for VPN 6 month subscription in Euros
-# TODO this is just the staging value. We still need IDs for production!
+# TODO: We still need IDs for production!
 VPN_VARIABLE_PRICE_6_MONTH_EURO = config('VPN_VARIABLE_PRICE_6_MONTH_EURO',
-                                          default='price_1IXw5NKb9q6OnNsLLIyYuhWF')
+                                          default='price_1IXw5NKb9q6OnNsLLIyYuhWF'
+                                          if DEV else '')
 
 # Plan ID for VPN monthly subscription in Euros
-# TODO this is just the staging value. We still need IDs for production!
+# TODO: We still need IDs for production!
 VPN_VARIABLE_PRICE_MONTHLY_EURO = config('VPN_VARIABLE_PRICE_MONTHLY_EURO',
-                                          default='price_1IXw4eKb9q6OnNsLqnVP4PvO')
+                                          default='price_1IXw4eKb9q6OnNsLqnVP4PvO'
+                                          if DEV else '')
 
 # Mozilla VPN Geo restrictions
 # https://github.com/mozilla-services/guardian-website/blob/master/server/constants.ts
