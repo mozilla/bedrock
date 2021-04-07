@@ -107,14 +107,6 @@ $image-path: '/media/protocol/img';
         top: 2px;
         width: 16px;
     }
-
-    .t-dark & {
-        color: $color-white;
-
-        &:before {
-            background-image: url('/media/img/products/vpn/common/check-white.svg');
-        }
-    }
 }
 
 .refund-policy {

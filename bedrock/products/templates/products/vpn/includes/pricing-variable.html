@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "products/vpn/includes/macros.html" import vpn_content_block with context %}
+
 <div class="vpn-variable-pricing-block hide-from-legacy-ie">
   <h2 class="vpn-pricing-variable-heading">{{ ftl('vpn-shared-pricing-variable-heading') }}</h2>
 
@@ -39,7 +41,7 @@
       }
     ) }}
 
-    <p class="refund-policy"><a href="{{ url('products.vpn.landing')}}#faq-refunds">{{ ftl('vpn-shared-refund-policy') }}</a></p>
+    <p class="refund-policy"><a href="#faq-refunds">{{ ftl('vpn-shared-refund-policy') }}</a></p>
     <p class="vpn-pricing-variable-saving">{{ ftl('vpn-shared-pricing-save-percent', percent=30) }}</p>
     <p class="vpn-pricing-variable-total">{{ ftl('vpn-shared-pricing-total', amount=variable_6_month_price_total) }}</p>
   {% endcall %}
@@ -64,7 +66,7 @@
        }
      ) }}
 
-     <p class="refund-policy"><a href="{{ url('products.vpn.landing')}}#faq-refunds">{{ ftl('vpn-shared-refund-policy') }}</a></p>
+     <p class="refund-policy"><a href="#faq-refunds">{{ ftl('vpn-shared-refund-policy') }}</a></p>
      <p class="vpn-pricing-variable-saving">{{ ftl('vpn-shared-pricing-save-percent', percent=50) }}</p>
      <p class="vpn-pricing-variable-total">{{ ftl('vpn-shared-pricing-total', amount=variable_12_month_price_total) }}</p>
    {% endcall %}
@@ -89,7 +91,7 @@
        }
      ) }}
 
-     <p class="refund-policy"><a href="{{ url('products.vpn.landing')}}#faq-refunds">{{ ftl('vpn-shared-refund-policy') }}</a></p>
+     <p class="refund-policy"><a href="#faq-refunds">{{ ftl('vpn-shared-refund-policy') }}</a></p>
    {% endcall %}
  </div>
 </div>
