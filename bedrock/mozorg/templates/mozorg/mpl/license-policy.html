@@ -10,7 +10,7 @@
 
 {% block article %}
   <h1 class="mzp-c-article-title">Mozilla Source Code License Policy</h1>
-  <p class="version"><em>Version 4.0</em></p>
+  <p class="version"><em>Version 4.1</em></p>
 
   <section>
     <h2 id="Introduction">Introduction</h2>
@@ -22,28 +22,30 @@
       <li>New files in, or modifications to, an existing, consistently-licensed area of code should be under the same license as the existing code.</li>
       <li>New projects should be under the <a href="{{ url('mozorg.mpl.2.0.index') }}">MPL 2.0</a> or <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0</a> - see below for guidance on choosing which.</li>
       <li>You must consult <a href='#Filing_Bugs'>the licensing team</a> before importing third-party code which is not under the MPL or Apache 2.0.</li>
+      <li>Mozilla employees can consult the <a href="https://mana.mozilla.org/wiki/pages/viewpage.action?pageId=130927170">Licensing & Contributor Agreements Runbook</a> for more details.</li>
     </ul>
   </section>
 
   <section>
     <h2 id="Types_of_Code">Types of Code</h2>
-    <p><b>Mozilla Code</b> is code in Mozilla Repositories which originated with the Mozilla Project. Code which is not Mozilla Code is <b>Third Party Code</b>.</p>
-    <p><b>Product Code</b> means all files any part of which is included in nightly binaries of the Mozilla family of Internet clients - Firefox, Thunderbird, SeaMonkey and Camino - plus the Gecko parts of Boot2Gecko. Note that this definition excludes the code of tools used merely to build these products, such as system libraries.</p>
-    <p><b>Test Code</b> means test cases for automated test frameworks (but not the frameworks themselves).</p>
+    <p><strong>Mozilla Code</strong> is code in Mozilla Repositories which originated with the Mozilla Project. Code which is not Mozilla Code is <strong>Third Party Code</strong>.</p>
+    <p><strong>Product Code</strong> means all files any part of which is included in nightly binaries of client-side Mozilla products. Note that this definition excludes the code of tools used merely to build these products, such as system libraries.</p>
+    <p><strong>Test Code</strong> means test cases for automated test frameworks (but not the frameworks themselves).</p>
   </section>
 
   <section>
     <h2 id="Licensing_of_Mozilla_Code">Licensing of Mozilla Code</h2>
     <p>New files in, modifications to, or code designed to integrate with or build on an existing, consistently-licensed area of Mozilla Code should be under the same license as the existing code. This means that modifications to Product Code will be MPL 2.</p>
     <p>New projects which are Mozilla Code may choose either the MPL 2.0 or the Apache License 2.0. No other license is acceptable, because Mozilla is committed to using modern open source licenses with patent grant clauses. The licensing team recommends MPL 2.0 for client-side code; please consult the team before going against this recommendation.</p>
-    <p>Trivial bits of Mozilla Code, such as testcases or snippets of code used in documentation, should be put in the public domain in order to facilitate re-use. To do that, apply the <a href="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Public Domain Dedication</a> by using the following boilerplate: </p>
+    <p>Trivial bits of Mozilla Code, such as test cases or snippets of code used in documentation, should be put in the public domain in order to facilitate re-use. To do that, apply the <a href="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Public Domain Dedication</a> by using the following boilerplate: </p>
     <p>
 <pre>
 Any copyright is dedicated to the Public Domain.
 http://creativecommons.org/publicdomain/zero/1.0/
-</pre>
-</p>
-    <p>Note that, for historical reasons, some trivial support code, such as <a href="https://developer.mozilla.org/Project:Copyrights">old code samples in developer.mozilla.org</a>, may be under the MIT license.</p> <p><b>PD Test Code</b> is Test Code (1) that is Mozilla Code, (2) that does not carry an explicit license header, and (3) that was either committed to a Mozilla Repository on or after 23rd September 2014, or was committed before that date but for which all contributors up to that date were Mozilla employees, contractors or interns. PD Test Code is placed in the public domain pursuant to the <a href="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Public Domain Dedication</a>. Test Code which has not been demonstrated to be PD Test Code should be considered to be under the MPL 2.</p>
+</pre><br/>
+
+    <p>Note that, for historical reasons, some trivial support code, such as <a href="https://developer.mozilla.org/en-US/docs/MDN/About#Copyrights_and_licenses">old code samples in developer.mozilla.org</a>, may be under the MIT license.</p>
+    <p><strong>PD Test Code</strong> is test cases for automated test frameworks that (1) is Mozilla Code, (2) does not carry an explicit license header, and (3) was either committed to a Mozilla Repository on or after 23rd September 2014, or was committed before that date but for which all contributors up to that date were Mozilla employees, contractors or interns. PD Test Code is placed in the public domain pursuant to the <a href="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Public Domain Dedication</a>. Test Code which has not been demonstrated to be PD Test Code should be considered to be under the MPL 2.</p>
   </section>
 
   <section>

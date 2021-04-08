@@ -740,4 +740,7 @@ redirectpatterns = (
 
     # Issue 9254
     redirect(r'^grants(/.*)?$', 'mozorg.moss.index'),
+
+    # Issue 9984
+    redirect(r'^/about/legal/fraud-report/?$', '/about/legal/defend-mozilla-trademarks/'),
 )

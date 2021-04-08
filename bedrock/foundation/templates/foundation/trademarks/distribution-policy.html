@@ -48,13 +48,13 @@
 
     <li>{{ _('You may not collect personal information in the context of your distribution of the software.') }}</li>
 
-    <li>{{ _('You may not add to, remove, or change any part of the software, including the Mozilla trademarks themselves. For example, you may not add any extensions to Firefox.') }}</li>
+    <li>{{ _('You may not add to, remove, or change any part of the software, including the Mozilla trademarks themselves. For example, you may not add any extensions to Firefox, change default settings, or alter search codes.') }}</li>
 
     <li>{{ _('You may not modify the installation process of the software or use it to install any other themes, plugins, extensions, or software.') }}</li>
 
     <li>
-      {% trans 
-      mozorg=url('mozorg.home'), 
+      {% trans
+      mozorg=url('mozorg.home'),
       mozdownloads=url('firefox.new') %}
       We suggest that if you want to distribute Mozilla software, you do so by linking to official downloads at <a href="{{ mozorg }}">Mozilla.org</a> to help ensure safe, reliable downloads. For example, if you wish to directly distribute copies of Firefox yourself, you must distribute the latest stable version available at <a href="{{ mozdownloads }}">Mozilla.org</a>.
       {% endtrans %}
