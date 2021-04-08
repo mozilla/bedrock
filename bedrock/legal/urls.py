@@ -63,5 +63,5 @@ urlpatterns = (
     url(r'^report-infringement/$', LegalDocView.as_view(template_name='legal/report-infringement.html', legal_doc_name='report_infringement'),
         name='legal.report-infringement'),
 
-    url('^fraud-report/$', views.fraud_report, name='legal.fraud-report'),
+    url('^defend-mozilla-trademarks/$', views.fraud_report, name='legal.fraud-report'),
 )
