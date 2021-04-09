@@ -108,6 +108,9 @@ vpn-shared-platform-what-youll-get = What you’ll get with { -brand-name-mozill
 
 # Subnav strings
 vpn-subnav-title = { -brand-name-mozilla-vpn }
+vpn-subnav-whats-a-vpn = What’s a VPN?
+vpn-subnav-faqs = FAQs
+vpn-subnav-get-help = Get Help
 vpn-subnav-platform-android = { -brand-name-android }
 vpn-subnav-platform-desktop = Desktop
 vpn-subnav-platform-ios = { -brand-name-ios }
