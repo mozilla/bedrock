@@ -38,6 +38,10 @@
   {% endwith %}
 {% endblock %}
 
+{% block sub_navigation %}
+  {% include 'products/vpn/includes/subnav.html' %}
+{% endblock %}
+
 {% block content %}
 <main>
   {# error message for visitors who try to sign-in without a subscription (issue 10002) #}
@@ -155,7 +159,7 @@
 
   </div>
 
-  <section class="vpn-faq mzp-l-content mzp-t-content-lg">
+  <section id="faq" class="vpn-faq mzp-l-content mzp-t-content-lg">
     <h2 class="vpn-faq-section-heading">{{ ftl('vpn-landing-faq-heading') }}</h2>
 
     <details id="faq-usecases" class="vpn-faq-item mzp-is-anchor-link">
@@ -199,14 +203,50 @@
       <summary class="vpn-faq-item-heading">
         <h3>{{ ftl('vpn-landing-faq-compatibility-question-heading') }}</h3>
       </summary>
-      <p class="vpn-faq-item-detail">{{ ftl('vpn-landing-faq-compatibility-question-desc') }}</p>
+      <p class="vpn-faq-item-detail">
+        {% if ftl_has_messages('vpn-landing-faq-compatibility-question-desc-v2') %}
+          {{ ftl('vpn-landing-faq-compatibility-question-desc-v2', mobile=url('products.vpn.platforms.mobile'), desktop=url('products.vpn.platforms.desktop')) }}
+        {% else %}
+          {{ ftl('vpn-landing-faq-compatibility-question-desc') }}
+        {% endif %}
+      </p>
 
       <ul class="vpn-faq-item-detail mzp-u-list-styled">
-        <li>{{ ftl('vpn-landing-faq-compatibility-question-desc-windows') }}</li>
-        <li>{{ ftl('vpn-landing-faq-compatibility-question-desc-mac') }}</li>
-        <li>{{ ftl('vpn-landing-faq-compatibility-question-desc-android') }}</li>
-        <li>{{ ftl('vpn-landing-faq-compatibility-question-desc-ios') }}</li>
-        <li>{{ ftl('vpn-landing-faq-compatibility-question-desc-linux') }}</li>
+        <li>
+          {% if ftl_has_messages('vpn-landing-faq-compatibility-question-desc-windows-v2') %}
+            {{ ftl('vpn-landing-faq-compatibility-question-desc-windows-v2', url=url('products.vpn.platforms.windows')) }}
+          {% else %}
+            {{ ftl('vpn-landing-faq-compatibility-question-desc-windows') }}
+          {% endif %}
+        </li>
+        <li>
+          {% if ftl_has_messages('vpn-landing-faq-compatibility-question-desc-mac-v2') %}
+            {{ ftl('vpn-landing-faq-compatibility-question-desc-mac-v2', url=url('products.vpn.platforms.mac')) }}
+          {% else %}
+            {{ ftl('vpn-landing-faq-compatibility-question-desc-mac') }}
+          {% endif %}
+        </li>
+        <li>
+          {% if ftl_has_messages('vpn-landing-faq-compatibility-question-desc-android-v2') %}
+            {{ ftl('vpn-landing-faq-compatibility-question-desc-android-v2', url=url('products.vpn.platforms.android')) }}
+          {% else %}
+            {{ ftl('vpn-landing-faq-compatibility-question-desc-android') }}
+          {% endif %}
+        </li>
+        <li>
+          {% if ftl_has_messages('vpn-landing-faq-compatibility-question-desc-ios-v2') %}
+            {{ ftl('vpn-landing-faq-compatibility-question-desc-ios-v2', url=url('products.vpn.platforms.ios')) }}
+          {% else %}
+            {{ ftl('vpn-landing-faq-compatibility-question-desc-ios') }}
+          {% endif %}
+        </li>
+        <li>
+          {% if ftl_has_messages('vpn-landing-faq-compatibility-question-desc-linux-v2') %}
+            {{ ftl('vpn-landing-faq-compatibility-question-desc-linux-v2', url=url('products.vpn.platforms.linux')) }}
+          {% else %}
+            {{ ftl('vpn-landing-faq-compatibility-question-desc-linux') }}
+          {% endif %}
+        </li>
       </ul>
     </details>
 
