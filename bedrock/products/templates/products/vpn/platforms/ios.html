@@ -6,9 +6,9 @@
 
 {% extends "products/vpn/base.html" %}
 
-{% set vpn_countries = 30 %}
-{% set vpn_devices = 5 %}
-{% set vpn_servers = 750 %}
+{% set vpn_countries = settings.VPN_CONNECT_COUNTRIES %}
+{% set vpn_devices = settings.VPN_CONNECT_DEVICES %}
+{% set vpn_servers = settings.VPN_CONNECT_SERVERS %}
 
 {% block page_title_full %}{{ ftl('vpn-ios-page-title') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
