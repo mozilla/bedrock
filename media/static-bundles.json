@@ -998,6 +998,7 @@
     },
     {
       "files": [
+        "js/libs/mozilla-traffic-cop.js",
         "js/firefox/whatsnew/up-to-date.js",
         "js/firefox/whatsnew/whatsnew-88-en.js"
       ],

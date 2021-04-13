@@ -16,4 +16,43 @@
 
     button.addEventListener('click', jingle);
 
+    var href = window.location.href;
+
+    var initTrafficCop = function () {
+        if (href.indexOf('v=') !== -1) {
+            if (href.indexOf('v=1') !== -1) {
+                window.dataLayer.push({
+                    'data-ex-variant': 'wnp-88-control',
+                    'data-ex-name': 'wnp-88-experiment'
+                });
+            } else if (href.indexOf('v=2') !== -1) {
+                window.dataLayer.push({
+                    'data-ex-variant': 'wnp-88-v2',
+                    'data-ex-name': 'wnp-88-experiment'
+                });
+            } else if (href.indexOf('v=3') !== -1) {
+                window.dataLayer.push({
+                    'data-ex-variant': 'wnp-88-v3',
+                    'data-ex-name': 'wnp-88-experiment'
+                });
+            }
+        } else {
+            var cop = new Mozilla.TrafficCop({
+                id: 'experiment-wnp-88',
+                variations: {
+                    'v=1': 10,
+                    'v=2': 10,
+                    'v=3': 10,
+                }
+            });
+
+            cop.init();
+        }
+    };
+
+    // Avoid entering automated tests into random experiments.
+    if (href.indexOf('automation=true') === -1) {
+        initTrafficCop();
+    }
+
 })(window.Mozilla);
