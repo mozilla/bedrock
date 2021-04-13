@@ -32,16 +32,16 @@
     </div>
   </header>
 
+{% set landing_source = '?source=' + campaign if campaign else '' %}
 {% if variant == '2' %}
   <section class="wnp-content-main">
     <div class="mzp-l-content mzp-t-content-md">
       {% include 'firefox/whatsnew/includes/fx88/illo-vpn-mobile.svg' %}
-      <!-- <img class="wnp-main-image" src="{{ static('img/firefox/whatsnew/whatsnew84/vpn-logo.svg') }}" width="120" alt=""> -->
-      <h1 class="wnp-main-title">V1 Firefox protects your browsing. <strong>Mozilla VPN</strong> protects you everywhere.</h1>
+      <h1 class="wnp-main-title">V2 Firefox protects your browsing. <strong>Mozilla VPN</strong> protects you everywhere.</h1>
       <p class="wnp-main-tagline">Mozilla VPN (Virtual Private Network) protects your entire internet connection on your computer, your tablet, and even your phone. For even more security, it comes with a 30-day money back guarantee.</p>
 
       <div class="wnp-main-cta">
-        <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button mzp-t-product mzp-t-lg" rel="external" data-cta-text="Get Mozilla VPN Now" data-cta-type="button">Get Mozilla VPN Now</a>
+        <a href="{{ url('products.vpn.landing') }}{{ landing_source }}" class="mzp-c-button mzp-t-product mzp-t-lg" rel="external" data-cta-text="Get Mozilla VPN Now" data-cta-type="button">Get Mozilla VPN Now</a>
       </div>
     </div>
   </section>
@@ -49,12 +49,35 @@
   <section class="wnp-content-main">
     <div class="mzp-l-content mzp-t-content-md">
       {% include 'firefox/whatsnew/includes/fx88/illo-vpn-mobile.svg' %}
-      <!-- <img class="wnp-main-image" src="{{ static('img/firefox/whatsnew/whatsnew84/vpn-logo.svg') }}" width="120" alt=""> -->
       <h1 class="wnp-main-title">V3 Firefox protects your browsing. <strong>Mozilla VPN</strong> protects you everywhere.</h1>
       <p class="wnp-main-tagline">Mozilla VPN (Virtual Private Network) protects your entire internet connection on your computer, your tablet, and even your phone. For even more security, it comes with a 30-day money back guarantee.</p>
 
       <div class="wnp-main-cta">
-        <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button mzp-t-product mzp-t-lg" rel="external" data-cta-text="Get Mozilla VPN Now" data-cta-type="button">Get Mozilla VPN Now</a>
+        <a href="{{ url('products.vpn.landing') }}{{ landing_source }}" class="mzp-c-button mzp-t-product mzp-t-lg" rel="external" data-cta-text="Get Mozilla VPN Now" data-cta-type="button">Get Mozilla VPN Now</a>
+      </div>
+    </div>
+  </section>
+{% elif variant == '4' %}
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-md">
+      {% include 'firefox/whatsnew/includes/fx88/illo-vpn-mobile.svg' %}
+      <h1 class="wnp-main-title">V4 Firefox protects your browsing. <strong>Mozilla VPN</strong> protects you everywhere.</h1>
+      <p class="wnp-main-tagline">Mozilla VPN (Virtual Private Network) protects your entire internet connection on your computer, your tablet, and even your phone. For even more security, it comes with a 30-day money back guarantee.</p>
+
+      <div class="wnp-main-cta">
+        <a href="{{ url('products.vpn.landing') }}{{ landing_source }}" class="mzp-c-button mzp-t-product mzp-t-lg" rel="external" data-cta-text="Get Mozilla VPN Now" data-cta-type="button">Get Mozilla VPN Now</a>
+      </div>
+    </div>
+  </section>
+{% elif variant == '5' %}
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-md">
+      {% include 'firefox/whatsnew/includes/fx88/illo-vpn-mobile.svg' %}
+      <h1 class="wnp-main-title">V5 Firefox protects your browsing. <strong>Mozilla VPN</strong> protects you everywhere.</h1>
+      <p class="wnp-main-tagline">Mozilla VPN (Virtual Private Network) protects your entire internet connection on your computer, your tablet, and even your phone. For even more security, it comes with a 30-day money back guarantee.</p>
+
+      <div class="wnp-main-cta">
+        <a href="{{ url('products.vpn.landing') }}{{ landing_source }}" class="mzp-c-button mzp-t-product mzp-t-lg" rel="external" data-cta-text="Get Mozilla VPN Now" data-cta-type="button">Get Mozilla VPN Now</a>
       </div>
     </div>
   </section>
@@ -66,7 +89,7 @@
       <p class="wnp-main-tagline">Mozilla VPN (Virtual Private Network) protects your entire internet connection on your computer, your tablet, and even your phone. For even more security, it comes with a 30-day money back guarantee.</p>
 
       <div class="wnp-main-cta">
-        <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button mzp-t-product mzp-t-lg" rel="external" data-cta-text="Get Mozilla VPN Now" data-cta-type="button">Get Mozilla VPN Now</a>
+        <a href="{{ url('products.vpn.landing') }}{{ landing_source }}" class="mzp-c-button mzp-t-product mzp-t-lg" rel="external" data-cta-text="Get Mozilla VPN Now" data-cta-type="button">Get Mozilla VPN Now</a>
       </div>
     </div>
   </section>
