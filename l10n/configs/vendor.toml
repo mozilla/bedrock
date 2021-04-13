@@ -4,6 +4,10 @@
 basepath = ".."
 
 locales = [
+    "ar",
+    "hi-IN",
+    "id",
+    "ja",
     "ms",
 ]
 
