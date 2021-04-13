@@ -113,8 +113,8 @@ if (typeof window.Mozilla.Analytics === 'undefined') {
                     }
 
                     // variables to compare to determine the segments
-                    var mobileDevices = FxaDetails.browserServices.sync.mobileDevices;
-                    var desktopDevices = FxaDetails.browserServices.sync.desktopDevices;
+                    var mobileDevices = FxaDetails.browserServices.sync ? FxaDetails.browserServices.sync.mobileDevices : null;
+                    var desktopDevices = FxaDetails.browserServices.sync ? FxaDetails.browserServices.sync.desktopDevices : null;
 
                     // set FxAMobileSync
                     if (mobileDevices > 0) {
