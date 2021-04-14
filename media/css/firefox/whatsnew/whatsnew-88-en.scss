@@ -26,6 +26,13 @@ $image-path: '/media/protocol/img';
     margin: 0 auto $layout-sm;
 }
 
+.c-animated-graphic {
+    width: 100%;
+    max-width: $content-sm;
+    display: block;
+    margin: 0 auto $spacing-lg;
+}
+
 .wnp-main-title {
     @include text-title-md;
     color: get-theme('title-text-color');
@@ -209,6 +216,7 @@ $image-path: '/media/protocol/img';
         background-image: url('/media/protocol/img/logos/mozilla/white.svg');
     }
 
+    // TODO: Add SVG classes/dark mode support
     .c-picto-block-image {
         .line {
             fill: $color-white;

@@ -32,12 +32,30 @@
     </div>
   </header>
 
-{% set landing_source = '?source=' + campaign if campaign else '' %}
-{% if variant == '2' %}
+  {% set landing_source = '?source=' + campaign if campaign else '' %}
+
   <section class="wnp-content-main">
     <div class="mzp-l-content mzp-t-content-md">
-      {% include 'firefox/whatsnew/includes/fx88/illo-vpn-mobile.svg' %}
-      <h1 class="wnp-main-title">V2 Firefox protects your browsing. <strong>Mozilla VPN</strong> protects you everywhere.</h1>
+      {% if variant == '2' %}
+        <img class="wnp-main-image" src="{{ static('img/firefox/whatsnew/whatsnew88-en/hero.png') }}" width="432" alt="">
+      {% elif variant == '3' %}
+        <video class="c-animated-graphic" muted autoplay loop>
+          <source type="video/webm" src="https://www-dev.allizom.org/media/img/firefox/whatsnew/whatsnew88/video.74ff8a48e25b29bfd78d261f20876e34.webm" media="screen and (prefers-color-scheme: light)">
+          <source type="video/webm" src="https://www-dev.allizom.org/media/img/firefox/whatsnew/whatsnew88/video-dark.88537900b972f2067f3e09cd77bcbeed.webm" media="screen (prefers-color-scheme: dark)">
+        </video>    
+      {% elif variant == '4' %}
+        <!-- TODO: Add dark mode support -->
+        <img class="wnp-main-image" src="{{ static('img/firefox/whatsnew/whatsnew88-en/hero-alt.png') }}" width="432" alt="">
+      {% elif variant == '5' %} 
+        <video class="c-animated-graphic" muted autoplay loop>
+          <source type="video/webm" src="https://www-dev.allizom.org/media/img/firefox/whatsnew/whatsnew88/video-alt.9a5cbcefb392f6e3d8b8b99d1d105e66.webm" media="screen and (prefers-color-scheme: light)">
+          <source type="video/webm" src="https://www-dev.allizom.org/media/img/firefox/whatsnew/whatsnew88/video-alt-dark.4d0d46d8ae6c083e29bb166ee44a71e7.webm" media="screen (prefers-color-scheme: dark)">
+        </video>
+      {% else %}
+        <!-- TODO: Add dark mode support -->
+        <img class="wnp-main-image" src="{{ static('img/firefox/whatsnew/whatsnew84/vpn-logo.svg') }}" width="120" alt="">
+      {% endif %}
+      <h1 class="wnp-main-title">Change your device’s location for next-level privacy.</h1>
       <p class="wnp-main-tagline">Mozilla VPN (Virtual Private Network) protects your entire internet connection on your computer, your tablet, and even your phone. For even more security, it comes with a 30-day money back guarantee.</p>
 
       <div class="wnp-main-cta">
@@ -45,55 +63,6 @@
       </div>
     </div>
   </section>
-{% elif variant == '3' %}
-  <section class="wnp-content-main">
-    <div class="mzp-l-content mzp-t-content-md">
-      {% include 'firefox/whatsnew/includes/fx88/illo-vpn-mobile.svg' %}
-      <h1 class="wnp-main-title">V3 Firefox protects your browsing. <strong>Mozilla VPN</strong> protects you everywhere.</h1>
-      <p class="wnp-main-tagline">Mozilla VPN (Virtual Private Network) protects your entire internet connection on your computer, your tablet, and even your phone. For even more security, it comes with a 30-day money back guarantee.</p>
-
-      <div class="wnp-main-cta">
-        <a href="{{ url('products.vpn.landing') }}{{ landing_source }}" class="mzp-c-button mzp-t-product mzp-t-lg" rel="external" data-cta-text="Get Mozilla VPN Now" data-cta-type="button">Get Mozilla VPN Now</a>
-      </div>
-    </div>
-  </section>
-{% elif variant == '4' %}
-  <section class="wnp-content-main">
-    <div class="mzp-l-content mzp-t-content-md">
-      {% include 'firefox/whatsnew/includes/fx88/illo-vpn-mobile.svg' %}
-      <h1 class="wnp-main-title">V4 Firefox protects your browsing. <strong>Mozilla VPN</strong> protects you everywhere.</h1>
-      <p class="wnp-main-tagline">Mozilla VPN (Virtual Private Network) protects your entire internet connection on your computer, your tablet, and even your phone. For even more security, it comes with a 30-day money back guarantee.</p>
-
-      <div class="wnp-main-cta">
-        <a href="{{ url('products.vpn.landing') }}{{ landing_source }}" class="mzp-c-button mzp-t-product mzp-t-lg" rel="external" data-cta-text="Get Mozilla VPN Now" data-cta-type="button">Get Mozilla VPN Now</a>
-      </div>
-    </div>
-  </section>
-{% elif variant == '5' %}
-  <section class="wnp-content-main">
-    <div class="mzp-l-content mzp-t-content-md">
-      {% include 'firefox/whatsnew/includes/fx88/illo-vpn-mobile.svg' %}
-      <h1 class="wnp-main-title">V5 Firefox protects your browsing. <strong>Mozilla VPN</strong> protects you everywhere.</h1>
-      <p class="wnp-main-tagline">Mozilla VPN (Virtual Private Network) protects your entire internet connection on your computer, your tablet, and even your phone. For even more security, it comes with a 30-day money back guarantee.</p>
-
-      <div class="wnp-main-cta">
-        <a href="{{ url('products.vpn.landing') }}{{ landing_source }}" class="mzp-c-button mzp-t-product mzp-t-lg" rel="external" data-cta-text="Get Mozilla VPN Now" data-cta-type="button">Get Mozilla VPN Now</a>
-      </div>
-    </div>
-  </section>
-{% else %}
-  <section class="wnp-content-main">
-    <div class="mzp-l-content mzp-t-content-md">
-      <img class="wnp-main-image" src="{{ static('img/firefox/whatsnew/whatsnew84/vpn-logo.svg') }}" width="120" alt="">
-      <h1 class="wnp-main-title">V1 Firefox protects your browsing. <strong>Mozilla VPN</strong> protects you everywhere.</h1>
-      <p class="wnp-main-tagline">Mozilla VPN (Virtual Private Network) protects your entire internet connection on your computer, your tablet, and even your phone. For even more security, it comes with a 30-day money back guarantee.</p>
-
-      <div class="wnp-main-cta">
-        <a href="{{ url('products.vpn.landing') }}{{ landing_source }}" class="mzp-c-button mzp-t-product mzp-t-lg" rel="external" data-cta-text="Get Mozilla VPN Now" data-cta-type="button">Get Mozilla VPN Now</a>
-      </div>
-    </div>
-  </section>
-{% endif %}
 
   <section class="wnp-content-extra">
     <div class="mzp-l-content mzp-t-content-xl">
@@ -109,7 +78,7 @@
 
         <div class="c-picto-block">
           <div class="c-picto-block-image">
-            {% include 'firefox/whatsnew/includes/fx88/illo-vpn-laptop.svg' %}
+            {% include 'firefox/whatsnew/includes/fx88/illo-vpn-speed.svg' %}
           </div>
           <h3 class="c-picto-block-title">It’s fast, very fast</h3>
           <div class="c-picto-block-body">
@@ -119,7 +88,7 @@
 
         <div class="c-picto-block">
           <div class="c-picto-block-image">
-            {% include 'firefox/whatsnew/includes/fx88/illo-vpn-mobile.svg' %}
+            {% include 'firefox/whatsnew/includes/fx88/illo-vpn-lock.svg' %}
           </div>
           <h3 class="c-picto-block-title">Internet without a trace</h3>
           <div class="c-picto-block-body">
