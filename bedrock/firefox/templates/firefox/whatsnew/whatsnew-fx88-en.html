@@ -35,19 +35,19 @@
   {% set landing_source = '?source=' + campaign if campaign else '' %}
 
   <section class="wnp-content-main">
-    <div class="mzp-l-content mzp-t-content-md">
+    <div class="mzp-l-content mzp-t-content-lg">
       {% if variant == '2' %}
-        <img class="wnp-main-image" src="{{ static('img/firefox/whatsnew/whatsnew88-en/hero.png') }}" width="432" alt="">
+        <img class="wnp-main-image" src="{{ static('img/firefox/whatsnew/whatsnew88-en/hero.png') }}" width="620" alt="">
       {% elif variant == '3' %}
-        <video class="c-animated-graphic" muted autoplay loop>
+        <video poster="{{ static('img/firefox/whatsnew/whatsnew88-en/hero.png') }}" class="c-animated-graphic wnp-vid-1" muted autoplay loop>
           <source type="video/webm" src="https://www-dev.allizom.org/media/img/firefox/whatsnew/whatsnew88/video.74ff8a48e25b29bfd78d261f20876e34.webm" media="screen and (prefers-color-scheme: light)">
           <source type="video/webm" src="https://www-dev.allizom.org/media/img/firefox/whatsnew/whatsnew88/video-dark.88537900b972f2067f3e09cd77bcbeed.webm" media="screen (prefers-color-scheme: dark)">
         </video>    
       {% elif variant == '4' %}
         <!-- TODO: Add dark mode support -->
-        <img class="wnp-main-image" src="{{ static('img/firefox/whatsnew/whatsnew88-en/hero-alt.png') }}" width="432" alt="">
+        <img class="wnp-main-image" src="{{ static('img/firefox/whatsnew/whatsnew88-en/hero-alt.png') }}" width="450" alt="">
       {% elif variant == '5' %} 
-        <video class="c-animated-graphic" muted autoplay loop>
+        <video poster="{{ static('img/firefox/whatsnew/whatsnew88-en/hero-alt.png') }}" class="c-animated-graphic" muted autoplay loop>
           <source type="video/webm" src="https://www-dev.allizom.org/media/img/firefox/whatsnew/whatsnew88/video-alt.9a5cbcefb392f6e3d8b8b99d1d105e66.webm" media="screen and (prefers-color-scheme: light)">
           <source type="video/webm" src="https://www-dev.allizom.org/media/img/firefox/whatsnew/whatsnew88/video-alt-dark.4d0d46d8ae6c083e29bb166ee44a71e7.webm" media="screen (prefers-color-scheme: dark)">
         </video>
@@ -55,8 +55,8 @@
         <!-- TODO: Add dark mode support -->
         <img class="wnp-main-image" src="{{ static('img/firefox/whatsnew/whatsnew84/vpn-logo.svg') }}" width="120" alt="">
       {% endif %}
-      <h1 class="wnp-main-title">Change your device’s location for next-level privacy.</h1>
-      <p class="wnp-main-tagline">Mozilla VPN (Virtual Private Network) protects your entire internet connection on your computer, your tablet, and even your phone. For even more security, it comes with a 30-day money back guarantee.</p>
+      <h1 class="wnp-main-title">Change your device’s location for <strong>next-level privacy</strong></h1>
+      <p class="wnp-main-tagline"><strong>Mozilla VPN</strong> (Virtual Private Network) protects your entire internet connection on your computer, your tablet, and even your phone. For even more security, it comes with a 30-day money back guarantee.</p>
 
       <div class="wnp-main-cta">
         <a href="{{ url('products.vpn.landing') }}{{ landing_source }}" class="mzp-c-button mzp-t-product mzp-t-lg" rel="external" data-cta-text="Get Mozilla VPN Now" data-cta-type="button">Get Mozilla VPN Now</a>

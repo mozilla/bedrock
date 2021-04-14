@@ -28,14 +28,21 @@ $image-path: '/media/protocol/img';
 
 .c-animated-graphic {
     width: 100%;
-    max-width: $content-sm;
+    max-width: 450px;
     display: block;
-    margin: 0 auto $spacing-lg;
+    margin: 0 auto $layout-sm;
+
+    &.wnp-vid-1 {
+        max-width: 620px;
+    }
 }
 
 .wnp-main-title {
     @include text-title-md;
     color: get-theme('title-text-color');
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
 
     strong {
         color: $color-violet-50;
@@ -44,6 +51,9 @@ $image-path: '/media/protocol/img';
 
 .wnp-main-tagline {
     @include text-body-lg;
+    max-width: $content-md;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .wnp-platforms {
