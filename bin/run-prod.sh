@@ -1,9 +1,5 @@
 #!/bin/bash -xe
 
-export prometheus_multiproc_dir=/tmp/prometheus_metrics
-# ensure the multiproc dir is empty
-rm -rf "$prometheus_multiproc_dir" && mkdir -p "$prometheus_multiproc_dir"
-
 function run-gunicorn () {
     if [[ -z "$NEW_RELIC_LICENSE_KEY" ]]; then
         exec gunicorn "$@"

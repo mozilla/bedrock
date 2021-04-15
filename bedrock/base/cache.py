@@ -1,6 +1,4 @@
-from django.core.cache.backends.locmem import DEFAULT_TIMEOUT
-
-from django_prometheus.cache.backends.locmem import LocMemCache
+from django.core.cache.backends.locmem import DEFAULT_TIMEOUT, LocMemCache
 
 
 class SimpleDictCache(LocMemCache):
