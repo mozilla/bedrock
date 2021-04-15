@@ -166,30 +166,38 @@ main .mzp-c-button.mzp-t-xl {
 
 .vpn-feature-list.mzp-u-list-styled {
     @include bidi(((text-align, left, right),));
-    @include text-body-xl;
+    @include text-body-lg;
     display: inline-block;
     list-style: none;
-    margin-bottom: $spacing-lg;
+    margin: 0 0 $spacing-lg 0;
 
     li {
         @include bidi((
-            (background-position, top 7px left, top 7px right),
-            (padding-left, (18px + $spacing-md), padding-right, 0),
+            (background-position, top 3px left, top 3px right),
+            (padding-left, (18px + $spacing-sm), padding-right, 0),
         ));
         background: url('/media/img/products/vpn/common/check-black.svg') no-repeat;
     }
 
     &.l-columns-two {
         margin-bottom: $layout-lg;
-    }
 
-    @media #{$mq-md} {
-        margin-bottom: 0;
-
-        &.l-columns-two {
+        @media #{$mq-md} {
             column-count: 2;
             column-gap: $spacing-2xl;
             margin-bottom: $layout-xl;
+        }
+    }
+
+    @media #{$mq-lg} {
+        @include text-body-xl;
+        margin-bottom: 0;
+
+        li {
+            @include bidi((
+                (background-position, top 7px left, top 7px right),
+                (padding-left, (18px + $spacing-md), padding-right, 0),
+            ));
         }
     }
 }
