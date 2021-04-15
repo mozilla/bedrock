@@ -41,7 +41,7 @@ PROD = config('PROD', parser=bool, default='false')
 DEBUG = config('DEBUG', parser=bool, default='false')
 DATABASES = {
     'default': {
-        'ENGINE': 'django_prometheus.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': data_path('bedrock.db'),
     },
 }
@@ -318,7 +318,6 @@ SUPPORTED_NONLOCALES = [
     'country-code.json',
     'revision.txt',
     'locales',
-    'prometheus',
     'sitemap_none.xml'
 ]
 # Paths that can exist either with or without a locale code in the URL.
@@ -362,7 +361,6 @@ NOINDEX_URLS = [
     r'^about/legal/impressum/$',
     r'^security/announce/',
     r'^exp/',
-    r'^prometheus/',
 ]
 
 # Pages we do want indexed but don't show up in automated URL discovery
@@ -470,22 +468,7 @@ ENABLE_VARY_NOCACHE_MIDDLEWARE = config('ENABLE_VARY_NOCACHE_MIDDLEWARE',
 # e.g. BASIC_AUTH_CREDS="thedude:thewalrus"
 BASIC_AUTH_CREDS = config('BASIC_AUTH_CREDS', default='')
 
-# reduce the number of latency buckets for prom
-# see https://github.com/korfuri/django-prometheus#configuration
-PROMETHEUS_LATENCY_BUCKETS = (
-    0.05,
-    0.1,
-    0.5,
-    1.0,
-    5.0,
-    10.0,
-    50.0,
-    float("inf"),
-)
-PROMETHEUS_METRIC_NAMESPACE = APP_NAME.replace('-', '_')
-
 MIDDLEWARE = [
-    'django_prometheus.middleware.PrometheusBeforeMiddleware',
     'allow_cidr.middleware.AllowCIDRMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.http.ConditionalGetMiddleware',
@@ -500,7 +483,6 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'bedrock.mozorg.middleware.CacheMiddleware',
-    'django_prometheus.middleware.PrometheusAfterMiddleware',
 ]
 
 ENABLE_CSP_MIDDLEWARE = config('ENABLE_CSP_MIDDLEWARE', default='true', parser=bool)
@@ -527,7 +509,6 @@ INSTALLED_APPS = (
     'localflavor',
     'django_jinja',
     'watchman',
-    'django_prometheus',
 
     # Local apps
     'bedrock.base',
@@ -1349,31 +1330,31 @@ VPN_VARIABLE_PRICE_MONTHLY_EURO = config('VPN_VARIABLE_PRICE_MONTHLY_EURO',
 
 # Countries where VPN is available at a fixed monthly price.
 VPN_FIXED_PRICE_COUNTRY_CODES = [
-    'CA', # Canada
-    'MY', # Malaysia
-    'NZ', # New Zealand
-    'SG', # Singapore
+    'CA',  # Canada
+    'MY',  # Malaysia
+    'NZ',  # New Zealand
+    'SG',  # Singapore
     # United Kingdom + "Territories"
-    'GB', # United Kingdom of Great Britain and Northern Island
-    'GG', # Guernsey (a British Crown dependency)
-    'IM', # Isle of Man (a British Crown dependency)
-    'IO', # British Indian Ocean Territory
-    'JE', # Jersey (a British Crown dependency)
-    'UK', # United Kingdom
-    'VG', # Virgin Islands (British)
+    'GB',  # United Kingdom of Great Britain and Northern Island
+    'GG',  # Guernsey (a British Crown dependency)
+    'IM',  # Isle of Man (a British Crown dependency)
+    'IO',  # British Indian Ocean Territory
+    'JE',  # Jersey (a British Crown dependency)
+    'UK',  # United Kingdom
+    'VG',  # Virgin Islands (British)
     # USA + "Territories"
-    'AS', # American Samoa
-    'MP', # Northern Mariana Islands
-    'PR', # Puerto Rico
-    'UM', # United States Minor Outlying Islands
-    'US', # United States of America
-    'VI', # Virgin Islands (U.S.)
+    'AS',  # American Samoa
+    'MP',  # Northern Mariana Islands
+    'PR',  # Puerto Rico
+    'UM',  # United States Minor Outlying Islands
+    'US',  # United States of America
+    'VI',  # Virgin Islands (U.S.)
 ]
 
 # Countries where VPN is available using variable pricing model.
 VPN_VARIABLE_PRICE_COUNTRY_CODES = [
-    'DE', # Germany
-    'FR', # France
+    'DE',  # Germany
+    'FR',  # France
 ]
 
 # Product variables used in VPN landing page(s)

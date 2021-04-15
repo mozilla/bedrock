@@ -3,8 +3,6 @@
 from os import getenv
 from multiprocessing import cpu_count
 
-from prometheus_client import multiprocess
-
 
 bind = f'0.0.0.0:{getenv("PORT", "8000")}'
 
@@ -29,8 +27,3 @@ worker_tmp_dir = "/dev/shm"
 # Called just after a worker has been forked.
 def post_fork(server, worker):
     server.log.info("Worker spawned (pid: %s)", worker.pid)
-
-
-# see https://github.com/prometheus/client_python#multiprocess-mode-gunicorn
-def child_exit(server, worker):
-    multiprocess.mark_process_dead(worker.pid)

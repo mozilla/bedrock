@@ -324,12 +324,6 @@ packaging==20.4 \
 pyparsing==2.4.7 \
     --hash=sha256:c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1 \
     --hash=sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b
-django-prometheus==2.1.0 \
-    --hash=sha256:c338d6efde1ca336e90c540b5e87afe9287d7bcc82d651a778f302b0be17a933 \
-    --hash=sha256:dd3f8da1399140fbef5c00d1526a23d1ade286b144281c325f8e409a781643f2
-prometheus-client==0.8.0 \
-    --hash=sha256:983c7ac4b47478720db338f1491ef67a100b474e3bc7dafcbaefb7d0b8f9b01c \
-    --hash=sha256:c6e6b706833a6bd1fd51711299edee907857be10ece535126a158f911ee80915
 sentry-sdk==0.16.1 \
     --hash=sha256:2f023ff348359ec5f0b73a840e8b08e6a8d3b2613a98c57d11c222ef43879237 \
     --hash=sha256:380a280cfc7c4ade5912294e6d9aa71ce776b5fca60a3782e9331b0bcd2866bf
