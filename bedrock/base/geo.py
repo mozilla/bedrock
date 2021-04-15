@@ -67,10 +67,10 @@ def get_country_from_maxmind(request):
 
 def get_country_from_request(request):
     """Return country info for the given request data."""
-    country = get_country_from_maxmind(request)
-    source = 'local'
+    country = get_country_from_request_header(request)
+    source = 'cdn'
     if country is None:
-        country = get_country_from_request_header(request)
-        source = 'cdn'
+        country = get_country_from_maxmind(request)
+        source = 'local'
 
     return country, source
