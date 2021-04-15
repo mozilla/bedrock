@@ -24,6 +24,29 @@ $image-path: '/media/protocol/img';
 
 .wnp-main-image {
     margin: 0 auto $layout-sm;
+    
+    .wnp-main-image-content {
+        height: 0;
+        background: no-repeat center top;
+        background-size: contain;
+        width: 100%;
+    }
+
+    &.wnp88-main-image-v1 {
+        max-width: 620px;
+        .wnp-main-image-content {
+            background-image: url('/media/img/firefox/whatsnew/whatsnew88-en/hero.png');
+            padding-top: 57%;        
+        }
+    }
+
+    &.wnp88-main-image-v2 {
+        max-width: 450px;
+        .wnp-main-image-content {
+            background-image: url('/media/img/firefox/whatsnew/whatsnew88-en/hero-alt.png');
+            padding-top: 60%;        
+        }
+    }
 }
 
 .c-animated-graphic {
@@ -236,6 +259,18 @@ $image-path: '/media/protocol/img';
             fill: #a77ffa;
         }
     }
+
+    .wnp-main-image {
+        
+        &.wnp88-main-image-v1 .wnp-main-image-content {
+            background-image: url('/media/img/firefox/whatsnew/whatsnew88-en/hero-dark.png');
+        }
+    
+        &.wnp88-main-image-v2 .wnp-main-image-content {
+            background-image: url('/media/img/firefox/whatsnew/whatsnew88-en/hero-alt-dark.png');
+        }
+    }
+
 }
 
 //* -------------------------------------------------------------------------- */
