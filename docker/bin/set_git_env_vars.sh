@@ -19,6 +19,9 @@ if [[ -z "$GIT_BRANCH" ]]; then
     fi
     export BRANCH_NAME="$GIT_BRANCH"
 fi
+
+export GIT_COMMIT="debugImage"
+export GIT_COMMIT_SHORT="debugImage"
 export BRANCH_NAME_SAFE="${BRANCH_NAME/\//-}"
 export BRANCH_AND_COMMIT="${BRANCH_NAME_SAFE}-${GIT_COMMIT}"
 # Docker Hub Stuff
