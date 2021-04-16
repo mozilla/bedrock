@@ -113,39 +113,35 @@ if (typeof window.Mozilla.Analytics === 'undefined') {
                     }
 
                     // variables to compare to determine the segments
-                    var mobileSync = false;
-                    var desktopSync = false;
-                    var desktopMultiSync = false;
+                    var mobileDevices = FxaDetails.browserServices.sync.mobileDevices;
+                    var desktopDevices = FxaDetails.browserServices.sync.desktopDevices;
 
                     // set FxAMobileSync
-                    if (FxaDetails.mobileDevices > 0) {
+                    if (mobileDevices > 0) {
                         formatted.FxAMobileSync = true;
-                        mobileSync = true;
-                    } else if (FxaDetails.mobileDevices === 0) {
+                    } else if (mobileDevices === 0) {
                         formatted.FxAMobileSync = false;
                     } else {
                         formatted.FxAMobileSync = 'unknown';
                     }
 
                     // set FxAMultiDesktopSync
-                    if (FxaDetails.desktopDevices > 1) {
+                    if (desktopDevices > 1) {
                         formatted.FxAMultiDesktopSync = true;
-                        desktopMultiSync = true;
-                    } else if (FxaDetails.desktopDevices === 1) {
+                    } else if (desktopDevices === 1) {
                         formatted.FxAMultiDesktopSync = false;
-                        desktopSync = true;
-                    } else if (FxaDetails.desktopDevices === 0){
+                    } else if (desktopDevices === 0) {
                         formatted.FxAMultiDesktopSync = false;
                     } else {
                         formatted.FxAMultiDesktopSync = 'unknown';
                     }
 
                     // refine FxASegment based on device syncing
-                    if (desktopMultiSync && mobileSync) {
+                    if (desktopDevices > 1 && mobileDevices > 0) {
                         formatted.FxASegment = 'Multi-Desktop and Mobile Sync';
-                    } else if (desktopSync && mobileSync) {
+                    } else if (desktopDevices === 1 && mobileDevices > 0) {
                         formatted.FxASegment = 'Desktop and Mobile Sync';
-                    } else if (desktopMultiSync) {
+                    } else if (desktopDevices > 1) {
                         formatted.FxASegment = 'Multi-Desktop Sync';
                     }
 

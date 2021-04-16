@@ -9,22 +9,11 @@ from django.conf import settings
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST, require_safe
 
+from bedrock.base.waffle import switch
 from bedrock.newsletter.views import general_error, invalid_email_address
 from bedrock.products.forms import VPNWaitlistForm
 from lib import l10n_utils
 from lib.l10n_utils.fluent import ftl
-
-
-VPN_FIXED_MONTHLY_PRICE = 'US$4.99'
-VPN_VARIABLE_MONTHLY_PRICE = '9,99‎ €'
-VPN_VARIABLE_6_MONTH_PRICE = '6,99 €'
-VPN_VARIABLE_12_MONTH_PRICE = '4,99 €'
-VPN_VARIABLE_6_MONTH_PRICE_TOTAL = '41,94 €'
-VPN_VARIABLE_12_MONTH_PRICE_TOTAL = '59,88 €'
-VPN_AVAILABLE_COUNTRIES = 6
-VPN_CONNECT_SERVERS = 750
-VPN_CONNECT_COUNTRIES = 30
-VPN_CONNECT_DEVICES = 5
 
 
 def vpn_fixed_price_countries():
@@ -32,14 +21,19 @@ def vpn_fixed_price_countries():
     return '|%s|' % '|'.join(cc.lower() for cc in countries)
 
 
+def vpn_variable_price_countries():
+    if switch('vpn-launch-germany-france'):
+        countries = settings.VPN_VARIABLE_PRICE_COUNTRY_CODES
+        return '|%s|' % '|'.join(cc.lower() for cc in countries)
+
+    return None
+
+
 @require_safe
 def vpn_landing_page(request):
     ftl_files = ['products/vpn/landing', 'products/vpn/shared']
-
-    locale = l10n_utils.get_locale(request)
+    template_name = 'products/vpn/landing.html'
     sub_not_found = request.GET.get('vpn-sub-not-found', None)
-    entrypoint_experiment = request.GET.get('entrypoint_experiment', None)
-    entrypoint_variation = request.GET.get('entrypoint_variation', None)
 
     # error message for visitors who try to sign-in without a subscription (issue 10002)
     if sub_not_found == 'true':
@@ -47,30 +41,19 @@ def vpn_landing_page(request):
     else:
         sub_not_found = False
 
-    # ensure experiment parameters matches pre-defined values
-    if entrypoint_variation not in ['a', 'b', 'c', 'd']:
-        entrypoint_variation = None
-
-    if entrypoint_experiment != 'vpn-landing-page-heading':
-        entrypoint_variation = None
-
-    if entrypoint_experiment and entrypoint_variation and locale in ['en-US', 'de', 'fr']:
-        template_name = 'products/vpn/variants/heading-{}.html'.format(entrypoint_variation)
-    else:
-        template_name = 'products/vpn/landing.html'
-
     context = {
         'fixed_price_countries': vpn_fixed_price_countries(),
-        'fixed_monthly_price': VPN_FIXED_MONTHLY_PRICE,
-        'variable_monthly_price': VPN_VARIABLE_MONTHLY_PRICE,
-        'variable_6_month_price': VPN_VARIABLE_6_MONTH_PRICE,
-        'variable_12_month_price': VPN_VARIABLE_12_MONTH_PRICE,
-        'variable_6_month_price_total': VPN_VARIABLE_6_MONTH_PRICE_TOTAL,
-        'variable_12_month_price_total': VPN_VARIABLE_12_MONTH_PRICE_TOTAL,
-        'available_countries': VPN_AVAILABLE_COUNTRIES,
-        'connect_servers': VPN_CONNECT_SERVERS,
-        'connect_countries': VPN_CONNECT_COUNTRIES,
-        'connect_devices': VPN_CONNECT_DEVICES,
+        'fixed_monthly_price': settings.VPN_FIXED_MONTHLY_PRICE,
+        'variable_price_countries': vpn_variable_price_countries(),
+        'variable_monthly_price': settings.VPN_VARIABLE_MONTHLY_PRICE,
+        'variable_6_month_price': settings.VPN_VARIABLE_6_MONTH_PRICE,
+        'variable_12_month_price': settings.VPN_VARIABLE_12_MONTH_PRICE,
+        'variable_6_month_price_total': settings.VPN_VARIABLE_6_MONTH_PRICE_TOTAL,
+        'variable_12_month_price_total': settings.VPN_VARIABLE_12_MONTH_PRICE_TOTAL,
+        'available_countries': settings.VPN_AVAILABLE_COUNTRIES,
+        'connect_servers': settings.VPN_CONNECT_SERVERS,
+        'connect_countries': settings.VPN_CONNECT_COUNTRIES,
+        'connect_devices': settings.VPN_CONNECT_DEVICES,
         'sub_not_found': sub_not_found
     }
 

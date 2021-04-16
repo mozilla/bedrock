@@ -1517,13 +1517,6 @@
     },
     {
       "files": [
-        "js/libs/mozilla-traffic-cop.js",
-        "js/products/vpn/heading-experiment.js"
-      ],
-      "name": "vpn-landing-page-heading-experiment"
-    },
-    {
-      "files": [
         "js/products/vpn/invite.js"
       ],
       "name": "mozilla-vpn-invite"

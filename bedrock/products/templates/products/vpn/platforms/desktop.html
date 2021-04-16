@@ -6,9 +6,9 @@
 
 {% extends "products/vpn/base.html" %}
 
-{% set vpn_countries = 30 %}
-{% set vpn_devices = 5 %}
-{% set vpn_servers = 750 %}
+{% set vpn_countries = settings.VPN_CONNECT_COUNTRIES %}
+{% set vpn_devices = settings.VPN_CONNECT_DEVICES %}
+{% set vpn_servers = settings.VPN_CONNECT_SERVERS %}
 
 {% block page_title_full %}{{ ftl('vpn-desktop-page-title') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
@@ -102,7 +102,7 @@
       image_url='img/products/vpn/platforms/vpn-cntwell-globe.png',
       class_name='vpn-content-media-right-half',
     ) %}
-      <p>{{ ftl('vpn-desktop-servers-copy', servers=vpn_servers) }}</p>
+      <p>{{ ftl('vpn-desktop-servers-copy-updated', fallback='vpn-desktop-servers-copy', servers=vpn_servers) }}</p>
     {% endcall %}
 
     {% call vpn_content_media(

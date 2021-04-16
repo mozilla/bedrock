@@ -10,7 +10,6 @@ vpn-shared-waitlist-link = Join the Waitlist
 vpn-shared-sign-in-link = Already a subscriber?
 vpn-shared-available-countries = We currently offer { -brand-name-mozilla-vpn } in the US, the UK, Canada, New Zealand, Singapore, and Malaysia.
 vpn-shared-available-countries-v2 = We currently offer { -brand-name-mozilla-vpn } in the US, the UK, Germany, France, Canada, Malaysia, New Zealand, and Singapore.
-vpn-shared-availablity-long = The VPN is currently available for { -brand-name-windows } 10, { -brand-name-android } and { -brand-name-ios } devices in the US, the UK, Canada, New Zealand, Singapore, and Malaysia.
 vpn-shared-money-back-guarantee = 30-day money-back guarantee
 
 # This string will be followed by a lockup of press logos for publications that have featured Mozilla VPN.
@@ -94,7 +93,7 @@ vpn-shared-pricing-total = { $amount } total
 
 # Platform subpage shared strings
 
-vpn-shared-platform-cta-headline = Let's get started
+vpn-shared-platform-cta-headline = Let’s get started
 vpn-shared-platform-cta-button = See pricing & availability
 
 vpn-shared-platform-privacy-promise = Your privacy is our promise
@@ -109,6 +108,9 @@ vpn-shared-platform-what-youll-get = What you’ll get with { -brand-name-mozill
 
 # Subnav strings
 vpn-subnav-title = { -brand-name-mozilla-vpn }
+vpn-subnav-whats-a-vpn = What’s a VPN?
+vpn-subnav-faqs = FAQs
+vpn-subnav-get-help = Get Help
 vpn-subnav-platform-android = { -brand-name-android }
 vpn-subnav-platform-desktop = Desktop
 vpn-subnav-platform-ios = { -brand-name-ios }

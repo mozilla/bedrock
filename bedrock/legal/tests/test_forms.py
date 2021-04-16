@@ -60,7 +60,7 @@ class TestFraudReport(TestCase):
         response = legal_views.fraud_report(request)
 
         assert response.status_code == 302
-        assert response['Location'] == '/en-US/about/legal/fraud-report/?submitted=True'
+        assert response['Location'] == '/en-US/about/legal/defend-mozilla-trademarks/?submitted=True'
 
     def test_view_post_missing_data(self):
         """

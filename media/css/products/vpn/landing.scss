@@ -10,9 +10,21 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/components/notification-bar';
 
 //* -------------------------------------------------------------------------- */
+// Smooth Scroll
+
+html {
+    scroll-behavior: smooth;
+
+    @media (prefers-reduced-motion: reduce) {
+        scroll-behavior: auto;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
 // Featured Press Logos
 
 .vpn-featured-press-logos {
+    margin: $layout-lg 0;
     text-align: center;
 
     .vpn-featured-press-heading {

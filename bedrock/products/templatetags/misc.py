@@ -7,6 +7,8 @@ import jinja2
 from django.conf import settings
 from django_jinja import library
 
+from bedrock.base.waffle import switch
+
 
 def _vpn_product_link(product_url, entrypoint, link_text, class_name=None, optional_parameters=None, optional_attributes=None):
     separator = '&' if '?' in product_url else '?'
@@ -53,7 +55,7 @@ def vpn_sign_in_link(ctx, entrypoint, link_text, class_name=None, optional_param
 
 @library.global_function
 @jinja2.contextfunction
-def vpn_subscribe_link(ctx, entrypoint, link_text, class_name=None, optional_parameters=None, optional_attributes=None):
+def vpn_subscribe_link(ctx, entrypoint, link_text, plan=None, class_name=None, optional_parameters=None, optional_attributes=None):
     """
     Render a vpn.mozilla.org subscribe link with required params for FxA authentication.
 
@@ -65,6 +67,21 @@ def vpn_subscribe_link(ctx, entrypoint, link_text, class_name=None, optional_par
 
         {{ vpn_subscribe_link(entrypoint='www.mozilla.org-vpn-product-page', link_text='Get Mozilla VPN') }}
     """
-    product_url = f'{settings.VPN_ENDPOINT}r/vpn/subscribe'
+
+    # Subscription links can currently support variable pricing in Euros, else default to monthly in US$.
+    if plan == '12-month-euro':
+        plan_id = settings.VPN_VARIABLE_PRICE_12_MONTH_EURO
+    elif plan == '6-month-euro':
+        plan_id = settings.VPN_VARIABLE_PRICE_6_MONTH_EURO
+    elif plan == 'monthly-euro':
+        plan_id = settings.VPN_VARIABLE_PRICE_MONTHLY_EURO
+    else:
+        plan_id = settings.VPN_FIXED_PRICE_MONTHLY_USD
+
+    # switching to the new subscription URLs will be time co-ordinated with the VPN product team.
+    if switch('vpn-new-subscription-url-format'):
+        product_url = f'{settings.VPN_ENDPOINT}r/vpn/subscribe/products/{settings.VPN_PRODUCT_ID}?plan={plan_id}'
+    else:
+        product_url = f'{settings.VPN_ENDPOINT}r/vpn/subscribe'
 
     return _vpn_product_link(product_url, entrypoint, link_text, class_name, optional_parameters, optional_attributes)

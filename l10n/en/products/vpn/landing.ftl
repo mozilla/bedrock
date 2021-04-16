@@ -12,7 +12,11 @@ vpn-landing-page-title = { -brand-name-mozilla-vpn }: Protect Your Entire Device
 #   $countries (number) - number of available countries
 vpn-landing-page-desc = Use the { -brand-name-mozilla-vpn } for full-device protection for all apps. With servers in { $countries }+ countries, you can connect to anywhere, from anywhere.
 
+vpn-landing-hero-sub-heading-v2 = Security, reliability and speed — on every device, anywhere you go.
+
+# Obsolete string
 vpn-landing-hero-sub-heading = Security you can rely on. A name you can trust.
+
 vpn-landing-hero-desc = A Virtual Private Network from the makers of { -brand-name-firefox }.
 vpn-landing-privacy-heading = One tap to privacy
 vpn-landing-privacy-desc = Surf, stream, game, and get work done while maintaining your privacy online. Whether you’re traveling, using public WiFi, or simply looking for more online security, we will always put your privacy first.
@@ -66,12 +70,50 @@ vpn-landing-faq-competition-question-heading = How does { -brand-name-mozilla-vp
 vpn-landing-faq-competition-question-desc = While free VPNs seem attractive, they do not make the same commitments to privacy as { -brand-name-mozilla-vpn } and may sell or store your data. Other paid VPNs don’t have { -brand-name-mozilla }’s over 20-year <a href="{ $url }">track record</a> of building products that put people and privacy first.
 
 vpn-landing-faq-compatibility-question-heading = What devices is { -brand-name-mozilla-vpn } compatible with?
+
+# Variables:
+#   $mobile (url) - link to https://www.mozilla.org/products/vpn/mobile/
+#   $desktop (url) - link to https://www.mozilla.org/products/vpn/desktop/
+vpn-landing-faq-compatibility-question-desc-v2 = { -brand-name-mozilla-vpn } is compatible with <a href="{ $mobile }">mobile</a>, tablet, and <a href="{ $desktop }">desktop</a> on:
+
+# Outdated string
 vpn-landing-faq-compatibility-question-desc = { -brand-name-mozilla-vpn } is compatible with:
+
+# Variables:
+#   $url (url) - link to https://www.mozilla.org/products/vpn/desktop/windows/
+vpn-landing-faq-compatibility-question-desc-windows-v2 = <a href="{ $url }">{ -brand-name-windows }</a> 10 (64-bit only)
+
+# Outdated string
 vpn-landing-faq-compatibility-question-desc-windows = { -brand-name-windows } 10 (64-bit only)
+
+# Variables:
+#   $url (url) - link to https://www.mozilla.org/products/vpn/desktop/mac/
+vpn-landing-faq-compatibility-question-desc-mac-v2 = <a href="{ $url }">{ -brand-name-mac }</a> (10.15 and up)
+
+# Outdated string
 vpn-landing-faq-compatibility-question-desc-mac = { -brand-name-mac } (10.15 and up)
+
+# Variables:
+#   $url (url) - link to https://www.mozilla.org/products/vpn/mobile/android/
+vpn-landing-faq-compatibility-question-desc-android-v2 = <a href="{ $url }">{ -brand-name-android }</a> (version 6 and up)
+
+# Outdated string
 vpn-landing-faq-compatibility-question-desc-android = { -brand-name-android } (version 6 and up)
+
+# Variables:
+#   $url (url) - link to https://www.mozilla.org/products/vpn/mobile/ios/
+vpn-landing-faq-compatibility-question-desc-ios-v2 = <a href="{ $url }">{ -brand-name-ios }</a> (13.0 and up)
+
+# Outdated string
 vpn-landing-faq-compatibility-question-desc-ios = { -brand-name-ios } (13.0 and up)
+
+# Variables:
+#   $url (url) - link to https://www.mozilla.org/products/vpn/desktop/linux/
+vpn-landing-faq-compatibility-question-desc-linux-v2 = <a href="{ $url }">{ -brand-name-linux }</a> ({ -brand-name-ubuntu }-only)
+
+# Outdated string
 vpn-landing-faq-compatibility-question-desc-linux = { -brand-name-linux } ({ -brand-name-ubuntu }-only)
+
 vpn-landing-faq-refund-question-heading = What is { -brand-name-mozilla-vpn }’s refund policy?
 vpn-landing-faq-refund-question-desc = You can get your money back within 30 days of purchasing your subscription. Contact us and submit the refund request by tapping the “Get Help” button in Settings on your { -brand-name-mozilla-vpn } app.
 vpn-landing-faq-manage-subscription-question-heading = How do I manage my subscription?

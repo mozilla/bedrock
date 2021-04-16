@@ -41,7 +41,7 @@ PROD = config('PROD', parser=bool, default='false')
 DEBUG = config('DEBUG', parser=bool, default='false')
 DATABASES = {
     'default': {
-        'ENGINE': 'django_prometheus.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': data_path('bedrock.db'),
     },
 }
@@ -318,7 +318,6 @@ SUPPORTED_NONLOCALES = [
     'country-code.json',
     'revision.txt',
     'locales',
-    'prometheus',
     'sitemap_none.xml'
 ]
 # Paths that can exist either with or without a locale code in the URL.
@@ -362,7 +361,6 @@ NOINDEX_URLS = [
     r'^about/legal/impressum/$',
     r'^security/announce/',
     r'^exp/',
-    r'^prometheus/',
 ]
 
 # Pages we do want indexed but don't show up in automated URL discovery
@@ -470,22 +468,7 @@ ENABLE_VARY_NOCACHE_MIDDLEWARE = config('ENABLE_VARY_NOCACHE_MIDDLEWARE',
 # e.g. BASIC_AUTH_CREDS="thedude:thewalrus"
 BASIC_AUTH_CREDS = config('BASIC_AUTH_CREDS', default='')
 
-# reduce the number of latency buckets for prom
-# see https://github.com/korfuri/django-prometheus#configuration
-PROMETHEUS_LATENCY_BUCKETS = (
-    0.05,
-    0.1,
-    0.5,
-    1.0,
-    5.0,
-    10.0,
-    50.0,
-    float("inf"),
-)
-PROMETHEUS_METRIC_NAMESPACE = APP_NAME.replace('-', '_')
-
 MIDDLEWARE = [
-    'django_prometheus.middleware.PrometheusBeforeMiddleware',
     'allow_cidr.middleware.AllowCIDRMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.http.ConditionalGetMiddleware',
@@ -500,7 +483,6 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'bedrock.mozorg.middleware.CacheMiddleware',
-    'django_prometheus.middleware.PrometheusAfterMiddleware',
 ]
 
 ENABLE_CSP_MIDDLEWARE = config('ENABLE_CSP_MIDDLEWARE', default='true', parser=bool)
@@ -527,7 +509,6 @@ INSTALLED_APPS = (
     'localflavor',
     'django_jinja',
     'watchman',
-    'django_prometheus',
 
     # Local apps
     'bedrock.base',
@@ -1032,14 +1013,10 @@ FIREFOX_INSTAGRAM_ACCOUNTS = {
     'en-US': 'https://www.instagram.com/firefox/',
 }
 
-# Fx Accounts iframe-less form & JS endpoint
+# Firefox Accounts product links
 # ***This URL *MUST* end in a traling slash!***
-
-# other acceptable values below are:
-#   - https://accounts.stage.mozaws.net/ (stage)
-#   - https://stable.dev.lcip.org/ (demo/local)
 FXA_ENDPOINT = config('FXA_ENDPOINT',
-                       default='https://accounts.firefox.com/')
+                       default='https://stable.dev.lcip.org/' if DEV else 'https://accounts.firefox.com/')
 
 FXA_ENDPOINT_MOZILLAONLINE = config('FXA_ENDPOINT_MOZILLAONLINE',
                                     default='https://accounts.firefox.com.cn/')
@@ -1316,33 +1293,83 @@ if config('SWITCH_TRACKING_PIXEL', default=str(DEV), parser=bool):
 CONVERT_PROJECT_ID = ('10039-1003350' if DEV else '10039-1003343')
 
 # Mozilla VPN product links
-#   - https://vpn.mozilla.org/ (prod)
-#   - https://stage-vpn.guardian.nonprod.cloudops.mozgcp.net/ (stage)
+# ***This URL *MUST* end in a traling slash!***
 VPN_ENDPOINT = config('VPN_ENDPOINT',
-                       default='https://vpn.mozilla.org/')
+                      default='https://stage-vpn.guardian.nonprod.cloudops.mozgcp.net/'
+                      if DEV else 'https://vpn.mozilla.org/')
+
+# Product ID for VPN subscriptions
+VPN_PRODUCT_ID = config('VPN_PRODUCT_ID', default='prod_FiJ42WCzZNRSbS'
+                                          if DEV else 'prod_FvnsFHIfezy3ZI')
+
+# Plan ID for VPN monthly fixed price VPN subscription in US$
+VPN_FIXED_PRICE_MONTHLY_USD = config('VPN_FIXED_PRICE_MONTHLY_USD',
+                                     default='plan_FvPMH5lVx1vhV0'
+                                     if DEV else 'plan_FvnxS1j9oFUZ7Y')
+
+# Plan ID for VPN 12 month subscription in Euros
+# TODO: We still need IDs for production!
+VPN_VARIABLE_PRICE_12_MONTH_EURO = config('VPN_VARIABLE_PRICE_12_MONTH_EURO',
+                                          default='price_1IXw5oKb9q6OnNsLPMkWOid7'
+                                          if DEV else '')
+
+# Plan ID for VPN 6 month subscription in Euros
+# TODO: We still need IDs for production!
+VPN_VARIABLE_PRICE_6_MONTH_EURO = config('VPN_VARIABLE_PRICE_6_MONTH_EURO',
+                                          default='price_1IXw5NKb9q6OnNsLLIyYuhWF'
+                                          if DEV else '')
+
+# Plan ID for VPN monthly subscription in Euros
+# TODO: We still need IDs for production!
+VPN_VARIABLE_PRICE_MONTHLY_EURO = config('VPN_VARIABLE_PRICE_MONTHLY_EURO',
+                                          default='price_1IXw4eKb9q6OnNsLqnVP4PvO'
+                                          if DEV else '')
 
 # Mozilla VPN Geo restrictions
 # https://github.com/mozilla-services/guardian-website/blob/master/server/constants.ts
 
 # Countries where VPN is available at a fixed monthly price.
 VPN_FIXED_PRICE_COUNTRY_CODES = [
-  'CA', #Canada
-  'MY', #Malaysia
-  'NZ', #New Zealand
-  'SG', #Singapore
-  #United Kingdom + "Territories"
-  'GB', #United Kingdom of Great Britain and Northern Island
-  'GG', #Guernsey (a British Crown dependency)
-  'IM', #Isle of Man (a British Crown dependency)
-  'IO', #British Indian Ocean Territory
-  'JE', #Jersey (a British Crown dependency)
-  'UK', #United Kingdom
-  'VG', #Virgin Islands (British)
-  #USA + "Territories"
-  'AS', #American Samoa
-  'MP', #Northern Mariana Islands
-  'PR', #Puerto Rico
-  'UM', #United States Minor Outlying Islands
-  'US', #United States of America
-  'VI', #Virgin Islands (U.S.)
+    'CA',  # Canada
+    'MY',  # Malaysia
+    'NZ',  # New Zealand
+    'SG',  # Singapore
+    # United Kingdom + "Territories"
+    'GB',  # United Kingdom of Great Britain and Northern Island
+    'GG',  # Guernsey (a British Crown dependency)
+    'IM',  # Isle of Man (a British Crown dependency)
+    'IO',  # British Indian Ocean Territory
+    'JE',  # Jersey (a British Crown dependency)
+    'UK',  # United Kingdom
+    'VG',  # Virgin Islands (British)
+    # USA + "Territories"
+    'AS',  # American Samoa
+    'MP',  # Northern Mariana Islands
+    'PR',  # Puerto Rico
+    'UM',  # United States Minor Outlying Islands
+    'US',  # United States of America
+    'VI',  # Virgin Islands (U.S.)
 ]
+
+# Countries where VPN is available using variable pricing model.
+VPN_VARIABLE_PRICE_COUNTRY_CODES = [
+    'DE',  # Germany
+    'FR',  # France
+]
+
+# Product variables used in VPN landing page(s)
+VPN_FIXED_MONTHLY_PRICE = 'US$4.99'
+VPN_VARIABLE_MONTHLY_PRICE = '9,99‎ €'
+VPN_VARIABLE_6_MONTH_PRICE = '6,99 €'
+VPN_VARIABLE_12_MONTH_PRICE = '4,99 €'
+VPN_VARIABLE_6_MONTH_PRICE_TOTAL = '41,94 €'
+VPN_VARIABLE_12_MONTH_PRICE_TOTAL = '59,88 €'
+
+if config('SWITCH_VPN_LAUNCH_GERMANY_FRANCE', default=str(DEV), parser=bool):
+    VPN_AVAILABLE_COUNTRIES = 8
+else:
+    VPN_AVAILABLE_COUNTRIES = 6
+
+VPN_CONNECT_SERVERS = 750
+VPN_CONNECT_COUNTRIES = 30
+VPN_CONNECT_DEVICES = 5

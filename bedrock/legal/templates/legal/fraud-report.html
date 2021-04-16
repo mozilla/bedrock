@@ -41,7 +41,7 @@
 </aside>
 {% endif %}
 
-<h1 class="mzp-c-article-title">Protect the Fox<br> (and More!)</h1>
+<h1 class="mzp-c-article-title">Protect the Fox</h1>
 <h2>Help us safeguard Mozilla’s trademarks by reporting misuse.</h2>
 
 <p>
@@ -54,6 +54,27 @@
 </p>
 
 <section class="mzp-c-emphasis-box">
+
+  <p>
+    <strong>This form is ONLY for reporting infringement of Mozilla’s trademarks. Other kinds of malicious sites should be reported to Google Safe Browsing:</strong>
+  </p>
+
+  <ol class="mzp-u-list-styled">
+    <li>
+      The <a href="https://support.mozilla.org/en-US/kb/how-does-phishing-and-malware-protection-work">Phishing and Malware Protection</a> in Firefox uses the <a href="https://safebrowsing.google.com/">Google Safe Browsing</a> service.
+    </li>
+    <li>
+      Report phishing sites by using the <a href="https://safebrowsing.google.com/safebrowsing/report_phish/">Report Phishing form</a> from Google Safe Browsing.
+    </li>
+    <li>
+      Report websites that contain malicious software by using the <a href="https://safebrowsing.google.com/safebrowsing/report_badware/">Malicious Software form</a> from Google Safe Browsing.
+    </li>
+    <li>
+      Once again, the form on this page is <strong>ONLY</strong> for reporting infringement of Mozilla trademarks. <strong>DO NOT</strong> submit other kinds of malicious sites via this form. Mozilla cannot and will not respond to other reports submitted via this page.
+    </li>
+
+  </ol>
+
   <p>
     <strong>Please use this form to report any websites or mobile app stores that are:</strong>
   </p>
@@ -92,7 +113,7 @@
 
 <section>
   {% if not form_submitted or (form_submitted and form_error) %}
-  <h2>Fraud Report</h2>
+  <h2>Report of Misuse of Mozilla Trademarks</h2>
 
   <form class="mzp-c-form" action="{{ url('legal.fraud-report') }}" method="post" name="reportForm" id="reportForm" enctype="multipart/form-data">
 

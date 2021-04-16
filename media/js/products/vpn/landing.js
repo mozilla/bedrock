@@ -35,8 +35,12 @@
     function openFaqItem(id) {
         var faq = document.getElementById(id);
 
-        if (faq && !faq.hasAttribute('open')) {
-            faq.querySelector('summary').click();
+        if (faq && faq.classList.contains('vpn-faq-item') && !faq.hasAttribute('open')) {
+            var summary = faq.querySelector('summary');
+
+            if (summary) {
+                summary.click();
+            }
         }
     }
 

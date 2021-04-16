@@ -39,7 +39,7 @@ $image-path: '/media/protocol/img';
 
     .vpn-content-block-container {
         margin: 0 auto;
-        padding: $spacing-lg $spacing-xl;
+        padding: $spacing-md;
         width: 100%;
     }
 
@@ -61,16 +61,9 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    &.t-dark {
-        color: $color-white;
-        outline: none;
-
-        .vpn-content-block-container {
-            background-color: transparent;
-        }
-
-        &:after {
-            background: $color-vpn-brand-purple;
+    .l-columns-two {
+        .l-column-first {
+            margin-bottom: $spacing-xl;
         }
     }
 
@@ -89,6 +82,12 @@ $image-path: '/media/protocol/img';
         }
     }
 
+    @media #{$mq-sm} {
+        .vpn-content-block-container {
+            padding: $spacing-lg;
+        }
+    }
+
     @media #{$mq-md} {
         margin-bottom: $layout-xl;
 
@@ -101,10 +100,6 @@ $image-path: '/media/protocol/img';
             padding: ($spacing-2xl * 2) $spacing-2xl;
         }
 
-        &.t-dark {
-            outline: 4px solid $color-black;
-        }
-
         .l-columns-two {
             @include clearfix;
             position: relative;
@@ -112,6 +107,7 @@ $image-path: '/media/protocol/img';
             .l-column-first {
                 @include bidi(((float, left, right),));
                 width: calc(50% - #{$spacing-xl * 2});
+                margin-bottom: 0;
             }
 
             .l-column-last {
@@ -150,17 +146,17 @@ $image-path: '/media/protocol/img';
     }
 
     .vpn-content-media-desc {
-        @include text-body-xl;
+        @include text-body-lg;
         color: $color-marketing-gray-90;
     }
 
     .vpn-content-media-copy {
-        padding: $spacing-lg $spacing-xl;
+        padding: $spacing-lg $spacing-md;
         padding-top: 0;
     }
 
     .vpn-content-media-image-container {
-        padding: $spacing-lg $spacing-xl;
+        padding: $spacing-lg $spacing-md;
         padding-bottom: 0;
     }
 
@@ -180,6 +176,13 @@ $image-path: '/media/protocol/img';
             top: 0;
             width: 100%;
             z-index: -1;
+        }
+    }
+
+    @media #{$mq-sm} {
+        .vpn-content-media-copy,
+        .vpn-content-media-image-container {
+            padding: $spacing-lg $spacing-lg;
         }
     }
 
@@ -223,6 +226,12 @@ $image-path: '/media/protocol/img';
             .vpn-content-media-image-container {
                 @include bidi(((float, left, right),));
             }
+        }
+    }
+
+    @media #{$mq-lg} {
+        .vpn-content-media-desc {
+            @include text-body-xl;
         }
     }
 
@@ -285,7 +294,7 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Pricing Blocks
 
-.vpn-pricing-fixed {
+.vpn-fixed-pricing-block {
     margin-bottom: $layout-xl;
     text-align: center;
 
@@ -293,13 +302,24 @@ $image-path: '/media/protocol/img';
         @include text-title-2xs;
     }
 
+    .vpn-feature-list.mzp-u-list-styled {
+        @include text-body-md;
+        margin-bottom: 0;
+    }
+
     @media #{$mq-md} {
         @include bidi(((text-align, left, right),));
         margin-bottom: $layout-2xl;
     }
+
+    @media #{$mq-lg} {
+        .vpn-feature-list.mzp-u-list-styled {
+            @include text-body-xl;
+        }
+    }
 }
 
-.vpn-pricing-variable {
+.vpn-variable-pricing-block {
     text-align: center;
 
     .vpn-pricing-variable-heading {
@@ -320,11 +340,11 @@ $image-path: '/media/protocol/img';
     }
 
     .vpn-content-block-container {
-        padding: $spacing-md;
+        padding: $spacing-lg;
         position: relative;
 
         @media #{$mq-md} {
-            padding-top: 56px + $spacing-md;
+            padding-top: 56px + $spacing-lg;
         }
     }
 
@@ -332,6 +352,7 @@ $image-path: '/media/protocol/img';
         @include font-base;
         @include text-body-xl;
         font-weight: normal;
+        margin-bottom: $spacing-md;
     }
 
     .vpn-content-block-sub-heading {
@@ -339,6 +360,7 @@ $image-path: '/media/protocol/img';
 
         span {
             @include text-title-2xs;
+            display: inline;
         }
     }
 
@@ -363,7 +385,12 @@ $image-path: '/media/protocol/img';
         @include text-title-2xs;
         color: $color-vpn-brand-purple;
         font-weight: bold;
-        margin-top: $spacing-xl;
+        margin: $spacing-2xl 0 $spacing-md;
+    }
+
+    .vpn-pricing-variable-total {
+        @include text-body-md;
+        margin-bottom: 0;
     }
 
     .vpn-pricing-12-months {
@@ -379,17 +406,67 @@ $image-path: '/media/protocol/img';
     }
 
     @media #{$mq-md} {
-        display: grid;
-        grid-column-gap: $spacing-xl * 2;
-        grid-template-areas: 'months-6 months-6'
-                             'months-12 monthly';
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, 1fr);
+
+        .vpn-content-block {
+            &:after {
+                left: $spacing-lg;
+                top: $spacing-lg;
+            }
+        }
+
+        .vpn-content-block-sub-heading span {
+            display: block;
+            margin-top: $spacing-md;
+        }
+
+        @supports(display: grid) {
+            display: grid;
+            grid-column-gap: $spacing-xl * 2;
+            grid-template-areas: 'months-6 months-6'
+                                'months-12 monthly';
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+
+            .vpn-content-block.t-highlight .vpn-content-block-container {
+                height: calc(100% - (56px + #{$spacing-lg * 2}));
+                position: absolute;
+                width: calc(100% - #{$spacing-lg * 2});
+            }
+        }
     }
 
     @media #{$mq-lg} {
-        grid-template-areas: 'monthly months-6 months-12';
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: none;
+
+        .vpn-content-block {
+            &:after {
+                left: $spacing-md;
+                top: $spacing-md;
+            }
+        }
+
+        @supports(display: grid) {
+            grid-column-gap: $spacing-xl;
+            grid-template-areas: 'monthly months-6 months-12';
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: none;
+        }
+    }
+
+    @media #{$mq-xl} {
+
+        .vpn-content-block {
+            &:after {
+                left: $spacing-lg;
+                top: $spacing-lg;
+            }
+        }
+
+        .vpn-content-block-sub-heading span {
+            display: inline;
+        }
+
+        @supports(display: grid) {
+            grid-column-gap: $spacing-xl * 2;
+        }
     }
 }
