@@ -11,7 +11,7 @@ loglevel = getenv('LOGLEVEL', 'info')
 
 # Larger keep-alive values maybe needed when directly talking to ELBs
 # See https://github.com/benoitc/gunicorn/issues/1194
-keepalive = getenv("WSGI_KEEP_ALIVE", 118)
+keepalive = getenv("WSGI_KEEP_ALIVE", 2)
 worker_class = getenv("GUNICORN_WORKER_CLASS", "meinheld.gmeinheld.MeinheldWorker")
 worker_connections = getenv("APP_GUNICORN_WORKER_CONNECTIONS", "1000")
 worker_tmp_dir = "/dev/shm"
