@@ -46,13 +46,12 @@ def get_country_from_ip(ip_addr):
 
 def get_country_from_request_header(request):
     """Return an uppercase 2 letter country code retrieved from request headers."""
-    if settings.DEV:
-        country_code = settings.DEV_GEO_COUNTRY_CODE
-    else:
-        country_code = request.META.get('HTTP_CF_IPCOUNTRY', 'XX')
-
+    country_code = request.META.get('HTTP_CF_IPCOUNTRY', 'XX')
     if country_code == 'XX' or len(country_code) != 2:
-        return None
+        if settings.DEV:
+            country_code = settings.DEV_GEO_COUNTRY_CODE
+        else:
+            return None
 
     return country_code.upper()
 
