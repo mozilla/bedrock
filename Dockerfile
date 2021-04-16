@@ -111,7 +111,7 @@ ENV GIT_SHA=${GIT_SHA}
 FROM app-base AS release
 
 RUN apt-get update
-RUN apt-get install -y procps vim curl htop net-tools
+RUN apt-get install -y procps vim curl htop net-tools strace
 
 RUN bin/run-sync-all.sh
 
