@@ -1,20 +1,13 @@
 # see http://docs.gunicorn.org/en/latest/configure.html#configuration-file
 
 from os import getenv
-from multiprocessing import cpu_count
 
 
 bind = f'0.0.0.0:{getenv("PORT", "8000")}'
-
-try:
-    cpu = cpu_count() * 2 + 1
-    workers = getenv("WEB_CONCURRENCY", cpu)
-except NotImplementedError:
-    workers = 3
-
-accesslog = "-"
-errorlog = "-"
-loglevel = getenv("LOGLEVEL", "info")
+workers = getenv('WEB_CONCURRENCY', 2)
+accesslog = '-'
+errorlog = '-'
+loglevel = getenv('LOGLEVEL', 'info')
 
 # Larger keep-alive values maybe needed when directly talking to ELBs
 # See https://github.com/benoitc/gunicorn/issues/1194
