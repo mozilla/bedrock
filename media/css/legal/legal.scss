@@ -17,6 +17,9 @@ $image-path: '/media/protocol/img';
 .mzp-c-article {
     h1 {
         @include text-title-xl;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+        overflow-wrap: break-word;
     }
 
     h2 {
@@ -26,6 +29,13 @@ $image-path: '/media/protocol/img';
 
     h3 {
         @include text-title-xs;
+    }
+
+    @media #{$mq-lg} {
+        h1 {
+            -webkit-hyphens: none;
+            hyphens: none;
+        }
     }
 }
 
