@@ -35,12 +35,12 @@ $image-path: '/media/protocol/img';
 }
 
 .vpn-hero-sub-heading {
-    @include text-title-lg;
+    @include text-title-md;
     margin-bottom: $spacing-md;
 }
 
 .vpn-hero-desc {
-    @include text-body-xl;
+    @include text-body-lg;
     margin-bottom: $spacing-md;
 }
 
@@ -75,6 +75,16 @@ $image-path: '/media/protocol/img';
     &[data-illustration="n-4"] .n-4,
     &[data-illustration="n-5"] .n-5 {
         opacity: 1;
+    }
+}
+
+@media #{mq-md} {
+    .vpn-hero-sub-heading {
+        @include text-title-lg;
+    }
+
+    .vpn-hero-desc {
+        @include text-body-xl;
     }
 }
 

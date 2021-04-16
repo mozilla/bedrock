@@ -39,7 +39,7 @@ $image-path: '/media/protocol/img';
 
     .vpn-content-block-container {
         margin: 0 auto;
-        padding: $spacing-lg $spacing-xl;
+        padding: $spacing-md;
         width: 100%;
     }
 
@@ -79,6 +79,12 @@ $image-path: '/media/protocol/img';
 
         .guarantee-copy {
             margin-bottom: $spacing-md;
+        }
+    }
+
+    @media #{$mq-sm} {
+        .vpn-content-block-container {
+            padding: $spacing-lg;
         }
     }
 
@@ -140,17 +146,17 @@ $image-path: '/media/protocol/img';
     }
 
     .vpn-content-media-desc {
-        @include text-body-xl;
+        @include text-body-lg;
         color: $color-marketing-gray-90;
     }
 
     .vpn-content-media-copy {
-        padding: $spacing-lg $spacing-xl;
+        padding: $spacing-lg $spacing-md;
         padding-top: 0;
     }
 
     .vpn-content-media-image-container {
-        padding: $spacing-lg $spacing-xl;
+        padding: $spacing-lg $spacing-md;
         padding-bottom: 0;
     }
 
@@ -170,6 +176,13 @@ $image-path: '/media/protocol/img';
             top: 0;
             width: 100%;
             z-index: -1;
+        }
+    }
+
+    @media #{$mq-sm} {
+        .vpn-content-media-copy,
+        .vpn-content-media-image-container {
+            padding: $spacing-lg $spacing-lg;
         }
     }
 
@@ -213,6 +226,12 @@ $image-path: '/media/protocol/img';
             .vpn-content-media-image-container {
                 @include bidi(((float, left, right),));
             }
+        }
+    }
+
+    @media #{$mq-lg} {
+        .vpn-content-media-desc {
+            @include text-body-xl;
         }
     }
 
@@ -284,12 +303,19 @@ $image-path: '/media/protocol/img';
     }
 
     .vpn-feature-list.mzp-u-list-styled {
+        @include text-body-md;
         margin-bottom: 0;
     }
 
     @media #{$mq-md} {
         @include bidi(((text-align, left, right),));
         margin-bottom: $layout-2xl;
+    }
+
+    @media #{$mq-lg} {
+        .vpn-feature-list.mzp-u-list-styled {
+            @include text-body-xl;
+        }
     }
 }
 
