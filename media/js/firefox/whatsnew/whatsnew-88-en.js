@@ -35,13 +35,11 @@
                     'data-ex-variant': 'wnp-88-v3',
                     'data-ex-name': 'wnp-88-experiment'
                 });
-            }
             } else if (href.indexOf('v=4') !== -1) {
                 window.dataLayer.push({
                     'data-ex-variant': 'wnp-88-v4',
                     'data-ex-name': 'wnp-88-experiment'
                 });
-            }
             } else if (href.indexOf('v=5') !== -1) {
                 window.dataLayer.push({
                     'data-ex-variant': 'wnp-88-v5',
@@ -55,8 +53,8 @@
                     'v=1': 5,
                     'v=2': 5,
                     'v=3': 5,
-                    'v=3': 5,
-                    'v=3': 5,
+                    'v=4': 5,
+                    'v=5': 5,
                 }
             });
 
