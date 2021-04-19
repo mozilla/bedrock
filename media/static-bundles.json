@@ -998,11 +998,17 @@
     },
     {
       "files": [
-        "js/libs/mozilla-traffic-cop.js",
         "js/firefox/whatsnew/up-to-date.js",
         "js/firefox/whatsnew/whatsnew-88-en.js"
       ],
       "name": "firefox_whatsnew_88_en"
+    },
+    {
+      "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/firefox/whatsnew/whatsnew-88-exp.js"
+      ],
+      "name": "firefox_whatsnew_88_exp"
     },
     {
       "files": [

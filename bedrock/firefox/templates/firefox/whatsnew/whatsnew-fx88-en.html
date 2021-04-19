@@ -12,9 +12,17 @@
 {% block body_id %}firefox-whatsnew{% endblock %}
 {% block body_class %}{% endblock %}
 
+{% block experiments %}
+  {% if switch('whatsnew-88-experiment', ['en-US']) %}
+    {{ js_bundle('firefox_whatsnew_88_exp') }}
+  {% endif %}
+{% endblock %}
+
 {% block page_css %}
   {{ css_bundle('firefox_whatsnew_88_en') }}
 {% endblock %}
+
+
 
 {% block site_header %}{% endblock %}
 
