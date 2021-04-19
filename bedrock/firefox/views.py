@@ -557,11 +557,15 @@ class WhatsnewView(L10nTemplateView):
         'firefox/whatsnew/whatsnew-fx85.html': ['firefox/whatsnew/whatsnew-fx80', 'firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx86-en.html': ['firefox/whatsnew/whatsnew-s2d', 'firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx87-en.html': ['firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx88-en.html': ['firefox/whatsnew/whatsnew-fx80', 'firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-mobile-de.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-mobile-qrcode-de.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx87-de.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx87-fr.html': ['firefox/whatsnew/whatsnew'],
     }
+
+    # place expected ?v= values in this list
+    variations = ['1', '2', '3', '4', '5']
 
     def get_context_data(self, **kwargs):
         ctx = super(WhatsnewView, self).get_context_data(**kwargs)
@@ -601,11 +605,25 @@ class WhatsnewView(L10nTemplateView):
         ctx['utm_params'] = 'utm_source={0}&utm_medium=referral&utm_campaign={1}&entrypoint={2}'.format(
                              entrypoint, campaign, entrypoint)
 
+        variant = self.request.GET.get('v', None)
+
+        # ensure variant matches pre-defined value
+        if variant not in self.variations:
+            variant = None
+
+        ctx['variant'] = variant
+
         return ctx
 
     def get_template_names(self):
         locale = l10n_utils.get_locale(self.request)
         version = self.kwargs.get('version') or ''
+        variant = self.request.GET.get('v', None)
+
+        # ensure variant matches pre-defined value
+        if variant not in self.variations:
+            variant = None
+
         oldversion = self.request.GET.get('oldversion', '')
         # old versions of Firefox sent a prefixed version
         if oldversion.startswith('rv:'):
@@ -620,6 +638,8 @@ class WhatsnewView(L10nTemplateView):
                 template = 'firefox/developer/whatsnew.html'
             else:
                 template = 'firefox/whatsnew/index.html'
+        elif version.startswith('88.') and locale == 'en-US':
+            template = 'firefox/whatsnew/whatsnew-fx88-en.html'
         elif version.startswith('88.') and locale == 'de':
             template = 'firefox/whatsnew/whatsnew-fx87-de.html'
         elif version.startswith('88.') and locale == 'fr':
@@ -690,6 +710,8 @@ class WhatsNewChinaView(WhatsnewView):
         elif template == ['firefox/whatsnew/whatsnew-fx85.html']:
             template = ['firefox/whatsnew/index-account.html']
         elif template == ['firefox/whatsnew/whatsnew-fx87-en.html']:
+            template = ['firefox/whatsnew/index-account.html']
+        elif template == ['firefox/whatsnew/whatsnew-fx88-en.html']:
             template = ['firefox/whatsnew/index-account.html']
 
         return template

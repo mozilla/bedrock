@@ -1,0 +1,116 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}What’s new with Firefox{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}What’s new with Firefox{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block experiments %}
+  {% if switch('whatsnew-88-experiment', ['en-US']) %}
+    {{ js_bundle('firefox_whatsnew_88_exp') }}
+  {% endif %}
+{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_88_en') }}
+{% endblock %}
+
+
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main class="content-wrapper mzp-t-firefox">
+  <header class="c-page-header">
+    <div class="mzp-l-content c-page-header-inner">
+      <h2 class="c-page-header-logo-fx">{{ ftl('whatsnew-firefox-browser') }}</h2>
+      <div class="mzp-c-notification-bar mzp-t-success up-to-date">
+        <p>Congrats! You’re using now version <span data-audio="/media/img/firefox/whatsnew/whatsnew88-en/jingle.mp3" class="flux" id="outatime">88</span> of Firefox.</p>
+      </div>
+      <div class="mzp-c-notification-bar out-of-date">
+        <p>{{ ftl('whatsnew-out-of-date-notification') }}</p>
+      </div>
+    </div>
+  </header>
+
+  {% set landing_source = '?source=' + campaign if campaign else '' %}
+
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-lg">
+      {% if variant == '2' %}
+        <img class="wnp-main-image" src="{{ static('img/firefox/whatsnew/whatsnew88-en/hero.png') }}" width="620" alt="">
+      {% elif variant == '3' %}
+        <video poster="{{ static('img/firefox/whatsnew/whatsnew88-en/hero.png') }}" class="c-animated-graphic wnp-vid-1" muted autoplay loop>
+          <source type="video/webm" src="/media/img/firefox/whatsnew/whatsnew88/video.794560d1ad14ae53fd3b56e2fc8dc70f.webm">
+        </video>    
+      {% elif variant == '4' %}
+        <img class="wnp-main-image" src="{{ static('img/firefox/whatsnew/whatsnew88-en/hero-alt.png') }}" width="450" alt="">
+      {% elif variant == '5' %} 
+        <video poster="{{ static('img/firefox/whatsnew/whatsnew88-en/hero-alt.png') }}" class="c-animated-graphic" muted autoplay loop>
+          <source type="video/webm" src="/media/img/firefox/whatsnew/whatsnew88/video-alt.d54d820f7ebda1b63be2c4a084b16782.webm">
+        </video>
+      {% else %}
+        <img class="wnp-main-image" src="{{ static('img/firefox/whatsnew/whatsnew84/vpn-logo.svg') }}" width="120" alt="">
+      {% endif %}
+      <h1 class="wnp-main-title">Change your device’s location for <strong>next-level privacy</strong></h1>
+      <p class="wnp-main-tagline"><strong>Mozilla VPN</strong> (Virtual Private Network) protects your entire internet connection on your computer, your tablet, and even your phone. For even more security, it comes with a 30-day money back guarantee.</p>
+
+      <div class="wnp-main-cta">
+        <a href="{{ url('products.vpn.landing') }}{{ landing_source }}" class="mzp-c-button mzp-t-product mzp-t-lg" rel="external" data-cta-text="Get Mozilla VPN Now" data-cta-type="button">Get Mozilla VPN Now</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wnp-content-extra">
+    <div class="mzp-l-content mzp-t-content-xl">
+      <div class="wnp-platforms">
+        <h2>Available now for Windows, Mac, Android, iOS and Linux.</h2>
+        {% include 'firefox/whatsnew/includes/fx88/logo-windows.svg' %}
+        {% include 'firefox/whatsnew/includes/fx88/logo-linux.svg' %}
+        {% include 'firefox/whatsnew/includes/fx88/logo-apple.svg' %}
+        {% include 'firefox/whatsnew/includes/fx88/logo-android.svg' %}
+      </div>
+
+      <div class="l-columns-two">
+
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
+            {% include 'firefox/whatsnew/includes/fx88/illo-vpn-speed.svg' %}
+          </div>
+          <h3 class="c-picto-block-title">It’s fast, very fast</h3>
+          <div class="c-picto-block-body">
+            <p>Our WireGuard® powered servers are built for speed so you can stream, download, and game as usual.</p>
+          </div>
+        </div>
+
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
+            {% include 'firefox/whatsnew/includes/fx88/illo-vpn-lock.svg' %}
+          </div>
+          <h3 class="c-picto-block-title">Internet without a trace</h3>
+          <div class="c-picto-block-body">
+            <p>We never log, track, or share your network data — your online activity won’t leave a footprint on our VPN servers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <aside class="mzp-l-content c-utilities">
+    {% set releasenotes_url = url('firefox.releases.index') if not version else '/firefox/%s/releasenotes/'|format(version) %}
+    <p>{{ ftl('whatsnew-release-notes', url=releasenotes_url) }}</p>
+  </aside>
+
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_88_en') }}
+{% endblock %}

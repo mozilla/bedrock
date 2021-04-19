@@ -550,6 +550,14 @@ class TestWhatsNew(TestCase):
 
     # begin 88.0 whatsnew tests
 
+    def test_fx_88_0_0_en(self, render_mock):
+        """Should use whatsnew-fx88-en template for 88.0 in English"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'en-US'
+        self.view(req, version='88.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx88-en.html']
+
     def test_fx_88_0_0_de(self, render_mock):
         """Should use VPN waitlist signup template for 88.0 in German"""
         req = self.rf.get('/firefox/whatsnew/')
