@@ -55,7 +55,7 @@ def vpn_sign_in_link(ctx, entrypoint, link_text, class_name=None, optional_param
 
 @library.global_function
 @jinja2.contextfunction
-def vpn_subscribe_link(ctx, entrypoint, link_text, plan=None, class_name=None, optional_parameters=None, optional_attributes=None):
+def vpn_subscribe_link(ctx, entrypoint, link_text, plan=None, class_name=None, lang=None, optional_parameters=None, optional_attributes=None):
     """
     Render a vpn.mozilla.org subscribe link with required params for FxA authentication.
 
@@ -68,19 +68,33 @@ def vpn_subscribe_link(ctx, entrypoint, link_text, plan=None, class_name=None, o
         {{ vpn_subscribe_link(entrypoint='www.mozilla.org-vpn-product-page', link_text='Get Mozilla VPN') }}
     """
 
-    # Subscription links can currently support variable pricing in Euros, else default to monthly in US$.
-    if plan == '12-month-euro':
-        plan_id = settings.VPN_VARIABLE_PRICE_12_MONTH_EURO
-    elif plan == '6-month-euro':
-        plan_id = settings.VPN_VARIABLE_PRICE_6_MONTH_EURO
-    elif plan == 'monthly-euro':
-        plan_id = settings.VPN_VARIABLE_PRICE_MONTHLY_EURO
-    else:
-        plan_id = settings.VPN_FIXED_PRICE_MONTHLY_USD
-
-    # switching to the new subscription URLs will be time co-ordinated with the VPN product team.
+    # Switching to the new subscription URL format will be co-ordinated with the VPN product team (issue 10126).
     if switch('vpn-new-subscription-url-format'):
-        product_url = f'{settings.VPN_ENDPOINT}r/vpn/subscribe/products/{settings.VPN_PRODUCT_ID}?plan={plan_id}'
+
+        # Subscription links currently support variable pricing in Euros for Germany and France only.
+        if plan in ['12-month', '6-month', 'monthly']:
+
+            # Set a default plan ID using page locale. This acts as a fallback should geo-location fail.
+            if lang in ['de', 'fr']:
+                plan_default = settings.VPN_VARIABLE_PRICING[lang][plan]
+            else:
+                plan_default = ''
+
+            # HTML data-attributes are used by client side JS to set the correct plan ID based on geo.
+            plan_attributes = {
+                'data-plan-de': settings.VPN_VARIABLE_PRICING['de'][plan],
+                'data-plan-fr': settings.VPN_VARIABLE_PRICING['fr'][plan]
+            }
+        # All other subscription links default to fixed monthly pricing in $US.
+        else:
+            plan_default = settings.VPN_FIXED_PRICE_MONTHLY_USD
+            plan_attributes = None
+
+        if (plan_attributes):
+            optional_attributes = optional_attributes or {}
+            optional_attributes.update(plan_attributes)
+
+        product_url = f'{settings.VPN_ENDPOINT}r/vpn/subscribe/products/{settings.VPN_PRODUCT_ID}?plan={plan_default}'
     else:
         product_url = f'{settings.VPN_ENDPOINT}r/vpn/subscribe'
 

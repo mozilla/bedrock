@@ -6,6 +6,7 @@
     'use strict';
 
     var VPN = {};
+    VPN.countryCode = null;
 
     var _geoTimeout;
     var _requestComplete = false;
@@ -59,8 +60,8 @@
     VPN.onRequestComplete = function(data) {
         clearTimeout(_geoTimeout);
 
-        var countryCode = typeof data === 'string' ? data : null;
-        var availability = VPN.getAvailability(countryCode);
+        VPN.countryCode = typeof data === 'string' ? data : null;
+        var availability = VPN.getAvailability(VPN.countryCode);
 
         if (!_requestComplete) {
             _requestComplete = true;
@@ -153,11 +154,52 @@
 
     VPN.showFixedPricing = function() {
         document.body.classList.add('show-vpn-fixed-pricing');
+
+        // initiate FxA flow metrics after subscription URLs have been set.
+        if (typeof Mozilla.FxaProductButton !== 'undefined') {
+            Mozilla.FxaProductButton.init();
+        }
     };
 
     VPN.showVariablePricing = function() {
         document.body.classList.add('show-vpn-variable-pricing');
         VPN.renderScrollToPricingButtons();
+        VPN.setSubscriptionButtons();
+
+        // initiate FxA flow metrics after subscription URLs have been set.
+        if (typeof Mozilla.FxaProductButton !== 'undefined') {
+            Mozilla.FxaProductButton.init();
+        }
+    };
+
+    // Updates subscription `plan` URL parameter based on geo-location.
+    VPN.setSubscriptionButtons = function() {
+        var subscribeLinks = document.querySelectorAll('.vpn-pricing-variable-plans .js-fxa-product-button');
+
+        if (typeof VPN.countryCode !== 'string') {
+            return;
+        }
+
+        for (var i = 0; i < subscribeLinks.length; i++) {
+            var href = subscribeLinks[i].href;
+            var plan = subscribeLinks[i].getAttribute('data-plan-' + VPN.countryCode);
+            subscribeLinks[i].href = VPN.updateSubscriptionURL(plan, href);
+        }
+    };
+
+    VPN.updateSubscriptionURL = function(plan, href) {
+        var params;
+
+        if (typeof plan === 'string' && typeof href === 'string') {
+            params = new window._SearchParams(href.split('?')[1]);
+
+            if (params.has('plan')) {
+                params.set('plan', plan);
+                return href.split('?')[0] + '?' + params.toString();
+            }
+        }
+
+        return href;
     };
 
     VPN.renderScrollToPricingButtons = function() {
@@ -261,7 +303,8 @@
 
         // if override URL is used, skip doing anything with geo-location and show expected content.
         if (override) {
-            var availability = VPN.getAvailability(override);
+            VPN.countryCode = override;
+            var availability = VPN.getAvailability(VPN.countryCode);
             VPN.setAvailability(availability);
         } else {
             VPN.getLocation();

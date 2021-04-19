@@ -1302,28 +1302,32 @@ VPN_ENDPOINT = config('VPN_ENDPOINT',
 VPN_PRODUCT_ID = config('VPN_PRODUCT_ID', default='prod_FiJ42WCzZNRSbS'
                                           if DEV else 'prod_FvnsFHIfezy3ZI')
 
-# Plan ID for VPN monthly fixed price VPN subscription in US$
+# Plan ID for VPN monthly fixed price subscription in US$
 VPN_FIXED_PRICE_MONTHLY_USD = config('VPN_FIXED_PRICE_MONTHLY_USD',
                                      default='plan_FvPMH5lVx1vhV0'
                                      if DEV else 'plan_FvnxS1j9oFUZ7Y')
 
-# Plan ID for VPN 12 month subscription in Euros
-# TODO: We still need IDs for production!
-VPN_VARIABLE_PRICE_12_MONTH_EURO = config('VPN_VARIABLE_PRICE_12_MONTH_EURO',
-                                          default='price_1IXw5oKb9q6OnNsLPMkWOid7'
-                                          if DEV else '')
+# Plan IDs for VPN variable price subscriptions in Euros.
+VPN_VARIABLE_PRICING = {
+    'de': {
+        '12-month': 'price_1IXw5oKb9q6OnNsLPMkWOid7' if DEV else 'price_1IgwblJNcmPzuWtRynC7dqQa',
+        '6-month': 'price_1IXw5NKb9q6OnNsLLIyYuhWF' if DEV else 'price_1IgwaHJNcmPzuWtRuUfSR4l7',
+        'monthly': 'price_1IXw4eKb9q6OnNsLqnVP4PvO' if DEV else 'price_1IgwZVJNcmPzuWtRg9Wssh2y'
+    },
+    'fr': {
+        '12-month': 'price_1IXw5oKb9q6OnNsLPMkWOid7' if DEV else 'price_1IgnlcJNcmPzuWtRjrNa39W4',
+        '6-month': 'price_1IXw5NKb9q6OnNsLLIyYuhWF' if DEV else 'price_1IgoxGJNcmPzuWtRG7l48EoV',
+        'monthly': 'price_1IXw4eKb9q6OnNsLqnVP4PvO' if DEV else 'price_1IgowHJNcmPzuWtRzD7SgAYb'
+    }
+}
 
-# Plan ID for VPN 6 month subscription in Euros
-# TODO: We still need IDs for production!
-VPN_VARIABLE_PRICE_6_MONTH_EURO = config('VPN_VARIABLE_PRICE_6_MONTH_EURO',
-                                          default='price_1IXw5NKb9q6OnNsLLIyYuhWF'
-                                          if DEV else '')
-
-# Plan ID for VPN monthly subscription in Euros
-# TODO: We still need IDs for production!
-VPN_VARIABLE_PRICE_MONTHLY_EURO = config('VPN_VARIABLE_PRICE_MONTHLY_EURO',
-                                          default='price_1IXw4eKb9q6OnNsLqnVP4PvO'
-                                          if DEV else '')
+# Product variables used in VPN landing page(s)
+VPN_FIXED_MONTHLY_PRICE = 'US$4.99'
+VPN_VARIABLE_MONTHLY_PRICE = '9,99‎ €'
+VPN_VARIABLE_6_MONTH_PRICE = '6,99 €'
+VPN_VARIABLE_12_MONTH_PRICE = '4,99 €'
+VPN_VARIABLE_6_MONTH_PRICE_TOTAL = '41,94 €'
+VPN_VARIABLE_12_MONTH_PRICE_TOTAL = '59,88 €'
 
 # Mozilla VPN Geo restrictions
 # https://github.com/mozilla-services/guardian-website/blob/master/server/constants.ts
@@ -1356,14 +1360,6 @@ VPN_VARIABLE_PRICE_COUNTRY_CODES = [
     'DE',  # Germany
     'FR',  # France
 ]
-
-# Product variables used in VPN landing page(s)
-VPN_FIXED_MONTHLY_PRICE = 'US$4.99'
-VPN_VARIABLE_MONTHLY_PRICE = '9,99‎ €'
-VPN_VARIABLE_6_MONTH_PRICE = '6,99 €'
-VPN_VARIABLE_12_MONTH_PRICE = '4,99 €'
-VPN_VARIABLE_6_MONTH_PRICE_TOTAL = '41,94 €'
-VPN_VARIABLE_12_MONTH_PRICE_TOTAL = '59,88 €'
 
 if config('SWITCH_VPN_LAUNCH_GERMANY_FRANCE', default=str(DEV), parser=bool):
     VPN_AVAILABLE_COUNTRIES = 8
