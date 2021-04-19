@@ -1509,7 +1509,6 @@
     {
       "files": [
         "js/base/mozilla-fxa-product-button.js",
-        "js/base/mozilla-fxa-product-button-init.js",
         "js/products/vpn/geo.js",
         "js/products/vpn/landing.js"
       ],

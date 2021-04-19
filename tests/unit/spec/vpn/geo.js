@@ -154,6 +154,24 @@ describe('geo.js', function() {
         });
     });
 
+    describe('updateSubscriptionURL', function() {
+
+        it ('should update the subscription plan ID as expected', function() {
+            var result = Mozilla.VPN.updateSubscriptionURL('price_1IgnlcJNcmPzuWtRjrNa39W4', 'https://vpn.mozilla.org/r/vpn/subscribe/products/prod_FiJ42WCzZNRSbS?plan=price_1IgwblJNcmPzuWtRynC7dqQa&entrypoint=www.mozilla.org-vpn-product-page');
+            expect(result).toEqual('https://vpn.mozilla.org/r/vpn/subscribe/products/prod_FiJ42WCzZNRSbS?plan=price_1IgnlcJNcmPzuWtRjrNa39W4&entrypoint=www.mozilla.org-vpn-product-page');
+        });
+
+        it ('should not change the URL if there is no plan ID', function() {
+            var result = Mozilla.VPN.updateSubscriptionURL(null, 'https://vpn.mozilla.org/r/vpn/subscribe/products/prod_FiJ42WCzZNRSbS?plan=price_1IgwblJNcmPzuWtRynC7dqQa&entrypoint=www.mozilla.org-vpn-product-page');
+            expect(result).toEqual('https://vpn.mozilla.org/r/vpn/subscribe/products/prod_FiJ42WCzZNRSbS?plan=price_1IgwblJNcmPzuWtRynC7dqQa&entrypoint=www.mozilla.org-vpn-product-page');
+        });
+
+        it ('should not change the URL if there is no plan query parameter', function() {
+            var result = Mozilla.VPN.updateSubscriptionURL('price_1IgwblJNcmPzuWtRynC7dqQa', 'https://vpn.mozilla.org/r/vpn/subscribe?entrypoint=www.mozilla.org-vpn-product-page');
+            expect(result).toEqual('https://vpn.mozilla.org/r/vpn/subscribe?entrypoint=www.mozilla.org-vpn-product-page');
+        });
+    });
+
     describe('init', function() {
 
         beforeEach(function() {

@@ -30,8 +30,9 @@
     {{ vpn_subscribe_link(
       entrypoint=_utm_source,
       link_text=ftl('vpn-shared-pricing-get-6-month'),
-      plan='6-month-euro',
+      plan='6-month',
       class_name='mzp-c-button mzp-t-xl ',
+      lang=LANG,
       optional_parameters={
         'utm_campaign': _utm_campaign
       },
@@ -55,8 +56,9 @@
      {{ vpn_subscribe_link(
        entrypoint=_utm_source,
        link_text=ftl('vpn-shared-pricing-get-12-month'),
-       plan='12-month-euro',
+       plan='12-month',
        class_name='mzp-c-button mzp-t-secondary mzp-t-xl ',
+       lang=LANG,
        optional_parameters={
          'utm_campaign': _utm_campaign
        },
@@ -80,8 +82,9 @@
      {{ vpn_subscribe_link(
        entrypoint=_utm_source,
        link_text=ftl('vpn-shared-pricing-get-monthly'),
-       plan='monthly-euro',
+       plan='monthly',
        class_name='mzp-c-button mzp-t-secondary mzp-t-xl ',
+       lang=LANG,
        optional_parameters={
          'utm_campaign': _utm_campaign
        },
