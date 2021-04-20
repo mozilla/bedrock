@@ -779,80 +779,210 @@
 
     <h3 class="group-title" id="board-corp">{{ _('Mozilla Corporation') }}</h3>
 
-    <ul class="gallery">
-      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+    <div class="gallery">
+      <article class="vcard" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('img/mozorg/about/leadership/mitchell-baker.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
-          {# L10n: This "Chair" is the chairperson of the board of directors, not something to sit on #}
           <figcaption><h4 class="fn" itemprop="name">Mitchell Baker</h4></figcaption>
         </figure>
-      </li>
-      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+      </article>
+
+      <article id="laura-chambers" data-id="laura-chambers" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           <img class="photo" src="{{ static('img/mozorg/about/leadership/laura-chambers.jpg') }}" alt="" itemprop="image" width="160" height="160">
           <figcaption><h4 class="fn" itemprop="name">Laura Chambers</h4></figcaption>
         </figure>
-      </li>
-      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+
+        <div class="person-info">
+          <ul class="utility">
+            <li><a class="link" href="{{ url('mozorg.about.leadership') }}#laura-chambers">{{ _('Link to this bio') }}</a></li>
+          </ul>
+        </div>
+
+        <div class="person-bio">
+          <p>Laura Chambers is CEO of Willow Innovations, the creator of the world’s first quiet, all-in-one, in-bra wearable breast pump. As a mom to three, she is especially passionate about Willow’s mission to bring joy to motherhood. Laura joined Willow from Airbnb, where she led the Core Hosts business, focusing on helping Airbnb guests find high-quality unique homes, and helping hosts have wonderful experiences with their guests. Prior to Airbnb, Laura worked at eBay Inc in various leadership roles at eBay, PayPal and Skype, and at McKinsey &amp; Co in Australia. She holds a MBA from Stanford University and a bachelor’s degree from University of Melbourne. Laura and her family reside in the San Francisco Bay Area.</p>
+        </div>
+      </article>
+
+      <article id="karim-lakhani" data-id="karim-lakhani" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('img/mozorg/about/leadership/karim-lakhani.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">Karim Lakhani</h4></figcaption>
         </figure>
-      </li>
-      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+
+        <div class="person-info">
+          <ul class="utility">
+            <li><a class="link" href="{{ url('mozorg.about.leadership') }}#karim-lakhani">{{ _('Link to this bio') }}</a></li>
+          </ul>
+        </div>
+
+        <div class="person-bio">
+          <p>Karim is the Charles E. Wilson Professor of Business Administration and the Dorothy and Michael Hintze Fellow at the Harvard Business School. He specializes in technology management, innovation, digital transformation and artificial intelligence (AI). His innovation-related research is centered around his role as the founder and co-director of the  Laboratory for Innovation Science at Harvard, and as the principal investigator of the NASA Tournament Laboratory.</p>
+
+          <p>Karim has published over 150 peer-reviewed papers in leading management, economics and natural science journals, executive-oriented articles in Harvard Business Review and MIT Sloan Management Review, and case studies for Harvard Business School He is the co-editor of two books from MIT Press on open and distributed innovation models, including Revolutionizing Innovation: Users, Communities and Open Innovation (2016) and Perspectives on Free and Open Source Software (2005). He is the co-author of <cite>Competing in the Age of AI</cite> (2020) a book published by the Harvard Business Review Press.</p>
+
+          <p>Karim was awarded his Ph.D. in management from the Massachusetts Institute of Technology. He also holds an SM degree in Technology and Policy from MIT, and a bachelor’s degree in Electrical Engineering and Management from McMaster University in Canada. He was a recipient of the Aga Khan Foundation International Scholarship and a doctoral fellowship from Canada's Social Science and Humanities Research Council. Prior to coming to HBS he served as a Lecturer at MIT’s Sloan School of Management. Karim has also worked in sales, marketing and new product development roles at GE Healthcare and was a consultant with The Boston Consulting Group.</p>
+        </div>
+      </article>
+
+      <article id="bob-lisbonne" data-id="bob-lisbonne" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('img/mozorg/about/leadership/bob-lisbonne.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">Bob Lisbonne</h4></figcaption>
         </figure>
-      </li>
-    </ul>
+
+        <div class="person-info">
+          <ul class="utility">
+            <li><a class="link" href="{{ url('mozorg.about.leadership') }}#bob-lisbonne">{{ _('Link to this bio') }}</a></li>
+          </ul>
+        </div>
+
+        <div class="person-bio">
+          <p>Bob’s technology career spans roles as entrepreneur, venture capitalist, and operating executive. Since 2015 he has taught classes at Stanford’s Graduate School of Business. Bob served as CEO of Luminate, raising multiple rounds of venture capital, and leading its growth to 30 billion image views per year. As a General Partner with Matrix Partners, Bob invested in numerous startups.</p>
+
+          <p>He has served on the Boards of companies which IPO’ed and got acquired by Cisco, HP, IBM, and Yahoo, among others. Bob led Netscape’s famous “browser wars,” as SVP and division GM, managing all browser engineering and product management. While at Netscape, he launched open source pioneer Mozilla, best known for its Firefox browser; Bob has long served on the board of directors at Mozilla. Previously, he held positions at startup Collabra Software, Apple, and Goldman Sachs.</p>
+
+          <p>He attended Stanford University, where he earned MBA, MA, and BA degrees, and did graduate studies in Computer Science.</p>
+        </div>
+      </article>
+    </div>
 
     <h3 class="group-title" id="board-foundation">{{ _('Mozilla Foundation') }}</h3>
-    <ul class="gallery">
-      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+    <div class="gallery">
+      <article class="vcard" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('img/mozorg/about/leadership/mitchell-baker.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           {# L10n: This "Chair" is the chairperson of the board of directors, not something to sit on #}
           <figcaption><h4 class="fn" itemprop="name">Mitchell Baker, {{ _('Chair') }}</h4></figcaption>
         </figure>
-      </li>
-      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+      </article>
+
+      <article id="brian-behlendorf" data-id="brian-behlendorf" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('img/mozorg/about/leadership/brian-behlendorf.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">Brian Behlendorf</h4></figcaption>
         </figure>
-      </li>
-      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+
+        <div class="person-info">
+          <ul class="utility">
+            <li><a class="link" href="{{ url('mozorg.about.leadership') }}#brian-behlendorf">{{ _('Link to this bio') }}</a></li>
+          </ul>
+        </div>
+
+        <div class="person-bio">
+          <p>Brian Behlendorf is the Executive Director of Hyperledger, an open source blockchain software consortium hosted at the Linux Foundation. He also serves on the board of the Electronic Frontier Foundation.</p>
+
+          <p>Formerly, he was Chief Technology Officer at the World Economic Forum; Founder and Chief Technology Officer, CollabNet, a company focused on bringing open source collaborative software development tools and methodologies into enterprise environments; and an advisor at the Office of Science and Technology Policy at the White House, in 2009 and 2010.</p>
+
+          <p>Brian co-founded and served as the Founding President of the Apache Software Foundation, a 501c3 non-profit that organizes volunteer open source software development projects, around key internet technologies.</p>
+        </div>
+      </article>
+
+      <article id="wambui-kinya" data-id="wambui-kinya" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('img/mozorg/about/leadership/wambui-kinya.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">Wambui Kinya</h4></figcaption>
         </figure>
-      </li>
-      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+
+        <div class="person-info">
+          <ul class="utility">
+            <li><a class="link" href="{{ url('mozorg.about.leadership') }}#wambui-kinya">{{ _('Link to this bio') }}</a></li>
+          </ul>
+        </div>
+
+        <div class="person-bio">
+          <p>Wambui is currently the Vice President of Partner Engineering at <a href="https://andela.com/" rel="external">Andela</a>, a global talent network that connects companies with vetted, remote engineers in emerging markets.</p>
+
+          <p>Formerly, she was Group Managing Director, Pan Africa and South America at ThoughtWorks. Throughout her career she has worked with clients including American Express, Pfizer, Bristol Myers Squibb, and Kraft Foods, and worked in Africa, Europe, South America and the United States, with mission-driven and global technology businesses, including Andela, ThoughtWorks, Praekelt, IBM, and Digitas.</p>
+
+          <p>Wambui was selected in the 2020 “Top 30 Most Influential Women” by CIO East Africa, and in her personal capacity, provides advice and guidance to startups and technology companies, in Kenya and the USA.</p>
+        </div>
+      </article>
+
+      <article id="mohamed-nanabhay" data-id="mohamed-nanabhay" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('img/mozorg/about/leadership/mohamed-nanabhay.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image', 'title': _('Photo by Joi Ito')}) }}
           <figcaption><h4 class="fn" itemprop="name">Mohamed Nanabhay</h4></figcaption>
         </figure>
-      </li>
-      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+
+        <div class="person-info">
+          <ul class="utility">
+            <li><a class="link" href="{{ url('mozorg.about.leadership') }}#mohamed-nanabhay">{{ _('Link to this bio') }}</a></li>
+          </ul>
+        </div>
+
+        <div class="person-bio">
+          <p>Mohamed Nanabhay is Deputy CEO of the Media Development Investment Fund, a digital media practitioner, entrepreneur and strategist. He is also a member of the Board of Directors of Global Voices Online.</p>
+
+          <p>Formerly, as the Head of Online at Al Jazeera English, he led the team that produced the award winning coverage of the Arab revolutions in 2011. He started Al Jazeera’s New Media department, and served as an advisor to the Director-General.</p>
+
+          <p>In 2005, Mohamed founded <a href="https://qatarliving.com/" rel="external">QatarLiving.com</a> (acquired in 2012), a listings and community website that quickly grew to be the largest site in Qatar. He also co-founded <a href="https://signalnoi.se/" rel="external">Signalnoi.se</a>, a social analytics platform for newsrooms, that won the Knight News Challenge, and he’s been an active angel investor in a variety of digital start-ups.</p>
+        </div>
+      </article>
+
+      <article id="navrina-singh" data-id="navrina-singh" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('img/mozorg/about/leadership/navrina-singh.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">Navrina Singh</h4></figcaption>
         </figure>
-      </li>
-      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+
+        <div class="person-info">
+          <ul class="utility">
+            <li><a class="link" href="{{ url('mozorg.about.leadership') }}#navrina-singh">{{ _('Link to this bio') }}</a></li>
+          </ul>
+        </div>
+
+        <div class="person-bio">
+          <p>Navrina is the Co-Founder of <a href="https://www.credo.ai/" rel="external">Credo AI</a>, an <a href="https://aifund.ai/" rel="external">AI Fund</a> company focused on auditing and governing Machine Learning.</p>
+
+          <p>Formerly, she was the Director of Product Development for Artificial Intelligence at Microsoft. Navrina also spent 12 years at Qualcomm, where she held roles across engineering, strategy and product management. In her role as the head of Qualcomm’s technology incubator ‘ImpaQt’, she worked with early start-ups in machine intelligence.</p>
+
+          <p>Navrina is a Young Global Leader with the World Economic Forum; and has previously served on the industry advisory board of the University of Wisconsin-Madison College of Engineering; and the boards of <a href="https://www.stellalabs.org/" rel="external">Stella Labs</a>, Alliance for Empowerment and the Technology Council for <a href="https://www.firstinspires.org/" rel="external">FIRST Robotics</a>.</p>
+        </div>
+      </article>
+
+      <article id="helen-turvey" data-id="helen-turvey" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('img/mozorg/about/leadership/helen-turvey.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">Helen Turvey</h4></figcaption>
         </figure>
-      </li>
-      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+
+        <div class="person-info">
+          <ul class="utility">
+            <li><a class="link" href="{{ url('mozorg.about.leadership') }}#helen-turvey">{{ _('Link to this bio') }}</a></li>
+          </ul>
+        </div>
+
+        <div class="person-bio">
+          <p>Helen Turvey (King) has been at the Shuttleworth Foundation for over a decade, driving its evolution, from the traditional funder to the current co-investment Fellowship model. She is responsible for the Shuttleworth Foundation’s strategic direction and daily executive leadership.</p>
+
+          <p>Helen was educated in Europe, South America and the Middle East. With 15 years of experience working with international NGOs and agencies, she is driven by the belief that openness has benefits beyond the obvious. It also offers huge value to education, economies and communities, in both the developed and developing worlds.</p>
+
+          <p>As well as holding various board positions, Helen is a lover of musicals and  has smallholding ambitions (currently 3 hens and a seasonal veggie patch).</p>
+        </div>
+      </article>
+
+      <article id="nicole-wong" data-id="nicole-wong" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/nicole-wong.jpg') }}">
           <figcaption><h4 class="fn" itemprop="name">Nicole Wong</h4></figcaption>
         </figure>
-      </li>
-    </ul>
+
+        <div class="person-info">
+          <ul class="utility">
+            <li><a class="link" href="{{ url('mozorg.about.leadership') }}#nicole-wong">{{ _('Link to this bio') }}</a></li>
+          </ul>
+        </div>
+
+        <div class="person-bio">
+          <p>Nicole Wong specializes in assisting high-growth technology companies to develop international privacy, content, and regulatory strategies.</p>
+
+          <p>Formerly, Nicole served as Deputy U.S. Chief Technology Officer in the Obama Administration, focused on internet, privacy, and innovation policy. Prior to her time in government, Nicole was Google’s Vice President and Deputy General Counsel, and Twitter’s Legal Director for Products. She frequently speaks on issues related to law and technology, including five appearances before the U.S. Congress.</p>
+
+          <p>She currently chairs the board of <a href="https://friendsofglobalvoices.org/" rel="external">Friends of Global Voices</a>, a non-profit organization dedicated to supporting citizen and online media projects globally. She also sits on the boards of <a href="https://witness.org/about/board-members/" rel="external">WITNESS</a>, an organization supporting the use of video to advance human rights; and <a href="https://themarkup.org" rel="external">The Markup</a>, a non-profit investigative news organization covering technology. Nicole currently serves as co-chair of the <a href="https://www.cnas.org/digital-freedom-forum" rel="external">Digital Freedom Forum</a>, and as an advisor to the <a href="https://ainowinstitute.org/" rel="external">AI Now Institute</a>, the <a href="https://securingdemocracy.gmfus.org/about-us/advisory-council/" rel="external">Alliance for Securing Democracy</a>, <a href="https://luminategroup.com" rel="external">Luminate</a>, <a href="https://www.refactor.com/" rel="external">Refactor Capital</a>, and the <a href="https://www.albrightstonebridge.com/" rel="external">Albright Stonebridge Group</a>.</p>
+        </div>
+      </article>
+    </div>
 
     <h3 class="group-title">{{ _('Former Board Members') }}</h3>
 
