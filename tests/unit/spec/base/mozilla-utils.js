@@ -58,7 +58,7 @@ describe('mozilla-utils.js', function() {
         var partnerASrc = '/img/foo.png';
 
         beforeEach(function () {
-            var img = '<img class="test-image" src="' + defaultSrc + '" data-partnera-link="' + partnerASrc + '">';
+            var img = '<img class="test-image" src="' + defaultSrc + '" data-mozillaonline-link="' + partnerASrc + '">';
             document.body.insertAdjacentHTML('beforeend', img);
         });
 
@@ -68,9 +68,9 @@ describe('mozilla-utils.js', function() {
             });
         });
 
-        it('should use specified image for certain distributions', function () {
+        it('should use specified image for mozillaonline distributions', function () {
             Mozilla.Utils.maybeSwitchToChinaRepackImages({
-                distribution: 'PartnerA'
+                distribution: 'mozillaonline'
             });
             var img = document.querySelector('.test-image');
             expect(img.src).toContain(partnerASrc);
@@ -78,7 +78,7 @@ describe('mozilla-utils.js', function() {
 
         it('should use default image for other distributions', function () {
             Mozilla.Utils.maybeSwitchToChinaRepackImages({
-                distribution: 'PartnerB'
+                distribution: 'regata os'
             });
             var img = document.querySelector('.test-image');
             expect(img.src).toContain(defaultSrc);
