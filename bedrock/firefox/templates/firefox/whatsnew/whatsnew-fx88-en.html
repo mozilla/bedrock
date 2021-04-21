@@ -22,8 +22,6 @@
   {{ css_bundle('firefox_whatsnew_88_en') }}
 {% endblock %}
 
-
-
 {% block site_header %}{% endblock %}
 
 {% block content %}
@@ -41,6 +39,7 @@
   </header>
 
   {% set landing_source = '?source=' + campaign if campaign else '' %}
+  {% set landing_variant = '-v' + variant if variant else '' %}
 
   <section class="wnp-content-main">
     <div class="mzp-l-content mzp-t-content-lg">
@@ -49,10 +48,10 @@
       {% elif variant == '3' %}
         <video poster="{{ static('img/firefox/whatsnew/whatsnew88-en/hero.png') }}" class="c-animated-graphic wnp-vid-1" muted autoplay loop>
           <source type="video/webm" src="/media/img/firefox/whatsnew/whatsnew88/video.794560d1ad14ae53fd3b56e2fc8dc70f.webm">
-        </video>    
+        </video>
       {% elif variant == '4' %}
         <img class="wnp-main-image" src="{{ static('img/firefox/whatsnew/whatsnew88-en/hero-alt.png') }}" width="450" alt="">
-      {% elif variant == '5' %} 
+      {% elif variant == '5' %}
         <video poster="{{ static('img/firefox/whatsnew/whatsnew88-en/hero-alt.png') }}" class="c-animated-graphic" muted autoplay loop>
           <source type="video/webm" src="/media/img/firefox/whatsnew/whatsnew88/video-alt.d54d820f7ebda1b63be2c4a084b16782.webm">
         </video>
@@ -63,7 +62,7 @@
       <p class="wnp-main-tagline"><strong>Mozilla VPN</strong> (Virtual Private Network) protects your entire internet connection on your computer, your tablet, and even your phone. For even more security, it comes with a 30-day money back guarantee.</p>
 
       <div class="wnp-main-cta">
-        <a href="{{ url('products.vpn.landing') }}{{ landing_source }}" class="mzp-c-button mzp-t-product mzp-t-lg" rel="external" data-cta-text="Get Mozilla VPN Now" data-cta-type="button">Get Mozilla VPN Now</a>
+        <a href="{{ url('products.vpn.landing') }}{{ landing_source }}{{ landing_variant }}" class="mzp-c-button mzp-t-product mzp-t-lg" rel="external" data-cta-text="Get Mozilla VPN Now" data-cta-type="button">Get Mozilla VPN Now</a>
       </div>
     </div>
   </section>
