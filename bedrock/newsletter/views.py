@@ -138,10 +138,10 @@ NEWSLETTER_STRINGS = {
         'description': ftl_lazy('newsletters-get-how-tos', ftl_files=FTL_FILES),
         'title': ftl_lazy('newsletters-firefox-news', ftl_files=FTL_FILES)},
     u'mozilla-festival': {
-        'description': ftl_lazy('newsletters-special-announcements-about-mozilla', ftl_files=FTL_FILES),
+        'description': ftl_lazy('newsletters-special-announcements-about-mozilla-v2', ftl_files=FTL_FILES),
         'title': ftl_lazy('newsletters-mozilla-festival', ftl_files=FTL_FILES)},
     u'mozilla-foundation': {
-        'description': ftl_lazy('newsletters-regular-updates-to-keep', ftl_files=FTL_FILES),
+        'description': ftl_lazy('newsletters-regular-updates-to-keep-v2', ftl_files=FTL_FILES),
         'title': ftl_lazy('newsletters-mozilla-news', ftl_files=FTL_FILES)},
     u'mozilla-general': {
         'description': ftl_lazy('newsletters-special-accouncements-and-messages', ftl_files=FTL_FILES),
@@ -496,7 +496,7 @@ REASONS = [
     ftl_lazy('newsletters-your-content-wasnt-relevant', ftl_files=FTL_FILES),
     ftl_lazy('newsletters-your-email-design', ftl_files=FTL_FILES),
     ftl_lazy('newsletters-i-didnt-sign-up', ftl_files=FTL_FILES),
-    ftl_lazy('newsletters-im-keeping-in-touch', ftl_files=FTL_FILES),
+    ftl_lazy('newsletters-im-keeping-in-touch-v2', ftl_files=FTL_FILES),
 ]
 
 

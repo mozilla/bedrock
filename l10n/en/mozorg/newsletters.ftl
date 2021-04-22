@@ -24,11 +24,17 @@ newsletters-newsletter-confirm = Newsletter confirm
 
 newsletters-thanks-for-subscribing = Thanks for Subscribing!
 newsletters-your-newsletter-subscription = Your newsletter subscription has been confirmed.
+newsletters-please-be-sure-to-add-our-v2 = Please be sure to add our sending address: mozilla@email.mozilla.org to your address book to ensure we always reach your inbox.
+
+# Obsolete string
 newsletters-please-be-sure-to-add-our = Please be sure to add our sending address: mozilla@e.mozilla.org to your address book to ensure we always reach your inbox.
 newsletters-the-supplied-link-has-expired = The supplied link has expired. You will receive a new one in the next newsletter.
 newsletters-something-is-amiss-with = Something is amiss with our system, sorry! Please try again later.
 newsletters-youre-awesome = You’re awesome!
 newsletters-and-were-not-just-saying = And we’re not just saying that because you trusted us with your email address.
+newsletters-please-be-sure-to-add-mozillaemailmozillaorg = Please be sure to add mozilla@email.mozilla.org to your address book to ensure we always reach your inbox.
+
+# Obsolete string
 newsletters-please-be-sure-to-add-mozillaemozillaorg = Please be sure to add mozilla@e.mozilla.org to your address book to ensure we always reach your inbox.
 newsletters-mozilla-touches-on-a-variety = { -brand-name-mozilla } touches on a variety of important issues.
 newsletters-open-your-inbox-and-your = Open your inbox (and your heart) even more — take a look at other topics we cover.
@@ -133,6 +139,9 @@ newsletters-i-didnt-sign-up = I didn't sign up for this.
 #   $url (url) - link to https://www.mozilla.org/newsletter/
 newsletters-this-email-address-is-not = This email address is not in our system. Please double check your address or <a href="{ $url }">subscribe to our newsletters.</a>
 
+newsletters-im-keeping-in-touch-v2 = I'm keeping in touch with { -brand-name-mozilla } on { -brand-name-twitter } instead.
+
+# Obsolete string
 newsletters-im-keeping-in-touch = I'm keeping in touch with { -brand-name-mozilla } on { -brand-name-facebook } and { -brand-name-twitter } instead.
 
 # Headline for https://www.mozilla.org/newsletter/mozilla/
@@ -347,12 +356,18 @@ newsletters-get-how-tos = Get how-tos, advice and news to make your { -brand-nam
 newsletters-mozilla-festival = { -brand-name-mozilla-festival }
 
 # Description for the newsletter in Newsletter subscription page (Mozilla Festival)
+newsletters-special-announcements-about-mozilla-v2 = Special announcements about our annual festival dedicated to forging the future of the open web.
+
+# Obsolete string
 newsletters-special-announcements-about-mozilla = Special announcements about { -brand-name-mozilla }'s annual, hands-on festival dedicated to forging the future of the open Web.
 
 # Name for the newsletter in Newsletter subscription page
 newsletters-mozilla-news = { -brand-name-mozilla } News
 
 # Description for the newsletter in Newsletter subscription page (Mozilla News)
+newsletters-regular-updates-to-keep-v2 = Regular updates to help you get smarter about your online life and active in our fight for a better internet.
+
+# Obsolete string
 newsletters-regular-updates-to-keep = Regular updates to keep you informed and active in our fight for a better internet.
 
 # Name for the newsletter in Newsletter subscription page
