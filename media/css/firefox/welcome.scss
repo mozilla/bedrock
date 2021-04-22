@@ -77,6 +77,11 @@ html {
         padding-left: 0;
     }
 
+    .welcome-page9 &,
+    .welcome-page10 & {
+        padding-top: 0;
+    }
+
     @media #{$mq-md} {
         padding: $layout-md $layout-xl;
 
@@ -119,13 +124,22 @@ html {
     .welcome-page5 &,
     .welcome-page6 &,
     .welcome-page7 &,
-    .welcome-page8 & {
+    .welcome-page8 &,
+    .welcome-page9 &,
+    .welcome-page10 & {
         @include text-title-md;
     }
 
     .welcome-page8 & {
         strong {
             @include zap('/media/protocol/img/zaps/zap-10.svg');
+        }
+    }
+
+    .welcome-page9 &,
+    .welcome-page10 & {
+        strong {
+            color: $color-violet-50;
         }
     }
 }
@@ -143,6 +157,11 @@ html {
     margin: $layout-md auto $layout-lg;
     text-align: center;
 
+    .welcome-page9 &,
+    .welcome-page10 & {
+        margin-bottom: 0;
+    }
+
     .primary-image {
         margin: $layout-sm auto 0;
     }
@@ -155,6 +174,22 @@ html {
 
     .primary-cta {
         margin: $layout-md auto 0;
+    }
+}
+
+.welcome-page9 {
+    .hero-image {
+        display: block;
+        margin: 0 auto;
+        max-width: 900px;
+    }
+}
+
+.welcome-page10 {
+    .hero-image {
+        display: block;
+        margin: 0 auto;
+        width: 120px;
     }
 }
 
@@ -202,6 +237,21 @@ html {
             max-width: $layout-md;
             min-height: 0;
             position: absolute;
+        }
+    }
+}
+
+@media #{$mq-md} {
+    .l-columns-two {
+        display: flex;
+        margin: 0 auto;
+        max-width: $content-lg;
+        padding: 0 $layout-md;
+        flex-wrap: wrap;
+
+        .c-picto-block {
+            flex: 1 1 50%;
+            padding: 0 $layout-lg;
         }
     }
 }

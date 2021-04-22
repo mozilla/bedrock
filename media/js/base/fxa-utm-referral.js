@@ -60,18 +60,23 @@ if (typeof window.Mozilla === 'undefined') {
         }
 
         /**
-         * Occasionally we link to a mozorg product landing page (e.g. VPN) via an in-product page such as /whatsnew.
-         * Here we want to avoid using utm params on internal links since that's bad, so instead we support the option
-         * of passing a `source` parameter to help connect attribution with FxA link referrals.
+         * Occasionally we link to a mozorg product landing page (e.g. VPN) via an in-product page such as /whatsnew
+         * or /welcome. Here we want to avoid using utm params on internal links since that's bad, so instead we support
+         * the option of passing a `source` parameter to help connect attribution with FxA link referrals.
          */
         if (Object.prototype.hasOwnProperty.call(finalParams, 'source')) {
-            if (finalParams['source'].indexOf('whatsnew') !== -1) {
+            if (finalParams['source'].indexOf('whatsnew') !== -1 || finalParams['source'].indexOf('welcome') !== -1) {
 
-                // utm_source and entrypoint should always be the same and omit the /whatsnew version number.
-                finalParams['utm_source'] = 'www.mozilla.org-whatsnew';
-                finalParams['entrypoint'] = 'www.mozilla.org-whatsnew';
+                // utm_source and entrypoint should always be consistent and omit a version number.
+                if (finalParams['source'].indexOf('whatsnew') !== -1 ) {
+                    finalParams['utm_source'] = 'www.mozilla.org-whatsnew';
+                    finalParams['entrypoint'] = 'www.mozilla.org-whatsnew';
+                } else {
+                    finalParams['utm_source'] = 'www.mozilla.org-welcome';
+                    finalParams['entrypoint'] = 'www.mozilla.org-welcome';
+                }
 
-                // utm_campaign should indicate which version of /whatsnew the referral came from e.g. `whatsnew88`.
+                // utm_campaign should indicate which version the referral came from e.g. `whatsnew88`, `welcome9`.
                 finalParams['utm_campaign'] = finalParams['source'];
 
                 // delete the original source param afterward as it's no longer needed.

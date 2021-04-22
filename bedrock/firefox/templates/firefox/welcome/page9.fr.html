@@ -1,0 +1,77 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros-protocol.html" import hero with context %}
+
+{% extends "firefox/welcome/base.html" %}
+
+{% block page_title %}Ça y est. Le VPN est là !{% endblock %}
+
+{% block page_image %}{{ static('img/products/vpn/common/social-share.png') }}{% endblock %}
+
+{% block body_class %}welcome-page9{% endblock %}
+
+{% set _entrypoint = 'mozilla.org-firefox-welcome-9' %}
+{% set _utm_campaign = 'welcome-9-vpn' %}
+{% set _source = '?source=welcome9' %}
+
+{% block shoulder_cta %}{% endblock %}
+
+{% block content_intro %}
+  <div class="hero-image">
+    {% include 'firefox/welcome/includes/page9/vpn-header.svg' %}
+  </div>
+
+  {% call hero(
+    title='Ça y est. <br>Le VPN est là !'|safe,
+    desc='Surfer, streamer, jouer et travailler en ligne est bien plus simple maintenant. Protégez votre vie privée lorsque vous voyagez, en utilisant le WiFi public ou dès que vous vous connectez.',
+    class='mzp-t-firefox',
+    include_cta=True,
+    heading_level=1
+  ) %}
+
+  <p class="primary-cta">
+    <a href="{{ url('products.vpn.landing') }}{{ _source }}" class="mzp-c-button mzp-t-product mzp-t-xl" data-cta-text="Go to Mozilla VPN" data-cta-type="button">Se connecter à Mozilla VPN</a>
+  </p>
+  {% endcall %}
+{% endblock %}
+
+{% block content_body %}
+<section class="page-body">
+  <div class="mzp-l-content">
+    <div class="l-columns-two">
+
+      <div class="c-picto-block">
+        <div class="c-picto-block-image">
+          {% include 'firefox/welcome/includes/page9/one-tap.svg' %}
+        </div>
+        <h3 class="c-picto-block-title">La vie privée en un clic</h3>
+        <div class="c-picto-block-body">
+          <p>Notre produit Virtual Private Network (VPN) utilise la technologie de chiffrement la plus avancée pour vous offrir une connexion Internet sécurisée, rapide et fiable.</p>
+        </div>
+      </div>
+
+      <div class="c-picto-block">
+        <div class="c-picto-block-image">
+          {% include 'firefox/welcome/includes/page9/heart.svg' %}
+        </div>
+        <h3 class="c-picto-block-title">Le VPN d’un partenaire de confiance</h3>
+        <div class="c-picto-block-body">
+          <p>Depuis plus de 20 ans, Mozilla fait ses preuves en s’engageant pleinement pour la vie privée en ligne des gens. Soutenu par une organisation à but non lucratif, notre mission est de créer un Internet meilleur et plus sain pour tous. Tout ce que nous entreprenons, qu’il s’agisse de Firefox ou de Mozilla VPN, fait partie de notre mission et suit nos <a href="{{ url('mozorg.about.manifesto') }}">principes<a/>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block content_utility %}
+<p>
+  <strong>
+    <a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">
+      Pourquoi cette page s’affiche-t-elle ?
+    </a>
+  </strong>
+</p>
+{% endblock %}
