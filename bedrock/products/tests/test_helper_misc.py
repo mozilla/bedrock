@@ -2,13 +2,10 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import os
-
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
 from django_jinja.backend import Jinja2
-from mock import patch
 
 from bedrock.mozorg.tests import TestCase
 
@@ -54,24 +51,6 @@ class TestVPNSubscribeLink(TestCase):
                       entrypoint, link_text, plan, class_name, lang, optional_parameters, optional_attributes),
                       {'request': req})
 
-    @patch.dict(os.environ, SWITCH_VPN_NEW_SUBSCRIPTION_URL_FORMAT='False')
-    def test_vpn_subscribe_link_fixed_monthly_usd_old_format(self):
-        """Should return expected markup for default fixed monthly plan in US$ using old format"""
-        markup = self._render(entrypoint='www.mozilla.org-vpn-product-page', link_text='Get Mozilla VPN',
-                              plan=None, class_name='mzp-c-button', lang='en-US',
-                              optional_parameters={'utm_campaign': 'vpn-product-page'},
-                              optional_attributes={'data-cta-text': 'Get Mozilla VPN monthly', 'data-cta-type':
-                                                   'fxa-vpn', 'data-cta-position': 'primary'})
-        expected = (
-            u'<a href="https://vpn.mozilla.org/r/vpn/subscribe?entrypoint=www.mozilla.org-vpn-product-page'
-            u'&form_type=button&utm_source=www.mozilla.org-vpn-product-page&utm_medium=referral'
-            u'&utm_campaign=vpn-product-page" data-action="https://accounts.firefox.com/" '
-            u'class="js-fxa-cta-link js-fxa-product-button mzp-c-button" '
-            u'data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" data-cta-position="primary">'
-            u'Get Mozilla VPN</a>')
-        self.assertEqual(markup, expected)
-
-    @patch.dict(os.environ, SWITCH_VPN_NEW_SUBSCRIPTION_URL_FORMAT='True')
     def test_vpn_subscribe_link_fixed_monthly_usd(self):
         """Should return expected markup for default fixed monthly plan in US$"""
         markup = self._render(entrypoint='www.mozilla.org-vpn-product-page', link_text='Get Mozilla VPN',
@@ -88,7 +67,6 @@ class TestVPNSubscribeLink(TestCase):
             u'Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
-    @patch.dict(os.environ, SWITCH_VPN_NEW_SUBSCRIPTION_URL_FORMAT='True')
     def test_vpn_subscribe_link_variable_12_month(self):
         """Should return expected markup for variable 12-month plan"""
         markup = self._render(entrypoint='www.mozilla.org-vpn-product-page', link_text='Get Mozilla VPN',
@@ -106,7 +84,6 @@ class TestVPNSubscribeLink(TestCase):
             u'Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
-    @patch.dict(os.environ, SWITCH_VPN_NEW_SUBSCRIPTION_URL_FORMAT='True')
     def test_vpn_subscribe_link_variable_6_month(self):
         """Should return expected markup for variable 6-month plan"""
         markup = self._render(entrypoint='www.mozilla.org-vpn-product-page', link_text='Get Mozilla VPN',
@@ -124,7 +101,6 @@ class TestVPNSubscribeLink(TestCase):
             u'Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
-    @patch.dict(os.environ, SWITCH_VPN_NEW_SUBSCRIPTION_URL_FORMAT='True')
     def test_vpn_subscribe_link_variable_monthly(self):
         """Should return expected markup for variable monthly plan"""
         markup = self._render(entrypoint='www.mozilla.org-vpn-product-page', link_text='Get Mozilla VPN',
