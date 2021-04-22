@@ -22,7 +22,7 @@
       <p>
         {{ ftl('newsletters-youre-awesome') }}
         {{ ftl('newsletters-and-were-not-just-saying') }}
-        {{ ftl('newsletters-please-be-sure-to-add-mozillaemozillaorg') }}
+        {{ ftl('newsletters-please-be-sure-to-add-mozillaemailmozillaorg') }}
       </p>
 
       <p>
@@ -109,7 +109,7 @@
               </thead>
               <tbody>
                 {% for formpart in formset %} {# each newsletter is a formset #}
-                <tr>
+                <tr {% if formpart.initial['indented'] %}class="indented"{% endif %}>
                   <th>
                     <h4>{{ formpart.initial['title'] }}</h4>
                     {# hidden field: #}

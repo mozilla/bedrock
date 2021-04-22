@@ -15,7 +15,7 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/components/notification-bar';
 @import '../../protocol/css/templates/card-layout';
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Global styles.
 
 h1 {
@@ -44,7 +44,7 @@ main {
 }
 
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // newsletter/existing custom styles.
 
 .c-column {
@@ -62,7 +62,7 @@ main {
     }
 
     .c-column-content {
-        text-align: left;
+        @include bidi(((text-align, left, right),));
 
         h2 {
             margin-bottom: $spacing-xl;
@@ -106,6 +106,13 @@ main {
             }
 
         }
+
+        tr.indented th {
+            @include bidi((
+                (padding-left, $spacing-xl, 0),
+                (padding-right, 0, $spacing-xl),
+            ));
+        }
     }
 }
 
@@ -124,7 +131,7 @@ main {
     }
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // newsletter/updated custom styles.
 
 .c-updated-block {
@@ -189,7 +196,7 @@ main {
     }
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // newsletter/country/ custom styles.
 
 
