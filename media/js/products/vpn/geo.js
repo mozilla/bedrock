@@ -123,7 +123,7 @@
         return 'not-available';
     };
 
-    VPN.setAvailability = function(availability, language) {
+    VPN.setAvailability = function(availability, language, variablePricing) {
         if (availability === 'fixed-price') {
             // If VPN is available in countries that support fixed pricing,
             // show the fixed pricing subscribe links.
@@ -138,8 +138,11 @@
         } else {
             // If we can't determine someone's country then fall back to page language.
             // Both /de/ and /fr/ get variable pricing, and the rest get fixed.
-            var lang = document.getElementsByTagName('html')[0].getAttribute('lang') || language;
-            if (lang === 'de' || lang === 'fr') {
+            var html = document.getElementsByTagName('html')[0];
+            var lang = html.getAttribute('lang') || language;
+            var variablePricingAvailable = html.getAttribute('data-vpn-variable-price-country-codes') || variablePricing;
+
+            if ((lang === 'de' || lang === 'fr') && variablePricingAvailable) {
                 VPN.showVariablePricing();
             } else {
                 VPN.showFixedPricing();

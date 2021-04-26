@@ -143,14 +143,20 @@ describe('geo.js', function() {
         });
 
         it('should fallback to page language if availability is not known', function() {
-            Mozilla.VPN.setAvailability('unknown', 'en-US');
+            Mozilla.VPN.setAvailability('unknown', 'en-US', true);
             expect(Mozilla.VPN.showFixedPricing).toHaveBeenCalled();
 
-            Mozilla.VPN.setAvailability('unknown', 'de');
+            Mozilla.VPN.setAvailability('unknown', 'de', true);
             expect(Mozilla.VPN.showVariablePricing).toHaveBeenCalled();
 
-            Mozilla.VPN.setAvailability('unknown', 'fr');
+            Mozilla.VPN.setAvailability('unknown', 'fr', true);
             expect(Mozilla.VPN.showVariablePricing).toHaveBeenCalled();
+
+            Mozilla.VPN.setAvailability('unknown', 'de', false);
+            expect(Mozilla.VPN.showFixedPricing).toHaveBeenCalled();
+
+            Mozilla.VPN.setAvailability('unknown', 'fr', false);
+            expect(Mozilla.VPN.showFixedPricing).toHaveBeenCalled();
         });
     });
 
