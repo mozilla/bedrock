@@ -20,6 +20,10 @@ Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, u
   {% elif switch('fundraising-banner-eoy2020') %}
     {{ css_bundle('fundraising-banner') }}
   {% endif %}
+
+  {% if switch('firefox-mr1-launch') %}
+    {{ css_bundle('home-mr1-promo') }}
+  {% endif %}
 {% endblock %}
 
 {% block page_banner %}
@@ -39,18 +43,29 @@ Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, u
     <h1>{{ self.page_title() }}</h1>
   </header>
 
-  {% call download_banner(
-    title='Par amour du Net',
-    desc='Firefox - le navigateur indépendant soutenu par une organisation à but non lucratif.',
-    ) %}
-    {{ download_firefox_thanks(alt_copy='Télécharger Firefox', dom_id='download-primary', download_location='primary cta') }}
-  {% endcall %}
+  {% if ftl_has_messages('home-promo-title-lalo', 'home-promo-title-soraya', 'home-promo-title-gary', 'home-promo-title-ryan') and switch('firefox-mr1-launch') %}
+    {%- set promos = [
+      'mozorg/home/includes/mr1-promo-lalo.html',
+      'mozorg/home/includes/mr1-promo-soraya.html',
+      'mozorg/home/includes/mr1-promo-gary.html',
+      'mozorg/home/includes/mr1-promo-ryan.html'
+    ] -%}
 
-  {{ fxa_banner(
-    title='Par amour du Net',
-    desc='Firefox - le navigateur indépendant soutenu par une organisation à but non lucratif.',
-    link_cta='En savoir plus',
-  )}}
+    {% include promos|random() %}
+  {% else %}
+    {% call download_banner(
+      title='Par amour du Net',
+      desc='Firefox - le navigateur indépendant soutenu par une organisation à but non lucratif.',
+      ) %}
+      {{ download_firefox_thanks(alt_copy='Télécharger Firefox', dom_id='download-primary', download_location='primary cta') }}
+    {% endcall %}
+
+    {{ fxa_banner(
+      title='Par amour du Net',
+      desc='Firefox - le navigateur indépendant soutenu par une organisation à but non lucratif.',
+      link_cta='En savoir plus',
+    )}}
+  {% endif %}
 
   <div class="mozilla-content">
     <div class="mzp-l-content mzp-t-mozilla">

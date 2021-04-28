@@ -21,9 +21,11 @@ $image-path: '/media/protocol/img';
 
 //* -------------------------------------------------------------------------- */
 // Billboard
+.mzp-c-billboard {
+    margin-top: 0;
+}
 
 // offset image override
-
 .mzp-c-billboard .mzp-c-billboard-image-container {
     @media #{$mq-lg} {
         margin: 0;

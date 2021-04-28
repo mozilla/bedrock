@@ -27,38 +27,49 @@
 {% block page_css %}
   {{ css_bundle('home') }}
 
-  {% if switch('firefox-daylight-promo-banner') %}
-    {{ css_bundle('daylight-promo-banner') }}
-  {% elif switch('fundraising-banner-eoy2020') %}
+  {% if switch('fundraising-banner-eoy2020') %}
     {{ css_bundle('fundraising-banner') }}
+  {% endif %}
+
+  {% if switch('firefox-mr1-launch') %}
+    {{ css_bundle('home-mr1-promo') }}
   {% endif %}
 {% endblock %}
 
 {% block page_banner %}
-  {% if switch('firefox-daylight-promo-banner') %}
-    {% include 'includes/banners/daylight/daylight-promo.html' %}
-  {% elif switch('fundraising-banner-eoy2020') and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
+  {% if switch('fundraising-banner-eoy2020') and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
     {% include 'includes/banners/fundraiser.html' %}
   {% endif %}
 {% endblock %}
 
 {% block content %}
 <main role="main">
-  {% call hero(
-  class='mzp-c-hero mzp-has-image',
-  include_cta=True,
-  image_url='img/home/laptop.png'
-  ) %}
+  {% if ftl_has_messages('home-promo-title-lalo', 'home-promo-title-soraya', 'home-promo-title-gary', 'home-promo-title-ryan') and switch('firefox-mr1-launch') %}
+    {%- set promos = [
+      'mozorg/home/includes/mr1-promo-lalo.html',
+      'mozorg/home/includes/mr1-promo-soraya.html',
+      'mozorg/home/includes/mr1-promo-gary.html',
+      'mozorg/home/includes/mr1-promo-ryan.html'
+    ] -%}
 
-  <h2 class="c-primary-cta-logo"><img alt="Firefox" src="{{ static('protocol/img/logos/firefox/logo-word-hor.svg') }}" height="40" width="125"></h2>
-  <h3 class="c-primary-cta-title">{{ ftl('home-fast-for-good') }}</h3>
+    {% include promos|random() %}
+  {% else %}
+    {% call hero(
+    class='mzp-c-hero mzp-has-image',
+    include_cta=True,
+    image_url='img/home/laptop.png'
+    ) %}
 
-  <p class="c-primary-cta-desc">
-    {{ ftl('home-with-2x-the-speed-built-in') }}
-  </p>
+    <h2 class="c-primary-cta-logo"><img alt="Firefox" src="{{ static('protocol/img/logos/firefox/logo-word-hor.svg') }}" height="40" width="125"></h2>
+    <h3 class="c-primary-cta-title">{{ ftl('home-fast-for-good') }}</h3>
 
-  {{ download_firefox_thanks(dom_id='download-intro', download_location='primary cta') }}
-  {% endcall %}
+    <p class="c-primary-cta-desc">
+      {{ ftl('home-with-2x-the-speed-built-in') }}
+    </p>
+
+    {{ download_firefox_thanks(dom_id='download-intro', download_location='primary cta') }}
+    {% endcall %}
+  {% endif %}
 
   <div class="mzp-l-content mzp-t-mozilla">
     {{ billboard(
@@ -176,9 +187,7 @@
 {% block js %}
   {{ js_bundle('newsletter') }}
 
-  {% if switch('firefox-daylight-promo-banner') %}
-    {{ js_bundle('daylight-promo-banner') }}
-  {% elif switch('fundraising-banner-eoy2020') %}
+  {% if switch('fundraising-banner-eoy2020') %}
     {{ js_bundle('fundraising-banner') }}
   {% endif %}
 {% endblock %}
