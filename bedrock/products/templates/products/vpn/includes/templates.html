@@ -11,8 +11,7 @@
       </a>
 
       <p class="availability-copy">
-        {% set countries_list = 'vpn-shared-available-countries-v2' if switch('vpn-launch-germany-france') else 'vpn-shared-available-countries' %}
-        {{ ftl(countries_list) }}
+        {{ ftl('vpn-shared-available-countries-v2') }}
       </p>
     </div>
   </div>
