@@ -10,27 +10,15 @@
 {% block page_desc %}{{ ftl('features-pip-got-things-to-do-and-things-to-watch') }}{% endblock %}
 
 {% block page_image %}
-  {% if LANG == 'en-US' %}
-    {{ static('img/firefox/features/pip/pip-hero-march.png') }}
-  {% else %}
-    {{ static('img/firefox/features/pip/pip-hero.jpg') }}
-  {% endif %}
+  {{ static('img/firefox/features/pip/pip-hero.jpg') }}
 {% endblock %}
 
 {% block page_og_title %}
-  {%- if LANG == 'en-US' -%}
-    Firefox Picture-in-Picture: Keep an eye on the games with pop-out videos
-  {%- else -%}
-    {{ self.page_title() }}
-  {%- endif -%}
+  {{ self.page_title() }}
 {% endblock %}
 
 {% block page_og_desc %}
-  {%- if LANG == 'en-US' -%}
-    Got things to do and a basketball tournament to watch? Do both using Picture-in-Picture in Firefox.
-  {%- else -%}
-    {{ self.page_desc() }}
-  {%- endif -%}
+  {{ self.page_desc() }}
 {% endblock %}
 
 {% block page_css %}
@@ -46,17 +34,10 @@
   <div class="mzp-l-content">
     <div class="mzp-c-hero-body">
       <h1 class="c-hero-pretitle"> {{ ftl('features-pip-new-feature-firefox-multi-picture', fallback='features-pip-cool-feature-picture-in-picture') }}</h1>
-    {% if LANG == 'en-US' %}
-      <h2 class="mzp-c-hero-title">Keep an eye on the games with pop-out videos</h2>
-      <div class="mzp-c-hero-desc">
-        <p>Got things to do and a basketball tournament to watch? Do both using Picture-in-Picture in Firefox. It lets you pop one or more videos out of their webpages and pin them to your screen so you can keep watching while you’re on other pages, tabs and apps.</p>
-      </div>
-    {% else %}
       <h2 class="mzp-c-hero-title">{{ ftl('features-pip-get-more-done-with-pop-out-videos') }}</h2>
       <div class="mzp-c-hero-desc">
         <p>{{ ftl('features-pip-got-things-to-do-do-both-with') }}</p>
       </div>
-    {% endif %}
       <div class="mzp-c-hero-cta">
         <div class="download-firefox">
           {{ download_firefox(dom_id='features-pip-download-primary', download_location='primary cta') }}
@@ -65,11 +46,7 @@
     </div>
   </div>
   <div class="mzp-c-hero-image">
-  {% if LANG == 'en-US' %}
-    <img src="{{ static('img/firefox/features/pip/pip-hero-march.png') }}" alt="">
-  {% else %}
     <img src="{{ static('img/firefox/features/pip/pip-hero.jpg') }}" alt="">
-  {% endif %}
   </div>
 </section>
 
