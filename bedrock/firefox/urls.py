@@ -124,6 +124,8 @@ urlpatterns = (
           template_context_variations=['text', 'image', 'animation', 'header-text'],
           variation_locales=['en-US', 'en-CA', 'en-GB', 'de', 'fr']),
         name='firefox.welcome.page8'),
+    page('firefox/welcome/9', 'firefox/welcome/page9.html', active_locales=['de', 'fr']),
+    page('firefox/welcome/10', 'firefox/welcome/page10.html'),
 
     page('firefox/privacy-by-default', 'firefox/messaging-experiment/privacy_by_default.html'),
     page('firefox/privacy-tools', 'firefox/messaging-experiment/privacy_tools.html'),

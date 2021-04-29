@@ -86,17 +86,29 @@ describe('fxa-utm-referral.js', function() {
         });
 
         it('should return entrypoint and utm params if supported source attribute is present', function() {
-            var validObj = {
+            var validObj1 = {
                 'source': 'whatsnew88'
             };
 
-            var validData = {
+            var validData1 = {
                 'entrypoint': 'www.mozilla.org-whatsnew',
                 'utm_source': 'www.mozilla.org-whatsnew',
                 'utm_campaign': 'whatsnew88'
             };
 
-            expect(Mozilla.UtmUrl.getAttributionData(validObj)).toEqual(validData);
+            expect(Mozilla.UtmUrl.getAttributionData(validObj1)).toEqual(validData1);
+
+            var validObj2 = {
+                'source': 'welcome9'
+            };
+
+            var validData2 = {
+                'entrypoint': 'www.mozilla.org-welcome',
+                'utm_source': 'www.mozilla.org-welcome',
+                'utm_campaign': 'welcome9'
+            };
+
+            expect(Mozilla.UtmUrl.getAttributionData(validObj2)).toEqual(validData2);
         });
 
         it('should return null if source attribute is non-specific', function() {
