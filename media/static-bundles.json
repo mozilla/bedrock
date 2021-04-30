@@ -241,6 +241,12 @@
     },
     {
       "files": [
+        "css/base/banners/vpn-promo.scss"
+      ],
+      "name": "vpn-promo-banner"
+    },
+    {
+      "files": [
         "css/base/banners/native-android-exp.scss"
       ],
       "name": "native-android-exp-banner"
@@ -1132,6 +1138,13 @@
         "js/mozorg/home/daylight-promo-banner-init.js"
       ],
       "name": "daylight-promo-banner"
+    },
+    {
+      "files": [
+        "js/base/banners/mozilla-banner.js",
+        "js/base/banners/vpn-promo-banner-init.js"
+      ],
+      "name": "vpn-promo-banner"
     },
     {
       "files": [

@@ -13,10 +13,22 @@ Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, u
 {% block page_css %}
   {{ css_bundle('home-2018') }}
 
-  {% if switch('firefox-daylight-promo-banner') and not switch('fundraising-banner-eoy2020') %}
+  {% if switch('vpn-promo-banner') %}
+    {{ css_bundle('vpn-promo-banner') }}
+  {% elif switch('firefox-daylight-promo-banner') %}
     {{ css_bundle('daylight-promo-banner') }}
   {% elif switch('fundraising-banner-eoy2020') %}
     {{ css_bundle('fundraising-banner') }}
+  {% endif %}
+{% endblock %}
+
+{% block page_banner %}
+  {% if switch('vpn-promo-banner', ['de', 'fr']) %}
+    {% include 'includes/banners/vpn/vpn-promo.html' %}
+  {% elif switch('firefox-daylight-promo-banner') %}
+    {% include 'includes/banners/daylight/daylight-promo.html' %}
+  {% elif switch('fundraising-banner-eoy2020') and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
+    {% include 'includes/banners/fundraiser.html' %}
   {% endif %}
 {% endblock %}
 
@@ -120,4 +132,16 @@ Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, u
   {% endcall %}
 
 </main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('home') }}
+
+  {% if switch('vpn-promo-banner', ['de', 'fr']) %}
+    {{ js_bundle('vpn-promo-banner') }}
+  {% elif switch('firefox-daylight-promo-banner') %}
+    {{ js_bundle('daylight-promo-banner') }}
+  {% elif switch('fundraising-banner-eoy2020') %}
+    {{ js_bundle('fundraising-banner') }}
+  {% endif %}
 {% endblock %}
