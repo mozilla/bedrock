@@ -20,6 +20,16 @@
   {% endif %}
 {% endblock %}
 
+{% block page_banner %}
+  {% if switch('vpn-promo-banner', ['de', 'fr']) %}
+    {% include 'includes/banners/vpn/vpn-promo.html' %}
+  {% elif switch('firefox-daylight-promo-banner') %}
+    {% include 'includes/banners/daylight/daylight-promo.html' %}
+  {% elif switch('fundraising-banner-eoy2020') and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
+    {% include 'includes/banners/fundraiser.html' %}
+  {% endif %}
+{% endblock %}
+
 {% block main %}
 <main>
   <header class="main-page-heading">
@@ -121,4 +131,16 @@
   {% endcall %}
 
 </main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('home') }}
+
+  {% if switch('vpn-promo-banner', ['de', 'fr']) %}
+    {{ js_bundle('vpn-promo-banner') }}
+  {% elif switch('firefox-daylight-promo-banner') %}
+    {{ js_bundle('daylight-promo-banner') }}
+  {% elif switch('fundraising-banner-eoy2020') %}
+    {{ js_bundle('fundraising-banner') }}
+  {% endif %}
 {% endblock %}
