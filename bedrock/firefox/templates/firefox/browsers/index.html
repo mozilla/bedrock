@@ -12,13 +12,17 @@
 {% block page_css %}
   {{ css_bundle('firefox-browsers-products') }}
 
-  {% if switch('firefox-daylight-promo-banner') %}
+  {% if switch('vpn-promo-banner', ['de', 'fr']) %}
+    {{ css_bundle('vpn-promo-banner') }}
+  {% elif switch('firefox-daylight-promo-banner') %}
     {{ css_bundle('daylight-promo-banner') }}
   {% endif %}
 {% endblock %}
 
 {% block page_banner %}
-  {% if switch('firefox-daylight-promo-banner') %}
+  {% if switch('vpn-promo-banner', ['de', 'fr']) %}
+    {% include 'includes/banners/vpn/vpn-promo.html' %}
+  {% elif switch('firefox-daylight-promo-banner') %}
     {% include 'includes/banners/daylight/daylight-promo.html' %}
   {% endif %}
 {% endblock %}
@@ -169,7 +173,9 @@
 {% block js %}
   {{ js_bundle('firefox-browsers-products') }}
 
-  {% if switch('firefox-daylight-promo-banner') %}
+  {% if switch('vpn-promo-banner', ['de', 'fr']) %}
+    {{ js_bundle('vpn-promo-banner') }}
+  {% elif switch('firefox-daylight-promo-banner') %}
     {{ js_bundle('daylight-promo-banner') }}
   {% endif %}
 {% endblock %}
