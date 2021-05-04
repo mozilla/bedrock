@@ -22,11 +22,6 @@ $image-path: '/media/protocol/img';
 .wnp-content-main {
     padding: 0;
     text-align: center;
-
-    @media #{$mq-tall} {
-        padding-top: $layout-md;
-        margin-bottom: $layout-lg;
-    }
 }
 
 .wnp-main-image {

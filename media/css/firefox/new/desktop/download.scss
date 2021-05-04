@@ -902,7 +902,7 @@ button.mzp-c-cta-link {
     padding-top: 0;
 
     .mzp-c-emphasis-box {
-        margin: 0 $layout-2xs * -1;
+        margin: 0 -$layout-2xs;
         padding: $layout-2xs;
 
         @media #{$mq-sm} {
@@ -1133,17 +1133,12 @@ button.mzp-c-cta-link {
     text-align: center;
     margin-bottom: $layout-sm;
 
-    margin-left: $layout-xs * -1;
-    margin-right: $layout-xs * -1;
+    margin-left: -$layout-xs;
+    margin-right: -$layout-xs;
 
     @media #{$mq-md} {
-        margin-left: $layout-md * -1;
-        margin-right: $layout-md * -1;
-    }
-
-    @media #{$mq-lg} {
-        margin-left: $layout-xl * -1;
-        margin-right: $layout-xl * -1;
+        margin-left: -$layout-md;
+        margin-right: -$layout-md;
     }
 
     svg {
