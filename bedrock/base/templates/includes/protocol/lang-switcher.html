@@ -3,7 +3,7 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% if translations|length > 1 %}
-  <form id="lang_form" class="mzp-c-language-switcher mzp-t-dark" method="get" action="#">
+  <form id="lang_form" class="mzp-c-language-switcher" method="get" action="#">
     <a class="mzp-c-language-switcher-link" href="{{ url('mozorg.locales') }}">{{ ftl('footer-language') }}</a>
     <label for="page-language-select">{{ ftl('footer-language') }}</label>
     <select id="page-language-select" class="mzp-js-language-switcher-select" name="lang" dir="ltr">

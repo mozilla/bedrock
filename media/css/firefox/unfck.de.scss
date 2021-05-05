@@ -554,7 +554,8 @@ main {
     }
 
     &.mozilla {
-        background-image: url('/media/protocol/img/logos/mozilla/black.svg');
+        background-image: url('/media/protocol/img/logos/mozilla/logo-word-hor.svg');
+        @include background-size(112px, 32px);
         padding-top: $spacing-xl + 48px;
     }
 

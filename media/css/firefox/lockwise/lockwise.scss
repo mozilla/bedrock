@@ -7,25 +7,17 @@ $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
 @import '../../../protocol/css/components/hero';
-@import '../../../protocol/css/components/picto-card';
+@import '../../../protocol/css/components/picto';
 @import '../../../protocol/css/templates/card-layout';
+@import '../../../protocol/css/templates/multi-column';
 
 
-.add-on-download {
-    p {
-        margin: $spacing-sm;
-    }
+.add-on-download p {
+    margin: $spacing-sm;
 }
 
 .card-header {
     text-align: center;
-}
-
-.hidden {
-    display: none;
-}
-.mzp-t-dark {
-    background-color: $color-ink-80;
 }
 
 .ios-button {
@@ -33,10 +25,12 @@ $image-path: '/media/protocol/img';
 }
 
 .links {
+    margin: $layout-xl auto;
     text-align: center;
-    padding-bottom: $layout-xl;
-    a {
-        padding-right: $spacing-lg;
+
+    li {
+        display: inline-block;
+        margin: 0 $spacing-md;
     }
 }
 
@@ -44,28 +38,8 @@ $image-path: '/media/protocol/img';
     padding-bottom: $spacing-md;
 }
 
-.encryption .mzp-c-card-picto-content::before {
-    background: url('/media/img/firefox/lockwise/arrows.svg') no-repeat;
-    background-position: center;
-}
-
-.touch .mzp-c-card-picto-content::before {
-    background: url('/media/img/firefox/lockwise/fingerprinters.svg') no-repeat;
-    background-position: center;
-}
-
-.privacy .mzp-c-card-picto-content::before {
-    background: url('/media/img/firefox/lockwise/mask.svg') no-repeat;
-    background-position: center;
-}
-
-.mzp-c-card-picto .mzp-c-card-picto-title {
-    font-weight: normal;
+.features .mzp-c-picto-body {
     @include text-body-lg;
-}
-
-.mzp-c-card-picto{
-    list-style: none;
 }
 
 .mzp-c-hero-desc {

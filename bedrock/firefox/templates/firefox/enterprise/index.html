@@ -4,7 +4,7 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% from "macros-protocol.html" import call_out_compact, feature_card, picto_card, hero with context %}
+{% from "macros-protocol.html" import call_out_compact, feature_card, picto_card, picto, hero with context %}
 
 {% block page_title_full %}{{ ftl('firefox-enterprise-get-firefox-for-your-enterprise-with') }}{% endblock %}
 {% block page_desc %}{{ ftl('firefox-enterprise-get-unmatched-data-protection') }}{% endblock %}
@@ -63,20 +63,41 @@
     </div>
   {% endcall %}
 
-  <div class="mzp-l-content">
+  <div class="mzp-l-content mzp-t-content-lg">
     <section id="overview" class="enterprise-section">
       <h2 class="enterprise-section-title">{{ ftl('firefox-enterprise-unmatched-data-protection') }}</h2>
 
-      <ul class="mzp-l-card-third">
-        {% if LANG == 'en-US' %}
-          {% set _desc = 'The Firefox browser is open source, provides Enhanced Tracking Protection and soon will support DNS over HTTPS — all part of our longstanding commitment to data protection.' %}
-        {% else %}
-          {% set _desc = ftl('firefox-enterprise-the-firefox-browser-is-open') %}
-        {% endif %}
+      <ul class="mzp-l-columns mzp-t-columns-three">
+        {% call picto(
+          title=ftl('firefox-enterprise-your-data-stays-your-business'),
+          image_url='img/firefox/enterprise/icon-data-privacy.svg',
+          image_width='44',
+          body=True,
+        ) %}
+          {% if LANG == 'en-US' %}
+            <p>The Firefox browser is open source, provides Enhanced Tracking Protection and soon will support DNS over HTTPS — all part of our longstanding commitment to data protection.</p>
+          {% else %}
+            <p>{{ ftl('firefox-enterprise-the-firefox-browser-is-open') }}</p>
+          {% endif %}
+        {% endcall %}
 
-        {{ picto_card(title=ftl('firefox-enterprise-your-data-stays-your-business'), desc=_desc, class='privacy') }}
-        {{ picto_card(title=ftl('firefox-enterprise-deploy-when-and-how-you-want'), desc=ftl('firefox-enterprise-with-install-packages-and'), class='deploy') }}
-        {{ picto_card(title=ftl('firefox-enterprise-choose-your-release-cadence'), desc=ftl('firefox-enterprise-get-rapid-releases-to-make'), class='release') }}
+        {% call picto(
+          title=ftl('firefox-enterprise-deploy-when-and-how-you-want'),
+          image_url='img/firefox/enterprise/icon-deploy.svg',
+          image_width='53',
+          body=True,
+        ) %}
+          <p>{{ ftl('firefox-enterprise-with-install-packages-and') }}</p>
+        {% endcall %}
+
+        {% call picto(
+          title=ftl('firefox-enterprise-choose-your-release-cadence'),
+          image_url='img/firefox/enterprise/icon-release.svg',
+          image_width='49',
+          body=True,
+        ) %}
+          <p>{{ ftl('firefox-enterprise-get-rapid-releases-to-make') }}</p>
+        {% endcall %}
       </ul>
     </section>
   </div>

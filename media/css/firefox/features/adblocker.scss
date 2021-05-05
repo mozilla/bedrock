@@ -7,18 +7,11 @@ $image-path: '/media/protocol/img';
 
 @import "../../../protocol/css/includes/lib";
 @import "../../../protocol/css/components/hero";
-@import "../../../protocol/css/components/billboard";
-@import "../../../protocol/css/templates/card-layout";
 @import "../../../protocol/css/components/call-out";
 
 //* -------------------------------------------------------------------------- */
 // Custom layout
-
-ul li span {
-    font-weight: bold;
-}
-
-.mzp-c-call-out-compact.mzp-t-product-firefox.mzp-t-firefox {
+.mzp-c-call-out-compact {
     background-color: $color-marketing-gray-20;
 
     .fx-privacy-link {
@@ -26,33 +19,7 @@ ul li span {
     }
 }
 
-.mzp-l-content.mzp-t-content-md {
-    p {
-        text-align: left;
-    }
-}
-
-.l-content-image {
-    max-width: $content-lg;
-}
-
-
-.l-content-columns {
-    text-align: left;
-    display: inline-block;
-
-    @media #{$mq-lg} {
-        column-gap: $spacing-xl;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    h3 {
-        @include text-title-sm;
-    }
-}
-
-section.mzp-c-hero {
+.mzp-c-hero {
     padding: 0;
 
     .mzp-c-hero-title {
@@ -67,11 +34,26 @@ section.mzp-c-hero {
 .section-title {
     @include text-title-xs;
     text-align: center;
+    margin-top: $layout-md;
+
+    &:first-child {
+        margin-top: 0;
+    }
 }
 
-//* -------------------------------------------------------------------------- */
+.block-image {
+    display: block;
+    margin: $layout-md auto;
 
-.mzp-c-call-out.tracking {
-    background-color: $color-white;
-    margin-bottom: 50px;
+    @media #{$mq-md} {
+        margin-left: -$layout-md;
+        margin-right: -$layout-md;
+        max-width: calc(100% + 96px);
+    }
+
+    @media #{$mq-xl} {
+        margin-left: -$layout-xl;
+        margin-right: -$layout-xl;
+        max-width: calc(100% + 192px);
+    }
 }

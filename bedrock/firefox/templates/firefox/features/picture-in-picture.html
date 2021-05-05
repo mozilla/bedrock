@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import hero with context %}
+{% from "macros-protocol.html" import hero, picto with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -114,27 +114,10 @@
   <section class="content-extra">
     <h3 class="content-extra-title">{{ ftl('features-pip-3-more-ways-to-use-picture', fallback='features-pip-3-ways-to-use-picture') }}</h3>
 
-    <div class="l-columns-three">
-      <div class="c-picto-block">
-        <div class="c-picto-block-image">
-          <img src="{{ static('img/firefox/features/pip/pip-lecture.svg') }}" alt="">
-        </div>
-        <h4 class="c-picto-block-title">{{ ftl('features-pip-watch-a-lecture-or-meeting') }}</h4>
-      </div>
-
-      <div class="c-picto-block">
-        <div class="c-picto-block-image">
-          <img src="{{ static('img/firefox/features/pip/pip-cook.svg') }}" alt="">
-        </div>
-        <h4 class="c-picto-block-title">{{ ftl('features-pip-keep-a-tutorial-video-open') }}</h4>
-      </div>
-
-      <div class="c-picto-block">
-        <div class="c-picto-block-image">
-          <img src="{{ static('img/firefox/features/pip/pip-entertain.svg') }}" alt="">
-        </div>
-        <h4 class="c-picto-block-title">{{ ftl('features-pip-entertain-cats-dogs-and-kids') }}</h4>
-      </div>
+    <div class="mzp-l-columns mzp-t-columns-three mzp-t-picto-center">
+      {{ picto(title=ftl('features-pip-watch-a-lecture-or-meeting'), heading_level=4, image_url='img/firefox/features/pip/pip-lecture.svg', image_width=None,) }}
+      {{ picto(title=ftl('features-pip-keep-a-tutorial-video-open'), heading_level=4, image_url='img/firefox/features/pip/pip-cook.svg', image_width=None,) }}
+      {{ picto(title=ftl('features-pip-entertain-cats-dogs-and-kids'), heading_level=4, image_url='img/firefox/features/pip/pip-entertain.svg', image_width=None,) }}
     </div>
   </section>
 

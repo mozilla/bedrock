@@ -2,7 +2,9 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
- {% extends "base-protocol-mozilla.html" %}
+{% from "macros-protocol.html" import split with context %}
+
+{% extends "base-protocol-mozilla.html" %}
 
 {% block page_title_prefix %}{{ _('Engage Users') }} — {% endblock %}
 {% block page_title %}{{ _('Lean Data Practices') }}{% endblock %}
@@ -18,21 +20,16 @@
 {% endblock %}
 
 {% block content %}
-<section class="mzp-c-hero mzp-has-image">
-  <div class="mzp-l-content t-lg">
-    <div class="mzp-c-hero-body">
-      <h1 class="mzp-c-hero-title">{{ _('Engage Users') }}</h1>
-
-      <div class="mzp-c-hero-desc">
-        <p>{{ _('Do your customers know your data practices?') }}</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="mzp-c-hero-image">
-    {{ high_res_img('img/mozorg/about/lean-data/engage-users-hero.png', {'alt': '', 'width': '424', 'height': '424'}) }}
-  </div>
-</section>
+{% call split(
+    image_url='img/mozorg/about/lean-data/engage-users-hero.png',
+    include_highres_image=True,
+    block_class='mzp-t-split-nospace',
+    theme_class='mzp-t-background-alt',
+    media_class='mzp-l-split-h-center',
+  ) %}
+  <h1 class="mzp-u-title-lg">{{ _('Engage Users') }}</h1>
+  <p>{{ _('Do your customers know your data practices?') }}</p>
+{% endcall %}
 
 <section>
   <div class="mzp-l-content mzp-t-content-md">
@@ -128,8 +125,8 @@
   </div>
 </section>
 
-<section class="principles-other">
-  <div class="mzp-l-content t-lg mzp-l-card-half">
+<section class="principles-other mzp-t-background-alt">
+  <div class="mzp-l-content mzp-t-content-lg mzp-l-card-half">
 
     <div class="mzp-c-card mzp-has-aspect-1-1">
       <a class="mzp-c-card-block-link" href="{{ url('mozorg.about.policy.lean-data.stay-lean') }}">

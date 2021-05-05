@@ -29,9 +29,7 @@
   </div>
 
   <section class="section-subscribe">
-    <header class="mzp-l-content">
-      <h2 class="section-title">{{ self.page_desc() }}</h2>
-    </header>
+    <h2 class="section-title">{{ self.page_desc() }}</h2>
     <div class="mzp-l-content mzp-t-content-sm">
       {{ email_newsletter_form(newsletters='app-dev', include_language=False, include_title=False, spinner_color='#0c99d5') }}
     </div>

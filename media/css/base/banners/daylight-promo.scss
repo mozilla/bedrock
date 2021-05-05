@@ -29,6 +29,11 @@ $image-path: '/media/protocol/img';
         }
     }
 
+    .mzp-l-content {
+        padding-top: $spacing-lg;
+        padding-bottom: $spacing-lg;
+    }
+
     .c-banner-title {
         @include bidi(((padding-right, $spacing-lg, 0), (padding-left, 0, $spacing-lg),)); // make room for the close button
         @include font-firefox;

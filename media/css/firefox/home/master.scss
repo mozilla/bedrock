@@ -237,6 +237,7 @@ $image-path: '/media/protocol/img';
     padding: 0 $layout-sm;
 
     .mzp-l-content {
+        @include light-links;
         background-image: linear-gradient(90deg,  $color-violet-80, $color-violet-90);
         border-radius: $border-radius-md;
         box-shadow: $box-shadow-md;
@@ -256,6 +257,8 @@ $image-path: '/media/protocol/img';
 
     // https://github.com/mozilla/protocol/issues/511
     .mzp-c-card-feature-title {
+        color: $color-white;
+
         strong {
             @include zap('/media/protocol/img/zaps/zap-08.svg');
         }

@@ -28,7 +28,6 @@
     .c-accounts-hero-title {
         @include text-title-lg;
         margin-bottom: $spacing-xl;
-        padding-top: (60px + $spacing-2xl);
 
         span {
             color: $color-red-50;
@@ -103,7 +102,7 @@
 // FxA signup form
 
 .c-accounts-form {
-    margin: $layout-lg auto 0;
+    margin: 0 auto;
     max-width: 330px;
     text-align: center;
 
@@ -122,7 +121,6 @@
 
     @media #{$mq-lg} {
         @include bidi(((float, right, left),));
-        margin-top: (60px + $spacing-2xl);
 
         @supports (display: grid) {
             float: none;

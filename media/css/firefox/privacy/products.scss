@@ -13,7 +13,7 @@ $image-path: '/media/protocol/img';
     max-width: $content-xl;
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Top Page Call Out
 
 .privacy-products-call-out-main {
@@ -29,7 +29,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Main Hero
 
 .privacy-products-hero.mzp-c-hero.mzp-t-dark {
@@ -92,7 +92,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Picto Cards
 
 .privacy-products-etp {
@@ -146,10 +146,11 @@ $image-path: '/media/protocol/img';
     }
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Tracker Counter Call Out
 
 .privacy-products-tracker-counter.mzp-t-dark {
+    @include light-links;
     background-color: $color-violet-80;
 
     .mzp-c-call-out-title {
@@ -170,7 +171,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Product List Feature Cards
 
 .privacy-products-list {
@@ -225,7 +226,8 @@ $image-path: '/media/protocol/img';
 }
 
 .privacy-products-pocket .mzp-c-card-feature-title {
-    background-image: url('/media/protocol/img/logos/pocket/logo-word-horz.svg');
+    background-image: url('/media/protocol/img/logos/pocket/logo-word-hor.svg');
+    @include background-size(auto 40px);
 }
 
 .privacy-products-accounts .mzp-c-emphasis-box {
@@ -242,7 +244,11 @@ $image-path: '/media/protocol/img';
     background-color: $color-marketing-gray-10;
 }
 
-/* -------------------------------------------------------------------------- */
+.fxa-email-form .mzp-c-form-title {
+    @include font-firefox;
+}
+
+//* -------------------------------------------------------------------------- */
 // Conditional CTA Hooks
 
 .show-firefox-desktop-70,

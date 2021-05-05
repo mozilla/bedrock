@@ -24,6 +24,11 @@ html {
 
 .c-page-header {
     background: $color-white;
+
+    .mzp-l-content {
+        padding-top: $spacing-md;
+        padding-bottom: $spacing-md;
+    }
 }
 
 .c-header-logo {

@@ -8,11 +8,11 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/includes/lib';
 @import '../../protocol/css/components/call-out';
 @import '../../protocol/css/components/hero';
+@import '../../protocol/css/components/split';
+@import '../../protocol/css/components/section-heading';
 @import '../../protocol/css/templates/card-layout';
+@import '../../protocol/css/templates/multi-column';
 
-.t-lg {
-    max-width: $content-lg;
-}
 
 .c-section-title {
     @include text-title-md;
@@ -20,10 +20,6 @@ $image-path: '/media/protocol/img';
 
 .c-subsection-title {
     @include text-title-sm;
-}
-
-.u-center {
-    text-align: center;
 }
 
 .mzp-c-card .mzp-c-card-media-wrapper {
@@ -34,16 +30,7 @@ $image-path: '/media/protocol/img';
     margin-top: $spacing-lg;
 }
 
-.mzp-c-hero {
-    background: $color-marketing-gray-20;
-
-    .mzp-c-hero-desc {
-        font-weight: bold;
-    }
-}
-
 .principles-other {
-    background: $color-marketing-gray-20;
     margin-top: $layout-lg;
     padding: $spacing-lg 0;
 
@@ -80,14 +67,6 @@ $image-path: '/media/protocol/img';
 }
 
 @media #{$mq-md} {
-    @supports (display: grid) {
-        .l-columns-two {
-            display: grid;
-            grid-gap: $spacing-xl;
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
     .mzp-c-hero {
         padding: 0;
         margin-bottom: $layout-lg;
