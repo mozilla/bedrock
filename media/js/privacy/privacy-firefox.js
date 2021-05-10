@@ -39,14 +39,14 @@
         section.appendChild(container);
 
         // handle clicks on the data choices "Choose" button
-        $('#choose').on('click', function() {
+        document.getElementById('choose').addEventListener('click', function() {
             // if the uitour did not load, just return
             if (Mozilla.UITour === undefined) {
                 return;
             }
 
             Mozilla.UITour.openPreferences('privacy-reports');
-        });
+        }, false);
     }
 
     // Don't execute if features aren't supported and client isn't desktop Firefox
