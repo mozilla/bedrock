@@ -12,7 +12,7 @@ $image-path: '/media/protocol/img';
 // Hero component
 
 .vpn-hero {
-    margin: $layout-md 0;
+    margin: $layout-md 0 0;
     text-align: center;
 }
 
@@ -89,12 +89,8 @@ $image-path: '/media/protocol/img';
 }
 
 @media #{$mq-lg} {
-    .vpn-hero {
-        padding: $spacing-2xl 0;
-
-        .mzp-l-content {
-            min-height: 480px;
-        }
+    .vpn-hero .mzp-l-content {
+        min-height: 480px;
     }
 
     .vpn-hero-body {
