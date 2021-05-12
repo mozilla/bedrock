@@ -18,7 +18,7 @@
 |*|
 |*|  Syntaxes:
 |*|
-|*|  * Mozilla.Cookies.setItem(name, value[, end[, path[, domain[, secure]]]])
+|*|  * Mozilla.Cookies.setItem(name, value[, end[, path[, domain[, secure[, samesite]]]]])
 |*|  * Mozilla.Cookies.getItem(name)
 |*|  * Mozilla.Cookies.removeItem(name[, path[, domain]])
 |*|  * Mozilla.Cookies.hasItem(name)
@@ -37,9 +37,9 @@ Mozilla.Cookies = {
         if (!sKey) { return null; }
         return decodeURIComponent(document.cookie.replace(new RegExp('(?:(?:^|.*;)\\s*' + encodeURIComponent(sKey).replace(/[-.+*]/g, '\\$&') + '\\s*\\=\\s*([^;]*).*$)|^.*$'), '$1')) || null;
     },
-    setItem: function (sKey, sValue, vEnd, sPath, sDomain, bSecure) {
+    setItem: function (sKey, sValue, vEnd, sPath, sDomain, bSecure, vSamesite) {
         'use strict';
-        if (!sKey || /^(?:expires|max-age|path|domain|secure)$/i.test(sKey)) { return false; }
+        if (!sKey || /^(?:expires|max-age|path|domain|secure|samesite)$/i.test(sKey)) { return false; }
         var sExpires = '';
         if (vEnd) {
             switch (vEnd.constructor) {
@@ -54,7 +54,31 @@ Mozilla.Cookies = {
                 break;
             }
         }
-        document.cookie = encodeURIComponent(sKey) + '=' + encodeURIComponent(sValue) + sExpires + (sDomain ? '; domain=' + sDomain : '') + (sPath ? '; path=' + sPath : '') + (bSecure ? '; secure' : '');
+        /**
+         *  valid vSamesite values are 'lax', 'strict' and 'none' (case insensitive).
+         *  otherwise it will be 'lax'
+         */
+        function checkSameSite(vSamesite) {
+            if (!vSamesite) {
+                return null;
+            }
+            vSamesite = vSamesite.toString().toLowerCase();
+
+            if (vSamesite === 'lax' || vSamesite === 'none'|| vSamesite === 'strict') {
+                return vSamesite;
+            }
+            else {
+                return 'lax';
+            }
+            
+        }
+        vSamesite = checkSameSite(vSamesite);
+
+        // setting the samesite attribute to 'none' requires the cookie to be 'secure'
+        if (vSamesite === 'none') {
+            bSecure = true;
+        }
+        document.cookie = encodeURIComponent(sKey) + '=' + encodeURIComponent(sValue) + sExpires + (sDomain ? '; domain=' + sDomain : '') + (sPath ? '; path=' + sPath : '') + (bSecure ? '; secure' : '') + (!vSamesite ? '': '; samesite='+ vSamesite);
         return true;
     },
     removeItem: function (sKey, sPath, sDomain) {
