@@ -55,30 +55,29 @@ Mozilla.Cookies = {
             }
         }
         /**
-         *  valid vSamesite types are strings, boolean values and numbers
-         *  Strings - 'none','lax' and 'strict' are valid strings for string type. These are case-insensitive.
-         *  booleans - if the passed value is `true` then samesite will be 'strict' and `false` will be 'none'.
-         *  numbers - 1 is 'strict' and -1 is 'none'. 
-         *  For all other values of vSamesite the samesite value will be 'lax'
+         *  valid vSamesite values are 'lax', 'strict' and 'none' (case insensitive).
+         *  otherwise it will be 'lax'
          */
         function checkSameSite(vSamesite) {
             if (!vSamesite) {
                 return null;
             }
-            else if (vSamesite.toString().toLowerCase() === 'lax'
-                || vSamesite.toString().toLowerCase() === 'none'
-                || vSamesite.toString().toLowerCase() === 'strict') {
-                return vSamesite.toString().toLowerCase();
+            vSamesite = vSamesite.toString().toLowerCase();
+
+            if (vSamesite === 'lax' || vSamesite === 'none'|| vSamesite === 'strict') {
+                return vSamesite;
             }
-            else if (vSamesite === true) {
-                return 'strict';
+            else {
+                return 'lax';
             }
-            else if (vSamesite === false) {
-                return 'none';
-            }
-            return (vSamesite === 1? 'strict': vSamesite === -1? 'none':'lax');
+            
         }
         vSamesite = checkSameSite(vSamesite);
+
+        // setting the samesite attribute to 'none' requires the cookie to be 'secure'
+        if (vSamesite === 'none') {
+            bSecure = true;
+        }
         document.cookie = encodeURIComponent(sKey) + '=' + encodeURIComponent(sValue) + sExpires + (sDomain ? '; domain=' + sDomain : '') + (sPath ? '; path=' + sPath : '') + (bSecure ? '; secure' : '') + (!vSamesite ? '': '; samesite='+ vSamesite);
         return true;
     },
