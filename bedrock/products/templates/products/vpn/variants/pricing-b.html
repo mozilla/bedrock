@@ -1,0 +1,17 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "products/vpn/landing.html" %}
+
+{% block top_pricing_position %}
+  {# note: `id=#pricing` is used as an anchor link from android in-product subscription flows, so do not remove (issue 10039) #}
+  <div id="pricing" class="mzp-is-anchor-link">
+    {% include 'products/vpn/includes/pricing-fixed.html' %}
+    {% include 'products/vpn/includes/pricing-variable.html' %}
+  </div>
+
+  {% include 'products/vpn/includes/featured-press.html' %}
+{% endblock %}
+
+{% block default_pricing_position %}{% endblock %}

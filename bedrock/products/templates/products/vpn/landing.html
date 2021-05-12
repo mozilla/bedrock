@@ -20,6 +20,12 @@
 {# switches to a graphic that indludes French and German flags #}
 {% set countries_image = 'img/products/vpn/landing/vpn-cntwell-05-v2.png' if switch('vpn-launch-germany-france') else 'img/products/vpn/landing/vpn-cntwell-05.png' %}
 
+{% block experiments %}
+  {% if switch('vpn-landing-page-sub-position-experiment') %}
+    {{ js_bundle('vpn-landing-page-sub-position-experiment') }}
+  {% endif %}
+{% endblock %}
+
 {% block page_css %}
   {{ css_bundle('mozilla-vpn-landing') }}
 {% endblock %}
@@ -83,6 +89,8 @@
 
   <div class="mzp-l-content mzp-t-content-xl">
 
+    {% block top_pricing_position %}{% endblock %}
+
     {% call vpn_content_media(
       heading=ftl('vpn-landing-privacy-heading'),
       image_url='img/products/vpn/landing/vpn-cntwell-01.png',
@@ -92,6 +100,8 @@
     ) %}
       <p>{{ ftl('vpn-landing-privacy-desc') }}</p>
     {% endcall %}
+
+    {% block middle_pricing_position %}{% endblock %}
 
     {% call vpn_content_media(
       heading=ftl('vpn-landing-fast-secure-heading'),
@@ -149,14 +159,15 @@
     <div class="js-target-secondary-cta"></div>
     {% endcall %}
 
-    {# note: `id=#pricing` is used as an anchor link from android in-product subscription flows, so do not remove (issue 10039) #}
-    <div id="pricing" class="mzp-is-anchor-link">
-      {% include 'products/vpn/includes/pricing-fixed.html' %}
-      {% include 'products/vpn/includes/pricing-variable.html' %}
-    </div>
+    {% block default_pricing_position %}
+      {# note: `id=#pricing` is used as an anchor link from android in-product subscription flows, so do not remove (issue 10039) #}
+      <div id="pricing" class="mzp-is-anchor-link">
+        {% include 'products/vpn/includes/pricing-fixed.html' %}
+        {% include 'products/vpn/includes/pricing-variable.html' %}
+      </div>
 
-    {% include 'products/vpn/includes/featured-press.html' %}
-
+      {% include 'products/vpn/includes/featured-press.html' %}
+    {% endblock %}
   </div>
 
   <section id="faq" class="vpn-faq mzp-l-content mzp-t-content-lg">
