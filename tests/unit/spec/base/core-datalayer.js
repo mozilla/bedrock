@@ -406,6 +406,24 @@ describe('core-datalayer.js', function() {
                 FxASegment: 'Not Firefox'
             };
 
+            // browserServices.sync is unexpectedly undefined (issue 10118).
+            var input14 = {
+                'firefox': true,
+                'legacy': false,
+                'mobile': false,
+                'setup': true,
+                'browserServices': {
+                    'sync': undefined
+                }
+            };
+
+            var output14 = {
+                FxALogin: true,
+                FxAMultiDesktopSync: 'unknown',
+                FxAMobileSync: 'unknown',
+                FxASegment: 'Logged in'
+            };
+
             // we could do a loop for this but then we loose line specific error reporting
             expect(Mozilla.Analytics.formatFxaDetails(input1)).toEqual(output1);
             expect(Mozilla.Analytics.formatFxaDetails(input2)).toEqual(output2);
@@ -420,6 +438,7 @@ describe('core-datalayer.js', function() {
             expect(Mozilla.Analytics.formatFxaDetails(input11)).toEqual(output11);
             expect(Mozilla.Analytics.formatFxaDetails(input12)).toEqual(output12);
             expect(Mozilla.Analytics.formatFxaDetails(input13)).toEqual(output13);
+            expect(Mozilla.Analytics.formatFxaDetails(input14)).toEqual(output14);
         });
     });
 
