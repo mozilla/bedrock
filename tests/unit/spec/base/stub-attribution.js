@@ -208,8 +208,6 @@ describe('stub-attribution.js', function() {
                 utm_content: 'rel-esr',
                 referrer: '',
                 ua: 'chrome',
-                experiment: undefined,
-                variation: undefined,
                 visit_id: GA_VISIT_ID
             };
             /* eslint-enable camelcase */
@@ -234,14 +232,8 @@ describe('stub-attribution.js', function() {
 
             /* eslint-disable camelcase */
             var data = {
-                utm_source: undefined,
-                utm_medium: undefined,
-                utm_campaign: undefined,
-                utm_content: undefined,
                 referrer: 'https://www.mozilla.org/en-US/',
                 ua: 'chrome',
-                experiment: undefined,
-                variation: undefined,
                 visit_id: GA_VISIT_ID
             };
             /* eslint-enable camelcase */
@@ -252,7 +244,7 @@ describe('stub-attribution.js', function() {
             expect(result).toEqual(data);
         });
 
-        it('should return empty data if neither utm params and referrer are present', function() {
+        it('should return only UA and GA data if neither utm params and referrer are present', function() {
             var referrer = '';
 
             /* eslint-disable camelcase */
@@ -266,14 +258,8 @@ describe('stub-attribution.js', function() {
 
             /* eslint-disable camelcase */
             var data = {
-                utm_source: undefined,
-                utm_medium: undefined,
-                utm_campaign: undefined,
-                utm_content: undefined,
                 referrer: '',
                 ua: 'chrome',
-                experiment: undefined,
-                variation: undefined,
                 visit_id: GA_VISIT_ID
             };
             /* eslint-enable camelcase */
@@ -298,10 +284,6 @@ describe('stub-attribution.js', function() {
 
             /* eslint-disable camelcase */
             var data = {
-                utm_source: undefined,
-                utm_medium: undefined,
-                utm_campaign: undefined,
-                utm_content: undefined,
                 referrer: '',
                 ua: 'chrome',
                 experiment: 'firefox-new',
@@ -322,6 +304,25 @@ describe('stub-attribution.js', function() {
 
     describe('requestAuthentication', function() {
 
+        var xhr;
+        var xhrRequests = [];
+
+        beforeEach(function() {
+            xhr = sinon.useFakeXMLHttpRequest();
+            xhr.onCreate = function(req) {
+                xhrRequests.push(req);
+            };
+            jasmine.clock().install();
+            Mozilla.StubAttribution.requestComplete = false;
+        });
+
+        afterEach(function() {
+            xhr.restore();
+            xhrRequests = [];
+            jasmine.clock().uninstall();
+            Mozilla.StubAttribution.requestComplete = false;
+        });
+
         it('should handle a request successfully', function() {
             /* eslint-disable camelcase */
             var data = {
@@ -330,19 +331,44 @@ describe('stub-attribution.js', function() {
             };
             /* eslint-enable camelcase */
 
-            spyOn(window.$, 'get').and.callFake(function () {
-                var d = window.$.Deferred();
-                d.resolve(data);
-                return d.promise();
-            });
+            var callback = function() {}; // eslint-disable-line no-empty-function
+            Mozilla.StubAttribution.successCallback = callback;
 
-            spyOn(Mozilla.StubAttribution, 'onRequestSuccess');
+            spyOn(Mozilla.StubAttribution, 'onRequestSuccess').and.callThrough();
+            spyOn(Mozilla.StubAttribution, 'updateBouncerLinks');
+            spyOn(Mozilla.StubAttribution, 'setCookie');
+            spyOn(Mozilla.StubAttribution, 'successCallback');
             Mozilla.StubAttribution.requestAuthentication();
+            xhrRequests[0].respond(200, {'Content-Type': 'application/json'}, JSON.stringify(data));
             expect(Mozilla.StubAttribution.onRequestSuccess).toHaveBeenCalledWith(data);
+            expect(Mozilla.StubAttribution.updateBouncerLinks).toHaveBeenCalledWith(data);
+            expect(Mozilla.StubAttribution.setCookie).toHaveBeenCalledWith(data);
+            expect(Mozilla.StubAttribution.successCallback).toHaveBeenCalled();
+            expect(Mozilla.StubAttribution.requestComplete).toBeTruthy();
+        });
+
+        it('should handle a timeout as expected', function() {
+            var callback = function() {}; // eslint-disable-line no-empty-function
+            Mozilla.StubAttribution.timeoutCallback = callback;
+            spyOn(Mozilla.StubAttribution, 'onRequestTimeout').and.callThrough();
+            spyOn(Mozilla.StubAttribution, 'timeoutCallback');
+            Mozilla.StubAttribution.requestAuthentication();
+            jasmine.clock().tick(10100);
+            expect(Mozilla.StubAttribution.onRequestTimeout).toHaveBeenCalled();
+            expect(Mozilla.StubAttribution.timeoutCallback).toHaveBeenCalled();
+            expect(Mozilla.StubAttribution.requestComplete).toBeTruthy();
         });
     });
 
     describe('onRequestSuccess', function() {
+
+        beforeEach(function() {
+            Mozilla.StubAttribution.requestComplete = false;
+        });
+
+        afterEach(function() {
+            Mozilla.StubAttribution.requestComplete = false;
+        });
 
         it('should handle the data as expected', function() {
             /* eslint-disable camelcase */
@@ -357,6 +383,23 @@ describe('stub-attribution.js', function() {
             Mozilla.StubAttribution.onRequestSuccess(data);
             expect(Mozilla.StubAttribution.updateBouncerLinks).toHaveBeenCalledWith(data);
             expect(Mozilla.StubAttribution.setCookie).toHaveBeenCalledWith(data);
+            expect(Mozilla.StubAttribution.requestComplete).toBeTruthy();
+        });
+
+        it('should only handle the request once', function() {
+            /* eslint-disable camelcase */
+            var data = {
+                attribution_code: 'foo',
+                attribution_sig: 'bar'
+            };
+            /* eslint-enable camelcase */
+
+            spyOn(Mozilla.StubAttribution, 'updateBouncerLinks');
+            spyOn(Mozilla.StubAttribution, 'setCookie');
+            Mozilla.StubAttribution.requestComplete = true;
+            Mozilla.StubAttribution.onRequestSuccess(data);
+            expect(Mozilla.StubAttribution.updateBouncerLinks).not.toHaveBeenCalled();
+            expect(Mozilla.StubAttribution.setCookie).not.toHaveBeenCalled();
         });
     });
 
