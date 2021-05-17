@@ -9,7 +9,6 @@ from django.conf import settings
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST, require_safe
 
-from bedrock.base.waffle import switch
 from bedrock.newsletter.views import general_error, invalid_email_address
 from bedrock.products.forms import VPNWaitlistForm
 from lib import l10n_utils
@@ -22,11 +21,8 @@ def vpn_fixed_price_countries():
 
 
 def vpn_variable_price_countries():
-    if switch('vpn-launch-germany-france'):
-        countries = settings.VPN_VARIABLE_PRICE_COUNTRY_CODES
-        return '|%s|' % '|'.join(cc.lower() for cc in countries)
-
-    return None
+    countries = settings.VPN_VARIABLE_PRICE_COUNTRY_CODES
+    return '|%s|' % '|'.join(cc.lower() for cc in countries)
 
 
 @require_safe

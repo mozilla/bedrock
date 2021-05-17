@@ -17,9 +17,6 @@
 {% set _utm_campaign = 'vpn-product-page' %}
 {% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
 
-{# switches to a graphic that indludes French and German flags #}
-{% set countries_image = 'img/products/vpn/landing/vpn-cntwell-05-v2.png' if switch('vpn-launch-germany-france') else 'img/products/vpn/landing/vpn-cntwell-05.png' %}
-
 {% block experiments %}
   {% if switch('vpn-landing-page-sub-position-experiment') %}
     {{ js_bundle('vpn-landing-page-sub-position-experiment') }}
@@ -122,7 +119,7 @@
 
     {% call vpn_content_media(
       heading=ftl('vpn-shared-features-server-countries', servers=connect_servers, countries=connect_countries),
-      image_url=countries_image,
+      image_url='img/products/vpn/landing/vpn-cntwell-05-v2.png',
       class_name='vpn-content-media-left-half js-connect-to-countries-and-servers'
     ) %}
       <p>{{ ftl('vpn-shared-features-full-list-servers', url='https://mullvad.net/servers/', attrs='target="_blank" rel="external noopener noreferrer"') }}</p>
@@ -152,7 +149,7 @@
 
     {% call vpn_content_media(
       heading=ftl('vpn-shared-countries-coming-soon', countries=available_countries),
-      image_url=countries_image,
+      image_url='img/products/vpn/landing/vpn-cntwell-05-v2.png',
       class_name='vpn-content-media-left-half js-more-countries-coming-soon hide-from-legacy-ie'
     ) %}
 
