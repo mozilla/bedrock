@@ -31,6 +31,14 @@ if (typeof window.Mozilla === 'undefined') {
     StubAttribution.experimentVariation;
 
     /**
+     * Custom event handler callback globals. These can be defined as functions when
+     * calling StubAttribution.init();
+     */
+    StubAttribution.successCallback;
+    StubAttribution.timeoutCallback;
+    StubAttribution.requestComplete = false;
+
+    /**
      * Determines if session falls within the predefined stub attribution sample rate.
      * @return {Boolean}.
      */
@@ -43,8 +51,8 @@ if (typeof window.Mozilla === 'undefined') {
      * @return {Number} float between 0 and 1.
      */
     StubAttribution.getAttributionRate = function() {
-        var rate = $('html').attr('data-stub-attribution-rate');
-        return isNaN(rate) ? 0 : Math.min(Math.max(parseFloat(rate), 0), 1);
+        var rate = document.getElementsByTagName('html')[0].getAttribute('data-stub-attribution-rate');
+        return (isNaN(rate) || !rate) ? 0 : Math.min(Math.max(parseFloat(rate), 0), 1);
     };
 
     /**
@@ -102,8 +110,10 @@ if (typeof window.Mozilla === 'undefined') {
         }
 
         // target download buttons and other-platforms modal links.
-        $('.download-list .download-link, .c-button-download-thanks .download-link, .download-platform-list .download-link').each(function() {
-            var link = this;
+        var downloadLinks = document.querySelectorAll('.download-list .download-link, .c-button-download-thanks .download-link, .download-platform-list .download-link');
+
+        for (var i = 0; i < downloadLinks.length; i++) {
+            var link = downloadLinks[i];
             var version;
             var directLink;
             // Append stub attribution data to direct download links.
@@ -122,7 +132,7 @@ if (typeof window.Mozilla === 'undefined') {
                     link.setAttribute('data-direct-link', Mozilla.StubAttribution.appendToDownloadURL(directLink, data));
                 }
             }
-        });
+        }
     };
 
     /**
@@ -139,11 +149,13 @@ if (typeof window.Mozilla === 'undefined') {
         }
 
         // append stub attribution query params.
-        $.each(data, function(key, val) {
-            if (key === 'attribution_code' || key === 'attribution_sig') {
-                url += (url.indexOf('?') > -1 ? '&' : '?') + key + '=' + val;
+        for (var key in data) {
+            if (Object.prototype.hasOwnProperty.call(data, key)) {
+                if (key === 'attribution_code' || key === 'attribution_sig') {
+                    url += (url.indexOf('?') > -1 ? '&' : '?') + key + '=' + data[key];
+                }
             }
-        });
+        }
 
         return url;
     };
@@ -153,11 +165,27 @@ if (typeof window.Mozilla === 'undefined') {
      * @param {Object} data - attribution_code, attribution_sig.
      */
     StubAttribution.onRequestSuccess = function(data) {
-        if (data.attribution_code && data.attribution_sig) {
+        if (data.attribution_code && data.attribution_sig && !StubAttribution.requestComplete) {
             // Update download links on the current page.
             StubAttribution.updateBouncerLinks(data);
             // Store attribution data in a cookie should the user navigate.
             StubAttribution.setCookie(data);
+
+            StubAttribution.requestComplete = true;
+
+            if (typeof StubAttribution.successCallback === 'function') {
+                StubAttribution.successCallback();
+            }
+        }
+    };
+
+    StubAttribution.onRequestTimeout = function() {
+        if (!StubAttribution.requestComplete) {
+            StubAttribution.requestComplete = true;
+
+            if (typeof StubAttribution.timeoutCallback === 'function') {
+                StubAttribution.timeoutCallback();
+            }
         }
     };
 
@@ -167,7 +195,33 @@ if (typeof window.Mozilla === 'undefined') {
      */
     StubAttribution.requestAuthentication = function(data) {
         var SERVICE_URL = window.location.protocol + '//' + window.location.host + '/en-US/firefox/stub_attribution_code/';
-        $.get(SERVICE_URL, data).done(StubAttribution.onRequestSuccess);
+        var xhr = new window.XMLHttpRequest();
+        var timeoutValue = 10000;
+        var timeout = setTimeout(StubAttribution.onRequestTimeout, timeoutValue);
+
+        xhr.open('GET', SERVICE_URL + '?' + window._SearchParams.objectToQueryString(data));
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+        // use readystate change over onload for IE8 support.
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                var status = xhr.status;
+                if (status && status >= 200 && status < 400) {
+                    try {
+                        var data = JSON.parse(xhr.responseText);
+                        clearTimeout(timeout);
+                        StubAttribution.onRequestSuccess(data);
+                    } catch (e) {
+                        // something went wrong, fallback to the timeout handler.
+                        StubAttribution.onRequestTimeout();
+                    }
+                }
+            }
+        };
+
+        // must come after open call above for IE 10 & 11
+        xhr.timeout = timeoutValue;
+        xhr.send();
     };
 
     /**
@@ -268,6 +322,15 @@ if (typeof window.Mozilla === 'undefined') {
         };
         /* eslint-enable camelcase */
 
+        // Remove any undefined values.
+        for (var key in data) {
+            if (Object.prototype.hasOwnProperty.call(data, key)) {
+                if (typeof data[key] === 'undefined' || data[key] === null) {
+                    delete data[key];
+                }
+            }
+        }
+
         return data;
     };
 
@@ -314,11 +377,20 @@ if (typeof window.Mozilla === 'undefined') {
     /**
      * Determines whether to make a request to the stub authentication service.
      */
-    StubAttribution.init = function() {
+    StubAttribution.init = function(successCallback, timeoutCallback) {
         var data = {};
 
         if (!StubAttribution.meetsRequirements()) {
             return;
+        }
+
+        // Support custom callback functions for success and timeout.
+        if (typeof successCallback === 'function') {
+            StubAttribution.successCallback = successCallback;
+        }
+
+        if (typeof timeoutCallback === 'function') {
+            StubAttribution.timeoutCallback = timeoutCallback;
         }
 
         /**
