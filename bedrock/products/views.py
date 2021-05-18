@@ -9,6 +9,7 @@ from django.conf import settings
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST, require_safe
 
+from bedrock.base.waffle import switch
 from bedrock.newsletter.views import general_error, invalid_email_address
 from bedrock.products.forms import VPNWaitlistForm
 from lib import l10n_utils
@@ -16,13 +17,20 @@ from lib.l10n_utils.fluent import ftl
 
 
 def vpn_fixed_price_countries():
-    countries = settings.VPN_FIXED_PRICE_COUNTRY_CODES
-    return '|%s|' % '|'.join(cc.lower() for cc in countries)
+    if switch('vpn-variable-pricing-wave-1'):
+        return '||'
+    else:
+        countries = settings.VPN_FIXED_PRICE_COUNTRY_CODES
+        return '|%s|' % '|'.join(cc.lower() for cc in countries)
 
 
 def vpn_variable_price_countries():
-    countries = settings.VPN_VARIABLE_PRICE_COUNTRY_CODES
-    return '|%s|' % '|'.join(cc.lower() for cc in countries)
+    if switch('vpn-variable-pricing-wave-1'):
+        countries = settings.VPN_FIXED_PRICE_COUNTRY_CODES + settings.VPN_VARIABLE_PRICE_COUNTRY_CODES
+        return '|%s|' % '|'.join(cc.lower() for cc in countries)
+    else:
+        countries = settings.VPN_VARIABLE_PRICE_COUNTRY_CODES
+        return '|%s|' % '|'.join(cc.lower() for cc in countries)
 
 
 @require_safe
@@ -31,6 +39,8 @@ def vpn_landing_page(request):
     sub_not_found = request.GET.get('vpn-sub-not-found', None)
     entrypoint_experiment = request.GET.get('entrypoint_experiment', None)
     entrypoint_variation = request.GET.get('entrypoint_variation', None)
+    locale = l10n_utils.get_locale(request)
+    pricing_params = settings.VPN_VARIABLE_PRICING.get(locale, settings.VPN_VARIABLE_PRICING['us'])
 
     # ensure experiment parameters matches pre-defined values
     if entrypoint_experiment == 'vpn-landing-page-download-first' and entrypoint_variation in ['a', 'b']:
@@ -50,11 +60,9 @@ def vpn_landing_page(request):
         'fixed_price_countries': vpn_fixed_price_countries(),
         'fixed_monthly_price': settings.VPN_FIXED_MONTHLY_PRICE,
         'variable_price_countries': vpn_variable_price_countries(),
-        'variable_monthly_price': settings.VPN_VARIABLE_MONTHLY_PRICE,
-        'variable_6_month_price': settings.VPN_VARIABLE_6_MONTH_PRICE,
-        'variable_12_month_price': settings.VPN_VARIABLE_12_MONTH_PRICE,
-        'variable_6_month_price_total': settings.VPN_VARIABLE_6_MONTH_PRICE_TOTAL,
-        'variable_12_month_price_total': settings.VPN_VARIABLE_12_MONTH_PRICE_TOTAL,
+        'default_monthly_price': pricing_params['monthly']['price'],
+        'default_6_month_price': pricing_params['6-month']['price'],
+        'default_12_month_price': pricing_params['12-month']['price'],
         'available_countries': settings.VPN_AVAILABLE_COUNTRIES,
         'connect_servers': settings.VPN_CONNECT_SERVERS,
         'connect_countries': settings.VPN_CONNECT_COUNTRIES,

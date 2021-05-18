@@ -13,13 +13,15 @@ $image-path: '/media/protocol/img';
 /* stylelint-disable declaration-no-important */
 
 // hide content that is only shown conditionally.
-.vpn-variable-pricing-block,
+.wave-1-fixed-pricing .vpn-variable-pricing-block,
+.wave-1-variable-pricing .vpn-fixed-pricing-block,
 .js-more-countries-coming-soon {
     display: none !important;
 }
 
-// if JS is enabled then hide fixed pricing content until we know to show it.
+// if JS is enabled then hide pricing content until we know to show it.
 .js .js-vpn-fixed-pricing,
+.js .vpn-variable-pricing-block,
 .js .vpn-fixed-pricing-block {
     display: none !important;
 }

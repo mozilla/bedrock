@@ -7,6 +7,7 @@ import pytest
 from pages.products.vpn.landing import VPNLandingPage
 
 
+@pytest.mark.skip(reason='Skipped until variable pricing for wave 1 countries is enabled: issue 10199.')
 @pytest.mark.nondestructive
 @pytest.mark.parametrize('country', [('us'), ('ca'), ('my'), ('nz'), ('sg'), ('gb')])
 def test_vpn_fixed_price_available_in_country(country, base_url, selenium):
