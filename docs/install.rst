@@ -13,7 +13,7 @@ Installation Methods
 
 There are two primary methods of installing bedrock: Docker and Local. Whichever you choose you'll start by getting the source::
 
-    $ git clone --recursive git://github.com/mozilla/bedrock.git
+    $ git clone git://github.com/mozilla/bedrock.git
     $ cd bedrock
 
 After these basic steps you can choose your install method below. Docker is the easiest and recommended way, but local is also possible
