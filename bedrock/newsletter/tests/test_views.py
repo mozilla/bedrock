@@ -3,7 +3,6 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import json
 import uuid
-from unittest import expectedFailure
 
 from django.http import HttpResponse
 from django.test.client import RequestFactory
@@ -260,7 +259,6 @@ class TestExistingNewsletterView(TestCase):
         url = reverse("newsletter.updated")
         assert rsp["Location"] == url
 
-    @expectedFailure
     @patch("bedrock.newsletter.utils.get_newsletters")
     def test_remove_all(self, get_newsletters, mock_basket_request):
         get_newsletters.return_value = newsletters
