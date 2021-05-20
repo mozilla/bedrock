@@ -9,28 +9,26 @@ if (typeof window.Mozilla === 'undefined') {
     window.Mozilla = {};
 }
 
-(function($) {
+(function() {
     'use strict';
 
     var SendToDevice = function(id) {
 
-        this.formId = typeof id !== 'undefined' ? '#' + id : '#send-to-device';
+        this.formId = typeof id !== 'undefined' ? id : 'send-to-device';
 
         this.formLoaded = false;
         this.formTimeout = null;
 
-        this.$widget = $(this.formId);
-        this.$form = this.$widget.find('.send-to-device-form');
-        this.$formFields = this.$form.find('.send-to-device-form-fields');
-        this.$input = this.$formFields.find('.send-to-device-input');
-        this.$thankyou = this.$widget.find('.thank-you');
-        this.$errorList = this.$form.find('.mzp-c-form-errors');
-        this.$spinnerTarget = this.$form.find('.loading-spinner');
-        this.$footerLinks = this.$widget.find('footer > ul');
-        this.$sendAnotherLink = this.$form.find('.send-another');
-        this.$formHeading = this.$widget.find('.form-heading');
-        this.spinnerColor = this.$widget.data('spinnerColor') || '#000';
-        this.countries = this.$widget.data('countries');
+        this.widget = document.getElementById(this.formId);
+        this.form = this.widget.querySelector('.send-to-device-form');
+        this.formFields = this.form.querySelector('.send-to-device-form-fields');
+        this.input = this.formFields.querySelector('.send-to-device-input');
+        this.thankyou = this.widget.querySelectorAll('.thank-you');
+        this.errorList = this.form.querySelector('.mzp-c-form-errors');
+        this.spinnerTarget = this.form.querySelector('.loading-spinner');
+        this.sendAnotherLink = this.form.querySelector('.send-another');
+        this.formHeading = this.widget.querySelector('.form-heading');
+        this.spinnerColor = this.widget.getAttribute('data-spinner-color') || '#000';
 
         this.spinner = new Spinner({
             lines: 12, // The number of lines to draw
@@ -52,7 +50,9 @@ if (typeof window.Mozilla === 'undefined') {
      * Initialise the form messaging and bind events.
      */
     SendToDevice.prototype.init = function() {
-        if (this.$widget.length === 1) {
+        if (this.widget) {
+            this.formSubmitHandler = this.onFormSubmit.bind(this);
+            this.sendAnotherHandler = this.sendAnother.bind(this);
             this.bindEvents();
         }
     };
@@ -61,17 +61,16 @@ if (typeof window.Mozilla === 'undefined') {
      * Binds form submission and click events
      */
     SendToDevice.prototype.bindEvents = function() {
-        this.$form.on('submit', $.proxy(this.onFormSubmit, this));
-        this.$sendAnotherLink.on('click', $.proxy(this.sendAnother, this));
+        this.form.addEventListener('submit', this.formSubmitHandler, false);
+        this.sendAnotherLink.addEventListener('click', this.sendAnotherHandler, false);
     };
 
     /**
      * Remove all form event handlers
      */
     SendToDevice.prototype.unbindEvents = function() {
-        this.$form.off('submit');
-        this.$footerLinks.off('click');
-        this.$sendAnotherLink.off('click');
+        this.form.removeEventListener('submit', this.formSubmitHandler, false);
+        this.sendAnotherLink.removeEventListener('click', this.sendAnotherHandler, false);
     };
 
     /**
@@ -79,30 +78,38 @@ if (typeof window.Mozilla === 'undefined') {
      */
     SendToDevice.prototype.sendAnother = function(e) {
         e.preventDefault();
-        this.$input.val('');
-        this.$errorList.addClass('hidden');
-        this.$thankyou.addClass('hidden');
-        this.$formHeading.removeClass('hidden');
-        this.$formFields.removeClass('hidden');
-        this.$input.trigger('focus');
+        this.input.value = '';
+        this.errorList.classList.add('hidden');
+
+        for (var i = 0; i < this.thankyou.length; i++) {
+            this.thankyou[i].classList.add('hidden');
+        }
+
+        if (this.formHeading) {
+            this.formHeading.classList.remove('hidden');
+        }
+
+        this.formFields.classList.remove('hidden');
+        this.input.focus();
     };
 
     /**
      * Enable form fields and hide loading indicator
      */
     SendToDevice.prototype.enableForm = function() {
-        this.$input.prop('disabled', false);
-        this.$form.removeClass('loading');
-        this.$spinnerTarget.hide();
+        this.input.disabled = false;
+        this.form.classList.remove('loading');
+        this.spinnerTarget.style.display = 'none';
     };
 
     /**
      * Disable form fields and show loading indicator
      */
     SendToDevice.prototype.disableForm = function() {
-        this.$input.prop('disabled', true);
-        this.$form.addClass('loading');
-        this.spinner.spin(this.$spinnerTarget.show()[0]);
+        this.input.disabled = true;
+        this.form.classList.add('loading');
+        this.spinnerTarget.style.display = 'block';
+        this.spinner.spin(this.spinnerTarget);
     };
 
     /**
@@ -115,42 +122,84 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     /**
+     * Helper function to serialize form data for XHR request.
+     */
+    SendToDevice.prototype.serialize = function() {
+        var q = [];
+        for(var i = 0; i < this.form.elements.length; i++) {
+            var elem = this.form.elements[i];
+            if (elem.name) {
+                q.push(elem.name + '=' + encodeURIComponent(elem.value));
+            }
+        }
+        var formData = q.join('&');
+
+        return formData;
+    };
+
+    /**
      * Handle form submission via XHR
      */
     SendToDevice.prototype.onFormSubmit = function(e) {
         e.preventDefault();
 
         var self = this;
-        var action = this.$form.attr('action');
-        var formData = this.$form.serialize();
+        var action = this.form.getAttribute('action');
+        var formData = this.serialize();
 
         this.disableForm();
 
         // perform some basic email validation before submitting the form.
-        if (!this.checkEmailValidity(this.$input.val())) {
+        if (!this.checkEmailValidity(this.input.value)) {
             this.onFormError(['email']);
             return;
         }
 
-        // POST and let the server work out whether the input is a valid email address
-        $.post(action, formData)
-            .done(function(data) {
-                if (data.success) {
-                    self.onFormSuccess(data.success);
-                } else if (data.errors) {
-                    self.onFormError(data.errors);
+        var xhr = new XMLHttpRequest();
+
+        xhr.onload = function(r) {
+            if (r.target.status >= 200 && r.target.status < 300) {
+                var response = r.target.response || r.target.responseText;
+
+                if (typeof response !== 'object') {
+                    response = JSON.parse(response);
                 }
-            })
-            .fail(function(error) {
-                self.onFormFailure(error);
-            });
+
+                if (response.success) {
+                    self.onFormSuccess(response.success);
+                } else {
+                    self.onFormError(response.errors);
+                }
+            } else {
+                self.onFormFailure();
+            }
+        };
+
+        xhr.onerror = function(e) {
+            self.onFormFailure(e);
+        };
+
+        xhr.open('POST', action, true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.setRequestHeader('X-Requested-With','XMLHttpRequest');
+        xhr.timeout = 5000;
+        xhr.ontimeout = self.onFormFailure;
+        xhr.responseType = 'json';
+        xhr.send(formData);
     };
 
     SendToDevice.prototype.onFormSuccess = function() {
-        this.$errorList.addClass('hidden');
-        this.$formFields.addClass('hidden');
-        this.$formHeading.addClass('hidden');
-        this.$thankyou.removeClass('hidden');
+        this.errorList.classList.add('hidden');
+        this.formFields.classList.add('hidden');
+
+        if (this.formHeading) {
+            this.formHeading.classList.add('hidden');
+        }
+
+        for (var i = 0; i < this.thankyou.length; i++) {
+            this.thankyou[i].classList.remove('hidden');
+        }
+
         this.enableForm();
 
         window.dataLayer.push({
@@ -161,26 +210,47 @@ if (typeof window.Mozilla === 'undefined') {
 
     SendToDevice.prototype.onFormError = function(errors) {
         var errorClass;
-        this.$errorList.find('li').hide();
-        this.$errorList.removeClass('hidden');
+        var errorListItems = this.errorList.querySelectorAll('li');
 
-        if ($.inArray('platform', errors) !== -1) {
+        for (var i = 0; i < errorListItems.length; i++) {
+            errorListItems[i].style.display = 'none';
+        }
+
+        this.errorList.classList.remove('hidden');
+
+        if (errors.indexOf('platform', errors) !== -1) {
             errorClass = '.system';
         } else {
             errorClass = '.email';
         }
 
-        this.$errorList.find(errorClass).show();
+        var foundErrors = this.errorList.querySelectorAll(errorClass);
+
+        for (var j = 0; j < foundErrors.length; j++) {
+            foundErrors[j].style.display = 'block';
+        }
+
         this.enableForm();
     };
 
     SendToDevice.prototype.onFormFailure = function() {
-        this.$errorList.find('li').hide();
-        this.$errorList.removeClass('hidden');
-        this.$errorList.find('.system').show();
+        var errorListItems = this.errorList.querySelectorAll('li');
+
+        for (var i = 0; i < errorListItems.length; i++) {
+            errorListItems[i].style.display = 'none';
+        }
+
+        this.errorList.classList.remove('hidden');
+
+        var foundErrors = this.errorList.querySelectorAll('.system');
+
+        for (var j = 0; j < foundErrors.length; j++) {
+            foundErrors[j].style.display = 'block';
+        }
+
         this.enableForm();
     };
 
     window.Mozilla.SendToDevice = SendToDevice;
 
-})(window.jQuery);
+})();
