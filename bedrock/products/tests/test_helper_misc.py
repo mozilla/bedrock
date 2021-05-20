@@ -61,10 +61,9 @@ class TestVPNSubscribeLink(TestCase):
         expected = (
             u'<a href="https://vpn.mozilla.org/r/vpn/subscribe/products/prod_FvnsFHIfezy3ZI?plan=plan_FvnxS1j9oFUZ7Y'
             u'&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&utm_source=www.mozilla.org-vpn-product-page'
-            u'&utm_medium=referral&utm_campaign=vpn-product-page" data-action="https://accounts.firefox.com/" '
-            u'class="js-fxa-cta-link js-fxa-product-button mzp-c-button" '
-            u'data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" data-cta-position="primary">'
-            u'Get Mozilla VPN</a>')
+            u'&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
+            u'class="js-fxa-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Mozilla VPN monthly" '
+            u'data-cta-type="fxa-vpn" data-cta-position="primary">Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
     def test_vpn_subscribe_link_variable_12_month(self):
@@ -77,11 +76,10 @@ class TestVPNSubscribeLink(TestCase):
         expected = (
             u'<a href="https://vpn.mozilla.org/r/vpn/subscribe/products/prod_FvnsFHIfezy3ZI?plan=price_1IgwblJNcmPzuWtRynC7dqQa'
             u'&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&utm_source=www.mozilla.org-vpn-product-page'
-            u'&utm_medium=referral&utm_campaign=vpn-product-page" data-action="https://accounts.firefox.com/" '
-            u'class="js-fxa-cta-link js-fxa-product-button mzp-c-button" '
-            u'data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" data-cta-position="primary" '
-            u'data-plan-de="price_1IgwblJNcmPzuWtRynC7dqQa" data-plan-fr="price_1IgnlcJNcmPzuWtRjrNa39W4">'
-            u'Get Mozilla VPN</a>')
+            u'&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
+            u'class="js-fxa-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Mozilla VPN monthly" '
+            u'data-cta-type="fxa-vpn" data-cta-position="primary" data-plan-de="price_1IgwblJNcmPzuWtRynC7dqQa" '
+            u'data-plan-fr="price_1IgnlcJNcmPzuWtRjrNa39W4">Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
     def test_vpn_subscribe_link_variable_6_month(self):
@@ -94,11 +92,10 @@ class TestVPNSubscribeLink(TestCase):
         expected = (
             u'<a href="https://vpn.mozilla.org/r/vpn/subscribe/products/prod_FvnsFHIfezy3ZI?plan=price_1IgwaHJNcmPzuWtRuUfSR4l7'
             u'&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&utm_source=www.mozilla.org-vpn-product-page'
-            u'&utm_medium=referral&utm_campaign=vpn-product-page" data-action="https://accounts.firefox.com/" '
-            u'class="js-fxa-cta-link js-fxa-product-button mzp-c-button" '
-            u'data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" data-cta-position="primary" '
-            u'data-plan-de="price_1IgwaHJNcmPzuWtRuUfSR4l7" data-plan-fr="price_1IgoxGJNcmPzuWtRG7l48EoV">'
-            u'Get Mozilla VPN</a>')
+            u'&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
+            u'class="js-fxa-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Mozilla VPN monthly" '
+            u'data-cta-type="fxa-vpn" data-cta-position="primary" data-plan-de="price_1IgwaHJNcmPzuWtRuUfSR4l7" '
+            u'data-plan-fr="price_1IgoxGJNcmPzuWtRG7l48EoV">Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
     def test_vpn_subscribe_link_variable_monthly(self):
@@ -111,11 +108,10 @@ class TestVPNSubscribeLink(TestCase):
         expected = (
             u'<a href="https://vpn.mozilla.org/r/vpn/subscribe/products/prod_FvnsFHIfezy3ZI?plan=price_1IgwZVJNcmPzuWtRg9Wssh2y'
             u'&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&utm_source=www.mozilla.org-vpn-product-page'
-            u'&utm_medium=referral&utm_campaign=vpn-product-page" data-action="https://accounts.firefox.com/" '
-            u'class="js-fxa-cta-link js-fxa-product-button mzp-c-button" '
-            u'data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" data-cta-position="primary" '
-            u'data-plan-de="price_1IgwZVJNcmPzuWtRg9Wssh2y" data-plan-fr="price_1IgowHJNcmPzuWtRzD7SgAYb">'
-            u'Get Mozilla VPN</a>')
+            u'&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
+            u'class="js-fxa-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Mozilla VPN monthly" '
+            u'data-cta-type="fxa-vpn" data-cta-position="primary" data-plan-de="price_1IgwZVJNcmPzuWtRg9Wssh2y" '
+            u'data-plan-fr="price_1IgowHJNcmPzuWtRzD7SgAYb">Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
 
@@ -139,7 +135,7 @@ class TestVPNSignInLink(TestCase):
         expected = (
             u'<a href="https://vpn.mozilla.org/oauth/init?entrypoint=www.mozilla.org-vpn-product-page'
             u'&form_type=button&utm_source=www.mozilla.org-vpn-product-page&utm_medium=referral'
-            u'&utm_campaign=vpn-product-page" data-action="https://accounts.firefox.com/" '
+            u'&utm_campaign=vpn-product-page&data_cta_position=navigation" data-action="https://accounts.firefox.com/" '
             u'class="js-fxa-cta-link js-fxa-product-button mzp-c-cta-link" data-cta-text="VPN Sign In" '
             u'data-cta-type="fxa-vpn" data-cta-position="navigation">Sign In</a>')
         self.assertEqual(markup, expected)

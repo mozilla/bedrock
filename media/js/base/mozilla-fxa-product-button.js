@@ -102,10 +102,18 @@ if (typeof window.Mozilla === 'undefined') {
 
         // applies url to all buttons and adds cta position
         for (var i = 0; i < buttons.length; i++) {
-            var hostName = FxaProductButton.getHostName(buttons[i].href);
+            var href = buttons[i].href;
+            var hostName = FxaProductButton.getHostName(href);
             // check if link is in the FxA referral allowedListDomains.
             if (hostName && allowedList.indexOf(hostName) !== -1) {
-                buttons[i].href += flowParams;
+
+                // Only add flow params if they do not already exist.
+                if (href.indexOf('flow_id') === -1 &&
+                    href.indexOf('flow_begin_time') === -1 &&
+                    href.indexOf('device_id') === -1) {
+
+                    buttons[i].href += flowParams;
+                }
             }
         }
     };

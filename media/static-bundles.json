@@ -1555,6 +1555,22 @@
     },
     {
       "files": [
+        "js/base/mozilla-fxa-product-button.js",
+        "js/products/vpn/geo.js",
+        "js/products/vpn/download-first-geo-callback.js",
+        "js/products/vpn/landing.js"
+      ],
+      "name": "vpn-landing-page-download-first-geo-callback"
+    },
+    {
+      "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/products/vpn/download-first-experiment.js"
+      ],
+      "name": "vpn-landing-page-download-first-experiment"
+    },
+    {
+      "files": [
         "js/libs/mozilla-traffic-cop.js",
         "js/products/vpn/sub-position-experiment.js"
       ],

@@ -85,6 +85,59 @@ describe('fxa-utm-referral.js', function() {
             expect(Mozilla.UtmUrl.getAttributionData(validObj)).toEqual(validData);
         });
 
+        it('shoult return FxA flow params if present together with experiment entrypoint params'), function() {
+            var validObj = {
+                'utm_source': 'vpn-client',
+                'utm_content': 'download-first-experiment',
+                'utm_medium': 'referral',
+                'utm_term': 4242,
+                'utm_campaign': 'F100_4242_otherstuff_in_here',
+                'entrypoint_experiment': 'test-id',
+                'entrypoint_variation': 'test-variation',
+                'device_id': 123456789,
+                'flow_id': 987654321,
+                'flow_begin_time': 1234567899
+            };
+
+            var validData = {
+                'utm_source': 'vpn-client',
+                'utm_content': 'download-first-experiment',
+                'utm_medium': 'referral',
+                'utm_term': '4242',
+                'utm_campaign': 'F100_4242_otherstuff_in_here',
+                'entrypoint_experiment': 'test-id',
+                'entrypoint_variation': 'test-variation',
+                'device_id': '123456789',
+                'flow_id': '987654321',
+                'flow_begin_time': '1234567899'
+            };
+
+            expect(Mozilla.UtmUrl.getAttributionData(validObj)).toEqual(validData);
+        };
+
+        it('shoult not return FxA flow params if experiment entrypoint params are also not present', function() {
+            var validObj = {
+                'utm_source': 'desktop-snippet',
+                'utm_content': 'rel-esr',
+                'utm_medium': 'referral',
+                'utm_term': 4242,
+                'utm_campaign': 'F100_4242_otherstuff_in_here',
+                'device_id': 123456789,
+                'flow_id': 987654321,
+                'flow_begin_time': 1234567899
+            };
+
+            var validData = {
+                'utm_source': 'desktop-snippet',
+                'utm_content': 'rel-esr',
+                'utm_medium': 'referral',
+                'utm_term': '4242',
+                'utm_campaign': 'F100_4242_otherstuff_in_here'
+            };
+
+            expect(Mozilla.UtmUrl.getAttributionData(validObj)).toEqual(validData);
+        });
+
         it('should return entrypoint and utm params if supported source attribute is present', function() {
             var validObj1 = {
                 'source': 'whatsnew88'

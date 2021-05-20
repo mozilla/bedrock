@@ -101,7 +101,9 @@ class TestVPNLandingPage(TestCase):
         template = render_mock.call_args[0][1]
         assert template == 'products/vpn/landing.html'
 
-    def test_vpn_landing_page_variant_a_template(self, render_mock):
+    # start pricing position experiment tests
+
+    def test_vpn_landing_page_pricing_position_a_template(self, render_mock):
         req = RequestFactory().get('/products/vpn/?entrypoint_experiment=vpn-landing-page-sub-position&entrypoint_variation=a')
         req.locale = 'en-US'
         view = views.vpn_landing_page
@@ -109,7 +111,7 @@ class TestVPNLandingPage(TestCase):
         template = render_mock.call_args[0][1]
         assert template == 'products/vpn/variants/pricing-a.html'
 
-    def test_vpn_landing_page_variant_b_template(self, render_mock):
+    def test_vpn_landing_page_pricing_position_b_template(self, render_mock):
         req = RequestFactory().get('/products/vpn/?entrypoint_experiment=vpn-landing-page-sub-position&entrypoint_variation=b')
         req.locale = 'en-US'
         view = views.vpn_landing_page
@@ -117,10 +119,32 @@ class TestVPNLandingPage(TestCase):
         template = render_mock.call_args[0][1]
         assert template == 'products/vpn/variants/pricing-b.html'
 
-    def test_vpn_landing_page_variant_c_template(self, render_mock):
+    def test_vpn_landing_page_pricing_position_c_template(self, render_mock):
         req = RequestFactory().get('/products/vpn/?entrypoint_experiment=vpn-landing-page-sub-position&entrypoint_variation=c')
         req.locale = 'en-US'
         view = views.vpn_landing_page
         view(req)
         template = render_mock.call_args[0][1]
         assert template == 'products/vpn/variants/pricing-c.html'
+
+    # end pricing position experiment tests
+
+    # start download first experiment tests
+
+    def test_vpn_landing_page_download_first_a_template(self, render_mock):
+        req = RequestFactory().get('/products/vpn/?entrypoint_experiment=vpn-landing-page-download-first&entrypoint_variation=a')
+        req.locale = 'en-US'
+        view = views.vpn_landing_page
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == 'products/vpn/variants/download-a.html'
+
+    def test_vpn_landing_page_download_first_b_template(self, render_mock):
+        req = RequestFactory().get('/products/vpn/?entrypoint_experiment=vpn-landing-page-download-first&entrypoint_variation=b')
+        req.locale = 'en-US'
+        view = views.vpn_landing_page
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == 'products/vpn/variants/download-b.html'
+
+    # end download first experiment tests

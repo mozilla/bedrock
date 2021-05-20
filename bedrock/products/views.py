@@ -33,13 +33,9 @@ def vpn_landing_page(request):
     entrypoint_variation = request.GET.get('entrypoint_variation', None)
 
     # ensure experiment parameters matches pre-defined values
-    if entrypoint_variation not in ['a', 'b', 'c']:
-        entrypoint_variation = None
-
-    if entrypoint_experiment != 'vpn-landing-page-sub-position':
-        entrypoint_variation = None
-
-    if entrypoint_experiment and entrypoint_variation:
+    if entrypoint_experiment == 'vpn-landing-page-download-first' and entrypoint_variation in ['a', 'b']:
+        template_name = 'products/vpn/variants/download-{}.html'.format(entrypoint_variation)
+    elif entrypoint_experiment == 'vpn-landing-page-sub-position' and entrypoint_variation in ['a', 'b', 'c']:
         template_name = 'products/vpn/variants/pricing-{}.html'.format(entrypoint_variation)
     else:
         template_name = 'products/vpn/landing.html'

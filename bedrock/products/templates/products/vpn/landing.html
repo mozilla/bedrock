@@ -18,7 +18,9 @@
 {% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
 
 {% block experiments %}
-  {% if switch('vpn-landing-page-sub-position-experiment') %}
+  {% if switch('vpn-landing-page-download-first-experiment') %}
+    {{ js_bundle('vpn-landing-page-download-first-experiment') }}
+  {% elif switch('vpn-landing-page-sub-position-experiment') %}
     {{ js_bundle('vpn-landing-page-sub-position-experiment') }}
   {% endif %}
 {% endblock %}
@@ -61,19 +63,21 @@
       desc=ftl('vpn-landing-hero-desc')
     ) %}
       <div class="js-vpn-fixed-pricing">
-        {{ vpn_subscribe_link(
-          entrypoint=_utm_source,
-          link_text=ftl('vpn-shared-subscribe-link'),
-          class_name='mzp-c-button mzp-t-xl ',
-          optional_parameters={
-            'utm_campaign': _utm_campaign
-          },
-          optional_attributes={
-            'data-cta-type': 'fxa-vpn',
-            'data-cta-text': 'Get Mozilla VPN monthly',
-            'data-cta-position': 'primary',
-          }
-        ) }}
+        {% block get_mozilla_vpn_hero %}
+          {{ vpn_subscribe_link(
+            entrypoint=_utm_source,
+            link_text=ftl('vpn-shared-subscribe-link'),
+            class_name='mzp-c-button mzp-t-xl ',
+            optional_parameters={
+              'utm_campaign': _utm_campaign
+            },
+            optional_attributes={
+              'data-cta-type': 'fxa-vpn',
+              'data-cta-text': 'Get Mozilla VPN monthly',
+              'data-cta-position': 'primary',
+            }
+          ) }}
+        {% endblock %}
 
         <p class="guarantee-copy">
           {{ ftl('vpn-shared-money-back-guarantee') }}
@@ -125,19 +129,21 @@
       <p>{{ ftl('vpn-shared-features-full-list-servers', url='https://mullvad.net/servers/', attrs='target="_blank" rel="external noopener noreferrer"') }}</p>
 
       <div class="js-vpn-fixed-pricing">
-        {{ vpn_subscribe_link(
-          entrypoint=_utm_source,
-          link_text=ftl('vpn-shared-subscribe-link'),
-          class_name='mzp-c-button mzp-t-xl',
-          optional_parameters={
-            'utm_campaign': _utm_campaign
-          },
-          optional_attributes={
-            'data-cta-type': 'fxa-vpn',
-            'data-cta-text': 'Get Mozilla VPN monthly',
-            'data-cta-position': 'secondary',
-          }
-        ) }}
+        {% block get_mozilla_vpn_connect %}
+          {{ vpn_subscribe_link(
+            entrypoint=_utm_source,
+            link_text=ftl('vpn-shared-subscribe-link'),
+            class_name='mzp-c-button mzp-t-xl',
+            optional_parameters={
+              'utm_campaign': _utm_campaign
+            },
+            optional_attributes={
+              'data-cta-type': 'fxa-vpn',
+              'data-cta-text': 'Get Mozilla VPN monthly',
+              'data-cta-position': 'secondary',
+            }
+          ) }}
+        {% endblock %}
 
         <p class="guarantee-copy">
           {{ ftl('vpn-shared-money-back-guarantee') }}
@@ -288,14 +294,18 @@
   </section>
 
   <footer class="vpn-footer mzp-l-content mzp-t-content-xl">
-    {% include 'products/vpn/includes/footer-subscribe.html' %}
+    {% block footer_subscribe %}
+      {% include 'products/vpn/includes/footer-subscribe.html' %}
+    {% endblock %}
     {% include 'products/vpn/includes/footer-legal.html' %}
   </footer>
 
 </main>
 
 {# HTML templates for common elements that are shown conditionally via JS #}
-{% include 'products/vpn/includes/templates.html' %}
+{% block templates %}
+  {% include 'products/vpn/includes/templates.html' %}
+{% endblock %}
 
 {% endblock %}
 
