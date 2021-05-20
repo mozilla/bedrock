@@ -11,12 +11,9 @@ from lib import l10n_utils
 
 from bedrock.contentcards.models import get_page_content_cards
 from bedrock.mozorg.credits import CreditsFile
-from bedrock.mozorg.forums import ForumsFile
 from bedrock.pocketfeed.models import PocketArticle
 
 credits_file = CreditsFile('credits')
-forums_file = ForumsFile('forums')
-
 TECH_BLOG_SLUGS = ['hacks', 'cd', 'futurereleases']
 
 
@@ -43,8 +40,7 @@ def credits_view(request):
 @require_safe
 def forums_view(request):
     """Display our mailing lists and newsgroups."""
-    ctx = {'forums': forums_file}
-    return l10n_utils.render(request, 'mozorg/about/forums/forums.html', ctx)
+    return l10n_utils.render(request, 'mozorg/about/forums/forums.html')
 
 
 class Robots(TemplateView):
