@@ -25,7 +25,7 @@
       {{ high_res_img('protocol/img/logos/firefox/browser/developer/logo-word-hor-md.png', {'alt': '', 'width': '368', 'height': '68'}) }}
 
       {% if ftl_has_messages('firefox-developer-congrats-you-now-have', 'firefox-developer-welcome-to-your-new-favorite') %}
-        {% if oldversion and ftl_has_messages('firefox-developer-congrats-you-now-have-latest') %}
+        {% if ftl_has_messages('firefox-developer-congrats-you-now-have-latest') %}
           <h1 class="intro-title">{{ ftl('firefox-developer-congrats-you-now-have-latest') }}</h1>
         {% else %}
           <h1 class="intro-title">{{ ftl('firefox-developer-congrats-you-now-have') }}</h1>

@@ -613,12 +613,6 @@ class WhatsnewView(L10nTemplateView):
 
         ctx['variant'] = variant
 
-        oldversion = self.request.GET.get('oldversion', '')
-        # old versions of Firefox sent a prefixed version
-        if oldversion and oldversion.startswith('rv:'):
-            oldversion = oldversion[3:]
-        ctx['oldversion'] = oldversion
-
         return ctx
 
     def get_template_names(self):
