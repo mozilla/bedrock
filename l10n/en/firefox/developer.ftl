@@ -84,3 +84,4 @@ firefox-developer-all-the-latest = All the latest developer tools in beta, plus 
 firefox-developer-a-separate-profile = A <strong>separate profile and path</strong> so you can easily run it alongside Release or { -brand-name-beta } { -brand-name-firefox }.
 firefox-developer-preferences-tailored = Preferences <strong>tailored for web developers</strong>: Browser and remote debugging are enabled by default, as are the dark theme and developer toolbar button.
 firefox-developer-congrats-you-now-have = Congrats. You now have { -brand-name-firefox-browser } { -brand-name-developer-edition }.
+firefox-developer-congrats-you-now-have-latest = Congrats. You now have the latest version of { -brand-name-firefox-browser } { -brand-name-developer-edition }.

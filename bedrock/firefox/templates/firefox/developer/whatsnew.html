@@ -25,7 +25,7 @@
       {{ high_res_img('protocol/img/logos/firefox/browser/developer/logo-word-hor-md.png', {'alt': '', 'width': '368', 'height': '68'}) }}
 
       {% if ftl_has_messages('firefox-developer-congrats-you-now-have', 'firefox-developer-welcome-to-your-new-favorite') %}
-        <h1 class="intro-title">{{ ftl('firefox-developer-congrats-you-now-have') }}</h1>
+        <h1 class="intro-title">{{ ftl('firefox-developer-congrats-you-now-have-latest', fallback='firefox-developer-congrats-you-now-have') }}</h1>
         <p class="intro-tagline">{{ ftl('firefox-developer-welcome-to-your-new-favorite') }}</p>
       {% else %}
         <h1 class="intro-title">{{ ftl('firefox-developer-congrats-you-now-have-firefox') }}</h1>
@@ -61,5 +61,5 @@
   {{ js_bundle('firefox_developer') }}
 {% endblock %}
 
-{# Exclude stub attribution for in-product pages: issus 9620 #}
+{# Exclude stub attribution for in-product pages: issue 9620 #}
 {% block stub_attribution %}{% endblock %}
