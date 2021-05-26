@@ -20,6 +20,12 @@ if (typeof window.Mozilla === 'undefined') {
         this.formTimeout = null;
 
         this.widget = document.getElementById(this.formId);
+
+        // If there's no widget on the page, do nothing.
+        if (!this.widget) {
+            return;
+        }
+
         this.form = this.widget.querySelector('.send-to-device-form');
         this.formFields = this.form.querySelector('.send-to-device-form-fields');
         this.input = this.formFields.querySelector('.send-to-device-input');
