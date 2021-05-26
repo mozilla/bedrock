@@ -630,29 +630,13 @@ TEMPLATES = [
 
 # use the Wordpress JSON REST API to get blog data
 WP_BLOGS = {
-    'firefox': {
-        'url': 'https://blog.mozilla.org/firefox/',
-        'name': 'The Firefox Frontier',
-        # default num_posts is 20
-        # uncomment and change this to get more
-        # 'num_posts': 20,
-    },
-    'hacks': {
-        'url': 'https://hacks.mozilla.org/',
-        'name': 'Hacks',
-    },
-    'cd': {
-        'url': 'https://connected.mozilla.org/',
-        'name': 'Connected Devices',
-    },
-    'futurereleases': {
-        'url': 'https://blog.mozilla.org/futurereleases/',
-        'name': 'Future Releases',
-    },
-    'internetcitizen': {
-        'url': 'https://blog.mozilla.org/internetcitizen/',
-        'name': 'Internet Citizen',
-    },
+    # 'firefox': {
+    #     'url': 'https://blog.mozilla.org/firefox/',
+    #     'name': 'The Firefox Frontier',
+    #     default num_posts is 20
+    #     uncomment and change this to get more
+    #     'num_posts': 20,
+    # },
 }
 
 # used to connect to @MozillaHQ Pocket account
