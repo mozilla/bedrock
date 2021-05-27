@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" version="1.1" width="131" height="138" viewBox="0 0 131 138" xml:space="preserve">
+  <style>
+    .st2{fill:#9f9fad}.st4,.st5,.st6{fill:none;stroke:#d0d0d8;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.st5,.st6{stroke-dasharray:2.94,4.9}.st6{stroke-dasharray:2.88,4.8}.st8{fill:#fff}
+  </style>
+  <path fill="#efeff4" d="M129.3 20H1.6c-.9 0-1.6.7-1.6 1.6v96.8c0 .9.7 1.6 1.6 1.6h127.7c.9 0 1.6-.7 1.6-1.6V21.6c0-.9-.7-1.6-1.6-1.6z"/>
+  <path fill="#80808e" d="M131 29.9v-8.6c0-.3-.1-.7-.4-.9-.2-.2-.6-.4-.9-.4H1.3c-.2 0-.3 0-.5.1s-.3.2-.4.3c-.1.1-.2.3-.3.4-.1.2-.1.4-.1.5v8.6h131z"/>
+  <path d="M0 28h131v14.3H0V28z" class="st2"/>
+  <path fill="#d5d5db" d="M13 32h104v6H13v-6z"/>
+  <path d="M14 22h22v4H14v-4z" class="st2"/>
+  <g>
+    <path d="M123.3 111v1.4h-1.4" class="st4"/>
+    <path d="M117.4 112.4H11.2" class="st5"/>
+    <path d="M9 112.4H7.6V111" class="st4"/>
+    <path d="M7.6 106.6V52.2" class="st6"/>
+    <path d="M7.6 50v-1.4H9" class="st4"/>
+    <path d="M13.5 48.6h106.1" class="st5"/>
+    <path d="M121.9 48.6h1.4V50" class="st4"/>
+    <path d="M123.3 54.4v54.4" class="st6"/>
+  </g>
+  <g>
+    <path fill="#faa257" d="M13.2 53.4h104.6v54.2H13.2V53.4z"/>
+    <path d="M45.8 82.7c5.7 0 10.3-4.6 10.3-10.3s-4.6-10.3-10.3-10.3c-5.7 0-10.3 4.6-10.3 10.3s4.7 10.3 10.3 10.3z" class="st8"/>
+    <path d="M44.1 98.8l12.1-12.1 4.9 4.9 13.5-13.5L95.3 99l-51.2-.2z" class="st8"/>
+  </g>
+</svg>

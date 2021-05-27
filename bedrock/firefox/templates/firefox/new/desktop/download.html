@@ -502,7 +502,11 @@
       </div>
 
       <div class="mzp-c-card js-animate">
+      {% if switch('firefox-mr1-launch') %}
+        {{ picture('contain-mr1', '131', 138) }}
+      {% else %}
         {{ picture('contain', '131', 138) }}
+      {% endif %}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-facebook-container') }}</h3>
         {% set addon_attrs = 'href="https://addons.mozilla.org/firefox/addon/facebook-container/%s" rel="external noopener" data-cta-type="link" data-cta-text="Download this browser extension"'|safe|format(referrals) %}
         <p>{{ ftl('firefox-desktop-download-download-this-browser', attrs=addon_attrs) }}</p>
@@ -516,7 +520,11 @@
       </div>
 
       <div class="mzp-c-card js-animate">
+      {% if switch('firefox-mr1-launch') %}
+        {{ picture('screenshots-mr1', '131', 138) }}
+      {% else %}
         {{ picture('screenshots', '131', 138) }}
+      {% endif %}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-screenshots') }}</h3>
         {% set screenshot_attrs = 'href="https://support.mozilla.org/kb/firefox-screenshots%s" rel="external noopener" data-cta-type="link" data-cta-text="screenshot"'|safe|format(referrals) %}
         <p>{{ ftl('firefox-desktop-download-grab-a-high', attrs=screenshot_attrs) }}</p>
@@ -530,7 +538,11 @@
       </div>
 
       <div class="mzp-c-card js-animate">
+      {% if switch('firefox-mr1-launch') %}
+        {{ picture('pinp-mr1', '143', 138) }}
+      {% else %}
         {{ picture('pinp', '143', 138) }}
+      {% endif %}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-picture-in-picture') }}</h3>
         <p>{{ ftl('firefox-desktop-download-from-watching-a') }}</p>
       </div>
