@@ -118,12 +118,19 @@
     </div>
 
     <div class="mzp-l-content">
+    {% if switch('firefox-mr1-launch') %}
+      {% set browser_image = 'img/firefox/home/master/browsers-mr1.jpg' %}
+      {% set l10n_image = False %}
+    {% else %}
+      {% set browser_image = 'img/firefox/home/browser.jpg' %}
+      {% set l10n_image = True %}
+    {% endif %}
       {% call feature_card(
         title=ftl('firefox-home-firefox-browser'),
         heading_level=3,
-        image_url='img/firefox/home/browser.jpg',
+        image_url=browser_image,
         include_highres_image=True,
-        l10n_image=True,
+        l10n_image=l10n_image,
         class='mzp-l-card-feature-left-half t-browsers',
         ga_title='Trackers',
         media_after=True
@@ -149,10 +156,15 @@
     </div>
 
     <div class="mzp-l-content">
+    {% if switch('firefox-mr1-launch') %}
+      {% set monitor_image = 'img/firefox/home/master/monitor-mr1.svg' %}
+    {% else %}
+      {% set monitor_image = 'img/firefox/home/master/monitor.svg' %}
+    {% endif %}
         {% call feature_card(
           title=ftl('firefox-home-firefox-monitor'),
           heading_level=3,
-          image_url='img/firefox/home/master/monitor.svg',
+          image_url=monitor_image,
           class='mzp-l-card-feature-right-half t-monitor',
           link_url='https://monitor.firefox.com/' + referrals,
           link_cta=ftl('firefox-home-start-getting-breach'),
@@ -202,10 +214,15 @@
     </div>
 
     <div class="mzp-l-content">
+      {% if switch('firefox-mr1-launch') %}
+        {% set pocket_image = 'img/firefox/home/master/pocket-mr1.svg' %}
+      {% else %}
+        {% set pocket_image = 'img/firefox/home/master/pocket.svg' %}
+      {% endif %}
         {% call feature_card(
         title=ftl('firefox-home-pocket'),
         heading_level=3,
-        image_url='img/firefox/home/master/pocket.svg',
+        image_url=pocket_image,
         class='mzp-l-card-feature-left-half t-pocket',
         ga_title='Pocket',
         media_after=True
