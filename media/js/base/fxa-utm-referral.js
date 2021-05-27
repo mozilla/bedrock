@@ -26,9 +26,9 @@ if (typeof window.Mozilla === 'undefined') {
     ];
 
     var utms = ['utm_source', 'utm_campaign', 'utm_content', 'utm_term', 'utm_medium'];
-    var entrypointParams = ['entrypoint_experiment', 'entrypoint_variation'];
+    var fxaParams = ['device_id', 'flow_id', 'flow_begin_time', 'entrypoint_experiment', 'entrypoint_variation'];
     var sameSiteParams = ['source'];
-    var acceptedParams = utms.concat(entrypointParams, sameSiteParams);
+    var acceptedParams = utms.concat(fxaParams, sameSiteParams);
 
     /**
      * Returns the hostname for a given URL.
@@ -89,6 +89,27 @@ if (typeof window.Mozilla === 'undefined') {
             }
         }
 
+        /**
+         * This is a special-case for Issue 10209: VPN download-first experiment.
+         * As part of the flow for this experiment, the VPN Client will open /products/vpn/ with a set of FxA params in the page URL.
+         * Only if experiment params are present, then we pass FxA params through.
+         */
+        if (!Object.prototype.hasOwnProperty.call(finalParams, 'entrypoint_experiment') ||
+            !Object.prototype.hasOwnProperty.call(finalParams, 'entrypoint_variation')) {
+
+            if (Object.prototype.hasOwnProperty.call(finalParams, 'device_id')) {
+                delete finalParams['device_id'];
+            }
+
+            if (Object.prototype.hasOwnProperty.call(finalParams, 'flow_id')) {
+                delete finalParams['flow_id'];
+            }
+
+            if (Object.prototype.hasOwnProperty.call(finalParams, 'flow_begin_time')) {
+                delete finalParams['flow_begin_time'];
+            }
+        }
+
         // Both utm_source and utm_campaign are considered required, so only pass through referral data if they exist.
         // Alternatively, pass through entrypoint_experiment and entrypoint_variation independently.
         if ((Object.prototype.hasOwnProperty.call(finalParams, 'utm_source') && Object.prototype.hasOwnProperty.call(finalParams, 'utm_campaign')) ||
@@ -127,10 +148,10 @@ if (typeof window.Mozilla === 'undefined') {
             // In principle, experiments should never clobber eachother(!). However, if we have
             // new entrypoint_* parameters then assume they take precedence in the target URL.
             if (Object.prototype.hasOwnProperty.call(data, 'entrypoint_experiment') && Object.prototype.hasOwnProperty.call(data, 'entrypoint_variation')) {
-                for (var j = 0; j < entrypointParams.length; j++) {
-                    var entryPointParam = entrypointParams[j];
-                    if (Object.prototype.hasOwnProperty.call(linkParams, entryPointParam)) {
-                        delete linkParams[entryPointParam];
+                for (var j = 0; j < fxaParams.length; j++) {
+                    var fxaParam = fxaParams[j];
+                    if (Object.prototype.hasOwnProperty.call(linkParams, fxaParam)) {
+                        delete linkParams[fxaParam];
                     }
                 }
             }

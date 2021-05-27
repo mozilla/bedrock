@@ -2,6 +2,10 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+if (typeof window.Mozilla === 'undefined') {
+    window.Mozilla = {};
+}
+
 (function() {
     'use strict';
 
@@ -155,6 +159,11 @@
     VPN.showFixedPricing = function() {
         document.body.classList.add('show-vpn-fixed-pricing');
 
+        // support custom callback for geo-location check
+        if (typeof VPN.onGeoReadyCallback === 'function') {
+            VPN.onGeoReadyCallback(VPN.countryCode);
+        }
+
         // initiate FxA flow metrics after subscription URLs have been set.
         if (typeof Mozilla.FxaProductButton !== 'undefined') {
             Mozilla.FxaProductButton.init();
@@ -165,6 +174,11 @@
         document.body.classList.add('show-vpn-variable-pricing');
         VPN.renderScrollToPricingButtons();
         VPN.setSubscriptionButtons();
+
+        // support custom callback for geo-location check
+        if (typeof VPN.onGeoReadyCallback === 'function') {
+            VPN.onGeoReadyCallback(VPN.countryCode);
+        }
 
         // initiate FxA flow metrics after subscription URLs have been set.
         if (typeof Mozilla.FxaProductButton !== 'undefined') {

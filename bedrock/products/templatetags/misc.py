@@ -22,6 +22,12 @@ def _vpn_product_link(product_url, entrypoint, link_text, class_name=None, optio
     if optional_attributes:
         attrs += ' '.join('%s="%s"' % (attr, val) for attr, val in optional_attributes.items())
 
+        # If there's a `data-cta-position` attribute for GA, also pass that as a query param to vpn.m.o.
+        position = optional_attributes.get('data-cta-position', None)
+
+        if position:
+            href += f'&data_cta_position={position}'
+
     if class_name:
         css_class += f' {class_name}'
 
