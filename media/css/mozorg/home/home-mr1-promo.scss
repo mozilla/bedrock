@@ -29,6 +29,7 @@ $image-path: '/media/protocol/img';
 
 .c-fxpromo-altcta {
     display: none;
+    text-align: center;
     margin: 0 auto $layout-md;
 }
 
@@ -94,8 +95,10 @@ $image-path: '/media/protocol/img';
     }
 
     .c-fxpromo-content {
+        @include bidi((
+            (padding-right, $layout-md, padding-left, $layout-md),
+        ));
         flex: 1 1 0;
-        padding: 0 $layout-sm;
         position: relative;
         z-index: 12;
     }
@@ -115,6 +118,12 @@ $image-path: '/media/protocol/img';
 
     .mzp-c-button-download-container {
         display: inline-block;
+        margin: 0;
+    }
+
+    .c-fxpromo-altcta {
+        @include bidi(((text-align, left, right),));
+        margin: 0;
     }
 
     .c-fxpromo-graphic {
