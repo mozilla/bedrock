@@ -95,9 +95,7 @@ $image-path: '/media/protocol/img';
     }
 
     .c-fxpromo-content {
-        @include bidi((
-            (padding-right, $layout-md, padding-left, $layout-md),
-        ));
+        @include bidi(((padding-right, get-theme('h-grid-md'), padding-left, get-theme('h-grid-md')),));
         flex: 1 1 0;
         position: relative;
         z-index: 12;
@@ -132,6 +130,10 @@ $image-path: '/media/protocol/img';
 }
 
 @media #{$mq-lg} {
+    .c-fxpromo-content {
+        @include bidi(((padding-right, get-theme('h-grid-lg'), padding-left, get-theme('h-grid-lg')),));
+    }
+
     .c-fxpromo-title {
         @include text-title-2xl;
         margin-top: $layout-lg;
@@ -143,6 +145,10 @@ $image-path: '/media/protocol/img';
 }
 
 @media #{$mq-xl} {
+    .c-fxpromo-content {
+        @include bidi(((padding-right, get-theme('h-grid-xl'), padding-left, get-theme('h-grid-xl')),));
+    }
+
     [lang^='en'] .c-fxpromo-lalo .c-fxpromo-title,
     [lang^='en'] .c-fxpromo-soraya .c-fxpromo-title,
     [lang^='en'] .c-fxpromo-ryan .c-fxpromo-title {
