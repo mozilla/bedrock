@@ -18,10 +18,6 @@
   {% elif switch('fundraising-banner-eoy2020') %}
     {{ css_bundle('fundraising-banner') }}
   {% endif %}
-
-  {% if switch('firefox-mr1-launch') %}
-    {{ css_bundle('home-mr1-promo') }}
-  {% endif %}
 {% endblock %}
 
 {% block page_banner %}
@@ -41,29 +37,18 @@
     <h1>{{ self.page_title() }}</h1>
   </header>
 
-  {% if ftl_has_messages('home-promo-title-lalo', 'home-promo-title-soraya', 'home-promo-title-gary', 'home-promo-title-ryan') and switch('firefox-mr1-launch') %}
-    {%- set promos = [
-      'mozorg/home/includes/mr1-promo-lalo.html',
-      'mozorg/home/includes/mr1-promo-soraya.html',
-      'mozorg/home/includes/mr1-promo-gary.html',
-      'mozorg/home/includes/mr1-promo-ryan.html'
-    ] -%}
+  {% call download_banner(
+    title='Aus Liebe zum Web',
+    desc='Firefox – der unabhängige Browser, unterstützt vom Non-Profit Mozilla',
+    ) %}
+    {{ download_firefox_thanks(alt_copy='Firefox downloaden', dom_id='download-primary', download_location='primary cta') }}
+  {% endcall %}
 
-    {% include promos|random() %}
-  {% else %}
-    {% call download_banner(
-      title='Aus Liebe zum Web',
-      desc='Firefox – der unabhängige Browser, unterstützt vom Non-Profit Mozilla',
-      ) %}
-      {{ download_firefox_thanks(alt_copy='Firefox downloaden', dom_id='download-primary', download_location='primary cta') }}
-    {% endcall %}
-
-    {{ fxa_banner(
-      title='Aus Liebe zum Web',
-      desc='Firefox – der unabhängige Browser, unterstützt vom Non-Profit Mozilla',
-      link_cta='Weitere Infos',
-    )}}
-  {% endif %}
+  {{ fxa_banner(
+    title='Aus Liebe zum Web',
+    desc='Firefox – der unabhängige Browser, unterstützt vom Non-Profit Mozilla',
+    link_cta='Weitere Infos',
+  )}}
 
   <div class="mozilla-content">
     <div class="mzp-l-content mzp-t-mozilla">
