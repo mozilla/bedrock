@@ -141,15 +141,11 @@
       </div>
     {% endcall %}
 
-    {% call vpn_content_media(
-      heading=ftl('vpn-shared-platform-trust-partner-headline'),
-      image_url='img/products/vpn/platforms/vpn-cntwell-mullvad-partner.png',
-      class_name='vpn-content-media-left-half',
-    ) %}
-      {{ ftl('vpn-shared-platform-trust-partner-copy', policy='https://mullvad.net/help/no-logging-data-policy/', wireguard='https://mullvad.net/help/why-wireguard/' ) }}
-    {% endcall %}
-
   </div>
+
+  <footer class="vpn-footer mzp-l-content">
+    {% include 'products/vpn/includes/footer-legal.html' %}
+  </footer>
 
 </main>
 {% endblock %}

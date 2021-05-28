@@ -109,7 +109,13 @@
       image_url='img/products/vpn/landing/vpn-cntwell-02.png',
       class_name='vpn-content-media-left-half'
     ) %}
-      <p>{{ ftl('vpn-landing-fast-secure-desc', mullvad='https://mullvad.net/help/no-logging-data-policy/', wireguard='https://mullvad.net/help/why-wireguard/', attrs='target="_blank" rel="external noopener noreferrer"') }}</p>
+      <p>
+        {% if ftl_has_messages('vpn-landing-fast-secure-desc-v2') %}
+          {{ ftl('vpn-landing-fast-secure-desc-v2', wireguard='https://mullvad.net/help/why-wireguard/', attrs='target="_blank" rel="external noopener noreferrer"') }}
+        {% else %}
+          {{ ftl('vpn-landing-fast-secure-desc', mullvad='https://mullvad.net/help/no-logging-data-policy/', wireguard='https://mullvad.net/help/why-wireguard/', attrs='target="_blank" rel="external noopener noreferrer"') }}
+        {% endif %}
+      </p>
     {% endcall %}
 
     {% call vpn_content_media(
