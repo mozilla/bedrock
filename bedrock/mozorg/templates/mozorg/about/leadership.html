@@ -48,8 +48,6 @@
        Explaining the order of listing:
        - The Chair (Mitchell) is listed first
        - Followed by the CEO (also Mitchell)
-       - Followed by members of the Steering Committee, in alphabetical order by surname
-       - Followed by any Chief Officers, in alphabetical order by surname
        - Followed by everyone else, in alphabetical order by surname
     #}
 
@@ -170,6 +168,59 @@
         </div>
       </article>
 
+      <article id="selena-deckelmann" data-id="selena-deckelmann" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+        <figure class="headshot">
+          {{ high_res_img('img/mozorg/about/leadership/selena-deckelmann.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+          <figcaption><h4 class="fn" itemprop="name">Selena Deckelmann</h4></figcaption>
+        </figure>
+
+        <div class="person-info">
+          <p class="title" itemprop="jobTitle">{{ _('SVP, Firefox') }}</p>
+
+          <ul class="elsewhere">
+            <li><a class="url twitter" itemprop="url" rel="external" href="https://twitter.com/selenamarie">@selenamarie</a></li>
+            <li><a class="url book" itemprop="url" rel="external" href="https://mozillians.org/u/sdeckelmann/">{{ _('Mozillians profile') }}</a></li>
+          </ul>
+
+          <ul class="utility">
+            <li><a class="file" rel="external" href="https://assets.mozilla.net/leadership/mozilla-selena-deckelmann.zip">{{ _('Download photos') }}</a></li>
+            <li><a class="link" href="{{ url('mozorg.about.leadership') }}#selena-deckelmann">{{ _('Link to this bio') }}</a></li>
+          </ul>
+        </div>
+
+        <div class="person-bio">
+          <p>
+          {% trans %}
+          As SVP, Firefox, Selena Deckelmann is responsible for implementation of the Web Platform (the Gecko browser engine), and the growth of the Firefox desktop and mobile products and search business. Her focus is on the growth and sustainability of Firefox.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+          Previously as VP, Firefox Desktop, Selena was responsible for the growth of the Firefox desktop product and search business, including all aspects of Firefox Desktop releases, Mozilla’s privacy and security feature set and accounts.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Previously as Director of Security and then Senior Director, Firefox Runtime, Selena led her team to some of Mozilla’s biggest successes, ranging from big infrastructure projects like Quantum Flow and Project Fission to key features like Enhanced Tracking Protection and services like Firefox Monitor. In total she has held nine roles within Mozilla, starting in 2012 as Data Architect, for which she contributed to the Socorro project, a data warehouse analyzing crashes of Firefox and several other products.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Selena’s career spans more than two decades in tech, education, and manufacturing. She also has served in a number of volunteer positions, such as Director of the Python Software Foundation, the Founder and Chair of Open Source Bridge, and as Advisor for the Ada Initiative, a non-profit organization that sought to increase women's participation in the free culture movement, open source technology and open culture.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Outside of work, she is a weightlifter and birdwatcher near her home in Portland, OR.
+          {% endtrans %}
+          </p>
+        </div>
+      </article>
+
       <article id="leslie-gray" data-id="leslie-grey" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('img/mozorg/about/leadership/leslie-gray.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
@@ -244,139 +295,6 @@
           <p>
           {% trans %}
             Prior to Twitter, Amy worked on the legal team at Google Inc. and began her legal career as an associate at Bingham McCutchen LLP. Amy holds a J.D. from the University of California, Berkeley School of Law and a B.A. in Political Science from the University of California, Berkeley.
-          {% endtrans %}
-          </p>
-        </div>
-      </article>
-
-      <article id="roxi-wen" data-id="roxi-wen" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
-        <figure class="headshot">
-          {{ high_res_img('img/mozorg/about/leadership/roxi-wen.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
-          <figcaption><h4 class="fn" itemprop="name">Roxi Wen</h4></figcaption>
-        </figure>
-
-        <div class="person-info">
-          <p class="title" itemprop="jobTitle">{{ _('Chief Financial Officer') }}</p>
-          <p class="note">{{ _('Steering Committee') }}</p>
-
-          <ul class="utility">
-            <li><a class="file" rel="external" href="https://assets.mozilla.net/leadership/mozilla-roxi-wen.zip">{{ _('Download photos') }}</a></li>
-            <li><a class="link" href="{{ url('mozorg.about.leadership') }}#roxi-wen">{{ _('Link to this bio') }}</a></li>
-          </ul>
-        </div>
-
-        <div class="person-bio">
-          <p>
-          {% trans %}
-            As Mozilla’s Chief Financial Officer, Roxi leads the teams in charge of building the growth engine for the company through healthy finances, diverse revenues, data-driven business decisions, carbon-neutral business practices, and fueling innovation inside Mozilla and within a large network of entrepreneurs.
-          {% endtrans %}
-          </p>
-
-          <p>
-          {% trans %}
-            Roxi drives the implementation of Mozilla’s strategic roadmap, enabling the business to scale and to identify and capture revenue growth and new investment opportunities. She is responsible for directing capital allocation, delivering technology-driven business services and solutions, providing analytics and performance results, as well as day-to-day management of the finance & business operations teams and their core functions.
-          {% endtrans %}
-          </p>
-
-          <p>
-          {% trans %}
-            Prior to Mozilla, Roxi was Chief Financial Officer at Elo Touch Solutions. She held senior-level positions at General Electric, Medtronic, and Royal Bank of Canada and successfully led many private and public financing and M&A transactions. Roxi is a CFA charterholder, earned a Bachelor of Economics from Xiamen University, China, and an MBA in Finance and Strategy from the Carlson School of Management at the University of Minnesota.
-          {% endtrans %}
-          </p>
-        </div>
-      </article>
-
-      <article id="lindsey-shepard" data-id="lindsey-shepard" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
-        <figure class="headshot">
-          {{ high_res_img('img/mozorg/about/leadership/lindsey-shepard.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
-          <figcaption><h4 class="fn" itemprop="name">Lindsey Shepard</h4></figcaption>
-        </figure>
-
-        <div class="person-info">
-          <p class="title" itemprop="jobTitle">{{ _('Chief Marketing Officer') }}</p>
-          <p class="note">{{ _('Steering Committee') }}</p>
-
-          <ul class="utility">
-            <li><a class="file" rel="external" href="https://assets.mozilla.net/leadership/mozilla-lindsey-shepard.zip">{{ _('Download photos') }}</a></li>
-            <li><a class="link" href="{{ url('mozorg.about.leadership') }}#lindsey-shepard">{{ _('Link to this bio') }}</a></li>
-          </ul>
-        </div>
-
-        <div class="person-bio">
-          <p>
-          {% trans %}
-            As Chief Marketing Officer, Lindsey Shepard leads Mozilla’s global marketing strategy and organization. In this role she guides the team to find new ways to attract people to our new products and Firefox browsers, in a period when there has never been greater need for privacy-focused solutions to the challenges of online life.
-          {% endtrans %}
-          </p>
-
-          <p>
-          {% trans %}
-            Previously, Lindsey was Vice President of Product Marketing, with responsibility for overseeing new product launches, nurturing existing products, ideating on key campaigns and go-to-market strategies, and evangelizing new innovations in internet technologies to drive Mozilla’s future growth.
-          {% endtrans %}
-          </p>
-
-          <p>
-          {% trans %}
-            Prior to Mozilla, Lindsey headed up corporate-level marketing for Facebook Inc., including leading product marketing for Facebook’s core products: News Feed, News, Stories, Civic Engagement, Privacy and Safety. Before joining Facebook, Lindsey led marketing for GoldieBlox, a Bay Area start-up focused on bridging the gender gap in STEM.
-          {% endtrans %}
-          </p>
-
-          <p>
-          {% trans %}
-            Lindsey lives in the Bay Area with her husband Joe, her two sons Stone and Paolo, three dogs, two birds and a cat. In her spare time, you’ll find her sweeping up dog hair, gardening, and debating the relative merits of the houses of Hogwarts.
-          {% endtrans %}
-          </p>
-        </div>
-      </article>
-
-      <article id="selena-deckelmann" data-id="selena-deckelmann" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
-        <figure class="headshot">
-          {{ high_res_img('img/mozorg/about/leadership/selena-deckelmann.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
-          <figcaption><h4 class="fn" itemprop="name">Selena Deckelmann</h4></figcaption>
-        </figure>
-
-        <div class="person-info">
-          <p class="title" itemprop="jobTitle">{{ _('SVP, Firefox') }}</p>
-
-          <ul class="elsewhere">
-            <li><a class="url twitter" itemprop="url" rel="external" href="https://twitter.com/selenamarie">@selenamarie</a></li>
-            <li><a class="url book" itemprop="url" rel="external" href="https://mozillians.org/u/sdeckelmann/">{{ _('Mozillians profile') }}</a></li>
-          </ul>
-
-          <ul class="utility">
-            <li><a class="file" rel="external" href="https://assets.mozilla.net/leadership/mozilla-selena-deckelmann.zip">{{ _('Download photos') }}</a></li>
-            <li><a class="link" href="{{ url('mozorg.about.leadership') }}#selena-deckelmann">{{ _('Link to this bio') }}</a></li>
-          </ul>
-        </div>
-
-        <div class="person-bio">
-          <p>
-          {% trans %}
-          As SVP, Firefox, Selena Deckelmann is responsible for implementation of the Web Platform (the Gecko browser engine), and the growth of the Firefox desktop and mobile products and search business. Her focus is on the growth and sustainability of Firefox.
-          {% endtrans %}
-          </p>
-
-          <p>
-          {% trans %}
-          Previously as VP, Firefox Desktop, Selena was responsible for the growth of the Firefox desktop product and search business, including all aspects of Firefox Desktop releases, Mozilla’s privacy and security feature set and accounts.
-          {% endtrans %}
-          </p>
-
-          <p>
-          {% trans %}
-            Previously as Director of Security and then Senior Director, Firefox Runtime, Selena led her team to some of Mozilla’s biggest successes, ranging from big infrastructure projects like Quantum Flow and Project Fission to key features like Enhanced Tracking Protection and services like Firefox Monitor. In total she has held nine roles within Mozilla, starting in 2012 as Data Architect, for which she contributed to the Socorro project, a data warehouse analyzing crashes of Firefox and several other products.
-          {% endtrans %}
-          </p>
-
-          <p>
-          {% trans %}
-            Selena’s career spans more than two decades in tech, education, and manufacturing. She also has served in a number of volunteer positions, such as Director of the Python Software Foundation, the Founder and Chair of Open Source Bridge, and as Advisor for the Ada Initiative, a non-profit organization that sought to increase women's participation in the free culture movement, open source technology and open culture.
-          {% endtrans %}
-          </p>
-
-          <p>
-          {% trans %}
-            Outside of work, she is a weightlifter and birdwatcher near her home in Portland, OR.
           {% endtrans %}
           </p>
         </div>
@@ -478,6 +396,86 @@
           <p>
           {% trans %}
             Eric holds a B.S. degree in chemistry from Yale University.
+          {% endtrans %}
+          </p>
+        </div>
+      </article>
+
+      <article id="lindsey-shepard" data-id="lindsey-shepard" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+        <figure class="headshot">
+          {{ high_res_img('img/mozorg/about/leadership/lindsey-shepard.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+          <figcaption><h4 class="fn" itemprop="name">Lindsey Shepard</h4></figcaption>
+        </figure>
+
+        <div class="person-info">
+          <p class="title" itemprop="jobTitle">{{ _('Chief Marketing Officer') }}</p>
+          <p class="note">{{ _('Steering Committee') }}</p>
+
+          <ul class="utility">
+            <li><a class="file" rel="external" href="https://assets.mozilla.net/leadership/mozilla-lindsey-shepard.zip">{{ _('Download photos') }}</a></li>
+            <li><a class="link" href="{{ url('mozorg.about.leadership') }}#lindsey-shepard">{{ _('Link to this bio') }}</a></li>
+          </ul>
+        </div>
+
+        <div class="person-bio">
+          <p>
+          {% trans %}
+            As Chief Marketing Officer, Lindsey Shepard leads Mozilla’s global marketing strategy and organization. In this role she guides the team to find new ways to attract people to our new products and Firefox browsers, in a period when there has never been greater need for privacy-focused solutions to the challenges of online life.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Previously, Lindsey was Vice President of Product Marketing, with responsibility for overseeing new product launches, nurturing existing products, ideating on key campaigns and go-to-market strategies, and evangelizing new innovations in internet technologies to drive Mozilla’s future growth.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Prior to Mozilla, Lindsey headed up corporate-level marketing for Facebook Inc., including leading product marketing for Facebook’s core products: News Feed, News, Stories, Civic Engagement, Privacy and Safety. Before joining Facebook, Lindsey led marketing for GoldieBlox, a Bay Area start-up focused on bridging the gender gap in STEM.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Lindsey lives in the Bay Area with her husband Joe, her two sons Stone and Paolo, three dogs, two birds and a cat. In her spare time, you’ll find her sweeping up dog hair, gardening, and debating the relative merits of the houses of Hogwarts.
+          {% endtrans %}
+          </p>
+        </div>
+      </article>
+
+      <article id="roxi-wen" data-id="roxi-wen" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+        <figure class="headshot">
+          {{ high_res_img('img/mozorg/about/leadership/roxi-wen.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+          <figcaption><h4 class="fn" itemprop="name">Roxi Wen</h4></figcaption>
+        </figure>
+
+        <div class="person-info">
+          <p class="title" itemprop="jobTitle">{{ _('Chief Financial Officer') }}</p>
+          <p class="note">{{ _('Steering Committee') }}</p>
+
+          <ul class="utility">
+            <li><a class="file" rel="external" href="https://assets.mozilla.net/leadership/mozilla-roxi-wen.zip">{{ _('Download photos') }}</a></li>
+            <li><a class="link" href="{{ url('mozorg.about.leadership') }}#roxi-wen">{{ _('Link to this bio') }}</a></li>
+          </ul>
+        </div>
+
+        <div class="person-bio">
+          <p>
+          {% trans %}
+            As Mozilla’s Chief Financial Officer, Roxi leads the teams in charge of building the growth engine for the company through healthy finances, diverse revenues, data-driven business decisions, carbon-neutral business practices, and fueling innovation inside Mozilla and within a large network of entrepreneurs.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Roxi drives the implementation of Mozilla’s strategic roadmap, enabling the business to scale and to identify and capture revenue growth and new investment opportunities. She is responsible for directing capital allocation, delivering technology-driven business services and solutions, providing analytics and performance results, as well as day-to-day management of the finance & business operations teams and their core functions.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Prior to Mozilla, Roxi was Chief Financial Officer at Elo Touch Solutions. She held senior-level positions at General Electric, Medtronic, and Royal Bank of Canada and successfully led many private and public financing and M&A transactions. Roxi is a CFA charterholder, earned a Bachelor of Economics from Xiamen University, China, and an MBA in Finance and Strategy from the Carlson School of Management at the University of Minnesota.
           {% endtrans %}
           </p>
         </div>
@@ -962,6 +960,13 @@
 
           <p>Navrina is a Young Global Leader with the World Economic Forum; and has previously served on the industry advisory board of the University of Wisconsin-Madison College of Engineering; and the boards of <a href="https://www.stellalabs.org/" rel="external">Stella Labs</a>, Alliance for Empowerment and the Technology Council for <a href="https://www.firstinspires.org/" rel="external">FIRST Robotics</a>.</p>
         </div>
+      </article>
+
+      <article class="vcard" itemscope itemtype="http://schema.org/Person">
+        <figure class="headshot">
+          {{ high_res_img('img/mozorg/about/leadership/mark-surman.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+          <figcaption><h4 class="fn" itemprop="name">Mark Surman</h4></figcaption>
+        </figure>
       </article>
 
       <article id="helen-turvey" data-id="helen-turvey" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
