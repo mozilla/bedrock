@@ -114,7 +114,7 @@ def home_view(request):
     ctx = {
         'donate_params': donate_params,
         'pocket_articles': PocketArticle.objects.all()[:4],
-        'ftl_files': ['mozorg/home'],
+        'ftl_files': ['mozorg/home', 'mozorg/home-mr1-promo'],
         'add_active_locales': ['de', 'fr']
     }
 

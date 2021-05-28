@@ -199,6 +199,12 @@
     },
     {
       "files": [
+        "css/mozorg/home/home-mr1-promo.scss"
+      ],
+      "name": "home-mr1-promo"
+    },
+    {
+      "files": [
         "css/newsletter/newsletter.scss"
       ],
       "name": "newsletter"
