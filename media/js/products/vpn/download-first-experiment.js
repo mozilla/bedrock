@@ -22,7 +22,7 @@
             }
         } else {
             var cop = new Mozilla.TrafficCop({
-                id: 'vpn-landing-page-sub-position-experiment',
+                id: 'vpn-landing-page-download-first-experiment',
                 variations: {
                     'entrypoint_experiment=vpn-landing-page-download-first&entrypoint_variation=a': 50,
                     'entrypoint_experiment=vpn-landing-page-download-first&entrypoint_variation=b': 50
