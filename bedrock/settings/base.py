@@ -689,10 +689,6 @@ EXTERNAL_FILES = {
         'type': 'bedrock.mozorg.credits.CreditsFile',
         'name': 'credits/names.csv',
     },
-    'forums': {
-        'type': 'bedrock.mozorg.forums.ForumsFile',
-        'name': 'forums/raw-ng-list.txt',
-    },
 }
 
 # Facebook Like button supported locales
