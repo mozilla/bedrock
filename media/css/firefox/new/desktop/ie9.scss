@@ -15,6 +15,10 @@ $image-path: '/media/protocol/img';
 .c-noodles {
     @include at2x('/media/img/firefox/new/desktop/ie9/browser.jpg', contain);
     background-repeat: no-repeat;
+
+    .firefox-mr1 & {
+        @include at2x('/media/img/firefox/new/desktop/ie9/browser-mr1.jpg', contain);
+    }
 }
 
 .c-screenshot {
