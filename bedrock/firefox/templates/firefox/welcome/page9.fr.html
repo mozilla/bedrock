@@ -6,7 +6,7 @@
 
 {% extends "firefox/welcome/base.html" %}
 
-{% block page_title %}Ça y est. Le VPN est là !{% endblock %}
+{% block page_title %}Changez votre localisation, sécurisez votre connexion, protégez votre vie privée{% endblock %}
 
 {% block page_image %}{{ static('img/products/vpn/common/social-share.png') }}{% endblock %}
 
@@ -19,20 +19,20 @@
 {% block shoulder_cta %}{% endblock %}
 
 {% block content_intro %}
-  <div class="hero-image">
-    {% include 'firefox/welcome/includes/page9/vpn-header.svg' %}
-  </div>
+  <img class="product-logo" src="{{ static('protocol/img/logos/mozilla/vpn/logo-flat.svg') }}" width="65" alt="">
 
   {% call hero(
-    title='Ça y est. <br>Le VPN est là !'|safe,
-    desc='Surfer, streamer, jouer et travailler en ligne est bien plus simple maintenant. Protégez votre vie privée lorsque vous voyagez, en utilisant le WiFi public ou dès que vous vous connectez.',
+    title='Changez votre localisation, sécurisez votre connexion, <strong>protégez votre vie privée</strong>.'|safe,
+    desc='Mozilla VPN (Virtual Private Network) protège l’intégralité de votre connexion Internet - sur n’importe quel appareil et peu importe où vous naviguez en ligne.',
     class='mzp-t-firefox',
     include_cta=True,
     heading_level=1
   ) %}
 
+  <p class="mzp-c-hero-desc">Rapide, fiable et ultra sécurisé avec une garantie de remboursement de 30 jours.</p>
+
   <p class="primary-cta">
-    <a href="{{ url('products.vpn.landing') }}{{ _source }}" class="mzp-c-button mzp-t-product mzp-t-xl" data-cta-text="Go to Mozilla VPN" data-cta-type="button">Se connecter à Mozilla VPN</a>
+    <a href="{{ url('products.vpn.landing') }}{{ _source }}" class="mzp-c-button mzp-t-product mzp-t-xl" data-cta-text="Get Mozilla VPN" data-cta-type="button">Installer Mozilla VPN</a>
   </p>
   {% endcall %}
 {% endblock %}
@@ -40,25 +40,36 @@
 {% block content_body %}
 <section class="page-body">
   <div class="mzp-l-content">
+
+    <aside class="welcome-page9-press-logos">
+      <h3 class="welcome-page9-press-logos-heading">Ce qu’on dit de nous</h3>
+      <ul class="mzp-c-inline-list">
+        <li>{{ high_res_img('img/products/vpn/landing/logos/pcgamer.png', {'alt': 'PC Gamer', 'width': '109', 'height': '38', 'loading': 'lazy'}) }}</li>
+        <li>{{ high_res_img('img/products/vpn/landing/logos/cnet.png', {'alt': 'CNet', 'width': '57', 'height': '38', 'loading': 'lazy'}) }}</li>
+        <li>{{ high_res_img('img/products/vpn/landing/logos/gizmondo.png', {'alt': 'Gizmondo', 'width': '121', 'height': '38', 'loading': 'lazy'}) }}</li>
+        <li>{{ high_res_img('img/products/vpn/landing/logos/wired.png', {'alt': 'Wired', 'width': '108', 'height': '38', 'loading': 'lazy'}) }}</li>
+      </ul>
+    </aside>
+
     <div class="l-columns-two">
 
       <div class="c-picto-block">
         <div class="c-picto-block-image">
-          {% include 'firefox/welcome/includes/page9/one-tap.svg' %}
+          {% include 'firefox/welcome/includes/page9/illo-vpn-speed.svg' %}
         </div>
-        <h3 class="c-picto-block-title">La vie privée en un clic</h3>
+        <h3 class="c-picto-block-title">Connexion rapide</h3>
         <div class="c-picto-block-body">
-          <p>Notre produit Virtual Private Network (VPN) utilise la technologie de chiffrement la plus avancée pour vous offrir une connexion Internet sécurisée, rapide et fiable.</p>
+          <p>Nos serveurs sont alimentés par le protocole WireGuard® dans plus de 30 pays et conçus pour la vitesse. Vous pouvez donc streamer, télécharger et jouer comme vous en avez l’habitude.</p>
         </div>
       </div>
 
       <div class="c-picto-block">
         <div class="c-picto-block-image">
-          {% include 'firefox/welcome/includes/page9/heart.svg' %}
+          {% include 'firefox/welcome/includes/page9/illo-vpn-lock.svg' %}
         </div>
-        <h3 class="c-picto-block-title">Le VPN d’un partenaire de confiance</h3>
+        <h3 class="c-picto-block-title">Sûr de chez sûr</h3>
         <div class="c-picto-block-body">
-          <p>Depuis plus de 20 ans, Mozilla fait ses preuves en s’engageant pleinement pour la vie privée en ligne des gens. Soutenu par une organisation à but non lucratif, notre mission est de créer un Internet meilleur et plus sain pour tous. Tout ce que nous entreprenons, qu’il s’agisse de Firefox ou de Mozilla VPN, fait partie de notre mission et suit nos <a href="{{ url('mozorg.about.manifesto') }}">principes<a/>.</p>
+          <p>Nous chiffrons votre activité réseau et masquons votre adresse IP. Nous ne conservons aucune sorte d’historique et ne partageons jamais les données de votre réseau avec d’autres.</p>
         </div>
       </div>
     </div>

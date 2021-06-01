@@ -6,7 +6,7 @@
 
 {% extends "firefox/welcome/base.html" %}
 
-{% block page_title %}Es ist soweit. Mozilla VPN ist da!{% endblock %}
+{% block page_title %}Standort ändern, Verbindung sichern, Privatsphäre schützen{% endblock %}
 
 {% block page_image %}{{ static('img/products/vpn/common/social-share.png') }}{% endblock %}
 
@@ -19,20 +19,20 @@
 {% block shoulder_cta %}{% endblock %}
 
 {% block content_intro %}
-  <div class="hero-image">
-    {% include 'firefox/welcome/includes/page9/vpn-header.svg' %}
-  </div>
+  <img class="product-logo" src="{{ static('protocol/img/logos/mozilla/vpn/logo-flat.svg') }}" width="65" alt="">
 
   {% call hero(
-    title='Es ist soweit. <br>Mozilla VPN ist da!'|safe,
-    desc='Surfen, streamen, arbeiten und spielen wird jetzt noch sicherer. Schütze deine Privatsphäre in öffentlichen WLAN-Netzen, auf Reisen oder ganz grundsätzlich immer, wenn du online bist.',
+    title='Standort ändern, <br>Verbindung sichern, <br><strong>Privatsphäre schützen</strong>.'|safe,
+    desc='Mozilla VPN (Virtuelles Privates Netzwerk) schützt deine gesamte Internetverbindung – auf all deinen Geräten und überall dort, wo du online gehst.',
     class='mzp-t-firefox',
     include_cta=True,
     heading_level=1
   ) %}
 
+  <p class="mzp-c-hero-desc">Schnell, zuverlässig und extra sicher mit 30 Tage Geld-zurück-Garantie.</p>
+
   <p class="primary-cta">
-    <a href="{{ url('products.vpn.landing') }}{{ _source }}" class="mzp-c-button mzp-t-product mzp-t-xl" data-cta-text="Go to Mozilla VPN" data-cta-type="button">Hier geht’s zum VPN</a>
+    <a href="{{ url('products.vpn.landing') }}{{ _source }}" class="mzp-c-button mzp-t-product mzp-t-xl" data-cta-text="Get Mozilla VPN" data-cta-type="button">Hol dir Mozilla VPN</a>
   </p>
   {% endcall %}
 {% endblock %}
@@ -40,25 +40,36 @@
 {% block content_body %}
 <section class="page-body">
   <div class="mzp-l-content">
+
+    <aside class="welcome-page9-press-logos">
+      <h3 class="welcome-page9-press-logos-heading">Vorgestellt in</h3>
+      <ul class="mzp-c-inline-list">
+        <li>{{ high_res_img('img/products/vpn/landing/logos/pcgamer.png', {'alt': 'PC Gamer', 'width': '109', 'height': '38', 'loading': 'lazy'}) }}</li>
+        <li>{{ high_res_img('img/products/vpn/landing/logos/cnet.png', {'alt': 'CNet', 'width': '57', 'height': '38', 'loading': 'lazy'}) }}</li>
+        <li>{{ high_res_img('img/products/vpn/landing/logos/gizmondo.png', {'alt': 'Gizmondo', 'width': '121', 'height': '38', 'loading': 'lazy'}) }}</li>
+        <li>{{ high_res_img('img/products/vpn/landing/logos/wired.png', {'alt': 'Wired', 'width': '108', 'height': '38', 'loading': 'lazy'}) }}</li>
+      </ul>
+    </aside>
+
     <div class="l-columns-two">
 
       <div class="c-picto-block">
         <div class="c-picto-block-image">
-          {% include 'firefox/welcome/includes/page9/one-tap.svg' %}
+          {% include 'firefox/welcome/includes/page9/illo-vpn-speed.svg' %}
         </div>
-        <h3 class="c-picto-block-title">Privatsphäre per Fingertipp</h3>
+        <h3 class="c-picto-block-title">Schnelle Verbindung</h3>
         <div class="c-picto-block-body">
-          <p>Mozillas Virtuelles Privates Netzwerk (VPN) nutzt die modernste Verschlüsselungstechnologie, um dir eine sichere, schnelle und zuverlässige Verbindung zum Internet zu bieten.</p>
+          <p>Unsere mit WireGuard®-Protokoll betriebenen Server in über 30 Ländern sind auf Geschwindigkeit ausgelegt, damit du wie gewohnt streamen, downloaden und spielen kannst.</p>
         </div>
       </div>
 
       <div class="c-picto-block">
         <div class="c-picto-block-image">
-          {% include 'firefox/welcome/includes/page9/heart.svg' %}
+          {% include 'firefox/welcome/includes/page9/illo-vpn-lock.svg' %}
         </div>
-        <h3 class="c-picto-block-title">Ein Name, der Vertrauen schafft</h3>
+        <h3 class="c-picto-block-title">Sicher ist sicher</h3>
         <div class="c-picto-block-body">
-          <p>Mozilla setzt sich seit über 20 Jahren für Online-Datenschutz ein und kämpft für ein besseres und gesünderes Internet für alle Menschen. Wir werden von einer gemeinnützigen Organisation unterstützt. Alles, was wir machen, ist Teil unserer Mission und folgt unseren <a href="{{ url('mozorg.about.manifesto') }}">Grundsätzen</a>.</p>
+          <p>Wir verschlüsseln deine Netzwerkaktivitäten und verbergen deine IP-Adresse. Wir führen keine Protokolle jeglicher Art und teilen deine Netzwerkdaten nicht mit anderen.</p>
         </div>
       </div>
     </div>

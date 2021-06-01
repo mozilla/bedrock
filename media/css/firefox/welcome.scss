@@ -7,6 +7,7 @@ $image-path: '/media/protocol/img';
 
 @import '../../protocol/css/includes/lib';
 @import '../../protocol/css/components/modal';
+@import '../../protocol/css/components/inline-list';
 
 //* -------------------------------------------------------------------------- */
 // Smooth Scroll
@@ -62,6 +63,13 @@ html {
     .welcome-page4 & {
         background: $color-orange-70 radial-gradient(circle at 60% 100%, $color-yellow-50 5%, $color-orange-70 94%);
     }
+
+    .welcome-page9 & {
+        .mzp-l-content {
+            padding-bottom: 0;
+            padding-top: 0;
+        }
+    }
 }
 
 .mzp-c-hero-body {
@@ -82,7 +90,11 @@ html {
         padding-left: 0;
     }
 
-    .welcome-page9 &,
+    .welcome-page9 & {
+        max-width: $content-lg;
+        padding-top: 0;
+    }
+
     .welcome-page10 & {
         padding-top: 0;
     }
@@ -152,6 +164,11 @@ html {
 .mzp-c-hero-desc {
     @include text-body-lg;
     margin-bottom: $layout-sm;
+
+    .welcome-page9 & {
+        margin: 0 auto $layout-sm;
+        max-width: $content-sm;
+    }
 }
 
 //* -------------------------------------------------------------------------- */
@@ -183,10 +200,9 @@ html {
 }
 
 .welcome-page9 {
-    .hero-image {
+    .product-logo {
         display: block;
-        margin: 0 auto;
-        max-width: 900px;
+        margin: $spacing-2xl auto;
     }
 }
 
@@ -617,5 +633,19 @@ html {
                 margin: 0 0 0 5%;
             }
         }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Featured Press Logos
+
+.welcome-page9-press-logos {
+    margin: 0 0 $layout-lg;
+    text-align: center;
+
+    .welcome-page9-press-logos-heading {
+        @include font-base;
+        @include font-size(18px);
+        font-weight: normal;
     }
 }
