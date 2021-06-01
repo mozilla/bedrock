@@ -37,13 +37,10 @@
 
 {% block page_css %}
   {{ css_bundle('home-en') }}
+  {{ css_bundle('home-mr1-promo') }}
 
   {% if switch('fundraising-banner-eoy2020') %}
     {{ css_bundle('fundraising-banner') }}
-  {% endif %}
-
-  {% if switch('firefox-mr1-launch') %}
-    {{ css_bundle('home-mr1-promo') }}
   {% endif %}
 {% endblock %}
 

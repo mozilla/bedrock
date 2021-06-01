@@ -709,7 +709,7 @@ button.mzp-c-cta-link {
 }
 
 .noodle-browser {
-    @include at2x('/media/img/firefox/new/desktop/hero.png', 512px, 371px);
+    @include at2x('/media/img/firefox/new/desktop/hero-mr1.png', 514px, 371px);
     background-color: $color-light-gray-10;
     border-radius: 4px;
     box-shadow: $box-shadow-md;
@@ -718,12 +718,7 @@ button.mzp-c-cta-link {
     max-width: none;
     position: absolute;
     top: 100px;
-    width: 512px;
-
-    .firefox-mr1 & {
-        @include at2x('/media/img/firefox/new/desktop/hero-mr1.png', 514px, 371px);
-        width: 514px;
-    }
+    width: 514px;
 }
 
 // shapes
@@ -746,16 +741,8 @@ button.mzp-c-cta-link {
 
 // colours
 
-.t-outline-purple {
-    border-color: $color-violet-60;
-}
-
 .t-outline-pink {
     border-color: #ff008b;
-}
-
-.t-fill-purple {
-    background: linear-gradient(to left, $color-violet-50, $color-violet-70);
 }
 
 .t-fill-pink-yellow {
@@ -766,20 +753,12 @@ button.mzp-c-cta-link {
     background: linear-gradient(to left, #ffde67, #ff671e);
 }
 
-.t-fill-orange {
-    background-color: #FF7139;
-}
-
 .t-fill-blue {
     background: linear-gradient(to left, #00e1ff, #005fe7);
 }
 
 .t-outline-yellow {
-    border-color: $color-orange-40;
-
-    .firefox-mr1 & {
-        border-color: #ffa437;
-    }
+    border-color: #ffa437;
 }
 
 // position & animation
@@ -810,7 +789,6 @@ button.mzp-c-cta-link {
     width: 165px;
 }
 
-.noodle-pill.t-outline-purple,
 .noodle-pill.t-outline-pink {
     animation: pill 7s infinite alternate;
     animation-delay: -5s;
@@ -820,7 +798,6 @@ button.mzp-c-cta-link {
     width: 348px;
 }
 
-.noodle-pill.t-fill-purple,
 .noodle-pill.t-fill-blue {
     animation: pill 7s infinite alternate;
     height: 145px;
@@ -942,13 +919,9 @@ button.mzp-c-cta-link {
 
 .t-compare .c-block-media-img {
     @include bidi(((background-position, top left, top right),));
-    background-image: url('/media/img/firefox/new/desktop/comparison-noodles.svg');
+    background-image: url('/media/img/firefox/new/desktop/comparison-noodles-mr1.svg');
     background-repeat: no-repeat;
     background-size: contain;
-
-    .firefox-mr1 & {
-        background-image: url('/media/img/firefox/new/desktop/comparison-noodles-mr1.svg');
-    }
 
     // IE 8 doesn't have the noodles, so don't push it down
     @media all and (min-width: 0) {
