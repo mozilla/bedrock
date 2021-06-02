@@ -111,6 +111,12 @@
   </div>
 {%- endmacro %}
 
+{% macro vpn_nav_cta_link() -%}
+<div class="vpn-nav-cta">
+  <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button mzp-t-secondary mzp-t-md">{{ ftl('vpn-shared-subscribe-link') }}</a>
+</div>
+{%- endmacro %}
+
 {% macro vpn_content_block(class_name=None) -%}
 <div class="vpn-content-block {% if class_name %}{{ class_name }}{% endif %}">
   <div class="vpn-content-block-container">

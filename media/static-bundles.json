@@ -845,6 +845,15 @@
         "css/products/vpn/invite.scss"
       ],
       "name": "mozilla-vpn-invite"
+    },
+    {
+      "files": [
+        "css/products/vpn/components/hero.scss",
+        "css/products/vpn/components/block.scss",
+        "css/products/vpn/common.scss",
+        "css/products/vpn/article.scss"
+      ],
+      "name": "mozilla-vpn-article"
     }
   ],
   "js": [
@@ -1543,6 +1552,14 @@
         "js/products/vpn/invite.js"
       ],
       "name": "mozilla-vpn-invite"
+    },
+    {
+      "files": [
+        "js/base/mozilla-fxa-product-button.js",
+        "js/products/vpn/geo.js",
+        "js/products/vpn/article.js"
+      ],
+      "name": "mozilla-vpn-article"
     }
   ]
 }
