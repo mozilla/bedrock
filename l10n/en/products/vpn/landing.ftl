@@ -49,6 +49,11 @@ vpn-langing-faq-uses-question-heading = What is a VPN and what are its uses?
 #   $url (url) - link to https://blog.mozilla.org/firefox/vpns-explained/
 vpn-landing-faq-uses-question-desc = As more of daily life takes place through the internet, online privacy and security become even more important. A VPN, <a href="{ $url }">Virtual Private Network</a>, can help you create a secure, private connection to the internet. It works by creating a “tunnel” between your device and the internet at large, and it protects you in two important ways:
 
+# Variables:
+#   $url (url) - link to https://www.mozilla.org/products/vpn/more/what-is-an-ip-address/
+vpn-landing-faq-uses-conceal-v2 = Concealing your true <a href="{ $url }">IP address</a>. This protects your identity and obscures your location.
+
+# Obsolete string
 vpn-landing-faq-uses-conceal = Concealing your true IP address. This protects your identity and obscures your location.
 vpn-landing-faq-uses-encrypt = Encrypting the traffic between you and your VPN provider so no one on your local network can decipher or modify it.
 
