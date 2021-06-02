@@ -27,4 +27,14 @@ urlpatterns = (
          ftl_files=['products/vpn/platforms/ios', 'products/vpn/shared']),
     page('vpn/mobile/android', 'products/vpn/platforms/android.html',
          ftl_files=['products/vpn/platforms/android', 'products/vpn/shared']),
+
+    # Evergreen SEO articles (issue #10224)
+    page('vpn/more/what-is-an-ip-address', 'products/vpn/more/ip-address.html',
+         ftl_files=['products/vpn/more/ip-address', 'products/vpn/shared']),
+    page('vpn/more/vpn-or-proxy', 'products/vpn/more/vpn-or-proxy.html',
+         ftl_files=['products/vpn/more/vpn-or-proxy', 'products/vpn/shared']),
+    page('vpn/more/what-is-a-vpn', 'products/vpn/more/what-is-a-vpn.html',
+         ftl_files=['products/vpn/more/what-is-a-vpn', 'products/vpn/shared']),
+    page('vpn/more/when-to-use-a-vpn', 'products/vpn/more/when-to-use.html',
+         ftl_files=['products/vpn/more/when-to-use-a-vpn', 'products/vpn/shared']),
 )
