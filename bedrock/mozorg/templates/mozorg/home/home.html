@@ -26,13 +26,10 @@
 
 {% block page_css %}
   {{ css_bundle('home') }}
+  {{ css_bundle('home-mr1-promo') }}
 
   {% if switch('fundraising-banner-eoy2020') %}
     {{ css_bundle('fundraising-banner') }}
-  {% endif %}
-
-  {% if switch('firefox-mr1-launch') %}
-    {{ css_bundle('home-mr1-promo') }}
   {% endif %}
 {% endblock %}
 
@@ -44,7 +41,7 @@
 
 {% block content %}
 <main role="main">
-  {% if ftl_has_messages('home-promo-title-lalo', 'home-promo-title-soraya', 'home-promo-title-gary', 'home-promo-title-ryan') and switch('firefox-mr1-launch') %}
+  {% if ftl_has_messages('home-promo-title-lalo', 'home-promo-title-soraya', 'home-promo-title-gary', 'home-promo-title-ryan') %}
     {%- set promos = [
       'mozorg/home/includes/mr1-promo-lalo.html',
       'mozorg/home/includes/mr1-promo-soraya.html',

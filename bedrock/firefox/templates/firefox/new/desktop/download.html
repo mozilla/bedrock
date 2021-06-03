@@ -14,8 +14,6 @@
 {% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-desktop' %}
 {% set ios_url = app_store_url('firefox') %}
 
-{% block body_class %}{% if switch('firefox-mr1-launch') %}firefox-mr1{% endif %}{% endblock %}
-
 {% block string_data %}{% endblock %}
 
 {% block extrahead %}
@@ -70,7 +68,6 @@
 
   {% block yandex %}{% endblock%}
 
-
   <section id="desktop-banner" class="c-block t-intro show-else mzp-has-media-hide-on-sm">
     <div class="c-block-container">
       <div class="c-block-body">
@@ -88,7 +85,6 @@
         </div>
       </div>
       <div class="c-block-media l-v-center">
-      {% if switch('firefox-mr1-launch') %}
         <div class="c-block-img">
           <div class="c-noodles">
             <!--[if gt IE 9]><!-->
@@ -109,28 +105,6 @@
             <!--<![endif]-->
           </div>
         </div>
-      {% else %}
-        <div class="c-block-img">
-          <div class="c-noodles">
-            <!--[if gt IE 9]><!-->
-            <div class="noodle-circle t-outline-yellow"></div>
-            <div class="noodle-svg">
-              <svg width="537" height="502" viewBox="0 0 537 502" xmlns="http://www.w3.org/2000/svg">
-                <linearGradient x1="41.712%" y1="55.612%" x2="124.707%" y2="67.296%" id="yellow">
-                  <stop stop-color="#FFA436" offset="0%" />
-                  <stop stop-color="#FFD567" offset="100%" />
-                </linearGradient>
-                <path transform="translate(-28 -3)" d="M243.358 14.088c38.422 22.008 52.309 70.656 31.478 109.807l-1.157 2.317c-19.906 37.529-6.25 84.093 31.015 104.71 37.264 20.618 84.018 7.645 105.08-29.189l1.39-2.316c22.219-38.688 71.519-52.587 110.866-30.811 39.58 22.007 53.93 72.046 31.941 111.66-64.807 116.99-212.013 159.151-328.667 94.286-117.116-64.865-159.472-212.201-94.665-329.19C152.396 5.98 201.464-8.383 241.043 12.698l1.158.695 1.157.695z" fill="url(#yellow)" />
-              </svg>
-            </div>
-            <div class="noodle-circle t-fill-orange"></div>
-            <div class="noodle-pill t-fill-purple"></div>
-            <div class="noodle-pill t-outline-purple"></div>
-            <div class="noodle-browser"></div>
-            <!--<![endif]-->
-          </div>
-        </div>
-      {% endif %}
       </div>
     </div>
   </section>
@@ -248,11 +222,7 @@
           <button id="protection-report" type="button" class="mzp-c-cta-link">{{ ftl('firefox-desktop-download-see-your-report') }}</button>
         </div>
         <div class="c-block-media l-v-end l-h-end l-media-constrain-on-sm">
-        {% if switch('firefox-mr1-launch') %}
           {{ high_res_img('img/firefox/new/desktop/block-mr1.jpg', {'width': '504', 'height': '343', 'alt': '', 'loading': 'lazy', 'class': 'c-block-media-img' }) }}
-        {% else %}
-          {{ high_res_img('img/firefox/new/desktop/block.jpg', {'width': '504', 'height': '343', 'alt': '', 'loading': 'lazy', 'class': 'c-block-media-img' }) }}
-        {% endif %}
         </div>
       </div>
     </div>
@@ -381,7 +351,6 @@
   <section class="mzp-l-content t-custom">
     <h2 class="mzp-c-section-heading mzp-has-zap-16">{{ ftl('firefox-desktop-download-make-firefox-your') }}</h2>
 
-  {% if switch('firefox-mr1-launch') %}
     <div class="c-screen">
       <!--[if gt IE 9]><!-->
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1242 532" width="1242" height="532">
@@ -409,48 +378,6 @@
         {{ high_res_img('img/firefox/new/desktop/screen-mr1.png', {'width': '1040', 'height': '412', 'loading': 'lazy', 'alt': ''}) }}
       </div>
     </div>
-  {% else %}
-    <div class="c-screen">
-      <!--[if gt IE 9]><!-->
-      <svg width="1242px" height="522px" viewBox="0 0 1242 522" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <title></title>
-        <defs>
-            <linearGradient x1="9.3376494%" y1="15.0989791%" x2="86.7000747%" y2="77.4277888%" id="linearGradient-1">
-                <stop stop-color="#FFA436" offset="0%"></stop>
-                <stop stop-color="#FFA000" offset="100%"></stop>
-            </linearGradient>
-            <linearGradient x1="94.8693762%" y1="42.9820984%" x2="17.4848048%" y2="59.6743026%" id="linearGradient-2">
-                <stop stop-color="#9059FF" offset="0%"></stop>
-                <stop stop-color="#621ED3" offset="100%"></stop>
-            </linearGradient>
-            <linearGradient x1="104.799342%" y1="49.2507815%" x2="62.1992857%" y2="43.1006363%" id="linearGradient-3">
-                <stop stop-color="#F80089" offset="0%"></stop>
-                <stop stop-color="#FF49AC" offset="100%"></stop>
-            </linearGradient>
-        </defs>
-        <g id="/firefox/new/redesign" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <g id="/new-1312-v1" transform="translate(-28.000000, -5560.000000)">
-            <g id="section-customize" transform="translate(0.000000, 5450.000000)">
-              <g id="browser-chrome" transform="translate(0.000000, 94.000000)">
-                <g id="noodles" transform="translate(-23.000000, -36.000000)">
-                  <path d="M1252.05727,285.376864 C1256.90635,288.109773 1258.65902,294.15094 1256.03001,299.012641 L1255.88395,299.300315 C1253.37178,303.960644 1255.09525,309.742904 1259.79826,312.303208 C1264.50128,314.863512 1270.40196,313.252534 1273.06018,308.678508 L1273.23545,308.390833 C1276.03973,303.586667 1282.26174,301.860619 1287.22765,304.564761 C1292.22278,307.29767 1294.03388,313.511441 1291.25881,318.430677 C1283.07965,332.958245 1264.50128,338.193923 1249.77879,330.139034 C1234.99789,322.084145 1229.65222,303.788039 1237.83138,289.260471 C1240.57724,284.370003 1246.77003,282.58642 1251.76516,285.204259 L1251.91122,285.290562 L1252.05727,285.376864 Z" id="Fill-1-Copy-2" stroke="#FFBA2D" transform="translate(1263.280001, 308.960001) rotate(3.000000) translate(-1263.280001, -308.960001) "></path>
-                  <circle id="Oval-2" fill="url(#linearGradient-1)" cx="1151.48" cy="463.920018" r="120.480005"></circle>
-                  <rect id="Rectangle" fill="url(#linearGradient-2)" transform="translate(339.271857, 314.240005) rotate(-40.000000) translate(-339.271857, -314.240005) " x="2.31184349" y="188" width="673.920027" height="252.48001" rx="126.120973"></rect>
-                  <rect id="Rectangle-Copy-28" stroke="#FF008B" transform="translate(413.983829, 274.584994) rotate(-19.000000) translate(-413.983829, -274.584994) " x="105.483829" y="173.30499" width="617" height="202.560008" rx="101.280004"></rect>
-                  <circle id="Oval" fill="#FF008B" cx="864.557532" cy="131.760005" r="10.0800004"></circle>
-                  <rect id="Rectangle-Copy-27" fill="url(#linearGradient-3)" transform="translate(953.200012, 316.080012) rotate(-33.000000) translate(-953.200012, -316.080012) " x="646" y="189.840007" width="614.400024" height="252.48001" rx="126.120973"></rect>
-                </g>
-              </g>
-            </g>
-          </g>
-        </g>
-      </svg>
-      <!--<![endif]-->
-      <div class="c-screenshot">
-        {{ high_res_img('img/firefox/new/desktop/screen.png', {'width': '1040', 'height': '412', 'loading': 'lazy', 'alt': ''}) }}
-      </div>
-    </div>
-  {% endif %}
 
     <ul class="c-trio">
       <li>
@@ -503,11 +430,7 @@
       </div>
 
       <div class="mzp-c-card js-animate">
-      {% if switch('firefox-mr1-launch') %}
         {{ picture('contain-mr1', '131', 138) }}
-      {% else %}
-        {{ picture('contain', '131', 138) }}
-      {% endif %}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-facebook-container') }}</h3>
         {% set addon_attrs = 'href="https://addons.mozilla.org/firefox/addon/facebook-container/%s" rel="external noopener" data-cta-type="link" data-cta-text="Download this browser extension"'|safe|format(referrals) %}
         <p>{{ ftl('firefox-desktop-download-download-this-browser', attrs=addon_attrs) }}</p>
@@ -521,11 +444,7 @@
       </div>
 
       <div class="mzp-c-card js-animate">
-      {% if switch('firefox-mr1-launch') %}
         {{ picture('screenshots-mr1', '131', 138) }}
-      {% else %}
-        {{ picture('screenshots', '131', 138) }}
-      {% endif %}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-screenshots') }}</h3>
         {% set screenshot_attrs = 'href="https://support.mozilla.org/kb/firefox-screenshots%s" rel="external noopener" data-cta-type="link" data-cta-text="screenshot"'|safe|format(referrals) %}
         <p>{{ ftl('firefox-desktop-download-grab-a-high', attrs=screenshot_attrs) }}</p>
@@ -539,11 +458,7 @@
       </div>
 
       <div class="mzp-c-card js-animate">
-      {% if switch('firefox-mr1-launch') %}
         {{ picture('pinp-mr1', '143', 138) }}
-      {% else %}
-        {{ picture('pinp', '143', 138) }}
-      {% endif %}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-picture-in-picture') }}</h3>
         <p>{{ ftl('firefox-desktop-download-from-watching-a') }}</p>
       </div>
