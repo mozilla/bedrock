@@ -5,48 +5,31 @@
 /**
  * General DOM ready handler applied to all pages in base template.
  */
-(function($) {
+(function() {
     'use strict';
 
-    // page must be loaded and ready before onWindowLoad fires
-    var loaded = false;
-    var ready = false;
+    if (typeof Mozilla.Utils !== 'undefined') {
+        Mozilla.Utils.onDocumentReady(function() {
+            var utils = Mozilla.Utils;
 
-    function onWindowLoad() {
-        $('html').addClass('loaded');
+            utils.initMobileDownloadLinks();
+            utils.trackDownloadThanksButton();
+
+            /* Bug 1264843: In partner distribution of desktop Firefox, switch the
+            downloads to corresponding partner build of Firefox for Android. */
+            if (typeof Mozilla.Client !== 'undefined') {
+                var client = Mozilla.Client;
+
+                if (client.isFirefoxDesktop) {
+                    client.getFirefoxDetails(utils.maybeSwitchToChinaRepackImages);
+                }
+            }
+        });
     }
 
-    $(document).ready(function() {
+    // The `loaded` class is used mostly as a signal for functional tests to run.
+    window.addEventListener('load', function() {
+        document.getElementsByTagName('html')[0].classList.add('loaded');
+    }, false);
 
-        var client = Mozilla.Client;
-        var utils = Mozilla.Utils;
-
-        utils.initMobileDownloadLinks();
-        utils.trackDownloadThanksButton();
-
-        /* Bug 1264843: In partner distribution of desktop Firefox, switch the
-        downloads to corresponding partner build of Firefox for Android. */
-        if (client.isFirefoxDesktop) {
-            client.getFirefoxDetails(utils.maybeSwitchToChinaRepackImages);
-        }
-
-        // if window.load happened already, fire onWindowLoad
-        if (loaded) {
-            onWindowLoad();
-        }
-
-        // note that document.ready happened to inform window.load
-        ready = true;
-    });
-
-    $(window).on('load', function () {
-        // if document.ready happened already, fire onWindowLoad
-        if (ready) {
-            onWindowLoad();
-        }
-
-        // note that window.load happened in case document.ready hasn't
-        // finished yet
-        loaded = true;
-    });
-})(window.jQuery);
+})();
