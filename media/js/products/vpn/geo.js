@@ -17,8 +17,9 @@ if (typeof window.Mozilla === 'undefined') {
 
     VPN.getLocation = function() {
         // should /country-code.json be slow to load,
-        // just show the regular messaging after 6 seconds waiting.
-        _geoTimeout = setTimeout(VPN.onRequestComplete, 6000);
+        // just show the regular messaging after 10 seconds waiting.
+        var timeoutValue = 10000;
+        _geoTimeout = setTimeout(VPN.onRequestComplete, timeoutValue);
 
         var xhr = new window.XMLHttpRequest();
 
@@ -40,7 +41,7 @@ if (typeof window.Mozilla === 'undefined') {
 
         xhr.open('GET', '/country-code.json');
         // must come after open call above for IE 10 & 11
-        xhr.timeout = 6000;
+        xhr.timeout = timeoutValue;
         xhr.send();
     };
 
@@ -49,7 +50,7 @@ if (typeof window.Mozilla === 'undefined') {
      * @param {String} location e.g. 'https://www-dev.allizom.org/en-US/products/vpn/?geo=de'
      */
     VPN.hasGeoOverride = function(location) {
-        var loc = location || window.location.search;
+        var loc = location || window.location.href;
         if (loc.indexOf('geo=') !== -1 && loc.indexOf('www.mozilla.org') === -1) {
             var urlRe = /geo=([a-z]{2})/i;
             var match = urlRe.exec(loc);
@@ -141,9 +142,8 @@ if (typeof window.Mozilla === 'undefined') {
             VPN.showJoinWaitList();
         } else {
             // If we can't determine someone's country then fall back to page language.
-            // Both /de/ and /fr/ get variable pricing, and the rest get fixed.
             var lang = document.getElementsByTagName('html')[0].getAttribute('lang') || language;
-            if (lang === 'de' || lang === 'fr') {
+            if (lang === 'de' || lang === 'fr' || document.body.classList.contains('wave-1-variable-pricing')) {
                 VPN.showVariablePricing();
             } else {
                 VPN.showFixedPricing();
@@ -173,6 +173,7 @@ if (typeof window.Mozilla === 'undefined') {
     VPN.showVariablePricing = function() {
         document.body.classList.add('show-vpn-variable-pricing');
         VPN.renderScrollToPricingButtons();
+        VPN.setDisplayPrice();
         VPN.setSubscriptionButtons();
 
         // support custom callback for geo-location check
@@ -196,7 +197,15 @@ if (typeof window.Mozilla === 'undefined') {
 
         for (var i = 0; i < subscribeLinks.length; i++) {
             var href = subscribeLinks[i].href;
-            var plan = subscribeLinks[i].getAttribute('data-plan-' + VPN.countryCode);
+            var plan;
+
+            // Use Euro plan for DE/FR else fallback to US$ pricing.
+            if (VPN.countryCode === 'de' || VPN.countryCode === 'fr') {
+                plan = subscribeLinks[i].getAttribute('data-plan-' + VPN.countryCode);
+            } else {
+                plan = subscribeLinks[i].getAttribute('data-plan-us');
+            }
+
             subscribeLinks[i].href = VPN.updateSubscriptionURL(plan, href);
         }
     };
@@ -214,6 +223,30 @@ if (typeof window.Mozilla === 'undefined') {
         }
 
         return href;
+    };
+
+    // Sets the displayed subscription price based on geo-location.
+    VPN.setDisplayPrice = function() {
+        var displayPrice = document.querySelectorAll('.js-vpn-monthly-price-display, .js-vpn-total-price-display, .js-vpn-saving-display');
+
+        if (typeof VPN.countryCode !== 'string') {
+            return;
+        }
+
+        for (var i = 0; i < displayPrice.length; i++) {
+            var price;
+
+            // Use Euro plan for DE/FR else fallback to US$ pricing.
+            if (VPN.countryCode === 'de' || VPN.countryCode === 'fr') {
+                price = displayPrice[i].getAttribute('data-price-euro');
+            } else {
+                price = displayPrice[i].getAttribute('data-price-usd');
+            }
+
+            if (price) {
+                displayPrice[i].innerHTML = price;
+            }
+        }
     };
 
     VPN.renderScrollToPricingButtons = function() {

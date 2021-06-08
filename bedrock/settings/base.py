@@ -1290,24 +1290,69 @@ VPN_FIXED_PRICE_MONTHLY_USD = config('VPN_FIXED_PRICE_MONTHLY_USD',
 # Plan IDs for VPN variable price subscriptions in Euros.
 VPN_VARIABLE_PRICING = {
     'de': {
-        '12-month': 'price_1IXw5oKb9q6OnNsLPMkWOid7' if DEV else 'price_1IgwblJNcmPzuWtRynC7dqQa',
-        '6-month': 'price_1IXw5NKb9q6OnNsLLIyYuhWF' if DEV else 'price_1IgwaHJNcmPzuWtRuUfSR4l7',
-        'monthly': 'price_1IXw4eKb9q6OnNsLqnVP4PvO' if DEV else 'price_1IgwZVJNcmPzuWtRg9Wssh2y'
+        '12-month': {
+            'id': 'price_1IXw5oKb9q6OnNsLPMkWOid7' if DEV else 'price_1IgwblJNcmPzuWtRynC7dqQa',
+            'price': '4,99 €',
+            'total': '59,88 €',
+            'saving': 50
+        },
+        '6-month': {
+            'id': 'price_1IXw5NKb9q6OnNsLLIyYuhWF' if DEV else 'price_1IgwaHJNcmPzuWtRuUfSR4l7',
+            'price': '6,99 €',
+            'total': '41,94 €',
+            'saving': 30
+        },
+        'monthly': {
+            'id': 'price_1IXw4eKb9q6OnNsLqnVP4PvO' if DEV else 'price_1IgwZVJNcmPzuWtRg9Wssh2y',
+            'price': '9,99‎ €',
+            'total': None,
+            'saving': None
+        }
     },
     'fr': {
-        '12-month': 'price_1IXw5oKb9q6OnNsLPMkWOid7' if DEV else 'price_1IgnlcJNcmPzuWtRjrNa39W4',
-        '6-month': 'price_1IXw5NKb9q6OnNsLLIyYuhWF' if DEV else 'price_1IgoxGJNcmPzuWtRG7l48EoV',
-        'monthly': 'price_1IXw4eKb9q6OnNsLqnVP4PvO' if DEV else 'price_1IgowHJNcmPzuWtRzD7SgAYb'
+        '12-month': {
+            'id': 'price_1IXw5oKb9q6OnNsLPMkWOid7' if DEV else 'price_1IgnlcJNcmPzuWtRjrNa39W4',
+            'price': '4,99 €',
+            'total': '59,88 €',
+            'saving': 50
+        },
+        '6-month': {
+            'id': 'price_1IXw5NKb9q6OnNsLLIyYuhWF' if DEV else 'price_1IgoxGJNcmPzuWtRG7l48EoV',
+            'price': '6,99 €',
+            'total': '41,94 €',
+            'saving': 30
+        },
+        'monthly': {
+            'id': 'price_1IXw4eKb9q6OnNsLqnVP4PvO' if DEV else 'price_1IgowHJNcmPzuWtRzD7SgAYb',
+            'price': '9,99‎ €',
+            'total': None,
+            'saving': None
+        }
+    },
+    'us': {
+        '12-month': {
+            'id': 'price_1IXw5oKb9q6OnNsLPMkWOid7' if DEV else 'price_1Iw85dJNcmPzuWtRyhMDdtM7',
+            'price': 'US$4.99',
+            'total': 'US$59.88',
+            'saving': 50
+        },
+        '6-month': {
+            'id': 'price_1IXw5NKb9q6OnNsLLIyYuhWF' if DEV else 'price_1Iw87cJNcmPzuWtRefuyqsOd',
+            'price': 'US$7.99',
+            'total': 'US$47.94',
+            'saving': 20
+        },
+        'monthly': {
+            'id': 'price_1IXw4eKb9q6OnNsLqnVP4PvO' if DEV else 'price_1Iw7qSJNcmPzuWtRMUZpOwLm',
+            'price': 'US$9.99',
+            'total': None,
+            'saving': None
+        }
     }
 }
 
 # Product variables used in VPN landing page(s)
 VPN_FIXED_MONTHLY_PRICE = 'US$4.99'
-VPN_VARIABLE_MONTHLY_PRICE = '9,99‎ €'
-VPN_VARIABLE_6_MONTH_PRICE = '6,99 €'
-VPN_VARIABLE_12_MONTH_PRICE = '4,99 €'
-VPN_VARIABLE_6_MONTH_PRICE_TOTAL = '41,94 €'
-VPN_VARIABLE_12_MONTH_PRICE_TOTAL = '59,88 €'
 
 # Mozilla VPN Geo restrictions
 # https://github.com/mozilla-services/guardian-website/blob/master/server/constants.ts
