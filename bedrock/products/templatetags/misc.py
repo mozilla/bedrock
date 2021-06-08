@@ -85,8 +85,8 @@ def vpn_subscribe_link(ctx, entrypoint, link_text, plan=None, class_name=None, l
         plan_attributes = {}
 
         # HTML data-attributes are used by client side JS to set the correct plan ID based on geo.
-        for country in settings.VPN_VARIABLE_PRICING.items():
-            plan_attributes.update({f'data-plan-{country[0]}': country[1][plan]['id']})
+        for country, attrs in settings.VPN_VARIABLE_PRICING.items():
+            plan_attributes.update({f'data-plan-{country}': attrs[plan]['id']})
 
     # All other subscription links default to fixed monthly pricing in $US.
     else:
