@@ -993,6 +993,13 @@
     },
     {
       "files": [
+        "js/firefox/new/common/thanks.js",
+        "js/firefox/new/common/thanks-amo-exp.js"
+      ],
+      "name": "firefox_new_thanks_amo_exp"
+    },
+    {
+      "files": [
         "js/firefox/new/yandex/show-yandex.js",
         "js/firefox/new/yandex/show-yandex-init.js"
       ],

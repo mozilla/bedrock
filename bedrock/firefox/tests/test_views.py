@@ -519,7 +519,27 @@ class TestFirefoxNew(TestCase):
             '/firefox/download/thanks/?scene=2&dude=abides'
         )
 
-    # yandex - issue 5635
+    # begin AMO experiment - issue 10207
+
+    @patch.dict(os.environ, SWITCH_NEW_REDESIGN='True')
+    def test_thanks_amo_experiment_en(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=amo')
+        req.locale = 'en-US'
+        view = views.DownloadThanksView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/new/desktop/thanks-amo-exp.html']
+
+    @patch.dict(os.environ, SWITCH_NEW_REDESIGN='True')
+    def test_thanks_amo_experiment_locales(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=amo')
+        req.locale = 'de'
+        view = views.DownloadThanksView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/new/desktop/thanks.html']
+
+    # begin yandex - issue 5635
 
     @patch.dict(os.environ, SWITCH_FIREFOX_YANDEX='True')
     def test_yandex_download(self, render_mock):
@@ -559,6 +579,8 @@ class TestFirefoxNew(TestCase):
         view(req)
         template = render_mock.call_args[0][1]
         assert template == ['firefox/new/desktop/download.html']
+
+    # end yandex - issue 5635
 
     @patch.dict(os.environ, EXP_CONFIG_FX_NEW='de:100')
     def test_experiment_redirect(self, render_mock):
