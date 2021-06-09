@@ -726,6 +726,12 @@
     },
     {
       "files": [
+        "css/firefox/welcome10.scss"
+      ],
+      "name": "firefox_welcome_page10"
+    },
+    {
+      "files": [
         "css/firefox/unfck.scss"
       ],
       "name": "firefox-unfck"
@@ -893,6 +899,14 @@
       ],
       "name": "firefox_welcome_page8_traffic_cop"
     },
+    {
+      "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/firefox/welcome/welcome10-experiment.js"
+      ],
+      "name": "firefox_welcome_page10_experiment"
+    },
+
     {
       "files": [
         "js/firefox/privacy/messaging-experiment.js"

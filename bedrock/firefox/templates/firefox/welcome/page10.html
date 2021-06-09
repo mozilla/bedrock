@@ -2,8 +2,6 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import hero with context %}
-
 {% extends "firefox/welcome/base.html" %}
 
 {% block page_title %}Firefox protects your browsing. Mozilla VPN protects you everywhere{% endblock %}
@@ -12,52 +10,82 @@
 
 {% block body_class %}welcome-page10{% endblock %}
 
+{% block experiments %}
+  {% if switch('welcome-10-experiment', ['en-US', 'en-CA']) %}
+    {{ js_bundle('firefox_welcome_page10_experiment') }}
+  {% endif %}
+{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_welcome_page10') }}
+{% endblock %}
+
 {% set _entrypoint = 'mozilla.org-firefox-welcome-10' %}
 {% set _utm_campaign = 'welcome-10-vpn' %}
-{% set _source = '?source=welcome10' %}
+
+{% if variation == '1' %}
+  {% set title = 'Get a <strong>secure connection</strong> on every device'|safe %}
+  {% set desc = 'Protect your internet connection — on your computer, your tablet and even your phone — with this limited-time offer.' %}
+  {% set source = '?source=welcome10-exp-v1' %}
+  {% set cta_text = 'Get Mozilla VPN' %}
+{% elif variation == '2' %}
+  {% set title = 'Blur your location online for <strong>next-level privacy</strong>'|safe %}
+  {% set desc = 'Get Mozilla VPN for ' + vpn_monthly_price(plan='12-month', lang=LANG) + ' — this limited-time offer ends soon.' %}
+  {% set source = '?source=welcome10-exp-v2' %}
+  {% set cta_text = 'Start Now' %}
+{% else %}
+  {% set title = 'Firefox protects your browsing. <strong>Mozilla VPN</strong> protects you everywhere.'|safe %}
+  {% set desc = 'Mozilla VPN (Virtual Private Network) protects your entire internet connection on your computer, your tablet, and even your phone. For even more security, it comes with a 30-day money back guarantee.' %}
+  {% set source = '?source=welcome10' %}
+  {% set cta_text = 'Get Mozilla VPN' %}
+{% endif %}
 
 {% block shoulder_cta %}{% endblock %}
 
 {% block content_intro %}
-  <div class="hero-image">
-    {% include 'firefox/welcome/includes/page10/vpn-logo.svg' %}
-  </div>
+  <section class="c-content-main">
+    <div class="mzp-l-content mzp-t-content-md">
+    {% if variation in ['1', '2'] %}
+      <img class="c-main-image" src="{{ static('protocol/img/logos/mozilla/vpn/logo-word-hor-stack.svg') }}" width="200" alt="">
+    {% else %}
+      <img class="c-main-image" src="{{ static('protocol/img/logos/mozilla/vpn/logo-flat.svg') }}" width="90" alt="">
+    {% endif %}
 
-  {% call hero(
-    title='Firefox protects your browsing. <strong>Mozilla VPN</strong> protects you everywhere.'|safe,
-    desc='Mozilla VPN (Virtual Private Network) protects your entire internet connection on your computer, your tablet, and even your phone. For even more security, it comes with a 30-day money back guarantee.',
-    class='mzp-t-firefox',
-    include_cta=True,
-    heading_level=1
-  ) %}
+    {% if variation == '1' %}
+      <p class="c-pre-title">{{ vpn_monthly_price(plan='12-month', lang=LANG) }} — offer ends soon</p>
+    {% endif %}
 
-  <p class="primary-cta">
-    <a href="{{ url('products.vpn.landing') }}{{ _source }}" class="mzp-c-button mzp-t-product mzp-t-xl" data-cta-text="Get Mozilla VPN Now" data-cta-type="button">Get Mozilla VPN Now</a>
-  </p>
-  {% endcall %}
+      <h1 class="c-main-title">{{ title }}</h1>
+      <p class="c-main-tagline">{{ desc }}</p>
+
+      <div class="c-main-cta">
+        <a href="{{ url('products.vpn.landing') }}{{ source }}#pricing" class="mzp-c-button mzp-t-product mzp-t-xl" data-cta-text="{{ cta_text }}" data-cta-type="button">{{ cta_text }}</a>
+      </div>
+    </div>
+  </section>
 {% endblock %}
 
 {% block content_body %}
 <section class="page-body">
-  <div class="mzp-l-content">
-    <div class="l-columns-two">
+  <div class="mzp-l-content mzp-t-content-md">
+    <div class="mzp-l-columns mzp-t-columns-two">
 
-      <div class="c-picto-block">
-        <div class="c-picto-block-image">
+      <div class="mzp-c-picto">
+        <div class="mzp-c-picto-image">
           {% include 'firefox/welcome/includes/page10/laptop.svg' %}
         </div>
-        <h3 class="c-picto-block-title">It’s fast, very fast</h3>
-        <div class="c-picto-block-body">
+        <h3 class="mzp-c-picto-title">It’s fast, very fast</h3>
+        <div class="mzp-c-picto-body">
           <p>Our WireGuard® powered servers are built for speed so you can stream, download, and game as usual.</p>
         </div>
       </div>
 
-      <div class="c-picto-block">
-        <div class="c-picto-block-image">
+      <div class="mzp-c-picto">
+        <div class="mzp-c-picto-image">
           {% include 'firefox/welcome/includes/page10/mobile.svg' %}
         </div>
-        <h3 class="c-picto-block-title">Internet without a trace</h3>
-        <div class="c-picto-block-body">
+        <h3 class="mzp-c-picto-title">Internet without a trace</h3>
+        <div class="mzp-c-picto-body">
           <p>We never log, track, or share your network data — your online activity won’t leave a footprint on our VPN servers.</p>
         </div>
       </div>
