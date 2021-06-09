@@ -389,51 +389,6 @@
     {
       "files": [
         "css/protocol/components/send-to-device.scss",
-        "css/firefox/whatsnew/whatsnew-79.scss"
-      ],
-      "name": "firefox_whatsnew_79"
-    },
-    {
-      "files": [
-        "css/protocol/components/send-to-device.scss",
-        "css/firefox/whatsnew/whatsnew-80.scss"
-      ],
-      "name": "firefox_whatsnew_80"
-    },
-    {
-      "files": [
-        "css/protocol/components/send-to-device.scss",
-        "css/firefox/whatsnew/whatsnew-81.scss"
-      ],
-      "name": "firefox_whatsnew_81"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-82.scss"
-      ],
-      "name": "firefox_whatsnew_82"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-83.scss"
-      ],
-      "name": "firefox_whatsnew_83"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-84.scss"
-      ],
-      "name": "firefox_whatsnew_84"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-85.scss"
-      ],
-      "name": "firefox_whatsnew_85"
-    },
-    {
-      "files": [
-        "css/protocol/components/send-to-device.scss",
         "css/firefox/whatsnew/whatsnew-86.scss"
       ],
       "name": "firefox_whatsnew_86"
@@ -948,52 +903,6 @@
       "files": [
         "js/firefox/whatsnew/up-to-date.js",
         "js/libs/spin.min.js",
-        "protocol/js/protocol-modal.js",
-        "js/base/send-to-device.js",
-        "js/firefox/whatsnew/whatsnew-79.js"
-      ],
-      "name": "firefox_whatsnew_79"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/up-to-date.js",
-        "js/libs/spin.min.js",
-        "js/base/send-to-device.js",
-        "js/firefox/whatsnew/whatsnew-80.js"
-      ],
-      "name": "firefox_whatsnew_80"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/up-to-date.js",
-        "js/libs/spin.min.js",
-        "js/base/send-to-device.js",
-        "js/firefox/whatsnew/whatsnew-81.js"
-      ],
-      "name": "firefox_whatsnew_81"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/up-to-date.js"
-      ],
-      "name": "firefox_whatsnew_82"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/up-to-date.js"
-      ],
-      "name": "firefox_whatsnew_83"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/up-to-date.js"
-      ],
-      "name": "firefox_whatsnew_84"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/up-to-date.js",
-        "js/libs/spin.min.js",
         "js/base/send-to-device.js",
         "js/firefox/whatsnew/whatsnew-86.js"
       ],
@@ -1020,13 +929,6 @@
         "js/firefox/whatsnew/whatsnew-88-en.js"
       ],
       "name": "firefox_whatsnew_88_en"
-    },
-    {
-      "files": [
-        "js/libs/mozilla-traffic-cop.js",
-        "js/firefox/whatsnew/whatsnew-88-exp.js"
-      ],
-      "name": "firefox_whatsnew_88_exp"
     },
     {
       "files": [
