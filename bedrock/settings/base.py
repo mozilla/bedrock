@@ -141,6 +141,47 @@ default_locales_repo = 'https://github.com/mozilla-l10n/{}'.format(default_local
 LOCALES_REPO = config('LOCALES_REPO', default=default_locales_repo)
 GITHUB_REPO = 'https://github.com/mozilla/bedrock'
 
+# Global L10n files.
+DOTLANG_FILES = ['main']
+FLUENT_DEFAULT_FILES = [
+    'banners/firefox-daylight-promo',
+    'banners/fundraising',
+    'brands',
+    'download_button',
+    'firefox/sticky-promo',
+    'footer',
+    'fxa_form',
+    'mozorg/about/shared',
+    'navigation',
+    'navigation_v2',
+    'newsletter_form',
+    'send_to_device',
+    'sub_navigation',
+    'ui',
+]
+
+FLUENT_DEFAULT_PERCENT_REQUIRED = config('FLUENT_DEFAULT_PERCENT_REQUIRED', default='80', parser=int)
+FLUENT_REPO = config('FLUENT_REPO', default='mozmeao/www-l10n')
+FLUENT_REPO_URL = f'https://github.com/{FLUENT_REPO}'
+FLUENT_REPO_PATH = DATA_PATH / 'www-l10n'
+# will be something like "<github username>:<github token>"
+FLUENT_REPO_AUTH = config('FLUENT_REPO_AUTH', default='')
+FLUENT_LOCAL_PATH = ROOT_PATH / 'l10n'
+FLUENT_L10N_TEAM_REPO = config('FLUENT_L10N_TEAM_REPO', default='mozilla-l10n/www-l10n')
+FLUENT_L10N_TEAM_REPO_URL = f'https://github.com/{FLUENT_L10N_TEAM_REPO}'
+FLUENT_L10N_TEAM_REPO_PATH = DATA_PATH / 'l10n-team'
+# 10 seconds during dev and 10 min in prod
+FLUENT_CACHE_TIMEOUT = config('FLUENT_CACHE_TIMEOUT', default='10' if DEBUG else '600', parser=int)
+# order matters. first sting found wins.
+FLUENT_PATHS = [
+    # local FTL files
+    FLUENT_LOCAL_PATH,
+    # remote FTL files from l10n team
+    FLUENT_REPO_PATH,
+]
+FLUENT_MIGRATIONS = 'lib.fluent_migrations'
+FLUENT_MIGRATIONS_PATH = ROOT_PATH / 'lib' / 'fluent_migrations'
+
 # templates to exclude from having an "edit this page" link in the footer
 # these are typically ones for which most of the content is in the DB
 EXCLUDE_EDIT_TEMPLATES = [
@@ -159,12 +200,17 @@ EXCLUDE_EDIT_TEMPLATES = [
     'security/product-advisories.html',
     'security/known-vulnerabilities.html',
 ]
+IGNORE_LANG_DIRS = [
+    '.git',
+    'configs',
+    'metadata',
+]
 
 
 def get_dev_languages():
     try:
-        return [lang.name for lang in LOCALES_PATH.iterdir()
-                if lang.is_dir() and lang.name != 'templates']
+        return [lang.name for lang in FLUENT_REPO_PATH.iterdir()
+                if lang.is_dir() and lang.name not in IGNORE_LANG_DIRS]
     except OSError:
         # no locale dir
         return list(PROD_LANGUAGES)
@@ -243,47 +289,6 @@ LANGUAGES = lazy(lazy_langs, dict)()
 FEED_CACHE = 3900
 # 30 min during dev and 10 min in prod
 DOTLANG_CACHE = config('DOTLANG_CACHE', default='1800' if DEBUG else '600', parser=int)
-
-# Global L10n files.
-DOTLANG_FILES = ['main']
-FLUENT_DEFAULT_FILES = [
-    'banners/firefox-daylight-promo',
-    'banners/fundraising',
-    'brands',
-    'download_button',
-    'firefox/sticky-promo',
-    'footer',
-    'fxa_form',
-    'mozorg/about/shared',
-    'navigation',
-    'navigation_v2',
-    'newsletter_form',
-    'send_to_device',
-    'sub_navigation',
-    'ui',
-]
-
-FLUENT_DEFAULT_PERCENT_REQUIRED = config('FLUENT_DEFAULT_PERCENT_REQUIRED', default='80', parser=int)
-FLUENT_REPO = config('FLUENT_REPO', default='mozmeao/www-l10n')
-FLUENT_REPO_URL = f'https://github.com/{FLUENT_REPO}'
-FLUENT_REPO_PATH = DATA_PATH / 'www-l10n'
-# will be something like "<github username>:<github token>"
-FLUENT_REPO_AUTH = config('FLUENT_REPO_AUTH', default='')
-FLUENT_LOCAL_PATH = ROOT_PATH / 'l10n'
-FLUENT_L10N_TEAM_REPO = config('FLUENT_L10N_TEAM_REPO', default='mozilla-l10n/www-l10n')
-FLUENT_L10N_TEAM_REPO_URL = f'https://github.com/{FLUENT_L10N_TEAM_REPO}'
-FLUENT_L10N_TEAM_REPO_PATH = DATA_PATH / 'l10n-team'
-# 10 seconds during dev and 10 min in prod
-FLUENT_CACHE_TIMEOUT = config('FLUENT_CACHE_TIMEOUT', default='10' if DEBUG else '600', parser=int)
-# order matters. first sting found wins.
-FLUENT_PATHS = [
-    # local FTL files
-    FLUENT_LOCAL_PATH,
-    # remote FTL files from l10n team
-    FLUENT_REPO_PATH,
-]
-FLUENT_MIGRATIONS = 'lib.fluent_migrations'
-FLUENT_MIGRATIONS_PATH = ROOT_PATH / 'lib' / 'fluent_migrations'
 
 # Maxmind Database
 # country code for /country-code.json to return in dev mode
