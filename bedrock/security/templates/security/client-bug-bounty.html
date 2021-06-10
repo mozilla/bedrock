@@ -134,6 +134,7 @@
   <p>The mitigations we consider in scope for this bounty are:</p>
 
   <ul class="mzp-u-list-styled">
+    <li>We compile <a href="https://searchfox.org/mozilla-central/source/toolkit/moz.configure#2108-2113">certain libraries</a><sup>5</sup> from C/C++ to wasm, isolating them in a memory-safe sandbox. To bypass the mitigation, you are allowed to introduce a memory corruption flaw into the library; after which point you would need to exploit the flaw to either achieve arbitrary code execution within the content process (or convince us it is possible via e.g. RIP control) <em>or</em> manipulate the library to provide output crossing the taint boundary (<a href="https://searchfox.org/mozilla-central/rev/2c991232499e826e46f9d976eb653817340ba389/third_party/rlbox/include/rlbox.hpp#63-78">example</a>) which causes Firefox to make an incorrect security-relevant decision.</li>
     <li>We separate strings and ArrayBuffers into separate memory arenas from DOM Nodes. A bypass would be arbitrary control of memory layout in the same <a href="https://searchfox.org/mozilla-central/rev/31d8600b73dc85b4cdbabf45ac3f1a9c11700d8e/memory/build/malloc_decls.h#108">jemalloc arena</a> as DOM nodes (i.e. full vtable overlayment). </li>
     <li>We <a href="https://blog.mozilla.org/attack-and-defense/2019/09/29/remote-code-execution-in-firefox-beyond-memory-corruptions/">sanitize HTML fragments before using them in privileged contexts</a>. A bypass would be (i) finding a location we should be sanitizing (because it has attacker-controlled data) but aren’t or (ii) bypassing the HTML sanitizer with something that could execute JS<sup>3</sup> in Firefox.</li>
     <li>We disallow eval() from being used in the System Principal context or the Parent Process. A bypass would be identifying a location where we still use eval that <a href="https://searchfox.org/mozilla-release/rev/42c9e6b219d64360e005268ed1471d7d603b8fa8/dom/security/nsContentSecurityUtils.cpp#279">isn’t explicitly being allowed</a><sup>4</sup>, or how to abuse a location that is allowed.</li>
@@ -148,6 +149,8 @@
   <p><sup>3</sup>  Some styles are currently allowed by the sanitizer, but limited by the CSP to only allow chrome:// styles, which are part of the build. We will look at style-related issues on a case-by-case basis. We explicitly discourage researchers from re-styling a page for clickjacking attacks because we have a very high bar for an attack.</p>
 
   <p><sup>4</sup> An example of such a bypass was identifying that <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1583949">we forgot to perform the checks on workers</a>.</p>
+
+  <p><sup>5</sup> The selected lines may move, but we intended to link to the function <tt>wasm_sandboxing_libraries()</tt> which defines which libraries are wasmboxed.</p>
 
   <p>Notes:</p>
 
