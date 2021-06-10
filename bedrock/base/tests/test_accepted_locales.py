@@ -15,8 +15,8 @@ class AcceptedLocalesTest(TestCase):
     DEV_LANGUAGES or PROD_LANGUAGES should be used.
 
     """
-    locale = data_path('locale')
-    locale_bkp = data_path('locale_bkp')
+    locale = data_path('www-l10n')
+    locale_bkp = data_path('www-l10n_bkp')
 
     @classmethod
     def setup_class(cls):
@@ -45,8 +45,8 @@ class AcceptedLocalesTest(TestCase):
             shutil.move(cls.locale, cls.locale_bkp)
         else:
             cls.locale_bkp = None
-        for loc in ('en-US', 'fr', 'templates'):
-            os.makedirs(os.path.join(cls.locale, loc, 'LC_MESSAGES'))
+        for loc in ('en-US', 'fr', 'metadata'):
+            os.makedirs(os.path.join(cls.locale, loc))
         open(os.path.join(cls.locale, 'empty_file'), 'w').close()
 
     @classmethod
