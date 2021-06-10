@@ -247,9 +247,9 @@
     },
     {
       "files": [
-        "css/base/banners/vpn-promo.scss"
+        "css/base/banners/eu-mr1-banner.scss"
       ],
-      "name": "vpn-promo-banner"
+      "name": "eu-mr1-banner"
     },
     {
       "files": [
@@ -1154,9 +1154,9 @@
     {
       "files": [
         "js/base/banners/mozilla-banner.js",
-        "js/base/banners/vpn-promo-banner-init.js"
+        "js/base/banners/eu-mr1-banner-init.js"
       ],
-      "name": "vpn-promo-banner"
+      "name": "eu-mr1-banner"
     },
     {
       "files": [

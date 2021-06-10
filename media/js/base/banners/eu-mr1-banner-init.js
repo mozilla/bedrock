@@ -7,7 +7,7 @@
 
     function onLoad() {
 
-        window.Mozilla.Banner.init('vpn-promo-banner');
+        window.Mozilla.Banner.init('eu-mr1-banner');
     }
 
     window.Mozilla.run(onLoad);
