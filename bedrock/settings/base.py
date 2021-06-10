@@ -1331,19 +1331,19 @@ VPN_VARIABLE_PRICING = {
     },
     'us': {
         '12-month': {
-            'id': 'price_1IXw5oKb9q6OnNsLPMkWOid7' if DEV else 'price_1Iw85dJNcmPzuWtRyhMDdtM7',
+            'id': 'price_1J0Y1iKb9q6OnNsLXwdOFgDr' if DEV else 'price_1Iw85dJNcmPzuWtRyhMDdtM7',
             'price': 'US$4.99',
             'total': 'US$59.88',
             'saving': 50
         },
         '6-month': {
-            'id': 'price_1IXw5NKb9q6OnNsLLIyYuhWF' if DEV else 'price_1Iw87cJNcmPzuWtRefuyqsOd',
+            'id': 'price_1J0Y12Kb9q6OnNsL4SB2hhmp' if DEV else 'price_1Iw87cJNcmPzuWtRefuyqsOd',
             'price': 'US$7.99',
             'total': 'US$47.94',
             'saving': 20
         },
         'monthly': {
-            'id': 'price_1IXw4eKb9q6OnNsLqnVP4PvO' if DEV else 'price_1Iw7qSJNcmPzuWtRMUZpOwLm',
+            'id': 'price_1J0Y0AKb9q6OnNsLv6x9vXKG' if DEV else 'price_1Iw7qSJNcmPzuWtRMUZpOwLm',
             'price': 'US$9.99',
             'total': None,
             'saving': None
