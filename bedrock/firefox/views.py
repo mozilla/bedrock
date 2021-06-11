@@ -547,17 +547,9 @@ class WhatsnewView(L10nTemplateView):
         'firefox/nightly/whatsnew.html': ['firefox/nightly/whatsnew', 'firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/index-account.html': ['firefox/whatsnew/whatsnew-account', 'firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/index.html': ['firefox/whatsnew/whatsnew-s2d', 'firefox/whatsnew/whatsnew'],
-        'firefox/whatsnew/whatsnew-fx79.html': ['firefox/whatsnew/whatsnew-fx79', 'firefox/whatsnew/whatsnew'],
-        'firefox/whatsnew/whatsnew-fx80.html': ['firefox/whatsnew/whatsnew-fx80', 'firefox/whatsnew/whatsnew'],
-        'firefox/whatsnew/whatsnew-fx81.html': ['firefox/whatsnew/whatsnew-fx81', 'firefox/whatsnew/whatsnew'],
-        'firefox/whatsnew/whatsnew-fx82.html': ['firefox/whatsnew/whatsnew-fx80', 'firefox/whatsnew/whatsnew'],
-        'firefox/whatsnew/whatsnew-fx83-en.html': ['firefox/whatsnew/whatsnew'],
-        'firefox/whatsnew/whatsnew-fx83-de.html': ['firefox/whatsnew/whatsnew'],
-        'firefox/whatsnew/whatsnew-fx84.html': ['firefox/whatsnew/whatsnew-fx80', 'firefox/whatsnew/whatsnew'],
-        'firefox/whatsnew/whatsnew-fx85.html': ['firefox/whatsnew/whatsnew-fx80', 'firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx86-en.html': ['firefox/whatsnew/whatsnew-s2d', 'firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx87-en.html': ['firefox/whatsnew/whatsnew'],
-        'firefox/whatsnew/whatsnew-fx88-en.html': ['firefox/whatsnew/whatsnew-fx80', 'firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx88-en.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-mobile-de.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-mobile-qrcode-de.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx87-de.html': ['firefox/whatsnew/whatsnew'],
@@ -565,7 +557,7 @@ class WhatsnewView(L10nTemplateView):
     }
 
     # place expected ?v= values in this list
-    variations = ['1', '2', '3', '4', '5']
+    variations = []
 
     def get_context_data(self, **kwargs):
         ctx = super(WhatsnewView, self).get_context_data(**kwargs)
@@ -595,10 +587,7 @@ class WhatsnewView(L10nTemplateView):
 
         analytics_version = str(num_version) + channel
         entrypoint = 'mozilla.org-whatsnew' + analytics_version
-        if version.startswith('79.') and channel not in ['nightly', 'developer', 'beta']:
-            campaign = 'mozilla-vpn-v1-0-announcement'
-        else:
-            campaign = 'whatsnew' + analytics_version
+        campaign = 'whatsnew' + analytics_version
         ctx['analytics_version'] = analytics_version
         ctx['entrypoint'] = entrypoint
         ctx['campaign'] = campaign
@@ -654,26 +643,6 @@ class WhatsnewView(L10nTemplateView):
             template = 'firefox/whatsnew/whatsnew-fx86-en.html'
         elif version.startswith('86.') and locale == 'de':
             template = 'firefox/whatsnew/whatsnew-mobile-qrcode-de.html'
-        elif version.startswith('86.') and locale == 'fr':
-            template = 'firefox/whatsnew/whatsnew-fx81.html'
-        elif version.startswith('85.') and locale.startswith('en-'):
-            template = 'firefox/whatsnew/whatsnew-fx85.html'
-        elif version.startswith('85.') and locale == 'de':
-            template = 'firefox/whatsnew/whatsnew-mobile-de.html'
-        elif version.startswith('84.') and locale.startswith('en-'):
-            template = 'firefox/whatsnew/whatsnew-fx84.html'
-        elif version.startswith('83.') and locale == 'de':
-            template = 'firefox/whatsnew/whatsnew-fx83-de.html'
-        elif version.startswith('83.') and locale.startswith('en-'):
-            template = 'firefox/whatsnew/whatsnew-fx83-en.html'
-        elif version.startswith('82.') and locale.startswith('en-'):
-            template = 'firefox/whatsnew/whatsnew-fx82.html'
-        elif version.startswith('81.') and ftl_file_is_active('firefox/whatsnew/whatsnew-fx81'):
-            template = 'firefox/whatsnew/whatsnew-fx81.html'
-        elif version.startswith('80.') and ftl_file_is_active('firefox/whatsnew/whatsnew-fx80'):
-            template = 'firefox/whatsnew/whatsnew-fx80.html'
-        elif version.startswith('79.') and ftl_file_is_active('firefox/whatsnew/whatsnew-fx79'):
-            template = 'firefox/whatsnew/whatsnew-fx79.html'
         else:
             if show_default_account_whatsnew(version) and ftl_file_is_active('firefox/whatsnew/whatsnew-account'):
                 template = 'firefox/whatsnew/index-account.html'
@@ -703,13 +672,7 @@ class WhatsNewFirefoxLiteView(WhatsnewView):
 class WhatsNewChinaView(WhatsnewView):
     def get_template_names(self):
         template = super().get_template_names()
-        if template == ['firefox/whatsnew/whatsnew-fx82.html']:
-            template = ['firefox/whatsnew/index-account.html']
-        elif template == ['firefox/whatsnew/whatsnew-fx84.html']:
-            template = ['firefox/whatsnew/index-account.html']
-        elif template == ['firefox/whatsnew/whatsnew-fx85.html']:
-            template = ['firefox/whatsnew/index-account.html']
-        elif template == ['firefox/whatsnew/whatsnew-fx87-en.html']:
+        if template == ['firefox/whatsnew/whatsnew-fx87-en.html']:
             template = ['firefox/whatsnew/index-account.html']
         elif template == ['firefox/whatsnew/whatsnew-fx88-en.html']:
             template = ['firefox/whatsnew/index-account.html']

@@ -12,12 +12,6 @@
 {% block body_id %}firefox-whatsnew{% endblock %}
 {% block body_class %}{% endblock %}
 
-{% block experiments %}
-  {% if switch('whatsnew-88-experiment', ['en-US']) %}
-    {{ js_bundle('firefox_whatsnew_88_exp') }}
-  {% endif %}
-{% endblock %}
-
 {% block page_css %}
   {{ css_bundle('firefox_whatsnew_88_en') }}
 {% endblock %}
@@ -43,21 +37,7 @@
 
   <section class="wnp-content-main">
     <div class="mzp-l-content mzp-t-content-lg">
-      {% if variant == '2' %}
-        <img class="wnp-main-image" src="{{ static('img/firefox/whatsnew/whatsnew88-en/hero.png') }}" width="620" alt="">
-      {% elif variant == '3' %}
-        <video poster="{{ static('img/firefox/whatsnew/whatsnew88-en/hero.png') }}" class="c-animated-graphic wnp-vid-1" muted autoplay loop>
-          <source type="video/webm" src="/media/img/firefox/whatsnew/whatsnew88/video.794560d1ad14ae53fd3b56e2fc8dc70f.webm">
-        </video>
-      {% elif variant == '4' %}
-        <img class="wnp-main-image" src="{{ static('img/firefox/whatsnew/whatsnew88-en/hero-alt.png') }}" width="450" alt="">
-      {% elif variant == '5' %}
-        <video poster="{{ static('img/firefox/whatsnew/whatsnew88-en/hero-alt.png') }}" class="c-animated-graphic" muted autoplay loop>
-          <source type="video/webm" src="/media/img/firefox/whatsnew/whatsnew88/video-alt.d54d820f7ebda1b63be2c4a084b16782.webm">
-        </video>
-      {% else %}
-        <img class="wnp-main-image" src="{{ static('img/firefox/whatsnew/whatsnew84/vpn-logo.svg') }}" width="120" alt="">
-      {% endif %}
+      <img class="wnp-main-image" src="{{ static('protocol/img/logos/mozilla/vpn/logo-flat.svg') }}" width="88" alt="">
       <h1 class="wnp-main-title">Change your device’s location for <strong>next-level privacy</strong></h1>
       <p class="wnp-main-tagline"><strong>Mozilla VPN</strong> (Virtual Private Network) protects your entire internet connection on your computer, your tablet, and even your phone. For even more security, it comes with a 30-day money back guarantee.</p>
 

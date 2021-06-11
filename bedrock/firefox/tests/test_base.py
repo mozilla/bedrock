@@ -308,174 +308,6 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/index.html']
 
-    # begin 79.0 whatsnew tests
-
-    @patch.object(fx_views, 'ftl_file_is_active', lambda *x: True)
-    def test_fx_79_0_0(self, render_mock):
-        """Should use whatsnew-fx79 template for 79.0"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'en-US'
-        self.view(req, version='79.0')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/whatsnew-fx79.html']
-
-    # end 79.0 whatsnew tests
-
-    # begin 80.0 whatsnew tests
-
-    @patch.object(fx_views, 'ftl_file_is_active', lambda *x: True)
-    def test_fx_80_0_0(self, render_mock):
-        """Should use whatsnew-fx80 template for 80.0"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'en-US'
-        self.view(req, version='80.0')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/whatsnew-fx80.html']
-
-    # end 80.0 whatsnew tests
-
-    # begin 81.0 whatsnew tests
-
-    @patch.object(fx_views, 'ftl_file_is_active', lambda *x: True)
-    def test_fx_81_0_0(self, render_mock):
-        """Should use whatsnew-fx81 template for 81.0"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'en-US'
-        self.view(req, version='81.0')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/whatsnew-fx81.html']
-
-    # end 81.0 whatsnew tests
-
-    # begin 82.0 whatsnew tests
-
-    @patch.object(fx_views, 'ftl_file_is_active', lambda *x: True)
-    def test_fx_82_0_0(self, render_mock):
-        """Should use whatsnew-fx82 template for 82.0 in English"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'en-US'
-        self.view(req, version='82.0')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/whatsnew-fx82.html']
-
-    @patch.object(fx_views, 'ftl_file_is_active', lambda *x: True)
-    def test_fx_82_0_0_locale(self, render_mock):
-        """Should use standard whatsnew template for 82.0 in other locales"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'es-ES'
-        self.view(req, version='82.0')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/index-account.html']
-
-    def test_fx_82_0_0_china(self, render_mock):
-        """Should use standard whatsnew template in China for en-US locale"""
-        self.view = fx_views.WhatsNewChinaView.as_view()
-        req = self.rf.get('/firefox/whatsnew/china/')
-        req.locale = 'en-US'
-        self.view(req, version='82.0')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/index-account.html']
-
-    # end 82.0 whatsnew tests
-
-    # begin 83.0 whatsnew tests
-
-    @patch.object(fx_views, 'ftl_file_is_active', lambda *x: True)
-    def test_fx_83_0_0(self, render_mock):
-        """Should use whatsnew-fx83 template for 83.0 in English"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'en-US'
-        self.view(req, version='83.0')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/whatsnew-fx83-en.html']
-
-    @patch.object(fx_views, 'ftl_file_is_active', lambda *x: True)
-    def test_fx_83_0_0_locale(self, render_mock):
-        """Should use standard whatsnew template for 83.0 in other locales"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'es-ES'
-        self.view(req, version='83.0')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/index-account.html']
-
-    def test_fx_83_0_0_german(self, render_mock):
-        """Should use standard whatsnew template in German for de locale"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'de'
-        self.view(req, version='83.0')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/whatsnew-fx83-de.html']
-
-    # end 83.0 whatsnew tests
-
-    # begin 84.0 whatsnew tests
-
-    @patch.object(fx_views, 'ftl_file_is_active', lambda *x: True)
-    def test_fx_84_0_0(self, render_mock):
-        """Should use whatsnew-fx84 template for 84.0 in English"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'en-US'
-        self.view(req, version='84.0')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/whatsnew-fx84.html']
-
-    @patch.object(fx_views, 'ftl_file_is_active', lambda *x: True)
-    def test_fx_84_0_0_locale(self, render_mock):
-        """Should use standard whatsnew template for 84.0 in other locales"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'es-ES'
-        self.view(req, version='84.0')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/index-account.html']
-
-    def test_fx_84_0_0_china(self, render_mock):
-        """Should use standard whatsnew template in China for en-US locale"""
-        self.view = fx_views.WhatsNewChinaView.as_view()
-        req = self.rf.get('/firefox/whatsnew/china/')
-        req.locale = 'en-US'
-        self.view(req, version='84.0')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/index-account.html']
-
-    # end 84.0 whatsnew tests
-
-    # begin 85.0 whatsnew tests
-
-    def test_fx_85_0_0(self, render_mock):
-        """Should use whatsnew-fx85 template for 85.0 in English"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'en-US'
-        self.view(req, version='85.0')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/whatsnew-fx85.html']
-
-    def test_fx_85_0_0_de(self, render_mock):
-        """Should use whatsnew-mobile-de template for 85.0 in German"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'de'
-        self.view(req, version='85.0')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/whatsnew-mobile-de.html']
-
-    def test_fx_85_0_0_locale(self, render_mock):
-        """Should use standard whatsnew template for 85.0 in other locales"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'es-ES'
-        self.view(req, version='85.0')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/index-account.html']
-
-    def test_fx_85_0_0_china(self, render_mock):
-        """Should use standard whatsnew template in China for en-US locale"""
-        self.view = fx_views.WhatsNewChinaView.as_view()
-        req = self.rf.get('/firefox/whatsnew/china/')
-        req.locale = 'en-US'
-        self.view(req, version='85.0')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/index-account.html']
-
-    # end 85.0 whatsnew tests
-
     # begin 86.0 whatsnew tests
 
     def test_fx_86_0_0_en(self, render_mock):
@@ -493,14 +325,6 @@ class TestWhatsNew(TestCase):
         self.view(req, version='86.0')
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/whatsnew-mobile-qrcode-de.html']
-
-    def test_fx_86_0_0_fr(self, render_mock):
-        """Should use whatsnew-fx81 template for 86.0 in French"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'fr'
-        self.view(req, version='86.0')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/whatsnew-fx81.html']
 
     def test_fx_86_0_0_locale(self, render_mock):
         """Should use standard whatsnew template for 86.0 in other locales"""
@@ -596,7 +420,7 @@ class TestWhatsNewFirefoxLite(TestCase):
         """Should use firefox-lite template for Africa for en-US locale"""
         req = self.rf.get('/firefox/whatsnew/africa/')
         req.locale = 'en-US'
-        self.view(req, version='79.0')
+        self.view(req, version='88.0')
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/firefox-lite.html']
 
@@ -605,7 +429,7 @@ class TestWhatsNewFirefoxLite(TestCase):
         """Should use firefox-lite template for India for en-US locale"""
         req = self.rf.get('/firefox/whatsnew/india/')
         req.locale = 'en-US'
-        self.view(req, version='79.0')
+        self.view(req, version='88.0')
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/firefox-lite.html']
 
@@ -613,10 +437,10 @@ class TestWhatsNewFirefoxLite(TestCase):
     def test_fx_whatsnew(self, render_mock):
         """Should use regular whatsnew templates for other locales"""
         req = self.rf.get('/firefox/whatsnew/india/')
-        req.locale = 'de'
-        self.view(req, version='79.0')
+        req.locale = 'es-ES'
+        self.view(req, version='88.0')
         template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/whatsnew-fx79.html']
+        assert template == ['firefox/whatsnew/index-account.html']
 
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
