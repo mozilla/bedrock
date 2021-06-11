@@ -90,9 +90,8 @@ if (typeof window.Mozilla === 'undefined') {
         }
 
         /**
-         * This is a special-case for Issue 10209: VPN download-first experiment.
-         * As part of the flow for this experiment, the VPN Client will open /products/vpn/ with a set of FxA params in the page URL.
-         * Only if experiment params are present, then we pass FxA params through.
+         * Some experiments may redirect people back to the landing page from in-product (e.g. VPN Issue 10209).
+         * In cases like this we want to support passing through FxA flow params to keep track of the funnel.
          */
         if (!Object.prototype.hasOwnProperty.call(finalParams, 'entrypoint_experiment') ||
             !Object.prototype.hasOwnProperty.call(finalParams, 'entrypoint_variation')) {
