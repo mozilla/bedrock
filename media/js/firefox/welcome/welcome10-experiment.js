@@ -33,7 +33,7 @@
         }
     };
 
-    if (href.indexOf('automation=true') {
+    if (href.indexOf('automation=true') === -1) {
         initTrafficCop();
     }
 
