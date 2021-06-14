@@ -1348,7 +1348,7 @@ VPN_VARIABLE_PRICING = {
             'saving': 20
         },
         'monthly': {
-            'id': 'price_1J0Y0AKb9q6OnNsLv6x9vXKG' if DEV else 'price_1Iw7qSJNcmPzuWtRMUZpOwLm',
+            'id': 'price_1J0owvKb9q6OnNsLExNhEDXm' if DEV else 'price_1Iw7qSJNcmPzuWtRMUZpOwLm',
             'price': 'US$9.99',
             'total': None,
             'saving': None
