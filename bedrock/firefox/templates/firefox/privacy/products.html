@@ -13,22 +13,12 @@
 {% block page_css %}
   {{ super() }}
   {{ css_bundle('firefox-privacy-products') }}
-
-  {% if switch('vpn-promo-banner', ['de', 'fr']) %}
-    {{ css_bundle('vpn-promo-banner') }}
-  {% endif %}
 {% endblock %}
 
 {% block body_class %}{{ super() }} privacy-products{% endblock %}
 
 {% set _entrypoint = 'mozilla.org-privacy-products' %}
 {% set _utm_campaign = 'privacy-products' %}
-
-{% block page_banner %}
-  {% if switch('vpn-promo-banner', ['de', 'fr']) %}
-    {% include 'includes/banners/vpn/vpn-promo.html' %}
-  {% endif %}
-{% endblock %}
 
 {% block hub_content %}
 
@@ -188,8 +178,4 @@
 
 {% block js %}
   {{ js_bundle('firefox-privacy-products') }}
-
-  {% if switch('vpn-promo-banner', ['de', 'fr']) %}
-    {{ js_bundle('vpn-promo-banner') }}
-  {% endif %}
 {% endblock %}

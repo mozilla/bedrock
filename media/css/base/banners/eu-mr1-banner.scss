@@ -6,11 +6,12 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/includes/fonts/metropolis';
 
-#vpn-promo-banner {
+#eu-mr1-banner {
     &.c-banner {
         @include clearfix;
-        background: #c4c6fc;
+        background: linear-gradient(90deg, #b833e1, #0060df);
         border-bottom: 1px solid rgba(0, 0, 0, .25) inset;
         color: $color-ink-80;
         position: relative;
@@ -35,6 +36,7 @@ $image-path: '/media/protocol/img';
 
     .c-banner-title {
         @include bidi(((padding-right, $spacing-lg, 0), (padding-left, 0, $spacing-lg),)); // make room for the close button
+        @include font-firefox;
         @include font-size(24px);
     }
 
@@ -56,6 +58,52 @@ $image-path: '/media/protocol/img';
         }
     }
 
+
+    // Conditional content
+    .hidden-on-desktop {
+        display: none;
+    }
+
+    .mzp-c-button-download-container {
+        margin-bottom: 0;
+    }
+
+    // Hide privacy link on banner download button
+    .mzp-c-button-download-privacy-link {
+        display: none;
+    }
+
+    .android &,
+    .ios & {
+        .hidden-on-desktop {
+            display: inline;
+        }
+
+        .hidden-on-mobile {
+            display: none;
+        }
+    }
+
+    .android & .mobile-download-buttons {
+        .android {
+            display: inline-block;
+        }
+
+        .ios {
+            display: none;
+        }
+    }
+
+    .ios & .mobile-download-buttons {
+        .ios {
+            display: inline-block;
+        }
+
+        .android {
+            display: none;
+        }
+    }
+
     // Close button
     .c-banner-close {
         @include background-size(20px 20px);
@@ -64,7 +112,7 @@ $image-path: '/media/protocol/img';
             (left, auto, $spacing-sm),
         ));
         @include image-replaced;
-        background: transparent url('#{$image-path}/icons/close.svg') center center no-repeat;
+        background: transparent url('#{$image-path}/icons/close-white.svg') center center no-repeat;
         border: none;
         cursor: pointer;
         display: none;
