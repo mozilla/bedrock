@@ -32,6 +32,9 @@
             cop.init();
         }
     };
-    initTrafficCop();
+
+    if (href.indexOf('automation=true') === -1) {
+        initTrafficCop();
+    }
 
 })(window.Mozilla);
