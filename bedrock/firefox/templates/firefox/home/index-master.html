@@ -102,11 +102,11 @@
             </a>
           </li>
           <li>
-              <a class="mzp-c-cta-link" href="{{ url('firefox.products.lockwise') }}" rel="external noopener" data-cta-type="link" data-cta-text="Lockwise">
-                <img alt="" src="{{ static('protocol/img/logos/firefox/lockwise/logo-md.png') }}" height="40" width="40"><br>
-                {{ ftl('firefox-home-lockwise') }}
-              </a>
-            </li>
+            <a class="mzp-c-cta-link" href="{{ url('products.vpn.landing') }}" data-cta-type="link" data-cta-text="Mozilla VPN">
+              <img alt="" src="{{ static('protocol/img/logos/mozilla/vpn/logo.svg') }}" height="40" width="40"><br>
+              {{ ftl('firefox-home-mozilla-vpn') }}
+            </a>
+          </li>
           <li>
             <a class="mzp-c-cta-link" href="https://getpocket.com/firefox_learnmore/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Pocket">
               <img alt="" src="{{ static('img/logos/pocket/logo.svg') }}" height="40" width="40"><br>
@@ -163,26 +163,21 @@
       {% endcall %}
     </div>
 
+  {% if ftl_has_messages('firefox-home-protection-for-your-whole') %}
     <div class="mzp-l-content">
       {% call feature_card(
-        title=ftl('firefox-home-firefox-lockwise'),
+        title=ftl('firefox-home-mozilla-vpn'),
         heading_level=3,
-        image_url='img/firefox/home/master/lockwise.svg',
-        class='mzp-l-card-feature-left-half t-lockwise',
-        ga_title='Lockwise',
+        image_url='img/firefox/home/master/vpn.svg',
+        class='mzp-l-card-feature-left-half t-mozvpn',
+        ga_title='Mozilla VPN',
         media_after=True
       ) %}
-      <h4>{{ ftl('firefox-home-keep-your-passwords') }}</h4>
-        <div class="mzp-c-menu-list mzp-t-cta mzp-t-download">
-          <h5 class="mzp-c-menu-list-title">{{ ftl('firefox-home-download-the-app') }}</h5>
-          <ul class="mzp-c-menu-list-list" id="menu-lockwise">
-            <li class="mzp-c-menu-list-item"><a href="{{ lockwise_adjust_url('android', 'firefox-home') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Lockwise for Android"> {{ ftl('firefox-home-android') }}</a></li>
-            <li class="mzp-c-menu-list-item"><a href="{{ lockwise_adjust_url('ios', 'firefox-home') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Lockwise for iOS">{{ ftl('firefox-home-ios') }}</a></li>
-          </ul>
-        </div>
-        <p><a class="mzp-c-cta-link" href="{{ url('firefox.products.lockwise') }}" rel="external noopener" data-cta-type="link" data-cta-text="Lockwise Learn More">{{ ftl('firefox-home-learn-more-about-lockwise') }}</a></p>
+      <h4>{{ ftl('firefox-home-protection-for-your-whole') }}</h4>
+      <p><a class="mzp-c-cta-link" href="{{ url('products.vpn.landing') }}" data-cta-type="link" data-cta-text="Get Mozilla VPN">{{ ftl('firefox-home-get-mozilla-vpn') }}</a></p>
       {% endcall %}
     </div>
+  {% endif %}
 
     <div class="t-promise">
       <div class="mzp-l-content">

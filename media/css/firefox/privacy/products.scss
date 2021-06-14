@@ -217,8 +217,8 @@ $image-path: '/media/protocol/img';
     @include at2x('/media/protocol/img/logos/firefox/monitor/logo-word-hor-sm.png', auto, 40px);
 }
 
-.privacy-products-lockwise .mzp-c-card-feature-title {
-    @include at2x('/media/protocol/img/logos/firefox/lockwise/logo-word-hor-sm.png', auto, 40px);
+.privacy-products-vpn .mzp-c-card-feature-title {
+    @include at2x('/media/protocol/img/logos/mozilla/vpn/logo-word-hor-sm.png', auto, 40px);
 }
 
 .privacy-products-send .mzp-c-card-feature-title {
