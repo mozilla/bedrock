@@ -9,20 +9,20 @@
 
     var initTrafficCop = function () {
         if (href.indexOf('v=') !== -1) {
-            if (href.indexOf('v=a') !== -1) {
+            if (href.indexOf('v=1') !== -1) {
                 window.dataLayer.push({
-                    'data-ex-variant': 'experiment-variant-1',
-                    'data-ex-name': 'experiment-headline-variant'
+                    'data-ex-variant': 'welcome10-variant-1',
+                    'data-ex-name': 'welcome10-copy-experiment'
                 });
-            } else if (href.indexOf('v=b') !== -1) {
+            } else if (href.indexOf('v=2') !== -1) {
                 window.dataLayer.push({
-                    'data-ex-variant': 'experiment-variant-2',
-                    'data-ex-name': 'experiment-headline-variant'
+                    'data-ex-variant': 'welcom10-variant-2',
+                    'data-ex-name': 'welcome10-copy-experiment'
                 });
             }
         } else if (Mozilla.TrafficCop) {
             var cop = new Mozilla.TrafficCop({
-                id: 'welcome10_experiment_headline',
+                id: 'welcome10_experiment_copy',
                 cookieExpires: 0,
                 variations: {
                     'v=1': 50,

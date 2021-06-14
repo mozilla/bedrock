@@ -130,7 +130,7 @@ urlpatterns = (
         utils_views.VariationTemplateView.as_view(
           template_name='firefox/welcome/page10.html',
           template_context_variations=['1', '2'],
-          variation_locales=['en-US', 'en-CA', 'en-GB']),
+          variation_locales=['en-US', 'en-CA']),
         name='firefox.welcome.page10'),
 
     page('firefox/privacy-by-default', 'firefox/messaging-experiment/privacy_by_default.html'),

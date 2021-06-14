@@ -30,7 +30,7 @@
   {% set cta_text = 'Get Mozilla VPN' %}
 {% elif variation == '2' %}
   {% set title = 'Blur your location online for <strong>next-level privacy</strong>'|safe %}
-  {% set desc = 'Get Mozilla VPN for ' + vpn_monthly_price(plan='12-month', lang=LANG) + ' — this limited-time offer ends soon.' %}
+  {% set desc = 'Get Mozilla VPN for US$4.99 — this limited-time offer ends soon.' %}
   {% set source = '?source=welcome10-exp-v2' %}
   {% set cta_text = 'Start Now' %}
 {% else %}
@@ -52,7 +52,7 @@
     {% endif %}
 
     {% if variation == '1' %}
-      <p class="c-pre-title">{{ vpn_monthly_price(plan='12-month', lang=LANG) }} — offer ends soon</p>
+      <p class="c-pre-title">US$4.99 — offer ends soon</p>
     {% endif %}
 
       <h1 class="c-main-title">{{ title }}</h1>
