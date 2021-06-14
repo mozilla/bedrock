@@ -113,25 +113,32 @@
         </p>
       {% endcall %}
 
+    {% if ftl_has_messages('firefox-privacy-hub-surf-stream-and-get-work') %}
       {% call feature_card(
-        title=ftl('firefox-privacy-hub-firefox-lockwise'),
-        image_url='img/firefox/privacy/products/lockwise.svg',
-        class='privacy-products-lockwise has-logo mzp-l-card-feature-right-half',
+        title=ftl('firefox-privacy-hub-mozilla-vpn'),
+        image_url='img/firefox/privacy/products/vpn.svg',
+        class='privacy-products-vpn has-logo mzp-l-card-feature-right-half',
         media_after=True
       ) %}
-        <p>{{ ftl('firefox-privacy-hub-the-passwords-and-credentials') }}</p>
+        <p>{{ ftl('firefox-privacy-hub-surf-stream-and-get-work') }}</p>
         <p>
-          <a class="mzp-c-cta-link" href="{{ url('firefox.products.lockwise' )}}" data-cta-type="fxa-lockwise" data-cta-position="secondary">
-            {{ ftl('firefox-privacy-hub-learn-more-about-lockwise') }}
+          <a class="mzp-c-cta-link" href="{{ url('products.vpn.landing' )}}" data-cta-type="fxa-vpn" data-cta-position="secondary">
+            {{ ftl('firefox-privacy-hub-get-mozilla-vpn') }}
           </a>
         </p>
       {% endcall %}
+    {% endif %}
 
+    {% if ftl_has_messages('firefox-privacy-hub-protection-for-your-whole') %}
+    {% set class = 'privacy-products-pocket has-logo mzp-l-card-feature-left-half' %}
+    {% else %}
+    {% set class = 'privacy-products-pocket has-logo mzp-l-card-feature-right-half' %}
+    {% endif %}
       {% call feature_card(
         title=ftl('firefox-privacy-hub-pocket'),
         image_url='img/firefox/privacy/products/pocket.png',
         include_highres_image=True,
-        class='privacy-products-pocket has-logo mzp-l-card-feature-left-half',
+        class=class,
         media_after=True
       ) %}
         <p>{{ ftl('firefox-privacy-hub-pocket-recommends-high') }}</p>

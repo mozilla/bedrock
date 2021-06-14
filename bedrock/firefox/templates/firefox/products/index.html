@@ -62,6 +62,7 @@
         optional_attributes={'data-cta-text': 'Sign up for breach alerts', 'data-cta-type': 'fxa-monitor', 'data-cta-position': 'card'}
       ) }}</p>
     </div>
+
     <div class="c-landing-grid-item">
       {{ high_res_img('img/firefox/products/browsers.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '316', 'height': '223'}) }}
       <h2 class="c-landing-grid-title "><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.index') }}" data-cta-type="link" data-cta-text="Firefox browsers">{{ ftl('firefox-products-firefox-browsers') }}</a></h2>
@@ -83,20 +84,16 @@
       </div>
       <p><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.index') }}" data-cta-type="link" data-cta-text="See all browsers">{{ ftl('firefox-products-see-all-browsers') }}</a></p>
     </div>
+
+  {% if ftl_has_messages('firefox-products-surf-stream-and-get-work-done') %}
     <div class="c-landing-grid-item">
-      <img src="{{ static('img/firefox/products/lockwise.svg') }}" class="c-landing-grid-img" alt="" width="316" height="223">
-      <h2 class="c-landing-grid-title"><a href="{{ url('firefox.products.lockwise') }}" data-cta-type="link" data-cta-text="Firefox Lockwise">{{ ftl('firefox-products-firefox-lockwise') }}</a></h2>
-      <p>{{ ftl('firefox-products-keep-your-passwords-safe-and') }}</p>
-      <div id="menu-lockwise-wrapper"  class="mzp-c-menu-list mzp-t-cta mzp-t-download">
-        <h3 class="mzp-c-menu-list-title">{{ ftl('firefox-products-download-lockwise') }}</h3>
-        <ul class="mzp-c-menu-list-list" id="menu-lockwise">
-          <li class="mzp-c-menu-list-item hidden" id="js-lockwise-desktop"><button class="c-menu-list-link" id="lockwise-button" data-cta-type="lockwise-open-in-fx" data-cta-position="card" type="button">{{ ftl('firefox-products-open-in-firefox') }}</button></li>
-          <li class="mzp-c-menu-list-item"><a href="{{ lockwise_adjust_url('android', 'firefox_products') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Lockwise Android">{{ ftl('firefox-products-android') }}</a></li>
-          <li class="mzp-c-menu-list-item"><a href="{{ lockwise_adjust_url('ios', 'firefox_products') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Lockwise iOS">{{ ftl('firefox-products-ios') }}</a></li>
-        </ul>
-      </div>
-      <p><a class="mzp-c-cta-link" href="{{ url('firefox.products.lockwise') }}" rel="external noopener" data-cta-type="link" data-cta-text="Lockwise Learn More">{{ ftl('firefox-products-learn-more-about-lockwise') }}</a></p>
+      <img src="{{ static('img/firefox/products/vpn.svg') }}" class="c-landing-grid-img" alt="" width="316" height="223">
+      <h2 class="c-landing-grid-title"><a href="{{ url('products.vpn.landing') }}" data-cta-type="link" data-cta-text="Mozilla VPN">{{ ftl('firefox-products-mozilla-vpn') }}</a></h2>
+      <p>{{ ftl('firefox-products-surf-stream-and-get-work-done') }}</p>
+      <p><a class="mzp-c-cta-link" href="{{ url('products.vpn.landing') }}" rel="external noopener" data-cta-type="link" data-cta-text="Get Mozilla VPN">{{ ftl('firefox-products-get-mozilla-vpn') }}</a></p>
     </div>
+  {% endif %}
+
     <div class="c-landing-grid-item">
       <img src="{{ static('img/firefox/products/pocket.svg') }}" class="c-landing-grid-img" alt="" width="316" height="223">
       <h2 class="c-landing-grid-title"><a href="https://getpocket.com/firefox_learnmore/{{ referrals }}">{{ ftl('firefox-products-pocket') }}</a></h2>

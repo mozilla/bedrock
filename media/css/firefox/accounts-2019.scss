@@ -207,16 +207,12 @@
         @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-stack-md.png', 144px, 50px);
     }
 
-    .t-product-lockwise & {
-        @include at2x('/media/protocol/img/logos/firefox/lockwise/logo-word-hor-stack-md.png', 154px, 50px);
-    }
-
     .t-product-monitor & {
         @include at2x('/media/protocol/img/logos/firefox/monitor/logo-word-hor-stack-md.png', 138px, 50px);
     }
 
-    .t-product-send & {
-        @include at2x('/media/protocol/img/logos/firefox/send/logo-word-hor-stack-md.png', 130px, 50px);
+    .t-product-vpn & {
+        @include at2x('/media/protocol/img/logos/mozilla/vpn/logo-word-hor-stack-md.png', 143px, 50px);
     }
 
     @media #{$mq-md} {
@@ -227,16 +223,12 @@
             @include background-size(184px,  64px);
         }
 
-        .t-product-lockwise & {
-            @include background-size(197px, 64px);
-        }
-
         .t-product-monitor & {
             @include background-size(176px, 64px);
         }
 
-        .t-product-send & {
-            @include background-size(167px, 64px);
+        .t-product-vpn & {
+            @include background-size(184px, 64px);
         }
     }
 

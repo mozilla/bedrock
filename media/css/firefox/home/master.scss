@@ -94,7 +94,7 @@ $image-path: '/media/protocol/img';
 
 .t-browsers,
 .t-monitor,
-.t-lockwise,
+.t-mozvpn,
 .t-send,
 .t-pocket {
     .mzp-c-card-feature-title {
@@ -116,8 +116,8 @@ $image-path: '/media/protocol/img';
         @include at2x('/media/protocol/img/logos/firefox/monitor/logo-word-hor-sm.png', auto, 40px);
     }
 
-    .t-lockwise & {
-        @include at2x('/media/protocol/img/logos/firefox/lockwise/logo-word-hor-sm.png', auto, 40px);
+    .t-mozvpn & {
+        @include at2x('/media/protocol/img/logos/mozilla/vpn/logo-word-hor-sm.png', auto, 40px);
     }
 
     .t-send & {

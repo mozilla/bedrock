@@ -123,19 +123,21 @@
       {% endif %}
     </h2>
 
-    <ul class="c-product-list l-columns-three">
+    <ul class="c-product-list {% if ftl_has_messages('firefox-accounts-protection-for-your-whole') %}l-columns-three{% else %}l-columns-two{% endif %}">
       <li class="c-product-list-item t-product-firefox">
         <a href="{{ url('firefox.new') }}">
           <h3 class="c-product-list-title">{{ ftl('firefox-accounts-firefox-browser') }}</h3>
           <p class="c-product-list-desc">{{ ftl('firefox-accounts-travel-the-internet') }}</p>
         </a>
       </li>
-      <li class="c-product-list-item t-product-lockwise">
-        <a href="{{ url('firefox.products.lockwise') }}" data-cta-text="Firefox Lockwise" data-cta-type="fxa-lockwise">
-          <h3 class="c-product-list-title">{{ ftl('firefox-accounts-firefox-lockwise') }}</h3>
-          <p class="c-product-list-desc">{{ ftl('firefox-accounts-keep-your-passwords') }}</p>
+    {% if ftl_has_messages('firefox-accounts-whole-device-protection') %}
+      <li class="c-product-list-item t-product-vpn">
+        <a href="{{ url('products.vpn.landing') }}" data-cta-text="Mozilla VPN" data-cta-type="fxa-vpn">
+          <h3 class="c-product-list-title">{{ ftl('firefox-accounts-mozilla-vpn') }}</h3>
+          <p class="c-product-list-desc">{{ ftl('firefox-accounts-whole-device-protection') }}</p>
         </a>
       </li>
+    {% endif %}
       <li class="c-product-list-item t-product-monitor">
         <a href="https://monitor.firefox.com?utm_source={{ _utm_source }}&amp;utm_medium=referral&amp;utm_campaign={{ _utm_campaign }}&amp;utm_content=product-list-item&amp;entrypoint={{ _entrypoint }}" data-cta-text="Firefox Monitor" data-cta-type="FxA-Monitor">
           <h3 class="c-product-list-title">{{ ftl('firefox-accounts-firefox-monitor') }}</h3>
