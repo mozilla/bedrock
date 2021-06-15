@@ -1,0 +1,131 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}What’s new with Firefox{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}What’s new with Firefox{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_90') }}
+{% endblock %}
+
+{% block experiments %}
+  {% if switch('firefox-whatsnew90-experiment', ['en-US', 'en-CA']) %}
+    {{ js_bundle('firefox_whatsnew90_experiment') }}
+  {% endif %}
+{% endblock %}
+
+{% set _source = 'whatsnew90' %}
+{% set _entrypoint = 'mozilla.org-whatsnew90' %}
+
+{% if variant == '1' %}
+{% set utm_campaign = 'whatsnew90-v1' %}
+{% elif variant == '2' %}
+{% set utm_campaign = 'whatsnew90-v2' %}
+{% else %}
+{% set utm_campaign = 'whatsnew90' %}
+{% endif %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main class="content-wrapper mzp-t-firefox">
+  {% include 'firefox/whatsnew/includes/header.html' %}
+
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-md">
+      <img class="wnp-main-image" src="{{ static('protocol/img/logos/pocket/logo-word-hor.svg') }}" width="220" alt="Pocket">
+      <h1 class="wnp-main-title">Your save button for the internet</h1>
+      <div class="wnp-main-tagline">
+        <p class="wnp-main-tagline">Click the <img class="inline-icon" src="{{ static('img/firefox/whatsnew/whatsnew90/pocket-outline.svg') }}" width="16" height="16" alt="Save to Pocket"> button in your Firefox toolbar anytime you see something you want to save for later, like an article, video — even a tweet. It’ll go straight to your library in Pocket.</p>
+        <p>You can also get thought-provoking articles tailored to your interests and read popular stories curated by our editors.</p>
+      </div>
+
+      <div class="wnp-main-cta">
+      {% if variant == '2' %}
+        <a class="mzp-c-button mzp-t-product" href="https://getpocket.com/signup/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ utm_campaign }}" data-cta-text="Sign up for Pocket" data-cta-position="primary" data-cta-type="button">Sign up for Pocket</a>
+      {% else %}
+        {{ pocket_fxa_button(entrypoint=_entrypoint, button_text='Activate Pocket in Firefox', optional_parameters={'s': _source, 'utm_medium': 'referral', 'utm_campaign': utm_campaign}, optional_attributes={'data-cta-text': 'Activate Pocket in Firefox', 'data-cta-type': 'button', 'data-cta-position': 'primary'}) }}
+        <p class="c-sub-cta"><a href="https://getpocket.com/signup/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ utm_campaign }}" data-cta-text="More ways to sign up" data-cta-position="primary-sub" data-cta-type="link">More ways to sign up</a></p>
+      {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <section class="wnp-content-extra">
+    <div class="mzp-l-content mzp-t-content-lg">
+      <div class="mzp-l-columns mzp-t-columns-two">
+
+        <div class="mzp-c-picto">
+          <div class="mzp-c-picto-image">
+            {% include 'firefox/whatsnew/includes/fx90/person1.svg' %}
+          </div>
+          <h2 class="mzp-c-picto-heading">Collect articles, videos, recipes — anything</h2>
+          <div class="mzp-c-picto-body">
+            <p>You’ll never lose track of content again.</p>
+          </div>
+        </div>
+
+        <div class="mzp-c-picto">
+          <div class="mzp-c-picto-image">
+            {% include 'firefox/whatsnew/includes/fx90/person2.svg' %}
+          </div>
+          <h2 class="mzp-c-picto-heading">Discover fascinating stories from all over</h2>
+          <div class="mzp-c-picto-body"><p>See popular articles and our editors’ top picks.</p>
+          </div>
+        </div>
+
+        <div class="mzp-c-picto">
+          <div class="mzp-c-picto-image">
+            {% include 'firefox/whatsnew/includes/fx90/person3.svg' %}
+          </div>
+          <h2 class="mzp-c-picto-heading">Ditch the ads & internet noise</h2>
+          <div class="mzp-c-picto-body"><p>Dig into your saves in Pocket’s calm reading zone.</p>
+          </div>
+        </div>
+
+        <div class="mzp-c-picto">
+          <div class="mzp-c-picto-image">
+            {% include 'firefox/whatsnew/includes/fx90/person4.svg' %}
+          </div>
+          <h2 class="mzp-c-picto-heading">Find that one article from months ago</h2>
+          <div class="mzp-c-picto-body"><p>Search your Pocket and bam! There it is.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="wnp-content-footer">
+    <div class="mzp-l-content mzp-t-content-md">
+      <h2 class="wnp-footer-title">Start curating your personal corner of the web</h2>
+      <div class="wnp-footer-cta">
+      {% if variant == '2' %}
+        <a class="mzp-c-button mzp-t-product" href="https://getpocket.com/signup/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ utm_campaign }}" data-cta-text="Sign up for Pocket" data-cta-position="secondary" data-cta-type="button">Sign up for Pocket</a>
+      {% else %}
+        {{ pocket_fxa_button(entrypoint=_entrypoint, button_text='Activate Pocket in Firefox', optional_parameters={'s': _source, 'utm_medium': 'referral', 'utm_campaign': utm_campaign}, optional_attributes={'data-cta-text': 'Activate Pocket in Firefox', 'data-cta-type': 'button', 'data-cta-position': 'secondary'}) }}
+        <p class="c-sub-cta"><a href="https://getpocket.com/signup/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ utm_campaign }}" data-cta-text="More ways to sign up" data-cta-position="secondary-sub" data-cta-type="link">More ways to sign up</a></p>
+      {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <aside class="mzp-l-content c-utilities">
+    {% set releasenotes_url = url('firefox.releases.index') if not version else '/firefox/%s/releasenotes/'|format(version) %}
+    <p>{{ ftl('whatsnew-release-notes', url=releasenotes_url) }}</p>
+  </aside>
+
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_90') }}
+{% endblock %}

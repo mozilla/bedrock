@@ -419,6 +419,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-90.scss"
+      ],
+      "name": "firefox_whatsnew_90"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -912,7 +918,6 @@
       ],
       "name": "firefox_welcome_page10_experiment"
     },
-
     {
       "files": [
         "js/firefox/privacy/messaging-experiment.js"
@@ -949,6 +954,19 @@
         "js/firefox/whatsnew/whatsnew-88-en.js"
       ],
       "name": "firefox_whatsnew_88_en"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/up-to-date.js"
+      ],
+      "name": "firefox_whatsnew_90"
+    },
+    {
+      "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/firefox/whatsnew/whatsnew90-experiment.js"
+      ],
+      "name": "firefox_whatsnew90_experiment"
     },
     {
       "files": [
