@@ -14,57 +14,227 @@ TEST_FXA_ENDPOINT = 'https://accounts.firefox.com/'
 TEST_VPN_ENDPOINT = 'https://vpn.mozilla.org/'
 TEST_VPN_PRODUCT_ID = 'prod_FvnsFHIfezy3ZI'
 TEST_VPN_FIXED_PRICE_MONTHLY_USD = 'plan_FvnxS1j9oFUZ7Y'
-TEST_VPN_VARIABLE_PRICING = {
-    'de': {
-        '12-month': {
-            'id': 'price_1IgwblJNcmPzuWtRynC7dqQa',
-            'price': '4,99 €',
-            'total': '59,88 €'
+
+TEST_VPN_PLAN_ID_MATRIX = {
+    'chf': {
+        'de': {
+            '12-month': {
+                'id': 'price_1J5JssJNcmPzuWtR616BH4aU',
+                'price': u'Fr. 4.99',
+                'total': u'Fr. 59.88',
+                'saving': 50
+            },
+            '6-month': {
+                'id': 'price_1J5JtWJNcmPzuWtRMd2siphH',
+                'price': u'Fr. 6.99',
+                'total': u'Fr. 41.94',
+                'saving': 30
+            },
+            'monthly': {
+                'id': 'price_1J5Ju3JNcmPzuWtR3GpNYSWj',
+                'price': u'Fr. 9.99',
+                'total': None,
+                'saving': None
+            }
         },
-        '6-month': {
-            'id': 'price_1IgwaHJNcmPzuWtRuUfSR4l7',
-            'price': '6,99 €',
-            'total': '41,94 €'
+        'fr': {
+            '12-month': {
+                'id': 'price_1J5JunJNcmPzuWtRo9dLxn6M',
+                'price': u'Fr. 4.99',
+                'total': u'Fr. 59.88',
+                'saving': 50
+            },
+            '6-month': {
+                'id': 'price_1J5JvLJNcmPzuWtRayB4d7Ij',
+                'price': u'Fr. 6.99',
+                'total': u'Fr. 41.94',
+                'saving': 30
+            },
+            'monthly': {
+                'id': 'price_1J5JvjJNcmPzuWtR3wwy1dcR',
+                'price': u'Fr. 9.99',
+                'total': None,
+                'saving': None
+            }
         },
-        'monthly': {
-            'id': 'price_1IgwZVJNcmPzuWtRg9Wssh2y',
-            'price': '9,99‎ €',
-            'total': None
+        'it': {
+            '12-month': {
+                'id': 'price_1J5JwWJNcmPzuWtRgrx5fjOc',
+                'price': u'Fr. 4.99',
+                'total': u'Fr. 59.88',
+                'saving': 50
+            },
+            '6-month': {
+                'id': 'price_1J5JwvJNcmPzuWtRH2HuhWM5',
+                'price': u'Fr. 6.99',
+                'total': u'Fr. 41.94',
+                'saving': 30
+            },
+            'monthly': {
+                'id': 'price_1J5JxGJNcmPzuWtRrp5e1SUB',
+                'price': u'Fr. 9.99',
+                'total': None,
+                'saving': None
+            }
         }
+    },
+    'euro': {
+        'de': {
+            '12-month': {
+                'id': 'price_1IgwblJNcmPzuWtRynC7dqQa',
+                'price': u'4,99 €',
+                'total': u'59,88 €',
+                'saving': 50
+            },
+            '6-month': {
+                'id': 'price_1IgwaHJNcmPzuWtRuUfSR4l7',
+                'price': u'6,99 €',
+                'total': u'41,94 €',
+                'saving': 30
+            },
+            'monthly': {
+                'id': 'price_1IgwZVJNcmPzuWtRg9Wssh2y',
+                'price': u'9,99‎ €',
+                'total': None,
+                'saving': None
+            }
+        },
+        'es': {
+            '12-month': {
+                'id': 'price_1J5JCdJNcmPzuWtRrvQMFLlP',
+                'price': u'4,99 €',
+                'total': u'59,88 €',
+                'saving': 50
+            },
+            '6-month': {
+                'id': 'price_1J5JDFJNcmPzuWtRrC4IeXTs',
+                'price': u'6,99 €',
+                'total': u'41,94 €',
+                'saving': 30
+            },
+            'monthly': {
+                'id': 'price_1J5JDgJNcmPzuWtRqQtIbktk',
+                'price': u'9,99‎ €',
+                'total': None,
+                'saving': None
+            }
+        },
+        'fr': {
+            '12-month': {
+                'id': 'price_1IgnlcJNcmPzuWtRjrNa39W4',
+                'price': u'4,99 €',
+                'total': u'59,88 €',
+                'saving': 50
+            },
+            '6-month': {
+                'id': 'price_1IgoxGJNcmPzuWtRG7l48EoV',
+                'price': u'6,99 €',
+                'total': u'41,94 €',
+                'saving': 30
+            },
+            'monthly': {
+                'id': 'price_1IgowHJNcmPzuWtRzD7SgAYb',
+                'price': u'9,99‎ €',
+                'total': None,
+                'saving': None
+            }
+        },
+        'it': {
+            '12-month': {
+                'id': 'price_1J4owvJNcmPzuWtRomVhWQFq',
+                'price': u'4,99 €',
+                'total': u'59,88 €',
+                'saving': 50
+            },
+            '6-month': {
+                'id': 'price_1J5J7eJNcmPzuWtRKdQi4Tkk',
+                'price': u'6,99 €',
+                'total': u'41,94 €',
+                'saving': 30
+            },
+            'monthly': {
+                'id': 'price_1J5J6iJNcmPzuWtRK5zfoguV',
+                'price': u'9,99‎ €',
+                'total': None,
+                'saving': None
+            }
+        },
+        'nl': {
+            '12-month': {
+                'id': 'price_1J5JRGJNcmPzuWtRXwXA84cm',
+                'price': u'4,99 €',
+                'total': u'59,88 €',
+                'saving': 50
+            },
+            '6-month': {
+                'id': 'price_1J5JRmJNcmPzuWtRyFGj0tkN',
+                'price': u'6,99 €',
+                'total': u'41,94 €',
+                'saving': 30
+            },
+            'monthly': {
+                'id': 'price_1J5JSkJNcmPzuWtR54LPH2zi',
+                'price': u'9,99‎ €',
+                'total': None,
+                'saving': None
+            }
+        }
+    },
+    'usd': {
+        'en': {
+            '12-month': {
+                'id': 'price_1Iw85dJNcmPzuWtRyhMDdtM7',
+                'price': u'US$4.99',
+                'total': u'US$59.88',
+                'saving': 50
+            },
+            '6-month': {
+                'id': 'price_1Iw87cJNcmPzuWtRefuyqsOd',
+                'price': u'US$7.99',
+                'total': u'US$47.94',
+                'saving': 20
+            },
+            'monthly': {
+                'id': 'price_1Iw7qSJNcmPzuWtRMUZpOwLm',
+                'price': u'US$9.99',
+                'total': None,
+                'saving': None
+            }
+        }
+    }
+}
+
+TEST_VPN_VARIABLE_PRICING = {
+    'at': {
+        'default': TEST_VPN_PLAN_ID_MATRIX['euro']['de'],
+    },
+    'be': {
+        'default': TEST_VPN_PLAN_ID_MATRIX['euro']['nl'],
+        'alt': {
+            'fr': TEST_VPN_PLAN_ID_MATRIX['euro']['fr'],
+        }
+    },
+    'ch': {
+        'default': TEST_VPN_PLAN_ID_MATRIX['chf']['de'],
+        'alt': {
+            'fr': TEST_VPN_PLAN_ID_MATRIX['chf']['fr'],
+            'it': TEST_VPN_PLAN_ID_MATRIX['chf']['it'],
+        }
+    },
+    'de': {
+        'default': TEST_VPN_PLAN_ID_MATRIX['euro']['de'],
+    },
+    'es': {
+        'default': TEST_VPN_PLAN_ID_MATRIX['euro']['es'],
     },
     'fr': {
-        '12-month': {
-            'id': 'price_1IgnlcJNcmPzuWtRjrNa39W4',
-            'price': '4,99 €',
-            'total': '59,88 €'
-        },
-        '6-month': {
-            'id': 'price_1IgoxGJNcmPzuWtRG7l48EoV',
-            'price': '6,99 €',
-            'total': '41,94 €'
-        },
-        'monthly': {
-            'id': 'price_1IgowHJNcmPzuWtRzD7SgAYb',
-            'price': '9,99‎ €',
-            'total': None
-        }
+        'default': TEST_VPN_PLAN_ID_MATRIX['euro']['fr'],
+    },
+    'it': {
+        'default': TEST_VPN_PLAN_ID_MATRIX['euro']['it'],
     },
     'us': {
-        '12-month': {
-            'id': 'price_1Iw85dJNcmPzuWtRyhMDdtM7',
-            'price': 'TBD',
-            'total': 'TBD'
-        },
-        '6-month': {
-            'id': 'price_1Iw87cJNcmPzuWtRefuyqsOd',
-            'price': 'TBD',
-            'total': 'TBD'
-        },
-        'monthly': {
-            'id': 'price_1Iw7qSJNcmPzuWtRMUZpOwLm',
-            'price': 'TBD',
-            'total': None
-        }
+        'default': TEST_VPN_PLAN_ID_MATRIX['usd']['en'],
     }
 }
 
@@ -120,8 +290,10 @@ class TestVPNSubscribeLink(TestCase):
             u'&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" '
             u'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button" '
             u'data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" data-cta-position="primary" '
-            u'data-plan-de="price_1IgwblJNcmPzuWtRynC7dqQa" data-plan-fr="price_1IgnlcJNcmPzuWtRjrNa39W4" '
-            u'data-plan-us="price_1Iw85dJNcmPzuWtRyhMDdtM7">Get Mozilla VPN</a>')
+            u'data-plan-at="price_1IgwblJNcmPzuWtRynC7dqQa" data-plan-be="price_1J5JRGJNcmPzuWtRXwXA84cm" '
+            u'data-plan-ch="price_1J5JssJNcmPzuWtR616BH4aU" data-plan-de="price_1IgwblJNcmPzuWtRynC7dqQa" '
+            u'data-plan-es="price_1J5JCdJNcmPzuWtRrvQMFLlP" data-plan-fr="price_1IgnlcJNcmPzuWtRjrNa39W4" '
+            u'data-plan-it="price_1J4owvJNcmPzuWtRomVhWQFq" data-plan-us="price_1Iw85dJNcmPzuWtRyhMDdtM7">Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
     def test_vpn_subscribe_link_variable_6_month_en(self):
@@ -137,8 +309,10 @@ class TestVPNSubscribeLink(TestCase):
             u'&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" '
             u'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button" '
             u'data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" data-cta-position="primary" '
-            u'data-plan-de="price_1IgwaHJNcmPzuWtRuUfSR4l7" data-plan-fr="price_1IgoxGJNcmPzuWtRG7l48EoV" '
-            u'data-plan-us="price_1Iw87cJNcmPzuWtRefuyqsOd">Get Mozilla VPN</a>')
+            u'data-plan-at="price_1IgwaHJNcmPzuWtRuUfSR4l7" data-plan-be="price_1J5JRmJNcmPzuWtRyFGj0tkN" '
+            u'data-plan-ch="price_1J5JtWJNcmPzuWtRMd2siphH" data-plan-de="price_1IgwaHJNcmPzuWtRuUfSR4l7" '
+            u'data-plan-es="price_1J5JDFJNcmPzuWtRrC4IeXTs" data-plan-fr="price_1IgoxGJNcmPzuWtRG7l48EoV" '
+            u'data-plan-it="price_1J5J7eJNcmPzuWtRKdQi4Tkk" data-plan-us="price_1Iw87cJNcmPzuWtRefuyqsOd">Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
     def test_vpn_subscribe_link_variable_monthly_en(self):
@@ -154,8 +328,10 @@ class TestVPNSubscribeLink(TestCase):
             u'&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" '
             u'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button" '
             u'data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" data-cta-position="primary" '
-            u'data-plan-de="price_1IgwZVJNcmPzuWtRg9Wssh2y" data-plan-fr="price_1IgowHJNcmPzuWtRzD7SgAYb" '
-            u'data-plan-us="price_1Iw7qSJNcmPzuWtRMUZpOwLm">Get Mozilla VPN</a>')
+            u'data-plan-at="price_1IgwZVJNcmPzuWtRg9Wssh2y" data-plan-be="price_1J5JSkJNcmPzuWtR54LPH2zi" '
+            u'data-plan-ch="price_1J5Ju3JNcmPzuWtR3GpNYSWj" data-plan-de="price_1IgwZVJNcmPzuWtRg9Wssh2y" '
+            u'data-plan-es="price_1J5JDgJNcmPzuWtRqQtIbktk" data-plan-fr="price_1IgowHJNcmPzuWtRzD7SgAYb" '
+            u'data-plan-it="price_1J5J6iJNcmPzuWtRK5zfoguV" data-plan-us="price_1Iw7qSJNcmPzuWtRMUZpOwLm">Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
     def test_vpn_subscribe_link_variable_12_month_de(self):
@@ -171,8 +347,10 @@ class TestVPNSubscribeLink(TestCase):
             u'&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" '
             u'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button" '
             u'data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" data-cta-position="primary" '
-            u'data-plan-de="price_1IgwblJNcmPzuWtRynC7dqQa" data-plan-fr="price_1IgnlcJNcmPzuWtRjrNa39W4" '
-            u'data-plan-us="price_1Iw85dJNcmPzuWtRyhMDdtM7">Get Mozilla VPN</a>')
+            u'data-plan-at="price_1IgwblJNcmPzuWtRynC7dqQa" data-plan-be="price_1J5JRGJNcmPzuWtRXwXA84cm" '
+            u'data-plan-ch="price_1J5JssJNcmPzuWtR616BH4aU" data-plan-de="price_1IgwblJNcmPzuWtRynC7dqQa" '
+            u'data-plan-es="price_1J5JCdJNcmPzuWtRrvQMFLlP" data-plan-fr="price_1IgnlcJNcmPzuWtRjrNa39W4" '
+            u'data-plan-it="price_1J4owvJNcmPzuWtRomVhWQFq" data-plan-us="price_1Iw85dJNcmPzuWtRyhMDdtM7">Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
     def test_vpn_subscribe_link_variable_6_month_de(self):
@@ -188,8 +366,10 @@ class TestVPNSubscribeLink(TestCase):
             u'&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" '
             u'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button" '
             u'data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" data-cta-position="primary" '
-            u'data-plan-de="price_1IgwaHJNcmPzuWtRuUfSR4l7" data-plan-fr="price_1IgoxGJNcmPzuWtRG7l48EoV" '
-            u'data-plan-us="price_1Iw87cJNcmPzuWtRefuyqsOd">Get Mozilla VPN</a>')
+            u'data-plan-at="price_1IgwaHJNcmPzuWtRuUfSR4l7" data-plan-be="price_1J5JRmJNcmPzuWtRyFGj0tkN" '
+            u'data-plan-ch="price_1J5JtWJNcmPzuWtRMd2siphH" data-plan-de="price_1IgwaHJNcmPzuWtRuUfSR4l7" '
+            u'data-plan-es="price_1J5JDFJNcmPzuWtRrC4IeXTs" data-plan-fr="price_1IgoxGJNcmPzuWtRG7l48EoV" '
+            u'data-plan-it="price_1J5J7eJNcmPzuWtRKdQi4Tkk" data-plan-us="price_1Iw87cJNcmPzuWtRefuyqsOd">Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
     def test_vpn_subscribe_link_variable_monthly_de(self):
@@ -205,8 +385,10 @@ class TestVPNSubscribeLink(TestCase):
             u'&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" '
             u'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button" '
             u'data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" data-cta-position="primary" '
-            u'data-plan-de="price_1IgwZVJNcmPzuWtRg9Wssh2y" data-plan-fr="price_1IgowHJNcmPzuWtRzD7SgAYb" '
-            u'data-plan-us="price_1Iw7qSJNcmPzuWtRMUZpOwLm">Get Mozilla VPN</a>')
+            u'data-plan-at="price_1IgwZVJNcmPzuWtRg9Wssh2y" data-plan-be="price_1J5JSkJNcmPzuWtR54LPH2zi" '
+            u'data-plan-ch="price_1J5Ju3JNcmPzuWtR3GpNYSWj" data-plan-de="price_1IgwZVJNcmPzuWtRg9Wssh2y" '
+            u'data-plan-es="price_1J5JDgJNcmPzuWtRqQtIbktk" data-plan-fr="price_1IgowHJNcmPzuWtRzD7SgAYb" '
+            u'data-plan-it="price_1J5J6iJNcmPzuWtRK5zfoguV" data-plan-us="price_1Iw7qSJNcmPzuWtRMUZpOwLm">Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
     def test_vpn_subscribe_link_variable_12_month_fr(self):
@@ -222,8 +404,10 @@ class TestVPNSubscribeLink(TestCase):
             u'&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" '
             u'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button" '
             u'data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" data-cta-position="primary" '
-            u'data-plan-de="price_1IgwblJNcmPzuWtRynC7dqQa" data-plan-fr="price_1IgnlcJNcmPzuWtRjrNa39W4" '
-            u'data-plan-us="price_1Iw85dJNcmPzuWtRyhMDdtM7">Get Mozilla VPN</a>')
+            u'data-plan-at="price_1IgwblJNcmPzuWtRynC7dqQa" data-plan-be="price_1IgnlcJNcmPzuWtRjrNa39W4" '
+            u'data-plan-ch="price_1J5JunJNcmPzuWtRo9dLxn6M" data-plan-de="price_1IgwblJNcmPzuWtRynC7dqQa" '
+            u'data-plan-es="price_1J5JCdJNcmPzuWtRrvQMFLlP" data-plan-fr="price_1IgnlcJNcmPzuWtRjrNa39W4" '
+            u'data-plan-it="price_1J4owvJNcmPzuWtRomVhWQFq" data-plan-us="price_1Iw85dJNcmPzuWtRyhMDdtM7">Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
     def test_vpn_subscribe_link_variable_6_month_fr(self):
@@ -237,10 +421,11 @@ class TestVPNSubscribeLink(TestCase):
             u'<a href="https://vpn.mozilla.org/r/vpn/subscribe/products/prod_FvnsFHIfezy3ZI?plan=price_1IgoxGJNcmPzuWtRG7l48EoV'
             u'&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&utm_source=www.mozilla.org-vpn-product-page'
             u'&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
-            u'class="js-fxa-cta-link js-fxa-product-button mzp-c-button" '
-            u'data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" data-cta-position="primary" '
-            u'data-plan-de="price_1IgwaHJNcmPzuWtRuUfSR4l7" data-plan-fr="price_1IgoxGJNcmPzuWtRG7l48EoV" '
-            u'data-plan-us="price_1Iw87cJNcmPzuWtRefuyqsOd">Get Mozilla VPN</a>')
+            u'class="js-fxa-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" '
+            u'data-cta-position="primary" data-plan-at="price_1IgwaHJNcmPzuWtRuUfSR4l7" data-plan-be="price_1IgoxGJNcmPzuWtRG7l48EoV" '
+            u'data-plan-ch="price_1J5JvLJNcmPzuWtRayB4d7Ij" data-plan-de="price_1IgwaHJNcmPzuWtRuUfSR4l7" '
+            u'data-plan-es="price_1J5JDFJNcmPzuWtRrC4IeXTs" data-plan-fr="price_1IgoxGJNcmPzuWtRG7l48EoV" '
+            u'data-plan-it="price_1J5J7eJNcmPzuWtRKdQi4Tkk" data-plan-us="price_1Iw87cJNcmPzuWtRefuyqsOd">Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
     def test_vpn_subscribe_link_variable_monthly_fr(self):
@@ -256,8 +441,10 @@ class TestVPNSubscribeLink(TestCase):
             u'&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" '
             u'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button" '
             u'data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" data-cta-position="primary" '
-            u'data-plan-de="price_1IgwZVJNcmPzuWtRg9Wssh2y" data-plan-fr="price_1IgowHJNcmPzuWtRzD7SgAYb" '
-            u'data-plan-us="price_1Iw7qSJNcmPzuWtRMUZpOwLm">Get Mozilla VPN</a>')
+            u'data-plan-at="price_1IgwZVJNcmPzuWtRg9Wssh2y" data-plan-be="price_1IgowHJNcmPzuWtRzD7SgAYb" '
+            u'data-plan-ch="price_1J5JvjJNcmPzuWtR3wwy1dcR" data-plan-de="price_1IgwZVJNcmPzuWtRg9Wssh2y" '
+            u'data-plan-es="price_1J5JDgJNcmPzuWtRqQtIbktk" data-plan-fr="price_1IgowHJNcmPzuWtRzD7SgAYb" '
+            u'data-plan-it="price_1J5J6iJNcmPzuWtRK5zfoguV" data-plan-us="price_1Iw7qSJNcmPzuWtRMUZpOwLm">Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
 
@@ -287,6 +474,7 @@ class TestVPNSignInLink(TestCase):
         self.assertEqual(markup, expected)
 
 
+@override_settings(VPN_VARIABLE_PRICING=TEST_VPN_VARIABLE_PRICING)
 class TestVPNMonthlyPrice(TestCase):
     rf = RequestFactory()
 
@@ -300,7 +488,8 @@ class TestVPNMonthlyPrice(TestCase):
         markup = self._render(plan='monthly')
         expected = (
             u'<span class="js-vpn-monthly-price-display" data-price-usd="US$9.99<span>/month</span>" '
-            u'data-price-euro="9,99‎ €<span>/month</span>">US$9.99<span>/month</span></span>')
+            u'data-price-euro="9,99‎ €<span>/month</span>" data-price-chf="Fr. 9.99<span>/month</span>">'
+            u'US$9.99<span>/month</span></span>')
         self.assertEqual(markup, expected)
 
     def test_vpn_6_month_price(self):
@@ -308,7 +497,8 @@ class TestVPNMonthlyPrice(TestCase):
         markup = self._render(plan='6-month')
         expected = (
             u'<span class="js-vpn-monthly-price-display" data-price-usd="US$7.99<span>/month</span>" '
-            u'data-price-euro="6,99 €<span>/month</span>">US$7.99<span>/month</span></span>')
+            u'data-price-euro="6,99 €<span>/month</span>" data-price-chf="Fr. 6.99<span>/month</span>">'
+            u'US$7.99<span>/month</span></span>')
         self.assertEqual(markup, expected)
 
     def test_vpn_12_month_price(self):
@@ -316,10 +506,12 @@ class TestVPNMonthlyPrice(TestCase):
         markup = self._render(plan='12-month')
         expected = (
             u'<span class="js-vpn-monthly-price-display" data-price-usd="US$4.99<span>/month</span>" '
-            u'data-price-euro="4,99 €<span>/month</span>">US$4.99<span>/month</span></span>')
+            u'data-price-euro="4,99 €<span>/month</span>" data-price-chf="Fr. 4.99<span>/month</span>">'
+            u'US$4.99<span>/month</span></span>')
         self.assertEqual(markup, expected)
 
 
+@override_settings(VPN_VARIABLE_PRICING=TEST_VPN_VARIABLE_PRICING)
 class TestVPNTotalPrice(TestCase):
     rf = RequestFactory()
 
@@ -333,7 +525,7 @@ class TestVPNTotalPrice(TestCase):
         markup = self._render(plan='6-month')
         expected = (
             u'<span class="js-vpn-total-price-display" data-price-usd="US$47.94 total" '
-            u'data-price-euro="41,94 € total">US$47.94 total</span>')
+            u'data-price-euro="41,94 € total" data-price-chf="Fr. 41.94 total">US$47.94 total</span>')
         self.assertEqual(markup, expected)
 
     def test_vpn_12_month_total_price(self):
@@ -341,10 +533,11 @@ class TestVPNTotalPrice(TestCase):
         markup = self._render(plan='12-month')
         expected = (
             u'<span class="js-vpn-total-price-display" data-price-usd="US$59.88 total" '
-            u'data-price-euro="59,88 € total">US$59.88 total</span>')
+            u'data-price-euro="59,88 € total" data-price-chf="Fr. 59.88 total">US$59.88 total</span>')
         self.assertEqual(markup, expected)
 
 
+@override_settings(VPN_VARIABLE_PRICING=TEST_VPN_VARIABLE_PRICING)
 class TestVPNSaving(TestCase):
     rf = RequestFactory()
 
@@ -358,7 +551,7 @@ class TestVPNSaving(TestCase):
         markup = self._render(plan='6-month')
         expected = (
             u'<span class="js-vpn-saving-display" data-price-usd="Save 20%" '
-            u'data-price-euro="Save 30%">Save 20%</span>')
+            u'data-price-euro="Save 30%" data-price-chf="Save 30%">Save 20%</span>')
         self.assertEqual(markup, expected)
 
     def test_vpn_12_month_saving(self):
@@ -366,5 +559,5 @@ class TestVPNSaving(TestCase):
         markup = self._render(plan='12-month')
         expected = (
             u'<span class="js-vpn-saving-display" data-price-usd="Save 50%" '
-            u'data-price-euro="Save 50%">Save 50%</span>')
+            u'data-price-euro="Save 50%" data-price-chf="Save 50%">Save 50%</span>')
         self.assertEqual(markup, expected)

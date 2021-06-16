@@ -11,7 +11,11 @@
       </a>
 
       <p class="availability-copy">
-        {{ ftl('vpn-shared-available-countries-v2') }}
+        {% if switch('vpn-variable-pricing-eu-expansion') %}
+          {{ ftl('vpn-shared-available-countries-v3') }}
+        {% else %}
+          {{ ftl('vpn-shared-available-countries-v2') }}
+        {% endif %}
       </p>
     </div>
   </div>
