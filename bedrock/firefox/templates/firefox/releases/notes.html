@@ -231,8 +231,14 @@
         {% endif %}
       {% endfor %}
 
-      {# The Developer section is always visible with a MDN link #}
+      {# The Developer section is always visible with a MDN link except for dot releases #}
+      {% set dot_release = release.channel == 'Release' and release.version_obj|string != release.major_version + '.0' -%}
+      {% set devtools_notes = release_notes|selectattr('tag', 'equalto', 'Developer')|list|length > 1 %}
+
       {% for note in release_notes if note.tag == "Developer" %}
+        {% if dot_release and not devtools_notes %}
+          {% continue %}
+        {% endif %}
         {% if loop.first %}
           <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
             <div class="mzp-l-sidebar">
