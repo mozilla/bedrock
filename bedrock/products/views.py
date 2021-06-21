@@ -43,9 +43,7 @@ def vpn_landing_page(request):
     pricing_params = settings.VPN_VARIABLE_PRICING.get(locale, settings.VPN_VARIABLE_PRICING['us'])
 
     # ensure experiment parameters matches pre-defined values
-    if entrypoint_experiment == 'vpn-landing-page-download-first' and entrypoint_variation in ['a', 'b']:
-        template_name = 'products/vpn/variants/download-{}.html'.format(entrypoint_variation)
-    elif entrypoint_experiment == 'vpn-landing-page-sub-position' and entrypoint_variation in ['a', 'b', 'c']:
+    if entrypoint_experiment == 'vpn-landing-page-sub-position' and entrypoint_variation in ['a', 'b', 'c']:
         template_name = 'products/vpn/variants/pricing-{}.html'.format(entrypoint_variation)
     else:
         template_name = 'products/vpn/landing.html'

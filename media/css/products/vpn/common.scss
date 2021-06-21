@@ -54,25 +54,6 @@ $image-path: '/media/protocol/img';
     }
 }
 
-// VPN downlaod first experiment: issue 10209
-.mozilla-vpn-landing-download-first.show-vpn-variable-pricing {
-    // Hide the "scroll to pricing" CTA buttons
-    .js-vpn-variable-pricing,
-    .js-target-navigation-cta {
-        display: none !important;
-    }
-
-    // Display the default CTA buttons that have been replaced by direct
-    // download links in the treatment variation.
-    div.js-vpn-fixed-pricing {
-        display: block !important;
-    }
-
-    span.js-vpn-fixed-pricing {
-        display: inline-block !important;
-    }
-}
-
 // countries where VPN is not available.
 .show-vpn-waitlist {
 
