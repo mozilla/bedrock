@@ -131,7 +131,7 @@ PROD_LANGUAGES = ('ach', 'af', 'an', 'ar', 'ast', 'az', 'azz', 'be', 'bg',
                   'ka', 'kab', 'kk', 'km', 'kn', 'ko', 'lij', 'lt', 'ltg', 'lv',
                   'mk', 'ml', 'mr', 'ms', 'my', 'nb-NO', 'ne-NP', 'nl',
                   'nn-NO', 'oc', 'pa-IN', 'pl', 'pt-BR', 'pt-PT',
-                  'rm', 'ro', 'ru', 'si', 'sk', 'sl', 'son', 'sq',
+                  'rm', 'ro', 'ru', 'sco', 'si', 'sk', 'sl', 'son', 'sq',
                   'sr', 'sv-SE', 'ta', 'te', 'th', 'tl', 'tr', 'trs', 'uk', 'ur',
                   'uz', 'vi', 'xh', 'zh-CN', 'zh-TW', 'zu')
 
