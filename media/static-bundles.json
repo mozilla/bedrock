@@ -425,6 +425,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-90-eu.scss"
+      ],
+      "name": "firefox_whatsnew_90_eu"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
