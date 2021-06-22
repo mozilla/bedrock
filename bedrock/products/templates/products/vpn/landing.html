@@ -63,6 +63,9 @@
       desc=ftl('vpn-landing-hero-desc')
     ) %}
       <div class="js-vpn-fixed-pricing">
+        {% if LANG.startswith('en') %}
+          <p><strong>{{ settings.VPN_FIXED_MONTHLY_PRICE }}/month - This introductory offer ends soon.</strong></p>
+        {% endif %}
         {% block get_mozilla_vpn_hero %}
           {{ vpn_subscribe_link(
             entrypoint=_utm_source,
