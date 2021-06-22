@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import hero, billboard, card, call_out_compact, content_card with context %}
+{% from "macros-protocol.html" import hero, split, billboard, card, call_out_compact, content_card with context %}
 {% from "mozorg/home/includes/macros.html" import download_banner, download_banner_secondary, fxa_banner %}
 
 {% extends "base-protocol-mozilla.html" %}
@@ -89,19 +89,33 @@
         {{ content_card('card_5') }}
       </div>
   </div>
-  <div class="mzp-t-mozilla">
-      {% call hero(
-        title='Welcome to the web, sunny side up',
-        desc='Millions of people rely on Pocket to save and discover the best articles, stories and videos on the web. As part of the Firefox family, Pocket has the same dedication to privacy.',
-        class='pocket-sunny-hero mzp-has-image mzp-t-mozilla mzp-l-reverse mzp-t-product-firefox',
+  <div class="mzp-t-mozilla" id="vpn">
+  {% call split(
+      image_url='img/home/2020/vpn-hero.png',
+      include_highres_image=True,
+      block_class='mzp-l-split-pop',
+      media_class='mzp-l-split-media-constrain-height',
+    ) %}
+    <h3 class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-vpn">Mozilla VPN</h3>
+    <h4 class="mzp-u-title-md">Protection for your whole device, on every device</h4>
+    <p>Surf, stream, game, and get work done while maintaining your privacy online.</p>
+    <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button">Get Mozilla VPN</a>
+  {% endcall %}
+  </div>
+
+  <div class="mzp-t-mozilla" id="pocket">
+    {% call split(
         image_url='img/home/2020/pocket-hero.jpg',
         include_highres_image=True,
-        include_cta=True,
-        heading_level=3
+        block_class='mzp-l-split-reversed mzp-l-split-pop',
+        media_class='mzp-l-split-media-constrain-height',
       ) %}
-        <a href="https://getpocket.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=hero" class="mzp-c-button mzp-t-product">Try Pocket</a>
-      {% endcall %}
-  </div>
+      <h3 class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-pocket">Pocket</h3>
+      <h4 class="mzp-u-title-md">Welcome to the web, sunny side up</h4>
+      <p>Millions of people rely on Pocket to save and discover the best articles, stories and videos on the web. As part of the Firefox family, Pocket has the same dedication to privacy.</p>
+      <a href="https://getpocket.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=hero" class="mzp-c-button mzp-t-product">Try Pocket</a>
+    {% endcall %}
+    </div>
 
     {% if switch('show_pocket_feed', ['en']) and pocket_articles %}
     <aside class="pocket">
