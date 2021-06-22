@@ -12,6 +12,10 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/components/hero';
 @import '../../../protocol/css/components/modal';
 @import '../../../protocol/css/components/newsletter-form';
+@import '../../../protocol/css/components/split';
+@import '../../../protocol/css/components/logos/wordmark';
+@import '../../../protocol/css/components/logos/wordmark-product-vpn';
+@import '../../../protocol/css/components/logos/wordmark-product-pocket';
 @import '../../../protocol/css/templates/card-layout';
 
 .main-page-heading {
@@ -70,21 +74,6 @@ $image-path: '/media/protocol/img';
     }
 }
 
-//* -------------------------------------------------------------------------- */
-// Pocket Hero
-
-.pocket-sunny-hero {
-    &.mzp-t-product-firefox .mzp-c-hero-title {
-        background-image: url('/media/protocol/img/logos/pocket/logo-word-hor.svg');
-        background-size: 150px auto;
-    }
-    &.mzp-has-image.mzp-t-product-firefox .mzp-c-hero-title {
-        @media #{$mq-md} {
-            padding-top: 75px;
-        }
-    }
-}
-
 
 
 /* -------------------------------------------------------------------------- */
@@ -106,8 +95,11 @@ $image-path: '/media/protocol/img';
 // Pocket highlights section.
 
 .pocket {
-    background: #f5f5f5;
-    margin: 20px 0;
+
+    .mzp-l-content {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
 
     .section-heading {
         @include text-title-xs;
@@ -130,7 +122,7 @@ $image-path: '/media/protocol/img';
     }
 
     @media #{$mq-md} {
-        margin: $spacing-xl 0 0;
+        margin-bottom: 0;
         padding-top: $spacing-lg;
     }
 }
