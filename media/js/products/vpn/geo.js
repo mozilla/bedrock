@@ -15,6 +15,15 @@ if (typeof window.Mozilla === 'undefined') {
     var _geoTimeout;
     var _requestComplete = false;
 
+    // Euro pricing
+    var EURO_COUNTRIES = ['at', 'be', 'de', 'es', 'fr', 'it'];
+
+    // Swiss Francs (CHF) pricing
+    var CHF_COUNTRIES = ['ch'];
+
+    // Locales where we fallback to showing variable pricing should the geo-location check fail.
+    var VARIABLE_PRICE_LOCALES = ['de', 'es-ES', 'fr', 'it'];
+
     VPN.getLocation = function() {
         // should /country-code.json be slow to load,
         // just show the regular messaging after 10 seconds waiting.
@@ -128,6 +137,14 @@ if (typeof window.Mozilla === 'undefined') {
         return 'not-available';
     };
 
+    VPN.isVariablePriceLocale = function(lang) {
+        if (VARIABLE_PRICE_LOCALES.indexOf(lang) !== -1 || document.body.classList.contains('wave-1-variable-pricing')) {
+            return true;
+        }
+
+        return false;
+    };
+
     VPN.setAvailability = function(availability, language) {
         if (availability === 'fixed-price') {
             // If VPN is available in countries that support fixed pricing,
@@ -143,7 +160,7 @@ if (typeof window.Mozilla === 'undefined') {
         } else {
             // If we can't determine someone's country then fall back to page language.
             var lang = document.getElementsByTagName('html')[0].getAttribute('lang') || language;
-            if (lang === 'de' || lang === 'fr' || document.body.classList.contains('wave-1-variable-pricing')) {
+            if (VPN.isVariablePriceLocale(lang)) {
                 VPN.showVariablePricing();
             } else {
                 VPN.showFixedPricing();
@@ -199,10 +216,10 @@ if (typeof window.Mozilla === 'undefined') {
             var href = subscribeLinks[i].href;
             var plan;
 
-            // Use Euro plan for DE/FR else fallback to US$ pricing.
-            if (VPN.countryCode === 'de' || VPN.countryCode === 'fr') {
-                plan = subscribeLinks[i].getAttribute('data-plan-' + VPN.countryCode);
-            } else {
+            // Try and get country plan, else fallback to US plan.
+            plan = subscribeLinks[i].getAttribute('data-plan-' + VPN.countryCode);
+
+            if (!plan) {
                 plan = subscribeLinks[i].getAttribute('data-plan-us');
             }
 
@@ -225,6 +242,16 @@ if (typeof window.Mozilla === 'undefined') {
         return href;
     };
 
+    VPN.getCurrency = function(country) {
+        if (EURO_COUNTRIES.indexOf(country) !== -1) {
+            return 'euro';
+        } else if (CHF_COUNTRIES.indexOf(country) !== -1) {
+            return 'chf';
+        }
+
+        return 'usd';
+    };
+
     // Sets the displayed subscription price based on geo-location.
     VPN.setDisplayPrice = function() {
         var displayPrice = document.querySelectorAll('.js-vpn-monthly-price-display, .js-vpn-total-price-display, .js-vpn-saving-display');
@@ -233,12 +260,16 @@ if (typeof window.Mozilla === 'undefined') {
             return;
         }
 
+        var currency = VPN.getCurrency(VPN.countryCode);
+
         for (var i = 0; i < displayPrice.length; i++) {
             var price;
 
             // Use Euro plan for DE/FR else fallback to US$ pricing.
-            if (VPN.countryCode === 'de' || VPN.countryCode === 'fr') {
+            if (currency === 'euro') {
                 price = displayPrice[i].getAttribute('data-price-euro');
+            } else if (currency === 'chf') {
+                price = displayPrice[i].getAttribute('data-price-chf');
             } else {
                 price = displayPrice[i].getAttribute('data-price-usd');
             }

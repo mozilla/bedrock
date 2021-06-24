@@ -25,12 +25,15 @@ def vpn_fixed_price_countries():
 
 
 def vpn_variable_price_countries():
+    countries = settings.VPN_VARIABLE_PRICE_COUNTRY_CODES
+
     if switch('vpn-variable-pricing-wave-1'):
-        countries = settings.VPN_FIXED_PRICE_COUNTRY_CODES + settings.VPN_VARIABLE_PRICE_COUNTRY_CODES
-        return '|%s|' % '|'.join(cc.lower() for cc in countries)
-    else:
-        countries = settings.VPN_VARIABLE_PRICE_COUNTRY_CODES
-        return '|%s|' % '|'.join(cc.lower() for cc in countries)
+        countries.extend(settings.VPN_FIXED_PRICE_COUNTRY_CODES)
+
+    if switch('vpn-variable-pricing-eu-expansion'):
+        countries.extend(settings.VPN_VARIABLE_PRICE_COUNTRY_CODES_EXPANSION)
+
+    return '|%s|' % '|'.join(cc.lower() for cc in countries)
 
 
 @require_safe
@@ -58,10 +61,11 @@ def vpn_landing_page(request):
         'fixed_price_countries': vpn_fixed_price_countries(),
         'fixed_monthly_price': settings.VPN_FIXED_MONTHLY_PRICE,
         'variable_price_countries': vpn_variable_price_countries(),
-        'default_monthly_price': pricing_params['monthly']['price'],
-        'default_6_month_price': pricing_params['6-month']['price'],
-        'default_12_month_price': pricing_params['12-month']['price'],
-        'available_countries': settings.VPN_AVAILABLE_COUNTRIES,
+        'default_monthly_price': pricing_params['default']['monthly']['price'],
+        'default_6_month_price': pricing_params['default']['6-month']['price'],
+        'default_12_month_price': pricing_params['default']['12-month']['price'],
+        'available_countries': (settings.VPN_AVAILABLE_COUNTRIES_EXPANSION if switch('vpn-variable-pricing-eu-expansion') else
+                                settings.VPN_AVAILABLE_COUNTRIES),
         'connect_servers': settings.VPN_CONNECT_SERVERS,
         'connect_countries': settings.VPN_CONNECT_COUNTRIES,
         'connect_devices': settings.VPN_CONNECT_DEVICES,

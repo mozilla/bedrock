@@ -89,7 +89,7 @@ describe('geo.js', function() {
     describe('getAvailability', function() {
 
         var fixedCountries = '|ca|my|nz|sg|gb|gg|im|io|je|uk|vg|as|mp|pr|um|us|vi|';
-        var variableCountries = '|de|fr|';
+        var variableCountries = '|at|be|ch|de|es|fr|it|';
 
         it('should return `fixed-pricce` if matching country code is found', function() {
             expect(Mozilla.VPN.getAvailability('us', fixedCountries, variableCountries)).toEqual('fixed-price');
@@ -97,8 +97,13 @@ describe('geo.js', function() {
         });
 
         it('should return `variable-price` if matching country code is found', function() {
+            expect(Mozilla.VPN.getAvailability('at', fixedCountries, variableCountries)).toEqual('variable-price');
+            expect(Mozilla.VPN.getAvailability('be', fixedCountries, variableCountries)).toEqual('variable-price');
+            expect(Mozilla.VPN.getAvailability('ch', fixedCountries, variableCountries)).toEqual('variable-price');
             expect(Mozilla.VPN.getAvailability('de', fixedCountries, variableCountries)).toEqual('variable-price');
+            expect(Mozilla.VPN.getAvailability('es', fixedCountries, variableCountries)).toEqual('variable-price');
             expect(Mozilla.VPN.getAvailability('fr', fixedCountries, variableCountries)).toEqual('variable-price');
+            expect(Mozilla.VPN.getAvailability('it', fixedCountries, variableCountries)).toEqual('variable-price');
         });
 
         it('should return `not-available` if no matching country code is found', function() {
@@ -142,33 +147,82 @@ describe('geo.js', function() {
             expect(Mozilla.VPN.showJoinWaitList).toHaveBeenCalled();
         });
 
-        it('should fallback to page language if availability is not known', function() {
+        it('should fallback to page language if country is unknown (en-US)', function() {
             Mozilla.VPN.setAvailability('unknown', 'en-US');
             expect(Mozilla.VPN.showFixedPricing).toHaveBeenCalled();
+        });
 
+        it('should fallback to page language if country is unknown (de)', function() {
             Mozilla.VPN.setAvailability('unknown', 'de');
             expect(Mozilla.VPN.showVariablePricing).toHaveBeenCalled();
+        });
 
+        it('should fallback to page language if country is unknown (es-ES)', function() {
+            Mozilla.VPN.setAvailability('unknown', 'es-ES');
+            expect(Mozilla.VPN.showVariablePricing).toHaveBeenCalled();
+        });
+
+        it('should fallback to page language if country is unknown (fr)', function() {
             Mozilla.VPN.setAvailability('unknown', 'fr');
+            expect(Mozilla.VPN.showVariablePricing).toHaveBeenCalled();
+        });
+
+        it('should fallback to page language if country is unknown (it)', function() {
+            Mozilla.VPN.setAvailability('unknown', 'it');
             expect(Mozilla.VPN.showVariablePricing).toHaveBeenCalled();
         });
     });
 
     describe('updateSubscriptionURL', function() {
 
-        it ('should update the subscription plan ID as expected', function() {
+        it('should update the subscription plan ID as expected', function() {
             var result = Mozilla.VPN.updateSubscriptionURL('price_1IgnlcJNcmPzuWtRjrNa39W4', 'https://vpn.mozilla.org/r/vpn/subscribe/products/prod_FiJ42WCzZNRSbS?plan=price_1IgwblJNcmPzuWtRynC7dqQa&entrypoint=www.mozilla.org-vpn-product-page');
             expect(result).toEqual('https://vpn.mozilla.org/r/vpn/subscribe/products/prod_FiJ42WCzZNRSbS?plan=price_1IgnlcJNcmPzuWtRjrNa39W4&entrypoint=www.mozilla.org-vpn-product-page');
         });
 
-        it ('should not change the URL if there is no plan ID', function() {
+        it('should not change the URL if there is no plan ID', function() {
             var result = Mozilla.VPN.updateSubscriptionURL(null, 'https://vpn.mozilla.org/r/vpn/subscribe/products/prod_FiJ42WCzZNRSbS?plan=price_1IgwblJNcmPzuWtRynC7dqQa&entrypoint=www.mozilla.org-vpn-product-page');
             expect(result).toEqual('https://vpn.mozilla.org/r/vpn/subscribe/products/prod_FiJ42WCzZNRSbS?plan=price_1IgwblJNcmPzuWtRynC7dqQa&entrypoint=www.mozilla.org-vpn-product-page');
         });
 
-        it ('should not change the URL if there is no plan query parameter', function() {
+        it('should not change the URL if there is no plan query parameter', function() {
             var result = Mozilla.VPN.updateSubscriptionURL('price_1IgwblJNcmPzuWtRynC7dqQa', 'https://vpn.mozilla.org/r/vpn/subscribe?entrypoint=www.mozilla.org-vpn-product-page');
             expect(result).toEqual('https://vpn.mozilla.org/r/vpn/subscribe?entrypoint=www.mozilla.org-vpn-product-page');
+        });
+    });
+
+    describe('getCurrency', function() {
+        it('should return "euro" for EU countries', function() {
+            expect(Mozilla.VPN.getCurrency('at')).toEqual('euro');
+            expect(Mozilla.VPN.getCurrency('be')).toEqual('euro');
+            expect(Mozilla.VPN.getCurrency('de')).toEqual('euro');
+            expect(Mozilla.VPN.getCurrency('es')).toEqual('euro');
+            expect(Mozilla.VPN.getCurrency('fr')).toEqual('euro');
+            expect(Mozilla.VPN.getCurrency('it')).toEqual('euro');
+        });
+
+        it('should return "chf" for Switzerland', function() {
+            expect(Mozilla.VPN.getCurrency('ch')).toEqual('chf');
+        });
+
+        it('should return "usd" for wave 1 countries', function() {
+            expect(Mozilla.VPN.getCurrency('ca')).toEqual('usd');
+            expect(Mozilla.VPN.getCurrency('my')).toEqual('usd');
+            expect(Mozilla.VPN.getCurrency('nz')).toEqual('usd');
+            expect(Mozilla.VPN.getCurrency('sg')).toEqual('usd');
+            expect(Mozilla.VPN.getCurrency('gb')).toEqual('usd');
+            expect(Mozilla.VPN.getCurrency('gg')).toEqual('usd');
+            expect(Mozilla.VPN.getCurrency('im')).toEqual('usd');
+            expect(Mozilla.VPN.getCurrency('io')).toEqual('usd');
+            expect(Mozilla.VPN.getCurrency('je')).toEqual('usd');
+            expect(Mozilla.VPN.getCurrency('uk')).toEqual('usd');
+            expect(Mozilla.VPN.getCurrency('vg')).toEqual('usd');
+            expect(Mozilla.VPN.getCurrency('as')).toEqual('usd');
+            expect(Mozilla.VPN.getCurrency('mp')).toEqual('usd');
+            expect(Mozilla.VPN.getCurrency('pr')).toEqual('usd');
+            expect(Mozilla.VPN.getCurrency('um')).toEqual('usd');
+            expect(Mozilla.VPN.getCurrency('us')).toEqual('usd');
+            expect(Mozilla.VPN.getCurrency('vi')).toEqual('usd');
         });
     });
 

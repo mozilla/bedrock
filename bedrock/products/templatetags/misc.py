@@ -42,6 +42,19 @@ def _vpn_product_link(product_url, entrypoint, link_text, class_name=None, optio
     return jinja2.Markup(markup)
 
 
+def get_cc(lang):
+    cc = lang.split('-')[1] if lang and '-' in lang else lang
+    cc = cc.lower() if cc else cc
+    return cc
+
+
+def get_default_params(lang):
+    cc = get_cc(lang)
+
+    # Default to US pricing if no matching country/lang code is found.
+    return settings.VPN_VARIABLE_PRICING.get(cc, settings.VPN_VARIABLE_PRICING['us'])
+
+
 @library.global_function
 @jinja2.contextfunction
 def vpn_sign_in_link(ctx, entrypoint, link_text, class_name=None, optional_parameters=None, optional_attributes=None):
@@ -80,13 +93,19 @@ def vpn_subscribe_link(ctx, entrypoint, link_text, plan=None, class_name=None, l
     if plan in ['12-month', '6-month', 'monthly']:
 
         # Set a default plan ID using page locale. This acts as a fallback should geo-location fail.
-        pricing_params = settings.VPN_VARIABLE_PRICING.get(lang, settings.VPN_VARIABLE_PRICING['us'])
-        plan_default = pricing_params[plan]['id']
+        default_params = get_default_params(lang)
+        cc = get_cc(lang)
+        plan_default = default_params['default'][plan]['id']
         plan_attributes = {}
 
         # HTML data-attributes are used by client side JS to set the correct plan ID based on geo.
         for country, attrs in settings.VPN_VARIABLE_PRICING.items():
-            plan_attributes.update({f'data-plan-{country}': attrs[plan]['id']})
+            if 'alt' in attrs and cc in attrs['alt']:
+                plan_id = attrs['alt'][cc][plan]['id']
+            else:
+                plan_id = attrs['default'][plan]['id']
+
+            plan_attributes.update({f'data-plan-{country}': plan_id})
 
     # All other subscription links default to fixed monthly pricing in $US.
     else:
@@ -117,16 +136,18 @@ def vpn_monthly_price(ctx, plan='monthly', lang=None):
         {{ vpn_monthly_price(plan='12-month') }}
     """
 
-    pricing_params = settings.VPN_VARIABLE_PRICING.get(lang, settings.VPN_VARIABLE_PRICING['us'])
-    default_amount = pricing_params[plan]['price']
-    euro_amount = settings.VPN_VARIABLE_PRICING['de'][plan]['price']
-    usd_amount = settings.VPN_VARIABLE_PRICING['us'][plan]['price']
+    default_params = get_default_params(lang)
+    default_amount = default_params['default'][plan]['price']
+    euro_amount = settings.VPN_VARIABLE_PRICING['de']['default'][plan]['price']
+    usd_amount = settings.VPN_VARIABLE_PRICING['us']['default'][plan]['price']
+    chf_amount = settings.VPN_VARIABLE_PRICING['ch']['default'][plan]['price']
     default_text = ftl('vpn-shared-pricing-monthly', amount=default_amount, ftl_files=FTL_FILES)
 
     # HTML data-attributes are used by client side JS to set the correct display price based on geo.
     attributes = {
         'data-price-usd': ftl('vpn-shared-pricing-monthly', amount=usd_amount, ftl_files=FTL_FILES),
         'data-price-euro': ftl('vpn-shared-pricing-monthly', amount=euro_amount, ftl_files=FTL_FILES),
+        'data-price-chf': ftl('vpn-shared-pricing-monthly', amount=chf_amount, ftl_files=FTL_FILES),
     }
 
     attrs = ' '.join('%s="%s"' % (attr, val) for attr, val in attributes.items())
@@ -153,16 +174,18 @@ def vpn_total_price(ctx, plan='12-month', lang=None):
         {{ vpn_total_price(plan='6-month') }}
     """
 
-    pricing_params = settings.VPN_VARIABLE_PRICING.get(lang, settings.VPN_VARIABLE_PRICING['us'])
-    default_amount = pricing_params[plan]['total']
-    euro_amount = settings.VPN_VARIABLE_PRICING['de'][plan]['total']
-    usd_amount = settings.VPN_VARIABLE_PRICING['us'][plan]['total']
+    pricing_params = get_default_params(lang)
+    default_amount = pricing_params['default'][plan]['total']
+    euro_amount = settings.VPN_VARIABLE_PRICING['de']['default'][plan]['total']
+    usd_amount = settings.VPN_VARIABLE_PRICING['us']['default'][plan]['total']
+    chf_amount = settings.VPN_VARIABLE_PRICING['ch']['default'][plan]['total']
     default_text = ftl('vpn-shared-pricing-total', amount=default_amount, ftl_files=FTL_FILES)
 
     # HTML data-attributes are used by client side JS to set the correct display price based on geo.
     attributes = {
         'data-price-usd': ftl('vpn-shared-pricing-total', amount=usd_amount, ftl_files=FTL_FILES),
         'data-price-euro': ftl('vpn-shared-pricing-total', amount=euro_amount, ftl_files=FTL_FILES),
+        'data-price-chf': ftl('vpn-shared-pricing-total', amount=chf_amount, ftl_files=FTL_FILES),
     }
 
     attrs = ' '.join('%s="%s"' % (attr, val) for attr, val in attributes.items())
@@ -189,16 +212,18 @@ def vpn_saving(ctx, plan='12-month', lang=None):
         {{ vpn_saving(plan='6-month') }}
     """
 
-    pricing_params = settings.VPN_VARIABLE_PRICING.get(lang, settings.VPN_VARIABLE_PRICING['us'])
-    default_amount = pricing_params[plan]['saving']
-    euro_amount = settings.VPN_VARIABLE_PRICING['de'][plan]['saving']
-    usd_amount = settings.VPN_VARIABLE_PRICING['us'][plan]['saving']
+    pricing_params = get_default_params(lang)
+    default_amount = pricing_params['default'][plan]['saving']
+    euro_amount = settings.VPN_VARIABLE_PRICING['de']['default'][plan]['saving']
+    usd_amount = settings.VPN_VARIABLE_PRICING['us']['default'][plan]['saving']
+    chf_amount = settings.VPN_VARIABLE_PRICING['ch']['default'][plan]['saving']
     default_text = ftl('vpn-shared-pricing-save-percent', percent=default_amount, ftl_files=FTL_FILES)
 
     # HTML data-attributes are used by client side JS to set the correct saving based on geo.
     attributes = {
         'data-price-usd': ftl('vpn-shared-pricing-save-percent', percent=usd_amount, ftl_files=FTL_FILES),
         'data-price-euro': ftl('vpn-shared-pricing-save-percent', percent=euro_amount, ftl_files=FTL_FILES),
+        'data-price-chf': ftl('vpn-shared-pricing-save-percent', percent=chf_amount, ftl_files=FTL_FILES),
     }
 
     attrs = ' '.join('%s="%s"' % (attr, val) for attr, val in attributes.items())

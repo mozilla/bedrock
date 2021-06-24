@@ -1292,67 +1292,231 @@ VPN_FIXED_PRICE_MONTHLY_USD = config('VPN_FIXED_PRICE_MONTHLY_USD',
                                      default='plan_FvPMH5lVx1vhV0'
                                      if DEV else 'plan_FvnxS1j9oFUZ7Y')
 
-# Plan IDs for VPN variable price subscriptions in Euros.
-VPN_VARIABLE_PRICING = {
-    'de': {
-        '12-month': {
-            'id': 'price_1IXw5oKb9q6OnNsLPMkWOid7' if DEV else 'price_1IgwblJNcmPzuWtRynC7dqQa',
-            'price': '4,99 €',
-            'total': '59,88 €',
-            'saving': 50
+# VPN variable subscription plan IDs by currency/language.
+VPN_PLAN_ID_MATRIX = {
+    'chf': {
+        'de': {
+            '12-month': {
+                'id': 'price_1J4sAUKb9q6OnNsLfYDKbpdY' if DEV else 'price_1J5JssJNcmPzuWtR616BH4aU',
+                'price': u'5.99 CHF',
+                'total': u'71.88 CHF',
+                'saving': 45
+            },
+            '6-month': {
+                'id': 'price_1J4sB1Kb9q6OnNsLD5WQ4N5y' if DEV else 'price_1J5JtWJNcmPzuWtRMd2siphH',
+                'price': u'7.99 CHF',
+                'total': u'47.94 CHF',
+                'saving': 27
+            },
+            'monthly': {
+                'id': 'price_1J4sC2Kb9q6OnNsLIgz3DDu8' if DEV else 'price_1J5Ju3JNcmPzuWtR3GpNYSWj',
+                'price': u'10.99 CHF',
+                'total': None,
+                'saving': None
+            }
         },
-        '6-month': {
-            'id': 'price_1IXw5NKb9q6OnNsLLIyYuhWF' if DEV else 'price_1IgwaHJNcmPzuWtRuUfSR4l7',
-            'price': '6,99 €',
-            'total': '41,94 €',
-            'saving': 30
+        'fr': {
+            '12-month': {
+                'id': 'price_1J4sM2Kb9q6OnNsLsGLZwTP9' if DEV else 'price_1J5JunJNcmPzuWtRo9dLxn6M',
+                'price': u'5.99 CHF',
+                'total': u'71.88 CHF',
+                'saving': 45
+            },
+            '6-month': {
+                'id': 'price_1J4sMWKb9q6OnNsL3eL2v91Q' if DEV else 'price_1J5JvLJNcmPzuWtRayB4d7Ij',
+                'price': u'7.99 CHF',
+                'total': u'47.94 CHF',
+                'saving': 27
+            },
+            'monthly': {
+                'id': 'price_1J4sNGKb9q6OnNsLl3OEuKqT' if DEV else 'price_1J5JvjJNcmPzuWtR3wwy1dcR',
+                'price': u'10.99 CHF',
+                'total': None,
+                'saving': None
+            }
         },
-        'monthly': {
-            'id': 'price_1IXw4eKb9q6OnNsLqnVP4PvO' if DEV else 'price_1IgwZVJNcmPzuWtRg9Wssh2y',
-            'price': '9,99‎ €',
-            'total': None,
-            'saving': None
+        'it': {
+            '12-month': {
+                'id': 'price_1J4sWMKb9q6OnNsLkrTo2uUW' if DEV else 'price_1J5JwWJNcmPzuWtRgrx5fjOc',
+                'price': u'5.99 CHF',
+                'total': u'71.88 CHF',
+                'saving': 45
+            },
+            '6-month': {
+                'id': 'price_1J4sWsKb9q6OnNsLXBVXh664' if DEV else 'price_1J5JwvJNcmPzuWtRH2HuhWM5',
+                'price': u'7.99 CHF',
+                'total': u'47.94 CHF',
+                'saving': 27
+            },
+            'monthly': {
+                'id': 'price_1J4sXWKb9q6OnNsLVoGiXcW5' if DEV else 'price_1J5JxGJNcmPzuWtRrp5e1SUB',
+                'price': u'10.99 CHF',
+                'total': None,
+                'saving': None
+            }
         }
+    },
+    'euro': {
+        'de': {
+            '12-month': {
+                'id': 'price_1IXw5oKb9q6OnNsLPMkWOid7' if DEV else 'price_1IgwblJNcmPzuWtRynC7dqQa',
+                'price': u'4,99 €',
+                'total': u'59,88 €',
+                'saving': 50
+            },
+            '6-month': {
+                'id': 'price_1IXw5NKb9q6OnNsLLIyYuhWF' if DEV else 'price_1IgwaHJNcmPzuWtRuUfSR4l7',
+                'price': u'6,99 €',
+                'total': u'41,94 €',
+                'saving': 30
+            },
+            'monthly': {
+                'id': 'price_1IXw4eKb9q6OnNsLqnVP4PvO' if DEV else 'price_1IgwZVJNcmPzuWtRg9Wssh2y',
+                'price': u'9,99‎ €',
+                'total': None,
+                'saving': None
+            }
+        },
+        'es': {
+            '12-month': {
+                'id': 'price_1J4pE7Kb9q6OnNsLnvvyRClI' if DEV else 'price_1J5JCdJNcmPzuWtRrvQMFLlP',
+                'price': u'4,99 €',
+                'total': u'59,88 €',
+                'saving': 50
+            },
+            '6-month': {
+                'id': 'price_1J4pEcKb9q6OnNsLKrjmFqUc' if DEV else 'price_1J5JDFJNcmPzuWtRrC4IeXTs',
+                'price': u'6,99 €',
+                'total': u'41,94 €',
+                'saving': 30
+            },
+            'monthly': {
+                'id': 'price_1J4pFSKb9q6OnNsLEyiFLbvB' if DEV else 'price_1J5JDgJNcmPzuWtRqQtIbktk',
+                'price': u'9,99‎ €',
+                'total': None,
+                'saving': None
+            }
+        },
+        'fr': {
+            '12-month': {
+                'id': 'price_1IXw5oKb9q6OnNsLPMkWOid7' if DEV else 'price_1IgnlcJNcmPzuWtRjrNa39W4',
+                'price': u'4,99 €',
+                'total': u'59,88 €',
+                'saving': 50
+            },
+            '6-month': {
+                'id': 'price_1IXw5NKb9q6OnNsLLIyYuhWF' if DEV else 'price_1IgoxGJNcmPzuWtRG7l48EoV',
+                'price': u'6,99 €',
+                'total': u'41,94 €',
+                'saving': 30
+            },
+            'monthly': {
+                'id': 'price_1IXw4eKb9q6OnNsLqnVP4PvO' if DEV else 'price_1IgowHJNcmPzuWtRzD7SgAYb',
+                'price': u'9,99‎ €',
+                'total': None,
+                'saving': None
+            }
+        },
+        'it': {
+            '12-month': {
+                'id': 'price_1J4p3CKb9q6OnNsLK2oBxgsV' if DEV else 'price_1J4owvJNcmPzuWtRomVhWQFq',
+                'price': u'4,99 €',
+                'total': u'59,88 €',
+                'saving': 50
+            },
+            '6-month': {
+                'id': 'price_1J4p5rKb9q6OnNsL3uDibRbN' if DEV else 'price_1J5J7eJNcmPzuWtRKdQi4Tkk',
+                'price': u'6,99 €',
+                'total': u'41,94 €',
+                'saving': 30
+            },
+            'monthly': {
+                'id': 'price_1J4p6wKb9q6OnNsLTb6kCDsC' if DEV else 'price_1J5J6iJNcmPzuWtRK5zfoguV',
+                'price': u'9,99‎ €',
+                'total': None,
+                'saving': None
+            }
+        },
+        'nl': {
+            '12-month': {
+                'id': 'price_1J4ryxKb9q6OnNsL3fPF8mxI' if DEV else 'price_1J5JRGJNcmPzuWtRXwXA84cm',
+                'price': u'4,99 €',
+                'total': u'59,88 €',
+                'saving': 50
+            },
+            '6-month': {
+                'id': 'price_1J4rzWKb9q6OnNsLKUR9kmFG' if DEV else 'price_1J5JRmJNcmPzuWtRyFGj0tkN',
+                'price': u'6,99 €',
+                'total': u'41,94 €',
+                'saving': 30
+            },
+            'monthly': {
+                'id': 'price_1J4s0MKb9q6OnNsLS19LMKBb' if DEV else 'price_1J5JSkJNcmPzuWtR54LPH2zi',
+                'price': u'9,99‎ €',
+                'total': None,
+                'saving': None
+            }
+        }
+    },
+    'usd': {
+        'en': {
+            '12-month': {
+                'id': 'price_1J0Y1iKb9q6OnNsLXwdOFgDr' if DEV else 'price_1Iw85dJNcmPzuWtRyhMDdtM7',
+                'price': u'US$4.99',
+                'total': u'US$59.88',
+                'saving': 50
+            },
+            '6-month': {
+                'id': 'price_1J0Y12Kb9q6OnNsL4SB2hhmp' if DEV else 'price_1Iw87cJNcmPzuWtRefuyqsOd',
+                'price': u'US$7.99',
+                'total': u'US$47.94',
+                'saving': 20
+            },
+            'monthly': {
+                'id': 'price_1J0owvKb9q6OnNsLExNhEDXm' if DEV else 'price_1Iw7qSJNcmPzuWtRMUZpOwLm',
+                'price': u'US$9.99',
+                'total': None,
+                'saving': None
+            }
+        }
+    }
+}
+
+# Map of country codes to allocated VPN currency/language plan IDs.
+# Each country can support both a default language and (optionally)
+# a set of one or more alternative languages.
+VPN_VARIABLE_PRICING = {
+    'at': {
+        'default': VPN_PLAN_ID_MATRIX['euro']['de'],
+    },
+    'be': {
+        'default': VPN_PLAN_ID_MATRIX['euro']['nl'],
+        'alt': {
+            'de': VPN_PLAN_ID_MATRIX['euro']['de'],
+            'fr': VPN_PLAN_ID_MATRIX['euro']['fr'],
+        }
+    },
+    'ch': {
+        'default': VPN_PLAN_ID_MATRIX['chf']['de'],
+        'alt': {
+            'fr': VPN_PLAN_ID_MATRIX['chf']['fr'],
+            'it': VPN_PLAN_ID_MATRIX['chf']['it'],
+        }
+    },
+    'de': {
+        'default': VPN_PLAN_ID_MATRIX['euro']['de'],
+    },
+    'es': {
+        'default': VPN_PLAN_ID_MATRIX['euro']['es'],
     },
     'fr': {
-        '12-month': {
-            'id': 'price_1IXw5oKb9q6OnNsLPMkWOid7' if DEV else 'price_1IgnlcJNcmPzuWtRjrNa39W4',
-            'price': '4,99 €',
-            'total': '59,88 €',
-            'saving': 50
-        },
-        '6-month': {
-            'id': 'price_1IXw5NKb9q6OnNsLLIyYuhWF' if DEV else 'price_1IgoxGJNcmPzuWtRG7l48EoV',
-            'price': '6,99 €',
-            'total': '41,94 €',
-            'saving': 30
-        },
-        'monthly': {
-            'id': 'price_1IXw4eKb9q6OnNsLqnVP4PvO' if DEV else 'price_1IgowHJNcmPzuWtRzD7SgAYb',
-            'price': '9,99‎ €',
-            'total': None,
-            'saving': None
-        }
+        'default': VPN_PLAN_ID_MATRIX['euro']['fr'],
+    },
+    'it': {
+        'default': VPN_PLAN_ID_MATRIX['euro']['it'],
     },
     'us': {
-        '12-month': {
-            'id': 'price_1J0Y1iKb9q6OnNsLXwdOFgDr' if DEV else 'price_1Iw85dJNcmPzuWtRyhMDdtM7',
-            'price': 'US$4.99',
-            'total': 'US$59.88',
-            'saving': 50
-        },
-        '6-month': {
-            'id': 'price_1J0Y12Kb9q6OnNsL4SB2hhmp' if DEV else 'price_1Iw87cJNcmPzuWtRefuyqsOd',
-            'price': 'US$7.99',
-            'total': 'US$47.94',
-            'saving': 20
-        },
-        'monthly': {
-            'id': 'price_1J0owvKb9q6OnNsLExNhEDXm' if DEV else 'price_1Iw7qSJNcmPzuWtRMUZpOwLm',
-            'price': 'US$9.99',
-            'total': None,
-            'saving': None
-        }
+        'default': VPN_PLAN_ID_MATRIX['usd']['en'],
     }
 }
 
@@ -1391,7 +1555,16 @@ VPN_VARIABLE_PRICE_COUNTRY_CODES = [
     'FR',  # France
 ]
 
+VPN_VARIABLE_PRICE_COUNTRY_CODES_EXPANSION = [
+    'AT',  # Austria
+    'BE',  # Belgium
+    'CH',  # Switzerland
+    'ES',  # Spain
+    'IT',  # Italy
+]
+
 VPN_AVAILABLE_COUNTRIES = 8
+VPN_AVAILABLE_COUNTRIES_EXPANSION = 13
 VPN_CONNECT_SERVERS = 750
 VPN_CONNECT_COUNTRIES = 30
 VPN_CONNECT_DEVICES = 5
