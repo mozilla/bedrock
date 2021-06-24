@@ -42,6 +42,19 @@ def _vpn_product_link(product_url, entrypoint, link_text, class_name=None, optio
     return jinja2.Markup(markup)
 
 
+def get_cc(lang):
+    cc = lang.split('-')[1] if lang and '-' in lang else lang
+    cc = cc.lower() if cc else cc
+    return cc
+
+
+def get_default_params(lang):
+    cc = get_cc(lang)
+
+    # Default to US pricing if no matching country/lang code is found.
+    return settings.VPN_VARIABLE_PRICING.get(cc, settings.VPN_VARIABLE_PRICING['us'])
+
+
 @library.global_function
 @jinja2.contextfunction
 def vpn_sign_in_link(ctx, entrypoint, link_text, class_name=None, optional_parameters=None, optional_attributes=None):
@@ -80,8 +93,8 @@ def vpn_subscribe_link(ctx, entrypoint, link_text, plan=None, class_name=None, l
     if plan in ['12-month', '6-month', 'monthly']:
 
         # Set a default plan ID using page locale. This acts as a fallback should geo-location fail.
-        cc = lang.split('-')[1].lower() if lang and '-' in lang else lang
-        default_params = settings.VPN_VARIABLE_PRICING.get(cc, settings.VPN_VARIABLE_PRICING['us'])
+        default_params = get_default_params(lang)
+        cc = get_cc(lang)
         plan_default = default_params['default'][plan]['id']
         plan_attributes = {}
 
@@ -123,8 +136,7 @@ def vpn_monthly_price(ctx, plan='monthly', lang=None):
         {{ vpn_monthly_price(plan='12-month') }}
     """
 
-    cc = lang.split('-')[1].lower() if lang and '-' in lang else lang
-    default_params = settings.VPN_VARIABLE_PRICING.get(cc, settings.VPN_VARIABLE_PRICING['us'])
+    default_params = get_default_params(lang)
     default_amount = default_params['default'][plan]['price']
     euro_amount = settings.VPN_VARIABLE_PRICING['de']['default'][plan]['price']
     usd_amount = settings.VPN_VARIABLE_PRICING['us']['default'][plan]['price']
@@ -162,8 +174,7 @@ def vpn_total_price(ctx, plan='12-month', lang=None):
         {{ vpn_total_price(plan='6-month') }}
     """
 
-    cc = lang.split('-')[1].lower() if lang and '-' in lang else lang
-    pricing_params = settings.VPN_VARIABLE_PRICING.get(cc, settings.VPN_VARIABLE_PRICING['us'])
+    pricing_params = get_default_params(lang)
     default_amount = pricing_params['default'][plan]['total']
     euro_amount = settings.VPN_VARIABLE_PRICING['de']['default'][plan]['total']
     usd_amount = settings.VPN_VARIABLE_PRICING['us']['default'][plan]['total']
@@ -201,8 +212,7 @@ def vpn_saving(ctx, plan='12-month', lang=None):
         {{ vpn_saving(plan='6-month') }}
     """
 
-    cc = lang.split('-')[1].lower() if lang and '-' in lang else lang
-    pricing_params = settings.VPN_VARIABLE_PRICING.get(cc, settings.VPN_VARIABLE_PRICING['us'])
+    pricing_params = get_default_params(lang)
     default_amount = pricing_params['default'][plan]['saving']
     euro_amount = settings.VPN_VARIABLE_PRICING['de']['default'][plan]['saving']
     usd_amount = settings.VPN_VARIABLE_PRICING['us']['default'][plan]['saving']
