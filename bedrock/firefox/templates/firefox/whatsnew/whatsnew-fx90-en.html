@@ -22,15 +22,16 @@
   {% endif %}
 {% endblock %}
 
-{% set _source = 'whatsnew90' %}
 {% set _entrypoint = 'mozilla.org-whatsnew90' %}
 
+{% set utm_campaign = 'wnp-90' %}
+
 {% if variant == '1' %}
-{% set utm_campaign = 'whatsnew90-v1' %}
+  {% set utm_content= 'v1' %}
 {% elif variant == '2' %}
-{% set utm_campaign = 'whatsnew90-v2' %}
+  {% set utm_content = 'v2' %}
 {% else %}
-{% set utm_campaign = 'whatsnew90' %}
+  {% set utm_content = 'all' %}
 {% endif %}
 
 {% block site_header %}{% endblock %}
@@ -50,10 +51,10 @@
 
       <div class="wnp-main-cta">
       {% if variant == '2' %}
-        <a class="mzp-c-button mzp-t-product" href="https://getpocket.com/signup/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ utm_campaign }}" data-cta-text="Sign up for Pocket" data-cta-position="primary" data-cta-type="button">Sign up for Pocket</a>
+        <a class="mzp-c-button mzp-t-product" href="https://getpocket.com/signup/?utm_source={{ _entrypoint }}&utm_medium=wnp&utm_campaign={{ utm_campaign }}&utm_content={{ utm_content }}" data-cta-text="Sign up for Pocket" data-cta-position="primary" data-cta-type="button">Sign up for Pocket</a>
       {% else %}
-        {{ pocket_fxa_button(entrypoint=_entrypoint, button_text='Activate Pocket in Firefox', optional_parameters={'s': _source, 'utm_medium': 'referral', 'utm_campaign': utm_campaign}, optional_attributes={'data-cta-text': 'Activate Pocket in Firefox', 'data-cta-type': 'button', 'data-cta-position': 'primary'}) }}
-        <p class="c-sub-cta"><a href="https://getpocket.com/signup/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ utm_campaign }}" data-cta-text="More ways to sign up" data-cta-position="primary-sub" data-cta-type="link">More ways to sign up</a></p>
+        {{ pocket_fxa_button(entrypoint=_entrypoint, button_text='Activate Pocket in Firefox', optional_parameters={'s': _entrypoint, 'utm_medium': 'wnp', 'utm_campaign': utm_campaign, 'utm_content': utm_content + 'fxa'}, optional_attributes={'data-cta-text': 'Activate Pocket in Firefox', 'data-cta-type': 'button', 'data-cta-position': 'primary'}) }}
+        <p class="c-sub-cta"><a href="https://getpocket.com/signup/?utm_source={{ _entrypoint }}&utm_medium=wnp&utm_campaign={{ utm_campaign }}&utm_content={{ utm_content }}" data-cta-text="More ways to sign up" data-cta-position="primary-sub" data-cta-type="link">More ways to sign up</a></p>
       {% endif %}
       </div>
     </div>
@@ -109,10 +110,10 @@
       <h2 class="wnp-footer-title">Start curating your personal corner of the web</h2>
       <div class="wnp-footer-cta">
       {% if variant == '2' %}
-        <a class="mzp-c-button mzp-t-product" href="https://getpocket.com/signup/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ utm_campaign }}" data-cta-text="Sign up for Pocket" data-cta-position="secondary" data-cta-type="button">Sign up for Pocket</a>
+        <a class="mzp-c-button mzp-t-product" href="https://getpocket.com/signup/?utm_source={{ _entrypoint }}&utm_medium=wnp&utm_campaign={{ utm_campaign }}&utm_content={{ utm_content }}" data-cta-text="Sign up for Pocket" data-cta-position="secondary" data-cta-type="button">Sign up for Pocket</a>
       {% else %}
-        {{ pocket_fxa_button(entrypoint=_entrypoint, button_text='Activate Pocket in Firefox', optional_parameters={'s': _source, 'utm_medium': 'referral', 'utm_campaign': utm_campaign}, optional_attributes={'data-cta-text': 'Activate Pocket in Firefox', 'data-cta-type': 'button', 'data-cta-position': 'secondary'}) }}
-        <p class="c-sub-cta"><a href="https://getpocket.com/signup/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ utm_campaign }}" data-cta-text="More ways to sign up" data-cta-position="secondary-sub" data-cta-type="link">More ways to sign up</a></p>
+        {{ pocket_fxa_button(entrypoint=_entrypoint, button_text='Activate Pocket in Firefox', optional_parameters={'s': _entrypoint, 'utm_medium': 'wnp', 'utm_campaign': utm_campaign, 'utm_content': utm_content + 'fxa'}, optional_attributes={'data-cta-text': 'Activate Pocket in Firefox', 'data-cta-type': 'button', 'data-cta-position': 'secondary'}) }}
+        <p class="c-sub-cta"><a href="https://getpocket.com/signup/?utm_source={{ _entrypoint }}&utm_medium=wnp&utm_campaign={{ utm_campaign }}&utm_content={{ utm_content }}" data-cta-text="More ways to sign up" data-cta-position="secondary-sub" data-cta-type="link">More ways to sign up</a></p>
       {% endif %}
       </div>
     </div>
