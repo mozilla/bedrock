@@ -20,19 +20,19 @@ TEST_VPN_PLAN_ID_MATRIX = {
         'de': {
             '12-month': {
                 'id': 'price_1J5JssJNcmPzuWtR616BH4aU',
-                'price': u'Fr. 4.99',
-                'total': u'Fr. 59.88',
-                'saving': 50
+                'price': u'5.99 CHF',
+                'total': u'71.88 CHF',
+                'saving': 45
             },
             '6-month': {
                 'id': 'price_1J5JtWJNcmPzuWtRMd2siphH',
-                'price': u'Fr. 6.99',
-                'total': u'Fr. 41.94',
-                'saving': 30
+                'price': u'7.99 CHF',
+                'total': u'47.94 CHF',
+                'saving': 27
             },
             'monthly': {
                 'id': 'price_1J5Ju3JNcmPzuWtR3GpNYSWj',
-                'price': u'Fr. 9.99',
+                'price': u'10.99 CHF',
                 'total': None,
                 'saving': None
             }
@@ -40,19 +40,19 @@ TEST_VPN_PLAN_ID_MATRIX = {
         'fr': {
             '12-month': {
                 'id': 'price_1J5JunJNcmPzuWtRo9dLxn6M',
-                'price': u'Fr. 4.99',
-                'total': u'Fr. 59.88',
-                'saving': 50
+                'price': u'5.99 CHF',
+                'total': u'71.88 CHF',
+                'saving': 45
             },
             '6-month': {
                 'id': 'price_1J5JvLJNcmPzuWtRayB4d7Ij',
-                'price': u'Fr. 6.99',
-                'total': u'Fr. 41.94',
-                'saving': 30
+                'price': u'7.99 CHF',
+                'total': u'47.94 CHF',
+                'saving': 27
             },
             'monthly': {
                 'id': 'price_1J5JvjJNcmPzuWtR3wwy1dcR',
-                'price': u'Fr. 9.99',
+                'price': u'10.99 CHF',
                 'total': None,
                 'saving': None
             }
@@ -60,19 +60,19 @@ TEST_VPN_PLAN_ID_MATRIX = {
         'it': {
             '12-month': {
                 'id': 'price_1J5JwWJNcmPzuWtRgrx5fjOc',
-                'price': u'Fr. 4.99',
-                'total': u'Fr. 59.88',
-                'saving': 50
+                'price': u'5.99 CHF',
+                'total': u'71.88 CHF',
+                'saving': 45
             },
             '6-month': {
                 'id': 'price_1J5JwvJNcmPzuWtRH2HuhWM5',
-                'price': u'Fr. 6.99',
-                'total': u'Fr. 41.94',
-                'saving': 30
+                'price': u'7.99 CHF',
+                'total': u'47.94 CHF',
+                'saving': 27
             },
             'monthly': {
                 'id': 'price_1J5JxGJNcmPzuWtRrp5e1SUB',
-                'price': u'Fr. 9.99',
+                'price': u'10.99 CHF',
                 'total': None,
                 'saving': None
             }
@@ -488,7 +488,7 @@ class TestVPNMonthlyPrice(TestCase):
         markup = self._render(plan='monthly')
         expected = (
             u'<span class="js-vpn-monthly-price-display" data-price-usd="US$9.99<span>/month</span>" '
-            u'data-price-euro="9,99‎ €<span>/month</span>" data-price-chf="Fr. 9.99<span>/month</span>">'
+            u'data-price-euro="9,99‎ €<span>/month</span>" data-price-chf="10.99 CHF<span>/month</span>">'
             u'US$9.99<span>/month</span></span>')
         self.assertEqual(markup, expected)
 
@@ -497,7 +497,7 @@ class TestVPNMonthlyPrice(TestCase):
         markup = self._render(plan='6-month')
         expected = (
             u'<span class="js-vpn-monthly-price-display" data-price-usd="US$7.99<span>/month</span>" '
-            u'data-price-euro="6,99 €<span>/month</span>" data-price-chf="Fr. 6.99<span>/month</span>">'
+            u'data-price-euro="6,99 €<span>/month</span>" data-price-chf="7.99 CHF<span>/month</span>">'
             u'US$7.99<span>/month</span></span>')
         self.assertEqual(markup, expected)
 
@@ -506,7 +506,7 @@ class TestVPNMonthlyPrice(TestCase):
         markup = self._render(plan='12-month')
         expected = (
             u'<span class="js-vpn-monthly-price-display" data-price-usd="US$4.99<span>/month</span>" '
-            u'data-price-euro="4,99 €<span>/month</span>" data-price-chf="Fr. 4.99<span>/month</span>">'
+            u'data-price-euro="4,99 €<span>/month</span>" data-price-chf="5.99 CHF<span>/month</span>">'
             u'US$4.99<span>/month</span></span>')
         self.assertEqual(markup, expected)
 
@@ -525,7 +525,7 @@ class TestVPNTotalPrice(TestCase):
         markup = self._render(plan='6-month')
         expected = (
             u'<span class="js-vpn-total-price-display" data-price-usd="US$47.94 total" '
-            u'data-price-euro="41,94 € total" data-price-chf="Fr. 41.94 total">US$47.94 total</span>')
+            u'data-price-euro="41,94 € total" data-price-chf="47.94 CHF total">US$47.94 total</span>')
         self.assertEqual(markup, expected)
 
     def test_vpn_12_month_total_price(self):
@@ -533,7 +533,7 @@ class TestVPNTotalPrice(TestCase):
         markup = self._render(plan='12-month')
         expected = (
             u'<span class="js-vpn-total-price-display" data-price-usd="US$59.88 total" '
-            u'data-price-euro="59,88 € total" data-price-chf="Fr. 59.88 total">US$59.88 total</span>')
+            u'data-price-euro="59,88 € total" data-price-chf="71.88 CHF total">US$59.88 total</span>')
         self.assertEqual(markup, expected)
 
 
@@ -551,7 +551,7 @@ class TestVPNSaving(TestCase):
         markup = self._render(plan='6-month')
         expected = (
             u'<span class="js-vpn-saving-display" data-price-usd="Save 20%" '
-            u'data-price-euro="Save 30%" data-price-chf="Save 30%">Save 20%</span>')
+            u'data-price-euro="Save 30%" data-price-chf="Save 27%">Save 20%</span>')
         self.assertEqual(markup, expected)
 
     def test_vpn_12_month_saving(self):
@@ -559,5 +559,5 @@ class TestVPNSaving(TestCase):
         markup = self._render(plan='12-month')
         expected = (
             u'<span class="js-vpn-saving-display" data-price-usd="Save 50%" '
-            u'data-price-euro="Save 50%" data-price-chf="Save 50%">Save 50%</span>')
+            u'data-price-euro="Save 50%" data-price-chf="Save 45%">Save 50%</span>')
         self.assertEqual(markup, expected)
