@@ -146,8 +146,8 @@ class ManageSubscriptionsForm(forms.Form):
                              required=False)
 
     def __init__(self, locale, *args, **kwargs):
-        regions = product_details.get_regions(locale)
-        regions = sorted(iter(regions.items()), key=itemgetter(1))
+        regions_dict = product_details.get_regions(locale)
+        regions = sorted(iter(regions_dict.items()), key=itemgetter(1))
         lang_choices = get_lang_choices()
         languages = [x[0] for x in lang_choices]
 
@@ -161,6 +161,9 @@ class ManageSubscriptionsForm(forms.Form):
         # Get initial - work with a copy so we're not modifying the
         # data that was passed to us
         initial = kwargs.get('initial', {}).copy()
+        if 'country' in initial and initial['country'] not in regions_dict:
+            # clear the initial country if it's not in the list
+            del initial['country']
         if not initial.get('country', None):
             initial['country'] = country
         if not initial.get('lang', None):
