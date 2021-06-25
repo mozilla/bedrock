@@ -100,6 +100,29 @@ class TestManageSubscriptionsForm(TestCase):
                                        })
         self.assertEqual('pt', form.initial['lang'])
 
+    def test_bad_country(self):
+        """Handle their country preference if it's not valid"""
+        # Suppose their selected country in CTMS is one we don't recognize
+        # at all.  Use the country from their locale instead.
+        locale = "pt-BR"
+        form = ManageSubscriptionsForm(locale=locale,
+                                       initial={
+                                           'lang': 'zz',
+                                           'country': 'Spain',
+                                       })
+        self.assertEqual('br', form.initial['country'])
+
+    def test_no_country(self):
+        """Handle their country preference if it's not set"""
+        # Suppose they have no selected country in CTMS.
+        # Use the country from their locale instead.
+        locale = "en-US"
+        form = ManageSubscriptionsForm(locale=locale,
+                                       initial={
+                                           'lang': 'zz',
+                                       })
+        self.assertEqual('us', form.initial['country'])
+
 
 @mock.patch('bedrock.newsletter.utils.get_newsletters', newsletters_mock)
 class TestNewsletterForm(TestCase):
