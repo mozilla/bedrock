@@ -1298,19 +1298,19 @@ VPN_PLAN_ID_MATRIX = {
         'de': {
             '12-month': {
                 'id': 'price_1J4sAUKb9q6OnNsLfYDKbpdY' if DEV else 'price_1J5JssJNcmPzuWtR616BH4aU',
-                'price': u'5.99 CHF',
-                'total': u'71.88 CHF',
+                'price': u'CHF 5.99',
+                'total': u'CHF 71.88',
                 'saving': 45
             },
             '6-month': {
                 'id': 'price_1J4sB1Kb9q6OnNsLD5WQ4N5y' if DEV else 'price_1J5JtWJNcmPzuWtRMd2siphH',
-                'price': u'7.99 CHF',
-                'total': u'47.94 CHF',
+                'price': u'CHF 7.99',
+                'total': u'CHF 47.94',
                 'saving': 27
             },
             'monthly': {
                 'id': 'price_1J4sC2Kb9q6OnNsLIgz3DDu8' if DEV else 'price_1J5Ju3JNcmPzuWtR3GpNYSWj',
-                'price': u'10.99 CHF',
+                'price': u'CHF 10.99',
                 'total': None,
                 'saving': None
             }
@@ -1318,19 +1318,19 @@ VPN_PLAN_ID_MATRIX = {
         'fr': {
             '12-month': {
                 'id': 'price_1J4sM2Kb9q6OnNsLsGLZwTP9' if DEV else 'price_1J5JunJNcmPzuWtRo9dLxn6M',
-                'price': u'5.99 CHF',
-                'total': u'71.88 CHF',
+                'price': u'CHF 5.99',
+                'total': u'CHF 71.88',
                 'saving': 45
             },
             '6-month': {
                 'id': 'price_1J4sMWKb9q6OnNsL3eL2v91Q' if DEV else 'price_1J5JvLJNcmPzuWtRayB4d7Ij',
-                'price': u'7.99 CHF',
-                'total': u'47.94 CHF',
+                'price': u'CHF 7.99',
+                'total': u'CHF 47.94',
                 'saving': 27
             },
             'monthly': {
                 'id': 'price_1J4sNGKb9q6OnNsLl3OEuKqT' if DEV else 'price_1J5JvjJNcmPzuWtR3wwy1dcR',
-                'price': u'10.99 CHF',
+                'price': u'CHF 10.99',
                 'total': None,
                 'saving': None
             }
@@ -1338,19 +1338,19 @@ VPN_PLAN_ID_MATRIX = {
         'it': {
             '12-month': {
                 'id': 'price_1J4sWMKb9q6OnNsLkrTo2uUW' if DEV else 'price_1J5JwWJNcmPzuWtRgrx5fjOc',
-                'price': u'5.99 CHF',
-                'total': u'71.88 CHF',
+                'price': u'CHF 5.99',
+                'total': u'CHF 71.88',
                 'saving': 45
             },
             '6-month': {
                 'id': 'price_1J4sWsKb9q6OnNsLXBVXh664' if DEV else 'price_1J5JwvJNcmPzuWtRH2HuhWM5',
-                'price': u'7.99 CHF',
-                'total': u'47.94 CHF',
+                'price': u'CHF 7.99',
+                'total': u'CHF 47.94',
                 'saving': 27
             },
             'monthly': {
                 'id': 'price_1J4sXWKb9q6OnNsLVoGiXcW5' if DEV else 'price_1J5JxGJNcmPzuWtRrp5e1SUB',
-                'price': u'10.99 CHF',
+                'price': u'CHF 10.99',
                 'total': None,
                 'saving': None
             }
