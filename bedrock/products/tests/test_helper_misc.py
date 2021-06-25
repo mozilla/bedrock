@@ -20,19 +20,19 @@ TEST_VPN_PLAN_ID_MATRIX = {
         'de': {
             '12-month': {
                 'id': 'price_1J5JssJNcmPzuWtR616BH4aU',
-                'price': u'5.99 CHF',
-                'total': u'71.88 CHF',
+                'price': u'CHF 5.99',
+                'total': u'CHF 71.88',
                 'saving': 45
             },
             '6-month': {
                 'id': 'price_1J5JtWJNcmPzuWtRMd2siphH',
-                'price': u'7.99 CHF',
-                'total': u'47.94 CHF',
+                'price': u'CHF 7.99',
+                'total': u'CHF 47.94',
                 'saving': 27
             },
             'monthly': {
                 'id': 'price_1J5Ju3JNcmPzuWtR3GpNYSWj',
-                'price': u'10.99 CHF',
+                'price': u'CHF 10.99',
                 'total': None,
                 'saving': None
             }
@@ -40,19 +40,19 @@ TEST_VPN_PLAN_ID_MATRIX = {
         'fr': {
             '12-month': {
                 'id': 'price_1J5JunJNcmPzuWtRo9dLxn6M',
-                'price': u'5.99 CHF',
-                'total': u'71.88 CHF',
+                'price': u'CHF 5.99',
+                'total': u'CHF 71.88',
                 'saving': 45
             },
             '6-month': {
                 'id': 'price_1J5JvLJNcmPzuWtRayB4d7Ij',
-                'price': u'7.99 CHF',
-                'total': u'47.94 CHF',
+                'price': u'CHF 7.99',
+                'total': u'CHF 47.94',
                 'saving': 27
             },
             'monthly': {
                 'id': 'price_1J5JvjJNcmPzuWtR3wwy1dcR',
-                'price': u'10.99 CHF',
+                'price': u'CHF 10.99',
                 'total': None,
                 'saving': None
             }
@@ -60,19 +60,19 @@ TEST_VPN_PLAN_ID_MATRIX = {
         'it': {
             '12-month': {
                 'id': 'price_1J5JwWJNcmPzuWtRgrx5fjOc',
-                'price': u'5.99 CHF',
-                'total': u'71.88 CHF',
+                'price': u'CHF 5.99',
+                'total': u'CHF 71.88',
                 'saving': 45
             },
             '6-month': {
                 'id': 'price_1J5JwvJNcmPzuWtRH2HuhWM5',
-                'price': u'7.99 CHF',
-                'total': u'47.94 CHF',
+                'price': u'CHF 7.99',
+                'total': u'CHF 47.94',
                 'saving': 27
             },
             'monthly': {
                 'id': 'price_1J5JxGJNcmPzuWtRrp5e1SUB',
-                'price': u'10.99 CHF',
+                'price': u'CHF 10.99',
                 'total': None,
                 'saving': None
             }
@@ -544,7 +544,7 @@ class TestVPNMonthlyPrice(TestCase):
         markup = self._render(plan='monthly')
         expected = (
             u'<span class="js-vpn-monthly-price-display" data-price-usd="US$9.99<span>/month</span>" '
-            u'data-price-euro="9,99‎ €<span>/month</span>" data-price-chf="10.99 CHF<span>/month</span>">'
+            u'data-price-euro="9,99‎ €<span>/month</span>" data-price-chf="CHF 10.99<span>/month</span>">'
             u'US$9.99<span>/month</span></span>')
         self.assertEqual(markup, expected)
 
@@ -553,7 +553,7 @@ class TestVPNMonthlyPrice(TestCase):
         markup = self._render(plan='6-month')
         expected = (
             u'<span class="js-vpn-monthly-price-display" data-price-usd="US$7.99<span>/month</span>" '
-            u'data-price-euro="6,99 €<span>/month</span>" data-price-chf="7.99 CHF<span>/month</span>">'
+            u'data-price-euro="6,99 €<span>/month</span>" data-price-chf="CHF 7.99<span>/month</span>">'
             u'US$7.99<span>/month</span></span>')
         self.assertEqual(markup, expected)
 
@@ -562,7 +562,7 @@ class TestVPNMonthlyPrice(TestCase):
         markup = self._render(plan='12-month')
         expected = (
             u'<span class="js-vpn-monthly-price-display" data-price-usd="US$4.99<span>/month</span>" '
-            u'data-price-euro="4,99 €<span>/month</span>" data-price-chf="5.99 CHF<span>/month</span>">'
+            u'data-price-euro="4,99 €<span>/month</span>" data-price-chf="CHF 5.99<span>/month</span>">'
             u'US$4.99<span>/month</span></span>')
         self.assertEqual(markup, expected)
 
@@ -581,7 +581,7 @@ class TestVPNTotalPrice(TestCase):
         markup = self._render(plan='6-month')
         expected = (
             u'<span class="js-vpn-total-price-display" data-price-usd="US$47.94 total" '
-            u'data-price-euro="41,94 € total" data-price-chf="47.94 CHF total">US$47.94 total</span>')
+            u'data-price-euro="41,94 € total" data-price-chf="CHF 47.94 total">US$47.94 total</span>')
         self.assertEqual(markup, expected)
 
     def test_vpn_12_month_total_price(self):
@@ -589,7 +589,7 @@ class TestVPNTotalPrice(TestCase):
         markup = self._render(plan='12-month')
         expected = (
             u'<span class="js-vpn-total-price-display" data-price-usd="US$59.88 total" '
-            u'data-price-euro="59,88 € total" data-price-chf="71.88 CHF total">US$59.88 total</span>')
+            u'data-price-euro="59,88 € total" data-price-chf="CHF 71.88 total">US$59.88 total</span>')
         self.assertEqual(markup, expected)
 
 
