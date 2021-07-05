@@ -98,9 +98,15 @@
     },
     {
       "files": [
-        "css/firefox/new/trailhead/download.scss"
+        "css/firefox/new/basic/download.scss"
       ],
       "name": "firefox_new_download"
+    },
+    {
+      "files": [
+        "css/firefox/new/basic/platform.scss"
+      ],
+      "name": "firefox_new_platform"
     },
     {
       "files": [
@@ -130,7 +136,7 @@
     {
       "files": [
         "css/firefox/new/common/thanks-messaging.scss",
-        "css/firefox/new/trailhead/thanks.scss"
+        "css/firefox/new/basic/thanks.scss"
       ],
       "name": "firefox_new_thanks"
     },
@@ -959,15 +965,9 @@
     {
       "files": [
         "protocol/js/protocol-modal.js",
-        "js/firefox/new/trailhead/download.js"
+        "js/firefox/new/basic/download.js"
       ],
       "name": "firefox_new_download"
-    },
-    {
-      "files": [
-        "js/firefox/new/trailhead/join-modal.js"
-      ],
-      "name": "firefox_new_download_join_modal"
     },
     {
       "files": [

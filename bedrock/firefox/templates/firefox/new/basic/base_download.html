@@ -1,0 +1,126 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import google_play_button with context %}
+{% from "macros-protocol.html" import hero, picto_card with context %}
+
+{% extends "firefox/new/basic/base.html" %}
+
+{% set show_firefox_mobile_banner = switch('firefox-mobile-banner') and
+                                    ftl_has_messages('banner-firefox-mobile-get-android-title',
+                                                     'banner-firefox-mobile-get-ios-title') %}
+
+{% set referrals = link_referrals or '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-desktop' %}
+
+{# meta #}
+{% set meta_title_prefix = meta_title_prefix or ftl('firefox-new-download-browser', fallback='firefox-new-download-firefox') %}
+{% set meta_title = ftl('firefox-new-fast') if ftl_has_messages('firefox-new-fast') else meta_title or ftl('firefox-new-free-web-browser') %}
+{% set meta_desc = meta_desc or ftl('firefox-new-desc', fallback='firefox-new-faster-page-loading-less-memory') %}
+{% set og_title = og_title or ftl('firefox-new-download-browser', fallback='firefox-new-download-the-fastest-firefox') %}
+{% set og_desc = og_desc or ftl('firefox-new-desc', fallback='firefox-new-faster-page-loading-less-memory') %}
+
+{# page title #}
+{%- block page_title_prefix -%}{{ meta_title_prefix }}{%- endblock -%}
+{% block page_title %} — {{ meta_title }} {% endblock %}
+{% block page_desc %}{{ meta_desc }}{% endblock %}
+{% block page_og_title %}{{ og_title }}{% endblock %}
+{% block page_og_desc %}{{ og_desc }}{% endblock %}
+
+{# hero #}
+{% set hero_title = hero_title or ftl('firefox-new-get-the-latest-firefox') %}
+{% set hero_img = hero_img or 'img/firefox/new/basic/browser-window.svg' %}
+
+{# small links #}
+{% set small_advanced = small_advanced or ftl('firefox-new-advanced-install-options') %}
+{% set small_lang = small_lang or ftl('firefox-new-download-in-another-language') %}
+{% set small_help = small_help or ftl('firefox-new-need-help') %}
+
+{# blocks #}
+
+{% block extrahead %}
+  {{ super() }}
+  {{ css_bundle('firefox_new_download') }}
+
+  {% if show_firefox_mobile_banner %}
+    {{ css_bundle('firefox-mobile-banner') }}
+  {% endif %}
+{% endblock %}
+
+{% block sub_navigation %}
+<nav class="c-sub-navigation">
+  <div class="mzp-l-content">
+    <div class="c-sub-navigation-content">
+      <h2 class="c-sub-navigation-title">{{ ftl('sub-navigation-firefox-for-desktop', fallback='navigation-firefox-browser-for-desktop') }}</h2>
+      <ul class="c-sub-navigation-list">
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.windows') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Windows">{{ ftl('sub-navigation-windows') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.windows-64-bit') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Windows 64-bit">{{ ftl('sub-navigation-windows-64-bit') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.mac') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Mac">{{ ftl('sub-navigation-mac') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.linux') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Linux">{{ ftl('sub-navigation-linux') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.chromebook') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Chromebook">{{ ftl('sub-navigation-chromebook') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.all') }}" data-link-type="nav" data-link-position="subnav" data-link-name="All Languages">{{ ftl('sub-navigation-all-languages', fallback='download-button-systems-languages') }}</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<main role="main" class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
+
+  {% call hero(
+    title=hero_title,
+    class='mzp-has-image hero-firefox t-narrow',
+    include_cta=True,
+    image_url=hero_img,
+    heading_level=1
+  ) %}
+
+    <div class="c-intro-download">
+      {{ download_firefox_thanks(alt_copy=ftl('download-button-download-now'), locale_in_transition=True, download_location='primary cta') }}
+
+      {% block small_links %}
+      <ul class="small-links">
+        {% if ftl_has_messages('firefox-new-download-a-different') %}
+        <li><a href="{{ firefox_url('desktop', 'all') }}">{{ ftl('firefox-new-download-a-different') }}</a></li>
+        {% else %}
+        <li><a href="{{ firefox_url('desktop', 'all') }}">{{ small_advanced }}</a></li>
+        <li><a href="{{ firefox_url('desktop', 'all') }}">{{ small_lang }}</a></li>
+        {% endif %}
+        <li><a href="https://support.mozilla.org/products/firefox{{ referrals }}&utm_content=need-help-link">{{ small_help }}</a></li>
+      </ul>
+    </div>
+    {% endblock %}
+  {% endcall %}
+
+  {% block features %}{% endblock %}
+</main>
+{% endblock %}
+
+{% block page_banner %}
+  {% if show_firefox_mobile_banner %}
+    {% include 'includes/banners/mobile/firefox-android.html' %}
+    {% include 'includes/banners/mobile/firefox-ios.html' %}
+  {% endif %}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_new_download') }}
+
+  {% if show_firefox_mobile_banner %}
+    {{ js_bundle('firefox-mobile-banner') }}
+  {% endif %}
+
+  {% if switch('stub-attribution-macos') %}
+    {{ js_bundle('stub-attribution-macos') }}
+  {% endif %}
+{% endblock %}
+
+{% block structured_data %}
+  {
+    "@context": "https://schema.org/",
+    "@graph": [
+      {% include 'includes/structured-data/software/firefox-browser-software.json' %}
+    ]
+  }
+{% endblock %}

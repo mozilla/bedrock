@@ -2,7 +2,7 @@
   "@context": "https://schema.org/",
   "@type": "SoftwareApplication",
   "@id": "{{ structured_data_id('firefoxmac') }}",
-  "url": "{% filter absolute_url %}{{ url('firefox.new.protocol.download_mac') }}{% endfilter %}",
+  "url": "{% filter absolute_url %}{{ url('firefox.mac') }}{% endfilter %}",
   "name": "Firefox Browser Mac",
   "image": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}{% endfilter %}",
   "alternateName": [

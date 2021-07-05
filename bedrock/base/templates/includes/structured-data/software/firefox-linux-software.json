@@ -2,7 +2,7 @@
   "@context": "https://schema.org/",
   "@type": "SoftwareApplication",
   "@id": "{{ structured_data_id('firefoxlinux') }}",
-  "url": "{% filter absolute_url %}{{ url('firefox.new.protocol.download_linux') }}{% endfilter %}",
+  "url": "{% filter absolute_url %}{{ url('firefox.linux') }}{% endfilter %}",
   "name": "Firefox Browser Linux",
   "image": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}{% endfilter %}",
   "alternateName": [

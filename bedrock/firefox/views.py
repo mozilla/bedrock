@@ -682,7 +682,7 @@ class WhatsNewChinaView(WhatsnewView):
 
 class DownloadThanksView(L10nTemplateView):
     ftl_files_map = {
-        'firefox/new/trailhead/thanks.html': ['firefox/new/download'],
+        'firefox/new/basic/thanks.html': ['firefox/new/download'],
         'firefox/new/desktop/thanks.html': ['firefox/new/desktop'],
     }
     activation_files = [
@@ -706,18 +706,19 @@ class DownloadThanksView(L10nTemplateView):
         return ctx
 
     def get_template_names(self):
+        experience = self.request.GET.get('xv', None)
 
-        if ftl_file_is_active('firefox/new/desktop'):
+        if ftl_file_is_active('firefox/new/desktop') and experience != 'basic':
             template = 'firefox/new/desktop/thanks.html'
         else:
-            template = 'firefox/new/trailhead/thanks.html'
+            template = 'firefox/new/basic/thanks.html'
 
         return [template]
 
 
 class NewView(L10nTemplateView):
     ftl_files_map = {
-        'firefox/new/trailhead/download.html': ['firefox/new/download', 'banners/firefox-mobile'],
+        'firefox/new/basic/base_download.html': ['firefox/new/download', 'banners/firefox-mobile'],
         'firefox/new/desktop/download.html': ['firefox/new/desktop'],
         'firefox/new/desktop/download_yandex.html': ['firefox/new/desktop', 'banners/firefox-mobile'],
     }
@@ -794,6 +795,7 @@ class NewView(L10nTemplateView):
     def get_template_names(self):
         locale = l10n_utils.get_locale(self.request)
         variant = self.request.GET.get('v', None)
+        experience = self.request.GET.get('xv', None)
 
         # ensure variant matches pre-defined value
         if variant not in self.variations:
@@ -801,12 +803,57 @@ class NewView(L10nTemplateView):
 
         if locale == 'ru' and switch('firefox-yandex'):
             template = 'firefox/new/desktop/download_yandex.html'
-        elif ftl_file_is_active('firefox/new/desktop'):
+        elif ftl_file_is_active('firefox/new/desktop') and experience != 'basic':
             template = 'firefox/new/desktop/download.html'
         else:
-            template = 'firefox/new/trailhead/download.html'
+            template = 'firefox/new/basic/base_download.html'
 
         return [template]
+
+
+class PlatformViewLinux(L10nTemplateView):
+    # the base_platform template works with either platform.ftl or download.ftl active
+    template_name = 'firefox/new/basic/download_linux.html'
+
+    ftl_files_map = {
+        'firefox/new/basic/download_linux.html': ['firefox/new/platform', 'firefox/new/download', 'banners/firefox-mobile'],
+    }
+
+    # all active locales, this will make the lang switcher work properly
+    activation_files = [
+        'firefox/new/download',
+        'firefox/new/platform'
+    ]
+
+
+class PlatformViewMac(L10nTemplateView):
+    # the base_platform template works with either platform.ftl or download.ftl active
+    template_name = 'firefox/new/basic/download_mac.html'
+
+    ftl_files_map = {
+        'firefox/new/basic/download_mac.html': ['firefox/new/platform', 'firefox/new/download', 'banners/firefox-mobile'],
+    }
+
+    # all active locales, this will make the lang switcher work properly
+    activation_files = [
+        'firefox/new/download',
+        'firefox/new/platform'
+    ]
+
+
+class PlatformViewWindows(L10nTemplateView):
+    # the base_platform template works with either platform.ftl or download.ftl active
+    template_name = 'firefox/new/basic/download_windows.html'
+
+    ftl_files_map = {
+        'firefox/new/basic/download_windows.html': ['firefox/new/platform', 'firefox/new/download', 'banners/firefox-mobile'],
+    }
+
+    # all active locales, this will make the lang switcher work properly
+    activation_files = [
+        'firefox/new/download',
+        'firefox/new/platform'
+    ]
 
 
 def ios_testflight(request):

@@ -84,17 +84,17 @@
   },
   {
     "@id": "{{ structured_data_id('firefoxmac') }}",
-    "url": "{% filter absolute_url %}{{ url('firefox.new.protocol.download_mac') }}{% endfilter %}",
+    "url": "{% filter absolute_url %}{{ url('firefox.mac') }}{% endfilter %}",
     "name": "Firefox Browser Mac"
   },
   {
     "@id": "{{ structured_data_id('firefoxlinux') }}",
-    "url": "{% filter absolute_url %}{{ url('firefox.new.protocol.download_linux') }}{% endfilter %}",
+    "url": "{% filter absolute_url %}{{ url('firefox.linux') }}{% endfilter %}",
     "name": "Firefox Browser Linux"
   },
   {
     "@id": "{{ structured_data_id('firefoxwindows') }}",
-    "url": "{% filter absolute_url %}{{ url('firefox.new.protocol.download_windows') }}{% endfilter %}",
+    "url": "{% filter absolute_url %}{{ url('firefox.windows') }}{% endfilter %}",
     "name": "Firefox Browser Windows"
   }]
 }

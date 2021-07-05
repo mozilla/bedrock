@@ -4,28 +4,28 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% block page_title_prefix %}{{ ftl('firefox-new-download-firefox') }} — {% endblock %}
+{% block page_title_prefix %}{{ ftl('firefox-new-download-browser', fallback='firefox-new-download-firefox') }} — {% endblock %}
 
-{%- block page_title -%}{{ ftl('firefox-new-free-web-browser') }}{%- endblock -%}
+{%- block page_title -%}{{ ftl('firefox-new-fast', fallback='firefox-new-free-web-browser') }}{%- endblock -%}
 
 {# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
 {%- block page_title_suffix -%}
   {% if LANG == 'en-CA' %}
-    — Mozilla (CA)
+    — from Mozilla (CA)
   {% elif LANG == 'en-GB' %}
-    — Mozilla (UK)
+    — from Mozilla (UK)
   {% else %}
-    — Mozilla
+    - {{ ftl('firefox-new-from-mozilla', fallback='firefox-new-mozilla') }}
   {% endif %}
 {%- endblock -%}
 
-{% block page_desc %}{{ ftl('firefox-new-download-mozilla-firefox') }}{% endblock %}
+{% block page_desc %}{{ ftl('firefox-new-desc', fallback='firefox-new-faster-page-loading-less-memory') }}{% endblock %}
 
 {#- This will appear as <meta property="og:title"> which can be used for social share -#}
-{% block page_og_title %}{{ ftl('firefox-new-download-the-fastest-firefox') }}{% endblock %}
+{% block page_og_title %}{{ ftl('firefox-new-download-firefox') }}{% endblock %}
 
 {#- This will appear as <meta property="og:description"> which can be used for social share -#}
-{% block page_og_desc %}{{ ftl('firefox-new-faster-page-loading-less-memory') }}{% endblock %}
+{% block page_og_desc %}{{ ftl('firefox-new-desc', fallback='firefox-new-faster-page-loading-less-memory') }}{% endblock %}
 
 {# All stylesheets are loaded in extrahead to serve legacy IE basic styles #}
 {% block extrahead %}

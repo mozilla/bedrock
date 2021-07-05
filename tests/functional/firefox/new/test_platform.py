@@ -13,9 +13,6 @@ from pages.firefox.new.platform import PlatformDownloadPage
 def test_download_buttons_are_displayed(slug, base_url, selenium):
     page = PlatformDownloadPage(selenium, base_url, slug=slug).open()
     assert page.download_button.is_displayed
-    modal = page.open_other_platforms_modal()
-    assert modal.is_displayed
-    modal.close()
 
 
 # Firefox and Internet Explorer don't cope well with file prompts whilst using Selenium.

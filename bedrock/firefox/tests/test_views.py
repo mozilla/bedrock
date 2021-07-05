@@ -473,7 +473,6 @@ class TestSendToDeviceView(TestCase):
 @override_settings(DEV=False)
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
 class TestFirefoxNew(TestCase):
-    @patch.dict(os.environ, SWITCH_NEW_REDESIGN='True')
     @patch.object(views, 'ftl_file_is_active', lambda *x: True)
     def test_download_template(self, render_mock):
         req = RequestFactory().get('/firefox/new/')
@@ -483,7 +482,6 @@ class TestFirefoxNew(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ['firefox/new/desktop/download.html']
 
-    @patch.dict(os.environ, SWITCH_NEW_REDESIGN='True')
     @patch.object(views, 'ftl_file_is_active', lambda *x: True)
     def test_thanks_template(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/')
@@ -493,25 +491,23 @@ class TestFirefoxNew(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ['firefox/new/desktop/thanks.html']
 
-    @patch.dict(os.environ, SWITCH_NEW_REDESIGN='True')
     @patch.object(views, 'ftl_file_is_active', lambda *x: False)
-    def test_download_old_template(self, render_mock):
+    def test_download_basic_template(self, render_mock):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'de'
         view = views.NewView.as_view()
         view(req)
         template = render_mock.call_args[0][1]
-        assert template == ['firefox/new/trailhead/download.html']
+        assert template == ['firefox/new/basic/base_download.html']
 
-    @patch.dict(os.environ, SWITCH_NEW_REDESIGN='True')
     @patch.object(views, 'ftl_file_is_active', lambda *x: False)
-    def test_thanks_old_template(self, render_mock):
+    def test_thanks_basic_template(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/')
         req.locale = 'de'
         view = views.DownloadThanksView.as_view()
         view(req)
         template = render_mock.call_args[0][1]
-        assert template == ['firefox/new/trailhead/thanks.html']
+        assert template == ['firefox/new/basic/thanks.html']
 
     def test_thanks_redirect(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2&dude=abides')
@@ -618,6 +614,37 @@ class TestFirefoxNewNoIndex(TestCase):
         robots = doc('meta[name="robots"]')
         assert robots.length == 1
         assert 'noindex' in robots.attr('content')
+
+
+@override_settings(DEV=False)
+@patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
+class TestFirefoxPlatform(TestCase):
+    @patch.object(views, 'ftl_file_is_active', lambda *x: True)
+    def test_linux_download_template(self, render_mock):
+        req = RequestFactory().get('/firefox/linux/')
+        req.locale = 'en-US'
+        view = views.PlatformViewLinux.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/new/basic/download_linux.html']
+
+    @patch.object(views, 'ftl_file_is_active', lambda *x: True)
+    def test_mac_download_template(self, render_mock):
+        req = RequestFactory().get('/firefox/mac/')
+        req.locale = 'en-US'
+        view = views.PlatformViewMac.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/new/basic/download_mac.html']
+
+    @patch.object(views, 'ftl_file_is_active', lambda *x: True)
+    def test_windows_download_template(self, render_mock):
+        req = RequestFactory().get('/firefox/windows/')
+        req.locale = 'en-US'
+        view = views.PlatformViewWindows.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/new/basic/download_windows.html']
 
 
 class TestFirefoxHome(TestCase):
