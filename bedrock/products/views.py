@@ -28,10 +28,10 @@ def vpn_variable_price_countries():
     countries = settings.VPN_VARIABLE_PRICE_COUNTRY_CODES
 
     if switch('vpn-variable-pricing-wave-1'):
-        countries.extend(settings.VPN_FIXED_PRICE_COUNTRY_CODES)
+        countries = countries + settings.VPN_FIXED_PRICE_COUNTRY_CODES
 
     if switch('vpn-variable-pricing-eu-expansion'):
-        countries.extend(settings.VPN_VARIABLE_PRICE_COUNTRY_CODES_EXPANSION)
+        countries = countries + settings.VPN_VARIABLE_PRICE_COUNTRY_CODES_EXPANSION
 
     return '|%s|' % '|'.join(cc.lower() for cc in countries)
 
