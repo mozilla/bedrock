@@ -36,11 +36,11 @@
         "demo5": "https://www-demo5.allizom.org"
     },
     "keywords": [
-        "python",
-        "sass-css",
         "django",
+        "html",
         "jinja2",
-        "html5",
-        "jquery"
+        "protocol",
+        "python",
+        "sass-css"
     ]
 }

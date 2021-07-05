@@ -2,6 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+/* global $ */
+
 // Create namespace
 if (typeof window.Mozilla === 'undefined') {
     window.Mozilla = {};
@@ -9,15 +11,6 @@ if (typeof window.Mozilla === 'undefined') {
 
 (function() {
     'use strict';
-
-    /* eslint-disable no-jquery/no-attr */
-    /* eslint-disable no-jquery/no-data */
-    /* eslint-disable no-jquery/no-each-collection */
-    /* eslint-disable no-jquery/no-event-shorthand */
-    /* eslint-disable no-jquery/no-find-collection */
-    /* eslint-disable no-jquery/no-jquery-constructor */
-    /* eslint-disable no-jquery/no-other-methods */
-    /* eslint-disable no-jquery/no-visibility */
 
     var UtilsIE = {};
 
@@ -66,14 +59,5 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     window.Mozilla.UtilsIE = UtilsIE;
-
-    /* eslint-enable no-jquery/no-attr */
-    /* eslint-enable no-jquery/no-data */
-    /* eslint-enable no-jquery/no-each-collection */
-    /* eslint-enable no-jquery/no-event-shorthand */
-    /* eslint-enable no-jquery/no-find-collection */
-    /* eslint-enable no-jquery/no-jquery-constructor */
-    /* eslint-enable no-jquery/no-other-methods */
-    /* eslint-enable no-jquery/no-visibility */
 
 })();

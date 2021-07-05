@@ -273,22 +273,6 @@
   {% endwith %}
 {% endblock %}
 
-{% block site_js %}
-  {% if switch('unfck-convert') %}
-    <!--[if !IE]><!-->
-      {{ js_bundle('common-no-jquery') }}
-    <!--<![endif]-->
-  {% else %}
-    <!--[if !IE]><!-->
-      {{ js_bundle('common') }}
-    <!--<![endif]-->
-  {% endif %}
-
-  <!--[if IE]>
-    {{ js_bundle('common-ie') }}
-  <![endif]-->
-{% endblock %}
-
 {% block stub_attribution %}
   {% if settings.STUB_ATTRIBUTION_RATE %}
     {% if switch('unfck-convert') %}

@@ -12,7 +12,7 @@ module.exports = function(config) {
         // list of files / patterns to load in the browser
         files: [
             // begin common dependencies.
-            'media/js/libs/jquery-3.5.1.min.js',
+            'media/js/libs/jquery-1.12.4.min.js', // only used by legacy IE bundle
             'media/js/base/site.js',
             'media/js/base/mozilla-utils.js',
             'media/js/base/mozilla-client.js',
