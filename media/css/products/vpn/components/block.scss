@@ -421,8 +421,8 @@ $image-path: '/media/protocol/img';
         @supports(display: grid) {
             display: grid;
             grid-column-gap: $spacing-xl * 2;
-            grid-template-areas: 'months-6 months-6'
-                                'months-12 monthly';
+            grid-template-areas: 'months-12 months-12'
+                                 'months-6 monthly';
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: repeat(2, 1fr);
 
@@ -445,7 +445,7 @@ $image-path: '/media/protocol/img';
 
         @supports(display: grid) {
             grid-column-gap: $spacing-xl;
-            grid-template-areas: 'monthly months-6 months-12';
+            grid-template-areas: 'months-12 months-6 monthly';
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: none;
         }
