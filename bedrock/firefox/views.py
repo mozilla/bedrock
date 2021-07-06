@@ -554,10 +554,11 @@ class WhatsnewView(L10nTemplateView):
         'firefox/whatsnew/whatsnew-mobile-qrcode-de.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx87-de.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx87-fr.html': ['firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx90-en.html': ['firefox/whatsnew/whatsnew'],
     }
 
     # place expected ?v= values in this list
-    variations = []
+    variations = ['1', '2']
 
     def get_context_data(self, **kwargs):
         ctx = super(WhatsnewView, self).get_context_data(**kwargs)
@@ -627,6 +628,8 @@ class WhatsnewView(L10nTemplateView):
                 template = 'firefox/developer/whatsnew.html'
             else:
                 template = 'firefox/whatsnew/index.html'
+        elif version.startswith('90.') and locale.startswith('en-'):
+            template = 'firefox/whatsnew/whatsnew-fx90-en.html'
         elif version.startswith('88.') and locale == 'en-US':
             template = 'firefox/whatsnew/whatsnew-fx88-en.html'
         elif version.startswith('88.') and locale == 'de':
