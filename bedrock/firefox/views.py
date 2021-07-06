@@ -555,6 +555,7 @@ class WhatsnewView(L10nTemplateView):
         'firefox/whatsnew/whatsnew-fx87-de.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx87-fr.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx90-en.html': ['firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx90-eu.html': ['firefox/whatsnew/whatsnew-fx90.ftl', 'firefox/whatsnew/whatsnew'],
     }
 
     # place expected ?v= values in this list
@@ -630,6 +631,8 @@ class WhatsnewView(L10nTemplateView):
                 template = 'firefox/whatsnew/index.html'
         elif version.startswith('90.') and locale.startswith('en-'):
             template = 'firefox/whatsnew/whatsnew-fx90-en.html'
+        elif version.startswith('90.') and locale in ['de', 'fr', 'it', 'nl', 'es-ES']:
+            template = 'firefox/whatsnew/whatsnew-fx90-eu.html'
         elif version.startswith('88.') and locale == 'en-US':
             template = 'firefox/whatsnew/whatsnew-fx88-en.html'
         elif version.startswith('88.') and locale == 'de':

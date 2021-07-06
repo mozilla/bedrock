@@ -418,13 +418,45 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/whatsnew-fx90-en.html']
 
-    def test_fx_90_0_0_locale(self, render_mock):
-        """Should use standard whatsnew template for 90.0 in other locales"""
+    def test_fx_90_0_0_de(self, render_mock):
+        """Should use VPN template for 90.0 in German"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'de'
+        self.view(req, version='90.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx90-eu.html']
+
+    def test_fx_90_0_0_fr(self, render_mock):
+        """Should use VPN template for 90.0 in French"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'fr'
+        self.view(req, version='90.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx90-eu.html']
+
+    def test_fx_90_0_0_it(self, render_mock):
+        """Should use VPN template for 90.0 in Italian"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'it'
+        self.view(req, version='90.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx90-eu.html']
+
+    def test_fx_90_0_0_nl(self, render_mock):
+        """Should use VPN template for 90.0 in Dutch"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'nl'
+        self.view(req, version='90.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx90-eu.html']
+
+    def test_fx_90_0_0_es(self, render_mock):
+        """Should use VPN template for 90.0 in Spanish"""
         req = self.rf.get('/firefox/whatsnew/')
         req.locale = 'es-ES'
         self.view(req, version='90.0')
         template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/index-account.html']
+        assert template == ['firefox/whatsnew/whatsnew-fx90-eu.html']
 
     # end 90.0 whatsnew tests
 
