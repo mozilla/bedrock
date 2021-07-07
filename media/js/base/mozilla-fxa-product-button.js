@@ -171,12 +171,12 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     FxaProductButton.init = function() {
-        if (!FxaProductButton.isSupported()) {
-            return false;
-        }
-
         // Collect all Fxa product buttons
         _buttons = document.getElementsByClassName('js-fxa-product-button');
+
+        if (!FxaProductButton.isSupported() || _buttons.length === 0) {
+            return false;
+        }
 
         return new window.Promise(function(resolve, reject) {
             if (_buttons.length) {
