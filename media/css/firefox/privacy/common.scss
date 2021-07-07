@@ -5,12 +5,12 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/components/call-out';
-@import '../../../protocol/css/components/feature-card';
-@import '../../../protocol/css/components/hero';
-@import '../../../protocol/css/components/picto-card';
-@import '../../../protocol/css/templates/card-layout';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/call-out';
+@import '~@mozilla-protocol/core/protocol/css/components/feature-card';
+@import '~@mozilla-protocol/core/protocol/css/components/hero';
+@import '~@mozilla-protocol/core/protocol/css/components/picto-card';
+@import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
 @import '../../protocol/components/sub-navigation';
 
 

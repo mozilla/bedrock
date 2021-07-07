@@ -6,8 +6,9 @@ $brand-theme: 'firefox';
 
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
-@import '../../protocol/css/includes/lib';
-@import '../../protocol/css/components/sticky-promo';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/sticky-promo';
 
 // Hide promo by default for mobile devices (<$mq-md)
 .mzp-c-sticky-promo {

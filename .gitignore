@@ -55,4 +55,5 @@ package-lock.json
 static_build
 static_final
 static
+assets
 npm-debug.log

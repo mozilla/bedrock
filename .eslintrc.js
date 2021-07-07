@@ -13,14 +13,19 @@ module.exports = {
         'no-jquery'
     ],
     /**
-     * Provide a set of overrides for `gulpfile.js` in the root directory.
+     * Provide a set of overrides for `webpack-config.js` in the root directory.
      * Ideally we want to extend @mozilla-protocol/eslint-config/index-node,
      * however ESLint does not currently allow extends inside glob overrides.
      * (see https://github.com/eslint/eslint/issues/8813)
      * */
     overrides: [
         {
-            files: ['gulpfile.js', 'tests/unit/karma.conf.js'],
+            files: [
+                'webpack.config.js',
+                'webpack.static.config.js',
+                'tests/unit/karma.conf.js',
+                'media/js/base/globals.js'
+            ],
             env: {
                 'commonjs': true,
                 'node': true,

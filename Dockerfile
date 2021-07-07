@@ -11,14 +11,13 @@ COPY package.json yarn.lock ./
 
 # install dependencies
 RUN yarn install --pure-lockfile
-RUN yarn global add gulp-cli@2.2.1
 
 # copy supporting files and media
-COPY .eslintrc.js .eslintignore .stylelintrc .stylelintignore gulpfile.js ./
+COPY .eslintrc.js .eslintignore .stylelintrc webpack.config.js webpack.static.config.js ./
 COPY ./media ./media
 COPY ./tests/unit ./tests/unit
 
-RUN gulp build --production
+RUN npm run build
 
 
 ########
@@ -113,7 +112,8 @@ FROM app-base AS release
 
 RUN bin/run-sync-all.sh
 
-COPY --from=assets /app/static_final /app/static_final
+COPY --from=assets /app/assets /app/assets
+
 RUN honcho run --env docker/envfiles/prod.env docker/bin/build_staticfiles.sh
 
 RUN echo "${GIT_SHA}" > ./root_files/revision.txt

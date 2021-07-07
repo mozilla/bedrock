@@ -1339,7 +1339,7 @@
     },
     {
       "files": [
-        "js/libs/jquery-3.5.1.min.js",
+        "js/base/globals.js",
         "js/base/mozilla-utils.js",
         "js/base/mozilla-client.js",
         "js/base/class-list-polyfill.js",
@@ -1520,6 +1520,12 @@
         "js/products/vpn/invite.js"
       ],
       "name": "mozilla-vpn-invite"
+    },
+    {
+      "files": [
+        "js/libs/html5shiv.js"
+      ],
+      "name": "html5-shiv"
     }
   ]
 }

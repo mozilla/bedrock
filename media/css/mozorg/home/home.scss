@@ -5,14 +5,13 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/includes/fonts/metropolis';
-@import '../../../protocol/css/components/hero';
-@import '../../../protocol/css/components/billboard';
-@import '../../../protocol/css/components/newsletter-form';
-@import '../../../protocol/css/templates/card-layout';
-@import '../../../protocol/css/components/picto-card';
-
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/includes/fonts/metropolis';
+@import '~@mozilla-protocol/core/protocol/css/components/hero';
+@import '~@mozilla-protocol/core/protocol/css/components/billboard';
+@import '~@mozilla-protocol/core/protocol/css/components/newsletter-form';
+@import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
+@import '~@mozilla-protocol/core/protocol/css/components/picto-card';
 
 .mzp-c-hero .c-primary-cta-title {
     @include font-firefox;
