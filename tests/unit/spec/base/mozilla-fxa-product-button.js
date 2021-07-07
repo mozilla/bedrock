@@ -109,4 +109,12 @@ describe('mozilla-fxa-product-button.js', function() {
             expect(buttons[1].href).toEqual('https://getpocket.com/ff_signup?s=ffwelcome2&form_type=button&entrypoint=mozilla.org-firefox-welcome-2&utm_source=mozilla.org-firefox-welcome-2&utm_campaign=welcome-2-pocket&utm_medium=referral');
         });
     });
+
+    it('should return false if no buttons are present in the DOM', function() {
+        document.querySelectorAll('.js-fxa-product-button').forEach(function(e)  {
+            e.parentNode.removeChild(e);
+        });
+
+        expect(Mozilla.FxaProductButton.init()).toBeFalsy();
+    });
 });
