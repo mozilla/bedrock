@@ -120,6 +120,53 @@ describe('core-datalayer.js', function() {
         });
     });
 
+    describe('getAMOExperiment', function() {
+        it('should return true when experiment and variation params are well formatted', function() {
+            var params = {
+                'experiment': '20210708_amo_experiment_name',
+                'variation': 'variation_1_name'
+            };
+            expect(Mozilla.Analytics.getAMOExperiment(params)).toEqual(params);
+        });
+
+        it('should return falsy when experiment and variation params are not specific to amo', function() {
+            var params = {
+                'experiment': 'some_other_experiment',
+                'variation': 'variation_1_name'
+            };
+            expect(Mozilla.Analytics.getAMOExperiment(params)).toBeFalsy();
+        });
+
+        it('should return falsy when experiment and variation params contain dangerous characters', function() {
+            var params = {
+                'experiment': '20210708_amo_"><h1>hello</h1>',
+                'variation': '<script>alert("test");</script>'
+            };
+            expect(Mozilla.Analytics.getAMOExperiment(params)).toBeFalsy();
+
+            var params2 = {
+                'experiment': '20210708_amo_%22%3E%3Ch1%3Ehello%3C%2Fh1%3E',
+                'variation': '%3Cscript%3Ealert%28%22test%22%29%3B%3C%2Fscript%3E'
+            };
+            expect(Mozilla.Analytics.getAMOExperiment(params2)).toBeFalsy();
+        });
+
+        it('should return falsy if parameters values are more than 50 chars', function() {
+            var params = {
+                'experiment': '20210708_amo_experiment_name',
+                'variation': 'a_very_very_very_very_very_long_experiment_variation_name_much_much_much_more_than_50_chars'
+            };
+            expect(Mozilla.Analytics.getAMOExperiment(params)).toBeFalsy();
+
+            var params2 = {
+                'experiment': '20210708_amo_a_very_very_very_long_experiment_name_much_much_much_much_more_than_50_chars',
+                'variation': 'variation_1_name'
+            };
+            expect(Mozilla.Analytics.getAMOExperiment(params2)).toBeFalsy();
+        });
+
+    });
+
     describe('formatFxaDetails', function() {
 
         it('will correctly format FxA data returned from UITour', function() {

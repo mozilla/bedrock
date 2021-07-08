@@ -80,6 +80,27 @@ if (typeof window.Mozilla.Analytics === 'undefined') {
         }
     };
 
+    analytics.getAMOExperiment = function(params) {
+        var allowedExperiment = /^\d{8}_amo_.[\w/.%-]{1,50}$/; // should match the format YYYYMMDD_amo_experiment_name.
+        var allowedVariation = /^[\w/.%-]{1,50}$/; // allow alpha numeric & common URL encoded chars.
+
+        if (Object.prototype.hasOwnProperty.call(params, 'experiment') &&
+            Object.prototype.hasOwnProperty.call(params, 'variation')) {
+
+            var experiment = decodeURIComponent(params['experiment']);
+            var variation = decodeURIComponent(params['variation']);
+
+            if ((allowedExperiment).test(experiment) && (allowedVariation).test(variation)) {
+                return {
+                    'experiment': experiment,
+                    'variation': variation
+                };
+            }
+        }
+
+        return null;
+    };
+
     /** Returns an object containing GA-formatted FxA details
     * The specs for this are a combination of:
     * - https://bugzilla.mozilla.org/show_bug.cgi?id=1457024#c33
