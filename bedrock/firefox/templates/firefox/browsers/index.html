@@ -4,7 +4,7 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 {% from "macros.html" import google_play_button, fxa_email_form with context %}
-{% from "macros-protocol.html" import hero, feature_card with context %}
+{% from "macros-protocol.html" import split, feature_card with context %}
 
 {% block page_title %}{{ ftl('firefox-browsers-get-the-browsers-that-put') }}{% endblock %}
 {% block page_desc %}{{ ftl('firefox-browsers-get-the-privacy-you-deserve') }}{% endblock %}
@@ -58,17 +58,16 @@
 {% block content %}
 <main role="main">
 
-  <div class="c-block has-media-hide">
-    <div class="c-block-container">
-      <div class="c-block-body l-v-center">
-        <h1 class="mzp-has-zap-11">{{ ftl('firefox-browsers-get-the-browsers-strong') }}</h1>
-        <p>{{ ftl('firefox-browsers-get-the-privacy-you-deserve') }}</p>
-      </div>
-      <div class="c-block-media l-fit-flush l-constrain-height">
-        {{ high_res_img('img/firefox/browsers/hero.jpg', {'alt': '', 'class': 'c-block-media-img'}) }}
-      </div>
-    </div>
-  </div>
+  {% call split(
+    image_url='img/firefox/browsers/hero.jpg',
+    include_highres_image=True,
+    block_class='mzp-has-media-hide',
+    body_class='mzp-l-v-center',
+    media_class='mzp-l-fit-flush mzp-l-constrain-height'
+  ) %}
+    <h1 class="mzp-has-zap-11">{{ ftl('firefox-browsers-get-the-browsers-strong') }}</h1>
+    <p>{{ ftl('firefox-browsers-get-the-privacy-you-deserve') }}</p>
+  {% endcall %}
 
   <div class="mzp-l-content c-landing-grid">
     <div class="c-landing-grid-item">
@@ -89,9 +88,10 @@
 
       <p><a class="mzp-c-cta-link" href="{{ url('firefox.new') }}" data-cta-type="link" data-cta-text="Desktop Learn More">{{ ftl('ui-learn-more') }}</a></p>
     </div>
+
     <div class="c-landing-grid-item">
       {{ high_res_img('img/firefox/browsers/mobile.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '327', 'height': '223'}) }}
-      <h2 class="c-landing-grid-title "><a class="mzp-c-cta-link" href="{{ url('firefox.mobile.index') }}" data-cta-type="link" data-cta-text="Mobile">{{ ftl('firefox-browsers-mobile') }}</a></h2>
+      <h2 class="c-landing-grid-title "><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.mobile.index') }}" data-cta-type="link" data-cta-text="Mobile">{{ ftl('firefox-browsers-mobile') }}</a></h2>
       <p>{{ ftl('firefox-browsers-take-the-same-level-of-privacy') }}</p>
 
       <div class="appstore-android">
@@ -110,8 +110,9 @@
           <li class="mzp-c-menu-list-item t-getapp"><a href="{{ url('firefox.mobile.get-app') }}" data-cta-type="link" data-cta-text="Get App Mobile">{{ ftl('firefox-browsers-send-me-a-link') }}</a></li>
         </ul>
       </div>
-      <p><a class="mzp-c-cta-link" href="{{ url('firefox.mobile.index') }}" data-cta-type="link" data-cta-text="Moblie Learn More">{{ ftl('ui-learn-more') }}</a></p>
+      <p><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.mobile.index') }}" data-cta-type="link" data-cta-text="Mobile Learn More">{{ ftl('ui-learn-more') }}</a></p>
     </div>
+
     <div class="c-landing-grid-item">
       {{ high_res_img('img/firefox/browsers/enterprise.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '327', 'height': '223'}) }}
       <h2 class="c-landing-grid-title"><a href="{{ url('firefox.enterprise.index') }}" data-cta-type="link" data-cta-text="Enterprise">{{ ftl('firefox-browsers-enterprise') }}</a></h2>
@@ -125,6 +126,7 @@
       <p>{{ ftl('firefox-browsers-go-beyond-two-dimensions-and') }}</p>
       <p><a class="mzp-c-cta-link" href="https://mixedreality.mozilla.org/firefox-reality{{ referrals }}" data-cta-type="link" data-cta-text="Reality Learn More">{{ ftl('ui-learn-more') }}</a></p>
     </div>
+
     <div class="c-landing-grid-item c-landing-grid-wide">
       <div class="t-dev">
         {% call feature_card(

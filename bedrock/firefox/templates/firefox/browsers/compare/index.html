@@ -5,17 +5,19 @@
 {% extends "firefox/base/base-protocol.html" %}
 
 {% block page_title %}{{ ftl('compare-index-seven-of-the-best-browsers-in', fallback='compare-index-six-of-the-best-browsers-fallback') }}{% endblock %}
-
-{% block page_desc %}
-{{ ftl('compare-index-find-out-how-firefox-chrome', fallback='compare-index-find-out-how-firefox-fallback') }}
-{% endblock %}
+{% block page_desc %}{{ ftl('compare-index-find-out-how-firefox-chrome', fallback='compare-index-find-out-how-firefox-fallback') }}{% endblock %}
 
 {% block page_css %}
-{{ css_bundle('compare') }}
+  {{ css_bundle('compare') }}
+  {{ css_bundle('mobile-compare-banner') }}
 {% endblock %}
 
 {% block sub_navigation %}
   {% include 'firefox/browsers/compare/includes/subnav.html' %}
+{% endblock %}
+
+{% block page_banner %}
+  {% include 'includes/banners/mobile/mobile-compare.html' %}
 {% endblock %}
 
 {% block content %}
@@ -393,4 +395,5 @@
 
 {% block js %}
   {{ js_bundle('sticky_promo') }}
+  {{ js_bundle('mobile_compare_banner') }}
 {% endblock %}

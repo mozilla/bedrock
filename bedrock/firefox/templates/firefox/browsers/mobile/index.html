@@ -1,0 +1,155 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/base/base-protocol.html" %}
+{% from "macros.html" import google_play_button, fxa_email_form with context %}
+{% from "macros-protocol.html" import split, feature_card with context %}
+
+{% block page_title %}{{ ftl('browsers-mobile-firefox-mobile-browsers-put') }}{% endblock %}
+{% block page_desc %}{{ ftl('browsers-mobile-overview-of-all-mobile') }}{% endblock %}
+
+{% block body_class %}{{ super() }} mobile-overview{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox-browsers-products') }}
+{% endblock %}
+
+{% set android_url = firefox_adjust_url('android', 'mobile-page') %}
+{% set ios_url = firefox_adjust_url('ios', 'mobile-page') %}
+{% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-mobile' %}
+{% set _entrypoint = 'mozilla.org-firefox-mobile' %}
+
+{% block sub_navigation %}
+<nav class="c-sub-navigation">
+  <div class="mzp-l-content">
+    <div class="c-sub-navigation-content">
+      <h2 class="c-sub-navigation-title"><a href="{{ url('firefox.browsers.mobile.index') }}">{{ ftl('sub-navigation-firefox-for-mobile', fallback='navigation-firefox-browser-for-mobile') }}</a></h2>
+      <ul class="c-sub-navigation-list">
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.mobile.android') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Android">{{ ftl('sub-navigation-android') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.mobile.ios') }}" data-link-type="nav" data-link-position="subnav" data-link-name="iOS">{{ ftl('sub-navigation-ios') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.mobile.focus') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Firefox Focus">{{ ftl('sub-navigation-firefox-focus') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.chromebook') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Chromebook">{{ ftl('sub-navigation-chromebook') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.mobile.compare') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Compare Mobile Browsers">{{ ftl('sub-navigation-compare-mobile-browsers') }}</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<main role="main">
+  {% call split(
+    image_url='img/firefox/browsers/hero.jpg',
+    include_highres_image=True,
+    block_class='mzp-has-media-hide mzp-l-split-center-on-sm-md',
+    body_class='mzp-l-v-center',
+    media_class='mzp-l-fit-flush mzp-l-constrain-height'
+  ) %}
+    <div class="mzp-c-logo mzp-t-logo-lg mzp-t-product-firefox"></div>
+    <h1 class="mzp-has-zap-11">{{ ftl('browsers-mobile-get-the-mobile-browser-privacy') }}</h1>
+    <p>{{ ftl('browsers-mobile-at-home-or-on-the-move') }}</p>
+  {% endcall %}
+
+
+  <section class="mzp-l-content c-landing-grid">
+    <div class="c-landing-grid-item">
+      {{ high_res_img('img/firefox/browsers/mobile.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '327', 'height': '223'}) }}
+      <h2 class="c-landing-grid-title"><a href="{{ url('firefox.browsers.mobile.android') }}" data-cta-type="link" data-cta-text="Firefox for Android">{{ ftl('browsers-mobile-firefox-for-android') }}</a></h2>
+      <p>{{ ftl('browsers-mobile-infinitely-customizable-private') }}</p>
+
+      <p id="android-download">
+        <a class="mzp-c-cta-link" href="{{ firefox_adjust_url('android', 'firefox_browsers') }}" rel="external noopener" data-link-type="download" data-display-name="Download" data-download-version="android" data-download-os="Android">{{ ftl('browsers-mobile-download') }}</a>
+      </p>
+
+      <p><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.mobile.android') }}" data-cta-type="link" data-cta-text="Android Learn More">{{ ftl('ui-learn-more') }}</a></p>
+    </div>
+
+    <div class="c-landing-grid-item">
+      {{ high_res_img('img/firefox/browsers/mobile.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '327', 'height': '223'}) }}
+      <h2 class="c-landing-grid-title"><a href="{{ url('firefox.browsers.mobile.ios') }}" data-cta-type="link" data-cta-text="Firefox for iOS">{{ ftl('browsers-mobile-firefox-for-ios') }}</a></h2>
+      <p>{{ ftl('browsers-mobile-get-enhanced-tracking-protection') }}</p>
+
+      <p id="ios-download">
+        <a class="mzp-c-cta-link" href="{{ firefox_adjust_url('ios', 'firefox_browsers') }}" rel="external noopener" data-link-type="download" data-display-name="Download" data-download-version="ios" data-download-os="iOS">{{ ftl('browsers-mobile-download') }}</a>
+      </p>
+
+      <p><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.mobile.ios') }}" data-cta-type="link" data-cta-text="iOS Learn More">{{ ftl('ui-learn-more') }}</a></p>
+    </div>
+
+    <div class="c-landing-grid-item">
+      {{ high_res_img('img/firefox/browsers/mobile.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '327', 'height': '223'}) }}
+      <h2 class="c-landing-grid-title"><a href="{{ url('firefox.browsers.mobile.focus') }}" data-cta-type="link" data-cta-text="Firefox Focus">{{ ftl('browsers-mobile-firefox-focus') }}</a></h2>
+      <p>{{ ftl('browsers-mobile-looking-for-a-streamlined') }}</p>
+
+      <div id="menu-focus-wrapper"  class="mzp-c-menu-list mzp-t-cta mzp-t-download">
+        <h3 class="mzp-c-menu-list-title">{{ ftl('browsers-mobile-download') }}</h3>
+        <ul class="mzp-c-menu-list-list" id="menu-mobile">
+          <li class="mzp-c-menu-list-item"><a href="{{ focus_adjust_url('android', 'firefox_browsers') }}" rel="external noopener" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android">{{ ftl('browsers-mobile-android') }}</a></li>
+          <li class="mzp-c-menu-list-item"><a href="{{ focus_adjust_url('ios', 'firefox_browsers') }}" rel="external noopener" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS">{{ ftl('browsers-mobile-ios') }}</a></li>
+        </ul>
+      </div>
+
+      <p><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.mobile.focus') }}" data-cta-type="link" data-cta-text="Focus Learn More">{{ ftl('ui-learn-more') }}</a></p>
+    </div>
+
+    <div class="c-landing-grid-item">
+      {{ high_res_img('img/firefox/browsers/mobile.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '327', 'height': '223'}) }}
+      <h2 class="c-landing-grid-title"><a href="{{ url('firefox.browsers.mobile.compare') }}" data-cta-type="link" data-cta-text="Compare Mobile Browsers">{{ ftl('browsers-mobile-compare-mobile-browsers') }}</a></h2>
+      <p>{{ ftl('browsers-mobile-see-how-firefox-stacks-up') }}</p>
+
+      <p><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.mobile.compare') }}" data-cta-type="link" data-cta-text="Compare">{{ ftl('browsers-mobile-compare') }}</a></p>
+    </div>
+
+    <div class="c-landing-grid-item c-landing-grid-wide">
+      <div class="t-compare">
+        {% call feature_card(
+          title=ftl('browsers-mobile-see-how-firefox-for-desktop-stacks'),
+          heading_level=2,
+          image_url='img/firefox/browsers/dev.png',
+          include_highres_image=True,
+          class='mzp-l-card-feature-left-half',
+          link_url=url('firefox.browsers.compare.index'),
+          link_cta=learn_more,
+          ga_title='Desktop Compare'
+        ) %}
+        <p class="c-dev-title mzp-has-zap-06">{{ ftl('browsers-mobile-see-how-firefox-for-desktop-strong') }}</p>
+        <p><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.compare.index') }}" data-cta-type="link" data-cta-text="Learn More">{{ ftl('browsers-mobile-compare') }}</a></p>
+        {% endcall %}
+      </div>
+    </div>
+  </section>
+
+  <section class="mzp-l-content is-js-dependent">
+    <div class="mzp-c-emphasis-box mzp-t-dark t-account">
+      <div class="fxa-form-cta">
+        {{ fxa_email_form(
+          class_name='fxa-form',
+          entrypoint=_entrypoint,
+          form_title=ftl('browsers-mobile-join-firefox-and-get-the-most'),
+          button_class='mzp-c-button mzp-t-product mzp-t-lg'
+          )
+        }}
+        <p class="fxa-signin">
+          {% set fxa_link = fxa_link_fragment(entrypoint=_entrypoint, action='signin', optional_parameters={'utm_campaign': 'browsers-footer'}) %}
+          {% set fxa_attr = fxa_link ~ ' class="js-fxa-cta-link js-fxa-product-button" data-cta-type="link" data-cta-text="FxA Learn More"'|safe %}
+          {% set accounts_attr = 'href="'|safe ~ url('firefox.accounts') ~ '"'|safe %}
+          {{ ftl('browsers-mobile-already-have-an-account-sign', accounts_attr=accounts_attr, fxa_attr=fxa_attr) }}
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}
+
+{% block sticky_promo %}
+  {% include '/includes/sticky-promo.html' %}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox-browsers-products') }}
+{% endblock %}
+
+{% block structured_data %}
+  {% include 'includes/structured-data/software/firefox-browser-software.json' %}
+{% endblock %}

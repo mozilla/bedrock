@@ -1,0 +1,193 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import google_play_button, send_to_device with context %}
+{% from "macros-protocol.html" import split, call_out_compact with context %}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% block page_css %}
+  {{ css_bundle('firefox-browsers-mobile') }}
+{% endblock %}
+
+{% block page_title %}{{ ftl('mobile-ios-firefox-browser-ios') }}{% endblock %}
+{% block page_desc %}{{ ftl('mobile-ios-firefox-browser-for') }}{% endblock %}
+
+{% block body_class %}{{ super() }} mobile-ios{% endblock %}
+
+{% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
+{% set ios_url = firefox_adjust_url('ios', 'mobile-ios-page') %}
+
+{% block site_header %}
+  {% with hide_nav_download_button=True %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block sub_navigation %}
+<nav class="c-sub-navigation">
+  <div class="mzp-l-content">
+    <div class="c-sub-navigation-content">
+      <h2 class="c-sub-navigation-title"><a href="{{ url('firefox.browsers.mobile.index') }}">{{ ftl('sub-navigation-firefox-for-mobile', fallback='navigation-firefox-browser-for-mobile') }}</a></h2>
+      <ul class="c-sub-navigation-list">
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.mobile.android') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Android">{{ ftl('sub-navigation-android') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.mobile.ios') }}" data-link-type="nav" data-link-position="subnav" data-link-name="iOS">{{ ftl('sub-navigation-ios') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.mobile.focus') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Firefox Focus">{{ ftl('sub-navigation-firefox-focus') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.chromebook') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Chromebook">{{ ftl('sub-navigation-chromebook') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.mobile.compare') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Compare Mobile Browsers">{{ ftl('sub-navigation-compare-mobile-browsers') }}</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<main role="main">
+  <header class="mzp-c-split mzp-l-split-center-on-sm-md c-page-header">
+    <div class="mzp-c-split-container">
+      <div class="mzp-c-split-body">
+        <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">{{ ftl('mobile-ios-firefox-browser') }}</div>
+        <h1 class="mzp-u-title-xl">{{ ftl('mobile-ios-get-automatic-privacy') }}</h1>
+        <p class="c-tagline">{{ self.page_desc() }}</p>
+        <p class="c-cta">
+          <a href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
+            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
+          </a>
+        </p>
+      </div>
+
+      <div class="mzp-c-split-media mzp-l-split-h-center">
+        <div class="c-inline-form">
+          <h2 class="c-inline-form-title">{{ ftl('mobile-ios-get-firefox-for') }}</h2>
+        {% if show_send_to_device %}
+          <p class="c-inline-form-body">{{ ftl('mobile-ios-send-a-download-link-to-your') }}</p>
+          {{ send_to_device(include_title=False, message_set='fx-mobile-download-desktop', class='vertical', id='s2d-primary') }}
+        {% else %}
+          <p class="c-inline-form-body">{{ ftl('mobile-ios-scan-the-qr-code-to-get-started') }}</p>
+          <div class="qr-code-wrapper">
+            <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}"
+                id="firefox-qr"
+                data-mozillaonline-link="{{ static('img/firefox/mobile/protocol/qr-firefox-mozillaonline.png') }}"
+                alt="{{ ftl('mobile-ios-scan-alt-text') }}">
+          </div>
+        {% endif %}
+        </div>
+      </div>
+    </div>
+  </header>
+
+  {% call split(
+    image_url='img/firefox/browsers/mobile.jpg',
+    include_highres_image=True,
+    block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-background-alt mzp-t-content-xl',
+    body_class='mzp-l-v-center',
+    media_class='mzp-l-fit-flush mzp-l-constrain-height'
+  ) %}
+    <h3>{{ ftl('mobile-ios-make-firefox-your') }}</h3>
+    <p>{{ ftl('mobile-ios-now-iphone-and') }}</p>
+  {% endcall %}
+
+  {% call split(
+    image_url='img/firefox/browsers/mobile.jpg',
+    include_highres_image=True,
+    block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl',
+    body_class='mzp-l-v-center',
+    media_class='mzp-l-fit-flush mzp-l-constrain-height'
+  ) %}
+    <h3>{{ ftl('mobile-ios-fast-private-secure') }}</h3>
+    <p>{{ ftl('mobile-ios-keep-whats-personal') }}</p>
+  {% endcall %}
+
+  {% call split(
+    image_url='img/firefox/browsers/mobile.jpg',
+    include_highres_image=True,
+    block_class=' mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-background-alt mzp-t-content-xl',
+    body_class='mzp-l-v-center',
+    media_class='mzp-l-fit-flush mzp-l-constrain-height'
+  ) %}
+    <h3>{{ ftl('mobile-ios-stay-private-online') }}</h3>
+    <p>{{ ftl('mobile-ios-firefox-gives-you') }}</p>
+  {% endcall %}
+
+  {% call split(
+    image_url='img/firefox/browsers/mobile.jpg',
+    include_highres_image=True,
+    block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl',
+    body_class='mzp-l-v-center',
+    media_class='mzp-l-fit-flush mzp-l-constrain-height'
+  ) %}
+    <h3>{{ ftl('mobile-ios-your-browsing-history') }}</h3>
+    <p>{{ ftl('mobile-ios-if-you-want') }}</p>
+  {% endcall %}
+
+  {% call split(
+    image_url='img/firefox/browsers/mobile.jpg',
+    include_highres_image=True,
+    block_class=' mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-background-alt mzp-t-content-xl',
+    body_class='mzp-l-v-center',
+    media_class='mzp-l-fit-flush mzp-l-constrain-height'
+  ) %}
+    <h3>{{ ftl('mobile-ios-get-more-firefox') }}</h3>
+    <p>{{ ftl('mobile-ios-add-firefox-across') }}</p>
+  {% endcall %}
+
+  {% call split(
+    image_url='img/firefox/browsers/mobile.jpg',
+    include_highres_image=True,
+    block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl',
+    body_class='mzp-l-v-center',
+    media_class='mzp-l-fit-flush mzp-l-constrain-height'
+  ) %}
+    <h3>{{ ftl('mobile-ios-find-it-all') }}</h3>
+    <p>{{ ftl('mobile-ios-get-search-suggestions') }}</p>
+  {% endcall %}
+
+  {% call split(
+    image_url='img/firefox/browsers/mobile.jpg',
+    include_highres_image=True,
+    block_class=' mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-background-alt mzp-t-content-xl',
+    body_class='mzp-l-v-center',
+    media_class='mzp-l-fit-flush mzp-l-constrain-height'
+  ) %}
+    <h3>{{ ftl('mobile-ios-keep-tabs-on') }}</h3>
+    <p>{{ ftl('mobile-ios-create-as-many') }}</p>
+  {% endcall %}
+
+  {% call split(
+    image_url='img/firefox/browsers/mobile.jpg',
+    include_highres_image=True,
+    block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl',
+    body_class='mzp-l-v-center',
+    media_class='mzp-l-fit-flush mzp-l-constrain-height'
+  ) %}
+    <h3>{{ ftl('mobile-ios-discover-more-of') }}</h3>
+    <p>{{ ftl('mobile-ios-open-a-new') }}</p>
+  {% endcall %}
+
+  {% call split(
+    image_url='img/firefox/browsers/mobile.jpg',
+    include_highres_image=True,
+    block_class=' mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-dark mzp-t-content-xl',
+    body_class='mzp-l-v-center',
+    media_class='mzp-l-fit-flush mzp-l-constrain-height'
+  ) %}
+    <h3>{{ ftl('mobile-ios-about-mozilla') }}</h3>
+    <p>{{ ftl('mobile-ios-mozilla-exists-to') }}</p>
+  {% endcall %}
+
+</main>
+{% endblock %}
+
+{% block structured_data %}
+  {
+    "@context": "https://schema.org/",
+    "@graph": [
+      {% include 'includes/structured-data/software/firefox-ios-software.json' %}
+    ]
+  }
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox-browsers-mobile') }}
+{% endblock %}

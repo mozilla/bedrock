@@ -259,6 +259,12 @@
     },
     {
       "files": [
+        "css/base/banners/mobile-compare.scss"
+      ],
+      "name": "mobile-compare-banner"
+    },
+    {
+      "files": [
         "css/base/banners/native-android-exp.scss"
       ],
       "name": "native-android-exp-banner"
@@ -605,16 +611,16 @@
     {
       "files": [
         "css/protocol/components/send-to-device.scss",
-        "css/firefox/mobile/mobile.scss"
+        "css/firefox/mobile/get-app.scss"
       ],
-      "name": "firefox-mobile"
+      "name": "firefox-mobile-get-app"
     },
     {
       "files": [
         "css/protocol/components/send-to-device.scss",
-        "css/firefox/mobile/get-app.scss"
+        "css/firefox/browsers/mobile.scss"
       ],
-      "name": "firefox-mobile-get-app"
+      "name": "firefox-browsers-mobile"
     },
     {
       "files": [
@@ -722,6 +728,7 @@
     },
     {
       "files": [
+        "css/protocol/components/send-to-device.scss",
         "css/firefox/sticky-promo.scss",
         "css/firefox/compare/compare.scss"
       ],
@@ -1141,9 +1148,9 @@
       "files": [
         "js/libs/spin.min.js",
         "js/base/send-to-device.js",
-        "js/firefox/mobile/mobile.js"
+        "js/firefox/browsers/mobile.js"
       ],
-      "name": "firefox-mobile"
+      "name": "firefox-browsers-mobile"
     },
     {
       "files": [
@@ -1462,11 +1469,27 @@
     },
     {
       "files": [
+        "js/base/banners/mozilla-banner.js",
+        "js/base/banners/mobile-compare-banner-init.js"
+      ],
+      "name": "mobile_compare_banner"
+    },
+    {
+      "files": [
         "protocol/js/protocol-sticky-promo.js",
         "js/firefox/sticky-promo.js",
         "js/firefox/compare-details.js"
       ],
       "name": "firefox_compare_details"
+    },
+    {
+      "files": [
+        "js/base/send-to-device.js",
+        "js/libs/spin.min.js",
+        "protocol/js/protocol-sticky-promo.js",
+        "js/firefox/sticky-promo.js"
+      ],
+      "name": "firefox_compare_mobile"
     },
     {
       "files": [

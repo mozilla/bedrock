@@ -2,7 +2,7 @@
   "@context": "https://schema.org/",
   "@type": "MobileApplication",
   "@id": "{{ structured_data_id('firefoxios') }}",
-  "url": "{% filter absolute_url %}{{ url('firefox.mobile.index') }}{% endfilter %}",
+  "url": "{% filter absolute_url %}{{ url('firefox.browsers.mobile.ios') }}{% endfilter %}",
   "image": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}{% endfilter %}",
   "name": "Firefox Browser iOS",
   "alternateName": [

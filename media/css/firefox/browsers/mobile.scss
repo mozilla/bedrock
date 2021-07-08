@@ -1,0 +1,223 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/split';
+@import '../../../protocol/css/components/logos/wordmark';
+@import '../../../protocol/css/components/logos/wordmark-product-firefox';
+@import '../../../protocol/css/components/logos/wordmark-product-focus';
+
+@media #{$mq-lg} {
+    .c-page-header {
+        background-repeat: no-repeat;
+
+        .mobile-ios & {
+            background-image: url('/media/img/firefox/mobile/img-mobile-noodles.svg');
+            background-position: top left calc(60vw + #{$spacing-md});
+            background-size: contain;
+        }
+
+        .mobile-focus & {
+            background-image: url('/media/img/firefox/accounts/trailhead/accounts-hero-logged-out.svg');
+            background-position: right 50% top -100px;
+        }
+
+        .mobile-android & {
+            background-image: url('/media/img/firefox/accounts/trailhead/accounts-hero-logged-in.svg');
+            background-position: right 50% top;
+        }
+    }
+}
+
+.mzp-c-wordmark {
+    margin: 0 auto $spacing-lg;
+
+    @media #{$mq-lg} {
+        margin: 0 0 $spacing-lg;
+    }
+}
+
+.c-tagline {
+    @include text-body-xl;
+}
+
+
+// Make our content widths work on Split
+.mzp-c-split {
+    &.mzp-t-content-sm {
+        .mzp-c-split-container {
+            max-width: $content-sm;
+        }
+    }
+
+    &.mzp-t-content-md {
+        .mzp-c-split-container {
+            max-width: $content-md;
+        }
+    }
+
+    &.mzp-t-content-lg {
+        .mzp-c-split-container {
+            max-width: $content-lg;
+        }
+    }
+
+    &.mzp-t-content-xl {
+        .mzp-c-split-container {
+            max-width: $content-xl;
+        }
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+//  Inline form variation
+
+.c-inline-form {
+    background: $color-white;
+    border-radius: $border-radius-md;
+    box-shadow: $box-shadow-md;
+    margin: 0 auto $spacing-xl;
+    max-width: 330px;
+    padding: $spacing-lg $spacing-2xl;
+    text-align: center;
+
+    .legal {
+        @include text-body-xs;
+    }
+
+    .c-inline-form-title {
+        @include text-title-xs;
+        margin-bottom: $spacing-md;
+    }
+
+    .c-inline-form-body {
+        @include text-body-lg;
+    }
+
+    @media #{$mq-lg} {
+        @include bidi(((float, right, left),));
+
+        @supports (display: grid) {
+            float: none;
+        }
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+
+// not yet recognized as valid by style lint, so we abstract it
+$mq-reduced-motion: 'screen and (prefers-reduced-motion: reduce)';
+
+main .mzp-l-content {
+    max-width: 400px;
+
+    @media #{$mq-md} {
+        max-width: $content-max;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+//  Download buttons
+
+.mobile-download-buttons-wrapper {
+    display: inline-block;
+}
+
+.mobile-download-buttons li {
+    padding-top: $spacing-sm;
+    display: inline-block;
+}
+
+.header-product-ctas {
+    margin-bottom: $spacing-2xl;
+}
+
+// for android/iOS, hide widget/QR code in favor of app store badges
+.android,
+.ios {
+    .mobile-download-buttons-wrapper {
+        display: inline-block;
+    }
+
+    .qr-code-wrapper,
+    .c-inline-form,
+    #send-to-device {
+        display: none;
+    }
+
+    .header-product-ctas {
+        display: none;
+    }
+}
+
+// hide download links for one platform from the other
+.android .mobile-download-buttons .ios {
+    display: none;
+}
+
+.ios .mobile-download-buttons .android,
+.ios .mobile-download-buttons .android-apk {
+    display: none;
+}
+
+
+// very basic styling for no-JS visitors
+.no-js {
+    .header-product-ctas {
+        display: none;
+    }
+
+    .mobile-download-buttons-wrapper {
+        display: inline-block;
+        text-align: center;
+    }
+
+    .mobile-download-buttons {
+        margin: 1em 0;
+
+        @media #{$mq-sm} {
+            @supports (display: flex) {
+                & {
+                    align-items: center;
+                    display: flex;
+                    flex-direction: column;
+                    margin: 1em auto;
+                    width: 340px;
+
+                    &.hidden {
+                        display: none;
+                    }
+
+                    li {
+                        margin: 0 auto; // so that a single item is centred
+                    }
+                }
+            }
+        }
+
+        .android-apk a {
+            display: inline-block;
+            margin: 10px 0;
+            @include text-body-sm;
+        }
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+//  Send to Device overrides
+
+#send-to-device {
+    margin: 0 auto;
+
+    footer {
+        display: none;
+    }
+}

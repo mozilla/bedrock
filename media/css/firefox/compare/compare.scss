@@ -5,11 +5,13 @@
 $font-path: "/media/fonts";
 $image-path: "/media/protocol/img";
 
-@import "../../../protocol/css/includes/lib";
-@import "../../../protocol/css/components/hero";
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/hero';
+@import '../../../protocol/css/components/split';
 @import '../../protocol/components/sub-navigation';
 
-/* -------------------------------------------------------------------------- */
+
+//* -------------------------------------------------------------------------- */
 // Hero
 
 .compare-hero {
@@ -45,6 +47,10 @@ $image-path: "/media/protocol/img";
     @include text-body-lg;
 }
 
+.c-tagline {
+    @include text-body-xl;
+}
+
 .l-compare-content {
     @include text-body-lg;
     padding-top: $layout-lg;
@@ -54,7 +60,7 @@ $image-path: "/media/protocol/img";
     }
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Summary section
 
 .compare-section-summary {
@@ -179,7 +185,7 @@ $image-path: "/media/protocol/img";
     margin-bottom: .45em;
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Heading zaps ⚡️
 
 .compare-section-privacy .compare-section-header h2 strong {
@@ -206,7 +212,23 @@ $image-path: "/media/protocol/img";
     }
 }
 
-/* -------------------------------------------------------------------------- */
+.compare-section-features .compare-section-header h2 strong {
+    @include zap("/media/protocol/img/zaps/zap-11.svg");
+
+    &::after {
+        top: 100%;
+    }
+}
+
+.compare-section-syncing .compare-section-header h2 strong {
+    @include zap("/media/protocol/img/zaps/zap-06.svg");
+
+    &::after {
+        top: 100%;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
 // Comparison tables
 
 .mzp-u-data-table.compare-table {
@@ -293,7 +315,7 @@ $image-path: "/media/protocol/img";
     }
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Bottom mission box
 
 .compare-mission-section {
@@ -353,4 +375,30 @@ $image-path: "/media/protocol/img";
     p, br {
         margin-bottom: $spacing-sm;
     }
+}
+
+
+//* -------------------------------------------------------------------------- */
+//  Send to Device widget overrides
+.compare-section-getapp {
+    text-align: center;
+}
+
+.send-to-device {
+    margin: 0 auto $spacing-lg;
+}
+
+//  QR Code
+.qr-code-wrapper img {
+    margin-bottom: $spacing-lg;
+}
+
+//  App store buttons
+.mobile-download-buttons-wrapper {
+    margin-bottom: $layout-lg;
+}
+
+.mobile-download-buttons li {
+    padding-top: $spacing-sm;
+    display: inline-block;
 }

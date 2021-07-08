@@ -2,7 +2,7 @@
   "@context": "https://schema.org/",
   "@type": "MobileApplication",
   "@id": "{{ structured_data_id('firefoxandroid') }}",
-  "url": "{% filter absolute_url %}{{ url('firefox.mobile.index') }}{% endfilter %}",
+  "url": "{% filter absolute_url %}{{ url('firefox.browsers.mobile.android') }}{% endfilter %}",
   "name": "Firefox Browser Android",
   "image": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}{% endfilter %}",
   "alternateName": [
