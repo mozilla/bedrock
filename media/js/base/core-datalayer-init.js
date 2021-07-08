@@ -58,6 +58,19 @@
     if (typeof Mozilla.Utils !== 'undefined') {
         Mozilla.Utils.onDocumentReady(function() {
             initCoreDataLayer();
+
+            // Add GA custom dimension for AMO experiments (Issue 10175).
+            if (typeof window._SearchParams !== 'undefined') {
+                var params = new window._SearchParams().params;
+                var validParams = analytics.getAMOExperiment(params);
+
+                if (validParams) {
+                    dataLayer.push({
+                        'data-ex-name': validParams['experiment'],
+                        'data-ex-variant': validParams['variation']
+                    });
+                }
+            }
         });
     }
 
