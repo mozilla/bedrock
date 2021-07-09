@@ -8,6 +8,7 @@ $image-path: '/media/protocol/img';
 
 @import '../../../../protocol/css/components/emphasis-box';
 @import '../../../../protocol/css/components/modal';
+@import '../../../../protocol/css/components/notification-bar';
 @import '../../../../protocol/css/components/section-heading';
 @import '../../../../protocol/css/components/zap';
 @import '../../../../protocol/css/templates/card-layout';
@@ -60,6 +61,14 @@ main {
             display: block;
             margin-bottom: $spacing-lg;
         }
+    }
+}
+
+// notification
+
+.mzp-c-notification-bar {
+    a:link {
+        margin: 0;
     }
 }
 

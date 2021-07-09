@@ -66,25 +66,7 @@ $image-path: '/media/protocol/img';
 
     // Nav button
     .c-navigation-menu-button {
-        @include image-replaced;
-        background: transparent url('/media/img/nav/menu.png') center center no-repeat;
-        border-radius: $border-radius-sm;
-        border: none;
         display: none;
-        height: 32px;
-        left: 126px;
-        padding: 0;
-        position: absolute;
-        top: $spacing-md;
-        top: 0\0;
-        width: 32px;
-
-        &:hover,
-        &:active,
-        &:focus,
-        &.mzp-is-active  {
-            background-color: $color-marketing-gray-20;
-        }
     }
 
     .c-navigation-items {
@@ -93,20 +75,20 @@ $image-path: '/media/protocol/img';
         margin-top: $layout-xs;
     }
 
-    .c-menu-item-title {
-        @include text-body-lg;
+    .c-menu-category {
+        display: inline-block;
+        *display: inline;
+        zoom: 1;
+        margin-bottom: $spacing-2xl;
     }
 
-    .c-menu-item-icon {
-        @include bidi(((float, left, right), (margin-right, $spacing-md, margin-left, $spacing-md),));
-    }
-
-    // hide panel close buttons
-    .c-menu-button-close {
-        display: none;
+    // only display primary navigation links to IE visitors.
+    .c-menu-panel {
+        display: none !important; /* stylelint-disable-line declaration-no-important */
     }
 
     .c-menu-title {
+        @include bidi(((margin-right, $spacing-md, margin-left, 0),));
         display: inline-block;
         *display: inline;
         font-weight: bold;
@@ -114,12 +96,7 @@ $image-path: '/media/protocol/img';
         zoom: 1;
     }
 
-    .c-menu-category {
-        margin-bottom: $spacing-2xl;
-    }
-
     .c-navigation-menu {
-        display: none;
         margin-bottom: $spacing-lg;
 
         ul {
@@ -132,19 +109,5 @@ $image-path: '/media/protocol/img';
                 padding: 0;
             }
         }
-
-        .c-menu-panel {
-            padding-left: $spacing-xl;
-        }
-    }
-}
-
-.js .top-header-navigation {
-    .c-navigation-menu-button {
-        display: block;
-    }
-
-    .c-navigation-items {
-        display: block;
     }
 }

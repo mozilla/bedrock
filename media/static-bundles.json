@@ -135,10 +135,22 @@
     },
     {
       "files": [
+        "css/firefox/new/desktop/thanks-ie.scss"
+      ],
+      "name": "firefox_desktop_download_thanks_ie"
+    },
+    {
+      "files": [
         "css/firefox/new/common/thanks-messaging.scss",
         "css/firefox/new/basic/thanks.scss"
       ],
       "name": "firefox_new_thanks"
+    },
+    {
+      "files": [
+        "css/firefox/new/basic/ie.scss"
+      ],
+      "name": "firefox_new_ie"
     },
     {
       "files": [
@@ -1229,18 +1241,6 @@
         "js/mozorg/about-leadership.js"
       ],
       "name": "about-leadership"
-    },
-    {
-      "files": [
-        "js/libs/jquery-1.12.4.min.js",
-        "js/ie/mozilla-utils-ie.js",
-        "js/base/mozilla-client.js",
-        "js/ie/base-page-init-ie.js",
-        "js/base/core-datalayer.js",
-        "js/base/core-datalayer-init.js",
-        "js/base/search-params.js"
-      ],
-      "name": "common-ie"
     },
     {
       "files": [

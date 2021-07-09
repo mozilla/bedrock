@@ -6,6 +6,7 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../../../protocol/css/includes/lib';
+@import '../../../protocol/components/navigation-ie';
 
 $h-grid-lg: 80px;
 
@@ -63,4 +64,8 @@ $h-grid-lg: 80px;
     .l-reversed & {
         @include bidi(((float, left, right),));
     }
+}
+
+.hide-from-legacy-ie {
+    display: none !important; /* stylelint-disable-line declaration-no-important */
 }

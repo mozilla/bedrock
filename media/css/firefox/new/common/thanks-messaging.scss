@@ -24,7 +24,6 @@ $image-path: '/media/protocol/img';
 .show-windows-10,
 .show-mac,
 .show-else,
-.show-xp-vista,
 .show-linux-arm,
 .show-auto-download-notification {
     display: none !important;
@@ -43,16 +42,6 @@ $image-path: '/media/protocol/img';
         .show-windows,
         .show-auto-download-notification {
             display: block !important;
-        }
-
-        &.xpvista {
-            .show-windows {
-                display: none !important;
-            }
-
-            .show-xp-vista {
-                display: block !important;
-            }
         }
 
         &.windows10 {

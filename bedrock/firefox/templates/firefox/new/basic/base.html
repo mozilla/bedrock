@@ -30,6 +30,10 @@
 {# All stylesheets are loaded in extrahead to serve legacy IE basic styles #}
 {% block extrahead %}
   {{ css_bundle('protocol-firefox') }}
+
+  <!--[if IE]>
+    {{ css_bundle('firefox_new_ie') }}
+  <![endif]-->
 {% endblock %}
 
 {% block old_ie_styles %}{% endblock %}
