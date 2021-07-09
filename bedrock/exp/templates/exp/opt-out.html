@@ -11,7 +11,6 @@
 {% block page_desc %}{{ _('Your privacy is very important to Mozilla. This page will enable you to opt-out of Convert experiments on www.mozilla.org') }}{% endblock %}
 
 {% block experiments %}
-  {{ js_bundle('jquery') }}
   <script type="text/javascript" src="https://cdn-3.convertexperiments.com/js/{{ settings.CONVERT_PROJECT_ID }}.js" async></script>
 {% endblock %}
 
@@ -66,8 +65,4 @@
 
 {% block stub_attribution %}
   {% include 'exp/includes/stub.html' %}
-{% endblock %}
-
-{% block site_js %}
-  {% include 'exp/includes/js.html' %}
 {% endblock %}

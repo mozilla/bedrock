@@ -1,16 +1,10 @@
 module.exports = {
     env: {
-        'jquery': true,
         'jasmine': true
     },
     extends: [
         '@mozilla-protocol/eslint-config',
-        'plugin:no-jquery/recommended',
-        'plugin:no-jquery/all',
         'plugin:json/recommended'
-    ],
-    plugins: [
-        'no-jquery'
     ],
     /**
      * Provide a set of overrides for `gulpfile.js` in the root directory.

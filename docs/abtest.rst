@@ -49,10 +49,6 @@ Templates within the ``/exp/`` app should have the following characteristics:
         {% include 'exp/includes/stub.html' %}
     {% endblock %}
 
-    {% block site_js %}
-        {% include 'exp/includes/js.html' %}
-    {% endblock %}
-
 3. If a page is indexed by search engines, then the experimental equivalent should have a canonical URL that points back to the original page. If the page is considered to be an in-product page, then the experimental page should retain the same noindex meta tag.
 
 .. code-block:: jinja

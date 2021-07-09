@@ -1339,7 +1339,6 @@
     },
     {
       "files": [
-        "js/libs/jquery-3.5.1.min.js",
         "js/base/class-list-polyfill.js",
         "js/base/search-params.js",
         "js/base/mozilla-utils.js",
@@ -1368,34 +1367,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-utils.js",
-        "js/base/mozilla-client.js",
-        "js/base/class-list-polyfill.js",
-        "js/base/mozilla-run.js",
-        "protocol/js/protocol-supports.js",
-        "protocol/js/protocol-utils.js",
-        "js/base/protocol/protocol-menu.js",
-        "js/base/protocol/protocol-navigation.js",
-        "js/base/protocol/init-navigation.js",
-        "protocol/js/protocol-lang-switcher.js",
-        "js/base/protocol/init-lang-switcher.js",
-        "protocol/js/protocol-details.js",
-        "js/base/protocol/protocol-footer.js",
-        "js/base/protocol/protocol-sub-navigation.js",
-        "js/base/base-page-init.js",
-        "js/base/core-datalayer.js",
-        "js/base/core-datalayer-init.js",
-        "js/base/search-params.js",
-        "js/base/uitour-lib.js",
-        "js/base/mozilla-fxa-link.js",
-        "js/base/mozilla-fxa-link-init.js",
-        "js/base/fxa-utm-referral.js",
-        "js/base/fxa-utm-referral-init.js"
-      ],
-      "name": "common-no-jquery"
-    },
-    {
-      "files": [
         "js/base/mozilla-article.js",
         "js/newsletter/form-protocol.js",
         "protocol/js/protocol-newsletter.js",
@@ -1413,16 +1384,9 @@
     },
     {
       "files": [
-        "js/libs/jquery-3.5.1.min.js",
         "js/exp/convert.js"
       ],
       "name": "convert"
-    },
-    {
-      "files": [
-        "js/libs/jquery-3.5.1.min.js"
-      ],
-      "name": "jquery"
     },
     {
       "files": [
