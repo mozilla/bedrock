@@ -14,7 +14,7 @@ $image-path: '/media/protocol/img';
 
 @import 'components/navigation-ie';
 @import 'components/sub-navigation';
-@import 'components/download-button';
+@import 'components/download-button-ie';
 
 // An arbitrary container for translatable strings to use in scripts
 #strings {
@@ -55,7 +55,7 @@ header, main, section, footer {
 
 /* Make sure form details are visible */
 
-.js .mzp-c-newsletter-details {
+.mzp-c-newsletter-details {
     display: block !important; /* stylelint-disable-line declaration-no-important */
 }
 
