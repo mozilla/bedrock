@@ -1223,18 +1223,6 @@
     },
     {
       "files": [
-        "js/libs/jquery-1.12.4.min.js",
-        "js/ie/mozilla-utils-ie.js",
-        "js/base/mozilla-client.js",
-        "js/ie/base-page-init-ie.js",
-        "js/base/core-datalayer.js",
-        "js/base/core-datalayer-init.js",
-        "js/base/search-params.js"
-      ],
-      "name": "common-ie"
-    },
-    {
-      "files": [
         "protocol/js/protocol-newsletter.js",
         "js/newsletter/form-protocol.js"
       ],
