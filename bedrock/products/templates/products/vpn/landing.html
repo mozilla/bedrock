@@ -19,12 +19,6 @@
 {% set _utm_campaign = 'vpn-product-page' %}
 {% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
 
-{% block experiments %}
-  {% if switch('vpn-landing-page-sub-position-experiment') and not switch('vpn-variable-pricing-wave-1') and not switch('vpn-variable-pricing-eu-expansion') %}
-    {{ js_bundle('vpn-landing-page-sub-position-experiment') }}
-  {% endif %}
-{% endblock %}
-
 {% block page_css %}
   {{ css_bundle('mozilla-vpn-landing') }}
 {% endblock %}
@@ -93,8 +87,6 @@
 
   <div class="mzp-l-content mzp-t-content-xl">
 
-    {% block top_pricing_position %}{% endblock %}
-
     {% call vpn_content_media(
       heading=ftl('vpn-landing-privacy-heading'),
       image_url='img/products/vpn/landing/vpn-cntwell-01.png',
@@ -104,8 +96,6 @@
     ) %}
       <p>{{ ftl('vpn-landing-privacy-desc') }}</p>
     {% endcall %}
-
-    {% block middle_pricing_position %}{% endblock %}
 
     {% call vpn_content_media(
       heading=ftl('vpn-landing-fast-secure-heading'),
@@ -171,15 +161,13 @@
     <div class="js-target-secondary-cta"></div>
     {% endcall %}
 
-    {% block default_pricing_position %}
-      {# note: `id=#pricing` is used as an anchor link from android in-product subscription flows, so do not remove (issue 10039) #}
-      <div id="pricing" class="mzp-is-anchor-link">
-        {% include 'products/vpn/includes/pricing-fixed.html' %}
-        {% include 'products/vpn/includes/pricing-variable.html' %}
-      </div>
+    {# note: `id=#pricing` is used as an anchor link from android in-product subscription flows, so do not remove (issue 10039) #}
+    <div id="pricing" class="mzp-is-anchor-link">
+      {% include 'products/vpn/includes/pricing-fixed.html' %}
+      {% include 'products/vpn/includes/pricing-variable.html' %}
+    </div>
 
-      {% include 'products/vpn/includes/featured-press.html' %}
-    {% endblock %}
+    {% include 'products/vpn/includes/featured-press.html' %}
   </div>
 
   <section id="faq" class="vpn-faq mzp-l-content mzp-t-content-lg">
@@ -303,9 +291,7 @@
   </section>
 
   <footer class="vpn-footer mzp-l-content mzp-t-content-xl">
-    {% block footer_subscribe %}
-      {% include 'products/vpn/includes/footer-subscribe.html' %}
-    {% endblock %}
+    {% include 'products/vpn/includes/footer-subscribe.html' %}
     {% include 'products/vpn/includes/footer-legal.html' %}
   </footer>
 

@@ -39,17 +39,10 @@ def vpn_variable_price_countries():
 @require_safe
 def vpn_landing_page(request):
     ftl_files = ['products/vpn/landing', 'products/vpn/shared']
+    template_name = 'products/vpn/landing.html'
     sub_not_found = request.GET.get('vpn-sub-not-found', None)
-    entrypoint_experiment = request.GET.get('entrypoint_experiment', None)
-    entrypoint_variation = request.GET.get('entrypoint_variation', None)
     locale = l10n_utils.get_locale(request)
     pricing_params = settings.VPN_VARIABLE_PRICING.get(locale, settings.VPN_VARIABLE_PRICING['us'])
-
-    # ensure experiment parameters matches pre-defined values
-    if entrypoint_experiment == 'vpn-landing-page-sub-position' and entrypoint_variation in ['a', 'b', 'c']:
-        template_name = 'products/vpn/variants/pricing-{}.html'.format(entrypoint_variation)
-    else:
-        template_name = 'products/vpn/landing.html'
 
     # error message for visitors who try to sign-in without a subscription (issue 10002)
     if sub_not_found == 'true':
