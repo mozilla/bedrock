@@ -466,18 +466,6 @@ def show_default_account_whatsnew(version):
     return version >= Version('60.0')
 
 
-def show_firefox_lite_whatsnew(version):
-    try:
-        version = Version(version)
-    except ValueError:
-        return False
-
-    if not switch('firefox-lite-whatsnew'):
-        return False
-
-    return version >= Version('79.0')
-
-
 class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
 
     ftl_files_map = {
@@ -520,15 +508,6 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
 class WhatsNewRedirectorView(GeoRedirectView):
     # https://bedrock.readthedocs.io/en/latest/coding.html#geo-redirect-view
     geo_urls = {
-        'IN': 'firefox.whatsnew.india',
-        'NG': 'firefox.whatsnew.africa',
-        'ZA': 'firefox.whatsnew.africa',
-        'KE': 'firefox.whatsnew.africa',
-        'GH': 'firefox.whatsnew.africa',
-        'UG': 'firefox.whatsnew.africa',
-        'TZ': 'firefox.whatsnew.africa',
-        'ZW': 'firefox.whatsnew.africa',
-        'ZM': 'firefox.whatsnew.africa',
         'CN': 'firefox.whatsnew.china',
     }
     default_url = 'firefox.whatsnew.all'
@@ -657,22 +636,6 @@ class WhatsnewView(L10nTemplateView):
 
         # return a list to conform with original intention
         return [template]
-
-
-class WhatsNewFirefoxLiteView(WhatsnewView):
-    def get_template_names(self):
-        locale = l10n_utils.get_locale(self.request)
-        version = self.kwargs.get('version') or ''
-        channel = detect_channel(version)
-        pre_release_channels = ['nightly', 'alpha', 'beta']
-
-        if show_firefox_lite_whatsnew(version) and locale == 'en-US' and channel not in pre_release_channels:
-            # return a list to conform with original intention
-            template = ['firefox/whatsnew/firefox-lite.html']
-        else:
-            template = super().get_template_names()
-
-        return template
 
 
 class WhatsNewChinaView(WhatsnewView):
