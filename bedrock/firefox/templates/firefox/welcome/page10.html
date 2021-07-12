@@ -10,56 +10,26 @@
 
 {% block body_class %}welcome-page10{% endblock %}
 
-{% block experiments %}
-  {% if switch('welcome-10-experiment', ['en-US', 'en-CA']) %}
-    {{ js_bundle('firefox_welcome_page10_experiment') }}
-  {% endif %}
-{% endblock %}
-
 {% block page_css %}
   {{ css_bundle('firefox_welcome_page10') }}
 {% endblock %}
 
 {% set _entrypoint = 'mozilla.org-firefox-welcome-10' %}
 {% set _utm_campaign = 'welcome-10-vpn' %}
-
-{% if variation == '1' %}
-  {% set title = 'Get a <strong>secure connection</strong> on every device'|safe %}
-  {% set desc = 'Protect your internet connection — on your computer, your tablet and even your phone — with this limited-time offer.' %}
-  {% set source = '?source=welcome10-exp-v1' %}
-  {% set cta_text = 'Get Mozilla VPN' %}
-{% elif variation == '2' %}
-  {% set title = 'Blur your location online for <strong>next-level privacy</strong>'|safe %}
-  {% set desc = 'Get Mozilla VPN for US$4.99 — this limited-time offer ends soon.' %}
-  {% set source = '?source=welcome10-exp-v2' %}
-  {% set cta_text = 'Start Now' %}
-{% else %}
-  {% set title = 'Firefox protects your browsing. <strong>Mozilla VPN</strong> protects you everywhere.'|safe %}
-  {% set desc = 'Mozilla VPN (Virtual Private Network) protects your entire internet connection on your computer, your tablet, and even your phone. For even more security, it comes with a 30-day money back guarantee.' %}
-  {% set source = '?source=welcome10' %}
-  {% set cta_text = 'Get Mozilla VPN' %}
-{% endif %}
+{% set source = '?source=welcome10' %}
 
 {% block shoulder_cta %}{% endblock %}
 
 {% block content_intro %}
   <section class="c-content-main">
     <div class="mzp-l-content mzp-t-content-md">
-    {% if variation in ['1', '2'] %}
-      <img class="c-main-image" src="{{ static('protocol/img/logos/mozilla/vpn/logo-word-hor-stack.svg') }}" width="200" alt="">
-    {% else %}
       <img class="c-main-image" src="{{ static('protocol/img/logos/mozilla/vpn/logo-flat.svg') }}" width="90" alt="">
-    {% endif %}
 
-    {% if variation == '1' %}
-      <p class="c-pre-title">US$4.99 — offer ends soon</p>
-    {% endif %}
-
-      <h1 class="c-main-title">{{ title }}</h1>
-      <p class="c-main-tagline">{{ desc }}</p>
+      <h1 class="c-main-title">Firefox protects your browsing. <strong>Mozilla VPN</strong> protects you everywhere.</h1>
+      <p class="c-main-tagline">Mozilla VPN (Virtual Private Network) protects your entire internet connection on your computer, your tablet, and even your phone. For even more security, it comes with a 30-day money back guarantee.</p>
 
       <div class="c-main-cta">
-        <a href="{{ url('products.vpn.landing') }}{{ source }}#pricing" class="mzp-c-button mzp-t-product mzp-t-xl" data-cta-text="{{ cta_text }}" data-cta-type="button">{{ cta_text }}</a>
+        <a href="{{ url('products.vpn.landing') }}{{ source }}#pricing" class="mzp-c-button mzp-t-product mzp-t-xl" data-cta-text="Get Mozilla VPN" data-cta-type="button">Get Mozilla VPN</a>
       </div>
     </div>
   </section>

@@ -913,13 +913,6 @@
     },
     {
       "files": [
-        "js/libs/mozilla-traffic-cop.js",
-        "js/firefox/welcome/welcome10-experiment.js"
-      ],
-      "name": "firefox_welcome_page10_experiment"
-    },
-    {
-      "files": [
         "js/firefox/privacy/messaging-experiment.js"
       ],
       "name": "default_privacy_messaging"
