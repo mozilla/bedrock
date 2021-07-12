@@ -913,12 +913,6 @@
     },
     {
       "files": [
-        "js/firefox/privacy/messaging-experiment.js"
-      ],
-      "name": "default_privacy_messaging"
-    },
-    {
-      "files": [
         "js/firefox/whatsnew/up-to-date.js",
         "js/libs/spin.min.js",
         "js/base/send-to-device.js",
