@@ -295,7 +295,7 @@ $image-path: '/media/protocol/img';
 // Pricing Blocks
 
 .vpn-fixed-pricing-block {
-    margin-bottom: $layout-xl;
+    margin: $layout-xl 0;
     text-align: center;
 
     .vpn-content-block-heading span {
@@ -309,7 +309,7 @@ $image-path: '/media/protocol/img';
 
     @media #{$mq-md} {
         @include bidi(((text-align, left, right),));
-        margin-bottom: $layout-2xl;
+        margin: $layout-2xl 0;
     }
 
     @media #{$mq-lg} {
@@ -321,6 +321,7 @@ $image-path: '/media/protocol/img';
 
 .vpn-variable-pricing-block {
     text-align: center;
+    margin-top: $layout-xl;
 
     .vpn-pricing-variable-heading {
         @include text-title-md;
@@ -330,6 +331,10 @@ $image-path: '/media/protocol/img';
     .vpn-pricing-variable-sub-heading {
         @include text-title-xs;
         margin: $spacing-xl auto $spacing-2xl;
+    }
+
+    @media #{$mq-md} {
+        margin-top: $layout-2xl;
     }
 }
 

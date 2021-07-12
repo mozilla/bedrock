@@ -125,13 +125,7 @@ urlpatterns = (
           variation_locales=['en-US', 'en-CA', 'en-GB', 'de', 'fr']),
         name='firefox.welcome.page8'),
     page('firefox/welcome/9', 'firefox/welcome/page9.html', active_locales=['de', 'fr']),
-    # page('firefox/welcome/10', 'firefox/welcome/page10.html'),
-    url(r'^firefox/welcome/10/$',
-        utils_views.VariationTemplateView.as_view(
-          template_name='firefox/welcome/page10.html',
-          template_context_variations=['1', '2'],
-          variation_locales=['en-US', 'en-CA']),
-        name='firefox.welcome.page10'),
+    page('firefox/welcome/10', 'firefox/welcome/page10.html'),
 
     page('firefox/switch', 'firefox/switch.html', ftl_files=['firefox/switch']),
     page('firefox/pocket', 'firefox/pocket.html'),
