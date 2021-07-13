@@ -1073,13 +1073,6 @@
     },
     {
       "files": [
-        "js/base/stub-attribution-macos.js",
-        "js/base/stub-attribution-macos-init.js"
-      ],
-      "name": "stub-attribution-macos"
-    },
-    {
-      "files": [
         "protocol/js/protocol-modal.js",
         "protocol/js/protocol-newsletter.js",
         "js/base/mozilla-lazy-load.js",
