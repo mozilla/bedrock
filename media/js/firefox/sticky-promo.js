@@ -32,11 +32,12 @@
     }
 
     function onLoad(){
-        // Check if promo exists on the page or if smaller than tablet.
+        // Check if promo exists on the page, or if smaller than tablet, or if user prefers reduced motion.
+        var matchMediaNoMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         var matchMediaDesktop = window.matchMedia('(min-width: 768px)').matches;
         var promo = document.querySelector('.mzp-c-sticky-promo');
 
-        if (!promo || !matchMediaDesktop) {
+        if (!promo || !matchMediaDesktop || matchMediaNoMotion) {
             return;
         }
 
