@@ -1382,4 +1382,10 @@ URLS = flatten((
 
     # Issue 9254
     url_test('/grants/{,reports/gnome-haeger-report,jambu.html}/', '/moss/'),
+
+    # Issue 10292
+    url_test('/firefox/90.0/whatsnew/africa/', '/firefox/90.0/whatsnew/'),
+    url_test('/firefox/90.0/whatsnew/india/', '/firefox/90.0/whatsnew/'),
+    url_test('/firefox/whatsnew/africa/', '/firefox/whatsnew/'),
+    url_test('/firefox/whatsnew/india/', '/firefox/whatsnew/'),
 ))

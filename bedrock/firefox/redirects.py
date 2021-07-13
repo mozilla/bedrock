@@ -666,4 +666,8 @@ redirectpatterns = (
 
     # issue 9953
     redirect(r'^/firefox/features/pip/?$', 'firefox.features.picture-in-picture'),
+
+    # issue 10292
+    redirect(r'^firefox/(?P<version>[^/]+)/whatsnew/(india|africa)/?$', '/firefox/{version}/whatsnew/'),
+    redirect(r'^firefox/whatsnew/(india|africa)/?$', 'firefox.whatsnew'),
 )

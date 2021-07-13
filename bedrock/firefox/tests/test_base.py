@@ -462,40 +462,6 @@ class TestWhatsNew(TestCase):
 
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
-class TestWhatsNewFirefoxLite(TestCase):
-    def setUp(self):
-        self.view = fx_views.WhatsNewFirefoxLiteView.as_view()
-        self.rf = RequestFactory(HTTP_USER_AGENT='Firefox')
-
-    @patch.dict(os.environ, SWITCH_FIREFOX_LITE_WHATSNEW='True')
-    def test_fx_lite_africa(self, render_mock):
-        """Should use firefox-lite template for Africa for en-US locale"""
-        req = self.rf.get('/firefox/whatsnew/africa/')
-        req.locale = 'en-US'
-        self.view(req, version='88.0')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/firefox-lite.html']
-
-    @patch.dict(os.environ, SWITCH_FIREFOX_LITE_WHATSNEW='True')
-    def test_fx_lite_india(self, render_mock):
-        """Should use firefox-lite template for India for en-US locale"""
-        req = self.rf.get('/firefox/whatsnew/india/')
-        req.locale = 'en-US'
-        self.view(req, version='88.0')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/firefox-lite.html']
-
-    @patch.object(fx_views, 'ftl_file_is_active', lambda *x: True)
-    def test_fx_whatsnew(self, render_mock):
-        """Should use regular whatsnew templates for other locales"""
-        req = self.rf.get('/firefox/whatsnew/india/')
-        req.locale = 'es-ES'
-        self.view(req, version='88.0')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/index-account.html']
-
-
-@patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
 class TestFirstRun(TestCase):
     def setUp(self):
         self.view = fx_views.FirstrunView.as_view()
