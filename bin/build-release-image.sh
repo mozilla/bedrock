@@ -3,11 +3,14 @@ set -ex
 
 source docker/bin/set_git_env_vars.sh
 
-if docker pull "$DEPLOYMENT_DOCKER_IMAGE"; then
-    echo "image already exists, skipping the build"
-else
-    make clean build-ci
-fi
+#if docker pull "$DEPLOYMENT_DOCKER_IMAGE"; then
+#    echo "image already exists, skipping the build"
+#else
+#    make clean build-ci
+#fi
+
+# just build it, skip checking
+make clean build-ci
 
 # push and tag images
 # we have to do this even if we didn't build a new image so that

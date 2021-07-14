@@ -7,12 +7,15 @@ source $BIN_DIR/set_git_env_vars.sh
 FROM_DOCKER_REPOSITORY="$1"
 IMG_TO_PUSH="$FROM_DOCKER_REPOSITORY:${GIT_COMMIT}"
 
-if docker pull $IMG_TO_PUSH; then
-    echo "image already exists, skipping the push"
-else
-    # Push to docker hub
-    docker push "$IMG_TO_PUSH"
-fi
+#if docker pull $IMG_TO_PUSH; then
+#    echo "image already exists, skipping the push"
+#else
+#    # Push to docker hub
+#    docker push "$IMG_TO_PUSH"
+#fi
+
+# just push every time
+docker push "$IMG_TO_PUSH"
 
 if [[ "$BRANCH_NAME" == "master" ]]; then
     docker tag $IMG_TO_PUSH $FROM_DOCKER_REPOSITORY:latest
