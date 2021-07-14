@@ -570,41 +570,6 @@ them translated.
 The files containing the strings are called ".lang files" and end with
 a ``.lang`` extension.
 
-To extract all the strings from the codebase, run:
-
-.. code-block:: console
-
-    $ ./manage.py l10n_extract
-
-If you'd only like to extract strings from certain files, you may optionally
-list them on the command line:
-
-.. code-block:: console
-
-    $ ./manage.py l10n_extract bedrock/mozorg/templates/mozorg/contribute.html
-
-Command line glob matching will work as well if you want all of the HTML files
-in a directory, for example:
-
-.. code-block:: console
-
-    $ ./manage.py l10n_extract bedrock/mozorg/templates/mozorg/*.html
-
-That will use gettext to get all the needed localizations from Python
-and HTML files, and will convert the result into a series of .lang
-files inside ``locale/templates``. This directory represents the
-"reference" set of strings to be translated, and you are free to
-modify or split up .lang files here as needed (just make sure they are
-being referenced correctly, from the code, see
-:ref:`Which .lang file should it use? <which-lang>`).
-
-Once you have extracted .lang files locally, they can then be added via
-pull request to the `mozilla.org l10n repository`_ for translation.
-You can read the `full documentation`_ for more information on the
-extraction workflow.
-
-.. _using-lang:
-
 Translating with .lang files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -775,10 +740,6 @@ customize the content, so they don't care about small updates.
 However, you may add something important that needs to be added in the
 localized blocks; hence, you should update the date in that case.
 
-When the command ``./manage.py l10n_extract`` is run, it generates
-the corresponding files in the ``locale`` folder (see below for more
-info on this command).
-
 The German version of this template is created at
 ``locale/de/templates/appname/example.html``. The contents of it are:
 
@@ -823,24 +784,6 @@ there, and the new content is above it. The ``was`` content is always
 shown on the site, so the old translation still shows up. The
 localizer needs to update the translated content and remove the ``was``
 block.
-
-Generating the locale files
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: console
-
-    $ ./manage.py l10n_check
-
-This command will check which blocks need to be translated and update
-the locale templates with needed translations. It will copy the
-English blocks into the locale files if a translation is needed.
-
-You can specify a list of locales to update:
-
-.. code-block:: console
-
-    $ ./manage.py l10n_check fr
-    $ ./manage.py l10n_check fr de es
 
 Currency
 --------
