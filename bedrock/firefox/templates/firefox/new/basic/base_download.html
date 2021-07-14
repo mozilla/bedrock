@@ -110,10 +110,6 @@
   {% if show_firefox_mobile_banner %}
     {{ js_bundle('firefox-mobile-banner') }}
   {% endif %}
-
-  {% if switch('stub-attribution-macos') %}
-    {{ js_bundle('stub-attribution-macos') }}
-  {% endif %}
 {% endblock %}
 
 {% block structured_data %}
