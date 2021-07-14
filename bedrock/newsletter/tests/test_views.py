@@ -6,6 +6,7 @@ import uuid
 
 from django.http import HttpResponse
 from django.test.client import RequestFactory
+from django.test.utils import override_settings
 
 import basket
 from mock import ANY, DEFAULT, patch
@@ -49,6 +50,7 @@ class TestViews(TestCase):
 
 # Always mock basket.request to be sure we never actually call basket
 # during tests.
+@override_settings(BASKET_API_KEY="basket_key")
 @patch('basket.base.request')
 class TestExistingNewsletterView(TestCase):
     def setUp(self):
@@ -249,7 +251,7 @@ class TestExistingNewsletterView(TestCase):
         # Should have called update_user with subscription list
         self.assertEqual(1, basket_patches['update_user'].call_count)
         kwargs = basket_patches['update_user'].call_args[1]
-        self.assertEqual(set(kwargs), set(['newsletters', 'lang']))
+        self.assertEqual(set(kwargs), set(['api_key', 'newsletters', 'lang']))
         self.assertEqual(kwargs['lang'], 'en')
         self.assertEqual(set(kwargs['newsletters'].split(',')), set(['mozilla-and-you', 'firefox-tips']))
         # Should not have called unsubscribe
@@ -278,7 +280,7 @@ class TestExistingNewsletterView(TestCase):
         self.assertEqual(1, basket_patches['update_user'].call_count)
         kwargs = basket_patches['update_user'].call_args[1]
         self.assertEqual(
-            {'newsletters': u'', 'lang': u'pt'},
+            {'api_key': 'basket_key', 'newsletters': u'', 'lang': u'pt'},
             kwargs
         )
         # Should not have called subscribe
@@ -343,7 +345,8 @@ class TestExistingNewsletterView(TestCase):
         # with the new lang and country and the newsletter list
         kwargs = basket_patches['update_user'].call_args[1]
         self.assertEqual(
-            {'lang': u'en',
+            {'api_key': 'basket_key',
+             'lang': u'en',
              'country': u'us',
              'newsletters': u'mozilla-and-you'},
             kwargs

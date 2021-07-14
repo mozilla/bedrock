@@ -410,14 +410,14 @@ def existing(request, token=None):
             # Also pass their updated list of newsletters they want to be
             # subscribed to, for basket to implement.
             kwargs = {}
-            if settings.BASKET_API_KEY:
-                kwargs['api_key'] = settings.BASKET_API_KEY
             for k in ['lang', 'format', 'country']:
                 if user[k] != data[k]:
                     kwargs[k] = data[k]
             if not remove_all:
                 kwargs['newsletters'] = ",".join(newsletters)
             if kwargs:
+                if settings.BASKET_API_KEY:
+                    kwargs['api_key'] = settings.BASKET_API_KEY
                 # always send lang so basket doesn't try to guess
                 kwargs['lang'] = data['lang']
                 try:
