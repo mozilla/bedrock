@@ -10,6 +10,12 @@ https://bugzilla.mozilla.org/show_bug.cgi?id=1122305#c8
 <!-- Site Container: NONE -->
 
 {% if settings.GTM_CONTAINER_ID %}
-  {{ js_bundle('gtm-snippet') }}
+  <!--[if !IE]><!-->
+    {{ js_bundle('gtm-snippet') }}
+  <!--<![endif]-->
+
+  <!--[if IE]>
+    <script type="text/javascript" src="{{ static('js/ie/gtm-snippet.js') }}"></script>
+  <![endif]-->
 {% endif %}
 <!-- End Google Tag Manager -->

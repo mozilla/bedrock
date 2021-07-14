@@ -1,0 +1,40 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../../protocol/css/includes/lib';
+
+// download button and related containers
+ul.download-list {
+    list-style-type: none;
+    margin-bottom: 10px;
+
+    li {
+        margin-left: 0;
+    }
+
+    strong {
+        font-weight: bold;
+    }
+}
+
+.download-button {
+    display: inline-block;
+    vertical-align: top;
+}
+
+/* !important used for strict download link enforcement */
+/* stylelint-disable declaration-no-important  */
+.download-button {
+    .download-list li,
+    .unrecognized-download,
+    .nojs-download {
+        display: none !important;
+    }
+}
+
+.download-button .download-list .os_win {
+    display: block !important;
+}
+/* stylelint-enable */
+
