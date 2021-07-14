@@ -1,0 +1,40 @@
+repos:
+  - repo: https://gitlab.com/pycqa/flake8
+    rev: 3.7.7
+    hooks:
+      - id: flake8
+        exclude: >
+          (?x)^(
+            docs|
+            bedrock/settings|
+            node_modules|
+            static_build|
+            static_final|
+            static|
+            bedrock/externalfiles/files_cache|
+            git-repos|
+            lib/fluent_migrations
+          )
+  - repo: https://github.com/awebdeveloper/pre-commit-stylelint
+    rev: 0.0.2
+    hooks:
+      - id: stylelint
+        additional_dependencies:
+          - "stylelint@13.2.1"
+          - "stylelint-config-standard@20.0.0"
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v6.3.0
+    hooks:
+    -   id: eslint
+        additional_dependencies:
+          - "eslint@6.3.0"
+          - "eslint-plugin-no-jquery@2.5.0"
+        exclude: >
+          (?x)^(
+            docs|
+            node_modules|
+            static_build|
+            static_final|
+            static|
+            media/js/libs
+          )
