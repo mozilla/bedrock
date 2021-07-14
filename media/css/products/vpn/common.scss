@@ -13,44 +13,26 @@ $image-path: '/media/protocol/img';
 /* stylelint-disable declaration-no-important */
 
 // hide content that is only shown conditionally.
-.wave-1-fixed-pricing .vpn-variable-pricing-block,
-.wave-1-variable-pricing .vpn-fixed-pricing-block,
-.js-more-countries-coming-soon {
+.js-more-countries-coming-soon,
+.js-vpn-waitlist-feature-block {
     display: none !important;
 }
 
 // if JS is enabled then hide pricing content until we know to show it.
-.js .js-vpn-fixed-pricing,
-.js .vpn-variable-pricing-block,
-.js .vpn-fixed-pricing-block {
+.js .js-vpn-scroll-to-pricing,
+.js .vpn-variable-pricing-block {
     display: none !important;
 }
 
-// countries where VPN is available at a fixed price.
-.show-vpn-fixed-pricing {
-    div.js-vpn-fixed-pricing {
-        display: block !important;
-    }
-
-    span.js-vpn-fixed-pricing {
-        display: inline-block !important;
-    }
-
-    .vpn-fixed-pricing-block {
-        display: block !important;
-    }
-}
-
 // countries where VPN is available at variable pricing.
-.show-vpn-variable-pricing {
-    .vpn-variable-pricing-block,
-    .js-vpn-variable-pricing {
+.show-vpn-pricing {
+    .js-vpn-scroll-to-pricing,
+    .vpn-variable-pricing-block {
         display: block !important;
     }
 
-    .vpn-fixed-pricing-block,
-    .js-vpn-fixed-pricing {
-        display: none !important;
+    span.js-vpn-scroll-to-pricing {
+        display: inline-block !important;
     }
 }
 
@@ -69,15 +51,14 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    .vpn-fixed-pricing-block {
+    .js-vpn-waitlist-feature-block {
         display: block !important;
     }
 }
 /* stylelint-enable declaration-no-important */
 
 // fade in conditional CTA containers when they display.
-.js-vpn-fixed-pricing,
-.js-vpn-variable-pricing,
+.js-vpn-scroll-to-pricing,
 .js-vpn-waitlist {
     @include animation(mzp-a-fade-in 100ms ease-in 0ms 1 normal both);
 }

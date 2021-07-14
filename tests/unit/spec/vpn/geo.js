@@ -88,58 +88,47 @@ describe('geo.js', function() {
 
     describe('getAvailability', function() {
 
-        var fixedCountries = '|ca|my|nz|sg|gb|gg|im|io|je|uk|vg|as|mp|pr|um|us|vi|';
-        var variableCountries = '|at|be|ch|de|es|fr|it|';
+        var availableCountries = '|ca|my|nz|sg|gb|gg|im|io|je|uk|vg|as|mp|pr|um|us|vi|at|be|ch|de|es|fr|it|';
 
-        it('should return `fixed-pricce` if matching country code is found', function() {
-            expect(Mozilla.VPN.getAvailability('us', fixedCountries, variableCountries)).toEqual('fixed-price');
-            expect(Mozilla.VPN.getAvailability('gb', fixedCountries, variableCountries)).toEqual('fixed-price');
-        });
-
-        it('should return `variable-price` if matching country code is found', function() {
-            expect(Mozilla.VPN.getAvailability('at', fixedCountries, variableCountries)).toEqual('variable-price');
-            expect(Mozilla.VPN.getAvailability('be', fixedCountries, variableCountries)).toEqual('variable-price');
-            expect(Mozilla.VPN.getAvailability('ch', fixedCountries, variableCountries)).toEqual('variable-price');
-            expect(Mozilla.VPN.getAvailability('de', fixedCountries, variableCountries)).toEqual('variable-price');
-            expect(Mozilla.VPN.getAvailability('es', fixedCountries, variableCountries)).toEqual('variable-price');
-            expect(Mozilla.VPN.getAvailability('fr', fixedCountries, variableCountries)).toEqual('variable-price');
-            expect(Mozilla.VPN.getAvailability('it', fixedCountries, variableCountries)).toEqual('variable-price');
+        it('should return `available` if matching country code is found', function() {
+            expect(Mozilla.VPN.getAvailability('us', availableCountries)).toEqual('available');
+            expect(Mozilla.VPN.getAvailability('gb', availableCountries)).toEqual('available');
+            expect(Mozilla.VPN.getAvailability('at', availableCountries)).toEqual('available');
+            expect(Mozilla.VPN.getAvailability('be', availableCountries)).toEqual('available');
+            expect(Mozilla.VPN.getAvailability('ch', availableCountries)).toEqual('available');
+            expect(Mozilla.VPN.getAvailability('de', availableCountries)).toEqual('available');
+            expect(Mozilla.VPN.getAvailability('es', availableCountries)).toEqual('available');
+            expect(Mozilla.VPN.getAvailability('fr', availableCountries)).toEqual('available');
+            expect(Mozilla.VPN.getAvailability('it', availableCountries)).toEqual('available');
         });
 
         it('should return `not-available` if no matching country code is found', function() {
-            expect(Mozilla.VPN.getAvailability('cn', fixedCountries, variableCountries)).toEqual('not-available');
+            expect(Mozilla.VPN.getAvailability('cn', availableCountries)).toEqual('not-available');
         });
 
         it('should return `unknown` if no country code is supplied', function() {
-            expect(Mozilla.VPN.getAvailability(null, fixedCountries, variableCountries)).toEqual('unknown');
+            expect(Mozilla.VPN.getAvailability(null, availableCountries)).toEqual('unknown');
         });
 
-        it('should return `unknown` if no country lists are supplied', function() {
-            expect(Mozilla.VPN.getAvailability('us', null, null)).toEqual('unknown');
+        it('should return `unknown` if no country list is supplied', function() {
+            expect(Mozilla.VPN.getAvailability('us', null)).toEqual('unknown');
         });
 
-        it('should return `not-available` if either country list is empty', function() {
-            expect(Mozilla.VPN.getAvailability('us', '', variableCountries)).toEqual('not-available');
-            expect(Mozilla.VPN.getAvailability('de', fixedCountries, '')).toEqual('not-available');
+        it('should return `not-available` if country list is empty', function() {
+            expect(Mozilla.VPN.getAvailability('us', '')).toEqual('not-available');
         });
     });
 
     describe('setAvailability', function() {
 
         beforeEach(function() {
-            spyOn(Mozilla.VPN, 'showFixedPricing');
-            spyOn(Mozilla.VPN, 'showVariablePricing');
+            spyOn(Mozilla.VPN, 'showPricing');
             spyOn(Mozilla.VPN, 'showJoinWaitList');
         });
 
-        it('should show fixed pricing as expected', function() {
-            Mozilla.VPN.setAvailability('fixed-price');
-            expect(Mozilla.VPN.showFixedPricing).toHaveBeenCalled();
-        });
-
         it('should show variable pricing as expected', function() {
-            Mozilla.VPN.setAvailability('variable-price');
-            expect(Mozilla.VPN.showVariablePricing).toHaveBeenCalled();
+            Mozilla.VPN.setAvailability('available');
+            expect(Mozilla.VPN.showPricing).toHaveBeenCalled();
         });
 
         it('should show join waitlist as expected', function() {
@@ -147,29 +136,9 @@ describe('geo.js', function() {
             expect(Mozilla.VPN.showJoinWaitList).toHaveBeenCalled();
         });
 
-        it('should fallback to page language if country is unknown (en-US)', function() {
-            Mozilla.VPN.setAvailability('unknown', 'en-US');
-            expect(Mozilla.VPN.showFixedPricing).toHaveBeenCalled();
-        });
-
-        it('should fallback to page language if country is unknown (de)', function() {
-            Mozilla.VPN.setAvailability('unknown', 'de');
-            expect(Mozilla.VPN.showVariablePricing).toHaveBeenCalled();
-        });
-
-        it('should fallback to page language if country is unknown (es-ES)', function() {
-            Mozilla.VPN.setAvailability('unknown', 'es-ES');
-            expect(Mozilla.VPN.showVariablePricing).toHaveBeenCalled();
-        });
-
-        it('should fallback to page language if country is unknown (fr)', function() {
-            Mozilla.VPN.setAvailability('unknown', 'fr');
-            expect(Mozilla.VPN.showVariablePricing).toHaveBeenCalled();
-        });
-
-        it('should fallback to page language if country is unknown (it)', function() {
-            Mozilla.VPN.setAvailability('unknown', 'it');
-            expect(Mozilla.VPN.showVariablePricing).toHaveBeenCalled();
+        it('should show pricing if country is unknown (falling back to page language)', function() {
+            Mozilla.VPN.setAvailability('unknown');
+            expect(Mozilla.VPN.showPricing).toHaveBeenCalled();
         });
     });
 

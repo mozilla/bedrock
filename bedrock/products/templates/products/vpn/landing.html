@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "products/vpn/includes/macros.html" import vpn_hero, vpn_nav_cta, vpn_content_media with context %}
+{% from "products/vpn/includes/macros.html" import vpn_hero, vpn_nav_cta, vpn_content_block, vpn_content_media with context %}
 
 {% extends "products/vpn/base.html" %}
 
@@ -12,8 +12,6 @@
 {% block page_desc %}{{ ftl('vpn-landing-page-desc', countries=available_countries) }}{% endblock %}
 
 {% block body_id %}mozilla-vpn-landing{% endblock %}
-
-{% block body_class %}{% if switch('vpn-variable-pricing-wave-1') %}wave-1-variable-pricing{% else %}wave-1-fixed-pricing{% endif %}{% endblock %}
 
 {% set _utm_source = 'www.mozilla.org-vpn-product-page' %}
 {% set _utm_campaign = 'vpn-product-page' %}
@@ -56,25 +54,10 @@
       subheading=ftl('vpn-landing-hero-sub-heading-v2', fallback='vpn-landing-hero-sub-heading'),
       desc=ftl('vpn-landing-hero-desc')
     ) %}
-      <div class="js-vpn-fixed-pricing">
-        {% if LANG.startswith('en') %}
-          <p><strong>{{ settings.VPN_FIXED_MONTHLY_PRICE }}/month - This introductory offer ends soon.</strong></p>
-        {% endif %}
-        {% block get_mozilla_vpn_hero %}
-          {{ vpn_subscribe_link(
-            entrypoint=_utm_source,
-            link_text=ftl('vpn-shared-subscribe-link'),
-            class_name='mzp-c-button mzp-t-xl ',
-            optional_parameters={
-              'utm_campaign': _utm_campaign
-            },
-            optional_attributes={
-              'data-cta-type': 'fxa-vpn',
-              'data-cta-text': 'Get Mozilla VPN monthly',
-              'data-cta-position': 'primary',
-            }
-          ) }}
-        {% endblock %}
+      <div class="js-vpn-scroll-to-pricing">
+        <a class="mzp-c-button mzp-t-xl" href="#pricing" data-cta-type="button" data-cta-text="Scroll to pricing" data-cta-position="primary">
+          {{ ftl('vpn-shared-subscribe-link') }}
+        </a>
 
         <p class="guarantee-copy">
           {{ ftl('vpn-shared-money-back-guarantee') }}
@@ -99,8 +82,34 @@
 
     {# note: `id=#pricing` is used as an anchor link from android in-product subscription flows, so do not remove (issue 10039) #}
     <div id="pricing" class="mzp-is-anchor-link">
-      {% include 'products/vpn/includes/pricing-fixed.html' %}
       {% include 'products/vpn/includes/pricing-variable.html' %}
+    </div>
+
+    <div class="vpn-waitlist-feature-block js-vpn-waitlist-feature-block hide-from-legacy-ie">
+      {% call vpn_content_block(
+        class_name='vpn-content-block-price t-highlight'
+      ) %}
+      <div class="l-columns-two">
+        <div class="l-column-first">
+          <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="secondary">
+            {{ ftl('vpn-shared-waitlist-link') }}
+          </a>
+
+          <p class="availability-copy">
+            {{ ftl('vpn-shared-available-countries-v3') }}
+          </p>
+        </div>
+        <div class="l-column-last">
+          <ul class="mzp-u-list-styled vpn-feature-list">
+            <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-devices', devices=connect_devices) }}</li>
+            <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-servers', servers=connect_servers, countries=connect_countries) }}</li>
+            <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-encrypt') }}</li>
+            <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-bandwidth') }}</li>
+            <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-activity') }}</li>
+          </ul>
+        </div>
+      </div>
+      {% endcall %}
     </div>
 
     {% include 'products/vpn/includes/featured-press.html' %}
@@ -135,22 +144,10 @@
     ) %}
       <p>{{ ftl('vpn-shared-features-full-list-servers', url='https://mullvad.net/servers/', attrs='target="_blank" rel="external noopener noreferrer"') }}</p>
 
-      <div class="js-vpn-fixed-pricing">
-        {% block get_mozilla_vpn_connect %}
-          {{ vpn_subscribe_link(
-            entrypoint=_utm_source,
-            link_text=ftl('vpn-shared-subscribe-link'),
-            class_name='mzp-c-button mzp-t-xl',
-            optional_parameters={
-              'utm_campaign': _utm_campaign
-            },
-            optional_attributes={
-              'data-cta-type': 'fxa-vpn',
-              'data-cta-text': 'Get Mozilla VPN monthly',
-              'data-cta-position': 'secondary',
-            }
-          ) }}
-        {% endblock %}
+      <div class="js-vpn-scroll-to-pricing">
+        <a class="mzp-c-button mzp-t-xl" href="#pricing" data-cta-type="button" data-cta-text="Scroll to pricing" data-cta-position="secondary">
+          {{ ftl('vpn-shared-subscribe-link') }}
+        </a>
 
         <p class="guarantee-copy">
           {{ ftl('vpn-shared-money-back-guarantee') }}
@@ -166,7 +163,13 @@
       class_name='vpn-content-media-left-half js-more-countries-coming-soon hide-from-legacy-ie'
     ) %}
 
-    <div class="js-target-secondary-cta"></div>
+      <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="secondary">
+        {{ ftl('vpn-shared-waitlist-link') }}
+      </a>
+
+      <p class="availability-copy">
+        {{ ftl('vpn-shared-available-countries-v3') }}
+      </p>
     {% endcall %}
   </div>
 
