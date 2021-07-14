@@ -32,6 +32,30 @@ def template_source_url(template):
     return '%s/tree/master/%s' % (settings.GITHUB_REPO, relative_path)
 
 
+def render_to_string(template_name,
+                     context=None,
+                     request=None,
+                     using=None,
+                     ftl_files=None):
+    if request:
+        context = context or {}
+        locale = get_locale(request)
+        if ftl_files:
+            if isinstance(ftl_files, str):
+                ftl_files = [ftl_files]
+
+            # do not use list.extend() or += here to avoid modifying
+            # the original list passed to the function
+            ftl_files = ftl_files + settings.FLUENT_DEFAULT_FILES
+
+            context['fluent_l10n'] = fluent_l10n([locale, 'en'],
+                                                        ftl_files)
+        else:
+            context['fluent_l10n'] = fluent_l10n([locale, 'en'],
+                                             settings.FLUENT_DEFAULT_FILES)
+    return loader.render_to_string(template_name, context, request, using)
+
+
 def render(request,
            template,
            context=None,

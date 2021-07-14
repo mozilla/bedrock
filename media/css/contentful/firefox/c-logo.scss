@@ -1,0 +1,36 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+$brand-theme: 'firefox';
+
+@import '../../../protocol/css/includes/lib';
+
+@import '../../../protocol/css/components/logos/logo';
+@import '../../../protocol/css/components/logos/logo-product-family';
+@import '../../../protocol/css/components/logos/logo-product-firefox';
+@import '../../../protocol/css/components/logos/logo-product-beta';
+@import '../../../protocol/css/components/logos/logo-product-developer';
+@import '../../../protocol/css/components/logos/logo-product-nightly';
+@import '../../../protocol/css/components/logos/logo-product-focus';
+@import '../../../protocol/css/components/logos/logo-product-monitor';
+@import '../../../protocol/css/components/logos/logo-product-lockwise';
+@import '../../../protocol/css/components/logos/logo-product-mozilla';
+@import '../../../protocol/css/components/logos/logo-product-vpn';
+@import '../../../protocol/css/components/logos/logo-product-pocket';
+@import '../../../protocol/css/components/logos/wordmark';
+@import '../../../protocol/css/components/logos/wordmark-product-family';
+@import '../../../protocol/css/components/logos/wordmark-product-firefox';
+@import '../../../protocol/css/components/logos/wordmark-product-beta';
+@import '../../../protocol/css/components/logos/wordmark-product-developer';
+@import '../../../protocol/css/components/logos/wordmark-product-nightly';
+@import '../../../protocol/css/components/logos/wordmark-product-focus';
+@import '../../../protocol/css/components/logos/wordmark-product-monitor';
+@import '../../../protocol/css/components/logos/wordmark-product-lockwise';
+@import '../../../protocol/css/components/logos/wordmark-product-mozilla';
+@import '../../../protocol/css/components/logos/wordmark-product-vpn';
+@import '../../../protocol/css/components/logos/wordmark-product-pocket';
+

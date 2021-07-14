@@ -146,9 +146,9 @@ function sassWatch(cb) {
     sassWatcher.on('change', function(path) {
         return gulp.src(path, {base: buildDir})
             // filter out internal imports (files starting with "_" )
-            .pipe(filter(file => {
-                return !file.relative.startsWith('_');
-            }))
+            // .pipe(filter(file => {
+            //     return !file.relative.startsWith('_');
+            // }))
             .pipe(sourcemaps.init())
             .pipe(sass({
                 sourceComments: !production,
