@@ -1287,11 +1287,6 @@ VPN_ENDPOINT = config('VPN_ENDPOINT',
 VPN_PRODUCT_ID = config('VPN_PRODUCT_ID', default='prod_FiJ42WCzZNRSbS'
                                           if DEV else 'prod_FvnsFHIfezy3ZI')
 
-# Plan ID for VPN monthly fixed price subscription in US$
-VPN_FIXED_PRICE_MONTHLY_USD = config('VPN_FIXED_PRICE_MONTHLY_USD',
-                                     default='plan_FvPMH5lVx1vhV0'
-                                     if DEV else 'plan_FvnxS1j9oFUZ7Y')
-
 # VPN variable subscription plan IDs by currency/language.
 VPN_PLAN_ID_MATRIX = {
     'chf': {
@@ -1520,14 +1515,11 @@ VPN_VARIABLE_PRICING = {
     }
 }
 
-# Product variables used in VPN landing page(s)
-VPN_FIXED_MONTHLY_PRICE = 'US$4.99'
-
 # Mozilla VPN Geo restrictions
 # https://github.com/mozilla-services/guardian-website/blob/master/server/constants.ts
 
-# Countries where VPN is available at a fixed monthly price.
-VPN_FIXED_PRICE_COUNTRY_CODES = [
+# Countries where VPN is available.
+VPN_COUNTRY_CODES = [
     'CA',  # Canada
     'MY',  # Malaysia
     'NZ',  # New Zealand
@@ -1547,15 +1539,8 @@ VPN_FIXED_PRICE_COUNTRY_CODES = [
     'UM',  # United States Minor Outlying Islands
     'US',  # United States of America
     'VI',  # Virgin Islands (U.S.)
-]
-
-# Countries where VPN is available using variable pricing model.
-VPN_VARIABLE_PRICE_COUNTRY_CODES = [
     'DE',  # Germany
     'FR',  # France
-]
-
-VPN_VARIABLE_PRICE_COUNTRY_CODES_EXPANSION = [
     'AT',  # Austria
     'BE',  # Belgium
     'CH',  # Switzerland
@@ -1563,8 +1548,7 @@ VPN_VARIABLE_PRICE_COUNTRY_CODES_EXPANSION = [
     'IT',  # Italy
 ]
 
-VPN_AVAILABLE_COUNTRIES = 8
-VPN_AVAILABLE_COUNTRIES_EXPANSION = 13
+VPN_AVAILABLE_COUNTRIES = 13
 VPN_CONNECT_SERVERS = 400
 VPN_CONNECT_COUNTRIES = 30
 VPN_CONNECT_DEVICES = 5

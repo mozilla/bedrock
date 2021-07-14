@@ -76,7 +76,7 @@ def vpn_sign_in_link(ctx, entrypoint, link_text, class_name=None, optional_param
 
 @library.global_function
 @jinja2.contextfunction
-def vpn_subscribe_link(ctx, entrypoint, link_text, plan=None, class_name=None, lang=None, optional_parameters=None, optional_attributes=None):
+def vpn_subscribe_link(ctx, entrypoint, link_text, plan='12-month', class_name=None, lang=None, optional_parameters=None, optional_attributes=None):
     """
     Render a vpn.mozilla.org subscribe link with required params for FxA authentication.
 
@@ -89,28 +89,20 @@ def vpn_subscribe_link(ctx, entrypoint, link_text, plan=None, class_name=None, l
         {{ vpn_subscribe_link(entrypoint='www.mozilla.org-vpn-product-page', link_text='Get Mozilla VPN') }}
     """
 
-    # Subscription links currently support variable pricing in Euros for Germany and France only.
-    if plan in ['12-month', '6-month', 'monthly']:
+    # Set a default plan ID using page locale. This acts as a fallback should geo-location fail.
+    default_params = get_default_params(lang)
+    cc = get_cc(lang)
+    plan_default = default_params['default'][plan]['id']
+    plan_attributes = {}
 
-        # Set a default plan ID using page locale. This acts as a fallback should geo-location fail.
-        default_params = get_default_params(lang)
-        cc = get_cc(lang)
-        plan_default = default_params['default'][plan]['id']
-        plan_attributes = {}
+    # HTML data-attributes are used by client side JS to set the correct plan ID based on geo.
+    for country, attrs in settings.VPN_VARIABLE_PRICING.items():
+        if 'alt' in attrs and cc in attrs['alt']:
+            plan_id = attrs['alt'][cc][plan]['id']
+        else:
+            plan_id = attrs['default'][plan]['id']
 
-        # HTML data-attributes are used by client side JS to set the correct plan ID based on geo.
-        for country, attrs in settings.VPN_VARIABLE_PRICING.items():
-            if 'alt' in attrs and cc in attrs['alt']:
-                plan_id = attrs['alt'][cc][plan]['id']
-            else:
-                plan_id = attrs['default'][plan]['id']
-
-            plan_attributes.update({f'data-plan-{country}': plan_id})
-
-    # All other subscription links default to fixed monthly pricing in $US.
-    else:
-        plan_default = settings.VPN_FIXED_PRICE_MONTHLY_USD
-        plan_attributes = None
+        plan_attributes.update({f'data-plan-{country}': plan_id})
 
     if (plan_attributes):
         optional_attributes = optional_attributes or {}
