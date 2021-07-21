@@ -2,6 +2,8 @@
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros-protocol.html" import split with context %}
+
 {% extends "firefox/base/base-protocol.html" %}
 
 {% block page_title %}{{ ftl('compare-index-seven-of-the-best-browsers-in', fallback='compare-index-six-of-the-best-browsers-fallback') }}{% endblock %}
@@ -19,26 +21,21 @@
 {% endblock %}
 
 {% block content %}
-<section class="mzp-c-hero mzp-has-image compare-hero">
-  <div class="mzp-l-content">
-    <div class="mzp-c-hero-body">
-
-      <p class="compare-hero-subtitle">{{ ftl('compare-index-privacy-utility-portability') }}</p>
-
-      <h1 class="mzp-c-hero-title">{{ self.page_title() }}</h1>
-
-      <div class="mzp-c-hero-desc">
-        <p>{{ ftl('compare-index-looking-for-a-better-browser', fallback='compare-index-looking-for-a-better-fallback') }}</p>
-      </div>
-
-      {{ download_firefox(dom_id='compare-hero-download', download_location='primary cta') }}
-
+{% call split(
+    image_url='img/firefox/compare/compare-browser-windows.png',
+    include_highres_image=True,
+    block_class='',
+    theme_class='',
+    media_class='mzp-l-split-h-center',
+  ) %}
+    <p class="compare-hero-pretitle">{{ ftl('compare-index-privacy-utility-portability') }}</p>
+    <h1 class="compare-hero-title">{{ self.page_title() }}</h1>
+    <div class="compare-hero-desc">
+      <p>{{ ftl('compare-index-looking-for-a-better-browser', fallback='compare-index-looking-for-a-better-fallback') }}</p>
     </div>
-  </div>
-  <div class="mzp-c-hero-image">
-    {{ high_res_img('img/firefox/compare/compare-browser-windows.png', {'alt': '', 'width': '466', 'height': '312'}) }}
-  </div>
-</section>
+
+    {{ download_firefox(dom_id='compare-hero-download', download_location='primary cta') }}
+{% endcall %}
 
 <div class="mzp-l-content l-compare-content">
   <article class="mzp-c-article">

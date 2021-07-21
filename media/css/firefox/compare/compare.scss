@@ -2,34 +2,34 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-$font-path: "/media/fonts";
-$image-path: "/media/protocol/img";
-
 @import "../../../protocol/css/includes/lib";
-@import "../../../protocol/css/components/hero";
+@import "../../../protocol/css/components/split";
 @import '../../protocol/components/sub-navigation';
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Hero
 
-.compare-hero {
-    .mzp-c-hero-title {
-        @include font-size(40px);
+.compare-hero-title {
+    @include font-size(40px);
 
-        @media #{$mq-md} {
-            @include font-size(48px);
-        }
-    }
-
-    .mzp-c-hero-image img {
-        bottom: auto;
-        top: $layout-xs;
-        width: 550px;
-        max-width: 100%;
+    @media #{$mq-md} {
+        @include font-size(48px);
     }
 }
 
-.compare-hero-subtitle {
+.compare-hero-desc {
+    @include text-body-lg;
+    margin-bottom: $layout-md;
+}
+
+.mzp-c-split-media-asset {
+    bottom: auto;
+    top: $layout-xs;
+    width: 550px;
+    max-width: 100%;
+}
+
+.compare-hero-pretitle {
     @include font-firefox;
     @include text-body-sm;
     font-weight: bold;
@@ -54,7 +54,7 @@ $image-path: "/media/protocol/img";
     }
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Summary section
 
 .compare-section-summary {
@@ -179,7 +179,7 @@ $image-path: "/media/protocol/img";
     margin-bottom: .45em;
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Heading zaps ⚡️
 
 .compare-section-privacy .compare-section-header h2 strong {
@@ -206,7 +206,7 @@ $image-path: "/media/protocol/img";
     }
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Comparison tables
 
 .mzp-u-data-table.compare-table {
@@ -293,7 +293,7 @@ $image-path: "/media/protocol/img";
     }
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Bottom mission box
 
 .compare-mission-section {

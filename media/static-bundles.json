@@ -185,8 +185,7 @@
     {
       "files": [
         "css/firefox/sticky-promo.scss",
-        "css/firefox/features/detail.scss",
-        "css/firefox/features/features-cards.scss"
+        "css/firefox/features/detail.scss"
       ],
       "name": "firefox-features-hub-detail"
     },
@@ -498,8 +497,7 @@
     {
       "files": [
         "css/firefox/sticky-promo.scss",
-        "css/firefox/features/index.scss",
-        "css/firefox/features/features-cards-index.scss"
+        "css/firefox/features/index.scss"
       ],
       "name": "firefox-features-index"
     },

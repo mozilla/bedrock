@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import feature_card, picto_card with context %}
+{% from "macros-protocol.html" import split with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -20,47 +20,44 @@
 {% endblock %}
 
 {% block content %}
-<header class="c-hero">
-  <div class="mzp-l-content c-hero-content">
-    <img class="c-hero-icon" src="{{ static('img/firefox/features/index/feature_icons/performance_orange.svg')}}" alt="">
-    <h1 class="c-hero-title">{{ ftl('features-fast-firefox-is-now-faster-and-leaner') }}</h1>
-    <p class="c-hero-desc">{{ ftl('features-fast-weve-been-working-out-so-you') }}</p>
-    <div class="c-hero-cta">
-      {{ download_firefox(dom_id='features-header-download', download_location='primary cta') }}
+  <header class="c-hero">
+    <div class="mzp-l-content c-hero-content">
+      <img class="c-hero-icon" src="{{ static('protocol/img/icons/brand/orange/speedometer.svg')}}" alt="">
+      <h1 class="c-hero-title">{{ ftl('features-fast-firefox-is-now-faster-and-leaner') }}</h1>
+      <p class="c-hero-desc">{{ ftl('features-fast-weve-been-working-out-so-you') }}</p>
+      <div class="c-hero-cta">
+        {{ download_firefox(dom_id='features-header-download', download_location='primary cta') }}
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<div class="mzp-l-content main-content">
-  {% call feature_card(
-    title=ftl('features-fast-use-less-memory'),
+  {% call split(
     image_url='img/firefox/features/thumbnails/fast/low-memory.jpg',
-    aspect_ratio='mzp-has-aspect-1-1',
-    class='mzp-l-card-feature-right-half mzp-t-firefox feature-1',
+    block_class='mzp-t-split-nospace',
+    theme_class='mzp-l-split-reversed',
   ) %}
+    <h2>{{ ftl('features-fast-use-less-memory') }}</h2>
     <p>{{ ftl('features-fast-no-one-likes-a-computer-hog') }}</p>
   {% endcall %}
 
-  {% call feature_card(
-    title=ftl('features-fast-get-all-the-tabs-without-lags'),
+  {% call split(
     image_url='img/firefox/features/thumbnails/fast/multi-tabs.jpg',
-    aspect_ratio='mzp-has-aspect-1-1',
-    class='mzp-l-card-feature-left-half mzp-t-firefox feature-2',
+    block_class='mzp-t-split-nospace',
   ) %}
+    <h2>{{ ftl('features-fast-get-all-the-tabs-without-lags') }}</h2>
     <p>{{ ftl('features-fast-multi-tasking-with-multiple') }}</p>
   {% endcall %}
 
-  {% call feature_card(
-    title=ftl('features-fast-level-up-browser-gameplay'),
+  {% call split(
     image_url='img/firefox/features/thumbnails/fast/gaming.jpg',
-    aspect_ratio='mzp-has-aspect-1-1',
-    class='mzp-l-card-feature-right-half mzp-t-firefox feature-3',
+    block_class='mzp-t-split-nospace',
+    theme_class='mzp-l-split-reversed',
   ) %}
+    <h2>{{ ftl('features-fast-level-up-browser-gameplay') }}</h2>
     <p>{{ ftl('features-fast-we-led-the-tech-to-run-3d-games') }}</p>
   {% endcall %}
-</div>
 
-{% include "firefox/features/includes/features-content.html" %}
+  {% include "firefox/features/includes/features-content.html" %}
 
 {% endblock %}
 
