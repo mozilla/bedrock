@@ -334,6 +334,16 @@ if (typeof window.Mozilla === 'undefined') {
         return data;
     };
 
+    StubAttribution.hasValidData = function(data) {
+        if (typeof data.utm_content === 'string' && typeof data.referrer === 'string') {
+            // If RTAMO data does not originate from AMO, drop attribution (Issue 10337).
+            if ((/^rta:/).test(decodeURIComponent(data.utm_content)) && data.referrer.indexOf('https://addons.mozilla.org') === -1) {
+                return false;
+            }
+        }
+        return true;
+    };
+
     /**
      * Determine if the current page is scene2 of /firefox/new/.
      * This is needed as scene2 auto-initiates the download. There is little point
@@ -410,7 +420,7 @@ if (typeof window.Mozilla === 'undefined') {
             StubAttribution.waitForGoogleAnalytics(function() {
                 data = StubAttribution.getAttributionData();
 
-                if (data && StubAttribution.withinAttributionRate()) {
+                if (data && StubAttribution.withinAttributionRate() && StubAttribution.hasValidData(data)) {
                     StubAttribution.requestAuthentication(data);
                 }
             });

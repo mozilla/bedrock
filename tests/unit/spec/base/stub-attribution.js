@@ -53,6 +53,7 @@ describe('stub-attribution.js', function() {
             /* eslint-enable camelcase */
             spyOn(Mozilla.StubAttribution, 'withinAttributionRate').and.returnValue(true);
             spyOn(Mozilla.StubAttribution, 'meetsRequirements').and.returnValue(true);
+            spyOn(Mozilla.StubAttribution, 'hasValidData').and.returnValue(true);
             spyOn(Mozilla.StubAttribution, 'hasCookie').and.returnValue(true);
             spyOn(Mozilla.StubAttribution, 'getCookie').and.returnValue(cookieData);
             Mozilla.StubAttribution.init();
@@ -63,6 +64,7 @@ describe('stub-attribution.js', function() {
         it('should authenticate attribution data if none exists', function() {
             spyOn(Mozilla.StubAttribution, 'withinAttributionRate').and.returnValue(true);
             spyOn(Mozilla.StubAttribution, 'meetsRequirements').and.returnValue(true);
+            spyOn(Mozilla.StubAttribution, 'hasValidData').and.returnValue(true);
             spyOn(Mozilla.StubAttribution, 'hasCookie').and.returnValue(false);
             spyOn(Mozilla.StubAttribution, 'isFirefoxNewScene2').and.returnValue(false);
             spyOn(Mozilla.StubAttribution, 'getAttributionData').and.returnValue(data);
@@ -74,6 +76,7 @@ describe('stub-attribution.js', function() {
         it('should do nothing if stub attribution requirements are not satisfied', function() {
             spyOn(Mozilla.StubAttribution, 'withinAttributionRate').and.returnValue(true);
             spyOn(Mozilla.StubAttribution, 'meetsRequirements').and.returnValue(false);
+            spyOn(Mozilla.StubAttribution, 'hasValidData').and.returnValue(true);
             spyOn(Mozilla.StubAttribution, 'hasCookie').and.returnValue(false);
             spyOn(Mozilla.StubAttribution, 'isFirefoxNewScene2').and.returnValue(false);
             spyOn(Mozilla.StubAttribution, 'getAttributionData').and.returnValue(data);
@@ -85,6 +88,7 @@ describe('stub-attribution.js', function() {
         it('should do nothing if session is not within sample rate', function() {
             spyOn(Mozilla.StubAttribution, 'withinAttributionRate').and.returnValue(false);
             spyOn(Mozilla.StubAttribution, 'meetsRequirements').and.returnValue(true);
+            spyOn(Mozilla.StubAttribution, 'hasValidData').and.returnValue(true);
             spyOn(Mozilla.StubAttribution, 'hasCookie').and.returnValue(false);
             spyOn(Mozilla.StubAttribution, 'isFirefoxNewScene2').and.returnValue(false);
             spyOn(Mozilla.StubAttribution, 'getAttributionData').and.returnValue(data);
@@ -96,8 +100,21 @@ describe('stub-attribution.js', function() {
         it('should do nothing if page is scene2 of /firefox/new/', function() {
             spyOn(Mozilla.StubAttribution, 'withinAttributionRate').and.returnValue(true);
             spyOn(Mozilla.StubAttribution, 'meetsRequirements').and.returnValue(true);
+            spyOn(Mozilla.StubAttribution, 'hasValidData').and.returnValue(true);
             spyOn(Mozilla.StubAttribution, 'hasCookie').and.returnValue(false);
             spyOn(Mozilla.StubAttribution, 'isFirefoxNewScene2').and.returnValue(true);
+            spyOn(Mozilla.StubAttribution, 'getAttributionData').and.returnValue(data);
+            Mozilla.StubAttribution.init();
+            expect(Mozilla.StubAttribution.requestAuthentication).not.toHaveBeenCalled();
+            expect(Mozilla.StubAttribution.updateBouncerLinks).not.toHaveBeenCalled();
+        });
+
+        it('should do nothing attribution data is invalid', function() {
+            spyOn(Mozilla.StubAttribution, 'withinAttributionRate').and.returnValue(true);
+            spyOn(Mozilla.StubAttribution, 'meetsRequirements').and.returnValue(true);
+            spyOn(Mozilla.StubAttribution, 'hasValidData').and.returnValue(false);
+            spyOn(Mozilla.StubAttribution, 'hasCookie').and.returnValue(false);
+            spyOn(Mozilla.StubAttribution, 'isFirefoxNewScene2').and.returnValue(false);
             spyOn(Mozilla.StubAttribution, 'getAttributionData').and.returnValue(data);
             Mozilla.StubAttribution.init();
             expect(Mozilla.StubAttribution.requestAuthentication).not.toHaveBeenCalled();
@@ -130,6 +147,72 @@ describe('stub-attribution.js', function() {
             window.site.platform = 'windows';
             spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
             expect(Mozilla.StubAttribution.meetsRequirements()).toBeTruthy();
+        });
+    });
+
+    describe('hasValidData', function() {
+        it('should return true for valid attribution data', function() {
+            /* eslint-disable camelcase */
+            var data = {
+                utm_source: 'desktop-snippet',
+                utm_medium: 'referral',
+                utm_campaign: 'F100_4242_otherstuff_in_here',
+                utm_content: 'rel-esr',
+                referrer: '',
+                ua: 'chrome',
+                visit_id: GA_VISIT_ID
+            };
+            /* eslint-enable camelcase */
+
+            expect(Mozilla.StubAttribution.hasValidData(data)).toBeTruthy();
+        });
+
+        it('should return true for valid RTAMO data', function() {
+            /* eslint-disable camelcase */
+            var data = {
+                utm_source: 'addons.mozilla.org',
+                utm_medium: 'referral',
+                utm_campaign: 'non-fx-button',
+                utm_content: 'rta%3Acm9uaW4td2FsbGV0QGF4aWVpbmZpbml0eS5jb20',
+                referrer: 'https://addons.mozilla.org/',
+                ua: 'chrome',
+                visit_id: GA_VISIT_ID
+            };
+            /* eslint-enable camelcase */
+
+            expect(Mozilla.StubAttribution.hasValidData(data)).toBeTruthy();
+        });
+
+        it('should return false for RTAMO data that does not have AMO as the referrer', function() {
+            /* eslint-disable camelcase */
+            var data = {
+                utm_source: 'addons.mozilla.org',
+                utm_medium: 'referral',
+                utm_campaign: 'non-fx-button',
+                utm_content: 'rta%3Acm9uaW4td2FsbGV0QGF4aWVpbmZpbml0eS5jb20',
+                referrer: 'https://example.com/',
+                ua: 'chrome',
+                visit_id: GA_VISIT_ID
+            };
+            /* eslint-enable camelcase */
+
+            expect(Mozilla.StubAttribution.hasValidData(data)).toBeFalsy();
+        });
+
+        it('should return false for RTAMO data if referrer is not set', function() {
+            /* eslint-disable camelcase */
+            var data = {
+                utm_source: 'addons.mozilla.org',
+                utm_medium: 'referral',
+                utm_campaign: 'non-fx-button',
+                utm_content: 'rta%3Acm9uaW4td2FsbGV0QGF4aWVpbmZpbml0eS5jb20',
+                referrer: '',
+                ua: 'chrome',
+                visit_id: GA_VISIT_ID
+            };
+            /* eslint-enable camelcase */
+
+            expect(Mozilla.StubAttribution.hasValidData(data)).toBeFalsy();
         });
     });
 
