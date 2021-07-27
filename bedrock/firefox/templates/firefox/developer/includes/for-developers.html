@@ -1,3 +1,16 @@
+{% from "macros-protocol.html" import split with context %}
+
+<section class="t-performance" id="nextgen">
+  {% call split(
+    image_url='img/firefox/developer/stylo-engine.svg'
+  ) %}
+    <h2 class="c-title">{{ ftl('firefox-developer-firefox-browser') }}</h2>
+    <p class="c-subtitle">{{ ftl('firefox-developer-made-for-developers') }}</p>
+    <p>{{ ftl('firefox-developer-all-the-latest') }}</p>
+    <p>{{ ftl('firefox-developer-a-separate-profile') }}</p>
+    <p>{{ ftl('firefox-developer-preferences-tailored') }}</p>
+  {% endcall %}
+</section>
 <section class="mzp-l-content t-performance" id="nextgen">
   <div class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-half">
     <div class="mzp-c-card-feature-media-wrapper">
