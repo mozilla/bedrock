@@ -46,30 +46,13 @@
 
   {% block channels %}{% endblock %}
 
-  <!-- picto card // to be removed-->
-  {% call picto_card(
-    title=ftl('firefox-channel-see-something-that-isnt-working'),
-    heading_level=2,
-    class='bugzilla',
-    base_el='section',
-    custom_desc=True) %}
-
-  <ul>
-    <li><a class="mzp-c-cta-link" href="https://bugzilla.mozilla.org/enter_bug.cgi">{{ ftl('firefox-channel-file-a-bug-now') }}</a></li>
-    <li><a class="mzp-c-cta-link" href="https://developer.mozilla.org/docs/Mozilla/QA/Bug_writing_guidelines">{{ ftl('firefox-channel-tips-for-filing-a-bug') }}</a></li>
-  </ul>
-  {% endcall %}
-
-  <!-- picto to replace picto_card above -->
-
 <ul class="mzp-t-picto-center">
   {% call picto(
     image_url='img/icons/warning.svg',
     heading_level=2,
-    image_width=56,
+    image_width=44,
     title=ftl('firefox-channel-see-something-that-isnt-working'),
     body=True,
-    class='bugzilla'
     ) %}
 
     <li><a class="mzp-c-cta-link" href="https://bugzilla.mozilla.org/enter_bug.cgi">{{ ftl('firefox-channel-file-a-bug-now') }}</a></li>
