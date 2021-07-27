@@ -7,6 +7,7 @@ $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
 @import '../../../protocol/css/components/picto-card';
+@import '../../../protocol/css/components/picto';
 @import '../../../protocol/css/components/hero';
 @import '../../../protocol/css/templates/card-layout';
 
@@ -59,15 +60,7 @@ main {
         color: $color-white;
     }
 
-    .test .mzp-c-card-picto-content::before {
-        background-image: url('/media/img/firefox/firstrun/test.png');
-    }
-    .code .mzp-c-card-picto-content::before {
-        background-image: url('/media/img/firefox/firstrun/code.png');
-    }
-    .localize .mzp-c-card-picto-content::before {
-        background-image: url('/media/img/firefox/firstrun/localize.png');
-    }
+
 }
 
 .locale-specific {
