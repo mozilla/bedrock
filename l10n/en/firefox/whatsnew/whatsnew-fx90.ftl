@@ -14,7 +14,14 @@ whatsnew90-block-1-heading = Safe & Secure
 whatsnew90-block-1-body = Public wifi is one of the easiest ways for hackers to get to your personal info. { -brand-name-mozilla-vpn } encrypts your network activity and hides your location and IP address.
 
 whatsnew90-block-2-heading = Home is where your VPN is
+
+# Obsolete string
 whatsnew90-block-2-body = Take your entertainment on the road or travel to your entertainment. Connect to 750+ servers in more than 30 countries and stream, play, and surf more securely while staying flexible.
+
+# Variables:
+#   $servers (number) - number of available servers
+#   $countries (number) - number of available countries
+whatsnew90-block-2-body-v2 = Take your entertainment on the road or travel to your entertainment. Connect to { $servers }+ servers in more than { $countries } countries and stream, play, and surf more securely while staying flexible.
 
 whatsnew90-availability-heading = Now available in additional countries including:
 whatsnew90-availability-body = Germany, France, Italy, Spain, Belgium, Austria, Switzerland.

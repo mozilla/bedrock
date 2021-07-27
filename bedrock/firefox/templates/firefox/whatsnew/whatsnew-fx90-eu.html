@@ -53,7 +53,12 @@
           </div>
           <h3 class="mzp-c-picto-heading">{{ ftl('whatsnew90-block-2-heading') }}</h3>
           <div class="mzp-c-picto-body">
-            <p>{{ ftl('whatsnew90-block-2-body') }}</p>
+            {% if ftl_has_messages('whatsnew90-block-2-body-v2') %}
+              <p>{{ ftl('whatsnew90-block-2-body-v2', servers=settings.VPN_CONNECT_SERVERS, countries=settings.VPN_CONNECT_COUNTRIES) }}</p>
+            {% else %}
+              <p>{{ ftl('whatsnew90-block-2-body') }}</p>
+            {% endif %}
+            <p></p>
           </div>
         </div>
       </div>
