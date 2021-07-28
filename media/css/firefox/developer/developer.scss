@@ -71,8 +71,7 @@
 }
 
 //*------------------------------------------------------------------*/
-// Adjust split max-widths at small and large screens for better UX
-// NOTE: might need to set a class for these styles if they do not apply to all split developer components
+// Adjust split max-widths at small and large screens
 
 .mzp-c-split-container {
     box-sizing: content-box; // add default split padding to max-width
@@ -90,4 +89,12 @@
     .mzp-c-split-media-asset {
         width: 100%;
     }
+}
+
+//*------------------------------------------------------------------*/
+// Remove extra vertical padding
+// Note: developer/engage.html does not have split component and needs to preserve .t-do padding
+
+.t-do + .mzp-c-split {
+    padding-top: 0;
 }
