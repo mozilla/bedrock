@@ -79,9 +79,19 @@
 // NOTE: might need to set a class for these styles if they do not apply to all split developer components
 
 .mzp-c-split-container {
-    box-sizing: content-box; // allow default split padding in addition to max-width
+    box-sizing: content-box; // add default split padding to max-width
     max-width: $content-sm;
     @media #{$mq-lg} {
         max-width: $content-max;
+    }
+}
+
+//*------------------------------------------------------------------*/
+// Expand media in split container
+
+.mzp-c-split-container {
+    .mzp-c-split-media,
+    .mzp-c-split-media-asset {
+        width: 100%;
     }
 }
