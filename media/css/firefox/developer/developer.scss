@@ -11,15 +11,12 @@
 @import 'includes/highlights';
 @import 'includes/intro';
 @import 'includes/newsletter';
-@import 'includes/performance';
 
 
 //*------------------------------------------------------------------*/
 // Title and subtitles for entire page
 
-// note: t-performance is used in for-developers and performance partials, can be removed when both are updated to split
-.c-title,
-.t-performance .mzp-c-card-feature-title {
+.c-title {
     @include text-body-md;
 }
 
@@ -59,7 +56,6 @@
 //*------------------------------------------------------------------*/
 // Padding for page content sections
 
-.t-performance,
 .t-highlights,
 .t-features {
 
