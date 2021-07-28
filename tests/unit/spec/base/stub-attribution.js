@@ -433,7 +433,6 @@ describe('stub-attribution.js', function() {
 
         it('should update download links with attribution data as expected', function() {
             spyOn(Mozilla.StubAttribution, 'meetsRequirements').and.returnValue(true);
-            //spyOn(Mozilla.StubAttribution, 'appendToDownloadURL');
             Mozilla.StubAttribution.updateBouncerLinks(data);
             expect(document.getElementById('link-transitional').href).toEqual('https://www.mozilla.org/firefox/download/thanks/');
             expect(document.getElementById('link-transitional').getAttribute('data-direct-link')).toEqual('https://download.mozilla.org/?product=firefox-stub&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig');
