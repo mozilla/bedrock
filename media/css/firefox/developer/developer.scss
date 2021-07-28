@@ -17,6 +17,7 @@
 //*------------------------------------------------------------------*/
 // Title and subtitles for entire page
 
+// note: t-performance is used in for-developers and performance partials, can be removed when both are updated to split
 .c-title,
 .t-performance .mzp-c-card-feature-title {
     @include text-body-md;
@@ -70,5 +71,17 @@
             padding-top: $layout-xl;
             padding-bottom: $layout-xl;
         }
+    }
+}
+
+//*------------------------------------------------------------------*/
+// Adjust split max-widths at small and large screens for better UX
+// NOTE: might need to set a class for these styles if they do not apply to all split developer components
+
+.mzp-c-split-container {
+    box-sizing: content-box; // allow default split padding in addition to max-width
+    max-width: $content-sm;
+    @media #{$mq-lg} {
+        max-width: $content-max;
     }
 }
