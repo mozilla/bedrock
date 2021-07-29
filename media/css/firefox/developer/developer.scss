@@ -82,16 +82,6 @@
 }
 
 //*------------------------------------------------------------------*/
-// Expand media in split container
-
-.mzp-c-split-container {
-    .mzp-c-split-media,
-    .mzp-c-split-media-asset {
-        width: 100%;
-    }
-}
-
-//*------------------------------------------------------------------*/
 // Remove extra vertical padding
 // Note: developer/engage.html does not have split component and needs to preserve .t-do padding
 
