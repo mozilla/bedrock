@@ -11,26 +11,7 @@
       </a>
 
       <p class="availability-copy">
-        {% if switch('vpn-variable-pricing-eu-expansion') %}
-          {{ ftl('vpn-shared-available-countries-v3') }}
-        {% else %}
-          {{ ftl('vpn-shared-available-countries-v2') }}
-        {% endif %}
-      </p>
-    </div>
-  </div>
-</template>
-
-{# Template for "Get Mozilla VPN" anchor links (scrolls to pricing section). #}
-<template id="scroll-to-pricing-template">
-  <div class="template-container">
-    <div class="js-vpn-variable-pricing">
-      <a class="mzp-c-button" href="#pricing" data-cta-type="button" data-cta-text="Scroll to pricing">
-        {{ ftl('vpn-shared-subscribe-link') }}
-      </a>
-
-      <p class="guarantee-copy">
-        {{ ftl('vpn-shared-money-back-guarantee') }}
+        {{ ftl('vpn-shared-available-countries-v3') }}
       </p>
     </div>
   </div>

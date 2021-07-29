@@ -21,13 +21,10 @@ if (typeof window.Mozilla === 'undefined') {
     // Swiss Francs (CHF) pricing
     var CHF_COUNTRIES = ['ch'];
 
-    // Locales where we fallback to showing variable pricing should the geo-location check fail.
-    var VARIABLE_PRICE_LOCALES = ['de', 'es-ES', 'fr', 'it'];
-
     VPN.getLocation = function() {
         // should /country-code.json be slow to load,
-        // just show the regular messaging after 10 seconds waiting.
-        var timeoutValue = 10000;
+        // just show the regular messaging after 15 seconds waiting.
+        var timeoutValue = 15000;
         _geoTimeout = setTimeout(VPN.onRequestComplete, timeoutValue);
 
         var xhr = new window.XMLHttpRequest();
@@ -83,16 +80,14 @@ if (typeof window.Mozilla === 'undefined') {
         }
     };
 
-    VPN.getAvailability = function(countryCode, fixedCountries, variableCountries) {
+    VPN.getAvailability = function(countryCode, countries) {
         var html = document.getElementsByTagName('html')[0];
-        var fixedPriceCountries = html.getAttribute('data-vpn-fixed-price-country-codes');
-        var variablePriceCountries = html.getAttribute('data-vpn-variable-price-country-codes');
+        var availableCountries = html.getAttribute('data-vpn-country-codes');
 
-        fixedPriceCountries = typeof fixedPriceCountries === 'string' ? fixedPriceCountries : fixedCountries;
-        variablePriceCountries = typeof variablePriceCountries === 'string' ? variablePriceCountries : variableCountries;
+        availableCountries = typeof availableCountries === 'string' ? availableCountries : countries;
 
         // If we can't determine someone's country then return early.
-        if (!countryCode || typeof fixedPriceCountries !== 'string' || typeof variablePriceCountries !== 'string') {
+        if (!countryCode || typeof availableCountries !== 'string') {
 
             window.dataLayer.push({
                 'event': 'non-interaction',
@@ -103,28 +98,16 @@ if (typeof window.Mozilla === 'undefined') {
             return 'unknown';
         }
 
-        // Countries where fixed monthly subscription plan is available.
-        if (countryCode && fixedPriceCountries.indexOf('|' + countryCode + '|') !== -1) {
+        // Countries where VPN is available.
+        if (countryCode && availableCountries.indexOf('|' + countryCode + '|') !== -1) {
 
             window.dataLayer.push({
                 'event': 'non-interaction',
                 'eAction': 'vpn-availability',
-                'eLabel': 'fixed-price-available'
+                'eLabel': 'available'
             });
 
-            return 'fixed-price';
-        }
-
-        // Countries where variable monthly subscription plan is available.
-        if (countryCode && variablePriceCountries.indexOf('|' + countryCode + '|') !== -1) {
-
-            window.dataLayer.push({
-                'event': 'non-interaction',
-                'eAction': 'vpn-availability',
-                'eLabel': 'variable-price-available'
-            });
-
-            return 'variable-price';
+            return 'available';
         }
 
         // Countries where we should show the waitlist links.
@@ -137,34 +120,13 @@ if (typeof window.Mozilla === 'undefined') {
         return 'not-available';
     };
 
-    VPN.isVariablePriceLocale = function(lang) {
-        if (VARIABLE_PRICE_LOCALES.indexOf(lang) !== -1 || document.body.classList.contains('wave-1-variable-pricing')) {
-            return true;
-        }
-
-        return false;
-    };
-
-    VPN.setAvailability = function(availability, language) {
-        if (availability === 'fixed-price') {
-            // If VPN is available in countries that support fixed pricing,
-            // show the fixed pricing subscribe links.
-            VPN.showFixedPricing();
-        } else if (availability === 'variable-price') {
-            // If VPN is available in countries that support variable pricing,
-            // show the subscription plan options.
-            VPN.showVariablePricing();
-        } else if (availability === 'not-available') {
+    VPN.setAvailability = function(availability) {
+        if (availability === 'not-available') {
             // If VPN is not available in country then show "Join the Waitlist" state.
             VPN.showJoinWaitList();
         } else {
-            // If we can't determine someone's country then fall back to page language.
-            var lang = document.getElementsByTagName('html')[0].getAttribute('lang') || language;
-            if (VPN.isVariablePriceLocale(lang)) {
-                VPN.showVariablePricing();
-            } else {
-                VPN.showFixedPricing();
-            }
+            // Else show the subscription plan options.
+            VPN.showPricing();
         }
     };
 
@@ -173,23 +135,8 @@ if (typeof window.Mozilla === 'undefined') {
         VPN.renderJoinWaitlistButtons();
     };
 
-    VPN.showFixedPricing = function() {
-        document.body.classList.add('show-vpn-fixed-pricing');
-
-        // support custom callback for geo-location check
-        if (typeof VPN.onGeoReadyCallback === 'function') {
-            VPN.onGeoReadyCallback(VPN.countryCode);
-        }
-
-        // initiate FxA flow metrics after subscription URLs have been set.
-        if (typeof Mozilla.FxaProductButton !== 'undefined') {
-            Mozilla.FxaProductButton.init();
-        }
-    };
-
-    VPN.showVariablePricing = function() {
-        document.body.classList.add('show-vpn-variable-pricing');
-        VPN.renderScrollToPricingButtons();
+    VPN.showPricing = function() {
+        document.body.classList.add('show-vpn-pricing');
         VPN.setDisplayPrice();
         VPN.setSubscriptionButtons();
 
@@ -277,54 +224,6 @@ if (typeof window.Mozilla === 'undefined') {
             if (price) {
                 displayPrice[i].innerHTML = price;
             }
-        }
-    };
-
-    VPN.renderScrollToPricingButtons = function() {
-        var template = document.getElementById('scroll-to-pricing-template');
-        var primaryTarget = document.querySelector('.js-target-primary-cta');
-        var secondaryTargets = document.querySelectorAll('.js-target-secondary-cta');
-        var navigationTarget = document.querySelector('.js-target-navigation-cta');
-        var footerTarget = document.querySelector('.js-target-footer-cta');
-        var content = template.content || template;
-        var clone;
-        var button;
-
-        if (!template || !content) {
-            return;
-        }
-
-        if (primaryTarget) {
-            clone = content.querySelector('.js-vpn-variable-pricing').cloneNode(true);
-            button = clone.querySelector('.mzp-c-button');
-            button.classList.add('mzp-t-xl');
-            button.setAttribute('data-cta-position', 'primary');
-            primaryTarget.appendChild(clone);
-        }
-
-        if (navigationTarget) {
-            clone = content.querySelector('.js-vpn-variable-pricing').cloneNode(true);
-            button = clone.querySelector('.mzp-c-button');
-            button.classList.add('mzp-t-secondary');
-            button.classList.add('mzp-t-md');
-            button.setAttribute('data-cta-position', 'navigation');
-            navigationTarget.appendChild(button);
-        }
-
-        for (var i = 0; i < secondaryTargets.length; i++) {
-            clone = content.querySelector('.js-vpn-variable-pricing').cloneNode(true);
-            button = clone.querySelector('.mzp-c-button');
-            button.classList.add('mzp-t-xl');
-            button.setAttribute('data-cta-position', 'secondary');
-            secondaryTargets[i].appendChild(clone);
-        }
-
-        if (footerTarget) {
-            clone = content.querySelector('.js-vpn-variable-pricing').cloneNode(true);
-            button = clone.querySelector('.mzp-c-button');
-            button.classList.add('mzp-t-xl');
-            button.setAttribute('data-cta-position', 'secondary');
-            footerTarget.appendChild(clone);
         }
     };
 
