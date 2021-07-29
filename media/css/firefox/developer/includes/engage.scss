@@ -1,5 +1,6 @@
 @import '../../../../protocol/css/includes/lib';
-@import '../../../../protocol/css/components/picto-card';
+@import '../../../../protocol/css/templates/multi-column';
+@import '../../../../protocol/css/components/picto';
 
 //*------------------------------------------------------------------*/
 // Engagement
@@ -11,17 +12,12 @@
     padding-top: $layout-sm;
     padding-bottom: $layout-sm;
 
-    .mzp-l-content {
-        max-width: $content-sm;
-        padding-top: 0;
-        padding-bottom: 0;
-
-        &.t-do {
-            padding-bottom: $layout-md;
-        }
+    .mzp-l-content,
+    .mzp-c-split-container {
+        max-width: $content-xl;
     }
 
-    .t-do + .mzp-c-split {
+    .mzp-c-split {
         padding-top: 0;
     }
 
@@ -29,63 +25,14 @@
         padding-top: $layout-lg;
         padding-bottom: $layout-lg;
 
-        .mzp-l-content {
-            max-width: 1100px;
-
-            &.t-do {
-                padding-bottom: 0;
-            }
-        }
-
         .mzp-c-split-container {
             box-sizing: content-box;
-            max-width: 1100px;
         }
 
         .mzp-l-split-reversed {
             .mzp-c-split-media {
                 justify-self: start;
             }
-        }
-    }
-}
-
-//*------------------------------------------------------------------*/
-// Involve
-
-.t-speak-up.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
-    background: url('/media/img/firefox/developer/icon-speak.svg') no-repeat;
-}
-
-.t-get-involved.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
-    background: url('/media/img/firefox/developer/icon-involved.svg') no-repeat;
-}
-
-.t-speak-up,
-.t-get-involved {
-    padding-bottom: 0;
-
-    &.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content {
-        max-width: 100%;
-    }
-}
-
-@media #{$mq-md} {
-    @supports (display:grid) {
-        .t-do {
-            display: grid;
-            grid-column-gap: $layout-md;
-            grid-row-gap: $layout-lg;
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-}
-
-@media #{$mq-md} {
-    @supports (display:grid) {
-        .t-do {
-            display: grid;
-            grid-column-gap: $layout-lg;
         }
     }
 }
