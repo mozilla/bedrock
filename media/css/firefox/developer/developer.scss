@@ -11,6 +11,7 @@
 @import 'includes/highlights';
 @import 'includes/intro';
 @import 'includes/newsletter';
+@import 'includes/performance';
 
 
 //*------------------------------------------------------------------*/
@@ -68,23 +69,4 @@
             padding-bottom: $layout-xl;
         }
     }
-}
-
-//*------------------------------------------------------------------*/
-// Adjust split max-widths at small and large screens
-
-.mzp-c-split-container {
-    box-sizing: content-box; // add default split padding to max-width
-    max-width: $content-sm;
-    @media #{$mq-lg} {
-        max-width: $content-max;
-    }
-}
-
-//*------------------------------------------------------------------*/
-// Remove extra vertical padding
-// Note: developer/engage.html does not have split component and needs to preserve .t-do padding
-
-.t-do + .mzp-c-split {
-    padding-top: 0;
 }

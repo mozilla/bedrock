@@ -21,6 +21,10 @@
         }
     }
 
+    .t-do + .mzp-c-split {
+        padding-top: 0;
+    }
+
     @media #{$mq-md} {
         padding-top: $layout-lg;
         padding-bottom: $layout-lg;
@@ -30,6 +34,17 @@
 
             &.t-do {
                 padding-bottom: 0;
+            }
+        }
+
+        .mzp-c-split-container {
+            box-sizing: content-box;
+            max-width: 1100px;
+        }
+
+        .mzp-l-split-reversed {
+            .mzp-c-split-media {
+                justify-self: start;
             }
         }
     }

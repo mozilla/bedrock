@@ -1,0 +1,7 @@
+.t-performance .mzp-c-split-container {
+    box-sizing: content-box; // add default split padding to max-width
+    max-width: $content-sm;
+    @media #{$mq-lg} {
+        max-width: $content-max;
+    }
+}

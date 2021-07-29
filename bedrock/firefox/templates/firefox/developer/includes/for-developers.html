@@ -1,9 +1,9 @@
 {% from "macros-protocol.html" import split with context %}
 
-{# NOTE: check if id can be added to bedrock split macro #}
 <div id="nextgen">
   {% call split(
-    image_url='img/firefox/developer/stylo-engine.svg'
+    image_url='img/firefox/developer/stylo-engine.svg',
+    block_class='t-performance'
   ) %}
     <h2 class="c-title">{{ ftl('firefox-developer-firefox-browser') }}</h2>
     <p class="c-subtitle">{{ ftl('firefox-developer-made-for-developers') }}</p>
