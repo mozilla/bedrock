@@ -1,7 +1,7 @@
 {% from "macros-protocol.html" import split with context %}
 
 {# NOTE: check if id can be added to bedrock split macro, weird to nest section in section #}
-<section id="nextgen">
+<div id="nextgen">
   {% call split(
     image_url='img/firefox/developer/stylo-engine.svg'
   ) %}
@@ -11,4 +11,4 @@
     <p>{{ ftl('firefox-developer-a-separate-profile') }}</p>
     <p>{{ ftl('firefox-developer-preferences-tailored') }}</p>
   {% endcall %}
-</section>
+</div>
