@@ -2,6 +2,9 @@
 @import '../../../../protocol/css/templates/multi-column';
 @import '../../../../protocol/css/components/picto';
 
+$brand-theme: 'firefox';
+$type-scale: 'standard';
+
 //*------------------------------------------------------------------*/
 // Engagement
 
@@ -21,9 +24,23 @@
         padding-top: 0;
     }
 
+    .mzp-l-columns {
+        row-gap: 0; // uses margin bottom instead of row gap for spacing
+        .mzp-c-picto {
+            margin-bottom: $layout-md;
+        }
+    }
+    .mzp-c-picto-heading {
+        @include text-title-md;
+    }
+
     @media #{$mq-md} {
         padding-top: $layout-lg;
         padding-bottom: $layout-lg;
+
+        .mzp-l-columns .mzp-c-picto {
+            margin-bottom: 0;
+        }
 
         .mzp-c-split-container {
             box-sizing: content-box;
