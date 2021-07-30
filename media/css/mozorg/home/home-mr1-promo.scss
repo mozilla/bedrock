@@ -86,11 +86,6 @@ $image-path: '/media/protocol/img';
     a:link,
     a:visited {
         color: get-theme('body-text-color');
-
-        &:hover,
-        &:active {
-            color: get-theme('link-color-hover');
-        }
     }
 }
 
