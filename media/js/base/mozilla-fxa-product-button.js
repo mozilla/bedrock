@@ -13,14 +13,15 @@ if (typeof window.Mozilla === 'undefined') {
     var FxaProductButton = {};
 
     var allowedList = [
-        'https://accounts.firefox.com/',
-        'https://monitor.firefox.com/',
-        'https://getpocket.com/',
-        'https://latest.dev.lcip.org/',
         'https://accounts.firefox.com.cn/',
-        'https://vpn.mozilla.org/',
+        'https://accounts.firefox.com/',
+        'https://accounts.stage.mozaws.net/',
+        'https://getpocket.com/',
+        'https://guardian-dev.herokuapp.com/',
+        'https://latest.dev.lcip.org/',
+        'https://monitor.firefox.com/',
         'https://stage-vpn.guardian.nonprod.cloudops.mozgcp.net/',
-        'https://guardian-dev.herokuapp.com/'
+        'https://vpn.mozilla.org/'
     ];
 
     var _buttons;

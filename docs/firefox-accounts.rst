@@ -8,54 +8,26 @@
 Firefox Accounts Referrals
 ==========================
 
-Marketing pages often promote the creation of a `Firefox Account`_ as a common *call to action* (CTA).
-This is typically accomplished using either a signup form, or a prominent link/button. To accomplish
-this, bedrock templates can take advantage of a series of helpers which can be used to standardize
-referrals.
+Marketing pages often promote the creation of a `Firefox Account`_ (FxA) as a common *call to action*
+(CTA). This is typically accomplished using either a signup form, or a prominent link/button. Other
+products such as `Mozilla VPN`_ use similar Firefox Account auth flows to manage subscriptions. To
+accomplish these tasks, bedrock templates can take advantage of a series of Python helpers which can
+be used to standardize product referrals, and make supporting these auth flows easier.
 
 .. Note::
 
     The helpers below can typically be shown to all browsers, but some also feature logic specific
-    to Firefox, such as signing users into `Sync`_.
+    to desktop Firefox, such as signing users into `Sync`_.
 
-.. _Sync: https://support.mozilla.org/kb/how-do-i-set-sync-my-computer
 .. _Firefox Account: https://accounts.firefox.com
+.. _Mozilla VPN: https://www.mozilla.org/products/vpn/
+.. _Sync: https://support.mozilla.org/kb/how-do-i-set-sync-my-computer
 
-Conventions
------------
 
-When choosing URL parameter values, the following conventions help to support uniformity in code and
-predictability in retroactive analysis.
+Firefox Account Signup Form
+---------------------------
 
-* Use lower case characters in parameter values.
-* Separate words in parameter values with hyphens.
-* Follow parameter naming patterns established in previous iterations of a page.
-
-.. Important::
-
-    All query string parameters also need to pass the `validation
-    <https://mozilla.github.io/application-services/docs/accounts/metrics.html#descriptions-of-metrics-related-query-parameters>`_
-    rules applied by the Firefox Accounts server.
-
-UITour Flow
------------
-
-Since Firefox 80 the FxA links and email forms use the UITour to show the Firefox Accounts page and log the browser
-into Sync or an Account. For non-Firefox browsers or if the UITour is not available the flow uses normal links that
-allow users to log into FxA as a website only without connecting the Firefox Desktop client.
-This UITour flow allows the Firefox browser to determine the correct FxA server and authentication flow.
-This transition was introduced to later migrate Firefox Desktop to an OAuth based client authentication flow.
-
-The current code automatically detects if you are in the supported browser for this flow and updates links and forms
-to drive them through the UITour API. The UITour ``showFirefoxAccounts`` action supports flow id parameters,
-UTM parameters and the email data field.
-
-We hope to remove the legacy non-UITour login logic after 1 or 2 ESRs.
-
-Signup Form
------------
-
-Use the ``fxa_email_form`` macro to display an account signup form on a page.
+Use the ``fxa_email_form`` macro to display a Firefox Account signup form on a page.
 
 Usage
 ~~~~~
@@ -88,8 +60,8 @@ The template's respective JavaScript and CSS bundles should also include the fol
     @import '../path/to/fxa-form';
 
 The JavaScript files will automatically handle things adding metrics parameters, as well as
-configuring Sync and distribution ID (e.g. the China re-pack) for Firefox browsers. The CSS
-file contains some default styling for the signup form.
+configuring Sync and distribution ID (e.g. the China re-pack) for Firefox desktop browsers (more
+info on these further down the page). The CSS file contains some default styling for the signup form.
 
 Configuration
 ~~~~~~~~~~~~~
@@ -131,8 +103,8 @@ Invoking the macro will automatically include a set of default UTM parameters as
 - ``utm_medium`` is automatically set as the value of ``referral``.
 
 
-Linking to accounts.firefox.com
--------------------------------
+Firefox Account Links
+---------------------
 
 Use the ``fxa_button`` helper to create a CTA button or link to https://accounts.firefox.com/.
 
@@ -149,12 +121,12 @@ Usage
     and ``data-mozillaonline-link`` properties. This is useful when constructing an
     inline link inside a paragraph, for example.
 
-For more information on the available parameters, read the "CTA button parameters"
+For more information on the available parameters, read the "Common FxA Parameters"
 section further below.
 
 
-Linking to monitor.firefox.com
--------------------------------
+Firefox Monitor Links
+---------------------
 
 Use the ``monitor_fxa_button`` helper to link to https://monitor.firefox.com/ via a
 Firefox Accounts auth flow.
@@ -166,12 +138,12 @@ Usage
 
     {{ monitor_fxa_button(entrypoint=_entrypoint, button_text='Sign Up for Monitor') }}
 
-For more information on the available parameters, read the "CTA button parameters"
+For more information on the available parameters, read the "Common FxA Parameters"
 section further below.
 
 
-Linking to getpocket.com
-------------------------
+Pocket Links
+------------
 
 Use the ``pocket_fxa_button`` helper to link to https://getpocket.com/ via a
 Firefox Accounts auth flow.
@@ -183,10 +155,11 @@ Usage
 
     {{ pocket_fxa_button(entrypoint='mozilla.org-firefox-pocket', button_text='Try Pocket Now', optional_parameters={'s': 'ffpocket'}) }}
 
-For more information on the available parameters, read the "CTA button parameters"
+For more information on the available parameters, read the "Common FxA Parameters"
 section below.
 
-CTA button parameters
+
+Common FxA Parameters
 ---------------------
 
 The ``fxa_button``, ``pocket_fxa_button``, and ``monitor_fxa_button`` helpers
@@ -216,10 +189,21 @@ all support the same standard parameters:
     which accepts the values ``signup``, ``signin``, and ``email`` for
     configuring the type of authentication flow.
 
-Linking to vpn.mozilla.org
---------------------------
 
-Use the ``vpn_subscribe_link`` and ``vpn_sign_in_link`` helpers to link to https://vpn.mozilla.org/ via a
+Mozilla VPN Links
+-----------------
+
+Use the ``vpn_sign_in_link`` helper to create a sign-in link to https://vpn.mozilla.org/ via a
+Firefox Accounts auth flow.
+
+Usage
+~~~~~
+
+.. code-block:: jinja
+
+    {{ vpn_sign_in_link(entrypoint='www.mozilla.org-vpn-product-page', link_text='Sign In') }}
+
+Use the ``vpn_subscribe_link`` helpers to create a VPN subscription link via a
 Firefox Accounts auth flow.
 
 Usage
@@ -229,9 +213,8 @@ Usage
 
     {{ vpn_subscribe_link(entrypoint='www.mozilla.org-vpn-product-page', link_text='Get Mozilla VPN') }}
 
-.. code-block:: jinja
-
-    {{ vpn_sign_in_link(entrypoint='www.mozilla.org-vpn-product-page', link_text='Sign In') }}
+Common VPN Parameters
+~~~~~~~~~~~~~~~~~~~~~
 
 Both helpers for Mozilla VPN support the same parameters (* indicates a required parameter)
 
@@ -244,28 +227,26 @@ Both helpers for Mozilla VPN support the same parameters (* indicates a required
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 |    class_name              | A class name to be applied to the link (typically for styling with CSS).                                               | String of one or more class names                        | 'vpn-button'                                                                                           |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    lang                    | Page locale code. Used as a fallback should geo-location / country code be unavailable (e.g. due to an error).         | Locale string                                            | 'de'                                                                                           |
+|    lang                    | Page locale code. Used as a fallback should geo-location / country code be unavailable (e.g. due to an error).         | Locale string                                            | 'de'                                                                                                   |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 |    optional_parameters     | An dictionary of key value pairs containing additional parameters to append the the href.                              | Dictionary                                               | {'utm_campaign': 'vpn-product-page'}                                                                   |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 |    optiona_attributes      | An dictionary of key value pairs containing additional data attributes to include in the button.                       | Dictionary                                               | {'data-cta-text': 'VPN Sign In', 'data-cta-type': 'fxa-vpn', 'data-cta-position': 'navigation'}        |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 
-Linking to VPN subscription plans
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Additionally, the ``vpn_subscribe_link`` helper also has an additional ``plan`` parameter to support linking to different subscription plans. Currently the plans are limited to either a fixed monthly price in US$, or variable pricing in euros. Support for more currencies will be added in the future.
+The ``vpn_subscribe_link`` helper has an additional ``plan`` parameter to support linking to different subscription plans.
 
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 |    Parameter name          |                                                       Definition                                                       |                          Format                          |                                                Example                                                 |
 +============================+========================================================================================================================+==========================================================+========================================================================================================+
-|    plan                    | Subscription plan ID. Defaults to fixed monthly subscription in US$                                                    | '12-month-euro'                                          | '12-month-euro', '6-month-euro', or 'monthly-euro'                                                     |
+|    plan                    | Subscription plan ID. Defaults to 12-month plan.                                                                       | '12-month'                                               | '12-month', '6-month', or 'monthly'                                                                    |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 
-CTA button dependencies
------------------------
 
-When using any of the FxA or VPN button helpers, a templates's respective JavaScript
+Link Metrics
+------------
+
+When using any of the FxA or VPN link/button helpers, a templates's respective JavaScript
 bundle should also include the following dependencies:
 
 .. code-block:: text
@@ -297,8 +278,8 @@ Tracking External Referrers
 
 If the URL of a bedrock page contains existing UTM parameters on page load, bedrock will
 attempt to automatically use those values to replace the inline UTM parameters in
-Firefox Accounts links. This is handled using a client side script in the site common
-bundle which can be found in ``/media/js/base/fxa-utm-referral.js``.
+Firefox Account and Mozilla VPN links. This is handled using a client side script in the
+site common bundle which can be found in ``/media/js/base/fxa-utm-referral.js``.
 
 The behavior is as follows:
 
@@ -312,16 +293,49 @@ The behavior is as follows:
     need to manually add a CSS class of ``js-fxa-cta-link`` to trigger the behavior.
 
 
+URL Parameter Conventions
+-------------------------
+
+When choosing URL parameter values, the following conventions help to support uniformity in code and
+predictability in retroactive analysis.
+
+* Use lower case characters in parameter values.
+* Separate words in parameter values with hyphens.
+* Follow parameter naming patterns established in previous iterations of a page.
+
+
+Firefox Sync and UITour
+-----------------------
+
+Since Firefox 80 the FxA link and email form macros use :ref:`UITour<ui-tour>` to show the Firefox Accounts page
+and log the browser into Sync or an Account. For non-Firefox browsers or if UITour is not available, the flow uses
+normal links that allow users to log into FxA as a website only without connecting the Firefox Desktop client.
+This UITour flow allows the Firefox browser to determine the correct FxA server and authentication flow.
+This transition was introduced to later migrate Firefox Desktop to an OAuth based client authentication flow.
+
+The script that handles this logic is ``/media/js/base/mozilla-fxa-link.js``, and will automatically apply
+to any link with a ``js-fxa-cta-link`` class name. The current code automatically detects if you are in the
+supported browser for this flow and updates links to drive them through the UITour API. The UITour
+``showFirefoxAccounts`` action supports flow id parameters, UTM parameters and the email data field.
+
+We hope to remove the legacy non-UITour login logic after 1 or 2 ESRs.
+
+
 Handling Distribution (aka China Repack)
 ----------------------------------------
 
 The China repack of Firefox points to https://accounts.firefox.com.cn/ by default for
-accounts signups. To compensate for this on https://www.mozilla.org (so we don't send
+FxA accounts signups. To compensate for this on https://www.mozilla.org (so we don't send
 those visitors to the wrong place), we rely on :ref:`UITour<ui-tour>` to check the
 distribution ID of the browser. If the distribution ID is ``mozillaonline``
 (i.e. China repack), then we replace our accounts endpoints with the alternate domain
 specified in the ``data-mozillaonline-link`` attribute. The logic to handle this is
 self contained in the associated helper scripts and handled automatically.
+
+.. Note::
+
+    This logic does not apply to Mozilla VPN, since the product is not available
+    in China.
 
 
 Testing Signup Flows
@@ -343,10 +357,13 @@ For Mozilla VPN links you can also set:
 .. code-block:: text
 
     VPN_ENDPOINT=https://stage-vpn.guardian.nonprod.cloudops.mozgcp.net/
+    VPN_SUBSCRIPTION_URL=https://accounts.stage.mozaws.net/
 
-**Configuring a demo Server:**
+.. Note::
 
-Demo servers must have the same ``.env`` setting as above. See the :ref:`configure-demo-servers` docs.
+    The above values for staging are already set by default when ``Dev=True``,
+    which will also apply to demo servers. You may only need to configure
+    your ``.env`` file if you wish to change a setting to something else.
 
 **Local and demo server testing:**
 

@@ -2,10 +2,13 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import os
+
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
 from django_jinja.backend import Jinja2
+from mock import patch
 
 from bedrock.mozorg.tests import TestCase
 
@@ -13,6 +16,7 @@ from bedrock.mozorg.tests import TestCase
 TEST_FXA_ENDPOINT = 'https://accounts.firefox.com/'
 TEST_VPN_ENDPOINT = 'https://vpn.mozilla.org/'
 TEST_VPN_PRODUCT_ID = 'prod_FvnsFHIfezy3ZI'
+TEST_VPN_SUBSCRIPTION_URL = 'https://accounts.firefox.com/'
 
 TEST_VPN_PLAN_ID_MATRIX = {
     'chf': {
@@ -249,6 +253,7 @@ def render(s, context=None):
     FXA_ENDPOINT=TEST_FXA_ENDPOINT,
     VPN_ENDPOINT=TEST_VPN_ENDPOINT,
     VPN_PRODUCT_ID=TEST_VPN_PRODUCT_ID,
+    VPN_SUBSCRIPTION_URL=TEST_VPN_SUBSCRIPTION_URL,
     VPN_VARIABLE_PRICING=TEST_VPN_VARIABLE_PRICING)
 class TestVPNSubscribeLink(TestCase):
     rf = RequestFactory()
@@ -260,6 +265,27 @@ class TestVPNSubscribeLink(TestCase):
                       entrypoint, link_text, plan, class_name, lang, optional_parameters, optional_attributes),
                       {'request': req})
 
+    @patch.dict(os.environ, SWITCH_VPN_FUNNEL_OPT_SUBSCRIPTION_URL='True')
+    def test_vpn_subscribe_link_new_format(self):
+        """Should return expected markup for variable 12-month plan for en-US"""
+        markup = self._render(entrypoint='www.mozilla.org-vpn-product-page', link_text='Get Mozilla VPN',
+                              plan='12-month', class_name='mzp-c-button', lang='en-US',
+                              optional_parameters={'utm_campaign': 'vpn-product-page'},
+                              optional_attributes={'data-cta-text': 'Get Mozilla VPN monthly', 'data-cta-type':
+                                                   'fxa-vpn', 'data-cta-position': 'primary'})
+        expected = (
+            u'<a href="https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=price_1Iw85dJNcmPzuWtRyhMDdtM7'
+            u'&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&utm_source=www.mozilla.org-vpn-product-page'
+            u'&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" '
+            u'data-action="https://accounts.firefox.com/" class="js-vpn-cta-link js-fxa-product-button mzp-c-button" '
+            u'data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" data-cta-position="primary" '
+            u'data-plan-at="price_1IgwblJNcmPzuWtRynC7dqQa" data-plan-be="price_1J5JRGJNcmPzuWtRXwXA84cm" '
+            u'data-plan-ch="price_1J5JssJNcmPzuWtR616BH4aU" data-plan-de="price_1IgwblJNcmPzuWtRynC7dqQa" '
+            u'data-plan-es="price_1J5JCdJNcmPzuWtRrvQMFLlP" data-plan-fr="price_1IgnlcJNcmPzuWtRjrNa39W4" '
+            u'data-plan-it="price_1J4owvJNcmPzuWtRomVhWQFq" data-plan-us="price_1Iw85dJNcmPzuWtRyhMDdtM7">Get Mozilla VPN</a>')
+        self.assertEqual(markup, expected)
+
+    @patch.dict(os.environ, SWITCH_VPN_FUNNEL_OPT_SUBSCRIPTION_URL='False')
     def test_vpn_subscribe_link_variable_12_month_en(self):
         """Should return expected markup for variable 12-month plan for en-US"""
         markup = self._render(entrypoint='www.mozilla.org-vpn-product-page', link_text='Get Mozilla VPN',
@@ -271,7 +297,7 @@ class TestVPNSubscribeLink(TestCase):
             u'<a href="https://vpn.mozilla.org/r/vpn/subscribe/products/prod_FvnsFHIfezy3ZI?plan=price_1Iw85dJNcmPzuWtRyhMDdtM7'
             u'&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&utm_source=www.mozilla.org-vpn-product-page'
             u'&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" '
-            u'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button" '
+            u'data-action="https://accounts.firefox.com/" class="js-vpn-cta-link js-fxa-product-button mzp-c-button" '
             u'data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" data-cta-position="primary" '
             u'data-plan-at="price_1IgwblJNcmPzuWtRynC7dqQa" data-plan-be="price_1J5JRGJNcmPzuWtRXwXA84cm" '
             u'data-plan-ch="price_1J5JssJNcmPzuWtR616BH4aU" data-plan-de="price_1IgwblJNcmPzuWtRynC7dqQa" '
@@ -279,6 +305,7 @@ class TestVPNSubscribeLink(TestCase):
             u'data-plan-it="price_1J4owvJNcmPzuWtRomVhWQFq" data-plan-us="price_1Iw85dJNcmPzuWtRyhMDdtM7">Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
+    @patch.dict(os.environ, SWITCH_VPN_FUNNEL_OPT_SUBSCRIPTION_URL='False')
     def test_vpn_subscribe_link_variable_6_month_en(self):
         """Should return expected markup for variable 6-month plan for en-US"""
         markup = self._render(entrypoint='www.mozilla.org-vpn-product-page', link_text='Get Mozilla VPN',
@@ -290,7 +317,7 @@ class TestVPNSubscribeLink(TestCase):
             u'<a href="https://vpn.mozilla.org/r/vpn/subscribe/products/prod_FvnsFHIfezy3ZI?plan=price_1Iw87cJNcmPzuWtRefuyqsOd'
             u'&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&utm_source=www.mozilla.org-vpn-product-page'
             u'&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" '
-            u'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button" '
+            u'data-action="https://accounts.firefox.com/" class="js-vpn-cta-link js-fxa-product-button mzp-c-button" '
             u'data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" data-cta-position="primary" '
             u'data-plan-at="price_1IgwaHJNcmPzuWtRuUfSR4l7" data-plan-be="price_1J5JRmJNcmPzuWtRyFGj0tkN" '
             u'data-plan-ch="price_1J5JtWJNcmPzuWtRMd2siphH" data-plan-de="price_1IgwaHJNcmPzuWtRuUfSR4l7" '
@@ -298,6 +325,7 @@ class TestVPNSubscribeLink(TestCase):
             u'data-plan-it="price_1J5J7eJNcmPzuWtRKdQi4Tkk" data-plan-us="price_1Iw87cJNcmPzuWtRefuyqsOd">Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
+    @patch.dict(os.environ, SWITCH_VPN_FUNNEL_OPT_SUBSCRIPTION_URL='False')
     def test_vpn_subscribe_link_variable_monthly_en(self):
         """Should return expected markup for variable monthly plan for en-US"""
         markup = self._render(entrypoint='www.mozilla.org-vpn-product-page', link_text='Get Mozilla VPN',
@@ -309,7 +337,7 @@ class TestVPNSubscribeLink(TestCase):
             u'<a href="https://vpn.mozilla.org/r/vpn/subscribe/products/prod_FvnsFHIfezy3ZI?plan=price_1Iw7qSJNcmPzuWtRMUZpOwLm'
             u'&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&utm_source=www.mozilla.org-vpn-product-page'
             u'&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" '
-            u'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button" '
+            u'data-action="https://accounts.firefox.com/" class="js-vpn-cta-link js-fxa-product-button mzp-c-button" '
             u'data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" data-cta-position="primary" '
             u'data-plan-at="price_1IgwZVJNcmPzuWtRg9Wssh2y" data-plan-be="price_1J5JSkJNcmPzuWtR54LPH2zi" '
             u'data-plan-ch="price_1J5Ju3JNcmPzuWtR3GpNYSWj" data-plan-de="price_1IgwZVJNcmPzuWtRg9Wssh2y" '
@@ -317,6 +345,7 @@ class TestVPNSubscribeLink(TestCase):
             u'data-plan-it="price_1J5J6iJNcmPzuWtRK5zfoguV" data-plan-us="price_1Iw7qSJNcmPzuWtRMUZpOwLm">Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
+    @patch.dict(os.environ, SWITCH_VPN_FUNNEL_OPT_SUBSCRIPTION_URL='False')
     def test_vpn_subscribe_link_variable_12_month_de(self):
         """Should return expected markup for variable 12-month plan for de"""
         markup = self._render(entrypoint='www.mozilla.org-vpn-product-page', link_text='Get Mozilla VPN',
@@ -328,7 +357,7 @@ class TestVPNSubscribeLink(TestCase):
             u'<a href="https://vpn.mozilla.org/r/vpn/subscribe/products/prod_FvnsFHIfezy3ZI?plan=price_1IgwblJNcmPzuWtRynC7dqQa'
             u'&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&utm_source=www.mozilla.org-vpn-product-page'
             u'&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" '
-            u'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button" '
+            u'data-action="https://accounts.firefox.com/" class="js-vpn-cta-link js-fxa-product-button mzp-c-button" '
             u'data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" data-cta-position="primary" '
             u'data-plan-at="price_1IgwblJNcmPzuWtRynC7dqQa" data-plan-be="price_1J5JRGJNcmPzuWtRXwXA84cm" '
             u'data-plan-ch="price_1J5JssJNcmPzuWtR616BH4aU" data-plan-de="price_1IgwblJNcmPzuWtRynC7dqQa" '
@@ -336,6 +365,7 @@ class TestVPNSubscribeLink(TestCase):
             u'data-plan-it="price_1J4owvJNcmPzuWtRomVhWQFq" data-plan-us="price_1Iw85dJNcmPzuWtRyhMDdtM7">Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
+    @patch.dict(os.environ, SWITCH_VPN_FUNNEL_OPT_SUBSCRIPTION_URL='False')
     def test_vpn_subscribe_link_variable_6_month_de(self):
         """Should return expected markup for variable 6-month plan for de"""
         markup = self._render(entrypoint='www.mozilla.org-vpn-product-page', link_text='Get Mozilla VPN',
@@ -347,7 +377,7 @@ class TestVPNSubscribeLink(TestCase):
             u'<a href="https://vpn.mozilla.org/r/vpn/subscribe/products/prod_FvnsFHIfezy3ZI?plan=price_1IgwaHJNcmPzuWtRuUfSR4l7'
             u'&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&utm_source=www.mozilla.org-vpn-product-page'
             u'&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" '
-            u'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button" '
+            u'data-action="https://accounts.firefox.com/" class="js-vpn-cta-link js-fxa-product-button mzp-c-button" '
             u'data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" data-cta-position="primary" '
             u'data-plan-at="price_1IgwaHJNcmPzuWtRuUfSR4l7" data-plan-be="price_1J5JRmJNcmPzuWtRyFGj0tkN" '
             u'data-plan-ch="price_1J5JtWJNcmPzuWtRMd2siphH" data-plan-de="price_1IgwaHJNcmPzuWtRuUfSR4l7" '
@@ -355,6 +385,7 @@ class TestVPNSubscribeLink(TestCase):
             u'data-plan-it="price_1J5J7eJNcmPzuWtRKdQi4Tkk" data-plan-us="price_1Iw87cJNcmPzuWtRefuyqsOd">Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
+    @patch.dict(os.environ, SWITCH_VPN_FUNNEL_OPT_SUBSCRIPTION_URL='False')
     def test_vpn_subscribe_link_variable_monthly_de(self):
         """Should return expected markup for variable monthly plan for de"""
         markup = self._render(entrypoint='www.mozilla.org-vpn-product-page', link_text='Get Mozilla VPN',
@@ -366,7 +397,7 @@ class TestVPNSubscribeLink(TestCase):
             u'<a href="https://vpn.mozilla.org/r/vpn/subscribe/products/prod_FvnsFHIfezy3ZI?plan=price_1IgwZVJNcmPzuWtRg9Wssh2y'
             u'&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&utm_source=www.mozilla.org-vpn-product-page'
             u'&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" '
-            u'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button" '
+            u'data-action="https://accounts.firefox.com/" class="js-vpn-cta-link js-fxa-product-button mzp-c-button" '
             u'data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" data-cta-position="primary" '
             u'data-plan-at="price_1IgwZVJNcmPzuWtRg9Wssh2y" data-plan-be="price_1J5JSkJNcmPzuWtR54LPH2zi" '
             u'data-plan-ch="price_1J5Ju3JNcmPzuWtR3GpNYSWj" data-plan-de="price_1IgwZVJNcmPzuWtRg9Wssh2y" '
@@ -374,6 +405,7 @@ class TestVPNSubscribeLink(TestCase):
             u'data-plan-it="price_1J5J6iJNcmPzuWtRK5zfoguV" data-plan-us="price_1Iw7qSJNcmPzuWtRMUZpOwLm">Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
+    @patch.dict(os.environ, SWITCH_VPN_FUNNEL_OPT_SUBSCRIPTION_URL='False')
     def test_vpn_subscribe_link_variable_12_month_fr(self):
         """Should return expected markup for variable 12-month plan for fr"""
         markup = self._render(entrypoint='www.mozilla.org-vpn-product-page', link_text='Get Mozilla VPN',
@@ -385,7 +417,7 @@ class TestVPNSubscribeLink(TestCase):
             u'<a href="https://vpn.mozilla.org/r/vpn/subscribe/products/prod_FvnsFHIfezy3ZI?plan=price_1IgnlcJNcmPzuWtRjrNa39W4'
             u'&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&utm_source=www.mozilla.org-vpn-product-page'
             u'&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" '
-            u'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button" '
+            u'data-action="https://accounts.firefox.com/" class="js-vpn-cta-link js-fxa-product-button mzp-c-button" '
             u'data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" data-cta-position="primary" '
             u'data-plan-at="price_1IgwblJNcmPzuWtRynC7dqQa" data-plan-be="price_1IgnlcJNcmPzuWtRjrNa39W4" '
             u'data-plan-ch="price_1J5JunJNcmPzuWtRo9dLxn6M" data-plan-de="price_1IgwblJNcmPzuWtRynC7dqQa" '
@@ -393,6 +425,7 @@ class TestVPNSubscribeLink(TestCase):
             u'data-plan-it="price_1J4owvJNcmPzuWtRomVhWQFq" data-plan-us="price_1Iw85dJNcmPzuWtRyhMDdtM7">Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
+    @patch.dict(os.environ, SWITCH_VPN_FUNNEL_OPT_SUBSCRIPTION_URL='False')
     def test_vpn_subscribe_link_variable_6_month_fr(self):
         """Should return expected markup for variable 6-month plan for fr"""
         markup = self._render(entrypoint='www.mozilla.org-vpn-product-page', link_text='Get Mozilla VPN',
@@ -404,13 +437,14 @@ class TestVPNSubscribeLink(TestCase):
             u'<a href="https://vpn.mozilla.org/r/vpn/subscribe/products/prod_FvnsFHIfezy3ZI?plan=price_1IgoxGJNcmPzuWtRG7l48EoV'
             u'&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&utm_source=www.mozilla.org-vpn-product-page'
             u'&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
-            u'class="js-fxa-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" '
+            u'class="js-vpn-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" '
             u'data-cta-position="primary" data-plan-at="price_1IgwaHJNcmPzuWtRuUfSR4l7" data-plan-be="price_1IgoxGJNcmPzuWtRG7l48EoV" '
             u'data-plan-ch="price_1J5JvLJNcmPzuWtRayB4d7Ij" data-plan-de="price_1IgwaHJNcmPzuWtRuUfSR4l7" '
             u'data-plan-es="price_1J5JDFJNcmPzuWtRrC4IeXTs" data-plan-fr="price_1IgoxGJNcmPzuWtRG7l48EoV" '
             u'data-plan-it="price_1J5J7eJNcmPzuWtRKdQi4Tkk" data-plan-us="price_1Iw87cJNcmPzuWtRefuyqsOd">Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
+    @patch.dict(os.environ, SWITCH_VPN_FUNNEL_OPT_SUBSCRIPTION_URL='False')
     def test_vpn_subscribe_link_variable_monthly_fr(self):
         """Should return expected markup for variable monthly plan for fr"""
         markup = self._render(entrypoint='www.mozilla.org-vpn-product-page', link_text='Get Mozilla VPN',
@@ -422,7 +456,7 @@ class TestVPNSubscribeLink(TestCase):
             u'<a href="https://vpn.mozilla.org/r/vpn/subscribe/products/prod_FvnsFHIfezy3ZI?plan=price_1IgowHJNcmPzuWtRzD7SgAYb'
             u'&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&utm_source=www.mozilla.org-vpn-product-page'
             u'&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" '
-            u'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button" '
+            u'data-action="https://accounts.firefox.com/" class="js-vpn-cta-link js-fxa-product-button mzp-c-button" '
             u'data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" data-cta-position="primary" '
             u'data-plan-at="price_1IgwZVJNcmPzuWtRg9Wssh2y" data-plan-be="price_1IgowHJNcmPzuWtRzD7SgAYb" '
             u'data-plan-ch="price_1J5JvjJNcmPzuWtR3wwy1dcR" data-plan-de="price_1IgwZVJNcmPzuWtRg9Wssh2y" '
@@ -430,6 +464,7 @@ class TestVPNSubscribeLink(TestCase):
             u'data-plan-it="price_1J5J6iJNcmPzuWtRK5zfoguV" data-plan-us="price_1Iw7qSJNcmPzuWtRMUZpOwLm">Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
+    @patch.dict(os.environ, SWITCH_VPN_FUNNEL_OPT_SUBSCRIPTION_URL='False')
     def test_vpn_subscribe_link_variable_12_month_es(self):
         """Should return expected markup for variable 12-month plan for es-ES"""
         markup = self._render(entrypoint='www.mozilla.org-vpn-product-page', link_text='Get Mozilla VPN',
@@ -441,7 +476,7 @@ class TestVPNSubscribeLink(TestCase):
             u'<a href="https://vpn.mozilla.org/r/vpn/subscribe/products/prod_FvnsFHIfezy3ZI?plan=price_1J5JCdJNcmPzuWtRrvQMFLlP'
             u'&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&utm_source=www.mozilla.org-vpn-product-page'
             u'&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" '
-            u'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button" '
+            u'data-action="https://accounts.firefox.com/" class="js-vpn-cta-link js-fxa-product-button mzp-c-button" '
             u'data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" data-cta-position="primary" '
             u'data-plan-at="price_1IgwblJNcmPzuWtRynC7dqQa" data-plan-be="price_1J5JRGJNcmPzuWtRXwXA84cm" '
             u'data-plan-ch="price_1J5JssJNcmPzuWtR616BH4aU" data-plan-de="price_1IgwblJNcmPzuWtRynC7dqQa" '
@@ -449,6 +484,7 @@ class TestVPNSubscribeLink(TestCase):
             u'data-plan-it="price_1J4owvJNcmPzuWtRomVhWQFq" data-plan-us="price_1Iw85dJNcmPzuWtRyhMDdtM7">Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
+    @patch.dict(os.environ, SWITCH_VPN_FUNNEL_OPT_SUBSCRIPTION_URL='False')
     def test_vpn_subscribe_link_variable_6_month_es(self):
         """Should return expected markup for variable 6-month plan for es-ES"""
         markup = self._render(entrypoint='www.mozilla.org-vpn-product-page', link_text='Get Mozilla VPN',
@@ -460,13 +496,14 @@ class TestVPNSubscribeLink(TestCase):
             u'<a href="https://vpn.mozilla.org/r/vpn/subscribe/products/prod_FvnsFHIfezy3ZI?plan=price_1J5JDFJNcmPzuWtRrC4IeXTs'
             u'&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&utm_source=www.mozilla.org-vpn-product-page'
             u'&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
-            u'class="js-fxa-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" '
+            u'class="js-vpn-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" '
             u'data-cta-position="primary" data-plan-at="price_1IgwaHJNcmPzuWtRuUfSR4l7" data-plan-be="price_1J5JRmJNcmPzuWtRyFGj0tkN" '
             u'data-plan-ch="price_1J5JtWJNcmPzuWtRMd2siphH" data-plan-de="price_1IgwaHJNcmPzuWtRuUfSR4l7" '
             u'data-plan-es="price_1J5JDFJNcmPzuWtRrC4IeXTs" data-plan-fr="price_1IgoxGJNcmPzuWtRG7l48EoV" '
             u'data-plan-it="price_1J5J7eJNcmPzuWtRKdQi4Tkk" data-plan-us="price_1Iw87cJNcmPzuWtRefuyqsOd">Get Mozilla VPN</a>')
         self.assertEqual(markup, expected)
 
+    @patch.dict(os.environ, SWITCH_VPN_FUNNEL_OPT_SUBSCRIPTION_URL='False')
     def test_vpn_subscribe_link_variable_monthly_es(self):
         """Should return expected markup for variable monthly plan for es-ES"""
         markup = self._render(entrypoint='www.mozilla.org-vpn-product-page', link_text='Get Mozilla VPN',
@@ -478,7 +515,7 @@ class TestVPNSubscribeLink(TestCase):
             u'<a href="https://vpn.mozilla.org/r/vpn/subscribe/products/prod_FvnsFHIfezy3ZI?plan=price_1J5JDgJNcmPzuWtRqQtIbktk'
             u'&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&utm_source=www.mozilla.org-vpn-product-page'
             u'&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" '
-            u'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button" '
+            u'data-action="https://accounts.firefox.com/" class="js-vpn-cta-link js-fxa-product-button mzp-c-button" '
             u'data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" data-cta-position="primary" '
             u'data-plan-at="price_1IgwZVJNcmPzuWtRg9Wssh2y" data-plan-be="price_1J5JSkJNcmPzuWtR54LPH2zi" '
             u'data-plan-ch="price_1J5Ju3JNcmPzuWtR3GpNYSWj" data-plan-de="price_1IgwZVJNcmPzuWtRg9Wssh2y" '
@@ -508,7 +545,7 @@ class TestVPNSignInLink(TestCase):
             u'<a href="https://vpn.mozilla.org/oauth/init?entrypoint=www.mozilla.org-vpn-product-page'
             u'&form_type=button&utm_source=www.mozilla.org-vpn-product-page&utm_medium=referral'
             u'&utm_campaign=vpn-product-page&data_cta_position=navigation" data-action="https://accounts.firefox.com/" '
-            u'class="js-fxa-cta-link js-fxa-product-button mzp-c-cta-link" data-cta-text="VPN Sign In" '
+            u'class="js-vpn-cta-link js-fxa-product-button mzp-c-cta-link" data-cta-text="VPN Sign In" '
             u'data-cta-type="fxa-vpn" data-cta-position="navigation">Sign In</a>')
         self.assertEqual(markup, expected)
 

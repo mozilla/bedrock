@@ -169,7 +169,7 @@ if (typeof window.Mozilla === 'undefined') {
      */
     UtmUrl.init = function (urlParams) {
         var params = UtmUrl.getAttributionData(urlParams);
-        var ctaLinks = document.getElementsByClassName('js-fxa-cta-link');
+        var ctaLinks = document.querySelectorAll('.js-fxa-cta-link, .js-vpn-cta-link');
 
         // If there are no accepted params on the page URL, do nothing.
         if (!params) {

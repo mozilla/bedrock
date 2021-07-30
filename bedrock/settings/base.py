@@ -1277,11 +1277,17 @@ if config('SWITCH_TRACKING_PIXEL', default=str(DEV), parser=bool):
 # Issue 7508 - Convert.com experiment sandbox
 CONVERT_PROJECT_ID = ('10039-1003350' if DEV else '10039-1003343')
 
-# Mozilla VPN product links
+# URL for Mozilla VPN sign-in links
 # ***This URL *MUST* end in a traling slash!***
 VPN_ENDPOINT = config('VPN_ENDPOINT',
                       default='https://stage-vpn.guardian.nonprod.cloudops.mozgcp.net/'
                       if DEV else 'https://vpn.mozilla.org/')
+
+# URL for Mozilla VPN subscription links
+# ***This URL *MUST* end in a traling slash!***
+VPN_SUBSCRIPTION_URL = config('VPN_SUBSCRIPTION_URL',
+                              default='https://accounts.stage.mozaws.net/'
+                              if DEV else 'https://accounts.firefox.com/')
 
 # Product ID for VPN subscriptions
 VPN_PRODUCT_ID = config('VPN_PRODUCT_ID', default='prod_FiJ42WCzZNRSbS'
