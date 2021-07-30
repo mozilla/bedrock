@@ -68,7 +68,7 @@
 {# Split: https://protocol.mozilla.org/patterns/organisms/split.html #}
 {% macro split(id=None, block_class=None, theme_class=None, body_class=None, image_url=None, media_class=None, include_highres_image=False, l10n_image=False, image_alt='') -%}
 
-<section {% if id %} id={{ id }} {% endif %} class="mzp-c-split{% if block_class %} {{ block_class }}{% endif %}">
+<section {% if id %}id="{{ id }}"{% endif %} class="mzp-c-split{% if block_class %} {{ block_class }}{% endif %}">
   {% if theme_class %}
   <div class="mzp-c-split-bg {{ theme_class }}">
   {% endif %}
