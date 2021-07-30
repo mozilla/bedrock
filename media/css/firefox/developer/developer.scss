@@ -3,7 +3,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/templates/card-layout';
+@import '../../../protocol/css/components/split';
 @import 'includes/engage';
 @import 'includes/features';
 @import 'includes/gallery-grid';
@@ -16,8 +16,7 @@
 //*------------------------------------------------------------------*/
 // Title and subtitles for entire page
 
-.c-title,
-.t-performance .mzp-c-card-feature-title {
+.c-title {
     @include text-body-md;
 }
 
@@ -57,7 +56,6 @@
 //*------------------------------------------------------------------*/
 // Padding for page content sections
 
-.t-performance,
 .t-highlights,
 .t-features {
 
