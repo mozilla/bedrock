@@ -4,6 +4,7 @@
 
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
+$brand-theme: 'firefox';
 
 @import '../../protocol/css/includes/lib';
 @import '../../protocol/css/components/emphasis-box';
@@ -96,141 +97,17 @@ main .mzp-l-content {
 }
 
 //* -------------------------------------------------------------------------- */
-// use block component for top banner
-// https://github.com/mozilla/protocol/issues/326
+// use split component for top banner
 
-.c-block {
-    overflow-x: hidden;
-    padding: $v-grid-xs 0;
-    position: relative;
-    text-align: center;
-
+.c-landing-banner {
     h1 {
         @include text-title-xl;
     }
 
     p {
         @include text-body-lg;
-        margin-bottom: 0;
-    }
-
-    @media #{$mq-md} {
-        padding: $v-grid-md 0;
-    }
-
-    @media #{$mq-lg} {
-        padding: $v-grid-lg 0;
-
-        &.t-products {
-            padding: 0;
-        }
     }
 }
-
-.c-block-container {
-    @include border-box;
-    @include clearfix();
-    align-self: center; // l-v-center in block component
-    margin: 0 auto;
-    max-width: $content-max;
-    min-width: $content-xs;
-    padding: 0 $h-grid-xs;
-
-    @media #{$mq-lg} {
-        padding: 0 ($h-grid-lg / 2);
-    }
-}
-
-.c-block-body {
-    position: relative;
-
-    @media #{$mq-lg} {
-        @include border-box;
-        @include bidi((
-            (float, left, right),
-            (text-align, left, right)
-        ));
-        padding: 0 ($h-grid-lg / 2);
-        width: 50%;
-    }
-}
-
-
-.c-block-media {
-    position: relative;
-
-    @media all and (max-width:#{$screen-lg - 1}) {
-        .has-media-hide & {
-            display: none;
-        }
-    }
-
-    @media #{$mq-lg} {
-        @include border-box;
-        @include bidi(((float, right, left),));
-        padding: 0 ($h-grid-lg / 2);
-        width: 50%;
-    }
-}
-
-@supports(display:grid) {
-
-    .c-block-container  {
-        @media #{$mq-lg} {
-            // grid is all start/end based we don't need bidi declarations for RTL support \o/
-            display: grid;
-            grid-column-gap: $h-grid-lg;
-            grid-template-areas: "body media";
-            grid-template-columns: 480px auto;
-            padding: $v-grid-lg $h-grid-lg;
-        }
-    }
-
-    .c-block-body,
-    .c-block-media {
-        float: none;
-        min-width: 0; //because of https://stackoverflow.com/questions/43311943/prevent-content-from-expanding-grid-items
-        padding: 0;
-        width: auto;
-    }
-
-    .c-block-body {
-        grid-area: body;
-    }
-
-    .c-block-media {
-        align-self: stretch;
-        grid-area: media;
-
-        @media #{$mq-lg} {
-            margin: ($v-grid-lg * -1) 0; // l-fit-flush in block component
-
-            .c-block-media-img {
-                display: block;
-                max-width: none;
-            }
-
-            &.l-constrain-height {
-
-                .c-block-media-img {
-                    bottom: 0;
-                    left: 0;
-                    max-height: 100%;
-                    max-width: none;
-                    position: absolute;
-                    top: 0;
-                    width: auto;
-
-                    [dir='rtl'] & {
-                        left: auto;
-                        right: 0;
-                    }
-                }
-            }
-        }
-    }
-}
-
 
 //* -------------------------------------------------------------------------- */
 // landing grid

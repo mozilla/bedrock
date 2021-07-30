@@ -58,18 +58,14 @@
 {% block content %}
 <main role="main">
 
-{# check if this can become split too #}
-  <div class="c-block has-media-hide">
-    <div class="c-block-container">
-      <div class="c-block-body l-v-center">
-        <h1 class="mzp-has-zap-11">{{ ftl('firefox-browsers-get-the-browsers-strong') }}</h1>
-        <p>{{ ftl('firefox-browsers-get-the-privacy-you-deserve') }}</p>
-      </div>
-      <div class="c-block-media l-fit-flush l-constrain-height">
-        {{ high_res_img('img/firefox/browsers/hero.jpg', {'alt': '', 'class': 'c-block-media-img'}) }}
-      </div>
-    </div>
-  </div>
+  {% call split(
+    image_url='img/firefox/browsers/hero.jpg',
+    include_highres_image=True,
+    block_class='c-landing-banner mzp-l-split-hide-media-on-sm-md mzp-l-split-center-on-sm-md'
+  ) %}
+    <h1 class="mzp-has-zap-11">{{ ftl('firefox-browsers-get-the-browsers-strong') }}</h1>
+    <p>{{ ftl('firefox-browsers-get-the-privacy-you-deserve') }}</p>
+  {% endcall %}
 
   <div class="mzp-l-content c-landing-grid">
     <div class="c-landing-grid-item">
