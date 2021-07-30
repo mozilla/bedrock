@@ -1,14 +1,13 @@
 {% from "macros-protocol.html" import split with context %}
 
-<div id="nextgen">
-  {% call split(
-    image_url='img/firefox/developer/stylo-engine.svg',
-    block_class='t-performance'
-  ) %}
-    <h2 class="c-title">{{ ftl('firefox-developer-firefox-browser') }}</h2>
-    <p class="c-subtitle">{{ ftl('firefox-developer-made-for-developers') }}</p>
-    <p>{{ ftl('firefox-developer-all-the-latest') }}</p>
-    <p>{{ ftl('firefox-developer-a-separate-profile') }}</p>
-    <p>{{ ftl('firefox-developer-preferences-tailored') }}</p>
-  {% endcall %}
-</div>
+{% call split(
+  id="nextgen",
+  image_url='img/firefox/developer/stylo-engine.svg',
+  block_class='t-performance'
+) %}
+  <h2 class="c-title">{{ ftl('firefox-developer-firefox-browser') }}</h2>
+  <p class="c-subtitle">{{ ftl('firefox-developer-made-for-developers') }}</p>
+  <p>{{ ftl('firefox-developer-all-the-latest') }}</p>
+  <p>{{ ftl('firefox-developer-a-separate-profile') }}</p>
+  <p>{{ ftl('firefox-developer-preferences-tailored') }}</p>
+{% endcall %}

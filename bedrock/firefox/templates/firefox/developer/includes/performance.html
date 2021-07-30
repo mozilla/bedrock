@@ -1,15 +1,14 @@
 {% from "macros-protocol.html" import split with context %}
 
-<div id="nextgen">
-  {% call split(
-    image_url='img/firefox/developer/stylo-engine.svg',
-    block_class='t-performance'
-  ) %}
-    <h2 class="c-title">{{ ftl('firefox-developer-faster-performance') }}</h2>
-    <p class="c-subtitle">{{ ftl('firefox-developer-a-next-generation') }}</p>
-    <p>
-      {{ ftl('firefox-developer-firefox-quantum-includes') }}
-    </p>
-    <p class="mzp-c-cta-link"><a href="https://hacks.mozilla.org/2017/08/inside-a-super-fast-css-engine-quantum-css-aka-stylo/">{{ ftl('ui-learn-more') }}</a></p>
-  {% endcall%}
-</div>
+{% call split(
+  id="nextgen",
+  image_url='img/firefox/developer/stylo-engine.svg',
+  block_class='t-performance'
+) %}
+  <h2 class="c-title">{{ ftl('firefox-developer-faster-performance') }}</h2>
+  <p class="c-subtitle">{{ ftl('firefox-developer-a-next-generation') }}</p>
+  <p>
+    {{ ftl('firefox-developer-firefox-quantum-includes') }}
+  </p>
+  <p class="mzp-c-cta-link"><a href="https://hacks.mozilla.org/2017/08/inside-a-super-fast-css-engine-quantum-css-aka-stylo/">{{ ftl('ui-learn-more') }}</a></p>
+{% endcall%}
