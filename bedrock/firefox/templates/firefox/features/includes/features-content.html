@@ -10,7 +10,7 @@
       image_width='32',
       body=True,
     ) %}
-      <p><a href="{{ url('firefox.features.fast') }}" rel="external">{{ ftl('features-shared-browse-faster') }}</a></p>
+      <p><a href="{{ url('firefox.features.fast') }}">{{ ftl('features-shared-browse-faster') }}</a></p>
     {% endcall %}
 
     {% call picto(
@@ -28,7 +28,7 @@
       image_width='32',
       body=True,
     ) %}
-      <p><a href="{{ url('firefox.features.memory') }}" rel="external">{{ ftl('features-shared-balanced-memory') }}</a></p>
+      <p><a href="{{ url('firefox.features.memory') }}">{{ ftl('features-shared-balanced-memory') }}</a></p>
     {% endcall %}
 
     {% call picto(
@@ -37,7 +37,7 @@
       image_width='32',
       body=True,
     ) %}
-      <p><a href="{{ url('firefox.features.private-browsing') }}" rel="external">{{ ftl('features-shared-more-powerful-private-browsing') }}</a></p>
+      <p><a href="{{ url('firefox.features.private-browsing') }}">{{ ftl('features-shared-more-powerful-private-browsing') }}</a></p>
     {% endcall %}
 
     {% call picto(
@@ -46,7 +46,7 @@
       image_width='32',
       body=True,
     ) %}
-      <p><a href="{{ url('firefox.features.adblocker') }}" rel="external">{{ ftl('features-shared-ad-tracker-blocking') }}</a></p>
+      <p><a href="{{ url('firefox.features.adblocker') }}">{{ ftl('features-shared-ad-tracker-blocking') }}</a></p>
     {% endcall %}
 
     {% call picto(
@@ -55,7 +55,7 @@
       image_width='32',
       body=True,
     ) %}
-      <p><a href="{{ url('firefox.features.password-manager') }}" rel="external">{{ ftl('features-shared-password-manager') }}</a></p>
+      <p><a href="{{ url('firefox.features.password-manager') }}">{{ ftl('features-shared-password-manager') }}</a></p>
     {% endcall %}
 
     {% call picto(
@@ -73,7 +73,7 @@
       image_width='32',
       body=True,
     ) %}
-      <p><a href="{{ url('firefox.sync') }}" rel="external">{{ ftl('features-shared-sync-between-devices') }}</a></p>
+      <p><a href="{{ url('firefox.sync') }}">{{ ftl('features-shared-sync-between-devices') }}</a></p>
     {% endcall %}
 
     {% call picto(
@@ -82,7 +82,7 @@
       image_width='32',
       body=True,
     ) %}
-      <p><a href="{{ url('firefox.features.bookmarks') }}" rel="external">{{ ftl('features-shared-better-bookmarks') }}</a></p>
+      <p><a href="{{ url('firefox.features.bookmarks') }}">{{ ftl('features-shared-better-bookmarks') }}</a></p>
     {% endcall %}
 
   {% if ftl_has_messages('features-shared-fingerprinter-blocking') %}
@@ -92,7 +92,7 @@
       image_width='32',
       body=True,
     ) %}
-      <p><a class="mzp-c-cta-link" href="{{ url('firefox.features.fingerprinting') }}">{{ ftl('features-shared-fingerprinter-blocking') }}</a></p>
+      <p><a href="{{ url('firefox.features.fingerprinting') }}">{{ ftl('features-shared-fingerprinter-blocking') }}</a></p>
     {% endcall %}
   {% endif %}
 
