@@ -62,16 +62,14 @@
   </div>
   {% endcall %}
 
-  <section class="mzp-l-content">
+
+
+  <section>
     <h2 class="mzp-c-section-heading">{{ ftl('browsers-chromebook-why-get-firefox') }}</h2>
-
-    {% call feature_card(
+    {% call split(
       image_url='img/firefox/browsers/chromebook/shield.png',
-      include_highres_image=True,
-      aspect_ratio='mzp-has-aspect-1-1',
-      class='mzp-l-card-feature-left-half mzp-t-firefox'
+      include_highres_image=True
     ) %}
-
       <p>{{ ftl('browsers-chromebook-while-a-chromebook') }}</p>
       <ul class="mzp-u-list-styled">
         <li>{{ ftl('browsers-chromebook-alwayson-tracking-protection') }}</li>

@@ -7,13 +7,11 @@ $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
 @import '../../../protocol/css/components/card';
-@import '../../../protocol/css/components/feature-card';
 @import '../../../protocol/css/components/logos/logo-product-firefox';
 @import '../../../protocol/css/components/section-heading';
 @import '../../../protocol/css/components/split';
 @import '../../protocol/components/custom-menu-list';
 @import '../../../protocol/css/templates/card-layout';
-
 
 .mzp-c-split .mzp-c-logo {
     margin: -$spacing-lg 0 $spacing-xl;
@@ -31,4 +29,13 @@ $image-path: '/media/protocol/img';
     img {
         margin: 0 auto $spacing-xl;
     }
+}
+
+.mzp-c-section-heading + .mzp-c-split {
+    padding-top: 0;
+}
+
+// should update upstream in protocol
+.mzp-c-split-media {
+    max-width: 100%;
 }
