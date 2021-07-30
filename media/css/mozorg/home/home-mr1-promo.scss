@@ -82,6 +82,11 @@ $image-path: '/media/protocol/img';
     margin-top: $spacing-sm;
     position: relative;
     z-index: 11;
+
+    a:link,
+    a:visited {
+        color: get-theme('body-text-color');
+    }
 }
 
 .c-fxpromo-caption-name {
