@@ -1321,7 +1321,7 @@
     },
     {
       "files": [
-        "js/base/class-list-polyfill.js",
+        "js/libs/classlist.js",
         "js/base/search-params.js",
         "js/base/mozilla-utils.js",
         "js/base/mozilla-client.js",
