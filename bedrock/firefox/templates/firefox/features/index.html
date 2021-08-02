@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import hero, picto_card with context %}
+{% from "macros-protocol.html" import split, picto with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -18,224 +18,224 @@
 {% endblock %}
 
 {% block content %}
-  {% call hero(
-      title=ftl('features-index-firefox-features'),
-      desc=ftl('features-index-firefox-is-fast'),
-      class='mzp-has-image',
-      include_cta=True,
-      include_highres_image=True,
+  {% call split(
+      block_class='mzp-l-split-hide-media-on-sm-md mzp-l-split-center-on-sm-md',
+      theme_class='',
+      media_class='mzp-l-split-h-center',
       image_url='img/firefox/features/index/features-hero.png',
-      heading_level=1
+      include_highres_image=True,
     ) %}
+      <h1 class="mzp-u-title-xl">{{ ftl('features-index-firefox-features') }}</h1>
+      <div class="c-hero-desc">
+        <p>{{ ftl('features-index-firefox-is-fast') }}</p>
+      </div>
       {{ download_firefox(alt_copy=ftl('features-index-download-latest'), dom_id='features-header-download', download_location='primary cta') }}
   {% endcall %}
 
-  <section class="mzp-l-content main-content">
-    <h2 class="section-title">{{ ftl('features-shared-a-better-internet-experience') }}</h2>
+  <section class="mzp-l-content mzp-t-content-lg main-content">
+    <h2 class="mzp-c-section-heading">{{ ftl('features-shared-a-better-internet-experience') }}</h2>
 
-    <div class="features mzp-l-card-third index">
-      <section class="mzp-c-card-picto faster">
-        <div class="mzp-c-card-picto-content ">
-          <h3 class="mzp-c-card-picto-title">{{ ftl('features-shared-browse-faster') }}</h3>
-          <div class="mzp-c-card-picto-desc">
-            <p>{{ ftl('features-index-use-less-memory') }}</p>
-            <a class="mzp-c-cta-link" href="{{ url('firefox.features.fast') }}">{{ ftl('ui-learn-more') }}</a>
-          </div>
-        </div>
-      </section>
+    <ul class="mzp-l-columns mzp-t-columns-three">
+      {% call picto(
+        base_el='li',
+        title=ftl('features-shared-browse-faster'),
+        image_url='protocol/img/icons/brand/orange/speedometer.svg',
+        body=True,
+      ) %}
+        <p>{{ ftl('features-index-use-less-memory') }}</p>
+        <a class="mzp-c-cta-link" href="{{ url('firefox.features.fast') }}">{{ ftl('ui-learn-more') }}</a>
+      {% endcall %}
 
-      <section class="mzp-c-card-picto extensions">
-        <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ ftl('features-shared-your-favorite-extensions') }}</h3>
-          <div class="mzp-c-card-picto-desc">
-            <p>{{ ftl('features-index-add-powerful-functions') }}</p>
-            <a class="mzp-c-cta-link" href="https://addons.mozilla.org/firefox/{{ utm_params }}" rel="external">{{ ftl('features-index-see-all') }}</a>
-          </div>
-        </div>
-      </section>
+      {% call picto(
+        base_el='li',
+        title=ftl('features-shared-your-favorite-extensions'),
+        image_url='protocol/img/icons/brand/orange/feature-extensions-puzzle.svg',
+        body=True,
+      ) %}
+        <p>{{ ftl('features-index-add-powerful-functions') }}</p>
+        <a class="mzp-c-cta-link" href="https://addons.mozilla.org/firefox/{{ utm_params }}" rel="external">{{ ftl('features-index-see-all') }}</a>
+      {% endcall %}
 
-      <section class="mzp-c-card-picto memory">
-        <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ ftl('features-shared-balanced-memory') }}</h3>
-          <div class="mzp-c-card-picto-desc">
-            <p>{{ ftl('features-index-just-enough') }}</p>
-            <a class="mzp-c-cta-link" href="{{ url('firefox.features.memory') }}">{{ ftl('ui-learn-more') }}</a>
-          </div>
-        </div>
-      </section>
-    </div>
+      {% call picto(
+        base_el='li',
+        title=ftl('features-shared-balanced-memory'),
+        image_url='protocol/img/icons/brand/orange/microchip.svg',
+        body=True,
+      ) %}
+        <p>{{ ftl('features-index-just-enough') }}</p>
+        <a class="mzp-c-cta-link" href="{{ url('firefox.features.memory') }}">{{ ftl('ui-learn-more') }}</a>
+      {% endcall %}
 
-    <div class="features mzp-l-card-third">
-      <section class="mzp-c-card-picto browsing">
-        <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ ftl('features-shared-more-powerful-private-browsing') }}</h3>
-          <div class="mzp-c-card-picto-desc">
-            <p>{{ ftl('features-index-private-browsing-mode') }}</p>
-            <a class="mzp-c-cta-link" href="{{ url('firefox.features.private-browsing') }}">{{ ftl('ui-learn-more') }}</a>
-          </div>
-        </div>
-      </section>
+      {% call picto(
+        base_el='li',
+        title=ftl('features-shared-more-powerful-private-browsing'),
+        image_url='protocol/img/icons/brand/violet/feature-private-browsing-mask.svg',
+        body=True,
+      ) %}
+        <p>{{ ftl('features-index-private-browsing-mode') }}</p>
+        <a class="mzp-c-cta-link" href="{{ url('firefox.features.private-browsing') }}">{{ ftl('ui-learn-more') }}</a>
+      {% endcall %}
 
-      <section class="mzp-c-card-picto blocking">
-        <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ ftl('features-shared-ad-tracker-blocking') }}</h3>
-          <div class="mzp-c-card-picto-desc">
-            <p>{{ ftl('features-index-firefox-automatically') }}</p>
-            <a class="mzp-c-cta-link" href="{{ url('firefox.features.adblocker') }}">{{ ftl('ui-learn-more') }}</a>
-          </div>
-        </div>
-      </section>
+      {% call picto(
+        base_el='li',
+        title=ftl('features-shared-ad-tracker-blocking'),
+        image_url='protocol/img/icons/brand/violet/feature-tracking-protection-shield.svg',
+        body=True,
+      ) %}
+        <p>{{ ftl('features-index-firefox-automatically') }}</p>
+        <a class="mzp-c-cta-link" href="{{ url('firefox.features.adblocker') }}">{{ ftl('ui-learn-more') }}</a>
+      {% endcall %}
 
-      <section class="mzp-c-card-picto password">
-        <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ ftl('features-shared-password-manager') }}</h3>
-          <div class="mzp-c-card-picto-desc">
-            <p>{{ ftl('features-index-access-all-passwords') }}</p>
-            <a class="mzp-c-cta-link" href="{{ url('firefox.features.password-manager') }}">{{ ftl('ui-learn-more') }}</a>
-          </div>
-        </div>
-      </section>
-    </div>
+      {% call picto(
+        base_el='li',
+        title=ftl('features-shared-password-manager'),
+        image_url='protocol/img/icons/brand/violet/password.svg',
+        body=True,
+      ) %}
+        <p>{{ ftl('features-index-access-all-passwords') }}</p>
+        <a class="mzp-c-cta-link" href="{{ url('firefox.features.password-manager') }}">{{ ftl('ui-learn-more') }}</a>
+      {% endcall %}
 
-    <div class="features mzp-l-card-third">
-      <section class="mzp-c-card-picto customize">
-        <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ ftl('features-shared-customize-your-browser') }}</h3>
-          <div class="mzp-c-card-picto-desc">
-            <p>{{ ftl('features-index-give-your-browser') }}</p>
-            <a class="mzp-c-cta-link" href="https://addons.mozilla.org/firefox/themes/{{ utm_params }}" rel="external">{{ ftl('features-index-see-themes') }}</a>
-          </div>
-        </div>
-      </section>
+      {% call picto(
+        base_el='li',
+        title=ftl('features-shared-customize-your-browser'),
+        image_url='protocol/img/icons/brand/pink/paintbrush.svg',
+        body=True,
+      ) %}
+        <p>{{ ftl('features-index-give-your-browser') }}</p>
+        <a class="mzp-c-cta-link" href="https://addons.mozilla.org/firefox/themes/{{ utm_params }}" rel="external">{{ ftl('features-index-see-themes') }}</a>
+      {% endcall %}
 
-      <section class="mzp-c-card-picto sync">
-        <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ ftl('features-shared-sync-between-devices') }}</h3>
-          <div class="mzp-c-card-picto-desc">
-            <p>{{ ftl('features-index-important-stuff') }}</p>
-            <a class="mzp-c-cta-link" href="{{ url('firefox.sync') }}">{{ ftl('features-index-get-an-account') }}</a>
-          </div>
-        </div>
-      </section>
+      {% call picto(
+        base_el='li',
+        title=ftl('features-shared-sync-between-devices'),
+        image_url='protocol/img/icons/brand/pink/feature-sync-arrows.svg',
+        body=True,
+      ) %}
+        <p>{{ ftl('features-index-important-stuff') }}</p>
+        <a class="mzp-c-cta-link" href="{{ url('firefox.sync') }}">{{ ftl('features-index-get-an-account') }}</a>
+      {% endcall %}
 
-      <section class="mzp-c-card-picto bookmarks">
-        <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ ftl('features-shared-better-bookmarks') }}</h3>
-          <div class="mzp-c-card-picto-desc">
-            <p>{{ ftl('features-index-use-the-bookmark') }}</p>
-            <a class="mzp-c-cta-link" href="{{ url('firefox.features.bookmarks') }}">{{ ftl('ui-learn-more') }}</a>
-          </div>
-        </div>
-      </section>
-    </div>
+      {% call picto(
+        base_el='li',
+        title=ftl('features-shared-better-bookmarks'),
+        image_url='protocol/img/icons/brand/pink/feature-bookmarks-star.svg',
+        body=True,
+      ) %}
+        <p>{{ ftl('features-index-use-the-bookmark') }}</p>
+        <a class="mzp-c-cta-link" href="{{ url('firefox.features.bookmarks') }}">{{ ftl('ui-learn-more') }}</a>
+      {% endcall %}
 
-    <div class="features mzp-l-card-third">
     {% if ftl_has_messages('features-index-fingerprinter-blocking', 'features-index-fingerprinting-is-a') %}
-      <section class="mzp-c-card-picto fingerprinting">
-        <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ ftl('features-index-fingerprinter-blocking') }}</h3>
-          <div class="mzp-c-card-picto-desc">
-            <p>{{ ftl('features-index-fingerprinting-is-a') }}</p>
-            <a class="mzp-c-cta-link" href="{{ url('firefox.features.fingerprinting') }}">{{ ftl('features-index-block-fingerprinters') }}</a>
-          </div>
-        </div>
-      </section>
+      {% call picto(
+        base_el='li',
+        title=ftl('features-index-fingerprinter-blocking'),
+        image_url='img/firefox/features/index/feature_icons/fingerprint_blue.svg',
+        body=True,
+      ) %}
+        <p>{{ ftl('features-index-fingerprinting-is-a') }}</p>
+        <a class="mzp-c-cta-link" href="{{ url('firefox.features.fingerprinting') }}">{{ ftl('features-index-block-fingerprinters') }}</a>
+      {% endcall %}
     {% endif %}
 
     {% if ftl_has_messages('features-index-translate-the-web', 'features-index-translate-more-than') %}
-      <section class="mzp-c-card-picto translate">
-        <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ ftl('features-index-translate-the-web') }}</h3>
-          <div class="mzp-c-card-picto-desc">
-            <p>{{ ftl('features-index-translate-more-than') }}</p>
-            <a class="mzp-c-cta-link" href="{{ url('firefox.features.translate') }}">{{ ftl('features-index-translate-to-your') }}</a>
-          </div>
-        </div>
-      </section>
+      {% call picto(
+        base_el='li',
+        title=ftl('features-index-translate-the-web'),
+        image_url='img/firefox/features/index/feature_icons/language_blue.svg',
+        body=True,
+      ) %}
+        <p>{{ ftl('features-index-translate-more-than') }}</p>
+        <a class="mzp-c-cta-link" href="{{ url('firefox.features.translate') }}">{{ ftl('features-index-translate-to-your') }}</a>
+      {% endcall %}
     {% endif %}
 
     {% if ftl_has_messages('features-index-picture-in-picture', 'features-index-got-things-to-do') %}
-      <section class="mzp-c-card-picto pip">
-        <div class="mzp-c-card-picto-content">
-          <h3 class="mzp-c-card-picto-title">{{ ftl('features-index-picture-in-picture') }}</h3>
-          <div class="mzp-c-card-picto-desc">
-            <p>{{ ftl('features-index-got-things-to-do') }}</p>
-            <a class="mzp-c-cta-link" href="{{ url('firefox.features.picture-in-picture') }}">{{ ftl('ui-learn-more') }}</a>
-          </div>
-        </div>
-      </section>
-    </div>
+      {% call picto(
+        base_el='li',
+        title=ftl('features-index-picture-in-picture'),
+        image_url='img/firefox/features/index/feature_icons/picture-in-picture_blue.svg',
+        body=True,
+      ) %}
+        <p>{{ ftl('features-index-got-things-to-do') }}</p>
+        <a class="mzp-c-cta-link" href="{{ url('firefox.features.picture-in-picture') }}">{{ ftl('ui-learn-more') }}</a>
+      {% endcall %}
     {% endif %}
-
+    </ul>
   </section>
 
-  <section class="secondary-content">
+  <section class="secondary-content mzp-t-background-alt">
     <div class="mzp-l-content">
-      <h2 class="mzp-u-title-sm section-title">{{ ftl('features-index-from-the-company')}}</h2>
+      <h2 class="mzp-c-section-heading">{{ ftl('features-index-from-the-company')}}</h2>
 
-      <div class="benefits-1 mzp-l-card-third ">
-        <section class="mzp-c-card-picto mzp-c-card-picto-compact open-source">
-          <div class="mzp-c-card-picto-content">
-            <h3 class="mzp-c-card-picto-title">{{ ftl('features-index-open-source-minds') }}</h3>
-            <div class="mzp-c-card-picto-desc">
-              <p>{{ ftl('features-index-mozilla-creates') }}</p>
-              <a class="mzp-c-cta-link" href="{{ url('firefox.features.independent') }}">{{ ftl('features-index-see-what-makes-us-different') }}</a>
-            </div>
-          </div>
-        </section>
+      <ul class="mzp-l-columns mzp-t-columns-three mzp-t-picto-side">
+        {% call picto(
+          base_el='li',
+          title=ftl('features-index-open-source-minds'),
+          image_url='img/firefox/features/index/benefit_icons/opensource.svg',
+          image_width='24',
+          body=True,
+        ) %}
+          <p>{{ ftl('features-index-mozilla-creates') }}</p>
+          <a class="mzp-c-cta-link" href="{{ url('firefox.features.independent') }}">{{ ftl('features-index-see-what-makes-us-different') }}</a>
+        {% endcall %}
 
-        <section class="mzp-c-card-picto mzp-c-card-picto-compact non-profit">
-          <div class="mzp-c-card-picto-content">
-            <h3 class="mzp-c-card-picto-title">{{ ftl('features-index-by-not-for-profit-mozilla', fallback='features-index-by-non-profit-mozilla') }}</h3>
-            <div class="mzp-c-card-picto-desc">
-              <p>{{ ftl('features-index-on-a-mission') }}</p>
-              <a class="mzp-c-cta-link" href="{{ url('mozorg.mission') }}" rel="external">{{ ftl('features-index-read-mozillas-mission') }}</a>
-            </div>
-          </div>
-        </section>
+        {% call picto(
+          base_el='li',
+          title=ftl('features-index-by-not-for-profit-mozilla', fallback='features-index-by-non-profit-mozilla'),
+          image_url='img/firefox/features/index/benefit_icons/mozilla.svg',
+          image_width='24',
+          body=True,
+        ) %}
+          <p>{{ ftl('features-index-on-a-mission') }}</p>
+          <a class="mzp-c-cta-link" href="{{ url('mozorg.mission') }}" rel="external">{{ ftl('features-index-read-mozillas-mission') }}</a>
+        {% endcall %}
 
-        <section class="mzp-c-card-picto mzp-c-card-picto-compact independence">
-          <div class="mzp-c-card-picto-content">
-            <h3 class="mzp-c-card-picto-title">{{ ftl('features-index-keep-corporate-power') }}</h3>
-            <div class="mzp-c-card-picto-desc">
-              <p>{{ ftl('features-index-independent-browser') }}</p>
-              <a class="mzp-c-cta-link" href="{{ url('firefox.features.independent') }}">{{ ftl('features-index-choose-independence') }}</a>
-            </div>
-          </div>
-        </section>
-      </div>
+        {% call picto(
+          base_el='li',
+          title=ftl('features-index-keep-corporate-power'),
+          image_url='img/firefox/features/index/benefit_icons/mountain.svg',
+          image_width='24',
+          body=True,
+        ) %}
+          <p>{{ ftl('features-index-independent-browser') }}</p>
+          <a class="mzp-c-cta-link" href="{{ url('firefox.features.independent') }}">{{ ftl('features-index-choose-independence') }}</a>
+        {% endcall %}
 
-      <div class="benefits-2 mzp-l-card-third">
-        <section class="mzp-c-card-picto mzp-c-card-picto-compact private">
-          <div class="mzp-c-card-picto-content">
-            <h3 class="mzp-c-card-picto-title">{{ ftl('features-index-private-by-default') }}</h3>
-            <div class="mzp-c-card-picto-desc">
-              <p>{{ ftl('features-index-opted-in-to-privacy-so-you') }}</p>
-              <a class="mzp-c-cta-link" href="{{ url('privacy') }}">{{ ftl('features-index-read-our-privacy-policy') }}</a>
-            </div>
-          </div>
-        </section>
+        {% call picto(
+          base_el='li',
+          title=ftl('features-index-private-by-default'),
+          image_url='img/firefox/features/index/benefit_icons/lock.svg',
+          image_width='24',
+          body=True,
+        ) %}
+          <p>{{ ftl('features-index-opted-in-to-privacy-so-you') }}</p>
+          <a class="mzp-c-cta-link" href="{{ url('privacy') }}">{{ ftl('features-index-read-our-privacy-policy') }}</a>
+        {% endcall %}
 
-        <section class="mzp-c-card-picto mzp-c-card-picto-compact tracking-protection">
-          <div class="mzp-c-card-picto-content">
-            <h3 class="mzp-c-card-picto-title">{{ ftl('features-index-enhanced-tracking') }}</h3>
-            <div class="mzp-c-card-picto-desc">
-              <p>{{ ftl('features-index-we-dont-sell-access-to-your') }}</p>
-              <a class="mzp-c-cta-link" href="{{ url('firefox.features.private-browsing') }}">{{ ftl('features-index-get-firefox-for-privacy') }}</a>
-            </div>
-          </div>
-        </section>
+        {% call picto(
+          base_el='li',
+          title=ftl('features-index-enhanced-tracking'),
+          image_url='img/firefox/features/index/benefit_icons/shield.svg',
+          image_width='24',
+          body=True,
+        ) %}
+          <p>{{ ftl('features-index-we-dont-sell-access-to-your') }}</p>
+          <a class="mzp-c-cta-link" href="{{ url('firefox.features.private-browsing') }}">{{ ftl('features-index-get-firefox-for-privacy') }}</a>
+        {% endcall %}
 
-        <section class="mzp-c-card-picto mzp-c-card-picto-compact stacks-up">
-          <div class="mzp-c-card-picto-content">
-            <h3 class="mzp-c-card-picto-title">{{ ftl('features-index-firefox-vs') }}</h3>
-            <div class="mzp-c-card-picto-desc">
-              <p>{{ ftl('features-index-stack-up') }}</p>
-              <a class="mzp-c-cta-link" href="{{ url('firefox.browsers.compare.index') }}">{{ ftl('features-index-compare-browsers') }}</a>
-            </div>
-          </div>
-        </section>
-      </div>
+        {% call picto(
+          base_el='li',
+          title=ftl('features-index-firefox-vs'),
+          image_url='img/firefox/features/index/benefit_icons/browser.svg',
+          image_width='24',
+          body=True,
+        ) %}
+          <p>{{ ftl('features-index-stack-up') }}</p>
+          <a class="mzp-c-cta-link" href="{{ url('firefox.browsers.compare.index') }}">{{ ftl('features-index-compare-browsers') }}</a>
+        {% endcall %}
+      </ul>
+
     </div>
   </section>
 {% endblock %}

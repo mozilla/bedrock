@@ -17,15 +17,15 @@
 {% endblock %}
 
 {% block content %}
-<section class="mzp-c-hero compare-details-hero compare-details-hero--brave">
+<section class="compare-details-hero compare-details-hero--brave">
   <div class="mzp-l-content l-compare-details-content">
-    <div class="mzp-c-hero-body">
+    <div class="compare-hero-body">
       <div class="compare-details-hero-image">
         <img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="">
         <img src="{{ static('img/logos/brave/logo-brave.png') }}" height="36" width="36" alt="">
       </div>
-      <h1 class="mzp-c-hero-title">{{ ftl('compare-brave-comparing-firefox-browser') }}</h1>
-      <div class="mzp-c-hero-cta">
+      <h1 class="compare-hero-title">{{ ftl('compare-brave-comparing-firefox-browser') }}</h1>
+      <div class="compare-hero-cta">
         {{ download_firefox_thanks(locale_in_transition=True, download_location='primary cta') }}
       </div>
     </div>
@@ -35,9 +35,9 @@
 <div class="mzp-l-content l-compare-details-content">
   <article class="mzp-c-article">
     <section class="compare-details-section-summary">
-        <p class="compare-details-section-intro">{{ ftl('compare-brave-just-like-the-firefox-browser') }}</p>
+      <p class="compare-details-section-intro">{{ ftl('compare-brave-just-like-the-firefox-browser') }}</p>
 
-        {{ high_res_img('img/firefox/compare/compare-browser-brave.png', {'alt': '', 'width': '544', 'height': '424', 'class': 'compare-details-image'}) }}
+      {{ high_res_img('img/firefox/compare/compare-browser-brave.png', {'alt': '', 'width': '544', 'height': '424', 'class': 'compare-details-image'}) }}
     </section>
 
     <section class="compare-section-privacy">

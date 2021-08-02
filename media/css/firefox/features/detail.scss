@@ -6,9 +6,11 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/components/hero';
-@import '../../../protocol/css/templates/card-layout';
 @import '../../../protocol/css/components/feature-card';
+@import '../../../protocol/css/components/picto';
+@import '../../../protocol/css/components/section-heading';
+@import '../../../protocol/css/components/split';
+@import '../../../protocol/css/templates/multi-column';
 
 .c-hero {
     .c-hero-icon {
@@ -38,19 +40,15 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.c-features-links .mzp-c-card-picto-desc {
+.mzp-c-picto-image {
+    width: 32px;
+    margin-bottom: $spacing-sm;
+}
+
+.mzp-c-picto-body {
     font-weight: bold;
 }
 
-.mzp-l-content {
-    padding-top: $layout-lg;
-    padding-bottom: $layout-lg;
-}
-
-.section-title {
-    text-align: center;
-
-    @media #{$mq-md} {
-        margin: $spacing-xl 0;
-    }
+.mzp-c-section-heading {
+    @include text-title-sm;
 }

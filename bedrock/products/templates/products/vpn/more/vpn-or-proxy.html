@@ -38,7 +38,7 @@
   <li>{{ ftl('vpn-or-proxy-encrypting-your-traffic') }}</li>
 </ol>
 
-<p>{{ ftl('vpn-or-proxy-a-vpn-also', mozvpn=url('products.vpn.landing'), countries='30') }}</p>
+<p>{{ ftl('vpn-or-proxy-a-vpn-also', mozvpn=url('products.vpn.landing'), countries=settings.VPN_CONNECT_COUNTRIES) }}</p>
 
 <h3>{{ ftl('vpn-or-proxy-choose-a-trustworthy') }}</h3>
 <p>{{ ftl('vpn-or-proxy-the-most-important', cnet='https://www.cnet.com/news/why-you-should-be-skeptical-about-a-vpns-no-logs-claims/', pcmag='https://www.pcmag.com/news/7-vpn-services-found-recording-user-logs-despite-no-log-pledge') }}</p>

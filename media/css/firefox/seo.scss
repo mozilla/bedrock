@@ -6,27 +6,25 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import "../../protocol/css/includes/lib";
-@import "../../protocol/css/components/hero";
 @import "../../protocol/css/components/article";
 @import "../../protocol/css/components/call-out";
+@import "../../protocol/css/components/split";
+@import '../../protocol/css/components/logos/logo-product-firefox';
 
-.mzp-c-hero.mzp-t-dark {
-    background: $color-ink-80;
-
-    @media #{$mq-lg} {
-        margin-bottom: $layout-lg;
-    }
+.c-hero-desc {
+    @include text-body-xl;
+    margin-bottom: $layout-md;
 }
 
 .mzp-c-button-download-container {
     margin-bottom: 0;
 }
 
-.mzp-c-hero-image {
-    display: none;
+.mzp-c-logo {
+    margin: 0 auto $layout-md;
 
-    @media #{$mq-md} {
-        display: block;
+    @media #{$mq-lg} {
+        margin: 0 0 $layout-md;
     }
 }
 

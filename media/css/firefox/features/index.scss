@@ -2,77 +2,57 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-$font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/components/hero';
-@import '../../../protocol/css/templates/card-layout';
+@import '../../../protocol/css/components/split';
+@import '../../../protocol/css/components/picto';
+@import '../../../protocol/css/components/section-heading';
+@import '../../../protocol/css/templates/multi-column';
 
-.mzp-c-hero.mzp-has-image {
-    min-height: 450px;
+.c-hero-desc {
+    @include text-body-xl;
+    margin-bottom: $layout-md;
 }
 
-.mzp-c-hero-title {
-    @include text-title-xl;
-}
-
-.section-title {
-    text-align: center;
-    @include text-title-sm;
+// Add bottom margins when pictos stack on mobile.
+// We should probably fix this upstream in Protocol.
+.mzp-l-columns .mzp-c-picto {
+    margin-bottom: $layout-md;
 
     @media #{$mq-md} {
-        margin: $spacing-xl 0;
+        margin-bottom: 0;
     }
 }
 
 @media #{$mq-lg} {
     .main-content {
         margin-bottom: $layout-lg;
-    }
-}
 
-.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content {
-    padding-left: 50px;
-
-    .mzp-c-card-picto-title {
-        @include text-title-xs;
+        .mzp-l-columns {
+            row-gap: $layout-lg;
+        }
     }
 }
 
 // Secondary content
 .secondary-content {
-    padding: $spacing-xl 0;
-    background-color: $color-marketing-gray-10;
-
-    .mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
-        @include background-size(24px);
-        @include bidi(((background-position, right top, left top),));
-        background-color: transparent;
-        background-repeat: no-repeat;
+    .mzp-c-section-heading {
+        @include text-title-sm;
     }
-}
 
-.open-source.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
-    background-image: url('/media/img/firefox/features/index/benefit_icons/opensource.svg');
-}
+    .mzp-t-picto-side .mzp-c-picto {
+        @include bidi((
+            (padding-left, $layout-md, 0),
+            (padding-right, 0, $layout-md),
+        ));
+    }
 
-.non-profit.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
-    background-image: url('/media/img/firefox/features/index/benefit_icons/mozilla.svg');
-}
+    .mzp-c-picto-image {
+        width: 24px;
+    }
 
-.independence.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
-    background-image: url('/media/img/firefox/features/index/benefit_icons/mountain.svg');
-}
-
-.private.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
-    background-image: url('/media/img/firefox/features/index/benefit_icons/lock.svg');
-}
-
-.tracking-protection.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
-    background-image: url('/media/img/firefox/features/index/benefit_icons/shield.svg');
-}
-
-.stacks-up.mzp-c-card-picto.mzp-c-card-picto-compact .mzp-c-card-picto-content::before {
-    background-image: url('/media/img/firefox/features/index/benefit_icons/browser.svg');
+    .mzp-c-picto-heading {
+        @include text-title-2xs;
+    }
 }

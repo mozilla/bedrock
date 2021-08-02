@@ -1,82 +1,121 @@
-<section class="mzp-l-content c-features-links subpages">
-  <h2 class="section-title">{{ ftl('features-shared-more-firefox-features') }}</h2>
+{% from "macros-protocol.html" import picto with context %}
 
-  <section class="features mzp-l-card-third">
-    <section class="mzp-c-card-picto faster">
-      <div class="mzp-c-card-picto-content">
-        <div class="mzp-c-card-picto-desc">
-          <a href="{{ url('firefox.features.fast') }}" rel="external">{{ ftl('features-shared-browse-faster') }}</a>
-        </div>
-      </div>
-    </section>
+<section class="mzp-l-content mzp-t-content-lg c-features-links subpages">
+  <h3 class="mzp-c-section-heading">{{ ftl('features-shared-more-firefox-features') }}</h3>
 
-    <section class="mzp-c-card-picto extensions">
-      <div class="mzp-c-card-picto-content">
-        <div class="mzp-c-card-picto-desc">
-          <a href="https://addons.mozilla.org/firefox/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=firefox-features" rel="external">{{ ftl('features-shared-your-favorite-extensions') }}</a>
-        </div>
-      </div>
-    </section>
+  <ul class="mzp-l-columns mzp-t-columns-three">
+    {% call picto(
+      base_el='li',
+      image_url='protocol/img/icons/brand/orange/speedometer.svg',
+      image_width='32',
+      body=True,
+    ) %}
+      <p><a href="{{ url('firefox.features.fast') }}">{{ ftl('features-shared-browse-faster') }}</a></p>
+    {% endcall %}
 
-    <section class="mzp-c-card-picto memory">
-      <div class="mzp-c-card-picto-content">
-        <div class="mzp-c-card-picto-desc">
-          <a href="{{ url('firefox.features.memory') }}" rel="external">{{ ftl('features-shared-balanced-memory') }}</a>
-        </div>
-      </div>
-    </section>
-  </section>
+    {% call picto(
+      base_el='li',
+      image_url='protocol/img/icons/brand/orange/feature-extensions-puzzle.svg',
+      image_width='32',
+      body=True,
+    ) %}
+      <p><a href="https://addons.mozilla.org/firefox/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=firefox-features" rel="external">{{ ftl('features-shared-your-favorite-extensions') }}</a></p>
+    {% endcall %}
 
-  <section class="features mzp-l-card-third">
-    <section class="mzp-c-card-picto browsing">
-      <div class="mzp-c-card-picto-content">
-        <div class="mzp-c-card-picto-desc">
-          <a href="{{ url('firefox.features.private-browsing') }}" rel="external">{{ ftl('features-shared-more-powerful-private-browsing') }}</a>
-        </div>
-      </div>
-    </section>
+    {% call picto(
+      base_el='li',
+      image_url='protocol/img/icons/brand/orange/microchip.svg',
+      image_width='32',
+      body=True,
+    ) %}
+      <p><a href="{{ url('firefox.features.memory') }}">{{ ftl('features-shared-balanced-memory') }}</a></p>
+    {% endcall %}
 
-    <section class="mzp-c-card-picto blocking">
-      <div class="mzp-c-card-picto-content">
-        <div class="mzp-c-card-picto-desc">
-          <a href="{{ url('firefox.features.adblocker') }}" rel="external">{{ ftl('features-shared-ad-tracker-blocking') }}</a>
-        </div>
-      </div>
-    </section>
+    {% call picto(
+      base_el='li',
+      image_url='protocol/img/icons/brand/violet/feature-private-browsing-mask.svg',
+      image_width='32',
+      body=True,
+    ) %}
+      <p><a href="{{ url('firefox.features.private-browsing') }}">{{ ftl('features-shared-more-powerful-private-browsing') }}</a></p>
+    {% endcall %}
 
-    <section class="mzp-c-card-picto password">
-      <div class="mzp-c-card-picto-content">
-        <div class="mzp-c-card-picto-desc">
-          <a href="{{ url('firefox.features.password-manager') }}" rel="external">{{ ftl('features-shared-password-manager') }}</a>
-        </div>
-      </div>
-    </section>
-  </section>
+    {% call picto(
+      base_el='li',
+      image_url='protocol/img/icons/brand/violet/feature-tracking-protection-shield.svg',
+      image_width='32',
+      body=True,
+    ) %}
+      <p><a href="{{ url('firefox.features.adblocker') }}">{{ ftl('features-shared-ad-tracker-blocking') }}</a></p>
+    {% endcall %}
 
-  <section class="features mzp-l-card-third">
-    <section class="mzp-c-card-picto customize">
-      <div class="mzp-c-card-picto-content">
-        <div class="mzp-c-card-picto-desc">
-          <a href="https://addons.mozilla.org/firefox/themes/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=firefox-features" rel="external">{{ ftl('features-shared-customize-your-browser') }}</a>
-        </div>
-      </div>
-    </section>
+    {% call picto(
+      base_el='li',
+      image_url='protocol/img/icons/brand/violet/password.svg',
+      image_width='32',
+      body=True,
+    ) %}
+      <p><a href="{{ url('firefox.features.password-manager') }}">{{ ftl('features-shared-password-manager') }}</a></p>
+    {% endcall %}
 
-    <section class="mzp-c-card-picto sync">
-      <div class="mzp-c-card-picto-content">
-        <div class="mzp-c-card-picto-desc">
-          <a href="{{ url('firefox.sync') }}" rel="external">{{ ftl('features-shared-sync-between-devices') }}</a>
-        </div>
-      </div>
-    </section>
+    {% call picto(
+      base_el='li',
+      image_url='protocol/img/icons/brand/pink/paintbrush.svg',
+      image_width='32',
+      body=True,
+    ) %}
+      <p><a href="https://addons.mozilla.org/firefox/themes/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=firefox-features" rel="external">{{ ftl('features-shared-customize-your-browser') }}</a></p>
+    {% endcall %}
 
-    <section class="mzp-c-card-picto bookmarks">
-      <div class="mzp-c-card-picto-content">
-        <div class="mzp-c-card-picto-desc">
-          <a href="{{ url('firefox.features.bookmarks') }}" rel="external">{{ ftl('features-shared-better-bookmarks') }}</a>
-        </div>
-      </div>
-    </section>
-  </section>
+    {% call picto(
+      base_el='li',
+      image_url='protocol/img/icons/brand/pink/feature-sync-arrows.svg',
+      image_width='32',
+      body=True,
+    ) %}
+      <p><a href="{{ url('firefox.sync') }}">{{ ftl('features-shared-sync-between-devices') }}</a></p>
+    {% endcall %}
 
+    {% call picto(
+      base_el='li',
+      image_url='protocol/img/icons/brand/pink/feature-bookmarks-star.svg',
+      image_width='32',
+      body=True,
+    ) %}
+      <p><a href="{{ url('firefox.features.bookmarks') }}">{{ ftl('features-shared-better-bookmarks') }}</a></p>
+    {% endcall %}
+
+  {% if ftl_has_messages('features-shared-fingerprinter-blocking') %}
+    {% call picto(
+      base_el='li',
+      image_url='img/firefox/features/index/feature_icons/fingerprint_blue.svg',
+      image_width='32',
+      body=True,
+    ) %}
+      <p><a href="{{ url('firefox.features.fingerprinting') }}">{{ ftl('features-shared-fingerprinter-blocking') }}</a></p>
+    {% endcall %}
+  {% endif %}
+
+  {% if ftl_has_messages('features-shared-translate-the-web') %}
+    {% call picto(
+      base_el='li',
+      image_url='img/firefox/features/index/feature_icons/language_blue.svg',
+      image_width='32',
+      body=True,
+    ) %}
+      <p><a href="{{ url('firefox.features.translate') }}">{{ ftl('features-shared-translate-the-web') }}</a></p>
+    {% endcall %}
+  {% endif %}
+
+  {% if ftl_has_messages('features-shared-picture-in-picture') %}
+    {% call picto(
+      base_el='li',
+      image_url='img/firefox/features/index/feature_icons/picture-in-picture_blue.svg',
+      image_width='32',
+      body=True,
+    ) %}
+      <p><a href="{{ url('firefox.features.picture-in-picture') }}">{{ ftl('features-shared-picture-in-picture') }}</a></p>
+    {% endcall %}
+  {% endif %}
+  </ul>
 </section>

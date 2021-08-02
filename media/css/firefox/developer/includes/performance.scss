@@ -1,24 +1,7 @@
-@import '../../../../protocol/css/includes/lib';
-@import '../../../../protocol/css/components/feature-card';
-
-//*------------------------------------------------------------------*/
-// Performance
-
-.t-performance .mzp-c-card-feature.mzp-has-aspect-3-2 {
-    margin-bottom: 0;
+.t-performance .mzp-c-split-container {
+    box-sizing: content-box; // add default split padding to max-width
     max-width: $content-sm;
-
-    .mzp-c-card-feature-media {
-        padding-bottom: 71%;
-        margin-bottom: $layout-sm;
-    }
-
-    @media #{$mq-md} {
-        max-width: 100%;
-
-        .mzp-c-card-feature-media {
-            margin-bottom: 0;
-        }
+    @media #{$mq-lg} {
+        max-width: $content-max;
     }
 }
-

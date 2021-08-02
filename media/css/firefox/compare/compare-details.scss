@@ -2,23 +2,17 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-$font-path: "/media/fonts";
-$image-path: "/media/protocol/img";
-
 @import "../../../protocol/css/includes/lib";
-@import "../../../protocol/css/components/hero";
 @import '../../../protocol/css/components/menu-list';
 
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Hero
 
 .compare-details-hero {
-    .mzp-c-hero-body {
-        max-width: none;
-    }
+    text-align: center;
 
-    .mzp-c-hero-title {
+    .compare-hero-title {
         @include font-size(32px);
         margin-bottom: 0;
 
@@ -30,7 +24,7 @@ $image-path: "/media/protocol/img";
         }
     }
 
-    .mzp-c-hero-cta {
+    .compare-hero-cta {
         margin-top: $layout-sm;
 
         .is-firefox & {
