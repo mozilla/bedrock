@@ -570,8 +570,8 @@ redirectpatterns = (
 
     redirect(r'^projects/marketing(/.*)?$', 'https://wiki.mozilla.org/MarketingGuide'),
 
-    # bug 1288647
-    redirect(r'^hacking/?$', 'https://developer.mozilla.org/docs/Mozilla/Developer_guide/Introduction'),
+    # bug 1288647, 1722760
+    redirect(r'^hacking/?$', 'https://firefox-source-docs.mozilla.org/'),
 
     redirect(r'^(careers|jobs)/?$', 'https://careers.mozilla.org/'),
     redirect(r'^join/?$', 'https://donate.mozilla.org/'),
