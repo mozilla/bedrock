@@ -85,7 +85,7 @@ describe('fxa-utm-referral.js', function() {
             expect(Mozilla.UtmUrl.getAttributionData(validObj)).toEqual(validData);
         });
 
-        it('shoult return FxA flow params if present together with experiment entrypoint params'), function() {
+        it('should return FxA flow params if present together with experiment entrypoint params', function() {
             var validObj = {
                 'utm_source': 'vpn-client',
                 'utm_content': 'download-first-experiment',
@@ -113,9 +113,9 @@ describe('fxa-utm-referral.js', function() {
             };
 
             expect(Mozilla.UtmUrl.getAttributionData(validObj)).toEqual(validData);
-        };
+        });
 
-        it('shoult not return FxA flow params if experiment entrypoint params are also not present', function() {
+        it('should not return FxA flow params if experiment entrypoint params are also not present', function() {
             var validObj = {
                 'utm_source': 'desktop-snippet',
                 'utm_content': 'rel-esr',
