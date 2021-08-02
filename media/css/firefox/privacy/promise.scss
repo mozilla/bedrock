@@ -71,22 +71,24 @@ $image-path: '/media/protocol/img';
 }
 
 /* -------------------------------------------------------------------------- */
-// Privacy Promise Feature Cards
+// Privacy Promise Splits
 
 .privacy-promise-feature {
-    margin-bottom: $layout-xl;
-
-    .mzp-c-card-feature-title {
+    h2 {
         color: $color-violet-70;
     }
 
     .privacy-promise-sub-title {
         @include text-title-xs;
     }
+}
 
-    &:last-child {
-        margin-bottom: 0;
-    }
+.mzp-c-split-media {
+    max-width: 100%;
+}
+
+.mzp-c-split:not(:first-of-type) {
+    padding-top: 0;
 }
 
 /* -------------------------------------------------------------------------- */

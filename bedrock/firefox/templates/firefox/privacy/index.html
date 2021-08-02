@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import call_out, feature_card, hero, picto_card, hero with context %}
+{% from "macros-protocol.html" import call_out, split, picto_card, hero with context %}
 
 {% extends "firefox/privacy/base.html" %}
 
@@ -37,25 +37,23 @@
     class='call-out-data-promise')
   }}
 
-  <div class="mzp-l-content">
-    {% call feature_card(
-      title=ftl('firefox-privacy-hub-take-less'),
+  <div>
+    {% call split(
       image_url='img/firefox/privacy/promise/less.jpg',
       include_highres_image=True,
-      aspect_ratio='mzp-has-aspect-3-2',
-      class='privacy-promise-feature mzp-l-card-feature-right-half'
+      block_class='privacy-promise-feature mzp-l-split-reversed'
     ) %}
+      <h2>{{ ftl('firefox-privacy-hub-take-less') }}</h2>
       <h3 class="privacy-promise-sub-title">{{ ftl('firefox-privacy-hub-we-make-a-point-of-knowing') }}</h3>
       <p>{{ ftl('firefox-privacy-hub-all-tech-companies-collect') }}</p>
     {% endcall %}
 
-    {% call feature_card(
-      title=ftl('firefox-privacy-hub-keep-it-safe'),
+    {% call split(
       image_url='img/firefox/privacy/promise/safe.jpg',
       include_highres_image=True,
-      aspect_ratio='mzp-has-aspect-3-2',
-      class='privacy-promise-feature mzp-l-card-feature-left-half'
+      block_class='privacy-promise-feature'
     ) %}
+      <h2>{{ ftl('firefox-privacy-hub-keep-it-safe') }}</h2>
       <h3 class="privacy-promise-sub-title">{{ ftl('firefox-privacy-hub-we-do-the-hard-work-to-protect') }}</h3>
       <p>
         {# Our lean-data page is en-US only, so only link to it for English locales. #}
@@ -70,13 +68,12 @@
       </p>
     {% endcall %}
 
-    {% call feature_card(
-      title=ftl('firefox-privacy-hub-no-secrets'),
+    {% call split(
       image_url='img/firefox/privacy/promise/secrets.jpg',
       include_highres_image=True,
-      aspect_ratio='mzp-has-aspect-3-2',
-      class='privacy-promise-feature mzp-l-card-feature-right-half'
+      block_class='privacy-promise-feature mzp-l-split-reversed'
     ) %}
+      <h2>{{ ftl('firefox-privacy-hub-no-secrets') }}</h2>
       <h3 class="privacy-promise-sub-title">{{ ftl('firefox-privacy-hub-youll-always-know-where-you') }}</h3>
       <p>
         {{ ftl('firefox-privacy-hub-theres-no-hidden-agenda-here',
