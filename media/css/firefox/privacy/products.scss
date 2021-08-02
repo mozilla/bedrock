@@ -12,6 +12,7 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/components/logos/wordmark-product-monitor';
 @import '../../../protocol/css/components/logos/wordmark-product-vpn';
 @import '../../../protocol/css/components/logos/wordmark-product-pocket';
+@import '../../../protocol/css/components/logos/wordmark-product-firefox';
 
 .visually-hidden {
     @include visually-hidden;
@@ -41,63 +42,33 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Main Hero
 
-.privacy-products-hero.mzp-c-hero.mzp-t-dark {
-    @include bidi(((text-align, left, right),));
-    background-color: $color-ink-80;
-    padding-bottom: 0;
-
-    .mzp-c-hero-body {
-        max-width: none;
+.privacy-products {
+    .mzp-c-split-container {
+        max-width: $content-xl;
+        box-sizing: content-box;
     }
 
-    .mzp-c-hero-title {
-        @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-white-sm.png', auto, 40px);
-        @include bidi(((background-position, top left, top right),));
-        @include image-replaced;
-        background-repeat: no-repeat;
-        margin-bottom: $spacing-md;
-        min-height: 40px;
+    .mzp-c-wordmark {
+        margin-bottom: $spacing-lg;
     }
 
-    .privacy-products-hero-sub-title {
-        @include text-title-sm;
-    }
-
-    .privacy-products-hero-tagline {
-        font-weight: bold;
-        margin-top: $spacing-2xl;
-    }
-
-    .mzp-c-hero-image {
-        display: none;
-    }
-
-    &.mzp-t-dark .mzp-c-cta-link {
+    .mzp-t-dark .mzp-c-cta-link {
         color: $color-blue-30;
     }
+}
 
-    @media #{$mq-md} {
+.privacy-products-hero-sub-title {
+    @include text-title-sm;
+}
+
+.privacy-products-hero-tagline {
+    font-weight: bold;
+    margin-top: $spacing-2xl;
+}
+
+@media #{$mq-md} {
+    .privacy-products {
         padding-bottom: $spacing-lg;
-
-        .mzp-c-hero-title {
-            @include bidi(((background-position, top left, top right),));
-        }
-
-        .mzp-c-hero-image {
-            display: block;
-            margin-top: 65px;
-
-            img {
-                top: 0;
-                bottom: auto;
-            }
-        }
-    }
-
-    @media #{$mq-lg} {
-        .mzp-c-hero-image {
-            margin-top: 90px;
-        }
     }
 }
 
@@ -185,10 +156,6 @@ $image-path: '/media/protocol/img';
 
 .privacy-products-list {
     margin: $layout-md auto;
-
-    .mzp-c-split-container {
-        box-sizing: content-box;
-    }
 
     .mzp-c-wordmark {
         margin-bottom: $spacing-lg;

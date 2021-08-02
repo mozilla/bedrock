@@ -3,7 +3,7 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% from "macros.html" import fxa_email_form with context %}
-{% from "macros-protocol.html" import call_out, split, feature_card, picto_card, hero with context %}
+{% from "macros-protocol.html" import call_out, split, feature_card, picto_card with context %}
 
 {% extends "firefox/privacy/base.html" %}
 
@@ -28,14 +28,13 @@
     heading_level=1)
   }}
 
-  {% call hero(
-    title=ftl('firefox-privacy-hub-firefox-browser'),
-    class='privacy-products-hero mzp-has-image mzp-t-dark t-medium',
+  {% call split(
     image_url='img/firefox/privacy/products/report.svg',
     l10n_image=True,
-    include_cta=True,
-    heading_level=2
+    block_class='privacy-products-hero mzp-t-dark mzp-l-split-hide-media-on-sm-md'
   ) %}
+    <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox"></div>
+    <h2 class="visually-hidden">{{ ftl('firefox-privacy-hub-firefox-browser') }}</h2>
     <h3 class="privacy-products-hero-sub-title">
       {{ ftl('firefox-privacy-hub-2000-trackers-blocked-automatically') }}
     </h3>
