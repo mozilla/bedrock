@@ -6,7 +6,8 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/components/feature-card';
+@import '../../../protocol/css/components/feature-card'; //todo: remove when all fcs are off page
+@import '../../../protocol/css/components/split';
 @import '../../../protocol/css/components/card';
 @import '../../../protocol/css/components/hero';
 @import '../../../protocol/css/components/picto';
@@ -15,44 +16,18 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/components/inline-list';
 
 //* -------------------------------------------------------------------------- */
-// Layout adjustments
+// Split component adjustments
 
-.mzp-l-content {
-    // padding-bottom: $spacing-lg;
-
-    &.mzp-t-dark {
-        background: $color-marketing-gray-80;
-
-        .mzp-c-card-feature-desc {
-            color: $color-white;
-        }
-    }
-
-    img {
-        display: block;
-        margin: 0 auto;
-        max-width: 100%;
-    }
+.data-breaches .mzp-c-split:not(:first-of-type) {
+    padding-top: 0;
 }
 
-
-.mzp-c-card-feature {
-    &.mzp-l-card-feature-left-half,
-    &.mzp-l-card-feature-right-half {
-        margin-bottom: 0;
-    }
-
-    .mzp-c-card-feature-title {
+.mzp-c-split {
+    h2 {
         @include text-title-md;
     }
-
-    h3.mzp-c-card-feature-title,
-    .mzp-c-card-feature-desc h3 {
+    h3 {
         @include text-title-sm;
-    }
-
-    .mzp-c-card-feature-media {
-        margin-bottom: $spacing-xl;
     }
 }
 
@@ -63,16 +38,27 @@ body {
     counter-reset: tips;
 }
 
-.c-tips {
-    .mzp-c-card-feature-content {
-        h2 {
-            @include text-title-2xl;
+.c-tips-title {
+    .mzp-c-split-container {
+        max-width: $content-md;
+        box-sizing: content-box;
+    }
+}
+.c-tips-magnify {
+    .mzp-c-split-container {
+        max-width: $content-lg;
+        box-sizing: content-box;
+    }
+}
 
-            span {
-                @include text-title-md;
-                color: $color-ink-05;
-                display: block;
-            }
+.c-tips {
+    h2 {
+        @include text-title-2xl;
+
+        span {
+            @include text-title-md;
+            color: $color-ink-05;
+            display: block;
         }
     }
 
