@@ -132,7 +132,7 @@
   {% if ftl_has_messages('firefox-privacy-hub-protection-for-your-whole') %}
   {% set block_class = '' %}
   {% else %}
-  {% set block_class = 'mzp-l-split-reversed ' %}
+  {% set block_class = 'mzp-l-split-reversed' %}
   {% endif %}
     {% call split(
       image_url='img/firefox/privacy/products/pocket.png',
@@ -173,9 +173,9 @@
 
               <p class="fxa-signin">
               {{ ftl('firefox-privacy-hub-already-have-an-account',
-                      sign_in=fxa_link_fragment(entrypoint=_entrypoint, action='signin', optional_parameters={'utm_campaign': _utm_campaign}),
-                      class_name='js-fxa-cta-link js-fxa-product-button',
-                      learn_more=url('firefox.accounts') )}}
+                sign_in=fxa_link_fragment(entrypoint=_entrypoint, action='signin', optional_parameters={'utm_campaign': _utm_campaign}),
+                class_name='js-fxa-cta-link js-fxa-product-button',
+                learn_more=url('firefox.accounts') )}}
               </p>
             </div>
           </div>
