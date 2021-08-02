@@ -462,13 +462,29 @@ class TestWhatsNew(TestCase):
 
     # begin 91.0 whatsnew tests
 
+    def test_fx_91_0_0_en(self, render_mock):
+        """Should use whatsnew-fx91-en template for 91.0 in English"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'en-US'
+        self.view(req, version='91.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx91-en.html']
+
     def test_fx_91_0_0_de(self, render_mock):
-        """Should use whatsnew-fx90-en template for 90.0 in German"""
+        """Should use whatsnew-fx91-de template for 91.0 in German"""
         req = self.rf.get('/firefox/whatsnew/')
         req.locale = 'de'
         self.view(req, version='91.0')
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/whatsnew-fx91-de.html']
+
+    def test_fx_91_0_0_locale(self, render_mock):
+        """Should use standard whatsnew template for 91.0 in other locales"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'pl'
+        self.view(req, version='91.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/index-account.html']
 
     # end 91.0 whatsnew tests
 
