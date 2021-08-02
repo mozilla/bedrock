@@ -535,6 +535,7 @@ class WhatsnewView(L10nTemplateView):
         'firefox/whatsnew/whatsnew-fx87-fr.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx90-en.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx90-eu.html': ['firefox/whatsnew/whatsnew-fx90.ftl', 'firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx91-en.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx91-de.html': ['firefox/whatsnew/whatsnew'],
     }
 
@@ -609,6 +610,8 @@ class WhatsnewView(L10nTemplateView):
                 template = 'firefox/developer/whatsnew.html'
             else:
                 template = 'firefox/whatsnew/index.html'
+        elif version.startswith('91.') and locale.startswith('en-'):
+            template = 'firefox/whatsnew/whatsnew-fx91-en.html'
         elif version.startswith('91.') and locale == 'de':
             template = 'firefox/whatsnew/whatsnew-fx91-de.html'
         elif version.startswith('90.') and locale.startswith('en-'):
