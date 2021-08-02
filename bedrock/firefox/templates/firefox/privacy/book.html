@@ -2,8 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{# todo: remove feature_card #}
-{% from "macros-protocol.html" import split, feature_card, picto with context %}
+{% from "macros-protocol.html" import split, picto with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -55,7 +54,8 @@
 
 {% call split(
   image_url='img/firefox/privacy/book/privacy-healthy-internet.png',
-  block_class='mzp-l-split-reversed'
+  block_class='mzp-l-split-reversed',
+  media_class='mzp-l-split-v-start'
 ) %}
   <h2>{{ ftl('privacy-book-a-healthy-private') }}</h2>
   <p>{{ ftl('privacy-book-we-believe-that') }}</p>
@@ -69,7 +69,8 @@
 
 <div id="data-breaches" class="data-breaches">
   {% call split(
-    image_url='img/firefox/privacy/book/privacy-book-arrow-on-face.png'
+    image_url='img/firefox/privacy/book/privacy-book-arrow-on-face.png',
+    media_class='mzp-l-split-v-start'
   ) %}
     <h3>{{ ftl('privacy-book-data-breaches') }}</h3>
     <p>{{ ftl('privacy-book-even-when-organizations') }}</p>
@@ -80,7 +81,8 @@
 
   {% call split(
     image_url='img/firefox/privacy/book/privacy-troll.png',
-    block_class='mzp-l-split-reversed'
+    block_class='mzp-l-split-reversed',
+    media_class='mzp-l-split-v-start'
   ) %}
     <h3>{{ ftl('privacy-book-trackers-everywhere-') }}</h3>
     <p>{{ ftl('privacy-book-trackers-cookies-youve') }}</p>
@@ -95,7 +97,8 @@
   id='fake-news',
   image_url='img/firefox/privacy/book/privacy-callouts.png',
   theme_class='mzp-t-dark mzp-t-background-alt',
-  block_class='mzp-t-split-nospace'
+  block_class='mzp-t-split-nospace',
+  media_class='mzp-l-split-v-start'
 ) %}
   <h3>{{ ftl('privacy-book-fake-news-and') }}</h3>
   <p>{{ ftl('privacy-book-news-recommendations-are') }}</p>
@@ -104,7 +107,7 @@
   <p>{{ ftl('privacy-book-many-of-us') }}</p>
 {% endcall %}
 
-<div id="tips" class="c-tips">
+<section id="tips" class="c-tips">
   {% call split(
     image_url='img/firefox/privacy/book/privacy-digital-life-growing.png',
     block_class='c-tips-title mzp-l-split-reversed'
@@ -335,6 +338,7 @@
 {% call split(
   id='trackers',
   image_url='img/firefox/privacy/book/privacy-target.png',
+  block_class='mzp-t-split-nospace',
   theme_class='mzp-t-dark mzp-t-background-alt'
 ) %}
   <h3>{{ ftl('privacy-book-friendly-reminder-what') }}</h3>
