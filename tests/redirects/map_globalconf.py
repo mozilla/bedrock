@@ -1056,8 +1056,8 @@ URLS = flatten((
 
     url_test('/firefox/{,46.0/,46.0.1/,47.0/,47.0.1/}secondrun', '/firefox/mobile/'),
 
-    # bug 1288647
-    url_test('/hacking', 'https://developer.mozilla.org/docs/Mozilla/Developer_guide/Introduction'),
+    # bug 1288647, 1722760
+    url_test('/hacking', 'https://firefox-source-docs.mozilla.org/'),
 
     url_test('/{careers,jobs}', 'https://careers.mozilla.org/'),
     url_test('/join', 'https://donate.mozilla.org/'),
