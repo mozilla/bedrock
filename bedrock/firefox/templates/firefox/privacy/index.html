@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import call_out, split, picto_card, hero with context %}
+{% from "macros-protocol.html" import call_out, split, picto_card with context %}
 
 {% extends "firefox/privacy/base.html" %}
 
@@ -21,15 +21,14 @@
 
 {% block hub_content %}
 
-  {% call hero(
-    title=ftl('firefox-privacy-hub-firefox-products-are-designed')|safe,
-    class='privacy-promise-hero mzp-has-image mzp-t-dark',
+  {% call split(
     image_url='img/firefox/privacy/promise/privacy-hero.png',
     include_highres_image=True,
-    include_cta=True,
-    heading_level=1
+    block_class='privacy-promise mzp-l-split-hide-media-on-sm-md',
+    theme_class='mzp-t-dark'
   ) %}
-    <p class="privacy-promise-hero-desc">{{ ftl('firefox-privacy-hub-you-should-be-able-to-decide') }}</p>
+    <h1>{{ ftl('firefox-privacy-hub-firefox-products-are-designed')|safe }}</h1>
+    <p>{{ ftl('firefox-privacy-hub-you-should-be-able-to-decide') }}</p>
   {% endcall %}
 
   {{ call_out(
