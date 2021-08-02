@@ -3,7 +3,7 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% from "macros.html" import fxa_email_form with context %}
-{% from "macros-protocol.html" import call_out, feature_card, picto_card, hero with context %}
+{% from "macros-protocol.html" import call_out, split, feature_card, picto_card, hero with context %}
 
 {% extends "firefox/privacy/base.html" %}
 
@@ -98,57 +98,59 @@
   {% endcall %}
 
   <div class="privacy-products-list t-medium">
+    {% call split(
+      image_url='img/firefox/privacy/products/monitor.svg',
+      media_class='mzp-l-split-h-center'
+    ) %}
+      <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-monitor"></div>
+      <h2 class="visually-hidden">{{ ftl('firefox-privacy-hub-firefox-monitor') }}</h2>
+      <p>{{ ftl('firefox-privacy-hub-when-you-enter-your-email') }}</p>
+      <p>
+        <a class="mzp-c-cta-link" href="https://monitor.firefox.com/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" data-cta-type="fxa-monitor" data-cta-position="secondary">
+        {{ ftl('firefox-privacy-hub-check-for-breaches') }}
+        </a>
+      </p>
+    {% endcall %}
+
+  {% if ftl_has_messages('firefox-privacy-hub-surf-stream-and-get-work') %}
+    {% call split(
+      image_url='img/firefox/privacy/products/vpn.svg',
+      block_class='mzp-l-split-reversed',
+      media_class='mzp-l-split-h-center'
+    ) %}
+      <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-vpn"></div>
+      <h2 class="visually-hidden">{{ ftl('firefox-privacy-hub-mozilla-vpn') }}</h2>
+      <p>{{ ftl('firefox-privacy-hub-surf-stream-and-get-work') }}</p>
+      <p>
+        <a class="mzp-c-cta-link" href="{{ url('products.vpn.landing' )}}" data-cta-type="fxa-vpn" data-cta-position="secondary">
+          {{ ftl('firefox-privacy-hub-get-mozilla-vpn') }}
+        </a>
+      </p>
+    {% endcall %}
+  {% endif %}
+
+  {% if ftl_has_messages('firefox-privacy-hub-protection-for-your-whole') %}
+  {% set block_class = '' %}
+  {% else %}
+  {% set block_class = 'mzp-l-split-reversed ' %}
+  {% endif %}
+    {% call split(
+      image_url='img/firefox/privacy/products/pocket.png',
+      include_highres_image=True,
+      block_class=block_class,
+      media_class='mzp-l-split-h-center'
+    ) %}
+      <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-pocket"></div>
+      <h2 class="visually-hidden">{{ ftl('firefox-privacy-hub-pocket') }}</h2>
+      <p>{{ ftl('firefox-privacy-hub-pocket-recommends-high') }}</p>
+      <p>
+        <a class="mzp-c-cta-link" href="https://getpocket.com/firefox_learnmore/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" data-cta-type="pocket" data-cta-position="secondary">
+          {{ ftl('firefox-privacy-hub-get-pocket') }}
+        </a>
+      </p>
+    {% endcall %}
+
     <div class="mzp-l-content">
-      {% call feature_card(
-        title=ftl('firefox-privacy-hub-firefox-monitor'),
-        image_url='img/firefox/privacy/products/monitor.svg',
-        class='privacy-products-monitor has-logo mzp-l-card-feature-left-half',
-        media_after=True
-      ) %}
-        <p>{{ ftl('firefox-privacy-hub-when-you-enter-your-email') }}</p>
-        <p>
-          <a class="mzp-c-cta-link" href="https://monitor.firefox.com/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" data-cta-type="fxa-monitor" data-cta-position="secondary">
-          {{ ftl('firefox-privacy-hub-check-for-breaches') }}
-          </a>
-        </p>
-      {% endcall %}
-
-    {% if ftl_has_messages('firefox-privacy-hub-surf-stream-and-get-work') %}
-      {% call feature_card(
-        title=ftl('firefox-privacy-hub-mozilla-vpn'),
-        image_url='img/firefox/privacy/products/vpn.svg',
-        class='privacy-products-vpn has-logo mzp-l-card-feature-right-half',
-        media_after=True
-      ) %}
-        <p>{{ ftl('firefox-privacy-hub-surf-stream-and-get-work') }}</p>
-        <p>
-          <a class="mzp-c-cta-link" href="{{ url('products.vpn.landing' )}}" data-cta-type="fxa-vpn" data-cta-position="secondary">
-            {{ ftl('firefox-privacy-hub-get-mozilla-vpn') }}
-          </a>
-        </p>
-      {% endcall %}
-    {% endif %}
-
-    {% if ftl_has_messages('firefox-privacy-hub-protection-for-your-whole') %}
-    {% set class = 'privacy-products-pocket has-logo mzp-l-card-feature-left-half' %}
-    {% else %}
-    {% set class = 'privacy-products-pocket has-logo mzp-l-card-feature-right-half' %}
-    {% endif %}
-      {% call feature_card(
-        title=ftl('firefox-privacy-hub-pocket'),
-        image_url='img/firefox/privacy/products/pocket.png',
-        include_highres_image=True,
-        class=class,
-        media_after=True
-      ) %}
-        <p>{{ ftl('firefox-privacy-hub-pocket-recommends-high') }}</p>
-        <p>
-          <a class="mzp-c-cta-link" href="https://getpocket.com/firefox_learnmore/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" data-cta-type="pocket" data-cta-position="secondary">
-            {{ ftl('firefox-privacy-hub-get-pocket') }}
-          </a>
-        </p>
-      {% endcall %}
-
       <section class="privacy-products-accounts mzp-c-card-feature mzp-l-card-feature-left-half">
         <div class="mzp-c-card-feature-content">
           <div class="mzp-c-card-feature-content-container">
@@ -171,9 +173,9 @@
 
               <p class="fxa-signin">
               {{ ftl('firefox-privacy-hub-already-have-an-account',
-                     sign_in=fxa_link_fragment(entrypoint=_entrypoint, action='signin', optional_parameters={'utm_campaign': _utm_campaign}),
-                     class_name='js-fxa-cta-link js-fxa-product-button',
-                     learn_more=url('firefox.accounts') )}}
+                      sign_in=fxa_link_fragment(entrypoint=_entrypoint, action='signin', optional_parameters={'utm_campaign': _utm_campaign}),
+                      class_name='js-fxa-cta-link js-fxa-product-button',
+                      learn_more=url('firefox.accounts') )}}
               </p>
             </div>
           </div>

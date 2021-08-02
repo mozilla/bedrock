@@ -8,8 +8,17 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/includes/lib';
 @import '../../../protocol/css/components/emphasis-box';
 @import '../../protocol/components/fxa-form';
+@import '../../../protocol/css/components/logos/wordmark';
+@import '../../../protocol/css/components/logos/wordmark-product-monitor';
+@import '../../../protocol/css/components/logos/wordmark-product-vpn';
+@import '../../../protocol/css/components/logos/wordmark-product-pocket';
 
-.t-medium .mzp-l-content {
+.visually-hidden {
+    @include visually-hidden;
+}
+
+.t-medium .mzp-l-content,
+.t-medium .mzp-c-split-container {
     max-width: $content-xl;
 }
 
@@ -172,62 +181,31 @@ $image-path: '/media/protocol/img';
 }
 
 //* -------------------------------------------------------------------------- */
-// Product List Feature Cards
+// Product List Splits
 
 .privacy-products-list {
     margin: $layout-md auto;
 
-    .mzp-c-card-feature {
-        margin-bottom: $layout-xl;
-
-        &.has-logo {
-            .mzp-c-card-feature-title {
-                @include bidi(((background-position, top left, top right),));
-                @include image-replaced;
-                background-repeat: no-repeat;
-                margin-bottom: $spacing-lg;
-                min-height: 40px;
-                text-indent: -120%; // image-replacement Safari bug see issue #8084
-            }
-        }
-
-        &:last-child {
-            margin-bottom: 0;
-        }
+    .mzp-c-split-container {
+        box-sizing: content-box;
     }
 
-    .mzp-c-card-feature-desc {
-        margin-bottom: $spacing-xl;
+    .mzp-c-wordmark {
+        margin-bottom: $spacing-lg;
     }
 
-    .mzp-c-card-feature-media img {
-        max-width: 320px;
+    .mzp-c-split-media {
+        max-width: 100%;
+    }
+
+    .mzp-c-split-media-asset {
+        margin-right: auto;
+        margin-left: auto;
     }
 
     @media #{$mq-lg} {
         margin: $layout-xl auto;
-
-        .mzp-c-card-feature-media img {
-            max-width: 410px;
-        }
     }
-}
-
-.privacy-products-monitor .mzp-c-card-feature-title {
-    @include at2x('/media/protocol/img/logos/firefox/monitor/logo-word-hor-sm.png', auto, 40px);
-}
-
-.privacy-products-vpn .mzp-c-card-feature-title {
-    @include at2x('/media/protocol/img/logos/mozilla/vpn/logo-word-hor-sm.png', auto, 40px);
-}
-
-.privacy-products-send .mzp-c-card-feature-title {
-    @include at2x('/media/protocol/img/logos/firefox/send/logo-word-hor-sm.png', auto, 40px);
-}
-
-.privacy-products-pocket .mzp-c-card-feature-title {
-    background-image: url('/media/protocol/img/logos/pocket/logo-word-hor.svg');
-    @include background-size(auto 40px);
 }
 
 .privacy-products-accounts .mzp-c-emphasis-box {

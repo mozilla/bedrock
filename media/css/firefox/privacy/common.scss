@@ -28,3 +28,10 @@ $brand-theme: 'firefox';
         padding-top: 70px + $spacing-lg;
     }
 }
+
+/* -------------------------------------------------------------------------- */
+// Reduce vertical padding on stacked split components
+
+.mzp-c-split:not(:first-of-type) {
+    padding-top: 0;
+}
