@@ -3,7 +3,7 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% from "macros.html" import fxa_email_form with context %}
-{% from "macros-protocol.html" import call_out, split, feature_card, picto with context %}
+{% from "macros-protocol.html" import call_out, split, picto with context %}
 
 {% extends "firefox/privacy/base.html" %}
 
@@ -171,38 +171,30 @@
       </p>
     {% endcall %}
 
-    <div class="mzp-l-content">
-      <section class="privacy-products-accounts mzp-c-card-feature mzp-l-card-feature-left-half">
-        <div class="mzp-c-card-feature-content">
-          <div class="mzp-c-card-feature-content-container">
-            <h2 class="mzp-c-card-feature-title">{{ ftl('firefox-privacy-hub-your-firefox-account') }}</h2>
-            <div class="mzp-c-card-feature-desc">
-              {{ ftl('firefox-privacy-hub-all-the-information-synced') }}
-            </div>
-          </div>
+    <section class="privacy-products-accounts mzp-l-content mzp-l-columns mzp-t-columns-two">
+      <div>
+        <h2 class="mzp-c-card-feature-title">{{ ftl('firefox-privacy-hub-your-firefox-account') }}</h2>
+        <div class="mzp-c-card-feature-desc">
+          {{ ftl('firefox-privacy-hub-all-the-information-synced') }}
         </div>
-        <div class="mzp-c-card-feature-media-wrapper">
-          <div class="mzp-c-card-feature-media">
-            <div class="mzp-c-emphasis-box">
-              {{ fxa_email_form(
-                entrypoint=_entrypoint,
-                form_title=ftl('firefox-privacy-hub-take-your-privacy-and-bookmarks'),
-                button_class='mzp-c-button mzp-t-primary mzp-t-product',
-                style='trailhead',
-                utm_campaign=_utm_campaign)
-              }}
+      </div>
+      <div class="mzp-c-emphasis-box">
+        {{ fxa_email_form(
+          entrypoint=_entrypoint,
+          form_title=ftl('firefox-privacy-hub-take-your-privacy-and-bookmarks'),
+          button_class='mzp-c-button mzp-t-primary mzp-t-product',
+          style='trailhead',
+          utm_campaign=_utm_campaign)
+        }}
 
-              <p class="fxa-signin">
-              {{ ftl('firefox-privacy-hub-already-have-an-account',
-                sign_in=fxa_link_fragment(entrypoint=_entrypoint, action='signin', optional_parameters={'utm_campaign': _utm_campaign}),
-                class_name='js-fxa-cta-link js-fxa-product-button',
-                learn_more=url('firefox.accounts') )}}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+        <p class="fxa-signin">
+        {{ ftl('firefox-privacy-hub-already-have-an-account',
+          sign_in=fxa_link_fragment(entrypoint=_entrypoint, action='signin', optional_parameters={'utm_campaign': _utm_campaign}),
+          class_name='js-fxa-cta-link js-fxa-product-button',
+          learn_more=url('firefox.accounts') )}}
+        </p>
+      </div>
+    </section>
   </div>
 {% endblock %}
 

@@ -131,8 +131,6 @@ $image-path: '/media/protocol/img';
 // Product List Splits
 
 .privacy-products-list {
-    margin: $layout-md auto;
-
     .mzp-c-wordmark {
         margin-bottom: $spacing-lg;
     }
@@ -158,6 +156,23 @@ $image-path: '/media/protocol/img';
         margin: $spacing-md auto;
         max-width: 320px;
         padding: $spacing-xl;
+    }
+}
+
+.privacy-products-accounts {
+    align-items: center;
+
+    > div:first-of-type {
+        margin-bottom: $spacing-xl;
+    }
+
+    @media #{$mq-md} {
+        padding-top: 0;
+        padding-bottom: 0;
+
+        > div:first-of-type {
+            margin-bottom: 0;
+        }
     }
 }
 
