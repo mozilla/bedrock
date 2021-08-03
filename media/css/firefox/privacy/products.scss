@@ -44,7 +44,6 @@ $image-path: '/media/protocol/img';
 
 .privacy-products {
     .mzp-c-split-container {
-        max-width: $content-xl;
         box-sizing: content-box;
     }
 
@@ -76,53 +75,30 @@ $image-path: '/media/protocol/img';
 // Picto Cards
 
 .privacy-products-etp {
-    background-color: $color-ink-80;
-
     & > .mzp-l-content {
         padding-top: 0;
+        @media #{$mq-md} {
+            padding-bottom: 0;
+        }
     }
 
-    // Custom Overrides pending https://github.com/mozilla/protocol/issues/382
-    .mzp-c-card-picto {
-        @include bidi(((text-align, left, right),));
+    .mzp-c-picto {
+        max-width: 100%;
 
-        .mzp-c-card-picto-content {
-            padding-top: 80px + $spacing-lg;
-
-            &:before {
-                @include bidi(((left, 0, right, 0),));
-                background-color: transparent;
-                background-repeat: no-repeat;
-                margin: 0;
-            }
-        }
-
-        &.invisible .mzp-c-card-picto-content:before {
-            @include background-size(103px 80px);
-            background-image: url('/media/img/firefox/privacy/products/icon-invisible.svg');
-            height: 80px;
-            width: 103px;
-        }
-
-        &.control .mzp-c-card-picto-content:before {
-            @include background-size(62px 80px);
-            background-image: url('/media/img/firefox/privacy/products/icon-control.svg');
-            height: 80px;
-            width: 62px;
-        }
-
-        &.protection .mzp-c-card-picto-content:before {
-            @include background-size(94px 80px);
-            background-image: url('/media/img/firefox/privacy/products/icon-protection.svg');
-            height: 80px;
-            width: 94px;
+        &:not(:last-of-type) {
+            margin-bottom: $spacing-2xl;
         }
 
         @media #{$mq-md} {
-            .mzp-c-card-picto-content:before {
-                @include bidi(((left, $spacing-lg, right, 0),));
+            &:not(:last-of-type) {
+                margin-bottom: 0;
             }
         }
+    }
+
+    .mzp-c-picto-image img {
+        height: 80px;
+        width: auto;
     }
 }
 

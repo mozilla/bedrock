@@ -3,7 +3,7 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% from "macros.html" import fxa_email_form with context %}
-{% from "macros-protocol.html" import call_out, split, feature_card, picto_card with context %}
+{% from "macros-protocol.html" import call_out, split, feature_card, picto with context %}
 
 {% extends "firefox/privacy/base.html" %}
 
@@ -67,11 +67,32 @@
     </p>
   {% endcall %}
 
-  <div class="privacy-products-etp">
-    <ul class="mzp-l-content mzp-l-card-third mzp-t-dark">
-      {{ picto_card(title=ftl('firefox-privacy-hub-invisible-to-the-top-trackers'), desc=ftl('firefox-privacy-hub-meet-four-of-the-most-common'), class='invisible', heading_level=3) }}
-      {{ picto_card(title=ftl('firefox-privacy-hub-always-in-your-control'), desc=ftl('firefox-privacy-hub-want-to-customize-what'), class='control', heading_level=3) }}
-      {{ picto_card(title=ftl('firefox-privacy-hub-protection-beyond-tracking'), desc=ftl('firefox-privacy-hub-if-you-have-a-firefox-account'), class='protection', heading_level=3) }}
+  <div class="privacy-products-etp mzp-t-dark">
+    <ul class="mzp-l-content mzp-l-columns mzp-t-columns-three">
+      {% call picto(
+        title=ftl('firefox-privacy-hub-invisible-to-the-top-trackers'),
+        image_url='img/firefox/privacy/products/icon-invisible.svg',
+        base_el='li',
+        body=True
+      ) %}
+        <p>{{ ftl('firefox-privacy-hub-meet-four-of-the-most-common') }}</p>
+      {% endcall %}
+      {% call picto(
+        title=ftl('firefox-privacy-hub-always-in-your-control'),
+        image_url='img/firefox/privacy/products/icon-control.svg',
+        base_el='li',
+        body=True
+      ) %}
+        <p>{{ ftl('firefox-privacy-hub-want-to-customize-what') }}</p>
+      {% endcall %}
+      {% call picto(
+        title=ftl('firefox-privacy-hub-protection-beyond-tracking'),
+        image_url='img/firefox/privacy/products/icon-protection.svg',
+        base_el='li',
+        body=True
+      ) %}
+        <p>{{ ftl('firefox-privacy-hub-if-you-have-a-firefox-account') }}</p>
+      {% endcall %}
     </ul>
   </div>
 
