@@ -402,7 +402,12 @@ $url-download-link-hover: svg-url($download-link-hover);
 @media (min-width:#{$screen-md}) and (max-width:#{$screen-xl - 1px}) {
     .t-dev {
         .mzp-c-split-container {
-            grid-template-columns: 1fr 0;
+            display: block;
+        }
+
+        .mzp-c-split-body {
+            width: 100%;
+            text-align: center;
         }
 
         .mzp-c-split-media {
