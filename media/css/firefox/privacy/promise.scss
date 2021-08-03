@@ -11,21 +11,30 @@ $image-path: '/media/protocol/img';
 /* -------------------------------------------------------------------------- */
 // Main Hero
 
-.privacy-promise {
+.privacy-promise-hero {
     p {
         @include text-body-lg;
     }
 
     .mzp-c-split-media-asset {
         position: relative;
-        top: $spacing-lg;
+        top: $spacing-xl;
     }
 
     @media #{$mq-lg} {
+        &.mzp-c-split {
+            overflow-y: hidden;
+        }
+
         &.mzp-c-split,
         .mzp-c-split-bg {
             padding-top: 0;
             padding-bottom: 0;
+        }
+
+        .mzp-c-split-body {
+            padding-top: $spacing-2xl;
+            padding-bottom: $spacing-2xl;
         }
     }
 }
