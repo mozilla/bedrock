@@ -4,9 +4,16 @@
 
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
+$brand-theme: 'firefox';
 
 @import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/components/feature-card';
+@import '../../../protocol/css/components/logos/wordmark';
+@import '../../../protocol/css/components/logos/wordmark-product-firefox';
+@import '../../../protocol/css/components/logos/wordmark-product-monitor';
+@import '../../../protocol/css/components/logos/wordmark-product-vpn';
+@import '../../../protocol/css/components/logos/wordmark-product-pocket';
+@import '../../../protocol/css/components/zap';
+@import '../../../protocol/css/components/split';
 @import '../../protocol/components/custom-menu-list';
 @import '../sticky-promo';
 
@@ -49,10 +56,20 @@ $image-path: '/media/protocol/img';
         margin-bottom: $spacing-lg;
     }
 
-    // feature cards
-    .mzp-c-card-feature {
-        margin-bottom: 0;
-        max-width: $content-sm;
+    // splits
+    .mzp-c-split {
+        .mzp-c-split-container {
+            padding-bottom: $layout-lg;
+            padding-top: $layout-lg;
+        }
+
+        .mzp-c-wordmark + h3 {
+            @include visually-hidden;
+        }
+
+        .mzp-c-wordmark {
+            margin-bottom: $spacing-lg;
+        }
 
         h4 {
             @include text-title-sm;
@@ -60,72 +77,12 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    .mzp-c-card-feature-content {
-        margin-top: 0;
-    }
-
-    .mzp-c-card-feature-media-wrapper {
-        margin-top: $layout-md;
-    }
-
-    .mzp-c-card-feature-media img {
-        max-width: $content-xs;
-    }
-
     @media #{$mq-md} {
-
         // content
         .mzp-l-content {
             padding-top: $layout-lg;
             padding-bottom: $layout-lg;
         }
-
-        // feature cards
-        .mzp-c-card-feature {
-            max-width: 100%;
-        }
-
-        .mzp-c-card-feature-media img {
-            max-width: 100%;
-            width: auto;
-        }
-    }
-}
-
-.t-browsers,
-.t-monitor,
-.t-mozvpn,
-.t-send,
-.t-pocket {
-    .mzp-c-card-feature-title {
-        @include bidi(((background-position, top left, top right),));
-        @include image-replaced;
-        background-repeat: no-repeat;
-        margin-bottom: $spacing-lg;
-        min-height: 40px;
-        text-indent: -120%; // image-replacement Safari bug see issue #8084
-    }
-}
-
-.mzp-c-card-feature-title {
-    .t-browsers & {
-        @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-sm.png', auto, 40px);
-    }
-
-    .t-monitor & {
-        @include at2x('/media/protocol/img/logos/firefox/monitor/logo-word-hor-sm.png', auto, 40px);
-    }
-
-    .t-mozvpn & {
-        @include at2x('/media/protocol/img/logos/mozilla/vpn/logo-word-hor-sm.png', auto, 40px);
-    }
-
-    .t-send & {
-        @include at2x('/media/protocol/img/logos/firefox/send/logo-word-hor-sm.png', auto, 40px);
-    }
-
-    .t-pocket & {
-        background-image: url('/media/img/logos/pocket/pocket-wordmark.svg');
     }
 }
 
@@ -236,48 +193,32 @@ $image-path: '/media/protocol/img';
 .t-promise {
     padding: 0 $layout-sm;
 
-    .mzp-l-content {
+    .mzp-c-split-container {
         @include light-links;
         background-image: linear-gradient(90deg,  $color-violet-80, $color-violet-90);
         border-radius: $border-radius-md;
         box-shadow: $box-shadow-md;
-        color: $color-white;
         margin: $layout-md auto;
-        max-width: $content-sm;
-        min-width: 0;
-    }
 
-    .mzp-c-card-feature {
-        margin-bottom: 0;
-
-        .mzp-c-card-feature-desc {
+        h3,
+        p {
             color: $color-white;
         }
-    }
 
-    // https://github.com/mozilla/protocol/issues/511
-    .mzp-c-card-feature-title {
-        color: $color-white;
-
-        strong {
-            @include zap('/media/protocol/img/zaps/zap-08.svg');
+        h3 {
+            @include text-title-md;
         }
-    }
-
-    .mzp-c-card-feature-media-wrapper {
-        display: none;
     }
 
     @media #{$mq-md} {
         margin: $layout-lg 0;
         padding: 0 $layout-md;
 
-        .mzp-l-content {
+        .mzp-c-split-container {
             background-image: url('/media/img/firefox/home/master/respect.jpg'), linear-gradient(90deg, #5731AB 50%, $color-violet-90);
             background-position: left -30px center, top left;
             background-repeat: no-repeat;
             background-size: 50%, auto;
-            max-width: $content-xl;
 
             @media #{$mq-high-res} {
                 background-image: url('/media/img/firefox/home/master/respect-high-res.jpg'), linear-gradient(90deg, #5731AB 50%, $color-violet-90);
@@ -293,9 +234,9 @@ $image-path: '/media/protocol/img';
             }
         }
 
-        .mzp-c-card-feature-content {
+        .mzp-c-split-body {
             @include flexbox;
-            justify-content: center;
+            align-items: center;
             min-height: 280px;
         }
     }
@@ -303,7 +244,7 @@ $image-path: '/media/protocol/img';
     @media #{$mq-xl} {
         padding: 0 $layout-lg;
 
-        .mzp-l-content {
+        .mzp-c-split-container {
             background-position: left center, top left;
             background-size: 547px auto, auto;
         }
