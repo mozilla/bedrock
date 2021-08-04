@@ -7,7 +7,8 @@ $image-path: '/media/protocol/img';
 
 @import '../../protocol/css/includes/lib';
 @import '../../protocol/css/components/newsletter-form';
-@import '../../protocol/css/components/picto-card';
+@import '../../protocol/css/components/picto';
+@import '../../protocol/css/templates/multi-column';
 @import '../../protocol/css/templates/card-layout';
 
 /* -------------------------------------------------------------------------- */
@@ -117,59 +118,24 @@ $image-path: '/media/protocol/img';
 /* -------------------------------------------------------------------------- */
 // Picto cards
 
-.mzp-c-card-picto {
-    padding: 0;
-
-    .mzp-c-card-picto-content {
-        padding-top: 220px;
-    }
-
-    .mzp-c-card-picto-content:before {
-        background-color: transparent;
-        background-repeat: no-repeat;
-        height: 200px;
-        margin-left: -100px;
-        width: 200px;
-    }
-
-    &.foundational-technology .mzp-c-card-picto-content:before {
-        @include background-size(200px 200px);
-        background-image: url('/media/img/mozorg/moss/foundational-technology.svg');
-    }
-
-    &.mission-partners .mzp-c-card-picto-content:before {
-        @include background-size(200px 193px);
-        background-image: url('/media/img/mozorg/moss/mission-partners.svg');
-    }
-
-    &.fund .mzp-c-card-picto-content:before {
-        @include background-size(200px 172px);
-        background-image: url('/media/img/mozorg/moss/secure-open-source.svg');
-    }
-}
-
 // Vertically align buttons in moss tracks lists.
 @supports(display: flex) {
     @media #{$mq-md} {
         .moss-tracks-list {
             display: flex;
 
-            .mzp-c-card-picto {
+            .mzp-c-picto {
                 align-items: stretch;
                 display: flex;
+                flex-direction: column;
                 flex: 1;
             }
 
-            .mzp-c-card-picto-content {
-                display: flex;
-                flex-direction: column;
-            }
-
-            .mzp-c-card-picto-title {
+            .mzp-c-picto-heading {
                 flex-grow: 1;
             }
 
-            .mzp-c-card-picto-desc {
+            .mzp-c-picto-body {
                 display: flex;
                 flex-direction: column;
                 flex-grow: 2;
