@@ -82,7 +82,8 @@
     {% call split(
       image_url='img/firefox/developer/browser.png',
       include_highres_image=True,
-      block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md'
+      block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md',
+      media_after=True
     ) %}
       <h2>{{ ftl('firefox-developer-download-the-firefox-browser') }}</h2>
       {{ download_firefox('alpha', platform='desktop', dom_id='footer-download', download_location='footer cta') }}
