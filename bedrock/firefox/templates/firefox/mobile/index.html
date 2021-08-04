@@ -3,7 +3,7 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% from "macros.html" import google_play_button, send_to_device with context %}
-{% from "macros-protocol.html" import feature_card, hero, call_out_compact with context %}
+{% from "macros-protocol.html" import split, hero, call_out_compact with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -118,42 +118,38 @@
     </section>
 
     <section class="t-account">
-      <div class="mzp-l-content">
-          {% call feature_card(
-            title=ftl('firefox-mobile-discover-products-that-keep'),
-            image_url='img/firefox/mobile/protocol/account.svg',
-            aspect_ratio='mzp-has-aspect-1-1',
-            class='mzp-l-card-feature-right-half mzp-t-firefox',
-            link_url=url('firefox.sync'),
-            link_cta=ftl('ui-learn-more')
-          ) %}
-          <p>{{ ftl('firefox-mobile-sync-your-history-passwords') }}</p>
-          {% endcall %}
-      </div>
+      {% call split(
+        image_url='img/firefox/mobile/protocol/account.svg',
+        block_class='mzp-l-split-reversed mzp-t-split-nospace',
+        theme_class='mzp-t-background-alt'
+      ) %}
+        <h2>{{ ftl('firefox-mobile-discover-products-that-keep') }}</h2>
+        <p>{{ ftl('firefox-mobile-sync-your-history-passwords') }}</p>
+        <a class="mzp-c-cta-link" href="{{ url('firefox.sync') }}" data-link-type="link">{{ ftl('ui-learn-more') }}</a>
+      {% endcall %}
     </section>
 
-    <section>
+    <section class="t-android-only">
       {% if ftl_has_messages('firefox-mobile-customize-your-firefox-mobile-truncated') %}
-        <div class="mzp-l-content t-extend">
+        <div class="t-extend">
           {% set extend_title = '<span>'|safe + ftl('firefox-mobile-android-only') + '</span><br>'|safe + ftl('firefox-mobile-make-android-your-own') %}
-          {% call feature_card(
-            title=extend_title,
+          {% call split(
             image_url='img/firefox/mobile/protocol/screen-frame.svg',
-            aspect_ratio='mzp-has-aspect-1-1',
-            class='mzp-l-card-feature-right-half mzp-t-firefox',
+            block_class='mzp-l-split-reversed',
+            media_class='mzp-l-split-h-center'
           ) %}
+            <h2>{{ extend_title }}</h2>
             <p>{{ ftl('firefox-mobile-customize-your-firefox-mobile-truncated') }}</p>
           {% endcall %}
         </div>
       {% endif %}
-      <div class="mzp-l-content t-theme">
+      <div class="t-theme">
         {% set theme_title = '<span>'|safe + ftl('firefox-mobile-android-only') + '</span><br>'|safe + ftl('firefox-mobile-find-it-fast-with-a-smart') %}
-        {% call feature_card(
-          title=theme_title,
+        {% call split(
           image_url='img/firefox/mobile/protocol/screen-frame.svg',
-          aspect_ratio='mzp-has-aspect-1-1',
-          class='mzp-l-card-feature-left-half mzp-t-firefox',
+          media_class='mzp-l-split-h-center'
         ) %}
+        <h2>{{ theme_title }}</h2>
         <p>{{ ftl('firefox-mobile-firefox-anticipates-your-needs') }}</p>
         {% endcall %}
       </div>
