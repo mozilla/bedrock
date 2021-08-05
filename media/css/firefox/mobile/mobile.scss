@@ -7,44 +7,12 @@ $image-path: '/media/protocol/img';
 $brand-theme: 'firefox';
 
 @import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/logos/wordmark';
+@import '../../../protocol/css/components/logos/wordmark-product-firefox';
+@import '../../../protocol/css/templates/multi-column';
+@import '../../../protocol/css/components/emphasis-box';
 @import '../../../protocol/css/components/split';
-@import '../../../protocol/css/components/hero';
 @import '../../../protocol/css/components/call-out';
-
-//* -------------------------------------------------------------------------- */
-//  Inline form variation
-
-.c-inline-form {
-    background: $color-white;
-    border-radius: $border-radius-md;
-    box-shadow: $box-shadow-md;
-    margin: 0 auto $spacing-xl;
-    max-width: 330px;
-    padding: $spacing-lg $spacing-2xl;
-    text-align: center;
-
-    .legal {
-        @include text-body-xs;
-    }
-
-    .c-inline-form-title {
-        @include text-title-xs;
-        margin-bottom: $spacing-md;
-    }
-
-    .c-inline-form-body {
-        @include text-body-lg;
-    }
-
-    @media #{$mq-lg} {
-        @include bidi(((float, right, left),));
-
-        @supports (display: grid) {
-            float: none;
-        }
-    }
-}
-
 
 //* -------------------------------------------------------------------------- */
 
@@ -148,112 +116,80 @@ main .mzp-l-content {
 }
 
 //* -------------------------------------------------------------------------- */
-//  Wordmark
-
-.c-wordmark {
-    @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-sm.png', contain);
-    @include bidi(((padding-right, $spacing-sm, padding-left, 0),));
-    @include image-replaced;
-    background-position: top center;
-    background-repeat: no-repeat;
-    content: '';
-    display: block;
-
-    @media #{$mq-md} {
-        @include bidi(((background-position, top left, top right),));
-    }
-}
-
-.end-hero .c-wordmark {
-    background-position: center;
-}
-//* -------------------------------------------------------------------------- */
 // Hero
 
-.t-hero-primary {
-    &.mzp-c-hero {
+.c-hero {
+    .c-hero-body {
         text-align: center;
-        color: $color-ink-80;
+        margin-bottom: $spacing-2xl;
 
-        &.mzp-t-firefox::after {
-            display: none;
+        .mzp-c-wordmark {
+            margin-bottom: $spacing-md;
+            margin-right: auto;
+            margin-left: auto;
         }
 
-        .mzp-c-hero-body {
-            margin: 0 auto $spacing-2xl;
-
-            .mzp-c-hero-cta {
-                float: none;
-            }
+        h2 {
+            @include text-title-sm;
         }
-
-        @media #{$mq-lg} {
-            .mzp-c-hero-body {
-                @include grid-half;
-                @include bidi(((float, left, right),));
-                margin: unset;
-                width: 100%;
-            }
-
-            @supports (display: grid) {
-                & > .mzp-l-content {
-                    display: grid;
-                    grid-template-columns: repeat(2, 1fr);
-                    grid-column-gap: $spacing-2xl;
-                }
-
-                .mzp-c-hero-body {
-                    float: none;
-                    margin-right: auto;
-                }
-            }
-        }
-    }
-
-    .mzp-c-hero-desc {
-        @include text-title-md;
 
         p {
-            @include text-title-xs;
-            margin-bottom: $spacing-lg;
+            @include text-title-sm;
+            margin-bottom: $spacing-xl;
+            color: $color-ink-80;
         }
     }
 
-    .mzp-c-button-download-container {
-        margin-bottom: 0;
+    .mzp-c-emphasis-box {
+        text-align: center;
+        box-sizing: content-box;
+        max-width: $content-sm;
+        margin: 0 auto; // space for box-shadow provided by mzp-l-content container padding
     }
 
-    @media #{$mq-md} {
-        &.mzp-c-hero.mzp-has-image {
-            @include background-size(1200px 275px);
-            align-items: center;
-            background-image: url('/media/img/firefox/mobile/img-mobile-noodles.svg');
-            background-position: top left calc(60vw + #{$spacing-md});
-            background-repeat: no-repeat;
-            background-size: contain;
-            display: flex;
-            padding: 0;
-            text-align: left;
-            min-height: 560px;
+    .more {
+        display: block;
+    }
+}
 
-            html[dir="rtl"] &{
-                background-position: top right calc(60vw + #{$spacing-md});
-                text-align: right;
+@media #{$mq-md} {
+    .c-hero-bg-image {
+        @include background-size(1200px 275px);
+        // align-items: center;
+        background-image: url('/media/img/firefox/mobile/img-mobile-noodles.svg');
+        @include bidi(((background-position, (top left calc(60vw + #{$spacing-md})), (top right calc(60vw + #{$spacing-md}))),));
+        background-repeat: no-repeat;
+        background-size: contain;
+        min-height: 560px;
+
+        &.mzp-l-columns.mzp-t-columns-two {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+@media #{$mq-lg} {
+    .c-hero {
+        &.mzp-l-columns.mzp-t-columns-two {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .c-hero-body {
+            @include bidi(((text-align, left, right),));
+            margin-bottom: 0;
+
+            h2 {
+                @include text-title-sm;
+            }
+
+            .mzp-c-wordmark {
+                margin-right: 0;
+                margin-left: 0;
             }
         }
 
-        .end-hero .c-wordmark {
-            background-position: center;
-        }
-
-        .mzp-l-content {
-            width: 100%;
-        }
-    }
-
-    @media #{$mq-lg} {
-        .end-hero .c-wordmark {
-            background-position: center;
+        .mzp-c-emphasis-box {
+            align-self: center;
         }
     }
 }
