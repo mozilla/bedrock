@@ -6,6 +6,8 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/logos/wordmark';
+@import '../../protocol/css/components/logos/wordmark-product-pocket';
 @import '../../protocol/css/components/billboard';
 @import '../../protocol/css/components/call-out';
 @import '../../protocol/css/components/split';
@@ -13,65 +15,42 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/templates/card-layout';
 
 
-.mzp-c-hero-title img {
-    display: block;
-    margin: 0 auto $spacing-lg;
-
-    @media #{$mq-md} {
-        margin: 0 0 $spacing-lg;
-    }
-}
-
-.mzp-c-hero-cta .note {
-    @include text-body-sm;
-    margin: 0;
-}
-
-.mzp-c-hero-image {
-    display: none;
-
-    @media #{$mq-md} {
-        display: block;
-    }
-}
-
-.mzp-c-call-out {
-    background: transparent;
-}
-
-@media #{$mq-md} {
-    .mzp-c-hero-image {
-        display: block;
-    }
-}
-
-@media #{$mq-lg} {
-    .mzp-c-hero-body {
-        max-width: 480px;
-    }
-}
-
-
-#pocket-hero {
-    background: #50aaa8 linear-gradient(to bottom, #50aaa8, #5ec4c0);
-    margin-bottom: $layout-sm;
-
-    .mzp-c-hero-desc {
-        color: $color-white;
+.pocket-hero {
+    &.mzp-c-split {
+        padding-top: 0;
     }
 
-    @media #{$mq-md} {
-        margin-bottom: $layout-xl;
+    h1 {
+        @include text-title-lg;
+    }
 
-        .mzp-c-hero-image {
-            bottom: -$layout-xl;
-            height: calc(100% + #{$layout-xl});
-            top: auto;
-        }
+    p {
+        @include text-body-lg;
+    }
+
+    .mzp-c-button {
+        margin-top: $spacing-lg;
+    }
+
+    .mzp-t-dark {
+        background: #50aaa8 linear-gradient(to bottom, #50aaa8, #5ec4c0);
+    }
+
+    .mzp-c-split-media.mzp-l-split-media-overflow .mzp-c-split-media-asset {
+        max-width: $content-lg;
+    }
+
+    .mzp-c-wordmark {
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: $spacing-lg;
     }
 
     @media #{$mq-lg} {
-        margin-bottom: $layout-2xl;
+        .mzp-c-wordmark {
+            margin-left: 0;
+            margin-right: 0;
+        }
     }
 }
 

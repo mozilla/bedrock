@@ -25,27 +25,21 @@
 
 {% block content %}
 <main class="mzp-t-firefox">
-  <section id="pocket-hero" class="mzp-c-hero mzp-has-image mzp-t-dark">
-    <div class="mzp-l-content">
-      <div class="mzp-c-hero-body">
-        <h1 class="mzp-c-hero-title">
-          <img src="{{ static('img/logos/pocket/pocket-wordmark-white.svg') }}" alt="{{ _('Pocket') }}" width="125" height="33">
-          {{ _('An Award-Winning App From Firefox') }}
-        </h1>
-        <div class="mzp-c-hero-desc">
-          <p>{{ _('Over 10 million users rely on Pocket to discover and savor the best articles, news, stories and videos. And as a member of the Firefox family, privacy is paramount.') }}</p>
-        </div>
-
-        <div class="mzp-c-hero-cta">
-          <p>{{ pocket_fxa_button(entrypoint=_entrypoint, button_text=_('Try Pocket Now'), optional_parameters={'s': _source}, optional_attributes={'data-cta-text': 'Try Pocket Now', 'data-cta-type': 'activate pocket', 'data-cta-position': 'primary'}) }}</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="mzp-c-hero-image">
-      {{ high_res_img('img/firefox/pocket/pocket-hero.png', {'alt': ''}) }}
-    </div>
-  </section>
+  {% call split(
+    id='pocket-hero',
+    image_url='img/firefox/pocket/pocket-hero.png',
+    include_highres_image=True,
+    block_class='pocket-hero mzp-l-split-center-on-sm-md mzp-l-split-hide-media-on-sm-md mzp-l-split-pop-bottom',
+    media_class='mzp-l-split-media-overflow mzp-l-split-v-end',
+    theme_class='mzp-t-dark'
+  ) %}
+    <h1>
+      <div class="mzp-c-wordmark mzp-t-wordmark-sm mzp-t-product-pocket">Pocket</div>
+      {{ _('An Award-Winning App From Firefox') }}
+    </h1>
+    <p>{{ _('Over 10 million users rely on Pocket to discover and savor the best articles, news, stories and videos. And as a member of the Firefox family, privacy is paramount.') }}</p>
+    <p>{{ pocket_fxa_button(entrypoint=_entrypoint, button_text=_('Try Pocket Now'), optional_parameters={'s': _source}, optional_attributes={'data-cta-text': 'Try Pocket Now', 'data-cta-type': 'activate pocket', 'data-cta-position': 'primary'}) }}</p>
+  {% endcall %}
 
   {% call split(
     id='pocket-popularity',
