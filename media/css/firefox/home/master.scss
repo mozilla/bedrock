@@ -63,10 +63,6 @@ $brand-theme: 'firefox';
             padding-top: $layout-lg;
         }
 
-        .mzp-c-wordmark + h3 {
-            @include visually-hidden;
-        }
-
         .mzp-c-wordmark {
             margin-bottom: $spacing-lg;
         }

@@ -155,7 +155,6 @@ main .mzp-l-content {
 @media #{$mq-md} {
     .c-hero-bg-image {
         @include background-size(1200px 275px);
-        // align-items: center;
         background-image: url('/media/img/firefox/mobile/img-mobile-noodles.svg');
         @include bidi(((background-position, (top left calc(60vw + #{$spacing-md})), (top right calc(60vw + #{$spacing-md}))),));
         background-repeat: no-repeat;
