@@ -4,7 +4,7 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% from "macros-protocol.html" import hero, picto, feature_card with context %}
+{% from "macros-protocol.html" import hero, picto, split with context %}
 
 {% block page_title %}{{ ftl('firefox-sync-firefox-sync') }}{% endblock %}
 
@@ -87,13 +87,13 @@
   </section>
 
   <section>
-    {% call feature_card(
-      title=ftl('firefox-sync-start-syncing-in'),
-      image_url='img/firefox/accounts/trailhead/value-respect.jpg',
-      aspect_ratio='mzp-has-aspect-1-1',
-      class='mzp-l-card-feature-right-half'
-    ) %}
-
+    {% call split(
+    image_url='img/firefox/accounts/trailhead/value-respect.jpg',
+    include_highres_image=True,
+    media_after=False,
+    block_class='mzp-l-split-reversed mzp-l-split-h-center',
+  ) %}
+  <h2>{{ ftl('firefox-sync-start-syncing-in') }}</h2>
       <ol class="mzp-u-list-styled">
         <li>{{ ftl('firefox-sync-open-the-menu') }}</li>
         <li>{{ ftl('firefox-sync-click-get-started') }}</li>
@@ -102,7 +102,7 @@
       </ol>
       <p>{{ ftl('firefox-sync-after-you-check') }}</p>
       <a class="mzp-c-cta-link" href="https://support.mozilla.org/kb/firefox-accounts-managing-account-data?utm_source=www.mozilla.org-firefox-sync&amp;utm_medium=referral&amp;utm_campaign=seo" rel="external noopener" data-cta-text="More Help Managing your Firefox Account" data-cta-type="link">{{ ftl('firefox-sync-learn-more') }}</a>
-    {% endcall %}
+  {% endcall %}
   </section>
 </div>
 
