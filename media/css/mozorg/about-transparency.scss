@@ -10,7 +10,6 @@
 // Index
 
 dt {
-    @include font-mozilla;
     @include text-title-xs;
     font-weight: bold;
     margin-top: $spacing-sm;
@@ -68,7 +67,6 @@ dd {
 // Report Template
 
 .c-page-header {
-    @include font-mozilla;
     @include text-title-xs;
     background: get-theme('background-color-inverse');
     color: get-theme('body-text-color-inverse');
@@ -89,13 +87,11 @@ dd {
 }
 
 h2 {
-    @include font-mozilla;
     @include text-title-md;
     margin-top: $spacing-2xl;
 }
 
 h3 {
-    @include font-mozilla;
     @include text-title-sm;
     margin-top: $spacing-2xl;
 }
@@ -108,7 +104,6 @@ h3 {
 // Collapsible Sections
 
   .c-collapsible-section button {
-    @include font-mozilla;
     @include summary;
     @include text-title-md;
     background: transparent;
@@ -118,12 +113,12 @@ h3 {
     padding-right: 48px;
     text-align: inherit;
     width: 100%;
-  }
+}
 
-  .c-collapsible-section button[aria-expanded=true]:before {
-      @include summary-open;
-  }
+.c-collapsible-section button[aria-expanded=true]:before {
+    @include summary-open;
+}
 
-  .c-collapsible-section .is-closed[aria-hidden=true] {
-      display: none;
-  }
+.c-collapsible-section .is-closed[aria-hidden=true] {
+    display: none;
+}
