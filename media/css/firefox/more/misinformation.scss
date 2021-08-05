@@ -4,53 +4,49 @@
 
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
+$brand-theme: 'firefox';
 
 @import "../../../protocol/css/includes/lib";
 @import '../../../protocol/css/templates/multi-column';
-@import "../../../protocol/css/components/hero";
 @import "../../../protocol/css/components/split";
 @import "../../../protocol/css/components/call-out";
 @import "../../../protocol/css/components/picto";
+@import '../../../protocol/css/components/logos/logo-product-firefox';
 
 // -------------------------------------------------------------------------- //
 // Page Hero
 
-.mzp-c-hero.mzp-t-dark {
-    background: $color-ink-80;
+.c-hero {
+    &.mzp-c-split {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .mzp-c-logo {
+        margin-bottom: $spacing-lg;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .mzp-c-button-download-container {
+        margin-bottom: 0;
+    }
 
     @media #{$mq-lg} {
         margin-bottom: $layout-lg;
-    }
-}
 
-.mzp-c-button-download-container {
-    margin-bottom: 0;
-}
-
-.mzp-c-hero {
-    .mzp-c-hero-image {
-        display: none;
-    }
-
-    @media #{$mq-md} {
-        .mzp-c-hero-title {
-            @include text-title-sm;
+        .mzp-c-split-body {
+            max-width: $content-sm;
         }
 
-        .mzp-c-hero-image {
-            display: block;
+        .mzp-c-logo {
+            margin-bottom: $spacing-lg;
+            margin-right: 0;
+            margin-left: 0;
         }
-    }
 
-    @media #{$mq-lg} {
-        .mzp-c-hero-title {
-            @include text-title-md;
-        }
-    }
-
-    @media #{$mq-xl} {
-        .mzp-c-hero-title {
-            @include text-title-lg;
+        .mzp-c-button-download-container {
+            margin-top: $spacing-md;
         }
     }
 }
@@ -62,12 +58,6 @@ $image-path: '/media/protocol/img';
     display: block;
     margin: $layout-lg auto;
     text-align: center;
-}
-
-article {
-    h2 {
-        @include text-title-sm;
-    }
 }
 
 // -------------------------------------------------------------------------- //
@@ -90,7 +80,7 @@ article {
     margin-top: $spacing-2xl;
 
     h3 {
-        @include text-title-2xs;
+        @include text-title-xs;
     }
 
     li {
@@ -128,7 +118,7 @@ article {
         box-sizing: content-box;
 
         h2 {
-            @include text-title-2xs;
+            @include text-title-xs;
         }
     }
 
