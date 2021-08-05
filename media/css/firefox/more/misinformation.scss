@@ -7,7 +7,7 @@ $image-path: '/media/protocol/img';
 
 @import "../../../protocol/css/includes/lib";
 @import "../../../protocol/css/components/hero";
-@import "../../../protocol/css/components/feature-card";
+@import "../../../protocol/css/components/split";
 @import "../../../protocol/css/components/call-out";
 @import "../../../protocol/css/components/picto-card";
 @import '../../../protocol/css/templates/card-layout';
@@ -123,19 +123,39 @@ article {
 // How Firefox Helps section
 
 .misinformation-firefox-helps {
+    .mzp-c-split-container {
+        max-width: $content-md;
+        box-sizing: content-box;
+
+        h2 {
+            @include text-title-2xs;
+        }
+    }
 
     .misinformation-firefox-helps-heading {
-        margin: $layout-md 0 $layout-lg;
+        max-width: $content-md;
+        margin: $layout-xl auto $layout-sm;
         text-align: center;
     }
 
-    .mzp-c-card-feature-title {
-        @include text-title-2xs;
+    .mzp-c-split-media {
+        max-width: 100%;
     }
 
-    .mzp-c-card-feature-media {
+    .mzp-c-split-media-asset {
         margin: 0 auto;
         max-width: 320px;
+    }
+
+    @media #{$mq-lg} {
+        .mzp-c-split-media {
+            justify-self: stretch;
+        }
+
+        .mzp-c-split-media-asset {
+            max-width: 100%;
+            width: 100%;
+        }
     }
 }
 
