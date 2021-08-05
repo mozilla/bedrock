@@ -1344,11 +1344,17 @@
       "files": [
         "js/libs/classlist.js",
         "js/base/search-params.js",
+        "js/base/uitour-lib.js",
+        "js/base/mozilla-run.js",
         "js/base/mozilla-utils.js",
         "js/base/mozilla-client.js",
-        "js/base/mozilla-run.js",
         "protocol/js/protocol-supports.js",
-        "protocol/js/protocol-utils.js",
+        "protocol/js/protocol-utils.js"
+      ],
+      "name": "lib"
+    },
+    {
+      "files": [
         "js/base/protocol/protocol-menu.js",
         "js/base/protocol/protocol-navigation.js",
         "js/base/protocol/init-navigation.js",
@@ -1357,16 +1363,20 @@
         "protocol/js/protocol-details.js",
         "js/base/protocol/protocol-footer.js",
         "js/base/protocol/protocol-sub-navigation.js",
-        "js/base/base-page-init.js",
-        "js/base/core-datalayer.js",
-        "js/base/core-datalayer-init.js",
-        "js/base/uitour-lib.js",
         "js/base/mozilla-fxa-link.js",
         "js/base/mozilla-fxa-link-init.js",
+        "js/base/base-page-init.js"
+      ],
+      "name": "ui"
+    },
+    {
+      "files": [
+        "js/base/core-datalayer.js",
+        "js/base/core-datalayer-init.js",
         "js/base/fxa-utm-referral.js",
         "js/base/fxa-utm-referral-init.js"
       ],
-      "name": "common"
+      "name": "data"
     },
     {
       "files": [
