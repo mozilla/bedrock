@@ -14,10 +14,6 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/components/logos/wordmark-product-pocket';
 @import '../../../protocol/css/components/logos/wordmark-product-firefox';
 
-.visually-hidden {
-    @include visually-hidden;
-}
-
 .t-medium .mzp-l-content,
 .t-medium .mzp-c-split-container {
     max-width: $content-xl;
