@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import call_out_compact, split, hero, picto_card with context %}
+{% from "macros-protocol.html" import call_out_compact, split, hero, picto with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -128,11 +128,15 @@
   </section>
 
   <div class="misinformation-learn-more">
-    <ul class="mzp-l-content mzp-l-card-half">
-      {% call picto_card(
+    <ul class="mzp-l-content mzp-l-columns mzp-t-columns-two mzp-t-picto-center">
+      {% call picto(
         title=ftl('misinformation-why-trust-firefox'),
+        image_url='img/icons/mountain-purple.svg',
+        image_width='153px',
+        lazy_loading=True,
         class='trust',
-        custom_desc=True
+        body=True,
+        base_el='li'
       ) %}
         <p>
           {{ ftl('misinformation-because-we-put-people-first', foundation='https://foundation.mozilla.org/' + _params) }}
@@ -140,10 +144,14 @@
         <p><a href="{{ url('mozorg.mission') }}">{{ ftl('misinformation-learn-more-about-our-mission') }}</a></p>
       {% endcall %}
 
-      {% call picto_card(
+      {% call picto(
         title=ftl('misinformation-your-privacy-by-the-product'),
+        image_url='img/icons/privacy-shield.svg',
+        image_width='146px',
+        lazy_loading=True,
         class='privacy',
-        custom_desc=True
+        body=True,
+        base_el='li',
       ) %}
         <p>{{ ftl('misinformation-firefox-products-work-differently') }}</p>
         <p><a href="{{ url('firefox.privacy.products') }}">{{ ftl('misinformation-learn-about-our-products') }}</a></p>
