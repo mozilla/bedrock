@@ -6,7 +6,7 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 @import '../../protocol/css/includes/lib';
 
-@import '../../protocol/css/components/hero';
+@import '../../protocol/css/components/split';
 @import '../../protocol/css/components/card';
 @import '../../protocol/css/templates/card-layout';
 
@@ -14,50 +14,82 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Primary CTA (page top)
 
-.privacy-promise-hero.mzp-c-hero.mzp-t-dark {
-    background-color: $color-ink-80;
-    overflow: hidden;
-    padding-bottom: 0;
-    text-align: left;
-
-    .mzp-c-hero-body {
-        max-width: none;
-    }
-
-    .privacy-promise-hero-desc {
+.privacy-promise-hero {
+    p {
         @include text-body-lg;
-        margin-bottom: 0;
     }
 
-    .mzp-c-hero-image {
-        display: none;
+    .mzp-c-split-media-asset {
+        position: relative;
+        top: $spacing-xl;
     }
 
-    @media #{$mq-md} {
-        .mzp-c-hero-title {
-            @include font-size(32px);
-        }
-
-        .privacy-promise-hero-desc {
-            margin-bottom: $spacing-lg;
-        }
-
-        .mzp-c-hero-image {
-            display: block;
-            height: 100%;
-            margin: 0;
-
-            img {
-                @include bidi(((left, $spacing-xl, right, auto),));
-            }
-        }
+    &.mzp-c-split {
+        padding-top: 0;
+        padding-bottom: 0;
     }
 
     @media #{$mq-lg} {
-        padding-bottom: $spacing-lg;
+        &.mzp-c-split {
+            overflow-y: hidden;
+        }
 
-        .mzp-c-hero-title {
-            @include font-size(48px);
+        .mzp-c-split-bg {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        .mzp-c-split-body {
+            padding-top: $spacing-2xl;
+            padding-bottom: $spacing-2xl;
         }
     }
 }
+
+// .privacy-promise-hero.mzp-c-hero.mzp-t-dark {
+//     background-color: $color-ink-80;
+//     overflow: hidden;
+//     padding-bottom: 0;
+//     text-align: left;
+
+//     .mzp-c-hero-body {
+//         max-width: none;
+//     }
+
+//     .privacy-promise-hero-desc {
+//         @include text-body-lg;
+//         margin-bottom: 0;
+//     }
+
+//     .mzp-c-hero-image {
+//         display: none;
+//     }
+
+//     @media #{$mq-md} {
+//         .mzp-c-hero-title {
+//             @include font-size(32px);
+//         }
+
+//         .privacy-promise-hero-desc {
+//             margin-bottom: $spacing-lg;
+//         }
+
+//         .mzp-c-hero-image {
+//             display: block;
+//             height: 100%;
+//             margin: 0;
+
+//             img {
+//                 @include bidi(((left, $spacing-xl, right, auto),));
+//             }
+//         }
+//     }
+
+//     @media #{$mq-lg} {
+//         padding-bottom: $spacing-lg;
+
+//         .mzp-c-hero-title {
+//             @include font-size(48px);
+//         }
+//     }
+// }
