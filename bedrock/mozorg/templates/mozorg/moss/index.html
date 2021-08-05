@@ -49,10 +49,11 @@
   <ul class="mzp-l-columns mzp-t-columns-three mzp-t-picto-center moss-tracks-list">
     {% call picto(
       title=_('Track I: Foundational Technology'),
-    heading_level=3,
+      heading_level=3,
       image_url='img/mozorg/moss/foundational-technology.svg',
       image_width=200,
-      body=True
+      body=True,
+      base_el='li'
     ) %}
       <p>{{ _('The Foundational Technology track supports open source projects that Mozilla relies on, either as an embedded part of our products or as part of our everyday work.') }}</p>
       <div class="moss-track-cta">
@@ -66,7 +67,8 @@
       heading_level=3,
       image_url='img/mozorg/moss/mission-partners.svg',
       image_width=200,
-      body=True
+      body=True,
+      base_el='li'
     ) %}
       <p>{{ _('The Mission Partners track supports open source projects that significantly advance Mozilla’s mission.') }}</p>
       <div class="moss-track-cta">
@@ -78,9 +80,10 @@
     {% call picto(
       title=_('Track III: Secure Open Source Fund'),
       heading_level=3,
-       image_url='img/mozorg/moss/secure-open-source.svg',
+      image_url='img/mozorg/moss/secure-open-source.svg',
       image_width=200,
-      body=True
+      body=True,
+      base_el='li'
     ) %}
       <p>{{ _('The Secure Open Source (“SOS”) track supports security audits for widely used open source software projects as well as the remedial work needed to rectify the problems found.') }}</p>
       <div class="moss-track-cta">

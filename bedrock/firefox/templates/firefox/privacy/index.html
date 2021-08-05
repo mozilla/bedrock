@@ -92,7 +92,8 @@
         title=ftl('firefox-privacy-hub-why-trust-firefox'),
         body=True,
         image_url='img/icons/mountain-purple.svg',
-        image_width=150
+        image_width=150,
+        base_el='li'
       ) %}
         <p>
           {{ ftl('firefox-privacy-hub-because-we-put-people-first',
@@ -105,7 +106,8 @@
         title=ftl('firefox-privacy-hub-your-privacy-by-the-product'),
         body=True,
         image_url='img/icons/privacy-shield.svg',
-        image_width=150
+        image_width=150,
+        base_el='li'
       ) %}
         <p>{{ ftl('firefox-privacy-hub-firefox-products-work-differently') }}</p>
         <p><a href="{{ url('firefox.privacy.products') }}">{{ ftl('firefox-privacy-hub-learn-about-our-products') }}</a></p>

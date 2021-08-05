@@ -79,7 +79,6 @@ main {
     margin-bottom: $layout-md;
     @media #{$mq-md} {
         margin-bottom: 0;
-        padding: 48px;
-        padding-bottom: 0;
+        padding: $spacing-2xl $spacing-2xl 0;
     }
 }
