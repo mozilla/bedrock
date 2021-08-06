@@ -4,6 +4,8 @@
 
 {% extends "base-protocol-mozilla.html" %}
 
+{% from "macros-protocol.html" import split with context %}
+
 {% block page_title %}The State of Mozilla: 2019 Annual Report{% endblock %}
 {% block page_desc %}Every year, in the spirit of openness upon which Mozilla was founded, we share publicly the ways we have protected, fought for and helped advance the internet in service of the people who rely on it every day.{% endblock %}
 {% block page_image %}{{ static('img/foundation/annualreport/2019/share.jpg') }}{% endblock %}
@@ -542,41 +544,24 @@
       </section>
     </div>
 
-    <!-- Feature Card -->
-    <div class="mzp-l-content no-js-hidden">
-      <section id="victory-has-a-ring-to-it" data-modal-id="victory-has-a-ring-to-it" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-third has-modal">
-        <div class="mzp-c-card-feature-media-wrapper">
-          <div class="mzp-c-card-feature-media">
-            {{ lazy_img(image_url='img/foundation/annualreport/2019/victory-ring.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
-          </div>
-        </div>
-        <div class="mzp-c-card-feature-content">
-          <div class="mzp-c-card-feature-content-container">
-            <div class="mzp-c-card-tag">Taking on Big Tech</div>
-            <h2 class="mzp-c-card-feature-title">Victory has a Ring to&nbsp;it </h2>
-            <button class="mzp-c-button mzp-t-secondary">
-              Our campaign for real home security
-            </button>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- Split replacement -->
-    <section id="victory-has-a-ring-to-it" class="mzp-c-split has-modal" data-modal-id="victory-has-a-ring-to-it" >
-
-     <div class="mzp-c-split-container">
-      <div class="mzp-c-split-body mzp-l-split-body-narrow">
-      <p>Taking on Big Tech</p>
-      <h1 class="mzp-u-title-md">Victory has a Ring to it</h1>
-        <a class="mzp-c-button mzp-t-secondary">Our campaign for real home security</a>
-    </div>
-    <div class="mzp-c-split-media">
-      {{ lazy_img(image_url='img/foundation/annualreport/2019/victory-ring.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-split-media-asset'}) }}
-    </div>
-  </div>
-
-</section>
+<!-- Split replacement -->
+<div class="has-modal" data-modal-id="victory-has-a-ring-to-it">
+  {% call split(
+    id='victory-has-a-ring-to-it',
+    image_url='img/foundation/annualreport/2019/victory-ring.jpg',
+    include_highres_image=True,
+    media_after=False,
+    block_class='mzp-l-split-center-on-sm-md',
+    media_class='mzp-l-split-h-center',
+    theme_class='mzp-l-split-body-narrow'
+    ) %}
+    <p>Taking on Big Tech</p>
+    <h2>Victory has a Ring to it</h2>
+    <a href="#" class="mzp-c-button mzp-t-secondary mzp-t-lg">
+      Our campaign for real home security
+    </a>
+  {% endcall %}
+</div>
 
     <!-- Link List -->
     <div class="mzp-l-content no-js-hidden">

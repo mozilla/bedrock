@@ -27,11 +27,13 @@ $image-path: '/media/protocol/img';
 
 // Hero FireFox logo sizing
 .mzp-c-split-body {
+
     .mzp-t-product-firefox {
         height: 80px;
         width: 80px;
         padding-bottom: $layout-sm;
         margin: 0 auto;
+
         @media #{$mq-lg} {
             margin: 0;
         }

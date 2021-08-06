@@ -506,6 +506,38 @@ $image-path: '/media/protocol/img';
     }
 }
 
+// Split content
+.mzp-c-split-container {
+    box-sizing: content-box;
+    padding: 0 $layout-xl;
+
+    .mzp-c-split-body {
+
+        p {
+            margin : 0;
+        }
+
+        h2 {
+            @include font-mozilla;
+            @include text-title-md;
+            font-weight: 100;
+        }
+    }
+
+}
+
+.mzp-c-split-media {
+
+    @media #{$mq-md} {
+        max-width: $content-md;
+    }
+
+    @media #{$mq-lg} {
+        max-width: $content-max;
+    }
+
+}
+
 .c-report-pdfs {
     border-top: 1px solid $color-light-gray-90;
     padding-top: $spacing-xl;
