@@ -512,6 +512,8 @@ $image-path: '/media/protocol/img';
     padding: 0 $layout-xl;
 
     .mzp-c-split-body {
+        margin-top: $spacing-md;
+        padding: 0;
 
         p {
             margin : 0;
@@ -524,6 +526,10 @@ $image-path: '/media/protocol/img';
         }
     }
 
+}
+
+.mzp-l-split-body-narrow {
+    padding: 0;
 }
 
 .mzp-c-split-media {
