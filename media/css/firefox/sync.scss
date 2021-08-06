@@ -12,6 +12,8 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/components/emphasis-box';
 @import '../../protocol/css/components/picto';
 @import "../../protocol/css/components/split";
+@import '../../protocol/css/components/logos/logo-product-firefox';
+
 
 
 .sync-highlights {
@@ -21,6 +23,24 @@ $image-path: '/media/protocol/img';
         padding-left: $layout-xl;
         padding-right: $layout-xl;
     }
+}
+
+// Hero FireFox logo sizing
+.mzp-c-split-body {
+    .mzp-t-product-firefox {
+        height: 80px;
+        width: 80px;
+        padding-bottom: $layout-sm;
+        margin: 0 auto;
+        @media #{$mq-lg} {
+            margin: 0;
+        }
+    }
+}
+
+// Split media sizing
+.mzp-c-split-media {
+    max-width: $content-md;
 }
 
 //* -------------------------------------------------------------------------- */
