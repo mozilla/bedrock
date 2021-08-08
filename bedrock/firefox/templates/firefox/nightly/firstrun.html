@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import hero, picto_card with context %}
+{% from "macros-protocol.html" import hero, picto with context %}
 
 {% extends "/firefox/base/base-protocol.html" %}
 
@@ -38,32 +38,35 @@
   <section class="contribute">
     <div class="mzp-l-content">
       <h2 class="contribute-title">{{ ftl('nightly-firstrun-choose-an-area') }}</h2>
-      <ul class="mzp-l-card-third mzp-t-dark">
-        {% call picto_card(
+      <ul class="mzp-l-card-third mzp-t-dark mzp-l-columns mzp-t-columns-three mzp-t-picto-center">
+        {% call picto(
           title=ftl('nightly-firstrun-test'),
-          class='test',
           heading_level=3,
-          custom_desc=True
+          body=True,
+          image_url='img/firefox/firstrun/test.png',
+          base_el='li'
         ) %}
           <p>{{ ftl('nightly-firstrun-find-and-file-bugs') }}</p>
           <a href="https://quality.mozilla.org/get-involved/" class="mzp-c-button mzp-t-product mzp-t-dark" data-cta-type="button" data-cta-text="Start testing">{{ ftl('nightly-firstrun-start-testing') }}</a>
         {% endcall %}
 
-        {% call picto_card(
+        {% call picto(
           title=ftl('nightly-firstrun-code'),
-          class='code',
           heading_level=3,
-          custom_desc=True
+          body=True,
+          image_url='img/firefox/firstrun/code.png',
+          base_el='li'
         ) %}
           <p>{{ ftl('nightly-firstrun-file-bugs-and-work') }}</p>
           <a href="https://firefox-source-docs.mozilla.org/contributing/contributing_to_mozilla.html" class="mzp-c-button mzp-t-product mzp-t-dark" data-cta-type="button" data-cta-text="Start coding">{{ ftl('nightly-firstrun-start-coding') }}</a>
         {% endcall %}
 
-        {% call picto_card(
+        {% call picto(
           title=ftl('nightly-firstrun-localize'),
-          class='localize',
-          heading_level=3,
-          custom_desc=True
+           heading_level=3,
+          body=True,
+          image_url='img/firefox/firstrun/localize.png',
+          base_el='li'
         ) %}
           <p>{{ ftl('nightly-firstrun-make-firefox-available') }}</p>
           <a href="{{ ftl('nightly-firstrun-contribute-link') }}" class="mzp-c-button mzp-t-product mzp-t-dark" data-cta-type="button" data-cta-text="Start localizing">{{ ftl('nightly-firstrun-start-localizing') }}</a>

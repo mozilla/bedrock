@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import call_out, feature_card, hero, picto_card, hero with context %}
+{% from "macros-protocol.html" import call_out, feature_card, hero, picto, hero with context %}
 
 {% extends "firefox/privacy/base.html" %}
 
@@ -87,11 +87,13 @@
   </div>
 
   <div class="privacy-promise-learn-more">
-    <ul class="mzp-l-content mzp-l-card-half">
-      {% call picto_card(
+      <ul class="mzp-l-content mzp-l-columns mzp-t-columns-two mzp-t-picto-center">
+      {% call picto(
         title=ftl('firefox-privacy-hub-why-trust-firefox'),
-        class='trust',
-        custom_desc=True
+        body=True,
+        image_url='img/icons/mountain-purple.svg',
+        image_width=150,
+        base_el='li'
       ) %}
         <p>
           {{ ftl('firefox-privacy-hub-because-we-put-people-first',
@@ -100,14 +102,17 @@
         <p><a href="{{ url('mozorg.mission') }}">{{ ftl('firefox-privacy-hub-learn-more-about-our-mission') }}</a></p>
       {% endcall %}
 
-      {% call picto_card(
+      {% call picto(
         title=ftl('firefox-privacy-hub-your-privacy-by-the-product'),
-        class='privacy',
-        custom_desc=True
+        body=True,
+        image_url='img/icons/privacy-shield.svg',
+        image_width=150,
+        base_el='li'
       ) %}
         <p>{{ ftl('firefox-privacy-hub-firefox-products-work-differently') }}</p>
         <p><a href="{{ url('firefox.privacy.products') }}">{{ ftl('firefox-privacy-hub-learn-about-our-products') }}</a></p>
       {% endcall %}
     </ul>
   </div>
+
 {% endblock %}

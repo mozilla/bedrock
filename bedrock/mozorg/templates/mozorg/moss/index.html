@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import card, picto_card with context %}
+{% from "macros-protocol.html" import card, picto with context %}
 
 {% extends "mozorg/moss/base.html" %}
 
@@ -42,17 +42,18 @@
   <div class="t-medium">
     <div class="mzp-l-content">
       <h2 class="moss-section-heading">{{ _('Award Tracks') }}</h2>
-
       <p>{{ _('MOSS awards are available in multiple tracks:') }}</p>
     </div>
   </div>
-
-  <ul class="mzp-l-content mzp-l-card-third moss-tracks-list">
-    {% call picto_card(
+  <div class="mzp-l-content">
+  <ul class="mzp-l-columns mzp-t-columns-three mzp-t-picto-center moss-tracks-list">
+    {% call picto(
       title=_('Track I: Foundational Technology'),
-      class='foundational-technology',
       heading_level=3,
-      custom_desc=True
+      image_url='img/mozorg/moss/foundational-technology.svg',
+      image_width=200,
+      body=True,
+      base_el='li'
     ) %}
       <p>{{ _('The Foundational Technology track supports open source projects that Mozilla relies on, either as an embedded part of our products or as part of our everyday work.') }}</p>
       <div class="moss-track-cta">
@@ -61,11 +62,13 @@
       </div>
     {% endcall %}
 
-    {% call picto_card(
+    {% call picto(
       title=_('Track II: Mission Partners'),
-      class='mission-partners',
       heading_level=3,
-      custom_desc=True
+      image_url='img/mozorg/moss/mission-partners.svg',
+      image_width=200,
+      body=True,
+      base_el='li'
     ) %}
       <p>{{ _('The Mission Partners track supports open source projects that significantly advance Mozilla’s mission.') }}</p>
       <div class="moss-track-cta">
@@ -74,11 +77,13 @@
       </div>
     {% endcall %}
 
-    {% call picto_card(
+    {% call picto(
       title=_('Track III: Secure Open Source Fund'),
-      class='fund',
       heading_level=3,
-      custom_desc=True
+      image_url='img/mozorg/moss/secure-open-source.svg',
+      image_width=200,
+      body=True,
+      base_el='li'
     ) %}
       <p>{{ _('The Secure Open Source (“SOS”) track supports security audits for widely used open source software projects as well as the remedial work needed to rectify the problems found.') }}</p>
       <div class="moss-track-cta">
@@ -87,7 +92,9 @@
       </div>
     {% endcall %}
   </ul>
+  </div>
 </section>
+
 
 <div class="t-medium">
   <section class="mzp-l-content moss-section">
