@@ -7,7 +7,6 @@ $image-path: '/media/protocol/img';
 
 @import '../../protocol/css/includes/lib';
 @import '../../protocol/css/components/billboard';
-@import '../../protocol/css/components/feature-card';
 @import '../../protocol/css/components/split';
 @import '../../protocol/css/components/hero';
 @import '../../protocol/css/components/newsletter-form';
@@ -88,14 +87,6 @@ $image-path: '/media/protocol/img';
     @media #{$mq-lg} {
         box-sizing: content-box;
         padding: 0 $layout-xl;
-    }
-
-    .mzp-c-split-body {
-        margin-top: $spacing-md;
-
-        @media #{$mq-lg} {
-            margin-top: $spacing-2xl;
-        }
     }
 }
 

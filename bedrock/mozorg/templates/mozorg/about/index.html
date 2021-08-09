@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import billboard, card, feature_card, split with context %}
+{% from "macros-protocol.html" import billboard, card, split with context %}
 
 {% extends "base-protocol-mozilla.html" %}
 
@@ -91,7 +91,7 @@
     media_after=False,
     media_class='mzp-l-split-h-center',
     ) %}
-    <h3>{{ ftl('about-corporation-foundation-not') }}</h3>
+    <h2>{{ ftl('about-corporation-foundation-not') }}</h2>
     <p>{{ ftl('about-mozilla-puts-people-over-profit') }}</p>
     <a class="mzp-c-cta-link" href="https://foundation.mozilla.org/">{{ ftl('about-learn-about-the-mozilla-foundation') }}</a>
 {% endcall %}
