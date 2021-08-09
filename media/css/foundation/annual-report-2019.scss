@@ -502,27 +502,25 @@ $image-path: '/media/protocol/img';
 
         &:hover {
             background-color: $color-white;
-        }
+       }
     }
 }
 
 // Split content
 .mzp-c-split-container {
-    box-sizing: content-box;
-    padding: 0 $layout-xl;
 
     .mzp-c-split-body {
         margin-top: $spacing-md;
         padding: 0;
 
-        p {
-            margin : 0;
-        }
-
         h2 {
             @include font-mozilla;
             @include text-title-md;
             font-weight: 100;
+        }
+
+        p {
+            margin : 0;
         }
     }
 
@@ -542,6 +540,10 @@ $image-path: '/media/protocol/img';
         max-width: $content-max;
     }
 
+}
+
+.mzp-t-secondary {
+        text-align: center;
 }
 
 .c-report-pdfs {
