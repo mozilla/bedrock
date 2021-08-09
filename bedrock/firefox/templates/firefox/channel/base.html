@@ -4,7 +4,7 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% from "macros-protocol.html" import hero, feature_card, call_out_compact, picto_card with context %}
+{% from "macros-protocol.html" import hero, feature_card, call_out_compact, picto with context %}
 
 {% block page_og_title %}{{ self.page_title() }}{% endblock %}
 
@@ -46,18 +46,20 @@
 
   {% block channels %}{% endblock %}
 
-  {% call picto_card(
-    title=ftl('firefox-channel-see-something-that-isnt-working'),
+  <aside class="mzp-t-picto-center">
+  {% call picto(
+    image_url='img/icons/warning.svg',
     heading_level=2,
-    class='bugzilla',
-    base_el='section',
-    custom_desc=True) %}
-
-  <ul>
-    <li><a class="mzp-c-cta-link" href="https://bugzilla.mozilla.org/enter_bug.cgi">{{ ftl('firefox-channel-file-a-bug-now') }}</a></li>
-    <li><a class="mzp-c-cta-link" href="https://developer.mozilla.org/docs/Mozilla/QA/Bug_writing_guidelines">{{ ftl('firefox-channel-tips-for-filing-a-bug') }}</a></li>
-  </ul>
-  {% endcall %}
+    image_width=44,
+    title=ftl('firefox-channel-see-something-that-isnt-working'),
+    body=True,
+    ) %}
+      <ul>
+        <li><a class="mzp-c-cta-link" href="https://bugzilla.mozilla.org/enter_bug.cgi">{{ ftl('firefox-channel-file-a-bug-now') }}</a></li>
+        <li><a class="mzp-c-cta-link" href="https://support.mozilla.org/kb/contributors-guide-writing-good-bug">{{ ftl('firefox-channel-tips-for-filing-a-bug') }}</a></li>
+      </ul>
+      {% endcall %}
+    </aside>
 
   <section class="t-newsletter">
     <div class="mzp-l-content">

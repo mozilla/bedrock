@@ -7,7 +7,7 @@ $image-path: '/media/protocol/img';
 
 @import '../../protocol/css/includes/lib';
 @import '../../protocol/css/components/hero';
-@import '../../protocol/css/components/picto-card';
+@import '../../protocol/css/components/picto';
 @import '../protocol/components/sub-navigation';
 @import '../../protocol/css/components/newsletter-form';
 @import '../../protocol/css/components/call-out';
@@ -30,17 +30,6 @@ $image-path: '/media/protocol/img';
 
     .mzp-c-hero-desc {
         margin: 0;
-    }
-}
-
-//* -------------------------------------------------------------------------- */
-// Picto Card
-
-.bugzilla .mzp-c-card-picto-content {
-    max-width: none;
-
-    &:before {
-        background: transparent url('/media/img/icons/warning.svg') no-repeat center;
     }
 }
 

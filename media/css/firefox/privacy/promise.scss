@@ -6,6 +6,8 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/picto';
+@import '../../../protocol/css/templates/multi-column';
 
 
 /* -------------------------------------------------------------------------- */
@@ -70,39 +72,15 @@ $image-path: '/media/protocol/img';
 /* -------------------------------------------------------------------------- */
 // Picto Cards
 
-.privacy-promise-learn-more {
-    background-color: $color-marketing-gray-10;
-
-    .mzp-c-card-picto-content {
-        max-width: 500px;
-    }
-
-    // Custom Overrides pending https://github.com/mozilla/protocol/issues/382
-    .mzp-c-card-picto {
-
-        .mzp-c-card-picto-content {
-            padding-top: 113px + $spacing-lg;
-
-            &:before {
-                background-color: transparent;
-                background-repeat: no-repeat;
-            }
-        }
-
-        &.trust .mzp-c-card-picto-content:before {
-            background-image: url('/media/img/icons/mountain-purple.svg');
-            height: 113px;
-            margin-left: -76px;
-            width: 153px;
-        }
-
-        &.privacy .mzp-c-card-picto-content:before {
-            background-image: url('/media/img/icons/privacy-shield.svg');
-            height: 113px;
-            margin-left: -73px;
-            width: 146px;
-        }
+.mzp-l-columns .mzp-c-picto {
+    margin-bottom: $layout-md;
+    @media #{$mq-md} {
+        margin-bottom: 0;
+        padding: $spacing-2xl $spacing-2xl 0;
     }
 }
 
+.privacy-promise-learn-more {
+    background-color: $color-marketing-gray-10;
+}
 

@@ -424,6 +424,18 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-91-en.scss"
+      ],
+      "name": "firefox_whatsnew_91"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-91-de.scss"
+      ],
+      "name": "firefox_whatsnew_91_de"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -960,6 +972,22 @@
     },
     {
       "files": [
+        "js/firefox/whatsnew/up-to-date.js",
+        "js/base/mozilla-fxa-product-button.js",
+        "js/base/mozilla-fxa-product-button-init.js"
+      ],
+      "name": "firefox_whatsnew_91"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/up-to-date.js",
+        "js/base/mozilla-fxa-product-button.js",
+        "js/base/mozilla-fxa-product-button-init.js"
+      ],
+      "name": "firefox_whatsnew_91_de"
+    },
+    {
+      "files": [
         "protocol/js/protocol-newsletter.js"
       ],
       "name": "legal"
@@ -1042,13 +1070,6 @@
         "js/base/stub-attribution-convert.js"
       ],
       "name": "stub-attribution-convert"
-    },
-    {
-      "files": [
-        "js/base/stub-attribution-macos.js",
-        "js/base/stub-attribution-macos-init.js"
-      ],
-      "name": "stub-attribution-macos"
     },
     {
       "files": [
@@ -1321,7 +1342,7 @@
     },
     {
       "files": [
-        "js/base/class-list-polyfill.js",
+        "js/libs/classlist.js",
         "js/base/search-params.js",
         "js/base/mozilla-utils.js",
         "js/base/mozilla-client.js",

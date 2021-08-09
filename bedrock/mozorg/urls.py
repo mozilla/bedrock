@@ -86,6 +86,8 @@ urlpatterns = (
          'mozorg/about/policy/transparency/jan-jun-2020.html'),
     page('about/policy/transparency/jul-dec-2020',
          'mozorg/about/policy/transparency/jul-dec-2020.html'),
+    page('about/policy/transparency/jan-jun-2021',
+         'mozorg/about/policy/transparency/jan-jun-2021.html'),
 
     page('contact', 'mozorg/contact/contact-landing.html'),
     page('contact/spaces', 'mozorg/contact/spaces/spaces-landing.html'),

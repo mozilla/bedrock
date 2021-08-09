@@ -7,6 +7,8 @@ $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
 @import '../../../protocol/css/components/picto-card';
+@import '../../../protocol/css/components/picto';
+@import '../../../protocol/css/templates/multi-column';
 @import '../../../protocol/css/components/hero';
 @import '../../../protocol/css/templates/card-layout';
 
@@ -58,16 +60,6 @@ main {
     .mzp-c-card-picto-desc p {
         color: $color-white;
     }
-
-    .test .mzp-c-card-picto-content::before {
-        background-image: url('/media/img/firefox/firstrun/test.png');
-    }
-    .code .mzp-c-card-picto-content::before {
-        background-image: url('/media/img/firefox/firstrun/code.png');
-    }
-    .localize .mzp-c-card-picto-content::before {
-        background-image: url('/media/img/firefox/firstrun/localize.png');
-    }
 }
 
 .locale-specific {
@@ -80,5 +72,13 @@ main {
     h5,
     h6 {
         @include text-title-sm;
+    }
+}
+
+.mzp-l-columns .mzp-c-picto {
+    margin-bottom: $layout-md;
+    @media #{$mq-md} {
+        margin-bottom: 0;
+        padding: $spacing-2xl $spacing-2xl 0;
     }
 }
