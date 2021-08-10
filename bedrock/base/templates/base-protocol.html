@@ -116,7 +116,9 @@
 
     {% block site_js %}
       <!--[if !IE]><!-->
-        {{ js_bundle('common') }}
+        {{ js_bundle('lib') }}
+        {{ js_bundle('ui') }}
+        {{ js_bundle('data') }}
       <!--<![endif]-->
 
       <!--[if IE]>
