@@ -8,8 +8,14 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/includes/lib';
 @import '../../../protocol/css/components/emphasis-box';
 @import '../../protocol/components/fxa-form';
+@import '../../../protocol/css/components/logos/wordmark';
+@import '../../../protocol/css/components/logos/wordmark-product-monitor';
+@import '../../../protocol/css/components/logos/wordmark-product-vpn';
+@import '../../../protocol/css/components/logos/wordmark-product-pocket';
+@import '../../../protocol/css/components/logos/wordmark-product-firefox';
 
-.t-medium .mzp-l-content {
+.t-medium .mzp-l-content,
+.t-medium .mzp-c-split-container {
     max-width: $content-xl;
 }
 
@@ -32,63 +38,32 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Main Hero
 
-.privacy-products-hero.mzp-c-hero.mzp-t-dark {
-    @include bidi(((text-align, left, right),));
-    background-color: $color-ink-80;
-    padding-bottom: 0;
-
-    .mzp-c-hero-body {
-        max-width: none;
+.privacy-products {
+    .mzp-c-split-container {
+        box-sizing: content-box;
     }
 
-    .mzp-c-hero-title {
-        @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-white-sm.png', auto, 40px);
-        @include bidi(((background-position, top left, top right),));
-        @include image-replaced;
-        background-repeat: no-repeat;
-        margin-bottom: $spacing-md;
-        min-height: 40px;
+    .mzp-c-wordmark {
+        margin-bottom: $spacing-lg;
     }
 
-    .privacy-products-hero-sub-title {
-        @include text-title-sm;
-    }
-
-    .privacy-products-hero-tagline {
-        font-weight: bold;
-        margin-top: $spacing-2xl;
-    }
-
-    .mzp-c-hero-image {
-        display: none;
-    }
-
-    &.mzp-t-dark .mzp-c-cta-link {
+    .mzp-t-dark .mzp-c-cta-link {
         color: $color-blue-30;
     }
+}
 
-    @media #{$mq-md} {
+.privacy-products-hero-sub-title {
+    @include text-title-sm;
+}
+
+.privacy-products-hero-tagline {
+    font-weight: bold;
+    margin-top: $spacing-2xl;
+}
+
+@media #{$mq-md} {
+    .privacy-products {
         padding-bottom: $spacing-lg;
-
-        .mzp-c-hero-title {
-            @include bidi(((background-position, top left, top right),));
-        }
-
-        .mzp-c-hero-image {
-            display: block;
-            margin-top: 65px;
-
-            img {
-                top: 0;
-                bottom: auto;
-            }
-        }
-    }
-
-    @media #{$mq-lg} {
-        .mzp-c-hero-image {
-            margin-top: 90px;
-        }
     }
 }
 
@@ -96,53 +71,30 @@ $image-path: '/media/protocol/img';
 // Picto Cards
 
 .privacy-products-etp {
-    background-color: $color-ink-80;
-
     & > .mzp-l-content {
         padding-top: 0;
+        @media #{$mq-md} {
+            padding-bottom: 0;
+        }
     }
 
-    // Custom Overrides pending https://github.com/mozilla/protocol/issues/382
-    .mzp-c-card-picto {
-        @include bidi(((text-align, left, right),));
+    .mzp-c-picto {
+        max-width: 100%;
 
-        .mzp-c-card-picto-content {
-            padding-top: 80px + $spacing-lg;
-
-            &:before {
-                @include bidi(((left, 0, right, 0),));
-                background-color: transparent;
-                background-repeat: no-repeat;
-                margin: 0;
-            }
-        }
-
-        &.invisible .mzp-c-card-picto-content:before {
-            @include background-size(103px 80px);
-            background-image: url('/media/img/firefox/privacy/products/icon-invisible.svg');
-            height: 80px;
-            width: 103px;
-        }
-
-        &.control .mzp-c-card-picto-content:before {
-            @include background-size(62px 80px);
-            background-image: url('/media/img/firefox/privacy/products/icon-control.svg');
-            height: 80px;
-            width: 62px;
-        }
-
-        &.protection .mzp-c-card-picto-content:before {
-            @include background-size(94px 80px);
-            background-image: url('/media/img/firefox/privacy/products/icon-protection.svg');
-            height: 80px;
-            width: 94px;
+        &:not(:last-of-type) {
+            margin-bottom: $spacing-2xl;
         }
 
         @media #{$mq-md} {
-            .mzp-c-card-picto-content:before {
-                @include bidi(((left, $spacing-lg, right, 0),));
+            &:not(:last-of-type) {
+                margin-bottom: 0;
             }
         }
+    }
+
+    .mzp-c-picto-image img {
+        height: 80px;
+        width: auto;
     }
 }
 
@@ -172,62 +124,25 @@ $image-path: '/media/protocol/img';
 }
 
 //* -------------------------------------------------------------------------- */
-// Product List Feature Cards
+// Product List Splits
 
 .privacy-products-list {
-    margin: $layout-md auto;
-
-    .mzp-c-card-feature {
-        margin-bottom: $layout-xl;
-
-        &.has-logo {
-            .mzp-c-card-feature-title {
-                @include bidi(((background-position, top left, top right),));
-                @include image-replaced;
-                background-repeat: no-repeat;
-                margin-bottom: $spacing-lg;
-                min-height: 40px;
-                text-indent: -120%; // image-replacement Safari bug see issue #8084
-            }
-        }
-
-        &:last-child {
-            margin-bottom: 0;
-        }
+    .mzp-c-wordmark {
+        margin-bottom: $spacing-lg;
     }
 
-    .mzp-c-card-feature-desc {
-        margin-bottom: $spacing-xl;
+    .mzp-c-split-media {
+        max-width: 100%;
     }
 
-    .mzp-c-card-feature-media img {
-        max-width: 320px;
+    .mzp-c-split-media-asset {
+        margin-right: auto;
+        margin-left: auto;
     }
 
     @media #{$mq-lg} {
         margin: $layout-xl auto;
-
-        .mzp-c-card-feature-media img {
-            max-width: 410px;
-        }
     }
-}
-
-.privacy-products-monitor .mzp-c-card-feature-title {
-    @include at2x('/media/protocol/img/logos/firefox/monitor/logo-word-hor-sm.png', auto, 40px);
-}
-
-.privacy-products-vpn .mzp-c-card-feature-title {
-    @include at2x('/media/protocol/img/logos/mozilla/vpn/logo-word-hor-sm.png', auto, 40px);
-}
-
-.privacy-products-send .mzp-c-card-feature-title {
-    @include at2x('/media/protocol/img/logos/firefox/send/logo-word-hor-sm.png', auto, 40px);
-}
-
-.privacy-products-pocket .mzp-c-card-feature-title {
-    background-image: url('/media/protocol/img/logos/pocket/logo-word-hor.svg');
-    @include background-size(auto 40px);
 }
 
 .privacy-products-accounts .mzp-c-emphasis-box {
@@ -237,6 +152,23 @@ $image-path: '/media/protocol/img';
         margin: $spacing-md auto;
         max-width: 320px;
         padding: $spacing-xl;
+    }
+}
+
+.privacy-products-accounts {
+    align-items: center;
+
+    > div:first-of-type {
+        margin-bottom: $spacing-xl;
+    }
+
+    @media #{$mq-md} {
+        padding-top: 0;
+        padding-bottom: 0;
+
+        > div:first-of-type {
+            margin-bottom: 0;
+        }
     }
 }
 

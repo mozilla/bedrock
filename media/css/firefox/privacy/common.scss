@@ -4,11 +4,13 @@
 
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
+$brand-theme: 'firefox';
 
 @import '../../../protocol/css/includes/lib';
 @import '../../../protocol/css/components/call-out';
-@import '../../../protocol/css/components/feature-card';
-@import '../../../protocol/css/components/hero';
+@import '../../../protocol/css/components/split';
+@import '../../../protocol/css/templates/multi-column';
+@import '../../../protocol/css/components/picto';
 @import '../../../protocol/css/components/picto-card';
 @import '../../../protocol/css/templates/card-layout';
 @import '../../protocol/components/sub-navigation';
@@ -25,4 +27,11 @@ $image-path: '/media/protocol/img';
         background: url('/media/img/firefox/privacy/icon-privacy.svg') top center no-repeat;
         padding-top: 70px + $spacing-lg;
     }
+}
+
+/* -------------------------------------------------------------------------- */
+// Reduce vertical padding on stacked split components
+
+.mzp-c-split + .mzp-c-split {
+    padding-top: 0;
 }

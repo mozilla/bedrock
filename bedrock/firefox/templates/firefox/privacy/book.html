@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import feature_card, picto with context %}
+{% from "macros-protocol.html" import split, picto with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -52,44 +52,39 @@
   </div>
 </section>
 
-<div class="mzp-l-content">
-  {% call feature_card(
-    title=ftl('privacy-book-a-healthy-private'),
-    image_url='img/firefox/privacy/book/privacy-healthy-internet.png',
-    aspect_ratio='mzp-has-aspect-1-1',
-    class='mzp-l-card-feature-right-half mzp-t-firefox'
-  ) %}
-    <p>{{ ftl('privacy-book-we-believe-that') }}</p>
-    <p>{{ ftl('privacy-book-but-heres-good') }}</p>
-  {% endcall %}
-</div>
+{% call split(
+  image_url='img/firefox/privacy/book/privacy-healthy-internet.png',
+  block_class='mzp-l-split-reversed',
+  media_class='mzp-l-split-v-start'
+) %}
+  <h2>{{ ftl('privacy-book-a-healthy-private') }}</h2>
+  <p>{{ ftl('privacy-book-we-believe-that') }}</p>
+  <p>{{ ftl('privacy-book-but-heres-good') }}</p>
+{% endcall %}
 
 <div id="risks" class="mzp-l-content mzp-t-content-md">
   <h2 class="mzp-u-title-xl">{{ ftl('privacy-book-what-risks-are') }}</h2>
   <p>{{ ftl('privacy-book-theres-risk-always') }}</p>
 </div>
 
-<div id="data-breaches" class="mzp-l-content">
-  {% call feature_card(
-    title=ftl('privacy-book-data-breaches'),
-    heading_level=3,
+<div id="data-breaches" class="data-breaches">
+  {% call split(
     image_url='img/firefox/privacy/book/privacy-book-arrow-on-face.png',
-    aspect_ratio='mzp-has-aspect-1-1',
-    class='mzp-l-card-feature-left-half mzp-t-firefox'
+    media_class='mzp-l-split-v-start'
   ) %}
+    <h3>{{ ftl('privacy-book-data-breaches') }}</h3>
     <p>{{ ftl('privacy-book-even-when-organizations') }}</p>
 
     <h3 id="web-never-forgets">{{ ftl('privacy-book-the-web-never') }}</h3>
     <p>{{ ftl('privacy-book-according-to-the') }}</p>
   {% endcall %}
 
-  {% call feature_card(
-    title=ftl('privacy-book-trackers-everywhere-'),
-    heading_level=3,
+  {% call split(
     image_url='img/firefox/privacy/book/privacy-troll.png',
-    aspect_ratio='mzp-has-aspect-1-1',
-    class='mzp-l-card-feature-right-half mzp-t-firefox'
+    block_class='mzp-l-split-reversed',
+    media_class='mzp-l-split-v-start'
   ) %}
+    <h3>{{ ftl('privacy-book-trackers-everywhere-') }}</h3>
     <p>{{ ftl('privacy-book-trackers-cookies-youve') }}</p>
     <p>{{ ftl('privacy-book-tracking-cookies-are') }}</p>
 
@@ -98,32 +93,27 @@
   {% endcall %}
 </div>
 
-<div id="fake-news" class="mzp-l-content mzp-t-dark">
-  {% call feature_card(
-    title=ftl('privacy-book-fake-news-and'),
-    heading_level=3,
-    image_url='img/firefox/privacy/book/privacy-callouts.png',
-    aspect_ratio='mzp-has-aspect-1-1',
-    class='mzp-l-card-feature-left-half mzp-t-firefox'
-  ) %}
-    <p>{{ ftl('privacy-book-news-recommendations-are') }}</p>
+{% call split(
+  id='fake-news',
+  image_url='img/firefox/privacy/book/privacy-callouts.png',
+  theme_class='mzp-t-dark mzp-t-background-alt',
+  block_class='mzp-t-split-nospace',
+  media_class='mzp-l-split-v-start'
+) %}
+  <h3>{{ ftl('privacy-book-fake-news-and') }}</h3>
+  <p>{{ ftl('privacy-book-news-recommendations-are') }}</p>
 
-    <h3 id="control">{{ ftl('privacy-book-how-much-control') }}</h3>
-    <p>{{ ftl('privacy-book-many-of-us') }}</p>
-  {% endcall %}
-</div>
-
+  <h3 id="control">{{ ftl('privacy-book-how-much-control') }}</h3>
+  <p>{{ ftl('privacy-book-many-of-us') }}</p>
+{% endcall %}
 
 <section id="tips" class="c-tips">
-  <div class="mzp-l-content mzp-t-content-md">
-    {% call feature_card(
-      title=ftl('privacy-book-tips-for'),
-      image_url='img/firefox/privacy/book/privacy-digital-life-growing.png',
-      aspect_ratio='mzp-has-aspect-1-1',
-      class='mzp-l-card-feature-right-half mzp-t-firefox'
-    ) %}
-    {% endcall %}
-  </div>
+  {% call split(
+    image_url='img/firefox/privacy/book/privacy-digital-life-growing.png',
+    block_class='c-tips-title mzp-l-split-reversed'
+  ) %}
+    <h2>{{ ftl('privacy-book-tips-for') }}</h2>
+  {% endcall %}
 
   <div id="starting-over" class="mzp-l-content mzp-t-content-md">
     <h3>{{ ftl('privacy-book-starting-over') }}</h3>
@@ -208,19 +198,16 @@
     <p>{{ ftl('privacy-book-to-an-extent') }}</p>
   </div>
 
-  <div class="mzp-l-content mzp-t-content-lg">
-    {% call feature_card(
-      image_url='img/firefox/privacy/book/privacy-magnify.png',
-      aspect_ratio='mzp-has-aspect-1-1',
-      class='mzp-l-card-feature-right-half mzp-t-firefox'
-    ) %}
-      <ol>
-        <li>{{ ftl('privacy-book-search-your-name') }}</li>
-        <li>{{ ftl('privacy-book-dont-have-time') }}</li>
-        <li>{{ ftl('privacy-book-breach-alert-if') }}</li>
-      </ol>
-    {% endcall %}
-  </div>
+  {% call split(
+    image_url='img/firefox/privacy/book/privacy-magnify.png',
+    block_class='c-tips-magnify mzp-l-split-reversed'
+  ) %}
+    <ol>
+      <li>{{ ftl('privacy-book-search-your-name') }}</li>
+      <li>{{ ftl('privacy-book-dont-have-time') }}</li>
+      <li>{{ ftl('privacy-book-breach-alert-if') }}</li>
+    </ol>
+  {% endcall %}
 
 
   <div id="stay-safe" class="mzp-l-content mzp-t-content-md">
@@ -285,18 +272,14 @@
     <p>{{ ftl('privacy-book-sometimes-its-easier') }}</p>
   </div>
 
-  <div class="mzp-l-content mzp-t-content-xl">
-    {% call feature_card(
-      image_url='img/firefox/privacy/book/privacy-caution.png',
-      aspect_ratio='mzp-has-aspect-1-1',
-      class='mzp-l-card-feature-left-half mzp-t-firefox'
-    ) %}
-      <ol>
-        <li>{{ ftl('privacy-book-from-time-to') }}</li>
-        <li>{{ ftl('privacy-book-its-also-possible') }}</li>
-      </ol>
-    {% endcall %}
-  </div>
+  {% call split(
+    image_url='img/firefox/privacy/book/privacy-caution.png'
+  ) %}
+    <ol>
+      <li>{{ ftl('privacy-book-from-time-to') }}</li>
+      <li>{{ ftl('privacy-book-its-also-possible') }}</li>
+    </ol>
+  {% endcall %}
 
 
   <div id="bigger-picture" class="mzp-l-content mzp-t-content-md">
@@ -319,19 +302,16 @@
     <p>{{ ftl('privacy-book-todays-mobile-devices') }}</p>
   </div>
 
-  <div class="mzp-l-content mzp-t-content-xl">
-    {% call feature_card(
-      image_url='img/firefox/privacy/book/privacy-globe.png',
-      aspect_ratio='mzp-has-aspect-1-1',
-      class='mzp-l-card-feature-right-half mzp-t-firefox'
-    ) %}
-      <ol>
-        <li>{{ ftl('privacy-book-many-social-media') }}</li>
-        <li>{{ ftl('privacy-book-for-each-of') }}</li>
-        <li>{{ ftl('privacy-book-another-reason-to') }}</li>
-      </ol>
-    {% endcall %}
-  </div>
+  {% call split(
+    image_url='img/firefox/privacy/book/privacy-globe.png',
+    block_class='mzp-l-split-reversed'
+  ) %}
+    <ol>
+      <li>{{ ftl('privacy-book-many-social-media') }}</li>
+      <li>{{ ftl('privacy-book-for-each-of') }}</li>
+      <li>{{ ftl('privacy-book-another-reason-to') }}</li>
+    </ol>
+  {% endcall %}
 
   <div id="delete" class="mzp-l-content mzp-t-content-md">
     <h3>{{ ftl('privacy-book-dont-need-it') }}</h3>
@@ -355,20 +335,18 @@
   </div>
 </section>
 
-<section id="trackers" class="mzp-l-content mzp-t-dark">
-  {% call feature_card(
-    title=ftl('privacy-book-friendly-reminder-what'),
-    heading_level=3,
-    image_url='img/firefox/privacy/book/privacy-target.png',
-    aspect_ratio='mzp-has-aspect-1-1',
-    class='mzp-l-card-feature-left-half mzp-t-firefox'
-  ) %}
-    <p>{{ ftl('privacy-book-news-recommendations-are') }}</p>
-    <p>{{ ftl('privacy-book-we-distinguish-between') }}</p>
-    <p>{{ ftl('privacy-book-thirdparty-trackers-on') }}</p>
-    <p>{{ ftl('privacy-book-as-you-might') }}</p>
-  {% endcall %}
-</section>
+{% call split(
+  id='trackers',
+  image_url='img/firefox/privacy/book/privacy-target.png',
+  block_class='mzp-t-split-nospace',
+  theme_class='mzp-t-dark mzp-t-background-alt'
+) %}
+  <h3>{{ ftl('privacy-book-friendly-reminder-what') }}</h3>
+  <p>{{ ftl('privacy-book-news-recommendations-are') }}</p>
+  <p>{{ ftl('privacy-book-we-distinguish-between') }}</p>
+  <p>{{ ftl('privacy-book-thirdparty-trackers-on') }}</p>
+  <p>{{ ftl('privacy-book-as-you-might') }}</p>
+{% endcall %}
 
 <section id="feedback" class="questions mzp-l-content mzp-t-content-md">
   <h2>{{ ftl('privacy-book-questions-feedback') }}</h2>

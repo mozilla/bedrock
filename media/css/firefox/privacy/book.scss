@@ -6,7 +6,7 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/components/feature-card';
+@import '../../../protocol/css/components/split';
 @import '../../../protocol/css/components/card';
 @import '../../../protocol/css/components/hero';
 @import '../../../protocol/css/components/picto';
@@ -15,44 +15,59 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/components/inline-list';
 
 //* -------------------------------------------------------------------------- */
-// Layout adjustments
+// Split component adjustments
 
-.mzp-l-content {
-    // padding-bottom: $spacing-lg;
+.data-breaches .mzp-c-split:not(:first-of-type) {
+    padding-top: 0;
+}
 
-    &.mzp-t-dark {
-        background: $color-marketing-gray-80;
-
-        .mzp-c-card-feature-desc {
-            color: $color-white;
-        }
+.mzp-c-split {
+    h2 {
+        @include text-title-md;
     }
-
-    img {
-        display: block;
-        margin: 0 auto;
-        max-width: 100%;
+    h3 {
+        @include text-title-sm;
     }
 }
 
+.mzp-c-split-media {
+    max-width: 100%;
+}
 
-.mzp-c-card-feature {
-    &.mzp-l-card-feature-left-half,
-    &.mzp-l-card-feature-right-half {
-        margin-bottom: 0;
+// start side-by-side layout on earlier breakpoint than protocol component
+@media #{$mq-md} {
+    .mzp-c-split-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: get-theme('h-grid-md');
+        grid-template-areas: "body media";
     }
 
-    .mzp-c-card-feature-title {
-        @include text-title-md;
+    .mzp-l-split-reversed .mzp-c-split-container {
+        grid-template-areas: "media body";
     }
 
-    h3.mzp-c-card-feature-title,
-    .mzp-c-card-feature-desc h3 {
-        @include text-title-sm;
+    .mzp-c-split-media {
+        grid-area: media;
+        align-self: start;
     }
 
-    .mzp-c-card-feature-media {
-        margin-bottom: $spacing-xl;
+    .mzp-c-split-body + .mzp-c-split-media,
+    .mzp-c-split-media + .mzp-c-split-body {
+        margin-top: 48px;
+        margin-top: 0;
+    }
+
+    .c-tips-title {
+        .mzp-c-split-body {
+            align-self: center;
+        }
+    }
+}
+
+@media #{$mq-lg} {
+    .mzp-c-split-media {
+        align-self: center;
     }
 }
 
@@ -63,16 +78,28 @@ body {
     counter-reset: tips;
 }
 
-.c-tips {
-    .mzp-c-card-feature-content {
-        h2 {
-            @include text-title-2xl;
+.c-tips-title {
+    .mzp-c-split-container {
+        max-width: $content-md;
+        box-sizing: content-box;
+    }
+}
 
-            span {
-                @include text-title-md;
-                color: $color-ink-05;
-                display: block;
-            }
+.c-tips-magnify {
+    .mzp-c-split-container {
+        max-width: $content-lg;
+        box-sizing: content-box;
+    }
+}
+
+.c-tips {
+    h2 {
+        @include text-title-2xl;
+
+        span {
+            @include text-title-md;
+            color: $color-ink-05;
+            display: block;
         }
     }
 

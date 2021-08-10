@@ -4,7 +4,7 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 {% from "macros.html" import google_play_button, fxa_email_form with context %}
-{% from "macros-protocol.html" import hero, feature_card with context %}
+{% from "macros-protocol.html" import split with context %}
 
 {% block page_title %}{{ ftl('firefox-browsers-get-the-browsers-that-put') }}{% endblock %}
 {% block page_desc %}{{ ftl('firefox-browsers-get-the-privacy-you-deserve') }}{% endblock %}
@@ -58,17 +58,15 @@
 {% block content %}
 <main role="main">
 
-  <div class="c-block has-media-hide">
-    <div class="c-block-container">
-      <div class="c-block-body l-v-center">
-        <h1 class="mzp-has-zap-11">{{ ftl('firefox-browsers-get-the-browsers-strong') }}</h1>
-        <p>{{ ftl('firefox-browsers-get-the-privacy-you-deserve') }}</p>
-      </div>
-      <div class="c-block-media l-fit-flush l-constrain-height">
-        {{ high_res_img('img/firefox/browsers/hero.jpg', {'alt': '', 'class': 'c-block-media-img'}) }}
-      </div>
-    </div>
-  </div>
+  {% call split(
+    image_url='img/firefox/browsers/hero.jpg',
+    include_highres_image=True,
+    block_class='c-landing-banner mzp-l-split-hide-media-on-sm-md mzp-l-split-center-on-sm-md',
+    media_class='mzp-l-split-media-overflow'
+  ) %}
+    <h1 class="mzp-has-zap-11">{{ ftl('firefox-browsers-get-the-browsers-strong') }}</h1>
+    <p>{{ ftl('firefox-browsers-get-the-privacy-you-deserve') }}</p>
+  {% endcall %}
 
   <div class="mzp-l-content c-landing-grid">
     <div class="c-landing-grid-item">
@@ -126,21 +124,15 @@
       <p><a class="mzp-c-cta-link" href="https://mixedreality.mozilla.org/firefox-reality{{ referrals }}" data-cta-type="link" data-cta-text="Reality Learn More">{{ ftl('ui-learn-more') }}</a></p>
     </div>
     <div class="c-landing-grid-item c-landing-grid-wide">
-      <div class="t-dev">
-        {% call feature_card(
-          title=ftl('firefox-browsers-developer-edition'),
-          heading_level=2,
-          image_url='img/firefox/browsers/dev.png',
-          include_highres_image=True,
-          class='mzp-l-card-feature-left-half',
-          link_url=url('firefox.developer.index'),
-          link_cta=learn_more,
-          ga_title='Developer'
-        ) %}
-        <p class="c-dev-title mzp-has-zap-16">{{ ftl('firefox-browsers-build-sites-and-refine-your') }}</p>
-        <p><a class="mzp-c-cta-link" href="{{ url('firefox.developer.index') }}" data-cta-type="link" data-cta-text="Developer Learn More">{{ ftl('firefox-browsers-learn-more-about-devtools') }}</a></p>
-        {% endcall %}
-      </div>
+    {% call split(
+      image_url='img/firefox/browsers/dev.png',
+      include_highres_image=True,
+      block_class='t-dev'
+    ) %}
+      <h2>{{ ftl('firefox-browsers-developer-edition') }}</h2>
+      <p class="c-dev-title mzp-has-zap-16">{{ ftl('firefox-browsers-build-sites-and-refine-your') }}</p>
+      <p><a class="mzp-c-cta-link" href="{{ url('firefox.developer.index') }}" data-cta-type="link" data-cta-text="Developer Learn More">{{ ftl('firefox-browsers-learn-more-about-devtools') }}</a></p>
+    {% endcall %}
     </div>
   </div>
 
