@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros-protocol.html" import split with context %}
+
 {% extends "base-protocol-mozilla.html" %}
 
 {% block page_css %}
@@ -149,26 +151,15 @@
     </div>
   </section>
 
-  <div class="mzp-l-content contribute-feature-container">
-    <section class="contribute-feature">
-
-      <div class="mzp-c-card-feature-media contribute-feature-media-wrapper">
-        <div class="contribute-feature-media">
-          <img src="{{ static('img/contribute/contribute-madeby-feature.jpg') }}" alt="">
-        </div>
-      </div>
-
-      <div class="contribute-feature-content">
-        <div class="contribute-feature-content-container">
-          <h2>{{ ftl('contribute-made-by-heading') }}</h2>
-          <div class="contribute-feature-desc">
-            <p>{{ ftl('contribute-made-by-desc') }}</p>
-            <p>{{ ftl('contribute-made-by-desc-cont') }}</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+  {% call split(
+    image_url='img/contribute/contribute-madeby-feature.jpg',
+    media_after=False,
+    media_class='mzp-l-split-h-center',
+    ) %}
+      <h2>{{ ftl('contribute-made-by-heading') }}</h2>
+      <p>{{ ftl('contribute-made-by-desc') }}</p>
+      <p>{{ ftl('contribute-made-by-desc-cont') }}</p>
+    {% endcall %}
 
   <section class="mzp-l-content">
     <aside class="mzp-c-newsletter">
