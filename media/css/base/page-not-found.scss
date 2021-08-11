@@ -70,7 +70,9 @@ main {
     .logo-mozilla {
         display: inline-block;
         height: 50px;
-        transform: translateY(-6px);
+        width: 141px;
+        padding-left: 30px;
+        transform: translateY(-2px);
 
         &:after {
             @include bidi(((float, right, left),));
@@ -78,7 +80,7 @@ main {
             content: '';
             height: 50px;
             margin: -10px $spacing-lg 0;
-            width: 2px;
+            width: 0px;
         }
     }
 
