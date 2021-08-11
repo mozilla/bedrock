@@ -151,6 +151,29 @@
     </div>
   </section>
 
+  <!-- old feature card -->
+  <div class="mzp-l-content contribute-feature-container">
+    <section class="contribute-feature">
+
+      <div class="mzp-c-card-feature-media contribute-feature-media-wrapper">
+        <div class="contribute-feature-media">
+          <img src="{{ static('img/contribute/contribute-madeby-feature.jpg') }}" alt="">
+        </div>
+      </div>
+
+      <div class="contribute-feature-content">
+        <div class="contribute-feature-content-container">
+          <h2>{{ ftl('contribute-made-by-heading') }}</h2>
+          <div class="contribute-feature-desc">
+            <p>{{ ftl('contribute-made-by-desc') }}</p>
+            <p>{{ ftl('contribute-made-by-desc-cont') }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- new split -->
   {% call split(
     image_url='img/contribute/contribute-madeby-feature.jpg',
     media_after=False,
