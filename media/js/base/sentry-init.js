@@ -17,7 +17,8 @@
                 dsn: sentryDsn ,
                 sampleRate: 0.10,
                 ignoreErrors: [
-                    'https://plugin.ucads.ucweb.com/api/flow/'
+                    'https://plugin.ucads.ucweb.com/api/flow/',
+                    'Non-Error promise rejection captured with value' // issue 10380
                 ],
                 allowUrls: [
                     '/media/js/',
