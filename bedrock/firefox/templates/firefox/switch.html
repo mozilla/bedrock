@@ -4,7 +4,7 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% from "macros-protocol.html" import hero, split with context %}
+{% from "macros-protocol.html" import split with context %}
 
 {% block page_title %}{{ ftl('switch-switch-from-chrome') }}{% endblock %}
 {% block page_desc %}{{ ftl('switch-switching-to-firefox-is-fast-updated', fallback='switch-switching-to-firefox-is-fast') }}{% endblock %}
@@ -17,16 +17,6 @@
 
 {% block content %}
 <main>
-  {% call hero(
-    title=ftl('switch-switch-from-chrome'),
-    desc=ftl('switch-switching-to-firefox-page-description-updated', 'switch-switching-to-firefox-page-description'),
-    class='mzp-has-image mzp-t-product-firefox t-switch',
-    include_cta=False,
-    heading_level=1
-  ) %}
-  {% endcall %}
-
-  <!-- new split -->
   {% call split(
       image_url='img/firefox/switch/switch.png',
       include_highres_image=True,

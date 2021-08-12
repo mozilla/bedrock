@@ -5,7 +5,6 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 @import '../../protocol/css/includes/lib';
-@import '../../protocol/css/components/hero';
 @import '../../protocol/css/components/split';
 @import '../../protocol/css/components/logos/wordmark';
 @import '../../protocol/css/components/logos/wordmark-product-firefox';
@@ -52,25 +51,41 @@ $image-path: '/media/protocol/img';
 
 // Split
 
+.mzp-c-split {
+    // padding: 0;
+    overflow: visible;
+    height: 100%;
+}
+
 .mzp-c-split-container {
-    box-sizing: content-box;
+
+    @media #{$mq-lg} {
+        box-sizing: content-box;
+    }
 }
 
 
 .mzp-c-split-media {
     position: relative;
-    &::before {
-        position: absolute;
-        content: '';
-        top: 0;
-        width: 50%;
-        left: 50%;
-        background-position: 14px center, top left;
-        background-size: 592px 302px, auto 100%;
-        background-image: url("/media/img/firefox/switch/bg.svg");
-        background-repeat: no-repeat;
-        // background-position: center;
-        // background-size: cover;
+    z-index: 1;
+
+     @media #{$mq-lg} {
+        &:before {
+            background-image: url('/media/img/firefox/switch/bg.svg');
+            background-position: 14px center, bottom left;
+            background-size: cover;
+            background-repeat: no-repeat;
+            bottom: 0;
+            top: -100%;
+            content: '';
+            display: block;
+            left: 0;
+            right: 0;
+            position: absolute;
+            width: 1000px;
+            height: 1000px;
+            z-index: -1;
+        }
     }
 }
 
