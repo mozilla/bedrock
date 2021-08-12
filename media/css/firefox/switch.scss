@@ -6,6 +6,9 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 @import '../../protocol/css/includes/lib';
 @import '../../protocol/css/components/hero';
+@import '../../protocol/css/components/split';
+@import '../../protocol/css/components/logos/wordmark';
+@import '../../protocol/css/components/logos/wordmark-product-firefox';
 
 
 .t-switch.mzp-c-hero {
@@ -44,6 +47,30 @@ $image-path: '/media/protocol/img';
                 }
             }
         }
+    }
+}
+
+// Split
+
+.mzp-c-split-container {
+    box-sizing: content-box;
+}
+
+
+.mzp-c-split-media {
+    position: relative;
+    &::before {
+        position: absolute;
+        content: '';
+        top: 0;
+        width: 50%;
+        left: 50%;
+        background-position: 14px center, top left;
+        background-size: 592px 302px, auto 100%;
+        background-image: url("/media/img/firefox/switch/bg.svg");
+        background-repeat: no-repeat;
+        // background-position: center;
+        // background-size: cover;
     }
 }
 

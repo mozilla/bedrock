@@ -4,7 +4,7 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% from "macros-protocol.html" import hero, picto_card with context %}
+{% from "macros-protocol.html" import hero, split with context %}
 
 {% block page_title %}{{ ftl('switch-switch-from-chrome') }}{% endblock %}
 {% block page_desc %}{{ ftl('switch-switching-to-firefox-is-fast-updated', fallback='switch-switching-to-firefox-is-fast') }}{% endblock %}
@@ -25,6 +25,22 @@
     heading_level=1
   ) %}
   {% endcall %}
+
+  <!-- new split -->
+  {% call split(
+      image_url='img/firefox/switch/switch.png',
+      include_highres_image=True,
+      media_after=True,
+      media_class='mzp-l-split-h-center',
+      block_class='mzp-l-split-center-on-sm-md'
+    ) %}
+      <div
+       class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">
+        Firefox Browser
+      </div>
+      <h1>{{ ftl('switch-switch-from-chrome') }}</h1>
+      <p>{{ ftl('switch-switching-to-firefox-page-description-updated', 'switch-switching-to-firefox-page-description') }}</p>
+    {% endcall %}
 
   <section class="c-steps mzp-l-content">
     <ol class="c-steps-list">
