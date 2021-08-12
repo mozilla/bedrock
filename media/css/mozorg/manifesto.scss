@@ -71,65 +71,33 @@ $image-path: '/media/protocol/img';
 //* ------------------------------------------------------------------ */
 // Principles
 
-.principles-foot {
-    text-align: center;
-}
+.principles-header {
+    margin-bottom: $layout-lg;
 
-.principle {
-    @include border-box;
-    @include clearfix;
-    padding: $spacing-lg 0;
-}
-
-@media #{$mq-md} {
-    .principle {
-        padding-bottom: $spacing-xl;
+    @media #{$mq-md} {
+        margin-bottom: $layout-xl;
     }
 }
 
-@media #{$mq-lg} {
-    .principle {
-        padding-bottom: $spacing-2xl;
+.principle {
+    margin-bottom: $layout-lg;
+
+    @media #{$mq-md} {
+        margin-bottom: $layout-xl;
     }
 }
 
 .principle-number {
     @include text-title-xs;
-    display: block;
-    font-weight: bold;
-    margin-bottom: $spacing-sm;
+    margin-bottom: $spacing-md;
 }
 
-.principle-header {
-    h3 {
-        @include text-title-sm;
-        font-weight: normal;
-    }
-
-    @media #{$mq-md} {
-        @include colspan(7);
-        @include bidi(((float, left, right),));
-        padding: 0;
-    }
+.principle-desc {
+    @include font-mozilla;
+    @include text-title-sm;
+    margin-bottom: 0;
 }
 
-.principle-more {
-    margin-top: $spacing-lg;
-
-    h4 {
-        @include text-title-3xs;
-    }
-
-    @media #{$mq-md} {
-        @include bidi((
-            (float, left, right),
-            (padding-left, $spacing-xl, padding-right, 0),
-        ));
-        @include colspan(5);
-        margin-top: $spacing-sm;
-    }
-
-    @media #{$mq-lg} {
-        @include bidi(((padding-left, $spacing-2xl, padding-right, 0),));
-    }
+.principles-foot {
+    text-align: center;
 }
