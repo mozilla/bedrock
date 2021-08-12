@@ -74,3 +74,24 @@ h1 {
         margin: 0 $layout-lg;
     }
 }
+
+
+// split
+.mzp-c-split-body {
+
+    p {
+        font-size: 16px;
+    }
+
+    .mzp-u-title-md {
+        @include font-base;
+        font-size: 28px;
+    }
+}
+
+ @media #{$mq-lg} {
+
+     .mzp-u-title-md {
+         font-size: 38px;
+     }
+}
