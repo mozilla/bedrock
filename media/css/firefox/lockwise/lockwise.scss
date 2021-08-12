@@ -6,7 +6,6 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/components/hero';
 @import '../../../protocol/css/components/picto';
 @import '../../../protocol/css/components/split';
 @import '../../../protocol/css/templates/card-layout';
@@ -14,27 +13,42 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/components/logos/wordmark';
 @import '../../../protocol/css/components/logos/wordmark-product-lockwise';
 
+// split
+.mzp-c-split-container {
+
+    p {
+        font-size: 18px;
+    }
+
+    @media #{$mq-lg} {
+        box-sizing: content-box;
+    }
+}
+
+.mzp-c-split-body .mzp-u-title-md {
+    @include font-base;
+    font-size: 38px;
+}
+
+@media #{$mq-lg} {
+
+    .mzp-c-split-body .mzp-u-title-md {
+         font-size: 38px;
+     }
+}
+
+.mzp-c-split-container .mzp-c-split-media {
+    @media #{$mq-lg} {
+        width: 460px;
+    }
+}
 
 .add-on-download p {
     margin: $spacing-sm;
 }
 
-.card-header {
-    text-align: center;
-}
-
 .ios-button {
     text-decoration: none;
-}
-
-.links {
-    margin: $layout-xl auto;
-    text-align: center;
-
-    li {
-        display: inline-block;
-        margin: 0 $spacing-md;
-    }
 }
 
 .mobile-download-buttons {
@@ -45,55 +59,18 @@ $image-path: '/media/protocol/img';
     @include text-body-lg;
 }
 
-.mzp-c-hero-desc {
-    margin-bottom: $spacing-lg;
-}
-
-// h1 {
-//     @include at2x('/media/protocol/img/logos/firefox/lockwise/logo-word-hor-sm.png', auto, 100%);
-//     background-position: center;
-//     @include image-replaced;
-//     background-repeat: no-repeat;
-//     margin-bottom: $spacing-md;
-// }
-
 @media #{$mq-sm} {
     .mobile-download-buttons {
         margin-bottom: $spacing-lg;
     }
 }
 
-// @media #{$mq-md} {
-//     h1 {
-//         @include bidi(((background-position, top left, top right),));
-//         @include background-size(auto 48px);
-//     }
-// }
+.links {
+    margin: $layout-xl auto;
+    text-align: center;
 
-@media #{$mq-lg} {
-
-    .mzp-c-hero-image img {
-        margin: 0 $layout-lg;
+    li {
+        display: inline-block;
+        margin: 0 $spacing-md;
     }
-}
-
-
-// split
-.mzp-c-split-body {
-
-    p {
-        font-size: 18px;
-    }
-
-    .mzp-u-title-md {
-        @include font-base;
-        font-size: 28px;
-    }
-}
-
- @media #{$mq-lg} {
-
-     .mzp-u-title-md {
-         font-size: 38px;
-     }
 }

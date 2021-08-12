@@ -3,7 +3,7 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% from "macros.html" import google_play_button with context %}
-{% from "macros-protocol.html" import hero, split, picto with context %}
+{% from "macros-protocol.html" import split, picto with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -58,46 +58,6 @@
       {% set _img = 'img/firefox/lockwise/en.png'%}
     {% endif %}
 
-    <!-- {% call hero(
-      title=ftl('lockwise-firefox-lockwise'),
-      tagline=ftl('lockwise-take-your-passwords-everywhere'),
-      desc=ftl('lockwise-securely-access-the-passwords'),
-      class='mzp-c-hero mzp-has-image lockwise-hero',
-      image_url= _img,
-      include_cta=True,
-      heading_level=1,
-    ) %}
-
-      <div class="mobile-download-buttons">
-        <a href="{{ lockwise_adjust_url('ios', 'lockwise-page') }}" class="ios-button" data-cta-text="apple-app-store" data-cta-type="lockwise-app-store" data-cta-position="primary">
-          <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
-        </a>
-        {{ google_play_button(href=lockwise_adjust_url('android', 'lockwise-page'), product='Lockwise', extra_data_attributes={'cta-type': 'lockwise-app-store', 'cta-text': 'google-play-store', 'cta-position': 'primary' } ) }}
-      </div>
-      <div class="mzp-c-hero-cta add-on-download for-firefox-69-and-below hidden" >
-        <div class="mzp-c-button-download-container">
-          <p>{{ ftl('lockwise-try-lockwise-now') }}</p>
-          <a href="https://github.com/mozilla-lockwise/lockwise-addon/releases/download/2.2.5-alpha/lockwise-signed.xpi" class="mzp-c-button mzp-t-product" data-cta-type="lockwise-install" data-cta-position="primary">
-            {{ ftl('lockwise-install-for-firefox') }}
-          </a>
-        </div>
-      </div>
-      <div class="mzp-c-hero-cta add-on-download for-firefox-70-and-above hidden" >
-        <div class="mzp-c-button-download-container">
-          <p>{{ ftl('lockwise-try-lockwise-now') }}</p>
-          <button class="mzp-c-button mzp-t-product" id="lockwise-button" data-cta-type="lockwise-open-in-fx" data-cta-position="primary">{{ ftl('lockwise-open-in-firefox') }} </button>
-        </div>
-      </div>
-      <div class="mzp-c-hero-cta add-on-download for-non-firefox-users hidden" >
-        <div class="mzp-c-button-download-container">
-          <p>{{ ftl('lockwise-only-in-the-firefox-browser') }}</p>
-          {{ download_firefox(alt_copy=ftl('download-button-download-now'), download_location='primary cta') }}
-        </div>
-      </div>
-
-    {% endcall %} -->
-
-    <!-- split -->
     {% call split(
       image_url= _img,
       media_after=True,
@@ -105,7 +65,7 @@
       block_class='mzp-l-split-center-on-sm-md'
     ) %}
 
-    <h1 class="mzp-c-wordmark mzp-t-wordmark-lg mzp-t-product-lockwise"> {{ ftl('lockwise-firefox-lockwise') }} </h1>
+    <h1 class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-lockwise"> {{ ftl('lockwise-firefox-lockwise') }} </h1>
     <p class="mzp-u-title-md">{{ ftl('lockwise-take-your-passwords-everywhere') }}</p>
     <p>{{ ftl('lockwise-securely-access-the-passwords') }}</p>
 
