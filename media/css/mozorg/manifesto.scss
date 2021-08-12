@@ -88,10 +88,7 @@ $image-path: '/media/protocol/img';
 }
 
 .principle-number {
-    @include font-mozilla;
     @include text-title-xs;
-    display: block;
-    font-weight: bold;
     margin-bottom: $spacing-md;
 }
 
