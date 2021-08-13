@@ -8,7 +8,10 @@ $image-path: '/media/protocol/img';
 @import "../../../protocol/css/includes/lib";
 @import '../../../protocol/css/components/call-out';
 @import '../../../protocol/css/components/feature-card';
-@import '../../../protocol/css/components/hero';
+@import '../../../protocol/css/components/split';
+@import '../../../protocol/css/components/button';
+@import '../../../protocol/css/components/logos/wordmark';
+@import '../../../protocol/css/components/logos/wordmark-product-firefox';
 @import '../../../protocol/css/components/picto-card';
 @import '../../../protocol/css/components/picto';
 @import '../../../protocol/css/templates/card-layout';
@@ -63,9 +66,9 @@ $image-path: '/media/protocol/img';
 }
 
 //* -------------------------------------------------------------------------- */
-// Hero
+// Split
 
-.mzp-c-hero.t-enterprise {
+.mzp-c-split.t-enterprise {
     // dark colour fallback incase svg image doesn't load/display
     background: $color-ink-80;
     background-image: url('/media/img/firefox/enterprise/ent-noodles.svg'),
@@ -82,19 +85,58 @@ $image-path: '/media/protocol/img';
         min-height: 0;
     }
 
-   &.mzp-t-product-firefox .mzp-c-hero-title {
-       @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-white-sm.png', auto, 48px);
-       @include text-title-xl;
-       padding-top: $layout-lg + 48px;
+   .mzp-c-split-container {
+        box-sizing: content-box;
+        padding: 24px;
+        @media #{$mq-md} {
+            padding: 64px 48px;
+        }
+
+        @media #{$mq-xl} {
+            padding: 80px 96px;
+        }
    }
 
-   .mzp-c-hero-body {
+   .mzp-c-split-body {
        background-color: $color-ink-80;
        border-top-right-radius: 100px;
        margin-bottom: 100px;
+       max-width: 580px;
+       position: relative;
+
+       .mzp-c-split-title {
+            @include text-title-xl;
+            margin-bottom: $spacing-md;
+            padding-top: 112px;
+
+             @media #{$mq-md} {
+               margin-bottom: $spacing-xl
+            }
+
+       }
+       .mzp-c-wordmark {
+            left: 50%;
+            position: absolute;
+            transform: translateX(-50%);
+
+            @media #{$mq-md} {
+                left: 0;
+                transform: translateX(0);
+            }
+       }
+       .mzp-c-hero-desc {
+            @include text-body-lg;
+            margin-bottom: $spacing-md;
+            @media #{$mq-md} {
+                margin-bottom: $spacing-2xl;
+            }
+       }
+       .mzp-c-button-download-container {
+           margin-bottom: 24px;
+       }
    }
 
-   .mzp-c-hero-image {
+   .mzp-c-split-image {
         display: none;
     }
 
