@@ -26,13 +26,6 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.mzp-c-split-container {
-
-    @media #{$mq-lg} {
-        box-sizing: content-box;
-    }
-}
-
 .mzp-c-split-media {
     max-width: $content-md;
 }
@@ -44,7 +37,7 @@ $image-path: '/media/protocol/img';
         margin: 0 auto;
 
         @media #{$mq-lg} {
-            margin: 0 0 $spacing-lg;
+            margin: 0 0 $spacing-xl;
         }
     }
 }
