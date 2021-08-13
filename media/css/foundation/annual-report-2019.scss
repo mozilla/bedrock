@@ -526,10 +526,6 @@ $image-path: '/media/protocol/img';
 
 }
 
-.mzp-l-split-body-narrow {
-    padding: 0;
-}
-
 .mzp-c-split-media {
 
     @media #{$mq-md} {
@@ -540,10 +536,6 @@ $image-path: '/media/protocol/img';
         max-width: $content-max;
     }
 
-}
-
-.mzp-t-secondary {
-        text-align: center;
 }
 
 .c-report-pdfs {
