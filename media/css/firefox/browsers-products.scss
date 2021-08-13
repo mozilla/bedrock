@@ -107,6 +107,10 @@ main .mzp-l-content {
     p {
         @include text-body-lg;
     }
+
+    &.t-products {
+        padding-top: 0;
+    }
 }
 
 //* -------------------------------------------------------------------------- */

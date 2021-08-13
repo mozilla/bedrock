@@ -4,7 +4,7 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 {% from "macros.html" import google_play_button, fxa_email_form with context %}
-{% from "macros-protocol.html" import hero, feature_card with context %}
+{% from "macros-protocol.html" import split, feature_card with context %}
 
 {% block page_title %}{{ ftl('firefox-products-firefox-is-more-than-a-browser') }}{% endblock %}
 {% block page_desc %}{{ ftl('firefox-products-its-a-whole-family-of-products') }}{% endblock %}
@@ -34,18 +34,15 @@
 
 {% block content %}
 <main role="main">
-
-  <div class="c-block has-media-hide t-products">
-    <div class="c-block-container">
-      <div class="c-block-body l-v-center">
-        <h1 class="mzp-has-zap-14">{{ ftl('firefox-products-firefox-is-more-than-a-browser-emphasis') }}</h1>
-        <p>{{ ftl('firefox-products-its-a-whole-family-of-products') }}</p>
-      </div>
-      <div class="c-block-media l-fit-flush-top l-constrain-width">
-        {{ high_res_img('img/firefox/products/hero.jpg', {'alt': '', 'class': 'c-block-media-img', 'width': '670', 'height': '464'}) }}
-      </div>
-    </div>
-  </div>
+  {% call split(
+    image_url='img/firefox/products/hero.jpg',
+    include_highres_image=True,
+    block_class='c-landing-banner t-products mzp-l-split-center-on-sm-md',
+    media_class='mzp-l-split-media-overflow',
+  ) %}
+    <h1 class="mzp-has-zap-14">{{ ftl('firefox-products-firefox-is-more-than-a-browser-emphasis') }}</h1>
+    <p>{{ ftl('firefox-products-its-a-whole-family-of-products') }}</p>
+  {% endcall %}
 
   <div class="mzp-l-content c-landing-grid">
     <div class="c-landing-grid-item">
