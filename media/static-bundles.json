@@ -252,27 +252,15 @@
     },
     {
       "files": [
-        "css/base/banners/firefox-mobile.scss"
+        "css/base/banners/firefox-app-store.scss"
       ],
-      "name": "firefox-mobile-banner"
-    },
-    {
-      "files": [
-        "css/base/banners/daylight-promo.scss"
-      ],
-      "name": "daylight-promo-banner"
+      "name": "firefox-app-store-banner"
     },
     {
       "files": [
         "css/base/banners/eu-mr1-banner.scss"
       ],
       "name": "eu-mr1-banner"
-    },
-    {
-      "files": [
-        "css/base/banners/native-android-exp.scss"
-      ],
-      "name": "native-android-exp-banner"
     },
     {
       "files": [
@@ -1129,29 +1117,9 @@
     {
       "files": [
         "js/base/banners/mozilla-banner.js",
-        "js/base/banners/firefox-mobile-banner-init.js"
-      ],
-      "name": "firefox-mobile-banner"
-    },
-    {
-      "files": [
-        "js/base/banners/mozilla-banner.js",
-        "js/mozorg/home/daylight-promo-banner-init.js"
-      ],
-      "name": "daylight-promo-banner"
-    },
-    {
-      "files": [
-        "js/base/banners/mozilla-banner.js",
         "js/base/banners/eu-mr1-banner-init.js"
       ],
       "name": "eu-mr1-banner"
-    },
-    {
-      "files": [
-        "js/firefox/home/android-native-banner-init.js"
-      ],
-      "name": "native-android-exp-banner"
     },
     {
       "files": [
@@ -1184,13 +1152,6 @@
         "js/firefox/mobile/mobile.js"
       ],
       "name": "firefox-mobile"
-    },
-    {
-      "files": [
-        "js/libs/mozilla-traffic-cop.js",
-        "js/firefox/home/android-experiment.js"
-      ],
-      "name": "firefox-mobile-android-experiment"
     },
     {
       "files": [
@@ -1228,6 +1189,13 @@
         "js/firefox/home/master.js"
       ],
       "name": "firefox-master"
+    },
+    {
+      "files": [
+        "js/base/banners/mozilla-banner.js",
+        "js/base/banners/firefox-app-store-banner-init.js"
+      ],
+      "name": "firefox-app-store-banner"
     },
     {
       "files": [

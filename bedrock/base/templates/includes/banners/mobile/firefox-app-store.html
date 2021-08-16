@@ -1,0 +1,28 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% set android_url = firefox_adjust_url('android', 'app-store-banner') %}
+{% set ios_url = firefox_adjust_url('ios', 'app-store-banner') %}
+
+{% if ftl_has_messages('banner-firefox-app-store-title', 'banner-firefox-app-store-free-google-play', 'banner-firefox-app-store-free-app-store', 'ui-view') %}
+<aside class="c-banner hide-from-legacy-ie mzp-t-firefox t-native" id="firefox-app-store-banner">
+  {# Exclude banners from search result snippets using `data-nosnippet` (issue 8739) #}
+  <div class="c-banner-inner" data-nosnippet="true">
+    <div class="mzp-l-content">
+      <div class="c-banner-main">
+          <button type="button" class="c-banner-close"><span>{{ ftl('ui-close') }}</span></button>
+            <img class="c-banner-icon" src="{{ static('img/banners/mobile/app-icon-512.jpg') }}" width="57" height="57" alt="" />
+          <div class=c-banner-copy>
+            <h2 class="c-banner-title">{{ ftl('banner-firefox-app-store-title') }}</h2>
+            <p>{{ ftl('banner-firefox-app-store-mozilla') }}</p>
+            <p class="show-android">{{ ftl('banner-firefox-app-store-free-google-play') }}</p>
+            <p class="show-ios">{{ ftl('banner-firefox-app-store-free-app-store') }}</p>
+          </div>
+          <a class="c-banner-button show-android" href="{{ android_url }}" data-link-type="download" data-download-os="Android" data-download-location="Banner">{{ ftl('ui-view') }}</a>
+          <a class="c-banner-button show-ios" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS" data-download-location="Banner">{{ ftl('ui-view') }}</a>
+      </div>
+    </div>
+  </div>
+</aside>
+{% endif %}

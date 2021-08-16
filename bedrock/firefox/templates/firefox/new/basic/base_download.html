@@ -7,9 +7,7 @@
 
 {% extends "firefox/new/basic/base.html" %}
 
-{% set show_firefox_mobile_banner = switch('firefox-mobile-banner') and
-                                    ftl_has_messages('banner-firefox-mobile-get-android-title',
-                                                     'banner-firefox-mobile-get-ios-title') %}
+{% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 
 {% set referrals = link_referrals or '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-desktop' %}
 
@@ -42,8 +40,8 @@
   {{ super() }}
   {{ css_bundle('firefox_new_download') }}
 
-  {% if show_firefox_mobile_banner %}
-    {{ css_bundle('firefox-mobile-banner') }}
+  {% if show_firefox_app_store_banner %}
+    {{ css_bundle('firefox-app-store-banner') }}
   {% endif %}
 {% endblock %}
 
@@ -103,17 +101,16 @@
 {% endblock %}
 
 {% block page_banner %}
-  {% if show_firefox_mobile_banner %}
-    {% include 'includes/banners/mobile/firefox-android.html' %}
-    {% include 'includes/banners/mobile/firefox-ios.html' %}
+  {% if show_firefox_app_store_banner %}
+    {% include 'includes/banners/mobile/firefox-app-store.html' %}
   {% endif %}
 {% endblock %}
 
 {% block js %}
   {{ js_bundle('firefox_new_download') }}
 
-  {% if show_firefox_mobile_banner %}
-    {{ js_bundle('firefox-mobile-banner') }}
+  {% if show_firefox_app_store_banner %}
+    {{ js_bundle('firefox-app-store-banner') }}
   {% endif %}
 {% endblock %}
 

@@ -698,9 +698,9 @@ class DownloadThanksView(L10nTemplateView):
 
 class NewView(L10nTemplateView):
     ftl_files_map = {
-        'firefox/new/basic/base_download.html': ['firefox/new/download', 'banners/firefox-mobile'],
+        'firefox/new/basic/base_download.html': ['firefox/new/download', 'banners/firefox-app-store'],
         'firefox/new/desktop/download.html': ['firefox/new/desktop'],
-        'firefox/new/desktop/download_yandex.html': ['firefox/new/desktop', 'banners/firefox-mobile'],
+        'firefox/new/desktop/download_yandex.html': ['firefox/new/desktop'],
     }
     activation_files = [
         'firefox/new/download',
@@ -796,7 +796,7 @@ class PlatformViewLinux(L10nTemplateView):
     template_name = 'firefox/new/basic/download_linux.html'
 
     ftl_files_map = {
-        'firefox/new/basic/download_linux.html': ['firefox/new/platform', 'firefox/new/download', 'banners/firefox-mobile'],
+        'firefox/new/basic/download_linux.html': ['firefox/new/platform', 'firefox/new/download', 'banners/firefox-app-store'],
     }
 
     # all active locales, this will make the lang switcher work properly
@@ -811,7 +811,7 @@ class PlatformViewMac(L10nTemplateView):
     template_name = 'firefox/new/basic/download_mac.html'
 
     ftl_files_map = {
-        'firefox/new/basic/download_mac.html': ['firefox/new/platform', 'firefox/new/download', 'banners/firefox-mobile'],
+        'firefox/new/basic/download_mac.html': ['firefox/new/platform', 'firefox/new/download', 'banners/firefox-app-store'],
     }
 
     # all active locales, this will make the lang switcher work properly
@@ -826,7 +826,7 @@ class PlatformViewWindows(L10nTemplateView):
     template_name = 'firefox/new/basic/download_windows.html'
 
     ftl_files_map = {
-        'firefox/new/basic/download_windows.html': ['firefox/new/platform', 'firefox/new/download', 'banners/firefox-mobile'],
+        'firefox/new/basic/download_windows.html': ['firefox/new/platform', 'firefox/new/download', 'banners/firefox-app-store'],
     }
 
     # all active locales, this will make the lang switcher work properly
@@ -847,17 +847,11 @@ def ios_testflight(request):
 
 class FirefoxHomeView(L10nTemplateView):
     ftl_files_map = {
-        'firefox/home/index-master.html': ['firefox/home'],
-        'firefox/home/exp/v-1.html': ['firefox/home'],
-        'firefox/home/exp/v-2.html': ['firefox/home'],
-        'firefox/home/exp/v-3.html': ['firefox/home'],
-        'firefox/home/exp/v-4.html': ['firefox/home'],
-        'firefox/home/exp/v-5.html': ['firefox/home'],
-        'firefox/home/exp/v-6.html': ['firefox/home'],
+        'firefox/home/index-master.html': ['firefox/home', 'banners/firefox-app-store']
     }
 
     # place expected ?v= values in this list
-    variations = ['1', '2', '3', '4', '5', '6']
+    variations = []
 
     def get_context_data(self, **kwargs):
         ctx = super(FirefoxHomeView, self).get_context_data(**kwargs)
@@ -872,17 +866,13 @@ class FirefoxHomeView(L10nTemplateView):
         return ctx
 
     def get_template_names(self):
-        locale = l10n_utils.get_locale(self.request)
         variant = self.request.GET.get('v', None)
 
         # ensure variant matches pre-defined value
         if variant not in self.variations:
             variant = None
 
-        if locale == 'en-US' and variant:
-            template_name = 'firefox/home/exp/v-{}.html'.format(variant)
-        else:
-            template_name = 'firefox/home/index-master.html'
+        template_name = 'firefox/home/index-master.html'
 
         return [template_name]
 

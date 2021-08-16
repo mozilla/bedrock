@@ -144,7 +144,6 @@ GITHUB_REPO = 'https://github.com/mozilla/bedrock'
 # Global L10n files.
 DOTLANG_FILES = ['main']
 FLUENT_DEFAULT_FILES = [
-    'banners/firefox-daylight-promo',
     'banners/fundraising',
     'brands',
     'download_button',
