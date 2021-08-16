@@ -102,6 +102,15 @@ ul.download-list {
     display: block !important;
 }
 
+// 64-bit UA detection for Firefox Beta on Windows (issue #10194)
+.windows.x86.x64 .download-button-beta .os_win {
+    display: none !important;
+}
+
+.windows.x86.x64 .download-button-beta .os_win64 {
+    display: block !important;
+}
+
 .android .download-button-desktop,
 .ios .download-button-desktop,
 .no-js .download-button {
