@@ -23,16 +23,12 @@ $image-path: '/media/protocol/img';
 }
 
 // Split container styles
-.mzp-c-split {
+.mzp-c-split.mzp-t-dark {
     background-color: $color-ink-80;
 }
 
-.mzp-c-split-bg.mzp-t-dark {
-    background-color: $color-ink-80;
-}
-
-.mzp-c-split-container {
-
+ .mzp-c-split-container {
+    padding: $spacing-2xl;
     @media #{$mq-lg} {
         box-sizing: content-box;
         padding-top: $spacing-2xl;
