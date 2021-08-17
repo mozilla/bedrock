@@ -4,6 +4,8 @@
 
 {% extends "base-protocol-mozilla.html" %}
 
+{% from "macros-protocol.html" import split with context %}
+
 {% block page_title %}The State of Mozilla: 2019 Annual Report{% endblock %}
 {% block page_desc %}Every year, in the spirit of openness upon which Mozilla was founded, we share publicly the ways we have protected, fought for and helped advance the internet in service of the people who rely on it every day.{% endblock %}
 {% block page_image %}{{ static('img/foundation/annualreport/2019/share.jpg') }}{% endblock %}
@@ -542,25 +544,23 @@
       </section>
     </div>
 
-    <!-- Feature Card -->
-    <div class="mzp-l-content no-js-hidden">
-      <section id="victory-has-a-ring-to-it" data-modal-id="victory-has-a-ring-to-it" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-third has-modal">
-        <div class="mzp-c-card-feature-media-wrapper">
-          <div class="mzp-c-card-feature-media">
-            {{ lazy_img(image_url='img/foundation/annualreport/2019/victory-ring.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
-          </div>
-        </div>
-        <div class="mzp-c-card-feature-content">
-          <div class="mzp-c-card-feature-content-container">
-            <div class="mzp-c-card-tag">Taking on Big Tech</div>
-            <h2 class="mzp-c-card-feature-title">Victory has a Ring to&nbsp;it </h2>
-            <button class="mzp-c-button mzp-t-secondary">
-              Our campaign for real home security
-            </button>
-          </div>
-        </div>
-      </section>
-    </div>
+<div class="has-modal" data-modal-id="victory-has-a-ring-to-it">
+  {% call split(
+    id='victory-has-a-ring-to-it',
+    image_url='img/foundation/annualreport/2019/victory-ring.jpg',
+    include_highres_image=True,
+    media_after=False,
+    media_class='mzp-l-split-h-center',
+    theme_class='mzp-l-split-body-narrow',
+    block_class='mzp-t-split-nospace'
+    ) %}
+    <span>Taking on Big Tech</span>
+    <h2>Victory has a Ring to it</h2>
+    <button type="button" class="mzp-c-button mzp-t-secondary">
+      Our campaign for real home security
+    </button>
+  {% endcall %}
+</div>
 
     <!-- Link List -->
     <div class="mzp-l-content no-js-hidden">
@@ -671,25 +671,22 @@
       </div>
     </div>
 
-    <!-- Feature Card -->
-    <div class="mzp-l-content no-js-hidden">
-      <section id="firefox-gives-redirect-trackers-the-boot-with-etp-2-0" data-modal-id="firefox-gives-redirect-trackers-the-boot-with-etp-2-0" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-third has-modal">
-        <div class="mzp-c-card-feature-media-wrapper">
-          <div class="mzp-c-card-feature-media">
-            {{ lazy_img(image_url='img/foundation/annualreport/2019/redirect-trackers-etp.png', placeholder_url='img/foundation/annualreport/2019/spacer.gif', include_highres_image=False, optional_attributes={'alt': '', 'width': '930', 'height': '620', 'class': 'mzp-c-card-image'}) }}
-          </div>
-        </div>
-        <div class="mzp-c-card-feature-content">
-          <div class="mzp-c-card-feature-content-container">
-            <div class="mzp-c-card-tag">Products</div>
-            <h2 class="mzp-c-card-feature-title">Firefox gives redirect trackers the boot with ETP 2.0</h2>
-            <button class="mzp-c-button mzp-t-secondary">
-              Here’s why we're doing it
-            </button>
-          </div>
-        </div>
-      </section>
-    </div>
+    <div class="has-modal" data-modal-id="firefox-gives-redirect-trackers-the-boot-with-etp-2-0">
+  {% call split(
+    id='firefox-gives-redirect-trackers-the-boot-with-etp-2-0',
+    image_url='img/foundation/annualreport/2019/redirect-trackers-etp.png',
+    media_after=False,
+    media_class='mzp-l-split-h-center',
+    theme_class='mzp-l-split-body-narrow',
+    block_class='mzp-t-split-nospace'
+    ) %}
+    <span>Products</span>
+    <h2>Firefox gives redirect trackers the boot with ETP 2.0</h2>
+    <button type="button" class="mzp-c-button mzp-t-secondary">
+      Here’s why we're doing it
+    </button>
+  {% endcall %}
+</div>
 
     <!-- Two Card Row -->
     <div class="mzp-l-content no-js-hidden">
@@ -732,25 +729,22 @@
       </ul>
     </div>
 
-    <!-- Feature Card -->
-    <div class="mzp-l-content no-js-hidden">
-      <section id="the-internet-needs-our-love" data-modal-id="the-internet-needs-our-love" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-third has-modal">
-        <div class="mzp-c-card-feature-media-wrapper">
-          <div class="mzp-c-card-feature-media">
-            {{ lazy_img(image_url='img/foundation/annualreport/2019/internet-needs-our-love.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', include_highres_image=False, optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
-          </div>
-        </div>
-        <div class="mzp-c-card-feature-content">
-          <div class="mzp-c-card-feature-content-container">
-            <div class="mzp-c-card-tag">Campaigns</div>
-            <h2 class="mzp-c-card-feature-title">The internet needs our love</h2>
-            <button class="mzp-c-button mzp-t-secondary">
-              Read on
-            </button>
-          </div>
-        </div>
-      </section>
-    </div>
+ <div class="has-modal" data-modal-id="the-internet-needs-our-love">
+  {% call split(
+    id='the-internet-needs-our-love',
+    image_url='img/foundation/annualreport/2019/internet-needs-our-love.jpg',
+    media_after=False,
+    media_class='mzp-l-split-h-center',
+    theme_class='mzp-l-split-body-narrow',
+    block_class='mzp-t-split-nospace'
+    ) %}
+    <span>Campaigns</span>
+    <h2>The internet needs our love</h2>
+    <button type="button" class="mzp-c-button mzp-t-secondary">
+      Read on
+    </button>
+  {% endcall %}
+</div>
 
     <!-- BUILDING THE FUTURE BUCKET -->
 
@@ -1127,29 +1121,25 @@
     </div>
   </div>
 </section>
+</div>
 
-
-    </div>
-
-    <!-- Feature Card -->
-    <div class="mzp-l-content no-js-hidden">
-      <section id="mitchell-baker-named-ceo" data-modal-id="mitchell-baker-named-ceo" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-right-third has-modal">
-        <div class="mzp-c-card-feature-media-wrapper">
-          <div class="mzp-c-card-feature-media">
-            {{ lazy_img(image_url='img/foundation/annualreport/2019/mitchell-baker-named-ceo.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
-          </div>
-        </div>
-        <div class="mzp-c-card-feature-content">
-          <div class="mzp-c-card-feature-content-container">
-            <div class="mzp-c-card-tag">Future Focus</div>
-            <h2 class="mzp-c-card-feature-title">Mitchell Baker named CEO</h2>
-            <button class="mzp-c-button mzp-t-secondary">
-              Read on
-            </button>
-          </div>
-        </div>
-      </section>
-    </div>
+ <div class="has-modal" data-modal-id="mitchell-baker-named-ceo">
+  {% call split(
+    id='mitchell-baker-named-ceo',
+    image_url='img/foundation/annualreport/2019/mitchell-baker-named-ceo.jpg',
+    include_highres_image=True,
+    media_after=False,
+    media_class='mzp-l-split-h-center',
+    theme_class='mzp-l-split-body-narrow mzp-l-split-reversed',
+    block_class='mzp-t-split-nospace'
+    ) %}
+    <span>Future Focus</span>
+    <h2>Mitchell Baker named CEO</h2>
+    <button type="button" class="mzp-c-button mzp-t-secondary">
+      Read on
+    </button>
+  {% endcall %}
+</div>
 
     <!-- Link List FIX -->
     <div class="mzp-l-content no-js-hidden">
@@ -1265,26 +1255,24 @@
       </div>
     </div>
 
-    <!-- Feature Card -->
-    <div class="mzp-l-content no-js-hidden">
-      <section id="703m-pocket-saves-and-counting" data-modal-id="703m-pocket-saves-and-counting" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-third has-modal">
-        <div class="mzp-c-card-feature-media-wrapper">
-          <div class="mzp-c-card-feature-media">
-            {{ lazy_img(image_url='img/foundation/annualreport/2019/pocket-saves.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '930', 'height': '620', 'class': 'mzp-c-card-image'}) }}
-          </div>
-        </div>
-        <div class="mzp-c-card-feature-content">
-          <div class="mzp-c-card-feature-content-container">
-            <div class="mzp-c-card-tag">Trustworthy Content</div>
-            <h2 class="mzp-c-card-feature-title">703M Pocket saves and counting</h2>
-            <button class="mzp-c-button mzp-t-secondary">
-              See what people love to Pocket
-            </button>
-          </div>
-        </div>
-      </section>
-    </div>
 
+ <div class="has-modal" data-modal-id="703m-pocket-saves-and-counting">
+  {% call split(
+    id='703m-pocket-saves-and-counting',
+    image_url='img/foundation/annualreport/2019/pocket-saves.jpg',
+    include_highres_image=True,
+    media_after=False,
+    media_class='mzp-l-split-h-center',
+    theme_class='mzp-l-split-body-narrow',
+    block_class='mzp-t-split-nospace'
+    ) %}
+    <span>Trustworthy Content</span>
+    <h2>703M Pocket saves and counting</h2>
+    <button type="button" class="mzp-c-button mzp-t-secondary">
+      See what people love to Pocket
+    </button>
+  {% endcall %}
+</div>
 
     <!-- Link List FIX -->
     <div class="mzp-l-content no-js-hidden">
@@ -1354,24 +1342,22 @@
       </div>
     </div>
 
-    <!-- Feature Card -->
-    <div class="mzp-l-content no-js-hidden">
-      <section id="launched-mozilla-vpn" data-modal-id="launched-mozilla-vpn" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-right-third has-modal">
-        <div class="mzp-c-card-feature-media-wrapper">
-          <div class="mzp-c-card-feature-media">
-            {{ lazy_img(image_url='img/foundation/annualreport/2019/launched-mozilla-vpn.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
-          </div>
-        </div>
-        <div class="mzp-c-card-feature-content">
-          <div class="mzp-c-card-feature-content-container">
-            <div class="mzp-c-card-tag">Dependable Security</div>
-            <h2 class="mzp-c-card-feature-title">Launched Mozilla VPN</h2>
-            <button class="mzp-c-button mzp-t-secondary">
-              Here’s how our VPN is different
-            </button>
-          </div>
-        </div>
-      </section>
+    <div class="has-modal" data-modal-id="launched-mozilla-vpn">
+    {% call split(
+    id='launched-mozilla-vpn',
+    image_url='img/foundation/annualreport/2019/launched-mozilla-vpn.jpg',
+    include_highres_image=True,
+    media_after=False,
+    media_class='mzp-l-split-h-center',
+    theme_class='mzp-l-split-body-narrow mzp-l-split-reversed',
+    block_class='mzp-t-split-nospace'
+    ) %}
+    <span>Dependable Security</span>
+    <h2>Launched Mozilla VPN</h2>
+    <button type="button" class="mzp-c-button mzp-t-secondary">
+      Here’s how our VPN is different
+    </button>
+    {% endcall %}
     </div>
 
   </div>

@@ -8,6 +8,7 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/includes/lib';
 @import '../../protocol/css/includes/fonts/metropolis';
 @import '../../protocol/css/components/newsletter-form';
+@import '../../protocol/css/components/split';
 @import '../../protocol/css/components/section-heading';
 @import '../../protocol/css/templates/card-layout';
 
@@ -251,55 +252,24 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.contribute-feature-container {
-    position: relative;
+.mzp-c-split-container {
+    box-sizing: content-box;
 }
 
-.contribute-feature {
-    padding-top: 85%;
+.mzp-c-split-media {
+        max-width: $content-max;
+}
 
-    @media #{$mq-lg} {
-        padding-top: 0;
-    }
-
-    @media #{$mq-lg} {
-        margin-bottom: $layout-2xl;
-        max-width: none;
-    }
-
-    .contribute-feature-media-wrapper {
-        @include bidi(((left, 0, auto),(right, auto, 0),));
-        position: absolute;
-        top: 0;
-        width: 100%;
-
-        @media #{$mq-lg} {
-            @include bidi(((left, 50%, auto),(right, auto, 50%),));
-            width: 50%;
-        }
-
-        @media #{$mq-xl} {
-            @include bidi(((left, 45%, auto),(right, auto, 45%),));
-            width: 55%;
-        }
-    }
-
-    .contribute-feature-content {
-        position: relative;
-        z-index: 100;
-
-        h2 {
+.mzp-c-split-body {
+     h2 {
             @include font-size(24px);
         }
 
         @media #{$mq-lg} {
-            width: 40%;
-
             h2 {
                 @include font-size(48px);
             }
         }
-    }
 }
 
 .contribute-mission {
