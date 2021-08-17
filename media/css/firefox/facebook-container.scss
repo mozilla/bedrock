@@ -2,21 +2,51 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-$font-path: '/media/fonts';
-$image-path: '/media/protocol/img';
+$font-path: "/media/fonts";
+$image-path: "/media/protocol/img";
 
 @import "../../protocol/css/includes/lib";
-@import '../../protocol/css/components/hero';
-@import '../../protocol/css/templates/card-layout';
+@import "../../protocol/css/components/hero";
+@import "../../protocol/css/components/split";
+@import "../../protocol/css/components/logos/logo";
+@import "../../protocol/css/components/logos/logo-product-firefox";
+@import "../../protocol/css/templates/card-layout";
 @import "../../protocol/css/components/call-out";
-@import '../../protocol/css/components/feature-card';
+@import "../../protocol/css/components/feature-card";
 
 //* -------------------------------------------------------------------------- */
 // Components
-.mzp-c-hero.mzp-t-dark {
+.mzp-c-split-bg.mzp-t-dark {
     background-color: $color-ink-80;
     color: $color-white;
-    position: relative;
+
+    .mzp-c-split-container {
+        box-sizing: content-box;
+
+        .mzp-c-split-body {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            max-width: 580px;
+            .mzp-c-logo {
+                align-self: center;
+                @media #{$mq-md} {
+                    align-self: inherit;
+                }
+            }
+            .mzp-u-title-xl {
+                padding-top: $spacing-md;
+                margin-bottom: $spacing-md;
+                @media #{$mq-md} {
+                    padding-top: $spacing-lg;
+                    margin-bottom: $spacing-xl;
+                }
+            }
+            .mzp-u-title-3xs {
+                @include text-title-3xs;
+            }
+        }
+    }
 }
 
 .mzp-l-card-third {
@@ -26,7 +56,12 @@ $image-path: '/media/protocol/img';
 .mzp-c-call-out-compact.mzp-t-dark {
     background: $color-purple-90;
 }
-
+.firefox-cta .mzp-c-button-download-container {
+    margin-bottom: 0;
+    @media #{$mq-md} {
+        margin-bottom: inherit;
+    }
+}
 .mobile-cta ul {
     margin-top: $spacing-lg;
 }
@@ -35,9 +70,7 @@ $image-path: '/media/protocol/img';
 // Video
 
 .video-container {
-    height: 0;
     overflow: hidden;
-    padding-bottom: 56.25%;
     position: relative;
     width: 100%;
 
@@ -52,22 +85,14 @@ $image-path: '/media/protocol/img';
 
 .fbcontainer-video {
     @media #{$mq-md} {
-        @include bidi((
-            (left, 50%, auto),
-            (right, auto, 50%)
-        ));
+        @include bidi(((left, 50%, auto), (right, auto, 50%)));
         align-items: center;
-        bottom: 0;
-        display: flex;
         padding: 0;
-        position: absolute;
-        top: 0;
-        width: calc(50% - #{$spacing-xl * 2});
         z-index: 2;
     }
 
     @media #{$mq-lg} {
-        width: calc(50% - #{$spacing-2xl * 2});
+        // width: calc(50% - #{$spacing-2xl * 2});
     }
 }
 
@@ -76,13 +101,15 @@ $image-path: '/media/protocol/img';
 
 // Hide extension CTA for non-Firefox
 // Hide mobile CTA for non-mobile
-.extension-cta, .mobile-cta {
+.extension-cta,
+.mobile-cta {
     display: none;
 }
 
 // Hide download CTA for Firefox
 .is-firefox {
-    #download-firefox-cta, .firefox-cta {
+    #download-firefox-cta,
+    .firefox-cta {
         display: none;
     }
 
@@ -91,8 +118,11 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.ios, .android {
-    .extension-cta, #download-firefox-cta, .firefox-cta {
+.ios,
+.android {
+    .extension-cta,
+    #download-firefox-cta,
+    .firefox-cta {
         display: none;
     }
 
@@ -104,4 +134,3 @@ $image-path: '/media/protocol/img';
         }
     }
 }
-

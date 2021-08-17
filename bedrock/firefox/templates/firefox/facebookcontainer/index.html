@@ -3,7 +3,7 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% from "macros.html" import google_play_button with context %}
-{% from "macros-protocol.html" import hero, call_out_compact with context %}
+{% from "macros-protocol.html" import split, hero, call_out_compact with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -18,15 +18,20 @@
 
 {% block content %}
 <main role="main">
-  {% call hero(
-    title=ftl('facebook-container-facebook-well-contained-keep'),
-    class='mzp-t-dark mzp-has-image mzp-t-product-firefox',
-    include_cta=True,
-    heading_level=1) %}
-
-  <div class="mzp-c-hero-desc">
-    <a class="mzp-c-cta-link extension-cta" href="{{ addon_url }}">{{ ftl('facebook-container-get-the-facebook-container') }}</a>
-
+  {% call split(
+    block_class='mzp-l-split-center-on-sm-md mzp-t-split-nospace',
+    theme_class='mzp-t-dark',
+    media_class='mzp-l-split-h-center',
+    media_include='firefox/facebookcontainer/includes/video.html',
+    media_after=True,
+    ) %}
+    <div class="mzp-c-logo mzp-t-logo-xl mzp-t-product-firefox">
+      Firefox Browser
+    </div>
+    <h1 class="mzp-u-title-xl">{{ ftl('facebook-container-facebook-well-contained-keep') }}</h1>
+      <a class="mzp-c-cta-link extension-cta mzp-u-title-3xs" href="{{ addon_url }}">
+        {{ ftl('facebook-container-get-the-facebook-container') }}
+      </a>
     <div class="firefox-cta">
       <p>{{ ftl('facebook-container-download-firefox-and-get-the') }}</p>
       {{ download_firefox(alt_copy=ftl('download-button-download-firefox'), dom_id="download-firefox-cta") }}
@@ -55,24 +60,6 @@
         </ul>
       {% endif %}
     </div>
-  </div>
-
-  <aside class="fbcontainer-video">
-    {% if LANG == 'de' %}
-      <div class="video-container">
-        <iframe src="https://www.youtube-nocookie.com/embed/7yLoRVwuZlc?rel=0&amp;showinfo=0" frameborder="0" allow="encrypted-media" allowfullscreen>
-          <p><a href="https://www.youtube.com/watch?v=7yLoRVwuZlc">{{ ftl('ui-watch-the-video') }}</a></p>
-        </iframe>
-      </div>
-    {% else %}
-      <div class="video-container">
-        <video id="fbcontainer-video" preload="metadata" controls poster="{{ static('img/firefox/facebook-container/video-poster.png') }}" data-ga-label="Facebook Container Video">
-          <source src="https://assets.mozilla.net/video/facebook-container/facebook-container.webm" type="video/webm">
-          <source src="https://assets.mozilla.net/video/facebook-container/facebook-container.mp4" type="video/mp4">
-        </video>
-      </div>
-    {% endif %}
-  </aside>
   {% endcall %}
 
   <section class="mzp-l-content mzp-l-card-third">
