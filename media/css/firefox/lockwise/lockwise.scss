@@ -44,7 +44,7 @@ $image-path: '/media/protocol/img';
 
 .mzp-c-split-container .mzp-c-split-media {
     @media #{$mq-lg} {
-        width: 460px;
+       max-width: 460px;
     }
 }
 
