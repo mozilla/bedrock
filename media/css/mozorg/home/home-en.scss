@@ -9,7 +9,6 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/includes/fonts/metropolis';
 @import '../../../protocol/css/components/billboard';
 @import '../../../protocol/css/components/call-out';
-@import '../../../protocol/css/components/hero';
 @import '../../../protocol/css/components/modal';
 @import '../../../protocol/css/components/newsletter-form';
 @import '../../../protocol/css/components/split';
@@ -22,30 +21,26 @@ $image-path: '/media/protocol/img';
     @include visually-hidden;
 }
 
-// Split container styles
+/* -------------------------------------------------------------------------- */
+// Split container
+
 .mzp-c-split.mzp-t-dark {
     background-color: $color-ink-80;
-}
 
- .mzp-c-split-container {
-    padding: $spacing-2xl;
-    @media #{$mq-lg} {
-        box-sizing: content-box;
-        padding-top: $spacing-2xl;
+    .mzp-c-split-media {
+        max-width: 400px;
+    }
+
+    .mzp-c-split-container {
+        padding-top: $spacing-lg;
+        padding-bottom: 0;
+        @media #{$mq-lg} {
+            padding-bottom: 0;
+            box-sizing: content-box;
+            padding-top: $spacing-2xl;
+        }
     }
 }
-
-.mzp-c-split-media {
-    max-width: 500px;
-}
-
-.mzp-c-split-body {
-
-    h2 {
-        @include font-firefox;
-    }
-}
-
 /* -------------------------------------------------------------------------- */
 // Custom card styles for lazy-loaded images.
 
