@@ -673,6 +673,12 @@
     },
     {
       "files": [
+        "css/firefox/features/tips.scss"
+      ],
+      "name": "firefox_tips"
+    }
+    {
+      "files": [
         "css/firefox/browsers/update-browser.scss"
       ],
       "name": "update-browser"
