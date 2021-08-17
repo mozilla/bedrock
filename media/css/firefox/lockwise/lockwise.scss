@@ -14,6 +14,11 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/components/logos/wordmark-product-lockwise';
 
 // split
+
+.mzp-c-split {
+    padding: $spacing-2xl;
+}
+
 .mzp-c-split-container {
 
     p {

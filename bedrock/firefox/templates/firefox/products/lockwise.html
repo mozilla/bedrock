@@ -62,7 +62,7 @@
       image_url= _img,
       media_after=True,
       media_class='mzp-l-split-h-center',
-      block_class='mzp-l-split-center-on-sm-md'
+      block_class='mzp-l-split-center-on-sm-md '
     ) %}
 
     <h1 class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-lockwise"> {{ ftl('lockwise-firefox-lockwise') }} </h1>
@@ -75,7 +75,7 @@
         </a>
         {{ google_play_button(href=lockwise_adjust_url('android', 'lockwise-page'), product='Lockwise', extra_data_attributes={'cta-type': 'lockwise-app-store', 'cta-text': 'google-play-store', 'cta-position': 'primary' } ) }}
       </div>
-      <div class="mzp-c-hero-cta add-on-download for-firefox-69-and-below hidden" >
+      <div class="add-on-download for-firefox-69-and-below hidden" >
         <div class="mzp-c-button-download-container">
           <p>{{ ftl('lockwise-try-lockwise-now') }}</p>
           <a href="https://github.com/mozilla-lockwise/lockwise-addon/releases/download/2.2.5-alpha/lockwise-signed.xpi" class="mzp-c-button mzp-t-product" data-cta-type="lockwise-install" data-cta-position="primary">
@@ -83,13 +83,13 @@
           </a>
         </div>
       </div>
-      <div class="mzp-c-hero-cta add-on-download for-firefox-70-and-above hidden" >
+      <div class="add-on-download for-firefox-70-and-above hidden" >
         <div class="mzp-c-button-download-container">
           <p>{{ ftl('lockwise-try-lockwise-now') }}</p>
           <button class="mzp-c-button mzp-t-product" id="lockwise-button" data-cta-type="lockwise-open-in-fx" data-cta-position="primary">{{ ftl('lockwise-open-in-firefox') }} </button>
         </div>
       </div>
-      <div class="mzp-c-hero-cta add-on-download for-non-firefox-users hidden" >
+      <div class="add-on-download for-non-firefox-users hidden" >
         <div class="mzp-c-button-download-container">
           <p>{{ ftl('lockwise-only-in-the-firefox-browser') }}</p>
           {{ download_firefox(alt_copy=ftl('download-button-download-now'), download_location='primary cta') }}
