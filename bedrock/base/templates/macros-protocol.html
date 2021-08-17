@@ -66,14 +66,15 @@
 
 
 {# Split: https://protocol.mozilla.org/patterns/organisms/split.html #}
-{% macro split(id=None, block_class=None, theme_class=None, body_class=None, image_url=None, media_class=None, include_highres_image=False, l10n_image=False, image_alt='', media_after=False) -%}
+{% macro split(id=None, block_class=None, theme_class=None, body_class=None, image_url=None, media_class=None, include_highres_image=False, l10n_image=False, image_alt='', media_after=False, media_include=None) -%}
 
 <section {% if id %}id="{{ id }}"{% endif %} class="mzp-c-split{% if block_class %} {{ block_class }}{% endif %}">
   {% if theme_class %}
   <div class="mzp-c-split-bg {{ theme_class }}">
   {% endif %}
   <div class="mzp-c-split-container">
-    {% if image_url and not media_after %}
+    {% if not media_after %}
+      {% if image_url %}
     <div class="mzp-c-split-media{% if media_class %} {{ media_class }}{% endif %}">
       {% if include_highres_image %}
         {{ high_res_img(image_url, {'alt': image_alt, 'l10n': l10n_image, 'class': 'mzp-c-split-media-asset'}) }}
@@ -85,11 +86,17 @@
         {% endif %}
       {% endif %}
     </div>
+      {% elif media_include %}
+        <div class="mzp-c-split-media{% if media_class %} {{ media_class }}{% endif %}">
+          {% include media_include %}
+        </div>
+    {% endif %}
     {% endif %}
     <div class="mzp-c-split-body{% if body_class %} {{ body_class }}{% endif %}">
       {{ caller() }}
     </div>
-    {% if image_url and media_after %}
+    {% if media_after %}
+    {% if image_url %}
     <div class="mzp-c-split-media{% if media_class %} {{ media_class }}{% endif %}">
       {% if include_highres_image %}
         {{ high_res_img(image_url, {'alt': image_alt, 'l10n': l10n_image, 'class': 'mzp-c-split-media-asset'}) }}
@@ -101,6 +108,11 @@
         {% endif %}
       {% endif %}
     </div>
+    {% elif media_include %}
+    <div class="mzp-c-split-media{% if media_class %} {{ media_class }}{% endif %}">
+      {% include media_include %}
+    </div>
+    {% endif %}
     {% endif %}
   </div>
   {% if theme_class %}
