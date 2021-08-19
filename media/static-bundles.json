@@ -1077,6 +1077,16 @@
     },
     {
       "files": [
+        "js/base/dnt-helper.js",
+        "js/base/mozilla-cookie-helper.js",
+        "js/base/search-params.js",
+        "js/base/stub-attribution.js",
+        "js/base/stub-attribution-init-ie.js"
+      ],
+      "name": "stub-attribution-ie"
+    },
+    {
+      "files": [
         "js/base/mozilla-convert.js",
         "js/base/stub-attribution.js",
         "js/base/stub-attribution-convert.js"

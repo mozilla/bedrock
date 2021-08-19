@@ -79,7 +79,6 @@ $image-path: '/media/protocol/img';
         display: inline-block;
         *display: inline;
         zoom: 1;
-        margin-bottom: $spacing-2xl;
     }
 
     // only display primary navigation links to IE visitors.
@@ -92,13 +91,10 @@ $image-path: '/media/protocol/img';
         display: inline-block;
         *display: inline;
         font-weight: bold;
-        margin-bottom: $spacing-xl;
         zoom: 1;
     }
 
     .c-navigation-menu {
-        margin-bottom: $spacing-lg;
-
         ul {
             list-style-type: none;
             margin: 0 0 $spacing-lg;

@@ -121,14 +121,18 @@
       <!--<![endif]-->
     {% endblock %}
 
-    <!--[if !lte IE 7]><!-->
     {# Bug 1279291 #}
     {% block stub_attribution %}
       {% if settings.STUB_ATTRIBUTION_RATE %}
-        {{ js_bundle('stub-attribution') }}
+        <!--[if !IE]><!-->
+          {{ js_bundle('stub-attribution') }}
+        <!--<![endif]-->
+
+        <!--[if gte IE 8]>
+          {{ js_bundle('stub-attribution-ie') }}
+        <![endif]-->
       {% endif %}
     {% endblock %}
-    <!--<![endif]-->
 
     <!--[if !IE]><!-->
     {% block js %}{% endblock %}

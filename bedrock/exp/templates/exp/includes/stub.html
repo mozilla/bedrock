@@ -3,5 +3,11 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
 {% if settings.STUB_ATTRIBUTION_RATE %}
-  {{ js_bundle('stub-attribution-convert') }}
+  <!--[if !IE]><!-->
+    {{ js_bundle('stub-attribution-convert') }}
+  <!--<![endif]-->
+
+  <!--[if gte IE 8]>
+    {{ js_bundle('stub-attribution-ie') }}
+  <![endif]-->
 {% endif %}
