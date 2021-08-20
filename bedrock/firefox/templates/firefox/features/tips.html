@@ -4,7 +4,13 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% from "macros-protocol.html" import hero, picto with context %}
+{% from "macros-protocol.html" import split, picto with context %}
+
+<!-- add to ftl file -->
+{% block page_title %}{{ ftl('firefox-tips-firefox-tips') }}{% endblock %}
+{% block page_desc %}Firefox secret menu and stuff{% endblock %}
+
+{% block body_id %}firefox-tips{% endblock %}
 
 
 {% block page_css %}
@@ -13,6 +19,18 @@
 
 {% block content %}
   <main>
-
+    {% call split(
+    image_url='img/firefox/developer/browser.png',
+    include_highres_image=True,
+    media_after=True,
+    block_class='mzp-t-dark'
+  ) %}
+  <h1>{{ ftl('firefox-tips-firefox-tips') }}</h1>
+  <p>{{ ftl('firefox-weve-collected-some') }}
+</p>
+<button class="mzp-c-button mzp-t-product mzp-t-lg">
+  {{ ftl('firefox-tips-download-firefox') }}
+</button>
+  {% endcall %}
   </main>
 {% endblock %}
