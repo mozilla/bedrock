@@ -4,7 +4,7 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% from "macros-protocol.html" import split, picto with context %}
+{% from "macros-protocol.html" import split, zap, card with context %}
 
 <!-- add to ftl file -->
 {% block page_title %}{{ ftl('firefox-tips-firefox-tips') }}{% endblock %}
@@ -20,17 +20,43 @@
 {% block content %}
   <main>
     {% call split(
-    image_url='img/firefox/developer/browser.png',
-    include_highres_image=True,
-    media_after=True,
-    block_class='mzp-t-dark'
-  ) %}
-  <h1>{{ ftl('firefox-tips-firefox-tips') }}</h1>
-  <p>{{ ftl('firefox-weve-collected-some') }}
-</p>
-<button class="mzp-c-button mzp-t-product mzp-t-lg">
-  {{ ftl('firefox-tips-download-firefox') }}
-</button>
-  {% endcall %}
+      image_url='img/firefox/developer/browser.png',
+      include_highres_image=True,
+      media_after=True,
+      block_class='mzp-t-dark'
+    ) %}
+      <h1>{{ ftl('firefox-tips-firefox-tips') }}</h1>
+      <p>{{ ftl('firefox-weve-collected-some') }}
+      </p>
+      <button class="mzp-c-button mzp-t-product mzp-t-lg">
+        {{ ftl('firefox-tips-download-firefox') }}
+      </button>
+      {% endcall %}
+
+
+      <section class="mzp-l-content">
+        <div>
+          <h2 class="mzp-has-zap-3">{{ ftl('firefox-tips-our-favourites') }}</h2>
+        </div>
+
+        <div class="mzp-l-card-hero">
+        {{ card(
+          title=ftl('firefox-tips-step-up-password'),
+          ga_title='Step up your password game',
+          tag_label=ftl('firefox-tips-nneka-from-trust'),
+          desc=ftl('firefox-tips-automatically-generate'),
+          youtube_id='https://www.youtube.com/watch?v=CqGZtCZVDZ0',
+          image_url='img/firefox/pocket/pocket-save.png',
+        )}}
+
+         {{ card(
+          title=ftl('firefox-tips-weed-out-weak'),
+          ga_title='Weed out weak websites',
+          tag_label=ftl('firefox-tips-chris-from-security'),
+          desc=ftl('firefox-tips-make-sure-websites'),
+          image_url='img/firefox/pocket/pocket-save.png',
+        )}}
+      </div>
+    </section>
   </main>
 {% endblock %}
