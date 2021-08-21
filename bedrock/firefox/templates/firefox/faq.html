@@ -37,17 +37,14 @@
 {% endblock %}
 
 {% block content %}
-<div>
   {% call split (
       block_class='mzp-l-split-center-on-sm-md',
-      body_class="split-faq-body",
+      body_class='split-faq-body',
       image_url='img/firefox/browsers/quantum/browser.jpg',
       include_highres_image=True,
       media_after=True
   ) %}
-  <div class="mzp-c-logo mzp-t-logo-xl mzp-t-product-firefox faq-firefox-logo">
-    Firefox Browser
-  </div>
+  <div class="mzp-c-logo mzp-t-logo-xl mzp-t-product-firefox faq-firefox-logo"></div>
   <h1 class="mzp-u-title-xl">{{ ftl('firefox-faq')}}</h1>
   <p>{{ ftl('whether-you-searched-independant') }}</p>
   {{ download_firefox_thanks() }}
@@ -123,7 +120,6 @@
     </ul>
     {{ download_firefox_thanks() }}
   </section>
-</div>
 
 {% if LANG == 'en-US' %}
 {% include '/firefox/includes/structured-data-firefox-faq.html' %}
