@@ -12,9 +12,7 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/components/button';
 @import '../../../protocol/css/components/logos/wordmark';
 @import '../../../protocol/css/components/logos/wordmark-product-firefox';
-@import '../../../protocol/css/components/picto-card';
 @import '../../../protocol/css/components/picto';
-@import '../../../protocol/css/templates/card-layout';
 @import '../../../protocol/css/templates/multi-column';
 @import '../../protocol/components/custom-menu-list';
 @import '../../protocol/components/sub-navigation';
@@ -87,13 +85,10 @@ $image-path: '/media/protocol/img';
 
    .mzp-c-split-container {
         box-sizing: content-box;
-        padding: 24px;
+        // need extra spacing to prevent clipping with the background image
+        padding-bottom: $spacing-xl;
         @media #{$mq-md} {
-            padding: 64px 48px;
-        }
-
-        @media #{$mq-xl} {
-            padding: 80px 96px;
+            padding-bottom: inherit;
         }
    }
 
@@ -107,7 +102,6 @@ $image-path: '/media/protocol/img';
        .mzp-c-split-title {
             @include text-title-xl;
             margin-bottom: $spacing-md;
-            padding-top: 112px;
 
              @media #{$mq-md} {
                margin-bottom: $spacing-xl;
@@ -115,24 +109,21 @@ $image-path: '/media/protocol/img';
 
        }
        .mzp-c-wordmark {
-            left: 50%;
-            position: absolute;
-            transform: translateX(-50%);
-
-            @media #{$mq-md} {
-                left: 0;
-                transform: translateX(0);
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: $layout-lg;
+            @media #{$mq-lg} {
+                margin-left: inherit;
+                margin-right: inherit;
             }
        }
-       .mzp-c-hero-desc {
+       .mzp-c-split-desc {
             @include text-body-lg;
             margin-bottom: $spacing-md;
+
             @media #{$mq-md} {
                 margin-bottom: $spacing-2xl;
             }
-       }
-       .mzp-c-button-download-container {
-           margin-bottom: 24px;
        }
    }
 

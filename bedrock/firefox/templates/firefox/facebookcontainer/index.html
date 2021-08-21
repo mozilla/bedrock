@@ -3,7 +3,7 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% from "macros.html" import google_play_button with context %}
-{% from "macros-protocol.html" import split, hero, call_out_compact with context %}
+{% from "macros-protocol.html" import split, call_out_compact with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -25,9 +25,7 @@
     media_include='firefox/facebookcontainer/includes/video.html',
     media_after=True,
     ) %}
-    <div class="mzp-c-logo mzp-t-logo-xl mzp-t-product-firefox">
-      Firefox Browser
-    </div>
+    <div class="mzp-c-logo mzp-t-logo-lg mzp-t-product-firefox">{{ ftl('facebook-container-firefox-browser') }}</div>
     <h1 class="mzp-u-title-xl">{{ ftl('facebook-container-facebook-well-contained-keep') }}</h1>
       <a class="mzp-c-cta-link extension-cta mzp-u-title-3xs" href="{{ addon_url }}">
         {{ ftl('facebook-container-get-the-facebook-container') }}

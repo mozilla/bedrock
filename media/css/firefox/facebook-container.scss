@@ -6,7 +6,6 @@ $font-path: "/media/fonts";
 $image-path: "/media/protocol/img";
 
 @import "../../protocol/css/includes/lib";
-@import "../../protocol/css/components/hero";
 @import "../../protocol/css/components/split";
 @import "../../protocol/css/components/logos/logo";
 @import "../../protocol/css/components/logos/logo-product-firefox";
@@ -24,21 +23,22 @@ $image-path: "/media/protocol/img";
         box-sizing: content-box;
 
         .mzp-c-split-body {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
             max-width: 580px;
+
             .mzp-c-logo {
-                align-self: center;
-                @media #{$mq-md} {
-                    align-self: inherit;
+                margin-bottom: $spacing-md;
+                margin-left: auto;
+                margin-right: auto;
+                @media #{$mq-lg} {
+                    margin-bottom: $spacing-lg;
+                    margin-left: inherit;
+                    margin-right: inherit;
                 }
             }
             .mzp-u-title-xl {
-                padding-top: $spacing-md;
                 margin-bottom: $spacing-md;
+
                 @media #{$mq-md} {
-                    padding-top: $spacing-lg;
                     margin-bottom: $spacing-xl;
                 }
             }
@@ -69,12 +69,27 @@ $image-path: "/media/protocol/img";
 //* -------------------------------------------------------------------------- */
 // Video
 
+// Override auto width to make way for the iframe
+// https://github.com/mozilla/protocol/issues/711
+.mzp-c-split-container .mzp-c-split-media {
+    width: 100%;
+}
+
+// Responsive video container
 .video-container {
     overflow: hidden;
     position: relative;
     width: 100%;
 
-    iframe {
+    // Force space for the YouTube's iframe
+    &::after {
+        content: '';
+        display: block;
+        padding-top: 56.25%; // 16:9 aspect ratio
+    }
+
+    iframe,
+    video {
         height: 100%;
         left: 0;
         position: absolute;
@@ -89,10 +104,6 @@ $image-path: "/media/protocol/img";
         align-items: center;
         padding: 0;
         z-index: 2;
-    }
-
-    @media #{$mq-lg} {
-        // width: calc(50% - #{$spacing-2xl * 2});
     }
 }
 
