@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import call_out_compact, feature_card, hero, picto_card with context %}
+{% from "macros-protocol.html" import call_out_compact, split, picto with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -17,15 +17,16 @@
 
 {% block content %}
 
-{% call hero(
-  title=self.page_title(),
-  desc=ftl('misinformation-page-subheading'),
-  class='mzp-has-image mzp-t-dark mzp-t-product-firefox',
+{% call split(
   image_url='img/firefox/more/misinformation/hero.jpg',
   include_highres_image=True,
-  include_cta=True,
-  heading_level=1
+  block_class='c-hero mzp-l-split-hide-media-on-sm-md mzp-l-split-center-on-sm-md',
+  media_class='mzp-l-split-v-end mzp-l-split-media-overflow',
+  theme_class='mzp-t-dark'
 ) %}
+  <div class="mzp-c-logo mzp-t-logo-lg mzp-t-product-firefox">{{ ftl('misinformation-brand-firefox-browser') }}</div>
+  <h1>{{ self.page_title() }}</h1>
+  <p>{{ ftl('misinformation-page-subheading') }}</p>
   {{ download_firefox(dom_id='misinformation-download', download_location='primary cta') }}
 {% endcall %}
 
@@ -96,49 +97,47 @@
 
   </section>
 
-  <section class="mzp-l-content mzp-t-content-md misinformation-firefox-helps">
+  <section class="mzp-t-content-md misinformation-firefox-helps">
     <h2 class="misinformation-firefox-helps-heading">{{ ftl('misinformation-how-firefox-helps-heading') }}</h2>
 
-    {% call feature_card(
-      title=ftl('misinformation-firefox-keeps-trackers-heading'),
+    {% call split(
       image_url='img/firefox/more/misinformation/tracking-protection.svg',
-      aspect_ratio='mzp-has-aspect-1-1',
-      class='mzp-l-card-feature-right-half mzp-t-firefox',
-      lazy_loading=True
+      block_class='mzp-l-split-reversed'
     ) %}
+      <h2>{{ ftl('misinformation-firefox-keeps-trackers-heading') }}</h2>
       <p>{{ ftl('misinformation-firefox-keeps-trackers-desc', firefox=url('firefox.new'), protection='https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop' + _params) }}</p>
     {% endcall %}
 
-    {% call feature_card(
-      title=ftl('misinformation-social-media-clean-heading'),
+    {% call split(
       image_url='img/firefox/more/misinformation/facebook-container.svg',
-      aspect_ratio='mzp-has-aspect-1-1',
-      class='mzp-l-card-feature-right-half mzp-t-firefox',
-      lazy_loading=True
+      block_class='mzp-l-split-reversed'
     ) %}
+      <h2>{{ ftl('misinformation-social-media-clean-heading') }}</h2>
       <p>{{ ftl('misinformation-social-media-clean-desc', container=url('firefox.facebookcontainer.index')) }}</p>
     {% endcall %}
 
     {# Pocket recommendations in Firefox are currently shown to English and German audiences only. #}
     {% if LANG.startswith('en-') or LANG == 'de' %}
-      {% call feature_card(
-        title=ftl('misinformation-surface-content-heading'),
+      {% call split(
         image_url='img/firefox/more/misinformation/pocket.svg',
-        aspect_ratio='mzp-has-aspect-1-1',
-        class='mzp-l-card-feature-right-half mzp-t-firefox',
-        lazy_loading=True
+        block_class='mzp-l-split-reversed'
       ) %}
+        <h2>{{ ftl('misinformation-surface-content-heading') }}</h2>
         <p>{{ ftl('misinformation-surface-content-desc', recommended='https://support.mozilla.org/kb/customize-new-tab-page' + _params, pocket_hits='https://getpocket.com/explore/pocket-hits-signup' + _params, pocket='https://getpocket.com/' + _params)}}</p>
       {% endcall %}
     {% endif %}
   </section>
 
   <div class="misinformation-learn-more">
-    <ul class="mzp-l-content mzp-l-card-half">
-      {% call picto_card(
+    <ul class="mzp-l-content mzp-l-columns mzp-t-columns-two mzp-t-picto-center">
+      {% call picto(
         title=ftl('misinformation-why-trust-firefox'),
+        image_url='img/icons/mountain-purple.svg',
+        image_width='153px',
+        lazy_loading=True,
         class='trust',
-        custom_desc=True
+        body=True,
+        base_el='li'
       ) %}
         <p>
           {{ ftl('misinformation-because-we-put-people-first', foundation='https://foundation.mozilla.org/' + _params) }}
@@ -146,10 +145,14 @@
         <p><a href="{{ url('mozorg.mission') }}">{{ ftl('misinformation-learn-more-about-our-mission') }}</a></p>
       {% endcall %}
 
-      {% call picto_card(
+      {% call picto(
         title=ftl('misinformation-your-privacy-by-the-product'),
+        image_url='img/icons/privacy-shield.svg',
+        image_width='146px',
+        lazy_loading=True,
         class='privacy',
-        custom_desc=True
+        body=True,
+        base_el='li',
       ) %}
         <p>{{ ftl('misinformation-firefox-products-work-differently') }}</p>
         <p><a href="{{ url('firefox.privacy.products') }}">{{ ftl('misinformation-learn-about-our-products') }}</a></p>
