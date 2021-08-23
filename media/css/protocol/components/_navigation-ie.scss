@@ -66,25 +66,7 @@ $image-path: '/media/protocol/img';
 
     // Nav button
     .c-navigation-menu-button {
-        @include image-replaced;
-        background: transparent url('/media/img/nav/menu.png') center center no-repeat;
-        border-radius: $border-radius-sm;
-        border: none;
         display: none;
-        height: 32px;
-        left: 126px;
-        padding: 0;
-        position: absolute;
-        top: $spacing-md;
-        top: 0\0;
-        width: 32px;
-
-        &:hover,
-        &:active,
-        &:focus,
-        &.mzp-is-active  {
-            background-color: $color-marketing-gray-20;
-        }
     }
 
     .c-navigation-items {
@@ -93,35 +75,26 @@ $image-path: '/media/protocol/img';
         margin-top: $layout-xs;
     }
 
-    .c-menu-item-title {
-        @include text-body-lg;
-    }
-
-    .c-menu-item-icon {
-        @include bidi(((float, left, right), (margin-right, $spacing-md, margin-left, $spacing-md),));
-    }
-
-    // hide panel close buttons
-    .c-menu-button-close {
-        display: none;
-    }
-
-    .c-menu-title {
+    .c-menu-category {
         display: inline-block;
         *display: inline;
-        font-weight: bold;
-        margin-bottom: $spacing-xl;
         zoom: 1;
     }
 
-    .c-menu-category {
-        margin-bottom: $spacing-2xl;
+    // only display primary navigation links to IE visitors.
+    .c-menu-panel {
+        display: none !important; /* stylelint-disable-line declaration-no-important */
+    }
+
+    .c-menu-title {
+        @include bidi(((margin-right, $spacing-md, margin-left, 0),));
+        display: inline-block;
+        *display: inline;
+        font-weight: bold;
+        zoom: 1;
     }
 
     .c-navigation-menu {
-        display: none;
-        margin-bottom: $spacing-lg;
-
         ul {
             list-style-type: none;
             margin: 0 0 $spacing-lg;
@@ -132,19 +105,5 @@ $image-path: '/media/protocol/img';
                 padding: 0;
             }
         }
-
-        .c-menu-panel {
-            padding-left: $spacing-xl;
-        }
-    }
-}
-
-.js .top-header-navigation {
-    .c-navigation-menu-button {
-        display: block;
-    }
-
-    .c-navigation-items {
-        display: block;
     }
 }

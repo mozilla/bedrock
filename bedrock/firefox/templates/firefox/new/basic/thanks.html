@@ -41,7 +41,7 @@
 
   <section class="mzp-c-call-out mzp-t-product-firefox">
     <div class="mzp-l-content">
-      <h1 class="mzp-c-call-out-title show-windows show-mac show-xp-vista show-else">{{ ftl('firefox-new-firefox-is-more-than-a-browser') }}</h1>
+      <h1 class="mzp-c-call-out-title show-windows show-mac show-else">{{ ftl('firefox-new-firefox-is-more-than-a-browser') }}</h1>
 
       <h1 class="mzp-c-call-out-title show-linux-arm">{{ ftl('firefox-new-download-interrupted') }}</h1>
 
@@ -58,7 +58,6 @@
 
       <div class="c-support-install">
         {# Edge-case platform support messaging #}
-        <span class="show-xp-vista">{{ ftl('firefox-new-mozilla-no-longer-provides', fallback='firefox-new-youre-using-an-insecure-outdated', url='https://support.mozilla.org/kb/end-support-windows-xp-and-vista') }}</span>
         <span class="show-linux-arm">{{ ftl('firefox-new-please-follow', fallback='download-button-please-follow-these', url='https://support.mozilla.org/kb/install-firefox-linux') }}</span>
         <span class="show-unknown">
           {{ ftl('firefox-new-your-system-may-not', url=firefox_url('desktop', 'all'))}}

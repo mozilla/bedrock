@@ -25,7 +25,6 @@
   <![endif]-->
 
   <!--[if lt IE 9]>
-    {{ css_bundle('common-old-ie') }}
     {{ css_bundle('firefox_desktop_download_ie8') }}
   <![endif]-->
 
@@ -65,6 +64,11 @@
 {% block content %}
 
 <main role="main" class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
+
+  {# Show unsupported notification to IE 6/7 visitors on Windows XP/Vista #}
+  <!--[if lt IE 8]>
+  <div class="mzp-c-notification-bar mzp-t-warning" data-nosnippet="true">{{ ftl('firefox-desktop-download-mozilla-no-longer-provides', fallback='firefox-desktop-download-youre-using-an-insecure-outdated', url='https://support.mozilla.org/kb/end-support-windows-xp-and-vista') }}</div>
+  <![endif]-->
 
   {% block yandex %}{% endblock%}
 
@@ -501,7 +505,7 @@
 </main>
 
 {% if show_firefox_join_modal %}
-<aside class="mzp-u-modal-content join-firefox-content">
+<aside class="mzp-u-modal-content join-firefox-content hide-from-legacy-ie">
   <h4 class="join-firefox-title">{{ ftl('firefox-desktop-download-youve-already-got-the-browser') }}</h4>
   <p class="join-firefox-intro">{{ ftl('firefox-desktop-download-watch-for-hackers-with') }}</p>
 
