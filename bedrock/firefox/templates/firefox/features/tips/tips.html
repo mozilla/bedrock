@@ -37,7 +37,7 @@
       <section class="mzp-l-content">
           <h2 class="mzp-has-zap-11">{{ ftl('firefox-tips-our-favorites') }}</h2>
 
-        <div class="mzp-l-card-third">
+        <div class="mzp-l-card-hero">
         {{ card(
           title=ftl('firefox-tips-step-up-password'),
           ga_title='Step up your password game',
@@ -64,21 +64,38 @@
           youtube_id='jH02ptVCumQ',
           image_url='img/firefox/pocket/pocket-save.png',
         )}}
+
+        {{ card(
+          title=ftl('firefox-tips-create-burner-email'),
+          ga_title='Create burner email addresses',
+          tag_label=ftl('firefox-tips-luke-security'),
+          desc=ftl('firefox-tips-sign-up-for-things'),
+          youtube_id='ZlQZNj7Mkao',
+          image_url='img/firefox/pocket/pocket-save.png',
+        )}}
+
+        {{ card(
+          title=ftl('firefox-tips-send-tabs'),
+          ga_title='Send tabs between devices',
+          tag_label=ftl('firefox-tips-hilda-engineering'),
+          desc=ftl('firefox-tips-send-tabs-from'),
+          youtube_id='aHpCLDQ_2ns',
+          image_url='img/firefox/pocket/pocket-save.png',
+        )}}
       </div>
 
       <div>
          {{ call_out(
             title=ftl('firefox-tips-available-now'),
-            heading_level=2)
+            heading_level=3,
+            class='mzp-t-product-firefox',
+
+            )
           }}
 
-        <div class="mzp-c-logo mzp-t-logo-xl mzp-t-product-firefox">
-          Firefox Browser
-        </div>
-        <h2>{{ ftl('firefox-tips-available-now') }}</h2>
-         <a class="mzp-c-button mzp-t-product mzp-t-lg" href="#">
-        {{ ftl('firefox-tips-download-firefox') }}
-         </a>
+        <div class="firefox-cta">
+
+      </div>
       </div>
     </section>
   </main>
