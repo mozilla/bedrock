@@ -35,15 +35,13 @@
 
 
       <section class="mzp-l-content">
-        <div>
-          <h2 class="mzp-has-zap-3">{{ ftl('firefox-tips-our-favourites') }}</h2>
-        </div>
+          <h2 class="mzp-has-zap-11">{{ ftl('firefox-tips-our-favorites') }}</h2>
 
-        <div class="mzp-l-card-hero">
+        <div class="mzp-l-card-third">
         {{ card(
           title=ftl('firefox-tips-step-up-password'),
           ga_title='Step up your password game',
-          tag_label=ftl('firefox-tips-nneka-from-trust'),
+          tag_label=ftl('firefox-tips-nneka-trust'),
           desc=ftl('firefox-tips-automatically-generate'),
           youtube_id='https://www.youtube.com/watch?v=CqGZtCZVDZ0',
           image_url='img/firefox/pocket/pocket-save.png',
@@ -52,10 +50,29 @@
          {{ card(
           title=ftl('firefox-tips-weed-out-weak'),
           ga_title='Weed out weak websites',
-          tag_label=ftl('firefox-tips-chris-from-security'),
+          tag_label=ftl('firefox-tips-chris-security'),
           desc=ftl('firefox-tips-make-sure-websites'),
+          youtube_id='https://www.youtube.com/watch?v=D6tFXSFFkfY',
           image_url='img/firefox/pocket/pocket-save.png',
         )}}
+
+         {{ card(
+          title=ftl('firefox-tips-resurrect-tabs'),
+          ga_title='Resurrect your tabs',
+          tag_label=ftl('firefox-tips-mei-product'),
+          desc=ftl('firefox-tips-accidentally-closed'),
+          image_url='img/firefox/pocket/pocket-save.png',
+        )}}
+      </div>
+
+      <div>
+        <div class="mzp-c-logo mzp-t-logo-xl mzp-t-product-firefox">
+          Firefox Browser
+        </div>
+        <h2>{{ ftl('firefox-tips-available-now') }}</h2>
+         <a class="mzp-c-button mzp-t-product mzp-t-lg" href="#">
+        {{ ftl('firefox-tips-download-firefox') }}
+         </a>
       </div>
     </section>
   </main>

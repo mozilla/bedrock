@@ -1090,6 +1090,12 @@
     },
     {
       "files": [
+        "css/firefox/features/tips/youtube-tips.js"
+      ],
+      "name": "firefox_tips"
+    },
+    {
+      "files": [
         "js/base/banners/mozilla-banner.js",
         "js/mozorg/home/banner-init.js"
       ],

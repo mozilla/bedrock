@@ -10,4 +10,12 @@ $image-path: '/media/protocol/img';
 @import "../../../protocol/css/components/card";
 @import '../../../protocol/css/templates/card-layout';
 @import "../../../protocol/css/components/zap";
+@import "../../../protocol/css/components/logos/logo-product-firefox"
+;
 
+.mzp-l-content {
+    h2 {
+        margin-bottom: 80px;
+        text-align: center;
+    }
+}

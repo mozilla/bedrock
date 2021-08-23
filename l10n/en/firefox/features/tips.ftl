@@ -11,7 +11,7 @@ firefox-weve-collected-some = We’ve collected some of our favorite insider tip
 
 firefox-tips-download-firefox = Download { -brand-name-firefox }
 
-firefox-tips-our-favourites = Our <strong>Favourites</strong>
+firefox-tips-our-favorites = Our <strong>Favorites</strong>
 
 ### Forget/Damiano
 
@@ -34,7 +34,8 @@ firefox-tips-nneka-trust = Nneka from Trust & Privacy
 
 firefox-tips-automatically-generate = Automatically generate strong, complex passwords that you don’t have to remember.
 
-### HTTPS/Chris
+### HTTPS/
+
 firefox-tips-weed-out-weak = Weed out weak websites
 
 firefox-tips-chris-security = Chris from Security Engineering
@@ -149,3 +150,4 @@ firefox-tips-natalie-creative = Natalie from Creative Studio
 
 firefox-tips-rearrange-tabs = Rearrange your browser tabs any way you want with ease. Get even more tab tips.
 
+firefox-tips-available-now = Available now for desktop and mobile
