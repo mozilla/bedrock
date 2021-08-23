@@ -4,7 +4,7 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% from "macros-protocol.html" import split, zap, card with context %}
+{% from "macros-protocol.html" import split, call_out, zap, card with context %}
 
 <!-- add to ftl file -->
 {% block page_title %}{{ ftl('firefox-tips-firefox-tips') }}{% endblock %}
@@ -43,7 +43,7 @@
           ga_title='Step up your password game',
           tag_label=ftl('firefox-tips-nneka-trust'),
           desc=ftl('firefox-tips-automatically-generate'),
-          youtube_id='https://www.youtube.com/watch?v=CqGZtCZVDZ0',
+          youtube_id='CqGZtCZVDZ0',
           image_url='img/firefox/pocket/pocket-save.png',
         )}}
 
@@ -52,7 +52,7 @@
           ga_title='Weed out weak websites',
           tag_label=ftl('firefox-tips-chris-security'),
           desc=ftl('firefox-tips-make-sure-websites'),
-          youtube_id='https://www.youtube.com/watch?v=D6tFXSFFkfY',
+          youtube_id='D6tFXSFFkfY',
           image_url='img/firefox/pocket/pocket-save.png',
         )}}
 
@@ -61,11 +61,17 @@
           ga_title='Resurrect your tabs',
           tag_label=ftl('firefox-tips-mei-product'),
           desc=ftl('firefox-tips-accidentally-closed'),
+          youtube_id='jH02ptVCumQ',
           image_url='img/firefox/pocket/pocket-save.png',
         )}}
       </div>
 
       <div>
+         {{ call_out(
+            title=ftl('firefox-tips-available-now'),
+            heading_level=2)
+          }}
+
         <div class="mzp-c-logo mzp-t-logo-xl mzp-t-product-firefox">
           Firefox Browser
         </div>
@@ -76,4 +82,8 @@
       </div>
     </section>
   </main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_tips') }}
 {% endblock %}

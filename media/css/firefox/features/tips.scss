@@ -10,12 +10,37 @@ $image-path: '/media/protocol/img';
 @import "../../../protocol/css/components/card";
 @import '../../../protocol/css/templates/card-layout';
 @import "../../../protocol/css/components/zap";
+@import "../../../protocol/css/components/call-out";
 @import "../../../protocol/css/components/logos/logo-product-firefox"
 ;
+@import "../../../protocol/css/components/modal";
 
 .mzp-l-content {
     h2 {
         margin-bottom: 80px;
         text-align: center;
+    }
+}
+
+// YouTube iframe responsive in modal.
+
+.ytcontainer-video {
+    max-width: 100%;
+
+    .video-container {
+        height: 0;
+        margin-bottom: $spacing-lg;
+        overflow: hidden;
+        padding-bottom: 56.25%;
+        position: relative;
+        width: 100%;
+    }
+
+    iframe {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top:0;
+        width: 100%;
     }
 }
