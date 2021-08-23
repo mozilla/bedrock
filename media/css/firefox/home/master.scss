@@ -206,7 +206,8 @@ $brand-theme: 'firefox';
         }
     }
 
-    @media #{$mq-md} {
+    // note: this can be changed to md breakpoint once latest Protocol changes are merged
+    @media #{$mq-lg} {
         margin: $layout-lg 0;
         padding: 0 $layout-md;
 
