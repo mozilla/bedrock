@@ -857,6 +857,16 @@
         "css/products/vpn/article.scss"
       ],
       "name": "mozilla-vpn-article"
+    },
+    {
+      "files": [
+        "css/products/vpn/mozilla-vpn-why.scss",
+        "css/products/vpn/common.scss",
+        "css/products/vpn/article.scss",
+        "css/products/vpn/components/hero.scss",
+        "css/products/vpn/components/block.scss"
+      ],
+      "name": "mozilla-vpn-why"
     }
   ],
   "js": [
