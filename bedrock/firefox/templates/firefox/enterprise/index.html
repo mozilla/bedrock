@@ -4,7 +4,7 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% from "macros-protocol.html" import call_out_compact, feature_card, picto_card, picto, hero with context %}
+{% from "macros-protocol.html" import call_out_compact, picto, split with context %}
 
 {% block page_title_full %}{{ ftl('firefox-enterprise-get-firefox-for-your-enterprise-with') }}{% endblock %}
 {% block page_desc %}{{ ftl('firefox-enterprise-get-unmatched-data-protection') }}{% endblock %}
@@ -45,14 +45,15 @@
 
 {% block content %}
 <main role="main">
-  {% call hero(
-    title=ftl('firefox-enterprise-get-firefox-for-your-enterprise'),
-    class='mzp-t-product-firefox mzp-has-image mzp-t-dark t-enterprise',
+  {% call split(
     image_url='img/firefox/enterprise/fx-browser-img.svg',
-    include_cta=True,
-    heading_level=1
+    block_class='mzp-has-image mzp-t-dark t-enterprise mzp-t-split-nospace mzp-l-split-hide-media-on-sm-md mzp-l-split-center-on-sm-md',
+    media_class='mzp-l-split-v-start mzp-l-split-h-start',
+    media_after=True
   ) %}
-    <p class="mzp-c-hero-desc">
+  <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">{{ftl('firefox-enterprise-firefox-browser')}}</div>
+  <h1 class="mzp-c-split-title">{{ftl('firefox-enterprise-get-firefox-for-your-enterprise')}}</h1>
+    <p class="mzp-c-split-desc">
       {{ ftl('firefox-enterprise-get-the-firefox-extended-support', url='https://support.mozilla.org/kb/choosing-firefox-update-channel') }}
     </p>
     <div class="cta-container">
