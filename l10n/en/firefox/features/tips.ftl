@@ -15,11 +15,11 @@ firefox-tips-our-favorites = Our <strong>Favorites</strong>
 
 ### Forget/Damiano
 
-firefox-tips-quick-erase-your = Quick-erase your history
+firefox-tips-quick-erase = Quick-erase your history
 
-firefox-tips-damiamo-from-pr = Damiano from PR
+firefox-tips-damiano-pr = Damiano from PR
 
-firefox-tips-quick-way-to-delete = A quick way to delete your Firefox history and cookies for the last 5 minutes, or 2 hours or 24 hours in a flash.
+firefox-tips-quick-delete = A quick way to delete your Firefox history and cookies for the last 5 minutes, or 2 hours or 24 hours in a flash.
 
 # Variables:
 #   $forget (url) - link to https://support.mozilla.org/kb/forget-button-quickly-delete-your-browsing-history
