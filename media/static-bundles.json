@@ -1115,6 +1115,7 @@
         "protocol/js/protocol-modal.js",
         "js/base/mozilla-lazy-load.js",
         "js/firefox/features/tips/tips-youtube.js",
+        "js/firefox/features/tips/tips-featured-video.js",
         "js/firefox/features/tips/tips.js"
       ],
       "name": "firefox_tips"
