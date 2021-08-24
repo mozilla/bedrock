@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import billboard, card, feature_card with context %}
+{% from "macros-protocol.html" import billboard, card, split with context %}
 
 {% extends "base-protocol-mozilla.html" %}
 
@@ -84,20 +84,20 @@
     </div>
   </div>
 </div>
-<div class="mzp-l-content">
-  {% call feature_card(
-      title=ftl('about-corporation-foundation-not'),
-      ga_title='Corporation. Foundation. Not-for-profit.',
-      link_cta=ftl('about-learn-about-the-mozilla-foundation'),
-      link_url='https://foundation.mozilla.org/',
-      image_url='img/mozorg/about/foundation.jpg',
-      include_highres_image=True,
-      aspect_ratio='mzp-has-aspect-3-2',
-      class='mzp-l-card-feature-left-half t-foundation'
-  ) %}
-    <p>{{ ftl('about-mozilla-puts-people-over-profit') }}</p>
-  {% endcall %}
 
+   {% call split(
+    image_url='img/mozorg/about/foundation.jpg',
+    include_highres_image=True,
+    media_after=False,
+    media_class='mzp-l-split-h-center',
+    block_class='mzp-t-split-nospace'
+    ) %}
+    <h2 class="mzp-u-title-sm">{{ ftl('about-corporation-foundation-not') }}</h2>
+    <p>{{ ftl('about-mozilla-puts-people-over-profit') }}</p>
+    <a class="mzp-c-cta-link" href="https://foundation.mozilla.org/">{{ ftl('about-learn-about-the-mozilla-foundation') }}</a>
+{% endcall %}
+
+<div class="mzp-l-content">
   {{ billboard(
       title=ftl('about-the-mozilla-manifesto'),
       ga_title='The Mozilla Manifesto',

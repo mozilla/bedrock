@@ -15,6 +15,10 @@
 {% block extrahead %}
   {{ super() }}
   {{ css_bundle('firefox_desktop_download_thanks') }}
+
+  <!--[if IE]>
+    {{ css_bundle('firefox_desktop_download_thanks_ie') }}
+  <![endif]-->
 {% endblock %}
 
 {% block string_data %}
@@ -48,8 +52,6 @@
 
     <h1 class="mzp-has-zap-8 c-section-title show-else">{{ ftl('firefox-desktop-download-almost-there') }}<br>{{ ftl('firefox-desktop-download-now-else') }}</h1>
 
-    <h1 class="mzp-has-zap-8 c-section-title show-xp-vista">{{ ftl('firefox-desktop-download-almost-there') }}<br>{{ ftl('firefox-desktop-download-now-windows') }}</h1>
-
     <h1 class="c-section-title show-linux-arm">{{ ftl('firefox-desktop-download-interrupted') }}</h1>
 
     <h1 class="c-section-title show-unknown">{{ ftl('firefox-desktop-download-interrupted') }}</h1>
@@ -72,7 +74,6 @@
       <span class="show-else">{{ ftl('firefox-desktop-download-get-help', attrs=support_else_attrs) }}</span>
 
       {# Edge-case platform support messaging #}
-      <span class="show-xp-vista">{{ ftl('firefox-desktop-download-mozilla-no-longer-provides', fallback='firefox-desktop-download-youre-using-an-insecure-outdated', url='https://support.mozilla.org/kb/end-support-windows-xp-and-vista') }}</span>
       <span class="show-linux-arm">{{ ftl('firefox-desktop-download-please-follow', fallback='download-button-please-follow-these', url='https://support.mozilla.org/kb/install-firefox-linux') }}</span>
       <span class="show-unknown">
         {{ ftl('firefox-desktop-download-your-system-may-not', url=firefox_url('desktop', 'all'))}}

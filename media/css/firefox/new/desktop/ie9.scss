@@ -24,3 +24,7 @@ $image-path: '/media/protocol/img';
 .c-compare-table caption {
     display: none;
 }
+
+.hide-from-legacy-ie {
+    display: none !important; /* stylelint-disable-line declaration-no-important */
+}

@@ -26,7 +26,7 @@ Some website experiences may require us to deviate from these principles -- imag
 marketing campaign page built under timeline pressure to deliver novel functionality to a
 particular locale for a short while* -- but those will be exceptions and rare.
 
-Browser Support Matrix (Updated 2019-06-11)
+Browser Support Matrix (Updated 2021-12-07)
 -------------------------------------------
 
 We deliver enhanced CSS & JS to browsers in our browser support matrix (below).
@@ -51,12 +51,17 @@ Delivering basic support
 ------------------------
 
 On IE browsers that support `conditional comments`_ (IE9 and below), basic support
-consists of no page-specific CSS or JS. Instead, we deliver well formed semantic HTML, a
-universal CSS stylesheet that gets applied to all pages, and a universal JS bundle that
-only handles downloading Firefox (click a button, get a file), and Google Analytics.
+consists of no page-specific CSS or JS. Instead, we deliver well formed semantic HTML,
+and a universal CSS stylesheet that gets applied to all pages. We do not serve these
+older browsers any JS, with the exception of the following scripts:
 
-To hide non-relevant content from legacy IE users who see the universal stylesheet, a
-``hide-from-legacy-ie`` class name can be applied directly to HTML:
+  * Google Analytics / GTM snippet.
+  * HTML5shiv for parsing modern HTML semantic elements.
+  * Stub Attribution script (IE8 / IE9).
+
+Conditional comments should instead be used to handle content specific to IE. To hide
+non-relevant content from IE users who see the universal stylesheet, a ``hide-from-legacy-ie``
+class name can also be applied directly to HTML:
 
 .. code-block:: html
 
@@ -132,7 +137,7 @@ pages.
 .. Note::
 
     An enhanced experience can be defined as a step above basic support. This can be achieved
-    by delivering extra page-specific CSS or JS to legacy browsers, or allowing them to degrade
+    by delivering extra page-specific CSS to legacy browsers, or allowing them to degrade
     gracefully. It does not mean everything needs to `look the same in every browser`_.
 
 .. _look the same in every browser: http://dowebsitesneedtolookexactlythesameineverybrowser.com/

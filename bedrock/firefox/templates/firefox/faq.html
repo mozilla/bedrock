@@ -4,7 +4,7 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% from "macros-protocol.html" import hero with context %}
+{% from "macros-protocol.html" import split with context %}
 
 {% block page_title %}{{ ftl('firefox-faq') }}{% endblock %}
 {% block page_desc %}{{ ftl('whether-you-searched-privacy') }}{% endblock %}
@@ -37,20 +37,17 @@
 {% endblock %}
 
 {% block content %}
-<div class="mzp-l-content">
-
-  {% call hero(
-    title=ftl('firefox-faq'),
-    class='mzp-has-image mzp-t-firefox mzp-t-product-firefox',
-    image_url='img/firefox/browsers/quantum/browser.jpg',
-    include_highres_image=True,
-    include_cta=True,
-    heading_level=1
+  {% call split (
+      block_class='mzp-l-split-center-on-sm-md',
+      body_class='split-faq-body',
+      image_url='img/firefox/browsers/quantum/browser.jpg',
+      include_highres_image=True,
+      media_after=True
   ) %}
-
+  <div class="mzp-c-logo mzp-t-logo-lg mzp-t-product-firefox faq-firefox-logo"></div>
+  <h1 class="mzp-u-title-xl">{{ ftl('firefox-faq')}}</h1>
   <p>{{ ftl('whether-you-searched-independant') }}</p>
   {{ download_firefox_thanks() }}
-
   {% endcall %}
 
   <section class="mzp-l-content mzp-t-content-md">
@@ -123,7 +120,6 @@
     </ul>
     {{ download_firefox_thanks() }}
   </section>
-</div>
 
 {% if LANG == 'en-US' %}
 {% include '/firefox/includes/structured-data-firefox-faq.html' %}

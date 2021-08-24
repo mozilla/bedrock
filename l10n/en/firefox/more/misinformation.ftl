@@ -4,6 +4,7 @@
 
 ### URL: https://www-dev.allizom.org/firefox/more/misinformation/
 
+misinformation-brand-firefox-browser = { -brand-name-firefox-browser }
 misinformation-page-title = Avoid misinformation online – { -brand-name-firefox } is here to help
 misinformation-page-desc = Misinformation is annoying, distracting and expensive. { -brand-name-firefox } has some tips for avoiding false information – and seeing less of it when browsing the web.
 misinformation-page-subheading = Check out tips for seeing less misinformation and focusing on what’s important to you

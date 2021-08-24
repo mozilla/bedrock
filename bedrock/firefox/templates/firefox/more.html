@@ -4,7 +4,7 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% from "macros-protocol.html" import hero, card with context %}
+{% from "macros-protocol.html" import split, card with context %}
 
 {% block page_title %}{{ ftl('firefox-products-are') }}{% endblock %}
 {% block page_desc %}{{ ftl('learn-more-about') }}{% endblock %}
@@ -15,14 +15,13 @@
 
 {% block content %}
 <main>
-  {% call hero(
-    title=ftl('learn-more-about-firefox', fallback='firefox-products-are'),
-    class='privacy-promise-hero mzp-has-image mzp-t-dark mzp-t-firefox',
+  {% call split(
     image_url='img/firefox/privacy/promise/privacy-hero.png',
     include_highres_image=True,
-    include_cta=True,
-    heading_level=2
+    block_class='privacy-promise-hero mzp-l-split-hide-media-on-sm-md',
+    theme_class='mzp-t-dark'
   ) %}
+    <h2>{{ ftl('learn-more-about-firefox', fallback='firefox-products-are') }}</h2>
     <a href="{{ url('firefox.faq') }}" class="mzp-c-button mzp-t-product">{{ ftl('learn-more-faq') }}</a>
   {% endcall %}
 

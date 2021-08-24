@@ -7,7 +7,15 @@ $image-path: '/media/protocol/img';
 
 @import '../../../../protocol/css/includes/lib';
 @import '../../../../protocol/css/components/hero';
+@import '../../../../protocol/css/components/notification-bar';
 
+// notification
+
+.mzp-c-notification-bar {
+    a:link {
+        margin: 0;
+    }
+}
 
 .mzp-c-hero {
 

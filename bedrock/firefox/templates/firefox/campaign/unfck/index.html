@@ -13,14 +13,6 @@
 {% block page_desc %}It’s an amazing place. But we can all feel the ways it’s fcked, too. Here are some things you can do to unfck it!{% endblock %}
 {% block page_image %}{{ static('img/firefox/campaign/unfck/en/og.jpg') }}{% endblock %}
 
-{% block experiments %}
-  {% if switch('unfck-convert') %}
-    {# Pre-fetch the DNS lookup prior to loading the convert script #}
-    <link rel="dns-prefetch" href="https://cdn-3.convertexperiments.com/">
-    {{ js_bundle('convert') }}
-  {% endif %}
-{% endblock %}
-
 {% block page_css %}
   {{ css_bundle('firefox-unfck') }}
 {% endblock %}
@@ -271,16 +263,6 @@
   {% with theme_class='mzp-t-ink' %}
     {% include 'includes/protocol/footer/footer.html' %}
   {% endwith %}
-{% endblock %}
-
-{% block stub_attribution %}
-  {% if settings.STUB_ATTRIBUTION_RATE %}
-    {% if switch('unfck-convert') %}
-      {{ js_bundle('stub-attribution-convert') }}
-    {% else %}
-      {{ js_bundle('stub-attribution') }}
-    {% endif %}
-  {% endif %}
 {% endblock %}
 
 {% block js %}

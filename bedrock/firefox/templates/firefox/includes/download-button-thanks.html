@@ -1,4 +1,5 @@
 <div id="{{ id }}" class="mzp-c-button-download-container c-button-download-thanks">
+  <!--[if !IE]><!-->
   <a href="{{ transition_url }}"
      class="download-link mzp-c-button mzp-t-product {% if button_class %}{{ button_class }}{% else %}mzp-t-xl{% endif %}"
      data-direct-link="{{ download_link_direct }}"
@@ -10,6 +11,22 @@
       {{ ftl('download-button-download-firefox') }}
     {% endif %}
   </a>
+  <!--<![endif]-->
+
+  {# legacy IE visitors get a direct download link instead of going to /thanks. #}
+  <!--[if IE]>
+    <a href="{{ download_link_direct}}"
+      class="download-link mzp-c-button mzp-t-product {% if button_class %}{{ button_class }}{% else %}mzp-t-xl{% endif %}"
+      data-link-type="download" data-download-os="Desktop" data-display-name="Windows 32-bit" data-download-version="win"
+      {% if download_location %}data-download-location="{{ download_location }}"{% endif %}>
+      {% if alt_copy %}
+        {{ alt_copy }}
+      {% else %}
+        {{ ftl('download-button-download-firefox') }}
+      {% endif %}
+    </a>
+  <![endif]-->
+
   <small class="mzp-c-button-download-privacy-link">
     <a href="{{ url('privacy.notices.firefox') }}">
       {{ ftl('download-button-firefox-privacy-notice') }}
