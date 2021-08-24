@@ -44,3 +44,44 @@ $image-path: '/media/protocol/img';
         width: 100%;
     }
 }
+
+
+.mzp-c-split-container .mzp-c-split-media {
+    width: 100%;
+}
+
+// Responsive video container for featured video
+.video-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    @media #{$mq-lg} {
+        min-width: 480px;
+    }
+
+    // Force space for the YouTube's iframe
+    &::after {
+        content: '';
+        display: block;
+        padding-top: 56.25%; // 16:9 aspect ratio
+    }
+
+    iframe{
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+}
+
+.tips-featured-video {
+    @media #{$mq-md} {
+        @include bidi(((left, 50%, auto), (right, auto, 50%)));
+        align-items: center;
+        padding: 0;
+        z-index: 2;
+    }
+}

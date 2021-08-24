@@ -20,11 +20,10 @@
 {% block content %}
   <main>
     {% call split(
-      image_url='img/firefox/developer/browser.png',
-      include_highres_image=True,
+      block_class='mzp-t-dark mzp-l-split-center-on-sm-md',
+      media_include='firefox/features/tips/includes/featured-video.html',
+      media_class='mzp-l-split-h-center mzp-l-split-body-wide',
       media_after=True,
-      media_incldes='firefox/tips/includes/featured-video.html'
-      block_class='mzp-t-dark'
     ) %}
       <h1>{{ ftl('firefox-tips-firefox-tips') }}</h1>
       <p>{{ ftl('firefox-weve-collected-some') }}
