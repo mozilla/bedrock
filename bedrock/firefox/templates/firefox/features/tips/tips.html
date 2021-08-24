@@ -28,9 +28,7 @@
       <h1>{{ ftl('firefox-tips-firefox-tips') }}</h1>
       <p>{{ ftl('firefox-weve-collected-some') }}
       </p>
-      <button class="mzp-c-button mzp-t-product mzp-t-lg">
-        {{ ftl('firefox-tips-download-firefox') }}
-      </button>
+        {{ download_firefox_thanks(dom_id='tips-header-download', download_location='download firefox primary') }}
       {% endcall %}
 
 
@@ -48,6 +46,7 @@
           aspect_ratio='mzp-has-aspect-16-9',
           youtube_id='aHpCLDQ_2ns',
           image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_send-tabs_hilda.jpg',
+          link_url='https://support.mozilla.org/kb/send-tab-firefox-desktop-other-devices'
         )}}
 
         <!-- email/relay -->
@@ -59,6 +58,7 @@
           aspect_ratio='mzp-has-aspect-16-9',
           youtube_id='ZlQZNj7Mkao',
           image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_email_luke.jpg',
+          link_url='https://relay.firefox.com/'
         )}}
 
         <!-- screenshot -->
@@ -70,6 +70,7 @@
           aspect_ratio='mzp-has-aspect-16-9',
           youtube_id='-Rv5MKSBNUM',
           image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_screenshot_mj.jpg',
+          link_url='https://blog.mozilla.org/en/products/firefox/how-to-capture-screenshots-with-firefox/'
         )}}
 
          <!-- HTTps -->
@@ -80,7 +81,8 @@
           desc=ftl('firefox-tips-make-sure-websites'),
           aspect_ratio='mzp-has-aspect-16-9',
           youtube_id='D6tFXSFFkfY',
-          image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_https_chris.jpg'
+          image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_https_chris.jpg',
+          link_url=None
         )}}
 
         <!-- restore session -->
@@ -117,7 +119,8 @@
           desc=ftl('firefox-tips-summary-of-trackers'),
           aspect_ratio='mzp-has-aspect-16-9',
           youtube_id='Ot68YhHhaLA',
-          image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_privacy-report_roux.jpg'
+          image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_privacy-report_roux.jpg',
+          link_url='https://www.mozilla.org/en-US/firefox/privacy/products/'
         )}}
 
         <!-- Facebook container -->
@@ -128,7 +131,8 @@
           desc=ftl('firefox-tips-create-privacy-fence'),
           aspect_ratio='mzp-has-aspect-16-9',
           youtube_id='M9DK-taZsrw',
-          image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_facebook-steve.jpg'
+          image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_facebook-steve.jpg',
+          link_url='https://www.mozilla.org/firefox/facebookcontainer/'
         )}}
 
          <!-- password manager -->
@@ -139,7 +143,8 @@
           desc=ftl('firefox-tips-automatically-generate'),
           aspect_ratio='mzp-has-aspect-16-9',
           youtube_id='CqGZtCZVDZ0',
-          image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_password_nneka.jpg'
+          image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_password_nneka.jpg',
+          link_url='https://support.mozilla.org/kb/how-generate-secure-password-firefox'
         )}}
 
            <!-- eyedropper tool -->
@@ -163,7 +168,8 @@
           desc=ftl('firefox-tips-rearrange-tabs'),
           aspect_ratio='mzp-has-aspect-16-9',
           youtube_id='uyuBOpjPFws',
-          image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_floating-tabs_natalie.jpg'
+          image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_floating-tabs_natalie.jpg',
+          link_url='https://blog.mozilla.org/en/products/firefox/nine-tips-for-better-tab-management/'
         )}}
 
         <!-- forget button -->
@@ -174,7 +180,8 @@
           desc=ftl('firefox-tips-quick-delete'),
           aspect_ratio='mzp-has-aspect-16-9',
           youtube_id='sn9dib80w3c',
-          image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_forget_damiano.jpg'
+          image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_forget_damiano.jpg',
+          link_url='https://support.mozilla.org/kb/forget-button-quickly-delete-your-browsing-history'
         )}}
 
           <!-- pocket button -->
@@ -187,23 +194,17 @@
           youtube_id='U81F597OSSE',
           image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_pocket_amy.jpg'
         )}}
-
       </div>
 
-      <div>
-         {{ call_out(
-            title=ftl('firefox-tips-available-now'),
-            heading_level=3,
-            class='mzp-t-product-firefox',
 
-            )
-          }}
-
-        <div class="firefox-cta">
-
-      </div>
-      </div>
-    </section>
+      {% call call_out(
+         title=ftl('firefox-tips-available-now'),
+         heading_level=3,
+         class='mzp-t-product-firefox',
+         include_cta=True
+         ) %}
+          {{ download_firefox_thanks(dom_id='tips-callout-download', download_location='download firefox primary') }}
+      {% endcall %}
   </main>
 {% endblock %}
 
