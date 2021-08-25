@@ -17,11 +17,25 @@
  {{ css_bundle('firefox_tips') }}
 {% endblock %}
 
+{% if variation == 'eyedropper' %}
+  {% set media_include = 'firefox/features/tips/includes/eyedropper-bram.html' %}
+  {% set var_name = 'eyedropper-bram' %}
+{% elif variation == 'forget' %}
+  {% set media_include = 'firefox/features/tips/includes/forget-damiano.html' %}
+  {% set var_name = 'forget-damiano' %}
+  {% elif variation == 'password' %}
+  {% set media_include = 'firefox/features/tips/includes/password-nneka.html' %}
+  {% set var_name = 'password-nneka' %}
+{% else %}
+  {% set media_include = 'firefox/features/tips/includes/pip-tina.html' %}
+  {% set var_name = 'default' %}
+{% endif %}
+
 {% block content %}
   <main>
     {% call split(
       block_class='mzp-t-dark mzp-l-split-center-on-sm-md',
-      media_include='firefox/features/tips/includes/featured-video.html',
+      media_include=media_include,
       media_class='mzp-l-split-h-center mzp-l-split-body-wide',
       media_after=True,
     ) %}
