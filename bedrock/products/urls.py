@@ -39,5 +39,6 @@ urlpatterns = (
          ftl_files=['products/vpn/more/when-to-use-a-vpn', 'products/vpn/shared']),
     # VPN pages for Product team (issue #10388)
     page('vpn/more/why-mozilla-vpn', 'products/vpn/more/why-mozilla-vpn.html', ftl_files=['products/vpn/shared']),
-    page('vpn/more/do-i-need-a-vpn', 'products/vpn/more/do-i-need.html', ftl_files=['products/vpn/shared'])
+    page('vpn/more/do-i-need-a-vpn', 'products/vpn/more/do-i-need.html', ftl_files=['products/vpn/shared']),
+    page('vpn/more/what-is-a-vpn-v2', 'products/vpn/more/what-is-a-vpn-v2.html', ftl_files=['products/vpn/shared'])
 )
