@@ -63,12 +63,9 @@ urlpatterns = (
     url(r'^firefox/features/translate/$', views.firefox_features_translate, name='firefox.features.translate'),
     page('firefox/features/picture-in-picture', 'firefox/features/picture-in-picture.html',
          ftl_files=['firefox/features/shared', 'firefox/features/picture-in-picture']),
-    # page('firefox/features/tips', 'firefox/features/tips/tips.html',
-    #      ftl_files=['firefox/features/shared', 'firefox/features/tips']),
+
     url(r'^firefox/features/tips/$',
-        VariationTemplateView.as_view(template_name='firefox/features/tips/tips.html',
-                                      template_name_variations=['password', 'eyedropper', 'forget'], variation_locales=['en-US'], active_locales=['en-US'],
-                                      ftl_files=['firefox/features/shared', 'firefox/features/tips']), name='firefox.features.tips',),
+        VariationTemplateView.as_view(template_name='firefox/features/tips/tips.html', template_context_variations=['password', 'eyedropper', 'forget'], variation_locales=['en-US'], active_locales=['en-US'],ftl_files=['firefox/features/shared', 'firefox/features/tips']), name='firefox.features.tips',),
 
 
     url(r'^firefox/ios/testflight/$', views.ios_testflight, name='firefox.ios.testflight'),

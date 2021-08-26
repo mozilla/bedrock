@@ -43,7 +43,7 @@
       <h1>{{ ftl('firefox-tips-firefox-tips') }}</h1>
       <p>{{ ftl('firefox-weve-collected-some') }}
       </p>
-        {{ download_firefox_thanks(dom_id='tips-header-download', download_location='download firefox primary') }}
+        {{ download_firefox_thanks(dom_id='tips-header-download', download_location='primary') }}
       {% endcall %}
 
 
@@ -222,7 +222,7 @@
          class='mzp-t-product-firefox',
          include_cta=True
          ) %}
-          {{ download_firefox_thanks(dom_id='tips-callout-download', download_location='download firefox primary') }}
+          {{ download_firefox_thanks(dom_id='tips-callout-download', download_location='secondary') }}
       {% endcall %}
   </main>
 {% endblock %}

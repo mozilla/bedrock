@@ -11,13 +11,13 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/templates/card-layout';
 @import "../../../protocol/css/components/zap";
 @import "../../../protocol/css/components/call-out";
-@import "../../../protocol/css/components/logos/logo-product-firefox"
-;
+@import "../../../protocol/css/components/logos/logo-product-firefox";
 @import "../../../protocol/css/components/modal";
 
 .mzp-l-content {
     h2 {
-        margin-bottom: 80px;
+        margin-bottom: $layout-xl;
+        margin-top: $layout-2xs;
         text-align: center;
     }
 }
