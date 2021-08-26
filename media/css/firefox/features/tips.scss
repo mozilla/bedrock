@@ -109,3 +109,9 @@ $image-path: '/media/protocol/img';
         z-index: 2;
     }
 }
+
+// Call-out
+
+.mzp-c-call-out-compact.mzp-t-dark {
+    background-color: $color-ink-80;
+}

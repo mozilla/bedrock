@@ -6,7 +6,7 @@
 
 {% block page_image %}{{ static('img/firefox/features/tips/tips-and-tools.png') }}{% endblock %}
 
-{% from "macros-protocol.html" import split, call_out, zap, card with context %}
+{% from "macros-protocol.html" import split, call_out, zap, card, call_out_compact with context %}
 
 <!-- add to ftl file -->
 {% block page_title %}{{ ftl('firefox-tips-firefox-tips') }}{% endblock %}
@@ -217,7 +217,6 @@
         )}}
       </div>
 
-
       {% call call_out(
          title=ftl('firefox-tips-available-now'),
          heading_level=3,
@@ -226,6 +225,17 @@
          ) %}
           {{ download_firefox_thanks(dom_id='tips-callout-download', download_location='secondary') }}
       {% endcall %}
+      </section>
+
+      <section>
+        {% call call_out_compact(
+            title=_('The account that protects you rather than profits off you.'),
+            class='mzp-t-product-family mzp-t-firefox mzp-t-dark hide-from-legacy-ie',
+            heading_level=3
+          ) %}
+          <a href="{{ url('firefox.accounts') }}" class="mzp-c-button mzp-t-product mzp-t-dark" id="fxa-learn-secondary">{{ ftl('ui-learn-more') }}</a>
+        {% endcall %}
+      </section>
   </main>
 {% endblock %}
 
