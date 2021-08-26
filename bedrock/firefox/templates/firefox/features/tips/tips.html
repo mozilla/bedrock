@@ -19,13 +19,14 @@
 
 {% if variation == 'eyedropper' %}
   {% set media_include = 'firefox/features/tips/includes/eyedropper-bram.html' %}
-  {% set var_name = 'eyedropper-bram' %}
+
+  {% set var_name = 'eyedropper' %}
 {% elif variation == 'forget' %}
   {% set media_include = 'firefox/features/tips/includes/forget-damiano.html' %}
-  {% set var_name = 'forget-damiano' %}
+  {% set var_name = 'forget' %}
   {% elif variation == 'password' %}
   {% set media_include = 'firefox/features/tips/includes/password-nneka.html' %}
-  {% set var_name = 'password-nneka' %}
+  {% set var_name = 'password' %}
 {% else %}
   {% set media_include = 'firefox/features/tips/includes/pip-tina.html' %}
   {% set var_name = 'default' %}
