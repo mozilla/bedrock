@@ -11,7 +11,7 @@ describe('mozilla-fxa-product-button.js', function() {
         var button = '<a class="js-fxa-product-button" href="https://accounts.firefox.com/signup?form_type=button&entrypoint=mozilla.org-whatsnew60&utm_source=mozilla.org-whatsnew60&utm_medium=referral&utm_campaign=whatsnew60&context=fx_desktop_v3" data-action="https://accounts.firefox.com/" data-mozillaonline-link="https://accounts.firefox.com.cn/signup?form_type=button&entrypoint=mozilla.org-whatsnew60&utm_source=mozilla.org-whatsnew60&utm_medium=referral&utm_campaign=whatsnew60&context=fx_desktop_v3" data-mozillaonline-action="https://accounts.firefox.com.cn/">Sign Up to Monitor</a>' +
                      '<a class="js-fxa-product-button" href="https://getpocket.com/ff_signup?s=ffwelcome2&amp;form_type=button&amp;entrypoint=mozilla.org-firefox-welcome-2&amp;utm_source=mozilla.org-firefox-welcome-2&amp;utm_campaign=welcome-2-pocket&amp;utm_medium=referral" data-action="https://accounts.firefox.com/">Activate Pocket</a>' +
                      '<a class="js-fxa-product-button" href="https://www.mozilla.org/en-US/firefox/accounts/">Learn more</a>' +
-                     '<a class="js-fxa-product-button" href="https://vpn.mozilla.org/r/vpn/subscribe/products/prod_FiJ42WCzZNRSbS?plan=plan_FvPMH5lVx1vhV0&device_id=123456789&flow_begin_time=123456789&flow_id=123456789">Get Mozilla VPN</a>';
+                     '<a class="js-fxa-product-button" href="https://accounts.firefox.com/subscriptions/products/prod_FiJ42WCzZNRSbS?plan=plan_FvPMH5lVx1vhV0&device_id=123456789&flow_begin_time=123456789&flow_id=123456789">Get Mozilla VPN</a>';
 
         var data = {
             'deviceId': '848377ff6e3e4fc982307a316f4ca3d6',
@@ -90,7 +90,7 @@ describe('mozilla-fxa-product-button.js', function() {
 
         return Mozilla.FxaProductButton.init().then(function() {
             var buttons = document.querySelectorAll('.js-fxa-product-button');
-            expect(buttons[3].href).toEqual('https://vpn.mozilla.org/r/vpn/subscribe/products/prod_FiJ42WCzZNRSbS?plan=plan_FvPMH5lVx1vhV0&device_id=123456789&flow_begin_time=123456789&flow_id=123456789');
+            expect(buttons[3].href).toEqual('https://accounts.firefox.com/subscriptions/products/prod_FiJ42WCzZNRSbS?plan=plan_FvPMH5lVx1vhV0&device_id=123456789&flow_begin_time=123456789&flow_id=123456789');
         });
     });
 
