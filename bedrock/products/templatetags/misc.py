@@ -7,7 +7,6 @@ import jinja2
 from django.conf import settings
 from django_jinja import library
 
-from bedrock.base.waffle import switch
 from lib.l10n_utils.fluent import ftl
 
 FTL_FILES = ['products/vpn/shared']
@@ -109,10 +108,7 @@ def vpn_subscribe_link(ctx, entrypoint, link_text, plan='12-month', class_name=N
         optional_attributes = optional_attributes or {}
         optional_attributes.update(plan_attributes)
 
-    if switch('vpn-funnel-opt-subscription-url'):
-        product_url = f'{settings.VPN_SUBSCRIPTION_URL}subscriptions/products/{settings.VPN_PRODUCT_ID}?plan={plan_default}'
-    else:
-        product_url = f'{settings.VPN_ENDPOINT}r/vpn/subscribe/products/{settings.VPN_PRODUCT_ID}?plan={plan_default}'
+    product_url = f'{settings.VPN_SUBSCRIPTION_URL}subscriptions/products/{settings.VPN_PRODUCT_ID}?plan={plan_default}'
 
     return _vpn_product_link(product_url, entrypoint, link_text, class_name, optional_parameters, optional_attributes)
 
