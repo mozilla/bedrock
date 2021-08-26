@@ -7,6 +7,7 @@ import pytest
 from pages.firefox.whatsnew.whatsnew_87 import FirefoxWhatsNew87Page
 
 
+@pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
 @pytest.mark.nondestructive
 def test_sign_up_success_de(base_url, selenium):
     page = FirefoxWhatsNew87Page(selenium, base_url, locale='de').open()
@@ -17,6 +18,7 @@ def test_sign_up_success_de(base_url, selenium):
     assert page.is_form_success_displayed
 
 
+@pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
 @pytest.mark.nondestructive
 def test_sign_up_failure_de(base_url, selenium):
     page = FirefoxWhatsNew87Page(selenium, base_url, locale='de').open()
@@ -27,6 +29,7 @@ def test_sign_up_failure_de(base_url, selenium):
     assert page.is_form_error_displayed
 
 
+@pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
 @pytest.mark.nondestructive
 def test_sign_up_success_fr(base_url, selenium):
     page = FirefoxWhatsNew87Page(selenium, base_url, locale='fr').open()
@@ -37,6 +40,7 @@ def test_sign_up_success_fr(base_url, selenium):
     assert page.is_form_success_displayed
 
 
+@pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
 @pytest.mark.nondestructive
 def test_sign_up_failure_fr(base_url, selenium):
     page = FirefoxWhatsNew87Page(selenium, base_url, locale='fr').open()

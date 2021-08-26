@@ -1,0 +1,101 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros-protocol.html" import card with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}Was ist neu in Firefox? – Mehr Privatsphäre, mehr Schutz.{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}Was ist neu in Firefox? – Mehr Privatsphäre, mehr Schutz.{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_92_de') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main class="content-wrapper mzp-t-firefox">
+  {% include 'firefox/whatsnew/includes/header.html' %}
+
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-md">
+      {# Using a bedrock hosted Pocket logo until https://github.com/mozilla/protocol-assets/issues/61 is resolved. #}
+      <picture class="wnp-main-image">
+        <source srcset="{{ static('img/logos/pocket/pocket-wordmark-white.svg') }}" media="(prefers-color-scheme: dark)"></source>
+        <img src="{{ static('protocol/img/logos/pocket/logo-word-hor.svg') }}" width="220" alt="Pocket">
+      </picture>
+      <h1 class="wnp-main-title">Pocket Collections <br>auf Deutsch sind da!</h1>
+      <p class="wnp-main-tagline">
+        Tauche ein in spannende Themen mit Pocket Collections. Entdecke Artikel, Podcasts und mehr interessanten Content, der sich aus verschiedenen Perspektiven einem Thema nähert. Mal ernst, mal schräg, immer informativ!
+      </p>
+
+      <div class="wnp-main-cta">
+        <a class="mzp-c-button mzp-t-product" href="https://getpocket.com/de/collections?{{ utm_params }}" data-cta-text="Check out all Collections" data-cta-type="button" data-cta-position="primary">
+          Alle Collections ansehen
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wnp-content-extra">
+    <div class="mzp-l-content mzp-t-content-lg">
+      <div class="mzp-l-columns mzp-t-columns-two">
+
+        <section class="mzp-c-card mzp-c-card-medium mzp-has-aspect-3-2">
+          <a class="mzp-c-card-block-link" href="https://getpocket.com/de/collections/so-erkennen-sie-fehlinformationen?{{ utm_params }}&utm_content=collection-falschinformationen" data-link-name="How to spot misinformation" data-link-type="link" data-link-group="card">
+            <div class="mzp-c-card-media-wrapper">
+              {{ high_res_img('img/firefox/whatsnew/whatsnew92/collection-2.jpg', {'alt': '', 'loading': 'lazy'}) }}
+            </div>
+            <div class="mzp-c-card-content">
+              <h2 class="mzp-c-card-title"><span>So erkennst du Falschinformationen</span></h2>
+              <p class="mzp-c-card-desc">Nie war es schwerer, Lüge und Wahrheit zu trennen. Diese Texte, kuratiert von Simon Hurtz (<em>Süddeutsche Zeitung</em>), können dabei helfen.</p>
+            </div>
+          </a>
+        </section>
+
+        <section class="mzp-c-card mzp-c-card-medium mzp-has-aspect-3-2">
+          <a class="mzp-c-card-block-link" href="https://getpocket.com/de/collections/wie-man-sich-von-den-nachrichten-entspannt?{{ utm_params }}&utm_content=collection-stressbekaempfung" data-link-name="How to de-stress from the news" data-link-type="link" data-link-group="card">
+            <div class="mzp-c-card-media-wrapper">
+              {{ high_res_img('img/firefox/whatsnew/whatsnew92/collection-3.jpg', {'alt': '', 'loading': 'lazy'}) }}
+            </div>
+            <div class="mzp-c-card-content">
+              <h2 class="mzp-c-card-title"><span>Wie du von den Nachrichten abschaltest</span></h2>
+              <p class="mzp-c-card-desc">Pandemie, Bundestagswahl, weltweite Krisen – entdecke bewährte Methoden zur Stressbekämpfung, von der Antike bis zur Promenadologie.</p>
+            </div>
+          </a>
+        </section>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="wnp-content-footer">
+    <div class="mzp-l-content mzp-t-content-md">
+      {{ high_res_img('img/firefox/whatsnew/whatsnew92/rainbow.png', {'alt': '', 'loading': 'lazy'}) }}
+      <h2 class="wnp-footer-title">Neugierig geworden? Perfekt!</h2>
+      <div class="wnp-footer-cta">
+        <a class="mzp-c-button mzp-t-product" href="https://getpocket.com/de/collections?{{ utm_params }}" data-cta-text="Check out all Collections" data-cta-type="button" data-cta-position="secondary">
+          Alle Collections ansehen
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <aside class="mzp-l-content c-utilities">
+    {% set releasenotes_url = url('firefox.releases.index') if not version else '/firefox/%s/releasenotes/'|format(version) %}
+    <p>{{ ftl('whatsnew-release-notes', url=releasenotes_url) }}</p>
+  </aside>
+
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+{% endblock %}
