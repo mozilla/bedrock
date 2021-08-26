@@ -4,11 +4,13 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
+{% block page_image %}{{ static('img/firefox/features/tips/tips-and-tools.png') }}{% endblock %}
+
 {% from "macros-protocol.html" import split, call_out, zap, card with context %}
 
 <!-- add to ftl file -->
 {% block page_title %}{{ ftl('firefox-tips-firefox-tips') }}{% endblock %}
-{% block page_desc %}Firefox secret menu and stuff{% endblock %}
+{% block page_desc %}Our favorite Firefox tips, tricks and nerd-friendly features to help you get the most of your time online—it’s kind of like our version of a secret menu.{% endblock %}
 
 {% block body_id %}firefox-tips{% endblock %}
 

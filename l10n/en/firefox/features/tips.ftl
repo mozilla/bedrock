@@ -7,7 +7,7 @@
 
 firefox-tips-firefox-tips = { -brand-name-firefox } Tips and Tools
 
-firefox-weve-collected-some = We’ve collected some of our favorite insider tips, tricks and nerd-friendly-features to help you get the most of your time online—it’s kind of like our version of a secret menu.
+firefox-weve-collected-some = We’ve collected some of our favorite insider tips, tricks and nerd-friendly features to help you get the most of your time online—it’s kind of like our version of a secret menu.
 
 firefox-tips-download-firefox = Download { -brand-name-firefox }
 
@@ -136,7 +136,7 @@ firefox-tips-steve-video = Steve from Video Production
 # Variables:
 #   $container (url) - link to https://www.mozilla.org/firefox/facebookcontainer/
 
-firefox-tips-create-privacy-fence = Create a privacy fence around Facebook to keep them from tracking you around the web.
+firefox-tips-create-privacy-fence = Create a privacy fence around Facebook to keep it from tracking you around the web.
 
 
 ### Floating Tabs/Natalie
@@ -148,6 +148,6 @@ firefox-tips-natalie-creative = Natalie from Creative Studio
 # Variables:
 #   $arrange (url) - link to https://blog.mozilla.org/en/products/firefox/nine-tips-for-better-tab-management/
 
-firefox-tips-rearrange-tabs = Rearrange your browser tabs any way you want with ease. Get even more tab tips.
+firefox-tips-rearrange-tabs = Rearrange your browser tabs any way you want with ease.
 
 firefox-tips-available-now = Available now for desktop and mobile
