@@ -67,7 +67,7 @@ urlpatterns = (
     url(r'^firefox/features/tips/$',
         VariationTemplateView.as_view(
             template_name='firefox/features/tips/tips.html',
-            template_context_variations=['password', 'eyedropper', 'forget'],
+            template_context_variations=['picture-in-picture', 'eyedropper', 'forget'],
         ), name='firefox.features.tips'),
 
     url(r'^firefox/ios/testflight/$', views.ios_testflight, name='firefox.ios.testflight'),

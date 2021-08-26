@@ -19,16 +19,12 @@
 
 {% if variation == 'eyedropper' %}
   {% set media_include = 'firefox/features/tips/includes/eyedropper-bram.html' %}
-  {% set var_name = 'eyedropper' %}
 {% elif variation == 'forget' %}
   {% set media_include = 'firefox/features/tips/includes/forget-damiano.html' %}
-  {% set var_name = 'forget' %}
-{% elif variation == 'password' %}
-  {% set media_include = 'firefox/features/tips/includes/password-nneka.html' %}
-  {% set var_name = 'password' %}
-{% else %}
+{% elif variation == 'picture-in-picture' %}
   {% set media_include = 'firefox/features/tips/includes/pip-tina.html' %}
-  {% set var_name = 'default' %}
+{% else %}
+  {% set media_include = 'firefox/features/tips/includes/password-nneka.html' %}
 {% endif %}
 
 {% block content %}
@@ -45,7 +41,7 @@
     {% endcall %}
 
     <section class="mzp-l-content">
-      <h2 class="mzp-has-zap-11">Our <strong>Favorites</strong></h2>
+      <h2 class="mzp-c-section-heading mzp-has-zap-11">Our <strong>Favorites</strong></h2>
 
       <div class="mzp-l-card-hero">
       <!-- send tabs -->
