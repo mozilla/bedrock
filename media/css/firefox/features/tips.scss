@@ -22,6 +22,29 @@ $image-path: '/media/protocol/img';
     }
 }
 
+// Play button on videos
+.mzp-c-card-media-wrapper {
+    &:after {
+        background: url('/media/img/icons/video-play.svg') top left no-repeat;
+        content: '';
+        height: 100px;
+        left: 50%;
+        margin: -50px 0 0 -50px;
+        opacity: 0.7;
+        position: absolute;
+        top: 50%;
+        transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+        width: 100px;
+        z-index: 2;
+    }
+
+    &:hover:after,
+    &:focus:after {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
 // YouTube iframe responsive in modal.
 
 .ytcontainer-video {
@@ -75,6 +98,7 @@ $image-path: '/media/protocol/img';
         top: 0;
         width: 100%;
     }
+
 }
 
 .tips-featured-video {
