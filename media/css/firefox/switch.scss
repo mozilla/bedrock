@@ -11,7 +11,7 @@ $image-path: '/media/protocol/img';
 
 
 .mzp-c-split {
-    overflow: visible;
+    overflow-x: hidden;
     height: 100%;
 }
 
@@ -34,7 +34,8 @@ $image-path: '/media/protocol/img';
     position: relative;
     z-index: 1;
 
-     @media #{$mq-lg} {
+
+    @media #{$mq-lg} {
         &:before {
             background-image: url('/media/img/firefox/switch/bg.svg');
             background-position: 300px bottom 100px left;

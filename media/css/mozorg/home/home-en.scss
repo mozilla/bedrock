@@ -32,13 +32,19 @@ $image-path: '/media/protocol/img';
     }
 
     .mzp-c-split-container {
-        padding-top: $spacing-lg;
-        padding-bottom: 0;
         @media #{$mq-lg} {
             padding-bottom: 0;
             box-sizing: content-box;
             padding-top: $spacing-2xl;
         }
+    }
+}
+
+.mzp-c-split-body {
+    padding: $spacing-lg;
+
+    .mzp-u-title-lg {
+        @include font-firefox;
     }
 }
 /* -------------------------------------------------------------------------- */
