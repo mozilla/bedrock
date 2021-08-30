@@ -9,6 +9,7 @@ from bedrock.releasenotes import version_re
 
 from bedrock.firefox import views
 from bedrock.utils import views as utils_views
+from bedrock.utils.views import VariationTemplateView
 
 
 latest_re = r'^firefox(?:/(?P<version>%s))?/%s/$'
@@ -63,6 +64,11 @@ urlpatterns = (
     page('firefox/features/picture-in-picture', 'firefox/features/picture-in-picture.html',
          ftl_files=['firefox/features/shared', 'firefox/features/picture-in-picture']),
 
+    url(r'^firefox/features/tips/$',
+        VariationTemplateView.as_view(
+            template_name='firefox/features/tips/tips.html',
+            template_context_variations=['picture-in-picture', 'eyedropper', 'forget'],
+        ), name='firefox.features.tips'),
 
     url(r'^firefox/ios/testflight/$', views.ios_testflight, name='firefox.ios.testflight'),
     page('firefox/mobile', 'firefox/mobile/index.html', ftl_files=['firefox/mobile']),
@@ -125,6 +131,7 @@ urlpatterns = (
 
     page('firefox/switch', 'firefox/switch.html', ftl_files=['firefox/switch']),
     page('firefox/pocket', 'firefox/pocket.html'),
+
 
     # Issue 6604, SEO firefox/new pages
     url('firefox/linux', views.PlatformViewLinux.as_view(), name='firefox.linux'),

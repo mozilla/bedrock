@@ -685,6 +685,12 @@
     },
     {
       "files": [
+        "css/firefox/features/tips.scss"
+      ],
+      "name": "firefox_tips"
+    },
+    {
+      "files": [
         "css/firefox/browsers/update-browser.scss"
       ],
       "name": "update-browser"
@@ -1103,6 +1109,15 @@
         "js/mozorg/home/home.js"
       ],
       "name": "home"
+    },
+    {
+      "files": [
+        "protocol/js/protocol-modal.js",
+        "js/base/mozilla-lazy-load.js",
+        "js/firefox/features/tips/tips-youtube.js",
+        "js/firefox/features/tips/tips.js"
+      ],
+      "name": "firefox_tips"
     },
     {
       "files": [

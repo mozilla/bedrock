@@ -1,0 +1,100 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import "../../../protocol/css/includes/lib";
+@import "../../../protocol/css/components/split";
+@import "../../../protocol/css/components/card";
+@import '../../../protocol/css/templates/card-layout';
+@import "../../../protocol/css/components/section-heading";
+@import "../../../protocol/css/components/zap";
+@import "../../../protocol/css/components/call-out";
+@import "../../../protocol/css/components/logos/logo-product-firefox";
+@import "../../../protocol/css/components/modal";
+
+// Play button on videos
+.mzp-c-card-media-wrapper {
+    &:after {
+        background: url('/media/img/icons/video-play.svg') top left no-repeat;
+        content: '';
+        height: 100px;
+        left: 50%;
+        margin: -50px 0 0 -50px;
+        opacity: 0.7;
+        position: absolute;
+        top: 50%;
+        transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+        width: 100px;
+        z-index: 2;
+    }
+
+    &:hover:after,
+    &:focus:after {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+// YouTube iframe responsive in modal.
+
+.ytcontainer-video {
+    max-width: 100%;
+
+    .video-container {
+        height: 0;
+        margin-bottom: $spacing-lg;
+        overflow: hidden;
+        padding-bottom: 56.25%;
+        position: relative;
+        width: 100%;
+    }
+
+    iframe {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top:0;
+        width: 100%;
+    }
+}
+
+
+.mzp-c-split-container .mzp-c-split-media {
+    width: 100%;
+}
+
+// Responsive video container for featured video
+.video-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    @media #{$mq-lg} {
+        min-width: 480px;
+    }
+
+    // Force space for the YouTube's iframe
+    &::after {
+        content: '';
+        display: block;
+        padding-top: 56.25%; // 16:9 aspect ratio
+    }
+
+    iframe{
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+}
+
+// Call-out
+.mzp-c-call-out-compact.mzp-t-dark {
+    background-color: $color-ink-80;
+}
