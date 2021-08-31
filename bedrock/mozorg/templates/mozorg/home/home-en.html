@@ -2,12 +2,14 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import hero, split, billboard, card, call_out_compact, content_card with context %}
+{% from "macros-protocol.html" import split, billboard, card, call_out_compact, content_card with context %}
 {% from "mozorg/home/includes/macros.html" import download_banner, download_banner_secondary, fxa_banner %}
 
 {% extends "base-protocol-mozilla.html" %}
 
 {% block gtm_page_id %}data-gtm-page-id="Homepage"{% endblock %}
+
+{% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 
 {% block page_title %}{{ _('Internet for people, not profit') }}{% endblock %}
 
@@ -39,13 +41,17 @@
   {{ css_bundle('home-en') }}
   {{ css_bundle('home-mr1-promo') }}
 
-  {% if switch('fundraising-banner-eoy2020') %}
+  {% if show_firefox_app_store_banner %}
+    {{ css_bundle('firefox-app-store-banner') }}
+  {% elif switch('fundraising-banner-eoy2020') %}
     {{ css_bundle('fundraising-banner') }}
   {% endif %}
 {% endblock %}
 
 {% block page_banner %}
-  {% if switch('fundraising-banner-eoy2020') and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
+  {% if show_firefox_app_store_banner %}
+    {% include 'includes/banners/mobile/firefox-app-store.html' %}
+  {% elif switch('fundraising-banner-eoy2020') and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
     {% include 'includes/banners/fundraiser.html' %}
   {% endif %}
 {% endblock %}
@@ -67,14 +73,14 @@
     ] -%}
     {% include promos|random() %}
   {% else %}
-    {% call hero(
-      title='Firefox products are designed to protect your privacy',
-      class='privacy-promise-hero mzp-has-image mzp-t-dark mzp-t-firefox',
+    {% call split(
       image_url='img/firefox/privacy/promise/privacy-hero.png',
       include_highres_image=True,
-      include_cta=True,
-      heading_level=2
+      media_after=True,
+      media_class='mzp-l-split-h-center',
+      block_class='mzp-t-split-nospace mzp-l-split-center-on-sm-md mzp-t-dark mzp-t-firefox mzp-l-split-hide-media-on-sm-md'
     ) %}
+      <h2 class="mzp-u-title-lg">Firefox products are designed to protect your privacy</h2>
       <a href="{{ url('firefox.privacy.products') }}" class="mzp-c-button mzp-t-product">Learn more</a>
     {% endcall %}
   {% endif %}
@@ -218,7 +224,9 @@
 {% block js %}
   {{ js_bundle('home') }}
 
-  {% if switch('fundraising-banner-eoy2020') %}
+  {% if show_firefox_app_store_banner %}
+    {{ js_bundle('firefox-app-store-banner') }}
+  {% elif switch('fundraising-banner-eoy2020') %}
     {{ js_bundle('fundraising-banner') }}
   {% endif %}
 {% endblock %}

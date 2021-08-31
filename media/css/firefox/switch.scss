@@ -5,45 +5,59 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 @import '../../protocol/css/includes/lib';
-@import '../../protocol/css/components/hero';
+@import '../../protocol/css/components/split';
+@import '../../protocol/css/components/logos/wordmark';
+@import '../../protocol/css/components/logos/wordmark-product-firefox';
 
 
-.t-switch.mzp-c-hero {
+.mzp-c-split {
+    overflow-x: hidden;
+    height: 100%;
+}
 
-    &.mzp-t-product-firefox .mzp-c-hero-title {
-        @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-sm.png', auto, 48px);
-        padding-top: $layout-md + 48px;
+.mzp-c-split-container {
+
+    @media #{$mq-lg} {
+        box-sizing: content-box;
     }
+}
 
-    @media #{$mq-md} {
+.mzp-t-product-firefox {
+    margin: 0 auto $spacing-md;
+
+    @media #{$mq-lg} {
+        margin: 0 0 $spacing-lg;
+    }
+}
+
+.mzp-c-split-media {
+    position: relative;
+    z-index: 1;
+
+
+    @media #{$mq-lg} {
         &:before {
-            background-image: url('/media/img/firefox/switch/switch.png'), url('/media/img/firefox/switch/bg.svg');
-            background-position: 14px center, top left;
-            background-size: 592px 302px, auto 100%;
+            background-image: url('/media/img/firefox/switch/bg.svg');
+            background-position: 300px bottom 100px left;
+            background-size: auto 100%;
             background-repeat: no-repeat;
             bottom: 0;
+            top: -160px;
             content: '';
             display: block;
-            left: 50%;
+            left: -50px;
+            right: 0;
             position: absolute;
-            top: 0;
-            width: 50%;
-
-            html[dir=rtl] & {
-                background-image: url('/media/img/firefox/switch/switch-rtl.png'), url('/media/img/firefox/switch/bg-rtl.svg');
-                background-position: right center, top right;
-                right: 50%;
-                left: auto;
-            }
-
-            @media #{$mq-high-res} {
-                background-image: url('/media/img/firefox/switch/switch-high-res.png'), url('/media/img/firefox/switch/bg.svg');
-
-                html[dir=rtl] & {
-                    background-image: url('/media/img/firefox/switch/switch-rtl-high-res.png'), url('/media/img/firefox/switch/bg-rtl.svg');
-                }
-            }
+            width: 1000px;
+            height: 600px;
+            z-index: -1;
         }
+    }
+}
+
+.mzp-c-split-body {
+    p {
+        @include text-body-lg;
     }
 }
 

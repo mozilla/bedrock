@@ -41,7 +41,7 @@ if (typeof window.Mozilla === 'undefined') {
         });
     };
 
-    Banner.show = function() {
+    Banner.show = function(renderAtTopOfPage) {
         var outerWrapper = document.getElementById('outer-wrapper');
 
         // if for some reason there's no outer-wrapper on the page, do nothing.
@@ -49,9 +49,15 @@ if (typeof window.Mozilla === 'undefined') {
             return;
         }
 
-        // remove banner from bottom of page and reinsert at the top, after primary nav.
+        // remove banner from bottom of page.
         _pageBanner = _pageBanner.parentNode.removeChild(_pageBanner);
-        outerWrapper.insertBefore(_pageBanner, outerWrapper.firstChild);
+
+        // reinsert at the top of viewport, else after primary nav.
+        if (renderAtTopOfPage) {
+            document.body.insertBefore(_pageBanner, document.body.firstChild);
+        } else {
+            outerWrapper.insertBefore(_pageBanner, outerWrapper.firstChild);
+        }
 
         // display the banner
         _pageBanner.classList.add('c-banner-is-visible');
@@ -60,7 +66,7 @@ if (typeof window.Mozilla === 'undefined') {
         _pageBanner.querySelector('.c-banner-close').addEventListener('click', Banner.close, false);
     };
 
-    Banner.init = function(id) {
+    Banner.init = function(id, renderAtTopOfPage) {
         var cookiesEnabled = typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled();
 
         _pageBanner = document.getElementById(id);
@@ -77,7 +83,7 @@ if (typeof window.Mozilla === 'undefined') {
 
         // Show only if cookies enabled & banner not previously dismissed.
         if (cookiesEnabled && !Banner.hasCookie(Banner.id)) {
-            Banner.show();
+            Banner.show(renderAtTopOfPage);
         }
     };
 

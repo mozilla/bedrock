@@ -8,13 +8,15 @@
 
 {% block page_desc %}Mozilla ist die gemeinnützige Organisation hinter Firefox. Menschen sollten auch online die Kontrolle über ihr Leben haben. Dafür setzen wir uns ein.{% endblock %}
 
+{% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
+
 {% block page_css %}
   {{ css_bundle('home-2018') }}
 
   {% if switch('eu-mr1-banner') %}
     {{ css_bundle('eu-mr1-banner') }}
-  {% elif switch('firefox-daylight-promo-banner') %}
-    {{ css_bundle('daylight-promo-banner') }}
+  {% elif show_firefox_app_store_banner %}
+    {{ css_bundle('firefox-app-store-banner') }}
   {% elif switch('fundraising-banner-eoy2020') %}
     {{ css_bundle('fundraising-banner') }}
   {% endif %}
@@ -23,8 +25,8 @@
 {% block page_banner %}
   {% if switch('eu-mr1-banner', ['de', 'fr']) %}
     {% include 'includes/banners/mr1/eu-banner.html' %}
-  {% elif switch('firefox-daylight-promo-banner') %}
-    {% include 'includes/banners/daylight/daylight-promo.html' %}
+  {% elif show_firefox_app_store_banner %}
+    {% include 'includes/banners/mobile/firefox-app-store.html' %}
   {% elif switch('fundraising-banner-eoy2020') and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
     {% include 'includes/banners/fundraiser.html' %}
   {% endif %}
@@ -138,8 +140,8 @@
 
   {% if switch('eu-mr1-banner', ['de', 'fr']) %}
     {{ js_bundle('eu-mr1-banner') }}
-  {% elif switch('firefox-daylight-promo-banner') %}
-    {{ js_bundle('daylight-promo-banner') }}
+  {% elif show_firefox_app_store_banner %}
+    {{ js_bundle('firefox-app-store-banner') }}
   {% elif switch('fundraising-banner-eoy2020') %}
     {{ js_bundle('fundraising-banner') }}
   {% endif %}
