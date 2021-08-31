@@ -1,0 +1,39 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../../protocol/css/includes/lib';
+
+.vpn-section {
+    margin-bottom: $layout-sm;
+    &.no-margin {
+        margin-bottom: 0;
+    }
+
+    h3 {
+        margin-bottom: $layout-sm;
+    }
+    h5 {
+        margin-bottom: $layout-xs;
+    }
+    p {
+        margin-bottom: $layout-xs;
+    }
+
+    .indented-container {
+        margin-bottom: $layout-2xs;
+        margin-left: $layout-xs;
+        &:last-child {
+        margin-bottom: 0;
+        }
+    }
+}
+
+.vpn-section, .indented-container {
+    display: flex;
+    flex-direction: column;
+
+    a {
+        align-self: center;
+    }
+}
