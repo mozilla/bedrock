@@ -6,6 +6,8 @@
 
 {% from "macros-protocol.html" import call_out, call_out_compact, split with context %}
 
+{% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
+
 {% block page_title %}{{ ftl('firefox-home-firefox-protect-your') }}{% endblock %}
 
 {# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
@@ -24,19 +26,13 @@
 {% block page_favicon_large %}{{ static('img/favicons/firefox/favicon-196x196.png') }}{% endblock %}
 {% block page_ios_icon %}{{ static('img/favicons/firefox/apple-touch-icon.png') }}{% endblock %}
 
-{% block experiments %}
-  {% if switch('firefox-mobile-android-experiment', ['en-US']) %}
-    {{ js_bundle('firefox-mobile-android-experiment') }}
-  {% endif %}
-{% endblock %}
-
 {% block page_css %}
   {{ css_bundle('firefox-master') }}
 
   {% if switch('eu-mr1-banner', ['de', 'fr']) %}
     {{ css_bundle('eu-mr1-banner') }}
-  {% elif switch('firefox-daylight-promo-banner') %}
-    {{ css_bundle('daylight-promo-banner') }}
+  {% elif show_firefox_app_store_banner %}
+    {{ css_bundle('firefox-app-store-banner') }}
   {% endif %}
 {% endblock %}
 
@@ -72,8 +68,8 @@
 {% block page_banner %}
   {% if switch('eu-mr1-banner', ['de', 'fr']) %}
     {% include 'includes/banners/mr1/eu-banner.html' %}
-  {% elif switch('firefox-daylight-promo-banner') %}
-    {% include 'includes/banners/daylight/daylight-promo.html' %}
+  {% elif show_firefox_app_store_banner %}
+    {% include 'includes/banners/mobile/firefox-app-store.html' %}
   {% endif %}
 {% endblock %}
 
@@ -264,8 +260,8 @@
 
   {% if switch('eu-mr1-banner', ['de', 'fr']) %}
     {{ js_bundle('eu-mr1-banner') }}
-  {% elif switch('firefox-daylight-promo-banner') %}
-    {{ js_bundle('daylight-promo-banner') }}
+  {% elif show_firefox_app_store_banner %}
+    {{ js_bundle('firefox-app-store-banner') }}
   {% endif %}
 {% endblock %}
 

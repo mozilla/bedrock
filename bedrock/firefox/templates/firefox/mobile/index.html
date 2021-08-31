@@ -7,11 +7,13 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
+{% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
+
 {% block page_css %}
   {{ css_bundle('firefox-mobile') }}
 
-  {% if switch('firefox-daylight-promo-banner') %}
-    {{ css_bundle('daylight-promo-banner') }}
+  {% if show_firefox_app_store_banner %}
+    {{ css_bundle('firefox-app-store-banner') }}
   {% endif %}
 {% endblock %}
 
@@ -25,8 +27,8 @@
 {% set ios_url = firefox_adjust_url('ios', 'mobile-page') %}
 
 {% block page_banner %}
-  {% if switch('firefox-daylight-promo-banner') %}
-    {% include 'includes/banners/daylight/daylight-promo.html' %}
+  {% if show_firefox_app_store_banner %}
+    {% include 'includes/banners/mobile/firefox-app-store.html' %}
   {% endif %}
 {% endblock %}
 
@@ -211,7 +213,7 @@
 {% block js %}
   {{ js_bundle('firefox-mobile') }}
 
-  {% if switch('firefox-daylight-promo-banner') %}
-    {{ js_bundle('daylight-promo-banner') }}
+  {% if show_firefox_app_store_banner %}
+    {{ js_bundle('firefox-app-store-banner') }}
   {% endif %}
 {% endblock %}

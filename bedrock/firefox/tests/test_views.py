@@ -679,64 +679,6 @@ class TestFirefoxHome(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ['firefox/home/index-master.html']
 
-    @patch('bedrock.firefox.views.l10n_utils.render')
-    def test_firefox_native_app_banner_exp_variant_1(self, render_mock):
-        req = RequestFactory().get('/firefox/?v=1')
-        req.locale = 'en-US'
-        view = views.FirefoxHomeView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/home/exp/v-1.html']
-
-    # Begin android native app banner exp: issue 9434
-
-    @patch('bedrock.firefox.views.l10n_utils.render')
-    def test_firefox_native_app_banner_exp_variant_2(self, render_mock):
-        req = RequestFactory().get('/firefox/?v=2')
-        req.locale = 'en-US'
-        view = views.FirefoxHomeView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/home/exp/v-2.html']
-
-    @patch('bedrock.firefox.views.l10n_utils.render')
-    def test_firefox_native_app_banner_exp_variant_3(self, render_mock):
-        req = RequestFactory().get('/firefox/?v=3')
-        req.locale = 'en-US'
-        view = views.FirefoxHomeView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/home/exp/v-3.html']
-
-    @patch('bedrock.firefox.views.l10n_utils.render')
-    def test_firefox_native_app_banner_exp_variant_4(self, render_mock):
-        req = RequestFactory().get('/firefox/?v=4')
-        req.locale = 'en-US'
-        view = views.FirefoxHomeView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/home/exp/v-4.html']
-
-    @patch('bedrock.firefox.views.l10n_utils.render')
-    def test_firefox_native_app_banner_exp_variant_5(self, render_mock):
-        req = RequestFactory().get('/firefox/?v=5')
-        req.locale = 'en-US'
-        view = views.FirefoxHomeView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/home/exp/v-5.html']
-
-    @patch('bedrock.firefox.views.l10n_utils.render')
-    def test_firefox_native_app_banner_exp_variant_6(self, render_mock):
-        req = RequestFactory().get('/firefox/?v=6')
-        req.locale = 'en-US'
-        view = views.FirefoxHomeView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/home/exp/v-6.html']
-
-    # End android native app banner exp: issue 9434
-
 
 class TestFirefoxWelcomePage1(TestCase):
     @patch('bedrock.firefox.views.l10n_utils.render')

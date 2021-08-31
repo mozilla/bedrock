@@ -57,7 +57,24 @@ see it again.
         'use strict';
 
         function onLoad() {
-            window.Mozilla.Banner.init('fundraiser-sept2019');
+            window.Mozilla.Banner.init('fundraising-banner');
+        }
+
+        window.Mozilla.run(onLoad);
+
+    })();
+
+By default, page banners will be rendered directly underneath the primary page navigation.
+If you want to render a banner flush at the top of the page, you can pass a secondary
+``renderAtTopOfPage`` parameter to the ``init()`` function with a boolean value:
+
+.. code-block:: javascript
+
+    (function() {
+        'use strict';
+
+        function onLoad() {
+            window.Mozilla.Banner.init('fundraising-banner', true);
         }
 
         window.Mozilla.run(onLoad);
