@@ -10,17 +10,15 @@
       {% endif %}
       {% if not hide_nav_get_vpn_button %}
       <div class="c-navigation-fxa-cta-container">
-      {# todo: create vpn button helper? #}
+        {# todo: add tests for fx & non-fx users, analytics attribution #}
         <a
           href="{{ url('products.vpn.landing') }}"
-          data-action=""
+          data-action="{{ settings.VPN_ENDPOINT }}"
           class="mzp-c-button mzp-t-product mzp-t-secondary mzp-t-md"
           data-cta-text="Get Mozilla VPN"
-          data-cta-type=""
+          data-cta-type="button"
           data-cta-position="navigation"
-          data-alt-href=""
-          data-mozillaonline-link=""
-          data-mozillaonline-action="">
+        >
           {{ ftl('navigation-v2-get-mozilla-vpn') }}
         </a>
       </div>
