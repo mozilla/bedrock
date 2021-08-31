@@ -698,7 +698,7 @@ class DownloadThanksView(L10nTemplateView):
 
 class NewView(L10nTemplateView):
     ftl_files_map = {
-        'firefox/new/basic/base_download.html': ['firefox/new/download', 'banners/firefox-app-store'],
+        'firefox/new/basic/base_download.html': ['firefox/new/download'],
         'firefox/new/desktop/download.html': ['firefox/new/desktop'],
         'firefox/new/desktop/download_yandex.html': ['firefox/new/desktop'],
     }
@@ -796,7 +796,7 @@ class PlatformViewLinux(L10nTemplateView):
     template_name = 'firefox/new/basic/download_linux.html'
 
     ftl_files_map = {
-        'firefox/new/basic/download_linux.html': ['firefox/new/platform', 'firefox/new/download', 'banners/firefox-app-store'],
+        'firefox/new/basic/download_linux.html': ['firefox/new/platform', 'firefox/new/download'],
     }
 
     # all active locales, this will make the lang switcher work properly
@@ -811,7 +811,7 @@ class PlatformViewMac(L10nTemplateView):
     template_name = 'firefox/new/basic/download_mac.html'
 
     ftl_files_map = {
-        'firefox/new/basic/download_mac.html': ['firefox/new/platform', 'firefox/new/download', 'banners/firefox-app-store'],
+        'firefox/new/basic/download_mac.html': ['firefox/new/platform', 'firefox/new/download'],
     }
 
     # all active locales, this will make the lang switcher work properly
@@ -826,7 +826,7 @@ class PlatformViewWindows(L10nTemplateView):
     template_name = 'firefox/new/basic/download_windows.html'
 
     ftl_files_map = {
-        'firefox/new/basic/download_windows.html': ['firefox/new/platform', 'firefox/new/download', 'banners/firefox-app-store'],
+        'firefox/new/basic/download_windows.html': ['firefox/new/platform', 'firefox/new/download'],
     }
 
     # all active locales, this will make the lang switcher work properly
@@ -847,7 +847,7 @@ def ios_testflight(request):
 
 class FirefoxHomeView(L10nTemplateView):
     ftl_files_map = {
-        'firefox/home/index-master.html': ['firefox/home', 'banners/firefox-app-store']
+        'firefox/home/index-master.html': ['firefox/home']
     }
 
     # place expected ?v= values in this list

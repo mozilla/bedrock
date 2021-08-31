@@ -9,17 +9,23 @@
 {% block page_title %}{{ ftl('firefox-products-firefox-is-more-than-a-browser') }}{% endblock %}
 {% block page_desc %}{{ ftl('firefox-products-its-a-whole-family-of-products') }}{% endblock %}
 
+{% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
+
 {% block page_css %}
   {{ css_bundle('firefox-browsers-products') }}
 
   {% if switch('eu-mr1-banner', ['de', 'fr']) %}
     {{ css_bundle('eu-mr1-banner') }}
+  {% elif show_firefox_app_store_banner %}
+    {{ css_bundle('firefox-app-store-banner') }}
   {% endif %}
 {% endblock %}
 
 {% block page_banner %}
   {% if switch('eu-mr1-banner', ['de', 'fr']) %}
     {% include 'includes/banners/mr1/eu-banner.html' %}
+  {% elif show_firefox_app_store_banner %}
+    {% include 'includes/banners/mobile/firefox-app-store.html' %}
   {% endif %}
 {% endblock %}
 
@@ -131,6 +137,8 @@
 
   {% if switch('eu-mr1-banner', ['de', 'fr']) %}
     {{ js_bundle('eu-mr1-banner') }}
+  {% elif show_firefox_app_store_banner %}
+    {{ js_bundle('firefox-app-store-banner') }}
   {% endif %}
 {% endblock %}
 

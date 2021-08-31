@@ -15,6 +15,8 @@ Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, u
 
   {% if switch('eu-mr1-banner') %}
     {{ css_bundle('eu-mr1-banner') }}
+  {% elif show_firefox_app_store_banner %}
+    {{ css_bundle('firefox-app-store-banner') }}
   {% elif switch('fundraising-banner-eoy2020') %}
     {{ css_bundle('fundraising-banner') }}
   {% endif %}
@@ -23,6 +25,8 @@ Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, u
 {% block page_banner %}
   {% if switch('eu-mr1-banner', ['de', 'fr']) %}
     {% include 'includes/banners/mr1/eu-banner.html' %}
+  {% elif show_firefox_app_store_banner %}
+    {% include 'includes/banners/mobile/firefox-app-store.html' %}
   {% elif switch('fundraising-banner-eoy2020') and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
     {% include 'includes/banners/fundraiser.html' %}
   {% endif %}
@@ -135,6 +139,8 @@ Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, u
 
   {% if switch('eu-mr1-banner', ['de', 'fr']) %}
     {{ js_bundle('eu-mr1-banner') }}
+  {% elif show_firefox_app_store_banner %}
+    {{ js_bundle('firefox-app-store-banner') }}
   {% elif switch('fundraising-banner-eoy2020') %}
     {{ js_bundle('fundraising-banner') }}
   {% endif %}

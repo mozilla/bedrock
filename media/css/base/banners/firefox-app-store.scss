@@ -53,7 +53,16 @@ $image-path: '/media/protocol/img';
         color: $color-white;
         padding: $spacing-xs $spacing-md;
         text-decoration: none;
-        text-transform: uppercase;
+
+        html[lang^='en'] & {
+            text-transform: uppercase;
+        }
+    }
+
+    .c-banner-link {
+        @include bidi(((margin-left, auto, margin-right, 0),));
+        @include text-body-lg;
+        text-decoration: none;
     }
 
     .mzp-l-content {

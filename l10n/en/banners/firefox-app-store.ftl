@@ -7,4 +7,4 @@
 banner-firefox-app-store-title = { -brand-name-firefox }: Private, Safe Browser
 banner-firefox-app-store-mozilla = { -brand-name-mozilla }
 banner-firefox-app-store-free-google-play = Free – In { -brand-name-google-play }
-banner-firefox-app-store-free-app-store = Free – In { -brand-name-app-store }
+banner-firefox-app-store-free-app-store = Free – In the { -brand-name-app-store }
