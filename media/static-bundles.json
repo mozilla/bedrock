@@ -1489,6 +1489,13 @@
         "js/products/vpn/article.js"
       ],
       "name": "mozilla-vpn-article"
+    },
+    {
+      "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/products/vpn/cta-change-experiment.js"
+      ],
+      "name": "vpn-landing-page-cta-change-experiment"
     }
   ]
 }
