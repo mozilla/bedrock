@@ -3,9 +3,10 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.urls import path
-
+from django.conf.urls import url
 from bedrock.mozorg.util import page
 from bedrock.products import views
+from bedrock.utils.views import VariationTemplateView
 
 urlpatterns = (
     path('vpn/', views.vpn_landing_page, name='products.vpn.landing'),
@@ -27,6 +28,13 @@ urlpatterns = (
          ftl_files=['products/vpn/platforms/ios', 'products/vpn/shared']),
     page('vpn/mobile/android', 'products/vpn/platforms/android.html',
          ftl_files=['products/vpn/platforms/android', 'products/vpn/shared']),
+
+    url(r'^products/vpn/$',
+        VariationTemplateView.as_view(template_name='products/vpn/landing.html',
+                                      template_name_variations=['a', 'b'],
+                                      variation_locales=['en-US'],
+                                      active_locales=['en-US']),
+        name='products.vpn'),
 
     # Evergreen SEO articles (issue #10224)
     page('vpn/more/what-is-an-ip-address', 'products/vpn/more/ip-address.html',
