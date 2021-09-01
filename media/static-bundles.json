@@ -1637,6 +1637,13 @@
         "js/contentful/lazyload-init.js"
       ],
       "name": "c-card"
+    },
+    {
+      "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/products/vpn/cta-change-experiment.js"
+      ],
+      "name": "vpn-landing-page-cta-change-experiment"
     }
   ]
 }
