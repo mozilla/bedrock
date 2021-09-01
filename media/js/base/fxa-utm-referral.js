@@ -65,7 +65,7 @@ if (typeof window.Mozilla === 'undefined') {
          * the option of passing a `source` parameter to help connect attribution with FxA link referrals.
          */
         if (Object.prototype.hasOwnProperty.call(finalParams, 'source')) {
-            if (finalParams['source'].indexOf('whatsnew') !== -1 || finalParams['source'].indexOf('welcome') !== -1 || finalParams['source'].indexOf('vpn-info')) {
+            if (finalParams['source'].indexOf('whatsnew') !== -1 || finalParams['source'].indexOf('welcome') !== -1 || finalParams['source'].indexOf('vpn-info') !== -1) {
 
                 // utm_source and entrypoint should always be consistent and omit a version number.
                 if (finalParams['source'].indexOf('vpn-info') !== -1 ) {
