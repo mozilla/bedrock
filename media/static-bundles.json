@@ -1206,8 +1206,10 @@
       "files": [
         "protocol/js/protocol-modal.js",
         "protocol/js/protocol-newsletter.js",
+        "js/base/mozilla-lazy-load.js",
         "js/newsletter/form-protocol.js",
-        "js/mozorg/home/youtube.js"
+        "js/mozorg/home/youtube.js",
+        "js/mozorg/home/home.js"
       ],
       "name": "home"
     },
