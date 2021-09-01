@@ -30,9 +30,7 @@
 {% block body_class %}firefox-accounts mzp-t-firefox state-fxa-default {% endblock %}
 
 {% block site_header %}
-  {% with hide_nav_get_account_button=True %}
-    {% include 'includes/protocol/navigation/navigation.html' %}
-  {% endwith %}
+  {% include 'includes/protocol/navigation/navigation.html' %}
 {% endblock %}
 
 {% block sub_navigation %}

@@ -73,15 +73,15 @@ class BasePage(ScrollElementIntoView, Page):
         _developer_edition_page_locator = (By.CSS_SELECTOR, '.c-menu-item-link[data-link-name="Firefox Developer Edition"]')
         _manifesto_page_locator = (By.CSS_SELECTOR, '.c-menu-item-link[data-link-name="Mozilla Manifesto"]')
         _firefox_download_button_locator = (By.CSS_SELECTOR, '#protocol-nav-download-firefox > .download-link')
-        _firefox_account_button_locator = (By.CSS_SELECTOR, '.c-navigation-fxa-cta-container > .js-fxa-cta-link')
+        _mozilla_vpn_button_locator = (By.CSS_SELECTOR, '[data-cta-text="Get Mozilla VPN"]')
 
         @property
         def is_firefox_download_button_displayed(self):
             return self.is_element_displayed(*self._firefox_download_button_locator)
 
         @property
-        def is_firefox_accounts_button_displayed(self):
-            return self.is_element_displayed(*self._firefox_account_button_locator)
+        def is_mozilla_vpn_button_displayed(self):
+            return self.is_element_displayed(*self._mozilla_vpn_button_locator)
 
         def show(self):
             assert not self.is_displayed, 'Menu is already displayed'
