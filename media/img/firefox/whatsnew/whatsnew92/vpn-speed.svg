@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="330" height="185" viewBox="0 0 330 185" xml:space="preserve">
+  <style>
+    .st0,.st4{fill:none;stroke:#000;stroke-width:1.402}.st0{stroke-linecap:round;stroke-linejoin:round}.st4{stroke-miterlimit:10}
+  </style>
+  <path d="M93.3 102.1c.4 3.8 1 7.6 2 11.4" class="st0"/>
+  <path d="M93.9 83.6c-.6 3.8-.9 7.7-.9 11.5" class="st0"/>
+  <path d="M97.7 120.9c10.7 27.9 37.4 46.3 67.3 46.3 39.8 0 72-32.2 72-72s-32.2-72-72-72c-33 0-61.9 22.5-69.9 54.5" class="st0"/>
+  <linearGradient id="SVGID_1_" x1="108.4102" x2="209.6136" y1="391.2831" y2="391.2831" gradientTransform="matrix(1 0 0 -1 0 453.8352)" gradientUnits="userSpaceOnUse">
+    <stop offset=".08992" stop-color="#cdd0ff"/>
+    <stop offset=".8354" stop-color="#bc94ff"/>
+  </linearGradient>
+  <path fill="url(#SVGID_1_)" d="M153.7 48.4c14.2 0 26.9 6.7 35.2 17.2l20.7-9.7C199.3 41.9 183.1 33 165 33c-31.2 0-56.4 26.4-56.6 59.1 1.5-24.4 21.2-43.7 45.3-43.7z"/>
+  <path d="M108.3 95.1h10" class="st0"/>
+  <path d="M165 151.8v-9.9" class="st0"/>
+  <path d="M205.1 135.2l-7-7" class="st0"/>
+  <path d="M221.7 95.1c0 31.3-25.4 56.7-56.7 56.7-31.3 0-56.7-25.4-56.7-56.7" class="st0"/>
+  <path d="M221.7 95.1h-9.9" class="st0"/>
+  <path d="M124.9 135.2l7.1-7" class="st0"/>
+  <path fill="#6551d8" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.402" d="M155.7 105.8h0c4.4 5.1 12.1 5.7 17.2 1.3.6-.5 1.1-1 1.5-1.6l35.1-43.3-50 24.7c-6 3-8.5 10.3-5.5 16.3.5 1 1.1 1.8 1.7 2.6z"/>
+  <path fill="#cdd0ff" d="M315.6 151.1c-2.7 0-5.4.9-7.5 2.7-3.7-12-16.4-18.7-28.4-14.9-5.5 1.7-10.2 5.5-13.1 10.6-7.3-1.4-14.3 3.3-15.7 10.6-.2.8-.2 1.7-.2 2.6h76.8c-.2-6.5-5.5-11.6-11.9-11.6z"/>
+  <path d="M294.2 157.3c-2.7 0-5.4.9-7.5 2.7-3.7-12-16.4-18.7-28.4-14.9-5.5 1.7-10.2 5.5-13.1 10.6-7.3-1.4-14.3 3.3-15.7 10.6-.2.8-.2 1.7-.2 2.6h76.8c-.3-6.6-5.5-11.6-11.9-11.6z" class="st4"/>
+  <circle cx="23" cy="63.9" r="3.1" class="st4"/>
+  <path d="M71.2 152.8h6.9" class="st0"/>
+  <path d="M74.7 156.2v-6.9" class="st0"/>
+  <circle cx="260.6" cy="62.3" r="3.1" class="st4"/>
+  <path d="M295.3 102.1h6.9" class="st0"/>
+  <path d="M298.8 105.5v-6.9" class="st0"/>
+  <path d="M102.4 113.5H41.1" class="st0"/>
+  <path d="M102.4 77.7H41.1" class="st0"/>
+  <path d="M93 95.1H53.1" class="st0"/>
+  <path d="M108.3 95.1H93" class="st0"/>
+  <path d="M71.5 44.3h-69" class="st0"/>
+  <path d="M103.3 36.6H15.5" class="st0"/>
+  <path d="M75.2 26.1c-2.5 0-4.9.9-6.9 2.4-3.4-11-15.1-17.1-26.1-13.7-5.1 1.6-9.4 5.1-12 9.7-6.7-1.3-13.2 3.1-14.4 9.8-.1.8-.2 1.6-.2 2.3h70.6c-.3-5.8-5.1-10.5-11-10.5z" class="st0"/>
+</svg>
