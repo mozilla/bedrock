@@ -1127,9 +1127,11 @@
     },
     {
       "files": [
-        "js/firefox/whatsnew/up-to-date.js"
+        "js/firefox/whatsnew/up-to-date.js",
+        "js/base/mozilla-fxa-product-button.js",
+        "js/base/mozilla-fxa-product-button-init.js"
       ],
-      "name": "firefox_whatsnew_92_en"
+      "name": "firefox_whatsnew_92_vpn"
     },
     {
       "files": [
