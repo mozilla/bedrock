@@ -510,6 +510,10 @@ class WhatsNewRedirectorView(GeoRedirectView):
     # https://bedrock.readthedocs.io/en/latest/coding.html#geo-redirect-view
     geo_urls = {
         'CN': 'firefox.whatsnew.china',
+        'US': 'firefox.whatsnew.en',
+        'CA': 'firefox.whatsnew.en',
+        'GB': 'firefox.whatsnew.en',
+        'FR': 'firefox.whatsnew.france',
     }
     default_url = 'firefox.whatsnew.all'
 
@@ -538,7 +542,10 @@ class WhatsnewView(L10nTemplateView):
         'firefox/whatsnew/whatsnew-fx90-eu.html': ['firefox/whatsnew/whatsnew-fx90.ftl', 'firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx91-en.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx91-de.html': ['firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx92-en.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx92-de.html': ['firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx92-vpn-en.html': ['firefox/whatsnew/whatsnew', 'products/vpn/shared'],
+        'firefox/whatsnew/whatsnew-fx92-vpn-fr.html': ['firefox/whatsnew/whatsnew', 'products/vpn/shared'],
     }
 
     # place expected ?v= values in this list
@@ -612,6 +619,8 @@ class WhatsnewView(L10nTemplateView):
                 template = 'firefox/developer/whatsnew.html'
             else:
                 template = 'firefox/whatsnew/index.html'
+        elif version.startswith('92.') and locale.startswith('en-'):
+            template = 'firefox/whatsnew/whatsnew-fx92-en.html'
         elif version.startswith('92.') and locale == 'de':
             template = 'firefox/whatsnew/whatsnew-fx92-de.html'
         elif version.startswith('91.') and locale.startswith('en-'):
@@ -655,6 +664,27 @@ class WhatsNewChinaView(WhatsnewView):
             template = ['firefox/whatsnew/index-account.html']
         elif template == ['firefox/whatsnew/whatsnew-fx88-en.html']:
             template = ['firefox/whatsnew/index-account.html']
+        elif template == ['firefox/whatsnew/whatsnew-fx92-en.html']:
+            template = ['firefox/whatsnew/index-account.html']
+
+        return template
+
+
+class WhatsNewEnglishView(WhatsnewView):
+    def get_template_names(self):
+        template = super().get_template_names()
+        if switch('firefox-whatsnew-92-vpn-pricing') and template == ['firefox/whatsnew/whatsnew-fx92-en.html']:
+            template = ['firefox/whatsnew/whatsnew-fx92-vpn-en.html']
+
+        return template
+
+
+class WhatsNewFranceView(WhatsnewView):
+    def get_template_names(self):
+        template = super().get_template_names()
+        locale = l10n_utils.get_locale(self.request)
+        if switch('firefox-whatsnew-92-vpn-pricing'):
+            template = ['firefox/whatsnew/whatsnew-fx92-vpn-fr.html'] if locale == 'fr' else ['firefox/whatsnew/index-account.html']
 
         return template
 
