@@ -17,6 +17,12 @@
 {% set _utm_campaign = 'vpn-product-page' %}
 {% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
 
+{% block experiments %}
+  {% if not switch('vpn-landing-page-cta-change') %}
+    {{ js_bundle('vpn-landing-page-cta-change-experiment') }}
+  {% endif %}
+{% endblock %}
+
 {% block page_css %}
   {{ css_bundle('mozilla-vpn-landing') }}
 {% endblock %}
@@ -67,6 +73,8 @@
       <div class="js-target-primary-cta"></div>
     {% endcall %}
   {% endblock %}
+
+  {% block update_cta_string %}{% endblock %}
 
   <div class="mzp-l-content mzp-t-content-xl">
 
