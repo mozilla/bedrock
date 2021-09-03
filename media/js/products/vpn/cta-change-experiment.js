@@ -8,13 +8,13 @@
     var href = window.location.href;
 
     var initTrafficCop = function () {
-        if (href.indexOf('cta_experimentation=vpn-landing-page-cta-change&entrypoint_variation=') !== -1) {
-            if (href.indexOf('entrypoint_variation=a') !== -1) {
+        if (href.indexOf('cta_experimentation=vpn-landing-page-cta-change&cta_variation=') !== -1) {
+            if (href.indexOf('cta_variation=a') !== -1) {
                 window.dataLayer.push({
                     'data-ex-variant': 'a',
                     'data-ex-name': 'vpn-landing-page-cta-change'
                 });
-            } else if (href.indexOf('entrypoint_variation=b') !== -1) {
+            } else if (href.indexOf('cta_variation=b') !== -1) {
                 window.dataLayer.push({
                     'data-ex-variant': 'b',
                     'data-ex-name': 'vpn-landing-page-cta-change'
@@ -24,8 +24,8 @@
             var cop = new Mozilla.TrafficCop({
                 id: 'vpn-landing-page-cta-change-experiment',
                 variations: {
-                    'cta_experimentation=vpn-landing-page-cta-change&entrypoint_variation=a': 50,
-                    'cta_experimentation=vpn-landing-page-cta-change&entrypoint_variation=b': 50,
+                    'cta_experimentation=vpn-landing-page-cta-change&cta_variation=a': 50,
+                    'cta_experimentation=vpn-landing-page-cta-change&cta_variation=b': 50,
                 }
             });
 

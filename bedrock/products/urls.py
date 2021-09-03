@@ -29,13 +29,6 @@ urlpatterns = (
     page('vpn/mobile/android', 'products/vpn/platforms/android.html',
          ftl_files=['products/vpn/platforms/android', 'products/vpn/shared']),
 
-    url(r'^products/vpn/$',
-        VariationTemplateView.as_view(template_name='products/vpn/landing.html',
-                                      template_name_variations=['a', 'b'],
-                                      variation_locales=['en-US'],
-                                      active_locales=['en-US']),
-        name='products.vpn'),
-
     # Evergreen SEO articles (issue #10224)
     page('vpn/more/what-is-an-ip-address', 'products/vpn/more/ip-address.html',
          ftl_files=['products/vpn/more/ip-address', 'products/vpn/shared']),
