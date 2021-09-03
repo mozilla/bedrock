@@ -27,6 +27,21 @@ def vpn_landing_page(request):
     sub_not_found = request.GET.get('vpn-sub-not-found', None)
     locale = l10n_utils.get_locale(request)
     pricing_params = settings.VPN_VARIABLE_PRICING.get(locale, settings.VPN_VARIABLE_PRICING['us'])
+    cta_experiment = request.GET.get('cta_experiment', None)
+    cta_variation = request.GET.get('cta_variation', None)
+
+    # ensure experiment parameters matches pre-defined values
+    if cta_variation not in ['a', 'b']:
+        cta_variation = None
+
+    if cta_experiment != 'vpn-landing-page-cta-change':
+        cta_experiment = None
+
+    if cta_experiment and cta_variation:
+        template_name = 'products/vpn/variations/cta={}'.format(cta_variation)
+    else:
+        template_name = 'products/vpn/landing.html'
+
 
     # error message for visitors who try to sign-in without a subscription (issue 10002)
     if sub_not_found == 'true':
