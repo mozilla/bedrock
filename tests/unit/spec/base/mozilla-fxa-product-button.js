@@ -47,7 +47,7 @@ describe('mozilla-fxa-product-button.js', function() {
 
         return Mozilla.FxaProductButton.init().then(function() {
             expect(window.fetch).toHaveBeenCalledTimes(1);
-            expect(window.fetch).toHaveBeenCalledWith('https://accounts.firefox.com/metrics-flow?form_type=button&entrypoint=mozilla.org-whatsnew60&utm_source=mozilla.org-whatsnew60&utm_campaign=whatsnew60');
+            expect(window.fetch).toHaveBeenCalledWith('https://accounts.firefox.com/metrics-flow?form_type=button&entrypoint=mozilla.org-whatsnew60&utm_source=mozilla.org-whatsnew60&utm_campaign=whatsnew60&utm_medium=referral');
         });
     });
 
@@ -104,7 +104,7 @@ describe('mozilla-fxa-product-button.js', function() {
 
         return Mozilla.FxaProductButton.init().then(function() {
             var buttons = document.querySelectorAll('.js-fxa-product-button');
-            expect(window.fetch).toHaveBeenCalledWith('https://accounts.firefox.com.cn/metrics-flow?form_type=button&entrypoint=mozilla.org-whatsnew60&utm_source=mozilla.org-whatsnew60&utm_campaign=whatsnew60');
+            expect(window.fetch).toHaveBeenCalledWith('https://accounts.firefox.com.cn/metrics-flow?form_type=button&entrypoint=mozilla.org-whatsnew60&utm_source=mozilla.org-whatsnew60&utm_campaign=whatsnew60&utm_medium=referral');
             expect(buttons[0].href).toEqual('https://accounts.firefox.com.cn/signup?form_type=button&entrypoint=mozilla.org-whatsnew60&utm_source=mozilla.org-whatsnew60&utm_medium=referral&utm_campaign=whatsnew60&context=fx_desktop_v3&device_id=848377ff6e3e4fc982307a316f4ca3d6&flow_begin_time=1573052386673&flow_id=75f9a48a0f66c2f5919a0989605d5fa5dd04625ea5a2ee59b2d5d54637c566d1');
             expect(buttons[1].href).toEqual('https://getpocket.com/ff_signup?s=ffwelcome2&form_type=button&entrypoint=mozilla.org-firefox-welcome-2&utm_source=mozilla.org-firefox-welcome-2&utm_campaign=welcome-2-pocket&utm_medium=referral');
         });

@@ -65,6 +65,10 @@ if (typeof window.Mozilla === 'undefined') {
             metricsURL += '&utm_content=' + params.utm_content;
         }
 
+        if (params.utm_medium) {
+            metricsURL += '&utm_medium=' + params.utm_medium;
+        }
+
         if (params.utm_term) {
             metricsURL += '&utm_term=' + params.utm_term;
         }
