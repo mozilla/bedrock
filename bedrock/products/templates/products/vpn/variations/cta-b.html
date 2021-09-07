@@ -5,6 +5,7 @@
 {% extends "products/vpn/landing.html" %}
 
  {% block hero_cta_change %}
+
   {% set price = 'Get Mozilla VPN for ' + vpn_monthly_price(plan='12-month', lang=LANG) %}
 
      {{ vpn_subscribe_link(
@@ -22,5 +23,8 @@
           'data-cta-position': 'pricing'
         }
       ) }}
+      <p>
+          <a href="#pricing" data-cta-text="Scroll to pricing">View all pricing plans</a>
+      </p>
  {% endblock %}
 
