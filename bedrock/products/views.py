@@ -38,7 +38,7 @@ def vpn_landing_page(request):
         entrypoint_experiment = None
 
     if entrypoint_experiment and entrypoint_variation:
-        template_name = 'products/vpn/variations/cta={}'.format(entrypoint_variation)
+        template_name = 'products/vpn/variations/cta-{}.html'.format(entrypoint_variation)
     else:
         template_name = 'products/vpn/landing.html'
 
