@@ -2,10 +2,25 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
- {% block update_cta_string %}
-   <div>
-     <h1>this is a test to see if it's working</h1>
-   </div>
+{% extends "products/vpn/landing.html" %}
+
+ {% block hero_cta_change %}
+  {% set price = 'Get Mozilla VPN for ' + vpn_monthly_price(plan='12-month', lang=LANG) %}
+
+     {{ vpn_subscribe_link(
+        entrypoint=_utm_source,
+        link_text=price,
+        plan='12-month',
+        class_name='mzp-c-button mzp-t-xl ',
+        lang=LANG,
+        optional_parameters={
+          'utm_campaign': _utm_campaign
+        },
+        optional_attributes={
+          'data-cta-type': 'fxa-vpn',
+          'data-cta-text': 'Get Mozilla VPN 12-month',
+          'data-cta-position': 'pricing'
+        }
+      ) }}
  {% endblock %}
 
-{% extends "products/vpn/landing.html" %}
