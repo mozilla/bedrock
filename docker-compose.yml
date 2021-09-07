@@ -10,6 +10,7 @@ services:
       context: .
       target: assets
     image: mozmeao/bedrock_assets:${GIT_COMMIT:-latest}
+    platform: linux/amd64
     command: gulp
     ports:
       - "8000-8010:8000-8010"
@@ -26,6 +27,7 @@ services:
       context: .
       target: devapp
     image: mozmeao/bedrock_test:${GIT_COMMIT:-latest}
+    platform: linux/amd64
     command: python manage.py runserver 0.0.0.0:8080
     env_file: .env
     ports:
@@ -75,6 +77,7 @@ services:
       args:
         GIT_SHA: ${GIT_COMMIT:-latest}
     image: mozmeao/bedrock:${GIT_COMMIT:-latest}
+    platform: linux/amd64
 
   release-local:
     image: mozmeao/bedrock:${GIT_COMMIT:-latest}
@@ -98,9 +101,11 @@ services:
       context: .
       target: python-builder
     image: mozmeao/bedrock_build:${GIT_COMMIT:-latest}
+    platform: linux/amd64
 
   app-base:
     build:
       context: .
       target: app-base
     image: mozmeao/bedrock_code:${GIT_COMMIT:-latest}
+    platform: linux/amd64
