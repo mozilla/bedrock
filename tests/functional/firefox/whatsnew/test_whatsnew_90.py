@@ -7,6 +7,7 @@ import pytest
 from pages.firefox.whatsnew.whatsnew_90 import FirefoxWhatsNew90Page
 
 
+@pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
 @pytest.mark.nondestructive
 def test_get_vpn_button_is_displayed(base_url, selenium):
     page = FirefoxWhatsNew90Page(selenium, base_url, locale='de').open()

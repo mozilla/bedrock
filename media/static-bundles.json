@@ -436,6 +436,24 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-92-en.scss"
+      ],
+      "name": "firefox_whatsnew_92_en"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-92-de.scss"
+      ],
+      "name": "firefox_whatsnew_92_de"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-92-vpn.scss"
+      ],
+      "name": "firefox_whatsnew_92_vpn"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -719,6 +737,12 @@
     },
     {
       "files": [
+        "css/contentful/general.scss"
+      ],
+      "name": "contentful_general"
+    },
+    {
+      "files": [
         "css/firefox/more/misinformation.scss"
       ],
       "name": "misinformation"
@@ -851,6 +875,115 @@
         "css/products/vpn/article.scss"
       ],
       "name": "mozilla-vpn-article"
+    },
+    {
+      "files": [
+        "css/contentful/mozilla/c-article.scss"
+      ],
+      "name": "mozilla-c-article"
+    },
+    {
+      "files": [
+        "css/contentful/mozilla/c-call-out.scss"
+      ],
+      "name": "mozilla-c-call-out"
+    },
+    {
+      "files": [
+        "css/contentful/mozilla/c-hero.scss"
+      ],
+      "name": "mozilla-c-hero"
+    },
+    {
+      "files": [
+        "css/contentful/mozilla/c-picto.scss"
+      ],
+      "name": "mozilla-c-picto"
+    },
+    {
+      "files": [
+        "css/contentful/mozilla/c-section-heading.scss"
+      ],
+      "name": "mozilla-c-section-heading"
+    },
+    {
+      "files": [
+        "css/contentful/mozilla/c-split.scss"
+      ],
+      "name": "mozilla-c-split"
+    },
+    {
+      "files": [
+        "css/contentful/mozilla/c-logo.scss"
+      ],
+      "name": "mozilla-c-logo"
+    },
+    {
+      "files": [
+        "css/contentful/mozilla/t-card-layout.scss"
+      ],
+      "name": "mozilla-t-card-layout"
+    },
+    {
+      "files": [
+        "css/contentful/mozilla/t-multi-column.scss"
+      ],
+      "name": "mozilla-t-multi-column"
+    },
+    {
+      "files": [
+        "css/contentful/firefox/c-article.scss"
+      ],
+      "name": "firefox-c-article"
+    },
+    {
+      "files": [
+        "css/contentful/firefox/c-call-out.scss"
+      ],
+      "name": "firefox-c-call-out"
+    },
+    {
+      "files": [
+        "css/contentful/firefox/c-hero.scss"
+      ],
+      "name": "firefox-c-hero"
+    },
+    {
+      "files": [
+        "css/contentful/firefox/c-picto.scss"
+      ],
+      "name": "firefox-c-picto"
+    },
+    {
+      "files": [
+        "css/contentful/firefox/c-section-heading.scss"
+      ],
+      "name": "firefox-c-section-heading"
+    },
+    {
+      "files": [
+        "css/contentful/firefox/c-split.scss"
+      ],
+      "name": "firefox-c-split"
+    },
+    {
+      "files": [
+        "css/contentful/firefox/c-logo.scss"
+      ],
+      "name": "firefox-c-logo"
+    },
+    {
+      "files": [
+        "css/base/mozilla-lazy-image.scss",
+        "css/contentful/firefox/t-card-layout.scss"
+      ],
+      "name": "firefox-t-card-layout"
+    },
+    {
+      "files": [
+        "css/contentful/firefox/t-multi-column.scss"
+      ],
+      "name": "firefox-t-multi-column"
     }
   ],
   "js": [
@@ -991,6 +1124,14 @@
         "js/base/mozilla-fxa-product-button-init.js"
       ],
       "name": "firefox_whatsnew_91_de"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/up-to-date.js",
+        "js/base/mozilla-fxa-product-button.js",
+        "js/base/mozilla-fxa-product-button-init.js"
+      ],
+      "name": "firefox_whatsnew_92_vpn"
     },
     {
       "files": [
@@ -1496,6 +1637,13 @@
         "js/products/vpn/cta-change-experiment.js"
       ],
       "name": "vpn-landing-page-cta-change-experiment"
-    }
+    },
+      {
+        "files": [
+          "js/base/mozilla-lazy-load.js",
+          "js/contentful/lazyload-init.js"
+        ],
+        "name": "c-card"
+      }
   ]
 }
