@@ -3,10 +3,8 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.urls import path
-from django.conf.urls import url
 from bedrock.mozorg.util import page
 from bedrock.products import views
-from bedrock.utils.views import VariationTemplateView
 
 urlpatterns = (
     path('vpn/', views.vpn_landing_page, name='products.vpn.landing'),
