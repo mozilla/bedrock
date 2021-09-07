@@ -75,7 +75,6 @@ urlpatterns = (
         ), name='firefox.features.tips'),
 
     url(r'^firefox/ios/testflight/$', views.ios_testflight, name='firefox.ios.testflight'),
-    page('firefox/mobile', 'firefox/mobile/index.html', ftl_files=['firefox/mobile']),
     page('firefox/mobile/get-app', 'firefox/mobile/get-app.html', ftl_files=['firefox/mobile']),
     url('^firefox/send-to-device-post/$', views.send_to_device_ajax,
         name='firefox.send-to-device-post'),
@@ -158,6 +157,17 @@ urlpatterns = (
          ftl_files=['firefox/browsers/compare/opera', 'firefox/browsers/compare/shared']),
     page('firefox/browsers/compare/safari', 'firefox/browsers/compare/safari.html',
          ftl_files=['firefox/browsers/compare/safari', 'firefox/browsers/compare/shared']),
+
+    # Issue 10182
+    url(r'^firefox/browsers/mobile/$', views.FirefoxMobileView.as_view(), name='firefox.browsers.mobile.index'),
+    page('firefox/browsers/mobile/android', 'firefox/browsers/mobile/android.html',
+         ftl_files=['firefox/browsers/mobile/android']),
+    page('firefox/browsers/mobile/ios', 'firefox/browsers/mobile/ios.html',
+         ftl_files=['firefox/browsers/mobile/ios']),
+    page('firefox/browsers/mobile/focus', 'firefox/browsers/mobile/focus.html',
+         ftl_files=['firefox/browsers/mobile/focus']),
+    page('firefox/browsers/mobile/compare', 'firefox/browsers/mobile/compare.html',
+         ftl_files=['firefox/browsers/mobile/compare', 'firefox/browsers/compare/shared']),
 
     # Issue 8641
     page('firefox/browsers/best-browser', 'firefox/browsers/best-browser.html', ftl_files=['firefox/browsers/best-browser']),

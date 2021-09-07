@@ -42,7 +42,7 @@
 <nav class="c-sub-navigation">
   <div class="mzp-l-content">
     <div class="c-sub-navigation-content">
-      <h2 class="c-sub-navigation-title">{{ ftl('sub-navigation-firefox-for-mobile', fallback='navigation-firefox-browser-for-mobile') }}</h2>
+      <h2 class="c-sub-navigation-title"><a href="{{ url('firefox.browsers.mobile.index') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Firefox for Mobile">{{ ftl('sub-navigation-firefox-for-mobile', fallback='navigation-firefox-browser-for-mobile') }}</a></h2>
       <ul class="c-sub-navigation-list">
         <li class="c-sub-navigation-item"><a href="https://support.mozilla.org/products/ios/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=firefox-mobile" data-link-type="nav" data-link-position="subnav" data-link-name="iOS Support">{{ ftl('sub-navigation-ios-support', fallback='navigation-ios-support') }}</a></li>
         <li class="c-sub-navigation-item"><a href="https://support.mozilla.org/products/mobile/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=firefox-mobile" data-link-type="nav" data-link-position="subnav" data-link-name="Android Support">{{ ftl('sub-navigation-android-support', fallback='navigation-android-support') }}</a></li>
@@ -56,45 +56,29 @@
 
 {% block content %}
   <main role="main">
-    <header class="c-hero-bg-image">
-      <div class="c-hero mzp-l-content mzp-l-columns mzp-t-columns-two">
-        <div class="c-hero-body">
-          <h1><span class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">{{ ftl('firefox-mobile-firefox-browser') }}</span></h1>
-          <h2>{{ ftl('firefox-mobile-get-automatic-privacy-on-mobile') }}</h2>
-          <p>{{ ftl('firefox-mobile-super-fast-private-by-default') }}</p>
+    {% call split(
+      block_class='c-page-header mzp-l-split-center-on-sm-md',
+      media_class='mzp-l-split-h-center',
+      media_after=True,
+      media_include='firefox/mobile/includes/s2d-hero.html'
+    ) %}
+      <h1><span class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">{{ ftl('firefox-mobile-firefox-browser') }}</span></h1>
+      <h2 class="mzp-u-title-lg">{{ ftl('firefox-mobile-get-automatic-privacy-on-mobile') }}</h2>
+      <p class="c-tagline">{{ ftl('firefox-mobile-super-fast-private-by-default') }}</p>
 
-          <div class="mobile-download-buttons-wrapper">
-            <ul class="mobile-download-buttons firefox" id="mobile-download-buttons-firefox_1">
-              <li class="android">
-                {{ google_play_button(href=android_url, id='playStoreLink-primary') }}
-              </li>
-              <li class="ios">
-                <a id="appStoreLink-primary" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
-                  <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="mzp-c-emphasis-box">
-          <h3>{{ ftl('firefox-mobile-get-firefox-for-mobile') }}</h3>
-        {% if show_send_to_device %}
-          <p>{{ ftl('firefox-mobile-send-a-download-link-to-your') }}</p>
-          {{ send_to_device(include_title=False, message_set='fx-mobile-download-desktop', class='vertical', id='s2d-primary') }}
-        {% else %}
-          <p>{{ ftl('firefox-mobile-scan-the-qr-code-to-get-started') }}</p>
-          <div class="qr-code-wrapper">
-            <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}"
-                id="firefox-qr"
-                data-mozillaonline-link="{{ static('img/firefox/mobile/protocol/qr-firefox-mozillaonline.png') }}"
-                alt="{{ ftl('firefox-mobile-scan-alt-text') }}">
-          </div>
-        {% endif %}
-        </div>
-
+      <div class="mobile-download-buttons-wrapper">
+        <ul class="mobile-download-buttons firefox" id="mobile-download-buttons-firefox_1">
+          <li class="android">
+            {{ google_play_button(href=android_url, id='playStoreLink-primary') }}
+          </li>
+          <li class="ios">
+            <a id="appStoreLink-primary" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
+              <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
+            </a>
+          </li>
+        </ul>
       </div>
-    </header>
+    {% endcall %}
 
     <section class="c-private t-private mzp-t-firefox">
       <div class="mzp-l-content">
@@ -118,7 +102,8 @@
       {% call split(
         image_url='img/firefox/mobile/protocol/account.svg',
         block_class='mzp-l-split-reversed mzp-t-split-nospace',
-        theme_class='mzp-t-background-alt'
+        theme_class='mzp-t-background-alt',
+        media_class='mzp-l-split-h-center',
       ) %}
         <h2>{{ ftl('firefox-mobile-discover-products-that-keep') }}</h2>
         <p>{{ ftl('firefox-mobile-sync-your-history-passwords') }}</p>
@@ -133,7 +118,7 @@
           {% call split(
             image_url='img/firefox/mobile/protocol/screen-frame.svg',
             block_class='mzp-l-split-reversed',
-            media_class='mzp-l-split-h-center'
+            media_class='mzp-l-split-h-center',
           ) %}
             <h2>{{ extend_title }}</h2>
             <p>{{ ftl('firefox-mobile-customize-your-firefox-mobile-truncated') }}</p>
@@ -152,10 +137,10 @@
       </div>
     </section>
 
-    <section class="mzp-c-hero mzp-t-firefox t-hero-secondary">
+    <section class="mzp-c-hero c-hero-secondary">
       <div class="mzp-l-content">
         <div class="mzp-c-hero-body">
-          <h2 class="mzp-c-hero-title end-hero"><span class="c-wordmark t-firefox">{{ ftl('firefox-mobile-firefox-browser') }}</span></h2>
+          <h1 class="mzp-c-wordmark mzp-t-wordmark-lg mzp-t-product-firefox">{{ ftl('firefox-mobile-firefox-browser') }}</h2>
 
           <div class="mzp-c-hero-desc">
             <h3>{{ ftl('firefox-mobile-the-privacy-you-deserve-the') }}</h3>
@@ -163,7 +148,7 @@
 
           <div class="mzp-c-hero-cta">
             <div class="header-product-ctas hide-from-legacy-ie">
-              <div class="c-inline-form">
+              <div class="c-inline-form mzp-c-emphasis-box">
                 <h3 class="c-inline-form-title">{{ ftl('firefox-mobile-get-firefox-for-mobile') }}</h3>
               {% if show_send_to_device %}
                 <p class="c-inline-form-body">{{ ftl('firefox-mobile-send-a-download-link-to-your') }}</p>

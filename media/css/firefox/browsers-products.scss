@@ -336,14 +336,15 @@ $url-download-link-hover: svg-url($download-link-hover);
 }
 
 //* -------------------------------------------------------------------------- */
-// dev tools block
+// dev tools and desktop compare blocks
 
-.t-dev {
+.t-dev,
+.t-compare {
     background-color: $color-marketing-gray-20;
     margin-top: $layout-xs + $layout-2xl;
 
     &.mzp-c-split {
-        padding: $layout-xl $layout-xs $layout-xs $layout-xs;
+        padding: $layout-xl $layout-xs $layout-xs;
         overflow-x: visible;
     }
 
@@ -362,14 +363,15 @@ $url-download-link-hover: svg-url($download-link-hover);
     }
 }
 
-.c-dev-title {
+.c-dev-title,
+.c-compare-title {
     @include text-title-sm;
-    @include font-firefox;
     font-weight: bold;
 }
 
 @media #{$mq-sm} {
-    .t-dev {
+    .t-dev,
+    .t-compare {
         margin-left: auto;
         margin-right: auto;
         max-width: $content-xs;
@@ -381,7 +383,8 @@ $url-download-link-hover: svg-url($download-link-hover);
 }
 
 @media #{$mq-md} {
-    .t-dev {
+    .t-dev,
+    .t-compare {
         border-radius: $border-radius-sm;
         margin-top: 0;
         max-width: 100%;
@@ -403,9 +406,9 @@ $url-download-link-hover: svg-url($download-link-hover);
     }
 }
 
-@media (min-width:#{$screen-md}) and (max-width:#{$screen-xl - 1px}) {
+@media (min-width:#{$screen-lg}) and (max-width:#{$screen-xl - 1px}) {
     .t-dev {
-        .mzp-c-split-container {
+        .mzp-c-card-feature.mzp-l-card-feature-left-half {
             display: block;
         }
 

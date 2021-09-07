@@ -20,7 +20,6 @@ def pytest_generate_tests(metafunc):
     paths = (
         '/exp/firefox/',
         '/exp/firefox/new/',
-        '/exp/firefox/mobile/',
         '/exp/',
         '/exp/firefox/accounts'
     )

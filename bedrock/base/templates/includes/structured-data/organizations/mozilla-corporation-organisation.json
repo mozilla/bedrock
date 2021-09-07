@@ -47,7 +47,7 @@
   {
     "@type": "Product",
     "@id": "{{ structured_data_id('firefoxandroid') }}",
-    "url": "{% filter absolute_url %}{{ url('firefox.mobile.index') }}{% endfilter %}",
+    "url": "{% filter absolute_url %}{{ url('firefox.browsers.mobile.android') }}{% endfilter %}",
     "logo": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}{% endfilter %}",
     "image": [
       "{% filter absolute_url %}{{ static('img/structured-data/browser-android-1.jpg') }}{% endfilter %}",
@@ -238,7 +238,7 @@
   {
     "@type": "Product",
     "@id": "{{ structured_data_id('firefoxios') }}",
-    "url": "{% filter absolute_url %}{{ url('firefox.mobile.index') }}{% endfilter %}",
+    "url": "{% filter absolute_url %}{{ url('firefox.browsers.mobile.ios') }}{% endfilter %}",
     "logo": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}{% endfilter %}",
     "image": [
       "{% filter absolute_url %}{{ static('img/structured-data/browser-ios-1.png') }}{% endfilter %}",
