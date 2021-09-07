@@ -18,7 +18,7 @@
 {% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
 
 {% block experiments %}
-  {% if not switch('vpn-landing-page-cta-change') %}
+  {% if switch('vpn-landing-page-cta-change') %}
     {{ js_bundle('vpn-landing-page-cta-change-experiment') }}
   {% endif %}
 {% endblock %}
