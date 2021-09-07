@@ -90,8 +90,18 @@ class TestVPNInviteWaitlist(TestCase):
             newsletters='guardian-vpn-waitlist'
         )
 
+@patch('bedrock.products.views.l10n_utils.render', return_value=HttpResponse())
+class TestVPNLandingPage(TestCase):
+    def test_vpn_landing_page_template(self, render_mock):
+        req = RequestFactory().get('/products/vpn/')
+        req.locale = 'en-US'
+        view = views.vpn_landing_page
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == 'products/vpn/landing.html'
+
     def test_vpn_landing_page_variant_a_template(self, render_mock):
-        req = RequestFactory().get('/products/vpn/?entrypoint_experiment=vpn-landing-page-cta-change&entrypoint_variation=')
+        req = RequestFactory().get('/products/vpn/?entrypoint_experiment=vpn-landing-page-cta-change&entrypoint_variation=a')
         req.locale = 'en-US'
         view = views.vpn_landing_page
         view(req)
@@ -105,14 +115,3 @@ class TestVPNInviteWaitlist(TestCase):
         view(req)
         template = render_mock.call_args[0][1]
         assert template == 'products/vpn/variations/cta-b.html'
-
-@patch('bedrock.products.views.l10n_utils.render', return_value=HttpResponse())
-class TestVPNLandingPage(TestCase):
-    def test_vpn_landing_page_template(self, render_mock):
-        req = RequestFactory().get('/products/vpn/')
-        req.locale = 'en-US'
-        view = views.vpn_landing_page
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == 'products/vpn/landing.html'
-
