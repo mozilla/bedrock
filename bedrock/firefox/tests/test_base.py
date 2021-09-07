@@ -556,7 +556,7 @@ class TestWhatsNew92France(TestCase):
         req.locale = 'fr'
         self.view(req, version='92.0')
         template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/index-account.html']
+        assert template == ['firefox/whatsnew/whatsnew-fx92-fr.html']
 
     @patch.dict(os.environ, SWITCH_FIREFOX_WHATSNEW_92_VPN_PRICING='True')
     def test_fx_92_0_0_vpn_fr(self, render_mock):
@@ -566,6 +566,15 @@ class TestWhatsNew92France(TestCase):
         self.view(req, version='92.0')
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/whatsnew-fx92-vpn-fr.html']
+
+    @patch.dict(os.environ, SWITCH_FIREFOX_WHATSNEW_92_VPN_PRICING='True')
+    def test_fx_94_0_a1_fr(self, render_mock):
+        """Should use Nightly /whatsnew template for 94.0.a1"""
+        req = self.rf.get('/firefox/whatsnew/france/')
+        req.locale = 'fr'
+        self.view(req, version='94.0a1')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/nightly/whatsnew.html']
 
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
