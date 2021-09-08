@@ -4,36 +4,16 @@
 
 @import '../../../protocol/css/includes/lib';
 
-.vpn-section {
-    margin-bottom: $layout-sm;
-    &.no-margin {
-        margin-bottom: 0;
-    }
-
-    h3 {
-        margin-bottom: $layout-sm;
-    }
-    h5 {
-        margin-bottom: $layout-xs;
-    }
-    p {
-        margin-bottom: $layout-xs;
-    }
-
-    .indented-container {
-        margin-bottom: $layout-2xs;
-        margin-left: $layout-xs;
-        &:last-child {
-        margin-bottom: 0;
-        }
-    }
+.c-section-heading {
+    margin-top: $layout-sm;
 }
 
-.vpn-section, .indented-container {
-    display: flex;
-    flex-direction: column;
-
-    a {
-        align-self: center;
-    }
+.c-list-content {
+    margin-left: $layout-xs;
 }
+
+.vpn-cta {
+   text-align: center;
+}
+
+
