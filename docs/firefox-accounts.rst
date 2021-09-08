@@ -242,12 +242,75 @@ The ``vpn_subscribe_link`` helper has an additional ``plan`` parameter to suppor
 |    plan                    | Subscription plan ID. Defaults to 12-month plan.                                                                       | '12-month'                                               | '12-month', '6-month', or 'monthly'                                                                    |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 
+Tracking Same-Site Links for Mozilla VPN
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Often we promote Mozilla VPN on different pages via the use of same-site referral
+links to the product landing page. For example, we display a "Get Mozilla VPN"
+button in the main navigation that links to the ``/products/vpn/`` landing page.
+
+In scenarios such as this we want to understand how many people click the link in the
+navigation and go on to signup / subscribe to VPN. To achieve this, we have some
+additional logic in ``fxa-utm-referral.js`` that will check for a specific cookie
+that gets set when someone clicks a specific referral link.
+
+To create a Mozilla VPN referral link, you can use the ``vpn_product_referral_link`` helper:
+
+.. code-block:: jinja
+
+    {{ vpn_product_referral_link(
+        referral_id='navigation',
+        link_text='Get Mozilla VPN',
+        class_name='mzp-t-secondary mzp-t-md',
+        page_anchor='#pricing',
+        optional_attributes= {
+            'data-cta-text' : 'Get Mozilla VPN',
+            'data-cta-type' : 'button',
+            'data-cta-position' : 'navigation',
+        }
+    ) }}
+
+The helper supports the following parameters:
+
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    Parameter name          |                                                       Definition                                                       |                          Format                          |                                                Example                                                 |
++============================+========================================================================================================================+==========================================================+========================================================================================================+
+|    referral_id*            | The ID for the referring page / component. This serves as a value for 'utm_campaign'.                                  | String                                                   | 'navigation'                                                                                           |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    link_text*              | The link copy to be used in the call to action.                                                                        | Localizable string                                       | 'Get Mozilla VPN'                                                                                      |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    class_name              | A class name to be applied to the link (typically for styling with CSS).                                               | String of one or more class names                        | 'mzp-t-secondary mzp-t-md'                                                                             |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    page_anchor             | An optional page anchor for the link destination.                                                                      | String                                                   | '#pricing'                                                                                             |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    optiona_attributes      | An dictionary of key value pairs containing additional data attributes to include in the button.                       | Dictionary                                               | {'data-cta-text': 'Get Mozilla VPN', 'data-cta-type': 'button', 'data-cta-position': 'navigation'}     |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+
+When someone clicks the link a cookie gets set with a 1 hour expiry. The
+``fxa-utm-referral.js`` script will then check for the existence of this
+cookie on page load and update the product landing page subscription links
+with utm parameters that attribute where the click came from.
+
+For example, a referral cookie with the ID ``navigation`` would result
+in the following utm parameters being set:
+
+  - ``utm_source=www.mozilla.org``.
+  - ``utm_campaign=navigation``.
+  - ``utm_medium=referral``.
+
+.. Note::
+
+    The above attribution will only be applied if there are not already
+    utm parameters on the product landing page URL. We will also respect
+    privacy and only set the cookie if DNT is disabled.
+
 
 Link Metrics
 ------------
 
-When using any of the FxA or VPN link/button helpers, a templates's respective JavaScript
-bundle should also include the following dependencies:
+When using any of the FxA or VPN helpers that link directly to FxA,
+a templates's respective JavaScript bundle should also include the following
+dependencies:
 
 .. code-block:: text
 

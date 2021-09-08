@@ -73,7 +73,7 @@ class BasePage(ScrollElementIntoView, Page):
         _developer_edition_page_locator = (By.CSS_SELECTOR, '.c-menu-item-link[data-link-name="Firefox Developer Edition"]')
         _manifesto_page_locator = (By.CSS_SELECTOR, '.c-menu-item-link[data-link-name="Mozilla Manifesto"]')
         _firefox_download_button_locator = (By.CSS_SELECTOR, '#protocol-nav-download-firefox > .download-link')
-        _mozilla_vpn_button_locator = (By.CSS_SELECTOR, '[data-cta-text="Get Mozilla VPN"]')
+        _mozilla_vpn_button_locator = (By.CSS_SELECTOR, '.c-navigation-vpn-cta-container > [data-cta-text="Get Mozilla VPN"]')
 
         @property
         def is_firefox_download_button_displayed(self):
