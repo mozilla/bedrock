@@ -3,6 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.conf import settings
+from django.http import JsonResponse
 from django.shortcuts import render as django_render
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
@@ -13,6 +14,7 @@ from commonware.decorators import xframe_allow
 from lib import l10n_utils
 from lib.l10n_utils import L10nTemplateView
 
+from bedrock.base.geo import get_country_from_request_header
 from bedrock.base.waffle import switch
 from bedrock.contentcards.models import get_page_content_cards
 from bedrock.contentful.api import ContentfulPage
@@ -182,3 +184,9 @@ class ContentfulPreviewView(L10nTemplateView):
                                  template,
                                  context,
                                  **response_kwargs)
+
+
+def cdn_geo_test_view(request):
+    return JsonResponse({
+        'country_code': get_country_from_request_header(request)
+    })

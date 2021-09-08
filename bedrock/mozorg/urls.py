@@ -139,4 +139,5 @@ urlpatterns = (
 if settings.DEV:
     urlpatterns += (
         path('contentful-preview/<content_id>/', views.ContentfulPreviewView.as_view()),
+        path('cdn-geo-test/', views.cdn_geo_test_view),
     )
