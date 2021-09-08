@@ -56,31 +56,25 @@ class TestGeoRedirectView(TestCase):
         resp = self.get_response('CA')
         assert resp.status_code == 302
         assert resp['location'] == '/firefox/new/'
-        assert resp['cache-control'] == 'max-age=0, no-cache, no-store, must-revalidate'
 
         resp = self.get_response('US')
         assert resp.status_code == 302
         assert resp['location'] == '/firefox/'
-        assert resp['cache-control'] == 'max-age=0, no-cache, no-store, must-revalidate'
 
     def test_other_country(self):
         resp = self.get_response('DE')
         assert resp.status_code == 302
         assert resp['location'] == 'https://abide.dude'
-        assert resp['cache-control'] == 'max-age=0, no-cache, no-store, must-revalidate'
 
         resp = self.get_response('JA')
         assert resp.status_code == 302
         assert resp['location'] == 'https://abide.dude'
-        assert resp['cache-control'] == 'max-age=0, no-cache, no-store, must-revalidate'
 
     def test_invalid_country(self):
         resp = self.get_response('dude')
         assert resp.status_code == 302
         assert resp['location'] == 'https://abide.dude'
-        assert resp['cache-control'] == 'max-age=0, no-cache, no-store, must-revalidate'
 
         resp = self.get_response('42')
         assert resp.status_code == 302
         assert resp['location'] == 'https://abide.dude'
-        assert resp['cache-control'] == 'max-age=0, no-cache, no-store, must-revalidate'
