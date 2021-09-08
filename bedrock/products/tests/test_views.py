@@ -90,6 +90,7 @@ class TestVPNInviteWaitlist(TestCase):
             newsletters='guardian-vpn-waitlist'
         )
 
+
 @patch('bedrock.products.views.l10n_utils.render', return_value=HttpResponse())
 class TestVPNLandingPage(TestCase):
     def test_vpn_landing_page_template(self, render_mock):
