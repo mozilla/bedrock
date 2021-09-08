@@ -42,7 +42,6 @@ def vpn_landing_page(request):
     else:
         template_name = 'products/vpn/landing.html'
 
-
     # error message for visitors who try to sign-in without a subscription (issue 10002)
     if sub_not_found == 'true':
         sub_not_found = True

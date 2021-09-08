@@ -4,27 +4,30 @@
 
 {% extends "products/vpn/landing.html" %}
 
- {% block hero_cta_change %}
+{% block hero_cta_change %}
 
+<div class="vpn-pricing-offer">
   {% set price = 'Get Mozilla VPN for ' + vpn_monthly_price(plan='12-month', lang=LANG) %}
 
-     {{ vpn_subscribe_link(
-        entrypoint=_utm_source,
-        link_text=price,
-        plan='12-month',
-        class_name='mzp-c-button mzp-t-xl ',
-        lang=LANG,
-        optional_parameters={
-          'utm_campaign': _utm_campaign
-        },
-        optional_attributes={
-          'data-cta-type': 'fxa-vpn',
-          'data-cta-text': 'Get Mozilla VPN 12-month',
-          'data-cta-position': 'pricing'
-        }
-      ) }}
-      <p>
-          <a href="#pricing" data-cta-text="Scroll to pricing">View all pricing plans</a>
-      </p>
- {% endblock %}
+  {{ vpn_subscribe_link(
+    entrypoint=_utm_source,
+    link_text=price,
+    plan='12-month',
+    class_name='mzp-c-button mzp-t-xl ',
+    lang=LANG,
+    optional_parameters={
+      'utm_campaign': _utm_campaign
+    },
+    optional_attributes={
+      'data-cta-type': 'fxa-vpn',
+      'data-cta-text': 'Get Mozilla VPN 12-month',
+      'data-cta-position': 'pricing'
+    }
+    ) }}
+    <p>
+      <a href="#pricing" data-cta-type="button"data-cta-position="primary"data-cta-text="Scroll to pricing">View allpricing plans</a>
+    </p>
+  </div>
+
+    {% endblock %}
 
