@@ -9,7 +9,6 @@ import timeago
 from django.conf import settings
 from django.http import JsonResponse
 from django.shortcuts import render
-from django.utils.decorators import method_decorator
 from django.views.generic import RedirectView
 from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_safe
@@ -19,7 +18,6 @@ from bedrock.base.geo import get_country_from_request
 from bedrock.utils import git
 
 
-@method_decorator(never_cache, name='dispatch')
 class GeoRedirectView(RedirectView):
     # dict of country codes to full URLs or URL names
     geo_urls = None
@@ -40,7 +38,6 @@ class GeoRedirectView(RedirectView):
 
 
 @require_safe
-@never_cache
 def geolocate(request):
     """Return the country code provided by our CDN
 

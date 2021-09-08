@@ -185,7 +185,6 @@ UUID_REGEX = re.compile(r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a
                         re.IGNORECASE)
 
 
-@never_cache
 def set_country(request, token):
     """Allow a user to set their country"""
     initial = {}
