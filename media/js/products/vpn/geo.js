@@ -153,7 +153,8 @@ if (typeof window.Mozilla === 'undefined') {
 
     // Updates subscription `plan` URL parameter based on geo-location.
     VPN.setSubscriptionButtons = function() {
-        var subscribeLinks = document.querySelectorAll('.vpn-pricing-variable-plans .js-fxa-product-button');
+        var subscribeLinks = document.querySelectorAll('.vpn-pricing-variable-plans .js-fxa-product-button, .vpn-pricing-offer .js-fxa-product-button'
+        );
 
         if (typeof VPN.countryCode !== 'string') {
             return;
