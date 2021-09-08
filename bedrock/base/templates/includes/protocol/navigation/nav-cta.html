@@ -9,16 +9,18 @@
         {{ download_firefox_thanks(alt_copy=ftl('download-button-download-firefox'), dom_id='protocol-nav-download-firefox', button_class='mzp-t-secondary mzp-t-md', download_location='nav') }}
       {% endif %}
       {% if not hide_nav_get_vpn_button %}
-      <div class="c-navigation-fxa-cta-container">
-        <a
-          href="{{ url('products.vpn.landing') }}#pricing"
-          class="mzp-c-button mzp-t-product mzp-t-secondary mzp-t-md"
-          data-cta-text="Get Mozilla VPN"
-          data-cta-type="button"
-          data-cta-position="navigation"
-        >
-          {{ ftl('navigation-v2-get-mozilla-vpn') }}
-        </a>
+      <div class="c-navigation-vpn-cta-container">
+        {{ vpn_product_referral_link(
+          referral_id='navigation',
+          page_anchor='#pricing',
+          link_text=ftl('navigation-v2-get-mozilla-vpn'),
+          class_name='mzp-t-secondary mzp-t-md',
+          optional_attributes= {
+            'data-cta-text' : 'Get Mozilla VPN',
+            'data-cta-type' : 'button',
+            'data-cta-position' : 'navigation'
+          }
+        ) }}
       </div>
       {% endif %}
     {% else %}

@@ -238,7 +238,7 @@ html.other {
 
 // Global FxA CTA
 .c-navigation {
-    .c-navigation-fxa-cta-container {
+    .c-navigation-vpn-cta-container {
         display: none;
     }
 }
@@ -249,20 +249,8 @@ html.is-firefox .c-navigation {
         display: none;
     }
 
-    .c-navigation-fxa-cta-container {
+    .c-navigation-vpn-cta-container {
         display: block;
-    }
-}
-
-// ... but not on mobile platforms
-html.is-firefox.ios .c-navigation,
-html.is-firefox.android .c-navigation {
-    .mzp-c-button-download-container {
-        display: block;
-    }
-
-    .c-navigation-fxa-cta-container {
-        display: none;
     }
 }
 

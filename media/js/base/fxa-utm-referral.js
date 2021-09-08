@@ -29,6 +29,7 @@ if (typeof window.Mozilla === 'undefined') {
     var fxaParams = ['device_id', 'flow_id', 'flow_begin_time', 'entrypoint_experiment', 'entrypoint_variation'];
     var sameSiteParams = ['source'];
     var acceptedParams = utms.concat(fxaParams, sameSiteParams);
+    var referralCookieID = 'fxa-product-referral-id';
 
     /**
      * Returns the hostname for a given URL.
@@ -38,6 +39,107 @@ if (typeof window.Mozilla === 'undefined') {
     UtmUrl.getHostName = function(url) {
         var matches = url.match(/^https?:\/\/(?:[^/?#]+)(?:[/?#]|$)/i);
         return matches && matches[0];
+    };
+
+    /**
+     * Detect if a given object contains keys that map to utm parameters.
+     * @param {Object} params.
+     * @returns {Boolean}.
+     */
+    UtmUrl.hasUtmParams = function(params) {
+        if (typeof params !== 'object') {
+            return false;
+        }
+
+        for (var param in params){
+            if (Object.prototype.hasOwnProperty.call(params, param)) {
+                if (param.indexOf('utm_') === 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    };
+
+    UtmUrl.getFxALinkReferralData = function(params) {
+        var cookiesEnabled = typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled();
+        var allowedChars = /^[\w/.%-]+$/;
+        var data;
+
+        if (cookiesEnabled && UtmUrl.hasFxALinkReferralCookie()) {
+            var campaign = UtmUrl.getFxALinkReferralCookie();
+
+            if (typeof campaign === 'string' && (allowedChars).test(campaign)) {
+                var utmSource = 'www.mozilla.org';
+
+                if (campaign.indexOf('whatsnew') !== -1) {
+                    utmSource = 'www.mozilla.org-whatsnew';
+                }
+
+                if (campaign.indexOf('welcome') !== -1) {
+                    utmSource = 'www.mozilla.org-welcome';
+                }
+
+                data = {
+                    'entrypoint': utmSource,
+                    'utm_source': utmSource,
+                    'utm_medium': 'referral',
+                    'utm_campaign': campaign,
+                };
+            }
+        }
+
+        if (data && params && typeof params === 'object') {
+            return Object.assign(params, data);
+        } else if (data) {
+            return data;
+        }
+
+        return null;
+    };
+
+    UtmUrl.hasFxALinkReferralCookie = function() {
+        return Mozilla.Cookies.hasItem(referralCookieID);
+    };
+
+    UtmUrl.getFxALinkReferralCookie = function() {
+        return Mozilla.Cookies.getItem(referralCookieID);
+    };
+
+    UtmUrl.setFxALinkReferralCookie = function(id) {
+        var cookiesEnabled = typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled();
+        var dntEnabled = typeof Mozilla.dntEnabled === 'function' && Mozilla.dntEnabled();
+
+        if (id && cookiesEnabled && !dntEnabled && !UtmUrl.hasFxALinkReferralCookie()) {
+            var date = new Date();
+            date.setTime(date.getTime() + (1 * 3600 * 1000)); // expiry in 1 hour.
+            var expires = date.toUTCString();
+
+            Mozilla.Cookies.setItem('fxa-product-referral-id', id, expires, '/');
+        }
+    };
+
+    UtmUrl.onFxALinkReferralClick = function(e) {
+        var newTab = (e.target.target === '_blank' || e.metaKey || e.ctrlKey);
+        var referralId = e.target.getAttribute('data-referral-id');
+
+        if (!newTab) {
+            e.preventDefault();
+        }
+
+        UtmUrl.setFxALinkReferralCookie(referralId);
+
+        if (!newTab) {
+            window.location.href = e.target.href;
+        }
+    };
+
+    UtmUrl.bindFxALinkReferrals = function() {
+        var ctaLinks = document.querySelectorAll('.js-fxa-product-referral-link');
+
+        for (var i = 0; i < ctaLinks.length; i++) {
+            ctaLinks[i].addEventListener('click', UtmUrl.onFxALinkReferralClick, false);
+        }
     };
 
     /**
@@ -171,13 +273,22 @@ if (typeof window.Mozilla === 'undefined') {
         var params = UtmUrl.getAttributionData(urlParams);
         var ctaLinks = document.querySelectorAll('.js-fxa-cta-link, .js-vpn-cta-link');
 
-        // If there are no accepted params on the page URL, do nothing.
-        if (!params) {
+        // feature detect support for object modification.
+        if (typeof Object.assign !== 'function') {
             return;
         }
 
-        // feature detect support for object modification.
-        if (typeof Object.assign !== 'function') {
+        // Track CTA clicks for FxA link referrals.
+        Mozilla.UtmUrl.bindFxALinkReferrals();
+
+        // If there a no utm params on the page URL, then assume this could have been a
+        // same-site page navigation and check to see if there's a referral cookie.
+        if (!UtmUrl.hasUtmParams(params)) {
+            params = UtmUrl.getFxALinkReferralData(params);
+        }
+
+        // If there are is still no referral data, then do nothing.
+        if (!params) {
             return;
         }
 
