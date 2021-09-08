@@ -24,8 +24,8 @@
             var cop = new Mozilla.TrafficCop({
                 id: 'vpn-landing-page-cta-change-experiment',
                 variations: {
-                    'entrypoint_experiment=vpn-landing-page-cta-change&entrypoint_variation=a': 50,
-                    'entrypoint_experiment=vpn-landing-page-cta-change&entrypoint_variation=b': 50,
+                    'entrypoint_experiment=vpn-landing-page-cta-change&entrypoint_variation=a': 10,
+                    'entrypoint_experiment=vpn-landing-page-cta-change&entrypoint_variation=b': 10,
                 }
             });
 
