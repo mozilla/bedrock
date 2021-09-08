@@ -1638,12 +1638,12 @@
       ],
       "name": "vpn-landing-page-cta-change-experiment"
     },
-      {
-        "files": [
-          "js/base/mozilla-lazy-load.js",
-          "js/contentful/lazyload-init.js"
-        ],
-        "name": "c-card"
-      }
+    {
+      "files": [
+        "js/base/mozilla-lazy-load.js",
+        "js/contentful/lazyload-init.js"
+      ],
+      "name": "c-card"
+    }
   ]
 }
