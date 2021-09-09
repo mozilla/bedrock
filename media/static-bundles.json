@@ -1633,6 +1633,13 @@
     },
     {
       "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/products/vpn/cta-change-experiment.js"
+      ],
+      "name": "vpn-landing-page-cta-change-experiment"
+    },
+    {
+      "files": [
         "js/base/mozilla-lazy-load.js",
         "js/contentful/lazyload-init.js"
       ],
