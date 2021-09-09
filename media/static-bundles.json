@@ -1651,16 +1651,6 @@
         "js/products/vpn/cta-change-experiment.js"
       ],
       "name": "vpn-landing-page-cta-change-experiment"
-<<<<<<< HEAD
-=======
-    },
-    {
-      "files": [
-        "js/base/mozilla-lazy-load.js",
-        "js/contentful/lazyload-init.js"
-      ],
-      "name": "c-card"
->>>>>>> aa5f04585 (working on PR comments)
     }
   ]
 }
