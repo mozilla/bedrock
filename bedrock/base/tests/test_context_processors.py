@@ -1,5 +1,5 @@
 from django.template.loader import render_to_string
-from django.test import TestCase, RequestFactory
+from django.test import override_settings, TestCase, RequestFactory
 
 import jinja2
 
@@ -33,3 +33,37 @@ class TestContext(TestCase):
 
     def test_lang_dir(self):
         assert self.render("{{ DIR }}") == 'ltr'
+
+    def test_geo_header(self):
+        """Country code from request header should work"""
+        req = self.factory.get('/', HTTP_CF_IPCOUNTRY='de')
+        assert self.render('{{ country_code }}', req) == 'DE'
+
+    @override_settings(DEV=False)
+    def test_geo_no_header(self):
+        """Country code when header absent should be None"""
+        req = self.factory.get('/')
+        assert self.render('{{ country_code }}', req) == 'None'
+
+    def test_geo_param(self):
+        """Country code from header should be overridden by query param
+           for pre-prod domains."""
+        req = self.factory.get('/', data={'geo': 'fr'}, HTTP_CF_IPCOUNTRY='de')
+        assert self.render('{{ country_code }}', req) == 'FR'
+
+        # should use header if at prod domain
+        req = self.factory.get('/', data={'geo': 'fr'},
+                               HTTP_CF_IPCOUNTRY='de',
+                               HTTP_HOST='www.mozilla.org')
+        assert self.render('{{ country_code }}', req) == 'DE'
+
+    @override_settings(DEV=False)
+    def test_invalid_geo_param(self):
+        req = self.factory.get('/', data={'geo': 'france'}, HTTP_CF_IPCOUNTRY='de')
+        assert self.render('{{ country_code }}', req) == 'DE'
+
+        req = self.factory.get('/', data={'geo': ''}, HTTP_CF_IPCOUNTRY='de')
+        assert self.render('{{ country_code }}', req) == 'DE'
+
+        req = self.factory.get('/', data={'geo': 'france'})
+        assert self.render('{{ country_code }}', req) == 'None'

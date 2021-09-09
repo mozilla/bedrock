@@ -290,11 +290,8 @@ FEED_CACHE = 3900
 # 30 min during dev and 10 min in prod
 DOTLANG_CACHE = config('DOTLANG_CACHE', default='1800' if DEBUG else '600', parser=int)
 
-# Maxmind Database
 # country code for /country-code.json to return in dev mode
 DEV_GEO_COUNTRY_CODE = config('DEV_GEO_COUNTRY_CODE', default='US')
-MAXMIND_DB_PATH = config('MAXMIND_DB_PATH', default=path('geoip', 'GeoIP2-Country.mmdb'))
-MAXMIND_DEFAULT_COUNTRY = config('MAXMIND_DEFAULT_COUNTRY', default=DEV_GEO_COUNTRY_CODE)
 
 # Paths that don't require a locale code in the URL.
 # matches the first url component (e.g. mozilla.org/gameon/)
@@ -610,6 +607,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'bedrock.base.context_processors.i18n',
                 'bedrock.base.context_processors.globals',
+                'bedrock.base.context_processors.geo',
                 'bedrock.mozorg.context_processors.canonical_path',
                 'bedrock.mozorg.context_processors.contrib_numbers',
                 'bedrock.mozorg.context_processors.current_year',
