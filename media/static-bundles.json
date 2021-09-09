@@ -1320,6 +1320,14 @@
       "files": [
         "js/libs/spin.min.js",
         "js/base/send-to-device.js",
+        "js/firefox/browsers/mobile-compare.js"
+      ],
+      "name": "firefox-browsers-mobile-compare"
+    },
+    {
+      "files": [
+        "js/libs/spin.min.js",
+        "js/base/send-to-device.js",
         "js/firefox/mobile/get-app.js"
       ],
       "name": "firefox-mobile-get-app"
@@ -1607,15 +1615,6 @@
         "js/firefox/compare-details.js"
       ],
       "name": "firefox_compare_details"
-    },
-    {
-      "files": [
-        "js/base/send-to-device.js",
-        "js/libs/spin.min.js",
-        "protocol/js/protocol-sticky-promo.js",
-        "js/firefox/sticky-promo.js"
-      ],
-      "name": "firefox_compare_mobile"
     },
     {
       "files": [

@@ -11,7 +11,7 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/components/logos/wordmark-product-firefox';
 @import '../../../protocol/css/components/logos/wordmark-product-focus';
 
-@media #{$mq-md} {
+@media #{$mq-lg} {
     .c-page-header::before {
         background-repeat: no-repeat;
         content: '';
@@ -117,20 +117,6 @@ $image-path: '/media/protocol/img';
         }
     }
 }
-
-
-//* -------------------------------------------------------------------------- */
-
-// not yet recognized as valid by style lint, so we abstract it
-// $mq-reduced-motion: 'screen and (prefers-reduced-motion: reduce)';
-
-// main .mzp-l-content {
-//     max-width: 400px;
-
-//     @media #{$mq-md} {
-//         max-width: $content-max;
-//     }
-// }
 
 
 //* -------------------------------------------------------------------------- */

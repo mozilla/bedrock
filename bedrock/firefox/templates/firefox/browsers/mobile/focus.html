@@ -7,6 +7,8 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
+{% block page_image %}{{ static('protocol/img/logos/firefox/browser/focus/og.png') }}{% endblock %}
+
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 {% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
 {% set android_url = focus_adjust_url('android', 'mobile-focus-page') %}

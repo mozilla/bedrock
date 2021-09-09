@@ -6,19 +6,16 @@
 
 <div class="c-inline-form">
   <h2 class="c-inline-form-title">{{ ftl('mobile-focus-get-firefox-focus') }}</h2>
-{% if LANG in settings.SEND_TO_DEVICE_LOCALES %}
+{% if LANG == 'de' %}
   <p class="c-inline-form-body">{{ ftl('mobile-focus-send-a-download-link-to-your') }}</p>
-  {{ send_to_device(include_title=False, message_set='fx-focus', class='vertical', id='s2d-primary') }}
+  {{ send_to_device(include_title=False, message_set='fx-klar', class='vertical', id='s2d-hero') }}
+{% elif LANG in settings.SEND_TO_DEVICE_LOCALES %}
+  <p class="c-inline-form-body">{{ ftl('mobile-focus-send-a-download-link-to-your') }}</p>
+  {{ send_to_device(include_title=False, message_set='fx-focus', class='vertical', id='s2d-hero') }}
 {% else %}
   <p class="c-inline-form-body">{{ ftl('mobile-focus-scan-the-qr-code-to-get-started') }}</p>
-  {% if LANG == 'de' %}
-  <div class="qr-code-wrapper">
-    <img src="{{ static('img/firefox/browsers/mobile/qr-klar.png') }}" id="focus-qr" width="400" height="400" alt="{{ ftl('mobile-focus-scan-alt-text') }}">
-  </div>
-  {% else %}
   <div class="qr-code-wrapper">
     <img src="{{ static('img/firefox/browsers/mobile/qr-focus.png') }}" id="focus-qr" width="400" height="400" alt="{{ ftl('mobile-focus-scan-alt-text') }}">
   </div>
-  {% endif %}
 {% endif %}
 </div>

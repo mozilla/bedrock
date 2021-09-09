@@ -401,7 +401,7 @@
 
   {% if show_send_to_device %}
     <p>{{ ftl('mobile-compare-send-a-download-link-to-your') }}</p>
-    {{ send_to_device(include_title=False, message_set='fx-mobile-download-desktop', class='vertical') }}
+    {{ send_to_device(include_title=False, message_set='fx-mobile-download-desktop', class='vertical', id='s2d-footer') }}
   {% else %}
     <p>{{ ftl('mobile-compare-scan-the-qr-code-to-get-started') }}</p>
     <div class="qr-code-wrapper">
@@ -420,5 +420,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('firefox_compare_mobile') }}
+  {{ js_bundle('firefox-browsers-mobile-compare') }}
 {% endblock %}

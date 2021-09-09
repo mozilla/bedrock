@@ -10,10 +10,10 @@ if (typeof window.Mozilla === 'undefined') {
 (function(Mozilla) {
     'use strict';
 
-    var sendToDevice = document.getElementById('s2d-hero');
+    var sendToDevice = document.getElementById('s2d-footer');
 
     if (sendToDevice) {
-        var form = new Mozilla.SendToDevice('s2d-hero');
+        var form = new Mozilla.SendToDevice('s2d-footer');
         form.init();
     }
 

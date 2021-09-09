@@ -5,7 +5,7 @@
 ### URL: https://www-dev.allizom.org/firefox/browsers/mobile/compare/
 
 # HTML page title
-mobile-compare-5-of-the-best = 5 of the best mobile Browsers in direct comparison
+mobile-compare-5-of-the-best = 5 of the best mobile browsers in direct comparison
 
 # HTML description
 mobile-compare-who-makes-the = Who makes the best mobile browser? We’ll compare mobile versions of { -brand-name-firefox }, { -brand-name-chrome }, { -brand-name-edge }, { -brand-name-safari }, and { -brand-name-opera } to find out.
@@ -35,9 +35,6 @@ mobile-compare-the-good-news = The good news for { -brand-name-iphone } users is
 mobile-compare-conclusion = Conclusion
 mobile-compare-based-on-the = Based on the criteria we outlined — privacy, features, and syncing — there’s really only one mobile browser that satisfies all three, and that’s { -brand-name-firefox }. While similar in the features and syncing categories, { -brand-name-firefox } stands apart in privacy, because we feel it’s the essential component that allows you to just enjoy the internet — exactly the way you like it.
 mobile-compare-our-recommendations-aside = Our recommendations aside, finding the browser that’s right for you will always depend on your individual needs and what you value most as you navigate online.
-
-
-
 
 mobile-compare-search-engine-options = Search engine options
 mobile-compare-text-to-speech = Text to speech
