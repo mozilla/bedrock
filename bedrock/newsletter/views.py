@@ -188,7 +188,7 @@ UUID_REGEX = re.compile(r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a
 def set_country(request, token):
     """Allow a user to set their country"""
     initial = {}
-    countrycode, _ = get_country_from_request(request)
+    countrycode = get_country_from_request(request)
     if countrycode:
         initial['country'] = countrycode.lower()
 

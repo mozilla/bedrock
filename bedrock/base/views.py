@@ -18,6 +18,26 @@ from bedrock.base.geo import get_country_from_request
 from bedrock.utils import git
 
 
+class GeoTemplateView(l10n_utils.L10nTemplateView):
+    """Use the template appropriate to the request country
+
+    Set the `geo_template_names` variable to a mapping of country codes to template names.
+
+    If the requesting country isn't in the list it falls back to the `template_name`
+    setting like the normal TemplateView class.
+    """
+    # dict of country codes to template names
+    geo_template_names = None
+
+    def get_template_names(self):
+        country_code = get_country_from_request(self.request)
+        template = self.geo_template_names.get(country_code)
+        if template:
+            return [template]
+
+        return super().get_template_names()
+
+
 class GeoRedirectView(RedirectView):
     # dict of country codes to full URLs or URL names
     geo_urls = None
@@ -27,7 +47,7 @@ class GeoRedirectView(RedirectView):
     query_string = True
 
     def get_redirect_url(self, *args, **kwargs):
-        country_code, _ = get_country_from_request(self.request)
+        country_code = get_country_from_request(self.request)
         url = self.geo_urls.get(country_code, self.default_url)
         if re.match(r'https?://', url, re.I):
             self.url = url
@@ -47,7 +67,7 @@ def geolocate(request):
 
     https://mozilla.github.io/ichnaea/api/region.html
     """
-    country_code, source = get_country_from_request(request)
+    country_code = get_country_from_request(request)
     if country_code is None:
         return JsonResponse({
             "error": {
@@ -63,7 +83,6 @@ def geolocate(request):
 
     return JsonResponse({
         'country_code': country_code,
-        'data_source': source,
     })
 
 
@@ -117,14 +136,6 @@ def get_extra_server_info():
         db_info['file_url'] = get_db_file_url(db_info['file_name'])
         for key, value in db_info.items():
             server_info['db_%s' % key] = value
-
-    # Maxmind DB File Info
-    try:
-        geo_last_mod = os.path.getmtime(settings.MAXMIND_DB_PATH)
-    except FileNotFoundError:
-        pass
-    else:
-        server_info['geo_last_update'] = timeago.format(datetime.fromtimestamp(geo_last_mod))
 
     return server_info
 

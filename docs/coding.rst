@@ -303,9 +303,7 @@ Geo Redirect View
 
 We sometimes need to have a special page variation for people visiting from certain
 countries. To make this easier we have a redirect view class that will allow you to
-define URLs per country as well as a default for everyone else. This redirector URL
-must only be a redirector since it must be uncachable by our CDN so that all visitors
-will hit the server and see the correct page for their location.
+define URLs per country as well as a default for everyone else.
 
 .. code-block:: python
 
@@ -329,6 +327,61 @@ and destination URLs use the same URL parameter names it will be preserved in th
 So `/firefox/70.0beta/whatsnew/` would redirect to `/firefox/70.0beta/whatsnew/canada/` for example.
 The redirector will also preserve query parameters by default. You can turn that off by
 setting the `query_string = False` class variable.
+
+Geo Template View
+^^^^^^^^^^^^^^^^^
+
+Now that we have our CDN configured properly, we can also just swap out templates
+per request country. This is very similar to the above, but it will simply use
+the proper template for the country from which the request originated.
+
+.. code-block:: python
+
+    from bedrock.base.views import GeoTemplateView
+
+    class CanadaIsSpecialView(GeoTemplateView):
+        geo_template_names = {
+            'CA': 'mozorg/canada-is-special.html',
+        }
+        template_name = 'mozorg/everywhere-else-is-also-good.html'
+
+For testing purposes while you're developing or on any deployment that is not
+accessed via the production domain (www.mozilla.org) you can append your URL
+with a ``geo`` query param (e.g. ``/firefox/?geo=DE``) and that will take
+precedence over the country from the request header.
+
+Other Geo Stuff
+^^^^^^^^^^^^^^^
+
+There are a couple of other tools at your disposal if you need to change things
+depending on the location of the user. You can use the
+``bedrock.base.geo.get_country_from_request`` function in a view and it will
+return the country code for the request (either from the CDN or the query param,
+just like above).
+
+.. code-block:: python
+
+    from bedrock.base.geo import get_country_from_request
+
+    def dude_view(request):
+        country = get_country_from_request(request)
+        if country == 'US':
+            # do a thing for the US
+        else:
+            # do the default thing
+
+The other convenience available is that the country code, either from the CDN
+or the query param, is avilable in any template in the ``country_code`` variable.
+This allows you to change anything about how the template renders based on the
+location of the user.
+
+.. code-block:: jinja
+
+    {% if country_code == 'US' %}
+        <h1>GO MURICA!</h1>
+    {% else %}
+        <h1>Yay World!</h1>
+    {% endif %}
 
 Coding Style Guides
 -------------------
