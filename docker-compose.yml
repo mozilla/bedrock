@@ -82,6 +82,8 @@ services:
   release-local:
     image: mozmeao/bedrock:${GIT_COMMIT:-latest}
     env_file: .env
+    environment:
+      RUN_SUPERVISOR: "true"
     ports:
       - "8000:8000"
     volumes:
@@ -95,6 +97,15 @@ services:
       - ./wsgi/:/app/wsgi:delegated
       - ./locale/:/app/locale:delegated
       - ./l10n/:/app/l10n:delegated
+
+  docs:
+    image: mozmeao/bedrock_test:${GIT_COMMIT:-latest}
+    platform: linux/amd64
+    command: sphinx-autobuild "docs" "docs/_build/html" --host 0.0.0.0 --port 8100
+    ports:
+      - "8100:8100"
+    volumes:
+      - ./docs/:/app/docs:delegated
 
   builder:
     build:

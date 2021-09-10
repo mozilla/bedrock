@@ -22,8 +22,9 @@ help:
 	@echo "  test          - run tests against local files"
 	@echo "  test-image    - run tests against files in docker image"
 	@echo "  test-cdn      - run CDN tests against TEST_DOMAIN"
-	@echo "  docs          - generate Sphinx HTML documentation"
+	@echo "  docs          - generate Sphinx HTML documentation with server and live reload using Docker"
 	@echo "  livedocs      - generate Sphinx HTML documentation with server and live reload"
+	@echo "  build-docs    - generate Sphinx HTML documentation using Docker"
 	@echo "  build-ci      - build docker images for use in our CI pipeline"
 	@echo "  test-ci       - run tests against files in docker image built by CI"
 
@@ -106,6 +107,9 @@ test-image: .docker-build
 	${DC} run test-image
 
 docs: .docker-build-pull
+	${DC} up docs
+
+build-docs: .docker-build-pull
 	${DC} run app make -C docs/ clean html
 
 livedocs:
@@ -129,4 +133,4 @@ build-ci: .docker-build-pull
 test-ci: .docker-build-ci
 	${DC_CI} run test-image
 
-.PHONY: all clean build pull docs livedocs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod build-prod test-cdn
+.PHONY: all clean build pull docs livedocs build-docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod build-prod test-cdn
