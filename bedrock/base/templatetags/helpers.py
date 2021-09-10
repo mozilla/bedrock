@@ -1,4 +1,5 @@
 import datetime
+import logging
 import urllib.parse
 
 from django.conf import settings
@@ -15,6 +16,7 @@ from bedrock.utils import expand_locale_groups
 
 CSS_TEMPLATE = '<link href="%s" rel="stylesheet" type="text/css" />'
 JS_TEMPLATE = '<script type="text/javascript" src="%s" charset="utf-8"></script>'
+log = logging.getLogger(__name__)
 
 
 @library.global_function
@@ -107,7 +109,11 @@ def static(path):
     if settings.DEBUG and path.startswith('/'):
         raise ValueError('Static paths must not begin with a slash')
 
-    return staticfiles_storage.url(path)
+    try:
+        return staticfiles_storage.url(path)
+    except ValueError as e:
+        log.warning(str(e))
+        return path
 
 
 @library.global_function
