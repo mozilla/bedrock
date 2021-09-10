@@ -11,4 +11,8 @@ JavaScript Libraries
 Mozilla Image Lazy Loader
 -------------------------
 
-:ref:`mozilla-lazy-load.js<mozillalazyload>`
+
+.. toctree::
+   :maxdepth: 2
+
+   mozilla-lazy-load

@@ -32,6 +32,7 @@ Contents
    redirects
    javascript-libs
    newsletters
+   contentful
    content-cards
    banners
    uitour
