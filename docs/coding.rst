@@ -315,6 +315,7 @@ define URLs per country as well as a default for everyone else.
         }
         default_url = 'app.everyone-else'
 
+
 In this example people in Canada would go to the URL that Django returns using `reverse()`
 (i.e. the name of the URL) and everyone else would go to the `app.everyone-else` URL. You
 may also use full URLs instead of URL names if you want to. It will look for strings that

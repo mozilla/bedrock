@@ -4,9 +4,9 @@
 
 .. _contentful:
 
-===========
+======================
 Contentful Integration
-===========
+======================
 
 Overview
 --------
@@ -28,7 +28,7 @@ correspond to components in our design system. The smallest create little bits o
 like buttons. The larger ones group together several entries for the smaller components
 into a bigger component or an entire page.
 
-For example: The _Page: General_ model allows editors to include a hero entry, body
+For example: The *Page: General* model allows editors to include a hero entry, body
 entry, and callout entry. The callout layout entry, in turn, includes a CTA
 entry.
 
@@ -173,7 +173,7 @@ display image to a regular card entry. The large card must still be included in 
 Layout: 5 Cards.
 
 ✏️ Component
-~~~~~~~~~~~
+~~~~~~~~~~~~
 
 We're using this term pretty loosely. It corresponds roughly to a Protocol atom,
 molecule, or organism.
@@ -195,28 +195,28 @@ however, they don't have a specific layout wrapper either. They can go in any en
 has a body field that is configured as rich text (picto, split, multi column text...)
 
 Adding a new ✏️ Component
-~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Example: Picto
 
-#. Create the content model in Contentful
-_Follow the naming conventions._
-You may need two models if you are configuring layout separately.
-#. Add the new content model to the list of allowed references in other content models
-(ATM this is just the "content" reference field on pages).
-#. In bedrock create CSS and JS entries in static-bundles for the new component.
-#. In api.py write a def for the component
-#. In api.py add the component name, def, and bundles to the CONTENT_TYPE_MAP
-#. Find or add the macro to macros-protocol
-#. Import the macro into all.html and add a call to it in the entries loop
+#. Create the content model in Contentful.
 
+   * *Follow the naming conventions*.
+   * You may need two models if you are configuring layout separately.
+
+#. Add the new content model to the list of allowed references in other content models (ATM this is just the "content" reference field on pages).
+#. In bedrock create CSS and JS entries in static-bundles for the new component.
+#. In api.py write a def for the component.
+#. In api.py add the component name, def, and bundles to the CONTENT_TYPE_MAP.
+#. Find or add the macro to macros-protocol.
+#. Import the macro into all.html and add a call to it in the entries loop.
 
 .. note::
 
-    Tips:
-    - can't define defaults in Contentful, so set those in your Python def
-    - for any optional fields make sure you check the field exists before referencing the
-    content
+  Tips:
+
+  * can't define defaults in Contentful, so set those in your Python def.
+  * for any optional fields make sure you check the field exists before referencing the content.
 
 
 Adding a new ♟ Component
@@ -224,19 +224,20 @@ Adding a new ♟ Component
 
 Example: Wordmark.
 
-#. Create the content model in Contentful
-_Follow the naming conventions._
-#. Add the new content model to rich text fields (like split and text)
-#. In bedrock include the CSS in the Sass file for any component which may use it.
-(yeah, this is not ideal, hopefully we will have better control in the future)
-#. Add a def to api.py to render the piece (like _make_wordmark)
+#. Create the content model in Contentful.
+
+   * *Follow the naming conventions*.
+
+#. Add the new content model to rich text fields (like split and text).
+#. In bedrock include the CSS in the Sass file for any component which may use it (yeah, this is not ideal, hopefully we will have better control in the future).
+#. Add a def to api.py to render the piece (like ``_make_wordmark``).
 
 .. note::
 
-    Tips:
-    - can't define defaults in Contentful, so set those in your Python def
-    - for any optional fields make sure you check the field exists before referencing the
-    content
+  Tips:
+
+  * can't define defaults in Contentful, so set those in your Python def.
+  * for any optional fields make sure you check the field exists before referencing the content.
 
 Adding a rich text field in a component
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

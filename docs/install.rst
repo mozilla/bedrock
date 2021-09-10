@@ -233,8 +233,8 @@ image first:
 .. code-block:: bash
 
     $ make build-prod run-prod
-Localization
 
+Localization
 ============
 
 Localization (or L10n) files were fetched by the `bootstrap.sh` command your ran earlier and are
