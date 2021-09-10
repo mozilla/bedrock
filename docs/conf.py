@@ -25,7 +25,15 @@ import sys, os
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.doctest', 'sphinx.ext.intersphinx', 'sphinx.ext.todo', 'sphinx.ext.coverage', 'sphinx_copybutton']
+extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.doctest',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.todo',
+    'sphinx.ext.coverage',
+    'sphinx_copybutton',
+    'myst_parser',
+]
 
 # Remove prompt for copy button clipboard
 copybutton_prompt_text = "$ "
@@ -224,13 +232,5 @@ man_pages = [
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'http://docs.python.org/': None}
 
-# Markdown support
-
-from recommonmark.parser import CommonMarkParser
-
 # The suffix of source filenames.
 source_suffix = ['.rst', '.md']
-
-source_parsers = {
-	'.md': CommonMarkParser,
-}
