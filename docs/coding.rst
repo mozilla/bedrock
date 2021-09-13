@@ -413,3 +413,439 @@ Bedrock includes an `.editorconfig` file in the root directory that you can
 use with your code editor to help maintain consistent coding styles. Please
 see `editorconfig.org <http://editorconfig.org/>`_. for a list of supported
 editors and available plugins.
+
+Working with Protocol
+---------------------
+
+Bedrock uses the `Protocol Design System <https://protocol.mozilla.org/>`_ to quickly produce consistent, stable components.
+
+When we find we are frequently re-using code for a particular Protocol component (i.e.
+`Split <https://protocol.mozilla.org/patterns/organisms/split.html>`_), we convert it to a
+`macro template <https://github.com/mozilla/bedrock/blob/master/bedrock/base/templates
+/macros-protocol.html/>`_ with parameters for customization.
+
+You can find parameter definitions for the available Protocol macros below.
+
+Picto
+^^^^^
+
+- title
+    String indicating heading text (usually a translation id wrapped in ftl function)
+
+    Default: None 
+
+    Example: ``title=ftl('misinformation-why-trust-firefox')``
+
+- heading_level
+    Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling.
+
+    Default: 3
+
+    Example: ``heading_level=2``
+
+- body
+    A boolean attribute. If true, it will show the contents of the card, if false, it will hide the contents.
+
+    Default: False
+
+    Example: ``body=True``
+
+- image_url
+    image location to be used. Start it off with ‘img/…’.
+
+    Default: None
+
+    Example: ``image_url='img/icons/mountain-purple.svg'``
+
+- base_el
+    The element the content of the picto will be read as in HTML. For example, if the Picto macro is wrapped in a ul tag, the base_el would be an li tag.
+
+    Default: div
+
+    Example: ``base_el='li'``
+
+- class
+    String adding class(es) to the base el tag.
+
+    Default: None
+
+    Example: ``class='trust'``
+
+- image_width 	
+    Number indicating width of image.
+
+    Default: 64
+
+    Example: ``image_width='153px'``
+
+- include_highres_image 
+    Boolean that determines whether the image can also appear in high res.
+
+    Default: False
+
+    Example: ``include_highres_image=True``
+
+- l10n_image
+    Boolean to indicate if image has translatable text.
+
+    Default: False
+
+    Example: ``l10n_image=True``
+
+
+- lazy_loading
+    Boolean to provide “lazy” value for “loading” attribute. This will be “eager” by default. Lazy loading defers fetching of images to a browser decision based on user scroll and connection.
+
+    Default: False
+
+    Example: ``lazy_loading=True``
+
+
+
+Call out
+^^^^^^^^
+
+- title
+    **Required**. String indicating heading text (usually a translation id wrapped in ftl function).
+
+    Default: N/A
+
+    Example: ``title=ftl('firefox-privacy-hub-read-the-privacy-notice-for')``
+
+- desc
+    String indicating paragraph text (usually a translation id wrapped in ftl function).
+
+    Default: None 
+
+    Example: ``desc=ftl('firefox-channel-test-beta-versions-of-firefox-ios')``
+
+- class
+    String adding class(es) to the section tag.
+
+    Default: None 
+
+    Example: ``class='mzp-t-firefox ' + product_class``   
+
+- include_cta 
+    Boolean indicating whether or not to include the body of the macro call (usually a mix of text and html).
+
+    Default: None 
+
+    Example: ``include_cta=True`` 
+
+- heading_level
+    Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling.
+
+    Default: 2
+
+    Example: ``heading_level=1``            
+
+
+Split
+^^^^^
+
+- block_id
+    String providing id to the section tag (usually if it needs to be used as an in-page link).
+
+    Default: None 
+
+    Example: ``id='nextgen``
+
+- base_el
+    String for block HTML tag not required.
+
+    Default: section
+
+    Example: ``base_el='aside'``
+
+- block_class
+    String providing class(es) to the section tag.
+
+    Default: None 
+
+    Example: ``block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md``
+
+- theme_class
+    String providing theme class(es) to a container div tag inside the section.
+
+    Default: None 
+
+    Example: ``theme_class='mzp-t-dark'``   
+
+- body_class
+    String providing class(es) to the body (text content) div inside the section.
+
+    Default: None 
+
+    Example: ``Not currently in use`` 
+
+- image_url
+    Path to image location.
+
+    Default: None 
+
+    Example: ``image_url=’img/firefox/accounts/trailhead/value-respect.jpg’`` 
+
+- media_class
+    String providing class(es) to the media div inside the section.
+
+    Default: None 
+
+    Example: ``media_class='mzp-l-split-h-center'``
+
+- include_highres_image
+    Boolean that determines whether the image can also appear in high res.
+
+    Default: False
+
+    Example: ``include_highres_image=True``   
+
+- l10n_image 
+    Boolean to indicate if image has translatable text.
+
+    Default: False
+
+    Example: ``l10n_image=True`` 
+
+- image_alt
+    String providing alt text to the image.
+
+    Default: '' 
+
+    Example: ``Not currently in use``   
+
+- media_after  
+    Boolean to determine if image appears before or after text when stacked on mobile size screens.
+
+    Default: False
+
+    Example: ``media_after=True`` 
+
+- media_include
+    Path to video media.
+
+    Default: None 
+
+    Example: ``media_include='firefox/facebookcontainer/includes/video.html'`` 
+
+
+Billboard
+^^^^^^^^^
+
+- title
+    **Required**. String indicating heading text (usually a translation id wrapped in ftl function).
+
+    Default: N/A
+
+    Example: ``title=ftl('about-the-mozilla-manifesto')``   
+
+- ga_title
+    **Required**. String providing value for data-link-name attribute on cta.
+
+    Default: N/A
+
+    Example: ``ga_title='The Mozilla Manifesto'`` 
+
+- desc 
+    **Required**.String indicating paragraph text (usually a translation id wrapped in ftl function).
+
+    Default: N/A
+
+    Example: ``desc=ftl('about-the-principles-we-wrote-in')`` 
+
+- link_cta
+    **Required**. String indicating link text (usually a translation id wrapped in an ftl function). 
+
+    Default: N/A
+
+    Example: ``link_cta=ftl('about-read-the-manifesto')``
+
+- link_url
+    **Required**. String or url helper function provides href value for cta link. 
+
+    Default: N/A
+
+    Example: ``link_url=url('mozorg.about.manifesto')``   
+
+- image_url 
+    **Required**. Path to image location.
+
+    Default: N/A
+
+    Example: ``image_url='img/home/2018/billboard-healthy-internet.png'`` 
+
+- include_highres_image 
+    Boolean that determines whether the image can also appear in high res.
+
+    Default: False
+
+    Example: ``include_highres_image=True``   
+
+- reverse  
+    Uses default layout: mzp-l-billboard-rightReverse will switch to billboard (text) left.	
+
+    Default: False
+
+    Example: ``reverse=True`` 
+
+- heading_level 
+    Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling.
+
+    Default: 2	
+
+    Example: ``heading_level=1`` 
+
+
+Feature Card
+^^^^^^^^^^^^
+
+- title
+    String indicating heading text (usually a translation id wrapped in ftl function).
+
+    Default: None
+
+    Example: ``title=ftl('firefox-home-firefox-browser')``
+
+- ga_title 
+    String used as an identifying name on a link for google analytics. Only used if link_url and link_cta are provided as well.
+
+    Default: None
+
+    Example: ``ga_title='Firefox Windows'``
+
+- image_url
+    Path to image location.
+
+    Default: N/A
+
+    Example: ``image_url=’img/firefox/accounts/trailhead/value-respect.jpg’`` 
+
+- class
+    String adding class(es) to the section tag.
+
+    Default: None
+
+    Example: ``class=’mzp-l-card-feature-left-half t-mozvpn’``   
+
+- link_url
+    String or url helper function provides href value for cta link. Only used if link_cta is provided as well.
+
+    Default: None
+
+    Example: ``link_url=url('firefox.privacy.index')`` 
+
+- link_cta
+    String indicating link text (usually a translation id wrapped in an ftl function). Only used if link_url is provided as well.
+
+    Default: None
+
+    Example: ``link_cta=ftl('ui-learn-more')``
+
+- include_highres_image
+    Boolean that determines whether the image can also appear in high res.
+
+    Default: False
+
+    Example: ``include_highres_image=True``   
+
+- l10n_image 
+    Boolean to indicate if image has translatable text.
+
+    Default: False
+
+    Example: ``l10n_image=True`` 
+
+- aspect_ratio
+    aspect_ratio 	String with an mzp class name indicating desired aspect ratio (adds class to section tag).
+
+    Default: False
+
+    Example: ``aspect_ratio='mzp-has-aspect-3-2'``   
+
+- heading_level 
+    Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling.
+
+    Default: 2
+
+    Example: ``heading_level=3`` 
+
+- media_after 	
+    Boolean to determine if image appears before or after text when stacked on mobile size screens.
+
+    Default: False
+
+    Example: ``media_after=True`` 
+
+
+Card
+^^^^
+
+- youtube_id
+    String indicating the Youtube ID found at the end of a Youtube video URL. Used when we are embedding a video to the card rather than an image.
+
+    Default: N/A
+
+    Example: ``youtube_id='aHpCLDQ_2ns'``
+
+- title
+    **Required**. String indicating heading text (usually a translation id wrapped in ftl function).
+
+    Default: N/A
+
+    Example: ``title=ftl('about-the-mozilla-manifesto')``
+
+- ga_title 
+    **Required**. String providing value for data-link-name attribute on cta.
+
+    Default: N/A
+
+    Example: ``ga_title='The Mozilla Manifesto'``
+
+- desc
+    **Required**. String indicating paragraph text (usually a translation id wrapped in ftl function).
+
+    Default: N/A
+
+    Example: ``desc=ftl('about-the-principles-we-wrote-in')`` 
+
+- aspect_ratio
+    String indicating size/aspect ratio of the card (make sure to have it even if it’s in a defined Card Layout.	
+
+    Default: N/A
+
+    Example: ``aspect_ratio=’mzp-has-aspect-16-9’``   
+
+- link_url
+    **Required**. String or url helper function provides href value for cta link.
+
+    Default: N/A
+
+    Example: ``link_url=url('mozorg.about.manifesto')`` 
+
+- image_url 
+    **Required**. Path to image location.
+
+    Default: N/A
+
+    Example: ``image_url='img/home/2018/billboard-healthy-internet.png'``
+
+- include_highres_image
+    **Required**. Boolean that determines whether the image can also appear in high res.
+
+    Default: N/A
+
+    Example: ``include_highres_image=True``   
+
+- l10n_image 
+    Boolean to indicate if image has translatable text.
+
+    Default: False
+
+    Example: ``l10n_image=True`` 
+
+- heading_level
+    Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling.
+
+    Default: 3
+
+    Example: ``heading_level=2`` 
