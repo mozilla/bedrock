@@ -8,8 +8,16 @@
     margin-top: $layout-sm;
 }
 
+.c-list-heading {
+    @include text-title-2xs;
+    margin-top: $layout-sm;
+}
+
 .c-list-content {
-    margin-left: $layout-xs;
+    @include bidi((
+        (margin-left, $layout-xs, 0),
+        (margin-right, 0, $layout-xs)
+    ));
 }
 
 .vpn-cta {
