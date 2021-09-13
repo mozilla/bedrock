@@ -22,7 +22,13 @@
   ) }}
 
 {% elif action == 'Get Pocket' %}
+
     {% set referral = '?utm_source=' + utm_source + '&utm_medium=referral&utm_campaign=' + utm_campaign %}
     <a href="https://getpocket.com/{{ referral|safe }}" class="mzp-c-button {{ button_class }}" rel="external noopener" data-cta-type="link" data-cta-text="{{ cta_text }}">{{ label }}</a>
+
+{% elif action == 'Get Mozilla VPN' %}
+
+  <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button {{ button_class }}" data-cta-text="{{ cta_text }}" data-cta-type="link" data-cta-position="{{ location }}">{{ label }}</a>
+
 {% endif %}
 

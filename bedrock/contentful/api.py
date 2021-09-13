@@ -173,15 +173,17 @@ def _make_wordmark(entry):
 
 def _make_cta_button(entry):
     fields = entry.fields()
+    action = fields.get('action')
 
     button_class = [
-        'mzp-t-product',  # TODO, only add on Firefox themed pages
+        # TODO, only add on Firefox themed pages
+        'mzp-t-product' if action != 'Get Mozilla VPN' else '',
         'mzp-t-secondary' if fields.get('theme') == 'Secondary' else '',
         f'mzp-t-{WIDTHS.get(fields.get("size"), "")}' if fields.get('size') else '',
     ]
 
     data = {
-        'action': fields.get('action'),
+        'action': action,
         'label': fields.get('label'),
         'button_class': ' '.join(button_class),
         # TODO
