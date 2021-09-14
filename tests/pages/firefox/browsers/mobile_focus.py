@@ -5,7 +5,6 @@
 from selenium.webdriver.common.by import By
 
 from pages.base import BasePage
-from pages.regions.send_to_device import SendToDevice
 
 
 class FirefoxMobileFocusPage(BasePage):
@@ -14,10 +13,6 @@ class FirefoxMobileFocusPage(BasePage):
 
     _get_firefox_header_button_locator = (By.ID, 'get-firefox')
     _get_firefox_qr_code_locator = (By.ID, 'focus-qr')
-
-    @property
-    def send_to_device(self):
-        return SendToDevice(self)
 
     @property
     def is_firefox_qr_code_displayed(self):
