@@ -544,7 +544,7 @@ class WhatsnewView(L10nTemplateView):
         'firefox/whatsnew/whatsnew-fx91-de.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx92-en.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx92-de.html': ['firefox/whatsnew/whatsnew'],
-        'firefox/whatsnew/whatsnew-fx92-fr.html': ['firefox/whatsnew/whatsnew-account', 'firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx92-fr.html': ['firefox/whatsnew/whatsnew-fx90.ftl', 'firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx92-vpn-en.html': ['firefox/whatsnew/whatsnew', 'products/vpn/shared'],
         'firefox/whatsnew/whatsnew-fx92-vpn-fr.html': ['firefox/whatsnew/whatsnew', 'products/vpn/shared'],
     }
@@ -685,7 +685,7 @@ class WhatsNewEnglishView(WhatsnewView):
 class WhatsNewFranceView(WhatsnewView):
     def get_template_names(self):
         template = super().get_template_names()
-        if switch('firefox-whatsnew-92-vpn-pricing') and template == ['firefox/whatsnew/whatsnew-fx92-fr.html']:
+        if switch('firefox-whatsnew-92-vpn-pricing-fr') and template == ['firefox/whatsnew/whatsnew-fx92-fr.html']:
             template = ['firefox/whatsnew/whatsnew-fx92-vpn-fr.html']
 
         return template
