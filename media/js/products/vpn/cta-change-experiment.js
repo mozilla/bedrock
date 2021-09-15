@@ -34,7 +34,7 @@
     };
 
     // Avoid entering automated tests into random experiments.
-    if (href.indexOf('automation=true') === -1) {
+    if (href.indexOf('automation=true') === -1 && href.indexOf('utm_medium=cpc') === -1) {
         initTrafficCop();
     }
 
