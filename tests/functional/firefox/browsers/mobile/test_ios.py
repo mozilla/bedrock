@@ -28,6 +28,7 @@ def test_send_to_device_failure(base_url, selenium):
     assert send_to_device.is_form_error_displayed
 
 
+@pytest.mark.skip(reason='Test requires loclized page to be in production')
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_get_firefox_qr_code(base_url, selenium):
