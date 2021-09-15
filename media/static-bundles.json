@@ -264,6 +264,12 @@
     },
     {
       "files": [
+        "css/base/banners/mobile-compare.scss"
+      ],
+      "name": "mobile-compare-banner"
+    },
+    {
+      "files": [
         "css/protocol/common-old-ie.scss"
       ],
       "name": "common-old-ie"
@@ -634,6 +640,13 @@
     {
       "files": [
         "css/protocol/components/send-to-device.scss",
+        "css/firefox/browsers/mobile.scss"
+      ],
+      "name": "firefox-browsers-mobile"
+    },
+    {
+      "files": [
+        "css/protocol/components/send-to-device.scss",
         "css/firefox/mobile/get-app.scss"
       ],
       "name": "firefox-mobile-get-app"
@@ -756,6 +769,7 @@
     },
     {
       "files": [
+        "css/protocol/components/send-to-device.scss",
         "css/firefox/sticky-promo.scss",
         "css/firefox/compare/compare.scss"
       ],
@@ -1308,6 +1322,22 @@
       "files": [
         "js/libs/spin.min.js",
         "js/base/send-to-device.js",
+        "js/firefox/browsers/mobile.js"
+      ],
+      "name": "firefox-browsers-mobile"
+    },
+    {
+      "files": [
+        "js/libs/spin.min.js",
+        "js/base/send-to-device.js",
+        "js/firefox/browsers/mobile-compare.js"
+      ],
+      "name": "firefox-browsers-mobile-compare"
+    },
+    {
+      "files": [
+        "js/libs/spin.min.js",
+        "js/base/send-to-device.js",
         "js/firefox/mobile/get-app.js"
       ],
       "name": "firefox-mobile-get-app"
@@ -1580,6 +1610,13 @@
         "js/newsletter/confirm.js"
       ],
       "name": "newsletter-confirm"
+    },
+    {
+      "files": [
+        "js/base/banners/mozilla-banner.js",
+        "js/base/banners/mobile-compare-banner-init.js"
+      ],
+      "name": "mobile_compare_banner"
     },
     {
       "files": [

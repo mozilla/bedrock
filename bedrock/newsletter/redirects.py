@@ -6,5 +6,5 @@ redirectpatterns = (
     redirect(r'^newsletter/about_mobile(?:/(?:index\.html)?)?$', 'newsletter.subscribe'),
     redirect(r'^newsletter/about_mozilla(?:/(?:index\.html)?)?$', 'mozorg.contribute'),
     redirect(r'^newsletter/new(?:/(?:index\.html)?)?$', 'newsletter.subscribe'),
-    redirect(r'^newsletter/ios(?:/(?:index\.html)?)?$', 'firefox.mobile.index'),
+    redirect(r'^newsletter/ios(?:/(?:index\.html)?)?$', 'firefox.browsers.mobile.ios'),
 )

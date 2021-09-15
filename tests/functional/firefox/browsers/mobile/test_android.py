@@ -4,13 +4,13 @@
 
 import pytest
 
-from pages.firefox.mobile import FirefoxMobilePage
+from pages.firefox.browsers.mobile_android import FirefoxMobileAndroidPage
 
 
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_send_to_device_success(base_url, selenium):
-    page = FirefoxMobilePage(selenium, base_url).open()
+    page = FirefoxMobileAndroidPage(selenium, base_url).open()
     assert not page.is_firefox_qr_code_displayed
     send_to_device = page.send_to_device
     send_to_device.type_email('success@example.com')
@@ -21,7 +21,7 @@ def test_send_to_device_success(base_url, selenium):
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_send_to_device_failure(base_url, selenium):
-    page = FirefoxMobilePage(selenium, base_url).open()
+    page = FirefoxMobileAndroidPage(selenium, base_url).open()
     send_to_device = page.send_to_device
     send_to_device.type_email('invalid@email')
     send_to_device.click_send(expected_result='error')
@@ -31,6 +31,6 @@ def test_send_to_device_failure(base_url, selenium):
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_get_firefox_qr_code(base_url, selenium):
-    page = FirefoxMobilePage(selenium, base_url, locale='sv-SE').open()
+    page = FirefoxMobileAndroidPage(selenium, base_url, locale='sv-SE').open()
     assert not page.send_to_device.is_displayed
     assert page.is_firefox_qr_code_displayed

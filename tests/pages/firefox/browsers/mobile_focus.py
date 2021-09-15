@@ -5,19 +5,14 @@
 from selenium.webdriver.common.by import By
 
 from pages.base import BasePage
-from pages.regions.send_to_device import SendToDevice
 
 
-class FirefoxMobilePage(BasePage):
+class FirefoxMobileFocusPage(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/firefox/mobile/'
+    _URL_TEMPLATE = '/{locale}/firefox/browsers/mobile/focus/'
 
     _get_firefox_header_button_locator = (By.ID, 'get-firefox')
-    _get_firefox_qr_code_locator = (By.ID, 'firefox-qr')
-
-    @property
-    def send_to_device(self):
-        return SendToDevice(self)
+    _get_firefox_qr_code_locator = (By.ID, 'focus-qr')
 
     @property
     def is_firefox_qr_code_displayed(self):

@@ -44,12 +44,12 @@
   "hasPart": [
   {
     "@id": "{{ structured_data_id('firefoxandroid') }}",
-    "url": "{% filter absolute_url %}{{ url('firefox.mobile.index') }}{% endfilter %}",
+    "url": "{% filter absolute_url %}{{ url('firefox.browsers.mobile.android') }}{% endfilter %}",
     "name": "Firefox Browser Android"
   },
   {
     "@id": "{{ structured_data_id('firefoxios') }}",
-    "url": "{% filter absolute_url %}{{ url('firefox.mobile.index') }}{% endfilter %}",
+    "url": "{% filter absolute_url %}{{ url('firefox.browsers.mobile.ios') }}{% endfilter %}",
     "name": "Firefox Browser iOS"
   },
   {
@@ -60,7 +60,7 @@
   {
     "@id": "{{ structured_data_id('firefoxdeveloper') }}",
     "url": "{% filter absolute_url %}{{ url('firefox.developer.index') }}{% endfilter %}",
-    "name": "Firefox Browser Developer Edition "
+    "name": "Firefox Browser Developer Edition"
   },
   {
     "@id": "{{ structured_data_id('firefoxenterprise') }}",

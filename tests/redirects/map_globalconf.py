@@ -236,7 +236,7 @@ URLS = flatten((
              'https://support.mozilla.org/products/firefox-os'),
 
     # Bug 986174
-    url_test('/{m,{firefox/,}mobile}/features/', '/firefox/mobile/'),
+    url_test('/{m,{firefox/,}mobile}/features/', '/firefox/browsers/mobile/'),
     url_test('/{m,{firefox/,}mobile}/faq/', 'https://support.mozilla.org/products/mobile'),
 
     # bug 885799, 952429
@@ -617,7 +617,7 @@ URLS = flatten((
     url_test('/newsletter/new/', '/newsletter/'),
 
     # bug 1238458
-    url_test('/newsletter/ios/', '/firefox/mobile/'),
+    url_test('/newsletter/ios/', '/firefox/browsers/mobile/ios/'),
 
     # bug 818323
     url_test('/projects/security/known-vulnerabilities.html', '/security/known-vulnerabilities/'),
@@ -748,10 +748,10 @@ URLS = flatten((
     url_test('/fennec/', '/firefox/'),
 
     # issue 8749
-    url_test('/mobile/', '/firefox/mobile/'),
+    url_test('/mobile/', '/firefox/browsers/mobile/'),
 
     # bug 876668
-    url_test('/mobile/customize/', '/firefox/mobile/'),
+    url_test('/mobile/customize/', '/firefox/browsers/mobile/'),
 
     # bug 736934, 860865, 1101220, 1153351
     url_test('/mobile/{{beta,aurora}/,}notes/', '/firefox/android/{{beta,aurora}/,}notes/'),
@@ -1054,7 +1054,7 @@ URLS = flatten((
     # Bug 1260423
     url_test('/firefox/choose', '/firefox/new/'),
 
-    url_test('/firefox/{,46.0/,46.0.1/,47.0/,47.0.1/}secondrun', '/firefox/mobile/'),
+    url_test('/firefox/{,46.0/,46.0.1/,47.0/,47.0.1/}secondrun', '/firefox/browsers/mobile/'),
 
     # bug 1288647, 1722760
     url_test('/hacking', 'https://firefox-source-docs.mozilla.org/'),
@@ -1189,7 +1189,7 @@ URLS = flatten((
     url_test('/firefox/interest-dashboard/', 'https://support.mozilla.org/kb/firefox-add-technology-modernizing'),
 
     # bug 1419244
-    url_test('/firefox/mobile-download/{,desktop/}', '/firefox/mobile/'),
+    url_test('/firefox/mobile-download/{,desktop/}', '/firefox/browsers/mobile/'),
 
     # Bug 1438464
     url_test('/collusion/', 'https://addons.mozilla.org/firefox/addon/lightbeam/'),
