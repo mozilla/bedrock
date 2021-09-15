@@ -7,7 +7,7 @@
 {% block hero_cta_change %}
 
 <div class="vpn-pricing-offer">
-  {% set price = 'Get Mozilla VPN for ' + vpn_monthly_price(plan='12-month', lang=LANG) %}
+  {% set price = 'Get Mozilla VPN for ' + vpn_monthly_price(plan='12-month', lang=LANG) + '*' %}
 
   {{ vpn_subscribe_link(
     entrypoint=_utm_source,
@@ -25,7 +25,7 @@
     }
     ) }}
     <p>
-      <a href="#pricing" data-cta-type="button"data-cta-position="primary"data-cta-text="Scroll to pricing">View all pricing plans</a>
+     *For a 12-month plan. <a href="#pricing" data-cta-type="button"data-cta-position="primary"data-cta-text="Scroll to pricing">View all pricing plans</a>
     </p>
 </div>
 
