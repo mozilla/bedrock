@@ -6,6 +6,7 @@
   "dependencies": {
     "@mozilla-protocol/core": "14.0.3",
     "@mozilla-protocol/eslint-config": "^1.1.0",
+    "@sentry/browser": "^6.12.0",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "9.0.1",
     "css-loader": "6.2.0",
