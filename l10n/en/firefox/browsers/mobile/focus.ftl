@@ -30,7 +30,7 @@ mobile-focus-tracking-protection = Tracking protection
 mobile-focus-firefox-focus-blocks = { -brand-name-firefox-focus } blocks a wide range of common trackers by default including social trackers and those sticky ones that come from things like { -brand-name-facebook } ads.
 
 mobile-focus-ad-blocking = Ad blocking
-mobile-focus-focus-blocks-the = { -brand-name-focus } blocks the ads as you’d normally see on web pages — no extra add-ons or extensions necessary. With fewer ads you get better page load speed, which means you get to the stuff you want a lot faster.
+mobile-focus-focus-blocks-the = { -brand-name-focus } blocks the ads as you’d normally see on web pages — no extra add-ons or extensions necessary. With fewer ads, you get better page load speed, which means you get to the stuff you want a lot faster.
 
 mobile-focus-see-it-all = See it all faster
 mobile-focus-focus-removes-trackers = { -brand-name-focus } removes trackers and ads so the pages you’re viewing require less data and load much faster.

@@ -28,7 +28,7 @@ mobile-compare-a-main-ingredient = A main ingredient to a well-made browser is i
 mobile-compare-syncing-strong = <strong>Syncing</strong>
 mobile-compare-syncing = Syncing
 mobile-compare-does-your-browser = Does your browser play well with other devices?
-mobile-compare-the-mobile-version = The mobile version of { -brand-name-safari }, which is pre-installed on { -brand-name-apple }’s mobile devices, is only compatible with other { -brand-name-apple } devices like { -brand-name-ipad } and laptops. { -brand-name-firefox }, { -brand-name-chrome }, and { -brand-name-opera } work across all platforms including { -brand-name-ios }, { -brand-name-android }, { -brand-name-windows }, { -brand-name-mac-short }, and { -brand-name-linux }, with the exception of the { -brand-name-edge } browser which isn’t compatible with { -brand-name-linux }-based devices.
+mobile-compare-the-mobile-version = The mobile version of { -brand-name-safari }, which is pre-installed on { -brand-name-apple }’s mobile devices, is only compatible with other { -brand-name-apple } devices like { -brand-name-ipad } and { -brand-name-mac-short } laptops. { -brand-name-firefox }, { -brand-name-chrome }, and { -brand-name-opera } work across all platforms including { -brand-name-ios }, { -brand-name-android }, { -brand-name-windows }, { -brand-name-mac-short }, and { -brand-name-linux }, with the exception of the { -brand-name-edge } browser which isn’t compatible with { -brand-name-linux }-based devices.
 mobile-compare-almost-all-of = Almost all of the mobile browsers compared here allow complete synchronization between mobile and desktop devices.
 mobile-compare-the-good-news = The good news for { -brand-name-iphone } users is that { -brand-name-apple } has recently allowed { -brand-name-iphone } users to choose their own default browser, so now users can sync their devices across platforms if, for example, they install { -brand-name-firefox } on their { -brand-name-iphone } and { -brand-name-windows } PC.
 
@@ -53,7 +53,7 @@ mobile-compare-collections = Collections
 mobile-compare-inapp-vpn = In-app VPN
 mobile-compare-shopping = Shopping
 mobile-compare-mobile-os-availability = Mobile OS availability
-mobile-compare-syncs-with-desktopmobile = { -brand-name-sync }s with desktop/mobile app
+mobile-compare-syncs-with-desktopmobile = Syncs with desktop/mobile app
 mobile-compare-password-management = Password management
 mobile-compare-primary-password = Primary password
 

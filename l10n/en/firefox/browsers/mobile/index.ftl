@@ -17,7 +17,7 @@ browsers-mobile-firefox-for-android = { -brand-name-firefox } for { -brand-name-
 browsers-mobile-infinitely-customizable-private = Infinitely customizable, private and secure, { -brand-name-firefox } for { -brand-name-android } is a lightning-fast browser that will never sell you out.
 browsers-mobile-firefox-for-ios = { -brand-name-firefox } for { -brand-name-ios }
 
-# "Enhanced Tracking Protection" is a feature name and should be capitalized.
+# "Enhanced Tracking Protection" is a feature name and should match what's used in the product.
 browsers-mobile-get-enhanced-tracking-protection = Get Enhanced Tracking Protection and make { -brand-name-firefox } your default, go-to, forever browser on your { -brand-name-iphone } and { -brand-name-ipad }.
 browsers-mobile-firefox-focus = { -brand-name-firefox-focus }
 browsers-mobile-looking-for-a-streamlined = Looking for a streamlined, super fast mobile browser with next-level privacy features? { -brand-name-firefox-focus } automatically erases all your browsing history from the moment you open your browser to the second you close it.
