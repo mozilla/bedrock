@@ -1026,7 +1026,6 @@
     },
     {
       "files": [
-        "js/libs/sentry/sentry.browser.5.19.2.min.js",
         "js/base/sentry-init.js"
       ],
       "name": "sentry"
