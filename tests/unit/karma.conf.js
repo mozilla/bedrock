@@ -1,7 +1,5 @@
 'use strict';
 
-var webpackConfig = require('../../webpack.config');
-
 module.exports = function(config) {
     config.set({
         // Karma configuration
@@ -82,7 +80,29 @@ module.exports = function(config) {
         },
 
         webpack: {
-            devtool: 'inline-source-map'
+            devtool: 'inline-source-map',
+            module: {
+                rules: [
+                    {
+                        test: /\.es6\.js$/,
+                        exclude: /node_modules/,
+                        use: {
+                            loader: 'babel-loader',
+                            options: {
+                                presets: [
+                                    [
+                                        '@babel/preset-env', {
+                                            targets: {
+                                                ie: '10'
+                                            }
+                                        }
+                                    ]
+                                ]
+                            }
+                        }
+                    }
+                ]
+            }
         },
 
         proxies: {
