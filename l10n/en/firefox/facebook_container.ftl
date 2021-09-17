@@ -12,7 +12,7 @@ facebook-container-download-firefox-and-get-the = Download { -brand-name-firefox
 facebook-container-only-available-for-desktop = The { -brand-name-facebook-container } Extension is currently only available for { -brand-name-firefox } for Desktop.
 facebook-container-brand-name-firefox-browser = { -brand-name-firefox-browser }
 # Obsolete string
-facebook-container-firefox-browser = { -brandname-firefox-browser }
+facebook-container-firefox-browser = { -brand-name-firefox-browser }
 
 # Variables:
 #   $link_copy (string) - www.mozilla.org/firefox/new/
