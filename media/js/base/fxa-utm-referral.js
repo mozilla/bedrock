@@ -144,7 +144,7 @@ if (typeof window.Mozilla === 'undefined') {
 
     /**
      * Fetch and validate accepted params from the page URL for FxA referral.
-     * https://mozilla.github.io/application-services/docs/accounts/metrics.html#descriptions-of-metrics-related-query-parameters
+     * https://mozilla.github.io/ecosystem-platform/docs/relying-parties/metrics-for-relying-parties#metrics-related-query-parameters
      * @returns {Object} if params are valid, else {null}.
      */
     UtmUrl.getAttributionData = function (params) {
