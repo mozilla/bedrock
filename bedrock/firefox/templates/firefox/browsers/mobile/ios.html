@@ -111,7 +111,7 @@
     theme_class='mzp-t-background-alt'
   ) %}
     <h3>{{ ftl('mobile-ios-get-more-firefox') }}</h3>
-    <p>{{ ftl('mobile-ios-add-firefox-across') }}</p>
+    <p>{{ ftl('mobile-ios-add-firefox-across-v2', fallback='mobile-ios-add-firefox-across') }}</p>
   {% endcall %}
 
   {% call split(

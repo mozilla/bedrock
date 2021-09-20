@@ -13,6 +13,9 @@ mobile-compare-who-makes-the = Who makes the best mobile browser? We’ll compar
 mobile-compare-since-your-mobile = Since your mobile browser is your lifeline to information wherever you are, speed, security, privacy and ease-of-use are the keys to a good experience. So which one is the best mobile browser? Let’s compare the top players — and see which one best suits your needs.
 
 mobile-compare-which-mobile-browser = Which mobile browser keeps things confidential?
+mobile-compare-at-a-minimum-v2 = At a minimum, your mobile browser should provide some version of “private browsing mode,” which automatically deletes your history and search history. In this area, all five of the browsers compared here score points.
+
+# Obsolete string
 mobile-compare-at-a-minimum = At a minimum, your mobile browser should provide some version of “private browsing mode,” which automatically deletes your history and search history. In this area, all seven of the browsers compared here score points.
 mobile-compare-another-mobile-feature = Another mobile feature that should be a given is the ability to prevent websites and companies from tracking your browsing and shopping data — even in normal browsing mode.
 mobile-compare-blocking-thirdparty-trackers = Blocking third-party trackers isn’t just important for privacy — it also helps pages load much faster, without those pieces of code attaching themselves and slowing your browser down.
