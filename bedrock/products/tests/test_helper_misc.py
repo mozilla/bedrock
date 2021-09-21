@@ -601,3 +601,27 @@ class TestVPNSaving(TestCase):
             u'<span class="js-vpn-saving-display" data-price-usd="Save 50%" '
             u'data-price-euro="Save 50%" data-price-chf="Save 45%">Save 50%</span>')
         self.assertEqual(markup, expected)
+
+
+class TestVPNProductReferralLink(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, referral_id, page_anchor, link_text, class_name, optional_attributes):
+        with self.activate('en-US'):
+            req = self.rf.get('/')
+            req.locale = 'en-US'
+            return render("{{{{ vpn_product_referral_link('{0}', '{1}', '{2}', '{3}', {4}) }}}}".format(
+                        referral_id, page_anchor, link_text, class_name, optional_attributes),
+                        {'request': req})
+
+    def test_vpn_product_referral_link(self):
+        """Should return expected markup"""
+        markup = self._render(referral_id='navigation', page_anchor='#pricing',
+                              link_text='Get Mozilla VPN', class_name='mzp-t-secondary mzp-t-md',
+                              optional_attributes={'data-cta-text': 'Get Mozilla VPN',
+                                                   'data-cta-type': 'button'})
+        expected = (
+            u'<a href="/en-US/products/vpn/#pricing" class="mzp-c-button mzp-t-product '
+            u'js-fxa-product-referral-link mzp-t-secondary mzp-t-md" data-referral-id="navigation" '
+            u'data-cta-text="Get Mozilla VPN" data-cta-type="button">Get Mozilla VPN</a>')
+        self.assertEqual(markup, expected)

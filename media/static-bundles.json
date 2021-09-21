@@ -264,6 +264,12 @@
     },
     {
       "files": [
+        "css/base/banners/mobile-compare.scss"
+      ],
+      "name": "mobile-compare-banner"
+    },
+    {
+      "files": [
         "css/protocol/common-old-ie.scss"
       ],
       "name": "common-old-ie"
@@ -634,6 +640,13 @@
     {
       "files": [
         "css/protocol/components/send-to-device.scss",
+        "css/firefox/browsers/mobile.scss"
+      ],
+      "name": "firefox-browsers-mobile"
+    },
+    {
+      "files": [
+        "css/protocol/components/send-to-device.scss",
         "css/firefox/mobile/get-app.scss"
       ],
       "name": "firefox-mobile-get-app"
@@ -756,6 +769,7 @@
     },
     {
       "files": [
+        "css/protocol/components/send-to-device.scss",
         "css/firefox/sticky-promo.scss",
         "css/firefox/compare/compare.scss"
       ],
@@ -984,6 +998,16 @@
         "css/contentful/firefox/t-multi-column.scss"
       ],
       "name": "firefox-t-multi-column"
+    },
+    {
+      "files": [
+        "css/products/vpn/components/hero.scss",
+        "css/products/vpn/components/block.scss",
+        "css/products/vpn/common.scss",
+        "css/products/vpn/article.scss",
+        "css/products/vpn/vpn-info.scss"
+      ],
+      "name": "mozilla-vpn-info"
     }
   ],
   "js": [
@@ -1002,7 +1026,6 @@
     },
     {
       "files": [
-        "js/libs/sentry/sentry.browser.5.19.2.min.js",
         "js/base/sentry-init.js"
       ],
       "name": "sentry"
@@ -1027,7 +1050,6 @@
       "files": [
         "protocol/js/protocol-modal.js",
         "js/base/send-to-device.js",
-        "js/libs/spin.min.js",
         "js/firefox/welcome/welcome4.js"
       ],
       "name": "firefox_welcome_page4"
@@ -1036,14 +1058,12 @@
       "files": [
         "protocol/js/protocol-modal.js",
         "js/base/send-to-device.js",
-        "js/libs/spin.min.js",
         "js/firefox/welcome/welcome5.js"
       ],
       "name": "firefox_welcome_page5"
     },
     {
       "files": [
-        "js/libs/spin.min.js",
         "protocol/js/protocol-modal.js",
         "js/base/send-to-device.js",
         "js/firefox/welcome/welcome6.js"
@@ -1066,7 +1086,6 @@
     {
       "files": [
         "js/firefox/whatsnew/up-to-date.js",
-        "js/libs/spin.min.js",
         "js/base/send-to-device.js",
         "js/firefox/whatsnew/whatsnew-86.js"
       ],
@@ -1288,7 +1307,6 @@
     },
     {
       "files": [
-        "js/libs/spin.min.js",
         "js/base/send-to-device.js",
         "js/firefox/mobile/mobile.js"
       ],
@@ -1296,7 +1314,20 @@
     },
     {
       "files": [
-        "js/libs/spin.min.js",
+        "js/base/send-to-device.js",
+        "js/firefox/browsers/mobile.js"
+      ],
+      "name": "firefox-browsers-mobile"
+    },
+    {
+      "files": [
+        "js/base/send-to-device.js",
+        "js/firefox/browsers/mobile-compare.js"
+      ],
+      "name": "firefox-browsers-mobile-compare"
+    },
+    {
+      "files": [
         "js/base/send-to-device.js",
         "js/firefox/mobile/get-app.js"
       ],
@@ -1412,7 +1443,6 @@
     {
       "files": [
         "js/base/send-to-device.js",
-        "js/libs/spin.min.js",
         "js/firefox/whatsnew/up-to-date.js",
         "js/firefox/whatsnew/whatsnew.js"
       ],
@@ -1438,7 +1468,6 @@
         "js/base/mozilla-fxa-product-button.js",
         "js/base/mozilla-fxa-product-button-init.js",
         "js/base/send-to-device.js",
-        "js/libs/spin.min.js",
         "js/firefox/whatsnew/whatsnew-account.js"
       ],
       "name": "firefox_whatsnew_account"
@@ -1476,6 +1505,7 @@
     },
     {
       "files": [
+        "js/base/globals.js",
         "js/libs/classlist.js",
         "js/base/search-params.js",
         "js/base/uitour-lib.js",
@@ -1570,6 +1600,13 @@
         "js/newsletter/confirm.js"
       ],
       "name": "newsletter-confirm"
+    },
+    {
+      "files": [
+        "js/base/banners/mozilla-banner.js",
+        "js/base/banners/mobile-compare-banner-init.js"
+      ],
+      "name": "mobile_compare_banner"
     },
     {
       "files": [

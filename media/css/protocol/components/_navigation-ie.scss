@@ -5,7 +5,7 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import '../../../protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 
 //* -------------------------------------------------------------------------- */
@@ -59,7 +59,7 @@ $image-path: '/media/protocol/img';
         }
 
         // hide FxA button
-        .c-navigation-fxa-cta-container {
+        .c-navigation-vpn-cta-container {
             display: none;
         }
     }

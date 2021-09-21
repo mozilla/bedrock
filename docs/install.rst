@@ -111,10 +111,6 @@ The node dependencies for running the site can be installed with ``yarn``::
 
     $ yarn
 
-You'll also need to install the `Gulp <http://gulpjs.com/>`_ cli globally::
-
-    $ npm install -g gulp-cli
-
 .. note::
 
     Bedrock uses yarn to ensure that Node.js
@@ -204,8 +200,9 @@ refreshing of the page works by injecting a small JS snippet into the page that 
 and will refresh the page when it receives a signal. It also injects a script that shows a small notification in the
 top-right corner of the page to inform you that a refresh is happening and when the page connects to or is disconnected
 from the browsersync service. We've not seen issues with this, but since it is modifying the page it is possible that this
-could conflict with something on the page itself. Please let us know if you suspect this is happening for you. This notification
-can be disabled in the browsersync options in the ``gulpfile.js`` by setting ``notify: false`` in the ``browser-sync`` task.
+could conflict with something on the page itself. Please let us know if you suspect this is happening for you. This
+notification can be disabled in the browsersync options in ``webpack.config.js`` by setting ``notify: false`` in the
+``BrowserSyncPlugin`` config.
 
 Prod Mode
 ---------
@@ -233,6 +230,29 @@ image first:
 .. code-block:: bash
 
     $ make build-prod run-prod
+
+Documentation
+-------------
+
+This is a great place for coders and non-coders alike to contribute! Please note most of the documentation is currently in `reStructuredText <https://bashtage.github.io/sphinx-material/basics.html>`_ but we also support `Markdown <https://www.markdownguide.org/>`_ files.
+
+If you see a typo or similarly small change, you can use the "Edit in GitHub" link to propose a fix through GitHub. Note: you will not see your change directly committed to the master branch. You will commit the change to a separate branch so it can be reviewed by a staff member before merging to master.
+
+If you want to make a bigger change or `find a Documentation issue on the repo <https://github.com/mozilla/bedrock/labels/Documentation>`_, it is best to edit and preview locally before submitting a pull request. You can do this with Docker or Local installations. Run the commands from your root folder. They will build documentation and start a live server to auto-update any changes you make to a documentation file.
+
+Docker: 
+
+.. code-block:: bash
+
+    $ make docs
+
+Local:
+
+.. code-block:: bash
+
+    $ pip install -r requirements/docs.txt
+    $ make livedocs
+
 
 Localization
 ============

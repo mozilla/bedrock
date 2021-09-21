@@ -5,6 +5,8 @@
 (function() {
     'use strict';
 
+    var Sentry = require('@sentry/browser');
+
     // Respect Do Not Track
     if (typeof Mozilla.dntEnabled === 'function' && !Mozilla.dntEnabled()) {
 
@@ -12,8 +14,8 @@
         var sentryDsn = document.getElementsByTagName('html')[0].getAttribute('data-sentry-dsn');
 
         // Configure Sentry SDK
-        if (typeof window.Sentry !== 'undefined' && sentryDsn) {
-            window.Sentry.init({
+        if (sentryDsn) {
+            Sentry.init({
                 dsn: sentryDsn ,
                 sampleRate: 0.10,
                 ignoreErrors: [

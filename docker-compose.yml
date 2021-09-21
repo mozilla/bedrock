@@ -11,15 +11,15 @@ services:
       target: assets
     image: mozmeao/bedrock_assets:${GIT_COMMIT:-latest}
     platform: linux/amd64
-    command: gulp
+    command: npm run watch
     ports:
       - "8000-8010:8000-8010"
     volumes:
       - ./media/:/app/media:delegated
       - ./bedrock/:/app/bedrock:delegated
+      - ./assets/:/app/assets:delegated
     environment:
       BS_PROXY_URL: "app:8080"
-      BS_OPEN_BROWSER: "false"
 
   # the django app
   app:
@@ -45,6 +45,7 @@ services:
       - ./wsgi/:/app/wsgi:delegated
       - ./locale/:/app/locale:delegated
       - ./l10n/:/app/l10n:delegated
+      - ./assets/:/app/assets:delegated
 
   # run the tests against local changes
   test:

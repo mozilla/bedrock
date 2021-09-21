@@ -2,7 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../../../protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 //* -------------------------------------------------------------------------- */
 // Navigation styles
@@ -238,7 +238,7 @@ html.other {
 
 // Global FxA CTA
 .c-navigation {
-    .c-navigation-fxa-cta-container {
+    .c-navigation-vpn-cta-container {
         display: none;
     }
 }
@@ -249,20 +249,8 @@ html.is-firefox .c-navigation {
         display: none;
     }
 
-    .c-navigation-fxa-cta-container {
+    .c-navigation-vpn-cta-container {
         display: block;
-    }
-}
-
-// ... but not on mobile platforms
-html.is-firefox.ios .c-navigation,
-html.is-firefox.android .c-navigation {
-    .mzp-c-button-download-container {
-        display: block;
-    }
-
-    .c-navigation-fxa-cta-container {
-        display: none;
     }
 }
 

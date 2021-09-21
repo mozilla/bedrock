@@ -6,14 +6,14 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 $brand-theme: 'firefox';
 
-@import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/components/logos/wordmark';
-@import '../../../protocol/css/components/logos/wordmark-product-firefox';
-@import '../../../protocol/css/components/logos/wordmark-product-monitor';
-@import '../../../protocol/css/components/logos/wordmark-product-vpn';
-@import '../../../protocol/css/components/logos/wordmark-product-pocket';
-@import '../../../protocol/css/components/zap';
-@import '../../../protocol/css/components/split';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-monitor';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-vpn';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-pocket';
+@import '~@mozilla-protocol/core/protocol/css/components/zap';
+@import '~@mozilla-protocol/core/protocol/css/components/split';
 @import '../../protocol/components/custom-menu-list';
 @import '../sticky-promo';
 

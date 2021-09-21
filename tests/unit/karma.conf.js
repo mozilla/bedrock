@@ -1,5 +1,7 @@
 'use strict';
 
+var webpackConfig = require('../../webpack.config');
+
 module.exports = function(config) {
     config.set({
         // Karma configuration
@@ -7,7 +9,7 @@ module.exports = function(config) {
         // base path, that will be used to resolve files and exclude
         basePath: '../../',
 
-        frameworks: ['jasmine'],
+        frameworks: ['jasmine', 'webpack'],
 
         // list of files / patterns to load in the browser
         files: [
@@ -74,6 +76,14 @@ module.exports = function(config) {
                 served: true
             }
         ],
+
+        preprocessors: {
+            'media/js/**/*.js': ['webpack' , 'sourcemap']
+        },
+
+        webpack: {
+            devtool: 'inline-source-map'
+        },
 
         proxies: {
             '/img/': '/base/tests/unit/img/'

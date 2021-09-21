@@ -12,6 +12,7 @@ sub-navigation-opera = { -brand-name-opera }
 sub-navigation-safari = { -brand-name-safari }
 sub-navigation-brave = { -brand-name-brave }
 sub-navigation-compare-browsers = Compare Browsers
+sub-navigation-compare-mobile-browsers = Compare Mobile Browsers
 sub-navigation-firefox-for-desktop = { -brand-name-firefox } for Desktop
 sub-navigation-release-notes = Release Notes
 sub-navigation-desktop = Desktop
@@ -24,6 +25,7 @@ sub-navigation-desktop-beta-and-developer = Desktop { -brand-name-beta } & { -br
 sub-navigation-desktop-nightly = Desktop { -brand-name-nightly }
 sub-navigation-features = Features
 sub-navigation-support = Support
+sub-navigation-firefox-focus = { -brand-name-firefox-focus }
 
 # Obsolete string. Used as fallback for `sub-navigation-add-ons` string :
 sub-navigation-addons = Addons

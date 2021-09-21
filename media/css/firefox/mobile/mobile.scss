@@ -6,13 +6,14 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 $brand-theme: 'firefox';
 
-@import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/components/logos/wordmark';
-@import '../../../protocol/css/components/logos/wordmark-product-firefox';
-@import '../../../protocol/css/templates/multi-column';
-@import '../../../protocol/css/components/emphasis-box';
-@import '../../../protocol/css/components/split';
-@import '../../../protocol/css/components/call-out';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/call-out';
+@import '~@mozilla-protocol/core/protocol/css/components/emphasis-box';
+@import '~@mozilla-protocol/core/protocol/css/components/hero';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
+@import '~@mozilla-protocol/core/protocol/css/components/split';
+@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 
 //* -------------------------------------------------------------------------- */
 
@@ -27,6 +28,9 @@ main .mzp-l-content {
     }
 }
 
+.mzp-c-split-container {
+    box-sizing: content-box;
+}
 
 //* -------------------------------------------------------------------------- */
 //  Download buttons
@@ -118,78 +122,52 @@ main .mzp-l-content {
 //* -------------------------------------------------------------------------- */
 // Hero
 
-.c-hero {
-    .c-hero-body {
-        text-align: center;
-        margin-bottom: $spacing-2xl;
+.c-page-header {
+    .mzp-c-wordmark {
+        margin: 0 auto $spacing-lg;
 
-        .mzp-c-wordmark {
-            margin-bottom: $spacing-md;
-            margin-right: auto;
-            margin-left: auto;
-        }
-
-        h2 {
-            @include text-title-sm;
-        }
-
-        p {
-            @include text-title-sm;
-            margin-bottom: $spacing-xl;
-            color: $color-ink-80;
+        @media #{$mq-lg} {
+            margin: 0 0 $spacing-lg;
         }
     }
 
     .mzp-c-emphasis-box {
-        text-align: center;
-        box-sizing: content-box;
-        max-width: $content-sm;
-        margin: 0 auto; // space for box-shadow provided by mzp-l-content container padding
-    }
-
-    .more {
-        display: block;
+        align-self: center;
     }
 }
 
-@media #{$mq-md} {
-    .c-hero-bg-image {
-        @include background-size(1200px 275px);
-        background-image: url('/media/img/firefox/mobile/img-mobile-noodles.svg');
-        @include bidi(((background-position, (top left calc(60vw + #{$spacing-md})), (top right calc(60vw + #{$spacing-md}))),));
-        background-repeat: no-repeat;
-        background-size: contain;
-        min-height: 560px;
-
-        &.mzp-l-columns.mzp-t-columns-two {
-            grid-template-columns: 1fr;
-        }
-    }
+.c-tagline {
+    @include text-body-xl;
 }
 
 @media #{$mq-lg} {
-    .c-hero {
-        &.mzp-l-columns.mzp-t-columns-two {
-            grid-template-columns: repeat(2, 1fr);
-        }
+    .c-page-header {
+        &::before {
+            background: transparent url('/media/img/firefox/mobile/img-mobile-noodles.svg') top -5px left 55vw no-repeat;
+            background-size: contain;
+            content: '';
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 0;
 
-        .c-hero-body {
-            @include bidi(((text-align, left, right),));
-            margin-bottom: 0;
-
-            h2 {
-                @include text-title-sm;
-            }
-
-            .mzp-c-wordmark {
-                margin-right: 0;
-                margin-left: 0;
+            [dir='rtl'] & {
+                @include flip-horizontally;
             }
         }
+    }
+}
 
-        .mzp-c-emphasis-box {
-            align-self: center;
-        }
+.c-hero-secondary {
+    .mzp-c-wordmark {
+        margin: 0 auto $spacing-lg;
+    }
+
+    .c-inline-form {
+        margin: 0 auto;
+        max-width: 360px;
     }
 }
 
@@ -242,7 +220,6 @@ main .mzp-l-content {
 }
 
 @media #{$mq-md} {
-
     .t-private {
         h2 {
             margin-top: $layout-lg;

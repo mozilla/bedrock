@@ -65,7 +65,7 @@ def geolocate(request):
 
     Mimics the responses from the Mozilla Location Service:
 
-    https://mozilla.github.io/ichnaea/api/region.html
+    https://ichnaea.readthedocs.io/en/latest/api/region.html
     """
     country_code = get_country_from_request(request)
     if country_code is None:

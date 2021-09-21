@@ -15,11 +15,14 @@ compare-shared-blocks-third-party-tracking-default = Blocks third-party tracking
 # Obsolete string
 compare-shared-blocks-third-party-tracking = Blocks third-party tracking cookies
 compare-shared-blocks-cryptomining-scripts = Blocks cryptomining scripts
+compare-shared-blocks-fingerprinting-scripts = Blocks fingerprinting scripts
 compare-shared-blocks-social-trackers = Blocks social trackers
+compare-shared-dashboard-to-review = Dashboard to review blocked trackers
 compare-shared-autoplay-blocking = Autoplay blocking
 compare-shared-tab-browsing = Tab browsing
 compare-shared-bookmark-manager = Bookmark manager
 compare-shared-automatically-fills-out-forms = Automatically fills out forms
+compare-shared-automatically-fills-out-payments = Automatically fills out payments
 compare-shared-search-engine-options = Search engine options
 compare-shared-text-to-speech = Text to speech
 compare-shared-reader-mode = Reader mode

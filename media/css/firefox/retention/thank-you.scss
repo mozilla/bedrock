@@ -5,8 +5,8 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/components/newsletter-form';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/newsletter-form';
 
 @font-face {
     font-family: Antonio;

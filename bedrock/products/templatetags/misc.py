@@ -7,6 +7,7 @@ import jinja2
 from django.conf import settings
 from django_jinja import library
 
+from bedrock.base.urlresolvers import reverse
 from lib.l10n_utils.fluent import ftl
 
 FTL_FILES = ['products/vpn/shared']
@@ -223,5 +224,35 @@ def vpn_saving(ctx, plan='12-month', lang=None):
     markup = (f'<span class="js-vpn-saving-display" {attrs}>'
               f'{default_text}'
               f'</span>')
+
+    return jinja2.Markup(markup)
+
+
+@library.global_function
+@jinja2.contextfunction
+def vpn_product_referral_link(ctx, referral_id='', page_anchor='', link_text=None, class_name=None, optional_attributes=None):
+    """
+    Render link to the /products/vpn/ landing page with referral attribution markup
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {{ vpn_product_referral_link(referral_id='navigation', link_text='Get Mozilla VPN') }}
+    """
+
+    href = reverse('products.vpn.landing')
+    css_class = 'mzp-c-button mzp-t-product js-fxa-product-referral-link'
+    attrs = f'data-referral-id="{referral_id}" '
+
+    if optional_attributes:
+        attrs += ' '.join('%s="%s"' % (attr, val) for attr, val in optional_attributes.items())
+
+    if class_name:
+        css_class += f' {class_name}'
+
+    markup = (f'<a href="{href}{page_anchor}" class="{css_class}" {attrs}>{link_text}</a>')
 
     return jinja2.Markup(markup)

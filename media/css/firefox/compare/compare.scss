@@ -2,8 +2,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import "../../../protocol/css/includes/lib";
-@import "../../../protocol/css/components/split";
+@import "~@mozilla-protocol/core/protocol/css/includes/lib";
+@import "~@mozilla-protocol/core/protocol/css/components/split";
 @import '../../protocol/components/sub-navigation';
 
 //* -------------------------------------------------------------------------- */
@@ -43,6 +43,10 @@
 
 .mzp-c-article-intro {
     @include text-body-lg;
+}
+
+.c-tagline {
+    @include text-body-xl;
 }
 
 .l-compare-content {
@@ -206,6 +210,22 @@
     }
 }
 
+.compare-section-features .compare-section-header h2 strong {
+    @include zap("/media/protocol/img/zaps/zap-11.svg");
+
+    &::after {
+        top: 100%;
+    }
+}
+
+.compare-section-syncing .compare-section-header h2 strong {
+    @include zap("/media/protocol/img/zaps/zap-06.svg");
+
+    &::after {
+        top: 100%;
+    }
+}
+
 //* -------------------------------------------------------------------------- */
 // Comparison tables
 
@@ -353,4 +373,30 @@
     p, br {
         margin-bottom: $spacing-sm;
     }
+}
+
+
+//* -------------------------------------------------------------------------- */
+//  Send to Device widget overrides
+.compare-section-getapp {
+    text-align: center;
+}
+
+.send-to-device {
+    margin: 0 auto $spacing-lg;
+}
+
+//  QR Code
+.qr-code-wrapper img {
+    margin-bottom: $spacing-lg;
+}
+
+//  App store buttons
+.mobile-download-buttons-wrapper {
+    margin-bottom: $layout-lg;
+}
+
+.mobile-download-buttons li {
+    padding-top: $spacing-sm;
+    display: inline-block;
 }

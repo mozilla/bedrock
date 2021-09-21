@@ -70,7 +70,6 @@ Mozilla.Cookies = {
             else {
                 return 'lax';
             }
-            
         }
         vSamesite = checkSameSite(vSamesite);
 
