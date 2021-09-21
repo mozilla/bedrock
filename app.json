@@ -26,6 +26,7 @@
       "generator": "secret"
     },
     "SENTRY_DSN": "https://b89cacf912c24702a2fa6e3dc4610ade@sentry.prod.mozaws.net/156",
+    "VPN_ENDPOINT": "http://localhost:3000/",
     "WEB_CONCURRENCY": "2"
   }
 }
