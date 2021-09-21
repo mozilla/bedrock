@@ -40,5 +40,5 @@
 <p>{{ ftl('vpn-ip-address-there-are-also') }}</p>
 
 <h3>{{ ftl('vpn-ip-address-how-do-you') }}</h3>
-<p>{{ ftl('vpn-ip-address-a-vpn-is', vpn=url('products.vpn.more.when-to-use'), mozvpn=url('products.vpn.landing'), countries=settings.VPN_CONNECT_COUNTRIES) }}</p>
+<p>{{ ftl('vpn-ip-address-a-vpn-is-v2', fallback='vpn-ip-address-a-vpn-is', vpn=url('products.vpn.more.when-to-use'), mozvpn=url('products.vpn.landing'), countries=settings.VPN_CONNECT_COUNTRIES) }}</p>
 {% endblock %}

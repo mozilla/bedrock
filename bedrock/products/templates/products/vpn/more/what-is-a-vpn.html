@@ -57,5 +57,5 @@
 <p>{{ ftl('vpn-what-is-vpns-can-be', mozvpn=url('products.vpn.landing')) }}</p>
 
 <h3>{{ ftl('vpn-what-is-mozilla-vpn-fast') }}</h3>
-<p>{{ ftl('vpn-what-is-mozilla-vpn-is-a', mozvpn=url('products.vpn.landing')) }}</p>
+<p>{{ ftl('vpn-what-is-mozilla-vpn-is-a-v2', fallback='vpn-what-is-mozilla-vpn-is-a', mozvpn=url('products.vpn.landing')) }}</p>
 {% endblock %}

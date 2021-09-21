@@ -210,7 +210,11 @@
       <summary  class="vpn-faq-item-heading">
         <h3>{{ ftl('vpn-landing-faq-info-question-heading') }}</h3>
       </summary>
+    {% if ftl_has_messages('vpn-landing-faq-info-question-desc-v2') %}
+      <p class="vpn-faq-item-detail">{{ ftl('vpn-landing-faq-info-question-desc-v2', principles=url('privacy.principles'), notice=url('privacy.notices.mozilla-vpn')) }}</p>
+    {% else %}
       <p class="vpn-faq-item-detail">{{ ftl('vpn-landing-faq-info-question-desc', url=url('privacy.principles')) }}</p>
+    {% endif %}
     </details>
 
     <details id="faq-privacy" class="vpn-faq-item mzp-is-anchor-link">
@@ -224,7 +228,7 @@
       <summary class="vpn-faq-item-heading">
         <h3>{{ ftl('vpn-landing-faq-competition-question-heading') }}</h3>
       </summary>
-      <p class="vpn-faq-item-detail">{{ ftl('vpn-landing-faq-competition-question-desc', url=url('mozorg.about.history')) }}</p>
+      <p class="vpn-faq-item-detail">{{ ftl('vpn-landing-faq-competition-question-desc-v2', fallback='vpn-landing-faq-competition-question-desc', url=url('mozorg.about.history')) }}</p>
     </details>
 
     <details id="faq-compatibility" class="vpn-faq-item mzp-is-anchor-link">
