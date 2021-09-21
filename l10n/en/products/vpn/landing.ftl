@@ -64,6 +64,12 @@ vpn-landing-faq-uses-examples = Check out <a href="{ $url }">five real-life exam
 vpn-landing-faq-info-question-heading = What information does the { -brand-name-mozilla-vpn } keep?
 
 # Variables:
+#   $principles (url) - link to https://www.mozilla.org/privacy/principles/
+#   $notice (url) - link to https://www.mozilla.org/privacy/mozilla-vpn/
+vpn-landing-faq-info-question-desc-v2 = We adhere strictly to { -brand-name-mozilla }’s <a href="{ $principles }">Data Privacy Principles</a> and we collect the data required to keep the VPN operational and to improve the product over time. We also track campaign and referral data on our mobile app to help { -brand-name-mozilla } understand the effectiveness of our marketing campaigns. Read more in our <a href="{ $notice }">Privacy Notice</a>.
+
+# Obsolete string
+# Variables:
 #   $url (url) - link to https://www.mozilla.org/privacy/principles/
 vpn-landing-faq-info-question-desc = We don’t log, track, or share any of your network activity. We adhere strictly to { -brand-name-mozilla }’s <a href="{ $url }">Data Privacy Principles</a> and we only collect the data required to keep the VPN operational and improve the product over time.
 
@@ -77,7 +83,12 @@ vpn-landing-faq-protected-question-desc = <a href="{ $url }" { $attrs }>{ -brand
 vpn-landing-faq-competition-question-heading = How does { -brand-name-mozilla-vpn } compare to the competition?
 
 # Variables:
-#   $url (url) - link to https://www.mozilla.org/en-US/about/history/
+#   $url (url) - link to https://www.mozilla.org/about/history/
+vpn-landing-faq-competition-question-desc-v2 = While free VPNs seem attractive, they do not make the same commitments to privacy as { -brand-name-mozilla-vpn }. Other VPNs don’t have { -brand-name-mozilla }’s over 20-year <a href="{ $url }">track record</a> of building products that put people and privacy first.
+
+# Obsolete string
+# Variables:
+#   $url (url) - link to https://www.mozilla.org/about/history/
 vpn-landing-faq-competition-question-desc = While free VPNs seem attractive, they do not make the same commitments to privacy as { -brand-name-mozilla-vpn } and may sell or store your data. Other paid VPNs don’t have { -brand-name-mozilla }’s over 20-year <a href="{ $url }">track record</a> of building products that put people and privacy first.
 
 vpn-landing-faq-compatibility-question-heading = What devices is { -brand-name-mozilla-vpn } compatible with?
