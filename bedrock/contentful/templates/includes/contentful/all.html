@@ -67,6 +67,8 @@
           {% for card_data in entry.cards -%}
             {% if card_data.component == 'large_card' %}
               {% set size_class = 'mzp-c-card-large' %}
+            {% elif entry.layout_class == 'mzp-l-card-quarter' %}
+              {% set size_class = 'mzp-c-card-extra-small' %}
             {% else %}
               {% set size_class = 'mzp-c-card-medium' %}
             {% endif %}
