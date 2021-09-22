@@ -15,7 +15,7 @@ describe('mozilla-lazy-load.js', function() {
 
     describe('Mozilla.LazyLoad.init', function() {
 
-        var selector = '.lazy-image-container img';
+        const selector = '.lazy-image-container img';
 
         afterEach(function(){
             Mozilla.LazyLoad.supportsInsersectionObserver = typeof IntersectionObserver !== 'undefined';
@@ -44,7 +44,7 @@ describe('mozilla-lazy-load.js', function() {
         });
 
         it('should throw an error if passed an invalid custom selector', function() {
-            expect(function() {
+            expect(() => {
                 Mozilla.LazyLoad.init({foo: 'bar'});
             }).toThrowError();
         });
@@ -53,7 +53,7 @@ describe('mozilla-lazy-load.js', function() {
     describe('Mozilla.LazyLoad.registerObserver', function() {
 
         it('should register an IntersectionObserver correctly', function() {
-            var observer = Mozilla.LazyLoad.registerObserver();
+            const observer = Mozilla.LazyLoad.registerObserver();
             expect(observer instanceof window.IntersectionObserver).toBeTruthy();
         });
     });
@@ -61,15 +61,16 @@ describe('mozilla-lazy-load.js', function() {
     describe('Mozilla.LazyLoad.observe', function() {
 
         beforeEach(function() {
-            var tpl = '<div class="lazy-image-container">' +
-                        '<img class="image1" src="/img/placeholder.png" data-src="/img/foo.png">' +
-                        '<img class="image2" src="/img/placeholder.png" data-src="/img/foo.png">' +
-                      '</div>';
+            const tpl =
+                `<div class="lazy-image-container">
+                    <img class="image1" src="/img/placeholder.png" data-src="/img/foo.png">
+                    <img class="image2" src="/img/placeholder.png" data-src="/img/foo.png">
+                </div>`;
             document.body.insertAdjacentHTML('beforeend', tpl);
         });
 
         afterEach(function() {
-            var content = document.querySelector('.lazy-image-container');
+            const content = document.querySelector('.lazy-image-container');
             content.parentNode.removeChild(content);
         });
 
@@ -77,14 +78,14 @@ describe('mozilla-lazy-load.js', function() {
             spyOn(Mozilla.LazyLoad, 'registerObserver').and.returnValue({
                 observe: sinon.spy()
             });
-            var observer = Mozilla.LazyLoad.observe('.lazy-image-container img');
+            const observer = Mozilla.LazyLoad.observe('.lazy-image-container img');
             expect(observer.observe.calledTwice).toBeTruthy();
         });
     });
 
     describe('Mozilla.LazyLoad.observerCallback', function() {
 
-        var changes = [
+        const changes = [
             {
                 intersectionRatio: 0,
                 target: {
@@ -142,18 +143,18 @@ describe('mozilla-lazy-load.js', function() {
     describe('Mozilla.LazyLoad.onImageLoad', function() {
 
         beforeEach(function () {
-            var img = '<img class="test-image" src="/img/placeholder.png" data-src="/img/foo.png" data-srcset="/img/foo.png 2x">';
+            const img = '<img class="test-image" src="/img/placeholder.png" data-src="/img/foo.png" data-srcset="/img/foo.png 2x">';
             document.body.insertAdjacentHTML('beforeend', img);
         });
 
         afterEach(function(){
-            var content = document.querySelector('.test-image');
+            const content = document.querySelector('.test-image');
             content.parentNode.removeChild(content);
         });
 
         it('should remove the data-src attribute', function() {
-            var img = document.querySelector('.test-image');
-            var event = {
+            const img = document.querySelector('.test-image');
+            const event = {
                 target: img
             };
             Mozilla.LazyLoad.onImageLoad(event);
@@ -165,21 +166,22 @@ describe('mozilla-lazy-load.js', function() {
     describe('Mozilla.LazyLoad.loadAllFallback', function() {
 
         beforeEach(function () {
-            var tpl = '<div class="observer-list-test">' +
-                        '<img class="image1" src="/img/placeholder.png" data-src="/img/foo.png" data-srcset="/img/foo.png 2x">' +
-                        '<img class="image2" src="/img/placeholder.png" data-src="/img/foo.png" data-srcset="/img/foo.png 2x">' +
-                      '</div>';
+            const tpl =
+                `<div class="observer-list-test">
+                    <img class="image1" src="/img/placeholder.png" data-src="/img/foo.png" data-srcset="/img/foo.png 2x">
+                    <img class="image2" src="/img/placeholder.png" data-src="/img/foo.png" data-srcset="/img/foo.png 2x">
+                </div>`;
             document.body.insertAdjacentHTML('beforeend', tpl);
         });
 
         afterEach(function(){
-            var content = document.querySelector('.observer-list-test');
+            const content = document.querySelector('.observer-list-test');
             content.parentNode.removeChild(content);
         });
 
         it('should register an IntersectionObserver correctly', function() {
-            var image1 = document.querySelector('.observer-list-test .image1');
-            var image2 = document.querySelector('.observer-list-test .image2');
+            const image1 = document.querySelector('.observer-list-test .image1');
+            const image2 = document.querySelector('.observer-list-test .image2');
 
             Mozilla.LazyLoad.loadAllFallback('.observer-list-test img');
 

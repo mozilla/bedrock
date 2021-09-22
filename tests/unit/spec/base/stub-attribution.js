@@ -10,7 +10,7 @@ describe('stub-attribution.js', function() {
 
     'use strict';
 
-    var GA_VISIT_ID = '1456954538.1610960957';
+    const GA_VISIT_ID = '1456954538.1610960957';
 
     beforeEach(function() {
         // stub out Mozilla.Cookie lib
@@ -26,7 +26,7 @@ describe('stub-attribution.js', function() {
 
     describe('init', function() {
 
-        var data = {};
+        let data = {};
 
         beforeEach(function() {
             /* eslint-disable camelcase */
@@ -46,7 +46,7 @@ describe('stub-attribution.js', function() {
 
         it('should update download links if session cookie exists', function() {
             /* eslint-disable camelcase */
-            var cookieData = {
+            const cookieData = {
                 attribution_code: 'foo',
                 attribution_sig: 'bar'
             };
@@ -153,7 +153,7 @@ describe('stub-attribution.js', function() {
     describe('hasValidData', function() {
         it('should return true for valid attribution data', function() {
             /* eslint-disable camelcase */
-            var data = {
+            const data = {
                 utm_source: 'desktop-snippet',
                 utm_medium: 'referral',
                 utm_campaign: 'F100_4242_otherstuff_in_here',
@@ -169,7 +169,7 @@ describe('stub-attribution.js', function() {
 
         it('should return true for valid RTAMO data', function() {
             /* eslint-disable camelcase */
-            var data = {
+            const data = {
                 utm_source: 'addons.mozilla.org',
                 utm_medium: 'referral',
                 utm_campaign: 'non-fx-button',
@@ -185,7 +185,7 @@ describe('stub-attribution.js', function() {
 
         it('should return false for RTAMO data that does not have AMO as the referrer', function() {
             /* eslint-disable camelcase */
-            var data = {
+            const data = {
                 utm_source: 'addons.mozilla.org',
                 utm_medium: 'referral',
                 utm_campaign: 'non-fx-button',
@@ -201,7 +201,7 @@ describe('stub-attribution.js', function() {
 
         it('should return false for RTAMO data if referrer is not set', function() {
             /* eslint-disable camelcase */
-            var data = {
+            const data = {
                 utm_source: 'addons.mozilla.org',
                 utm_medium: 'referral',
                 utm_campaign: 'non-fx-button',
@@ -219,24 +219,24 @@ describe('stub-attribution.js', function() {
     describe('isFirefoxNewScene2', function() {
 
         it('should return true if the page is scene 2 of /firefox/new/', function() {
-            var url = 'https://www.mozilla.org/en-US/firefox/download/thanks/';
+            const url = 'https://www.mozilla.org/en-US/firefox/download/thanks/';
             expect(Mozilla.StubAttribution.isFirefoxNewScene2(url)).toBeTruthy();
 
-            var url2 = 'https://www.mozilla.org/en-US/firefox/download/thanks/?foo=bar';
+            const url2 = 'https://www.mozilla.org/en-US/firefox/download/thanks/?foo=bar';
             expect(Mozilla.StubAttribution.isFirefoxNewScene2(url2)).toBeTruthy();
         });
     });
 
     describe('getUserAgent', function() {
 
-        var ie8 = 'Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0; GTB7.4; InfoPath.2; SV1; .NET CLR 3.3.69573; WOW64; en-US)';
-        var ie9 = 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; Media Center PC 6.0; InfoPath.3; MS-RTC LM 8; Zune 4.7)';
-        var ie10 = 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 7.0; InfoPath.3; .NET CLR 3.1.40767; Trident/6.0; en-IN)';
-        var ie11 = 'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko';
-        var ff = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0';
-        var chrome = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36';
-        var edgeium = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.74 Safari/537.36 Edg/79.0.309.43';
-        var edge = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/51.0.2704.79 Safari/537.36 Edge/14.14931';
+        const ie8 = 'Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0; GTB7.4; InfoPath.2; SV1; .NET CLR 3.3.69573; WOW64; en-US)';
+        const ie9 = 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; Media Center PC 6.0; InfoPath.3; MS-RTC LM 8; Zune 4.7)';
+        const ie10 = 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 7.0; InfoPath.3; .NET CLR 3.1.40767; Trident/6.0; en-IN)';
+        const ie11 = 'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko';
+        const ff = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0';
+        const chrome = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36';
+        const edgeium = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.74 Safari/537.36 Edg/79.0.309.43';
+        const edge = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/51.0.2704.79 Safari/537.36 Edge/14.14931';
 
         it('should identify Internet Explorer', function() {
             expect(Mozilla.StubAttribution.getUserAgent(ie8)).toEqual('ie');
@@ -262,7 +262,7 @@ describe('stub-attribution.js', function() {
     describe('waitForGoogleAnalytics', function() {
 
         it('should fire a callback with the GA visit ID', function() {
-            var callback = jasmine.createSpy('callback');
+            const callback = jasmine.createSpy('callback');
 
             Mozilla.StubAttribution.waitForGoogleAnalytics(callback);
             expect(callback).toHaveBeenCalledWith(true);
@@ -272,10 +272,10 @@ describe('stub-attribution.js', function() {
     describe('getAttributionData', function() {
 
         it('should return attribution data if utm params are present', function() {
-            var referrer = '';
+            const referrer = '';
 
             /* eslint-disable camelcase */
-            var utms = {
+            const utms = {
                 utm_source: 'desktop-snippet',
                 utm_medium: 'referral',
                 utm_campaign: 'F100_4242_otherstuff_in_here',
@@ -284,7 +284,7 @@ describe('stub-attribution.js', function() {
             /* eslint-enable camelcase */
 
             /* eslint-disable camelcase */
-            var data = {
+            const data = {
                 utm_source: 'desktop-snippet',
                 utm_medium: 'referral',
                 utm_campaign: 'F100_4242_otherstuff_in_here',
@@ -297,15 +297,15 @@ describe('stub-attribution.js', function() {
 
             spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(utms);
             spyOn(Mozilla.StubAttribution, 'getUserAgent').and.returnValue('chrome');
-            var result = Mozilla.StubAttribution.getAttributionData(referrer);
+            const result = Mozilla.StubAttribution.getAttributionData(referrer);
             expect(result).toEqual(data);
         });
 
         it('should return attribution data if referrer is present', function() {
-            var referrer = 'https://www.mozilla.org/en-US/';
+            const referrer = 'https://www.mozilla.org/en-US/';
 
             /* eslint-disable camelcase */
-            var utms = {
+            const utms = {
                 utm_source: undefined,
                 utm_medium: undefined,
                 utm_campaign: undefined,
@@ -314,7 +314,7 @@ describe('stub-attribution.js', function() {
             /* eslint-enable camelcase */
 
             /* eslint-disable camelcase */
-            var data = {
+            const data = {
                 referrer: 'https://www.mozilla.org/en-US/',
                 ua: 'chrome',
                 visit_id: GA_VISIT_ID
@@ -323,15 +323,15 @@ describe('stub-attribution.js', function() {
 
             spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(utms);
             spyOn(Mozilla.StubAttribution, 'getUserAgent').and.returnValue('chrome');
-            var result = Mozilla.StubAttribution.getAttributionData(referrer);
+            const result = Mozilla.StubAttribution.getAttributionData(referrer);
             expect(result).toEqual(data);
         });
 
         it('should return only UA and GA data if neither utm params and referrer are present', function() {
-            var referrer = '';
+            const referrer = '';
 
             /* eslint-disable camelcase */
-            var utms = {
+            const utms = {
                 utm_source: undefined,
                 utm_medium: undefined,
                 utm_campaign: undefined,
@@ -340,7 +340,7 @@ describe('stub-attribution.js', function() {
             /* eslint-enable camelcase */
 
             /* eslint-disable camelcase */
-            var data = {
+            const data = {
                 referrer: '',
                 ua: 'chrome',
                 visit_id: GA_VISIT_ID
@@ -349,15 +349,15 @@ describe('stub-attribution.js', function() {
 
             spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(utms);
             spyOn(Mozilla.StubAttribution, 'getUserAgent').and.returnValue('chrome');
-            var result = Mozilla.StubAttribution.getAttributionData(referrer);
+            const result = Mozilla.StubAttribution.getAttributionData(referrer);
             expect(result).toEqual(data);
         });
 
         it('should return optional experimental parameters if present', function() {
-            var referrer = '';
+            const referrer = '';
 
             /* eslint-disable camelcase */
-            var utms = {
+            const utms = {
                 utm_source: undefined,
                 utm_medium: undefined,
                 utm_campaign: undefined,
@@ -366,7 +366,7 @@ describe('stub-attribution.js', function() {
             /* eslint-enable camelcase */
 
             /* eslint-disable camelcase */
-            var data = {
+            const data = {
                 referrer: '',
                 ua: 'chrome',
                 experiment: 'firefox-new',
@@ -380,19 +380,19 @@ describe('stub-attribution.js', function() {
                 return key === 'experiment' ? 'firefox-new' : 1;
             });
             spyOn(Mozilla.StubAttribution, 'getUserAgent').and.returnValue('chrome');
-            var result = Mozilla.StubAttribution.getAttributionData(referrer);
+            const result = Mozilla.StubAttribution.getAttributionData(referrer);
             expect(result).toEqual(data);
         });
     });
 
     describe('requestAuthentication', function() {
 
-        var xhr;
-        var xhrRequests = [];
+        let xhr;
+        let xhrRequests = [];
 
         beforeEach(function() {
             xhr = sinon.useFakeXMLHttpRequest();
-            xhr.onCreate = function(req) {
+            xhr.onCreate = (req) => {
                 xhrRequests.push(req);
             };
             jasmine.clock().install();
@@ -408,13 +408,13 @@ describe('stub-attribution.js', function() {
 
         it('should handle a request successfully', function() {
             /* eslint-disable camelcase */
-            var data = {
+            const data = {
                 attribution_code: 'foo',
                 attribution_sig: 'bar'
             };
             /* eslint-enable camelcase */
 
-            var callback = function() {}; // eslint-disable-line no-empty-function
+            const callback = function() {}; // eslint-disable-line no-empty-function
             Mozilla.StubAttribution.successCallback = callback;
 
             spyOn(Mozilla.StubAttribution, 'onRequestSuccess').and.callThrough();
@@ -431,7 +431,7 @@ describe('stub-attribution.js', function() {
         });
 
         it('should handle a timeout as expected', function() {
-            var callback = function() {}; // eslint-disable-line no-empty-function
+            const callback = function() {}; // eslint-disable-line no-empty-function
             Mozilla.StubAttribution.timeoutCallback = callback;
             spyOn(Mozilla.StubAttribution, 'onRequestTimeout').and.callThrough();
             spyOn(Mozilla.StubAttribution, 'timeoutCallback');
@@ -455,7 +455,7 @@ describe('stub-attribution.js', function() {
 
         it('should handle the data as expected', function() {
             /* eslint-disable camelcase */
-            var data = {
+            const data = {
                 attribution_code: 'foo',
                 attribution_sig: 'bar'
             };
@@ -471,7 +471,7 @@ describe('stub-attribution.js', function() {
 
         it('should only handle the request once', function() {
             /* eslint-disable camelcase */
-            var data = {
+            const data = {
                 attribution_code: 'foo',
                 attribution_sig: 'bar'
             };
@@ -489,28 +489,29 @@ describe('stub-attribution.js', function() {
     describe('updateBouncerLinks', function() {
 
         /* eslint-disable camelcase */
-        var data = {
+        const data = {
             attribution_code: 'test-code',
             attribution_sig: 'test-sig'
         };
         /* eslint-enable camelcase */
 
-        var winUrl = 'https://download.mozilla.org/?product=firefox-stub&os=win&lang=en-US';
-        var win64Url = 'https://download.mozilla.org/?product=firefox-50.0b11-SSL&os=win64&lang=en-US';
-        var transitionalUrl = 'https://www.mozilla.org/firefox/download/thanks/';
+        const winUrl = 'https://download.mozilla.org/?product=firefox-stub&os=win&lang=en-US';
+        const win64Url = 'https://download.mozilla.org/?product=firefox-50.0b11-SSL&os=win64&lang=en-US';
+        const transitionalUrl = 'https://www.mozilla.org/firefox/download/thanks/';
 
         beforeEach(function() {
-            var downloadMarkup = '<ul class="download-list">' +
-                                    '<li><a id="link-transitional" class="download-link" data-download-version="win" href="' + transitionalUrl +'" data-direct-link="' + winUrl + '">Download</a></li>' +
-                                    '<li><a id="link-direct-win" class="download-link" data-download-version="win" href="' + winUrl+ '">Download</a></li>' +
-                                    '<li><a id="link-direct-win64" class="download-link" data-download-version="win64" href="' + win64Url + '">Download</a></li>' +
-                                 '</ul>';
+            const downloadMarkup =
+                `<ul class="download-list">
+                    <li><a id="link-transitional" class="download-link" data-download-version="win" href="${transitionalUrl}" data-direct-link="${winUrl}">Download</a></li>
+                    <li><a id="link-direct-win" class="download-link" data-download-version="win" href="${winUrl}">Download</a></li>
+                    <li><a id="link-direct-win64" class="download-link" data-download-version="win64" href="${win64Url}">Download</a></li>
+                </ul>`;
 
             document.body.insertAdjacentHTML('beforeend', downloadMarkup);
         });
 
         afterEach(function() {
-            var content = document.querySelector('.download-list');
+            const content = document.querySelector('.download-list');
             content.parentNode.removeChild(content);
         });
 
@@ -540,9 +541,9 @@ describe('stub-attribution.js', function() {
 
     describe('appendToDownloadURL', function() {
 
-        var params = {};
-        var originalUrl = '';
-        var expectedUrl = '';
+        let params = {};
+        let originalUrl = '';
+        let expectedUrl = '';
 
         beforeEach(function() {
             /* eslint-disable camelcase */
@@ -574,7 +575,7 @@ describe('stub-attribution.js', function() {
     describe('getCookie', function() {
 
         it('should return an object as expected', function() {
-            spyOn(Mozilla.Cookies, 'getItem').and.callFake(function(id) {
+            spyOn(Mozilla.Cookies, 'getItem').and.callFake((id) => {
                 return id === Mozilla.StubAttribution.COOKIE_CODE_ID ? 'foo' : 'bar';
             });
             /* eslint-disable camelcase */
@@ -595,7 +596,7 @@ describe('stub-attribution.js', function() {
 
         it('should set session cookies as expected', function() {
             /* eslint-disable camelcase */
-            var data = {
+            const data = {
                 attribution_code: 'foo',
                 attribution_sig: 'bar'
             };
@@ -617,7 +618,7 @@ describe('stub-attribution.js', function() {
 
         it('should return true if both session cookies exists', function() {
             spyOn(Mozilla.Cookies, 'hasItem').and.returnValue(true);
-            var result = Mozilla.StubAttribution.hasCookie();
+            const result = Mozilla.StubAttribution.hasCookie();
             expect(Mozilla.Cookies.hasItem.calls.count()).toEqual(2);
             expect(Mozilla.Cookies.hasItem).toHaveBeenCalledWith(Mozilla.StubAttribution.COOKIE_CODE_ID);
             expect(Mozilla.Cookies.hasItem).toHaveBeenCalledWith(Mozilla.StubAttribution.COOKIE_SIGNATURE_ID);
@@ -625,10 +626,10 @@ describe('stub-attribution.js', function() {
         });
 
         it('should return false if one or more session cookies do not exist', function() {
-            spyOn(Mozilla.Cookies, 'hasItem').and.callFake(function(id) {
+            spyOn(Mozilla.Cookies, 'hasItem').and.callFake((id) => {
                 return id === Mozilla.StubAttribution.COOKIE_CODE_ID ? true : false;
             });
-            var result = Mozilla.StubAttribution.hasCookie();
+            const result = Mozilla.StubAttribution.hasCookie();
             expect(Mozilla.Cookies.hasItem.calls.count()).toEqual(2);
             expect(result).toBeFalsy();
         });
@@ -636,8 +637,8 @@ describe('stub-attribution.js', function() {
 
     describe('getAttributionRate', function() {
 
-        var html = document.documentElement;
-        var attr = 'data-stub-attribution-rate';
+        const html = document.documentElement;
+        const attr = 'data-stub-attribution-rate';
 
         afterEach(function() {
             html.removeAttribute(attr);

@@ -24,7 +24,7 @@ describe('mozilla-run.js', function() {
         });
 
         it('should not execute callback for legacy browsers', function() {
-            var obj = {
+            const obj = {
                 callback: function() {} // eslint-disable-line no-empty-function
             };
             window.site.isModernBrowser = false;

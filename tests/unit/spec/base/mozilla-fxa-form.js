@@ -11,28 +11,29 @@ describe('mozilla-fxa-form.js', function() {
     describe('init', function() {
 
         beforeEach(function() {
-            var form = '<form action="https://accounts.firefox.com/" data-mozillaonline-action="https://accounts.firefox.com.cn/" id="fxa-email-form" class="fxa-email-form">' +
-                       '<input type="hidden" name="action" value="email">' +
-                       '<input type="hidden" name="entrypoint" value="mozilla.org-privacy-products" id="fxa-email-form-entrypoint">' +
-                       '<input type="hidden" name="entrypoint_experiment" value="exp" id="fxa-email-form-entrypoint-experiment">' +
-                       '<input type="hidden" name="entrypoint_variation" value="var" id="fxa-email-form-entrypoint-variation">' +
-                       '<input type="hidden" name="form_type" value="email">' +
-                       '<input type="hidden" name="utm_source" value="mozilla.org-privacy-products" id="fxa-email-form-utm-source">' +
-                       '<input type="hidden" name="utm_campaign" value="fxa-embedded-form" id="fxa-email-form-utm-campaign">' +
-                       '<input type="hidden" name="flow_id" value="" />' +
-                       '<input type="hidden" name="flow_begin_time" value="" />' +
-                       '<input type="hidden" name="device_id" value="" />' +
-                       '<input type="email" name="email" id="fxa-email-field" class="fxa-email-field" placeholder="user@example.com" required="">' +
-                       '<button type="submit" class="mzp-c-button mzp-t-primary mzp-t-product" id="fxa-email-form-submit">Continue</button>' +
-                       '</form>';
+            const form =
+                `<form action="https://accounts.firefox.com/" data-mozillaonline-action="https://accounts.firefox.com.cn/" id="fxa-email-form" class="fxa-email-form">
+                    <input type="hidden" name="action" value="email">
+                    <input type="hidden" name="entrypoint" value="mozilla.org-privacy-products" id="fxa-email-form-entrypoint">
+                    <input type="hidden" name="entrypoint_experiment" value="exp" id="fxa-email-form-entrypoint-experiment">
+                    <input type="hidden" name="entrypoint_variation" value="var" id="fxa-email-form-entrypoint-variation">
+                    <input type="hidden" name="form_type" value="email">
+                    <input type="hidden" name="utm_source" value="mozilla.org-privacy-products" id="fxa-email-form-utm-source">
+                    <input type="hidden" name="utm_campaign" value="fxa-embedded-form" id="fxa-email-form-utm-campaign">
+                    <input type="hidden" name="flow_id" value="" />
+                    <input type="hidden" name="flow_begin_time" value="" />
+                    <input type="hidden" name="device_id" value="" />
+                    <input type="email" name="email" id="fxa-email-field" class="fxa-email-field" placeholder="user@example.com" required="">
+                    <button type="submit" class="mzp-c-button mzp-t-primary mzp-t-product" id="fxa-email-form-submit">Continue</button>
+                </form>`;
 
-            var data = {
+            const data = {
                 'deviceId': '848377ff6e3e4fc982307a316f4ca3d6',
                 'flowBeginTime': '1573052386673',
                 'flowId': '75f9a48a0f66c2f5919a0989605d5fa5dd04625ea5a2ee59b2d5d54637c566d1'
             };
 
-            var mockResponse = new window.Response(JSON.stringify(data), {
+            const mockResponse = new window.Response(JSON.stringify(data), {
                 status: 200,
                 headers: {
                     'Content-type': 'application/json'
@@ -45,7 +46,7 @@ describe('mozilla-fxa-form.js', function() {
         });
 
         afterEach(function() {
-            document.querySelectorAll('.fxa-email-form').forEach(function(e)  {
+            document.querySelectorAll('.fxa-email-form').forEach((e) => {
                 e.parentNode.removeChild(e);
             });
         });
@@ -53,15 +54,15 @@ describe('mozilla-fxa-form.js', function() {
         it('should configure the form for Firefox desktop < 71', function() {
             spyOn(window.Mozilla.Client, '_isFirefoxDesktop').and.returnValue(true);
             spyOn(window.Mozilla.Client, '_getFirefoxVersion').and.returnValue('70.0');
-            spyOn(Mozilla.Client, 'getFirefoxDetails').and.callFake(function(callback) {
+            spyOn(Mozilla.Client, 'getFirefoxDetails').and.callFake((callback) => {
                 callback({
                     'accurate': true,
                     'distribution': undefined,
                 });
             });
 
-            return Mozilla.FxaForm.init().then(function() {
-                var form = document.getElementById('fxa-email-form');
+            return Mozilla.FxaForm.init().then(() => {
+                const form = document.getElementById('fxa-email-form');
                 expect(form.getAttribute('action')).toEqual('https://accounts.firefox.com/');
                 expect(form.querySelector('[name="context"]').value).toEqual('fx_desktop_v3');
                 expect(form.querySelector('[name="service"]').value).toEqual('sync');
@@ -74,15 +75,15 @@ describe('mozilla-fxa-form.js', function() {
         it('should configure the form for Firefox desktop >= 71', function() {
             spyOn(window.Mozilla.Client, '_isFirefoxDesktop').and.returnValue(true);
             spyOn(window.Mozilla.Client, '_getFirefoxVersion').and.returnValue('71.0');
-            spyOn(Mozilla.Client, 'getFirefoxDetails').and.callFake(function(callback) {
+            spyOn(Mozilla.Client, 'getFirefoxDetails').and.callFake((callback) => {
                 callback({
                     'accurate': true,
                     'distribution': undefined,
                 });
             });
 
-            return Mozilla.FxaForm.init().then(function() {
-                var form = document.getElementById('fxa-email-form');
+            return Mozilla.FxaForm.init().then(() => {
+                const form = document.getElementById('fxa-email-form');
                 expect(form.getAttribute('action')).toEqual('https://accounts.firefox.com/');
                 expect(form.querySelector('[name="context"]').value).toEqual('fx_desktop_v3');
                 expect(form.querySelector('[name="service"]')).toBeNull();
@@ -95,7 +96,7 @@ describe('mozilla-fxa-form.js', function() {
         it('should configure the form for non-Firefox browsers', function() {
             spyOn(window.Mozilla.Client, '_isFirefoxDesktop').and.returnValue(false);
 
-            return Mozilla.FxaForm.init().then(function() {
+            return Mozilla.FxaForm.init().then(() => {
                 var form = document.getElementById('fxa-email-form');
                 expect(form.getAttribute('action')).toEqual('https://accounts.firefox.com/');
                 expect(form.querySelector('[name="context"]')).toBeNull();

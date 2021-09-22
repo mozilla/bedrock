@@ -80,15 +80,15 @@ describe('mozilla-traffic-cop-funnelcake-geo.js', function() {
     });
 
     describe('geoLookup', function() {
-        var xhr;
-        var xhrRequests = [];
+        let xhr;
+        let xhrRequests = [];
 
         beforeEach(function() {
             spyOn(Mozilla.TCFCGeoExp, 'runExperiment').and.returnValue(true);
             spyOn(Mozilla.Cookies, 'setItem').and.returnValue(true);
 
             xhr = sinon.useFakeXMLHttpRequest();
-            xhr.onCreate = function(req) {
+            xhr.onCreate = (req) => {
                 xhrRequests.push(req);
             };
         });
@@ -108,7 +108,7 @@ describe('mozilla-traffic-cop-funnelcake-geo.js', function() {
         });
 
         it('should set a cookie if country does not match', function() {
-            var someConfig = {experimentId: 'weapon-x'};
+            const someConfig = {experimentId: 'weapon-x'};
 
             Mozilla.TCFCGeoExp.geoLookup('de', 'someCookie', someConfig);
 
@@ -118,7 +118,7 @@ describe('mozilla-traffic-cop-funnelcake-geo.js', function() {
         });
 
         it('should call runExperiment if country matches', function() {
-            var someConfig = {};
+            const someConfig = {};
 
             Mozilla.TCFCGeoExp.geoLookup('de', 'someCookie', someConfig);
 

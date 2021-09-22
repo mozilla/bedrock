@@ -8,7 +8,7 @@ describe('mozilla-client.js', function() {
     'use strict';
 
     // User-agent strings for the most of the following tests
-    var uas = {
+    const uas = {
         // Firefox family
         'firefox': {
             'windows': 'Mozilla/5.0 (Windows NT x.y; rv:10.0) Gecko/20100101 Firefox/10.0',
@@ -42,7 +42,7 @@ describe('mozilla-client.js', function() {
 
     describe('_isFirefox', function() {
 
-        var test = function(ua) {
+        const test = (ua) => {
             return expect(window.Mozilla.Client._isFirefox(ua));
         };
 
@@ -89,7 +89,7 @@ describe('mozilla-client.js', function() {
 
     describe('_isFirefoxDesktop', function () {
 
-        var test = function(ua) {
+        const test = (ua) => {
             return expect(window.Mozilla.Client._isFirefoxDesktop(ua));
         };
 
@@ -136,7 +136,7 @@ describe('mozilla-client.js', function() {
 
     describe('_isFirefoxAndroid', function () {
 
-        var test = function(ua) {
+        const test = (ua) => {
             return expect(window.Mozilla.Client._isFirefoxAndroid(ua));
         };
 
@@ -183,7 +183,7 @@ describe('mozilla-client.js', function() {
 
     describe('_isFirefoxiOS', function () {
 
-        var test = function(ua) {
+        const test = (ua) => {
             return expect(window.Mozilla.Client._isFirefoxiOS(ua));
         };
 
@@ -230,7 +230,7 @@ describe('mozilla-client.js', function() {
 
     describe('_isFirefoxFxOS', function () {
 
-        var test = function(ua, pf) {
+        const test = (ua, pf) => {
             return expect(window.Mozilla.Client._isFirefoxFxOS(ua, pf));
         };
 
@@ -277,7 +277,7 @@ describe('mozilla-client.js', function() {
 
     describe('_isLikeFirefox', function() {
 
-        var test = function(ua) {
+        const test = (ua) => {
             return expect(window.Mozilla.Client._isLikeFirefox(ua));
         };
 
@@ -324,7 +324,7 @@ describe('mozilla-client.js', function() {
 
     describe('_getFirefoxVersion', function () {
 
-        var test = function(ua) {
+        const test = (ua) => {
             return expect(window.Mozilla.Client._getFirefoxVersion(ua));
         };
 
@@ -371,7 +371,7 @@ describe('mozilla-client.js', function() {
 
     describe('_getFirefoxMajorVersion', function () {
 
-        var test = function(ua) {
+        const test = (ua) => {
             return expect(window.Mozilla.Client._getFirefoxMajorVersion(ua));
         };
 
@@ -418,9 +418,9 @@ describe('mozilla-client.js', function() {
 
     describe('_isFirefoxUpToDate', function () {
 
-        var h = document.documentElement;
+        const h = document.documentElement;
 
-        var test = function(strict, isESR, userVer) {
+        var test = (strict, isESR, userVer) => {
             return expect(window.Mozilla.Client._isFirefoxUpToDate(strict, isESR, userVer));
         };
 
@@ -472,7 +472,7 @@ describe('mozilla-client.js', function() {
 
     describe('getFirefoxDetails', function () {
 
-        var h = document.documentElement;
+        const h = document.documentElement;
 
         beforeEach(function () {
             h.setAttribute('data-latest-firefox', '46.0.2');
@@ -488,9 +488,9 @@ describe('mozilla-client.js', function() {
         });
 
         it('should fire the callback function with a Firefox details object', function() {
-            var callback1 = jasmine.createSpy('callback1');
-            var callback2 = jasmine.createSpy('callback2');
-            var result = {
+            const callback1 = jasmine.createSpy('callback1');
+            const callback2 = jasmine.createSpy('callback2');
+            const result = {
                 'accurate': false, // Because the mozUITour API doesn't get called in tests, this won't be true
                 'version': '46.0.2',
                 'channel': 'release',
@@ -525,7 +525,7 @@ describe('mozilla-client.js', function() {
         });
 
         it('should fire the callback function with a FxA details object', function() {
-            var callback1 = jasmine.createSpy('callback1');
+            const callback1 = jasmine.createSpy('callback1');
 
             window.Mozilla.Client.getFxaDetails(callback1);
             jasmine.clock().tick(500);
@@ -540,7 +540,7 @@ describe('mozilla-client.js', function() {
         });
 
         it('should identify Firefox for desktop as expected', function() {
-            var callback1 = jasmine.createSpy('callback1');
+            const callback1 = jasmine.createSpy('callback1');
             spyOn(Mozilla.Client, '_isFirefoxDesktop').and.returnValue(true);
 
             window.Mozilla.Client.getFxaDetails(callback1);
@@ -550,7 +550,7 @@ describe('mozilla-client.js', function() {
         });
 
         it('should identify Firefox for Android as expected', function() {
-            var callback1 = jasmine.createSpy('callback1');
+            const callback1 = jasmine.createSpy('callback1');
             spyOn(Mozilla.Client, '_isFirefoxAndroid').and.returnValue(true);
 
             window.Mozilla.Client.getFxaDetails(callback1);
@@ -561,7 +561,7 @@ describe('mozilla-client.js', function() {
         });
 
         it('should identify Firefox for iOS as expected', function() {
-            var callback1 = jasmine.createSpy('callback1');
+            const callback1 = jasmine.createSpy('callback1');
             spyOn(Mozilla.Client, '_isFirefoxiOS').and.returnValue(true);
 
             window.Mozilla.Client.getFxaDetails(callback1);
@@ -572,7 +572,7 @@ describe('mozilla-client.js', function() {
         });
 
         it('should identify legacy Firefox browsers as expected', function() {
-            var callback1 = jasmine.createSpy('callback1');
+            const callback1 = jasmine.createSpy('callback1');
             spyOn(Mozilla.Client, '_isFirefoxDesktop').and.returnValue(true);
             spyOn(Mozilla.Client, '_getFirefoxVersion').and.returnValue(Mozilla.Client.FxALastSupported - 1);
 
@@ -597,7 +597,7 @@ describe('mozilla-client.js', function() {
         });
 
         it('should fire the callback function with a FxaConnections details object', function() {
-            var callback1 = jasmine.createSpy('callback1');
+            const callback1 = jasmine.createSpy('callback1');
 
             window.Mozilla.Client.getFxaConnections(callback1);
             jasmine.clock().tick(2100);
@@ -611,7 +611,7 @@ describe('mozilla-client.js', function() {
         });
 
         it('should identify legacy Firefox browsers as expected', function() {
-            var callback1 = jasmine.createSpy('callback1');
+            const callback1 = jasmine.createSpy('callback1');
             spyOn(Mozilla.Client, '_isFirefoxDesktop').and.returnValue(true);
             spyOn(Mozilla.Client, '_getFirefoxVersion').and.returnValue(72);
 
@@ -623,7 +623,7 @@ describe('mozilla-client.js', function() {
         });
 
         it('should identify non Firefox browsers as expected', function() {
-            var callback1 = jasmine.createSpy('callback1');
+            const callback1 = jasmine.createSpy('callback1');
             spyOn(Mozilla.Client, '_isFirefoxDesktop').and.returnValue(false);
 
             window.Mozilla.Client.getFxaConnections(callback1);
@@ -638,30 +638,30 @@ describe('mozilla-client.js', function() {
     describe('isFirefoxOutOfDate', function () {
 
         it('should return true if client version is equal to or less than the major version considered out of date', function () {
-            var result = Mozilla.Client.isFirefoxOutOfDate('50.0', 2, '56.0.1');
+            const result = Mozilla.Client.isFirefoxOutOfDate('50.0', 2, '56.0.1');
             expect(result).toBeTruthy();
 
-            var result2 = Mozilla.Client.isFirefoxOutOfDate('54.0', 2, '56.0');
+            const result2 = Mozilla.Client.isFirefoxOutOfDate('54.0', 2, '56.0');
             expect(result2).toBeTruthy();
 
-            var result3 = Mozilla.Client.isFirefoxOutOfDate('54.0a1', 2, '56.0.1a1');
+            const result3 = Mozilla.Client.isFirefoxOutOfDate('54.0a1', 2, '56.0.1a1');
             expect(result3).toBeTruthy();
 
-            var result4 = Mozilla.Client.isFirefoxOutOfDate('55.0.1', 1, '56.0');
+            const result4 = Mozilla.Client.isFirefoxOutOfDate('55.0.1', 1, '56.0');
             expect(result4).toBeTruthy();
         });
 
         it('should return false if client version is greater than the major version considered out of date', function () {
-            var result = Mozilla.Client.isFirefoxOutOfDate('56.0', 2, '56.0.1');
+            const result = Mozilla.Client.isFirefoxOutOfDate('56.0', 2, '56.0.1');
             expect(result).toBeFalsy();
 
-            var result2 = Mozilla.Client.isFirefoxOutOfDate('58.0a2', 2, '56.0.1');
+            const result2 = Mozilla.Client.isFirefoxOutOfDate('58.0a2', 2, '56.0.1');
             expect(result2).toBeFalsy();
 
-            var result3 = Mozilla.Client.isFirefoxOutOfDate('55.0', 2, '56.0.1');
+            const result3 = Mozilla.Client.isFirefoxOutOfDate('55.0', 2, '56.0.1');
             expect(result3).toBeFalsy();
 
-            var result4 = Mozilla.Client.isFirefoxOutOfDate('56.0', 1, '56.0.1');
+            const result4 = Mozilla.Client.isFirefoxOutOfDate('56.0', 1, '56.0.1');
             expect(result4).toBeFalsy();
         });
 
@@ -670,44 +670,44 @@ describe('mozilla-client.js', function() {
     describe('isFirefoxURLOutOfDate', function () {
 
         it('should return true if URL version is equal to or less than the major version considered out of date', function () {
-            var result = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/54.0/', '56.0');
+            const result = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/54.0/', '56.0');
             expect(result).toBeTruthy();
 
-            var result2 = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/54.0a1/', '56.0');
+            const result2 = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/54.0a1/', '56.0');
             expect(result2).toBeTruthy();
 
-            var result3 = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/54.0a2/', '56.0');
+            const result3 = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/54.0a2/', '56.0');
             expect(result3).toBeTruthy();
 
-            var result4 = Mozilla.Client.isFirefoxURLOutOfDate(1, '/firefox/55.0.1/', '56.0');
+            const result4 = Mozilla.Client.isFirefoxURLOutOfDate(1, '/firefox/55.0.1/', '56.0');
             expect(result4).toBeTruthy();
 
-            var result5 = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/53.0/', '56.0');
+            const result5 = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/53.0/', '56.0');
             expect(result5).toBeTruthy();
         });
 
         it('should return false if URL version is greater than the major version considered out of date', function () {
-            var result = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/55.0/', '56.0');
+            const result = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/55.0/', '56.0');
             expect(result).toBeFalsy();
 
-            var result2 = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/55.0a1/', '56.0');
+            const result2 = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/55.0a1/', '56.0');
             expect(result2).toBeFalsy();
 
-            var result3 = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/55.0a2/', '56.0');
+            const result3 = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/55.0a2/', '56.0');
             expect(result3).toBeFalsy();
 
-            var result4 = Mozilla.Client.isFirefoxURLOutOfDate(1, '/firefox/56.0/', '56.0.1');
+            const result4 = Mozilla.Client.isFirefoxURLOutOfDate(1, '/firefox/56.0/', '56.0.1');
             expect(result4).toBeFalsy();
 
-            var result5 = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/58.0/', '56.0');
+            const result5 = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/58.0/', '56.0');
             expect(result5).toBeFalsy();
         });
 
         it('should return false if the URL version is invalid', function() {
-            var result = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/foo/', '56.0');
+            const result = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/foo/', '56.0');
             expect(result).toBeFalsy();
 
-            var result2 = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/10/', '56.0');
+            const result2 = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/10/', '56.0');
             expect(result2).toBeFalsy();
         });
 

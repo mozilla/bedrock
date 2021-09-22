@@ -7,24 +7,25 @@ describe('mozilla-utils.js', function() {
     'use strict';
 
     describe('trans', function () {
-        var stringDiv;
+        let stringDiv;
 
         beforeEach(function () {
-            stringDiv = '<div id="strings" data-global-close="Close" ' +
-            'data-global-next="Next" ' +
-            'data-global-previous="Previous"> ' +
-            '</div>';
+            stringDiv =
+                `<div id="strings" data-global-close="Close"
+                    data-global-next="Next"
+                    data-global-previous="Previous">
+                </div>`;
 
             document.body.insertAdjacentHTML('beforeend', stringDiv);
         });
 
         afterEach(function() {
-            var strings = document.getElementById('strings');
+            const strings = document.getElementById('strings');
             strings.parentNode.removeChild(strings);
         });
 
         it('should correctly return translation value', function () {
-            var translation = Mozilla.Utils.trans('global-next');
+            const translation = Mozilla.Utils.trans('global-next');
             expect(translation === 'Next');
         });
     });
@@ -32,14 +33,14 @@ describe('mozilla-utils.js', function() {
     describe('initMobileDownloadLinks', function () {
 
         beforeEach(function() {
-            var link = '<a class="download-link" href="https://play.google.com/store/apps/details?id=org.mozilla.firefox">Download Firefox</a>';
+            const link = '<a class="download-link" href="https://play.google.com/store/apps/details?id=org.mozilla.firefox">Download Firefox</a>';
             document.body.insertAdjacentHTML('beforeend', link);
         });
 
         afterEach(function(){
             window.site.platform = 'other';
 
-            document.querySelectorAll('.download-link').forEach(function(e)  {
+            document.querySelectorAll('.download-link').forEach((e) => {
                 e.parentNode.removeChild(e);
             });
         });
@@ -47,23 +48,23 @@ describe('mozilla-utils.js', function() {
         it('should set a URL with the market scheme on Android', function () {
             window.site.platform = 'android';
             Mozilla.Utils.initMobileDownloadLinks();
-            var link = document.querySelector('.download-link');
+            const link = document.querySelector('.download-link');
             expect(link.href).toEqual('market://details?id=org.mozilla.firefox');
         });
     });
 
     describe('maybeSwitchToChinaRepackImages', function() {
 
-        var defaultSrc = '/img/placeholder.png';
-        var partnerASrc = '/img/foo.png';
+        const defaultSrc = '/img/placeholder.png';
+        const partnerASrc = '/img/foo.png';
 
         beforeEach(function () {
-            var img = '<img class="test-image" src="' + defaultSrc + '" data-mozillaonline-link="' + partnerASrc + '">';
+            const img = `<img class="test-image" src="${defaultSrc}" data-mozillaonline-link="${partnerASrc}">`;
             document.body.insertAdjacentHTML('beforeend', img);
         });
 
         afterEach(function() {
-            document.querySelectorAll('.test-image').forEach(function(e)  {
+            document.querySelectorAll('.test-image').forEach((e) => {
                 e.parentNode.removeChild(e);
             });
         });
@@ -72,7 +73,7 @@ describe('mozilla-utils.js', function() {
             Mozilla.Utils.maybeSwitchToChinaRepackImages({
                 distribution: 'mozillaonline'
             });
-            var img = document.querySelector('.test-image');
+            const img = document.querySelector('.test-image');
             expect(img.src).toContain(partnerASrc);
         });
 
@@ -80,7 +81,7 @@ describe('mozilla-utils.js', function() {
             Mozilla.Utils.maybeSwitchToChinaRepackImages({
                 distribution: 'regata os'
             });
-            var img = document.querySelector('.test-image');
+            const img = document.querySelector('.test-image');
             expect(img.src).toContain(defaultSrc);
         });
     });
@@ -88,10 +89,10 @@ describe('mozilla-utils.js', function() {
     describe('getDownloadAttributionValues', function() {
 
         it('should return expected values for Windows', function () {
-            var site = {
+            const site = {
                 platform: 'windows'
             };
-            var result = Mozilla.Utils.getDownloadAttributionValues(site);
+            const result = Mozilla.Utils.getDownloadAttributionValues(site);
             expect(result).toEqual({
                 os: 'Desktop',
                 name: 'Windows 32-bit',
@@ -100,10 +101,10 @@ describe('mozilla-utils.js', function() {
         });
 
         it('should return expected values for macOS', function () {
-            var site = {
+            const site = {
                 platform: 'osx'
             };
-            var result = Mozilla.Utils.getDownloadAttributionValues(site);
+            const result = Mozilla.Utils.getDownloadAttributionValues(site);
             expect(result).toEqual({
                 os: 'Desktop',
                 name: 'macOS',
@@ -112,11 +113,11 @@ describe('mozilla-utils.js', function() {
         });
 
         it('should return expected values for Linux', function () {
-            var site = {
+            const site = {
                 platform: 'linux',
                 archSize: 32
             };
-            var result = Mozilla.Utils.getDownloadAttributionValues(site);
+            const result = Mozilla.Utils.getDownloadAttributionValues(site);
             expect(result).toEqual({
                 os: 'Desktop',
                 name: 'Linux 32-bit',
@@ -125,11 +126,11 @@ describe('mozilla-utils.js', function() {
         });
 
         it('should return expected values for Linux 64-Bit builds', function () {
-            var site = {
+            const site = {
                 platform: 'linux',
                 archSize: 64
             };
-            var result = Mozilla.Utils.getDownloadAttributionValues(site);
+            const result = Mozilla.Utils.getDownloadAttributionValues(site);
             expect(result).toEqual({
                 os: 'Desktop',
                 name: 'Linux 64-bit',
@@ -138,10 +139,10 @@ describe('mozilla-utils.js', function() {
         });
 
         it('should return expected values for iOS', function () {
-            var site = {
+            const site = {
                 platform: 'ios'
             };
-            var result = Mozilla.Utils.getDownloadAttributionValues(site);
+            const result = Mozilla.Utils.getDownloadAttributionValues(site);
             expect(result).toEqual({
                 os: 'iOS',
                 name: 'iOS',
@@ -150,10 +151,10 @@ describe('mozilla-utils.js', function() {
         });
 
         it('should return expected values for Android', function () {
-            var site = {
+            const site = {
                 platform: 'android'
             };
-            var result = Mozilla.Utils.getDownloadAttributionValues(site);
+            const result = Mozilla.Utils.getDownloadAttributionValues(site);
             expect(result).toEqual({
                 os: 'Android',
                 name: 'Android',
@@ -162,10 +163,10 @@ describe('mozilla-utils.js', function() {
         });
 
         it('should return expected values for unsupported / unknown platforms', function () {
-            var site = {
+            const site = {
                 platform: 'other'
             };
-            var result = Mozilla.Utils.getDownloadAttributionValues(site);
+            const result = Mozilla.Utils.getDownloadAttributionValues(site);
             expect(result).toEqual({
                 os: 'Unsupported',
                 name: 'Unsupported',
