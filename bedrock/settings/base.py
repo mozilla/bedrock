@@ -473,6 +473,7 @@ BASIC_AUTH_CREDS = config('BASIC_AUTH_CREDS', default='')
 MIDDLEWARE = [
     'allow_cidr.middleware.AllowCIDRMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'bedrock.mozorg.middleware.HostnameMiddleware',
     'django.middleware.http.ConditionalGetMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'bedrock.mozorg.middleware.VaryNoCacheMiddleware',
@@ -481,7 +482,6 @@ MIDDLEWARE = [
     'bedrock.redirects.middleware.RedirectsMiddleware',
     'bedrock.base.middleware.LocaleURLMiddleware',
     'bedrock.mozorg.middleware.ClacksOverheadMiddleware',
-    'bedrock.mozorg.middleware.HostnameMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'bedrock.mozorg.middleware.CacheMiddleware',
