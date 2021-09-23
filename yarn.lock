@@ -909,10 +909,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.0.tgz#87de7af9c231826fdd68ac7258f77c429e0e5fcf"
   integrity sha512-wdppn25U8z/2yiaT6YGquE6X8sSv7hNMWSXYSSU1jGv/yd6XqjXgTDJ8KP4NgjTXfJ3GbRjeeb8RTV7a/VpM+w==
 
-"@mozilla-protocol/core@14.0.3":
-  version "14.0.3"
-  resolved "https://registry.yarnpkg.com/@mozilla-protocol/core/-/core-14.0.3.tgz#9ca93d0b1e16654853be26fa222b104408aaa233"
-  integrity sha512-tdu8oa3WdB/07JtoZov35JR/eiD+r5j0dwrSs5dHRew8BeiKuj9eGA+7TzEIQkc9+KNM6YIs5RKZhsktHm9cwg==
+"@mozilla-protocol/core@14.1.0":
+  version "14.1.0"
+  resolved "https://registry.yarnpkg.com/@mozilla-protocol/core/-/core-14.1.0.tgz#8149f48aa48d7c35fcb59e2360823a65a40c46ff"
+  integrity sha512-iWG15dizWWdVSeBsLfwKx+8XEgofczQVN1AbqQIXd/ezafR5x914SWXsWVoBTsNYsr5tkuJt7cwlGv2n+glwqg==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"

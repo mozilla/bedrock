@@ -18,11 +18,12 @@
   {% call split(
     image_url='img/firefox/privacy/promise/privacy-hero.png',
     include_highres_image=True,
-    block_class='privacy-promise-hero mzp-l-split-hide-media-on-sm-md',
-    theme_class='mzp-t-dark'
+    block_class='page-hero mzp-l-split-hide-media-on-sm-md mzp-t-split-nospace',
+    theme_class='mzp-t-dark',
+    media_class='mzp-l-split-v-end'
   ) %}
     <h2>{{ ftl('learn-more-about-firefox', fallback='firefox-products-are') }}</h2>
-    <a href="{{ url('firefox.faq') }}" class="mzp-c-button mzp-t-product">{{ ftl('learn-more-faq') }}</a>
+    <p><a href="{{ url('firefox.faq') }}" class="mzp-c-button mzp-t-product">{{ ftl('learn-more-faq') }}</a></p>
   {% endcall %}
 
   <div class="mzp-l-content">

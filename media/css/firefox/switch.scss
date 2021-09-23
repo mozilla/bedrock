@@ -11,57 +11,50 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
 
 .mzp-c-split {
-    overflow-x: hidden;
-    height: 100%;
-}
+    overflow: hidden;
+    min-height: 400px;
 
-.mzp-c-split-container {
+    .mzp-c-wordmark {
+        margin-left: auto;
+        margin-right: auto;
 
-    @media #{$mq-lg} {
-        box-sizing: content-box;
-    }
-}
-
-.mzp-t-product-firefox {
-    margin: 0 auto $spacing-md;
-
-    @media #{$mq-lg} {
-        margin: 0 0 $spacing-lg;
-    }
-}
-
-.mzp-c-split-media {
-    position: relative;
-    z-index: 1;
-
-
-    @media #{$mq-lg} {
-        &:before {
-            background-image: url('/media/img/firefox/switch/bg.svg');
-            background-position: 300px bottom 100px left;
-            background-size: auto 100%;
-            background-repeat: no-repeat;
-            bottom: 0;
-            top: -160px;
-            content: '';
-            display: block;
-            left: -50px;
-            right: 0;
-            position: absolute;
-            width: 1000px;
-            height: 600px;
-            z-index: -1;
+        @media #{$mq-md} {
+            margin-left: 0;
+            margin-right: 0;
         }
     }
-}
 
-.mzp-c-split-body {
-    p {
+    .mzp-c-split-media {
+        position: relative;
+        z-index: 1;
+
+        @media #{$mq-lg} {
+            &:before {
+                background-image: url('/media/img/firefox/switch/bg.svg');
+                background-position: 300px bottom 100px left;
+                background-size: auto 100%;
+                background-repeat: no-repeat;
+                bottom: 0;
+                top: -200px;
+                content: '';
+                display: block;
+                left: -50px;
+                right: 0;
+                position: absolute;
+                width: 1000px;
+                height: 600px;
+                z-index: -1;
+            }
+        }
+    }
+
+    .mzp-c-split-body p {
         @include text-body-lg;
     }
 }
 
-/* -------------------------------------------------------------------------- */
+
+//* -------------------------------------------------------------------------- */
 // Steps
 
 .c-steps {

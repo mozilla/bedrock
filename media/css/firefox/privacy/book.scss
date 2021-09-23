@@ -25,6 +25,7 @@ $image-path: '/media/protocol/img';
     h2 {
         @include text-title-md;
     }
+
     h3 {
         @include text-title-sm;
     }
@@ -34,62 +35,12 @@ $image-path: '/media/protocol/img';
     max-width: 100%;
 }
 
-// start side-by-side layout on earlier breakpoint than protocol component
-@media #{$mq-md} {
-    .mzp-c-split-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-column-gap: get-theme('h-grid-md');
-        grid-template-areas: "body media";
-    }
-
-    .mzp-l-split-reversed .mzp-c-split-container {
-        grid-template-areas: "media body";
-    }
-
-    .mzp-c-split-media {
-        grid-area: media;
-        align-self: start;
-    }
-
-    .mzp-c-split-body + .mzp-c-split-media,
-    .mzp-c-split-media + .mzp-c-split-body {
-        margin-top: 48px;
-        margin-top: 0;
-    }
-
-    .c-tips-title {
-        .mzp-c-split-body {
-            align-self: center;
-        }
-    }
-}
-
-@media #{$mq-lg} {
-    .mzp-c-split-media {
-        align-self: center;
-    }
-}
 
 //* -------------------------------------------------------------------------- */
 // 15 tips section
 
 body {
     counter-reset: tips;
-}
-
-.c-tips-title {
-    .mzp-c-split-container {
-        max-width: $content-md;
-        box-sizing: content-box;
-    }
-}
-
-.c-tips-magnify {
-    .mzp-c-split-container {
-        max-width: $content-lg;
-        box-sizing: content-box;
-    }
 }
 
 .c-tips {

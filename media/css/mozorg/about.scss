@@ -12,7 +12,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/newsletter-form';
 @import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Hero image
 
 .mzp-c-hero.t-mission {
@@ -51,7 +51,7 @@ $image-path: '/media/protocol/img';
 }
 
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Intro section
 
 .t-shade {
@@ -59,7 +59,7 @@ $image-path: '/media/protocol/img';
     background: $color-marketing-gray-20 linear-gradient($color-marketing-gray-20, $color-white 350px);
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Page title
 
 .c-page-title {
@@ -73,23 +73,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-/* -------------------------------------------------------------------------- */
-// Foundation
-
-.mzp-c-split-container {
-    max-width: $content-max;
-
-    @media #{$mq-lg} {
-        box-sizing: content-box;
-        padding: 0 $layout-xl;
-    }
-}
-
-.mzp-c-split-media {
-    max-width: $content-max;
-}
-
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Cities
 
 .mzp-c-hero.t-global {

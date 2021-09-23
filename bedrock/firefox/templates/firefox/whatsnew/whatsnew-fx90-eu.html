@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros-protocol.html" import split with context %}
+
 {% extends "firefox/whatsnew/base.html" %}
 
 {% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
@@ -65,19 +67,18 @@
 
       <div class="c-availability">
         <h3 class="c-availability-heading">{{ ftl('whatsnew90-availability-heading') }}</h3>
-        <div class="mzp-c-split">
-          <div class="mzp-c-split-container">
-            <div class="mzp-c-split-body">
-              <p>{{ ftl('whatsnew90-availability-body') }}</p>
-              <a href="{{ url('products.vpn.landing') }}{{ landing_source }}" class="mzp-c-button mzp-t-product mzp-t-secondary mzp-t-xl" rel="external" data-cta-text="Get Mozilla VPN" data-cta-type="button" data-cta-position="secondary">
-                {{ ftl('whatsnew90-main-cta') }}
-              </a>
-            </div>
-            <div class="mzp-c-split-media">
-              {% include 'firefox/whatsnew/includes/fx90/globe.svg' %}
-            </div>
-          </div>
-        </div>
+
+        {% call split(
+          block_class='mzp-l-split-center-on-sm-md mzp-t-split-nospace mzp-t-content-sm',
+          media_class='mzp-l-split-h-center',
+          media_include='firefox/whatsnew/includes/fx90/globe.svg',
+          media_after=True
+          ) %}
+          <p>{{ ftl('whatsnew90-availability-body') }}</p>
+          <p><a href="{{ url('products.vpn.landing') }}{{ landing_source }}" class="mzp-c-button mzp-t-product mzp-t-secondary mzp-t-xl" rel="external" data-cta-text="Get Mozilla VPN" data-cta-type="button" data-cta-position="secondary">
+            {{ ftl('whatsnew90-main-cta') }}
+          </a></p>
+        {% endcall %}
       </div>
 
       <div class="c-press-logos">

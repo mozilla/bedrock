@@ -76,9 +76,10 @@
     {% call split(
       image_url='img/firefox/privacy/promise/privacy-hero.png',
       include_highres_image=True,
+      block_class='home-hero mzp-t-split-nospace mzp-l-split-center-on-sm-md mzp-l-split-hide-media-on-sm-md',
+      theme_class='mzp-t-dark mzp-t-firefox',
+      media_class='mzp-l-split-h-center mzp-l-split-v-end',
       media_after=True,
-      media_class='mzp-l-split-h-center',
-      block_class='mzp-t-split-nospace mzp-l-split-center-on-sm-md mzp-t-dark mzp-t-firefox mzp-l-split-hide-media-on-sm-md'
     ) %}
       <h2 class="mzp-u-title-lg">Firefox products are designed to protect your privacy</h2>
       <a href="{{ url('firefox.privacy.products') }}" class="mzp-c-button mzp-t-product">Learn more</a>

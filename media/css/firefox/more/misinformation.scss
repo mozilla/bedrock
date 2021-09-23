@@ -17,13 +17,7 @@ $brand-theme: 'firefox';
 // Page Hero
 
 .c-hero {
-    &.mzp-c-split {
-        padding-top: 0;
-        padding-bottom: 0;
-    }
-
     .mzp-c-logo {
-        margin-bottom: $spacing-lg;
         margin-right: auto;
         margin-left: auto;
     }
@@ -32,15 +26,10 @@ $brand-theme: 'firefox';
         margin-bottom: 0;
     }
 
-    @media #{$mq-lg} {
+    @media #{$mq-md} {
         margin-bottom: $layout-lg;
 
-        .mzp-c-split-body {
-            max-width: $content-sm;
-        }
-
         .mzp-c-logo {
-            margin-bottom: $spacing-lg;
             margin-right: 0;
             margin-left: 0;
         }

@@ -24,8 +24,9 @@
   {% call split(
     image_url='img/firefox/privacy/promise/privacy-hero.png',
     include_highres_image=True,
-    block_class='privacy-promise-hero mzp-l-split-hide-media-on-sm-md',
-    theme_class='mzp-t-dark'
+    block_class='privacy-promise-hero mzp-l-split-hide-media-on-sm-md mzp-t-split-nospace',
+    theme_class='mzp-t-dark',
+    media_class='mzp-l-split-v-end'
   ) %}
     <h1>{{ ftl('firefox-privacy-hub-firefox-products-are-designed')|safe }}</h1>
     <p>{{ ftl('firefox-privacy-hub-you-should-be-able-to-decide') }}</p>

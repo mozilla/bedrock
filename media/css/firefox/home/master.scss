@@ -44,13 +44,6 @@ $brand-theme: 'firefox';
 
 .firefox-home {
 
-    // content
-    .mzp-l-content {
-        max-width: $content-xl;
-        padding-bottom: $layout-md;
-        padding-top: $layout-md;
-    }
-
     // menu list
     .mzp-c-menu-list {
         margin-bottom: $spacing-lg;
@@ -58,26 +51,13 @@ $brand-theme: 'firefox';
 
     // splits
     .mzp-c-split {
-        .mzp-c-split-container {
-            padding-bottom: $layout-lg;
-            padding-top: $layout-lg;
-        }
-
-        .mzp-c-wordmark {
-            margin-bottom: $spacing-lg;
-        }
-
         h4 {
             @include text-title-sm;
             margin-bottom: $layout-sm;
         }
-    }
 
-    @media #{$mq-md} {
-        // content
-        .mzp-l-content {
-            padding-top: $layout-lg;
-            padding-bottom: $layout-lg;
+        .mzp-c-split-media-asset {
+            margin: 0 auto;
         }
     }
 }
@@ -189,7 +169,7 @@ $brand-theme: 'firefox';
 .t-promise {
     padding: 0 $layout-sm;
 
-    .mzp-c-split-container {
+    .mzp-c-split-bg {
         @include light-links;
         background-image: linear-gradient(90deg,  $color-violet-80, $color-violet-90);
         border-radius: $border-radius-md;
@@ -206,12 +186,11 @@ $brand-theme: 'firefox';
         }
     }
 
-    // note: this can be changed to md breakpoint once latest Protocol changes are merged
-    @media #{$mq-lg} {
+    @media #{$mq-md} {
         margin: $layout-lg 0;
         padding: 0 $layout-md;
 
-        .mzp-c-split-container {
+        .mzp-c-split-bg {
             background-image: url('/media/img/firefox/home/master/respect.jpg'), linear-gradient(90deg, #5731AB 50%, $color-violet-90);
             background-position: left -30px center, top left;
             background-repeat: no-repeat;

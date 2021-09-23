@@ -252,25 +252,6 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.mzp-c-split-container {
-    box-sizing: content-box;
-}
-
-.mzp-c-split-media {
-        max-width: $content-max;
-}
-
-.mzp-c-split-body {
-     h2 {
-            @include font-size(24px);
-        }
-
-        @media #{$mq-lg} {
-            h2 {
-                @include font-size(48px);
-            }
-        }
-}
 
 .contribute-mission {
     margin-bottom: $layout-xl;

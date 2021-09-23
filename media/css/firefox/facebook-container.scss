@@ -17,54 +17,23 @@ $image-path: "/media/protocol/img";
 // Components
 .mzp-c-split-bg.mzp-t-dark {
     background-color: $color-ink-80;
-    color: $color-white;
-
-    .mzp-c-split-container {
-        box-sizing: content-box;
-
-        .mzp-c-split-body {
-            max-width: 580px;
-
-            .mzp-c-logo {
-                margin-bottom: $spacing-md;
-                margin-left: auto;
-                margin-right: auto;
-                @media #{$mq-lg} {
-                    margin-bottom: $spacing-lg;
-                    margin-left: inherit;
-                    margin-right: inherit;
-                }
-            }
-            .mzp-u-title-xl {
-                margin-bottom: $spacing-md;
-
-                @media #{$mq-md} {
-                    margin-bottom: $spacing-xl;
-                }
-            }
-            .u-title-3xs {
-                @include text-title-3xs;
-            }
-        }
-    }
 }
 
-.mzp-l-card-third {
-    margin-top: $spacing-xl;
+
+.mzp-c-split-body {
+    max-width: 580px;
 }
 
-.mzp-c-call-out-compact.mzp-t-dark {
-    background: $color-purple-90;
-}
-.firefox-cta .mzp-c-button-download-container {
-    margin-bottom: 0;
+.mzp-c-logo {
+    margin-left: auto;
+    margin-right: auto;
+
     @media #{$mq-md} {
-        margin-bottom: inherit;
+        margin-left: 0;
+        margin-right: 0;
     }
 }
-.mobile-cta ul {
-    margin-top: $spacing-lg;
-}
+
 
 //* -------------------------------------------------------------------------- */
 // Video
@@ -81,7 +50,7 @@ $image-path: "/media/protocol/img";
     position: relative;
     width: 100%;
 
-    // Force space for the YouTube's iframe
+    // Force space for YouTube's iframe
     &::after {
         content: '';
         display: block;

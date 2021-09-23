@@ -18,16 +18,10 @@ $image-path: '/media/protocol/img';
     }
 
     .mzp-c-split-media-asset {
-        position: relative;
-        top: $spacing-xl;
+        padding-top: $spacing-xl;
     }
 
-    @media #{$mq-lg} {
-        &.mzp-c-split {
-            overflow-y: hidden;
-        }
-
-        &.mzp-c-split,
+    @media #{$mq-md} {
         .mzp-c-split-bg {
             padding-top: 0;
             padding-bottom: 0;

@@ -13,10 +13,6 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 
 
-.mzp-c-split .mzp-c-logo {
-    margin: -$spacing-lg 0 $spacing-xl;
-}
-
 .mzp-c-emphasis-box {
     margin-bottom: $layout-xl;
 }

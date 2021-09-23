@@ -45,24 +45,19 @@ $image-path: '/media/protocol/img';
 }
 
 .mzp-c-wordmark {
-    margin: 0 auto $spacing-lg;
+    background-position: top center;
+    margin-left: auto;
+    margin-right: auto;
 
-    @media #{$mq-lg} {
-        margin: 0 0 $spacing-lg;
+    @media #{$mq-md} {
+        @include bidi(((background-position, top left, top right),));
+        margin-left: 0;
+        margin-right: 0;
     }
 }
 
 .c-tagline {
     @include text-body-xl;
-}
-
-
-// Apply a standard content width.
-// This will become redundant in a future Protocol update.
-.mzp-c-split.mzp-t-content-xl {
-    .mzp-c-split-container {
-        max-width: $content-xl;
-    }
 }
 
 .mzp-c-split-media {
