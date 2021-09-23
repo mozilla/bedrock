@@ -38,7 +38,7 @@
 
 {% block page_css %}
   {% include 'includes/contentful/css.html' %}
-  {{ css_bundle('home-en') }}
+  {{ css_bundle('home-contentful-en') }}
   {{ css_bundle('home-mr1-promo') }}
 
   {% if switch('fundraising-banner-eoy2020') %}
@@ -140,8 +140,8 @@
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('home') }}
   {% include 'includes/contentful/js.html' %}
+  {{ js_bundle('home-contentful') }}
 
   {% if switch('fundraising-banner-eoy2020') %}
     {{ js_bundle('fundraising-banner') }}
