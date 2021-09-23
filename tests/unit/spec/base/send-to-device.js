@@ -11,29 +11,28 @@ describe('send-to-device.js', function() {
 
     'use strict';
 
-    var form;
+    let form;
 
     beforeEach(function () {
 
-        var formMarkup = [
-            '<section id="send-to-device" class="send-to-device">' +
-                '<div class="form-container">' +
-                    '<form class="send-to-device-form">' +
-                        '<ul class="mzp-c-form-errors hidden"></ul>' +
-                        '<div class="send-to-device-form-fields">' +
-                            '<input type="hidden" value="all">' +
-                            '<label id="mzp-c-field-label" for="send-to-device-input">Enter your email.</label>' +
-                            '<div class="mzp-c-field mzp-l-stretch">' +
-                                '<input id="send-to-device-input" class="mzp-c-field-control send-to-device-input" name="s2d-email" type="text" required>' +
-                                '<button type="submit" class="button mzp-c-button mzp-t-product">Send</button>' +
-                            '</div>' +
-                        '</div>' +
-                        '<div class="thank-you hidden"><a href="#" role="button" class="send-another">Send to another device</a></div>' +
-                        '<div class="loading-spinner"></div>' +
-                        '</form>' +
-                    '</div>' +
-            '</section>'
-        ].join();
+        const formMarkup =
+            `<section id="send-to-device" class="send-to-device">
+                <div class="form-container">
+                    <form class="send-to-device-form">
+                        <ul class="mzp-c-form-errors hidden"></ul>
+                        <div class="send-to-device-form-fields">
+                            <input type="hidden" value="all">
+                            <label id="mzp-c-field-label" for="send-to-device-input">Enter your email.</label>
+                            <div class="mzp-c-field mzp-l-stretch">
+                                <input id="send-to-device-input" class="mzp-c-field-control send-to-device-input" name="s2d-email" type="text" required>
+                                <button type="submit" class="button mzp-c-button mzp-t-product">Send</button>
+                            </div>
+                        </div>
+                        <div class="thank-you hidden"><a href="#" role="button" class="send-another">Send to another device</a></div>
+                        <div class="loading-spinner"></div>
+                    </form>
+                </div>
+            </section>`;
 
         document.body.insertAdjacentHTML('beforeend', formMarkup);
 
@@ -50,7 +49,7 @@ describe('send-to-device.js', function() {
 
     afterEach(function () {
         form.unbindEvents();
-        var content = document.getElementById('send-to-device');
+        const content = document.getElementById('send-to-device');
         content.parentNode.removeChild(content);
     });
 
@@ -83,12 +82,12 @@ describe('send-to-device.js', function() {
 
     describe('onFormSubmit', function() {
 
-        var xhr;
-        var xhrRequests = [];
+        let xhr;
+        let xhrRequests = [];
 
         beforeEach(function() {
             xhr = sinon.useFakeXMLHttpRequest();
-            xhr.onCreate = function(req) {
+            xhr.onCreate = (req) => {
                 xhrRequests.push(req);
             };
         });

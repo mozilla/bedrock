@@ -9,7 +9,7 @@ describe('mozilla-convert.js', function() {
     describe('getCurrentExperiment', function() {
 
         it('should return the current experiment name and variation', function() {
-            var data = {
+            const data = {
                 'data': {
                     'experiments': {
                         '10033458': {
@@ -29,13 +29,13 @@ describe('mozilla-convert.js', function() {
                 }
             };
 
-            var result = Mozilla.Convert.getCurrentExperiment(data);
+            const result = Mozilla.Convert.getCurrentExperiment(data);
             expect(result.experimentName).toEqual('10033458');
             expect(result.experimentVariation).toEqual('100361887');
         });
 
         it('should be falsy if no experiment is running', function() {
-            var data = {
+            const data = {
                 'data': {
                     'experiments': {
                         '10033458': {
@@ -51,7 +51,7 @@ describe('mozilla-convert.js', function() {
                 }
             };
 
-            var result = Mozilla.Convert.getCurrentExperiment(data);
+            const result = Mozilla.Convert.getCurrentExperiment(data);
             expect(result).toBeFalsy();
         });
     });

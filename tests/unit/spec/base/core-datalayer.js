@@ -11,7 +11,7 @@ describe('core-datalayer.js', function() {
     describe('pageHasDownload', function() {
 
         it('will return "true" when download button is present on page.', function() {
-            var downloadMarkup = '<a class="download" href="#" data-link-type="download" data-download-os="Desktop">';
+            const downloadMarkup = '<a class="download" href="#" data-link-type="download" data-download-os="Desktop">';
 
             document.body.insertAdjacentHTML('beforeend', downloadMarkup);
             expect(Mozilla.Analytics.pageHasDownload()).toBe('true');
@@ -28,22 +28,22 @@ describe('core-datalayer.js', function() {
     describe('pageHasVideo', function() {
 
         it('will return "true" when HTML5 video is present on page.', function() {
-            var videoMarkup = '<video id="video-content"></video>';
+            const videoMarkup = '<video id="video-content"></video>';
 
             document.body.insertAdjacentHTML('beforeend', videoMarkup);
             expect(Mozilla.Analytics.pageHasVideo()).toBe('true');
 
-            var content = document.getElementById('video-content');
+            const content = document.getElementById('video-content');
             content.parentNode.removeChild(content);
         });
 
         it('will return "true" when YouTube iframe video is present on page.', function() {
-            var videoMarkup = '<iframe id="video-content" src="https://www.youtube-nocookie.com/embed/NqxUdc0P6YE?rel=0"></iframe>';
+            const videoMarkup = '<iframe id="video-content" src="https://www.youtube-nocookie.com/embed/NqxUdc0P6YE?rel=0"></iframe>';
 
             document.body.insertAdjacentHTML('beforeend', videoMarkup);
             expect(Mozilla.Analytics.pageHasVideo()).toBe('true');
 
-            var content = document.getElementById('video-content');
+            const content = document.getElementById('video-content');
             content.parentNode.removeChild(content);
         });
 
@@ -76,7 +76,6 @@ describe('core-datalayer.js', function() {
 
         it('will return the Firefox version from the data-latest-firefox attribute from the html element if present', function() {
             document.getElementsByTagName('html')[0].setAttribute('data-latest-firefox', '48.0');
-
             expect(Mozilla.Analytics.getLatestFxVersion()).toBe('48.0');
         });
 
@@ -87,8 +86,8 @@ describe('core-datalayer.js', function() {
 
     describe('isWin10S', function() {
 
-        var edgeUA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/51.0.2704.79 Safari/537.36 Edge/14.14931';
-        var chromeUA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36';
+        const edgeUA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/51.0.2704.79 Safari/537.36 Edge/14.14931';
+        const chromeUA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36';
 
         beforeEach(function () {
             window.external = sinon.stub();
@@ -97,32 +96,32 @@ describe('core-datalayer.js', function() {
 
         it('should return true if Windows 10 has S mode enabled', function() {
             spyOn(window.external, 'getHostEnvironmentValue').and.returnValue('{"os-mode": "2"}');
-            var result = Mozilla.Analytics.isWin10S(edgeUA);
+            const result = Mozilla.Analytics.isWin10S(edgeUA);
             expect(window.external.getHostEnvironmentValue).toHaveBeenCalledWith('os-mode');
             expect(result).toBeTruthy();
         });
 
         it('should return false if Windows 10 is unlocked', function() {
             spyOn(window.external, 'getHostEnvironmentValue').and.returnValue('{"os-mode": "0"}');
-            var result = Mozilla.Analytics.isWin10S(edgeUA);
+            const result = Mozilla.Analytics.isWin10S(edgeUA);
             expect(result).toBeFalsy();
         });
 
         it('should return false if API is not supported in Edge', function() {
             spyOn(window.external, 'getHostEnvironmentValue').and.returnValue(new TypeError('window.external.getHostEnvironmentValue is not a function'));
-            var result = Mozilla.Analytics.isWin10S(edgeUA);
+            const result = Mozilla.Analytics.isWin10S(edgeUA);
             expect(result).toBeFalsy();
         });
 
         it('should return false for other browsers', function() {
-            var result = Mozilla.Analytics.isWin10S(chromeUA);
+            const result = Mozilla.Analytics.isWin10S(chromeUA);
             expect(result).toBeFalsy();
         });
     });
 
     describe('getAMOExperiment', function() {
         it('should return true when experiment and variation params are well formatted', function() {
-            var params = {
+            const params = {
                 'experiment': '20210708_amo_experiment_name',
                 'variation': 'variation_1_name'
             };
@@ -130,7 +129,7 @@ describe('core-datalayer.js', function() {
         });
 
         it('should return falsy when experiment and variation params are not specific to amo', function() {
-            var params = {
+            const params = {
                 'experiment': 'some_other_experiment',
                 'variation': 'variation_1_name'
             };
@@ -138,13 +137,13 @@ describe('core-datalayer.js', function() {
         });
 
         it('should return falsy when experiment and variation params contain dangerous characters', function() {
-            var params = {
+            const params = {
                 'experiment': '20210708_amo_"><h1>hello</h1>',
                 'variation': '<script>alert("test");</script>'
             };
             expect(Mozilla.Analytics.getAMOExperiment(params)).toBeFalsy();
 
-            var params2 = {
+            const params2 = {
                 'experiment': '20210708_amo_%22%3E%3Ch1%3Ehello%3C%2Fh1%3E',
                 'variation': '%3Cscript%3Ealert%28%22test%22%29%3B%3C%2Fscript%3E'
             };
@@ -152,13 +151,13 @@ describe('core-datalayer.js', function() {
         });
 
         it('should return falsy if parameters values are more than 50 chars', function() {
-            var params = {
+            const params = {
                 'experiment': '20210708_amo_experiment_name',
                 'variation': 'a_very_very_very_very_very_long_experiment_variation_name_much_much_much_more_than_50_chars'
             };
             expect(Mozilla.Analytics.getAMOExperiment(params)).toBeFalsy();
 
-            var params2 = {
+            const params2 = {
                 'experiment': '20210708_amo_a_very_very_very_long_experiment_name_much_much_much_much_more_than_50_chars',
                 'variation': 'variation_1_name'
             };
@@ -172,7 +171,7 @@ describe('core-datalayer.js', function() {
         it('will correctly format FxA data returned from UITour', function() {
 
             // Current Firefox Desktop, not logged in
-            var input1 = {
+            const input1 = {
                 'firefox': true,
                 'legacy': false,
                 'mobile': false,
@@ -187,13 +186,13 @@ describe('core-datalayer.js', function() {
                 }
             };
 
-            var output1 = {
+            const output1 = {
                 FxALogin: false,
                 FxASegment: 'Not logged in',
             };
 
             // Current Firefox Desktop, logged in, 1 desktop configured
-            var input2 = {
+            const input2 = {
                 'firefox': true,
                 'legacy': false,
                 'mobile': false,
@@ -208,7 +207,7 @@ describe('core-datalayer.js', function() {
                 }
             };
 
-            var output2 = {
+            const output2 = {
                 FxALogin: true,
                 FxAMultiDesktopSync: false,
                 FxAMobileSync: false,
@@ -216,7 +215,7 @@ describe('core-datalayer.js', function() {
             };
 
             // Current Firefox Desktop, logged in, 2 desktops configured
-            var input3 = {
+            const input3 = {
                 'firefox': true,
                 'legacy': false,
                 'mobile': false,
@@ -231,7 +230,7 @@ describe('core-datalayer.js', function() {
                 }
             };
 
-            var output3 = {
+            const output3 = {
                 FxALogin: true,
                 FxAMultiDesktopSync: true,
                 FxAMobileSync: false,
@@ -239,7 +238,7 @@ describe('core-datalayer.js', function() {
             };
 
             // Current Firefox Desktop, logged in, 1 desktops 1 mobile configured
-            var input4 = {
+            const input4 = {
                 'firefox': true,
                 'legacy': false,
                 'mobile': false,
@@ -254,7 +253,7 @@ describe('core-datalayer.js', function() {
                 }
             };
 
-            var output4 = {
+            const output4 = {
                 FxALogin: true,
                 FxAMultiDesktopSync: false,
                 FxAMobileSync: true,
@@ -262,7 +261,7 @@ describe('core-datalayer.js', function() {
             };
 
             // Current Firefox Desktop, logged in, 2 desktops 1 mobile configured
-            var input5 = {
+            const input5 = {
                 'firefox': true,
                 'legacy': false,
                 'mobile': false,
@@ -277,7 +276,7 @@ describe('core-datalayer.js', function() {
                 }
             };
 
-            var output5 = {
+            const output5 = {
                 FxALogin: true,
                 FxAMultiDesktopSync: true,
                 FxAMobileSync: true,
@@ -285,7 +284,7 @@ describe('core-datalayer.js', function() {
             };
 
             // Firefox Desktop < 50, logged in to FxA
-            var input6 = {
+            const input6 = {
                 'firefox': true,
                 'legacy': false,
                 'mobile': false,
@@ -300,7 +299,7 @@ describe('core-datalayer.js', function() {
                 }
             };
 
-            var output6 = {
+            const output6 = {
                 FxALogin: true,
                 FxAMobileSync:  'unknown',
                 FxAMultiDesktopSync: 'unknown',
@@ -308,7 +307,7 @@ describe('core-datalayer.js', function() {
             };
 
             // Firefox Desktop < 50, logged out
-            var input7 = {
+            const input7 = {
                 'firefox': true,
                 'legacy': false,
                 'mobile': false,
@@ -323,13 +322,13 @@ describe('core-datalayer.js', function() {
                 }
             };
 
-            var output7 = {
+            const output7 = {
                 FxALogin: false,
                 FxASegment: 'Not logged in'
             };
 
             // Firefox Desktop < FxALastSupported, logged in
-            var input8 = {
+            const input8 = {
                 'firefox': true,
                 'legacy': true,
                 'mobile': false,
@@ -344,7 +343,7 @@ describe('core-datalayer.js', function() {
                 }
             };
 
-            var output8 = {
+            const output8 = {
                 FxALogin: true,
                 FxAMobileSync:  'unknown',
                 FxAMultiDesktopSync: 'unknown',
@@ -352,7 +351,7 @@ describe('core-datalayer.js', function() {
             };
 
             // Firefox Desktop < FxALastSupported, logged out
-            var input9 = {
+            const input9 = {
                 'firefox': true,
                 'legacy': true,
                 'mobile': false,
@@ -367,13 +366,13 @@ describe('core-datalayer.js', function() {
                 }
             };
 
-            var output9 = {
+            const output9 = {
                 FxALogin: 'unknown',
                 FxASegment: 'Legacy Firefox',
             };
 
             // Firefox Desktop < 29
-            var input10 = {
+            const input10 = {
                 'firefox': true,
                 'legacy': true,
                 'mobile': false,
@@ -388,13 +387,13 @@ describe('core-datalayer.js', function() {
                 }
             };
 
-            var output10 = {
+            const output10 = {
                 FxALogin: 'unknown',
                 FxASegment: 'Legacy Firefox'
             };
 
             // Firefox Android
-            var input11 = {
+            const input11 = {
                 'firefox': true,
                 'legacy': false,
                 'mobile': 'android',
@@ -409,12 +408,12 @@ describe('core-datalayer.js', function() {
                 }
             };
 
-            var output11 = {
+            const output11 = {
                 FxASegment: 'Firefox Mobile'
             };
 
             // Firefox iOS
-            var input12 = {
+            const input12 = {
                 'firefox': true,
                 'legacy': false,
                 'mobile': 'ios',
@@ -429,12 +428,12 @@ describe('core-datalayer.js', function() {
                 }
             };
 
-            var output12 = {
+            const output12 = {
                 FxASegment: 'Firefox Mobile'
             };
 
             // Not Firefox
-            var input13 = {
+            const input13 = {
                 'firefox': false,
                 'legacy': false,
                 'mobile': false,
@@ -449,12 +448,12 @@ describe('core-datalayer.js', function() {
                 }
             };
 
-            var output13 = {
+            const output13 = {
                 FxASegment: 'Not Firefox'
             };
 
             // browserServices.sync is unexpectedly undefined (issue 10118).
-            var input14 = {
+            const input14 = {
                 'firefox': true,
                 'legacy': false,
                 'mobile': false,
@@ -464,7 +463,7 @@ describe('core-datalayer.js', function() {
                 }
             };
 
-            var output14 = {
+            const output14 = {
                 FxALogin: true,
                 FxAMultiDesktopSync: 'unknown',
                 FxAMobileSync: 'unknown',
@@ -492,14 +491,14 @@ describe('core-datalayer.js', function() {
     describe('updateDataLayerPush', function() {
 
         beforeEach(function() {
-            var link = '<a id="link" href="https://www.mozilla.org/en-US/firefox/new/">';
+            const link = '<a id="link" href="https://www.mozilla.org/en-US/firefox/new/">';
             document.body.insertAdjacentHTML('beforeend', link);
 
             window.dataLayer = [];
         });
 
         afterEach(function() {
-            var content = document.getElementById('link');
+            const content = document.getElementById('link');
             content.parentNode.removeChild(content);
             delete window.dataLayer;
         });
@@ -538,7 +537,7 @@ describe('core-datalayer.js', function() {
         });
 
         it('will remove host and locale in newClickHref when clicked link\'s href value matches the page\'s', function() {
-            var link = document.getElementById('link');
+            const link = document.getElementById('link');
             Mozilla.Analytics.updateDataLayerPush('www.mozilla.org');
 
             // Bug 1278426
@@ -553,7 +552,7 @@ describe('core-datalayer.js', function() {
         });
 
         it('will remove host and non-en-US locale', function() {
-            var link = document.getElementById('link');
+            const link = document.getElementById('link');
             Mozilla.Analytics.updateDataLayerPush('www.mozilla.org');
 
             link.href = 'https://www.mozilla.org:443/de/firefox/new/';
@@ -567,7 +566,7 @@ describe('core-datalayer.js', function() {
         });
 
         it('will not remove locale if absent from the URL', function() {
-            var link = document.getElementById('link');
+            const link = document.getElementById('link');
             Mozilla.Analytics.updateDataLayerPush('www.mozilla.org');
 
             link.href = 'https://www.mozilla.org/firefox/new/';

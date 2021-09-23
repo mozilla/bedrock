@@ -23,18 +23,19 @@ describe('mozilla-banner.js', function() {
 
     describe('init', function() {
 
-        var bannerId = 'test-banner';
+        const bannerId = 'test-banner';
 
         beforeEach(function() {
-            var content = '<div id="outer-wrapper">' +
-                            '<h1>Some title</h1>' +
-                            '<aside id="' + bannerId + '"><button type="button" class="c-banner-close">Close</button></aside>' +
-                          '</div>';
+            const content =
+                `<div id="outer-wrapper">
+                    <h1>Some title</h1>
+                    <aside id="${bannerId}"><button type="button" class="c-banner-close">Close</button></aside>
+                </div>`;
             document.body.insertAdjacentHTML('beforeend', content);
         });
 
         afterEach(function() {
-            var content = document.getElementById('outer-wrapper');
+            const content = document.getElementById('outer-wrapper');
             content.parentNode.removeChild(content);
 
             Mozilla.Banner.id = null;
@@ -58,18 +59,19 @@ describe('mozilla-banner.js', function() {
     });
 
     describe('close', function() {
-        var bannerId = 'test-banner';
+        const bannerId = 'test-banner';
 
         beforeEach(function() {
-            var content = '<div id="outer-wrapper">' +
-                            '<h1>Some title</h1>' +
-                            '<aside id="' + bannerId + '"><button type="button" class="c-banner-close">Close</button></aside>' +
-                          '</div>';
+            const content =
+                `<div id="outer-wrapper">
+                    <h1>Some title</h1>
+                    <aside id="${bannerId}"><button type="button" class="c-banner-close">Close</button></aside>
+                </div>`;
             document.body.insertAdjacentHTML('beforeend', content);
         });
 
         afterEach(function() {
-            var content = document.getElementById('outer-wrapper');
+            const content = document.getElementById('outer-wrapper');
             content.parentNode.removeChild(content);
 
             Mozilla.Banner.id = null;
@@ -80,9 +82,9 @@ describe('mozilla-banner.js', function() {
             spyOn(window.Mozilla.Banner, 'setCookie');
             spyOn(window.Mozilla.Banner, 'close').and.callThrough();
             Mozilla.Banner.init(bannerId);
-            var banner = document.getElementById(bannerId);
+            const banner = document.getElementById(bannerId);
             expect(banner.classList.contains('c-banner-is-visible')).toBeTruthy();
-            var close = document.querySelector('.c-banner-close');
+            const close = document.querySelector('.c-banner-close');
             close.click();
             expect(Mozilla.Banner.close).toHaveBeenCalled();
             expect(Mozilla.Banner.setCookie).toHaveBeenCalledWith(bannerId);

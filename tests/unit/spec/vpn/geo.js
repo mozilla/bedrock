@@ -17,14 +17,14 @@ describe('geo.js', function() {
 
     describe('getLocation', function() {
 
-        var xhr;
-        var xhrRequests = [];
+        let xhr;
+        let xhrRequests = [];
 
         beforeEach(function() {
             spyOn(Mozilla.VPN, 'onRequestComplete');
 
             xhr = sinon.useFakeXMLHttpRequest();
-            xhr.onCreate = function(req) {
+            xhr.onCreate = (req) => {
                 xhrRequests.push(req);
             };
         });
@@ -35,11 +35,11 @@ describe('geo.js', function() {
         });
 
         it('should pass country to onRequestComplete if server makes a response', function() {
-            var country = 'ru';
+            const country = 'ru';
 
             Mozilla.VPN.getLocation();
 
-            xhrRequests[0].respond(200, {'Content-Type': 'application/json'}, '{"country_code": "' + country + '"}');
+            xhrRequests[0].respond(200, {'Content-Type': 'application/json'}, `{"country_code": "${country}"}`);
 
             expect(Mozilla.VPN.onRequestComplete).toHaveBeenCalledWith(country);
         });
@@ -70,7 +70,7 @@ describe('geo.js', function() {
 
     describe('onRequestComplete', function() {
 
-        var country = 'de';
+        const country = 'de';
 
         beforeEach(function() {
             spyOn(Mozilla.VPN, 'getAvailability').and.returnValue('variable-price');
@@ -88,7 +88,7 @@ describe('geo.js', function() {
 
     describe('getAvailability', function() {
 
-        var availableCountries = '|ca|my|nz|sg|gb|gg|im|io|je|uk|vg|as|mp|pr|um|us|vi|at|be|ch|de|es|fr|it|';
+        const availableCountries = '|ca|my|nz|sg|gb|gg|im|io|je|uk|vg|as|mp|pr|um|us|vi|at|be|ch|de|es|fr|it|';
 
         it('should return `available` if matching country code is found', function() {
             expect(Mozilla.VPN.getAvailability('us', availableCountries)).toEqual('available');
@@ -145,17 +145,17 @@ describe('geo.js', function() {
     describe('updateSubscriptionURL', function() {
 
         it('should update the subscription plan ID as expected', function() {
-            var result = Mozilla.VPN.updateSubscriptionURL('price_1IgnlcJNcmPzuWtRjrNa39W4', 'https://accounts.firefox.com/subscriptions/products/prod_FiJ42WCzZNRSbS?plan=price_1IgwblJNcmPzuWtRynC7dqQa&entrypoint=www.mozilla.org-vpn-product-page');
+            const result = Mozilla.VPN.updateSubscriptionURL('price_1IgnlcJNcmPzuWtRjrNa39W4', 'https://accounts.firefox.com/subscriptions/products/prod_FiJ42WCzZNRSbS?plan=price_1IgwblJNcmPzuWtRynC7dqQa&entrypoint=www.mozilla.org-vpn-product-page');
             expect(result).toEqual('https://accounts.firefox.com/subscriptions/products/prod_FiJ42WCzZNRSbS?plan=price_1IgnlcJNcmPzuWtRjrNa39W4&entrypoint=www.mozilla.org-vpn-product-page');
         });
 
         it('should not change the URL if there is no plan ID', function() {
-            var result = Mozilla.VPN.updateSubscriptionURL(null, 'https://accounts.firefox.com/subscriptions/products/prod_FiJ42WCzZNRSbS?plan=price_1IgwblJNcmPzuWtRynC7dqQa&entrypoint=www.mozilla.org-vpn-product-page');
+            const result = Mozilla.VPN.updateSubscriptionURL(null, 'https://accounts.firefox.com/subscriptions/products/prod_FiJ42WCzZNRSbS?plan=price_1IgwblJNcmPzuWtRynC7dqQa&entrypoint=www.mozilla.org-vpn-product-page');
             expect(result).toEqual('https://accounts.firefox.com/subscriptions/products/prod_FiJ42WCzZNRSbS?plan=price_1IgwblJNcmPzuWtRynC7dqQa&entrypoint=www.mozilla.org-vpn-product-page');
         });
 
         it('should not change the URL if there is no plan query parameter', function() {
-            var result = Mozilla.VPN.updateSubscriptionURL('price_1IgwblJNcmPzuWtRynC7dqQa', 'https://accounts.firefox.com/subscriptions/products?entrypoint=www.mozilla.org-vpn-product-page');
+            const result = Mozilla.VPN.updateSubscriptionURL('price_1IgwblJNcmPzuWtRynC7dqQa', 'https://accounts.firefox.com/subscriptions/products?entrypoint=www.mozilla.org-vpn-product-page');
             expect(result).toEqual('https://accounts.firefox.com/subscriptions/products?entrypoint=www.mozilla.org-vpn-product-page');
         });
     });
@@ -210,7 +210,7 @@ describe('geo.js', function() {
         });
 
         it('should override geo-location call if param exists', function() {
-            var country = 'de';
+            const country = 'de';
             spyOn(Mozilla.VPN, 'hasGeoOverride').and.returnValue(country);
 
             Mozilla.VPN.init();

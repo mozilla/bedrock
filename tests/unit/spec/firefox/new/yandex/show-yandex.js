@@ -25,14 +25,14 @@ describe('show-yandex.js', function() {
 
     describe('getLocation', function() {
 
-        var xhr;
-        var xhrRequests = [];
+        let xhr;
+        let xhrRequests = [];
 
         beforeEach(function() {
             spyOn(Mozilla.Yandex, 'onRequestComplete');
 
             xhr = sinon.useFakeXMLHttpRequest();
-            xhr.onCreate = function(req) {
+            xhr.onCreate = (req) => {
                 xhrRequests.push(req);
             };
         });
@@ -43,11 +43,11 @@ describe('show-yandex.js', function() {
         });
 
         it('should pass country to onRequestComplete if server makes a response', function() {
-            var country = 'ru';
+            const country = 'ru';
 
             Mozilla.Yandex.getLocation();
 
-            xhrRequests[0].respond(200, {'Content-Type': 'application/json'}, '{"country_code": "' + country + '"}');
+            xhrRequests[0].respond(200, {'Content-Type': 'application/json'}, `{"country_code": "${country}"}`);
 
             expect(Mozilla.Yandex.onRequestComplete).toHaveBeenCalledWith(country);
         });
@@ -85,7 +85,7 @@ describe('show-yandex.js', function() {
 
     describe('onRequestComplete', function() {
 
-        var country = 'ru';
+        const country = 'ru';
 
         beforeEach(function() {
             spyOn(Mozilla.Yandex, 'updatePageContent');
@@ -142,8 +142,8 @@ describe('show-yandex.js', function() {
     describe('cookieExpiresDate', function() {
 
         it('should return a cookie expiry date 3 days in the future by default', function() {
-            var expiry = Mozilla.Yandex.cookieExpiresDate(new Date(2018, 8, 1, 10, 15));
-            var date = new Date(expiry);
+            const expiry = Mozilla.Yandex.cookieExpiresDate(new Date(2018, 8, 1, 10, 15));
+            const date = new Date(expiry);
             expect(date.getFullYear()).toBe(2018);
             expect(date.getMonth()).toBe(8);
             expect(date.getDate()).toBe(4);
@@ -153,7 +153,7 @@ describe('show-yandex.js', function() {
     describe('setCookie', function() {
 
         it('should set session cookies as expected', function() {
-            var country = 'ru';
+            const country = 'ru';
             spyOn(Mozilla.Cookies, 'setItem');
 
             Mozilla.Yandex.setCookie(country);
@@ -174,20 +174,20 @@ describe('show-yandex.js', function() {
 
         it('should return true if session cookie exists', function() {
             spyOn(Mozilla.Cookies, 'hasItem').and.returnValue(true);
-            var result = Mozilla.Yandex.hasCookie();
+            const result = Mozilla.Yandex.hasCookie();
             expect(Mozilla.Cookies.hasItem).toHaveBeenCalledWith(Mozilla.Yandex.COOKIE_ID);
             expect(result).toBeTruthy();
         });
 
         it('should return false if session cookie does not exist', function() {
             spyOn(Mozilla.Cookies, 'hasItem').and.returnValue(false);
-            var result = Mozilla.Yandex.hasCookie();
+            const result = Mozilla.Yandex.hasCookie();
             expect(result).toBeFalsy();
         });
     });
 
     describe('init', function() {
-        var isDesktop;
+        let isDesktop;
 
         beforeEach(function() {
             isDesktop = Mozilla.Client.isDesktop;
@@ -198,7 +198,7 @@ describe('show-yandex.js', function() {
         });
 
         it('should display Yandex content if override URL is set to Russia', function() {
-            var country = 'ru';
+            const country = 'ru';
             Mozilla.Client.isDesktop = true;
             spyOn(Mozilla.Cookies, 'enabled').and.returnValue(true);
             spyOn(Mozilla.Yandex, 'hasGeoOverride').and.returnValue(country);
@@ -212,7 +212,7 @@ describe('show-yandex.js', function() {
         });
 
         it('should display Regular content if override URL is set to any other value', function() {
-            var country = 'us';
+            const country = 'us';
             Mozilla.Client.isDesktop = true;
             spyOn(Mozilla.Cookies, 'enabled').and.returnValue(true);
             spyOn(Mozilla.Yandex, 'hasGeoOverride').and.returnValue(country);

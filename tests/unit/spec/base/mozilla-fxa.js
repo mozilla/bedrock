@@ -30,10 +30,10 @@ describe('mozilla-fxa.js', function() {
     describe('FxaState.getStateClassAndDo', function() {
 
         it('should fire the callback function with a stateClass', function() {
-            var callback1 = jasmine.createSpy('callback1');
+            const callback1 = jasmine.createSpy('callback1');
 
             // mock details, isFirefoxiOS, and getFxaDetails
-            var details = {
+            const details = {
                 'firefox': false,
                 'legacy': false,
                 'mobile': false,
@@ -42,7 +42,7 @@ describe('mozilla-fxa.js', function() {
                 'mobileDevices': false
             };
 
-            spyOn(Mozilla.Client, 'getFxaDetails').and.callFake(function(callback) {
+            spyOn(Mozilla.Client, 'getFxaDetails').and.callFake((callback) => {
                 callback(details);
             });
 
@@ -63,7 +63,7 @@ describe('mozilla-fxa.js', function() {
 
         // not Firefox
         it('should set the appropriate body class when not firefox', function() {
-            var details = {
+            const details = {
                 'firefox': false,
                 'legacy': false,
                 'mobile': false,
@@ -78,7 +78,7 @@ describe('mozilla-fxa.js', function() {
 
         // Firefox Android
         it('should set the appropriate body class when Firefox Android', function() {
-            var details = {
+            const details = {
                 'firefox': true,
                 'legacy': false,
                 'mobile': 'android',
@@ -93,7 +93,7 @@ describe('mozilla-fxa.js', function() {
 
         // Firefox iOS
         it('should set the appropriate body class when Firefox iOS', function() {
-            var details = {
+            const details = {
                 'firefox': true,
                 'legacy': false,
                 'mobile': 'ios',
@@ -108,7 +108,7 @@ describe('mozilla-fxa.js', function() {
 
         // Firefox < 29
         it('should set the appropriate body class when pre UITour Firefox', function() {
-            var details = {
+            const details = {
                 'firefox': true,
                 'legacy': true,
                 'mobile': false,
@@ -123,7 +123,7 @@ describe('mozilla-fxa.js', function() {
 
         // Firefox < FxALastSupported, logged out
         it('should set the appropriate body class when Legacy Firefox', function() {
-            var details = {
+            const details = {
                 'firefox': true,
                 'legacy': true,
                 'mobile': false,
@@ -138,7 +138,7 @@ describe('mozilla-fxa.js', function() {
 
         // Firefox < FxALastSupported, logged out
         it('should set the appropriate body class when Legacy Firefox logged out', function() {
-            var details = {
+            const details = {
                 'firefox': true,
                 'legacy': true,
                 'mobile': false,
@@ -153,7 +153,7 @@ describe('mozilla-fxa.js', function() {
 
         // Firefox Desktop < FxALastSupported, logged in
         it('should set the appropriate body class when Legacy Firefox logged in', function() {
-            var details = {
+            const details = {
                 'firefox': true,
                 'legacy': true,
                 'mobile': false,
@@ -168,7 +168,7 @@ describe('mozilla-fxa.js', function() {
 
         // Firefox Desktop < 50, logged out
         it('should set the appropriate body class when Firefox pre device count logged out', function() {
-            var details = {
+            const details = {
                 'firefox': true,
                 'legacy': false,
                 'mobile': false,
@@ -183,7 +183,7 @@ describe('mozilla-fxa.js', function() {
 
         // Firefox Desktop < 50, logged in
         it('should set the appropriate body class when Firefox pre device count logged in', function() {
-            var details = {
+            const details = {
                 'firefox': true,
                 'legacy': false,
                 'mobile': false,
@@ -198,7 +198,7 @@ describe('mozilla-fxa.js', function() {
 
         // Firefox Desktop Current, logged out
         it('should set the appropriate body class when Current Firefox Desktop logged out', function() {
-            var details = {
+            const details = {
                 'firefox': true,
                 'legacy': false,
                 'mobile': false,
@@ -213,7 +213,7 @@ describe('mozilla-fxa.js', function() {
 
         // Firefox Desktop Current, logged in
         it('should set the appropriate body class when Current Firefox Desktop logged in', function() {
-            var details = {
+            const details = {
                 'firefox': true,
                 'legacy': false,
                 'mobile': false,

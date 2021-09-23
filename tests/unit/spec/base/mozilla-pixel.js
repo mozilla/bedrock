@@ -10,7 +10,7 @@ describe('mozilla-pixel.js', function() {
     'use strict';
 
     afterEach(function() {
-        document.querySelectorAll('.moz-px').forEach(function(e) {
+        document.querySelectorAll('.moz-px').forEach((e) => {
             e.parentNode.removeChild(e);
         });
     });
@@ -25,7 +25,7 @@ describe('mozilla-pixel.js', function() {
         });
 
         it('should add multiple pixels to document body', function() {
-            var pixels = '/img/foo.png::/img/foo.png?v=1::/img/foo.png?v=2';
+            const pixels = '/img/foo.png::/img/foo.png?v=1::/img/foo.png?v=2';
             spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
             spyOn(Mozilla.Pixel, 'getPixelData').and.returnValue(pixels);
             Mozilla.Pixel.init();
@@ -55,7 +55,7 @@ describe('mozilla-pixel.js', function() {
 
         it('should cache bust doubleclick request', function() {
             // this is a bit of a hack to avoid making real requests to ad.doubleclick.net in test runs.
-            var pixels = '/img/foo.png?ad.doubleclick.net/src=6417015';
+            const pixels = '/img/foo.png?ad.doubleclick.net/src=6417015';
             Math.random = sinon.stub().returns(0.853456456);
             spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
             spyOn(Mozilla.Pixel, 'getPixelData').and.returnValue(pixels);

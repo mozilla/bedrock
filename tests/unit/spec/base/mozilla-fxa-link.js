@@ -11,7 +11,7 @@ describe('mozilla-fxa-link.js', function() {
     describe('init', function() {
 
         beforeEach(function() {
-            var link = '<a href="https://accounts.firefox.com/signin?form_type=button&entrypoint=mozilla.org-firefoxnav&utm_source=mozilla.org-firefoxnav&utm_medium=referral&utm_campaign=nav&utm_content=join-sign-in" data-mozillaonline-link="https://accounts.firefox.com.cn/signin?form_type=button&entrypoint=mozilla.org-firefoxnav&utm_source=mozilla.org-firefoxnav&utm_medium=referral&utm_campaign=nav&utm_content=join-sign-in" class="js-fxa-cta-link">Sign In</a>';
+            const link = '<a href="https://accounts.firefox.com/signin?form_type=button&entrypoint=mozilla.org-firefoxnav&utm_source=mozilla.org-firefoxnav&utm_medium=referral&utm_campaign=nav&utm_content=join-sign-in" data-mozillaonline-link="https://accounts.firefox.com.cn/signin?form_type=button&entrypoint=mozilla.org-firefoxnav&utm_source=mozilla.org-firefoxnav&utm_medium=referral&utm_campaign=nav&utm_content=join-sign-in" class="js-fxa-cta-link">Sign In</a>';
             document.body.insertAdjacentHTML('beforeend', link);
         });
 
@@ -25,8 +25,8 @@ describe('mozilla-fxa-link.js', function() {
             spyOn(window.Mozilla.Client, '_isFirefoxDesktop').and.returnValue(true);
             spyOn(window.Mozilla.Client, '_getFirefoxVersion').and.returnValue('70.0');
             Mozilla.FxaLink.init();
-            var link = document.querySelector('.js-fxa-cta-link');
-            var mozillaOnlineLink = link.getAttribute('data-mozillaonline-link');
+            const link = document.querySelector('.js-fxa-cta-link');
+            const mozillaOnlineLink = link.getAttribute('data-mozillaonline-link');
             expect(link.href).toEqual('https://accounts.firefox.com/signin?form_type=button&entrypoint=mozilla.org-firefoxnav&utm_source=mozilla.org-firefoxnav&utm_medium=referral&utm_campaign=nav&utm_content=join-sign-in&context=fx_desktop_v3&service=sync');
             expect(mozillaOnlineLink).toEqual('https://accounts.firefox.com.cn/signin?form_type=button&entrypoint=mozilla.org-firefoxnav&utm_source=mozilla.org-firefoxnav&utm_medium=referral&utm_campaign=nav&utm_content=join-sign-in&context=fx_desktop_v3&service=sync');
         });
@@ -35,8 +35,8 @@ describe('mozilla-fxa-link.js', function() {
             spyOn(window.Mozilla.Client, '_isFirefoxDesktop').and.returnValue(true);
             spyOn(window.Mozilla.Client, '_getFirefoxVersion').and.returnValue('71.0');
             Mozilla.FxaLink.init();
-            var link = document.querySelector('.js-fxa-cta-link');
-            var mozillaOnlineLink = link.getAttribute('data-mozillaonline-link');
+            const link = document.querySelector('.js-fxa-cta-link');
+            const mozillaOnlineLink = link.getAttribute('data-mozillaonline-link');
             expect(link.href).toEqual('https://accounts.firefox.com/signin?form_type=button&entrypoint=mozilla.org-firefoxnav&utm_source=mozilla.org-firefoxnav&utm_medium=referral&utm_campaign=nav&utm_content=join-sign-in&context=fx_desktop_v3');
             expect(mozillaOnlineLink).toEqual('https://accounts.firefox.com.cn/signin?form_type=button&entrypoint=mozilla.org-firefoxnav&utm_source=mozilla.org-firefoxnav&utm_medium=referral&utm_campaign=nav&utm_content=join-sign-in&context=fx_desktop_v3');
         });
@@ -44,8 +44,8 @@ describe('mozilla-fxa-link.js', function() {
         it('should not add context or service params for other user agents', function() {
             spyOn(window.Mozilla.Client, '_isFirefoxDesktop').and.returnValue(false);
             Mozilla.FxaLink.init();
-            var link = document.querySelector('.js-fxa-cta-link');
-            var mozillaOnlineLink = link.getAttribute('data-mozillaonline-link');
+            const link = document.querySelector('.js-fxa-cta-link');
+            const mozillaOnlineLink = link.getAttribute('data-mozillaonline-link');
             expect(link.href).toEqual('https://accounts.firefox.com/signin?form_type=button&entrypoint=mozilla.org-firefoxnav&utm_source=mozilla.org-firefoxnav&utm_medium=referral&utm_campaign=nav&utm_content=join-sign-in');
             expect(mozillaOnlineLink).toEqual('https://accounts.firefox.com.cn/signin?form_type=button&entrypoint=mozilla.org-firefoxnav&utm_source=mozilla.org-firefoxnav&utm_medium=referral&utm_campaign=nav&utm_content=join-sign-in');
         });
@@ -57,8 +57,8 @@ describe('mozilla-fxa-link.js', function() {
             window.Mozilla.UITour.ping = sinon.stub().callsArg(0);
             spyOn(window.Mozilla.UITour, 'showFirefoxAccounts');
             spyOn(window.Mozilla.Client, '_getFirefoxVersion').and.returnValue('80.0');
-            return Mozilla.FxaLink.init(function() {
-                var link = document.querySelector('.js-fxa-cta-link');
+            return Mozilla.FxaLink.init(() => {
+                const link = document.querySelector('.js-fxa-cta-link');
                 expect(link.getAttribute('role')).toEqual('button');
                 link.click();
                 expect(window.Mozilla.UITour.showFirefoxAccounts).toHaveBeenCalledWith({
@@ -73,7 +73,7 @@ describe('mozilla-fxa-link.js', function() {
         });
 
         it('does NOT use the UITour for non-FxA domains in Fx >= 80', function() {
-            var link = document.querySelectorAll('.js-fxa-cta-link')[0];
+            const link = document.querySelectorAll('.js-fxa-cta-link')[0];
             link.href = 'https://monitor.firefox.com';
             spyOn(window.Mozilla.Client, '_isFirefoxDesktop').and.returnValue(true);
             window.Mozilla.UITour = sinon.stub();
@@ -81,24 +81,24 @@ describe('mozilla-fxa-link.js', function() {
             window.Mozilla.UITour.ping = sinon.stub().callsArg(0);
             spyOn(window.Mozilla.UITour, 'showFirefoxAccounts');
             spyOn(window.Mozilla.Client, '_getFirefoxVersion').and.returnValue('80.0');
-            return Mozilla.FxaLink.init(function() {
+            return Mozilla.FxaLink.init(() => {
                 expect(link.getAttribute('role')).toEqual(null);
             });
         });
 
         it('handles flow and entrypoint parameters on the link in Fx >= 80', function() {
-            var link = document.querySelectorAll('.js-fxa-cta-link')[0];
+            const link = document.querySelectorAll('.js-fxa-cta-link')[0];
             link.href = 'https://accounts.firefox.com/signin?form_type=button&entrypoint=mozilla.org-firefoxnav&' +
-                'utm_source=mozilla.org-firefoxnav&utm_medium=referral&utm_campaign=nav&utm_content=join-sign-in&' +
-                'flow_id=flow&flow_begin_time=100&device_id=dev&entrypoint_experiment=exp&entrypoint_variation=var';
+                        'utm_source=mozilla.org-firefoxnav&utm_medium=referral&utm_campaign=nav&utm_content=join-sign-in&' +
+                        'flow_id=flow&flow_begin_time=100&device_id=dev&entrypoint_experiment=exp&entrypoint_variation=var';
             spyOn(window.Mozilla.Client, '_isFirefoxDesktop').and.returnValue(true);
             window.Mozilla.UITour = sinon.stub();
             window.Mozilla.UITour.showFirefoxAccounts = sinon.stub().returns(true);
             window.Mozilla.UITour.ping = sinon.stub().callsArg(0);
             spyOn(window.Mozilla.UITour, 'showFirefoxAccounts');
             spyOn(window.Mozilla.Client, '_getFirefoxVersion').and.returnValue('80.0');
-            return Mozilla.FxaLink.init(function() {
-                var link = document.querySelector('.js-fxa-cta-link');
+            return Mozilla.FxaLink.init(() => {
+                const link = document.querySelector('.js-fxa-cta-link');
                 expect(link.getAttribute('role')).toEqual('button');
                 link.click();
                 expect(window.Mozilla.UITour.showFirefoxAccounts).toHaveBeenCalledWith({
