@@ -176,8 +176,8 @@ def _make_cta_button(entry):
     action = fields.get('action')
 
     button_class = [
-        # TODO, only add on Firefox themed pages
-        'mzp-t-product' if action != 'Get Mozilla VPN' else '',
+        # todo: add color field to CTA Content Type in Contentful
+        'mzp-t-product' if fields.get('color') == 'Blue' else '',
         'mzp-t-secondary' if fields.get('theme') == 'Secondary' else '',
         f'mzp-t-{WIDTHS.get(fields.get("size"), "")}' if fields.get('size') else '',
     ]
