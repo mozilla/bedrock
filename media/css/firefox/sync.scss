@@ -28,17 +28,16 @@ $image-path: '/media/protocol/img';
     max-width: $content-md;
 }
 
-// Hero FireFox logo sizing
-.mzp-c-split-body {
+.mzp-c-logo {
+    margin-left: auto;
+    margin-right: auto;
 
-    .mzp-t-product-firefox {
-        margin: 0 auto;
-
-        @media #{$mq-lg} {
-            margin: 0 0 $spacing-xl;
-        }
+    @media #{$mq-md} {
+        margin-left: 0;
+        margin-right: 0;
     }
 }
+
 
 //* -------------------------------------------------------------------------- */
 // Conditional content

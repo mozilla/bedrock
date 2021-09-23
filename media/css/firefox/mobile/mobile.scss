@@ -28,9 +28,6 @@ main .mzp-l-content {
     }
 }
 
-.mzp-c-split-container {
-    box-sizing: content-box;
-}
 
 //* -------------------------------------------------------------------------- */
 //  Download buttons
@@ -124,10 +121,12 @@ main .mzp-l-content {
 
 .c-page-header {
     .mzp-c-wordmark {
-        margin: 0 auto $spacing-lg;
+        margin-left: auto;
+        margin-right: auto;
 
-        @media #{$mq-lg} {
-            margin: 0 0 $spacing-lg;
+        @media #{$mq-md} {
+            margin-left: 0;
+            margin-right: 0;
         }
     }
 
@@ -162,7 +161,8 @@ main .mzp-l-content {
 
 .c-hero-secondary {
     .mzp-c-wordmark {
-        margin: 0 auto $spacing-lg;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .c-inline-form {

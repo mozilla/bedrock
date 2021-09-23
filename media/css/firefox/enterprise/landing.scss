@@ -68,7 +68,7 @@ $image-path: '/media/protocol/img';
 
 .mzp-c-split.t-enterprise {
     // dark colour fallback incase svg image doesn't load/display
-    background: $color-ink-80;
+    background-color: $color-ink-80;
     background-image: url('/media/img/firefox/enterprise/ent-noodles.svg'),
                       linear-gradient(transparent 550px, #fff 550px, #fff 1000px);
     background-position: bottom left, top center;
@@ -79,14 +79,14 @@ $image-path: '/media/protocol/img';
     padding-top: $layout-sm;
 
     html[dir=rtl] & {
-        background: $color-ink-80;
+        background-color: $color-ink-80;
         min-height: 0;
     }
 
    .mzp-c-split-container {
-        box-sizing: content-box;
         // need extra spacing to prevent clipping with the background image
         padding-bottom: $spacing-xl;
+
         @media #{$mq-md} {
             padding-bottom: inherit;
         }
@@ -108,15 +108,17 @@ $image-path: '/media/protocol/img';
             }
 
        }
+
        .mzp-c-wordmark {
             margin-left: auto;
             margin-right: auto;
-            margin-bottom: $layout-lg;
+
             @media #{$mq-lg} {
-                margin-left: inherit;
-                margin-right: inherit;
+                margin-left: 0;
+                margin-right: 0;
             }
        }
+
        .mzp-c-split-desc {
             @include text-body-lg;
             margin-bottom: $spacing-md;
@@ -126,10 +128,6 @@ $image-path: '/media/protocol/img';
             }
        }
    }
-
-   .mzp-c-split-image {
-        display: none;
-    }
 
     @media #{$mq-sm} {
         background-position: top left, top center;

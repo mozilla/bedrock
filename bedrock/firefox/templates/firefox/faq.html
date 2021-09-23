@@ -39,12 +39,11 @@
 {% block content %}
   {% call split (
       block_class='mzp-l-split-center-on-sm-md',
-      body_class='split-faq-body',
       image_url='img/firefox/browsers/quantum/browser.jpg',
       include_highres_image=True,
       media_after=True
   ) %}
-  <div class="mzp-c-logo mzp-t-logo-lg mzp-t-product-firefox faq-firefox-logo"></div>
+  <div class="mzp-c-logo mzp-t-logo-lg mzp-t-product-firefox"></div>
   <h1 class="mzp-u-title-xl">{{ ftl('firefox-faq')}}</h1>
   <p>{{ ftl('whether-you-searched-independant') }}</p>
   {{ download_firefox_thanks() }}

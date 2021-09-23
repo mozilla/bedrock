@@ -13,46 +13,22 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-lockwise';
 
-// split
-
-.mzp-c-split {
-
-    @media #{$mq-lg} {
-        padding: $spacing-2xl;
-    }
+.c-tagline {
+    @include text-body-lg;
 }
 
-.mzp-c-split-container {
+.mzp-c-wordmark {
+    margin-left: auto;
+    margin-right: auto;
 
-    p {
-        @include text-body-lg;
-    }
-
-    @media #{$mq-lg} {
-        box-sizing: content-box;
-    }
-}
-
-.mzp-c-split-body .mzp-c-wordmark {
-    margin: 0 auto;
-    margin-bottom: $spacing-lg;
-
-    @media #{$mq-lg} {
+    @media #{$mq-md} {
         margin-left: 0;
+        margin-right: 0;
     }
 }
 
-.mzp-c-split-body .mzp-u-title-md {
-    @include font-base;
-    font-weight: normal;
-    margin-bottom: $spacing-2xl;
-    color: $color-marketing-gray-80;
-}
-
-.mzp-c-split-container .mzp-c-split-media {
-    @media #{$mq-lg} {
-       width: 460px;
-    }
+.mzp-c-split-media {
+    max-width: 460px;
 }
 
 .add-on-download p {
@@ -65,16 +41,14 @@ $image-path: '/media/protocol/img';
 
 .mobile-download-buttons {
     padding-bottom: $spacing-md;
+
+    @media #{$mq-sm} {
+        margin-bottom: $spacing-lg;
+    }
 }
 
 .features .mzp-c-picto-body {
     @include text-body-lg;
-}
-
-@media #{$mq-sm} {
-    .mobile-download-buttons {
-        margin-bottom: $spacing-lg;
-    }
 }
 
 .links {

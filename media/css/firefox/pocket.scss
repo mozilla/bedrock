@@ -15,10 +15,6 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
 
 .pocket-hero {
-    &.mzp-c-split {
-        padding-top: 0;
-    }
-
     h1 {
         @include text-title-lg;
     }
@@ -37,19 +33,6 @@ $image-path: '/media/protocol/img';
 
     .mzp-c-split-media.mzp-l-split-media-overflow .mzp-c-split-media-asset {
         max-width: $content-lg;
-    }
-
-    .mzp-c-wordmark {
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: $spacing-lg;
-    }
-
-    @media #{$mq-lg} {
-        .mzp-c-wordmark {
-            margin-left: 0;
-            margin-right: 0;
-        }
     }
 }
 
@@ -75,12 +58,14 @@ $image-path: '/media/protocol/img';
     }
 }
 
-//  Split
-
+// Split
 .pocket-popularity {
     .mzp-c-split-container {
         max-width: $content-md;
-        box-sizing: content-box;
+
+        @media #{$mq-lg} {
+            max-width: $content-max;
+        }
     }
 
     .mzp-c-split-media {
@@ -89,11 +74,5 @@ $image-path: '/media/protocol/img';
 
     .mzp-c-split-media-asset {
         width: 100%;
-    }
-
-    @media #{$mq-lg} {
-        .mzp-c-split-container {
-            max-width: $content-max;
-        }
     }
 }

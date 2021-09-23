@@ -63,19 +63,6 @@ $image-path: '/media/protocol/img';
         max-width: 18em;
         text-align: center;
     }
-    .mzp-c-split {
-        padding: $spacing-lg 0 0;
-    }
-
-    .mzp-c-split-body {
-        text-align: center;
-    }
-
-    @media #{$mq-md} {
-        .mzp-c-split-body {
-            @include bidi(((text-align, left, right),));
-        }
-    }
 }
 
 .c-press-logos {

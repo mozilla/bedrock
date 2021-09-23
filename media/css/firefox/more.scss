@@ -13,26 +13,12 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Primary CTA (page top)
 
-.privacy-promise-hero {
-    p {
-        @include text-body-lg;
-    }
-
+.page-hero {
     .mzp-c-split-media-asset {
-        position: relative;
-        top: $spacing-xl;
+        padding-top: $spacing-xl;
     }
 
-    &.mzp-c-split {
-        padding-top: 0;
-        padding-bottom: 0;
-    }
-
-    @media #{$mq-lg} {
-        &.mzp-c-split {
-            overflow-y: hidden;
-        }
-
+    @media #{$mq-md} {
         .mzp-c-split-bg {
             padding-top: 0;
             padding-bottom: 0;

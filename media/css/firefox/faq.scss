@@ -10,22 +10,14 @@ $image-path: "/media/protocol/img";
 @import "~@mozilla-protocol/core/protocol/css/components/logos/logo";
 @import "~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox";
 
-/*
-* Split
-*/
-.mzp-c-split-body.split-faq-body {
-    max-width: 580px;
 
-    .faq-firefox-logo {
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: $spacing-md;
+.mzp-c-split .mzp-c-logo {
+    margin-left: auto;
+    margin-right: auto;
 
-        @media #{$mq-lg} {
-            margin-left: inherit;
-            margin-right: inherit;
-            margin-bottom: $layout-md;
-        }
+    @media #{$mq-md} {
+        margin-left: 0;
+        margin-right: 0;
     }
 }
 
