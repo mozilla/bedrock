@@ -536,8 +536,6 @@ class WhatsnewView(L10nTemplateView):
         'firefox/whatsnew/whatsnew-fx88-en.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-mobile-de.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-mobile-qrcode-de.html': ['firefox/whatsnew/whatsnew'],
-        'firefox/whatsnew/whatsnew-fx87-de.html': ['firefox/whatsnew/whatsnew'],
-        'firefox/whatsnew/whatsnew-fx87-fr.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx90-en.html': ['firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx90-eu.html': ['firefox/whatsnew/whatsnew-fx90.ftl', 'firefox/whatsnew/whatsnew'],
         'firefox/whatsnew/whatsnew-fx91-en.html': ['firefox/whatsnew/whatsnew'],
@@ -636,16 +634,8 @@ class WhatsnewView(L10nTemplateView):
             template = 'firefox/whatsnew/whatsnew-fx90-eu.html'
         elif version.startswith('88.') and locale == 'en-US':
             template = 'firefox/whatsnew/whatsnew-fx88-en.html'
-        elif version.startswith('88.') and locale == 'de':
-            template = 'firefox/whatsnew/whatsnew-fx87-de.html'
-        elif version.startswith('88.') and locale == 'fr':
-            template = 'firefox/whatsnew/whatsnew-fx87-fr.html'
         elif version.startswith('87.') and locale == 'en-US':
             template = 'firefox/whatsnew/whatsnew-fx87-en.html'
-        elif version.startswith('87.') and locale == 'de':
-            template = 'firefox/whatsnew/whatsnew-fx87-de.html'
-        elif version.startswith('87.') and locale == 'fr':
-            template = 'firefox/whatsnew/whatsnew-fx87-fr.html'
         elif version.startswith('86.') and locale.startswith('en-'):
             template = 'firefox/whatsnew/whatsnew-fx86-en.html'
         elif version.startswith('86.') and locale == 'de':
