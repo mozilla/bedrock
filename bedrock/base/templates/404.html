@@ -16,42 +16,28 @@
 {% block canonical_urls %}{% endblock %}
 
 {% block content %}
-  <main role="main">
-    <section class="mzp-l-content message-section">
-      <h1 class="error-header">{{ ftl('not-found-page-sorry-we-cant-find-that-page') }}</h1>
-      <p>{{ftl('not-found-page-were-all-about-a-healthy-internet') }}</p>
-      <div class="hide-back" id="go-back">
-        <a class="back-button">{{ ftl('not-found-page-go-back') }}</a>
-      </div>
-    </section>
-    <section class="mzp-l-content">
-      <ul>
-        <li>
-          <section class="has-icon">
-            <img class="list-icon" alt="" src="{{ static('protocol/img/icons/mozilla.svg') }}" width="30" height="30">
-              <p class="list-content">
-                {{ ftl('not-found-page-learn-about-mozilla-the-non', about=url('mozorg.about.index')) }}
-              </p>
-          </section>
-        </li>
-        <li>
-          <section class="has-icon">
-            <img class="list-icon" alt="" src="{{ static('protocol/img/logos/firefox/logo-flat.svg') }}" width="30" height="30">
-            <p class="list-content">
-            {{ ftl('not-found-page-explore-the-entire-family-for', explore=url('firefox')) }}
-            </p>
-          </section>
-        </li>
-        <li>
-          <section class="has-icon">
-            <img class="list-icon" alt="" src="{{ static('protocol/img/icons/desktop.svg') }}" width="30" height="30">
-            <p class="list-content">
-            {{ ftl('not-found-page-download-the-firefox-browser', download=url('firefox.new')) }}
-            </p>
-          </section>
-        </li>
-      </ul>
-    </section>
+  <main role="main" class="mzp-l-content message-section">
+    <h1 class="error-title">{{ ftl('not-found-page-sorry-we-cant-find-that-page') }}</h1>
+    <p>{{ftl('not-found-page-were-all-about-a-healthy-internet') }}</p>
+
+    <p class="hide-back" id="go-back">
+      <a class="back-button">{{ ftl('not-found-page-go-back') }}</a>
+    </p>
+
+    <ul class="content-list">
+      <li>
+        <img class="list-icon" alt="" src="{{ static('protocol/img/icons/mozilla.svg') }}" width="30" height="30">
+        {{ ftl('not-found-page-learn-about-mozilla-the-non', about=url('mozorg.about.index')) }}
+      </li>
+      <li>
+        <img class="list-icon" alt="" src="{{ static('protocol/img/logos/firefox/logo-flat.svg') }}" width="30" height="30">
+        {{ ftl('not-found-page-explore-the-entire-family-for', explore=url('firefox')) }}
+      </li>
+      <li>
+        <img class="list-icon" alt="" src="{{ static('protocol/img/icons/desktop.svg') }}" width="30" height="30">
+        {{ ftl('not-found-page-download-the-firefox-browser', download=url('firefox.new')) }}
+      </li>
+    </ul>
   </main>
 {% endblock %}
 

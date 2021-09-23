@@ -13,11 +13,11 @@
 {% endblock %}
 
 {% block content %}
-  <main role="main">
-    <section class="mzp-l-content">
-      <h1 class="error-header">{{ ftl('error-page-something-went-wrong') }}</h1>
-      <p>{{ ftl('error-page-its-probably-just-a-server-error') }}<br>
-      {{ ftl('error-page-you-can-also-try-refreshing', firefox="https://firefox.com", mozilla=url('mozorg.home')) }}</p>
-    </section>
+  <main role="main" class="mzp-l-content message-section">
+    <h1 class="error-title">{{ ftl('error-page-something-went-wrong') }}</h1>
+    <p>
+      {{ ftl('error-page-its-probably-just-a-server-error') }}<br>
+      {{ ftl('error-page-you-can-also-try-refreshing', firefox="https://firefox.com", mozilla=url('mozorg.home')) }}
+    </p>
   </main>
 {% endblock %}
