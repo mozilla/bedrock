@@ -31,6 +31,9 @@ installed by using the following commands:
 .. code-block:: bash
 
     $ source venv/bin/activate
+
+.. code-block:: bash
+
     $ pip install -r requirements/dev.txt
 
 Running Jasmine tests using Karma

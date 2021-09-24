@@ -16,19 +16,38 @@ JavaScript and CSS.
 Git workflow
 ------------
 When you want to start contributing, you should create a branch from master.
-This allows you to work on different project at the same time::
+This allows you to work on different project at the same time:
 
-    git checkout master
-    git checkout -b topic-branch
+.. code-block:: bash
+
+    $ git checkout master
+
+.. code-block:: bash
+
+    $ git checkout -b topic-branch
 
 To keep your branch up-to-date, assuming the mozilla repository is the remote
-called mozilla::
+called mozilla:
 
-    git fetch mozilla
-    git checkout master
-    git merge mozilla/master
-    git checkout topic-branch
-    git rebase master
+.. code-block:: bash
+
+    $ git fetch mozilla
+
+.. code-block:: bash
+
+    $ git checkout master
+
+.. code-block:: bash
+
+    $ git merge mozilla/master
+
+.. code-block:: bash
+
+    $ git checkout topic-branch
+
+.. code-block:: bash
+
+    $ git rebase master
 
 If you need more Git expertise, a good resource is the `Git book`_.
 
@@ -51,9 +70,13 @@ If you're asked to change your commit message, you can use these commands:
 
 .. code-block:: bash
 
-    git commit --amend
-    # -f is doing a force push because you modified the history
-    git push -f my-remote topic-branch
+  $ git commit --amend
+
+-f is doing a force push because you modified the history
+
+.. code-block:: bash
+
+  $ git push -f my-remote topic-branch
 
 Submitting your work
 --------------------
@@ -72,9 +95,9 @@ Should your pull request contain more than one commit, sometimes we may ask you
 to squash them into a single commit before merging. You can do this with `git rebase`.
 
 As an example, let's say your pull request contains two commits. To squash them
-into a single commit, you can follow these instructions:
+into a single commit, you can follow these instructions::
 
-    git rebase -i HEAD~2
+  $ git rebase -i HEAD~2
 
 You will then get an editor with your two commits listed. Change the second
 commit from `pick` to `fixup`, then save and close. You should then be able to
@@ -143,9 +166,9 @@ the bugs that have been pushed with a quick message stating that the code was de
 If you'd like to see the commits that will be deployed before the push run the
 following command:
 
-    .. code-block:: bash
+.. code-block:: bash
 
-        ./bin/open-compare.py
+    $ ./bin/open-compare.py
 
 This will discover the currently deployed git hash, and open a compare URL at github
 to the latest master. Look at ``open-compare.py -h`` for more options.

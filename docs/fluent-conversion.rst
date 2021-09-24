@@ -31,6 +31,9 @@ The first step is to create the recipe. Let's say you want to convert
 .. code-block:: bash
 
     $ make run-shell
+
+.. code-block:: bash
+
     $ ./manage.py fluent recipe bedrock/mozorg/templates/mozorg/mission.html
 
 This will parse all of the calls to ``_()`` and the ``trans`` blocks, process the strings in the
@@ -86,6 +89,9 @@ continue with the example of ``mission.html``; you would run:
 .. code-block:: bash
 
     $ make run-shell
+
+.. code-block:: bash
+
     $ ./manage.py fluent ftl bedrock/mozorg/templates/mozorg/mission.html
 
 This should create ``l10n/en/mozorg/mission.ftl`` which has all of the strings
@@ -100,6 +106,9 @@ it for errors like duplicated IDs.
 .. code-block:: bash
 
    $ moz-l10n-lint l10n/l10n-pontoon.toml
+
+.. code-block:: bash
+
    $ moz-l10n-lint l10n/l10n-vendor.toml
 
 Convert the template
@@ -154,6 +163,9 @@ files in our fluent files repo.
 .. code-block:: bash
 
     $ ./manage.py fluent ftl bedrock/mozorg/templates/mozorg/mission.html de it
+
+.. code-block:: bash
+
     $ ./manage.py fluent ftl lib/fluent_migrations/mozorg/mission.py de it
 
 This is the same command we used to create the original ``en`` Fluent file.

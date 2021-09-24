@@ -526,7 +526,14 @@ if you'd like something a bit nicer looking and more convenient there is the
 .. code-block:: bash
 
     $ ./manage.py l10n_update
+
+.. code-block:: bash
+
     $ ./manage.py active_locales mozorg/mission
+
+
+.. code-block:: bash
+
     There are 91 active locales for mozorg/mission.ftl:
     - af
     - an
@@ -840,6 +847,9 @@ You can specify a list of locales to update:
 .. code-block:: console
 
     $ ./manage.py l10n_check fr
+
+.. code-block:: console
+
     $ ./manage.py l10n_check fr de es
 
 Currency

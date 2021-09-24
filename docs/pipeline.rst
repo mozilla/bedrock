@@ -89,9 +89,14 @@ to change according to the settings in the `.gitlab-ci.yml file in the www-confi
     By default the ``tag-release.sh`` script will push to the ``origin`` git remote. If you'd
     like for it to push to a different remote name you can either pass in a ``-r`` or
     ``--remote`` argument, or set the ``MOZ_GIT_REMOTE`` environment variable. So the following
-    are equivalent::
+    are equivalent:
+
+    .. code-block:: bash
 
         $ bin/tag-release.sh --push -r mozilla
+
+    .. code-block:: bash
+
         $ MOZ_GIT_REMOTE=mozilla bin/tag-release.sh --push
 
     And if you'd like to just tag and not push the tag anywhere, you may omit the ``--push``
