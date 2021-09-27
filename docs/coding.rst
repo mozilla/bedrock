@@ -61,41 +61,42 @@ Asset bundles for both JS and SCSS are defined in ``./media/static-bundles.json`
 This is the file where you can define the bundle names that will get used in page
 templates. For example, a CSS bundle can be defined as:
 
-```json
-"css": [
-    {
-        "files": [
-            "css/firefox/new/basic/download.scss"
-        ],
-        "name": "firefox_new_download"
-    }
-]
-```
+.. code-block:: json
+
+    "css": [
+        {
+            "files": [
+                "css/firefox/new/basic/download.scss"
+            ],
+            "name": "firefox_new_download"
+        }
+    ]
 
 Which can then be referenced in a page template using:
 
-```jinja
-{{ css_bundle('firefox_new_download') }}
-```
+.. code-block:: jinja
+
+    {{ css_bundle('firefox_new_download') }}
 
 A JS bundle can be defied as:
 
-```json
-"js": [
-    {
-        "files": [
-            "protocol/js/protocol-modal.js",
-            "js/firefox/new/basic/download.js"
-        ],
-        "name": "firefox_new_download"
-    }
-]
-```
+.. code-block:: json
+
+    "js": [
+        {
+            "files": [
+                "protocol/js/protocol-modal.js",
+                "js/firefox/new/basic/download.js"
+            ],
+            "name": "firefox_new_download"
+        }
+    ]
+
 Which can then be referenced in a page template using:
 
-```jinja
-{{ js_bundle('firefox_new_download') }}
-```
+.. code-block:: jinja
+
+    {{ js_bundle('firefox_new_download') }}
 
 Once you define a bundle in ``static-bundles.json``, the ``webpack.config.js``
 file will use these as entrypoints for compiling JS and CSS and watching for
@@ -110,13 +111,13 @@ JavaScript:
 Default configuration
 ~~~~~~~~~~~~~~~~~~~~~
 
-Write `example-script.js` using ES5 syntax and features. Webpack will bundle
+Write ``example-script.js`` using ES5 syntax and features. Webpack will bundle
 the JS as-is, without any additional pre-processing.
 
 Babel configuration
 ~~~~~~~~~~~~~~~~~~~
 
-Write `example-script.es6.js` using ES2015+ syntax. Webpack will transpile
+Write ``example-script.es6.js`` using ES2015+ syntax. Webpack will transpile
 the code to ES5 using `Babel <https://babeljs.io/>`_. This is useful when
 you want to write modern syntax but still support older browsers.
 
@@ -133,8 +134,8 @@ you want to write modern syntax but still support older browsers.
 
 For pages that are served to Firefox browsers only, such as ``/whatsnew``, it is
 also possible to write native ES2015+ syntax and serve that directly in production.
-Here there is no need to include the `.es6.js` file extension. Instead, you can
-simply use `.js` instead. The rules that which files you can do this in are defined
+Here there is no need to include the ``.es6.js`` file extension. Instead, you can
+simply use ``.js`` instead. The rules that which files you can do this in are defined
 in our `ESLint config <https://github.com/mozilla/bedrock/blob/master/.eslintrc.js>`_.
 
 Writing URL Patterns
