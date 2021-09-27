@@ -16,7 +16,7 @@ if (typeof window.Mozilla === 'undefined') {
     var _requestComplete = false;
 
     // Euro pricing
-    var EURO_COUNTRIES = ['at', 'be', 'de', 'es', 'fr', 'it'];
+    var EURO_COUNTRIES = ['at', 'be', 'de', 'es', 'fr', 'ie', 'it', 'nl'];
 
     // Swiss Francs (CHF) pricing
     var CHF_COUNTRIES = ['ch'];
