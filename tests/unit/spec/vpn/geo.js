@@ -88,7 +88,7 @@ describe('geo.js', function() {
 
     describe('getAvailability', function() {
 
-        const availableCountries = '|ca|my|nz|sg|gb|gg|im|io|je|uk|vg|as|mp|pr|um|us|vi|at|be|ch|de|es|fr|it|';
+        const availableCountries = '|ca|my|nz|sg|gb|gg|im|io|je|uk|vg|as|mp|pr|um|us|vi|at|be|ch|de|es|fr|it|ie|nl|';
 
         it('should return `available` if matching country code is found', function() {
             expect(Mozilla.VPN.getAvailability('us', availableCountries)).toEqual('available');
@@ -100,6 +100,8 @@ describe('geo.js', function() {
             expect(Mozilla.VPN.getAvailability('es', availableCountries)).toEqual('available');
             expect(Mozilla.VPN.getAvailability('fr', availableCountries)).toEqual('available');
             expect(Mozilla.VPN.getAvailability('it', availableCountries)).toEqual('available');
+            expect(Mozilla.VPN.getAvailability('ie', availableCountries)).toEqual('available');
+            expect(Mozilla.VPN.getAvailability('nl', availableCountries)).toEqual('available');
         });
 
         it('should return `not-available` if no matching country code is found', function() {
@@ -168,6 +170,8 @@ describe('geo.js', function() {
             expect(Mozilla.VPN.getCurrency('es')).toEqual('euro');
             expect(Mozilla.VPN.getCurrency('fr')).toEqual('euro');
             expect(Mozilla.VPN.getCurrency('it')).toEqual('euro');
+            expect(Mozilla.VPN.getCurrency('ie')).toEqual('euro');
+            expect(Mozilla.VPN.getCurrency('nl')).toEqual('euro');
         });
 
         it('should return "chf" for Switzerland', function() {

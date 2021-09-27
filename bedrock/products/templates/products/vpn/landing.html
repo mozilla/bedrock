@@ -102,7 +102,11 @@
           </a>
 
           <p class="availability-copy">
-            {{ ftl('vpn-shared-available-countries-v3') }}
+            {% if switch('vpn-launch-wave-iv') %}
+              {{ ftl('vpn-shared-available-countries-v4') }}
+            {% else %}
+              {{ ftl('vpn-shared-available-countries-v3') }}
+            {% endif %}
           </p>
         </div>
         <div class="l-column-last">
@@ -174,7 +178,11 @@
       </a>
 
       <p class="availability-copy">
-        {{ ftl('vpn-shared-available-countries-v3') }}
+        {% if switch('vpn-launch-wave-iv') %}
+          {{ ftl('vpn-shared-available-countries-v4') }}
+        {% else %}
+          {{ ftl('vpn-shared-available-countries-v3') }}
+        {% endif %}
       </p>
     {% endcall %}
   </div>

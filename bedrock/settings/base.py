@@ -1383,6 +1383,26 @@ VPN_PLAN_ID_MATRIX = {
                 'saving': None
             }
         },
+        'en': {
+            '12-month': {
+                'id': 'price_1JcuArKb9q6OnNsLXAnkCSUE' if DEV else 'price_1JcdvBJNcmPzuWtROLbEH9d2',
+                'price': u'4,99 €',
+                'total': u'59,88 €',
+                'saving': 50
+            },
+            '6-month': {
+                'id': 'price_1JcuADKb9q6OnNsLGNIwLcdA' if DEV else 'price_1Jcdu8JNcmPzuWtRK6u5TUoZ',
+                'price': u'6,99 €',
+                'total': u'41,94 €',
+                'saving': 30
+            },
+            'monthly': {
+                'id': 'price_1Jcu7uKb9q6OnNsLG4JAAXuw' if DEV else 'price_1JcdsSJNcmPzuWtRGF9Y5TMJ',
+                'price': u'9,99‎ €',
+                'total': None,
+                'saving': None
+            }
+        },
         'es': {
             '12-month': {
                 'id': 'price_1J4pE7Kb9q6OnNsLnvvyRClI' if DEV else 'price_1J5JCdJNcmPzuWtRrvQMFLlP',
@@ -1518,8 +1538,14 @@ VPN_VARIABLE_PRICING = {
     'fr': {
         'default': VPN_PLAN_ID_MATRIX['euro']['fr'],
     },
+    'ie': {
+        'default': VPN_PLAN_ID_MATRIX['euro']['en'],
+    },
     'it': {
         'default': VPN_PLAN_ID_MATRIX['euro']['it'],
+    },
+    'nl': {
+        'default': VPN_PLAN_ID_MATRIX['euro']['nl'],
     },
     'us': {
         'default': VPN_PLAN_ID_MATRIX['usd']['en'],
@@ -1559,7 +1585,13 @@ VPN_COUNTRY_CODES = [
     'IT',  # Italy
 ]
 
+VPN_COUNTRY_CODES_WAVE_IV = [
+    'IE',  # Ireland
+    'NL',  # Netherlands
+]
+
 VPN_AVAILABLE_COUNTRIES = 13
+VPN_AVAILABLE_COUNTRIES_WAVE_IV = 15
 VPN_CONNECT_SERVERS = 400
 VPN_CONNECT_COUNTRIES = 30
 VPN_CONNECT_DEVICES = 5

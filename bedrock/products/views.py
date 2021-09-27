@@ -9,6 +9,7 @@ from django.conf import settings
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST, require_safe
 
+from bedrock.base.waffle import switch
 from bedrock.newsletter.views import general_error, invalid_email_address
 from bedrock.products.forms import VPNWaitlistForm
 from lib import l10n_utils
@@ -16,7 +17,10 @@ from lib.l10n_utils.fluent import ftl
 
 
 def vpn_country_codes():
-    countries = settings.VPN_COUNTRY_CODES
+    if switch('vpn-launch-wave-iv'):
+        countries = settings.VPN_COUNTRY_CODES + settings.VPN_COUNTRY_CODES_WAVE_IV
+    else:
+        countries = settings.VPN_COUNTRY_CODES
     return '|%s|' % '|'.join(cc.lower() for cc in countries)
 
 
@@ -48,12 +52,17 @@ def vpn_landing_page(request):
     else:
         sub_not_found = False
 
+    if switch('vpn-launch-wave-iv'):
+        available_countries = settings.VPN_AVAILABLE_COUNTRIES_WAVE_IV
+    else:
+        available_countries = settings.VPN_AVAILABLE_COUNTRIES
+
     context = {
         'country_codes': vpn_country_codes(),
         'default_monthly_price': pricing_params['default']['monthly']['price'],
         'default_6_month_price': pricing_params['default']['6-month']['price'],
         'default_12_month_price': pricing_params['default']['12-month']['price'],
-        'available_countries': settings.VPN_AVAILABLE_COUNTRIES,
+        'available_countries': available_countries,
         'connect_servers': settings.VPN_CONNECT_SERVERS,
         'connect_countries': settings.VPN_CONNECT_COUNTRIES,
         'connect_devices': settings.VPN_CONNECT_DEVICES,
