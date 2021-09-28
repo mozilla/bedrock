@@ -98,6 +98,8 @@ vpn-shared-pricing-monthly = { $amount }<span>/month</span>
 
 # Outdated string
 vpn-shared-pricing-get-6-month = Get 6 month plan
+
+# Outdated string
 vpn-shared-pricing-get-12-month = Get 12 month plan
 
 vpn-shared-pricing-get-6-month-v2 = Get 6-month plan
