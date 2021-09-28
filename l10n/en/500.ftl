@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+error-page-mozilla = { -brand-name-mozilla }
+error-page-firefox = { -brand-name-firefox }
 error-page-error-page-internal-server-error = 500: Internal Server Error
 error-page-something-went-wrong = Something went wrong
 error-page-its-probably-just-a-server-error = It’s probably just a server error and we’re working to fix it.
