@@ -1026,7 +1026,7 @@
     },
     {
       "files": [
-        "js/base/sentry-init.js"
+        "js/base/sentry.es6.js"
       ],
       "name": "sentry"
     },
