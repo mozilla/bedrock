@@ -11,9 +11,14 @@ Installing Bedrock
 Installation Methods
 ====================
 
-There are two primary methods of installing bedrock: Docker and Local. Whichever you choose you'll start by getting the source::
+There are two primary methods of installing bedrock: Docker and Local. Whichever you choose you'll start by getting the source
+
+.. code-block:: bash
 
     $ git clone git://github.com/mozilla/bedrock.git
+
+.. code-block:: bash
+
     $ cd bedrock
 
 After these basic steps you can choose your install method below. Docker is the easiest and recommended way, but local is also possible
@@ -49,12 +54,19 @@ choice and modify things and you should see those changes reflected in your brow
     ensuring that you have the latest dependencies installed among other things. If you see any strange errors after a
     ``git pull`` then ``make pull`` is a good thing to try for a quick fix.
 
-If you don't have or want to use Make you can call the docker and compose commands directly::
+If you don't have or want to use Make you can call the docker and compose commands directly
+
+.. code-block:: bash
 
     $ docker-compose pull
+
+.. code-block:: bash
+
     $ [[ ! -f .env ]] && cp .env-dist .env
 
-Then starting it all is simply::
+Then starting it all is simply
+
+.. code-block:: bash
 
     $ docker-compose up app assets
 
@@ -85,16 +97,33 @@ Local Installation
 These instructions assume you have Python 3.6+, pip, and NodeJS installed. If you don't have `pip` installed
 (you probably do) you can install it with the instructions in `the pip docs <https://pip.pypa.io/en/stable/installing/>`_.
 
-You need to create a virtual environment for Python libraries::
+You need to create a virtual environment for Python libraries:
 
-    $ python3 -m venv venv                         # create a virtual env in the folder `venv`
-    $ source venv/bin/activate                     # activate the virtual env. On Windows, run: venv\Scripts\activate.bat
-    $ pip install --upgrade pip                    # securely upgrade pip
-    $ pip install -r requirements/dev.txt          # installs dependencies
+1. Create a virtual env in the folder `venv` ::
 
-If you are on OSX and some of the compiled dependencies fails to compile, try explicitly setting the arch flags and try again::
+    $ python3 -m venv venv             
+
+2. Activate the virtual env. On Windows, run: venv\Scripts\activate.bat ::    
+
+    $ source venv/bin/activate             
+
+3. Securely upgrade pip ::
+
+    $ pip install --upgrade pip          
+
+4. Installs dependencies ::
+
+    $ pip install -r requirements/dev.txt           
+
+
+If you are on OSX and some of the compiled dependencies fails to compile, try explicitly setting the arch flags and try again
+
+.. code-block:: bash
 
     $ export ARCHFLAGS="-arch i386 -arch x86_64"
+
+.. code-block:: bash
+
     $ pip install -r requirements/dev.txt
 
 If you are on Linux, you will need at least the following packages or their equivalent for your distro::
@@ -251,6 +280,9 @@ Local:
 .. code-block:: bash
 
     $ pip install -r requirements/docs.txt
+
+.. code-block:: bash
+
     $ make livedocs
 
 
