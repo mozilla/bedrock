@@ -17,6 +17,9 @@ module.exports = {
             ],
             env: {
                 'es2017': true
+            },
+            parserOptions: {
+                'sourceType': 'module'
             }
         },
         {
