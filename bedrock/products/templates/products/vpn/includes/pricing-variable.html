@@ -28,7 +28,7 @@
 
       {{ vpn_subscribe_link(
         entrypoint=_utm_source,
-        link_text=ftl('vpn-shared-pricing-get-12-month'),
+        link_text=ftl('vpn-shared-pricing-get-12-month-v2', fallback='vpn-shared-pricing-get-12-month'),
         plan='12-month',
         class_name='mzp-c-button mzp-t-xl ',
         lang=LANG,
@@ -55,7 +55,7 @@
 
       {{ vpn_subscribe_link(
         entrypoint=_utm_source,
-        link_text=ftl('vpn-shared-pricing-get-6-month'),
+        link_text=ftl('vpn-shared-pricing-get-6-month-v2', fallback='vpn-shared-pricing-get-6-month'),
         plan='6-month',
         class_name='mzp-c-button mzp-t-secondary mzp-t-xl ',
         lang=LANG,
