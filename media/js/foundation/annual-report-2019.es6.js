@@ -2,8 +2,6 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-'use strict';
-
 // Lazyload images
 window.Mozilla.LazyLoad.init();
 
@@ -97,7 +95,7 @@ function getCurrentModalIndex() {
 
 function updateModalArticle(index) {
     const modalContent = document.querySelector('.mzp-u-modal-content.mzp-c-modal-overlay-contents');
-    let newArticleId = articleArray[index].getAttribute('data-modal-id');
+    const newArticleId = articleArray[index].getAttribute('data-modal-id');
     const newModalContent = document.querySelector(`[data-modal-parent="${newArticleId}"]`).cloneNode(true);
     const currentModalContent = modalContent.firstElementChild;
 
