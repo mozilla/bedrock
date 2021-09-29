@@ -321,6 +321,24 @@
           </div>
         {% endif %}
       {% endfor %}
+
+      {% for note in release_notes if note.tag == "Community" %}
+        {% if loop.first %}
+          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="{{ note.tag|lower() }}">
+          <div class="mzp-l-sidebar">
+            <img class="sidebar-icon" alt="" src="{{ static('img/firefox/releasenotes/community.svg') }}" width="30" height="30">
+            <h3>Community Contributions</h3>
+          </div>
+          <div class="mzp-l-main mzp-l-article">
+            <ul>
+        {% endif %}
+        {{ note_entry(note) }}
+        {% if loop.last %}
+            </ul>
+          </div>
+          </div>
+        {% endif %}
+      {% endfor %}
     {% endif %}
     </section>
 
