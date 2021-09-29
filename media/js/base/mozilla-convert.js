@@ -87,11 +87,13 @@ if (typeof window.Mozilla === 'undefined') {
             return false;
 
         } catch(e) {
+            /* eslint-disable no-console */
             // log errors thrown in the console to make debugging easier.
             if ('console' in window && typeof console.error === 'function') {
                 console.error(e);
             }
             return false;
+            /* eslint-enable no-console */
         }
     };
 

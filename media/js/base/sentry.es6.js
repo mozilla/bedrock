@@ -2,8 +2,6 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-'use strict';
-
 import * as Sentry from '@sentry/browser';
 
 // Respect Do Not Track
@@ -30,7 +28,7 @@ if (typeof window.Mozilla.dntEnabled === 'function' && !window.Mozilla.dntEnable
             beforeSend(event) {
                 try {
                     // https://github.com/getsentry/sentry-javascript/issues/3147
-                    if (event.exception.values[0].stacktrace.frames[0].filename === `<anonymous>`) {
+                    if (event.exception.values[0].stacktrace.frames[0].filename === '<anonymous>') {
                         return null;
                     }
                 } catch (e) {}

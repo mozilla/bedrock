@@ -7,7 +7,6 @@
 
     var jingle = function(){
         button.style.fontStyle = 'italic';
-        console.log('jingle');
         var audio = new Audio(button.dataset.audio);
         audio.play();
     };
