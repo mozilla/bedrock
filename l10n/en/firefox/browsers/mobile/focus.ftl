@@ -20,20 +20,36 @@ mobile-focus-send-a-download-link-to-your = Send a download link to your phone.
 mobile-focus-scan-the-qr-code-to-get-started = Scan the QR code to get started
 mobile-focus-scan-alt-text = Scan the QR code to get { -brand-name-firefox-focus }
 
+# Outdated string
 mobile-focus-disappear-your-history = Disappear your history
+
+mobile-focus-delete-your-history = Delete your history
+
 mobile-focus-easily-erase-your = Easily erase your history, passwords and cookies, so unwanted ads don’t follow you around online. Just tap the erase button on the search field and it’s gone.
 
 mobile-focus-take-private-mode = Take private mode to the next level
+
+# Outdated string
 mobile-focus-private-browsing-on = “Private browsing” on most browsers isn’t really all that private. { -brand-name-firefox-focus } is next-level, always on privacy and it’s backed by { -brand-name-mozilla }, the non-profit that fights for your rights on the web.
+
+mobile-focus-private-browsing-on-v2 = “Private browsing” on most browsers isn’t really all that private. { -brand-name-firefox-focus } is next-level, private by default and it’s backed by { -brand-name-mozilla }, the non-profit that fights for your rights on the web.
 
 mobile-focus-tracking-protection = Tracking protection
 mobile-focus-firefox-focus-blocks = { -brand-name-firefox-focus } blocks a wide range of common trackers by default including social trackers and those sticky ones that come from things like { -brand-name-facebook } ads.
 
 mobile-focus-ad-blocking = Ad blocking
+
+# Outdated string
 mobile-focus-focus-blocks-the = { -brand-name-focus } blocks the ads as you’d normally see on web pages — no extra add-ons or extensions necessary. With fewer ads, you get better page load speed, which means you get to the stuff you want a lot faster.
 
+mobile-focus-focus-blocks-the-v2 = { -brand-name-focus } blocks ads that try to track you across web pages — no extra add-ons or extensions necessary. With fewer ads, you get better page load speed, which means you get to the stuff you want a lot faster.
+
 mobile-focus-see-it-all = See it all faster
+
+# Outdated string
 mobile-focus-focus-removes-trackers = { -brand-name-focus } removes trackers and ads so the pages you’re viewing require less data and load much faster.
+
+mobile-focus-focus-removes-trackers-v2 = { -brand-name-focus } removes trackers and enables adblockers so the pages you’re viewing require less data and load much faster. Also, pin up to four shortcuts on your home screen and get to your favorite site even quicker without typing anything.
 
 mobile-focus-made-by-mozilla = Made by { -brand-name-mozilla }
 mobile-focus-we-believe-everyone = We believe everyone should have control over their lives online. That’s what we’ve been fighting for since 1998.
