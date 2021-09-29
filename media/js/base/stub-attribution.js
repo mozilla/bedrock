@@ -336,8 +336,29 @@ if (typeof window.Mozilla === 'undefined') {
 
     StubAttribution.hasValidData = function(data) {
         if (typeof data.utm_content === 'string' && typeof data.referrer === 'string') {
-            // If RTAMO data does not originate from AMO, drop attribution (Issue 10337).
-            if ((/^rta:/).test(decodeURIComponent(data.utm_content)) && data.referrer.indexOf('https://addons.mozilla.org') === -1) {
+            var content = data.utm_content;
+            var charLimit = 150;
+
+            // If utm_content is unusually long, return false early.
+            if (content.length > charLimit) {
+                return false;
+            }
+
+            // Attribution data can be double encoded
+            while (content.includes('%')) {
+                try {
+                    var result = decodeURIComponent(content);
+                    if (result === content) {
+                        break;
+                    }
+                    content = result;
+                } catch (e) {
+                    break;
+                }
+            }
+
+            // If RTAMO data does not originate from AMO, drop attribution (Issues 10337, 10524).
+            if ((/^rta:/).test(content) && data.referrer.indexOf('https://addons.mozilla.org') === -1) {
                 return false;
             }
         }
