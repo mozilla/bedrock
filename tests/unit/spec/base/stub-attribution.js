@@ -181,6 +181,48 @@ describe('stub-attribution.js', function() {
             /* eslint-enable camelcase */
 
             expect(Mozilla.StubAttribution.hasValidData(data)).toBeTruthy();
+
+            /* eslint-disable camelcase */
+            const data2 = {
+                utm_source: 'addons.mozilla.org',
+                utm_medium: 'referral',
+                utm_campaign: 'amo-fx-cta-607454',
+                utm_content: 'rta:dUJsb2NrMEByYXltb25kaGlsbC5uZXQ',
+                referrer: 'https://addons.mozilla.org/',
+                ua: 'chrome',
+                visit_id: GA_VISIT_ID
+            };
+            /* eslint-enable camelcase */
+
+            expect(Mozilla.StubAttribution.hasValidData(data2)).toBeTruthy();
+
+            /* eslint-disable camelcase */
+            const data3 = {
+                utm_source: 'addons.mozilla.org',
+                utm_medium: 'referral',
+                utm_campaign: 'non-fx-button',
+                utm_content: 'rta%25253AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ',
+                referrer: 'https://addons.mozilla.org/',
+                ua: 'chrome',
+                visit_id: GA_VISIT_ID
+            };
+            /* eslint-enable camelcase */
+
+            expect(Mozilla.StubAttribution.hasValidData(data3)).toBeTruthy();
+
+            /* eslint-disable camelcase */
+            const data4 = {
+                utm_source: 'addons.mozilla.org',
+                utm_medium: 'referral',
+                utm_campaign: 'non-fx-button',
+                utm_content: '%72%74%61%3AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ',
+                referrer: 'https://addons.mozilla.org/',
+                ua: 'chrome',
+                visit_id: GA_VISIT_ID
+            };
+            /* eslint-enable camelcase */
+
+            expect(Mozilla.StubAttribution.hasValidData(data4)).toBeTruthy();
         });
 
         it('should return false for RTAMO data that does not have AMO as the referrer', function() {
@@ -197,6 +239,78 @@ describe('stub-attribution.js', function() {
             /* eslint-enable camelcase */
 
             expect(Mozilla.StubAttribution.hasValidData(data)).toBeFalsy();
+
+            /* eslint-disable camelcase */
+            const data2 = {
+                utm_source: 'addons.mozilla.org',
+                utm_medium: 'referral',
+                utm_campaign: 'non-fx-button',
+                utm_content: 'rta:cm9uaW4td2FsbGV0QGF4aWVpbmZpbml0eS5jb20',
+                referrer: 'https://example.com/',
+                ua: 'chrome',
+                visit_id: GA_VISIT_ID
+            };
+            /* eslint-enable camelcase */
+
+            expect(Mozilla.StubAttribution.hasValidData(data2)).toBeFalsy();
+
+            /* eslint-disable camelcase */
+            const data3 = {
+                utm_source: 'addons.mozilla.org',
+                utm_medium: 'referral',
+                utm_campaign: 'non-fx-button',
+                utm_content: 'rta%25253AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ',
+                referrer: 'https://example.com/',
+                ua: 'chrome',
+                visit_id: GA_VISIT_ID
+            };
+            /* eslint-enable camelcase */
+
+            expect(Mozilla.StubAttribution.hasValidData(data3)).toBeFalsy();
+
+            /* eslint-disable camelcase */
+            const data4 = {
+                utm_source: 'addons.mozilla.org',
+                utm_medium: 'referral',
+                utm_campaign: 'non-fx-button',
+                utm_content: '%72%74%61%3AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ',
+                referrer: '',
+                ua: 'chrome',
+                visit_id: GA_VISIT_ID
+            };
+            /* eslint-enable camelcase */
+
+            expect(Mozilla.StubAttribution.hasValidData(data4)).toBeFalsy();
+        });
+
+        it('should return false if utm_content is too long', function() {
+            /* eslint-disable camelcase */
+            const data1 = {
+                utm_source: 'addons.mozilla.org',
+                utm_medium: 'referral',
+                utm_campaign: 'non-fx-button',
+                utm_content: `rta%${'25'.repeat(58)}3AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ`,
+                referrer: '',
+                ua: 'chrome',
+                visit_id: GA_VISIT_ID
+            };
+            /* eslint-enable camelcase */
+
+            expect(Mozilla.StubAttribution.hasValidData(data1)).toBeFalsy();
+
+            /* eslint-disable camelcase */
+            const data2 = {
+                utm_source: 'addons.mozilla.org',
+                utm_medium: 'referral',
+                utm_campaign: 'non-fx-button',
+                utm_content: `rta%${'25'.repeat(58)}3AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ`,
+                referrer: 'https://addons.mozilla.org/',
+                ua: 'chrome',
+                visit_id: GA_VISIT_ID
+            };
+            /* eslint-enable camelcase */
+
+            expect(Mozilla.StubAttribution.hasValidData(data2)).toBeFalsy();
         });
 
         it('should return false for RTAMO data if referrer is not set', function() {
