@@ -7,15 +7,20 @@ from fluent.migrate import REPLACE, COPY
 home = "mozorg/home/home.lang"
 index_quantum = "mozorg/home/index-quantum.lang"
 
+
 def migrate(ctx):
     """Migrate bedrock/mozorg/templates/mozorg/home/home.html, part {index}."""
 
     ctx.add_transforms(
         "mozorg/home.ftl",
         "mozorg/home.ftl",
-        transforms_from("""
+        transforms_from(
+            """
 home-internet-for-people-not-profit = {COPY(index_quantum, "Internet for people, not profit",)}
-""", index_quantum=index_quantum) + [
+""",
+            index_quantum=index_quantum,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("home-did-you-know-mozilla-the-maker"),
                 value=REPLACE(
@@ -24,12 +29,17 @@ home-internet-for-people-not-profit = {COPY(index_quantum, "Internet for people,
                     {
                         "Mozilla": TERM_REFERENCE("brand-name-mozilla"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 home-fast-for-good = {COPY(index_quantum, "Fast for good.",)}
-""", index_quantum=index_quantum) + [
+""",
+            index_quantum=index_quantum,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("home-with-2x-the-speed-built-in"),
                 value=REPLACE(
@@ -38,12 +48,17 @@ home-fast-for-good = {COPY(index_quantum, "Fast for good.",)}
                     {
                         "Mozilla": TERM_REFERENCE("brand-name-mozilla"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 home-we-make-the-internet-safer = {COPY(index_quantum, "We make the internet safer, healthier and faster for good.",)}
-""", index_quantum=index_quantum) + [
+""",
+            index_quantum=index_quantum,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("home-mozilla-is-the-not-for-profit"),
                 value=REPLACE(
@@ -52,12 +67,17 @@ home-we-make-the-internet-safer = {COPY(index_quantum, "We make the internet saf
                     {
                         "Mozilla": TERM_REFERENCE("brand-name-mozilla"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 home-our-impact = {COPY(index_quantum, "Our impact",)}
-""", index_quantum=index_quantum) + [
+""",
+            index_quantum=index_quantum,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("home-when-you-use-firefox-you-help"),
                 value=REPLACE(
@@ -66,13 +86,18 @@ home-our-impact = {COPY(index_quantum, "Our impact",)}
                     {
                         "Mozilla": TERM_REFERENCE("brand-name-mozilla"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 home-working-to-keep-the-internet = {COPY(index_quantum, "Working to keep the Internet healthy, open and accessible to all, we teach web literacy, provide tools and advocate on behalf of every individual who values the Internet as a global public resource.",)}
 home-working-at-the-grassroots-and = {COPY(index_quantum, "Working at the grassroots and policy levels, we teach web literacy, provide tools and advocate on behalf of every individual who values an internet built on fairness, inclusion and respect.",)}
-""", index_quantum=index_quantum) + [
+""",
+            index_quantum=index_quantum,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("home-mozilla-information-trust-initiative"),
                 value=REPLACE(
@@ -80,17 +105,22 @@ home-working-at-the-grassroots-and = {COPY(index_quantum, "Working at the grassr
                     "Mozilla Information Trust Initiative",
                     {
                         "Mozilla": TERM_REFERENCE("brand-name-mozilla"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 home-empowering-women-online = {COPY(index_quantum, "Empowering Women Online",)}
 home-the-coral-project = {COPY(index_quantum, "The Coral Project",)}
 home-read-our-internet-health-report = {COPY(index_quantum, "Read our Internet Health Report",)}
 home-our-innovations = {COPY(index_quantum, "Our innovations",)}
 home-using-the-web-as-the-platform = {COPY(index_quantum, "Using the web as the platform, we build open, innovative technologies that allow developers to work free of closed, corporate ecosystems and create faster, safer web experiences for us all.",)}
 home-virtual-reality-platform = {COPY(index_quantum, "Virtual Reality Platform",)}
-""", index_quantum=index_quantum) + [
+""",
+            index_quantum=index_quantum,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("home-common-voice"),
                 value=REPLACE(
@@ -98,12 +128,17 @@ home-virtual-reality-platform = {COPY(index_quantum, "Virtual Reality Platform",
                     "Common Voice",
                     {
                         "Common Voice": TERM_REFERENCE("brand-name-common-voice"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 home-extensions = {COPY(index_quantum, "Extensions",)}
-""", index_quantum=index_quantum) + [
+""",
+            index_quantum=index_quantum,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("home-personalize-firefox-with-your"),
                 value=REPLACE(
@@ -111,12 +146,17 @@ home-extensions = {COPY(index_quantum, "Extensions",)}
                     "Personalize Firefox with your favorite extras like password managers, ad blockers and more.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 home-careers = {COPY(index_quantum, "Careers",)}
-""", index_quantum=index_quantum) + [
+""",
+            index_quantum=index_quantum,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("home-learn-about-the-benefits-of"),
                 value=REPLACE(
@@ -124,12 +164,17 @@ home-careers = {COPY(index_quantum, "Careers",)}
                     "Learn about the benefits of working at Mozilla and view open positions around the world.",
                     {
                         "Mozilla": TERM_REFERENCE("brand-name-mozilla"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 home-need-help = {COPY(index_quantum, "Need help?",)}
-""", index_quantum=index_quantum) + [
+""",
+            index_quantum=index_quantum,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("home-get-answers-to-your-questions"),
                 value=REPLACE(
@@ -138,8 +183,8 @@ home-need-help = {COPY(index_quantum, "Need help?",)}
                     {
                         "Mozilla": TERM_REFERENCE("brand-name-mozilla"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ]
-        )
+        ],
+    )

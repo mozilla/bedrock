@@ -6,10 +6,10 @@ class ConfigValue(models.Model):
     value = models.CharField(max_length=200)
 
     class Meta:
-        app_label = 'base'
+        app_label = "base"
 
     def __str__(self):
-        return '%s=%s' % (self.name, self.value)
+        return "%s=%s" % (self.name, self.value)
 
 
 def get_config_dict():

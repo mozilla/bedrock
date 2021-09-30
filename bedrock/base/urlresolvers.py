@@ -18,7 +18,7 @@ def set_url_prefix(prefix):
 
 def get_url_prefix():
     """Get the prefix for the current thread, or None."""
-    return getattr(_local, 'prefix', None)
+    return getattr(_local, "prefix", None)
 
 
 def reverse(viewname, urlconf=None, args=None, kwargs=None, prefix=None):
@@ -26,7 +26,7 @@ def reverse(viewname, urlconf=None, args=None, kwargs=None, prefix=None):
     prefixer = get_url_prefix()
 
     if prefixer:
-        prefix = prefix or '/'
+        prefix = prefix or "/"
     url = django_reverse(viewname, urlconf, args, kwargs, prefix)
     if prefixer:
         url = prefixer.fix(url)
@@ -50,8 +50,7 @@ def _get_language_map():
     # en to en-GB (not en-US), es to es-AR (not es-ES), etc. in alphabetical
     # order. To override this behavior, explicitly define a preferred locale
     # map with the CANONICAL_LOCALES setting.
-    langs.update((k.split('-')[0], v) for k, v in LUM.items() if
-                 k.split('-')[0] not in langs)
+    langs.update((k.split("-")[0], v) for k, v in LUM.items() if k.split("-")[0] not in langs)
     return langs
 
 
@@ -63,7 +62,7 @@ def find_supported(lang):
     lang = lang.lower()
     if lang in FULL_LANGUAGE_MAP:
         return FULL_LANGUAGE_MAP[lang]
-    pre = lang.split('-')[0]
+    pre = lang.split("-")[0]
     if pre in FULL_LANGUAGE_MAP:
         return FULL_LANGUAGE_MAP[pre]
 
@@ -74,16 +73,16 @@ def split_path(path_):
 
     locale will be empty if it isn't found.
     """
-    path = path_.lstrip('/')
+    path = path_.lstrip("/")
 
     # Use partition instead of split since it always returns 3 parts
-    first, _, rest = path.partition('/')
+    first, _, rest = path.partition("/")
 
     supported = find_supported(first)
     if supported:
         return supported, rest
     else:
-        return '', path
+        return "", path
 
 
 class Prefixer:
@@ -98,7 +97,7 @@ class Prefixer:
         user's Accept-Language header to determine which is best. This
         mostly follows the RFCs but read bug 439568 for details.
         """
-        accept_lang = self.request.META.get('HTTP_ACCEPT_LANGUAGE')
+        accept_lang = self.request.META.get("HTTP_ACCEPT_LANGUAGE")
         if accept_lang:
             best = self.get_best_language(accept_lang)
             if best:
@@ -115,13 +114,13 @@ class Prefixer:
                 return supported
 
     def fix(self, path):
-        path = path.lstrip('/')
-        url_parts = [self.request.META['SCRIPT_NAME']]
+        path = path.lstrip("/")
+        url_parts = [self.request.META["SCRIPT_NAME"]]
 
-        if path.partition('/')[0] not in settings.SUPPORTED_NONLOCALES:
+        if path.partition("/")[0] not in settings.SUPPORTED_NONLOCALES:
             locale = self.locale if self.locale else self.get_language()
             url_parts.append(locale)
 
         url_parts.append(path)
 
-        return '/'.join(url_parts)
+        return "/".join(url_parts)

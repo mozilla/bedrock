@@ -10,8 +10,8 @@ from pages.base import BaseRegion
 
 class Modal(BaseRegion):
 
-    _root_locator = (By.ID, 'modal')
-    _close_locator = (By.ID, 'modal-close')
+    _root_locator = (By.ID, "modal")
+    _close_locator = (By.ID, "modal-close")
 
     def close(self):
         modal = self.selenium.find_element(*self._root_locator)
@@ -28,8 +28,8 @@ class Modal(BaseRegion):
 
 class ModalProtocol(BaseRegion):
 
-    _root_locator = (By.CLASS_NAME, 'mzp-c-modal')
-    _close_locator = (By.CLASS_NAME, 'mzp-c-modal-button-close')
+    _root_locator = (By.CLASS_NAME, "mzp-c-modal")
+    _close_locator = (By.CLASS_NAME, "mzp-c-modal-button-close")
 
     def close(self):
         modal = self.selenium.find_element(*self._root_locator)

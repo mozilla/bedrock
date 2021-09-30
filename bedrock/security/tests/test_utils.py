@@ -19,11 +19,13 @@ from bedrock.security.utils import (
 
 
 def test_check_hof_data():
-    good_names = [{
-        'name': 'El Dudarino',
-        'date': date(2018, 3, 20),
-    }]
-    good_data = {'names': good_names * 200}
+    good_names = [
+        {
+            "name": "El Dudarino",
+            "date": date(2018, 3, 20),
+        }
+    ]
+    good_data = {"names": good_names * 200}
     # should not raise exception
     check_hof_data(good_data)
 
@@ -33,37 +35,39 @@ def test_check_hof_data():
 
     # wrong, expect ValueError
     with pytest.raises(ValueError):
-        check_hof_data({'dude': 'abides'})
+        check_hof_data({"dude": "abides"})
 
     # truncated, expect ValueError
-    truncated_data = {'names': good_names * 50}
+    truncated_data = {"names": good_names * 50}
     with pytest.raises(ValueError):
         check_hof_data(truncated_data)
 
     # no name, expect ValueError
-    truncated_data = {'names': [{'date': date(2018, 3, 20)}] * 200}
+    truncated_data = {"names": [{"date": date(2018, 3, 20)}] * 200}
     with pytest.raises(ValueError):
         check_hof_data(truncated_data)
 
     # no date, expect ValueError
-    truncated_data = {'names': [{'name': 'Donnie'}] * 200}
+    truncated_data = {"names": [{"name": "Donnie"}] * 200}
     with pytest.raises(ValueError):
         check_hof_data(truncated_data)
 
     # date wrong format, expect ValueError
-    truncated_data = {'names': [{'name': 'Donnie', 'date': '2018-03-20'}] * 200}
+    truncated_data = {"names": [{"name": "Donnie", "date": "2018-03-20"}] * 200}
     with pytest.raises(ValueError):
         check_hof_data(truncated_data)
 
     # date too old, expect ValueError
-    truncated_data = {'names': [{'name': 'Donnie', 'date': date(1999, 12, 31)}] * 200}
+    truncated_data = {"names": [{"name": "Donnie", "date": date(1999, 12, 31)}] * 200}
     with pytest.raises(ValueError):
         check_hof_data(truncated_data)
 
 
 def test_parse_front_matter():
     """Should return front matter and MD separately."""
-    lines = StringIO(dedent("""
+    lines = StringIO(
+        dedent(
+            """
         ---
         dude: abiding
         walter: angry
@@ -71,19 +75,25 @@ def test_parse_front_matter():
         ---
 
         Let's go bowling.
-    """))
+    """
+        )
+    )
     yaml, md = parse_md_front_matter(lines)
-    assert yaml == dedent("""\
+    assert yaml == dedent(
+        """\
         dude: abiding
         walter: angry
         donny: oblivious
-    """)
+    """
+    )
     assert md == "\nLet's go bowling.\n"
 
 
 def test_parse_front_matter_only():
     """Should not care about any other --- lines."""
-    lines = StringIO(dedent("""
+    lines = StringIO(
+        dedent(
+            """
         ---
         dude: abiding
         walter: angry
@@ -93,133 +103,150 @@ def test_parse_front_matter_only():
         ---
 
         Maude's thing.
-    """))
+    """
+        )
+    )
     yaml, md = parse_md_front_matter(lines)
-    assert yaml == 'dude: abiding\nwalter: angry\n'
+    assert yaml == "dude: abiding\nwalter: angry\n"
     assert md == "\nArt\n---\n\nMaude's thing.\n"
 
 
 def test_mfsa_id_from_filename():
-    assert mfsa_id_from_filename('announce/2014/mfsa2014-01.md') == '2014-01'
-    assert mfsa_id_from_filename('announce/2014/mfsa2014-101.md') == '2014-101'
-    assert mfsa_id_from_filename('announce/2016/mfsa2016-42.yml') == '2016-42'
-    assert mfsa_id_from_filename('dude.txt') is None
+    assert mfsa_id_from_filename("announce/2014/mfsa2014-01.md") == "2014-01"
+    assert mfsa_id_from_filename("announce/2014/mfsa2014-101.md") == "2014-101"
+    assert mfsa_id_from_filename("announce/2016/mfsa2016-42.yml") == "2016-42"
+    assert mfsa_id_from_filename("dude.txt") is None
 
 
 def test_parse_bug_url():
-    assert parse_bug_url('8675309') == 'https://bugzilla.mozilla.org/show_bug.cgi?id=8675309'
-    assert parse_bug_url('1234,5678, 9012') == 'https://bugzilla.mozilla.org/buglist.cgi?' \
-                                               'bug_id=1234%2C5678%2C9012'
-    assert parse_bug_url('http://example.com/1234') == 'http://example.com/1234'
+    assert parse_bug_url("8675309") == "https://bugzilla.mozilla.org/show_bug.cgi?id=8675309"
+    assert parse_bug_url("1234,5678, 9012") == "https://bugzilla.mozilla.org/buglist.cgi?bug_id=1234%2C5678%2C9012"
+    assert parse_bug_url("http://example.com/1234") == "http://example.com/1234"
 
 
-@patch('bedrock.security.utils.render_to_string')
+@patch("bedrock.security.utils.render_to_string")
 def test_generate_yml_advisories_html(rts_mock):
-    rts_mock.return_value = 'html'
+    rts_mock.return_value = "html"
     data = yaml_ordered_safe_load(StringIO(YML_ADVISORY))
     html = generate_yml_advisories_html(data)
-    assert html.startswith('<p>Some <strong>HTML</strong> that relates '
-                           'to the whole lot of em.</p>')
-    rts_mock.assert_has_calls([
-        call('security/partials/cve.html', {
-            'id': 'CVE-2016-2827',
-            'impact': 'Low',
-            'impact_class': 'low',
-            'title': 'A sample title for a CVE here',
-            'reporter': 'Reporty McReporterface',
-            'description': 'Short description <strong>with HTML</strong> and multiple lines!\n\n'
-                           'Can also have full breaks and ***markdown***!\n',
-            'bugs': [
-                {'url': 'https://bugzilla.mozilla.org/show_bug.cgi?id=1289085',
-                 'desc': 'Bug 1289085'},
-                {'url': 'https://bugzilla.mozilla.org/buglist.cgi?bug_id=1289085%2C1289087',
-                 'desc': 'stuff about the bugs'},
-            ]
-        }),
-        call('security/partials/cve.html', {
-            'id': 'CVE-2016-5270',
-            'impact': 'High',
-            'impact_class': 'high',
-            'title': 'Another sampile title, this time with more length!',
-            'reporter': 'A Nameless Evilcorp Employee',
-            'description': 'Another short description',
-            'bugs': [
-                {'url': 'https://example.com/warning.html',
-                 'desc': 'A different site that is totally not bugzilla'},
-            ]
-        }),
-    ])
+    assert html.startswith("<p>Some <strong>HTML</strong> that relates to the whole lot of em.</p>")
+    rts_mock.assert_has_calls(
+        [
+            call(
+                "security/partials/cve.html",
+                {
+                    "id": "CVE-2016-2827",
+                    "impact": "Low",
+                    "impact_class": "low",
+                    "title": "A sample title for a CVE here",
+                    "reporter": "Reporty McReporterface",
+                    "description": "Short description <strong>with HTML</strong> and multiple lines!\n\n"
+                    "Can also have full breaks and ***markdown***!\n",
+                    "bugs": [
+                        {"url": "https://bugzilla.mozilla.org/show_bug.cgi?id=1289085", "desc": "Bug 1289085"},
+                        {"url": "https://bugzilla.mozilla.org/buglist.cgi?bug_id=1289085%2C1289087", "desc": "stuff about the bugs"},
+                    ],
+                },
+            ),
+            call(
+                "security/partials/cve.html",
+                {
+                    "id": "CVE-2016-5270",
+                    "impact": "High",
+                    "impact_class": "high",
+                    "title": "Another sampile title, this time with more length!",
+                    "reporter": "A Nameless Evilcorp Employee",
+                    "description": "Another short description",
+                    "bugs": [
+                        {"url": "https://example.com/warning.html", "desc": "A different site that is totally not bugzilla"},
+                    ],
+                },
+            ),
+        ]
+    )
 
 
-@patch('bedrock.security.utils.render_to_string')
+@patch("bedrock.security.utils.render_to_string")
 def test_generate_yml_advisories_html_non_cve(rts_mock):
-    rts_mock.return_value = 'html'
+    rts_mock.return_value = "html"
     data = yaml_ordered_safe_load(StringIO(YML_ADVISORY_NON_CVE))
     html = generate_yml_advisories_html(data)
-    assert html.startswith('<p>Some <strong>HTML</strong> that relates '
-                           'to the whole lot of em.</p>')
-    rts_mock.assert_has_calls([
-        call('security/partials/cve.html', {
-            'id': 'CVE-2016-2827',
-            'impact': 'Low',
-            'impact_class': 'low',
-            'title': 'A sample title for a CVE here',
-            'reporter': 'Reporty McReporterface',
-            'description': 'Short description <strong>with HTML</strong> and multiple lines!\n\n'
-                           'Can also have full breaks and ***markdown***!\n',
-            'bugs': [
-                {'url': 'https://bugzilla.mozilla.org/show_bug.cgi?id=1289085',
-                 'desc': 'Bug 1289085'},
-                {'url': 'https://bugzilla.mozilla.org/buglist.cgi?bug_id=1289085%2C1289087',
-                 'desc': 'stuff about the bugs'},
-            ]
-        }),
-        call('security/partials/cve.html', {
-            'id': 'MVID-2016-5270',
-            'impact': 'High',
-            'impact_class': 'high',
-            'title': 'Another sampile title, this time with more length!',
-            'reporter': 'A Nameless Evilcorp Employee',
-            'description': 'Another short description',
-            'bugs': [
-                {'url': 'https://example.com/warning.html',
-                 'desc': 'A different site that is totally not bugzilla'},
-            ]
-        }),
-    ])
+    assert html.startswith("<p>Some <strong>HTML</strong> that relates to the whole lot of em.</p>")
+    rts_mock.assert_has_calls(
+        [
+            call(
+                "security/partials/cve.html",
+                {
+                    "id": "CVE-2016-2827",
+                    "impact": "Low",
+                    "impact_class": "low",
+                    "title": "A sample title for a CVE here",
+                    "reporter": "Reporty McReporterface",
+                    "description": "Short description <strong>with HTML</strong> and multiple lines!\n\n"
+                    "Can also have full breaks and ***markdown***!\n",
+                    "bugs": [
+                        {"url": "https://bugzilla.mozilla.org/show_bug.cgi?id=1289085", "desc": "Bug 1289085"},
+                        {"url": "https://bugzilla.mozilla.org/buglist.cgi?bug_id=1289085%2C1289087", "desc": "stuff about the bugs"},
+                    ],
+                },
+            ),
+            call(
+                "security/partials/cve.html",
+                {
+                    "id": "MVID-2016-5270",
+                    "impact": "High",
+                    "impact_class": "high",
+                    "title": "Another sampile title, this time with more length!",
+                    "reporter": "A Nameless Evilcorp Employee",
+                    "description": "Another short description",
+                    "bugs": [
+                        {"url": "https://example.com/warning.html", "desc": "A different site that is totally not bugzilla"},
+                    ],
+                },
+            ),
+        ]
+    )
 
 
-@patch('bedrock.security.utils.render_to_string')
+@patch("bedrock.security.utils.render_to_string")
 def test_generate_yml_advisories_missing_things(rts_mock):
-    rts_mock.return_value = 'html'
+    rts_mock.return_value = "html"
     data = yaml_ordered_safe_load(StringIO(YML_ADVISORY_MISSING_THINGS))
     generate_yml_advisories_html(data)
-    rts_mock.assert_has_calls([
-        call('security/partials/cve.html', {
-            'id': 'CVE-2016-2827',
-            'impact': 'Low',
-            'impact_class': 'low',
-            'title': 'A sample title for a CVE here',
-            'reporter': 'Reporty McReporterface',
-            'description': 'Short description <strong>with HTML</strong> and multiple lines!\n\n'
-                           'Can also have full breaks and ***markdown***!\n',
-        }),
-        call('security/partials/cve.html', {
-            'id': 'CVE-2016-5270',
-            'impact': 'High',
-            'impact_class': 'high',
-            'title': 'Another sampile title, this time with more length!',
-            'reporter': 'A Nameless Evilcorp Employee',
-            'description': 'Another short description',
-            'bugs': [
-                {'url': 'https://bugzilla.mozilla.org/show_bug.cgi?id=1289085',
-                 'desc': 'Bug 1289085'},
-            ]
-        }),
-    ])
+    rts_mock.assert_has_calls(
+        [
+            call(
+                "security/partials/cve.html",
+                {
+                    "id": "CVE-2016-2827",
+                    "impact": "Low",
+                    "impact_class": "low",
+                    "title": "A sample title for a CVE here",
+                    "reporter": "Reporty McReporterface",
+                    "description": "Short description <strong>with HTML</strong> and multiple lines!\n\n"
+                    "Can also have full breaks and ***markdown***!\n",
+                },
+            ),
+            call(
+                "security/partials/cve.html",
+                {
+                    "id": "CVE-2016-5270",
+                    "impact": "High",
+                    "impact_class": "high",
+                    "title": "Another sampile title, this time with more length!",
+                    "reporter": "A Nameless Evilcorp Employee",
+                    "description": "Another short description",
+                    "bugs": [
+                        {"url": "https://bugzilla.mozilla.org/show_bug.cgi?id=1289085", "desc": "Bug 1289085"},
+                    ],
+                },
+            ),
+        ]
+    )
 
 
-YML_ADVISORY = dedent("""\
+YML_ADVISORY = dedent(
+    """\
     announced: September 13, 2016
     fixed_in:
       - Firefox 49
@@ -246,9 +273,11 @@ YML_ADVISORY = dedent("""\
         bugs:
           - url: https://example.com/warning.html
             desc: A different site that is totally not bugzilla
-    """)
+    """
+)
 
-YML_ADVISORY_NON_CVE = dedent("""\
+YML_ADVISORY_NON_CVE = dedent(
+    """\
     announced: September 13, 2016
     fixed_in:
       - Firefox 49
@@ -275,9 +304,11 @@ YML_ADVISORY_NON_CVE = dedent("""\
         bugs:
           - url: https://example.com/warning.html
             desc: A different site that is totally not bugzilla
-    """)
+    """
+)
 
-YML_ADVISORY_MISSING_THINGS = dedent("""\
+YML_ADVISORY_MISSING_THINGS = dedent(
+    """\
     announced: September 13, 2016
     fixed_in:
       - Firefox 49
@@ -300,4 +331,5 @@ YML_ADVISORY_MISSING_THINGS = dedent("""\
         bugs:
           - url: 1289085
             desc:
-    """)
+    """
+)

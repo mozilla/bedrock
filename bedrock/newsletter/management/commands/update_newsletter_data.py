@@ -7,17 +7,16 @@ from bedrock.newsletter.models import Newsletter
 
 class Command(BaseCommand):
     def add_arguments(self, parser):
-        parser.add_argument('-q', '--quiet', action='store_true', dest='quiet', default=False,
-                            help='If no error occurs, swallow all output.'),
+        parser.add_argument("-q", "--quiet", action="store_true", dest="quiet", default=False, help="If no error occurs, swallow all output."),
 
     def handle(self, *args, **options):
         newsletters = basket.get_newsletters()
         if not newsletters:
-            raise CommandError('No data from basket')
+            raise CommandError("No data from basket")
 
         count = Newsletter.objects.refresh(newsletters)
-        if not options['quiet']:
+        if not options["quiet"]:
             if count:
-                print('Updated %d newsletters' % count)
+                print("Updated %d newsletters" % count)
             else:
-                print('Nothing to update')
+                print("Nothing to update")

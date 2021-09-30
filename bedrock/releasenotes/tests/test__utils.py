@@ -8,21 +8,21 @@ from bedrock.mozorg.tests import TestCase
 from bedrock.releasenotes import utils
 
 
-release_cache = caches['release-notes']
+release_cache = caches["release-notes"]
 
 
-@patch.object(utils, 'GitRepo')
+@patch.object(utils, "GitRepo")
 class TestGetDataVersion(TestCase):
     def test_get_data_version(self, git_mock):
-        git_mock().get_db_latest.return_value = 'El Dudarino'
-        assert utils.get_data_version() == 'El Dudarino'
+        git_mock().get_db_latest.return_value = "El Dudarino"
+        assert utils.get_data_version() == "El Dudarino"
 
     def test_get_data_version_not_found(self, git_mock):
         git_mock().get_db_latest.return_value = None
-        assert utils.get_data_version() == 'default'
+        assert utils.get_data_version() == "default"
 
 
-@patch.object(utils, 'get_data_version')
+@patch.object(utils, "get_data_version")
 class TestReleaseMemoizer(TestCase):
     def setUp(self):
         release_cache.clear()
@@ -31,7 +31,7 @@ class TestReleaseMemoizer(TestCase):
         def mem_func():
             pass
 
-        gdv_cache.return_value = 'dude'
+        gdv_cache.return_value = "dude"
         memoizer = utils.ReleaseMemoizer(version_timeout=0.1)
         memoizer._memoize_version(mem_func)
         memoizer._memoize_version(mem_func)
@@ -45,7 +45,7 @@ class TestReleaseMemoizer(TestCase):
         Also demonstrates that even None return values are cached."""
         counter = Mock()
         memoizer = utils.ReleaseMemoizer(version_timeout=0.1)
-        gdv_cache.side_effect = ['thing1', 'thing1', 'thing2', 'thing2']
+        gdv_cache.side_effect = ["thing1", "thing1", "thing2", "thing2"]
 
         @memoizer.memoize(1)
         def mem_func():

@@ -9,10 +9,10 @@ from pages.base import BasePage
 
 class FirefoxWelcomePage2(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/firefox/welcome/2/'
+    _URL_TEMPLATE = "/{locale}/firefox/welcome/2/"
 
-    _pocket_primary_button_locator = (By.CSS_SELECTOR, '.primary-cta .js-fxa-product-button')
-    _pocket_secondary_button_locator = (By.CSS_SELECTOR, '.secondary-cta .js-fxa-product-button')
+    _pocket_primary_button_locator = (By.CSS_SELECTOR, ".primary-cta .js-fxa-product-button")
+    _pocket_secondary_button_locator = (By.CSS_SELECTOR, ".secondary-cta .js-fxa-product-button")
 
     @property
     def is_primary_pocket_button_displayed(self):

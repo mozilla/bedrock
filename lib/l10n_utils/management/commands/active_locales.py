@@ -8,37 +8,37 @@ from lib.l10n_utils.fluent import get_active_locales
 
 
 class Command(BaseCommand):
-    help = 'Report the active locales for a .ftl file'
+    help = "Report the active locales for a .ftl file"
     _filename = None
 
     @property
     def filename(self):
         if self._filename is None:
-            return ''
+            return ""
 
         return self._filename
 
     @filename.setter
     def filename(self, value):
-        if not value.endswith('.ftl'):
-            self._filename = f'{value}.ftl'
+        if not value.endswith(".ftl"):
+            self._filename = f"{value}.ftl"
         else:
             self._filename = value
 
     def add_arguments(self, parser):
-        parser.add_argument('ftl_file')
+        parser.add_argument("ftl_file")
 
     def print_report(self):
         active_locales = get_active_locales(self.filename, force=True)
         num_locales = len(active_locales)
         if num_locales == 1:
-            self.stdout.write(f'There is 1 active locale for {self.filename}:')
+            self.stdout.write(f"There is 1 active locale for {self.filename}:")
         else:
-            self.stdout.write(f'There are {num_locales} active locales for {self.filename}:')
+            self.stdout.write(f"There are {num_locales} active locales for {self.filename}:")
 
         for locale in active_locales:
-            self.stdout.write(f'- {locale}')
+            self.stdout.write(f"- {locale}")
 
     def handle(self, *args, **options):
-        self.filename = options['ftl_file']
+        self.filename = options["ftl_file"]
         self.print_report()

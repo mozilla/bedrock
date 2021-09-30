@@ -6,6 +6,7 @@ from fluent.migrate import REPLACE, COPY
 
 ie = "firefox/compare/ie.lang"
 
+
 def migrate(ctx):
     """Migrate bedrock/firefox/templates/firefox/browsers/compare/ie.html, part {index}."""
 
@@ -21,8 +22,8 @@ def migrate(ctx):
                     {
                         "Internet Explorer": TERM_REFERENCE("brand-name-ie"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-ie-compare-internet-explorer-to"),
@@ -32,8 +33,8 @@ def migrate(ctx):
                     {
                         "Internet Explorer": TERM_REFERENCE("brand-name-ie"),
                         "Firefox Browser": TERM_REFERENCE("brand-name-firefox-browser"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-ie-comparing-firefox-browser-with"),
@@ -44,8 +45,8 @@ def migrate(ctx):
                         "Internet Explorer": TERM_REFERENCE("brand-name-ie"),
                         "Microsoft": TERM_REFERENCE("brand-name-microsoft"),
                         "Firefox Browser": TERM_REFERENCE("brand-name-firefox-browser"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-ie-while-microsofts-internet-explorer"),
@@ -57,8 +58,8 @@ def migrate(ctx):
                         "Microsoft": TERM_REFERENCE("brand-name-microsoft"),
                         "Edge": TERM_REFERENCE("brand-name-edge"),
                         "Windows": TERM_REFERENCE("brand-name-windows"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-ie-microsoft-discontinued-its-internet"),
@@ -70,8 +71,8 @@ def migrate(ctx):
                         "Microsoft": TERM_REFERENCE("brand-name-microsoft"),
                         "Edge": TERM_REFERENCE("brand-name-edge"),
                         "Windows": TERM_REFERENCE("brand-name-windows"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-ie-here-well-compare-our-firefox"),
@@ -82,8 +83,8 @@ def migrate(ctx):
                         "Internet Explorer": TERM_REFERENCE("brand-name-ie"),
                         "Firefox Browser": TERM_REFERENCE("brand-name-firefox-browser"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-ie-if-you-havent-moved-on-from-using"),
@@ -94,8 +95,8 @@ def migrate(ctx):
                         "%%": "%",
                         "%(attrs)s": VARIABLE_REFERENCE("attrs"),
                         "Internet Explorer": TERM_REFERENCE("brand-name-ie"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-ie-microsoft-is-no-longer-supporting"),
@@ -105,8 +106,8 @@ def migrate(ctx):
                     {
                         "Internet Explorer": TERM_REFERENCE("brand-name-ie"),
                         "Microsoft": TERM_REFERENCE("brand-name-microsoft"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-ie-so-whats-the-solution-if-your-fallback"),
@@ -124,8 +125,8 @@ def migrate(ctx):
                         "Google": TERM_REFERENCE("brand-name-google"),
                         "Chrome": TERM_REFERENCE("brand-name-chrome"),
                         "Edge": TERM_REFERENCE("brand-name-edge"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-ie-alarmingly-4-to-5-of-all-desktop-fallback"),
@@ -134,8 +135,8 @@ def migrate(ctx):
                     "Alarmingly, 4 to 5% of all desktop web traffic comes through Internet Explorer. That might not seem like a lot, but in reality it means millions of people are being served a poor internet experience with slow loading and rendering times, pages that won’t display properly — all on top of the security issues already discussed.",
                     {
                         "Internet Explorer": TERM_REFERENCE("brand-name-ie"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-ie-really-the-only-reasons-to-use"),
@@ -144,8 +145,8 @@ def migrate(ctx):
                     "Really the only reasons to use Internet Explorer are for developers to test what their sites look like on an older browser or if a company has business-critical apps that only work with the Internet Explorer browser.",
                     {
                         "Internet Explorer": TERM_REFERENCE("brand-name-ie"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-ie-on-the-other-end-of-the-spectrum-fallback"),
@@ -158,8 +159,8 @@ def migrate(ctx):
                         "%(products)s": VARIABLE_REFERENCE("products"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Pocket": TERM_REFERENCE("brand-name-pocket"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-ie-as-microsoft-has-made-the-move"),
@@ -171,8 +172,8 @@ def migrate(ctx):
                         "Internet Explorer": TERM_REFERENCE("brand-name-ie"),
                         "iOS": TERM_REFERENCE("brand-name-ios"),
                         "Android": TERM_REFERENCE("brand-name-android"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-ie-firefox-works-on-any-platform"),
@@ -188,8 +189,8 @@ def migrate(ctx):
                         "Windows": TERM_REFERENCE("brand-name-windows"),
                         "Linux": TERM_REFERENCE("brand-name-linux"),
                         "iPhone": TERM_REFERENCE("brand-name-iphone"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-ie-there-was-a-time-not-so-long"),
@@ -201,8 +202,8 @@ def migrate(ctx):
                         "Internet Explorer": TERM_REFERENCE("brand-name-ie"),
                         "Chromium": TERM_REFERENCE("brand-name-chromium"),
                         "Edge": TERM_REFERENCE("brand-name-edge"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-ie-our-opinion-is-just-to-go-with"),
@@ -214,9 +215,8 @@ def migrate(ctx):
                         "%(attrs)s": VARIABLE_REFERENCE("attrs"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Internet Explorer": TERM_REFERENCE("brand-name-ie"),
-                    }
-                )
+                    },
+                ),
             ),
-        ]
+        ],
     )
-

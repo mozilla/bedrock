@@ -7,15 +7,20 @@ from fluent.migrate import REPLACE, COPY
 private_browsing = "firefox/features/private-browsing.lang"
 shared = "firefox/shared.lang"
 
+
 def migrate(ctx):
     """Migrate bedrock/firefox/templates/firefox/features/private-browsing.html, part {index}."""
 
     ctx.add_transforms(
         "firefox/features/private-browsing.ftl",
         "firefox/features/private-browsing.ftl",
-        transforms_from("""
+        transforms_from(
+            """
 features-private-browsing-private-browser = {COPY(private_browsing, "Private Browser with extra tracking protection",)}
-""", private_browsing=private_browsing) + [
+""",
+            private_browsing=private_browsing,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("features-private-browsing-firefox-protects"),
                 value=REPLACE(
@@ -23,8 +28,8 @@ features-private-browsing-private-browser = {COPY(private_browsing, "Private Bro
                     "Firefox protects your online privacy and blocks trackers that follow you around the web.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("features-private-browsing-firefox-more-protection"),
@@ -33,8 +38,8 @@ features-private-browsing-private-browser = {COPY(private_browsing, "Private Bro
                     "Firefox: More protection. Less worry.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("features-private-browsing-were-obsessed-with"),
@@ -43,12 +48,17 @@ features-private-browsing-private-browser = {COPY(private_browsing, "Private Bro
                     "We’re obsessed with protecting your privacy. That’s why we’ve made Firefox Private Browsing more powerful than the others.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 features-private-browsing-browse-without = {COPY(private_browsing, "Browse without a trace",)}
-""", private_browsing=private_browsing) + [
+""",
+            private_browsing=private_browsing,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("features-private-browsing-sharing-is-caring"),
                 value=REPLACE(
@@ -56,12 +66,17 @@ features-private-browsing-browse-without = {COPY(private_browsing, "Browse witho
                     "Sharing is caring, but that should be your call. Firefox Private Browsing automatically erases your online info like passwords, cookies and history from your computer. So that when you close out, you leave no trace.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 features-private-browsing-catch-those-hidden = {COPY(private_browsing, "Catch those hidden trackers",)}
-""", private_browsing=private_browsing) + [
+""",
+            private_browsing=private_browsing,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("features-private-browsing-some-websites-and"),
                 value=REPLACE(
@@ -69,12 +84,17 @@ features-private-browsing-catch-those-hidden = {COPY(private_browsing, "Catch th
                     "Some websites and ads attach hidden trackers that collect your browsing info long after you’ve left. Only Firefox Private Browsing has tracking protection to block them automatically.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 features-private-browsing-shake-off-tracking = {COPY(private_browsing, "Shake off tracking weight",)}
-""", private_browsing=private_browsing) + [
+""",
+            private_browsing=private_browsing,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("features-private-browsing-not-only-do-trackers"),
                 value=REPLACE(
@@ -82,8 +102,8 @@ features-private-browsing-shake-off-tracking = {COPY(private_browsing, "Shake of
                     "Not only do trackers collect info, they can weigh down your browsing speeds. Only Firefox Private Browsing blocks ads with hidden trackers, so you can drop the baggage and browse freely.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ]
-        )
+        ],
+    )

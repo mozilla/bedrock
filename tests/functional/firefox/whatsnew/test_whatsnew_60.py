@@ -7,36 +7,36 @@ import pytest
 from pages.firefox.whatsnew.whatsnew_60 import FirefoxWhatsNew60Page
 
 
-@pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
+@pytest.mark.skip_if_not_firefox(reason="Whatsnew pages are shown to Firefox only.")
 @pytest.mark.nondestructive
 def test_account_buttons_displayed(base_url, selenium):
-    page = FirefoxWhatsNew60Page(selenium, base_url, params='').open()
+    page = FirefoxWhatsNew60Page(selenium, base_url, params="").open()
     assert page.is_account_button_displayed
 
 
-@pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
+@pytest.mark.skip_if_not_firefox(reason="Whatsnew pages are shown to Firefox only.")
 @pytest.mark.nondestructive
 def test_send_to_device_success(base_url, selenium):
-    page = FirefoxWhatsNew60Page(selenium, base_url, params='?signed-in=true').open()
+    page = FirefoxWhatsNew60Page(selenium, base_url, params="?signed-in=true").open()
     assert not page.is_qr_code_displayed
     send_to_device = page.send_to_device
-    send_to_device.type_email('success@example.com')
+    send_to_device.type_email("success@example.com")
     send_to_device.click_send()
     assert send_to_device.send_successful
 
 
-@pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
+@pytest.mark.skip_if_not_firefox(reason="Whatsnew pages are shown to Firefox only.")
 @pytest.mark.nondestructive
 def test_send_to_device_failure(base_url, selenium):
-    page = FirefoxWhatsNew60Page(selenium, base_url, params='?signed-in=true').open()
+    page = FirefoxWhatsNew60Page(selenium, base_url, params="?signed-in=true").open()
     send_to_device = page.send_to_device
-    send_to_device.type_email('invalid@email')
-    send_to_device.click_send(expected_result='error')
+    send_to_device.type_email("invalid@email")
+    send_to_device.click_send(expected_result="error")
     assert send_to_device.is_form_error_displayed
 
 
-@pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
+@pytest.mark.skip_if_not_firefox(reason="Whatsnew pages are shown to Firefox only.")
 @pytest.mark.nondestructive
 def test_get_firefox_qr_code(base_url, selenium):
-    page = FirefoxWhatsNew60Page(selenium, base_url, locale='sv-SE', params='?signed-in=true').open()
+    page = FirefoxWhatsNew60Page(selenium, base_url, locale="sv-SE", params="?signed-in=true").open()
     assert page.is_qr_code_displayed

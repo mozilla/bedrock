@@ -11,21 +11,21 @@ from pages.base import BasePage
 
 class NewsletterBasePage(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/newsletter/'
+    _URL_TEMPLATE = "/{locale}/newsletter/"
 
-    _email_locator = (By.ID, 'id_email')
-    _country_locator = (By.ID, 'id_country')
-    _language_locator = (By.ID, 'id_lang')
-    _html_format_locator = (By.ID, 'id_fmt_0')
-    _text_format_locator = (By.ID, 'id_fmt_1')
-    _privacy_policy_checkbox_locator = (By.ID, 'id_privacy')
+    _email_locator = (By.ID, "id_email")
+    _country_locator = (By.ID, "id_country")
+    _language_locator = (By.ID, "id_lang")
+    _html_format_locator = (By.ID, "id_fmt_0")
+    _text_format_locator = (By.ID, "id_fmt_1")
+    _privacy_policy_checkbox_locator = (By.ID, "id_privacy")
     _privacy_policy_link_locator = (By.CSS_SELECTOR, 'label[for="id_privacy"] a')
-    _submit_button_locator = (By.ID, 'footer_email_submit')
-    _thank_you_locator = (By.CSS_SELECTOR, '#newsletter-form-thankyou h3')
+    _submit_button_locator = (By.ID, "footer_email_submit")
+    _thank_you_locator = (By.CSS_SELECTOR, "#newsletter-form-thankyou h3")
 
     @property
     def email(self):
-        return self.find_element(*self._email_locator).get_attribute('value')
+        return self.find_element(*self._email_locator).get_attribute("value")
 
     def type_email(self, value):
         self.find_element(*self._email_locator).send_keys(value)
@@ -33,7 +33,7 @@ class NewsletterBasePage(BasePage):
     @property
     def country(self):
         el = self.find_element(*self._country_locator)
-        return el.find_element(By.CSS_SELECTOR, 'option[selected]').text
+        return el.find_element(By.CSS_SELECTOR, "option[selected]").text
 
     def select_country(self, value):
         el = self.find_element(*self._country_locator)
@@ -69,9 +69,9 @@ class NewsletterBasePage(BasePage):
 
     def accept_privacy_policy(self):
         el = self.find_element(*self._privacy_policy_checkbox_locator)
-        assert not el.is_selected(), 'Privacy policy has already been accepted'
+        assert not el.is_selected(), "Privacy policy has already been accepted"
         el.click()
-        assert el.is_selected(), 'Privacy policy has not been accepted'
+        assert el.is_selected(), "Privacy policy has not been accepted"
 
     @property
     def is_privacy_policy_link_displayed(self):

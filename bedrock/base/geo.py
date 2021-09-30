@@ -8,20 +8,20 @@ from product_details import product_details
 
 
 def valid_country_code(country):
-    codes = product_details.get_regions('en-US').keys()
+    codes = product_details.get_regions("en-US").keys()
     if country and country.lower() in codes:
         return country.upper()
 
 
 def get_country_from_param(request):
-    is_prod = request.get_host() == 'www.mozilla.org'
-    country_code = valid_country_code(request.GET.get('geo'))
+    is_prod = request.get_host() == "www.mozilla.org"
+    country_code = valid_country_code(request.GET.get("geo"))
     return country_code if not is_prod else None
 
 
 def get_country_from_header(request):
     """Return an uppercase 2 letter country code retrieved from the request header."""
-    country_code = valid_country_code(request.META.get('HTTP_CF_IPCOUNTRY'))
+    country_code = valid_country_code(request.META.get("HTTP_CF_IPCOUNTRY"))
     if not country_code and settings.DEV:
         country_code = settings.DEV_GEO_COUNTRY_CODE
 

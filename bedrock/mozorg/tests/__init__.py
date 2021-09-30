@@ -6,7 +6,7 @@ from contextlib import contextmanager
 
 from django.test import RequestFactory, TestCase as DjTestCase
 
-from bedrock.base.urlresolvers import (get_url_prefix, Prefixer, set_url_prefix)
+from bedrock.base.urlresolvers import get_url_prefix, Prefixer, set_url_prefix
 from lib.l10n_utils import translation
 
 
@@ -19,7 +19,7 @@ class TestCase(DjTestCase):
         old_prefix = get_url_prefix()
         old_locale = translation.get_language()
         rf = RequestFactory()
-        set_url_prefix(Prefixer(rf.get('/%s/' % (locale,))))
+        set_url_prefix(Prefixer(rf.get("/%s/" % (locale,))))
         translation.activate(locale)
         yield
         set_url_prefix(old_prefix)

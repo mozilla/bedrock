@@ -44,7 +44,7 @@ def test_mobile_navigation(base_url, selenium_mobile):
 
 @pytest.mark.smoke
 @pytest.mark.nondestructive
-@pytest.mark.skip_if_firefox(reason='Firefox download button is shown only to non-Firefox users.')
+@pytest.mark.skip_if_firefox(reason="Firefox download button is shown only to non-Firefox users.")
 def test_navigation_download_firefox_button(base_url, selenium):
     page = HomePage(selenium, base_url).open()
     assert not page.navigation.is_mozilla_vpn_button_displayed
@@ -52,7 +52,7 @@ def test_navigation_download_firefox_button(base_url, selenium):
 
 
 @pytest.mark.nondestructive
-@pytest.mark.skip_if_not_firefox(reason='Mozilla VPN button is shown only to Firefox users.')
+@pytest.mark.skip_if_not_firefox(reason="Mozilla VPN button is shown only to Firefox users.")
 def test_navigation_mozilla_vpn_button(base_url, selenium):
     page = HomePage(selenium, base_url).open()
     assert not page.navigation.is_firefox_download_button_displayed

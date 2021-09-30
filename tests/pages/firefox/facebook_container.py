@@ -10,10 +10,10 @@ from pages.regions.download_button import DownloadButton
 
 class FacebookContainerPage(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/firefox/facebookcontainer/'
+    _URL_TEMPLATE = "/{locale}/firefox/facebookcontainer/"
 
-    _facebook_container_link_locator = (By.CLASS_NAME, 'extension-cta')
-    _firefox_download_button_locator = (By.ID, 'download-firefox-cta')
+    _facebook_container_link_locator = (By.CLASS_NAME, "extension-cta")
+    _firefox_download_button_locator = (By.ID, "download-firefox-cta")
 
     @property
     def is_facebook_container_link_displayed(self):

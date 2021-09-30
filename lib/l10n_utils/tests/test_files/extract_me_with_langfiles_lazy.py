@@ -8,10 +8,10 @@ from lib.l10n_utils.dotlang import _lazy as _
 
 
 LANG_FILES = [
-    'donnie',
-    'walter',
+    "donnie",
+    "walter",
 ]
 
 
 def do_translate():
-    return _(u"I'm The Dude, so that's what you call me, man.")
+    return _("I'm The Dude, so that's what you call me, man.")

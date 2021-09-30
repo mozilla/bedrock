@@ -18,12 +18,12 @@ from dirsync import sync
 from ._ftl_repo_base import FTLRepoCommand
 
 
-GIT_HASH = getenv('GIT_SHA', None)
+GIT_HASH = getenv("GIT_SHA", None)
 
 
 class Command(FTLRepoCommand):
     help = "Open a pull-request on the L10n Team's repo for FTL file changes"
-    branch_prefix = 'update-from-bedrock'
+    branch_prefix = "update-from-bedrock"
     open_branch = None
     open_pr_url = None
     github = None
@@ -56,54 +56,54 @@ class Command(FTLRepoCommand):
         else:
             branch_suffix = slugify(datetime.now().isoformat())
 
-        return f'{self.branch_prefix}-{branch_suffix}'
+        return f"{self.branch_prefix}-{branch_suffix}"
 
     @property
     def commit_message(self):
-        message = 'Updates from bedrock\n\n'
+        message = "Updates from bedrock\n\n"
         if GIT_HASH:
-            message += f'From file changes in https://github.com/mozilla/bedrock/commit/{GIT_HASH}'
+            message += f"From file changes in https://github.com/mozilla/bedrock/commit/{GIT_HASH}"
         else:
-            message += 'From file changes in https://github.com/mozilla/bedrock/commits/master'
+            message += "From file changes in https://github.com/mozilla/bedrock/commits/master"
 
         return message
 
     def sync_dirs(self):
-        sync(settings.FLUENT_LOCAL_PATH, self.l10n_repo.path, 'sync', content=True)
+        sync(settings.FLUENT_LOCAL_PATH, self.l10n_repo.path, "sync", content=True)
 
     def create_branch(self):
         if self.open_branch:
-            self.stdout.write(f'Using existing branch: {self.branch_name}')
+            self.stdout.write(f"Using existing branch: {self.branch_name}")
         else:
-            self.l10n_repo.git('checkout', '-b', self.branch_name)
-            self.stdout.write(f'Created branch: {self.branch_name}')
+            self.l10n_repo.git("checkout", "-b", self.branch_name)
+            self.stdout.write(f"Created branch: {self.branch_name}")
 
     def commit_changes(self):
         self.config_git()
-        self.l10n_repo.git('add', '.')
+        self.l10n_repo.git("add", ".")
 
         try:
-            self.l10n_repo.git('commit', '-m', self.commit_message)
+            self.l10n_repo.git("commit", "-m", self.commit_message)
         except CalledProcessError:
-            self.stdout.write('No changes to commit')
+            self.stdout.write("No changes to commit")
             return False
 
-        self.stdout.write('Committed changes to local repo')
+        self.stdout.write("Committed changes to local repo")
         return True
 
     def push_changes(self):
         try:
-            self.l10n_repo.git('push', self.git_push_url, 'HEAD')
+            self.l10n_repo.git("push", self.git_push_url, "HEAD")
         except CalledProcessError:
-            raise CommandError(f'There was a problem pushing to {self.l10n_repo.remote_url}')
+            raise CommandError(f"There was a problem pushing to {self.l10n_repo.remote_url}")
 
-        commit = self.l10n_repo.git('rev-parse', '--short', 'HEAD')
-        self.stdout.write(f'Pushed {commit} to {self.l10n_repo.remote_url} as {self.branch_name}')
+        commit = self.l10n_repo.git("rev-parse", "--short", "HEAD")
+        self.stdout.write(f"Pushed {commit} to {self.l10n_repo.remote_url} as {self.branch_name}")
 
     @property
     def git_push_url(self):
         if not settings.FLUENT_REPO_AUTH:
-            raise CommandError('Git push authentication not configured')
+            raise CommandError("Git push authentication not configured")
 
         return self.l10n_repo.remote_url_auth(settings.FLUENT_REPO_AUTH)
 
@@ -111,7 +111,7 @@ class Command(FTLRepoCommand):
         if self.github is None:
             return
 
-        for pr in self.github.get_pulls(state='open'):
+        for pr in self.github.get_pulls(state="open"):
             if pr.head.ref.startswith(self.branch_prefix):
                 self.open_branch = pr.head.ref
                 self.open_pr_url = pr.html_url
@@ -123,14 +123,14 @@ class Command(FTLRepoCommand):
             return
 
         if self.open_branch:
-            self.stdout.write(f'Updated existing pull-request: {self.open_pr_url}')
+            self.stdout.write(f"Updated existing pull-request: {self.open_pr_url}")
             return
 
-        title, body = self.commit_message.split('\n\n')
+        title, body = self.commit_message.split("\n\n")
         pr = self.github.create_pull(
             title=title,
             body=body,
-            base='master',
+            base="master",
             head=self.branch_name,
         )
-        self.stdout.write(f'Opened a pull-request: {pr.html_url}')
+        self.stdout.write(f"Opened a pull-request: {pr.html_url}")

@@ -7,8 +7,8 @@ from bedrock.sitemaps.utils import update_sitemaps
 
 
 class Command(BaseCommand):
-    args = ''
-    help = 'Update XML sitemaps based on the list of localized pages.'
+    args = ""
+    help = "Update XML sitemaps based on the list of localized pages."
 
     def handle(self, *args, **options):
         update_sitemaps()

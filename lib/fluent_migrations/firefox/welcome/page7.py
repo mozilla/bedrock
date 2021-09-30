@@ -6,6 +6,7 @@ from fluent.migrate import REPLACE, COPY
 
 page7 = "firefox/welcome/page7.lang"
 
+
 def migrate(ctx):
     """Migrate bedrock/firefox/templates/firefox/welcome/page7.html, part {index}."""
 
@@ -20,8 +21,8 @@ def migrate(ctx):
                     "Make it harder for Facebook to track you",
                     {
                         "Facebook": TERM_REFERENCE("brand-name-facebook"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("page7-its-okay-to-like-facebook"),
@@ -30,8 +31,8 @@ def migrate(ctx):
                     "It’s okay to like Facebook",
                     {
                         "Facebook": TERM_REFERENCE("brand-name-facebook"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("page7-if-you-still-kinda-like-facebook"),
@@ -42,8 +43,8 @@ def migrate(ctx):
                         "Facebook": TERM_REFERENCE("brand-name-facebook"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Facebook Container": TERM_REFERENCE("brand-name-facebook-container"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("page7-get-facebook-container"),
@@ -52,12 +53,17 @@ def migrate(ctx):
                     "Get Facebook Container",
                     {
                         "Facebook Container": TERM_REFERENCE("brand-name-facebook-container"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 page7-do-it-for-the-gram = {COPY(page7, "Do it for the ’Gram",)}
-""", page7=page7) + [
+""",
+            page7=page7,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("page7-facebook-container-also-works"),
                 value=REPLACE(
@@ -69,13 +75,18 @@ page7-do-it-for-the-gram = {COPY(page7, "Do it for the ’Gram",)}
                         "Facebook Messenger": TERM_REFERENCE("brand-name-facebook-messenger"),
                         "Instagram": TERM_REFERENCE("brand-name-instagram"),
                         "Workplace": TERM_REFERENCE("brand-name-workplace"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 page7-make-them-unfollow-you = {COPY(page7, "Make them unfollow you",)}
 page7-that-sneaky-little-button = {COPY(page7, "That sneaky little button",)}
-""", page7=page7) + [
+""",
+            page7=page7,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("page7-those-innocent-looking-f-buttons"),
                 value=REPLACE(
@@ -84,12 +95,17 @@ page7-that-sneaky-little-button = {COPY(page7, "That sneaky little button",)}
                     {
                         "Facebook": TERM_REFERENCE("brand-name-facebook"),
                         "Facebook Container": TERM_REFERENCE("brand-name-facebook-container"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 page7-stay-ahead-of-hackers = {COPY(page7, "Stay ahead of hackers",)}
-""", page7=page7) + [
+""",
+            page7=page7,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("page7-firefox-monitor-lets-you-find"),
                 value=REPLACE(
@@ -97,8 +113,8 @@ page7-stay-ahead-of-hackers = {COPY(page7, "Stay ahead of hackers",)}
                     "Firefox Monitor lets you find out what hackers might already know about you and helps you stay a step ahead of them. (And it’s free.)",
                     {
                         "Firefox Monitor": TERM_REFERENCE("brand-name-firefox-monitor"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("page7-get-firefox-monitor"),
@@ -107,10 +123,14 @@ page7-stay-ahead-of-hackers = {COPY(page7, "Stay ahead of hackers",)}
                     "Get Firefox Monitor",
                     {
                         "Firefox Monitor": TERM_REFERENCE("brand-name-firefox-monitor"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 page7-why-am-i-seeing-this = {COPY(page7, "Why am I seeing this?",)}
-""", page7=page7)
-        )
+""",
+            page7=page7,
+        ),
+    )

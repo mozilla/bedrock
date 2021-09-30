@@ -20,7 +20,7 @@ class Product(models.Model):
     product_slug = models.SlugField()
 
     class Meta:
-        ordering = ('slug',)
+        ordering = ("slug",)
 
     def __str__(self):
         return self.name
@@ -32,14 +32,14 @@ class Product(models.Model):
     @property
     def name_tuple(self):
         product, vers = self.name_and_version
-        if '.' not in vers:
-            vers += '.0'
+        if "." not in vers:
+            vers += ".0"
         return product, Version(vers)
 
     @property
     def html_id(self):
         """Conform to the IDs from the old page so old URL anchors work."""
-        return self.slug.replace('-', '')
+        return self.slug.replace("-", "")
 
     @property
     def version(self):
@@ -50,18 +50,15 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         product, vers = self.name_and_version
-        return reverse('security.product-version-advisories',
-                       kwargs={'product': product, 'version': vers})
+        return reverse("security.product-version-advisories", kwargs={"product": product, "version": vers})
 
-    def save(self, force_insert=False, force_update=False,
-             using=None, update_fields=None):
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         # do not use self.name_tuple because don't want ".0" on versions.
         product, vers = self.name_and_version
         self.product = product
         self.product_slug = slugify(product)
-        self.slug = '{0}-{1}'.format(self.product_slug, vers)
-        super(Product, self).save(force_insert, force_update,
-                                  using, update_fields)
+        self.slug = "{0}-{1}".format(self.product_slug, vers)
+        super(Product, self).save(force_insert, force_update, using, update_fields)
 
 
 class SecurityAdvisory(models.Model):
@@ -72,27 +69,27 @@ class SecurityAdvisory(models.Model):
     announced = models.DateField(null=True)
     year = models.SmallIntegerField()
     order = models.SmallIntegerField()
-    fixed_in = models.ManyToManyField(Product, related_name='advisories')
+    fixed_in = models.ManyToManyField(Product, related_name="advisories")
     extra_data = JSONField()
     html = models.TextField()
     last_modified = ModificationDateTimeField()
 
     class Meta:
-        ordering = ('-year', '-order')
-        get_latest_by = 'last_modified'
+        ordering = ("-year", "-order")
+        get_latest_by = "last_modified"
 
     def __str__(self):
-        return u'MFSA {0}'.format(self.id)
+        return "MFSA {0}".format(self.id)
 
     def get_absolute_url(self):
-        return reverse('security.advisory', kwargs={'pk': self.id})
+        return reverse("security.advisory", kwargs={"pk": self.id})
 
     @property
     def impact_class(self):
         if self.impact:
             return self.impact.lower().split(None, 1)[0]
         else:
-            return 'none'
+            return "none"
 
     @property
     def products(self):
@@ -102,14 +99,14 @@ class SecurityAdvisory(models.Model):
 
 class HallOfFamer(models.Model):
     ORDINALS = {
-        1: '1st',
-        2: '2nd',
-        3: '3rd',
-        4: '4th',
+        1: "1st",
+        2: "2nd",
+        3: "3rd",
+        4: "4th",
     }
     PROGRAM_CHOICES = (
-        ('web', 'Web'),
-        ('client', 'Client'),
+        ("web", "Web"),
+        ("client", "Client"),
     )
     program = models.CharField(max_length=10, choices=PROGRAM_CHOICES)
     name = models.CharField(max_length=200)
@@ -117,7 +114,7 @@ class HallOfFamer(models.Model):
     url = models.CharField(max_length=200, blank=True)
 
     class Meta:
-        ordering = ('-date', 'id')
+        ordering = ("-date", "id")
 
     @property
     def year_quarter(self):
@@ -131,7 +128,7 @@ class HallOfFamer(models.Model):
     @property
     def quarter_string(self):
         year, quarter = self.year_quarter
-        return '%s Quarter %s' % (self.ORDINALS[quarter], year)
+        return "%s Quarter %s" % (self.ORDINALS[quarter], year)
 
 
 class MitreCVE(models.Model):
@@ -142,12 +139,12 @@ class MitreCVE(models.Model):
     impact = models.CharField(max_length=100, blank=True)
     reporter = models.CharField(max_length=100, blank=True)
     description = models.TextField()
-    products = JSONField(default='[]')
-    mfsa_ids = JSONField(default='[]')
-    bugs = JSONField(default='[]')
+    products = JSONField(default="[]")
+    mfsa_ids = JSONField(default="[]")
+    bugs = JSONField(default="[]")
 
     class Meta:
-        ordering = ('-year', '-order')
+        ordering = ("-year", "-order")
 
     def __str__(self):
         return self.id
@@ -167,48 +164,44 @@ class MitreCVE(models.Model):
     def get_description(self):
         versions = []
         for prod_name, prod_versions in self.product_versions().items():
-            versions.extend('%s < %s' % (prod_name, v) for v in prod_versions)
+            versions.extend("%s < %s" % (prod_name, v) for v in prod_versions)
 
         description = self.description.strip()
         if versions:
             if len(versions) == 1:
                 vers_str = versions[0]
             elif len(versions) == 2:
-                vers_str = ' and '.join(versions)
+                vers_str = " and ".join(versions)
             else:
-                vers_str = ', '.join(versions[:-1]) + ', and ' + versions[-1]
+                vers_str = ", ".join(versions[:-1]) + ", and " + versions[-1]
 
             if description:
-                if description.endswith('.'):
-                    description += ' '
+                if description.endswith("."):
+                    description += " "
                 else:
-                    description += '. '
+                    description += ". "
 
-            description += 'This vulnerability affects %s.' % vers_str
+            description += "This vulnerability affects %s." % vers_str
 
         return description
 
     def get_product_data(self):
         product_data = []
         for prod_name, versions in self.product_versions().items():
-            product_data.append({
-                'product_name': prod_name,
-                'version': {
-                    'version_data': [
-                        {'version_value': vers, 'version_affected': '<'}
-                        for vers in versions
-                    ],
+            product_data.append(
+                {
+                    "product_name": prod_name,
+                    "version": {
+                        "version_data": [{"version_value": vers, "version_affected": "<"} for vers in versions],
+                    },
                 }
-            })
+            )
 
         return product_data
 
     def get_reference_data(self):
-        reference_data = [
-            {'url': 'https://www.mozilla.org/security/advisories/mfsa{}/'.format(mfsa_id)}
-            for mfsa_id in set(self.mfsa_ids)
-        ]
-        reference_data.extend([{'url': bug['url']} for bug in self.bugs])
+        reference_data = [{"url": "https://www.mozilla.org/security/advisories/mfsa{}/".format(mfsa_id)} for mfsa_id in set(self.mfsa_ids)]
+        reference_data.extend([{"url": bug["url"]} for bug in self.bugs])
         return reference_data
 
     def feed_entry(self):
@@ -217,46 +210,46 @@ class MitreCVE(models.Model):
         See https://github.com/CVEProject/automation-working-group/blob/master/cve_json_schema/DRAFT-JSON-file-format-v4.md
         """
         return {
-            'data_type': 'CVE',
-            'data_format': 'MITRE',
-            'data_version': '4.0',
-            'CVE_data_meta': {
-                'ID': self.id,
-                'ASSIGNER': 'security@mozilla.org',
+            "data_type": "CVE",
+            "data_format": "MITRE",
+            "data_version": "4.0",
+            "CVE_data_meta": {
+                "ID": self.id,
+                "ASSIGNER": "security@mozilla.org",
             },
-            'affects': {
-                'vendor': {
-                    'vendor_data': [
+            "affects": {
+                "vendor": {
+                    "vendor_data": [
                         {
-                            'vendor_name': 'Mozilla',
-                            'product': {
-                                'product_data': self.get_product_data(),
-                            }
+                            "vendor_name": "Mozilla",
+                            "product": {
+                                "product_data": self.get_product_data(),
+                            },
                         }
                     ]
                 }
             },
-            'problemtype': {
-                'problemtype_data': [
+            "problemtype": {
+                "problemtype_data": [
                     {
-                        'description': [
+                        "description": [
                             {
-                                'lang': 'eng',
-                                'value': self.title,
+                                "lang": "eng",
+                                "value": self.title,
                             }
                         ]
                     }
                 ]
             },
-            'references': {
-                'reference_data': self.get_reference_data(),
+            "references": {
+                "reference_data": self.get_reference_data(),
             },
-            'description': {
-                'description_data': [
+            "description": {
+                "description_data": [
                     {
-                        'lang': 'eng',
-                        'value': self.get_description(),
+                        "lang": "eng",
+                        "value": self.get_description(),
                     }
                 ]
-            }
+            },
         }

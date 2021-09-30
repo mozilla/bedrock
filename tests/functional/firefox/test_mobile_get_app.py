@@ -12,7 +12,7 @@ def test_send_to_device_success(base_url, selenium):
     page = FirefoxMobileGetAppPage(selenium, base_url).open()
     assert not page.is_firefox_qr_code_displayed
     send_to_device = page.send_to_device
-    send_to_device.type_email('success@example.com')
+    send_to_device.type_email("success@example.com")
     send_to_device.click_send()
     assert send_to_device.send_successful
 
@@ -21,6 +21,6 @@ def test_send_to_device_success(base_url, selenium):
 def test_send_to_device_failure(base_url, selenium):
     page = FirefoxMobileGetAppPage(selenium, base_url).open()
     send_to_device = page.send_to_device
-    send_to_device.type_email('invalid@email')
-    send_to_device.click_send(expected_result='error')
+    send_to_device.type_email("invalid@email")
+    send_to_device.click_send(expected_result="error")
     assert send_to_device.is_form_error_displayed

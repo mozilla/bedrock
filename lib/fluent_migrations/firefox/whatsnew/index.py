@@ -7,6 +7,7 @@ from fluent.migrate import REPLACE, COPY
 index = "firefox/whatsnew/index.lang"
 whatsnew = "firefox/whatsnew.lang"
 
+
 def migrate(ctx):
     """Migrate bedrock/firefox/templates/firefox/whatsnew/index.html, part {index}."""
 
@@ -23,12 +24,17 @@ def migrate(ctx):
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Android": TERM_REFERENCE("brand-name-android"),
                         "iOS": TERM_REFERENCE("brand-name-ios"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 whatsnew-s2d-want-privacy-on-every-device = {COPY(whatsnew, "Want privacy on every device?",)}
-""", whatsnew=whatsnew) + [
+""",
+            whatsnew=whatsnew,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("whatsnew-s2d-you-got-it-get-firefox-for"),
                 value=REPLACE(
@@ -36,18 +42,14 @@ whatsnew-s2d-want-privacy-on-every-device = {COPY(whatsnew, "Want privacy on eve
                     "You got it. Get Firefox for mobile.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("whatsnew-s2d-send-firefox-to-your-phone"),
                 value=REPLACE(
-                    whatsnew,
-                    "Send Firefox to your phone<br> and unleash your Internet.",
-                    {
-                        "Firefox": TERM_REFERENCE("brand-name-firefox")
-                    }
-                )
+                    whatsnew, "Send Firefox to your phone<br> and unleash your Internet.", {"Firefox": TERM_REFERENCE("brand-name-firefox")}
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("whatsnew-s2d-download-firefox-for-your"),
@@ -56,8 +58,8 @@ whatsnew-s2d-want-privacy-on-every-device = {COPY(whatsnew, "Want privacy on eve
                     "Download Firefox for your smartphone and tablet.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ]
-        )
+        ],
+    )

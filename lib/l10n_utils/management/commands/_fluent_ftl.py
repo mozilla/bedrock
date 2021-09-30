@@ -14,7 +14,7 @@ class FTLCreator:
         self.stdout = cmd.stdout
 
     def handle(self, recipe_or_template, locale):
-        no_reference = locale == 'en'
+        no_reference = locale == "en"
         context = get_migration_context(recipe_or_template, locale=locale)
         if no_reference:
             base = settings.FLUENT_LOCAL_PATH
@@ -23,5 +23,5 @@ class FTLCreator:
         for path, contents in context.serialize_changeset(None).items():
             en_path = base / locale / path
             en_path.parent.mkdir(parents=True, exist_ok=True)
-            with en_path.open('w') as ftl_file:
+            with en_path.open("w") as ftl_file:
                 ftl_file.write(contents)

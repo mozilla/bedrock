@@ -9,9 +9,9 @@ from pages.base import BasePage
 
 class LeanDataPage(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/about/policy/lean-data/'
+    _URL_TEMPLATE = "/{locale}/about/policy/lean-data/"
 
-    _contact_button_locator = (By.ID, 'contact-button')
+    _contact_button_locator = (By.ID, "contact-button")
 
     @property
     def is_contact_button_displayed(self):

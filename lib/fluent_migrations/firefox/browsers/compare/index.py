@@ -6,13 +6,15 @@ from fluent.migrate import REPLACE, COPY
 
 compare = "firefox/compare.lang"
 
+
 def migrate(ctx):
     """Migrate bedrock/firefox/templates/firefox/browsers/compare/index.html, part {index}."""
 
     ctx.add_transforms(
         "firefox/browsers/compare/index.ftl",
         "firefox/browsers/compare/index.ftl",
-        transforms_from("""
+        transforms_from(
+            """
 compare-index-six-of-the-best-browsers-fallback = {COPY(compare, "Six of the best browsers in direct comparison",)}
 compare-index-privacy-utility-portability = {COPY(compare, "Privacy. Utility. Portability.",)}
 compare-index-a-great-internet-browser-should = {COPY(compare, "A great internet browser should have the functionality you need, portability across devices, and the privacy you deserve.",)}
@@ -24,8 +26,10 @@ compare-index-how-well-does-your-browser = {COPY(compare, "How well does your br
 compare-index-almost-all-of-the-browsers = {COPY(compare, "Almost all of the browsers compared here allow synchronization between desktop and mobile devices. You’ll need an account to do it, which you can use to log into the browser on all devices and synchronize things like passwords, browsing history, bookmarks and settings.",)}
 compare-index-conclusion = {COPY(compare, "Conclusion:",)}
 compare-index-and-the-winner-is = {COPY(compare, "And the winner is…",)}
-""", compare=compare)
-        )
+""",
+            compare=compare,
+        ),
+    )
     ctx.add_transforms(
         "firefox/browsers/compare/index.ftl",
         "firefox/browsers/compare/index.ftl",
@@ -37,8 +41,8 @@ compare-index-and-the-winner-is = {COPY(compare, "And the winner is…",)}
                     "Using a browser that blocks third-party trackers isn’t just important for privacy — it usually means it runs much faster, too. Most trackers are just scripts that run in the background on a number of websites. You can’t see them, but you can feel them slowing down your browser. As of version 67 of Firefox, fingerprinting and cryptominers are also blocked. If you’re not familiar with cryptominers, here’s an example of how they can affect you: maybe you’ve experienced your computer suddenly running hotter or the battery depleting faster than normal. That’s often the byproduct of cryptominers creeping around on your device.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-index-another-browser-feature-fallback"),
@@ -48,8 +52,8 @@ compare-index-and-the-winner-is = {COPY(compare, "And the winner is…",)}
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Safari": TERM_REFERENCE("brand-name-safari"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-index-in-addition-to-privacy-protection-fallback"),
@@ -60,8 +64,8 @@ compare-index-and-the-winner-is = {COPY(compare, "And the winner is…",)}
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Edge": TERM_REFERENCE("brand-name-edge"),
                         "Opera": TERM_REFERENCE("brand-name-opera"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-index-find-out-how-firefox-fallback"),
@@ -75,8 +79,8 @@ compare-index-and-the-winner-is = {COPY(compare, "And the winner is…",)}
                         "Safari": TERM_REFERENCE("brand-name-safari"),
                         "Opera": TERM_REFERENCE("brand-name-opera"),
                         "Internet Explorer": TERM_REFERENCE("brand-name-ie"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-index-looking-for-a-better-fallback"),
@@ -90,8 +94,8 @@ compare-index-and-the-winner-is = {COPY(compare, "And the winner is…",)}
                         "Safari": TERM_REFERENCE("brand-name-safari"),
                         "Opera": TERM_REFERENCE("brand-name-opera"),
                         "Internet Explorer": TERM_REFERENCE("brand-name-ie"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-index-so-is-your-browser-the-fallback"),
@@ -107,8 +111,8 @@ compare-index-and-the-winner-is = {COPY(compare, "And the winner is…",)}
                         "Opera": TERM_REFERENCE("brand-name-opera"),
                         "Internet Explorer": TERM_REFERENCE("brand-name-ie"),
                         "Microsoft": TERM_REFERENCE("brand-name-microsoft"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-index-since-your-browser-is-your"),
@@ -118,8 +122,8 @@ compare-index-and-the-winner-is = {COPY(compare, "And the winner is…",)}
                     {
                         "Google": TERM_REFERENCE("brand-name-google"),
                         "Chrome": TERM_REFERENCE("brand-name-chrome"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-index-the-first-thing-to-point-fallback"),
@@ -135,8 +139,8 @@ compare-index-and-the-winner-is = {COPY(compare, "And the winner is…",)}
                         "Internet Explorer": TERM_REFERENCE("brand-name-ie"),
                         "Microsoft": TERM_REFERENCE("brand-name-microsoft"),
                         "Android": TERM_REFERENCE("brand-name-android"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-index-browsers-have-come-a-long"),
@@ -146,8 +150,8 @@ compare-index-and-the-winner-is = {COPY(compare, "And the winner is…",)}
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Chrome": TERM_REFERENCE("brand-name-chrome"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-index-firefox-is-backed-by-the-not"),
@@ -157,8 +161,8 @@ compare-index-and-the-winner-is = {COPY(compare, "And the winner is…",)}
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Mozilla": TERM_REFERENCE("brand-name-mozilla"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-index-firefox-puts-your-privacy"),
@@ -167,8 +171,8 @@ compare-index-and-the-winner-is = {COPY(compare, "And the winner is…",)}
                     "Firefox puts your privacy first — in everything we make and do. We believe you have the right to decide how and with whom you share your personal information. Firefox collects as little data as possible and never sells it. The little data we do collect is only used to make products and features better. No secrets. But a lot of transparency and real privacy.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-index-based-on-the-criteria-we-outlined"),
@@ -177,8 +181,8 @@ compare-index-and-the-winner-is = {COPY(compare, "And the winner is…",)}
                     "Based on the criteria we outlined — privacy, utility, and portability — there’s really only one browser that meets the mark, and that’s Firefox. The real area of difference isn’t in functionality, it’s privacy. Firefox is the most private browser that doesn’t lock you into an ecosystem. Use it on any operating system, on all your devices, and feel secure when you do.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ]
+        ],
     )

@@ -10,9 +10,9 @@ from pages.regions.download_button import DownloadButton
 
 class FirefoxWhatsNewDeveloper70Page(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/firefox/70.0a2/whatsnew/all/'
+    _URL_TEMPLATE = "/{locale}/firefox/70.0a2/whatsnew/all/"
 
-    _nightly_download_button_locator = (By.ID, 'footer-download')
+    _nightly_download_button_locator = (By.ID, "footer-download")
 
     @property
     def nightly_download_button(self):

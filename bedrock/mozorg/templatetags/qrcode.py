@@ -9,20 +9,18 @@ from jinja2 import Markup
 from qrcode.image.svg import SvgPathImage
 
 
-cache = caches['qrcode']
+cache = caches["qrcode"]
 
 
 @library.global_function
 def qrcode(data, box_size=20):
-    key = sha1(f'{data}-{box_size}'.encode('utf-8')).hexdigest()
+    key = sha1(f"{data}-{box_size}".encode("utf-8")).hexdigest()
     svg = cache.get(key)
     if not svg:
-        img = qr.make(data,
-                      image_factory=SvgPathImage,
-                      box_size=box_size)
+        img = qr.make(data, image_factory=SvgPathImage, box_size=box_size)
         svg = BytesIO()
         img.save(svg)
-        svg = svg.getvalue().decode('utf-8')
+        svg = svg.getvalue().decode("utf-8")
         cache.set(key, svg)
 
     return Markup(svg)

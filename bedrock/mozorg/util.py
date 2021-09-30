@@ -17,7 +17,7 @@ except ImportError:
     newrelic = False
 
 
-log = commonware.log.getLogger('mozorg.util')
+log = commonware.log.getLogger("mozorg.util")
 
 
 def page(name, tmpl, decorators=None, url_name=None, ftl_files=None, **kwargs):
@@ -47,12 +47,12 @@ def page(name, tmpl, decorators=None, url_name=None, ftl_files=None, **kwargs):
     @param kwargs: Any additional arguments are passed to l10n_utils.render
         as the context.
     """
-    pattern = r'^%s/$' % name if name else r'^$'
+    pattern = r"^%s/$" % name if name else r"^$"
 
     if url_name is None:
         # Set the name of the view to the template path replaced with dots
         (base, ext) = os.path.splitext(tmpl)
-        url_name = base.replace('/', '.')
+        url_name = base.replace("/", ".")
 
     # we don't have a caching backend yet, so no csrf (it's just a
     # newsletter form anyway)
@@ -60,10 +60,9 @@ def page(name, tmpl, decorators=None, url_name=None, ftl_files=None, **kwargs):
     def _view(request):
         if newrelic:
             # Name this in New Relic to differentiate pages
-            newrelic.agent.set_transaction_name(
-                'mozorg.util.page:' + url_name.replace('.', '_'))
+            newrelic.agent.set_transaction_name("mozorg.util.page:" + url_name.replace(".", "_"))
 
-        kwargs.setdefault('urlname', url_name)
+        kwargs.setdefault("urlname", url_name)
         return l10n_utils.render(request, tmpl, kwargs, ftl_files=ftl_files)
 
     # This is for graphite so that we can differentiate pages
@@ -81,8 +80,7 @@ def page(name, tmpl, decorators=None, url_name=None, ftl_files=None, **kwargs):
                 for decorator in reversed(decorators):
                     _view = decorator(_view)
             except TypeError:
-                log.exception('decorators not iterable or does not contain '
-                              'callable items')
+                log.exception("decorators not iterable or does not contain callable items")
 
     return url(pattern, _view, name=url_name)
 
@@ -98,15 +96,14 @@ def get_fb_like_locale(request_locale):
     Adapted from the facebookapp get_best_locale() util
     """
 
-    lang = request_locale.replace('-', '_')
+    lang = request_locale.replace("-", "_")
 
     if lang not in settings.FACEBOOK_LIKE_LOCALES:
-        lang_prefix = lang.split('_')[0]
+        lang_prefix = lang.split("_")[0]
 
         try:
-            lang = next(locale for locale in settings.FACEBOOK_LIKE_LOCALES
-                        if locale.startswith(lang_prefix))
+            lang = next(locale for locale in settings.FACEBOOK_LIKE_LOCALES if locale.startswith(lang_prefix))
         except StopIteration:
-            lang = 'en_US'
+            lang = "en_US"
 
     return lang

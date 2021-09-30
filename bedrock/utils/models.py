@@ -13,14 +13,14 @@ class GitRepoState(models.Model):
     latest_ref_timestamp = models.IntegerField(default=0)
 
     def __str__(self):
-        return '%s: %s' % (self.repo_name, self.latest_ref)
+        return "%s: %s" % (self.repo_name, self.latest_ref)
 
     @property
     def commit_url(self):
         if self.repo_url:
-            return '%s/commit/%s' % (self.repo_url, self.latest_ref)
+            return "%s/commit/%s" % (self.repo_url, self.latest_ref)
 
-        return ''
+        return ""
 
     @property
     def last_updated(self):
@@ -28,4 +28,4 @@ class GitRepoState(models.Model):
             latest_datetime = datetime.fromtimestamp(self.latest_ref_timestamp)
             return timeago.format(latest_datetime)
 
-        return 'unknown'
+        return "unknown"

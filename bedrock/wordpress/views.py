@@ -10,7 +10,7 @@ class BlogPostsMixin:
     blog_tags = None
     blog_slugs = None
     blog_posts_limit = 4
-    blog_posts_template_variable = 'blog_posts'
+    blog_posts_template_variable = "blog_posts"
 
     def get_context_data(self, **kwargs):
         ctx = super(BlogPostsMixin, self).get_context_data(**kwargs)
@@ -22,14 +22,14 @@ class BlogPostsMixin:
                 blog_slugs = self.blog_slugs
 
             blog = blog.filter_by_blogs(*blog_slugs)
-            ctx['blog_slugs'] = blog_slugs
+            ctx["blog_slugs"] = blog_slugs
 
         if self.blog_tags:
             blog = blog.filter_by_tags(*self.blog_tags)
-            ctx['blog_tags'] = self.blog_tags
+            ctx["blog_tags"] = self.blog_tags
 
         if self.blog_posts_limit:
-            blog = blog[:self.blog_posts_limit]
+            blog = blog[: self.blog_posts_limit]
 
         try:
             # run the query here so that we can catch exceptions

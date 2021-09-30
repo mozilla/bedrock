@@ -9,17 +9,17 @@ from pages.firefox.new.platform import PlatformDownloadPage
 
 @pytest.mark.smoke
 @pytest.mark.nondestructive
-@pytest.mark.parametrize('slug', ['windows', 'mac', 'linux'])
+@pytest.mark.parametrize("slug", ["windows", "mac", "linux"])
 def test_download_buttons_are_displayed(slug, base_url, selenium):
     page = PlatformDownloadPage(selenium, base_url, slug=slug).open()
     assert page.download_button.is_displayed
 
 
 # Firefox and Internet Explorer don't cope well with file prompts whilst using Selenium.
-@pytest.mark.skip_if_firefox(reason='http://saucelabs.com/jobs/5a8a62a7620f489d92d6193fa67cf66b')
-@pytest.mark.skip_if_internet_explorer(reason='https://github.com/SeleniumHQ/selenium/issues/448')
+@pytest.mark.skip_if_firefox(reason="http://saucelabs.com/jobs/5a8a62a7620f489d92d6193fa67cf66b")
+@pytest.mark.skip_if_internet_explorer(reason="https://github.com/SeleniumHQ/selenium/issues/448")
 @pytest.mark.nondestructive
-@pytest.mark.parametrize('slug', ['windows', 'mac', 'linux'])
+@pytest.mark.parametrize("slug", ["windows", "mac", "linux"])
 def test_click_download_button(slug, base_url, selenium):
     page = PlatformDownloadPage(selenium, base_url, slug=slug).open()
     thank_you_page = page.download_firefox()

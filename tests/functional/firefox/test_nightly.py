@@ -7,7 +7,7 @@ import pytest
 from pages.firefox.nightly import FirstRunPage
 
 
-@pytest.mark.skip_if_not_firefox(reason='Firstrun page is shown to Firefox only.')
+@pytest.mark.skip_if_not_firefox(reason="Firstrun page is shown to Firefox only.")
 @pytest.mark.nondestructive
 def test_first_run(base_url, selenium):
     page = FirstRunPage(selenium, base_url).open()

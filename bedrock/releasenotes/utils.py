@@ -11,21 +11,20 @@ def get_data_version():
 
     This will ensure that the cache is invalidated when the repo is updated.
     """
-    repo = GitRepo(settings.RELEASE_NOTES_PATH,
-                   settings.RELEASE_NOTES_REPO,
-                   branch_name=settings.RELEASE_NOTES_BRANCH)
+    repo = GitRepo(settings.RELEASE_NOTES_PATH, settings.RELEASE_NOTES_REPO, branch_name=settings.RELEASE_NOTES_BRANCH)
     git_ref = repo.get_db_latest()
     if git_ref is None:
-        git_ref = 'default'
+        git_ref = "default"
 
     return git_ref
 
 
 class ReleaseMemoizer(Memoizer):
     """A memoizer class that uses the git hash as the version"""
+
     def __init__(self, version_timeout=300):
         self.version_timeout = version_timeout
-        return super(ReleaseMemoizer, self).__init__(cache=caches['release-notes'])
+        return super(ReleaseMemoizer, self).__init__(cache=caches["release-notes"])
 
     def _memoize_make_version_hash(self):
         return get_data_version()

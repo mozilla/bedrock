@@ -8,7 +8,7 @@ from pages.firefox.browsers.what_is_a_browser import WhatIsABrowserPage
 
 
 @pytest.mark.nondestructive
-@pytest.mark.skip_if_firefox(reason='Primary download button shown only to Firefox users.')
+@pytest.mark.skip_if_firefox(reason="Primary download button shown only to Firefox users.")
 def test_download_buttons_are_displayed(base_url, selenium):
     page = WhatIsABrowserPage(selenium, base_url).open()
     assert page.primary_download_button.is_displayed

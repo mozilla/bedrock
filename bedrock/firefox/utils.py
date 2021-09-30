@@ -11,8 +11,7 @@ def is_current_or_newer(user_version):
     """
     Return true if the version (X.Y only) is for the latest Firefox or newer.
     """
-    latest = Version(product_details.firefox_versions[
-        'LATEST_FIREFOX_VERSION'])
+    latest = Version(product_details.firefox_versions["LATEST_FIREFOX_VERSION"])
     user = Version(user_version)
 
     # check for ESR
@@ -21,6 +20,6 @@ def is_current_or_newer(user_version):
 
     # similar to the way comparison is done in the Version class,
     # but only using the major and minor versions.
-    latest_int = int('%d%02d' % (latest.major, latest.minor1))
-    user_int = int('%d%02d' % (user.major or 0, user.minor1 or 0))
+    latest_int = int("%d%02d" % (latest.major, latest.minor1))
+    user_int = int("%d%02d" % (user.major or 0, user.minor1 or 0))
     return user_int >= latest_int

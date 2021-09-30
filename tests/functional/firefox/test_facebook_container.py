@@ -7,7 +7,7 @@ import pytest
 from pages.firefox.facebook_container import FacebookContainerPage
 
 
-@pytest.mark.skip_if_not_firefox(reason='Addon link is shown only to Firefox users.')
+@pytest.mark.skip_if_not_firefox(reason="Addon link is shown only to Firefox users.")
 @pytest.mark.nondestructive
 def test_facebook_container_link_is_displayed(base_url, selenium):
     page = FacebookContainerPage(selenium, base_url).open()
@@ -15,7 +15,7 @@ def test_facebook_container_link_is_displayed(base_url, selenium):
 
 
 @pytest.mark.smoke
-@pytest.mark.skip_if_firefox(reason='Firefox download button is shown only to non-Firefox users.')
+@pytest.mark.skip_if_firefox(reason="Firefox download button is shown only to non-Firefox users.")
 @pytest.mark.nondestructive
 def test_firefox_download_button_is_displayed(base_url, selenium):
     page = FacebookContainerPage(selenium, base_url).open()

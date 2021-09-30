@@ -5,9 +5,11 @@ from everett.manager import (
 )
 
 
-config = ConfigManager([
-    # first check for environment variables
-    ConfigOSEnv(),
-    # then look in the .env file
-    ConfigEnvFileEnv('.env'),
-])
+config = ConfigManager(
+    [
+        # first check for environment variables
+        ConfigOSEnv(),
+        # then look in the .env file
+        ConfigEnvFileEnv(".env"),
+    ]
+)

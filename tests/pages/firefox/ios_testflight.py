@@ -10,19 +10,19 @@ from pages.base import BasePage
 
 class iOSTestFlightPage(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/firefox/ios/testflight/'
+    _URL_TEMPLATE = "/{locale}/firefox/ios/testflight/"
 
-    _email_locator = (By.ID, 'id_email')
-    _html_format_locator = (By.ID, 'format-html')
-    _privacy_policy_checkbox_locator = (By.ID, 'id_privacy')
+    _email_locator = (By.ID, "id_email")
+    _html_format_locator = (By.ID, "format-html")
+    _privacy_policy_checkbox_locator = (By.ID, "id_privacy")
     _privacy_policy_link_locator = (By.CSS_SELECTOR, 'label[for="id_privacy"] a')
-    _submit_button_locator = (By.ID, 'newsletter-submit')
-    _terms_checkbox_locator = (By.ID, 'id_terms')
+    _submit_button_locator = (By.ID, "newsletter-submit")
+    _terms_checkbox_locator = (By.ID, "id_terms")
     _terms_link_locator = (By.CSS_SELECTOR, 'label[for="id_terms"] a')
-    _text_format_locator = (By.ID, 'format-text')
-    _thank_you_locator = (By.ID, 'newsletter-thanks')
-    _form_details_locator = (By.ID, 'newsletter-details')
-    _error_list_locator = (By.ID, 'newsletter-errors')
+    _text_format_locator = (By.ID, "format-text")
+    _thank_you_locator = (By.ID, "newsletter-thanks")
+    _form_details_locator = (By.ID, "newsletter-details")
+    _error_list_locator = (By.ID, "newsletter-errors")
 
     @property
     def is_form_error_displayed(self):
@@ -30,7 +30,7 @@ class iOSTestFlightPage(BasePage):
 
     @property
     def email(self):
-        return self.find_element(*self._email_locator).get_attribute('value')
+        return self.find_element(*self._email_locator).get_attribute("value")
 
     @property
     def html_format_selected(self):
@@ -64,19 +64,19 @@ class iOSTestFlightPage(BasePage):
 
     def accept_privacy_policy(self):
         el = self.find_element(*self._privacy_policy_checkbox_locator)
-        assert not el.is_selected(), 'Privacy policy has already been accepted'
+        assert not el.is_selected(), "Privacy policy has already been accepted"
         el.click()
-        assert el.is_selected(), 'Privacy policy has not been accepted'
+        assert el.is_selected(), "Privacy policy has not been accepted"
 
     def accept_terms(self):
         el = self.find_element(*self._terms_checkbox_locator)
-        assert not el.is_selected(), 'Terms have already been accepted'
+        assert not el.is_selected(), "Terms have already been accepted"
         el.click()
-        assert el.is_selected(), 'Terms have not been accepted'
+        assert el.is_selected(), "Terms have not been accepted"
 
     def click_sign_me_up(self, expected_result=None):
         self.find_element(*self._submit_button_locator).click()
-        if expected_result == 'error':
+        if expected_result == "error":
             self.wait.until(expected.visibility_of_element_located(self._error_list_locator))
         else:
             self.wait.until(expected.visibility_of_element_located(self._thank_you_locator))
@@ -90,14 +90,13 @@ class iOSTestFlightPage(BasePage):
     def expand_form(self):
         # scroll newsletter into view before expanding the form
         self.scroll_element_into_view(*self._email_locator)
-        assert not self.is_form_detail_displayed, 'Form detail is already displayed'
+        assert not self.is_form_detail_displayed, "Form detail is already displayed"
         # Click the submit button to expand the form when not visible.
         # Ideally here we would focus on the email field, but Selenium has issues
         # dealing with focus events when the window is not active.
         # See bug https://bugzilla.mozilla.org/show_bug.cgi?id=704583
         self.find_element(*self._submit_button_locator).click()
-        self.wait.until(expected.visibility_of_element_located(
-            self._privacy_policy_checkbox_locator))
+        self.wait.until(expected.visibility_of_element_located(self._privacy_policy_checkbox_locator))
 
     @property
     def is_form_detail_displayed(self):

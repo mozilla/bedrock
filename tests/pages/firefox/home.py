@@ -11,19 +11,19 @@ from pages.regions.sticky_promo import StickyPromo
 
 class FirefoxHomePage(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/firefox/'
+    _URL_TEMPLATE = "/{locale}/firefox/"
 
     # browser download menu list
-    _browser_menu_list_locator = (By.ID, 'test-menu-browsers-wrapper')
+    _browser_menu_list_locator = (By.ID, "test-menu-browsers-wrapper")
 
     # facebook container extention link visiability
-    _facebook_container_link_locator = (By.ID, 'test-fbc')
+    _facebook_container_link_locator = (By.ID, "test-fbc")
 
     # floating/sticky box - download link
-    _sticky_promo_modal_content_locator = (By.CSS_SELECTOR, '.mzp-c-sticky-promo')
+    _sticky_promo_modal_content_locator = (By.CSS_SELECTOR, ".mzp-c-sticky-promo")
 
     # Used as a scroll target to move down the page, to trigger the sticky promo element
-    _page_promise_content_locator = (By.CSS_SELECTOR, '.t-promise')
+    _page_promise_content_locator = (By.CSS_SELECTOR, ".t-promise")
 
     @property
     def fb_container_is_displayed(self):
@@ -35,11 +35,11 @@ class FirefoxHomePage(BasePage):
         return MenuList(self, root=el)
 
     def init_promo(self):
-        assert not self.is_promo_displayed, 'Promo detail is not displayed'
+        assert not self.is_promo_displayed, "Promo detail is not displayed"
         # scroll down page to trigger promo to display
         self.scroll_element_into_view(*self._page_promise_content_locator)
         promo = self.find_element(*self._sticky_promo_modal_content_locator)
-        self.wait.until(lambda s: 'is-displayed' in promo.get_attribute('class'))
+        self.wait.until(lambda s: "is-displayed" in promo.get_attribute("class"))
 
     @property
     def is_promo_displayed(self):

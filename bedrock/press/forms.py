@@ -8,88 +8,41 @@ from django import forms
 
 from lib.l10n_utils.dotlang import _, _lazy
 
-from bedrock.mozorg.forms import (DateInput, EmailInput, HoneyPotWidget,
-                                  NumberInput, TelInput, TimeInput, URLInput)
+from bedrock.mozorg.forms import DateInput, EmailInput, HoneyPotWidget, NumberInput, TelInput, TimeInput, URLInput
 
 
 SPEAKER_REQUEST_FILE_SIZE_LIMIT = 5242880  # 5MB
 
 
 class PressInquiryForm(forms.Form):
-    jobtitle = forms.CharField(
-        required=True,
-        widget=forms.TextInput(
-            attrs={
-                'class': 'required',
-                'required': 'required',
-                'aria-required': 'true'
-            }
-        )
-    )
-    name = forms.CharField(
-        required=True,
-        widget=forms.TextInput(
-            attrs={
-                'class': 'required',
-                'required': 'required',
-                'aria-required': 'true'
-            }
-        )
-    )
+    jobtitle = forms.CharField(required=True, widget=forms.TextInput(attrs={"class": "required", "required": "required", "aria-required": "true"}))
+    name = forms.CharField(required=True, widget=forms.TextInput(attrs={"class": "required", "required": "required", "aria-required": "true"}))
     user_email = forms.EmailField(
         max_length=254,  # max length allowed for emails
         required=True,
         widget=EmailInput(
             attrs={
-                'required': 'required',
-                'class': 'required',
-                'aria-required': 'true',
+                "required": "required",
+                "class": "required",
+                "aria-required": "true",
             }
         ),
     )
-    media_org = forms.CharField(
-        required=True,
-        widget=forms.TextInput(
-            attrs={
-                'class': 'required',
-                'required': 'required',
-                'aria-required': 'true'
-            }
-        )
-    )
+    media_org = forms.CharField(required=True, widget=forms.TextInput(attrs={"class": "required", "required": "required", "aria-required": "true"}))
     inquiry = forms.CharField(
-        required=True,
-        widget=forms.Textarea(
-            attrs={
-                'class': 'required',
-                'required': 'required',
-                'aria-required': 'true',
-                'rows': '',
-                'cols': ''
-            }
-        )
+        required=True, widget=forms.Textarea(attrs={"class": "required", "required": "required", "aria-required": "true", "rows": "", "cols": ""})
     )
-    deadline = forms.CharField(
-        required=True,
-        widget=DateInput(
-            attrs={
-                'class': 'required',
-                'required': 'required',
-                'aria-required': 'true'
-            }
-        )
-    )
+    deadline = forms.CharField(required=True, widget=DateInput(attrs={"class": "required", "required": "required", "aria-required": "true"}))
 
     # honeypot
     office_fax = forms.CharField(widget=HoneyPotWidget, required=False)
 
     def clean_office_fax(self):
         cleaned_data = super(PressInquiryForm, self).clean()
-        honeypot = cleaned_data.pop('office_fax', None)
+        honeypot = cleaned_data.pop("office_fax", None)
 
         if honeypot:
-            raise forms.ValidationError(
-                _('Your submission could not be processed'))
+            raise forms.ValidationError(_("Your submission could not be processed"))
 
 
 class SpeakerRequestForm(forms.Form):
@@ -98,13 +51,13 @@ class SpeakerRequestForm(forms.Form):
         max_length=255,
         required=True,
         error_messages={
-            'required': _lazy(u'Please enter a name for the event.'),
+            "required": _lazy("Please enter a name for the event."),
         },
         widget=forms.TextInput(
             attrs={
-                'class': 'required',
-                'required': 'required',
-                'aria-required': 'true',
+                "class": "required",
+                "required": "required",
+                "aria-required": "true",
             }
         ),
     )
@@ -112,41 +65,41 @@ class SpeakerRequestForm(forms.Form):
         max_length=2000,
         required=True,
         error_messages={
-            'required': _lazy(u'Please enter a URL.'),
-            'invalid': _lazy(u'Please enter a valid URL.'),
+            "required": _lazy("Please enter a URL."),
+            "invalid": _lazy("Please enter a valid URL."),
         },
         widget=URLInput(
             attrs={
-                'class': 'required',
-                'required': 'required',
-                'aria-required': 'true',
-                'placeholder': _lazy(u'http://www.my-event.com'),
+                "class": "required",
+                "required": "required",
+                "aria-required": "true",
+                "placeholder": _lazy("http://www.my-event.com"),
             }
         ),
     )
     sr_event_date = forms.CharField(
         required=True,
         error_messages={
-            'required': _lazy(u'Please provide a date.'),
+            "required": _lazy("Please provide a date."),
         },
         widget=DateInput(
             attrs={
-                'class': 'required',
-                'required': 'required',
-                'aria-required': 'true',
+                "class": "required",
+                "required": "required",
+                "aria-required": "true",
             }
         ),
     )
     sr_event_time = forms.CharField(
         required=True,
         error_messages={
-            'required': _lazy(u'Please provide a time.'),
+            "required": _lazy("Please provide a time."),
         },
         widget=TimeInput(
             attrs={
-                'class': 'required',
-                'required': 'required',
-                'aria-required': 'true',
+                "class": "required",
+                "required": "required",
+                "aria-required": "true",
             }
         ),
     )
@@ -165,9 +118,9 @@ class SpeakerRequestForm(forms.Form):
         required=True,
         widget=forms.TextInput(
             attrs={
-                'required': 'required',
-                'class': 'required',
-                'aria-required': 'true',
+                "required": "required",
+                "class": "required",
+                "aria-required": "true",
             }
         ),
     )
@@ -188,13 +141,13 @@ class SpeakerRequestForm(forms.Form):
         max_length=254,  # max length allowed for emails
         required=True,
         error_messages={
-            'invalid': _lazy(u'Please enter a valid email address'),
+            "invalid": _lazy("Please enter a valid email address"),
         },
         widget=EmailInput(
             attrs={
-                'required': 'required',
-                'class': 'required',
-                'aria-required': 'true',
+                "required": "required",
+                "class": "required",
+                "aria-required": "true",
             }
         ),
     )
@@ -203,7 +156,7 @@ class SpeakerRequestForm(forms.Form):
         required=False,
         widget=forms.TextInput(
             attrs={
-                'placeholder': _lazy(u'http://www.my-company.com'),
+                "placeholder": _lazy("http://www.my-company.com"),
             }
         ),
     )
@@ -229,8 +182,8 @@ class SpeakerRequestForm(forms.Form):
         required=False,
         widget=NumberInput(
             attrs={
-                'min': 1,
-                'placeholder': 25,
+                "min": 1,
+                "placeholder": 25,
             }
         ),
     )
@@ -239,8 +192,8 @@ class SpeakerRequestForm(forms.Form):
         required=False,
         widget=forms.Textarea(
             attrs={
-                'rows': '',
-                'cols': '',
+                "rows": "",
+                "cols": "",
             }
         ),
     )
@@ -249,8 +202,8 @@ class SpeakerRequestForm(forms.Form):
         required=False,
         widget=forms.Textarea(
             attrs={
-                'rows': '',
-                'cols': '',
+                "rows": "",
+                "cols": "",
             }
         ),
     )
@@ -259,8 +212,8 @@ class SpeakerRequestForm(forms.Form):
         required=False,
         widget=forms.Textarea(
             attrs={
-                'rows': '',
-                'cols': '',
+                "rows": "",
+                "cols": "",
             }
         ),
     )
@@ -269,8 +222,8 @@ class SpeakerRequestForm(forms.Form):
         required=False,
         widget=forms.Textarea(
             attrs={
-                'rows': '',
-                'cols': '',
+                "rows": "",
+                "cols": "",
             }
         ),
     )
@@ -279,8 +232,8 @@ class SpeakerRequestForm(forms.Form):
         required=False,
         widget=forms.Textarea(
             attrs={
-                'rows': '',
-                'cols': '',
+                "rows": "",
+                "cols": "",
             }
         ),
     )
@@ -289,8 +242,8 @@ class SpeakerRequestForm(forms.Form):
         required=False,
         widget=forms.Textarea(
             attrs={
-                'rows': '',
-                'cols': '',
+                "rows": "",
+                "cols": "",
             }
         ),
     )
@@ -303,11 +256,11 @@ class SpeakerRequestForm(forms.Form):
     sr_presentation_type = forms.MultipleChoiceField(
         required=False,
         choices=(
-            ('keynote', _lazy(u'Keynote')),
-            ('presentation', _lazy(u'Presentation')),
-            ('fireside chat', _lazy(u'Fireside Chat')),
-            ('panel', _lazy(u'Panel')),
-            ('other', _lazy(u'Other')),
+            ("keynote", _lazy("Keynote")),
+            ("presentation", _lazy("Presentation")),
+            ("fireside chat", _lazy("Fireside Chat")),
+            ("panel", _lazy("Panel")),
+            ("other", _lazy("Other")),
         ),
         widget=forms.CheckboxSelectMultiple(),
     )
@@ -324,11 +277,11 @@ class SpeakerRequestForm(forms.Form):
         required=False,
         widget=NumberInput(
             attrs={
-                'min': 0.5,
-                'step': 0.5,
-                'placeholder': 2.5,
+                "min": 0.5,
+                "step": 0.5,
+                "placeholder": 2.5,
             }
-        )
+        ),
     )
 
     # additional info fields
@@ -345,15 +298,13 @@ class SpeakerRequestForm(forms.Form):
 
         if attachment:
             if attachment.size > SPEAKER_REQUEST_FILE_SIZE_LIMIT:
-                raise forms.ValidationError(
-                    _("Attachment must not exceed 5MB"))
+                raise forms.ValidationError(_("Attachment must not exceed 5MB"))
 
         return attachment
 
     def clean_office_fax(self):
         cleaned_data = super(SpeakerRequestForm, self).clean()
-        honeypot = cleaned_data.pop('office_fax', None)
+        honeypot = cleaned_data.pop("office_fax", None)
 
         if honeypot:
-            raise forms.ValidationError(
-                _('Your submission could not be processed'))
+            raise forms.ValidationError(_("Your submission could not be processed"))

@@ -14,18 +14,18 @@ from fluent.syntax.ast import GroupComment, Message
 from lib.l10n_utils import translation
 
 __all__ = [
-    'fluent_l10n',
-    'ftl',
-    'ftl_file_is_active',
-    'ftl_has_messages',
-    'ftl_lazy',
-    'get_metadata_file_path',
-    'has_messages',
-    'translate',
+    "fluent_l10n",
+    "ftl",
+    "ftl_file_is_active",
+    "ftl_has_messages",
+    "ftl_lazy",
+    "get_metadata_file_path",
+    "has_messages",
+    "translate",
 ]
-cache = caches['fluent']
-REQUIRED_RE = re.compile(r'^required\b', re.MULTILINE | re.IGNORECASE)
-TERM_RE = re.compile(r'\{\s*-[a-z-]+\s*\}')
+cache = caches["fluent"]
+REQUIRED_RE = re.compile(r"^required\b", re.MULTILINE | re.IGNORECASE)
+TERM_RE = re.compile(r"\{\s*-[a-z-]+\s*\}")
 
 
 class FluentL10n(FluentLocalization):
@@ -58,7 +58,7 @@ class FluentL10n(FluentLocalization):
         :return: list of message IDs
         """
         messages = set()
-        for resources in self.resource_loader.resources('en', self.resource_ids):
+        for resources in self.resource_loader.resources("en", self.resource_ids):
             for resource in resources:
                 in_required = False
                 for item in resource.body:
@@ -89,7 +89,7 @@ class FluentL10n(FluentLocalization):
 
     def has_message(self, message_id):
         # assume English locales have the message
-        if self.locales[0].startswith('en-'):
+        if self.locales[0].startswith("en-"):
             return True
 
         return message_id in self._localized_message_ids
@@ -97,6 +97,7 @@ class FluentL10n(FluentLocalization):
 
 class FluentResourceLoader:
     """A resource loader that will add english brand terms to every bundle"""
+
     @staticmethod
     def resources(locale, resource_ids):
         for root in settings.FLUENT_PATHS:
@@ -106,12 +107,13 @@ class FluentResourceLoader:
 
 
 def _cache_key(*args, **kwargs):
-    key = f'fluent:{args}:{kwargs}'
+    key = f"fluent:{args}:{kwargs}"
     return md5(force_bytes(key)).hexdigest()
 
 
 def memoize(f):
     """Decorator to cache the results of expensive functions"""
+
     @wraps(f)
     def inner(*args, **kwargs):
         key = _cache_key(f.__name__, *args, **kwargs)
@@ -127,9 +129,10 @@ def memoize(f):
 
 def l10nize(f):
     """Decorator to create and pass in the l10n object"""
+
     @wraps(f)
     def inner(*args, **kwargs):
-        ftl_files = kwargs.get('ftl_files', [])
+        ftl_files = kwargs.get("ftl_files", [])
         if isinstance(ftl_files, str):
             ftl_files = [ftl_files]
         elif isinstance(ftl_files, tuple):
@@ -137,8 +140,8 @@ def l10nize(f):
 
         # can not use += here because that mutates the original list
         ftl_files = ftl_files + settings.FLUENT_DEFAULT_FILES
-        locale = kwargs.get('locale') or translation.get_language(True)
-        l10n = fluent_l10n([locale, 'en'], ftl_files)
+        locale = kwargs.get("locale") or translation.get_language(True)
+        l10n = fluent_l10n([locale, "en"], ftl_files)
         return f(l10n, *args, **kwargs)
 
     return inner
@@ -154,8 +157,8 @@ def load_fluent_resources(root, locale, resource_ids):
 
         resources.append(load_fluent_file(path))
     if resources:
-        if locale != 'en':
-            path = settings.FLUENT_LOCAL_PATH.joinpath('en', 'brands.ftl')
+        if locale != "en":
+            path = settings.FLUENT_LOCAL_PATH.joinpath("en", "brands.ftl")
             resources.append(load_fluent_file(path))
 
     return resources
@@ -163,12 +166,12 @@ def load_fluent_resources(root, locale, resource_ids):
 
 @memoize
 def load_fluent_file(path):
-    with path.open(encoding='utf-8') as ftl_file:
+    with path.open(encoding="utf-8") as ftl_file:
         return FluentResource(ftl_file.read())
 
 
 def get_metadata_file_path(ftl_file):
-    return settings.FLUENT_REPO_PATH.joinpath('metadata', ftl_file).with_suffix('.json')
+    return settings.FLUENT_REPO_PATH.joinpath("metadata", ftl_file).with_suffix(".json")
 
 
 def get_metadata(ftl_file):
@@ -185,7 +188,7 @@ def write_metadata(ftl_file, data):
     if not metadata_path.exists():
         metadata_path.parent.mkdir(parents=True, exist_ok=True)
 
-    with metadata_path.open('w') as mdf:
+    with metadata_path.open("w") as mdf:
         json.dump(data, mdf, indent=2, sort_keys=True)
 
 
@@ -207,9 +210,9 @@ def get_active_locales(ftl_files, force=False):
     for ftl_file in ftl_files:
         file_locales = set()
         metadata = get_metadata(ftl_file)
-        if metadata and 'active_locales' in metadata:
-            file_locales.update(metadata['active_locales'])
-            i_locales = metadata.get('inactive_locales')
+        if metadata and "active_locales" in metadata:
+            file_locales.update(metadata["active_locales"])
+            i_locales = metadata.get("inactive_locales")
             if i_locales:
                 file_locales.difference_update(i_locales)
 
@@ -229,7 +232,7 @@ def fluent_l10n(locales, files):
         locales = [locales]
 
     # file IDs may not have file extension
-    files = [f'{f}.ftl' if not f.endswith('.ftl') else f for f in files]
+    files = [f"{f}.ftl" if not f.endswith(".ftl") else f for f in files]
     return FluentL10n(locales, files, FluentResourceLoader)
 
 

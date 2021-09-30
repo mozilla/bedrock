@@ -10,11 +10,11 @@ from pages.regions.download_button import DownloadButton
 
 class LockwisePage(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/firefox/lockwise/'
+    _URL_TEMPLATE = "/{locale}/firefox/lockwise/"
 
     _app_store_button_locator = (By.CSS_SELECTOR, '.mobile-download-buttons > a[data-cta-text="apple-app-store"]')
     _play_store_button_locator = (By.CSS_SELECTOR, '.mobile-download-buttons > a[data-cta-text="google-play-store"]')
-    _download_button_locator = (By.ID, 'download-button-desktop-release')
+    _download_button_locator = (By.ID, "download-button-desktop-release")
 
     @property
     def is_app_store_button_displayed(self):

@@ -8,15 +8,20 @@ index = "firefox/developer/index.lang"
 developer_quantum = "firefox/products/developer-quantum.lang"
 shared = "firefox/shared.lang"
 
+
 def migrate(ctx):
     """Migrate bedrock/firefox/templates/firefox/developer/index.html, part {index}."""
 
     ctx.add_transforms(
         "firefox/developer.ftl",
         "firefox/developer.ftl",
-        transforms_from("""
+        transforms_from(
+            """
 firefox-developer-page-title = { -brand-name-firefox-developer-edition }
-""", developer_quantum=developer_quantum) + [
+""",
+            developer_quantum=developer_quantum,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("firefox-developer-firefox-developer-edition-desc"),
                 value=REPLACE(
@@ -24,10 +29,12 @@ firefox-developer-page-title = { -brand-name-firefox-developer-edition }
                     "Firefox Developer Edition is the blazing fast browser that offers cutting edge developer tools and latest features like CSS Grid support and framework debugging",
                     {
                         "Firefox Developer Edition": TERM_REFERENCE("brand-name-firefox-developer-edition"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 firefox-developer-firefox-browser = { -brand-name-firefox-browser } { -brand-name-developer-edition }
 firefox-developer-welcome-to-your-new-favorite = {COPY(developer_quantum, "Welcome to your new favorite browser. Get the latest features, fast performance, and the development tools you need to build for the open web.",)}
 firefox-developer-speak-up = {COPY(developer_quantum, "Speak up",)}
@@ -37,7 +44,10 @@ firefox-developer-get-involved = {COPY(developer_quantum, "Get involved",)}
 firefox-developer-help-build-the-last = {COPY(developer_quantum, "Help build the last independent browser. Write code, fix bugs, make add-ons, and more.",)}
 firefox-developer-start-now = {COPY(developer_quantum, "Start now",)}
 firefox-developer-design-code-test = {COPY(developer_quantum, "Design. Code. Test. Refine.",)}
-""", developer_quantum=developer_quantum) + [
+""",
+            developer_quantum=developer_quantum,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("firefox-developer-build-and-perfect"),
                 value=REPLACE(
@@ -45,10 +55,12 @@ firefox-developer-design-code-test = {COPY(developer_quantum, "Design. Code. Tes
                     "Build and Perfect your sites<br> with Firefox DevTools",
                     {
                         "Firefox DevTools": TERM_REFERENCE("brand-name-firefox-devtools"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 firefox-developer-inspector = {COPY(developer_quantum, "Inspector",)}
 firefox-developer-inspect-and-refine = {COPY(developer_quantum, "Inspect and refine code to build pixel-perfect layouts.",)}
 firefox-developer-learn-about-page-inspector = {COPY(developer_quantum, "Learn more about Page Inspector",)}
@@ -81,7 +93,10 @@ firefox-developer-edit-and-manage = {COPY(developer_quantum, "Edit and manage al
 firefox-developer-learn-more-about-style = {COPY(developer_quantum, "Learn more about Style Editor",)}
 firefox-developer-made-for-developers = {COPY(developer_quantum, "The browser made for developers",)}
 firefox-developer-all-the-latest = {COPY(developer_quantum, "All the latest developer tools in beta, plus <strong>experimental features</strong> like the Multi-line Console Editor and WebSocket Inspector.",)}
-""", developer_quantum=developer_quantum) + [
+""",
+            developer_quantum=developer_quantum,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("firefox-developer-welcome-to-firefox-browser"),
                 value=REPLACE(
@@ -90,8 +105,8 @@ firefox-developer-all-the-latest = {COPY(developer_quantum, "All the latest deve
                     {
                         "Firefox Browser": TERM_REFERENCE("brand-name-firefox-browser"),
                         "Developer Edition": TERM_REFERENCE("brand-name-developer-edition"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-developer-congrats-you-now-have"),
@@ -101,8 +116,8 @@ firefox-developer-all-the-latest = {COPY(developer_quantum, "All the latest deve
                     {
                         "Firefox Browser": TERM_REFERENCE("brand-name-firefox-browser"),
                         "Developer Edition": TERM_REFERENCE("brand-name-developer-edition"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-developer-a-separate-profile"),
@@ -111,14 +126,19 @@ firefox-developer-all-the-latest = {COPY(developer_quantum, "All the latest deve
                     "A <strong>separate profile and path</strong> so you can easily run it alongside Release or Beta Firefox.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 firefox-developer-preferences-tailored = {COPY(developer_quantum, "Preferences <strong>tailored for web developers</strong>: Browser and remote debugging are enabled by default, as are the dark theme and developer toolbar button.",)}
 firefox-developer-new-tools = {COPY(developer_quantum, "New Tools",)}
 firefox-developer-inactive-css = {COPY(developer_quantum, "Inactive CSS",)}
-""", developer_quantum=developer_quantum) + [
+""",
+            developer_quantum=developer_quantum,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("firefox-developer-firefox-devtools-now-grays-out"),
                 value=REPLACE(
@@ -126,8 +146,8 @@ firefox-developer-inactive-css = {COPY(developer_quantum, "Inactive CSS",)}
                     "Firefox DevTools now grays out CSS declarations that don’t have an effect on the page. When you hover over the info icon, you’ll see a useful message about why the CSS is not being applied, including a hint about how to fix the problem.",
                     {
                         "Firefox DevTools": TERM_REFERENCE("brand-name-firefox-devtools"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-developer-firefox-devtools"),
@@ -136,8 +156,8 @@ firefox-developer-inactive-css = {COPY(developer_quantum, "Inactive CSS",)}
                     "Firefox DevTools",
                     {
                         "Firefox DevTools": TERM_REFERENCE("brand-name-firefox-devtools"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-developer-the-new-firefox-devtools"),
@@ -146,17 +166,21 @@ firefox-developer-inactive-css = {COPY(developer_quantum, "Inactive CSS",)}
                     "The new Firefox DevTools are powerful, flexible, and best of all, hackable. This includes a best-in-class JavaScript debugger, which can target multiple browsers and is built in React and Redux.",
                     {
                         "Firefox DevTools": TERM_REFERENCE("brand-name-firefox-devtools"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 firefox-developer-master-css-grid = {COPY(developer_quantum, "Master CSS Grid",)}
 firefox-developer-next-gen-css-engine = {COPY(developer_quantum, "Next-Gen CSS Engine",)}
 firefox-developer-a-next-generation = {COPY(developer_quantum, "A Next-Generation CSS Engine",)}
 firefox-developer-master-innovative-features = {COPY(developer_quantum, "Innovative Features",)}
 firefox-developer-want-to-be-on-the-cutting-edge = {COPY(developer_quantum, "Want to be on the cutting-edge?",)}
-""", developer_quantum=developer_quantum) + [
-
+""",
+            developer_quantum=developer_quantum,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("firefox-developer-firefox-nightly-receives"),
                 value=REPLACE(
@@ -164,8 +188,8 @@ firefox-developer-want-to-be-on-the-cutting-edge = {COPY(developer_quantum, "Wan
                     "Firefox Nightly receives daily updates and allows you to access features months before they go mainstream.",
                     {
                         "Firefox Nightly": TERM_REFERENCE("brand-name-firefox-nightly"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-developer-firefox-quantum-includes"),
@@ -174,8 +198,8 @@ firefox-developer-want-to-be-on-the-cutting-edge = {COPY(developer_quantum, "Wan
                     "Firefox Quantum includes a new CSS engine, written in Rust, that has state-of-the-art innovations and is blazingly fast.",
                     {
                         "Firefox Quantum": TERM_REFERENCE("brand-name-firefox-quantum"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-developer-firefox-is-the-only-browser"),
@@ -184,14 +208,19 @@ firefox-developer-want-to-be-on-the-cutting-edge = {COPY(developer_quantum, "Wan
                     "Firefox is the only browser with tools built specifically for building and designing with CSS Grid. These tools allow you to visualize the grid, display associated area names, preview transformations on the grid and much more.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 firefox-developer-convenient-features = {COPY(developer_quantum, "Convenient Features",)}
 firefox-developer-faster-performance = {COPY(developer_quantum, "Faster Performance",)}
 firefox-developer-shapes-editor = {COPY(developer_quantum, "Shapes Editor",)}
-""", developer_quantum=developer_quantum) + [
+""",
+            developer_quantum=developer_quantum,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("firefox-developer-firefox-devtools-has-a-brand-new-v2"),
                 value=REPLACE(
@@ -199,8 +228,8 @@ firefox-developer-shapes-editor = {COPY(developer_quantum, "Shapes Editor",)}
                     "Firefox DevTools has a brand new shape path editor that takes the guesswork out of fine-tuning your shape-outside and clip-path shapes by allowing you to very easily fine-tune your adjustments with a visual editor.",
                     {
                         "Firefox DevTools": TERM_REFERENCE("brand-name-firefox-devtools"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-developer-firefox-devtools-has-a-brand-new"),
@@ -209,13 +238,18 @@ firefox-developer-shapes-editor = {COPY(developer_quantum, "Shapes Editor",)}
                     "Firefox DevTools has a brand new shape path editor that takes the guesswork out of fine-tuning your shadow-outside and clip-path shapes by allowing you to very easily fine-tune your adjustments with a visual editor.",
                     {
                         "Firefox DevTools": TERM_REFERENCE("brand-name-firefox-devtools"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 firefox-developer-faster-innovation = {COPY(developer_quantum, "Faster Information",)}
 firefox-developer-fonts-panel = {COPY(developer_quantum, "Fonts Panel",)}
-""", developer_quantum=developer_quantum) + [
+""",
+            developer_quantum=developer_quantum,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("firefox-developer-the-new-fonts-panel"),
                 value=REPLACE(
@@ -223,8 +257,8 @@ firefox-developer-fonts-panel = {COPY(developer_quantum, "Fonts Panel",)}
                     "The new fonts panel in Firefox DevTools gives developers quick access to all of the information they need about the fonts being used in an element. It also includes valuable information such as the font source, weight, style and more.",
                     {
                         "Firefox DevTools": TERM_REFERENCE("brand-name-firefox-devtools"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-developer-firefox-developer-edition-sends"),
@@ -234,8 +268,8 @@ firefox-developer-fonts-panel = {COPY(developer_quantum, "Fonts Panel",)}
                     {
                         "Firefox Developer Edition": TERM_REFERENCE("brand-name-firefox-developer-edition"),
                         "Mozilla": TERM_REFERENCE("brand-name-mozilla"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-developer-download-the-firefox-browser"),
@@ -244,11 +278,11 @@ firefox-developer-fonts-panel = {COPY(developer_quantum, "Fonts Panel",)}
                     "Download the Firefox browser made for developers",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ]
-        )
+        ],
+    )
 
     ctx.add_transforms(
         "firefox/developer.ftl",
@@ -262,8 +296,8 @@ firefox-developer-fonts-panel = {COPY(developer_quantum, "Fonts Panel",)}
                     {
                         "Developer Edition": TERM_REFERENCE("brand-name-developer-edition"),
                         "Firefox Quantum": TERM_REFERENCE("brand-name-firefox-quantum"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-developer-firefox-has-been-rebuilt"),
@@ -272,11 +306,11 @@ firefox-developer-fonts-panel = {COPY(developer_quantum, "Fonts Panel",)}
                     "Firefox has been rebuilt from the ground-up to be faster, sleeker, and more powerful than ever.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ]
-        )
+        ],
+    )
 
     ctx.add_transforms(
         "firefox/developer.ftl",
@@ -290,8 +324,8 @@ firefox-developer-fonts-panel = {COPY(developer_quantum, "Fonts Panel",)}
                     {
                         "Developer Edition": TERM_REFERENCE("brand-name-developer-edition"),
                         "Firefox Quantum": TERM_REFERENCE("brand-name-firefox-quantum"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-developer-this-isnt-just-an-update"),
@@ -301,8 +335,8 @@ firefox-developer-fonts-panel = {COPY(developer_quantum, "Fonts Panel",)}
                     {
                         "Firefox Quantum": TERM_REFERENCE("brand-name-firefox-quantum"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ]
-        )
+        ],
+    )

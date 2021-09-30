@@ -8,15 +8,20 @@ base_download = "firefox/new/protocol/base_download.lang"
 quantum = "firefox/new/quantum.lang"
 main = "main.lang"
 
+
 def migrate(ctx):
     """Migrate bedrock/firefox/templates/firefox/new/protocol/base_download.html, part {index}."""
 
     ctx.add_transforms(
         "firefox/new/platform.ftl",
         "firefox/new/platform.ftl",
-        transforms_from("""
+        transforms_from(
+            """
 new-platform-free-web-browser = {COPY(quantum, "Free Web Browser",)}
-""", quantum=quantum) + [
+""",
+            quantum=quantum,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("new-platform-download-firefox"),
                 value=REPLACE(
@@ -24,8 +29,8 @@ new-platform-free-web-browser = {COPY(quantum, "Free Web Browser",)}
                     "Download Firefox",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("new-platform-download-the-fastest"),
@@ -34,8 +39,8 @@ new-platform-free-web-browser = {COPY(quantum, "Free Web Browser",)}
                     "Download the fastest Firefox ever",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("new-platform-faster-page-loading"),
@@ -44,8 +49,8 @@ new-platform-free-web-browser = {COPY(quantum, "Free Web Browser",)}
                     "Faster page loading, less memory usage and packed with features, the new Firefox is here.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("new-platform-the-new-firefox"),
@@ -54,12 +59,17 @@ new-platform-free-web-browser = {COPY(quantum, "Free Web Browser",)}
                     "The new <strong>Firefox</strong>",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 new-platform-2x-faster = {COPY(quantum, "2x Faster",)}
-""", quantum=quantum) + [
+""",
+            quantum=quantum,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("new-platform-the-best-firefox-ever"),
                 value=REPLACE(
@@ -67,12 +77,17 @@ new-platform-2x-faster = {COPY(quantum, "2x Faster",)}
                     "The best Firefox ever",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 new-platform-lightweight = {COPY(quantum, "Lightweight",)}
-""", quantum=quantum) + [
+""",
+            quantum=quantum,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("new-platform-uses-30-less-memory"),
                 value=REPLACE(
@@ -80,18 +95,23 @@ new-platform-lightweight = {COPY(quantum, "Lightweight",)}
                     "Uses 30% less memory than Chrome",
                     {
                         "Chrome": TERM_REFERENCE("brand-name-chrome"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 new-platform-powerfully-private = {COPY(quantum, "Powerfully private",)}
 new-platform-truly-private-browsing = {COPY(quantum, "Truly Private Browsing with Tracking Protection",)}
 new-platform-advanced-install-options = {COPY(quantum, "Advanced install options & other platforms",)}
 new-platform-download-in-another = {COPY(quantum, "Download in another language",)}
 new-platform-fix-a-problem = {COPY(quantum, "Fix a problem",)}
 new-platform-need-help = {COPY(main, "Need help?",)}
-""", quantum=quantum, main=main)
-        )
+""",
+            quantum=quantum,
+            main=main,
+        ),
+    )
 
     ctx.add_transforms(
         "firefox/new/platform.ftl",
@@ -110,10 +130,10 @@ new-platform-need-help = {COPY(main, "Need help?",)}
                         "Linux": TERM_REFERENCE("brand-name-linux"),
                         "macOS": TERM_REFERENCE("brand-name-mac"),
                         "iOS": TERM_REFERENCE("brand-name-ios"),
-                    }
-                )
+                    },
+                ),
             ),
-        ]
+        ],
     )
 
     ctx.add_transforms(
@@ -129,8 +149,8 @@ new-platform-need-help = {COPY(main, "Need help?",)}
                         "Mozilla": TERM_REFERENCE("brand-name-mozilla"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Linux": TERM_REFERENCE("brand-name-linux"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("new-platform-download-mozilla-desc-linux"),
@@ -141,8 +161,8 @@ new-platform-need-help = {COPY(main, "Need help?",)}
                         "Mozilla": TERM_REFERENCE("brand-name-mozilla"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Linux": TERM_REFERENCE("brand-name-linux"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("new-platform-download-the-fastest-linux"),
@@ -152,8 +172,8 @@ new-platform-need-help = {COPY(main, "Need help?",)}
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Linux": TERM_REFERENCE("brand-name-linux"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("new-platform-faster-page-loading-linux"),
@@ -163,8 +183,8 @@ new-platform-need-help = {COPY(main, "Need help?",)}
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Linux": TERM_REFERENCE("brand-name-linux"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("new-platform-firefox-for-linux"),
@@ -174,13 +194,18 @@ new-platform-need-help = {COPY(main, "Need help?",)}
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Linux": TERM_REFERENCE("brand-name-linux"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 new-platform-own-your-online-life = {COPY(quantum, "Own your online life.",)}
 new-platform-privacy-more-than = {COPY(quantum, "Privacy - more than a policy",)}
-""", quantum=quantum) + [
+""",
+            quantum=quantum,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("new-platform-your-life-your-business"),
                 value=REPLACE(
@@ -189,8 +214,8 @@ new-platform-privacy-more-than = {COPY(quantum, "Privacy - more than a policy",)
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Linux": TERM_REFERENCE("brand-name-linux"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("new-platform-speed-meet-security"),
@@ -200,12 +225,17 @@ new-platform-privacy-more-than = {COPY(quantum, "Privacy - more than a policy",)
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Chrome": TERM_REFERENCE("brand-name-chrome"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 new-platform-open-source = {COPY(quantum, "Open source",)}
-""", quantum=quantum) + [
+""",
+            quantum=quantum,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("new-platform-look-under-the-hood"),
                 value=REPLACE(
@@ -214,10 +244,10 @@ new-platform-open-source = {COPY(quantum, "Open source",)}
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Linux": TERM_REFERENCE("brand-name-linux"),
-                    }
-                )
+                    },
+                ),
             ),
-        ]
+        ],
     )
 
     ctx.add_transforms(
@@ -233,8 +263,8 @@ new-platform-open-source = {COPY(quantum, "Open source",)}
                         "Mozilla": TERM_REFERENCE("brand-name-mozilla"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Mac": TERM_REFERENCE("brand-name-mac-short"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("new-platform-download-mozilla-firefox-desc-mac"),
@@ -245,8 +275,8 @@ new-platform-open-source = {COPY(quantum, "Open source",)}
                         "Mozilla": TERM_REFERENCE("brand-name-mozilla"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Mac": TERM_REFERENCE("brand-name-mac-short"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("new-platform-download-the-fastest-mac"),
@@ -256,8 +286,8 @@ new-platform-open-source = {COPY(quantum, "Open source",)}
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Mac": TERM_REFERENCE("brand-name-mac-short"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("new-platform-faster-page-loading-mac"),
@@ -267,8 +297,8 @@ new-platform-open-source = {COPY(quantum, "Open source",)}
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Mac": TERM_REFERENCE("brand-name-mac-short"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("new-platform-firefox-respects-your"),
@@ -278,12 +308,17 @@ new-platform-open-source = {COPY(quantum, "Open source",)}
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Mac": TERM_REFERENCE("brand-name-mac-short"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 new-platform-privacy-comes-first = {COPY(quantum, "Privacy comes first",)}
-""", quantum=quantum) + [
+""",
+            quantum=quantum,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("new-platform-firefox-doesnt-spy"),
                 value=REPLACE(
@@ -291,8 +326,8 @@ new-platform-privacy-comes-first = {COPY(quantum, "Privacy comes first",)}
                     "Firefox doesn’t spy on searches. We stop third-party tracking cookies and give you full control.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("new-platform-get-speed-and-security"),
@@ -302,14 +337,18 @@ new-platform-privacy-comes-first = {COPY(quantum, "Privacy comes first",)}
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Mac": TERM_REFERENCE("brand-name-mac-short"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 new-platform-block-trackers = {COPY(quantum, "Block trackers",)}
 new-platform-be-the-master-of-your = {COPY(quantum, "Be the master of your domain with strict content blocking. Cut off all cookies and trackers.",)}
-""", quantum=quantum)
-        )
+""",
+            quantum=quantum,
+        ),
+    )
 
     ctx.add_transforms(
         "firefox/new/platform.ftl",
@@ -324,8 +363,8 @@ new-platform-be-the-master-of-your = {COPY(quantum, "Be the master of your domai
                         "Mozilla": TERM_REFERENCE("brand-name-mozilla"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Windows": TERM_REFERENCE("brand-name-windows"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("new-platform-download-mozilla-desc-windows"),
@@ -336,8 +375,8 @@ new-platform-be-the-master-of-your = {COPY(quantum, "Be the master of your domai
                         "Mozilla": TERM_REFERENCE("brand-name-mozilla"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Windows": TERM_REFERENCE("brand-name-windows"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("new-platform-download-the-fastest-windows"),
@@ -347,8 +386,8 @@ new-platform-be-the-master-of-your = {COPY(quantum, "Be the master of your domai
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Windows": TERM_REFERENCE("brand-name-windows"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("new-platform-faster-page-loading-windows"),
@@ -358,8 +397,8 @@ new-platform-be-the-master-of-your = {COPY(quantum, "Be the master of your domai
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Windows": TERM_REFERENCE("brand-name-windows"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("new-platform-firefox-fights"),
@@ -369,8 +408,8 @@ new-platform-be-the-master-of-your = {COPY(quantum, "Be the master of your domai
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Windows": TERM_REFERENCE("brand-name-windows"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("new-platform-firefox-moves-fast"),
@@ -379,12 +418,17 @@ new-platform-be-the-master-of-your = {COPY(quantum, "Be the master of your domai
                     "Firefox moves fast and treats your data with care - no ad tracking and no slowdown.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 new-platform-common-sense-privacy = {COPY(quantum, "Common sense privacy",)}
-""", quantum=quantum) + [
+""",
+            quantum=quantum,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("new-platform-live-your-life"),
                 value=REPLACE(
@@ -392,12 +436,17 @@ new-platform-common-sense-privacy = {COPY(quantum, "Common sense privacy",)}
                     "Live your life, Firefox isn’t watching. Choose what to share and when to share it.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 new-platform-seamless-setup = {COPY(quantum, "Seamless setup",)}
-""", quantum=quantum) + [
+""",
+            quantum=quantum,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("new-platform-easy-migration"),
                 value=REPLACE(
@@ -406,8 +455,8 @@ new-platform-seamless-setup = {COPY(quantum, "Seamless setup",)}
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Windows": TERM_REFERENCE("brand-name-windows"),
-                    }
-                )
+                    },
+                ),
             ),
-        ]
-        )
+        ],
+    )

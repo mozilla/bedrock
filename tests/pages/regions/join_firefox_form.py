@@ -9,9 +9,9 @@ from pages.base import BaseRegion
 
 class JoinFirefoxForm(BaseRegion):
 
-    _root_locator = (By.ID, 'fxa-email-form')
-    _email_locator = (By.ID, 'fxa-email-field')
-    _continue_button_locator = (By.ID, 'fxa-email-form-submit')
+    _root_locator = (By.ID, "fxa-email-form")
+    _email_locator = (By.ID, "fxa-email-field")
+    _continue_button_locator = (By.ID, "fxa-email-form-submit")
 
     @property
     def is_displayed(self):
@@ -24,7 +24,7 @@ class JoinFirefoxForm(BaseRegion):
     @property
     def email(self):
         el = self.find_element(*self._email_locator)
-        return el.get_attribute('value')
+        return el.get_attribute("value")
 
     def type_email(self, value):
         self.find_element(*self._email_locator).send_keys(value)
@@ -32,4 +32,4 @@ class JoinFirefoxForm(BaseRegion):
     def click_continue(self):
         self.wait.until(lambda s: self.is_enabled)
         self.find_element(*self._continue_button_locator).click()
-        self.wait.until(lambda s: '?action=email' in s.current_url)
+        self.wait.until(lambda s: "?action=email" in s.current_url)

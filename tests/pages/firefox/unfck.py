@@ -10,11 +10,11 @@ from pages.regions.download_button import DownloadButton
 
 class FirefoxUnfckPage(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/firefox/unfck/'
+    _URL_TEMPLATE = "/{locale}/firefox/unfck/"
 
-    _download_button_locator = (By.ID, 'download-button-desktop-release')
-    _send_to_mobile_button_locator = (By.CSS_SELECTOR, '.mzp-c-hero .cc-send-to-mobile .mzp-c-button')
-    _thank_you_message_locator = (By.CSS_SELECTOR, '.mzp-c-hero.mzp-t-firefox.show-firefox')
+    _download_button_locator = (By.ID, "download-button-desktop-release")
+    _send_to_mobile_button_locator = (By.CSS_SELECTOR, ".mzp-c-hero .cc-send-to-mobile .mzp-c-button")
+    _thank_you_message_locator = (By.CSS_SELECTOR, ".mzp-c-hero.mzp-t-firefox.show-firefox")
 
     @property
     def download_button(self):

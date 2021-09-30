@@ -12,25 +12,24 @@ from bedrock.base.urlresolvers import reverse
 from mock import Mock, patch
 
 from bedrock.press import forms as press_forms, views as press_views
-from bedrock.press.forms import (PressInquiryForm, SpeakerRequestForm)
+from bedrock.press.forms import PressInquiryForm, SpeakerRequestForm
 from bedrock.mozorg.tests import TestCase
 
 
 class TestPressInquiry(TestCase):
-
     def setUp(self):
         self.factory = RequestFactory()
         self.view = press_views.PressInquiryView.as_view()
-        with self.activate('en-US'):
-            self.url = reverse('press.press-inquiry')
+        with self.activate("en-US"):
+            self.url = reverse("press.press-inquiry")
 
         self.data = {
-            'jobtitle': 'Senior Inquiry Person',
-            'name': 'IceCat FireBadger',
-            'user_email': 'courage@nowhere.com',
-            'media_org': 'Big Money',
-            'inquiry': 'Want to know private stuff',
-            'deadline': datetime.date.today() + datetime.timedelta(days=1)
+            "jobtitle": "Senior Inquiry Person",
+            "name": "IceCat FireBadger",
+            "user_email": "courage@nowhere.com",
+            "media_org": "Big Money",
+            "inquiry": "Want to know private stuff",
+            "deadline": datetime.date.today() + datetime.timedelta(days=1),
         }
 
     def tearDown(self):
@@ -48,7 +47,7 @@ class TestPressInquiry(TestCase):
         response = self.view(request)
 
         assert response.status_code == 302
-        assert response['Location'] == '/en-US/press/press-inquiry/?success=True'
+        assert response["Location"] == "/en-US/press/press-inquiry/?success=True"
 
     def test_view_post_missing_data(self):
         """
@@ -56,7 +55,7 @@ class TestPressInquiry(TestCase):
         errors in the template.
         """
 
-        self.data.update(name='')  # remove required name
+        self.data.update(name="")  # remove required name
 
         request = self.factory.post(self.url, self.data)
 
@@ -66,7 +65,7 @@ class TestPressInquiry(TestCase):
         response = self.view(request)
 
         assert response.status_code == 200
-        self.assertIn(b'Please enter your name.', response.content)
+        self.assertIn(b"Please enter your name.", response.content)
 
     def test_view_post_honeypot(self):
         """
@@ -74,7 +73,7 @@ class TestPressInquiry(TestCase):
         contain general form error message.
         """
 
-        self.data['office_fax'] = 'spammer'
+        self.data["office_fax"] = "spammer"
 
         request = self.factory.post(self.url, self.data)
 
@@ -84,7 +83,7 @@ class TestPressInquiry(TestCase):
         response = self.view(request)
 
         assert response.status_code == 200
-        self.assertIn(b'An error has occurred', response.content)
+        self.assertIn(b"An error has occurred", response.content)
 
     def test_form_valid_data(self):
         """
@@ -100,7 +99,7 @@ class TestPressInquiry(TestCase):
         With incorrect data (missing email), form should not be valid and should
         have user_email in the errors hash.
         """
-        self.data.update(user_email='')  # remove required user_email
+        self.data.update(user_email="")  # remove required user_email
 
         form = PressInquiryForm(self.data)
 
@@ -108,21 +107,20 @@ class TestPressInquiry(TestCase):
         assert not form.is_valid()
 
         # make sure user_email errors are in form
-        self.assertIn('user_email', form.errors)
+        self.assertIn("user_email", form.errors)
 
     def test_form_honeypot(self):
         """
         Form with honeypot text box filled should not be valid.
         """
-        self.data['office_fax'] = 'spammer'
+        self.data["office_fax"] = "spammer"
 
         form = PressInquiryForm(self.data)
 
         assert not form.is_valid()
 
-    @patch('bedrock.press.views.render_to_string',
-           return_value='rendered')
-    @patch('bedrock.press.views.EmailMessage')
+    @patch("bedrock.press.views.render_to_string", return_value="rendered")
+    @patch("bedrock.press.views.EmailMessage")
     def test_email(self, mock_email_message, mock_render_to_string):
         """
         Make sure email is sent with expected values.
@@ -143,27 +141,24 @@ class TestPressInquiry(TestCase):
 
         # make sure email values are correct
         mock_email_message.assert_called_once_with(
-            press_views.PRESS_INQUIRY_EMAIL_SUBJECT,
-            'rendered',
-            press_views.PRESS_INQUIRY_EMAIL_FROM,
-            press_views.PRESS_INQUIRY_EMAIL_TO)
+            press_views.PRESS_INQUIRY_EMAIL_SUBJECT, "rendered", press_views.PRESS_INQUIRY_EMAIL_FROM, press_views.PRESS_INQUIRY_EMAIL_TO
+        )
 
 
 class TestSpeakerRequest(TestCase):
-
     def setUp(self):
         self.factory = RequestFactory()
         self.view = press_views.SpeakerRequestView.as_view()
-        with self.activate('en-US'):
-            self.url = reverse('press.speaker-request')
+        with self.activate("en-US"):
+            self.url = reverse("press.speaker-request")
 
         self.data = {
-            'sr_event_name': 'Test Event',
-            'sr_event_url': 'www.mozilla.org',
-            'sr_event_date': datetime.date.today() + datetime.timedelta(days=1),
-            'sr_event_time': '12:00 PM',
-            'sr_contact_name': 'The Dude',
-            'sr_contact_email': 'foo@bar.com',
+            "sr_event_name": "Test Event",
+            "sr_event_url": "www.mozilla.org",
+            "sr_event_date": datetime.date.today() + datetime.timedelta(days=1),
+            "sr_event_time": "12:00 PM",
+            "sr_contact_name": "The Dude",
+            "sr_contact_email": "foo@bar.com",
         }
 
     def tearDown(self):
@@ -181,7 +176,7 @@ class TestSpeakerRequest(TestCase):
         response = self.view(request)
 
         assert response.status_code == 302
-        assert response['Location'] == '/en-US/press/speakerrequest/?success=True'
+        assert response["Location"] == "/en-US/press/speakerrequest/?success=True"
 
     def test_view_post_missing_data(self):
         """
@@ -189,7 +184,7 @@ class TestSpeakerRequest(TestCase):
         errors in the template.
         """
 
-        self.data.update(sr_event_url='')  # remove required url
+        self.data.update(sr_event_url="")  # remove required url
 
         request = self.factory.post(self.url, self.data)
 
@@ -199,7 +194,7 @@ class TestSpeakerRequest(TestCase):
         response = self.view(request)
 
         assert response.status_code == 200
-        self.assertIn(b'Please enter a URL', response.content)
+        self.assertIn(b"Please enter a URL", response.content)
 
     def test_view_post_honeypot(self):
         """
@@ -207,7 +202,7 @@ class TestSpeakerRequest(TestCase):
         contain general form error message.
         """
 
-        self.data['office_fax'] = 'spammer'
+        self.data["office_fax"] = "spammer"
 
         request = self.factory.post(self.url, self.data)
 
@@ -217,7 +212,7 @@ class TestSpeakerRequest(TestCase):
         response = self.view(request)
 
         assert response.status_code == 200
-        self.assertIn(b'An error has occurred', response.content)
+        self.assertIn(b"An error has occurred", response.content)
 
     def test_form_valid_data(self):
         """
@@ -233,7 +228,7 @@ class TestSpeakerRequest(TestCase):
         With incorrect data (missing url), form should not be valid and should
         have url in the errors hash.
         """
-        self.data.update(sr_event_url='')  # remove required url
+        self.data.update(sr_event_url="")  # remove required url
 
         form = SpeakerRequestForm(self.data)
 
@@ -241,13 +236,13 @@ class TestSpeakerRequest(TestCase):
         assert not form.is_valid()
 
         # make sure url errors are in form
-        self.assertIn('sr_event_url', form.errors)
+        self.assertIn("sr_event_url", form.errors)
 
     def test_form_honeypot(self):
         """
         Form with honeypot text box filled should not be valid.
         """
-        self.data['office_fax'] = 'spammer'
+        self.data["office_fax"] = "spammer"
 
         form = SpeakerRequestForm(self.data)
 
@@ -258,12 +253,9 @@ class TestSpeakerRequest(TestCase):
         Form should be valid when attachment under/at size limit.
         """
         # attachment within size limit
-        mock_attachment = Mock(
-            size=press_forms.SPEAKER_REQUEST_FILE_SIZE_LIMIT)
+        mock_attachment = Mock(size=press_forms.SPEAKER_REQUEST_FILE_SIZE_LIMIT)
 
-        form = SpeakerRequestForm(
-            self.data, {
-                'sr_attachment': mock_attachment})
+        form = SpeakerRequestForm(self.data, {"sr_attachment": mock_attachment})
 
         # make sure form is valid
         assert form.is_valid()
@@ -274,22 +266,18 @@ class TestSpeakerRequest(TestCase):
         over size limit.
         """
         # attachment within size limit
-        mock_attachment = Mock(
-            size=(press_forms.SPEAKER_REQUEST_FILE_SIZE_LIMIT + 1))
+        mock_attachment = Mock(size=(press_forms.SPEAKER_REQUEST_FILE_SIZE_LIMIT + 1))
 
-        form = SpeakerRequestForm(
-            self.data, {
-                'sr_attachment': mock_attachment})
+        form = SpeakerRequestForm(self.data, {"sr_attachment": mock_attachment})
 
         # make sure form is not valid
         assert not form.is_valid()
 
         # make sure attachment errors are in form
-        self.assertIn('sr_attachment', form.errors)
+        self.assertIn("sr_attachment", form.errors)
 
-    @patch('bedrock.press.views.render_to_string',
-           return_value='rendered')
-    @patch('bedrock.press.views.EmailMessage')
+    @patch("bedrock.press.views.render_to_string", return_value="rendered")
+    @patch("bedrock.press.views.EmailMessage")
     def test_email(self, mock_email_message, mock_render_to_string):
         """
         Make sure email is sent with expected values.
@@ -310,25 +298,19 @@ class TestSpeakerRequest(TestCase):
 
         # make sure email values are correct
         mock_email_message.assert_called_once_with(
-            press_views.SPEAKER_REQUEST_EMAIL_SUBJECT,
-            'rendered',
-            press_views.SPEAKER_REQUEST_EMAIL_FROM,
-            press_views.SPEAKER_REQUEST_EMAIL_TO)
+            press_views.SPEAKER_REQUEST_EMAIL_SUBJECT, "rendered", press_views.SPEAKER_REQUEST_EMAIL_FROM, press_views.SPEAKER_REQUEST_EMAIL_TO
+        )
 
-    @patch('bedrock.press.views.render_to_string',
-           return_value='rendered')
-    @patch('bedrock.press.views.EmailMessage')
-    def test_email_with_attachement(
-            self, mock_email_message, mock_render_to_string):
+    @patch("bedrock.press.views.render_to_string", return_value="rendered")
+    @patch("bedrock.press.views.EmailMessage")
+    def test_email_with_attachement(self, mock_email_message, mock_render_to_string):
         """
         Make sure email is sent with attachment.
         """
-        mock_attachment = Mock(
-            content_type='text/plain',
-            size=(press_forms.SPEAKER_REQUEST_FILE_SIZE_LIMIT))
+        mock_attachment = Mock(content_type="text/plain", size=(press_forms.SPEAKER_REQUEST_FILE_SIZE_LIMIT))
 
         # make sure name attribute is treated as string
-        mock_attachment.name = 'img.jpg'
+        mock_attachment.name = "img.jpg"
 
         # create POST request
         request = self.factory.post(self.url, self.data)
@@ -337,16 +319,13 @@ class TestSpeakerRequest(TestCase):
         request._dont_enforce_csrf_checks = True
 
         # add mock attachment to files dict
-        request.FILES['sr_attachment'] = mock_attachment
+        request.FILES["sr_attachment"] = mock_attachment
 
         # submit POST request
         self.view(request)
 
         # make sure attachment was attached
-        mock_email_message.return_value.attach.assert_called_once_with(
-            'img.jpg',
-            mock_attachment.read.return_value,
-            'text/plain')
+        mock_email_message.return_value.attach.assert_called_once_with("img.jpg", mock_attachment.read.return_value, "text/plain")
 
         mock_attachment.read.assert_called_once_with()
 
@@ -355,10 +334,8 @@ class TestSpeakerRequest(TestCase):
 
         # make sure email values are correct
         mock_email_message.assert_called_once_with(
-            press_views.SPEAKER_REQUEST_EMAIL_SUBJECT,
-            'rendered',
-            press_views.SPEAKER_REQUEST_EMAIL_FROM,
-            press_views.SPEAKER_REQUEST_EMAIL_TO)
+            press_views.SPEAKER_REQUEST_EMAIL_SUBJECT, "rendered", press_views.SPEAKER_REQUEST_EMAIL_FROM, press_views.SPEAKER_REQUEST_EMAIL_TO
+        )
 
     def test_emails_not_escaped(self):
         """
@@ -376,17 +353,16 @@ class TestSpeakerRequest(TestCase):
         Tags are still stripped, though.
         """
 
-        STRING1 = u"<blink>J'adore Citröns</blink> & <Piñatas> so there"
-        EXPECTED1 = u"J'adore Citröns &  so there"
+        STRING1 = "<blink>J'adore Citröns</blink> & <Piñatas> so there"
+        EXPECTED1 = "J'adore Citröns &  so there"
 
-        STRING2 = u"J'adore Piñatas & <fromage> so here"
-        EXPECTED2 = u"J'adore Piñatas &  so here"
+        STRING2 = "J'adore Piñatas & <fromage> so here"
+        EXPECTED2 = "J'adore Piñatas &  so here"
 
-        STRING3 = u"J'adore <coffee>el café</coffee> también"
-        EXPECTED3 = u"J'adore el café también"
+        STRING3 = "J'adore <coffee>el café</coffee> también"
+        EXPECTED3 = "J'adore el café también"
 
-        self.data.update(sr_contact_title=STRING1, sr_event_theme=STRING2,
-                         sr_event_format=STRING3)
+        self.data.update(sr_contact_title=STRING1, sr_event_theme=STRING2, sr_event_format=STRING3)
         request = self.factory.post(self.url, self.data)
 
         # make sure CSRF doesn't hold us up

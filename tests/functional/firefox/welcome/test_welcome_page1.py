@@ -7,7 +7,7 @@ import pytest
 from pages.firefox.welcome.page1 import FirefoxWelcomePage1
 
 
-@pytest.mark.skip_if_not_firefox(reason='Welcome pages are shown to Firefox only.')
+@pytest.mark.skip_if_not_firefox(reason="Welcome pages are shown to Firefox only.")
 @pytest.mark.nondestructive
 def test_monitor_button_displayed(base_url, selenium):
     page = FirefoxWelcomePage1(selenium, base_url).open()

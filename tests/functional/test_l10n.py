@@ -11,12 +11,12 @@ from pages.firefox.home import FirefoxHomePage
 
 @pytest.mark.nondestructive
 def test_change_language(base_url, selenium):
-    page = FirefoxHomePage(selenium, base_url, params='').open()
+    page = FirefoxHomePage(selenium, base_url, params="").open()
     initial = page.footer.language
     # avoid selecting the same language or locales that have homepage redirects
-    excluded = [initial, 'ja', 'ja-JP-mac', 'zh-CN']
+    excluded = [initial, "ja", "ja-JP-mac", "zh-CN"]
     available = [l for l in page.footer.languages if l not in excluded]
     new = random.choice(available)
     page.footer.select_language(new)
-    assert '/{0}/'.format(new) in selenium.current_url, 'Language is not in URL'
-    assert new == page.footer.language, 'Language has not been selected'
+    assert "/{0}/".format(new) in selenium.current_url, "Language is not in URL"
+    assert new == page.footer.language, "Language has not been selected"

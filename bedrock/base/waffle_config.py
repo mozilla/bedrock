@@ -18,6 +18,7 @@ class DictOf:
     >>> parser('en:10,de:20')
     {'en': 10, 'de': 20}
     """
+
     def __init__(self, val_parser):
         self.val_parser = val_parser
 
@@ -28,8 +29,8 @@ class DictOf:
         if not val:
             return out
 
-        for part in val.split(','):
-            k, v = part.split(':')
+        for part in val.split(","):
+            k, v = part.split(":")
             out[k.strip()] = val_parser(v.strip())
         return out
 
@@ -64,8 +65,10 @@ class ConfigDBEnv(ConfigDictEnv):
         return configs
 
 
-config = ConfigManager([
-    ConfigOSEnv(),
-    ConfigEnvFileEnv('.env'),
-    ConfigDBEnv(),
-])
+config = ConfigManager(
+    [
+        ConfigOSEnv(),
+        ConfigEnvFileEnv(".env"),
+        ConfigDBEnv(),
+    ]
+)

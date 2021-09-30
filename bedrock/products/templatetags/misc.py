@@ -10,41 +10,39 @@ from django_jinja import library
 from bedrock.base.urlresolvers import reverse
 from lib.l10n_utils.fluent import ftl
 
-FTL_FILES = ['products/vpn/shared']
+FTL_FILES = ["products/vpn/shared"]
 
 
 def _vpn_product_link(product_url, entrypoint, link_text, class_name=None, optional_parameters=None, optional_attributes=None):
-    separator = '&' if '?' in product_url else '?'
-    href = f'{product_url}{separator}entrypoint={entrypoint}&form_type=button&utm_source={entrypoint}&utm_medium=referral'
+    separator = "&" if "?" in product_url else "?"
+    href = f"{product_url}{separator}entrypoint={entrypoint}&form_type=button&utm_source={entrypoint}&utm_medium=referral"
 
     if optional_parameters:
-        params = '&'.join('%s=%s' % (param, val) for param, val in optional_parameters.items())
-        href += f'&{params}'
+        params = "&".join("%s=%s" % (param, val) for param, val in optional_parameters.items())
+        href += f"&{params}"
 
-    css_class = 'js-vpn-cta-link js-fxa-product-button'
-    attrs = ''
+    css_class = "js-vpn-cta-link js-fxa-product-button"
+    attrs = ""
 
     if optional_attributes:
-        attrs += ' '.join('%s="%s"' % (attr, val) for attr, val in optional_attributes.items())
+        attrs += " ".join('%s="%s"' % (attr, val) for attr, val in optional_attributes.items())
 
         # If there's a `data-cta-position` attribute for GA, also pass that as a query param to vpn.m.o.
-        position = optional_attributes.get('data-cta-position', None)
+        position = optional_attributes.get("data-cta-position", None)
 
         if position:
-            href += f'&data_cta_position={position}'
+            href += f"&data_cta_position={position}"
 
     if class_name:
-        css_class += f' {class_name}'
+        css_class += f" {class_name}"
 
-    markup = (f'<a href="{href}" data-action="{settings.FXA_ENDPOINT}" class="{css_class}" {attrs}>'
-              f'{link_text}'
-              f'</a>')
+    markup = f'<a href="{href}" data-action="{settings.FXA_ENDPOINT}" class="{css_class}" {attrs}>' f"{link_text}" f"</a>"
 
     return jinja2.Markup(markup)
 
 
 def get_cc(lang):
-    cc = lang.split('-')[1] if lang and '-' in lang else lang
+    cc = lang.split("-")[1] if lang and "-" in lang else lang
     cc = cc.lower() if cc else cc
     return cc
 
@@ -53,7 +51,7 @@ def get_default_params(lang):
     cc = get_cc(lang)
 
     # Default to US pricing if no matching country/lang code is found.
-    return settings.VPN_VARIABLE_PRICING.get(cc, settings.VPN_VARIABLE_PRICING['us'])
+    return settings.VPN_VARIABLE_PRICING.get(cc, settings.VPN_VARIABLE_PRICING["us"])
 
 
 @library.global_function
@@ -70,14 +68,14 @@ def vpn_sign_in_link(ctx, entrypoint, link_text, class_name=None, optional_param
 
         {{ vpn_sign_in_link(entrypoint='www.mozilla.org-vpn-product-page', link_text='Sign In') }}
     """
-    product_url = f'{settings.VPN_ENDPOINT}oauth/init'
+    product_url = f"{settings.VPN_ENDPOINT}oauth/init"
 
     return _vpn_product_link(product_url, entrypoint, link_text, class_name, optional_parameters, optional_attributes)
 
 
 @library.global_function
 @jinja2.contextfunction
-def vpn_subscribe_link(ctx, entrypoint, link_text, plan='12-month', class_name=None, lang=None, optional_parameters=None, optional_attributes=None):
+def vpn_subscribe_link(ctx, entrypoint, link_text, plan="12-month", class_name=None, lang=None, optional_parameters=None, optional_attributes=None):
     """
     Render a vpn.mozilla.org subscribe link with required params for FxA authentication.
 
@@ -93,30 +91,30 @@ def vpn_subscribe_link(ctx, entrypoint, link_text, plan='12-month', class_name=N
     # Set a default plan ID using page locale. This acts as a fallback should geo-location fail.
     default_params = get_default_params(lang)
     cc = get_cc(lang)
-    plan_default = default_params['default'][plan]['id']
+    plan_default = default_params["default"][plan]["id"]
     plan_attributes = {}
 
     # HTML data-attributes are used by client side JS to set the correct plan ID based on geo.
     for country, attrs in settings.VPN_VARIABLE_PRICING.items():
-        if 'alt' in attrs and cc in attrs['alt']:
-            plan_id = attrs['alt'][cc][plan]['id']
+        if "alt" in attrs and cc in attrs["alt"]:
+            plan_id = attrs["alt"][cc][plan]["id"]
         else:
-            plan_id = attrs['default'][plan]['id']
+            plan_id = attrs["default"][plan]["id"]
 
-        plan_attributes.update({f'data-plan-{country}': plan_id})
+        plan_attributes.update({f"data-plan-{country}": plan_id})
 
-    if (plan_attributes):
+    if plan_attributes:
         optional_attributes = optional_attributes or {}
         optional_attributes.update(plan_attributes)
 
-    product_url = f'{settings.VPN_SUBSCRIPTION_URL}subscriptions/products/{settings.VPN_PRODUCT_ID}?plan={plan_default}'
+    product_url = f"{settings.VPN_SUBSCRIPTION_URL}subscriptions/products/{settings.VPN_PRODUCT_ID}?plan={plan_default}"
 
     return _vpn_product_link(product_url, entrypoint, link_text, class_name, optional_parameters, optional_attributes)
 
 
 @library.global_function
 @jinja2.contextfunction
-def vpn_monthly_price(ctx, plan='monthly', lang=None):
+def vpn_monthly_price(ctx, plan="monthly", lang=None):
     """
     Render a localized string displaying VPN monthly plan price.
 
@@ -130,31 +128,29 @@ def vpn_monthly_price(ctx, plan='monthly', lang=None):
     """
 
     default_params = get_default_params(lang)
-    default_amount = default_params['default'][plan]['price']
-    euro_amount = settings.VPN_VARIABLE_PRICING['de']['default'][plan]['price']
-    usd_amount = settings.VPN_VARIABLE_PRICING['us']['default'][plan]['price']
-    chf_amount = settings.VPN_VARIABLE_PRICING['ch']['default'][plan]['price']
-    default_text = ftl('vpn-shared-pricing-monthly', amount=default_amount, ftl_files=FTL_FILES)
+    default_amount = default_params["default"][plan]["price"]
+    euro_amount = settings.VPN_VARIABLE_PRICING["de"]["default"][plan]["price"]
+    usd_amount = settings.VPN_VARIABLE_PRICING["us"]["default"][plan]["price"]
+    chf_amount = settings.VPN_VARIABLE_PRICING["ch"]["default"][plan]["price"]
+    default_text = ftl("vpn-shared-pricing-monthly", amount=default_amount, ftl_files=FTL_FILES)
 
     # HTML data-attributes are used by client side JS to set the correct display price based on geo.
     attributes = {
-        'data-price-usd': ftl('vpn-shared-pricing-monthly', amount=usd_amount, ftl_files=FTL_FILES),
-        'data-price-euro': ftl('vpn-shared-pricing-monthly', amount=euro_amount, ftl_files=FTL_FILES),
-        'data-price-chf': ftl('vpn-shared-pricing-monthly', amount=chf_amount, ftl_files=FTL_FILES),
+        "data-price-usd": ftl("vpn-shared-pricing-monthly", amount=usd_amount, ftl_files=FTL_FILES),
+        "data-price-euro": ftl("vpn-shared-pricing-monthly", amount=euro_amount, ftl_files=FTL_FILES),
+        "data-price-chf": ftl("vpn-shared-pricing-monthly", amount=chf_amount, ftl_files=FTL_FILES),
     }
 
-    attrs = ' '.join('%s="%s"' % (attr, val) for attr, val in attributes.items())
+    attrs = " ".join('%s="%s"' % (attr, val) for attr, val in attributes.items())
 
-    markup = (f'<span class="js-vpn-monthly-price-display" {attrs}>'
-              f'{default_text}'
-              f'</span>')
+    markup = f'<span class="js-vpn-monthly-price-display" {attrs}>' f"{default_text}" f"</span>"
 
     return jinja2.Markup(markup)
 
 
 @library.global_function
 @jinja2.contextfunction
-def vpn_total_price(ctx, plan='12-month', lang=None):
+def vpn_total_price(ctx, plan="12-month", lang=None):
     """
     Render a localized string displaying VPN total plan price.
 
@@ -168,31 +164,29 @@ def vpn_total_price(ctx, plan='12-month', lang=None):
     """
 
     pricing_params = get_default_params(lang)
-    default_amount = pricing_params['default'][plan]['total']
-    euro_amount = settings.VPN_VARIABLE_PRICING['de']['default'][plan]['total']
-    usd_amount = settings.VPN_VARIABLE_PRICING['us']['default'][plan]['total']
-    chf_amount = settings.VPN_VARIABLE_PRICING['ch']['default'][plan]['total']
-    default_text = ftl('vpn-shared-pricing-total', amount=default_amount, ftl_files=FTL_FILES)
+    default_amount = pricing_params["default"][plan]["total"]
+    euro_amount = settings.VPN_VARIABLE_PRICING["de"]["default"][plan]["total"]
+    usd_amount = settings.VPN_VARIABLE_PRICING["us"]["default"][plan]["total"]
+    chf_amount = settings.VPN_VARIABLE_PRICING["ch"]["default"][plan]["total"]
+    default_text = ftl("vpn-shared-pricing-total", amount=default_amount, ftl_files=FTL_FILES)
 
     # HTML data-attributes are used by client side JS to set the correct display price based on geo.
     attributes = {
-        'data-price-usd': ftl('vpn-shared-pricing-total', amount=usd_amount, ftl_files=FTL_FILES),
-        'data-price-euro': ftl('vpn-shared-pricing-total', amount=euro_amount, ftl_files=FTL_FILES),
-        'data-price-chf': ftl('vpn-shared-pricing-total', amount=chf_amount, ftl_files=FTL_FILES),
+        "data-price-usd": ftl("vpn-shared-pricing-total", amount=usd_amount, ftl_files=FTL_FILES),
+        "data-price-euro": ftl("vpn-shared-pricing-total", amount=euro_amount, ftl_files=FTL_FILES),
+        "data-price-chf": ftl("vpn-shared-pricing-total", amount=chf_amount, ftl_files=FTL_FILES),
     }
 
-    attrs = ' '.join('%s="%s"' % (attr, val) for attr, val in attributes.items())
+    attrs = " ".join('%s="%s"' % (attr, val) for attr, val in attributes.items())
 
-    markup = (f'<span class="js-vpn-total-price-display" {attrs}>'
-              f'{default_text}'
-              f'</span>')
+    markup = f'<span class="js-vpn-total-price-display" {attrs}>' f"{default_text}" f"</span>"
 
     return jinja2.Markup(markup)
 
 
 @library.global_function
 @jinja2.contextfunction
-def vpn_saving(ctx, plan='12-month', lang=None):
+def vpn_saving(ctx, plan="12-month", lang=None):
     """
     Render a localized string displaying saving (as a percentage) of a given VPN subscription plan.
 
@@ -206,31 +200,29 @@ def vpn_saving(ctx, plan='12-month', lang=None):
     """
 
     pricing_params = get_default_params(lang)
-    default_amount = pricing_params['default'][plan]['saving']
-    euro_amount = settings.VPN_VARIABLE_PRICING['de']['default'][plan]['saving']
-    usd_amount = settings.VPN_VARIABLE_PRICING['us']['default'][plan]['saving']
-    chf_amount = settings.VPN_VARIABLE_PRICING['ch']['default'][plan]['saving']
-    default_text = ftl('vpn-shared-pricing-save-percent', percent=default_amount, ftl_files=FTL_FILES)
+    default_amount = pricing_params["default"][plan]["saving"]
+    euro_amount = settings.VPN_VARIABLE_PRICING["de"]["default"][plan]["saving"]
+    usd_amount = settings.VPN_VARIABLE_PRICING["us"]["default"][plan]["saving"]
+    chf_amount = settings.VPN_VARIABLE_PRICING["ch"]["default"][plan]["saving"]
+    default_text = ftl("vpn-shared-pricing-save-percent", percent=default_amount, ftl_files=FTL_FILES)
 
     # HTML data-attributes are used by client side JS to set the correct saving based on geo.
     attributes = {
-        'data-price-usd': ftl('vpn-shared-pricing-save-percent', percent=usd_amount, ftl_files=FTL_FILES),
-        'data-price-euro': ftl('vpn-shared-pricing-save-percent', percent=euro_amount, ftl_files=FTL_FILES),
-        'data-price-chf': ftl('vpn-shared-pricing-save-percent', percent=chf_amount, ftl_files=FTL_FILES),
+        "data-price-usd": ftl("vpn-shared-pricing-save-percent", percent=usd_amount, ftl_files=FTL_FILES),
+        "data-price-euro": ftl("vpn-shared-pricing-save-percent", percent=euro_amount, ftl_files=FTL_FILES),
+        "data-price-chf": ftl("vpn-shared-pricing-save-percent", percent=chf_amount, ftl_files=FTL_FILES),
     }
 
-    attrs = ' '.join('%s="%s"' % (attr, val) for attr, val in attributes.items())
+    attrs = " ".join('%s="%s"' % (attr, val) for attr, val in attributes.items())
 
-    markup = (f'<span class="js-vpn-saving-display" {attrs}>'
-              f'{default_text}'
-              f'</span>')
+    markup = f'<span class="js-vpn-saving-display" {attrs}>' f"{default_text}" f"</span>"
 
     return jinja2.Markup(markup)
 
 
 @library.global_function
 @jinja2.contextfunction
-def vpn_product_referral_link(ctx, referral_id='', page_anchor='', link_text=None, class_name=None, optional_attributes=None):
+def vpn_product_referral_link(ctx, referral_id="", page_anchor="", link_text=None, class_name=None, optional_attributes=None):
     """
     Render link to the /products/vpn/ landing page with referral attribution markup
 
@@ -243,16 +235,16 @@ def vpn_product_referral_link(ctx, referral_id='', page_anchor='', link_text=Non
         {{ vpn_product_referral_link(referral_id='navigation', link_text='Get Mozilla VPN') }}
     """
 
-    href = reverse('products.vpn.landing')
-    css_class = 'mzp-c-button mzp-t-product js-fxa-product-referral-link'
+    href = reverse("products.vpn.landing")
+    css_class = "mzp-c-button mzp-t-product js-fxa-product-referral-link"
     attrs = f'data-referral-id="{referral_id}" '
 
     if optional_attributes:
-        attrs += ' '.join('%s="%s"' % (attr, val) for attr, val in optional_attributes.items())
+        attrs += " ".join('%s="%s"' % (attr, val) for attr, val in optional_attributes.items())
 
     if class_name:
-        css_class += f' {class_name}'
+        css_class += f" {class_name}"
 
-    markup = (f'<a href="{href}{page_anchor}" class="{css_class}" {attrs}>{link_text}</a>')
+    markup = f'<a href="{href}{page_anchor}" class="{css_class}" {attrs}>{link_text}</a>'
 
     return jinja2.Markup(markup)

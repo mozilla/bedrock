@@ -24,14 +24,13 @@ from lib.l10n_utils.management.commands.l10n_check import (
 from lib.l10n_utils.management.commands.l10n_extract import extract_from_files
 from lib.l10n_utils.tests import capture_stdio
 
-ROOT_PATH = Path(__file__).with_name('test_files')
+ROOT_PATH = Path(__file__).with_name("test_files")
 ROOT = str(ROOT_PATH)
-LOCALES_PATH = ROOT_PATH / 'locale'
-TEMPLATE_DIRS = (str(ROOT_PATH / 'templates'),)
+LOCALES_PATH = ROOT_PATH / "locale"
+TEMPLATE_DIRS = (str(ROOT_PATH / "templates"),)
 
 METHODS = [
-    ('templates/**.html',
-     'lib.l10n_utils.extract.extract_jinja2'),
+    ("templates/**.html", "lib.l10n_utils.extract.extract_jinja2"),
 ]
 
 # doing this to keep @patch from passing a new mock
@@ -46,75 +45,64 @@ class TestL10nExtract(TestCase):
         """
         Should be able to extract strings from a specific file.
         """
-        testfile = ('templates/even_more_lang_files.html',)
+        testfile = ("templates/even_more_lang_files.html",)
         with capture_stdio() as out:
             extracted = next(extract_from_files(testfile, method_map=METHODS))
-        self.assertTupleEqual(extracted,
-                              (testfile[0], 9, 'Mark it 8 Dude.', [], None))
+        self.assertTupleEqual(extracted, (testfile[0], 9, "Mark it 8 Dude.", [], None))
         # test default callback
-        self.assertEqual(out[0], '  %s' % testfile)
+        self.assertEqual(out[0], "  %s" % testfile)
 
     def test_extract_from_multiple_files(self):
         """
         Should be able to extract strings from specific files.
         """
-        basedir = 'templates/'
+        basedir = "templates/"
         testfiles = (
-            basedir + 'even_more_lang_files.html',
-            basedir + 'some_lang_files.html',
+            basedir + "even_more_lang_files.html",
+            basedir + "some_lang_files.html",
         )
         good_extracts = (
-            (testfiles[0], 9, 'Mark it 8 Dude.', [], None),
-            (testfiles[1], 10, 'Is this your homework Larry?',
-             [u'Said angrily, loudly, and repeatedly.'], None),
+            (testfiles[0], 9, "Mark it 8 Dude.", [], None),
+            (testfiles[1], 10, "Is this your homework Larry?", ["Said angrily, loudly, and repeatedly."], None),
         )
         with capture_stdio() as out:
-            for i, extracted in enumerate(
-                    extract_from_files(testfiles, method_map=METHODS)):
+            for i, extracted in enumerate(extract_from_files(testfiles, method_map=METHODS)):
                 self.assertTupleEqual(extracted, good_extracts[i])
-        self.assertEqual(out[0], '  %s\n  %s' % testfiles)
+        self.assertEqual(out[0], "  %s\n  %s" % testfiles)
 
     def test_extract_from_files_no_match(self):
         """
         If the file path doesn't match a domain method, it should be skipped.
         """
-        testfile = ('bedrock/mozorg/templates/mozorg/home.html',)
+        testfile = ("bedrock/mozorg/templates/mozorg/home.html",)
         with capture_stdio() as out:
-            extracted = next(extract_from_files(testfile, method_map=METHODS),
-                             None)
+            extracted = next(extract_from_files(testfile, method_map=METHODS), None)
         self.assertIsNone(extracted)
-        self.assertEqual(out[0],
-                         '! %s does not match any domain methods!' % testfile)
+        self.assertEqual(out[0], "! %s does not match any domain methods!" % testfile)
 
     def test_extract_from_files_no_file(self):
         """
         If the file path doesn't exist, it should be skipped.
         """
-        testfile = ('templates/file_does_not_exist.html',)
+        testfile = ("templates/file_does_not_exist.html",)
         with capture_stdio() as out:
-            extracted = next(extract_from_files(testfile, method_map=METHODS),
-                             None)
+            extracted = next(extract_from_files(testfile, method_map=METHODS), None)
         self.assertIsNone(extracted)
-        self.assertEqual(out[0], '! %s does not exist!' % testfile)
+        self.assertEqual(out[0], "! %s does not exist!" % testfile)
 
-    @patch('lib.l10n_utils.management.commands.l10n_extract.extract_from_file')
+    @patch("lib.l10n_utils.management.commands.l10n_extract.extract_from_file")
     def test_extract_from_files_passes_args(self, eff):
         """The correct args should be passed through to extract_from_file"""
-        testfile = ('templates/even_more_lang_files.html',)
+        testfile = ("templates/even_more_lang_files.html",)
         testfile_full = path.join(settings.ROOT, testfile[0])
         next(extract_from_files(testfile, method_map=METHODS), None)
-        eff.assert_called_once_with(METHODS[0][1], testfile_full,
-                                    keywords=ANY,
-                                    comment_tags=ANY,
-                                    options=ANY,
-                                    strip_comment_tags=ANY)
+        eff.assert_called_once_with(METHODS[0][1], testfile_full, keywords=ANY, comment_tags=ANY, options=ANY, strip_comment_tags=ANY)
 
     def test_extract_from_files_callback_works(self):
         """extract_from_files should call our callback"""
-        testfile = ('templates/even_more_lang_files.html',)
+        testfile = ("templates/even_more_lang_files.html",)
         callback = Mock()
-        next(extract_from_files(testfile, callback=callback,
-                                method_map=METHODS), None)
+        next(extract_from_files(testfile, callback=callback, method_map=METHODS), None)
         callback.assert_called_once_with(testfile[0], METHODS[0][1], ANY)
 
 
@@ -122,14 +110,15 @@ class TestL10nExtract(TestCase):
 class TestL10nCheck(TestCase):
     def _get_block(self, blocks, name):
         """Out of all blocks, grab the one with the specified name."""
-        return next((b for b in blocks if b['name'] == name), None)
+        return next((b for b in blocks if b["name"] == name), None)
 
     def test_parse_templates(self):
         """Make sure the parser grabs the l10n block content
         correctly."""
 
         parser = L10nParser()
-        blocks = parser.parse("""
+        blocks = parser.parse(
+            """
             foo bar bizzle what?
             {% l10n baz, 20110914 %}
             mumble
@@ -137,33 +126,38 @@ class TestL10nCheck(TestCase):
             wased
             {% endl10n %}
             qux
-        """, only_blocks=True)
+        """,
+            only_blocks=True,
+        )
 
-        baz = self._get_block(blocks, 'baz')
+        baz = self._get_block(blocks, "baz")
 
-        self.assertEqual(baz['main'], 'mumble')
-        self.assertEqual(baz['was'], 'wased')
-        self.assertEqual(baz['version'], 20110914)
+        self.assertEqual(baz["main"], "mumble")
+        self.assertEqual(baz["was"], "wased")
+        self.assertEqual(baz["version"], 20110914)
 
-        blocks = parser.parse("""
+        blocks = parser.parse(
+            """
             foo bar bizzle what?
             {% l10n baz locales=ru,bn-IN,fr 20110914 %}
             mumble
             {% endl10n %}
             qux
-        """, only_blocks=True)
+        """,
+            only_blocks=True,
+        )
 
-        baz = self._get_block(blocks, 'baz')
-        self.assertEqual(baz['main'], 'mumble')
-        self.assertEqual(baz['locales'], ['ru', 'bn-IN', 'fr'])
-        self.assertEqual(baz['version'], 20110914)
+        baz = self._get_block(blocks, "baz")
+        self.assertEqual(baz["main"], "mumble")
+        self.assertEqual(baz["locales"], ["ru", "bn-IN", "fr"])
+        self.assertEqual(baz["version"], 20110914)
 
     def test_content_halt(self):
         """Make sure the parser will halt on the content block if told
         to do so."""
 
         parser = L10nParser()
-        content_str = 'foo bar {% block content %}baz{% endblock %} hello'
+        content_str = "foo bar {% block content %}baz{% endblock %} hello"
         last_token = None
 
         for token in parser.parse(content_str, halt_on_content=True):
@@ -173,7 +167,8 @@ class TestL10nCheck(TestCase):
 
     def test_filter_blocks(self):
         """Should return a list of blocks appropriate for a given lang"""
-        template = L10nTemplate(source="""
+        template = L10nTemplate(
+            source="""
             {% l10n dude locales=fr,es-ES,ru 20121212 %}
                 This aggression will not stand, man.
             {% endl10n %}
@@ -183,52 +178,55 @@ class TestL10nCheck(TestCase):
             {% l10n donnie 20121212 %}
                 Phone's ringing Dude.
             {% endl10n %}
-        """)
+        """
+        )
 
-        lang_blocks = template.blocks_for_lang('fr')
+        lang_blocks = template.blocks_for_lang("fr")
         self.assertEqual(len(lang_blocks), 2)
-        self.assertEqual(lang_blocks[0]['name'], 'dude')
-        self.assertEqual(lang_blocks[1]['name'], 'donnie')
+        self.assertEqual(lang_blocks[0]["name"], "dude")
+        self.assertEqual(lang_blocks[1]["name"], "donnie")
 
-        lang_blocks = template.blocks_for_lang('es-ES')
+        lang_blocks = template.blocks_for_lang("es-ES")
         self.assertEqual(len(lang_blocks), 3)
-        self.assertEqual(lang_blocks[0]['name'], 'dude')
-        self.assertEqual(lang_blocks[1]['name'], 'walter')
-        self.assertEqual(lang_blocks[2]['name'], 'donnie')
+        self.assertEqual(lang_blocks[0]["name"], "dude")
+        self.assertEqual(lang_blocks[1]["name"], "walter")
+        self.assertEqual(lang_blocks[2]["name"], "donnie")
 
-        lang_blocks = template.blocks_for_lang('pt-BR')
+        lang_blocks = template.blocks_for_lang("pt-BR")
         self.assertEqual(len(lang_blocks), 1)
-        self.assertEqual(lang_blocks[0]['name'], 'donnie')
+        self.assertEqual(lang_blocks[0]["name"], "donnie")
 
-    @patch('lib.l10n_utils.management.commands.l10n_check.settings.ROOT', ROOT)
-    @patch('lib.l10n_utils.management.commands.l10n_check.list_templates')
-    @patch('lib.l10n_utils.management.commands.l10n_check.L10nTemplate.copy')
-    @patch('lib.l10n_utils.management.commands.l10n_check.L10nTemplate.update')
+    @patch("lib.l10n_utils.management.commands.l10n_check.settings.ROOT", ROOT)
+    @patch("lib.l10n_utils.management.commands.l10n_check.list_templates")
+    @patch("lib.l10n_utils.management.commands.l10n_check.L10nTemplate.copy")
+    @patch("lib.l10n_utils.management.commands.l10n_check.L10nTemplate.update")
     def test_process_template(self, update_mock, copy_mock, lt_mock):
         """
         template.process() should update existing templates and create missing
         ones. It should only do so for the right locales.
         """
         lt_mock.return_value = [
-            path.join(TEMPLATE_DIRS[0], 'l10n_blocks_with_langs.html'),
-            path.join(TEMPLATE_DIRS[0], 'l10n_blocks_without_langs.html'),
+            path.join(TEMPLATE_DIRS[0], "l10n_blocks_with_langs.html"),
+            path.join(TEMPLATE_DIRS[0], "l10n_blocks_without_langs.html"),
         ]
-        update_templates(['de'])
-        copy_mock.assert_called_once_with('de')
-        update_mock.assert_called_once_with('de')
+        update_templates(["de"])
+        copy_mock.assert_called_once_with("de")
+        update_mock.assert_called_once_with("de")
 
     def test_blocks_called_once(self):
         """
         Test that the cached_property decorator really works in our situation.
         """
-        template = L10nTemplate(source="""
+        template = L10nTemplate(
+            source="""
             {% l10n donnie 20121212 %}
                 Phone's ringing Dude.
             {% endl10n %}
-        """)
-        with patch.object(template, 'parser') as mock_parser:
+        """
+        )
+        with patch.object(template, "parser") as mock_parser:
             template.blocks
-            template.blocks_for_lang('de')
+            template.blocks_for_lang("de")
             template.blocks
             self.assertEqual(mock_parser.parse.call_count, 1)
 
@@ -236,42 +234,40 @@ class TestL10nCheck(TestCase):
         """
         template.update() should skip files without blocks for the given locale.
         """
-        template = L10nTemplate(path.join(TEMPLATE_DIRS[0],
-                                          'l10n_blocks_with_langs.html'))
+        template = L10nTemplate(path.join(TEMPLATE_DIRS[0], "l10n_blocks_with_langs.html"))
         # cause the template to be read and parsed before mocking open
         template.blocks
-        codecs_open = 'lib.l10n_utils.management.commands.l10n_check.codecs.open'
+        codecs_open = "lib.l10n_utils.management.commands.l10n_check.codecs.open"
         open_mock = MagicMock(spec=IOBase)
         with patch(codecs_open, open_mock):
-            template.update('zh-TW')
+            template.update("zh-TW")
             file_handle = open_mock.return_value.__enter__.return_value
             assert not file_handle.write.called
-            template.update('de')
+            template.update("de")
             assert file_handle.write.called
 
-    @patch('lib.l10n_utils.management.commands.l10n_check.settings.ROOT', ROOT)
+    @patch("lib.l10n_utils.management.commands.l10n_check.settings.ROOT", ROOT)
     def test_update_template(self):
         """
         template.update() should update lang specific templates.
         """
-        template = L10nTemplate(path.join(TEMPLATE_DIRS[0],
-                                          'l10n_blocks_with_langs.html'))
+        template = L10nTemplate(path.join(TEMPLATE_DIRS[0], "l10n_blocks_with_langs.html"))
         # cause the template to be read and parsed before mocking open
         template.blocks
-        codecs_open = 'lib.l10n_utils.management.commands.l10n_check.codecs.open'
+        codecs_open = "lib.l10n_utils.management.commands.l10n_check.codecs.open"
         open_mock = MagicMock(spec=IOBase)
         open_buffer = StringIO()
         # for writing the new file
         open_mock.return_value.__enter__.return_value = open_buffer
         # for reading the old file
-        open_mock().read.return_value = codecs.open(
-            template.l10n_path('de')).read()
+        open_mock().read.return_value = codecs.open(template.l10n_path("de")).read()
 
         with patch(codecs_open, open_mock):
-            template.update('de')
+            template.update("de")
 
         # braces doubled for .format()
-        good_value = dedent("""\
+        good_value = dedent(
+            """\
             {{# Version: {0} #}}
 
             {{% extends "l10n_blocks_with_langs.html" %}}
@@ -281,7 +277,10 @@ class TestL10nCheck(TestCase):
             {{% was %}}
             I am the walrus.
             {{% endl10n %}}\n\n
-        """.format(get_todays_version()))
+        """.format(
+                get_todays_version()
+            )
+        )
         self.assertEqual(open_buffer.getvalue(), good_value)
 
     def test_copy_template_no_lang(self):
@@ -289,36 +288,35 @@ class TestL10nCheck(TestCase):
         template.copy() should skip files with no blocks for the given locale.
         :return:
         """
-        template = L10nTemplate(path.join(TEMPLATE_DIRS[0],
-                                          'l10n_blocks_with_langs.html'))
+        template = L10nTemplate(path.join(TEMPLATE_DIRS[0], "l10n_blocks_with_langs.html"))
         # cause the template to be read and parsed before mocking open
         template.blocks
-        codecs_open = 'lib.l10n_utils.management.commands.l10n_check.codecs.open'
+        codecs_open = "lib.l10n_utils.management.commands.l10n_check.codecs.open"
         open_mock = MagicMock(spec=IOBase)
         with patch(codecs_open, open_mock):
-            template.copy('zh-TW')
+            template.copy("zh-TW")
             file_handle = open_mock.return_value.__enter__.return_value
             assert not file_handle.write.called
-            template.copy('de')
+            template.copy("de")
             assert file_handle.write.called
 
     def test_copy_template(self):
         """
         template.copy() should create missing lang specific templates.
         """
-        template = L10nTemplate(path.join(TEMPLATE_DIRS[0],
-                                          'l10n_blocks_without_langs.html'))
+        template = L10nTemplate(path.join(TEMPLATE_DIRS[0], "l10n_blocks_without_langs.html"))
         # cause the template to be read and parsed before mocking open
         template.blocks
-        codecs_open = 'lib.l10n_utils.management.commands.l10n_check.codecs.open'
+        codecs_open = "lib.l10n_utils.management.commands.l10n_check.codecs.open"
         open_mock = MagicMock(spec=IOBase)
         open_buffer = StringIO()
         open_mock.return_value.__enter__.return_value = open_buffer
         with patch(codecs_open, open_mock):
-            template.copy('de')
+            template.copy("de")
 
         # braces doubled for .format()
-        good_value = dedent("""\
+        good_value = dedent(
+            """\
             {{# Version: {0} #}}
 
             {{% extends "l10n_blocks_without_langs.html" %}}
@@ -326,52 +324,50 @@ class TestL10nCheck(TestCase):
             {{% l10n donnie %}}
             Phone's ringing Dude.
             {{% endl10n %}}\n
-        """.format(get_todays_version()))
+        """.format(
+                get_todays_version()
+            )
+        )
         self.assertEqual(open_buffer.getvalue(), good_value)
 
 
 @override_settings(LOCALES_PATH=LOCALES_PATH)
 class Testl10nMerge(TestCase):
-    @patch('lib.l10n_utils.gettext.settings.ROOT', ROOT)
-    @patch('lib.l10n_utils.gettext._append_to_lang_file')
+    @patch("lib.l10n_utils.gettext.settings.ROOT", ROOT)
+    @patch("lib.l10n_utils.gettext._append_to_lang_file")
     def test_merge_lang_files(self, write_mock):
         """
         `merge_lang_files()` should see all strings, not skip the untranslated.
         Bug 861168.
         """
-        merge_lang_files(['de'])
-        dest_file = str(LOCALES_PATH / 'de' / 'firefox' / 'fx.lang')
-        write_mock.assert_called_once_with(dest_file,
-                                           [[None, u'Find out if your device is '
-                                                   u'supported &nbsp;\xbb']])
+        merge_lang_files(["de"])
+        dest_file = str(LOCALES_PATH / "de" / "firefox" / "fx.lang")
+        write_mock.assert_called_once_with(dest_file, [[None, "Find out if your device is supported &nbsp;\xbb"]])
 
-    @patch('os.path.exists', TRUE_MOCK)
-    @patch('lib.l10n_utils.gettext.codecs.open')
+    @patch("os.path.exists", TRUE_MOCK)
+    @patch("lib.l10n_utils.gettext.codecs.open")
     def test_append_to_lang_file(self, open_mock):
         """
         `_append_to_lang_file()` should append any new messages to a lang file.
         """
-        _append_to_lang_file('dude.lang', ['The Dude abides, man.'])
+        _append_to_lang_file("dude.lang", ["The Dude abides, man."])
         mock_write = open_mock.return_value.__enter__.return_value.write
-        mock_write.assert_called_once_with(u'\n\n;The Dude abides, man.\n'
-                                           u'The Dude abides, man.\n')
+        mock_write.assert_called_once_with("\n\n;The Dude abides, man.\nThe Dude abides, man.\n")
 
         # make sure writing multiple strings works.
         mock_write.reset_mock()
-        msgs = ['The Dude abides, man.', 'Dammit Walter!']
-        _append_to_lang_file('dude.lang', msgs)
-        expected = [((u'\n\n;{msg}\n{msg}\n'.format(msg=msg),),)
-                    for msg in msgs]
+        msgs = ["The Dude abides, man.", "Dammit Walter!"]
+        _append_to_lang_file("dude.lang", msgs)
+        expected = [(("\n\n;{msg}\n{msg}\n".format(msg=msg),),) for msg in msgs]
         self.assertEqual(expected, mock_write.call_args_list)
 
-    @patch('os.path.exists', TRUE_MOCK)
-    @patch('lib.l10n_utils.gettext.codecs.open')
+    @patch("os.path.exists", TRUE_MOCK)
+    @patch("lib.l10n_utils.gettext.codecs.open")
     def test_merge_unicode_strings(self, open_mock):
         """
         Bug 869538: Exception when merging unicode.
         """
         mock_write = open_mock.return_value.__enter__.return_value.write
-        msgs = [u"Désintéressé et fier de l'être"]
-        _append_to_lang_file('dude.lang', msgs)
-        mock_write.assert_called_once_with(
-            u'\n\n;{msg}\n{msg}\n'.format(msg=msgs[0]))
+        msgs = ["Désintéressé et fier de l'être"]
+        _append_to_lang_file("dude.lang", msgs)
+        mock_write.assert_called_once_with("\n\n;{msg}\n{msg}\n".format(msg=msgs[0]))

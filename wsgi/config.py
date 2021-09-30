@@ -4,10 +4,10 @@ from os import getenv
 
 
 bind = f'0.0.0.0:{getenv("PORT", "8000")}'
-workers = getenv('WEB_CONCURRENCY', 2)
-accesslog = '-'
-errorlog = '-'
-loglevel = getenv('LOGLEVEL', 'info')
+workers = getenv("WEB_CONCURRENCY", 2)
+accesslog = "-"
+errorlog = "-"
+loglevel = getenv("LOGLEVEL", "info")
 
 # Larger keep-alive values maybe needed when directly talking to ELBs
 # See https://github.com/benoitc/gunicorn/issues/1194

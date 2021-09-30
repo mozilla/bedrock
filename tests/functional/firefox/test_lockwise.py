@@ -15,7 +15,7 @@ def test_mobile_buttons_are_displayed(base_url, selenium):
 
 
 @pytest.mark.smoke
-@pytest.mark.skip_if_firefox(reason='Download button is displayed only to non-Firefox users')
+@pytest.mark.skip_if_firefox(reason="Download button is displayed only to non-Firefox users")
 @pytest.mark.nondestructive
 def test_download_button_is_displayed(base_url, selenium):
     page = LockwisePage(selenium, base_url).open()

@@ -11,11 +11,11 @@ from pages.regions.menu_list import MenuList
 
 class BrowserComparisonPage(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/firefox/browsers/compare/{slug}/'
+    _URL_TEMPLATE = "/{locale}/firefox/browsers/compare/{slug}/"
 
-    _primary_download_button_locator = (By.ID, 'download-button-thanks')
-    _secondary_download_button_locator = (By.ID, 'download-secondary')
-    _browser_menu_list_locator = (By.CSS_SELECTOR, '.mzp-c-menu-list.mzp-t-download')
+    _primary_download_button_locator = (By.ID, "download-button-thanks")
+    _secondary_download_button_locator = (By.ID, "download-secondary")
+    _browser_menu_list_locator = (By.CSS_SELECTOR, ".mzp-c-menu-list.mzp-t-download")
 
     @property
     def primary_download_button(self):

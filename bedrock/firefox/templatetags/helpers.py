@@ -9,23 +9,31 @@ from bedrock.base.urlresolvers import reverse
 from lib.l10n_utils import get_locale
 
 
-def desktop_builds(channel, builds=None, locale=None, force_direct=False,
-                   force_full_installer=False, force_funnelcake=False,
-                   funnelcake_id=False, locale_in_transition=False, classified=False):
+def desktop_builds(
+    channel,
+    builds=None,
+    locale=None,
+    force_direct=False,
+    force_full_installer=False,
+    force_funnelcake=False,
+    funnelcake_id=False,
+    locale_in_transition=False,
+    classified=False,
+):
     builds = builds or []
 
     l_version = firefox_desktop.latest_builds(locale, channel)
 
     # Developer Edition is now based on the Beta channel, so the build list
     # should be generated from the Beta locales.
-    if channel == 'alpha':
-        l_version = firefox_desktop.latest_builds(locale, 'beta')
+    if channel == "alpha":
+        l_version = firefox_desktop.latest_builds(locale, "beta")
 
     if l_version:
         version, platforms = l_version
     else:
-        locale = 'en-US'
-        version, platforms = firefox_desktop.latest_builds('en-US', channel)
+        locale = "en-US"
+        version, platforms = firefox_desktop.latest_builds("en-US", channel)
 
     for plat_os, plat_os_pretty in firefox_desktop.platforms(channel, classified):
 
@@ -34,16 +42,19 @@ def desktop_builds(channel, builds=None, locale=None, force_direct=False,
         # Firefox Nightly: The Windows stub installer is now universal,
         # automatically detecting a 32-bit and 64-bit desktop, so the
         # win64-specific entry can be skipped.
-        if channel == 'nightly':
-            if plat_os == 'win':
+        if channel == "nightly":
+            if plat_os == "win":
                 continue
-            if plat_os == 'win64':
-                plat_os = 'win'
-                os_pretty = 'Windows 32/64-bit'
+            if plat_os == "win64":
+                plat_os = "win"
+                os_pretty = "Windows 32/64-bit"
 
         # And generate all the info
         download_link = firefox_desktop.get_download_url(
-            channel, version, plat_os, locale,
+            channel,
+            version,
+            plat_os,
+            locale,
             force_direct=force_direct,
             force_full_installer=force_full_installer,
             force_funnelcake=force_funnelcake,
@@ -58,7 +69,10 @@ def desktop_builds(channel, builds=None, locale=None, force_direct=False,
             download_link_direct = False
         else:
             download_link_direct = firefox_desktop.get_download_url(
-                channel, version, plat_os, locale,
+                channel,
+                version,
+                plat_os,
+                locale,
                 force_direct=True,
                 force_full_installer=force_full_installer,
                 force_funnelcake=force_funnelcake,
@@ -67,10 +81,7 @@ def desktop_builds(channel, builds=None, locale=None, force_direct=False,
             if download_link_direct == download_link:
                 download_link_direct = False
 
-        builds.append({'os': plat_os,
-                       'os_pretty': os_pretty,
-                       'download_link': download_link,
-                       'download_link_direct': download_link_direct})
+        builds.append({"os": plat_os, "os_pretty": os_pretty, "download_link": download_link, "download_link_direct": download_link_direct})
 
     return builds
 
@@ -78,9 +89,7 @@ def desktop_builds(channel, builds=None, locale=None, force_direct=False,
 def android_builds(channel, builds=None):
     builds = builds or []
     link = firefox_android.get_download_url(channel.lower())
-    builds.append({'os': 'android',
-                   'os_pretty': 'Android',
-                   'download_link': link})
+    builds.append({"os": "android", "os_pretty": "Android", "download_link": link})
 
     return builds
 
@@ -88,21 +97,28 @@ def android_builds(channel, builds=None):
 def ios_builds(channel, builds=None):
     builds = builds or []
     link = firefox_ios.get_download_url(channel)
-    builds.append({'os': 'ios',
-                   'os_pretty': 'iOS',
-                   'download_link': link})
+    builds.append({"os": "ios", "os_pretty": "iOS", "download_link": link})
 
     return builds
 
 
 @library.global_function
 @jinja2.contextfunction
-def download_firefox(ctx, channel='release', platform='all',
-                     dom_id=None, locale=None, force_direct=False,
-                     force_full_installer=False, force_funnelcake=False,
-                     alt_copy=None, button_class='mzp-t-xl',
-                     locale_in_transition=False, download_location=None):
-    """ Output a "download firefox" button.
+def download_firefox(
+    ctx,
+    channel="release",
+    platform="all",
+    dom_id=None,
+    locale=None,
+    force_direct=False,
+    force_full_installer=False,
+    force_funnelcake=False,
+    alt_copy=None,
+    button_class="mzp-t-xl",
+    locale_in_transition=False,
+    download_location=None,
+):
+    """Output a "download firefox" button.
 
     :param ctx: context from calling template.
     :param channel: name of channel: 'release', 'beta', 'alpha', or 'nightly'.
@@ -120,23 +136,20 @@ def download_firefox(ctx, channel='release', platform='all',
     :param download_location: Specify the location of download button for
             GA reporting: 'primary cta', 'nav', 'sub nav', or 'other'.
     """
-    show_desktop = platform in ['all', 'desktop']
-    show_android = platform in ['all', 'android']
-    show_ios = platform in ['all', 'ios']
-    alt_channel = '' if channel == 'release' else channel
-    locale = locale or get_locale(ctx['request'])
-    funnelcake_id = ctx.get('funnelcake_id', False)
-    dom_id = dom_id or 'download-button-%s-%s' % (
-        'desktop' if platform == 'all' else platform, channel)
+    show_desktop = platform in ["all", "desktop"]
+    show_android = platform in ["all", "android"]
+    show_ios = platform in ["all", "ios"]
+    alt_channel = "" if channel == "release" else channel
+    locale = locale or get_locale(ctx["request"])
+    funnelcake_id = ctx.get("funnelcake_id", False)
+    dom_id = dom_id or "download-button-%s-%s" % ("desktop" if platform == "all" else platform, channel)
 
     # Gather data about the build for each platform
     builds = []
 
     if show_desktop:
         version = firefox_desktop.latest_version(channel)
-        builds = desktop_builds(channel, builds, locale, force_direct,
-                                force_full_installer, force_funnelcake,
-                                funnelcake_id, locale_in_transition)
+        builds = desktop_builds(channel, builds, locale, force_direct, force_full_installer, force_funnelcake, funnelcake_id, locale_in_transition)
 
     if show_android:
         version = firefox_android.latest_version(channel)
@@ -144,40 +157,36 @@ def download_firefox(ctx, channel='release', platform='all',
 
     if show_ios:
         version = firefox_ios.latest_version(channel)
-        builds.append({'os': 'ios',
-                       'os_pretty': 'iOS',
-                       'download_link': firefox_ios.get_download_url()})
+        builds.append({"os": "ios", "os_pretty": "iOS", "download_link": firefox_ios.get_download_url()})
 
     # Get the native name for current locale
     langs = firefox_desktop.languages
-    locale_name = langs[locale]['native'] if locale in langs else locale
+    locale_name = langs[locale]["native"] if locale in langs else locale
 
     data = {
-        'locale_name': locale_name,
-        'version': version,
-        'product': 'firefox-%s' % platform,
-        'builds': builds,
-        'id': dom_id,
-        'channel': alt_channel,
-        'show_desktop': show_desktop,
-        'show_android': show_android,
-        'show_ios': show_ios,
-        'alt_copy': alt_copy,
-        'button_class': button_class,
-        'download_location': download_location,
-        'fluent_l10n': ctx['fluent_l10n']
+        "locale_name": locale_name,
+        "version": version,
+        "product": "firefox-%s" % platform,
+        "builds": builds,
+        "id": dom_id,
+        "channel": alt_channel,
+        "show_desktop": show_desktop,
+        "show_android": show_android,
+        "show_ios": show_ios,
+        "alt_copy": alt_copy,
+        "button_class": button_class,
+        "download_location": download_location,
+        "fluent_l10n": ctx["fluent_l10n"],
     }
 
-    html = render_to_string('firefox/includes/download-button.html', data,
-                            request=ctx['request'])
+    html = render_to_string("firefox/includes/download-button.html", data, request=ctx["request"])
     return jinja2.Markup(html)
 
 
 @library.global_function
 @jinja2.contextfunction
-def download_firefox_thanks(ctx, dom_id=None, locale=None, alt_copy=None, button_class=None,
-                            locale_in_transition=False, download_location=None):
-    """ Output a simple "download firefox" button that only points to /download/thanks/
+def download_firefox_thanks(ctx, dom_id=None, locale=None, alt_copy=None, button_class=None, locale_in_transition=False, download_location=None):
+    """Output a simple "download firefox" button that only points to /download/thanks/
 
     :param ctx: context from calling template.
     :param dom_id: Use this string as the id attr on the element.
@@ -189,23 +198,26 @@ def download_firefox_thanks(ctx, dom_id=None, locale=None, alt_copy=None, button
             GA reporting: 'primary cta', 'nav', 'sub nav', or 'other'.
     """
 
-    channel = 'release'
-    locale = locale or get_locale(ctx['request'])
-    funnelcake_id = ctx.get('funnelcake_id', False)
-    dom_id = dom_id or 'download-button-thanks'
-    transition_url = '/firefox/download/thanks/'
+    channel = "release"
+    locale = locale or get_locale(ctx["request"])
+    funnelcake_id = ctx.get("funnelcake_id", False)
+    dom_id = dom_id or "download-button-thanks"
+    transition_url = "/firefox/download/thanks/"
     version = firefox_desktop.latest_version(channel)
 
     # if there's a funnelcake param in the page URL e.g. ?f=123
     if funnelcake_id:
         # include param in transitional URL e.g. /firefox/download/thanks/?f=123
-        transition_url += '?f=%s' % funnelcake_id
+        transition_url += "?f=%s" % funnelcake_id
 
     if locale_in_transition:
-        transition_url = '/%s%s' % (locale, transition_url)
+        transition_url = "/%s%s" % (locale, transition_url)
 
     download_link_direct = firefox_desktop.get_download_url(
-        channel, version, 'win', locale,
+        channel,
+        version,
+        "win",
+        locale,
         force_direct=True,
         force_full_installer=False,
         force_funnelcake=False,
@@ -213,24 +225,22 @@ def download_firefox_thanks(ctx, dom_id=None, locale=None, alt_copy=None, button
     )
 
     data = {
-        'id': dom_id,
-        'transition_url': transition_url,
-        'download_link_direct': download_link_direct,
-        'alt_copy': alt_copy,
-        'button_class': button_class,
-        'download_location': download_location,
-        'fluent_l10n': ctx['fluent_l10n']
+        "id": dom_id,
+        "transition_url": transition_url,
+        "download_link_direct": download_link_direct,
+        "alt_copy": alt_copy,
+        "button_class": button_class,
+        "download_location": download_location,
+        "fluent_l10n": ctx["fluent_l10n"],
     }
 
-    html = render_to_string('firefox/includes/download-button-thanks.html', data,
-                            request=ctx['request'])
+    html = render_to_string("firefox/includes/download-button-thanks.html", data, request=ctx["request"])
     return jinja2.Markup(html)
 
 
 @library.global_function
 @jinja2.contextfunction
-def download_firefox_desktop_list(ctx, channel='release', dom_id=None, locale=None,
-                                  force_full_installer=False):
+def download_firefox_desktop_list(ctx, channel="release", dom_id=None, locale=None, force_full_installer=False):
     """
     Return a HTML list of platform download links for Firefox desktop
 
@@ -241,41 +251,38 @@ def download_firefox_desktop_list(ctx, channel='release', dom_id=None, locale=No
             the stub installer (for aurora).
 
     """
-    dom_id = dom_id or 'download-platform-list-%s' % (channel)
-    locale = locale or get_locale(ctx['request'])
+    dom_id = dom_id or "download-platform-list-%s" % (channel)
+    locale = locale or get_locale(ctx["request"])
 
     # Make sure funnelcake_id is not passed as builds are often Windows only.
-    builds = desktop_builds(channel, None, locale, True, force_full_installer,
-                            False, False, False, True)
+    builds = desktop_builds(channel, None, locale, True, force_full_installer, False, False, False, True)
 
     recommended_builds = []
     traditional_builds = []
 
     for plat in builds:
         # Add 32-bit label for Windows and Linux builds.
-        if channel != 'nightly':
-            if plat['os'] == 'win':
-                plat['os_pretty'] = 'Windows 32-bit'
+        if channel != "nightly":
+            if plat["os"] == "win":
+                plat["os_pretty"] = "Windows 32-bit"
 
-        if plat['os'] == 'linux':
-            plat['os_pretty'] = 'Linux 32-bit'
+        if plat["os"] == "linux":
+            plat["os_pretty"] = "Linux 32-bit"
 
-        if (plat['os'] in firefox_desktop.platform_classification['recommended'] or
-                channel == 'nightly' and plat['os'] == 'win'):
+        if plat["os"] in firefox_desktop.platform_classification["recommended"] or channel == "nightly" and plat["os"] == "win":
             recommended_builds.append(plat)
         else:
             traditional_builds.append(plat)
 
     data = {
-        'id': dom_id,
-        'builds': {
-            'recommended': recommended_builds,
-            'traditional': traditional_builds,
+        "id": dom_id,
+        "builds": {
+            "recommended": recommended_builds,
+            "traditional": traditional_builds,
         },
     }
 
-    html = render_to_string('firefox/includes/download-list.html', data,
-                            request=ctx['request'])
+    html = render_to_string("firefox/includes/download-list.html", data, request=ctx["request"])
     return jinja2.Markup(html)
 
 
@@ -299,45 +306,45 @@ def firefox_url(platform, page, channel=None):
     anchor = None
 
     # Tweak the channel name for the naming URL pattern in urls.py
-    if channel == 'release':
+    if channel == "release":
         channel = None
-    if channel == 'alpha':
-        if platform == 'desktop':
-            channel = 'developer'
-        if platform == 'android':
-            channel = 'aurora'
-    if channel == 'esr':
-        channel = 'organizations'
+    if channel == "alpha":
+        if platform == "desktop":
+            channel = "developer"
+        if platform == "android":
+            channel = "aurora"
+    if channel == "esr":
+        channel = "organizations"
 
     # There is now only one /all page URL - issue 8096
-    if page == 'all':
-        if platform == 'desktop':
-            if channel == 'beta':
-                anchor = 'product-desktop-beta'
-            elif channel == 'developer':
-                anchor = 'product-desktop-developer'
-            elif channel == 'nightly':
-                anchor = 'product-desktop-nightly'
-            elif channel == 'organizations':
-                anchor = 'product-desktop-esr'
+    if page == "all":
+        if platform == "desktop":
+            if channel == "beta":
+                anchor = "product-desktop-beta"
+            elif channel == "developer":
+                anchor = "product-desktop-developer"
+            elif channel == "nightly":
+                anchor = "product-desktop-nightly"
+            elif channel == "organizations":
+                anchor = "product-desktop-esr"
             else:
-                anchor = 'product-desktop-release'
-        elif platform == 'android':
-            if channel == 'beta':
-                anchor = 'product-android-beta'
-            elif channel == 'nightly':
-                anchor = 'product-android-nightly'
+                anchor = "product-desktop-release"
+        elif platform == "android":
+            if channel == "beta":
+                anchor = "product-android-beta"
+            elif channel == "nightly":
+                anchor = "product-android-nightly"
             else:
-                anchor = 'product-android-release'
+                anchor = "product-android-release"
     else:
         if channel:
-            kwargs['channel'] = channel
-        if platform != 'desktop':
-            kwargs['platform'] = platform
+            kwargs["channel"] = channel
+        if platform != "desktop":
+            kwargs["platform"] = platform
 
     # Firefox for Android and iOS have the system requirements page on SUMO
-    if platform in ['android', 'ios'] and page == 'sysreq':
+    if platform in ["android", "ios"] and page == "sysreq":
         return settings.FIREFOX_MOBILE_SYSREQ_URL
 
-    anchor = '#' + anchor if anchor else ''
-    return reverse(f'firefox.{page}', kwargs=kwargs) + anchor
+    anchor = "#" + anchor if anchor else ""
+    return reverse(f"firefox.{page}", kwargs=kwargs) + anchor

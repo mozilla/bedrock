@@ -11,11 +11,10 @@ from bedrock.mozorg.tests import TestCase
 from bedrock.mozorg.management.commands import update_product_details_files
 
 
-PD_REPO_TEST_PATH = Path(__file__).parent.joinpath('test_pd_repo')
+PD_REPO_TEST_PATH = Path(__file__).parent.joinpath("test_pd_repo")
 
 
-@override_settings(PROD_DETAILS_STORAGE='PDDatabaseStorage',
-                   PROD_DETAILS_TEST_DIR=str(PD_REPO_TEST_PATH.joinpath('product-details')))
+@override_settings(PROD_DETAILS_STORAGE="PDDatabaseStorage", PROD_DETAILS_TEST_DIR=str(PD_REPO_TEST_PATH.joinpath("product-details")))
 class TestUpdateProductDetailsFiles(TestCase):
     def setUp(self):
         self.command = update_product_details_files.Command()
@@ -23,33 +22,28 @@ class TestUpdateProductDetailsFiles(TestCase):
         self.command.repo.path_str = str(PD_REPO_TEST_PATH)
 
     def test_handle_diff_loads_all(self):
-        with patch.multiple(self.command, update_file_data=DEFAULT, validate_data=DEFAULT,
-                            file_storage=DEFAULT, load_changes=DEFAULT, repo=DEFAULT):
-            options = dict(quiet=False, database='default', force=False)
+        with patch.multiple(self.command, update_file_data=DEFAULT, validate_data=DEFAULT, file_storage=DEFAULT, load_changes=DEFAULT, repo=DEFAULT):
+            options = dict(quiet=False, database="default", force=False)
             self.command.update_file_data.return_value = True
             self.command.handle(**options)
             assert self.command.file_storage.all_json_files.called
-            self.command.load_changes. \
-                assert_called_with(options, self.command.file_storage.all_json_files())
+            self.command.load_changes.assert_called_with(options, self.command.file_storage.all_json_files())
             assert self.command.repo.set_db_latest.called
 
     def test_handle_error_no_set_latest(self):
-        with patch.multiple(self.command, update_file_data=DEFAULT, validate_data=DEFAULT,
-                            file_storage=DEFAULT, load_changes=DEFAULT, repo=DEFAULT):
-            options = dict(quiet=False, database='default', force=False)
+        with patch.multiple(self.command, update_file_data=DEFAULT, validate_data=DEFAULT, file_storage=DEFAULT, load_changes=DEFAULT, repo=DEFAULT):
+            options = dict(quiet=False, database="default", force=False)
             self.command.update_file_data.return_value = True
-            self.command.load_changes.side_effect = Exception('broke yo')
+            self.command.load_changes.side_effect = Exception("broke yo")
             with self.assertRaises(Exception):
                 self.command.handle(**options)
             assert self.command.file_storage.all_json_files.called
-            self.command.load_changes.\
-                assert_called_with(options, self.command.file_storage.all_json_files())
+            self.command.load_changes.assert_called_with(options, self.command.file_storage.all_json_files())
             assert not self.command.repo.set_db_latest.called
 
     def test_handle_no_diff_does_nothing(self):
-        with patch.multiple(self.command, update_file_data=DEFAULT, validate_data=DEFAULT,
-                            file_storage=DEFAULT, load_changes=DEFAULT, repo=DEFAULT):
-            options = dict(quiet=False, database='default', force=False)
+        with patch.multiple(self.command, update_file_data=DEFAULT, validate_data=DEFAULT, file_storage=DEFAULT, load_changes=DEFAULT, repo=DEFAULT):
+            options = dict(quiet=False, database="default", force=False)
             self.command.update_file_data.return_value = False
             self.command.handle(**options)
             assert not self.command.file_storage.all_json_files.called

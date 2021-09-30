@@ -12,7 +12,6 @@ from django.utils.cache import add_never_cache_headers
 
 
 class CacheMiddleware:
-
     def __init__(self, get_response=None):
         self.get_response = get_response
 
@@ -21,16 +20,13 @@ class CacheMiddleware:
         return self.process_response(request, response)
 
     def process_response(self, request, response):
-        cache = (request.method != 'POST'
-                 and response.status_code != 404
-                 and 'Cache-Control' not in response)
+        cache = request.method != "POST" and response.status_code != 404 and "Cache-Control" not in response
         if cache:
             d = datetime.datetime.now() + datetime.timedelta(minutes=10)
             stamp = time.mktime(d.timetuple())
 
-            response['Cache-Control'] = 'max-age=600'
-            response['Expires'] = formatdate(timeval=stamp, localtime=False,
-                                             usegmt=True)
+            response["Cache-Control"] = "max-age=600"
+            response["Expires"] = formatdate(timeval=stamp, localtime=False, usegmt=True)
         return response
 
 
@@ -47,7 +43,7 @@ class ClacksOverheadMiddleware:
     @staticmethod
     def process_response(request, response):
         if response.status_code == 200:
-            response['X-Clacks-Overhead'] = 'GNU Terry Pratchett'
+            response["X-Clacks-Overhead"] = "GNU Terry Pratchett"
         return response
 
 
@@ -56,8 +52,8 @@ class HostnameMiddleware:
         if not settings.ENABLE_HOSTNAME_MIDDLEWARE:
             raise MiddlewareNotUsed
 
-        values = [getattr(settings, x) for x in ['HOSTNAME', 'CLUSTER_NAME']]
-        self.backend_server = '.'.join(x for x in values if x)
+        values = [getattr(settings, x) for x in ["HOSTNAME", "CLUSTER_NAME"]]
+        self.backend_server = ".".join(x for x in values if x)
 
         self.get_response = get_response
 
@@ -66,7 +62,7 @@ class HostnameMiddleware:
         return self.process_response(request, response)
 
     def process_response(self, request, response):
-        response['X-Backend-Server'] = self.backend_server
+        response["X-Backend-Server"] = self.backend_server
         return response
 
 
@@ -82,12 +78,11 @@ class VaryNoCacheMiddleware:
 
     @staticmethod
     def process_response(request, response):
-        if 'vary' in response:
+        if "vary" in response:
             path = request.path
-            if path != '/' and not any(path.startswith(x) for x in
-                                       settings.VARY_NOCACHE_EXEMPT_URL_PREFIXES):
-                del response['vary']
-                del response['expires']
+            if path != "/" and not any(path.startswith(x) for x in settings.VARY_NOCACHE_EXEMPT_URL_PREFIXES):
+                del response["vary"]
+                del response["expires"]
                 add_never_cache_headers(response)
 
         return response

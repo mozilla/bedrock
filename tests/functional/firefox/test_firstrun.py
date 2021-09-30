@@ -8,11 +8,11 @@ from urllib.parse import unquote
 from pages.firefox.firstrun import FirefoxFirstrunPage
 
 
-@pytest.mark.skip_if_not_firefox(reason='Firstrun page is shown to Firefox only.')
+@pytest.mark.skip_if_not_firefox(reason="Firstrun page is shown to Firefox only.")
 @pytest.mark.nondestructive
 def test_account_form(base_url, selenium):
     page = FirefoxFirstrunPage(selenium, base_url).open()
-    page.join_firefox_form.type_email('success@example.com')
+    page.join_firefox_form.type_email("success@example.com")
     page.join_firefox_form.click_continue()
     url = unquote(selenium.current_url)
-    assert 'email=success@example.com' in url, 'Email address is not in URL'
+    assert "email=success@example.com" in url, "Email address is not in URL"

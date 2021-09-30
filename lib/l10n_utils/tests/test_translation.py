@@ -12,14 +12,14 @@ class TestTranslationUtils(TestCase):
         # nothing set, should return default lang
         self.assertEqual(translation.get_language(), settings.LANGUAGE_CODE)
 
-        translation.activate('non-default')
-        self.assertEqual(translation.get_language(), 'non-default')
+        translation.activate("non-default")
+        self.assertEqual(translation.get_language(), "non-default")
 
     def test_activate_deactivate(self):
         """Should activate and deactivate languages"""
         self.assertEqual(translation.get_language(), settings.LANGUAGE_CODE)
-        translation.activate('de')
-        self.assertEqual(translation.get_language(), 'de')
+        translation.activate("de")
+        self.assertEqual(translation.get_language(), "de")
         self.assertNotEqual(translation.get_language(), settings.LANGUAGE_CODE)
         translation.deactivate()
         self.assertEqual(translation.get_language(), settings.LANGUAGE_CODE)
@@ -29,14 +29,14 @@ class TestTranslationUtils(TestCase):
 
         List of left-to-right languages are in Django global settings and very unlikely to change.
         """
-        translation.activate('en-GB')
+        translation.activate("en-GB")
         self.assertFalse(translation.get_language_bidi())
 
-        translation.activate('de')
+        translation.activate("de")
         self.assertFalse(translation.get_language_bidi())
 
-        translation.activate('ar')
+        translation.activate("ar")
         self.assertTrue(translation.get_language_bidi())
 
-        translation.activate('ur-PK')
+        translation.activate("ur-PK")
         self.assertTrue(translation.get_language_bidi())

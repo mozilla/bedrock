@@ -10,10 +10,10 @@ from pages.regions.download_button import DownloadButton
 
 class UpdateBrowserPage(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/firefox/browsers/update-your-browser/'
+    _URL_TEMPLATE = "/{locale}/firefox/browsers/update-your-browser/"
 
-    _primary_download_button_locator = (By.ID, 'download-button-primary')
-    _secondary_download_button_locator = (By.ID, 'download-button-secondary')
+    _primary_download_button_locator = (By.ID, "download-button-primary")
+    _secondary_download_button_locator = (By.ID, "download-button-secondary")
 
     @property
     def primary_download_button(self):

@@ -19,26 +19,28 @@ from puente.settings import get_setting
 from lib.l10n_utils.gettext import pot_to_langfiles
 
 
-DOMAIN = 'django'
-METHODS = settings.PUENTE['DOMAIN_METHODS'][DOMAIN]
+DOMAIN = "django"
+METHODS = settings.PUENTE["DOMAIN_METHODS"][DOMAIN]
 
 
 def gettext_extract():
-    call_command('extract', create=True)
+    call_command("extract", create=True)
 
 
 def extract_callback(filename, method, options):
-    if method != 'ignore':
+    if method != "ignore":
         print("  %s" % filename)
 
 
-def extract_from_files(filenames,
-                       method_map=METHODS,
-                       options_map=generate_options_map(),
-                       keywords=get_setting('KEYWORDS'),
-                       comment_tags=get_setting('COMMENT_TAGS'),
-                       callback=extract_callback,
-                       strip_comment_tags=False):
+def extract_from_files(
+    filenames,
+    method_map=METHODS,
+    options_map=generate_options_map(),
+    keywords=get_setting("KEYWORDS"),
+    comment_tags=get_setting("COMMENT_TAGS"),
+    callback=extract_callback,
+    strip_comment_tags=False,
+):
     """Extract messages from any source files found in the given iterable.
 
     This function generates tuples of the form:
@@ -116,7 +118,7 @@ def extract_from_files(filenames,
                 matched = True
                 filepath = os.path.join(settings.ROOT, filename)
                 if not os.path.exists(filepath):
-                    print('! %s does not exist!' % filename)
+                    print("! %s does not exist!" % filename)
                     break
                 options = {}
                 for opattern, odict in options_map.items():
@@ -124,49 +126,47 @@ def extract_from_files(filenames,
                         options = odict
                 if callback:
                     callback(filename, method, options)
-                for lineno, message, comments, context in\
-                    extract_from_file(method, filepath,
-                                      keywords=keywords,
-                                      comment_tags=comment_tags,
-                                      options=options,
-                                      strip_comment_tags=strip_comment_tags):
+                for lineno, message, comments, context in extract_from_file(
+                    method, filepath, keywords=keywords, comment_tags=comment_tags, options=options, strip_comment_tags=strip_comment_tags
+                ):
                     yield filename, lineno, message, comments, context
                 break
         if not matched:
-            print('! %s does not match any domain methods!' % filename)
+            print("! %s does not match any domain methods!" % filename)
 
 
 class Command(BaseCommand):
-    help = dedent("""
+    help = dedent(
+        """
         Extracts a .lang file with new translations from all source files.
         If <filename>s are provided only extract from those files.
-    """).strip()
+    """
+    ).strip()
 
     def add_arguments(self, parser):
         # Positional arguments
-        parser.add_argument('filenames', nargs='*')
+        parser.add_argument("filenames", nargs="*")
 
     def handle(self, *args, **options):
-        filenames = options['filenames']
+        filenames = options["filenames"]
         if filenames:
             # mimics puente.management.commands.extract for a list of files
-            outputdir = str(settings.LOCALES_PATH / 'templates' / 'LC_MESSAGES')
+            outputdir = str(settings.LOCALES_PATH / "templates" / "LC_MESSAGES")
             if not os.path.isdir(outputdir):
                 os.makedirs(outputdir)
 
             catalog = Catalog(
-                header_comment='',
-                project=get_setting('PROJECT'),
-                version=get_setting('VERSION'),
-                msgid_bugs_address=get_setting('MSGID_BUGS_ADDRESS'),
-                charset='utf-8',
+                header_comment="",
+                project=get_setting("PROJECT"),
+                version=get_setting("VERSION"),
+                msgid_bugs_address=get_setting("MSGID_BUGS_ADDRESS"),
+                charset="utf-8",
             )
 
             for filename, lineno, msg, cmts, ctxt in extract_from_files(filenames):
-                catalog.add(msg, None, [(filename, lineno)], auto_comments=cmts,
-                            context=ctxt)
+                catalog.add(msg, None, [(filename, lineno)], auto_comments=cmts, context=ctxt)
 
-            with open(os.path.join(outputdir, '%s.pot' % DOMAIN), 'wb') as fp:
+            with open(os.path.join(outputdir, "%s.pot" % DOMAIN), "wb") as fp:
                 write_po(fp, catalog, width=80)
         else:
             # This is basically a wrapper around the puente extract

@@ -9,10 +9,10 @@ from pages.base import BasePage
 
 class FirefoxWhatsNew92Page(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/firefox/92.0/whatsnew/all/'
+    _URL_TEMPLATE = "/{locale}/firefox/92.0/whatsnew/all/"
 
-    _pocket_primary_button_locator = (By.CSS_SELECTOR, '.wnp-main-cta .mzp-c-button')
-    _pocket_secondary_button_locator = (By.CSS_SELECTOR, '.wnp-footer-cta .mzp-c-button')
+    _pocket_primary_button_locator = (By.CSS_SELECTOR, ".wnp-main-cta .mzp-c-button")
+    _pocket_secondary_button_locator = (By.CSS_SELECTOR, ".wnp-footer-cta .mzp-c-button")
 
     @property
     def is_pocket_primary_button_displayed(self):

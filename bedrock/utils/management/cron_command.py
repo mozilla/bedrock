@@ -35,10 +35,10 @@ def cache_lock(lock_key):
 
 
 class CronCommand(BaseCommand):
-    lock_key = 'cron-command'
+    lock_key = "cron-command"
 
     def get_lock_key(self):
-        return 'command-lock:' + self.lock_key
+        return "command-lock:" + self.lock_key
 
     def get_lock(self):
         return cache_lock(self.get_lock_key())

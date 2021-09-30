@@ -26,6 +26,7 @@ class GeoTemplateView(l10n_utils.L10nTemplateView):
     If the requesting country isn't in the list it falls back to the `template_name`
     setting like the normal TemplateView class.
     """
+
     # dict of country codes to template names
     geo_template_names = None
 
@@ -49,7 +50,7 @@ class GeoRedirectView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         country_code = get_country_from_request(self.request)
         url = self.geo_urls.get(country_code, self.default_url)
-        if re.match(r'https?://', url, re.I):
+        if re.match(r"https?://", url, re.I):
             self.url = url
         else:
             self.pattern_name = url
@@ -69,33 +70,40 @@ def geolocate(request):
     """
     country_code = get_country_from_request(request)
     if country_code is None:
-        return JsonResponse({
-            "error": {
-                "errors": [{
-                    "domain": "geolocation",
-                    "reason": "notFound",
+        return JsonResponse(
+            {
+                "error": {
+                    "errors": [
+                        {
+                            "domain": "geolocation",
+                            "reason": "notFound",
+                            "message": "Not found",
+                        }
+                    ],
+                    "code": 404,
                     "message": "Not found",
-                }],
-                "code": 404,
-                "message": "Not found",
-            }
-        }, status=404)
+                }
+            },
+            status=404,
+        )
 
-    return JsonResponse({
-        'country_code': country_code,
-    })
+    return JsonResponse(
+        {
+            "country_code": country_code,
+        }
+    )
 
 
 # file names and max seconds since last run
 HEALTH_FILES = (
-    ('download_database', 600),
-    ('update_locales', 600),
+    ("download_database", 600),
+    ("update_locales", 600),
 )
-DB_INFO_FILE = getenv('AWS_DB_JSON_DATA_FILE', f'{settings.DATA_PATH}/bedrock_db_info.json')
-GIT_SHA = getenv('GIT_SHA')
-BUCKET_NAME = getenv('AWS_DB_S3_BUCKET', 'bedrock-db-dev')
-REGION_NAME = os.getenv('AWS_DB_REGION', 'us-west-2')
-S3_BASE_URL = 'https://s3-{}.amazonaws.com/{}'.format(
+DB_INFO_FILE = getenv("AWS_DB_JSON_DATA_FILE", f"{settings.DATA_PATH}/bedrock_db_info.json")
+GIT_SHA = getenv("GIT_SHA")
+BUCKET_NAME = getenv("AWS_DB_S3_BUCKET", "bedrock-db-dev")
+REGION_NAME = os.getenv("AWS_DB_REGION", "us-west-2")
+S3_BASE_URL = "https://s3-{}.amazonaws.com/{}".format(
     REGION_NAME,
     BUCKET_NAME,
 )
@@ -104,38 +112,41 @@ S3_BASE_URL = 'https://s3-{}.amazonaws.com/{}'.format(
 def get_l10n_repo_info():
     repo = git.GitRepo(settings.LOCALES_PATH, settings.LOCALES_REPO)
     fluent_repo = git.GitRepo(settings.FLUENT_REPO_PATH, settings.FLUENT_REPO_URL)
-    return ({
-        'latest_ref': repo.current_hash,
-        'last_updated': repo.last_updated,
-        'repo_url': repo.clean_remote_url,
-    }, {
-        'latest_ref': fluent_repo.current_hash,
-        'last_updated': fluent_repo.last_updated,
-        'repo_url': fluent_repo.clean_remote_url,
-    })
+    return (
+        {
+            "latest_ref": repo.current_hash,
+            "last_updated": repo.last_updated,
+            "repo_url": repo.clean_remote_url,
+        },
+        {
+            "latest_ref": fluent_repo.current_hash,
+            "last_updated": fluent_repo.last_updated,
+            "repo_url": fluent_repo.clean_remote_url,
+        },
+    )
 
 
 def get_db_file_url(filename):
-    return '/'.join([S3_BASE_URL, filename])
+    return "/".join([S3_BASE_URL, filename])
 
 
 def get_extra_server_info():
-    server_name = [getattr(settings, x) for x in ['HOSTNAME', 'CLUSTER_NAME']]
-    server_name = '.'.join(x for x in server_name if x)
+    server_name = [getattr(settings, x) for x in ["HOSTNAME", "CLUSTER_NAME"]]
+    server_name = ".".join(x for x in server_name if x)
     server_info = {
-        'name': server_name,
-        'git_sha': GIT_SHA,
+        "name": server_name,
+        "git_sha": GIT_SHA,
     }
     try:
-        with open(DB_INFO_FILE, 'r') as fp:
+        with open(DB_INFO_FILE, "r") as fp:
             db_info = json.load(fp)
     except (IOError, ValueError):
         pass
     else:
-        db_info['last_update'] = timeago.format(datetime.fromtimestamp(db_info['updated']))
-        db_info['file_url'] = get_db_file_url(db_info['file_name'])
+        db_info["last_update"] = timeago.format(datetime.fromtimestamp(db_info["updated"]))
+        db_info["file_url"] = get_db_file_url(db_info["file_name"])
         for key, value in db_info.items():
-            server_info['db_%s' % key] = value
+            server_info["db_%s" % key] = value
 
     return server_info
 
@@ -146,12 +157,12 @@ def cron_health_check(request):
     results = []
     check_pass = True
     for fname, max_time in HEALTH_FILES:
-        fpath = f'{settings.DATA_PATH}/last-run-{fname}'
+        fpath = f"{settings.DATA_PATH}/last-run-{fname}"
         try:
             last_check = os.path.getmtime(fpath)
         except OSError:
             check_pass = False
-            results.append((fname, max_time, 'None', False))
+            results.append((fname, max_time, "None", False))
             continue
 
         time_since = int(time() - last_check)
@@ -163,7 +174,7 @@ def cron_health_check(request):
 
         results.append((fname, max_time, time_since, task_pass))
 
-    git_repos = git.GitRepoState.objects.exclude(repo_name='').order_by('repo_name', '-latest_ref_timestamp')
+    git_repos = git.GitRepoState.objects.exclude(repo_name="").order_by("repo_name", "-latest_ref_timestamp")
     unique_repos = {}
     for repo in git_repos:
         if repo.repo_name in unique_repos:
@@ -171,21 +182,26 @@ def cron_health_check(request):
         unique_repos[repo.repo_name] = repo
 
     l10n_repo, fluent_repo = get_l10n_repo_info()
-    return render(request, 'cron-health-check.html', {
-        'results': results,
-        'server_info': get_extra_server_info(),
-        'success': check_pass,
-        'git_repos': unique_repos.values(),
-        'l10n_repo': l10n_repo,
-        'fluent_repo': fluent_repo,
-    }, status=200 if check_pass else 500)
+    return render(
+        request,
+        "cron-health-check.html",
+        {
+            "results": results,
+            "server_info": get_extra_server_info(),
+            "success": check_pass,
+            "git_repos": unique_repos.values(),
+            "l10n_repo": l10n_repo,
+            "fluent_repo": fluent_repo,
+        },
+        status=200 if check_pass else 500,
+    )
 
 
-def server_error_view(request, template_name='500.html'):
+def server_error_view(request, template_name="500.html"):
     """500 error handler that runs context processors."""
-    return l10n_utils.render(request, template_name, ftl_files=['500'], status=500)
+    return l10n_utils.render(request, template_name, ftl_files=["500"], status=500)
 
 
-def page_not_found_view(request, exception=None, template_name='404.html'):
+def page_not_found_view(request, exception=None, template_name="404.html"):
     """404 error handler that runs context processors."""
-    return l10n_utils.render(request, template_name, ftl_files=['404', '500'], status=404)
+    return l10n_utils.render(request, template_name, ftl_files=["404", "500"], status=404)

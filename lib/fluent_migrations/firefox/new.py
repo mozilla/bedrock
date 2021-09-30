@@ -6,6 +6,7 @@ from fluent.migrate import REPLACE, COPY
 
 trailhead = "firefox/new/trailhead.lang"
 
+
 def migrate(ctx):
     """Migrate bedrock/firefox/templates/firefox/new/trailhead/base.html, part {index}."""
 
@@ -20,8 +21,8 @@ def migrate(ctx):
                     "Download Firefox",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-new-download-mozilla-firefox"),
@@ -36,8 +37,8 @@ def migrate(ctx):
                         "Linux": TERM_REFERENCE("brand-name-linux"),
                         "Android": TERM_REFERENCE("brand-name-android"),
                         "iOS": TERM_REFERENCE("brand-name-ios"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-new-download-the-fastest-firefox"),
@@ -46,8 +47,8 @@ def migrate(ctx):
                     "Download the fastest Firefox ever",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-new-faster-page-loading-less-memory"),
@@ -56,8 +57,8 @@ def migrate(ctx):
                     "Faster page loading, less memory usage and packed with features, the new Firefox is here.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-new-automatic-privacy-is-here"),
@@ -66,8 +67,8 @@ def migrate(ctx):
                     "Automatic privacy is here. Download Firefox to block over 2000 trackers.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-new-get-the-latest-firefox"),
@@ -76,8 +77,8 @@ def migrate(ctx):
                     "Get the latest Firefox browser.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-new-firefox-shows-you-how-many"),
@@ -86,8 +87,8 @@ def migrate(ctx):
                     "Firefox shows you how many data-collecting trackers are blocked with <strong>Enhanced Tracking Protection</strong>.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-new-firefox-lockwise-makes-secure"),
@@ -97,8 +98,8 @@ def migrate(ctx):
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Firefox Lockwise": TERM_REFERENCE("brand-name-firefox-lockwise"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-new-firefox-monitor-alerts"),
@@ -107,8 +108,8 @@ def migrate(ctx):
                     "<strong>Firefox Monitor</strong> alerts you if we know your information is a part of another company’s data breach.",
                     {
                         "Firefox Monitor": TERM_REFERENCE("brand-name-firefox-monitor"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-new-join-firefox"),
@@ -117,8 +118,8 @@ def migrate(ctx):
                     "Join Firefox",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-new-firefox-lockwise-makes"),
@@ -128,9 +129,8 @@ def migrate(ctx):
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Firefox Lockwise": TERM_REFERENCE("brand-name-firefox-lockwise"),
-
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-new-download-firefox-for-windows"),
@@ -140,8 +140,8 @@ def migrate(ctx):
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Windows": TERM_REFERENCE("brand-name-windows"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-new-download-firefox-for-macos"),
@@ -151,8 +151,8 @@ def migrate(ctx):
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "macOS": TERM_REFERENCE("brand-name-mac"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-new-download-firefox-for-linux"),
@@ -162,8 +162,8 @@ def migrate(ctx):
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Linux": TERM_REFERENCE("brand-name-linux"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-new-youve-already-got-the-browser"),
@@ -172,8 +172,8 @@ def migrate(ctx):
                     "You’ve already got the browser. Now get even more from Firefox.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-new-watch-for-hackers-with"),
@@ -183,8 +183,8 @@ def migrate(ctx):
                     {
                         "Firefox Monitor": TERM_REFERENCE("brand-name-firefox-monitor"),
                         "Firefox Lockwise": TERM_REFERENCE("brand-name-firefox-lockwise"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-new-get-more-from-firefox"),
@@ -193,16 +193,17 @@ def migrate(ctx):
                     "Get More From Firefox",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ]
+        ],
     )
 
     ctx.add_transforms(
         "firefox/new/download.ftl",
         "firefox/new/download.ftl",
-        transforms_from("""
+        transforms_from(
+            """
 firefox-new-free-web-browser = {COPY(trailhead, "Free Web Browser",)}
 firefox-new-and-start-getting-the-respect = {COPY(trailhead, "And start getting the respect you deserve with our family of privacy-first products.",)}
 firefox-new-advanced-install-options = {COPY(trailhead, "Advanced install options & other platforms",)}
@@ -218,8 +219,10 @@ firefox-new-protect-your-privacy = {COPY(trailhead, "Protect your privacy",)}
 firefox-new-private-browsing-clears = {COPY(trailhead, "<strong>Private Browsing</strong> clears your history to keep it secret from anyone who uses your computer.",)}
 firefox-new-advanced-install-options-heading = {COPY(trailhead, "Advanced Install Options & Other Platforms",)}
 firefox-new-just-download-the-browser = {COPY(trailhead, "Just Download The Browser",)}
-""", trailhead=trailhead)
-        )
+""",
+            trailhead=trailhead,
+        ),
+    )
 
     ctx.add_transforms(
         "firefox/new/download.ftl",
@@ -229,25 +232,25 @@ firefox-new-just-download-the-browser = {COPY(trailhead, "Just Download The Brow
                 id=FTL.Identifier("firefox-new-youre-using-an-insecure-outdated"),
                 value=REPLACE(
                     trailhead,
-                    "You’re using an insecure, outdated operating system <a href=\"%(url)s\">no longer supported by Firefox</a>.",
+                    'You’re using an insecure, outdated operating system <a href="%(url)s">no longer supported by Firefox</a>.',
                     {
                         "%%": "%",
                         "%(url)s": VARIABLE_REFERENCE("url"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-new-your-firefox-new-should-begin"),
                 value=REPLACE(
                     trailhead,
-                    "Your download should begin automatically. Didn’t work? <a id=\"%(id)s\" href=\"%(fallback_url)s\">Try downloading again</a>.",
+                    'Your download should begin automatically. Didn’t work? <a id="%(id)s" href="%(fallback_url)s">Try downloading again</a>.',
                     {
                         "%%": "%",
                         "%(id)s": VARIABLE_REFERENCE("id"),
                         "%(fallback_url)s": VARIABLE_REFERENCE("fallback_url"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-new-firefox-is-more-than-a-browser"),
@@ -256,13 +259,17 @@ firefox-new-just-download-the-browser = {COPY(trailhead, "Just Download The Brow
                     "Firefox is more than a browser.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 firefox-new-its-privacy-and-peace-of = {COPY(trailhead, "It’s <strong>privacy and peace of mind</strong> on mobile, too.",)}
 firefox-new-its-a-family-of-products = {COPY(trailhead, "It’s a <strong>family of products</strong> that treat your personal data with respect.",)}
 firefox-new-its-everything-you-need-to = {COPY(trailhead, "It’s everything you need to know about <strong>staying safe online</strong>.",)}
 firefox-new-its-a-community-that-believes = {COPY(trailhead, "It’s <strong>a community</strong> that believes tech can do better.",)}
-""", trailhead=trailhead)
-        )
+""",
+            trailhead=trailhead,
+        ),
+    )

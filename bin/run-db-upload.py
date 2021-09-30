@@ -19,8 +19,8 @@ from db_s3_utils import (
 
 
 CACHE = {}
-BUCKET_NAME = os.getenv('AWS_DB_S3_BUCKET', 'bedrock-db-dev')
-REGION_NAME = os.getenv('AWS_DB_S3_REGION', 'us-west-2')
+BUCKET_NAME = os.getenv("AWS_DB_S3_BUCKET", "bedrock-db-dev")
+REGION_NAME = os.getenv("AWS_DB_S3_REGION", "us-west-2")
 
 
 # Requires setting some environment variables:
@@ -28,13 +28,13 @@ REGION_NAME = os.getenv('AWS_DB_S3_REGION', 'us-west-2')
 # See boto3 docs for more info:
 # http://boto3.readthedocs.io/en/latest/guide/configuration.html#environment-variable-configuration
 def s3_client():
-    if 'AWS_ACCESS_KEY_ID' not in os.environ:
+    if "AWS_ACCESS_KEY_ID" not in os.environ:
         return None
 
-    s3 = CACHE.get('s3_client')
+    s3 = CACHE.get("s3_client")
     if not s3:
-        s3 = boto3.client('s3', region_name=REGION_NAME)
-        CACHE['s3_client'] = s3
+        s3 = boto3.client("s3", region_name=REGION_NAME)
+        CACHE["s3_client"] = s3
 
     return s3
 
@@ -47,21 +47,19 @@ def delete_s3_obj(filename):
 def upload_db_data(db_data):
     s3 = s3_client()
     if not s3:
-        return 'ERROR: AWS credentials not configured'
+        return "ERROR: AWS credentials not configured"
 
     try:
         # upload the new db
-        s3.upload_file(DB_FILE, BUCKET_NAME, db_data['file_name'],
-                       ExtraArgs={'ACL': 'public-read'})
+        s3.upload_file(DB_FILE, BUCKET_NAME, db_data["file_name"], ExtraArgs={"ACL": "public-read"})
     except Boto3Error:
-        return 'ERROR: Failed to upload the new database: %s' % db_data
+        return "ERROR: Failed to upload the new database: %s" % db_data
 
     try:
         # after successful file upload, upload json metadata
-        s3.upload_file(JSON_DATA_FILE, BUCKET_NAME, JSON_DATA_FILE_NAME,
-                       ExtraArgs={'ACL': 'public-read'})
+        s3.upload_file(JSON_DATA_FILE, BUCKET_NAME, JSON_DATA_FILE_NAME, ExtraArgs={"ACL": "public-read"})
     except Boto3Error:
-        return 'ERROR: Failed to upload the new database info file: %s' % db_data
+        return "ERROR: Failed to upload the new database info file: %s" % db_data
 
     return 0
 
@@ -69,30 +67,30 @@ def upload_db_data(db_data):
 def get_db_file_name():
     git_sha = get_git_sha()
     checksum = get_db_checksum()
-    return '{}-{}.db'.format(git_sha[:10], checksum[:10])
+    return "{}-{}.db".format(git_sha[:10], checksum[:10])
 
 
 def get_db_data():
     return {
-        'updated': time(),
-        'checksum': get_db_checksum(),
-        'git_sha': get_git_sha(),
-        'file_name': get_db_file_name(),
+        "updated": time(),
+        "checksum": get_db_checksum(),
+        "git_sha": get_git_sha(),
+        "file_name": get_db_file_name(),
     }
 
 
 def main(args):
-    force = '--force' in args
+    force = "--force" in args
     prev_data = get_prev_db_data()
     new_data = get_db_data()
-    if not force and prev_data and prev_data['checksum'] == new_data['checksum']:
-        print('No update necessary')
+    if not force and prev_data and prev_data["checksum"] == new_data["checksum"]:
+        print("No update necessary")
         return 0
 
-    print('Attempting a db update')
+    print("Attempting a db update")
 
     set_db_data(new_data)
-    if '--no-upload' in args:
+    if "--no-upload" in args:
         return 0
 
     res = upload_db_data(new_data)
@@ -105,5 +103,5 @@ def main(args):
     return res
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sys.exit(main(sys.argv[1:]))
