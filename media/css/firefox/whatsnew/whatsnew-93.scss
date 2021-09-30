@@ -1,0 +1,182 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import 'includes/header';
+
+
+//* -------------------------------------------------------------------------- */
+// Main content
+.wnp-content-main {
+    padding: 0;
+    text-align: center;
+}
+
+.wnp-main-image {
+    display: block;
+    max-width: 800px;
+    margin: 0 auto $layout-lg;
+}
+
+.wnp-pre-title {
+    @include text-title-sm;
+    color: $color-violet-60;
+}
+
+.wnp-main-title {
+    @include text-title-lg;
+    color: get-theme('title-text-color');
+    margin: 0 auto $layout-lg;
+}
+
+// Variant 1 - "Go Ahead"
+.wnp93-v1 {
+    .wnp-main-title span {
+        display: block;
+
+        &.do-things-pre {
+            color: $color-violet-60;
+        }
+    }
+
+    .js & .do-things {
+        display: grid;
+
+        .do {
+            grid-column-start: 1;
+            grid-row-start: 1;
+            opacity: 0;
+            transition: opacity 250ms ease;
+        }
+    }
+}
+
+// Variant 2 - "Be You or Blur You"
+.wnp93-v2 .wnp-main-title {
+    @include visually-hidden;
+}
+
+.wnp-main-tagline {
+    @include text-body-xl;
+    max-width: $content-md;
+    margin: $layout-md auto;
+}
+
+
+// Responsive video container
+.video-container {
+    margin: 0 auto;
+    max-width: 620px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+
+    .wnp93-v2 & {
+        max-width: 100%;
+    }
+
+    &::after {
+        content: '';
+        display: block;
+        padding-top: 56.25%; // 16:9 aspect ratio
+    }
+
+    video {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Utilities (link to release notes)
+.c-utilities {
+    @include text-body-sm;
+    max-width: $content-md;
+    padding-bottom: $layout-xl;
+    text-align: center;
+}
+
+
+//* -------------------------------------------------------------------------- */
+// For dark mode
+@media (prefers-color-scheme: dark) {
+    .wnp93-v1,
+    .wnp93-v2 {
+        .content-wrapper {
+            background: $color-dark-gray-60;
+            color: $color-white;
+        }
+
+        .wnp-main-image {
+            .invert-dark {
+                fill: #fff;
+            }
+
+            .empty-dark {
+                fill: none;
+            }
+
+            .darken-dark {
+                fill: #6f4ae7;
+            }
+        }
+
+        .wnp-main-title,
+        .wnp-footer-title,
+        .mzp-c-picto-heading {
+            color: get-theme('title-text-color-inverse');
+        }
+
+        .wnp-pre-title,
+        .wnp-main-title span.do-things-pre {
+            color: $color-violet-30;
+        }
+
+        .c-utilities {
+            @include white-links;
+        }
+
+        .c-footer {
+            background: $color-dark-gray-60;
+            color: $color-white;
+
+            a:link,
+            a:visited,
+            a:hover,
+            a:focus,
+            a:active {
+                color: $color-white;
+            }
+
+            .c-footer-sections {
+                border-color: $color-dark-gray-30;
+            }
+        }
+
+        .c-footer-list-social li {
+            a.twitter {
+                background-image: url('/media/protocol/img/icons/social/twitter/white.svg');
+            }
+
+            a.instagram {
+                background-image: url('/media/protocol/img/icons/social/instagram/white.svg');
+            }
+
+            a.youtube {
+                background-image: url('/media/protocol/img/icons/social/youtube/white.svg');
+            }
+        }
+
+        .c-footer-primary-logo a {
+            background-image: url('/media/protocol/img/logos/mozilla/logo-word-hor-white.svg');
+        }
+    }
+}

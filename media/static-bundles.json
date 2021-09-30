@@ -460,6 +460,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-93.scss"
+      ],
+      "name": "firefox_whatsnew_93"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -1143,6 +1149,32 @@
         "js/base/mozilla-fxa-product-button-init.js"
       ],
       "name": "firefox_whatsnew_92_vpn"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/up-to-date.js"
+      ],
+      "name": "firefox_whatsnew_93"
+    },
+    {
+      "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/firefox/whatsnew/whatsnew93-experiment-en.js"
+      ],
+      "name": "firefox_whatsnew_93_experiment_en"
+    },
+    {
+      "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/firefox/whatsnew/whatsnew93-experiment-eu.js"
+      ],
+      "name": "firefox_whatsnew_93_experiment_eu"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew93-cycle.js"
+      ],
+      "name": "firefox_whatsnew_93_cycle"
     },
     {
       "files": [

@@ -500,28 +500,38 @@ class WhatsNewRedirectorView(GeoRedirectView):
 class WhatsnewView(L10nTemplateView):
 
     ftl_files_map = {
-        "firefox/developer/whatsnew.html": ["firefox/developer"],
-        "firefox/nightly/whatsnew.html": ["firefox/nightly/whatsnew", "firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/index-account.html": ["firefox/whatsnew/whatsnew-account", "firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/index.html": ["firefox/whatsnew/whatsnew-s2d", "firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx86-en.html": ["firefox/whatsnew/whatsnew-s2d", "firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx87-en.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx88-en.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-mobile-de.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-mobile-qrcode-de.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx90-en.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx90-eu.html": ["firefox/whatsnew/whatsnew-fx90.ftl", "firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx91-en.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx91-de.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx92-en.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx92-de.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx92-fr.html": ["firefox/whatsnew/whatsnew-fx90.ftl", "firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx92-vpn-en.html": ["firefox/whatsnew/whatsnew", "products/vpn/shared"],
-        "firefox/whatsnew/whatsnew-fx92-vpn-fr.html": ["firefox/whatsnew/whatsnew", "products/vpn/shared"],
+        'firefox/developer/whatsnew.html': ['firefox/developer'],
+        'firefox/nightly/whatsnew.html': ['firefox/nightly/whatsnew', 'firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/index-account.html': ['firefox/whatsnew/whatsnew-account', 'firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/index.html': ['firefox/whatsnew/whatsnew-s2d', 'firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx86-en.html': ['firefox/whatsnew/whatsnew-s2d', 'firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx87-en.html': ['firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx88-en.html': ['firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-mobile-de.html': ['firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-mobile-qrcode-de.html': ['firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx90-en.html': ['firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx90-eu.html': ['firefox/whatsnew/whatsnew-fx90.ftl', 'firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx91-en.html': ['firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx91-de.html': ['firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx92-en.html': ['firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx92-de.html': ['firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx92-fr.html': ['firefox/whatsnew/whatsnew-fx90.ftl', 'firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx92-vpn-en.html': ['firefox/whatsnew/whatsnew', 'products/vpn/shared'],
+        'firefox/whatsnew/whatsnew-fx92-vpn-fr.html': ['firefox/whatsnew/whatsnew', 'products/vpn/shared'],
+        'firefox/whatsnew/whatsnew-fx93-v1-en.html': ['firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx93-v2-en.html': ['firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx93-v3-en.html': ['firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx93-v2-de.html': ['firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx93-v3-de.html': ['firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx93-v2-fr.html': ['firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx93-v3-fr.html': ['firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx93-es.html': ['firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx93-it.html': ['firefox/whatsnew/whatsnew'],
+        'firefox/whatsnew/whatsnew-fx93-nl.html': ['firefox/whatsnew/whatsnew'],
     }
 
     # place expected ?v= values in this list
-    variations = ["1", "2"]
+    variations = ['1', '2', '3']
 
     def get_context_data(self, **kwargs):
         ctx = super(WhatsnewView, self).get_context_data(**kwargs)
@@ -589,29 +599,52 @@ class WhatsnewView(L10nTemplateView):
             if show_57_dev_whatsnew(version):
                 template = "firefox/developer/whatsnew.html"
             else:
-                template = "firefox/whatsnew/index.html"
-        elif version.startswith("92.") and locale.startswith("en-"):
-            template = "firefox/whatsnew/whatsnew-fx92-en.html"
-        elif version.startswith("92.") and locale == "de":
-            template = "firefox/whatsnew/whatsnew-fx92-de.html"
-        elif version.startswith("92.") and locale == "fr":
-            template = "firefox/whatsnew/whatsnew-fx92-fr.html"
-        elif version.startswith("91.") and locale.startswith("en-"):
-            template = "firefox/whatsnew/whatsnew-fx91-en.html"
-        elif version.startswith("91.") and locale == "de":
-            template = "firefox/whatsnew/whatsnew-fx91-de.html"
-        elif version.startswith("90.") and locale.startswith("en-"):
-            template = "firefox/whatsnew/whatsnew-fx90-en.html"
-        elif version.startswith("90.") and locale in ["de", "fr", "it", "nl", "es-ES"]:
-            template = "firefox/whatsnew/whatsnew-fx90-eu.html"
-        elif version.startswith("88.") and locale == "en-US":
-            template = "firefox/whatsnew/whatsnew-fx88-en.html"
-        elif version.startswith("87.") and locale == "en-US":
-            template = "firefox/whatsnew/whatsnew-fx87-en.html"
-        elif version.startswith("86.") and locale.startswith("en-"):
-            template = "firefox/whatsnew/whatsnew-fx86-en.html"
-        elif version.startswith("86.") and locale == "de":
-            template = "firefox/whatsnew/whatsnew-mobile-qrcode-de.html"
+                template = 'firefox/whatsnew/index.html'
+        elif version.startswith('93.') and locale.startswith('en-'):
+            if variant == '1':
+                template = 'firefox/whatsnew/whatsnew-fx93-v1-en.html'
+            elif variant == '2':
+                template = 'firefox/whatsnew/whatsnew-fx93-v2-en.html'
+            else:
+                template = 'firefox/whatsnew/whatsnew-fx93-v3-en.html'
+        elif version.startswith('93.') and locale == 'de':
+            if variant == '2':
+                template = 'firefox/whatsnew/whatsnew-fx93-v2-de.html'
+            else:
+                template = 'firefox/whatsnew/whatsnew-fx93-v3-de.html'
+        elif version.startswith('93.') and locale == 'fr':
+            if variant == '2':
+                template = 'firefox/whatsnew/whatsnew-fx93-v2-fr.html'
+            else:
+                template = 'firefox/whatsnew/whatsnew-fx93-v3-fr.html'
+        elif version.startswith('93.') and locale.startswith('es-'):
+            template = 'firefox/whatsnew/whatsnew-fx93-es.html'
+        elif version.startswith('93.') and locale == 'it':
+            template = 'firefox/whatsnew/whatsnew-fx93-it.html'
+        elif version.startswith('93.') and locale == 'nl':
+            template = 'firefox/whatsnew/whatsnew-fx93-nl.html'
+        elif version.startswith('92.') and locale.startswith('en-'):
+            template = 'firefox/whatsnew/whatsnew-fx92-en.html'
+        elif version.startswith('92.') and locale == 'de':
+            template = 'firefox/whatsnew/whatsnew-fx92-de.html'
+        elif version.startswith('92.') and locale == 'fr':
+            template = 'firefox/whatsnew/whatsnew-fx92-fr.html'
+        elif version.startswith('91.') and locale.startswith('en-'):
+            template = 'firefox/whatsnew/whatsnew-fx91-en.html'
+        elif version.startswith('91.') and locale == 'de':
+            template = 'firefox/whatsnew/whatsnew-fx91-de.html'
+        elif version.startswith('90.') and locale.startswith('en-'):
+            template = 'firefox/whatsnew/whatsnew-fx90-en.html'
+        elif version.startswith('90.') and locale in ['de', 'fr', 'it', 'nl', 'es-ES']:
+            template = 'firefox/whatsnew/whatsnew-fx90-eu.html'
+        elif version.startswith('88.') and locale == 'en-US':
+            template = 'firefox/whatsnew/whatsnew-fx88-en.html'
+        elif version.startswith('87.') and locale == 'en-US':
+            template = 'firefox/whatsnew/whatsnew-fx87-en.html'
+        elif version.startswith('86.') and locale.startswith('en-'):
+            template = 'firefox/whatsnew/whatsnew-fx86-en.html'
+        elif version.startswith('86.') and locale == 'de':
+            template = 'firefox/whatsnew/whatsnew-mobile-qrcode-de.html'
         else:
             if show_default_account_whatsnew(version) and ftl_file_is_active("firefox/whatsnew/whatsnew-account"):
                 template = "firefox/whatsnew/index-account.html"

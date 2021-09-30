@@ -1,0 +1,59 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros-protocol.html" import picto with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+{% block body_class %}wnp93-v1{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_93') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main class="content-wrapper mzp-t-firefox">
+  {% include 'firefox/whatsnew/includes/header.html' %}
+
+  {% set landing_source = '?source=' + campaign if campaign else '' %}
+  {% set landing_variant = '-v' + variant if variant else '' %}
+
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-lg">
+      {{ high_res_img('img/firefox/whatsnew/whatsnew93/hero-v1.png', {'alt': '', 'loading': 'lazy', 'class': 'wnp-main-image'}) }}
+      <h1 class="wnp-main-title">
+        <span class="do-things-pre">Go ahead:</span>
+        <span class="do-things">
+          <span class="do">Ask the dumb question.</span>
+          <span class="do">Make the dad joke.</span>
+          <span class="do">Watch the weird video.</span>
+        </span>
+      </h1>
+      <p class="wnp-main-tagline">Get the peace of mind to internet like no one’s watching with a Virtual Private Network from Mozilla.</p>
+
+      <div class="wnp-main-cta">
+        <a href="{{ url('products.vpn.landing') }}{{ landing_source }}{{ landing_variant }}" class="mzp-c-button mzp-t-product mzp-t-lg" data-cta-text="Boost your privacy" data-cta-type="button">Boost your privacy</a>
+      </div>
+    </div>
+  </section>
+
+  <aside class="mzp-l-content c-utilities">
+    {% set releasenotes_url = url('firefox.releases.index') if not version else '/firefox/%s/releasenotes/'|format(version) %}
+    <p>{{ ftl('whatsnew-release-notes', url=releasenotes_url) }}</p>
+  </aside>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+  {{ js_bundle('firefox_whatsnew_93_cycle') }}
+{% endblock %}
