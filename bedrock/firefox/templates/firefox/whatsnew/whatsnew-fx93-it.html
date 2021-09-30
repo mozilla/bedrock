@@ -24,8 +24,6 @@
 <main class="content-wrapper mzp-t-firefox">
   {% include 'firefox/whatsnew/includes/header.html' %}
 
-  {% set landing_source = '?source=' + campaign if campaign else '' %}
-
   <section class="wnp-content-main">
     <div class="mzp-l-content mzp-t-content-lg">
       <h1 class="wnp-pre-title">È il mese della sicurezza informatica</h1>
@@ -40,7 +38,16 @@
       <p class="wnp-main-tagline">Impedisci a occhi indiscreti di scoprire la tua posizione e la tua cronologia grazie a una Virtual Private Network creata da chi da sempre è sinonimo di tecnologia e affidabilità.</p>
 
       <div class="wnp-main-cta">
-        <a href="{{ url('products.vpn.landing') }}{{ landing_source }}" class="mzp-c-button mzp-t-product mzp-t-lg" data-cta-text="Get Mozilla VPN" data-cta-type="button">Ottieni Mozilla VPN</a>
+        {{ vpn_product_referral_link(
+            referral_id='whatsnew93-it',
+            link_text='Ottieni Mozilla VPN',
+            class_name='mzp-t-product mzp-t-lg',
+            optional_attributes= {
+                'data-cta-text' : 'Ottieni Mozilla VPN',
+                'data-cta-type' : 'button',
+                'data-cta-position' : 'primary-cta',
+            }
+        ) }}
       </div>
     </div>
   </section>
