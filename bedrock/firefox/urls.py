@@ -14,19 +14,19 @@ from bedrock.utils import views as utils_views
 from bedrock.utils.views import VariationTemplateView
 
 
-latest_re = r'^firefox(?:/(?P<version>%s))?/%s/$'
-firstrun_re = latest_re % (version_re, 'firstrun')
-whatsnew_re = latest_re % (version_re, 'whatsnew')
-whatsnew_re_china = latest_re % (version_re, 'whatsnew/china')
-whatsnew_re_all = latest_re % (version_re, 'whatsnew/all')
-platform_re = '(?P<platform>android|ios)'
-channel_re = '(?P<channel>beta|aurora|developer|nightly|organizations)'
-releasenotes_re = latest_re % (version_re, r'(aurora|release)notes')
-android_releasenotes_re = releasenotes_re.replace(r'firefox', 'firefox/android')
-ios_releasenotes_re = releasenotes_re.replace(r'firefox', 'firefox/ios')
-sysreq_re = latest_re % (version_re, 'system-requirements')
-android_sysreq_re = sysreq_re.replace(r'firefox', 'firefox/android')
-ios_sysreq_re = sysreq_re.replace(r'firefox', 'firefox/ios')
+latest_re = r"^firefox(?:/(?P<version>%s))?/%s/$"
+firstrun_re = latest_re % (version_re, "firstrun")
+whatsnew_re = latest_re % (version_re, "whatsnew")
+whatsnew_re_china = latest_re % (version_re, "whatsnew/china")
+whatsnew_re_all = latest_re % (version_re, "whatsnew/all")
+platform_re = "(?P<platform>android|ios)"
+channel_re = "(?P<channel>beta|aurora|developer|nightly|organizations)"
+releasenotes_re = latest_re % (version_re, r"(aurora|release)notes")
+android_releasenotes_re = releasenotes_re.replace(r"firefox", "firefox/android")
+ios_releasenotes_re = releasenotes_re.replace(r"firefox", "firefox/ios")
+sysreq_re = latest_re % (version_re, "system-requirements")
+android_sysreq_re = sysreq_re.replace(r"firefox", "firefox/android")
+ios_sysreq_re = sysreq_re.replace(r"firefox", "firefox/ios")
 
 
 urlpatterns = (
@@ -73,24 +73,23 @@ urlpatterns = (
     url(
         r"^firefox/features/tips/$",
         VariationTemplateView.as_view(
-            template_name='firefox/features/tips/tips.html',
-            template_context_variations=['picture-in-picture', 'eyedropper', 'forget'],
-        ), name='firefox.features.tips'),
-
-    url(r'^firefox/ios/testflight/$', views.ios_testflight, name='firefox.ios.testflight'),
-    page('firefox/mobile/get-app', 'firefox/mobile/get-app.html', ftl_files=['firefox/mobile']),
-    url('^firefox/send-to-device-post/$', views.send_to_device_ajax,
-        name='firefox.send-to-device-post'),
-    page('firefox/unsupported-systems', 'firefox/unsupported-systems.html'),
-    url(r'^firefox/new/$', views.NewView.as_view(), name='firefox.new'),
-    url(r'^firefox/download/thanks/$', views.DownloadThanksView.as_view(), name='firefox.download.thanks'),
-    page('firefox/nightly/firstrun', 'firefox/nightly/firstrun.html', ftl_files=['firefox/nightly/firstrun']),
-    url(r'^firefox/installer-help/$', views.InstallerHelpView.as_view(), name='firefox.installer-help'),
-    url(firstrun_re, views.FirstrunView.as_view(), name='firefox.firstrun'),
-    url(whatsnew_re, views.WhatsNewRedirectorView.as_view(), name='firefox.whatsnew'),
-    url(whatsnew_re_china, views.WhatsNewChinaView.as_view(), name='firefox.whatsnew.china'),
-    url(whatsnew_re_all, views.WhatsnewView.as_view(), name='firefox.whatsnew.all'),
-
+            template_name="firefox/features/tips/tips.html",
+            template_context_variations=["picture-in-picture", "eyedropper", "forget"],
+        ),
+        name="firefox.features.tips",
+    ),
+    url(r"^firefox/ios/testflight/$", views.ios_testflight, name="firefox.ios.testflight"),
+    page("firefox/mobile/get-app", "firefox/mobile/get-app.html", ftl_files=["firefox/mobile"]),
+    url("^firefox/send-to-device-post/$", views.send_to_device_ajax, name="firefox.send-to-device-post"),
+    page("firefox/unsupported-systems", "firefox/unsupported-systems.html"),
+    url(r"^firefox/new/$", views.NewView.as_view(), name="firefox.new"),
+    url(r"^firefox/download/thanks/$", views.DownloadThanksView.as_view(), name="firefox.download.thanks"),
+    page("firefox/nightly/firstrun", "firefox/nightly/firstrun.html", ftl_files=["firefox/nightly/firstrun"]),
+    url(r"^firefox/installer-help/$", views.InstallerHelpView.as_view(), name="firefox.installer-help"),
+    url(firstrun_re, views.FirstrunView.as_view(), name="firefox.firstrun"),
+    url(whatsnew_re, views.WhatsNewRedirectorView.as_view(), name="firefox.whatsnew"),
+    url(whatsnew_re_china, views.WhatsNewChinaView.as_view(), name="firefox.whatsnew.china"),
+    url(whatsnew_re_all, views.WhatsnewView.as_view(), name="firefox.whatsnew.all"),
     # Release notes
     url("^firefox/(?:%s/)?(?:%s/)?notes/$" % (platform_re, channel_re), bedrock.releasenotes.views.latest_notes, name="firefox.notes"),
     url("^firefox/nightly/notes/feed/$", bedrock.releasenotes.views.nightly_feed, name="firefox.nightly.notes.feed"),
