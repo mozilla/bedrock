@@ -15,8 +15,9 @@ class AcceptedLocalesTest(TestCase):
     DEV_LANGUAGES or PROD_LANGUAGES should be used.
 
     """
-    locale = data_path('www-l10n')
-    locale_bkp = data_path('www-l10n_bkp')
+
+    locale = data_path("www-l10n")
+    locale_bkp = data_path("www-l10n_bkp")
 
     @classmethod
     def setup_class(cls):
@@ -34,20 +35,22 @@ class AcceptedLocalesTest(TestCase):
 
         """
         if os.path.exists(cls.locale_bkp):
-            raise Exception('A backup of locale/ exists at %s which might '
-                            'mean that previous tests didn\'t end cleanly. '
-                            'Skipping the test suite.' % cls.locale_bkp)
+            raise Exception(
+                "A backup of locale/ exists at %s which might "
+                "mean that previous tests didn't end cleanly. "
+                "Skipping the test suite." % cls.locale_bkp
+            )
         cls.DEV = settings.DEV
         cls.PROD_LANGUAGES = settings.PROD_LANGUAGES
         cls.DEV_LANGUAGES = settings.DEV_LANGUAGES
-        settings.PROD_LANGUAGES = ('en-US',)
+        settings.PROD_LANGUAGES = ("en-US",)
         if os.path.exists(cls.locale):
             shutil.move(cls.locale, cls.locale_bkp)
         else:
             cls.locale_bkp = None
-        for loc in ('en-US', 'fr', 'metadata'):
+        for loc in ("en-US", "fr", "metadata"):
             os.makedirs(os.path.join(cls.locale, loc))
-        open(os.path.join(cls.locale, 'empty_file'), 'w').close()
+        open(os.path.join(cls.locale, "empty_file"), "w").close()
 
     @classmethod
     def teardown_class(cls):
@@ -69,8 +72,7 @@ class AcceptedLocalesTest(TestCase):
         """
         settings.DEV = True
         langs = get_dev_languages()
-        assert langs == ['en-US', 'fr'] or langs == ['fr', 'en-US'], (
-                'DEV_LANGUAGES do not correspond to the contents of locale/.')
+        assert langs == ["en-US", "fr"] or langs == ["fr", "en-US"], "DEV_LANGUAGES do not correspond to the contents of locale/."
 
     def test_dev_languages(self):
         """Test the accepted locales on dev instances.
@@ -81,10 +83,11 @@ class AcceptedLocalesTest(TestCase):
         settings.DEV = True
         # simulate the successful result of the DEV_LANGUAGES list
         # comprehension defined in settings.
-        settings.DEV_LANGUAGES = ['en-US', 'fr']
-        assert settings.LANGUAGE_URL_MAP == {'en-us': 'en-US', 'fr': 'fr'}, (
-            'DEV is True, but DEV_LANGUAGES are not used to define the '
-            'allowed locales.')
+        settings.DEV_LANGUAGES = ["en-US", "fr"]
+        assert settings.LANGUAGE_URL_MAP == {
+            "en-us": "en-US",
+            "fr": "fr",
+        }, "DEV is True, but DEV_LANGUAGES are not used to define the allowed locales."
 
     def test_prod_languages(self):
         """Test the accepted locales on prod instances.
@@ -93,6 +96,4 @@ class AcceptedLocalesTest(TestCase):
 
         """
         settings.DEV = False
-        assert settings.LANGUAGE_URL_MAP == {'en-us': 'en-US'}, (
-                'DEV is False, but PROD_LANGUAGES are not used to define the '
-                'allowed locales.')
+        assert settings.LANGUAGE_URL_MAP == {"en-us": "en-US"}, "DEV is False, but PROD_LANGUAGES are not used to define the allowed locales."

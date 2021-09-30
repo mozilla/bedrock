@@ -15,96 +15,85 @@ from bedrock.security.models import Product
 
 def test_fix_product_name():
     """Should fix SeaMonkey and strip '.0' from names."""
-    assert (
-        update_security_advisories.fix_product_name('Seamonkey 2.2') ==
-        'SeaMonkey 2.2')
-    assert (
-        update_security_advisories.fix_product_name('Firefox 2.2') ==
-        'Firefox 2.2')
-    assert (
-        update_security_advisories.fix_product_name('fredflintstone 2.2') ==
-        'fredflintstone 2.2')
-    assert (
-        update_security_advisories.fix_product_name('Firefox 32.0') ==
-        'Firefox 32')
-    assert (
-        update_security_advisories.fix_product_name('Firefox 32.0.1') ==
-        'Firefox 32.0.1')
+    assert update_security_advisories.fix_product_name("Seamonkey 2.2") == "SeaMonkey 2.2"
+    assert update_security_advisories.fix_product_name("Firefox 2.2") == "Firefox 2.2"
+    assert update_security_advisories.fix_product_name("fredflintstone 2.2") == "fredflintstone 2.2"
+    assert update_security_advisories.fix_product_name("Firefox 32.0") == "Firefox 32"
+    assert update_security_advisories.fix_product_name("Firefox 32.0.1") == "Firefox 32.0.1"
 
 
 def test_filter_advisory_names():
     filenames = [
-        'README.md',
-        'LICENSE.txt',
-        'announce/2015/mfsa2015-01.md',
-        'announce/2015/mfsa2016-42.yml',
-        'stuff/whatnot.md',
-        'mfsa2015-02.md',
+        "README.md",
+        "LICENSE.txt",
+        "announce/2015/mfsa2015-01.md",
+        "announce/2015/mfsa2016-42.yml",
+        "stuff/whatnot.md",
+        "mfsa2015-02.md",
     ]
     good_filenames = [
-        settings.MOFO_SECURITY_ADVISORIES_PATH + '/announce/2015/mfsa2015-01.md',
-        settings.MOFO_SECURITY_ADVISORIES_PATH + '/announce/2015/mfsa2016-42.yml',
-        settings.MOFO_SECURITY_ADVISORIES_PATH + '/mfsa2015-02.md',
+        settings.MOFO_SECURITY_ADVISORIES_PATH + "/announce/2015/mfsa2015-01.md",
+        settings.MOFO_SECURITY_ADVISORIES_PATH + "/announce/2015/mfsa2016-42.yml",
+        settings.MOFO_SECURITY_ADVISORIES_PATH + "/mfsa2015-02.md",
     ]
     assert update_security_advisories.filter_advisory_filenames(filenames) == good_filenames
 
 
 def test_get_ids_from_files():
     filenames = [
-        'README.md',
-        'LICENSE.txt',
-        'announce/2015/mfsa2015-01.md',
-        'announce/2015/mfsa2016-42.yml',
-        'stuff/whatnot.md',
-        'mfsa2015-02.md',
+        "README.md",
+        "LICENSE.txt",
+        "announce/2015/mfsa2015-01.md",
+        "announce/2015/mfsa2016-42.yml",
+        "stuff/whatnot.md",
+        "mfsa2015-02.md",
     ]
-    good_ids = ['2015-01', '2016-42', '2015-02']
+    good_ids = ["2015-01", "2016-42", "2015-02"]
     assert update_security_advisories.get_ids_from_files(filenames) == good_ids
 
 
 def make_mfsa(mfsa_id):
-    update_security_advisories.add_or_update_advisory({
-        'mfsa_id': mfsa_id,
-        'title': 'The Dude is insecure',
-        'impact': 'High',
-        'announced': 'December 25, 2015',
-        'fixed_in': ['Firefox 43.0.1'],
-    }, 'The Dude minds, man!')
+    update_security_advisories.add_or_update_advisory(
+        {
+            "mfsa_id": mfsa_id,
+            "title": "The Dude is insecure",
+            "impact": "High",
+            "announced": "December 25, 2015",
+            "fixed_in": ["Firefox 43.0.1"],
+        },
+        "The Dude minds, man!",
+    )
 
 
 class TestDBActions(TestCase):
     def test_get_files_to_delete_from_db(self):
-        make_mfsa('2015-100')
-        make_mfsa('2015-101')
-        make_mfsa('2015-102')
-        make_mfsa('2015-103')
-        all_files = ['mfsa2015-100.md', 'mfsa2015-101.md']
-        assert (
-            set(update_security_advisories.get_files_to_delete_from_db(all_files)) ==
-            set(['mfsa2015-102.md', 'mfsa2015-103.md']))
+        make_mfsa("2015-100")
+        make_mfsa("2015-101")
+        make_mfsa("2015-102")
+        make_mfsa("2015-103")
+        all_files = ["mfsa2015-100.md", "mfsa2015-101.md"]
+        assert set(update_security_advisories.get_files_to_delete_from_db(all_files)) == set(["mfsa2015-102.md", "mfsa2015-103.md"])
 
     def test_delete_orphaned_products(self):
-        make_mfsa('2015-100')
-        Product.objects.create(name='Firefox 43.0.2')
-        Product.objects.create(name='Firefox 43.0.3')
+        make_mfsa("2015-100")
+        Product.objects.create(name="Firefox 43.0.2")
+        Product.objects.create(name="Firefox 43.0.3")
         assert update_security_advisories.delete_orphaned_products() == 2
-        assert Product.objects.get().name == 'Firefox 43.0.1'
+        assert Product.objects.get().name == "Firefox 43.0.1"
 
-    @patch.object(update_security_advisories, 'get_all_file_names')
-    @patch.object(update_security_advisories, 'delete_files')
-    @patch.object(update_security_advisories, 'update_db_from_file')
-    @patch.object(update_security_advisories, 'GitRepo')
+    @patch.object(update_security_advisories, "get_all_file_names")
+    @patch.object(update_security_advisories, "delete_files")
+    @patch.object(update_security_advisories, "update_db_from_file")
+    @patch.object(update_security_advisories, "GitRepo")
     def test_file_name_extension_change(self, git_mock, udbff_mock, df_mock, gafn_mock):
         """
         An MFSA file can now be either .md or .yml. Make sure this is an update, not a delete.
         """
-        make_mfsa('2016-42')
-        make_mfsa('2016-43')
-        all_files = [os.path.join(update_security_advisories.ADVISORIES_PATH, 'mfsa2016-42.yml')]
+        make_mfsa("2016-42")
+        make_mfsa("2016-43")
+        all_files = [os.path.join(update_security_advisories.ADVISORIES_PATH, "mfsa2016-42.yml")]
         gafn_mock.return_value = all_files
         git_mock().has_changes.return_value = True
-        update_security_advisories.Command().handle_safe(
-            quiet=True, no_git=False, clear_db=False)
-        udbff_mock.assert_called_with(update_security_advisories.filter_advisory_filenames(
-            all_files)[0])
-        df_mock.assert_called_with(['mfsa2016-43.md'])
+        update_security_advisories.Command().handle_safe(quiet=True, no_git=False, clear_db=False)
+        udbff_mock.assert_called_with(update_security_advisories.filter_advisory_filenames(all_files)[0])
+        df_mock.assert_called_with(["mfsa2016-43.md"])

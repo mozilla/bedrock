@@ -6,6 +6,7 @@ from fluent.migrate import REPLACE, COPY
 
 send_to = "firefox/sendto.lang"
 
+
 def migrate(ctx):
     """Migrate bedrock/base/templates/macros.html, part {index}."""
 
@@ -13,7 +14,6 @@ def migrate(ctx):
         "send_to_device.ftl",
         "send_to_device.ftl",
         [
-
             FTL.Message(
                 id=FTL.Identifier("send-to-device-send-firefox"),
                 value=REPLACE(
@@ -21,16 +21,17 @@ def migrate(ctx):
                     "Send Firefox to your smartphone or tablet",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ]
+        ],
     )
 
     ctx.add_transforms(
         "send_to_device.ftl",
         "send_to_device.ftl",
-        transforms_from("""
+        transforms_from(
+            """
 send-to-device-your-download-link = {COPY(send_to, "Your download link was sent.",)}
 send-to-device-sorry-we-cant-send = {COPY(send_to, "Sorry, we can’t send SMS messages to this phone number.",)}
 send-to-device-sorry-this-number = {COPY(send_to, "Sorry. This number isn’t valid. Please enter a U.S. phone number.",)}
@@ -47,5 +48,7 @@ send-to-device-intended-recipient-email = {COPY(send_to, "The intended recipient
 send-to-device-check-your-device-email-sms = {COPY(send_to, "Check your device for the email or text message!",)}
 send-to-device-check-your-device-email = {COPY(send_to, "Check your device for the email!",)}
 send-to-device-send-to-another= {COPY(send_to, "Send to another device",)}
-""", send_to=send_to)
-        )
+""",
+            send_to=send_to,
+        ),
+    )

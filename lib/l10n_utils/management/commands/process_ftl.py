@@ -14,8 +14,8 @@ from lib.l10n_utils.fluent import fluent_l10n, get_metadata, write_metadata
 from ._ftl_repo_base import FTLRepoCommand
 
 
-GIT_COMMIT_EMAIL = 'meao-bots+mozmarrobot@mozilla.com'
-GIT_COMMIT_NAME = 'MozMEAO Bot'
+GIT_COMMIT_EMAIL = "meao-bots+mozmarrobot@mozilla.com"
+GIT_COMMIT_NAME = "MozMEAO Bot"
 
 
 class NoisyFluentParser(FluentParser):
@@ -24,6 +24,7 @@ class NoisyFluentParser(FluentParser):
     The one from fluent.syntax doesn't raise exceptions, but will
     return instances of fluent.syntax.ast.Junk instead.
     """
+
     def get_entry_or_junk(self, ps):
         """Allow the ParseError to bubble up"""
         entry = self.get_entry(ps)
@@ -32,13 +33,12 @@ class NoisyFluentParser(FluentParser):
 
 
 class Command(FTLRepoCommand):
-    help = 'Processes .ftl files from l10n team for use in bedrock'
+    help = "Processes .ftl files from l10n team for use in bedrock"
     parser = None
 
     def add_arguments(self, parser):
         super().add_arguments(parser)
-        parser.add_argument('--push', action='store_true', dest='push', default=False,
-                            help='Push the changes to the MEAO Fluent files repo.')
+        parser.add_argument("--push", action="store_true", dest="push", default=False, help="Push the changes to the MEAO Fluent files repo.")
 
     def handle(self, *args, **options):
         super().handle(*args, **options)
@@ -48,45 +48,44 @@ class Command(FTLRepoCommand):
         no_errors = self.copy_ftl_files()
         self.set_activation()
         self.copy_configs()
-        if options['push']:
+        if options["push"]:
             changes = self.commit_changes()
             if changes:
                 self.push_changes()
 
         if not no_errors:
-            raise CommandError('Some errors were discovered in some .ftl files and they were not updated.'
-                               'See above for details.')
+            raise CommandError("Some errors were discovered in some .ftl files and they were not updated. See above for details.")
 
     def config_fluent_repo(self):
         """Set user config so that committing will work"""
-        self.meao_repo.git('config', 'user.email', GIT_COMMIT_EMAIL)
-        self.meao_repo.git('config', 'user.name', GIT_COMMIT_NAME)
+        self.meao_repo.git("config", "user.email", GIT_COMMIT_EMAIL)
+        self.meao_repo.git("config", "user.name", GIT_COMMIT_NAME)
 
     def commit_changes(self):
         self.config_fluent_repo()
-        self.meao_repo.git('add', '.')
+        self.meao_repo.git("add", ".")
         try:
-            self.meao_repo.git('commit', '-m', 'Update files from l10n repo')
+            self.meao_repo.git("commit", "-m", "Update files from l10n repo")
         except CalledProcessError:
-            self.stdout.write('No changes to commit')
+            self.stdout.write("No changes to commit")
             return False
 
-        self.stdout.write('Committed changes to local repo')
+        self.stdout.write("Committed changes to local repo")
         return True
 
     def push_changes(self):
         try:
-            self.meao_repo.git('push', self.git_push_url, 'HEAD:master')
+            self.meao_repo.git("push", self.git_push_url, "HEAD:master")
         except CalledProcessError:
-            raise CommandError(f'There was a problem pushing to {self.meao_repo.remote_url}')
+            raise CommandError(f"There was a problem pushing to {self.meao_repo.remote_url}")
 
-        commit = self.meao_repo.git('rev-parse', '--short', 'HEAD')
-        self.stdout.write(f'Pushed {commit} to {self.meao_repo.remote_url}')
+        commit = self.meao_repo.git("rev-parse", "--short", "HEAD")
+        self.stdout.write(f"Pushed {commit} to {self.meao_repo.remote_url}")
 
     @property
     def git_push_url(self):
         if not settings.FLUENT_REPO_AUTH:
-            raise CommandError('Git push authentication not configured')
+            raise CommandError("Git push authentication not configured")
 
         return self.meao_repo.remote_url_auth(settings.FLUENT_REPO_AUTH)
 
@@ -95,21 +94,21 @@ class Command(FTLRepoCommand):
         to_filepath = self.meao_repo.path.joinpath(relative_filepath)
         to_filepath.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(str(filepath), str(to_filepath))
-        self.stdout.write('.', ending='')
+        self.stdout.write(".", ending="")
         self.stdout.flush()
 
     def copy_configs(self):
         count = 0
-        for filepath in self.l10n_repo.path.rglob('*.toml'):
+        for filepath in self.l10n_repo.path.rglob("*.toml"):
             self._copy_file(filepath)
             count += 1
 
-        self.stdout.write(f'\nCopied {count} .toml files')
+        self.stdout.write(f"\nCopied {count} .toml files")
 
     def copy_ftl_files(self):
         count = 0
         errors = []
-        for filepath in self.l10n_repo.path.rglob('*.ftl'):
+        for filepath in self.l10n_repo.path.rglob("*.ftl"):
             if not self.lint_ftl_file(filepath):
                 errors.append(filepath.relative_to(self.l10n_repo.path))
                 continue
@@ -117,11 +116,11 @@ class Command(FTLRepoCommand):
             self._copy_file(filepath)
             count += 1
 
-        self.stdout.write(f'\nCopied {count} .ftl files')
+        self.stdout.write(f"\nCopied {count} .ftl files")
         if errors:
-            self.stdout.write('The following files had parse errors and were not copied:')
+            self.stdout.write("The following files had parse errors and were not copied:")
             for fpath in errors:
-                self.stdout.write(f'- {fpath}')
+                self.stdout.write(f"- {fpath}")
             return False
 
         return True
@@ -139,26 +138,26 @@ class Command(FTLRepoCommand):
         updated_ftl = set()
         modified, _ = self.meao_repo.modified_files()
         for fname in modified:
-            if not fname.endswith('.ftl'):
+            if not fname.endswith(".ftl"):
                 continue
 
-            locale, ftl_name = fname.split('/', 1)
+            locale, ftl_name = fname.split("/", 1)
             updated_ftl.add(ftl_name)
 
         for ftl_name in updated_ftl:
             self.calculate_activation(ftl_name)
 
     def calculate_activation(self, ftl_file):
-        translations = self.meao_repo.path.glob(f'*/{ftl_file}')
+        translations = self.meao_repo.path.glob(f"*/{ftl_file}")
         metadata = get_metadata(ftl_file)
-        active_locales = metadata.get('active_locales', [])
-        inactive_locales = metadata.get('inactive_locales', [])
-        percent_required = metadata.get('percent_required', settings.FLUENT_DEFAULT_PERCENT_REQUIRED)
-        all_locales = {str(x.relative_to(self.meao_repo.path)).split('/', 1)[0] for x in translations}
-        locales_to_check = all_locales.difference(['en'], active_locales, inactive_locales)
+        active_locales = metadata.get("active_locales", [])
+        inactive_locales = metadata.get("inactive_locales", [])
+        percent_required = metadata.get("percent_required", settings.FLUENT_DEFAULT_PERCENT_REQUIRED)
+        all_locales = {str(x.relative_to(self.meao_repo.path)).split("/", 1)[0] for x in translations}
+        locales_to_check = all_locales.difference(["en"], active_locales, inactive_locales)
         new_activations = []
         for locale in locales_to_check:
-            l10n = fluent_l10n([locale, 'en'], [ftl_file])
+            l10n = fluent_l10n([locale, "en"], [ftl_file])
             if not l10n.has_required_messages:
                 continue
 
@@ -170,6 +169,6 @@ class Command(FTLRepoCommand):
 
         if new_activations:
             active_locales.extend(new_activations)
-            metadata['active_locales'] = sorted(active_locales)
+            metadata["active_locales"] = sorted(active_locales)
             write_metadata(ftl_file, metadata)
-            self.stdout.write(f'Activated {len(new_activations)} new locales for {ftl_file}')
+            self.stdout.write(f"Activated {len(new_activations)} new locales for {ftl_file}")

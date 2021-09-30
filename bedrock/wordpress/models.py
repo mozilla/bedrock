@@ -30,15 +30,15 @@ def strip_tags(text):
 def post_to_dict(blog_slug, post):
     try:
         return dict(
-            wp_id=post['id'],
+            wp_id=post["id"],
             wp_blog_slug=blog_slug,
-            date=make_datetime(post['date_gmt']),
-            modified=make_datetime(post['modified_gmt']),
-            title=strip_tags(post['title']['rendered']),
-            excerpt=process_excerpt(post['excerpt']['rendered']),
-            link=post['link'],
-            featured_media=post['featured_media'],
-            tags=post['tags'],
+            date=make_datetime(post["date_gmt"]),
+            modified=make_datetime(post["modified_gmt"]),
+            title=strip_tags(post["title"]["rendered"]),
+            excerpt=process_excerpt(post["excerpt"]["rendered"]),
+            link=post["link"],
+            featured_media=post["featured_media"],
+            tags=post["tags"],
         )
     except Exception:
         return None
@@ -46,17 +46,17 @@ def post_to_dict(blog_slug, post):
 
 def process_excerpt(excerpt):
     summary = strip_tags(excerpt)
-    if summary.lower().endswith('continue reading'):
+    if summary.lower().endswith("continue reading"):
         summary = summary[:-16]
 
-    if summary.lower().endswith('read more'):
+    if summary.lower().endswith("read more"):
         summary = summary[:-9]
 
-    if summary.lower().endswith('[&hellip;]'):
-        summary = summary[:-10] + '…'
+    if summary.lower().endswith("[&hellip;]"):
+        summary = summary[:-10] + "…"
 
-    if summary.endswith('[…]'):
-        summary = summary[:-3] + '…'
+    if summary.endswith("[…]"):
+        summary = summary[:-3] + "…"
 
     return summary
 
@@ -86,10 +86,10 @@ class BlogPostManager(models.Manager):
         post_ids = []
         posts_to_update = []
         for post in posts:
-            modified = make_datetime(post['modified_gmt'])
-            post_ids.append(post['id'])
+            modified = make_datetime(post["modified_gmt"])
+            post_ids.append(post["id"])
             try:
-                obj = self.get(wp_id=post['id'], wp_blog_slug=blog_slug)
+                obj = self.get(wp_id=post["id"], wp_blog_slug=blog_slug)
             except BlogPost.DoesNotExist:
                 posts_to_update.append((None, post))
             else:
@@ -149,11 +149,11 @@ class BlogPost(models.Model):
     objects = BlogPostManager()
 
     class Meta:
-        get_latest_by = 'date'
-        ordering = ['-date']
+        get_latest_by = "date"
+        ordering = ["-date"]
 
     def __str__(self):
-        return '%s: %s' % (self.blog_name, self.title)
+        return "%s: %s" % (self.blog_name, self.title)
 
     def get_absolute_url(self):
         return self.link
@@ -167,11 +167,11 @@ class BlogPost(models.Model):
 
     @property
     def blog_link(self):
-        return settings.WP_BLOGS[self.wp_blog_slug]['url']
+        return settings.WP_BLOGS[self.wp_blog_slug]["url"]
 
     @property
     def blog_name(self):
-        return settings.WP_BLOGS[self.wp_blog_slug]['name']
+        return settings.WP_BLOGS[self.wp_blog_slug]["name"]
 
     def get_featured_tag(self, tags):
         """Return a tag present both in the post and the passed in list.
@@ -182,10 +182,10 @@ class BlogPost(models.Model):
         if matching_tags:
             return random.choice(matching_tags)
         else:
-            return ''
+            return ""
 
-    def get_featured_image_url(self, size='large'):
+    def get_featured_image_url(self, size="large"):
         try:
-            return self.featured_media['media_details']['sizes'][size]['source_url']
+            return self.featured_media["media_details"]["sizes"][size]["source_url"]
         except (KeyError, TypeError):
             return None

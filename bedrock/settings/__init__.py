@@ -10,101 +10,98 @@ from .base import *  # noqa
 try:
     from .local import *  # noqa
 except ImportError as exc:
-    'local.py is supported, but no longer necessary'
+    "local.py is supported, but no longer necessary"
 
 
 if DEV:
-    ALLOWED_HOSTS = ['*']
+    ALLOWED_HOSTS = ["*"]
 else:
-    MIDDLEWARE += ['bedrock.base.middleware.FrameOptionsHeader']
+    MIDDLEWARE += ["bedrock.base.middleware.FrameOptionsHeader"]
 
 
-if CACHES['default']['BACKEND'] == 'django_pylibmc.memcached.PyLibMCCache':
-    CACHES['default']['BINARY'] = True
-    CACHES['default']['OPTIONS'] = {  # Maps to pylibmc "behaviors"
-        'tcp_nodelay': True,
-        'ketama': True,
+if CACHES["default"]["BACKEND"] == "django_pylibmc.memcached.PyLibMCCache":
+    CACHES["default"]["BINARY"] = True
+    CACHES["default"]["OPTIONS"] = {  # Maps to pylibmc "behaviors"
+        "tcp_nodelay": True,
+        "ketama": True,
     }
 
 # cache for lang files
-CACHES['l10n'] = {
-    'BACKEND': 'bedrock.base.cache.SimpleDictCache',
-    'LOCATION': 'l10n',
-    'TIMEOUT': DOTLANG_CACHE,
-    'OPTIONS': {
-        'MAX_ENTRIES': 5000,
-        'CULL_FREQUENCY': 4,  # 1/4 entries deleted if max reached
-    }
+CACHES["l10n"] = {
+    "BACKEND": "bedrock.base.cache.SimpleDictCache",
+    "LOCATION": "l10n",
+    "TIMEOUT": DOTLANG_CACHE,
+    "OPTIONS": {
+        "MAX_ENTRIES": 5000,
+        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
+    },
 }
 
 # cache for Fluent files
-CACHES['fluent'] = {
-    'BACKEND': 'bedrock.base.cache.SimpleDictCache',
-    'LOCATION': 'fluent',
-    'TIMEOUT': FLUENT_CACHE_TIMEOUT,
-    'OPTIONS': {
-        'MAX_ENTRIES': 5000,
-        'CULL_FREQUENCY': 4,  # 1/4 entries deleted if max reached
-    }
+CACHES["fluent"] = {
+    "BACKEND": "bedrock.base.cache.SimpleDictCache",
+    "LOCATION": "fluent",
+    "TIMEOUT": FLUENT_CACHE_TIMEOUT,
+    "OPTIONS": {
+        "MAX_ENTRIES": 5000,
+        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
+    },
 }
 
 # cache for product details
-CACHES['product-details'] = {
-    'BACKEND': 'bedrock.base.cache.SimpleDictCache',
-    'LOCATION': 'product-details',
-    'OPTIONS': {
-        'MAX_ENTRIES': 200,  # currently 104 json files
-        'CULL_FREQUENCY': 4,  # 1/4 entries deleted if max reached
-    }
+CACHES["product-details"] = {
+    "BACKEND": "bedrock.base.cache.SimpleDictCache",
+    "LOCATION": "product-details",
+    "OPTIONS": {
+        "MAX_ENTRIES": 200,  # currently 104 json files
+        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
+    },
 }
 
 # cache for release notes
-CACHES['release-notes'] = {
-    'BACKEND': 'bedrock.base.cache.SimpleDictCache',
-    'LOCATION': 'release-notes',
-    'TIMEOUT': 5,
-    'OPTIONS': {
-        'MAX_ENTRIES': 300,  # currently 564 json files but most are rarely accessed
-        'CULL_FREQUENCY': 4,  # 1/4 entries deleted if max reached
-    }
+CACHES["release-notes"] = {
+    "BACKEND": "bedrock.base.cache.SimpleDictCache",
+    "LOCATION": "release-notes",
+    "TIMEOUT": 5,
+    "OPTIONS": {
+        "MAX_ENTRIES": 300,  # currently 564 json files but most are rarely accessed
+        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
+    },
 }
 
 # cache for externalfiles
-CACHES['externalfiles'] = {
-    'BACKEND': 'bedrock.base.cache.SimpleDictCache',
-    'LOCATION': 'externalfiles',
-    'OPTIONS': {
-        'MAX_ENTRIES': 10,  # currently 2 files
-        'CULL_FREQUENCY': 4,  # 1/4 entries deleted if max reached
-    }
+CACHES["externalfiles"] = {
+    "BACKEND": "bedrock.base.cache.SimpleDictCache",
+    "LOCATION": "externalfiles",
+    "OPTIONS": {
+        "MAX_ENTRIES": 10,  # currently 2 files
+        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
+    },
 }
 
 # cache for generated QR codes
-CACHES['qrcode'] = {
-    'BACKEND': 'bedrock.base.cache.SimpleDictCache',
-    'LOCATION': 'qrcode',
-    'TIMEOUT': None,
-    'OPTIONS': {
-        'MAX_ENTRIES': 20,
-        'CULL_FREQUENCY': 4,  # 1/4 entries deleted if max reached
-    }
+CACHES["qrcode"] = {
+    "BACKEND": "bedrock.base.cache.SimpleDictCache",
+    "LOCATION": "qrcode",
+    "TIMEOUT": None,
+    "OPTIONS": {
+        "MAX_ENTRIES": 20,
+        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
+    },
 }
 
 MEDIA_URL = CDN_BASE_URL + MEDIA_URL
 STATIC_URL = CDN_BASE_URL + STATIC_URL
 logging.config.dictConfig(LOGGING)
 
-if (len(sys.argv) > 1 and sys.argv[1] == 'test') or 'pytest' in sys.modules:
+if (len(sys.argv) > 1 and sys.argv[1] == "test") or "pytest" in sys.modules:
     # Using the CachedStaticFilesStorage for tests breaks all the things.
-    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
     # TEMPLATE_DEBUG has to be True for Jinja to call the template_rendered
     # signal which Django's test client uses to save away the contexts for your
     # test to look at later.
-    TEMPLATES[0]['OPTIONS']['debug'] = True
+    TEMPLATES[0]["OPTIONS"]["debug"] = True
     # use default product-details data
-    PROD_DETAILS_STORAGE = 'product_details.storage.PDFileStorage'
+    PROD_DETAILS_STORAGE = "product_details.storage.PDFileStorage"
 
-    DATABASES['default'] = {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': ':memory:'
-    }
+    DATABASES["default"] = {"ENGINE": "django.db.backends.sqlite3", "NAME": ":memory:"}

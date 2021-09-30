@@ -9,28 +9,27 @@ from django.conf import settings
 from bedrock.utils.git import GitRepo
 
 
-ROOT_FILES = settings.ROOT_PATH / 'root_files'
+ROOT_FILES = settings.ROOT_PATH / "root_files"
 
 
 class Command(BaseCommand):
-    help = 'Clones or updates sitemaps info from github'
+    help = "Clones or updates sitemaps info from github"
 
     def add_arguments(self, parser):
-        parser.add_argument('-q', '--quiet', action='store_true', dest='quiet', default=False,
-                            help='If no error occurs, swallow all output.'),
+        parser.add_argument("-q", "--quiet", action="store_true", dest="quiet", default=False, help="If no error occurs, swallow all output."),
 
     def handle(self, *args, **options):
-        if options['quiet']:
+        if options["quiet"]:
             self.stdout._out = StringIO()
 
-        data_path = settings.SITEMAPS_PATH.joinpath('data')
+        data_path = settings.SITEMAPS_PATH.joinpath("data")
         repo = GitRepo(settings.SITEMAPS_PATH, settings.SITEMAPS_REPO)
         repo.update()
 
-        for src_path in data_path.rglob('*.*'):
+        for src_path in data_path.rglob("*.*"):
             rel_path = src_path.relative_to(data_path)
-            if rel_path.parts[0] == 'sitemaps':
-                rel_path = rel_path.relative_to('sitemaps')
+            if rel_path.parts[0] == "sitemaps":
+                rel_path = rel_path.relative_to("sitemaps")
             target_path = ROOT_FILES.joinpath(rel_path)
             if target_path.exists():
                 if target_path.is_symlink():
@@ -41,4 +40,4 @@ class Command(BaseCommand):
             target_path.parent.mkdir(exist_ok=True)
             target_path.symlink_to(src_path)
 
-        self.stdout.write('Updated sitemaps files')
+        self.stdout.write("Updated sitemaps files")

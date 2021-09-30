@@ -11,7 +11,7 @@ from lib.l10n_utils.management.commands import _fluent
 
 class TestTrans(TestCase):
     def test_trans(self):
-        input = '''
+        input = """
         {% trans %}
         Just some text
         {% endtrans %}
@@ -20,10 +20,10 @@ class TestTrans(TestCase):
         There's {{one}} and
         {{ two  }} things to check here.
         {%  endtrans  %}
-        '''
+        """
         lang_strings = []
         for trans_match in _fluent.TRANS_BLOCK_RE.finditer(input):
-            lang_strings.append(_fluent.trans_to_lang(trans_match['string']))
+            lang_strings.append(_fluent.trans_to_lang(trans_match["string"]))
         assert len(lang_strings) == 2
-        assert lang_strings[0] == 'Just some text'
+        assert lang_strings[0] == "Just some text"
         assert lang_strings[1] == "There's %(one)s and %(two)s things to check here."

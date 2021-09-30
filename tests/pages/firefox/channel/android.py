@@ -10,10 +10,10 @@ from pages.regions.download_button import DownloadButton
 
 class ChannelAndroidPage(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/firefox/channel/android/'
+    _URL_TEMPLATE = "/{locale}/firefox/channel/android/"
 
-    _beta_download_locator = (By.ID, 'android-beta-download')
-    _nightly_download_locator = (By.ID, 'android-nightly-download')
+    _beta_download_locator = (By.ID, "android-beta-download")
+    _nightly_download_locator = (By.ID, "android-nightly-download")
 
     @property
     def beta_download_button(self):

@@ -6,6 +6,7 @@ from fluent.migrate import REPLACE, COPY
 
 edge = "firefox/compare/edge.lang"
 
+
 def migrate(ctx):
     """Migrate bedrock/firefox/templates/firefox/browsers/compare/edge.html, part {index}."""
 
@@ -22,8 +23,8 @@ def migrate(ctx):
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Microsoft": TERM_REFERENCE("brand-name-microsoft"),
                         "Edge": TERM_REFERENCE("brand-name-edge"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-edge-compare-microsoft-edge-to-the"),
@@ -34,8 +35,8 @@ def migrate(ctx):
                         "Firefox Browser": TERM_REFERENCE("brand-name-firefox-browser"),
                         "Microsoft": TERM_REFERENCE("brand-name-microsoft"),
                         "Edge": TERM_REFERENCE("brand-name-edge"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-edge-comparing-firefox-browser-with"),
@@ -46,8 +47,8 @@ def migrate(ctx):
                         "Firefox Browser": TERM_REFERENCE("brand-name-firefox-browser"),
                         "Microsoft": TERM_REFERENCE("brand-name-microsoft"),
                         "Edge": TERM_REFERENCE("brand-name-edge"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-edge-with-windows-10-microsoft-introduced"),
@@ -62,8 +63,8 @@ def migrate(ctx):
                         "Chrome": TERM_REFERENCE("brand-name-chrome"),
                         "Chromium": TERM_REFERENCE("brand-name-chromium"),
                         "Google": TERM_REFERENCE("brand-name-google"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-edge-here-well-compare-our-firefox"),
@@ -75,8 +76,8 @@ def migrate(ctx):
                         "Microsoft": TERM_REFERENCE("brand-name-microsoft"),
                         "Edge": TERM_REFERENCE("brand-name-edge"),
                         "Chromium": TERM_REFERENCE("brand-name-chromium"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-edge-edge-is-integrated-into-the"),
@@ -86,8 +87,8 @@ def migrate(ctx):
                     {
                         "Edge": TERM_REFERENCE("brand-name-edge"),
                         "Windows": TERM_REFERENCE("brand-name-windows"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-edge-at-firefox-our-privacy-fallback"),
@@ -98,8 +99,8 @@ def migrate(ctx):
                         "%%": "%",
                         "%(attrs)s": VARIABLE_REFERENCE("attrs"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-edge-your-privacy-protections-shows"),
@@ -110,8 +111,8 @@ def migrate(ctx):
                         "%%": "%",
                         "%(attrs)s": VARIABLE_REFERENCE("attrs"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-edge-in-firefox-private-browsing"),
@@ -121,8 +122,8 @@ def migrate(ctx):
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Edge": TERM_REFERENCE("brand-name-edge"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-edge-both-browsers-are-relatively"),
@@ -131,8 +132,8 @@ def migrate(ctx):
                     "Both browsers are relatively equal in terms of data encryption. However, if online privacy and transparency are important to you, then Firefox is clearly a better choice here.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-edge-firefox-is-a-fast-and-open-fallback"),
@@ -141,8 +142,8 @@ def migrate(ctx):
                     "Firefox is a fast and open source browser, which means users can customize their browsing experience in every way possible. Firefox also allows the casual user several different ways to customize the UI with applying different themes and toolbar configurations. Since our browser has always been open source we have a large following of devoted developers who have created an extensive library of add-ons and browser extensions.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-edge-since-edge-has-moved-to-the"),
@@ -152,8 +153,8 @@ def migrate(ctx):
                     {
                         "Edge": TERM_REFERENCE("brand-name-edge"),
                         "Chromium": TERM_REFERENCE("brand-name-chromium"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-edge-edge-has-some-nice-ui-features"),
@@ -162,8 +163,8 @@ def migrate(ctx):
                     "Edge has some nice UI features, like their tab previews which can make it easy to find the right open tabs if you’ve got a lot of them open. Another helpful tab-related feature lets you set aside any active tabs that you aren’t using but don’t want to close down.",
                     {
                         "Edge": TERM_REFERENCE("brand-name-edge"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-edge-firefox-features-a-scrolling"),
@@ -175,8 +176,8 @@ def migrate(ctx):
                         "%(attrs)s": VARIABLE_REFERENCE("attrs"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Pocket": TERM_REFERENCE("brand-name-pocket"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-edge-firefox-and-edge-both-offer-fallback"),
@@ -186,8 +187,8 @@ def migrate(ctx):
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Edge": TERM_REFERENCE("brand-name-edge"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-edge-firefox-also-includes-lots"),
@@ -198,8 +199,8 @@ def migrate(ctx):
                         "%%": "%",
                         "%(attrs)s": VARIABLE_REFERENCE("attrs"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-edge-out-of-the-gate-firefox-has"),
@@ -210,8 +211,8 @@ def migrate(ctx):
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Google": TERM_REFERENCE("brand-name-google"),
                         "Chromium": TERM_REFERENCE("brand-name-chromium"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-edge-with-internet-explorer-fallback"),
@@ -228,8 +229,8 @@ def migrate(ctx):
                         "Windows": TERM_REFERENCE("brand-name-windows"),
                         "macOS": TERM_REFERENCE("brand-name-mac"),
                         "Mac": TERM_REFERENCE("brand-name-mac"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-edge-firefox-has-been-available"),
@@ -245,8 +246,8 @@ def migrate(ctx):
                         "Windows": TERM_REFERENCE("brand-name-windows"),
                         "macOS": TERM_REFERENCE("brand-name-mac"),
                         "Linux": TERM_REFERENCE("brand-name-linux"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-edge-edge-also-allows-you-to-fallback"),
@@ -258,8 +259,8 @@ def migrate(ctx):
                         "Microsoft": TERM_REFERENCE("brand-name-microsoft"),
                         "iOS": TERM_REFERENCE("brand-name-ios"),
                         "Android": TERM_REFERENCE("brand-name-android"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-edge-aside-from-sucking-up-a-lot"),
@@ -273,8 +274,8 @@ def migrate(ctx):
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Mozilla": TERM_REFERENCE("brand-name-mozilla"),
                         "Chromium": TERM_REFERENCE("brand-name-chromium"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-edge-the-bottom-line-is-that-while"),
@@ -283,8 +284,8 @@ def migrate(ctx):
                     "The bottom line is that while we suggest using Firefox, the best browser for you ultimately will be the one that fits your individual needs with extension support, browsing tools customization, speed, privacy and security.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ]
+        ],
     )

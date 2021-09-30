@@ -6,6 +6,7 @@ from fluent.migrate import REPLACE, COPY
 
 whatsnew_73 = "firefox/whatsnew_73.lang"
 
+
 def migrate(ctx):
     """Migrate bedrock/firefox/templates/firefox/set-as-default/landing-page.html, part {index}."""
 
@@ -20,12 +21,17 @@ def migrate(ctx):
                     "Make Firefox your default browser",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 set-as-default-landing-make-sure-youre-protected = {COPY(whatsnew_73, "Make sure you’re protected, every time you get online",)}
-""", whatsnew_73=whatsnew_73) + [
+""",
+            whatsnew_73=whatsnew_73,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("set-as-default-landing-thanks-for-using-the"),
                 value=REPLACE(
@@ -33,12 +39,17 @@ set-as-default-landing-make-sure-youre-protected = {COPY(whatsnew_73, "Make sure
                     "Thanks for using the latest Firefox browser. When you choose Firefox, you support a better web for you and everyone else. Now take the next step to protect yourself.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 set-as-default-landing-choose-automatic-privacy = {COPY(whatsnew_73, "Choose automatic privacy",)}
-""", whatsnew_73=whatsnew_73) + [
+""",
+            whatsnew_73=whatsnew_73,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("set-as-default-landing-companies-keep-finding"),
                 value=REPLACE(
@@ -46,12 +57,17 @@ set-as-default-landing-choose-automatic-privacy = {COPY(whatsnew_73, "Choose aut
                     "Companies keep finding new ways to poach your personal data. Firefox is the browser with a mission of finding new ways to protect you.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 set-as-default-landing-choose-freedom-on-every = {COPY(whatsnew_73, "Choose freedom on every device",)}
-""", whatsnew_73=whatsnew_73) + [
+""",
+            whatsnew_73=whatsnew_73,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("set-as-default-landing-firefox-is-fast-and"),
                 value=REPLACE(
@@ -63,12 +79,17 @@ set-as-default-landing-choose-freedom-on-every = {COPY(whatsnew_73, "Choose free
                         "iOS": TERM_REFERENCE("brand-name-ios"),
                         "Android": TERM_REFERENCE("brand-name-android"),
                         "Linux": TERM_REFERENCE("brand-name-linux"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 set-as-default-landing-choose-corporate-independence = {COPY(whatsnew_73, "Choose corporate independence",)}
-""", whatsnew_73=whatsnew_73) + [
+""",
+            whatsnew_73=whatsnew_73,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("set-as-default-landing-firefox-is-the-only"),
                 value=REPLACE(
@@ -80,8 +101,8 @@ set-as-default-landing-choose-corporate-independence = {COPY(whatsnew_73, "Choos
                         "Edge": TERM_REFERENCE("brand-name-edge"),
                         "Brave": TERM_REFERENCE("brand-name-brave"),
                         "Google": TERM_REFERENCE("brand-name-google"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("set-as-default-landing-the-internet-keeps"),
@@ -90,8 +111,8 @@ set-as-default-landing-choose-corporate-independence = {COPY(whatsnew_73, "Choos
                     "The internet keeps finding new ways to poach your personal data. Firefox is the only browser with a mission of finding new ways to protect you.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("set-as-default-landing-firefox-is-fast-no-interest"),
@@ -104,8 +125,8 @@ set-as-default-landing-choose-corporate-independence = {COPY(whatsnew_73, "Choos
                         "iOS": TERM_REFERENCE("brand-name-ios"),
                         "Android": TERM_REFERENCE("brand-name-android"),
                         "Linux": TERM_REFERENCE("brand-name-linux"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("set-as-default-landing-firefox-is-the-only-major"),
@@ -118,8 +139,8 @@ set-as-default-landing-choose-corporate-independence = {COPY(whatsnew_73, "Choos
                         "Edge": TERM_REFERENCE("brand-name-edge"),
                         "Brave": TERM_REFERENCE("brand-name-brave"),
                         "Google": TERM_REFERENCE("brand-name-google"),
-                    }
-                )
+                    },
+                ),
             ),
-        ]
+        ],
     )

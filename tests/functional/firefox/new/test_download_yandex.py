@@ -10,15 +10,15 @@ from pages.firefox.new.download_yandex import YandexDownloadPage
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_download_buttons_are_displayed(base_url, selenium):
-    page = YandexDownloadPage(selenium, base_url, locale='ru', params='?geo=us').open()
+    page = YandexDownloadPage(selenium, base_url, locale="ru", params="?geo=us").open()
     assert page.is_download_button_displayed
     assert not page.is_yandex_download_button_displayed
 
 
 @pytest.mark.nondestructive
-@pytest.mark.skip_if_not_firefox(reason='Join Firefox form is only displayed to Firefox users')
+@pytest.mark.skip_if_not_firefox(reason="Join Firefox form is only displayed to Firefox users")
 def test_firefox_account_modal(base_url, selenium):
-    page = YandexDownloadPage(selenium, base_url, locale='ru', params='?geo=us').open()
+    page = YandexDownloadPage(selenium, base_url, locale="ru", params="?geo=us").open()
     modal = page.open_join_firefox_modal()
     assert modal.is_displayed
     modal.close()
@@ -27,6 +27,6 @@ def test_firefox_account_modal(base_url, selenium):
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_yandex_download_button_displayed(base_url, selenium):
-    page = YandexDownloadPage(selenium, base_url, locale='ru', params='?geo=ru').open()
+    page = YandexDownloadPage(selenium, base_url, locale="ru", params="?geo=ru").open()
     assert not page.is_download_button_displayed
     assert page.is_yandex_download_button_displayed

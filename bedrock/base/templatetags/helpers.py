@@ -40,7 +40,7 @@ def switch(cxt, name, locales=None):
     which is a list of locales for a prefix (e.g. "en" expands to "en-US, en-GB").
     """
     if locales:
-        if cxt['LANG'] not in expand_locale_groups(locales):
+        if cxt["LANG"] not in expand_locale_groups(locales):
             return False
 
     return waffle.switch(name)
@@ -73,10 +73,8 @@ def urlparams(url_, hash=None, **query):
     query_dict = dict(urllib.parse.parse_qsl(smart_str(q))) if q else {}
     query_dict.update((k, v) for k, v in query.items())
 
-    query_string = _urlencode([(k, v) for k, v in query_dict.items()
-                               if v is not None])
-    new = urllib.parse.ParseResult(
-        url.scheme, url.netloc, url.path, url.params, query_string, fragment)
+    query_string = _urlencode([(k, v) for k, v in query_dict.items() if v is not None])
+    new = urllib.parse.ParseResult(url.scheme, url.netloc, url.path, url.params, query_string, fragment)
     return new.geturl()
 
 
@@ -92,7 +90,7 @@ def _urlencode(items):
 def mailtoencode(txt):
     """Url encode a string using %20 for spaces."""
     if isinstance(txt, str):
-        txt = txt.encode('utf-8')
+        txt = txt.encode("utf-8")
     return urllib.parse.quote(txt)
 
 
@@ -100,14 +98,14 @@ def mailtoencode(txt):
 def urlencode(txt):
     """Url encode a string using + for spaces."""
     if isinstance(txt, str):
-        txt = txt.encode('utf-8')
+        txt = txt.encode("utf-8")
     return urllib.parse.quote_plus(txt)
 
 
 @library.global_function
 def static(path):
-    if settings.DEBUG and path.startswith('/'):
-        raise ValueError('Static paths must not begin with a slash')
+    if settings.DEBUG and path.startswith("/"):
+        raise ValueError("Static paths must not begin with a slash")
 
     try:
         return staticfiles_storage.url(path)
@@ -122,7 +120,7 @@ def js_bundle(name):
 
     Bundles are defined in the "media/static-bundles.json" file.
     """
-    path = 'js/{}.js'.format(name)
+    path = "js/{}.js".format(name)
     path = staticfiles_storage.url(path)
     return jinja2.Markup(JS_TEMPLATE % path)
 
@@ -133,7 +131,7 @@ def css_bundle(name):
 
     Bundles are defined in the "media/static-bundles.json" file.
     """
-    path = 'css/{}.css'.format(name)
+    path = "css/{}.css".format(name)
     path = staticfiles_storage.url(path)
     return jinja2.Markup(CSS_TEMPLATE % path)
 
@@ -141,7 +139,7 @@ def css_bundle(name):
 @library.global_function
 def alternate_url(path, locale):
     alt_paths = settings.ALT_CANONICAL_PATHS
-    path = path.lstrip('/')
+    path = path.lstrip("/")
     if path in alt_paths and locale in alt_paths[path]:
         return alt_paths[path][locale]
 
@@ -157,10 +155,9 @@ def get_donate_params(ctx):
     :returns: dictionary of donation values, including list of amount presets
     """
 
-    donate_params = settings.DONATE_PARAMS.get(
-        ctx['LANG'], settings.DONATE_PARAMS['en-US'])
+    donate_params = settings.DONATE_PARAMS.get(ctx["LANG"], settings.DONATE_PARAMS["en-US"])
 
     # presets are stored as a string but we need a list for views
-    donate_params['preset_list'] = donate_params['presets'].split(',')
+    donate_params["preset_list"] = donate_params["presets"].split(",")
 
     return donate_params

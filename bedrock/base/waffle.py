@@ -20,5 +20,5 @@ def switch(name):
     would check for an environment variable called `SWITCH_DUDE_AND_WALTER`. The string from the
     `switch()` call is converted to uppercase and dashes replaced with underscores.
     """
-    env_name = name.upper().replace('-', '_')
-    return config(env_name, default=str(settings.DEV), parser=bool, namespace='SWITCH')
+    env_name = name.upper().replace("-", "_")
+    return config(env_name, default=str(settings.DEV), parser=bool, namespace="SWITCH")

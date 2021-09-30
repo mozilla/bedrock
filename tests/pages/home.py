@@ -9,13 +9,13 @@ from pages.base import BasePage
 
 class HomePage(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/'
+    _URL_TEMPLATE = "/{locale}/"
 
-    _primary_download_button_locator = (By.CSS_SELECTOR, '#download-primary > .download-link')
-    _secondary_download_button_locator = (By.CSS_SELECTOR, '#download-secondary > .download-link')
-    _primary_alt_button_locator = (By.CSS_SELECTOR, '.c-fxpromo-altcta .mzp-c-button')
-    _primary_accounts_button_locator = (By.ID, 'fxa-learn-primary')
-    _secondary_accounts_button_locator = (By.ID, 'fxa-learn-secondary')
+    _primary_download_button_locator = (By.CSS_SELECTOR, "#download-primary > .download-link")
+    _secondary_download_button_locator = (By.CSS_SELECTOR, "#download-secondary > .download-link")
+    _primary_alt_button_locator = (By.CSS_SELECTOR, ".c-fxpromo-altcta .mzp-c-button")
+    _primary_accounts_button_locator = (By.ID, "fxa-learn-primary")
+    _secondary_accounts_button_locator = (By.ID, "fxa-learn-secondary")
 
     @property
     def is_primary_download_button_displayed(self):

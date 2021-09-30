@@ -11,9 +11,8 @@ from puente.settings import get_setting
 
 def test_extract_python():
     fileobj = io.BytesIO(TEST_PO_INPUT)
-    method = 'lib.l10n_utils.extract.extract_python'
-    output = fake_extract_command(filename="filename", fileobj=fileobj,
-                                  method=method)
+    method = "lib.l10n_utils.extract.extract_python"
+    output = fake_extract_command(filename="filename", fileobj=fileobj, method=method)
 
     # god help you if these are ever unequal
     assert TEST_PO_OUTPUT == output
@@ -21,23 +20,20 @@ def test_extract_python():
 
 def test_extract_jinja2():
     fileobj = io.BytesIO(TEST_TEMPLATE_INPUT)
-    method = 'lib.l10n_utils.extract.extract_jinja2'
-    output = fake_extract_command(filename="filename", fileobj=fileobj,
-                                  method=method)
+    method = "lib.l10n_utils.extract.extract_jinja2"
+    output = fake_extract_command(filename="filename", fileobj=fileobj, method=method)
 
     # god help you if these are ever unequal
     assert TEST_TEMPLATE_OUTPUT == output
 
 
-def fake_extract_command(filename, fileobj, method,
-                         options=generate_options_map(),
-                         keywords=get_setting('KEYWORDS'),
-                         comment_tags=get_setting('COMMENT_TAGS')):
-    catalog = Catalog(charset='utf-8')
+def fake_extract_command(
+    filename, fileobj, method, options=generate_options_map(), keywords=get_setting("KEYWORDS"), comment_tags=get_setting("COMMENT_TAGS")
+):
+    catalog = Catalog(charset="utf-8")
     extracted = fake_extract_from_dir(filename, fileobj, method, options, keywords, comment_tags)
     for filename, lineno, msg, cmts, ctxt in extracted:
-        catalog.add(msg, None, [(filename, lineno)], auto_comments=cmts,
-                    context=ctxt)
+        catalog.add(msg, None, [(filename, lineno)], auto_comments=cmts, context=ctxt)
 
     po_out = io.BytesIO()
     write_po(po_out, catalog, width=80, omit_header=True)
@@ -48,8 +44,7 @@ def fake_extract_from_dir(filename, fileobj, method, options, keywords, comment_
     """We use Babel's exctract_from_dir() to pull out our gettext
     strings.  In the tests, I don't have a directory of files, I have StringIO
     objects.  So, we fake the original function with this one."""
-    for lineno, message, comments, context in extract(method, fileobj, keywords,
-                                                      comment_tags, options):
+    for lineno, message, comments, context in extract(method, fileobj, keywords, comment_tags, options):
 
         yield filename, lineno, message, comments, context
 

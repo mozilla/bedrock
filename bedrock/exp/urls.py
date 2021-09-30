@@ -9,13 +9,13 @@ from bedrock.releasenotes import version_re
 from bedrock.exp import views
 
 
-latest_re = r'^firefox(?:/(?P<version>%s))?/%s/$'
-whatsnew_re_all = latest_re % (version_re, 'whatsnew/all')
+latest_re = r"^firefox(?:/(?P<version>%s))?/%s/$"
+whatsnew_re_all = latest_re % (version_re, "whatsnew/all")
 
 urlpatterns = (
-    page('opt-out', 'exp/opt-out.html'),
-    page('firefox', 'exp/firefox/index.html', ftl_files=['firefox/home']),
-    url(r'^firefox/new/$', views.new, name='exp.firefox.new'),
-    url(r'^$', views.home_view, name='exp.mozorg.home'),
-    page('firefox/accounts', 'exp/firefox/accounts.html', ftl_files=['firefox/accounts']),
+    page("opt-out", "exp/opt-out.html"),
+    page("firefox", "exp/firefox/index.html", ftl_files=["firefox/home"]),
+    url(r"^firefox/new/$", views.new, name="exp.firefox.new"),
+    url(r"^$", views.home_view, name="exp.mozorg.home"),
+    page("firefox/accounts", "exp/firefox/accounts.html", ftl_files=["firefox/accounts"]),
 )

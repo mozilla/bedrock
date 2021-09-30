@@ -15,14 +15,13 @@ from django.core.cache import caches
 from django.template.loader import get_template
 from jinja2 import Environment
 
-from .dotlang import (
-    parse as parse_lang, get_translations_for_langfile, lang_file_tag_set)
+from .dotlang import parse as parse_lang, get_translations_for_langfile, lang_file_tag_set
 from lib.l10n_utils.utils import ContainsEverything, get_l10n_path
 
 
 ALL_THE_THINGS = ContainsEverything()
-REGEX_URL = re.compile(r'.* (\S+/\S+\.[^:]+).*')
-cache = caches['l10n']
+REGEX_URL = re.compile(r".* (\S+/\S+\.[^:]+).*")
+cache = caches["l10n"]
 
 
 def parse_po(path):
@@ -31,7 +30,8 @@ def parse_po(path):
     if not os.path.exists(path):
         return msgs
 
-    with codecs.open(path, 'r', 'utf-8') as lines:
+    with codecs.open(path, "r", "utf-8") as lines:
+
         def parse_string(s):
             # remove first and last characters which are "
             s = s.strip()[1:-1]
@@ -39,7 +39,7 @@ def parse_po(path):
 
         def extract_content(s):
             # strip the first word and quotes
-            return parse_string(s.split(' ', 1)[1])
+            return parse_string(s.split(" ", 1)[1])
 
         msgid = None
         msgpath = None
@@ -50,19 +50,19 @@ def parse_po(path):
             if not line:
                 continue
 
-            if line.startswith('#:'):
+            if line.startswith("#:"):
                 matches = REGEX_URL.match(line)
                 if matches:
                     msgpath = matches.group(1)
-            elif line.startswith('#.'):
-                commentline = line.lstrip('#.').strip()
+            elif line.startswith("#."):
+                commentline = line.lstrip("#.").strip()
                 if msgcomment:
-                    msgcomment += ' ' + commentline
+                    msgcomment += " " + commentline
                 else:
                     msgcomment = commentline
-            elif line.startswith('msgid'):
+            elif line.startswith("msgid"):
                 msgid = extract_content(line)
-            elif line.startswith('msgstr') and msgid and msgpath:
+            elif line.startswith("msgstr") and msgid and msgpath:
                 if msgpath not in msgs:
                     msgs[msgpath] = []
                 msgs[msgpath].append([msgcomment, msgid])
@@ -76,12 +76,12 @@ def parse_po(path):
 
 
 def po_msgs(domain):
-    path = settings.LOCALES_PATH / 'templates' / 'LC_MESSAGES' / f'{domain}.pot'
+    path = settings.LOCALES_PATH / "templates" / "LC_MESSAGES" / f"{domain}.pot"
     return parse_po(str(path))
 
 
 def translated_strings(file_):
-    path = str(settings.LOCALES_PATH / 'templates', file_)
+    path = str(settings.LOCALES_PATH / "templates", file_)
     trans = list(parse_lang(path, skip_untranslated=False).keys())
     return trans
 
@@ -92,12 +92,12 @@ def lang_file(name, lang):
 
 def is_template(path):
     (base, ext) = os.path.splitext(path)
-    return ext == '.html'
+    return ext == ".html"
 
 
 def is_python(path):
     (base, ext) = os.path.splitext(path)
-    return ext == '.py'
+    return ext == ".py"
 
 
 def parse_python(path):
@@ -111,17 +111,17 @@ def parse_python(path):
     result = []
     in_lang = False
     in_lang_val = False
-    with codecs.open(path, encoding='utf-8') as src_f:
+    with codecs.open(path, encoding="utf-8") as src_f:
         tokens = generate_tokens(src_f.readline)
         for token in tokens:
             t_type, t_val, (t_row, t_col) = token[:3]
             # find the start of the constant declaration
-            if t_type == NAME and t_col == 0 and t_val == 'LANG_FILES':
+            if t_type == NAME and t_col == 0 and t_val == "LANG_FILES":
                 in_lang = True
                 continue
             if in_lang:
                 # we only want the value, so start recording after the = OP
-                if t_type == OP and t_val == '=':
+                if t_type == OP and t_val == "=":
                     in_lang_val = True
                     continue
                 # stop when there's a newline. continuation newlines are a
@@ -144,31 +144,30 @@ def parse_template(path):
     """Look through a template for the lang_files tag and extract the
     given lang files"""
 
-    cache_key = 'template_lang_files:{0}'.format(path)
+    cache_key = "template_lang_files:{0}".format(path)
     lang_files = cache.get(cache_key)
     if lang_files:
         return lang_files
 
-    src = codecs.open(path, encoding='utf-8').read()
+    src = codecs.open(path, encoding="utf-8").read()
     tokens = Environment().lex(src)
     lang_files = []
 
     def ignore_whitespace(tokens):
         token = next(tokens)
-        if token[1] == 'whitespace':
+        if token[1] == "whitespace":
             return ignore_whitespace(tokens)
         return token
 
     for token in tokens:
-        if token[1] == 'block_begin':
+        if token[1] == "block_begin":
             block = ignore_whitespace(tokens)
 
-            if block[1] == 'name' and block[2] in ('set_lang_files',
-                                                   'add_lang_files'):
+            if block[1] == "name" and block[2] in ("set_lang_files", "add_lang_files"):
                 arg = ignore_whitespace(tokens)
 
                 # Extract all the arguments
-                while arg[1] != 'block_end':
+                while arg[1] != "block_end":
                     lang_files.append(arg[2].strip('"'))
                     arg = ignore_whitespace(tokens)
 
@@ -202,7 +201,7 @@ def template_tag_set(path, lang):
     if settings.DEV or lang == settings.LANGUAGE_CODE:
         return ALL_THE_THINGS
 
-    cache_key = 'template_tag_set:{path}:{lang}'.format(lang=lang, path=path)
+    cache_key = "template_tag_set:{path}:{lang}".format(lang=lang, path=path)
     tag_set = cache.get(cache_key)
     if tag_set is None:
         tag_set = _get_template_tag_set(lang, path)
@@ -235,7 +234,7 @@ def template_is_active(path, lang):
     :param lang: language code
     :return: boolean
     """
-    return template_has_tag(path, lang, 'active')
+    return template_has_tag(path, lang, "active")
 
 
 def translations_for_template(template_name):
@@ -282,19 +281,18 @@ def langfiles_for_path(path):
     return lang_files
 
 
-def pot_to_langfiles(domain='django'):
+def pot_to_langfiles(domain="django"):
     """Update the lang files in /locale/templates with extracted
     strings."""
 
     all_msgs = po_msgs(domain)
-    root = 'templates'
+    root = "templates"
 
     # Start off with some global lang files so that strings don't
     # get duplicated everywhere
     main_msgs = {}
     for default_file in settings.DOTLANG_FILES:
-        main_msgs.update(parse_lang(lang_file(default_file + '.lang', root),
-                                    skip_untranslated=False))
+        main_msgs.update(parse_lang(lang_file(default_file + ".lang", root), skip_untranslated=False))
 
     # Walk through the msgs and put them in the appropriate place. The
     # complex part about this is that templates and python files can
@@ -302,8 +300,7 @@ def pot_to_langfiles(domain='django'):
     # all of them for the strings and add it to the first lang file
     # specified if not found.
     for path, msgs in all_msgs.items():
-        lang_files = [lang_file('%s.lang' % f, root)
-                      for f in langfiles_for_path(path)]
+        lang_files = [lang_file("%s.lang" % f, root) for f in langfiles_for_path(path)]
 
         # Get the current translations
         curr = {}
@@ -311,8 +308,7 @@ def pot_to_langfiles(domain='django'):
             curr.update(parse_lang(f, skip_untranslated=False))
 
         # Filter out the already translated
-        new_msgs = [msg for msg in msgs
-                    if msg[1] not in curr and msg[1] not in main_msgs]
+        new_msgs = [msg for msg in msgs if msg[1] not in curr and msg[1] not in main_msgs]
 
         if new_msgs:
             # Add translations to the first lang file
@@ -322,25 +318,25 @@ def pot_to_langfiles(domain='django'):
 
 
 def find_lang_files(lang):
-    for root, dirs, files in os.walk(lang_file(lang, '')):
-        parts = root.split('locale/%s/' % lang)
+    for root, dirs, files in os.walk(lang_file(lang, "")):
+        parts = root.split("locale/%s/" % lang)
         if len(parts) > 1:
             base = parts[1]
         else:
-            base = ''
+            base = ""
 
         for filename in files:
             name, ext = os.path.splitext(filename)
 
-            if ext == '.lang':
+            if ext == ".lang":
                 yield os.path.join(base, filename)
 
 
 def merge_lang_files(langs):
     for lang in langs:
-        print('Merging into %s...' % lang)
+        print("Merging into %s..." % lang)
 
-        for f in find_lang_files('templates'):
+        for f in find_lang_files("templates"):
             # Make sure the directory exists (might be a subdirectory)
             d = os.path.dirname(f)
             if d:
@@ -349,9 +345,7 @@ def merge_lang_files(langs):
                     os.makedirs(d)
 
             dest = lang_file(f, lang)
-            src_msgs = parse_lang(lang_file(f, 'templates'),
-                                  skip_untranslated=False,
-                                  extract_comments=True)
+            src_msgs = parse_lang(lang_file(f, "templates"), skip_untranslated=False, extract_comments=True)
             dest_msgs = parse_lang(dest, skip_untranslated=False)
             new_msgs = [src_msgs[msg] for msg in src_msgs if msg not in dest_msgs]
 
@@ -365,12 +359,12 @@ def _append_to_lang_file(dest, new_msgs):
         if not os.path.exists(d):
             os.makedirs(d)
 
-    with codecs.open(dest, 'a', 'utf-8') as out:
+    with codecs.open(dest, "a", "utf-8") as out:
         for msg in new_msgs:
             if isinstance(msg, str):
                 msg = [None, msg]
-            out_str = u'\n\n'
+            out_str = "\n\n"
             if msg[0]:
-                out_str += u'# {comment}\n'
-            out_str += u';{msg}\n{msg}\n'
+                out_str += "# {comment}\n"
+            out_str += ";{msg}\n{msg}\n"
             out.write(out_str.format(msg=msg[1], comment=msg[0]))

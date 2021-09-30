@@ -33,28 +33,28 @@ def product_is_obsolete(prod_name, version):
     :param version: e.g. "33.0.2"
     :return: boolean
     """
-    if prod_name == 'seamonkey':
+    if prod_name == "seamonkey":
         # latest right now is 2.30. Should be good enough for a while.
-        return Version(version) < Version('2.30')
+        return Version(version) < Version("2.30")
 
-    major_vers = int(version.split('.')[0])
+    major_vers = int(version.split(".")[0])
 
-    if prod_name == 'firefox':
+    if prod_name == "firefox":
         # we've got info in product-details
-        latest_version = product_details.firefox_versions['LATEST_FIREFOX_VERSION']
-        latest_major_vers = int(latest_version.split('.')[0])
+        latest_version = product_details.firefox_versions["LATEST_FIREFOX_VERSION"]
+        latest_major_vers = int(latest_version.split(".")[0])
         return major_vers < latest_major_vers
 
-    if prod_name == 'firefox-esr':
+    if prod_name == "firefox-esr":
         # we've got info in product-details
-        latest_version = product_details.firefox_versions['FIREFOX_ESR']
-        latest_major_vers = int(latest_version.split('.')[0])
+        latest_version = product_details.firefox_versions["FIREFOX_ESR"]
+        latest_major_vers = int(latest_version.split(".")[0])
         return major_vers < latest_major_vers
 
-    if prod_name == 'thunderbird':
+    if prod_name == "thunderbird":
         # we've got info in product-details
-        latest_version = product_details.thunderbird_versions['LATEST_THUNDERBIRD_VERSION']
-        latest_major_vers = int(latest_version.split('.')[0])
+        latest_version = product_details.thunderbird_versions["LATEST_THUNDERBIRD_VERSION"]
+        latest_major_vers = int(latest_version.split(".")[0])
         return major_vers < latest_major_vers
 
     # everything else is obsolete
@@ -63,10 +63,10 @@ def product_is_obsolete(prod_name, version):
 
 class HallOfFameView(LangFilesMixin, ListView):
     template_names = {
-        'client': 'security/bug-bounty/hall-of-fame.html',
-        'web': 'security/bug-bounty/web-hall-of-fame.html',
+        "client": "security/bug-bounty/hall-of-fame.html",
+        "web": "security/bug-bounty/web-hall-of-fame.html",
     }
-    context_object_name = 'hofers'
+    context_object_name = "hofers"
     allow_empty = False
     program = None
 
@@ -78,29 +78,29 @@ class HallOfFameView(LangFilesMixin, ListView):
 
 
 class AdvisoriesView(LangFilesMixin, ListView):
-    template_name = 'security/advisories.html'
-    queryset = SecurityAdvisory.objects.only('id', 'impact', 'title', 'announced')
-    context_object_name = 'advisories'
+    template_name = "security/advisories.html"
+    queryset = SecurityAdvisory.objects.only("id", "impact", "title", "announced")
+    context_object_name = "advisories"
 
 
 class AdvisoryView(LangFilesMixin, DetailView):
     model = SecurityAdvisory
-    template_name = 'security/advisory.html'
-    context_object_name = 'advisory'
+    template_name = "security/advisory.html"
+    context_object_name = "advisory"
 
 
 class ProductView(LangFilesMixin, ListView):
-    template_name = 'security/product-advisories.html'
-    context_object_name = 'product_versions'
+    template_name = "security/product-advisories.html"
+    context_object_name = "product_versions"
     allow_empty = False
     minimum_versions = {
-        'firefox': Version('4.0'),
-        'thunderbird': Version('6.0'),
-        'seamonkey': Version('2.3'),
+        "firefox": Version("4.0"),
+        "thunderbird": Version("6.0"),
+        "seamonkey": Version("2.3"),
     }
 
     def get_queryset(self):
-        product_slug = self.kwargs.get('slug')
+        product_slug = self.kwargs.get("slug")
         versions = Product.objects.filter(product_slug=product_slug)
         min_version = self.minimum_versions.get(product_slug)
         if min_version:
@@ -109,22 +109,22 @@ class ProductView(LangFilesMixin, ListView):
 
     def get_context_data(self, **kwargs):
         cxt = super(ProductView, self).get_context_data(**kwargs)
-        cxt['product_name'] = cxt['product_versions'][0].product
+        cxt["product_name"] = cxt["product_versions"][0].product
         return cxt
 
 
 class ProductVersionView(LangFilesMixin, ListView):
-    template_name = 'security/product-advisories.html'
-    context_object_name = 'product_versions'
+    template_name = "security/product-advisories.html"
+    context_object_name = "product_versions"
     allow_empty = False
 
     def get_queryset(self):
-        slug = u'{product}-{version}'.format(**self.kwargs)
-        qfilter = Q(slug__startswith=slug + '.')
-        dots = slug.count('.')
+        slug = "{product}-{version}".format(**self.kwargs)
+        qfilter = Q(slug__startswith=slug + ".")
+        dots = slug.count(".")
         if dots < 2:
             # add exact match if not point release
-            if slug.endswith('.0'):
+            if slug.endswith(".0"):
                 # stip trailing .0 as products are stored without them
                 slug = slug[:-2]
             qfilter |= Q(slug__exact=slug)
@@ -133,10 +133,10 @@ class ProductVersionView(LangFilesMixin, ListView):
 
     def get_context_data(self, **kwargs):
         cxt = super(ProductVersionView, self).get_context_data(**kwargs)
-        prod_name, version = self.kwargs['product'], self.kwargs['version']
-        cxt['is_obsolete'] = product_is_obsolete(prod_name, version)
-        cxt['product_name'] = '{0} {1}'.format(cxt['product_versions'][0].product, version)
-        cxt['product_slug'] = prod_name
+        prod_name, version = self.kwargs["product"], self.kwargs["version"]
+        cxt["is_obsolete"] = product_is_obsolete(prod_name, version)
+        cxt["product_name"] = "{0} {1}".format(cxt["product_versions"][0].product, version)
+        cxt["product_slug"] = prod_name
         return cxt
 
 
@@ -150,38 +150,35 @@ class CachedRedirectView(RedirectView):
 
 class OldAdvisoriesView(CachedRedirectView):
     def get_redirect_url(self, **kwargs):
-        return reverse('security.advisory', kwargs=kwargs)
+        return reverse("security.advisory", kwargs=kwargs)
 
 
 class OldAdvisoriesListView(CachedRedirectView):
     def get_redirect_url(self, **kwargs):
-        return reverse('security.advisories')
+        return reverse("security.advisories")
 
 
 class KVRedirectsView(CachedRedirectView):
-    prod_ver_re = re.compile(r'(\w+)(\d{2})$')
+    prod_ver_re = re.compile(r"(\w+)(\d{2})$")
 
     def get_redirect_url(self, *args, **kwargs):
-        url_component = kwargs['filename'].replace(' ', '')
+        url_component = kwargs["filename"].replace(" ", "")
         try:
             return reverse(**self.get_redirect_args(url_component))
         except NoReverseMatch:
             return None
 
     def get_redirect_args(self, url_component):
-        if url_component == 'suite17':
-            return dict(viewname='security.product-advisories',
-                        kwargs={'slug': 'mozilla-suite'})
+        if url_component == "suite17":
+            return dict(viewname="security.product-advisories", kwargs={"slug": "mozilla-suite"})
 
         match = self.prod_ver_re.match(url_component)
         if match:
             product, version = match.groups()
-            version = '{0}.{1}'.format(*version)
-            return dict(viewname='security.product-version-advisories',
-                        kwargs={'product': product, 'version': version})
+            version = "{0}.{1}".format(*version)
+            return dict(viewname="security.product-version-advisories", kwargs={"product": product, "version": version})
 
-        if url_component.endswith('ESR'):
-            return dict(viewname='security.product-advisories',
-                        kwargs={'slug': url_component[:-3] + '-esr'})
+        if url_component.endswith("ESR"):
+            return dict(viewname="security.product-advisories", kwargs={"slug": url_component[:-3] + "-esr"})
 
-        return dict(viewname='security.product-advisories', kwargs={'slug': url_component})
+        return dict(viewname="security.product-advisories", kwargs={"slug": url_component})

@@ -29,14 +29,10 @@ def template_source_url(template):
         return None
 
     relative_path = relpath(absolute_path, settings.ROOT)
-    return '%s/tree/master/%s' % (settings.GITHUB_REPO, relative_path)
+    return "%s/tree/master/%s" % (settings.GITHUB_REPO, relative_path)
 
 
-def render_to_string(template_name,
-                     context=None,
-                     request=None,
-                     using=None,
-                     ftl_files=None):
+def render_to_string(template_name, context=None, request=None, using=None, ftl_files=None):
     if request:
         context = context or {}
         locale = get_locale(request)
@@ -48,18 +44,13 @@ def render_to_string(template_name,
             # the original list passed to the function
             ftl_files = ftl_files + settings.FLUENT_DEFAULT_FILES
 
-            context['fluent_l10n'] = fluent_l10n([locale, 'en'], ftl_files)
+            context["fluent_l10n"] = fluent_l10n([locale, "en"], ftl_files)
         else:
-            context['fluent_l10n'] = fluent_l10n([locale, 'en'], settings.FLUENT_DEFAULT_FILES)
+            context["fluent_l10n"] = fluent_l10n([locale, "en"], settings.FLUENT_DEFAULT_FILES)
     return loader.render_to_string(template_name, context, request, using)
 
 
-def render(request,
-           template,
-           context=None,
-           ftl_files=None,
-           activation_files=None,
-           **kwargs):
+def render(request, template, context=None, ftl_files=None, activation_files=None, **kwargs):
     """
     Same as django's render() shortcut, but with l10n template support.
     If used like this::
@@ -76,11 +67,11 @@ def render(request,
     # be different on the next call to the view.
     context = context.copy() if context else {}
     l10n = None
-    ftl_files = ftl_files or context.get('ftl_files')
+    ftl_files = ftl_files or context.get("ftl_files")
     locale = get_locale(request)
 
     # is this a non-locale page?
-    name_prefix = request.path_info.split('/', 2)[1]
+    name_prefix = request.path_info.split("/", 2)[1]
     nonlocale = name_prefix in settings.SUPPORTED_NONLOCALES
 
     # Make sure we have a single template
@@ -95,27 +86,25 @@ def render(request,
         # the original list passed to the function
         ftl_files = ftl_files + settings.FLUENT_DEFAULT_FILES
 
-        context['fluent_l10n'] = l10n = fluent_l10n([locale, 'en'],
-                                                    ftl_files)
+        context["fluent_l10n"] = l10n = fluent_l10n([locale, "en"], ftl_files)
     else:
-        context['fluent_l10n'] = fluent_l10n([locale, 'en'],
-                                             settings.FLUENT_DEFAULT_FILES)
+        context["fluent_l10n"] = fluent_l10n([locale, "en"], settings.FLUENT_DEFAULT_FILES)
 
     # Every template gets its own .lang file, so figure out what it is
     # and pass it in the context
-    context['template'] = template
-    context['langfile'] = get_l10n_path(template)
-    context['template_source_url'] = template_source_url(template)
+    context["template"] = template
+    context["langfile"] = get_l10n_path(template)
+    context["template_source_url"] = template_source_url(template)
 
     # if `locales` is given use it as the full list of active translations
-    if 'active_locales' in context:
-        translations = context['active_locales']
-        del context['active_locales']
+    if "active_locales" in context:
+        translations = context["active_locales"]
+        del context["active_locales"]
     else:
         if activation_files:
             translations = set()
             for af in activation_files:
-                if af.endswith('.html'):
+                if af.endswith(".html"):
                     translations.update(translations_for_template(af))
                 else:
                     translations.update(ftl_active_locales(af))
@@ -128,35 +117,32 @@ def render(request,
             translations = translations_for_template(template)
 
         # if `add_active_locales` is given then add it to the translations for the template
-        if 'add_active_locales' in context:
-            translations.extend(context['add_active_locales'])
-            del context['add_active_locales']
+        if "add_active_locales" in context:
+            translations.extend(context["add_active_locales"])
+            del context["add_active_locales"]
 
-    context['translations'] = get_translations_native_names(translations)
+    context["translations"] = get_translations_native_names(translations)
 
     # Look for localized template
-    if not nonlocale and getattr(request, 'locale', None):
+    if not nonlocale and getattr(request, "locale", None):
         # Redirect to one of the user's accept languages or the site's default
         # language (en-US) if the current locale not active
         if request.locale not in translations:
             lang = get_best_translation(translations, get_accept_languages(request))
-            response = HttpResponseRedirect('/' + '/'.join([
-                lang,
-                split_path(request.get_full_path())[1]
-            ]))
+            response = HttpResponseRedirect("/" + "/".join([lang, split_path(request.get_full_path())[1]]))
             # Add the Vary header to avoid wrong redirects due to a cache
-            response['Vary'] = 'Accept-Language'
+            response["Vary"] = "Accept-Language"
             return response
 
         # Render try #1: Look for l10n template in locale/{{ LANG }}/templates/
-        l10n_tmpl = '%s/templates/%s' % (request.locale, template)
+        l10n_tmpl = "%s/templates/%s" % (request.locale, template)
         try:
             return django_render(request, l10n_tmpl, context, **kwargs)
         except TemplateDoesNotExist:
             pass
 
         # Render try #2: Look for locale-specific template in app/templates/
-        locale_tmpl = '.{}'.format(request.locale).join(splitext(template))
+        locale_tmpl = ".{}".format(request.locale).join(splitext(template))
         try:
             return django_render(request, locale_tmpl, context, **kwargs)
         except TemplateDoesNotExist:
@@ -167,7 +153,7 @@ def render(request,
 
 
 def get_locale(request):
-    return getattr(request, 'locale', settings.LANGUAGE_CODE)
+    return getattr(request, "locale", settings.LANGUAGE_CODE)
 
 
 def get_accept_languages(request):
@@ -175,9 +161,9 @@ def get_accept_languages(request):
     Parse the user's Accept-Language HTTP header and return a list of languages
     """
     languages = []
-    pattern = re.compile(r'^([A-Za-z]{2,3})(?:-([A-Za-z]{2})(?:-[A-Za-z0-9]+)?)?$')
+    pattern = re.compile(r"^([A-Za-z]{2,3})(?:-([A-Za-z]{2})(?:-[A-Za-z0-9]+)?)?$")
 
-    parsed = parse_accept_lang_header(request.META.get('HTTP_ACCEPT_LANGUAGE', ''))
+    parsed = parse_accept_lang_header(request.META.get("HTTP_ACCEPT_LANGUAGE", ""))
 
     for lang, priority in parsed:
         m = pattern.match(lang)
@@ -190,7 +176,7 @@ def get_accept_languages(request):
         # Check if the shorter code is supported. This covers obsolete long
         # codes like fr-FR (should match fr) or ja-JP (should match ja)
         if m.group(2) and lang not in settings.PROD_LANGUAGES:
-            lang += '-' + m.group(2).upper()
+            lang += "-" + m.group(2).upper()
 
         if lang not in languages:
             languages.append(lang)
@@ -224,6 +210,7 @@ def get_best_translation(translations, accept_languages):
 
 class LangFilesMixin:
     """Generic views mixin that uses l10n_utils to render responses."""
+
     active_locales = None
     add_active_locales = None
     # a list of ftl files to use or a single ftl filename
@@ -237,9 +224,9 @@ class LangFilesMixin:
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         if self.active_locales:
-            ctx['active_locales'] = self.active_locales
+            ctx["active_locales"] = self.active_locales
         if self.add_active_locales:
-            ctx['add_active_locales'] = self.add_active_locales
+            ctx["add_active_locales"] = self.add_active_locales
 
         return ctx
 
@@ -254,9 +241,14 @@ class LangFilesMixin:
 
     def render_to_response(self, context, **response_kwargs):
         template_names = self.get_template_names()
-        return render(self.request, template_names, context,
-                      ftl_files=self.get_ftl_files(template_names),
-                      activation_files=self.activation_files, **response_kwargs)
+        return render(
+            self.request,
+            template_names,
+            context,
+            ftl_files=self.get_ftl_files(template_names),
+            activation_files=self.activation_files,
+            **response_kwargs,
+        )
 
 
 class L10nTemplateView(LangFilesMixin, TemplateView):

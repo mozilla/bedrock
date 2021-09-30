@@ -6,6 +6,7 @@ from fluent.migrate import REPLACE, COPY
 
 nightly_whatsnew = "firefox/nightly_whatsnew.lang"
 
+
 def migrate(ctx):
     """Migrate bedrock/firefox/templates/firefox/nightly_whatsnew.html, part {index}."""
 
@@ -22,8 +23,8 @@ def migrate(ctx):
                         "%%": "%",
                         "%(version)s": VARIABLE_REFERENCE("version"),
                         "Firefox Nightly": TERM_REFERENCE("brand-name-firefox-nightly"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("nightly-whatsnew-your-firefox-nightly"),
@@ -32,12 +33,17 @@ def migrate(ctx):
                     "Your Firefox Nightly has been updated.",
                     {
                         "Firefox Nightly": TERM_REFERENCE("brand-name-firefox-nightly"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 nightly-whatsnew-firefox-nightly = { -brand-name-firefox-nightly }
-""", nightly_whatsnew=nightly_whatsnew) + [
+""",
+            nightly_whatsnew=nightly_whatsnew,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("nightly-whatsnew-every-4-to-5-weeks"),
                 value=REPLACE(
@@ -46,8 +52,8 @@ nightly-whatsnew-firefox-nightly = { -brand-name-firefox-nightly }
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Nightly": TERM_REFERENCE("brand-name-nightly"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("nightly-whatsnew-every-6-to-8-weeks"),
@@ -57,8 +63,8 @@ nightly-whatsnew-firefox-nightly = { -brand-name-firefox-nightly }
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Nightly": TERM_REFERENCE("brand-name-nightly"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("nightly-whatsnew-this-is-a-good"),
@@ -68,28 +74,28 @@ nightly-whatsnew-firefox-nightly = { -brand-name-firefox-nightly }
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Nightly": TERM_REFERENCE("brand-name-nightly"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("nightly-whatsnew-if-you-want-to"),
                 value=REPLACE(
                     nightly_whatsnew,
-                    "If you want to know what’s happening around Nightly and its community, reading our <a href=\"%(blog)s\">blog</a> and following us on <a href=\"%(twitter)s\">Twitter</a> are good starting points!",
+                    'If you want to know what’s happening around Nightly and its community, reading our <a href="%(blog)s">blog</a> and following us on <a href="%(twitter)s">Twitter</a> are good starting points!',
                     {
                         "%%": "%",
                         "%(blog)s": VARIABLE_REFERENCE("blog"),
                         "%(twitter)s": VARIABLE_REFERENCE("twitter"),
                         "Twitter": TERM_REFERENCE("brand-name-twitter"),
                         "Nightly": TERM_REFERENCE("brand-name-nightly"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("nightly-whatsnew-want-to-know-which"),
                 value=REPLACE(
                     nightly_whatsnew,
-                    "Want to know which platform features you could test on Nightly and can’t see yet on other Firefox channels? Then have a look at the <a href=\"%(mdn)s\">Experimental Features</a> page on <abbr title=\"Mozilla Developer Network\">MDN</abbr>.",
+                    'Want to know which platform features you could test on Nightly and can’t see yet on other Firefox channels? Then have a look at the <a href="%(mdn)s">Experimental Features</a> page on <abbr title="Mozilla Developer Network">MDN</abbr>.',
                     {
                         "%%": "%",
                         "%(mdn)s": VARIABLE_REFERENCE("mdn"),
@@ -97,23 +103,27 @@ nightly-whatsnew-firefox-nightly = { -brand-name-firefox-nightly }
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Nightly": TERM_REFERENCE("brand-name-nightly"),
                         "MDN": TERM_REFERENCE("brand-name-mdn"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("nightly-whatsnew-do-you-experience"),
                 value=REPLACE(
                     nightly_whatsnew,
-                    "Do you experience crashes? Unexpected behavior? Web compatibility regressions? We’d love to get them filed in <a href=\"%(bugzilla)s\">Bugzilla</a> to make sure they don’t make it to the final release (extra karma if you add the <em>nightly-community</em> keyword to your bug reports)!",
+                    'Do you experience crashes? Unexpected behavior? Web compatibility regressions? We’d love to get them filed in <a href="%(bugzilla)s">Bugzilla</a> to make sure they don’t make it to the final release (extra karma if you add the <em>nightly-community</em> keyword to your bug reports)!',
                     {
                         "%%": "%",
                         "%(bugzilla)s": VARIABLE_REFERENCE("bugzilla"),
                         "Bugzilla": TERM_REFERENCE("brand-name-bugzilla"),
                         "nightly": TERM_REFERENCE("brand-name-nightly"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 nightly-whatsnew-go-community = {COPY(nightly_whatsnew, "Go community!",)}
-""", nightly_whatsnew=nightly_whatsnew)
-        )
+""",
+            nightly_whatsnew=nightly_whatsnew,
+        ),
+    )

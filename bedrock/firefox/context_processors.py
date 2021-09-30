@@ -7,6 +7,6 @@ from bedrock.firefox.firefox_details import firefox_desktop
 
 def latest_firefox_versions(request):
     return {
-        'latest_firefox_version': firefox_desktop.latest_version(),
-        'esr_firefox_versions': firefox_desktop.esr_minor_versions,
+        "latest_firefox_version": firefox_desktop.latest_version(),
+        "esr_firefox_versions": firefox_desktop.esr_minor_versions,
     }

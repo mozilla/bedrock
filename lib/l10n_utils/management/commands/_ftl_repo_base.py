@@ -10,8 +10,8 @@ from django.core.management.base import BaseCommand
 from bedrock.utils.git import GitRepo
 
 
-GIT_COMMIT_EMAIL = 'meao-bots+mozmarrobot@mozilla.com'
-GIT_COMMIT_NAME = 'MozMEAO Bot'
+GIT_COMMIT_EMAIL = "meao-bots+mozmarrobot@mozilla.com"
+GIT_COMMIT_NAME = "MozMEAO Bot"
 
 
 class FTLRepoCommand(BaseCommand):
@@ -19,11 +19,10 @@ class FTLRepoCommand(BaseCommand):
     l10n_repo = None
 
     def add_arguments(self, parser):
-        parser.add_argument('-q', '--quiet', action='store_true', dest='quiet', default=False,
-                            help='If no error occurs, swallow all output.')
+        parser.add_argument("-q", "--quiet", action="store_true", dest="quiet", default=False, help="If no error occurs, swallow all output.")
 
     def handle(self, *args, **options):
-        if options['quiet']:
+        if options["quiet"]:
             self.stdout._out = StringIO()
 
         self.l10n_repo = GitRepo(settings.FLUENT_L10N_TEAM_REPO_PATH, settings.FLUENT_L10N_TEAM_REPO_URL)
@@ -36,7 +35,7 @@ class FTLRepoCommand(BaseCommand):
         except FileNotFoundError:
             pass
         self.l10n_repo.update()
-        self.stdout.write('Updated l10n team .ftl files')
+        self.stdout.write("Updated l10n team .ftl files")
 
     def update_fluent_files(self):
         try:
@@ -44,10 +43,10 @@ class FTLRepoCommand(BaseCommand):
         except FileNotFoundError:
             pass
         self.meao_repo.update()
-        self.stdout.write('Updated .ftl files')
+        self.stdout.write("Updated .ftl files")
 
     def config_git(self):
         """Set user config so that committing will work"""
         for repo in (self.meao_repo, self.l10n_repo):
-            repo.git('config', 'user.email', GIT_COMMIT_EMAIL)
-            repo.git('config', 'user.name', GIT_COMMIT_NAME)
+            repo.git("config", "user.email", GIT_COMMIT_EMAIL)
+            repo.git("config", "user.name", GIT_COMMIT_NAME)

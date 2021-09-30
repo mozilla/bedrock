@@ -5,12 +5,12 @@ from bedrock.mozorg.decorators import cache_control_expires
 from bedrock.sitemaps.models import NO_LOCALE, SitemapURL
 
 
-@method_decorator(cache_control_expires(1), name='dispatch')
+@method_decorator(cache_control_expires(1), name="dispatch")
 class SitemapView(TemplateView):
-    content_type = 'text/xml'
+    content_type = "text/xml"
 
     def _get_locale(self):
-        if self.kwargs['is_none']:
+        if self.kwargs["is_none"]:
             # is_none here refers to the sitemap_none.xml URL. the value of that kwarg
             # when on that URL will be "_none" and will be None if not on that URL.
             # For that page we set the locale to the special value as that is what the entries
@@ -21,23 +21,23 @@ class SitemapView(TemplateView):
             # should be None here if not a real locale because
             # None will mean that we should show the index of sitemaps
             # instead of a sitemap for a locale.
-            locale = getattr(self.request, 'locale', None)
+            locale = getattr(self.request, "locale", None)
 
         return locale
 
     def get_template_names(self):
         if self._get_locale():
-            return ['sitemap.xml']
+            return ["sitemap.xml"]
         else:
-            return ['sitemap_index.xml']
+            return ["sitemap_index.xml"]
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         locale = self._get_locale()
         if locale:
-            ctx['paths'] = SitemapURL.objects.all_for_locale(locale)
+            ctx["paths"] = SitemapURL.objects.all_for_locale(locale)
         else:
-            ctx['locales'] = SitemapURL.objects.all_locales()
-            ctx['NO_LOCALE'] = NO_LOCALE
+            ctx["locales"] = SitemapURL.objects.all_locales()
+            ctx["NO_LOCALE"] = NO_LOCALE
 
         return ctx

@@ -11,17 +11,17 @@ from lib.l10n_utils.gettext import merge_lang_files
 
 
 class Command(BaseCommand):
-    help = 'Merges gettext strings into .lang files'
+    help = "Merges gettext strings into .lang files"
 
     def add_arguments(self, parser):
         # Positional arguments
-        parser.add_argument('langs', nargs='*')
+        parser.add_argument("langs", nargs="*")
 
     def handle(self, *args, **options):
-        langs = options['langs']
+        langs = options["langs"]
         if not langs:
             langs = os.listdir(str(settings.LOCALES_PATH))
-            langs = [x for x in langs if x != 'templates']
-            langs = [x for x in langs if x[0] != '.']
+            langs = [x for x in langs if x != "templates"]
+            langs = [x for x in langs if x[0] != "."]
 
         merge_lang_files(langs)

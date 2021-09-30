@@ -6,13 +6,15 @@ from fluent.migrate import REPLACE, COPY
 
 shared = "firefox/compare/shared.lang"
 
+
 def migrate(ctx):
     """Migrate bedrock/firefox/templates/firefox/browsers/compare/index.html, part {index}."""
 
     ctx.add_transforms(
         "firefox/browsers/compare/shared.ftl",
         "firefox/browsers/compare/shared.ftl",
-        transforms_from("""
+        transforms_from(
+            """
 compare-shared-yes = {COPY(shared, "Yes",)}
 compare-shared-no = {COPY(shared, "No",)}
 compare-shared-private-browsing-mode = {COPY(shared, "Private Browsing mode",)}
@@ -50,6 +52,7 @@ compare-shared-brand-name-opera = { -brand-name-opera }
 compare-shared-brand-name-safari = { -brand-name-safari }
 compare-shared-brand-name-brave = { -brand-name-brave }
 compare-shared-compare-browsers = {COPY(shared, "Compare Browsers",)}
-""", shared=shared)
-        )
-
+""",
+            shared=shared,
+        ),
+    )

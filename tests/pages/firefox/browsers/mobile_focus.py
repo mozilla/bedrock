@@ -9,10 +9,10 @@ from pages.base import BasePage
 
 class FirefoxMobileFocusPage(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/firefox/browsers/mobile/focus/'
+    _URL_TEMPLATE = "/{locale}/firefox/browsers/mobile/focus/"
 
-    _get_firefox_header_button_locator = (By.ID, 'get-firefox')
-    _get_firefox_qr_code_locator = (By.ID, 'focus-qr')
+    _get_firefox_header_button_locator = (By.ID, "get-firefox")
+    _get_firefox_qr_code_locator = (By.ID, "focus-qr")
 
     @property
     def is_firefox_qr_code_displayed(self):

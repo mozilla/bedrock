@@ -6,6 +6,7 @@ from fluent.migrate import REPLACE, COPY
 
 opera = "firefox/compare/opera.lang"
 
+
 def migrate(ctx):
     """Migrate bedrock/firefox/templates/firefox/browsers/compare/opera.html, part {index}."""
 
@@ -21,8 +22,8 @@ def migrate(ctx):
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Opera": TERM_REFERENCE("brand-name-opera"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-opera-compare-opera-to-the-firefox"),
@@ -32,8 +33,8 @@ def migrate(ctx):
                     {
                         "Firefox Browser": TERM_REFERENCE("brand-name-firefox-browser"),
                         "Opera": TERM_REFERENCE("brand-name-opera"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-opera-comparing-firefox-browser"),
@@ -43,8 +44,8 @@ def migrate(ctx):
                     {
                         "Firefox Browser": TERM_REFERENCE("brand-name-firefox-browser"),
                         "Opera": TERM_REFERENCE("brand-name-opera"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-opera-the-firefox-browser-and-opera"),
@@ -57,8 +58,8 @@ def migrate(ctx):
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Google": TERM_REFERENCE("brand-name-google"),
                         "Chrome": TERM_REFERENCE("brand-name-chrome"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-opera-operas-privacy-policy-lacks-fallback"),
@@ -67,8 +68,8 @@ def migrate(ctx):
                     "Opera’s privacy policy lacks some specificity in its explanation of which types of information it collects and how, in certain sections, it says they collect names of account holders, IP addresses and search terms. What seems confusing and troubling is the section about International data transfers; when, how often and why they need to transfer your data internationally is not explained.",
                     {
                         "Opera": TERM_REFERENCE("brand-name-opera"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-opera-firefoxs-privacy-policy-is"),
@@ -79,8 +80,8 @@ def migrate(ctx):
                         "%%": "%",
                         "%(attrs)s": VARIABLE_REFERENCE("attrs"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-opera-as-far-as-actual-privacy-protections"),
@@ -89,8 +90,8 @@ def migrate(ctx):
                     "As far as actual privacy protections in the Opera browser, it does offer a robust Private mode that allows you to surf the web without the browser tracking your activity. Also in normal browsing mode, you can also turn off some data collection features by digging into the settings to enable the ad blocker and adjust other security features.",
                     {
                         "Opera": TERM_REFERENCE("brand-name-opera"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-opera-with-the-latest-version-of"),
@@ -101,8 +102,8 @@ def migrate(ctx):
                         "%%": "%",
                         "%(attrs)s": VARIABLE_REFERENCE("attrs"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-opera-we-make-firefox-for-people"),
@@ -114,8 +115,8 @@ def migrate(ctx):
                         "%(attrs)s": VARIABLE_REFERENCE("attrs"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Opera": TERM_REFERENCE("brand-name-opera"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-opera-theres-no-debate-that-opera"),
@@ -130,8 +131,8 @@ def migrate(ctx):
                         "Chromium": TERM_REFERENCE("brand-name-chromium"),
                         "Google": TERM_REFERENCE("brand-name-google"),
                         "Chrome": TERM_REFERENCE("brand-name-chrome"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-opera-like-firefox-opera-delivers"),
@@ -141,8 +142,8 @@ def migrate(ctx):
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Opera": TERM_REFERENCE("brand-name-opera"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-opera-opera-provides-a-lot-of-hidden"),
@@ -156,8 +157,8 @@ def migrate(ctx):
                         "Pocket": TERM_REFERENCE("brand-name-pocket"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Facebook": TERM_REFERENCE("brand-name-facebook"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-opera-in-terms-of-head-to-head-utility"),
@@ -169,8 +170,8 @@ def migrate(ctx):
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Chrome": TERM_REFERENCE("brand-name-chrome"),
                         "Chromium": TERM_REFERENCE("brand-name-chromium"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-opera-both-firefox-and-opera-are"),
@@ -185,8 +186,8 @@ def migrate(ctx):
                         "Android": TERM_REFERENCE("brand-name-android"),
                         "iOS": TERM_REFERENCE("brand-name-ios"),
                         "Mac": TERM_REFERENCE("brand-name-mac"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-opera-in-addition-to-the-regular"),
@@ -195,8 +196,8 @@ def migrate(ctx):
                     "In addition to the regular mobile app, Opera has two other mobile versions of its browser: Touch and Mini. Touch is light on features but it’s designed to use on the go with only one hand. The Mini version aims at lowering data usage and increased speeds on slow connections by downgrading images and stripping away content.",
                     {
                         "Opera": TERM_REFERENCE("brand-name-opera"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-opera-we-also-offer-an-additional"),
@@ -207,8 +208,8 @@ def migrate(ctx):
                         "%%": "%",
                         "%(attrs)s": VARIABLE_REFERENCE("attrs"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-opera-most-major-browsers-these"),
@@ -219,8 +220,8 @@ def migrate(ctx):
                         "Opera": TERM_REFERENCE("brand-name-opera"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Safari": TERM_REFERENCE("brand-name-safari"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-opera-overall-opera-is-a-solid-browser"),
@@ -230,9 +231,8 @@ def migrate(ctx):
                     {
                         "Opera": TERM_REFERENCE("brand-name-opera"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ]
+        ],
     ),
-

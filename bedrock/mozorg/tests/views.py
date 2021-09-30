@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from bedrock.mozorg.decorators import cache_control_expires
 
 
-RESPONSE_CONTENT = 'The Dude abides, man.'
+RESPONSE_CONTENT = "The Dude abides, man."
 
 
 @cache_control_expires(48)

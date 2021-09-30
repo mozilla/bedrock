@@ -18,7 +18,7 @@ def test_primary_download_button_displayed(base_url, selenium):
 @pytest.mark.nondestructive
 def test_account_form(base_url, selenium):
     page = FirefoxBrowsersPage(selenium, base_url).open()
-    page.join_firefox_form.type_email('success@example.com')
+    page.join_firefox_form.type_email("success@example.com")
     page.join_firefox_form.click_continue()
     url = unquote(selenium.current_url)
-    assert 'email=success@example.com' in url, 'Email address is not in URL'
+    assert "email=success@example.com" in url, "Email address is not in URL"

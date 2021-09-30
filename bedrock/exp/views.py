@@ -12,50 +12,48 @@ from bedrock.pocketfeed.models import PocketArticle
 def new(request):
 
     # note: v and xv params only allow a-z, A-Z, 0-9, -, and _ characters
-    experience = request.GET.get('xv', None)
-    variant = request.GET.get('v', None)
+    experience = request.GET.get("xv", None)
+    variant = request.GET.get("v", None)
 
     # ensure experience matches pre-defined value
-    if experience not in ['']:  # place expected ?xv= values in this list
+    if experience not in [""]:  # place expected ?xv= values in this list
         experience = None
 
     # ensure variant matches pre-defined value
-    if variant not in ['']:  # place expected ?v= values in this list
+    if variant not in [""]:  # place expected ?v= values in this list
         variant = None
 
-    template_name = 'exp/firefox/new/download.html'
+    template_name = "exp/firefox/new/download.html"
 
     # no harm done by passing 'v' to template, even when no experiment is running
     # (also makes tests easier to maintain by always sending a context)
-    context = {'experience': experience, 'v': variant}
+    context = {"experience": experience, "v": variant}
 
-    return l10n_utils.render(request, template_name, context,
-                             ftl_files='firefox/new/desktop')
+    return l10n_utils.render(request, template_name, context, ftl_files="firefox/new/desktop")
 
 
 def home_view(request):
     locale = l10n_utils.get_locale(request)
-    donate_params = settings.DONATE_PARAMS.get(
-        locale, settings.DONATE_PARAMS['en-US'])
+    donate_params = settings.DONATE_PARAMS.get(locale, settings.DONATE_PARAMS["en-US"])
 
     # presets are stored as a string but, for the home banner
     # we need it as a list.
-    donate_params['preset_list'] = donate_params['presets'].split(',')
+    donate_params["preset_list"] = donate_params["presets"].split(",")
     ctx = {
-        'donate_params': donate_params,
-        'pocket_articles': PocketArticle.objects.all()[:4],
-        'ftl_files': ['mozorg/home-mr1-promo'],
-        'active_locales': ['de', 'fr', 'en-US']
+        "donate_params": donate_params,
+        "pocket_articles": PocketArticle.objects.all()[:4],
+        "ftl_files": ["mozorg/home-mr1-promo"],
+        "active_locales": ["de", "fr", "en-US"],
     }
 
-    if locale == 'de':
-        template_name = 'exp/home/home-de.html'
-        ctx['page_content_cards'] = get_page_content_cards('home-de', 'de')
-    elif locale == 'fr':
-        template_name = 'exp/home/home-fr.html'
-        ctx['page_content_cards'] = get_page_content_cards('home-fr', 'fr')
+    if locale == "de":
+        template_name = "exp/home/home-de.html"
+        ctx["page_content_cards"] = get_page_content_cards("home-de", "de")
+    elif locale == "fr":
+        template_name = "exp/home/home-fr.html"
+        ctx["page_content_cards"] = get_page_content_cards("home-fr", "fr")
     else:
-        template_name = 'exp/home/home-en.html'
-        ctx['page_content_cards'] = get_page_content_cards('home-2019', 'en-US')
+        template_name = "exp/home/home-en.html"
+        ctx["page_content_cards"] = get_page_content_cards("home-2019", "en-US")
 
     return l10n_utils.render(request, template_name, ctx)

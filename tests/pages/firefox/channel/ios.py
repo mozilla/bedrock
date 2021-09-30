@@ -9,9 +9,9 @@ from pages.base import BasePage
 
 class ChannelIOSPage(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/firefox/channel/ios/'
+    _URL_TEMPLATE = "/{locale}/firefox/channel/ios/"
 
-    _testflight_button_locator = (By.CLASS_NAME, 'testflight-cta')
+    _testflight_button_locator = (By.CLASS_NAME, "testflight-cta")
 
     @property
     def is_testflight_button_displayed(self):

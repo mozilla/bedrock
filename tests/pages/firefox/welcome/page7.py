@@ -9,9 +9,9 @@ from pages.base import BasePage
 
 class FirefoxWelcomePage7(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/firefox/welcome/7/'
+    _URL_TEMPLATE = "/{locale}/firefox/welcome/7/"
 
-    _facebook_container_button_locator = (By.ID, 'facebook-container-button')
+    _facebook_container_button_locator = (By.ID, "facebook-container-button")
 
     @property
     def is_facebook_container_button_displayed(self):

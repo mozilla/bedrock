@@ -10,11 +10,11 @@ from pages.base import BaseRegion
 
 class SendToDevice(BaseRegion):
 
-    _root_locator = (By.CSS_SELECTOR, '.send-to-device')
-    _email_locator = (By.CSS_SELECTOR, '.send-to-device-input')
-    _submit_button_locator = (By.CSS_SELECTOR, '.send-to-device .mzp-c-button')
-    _thank_you_locator = (By.CSS_SELECTOR, '.thank-you')
-    _error_list_locator = (By.CLASS_NAME, 'mzp-c-form-errors')
+    _root_locator = (By.CSS_SELECTOR, ".send-to-device")
+    _email_locator = (By.CSS_SELECTOR, ".send-to-device-input")
+    _submit_button_locator = (By.CSS_SELECTOR, ".send-to-device .mzp-c-button")
+    _thank_you_locator = (By.CSS_SELECTOR, ".thank-you")
+    _error_list_locator = (By.CLASS_NAME, "mzp-c-form-errors")
 
     @property
     def is_form_error_displayed(self):
@@ -25,7 +25,7 @@ class SendToDevice(BaseRegion):
 
     def click_send(self, expected_result=None):
         self.scroll_element_into_view(*self._submit_button_locator).click()
-        if expected_result == 'error':
+        if expected_result == "error":
             self.wait.until(expected.visibility_of_element_located(self._error_list_locator))
         else:
             self.wait.until(expected.visibility_of_element_located(self._thank_you_locator))

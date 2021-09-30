@@ -8,8 +8,8 @@ from lib.l10n_utils.dotlang import _
 
 
 LANG_FILES = [
-    'lebowski',
-    'dude',
+    "lebowski",
+    "dude",
 ]
 
-dude_says = _(u"I'm The Dude, so that's what you call me, man.")
+dude_says = _("I'm The Dude, so that's what you call me, man.")

@@ -7,13 +7,15 @@ from fluent.migrate import REPLACE, COPY
 footer = "footer.lang"
 main = "main.lang"
 
+
 def migrate(ctx):
     """Migrate bedrock/base/templates/includes/protocol/footer/footer.html, part {index}."""
 
     ctx.add_transforms(
         "footer.ftl",
         "footer.ftl",
-        transforms_from("""
+        transforms_from(
+            """
 footer-firefox = { -brand-name-firefox }
 footer-privacy = {COPY(main, "Privacy",)}
 footer-press = {COPY(footer, "Press",)}
@@ -36,7 +38,10 @@ footer-developers = {COPY(footer, "Developers",)}
 footer-developer-edition = { -brand-name-developer-edition }
 footer-beta = { -brand-name-beta }
 footer-nightly = { -brand-name-nightly }
-""", footer=footer, main=main)
+""",
+            footer=footer,
+            main=main,
+        ),
     )
 
     ctx.add_transforms(
@@ -51,8 +56,8 @@ footer-nightly = { -brand-name-nightly }
                     {
                         "Nightly": TERM_REFERENCE("brand-name-nightly"),
                         "Android": TERM_REFERENCE("brand-name-android"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("footer-beta-for-android"),
@@ -62,8 +67,8 @@ footer-nightly = { -brand-name-nightly }
                     {
                         "Beta": TERM_REFERENCE("brand-name-beta"),
                         "Android": TERM_REFERENCE("brand-name-android"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("footer-visit-mozilla-corporations"),
@@ -76,29 +81,30 @@ footer-nightly = { -brand-name-nightly }
                         "%(mofo_link)s": VARIABLE_REFERENCE("mofo_link"),
                         "Mozilla Corporation": TERM_REFERENCE("brand-name-mozilla-corporation"),
                         "Mozilla Foundation": TERM_REFERENCE("brand-name-mozilla-foundation"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("footer-portions-of-this-content"),
                 value=REPLACE(
                     "footer.lang",
-                    "Portions of this content are ©1998–%(current_year)s by individual mozilla.org contributors. Content available under a <a rel=\"license\" href=\"%(url)s\">Creative Commons license</a>.",
+                    'Portions of this content are ©1998–%(current_year)s by individual mozilla.org contributors. Content available under a <a rel="license" href="%(url)s">Creative Commons license</a>.',
                     {
                         "%%": "%",
                         "%(current_year)s": VARIABLE_REFERENCE("current_year"),
                         "%(url)s": VARIABLE_REFERENCE("url"),
                         "Creative Commons": TERM_REFERENCE("brand-name-creative-commons"),
-                    }
-                )
+                    },
+                ),
             ),
-        ]
+        ],
     )
 
     ctx.add_transforms(
         "footer.ftl",
         "footer.ftl",
-        transforms_from("""
+        transforms_from(
+            """
 footer-mozilla = { -brand-name-mozilla }
 footer-company = {COPY(footer, "Company",)}
 footer-about = {COPY(main, "About",)}
@@ -121,5 +127,8 @@ footer-go = {COPY(main, "Go",)}
 footer-twitter = { -brand-name-twitter }
 footer-instagram = { -brand-name-instagram }
 footer-youtube = { -brand-name-youtube }
-""", footer=footer, main=main)
+""",
+            footer=footer,
+            main=main,
+        ),
     )

@@ -12,34 +12,32 @@ from watchman import views as watchman_views
 
 # The default django 404 and 500 handler doesn't run the ContextProcessors,
 # which breaks the base template page. So we replace them with views that do!
-handler500 = 'bedrock.base.views.server_error_view'
-handler404 = 'bedrock.base.views.page_not_found_view'
+handler500 = "bedrock.base.views.server_error_view"
+handler404 = "bedrock.base.views.page_not_found_view"
 
 
 urlpatterns = (
     # Main pages
-    url(r'^foundation/', include('bedrock.foundation.urls')),
-    url(r'^about/legal/', include('bedrock.legal.urls')),
-    url(r'^press/', include('bedrock.press.urls')),
-    url(r'^privacy/', include('bedrock.privacy.urls')),
-    url(r'^products/', include('bedrock.products.urls')),
-    url(r'^security/', include('bedrock.security.urls')),
-    url(r'', include('bedrock.firefox.urls')),
-    url(r'', include('bedrock.mozorg.urls')),
-    url(r'', include('bedrock.newsletter.urls')),
-    url(r'', include('bedrock.sitemaps.urls')),
-    url(r'^exp/', include('bedrock.exp.urls')),
-
-    url(r'^healthz/$', watchman_views.ping, name="watchman.ping"),
-    url(r'^readiness/$', watchman_views.status, name="watchman.status"),
-    url(r'^healthz-cron/$', base_views.cron_health_check),
-    url(r'^country-code\.json$', base_views.geolocate,
-        name='geolocate'),
+    url(r"^foundation/", include("bedrock.foundation.urls")),
+    url(r"^about/legal/", include("bedrock.legal.urls")),
+    url(r"^press/", include("bedrock.press.urls")),
+    url(r"^privacy/", include("bedrock.privacy.urls")),
+    url(r"^products/", include("bedrock.products.urls")),
+    url(r"^security/", include("bedrock.security.urls")),
+    url(r"", include("bedrock.firefox.urls")),
+    url(r"", include("bedrock.mozorg.urls")),
+    url(r"", include("bedrock.newsletter.urls")),
+    url(r"", include("bedrock.sitemaps.urls")),
+    url(r"^exp/", include("bedrock.exp.urls")),
+    url(r"^healthz/$", watchman_views.ping, name="watchman.ping"),
+    url(r"^readiness/$", watchman_views.status, name="watchman.status"),
+    url(r"^healthz-cron/$", base_views.cron_health_check),
+    url(r"^country-code\.json$", base_views.geolocate, name="geolocate"),
 )
 
 if settings.DEBUG:
 
     urlpatterns += (
-        url(r'^404/$', import_string(handler404)),
-        url(r'^500/$', import_string(handler500)),
+        url(r"^404/$", import_string(handler404)),
+        url(r"^500/$", import_string(handler500)),
     )

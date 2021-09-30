@@ -10,9 +10,9 @@ from pages.regions.send_to_device import SendToDevice
 
 class FirefoxWhatsNewPage(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/firefox/whatsnew/all/'
+    _URL_TEMPLATE = "/{locale}/firefox/whatsnew/all/"
 
-    _qr_code_locator = (By.CSS_SELECTOR, '.qr-code img')
+    _qr_code_locator = (By.CSS_SELECTOR, ".qr-code img")
 
     @property
     def send_to_device(self):

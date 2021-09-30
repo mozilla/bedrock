@@ -10,12 +10,12 @@ from pages.regions.menu_list import MenuList
 
 class EnterprisePage(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/firefox/enterprise/'
+    _URL_TEMPLATE = "/{locale}/firefox/enterprise/"
 
-    _primary_download_button_locator = (By.ID, 'primary-download-button')
-    _win64_download_list_locator = (By.ID, 'win64-download-list')
-    _win32_download_list_locator = (By.ID, 'win32-download-list')
-    _mac_download_list_locator = (By.ID, 'mac-download-list')
+    _primary_download_button_locator = (By.ID, "primary-download-button")
+    _win64_download_list_locator = (By.ID, "win64-download-list")
+    _win32_download_list_locator = (By.ID, "win32-download-list")
+    _mac_download_list_locator = (By.ID, "mac-download-list")
 
     @property
     def is_primary_download_button_displayed(self):

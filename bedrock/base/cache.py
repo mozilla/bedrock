@@ -7,6 +7,7 @@ class SimpleDictCache(LocMemCache):
     Only for use with simple immutable data structures that can be
     inserted into a dict.
     """
+
     def add(self, key, value, timeout=DEFAULT_TIMEOUT, version=None):
         key = self.make_key(key, version=version)
         self.validate_key(key)

@@ -28,10 +28,10 @@ def load_legal_doc(doc_name, locale):
         doc = LegalDoc.objects.get_doc(doc_name, locale)
     except LegalDoc.DoesNotExist:
         try:
-            doc = LegalDoc.objects.get_doc(doc_name, 'en')
+            doc = LegalDoc.objects.get_doc(doc_name, "en")
         except LegalDoc.DoesNotExist:
             try:
-                doc = LegalDoc.objects.get_doc(doc_name, 'en-US')
+                doc = LegalDoc.objects.get_doc(doc_name, "en-US")
             except LegalDoc.DoesNotExist:
                 doc = None
 
@@ -53,8 +53,9 @@ class LegalDocView(TemplateView):
 
     See `bedrock/privacy/views.py` for usage examples.
     """
+
     legal_doc_name = None
-    legal_doc_context_name = 'doc'
+    legal_doc_context_name = "doc"
     cache_timeout = CACHE_TIMEOUT
 
     def get_legal_doc(self):
@@ -62,23 +63,22 @@ class LegalDocView(TemplateView):
         return load_legal_doc(self.legal_doc_name, locale)
 
     def render_to_response(self, context, **response_kwargs):
-        response_kwargs.setdefault('content_type', self.content_type)
-        return l10n_utils.render(self.request,
-                                 self.get_template_names()[0],
-                                 context, ftl_files=['mozorg/about/legal', 'privacy/index'],
-                                 **response_kwargs)
+        response_kwargs.setdefault("content_type", self.content_type)
+        return l10n_utils.render(
+            self.request, self.get_template_names()[0], context, ftl_files=["mozorg/about/legal", "privacy/index"], **response_kwargs
+        )
 
     def get_context_data(self, **kwargs):
         legal_doc = self.get_legal_doc()
         if legal_doc is None:
-            raise Http404('Legal doc not found')
+            raise Http404("Legal doc not found")
 
         context = super(LegalDocView, self).get_context_data(**kwargs)
-        context[self.legal_doc_context_name] = legal_doc['content']
-        context['active_locales'] = legal_doc['active_locales']
+        context[self.legal_doc_context_name] = legal_doc["content"]
+        context["active_locales"] = legal_doc["active_locales"]
         return context
 
     @classmethod
     def as_view(cls, **initkwargs):
-        cache_timeout = initkwargs.pop('cache_timeout', cls.cache_timeout)
+        cache_timeout = initkwargs.pop("cache_timeout", cls.cache_timeout)
         return cache_page(cache_timeout)(super(LegalDocView, cls).as_view(**initkwargs))

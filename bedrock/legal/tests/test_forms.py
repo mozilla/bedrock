@@ -21,17 +21,17 @@ from bedrock.mozorg.tests import TestCase
 class TestFraudReport(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
-        with self.activate('en-US'):
-            self.url = reverse('legal.fraud-report')
+        with self.activate("en-US"):
+            self.url = reverse("legal.fraud-report")
 
         self.data = {
-            'input_url': 'http://www.test.com/',
-            'input_category': 'Charging for software',
-            'input_product': 'Firefox',
-            'input_specific_product': '',
-            'input_details': 'test details',
-            'input_attachment_desc': 'test attachment',
-            'input_email': 'foo@bar.com',
+            "input_url": "http://www.test.com/",
+            "input_category": "Charging for software",
+            "input_product": "Firefox",
+            "input_specific_product": "",
+            "input_details": "test details",
+            "input_attachment_desc": "test attachment",
+            "input_email": "foo@bar.com",
         }
 
     def tearDown(self):
@@ -39,13 +39,13 @@ class TestFraudReport(TestCase):
 
     def _create_image_file(self):
         io = BytesIO()
-        image = Image.new('RGB', (200, 200), 'white')
-        image.save(io, 'PNG')
+        image = Image.new("RGB", (200, 200), "white")
+        image.save(io, "PNG")
         io.seek(0)
-        return SimpleUploadedFile('image.png', io.read(), 'image/png')
+        return SimpleUploadedFile("image.png", io.read(), "image/png")
 
     def _create_text_file(self):
-        return SimpleUploadedFile('stuff.txt', b'This is not an image', 'text/plain')
+        return SimpleUploadedFile("stuff.txt", b"This is not an image", "text/plain")
 
     def test_view_post_valid_data(self):
         """
@@ -60,7 +60,7 @@ class TestFraudReport(TestCase):
         response = legal_views.fraud_report(request)
 
         assert response.status_code == 302
-        assert response['Location'] == '/en-US/about/legal/defend-mozilla-trademarks/?submitted=True'
+        assert response["Location"] == "/en-US/about/legal/defend-mozilla-trademarks/?submitted=True"
 
     def test_view_post_missing_data(self):
         """
@@ -68,7 +68,7 @@ class TestFraudReport(TestCase):
         errors in the template.
         """
 
-        self.data.update(input_url='')  # remove required url
+        self.data.update(input_url="")  # remove required url
 
         request = self.factory.post(self.url, self.data)
 
@@ -78,7 +78,7 @@ class TestFraudReport(TestCase):
         response = legal_views.fraud_report(request)
 
         assert response.status_code == 200
-        self.assertIn(b'Please enter a URL.', response.content)
+        self.assertIn(b"Please enter a URL.", response.content)
 
     def test_view_post_honeypot(self):
         """
@@ -86,7 +86,7 @@ class TestFraudReport(TestCase):
         contain general form error message.
         """
 
-        self.data['office_fax'] = 'spammer'
+        self.data["office_fax"] = "spammer"
 
         request = self.factory.post(self.url, self.data)
 
@@ -96,7 +96,7 @@ class TestFraudReport(TestCase):
         response = legal_views.fraud_report(request)
 
         assert response.status_code == 200
-        self.assertIn(b'An error has occurred', response.content)
+        self.assertIn(b"An error has occurred", response.content)
 
     def test_form_valid_data(self):
         """
@@ -112,7 +112,7 @@ class TestFraudReport(TestCase):
         With incorrect data (missing url), form should not be valid and should
         have url in the errors hash.
         """
-        self.data.update(input_url='')  # remove required url
+        self.data.update(input_url="")  # remove required url
 
         form = FraudReportForm(self.data)
 
@@ -120,13 +120,13 @@ class TestFraudReport(TestCase):
         assert not form.is_valid()
 
         # make sure url errors are in form
-        self.assertIn('input_url', form.errors)
+        self.assertIn("input_url", form.errors)
 
     def test_form_honeypot(self):
         """
         Form with honeypot text box filled should not be valid.
         """
-        self.data['office_fax'] = 'spammer!'
+        self.data["office_fax"] = "spammer!"
 
         form = FraudReportForm(self.data)
 
@@ -138,7 +138,7 @@ class TestFraudReport(TestCase):
         """
         # attachment within size limit
         mock_attachment = self._create_image_file()
-        form = FraudReportForm(self.data, {'input_attachment': mock_attachment})
+        form = FraudReportForm(self.data, {"input_attachment": mock_attachment})
         # make sure form is valid
         assert form.is_valid()
 
@@ -149,11 +149,11 @@ class TestFraudReport(TestCase):
         """
         # attachment within size limit
         mock_attachment = self._create_text_file()
-        form = FraudReportForm(self.data, {'input_attachment': mock_attachment})
+        form = FraudReportForm(self.data, {"input_attachment": mock_attachment})
         # make sure form is not valid
         assert not form.is_valid()
         # make sure attachment errors are in form
-        self.assertIn('input_attachment', form.errors)
+        self.assertIn("input_attachment", form.errors)
 
     def test_form_invalid_attachement_size(self):
         """
@@ -162,16 +162,16 @@ class TestFraudReport(TestCase):
         """
         # attachment within size limit
         mock_attachment = self._create_image_file()
-        form = FraudReportForm(self.data, {'input_attachment': mock_attachment})
-        with patch.object(legal_forms, 'FRAUD_REPORT_FILE_SIZE_LIMIT', 100):
+        form = FraudReportForm(self.data, {"input_attachment": mock_attachment})
+        with patch.object(legal_forms, "FRAUD_REPORT_FILE_SIZE_LIMIT", 100):
             # make sure form is not valid
             assert not form.is_valid()
 
         # make sure attachment errors are in form
-        self.assertIn('input_attachment', form.errors)
+        self.assertIn("input_attachment", form.errors)
 
-    @patch('bedrock.legal.views.render_to_string', return_value='rendered')
-    @patch('bedrock.legal.views.EmailMessage')
+    @patch("bedrock.legal.views.render_to_string", return_value="rendered")
+    @patch("bedrock.legal.views.EmailMessage")
     def test_email(self, mock_email_message, mock_render_to_string):
         """
         Make sure email is sent with expected values.
@@ -182,7 +182,7 @@ class TestFraudReport(TestCase):
         form = FraudReportForm(self.data)
 
         # submit form
-        request = self.factory.get('/')
+        request = self.factory.get("/")
         submit_form(request, form)
 
         # make sure email was sent
@@ -190,44 +190,41 @@ class TestFraudReport(TestCase):
 
         # make sure email values are correct
         mock_email_message.assert_called_once_with(
-            legal_views.FRAUD_REPORT_EMAIL_SUBJECT % (self.data['input_url'],
-                                                      self.data['input_category']),
-            'rendered',
+            legal_views.FRAUD_REPORT_EMAIL_SUBJECT % (self.data["input_url"], self.data["input_category"]),
+            "rendered",
             legal_views.FRAUD_REPORT_EMAIL_FROM,
-            legal_views.FRAUD_REPORT_EMAIL_TO)
+            legal_views.FRAUD_REPORT_EMAIL_TO,
+        )
 
-    @patch('bedrock.legal.views.render_to_string', return_value='rendered')
-    @patch('bedrock.legal.views.EmailMessage')
+    @patch("bedrock.legal.views.render_to_string", return_value="rendered")
+    @patch("bedrock.legal.views.EmailMessage")
     def test_email_with_attachement(self, mock_email_message, mock_render_to_string):
         """
         Make sure email is sent with attachment.
         """
         mock_attachment = self._create_image_file()
 
-        form = FraudReportForm(self.data, {'input_attachment': mock_attachment})
+        form = FraudReportForm(self.data, {"input_attachment": mock_attachment})
 
         # submit form
-        request = self.factory.get('/')
+        request = self.factory.get("/")
         ret = submit_form(request, form)
-        self.assertFalse(ret['form_error'])
+        self.assertFalse(ret["form_error"])
 
         # make sure attachment was attached
         mock_attachment.seek(0)
-        mock_email_message.return_value.attach.assert_called_once_with(
-            mock_attachment.name,
-            mock_attachment.read(),
-            mock_attachment.content_type)
+        mock_email_message.return_value.attach.assert_called_once_with(mock_attachment.name, mock_attachment.read(), mock_attachment.content_type)
 
         # make sure email was sent
         mock_email_message.return_value.send.assert_called_once()
 
         # make sure email values are correct
         mock_email_message.assert_called_once_with(
-            legal_views.FRAUD_REPORT_EMAIL_SUBJECT % (self.data['input_url'],
-                                                      self.data['input_category']),
-            'rendered',
+            legal_views.FRAUD_REPORT_EMAIL_SUBJECT % (self.data["input_url"], self.data["input_category"]),
+            "rendered",
             legal_views.FRAUD_REPORT_EMAIL_FROM,
-            legal_views.FRAUD_REPORT_EMAIL_TO)
+            legal_views.FRAUD_REPORT_EMAIL_TO,
+        )
 
     def test_emails_not_escaped(self):
         """
@@ -245,17 +242,16 @@ class TestFraudReport(TestCase):
         Tags are still stripped, though.
         """
 
-        STRING1 = u"<em>J'adore Citröns</em> & <Piñatas> so there"
-        EXPECTED1 = u"J'adore Citröns &  so there"
+        STRING1 = "<em>J'adore Citröns</em> & <Piñatas> so there"
+        EXPECTED1 = "J'adore Citröns &  so there"
 
-        STRING2 = u"<em>J'adore Piñatas</em> & <fromage> so here"
-        EXPECTED2 = u"J'adore Piñatas &  so here"
+        STRING2 = "<em>J'adore Piñatas</em> & <fromage> so here"
+        EXPECTED2 = "J'adore Piñatas &  so here"
 
-        STRING3 = u"J'adore <coffee>el café</coffee> también"
-        EXPECTED3 = u"J'adore el café también"
+        STRING3 = "J'adore <coffee>el café</coffee> también"
+        EXPECTED3 = "J'adore el café también"
 
-        self.data.update(input_specific_product=STRING1, input_details=STRING2,
-                         input_attachment_desc=STRING3)
+        self.data.update(input_specific_product=STRING1, input_details=STRING2, input_attachment_desc=STRING3)
         request = self.factory.post(self.url, self.data)
 
         # make sure CSRF doesn't hold us up

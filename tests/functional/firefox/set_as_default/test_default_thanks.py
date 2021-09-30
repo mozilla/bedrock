@@ -8,7 +8,7 @@ from pages.firefox.set_as_default.thanks import DefaultThanksPage
 
 
 @pytest.mark.nondestructive
-@pytest.mark.skip_if_firefox(reason='Download button is only displayed to non-Firefox visitors.')
+@pytest.mark.skip_if_firefox(reason="Download button is only displayed to non-Firefox visitors.")
 def test_download_button_is_displayed(base_url, selenium):
     page = DefaultThanksPage(selenium, base_url).open()
     assert page.download_button.is_displayed

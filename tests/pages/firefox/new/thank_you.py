@@ -9,15 +9,15 @@ from pages.base import BasePage
 
 class ThankYouPage(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/firefox/download/thanks/'
+    _URL_TEMPLATE = "/{locale}/firefox/download/thanks/"
 
-    _direct_download_link_locator = (By.ID, 'direct-download-link')
+    _direct_download_link_locator = (By.ID, "direct-download-link")
 
     # Bug 1354334 - sometimes download is triggered before window.load.
     def wait_for_page_to_load(self):
         self.wait.until(lambda s: self.seed_url in s.current_url)
-        el = self.find_element(By.TAG_NAME, 'html')
-        self.wait.until(lambda s: 'download-ready' in el.get_attribute('class'))
+        el = self.find_element(By.TAG_NAME, "html")
+        self.wait.until(lambda s: "download-ready" in el.get_attribute("class"))
         return self
 
     @property
@@ -26,5 +26,4 @@ class ThankYouPage(BasePage):
 
     @property
     def is_direct_download_link_valid(self):
-        return 'https://download.mozilla.org' in self.find_element(
-            *self._direct_download_link_locator).get_attribute('href')
+        return "https://download.mozilla.org" in self.find_element(*self._direct_download_link_locator).get_attribute("href")

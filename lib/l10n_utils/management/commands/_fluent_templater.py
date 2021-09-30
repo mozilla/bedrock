@@ -18,12 +18,12 @@ class Templater:
 
     def handle(self, template):
         self.dependencies.update(self.get_dependencies(template))
-        with template.open('r') as tfp:
+        with template.open("r") as tfp:
             template_str = tfp.read()
         template_str = GETTEXT_RE.sub(self.gettext_to_fluent, template_str)
         template_str = TRANS_BLOCK_RE.sub(self.trans_to_fluent, template_str)
-        outname = template.stem + '_ftl.html'
-        with template.with_name(outname).open('w') as tfp:
+        outname = template.stem + "_ftl.html"
+        with template.with_name(outname).open("w") as tfp:
             tfp.write(template_str)
 
     def get_dependencies(self, template):
@@ -35,19 +35,19 @@ class Templater:
         return deps
 
     def gettext_to_fluent(self, m):
-        lang_id = strip_whitespace(m['string'])
+        lang_id = strip_whitespace(m["string"])
         if lang_id not in self.dependencies:
             return m.group()
-        args = ''
-        if m['args']:
-            args = ', ' + m['args']
+        args = ""
+        if m["args"]:
+            args = ", " + m["args"]
         return f"ftl('{self.dependencies[lang_id]}'{args})"
 
     def trans_to_fluent(self, m):
-        lang_id = trans_to_lang(m['string'])
+        lang_id = trans_to_lang(m["string"])
         if lang_id not in self.dependencies:
             return m.group()
-        args = ''
-        if m['args']:
-            args = ', ' + m['args']
+        args = ""
+        if m["args"]:
+            args = ", " + m["args"]
         return f"{{{{ ftl('{self.dependencies[lang_id]}'{args}) }}}}"

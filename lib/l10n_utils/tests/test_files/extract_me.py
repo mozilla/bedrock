@@ -8,4 +8,4 @@ from lib.l10n_utils.dotlang import gettext as _
 
 
 def do_translate():
-    _(u'Stuff\xa0about\r\nmany\t   things.')
+    _("Stuff\xa0about\r\nmany\t   things.")

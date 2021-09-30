@@ -10,9 +10,9 @@ from pages.regions.send_to_device import SendToDevice
 
 class FirefoxWelcomePage4(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/firefox/welcome/4/'
+    _URL_TEMPLATE = "/{locale}/firefox/welcome/4/"
 
-    _get_firefox_qr_code_locator = (By.ID, 'firefox-qr')
+    _get_firefox_qr_code_locator = (By.ID, "firefox-qr")
 
     @property
     def send_to_device(self):

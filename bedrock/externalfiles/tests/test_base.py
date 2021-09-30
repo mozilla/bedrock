@@ -20,17 +20,14 @@ class TestExternalFile(TestCase):
         timezone.activate(utc)
 
     def setUp(self):
-        settings.EXTERNAL_FILES['test'] = {
-            'url': 'http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul',
-            'name': 'there.is.no.data.xul'
-        }
+        settings.EXTERNAL_FILES["test"] = {"url": "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul", "name": "there.is.no.data.xul"}
 
     def tearDown(self):
-        externalfiles.ExternalFile('test').clear_cache()
-        del settings.EXTERNAL_FILES['test']
+        externalfiles.ExternalFile("test").clear_cache()
+        del settings.EXTERNAL_FILES["test"]
 
     def test_last_modified(self):
         """Should return the modified timestamp."""
-        EFModel.objects.create(name='test', content='test')
-        efo = EFModel.objects.get(name='test')
-        self.assertEqual(externalfiles.ExternalFile('test').last_modified, efo.last_modified)
+        EFModel.objects.create(name="test", content="test")
+        efo = EFModel.objects.get(name="test")
+        self.assertEqual(externalfiles.ExternalFile("test").last_modified, efo.last_modified)

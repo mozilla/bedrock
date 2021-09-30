@@ -9,9 +9,9 @@ from pages.base import BasePage
 
 class FirefoxWhatsNew90Page(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/firefox/90.0/whatsnew/all/'
+    _URL_TEMPLATE = "/{locale}/firefox/90.0/whatsnew/all/"
 
-    _get_vpn_button_locator = (By.CSS_SELECTOR, '.wnp-main-cta > .mzp-c-button')
+    _get_vpn_button_locator = (By.CSS_SELECTOR, ".wnp-main-cta > .mzp-c-button")
 
     @property
     def is_get_vpn_button_displayed(self):

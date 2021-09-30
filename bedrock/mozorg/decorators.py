@@ -15,11 +15,12 @@ def cache_control_expires(num_hours):
     num_seconds = int(num_hours * 60 * 60)
 
     def decorator(func):
-
         @wraps(func)
         def inner(request, *args, **kwargs):
             response = func(request, *args, **kwargs)
             patch_response_headers(response, num_seconds)
             return response
+
         return inner
+
     return decorator

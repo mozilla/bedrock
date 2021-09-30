@@ -10,5 +10,5 @@ from pages.firefox.browsers.mobile_focus import FirefoxMobileFocusPage
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_get_firefox_qr_code(base_url, selenium):
-    page = FirefoxMobileFocusPage(selenium, base_url, locale='en-US').open()
+    page = FirefoxMobileFocusPage(selenium, base_url, locale="en-US").open()
     assert page.is_firefox_qr_code_displayed

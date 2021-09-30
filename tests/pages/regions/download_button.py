@@ -9,13 +9,12 @@ from pages.base import BaseRegion
 
 class DownloadButton(BaseRegion):
 
-    _download_link_locator = (By.CSS_SELECTOR, '.download-link')
+    _download_link_locator = (By.CSS_SELECTOR, ".download-link")
 
     @property
     def platform_link(self):
-        els = [el for el in self.find_elements(*self._download_link_locator)
-               if el.is_displayed()]
-        assert len(els) == 1, 'Expected one platform link to be displayed'
+        els = [el for el in self.find_elements(*self._download_link_locator) if el.is_displayed()]
+        assert len(els) == 1, "Expected one platform link to be displayed"
         return els[0]
 
     @property
@@ -24,7 +23,7 @@ class DownloadButton(BaseRegion):
 
     @property
     def is_transitional_link(self):
-        return '/firefox/download/thanks/' in self.platform_link.get_attribute('href')
+        return "/firefox/download/thanks/" in self.platform_link.get_attribute("href")
 
     def click(self):
         self.platform_link.click()

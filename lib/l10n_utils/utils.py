@@ -12,13 +12,13 @@ from fluent.runtime import FluentResourceLoader
 from fluent.syntax.ast import Message
 
 
-FTL_LOADER = FluentResourceLoader(f'{settings.FLUENT_LOCAL_PATH}/{{locale}}/')
-COMMENT_RE = re.compile(r'LANG_ID_HASH: (\w{32})')
+FTL_LOADER = FluentResourceLoader(f"{settings.FLUENT_LOCAL_PATH}/{{locale}}/")
+COMMENT_RE = re.compile(r"LANG_ID_HASH: (\w{32})")
 
 
 def get_ftl_file_data(filename):
     data = {}
-    for resources in FTL_LOADER.resources('en', [filename]):
+    for resources in FTL_LOADER.resources("en", [filename]):
         for resource in resources:
             for item in resource.body:
                 if isinstance(item, Message):
@@ -31,6 +31,7 @@ def get_ftl_file_data(filename):
 
 class ContainsEverything:
     """An object whose instances will claim to contain anything."""
+
     def __contains__(self, item):
         return True
 
@@ -40,7 +41,7 @@ def strip_whitespace(message):
 
     Borrowed from Tower.
     """
-    return re.compile(r'\s+', re.UNICODE).sub(' ', message).strip()
+    return re.compile(r"\s+", re.UNICODE).sub(" ", message).strip()
 
 
 def get_l10n_path(path):
@@ -50,14 +51,14 @@ def get_l10n_path(path):
     /foo/bar.html -> foo/bar"""
 
     # filter empty path parts
-    parts = [p for p in path.split('/') if p]
+    parts = [p for p in path.split("/") if p]
 
     try:
-        i = parts.index('templates')
-        parts = parts[i + 1:]
+        i = parts.index("templates")
+        parts = parts[i + 1 :]
     except ValueError:
         pass
 
-    path = '/'.join(parts)
+    path = "/".join(parts)
     base, ext = os.path.splitext(path)
     return base

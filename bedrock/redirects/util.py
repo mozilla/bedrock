@@ -7,8 +7,7 @@ from urllib.parse import parse_qs, urlencode
 
 import commonware.log
 from django.conf.urls import url
-from django.http import (HttpResponseGone, HttpResponsePermanentRedirect,
-                         HttpResponseRedirect)
+from django.http import HttpResponseGone, HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.urls import NoReverseMatch, URLResolver, reverse
 from django.urls.resolvers import RegexPattern
 from django.utils.encoding import force_text
@@ -17,10 +16,10 @@ from django.views.decorators.vary import vary_on_headers
 
 from bedrock.mozorg.decorators import cache_control_expires
 
-log = commonware.log.getLogger('redirects.util')
-LOCALE_RE = r'^(?P<locale>\w{2,3}(?:-\w{2})?/)?'
-HTTP_RE = re.compile(r'^https?://', re.IGNORECASE)
-PROTOCOL_RELATIVE_RE = re.compile(r'^//+')
+log = commonware.log.getLogger("redirects.util")
+LOCALE_RE = r"^(?P<locale>\w{2,3}(?:-\w{2})?/)?"
+HTTP_RE = re.compile(r"^https?://", re.IGNORECASE)
+PROTOCOL_RELATIVE_RE = re.compile(r"^//+")
 # redirects registry
 redirectpatterns = []
 
@@ -31,16 +30,16 @@ def register(patterns):
 
 def get_resolver(patterns=None):
     patterns = patterns or redirectpatterns
-    return URLResolver(RegexPattern(r'^/'), patterns)
+    return URLResolver(RegexPattern(r"^/"), patterns)
 
 
 def header_redirector(header_name, regex, match_dest, nomatch_dest, case_sensitive=False):
     flags = 0 if case_sensitive else re.IGNORECASE
     regex_obj = re.compile(regex, flags)
-    header_name = 'HTTP_' + header_name.upper().replace('-', '_')
+    header_name = "HTTP_" + header_name.upper().replace("-", "_")
 
     def decider(request, *args, **kwargs):
-        value = request.META.get(header_name, '')
+        value = request.META.get(header_name, "")
         match = regex_obj.search(value)
         if match:
             return match_dest
@@ -51,15 +50,15 @@ def header_redirector(header_name, regex, match_dest, nomatch_dest, case_sensiti
 
 
 def ua_redirector(regex, match_dest, nomatch_dest, case_sensitive=False):
-    return header_redirector('user-agent', regex, match_dest, nomatch_dest, case_sensitive)
+    return header_redirector("user-agent", regex, match_dest, nomatch_dest, case_sensitive)
 
 
 def is_firefox_redirector(fx_dest, nonfx_dext):
-    include_re = re.compile(r'\bFirefox\b', flags=re.I)
-    exclude_re = re.compile(r'\b(Camino|Iceweasel|SeaMonkey)\b', flags=re.I)
+    include_re = re.compile(r"\bFirefox\b", flags=re.I)
+    exclude_re = re.compile(r"\b(Camino|Iceweasel|SeaMonkey)\b", flags=re.I)
 
     def decider(request, *args, **kwargs):
-        value = request.META.get('HTTP_USER_AGENT', '')
+        value = request.META.get("HTTP_USER_AGENT", "")
         if include_re.search(value) and not exclude_re.search(value):
             return fx_dest
         else:
@@ -69,11 +68,11 @@ def is_firefox_redirector(fx_dest, nonfx_dext):
 
 
 def platform_redirector(desktop_dest, android_dest, ios_dest):
-    android_re = re.compile(r'\bAndroid\b', flags=re.I)
-    ios_re = re.compile(r'\b(iPhone|iPad|iPod)\b', flags=re.I)
+    android_re = re.compile(r"\bAndroid\b", flags=re.I)
+    ios_re = re.compile(r"\b(iPhone|iPad|iPod)\b", flags=re.I)
 
     def decider(request, *args, **kwargs):
-        value = request.META.get('HTTP_USER_AGENT', '')
+        value = request.META.get("HTTP_USER_AGENT", "")
         if android_re.search(value):
             return android_dest
         elif ios_re.search(value):
@@ -96,11 +95,11 @@ def no_redirect(pattern, locale_prefix=True, re_flags=None):
     :return:
     """
     if locale_prefix:
-        pattern = pattern.lstrip('^/')
+        pattern = pattern.lstrip("^/")
         pattern = LOCALE_RE + pattern
 
     if re_flags:
-        pattern = '(?{})'.format(re_flags) + pattern
+        pattern = "(?{})".format(re_flags) + pattern
 
     def _view(request, *args, **kwargs):
         return None
@@ -108,9 +107,23 @@ def no_redirect(pattern, locale_prefix=True, re_flags=None):
     return url(pattern, _view)
 
 
-def redirect(pattern, to, permanent=True, locale_prefix=True, anchor=None, name=None,
-             query=None, vary=None, cache_timeout=12, decorators=None, re_flags=None,
-             to_args=None, to_kwargs=None, prepend_locale=True, merge_query=False):
+def redirect(
+    pattern,
+    to,
+    permanent=True,
+    locale_prefix=True,
+    anchor=None,
+    name=None,
+    query=None,
+    vary=None,
+    cache_timeout=12,
+    decorators=None,
+    re_flags=None,
+    to_args=None,
+    to_kwargs=None,
+    prepend_locale=True,
+    merge_query=False,
+):
     """
     Return a url matcher suited for urlpatterns.
 
@@ -155,11 +168,11 @@ def redirect(pattern, to, permanent=True, locale_prefix=True, anchor=None, name=
         redirect_class = HttpResponseRedirect
 
     if locale_prefix:
-        pattern = pattern.lstrip('^/')
+        pattern = pattern.lstrip("^/")
         pattern = LOCALE_RE + pattern
 
     if re_flags:
-        pattern = '(?{})'.format(re_flags) + pattern
+        pattern = "(?{})".format(re_flags) + pattern
 
     view_decorators = []
     if cache_timeout is not None:
@@ -178,8 +191,8 @@ def redirect(pattern, to, permanent=True, locale_prefix=True, anchor=None, name=
 
     def _view(request, *args, **kwargs):
         # don't want to have 'None' in substitutions
-        kwargs = {k: v or '' for k, v in kwargs.items()}
-        args = [x or '' for x in args]
+        kwargs = {k: v or "" for k, v in kwargs.items()}
+        args = [x or "" for x in args]
 
         # If it's a callable, call it and get the url out.
         if callable(to):
@@ -187,7 +200,7 @@ def redirect(pattern, to, permanent=True, locale_prefix=True, anchor=None, name=
         else:
             to_value = to
 
-        if to_value.startswith('/') or HTTP_RE.match(to_value):
+        if to_value.startswith("/") or HTTP_RE.match(to_value):
             redirect_url = to_value
         else:
             try:
@@ -196,8 +209,8 @@ def redirect(pattern, to, permanent=True, locale_prefix=True, anchor=None, name=
                 # Assume it's a URL
                 redirect_url = to_value
 
-        if prepend_locale and redirect_url.startswith('/') and kwargs.get('locale'):
-            redirect_url = '/{locale}' + redirect_url.lstrip('/')
+        if prepend_locale and redirect_url.startswith("/") and kwargs.get("locale"):
+            redirect_url = "/{locale}" + redirect_url.lstrip("/")
 
         # use info from url captures.
         if args or kwargs:
@@ -205,24 +218,24 @@ def redirect(pattern, to, permanent=True, locale_prefix=True, anchor=None, name=
 
         if query:
             if merge_query:
-                req_query = parse_qs(request.META.get('QUERY_STRING', ''))
+                req_query = parse_qs(request.META.get("QUERY_STRING", ""))
                 req_query.update(query)
                 querystring = urlencode(req_query, doseq=True)
             else:
                 querystring = urlencode(query, doseq=True)
         elif query is None:
-            querystring = request.META.get('QUERY_STRING', '')
+            querystring = request.META.get("QUERY_STRING", "")
         else:
-            querystring = ''
+            querystring = ""
 
         if querystring:
-            redirect_url = '?'.join([redirect_url, querystring])
+            redirect_url = "?".join([redirect_url, querystring])
 
         if anchor:
-            redirect_url = '#'.join([redirect_url, anchor])
+            redirect_url = "#".join([redirect_url, anchor])
 
         if PROTOCOL_RELATIVE_RE.match(redirect_url):
-            redirect_url = '/' + redirect_url.lstrip('/')
+            redirect_url = "/" + redirect_url.lstrip("/")
 
         return redirect_class(redirect_url)
 
@@ -234,8 +247,7 @@ def redirect(pattern, to, permanent=True, locale_prefix=True, anchor=None, name=
         for decorator in reversed(view_decorators):
             _view = decorator(_view)
     except TypeError:
-        log.exception('decorators not iterable or does not contain '
-                      'callable items')
+        log.exception("decorators not iterable or does not contain callable items")
 
     return url(pattern, _view, name=name)
 

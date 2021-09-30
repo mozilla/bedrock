@@ -1,1 +1,1 @@
-default_app_config = 'bedrock.redirects.apps.RedirectsConfig'
+default_app_config = "bedrock.redirects.apps.RedirectsConfig"

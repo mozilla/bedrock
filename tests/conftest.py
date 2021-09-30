@@ -15,10 +15,9 @@ def mutable_allow_thread_sharing(self, allow):
             self.inc_thread_sharing()
 
 
-SQLiteWrapper.allow_thread_sharing = property(
-    SQLiteWrapper.allow_thread_sharing.__get__, mutable_allow_thread_sharing)
+SQLiteWrapper.allow_thread_sharing = property(SQLiteWrapper.allow_thread_sharing.__get__, mutable_allow_thread_sharing)
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope="session")
 def base_url(base_url, request):
-    return base_url or request.getfixturevalue('live_server').url
+    return base_url or request.getfixturevalue("live_server").url

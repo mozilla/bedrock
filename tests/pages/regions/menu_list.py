@@ -9,8 +9,8 @@ from pages.base import BaseRegion
 
 class MenuList(BaseRegion):
 
-    _title_button_locator = (By.CSS_SELECTOR, '.mzp-c-menu-list-title > button')
-    _list_locator = (By.CSS_SELECTOR, '.mzp-c-menu-list-list')
+    _title_button_locator = (By.CSS_SELECTOR, ".mzp-c-menu-list-title > button")
+    _list_locator = (By.CSS_SELECTOR, ".mzp-c-menu-list-list")
 
     # list is visible
 

@@ -9,8 +9,8 @@ from pages.base import BaseRegion
 
 class StickyPromo(BaseRegion):
 
-    _root_locator = (By.CLASS_NAME, 'mzp-c-sticky-promo')
-    _close_locator = (By.CLASS_NAME, 'mzp-c-sticky-promo-close')
+    _root_locator = (By.CLASS_NAME, "mzp-c-sticky-promo")
+    _close_locator = (By.CLASS_NAME, "mzp-c-sticky-promo-close")
 
     def close(self):
         self.find_element(*self._close_locator).click()

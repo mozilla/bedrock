@@ -10,9 +10,9 @@ from pages.regions.join_firefox_form import JoinFirefoxForm
 
 class FirefoxProductsPage(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/firefox/products/'
+    _URL_TEMPLATE = "/{locale}/firefox/products/"
 
-    _monitor_button_locator = (By.CSS_SELECTOR, '#qa-monitor-button-wrapper a.js-fxa-product-button')
+    _monitor_button_locator = (By.CSS_SELECTOR, "#qa-monitor-button-wrapper a.js-fxa-product-button")
 
     @property
     def is_monitor_button_displayed(self):

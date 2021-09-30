@@ -26,19 +26,22 @@ from lib.l10n_utils import translation
 from lib.l10n_utils.utils import ContainsEverything, strip_whitespace
 
 ALL_THE_THINGS = ContainsEverything()
-FORMAT_IDENTIFIER_RE = re.compile(r"""(%
+FORMAT_IDENTIFIER_RE = re.compile(
+    r"""(%
                                       (?:\((\w+)\))? # Mapping key
-                                      s)""", re.VERBOSE)
+                                      s)""",
+    re.VERBOSE,
+)
 TAG_REGEX = re.compile(r"^## ([\w-]+) ##")
-cache = caches['l10n']
+cache = caches["l10n"]
 
 
 def _replace_variables(match):
     var_name = match[2]
     if not var_name:
-        var_name = 'VARIABLE_MISSING'
+        var_name = "VARIABLE_MISSING"
 
-    return f'{{ ${var_name} }}'
+    return f"{{ ${var_name} }}"
 
 
 def convert_variables(lang_str):
@@ -59,32 +62,32 @@ def parse(path, skip_untranslated=True, extract_comments=False):
     if not os.path.exists(path):
         return trans
 
-    with codecs.open(path, 'r', 'utf-8', errors='replace') as lines:
+    with codecs.open(path, "r", "utf-8", errors="replace") as lines:
         source = None
         comment = None
 
         for line in lines:
             l10n_tag = None
-            if u'�' in line:
+            if "�" in line:
                 mail_error(path, line)
 
             line = line.strip()
             if not line:
                 continue
 
-            if line[0] == '#':
-                comment = line.lstrip('#').strip()
+            if line[0] == "#":
+                comment = line.lstrip("#").strip()
                 continue
 
-            if line[0] == ';':
+            if line[0] == ";":
                 source = line[1:]
             elif source:
-                for tag in ('{ok}', '{l10n-extra}'):
+                for tag in ("{ok}", "{l10n-extra}"):
                     if line.lower().endswith(tag):
-                        l10n_tag = tag.strip('{}')
-                        line = line[:-len(tag)]
+                        l10n_tag = tag.strip("{}")
+                        line = line[: -len(tag)]
                 line = line.strip()
-                if skip_untranslated and source == line and l10n_tag != 'ok':
+                if skip_untranslated and source == line and l10n_tag != "ok":
                     continue
                 if extract_comments:
                     trans[source] = [comment, line]
@@ -98,7 +101,8 @@ def parse(path, skip_untranslated=True, extract_comments=False):
 def mail_error(path, message):
     """Email managers when an error is detected"""
     from django.core import mail
-    subject = '%s is corrupted' % path
+
+    subject = "%s is corrupted" % path
     mail.mail_managers(subject, message)
 
 
@@ -114,7 +118,7 @@ def translate(text, files):
 
     for file_ in files:
         key = "dotlang-%s-%s" % (lang, file_)
-        path = str(settings.LOCALES_PATH / lang / f'{file_}.lang')
+        path = str(settings.LOCALES_PATH / lang / f"{file_}.lang")
         trans = cache.get(key)
         if trans is None:
             trans = parse(path)
@@ -124,10 +128,8 @@ def translate(text, files):
             original = FORMAT_IDENTIFIER_RE.findall(text)
             translated = FORMAT_IDENTIFIER_RE.findall(trans[tweaked_text])
             if set(original) != set(translated):
-                explanation = ('The translation has a different set of '
-                               'replaced text (aka %s)')
-                message = '%s\n\n%s\n%s' % (explanation, text,
-                                            trans[tweaked_text])
+                explanation = "The translation has a different set of replaced text (aka %s)"
+                message = "%s\n\n%s\n%s" % (explanation, text, trans[tweaked_text])
                 mail_error(path, message)
                 return Markup(text)
             return Markup(trans[tweaked_text])
@@ -140,14 +142,16 @@ def _get_extra_lang_files():
     if frame is None:
         if settings.DEBUG:
             import warnings
-            warnings.warn('Your Python runtime does not support the frame '
-                          'stack. Extra LANG_FILES specified in Python '
-                          'source files will not work.', RuntimeWarning)
+
+            warnings.warn(
+                "Your Python runtime does not support the frame stack. Extra LANG_FILES specified in Python source files will not work.",
+                RuntimeWarning,
+            )
     else:
         try:
             # gets value of LANG_FILE constant in calling module if specified.
             # have to go back 2x to compensate for this function.
-            new_lang_files = frame.f_back.f_back.f_globals.get('LANG_FILES', [])
+            new_lang_files = frame.f_back.f_back.f_globals.get("LANG_FILES", [])
         finally:
             del frame
         if new_lang_files:
@@ -171,7 +175,7 @@ def gettext(text, *args, **kwargs):
         add that file for the whole module via the `LANG_FILES` constant.
     :return: translated string
     """
-    lang_files = kwargs.pop('lang_files', [])
+    lang_files = kwargs.pop("lang_files", [])
     if isinstance(lang_files, list):
         lang_files = lang_files[:]
     else:
@@ -209,7 +213,7 @@ def lang_file_is_active(path, lang=None):
     :param lang: the language code
     :return: bool
     """
-    return lang_file_has_tag(path, lang, 'active')
+    return lang_file_has_tag(path, lang, "active")
 
 
 def lang_file_tag_set(path, lang=None):
@@ -223,16 +227,16 @@ def lang_file_tag_set(path, lang=None):
         return ALL_THE_THINGS
 
     lang = lang or translation.get_language(True)
-    fpath = settings.LOCALES_PATH / lang / f'{path}.lang'
-    cache_key = f'tag:locale/{lang}/{path}.lang'
+    fpath = settings.LOCALES_PATH / lang / f"{path}.lang"
+    cache_key = f"tag:locale/{lang}/{path}.lang"
     tag_set = cache.get(cache_key)
     if tag_set is None:
         tag_set = set()
         try:
-            with codecs.open(fpath, 'r', 'utf-8', errors='replace') as lines:
+            with codecs.open(fpath, "r", "utf-8", errors="replace") as lines:
                 for line in lines:
                     # Filter out Byte order Mark
-                    line = line.replace(u'\ufeff', '')
+                    line = line.replace("\ufeff", "")
                     m = TAG_REGEX.match(line)
                     if m:
                         tag_set.add(m.group(1))
@@ -247,7 +251,7 @@ def lang_file_tag_set(path, lang=None):
     return tag_set
 
 
-def lang_file_has_tag(path, lang=None, tag='active'):
+def lang_file_has_tag(path, lang=None, tag="active"):
     """
     Return True if the lang file exists and has a line like "^## tag ##"
     at the top. Stops looking at the line that doesn't have a tag.
@@ -271,7 +275,7 @@ def get_translations_for_langfile(langfile):
     :return: list, like ['en-US', 'fr']
     """
 
-    cache_key = 'translations:%s' % langfile
+    cache_key = "translations:%s" % langfile
     translations = cache.get(cache_key, None)
 
     if translations:
@@ -279,8 +283,7 @@ def get_translations_for_langfile(langfile):
 
     translations = []
     for lang in settings.PROD_LANGUAGES:
-        if (lang in product_details.languages and (
-                lang == settings.LANGUAGE_CODE or lang_file_is_active(langfile, lang))):
+        if lang in product_details.languages and (lang == settings.LANGUAGE_CODE or lang_file_is_active(langfile, lang)):
             translations.append(lang)
 
     cache.set(cache_key, translations)
@@ -300,6 +303,6 @@ def get_translations_native_names(locales):
     for locale in locales:
         if locale in settings.PROD_LANGUAGES:
             language = product_details.languages.get(locale)
-            translations[locale] = language['native'] if language else locale
+            translations[locale] = language["native"] if language else locale
 
     return translations

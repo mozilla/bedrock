@@ -12,7 +12,7 @@ class ContentfulEntryManager(models.Manager):
         return self.get(content_type=content_type, language=lang).data
 
     def get_homepage(self, lang):
-        return self.get(content_type='connectHomepage', language=lang).data
+        return self.get(content_type="connectHomepage", language=lang).data
 
 
 class ContentfulEntry(models.Model):

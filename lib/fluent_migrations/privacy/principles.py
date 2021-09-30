@@ -6,15 +6,20 @@ from fluent.migrate import REPLACE, COPY
 
 principles = "privacy/principles.lang"
 
+
 def migrate(ctx):
     """Migrate bedrock/privacy/templates/privacy/principles.html, part {index}."""
 
     ctx.add_transforms(
         "privacy/principles.ftl",
         "privacy/principles.ftl",
-        transforms_from("""
+        transforms_from(
+            """
 privacy-principles-data-privacy-principles = {COPY(principles, "Data Privacy Principles",)}
-""", principles=principles) + [
+""",
+            principles=principles,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("privacy-principles-mozilla-is-an-open-source"),
                 value=REPLACE(
@@ -22,22 +27,24 @@ privacy-principles-data-privacy-principles = {COPY(principles, "Data Privacy Pri
                     "Mozilla is an open source project with a mission to improve your Internet experience. This is a driving force behind our privacy practices.",
                     {
                         "Mozilla": TERM_REFERENCE("brand-name-mozilla"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("privacy-principles-the-following-five-principles"),
                 value=REPLACE(
                     principles,
-                    "The following five principles stem from the <a href=\"%(link)s\">Mozilla Manifesto</a> and inform how we:",
+                    'The following five principles stem from the <a href="%(link)s">Mozilla Manifesto</a> and inform how we:',
                     {
                         "%%": "%",
                         "%(link)s": VARIABLE_REFERENCE("link"),
                         "Mozilla": TERM_REFERENCE("brand-name-mozilla"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 privacy-principles-develop-our-products = {COPY(principles, "develop our products and services",)}
 privacy-principles-manage-user-data-we-collect = {COPY(principles, "manage user data we collect",)}
 privacy-principles-select-and-interact-with = {COPY(principles, "select and interact with partners",)}
@@ -52,5 +59,7 @@ privacy-principles-sensible-settings = {COPY(principles, "Sensible settings",)}
 privacy-principles-design-for-a-thoughtful = {COPY(principles, "Design for a thoughtful balance of safety and user experience.",)}
 privacy-principles-defense-in-depth = {COPY(principles, "Defense in depth",)}
 privacy-principles-maintain-multi-layered = {COPY(principles, "Maintain multi-layered security controls and practices, many of which are publicly verifiable.",)}
-""", principles=principles)
-        )
+""",
+            principles=principles,
+        ),
+    )

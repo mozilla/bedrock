@@ -7,17 +7,17 @@ import pytest
 from pages.firefox.whatsnew.whatsnew_91 import FirefoxWhatsNew91Page
 
 
-@pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
+@pytest.mark.skip_if_not_firefox(reason="Whatsnew pages are shown to Firefox only.")
 @pytest.mark.nondestructive
 def test_pocket_button_is_displayed_en(base_url, selenium):
-    page = FirefoxWhatsNew91Page(selenium, base_url, locale='en-US').open()
+    page = FirefoxWhatsNew91Page(selenium, base_url, locale="en-US").open()
     assert page.is_pocket_primary_button_displayed
     assert page.is_pocket_secondary_button_displayed
 
 
-@pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
+@pytest.mark.skip_if_not_firefox(reason="Whatsnew pages are shown to Firefox only.")
 @pytest.mark.nondestructive
 def test_pocket_button_is_displayed_de(base_url, selenium):
-    page = FirefoxWhatsNew91Page(selenium, base_url, locale='de').open()
+    page = FirefoxWhatsNew91Page(selenium, base_url, locale="de").open()
     assert page.is_pocket_primary_button_displayed
     assert page.is_pocket_secondary_button_displayed

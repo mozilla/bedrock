@@ -27,6 +27,7 @@ class PageNode:
     In the example above, the template `child1.html` will be available at the
     url `/root/child1/`.
     """
+
     def __init__(self, display_name, path=None, template=None, children=None):
         """
         Create a new PageNode.
@@ -59,15 +60,13 @@ class PageNode:
         The full url path for this node, including the paths of its parent
         nodes.
         """
-        return '/'.join([node.path for node in self.breadcrumbs
-                         if node.path is not None])
+        return "/".join([node.path for node in self.breadcrumbs if node.path is not None])
 
     @property
     def page(self):
         """The page for this node, which is a RegexURLPattern."""
         if self.template:
-            return page(self.full_path, self.template, node_root=self.root,
-                        node=self)
+            return page(self.full_path, self.template, node_root=self.root, node=self)
         else:
             return None
 
@@ -96,7 +95,7 @@ class PageNode:
         """The root of the tree that this node is in."""
         root = list(self.path_to_root)[-1]
         if not isinstance(root, PageRoot):
-            raise ValueError('Root node is not a PageRoot object.')
+            raise ValueError("Root node is not a PageRoot object.")
         return root
 
     @property
@@ -127,9 +126,7 @@ class PageNode:
             return None
 
     def __repr__(self):
-        return u'{0}(display_name="{1}", path="{2}", template="{3})"'.format(
-            self.__class__.__name__, self.display_name, self.full_path,
-            self.template)
+        return '{0}(display_name="{1}", path="{2}", template="{3})"'.format(self.__class__.__name__, self.display_name, self.full_path, self.template)
 
 
 class PageRoot(PageNode):
@@ -139,6 +136,7 @@ class PageRoot(PageNode):
     The root node of a PageNode tree MUST be a PageRoot. If it is not, any
     reference to the root of the tree with throw a ValueError.
     """
+
     def __init__(self, *args, **kwargs):
         super(PageRoot, self).__init__(*args, **kwargs)
 
@@ -166,5 +164,4 @@ class PageRoot(PageNode):
 
     def as_urlpatterns(self):
         """Return a urlconf for this PageRoot and its children."""
-        return [
-            node.page for node in self.preordered_nodes if node.template]
+        return [node.page for node in self.preordered_nodes if node.template]

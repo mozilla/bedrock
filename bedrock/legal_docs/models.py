@@ -9,9 +9,9 @@ from mdx_outline import OutlineExtension
 
 
 LEGAL_DOCS_LOCALES_TO_BEDROCK = {
-    'hi': 'hi-IN',
+    "hi": "hi-IN",
 }
-LOCALE_RE = re.compile(r'[a-z]{2,3}(-[A-Z]{2}(_[a-z])?)?$')
+LOCALE_RE = re.compile(r"[a-z]{2,3}(-[A-Z]{2}(_[a-z])?)?$")
 
 
 def process_md_file(file_path):
@@ -19,12 +19,11 @@ def process_md_file(file_path):
     try:
         # Parse the Markdown file
         md.markdownFromFile(
-            input=str(file_path), output=output, extensions=[
-                'markdown.extensions.attr_list',
-                'markdown.extensions.toc',
-                OutlineExtension((('wrapper_cls', ''),))
-            ])
-        content = output.getvalue().decode('utf-8')
+            input=str(file_path),
+            output=output,
+            extensions=["markdown.extensions.attr_list", "markdown.extensions.toc", OutlineExtension((("wrapper_cls", ""),))],
+        )
+        content = output.getvalue().decode("utf-8")
     except IOError:
         content = None
     finally:
@@ -43,13 +42,13 @@ def get_data_from_file_path(file_path):
     if locale in LEGAL_DOCS_LOCALES_TO_BEDROCK:
         locale = LEGAL_DOCS_LOCALES_TO_BEDROCK[locale]
     return {
-        'locale': locale,
-        'doc_name': doc_name,
+        "locale": locale,
+        "doc_name": doc_name,
     }
 
 
 def snake_case(name):
-    return name.lower().replace('-', '_')
+    return name.lower().replace("-", "_")
 
 
 class LegalDocsManager(models.Manager):
@@ -72,18 +71,18 @@ class LegalDocsManager(models.Manager):
             doc_name = snake_case(doc_name)
             doc = self.get(name=doc_name, locale=locale)
 
-        all_locales = list(self.filter(name=doc_name).values_list('locale', flat=True))
-        if 'en' in all_locales:
+        all_locales = list(self.filter(name=doc_name).values_list("locale", flat=True))
+        if "en" in all_locales:
             # legal-docs now uses en but the site needs en-US
-            all_locales[all_locales.index('en')] = 'en-US'
+            all_locales[all_locales.index("en")] = "en-US"
 
         # filter locales not active on the site
         all_locales = [l for l in all_locales if l in settings.PROD_LANGUAGES]
 
         return {
-            'content': doc.content,
+            "content": doc.content,
             # sort and make unique
-            'active_locales': sorted(set(all_locales)),
+            "active_locales": sorted(set(all_locales)),
         }
 
     def refresh(self):
@@ -92,7 +91,7 @@ class LegalDocsManager(models.Manager):
         docs_path = settings.LEGAL_DOCS_PATH
         with transaction.atomic(using=self.db):
             self.all().delete()
-            doc_files = docs_path.glob('*/*.md')
+            doc_files = docs_path.glob("*/*.md")
             for docf in doc_files:
                 path_data = get_data_from_file_path(docf)
                 content = process_md_file(docf)
@@ -100,11 +99,13 @@ class LegalDocsManager(models.Manager):
                     errors += 1
                     continue
 
-                doc_objs.append(LegalDoc(
-                    name=path_data['doc_name'],
-                    locale=path_data['locale'],
-                    content=content,
-                ))
+                doc_objs.append(
+                    LegalDoc(
+                        name=path_data["doc_name"],
+                        locale=path_data["locale"],
+                        content=content,
+                    )
+                )
             self.bulk_create(doc_objs)
 
         return len(doc_objs), errors
@@ -118,4 +119,4 @@ class LegalDoc(models.Model):
     objects = LegalDocsManager()
 
     def __str__(self):
-        return f'{self.name} - {self.locale}'
+        return f"{self.name} - {self.locale}"

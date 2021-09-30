@@ -6,13 +6,15 @@ from fluent.migrate import REPLACE, COPY
 
 main = "main.lang"
 
+
 def migrate(ctx):
     """Migrate common UI strings from main.lang, part {index}."""
 
     ctx.add_transforms(
         "ui.ftl",
         "ui.ftl",
-        transforms_from("""
+        transforms_from(
+            """
 ui-back-to-home-page = {COPY(main, "Back to home page",)}
 ui-return-to-top = {COPY(main, "Return to top",)}
 ui-close = {COPY(main, "Close",)}
@@ -28,5 +30,7 @@ ui-show-less = {COPY(main, "Show Less",)}
 ui-show-all = {COPY(main, "Show All",)}
 ui-hide-all = {COPY(main, "Hide All",)}
 ui-learn-more = {COPY(main, "Learn more",)}
-""", main=main)
-        )
+""",
+            main=main,
+        ),
+    )

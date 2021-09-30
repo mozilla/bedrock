@@ -22,12 +22,12 @@ def get_languages_for_newsletters(newsletters=None):
         newsletters = list(all_newsletters.values())
     else:
         if isinstance(newsletters, str):
-            newsletters = [nl.strip() for nl in newsletters.split(',')]
+            newsletters = [nl.strip() for nl in newsletters.split(",")]
         newsletters = [all_newsletters.get(nl, {}) for nl in newsletters]
 
     langs = set()
     for newsletter in newsletters:
-        langs.update(newsletter.get('languages', []))
+        langs.update(newsletter.get("languages", []))
 
     return langs
 
@@ -38,7 +38,7 @@ def custom_unsub_reason(token, reason):
     This is calling a basket API that's custom to Mozilla, that's
     why there's not a helper in the basket-client package."""
     data = {
-        'token': token,
-        'reason': reason,
+        "token": token,
+        "reason": reason,
     }
-    return basket.request('post', 'custom_unsub_reason', data=data)
+    return basket.request("post", "custom_unsub_reason", data=data)

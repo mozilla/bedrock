@@ -12,62 +12,62 @@ TIMEOUT = 60
 
 @pytest.fixture
 def capabilities(request, capabilities):
-    driver = request.config.getoption('driver')
-    if capabilities.get('browserName', driver).lower() == 'firefox':
-        capabilities['marionette'] = True
+    driver = request.config.getoption("driver")
+    if capabilities.get("browserName", driver).lower() == "firefox":
+        capabilities["marionette"] = True
     return capabilities
 
 
 @pytest.fixture
 def driver_log():
-    return 'tests/functional/driver.log'
+    return "tests/functional/driver.log"
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope="session")
 def session_capabilities(pytestconfig, session_capabilities):
-    if pytestconfig.getoption('driver') == 'SauceLabs':
-        session_capabilities.setdefault('tags', []).append('bedrock')
+    if pytestconfig.getoption("driver") == "SauceLabs":
+        session_capabilities.setdefault("tags", []).append("bedrock")
 
         # Avoid default SauceLabs proxy for IE.
-        session_capabilities['avoidProxy'] = True
+        session_capabilities["avoidProxy"] = True
 
-    if pytestconfig.getoption('driver') == 'BrowserStack':
-        session_capabilities.setdefault('tags', []).append('bedrock')
+    if pytestconfig.getoption("driver") == "BrowserStack":
+        session_capabilities.setdefault("tags", []).append("bedrock")
 
-        if session_capabilities.get('browser').lower() == 'internet explorer' and session_capabilities.get('browser_version') == '11.0':
+        if session_capabilities.get("browser").lower() == "internet explorer" and session_capabilities.get("browser_version") == "11.0":
             # https://www.browserstack.com/docs/automate/selenium/using-sendkeys-on-remote-IE11
-            session_capabilities['browserstack.sendKeys'] = True
-            session_capabilities['browserstack.use_w3c'] = True
+            session_capabilities["browserstack.sendKeys"] = True
+            session_capabilities["browserstack.use_w3c"] = True
 
             # Set Selenium and IE driver version - https://www.browserstack.com/automate/capabilities
-            session_capabilities['browserstack.selenium_version'] = '3.141.59'
-            session_capabilities['browserstack.ie.driver'] = '3.141.59'
+            session_capabilities["browserstack.selenium_version"] = "3.141.59"
+            session_capabilities["browserstack.ie.driver"] = "3.141.59"
 
     return session_capabilities
 
 
 @pytest.fixture
 def firefox(selenium):
-    return selenium.capabilities.get('browserName').lower() == 'firefox'
+    return selenium.capabilities.get("browserName").lower() == "firefox"
 
 
 @pytest.fixture
 def internet_explorer(selenium):
-    return selenium.capabilities.get('browserName').lower() == 'internet explorer'
+    return selenium.capabilities.get("browserName").lower() == "internet explorer"
 
 
 @pytest.fixture(autouse=True)
 def filter_capabilities(request):
     marker = None
-    if request.node.get_closest_marker('skip_if_firefox') and request.getfixturevalue('firefox'):
-        marker = request.node.get_closest_marker('skip_if_firefox')
-    if request.node.get_closest_marker('skip_if_not_firefox') and not request.getfixturevalue('firefox'):
-        marker = request.node.get_closest_marker('skip_if_not_firefox')
-    if request.node.get_closest_marker('skip_if_internet_explorer') and request.getfixturevalue('internet_explorer'):
-        marker = request.node.get_closest_marker('skip_if_internet_explorer')
+    if request.node.get_closest_marker("skip_if_firefox") and request.getfixturevalue("firefox"):
+        marker = request.node.get_closest_marker("skip_if_firefox")
+    if request.node.get_closest_marker("skip_if_not_firefox") and not request.getfixturevalue("firefox"):
+        marker = request.node.get_closest_marker("skip_if_not_firefox")
+    if request.node.get_closest_marker("skip_if_internet_explorer") and request.getfixturevalue("internet_explorer"):
+        marker = request.node.get_closest_marker("skip_if_internet_explorer")
 
     if marker:
-        reason = marker.kwargs.get('reason') or marker.name
+        reason = marker.kwargs.get("reason") or marker.name
         pytest.skip(reason)
 
 
@@ -84,23 +84,23 @@ def selenium_mobile(selenium):
 
 
 def pytest_generate_tests(metafunc):
-    markexpr = metafunc.config.getoption('markexpr')
-    if markexpr == 'download':
-        base_url = metafunc.config.getoption('base_url')
+    markexpr = metafunc.config.getoption("markexpr")
+    if markexpr == "download":
+        base_url = metafunc.config.getoption("base_url")
         if "download_path" in metafunc.fixturenames:
-            soup = get_web_page(f'{base_url}/en-US/firefox/download/thanks/')
-            urls = [a['href'] for a in soup.find('ul', class_='download-list').find_all('a')]
+            soup = get_web_page(f"{base_url}/en-US/firefox/download/thanks/")
+            urls = [a["href"] for a in soup.find("ul", class_="download-list").find_all("a")]
             # Bug 1266682 remove links to Play Store to avoid rate limiting in automation.
-            urls = [url for url in urls if 'play.google.com' not in url]
+            urls = [url for url in urls if "play.google.com" not in url]
             assert urls
-            metafunc.parametrize('download_path', urls)
+            metafunc.parametrize("download_path", urls)
 
         elif "download_path_l10n" in metafunc.fixturenames:
-            soup = get_web_page(f'{base_url}/en-US/firefox/all/')
-            lists = soup.find('div', class_='c-all-downloads')
-            urls = [a['href'] for a in lists.find_all(attrs={'data-link-type': 'download'})]
+            soup = get_web_page(f"{base_url}/en-US/firefox/all/")
+            lists = soup.find("div", class_="c-all-downloads")
+            urls = [a["href"] for a in lists.find_all(attrs={"data-link-type": "download"})]
             assert urls
-            metafunc.parametrize('download_path_l10n', urls)
+            metafunc.parametrize("download_path_l10n", urls)
 
 
 def get_web_page(url):
@@ -109,4 +109,4 @@ def get_web_page(url):
     except requests.RequestException:
         # retry
         r = requests.get(url, timeout=TIMEOUT)
-    return BeautifulSoup(r.content, 'html.parser')
+    return BeautifulSoup(r.content, "html.parser")

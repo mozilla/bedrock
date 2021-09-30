@@ -6,6 +6,7 @@ from fluent.migrate import REPLACE, COPY
 
 safari = "firefox/compare/safari.lang"
 
+
 def migrate(ctx):
     """Migrate bedrock/firefox/templates/firefox/browsers/compare/safari.html, part {index}."""
 
@@ -21,8 +22,8 @@ def migrate(ctx):
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Safari": TERM_REFERENCE("brand-name-safari"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-safari-safari-is-the-pre-installed"),
@@ -34,8 +35,8 @@ def migrate(ctx):
                         "Safari": TERM_REFERENCE("brand-name-safari"),
                         "iPhone": TERM_REFERENCE("brand-name-iphone"),
                         "Mac": TERM_REFERENCE("brand-name-mac"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-safari-comparing-firefox-browser"),
@@ -44,8 +45,8 @@ def migrate(ctx):
                     "Comparing Firefox Browser with Apple Safari",
                     {
                         "Firefox Browser": TERM_REFERENCE("brand-name-firefox-browser"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-safari-if-you-use-a-mac-or-have"),
@@ -57,8 +58,8 @@ def migrate(ctx):
                         "Apple": TERM_REFERENCE("brand-name-apple"),
                         "Safari": TERM_REFERENCE("brand-name-safari"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-safari-privacy-has-become-a-white"),
@@ -68,8 +69,8 @@ def migrate(ctx):
                     {
                         "Apple": TERM_REFERENCE("brand-name-apple"),
                         "Safari": TERM_REFERENCE("brand-name-safari"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-safari-as-alluded-to-before-apple-fallback"),
@@ -79,8 +80,8 @@ def migrate(ctx):
                     {
                         "Apple": TERM_REFERENCE("brand-name-apple"),
                         "Safari": TERM_REFERENCE("brand-name-safari"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-safari-like-safari-we-at-firefox"),
@@ -91,8 +92,8 @@ def migrate(ctx):
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Safari": TERM_REFERENCE("brand-name-safari"),
                         "Mozilla": TERM_REFERENCE("brand-name-mozilla"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-safari-our-private-browsing-mode"),
@@ -106,8 +107,8 @@ def migrate(ctx):
                         "Safari": TERM_REFERENCE("brand-name-safari"),
                         "Facebook": TERM_REFERENCE("brand-name-facebook"),
                         "Facebook Container": TERM_REFERENCE("brand-name-facebook-container"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-safari-as-far-as-security-goes-firefox"),
@@ -121,8 +122,8 @@ def migrate(ctx):
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Lockwise": TERM_REFERENCE("brand-name-lockwise"),
                         "Monitor": TERM_REFERENCE("brand-name-monitor"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-safari-if-you-choose-to-use-safari"),
@@ -138,8 +139,8 @@ def migrate(ctx):
                         "iOS": TERM_REFERENCE("brand-name-ios"),
                         "Linux": TERM_REFERENCE("brand-name-linux"),
                         "Mac": TERM_REFERENCE("brand-name-mac"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-safari-apple-is-widely-known-for"),
@@ -150,8 +151,8 @@ def migrate(ctx):
                         "Apple": TERM_REFERENCE("brand-name-apple"),
                         "Safari": TERM_REFERENCE("brand-name-safari"),
                         "App Store": TERM_REFERENCE("brand-name-app-store"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-safari-in-addition-to-the-regular"),
@@ -161,8 +162,8 @@ def migrate(ctx):
                     {
                         "Safari": TERM_REFERENCE("brand-name-safari"),
                         "App Store": TERM_REFERENCE("brand-name-app-store"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-safari-like-safari-firefox-encourages"),
@@ -174,8 +175,8 @@ def migrate(ctx):
                         "%(attrs)s": VARIABLE_REFERENCE("attrs"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Safari": TERM_REFERENCE("brand-name-safari"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-safari-also-when-you-sign-up-for-fallback"),
@@ -189,8 +190,8 @@ def migrate(ctx):
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Pocket": TERM_REFERENCE("brand-name-pocket"),
                         "Send": TERM_REFERENCE("brand-name-send"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-safari-firefox-and-safari-both-provide"),
@@ -201,8 +202,8 @@ def migrate(ctx):
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Safari": TERM_REFERENCE("brand-name-safari"),
                         "iPhone": TERM_REFERENCE("brand-name-iphone"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-safari-both-browsers-have-a-lot"),
@@ -211,8 +212,8 @@ def migrate(ctx):
                     "Both browsers have a lot of crossover features, as well as some unique functions. It’s worth mentioning, if you take a lot of screenshots, you’ll wonder how you ever lived without this handy feature that’s built right into Firefox. But if you’re just looking for a fast, private browser for surfing and shopping, then you may want to give Firefox a try — especially if you’ve been exclusively using Safari because it came preloaded as the default browser on your computer. Eventually, you’ll discover which one is more suited to your needs.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-safari-firefox-also-offers-a-similar"),
@@ -230,8 +231,8 @@ def migrate(ctx):
                         "iOS": TERM_REFERENCE("brand-name-ios"),
                         "Windows": TERM_REFERENCE("brand-name-windows"),
                         "macOS": TERM_REFERENCE("brand-name-macos"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-safari-the-firefox-app-for-ios-and"),
@@ -245,8 +246,8 @@ def migrate(ctx):
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "iOS": TERM_REFERENCE("brand-name-ios"),
                         "Android": TERM_REFERENCE("brand-name-android"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-safari-since-safari-is-apples-proprietary"),
@@ -260,8 +261,8 @@ def migrate(ctx):
                         "Android": TERM_REFERENCE("brand-name-android"),
                         "iPhone": TERM_REFERENCE("brand-name-iphone"),
                         "Windows": TERM_REFERENCE("brand-name-windows"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-safari-safari-does-a-great-job-of"),
@@ -274,8 +275,8 @@ def migrate(ctx):
                         "Safari": TERM_REFERENCE("brand-name-safari"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Apple": TERM_REFERENCE("brand-name-apple"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("compare-safari-in-the-end-it-just-boils"),
@@ -286,9 +287,8 @@ def migrate(ctx):
                         "Safari": TERM_REFERENCE("brand-name-safari"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Apple": TERM_REFERENCE("brand-name-apple"),
-                    }
-                )
+                    },
+                ),
             ),
-        ]
+        ],
     )
-

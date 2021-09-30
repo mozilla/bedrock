@@ -13,12 +13,10 @@ from bedrock.mozorg.tests import TestCase
 
 
 @override_settings(DEV=False)
-@patch('bedrock.exp.views.l10n_utils.render')
+@patch("bedrock.exp.views.l10n_utils.render")
 class TestExpFirefoxNew(TestCase):
     def test_download_template(self, render_mock):
-        req = RequestFactory().get('/exp/firefox/new/')
-        req.locale = 'en-US'
+        req = RequestFactory().get("/exp/firefox/new/")
+        req.locale = "en-US"
         views.new(req)
-        render_mock.assert_called_once_with(
-            req, 'exp/firefox/new/download.html', ANY, ftl_files='firefox/new/desktop'
-        )
+        render_mock.assert_called_once_with(req, "exp/firefox/new/download.html", ANY, ftl_files="firefox/new/desktop")

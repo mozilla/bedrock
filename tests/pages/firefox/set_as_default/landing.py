@@ -9,9 +9,9 @@ from pages.base import BasePage
 
 class DefaultLandingPage(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/firefox/set-as-default/'
+    _URL_TEMPLATE = "/{locale}/firefox/set-as-default/"
 
-    _set_default_button_locator = (By.ID, 'set-as-default-button')
+    _set_default_button_locator = (By.ID, "set-as-default-button")
 
     @property
     def is_set_default_button_displayed(self):

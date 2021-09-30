@@ -6,13 +6,15 @@ from fluent.migrate import REPLACE, COPY
 
 all_unified = "firefox/all-unified.lang"
 
+
 def migrate(ctx):
     """Migrate bedrock/firefox/templates/firefox/all-unified.html, part {index}."""
 
     ctx.add_transforms(
         "firefox/all.ftl",
         "firefox/all.ftl",
-        transforms_from("""
+        transforms_from(
+            """
 firefox-all-check-the-system-requirements = {COPY(all_unified, "Check the system requirements",)}
 firefox-all-release-notes = {COPY(all_unified, "Release notes",)}
 firefox-all-source-code = {COPY(all_unified, "Source code",)}
@@ -28,7 +30,10 @@ firefox-all-the-pre-alpha-version = {COPY(all_unified, "The pre-alpha version fo
 firefox-all-64-bit-installers = {COPY(all_unified, "64-bit installers",)}
 firefox-all-choose-a-64-bit-installer = {COPY(all_unified, "Choose a 64-bit installer for computers with 64-bit processors, which allow them to allocate more RAM to individual programs — particularly important for games and other demanding applications.",)}
 firefox-all-32-bit-installers = {COPY(all_unified, "32-bit installers",)}
-""", all_unified=all_unified) + [
+""",
+            all_unified=all_unified,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("firefox-all-download-the-firefox"),
                 value=REPLACE(
@@ -36,8 +41,8 @@ firefox-all-32-bit-installers = {COPY(all_unified, "32-bit installers",)}
                     "Download the Firefox Browser in English (US) and more than 90 other languages",
                     {
                         "Firefox Browser": TERM_REFERENCE("brand-name-firefox-browser"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-all-everyone-deserves-access"),
@@ -46,8 +51,8 @@ firefox-all-32-bit-installers = {COPY(all_unified, "32-bit installers",)}
                     "Everyone deserves access to the internet — your language should never be a barrier. That’s why — with the help of dedicated volunteers around the world — we make the Firefox Browser available in more than 90 languages.",
                     {
                         "Firefox Browser": TERM_REFERENCE("brand-name-firefox-browser"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-all-choose-which-firefox"),
@@ -56,8 +61,8 @@ firefox-all-32-bit-installers = {COPY(all_unified, "32-bit installers",)}
                     "Choose which Firefox Browser to download in your language",
                     {
                         "Firefox Browser": TERM_REFERENCE("brand-name-firefox-browser"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-all-firefox-privacy-notice"),
@@ -66,8 +71,8 @@ firefox-all-32-bit-installers = {COPY(all_unified, "32-bit installers",)}
                     "Firefox Privacy Notice",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-all-learn-about-firefox"),
@@ -76,8 +81,8 @@ firefox-all-32-bit-installers = {COPY(all_unified, "32-bit installers",)}
                     "Learn about Firefox browsers",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-all-the-standard-firefox"),
@@ -86,8 +91,8 @@ firefox-all-32-bit-installers = {COPY(all_unified, "32-bit installers",)}
                     "The standard Firefox browser — fast and private. If you’re not sure which Firefox to choose, choose this.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-all-get-a-sneak-peek-at"),
@@ -96,8 +101,8 @@ firefox-all-32-bit-installers = {COPY(all_unified, "32-bit installers",)}
                     "Get a sneak peek at the latest Firefox browser features before they’re released.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-all-test-your-sites-against"),
@@ -106,8 +111,8 @@ firefox-all-32-bit-installers = {COPY(all_unified, "32-bit installers",)}
                     "Test your sites against soon-to-be-released Firefox browser features with powerful, flexible DevTools that are on by default.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-all-count-on-stability-and"),
@@ -116,8 +121,8 @@ firefox-all-32-bit-installers = {COPY(all_unified, "32-bit installers",)}
                     "Count on stability and ease of use with this Firefox browser built for enterprise.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-all-windows-installers-for"),
@@ -126,19 +131,19 @@ firefox-all-32-bit-installers = {COPY(all_unified, "32-bit installers",)}
                     "Windows installers for corporate IT that simplify the configuration, deployment and management of the Firefox Browser.",
                     {
                         "Firefox Browser": TERM_REFERENCE("brand-name-firefox-browser"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-all-choose-a-32-bit-installer"),
                 value=REPLACE(
                     all_unified,
-                    "Choose a 32-bit installer for computers with 32-bit processors — or for older or less powerful computers. <a href=\"%(url)s\">If you aren’t sure</a> whether to choose a 64-bit or 32-bit installer, we recommend you go with 32-bit.",
+                    'Choose a 32-bit installer for computers with 32-bit processors — or for older or less powerful computers. <a href="%(url)s">If you aren’t sure</a> whether to choose a 64-bit or 32-bit installer, we recommend you go with 32-bit.',
                     {
                         "%%": "%",
                         "%(url)s": VARIABLE_REFERENCE("url"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("firefox-all-download-product-for"),
@@ -150,10 +155,12 @@ firefox-all-32-bit-installers = {COPY(all_unified, "32-bit installers",)}
                         "%(product_label)s": VARIABLE_REFERENCE("product_label"),
                         "%(platform)s": VARIABLE_REFERENCE("platform"),
                         "%(locale)s": VARIABLE_REFERENCE("locale"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 firefox-all-msi-installers = {COPY(all_unified, "MSI installers",)}
 firefox-all-which-version = {COPY(all_unified, "Which version would you like?",)}
 firefox-all-select-your-preferred-installer = {COPY(all_unified, "Select your preferred installer",)}
@@ -167,5 +174,7 @@ firefox-all-product-firefox-esr = { -brand-name-firefox-extended-support-release
 firefox-all-product-firefox-android = { -brand-name-firefox } { -brand-name-android }
 firefox-all-product-firefox-android-beta = { -brand-name-firefox } { -brand-name-android } { -brand-name-beta }
 firefox-all-product-firefox-android-nightly = { -brand-name-firefox } { -brand-name-android } { -brand-name-nightly }
-""", all_unified=all_unified)
-        )
+""",
+            all_unified=all_unified,
+        ),
+    )

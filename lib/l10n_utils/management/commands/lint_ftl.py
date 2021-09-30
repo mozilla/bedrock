@@ -17,6 +17,7 @@ class NoisyFluentParser(FluentParser):
     The one from fluent.syntax doesn't raise exceptions, but will
     return instances of fluent.syntax.ast.Junk instead.
     """
+
     def get_entry_or_junk(self, ps):
         """Allow the ParseError to bubble up"""
         entry = self.get_entry(ps)
@@ -25,45 +26,48 @@ class NoisyFluentParser(FluentParser):
 
 
 class Command(BaseCommand):
-    help = 'Check .ftl files for errors'
+    help = "Check .ftl files for errors"
     _filenames = None
     parser = None
     base_path = None
 
     def add_arguments(self, parser):
-        parser.add_argument('filename', nargs='*',
-                            help='Optional: Specific files to check. Finds files in a directory if none given.')
-        parser.add_argument('-d', '--dir', dest='directory',
-                            help='The directory to check (optional: overrides --repo)')
-        parser.add_argument('-r', '--repo', action='store_const', dest='repo',
-                            const=settings.FLUENT_REPO_PATH, default=settings.FLUENT_LOCAL_PATH,
-                            help='Check files in the external Fluent Repo instead of the bedrock files.')
-        parser.add_argument('-q', '--quiet', action='store_true', dest='quiet', default=False,
-                            help='If no error occurs, swallow all output.'),
+        parser.add_argument("filename", nargs="*", help="Optional: Specific files to check. Finds files in a directory if none given.")
+        parser.add_argument("-d", "--dir", dest="directory", help="The directory to check (optional: overrides --repo)")
+        parser.add_argument(
+            "-r",
+            "--repo",
+            action="store_const",
+            dest="repo",
+            const=settings.FLUENT_REPO_PATH,
+            default=settings.FLUENT_LOCAL_PATH,
+            help="Check files in the external Fluent Repo instead of the bedrock files.",
+        )
+        parser.add_argument("-q", "--quiet", action="store_true", dest="quiet", default=False, help="If no error occurs, swallow all output."),
 
     def handle(self, *args, **options):
         self.parser = NoisyFluentParser()
-        self.filenames = options['filename']
-        if options['directory']:
-            self.base_path = Path(options['directory']).resolve()
+        self.filenames = options["filename"]
+        if options["directory"]:
+            self.base_path = Path(options["directory"]).resolve()
         else:
-            self.base_path = options['repo']
+            self.base_path = options["repo"]
 
-        if options['quiet']:
+        if options["quiet"]:
             self.stdout._out = StringIO()
 
         if not self.filenames:
-            self.stdout.write(f'Checking {self.base_path}')
+            self.stdout.write(f"Checking {self.base_path}")
 
         count, errors = self.lint()
-        self.stdout.write(f'\nChecked {count} .ftl file(s)')
+        self.stdout.write(f"\nChecked {count} .ftl file(s)")
         if errors:
-            msgs = [f'Found {len(errors)} error(s)']
+            msgs = [f"Found {len(errors)} error(s)"]
             for path, msg in errors:
                 relative_path = path.relative_to(self.base_path)
-                msgs.append(f'- {relative_path}: {msg}')
+                msgs.append(f"- {relative_path}: {msg}")
 
-            raise CommandError('\n'.join(msgs))
+            raise CommandError("\n".join(msgs))
 
     @property
     def filenames(self):
@@ -72,14 +76,14 @@ class Command(BaseCommand):
     @filenames.setter
     def filenames(self, value):
         if value:
-            self._filenames = [f'{f}.ftl' if not f.endswith('.ftl') else f for f in value]
+            self._filenames = [f"{f}.ftl" if not f.endswith(".ftl") else f for f in value]
 
     @property
     def all_file_paths(self):
         if not self.base_path.is_dir():
-            raise CommandError(f'Requested directory does not exist: {self.base_path}')
+            raise CommandError(f"Requested directory does not exist: {self.base_path}")
 
-        return self.base_path.rglob('*.ftl')
+        return self.base_path.rglob("*.ftl")
 
     @cached_property
     def file_paths(self):
@@ -95,9 +99,9 @@ class Command(BaseCommand):
             with path.open() as ftl:
                 try:
                     self.parser.parse(ftl.read())
-                    self.stdout.write('.', ending='')
+                    self.stdout.write(".", ending="")
                 except ParseError as e:
-                    self.stdout.write('x', ending='')
+                    self.stdout.write("x", ending="")
                     errors.append((path, e.message))
 
                 self.stdout.flush()

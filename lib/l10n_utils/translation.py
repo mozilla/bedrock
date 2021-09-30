@@ -27,11 +27,11 @@ def deactivate():
 
 def _fix_case(locale):
     """Convert lowercase locales to uppercase: en-us -> en-US"""
-    parts = locale.split('-')
+    parts = locale.split("-")
     if len(parts) == 1:
         return locale
     else:
-        return '%s-%s' % (parts[0], parts[1].upper())
+        return "%s-%s" % (parts[0], parts[1].upper())
 
 
 def get_language(fix_case=False):
@@ -53,5 +53,5 @@ def get_language_bidi():
     * False = left-to-right layout
     * True = right-to-left layout
     """
-    base_lang = get_language().split('-')[0]
+    base_lang = get_language().split("-")[0]
     return base_lang in settings.LANGUAGES_BIDI

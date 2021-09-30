@@ -6,6 +6,7 @@ from fluent.migrate import REPLACE, COPY
 
 page6 = "firefox/welcome/page6.lang"
 
+
 def migrate(ctx):
     """Migrate bedrock/firefox/templates/firefox/welcome/page6.html, part {index}."""
 
@@ -20,12 +21,17 @@ def migrate(ctx):
                     "Make Firefox your default browser",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 welcome-page6-make-sure-youre-protected = {COPY(page6, "Make sure you’re protected, every time you get online",)}
-""", page6=page6) + [
+""",
+            page6=page6,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("welcome-page6-when-you-choose-firefox-you"),
                 value=REPLACE(
@@ -33,8 +39,8 @@ welcome-page6-make-sure-youre-protected = {COPY(page6, "Make sure you’re prote
                     "When you choose Firefox, you support a better web for you and everyone else. Now take the next step to protect yourself.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("welcome-page6-get-the-firefox-app"),
@@ -43,8 +49,8 @@ welcome-page6-make-sure-youre-protected = {COPY(page6, "Make sure you’re prote
                     "Get the Firefox App",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("welcome-page6-get-firefox-on-your-phone"),
@@ -53,12 +59,17 @@ welcome-page6-make-sure-youre-protected = {COPY(page6, "Make sure you’re prote
                     "Get Firefox on your Phone",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 welcome-page6-scan-the-qr-code-to-get-started = {COPY(page6, "Scan the QR code to get started",)}
-""", page6=page6) + [
+""",
+            page6=page6,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("welcome-page6-qr-code-to-scan-for-firefox"),
                 value=REPLACE(
@@ -66,12 +77,17 @@ welcome-page6-scan-the-qr-code-to-get-started = {COPY(page6, "Scan the QR code t
                     "QR code to scan for Firefox",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 welcome-page6-choose-automatic-privacy = {COPY(page6, "Choose automatic privacy",)}
-""", page6=page6) + [
+""",
+            page6=page6,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("welcome-page6-companies-keep-finding-new"),
                 value=REPLACE(
@@ -79,12 +95,17 @@ welcome-page6-choose-automatic-privacy = {COPY(page6, "Choose automatic privacy"
                     "Companies keep finding new ways to poach your personal data. Firefox is the browser with a mission of finding new ways to protect you.",
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 welcome-page6-choose-freedom-on-every-device = {COPY(page6, "Choose freedom on every device",)}
-""", page6=page6) + [
+""",
+            page6=page6,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("welcome-page6-firefox-is-fast-and-safe-on"),
                 value=REPLACE(
@@ -96,12 +117,17 @@ welcome-page6-choose-freedom-on-every-device = {COPY(page6, "Choose freedom on e
                         "Windows": TERM_REFERENCE("brand-name-windows"),
                         "Linux": TERM_REFERENCE("brand-name-linux"),
                         "iOS": TERM_REFERENCE("brand-name-ios"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 welcome-page6-choose-corporate-independence = {COPY(page6, "Choose corporate independence",)}
-""", page6=page6) + [
+""",
+            page6=page6,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("welcome-page6-firefox-is-the-only-major"),
                 value=REPLACE(
@@ -113,10 +139,14 @@ welcome-page6-choose-corporate-independence = {COPY(page6, "Choose corporate ind
                         "Chrome": TERM_REFERENCE("brand-name-chrome"),
                         "Brave": TERM_REFERENCE("brand-name-brave"),
                         "Edge": TERM_REFERENCE("brand-name-edge"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 welcome-page6-why-am-i-seeing-this = {COPY(page6, "Why am I seeing this?",)}
-""", page6=page6)
-        )
+""",
+            page6=page6,
+        ),
+    )

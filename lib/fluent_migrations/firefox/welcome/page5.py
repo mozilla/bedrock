@@ -6,6 +6,7 @@ from fluent.migrate import REPLACE, COPY
 
 page5 = "firefox/welcome/page5.lang"
 
+
 def migrate(ctx):
     """Migrate bedrock/firefox/templates/firefox/welcome/page5.html, part {index}."""
 
@@ -20,12 +21,17 @@ def migrate(ctx):
                     "Firefox Lockwise — password manager — take your passwords everywhere",
                     {
                         "Firefox Lockwise": TERM_REFERENCE("brand-name-firefox-lockwise"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 welcome-page5-theres-an-easier-way-to-deal = {COPY(page5, "There’s an easier way to deal with your passwords",)}
-""", page5=page5) + [
+""",
+            page5=page5,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("welcome-page5-let-firefox-save-them-for"),
                 value=REPLACE(
@@ -34,8 +40,8 @@ welcome-page5-theres-an-easier-way-to-deal = {COPY(page5, "There’s an easier w
                     {
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Firefox Lockwise": TERM_REFERENCE("brand-name-firefox-lockwise"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("welcome-page5-get-the-lockwise-app"),
@@ -44,8 +50,8 @@ welcome-page5-theres-an-easier-way-to-deal = {COPY(page5, "There’s an easier w
                     "Get the Lockwise App",
                     {
                         "Lockwise": TERM_REFERENCE("brand-name-lockwise"),
-                    }
-                )
+                    },
+                ),
             ),
             FTL.Message(
                 id=FTL.Identifier("welcome-page5-get-firefox-lockwise-on-your"),
@@ -54,12 +60,17 @@ welcome-page5-theres-an-easier-way-to-deal = {COPY(page5, "There’s an easier w
                     "Get Firefox Lockwise on your Phone",
                     {
                         "Firefox Lockwise": TERM_REFERENCE("brand-name-firefox-lockwise"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 welcome-page5-send-the-download-link-right = {COPY(page5, "Send the download link right to your phone or email.",)}
-""", page5=page5) + [
+""",
+            page5=page5,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("welcome-page5-download-firefox-lockwise"),
                 value=REPLACE(
@@ -67,16 +78,21 @@ welcome-page5-send-the-download-link-right = {COPY(page5, "Send the download lin
                     "Download Firefox Lockwise for your smartphone and tablet.",
                     {
                         "Firefox Lockwise": TERM_REFERENCE("brand-name-firefox-lockwise"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 welcome-page5-scan-this-qr-code = {COPY(page5, "Scan this QR code",)}
 welcome-page5-firefox-lockwise = { -brand-term-firefox-lockwise }
 welcome-page5-sync-up-safely = {COPY(page5, "Sync up safely",)}
 welcome-page5-with-256-bit-encryption-your = {COPY(page5, "With 256-bit encryption, your passwords always travel to your devices securely.",)}
 welcome-page5-no-more-making-up-new-passwords = {COPY(page5, "No more making up new passwords",)}
-""", page5=page5) + [
+""",
+            page5=page5,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("welcome-page5-lockwise-will-recommend-new"),
                 value=REPLACE(
@@ -84,12 +100,17 @@ welcome-page5-no-more-making-up-new-passwords = {COPY(page5, "No more making up 
                     "Lockwise will recommend new, strong passwords whenever you set up a new login.",
                     {
                         "Lockwise": TERM_REFERENCE("brand-name-lockwise"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 welcome-page5-help-during-a-breach = {COPY(page5, "Help during a breach",)}
-""", page5=page5) + [
+""",
+            page5=page5,
+        )
+        + [
             FTL.Message(
                 id=FTL.Identifier("welcome-page5-lockwise-will-let-you-know"),
                 value=REPLACE(
@@ -97,10 +118,14 @@ welcome-page5-help-during-a-breach = {COPY(page5, "Help during a breach",)}
                     "Lockwise will let you know if your saved logins have been part of a corporate data breach, so you can change them asap.",
                     {
                         "Lockwise": TERM_REFERENCE("brand-name-lockwise"),
-                    }
-                )
+                    },
+                ),
             ),
-        ] + transforms_from("""
+        ]
+        + transforms_from(
+            """
 welcome-page5-why-am-i-seeing-this = {COPY(page5, "Why am I seeing this?",)}
-""", page5=page5)
-        )
+""",
+            page5=page5,
+        ),
+    )

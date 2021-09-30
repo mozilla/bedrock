@@ -23,10 +23,10 @@ class VariationMixin:
     def get_template_names(self):
         names = super(VariationMixin, self).get_template_names()
         if self.template_name_variations and self._locale_allowed():
-            variation = self.request.GET.get('v')
+            variation = self.request.GET.get("v")
             if variation in self.template_name_variations:
-                name, ext = self.template_name.rsplit('.', 1)
-                names = ['{0}-{1}.{2}'.format(name, variation, ext)]
+                name, ext = self.template_name.rsplit(".", 1)
+                names = ["{0}-{1}.{2}".format(name, variation, ext)]
 
         return names
 
@@ -35,11 +35,11 @@ class VariationMixin:
         if self.template_context_variations:
             # do this outside of locale check so that template always has
             # the 'variation' variable if a variation is set
-            cxt['variation'] = ''
+            cxt["variation"] = ""
             if self._locale_allowed():
-                variation = self.request.GET.get('v')
+                variation = self.request.GET.get("v")
                 if variation in self.template_context_variations:
-                    cxt['variation'] = variation
+                    cxt["variation"] = variation
 
         return cxt
 

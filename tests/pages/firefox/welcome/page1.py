@@ -9,10 +9,10 @@ from pages.base import BasePage
 
 class FirefoxWelcomePage1(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/firefox/welcome/1/'
+    _URL_TEMPLATE = "/{locale}/firefox/welcome/1/"
 
-    _monitor_primary_button_locator = (By.CSS_SELECTOR, '.primary-cta .js-fxa-product-button')
-    _monitor_secondary_button_locator = (By.CSS_SELECTOR, '.secondary-cta .js-fxa-product-button')
+    _monitor_primary_button_locator = (By.CSS_SELECTOR, ".primary-cta .js-fxa-product-button")
+    _monitor_secondary_button_locator = (By.CSS_SELECTOR, ".secondary-cta .js-fxa-product-button")
 
     @property
     def is_primary_monitor_button_displayed(self):

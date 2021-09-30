@@ -10,14 +10,14 @@ from pages.regions.join_firefox_form import JoinFirefoxForm
 
 class FirefoxAccountsPage(BasePage):
 
-    _URL_TEMPLATE = '/{locale}/firefox/accounts/{params}'
+    _URL_TEMPLATE = "/{locale}/firefox/accounts/{params}"
 
-    _firefox_monitor_button_locator = (By.CSS_SELECTOR, '.c-accounts-hero-body-signed-in .js-fxa-product-button')
+    _firefox_monitor_button_locator = (By.CSS_SELECTOR, ".c-accounts-hero-body-signed-in .js-fxa-product-button")
 
     def wait_for_page_to_load(self):
         self.wait.until(lambda s: self.seed_url in s.current_url)
-        el = self.find_element(By.TAG_NAME, 'body')
-        self.wait.until(lambda s: 'state-fxa-default' not in el.get_attribute('class'))
+        el = self.find_element(By.TAG_NAME, "body")
+        self.wait.until(lambda s: "state-fxa-default" not in el.get_attribute("class"))
         return self
 
     @property
