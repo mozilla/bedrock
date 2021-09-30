@@ -12,22 +12,22 @@
             if (href.indexOf('v=1') !== -1) {
                 window.dataLayer.push({
                     'data-ex-variant': 'whatsnew93-variant-1',
-                    'data-ex-name': 'whatsnew93-experiment'
+                    'data-ex-name': 'whatsnew93-experiment-en'
                 });
             } else if (href.indexOf('v=2') !== -1) {
                 window.dataLayer.push({
                     'data-ex-variant': 'whatsnew93-variant-2',
-                    'data-ex-name': 'whatsnew93-experiment'
+                    'data-ex-name': 'whatsnew93-experiment-en'
                 });
             } else if (href.indexOf('v=3') !== -1) {
                 window.dataLayer.push({
                     'data-ex-variant': 'whatsnew93-variant-3',
-                    'data-ex-name': 'whatsnew93-experiment'
+                    'data-ex-name': 'whatsnew93-experiment-en'
                 });
             }
         } else if (Mozilla.TrafficCop) {
             var cop = new Mozilla.TrafficCop({
-                id: 'whatsnew93_experiment',
+                id: 'whatsnew93_experiment_en',
                 cookieExpires: 0,
                 variations: {
                     'v=1': 5,

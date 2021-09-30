@@ -24,13 +24,10 @@
 <main class="content-wrapper mzp-t-firefox">
   {% include 'firefox/whatsnew/includes/header.html' %}
 
-  {% set landing_source = '?source=' + campaign if campaign else '' %}
-  {% set landing_variant = '-v' + variant if variant else '' %}
-
   <section class="wnp-content-main">
     <div class="mzp-l-content mzp-t-content-lg">
       <div class="wnp-main-image video-container">
-        <video id="video" preload="metadata" autoplay loop poster="{{ static('img/firefox/whatsnew/whatsnew93/hero-v2-poster-de.jpg') }}">
+        <video id="video" preload="metadata" autoplay loop muted poster="{{ static('img/firefox/whatsnew/whatsnew93/hero-v2-poster-de.jpg') }}">
           <source src="{{ static('img/firefox/whatsnew/whatsnew93/hero-v2-de.webm') }}" type="video/webm">
         </video>
       </div>
@@ -39,7 +36,16 @@
       <p class="wnp-main-tagline">Es ist Cyber Security Month – der perfekte Anlass, deine persönlichen Daten online besser zu schützen. Mit Mozillas Virtuellem Privaten Netzwerk (VPN) verschleierst du mit einem Klick deinen Standort und deine Browseraktivitäten.</p>
 
       <div class="wnp-main-cta">
-        <a href="{{ url('products.vpn.landing') }}{{ landing_source }}{{ landing_variant }}" class="mzp-c-button mzp-t-product mzp-t-lg" data-cta-text="Get Mozilla VPN" data-cta-type="button">Hol dir Mozilla VPN</a>
+        {{ vpn_product_referral_link(
+            referral_id='whatsnew93-de-v2',
+            link_text='Hol dir Mozilla VPN',
+            class_name='mzp-t-product mzp-t-lg',
+            optional_attributes= {
+                'data-cta-text' : 'Hol dir Mozilla VPN',
+                'data-cta-type' : 'button',
+                'data-cta-position' : 'primary-cta',
+            }
+        ) }}
       </div>
     </div>
   </section>

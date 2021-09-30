@@ -21,6 +21,7 @@ $image-path: '/media/protocol/img';
     display: block;
     max-width: 800px;
     margin: 0 auto $layout-lg;
+    width: 100%;
 }
 
 .wnp-pre-title {
@@ -107,26 +108,18 @@ $image-path: '/media/protocol/img';
 
 //* -------------------------------------------------------------------------- */
 // For dark mode
+
 @media (prefers-color-scheme: dark) {
+    // Override _header.scss since v3 doesn't support dark mode
+    .wnp93-v3 .c-page-header-logo-fx {
+        background-image: url($image-path + '/logos/firefox/browser/logo-word-hor-sm.png');
+    }
+
     .wnp93-v1,
     .wnp93-v2 {
         .content-wrapper {
             background: $color-dark-gray-60;
             color: $color-white;
-        }
-
-        .wnp-main-image {
-            .invert-dark {
-                fill: #fff;
-            }
-
-            .empty-dark {
-                fill: none;
-            }
-
-            .darken-dark {
-                fill: #6f4ae7;
-            }
         }
 
         .wnp-main-title,

@@ -24,9 +24,6 @@
 <main class="content-wrapper mzp-t-firefox">
   {% include 'firefox/whatsnew/includes/header.html' %}
 
-  {% set landing_source = '?source=' + campaign if campaign else '' %}
-  {% set landing_variant = '-v' + variant if variant else '' %}
-
   <section class="wnp-content-main">
     <div class="mzp-l-content mzp-t-content-lg">
       {{ high_res_img('img/firefox/whatsnew/whatsnew93/hero-v1.png', {'alt': '', 'loading': 'lazy', 'class': 'wnp-main-image'}) }}
@@ -41,7 +38,16 @@
       <p class="wnp-main-tagline">Get the peace of mind to internet like no one’s watching with a Virtual Private Network from Mozilla.</p>
 
       <div class="wnp-main-cta">
-        <a href="{{ url('products.vpn.landing') }}{{ landing_source }}{{ landing_variant }}" class="mzp-c-button mzp-t-product mzp-t-lg" data-cta-text="Boost your privacy" data-cta-type="button">Boost your privacy</a>
+        {{ vpn_product_referral_link(
+            referral_id='whatsnew93-en-v1',
+            link_text='Boost your privacy',
+            class_name='mzp-t-product mzp-t-lg',
+            optional_attributes= {
+                'data-cta-text' : 'Boost your privacy',
+                'data-cta-type' : 'button',
+                'data-cta-position' : 'primary-cta',
+            }
+        ) }}
       </div>
     </div>
   </section>

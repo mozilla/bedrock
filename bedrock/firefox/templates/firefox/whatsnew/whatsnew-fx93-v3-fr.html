@@ -18,14 +18,17 @@
   {{ css_bundle('firefox_whatsnew_93') }}
 {% endblock %}
 
+{% block experiments %}
+  {% if switch('firefox-whatsnew-93-experiment-fr-de') %}
+    {{ js_bundle('firefox_whatsnew_93_experiment_fr_de') }}
+  {% endif %}
+{% endblock %}
+
 {% block site_header %}{% endblock %}
 
 {% block content %}
 <main class="content-wrapper mzp-t-firefox">
   {% include 'firefox/whatsnew/includes/header.html' %}
-
-  {% set landing_source = '?source=' + campaign if campaign else '' %}
-  {% set landing_variant = '-v' + variant if variant else '' %}
 
   <section class="wnp-content-main">
     <div class="mzp-l-content mzp-t-content-lg">
@@ -33,7 +36,7 @@
       <h2 class="wnp-main-title">Offrez-vous le confort de la confidentialité</h2>
 
       <div class="wnp-main-image video-container">
-        <video id="video" preload="metadata" autoplay loop poster="{{ static('img/firefox/whatsnew/whatsnew93/hero-v3.svg') }}">
+        <video id="video" preload="metadata" autoplay loop muted poster="{{ static('img/firefox/whatsnew/whatsnew93/hero-v3.svg') }}">
           <source src="{{ static('img/firefox/whatsnew/whatsnew93/hero-v3.webm') }}" type="video/webm">
         </video>
       </div>
@@ -41,7 +44,17 @@
       <p class="wnp-main-tagline">Empêchez les intrus de voir votre emplacement et votre historique de navigation grâce à un réseau privé virtuel proposé par l’entreprise tech en qui vous avez déjà confiance.</p>
 
       <div class="wnp-main-cta">
-        <a href="{{ url('products.vpn.landing') }}{{ landing_source }}{{ landing_variant }}" class="mzp-c-button mzp-t-product mzp-t-lg" data-cta-text="Get Mozilla VPN" data-cta-type="button">Installez Mozilla VPN</a>
+        {% set referral_id = 'whatsnew93-fr-v' + variant if variant else 'whatsnew93-fr' %}
+        {{ vpn_product_referral_link(
+            referral_id=referral_id,
+            link_text='Installez Mozilla VPN',
+            class_name='mzp-t-product mzp-t-lg',
+            optional_attributes= {
+                'data-cta-text' : 'Get Mozilla VPN',
+                'data-cta-type' : 'button',
+                'data-cta-position' : 'primary-cta',
+            }
+        ) }}
       </div>
     </div>
   </section>
@@ -55,8 +68,4 @@
 
 {% block js %}
   {{ js_bundle('firefox_whatsnew_93') }}
-
-  {% if switch('firefox-whatsnew-93-experiment-eu') %}
-    {{ js_bundle('firefox_whatsnew_93_experiment_eu') }}
-  {% endif %}
 {% endblock %}

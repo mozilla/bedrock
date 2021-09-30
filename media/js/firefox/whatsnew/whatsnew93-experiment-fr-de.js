@@ -12,17 +12,17 @@
             if (href.indexOf('v=2') !== -1) {
                 window.dataLayer.push({
                     'data-ex-variant': 'whatsnew93-variant-2',
-                    'data-ex-name': 'whatsnew93-experiment'
+                    'data-ex-name': 'whatsnew93-experiment-fr-de'
                 });
             } else if (href.indexOf('v=3') !== -1) {
                 window.dataLayer.push({
                     'data-ex-variant': 'whatsnew93-variant-3',
-                    'data-ex-name': 'whatsnew93-experiment'
+                    'data-ex-name': 'whatsnew93-experiment-fr-de'
                 });
             }
         } else if (Mozilla.TrafficCop) {
             var cop = new Mozilla.TrafficCop({
-                id: 'whatsnew93_experiment',
+                id: 'whatsnew93_experiment_fr_de',
                 cookieExpires: 0,
                 variations: {
                     'v=2': 5,

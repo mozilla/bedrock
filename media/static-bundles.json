@@ -1166,9 +1166,9 @@
     {
       "files": [
         "js/libs/mozilla-traffic-cop.js",
-        "js/firefox/whatsnew/whatsnew93-experiment-eu.js"
+        "js/firefox/whatsnew/whatsnew93-experiment-fr-de.js"
       ],
-      "name": "firefox_whatsnew_93_experiment_eu"
+      "name": "firefox_whatsnew_93_experiment_fr_de"
     },
     {
       "files": [
