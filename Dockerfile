@@ -93,6 +93,7 @@ COPY requirements/base.txt requirements/dev.txt requirements/migration.txt requi
 RUN pip install --no-cache-dir -r requirements/dev.txt
 RUN pip install --no-cache-dir -r requirements/docs.txt
 COPY ./setup.cfg ./
+COPY ./pyproject.toml ./
 COPY ./tests ./tests
 
 RUN bin/run-sync-all.sh
