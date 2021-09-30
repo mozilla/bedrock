@@ -46,6 +46,18 @@ def vpn_landing_page(request):
     else:
         template_name = "products/vpn/landing.html"
 
+    # view for VPN hero image experiment
+    if entrypoint_variation not in ['current', 'en', 'fr', 'de']:
+        entrypoint_variation = None
+
+    if entrypoint_experiment != 'vpn-landing-page-image-change':
+        entrypoint_experiment = None
+
+    if entrypoint_experiment and entrypoint_variation:
+        template_name = 'products/vpn/variations/hero-image-{}.html'.format(entrypoint_variation)
+    else:
+        template_name = 'products/vpn/landing.html'
+
     # error message for visitors who try to sign-in without a subscription (issue 10002)
     if sub_not_found == "true":
         sub_not_found = True
