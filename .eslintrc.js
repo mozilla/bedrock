@@ -1,9 +1,11 @@
 module.exports = {
     env: {
-        'jasmine': true,
-        'commonjs': true
+        'browser': true,
+        'commonjs': true,
+        'jasmine': true
     },
     extends: [
+        'eslint:recommended',
         'plugin:json/recommended'
     ],
     rules: {

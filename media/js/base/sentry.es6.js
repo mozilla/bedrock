@@ -31,7 +31,9 @@ if (typeof window.Mozilla.dntEnabled === 'function' && !window.Mozilla.dntEnable
                     if (event.exception.values[0].stacktrace.frames[0].filename === '<anonymous>') {
                         return null;
                     }
-                } catch (e) {}
+                } catch (e) {
+                    // do nothing.
+                }
 
                 return event;
             }
