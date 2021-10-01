@@ -1,27 +1,28 @@
+# Global excludes, override per repo below if different excludes required.
+exclude: >
+  (?x)^(
+    docs
+    | bedrock/settings
+    | node_modules
+    | assets
+    | static
+    | bedrock/externalfiles/files_cache
+    | ^.*\b(migrations)\b.*$
+    | git-repos
+    | lib/fluent_migrations
+  )
 repos:
   - repo: https://github.com/psf/black
     rev: 21.9b0
     hooks:
       - id: black
         language_version: python3
-        exclude: ^.*\b(migrations)\b.*$
   - repo: https://gitlab.com/pycqa/flake8
     rev: 3.7.7
     hooks:
       - id: flake8
-#        TODO Add this and fix issues found
-#        additional_dependencies: [flake8-bugbear]
-        exclude: >
-          (?x)^(
-            docs|
-            bedrock/settings|
-            node_modules|
-            assets|
-            static|
-            bedrock/externalfiles/files_cache|
-            git-repos|
-            lib/fluent_migrations
-          )
+  #        TODO Add this and fix issues found
+  #        additional_dependencies: [flake8-bugbear]
   - repo: https://github.com/awebdeveloper/pre-commit-stylelint
     rev: 0.0.2
     hooks:
@@ -32,12 +33,14 @@ repos:
   - repo: https://github.com/eslint/eslint
     rev: v7.32.0
     hooks:
-    -   id: eslint
+      - id: eslint
+        additional_dependencies:
+          - "eslint-plugin-json@2.1.1"
         exclude: >
           (?x)^(
-            docs|
-            node_modules|
-            assets|
-            static|
-            media/js/libs
+            docs
+            | node_modules
+            | assets
+            | static
+            | media/js/libs
           )
