@@ -248,3 +248,24 @@ def vpn_product_referral_link(ctx, referral_id="", page_anchor="", link_text=Non
     markup = f'<a href="{href}{page_anchor}" class="{css_class}" {attrs}>{link_text}</a>'
 
     return jinja2.Markup(markup)
+
+
+@library.global_function
+@jinja2.contextfunction
+def vpn_limited_offer_subscribe_link(ctx, entrypoint, link_text, class_name=None, optional_parameters=None, optional_attributes=None):
+    """
+    Render a vpn.mozilla.org subscription link for cyber security month offer.
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {{ vpn_limited_offer_subscribe_link(entrypoint='www.mozilla.org-vpn-product-page', link_text='Get monthly plan') }}
+    """
+
+    plan = settings.VPN_LIMITED_OFFER_MONTHLY_PLAN_USD
+    product_url = f"{settings.VPN_SUBSCRIPTION_URL}subscriptions/products/{settings.VPN_PRODUCT_ID}?plan={plan}"
+
+    return _vpn_product_link(product_url, entrypoint, link_text, class_name, optional_parameters, optional_attributes)

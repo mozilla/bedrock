@@ -13,7 +13,10 @@ def test_vpn_available_in_country(country, base_url, selenium):
     page = VPNLandingPage(selenium, base_url, params="?geo={0}".format(country)).open()
     # Hero
     assert not page.is_join_waitlist_hero_button_displayed
-    assert page.is_get_vpn_hero_button_displayed
+
+    # Cyber Security Month offer (Issue 10547)
+    if not (country in ["us", "ca", "gb"]):
+        assert page.is_get_vpn_hero_button_displayed
 
     # Navigation
     assert not page.is_join_waitlist_navigation_button_displayed

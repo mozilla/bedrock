@@ -13,6 +13,8 @@ TEST_FXA_ENDPOINT = "https://accounts.firefox.com/"
 TEST_VPN_ENDPOINT = "https://vpn.mozilla.org/"
 TEST_VPN_PRODUCT_ID = "prod_FvnsFHIfezy3ZI"
 TEST_VPN_SUBSCRIPTION_URL = "https://accounts.firefox.com/"
+TEST_VPN_LIMITED_OFFER_MONTHLY_PRICE_USD = "US$4.99"
+TEST_VPN_LIMITED_OFFER_MONTHLY_PLAN_USD = "plan_FvnxS1j9oFUZ7Y"
 
 TEST_VPN_PLAN_ID_MATRIX = {
     "chf": {
@@ -412,6 +414,45 @@ class TestVPNSubscribeLink(TestCase):
             'data-plan-ch="price_1J5Ju3JNcmPzuWtR3GpNYSWj" data-plan-de="price_1IgwZVJNcmPzuWtRg9Wssh2y" '
             'data-plan-es="price_1J5JDgJNcmPzuWtRqQtIbktk" data-plan-fr="price_1IgowHJNcmPzuWtRzD7SgAYb" '
             'data-plan-it="price_1J5J6iJNcmPzuWtRK5zfoguV" data-plan-us="price_1Iw7qSJNcmPzuWtRMUZpOwLm">Get Mozilla VPN</a>'
+        )
+        self.assertEqual(markup, expected)
+
+
+@override_settings(
+    FXA_ENDPOINT=TEST_FXA_ENDPOINT,
+    VPN_PRODUCT_ID=TEST_VPN_PRODUCT_ID,
+    VPN_SUBSCRIPTION_URL=TEST_VPN_SUBSCRIPTION_URL,
+    VPN_LIMITED_OFFER_MONTHLY_PRICE_USD=TEST_VPN_LIMITED_OFFER_MONTHLY_PRICE_USD,
+    VPN_LIMITED_OFFER_MONTHLY_PLAN_USD=TEST_VPN_LIMITED_OFFER_MONTHLY_PLAN_USD,
+)
+class TestVPNLimitedOfferSubscribeLink(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, entrypoint, link_text, class_name=None, optional_parameters=None, optional_attributes=None):
+        req = self.rf.get("/")
+        req.locale = "en-US"
+        return render(
+            "{{{{ vpn_limited_offer_subscribe_link('{0}', '{1}', '{2}', {3}, {4}) }}}}".format(
+                entrypoint, link_text, class_name, optional_parameters, optional_attributes
+            ),
+            {"request": req},
+        )
+
+    def test_vpn_limited_offer_subscribe_link(self):
+        """Should return expected markup for limited time offer subscribe link in $USD"""
+        markup = self._render(
+            entrypoint="www.mozilla.org-vpn-product-page",
+            link_text="Get monthly plan",
+            class_name="mzp-c-button",
+            optional_parameters={"utm_campaign": "cyber-security-month"},
+            optional_attributes={"data-cta-text": "Get Mozilla VPN monthly", "data-cta-type": "fxa-vpn", "data-cta-position": "primary"},
+        )
+        expected = (
+            '<a href="https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=plan_FvnxS1j9oFUZ7Y'
+            "&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&utm_source=www.mozilla.org-vpn-product-page"
+            '&utm_medium=referral&utm_campaign=cyber-security-month&data_cta_position=primary" '
+            'data-action="https://accounts.firefox.com/" class="js-vpn-cta-link js-fxa-product-button mzp-c-button" '
+            'data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" data-cta-position="primary">Get monthly plan</a>'
         )
         self.assertEqual(markup, expected)
 

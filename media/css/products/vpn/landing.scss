@@ -8,6 +8,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/inline-list';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import 'includes/lib';
 
 //* -------------------------------------------------------------------------- */
 // Smooth Scroll
@@ -120,4 +121,22 @@ html {
 .vpn-faq-footer-link {
     display: inline-block;
     margin-bottom: $spacing-lg;
+}
+
+//* -------------------------------------------------------------------------- */
+// Cyber Security month offer (issue 10539)
+
+.t-mark {
+    background: $color-vpn-brand-violet;
+    color: $color-white;
+    font-weight: normal;
+    padding: 0 $spacing-sm;
+}
+
+.c-limited-offer-heading {
+    @include text-title-2xs;
+}
+
+.c-limited-offer-price {
+    @include text-title-sm;
 }

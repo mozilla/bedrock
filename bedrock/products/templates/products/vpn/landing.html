@@ -19,6 +19,9 @@
 {% set _utm_campaign = 'vpn-product-page' %}
 {% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
 
+{# Show $4.99/month offer for wave 1 English markets (issue 10539) #}
+{% set cyber_security_offer = switch('vpn-cyber-security-offer') and LANG.startswith('en-') and country_code in ['US', 'CA', 'GB'] %}
+
 {% block experiments %}
   {% if switch('vpn-landing-page-cta-change', ['en-US']) %}
     {{ js_bundle('vpn-landing-page-cta-change-experiment') }}
@@ -57,16 +60,40 @@
   {% endif %}
 
   {% block hero %}
+    {% set desc = None if cyber_security_offer else ftl('vpn-landing-hero-desc') %}
     {% call vpn_hero(
       heading=ftl('vpn-shared-product-name'),
       subheading=ftl('vpn-landing-hero-sub-heading-v2', fallback='vpn-landing-hero-sub-heading'),
-      desc=ftl('vpn-landing-hero-desc')
+      desc=desc
     ) %}
       <div class="js-vpn-scroll-to-pricing">
         {% block hero_cta_change %}
-          <a class="mzp-c-button mzp-t-xl" href="#pricing" data-cta-type="button" data-cta-text="Scroll to pricing" data-cta-position="primary">
-          {{ ftl('vpn-shared-subscribe-link') }}
-          </a>
+          {% if cyber_security_offer %}
+            <p><strong class="t-mark">Limited-time offer</strong> for Cyber Security month:</p>
+            <h2 class="c-limited-offer-heading">
+              <span class="c-limited-offer-price">{{ settings.VPN_LIMITED_OFFER_MONTHLY_PRICE_USD }}</span>/month (save $59.88)
+            </h2>
+
+            {{ vpn_limited_offer_subscribe_link(
+              entrypoint='www.mozilla.org-vpn-product-page',
+              link_text='Get monthly plan',
+              class_name='mzp-c-button mzp-t-xl',
+              optional_parameters={
+                'utm_campaign': 'cyber-security-month'
+              },
+              optional_attributes={
+                'data-cta-type': 'fxa-vpn',
+                'data-cta-text': 'Get Mozilla VPN monthly',
+                'data-cta-position': 'primary'
+              }
+            ) }}
+
+            <p><a href="#pricing" data-cta-type="link" data-cta-position="primary" data-cta-text="Scroll to pricing">View all pricing plans</a></p>
+          {% else %}
+            <a class="mzp-c-button mzp-t-xl" href="#pricing" data-cta-type="button" data-cta-text="Scroll to pricing" data-cta-position="primary">
+              {{ ftl('vpn-shared-subscribe-link') }}
+            </a>
+          {% endif %}
         {% endblock %}
         <p class="guarantee-copy">
           {{ ftl('vpn-shared-money-back-guarantee') }}

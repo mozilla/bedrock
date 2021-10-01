@@ -20,7 +20,10 @@
         <h1 class="vpn-hero-heading">{{ heading }}</h1>
         <h2 class="vpn-hero-sub-heading">{{ subheading }}</h2>
         <div class="vpn-hero-desc">
-          <p>{{ desc }}</p>
+          {% if desc %}
+            <p>{{ desc }}</p>
+          {% endif %}
+
           {{ caller() }}
         </div>
       </div>
