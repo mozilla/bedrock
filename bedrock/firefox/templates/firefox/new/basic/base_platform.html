@@ -4,6 +4,8 @@
 
 {% extends "firefox/new/basic/base_download.html" %}
 
+{% from "macros-protocol.html" import picto with context %}
+
 {% block experiments %}{% endblock %}
 
 {# This template can render with EITHER 'firefox/new/download.ftl' OR 'firefox/new/platform.ftl' active
@@ -25,11 +27,35 @@
 
 {% block features %}
   {% if ftl_file_is_active('firefox/new/platform') %}
-    <section class="features t-platform">
-      <ul class="mzp-l-card-third mzp-l-content">
-        {{ picto_card(title=card1_title, desc=card1_desc, class=card1_class) }}
-        {{ picto_card(title=card2_title, desc=card2_desc, class=card2_class) }}
-        {{ picto_card(title=card3_title, desc=card3_desc, class=card3_class) }}
+    <section class="features">
+      <ul class="mzp-l-content mzp-l-columns mzp-t-columns-three">
+        {% call picto(
+          title=card1_title,
+          image_url=card1_image_url,
+          body=True,
+          base_el='li',
+          class=card1_class
+        ) %}
+          {{ card1_desc }}
+        {% endcall%}
+        {% call picto(
+          title=card2_title,
+          image_url=card2_image_url,
+          body=True,
+          base_el='li',
+          class=card2_class
+        ) %}
+          {{ card2_desc }}
+        {% endcall%}
+        {% call picto(
+          title=card3_title,
+          image_url=card3_image_url,
+          body=True,
+          base_el='li',
+          class=card3_class
+        ) %}
+          {{ card3_desc }}
+        {% endcall%}
       </ul>
     </section>
   {% endif %}

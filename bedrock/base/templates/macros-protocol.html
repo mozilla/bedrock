@@ -291,7 +291,7 @@
 
 
 {# Picto: https://protocol.mozilla.org/patterns/molecules/picto.html #}
-{% macro picto(title=None, class=None, heading_level=3, base_el='div', body=False, image_url=None, image_width=64, include_highres_image=False, l10n_image=False, lazy_loading=False) -%}
+{% macro picto(title=None, class=None, heading_level=3, base_el='div', body=False, image_url='', image_width=64, include_highres_image=False, l10n_image=False, lazy_loading=False) -%}
 <{{ base_el }} class="mzp-c-picto{% if class %} {{ class }}{% endif %}">
   {% set loading = 'lazy' if lazy_loading else 'eager' %}
   {% if include_highres_image %}
