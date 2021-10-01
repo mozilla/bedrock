@@ -584,7 +584,7 @@ Picto
 - image_url
     image location to be used. Start it off with ‘img/…’.
 
-    Default: None
+    Default: ''
 
     Example: ``image_url='img/icons/mountain-purple.svg'``
 

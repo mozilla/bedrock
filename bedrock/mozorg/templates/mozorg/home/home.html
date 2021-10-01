@@ -41,7 +41,6 @@
 
 {% block content %}
 <main role="main">
-testing
   {% if ftl_has_messages('home-promo-title-lalo', 'home-promo-title-soraya', 'home-promo-title-gary', 'home-promo-title-ryan') %}
     {%- set promos = [
       'mozorg/home/includes/mr1-promo-lalo.html',
@@ -125,6 +124,7 @@ testing
     </section>
 
     <section>
+      {# TODO split externals-sprite to 3 images, fix styling #}
       <ul class="mzp-l-content mzp-l-columns mzp-t-columns-three">
           {% call picto(
             image_url='img/home/externals-sprite.png',
