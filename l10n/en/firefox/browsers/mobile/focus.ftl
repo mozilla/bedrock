@@ -32,7 +32,7 @@ mobile-focus-take-private-mode = Take private mode to the next level
 # Outdated string
 mobile-focus-private-browsing-on = “Private browsing” on most browsers isn’t really all that private. { -brand-name-firefox-focus } is next-level, always on privacy and it’s backed by { -brand-name-mozilla }, the non-profit that fights for your rights on the web.
 
-mobile-focus-private-browsing-on-v2 = “Private browsing” on most browsers isn’t really all that private. { -brand-name-firefox-focus } is next-level, private by default and it’s backed by { -brand-name-mozilla }, the non-profit that fights for your rights on the web.
+mobile-focus-private-browsing-on-v2 = “Private browsing” on most browsers isn’t really all that private. { -brand-name-firefox-focus } offers next-level privacy by default and it’s backed by { -brand-name-mozilla }, the non-profit that fights for your rights on the web.
 
 mobile-focus-tracking-protection = Tracking protection
 mobile-focus-firefox-focus-blocks = { -brand-name-firefox-focus } blocks a wide range of common trackers by default including social trackers and those sticky ones that come from things like { -brand-name-facebook } ads.
