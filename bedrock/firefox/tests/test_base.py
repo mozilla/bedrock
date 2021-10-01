@@ -568,64 +568,51 @@ class TestWhatsNew(TestCase):
 
     # end 92.0 whatsnew tests
 
+    # begin 93.0 whatsnew tests
 
-@patch("bedrock.firefox.views.l10n_utils.render", return_value=HttpResponse())
-class TestWhatsNew92English(TestCase):
-    def setUp(self):
-        self.view = fx_views.WhatsNewEnglishView.as_view()
-        self.rf = RequestFactory(HTTP_USER_AGENT="Firefox")
+    @patch.dict(os.environ, SWITCH_FIREFOX_WHATSNEW_93_EXPERIMENT_FR_DE="False")
+    def test_fx_93_0_0_de(self, render_mock):
+        """Should use whatsnew-fx93-v3-de template for 93.0 in German when switch is OFF"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "de"
+        self.view(req, version="93.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx93-v3-de.html"]
 
-    @patch.dict(os.environ, SWITCH_FIREFOX_WHATSNEW_92_VPN_PRICING="False")
-    def test_fx_92_0_0_en(self, render_mock):
-        """Should use whatsnew-fx92-en template for 92.0 in English when VPN switch is OFF"""
-        req = self.rf.get("/firefox/whatsnew/en/")
+    @patch.dict(os.environ, SWITCH_FIREFOX_WHATSNEW_93_EXPERIMENT_EN="False")
+    def test_fx_93_0_0_en(self, render_mock):
+        """Should use whatsnew-fx93-v3-en template for 93.0 in English when switch is OFF"""
+        req = self.rf.get("/firefox/whatsnew/")
         req.locale = "en-US"
-        self.view(req, version="92.0")
+        self.view(req, version="93.0")
         template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/whatsnew-fx92-en.html"]
+        assert template == ["firefox/whatsnew/whatsnew-fx93-v3-en.html"]
 
-    @patch.dict(os.environ, SWITCH_FIREFOX_WHATSNEW_92_VPN_PRICING="True")
-    def test_fx_92_0_0_vpn_en(self, render_mock):
-        """Should use whatsnew-fx92-vpn-en template for 92.0 in English when VPN switch is ON"""
-        req = self.rf.get("/firefox/whatsnew/en/")
-        req.locale = "en-US"
-        self.view(req, version="92.0")
+    def test_fx_93_0_0_nl(self, render_mock):
+        """Should use whatsnew-fx93-nl template for 93.0 in Dutch"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "nl"
+        self.view(req, version="93.0")
         template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/whatsnew-fx92-vpn-en.html"]
+        assert template == ["firefox/whatsnew/whatsnew-fx93-nl.html"]
 
-
-@patch("bedrock.firefox.views.l10n_utils.render", return_value=HttpResponse())
-class TestWhatsNew92France(TestCase):
-    def setUp(self):
-        self.view = fx_views.WhatsNewFranceView.as_view()
-        self.rf = RequestFactory(HTTP_USER_AGENT="Firefox")
-
-    @patch.dict(os.environ, SWITCH_FIREFOX_WHATSNEW_92_VPN_PRICING_FR="False")
-    def test_fx_92_0_0_fr(self, render_mock):
-        """Should use whatsnew-fx92-fr template for 92.0 in French when VPN switch is OFF"""
-        req = self.rf.get("/firefox/whatsnew/france/")
-        req.locale = "fr"
-        self.view(req, version="92.0")
+    def test_fx_93_0_0_es(self, render_mock):
+        """Should use whatsnew-fx93-es template for 93.0 in Spanish"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "es-ES"
+        self.view(req, version="93.0")
         template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/whatsnew-fx92-fr.html"]
+        assert template == ["firefox/whatsnew/whatsnew-fx93-es.html"]
 
-    @patch.dict(os.environ, SWITCH_FIREFOX_WHATSNEW_92_VPN_PRICING_FR="True")
-    def test_fx_92_0_0_vpn_fr(self, render_mock):
-        """Should use whatsnew-fx92-vpn-fr template for 92.0 in French when VPN switch is ON"""
-        req = self.rf.get("/firefox/whatsnew/france/")
-        req.locale = "fr"
-        self.view(req, version="92.0")
+    def test_fx_93_0_0_locale(self, render_mock):
+        """Should use standard whatsnew template for 93.0 in other locales"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "pl"
+        self.view(req, version="93.0")
         template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/whatsnew-fx92-vpn-fr.html"]
+        assert template == ["firefox/whatsnew/index-account.html"]
 
-    @patch.dict(os.environ, SWITCH_FIREFOX_WHATSNEW_92_VPN_PRICING="True")
-    def test_fx_94_0_a1_fr(self, render_mock):
-        """Should use Nightly /whatsnew template for 94.0.a1"""
-        req = self.rf.get("/firefox/whatsnew/france/")
-        req.locale = "fr"
-        self.view(req, version="94.0a1")
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/nightly/whatsnew.html"]
+    # end 93.0 whatsnew tests
 
 
 @patch("bedrock.firefox.views.l10n_utils.render", return_value=HttpResponse())
