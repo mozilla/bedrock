@@ -130,39 +130,38 @@
             image_width=100,
             include_highres_image=True,
             body=True,
-            base_el='li',
-            class='extensions')
-          %}
-          <a class="mzp-c-cta-link" rel="external" href="https://addons.mozilla.org/{{ referrals }}">
-            <h2 class="mzp-c-picto-heading">{{ ftl('home-extensions') }}</h2>
-          </a>
-          <p>{{ ftl('home-personalize-firefox-with-your') }}</p>
+            base_el='li'
+          ) %}
+            <a class="mzp-c-cta-link" rel="external" href="https://addons.mozilla.org/{{ referrals }}">
+              <h2 class="mzp-c-picto-heading">{{ ftl('home-extensions') }}</h2>
+            </a>
+            <p>{{ ftl('home-personalize-firefox-with-your') }}</p>
           {% endcall %}
 
           {% call picto(
-          image_url='img/home/careers.png',
-          image_width=100,
-          include_highres_image=True,
-          body=True,
-          base_el='li',
-          class='careers') %}
-          <a class="mzp-c-cta-link" rel="external" href="https://careers.mozilla.org/{{ referrals }}">
-            <h2 class="mzp-c-picto-heading">{{ ftl('home-careers') }}</h2>
-          </a>
-          <p>{{ ftl('home-learn-about-the-benefits-of') }}</p>
+            image_url='img/home/careers.png',
+            image_width=100,
+            include_highres_image=True,
+            body=True,
+            base_el='li'
+          ) %}
+            <a class="mzp-c-cta-link" rel="external" href="https://careers.mozilla.org/{{ referrals }}">
+              <h2 class="mzp-c-picto-heading">{{ ftl('home-careers') }}</h2>
+            </a>
+            <p>{{ ftl('home-learn-about-the-benefits-of') }}</p>
           {% endcall %}
 
           {% call picto(
-          image_url='img/home/help.png',
-          image_width=100,
-          include_highres_image=True,
-          body=True,
-          base_el='li',
-          class='help') %}
-          <a class="mzp-c-cta-link" rel="external" href="https://support.mozilla.org/{{ referrals }}">
-            <h2 class="mzp-c-picto-heading">{{ ftl('home-need-help') }}</h2>
-          </a>
-          <p>{{ ftl('home-get-answers-to-your-questions') }} </p>
+            image_url='img/home/help.png',
+            image_width=100,
+            include_highres_image=True,
+            body=True,
+            base_el='li'
+          ) %}
+            <a class="mzp-c-cta-link" rel="external" href="https://support.mozilla.org/{{ referrals }}">
+              <h2 class="mzp-c-picto-heading">{{ ftl('home-need-help') }}</h2>
+            </a>
+            <p>{{ ftl('home-get-answers-to-your-questions') }} </p>
           {% endcall %}
       </ul>
     </section>
