@@ -116,3 +116,35 @@ class TestVPNLandingPage(TestCase):
         view(req)
         template = render_mock.call_args[0][1]
         assert template == 'products/vpn/variations/cta-b.html'
+
+    def test_vpn_landing_page_variant_current_template(self, render_mock):
+        req = RequestFactory().get('/products/vpn/?entrypoint_experiment=vpn-landing-page-vpn-change&entrypoint_variation=current')
+        req.locale = 'en-US'
+        view = views.vpn_landing_page
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == 'products/vpn/variations/hero-image-current.html'
+
+    def test_vpn_landing_page_variant_en_template(self, render_mock):
+        req = RequestFactory().get('/products/vpn/?entrypoint_experiment=vpn-landing-page-vpn-change&entrypoint_variation=en')
+        req.locale = 'en-US'
+        view = views.vpn_landing_page
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == 'products/vpn/variations/hero-image-blur.html'
+
+    def test_vpn_landing_page_variant_fr_template(self, render_mock):
+        req = RequestFactory().get('/products/vpn/?entrypoint_experiment=vpn-landing-page-vpn-change&entrypoint_variation=fr')
+        req.locale = 'fr'
+        view = views.vpn_landing_page
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == 'products/vpn/variations/hero-image-blur.html'
+
+    def test_vpn_landing_page_variant_de_template(self, render_mock):
+        req = RequestFactory().get('/products/vpn/?entrypoint_experiment=vpn-landing-page-vpn-change&entrypoint_variation=de')
+        req.locale = 'de'
+        view = views.vpn_landing_page
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == 'products/vpn/variations/hero-image-blur.html'

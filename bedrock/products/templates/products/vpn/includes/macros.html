@@ -3,7 +3,7 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% block experiments %}
-  {% if switch('vpn-landing-page-cta-change', ['en-US', 'fr', 'de']) %}
+  {% if switch('vpn-landing-page-image-change', ['en-US', 'fr', 'de']) %}
     {{ js_bundle('vpn-landing-page-image-change-experiment') }}
   {% endif %}
 {% endblock %}
