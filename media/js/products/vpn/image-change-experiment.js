@@ -14,12 +14,12 @@
                     'data-ex-variant': 'current',
                     'data-ex-name': 'vpn-landing-page-image-change'
                 });
-            } else (href.indexOf('entrypoint_variation=en') !== -1) {
+            } else if(href.indexOf('entrypoint_variation=en') !== -1) {
                 window.dataLayer.push({
                     'data-ex-variant': 'en',
                     'data-ex-name': 'vpn-landing-page-image-change'
                 });
-            } else (href.indexOf('entrypoint_variation=fr') !== -1) {
+            } else if(href.indexOf('entrypoint_variation=fr') !== -1) {
                 window.dataLayer.push({
                     'data-ex-variant': 'fr',
                     'data-ex-name': 'vpn-landing-page-image-change'

@@ -1,0 +1,20 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "products/vpn/includes/macros.html" %}
+
+{% block hero_image_change}
+
+  <div class="vpn-hero-blur-image">
+
+    {% if LANG == 'en-US' %}
+      <img src="{{ static('img/products/vpn/landing/wnp-93-vpn-hero-en.jpg') }}" alt="">
+    {% elif LANG == 'fr'}
+      <img src="{{ static('img/products/vpn/landing/wnp-93-vpn-hero-fr.jpg') }}" alt="">
+    {% elif LANG == 'de'}
+      <img src="{{ static('img/products/vpn/landing/wnp-93-vpn-hero-de.jpg') }}" alt="">
+
+  </div>
+
+{% endblock %}
