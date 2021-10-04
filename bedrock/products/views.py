@@ -47,7 +47,7 @@ def vpn_landing_page(request):
         template_name = "products/vpn/landing.html"
 
     # view for VPN hero image experiment
-    if entrypoint_variation not in ['current', 'en', 'fr', 'de']:
+    if entrypoint_variation not in ['current', 'blur']:
         entrypoint_variation = None
 
     if entrypoint_experiment != 'vpn-landing-page-image-change':
