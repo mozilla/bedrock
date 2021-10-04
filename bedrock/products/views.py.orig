@@ -34,6 +34,21 @@ def vpn_landing_page(request):
     entrypoint_experiment = request.GET.get("entrypoint_experiment", None)
     entrypoint_variation = request.GET.get("entrypoint_variation", None)
 
+    # ensure experiment parameters matches pre-defined values
+    if entrypoint_variation not in ["a", "b"]:
+        entrypoint_variation = None
+
+    if entrypoint_experiment != "vpn-landing-page-cta-change":
+        entrypoint_experiment = None
+
+    if entrypoint_experiment and entrypoint_variation:
+        template_name = "products/vpn/variations/cta-{}.html".format(entrypoint_variation)
+    else:
+<<<<<<< HEAD
+        template_name = "products/vpn/landing.html"
+=======
+        template_name = 'products/vpn/landing.html'
+
     # view for VPN hero image experiment
     if entrypoint_variation not in ['current', 'blur']:
         entrypoint_variation = None
@@ -45,6 +60,7 @@ def vpn_landing_page(request):
         template_name = 'products/vpn/variations/hero-image-{}.html'.format(entrypoint_variation)
     else:
         template_name = 'products/vpn/landing.html'
+>>>>>>> e76f77a86 (added variants in test-views and changed entrypoint variations)
 
     # error message for visitors who try to sign-in without a subscription (issue 10002)
     if sub_not_found == "true":

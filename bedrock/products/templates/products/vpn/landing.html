@@ -18,8 +18,8 @@
 {% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
 
 {% block experiments %}
-  {% if switch('vpn-landing-page-cta-change', ['en-US']) %}
-    {{ js_bundle('vpn-landing-page-cta-change-experiment') }}
+  {% if switch('vpn-landing-page-image-change', ['en-US']) %}
+    {{ js_bundle('vpn-landing-page-image-change-experiment') }}
   {% endif %}
 {% endblock %}
 

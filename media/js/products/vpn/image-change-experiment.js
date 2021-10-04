@@ -8,25 +8,15 @@
     var href = window.location.href;
 
     var initTrafficCop = function () {
-        if (href.indexOf('entrypoint_experiment=vpn-landing-page-image-change&entrypoint_variation=') !== -1) {
+        if (href.indexOf('entrypoint_experiment=vpn-image-change-image-change&entrypoint_variation=') !== -1) {
             if (href.indexOf('entrypoint_variation=current') !== -1) {
                 window.dataLayer.push({
                     'data-ex-variant': 'current',
                     'data-ex-name': 'vpn-landing-page-image-change'
                 });
-            } else if(href.indexOf('entrypoint_variation=en') !== -1) {
+            } else if(href.indexOf('entrypoint_variation=blur') !== -1) {
                 window.dataLayer.push({
-                    'data-ex-variant': 'en',
-                    'data-ex-name': 'vpn-landing-page-image-change'
-                });
-            } else if(href.indexOf('entrypoint_variation=fr') !== -1) {
-                window.dataLayer.push({
-                    'data-ex-variant': 'fr',
-                    'data-ex-name': 'vpn-landing-page-image-change'
-                });
-            } else if (href.indexOf('entrypoint_variation=de') !== -1) {
-                window.dataLayer.push({
-                    'data-ex-variant': 'de',
+                    'data-ex-variant': 'blur',
                     'data-ex-name': 'vpn-landing-page-image-change'
                 });
             }
@@ -34,10 +24,8 @@
             var cop = new Mozilla.TrafficCop({
                 id: 'vpn-landing-page-image-change-experiment',
                 variations: {
-                    'entrypoint_experiment=vpn-landing-page-image-change&entrypoint_variation=current': 10,
-                    'entrypoint_experiment=vpn-landing-page-image-change&entrypoint_variation=en': 10,
-                    'entrypoint_experiment=vpn-landing-page-image-change&entrypoint_variation=fr': 10,
-                    'entrypoint_experiment=vpn-landing-page-image-change&entrypoint_variation=de': 10,
+                    'entrypoint_experiment=vpn-landing-page-image-change&entrypoint_variation=current': 50,
+                    'entrypoint_experiment=vpn-landing-page-image-change&entrypoint_variation=blur': 50
                 }
             });
 
@@ -46,7 +34,7 @@
     };
 
     // Avoid entering automated tests into random experiments.
-    if (href.indexOf('automation=true') === -1 && href.indexOf('utm_medium=cpc') === -1) {
+    if (href.indexOf('automation=true') === -1) {
         initTrafficCop();
     }
 

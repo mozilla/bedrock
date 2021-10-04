@@ -1691,6 +1691,14 @@
     },
     {
       "files": [
+        "js/base/mozilla-fxa-product-button.js",
+        "js/products/vpn/geo.js",
+        "js/products/vpn/landing-blur.js"
+      ],
+      "name": "mozilla-vpn-landing-blur"
+    },
+    {
+      "files": [
         "js/products/vpn/invite.js"
       ],
       "name": "mozilla-vpn-invite"

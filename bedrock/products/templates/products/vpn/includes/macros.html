@@ -2,12 +2,6 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% block experiments %}
-  {% if switch('vpn-landing-page-image-change', ['en-US', 'fr', 'de']) %}
-    {{ js_bundle('vpn-landing-page-image-change-experiment') }}
-  {% endif %}
-{% endblock %}
-
 {% macro hero_image(low_res_img, high_res_img, class_name) -%}
   <picture>
     <source srcset="{{ static(low_res_img) }} 480w, {{ static(high_res_img) }} 960w" media="(min-width: 1024px)">
@@ -29,36 +23,67 @@
         </div>
       </div>
 
-      {% block hero_image_change %}
-
       <div class="vpn-hero-image hide-from-legacy-ie" data-illustration="n-1">
         {{ hero_image(
           'img/products/vpn/landing/vpn-hero-01.png',
           'img/products/vpn/landing/vpn-hero-01-high-res.png',
           'n-1')
         }}
+
         {{ hero_image(
           'img/products/vpn/landing/vpn-hero-02.png',
           'img/products/vpn/landing/vpn-hero-02-high-res.png',
           'n-2')
         }}
+
         {{ hero_image(
           'img/products/vpn/landing/vpn-hero-03.png',
           'img/products/vpn/landing/vpn-hero-03-high-res.png',
           'n-3')
         }}
+
         {{ hero_image(
           'img/products/vpn/landing/vpn-hero-04.png',
           'img/products/vpn/landing/vpn-hero-04-high-res.png',
           'n-4')
         }}
+
         {{ hero_image(
           'img/products/vpn/landing/vpn-hero-05.png',
           'img/products/vpn/landing/vpn-hero-05-high-res.png',
           'n-5')
         }}
       </div>
-      {% endblock %}
+
+    </div>
+  </div>
+</section>
+{% endmacro %}
+
+
+{% macro vpn_hero_blur(heading, subheading, desc) -%}
+<section class="vpn-hero">
+  <div class="mzp-l-content mzp-t-content-xl">
+    <div class="vpn-hero-container">
+      <div class="vpn-hero-body">
+        <h1 class="vpn-hero-heading">{{ heading }}</h1>
+        <h2 class="vpn-hero-sub-heading">{{ subheading }}</h2>
+        <div class="vpn-hero-desc">
+          <p>{{ desc }}</p>
+          {{ caller() }}
+        </div>
+      </div>
+
+      <div class="vpn-hero-blur-image">
+        {% if LANG.startswith('en-') %}
+          <img src="{{ static('img/products/vpn/landing/wnp-93-vpn-hero-en.jpg') }}" alt="">
+        {% elif LANG == 'fr' %}
+          <img src="{{ static('img/products/vpn/landing/wnp-93-vpn-hero-fr.jpg') }}" alt="">
+        {% elif LANG == 'de' %}
+          <img src="{{ static('img/products/vpn/landing/wnp-93-vpn-hero-de.jpg') }}" alt="">
+        {% endif %}
+      </div>
+
     </div>
   </div>
 </section>
