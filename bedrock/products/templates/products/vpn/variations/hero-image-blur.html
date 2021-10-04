@@ -4,15 +4,15 @@
 
 {% extends "products/vpn/includes/macros.html" %}
 
-{% block hero_image_change}
+{% block hero_image_change %}
 
   <div class="vpn-hero-blur-image">
 
     {% if LANG == 'en-US' %}
       <img src="{{ static('img/products/vpn/landing/wnp-93-vpn-hero-en.jpg') }}" alt="">
-    {% elif LANG == 'fr'}
+    {% elif LANG == 'fr' %}
       <img src="{{ static('img/products/vpn/landing/wnp-93-vpn-hero-fr.jpg') }}" alt="">
-    {% elif LANG == 'de'}
+    {% elif LANG == 'de' %}
       <img src="{{ static('img/products/vpn/landing/wnp-93-vpn-hero-de.jpg') }}" alt="">
 
   </div>
