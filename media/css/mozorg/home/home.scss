@@ -37,6 +37,26 @@ $image-path: '/media/protocol/img';
 }
 
 //* -------------------------------------------------------------------------- */
+// Picto
+
+.externals {
+    .mzp-l-content {
+        padding-bottom: 0;
+    }
+
+    @media #{$mq-lg} {
+        .mzp-c-picto-heading {
+            @include text-title-sm;
+        }
+
+        .mzp-c-picto-body {
+            max-width: $content-xs;
+            margin: 0 auto;
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
 // Two column section
 
 .c-column-container {

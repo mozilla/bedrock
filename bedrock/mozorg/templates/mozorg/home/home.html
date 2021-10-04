@@ -123,39 +123,44 @@
       </div>
     </section>
 
-    <section>
-      {# TODO split externals-sprite to 3 images, fix styling #}
-      <ul class="mzp-l-content mzp-l-columns mzp-t-columns-three">
+    <section class="externals">
+      <ul class="mzp-l-content mzp-l-columns mzp-t-columns-three mzp-t-picto-center">
           {% call picto(
-            image_url='img/home/externals-sprite.png',
+            image_url='img/home/extensions.png',
+            image_width=100,
+            include_highres_image=True,
             body=True,
             base_el='li',
             class='extensions')
           %}
           <a class="mzp-c-cta-link" rel="external" href="https://addons.mozilla.org/{{ referrals }}">
-            <h2>{{ ftl('home-extensions') }}</h2>
+            <h2 class="mzp-c-picto-heading">{{ ftl('home-extensions') }}</h2>
           </a>
           <p>{{ ftl('home-personalize-firefox-with-your') }}</p>
           {% endcall %}
 
           {% call picto(
-          image_url='img/home/externals-sprite.png',
+          image_url='img/home/careers.png',
+          image_width=100,
+          include_highres_image=True,
           body=True,
           base_el='li',
           class='careers') %}
           <a class="mzp-c-cta-link" rel="external" href="https://careers.mozilla.org/{{ referrals }}">
-            <h2>{{ ftl('home-careers') }}</h2>
+            <h2 class="mzp-c-picto-heading">{{ ftl('home-careers') }}</h2>
           </a>
           <p>{{ ftl('home-learn-about-the-benefits-of') }}</p>
           {% endcall %}
 
           {% call picto(
-          image_url='img/home/externals-sprite.png',
+          image_url='img/home/help.png',
+          image_width=100,
+          include_highres_image=True,
           body=True,
           base_el='li',
           class='help') %}
           <a class="mzp-c-cta-link" rel="external" href="https://support.mozilla.org/{{ referrals }}">
-            <h2>{{ ftl('home-need-help') }}</h2>
+            <h2 class="mzp-c-picto-heading">{{ ftl('home-need-help') }}</h2>
           </a>
           <p>{{ ftl('home-get-answers-to-your-questions') }} </p>
           {% endcall %}
