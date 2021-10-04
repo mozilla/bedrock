@@ -81,7 +81,7 @@ $image-path: '/media/protocol/img';
     margin-bottom: 20px;
 
     li {
-        margin-left: 0px;
+        margin-left: 0;
     }
 
     @media #{$mq-md} {
@@ -98,7 +98,7 @@ $image-path: '/media/protocol/img';
 }
 
 .resource-center-cta {
-    margin-bottom: $spacing-lg
+    margin-bottom: $spacing-lg;
 }
 
 .mzp-t-resource-center {
