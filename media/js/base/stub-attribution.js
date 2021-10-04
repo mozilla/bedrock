@@ -345,7 +345,7 @@ if (typeof window.Mozilla === 'undefined') {
             }
 
             // Attribution data can be double encoded
-            while (content.includes('%')) {
+            while (content.indexOf('%') !== -1) {
                 try {
                     var result = decodeURIComponent(content);
                     if (result === content) {
