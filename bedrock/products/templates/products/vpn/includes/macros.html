@@ -2,6 +2,12 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% block experiments %}
+  {% if switch('vpn-landing-page-cta-change', ['en-US', 'fr', 'de']) %}
+    {{ js_bundle('vpn-landing-page-image-change-experiment') }}
+  {% endif %}
+{% endblock %}
+
 {% macro hero_image(low_res_img, high_res_img, class_name) -%}
   <picture>
     <source srcset="{{ static(low_res_img) }} 480w, {{ static(high_res_img) }} 960w" media="(min-width: 1024px)">
