@@ -50,7 +50,7 @@ $image-path: '/media/protocol/img';
     margin-top: $layout-lg;
 }
 
-.vpn-hero-image {
+.vpn-hero-blur-image {
     display: none;
     position: relative;
 
@@ -77,6 +77,34 @@ $image-path: '/media/protocol/img';
         opacity: 1;
     }
 }
+
+// .vpn-hero-image {
+//     display: none;
+//     position: relative;
+
+//     picture {
+//         @include bidi((
+//             (left, 0, right, 0),
+//         ));
+//         height: 480px;
+//         position: absolute;
+//         top: 0;
+//         width: 480px;
+
+//         img {
+//             @include transition(opacity .5s ease-in-out);
+//             opacity: 0;
+//         }
+//     }
+
+//     &[data-illustration="n-1"] .n-1,
+//     &[data-illustration="n-2"] .n-2,
+//     &[data-illustration="n-3"] .n-3,
+//     &[data-illustration="n-4"] .n-4,
+//     &[data-illustration="n-5"] .n-5 {
+//         opacity: 1;
+//     }
+// }
 
 @media #{mq-md} {
     .vpn-hero-sub-heading {

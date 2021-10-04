@@ -22,7 +22,11 @@
           {{ caller() }}
         </div>
       </div>
-      <div class="vpn-hero-image hide-from-legacy-ie" data-illustration="n-1">
+      <div class="vpn-hero-image">
+         <img src="{{ static('img/products/vpn/landing/vpn-hero-01-high-res.png') }}" alt="">
+      </div>
+      <!-- <div class="vpn-hero-image hide-from-legacy-ie" data-illustration="n-1">
+
         {{ hero_image(
           'img/products/vpn/landing/vpn-hero-01.png',
           'img/products/vpn/landing/vpn-hero-01-high-res.png',
@@ -48,11 +52,11 @@
           'img/products/vpn/landing/vpn-hero-05-high-res.png',
           'n-5')
         }}
-      </div>
+      </div> -->
     </div>
   </div>
 </section>
-{%- endmacro %}
+{% endmacro %}
 
 {% macro vpn_platform_hero(heading, subheading, desc, image_url) -%}
 <section class="vpn-hero">
