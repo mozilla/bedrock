@@ -1,2 +1,130 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$callout-image-path: '/media/img/home/2020/vpn-hero-high-res.png';
+$image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/inline-list';
+@import '~@mozilla-protocol/core/protocol/css/components/call-out';
+@import '~@mozilla-protocol/core/protocol/css/components/card';
+@import '~@mozilla-protocol/core/protocol/css/components/split';
+@import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
+@import '~@mozilla-protocol/core/protocol/css/includes/fonts/metropolis';
+@import '~@mozilla-protocol/core/protocol/css/includes/fonts/inter';
+
+.resource-center-page-header {
+    // no images are being used yet for the background
+    // background-image: url(#{$callout-image-path});
+    // background-position: top left;
+    // background-repeat: no-repeat;
+    // background-attachment: fixed;
+    .mzp-l-content {
+        max-width: 595px;
+        .mzp-c-call-out-title {
+            @include font-firefox;
+        }
+        .mzp-c-call-out-desc {
+            font-weight: 700;
+        }
+    }
+}
+
+.resource-center-hero {
+    background-color: $color-white;
+}
+
+.mzp-c-category-list {
+    background-color: #f3f3f3;
+    padding: 8px 18px;
+
+    .mzp-c-category-list-title {
+        @include text-body-md;
+        @include font-base;
+        display: inline-block;
+        margin-bottom: 0;
+
+        a {
+            text-decoration: none;
+        }
+    }
+
+    .mzp-c-category-list-list {
+        display: inline-block;
+        margin-bottom: 0;
+
+        .mzp-c-category-list-item {
+            @include bidi(((margin-left, $layout-sm, margin-left, $layout-sm),));
+            display: none;
+
+            a {
+                text-decoration: none;
+            }
+
+            @media #{$mq-md} {
+                display: inline-block;
+            }
+        }
+    }
+
+    @media #{$mq-md} {
+        padding: 8px 80px;
+    }
+}
+
+.resource-center-hero-icon-list {
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+
+    li {
+        margin-left: 0px;
+    }
+
+    @media #{$mq-md} {
+        justify-content: center;
+
+        li {
+            margin-left: 48px;
+
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+.resource-center-cta {
+    margin-bottom: $spacing-lg
+}
+
+.mzp-t-resource-center {
+    background: linear-gradient(
+        12deg,
+        #D0D4F9 0%,
+        #D0D4F9 85%,
+         $color-white 85%,
+         $color-white 100%);
+    padding-bottom: 0;
+    padding-top: 100px;
+    @media #{$mq-md} {
+        background: linear-gradient(
+            12deg,
+            #D0D4F9 0%,
+            #D0D4F9 65%,
+             $color-white 65%,
+             $color-white 100%);
+        padding-top: 0;
+    }
+}
+
+//this may be added + updated if this theme is used in other areas
+.mzp-c-button.mzp-t-vpn {
+    color: $color-blue-50;
+    background-color: $color-white;
+    border: transparent;
+}
+
