@@ -766,7 +766,7 @@
       "name": "mozilla-vpn-info"
     },
     {
-      "files": ["css/products/vpn/resource-center"],
+      "files": ["css/products/vpn/resource-center.scss"],
       "name": "vpn-resource-center"
     }
   ],

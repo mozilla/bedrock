@@ -1,5 +1,90 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+{% from 'macros-protocol.html' import call_out, card, split %}
 
 {% extends "products/vpn/base.html" %}
+
+{% block page_css %}
+  {{ css_bundle('vpn-resource-center')}}
+{% endblock page_css %}
+
+{% set card_list =[1, 2, 3, 4, 5, 6] %}
+
+{% block content %}
+  {{ call_out (
+    title='What’s the deal with Virtual Private Networks?',
+    desc='Discover how they work, why they’re important and what using a VPN can do for you.',
+    class='resource-center-page-header resource-center-hero'
+  )}}
+  {#Category component is out of the scope of this project, but still stubbed it out#}
+    <div class="mzp-c-category-list">
+      <h2 class="mzp-c-category-list-title">
+        <a href="#">View All &#62</a>
+      </h2>
+      <ul class="mzp-c-category-list-list">
+        <li class="mzp-c-category-list-item">
+          <a href="#">Category 1</a>
+        </li>
+        <li class="mzp-c-category-list-item">
+          <a href="#">Category 2</a>
+        </li>
+        <li class="mzp-c-category-list-item">
+          <a href="#">Category 3</a>
+        </li>
+        <li class="mzp-c-category-list-item">
+          <a href="#">Category 4</a>
+        </li>
+        <li class="mzp-c-category-list-item">
+          <a href="#">Category 5</a>
+        </li>
+      </ul>
+    </div>
+    <div class="mzp-l-content mzp-l-card-third">
+      {% for item in card_list %}
+        {{ card (
+          title='Article title',
+          ga_title='Article title',
+          desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
+          image_url="img/products/vpn/resource-center/resource-center-article-2.png"
+        )}}
+      {% endfor %}
+    </div>
+    <section class="mzp-c-call-out resource-center-hero">
+      <div class="mzp-l-content">
+        <ul class="resource-center-hero-icon-list">
+          <li class="resource-center-hero-icon-list-item"><img src="{{ static('img/products/vpn/resource-center/ios_icon.svg')}}"></li>
+          <li class="resource-center-hero-icon-list-item"><img src="{{ static('img/products/vpn/resource-center/apple_icon.svg')}}"></li>
+          <li class="resource-center-hero-icon-list-item"><img src="{{ static('img/products/vpn/resource-center/android_icon.svg')}}"></li>
+          <li class="resource-center-hero-icon-list-item"><img src="{{ static('img/products/vpn/resource-center/linux_icon.svg')}}"></li>
+          <li class="resource-center-hero-icon-list-item"><img src="{{ static('img/products/vpn/resource-center/windows_icon.svg')}}"></li>
+        </ul>
+        <h2 class="mzp-c-call-out-title">Mozilla VPN is wherever you go.</h2>
+        <a class='mzp-c-button mzp-t-product resource-center-cta'>Save $40 Today*</a>
+        <p class="resource-center-cta-desc">*When you subscribe to a 12 month plan</p>
+      </div>
+    </section>
+     <div class="mzp-l-content mzp-l-card-third">
+      {% for item in card_list %}
+        {{ card (
+          title='Article title',
+          ga_title='Article title',
+          desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
+          image_url="img/products/vpn/resource-center/resource-center-article-2.png"
+        )}}
+      {% endfor %}
+    </div>
+    {% call split(
+        block_class='mzp-t-resource-center',
+        image_url='img/products/vpn/resource-center/vpn-resource-center-hero.png',
+        media_after=True,
+    )%}
+    <h2>Mozilla VPN</h1>
+    <h3>Made by people who know privacy</h2>
+    <a class="mzp-c-button mzp-t-vpn">Save 30% Today</a>
+
+
+    {%endcall%}
+
+{% endblock %}
+
