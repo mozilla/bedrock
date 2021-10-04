@@ -8,3 +8,11 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/picto';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
+
+@media #{$mq-lg} {
+    .features .mzp-c-picto-body {
+        max-width: $content-xs;
+        margin: 0 auto;
+    }
+}
+

@@ -28,11 +28,11 @@
 {% block features %}
   {% if ftl_file_is_active('firefox/new/platform') %}
     <section class="features">
-      {# TODO: fix styling #}
-      <ul class="mzp-l-content mzp-l-columns mzp-t-columns-three">
+      <ul class="mzp-l-content mzp-l-columns mzp-t-columns-three mzp-t-picto-center">
         {% call picto(
           title=card1_title,
           image_url=card1_image_url,
+          image_width=96,
           body=True,
           base_el='li',
           class=card1_class
@@ -42,6 +42,7 @@
         {% call picto(
           title=card2_title,
           image_url=card2_image_url,
+          image_width=96,
           body=True,
           base_el='li',
           class=card2_class
@@ -51,6 +52,7 @@
         {% call picto(
           title=card3_title,
           image_url=card3_image_url,
+          image_width=96,
           body=True,
           base_el='li',
           class=card3_class
