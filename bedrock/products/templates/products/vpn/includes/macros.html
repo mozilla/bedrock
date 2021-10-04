@@ -28,11 +28,10 @@
           {{ caller() }}
         </div>
       </div>
-      <div class="vpn-hero-image">
-         <img src="{{ static('img/products/vpn/landing/vpn-hero-01-high-res.png') }}" alt="">
-      </div>
-      <!-- <div class="vpn-hero-image hide-from-legacy-ie" data-illustration="n-1">
 
+      {% block hero_image_change %}
+
+      <div class="vpn-hero-image hide-from-legacy-ie" data-illustration="n-1">
         {{ hero_image(
           'img/products/vpn/landing/vpn-hero-01.png',
           'img/products/vpn/landing/vpn-hero-01-high-res.png',
@@ -58,7 +57,8 @@
           'img/products/vpn/landing/vpn-hero-05-high-res.png',
           'n-5')
         }}
-      </div> -->
+      </div>
+      {% endblock %}
     </div>
   </div>
 </section>
