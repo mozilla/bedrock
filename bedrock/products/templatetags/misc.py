@@ -53,9 +53,9 @@ def _vpn_product_link(product_url, entrypoint, link_text, class_name=None, optio
 
 @library.global_function
 @jinja2.contextfunction
-def vpn_sign_in_link(ctx, entrypoint, link_text, class_name=None, optional_parameters=None, optional_attributes=None):
+def vpn_download_link(ctx, entrypoint, link_text, class_name=None, optional_parameters=None, optional_attributes=None):
     """
-    Render a vpn.mozilla.org sign-in link with required params for FxA authentication.
+    Render a vpn.mozilla.org download link with required params for product referrals.
 
     Examples
     ========
@@ -63,9 +63,9 @@ def vpn_sign_in_link(ctx, entrypoint, link_text, class_name=None, optional_param
     In Template
     -----------
 
-        {{ vpn_sign_in_link(entrypoint='www.mozilla.org-vpn-product-page', link_text='Sign In') }}
+        {{ vpn_download_link(entrypoint='www.mozilla.org-vpn-product-page', link_text='Already a subscriber?') }}
     """
-    product_url = f"{settings.VPN_ENDPOINT}oauth/init"
+    product_url = f"{settings.VPN_ENDPOINT}vpn/download"
 
     return _vpn_product_link(product_url, entrypoint, link_text, class_name, optional_parameters, optional_attributes)
 

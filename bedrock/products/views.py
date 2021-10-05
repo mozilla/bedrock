@@ -27,13 +27,6 @@ def vpn_available(request):
 def vpn_landing_page(request):
     template_name = "products/vpn/landing.html"
     ftl_files = ["products/vpn/landing", "products/vpn/shared"]
-    sub_not_found = request.GET.get("vpn-sub-not-found", None)
-
-    # error message for visitors who try to sign-in without a subscription (issue 10002)
-    if sub_not_found == "true":
-        sub_not_found = True
-    else:
-        sub_not_found = False
 
     context = {
         "vpn_available": vpn_available(request),
@@ -41,7 +34,6 @@ def vpn_landing_page(request):
         "connect_servers": settings.VPN_CONNECT_SERVERS,
         "connect_countries": settings.VPN_CONNECT_COUNTRIES,
         "connect_devices": settings.VPN_CONNECT_DEVICES,
-        "sub_not_found": sub_not_found,
     }
 
     return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)

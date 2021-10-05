@@ -193,15 +193,15 @@ all support the same standard parameters:
 Mozilla VPN Links
 -----------------
 
-Use the ``vpn_sign_in_link`` helper to create a sign-in link to https://vpn.mozilla.org/ via a
-Firefox Accounts auth flow.
+Use the ``vpn_download_link`` helper to create a link to https://vpn.mozilla.org/vpn/download/
+with FxA metrics params attached.
 
 Usage
 ~~~~~
 
 .. code-block:: jinja
 
-    {{ vpn_sign_in_link(entrypoint='www.mozilla.org-vpn-product-page', link_text='Sign In') }}
+    {{ vpn_download_link(entrypoint='www.mozilla.org-vpn-product-page', link_text='Already a subscriber?') }}
 
 Use the ``vpn_subscribe_link`` helpers to create a VPN subscription link via a
 Firefox Accounts auth flow.
