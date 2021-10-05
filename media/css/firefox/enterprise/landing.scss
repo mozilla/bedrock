@@ -163,45 +163,6 @@ $image-path: '/media/protocol/img';
 }
 
 //* -------------------------------------------------------------------------- */
-// Picto Cards
-
-// Custom Overrides pending https://github.com/mozilla/protocol/issues/382
-.mzp-c-card-picto {
-    @include bidi(((text-align, left, right),));
-    padding-top: 0;
-
-    .mzp-c-card-picto-content:before {
-        @include bidi(((left, 0, right, 0),));
-        background-color: transparent;
-        margin-left: 0;
-    }
-
-    @media #{$mq-md} {
-        .mzp-c-card-picto-content:before {
-            @include bidi(((left, $spacing-lg, right, 0),));
-        }
-    }
-
-    &.privacy .mzp-c-card-picto-content:before {
-        background-image: url('/media/img/firefox/enterprise/icon-data-privacy.svg');
-        height: 53px;
-        width: 44px;
-    }
-
-    &.deploy .mzp-c-card-picto-content:before {
-        background-image: url('/media/img/firefox/enterprise/icon-deploy.svg');
-        height: 53px;
-        width: 53px;
-    }
-
-    &.release .mzp-c-card-picto-content:before {
-        background-image: url('/media/img/firefox/enterprise/icon-release.svg');
-        height: 53px;
-        width: 49px;
-    }
-}
-
-//* -------------------------------------------------------------------------- */
 // Downloads Section
 
 @supports(display: grid) {

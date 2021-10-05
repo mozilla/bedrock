@@ -60,7 +60,7 @@ $image-path: '/media/protocol/img';
 }
 
 //* -------------------------------------------------------------------------- */
-// Picto Cards
+// Pictos
 
 .privacy-products-etp {
     & > .mzp-l-content {
@@ -191,15 +191,6 @@ $image-path: '/media/protocol/img';
         display: none;
     }
 
-    .privacy-products-etp .mzp-c-card-picto-title {
-
-        &:hover,
-        &:active,
-        &:focus {
-            cursor: pointer;
-            text-decoration: underline;
-        }
-    }
 }
 
 .state-firefox-desktop-old {
