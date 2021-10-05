@@ -766,7 +766,7 @@
       "name": "mozilla-vpn-info"
     },
     {
-      "files": ["css/products/vpn/resource-center.scss"],
+      "files": ["css/products/vpn/resource-center.scss",  "css/base/mozilla-lazy-image.scss"],
       "name": "vpn-resource-center"
     }
   ],
@@ -1399,6 +1399,20 @@
         "js/contentful/lazyload-init.js"
       ],
       "name": "c-card"
+    },
+    {
+      "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/products/vpn/cta-change-experiment.js"
+      ],
+      "name": "vpn-landing-page-cta-change-experiment"
+    },
+    {
+      "files": [
+        "js/base/mozilla-lazy-load.js",
+        "js/products/vpn/resource-center.js"
+      ],
+      "name": "vpn-resource-center"
     }
   ]
 }
