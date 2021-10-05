@@ -8,6 +8,7 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/inline-list';
+@import '~@mozilla-protocol/core/protocol/css/components/article';
 @import '~@mozilla-protocol/core/protocol/css/components/call-out';
 @import '~@mozilla-protocol/core/protocol/css/components/card';
 @import '~@mozilla-protocol/core/protocol/css/components/split';
@@ -126,5 +127,20 @@ $image-path: '/media/protocol/img';
     color: $color-blue-50;
     background-color: $color-white;
     border: transparent;
+}
+
+.resource-center-article-container {
+    background: url('/media/img/products/vpn/resource-center/resource-center-banner-bg.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.resource-center-article {
+    padding: 30px 40px 0 40px;
+    background-color: $color-white;
+
+    .mzp-c-article-subtitle {
+        @include text-title-sm;
+    }
 }
 
