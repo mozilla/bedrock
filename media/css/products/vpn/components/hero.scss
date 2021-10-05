@@ -50,15 +50,17 @@ $image-path: '/media/protocol/img';
     margin-top: $layout-lg;
 }
 
+.vpn-hero-blur-container {
+    display: flex;
+    align-items: center;
+}
+
 .vpn-hero-blur-image {
     display: none;
 
     @media #{$mq-lg} {
         display: block;
-        img {
-             width: 480px;
-             height: 480px;
-         }
+        width: $screen-md;
 
     }
 }

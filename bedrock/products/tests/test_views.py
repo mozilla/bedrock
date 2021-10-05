@@ -94,36 +94,36 @@ class TestVPNLandingPage(TestCase):
         view = views.vpn_landing_page
         view(req)
         template = render_mock.call_args[0][1]
-        assert template == 'products/vpn/variations/cta-b.html'
+        assert template == "products/vpn/variations/cta-b.html"
 
     def test_vpn_landing_page_variant_current_template(self, render_mock):
-        req = RequestFactory().get('/products/vpn/?entrypoint_experiment=vpn-landing-page-image-change&entrypoint_variation=current')
-        req.locale = 'en-US'
+        req = RequestFactory().get("/products/vpn/?entrypoint_experiment=vpn-landing-page-image-change&entrypoint_variation=current")
+        req.locale = "en-US"
         view = views.vpn_landing_page
         view(req)
         template = render_mock.call_args[0][1]
-        assert template == 'products/vpn/variations/hero-image-current.html'
+        assert template == "products/vpn/variations/hero-image-current.html"
 
     def test_vpn_landing_page_variant_en_template(self, render_mock):
-        req = RequestFactory().get('/products/vpn/?entrypoint_experiment=vpn-landing-page-image-change&entrypoint_variation=current=en')
-        req.locale = 'en-US'
+        req = RequestFactory().get("/products/vpn/?entrypoint_experiment=vpn-landing-page-image-change&entrypoint_variation=current=en")
+        req.locale = "en-US"
         view = views.vpn_landing_page
         view(req)
         template = render_mock.call_args[0][1]
-        assert template == 'products/vpn/variations/hero-image-blur.html'
+        assert template == "products/vpn/variations/hero-image-blur.html"
 
     def test_vpn_landing_page_variant_fr_template(self, render_mock):
-        req = RequestFactory().get('/products/vpn/?entrypoint_experiment=vpn-landing-page-image-change&entrypoint_variation=current=fr')
-        req.locale = 'fr'
+        req = RequestFactory().get("/products/vpn/?entrypoint_experiment=vpn-landing-page-image-change&entrypoint_variation=current=fr")
+        req.locale = "fr"
         view = views.vpn_landing_page
         view(req)
         template = render_mock.call_args[0][1]
-        assert template == 'products/vpn/variations/hero-image-blur.html'
+        assert template == "products/vpn/variations/hero-image-blur.html"
 
     def test_vpn_landing_page_variant_de_template(self, render_mock):
-        req = RequestFactory().get('/products/vpn/?entrypoint_experiment=vpn-landing-page-image-change&entrypoint_variation=current=de')
-        req.locale = 'de'
+        req = RequestFactory().get("/products/vpn/?entrypoint_experiment=vpn-landing-page-image-change&entrypoint_variation=current=de")
+        req.locale = "de"
         view = views.vpn_landing_page
         view(req)
         template = render_mock.call_args[0][1]
-        assert template == 'products/vpn/variations/hero-image-blur.html'
+        assert template == "products/vpn/variations/hero-image-blur.html"

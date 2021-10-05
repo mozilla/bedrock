@@ -35,16 +35,16 @@ def vpn_landing_page(request):
     entrypoint_variation = request.GET.get("entrypoint_variation", None)
 
     # view for VPN hero image experiment
-    if entrypoint_variation not in ['current', 'blur']:
+    if entrypoint_variation not in ["current", "blur"]:
         entrypoint_variation = None
 
-    if entrypoint_experiment != 'vpn-landing-page-image-change':
+    if entrypoint_experiment != "vpn-landing-page-image-change":
         entrypoint_experiment = None
 
     if entrypoint_experiment and entrypoint_variation:
-        template_name = 'products/vpn/variations/hero-image-{}.html'.format(entrypoint_variation)
+        template_name = "products/vpn/variations/hero-image-{}.html".format(entrypoint_variation)
     else:
-        template_name = 'products/vpn/landing.html'
+        template_name = "products/vpn/landing.html"
 
     # error message for visitors who try to sign-in without a subscription (issue 10002)
     if sub_not_found == "true":
