@@ -24,8 +24,8 @@
             var cop = new Mozilla.TrafficCop({
                 id: 'vpn-landing-page-image-change-experiment',
                 variations: {
-                    'entrypoint_experiment=vpn-landing-page-image-change&entrypoint_variation=current': 50,
-                    'entrypoint_experiment=vpn-landing-page-image-change&entrypoint_variation=blur': 50
+                    'entrypoint_experiment=vpn-landing-page-image-change&entrypoint_variation=current': 10,
+                    'entrypoint_experiment=vpn-landing-page-image-change&entrypoint_variation=blur': 10
                 }
             });
 
