@@ -144,3 +144,33 @@ $image-path: '/media/protocol/img';
     }
 }
 
+// temporary until we incorporate breadcrumb to protocol
+
+.mzp-c-breadcrumb {
+    background-color: #f3f3f3;
+    margin-bottom: 0;
+    padding: $spacing-sm $spacing-md;
+
+    .mzp-c-breadcrumb-item {
+        font-weight: bold;
+        &:before {
+            @include bidi(((content, "\2192", "\2190"),));
+            font-weight: normal;
+            margin: 0 0.25em;
+        }
+    }
+
+    .mzp-c-breadcrumb-item, .mzp-c-breadcrumb-title {
+        display: inline-block;
+        font-weight: 400;
+
+        .mzp-c-breadcrumb-item-link {
+            text-decoration: none;
+        }
+    }
+    @media #{$mq-md} {
+        padding: $spacing-sm $layout-xl - $spacing-md;
+    }
+
+}
+
