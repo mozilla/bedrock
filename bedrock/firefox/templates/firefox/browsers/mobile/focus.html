@@ -7,7 +7,10 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% block page_image %}{{ static('protocol/img/logos/firefox/browser/focus/og.png') }}{% endblock %}
+{% block page_image %}{{ static('img/firefox/browsers/mobile/focus/page-image.png') }}{% endblock %}
+{% block page_favicon %}{{ static('img/favicons/firefox/browser/focus/favicon.ico') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/favicons/firefox/browser/focus/favicon-196x196.png') }}{% endblock %}
+{% block page_ios_icon %}{{ static('img/favicons/firefox/browser/focus/apple-touch-icon.png') }}{% endblock %}
 
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 {% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
