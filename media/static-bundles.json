@@ -1711,13 +1711,6 @@
     {
       "files": [
         "js/libs/mozilla-traffic-cop.js",
-        "js/products/vpn/cta-change-experiment.js"
-      ],
-      "name": "vpn-landing-page-cta-change-experiment"
-    },
-    {
-      "files": [
-        "js/libs/mozilla-traffic-cop.js",
         "js/products/vpn/image-change-experiment.js"
       ],
       "name": "vpn-landing-page-image-change-experiment"
