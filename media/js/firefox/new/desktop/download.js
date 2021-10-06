@@ -1,17 +1,19 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
-* License, v. 2.0. If a copy of the MPL was not distributed with this
-* file, You can obtain one at http://mozilla.org/MPL/2.0/. */
-
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /*
     mobile banner
     - on mobile, move the mobile banner to the top of the main content area
 */
-(function() {
+(function () {
     'use strict';
 
     // if platform is ios or android
-    if (/ios/.test(window.site.platform) || /android/.test(window.site.platform)) {
+    if (
+        /ios/.test(window.site.platform) ||
+        /android/.test(window.site.platform)
+    ) {
         // move the banner up to the top of main
         var mobileBanner = document.getElementById('mobile-banner');
         var desktopBanner = document.getElementById('desktop-banner');
@@ -20,13 +22,12 @@
     }
 })();
 
-
 /*
     comparison chart
     - show a comparison to the users current browser or their operating system default
     - add button listeners to allow changing
 */
-(function() {
+(function () {
     'use strict';
 
     var cells = {
@@ -37,8 +38,7 @@
     };
     var buttons = document.querySelectorAll('.c-compare-button');
     var ua = navigator.userAgent;
-    var compareTo = function() {
-
+    var compareTo = (function () {
         if (/MSIE|Trident/i.test(ua)) {
             return 'edge';
         }
@@ -67,11 +67,10 @@
         }
 
         return 'chrome';
-    }();
+    })();
 
     // display chosen browser
     function show(browser) {
-
         // hide all comparisons
         for (var i = 0; i < cells['all'].length; ++i) {
             cells['all'][i].style.display = 'none';
@@ -84,7 +83,7 @@
 
         // add active state to button
         for (var k = 0; k < buttons.length; ++k) {
-            if(buttons[k].value === browser) {
+            if (buttons[k].value === browser) {
                 buttons[k].setAttribute('aria-pressed', true);
             } else {
                 buttons[k].setAttribute('aria-pressed', false);
@@ -97,7 +96,9 @@
 
     // listen to buttons
     for (var l = 0; l < buttons.length; ++l) {
-        buttons[l].addEventListener('click', function(event){ show(event.target.value); });
+        buttons[l].addEventListener('click', function (event) {
+            show(event.target.value);
+        });
     }
 })();
 
@@ -105,7 +106,7 @@
     system requirements
     - add target to link so they go to their system's requirements
 */
-(function() {
+(function () {
     'use strict';
 
     var sys = document.getElementById('system-requirements');
@@ -118,57 +119,58 @@
     } else if (/linux/.test(window.site.platform)) {
         sys.href = href + '#linux';
     }
-
 })();
-
 
 /*
     scroll animations
     - add class to animate
     - add observer to trigger animations
 */
-(function() {
+(function () {
     'use strict';
 
-
-    var supportsInsersectionObserver = function() {
-        return 'IntersectionObserver' in window &&
-               'IntersectionObserverEntry' in window &&
-               'intersectionRatio' in window.IntersectionObserverEntry.prototype;
-    }();
+    var supportsInsersectionObserver = (function () {
+        return (
+            'IntersectionObserver' in window &&
+            'IntersectionObserverEntry' in window &&
+            'intersectionRatio' in window.IntersectionObserverEntry.prototype
+        );
+    })();
 
     // check for support
-    if (supportsInsersectionObserver && window.NodeList && NodeList.prototype.forEach) {
+    if (
+        supportsInsersectionObserver &&
+        window.NodeList &&
+        NodeList.prototype.forEach
+    ) {
         // needs a sec to report rect.top right if the page loaded partially scrolled already
-        setTimeout(function(){
-
+        setTimeout(function () {
             // define observer behaviour
-            var observer = new IntersectionObserver(
-                function(entries) {
-                    entries.forEach(function(entry) {
-                        if (entry.isIntersecting) {
-                            // trigger animation
-                            entry.target.classList.add('is-animated');
-                            // remove observer after triggering animation
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }
-            );
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        // trigger animation
+                        entry.target.classList.add('is-animated');
+                        // remove observer after triggering animation
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
 
             // add observers
-            document.querySelectorAll('.js-animate').forEach(function(element) {
-                var rect = element.getBoundingClientRect();
-                var viewHeight = window.innerHeight;
-                // check element isn't above user's current position on the page
-                if(rect.top > viewHeight) {
-                    element.classList.add('has-animate');
-                    observer.observe(element);
-                }
-            });
+            document
+                .querySelectorAll('.js-animate')
+                .forEach(function (element) {
+                    var rect = element.getBoundingClientRect();
+                    var viewHeight = window.innerHeight;
+                    // check element isn't above user's current position on the page
+                    if (rect.top > viewHeight) {
+                        element.classList.add('has-animate');
+                        observer.observe(element);
+                    }
+                });
         }, 200);
     }
-
 })();
 
 /*
@@ -176,7 +178,7 @@
     - check for support
     - add listener, enable, and show button
 */
-(function(Mozilla) {
+(function (Mozilla) {
     'use strict';
 
     var client = Mozilla.Client;
@@ -185,9 +187,9 @@
         e.preventDefault();
 
         window.dataLayer.push({
-            'event': 'in-page-interaction',
-            'eAction': 'link click',
-            'eLabel': 'See your protection report'
+            event: 'in-page-interaction',
+            eAction: 'link click',
+            eLabel: 'See your protection report'
         });
 
         Mozilla.UITour.showProtectionReport();
@@ -196,13 +198,20 @@
     if (client.isFirefoxDesktop) {
         if (client._getFirefoxMajorVersion() >= 70) {
             // show "See what Firefox has blocked for you" links.
-            document.querySelector('body').classList.add('state-firefox-desktop-70');
+            document
+                .querySelector('body')
+                .classList.add('state-firefox-desktop-70');
 
             // Intercept link clicks to open about:protections page using UITour.
-            Mozilla.UITour.ping(function() {
-                document.getElementById('protection-report').addEventListener('click', handleOpenProtectionReport, false);
+            Mozilla.UITour.ping(function () {
+                document
+                    .getElementById('protection-report')
+                    .addEventListener(
+                        'click',
+                        handleOpenProtectionReport,
+                        false
+                    );
             });
         }
     }
-
 })(window.Mozilla);

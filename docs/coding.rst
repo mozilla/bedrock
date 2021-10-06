@@ -514,28 +514,29 @@ location of the user.
         <h1>Yay World!</h1>
     {% endif %}
 
-Coding Style Guides
--------------------
+Coding Style
+------------
+
+Bedrock uses the following open source tools to follow coding styles and conventions,
+as well as applying automatic code formatting:
+
+* `Black <https://black.readthedocs.io/>`_ for Python code formatting.
+* `Flake8 <https://flake8.pycqa.org/>`_ for Python style and code quality rules.
+* `Prettier <https://prettier.io/>`_ for JavaScript code formatting.
+* `ESLint <https://eslint.org/>`_ for JavaScript code quality rules.
+* `Stylelint <https://stylelint.io/>`_ for Sass/CSS style and code quality rules.
+
+For front-end HTML & CSS conventions, bedrock uses Mozilla's Protocol design system for
+building components. You can read the `Protocol documentation site <https://protocol.mozilla.org/>`_
+for more information.
+
+Mozilla also has some more general coding styleguides available, although some of
+these are now rather outdated:
 
 * `Mozilla Python Style Guide <http://mozweb.readthedocs.org/en/latest/reference/python-style.html>`_
 * `Mozilla HTML Style Guide <http://mozweb.readthedocs.org/en/latest/reference/html-style.html>`_
 * `Mozilla JS Style Guide <http://mozweb.readthedocs.org/en/latest/reference/js-style.html>`_
 * `Mozilla CSS Style Guide <http://mozweb.readthedocs.org/en/latest/reference/css-style.html>`_
-
-Use the ``.open-sans``, ``.open-sans-light`` and ``.open-sans-extrabold`` mixins
-to specify font families to allow using international fonts. See the :ref:`CSS <l10n>`
-section in the l10n doc for details.
-
-Use the ``.font-size()`` mixin to generate root-relative font sizes. You can
-declare a font size in pixels and the mixin will convert it to an equivalent
-``rem`` (root em) unit while also including the pixel value as a fallback for
-older browsers that don't support ``rem``. This is preferable to declaring font
-sizes in either fixed units (``px``, ``pt``, etc) or element-relative units (``em``, ``%``).
-See `this post by Jonathan Snook <http://snook.ca/archives/html_and_css/font-size-with-rem>`_
-for more info.
-
-When including CSS blocks, use ``{% block page_css %}`` for page specific inclusion of CSS.
-``{% block site_css %}`` should only be touched in rare cases where base styles need to be overwritten.
 
 Configuring your code editor
 ----------------------------

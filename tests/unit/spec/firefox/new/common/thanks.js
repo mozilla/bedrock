@@ -3,29 +3,38 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-describe('thanks.js', function() {
+describe('thanks.js', function () {
     'use strict';
 
-    describe('shouldAutoDownload', function() {
-
-        it('should return true for supported platforms', function() {
-            expect(Mozilla.DownloadThanks.shouldAutoDownload('windows')).toBeTruthy();
-            expect(Mozilla.DownloadThanks.shouldAutoDownload('osx')).toBeTruthy();
-            expect(Mozilla.DownloadThanks.shouldAutoDownload('linux')).toBeTruthy();
-            expect(Mozilla.DownloadThanks.shouldAutoDownload('android')).toBeTruthy();
-            expect(Mozilla.DownloadThanks.shouldAutoDownload('ios')).toBeTruthy();
+    describe('shouldAutoDownload', function () {
+        it('should return true for supported platforms', function () {
+            expect(
+                Mozilla.DownloadThanks.shouldAutoDownload('windows')
+            ).toBeTruthy();
+            expect(
+                Mozilla.DownloadThanks.shouldAutoDownload('osx')
+            ).toBeTruthy();
+            expect(
+                Mozilla.DownloadThanks.shouldAutoDownload('linux')
+            ).toBeTruthy();
+            expect(
+                Mozilla.DownloadThanks.shouldAutoDownload('android')
+            ).toBeTruthy();
+            expect(
+                Mozilla.DownloadThanks.shouldAutoDownload('ios')
+            ).toBeTruthy();
         });
 
-        it('should return false for unknown platforms', function() {
-            expect(Mozilla.DownloadThanks.shouldAutoDownload('other')).toBeFalsy();
+        it('should return false for unknown platforms', function () {
+            expect(
+                Mozilla.DownloadThanks.shouldAutoDownload('other')
+            ).toBeFalsy();
         });
     });
 
-    describe('getDownloadURL', function() {
-
-        beforeEach(function() {
-            const button =
-                `<ul class="download-list">
+    describe('getDownloadURL', function () {
+        beforeEach(function () {
+            const button = `<ul class="download-list">
                     <li><a id="thanks-download-button-win64" href="https://download.mozilla.org/?product=firefox-stub&amp;os=win64&amp;lang=en-US">Download Firefox</a></li>
                     <li><a id="thanks-download-button-win64-msi" href="https://download.mozilla.org/?product=firefox-msi-latest-ssl&amp;os=win64&amp;lang=en-US">Download Firefox</a></li>
                     <li><a id="thanks-download-button-win64-aarch64" href="https://download.mozilla.org/?product=firefox-latest-ssl&amp;os=win64-aarch64&amp;lang=en-US">Download Firefox</a></li>
@@ -41,49 +50,57 @@ describe('thanks.js', function() {
             document.body.insertAdjacentHTML('beforeend', button);
         });
 
-        afterEach(function() {
+        afterEach(function () {
             document.querySelectorAll('.download-list').forEach((e) => {
                 e.parentNode.removeChild(e);
             });
         });
 
-        it('should return the correct download for Windows', function() {
+        it('should return the correct download for Windows', function () {
             const site = {
                 platform: 'windows'
             };
             const result = Mozilla.DownloadThanks.getDownloadURL(site);
-            expect(result).toEqual('https://download.mozilla.org/?product=firefox-stub&os=win&lang=en-US');
+            expect(result).toEqual(
+                'https://download.mozilla.org/?product=firefox-stub&os=win&lang=en-US'
+            );
         });
 
-        it('should return the correct download for macOS', function() {
+        it('should return the correct download for macOS', function () {
             const site = {
-                platform: 'osx',
+                platform: 'osx'
             };
             const result = Mozilla.DownloadThanks.getDownloadURL(site);
-            expect(result).toEqual('https://download.mozilla.org/?product=firefox-latest-ssl&os=osx&lang=en-US');
+            expect(result).toEqual(
+                'https://download.mozilla.org/?product=firefox-latest-ssl&os=osx&lang=en-US'
+            );
         });
 
-        it('should return the correct download for Linux 32bit', function() {
+        it('should return the correct download for Linux 32bit', function () {
             const site = {
                 platform: 'linux',
                 isARM: false,
                 archSize: 32
             };
             const result = Mozilla.DownloadThanks.getDownloadURL(site);
-            expect(result).toEqual('https://download.mozilla.org/?product=firefox-latest-ssl&os=linux&lang=en-US');
+            expect(result).toEqual(
+                'https://download.mozilla.org/?product=firefox-latest-ssl&os=linux&lang=en-US'
+            );
         });
 
-        it('should return the correct download for Linux 64bit', function() {
+        it('should return the correct download for Linux 64bit', function () {
             const site = {
                 platform: 'linux',
                 isARM: false,
                 archSize: 64
             };
             const result = Mozilla.DownloadThanks.getDownloadURL(site);
-            expect(result).toEqual('https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-US');
+            expect(result).toEqual(
+                'https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-US'
+            );
         });
 
-        it('should not return a download for Linux ARM', function() {
+        it('should not return a download for Linux ARM', function () {
             const site = {
                 platform: 'linux',
                 isARM: true,
@@ -93,20 +110,24 @@ describe('thanks.js', function() {
             expect(result).toBeFalsy();
         });
 
-        it('should return the correct download for Android', function() {
+        it('should return the correct download for Android', function () {
             const site = {
-                platform: 'android',
+                platform: 'android'
             };
             const result = Mozilla.DownloadThanks.getDownloadURL(site);
-            expect(result).toEqual('https://play.google.com/store/apps/details?id=org.mozilla.firefox');
+            expect(result).toEqual(
+                'https://play.google.com/store/apps/details?id=org.mozilla.firefox'
+            );
         });
 
-        it('should return the correct download for iOS', function() {
+        it('should return the correct download for iOS', function () {
             const site = {
-                platform: 'ios',
+                platform: 'ios'
             };
             const result = Mozilla.DownloadThanks.getDownloadURL(site);
-            expect(result).toEqual('https://itunes.apple.com/us/app/firefox-private-safe-browser/id989804926');
+            expect(result).toEqual(
+                'https://itunes.apple.com/us/app/firefox-private-safe-browser/id989804926'
+            );
         });
     });
 });

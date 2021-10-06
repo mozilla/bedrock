@@ -5,17 +5,24 @@
 /**
  * Initialize Protocol Navigation.
  */
-(function() {
+(function () {
     'use strict';
 
-    if (typeof Mzp === 'undefined' || typeof Mzp.Menu === 'undefined' || typeof Mzp.Navigation === 'undefined') {
+    if (
+        typeof Mzp === 'undefined' ||
+        typeof Mzp.Menu === 'undefined' ||
+        typeof Mzp.Navigation === 'undefined'
+    ) {
         return;
     }
 
     var hasMediaQueries = typeof window.matchMedia !== 'undefined';
 
     function handleOnMenuOpen() {
-        if (!hasMediaQueries || !window.matchMedia('(min-width: 768px)').matches) {
+        if (
+            !hasMediaQueries ||
+            !window.matchMedia('(min-width: 768px)').matches
+        ) {
             return;
         }
     }
@@ -26,7 +33,9 @@
         }
 
         var nav = document.querySelector('.c-navigation');
-        var fxaButton = document.querySelector('.c-navigation .c-navigation-fxa-cta');
+        var fxaButton = document.querySelector(
+            '.c-navigation .c-navigation-fxa-cta'
+        );
 
         // Nav should be present on page.
         if (!nav) {
@@ -38,7 +47,7 @@
             var fxaButtonAltHref = fxaButton.getAttribute('data-alt-href');
 
             // Update the button if user is signed in
-            Mozilla.Client.getFxaDetails(function(details) {
+            Mozilla.Client.getFxaDetails(function (details) {
                 if (details.setup) {
                     nav.classList.add('fxa-signed-in');
                     fxaButton.href = fxaButtonAltHref;

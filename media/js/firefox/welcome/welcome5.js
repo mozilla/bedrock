@@ -7,7 +7,7 @@ if (typeof window.Mozilla === 'undefined') {
     window.Mozilla = {};
 }
 
-(function(Mozilla) {
+(function (Mozilla) {
     'use strict';
 
     var content = document.querySelector('.mzp-u-modal-content');
@@ -32,5 +32,4 @@ if (typeof window.Mozilla === 'undefined') {
             closeText: window.Mozilla.Utils.trans('global-close')
         });
     }
-
 })(window.Mozilla);

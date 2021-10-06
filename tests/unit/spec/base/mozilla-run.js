@@ -3,19 +3,17 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-describe('mozilla-run.js', function() {
-
+describe('mozilla-run.js', function () {
     'use strict';
 
-    describe('run', function() {
-
-        afterEach(function() {
+    describe('run', function () {
+        afterEach(function () {
             window.site.isModernBrowser = window.site.cutsTheMustard();
         });
 
-        it('should execute callback for modern browsers', function() {
+        it('should execute callback for modern browsers', function () {
             var obj = {
-                callback: function() {} // eslint-disable-line no-empty-function
+                callback: function () {} // eslint-disable-line no-empty-function
             };
             window.site.isModernBrowser = true;
             spyOn(obj, 'callback').and.callThrough();
@@ -23,9 +21,9 @@ describe('mozilla-run.js', function() {
             expect(obj.callback).toHaveBeenCalled();
         });
 
-        it('should not execute callback for legacy browsers', function() {
+        it('should not execute callback for legacy browsers', function () {
             const obj = {
-                callback: function() {} // eslint-disable-line no-empty-function
+                callback: function () {} // eslint-disable-line no-empty-function
             };
             window.site.isModernBrowser = false;
             spyOn(obj, 'callback').and.callThrough();

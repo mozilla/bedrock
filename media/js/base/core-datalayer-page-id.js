@@ -6,30 +6,39 @@ if (typeof window.Mozilla === 'undefined') {
     window.Mozilla = {};
 }
 
-(function(Mozilla) {
+(function (Mozilla) {
     'use strict';
 
     // init dataLayer object
-    var dataLayer = window.dataLayer = window.dataLayer || [];
+    var dataLayer = (window.dataLayer = window.dataLayer || []);
     var Analytics = {};
 
     /** Returns page ID used in Event Category for GA events tracked on page.
-    * @param {String} path - URL path name fallback if page ID does not exist.
-    * @return {String} GTM page ID.
-    */
-    Analytics.getPageId = function(path) {
-        var pageId = document.getElementsByTagName('html')[0].getAttribute('data-gtm-page-id');
+     * @param {String} path - URL path name fallback if page ID does not exist.
+     * @return {String} GTM page ID.
+     */
+    Analytics.getPageId = function (path) {
+        var pageId = document
+            .getElementsByTagName('html')[0]
+            .getAttribute('data-gtm-page-id');
         var pathName = path ? path : document.location.pathname;
 
-        return pageId ? pageId : pathName.replace(/^(\/\w{2}-\w{2}\/|\/\w{2,3}\/)/, '/');
+        return pageId
+            ? pageId
+            : pathName.replace(/^(\/\w{2}-\w{2}\/|\/\w{2,3}\/)/, '/');
     };
 
-    Analytics.getTrafficCopReferrer = function() {
+    Analytics.getTrafficCopReferrer = function () {
         var referrer;
 
         // if referrer cookie exists, store the value and remove the cookie
-        if (Mozilla.Cookies && Mozilla.Cookies.hasItem('mozilla-traffic-cop-original-referrer')) {
-            referrer = Mozilla.Cookies.getItem('mozilla-traffic-cop-original-referrer');
+        if (
+            Mozilla.Cookies &&
+            Mozilla.Cookies.hasItem('mozilla-traffic-cop-original-referrer')
+        ) {
+            referrer = Mozilla.Cookies.getItem(
+                'mozilla-traffic-cop-original-referrer'
+            );
 
             // referrer shouldn't persist
             Mozilla.Cookies.removeItem('mozilla-traffic-cop-original-referrer');
@@ -38,10 +47,10 @@ if (typeof window.Mozilla === 'undefined') {
         return referrer;
     };
 
-    Analytics.buildDataObject = function() {
+    Analytics.buildDataObject = function () {
         var dataObj = {
-            'event': 'page-id-loaded',
-            'pageId': Analytics.getPageId()
+            event: 'page-id-loaded',
+            pageId: Analytics.getPageId()
         };
 
         var referrer = Analytics.getTrafficCopReferrer();

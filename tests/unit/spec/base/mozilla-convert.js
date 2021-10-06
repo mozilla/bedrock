@@ -3,27 +3,26 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-describe('mozilla-convert.js', function() {
+describe('mozilla-convert.js', function () {
     'use strict';
 
-    describe('getCurrentExperiment', function() {
-
-        it('should return the current experiment name and variation', function() {
+    describe('getCurrentExperiment', function () {
+        it('should return the current experiment name and variation', function () {
             const data = {
-                'data': {
-                    'experiments': {
-                        '10033458': {
-                            'n': 'Test #10033458'
+                data: {
+                    experiments: {
+                        10033458: {
+                            n: 'Test #10033458'
                         },
-                        '10033459': {
-                            'n': 'Test #10033459'
+                        10033459: {
+                            n: 'Test #10033459'
                         }
                     }
                 },
-                'currentData': {
-                    'experiments': {
-                        '10033458': {
-                            'variation_name': 'Var #100361887'
+                currentData: {
+                    experiments: {
+                        10033458: {
+                            variation_name: 'Var #100361887'
                         }
                     }
                 }
@@ -34,20 +33,20 @@ describe('mozilla-convert.js', function() {
             expect(result.experimentVariation).toEqual('100361887');
         });
 
-        it('should be falsy if no experiment is running', function() {
+        it('should be falsy if no experiment is running', function () {
             const data = {
-                'data': {
-                    'experiments': {
-                        '10033458': {
-                            'n': 'Test #10033458'
+                data: {
+                    experiments: {
+                        10033458: {
+                            n: 'Test #10033458'
                         },
-                        '10033459': {
-                            'n': 'Test #10033459'
+                        10033459: {
+                            n: 'Test #10033459'
                         }
                     }
                 },
-                'currentData': {
-                    'experiments': {}
+                currentData: {
+                    experiments: {}
                 }
             };
 

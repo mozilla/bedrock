@@ -7,7 +7,7 @@ if (typeof window.Mozilla === 'undefined') {
     window.Mozilla = {};
 }
 
-(function() {
+(function () {
     'use strict';
 
     /**
@@ -20,11 +20,11 @@ if (typeof window.Mozilla === 'undefined') {
      */
     var Pixel = {};
 
-    Pixel.getPixelData = function() {
+    Pixel.getPixelData = function () {
         return document.getElementById('strings').getAttribute('data-pixels');
     };
 
-    Pixel.setPixels = function() {
+    Pixel.setPixels = function () {
         var body = document.querySelector('body');
         var pixels = Pixel.getPixelData();
         var pixel;
@@ -55,7 +55,7 @@ if (typeof window.Mozilla === 'undefined') {
         }
     };
 
-    Pixel.init = function() {
+    Pixel.init = function () {
         // Do not set pixels if visitor has DNT enabled.
         if (!Mozilla.dntEnabled()) {
             Pixel.setPixels();

@@ -7,11 +7,10 @@ if (typeof window.Mozilla === 'undefined') {
     window.Mozilla = {};
 }
 
-(function(Mozilla) {
+(function (Mozilla) {
     'use strict';
 
     // initialize send to device widget
     var form = new Mozilla.SendToDevice();
     form.init();
-
 })(window.Mozilla);

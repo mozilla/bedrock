@@ -6,16 +6,20 @@
 /* eslint no-unused-vars: [2, { "varsIgnorePattern": "onYouTubeIframeAPIReady" }] */
 
 // YouTube API hook has to be in global scope
-window.onYouTubeIframeAPIReady = function() {
+window.onYouTubeIframeAPIReady = function () {
     'use strict';
 
     // Play the video only once the API is ready.
     if (Mozilla.pipVideoPlay.videoId) {
-        Mozilla.pipVideoPlay(Mozilla.pipVideoPlay.playerId, Mozilla.pipVideoPlay.videoId, Mozilla.pipVideoPlay.videoTitle);
+        Mozilla.pipVideoPlay(
+            Mozilla.pipVideoPlay.playerId,
+            Mozilla.pipVideoPlay.videoId,
+            Mozilla.pipVideoPlay.videoTitle
+        );
     }
 };
 
-(function() {
+(function () {
     'use strict';
 
     var src = 'https://www.youtube.com/iframe_api';
@@ -28,7 +32,9 @@ window.onYouTubeIframeAPIReady = function() {
     }
 
     function isScriptLoaded() {
-        return document.querySelector('script[src="' + src + '"]') ? true : false;
+        return document.querySelector('script[src="' + src + '"]')
+            ? true
+            : false;
     }
 
     function playVideo(playerId, videoId, videoTitle) {
@@ -38,11 +44,11 @@ window.onYouTubeIframeAPIReady = function() {
             videoId: videoId,
             playerVars: {
                 modestbranding: 1, // hide YouTube logo.
-                rel: 0, // do not show related videos on end.
+                rel: 0 // do not show related videos on end.
             },
             events: {
-                'onReady': onPlayerReady,
-                'onStateChange': onPlayerStateChange
+                onReady: onPlayerReady,
+                onStateChange: onPlayerStateChange
             }
         });
 
@@ -53,23 +59,23 @@ window.onYouTubeIframeAPIReady = function() {
         function onPlayerStateChange(event) {
             var state;
 
-            switch(event.data) {
-            case YT.PlayerState.PLAYING:
-                state = 'video play';
-                break;
-            case YT.PlayerState.PAUSED:
-                state = 'video paused';
-                break;
-            case YT.PlayerState.ENDED:
-                state = 'video complete';
-                break;
+            switch (event.data) {
+                case YT.PlayerState.PLAYING:
+                    state = 'video play';
+                    break;
+                case YT.PlayerState.PAUSED:
+                    state = 'video paused';
+                    break;
+                case YT.PlayerState.ENDED:
+                    state = 'video complete';
+                    break;
             }
 
             if (state) {
                 window.dataLayer.push({
-                    'event': 'video-interaction',
-                    'videoTitle': videoTitle,
-                    'interaction': state
+                    event: 'video-interaction',
+                    videoTitle: videoTitle,
+                    interaction: state
                 });
             }
         }
@@ -88,23 +94,33 @@ window.onYouTubeIframeAPIReady = function() {
         var videoLinks = document.querySelectorAll('.js-video-play');
         var tryButton = document.getElementById('try-button');
 
-        tryButton.addEventListener('click', function(e) {
+        tryButton.addEventListener('click', function (e) {
             Mozilla.pipVideoPlay.playerId = 'player1';
             Mozilla.pipVideoPlay.videoId = tryButton.getAttribute('data-id');
-            Mozilla.pipVideoPlay.videoTitle = tryButton.getAttribute('data-video-title');
+            Mozilla.pipVideoPlay.videoTitle =
+                tryButton.getAttribute('data-video-title');
             e.preventDefault();
             this.setAttribute('disabled', '');
-            initVideoPlayer(Mozilla.pipVideoPlay.playerId, Mozilla.pipVideoPlay.videoId, Mozilla.pipVideoPlay.videoTitle);
+            initVideoPlayer(
+                Mozilla.pipVideoPlay.playerId,
+                Mozilla.pipVideoPlay.videoId,
+                Mozilla.pipVideoPlay.videoTitle
+            );
         });
 
         for (var i = 0; i < videoLinks.length; i++) {
             videoLinks[i].setAttribute('role', 'button');
-            videoLinks[i].addEventListener('click', function(e) {
+            videoLinks[i].addEventListener('click', function (e) {
                 Mozilla.pipVideoPlay.playerId = this.getAttribute('id');
                 Mozilla.pipVideoPlay.videoId = this.getAttribute('data-id');
-                Mozilla.pipVideoPlay.videoTitle = this.getAttribute('data-video-title');
+                Mozilla.pipVideoPlay.videoTitle =
+                    this.getAttribute('data-video-title');
                 e.preventDefault();
-                initVideoPlayer(Mozilla.pipVideoPlay.playerId, Mozilla.pipVideoPlay.videoId, Mozilla.pipVideoPlay.videoTitle);
+                initVideoPlayer(
+                    Mozilla.pipVideoPlay.playerId,
+                    Mozilla.pipVideoPlay.videoId,
+                    Mozilla.pipVideoPlay.videoTitle
+                );
             });
         }
     }

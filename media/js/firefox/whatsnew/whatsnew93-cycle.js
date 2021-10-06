@@ -15,6 +15,5 @@
             index = (index + 1) % things.length;
             things[index].style.opacity = '1';
         }, 1600);
-    }());
-
+    })();
 })();

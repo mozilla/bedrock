@@ -6,7 +6,7 @@ if (typeof window.Mozilla === 'undefined') {
     window.Mozilla = {};
 }
 
-(function() {
+(function () {
     'use strict';
 
     var VPN = {};
@@ -21,7 +21,7 @@ if (typeof window.Mozilla === 'undefined') {
     // Swiss Francs (CHF) pricing
     var CHF_COUNTRIES = ['ch'];
 
-    VPN.getLocation = function() {
+    VPN.getLocation = function () {
         // should /country-code.json be slow to load,
         // just show the regular messaging after 15 seconds waiting.
         var timeoutValue = 15000;
@@ -29,14 +29,15 @@ if (typeof window.Mozilla === 'undefined') {
 
         var xhr = new window.XMLHttpRequest();
 
-        xhr.onload = function(r) {
+        xhr.onload = function (r) {
             var country = null;
 
             // make sure status is in the acceptable range
             if (r.target.status >= 200 && r.target.status < 300) {
-
                 try {
-                    country = JSON.parse(r.target.responseText).country_code.toLowerCase();
+                    country = JSON.parse(
+                        r.target.responseText
+                    ).country_code.toLowerCase();
                 } catch (e) {
                     // do nothing.
                 }
@@ -55,9 +56,12 @@ if (typeof window.Mozilla === 'undefined') {
      * Helper used to facilitate easier debugging for page state dependent on geo-location.
      * @param {String} location e.g. 'https://www-dev.allizom.org/en-US/products/vpn/?geo=de'
      */
-    VPN.hasGeoOverride = function(location) {
+    VPN.hasGeoOverride = function (location) {
         var loc = location || window.location.href;
-        if (loc.indexOf('geo=') !== -1 && loc.indexOf('www.mozilla.org') === -1) {
+        if (
+            loc.indexOf('geo=') !== -1 &&
+            loc.indexOf('www.mozilla.org') === -1
+        ) {
             var urlRe = /geo=([a-z]{2})/i;
             var match = urlRe.exec(loc);
             if (match) {
@@ -68,7 +72,7 @@ if (typeof window.Mozilla === 'undefined') {
         return false;
     };
 
-    VPN.onRequestComplete = function(data) {
+    VPN.onRequestComplete = function (data) {
         clearTimeout(_geoTimeout);
 
         VPN.countryCode = typeof data === 'string' ? data : null;
@@ -80,31 +84,35 @@ if (typeof window.Mozilla === 'undefined') {
         }
     };
 
-    VPN.getAvailability = function(countryCode, countries) {
+    VPN.getAvailability = function (countryCode, countries) {
         var html = document.getElementsByTagName('html')[0];
         var availableCountries = html.getAttribute('data-vpn-country-codes');
 
-        availableCountries = typeof availableCountries === 'string' ? availableCountries : countries;
+        availableCountries =
+            typeof availableCountries === 'string'
+                ? availableCountries
+                : countries;
 
         // If we can't determine someone's country then return early.
         if (!countryCode || typeof availableCountries !== 'string') {
-
             window.dataLayer.push({
-                'event': 'non-interaction',
-                'eAction': 'vpn-availability',
-                'eLabel': 'unknown'
+                event: 'non-interaction',
+                eAction: 'vpn-availability',
+                eLabel: 'unknown'
             });
 
             return 'unknown';
         }
 
         // Countries where VPN is available.
-        if (countryCode && availableCountries.indexOf('|' + countryCode + '|') !== -1) {
-
+        if (
+            countryCode &&
+            availableCountries.indexOf('|' + countryCode + '|') !== -1
+        ) {
             window.dataLayer.push({
-                'event': 'non-interaction',
-                'eAction': 'vpn-availability',
-                'eLabel': 'available'
+                event: 'non-interaction',
+                eAction: 'vpn-availability',
+                eLabel: 'available'
             });
 
             return 'available';
@@ -112,15 +120,15 @@ if (typeof window.Mozilla === 'undefined') {
 
         // Countries where we should show the waitlist links.
         window.dataLayer.push({
-            'event': 'non-interaction',
-            'eAction': 'vpn-availability',
-            'eLabel': 'not-available'
+            event: 'non-interaction',
+            eAction: 'vpn-availability',
+            eLabel: 'not-available'
         });
 
         return 'not-available';
     };
 
-    VPN.setAvailability = function(availability) {
+    VPN.setAvailability = function (availability) {
         if (availability === 'not-available') {
             // If VPN is not available in country then show "Join the Waitlist" state.
             VPN.showJoinWaitList();
@@ -130,12 +138,12 @@ if (typeof window.Mozilla === 'undefined') {
         }
     };
 
-    VPN.showJoinWaitList = function() {
+    VPN.showJoinWaitList = function () {
         document.body.classList.add('show-vpn-waitlist');
         VPN.renderJoinWaitlistButtons();
     };
 
-    VPN.showPricing = function() {
+    VPN.showPricing = function () {
         document.body.classList.add('show-vpn-pricing');
         VPN.setDisplayPrice();
         VPN.setSubscriptionButtons();
@@ -152,8 +160,10 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     // Updates subscription `plan` URL parameter based on geo-location.
-    VPN.setSubscriptionButtons = function() {
-        var subscribeLinks = document.querySelectorAll('.vpn-pricing-variable-plans .js-fxa-product-button, .vpn-pricing-offer .js-fxa-product-button');
+    VPN.setSubscriptionButtons = function () {
+        var subscribeLinks = document.querySelectorAll(
+            '.vpn-pricing-variable-plans .js-fxa-product-button, .vpn-pricing-offer .js-fxa-product-button'
+        );
 
         if (typeof VPN.countryCode !== 'string') {
             return;
@@ -164,7 +174,9 @@ if (typeof window.Mozilla === 'undefined') {
             var plan;
 
             // Try and get country plan, else fallback to US plan.
-            plan = subscribeLinks[i].getAttribute('data-plan-' + VPN.countryCode);
+            plan = subscribeLinks[i].getAttribute(
+                'data-plan-' + VPN.countryCode
+            );
 
             if (!plan) {
                 plan = subscribeLinks[i].getAttribute('data-plan-us');
@@ -174,7 +186,7 @@ if (typeof window.Mozilla === 'undefined') {
         }
     };
 
-    VPN.updateSubscriptionURL = function(plan, href) {
+    VPN.updateSubscriptionURL = function (plan, href) {
         var params;
 
         if (typeof plan === 'string' && typeof href === 'string') {
@@ -189,7 +201,7 @@ if (typeof window.Mozilla === 'undefined') {
         return href;
     };
 
-    VPN.getCurrency = function(country) {
+    VPN.getCurrency = function (country) {
         if (EURO_COUNTRIES.indexOf(country) !== -1) {
             return 'euro';
         } else if (CHF_COUNTRIES.indexOf(country) !== -1) {
@@ -200,8 +212,10 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     // Sets the displayed subscription price based on geo-location.
-    VPN.setDisplayPrice = function() {
-        var displayPrice = document.querySelectorAll('.js-vpn-monthly-price-display, .js-vpn-total-price-display, .js-vpn-saving-display');
+    VPN.setDisplayPrice = function () {
+        var displayPrice = document.querySelectorAll(
+            '.js-vpn-monthly-price-display, .js-vpn-total-price-display, .js-vpn-saving-display'
+        );
 
         if (typeof VPN.countryCode !== 'string') {
             return;
@@ -227,11 +241,15 @@ if (typeof window.Mozilla === 'undefined') {
         }
     };
 
-    VPN.renderJoinWaitlistButtons = function() {
+    VPN.renderJoinWaitlistButtons = function () {
         var template = document.getElementById('join-waitlist-template');
         var primaryTarget = document.querySelector('.js-target-primary-cta');
-        var secondaryTargets = document.querySelectorAll('.js-target-secondary-cta');
-        var navigationTarget = document.querySelector('.js-target-navigation-cta');
+        var secondaryTargets = document.querySelectorAll(
+            '.js-target-secondary-cta'
+        );
+        var navigationTarget = document.querySelector(
+            '.js-target-navigation-cta'
+        );
         var footerTarget = document.querySelector('.js-target-footer-cta');
         var content = template.content || template;
         var clone;
@@ -275,7 +293,7 @@ if (typeof window.Mozilla === 'undefined') {
         }
     };
 
-    VPN.init = function() {
+    VPN.init = function () {
         var override = VPN.hasGeoOverride();
 
         // if override URL is used, skip doing anything with geo-location and show expected content.
@@ -289,5 +307,4 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     window.Mozilla.VPN = VPN;
-
 })();

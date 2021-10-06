@@ -2,15 +2,20 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-
-(function() {
+(function () {
     'use strict';
 
-    var openText = document.getElementById('strings').getAttribute('data-details-open-text');
-    var closeText = document.getElementById('strings').getAttribute('data-details-close-text');
+    var openText = document
+        .getElementById('strings')
+        .getAttribute('data-details-open-text');
+    var closeText = document
+        .getElementById('strings')
+        .getAttribute('data-details-close-text');
     var buttons;
 
-    window.Mzp.Details.init('.format-headings .privacy-body section section > h3');
+    window.Mzp.Details.init(
+        '.format-headings .privacy-body section section > h3'
+    );
     window.Mzp.Details.init('.format-paragraphs .summary');
 
     // Add "Learn more" / "Show less" text.
@@ -28,7 +33,11 @@
 
         // Pages such as /privacy/firefox/ use 'is-details', whilst other pages like /privacy/websites/ use 'is-summary'.
         // This is likely due to how the privacy notice markdown file is structured.
-        if (item && (item.classList.contains('is-details') || item.classList.contains('is-summary'))) {
+        if (
+            item &&
+            (item.classList.contains('is-details') ||
+                item.classList.contains('is-summary'))
+        ) {
             var button = item.querySelector('button');
 
             // Only expand the section if it is hidden.

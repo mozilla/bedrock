@@ -8,7 +8,11 @@
     var href = window.location.href;
 
     var initTrafficCop = function () {
-        if (href.indexOf('entrypoint_experiment=vpn-landing-page-cta-change&entrypoint_variation=') !== -1) {
+        if (
+            href.indexOf(
+                'entrypoint_experiment=vpn-landing-page-cta-change&entrypoint_variation='
+            ) !== -1
+        ) {
             if (href.indexOf('entrypoint_variation=a') !== -1) {
                 window.dataLayer.push({
                     'data-ex-variant': 'a',
@@ -25,7 +29,7 @@
                 id: 'vpn-landing-page-cta-change-experiment',
                 variations: {
                     'entrypoint_experiment=vpn-landing-page-cta-change&entrypoint_variation=a': 10,
-                    'entrypoint_experiment=vpn-landing-page-cta-change&entrypoint_variation=b': 10,
+                    'entrypoint_experiment=vpn-landing-page-cta-change&entrypoint_variation=b': 10
                 }
             });
 
@@ -34,8 +38,10 @@
     };
 
     // Avoid entering automated tests into random experiments.
-    if (href.indexOf('automation=true') === -1 && href.indexOf('utm_medium=cpc') === -1) {
+    if (
+        href.indexOf('automation=true') === -1 &&
+        href.indexOf('utm_medium=cpc') === -1
+    ) {
         initTrafficCop();
     }
-
 })(window.Mozilla);

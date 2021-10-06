@@ -1,21 +1,23 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
-* License, v. 2.0. If a copy of the MPL was not distributed with this
-* file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 if (typeof window.Mozilla === 'undefined') {
     window.Mozilla = {};
 }
 
-(function() {
+(function () {
     'use strict';
 
     var LazyLoad = {};
     var _selector;
 
     function featureDetect() {
-        return 'IntersectionObserver' in window &&
-               'IntersectionObserverEntry' in window &&
-               'intersectionRatio' in window.IntersectionObserverEntry.prototype;
+        return (
+            'IntersectionObserver' in window &&
+            'IntersectionObserverEntry' in window &&
+            'intersectionRatio' in window.IntersectionObserverEntry.prototype
+        );
     }
 
     LazyLoad.supportsInsersectionObserver = featureDetect();
@@ -25,10 +27,9 @@ if (typeof window.Mozilla === 'undefined') {
      * @param changes (Array) - IntersectionObserverEntry objects.
      * @param observer (Object) - IntersectionObserver instance.
      */
-    LazyLoad.observerCallback = function(changes, observer) {
-        changes.forEach(function(change) {
+    LazyLoad.observerCallback = function (changes, observer) {
+        changes.forEach(function (change) {
             if (change.intersectionRatio > 0) {
-
                 if (change.target.dataset.srcset) {
                     change.target.srcset = change.target.dataset.srcset;
                 }
@@ -46,7 +47,7 @@ if (typeof window.Mozilla === 'undefined') {
      * for intersection events.
      * @return (Object) IntersectionObserver instance.
      */
-    LazyLoad.registerObserver = function() {
+    LazyLoad.registerObserver = function () {
         return new IntersectionObserver(LazyLoad.observerCallback);
     };
 
@@ -55,12 +56,14 @@ if (typeof window.Mozilla === 'undefined') {
      * @param _selector (String) - CSS selector for target images e.g. '.list-item img'.
      * @return observe (Object) IntersectionObserver instance.
      */
-    LazyLoad.observe = function(_selector) {
+    LazyLoad.observe = function (_selector) {
         var observer = LazyLoad.registerObserver();
-        var targets = Array.prototype.slice.call(document.querySelectorAll(_selector));
+        var targets = Array.prototype.slice.call(
+            document.querySelectorAll(_selector)
+        );
 
         if (targets.length) {
-            targets.forEach(function(target) {
+            targets.forEach(function (target) {
                 observer.observe(target);
             });
         }
@@ -72,9 +75,9 @@ if (typeof window.Mozilla === 'undefined') {
      * Fallback for older browser by simply loading all images upon page load.
      * @param _selector (String) - CSS selector for target images e.g. '.list-item img'.
      */
-    LazyLoad.loadAllFallback = function(_selector) {
+    LazyLoad.loadAllFallback = function (_selector) {
         var nodeList = document.querySelectorAll(_selector);
-        for(var ni = 0; ni < nodeList.length; ni++) {
+        for (var ni = 0; ni < nodeList.length; ni++) {
             var self = nodeList[ni];
             var srcset = self.getAttribute('data-srcset');
 
@@ -91,7 +94,7 @@ if (typeof window.Mozilla === 'undefined') {
      * Removes data-src attribute upon lazy loading of an image. This is useful
      * as it provides a CSS styling hook to allow images to fade-in.
      */
-    LazyLoad.onImageLoad = function(e) {
+    LazyLoad.onImageLoad = function (e) {
         e.target.removeAttribute('data-src');
         e.target.removeAttribute('data-srcset');
     };
@@ -100,13 +103,14 @@ if (typeof window.Mozilla === 'undefined') {
      * Initiates LazyLoad via feature detecting support for IntersectioObserver.
      * @param _selector (String) - CSS selector for target images e.g. '.list-item img'.
      */
-    LazyLoad.init = function(selector) {
-
+    LazyLoad.init = function (selector) {
         // Allow passing custom selector if required.
         _selector = selector || '.lazy-image-container img';
 
         if (typeof _selector !== 'string') {
-            throw new Error('Mozilla.LazyLoad.init: custom selector is not a string');
+            throw new Error(
+                'Mozilla.LazyLoad.init: custom selector is not a string'
+            );
         }
 
         if (LazyLoad.supportsInsersectionObserver) {

@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-(function() {
+(function () {
     'use strict';
 
     var client = window.Mozilla.Client;
@@ -19,23 +19,33 @@
 
         // Count the click in GA
         window.dataLayer.push({
-            'event': 'in-page-interaction',
-            'eAction': 'link click',
-            'eLabel': 'Current Firefox user downloading Firefox'
+            event: 'in-page-interaction',
+            eAction: 'link click',
+            eLabel: 'Current Firefox user downloading Firefox'
         });
     }
 
-    var initFxAccountModal = function() {
-        var downloadLinkPrimary = document.querySelectorAll('.main-download .c-button-download-thanks > .download-link');
+    var initFxAccountModal = function () {
+        var downloadLinkPrimary = document.querySelectorAll(
+            '.main-download .c-button-download-thanks > .download-link'
+        );
         for (var i = 0; i < downloadLinkPrimary.length; i++) {
-            downloadLinkPrimary[i].addEventListener('click', showFxAModal, false);
+            downloadLinkPrimary[i].addEventListener(
+                'click',
+                showFxAModal,
+                false
+            );
         }
 
         // Don't trigger the modal for signed in users
-        client.getFxaDetails(function(details) {
+        client.getFxaDetails(function (details) {
             if (details.setup) {
                 for (var i = 0; i < downloadLinkPrimary.length; i++) {
-                    downloadLinkPrimary[i].removeEventListener('click', showFxAModal, false);
+                    downloadLinkPrimary[i].removeEventListener(
+                        'click',
+                        showFxAModal,
+                        false
+                    );
                 }
             }
         });
@@ -45,5 +55,4 @@
     if (client.isFirefoxDesktop && client._getFirefoxMajorVersion() >= '57') {
         initFxAccountModal();
     }
-
 })();

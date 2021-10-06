@@ -3,25 +3,25 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 // init core dataLayer object and push into dataLayer
-(function() {
+(function () {
     'use strict';
 
     var analytics = Mozilla.Analytics;
     var client = Mozilla.Client;
-    var dataLayer = window.dataLayer = window.dataLayer || [];
+    var dataLayer = (window.dataLayer = window.dataLayer || []);
     var firefoxDetailsComplete = false;
     var fxaDetailsComplete = false;
 
     function sendCoreDataLayer() {
         var dataLayerCore = {
-            'event': 'core-datalayer-loaded',
-            'pageHasDownload': analytics.pageHasDownload(),
-            'pageHasVideo': analytics.pageHasVideo(),
-            'pageVersion': analytics.getPageVersion(),
+            event: 'core-datalayer-loaded',
+            pageHasDownload: analytics.pageHasDownload(),
+            pageHasVideo: analytics.pageHasVideo(),
+            pageVersion: analytics.getPageVersion(),
             // permitted for www.mozill.org, will always return false on other domains
-            'testPilotUser': 'testpilotAddon' in navigator ? 'true' : 'false',
-            'releaseWindowVersion': analytics.getLatestFxVersion(),
-            'win10SUser': analytics.isWin10S()
+            testPilotUser: 'testpilotAddon' in navigator ? 'true' : 'false',
+            releaseWindowVersion: analytics.getLatestFxVersion(),
+            win10SUser: analytics.isWin10S()
         };
 
         dataLayer.push(dataLayerCore);
@@ -34,14 +34,14 @@
     }
 
     function initCoreDataLayer() {
-        client.getFxaDetails(function(details) {
+        client.getFxaDetails(function (details) {
             dataLayer.push(analytics.formatFxaDetails(details));
             fxaDetailsComplete = true;
             checkSendCoreDataLayer();
         });
 
         if (client.isFirefoxDesktop || client.isFirefoxAndroid) {
-            client.getFirefoxDetails(function(details) {
+            client.getFirefoxDetails(function (details) {
                 dataLayer.push(details);
                 firefoxDetailsComplete = true;
                 checkSendCoreDataLayer();
@@ -56,7 +56,7 @@
 
     // Init dataLayer event on DOM Ready.
     if (typeof Mozilla.Utils !== 'undefined') {
-        Mozilla.Utils.onDocumentReady(function() {
+        Mozilla.Utils.onDocumentReady(function () {
             initCoreDataLayer();
 
             // Add GA custom dimension for AMO experiments (Issue 10175).
@@ -73,5 +73,4 @@
             }
         });
     }
-
 })();

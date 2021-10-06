@@ -7,7 +7,7 @@ if (typeof window.Mozilla === 'undefined') {
     window.Mozilla = {};
 }
 
-(function() {
+(function () {
     'use strict';
 
     var FxaLink = {};
@@ -26,7 +26,7 @@ if (typeof window.Mozilla === 'undefined') {
      * @param href {String}
      * @returns href {String}
      */
-    FxaLink.updateURL = function(href) {
+    FxaLink.updateURL = function (href) {
         var userVer = parseFloat(client._getFirefoxVersion());
         var serviceParam = userVer < 71 ? 'service=sync' : null;
         var contextParam = 'context=fx_desktop_v3';
@@ -46,7 +46,7 @@ if (typeof window.Mozilla === 'undefined') {
      * @param {String} url.
      * @returns {String} hostname.
      */
-    FxaLink.getHostName = function(url) {
+    FxaLink.getHostName = function (url) {
         var matches = url.match(/^https?:\/\/(?:[^/?#]+)(?:[/?#]|$)/i);
         return matches && matches[0];
     };
@@ -58,21 +58,31 @@ if (typeof window.Mozilla === 'undefined') {
      * @param event {Event}
      * @private
      */
-    FxaLink.interceptFxANavigation = function(event) {
+    FxaLink.interceptFxANavigation = function (event) {
         event.preventDefault();
         var search = new URL(event.target.href).search;
         var urlParams = new window._SearchParams(search).params;
         var extraURLParams = {};
         var allowedChars = /^[\w/.%-]+$/;
-        var knownParams = ['flow_id', 'flow_begin_time', 'device_id',
-            'entrypoint', 'entrypoint_experiment', 'entrypoint_variation',
-            'utm_source', 'utm_campaign', 'utm_content', 'utm_term', 'utm_medium'];
+        var knownParams = [
+            'flow_id',
+            'flow_begin_time',
+            'device_id',
+            'entrypoint',
+            'entrypoint_experiment',
+            'entrypoint_variation',
+            'utm_source',
+            'utm_campaign',
+            'utm_content',
+            'utm_term',
+            'utm_medium'
+        ];
 
         for (var i = 0; i < knownParams.length; i++) {
             var known = knownParams[i];
             if (Object.prototype.hasOwnProperty.call(urlParams, known)) {
                 var param = decodeURIComponent(urlParams[known]);
-                if ((allowedChars).test(param)) {
+                if (allowedChars.test(param)) {
                     extraURLParams[known] = param;
                 }
             }
@@ -87,16 +97,19 @@ if (typeof window.Mozilla === 'undefined') {
      * Updates FxA links with Sync params.
      * Only applicable for Firefox desktop user agents.
      */
-    FxaLink.init = function(callback) {
-        callback = callback || function noop() {
-            // do nothing
-        };
+    FxaLink.init = function (callback) {
+        callback =
+            callback ||
+            function noop() {
+                // do nothing
+            };
         if (!client._isFirefoxDesktop()) {
             return;
         }
 
         var userVer = parseFloat(client._getFirefoxVersion());
-        var useUITourForFxA = userVer >= 80 && typeof Mozilla.UITour !== 'undefined';
+        var useUITourForFxA =
+            userVer >= 80 && typeof Mozilla.UITour !== 'undefined';
         var self = this;
         var fxaSigninLink = document.querySelectorAll('.js-fxa-cta-link');
 
@@ -112,14 +125,19 @@ if (typeof window.Mozilla === 'undefined') {
             link.href = FxaLink.updateURL(link.href);
 
             // update china repack URL.
-            var mozillaOnlineLink = link.getAttribute('data-mozillaonline-link');
+            var mozillaOnlineLink = link.getAttribute(
+                'data-mozillaonline-link'
+            );
             if (mozillaOnlineLink) {
-                link.setAttribute('data-mozillaonline-link', FxaLink.updateURL(mozillaOnlineLink));
+                link.setAttribute(
+                    'data-mozillaonline-link',
+                    FxaLink.updateURL(mozillaOnlineLink)
+                );
             }
         }
 
         if (useUITourForFxA) {
-            Mozilla.UITour.ping(function() {
+            Mozilla.UITour.ping(function () {
                 for (var i = 0; i < fxaSigninLink.length; i++) {
                     var link = fxaSigninLink[i];
                     var hostName = FxaLink.getHostName(link.href);
@@ -128,12 +146,15 @@ if (typeof window.Mozilla === 'undefined') {
                         continue;
                     }
                     link.setAttribute('role', 'button');
-                    link.oncontextmenu = function(e) {
+                    link.oncontextmenu = function (e) {
                         e.preventDefault();
                     };
                     // intercept the flow and submit the form using the UITour API instead.
                     // In the future we should fully migrate to this API for Firefox Desktop login.
-                    link.addEventListener('auxclick', self.interceptFxANavigation);
+                    link.addEventListener(
+                        'auxclick',
+                        self.interceptFxANavigation
+                    );
                     link.addEventListener('click', self.interceptFxANavigation);
                 }
                 callback();
@@ -144,5 +165,4 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     window.Mozilla.FxaLink = FxaLink;
-
 })();

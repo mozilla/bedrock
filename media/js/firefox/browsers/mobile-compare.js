@@ -7,7 +7,7 @@ if (typeof window.Mozilla === 'undefined') {
     window.Mozilla = {};
 }
 
-(function(Mozilla) {
+(function (Mozilla) {
     'use strict';
 
     var sendToDevice = document.getElementById('s2d-footer');
@@ -16,5 +16,4 @@ if (typeof window.Mozilla === 'undefined') {
         var form = new Mozilla.SendToDevice('s2d-footer');
         form.init();
     }
-
 })(window.Mozilla);

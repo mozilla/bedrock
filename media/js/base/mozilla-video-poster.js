@@ -76,7 +76,7 @@ Mozilla.VideoPosterHelper.prototype.play = function (e) {
             video.load();
             video.play();
         }
-    } catch(e) {
+    } catch (e) {
         // fail silently.
     }
 

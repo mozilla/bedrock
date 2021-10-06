@@ -6,14 +6,14 @@
 /* eslint no-unused-vars: [2, { "varsIgnorePattern": "onYouTubeIframeAPIReady" }] */
 
 // YouTube API hook has to be in global scope, ugh.
-window.onYouTubeIframeAPIReady = function() {
+window.onYouTubeIframeAPIReady = function () {
     'use strict';
 
     // Play the video only once the API is ready.
     Mozilla.homePageVideoPlay();
 };
 
-(function() {
+(function () {
     'use strict';
 
     var src = 'https://www.youtube.com/iframe_api';
@@ -38,12 +38,18 @@ window.onYouTubeIframeAPIReady = function() {
     }
 
     function isScriptLoaded() {
-        return document.querySelector('script[src="' + src + '"]') ? true : false;
+        return document.querySelector('script[src="' + src + '"]')
+            ? true
+            : false;
     }
 
     function playVideo() {
-        var title = document.querySelector('.mzp-c-modal-inner > header > h2').innerText;
-        var videoLink = document.querySelector('.mzp-c-modal-inner .video-play');
+        var title = document.querySelector(
+            '.mzp-c-modal-inner > header > h2'
+        ).innerText;
+        var videoLink = document.querySelector(
+            '.mzp-c-modal-inner .video-play'
+        );
         var videoId = videoLink.getAttribute('data-id');
 
         player = new YT.Player(videoLink, {
@@ -52,11 +58,11 @@ window.onYouTubeIframeAPIReady = function() {
             videoId: videoId,
             playerVars: {
                 modestbranding: 1, // hide YouTube logo.
-                rel: 0, // do not show related videos on end.
+                rel: 0 // do not show related videos on end.
             },
             events: {
-                'onReady': onPlayerReady,
-                'onStateChange': onPlayerStateChange
+                onReady: onPlayerReady,
+                onStateChange: onPlayerStateChange
             }
         });
 
@@ -67,23 +73,23 @@ window.onYouTubeIframeAPIReady = function() {
         function onPlayerStateChange(event) {
             var state;
 
-            switch(event.data) {
-            case YT.PlayerState.PLAYING:
-                state = 'video play';
-                break;
-            case YT.PlayerState.PAUSED:
-                state = 'video paused';
-                break;
-            case YT.PlayerState.ENDED:
-                state = 'video complete';
-                break;
+            switch (event.data) {
+                case YT.PlayerState.PLAYING:
+                    state = 'video play';
+                    break;
+                case YT.PlayerState.PAUSED:
+                    state = 'video paused';
+                    break;
+                case YT.PlayerState.ENDED:
+                    state = 'video complete';
+                    break;
             }
 
             if (state) {
                 window.dataLayer.push({
-                    'event': 'video-interaction',
-                    'videoTitle': title,
-                    'interaction': state
+                    event: 'video-interaction',
+                    videoTitle: title,
+                    interaction: state
                 });
             }
         }
@@ -121,7 +127,9 @@ window.onYouTubeIframeAPIReady = function() {
     }
 
     function init() {
-        var videoCards = document.querySelectorAll('.mzp-c-card.has-video-embed .mzp-c-card-block-link');
+        var videoCards = document.querySelectorAll(
+            '.mzp-c-card.has-video-embed .mzp-c-card-block-link'
+        );
 
         for (var i = 0; i < videoCards.length; i++) {
             videoCards[i].addEventListener('click', openVideoModal, false);

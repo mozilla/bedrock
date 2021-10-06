@@ -1,6 +1,6 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
-* License, v. 2.0. If a copy of the MPL was not distributed with this
-* file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 // create namespace
 if (typeof window.Mozilla === 'undefined') {
@@ -9,11 +9,10 @@ if (typeof window.Mozilla === 'undefined') {
 
 var Spinner = require('../libs/spin.min.js');
 
-(function() {
+(function () {
     'use strict';
 
-    var SendToDevice = function(id) {
-
+    var SendToDevice = function (id) {
         this.formId = typeof id !== 'undefined' ? id : 'send-to-device';
 
         this.formLoaded = false;
@@ -27,14 +26,17 @@ var Spinner = require('../libs/spin.min.js');
         }
 
         this.form = this.widget.querySelector('.send-to-device-form');
-        this.formFields = this.form.querySelector('.send-to-device-form-fields');
+        this.formFields = this.form.querySelector(
+            '.send-to-device-form-fields'
+        );
         this.input = this.formFields.querySelector('.send-to-device-input');
         this.thankyou = this.widget.querySelectorAll('.thank-you');
         this.errorList = this.form.querySelector('.mzp-c-form-errors');
         this.spinnerTarget = this.form.querySelector('.loading-spinner');
         this.sendAnotherLink = this.form.querySelector('.send-another');
         this.formHeading = this.widget.querySelector('.form-heading');
-        this.spinnerColor = this.widget.getAttribute('data-spinner-color') || '#000';
+        this.spinnerColor =
+            this.widget.getAttribute('data-spinner-color') || '#000';
 
         this.spinner = new Spinner({
             lines: 12, // The number of lines to draw
@@ -55,7 +57,7 @@ var Spinner = require('../libs/spin.min.js');
     /**
      * Initialise the form messaging and bind events.
      */
-    SendToDevice.prototype.init = function() {
+    SendToDevice.prototype.init = function () {
         if (this.widget) {
             this.formSubmitHandler = this.onFormSubmit.bind(this);
             this.sendAnotherHandler = this.sendAnother.bind(this);
@@ -66,23 +68,31 @@ var Spinner = require('../libs/spin.min.js');
     /**
      * Binds form submission and click events
      */
-    SendToDevice.prototype.bindEvents = function() {
+    SendToDevice.prototype.bindEvents = function () {
         this.form.addEventListener('submit', this.formSubmitHandler, false);
-        this.sendAnotherLink.addEventListener('click', this.sendAnotherHandler, false);
+        this.sendAnotherLink.addEventListener(
+            'click',
+            this.sendAnotherHandler,
+            false
+        );
     };
 
     /**
      * Remove all form event handlers
      */
-    SendToDevice.prototype.unbindEvents = function() {
+    SendToDevice.prototype.unbindEvents = function () {
         this.form.removeEventListener('submit', this.formSubmitHandler, false);
-        this.sendAnotherLink.removeEventListener('click', this.sendAnotherHandler, false);
+        this.sendAnotherLink.removeEventListener(
+            'click',
+            this.sendAnotherHandler,
+            false
+        );
     };
 
     /**
      * Show the form again to send another link
      */
-    SendToDevice.prototype.sendAnother = function(e) {
+    SendToDevice.prototype.sendAnother = function (e) {
         e.preventDefault();
         this.input.value = '';
         this.errorList.classList.add('hidden');
@@ -102,7 +112,7 @@ var Spinner = require('../libs/spin.min.js');
     /**
      * Enable form fields and hide loading indicator
      */
-    SendToDevice.prototype.enableForm = function() {
+    SendToDevice.prototype.enableForm = function () {
         this.input.disabled = false;
         this.form.classList.remove('loading');
         this.spinnerTarget.style.display = 'none';
@@ -111,7 +121,7 @@ var Spinner = require('../libs/spin.min.js');
     /**
      * Disable form fields and show loading indicator
      */
-    SendToDevice.prototype.disableForm = function() {
+    SendToDevice.prototype.disableForm = function () {
         this.input.disabled = true;
         this.form.classList.add('loading');
         this.spinnerTarget.style.display = 'block';
@@ -123,16 +133,16 @@ var Spinner = require('../libs/spin.min.js');
      * matches built-in validation in Firefox
      * @param {email}
      */
-    SendToDevice.prototype.checkEmailValidity = function(email) {
+    SendToDevice.prototype.checkEmailValidity = function (email) {
         return /\S+@\S+/.test(email);
     };
 
     /**
      * Helper function to serialize form data for XHR request.
      */
-    SendToDevice.prototype.serialize = function() {
+    SendToDevice.prototype.serialize = function () {
         var q = [];
-        for(var i = 0; i < this.form.elements.length; i++) {
+        for (var i = 0; i < this.form.elements.length; i++) {
             var elem = this.form.elements[i];
             if (elem.name) {
                 q.push(elem.name + '=' + encodeURIComponent(elem.value));
@@ -146,7 +156,7 @@ var Spinner = require('../libs/spin.min.js');
     /**
      * Handle form submission via XHR
      */
-    SendToDevice.prototype.onFormSubmit = function(e) {
+    SendToDevice.prototype.onFormSubmit = function (e) {
         e.preventDefault();
 
         var self = this;
@@ -163,7 +173,7 @@ var Spinner = require('../libs/spin.min.js');
 
         var xhr = new XMLHttpRequest();
 
-        xhr.onload = function(r) {
+        xhr.onload = function (r) {
             if (r.target.status >= 200 && r.target.status < 300) {
                 var response = r.target.response || r.target.responseText;
 
@@ -181,20 +191,23 @@ var Spinner = require('../libs/spin.min.js');
             }
         };
 
-        xhr.onerror = function(e) {
+        xhr.onerror = function (e) {
             self.onFormFailure(e);
         };
 
         xhr.open('POST', action, true);
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhr.setRequestHeader('X-Requested-With','XMLHttpRequest');
+        xhr.setRequestHeader(
+            'Content-type',
+            'application/x-www-form-urlencoded'
+        );
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
         xhr.timeout = 5000;
         xhr.ontimeout = self.onFormFailure;
         xhr.responseType = 'json';
         xhr.send(formData);
     };
 
-    SendToDevice.prototype.onFormSuccess = function() {
+    SendToDevice.prototype.onFormSuccess = function () {
         this.errorList.classList.add('hidden');
         this.formFields.classList.add('hidden');
 
@@ -209,12 +222,12 @@ var Spinner = require('../libs/spin.min.js');
         this.enableForm();
 
         window.dataLayer.push({
-            'event': 'send-to-device-success',
-            'input': 'email-address'
+            event: 'send-to-device-success',
+            input: 'email-address'
         });
     };
 
-    SendToDevice.prototype.onFormError = function(errors) {
+    SendToDevice.prototype.onFormError = function (errors) {
         var errorClass;
         var errorListItems = this.errorList.querySelectorAll('li');
 
@@ -239,7 +252,7 @@ var Spinner = require('../libs/spin.min.js');
         this.enableForm();
     };
 
-    SendToDevice.prototype.onFormFailure = function() {
+    SendToDevice.prototype.onFormFailure = function () {
         var errorListItems = this.errorList.querySelectorAll('li');
 
         for (var i = 0; i < errorListItems.length; i++) {
@@ -258,5 +271,4 @@ var Spinner = require('../libs/spin.min.js');
     };
 
     window.Mozilla.SendToDevice = SendToDevice;
-
 })();

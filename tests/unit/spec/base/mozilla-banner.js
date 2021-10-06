@@ -5,10 +5,10 @@
 
 /* global sinon, */
 
-describe('mozilla-banner.js', function() {
+describe('mozilla-banner.js', function () {
     'use strict';
 
-    beforeEach(function() {
+    beforeEach(function () {
         // stub out Mozilla.Cookie lib
         window.Mozilla.Cookies = sinon.stub();
         window.Mozilla.Cookies.enabled = sinon.stub().returns(true);
@@ -21,27 +21,25 @@ describe('mozilla-banner.js', function() {
         window.dataLayer.push = sinon.stub();
     });
 
-    describe('init', function() {
-
+    describe('init', function () {
         const bannerId = 'test-banner';
 
-        beforeEach(function() {
-            const content =
-                `<div id="outer-wrapper">
+        beforeEach(function () {
+            const content = `<div id="outer-wrapper">
                     <h1>Some title</h1>
                     <aside id="${bannerId}"><button type="button" class="c-banner-close">Close</button></aside>
                 </div>`;
             document.body.insertAdjacentHTML('beforeend', content);
         });
 
-        afterEach(function() {
+        afterEach(function () {
             const content = document.getElementById('outer-wrapper');
             content.parentNode.removeChild(content);
 
             Mozilla.Banner.id = null;
         });
 
-        it('should show the banner if no cookie is set', function() {
+        it('should show the banner if no cookie is set', function () {
             spyOn(window.Mozilla.Banner, 'hasCookie').and.returnValue(false);
             spyOn(window.Mozilla.Banner, 'show');
             Mozilla.Banner.init(bannerId);
@@ -49,7 +47,7 @@ describe('mozilla-banner.js', function() {
             expect(Mozilla.Banner.show).toHaveBeenCalled();
         });
 
-        it('should not show the banner if there is a cookie', function() {
+        it('should not show the banner if there is a cookie', function () {
             spyOn(window.Mozilla.Banner, 'hasCookie').and.returnValue(true);
             spyOn(window.Mozilla.Banner, 'show');
             Mozilla.Banner.init(bannerId);
@@ -58,32 +56,33 @@ describe('mozilla-banner.js', function() {
         });
     });
 
-    describe('close', function() {
+    describe('close', function () {
         const bannerId = 'test-banner';
 
-        beforeEach(function() {
-            const content =
-                `<div id="outer-wrapper">
+        beforeEach(function () {
+            const content = `<div id="outer-wrapper">
                     <h1>Some title</h1>
                     <aside id="${bannerId}"><button type="button" class="c-banner-close">Close</button></aside>
                 </div>`;
             document.body.insertAdjacentHTML('beforeend', content);
         });
 
-        afterEach(function() {
+        afterEach(function () {
             const content = document.getElementById('outer-wrapper');
             content.parentNode.removeChild(content);
 
             Mozilla.Banner.id = null;
         });
 
-        it('should close the banner when clicked and set a cookie', function() {
+        it('should close the banner when clicked and set a cookie', function () {
             spyOn(window.Mozilla.Banner, 'hasCookie').and.returnValue(false);
             spyOn(window.Mozilla.Banner, 'setCookie');
             spyOn(window.Mozilla.Banner, 'close').and.callThrough();
             Mozilla.Banner.init(bannerId);
             const banner = document.getElementById(bannerId);
-            expect(banner.classList.contains('c-banner-is-visible')).toBeTruthy();
+            expect(
+                banner.classList.contains('c-banner-is-visible')
+            ).toBeTruthy();
             const close = document.querySelector('.c-banner-close');
             close.click();
             expect(Mozilla.Banner.close).toHaveBeenCalled();
@@ -91,5 +90,4 @@ describe('mozilla-banner.js', function() {
             expect(document.getElementById(bannerId)).toBeNull();
         });
     });
-
 });

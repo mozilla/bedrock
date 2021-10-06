@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-(function() {
+(function () {
     'use strict';
 
     var Yandex = {
@@ -15,21 +15,22 @@
     var _geoTimeout;
     var _requestComplete = false;
 
-    Yandex.getLocation = function() {
+    Yandex.getLocation = function () {
         // should /country-code.json be slow to load,
         // just show the regular messaging after 3 seconds waiting.
         _geoTimeout = setTimeout(Yandex.onRequestComplete, 3000);
 
         var xhr = new window.XMLHttpRequest();
 
-        xhr.onload = function(r) {
+        xhr.onload = function (r) {
             var country = 'none';
 
             // make sure status is in the acceptable range
             if (r.target.status >= 200 && r.target.status < 300) {
-
                 try {
-                    country = JSON.parse(r.target.responseText).country_code.toLowerCase();
+                    country = JSON.parse(
+                        r.target.responseText
+                    ).country_code.toLowerCase();
                 } catch (e) {
                     country = 'none';
                 }
@@ -44,7 +45,7 @@
         xhr.send();
     };
 
-    Yandex.hasGeoOverride = function(location) {
+    Yandex.hasGeoOverride = function (location) {
         var loc = location || window.location.search;
         if (loc.indexOf('geo=') !== -1) {
             var urlRe = /geo=([a-z]{2})/i;
@@ -57,7 +58,7 @@
         return false;
     };
 
-    Yandex.verifyLocation = function(location) {
+    Yandex.verifyLocation = function (location) {
         if (location) {
             return location === Yandex.RUSSIA_COUNTRY_CODE;
         }
@@ -65,7 +66,7 @@
         return false;
     };
 
-    Yandex.onRequestComplete = function(data) {
+    Yandex.onRequestComplete = function (data) {
         var country = typeof data === 'string' ? data : 'none';
 
         clearTimeout(_geoTimeout);
@@ -81,7 +82,7 @@
         }
     };
 
-    Yandex.updatePageContent = function() {
+    Yandex.updatePageContent = function () {
         if (Yandex.shouldShowYandex()) {
             Yandex.showYandexContent();
         } else {
@@ -89,12 +90,14 @@
         }
     };
 
-    Yandex.showYandexContent = function() {
+    Yandex.showYandexContent = function () {
         document.body.classList.add('show-yandex');
 
         // Update page title and description.
         document.title = Mozilla.Utils.trans('page-title');
-        document.querySelector('meta[name="description"]').setAttribute('content', Mozilla.Utils.trans('page-desc'));
+        document
+            .querySelector('meta[name="description"]')
+            .setAttribute('content', Mozilla.Utils.trans('page-desc'));
 
         window.dataLayer.push({
             'data-ex-variant': 'yandex-content',
@@ -102,43 +105,49 @@
         });
     };
 
-    Yandex.showRegularContent = function() {
+    Yandex.showRegularContent = function () {
         window.dataLayer.push({
             'data-ex-variant': 'regular-content',
             'data-ex-name': 'firefox-new-ru-yandex'
         });
     };
 
-    Yandex.shouldShowYandex = function() {
+    Yandex.shouldShowYandex = function () {
         // Is user in Russia?
         return Yandex.verifyLocation(Yandex.getCookie(Yandex.COOKIE_ID));
     };
 
-    Yandex.cookieExpiresDate = function(date) {
+    Yandex.cookieExpiresDate = function (date) {
         var d = date || new Date();
-        d.setTime(d.getTime() + (Yandex.COOKIE_EXPIRATION_DAYS * 24 * 60 * 60 * 1000));
+        d.setTime(
+            d.getTime() + Yandex.COOKIE_EXPIRATION_DAYS * 24 * 60 * 60 * 1000
+        );
         return d.toUTCString();
     };
 
-    Yandex.setCookie = function(country) {
-        Mozilla.Cookies.setItem(Yandex.COOKIE_ID, country, Yandex.cookieExpiresDate());
+    Yandex.setCookie = function (country) {
+        Mozilla.Cookies.setItem(
+            Yandex.COOKIE_ID,
+            country,
+            Yandex.cookieExpiresDate()
+        );
     };
 
-    Yandex.getCookie = function(id) {
+    Yandex.getCookie = function (id) {
         return Mozilla.Cookies.getItem(id);
     };
 
-    Yandex.hasCookie = function() {
+    Yandex.hasCookie = function () {
         return Mozilla.Cookies.hasItem(Yandex.COOKIE_ID);
     };
 
-    Yandex.init = function() {
-        var cookiesEnabled = typeof Mozilla.Cookies !== 'undefined' || Mozilla.Cookies.enabled();
+    Yandex.init = function () {
+        var cookiesEnabled =
+            typeof Mozilla.Cookies !== 'undefined' || Mozilla.Cookies.enabled();
         var override = Yandex.hasGeoOverride();
 
         // only show Yandex content if on desktop with cookies enabled.
         if (_client.isDesktop && cookiesEnabled) {
-
             // if override URL is used, skip doing anything with cookies & show the expected content.
             if (override) {
                 if (Yandex.verifyLocation(override)) {
@@ -156,12 +165,10 @@
                     Yandex.getLocation();
                 }
             }
-
         } else {
             Yandex.showRegularContent();
         }
     };
 
     window.Mozilla.Yandex = Yandex;
-
 })();

@@ -7,7 +7,7 @@ if (typeof window.Mozilla === 'undefined') {
     window.Mozilla = {};
 }
 
-(function() {
+(function () {
     'use strict';
 
     var sendTo = document.getElementById('send-to-device');
@@ -16,5 +16,4 @@ if (typeof window.Mozilla === 'undefined') {
         var form = new window.Mozilla.SendToDevice();
         form.init();
     }
-
 })();

@@ -2,18 +2,28 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-(function(){
+(function () {
     'use strict';
 
     var form = document.getElementById('product-select-form');
     var productSelect = document.getElementById('select-product');
-    var versionSelect = document.querySelectorAll('.c-selection-version select');
-    var languageSelect = document.querySelectorAll('.c-selection-language select');
-    var platformSelect = document.querySelectorAll('.c-selection-platform select');
+    var versionSelect = document.querySelectorAll(
+        '.c-selection-version select'
+    );
+    var languageSelect = document.querySelectorAll(
+        '.c-selection-language select'
+    );
+    var platformSelect = document.querySelectorAll(
+        '.c-selection-platform select'
+    );
     var downloadInfo = document.querySelector('.c-download');
     var downloadInfoProduct = document.getElementById('download-info-product');
-    var downloadInfoPlatform = document.getElementById('download-info-platform');
-    var downloadInfoLanguage = document.getElementById('download-info-language');
+    var downloadInfoPlatform = document.getElementById(
+        'download-info-platform'
+    );
+    var downloadInfoLanguage = document.getElementById(
+        'download-info-language'
+    );
     var downloadInfoButton = document.getElementById('download-button-primary');
 
     var FirefoxDownloader = {};
@@ -23,10 +33,10 @@
      * @param {Object} el dom element.
      * @returns {Object} product `id` and `label`.
      */
-    FirefoxDownloader.getSelectOption = function(el) {
+    FirefoxDownloader.getSelectOption = function (el) {
         return {
-            'id': el.options[el.selectedIndex].value,
-            'label': el.options[el.selectedIndex].textContent
+            id: el.options[el.selectedIndex].value,
+            label: el.options[el.selectedIndex].textContent
         };
     };
 
@@ -35,7 +45,7 @@
      * @param {String} platform `id`.
      * @param {Object} NodeList of <option>'s.
      */
-    FirefoxDownloader.setSelectOption = function(id, options) {
+    FirefoxDownloader.setSelectOption = function (id, options) {
         for (var i = 0; i < options.length; i++) {
             if (options[i].value === id) {
                 options[i].selected = 'selected';
@@ -49,7 +59,7 @@
      * @param {String} platform `id`.
      * @param {Object} el dom element(s).
      */
-    FirefoxDownloader.setAllSelectOptions = function(id, el) {
+    FirefoxDownloader.setAllSelectOptions = function (id, el) {
         for (var i = 0; i < el.length; i++) {
             FirefoxDownloader.setSelectOption(id, el[i].options);
         }
@@ -60,7 +70,7 @@
      * used to display the appropriate options for each individual product item.
      * @param {String} product `id`.
      */
-    FirefoxDownloader.setFormSelection = function(id) {
+    FirefoxDownloader.setFormSelection = function (id) {
         form.setAttribute('data-current', id);
     };
 
@@ -68,7 +78,7 @@
      * Get the currently displayed product form.
      * @returns {String} product `id`.
      */
-    FirefoxDownloader.getFormSelection = function() {
+    FirefoxDownloader.getFormSelection = function () {
         return form.getAttribute('data-current');
     };
 
@@ -76,7 +86,7 @@
      * Get the currently selected product.
      * @returns {Object} product `id` and `label`.
      */
-    FirefoxDownloader.getProductSelection = function() {
+    FirefoxDownloader.getProductSelection = function () {
         var product = FirefoxDownloader.getSelectOption(productSelect);
 
         // ESR can have two versions available but it's listed as a single product in the dropdown.
@@ -94,7 +104,7 @@
      * Set the product dropdown to a specific value.
      * @param {String} product `id`.
      */
-    FirefoxDownloader.setProductSelection = function(id) {
+    FirefoxDownloader.setProductSelection = function (id) {
         FirefoxDownloader.setSelectOption(id, productSelect.options);
         FirefoxDownloader.setFormSelection(id);
     };
@@ -104,9 +114,13 @@
      * @param {String} `product`.
      * @returns {Object} product `id` and `label`.
      */
-    FirefoxDownloader.getVersionSelection = function(product) {
-        var currentOptions = document.querySelector('.c-selection-options[data-product="' + product.id + '"]');
-        var currentVersion = currentOptions.querySelector('.c-selection-version select');
+    FirefoxDownloader.getVersionSelection = function (product) {
+        var currentOptions = document.querySelector(
+            '.c-selection-options[data-product="' + product.id + '"]'
+        );
+        var currentVersion = currentOptions.querySelector(
+            '.c-selection-version select'
+        );
         return FirefoxDownloader.getSelectOption(currentVersion);
     };
 
@@ -115,30 +129,30 @@
      * @param {String} platform.
      * @returns {String} OS.
      */
-    FirefoxDownloader.getPlatform = function(platform) {
+    FirefoxDownloader.getPlatform = function (platform) {
         var system;
         /**
          * Note: we can't accurately detect 64bit arch via user agent
          * alone, so we assume most people want the fastest version.
          */
-        switch(platform) {
-        case 'windows':
-            system = 'win64';
-            break;
-        case 'linux':
-            system = 'linux64';
-            break;
-        case 'osx':
-            system = 'osx';
-            break;
-        case 'ios':
-            system = 'ios';
-            break;
-        case 'android':
-            system = 'android';
-            break;
-        default:
-            system = false;
+        switch (platform) {
+            case 'windows':
+                system = 'win64';
+                break;
+            case 'linux':
+                system = 'linux64';
+                break;
+            case 'osx':
+                system = 'osx';
+                break;
+            case 'ios':
+                system = 'ios';
+                break;
+            case 'android':
+                system = 'android';
+                break;
+            default:
+                system = false;
         }
 
         return system;
@@ -149,9 +163,13 @@
      * @param {String} `product`.
      * @returns {Object} platform `id` and platform `label`.
      */
-    FirefoxDownloader.getPlatformSelection = function(product) {
-        var currentOptions = document.querySelector('.c-selection-options[data-product="' + product.id + '"]');
-        var currentPlatform = currentOptions.querySelector('.c-selection-platform select');
+    FirefoxDownloader.getPlatformSelection = function (product) {
+        var currentOptions = document.querySelector(
+            '.c-selection-options[data-product="' + product.id + '"]'
+        );
+        var currentPlatform = currentOptions.querySelector(
+            '.c-selection-platform select'
+        );
         return FirefoxDownloader.getSelectOption(currentPlatform);
     };
 
@@ -160,9 +178,13 @@
      * @param {String} `product`.
      * @returns {Object} language `id` and language `label`.
      */
-    FirefoxDownloader.getLanguageSelection = function(product) {
-        var currentOptions = document.querySelector('.c-selection-options[data-product="' + product.id + '"]');
-        var currentLanguage = currentOptions.querySelector('.c-selection-language select');
+    FirefoxDownloader.getLanguageSelection = function (product) {
+        var currentOptions = document.querySelector(
+            '.c-selection-options[data-product="' + product.id + '"]'
+        );
+        var currentLanguage = currentOptions.querySelector(
+            '.c-selection-language select'
+        );
         return FirefoxDownloader.getSelectOption(currentLanguage);
     };
 
@@ -171,8 +193,10 @@
      * @param {String} `localeCode` (optional).
      * @returns {String} page language.
      */
-    FirefoxDownloader.getPageLanguage = function(localeCode) {
-        var lang = localeCode || document.getElementsByTagName('html')[0].getAttribute('lang');
+    FirefoxDownloader.getPageLanguage = function (localeCode) {
+        var lang =
+            localeCode ||
+            document.getElementsByTagName('html')[0].getAttribute('lang');
 
         if (lang) {
             // bedrock uses `en` for `en-US` pages to mark content as region neutral.
@@ -189,15 +213,30 @@
      * @param {String} language id.
      * @returns {String} download URL.
      */
-    FirefoxDownloader.getDownloadLink = function(product, platform, language) {
+    FirefoxDownloader.getDownloadLink = function (product, platform, language) {
         try {
-            var productList = document.querySelector('.c-locale-list[data-product="' + product + '"]');
-            var languageBuild = productList.querySelector('.c-locale-list-item[data-language="' + language + '"]');
-            var platformLink = languageBuild.querySelector('.c-download-list > li > a[data-download-version="' + platform + '"]');
+            var productList = document.querySelector(
+                '.c-locale-list[data-product="' + product + '"]'
+            );
+            var languageBuild = productList.querySelector(
+                '.c-locale-list-item[data-language="' + language + '"]'
+            );
+            var platformLink = languageBuild.querySelector(
+                '.c-download-list > li > a[data-download-version="' +
+                    platform +
+                    '"]'
+            );
 
             return platformLink.href;
-        } catch(e) {
-            var error = new Error('A download link was not found for: ' + product + ', platform: ' + platform + ', language: ' + language);
+        } catch (e) {
+            var error = new Error(
+                'A download link was not found for: ' +
+                    product +
+                    ', platform: ' +
+                    platform +
+                    ', language: ' +
+                    language
+            );
             FirefoxDownloader.onError(error);
         }
     };
@@ -210,14 +249,20 @@
      * @param {Object} language.
      * @param {Object} element (optional)
      */
-    FirefoxDownloader.setDownloadLink = function(url, product, platform, language, element) {
+    FirefoxDownloader.setDownloadLink = function (
+        url,
+        product,
+        platform,
+        language,
+        element
+    ) {
         var el = element || downloadInfoButton;
         el.href = url;
         el.setAttribute('data-display-name', product.label);
         el.setAttribute('data-download-version', platform.id);
         el.setAttribute('data-download-language', language.id);
 
-        if ((/^android/).test(platform.id)) {
+        if (/^android/.test(platform.id)) {
             el.setAttribute('data-download-os', 'Android');
         } else {
             el.setAttribute('data-download-os', 'Desktop');
@@ -227,7 +272,7 @@
     /**
      * Append Firefox attribution params for windows downloads.
      */
-    FirefoxDownloader.onDownloadButtonClick = function(e) {
+    FirefoxDownloader.onDownloadButtonClick = function (e) {
         e.preventDefault();
         var el = e.target;
         var url = e.target.href;
@@ -243,11 +288,20 @@
     /**
      * Format download URL with attribution parameters,
      */
-    FirefoxDownloader.setAttributionURL = function(url) {
+    FirefoxDownloader.setAttributionURL = function (url) {
         // Get Firefox attribution data from cookie if it exists.
-        if (typeof Mozilla.StubAttribution !== 'undefined' && typeof Mozilla.Cookies !== 'undefined' && Mozilla.StubAttribution.hasCookie()) {
+        if (
+            typeof Mozilla.StubAttribution !== 'undefined' &&
+            typeof Mozilla.Cookies !== 'undefined' &&
+            Mozilla.StubAttribution.hasCookie()
+        ) {
             var data = Mozilla.StubAttribution.getCookie();
-            return url += (url.indexOf('?') > -1 ? '&' : '?') + 'attribution_code=' + data.attribution_code + '&attribution_sig=' + data.attribution_sig;
+            return (url +=
+                (url.indexOf('?') > -1 ? '&' : '?') +
+                'attribution_code=' +
+                data.attribution_code +
+                '&attribution_sig=' +
+                data.attribution_sig);
         }
 
         return url;
@@ -257,7 +311,7 @@
      * Display form error message and show fallback locale list.
      * @param {Object} instance of `Error`.
      */
-    FirefoxDownloader.onError = function(e) {
+    FirefoxDownloader.onError = function (e) {
         // show form error and hide download button.
         downloadInfo.classList.add('has-error');
         downloadInfo.classList.remove('hidden');
@@ -273,7 +327,7 @@
     /**
      * Removes error form state.
      */
-    FirefoxDownloader.offError = function() {
+    FirefoxDownloader.offError = function () {
         // Remove error message is previously shown.
         if (downloadInfo.classList.contains('has-error')) {
             downloadInfo.classList.remove('has-error');
@@ -285,21 +339,27 @@
      * @param {String} url.
      * @returns {Boolean}.
      */
-    FirefoxDownloader.isValidURL = function(url) {
+    FirefoxDownloader.isValidURL = function (url) {
         var bouncerURL = /^https:\/\/download.mozilla.org/;
         var stagingURL = /^https:\/\/bouncer-bouncer.stage.mozaws.net/;
-        return typeof url === 'string' && ((bouncerURL).test(url) || (stagingURL).test(url));
+        return (
+            typeof url === 'string' &&
+            (bouncerURL.test(url) || stagingURL.test(url))
+        );
     };
-
 
     /**
      * Show appropriate download button & Uppdate download URL for the desktop button, based on the current form selection.
      */
-    FirefoxDownloader.setDownloadButton = function() {
+    FirefoxDownloader.setDownloadButton = function () {
         var product = FirefoxDownloader.getProductSelection();
         var platform = FirefoxDownloader.getPlatformSelection(product);
         var language = FirefoxDownloader.getLanguageSelection(product);
-        FirefoxDownloader.setDownloadInfo(product.label, platform.label, language.label);
+        FirefoxDownloader.setDownloadInfo(
+            product.label,
+            platform.label,
+            language.label
+        );
 
         if (product.id.indexOf('android') === 0) {
             FirefoxDownloader.offError();
@@ -308,12 +368,23 @@
         } else {
             // Use `version.id` as ESR can sometimes offer 2 builds simultaneously.
             var version = FirefoxDownloader.getVersionSelection(product);
-            var downloadURL = FirefoxDownloader.getDownloadLink(version.id, platform.id, language.id);
+            var downloadURL = FirefoxDownloader.getDownloadLink(
+                version.id,
+                platform.id,
+                language.id
+            );
             if (FirefoxDownloader.isValidURL(downloadURL)) {
-                FirefoxDownloader.setDownloadLink(downloadURL, product, platform, language);
+                FirefoxDownloader.setDownloadLink(
+                    downloadURL,
+                    product,
+                    platform,
+                    language
+                );
                 FirefoxDownloader.offError();
             } else {
-                var error = new Error('An unrecognised download link was found: ' + downloadURL);
+                var error = new Error(
+                    'An unrecognised download link was found: ' + downloadURL
+                );
                 FirefoxDownloader.onError(error);
             }
         }
@@ -322,7 +393,7 @@
     /**
      * Set the form info for what the current selection will download.
      */
-    FirefoxDownloader.setDownloadInfo = function(product, platform, language) {
+    FirefoxDownloader.setDownloadInfo = function (product, platform, language) {
         downloadInfoProduct.textContent = product;
         downloadInfoPlatform.textContent = platform;
         downloadInfoLanguage.textContent = language;
@@ -332,7 +403,7 @@
      * Product input <select> handler.
      * @param {Object} event object.
      */
-    FirefoxDownloader.onProductChange = function(e) {
+    FirefoxDownloader.onProductChange = function (e) {
         FirefoxDownloader.setFormSelection(e.target.value);
         FirefoxDownloader.setDownloadButton();
         FirefoxDownloader.setHash(e.target.value);
@@ -342,9 +413,12 @@
      * Product ESR input <select> handler.
      * @param {Object} event object.
      */
-    FirefoxDownloader.onVersionChange = function(e) {
+    FirefoxDownloader.onVersionChange = function (e) {
         // ESR can have two versions available in product details.
-        if (e.target.value === 'desktop_esr' || e.target.value === 'desktop_esr_next') {
+        if (
+            e.target.value === 'desktop_esr' ||
+            e.target.value === 'desktop_esr_next'
+        ) {
             FirefoxDownloader.setFormSelection(e.target.value);
         }
         FirefoxDownloader.setAllSelectOptions(e.target.value, versionSelect);
@@ -355,7 +429,7 @@
      * Platform input <select> handler.
      * @param {Object} event object.
      */
-    FirefoxDownloader.onPlatformChange = function(e) {
+    FirefoxDownloader.onPlatformChange = function (e) {
         FirefoxDownloader.setAllSelectOptions(e.target.value, platformSelect);
         FirefoxDownloader.setDownloadButton();
     };
@@ -364,7 +438,7 @@
      * Language input <select> handler.
      * @param {Object} event object.
      */
-    FirefoxDownloader.onLanguageChange = function(e) {
+    FirefoxDownloader.onLanguageChange = function (e) {
         FirefoxDownloader.setAllSelectOptions(e.target.value, languageSelect);
         FirefoxDownloader.setDownloadButton();
     };
@@ -374,7 +448,7 @@
      * @param {Object} el.
      * @param {Function} callback.
      */
-    FirefoxDownloader.initInput = function(el, callback) {
+    FirefoxDownloader.initInput = function (el, callback) {
         if (typeof callback === 'function') {
             el.addEventListener('change', callback, false);
         }
@@ -386,7 +460,7 @@
      * @param {Object} el NodeList.
      * @param {Function} callback.
      */
-    FirefoxDownloader.initAllInputs = function(el, callback) {
+    FirefoxDownloader.initAllInputs = function (el, callback) {
         for (var i = 0; i < el.length; i++) {
             FirefoxDownloader.initInput(el[i], callback);
         }
@@ -395,20 +469,40 @@
     /**
      * Enable form inputs, bind event handlers, and show the product options.
      */
-    FirefoxDownloader.enableForm = function() {
-        FirefoxDownloader.initInput(productSelect, FirefoxDownloader.onProductChange);
-        FirefoxDownloader.initAllInputs(platformSelect, FirefoxDownloader.onPlatformChange);
-        FirefoxDownloader.initAllInputs(languageSelect, FirefoxDownloader.onLanguageChange);
-        FirefoxDownloader.initAllInputs(versionSelect, FirefoxDownloader.onVersionChange);
+    FirefoxDownloader.enableForm = function () {
+        FirefoxDownloader.initInput(
+            productSelect,
+            FirefoxDownloader.onProductChange
+        );
+        FirefoxDownloader.initAllInputs(
+            platformSelect,
+            FirefoxDownloader.onPlatformChange
+        );
+        FirefoxDownloader.initAllInputs(
+            languageSelect,
+            FirefoxDownloader.onLanguageChange
+        );
+        FirefoxDownloader.initAllInputs(
+            versionSelect,
+            FirefoxDownloader.onVersionChange
+        );
 
         // show product options.
         downloadInfo.classList.remove('hidden');
 
         // listen for hash changes to update the product dropdown.
-        window.addEventListener('hashchange', FirefoxDownloader.onHashChange, false);
+        window.addEventListener(
+            'hashchange',
+            FirefoxDownloader.onHashChange,
+            false
+        );
 
         // capture click events on download button for attribution referrals
-        downloadInfoButton.addEventListener('click', FirefoxDownloader.onDownloadButtonClick, false);
+        downloadInfoButton.addEventListener(
+            'click',
+            FirefoxDownloader.onDownloadButtonClick,
+            false
+        );
     };
 
     /**
@@ -416,7 +510,7 @@
      * @param {String} url (optional).
      * @returns {String} product `id` if valid.
      */
-    FirefoxDownloader.getHash = function(url) {
+    FirefoxDownloader.getHash = function (url) {
         var urlString = typeof url === 'string' ? url : window.location.href;
         var hash;
 
@@ -425,37 +519,37 @@
             hash = urlParts[1];
         }
 
-        switch(hash) {
-        case 'product-desktop-release':
-            hash = 'desktop_release';
-            break;
-        case 'product-desktop-beta':
-            hash = 'desktop_beta';
-            break;
-        case 'product-desktop-developer':
-            hash = 'desktop_developer';
-            break;
-        case 'product-desktop-nightly':
-            hash = 'desktop_nightly';
-            break;
-        case 'product-desktop-esr':
-            hash = 'desktop_esr';
-            break;
-        case 'product-android-release':
-            hash = 'android_release';
-            break;
-        case 'product-android-beta':
-            hash = 'android_beta';
-            break;
-        case 'product-android-nightly':
-            hash = 'android_nightly';
-            break;
-        case 'product-ios-release':
-            hash = 'ios_release';
-            break;
-        default:
-            hash = null;
-            break;
+        switch (hash) {
+            case 'product-desktop-release':
+                hash = 'desktop_release';
+                break;
+            case 'product-desktop-beta':
+                hash = 'desktop_beta';
+                break;
+            case 'product-desktop-developer':
+                hash = 'desktop_developer';
+                break;
+            case 'product-desktop-nightly':
+                hash = 'desktop_nightly';
+                break;
+            case 'product-desktop-esr':
+                hash = 'desktop_esr';
+                break;
+            case 'product-android-release':
+                hash = 'android_release';
+                break;
+            case 'product-android-beta':
+                hash = 'android_beta';
+                break;
+            case 'product-android-nightly':
+                hash = 'android_nightly';
+                break;
+            case 'product-ios-release':
+                hash = 'ios_release';
+                break;
+            default:
+                hash = null;
+                break;
         }
 
         return hash;
@@ -467,7 +561,7 @@
      * @param {String} hash (optional).
      * @returns {String} id.
      */
-    FirefoxDownloader.setHash = function(productId, hash) {
+    FirefoxDownloader.setHash = function (productId, hash) {
         var id = typeof hash === 'string' ? hash : window.location.hash;
         id = '#product-' + productId.replace(/_/g, '-');
 
@@ -480,7 +574,7 @@
     /**
      * Updates currently selected product based on window.location.hash
      */
-    FirefoxDownloader.onHashChange = function() {
+    FirefoxDownloader.onHashChange = function () {
         var id = FirefoxDownloader.getHash();
 
         // Only update the product if the hash is valid.
@@ -493,7 +587,7 @@
     /**
      * Initialize the form and show the default selection.
      */
-    FirefoxDownloader.init = function() {
+    FirefoxDownloader.init = function () {
         // Set the product if there's a valid hash identifier in the URL.
         var hash = FirefoxDownloader.getHash();
 
@@ -505,7 +599,7 @@
         var product = FirefoxDownloader.getProductSelection();
         var platform = FirefoxDownloader.getPlatform(window.site.platform);
 
-        if (platform === 'ios' || platform ==='android' ) {
+        if (platform === 'ios' || platform === 'android') {
             FirefoxDownloader.setProductSelection(platform + '_release');
             product = FirefoxDownloader.getProductSelection();
         } else if (platform) {
@@ -527,5 +621,4 @@
     };
 
     window.Mozilla.FirefoxDownloader = FirefoxDownloader;
-
 })();

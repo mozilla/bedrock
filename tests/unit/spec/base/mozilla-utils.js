@@ -3,15 +3,14 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-describe('mozilla-utils.js', function() {
+describe('mozilla-utils.js', function () {
     'use strict';
 
     describe('trans', function () {
         let stringDiv;
 
         beforeEach(function () {
-            stringDiv =
-                `<div id="strings" data-global-close="Close"
+            stringDiv = `<div id="strings" data-global-close="Close"
                     data-global-next="Next"
                     data-global-previous="Previous">
                 </div>`;
@@ -19,7 +18,7 @@ describe('mozilla-utils.js', function() {
             document.body.insertAdjacentHTML('beforeend', stringDiv);
         });
 
-        afterEach(function() {
+        afterEach(function () {
             const strings = document.getElementById('strings');
             strings.parentNode.removeChild(strings);
         });
@@ -31,13 +30,13 @@ describe('mozilla-utils.js', function() {
     });
 
     describe('initMobileDownloadLinks', function () {
-
-        beforeEach(function() {
-            const link = '<a class="download-link" href="https://play.google.com/store/apps/details?id=org.mozilla.firefox">Download Firefox</a>';
+        beforeEach(function () {
+            const link =
+                '<a class="download-link" href="https://play.google.com/store/apps/details?id=org.mozilla.firefox">Download Firefox</a>';
             document.body.insertAdjacentHTML('beforeend', link);
         });
 
-        afterEach(function(){
+        afterEach(function () {
             window.site.platform = 'other';
 
             document.querySelectorAll('.download-link').forEach((e) => {
@@ -49,12 +48,13 @@ describe('mozilla-utils.js', function() {
             window.site.platform = 'android';
             Mozilla.Utils.initMobileDownloadLinks();
             const link = document.querySelector('.download-link');
-            expect(link.href).toEqual('market://details?id=org.mozilla.firefox');
+            expect(link.href).toEqual(
+                'market://details?id=org.mozilla.firefox'
+            );
         });
     });
 
-    describe('maybeSwitchToChinaRepackImages', function() {
-
+    describe('maybeSwitchToChinaRepackImages', function () {
         const defaultSrc = '/img/placeholder.png';
         const partnerASrc = '/img/foo.png';
 
@@ -63,7 +63,7 @@ describe('mozilla-utils.js', function() {
             document.body.insertAdjacentHTML('beforeend', img);
         });
 
-        afterEach(function() {
+        afterEach(function () {
             document.querySelectorAll('.test-image').forEach((e) => {
                 e.parentNode.removeChild(e);
             });
@@ -86,8 +86,7 @@ describe('mozilla-utils.js', function() {
         });
     });
 
-    describe('getDownloadAttributionValues', function() {
-
+    describe('getDownloadAttributionValues', function () {
         it('should return expected values for Windows', function () {
             const site = {
                 platform: 'windows'
