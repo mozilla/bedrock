@@ -10,14 +10,13 @@
     var version = client._getFirefoxMajorVersion();
 
     if (client.isFirefox && version >= '70') {
-
         var menuItem = document.getElementById('js-lockwise-desktop');
-        if(menuItem !== null) {
+        if (menuItem !== null) {
             menuItem.classList.remove('hidden');
 
             var lockwiseButton = document.getElementById('lockwise-button');
-            if(lockwiseButton !== null) {
-                lockwiseButton.addEventListener('click', function() {
+            if (lockwiseButton !== null) {
+                lockwiseButton.addEventListener('click', function () {
                     Mozilla.UITour.showHighlight('logins');
                 });
             }
@@ -26,5 +25,4 @@
 
     // init menus on page
     window.Mzp.Details.init('.mzp-c-menu-list-title');
-
 })();

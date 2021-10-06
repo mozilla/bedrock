@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-(function() {
+(function () {
     'use strict';
 
     // TODO port this JS to Protocol
@@ -10,7 +10,7 @@
 
     var newsletterForm = document.getElementById('newsletter-form');
 
-    if(!newsletterForm) {
+    if (!newsletterForm) {
         return;
     }
 
@@ -39,13 +39,15 @@
         enableFormFields();
 
         if (errorArray.length) {
-
             // create error list container if it does not exist.
             if (!newsletterErrors) {
                 newsletterErrors = document.createElement('div');
                 newsletterErrors.id = 'newsletter-errors';
                 newsletterErrors.className = 'mzp-c-form-errors';
-                newsletterContent.insertBefore(newsletterErrors, newsletterContent.firstChild);
+                newsletterContent.insertBefore(
+                    newsletterErrors,
+                    newsletterContent.firstChild
+                );
             }
 
             var errorList = document.createElement('ul');
@@ -76,10 +78,12 @@
     // trigger success event
     function newsletterSuccess() {
         if (typeof document.CustomEvent === 'function') {
-            document.dispatchEvent(new CustomEvent('newsletterSuccess', {
-                bubbles: true,
-                cancelable: true
-            }));
+            document.dispatchEvent(
+                new CustomEvent('newsletterSuccess', {
+                    bubbles: true,
+                    cancelable: true
+                })
+            );
         } else if (typeof document.createEvent === 'function') {
             var event = document.createEvent('Event');
             event.initEvent('newsletterSuccess', true, true);
@@ -112,20 +116,29 @@
         var fmt = fmtText.checked ? fmtText.value : fmtHtml.value;
         var email = document.getElementById('id_email').value;
         var newsletter = document.getElementById('id_newsletters').value;
-        var privacy = document.querySelector('input[name="privacy"]:checked') ? '&privacy=true' : '';
+        var privacy = document.querySelector('input[name="privacy"]:checked')
+            ? '&privacy=true'
+            : '';
         var country = document.getElementById('id_country').value;
         var lang = document.getElementById('id_lang').value;
-        var params = 'email=' + encodeURIComponent(email) +
-                     '&newsletters=' + newsletter +
-                     privacy +
-                     '&fmt=' + fmt +
-                     '&country=' + country +
-                     '&lang=' + lang +
-                     '&source_url=' + encodeURIComponent(document.location.href);
+        var params =
+            'email=' +
+            encodeURIComponent(email) +
+            '&newsletters=' +
+            newsletter +
+            privacy +
+            '&fmt=' +
+            fmt +
+            '&country=' +
+            country +
+            '&lang=' +
+            lang +
+            '&source_url=' +
+            encodeURIComponent(document.location.href);
 
         var xhr = new XMLHttpRequest();
 
-        xhr.onload = function(r) {
+        xhr.onload = function (r) {
             if (r.target.status >= 200 && r.target.status < 300) {
                 var response = r.target.response || r.target.responseText;
 
@@ -139,11 +152,10 @@
                     enableFormFields();
                     newsletterSuccess();
 
-
                     if (window.dataLayer) {
                         window.dataLayer.push({
-                            'event': 'newsletter-signup-success',
-                            'newsletter': newsletter
+                            event: 'newsletter-signup-success',
+                            newsletter: newsletter
                         });
                     }
                 } else {
@@ -154,21 +166,23 @@
                     }
                     newsletterError();
                 }
-            }
-            else {
+            } else {
                 newsletterError();
             }
         };
 
-        xhr.onerror = function(e) {
+        xhr.onerror = function (e) {
             newsletterError(e);
         };
 
         var url = newsletterForm.getAttribute('action');
 
         xhr.open('POST', url, true);
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhr.setRequestHeader('X-Requested-With','XMLHttpRequest');
+        xhr.setRequestHeader(
+            'Content-type',
+            'application/x-www-form-urlencoded'
+        );
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
         xhr.timeout = 5000;
         xhr.ontimeout = newsletterError;
         xhr.responseType = 'json';

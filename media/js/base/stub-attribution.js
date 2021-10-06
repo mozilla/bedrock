@@ -7,7 +7,7 @@ if (typeof window.Mozilla === 'undefined') {
     window.Mozilla = {};
 }
 
-(function() {
+(function () {
     'use strict';
 
     /**
@@ -42,55 +42,77 @@ if (typeof window.Mozilla === 'undefined') {
      * Determines if session falls within the predefined stub attribution sample rate.
      * @return {Boolean}.
      */
-    StubAttribution.withinAttributionRate = function() {
-        return (Math.random() < StubAttribution.getAttributionRate()) ? true : false;
+    StubAttribution.withinAttributionRate = function () {
+        return Math.random() < StubAttribution.getAttributionRate()
+            ? true
+            : false;
     };
 
     /**
      * Returns stub attribution value used for rate limiting.
      * @return {Number} float between 0 and 1.
      */
-    StubAttribution.getAttributionRate = function() {
-        var rate = document.getElementsByTagName('html')[0].getAttribute('data-stub-attribution-rate');
-        return (isNaN(rate) || !rate) ? 0 : Math.min(Math.max(parseFloat(rate), 0), 1);
+    StubAttribution.getAttributionRate = function () {
+        var rate = document
+            .getElementsByTagName('html')[0]
+            .getAttribute('data-stub-attribution-rate');
+        return isNaN(rate) || !rate
+            ? 0
+            : Math.min(Math.max(parseFloat(rate), 0), 1);
     };
 
     /**
      * Returns true if both cookies exist.
      * @return {Boolean} data.
      */
-    StubAttribution.hasCookie = function() {
-        return Mozilla.Cookies.hasItem(StubAttribution.COOKIE_CODE_ID) && Mozilla.Cookies.hasItem(StubAttribution.COOKIE_SIGNATURE_ID);
+    StubAttribution.hasCookie = function () {
+        return (
+            Mozilla.Cookies.hasItem(StubAttribution.COOKIE_CODE_ID) &&
+            Mozilla.Cookies.hasItem(StubAttribution.COOKIE_SIGNATURE_ID)
+        );
     };
 
     /**
      * Stores a cookie with stub attribution data values.
      * @param {Object} data - attribution_code, attribution_sig.
      */
-    StubAttribution.setCookie = function(data) {
-
+    StubAttribution.setCookie = function (data) {
         if (!data.attribution_code || !data.attribution_sig) {
             return;
         }
 
         // set cookie to expire in 24 hours
         var date = new Date();
-        date.setTime(date.getTime() + (1 * 24 * 60 * 60 * 1000));
+        date.setTime(date.getTime() + 1 * 24 * 60 * 60 * 1000);
         var expires = date.toUTCString();
 
-        Mozilla.Cookies.setItem(StubAttribution.COOKIE_CODE_ID, data.attribution_code, expires, '/');
-        Mozilla.Cookies.setItem(StubAttribution.COOKIE_SIGNATURE_ID, data.attribution_sig, expires, '/');
+        Mozilla.Cookies.setItem(
+            StubAttribution.COOKIE_CODE_ID,
+            data.attribution_code,
+            expires,
+            '/'
+        );
+        Mozilla.Cookies.setItem(
+            StubAttribution.COOKIE_SIGNATURE_ID,
+            data.attribution_sig,
+            expires,
+            '/'
+        );
     };
 
     /**
      * Gets stub attribution data from cookie.
      * @return {Object} - attribution_code, attribution_sig.
      */
-    StubAttribution.getCookie = function() {
+    StubAttribution.getCookie = function () {
         return {
             /* eslint-disable camelcase */
-            attribution_code: Mozilla.Cookies.getItem(StubAttribution.COOKIE_CODE_ID),
-            attribution_sig: Mozilla.Cookies.getItem(StubAttribution.COOKIE_SIGNATURE_ID)
+            attribution_code: Mozilla.Cookies.getItem(
+                StubAttribution.COOKIE_CODE_ID
+            ),
+            attribution_sig: Mozilla.Cookies.getItem(
+                StubAttribution.COOKIE_SIGNATURE_ID
+            )
             /* eslint-enable camelcase */
         };
     };
@@ -100,36 +122,56 @@ if (typeof window.Mozilla === 'undefined') {
      * stub attribution.
      * @param {Object} data - attribution_code, attribution_sig.
      */
-    StubAttribution.updateBouncerLinks = function(data) {
+    StubAttribution.updateBouncerLinks = function (data) {
         /**
          * If data is missing or the browser does not meet requirements for
          * stub attribution, then do nothing.
          */
-        if (!data.attribution_code || !data.attribution_sig || !StubAttribution.meetsRequirements()) {
+        if (
+            !data.attribution_code ||
+            !data.attribution_sig ||
+            !StubAttribution.meetsRequirements()
+        ) {
             return;
         }
 
         // target download buttons and other-platforms modal links.
-        var downloadLinks = document.querySelectorAll('.download-list .download-link, .c-button-download-thanks .download-link, .download-platform-list .download-link');
+        var downloadLinks = document.querySelectorAll(
+            '.download-list .download-link, .c-button-download-thanks .download-link, .download-platform-list .download-link'
+        );
 
         for (var i = 0; i < downloadLinks.length; i++) {
             var link = downloadLinks[i];
             var version;
             var directLink;
             // Append stub attribution data to direct download links.
-            if (link.href && link.href.indexOf('https://download.mozilla.org') !== -1) {
-
+            if (
+                link.href &&
+                link.href.indexOf('https://download.mozilla.org') !== -1
+            ) {
                 version = link.getAttribute('data-download-version');
                 // Append attribution params to Windows 32bit, 64bit, and MSI installer links.
-                if (version && (/win/.test(version))) {
-                    link.href = Mozilla.StubAttribution.appendToDownloadURL(link.href, data);
+                if (version && /win/.test(version)) {
+                    link.href = Mozilla.StubAttribution.appendToDownloadURL(
+                        link.href,
+                        data
+                    );
                 }
-            } else if (link.href && link.href.indexOf('/firefox/download/thanks/') !== -1) {
+            } else if (
+                link.href &&
+                link.href.indexOf('/firefox/download/thanks/') !== -1
+            ) {
                 // Append stub data to direct-link data attributes on transitional links for old IE browsers (Issue #9350)
                 directLink = link.getAttribute('data-direct-link');
 
                 if (directLink) {
-                    link.setAttribute('data-direct-link', Mozilla.StubAttribution.appendToDownloadURL(directLink, data));
+                    link.setAttribute(
+                        'data-direct-link',
+                        Mozilla.StubAttribution.appendToDownloadURL(
+                            directLink,
+                            data
+                        )
+                    );
                 }
             }
         }
@@ -142,8 +184,7 @@ if (typeof window.Mozilla === 'undefined') {
      * @param {Object} data - attribution_code, attribution_sig.
      * @return {String} url + additional parameters.
      */
-    StubAttribution.appendToDownloadURL = function(url, data) {
-
+    StubAttribution.appendToDownloadURL = function (url, data) {
         if (!data.attribution_code || !data.attribution_sig) {
             return url;
         }
@@ -152,7 +193,11 @@ if (typeof window.Mozilla === 'undefined') {
         for (var key in data) {
             if (Object.prototype.hasOwnProperty.call(data, key)) {
                 if (key === 'attribution_code' || key === 'attribution_sig') {
-                    url += (url.indexOf('?') > -1 ? '&' : '?') + key + '=' + data[key];
+                    url +=
+                        (url.indexOf('?') > -1 ? '&' : '?') +
+                        key +
+                        '=' +
+                        data[key];
                 }
             }
         }
@@ -164,8 +209,12 @@ if (typeof window.Mozilla === 'undefined') {
      * Handles XHR request from `stub_attribution_code` service.
      * @param {Object} data - attribution_code, attribution_sig.
      */
-    StubAttribution.onRequestSuccess = function(data) {
-        if (data.attribution_code && data.attribution_sig && !StubAttribution.requestComplete) {
+    StubAttribution.onRequestSuccess = function (data) {
+        if (
+            data.attribution_code &&
+            data.attribution_sig &&
+            !StubAttribution.requestComplete
+        ) {
             // Update download links on the current page.
             StubAttribution.updateBouncerLinks(data);
             // Store attribution data in a cookie should the user navigate.
@@ -179,7 +228,7 @@ if (typeof window.Mozilla === 'undefined') {
         }
     };
 
-    StubAttribution.onRequestTimeout = function() {
+    StubAttribution.onRequestTimeout = function () {
         if (!StubAttribution.requestComplete) {
             StubAttribution.requestComplete = true;
 
@@ -193,13 +242,23 @@ if (typeof window.Mozilla === 'undefined') {
      * AJAX request to bedrock service to authenticate stub attribution request.
      * @param {Object} data - utm params and referrer.
      */
-    StubAttribution.requestAuthentication = function(data) {
-        var SERVICE_URL = window.location.protocol + '//' + window.location.host + '/en-US/firefox/stub_attribution_code/';
+    StubAttribution.requestAuthentication = function (data) {
+        var SERVICE_URL =
+            window.location.protocol +
+            '//' +
+            window.location.host +
+            '/en-US/firefox/stub_attribution_code/';
         var xhr = new window.XMLHttpRequest();
         var timeoutValue = 10000;
-        var timeout = setTimeout(StubAttribution.onRequestTimeout, timeoutValue);
+        var timeout = setTimeout(
+            StubAttribution.onRequestTimeout,
+            timeoutValue
+        );
 
-        xhr.open('GET', SERVICE_URL + '?' + window._SearchParams.objectToQueryString(data));
+        xhr.open(
+            'GET',
+            SERVICE_URL + '?' + window._SearchParams.objectToQueryString(data)
+        );
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
         // use readystate change over onload for IE8 support.
@@ -230,7 +289,7 @@ if (typeof window.Mozilla === 'undefined') {
      * @param {String} ua - Optional user agent string to facilitate testing.
      * @returns {String} - Browser name.
      */
-    StubAttribution.getUserAgent = function(ua) {
+    StubAttribution.getUserAgent = function (ua) {
         ua = typeof ua !== 'undefined' ? ua : navigator.userAgent;
 
         if (/MSIE|Trident/i.test(ua)) {
@@ -256,7 +315,7 @@ if (typeof window.Mozilla === 'undefined') {
      * Gets the client ID from the GA object.
      * @returns {String} client ID.
      */
-    StubAttribution.getGAVisitID = function() {
+    StubAttribution.getGAVisitID = function () {
         try {
             return window.ga.getAll()[0].get('clientId');
         } catch (e) {
@@ -269,7 +328,7 @@ if (typeof window.Mozilla === 'undefined') {
      * attempts to retrieve the client ID from the global `ga` object.
      * @param {Function} callback
      */
-    StubAttribution.waitForGoogleAnalytics = function(callback) {
+    StubAttribution.waitForGoogleAnalytics = function (callback) {
         var timeout;
         var pollRetry = 0;
         var interval = 100;
@@ -299,11 +358,13 @@ if (typeof window.Mozilla === 'undefined') {
      * @param {String} ref - Optional referrer to facilitate testing.
      * @return {Object} - Stub attribution data object.
      */
-    StubAttribution.getAttributionData = function(ref) {
+    StubAttribution.getAttributionData = function (ref) {
         var params = new window._SearchParams();
         var utms = params.utmParams();
-        var experiment = params.get('experiment') || StubAttribution.experimentName;
-        var variation = params.get('variation') || StubAttribution.experimentVariation;
+        var experiment =
+            params.get('experiment') || StubAttribution.experimentName;
+        var variation =
+            params.get('variation') || StubAttribution.experimentVariation;
         var referrer = typeof ref !== 'undefined' ? ref : document.referrer;
         var ua = StubAttribution.getUserAgent();
         var visitID = StubAttribution.getGAVisitID();
@@ -315,7 +376,7 @@ if (typeof window.Mozilla === 'undefined') {
             utm_campaign: utms.utm_campaign,
             utm_content: utms.utm_content,
             referrer: referrer,
-            ua : ua,
+            ua: ua,
             experiment: experiment,
             variation: variation,
             visit_id: visitID
@@ -334,8 +395,11 @@ if (typeof window.Mozilla === 'undefined') {
         return data;
     };
 
-    StubAttribution.hasValidData = function(data) {
-        if (typeof data.utm_content === 'string' && typeof data.referrer === 'string') {
+    StubAttribution.hasValidData = function (data) {
+        if (
+            typeof data.utm_content === 'string' &&
+            typeof data.referrer === 'string'
+        ) {
             var content = data.utm_content;
             var charLimit = 150;
 
@@ -358,7 +422,10 @@ if (typeof window.Mozilla === 'undefined') {
             }
 
             // If RTAMO data does not originate from AMO, drop attribution (Issues 10337, 10524).
-            if ((/^rta:/).test(content) && data.referrer.indexOf('https://addons.mozilla.org') === -1) {
+            if (
+                /^rta:/.test(content) &&
+                data.referrer.indexOf('https://addons.mozilla.org') === -1
+            ) {
                 return false;
             }
         }
@@ -372,8 +439,9 @@ if (typeof window.Mozilla === 'undefined') {
      * want to make the request a dependency on the download starting.
      * @return {Boolean}.
      */
-    StubAttribution.isFirefoxNewScene2 = function(location) {
-        location = typeof location !== 'undefined' ? location : window.location.href;
+    StubAttribution.isFirefoxNewScene2 = function (location) {
+        location =
+            typeof location !== 'undefined' ? location : window.location.href;
         return location.indexOf('/firefox/download/thanks/') > -1;
     };
 
@@ -382,11 +450,12 @@ if (typeof window.Mozilla === 'undefined') {
      * Stub attribution is only applicable to Windows users who get the stub installer.
      * @return {Boolean}.
      */
-    StubAttribution.meetsRequirements = function() {
-
-        if (typeof window.site === 'undefined' ||
+    StubAttribution.meetsRequirements = function () {
+        if (
+            typeof window.site === 'undefined' ||
             typeof Mozilla.Cookies === 'undefined' ||
-            typeof window._SearchParams === 'undefined') {
+            typeof window._SearchParams === 'undefined'
+        ) {
             return false;
         }
 
@@ -408,7 +477,7 @@ if (typeof window.Mozilla === 'undefined') {
     /**
      * Determines whether to make a request to the stub authentication service.
      */
-    StubAttribution.init = function(successCallback, timeoutCallback) {
+    StubAttribution.init = function (successCallback, timeoutCallback) {
         var data = {};
 
         if (!StubAttribution.meetsRequirements()) {
@@ -429,19 +498,21 @@ if (typeof window.Mozilla === 'undefined') {
          * else make a request to the service if within attribution rate.
          */
         if (StubAttribution.hasCookie()) {
-
             data = StubAttribution.getCookie();
             StubAttribution.updateBouncerLinks(data);
 
-        // As long as the user is not already on scene2 of the main download page,
-        // make the XHR request to the stub authentication service.
+            // As long as the user is not already on scene2 of the main download page,
+            // make the XHR request to the stub authentication service.
         } else if (!StubAttribution.isFirefoxNewScene2()) {
-
             // Wait for GA to load so that we can pass along visit ID.
-            StubAttribution.waitForGoogleAnalytics(function() {
+            StubAttribution.waitForGoogleAnalytics(function () {
                 data = StubAttribution.getAttributionData();
 
-                if (data && StubAttribution.withinAttributionRate() && StubAttribution.hasValidData(data)) {
+                if (
+                    data &&
+                    StubAttribution.withinAttributionRate() &&
+                    StubAttribution.hasValidData(data)
+                ) {
                     StubAttribution.requestAuthentication(data);
                 }
             });

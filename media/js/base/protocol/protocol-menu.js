@@ -4,7 +4,7 @@
 
 // Copied from Protocol, to be backported along with nav updates.
 
-(function(Mzp) {
+(function (Mzp) {
     'use strict';
 
     var Menu = {};
@@ -25,7 +25,7 @@
      * @param {Object} el - DOM element (`.mzp-c-menu-category.mzp-js-expandable`)
      * @param {Boolean} animate - show animation when menu panel opens.
      */
-    Menu.open = function(el, animate) {
+    Menu.open = function (el, animate) {
         if (animate) {
             el.classList.add('mzp-is-animated');
         }
@@ -45,8 +45,10 @@
      * Closes all currently open menu panels.
      * Note: on small screens more than one menu can be open at the same time.
      */
-    Menu.close = function() {
-        var current = document.querySelectorAll('.c-menu-category.mzp-is-selected');
+    Menu.close = function () {
+        var current = document.querySelectorAll(
+            '.c-menu-category.mzp-is-selected'
+        );
 
         for (var i = 0; i < current.length; i++) {
             // The following classes must be removed in the correct order
@@ -55,7 +57,9 @@
             current[i].classList.remove('mzp-is-selected');
             current[i].classList.remove('mzp-is-animated');
 
-            current[i].querySelector('.c-menu-title').setAttribute('aria-expanded', false);
+            current[i]
+                .querySelector('.c-menu-title')
+                .setAttribute('aria-expanded', false);
         }
 
         _menuOpen = false; // For checking menu state on keyup.
@@ -67,7 +71,7 @@
         return current.length > 0;
     };
 
-    Menu.onDocumentKeyUp = function(e) {
+    Menu.onDocumentKeyUp = function (e) {
         if (e.keyCode === 27 && _menuOpen) {
             Menu.close();
         }
@@ -77,7 +81,7 @@
      * Menu panel close button `click` event handler.
      * @param {Object} e - Event object.
      */
-    Menu.onCloseButtonClick = function(e) {
+    Menu.onCloseButtonClick = function (e) {
         e.preventDefault();
 
         if (typeof _options.onMenuButtonClose === 'function') {
@@ -91,7 +95,7 @@
      * Toggles the open/closed state of a menu panel.
      * @param {Object} el - DOM element (`.mzp-c-menu-category.mzp-js-expandable`)
      */
-    Menu.toggle = function(el) {
+    Menu.toggle = function (el) {
         var state = el.classList.contains('mzp-is-selected') ? true : false;
 
         if (!state) {
@@ -102,7 +106,10 @@
             // https://github.com/mozilla/bedrock/issues/6221 :/
             el.classList.remove('mzp-is-selected');
             el.classList.remove('mzp-is-animated');
-            el.querySelector('.c-menu-title').setAttribute('aria-expanded', false);
+            el.querySelector('.c-menu-title').setAttribute(
+                'aria-expanded',
+                false
+            );
 
             if (typeof _options.onMenuClose === 'function') {
                 _options.onMenuClose();
@@ -116,12 +123,12 @@
      * Animates only if a menu panel is not already open.
      * @param {Object} e - Event object.
      */
-    Menu.onMouseEnter = function(e) {
+    Menu.onMouseEnter = function (e) {
         clearTimeout(_hoverTimeout);
 
-        _hoverTimeout = setTimeout(function() {
+        _hoverTimeout = setTimeout(function () {
             var current = Menu.close();
-            var animate = current ? false: true;
+            var animate = current ? false : true;
 
             Menu.open(e.target, animate);
         }, _hoverTimeoutDelay);
@@ -131,10 +138,10 @@
      * Menu `mouseleave` event handler.
      * Closes the menu only when hover intent is shown.
      */
-    Menu.onMouseLeave = function() {
+    Menu.onMouseLeave = function () {
         clearTimeout(_hoverTimeout);
 
-        _hoverTimeout = setTimeout(function() {
+        _hoverTimeout = setTimeout(function () {
             Menu.close();
         }, _hoverTimeoutDelay);
     };
@@ -143,7 +150,7 @@
      * Menu `focusout` event handler.
      * Closes the menu when focus moves to an alement outside of the currently open panel.
      */
-    Menu.onFocusOut = function() {
+    Menu.onFocusOut = function () {
         var self = this;
 
         /**
@@ -151,9 +158,12 @@
          * moving to the next element. A `setTimeout` of `0` circumvents this issue as it
          * re-queues the JavaScript to run at the end of the current excecution.
          */
-        setTimeout(function() {
+        setTimeout(function () {
             // If the menu is open and the newly focused element is not a child, then call close().
-            if (!self.contains(document.activeElement) && self.classList.contains('mzp-is-selected')) {
+            if (
+                !self.contains(document.activeElement) &&
+                self.classList.contains('mzp-is-selected')
+            ) {
                 Menu.close();
             }
         }, 0);
@@ -164,7 +174,7 @@
      * Closes any currently open menu panels before opening the selected one.
      * @param {Object} e - Event object.
      */
-    Menu.onClickWide = function(e) {
+    Menu.onClickWide = function (e) {
         e.preventDefault();
         Menu.close();
         Menu.open(e.target.parentNode);
@@ -175,7 +185,7 @@
      * Toggles the currently selected menu open open/close state.
      * @param {Object} e - Event object.
      */
-    Menu.onClickSmall = function(e) {
+    Menu.onClickSmall = function (e) {
         e.preventDefault();
         Menu.toggle(e.target.parentNode);
     };
@@ -184,17 +194,17 @@
      * Convenience function for checking `matchMedia` state.
      * @return {Boolean}
      */
-    Menu.isWideViewport = function() {
+    Menu.isWideViewport = function () {
         return _mqWideNav.matches;
     };
 
     /**
      * Toggle desktop/mobile navigation using `matchMedia` event handler.
      */
-    Menu.handleState = function() {
+    Menu.handleState = function () {
         _mqWideNav = matchMedia('(min-width: ' + _wideBreakpoint + ')');
 
-        _mqWideNav.addListener(function(mq) {
+        _mqWideNav.addListener(function (mq) {
             Menu.close();
 
             if (mq.matches) {
@@ -216,8 +226,10 @@
     /**
      * Bind events for wide viewports.
      */
-    Menu.bindEventsWide = function() {
-        var items = document.querySelectorAll('.c-menu-category.mzp-js-expandable');
+    Menu.bindEventsWide = function () {
+        var items = document.querySelectorAll(
+            '.c-menu-category.mzp-js-expandable'
+        );
         var link;
         var close;
 
@@ -240,14 +252,24 @@
     /**
      * Unbind events for wide viewports.
      */
-    Menu.unbindEventsWide = function() {
-        var items = document.querySelectorAll('.c-menu-category.mzp-js-expandable');
+    Menu.unbindEventsWide = function () {
+        var items = document.querySelectorAll(
+            '.c-menu-category.mzp-js-expandable'
+        );
         var link;
         var close;
 
         for (var i = 0; i < items.length; i++) {
-            items[i].removeEventListener('mouseenter', Menu.onMouseEnter, false);
-            items[i].removeEventListener('mouseleave', Menu.onMouseLeave, false);
+            items[i].removeEventListener(
+                'mouseenter',
+                Menu.onMouseEnter,
+                false
+            );
+            items[i].removeEventListener(
+                'mouseleave',
+                Menu.onMouseLeave,
+                false
+            );
             items[i].removeEventListener('focusout', Menu.onFocusOut, false);
 
             link = items[i].querySelector('.c-menu-title');
@@ -263,8 +285,10 @@
     /**
      * Bind events for small viewports.
      */
-    Menu.bindEventsSmall = function() {
-        var items = document.querySelectorAll('.c-menu-category.mzp-js-expandable .c-menu-title');
+    Menu.bindEventsSmall = function () {
+        var items = document.querySelectorAll(
+            '.c-menu-category.mzp-js-expandable .c-menu-title'
+        );
 
         for (var i = 0; i < items.length; i++) {
             items[i].addEventListener('click', Menu.onClickSmall, false);
@@ -274,8 +298,10 @@
     /**
      * Unbind events for small viewports.
      */
-    Menu.unbindEventsSmall = function() {
-        var items = document.querySelectorAll('.c-menu-category.mzp-js-expandable .c-menu-title');
+    Menu.unbindEventsSmall = function () {
+        var items = document.querySelectorAll(
+            '.c-menu-category.mzp-js-expandable .c-menu-title'
+        );
 
         for (var i = 0; i < items.length; i++) {
             items[i].removeEventListener('click', Menu.onClickSmall, false);
@@ -285,8 +311,10 @@
     /**
      * Set initial ARIA menu panel states.
      */
-    Menu.setAria = function() {
-        var items = document.querySelectorAll('.c-menu-category.mzp-js-expandable .c-menu-title');
+    Menu.setAria = function () {
+        var items = document.querySelectorAll(
+            '.c-menu-category.mzp-js-expandable .c-menu-title'
+        );
 
         for (var i = 0; i < items.length; i++) {
             items[i].setAttribute('aria-expanded', false);
@@ -296,7 +324,7 @@
     /**
      * Enhances the menu for 1st class JS support.
      */
-    Menu.enhanceJS = function() {
+    Menu.enhanceJS = function () {
         var menu = document.querySelectorAll('.c-menu');
 
         for (var i = 0; i < menu.length; i++) {
@@ -308,7 +336,7 @@
     /**
      * Basic feature detect for 1st class menu JS support.
      */
-    Menu.isSupported = function() {
+    Menu.isSupported = function () {
         if (typeof Mzp.Supports !== 'undefined') {
             return Mzp.Supports.matchMedia && Mzp.Supports.classList;
         } else {
@@ -320,7 +348,7 @@
      * Initialise menu.
      * @param {Object} options - configurable options.
      */
-    Menu.init = function(options) {
+    Menu.init = function (options) {
         if (typeof options === 'object') {
             for (var i in options) {
                 if (options.hasOwnProperty.call(i)) {
@@ -337,5 +365,4 @@
     };
 
     window.Mzp.Menu = Menu;
-
 })(window.Mzp);

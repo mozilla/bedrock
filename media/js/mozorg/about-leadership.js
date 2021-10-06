@@ -7,7 +7,7 @@ if (typeof window.Mozilla === 'undefined') {
     window.Mozilla = {};
 }
 
-(function() {
+(function () {
     'use strict';
 
     var bios = document.getElementsByClassName('has-bio');
@@ -17,7 +17,7 @@ if (typeof window.Mozilla === 'undefined') {
         var bio = bios[i];
         bio.setAttribute('aria-role', 'button');
 
-        bio.addEventListener('click', function(e) {
+        bio.addEventListener('click', function (e) {
             e.preventDefault();
             var modalContent = this.cloneNode(true);
             modalContent.removeAttribute('id');
@@ -25,10 +25,10 @@ if (typeof window.Mozilla === 'undefined') {
 
             Mzp.Modal.createModal(e.target, content, {
                 closeText: window.Mozilla.Utils.trans('global-close'),
-                onCreate: function() {
+                onCreate: function () {
                     content.appendChild(modalContent);
                 },
-                onDestroy: function() {
+                onDestroy: function () {
                     modalContent.parentNode.removeChild(modalContent);
                 }
             });
@@ -43,5 +43,4 @@ if (typeof window.Mozilla === 'undefined') {
             target.click();
         }
     }
-
 })(window.Mozilla);

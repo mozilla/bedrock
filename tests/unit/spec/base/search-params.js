@@ -5,12 +5,10 @@
 
 /* global _SearchParams */
 
-describe('search-params.js', function() {
-
+describe('search-params.js', function () {
     'use strict';
 
     describe('_SearchParams', function () {
-
         it('should return a proper value', function () {
             const params = new _SearchParams('scene=2&source=getfirefox');
             expect(params.get('scene')).toEqual(2);
@@ -46,7 +44,9 @@ describe('search-params.js', function() {
         });
 
         it('should return an object of utm_ values', function () {
-            const sp = new _SearchParams('utm_dude=lebowski&utm_sport=bowling&source=getfirefox');
+            const sp = new _SearchParams(
+                'utm_dude=lebowski&utm_sport=bowling&source=getfirefox'
+            );
             const utms = sp.utmParams();
             const keys = Object.keys(utms);
             expect(keys).toEqual(['utm_dude', 'utm_sport']);
@@ -55,15 +55,21 @@ describe('search-params.js', function() {
         });
 
         it('should return an object of utm_ values with defaults for FxA', function () {
-            const sp = new _SearchParams('utm_dude=lebowski&utm_sport=bowling&source=getfirefox');
+            const sp = new _SearchParams(
+                'utm_dude=lebowski&utm_sport=bowling&source=getfirefox'
+            );
             const utms = sp.utmParamsFxA('/es-ES/firefox/sync/');
             expect(utms.utm_dude).toEqual('lebowski');
-            expect(utms.utm_campaign).toEqual('page referral - not part of a campaign');
+            expect(utms.utm_campaign).toEqual(
+                'page referral - not part of a campaign'
+            );
             expect(utms.utm_content).toEqual('/firefox/sync/');
         });
 
         it('should return an object of string utm_ values for FxA', function () {
-            const sp = new _SearchParams('utm_dude=lebowski&utm_strikes=10&source=getfirefox');
+            const sp = new _SearchParams(
+                'utm_dude=lebowski&utm_strikes=10&source=getfirefox'
+            );
             const utms = sp.utmParamsFxA('/es-ES/firefox/sync/');
             expect(utms.utm_dude).toEqual('lebowski');
             expect(utms.utm_strikes).not.toEqual(10);
@@ -72,11 +78,11 @@ describe('search-params.js', function() {
         });
 
         it('should not override utm_campaign when set in URL', function () {
-            const sp = new _SearchParams('utm_dude=lebowski&utm_campaign=bowling&source=getfirefox');
+            const sp = new _SearchParams(
+                'utm_dude=lebowski&utm_campaign=bowling&source=getfirefox'
+            );
             const utms = sp.utmParamsFxA();
             expect(utms.utm_campaign).toEqual('bowling');
         });
-
     });
-
 });

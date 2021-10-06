@@ -7,5 +7,4 @@
 
     // Lazyload images
     Mozilla.LazyLoad.init();
-
 })();

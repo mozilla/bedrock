@@ -9,8 +9,7 @@
             pf = pf || navigator.platform;
             ua = ua || navigator.userAgent;
 
-            if (pf.indexOf('Win32') !== -1 ||
-                pf.indexOf('Win64') !== -1) {
+            if (pf.indexOf('Win32') !== -1 || pf.indexOf('Win64') !== -1) {
                 return 'windows';
             }
             if (/android/i.test(ua)) {
@@ -22,13 +21,19 @@
             if (pf.indexOf('MacPPC') !== -1) {
                 return 'other';
             }
-            if (pf.indexOf('iPhone') !== -1 ||
+            if (
+                pf.indexOf('iPhone') !== -1 ||
                 pf.indexOf('iPad') !== -1 ||
                 pf.indexOf('iPod') !== -1 ||
-                pf.indexOf('MacIntel') !== -1 && 'standalone' in navigator) { // iPadOS
+                (pf.indexOf('MacIntel') !== -1 && 'standalone' in navigator)
+            ) {
+                // iPadOS
                 return 'ios';
             }
-            if (ua.indexOf('Mac OS X') !== -1 && !/Mac OS X 10.[0-8]\D/.test(ua)) {
+            if (
+                ua.indexOf('Mac OS X') !== -1 &&
+                !/Mac OS X 10.[0-8]\D/.test(ua)
+            ) {
                 return 'osx';
             }
 
@@ -39,15 +44,16 @@
             ua = ua || navigator.userAgent;
 
             // On OS X, Safari and Chrome have underscores instead of dots
-            var match = ua.match(/Windows NT (\d+\.\d+)/) ||
-                        ua.match(/Mac OS X (\d+[._]\d+)/) ||
-                        ua.match(/Android (\d+\.\d+)/);
+            var match =
+                ua.match(/Windows NT (\d+\.\d+)/) ||
+                ua.match(/Mac OS X (\d+[._]\d+)/) ||
+                ua.match(/Android (\d+\.\d+)/);
 
             return match ? match[1].replace('_', '.') : undefined;
         },
 
         getArchType: function (ua, pf) {
-            pf = (pf === '') ? '' : pf || navigator.platform;
+            pf = pf === '' ? '' : pf || navigator.platform;
             ua = ua || navigator.userAgent;
 
             var re;
@@ -69,7 +75,7 @@
         },
 
         getArchSize: function (ua, pf) {
-            pf = (pf === '') ? '' : pf || navigator.platform;
+            pf = pf === '' ? '' : pf || navigator.platform;
             ua = ua || navigator.userAgent;
 
             var re = /x64|x86_64|Win64|WOW64|aarch64/i;
@@ -84,7 +90,10 @@
 
         // Universal feature detect to deliver graded browser support (targets IE 11 and above).
         cutsTheMustard: function () {
-            return 'classList' in document.createElement('div') && 'MutationObserver' in window;
+            return (
+                'classList' in document.createElement('div') &&
+                'MutationObserver' in window
+            );
         },
 
         platform: 'other',
@@ -98,8 +107,9 @@
 
         // if other than 'windows', immediately replace the platform classname on the html-element
         // to avoid lots of flickering
-        var platform = window.site.platform = window.site.getPlatform();
-        var version = window.site.platformVersion = window.site.getPlatformVersion();
+        var platform = (window.site.platform = window.site.getPlatform());
+        var version = (window.site.platformVersion =
+            window.site.getPlatformVersion());
         var _version = version ? parseFloat(version) : 0;
 
         if (platform === 'windows') {
@@ -111,9 +121,9 @@
         }
 
         // Add class to reflect the microprocessor architecture info
-        var archType = window.site.archType = window.site.getArchType();
-        var archSize = window.site.archSize = window.site.getArchSize();
-        var isARM = window.site.isARM = archType.match(/armv(\d+)/);
+        var archType = (window.site.archType = window.site.getArchType());
+        var archSize = (window.site.archSize = window.site.getArchSize());
+        var isARM = (window.site.isARM = archType.match(/armv(\d+)/));
 
         // Used for Linux ARM processor detection.
         if (archType !== 'x86') {
@@ -130,14 +140,19 @@
         }
 
         // Add class to reflect if user agent is Firefox. Cherry-picked from mozilla-client.js.
-        var isFirefox = /\s(Firefox|FxiOS)/.test(navigator.userAgent) && !/Iceweasel|IceCat|SeaMonkey|Camino|like Firefox/i.test(navigator.userAgent);
+        var isFirefox =
+            /\s(Firefox|FxiOS)/.test(navigator.userAgent) &&
+            !/Iceweasel|IceCat|SeaMonkey|Camino|like Firefox/i.test(
+                navigator.userAgent
+            );
 
         if (isFirefox) {
             h.className += ' is-firefox';
         }
 
         // Add class to reflect browsers that get 1st class JS & CSS support.
-        var isModernBrowser = window.site.isModernBrowser = window.site.cutsTheMustard();
+        var isModernBrowser = (window.site.isModernBrowser =
+            window.site.cutsTheMustard());
 
         if (isModernBrowser) {
             h.className += ' is-modern-browser';

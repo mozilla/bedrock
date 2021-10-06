@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-(function() {
+(function () {
     'use strict';
 
     // Retrieve search params as a object for easier access
@@ -20,7 +20,12 @@
 
         for (var param in obj) {
             if (Object.prototype.hasOwnProperty.call(obj, param)) {
-                searchStrings.push([encodeURIComponent(param), encodeURIComponent(obj[param])].join('='));
+                searchStrings.push(
+                    [
+                        encodeURIComponent(param),
+                        encodeURIComponent(obj[param])
+                    ].join('=')
+                );
             }
         }
 
@@ -65,11 +70,11 @@
         return _SearchParams.objectToQueryString(this.params);
     };
 
-    _SearchParams.prototype.utmParams = function() {
+    _SearchParams.prototype.utmParams = function () {
         var utms = {};
         var params = this.params;
 
-        for (var param in params){
+        for (var param in params) {
             if (Object.prototype.hasOwnProperty.call(params, param)) {
                 if (param.indexOf('utm_') === 0) {
                     utms[param] = params[param];
@@ -80,7 +85,7 @@
         return utms;
     };
 
-    _SearchParams.prototype.utmParamsFxA = function(pathname) {
+    _SearchParams.prototype.utmParamsFxA = function (pathname) {
         pathname = pathname || window.location.pathname || '';
 
         var utms = this.utmParams();
@@ -108,7 +113,7 @@
 
         // ensure all values are strings, as no numeric values are allowed
         // into UITour.showFirefoxAccounts
-        Object.keys(utms).forEach(function(key) {
+        Object.keys(utms).forEach(function (key) {
             utms[key] = utms[key].toString();
         });
 
@@ -116,5 +121,4 @@
     };
 
     window._SearchParams = _SearchParams;
-
 })();

@@ -2,18 +2,23 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-(function() {
+(function () {
     'use strict';
 
     var timeout;
     var requestComplete = false;
 
     function beginFirefoxDownload() {
-        var directDownloadLink = document.getElementById('direct-download-link');
+        var directDownloadLink = document.getElementById(
+            'direct-download-link'
+        );
         var downloadURL;
 
         // Only auto-start the download if a supported platform is detected.
-        if (Mozilla.DownloadThanks.shouldAutoDownload(window.site.platform) && typeof Mozilla.Utils !== 'undefined') {
+        if (
+            Mozilla.DownloadThanks.shouldAutoDownload(window.site.platform) &&
+            typeof Mozilla.Utils !== 'undefined'
+        ) {
             downloadURL = Mozilla.DownloadThanks.getDownloadURL(window.site);
 
             if (downloadURL) {
@@ -25,8 +30,8 @@
 
                 // Start the platform-detected download a second after DOM ready event.
                 // We don't rely on the window load event as we have third-party tracking pixels.
-                Mozilla.Utils.onDocumentReady(function() {
-                    setTimeout(function() {
+                Mozilla.Utils.onDocumentReady(function () {
+                    setTimeout(function () {
                         window.location.href = downloadURL;
                     }, 1000);
                 });
@@ -44,9 +49,9 @@
 
         // Fire GA event to log attribution success
         window.dataLayer.push({
-            'event': 'non-interaction',
-            'eAction': 'amo-exp-attribution',
-            'eLabel': 'success'
+            event: 'non-interaction',
+            eAction: 'amo-exp-attribution',
+            eLabel: 'success'
         });
 
         beginFirefoxDownload();
@@ -62,9 +67,9 @@
 
         // Fire GA event to log attribution timeout
         window.dataLayer.push({
-            'event': 'non-interaction',
-            'eAction': 'amo-exp-attribution',
-            'eLabel': 'timeout'
+            event: 'non-interaction',
+            eAction: 'amo-exp-attribution',
+            eLabel: 'timeout'
         });
 
         beginFirefoxDownload();
@@ -76,12 +81,13 @@
      * met and the visitor does *not* have a cookie, then attempt to make the attribution
      * call before starting the download.
      */
-    if (typeof Mozilla.StubAttribution !== 'undefined' &&
+    if (
+        typeof Mozilla.StubAttribution !== 'undefined' &&
         Mozilla.StubAttribution.meetsRequirements() &&
-        !Mozilla.StubAttribution.hasCookie()) {
-
+        !Mozilla.StubAttribution.hasCookie()
+    ) {
         // Wait for GA to load so that we can pass along visit ID.
-        Mozilla.StubAttribution.waitForGoogleAnalytics(function() {
+        Mozilla.StubAttribution.waitForGoogleAnalytics(function () {
             var data = Mozilla.StubAttribution.getAttributionData();
 
             if (data && Mozilla.StubAttribution.withinAttributionRate()) {
@@ -101,5 +107,4 @@
 
     // Bug 1354334 - add a hint for test automation that page has loaded.
     document.getElementsByTagName('html')[0].classList.add('download-ready');
-
 })();

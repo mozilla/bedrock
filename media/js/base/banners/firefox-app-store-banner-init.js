@@ -11,15 +11,18 @@ if (typeof window.Mozilla === 'undefined') {
     window.Mozilla = {};
 }
 
-(function() {
+(function () {
     'use strict';
 
     function onLoad() {
         window.Mozilla.Banner.init('firefox-app-store-banner', true);
     }
 
-    if (window.Mozilla.run && window.site && (window.site.platform === 'android' || window.site.platform === 'ios')) {
+    if (
+        window.Mozilla.run &&
+        window.site &&
+        (window.site.platform === 'android' || window.site.platform === 'ios')
+    ) {
         window.Mozilla.run(onLoad);
     }
-
 })();

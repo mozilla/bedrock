@@ -38,12 +38,11 @@
                     'v=text': 3,
                     'v=image': 3,
                     'v=animation': 3,
-                    'v=header-text': 3,
+                    'v=header-text': 3
                 }
             });
             cop.init();
         }
     };
     initTrafficCop();
-
 })(window.Mozilla);

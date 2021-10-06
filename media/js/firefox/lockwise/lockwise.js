@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     var client = window.Mozilla.Client;
@@ -12,24 +12,23 @@
         firefox70.parentNode.removeChild(firefox70);
         firefox69.parentNode.removeChild(firefox69);
         nonFirefox.parentNode.removeChild(nonFirefox);
-    }
-    else if (!client.isFirefox) {
+    } else if (!client.isFirefox) {
         firefox69.parentNode.removeChild(firefox69);
         firefox70.parentNode.removeChild(firefox70);
         nonFirefox.classList.remove('hidden');
-    }
-    else if (client.isFirefox && version < '70') {
+    } else if (client.isFirefox && version < '70') {
         firefox70.parentNode.removeChild(firefox70);
         nonFirefox.parentNode.removeChild(nonFirefox);
         firefox69.classList.remove('hidden');
-    }
-    else if (client.isFirefox && version >= '70') {
+    } else if (client.isFirefox && version >= '70') {
         firefox69.parentNode.removeChild(firefox69);
         nonFirefox.parentNode.removeChild(nonFirefox);
         firefox70.classList.remove('hidden');
 
-        document.querySelector('#lockwise-button').addEventListener('click', function() {
-            Mozilla.UITour.showHighlight('logins');
-        });
+        document
+            .querySelector('#lockwise-button')
+            .addEventListener('click', function () {
+                Mozilla.UITour.showHighlight('logins');
+            });
     }
 })();

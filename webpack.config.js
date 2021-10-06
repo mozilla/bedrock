@@ -11,7 +11,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const staticBundles = require('./media/static-bundles.json');
 
-function resolveBundles(fileList){
+function resolveBundles(fileList) {
     return fileList.map((f) => {
         if (f.match(/^protocol\//)) {
             return `./node_modules/@mozilla-protocol/core/${f}`;
@@ -23,7 +23,7 @@ function resolveBundles(fileList){
 function getCSSBundles() {
     return new Promise((resolve) => {
         const allFiles = {};
-        staticBundles['css'].forEach(bundle => {
+        staticBundles['css'].forEach((bundle) => {
             const name = `${bundle['name']}--css`;
             const files = resolveBundles(bundle['files']);
             allFiles[name] = files;
@@ -35,7 +35,7 @@ function getCSSBundles() {
 function getJSBundles() {
     return new Promise((resolve) => {
         const allFiles = {};
-        staticBundles['js'].forEach(bundle => {
+        staticBundles['js'].forEach((bundle) => {
             const name = bundle['name'];
             const files = resolveBundles(bundle['files']);
             allFiles[name] = files;
@@ -49,7 +49,7 @@ const jsConfig = {
     output: {
         filename: 'js/[name].js',
         path: path.resolve(__dirname, 'assets/'),
-        publicPath: '/media/',
+        publicPath: '/media/'
     },
     module: {
         rules: [
@@ -61,7 +61,8 @@ const jsConfig = {
                     options: {
                         presets: [
                             [
-                                '@babel/preset-env', {
+                                '@babel/preset-env',
+                                {
                                     targets: {
                                         ie: '10'
                                     }
@@ -87,7 +88,7 @@ const jsConfig = {
                     // Copy legacy IE scripts that aren't bundled.
                     from: path.resolve(__dirname, 'media/js/ie/'),
                     to: 'js/ie/'
-                },
+                }
             ]
         })
     ]
@@ -98,10 +99,10 @@ const cssConfig = {
     output: {
         filename: 'temp/[name].js',
         path: path.resolve(__dirname, 'assets/'),
-        publicPath: '/media/',
+        publicPath: '/media/'
     },
     optimization: {
-        minimizer: [new CssMinimizerPlugin({})],
+        minimizer: [new CssMinimizerPlugin({})]
     },
     module: {
         rules: [
@@ -116,10 +117,10 @@ const cssConfig = {
                             url: false
                         }
                     },
-                    'sass-loader',
-                ],
-            },
-        ],
+                    'sass-loader'
+                ]
+            }
+        ]
     },
     watchOptions: {
         aggregateTimeout: 600,
@@ -130,7 +131,8 @@ const cssConfig = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: ({ chunk }) => `css/${chunk.name.replace('--css', '')}.css`,
+            filename: ({ chunk }) =>
+                `css/${chunk.name.replace('--css', '')}.css`
         })
     ]
 };
@@ -147,10 +149,12 @@ const browserSync = new BrowserSyncPlugin({
     ui: {
         port: 8001
     },
-    serveStatic: [{
-        route: './media',
-        dir: './assets'
-    }]
+    serveStatic: [
+        {
+            route: './media',
+            dir: './assets'
+        }
+    ]
 });
 
 jsConfig.plugins.push(browserSync);

@@ -12,7 +12,7 @@ module.exports = {
     entry: './media/index.js',
     output: {
         path: path.resolve(__dirname, 'assets/'),
-        publicPath: '/media/',
+        publicPath: '/media/'
     },
     performance: {
         hints: 'warning'
@@ -26,12 +26,15 @@ module.exports = {
                     // Copy static assets such as images, fonts etc from /media to /assets.
                     from: path.resolve(__dirname, 'media/'),
                     globOptions: {
-                        ignore: ['**/*.scss', '**/*.js'],
-                    },
+                        ignore: ['**/*.scss', '**/*.js']
+                    }
                 },
                 {
                     // Copy Protocol images to /assets.
-                    from: path.resolve(__dirname, 'node_modules/@mozilla-protocol/core/protocol/img/'),
+                    from: path.resolve(
+                        __dirname,
+                        'node_modules/@mozilla-protocol/core/protocol/img/'
+                    ),
                     to: 'protocol/img/'
                 }
             ]

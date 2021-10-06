@@ -5,16 +5,20 @@
 import * as Sentry from '@sentry/browser';
 
 // Respect Do Not Track
-if (typeof window.Mozilla.dntEnabled === 'function' && !window.Mozilla.dntEnabled()) {
-
+if (
+    typeof window.Mozilla.dntEnabled === 'function' &&
+    !window.Mozilla.dntEnabled()
+) {
     // Get Data Source Name (DSN)
-    const sentryDsn = document.getElementsByTagName('html')[0].getAttribute('data-sentry-dsn');
+    const sentryDsn = document
+        .getElementsByTagName('html')[0]
+        .getAttribute('data-sentry-dsn');
 
     // Configure Sentry SDK
     if (sentryDsn) {
         Sentry.init({
             dsn: sentryDsn,
-            sampleRate: 0.10,
+            sampleRate: 0.1,
             ignoreErrors: [
                 'https://plugin.ucads.ucweb.com/api/flow/',
                 'Non-Error promise rejection captured with value' // issue 10380
@@ -28,7 +32,10 @@ if (typeof window.Mozilla.dntEnabled === 'function' && !window.Mozilla.dntEnable
             beforeSend(event) {
                 try {
                     // https://github.com/getsentry/sentry-javascript/issues/3147
-                    if (event.exception.values[0].stacktrace.frames[0].filename === '<anonymous>') {
+                    if (
+                        event.exception.values[0].stacktrace.frames[0]
+                            .filename === '<anonymous>'
+                    ) {
                         return null;
                     }
                 } catch (e) {

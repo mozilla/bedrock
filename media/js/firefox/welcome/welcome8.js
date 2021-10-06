@@ -8,9 +8,9 @@
     function handleOpenProtectionReport(e) {
         e.preventDefault();
         window.dataLayer.push({
-            'event': 'in-page-interaction',
-            'eAction': 'link click',
-            'eLabel': 'View your protection report'
+            event: 'in-page-interaction',
+            eAction: 'link click',
+            eLabel: 'View your protection report'
         });
         Mozilla.UITour.showProtectionReport();
     }
@@ -18,24 +18,31 @@
     function handleOpenProtectionReportLink(e) {
         e.preventDefault();
         window.dataLayer.push({
-            'event': 'in-page-interaction',
-            'eAction': 'link click',
-            'eLabel': 'See what`s blocked'
+            event: 'in-page-interaction',
+            eAction: 'link click',
+            eLabel: 'See what`s blocked'
         });
         Mozilla.UITour.showProtectionReport();
     }
 
-    Mozilla.UITour.ping(function() {
-        document.querySelectorAll('.protection-report.primary-cta').forEach(
-            function(button) {
-                button.addEventListener('click', handleOpenProtectionReport, false);
-            }
-        );
-        document.querySelectorAll('.protection-report:not(.primary-cta)').forEach(
-            function(button) {
-                button.addEventListener('click', handleOpenProtectionReportLink, false);
-            }
-        );
+    Mozilla.UITour.ping(function () {
+        document
+            .querySelectorAll('.protection-report.primary-cta')
+            .forEach(function (button) {
+                button.addEventListener(
+                    'click',
+                    handleOpenProtectionReport,
+                    false
+                );
+            });
+        document
+            .querySelectorAll('.protection-report:not(.primary-cta)')
+            .forEach(function (button) {
+                button.addEventListener(
+                    'click',
+                    handleOpenProtectionReportLink,
+                    false
+                );
+            });
     });
-
 })(window.Mozilla);

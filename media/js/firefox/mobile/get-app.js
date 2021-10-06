@@ -2,11 +2,10 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-(function() {
+(function () {
     'use strict';
 
     // initialize send to device widget
     var form = new Mozilla.SendToDevice();
     form.init();
-
 })();

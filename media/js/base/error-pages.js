@@ -4,7 +4,7 @@
 
 // eslint-disable-next-line
 
-(function(){
+(function () {
     'use strict';
     var backLink = document.getElementById('go-back');
 
@@ -18,7 +18,7 @@
         backLink.classList.remove('hide-back');
     }
 
-    backLink.addEventListener('click', function(){
+    backLink.addEventListener('click', function () {
         window.history.back();
     });
-}());
+})();

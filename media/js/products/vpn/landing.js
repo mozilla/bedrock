@@ -2,15 +2,14 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-(function() {
+(function () {
     'use strict';
 
     // Init Geo-location lookup for product availability.
     Mozilla.VPN.init();
-
 })();
 
-(function() {
+(function () {
     'use strict';
 
     // Init hero image carousel for large viewports only.
@@ -26,16 +25,19 @@
         index = (index + 1) % 5;
         heroImage.setAttribute('data-illustration', 'n-' + (index + 1));
     }, 5000);
-
 })();
 
-(function() {
+(function () {
     'use strict';
 
     function openFaqItem(id) {
         var faq = document.getElementById(id);
 
-        if (faq && faq.classList.contains('vpn-faq-item') && !faq.hasAttribute('open')) {
+        if (
+            faq &&
+            faq.classList.contains('vpn-faq-item') &&
+            !faq.hasAttribute('open')
+        ) {
             var summary = faq.querySelector('summary');
 
             if (summary) {
@@ -67,5 +69,4 @@
     }
 
     window.addEventListener('hashchange', handleHashChange, false);
-
 })();

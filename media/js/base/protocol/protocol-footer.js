@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-(function() {
+(function () {
     'use strict';
 
     // check we have global variable
@@ -11,10 +11,12 @@
         var footerHeadings = '.c-footer-section .c-footer-heading';
 
         // check we have global Supports and Details library
-        if (typeof Mzp.Supports !== 'undefined' && typeof Mzp.Details !== 'undefined') {
-
+        if (
+            typeof Mzp.Supports !== 'undefined' &&
+            typeof Mzp.Details !== 'undefined'
+        ) {
             // check browser supports matchMedia
-            if(Mzp.Supports.matchMedia) {
+            if (Mzp.Supports.matchMedia) {
                 var _mqWide = matchMedia('(max-width: 479px)');
 
                 // initialize details if screen is small
@@ -23,7 +25,7 @@
                 }
 
                 // remove details if screen is big
-                _mqWide.addListener(function(mq) {
+                _mqWide.addListener(function (mq) {
                     if (mq.matches) {
                         Mzp.Details.init(footerHeadings);
                     } else {

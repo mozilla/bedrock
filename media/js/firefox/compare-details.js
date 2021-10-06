@@ -6,5 +6,4 @@
     'use strict';
 
     window.Mzp.Details.init('.mzp-c-menu-list-title');
-
 })();

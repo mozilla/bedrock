@@ -6,14 +6,14 @@
 /* eslint no-unused-vars: [2, { "varsIgnorePattern": "onYouTubeIframeAPIReady" }] */
 
 // YouTube API hook has to be in global scope
-window.onYouTubeIframeAPIReady = function() {
+window.onYouTubeIframeAPIReady = function () {
     'use strict';
 
     // Play the video only once the API is ready.
     Mozilla.pipVideoPlay();
 };
 
-(function() {
+(function () {
     'use strict';
 
     var videoLink = document.querySelector('.js-video-play');
@@ -27,7 +27,9 @@ window.onYouTubeIframeAPIReady = function() {
     }
 
     function isScriptLoaded() {
-        return document.querySelector('script[src="' + src + '"]') ? true : false;
+        return document.querySelector('script[src="' + src + '"]')
+            ? true
+            : false;
     }
 
     function playVideo() {
@@ -40,11 +42,11 @@ window.onYouTubeIframeAPIReady = function() {
             videoId: videoId,
             playerVars: {
                 modestbranding: 1, // hide YouTube logo.
-                rel: 0, // do not show related videos on end.
+                rel: 0 // do not show related videos on end.
             },
             events: {
-                'onReady': onPlayerReady,
-                'onStateChange': onPlayerStateChange
+                onReady: onPlayerReady,
+                onStateChange: onPlayerStateChange
             }
         });
 
@@ -55,23 +57,23 @@ window.onYouTubeIframeAPIReady = function() {
         function onPlayerStateChange(event) {
             var state;
 
-            switch(event.data) {
-            case YT.PlayerState.PLAYING:
-                state = 'video play';
-                break;
-            case YT.PlayerState.PAUSED:
-                state = 'video paused';
-                break;
-            case YT.PlayerState.ENDED:
-                state = 'video complete';
-                break;
+            switch (event.data) {
+                case YT.PlayerState.PLAYING:
+                    state = 'video play';
+                    break;
+                case YT.PlayerState.PAUSED:
+                    state = 'video paused';
+                    break;
+                case YT.PlayerState.ENDED:
+                    state = 'video complete';
+                    break;
             }
 
             if (state) {
                 window.dataLayer.push({
-                    'event': 'video-interaction',
-                    'videoTitle': title,
-                    'interaction': state
+                    event: 'video-interaction',
+                    videoTitle: title,
+                    interaction: state
                 });
             }
         }
@@ -89,7 +91,7 @@ window.onYouTubeIframeAPIReady = function() {
     function init() {
         videoLink.setAttribute('role', 'button');
 
-        videoLink.addEventListener('click', function(e) {
+        videoLink.addEventListener('click', function (e) {
             e.preventDefault();
             initVideoPlayer();
         });

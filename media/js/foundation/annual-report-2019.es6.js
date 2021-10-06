@@ -9,15 +9,13 @@ const modalContainers = document.getElementsByClassName('has-modal');
 const content = document.querySelector('.mzp-u-modal-content');
 const articleArray = document.querySelectorAll('[data-modal-id]');
 
-const modalNextButtonFragment =
-    `<div class="c-modal-next">
+const modalNextButtonFragment = `<div class="c-modal-next">
         <button type="button" class="c-modal-button-next" title="Next">
             Next
         </button>
     </div>`;
 
-const modalPrevButtonFragment =
-    `<div class="c-modal-prev">
+const modalPrevButtonFragment = `<div class="c-modal-prev">
         <button type="button" class="c-modal-button-prev" title="Previous">
             Previous
         </button>
@@ -28,7 +26,6 @@ const modalPrevButtonFragment =
 let kbInit = null;
 
 function keyboardListenerInit() {
-
     if (kbInit) {
         return;
         // Turn Off
@@ -44,24 +41,26 @@ function keyboardNextPrev(event) {
     }
 
     switch (event.keyCode) {
-    case 37: // Left arrow
-        prevModalArticle();
-        break;
-    case 38: // Up arrow
-        prevModalArticle();
-        break;
-    case 39: // Right arrow
-        nextModalArticle();
-        break;
-    case 40: // Down arrow
-        nextModalArticle();
-        break;
+        case 37: // Left arrow
+            prevModalArticle();
+            break;
+        case 38: // Up arrow
+            prevModalArticle();
+            break;
+        case 39: // Right arrow
+            nextModalArticle();
+            break;
+        case 40: // Down arrow
+            nextModalArticle();
+            break;
     }
 }
 
 function modalInit() {
     // Lazy load images in the modal
-    const modalImage = document.querySelector('.mzp-c-modal-overlay-contents .mzp-c-card-image');
+    const modalImage = document.querySelector(
+        '.mzp-c-modal-overlay-contents .mzp-c-card-image'
+    );
 
     if (modalImage) {
         const srcset = modalImage.getAttribute('data-srcset');
@@ -88,15 +87,24 @@ function modalInit() {
 }
 
 function getCurrentModalIndex() {
-    const modalContent = document.querySelector('.mzp-u-modal-content.mzp-c-modal-overlay-contents');
-    const newArticleIndex = parseInt(modalContent.getAttribute('data-current-index'), 10);
+    const modalContent = document.querySelector(
+        '.mzp-u-modal-content.mzp-c-modal-overlay-contents'
+    );
+    const newArticleIndex = parseInt(
+        modalContent.getAttribute('data-current-index'),
+        10
+    );
     return newArticleIndex;
 }
 
 function updateModalArticle(index) {
-    const modalContent = document.querySelector('.mzp-u-modal-content.mzp-c-modal-overlay-contents');
+    const modalContent = document.querySelector(
+        '.mzp-u-modal-content.mzp-c-modal-overlay-contents'
+    );
     const newArticleId = articleArray[index].getAttribute('data-modal-id');
-    const newModalContent = document.querySelector(`[data-modal-parent="${newArticleId}"]`).cloneNode(true);
+    const newModalContent = document
+        .querySelector(`[data-modal-parent="${newArticleId}"]`)
+        .cloneNode(true);
     const currentModalContent = modalContent.firstElementChild;
 
     window.location.hash = newArticleId;
@@ -112,7 +120,7 @@ function nextModalArticle() {
     newArticleIndex++;
 
     // If at the end of the gallery, start over
-    if (newArticleIndex === (articleArray.length)) {
+    if (newArticleIndex === articleArray.length) {
         newArticleIndex = 0;
     }
 
@@ -137,12 +145,17 @@ for (let i = 0; i < modalContainers.length; i++) {
     modalContainer.setAttribute('aria-role', 'button');
     modalContainer.setAttribute('data-current-index', i);
 
-    modalContainer.addEventListener('click', function(e) {
+    modalContainer.addEventListener('click', function (e) {
         e.preventDefault();
 
         const modalId = this.getAttribute('data-modal-id');
-        const currentIndex = parseInt(this.getAttribute('data-current-index'), 10);
-        const modalContent = document.querySelector(`[data-modal-parent="${modalId}"]`).cloneNode(true);
+        const currentIndex = parseInt(
+            this.getAttribute('data-current-index'),
+            10
+        );
+        const modalContent = document
+            .querySelector(`[data-modal-parent="${modalId}"]`)
+            .cloneNode(true);
         window.location.hash = modalId;
 
         modalContent.removeAttribute('id');
@@ -156,22 +169,35 @@ for (let i = 0; i < modalContainers.length; i++) {
 
                 content.setAttribute('data-current-index', currentIndex);
 
-                const modalCloseButton = document.querySelector('.mzp-c-modal-close');
-                modalCloseButton.insertAdjacentHTML('beforebegin', modalNextButtonFragment);
-                modalCloseButton.insertAdjacentHTML('beforebegin', modalPrevButtonFragment);
+                const modalCloseButton =
+                    document.querySelector('.mzp-c-modal-close');
+                modalCloseButton.insertAdjacentHTML(
+                    'beforebegin',
+                    modalNextButtonFragment
+                );
+                modalCloseButton.insertAdjacentHTML(
+                    'beforebegin',
+                    modalPrevButtonFragment
+                );
 
                 // Lazy load images in the modal and set next/prev listeners
                 modalInit();
             },
             onDestroy: () => {
                 if (window.history) {
-                    window.history.replaceState('', '', window.location.pathname);
+                    window.history.replaceState(
+                        '',
+                        '',
+                        window.location.pathname
+                    );
                 }
 
                 kbInit = false;
 
                 // Recache the current modal content which may have changed via next/prev buttons
-                const modalParent = document.querySelector('.mzp-u-modal-content.mzp-c-modal-overlay-contents');
+                const modalParent = document.querySelector(
+                    '.mzp-u-modal-content.mzp-c-modal-overlay-contents'
+                );
                 const currentModalContent = modalParent.firstElementChild;
 
                 modalParent.removeChild(currentModalContent);

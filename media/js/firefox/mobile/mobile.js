@@ -7,7 +7,7 @@ if (typeof window.Mozilla === 'undefined') {
     window.Mozilla = {};
 }
 
-(function(Mozilla) {
+(function (Mozilla) {
     'use strict';
     var sendToPrimary = document.getElementById('s2d-primary');
     var sendToSecondary = document.getElementById('s2d-primary');
@@ -19,5 +19,4 @@ if (typeof window.Mozilla === 'undefined') {
         var formSecondary = new Mozilla.SendToDevice('s2d-secondary');
         formSecondary.init();
     }
-
 })(window.Mozilla);

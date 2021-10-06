@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(config) {
+module.exports = function (config) {
     config.set({
         // Karma configuration
 
@@ -76,7 +76,7 @@ module.exports = function(config) {
         ],
 
         preprocessors: {
-            'media/js/**/*.js': ['webpack' , 'sourcemap']
+            'media/js/**/*.js': ['webpack', 'sourcemap']
         },
 
         webpack: {
@@ -91,7 +91,8 @@ module.exports = function(config) {
                             options: {
                                 presets: [
                                     [
-                                        '@babel/preset-env', {
+                                        '@babel/preset-env',
+                                        {
                                             targets: {
                                                 ie: '10'
                                             }

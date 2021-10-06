@@ -1,2 +1,5 @@
 # Migrate code style to Black
 31943fea7582fa42320b44e796b0e343bfa90f89
+
+# Migrate JS code style to Prettier
+af4305055ec7748541c87c7cb035c547fbcb8303

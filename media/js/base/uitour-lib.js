@@ -7,7 +7,7 @@ if (typeof window.Mozilla === 'undefined') {
     window.Mozilla = {};
 }
 
-(function() {
+(function () {
     'use strict';
 
     // create namespace
@@ -36,7 +36,9 @@ if (typeof window.Mozilla === 'undefined') {
     }
 
     function _generateCallbackID() {
-        return Math.random().toString(36).replace(/[^a-z]+/g, '');
+        return Math.random()
+            .toString(36)
+            .replace(/[^a-z]+/g, '');
     }
 
     function _waitForCallback(callback) {
@@ -60,24 +62,31 @@ if (typeof window.Mozilla === 'undefined') {
 
     Mozilla.UITour.DEFAULT_THEME_CYCLE_DELAY = 10 * 1000;
 
-    Mozilla.UITour.registerPageID = function(pageID) {
+    Mozilla.UITour.registerPageID = function (pageID) {
         _sendEvent('registerPageID', {
             pageID: pageID
         });
     };
 
-    Mozilla.UITour.showHighlight = function(target, effect) {
+    Mozilla.UITour.showHighlight = function (target, effect) {
         _sendEvent('showHighlight', {
             target: target,
             effect: effect
         });
     };
 
-    Mozilla.UITour.hideHighlight = function() {
+    Mozilla.UITour.hideHighlight = function () {
         _sendEvent('hideHighlight');
     };
 
-    Mozilla.UITour.showInfo = function(target, title, text, icon, buttons, options) {
+    Mozilla.UITour.showInfo = function (
+        target,
+        title,
+        text,
+        icon,
+        buttons,
+        options
+    ) {
         var buttonData = [];
         if (Array.isArray(buttons)) {
             for (var i = 0; i < buttons.length; i++) {
@@ -93,7 +102,9 @@ if (typeof window.Mozilla === 'undefined') {
         var closeButtonCallbackID;
         var targetCallbackID;
         if (options && options.closeButtonCallback) {
-            closeButtonCallbackID = _waitForCallback(options.closeButtonCallback);
+            closeButtonCallbackID = _waitForCallback(
+                options.closeButtonCallback
+            );
         }
         if (options && options.targetCallback) {
             targetCallbackID = _waitForCallback(options.targetCallback);
@@ -110,11 +121,11 @@ if (typeof window.Mozilla === 'undefined') {
         });
     };
 
-    Mozilla.UITour.hideInfo = function() {
+    Mozilla.UITour.hideInfo = function () {
         _sendEvent('hideInfo');
     };
 
-    Mozilla.UITour.previewTheme = function(theme) {
+    Mozilla.UITour.previewTheme = function (theme) {
         _stopCyclingThemes();
 
         _sendEvent('previewTheme', {
@@ -122,13 +133,13 @@ if (typeof window.Mozilla === 'undefined') {
         });
     };
 
-    Mozilla.UITour.resetTheme = function() {
+    Mozilla.UITour.resetTheme = function () {
         _stopCyclingThemes();
 
         _sendEvent('resetTheme');
     };
 
-    Mozilla.UITour.cycleThemes = function(themes, delay, callback) {
+    Mozilla.UITour.cycleThemes = function (themes, delay, callback) {
         _stopCyclingThemes();
 
         if (!delay) {
@@ -151,7 +162,7 @@ if (typeof window.Mozilla === 'undefined') {
         nextTheme();
     };
 
-    Mozilla.UITour.showMenu = function(name, callback) {
+    Mozilla.UITour.showMenu = function (name, callback) {
         var showCallbackID;
         if (callback) {
             showCallbackID = _waitForCallback(callback);
@@ -162,32 +173,32 @@ if (typeof window.Mozilla === 'undefined') {
         });
     };
 
-    Mozilla.UITour.hideMenu = function(name) {
+    Mozilla.UITour.hideMenu = function (name) {
         _sendEvent('hideMenu', {
             name: name
         });
     };
 
-    Mozilla.UITour.showNewTab = function() {
+    Mozilla.UITour.showNewTab = function () {
         _sendEvent('showNewTab');
     };
 
     /**
-    * Loads about:protections in the tour tab.
-    * @since 70
-    */
-    Mozilla.UITour.showProtectionReport = function() {
+     * Loads about:protections in the tour tab.
+     * @since 70
+     */
+    Mozilla.UITour.showProtectionReport = function () {
         _sendEvent('showProtectionReport');
     };
 
-    Mozilla.UITour.getConfiguration = function(configName, callback) {
+    Mozilla.UITour.getConfiguration = function (configName, callback) {
         _sendEvent('getConfiguration', {
             callbackID: _waitForCallback(callback),
             configuration: configName
         });
     };
 
-    Mozilla.UITour.setConfiguration = function(configName, configValue) {
+    Mozilla.UITour.setConfiguration = function (configName, configValue) {
         _sendEvent('setConfiguration', {
             configuration: configName,
             value: configValue
@@ -195,21 +206,25 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     /**
-    * Request the browser open the Firefox Accounts page.
-    *
-    * @param {Object} [extraURLParams] - An optional object containing additional
-    * parameters for the URL opened by the browser for reasons of promotional
-    * campaign tracking. Each attribute of the object must have a name that
-    * is a string, is "flow_id", "flow_begin_time", "device_id", "entrypoint_experiment",
-    * "entrypoint_variation" or begins with `utm_` and contains only only alphanumeric
-    * characters, dashes or underscores. The values may be any string and will automatically be encoded.
-    * For Flow metrics, see details at https://mozilla.github.io/ecosystem-platform/docs/fxa-engineering/fxa-metrics#content-server
-    * @since 79 renamed from `extraURLCampaignParams` to `extraURLParams`
-    * @param {String} [email] - the optional FxA email value.
-    * @param {String} [entrypoint] - the optional FxA entrypoint value. If not set, the browser will report `uitour`.
-    * @since 80 added the "entrypoint" option.
-    */
-    Mozilla.UITour.showFirefoxAccounts = function(extraURLParams, entrypoint, email) {
+     * Request the browser open the Firefox Accounts page.
+     *
+     * @param {Object} [extraURLParams] - An optional object containing additional
+     * parameters for the URL opened by the browser for reasons of promotional
+     * campaign tracking. Each attribute of the object must have a name that
+     * is a string, is "flow_id", "flow_begin_time", "device_id", "entrypoint_experiment",
+     * "entrypoint_variation" or begins with `utm_` and contains only only alphanumeric
+     * characters, dashes or underscores. The values may be any string and will automatically be encoded.
+     * For Flow metrics, see details at https://mozilla.github.io/ecosystem-platform/docs/fxa-engineering/fxa-metrics#content-server
+     * @since 79 renamed from `extraURLCampaignParams` to `extraURLParams`
+     * @param {String} [email] - the optional FxA email value.
+     * @param {String} [entrypoint] - the optional FxA entrypoint value. If not set, the browser will report `uitour`.
+     * @since 80 added the "entrypoint" option.
+     */
+    Mozilla.UITour.showFirefoxAccounts = function (
+        extraURLParams,
+        entrypoint,
+        email
+    ) {
         _sendEvent('showFirefoxAccounts', {
             email: email,
             entrypoint: entrypoint,
@@ -217,50 +232,50 @@ if (typeof window.Mozilla === 'undefined') {
         });
     };
 
-    Mozilla.UITour.resetFirefox = function() {
+    Mozilla.UITour.resetFirefox = function () {
         _sendEvent('resetFirefox');
     };
 
-    Mozilla.UITour.addNavBarWidget = function(name, callback) {
+    Mozilla.UITour.addNavBarWidget = function (name, callback) {
         _sendEvent('addNavBarWidget', {
             name: name,
             callbackID: _waitForCallback(callback)
         });
     };
 
-    Mozilla.UITour.setDefaultSearchEngine = function(identifier) {
+    Mozilla.UITour.setDefaultSearchEngine = function (identifier) {
         _sendEvent('setDefaultSearchEngine', {
             identifier: identifier
         });
     };
 
-    Mozilla.UITour.setTreatmentTag = function(name, value) {
+    Mozilla.UITour.setTreatmentTag = function (name, value) {
         _sendEvent('setTreatmentTag', {
             name: name,
             value: value
         });
     };
 
-    Mozilla.UITour.getTreatmentTag = function(name, callback) {
+    Mozilla.UITour.getTreatmentTag = function (name, callback) {
         _sendEvent('getTreatmentTag', {
             name: name,
             callbackID: _waitForCallback(callback)
         });
     };
 
-    Mozilla.UITour.setSearchTerm = function(term) {
+    Mozilla.UITour.setSearchTerm = function (term) {
         _sendEvent('setSearchTerm', {
             term: term
         });
     };
 
-    Mozilla.UITour.openSearchPanel = function(callback) {
+    Mozilla.UITour.openSearchPanel = function (callback) {
         _sendEvent('openSearchPanel', {
             callbackID: _waitForCallback(callback)
         });
     };
 
-    Mozilla.UITour.ping = function(callback) {
+    Mozilla.UITour.ping = function (callback) {
         var data = {};
         if (callback) {
             data.callbackID = _waitForCallback(callback);
@@ -279,25 +294,30 @@ if (typeof window.Mozilla === 'undefined') {
         notificationListener(event.detail.event, event.detail.params);
     }
 
-    Mozilla.UITour.observe = function(listener, callback) {
+    Mozilla.UITour.observe = function (listener, callback) {
         notificationListener = listener;
 
         if (listener) {
-            document.addEventListener('mozUITourNotification', _notificationListener);
+            document.addEventListener(
+                'mozUITourNotification',
+                _notificationListener
+            );
             Mozilla.UITour.ping(callback);
         } else {
-            document.removeEventListener('mozUITourNotification', _notificationListener);
+            document.removeEventListener(
+                'mozUITourNotification',
+                _notificationListener
+            );
         }
     };
 
-    Mozilla.UITour.openPreferences = function(pane) {
+    Mozilla.UITour.openPreferences = function (pane) {
         _sendEvent('openPreferences', {
             pane: pane
         });
     };
 
-    Mozilla.UITour.closeTab = function() {
+    Mozilla.UITour.closeTab = function () {
         _sendEvent('closeTab');
     };
-
 })();

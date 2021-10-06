@@ -4,7 +4,7 @@
 
 // Copied from Protocol, to be backported along with nav updates.
 
-(function(Mzp) {
+(function (Mzp) {
     'use strict';
 
     var Navigation = {};
@@ -28,7 +28,7 @@
      * requirements for sticky behaviour?
      * @returns {Boolean}
      */
-    Navigation.isLargeViewport = function() {
+    Navigation.isLargeViewport = function () {
         return _mqLargeNav.matches;
     };
 
@@ -36,13 +36,15 @@
      * Feature detect for sticky navigation
      * @returns {Boolean}
      */
-    Navigation.supportsSticky = function() {
+    Navigation.supportsSticky = function () {
         if (typeof Mzp.Supports !== 'undefined') {
-            return Mzp.Supports.matchMedia &&
-                   Mzp.Supports.classList &&
-                   Mzp.Supports.requestAnimationFrame &&
-                   Mzp.Supports.cssFeatureQueries &&
-                   CSS.supports('position', 'sticky');
+            return (
+                Mzp.Supports.matchMedia &&
+                Mzp.Supports.classList &&
+                Mzp.Supports.requestAnimationFrame &&
+                Mzp.Supports.cssFeatureQueries &&
+                CSS.supports('position', 'sticky')
+            );
         } else {
             return false;
         }
@@ -53,9 +55,11 @@
      * operations such as DOM modifications should happen
      * here. Instead we throttle using `requestAnimationFrame`.
      */
-    Navigation.onScroll = function() {
+    Navigation.onScroll = function () {
         if (!_ticking) {
-            _animationFrameID = window.requestAnimationFrame(Navigation.checkScrollPosition);
+            _animationFrameID = window.requestAnimationFrame(
+                Navigation.checkScrollPosition
+            );
             _ticking = true;
         }
     };
@@ -63,16 +67,18 @@
     /**
      * Create sticky state for the navigation.
      */
-    Navigation.createSticky = function() {
+    Navigation.createSticky = function () {
         _viewport.classList.add('mzp-has-sticky-navigation');
-        _animationFrameID = window.requestAnimationFrame(Navigation.checkScrollPosition);
+        _animationFrameID = window.requestAnimationFrame(
+            Navigation.checkScrollPosition
+        );
         window.addEventListener('scroll', Navigation.onScroll, false);
     };
 
     /**
      * Destroy sticky state for the navigation.
      */
-    Navigation.destroySticky = function() {
+    Navigation.destroySticky = function () {
         _viewport.classList.remove('mzp-has-sticky-navigation');
         _navElem.classList.remove('mzp-is-scrolling');
         _navElem.classList.remove('mzp-is-hidden');
@@ -89,10 +95,16 @@
      * Uses `matchMedia` to determine if conditions
      * for sticky navigation are satisfied.
      */
-    Navigation.initSticky = function() {
-        _mqLargeNav = matchMedia('(min-width: ' + _wideBreakpoint + ') and (min-height: ' + _tallBreakpoint + ')');
+    Navigation.initSticky = function () {
+        _mqLargeNav = matchMedia(
+            '(min-width: ' +
+                _wideBreakpoint +
+                ') and (min-height: ' +
+                _tallBreakpoint +
+                ')'
+        );
 
-        _mqLargeNav.addListener(function(mq) {
+        _mqLargeNav.addListener(function (mq) {
             if (mq.matches) {
                 Navigation.createSticky();
             } else {
@@ -109,7 +121,7 @@
      * Implements sticky navigation behaviour as
      * user scrolls up and down the viewport.
      */
-    Navigation.checkScrollPosition = function() {
+    Navigation.checkScrollPosition = function () {
         // add tyling for when scrolling the viewport
         if (window.scrollY > 0) {
             _navElem.classList.add('mzp-is-scrolling');
@@ -141,8 +153,10 @@
     /**
      * Event handler for navigation menu button `click` events.
      */
-    Navigation.onClick = function(e) {
-        var thisNavItemList = e.target.parentNode.querySelector('.c-navigation-items');
+    Navigation.onClick = function (e) {
+        var thisNavItemList = e.target.parentNode.querySelector(
+            '.c-navigation-items'
+        );
 
         e.preventDefault();
 
@@ -153,7 +167,9 @@
         thisNavItemList.classList.toggle('mzp-is-open');
 
         // Update aria-expended state on menu.
-        var expanded = thisNavItemList.classList.contains('mzp-is-open') ? true : false;
+        var expanded = thisNavItemList.classList.contains('mzp-is-open')
+            ? true
+            : false;
         thisNavItemList.setAttribute('aria-expanded', expanded);
 
         if (expanded) {
@@ -170,7 +186,7 @@
     /**
      * Set initial ARIA navigation states.
      */
-    Navigation.setAria = function() {
+    Navigation.setAria = function () {
         for (var i = 0; i < _navItemsLists.length; i++) {
             _navItemsLists[i].setAttribute('aria-expanded', false);
         }
@@ -179,12 +195,18 @@
     /**
      * Bind navigation event handlers.
      */
-    Navigation.bindEvents = function() {
+    Navigation.bindEvents = function () {
         _navItemsLists = document.querySelectorAll('.c-navigation-items');
         if (_navItemsLists.length > 0) {
-            var navButtons = document.querySelectorAll('.c-navigation-menu-button');
+            var navButtons = document.querySelectorAll(
+                '.c-navigation-menu-button'
+            );
             for (var i = 0; i < navButtons.length; i++) {
-                navButtons[i].addEventListener('click', Navigation.onClick, false);
+                navButtons[i].addEventListener(
+                    'click',
+                    Navigation.onClick,
+                    false
+                );
             }
             Navigation.setAria();
         }
@@ -194,7 +216,7 @@
      * Initialise menu.
      * @param {Object} options - configurable options.
      */
-    Navigation.init = function(options) {
+    Navigation.init = function (options) {
         if (typeof options === 'object') {
             for (var i in options) {
                 if (options.hasOwnProperty.call(i)) {
@@ -221,5 +243,4 @@
     };
 
     window.Mzp.Navigation = Navigation;
-
 })(window.Mzp);

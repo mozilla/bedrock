@@ -5,18 +5,18 @@
 /**
  * Initialize Protocol language switcher.
  */
-(function() {
+(function () {
     'use strict';
 
     if (typeof Mzp === 'undefined' || typeof Mzp.LangSwitcher === 'undefined') {
         return;
     }
 
-    Mzp.LangSwitcher.init(function(previousLanguage, newLanguage) {
+    Mzp.LangSwitcher.init(function (previousLanguage, newLanguage) {
         window.dataLayer.push({
-            'event': 'change-language',
-            'languageSelected': newLanguage,
-            'previousLanguage': previousLanguage
+            event: 'change-language',
+            languageSelected: newLanguage,
+            previousLanguage: previousLanguage
         });
     });
 })();

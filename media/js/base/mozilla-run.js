@@ -7,10 +7,10 @@ if (typeof window.Mozilla === 'undefined') {
     window.Mozilla = {};
 }
 
-(function() {
+(function () {
     'use strict';
 
-    window.Mozilla.run = function(callback) {
+    window.Mozilla.run = function (callback) {
         var isModernBrowser = window.site && window.site.isModernBrowser;
 
         if (isModernBrowser && typeof callback === 'function') {

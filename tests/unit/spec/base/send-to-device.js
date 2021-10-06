@@ -7,16 +7,13 @@
 /* eslint camelcase: [2, {properties: "never"}] */
 /* eslint new-cap: [2, {"capIsNewExceptions": ["Deferred"]}] */
 
-describe('send-to-device.js', function() {
-
+describe('send-to-device.js', function () {
     'use strict';
 
     let form;
 
     beforeEach(function () {
-
-        const formMarkup =
-            `<section id="send-to-device" class="send-to-device">
+        const formMarkup = `<section id="send-to-device" class="send-to-device">
                 <div class="form-container">
                     <form class="send-to-device-form">
                         <ul class="mzp-c-form-errors hidden"></ul>
@@ -53,9 +50,8 @@ describe('send-to-device.js', function() {
         content.parentNode.removeChild(content);
     });
 
-    describe('instantiation', function() {
-
-        it('should create a new instance of SendToDevice', function() {
+    describe('instantiation', function () {
+        it('should create a new instance of SendToDevice', function () {
             spyOn(form, 'bindEvents');
             form.init();
             expect(form instanceof Mozilla.SendToDevice).toBeTruthy();
@@ -63,14 +59,13 @@ describe('send-to-device.js', function() {
         });
     });
 
-    describe('checkEmailValidity', function() {
-
-        it('should return true for primitive email format', function() {
+    describe('checkEmailValidity', function () {
+        it('should return true for primitive email format', function () {
             expect(form.checkEmailValidity('a@a')).toBeTruthy();
             expect(form.checkEmailValidity('example@example.com')).toBeTruthy();
         });
 
-        it('should return false for anything else', function() {
+        it('should return false for anything else', function () {
             expect(form.checkEmailValidity(1234567890)).toBeFalsy();
             expect(form.checkEmailValidity('aaa')).toBeFalsy();
             expect(form.checkEmailValidity(null)).toBeFalsy();
@@ -80,52 +75,71 @@ describe('send-to-device.js', function() {
         });
     });
 
-    describe('onFormSubmit', function() {
-
+    describe('onFormSubmit', function () {
         let xhr;
         let xhrRequests = [];
 
-        beforeEach(function() {
+        beforeEach(function () {
             xhr = sinon.useFakeXMLHttpRequest();
             xhr.onCreate = (req) => {
                 xhrRequests.push(req);
             };
         });
 
-        afterEach(function() {
+        afterEach(function () {
             xhr.restore();
             xhrRequests = [];
         });
 
-        it('should handle success', function() {
+        it('should handle success', function () {
             spyOn(form, 'onFormSuccess').and.callThrough();
             form.init();
-            document.getElementById('send-to-device-input').value = 'success@example.com';
-            document.querySelector('.send-to-device-form button[type="submit"]').click();
-            xhrRequests[0].respond(200, {'Content-Type': 'application/json'}, '{"success": "success"}');
+            document.getElementById('send-to-device-input').value =
+                'success@example.com';
+            document
+                .querySelector('.send-to-device-form button[type="submit"]')
+                .click();
+            xhrRequests[0].respond(
+                200,
+                { 'Content-Type': 'application/json' },
+                '{"success": "success"}'
+            );
 
             expect(form.onFormSuccess).toHaveBeenCalledWith('success');
         });
 
-        it('should handle invalid email', function() {
+        it('should handle invalid email', function () {
             spyOn(form, 'onFormError').and.callThrough();
             form.init();
-            document.getElementById('send-to-device-input').value = 'invalid@email';
-            document.querySelector('.send-to-device-form button[type="submit"]').click();
-            xhrRequests[0].respond(200, {'Content-Type': 'application/json'}, '{"success": false, "errors": ["email"]}');
+            document.getElementById('send-to-device-input').value =
+                'invalid@email';
+            document
+                .querySelector('.send-to-device-form button[type="submit"]')
+                .click();
+            xhrRequests[0].respond(
+                200,
+                { 'Content-Type': 'application/json' },
+                '{"success": false, "errors": ["email"]}'
+            );
 
             expect(form.onFormError).toHaveBeenCalledWith(['email']);
         });
 
-        it('should handle failure', function() {
+        it('should handle failure', function () {
             spyOn(form, 'onFormFailure').and.callThrough();
             form.init();
-            document.getElementById('send-to-device-input').value = 'failure@example.com';
-            document.querySelector('.send-to-device-form button[type="submit"]').click();
-            xhrRequests[0].respond(400, {'Content-Type': 'application/json'}, '{"success": false, "errors": ["system"]}');
+            document.getElementById('send-to-device-input').value =
+                'failure@example.com';
+            document
+                .querySelector('.send-to-device-form button[type="submit"]')
+                .click();
+            xhrRequests[0].respond(
+                400,
+                { 'Content-Type': 'application/json' },
+                '{"success": false, "errors": ["system"]}'
+            );
 
             expect(form.onFormFailure).toHaveBeenCalled();
         });
     });
-
 });

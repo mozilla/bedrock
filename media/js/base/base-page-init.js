@@ -5,11 +5,11 @@
 /**
  * General DOM ready handler applied to all pages in base template.
  */
-(function() {
+(function () {
     'use strict';
 
     if (typeof Mozilla.Utils !== 'undefined') {
-        Mozilla.Utils.onDocumentReady(function() {
+        Mozilla.Utils.onDocumentReady(function () {
             var utils = Mozilla.Utils;
 
             utils.initMobileDownloadLinks();
@@ -21,15 +21,20 @@
                 var client = Mozilla.Client;
 
                 if (client.isFirefoxDesktop) {
-                    client.getFirefoxDetails(utils.maybeSwitchToChinaRepackImages);
+                    client.getFirefoxDetails(
+                        utils.maybeSwitchToChinaRepackImages
+                    );
                 }
             }
         });
     }
 
     // The `loaded` class is used mostly as a signal for functional tests to run.
-    window.addEventListener('load', function() {
-        document.getElementsByTagName('html')[0].classList.add('loaded');
-    }, false);
-
+    window.addEventListener(
+        'load',
+        function () {
+            document.getElementsByTagName('html')[0].classList.add('loaded');
+        },
+        false
+    );
 })();

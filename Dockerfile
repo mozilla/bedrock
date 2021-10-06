@@ -13,7 +13,7 @@ COPY package.json yarn.lock ./
 RUN yarn install --pure-lockfile
 
 # copy supporting files and media
-COPY .eslintrc.js .eslintignore .stylelintrc .stylelintignore webpack.config.js webpack.static.config.js ./
+COPY .eslintrc.js .eslintignore .stylelintrc .stylelintignore .prettierignore .prettierrc.json webpack.config.js webpack.static.config.js ./
 COPY ./media ./media
 COPY ./tests/unit ./tests/unit
 
