@@ -50,6 +50,7 @@ $image-path: '/media/protocol/img';
     margin-top: $layout-lg;
 }
 
+// These two classes are for the temporary Blur hero experiment. They should be removed once the experiment has concluded.
 .vpn-hero-blur-container {
     display: flex;
     align-items: center;

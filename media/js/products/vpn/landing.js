@@ -22,10 +22,14 @@
 
     var index = 0;
     var heroImage = document.querySelector('.vpn-hero-image');
-    setInterval(function () {
-        index = (index + 1) % 5;
-        heroImage.setAttribute('data-illustration', 'n-' + (index + 1));
-    }, 5000);
+    if (heroImage) {
+        setInterval(function () {
+            index = (index + 1) % 5;
+            heroImage.setAttribute('data-illustration', 'n-' + (index + 1));
+        }, 5000);
+    } else {
+        return;
+    }
 
 })();
 
