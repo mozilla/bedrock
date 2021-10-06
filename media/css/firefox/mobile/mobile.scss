@@ -231,7 +231,7 @@ main .mzp-l-content {
     }
 
     .c-private-cols {
-        @include bidi(((left, $layout-lg / 2, right, auto),));
+        @include bidi(((left, $layout-lg * 0.5, right, auto),));
         margin: 0 auto;
         max-width: 600px + ($layout-lg * 2);
         position: relative;
@@ -244,7 +244,7 @@ main .mzp-l-content {
         ));
         @include border-box;
         width: 50%;
-        padding: 0 ($layout-lg / 2);
+        padding: 0 ($layout-lg * 0.5);
 
         img {
             margin: 0;

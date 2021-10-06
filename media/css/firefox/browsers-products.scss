@@ -174,7 +174,7 @@ main .mzp-l-content {
         margin-bottom: $v-grid-md * 2;
         margin-left: $h-grid-md;
         max-width: 100%;
-        width: calc(50% - #{$h-grid-md / 2}) ;
+        width: calc(50% - #{$h-grid-md * 0.5}) ;
 
         &:nth-child(odd) {
             clear: left;
@@ -191,7 +191,7 @@ main .mzp-l-content {
     .c-landing-grid-item {
         margin-bottom: $v-grid-lg * 2;
         margin-left: $h-grid-lg;
-        width: calc(50% - #{$h-grid-lg / 2}) ;
+        width: calc(50% - #{$h-grid-lg * 0.5}) ;
     }
 }
 

@@ -2,6 +2,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+@use "sass:math";
+
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 .c-footer {
@@ -189,11 +191,11 @@
 
         &:nth-child(odd) {
             @include bidi(((clear, left, right),));
-            @include bidi(((padding, 0 ($layout-md / 2) 0 0, 0 0 0 ($layout-md / 2)),));
+            @include bidi(((padding, 0 ($layout-md * 0.5) 0 0, 0 0 0 ($layout-md * 0.5)),));
         }
 
         &:nth-child(even) {
-            @include bidi(((padding, 0 0 0 ($layout-md / 2), 0 ($layout-md / 2) 0 0),));
+            @include bidi(((padding, 0 0 0 ($layout-md * 0.5), 0 ($layout-md * 0.5) 0 0),));
         }
     }
 }
@@ -202,23 +204,24 @@
     .c-footer-section,
     .c-footer-section-social {
         @include bidi(((float, left, right),));
-        padding: 0 ($layout-md / 2);
+        padding: 0 ($layout-md * 0.5);
 
         &:first-child {
-            @include bidi(((padding, 0 ($layout-md / 2) 0 0, 0 0 0 ($layout-md / 2)),));
+            @include bidi(((padding, 0 ($layout-md * 0.5) 0 0, 0 0 0 ($layout-md * 0.5)),));
         }
 
         &:last-child {
-            @include bidi(((padding, 0 0 0 ($layout-md / 2), 0 ($layout-md / 2) 0 0),));
+            @include bidi(((padding, 0 0 0 ($layout-md * 0.5), 0 ($layout-md * 0.5) 0 0),));
         }
     }
 
     @for $cols from 2 through 6 {
-        $width: 100% / $cols;
+        $width: math.div(100%, $cols); // each width is the total width divided by number of columns
+        $gutter: math.div($layout-md, $cols); // each gutter is the base gutter divided by number of columns
         // http://lea.verou.me/2011/01/styling-children-based-on-their-number-with-css3/
         .c-footer-section:first-child:nth-last-child(n+#{$cols}),
         .c-footer-section:first-child:nth-last-child(n+#{$cols}) ~ .c-footer-section:nth-child(1n-1) {
-            width: calc(#{$width} - (#{$layout-md} - (#{$layout-md} / #{$cols})));
+            width: calc(#{$width} - (#{$layout-md} - #{$gutter}));
         }
     }
 }

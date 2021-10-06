@@ -2,6 +2,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+@use "sass:math";
+
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
@@ -20,11 +22,11 @@ $v-grid-xs: $layout-md;
 $h-grid-xs: $layout-xs;
 
 //md
-$v-grid-md: $layout-xl / 2;
+$v-grid-md: $layout-xl * 0.5;
 $h-grid-md: 64px;
 
 //lg
-$v-grid-lg: 192px / 2;
+$v-grid-lg: 192px * 0.5;
 $h-grid-lg: 80px;
 
 main {
@@ -242,7 +244,7 @@ main {
         height: 0;
         margin: 0 auto;
         max-width: 100%;
-        padding-top: 171 * 100% / 684;
+        padding-top: math.div(171 * 100%, 684);
 
         @media #{$mq-md} {
             @include at2x('/media/img/firefox/campaign/unfck/de/unfck-masthead.png', contain);
@@ -278,13 +280,13 @@ main {
     .c-banner {
         @include background-size(contain);
         background-image: url('/media/img/firefox/campaign/unfck/de/unfck-header.png');
-        padding-top: 562 * 100% / 742;
+        padding-top: math.div(562 * 100%, 742);
         top: 0;
 
         @media #{$mq-sm} {
             @include at2x('/media/img/firefox/campaign/unfck/de/unfck-header.png', contain);
             margin-bottom: 0;
-            padding-top: 562 * 100% / 742;
+            padding-top: math.div(562 * 100%, 742);
         }
     }
 }
@@ -294,7 +296,7 @@ main {
         @include background-size(contain);
         background-image: url('/media/img/firefox/campaign/unfck/de/danke.png');
         max-width:  100%;
-        padding-top: 439 * 100% / 900;
+        padding-top: math.div(439 * 100%, 900);
 
         @media #{$mq-md} {
             @include at2x('/media/img/firefox/campaign/unfck/de/danke.png', contain);

@@ -2,6 +2,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+@use "sass:math";
+
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/article';
 @import '~@mozilla-protocol/core/protocol/css/includes/mixins/details';
@@ -31,7 +33,7 @@ dd {
 
         a {
             display: block;
-            min-width: ($content-md / 3);
+            min-width: math.div($content-md, 3);
         }
 
         @media #{$mq-md} {

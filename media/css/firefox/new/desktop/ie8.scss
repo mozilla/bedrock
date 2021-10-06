@@ -39,7 +39,7 @@ $h-grid-lg: 80px;
 .c-block-body {
     @include border-box;
     @include bidi(((float, left, right),));
-    padding: 0 ($h-grid-lg / 2);
+    padding: 0 ($h-grid-lg * 0.5);
     width: 50%;
 
     > *:first-child {
@@ -58,7 +58,7 @@ $h-grid-lg: 80px;
 .c-block-media {
     @include border-box;
     @include bidi(((float, right, left),));
-    padding: 0 ($h-grid-lg / 2);
+    padding: 0 ($h-grid-lg * 0.5);
     width: 50%;
 
     .l-reversed & {

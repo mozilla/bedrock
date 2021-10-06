@@ -112,11 +112,11 @@ $v-grid-xs: $layout-md;
 $h-grid-xs: $layout-xs;
 
 //md
-$v-grid-md: $layout-xl / 2;
+$v-grid-md: $layout-xl * 0.5;
 $h-grid-md: 64px;
 
 //lg
-$v-grid-lg: 192px / 2;
+$v-grid-lg: 192px * 0.5;
 $h-grid-lg: 80px;
 
 main {
@@ -184,33 +184,33 @@ main {
                                 url('/media/img/firefox/campaign/unfck/en/bg/9.jpg');
                 background-position: top center,
                                     // checklist heading
-                                    top 700px right calc(50% + #{$content-sm / 2 }),
-                                    top 800px left calc(50% + #{$content-sm / 2 + 150px}),
+                                    top 700px right calc(50% + #{$content-sm * 0.5 }),
+                                    top 800px left calc(50% + #{$content-sm * 0.5 + 150px}),
                                     // ads
-                                    top 1200px right calc(50% + #{$content-sm / 2 }),
+                                    top 1200px right calc(50% + #{$content-sm * 0.5 }),
                                     // fb
-                                    top 1950px right calc(50% + #{$content-sm / 2 }),
+                                    top 1950px right calc(50% + #{$content-sm * 0.5 }),
                                     // youtube
-                                    top 2500px right calc(50% + #{$content-sm / 2 }),
-                                    top 2300px left calc(50% + #{$content-sm / 2 }),
+                                    top 2500px right calc(50% + #{$content-sm * 0.5 }),
+                                    top 2300px left calc(50% + #{$content-sm * 0.5 }),
                                     // giphy
-                                    bottom 50px right calc(50% + #{$content-sm / 2 } ),
-                                    bottom 350px left calc(50% + #{$content-sm / 2 + 150px});
+                                    bottom 50px right calc(50% + #{$content-sm * 0.5 } ),
+                                    bottom 350px left calc(50% + #{$content-sm * 0.5 + 150px});
                 background-repeat: no-repeat;
-                background-size: (1944px/2) (786px/2),
+                background-size: (1944px*0.5) (786px*0.5),
                                 //checklist heading
-                                (386px/2) (350px/2),
-                                (534px/2) (556px/2),
+                                (386px*0.5) (350px*0.5),
+                                (534px*0.5) (556px*0.5),
                                 //ads
-                                (620px/2) (662px/2),
+                                (620px*0.5) (662px*0.5),
                                 //fb
-                                (386px/2) (350px/2),
+                                (386px*0.5) (350px*0.5),
                                 //youtube
-                                (560px/2) (408px/2),
-                                (314px/2) (460px/2),
+                                (560px*0.5) (408px*0.5),
+                                (314px*0.5) (460px*0.5),
                                 //giphy
-                                (270px/2) (168px/2),
-                                (296px/2) (450px/2);
+                                (270px*0.5) (168px*0.5),
+                                (296px*0.5) (450px*0.5);
             }
 
 
@@ -218,18 +218,18 @@ main {
             @media #{$mq-lg} {
                 background-position: top center,
                                     // checklist heading
-                                    top 700px right calc(50% + #{$content-lg / 2 }),
-                                    top 800px left calc(50% + #{$content-lg / 2 + 150px}),
+                                    top 700px right calc(50% + #{$content-lg * 0.5 }),
+                                    top 800px left calc(50% + #{$content-lg * 0.5 + 150px}),
                                     // ads
-                                    top 1200px right calc(50% + #{$content-lg / 2 }),
+                                    top 1200px right calc(50% + #{$content-lg * 0.5 }),
                                     // fb
-                                    top 1950px right calc(50% + #{$content-lg / 2 }),
+                                    top 1950px right calc(50% + #{$content-lg * 0.5 }),
                                     // youtube
-                                    top 2500px right calc(50% + #{$content-lg / 2 }),
-                                    top 2300px left calc(50% + #{$content-lg / 2 + 70px}),
+                                    top 2500px right calc(50% + #{$content-lg * 0.5 }),
+                                    top 2300px left calc(50% + #{$content-lg * 0.5 + 70px}),
                                     // giphy
-                                    bottom 50px right calc(50% + #{$content-lg / 2 + 50px} ),
-                                    bottom 350px left calc(50% + #{$content-lg / 2 + 150px});
+                                    bottom 50px right calc(50% + #{$content-lg * 0.5 + 50px} ),
+                                    bottom 350px left calc(50% + #{$content-lg * 0.5 + 150px});
             }
         }
     }

@@ -15,7 +15,7 @@
     "css-minimizer-webpack-plugin": "3.0.2",
     "eslint": "^7.0.0",
     "mini-css-extract-plugin": "2.2.0",
-    "node-sass": "6.0.1",
+    "sass": "^1.42.1",
     "sass-loader": "12.1.0",
     "style-loader": "3.2.1",
     "stylelint": "^13.12.0",
