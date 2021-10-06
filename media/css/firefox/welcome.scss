@@ -345,7 +345,7 @@ html {
         content: '';
         height: $layout-lg;
         left: 50%;
-        margin-left: -($layout-lg/2);
+        margin-left: -($layout-lg*0.5);
         position: absolute;
         top: 0;
         width: $layout-lg;

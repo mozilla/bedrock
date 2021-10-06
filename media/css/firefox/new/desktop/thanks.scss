@@ -9,7 +9,6 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/emphasis-box';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 @import '~@mozilla-protocol/core/protocol/css/components/zap';
-@import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
 
 // --------------------------------------------------------------------------
 // Protocol over-rides
@@ -22,11 +21,11 @@ $v-grid-xs: $layout-md;
 $h-grid-xs: $layout-xs;
 
 //md
-$v-grid-md: $layout-xl / 2;
+$v-grid-md: $layout-xl * 0.5;
 $h-grid-md: 64px;
 
 //lg
-$v-grid-lg: 192px / 2;
+$v-grid-lg: 192px * 0.5;
 $h-grid-lg: 80px;
 
 main {
@@ -51,73 +50,6 @@ main {
     h1 {
         color: $color-marketing-gray-99;
         margin-bottom: $spacing-md;
-    }
-
-    img {
-        .mzp-c-card & {
-            display: block;
-            margin-bottom: $spacing-lg;
-        }
-    }
-}
-
-// cards
-// https://github.com/mozilla/protocol/issues/536
-// https://github.com/mozilla/bedrock/pull/9096
-
-.mzp-c-card {
-    background-color: transparent;
-    margin-bottom: $v-grid-xs;
-
-    @media #{$mq-md} {
-        margin-bottom: $v-grid-md;
-    }
-
-    @media #{$mq-lg} {
-        margin-bottom: $v-grid-lg;
-    }
-}
-
-.mzp-l-card-third {
-    margin: 0 auto;
-    max-width: $content-lg;
-
-    .mzp-c-card {
-        @media #{$mq-sm} {
-            @include bidi((
-                (margin-left, 0, $h-grid-xs),
-                (margin-right, $h-grid-xs, 0),
-            ));
-            width: calc(50% - (#{$h-grid-xs} / 2));
-
-            &:nth-child(even) {
-                margin-left: 0;
-                margin-right: 0;
-            }
-        }
-
-        @media #{$mq-md} {
-            @include bidi((
-                (margin-left, 0, $h-grid-md),
-                (margin-right, $h-grid-md, 0),
-            ));
-            width: calc(50% - (#{$h-grid-md} / 2));
-        }
-
-        @media #{$mq-lg} {
-            width: calc(33.3% - (#{$h-grid-lg} - (#{$h-grid-lg} / 3)));
-
-            &:nth-child(even) {
-                @include bidi((
-                    (margin-left, 0, $h-grid-lg),
-                    (margin-right, $h-grid-lg, 0),
-                ));
-            }
-
-            &:nth-child(3n) {
-                @include bidi(((margin-right, 0, margin-left, 0),));
-            }
-        }
     }
 }
 

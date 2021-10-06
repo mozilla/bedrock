@@ -14,7 +14,7 @@ $image-path: '/media/protocol/img';
 .side-reference {
     border-bottom: 2px solid #ddd;
     margin: 2em 0;
-    padding-bottom: (1.25em / 2);
+    padding-bottom: (1.25em * 0.5);
 
     p {
         margin: 0;
@@ -22,7 +22,7 @@ $image-path: '/media/protocol/img';
 
     .more {
         display: block;
-        padding: (1.25em / 2) 0;
+        padding: (1.25em * 0.5) 0;
     }
 
     /* collapse on mobile */

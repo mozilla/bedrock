@@ -2,6 +2,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+@use "sass:math";
+
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
@@ -19,11 +21,11 @@ $v-grid-xs: $layout-md;
 $h-grid-xs: $layout-xs;
 
 //md
-$v-grid-md: $layout-xl / 2;
+$v-grid-md: $layout-xl * 0.5;
 $h-grid-md: 64px;
 
 //lg
-$v-grid-lg: 192px / 2;
+$v-grid-lg: 192px * 0.5;
 $h-grid-lg: 80px;
 
 
@@ -43,7 +45,7 @@ $h-grid-lg: 80px;
             height: 0;
             margin: 0 auto;
             max-width: 100%;
-            padding-top: 190 * 100% / 952;
+            padding-top: math.div(190 * 100%, 952);
 
             @media #{$mq-md} {
                 @include at2x('/media/img/firefox/campaign/unfck/fr/unfck-masthead-fr.png', contain);
@@ -91,7 +93,7 @@ $h-grid-lg: 80px;
         height: 0;
         margin: 0 auto;
         max-width: 100%;
-        padding-top: 300 * 100% / 750;
+        padding-top: math.div(300 * 100%, 750);
         position: relative;
         top: 0;
 
@@ -132,7 +134,7 @@ $h-grid-lg: 80px;
         height: 0;
         margin: 0 auto $v-grid-md;
         max-width: 100%;
-        padding-top: 324 * 100% / 650;
+        padding-top: math.div(324 * 100%, 650);
         position: relative;
         top: 0;
 

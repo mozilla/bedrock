@@ -2,6 +2,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+@use "sass:math";
+
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
@@ -416,7 +418,7 @@ $image-path: '/media/protocol/img';
             @include bidi(((float, left, right),));
             @include bidi(((padding-left, $layout-md, padding-right, 0),));
             margin-top: 0;
-            width: calc(#{100% / 3} - (#{$layout-md} - (#{$layout-md} / 3)));
+            width: calc(#{math.div(100%, 3)} - (#{$layout-md} - #{math.div($layout-md, 3)}));
 
             &:first-child {
                 @include bidi(((padding-left, 0, padding-right, 0),));

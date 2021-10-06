@@ -348,7 +348,7 @@
 
             .c-accounts-value-content {
                 grid-row: 1;
-                max-width: ($content-max / 2) - $spacing-lg;
+                max-width: ($content-max * 0.5) - $spacing-lg;
                 padding: 0;
             }
 

@@ -174,7 +174,7 @@ $city-image-size: 106px;
             position: absolute;
             top: 50%;
             left: $spacing-xl;
-            margin-top: ($city-image-size / 2 * -1) - 3px; // minus half to vertically centre and then -3px to account for the little bits that stick up past the circle part
+            margin-top: ($city-image-size * 0.5 * -1) - 3px; // minus half to vertically centre and then -3px to account for the little bits that stick up past the circle part
         }
     }
 
@@ -195,7 +195,7 @@ $city-image-size: 106px;
     .c-city {
         @include grid-half;
         @include bidi(((float, left, right),));
-        padding: 0 ($spacing-xl / 2);
+        padding: 0 ($spacing-xl * 0.5);
         margin: $spacing-xl 0;
     }
 }

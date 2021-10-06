@@ -2,6 +2,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+@use "sass:math";
+
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
@@ -39,11 +41,11 @@ $v-grid-xs: $layout-md;
 $h-grid-xs: $layout-xs;
 
 //md
-$v-grid-md: $layout-xl / 2;
+$v-grid-md: $layout-xl * 0.5;
 $h-grid-md: 64px;
 
 //lg
-$v-grid-lg: 192px / 2;
+$v-grid-lg: 192px * 0.5;
 $h-grid-lg: 80px;
 
 main {
@@ -153,7 +155,7 @@ button.mzp-c-cta-link {
                 (margin-left, 0, $h-grid-xs),
                 (margin-right, $h-grid-xs, 0),
             ));
-            width: calc(50% - (#{$h-grid-xs} / 2));
+            width: calc(50% - (#{$h-grid-xs} * 0.5));
 
             &:nth-child(even) {
                 margin-left: 0;
@@ -166,7 +168,7 @@ button.mzp-c-cta-link {
                 (margin-left, 0, $h-grid-md),
                 (margin-right, $h-grid-md, 0),
             ));
-            width: calc(50% - (#{$h-grid-md} / 2));
+            width: calc(50% - (#{$h-grid-md} * 0.5));
 
             &:nth-child(even) {
                 margin-left: 0;
@@ -175,7 +177,7 @@ button.mzp-c-cta-link {
         }
 
         @media #{$mq-lg} {
-            width: calc(33.3% - (#{$h-grid-lg} - (#{$h-grid-lg} / 3)));
+            width: calc(33.3% - (#{$h-grid-lg} - #{math.div($h-grid-lg, 3)}));
 
             &:nth-child(even) {
                 @include bidi((
@@ -200,7 +202,7 @@ button.mzp-c-cta-link {
                 (margin-left, 0, $h-grid-xs),
                 (margin-right, $h-grid-xs, 0),
             ));
-            width: calc(50% - (#{$h-grid-xs} - (#{$h-grid-xs} / 2)));
+            width: calc(50% - (#{$h-grid-xs} - (#{$h-grid-xs} * 0.5)));
 
             main &:nth-child(2n) { // bump the specificity so later media queries don't over write it
                 margin-left: 0;
@@ -213,7 +215,7 @@ button.mzp-c-cta-link {
                 (margin-left, 0, $h-grid-md),
                 (margin-right, $h-grid-md, 0),
             ));
-            width: calc(50% - (#{$h-grid-md} - (#{$h-grid-md} / 2)));
+            width: calc(50% - (#{$h-grid-md} - (#{$h-grid-md} * 0.5)));
         }
 
         @media #{$mq-lg} {
@@ -222,7 +224,7 @@ button.mzp-c-cta-link {
                 (margin-left, 0, $h-grid-lg),
                 (margin-right, $h-grid-lg, 0),
             ));
-            width: calc(50% - (#{$h-grid-lg} - (#{$h-grid-lg} / 2)));
+            width: calc(50% - (#{$h-grid-lg} - (#{$h-grid-lg} * 0.5)));
 
             &:nth-child(2n+1) {
                 @include bidi(((clear, left, right),));
@@ -353,7 +355,7 @@ button.mzp-c-cta-link {
 
         li {
             float: left;
-            width: calc(33.3% - (#{$h-grid-lg} - (#{$h-grid-lg} / 3)));
+            width: calc(33.3% - (#{$h-grid-lg} - #{math.div($h-grid-lg, 3)}));
 
             &:nth-child(2n) {
                 margin-left: $h-grid-lg;
@@ -450,7 +452,7 @@ button.mzp-c-cta-link {
         @include border-box;
         @include bidi(((float, left, right),));
         width: 50%;
-        padding: 0 ($h-grid-lg / 2);
+        padding: 0 ($h-grid-lg * 0.5);
 
         > *:first-child {
             margin-top: 0;
@@ -469,7 +471,7 @@ button.mzp-c-cta-link {
         @include border-box;
         @include bidi(((float, right, left),));
         width: 50%;
-        padding: 0 ($h-grid-lg / 2);
+        padding: 0 ($h-grid-lg * 0.5);
 
         .l-reversed & {
             @include bidi(((float, left, right),));
@@ -903,7 +905,7 @@ button.mzp-c-cta-link {
     @supports(display:grid) {
         @media #{$mq-lg} {
             .c-block-body {
-                max-width: ($content-lg - $h-grid-lg) / 2;
+                max-width: ($content-lg - $h-grid-lg) * 0.5;
             }
         }
     }
@@ -1343,7 +1345,7 @@ button.mzp-c-cta-link {
         &:after {
             @include bidi((
                 (left, 60%, right, auto),
-                (margin-left, $h-grid-xs / 2, margin-left, 0),
+                (margin-left, $h-grid-xs * 0.5, margin-left, 0),
             ));
             background-position: top center;
             background-repeat: no-repeat;
@@ -1366,7 +1368,7 @@ button.mzp-c-cta-link {
         }
 
         .c-mobile-text {
-            @include bidi(((padding-right, $h-grid-xs / 2, padding-left, 0),));
+            @include bidi(((padding-right, $h-grid-xs * 0.5, padding-left, 0),));
             @include border-box;
             max-width: 60%;
         }
@@ -1376,23 +1378,23 @@ button.mzp-c-cta-link {
         &:after {
             @include bidi((
                 (left, 50%, right, auto),
-                (margin-left, $h-grid-md / 2, margin-right, 0),
+                (margin-left, $h-grid-md * 0.5, margin-right, 0),
             ));
         }
 
         .c-mobile-text {
-            @include bidi(((padding-right, $h-grid-md / 2, padding-left, 0),));
+            @include bidi(((padding-right, $h-grid-md * 0.5, padding-left, 0),));
             max-width: 50%;
         }
     }
 
     @media #{$mq-lg} {
         &:after {
-            @include bidi(((margin-left, $h-grid-lg / 2, margin-right, 0),));
+            @include bidi(((margin-left, $h-grid-lg * 0.5, margin-right, 0),));
         }
 
         .c-mobile-text {
-            @include bidi(((padding-right, $h-grid-lg / 2, padding-left, 0),));
+            @include bidi(((padding-right, $h-grid-lg * 0.5, padding-left, 0),));
         }
     }
 }
