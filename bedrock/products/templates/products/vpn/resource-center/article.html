@@ -1,6 +1,7 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+{% from 'macros-protocol.html' import card %}
 
 {% extends "products/vpn/base.html" %}
 
@@ -28,7 +29,80 @@
         <h3 class="mzp-c-article-subtitle">For those at home, who want to keep all your devices connected</h3>
         <p>Occasionally, you might need to print out forms for an upcoming doctor visit or your kid’s worksheets to keep them busy. Now, we’ve added Local Area Network Access, so your devices can talk with each other without having to turn off your VPN. Just make sure that the box is checked in Network Settings when you are on your home network.  This feature is available on Windows, Linux, Mac and Android platforms.</p>
       </article>
+    <div class="vpn-c-vote">
+      <h3>Was this article helpful?</h3>
+      <div class="vpn-c-vote-btn-container">
+        <button class="vpn-c-vote-btn up">
+        </button>
+        <button class="vpn-c-vote-btn down">
+        </button>
+      </div>
+    </div>
     </div>
   <div>
+  <div class="mzp-l-content mzp-l-card-third">
+    <hr class="mzp-c-hr" />
+    <h3 class="vpn-article-bottom-title">Related Posts</h3>
+    <div class="mzp-l-card-third">
+      {{card (
+        title='Article title',
+        ga_title='Article title',
+        aspect_ratio='mzp-has-aspect-16-9',
+        desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
+        image_url="img/products/vpn/resource-center/resource-center-article-1.png",
+        link_url=url('products.vpn.resource-center.article')
+      )}}
+      {{ card (
+        title='Article title',
+        ga_title='Article title',
+        aspect_ratio='mzp-has-aspect-16-9',
+        desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
+        image_url="img/products/vpn/resource-center/resource-center-article-1.png",
+        link_url=url('products.vpn.resource-center.article')
+      )}}
+      {{ card (
+        title='Article title',
+        ga_title='Article title',
+        aspect_ratio='mzp-has-aspect-16-9',
+        desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
+        image_url="img/products/vpn/resource-center/resource-center-article-1.png",
+        link_url=url('products.vpn.resource-center.article')
+      )}}
+    </div>
+    <hr class="mzp-c-hr" />
+    <h3 class="vpn-article-bottom-title">Most Helpful Posts This Week</h3>
+    <div class="mzp-l-card-third">
+      {{card (
+        title='Article title',
+        ga_title='Article title',
+        aspect_ratio='mzp-has-aspect-16-9',
+        desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
+        image_url="img/products/vpn/resource-center/resource-center-article-1.png",
+        link_url=url('products.vpn.resource-center.article')
+      )}}
+      {{ card (
+        title='Article title',
+        ga_title='Article title',
+        aspect_ratio='mzp-has-aspect-16-9',
+        desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
+        image_url="img/products/vpn/resource-center/resource-center-article-1.png",
+        link_url=url('products.vpn.resource-center.article')
+      )}}
+      {{ card (
+        title='Article title',
+        ga_title='Article title',
+        aspect_ratio='mzp-has-aspect-16-9',
+        desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
+        image_url="img/products/vpn/resource-center/resource-center-article-1.png",
+        link_url=url('products.vpn.resource-center.article')
+      )}}
+    </div>
+
+  </div>
+
   {% include 'products/vpn/resource-center/includes/bottom-cta.html' %}
 {% endblock content %}
+
+{% block js %}
+    {{ js_bundle("vpn-resource-center")}}
+{% endblock js %}

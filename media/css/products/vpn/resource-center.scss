@@ -38,6 +38,7 @@ $image-path: '/media/protocol/img';
 }
 
 .mzp-c-category-list {
+    //This needs to be replaced with a token
     background-color: #f3f3f3;
     padding: 8px 18px;
 
@@ -71,7 +72,7 @@ $image-path: '/media/protocol/img';
     }
 
     @media #{$mq-md} {
-        padding: 8px 80px;
+        padding: $spacing-sm $layout-xl - $spacing-md;
     }
 }
 
@@ -79,7 +80,7 @@ $image-path: '/media/protocol/img';
     align-items: center;
     display: flex;
     justify-content: space-evenly;
-    margin-bottom: 20px;
+    margin-bottom: $spacing-lg;
 
     li {
         margin-left: 0;
@@ -89,7 +90,7 @@ $image-path: '/media/protocol/img';
         justify-content: center;
 
         li {
-            margin-left: 48px;
+            margin-left: $layout-md;
 
             &:first-child {
                 margin-left: 0;
@@ -136,8 +137,10 @@ $image-path: '/media/protocol/img';
 }
 
 .resource-center-article {
-    padding: 30px 40px 0 40px;
     background-color: $color-white;
+    box-sizing: border-box;
+    padding: $layout-sm $layout-md 0 $layout-md;
+
 
     .mzp-c-article-subtitle {
         @include text-title-sm;
@@ -172,5 +175,48 @@ $image-path: '/media/protocol/img';
         padding: $spacing-sm $layout-xl - $spacing-md;
     }
 
+}
+
+.vpn-article-bottom-title {
+    margin-bottom:$spacing-xl;
+}
+
+.mzp-c-hr {
+    margin: $spacing-xl 0;
+}
+
+.vpn-c-vote {
+    text-align: center;
+
+    .vpn-c-vote-btn-container {
+        @include bidi(((margin-right, $layout-lg, margin-left, $layout-lg),));
+        position: relative;
+
+        .vpn-c-vote-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            height: 38px;
+            width: 42px;
+
+            &.down {
+                @include bidi(((margin-left, $spacing-sm, margin-right, $spacing-sm),));
+                background: url('/media/img/products/vpn/resource-center/thumbs_down_off.svg');
+                position: absolute;
+                top: 13px;
+
+                &.active {
+                    background: url('/media/img/products/vpn/resource-center/thumbs_down_on.svg');
+                }
+            }
+            &.up {
+                background: url('/media/img/products/vpn/resource-center/thumbs_up_off.svg');
+
+                &.active {
+                    background: url('/media/img/products/vpn/resource-center/thumbs_up_on.svg');
+                }
+            }
+        }
+    }
 }
 
