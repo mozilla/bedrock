@@ -29,7 +29,7 @@ compare-brave-the-internet-as-a-whole-is = The Internet as a whole is largely pa
 compare-brave-whether-this-sounds-complicated = Whether this sounds complicated or like a great idea, probably depends on your level of contempt for the display advertising on the Internet. Most Internet users understand that good content costs money, and are okay with the fact that the money comes from advertising.
 
 # Variables:
-#   $attrs (string) - link to https://addons.mozilla.org/firefox/addon/adblock-plus/ with additional attributes for analytics
+#   $attrs (string) - link to https://addons.mozilla.org/firefox/addon/ublock-origin/ with additional attributes for analytics
 compare-brave-on-the-other-side-of-the-coin = On the other side of the coin, with the { -brand-name-firefox } browser, we prefer to keep things simple. { -brand-name-firefox } blocks many third party trackers, cryptominers and fingerprinting trackers from following you by default. However, { -brand-name-firefox }, outside of Private Browsing Mode, chooses not to block display ads from appearing. That is, unless you install <a { $attrs }>one of the extensions specifically designed for that purpose</a>.
 
 # Variables:
