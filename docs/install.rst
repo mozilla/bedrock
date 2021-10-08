@@ -243,7 +243,7 @@ Prod Mode
 
 There are certain things about the site that behave differently when running locally in dev mode using Django's development
 server than they do when running in the way it runs in production. Static assets that work fine locally can be a problem
-in production if referenced improperly, and the normal error pages won't work unless ``DEBUG==False`` and doing that will
+in production if referenced improperly, and the normal error pages won't work unless ``DEBUG=False`` and doing that will
 make the site throw errors since the Django server doesn't have access to all of the built static assets. So we have a couple
 of extra Docker commands (via make) that you can use to run the site locally in a more prod-like way.
 
