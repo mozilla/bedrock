@@ -153,7 +153,14 @@ If you have commit rights to our Github repo (mozilla/bedrock) you can simply pu
 your branch to the branch named ``run-integration-tests``, and the app will be deployed
 and the full suite of integration tests for that branch will be run. Please announce in
 our Slack channel (#www on mozilla.slack.com) that you'll be doing this so
-that we don't get conflicts.
+that we don't get conflicts. Also remember that you'll likely need to force push, as there 
+may be commits on that branch which aren't in yours – so, if you have the 
+``mozilla/bedrock`` remote set as ``mozilla``:
+
+.. code-block:: bash
+
+    $ git push -f mozilla your-local-branch-name-here:run-integration-tests
+
 
 .. _Deployment Pipeline: https://gitlab.com/mozmeao/www-config/-/pipelines
 .. _pipeline configuration: https://gitlab.com/mozmeao/www-config/-/pipelines/207024459
