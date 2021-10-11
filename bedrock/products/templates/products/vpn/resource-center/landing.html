@@ -1,7 +1,7 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
-{% from 'macros-protocol.html' import call_out, card %}
+{% from 'macros-protocol.html' import call_out, card, split %}
 
 {% extends "products/vpn/base.html" %}
 
@@ -9,6 +9,7 @@
   {{ css_bundle('vpn-resource-center')}}
 {% endblock page_css %}
 
+{% block page_title%}Knowledge Center{% endblock page_title%}
 
 {% block content %}
   {{ call_out (
@@ -41,11 +42,11 @@
     </div>
     <div class="mzp-l-content mzp-l-card-third">
       {{ card (
-        title='Article title',
-        ga_title='Article title',
+        title='Do I need a VPN at home?',
+        ga_title='Do I need a VPN at home?',
         aspect_ratio='mzp-has-aspect-16-9',
-        desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
-        image_url="img/products/vpn/resource-center/resource-center-article-1.png",
+        desc='You might have heard of VPNs — virtual private networks — at some point, and chalked them up to something only “super techy” people or hackers would ever use. ',
+        image_url="img/products/vpn/resource-center/article-1-light.svg",
         link_url=url('products.vpn.resource-center.article')
       )}}
       {{ card (
@@ -53,7 +54,7 @@
         ga_title='Article title',
         aspect_ratio='mzp-has-aspect-16-9',
         desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
-        image_url="img/products/vpn/resource-center/resource-center-article-1.png",
+        image_url="img/products/vpn/resource-center/article-1-dark.svg",
         link_url=url('products.vpn.resource-center.article')
       )}}
       {{ card (
@@ -61,7 +62,7 @@
         ga_title='Article title',
         aspect_ratio='mzp-has-aspect-16-9',
         desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
-        image_url="img/products/vpn/resource-center/resource-center-article-1.png",
+        image_url="img/products/vpn/resource-center/article-2-med.svg",
         link_url=url('products.vpn.resource-center.article')
       )}}
       {{ card (
@@ -69,7 +70,7 @@
         ga_title='Article title',
         aspect_ratio='mzp-has-aspect-16-9',
         desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
-        image_url="img/products/vpn/resource-center/resource-center-article-1.png",
+        image_url="img/products/vpn/resource-center/article-2-dark.svg",
         link_url=url('products.vpn.resource-center.article')
       )}}
       {{ card (
@@ -77,7 +78,7 @@
         ga_title='Article title',
         aspect_ratio='mzp-has-aspect-16-9',
         desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
-        image_url="img/products/vpn/resource-center/resource-center-article-1.png",
+        image_url="img/products/vpn/resource-center/article-1-med.svg",
         link_url=url('products.vpn.resource-center.article')
       )}}
       {{ card (
@@ -85,76 +86,58 @@
         ga_title='Article title',
         aspect_ratio='mzp-has-aspect-16-9',
         desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
-        image_url="img/products/vpn/resource-center/resource-center-article-1.png",
+        image_url="img/products/vpn/resource-center/article-2-light.svg",
         link_url=url('products.vpn.resource-center.article')
       )}}
     </div>
-    <section class="mzp-c-call-out resource-center-hero">
-      <div class="mzp-l-content">
-        <ul class="resource-center-hero-icon-list">
-          <li class="resource-center-hero-icon-list-item"><img src="{{ static('img/products/vpn/resource-center/ios_icon.svg')}}"></li>
-          <li class="resource-center-hero-icon-list-item"><img src="{{ static('img/products/vpn/resource-center/apple_icon.svg')}}"></li>
-          <li class="resource-center-hero-icon-list-item"><img src="{{ static('img/products/vpn/resource-center/android_icon.svg')}}"></li>
-          <li class="resource-center-hero-icon-list-item"><img src="{{ static('img/products/vpn/resource-center/linux_icon.svg')}}"></li>
-          <li class="resource-center-hero-icon-list-item"><img src="{{ static('img/products/vpn/resource-center/windows_icon.svg')}}"></li>
-        </ul>
-        <h2 class="mzp-c-call-out-title">Mozilla VPN is wherever you go.</h2>
-        <a class='mzp-c-button mzp-t-product resource-center-cta'>Save $40 Today*</a>
-        <p class="resource-center-cta-desc">*When you subscribe to a 12 month plan</p>
-      </div>
-    </section>
-     <div class="mzp-l-content mzp-l-card-third">
-        {{ card (
-          title='Article title',
-          ga_title='Article title',
-          aspect_ratio='mzp-has-aspect-16-9',
-          desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
-          image_url="img/products/vpn/resource-center/resource-center-article-1.png",
-          link_url=url('products.vpn.resource-center.article')
-        )}}
-        {{ card (
-          title='Article title',
-          ga_title='Article title',
-          aspect_ratio='mzp-has-aspect-16-9',
-          desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
-          image_url="img/products/vpn/resource-center/resource-center-article-1.png",
-          link_url=url('products.vpn.resource-center.article')
-        )}}
-        {{ card (
-          title='Article title',
-          ga_title='Article title',
-          aspect_ratio='mzp-has-aspect-16-9',
-          desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
-          image_url="img/products/vpn/resource-center/resource-center-article-1.png",
-          link_url=url('products.vpn.resource-center.article')
-        )}}
-        {{ card (
-          title='Article title',
-          ga_title='Article title',
-          aspect_ratio='mzp-has-aspect-16-9',
-          desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
-          image_url="img/products/vpn/resource-center/resource-center-article-1.png",
-          link_url=url('products.vpn.resource-center.article')
-        )}}
-        {{ card (
-          title='Article title',
-          ga_title='Article title',
-          aspect_ratio='mzp-has-aspect-16-9',
-          desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
-          image_url="img/products/vpn/resource-center/resource-center-article-1.png",
-          link_url=url('products.vpn.resource-center.article')
-        )}}
-        {{ card (
-          title='Article title',
-          ga_title='Article title',
-          aspect_ratio='mzp-has-aspect-16-9',
-          desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
-          image_url="img/products/vpn/resource-center/resource-center-article-1.png",
-          link_url=url('products.vpn.resource-center.article')
-        )}}
-    </div>
-    {% include 'products/vpn/resource-center/includes/bottom-cta.html' %}
+    {% call split (
+      image_url="img/products/vpn/resource-center/resource_center_split_1.svg",
+      media_after=True,
+      block_class='mzp-l-split-center-on-sm-md mzp-t-split-nospace',
+      theme_class="mzp-t-content-lg mzp-t-split-nospace"
 
+    ) %}
+      <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-vpn resource-center-wordmark"></div>
+      <h2 class="mzp-c-call-out-title">Start protecting your identity today</h2>
+      <a class='mzp-c-button mzp-t-product resource-center-cta'>Save $40 on Mozilla VPN*</a>
+      <p class="resource-center-cta-desc">*When you subscribe to a 12 month plan</p>
+    {% endcall %}
+    <div class="mzp-l-content mzp-l-card-third">
+      {{ card (
+        title='Article title',
+        ga_title='Article title',
+        aspect_ratio='mzp-has-aspect-16-9',
+        desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
+        image_url="img/products/vpn/resource-center/article-3-dark.png",
+        link_url=url('products.vpn.resource-center.article')
+      )}}
+      {{ card (
+        title='Article title',
+        ga_title='Article title',
+        aspect_ratio='mzp-has-aspect-16-9',
+        desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
+        image_url="img/products/vpn/resource-center/article-3-med.png",
+        link_url=url('products.vpn.resource-center.article')
+      )}}
+      {{ card (
+        title='Article title',
+        ga_title='Article title',
+        aspect_ratio='mzp-has-aspect-16-9',
+        desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
+        image_url="img/products/vpn/resource-center/article-3-light.png",
+        link_url=url('products.vpn.resource-center.article')
+      )}}
+  </div>
+  {% call split (
+    image_url="img/products/vpn/resource-center/resource_center_split_2.jpg",
+    media_after=True,
+    block_class='mzp-l-split-center-on-sm-md mzp-t-split-nospace',
+    theme_class="mzp-t-content-lg mzp-t-split-nospace"
+
+  ) %}
+    <h2 class="mzp-c-call-out-title">Obsessed with your privacy since 1998.</h2>
+    <a class='mzp-c-button mzp-t-product'>Save 40% today</a>
+  {% endcall %}
 
 {% endblock %}
 
