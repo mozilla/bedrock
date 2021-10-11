@@ -6,14 +6,14 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('mozorg', '0003_delete_blogarticle'),
+        ("mozorg", "0003_delete_blogarticle"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='ContributorActivity',
+            name="ContributorActivity",
         ),
         migrations.DeleteModel(
-            name='TwitterCache',
+            name="TwitterCache",
         ),
     ]

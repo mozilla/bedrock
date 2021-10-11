@@ -5,7 +5,7 @@ from django.db import migrations
 
 def fix_bytes_repr(apps, schema_editor):
     """Values were stored as strings with the "b''" in them. This should fix that."""
-    GitRepoState = apps.get_model('utils', 'GitRepoState')
+    GitRepoState = apps.get_model("utils", "GitRepoState")
     for repo in GitRepoState.objects.all():
         if repo.latest_ref.startswith("b'"):
             # strip the b' off the start and the ' off the end
@@ -16,9 +16,7 @@ def fix_bytes_repr(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('utils', '0002_auto_20180522_1249'),
+        ("utils", "0002_auto_20180522_1249"),
     ]
 
-    operations = [
-        migrations.RunPython(fix_bytes_repr)
-    ]
+    operations = [migrations.RunPython(fix_bytes_repr)]

@@ -10,22 +10,21 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='ContentfulEntry',
+            name="ContentfulEntry",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('contentful_id', models.CharField(max_length=20, unique=True)),
-                ('content_type', models.CharField(max_length=20)),
-                ('language', models.CharField(max_length=5)),
-                ('last_modified', models.DateTimeField(default=django.utils.timezone.now)),
-                ('url_base', models.CharField(blank=True, max_length=255)),
-                ('slug', models.CharField(blank=True, max_length=255)),
-                ('data_hash', models.CharField(max_length=64)),
-                ('data', django_extensions.db.fields.json.JSONField(default=dict)),
+                ("id", models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("contentful_id", models.CharField(max_length=20, unique=True)),
+                ("content_type", models.CharField(max_length=20)),
+                ("language", models.CharField(max_length=5)),
+                ("last_modified", models.DateTimeField(default=django.utils.timezone.now)),
+                ("url_base", models.CharField(blank=True, max_length=255)),
+                ("slug", models.CharField(blank=True, max_length=255)),
+                ("data_hash", models.CharField(max_length=64)),
+                ("data", django_extensions.db.fields.json.JSONField(default=dict)),
             ],
         ),
     ]

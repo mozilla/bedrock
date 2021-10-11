@@ -8,18 +8,18 @@ import django_extensions.db.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('security', '0005_mitrecve_mfsa_ids'),
+        ("security", "0005_mitrecve_mfsa_ids"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='halloffamer',
-            name='program',
-            field=models.CharField(choices=[('web', 'Web'), ('client', 'Client')], max_length=10),
+            model_name="halloffamer",
+            name="program",
+            field=models.CharField(choices=[("web", "Web"), ("client", "Client")], max_length=10),
         ),
         migrations.AlterField(
-            model_name='securityadvisory',
-            name='last_modified',
+            model_name="securityadvisory",
+            name="last_modified",
             field=django_extensions.db.fields.ModificationDateTimeField(auto_now=True),
         ),
     ]

@@ -4,19 +4,17 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='ExternalFile',
+            name="ExternalFile",
             fields=[
-                ('name', models.CharField(max_length=50, serialize=False, primary_key=True)),
-                ('content', models.TextField()),
-                ('last_modified', models.DateTimeField(auto_now=True)),
+                ("name", models.CharField(max_length=50, serialize=False, primary_key=True)),
+                ("content", models.TextField()),
+                ("last_modified", models.DateTimeField(auto_now=True)),
             ],
-            options={
-            },
+            options={},
             bases=(models.Model,),
         ),
     ]

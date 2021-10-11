@@ -7,13 +7,13 @@ import django_extensions.db.fields.json
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('security', '0004_mitrecve'),
+        ("security", "0004_mitrecve"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='mitrecve',
-            name='mfsa_ids',
-            field=django_extensions.db.fields.json.JSONField(default='[]'),
+            model_name="mitrecve",
+            name="mfsa_ids",
+            field=django_extensions.db.fields.json.JSONField(default="[]"),
         ),
     ]

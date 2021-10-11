@@ -4,20 +4,18 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='FirefoxOSFeedLink',
+            name="FirefoxOSFeedLink",
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('link', models.URLField(max_length=2000)),
-                ('title', models.CharField(max_length=2000)),
-                ('locale', models.CharField(max_length=10, db_index=True)),
+                ("id", models.AutoField(verbose_name="ID", serialize=False, auto_created=True, primary_key=True)),
+                ("link", models.URLField(max_length=2000)),
+                ("title", models.CharField(max_length=2000)),
+                ("locale", models.CharField(max_length=10, db_index=True)),
             ],
-            options={
-            },
+            options={},
             bases=(models.Model,),
         ),
     ]

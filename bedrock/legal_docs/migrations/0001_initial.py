@@ -7,17 +7,16 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='LegalDoc',
+            name="LegalDoc",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('locale', models.CharField(max_length=5)),
-                ('content', models.TextField()),
+                ("id", models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("name", models.CharField(max_length=100)),
+                ("locale", models.CharField(max_length=5)),
+                ("content", models.TextField()),
             ],
         ),
     ]
