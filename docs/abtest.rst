@@ -278,9 +278,32 @@ A/B Test PRs that might have useful code to reuse
 - https://github.com/mozilla/bedrock/pull/5492/files
 - https://github.com/mozilla/bedrock/pull/5499/files
 
-Excluding automated tests from experiments
-------------------------------------------
+Avoiding experiment collisions
+------------------------------
 
-Automated functional tests include a `automation=true` parameter in their URLs. So
-for whichever kind of experimental redirect you're performing, automated tests can
-be excluded from the audience criteria by checking for existance of said parameter.
+To ensure that Traffic Cop doesn't overwrite data from any other externally
+controlled experiments (for example Ad campaign tests, or in-product Firefox
+experiments), you can use the experiment-utils helper to decide whether or
+not Traffic Cop should initiate.
+
+.. code-block:: javascript
+
+    var isApprovedToRun = require('../../base/experiment-utils.es6.js').isApprovedToRun; // relative path
+
+    if (isApprovedToRun()) {
+        var cop = new Mozilla.TrafficCop({
+            id: 'experiment-name',
+            variations: {
+                'entrypoint_experiment=experiment-name&entrypoint_variation=a': 10,
+                'entrypoint_experiment=experiment-name&entrypoint_variation=b': 10
+            }
+        });
+
+        cop.init();
+    }
+
+The ``isApprovedToRun()`` function will check the page URL's query parameters
+against a list of well-known experimental params, and return ``false`` if
+any of those params are found. It will also check for some other cases where
+we do not want to run experiments, such as if the page is being opened in
+an automated testing environment.

@@ -22,6 +22,7 @@ module.exports = function (config) {
             'media/js/base/core-datalayer-page-id.js',
             'media/js/base/core-datalayer.js',
             'media/js/base/dnt-helper.js',
+            'media/js/base/experiment-utils.es6.js',
             'media/js/base/fxa-utm-referral.js',
             'media/js/base/mozilla-convert.js',
             'media/js/base/mozilla-fxa.js',
@@ -43,6 +44,7 @@ module.exports = function (config) {
             'tests/unit/spec/base/core-datalayer-page-id.js',
             'tests/unit/spec/base/core-datalayer.js',
             'tests/unit/spec/base/dnt-helper.js',
+            'tests/unit/spec/base/experiment-utils.js',
             'tests/unit/spec/base/fxa-utm-referral.js',
             'tests/unit/spec/base/mozilla-convert.js',
             'tests/unit/spec/base/mozilla-client.js',
@@ -76,7 +78,8 @@ module.exports = function (config) {
         ],
 
         preprocessors: {
-            'media/js/**/*.js': ['webpack', 'sourcemap']
+            'media/js/**/*.js': ['webpack', 'sourcemap'],
+            'tests/unit/**/*.js': ['webpack', 'sourcemap']
         },
 
         webpack: {
