@@ -12,5 +12,5 @@ exclude = '''
 combine_as_imports = true
 include_trailing_comma = true
 default_section = 'THIRDPARTY'
-known_first_party = 'bedrock'
+known_first_party = 'bedrock,pages'
 profile = 'black'
