@@ -1,0 +1,91 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+{% from 'macros-protocol.html' import card, split %}
+
+{% extends "products/vpn/base.html" %}
+
+{% block page_css %}
+  {{ css_bundle('vpn-resource-center')}}
+{% endblock page_css %}
+
+{% block page_title%}{% block article_title %}{% endblock article_title %}{% endblock page_title%}
+
+{% block content %}
+<ol class="mzp-c-breadcrumb">
+  <li class="mzp-c-breadcrumb-title">
+    <a class="mzp-c-breadcrumb-item-link" href="{{ url('products.vpn.resource-center.landing') }}">VPN Knowledge Center</a>
+  </li>
+  <li class="mzp-c-breadcrumb-item">
+    <a class="mzp-c-breadcrumb-item-link" href="#">{{ self.article_title() }}</a>
+  </li>
+</ol>
+<div class="vpn-article-container">
+  <div class="mzp-l-content mzp-t-content-md">
+      <article class="mzp-c-article vpn-article">
+        <p class="vpn-article-category">{% block article_category %}{{ self.article_category().capitalize() }}{% endblock %}</p>
+        <h2>{{ self.article_title() }}</h2>
+        <p class="vpn-article-date">
+          <img class="date-icon" alt="" src="{{ static('protocol/img/icons/calendar.svg') }}" width="20" height="20">
+          {% block article_date %}{% endblock%}
+        </p>
+        {% block vpn_article %}{% endblock vpn_article %}
+      </article>
+    <div class="vpn-c-vote">
+      <h3>Was this article helpful?</h3>
+      <div class="vpn-c-vote-btn-container">
+        <button class="vpn-c-vote-btn up">
+        </button>
+        <button class="vpn-c-vote-btn down">
+        </button>
+      </div>
+    </div>
+    </div>
+  <div>
+  <div class="mzp-l-content mzp-l-card-third">
+    <hr class="mzp-c-hr" />
+    <h3>Related Posts</h3>
+    <div class="mzp-l-card-third">
+      {{card (
+        title='Article title',
+        ga_title='Article title',
+        aspect_ratio='mzp-has-aspect-16-9',
+        desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
+        image_url="img/products/vpn/resource-center/article-3-dark.png",
+        link_url=url('products.vpn.resource-center.article')
+      )}}
+      {{ card (
+        title='Article title',
+        ga_title='Article title',
+        aspect_ratio='mzp-has-aspect-16-9',
+        desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
+        image_url="img/products/vpn/resource-center/article-3-med.png",
+        link_url=url('products.vpn.resource-center.article')
+      )}}
+      {{ card (
+        title='Article title',
+        ga_title='Article title',
+        aspect_ratio='mzp-has-aspect-16-9',
+        desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
+        image_url="img/products/vpn/resource-center/article-3-light.png",
+        link_url=url('products.vpn.resource-center.article')
+      )}}
+    </div>
+  </div>
+  {% call split (
+  image_url='img/products/vpn/resource-center/resource_center_split_2_2x.jpg',
+  media_after=True,
+  block_class='mzp-l-split-center-on-sm-md mzp-t-split-nospace',
+  theme_class='mzp-t-content-lg mzp-t-split-nospace',
+
+  ) %}
+    <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-vpn resource-center-wordmark"></div>
+    <h2 class="mzp-c-call-out-title">Obsessed with your privacy since 1998.</h2>
+    <a class='mzp-c-button mzp-t-product'>Save 40% today</a>
+  {% endcall %}
+
+{% endblock content %}
+
+{% block js %}
+    {{ js_bundle("vpn-resource-center-article")}}
+{% endblock js %}

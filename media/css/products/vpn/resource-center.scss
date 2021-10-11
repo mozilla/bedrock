@@ -19,12 +19,15 @@ $image-path: '/media/protocol/img';
 
 .resource-center-page-header {
     .mzp-l-content {
-        max-width: 595px;
+        max-width: $content-md;
         .mzp-c-call-out-title {
             @include font-firefox;
         }
         .mzp-c-call-out-desc {
             font-weight: 700;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: $content-sm;
         }
     }
     @media #{$mq-md} {
@@ -90,29 +93,20 @@ $image-path: '/media/protocol/img';
     margin-bottom: $spacing-lg;
 }
 
-.resource-center-article-container {
-    background: url('/media/img/products/vpn/resource-center/resource-center-banner-bg.png');
-    background-repeat: no-repeat;
-    background-size: 100%;
-}
-
-.resource-center-article {
-    background-color: $color-white;
-    box-sizing: border-box;
-    padding: $layout-sm $layout-md 0 $layout-md;
-
-
-    .mzp-c-article-subtitle {
-        @include text-title-sm;
-    }
-}
-
-
 // temporary until we incorporate breadcrumb to protocol
 .mzp-c-breadcrumb {
     background-color: $color-light-gray-20;
     margin-bottom: 0;
     padding: $spacing-sm $spacing-md;
+
+    .mzp-c-breadcrumb-item, .mzp-c-breadcrumb-title {
+        display: inline-block;
+        font-weight: 400;
+
+        .mzp-c-breadcrumb-item-link {
+            text-decoration: none;
+        }
+    }
 
     .mzp-c-breadcrumb-item {
         font-weight: bold;
@@ -123,18 +117,46 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    .mzp-c-breadcrumb-item, .mzp-c-breadcrumb-title {
-        display: inline-block;
-        font-weight: 400;
-
-        .mzp-c-breadcrumb-item-link {
-            text-decoration: none;
-        }
-    }
     @media #{$mq-md} {
         padding: $spacing-sm $layout-xl - $spacing-md;
     }
 
+}
+
+.vpn-article-container {
+    background: url('/media/img/products/vpn/resource-center/resource_center_article_gradient.svg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.vpn-article {
+    background-color: $color-white;
+    box-sizing: border-box;
+    padding: $layout-sm $layout-md 0 $layout-md;
+
+    .vpn-article-category {
+        @include text-body-xs;
+        background: $color-black;
+        border-radius: $border-radius-sm;
+        color: $color-white;
+        display: inline-block;
+        font-weight: 300;
+        padding: $spacing-xs $spacing-md $spacing-xs $spacing-md;
+        text-transform: uppercase;
+    }
+
+    .vpn-article-date {
+        align-items: center;
+        display: flex;
+
+        .date-icon {
+            @include bidi(((margin-right, $spacing-sm, margin-left, $spacing-sm),))
+        }
+    }
+
+    .mzp-c-article-subtitle {
+        @include text-title-sm;
+    }
 }
 
 .vpn-article-bottom-title {
@@ -146,8 +168,8 @@ $image-path: '/media/protocol/img';
 }
 
 .vpn-c-vote {
+    margin-top: $layout-xl;
     text-align: center;
-
     .vpn-c-vote-btn-container {
         @include bidi(((margin-right, $layout-lg, margin-left, $layout-lg),));
         position: relative;
