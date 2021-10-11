@@ -3,10 +3,11 @@
 import os.path
 from datetime import datetime
 
-import pytest
 from django.conf import settings
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
+
+import pytest
 from django_jinja.backend import Jinja2
 from jinja2 import Markup
 from mock import patch

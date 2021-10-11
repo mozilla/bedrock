@@ -1,8 +1,9 @@
 # mimic django's language activation machinery. it checks for .mo files
 # and we don't need anything nearly as complex.
 
-from _threading_local import local
 from django.conf import settings
+
+from _threading_local import local
 
 _active = local()
 

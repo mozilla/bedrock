@@ -5,6 +5,7 @@
 import os.path
 
 from django.conf import settings
+
 from mock import patch
 
 from bedrock.mozorg.tests import TestCase

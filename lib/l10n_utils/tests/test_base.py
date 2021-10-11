@@ -3,6 +3,7 @@ import os
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
+
 from django_jinja.backend import Jinja2
 from mock import ANY, call, patch
 

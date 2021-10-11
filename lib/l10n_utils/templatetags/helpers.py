@@ -2,11 +2,12 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from django.conf import settings
+
 import jinja2
 from babel.core import Locale, UnknownLocaleError
 from babel.dates import format_date
 from babel.numbers import format_number
-from django.conf import settings
 from django_jinja import library
 
 from lib.l10n_utils.dotlang import lang_file_has_tag, translate

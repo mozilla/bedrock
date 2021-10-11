@@ -6,11 +6,12 @@ from datetime import datetime
 from os import getenv
 from subprocess import CalledProcessError
 
-from dirsync import sync
 from django.conf import settings
 from django.core.management.base import CommandError
 from django.template.defaultfilters import slugify
 from django.utils.functional import cached_property
+
+from dirsync import sync
 
 from bedrock.utils import github
 

@@ -1,8 +1,9 @@
 from hashlib import sha1
 from io import BytesIO
 
-import qrcode as qr
 from django.core.cache import caches
+
+import qrcode as qr
 from django_jinja import library
 from jinja2 import Markup
 from qrcode.image.svg import SvgPathImage

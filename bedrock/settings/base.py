@@ -11,8 +11,9 @@ import sys
 from os.path import abspath
 from pathlib import Path
 
-import sentry_sdk
 from django.utils.functional import lazy
+
+import sentry_sdk
 from everett.manager import ListOf
 from sentry_sdk.integrations.django import DjangoIntegration
 
@@ -359,6 +360,7 @@ def lazy_lang_url_map():
 # Override Django's built-in with our native names
 def lazy_langs():
     from django.conf import settings
+
     from product_details import product_details
 
     langs = DEV_LANGUAGES if settings.DEV else settings.PROD_LANGUAGES

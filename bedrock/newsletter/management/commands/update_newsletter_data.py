@@ -1,5 +1,6 @@
-import basket
 from django.core.management.base import BaseCommand, CommandError
+
+import basket
 
 from bedrock.newsletter.models import Newsletter
 

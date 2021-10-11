@@ -4,8 +4,9 @@
 
 import logging
 
-import jinja2
 from django.template.loader import render_to_string
+
+import jinja2
 from django_jinja import library
 
 from bedrock.newsletter.forms import NewsletterFooterForm

@@ -9,6 +9,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import widgets
 from django.utils.safestring import mark_safe
+
 from product_details import product_details
 
 from bedrock.mozorg.forms import FORMATS, EmailInput, PrivacyWidget, strip_parenthetical

@@ -2,6 +2,7 @@
 from pathlib import Path
 
 from django.test import override_settings
+
 from jinja2 import Markup
 
 from bedrock.contentcards import models

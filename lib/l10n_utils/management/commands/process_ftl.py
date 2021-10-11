@@ -7,6 +7,7 @@ from subprocess import CalledProcessError
 
 from django.conf import settings
 from django.core.management.base import CommandError
+
 from fluent.syntax.parser import FluentParser, ParseError
 
 from lib.l10n_utils.fluent import fluent_l10n, get_metadata, write_metadata

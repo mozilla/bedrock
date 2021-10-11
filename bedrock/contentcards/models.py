@@ -4,6 +4,7 @@ from pathlib import Path
 
 from django.conf import settings
 from django.db import models, transaction
+
 from django_extensions.db.fields.json import JSONField
 from jinja2 import Markup
 

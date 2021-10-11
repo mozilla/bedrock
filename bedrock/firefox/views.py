@@ -10,8 +10,6 @@ from collections import OrderedDict
 from random import random
 from urllib.parse import urlparse
 
-import basket
-import querystringsafe_base64
 from django.conf import settings
 from django.http import (
     HttpResponsePermanentRedirect,
@@ -23,6 +21,9 @@ from django.utils.encoding import force_text
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
 from django.views.generic.base import TemplateView
+
+import basket
+import querystringsafe_base64
 from product_details.version_compare import Version
 
 from bedrock.base.urlresolvers import reverse

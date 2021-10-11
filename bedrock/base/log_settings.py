@@ -2,10 +2,11 @@ import logging
 import logging.handlers
 import socket
 
+from django.conf import settings
+
 import cef
 import commonware.log
 import dictconfig
-from django.conf import settings
 
 
 class NullHandler(logging.Handler):

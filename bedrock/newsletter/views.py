@@ -8,10 +8,6 @@ from collections import defaultdict
 from html import escape
 from operator import itemgetter
 
-import basket
-import basket.errors
-import commonware.log
-import requests
 from django.conf import settings
 from django.contrib import messages
 from django.forms.formsets import formset_factory
@@ -19,6 +15,11 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import redirect
 from django.utils.safestring import mark_safe
 from django.views.decorators.cache import never_cache
+
+import basket
+import basket.errors
+import commonware.log
+import requests
 from jinja2 import Markup
 
 import lib.l10n_utils as l10n_utils

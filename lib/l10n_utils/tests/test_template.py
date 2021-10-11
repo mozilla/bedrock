@@ -4,9 +4,10 @@
 
 from pathlib import Path
 
-import pytest
 from django.template import TemplateDoesNotExist
 from django.test import RequestFactory, override_settings
+
+import pytest
 from django_jinja.backend import Jinja2
 from jinja2.nodes import Block
 from mock import ANY, Mock, patch

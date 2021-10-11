@@ -5,6 +5,7 @@
 from pathlib import Path
 
 from django.test import override_settings
+
 from mock import DEFAULT, patch
 
 from bedrock.mozorg.management.commands import update_product_details_files

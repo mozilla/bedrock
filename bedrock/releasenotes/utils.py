@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.core.cache import caches
+
 from memoize import Memoizer
 
 from bedrock.utils.git import GitRepo

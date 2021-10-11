@@ -10,7 +10,9 @@ exclude = '''
 
 [tool.isort]
 combine_as_imports = true
-include_trailing_comma = true
 default_section = 'THIRDPARTY'
+include_trailing_comma = true
+known_django = 'django'
 known_first_party = 'bedrock,lib,pages'
 profile = 'black'
+sections = 'FUTURE,STDLIB,DJANGO,THIRDPARTY,FIRSTPARTY,LOCALFOLDER'

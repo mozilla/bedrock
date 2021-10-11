@@ -2,6 +2,7 @@ from urllib.parse import parse_qs, urlparse
 
 from django.conf import settings
 from django.test.client import RequestFactory
+
 from django_jinja.backend import Jinja2
 from pyquery import PyQuery as pq
 

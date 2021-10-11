@@ -1,5 +1,6 @@
-import pytest
 from django.test import override_settings
+
+import pytest
 from mock import DEFAULT, call, patch
 
 from bedrock.utils import git

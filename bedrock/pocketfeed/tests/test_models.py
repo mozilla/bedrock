@@ -1,9 +1,10 @@
 import json
 from pathlib import Path
 
+from django.test import override_settings
+
 import pytest
 import responses
-from django.test import override_settings
 
 from bedrock.pocketfeed import api
 from bedrock.pocketfeed.models import PocketArticle

@@ -7,6 +7,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "bedrock.settings")
 # must be imported after env var is set above.
 from django.core.handlers.wsgi import WSGIRequest
 from django.core.wsgi import get_wsgi_application
+
 from whitenoise.django import DjangoWhiteNoise
 
 

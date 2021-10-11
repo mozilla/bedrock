@@ -6,6 +6,7 @@ import json
 
 from django.http import HttpResponse
 from django.test.client import RequestFactory
+
 from mock import patch
 
 from bedrock.mozorg.tests import TestCase

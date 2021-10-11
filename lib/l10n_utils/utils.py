@@ -7,6 +7,7 @@ import os
 import re
 
 from django.conf import settings
+
 from fluent.runtime import FluentResourceLoader
 from fluent.syntax.ast import Message
 

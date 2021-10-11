@@ -5,13 +5,14 @@
 import os
 from textwrap import dedent
 
+from django.conf import settings
+from django.core.management import call_command
+from django.core.management.base import BaseCommand
+
 from babel.messages.catalog import Catalog
 from babel.messages.extract import extract_from_file
 from babel.messages.pofile import write_po
 from babel.util import pathmatch
-from django.conf import settings
-from django.core.management import call_command
-from django.core.management.base import BaseCommand
 from puente.commands import generate_options_map
 from puente.settings import get_setting
 

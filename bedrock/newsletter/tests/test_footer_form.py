@@ -1,4 +1,5 @@
 from django.test.utils import override_settings
+
 from mock import patch
 from pyquery import PyQuery as pq
 

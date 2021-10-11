@@ -7,6 +7,7 @@ from django.conf import settings
 from django.core.cache import caches
 from django.utils.encoding import force_bytes
 from django.utils.functional import cached_property, lazy
+
 from fluent.runtime import FluentLocalization, FluentResource
 from fluent.syntax.ast import GroupComment, Message
 

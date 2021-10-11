@@ -5,6 +5,7 @@
 import os
 
 from django.test.client import RequestFactory
+
 from mock import ANY, patch
 
 from bedrock.base.urlresolvers import reverse

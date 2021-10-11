@@ -6,6 +6,7 @@ import os
 from urllib.parse import parse_qsl, urlparse
 
 from django.core.cache import caches
+
 from mock import Mock, patch
 
 from bedrock.firefox.firefox_details import FirefoxAndroid, FirefoxDesktop, FirefoxIOS

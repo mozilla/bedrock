@@ -1,10 +1,11 @@
 from functools import partialmethod
 from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 
-import contentful as api
-from crum import get_current_request, set_current_request
 from django.conf import settings
 from django.utils.functional import cached_property
+
+import contentful as api
+from crum import get_current_request, set_current_request
 from rich_text_renderer import RichTextRenderer
 from rich_text_renderer.base_node_renderer import BaseNodeRenderer
 from rich_text_renderer.block_renderers import BaseBlockRenderer

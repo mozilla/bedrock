@@ -1,6 +1,7 @@
-import jinja2
 from django.template.loader import render_to_string
 from django.test import RequestFactory, TestCase, override_settings
+
+import jinja2
 
 from lib.l10n_utils import translation
 

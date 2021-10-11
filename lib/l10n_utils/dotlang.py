@@ -19,6 +19,7 @@ from functools import partial
 from django.conf import settings
 from django.core.cache import caches
 from django.utils.functional import lazy
+
 from jinja2 import Markup
 from product_details import product_details
 

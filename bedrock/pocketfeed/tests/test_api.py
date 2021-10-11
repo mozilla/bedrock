@@ -2,6 +2,7 @@ import datetime
 
 from django.test import override_settings
 from django.utils.timezone import make_aware, utc
+
 from mock import patch
 
 from bedrock.pocketfeed import api

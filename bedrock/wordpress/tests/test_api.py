@@ -1,5 +1,6 @@
-import responses
 from django.test import override_settings
+
+import responses
 from mock import patch
 
 from bedrock.wordpress import api

@@ -7,10 +7,11 @@ import os
 import re
 import sys
 
-from dateutil.parser import parse as parsedate
 from django.conf import settings
 from django.core.management.base import CommandError
 from django.db.models import Count
+
+from dateutil.parser import parse as parsedate
 
 from bedrock.security.models import HallOfFamer, MitreCVE, Product, SecurityAdvisory
 from bedrock.security.utils import (

@@ -8,6 +8,7 @@ from collections import defaultdict
 from django.conf import settings
 from django.utils.html import strip_tags
 from django.utils.text import slugify
+
 from fluent.runtime import FluentBundle, FluentResource
 
 from lib.l10n_utils.utils import strip_whitespace

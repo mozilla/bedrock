@@ -5,7 +5,6 @@
 import re
 from urllib.parse import parse_qs, urlencode
 
-import commonware.log
 from django.conf.urls import url
 from django.http import (
     HttpResponseGone,
@@ -17,6 +16,8 @@ from django.urls.resolvers import RegexPattern
 from django.utils.encoding import force_text
 from django.utils.html import strip_tags
 from django.views.decorators.vary import vary_on_headers
+
+import commonware.log
 
 from bedrock.mozorg.decorators import cache_control_expires
 

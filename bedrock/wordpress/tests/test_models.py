@@ -1,8 +1,9 @@
 from pathlib import Path
 
+from django.test import override_settings
+
 import pytest
 import responses
-from django.test import override_settings
 
 from bedrock.wordpress import api, models
 

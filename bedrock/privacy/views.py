@@ -3,9 +3,10 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 import re
 
+from django.views.decorators.cache import cache_page
+
 from bs4 import BeautifulSoup
 from commonware.response.decorators import xframe_allow
-from django.views.decorators.cache import cache_page
 
 from bedrock.legal_docs.views import LegalDocView, load_legal_doc
 from lib import l10n_utils

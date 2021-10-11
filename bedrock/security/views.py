@@ -8,6 +8,7 @@ from django.urls import NoReverseMatch
 from django.utils.decorators import method_decorator
 from django.views.decorators.http import require_safe
 from django.views.generic import DetailView, ListView, RedirectView
+
 from jsonview.decorators import json_view
 from product_details import product_details
 from product_details.version_compare import Version

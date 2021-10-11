@@ -1,6 +1,7 @@
 import time
 
 from django.core.cache import caches
+
 from mock import Mock, patch
 
 from bedrock.mozorg.tests import TestCase

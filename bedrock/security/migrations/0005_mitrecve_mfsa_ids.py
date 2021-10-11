@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-import django_extensions.db.fields.json
 from django.db import migrations
+
+import django_extensions.db.fields.json
 
 
 class Migration(migrations.Migration):

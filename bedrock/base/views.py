@@ -5,13 +5,14 @@ from datetime import datetime
 from os import getenv
 from time import time
 
-import timeago
 from django.conf import settings
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_safe
 from django.views.generic import RedirectView
+
+import timeago
 
 from bedrock.base.geo import get_country_from_request
 from bedrock.utils import git

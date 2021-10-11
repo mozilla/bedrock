@@ -6,6 +6,7 @@ from urllib.parse import parse_qs, urlparse
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.urls import URLPattern
+
 from mock import patch
 
 from bedrock.redirects.middleware import RedirectsMiddleware

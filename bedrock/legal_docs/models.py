@@ -1,9 +1,10 @@
 import io
 import re
 
-import markdown as md
 from django.conf import settings
 from django.db import models, transaction
+
+import markdown as md
 from mdx_outline import OutlineExtension
 
 LEGAL_DOCS_LOCALES_TO_BEDROCK = {

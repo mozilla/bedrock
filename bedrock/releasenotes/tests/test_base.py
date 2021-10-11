@@ -8,6 +8,7 @@ from django.core.cache import caches
 from django.http import Http404, HttpResponse
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
+
 from mock import Mock, patch
 
 from bedrock.base.urlresolvers import reverse

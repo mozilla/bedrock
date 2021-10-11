@@ -11,6 +11,7 @@ from django.conf import settings
 from django.core.cache import caches
 from django.test import TestCase
 from django.test.utils import override_settings
+
 from mock import ANY, MagicMock, Mock, patch
 
 from lib.l10n_utils.gettext import (

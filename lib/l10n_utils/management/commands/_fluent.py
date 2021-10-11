@@ -8,6 +8,7 @@ from importlib import import_module
 from pathlib import Path
 
 from django.conf import settings
+
 from fluent.migrate.context import MigrationContext
 
 from lib.l10n_utils.utils import strip_whitespace

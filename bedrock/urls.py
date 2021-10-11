@@ -5,6 +5,7 @@
 from django.conf import settings
 from django.conf.urls import include, url
 from django.utils.module_loading import import_string
+
 from watchman import views as watchman_views
 
 from bedrock.base import views as base_views

@@ -7,6 +7,7 @@
 import os
 
 from django.test import RequestFactory
+
 from mock import ANY, patch
 
 from bedrock.mozorg.tests import TestCase

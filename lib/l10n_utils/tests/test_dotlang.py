@@ -12,6 +12,7 @@ from django.core import mail
 from django.http import HttpRequest
 from django.test.utils import override_settings
 from django.urls import clear_url_caches
+
 from django_jinja.backend import Jinja2
 from mock import patch
 from pyquery import PyQuery as pq

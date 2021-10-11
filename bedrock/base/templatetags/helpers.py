@@ -2,10 +2,11 @@ import datetime
 import logging
 import urllib.parse
 
-import jinja2
 from django.conf import settings
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.utils.encoding import smart_str
+
+import jinja2
 from django_jinja import library
 
 from bedrock.base import waffle

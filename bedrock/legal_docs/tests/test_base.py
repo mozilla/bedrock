@@ -6,6 +6,7 @@ from pathlib import Path
 
 from django.http import Http404, HttpResponse
 from django.test import RequestFactory, override_settings
+
 from mock import patch
 
 from bedrock.legal_docs import views

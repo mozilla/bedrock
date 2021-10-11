@@ -1,6 +1,7 @@
+from django.test import RequestFactory, override_settings
+
 import pytest
 import responses
-from django.test import RequestFactory, override_settings
 
 from bedrock.wordpress.models import BlogPost
 from bedrock.wordpress.tests.test_models import TEST_WP_BLOGS, setup_responses

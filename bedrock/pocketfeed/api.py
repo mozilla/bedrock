@@ -1,9 +1,10 @@
 import datetime
 import re
 
-import requests
 from django.conf import settings
 from django.utils.timezone import make_aware, utc
+
+import requests
 from sentry_sdk import capture_exception
 
 

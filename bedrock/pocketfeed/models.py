@@ -2,6 +2,7 @@
 
 from django.db import models
 from django.db.utils import DatabaseError
+
 from jinja2 import Markup
 from sentry_sdk import capture_exception
 

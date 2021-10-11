@@ -11,6 +11,7 @@ from textwrap import dedent
 
 from django.conf import settings
 from django.test import TestCase, override_settings
+
 from mock import ANY, MagicMock, Mock, patch
 
 from lib.l10n_utils.gettext import _append_to_lang_file, merge_lang_files
