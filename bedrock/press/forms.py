@@ -6,10 +6,16 @@
 
 from django import forms
 
+from bedrock.mozorg.forms import (
+    DateInput,
+    EmailInput,
+    HoneyPotWidget,
+    NumberInput,
+    TelInput,
+    TimeInput,
+    URLInput,
+)
 from lib.l10n_utils.dotlang import _, _lazy
-
-from bedrock.mozorg.forms import DateInput, EmailInput, HoneyPotWidget, NumberInput, TelInput, TimeInput, URLInput
-
 
 SPEAKER_REQUEST_FILE_SIZE_LIMIT = 5242880  # 5MB
 

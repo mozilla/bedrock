@@ -2,9 +2,9 @@
 
 import random
 import re
+import urllib.parse
 from os import path
 from os.path import splitext
-import urllib.parse
 
 from django.conf import settings
 from django.contrib.staticfiles.finders import find as find_static
@@ -26,7 +26,6 @@ from django_jinja import library
 
 from bedrock.base.templatetags.helpers import static
 from bedrock.firefox.firefox_details import firefox_ios
-
 
 ALL_FX_PLATFORMS = ("windows", "linux", "mac", "android", "ios")
 

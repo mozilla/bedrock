@@ -10,10 +10,7 @@ from django.test import RequestFactory
 from mock import ANY, patch
 
 from bedrock.mozorg.tests import TestCase
-from bedrock.mozorg.util import (
-    get_fb_like_locale,
-    page,
-)
+from bedrock.mozorg.util import get_fb_like_locale, page
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test_files")
 

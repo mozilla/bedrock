@@ -13,6 +13,7 @@ from django.utils.translation.trans_real import parse_accept_lang_header
 from django.views.generic import TemplateView
 
 from bedrock.base.urlresolvers import split_path
+
 from .dotlang import get_translations_native_names
 from .fluent import fluent_l10n, get_active_locales as ftl_active_locales
 from .gettext import translations_for_template

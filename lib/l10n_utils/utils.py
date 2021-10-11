@@ -7,10 +7,8 @@ import os
 import re
 
 from django.conf import settings
-
 from fluent.runtime import FluentResourceLoader
 from fluent.syntax.ast import Message
-
 
 FTL_LOADER = FluentResourceLoader(f"{settings.FLUENT_LOCAL_PATH}/{{locale}}/")
 COMMENT_RE = re.compile(r"LANG_ID_HASH: (\w{32})")

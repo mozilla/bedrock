@@ -2,19 +2,18 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from pathlib import Path
+
+import pytest
 from django.template import TemplateDoesNotExist
 from django.test import RequestFactory, override_settings
-
 from django_jinja.backend import Jinja2
 from jinja2.nodes import Block
-from mock import patch, ANY, Mock
-from pathlib import Path
+from mock import ANY, Mock, patch
 from pyquery import PyQuery as pq
-import pytest
 
-from lib.l10n_utils import render
 from bedrock.mozorg.tests import TestCase
-
+from lib.l10n_utils import render
 
 ROOT_PATH = Path(__file__).with_name("test_files")
 LOCALES_PATH = ROOT_PATH / "locale"

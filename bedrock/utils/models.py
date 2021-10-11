@@ -1,8 +1,7 @@
 from datetime import datetime
 
-from django.db import models
-
 import timeago
+from django.db import models
 
 
 class GitRepoState(models.Model):

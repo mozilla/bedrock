@@ -5,8 +5,7 @@
 
 from django.test import override_settings
 from django.test.client import RequestFactory
-
-from mock import patch, ANY
+from mock import ANY, patch
 
 from bedrock.exp import views
 from bedrock.mozorg.tests import TestCase

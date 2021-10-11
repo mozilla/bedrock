@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils.timezone import now
-
 from django_extensions.db.fields.json import JSONField
 
 

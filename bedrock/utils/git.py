@@ -4,19 +4,17 @@
 import os
 from datetime import datetime
 from hashlib import sha256
-from shutil import rmtree
-from subprocess import check_output, CalledProcessError, STDOUT
 from io import StringIO
+from pathlib import Path
+from shutil import rmtree
+from subprocess import STDOUT, CalledProcessError, check_output
 from time import time
 
+import timeago
 from django.conf import settings
 from django.utils.encoding import force_str
 
-import timeago
-from pathlib import Path
-
 from bedrock.utils.models import GitRepoState
-
 
 GIT = getattr(settings, "GIT_BIN", "git")
 

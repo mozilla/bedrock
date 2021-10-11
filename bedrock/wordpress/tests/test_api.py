@@ -1,10 +1,8 @@
-from django.test import override_settings
-
-from bedrock.wordpress import api
-
 import responses
+from django.test import override_settings
 from mock import patch
 
+from bedrock.wordpress import api
 
 TEST_WP_BLOGS = {
     "firefox": {

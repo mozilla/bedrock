@@ -3,16 +3,14 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from itertools import chain
+from pathlib import Path
 
 from django.core.cache import caches
 from django.test.utils import override_settings
-
 from mock import call, patch
-from pathlib import Path
 
 from bedrock.mozorg.tests import TestCase
 from bedrock.releasenotes import models
-
 
 RELEASES_PATH = str(Path(__file__).parent)
 release_cache = caches["release-notes"]

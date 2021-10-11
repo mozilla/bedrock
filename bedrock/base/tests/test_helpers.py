@@ -1,11 +1,8 @@
-from django.test import TestCase
-from django.test import override_settings
-
+from django.test import TestCase, override_settings
 from django_jinja.backend import Jinja2
 from mock import patch
 
 from bedrock.base.templatetags import helpers
-
 
 jinja_env = Jinja2.get_default()
 SEND_TO_DEVICE_MESSAGE_SETS = {

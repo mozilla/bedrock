@@ -4,13 +4,12 @@
 
 import json
 
-from django.test.client import RequestFactory
 from django.http import HttpResponse
-
+from django.test.client import RequestFactory
 from mock import patch
 
-from bedrock.products import views
 from bedrock.mozorg.tests import TestCase
+from bedrock.products import views
 
 
 @patch("bedrock.newsletter.forms.get_lang_choices", lambda *x: [["en", "English"]])

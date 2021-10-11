@@ -2,9 +2,7 @@
 # and we don't need anything nearly as complex.
 
 from _threading_local import local
-
 from django.conf import settings
-
 
 _active = local()
 

@@ -2,14 +2,13 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-from django.test import override_settings
-
-from mock import patch, DEFAULT
 from pathlib import Path
 
-from bedrock.mozorg.tests import TestCase
-from bedrock.mozorg.management.commands import update_product_details_files
+from django.test import override_settings
+from mock import DEFAULT, patch
 
+from bedrock.mozorg.management.commands import update_product_details_files
+from bedrock.mozorg.tests import TestCase
 
 PD_REPO_TEST_PATH = Path(__file__).parent.joinpath("test_pd_repo")
 

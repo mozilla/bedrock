@@ -11,19 +11,18 @@ from django.conf import settings
 from django.core.cache import caches
 from django.test import TestCase
 from django.test.utils import override_settings
-
 from mock import ANY, MagicMock, Mock, patch
 
 from lib.l10n_utils.gettext import (
     _append_to_lang_file,
+    _get_template_tag_set,
     langfiles_for_path,
     parse_python,
     parse_template,
     po_msgs,
     pot_to_langfiles,
-    template_is_active,
-    _get_template_tag_set,
     template_has_tag,
+    template_is_active,
 )
 from lib.l10n_utils.tests import TempFileMixin
 

@@ -10,7 +10,6 @@ from django.views.generic import TemplateView
 from bedrock.legal_docs.models import LegalDoc
 from lib import l10n_utils
 
-
 CACHE_TIMEOUT = settings.LEGAL_DOCS_CACHE_TIMEOUT
 
 

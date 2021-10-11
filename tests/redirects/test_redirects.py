@@ -5,8 +5,8 @@ import pytest
 
 from .base import assert_valid_url
 from .map_301 import URLS as REDIRECT_URLS
-from .map_htaccess import URLS as HTA_URLS
 from .map_globalconf import URLS as GLOBAL_URLS
+from .map_htaccess import URLS as HTA_URLS
 from .map_locales import URLS as LOCALE_URLS
 
 

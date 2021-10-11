@@ -1,5 +1,4 @@
 from django.views.generic import TemplateView
-
 from sentry_sdk import capture_exception
 
 from bedrock.wordpress.models import BlogPost

@@ -6,7 +6,7 @@ from contextlib import contextmanager
 
 from django.test import RequestFactory, TestCase as DjTestCase
 
-from bedrock.base.urlresolvers import get_url_prefix, Prefixer, set_url_prefix
+from bedrock.base.urlresolvers import Prefixer, get_url_prefix, set_url_prefix
 from lib.l10n_utils import translation
 
 

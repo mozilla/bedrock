@@ -2,7 +2,6 @@ from mock import Mock
 
 from bedrock.newsletter import utils
 
-
 # patch basket client to never hit the network
 # causes get_newsletters to use fallback newsletters
 # in settings/newsletters.py

@@ -1,12 +1,10 @@
-from django.test import override_settings
-
-from bedrock.wordpress import api
-from bedrock.wordpress import models
+from pathlib import Path
 
 import pytest
 import responses
-from pathlib import Path
+from django.test import override_settings
 
+from bedrock.wordpress import api, models
 
 TEST_DATA = Path(__file__).with_name("test_data")
 TEST_WP_BLOGS = {

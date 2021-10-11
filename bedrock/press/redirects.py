@@ -1,6 +1,5 @@
 from bedrock.redirects.util import redirect
 
-
 redirectpatterns = (
     # Bug 608370, 957664
     redirect(r"^press/kit(?:.*\.html|s/?)$", "https://blog.mozilla.org/press/kits/"),

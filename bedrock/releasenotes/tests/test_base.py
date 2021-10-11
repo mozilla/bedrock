@@ -2,20 +2,19 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from pathlib import Path
+
 from django.core.cache import caches
 from django.http import Http404, HttpResponse
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
+from mock import Mock, patch
 
 from bedrock.base.urlresolvers import reverse
-from mock import patch, Mock
-from pathlib import Path
-
 from bedrock.firefox.firefox_details import FirefoxDesktop
 from bedrock.mozorg.tests import TestCase
 from bedrock.releasenotes import views
 from bedrock.releasenotes.models import ProductRelease
-
 
 TESTS_PATH = Path(__file__).parent
 DATA_PATH = str(TESTS_PATH.joinpath("data"))

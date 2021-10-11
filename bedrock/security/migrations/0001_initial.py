@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from django.db import models, migrations
 import django.utils.timezone
 import django_extensions.db.fields
 import django_extensions.db.fields.json
+from django.db import migrations, models
 
 
 class Migration(migrations.Migration):

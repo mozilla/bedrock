@@ -9,9 +9,9 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.generic.edit import FormView
 
 from bedrock.base.urlresolvers import reverse
+from lib import l10n_utils
 
 from .forms import PressInquiryForm, SpeakerRequestForm
-from lib import l10n_utils
 
 PRESS_INQUIRY_EMAIL_SUBJECT = "New Press Inquiry"
 PRESS_INQUIRY_EMAIL_TO = ["press@mozilla.com"]

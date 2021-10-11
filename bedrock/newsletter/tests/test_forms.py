@@ -12,7 +12,6 @@ from bedrock.newsletter.forms import (
 )
 from bedrock.newsletter.tests import newsletters
 
-
 newsletters_mock = mock.Mock()
 newsletters_mock.return_value = newsletters
 

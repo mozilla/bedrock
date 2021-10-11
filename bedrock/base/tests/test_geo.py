@@ -1,4 +1,4 @@
-from django.test import override_settings, TestCase, RequestFactory
+from django.test import RequestFactory, TestCase, override_settings
 
 from bedrock.base.geo import get_country_from_request
 

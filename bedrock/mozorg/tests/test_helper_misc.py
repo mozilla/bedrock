@@ -1,13 +1,12 @@
 # coding: utf-8
 
 import os.path
-
 from datetime import datetime
+
+import pytest
 from django.conf import settings
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
-
-import pytest
 from django_jinja.backend import Jinja2
 from jinja2 import Markup
 from mock import patch
@@ -17,7 +16,6 @@ from bedrock.base.templatetags.helpers import static
 from bedrock.mozorg.templatetags import misc
 from bedrock.mozorg.tests import TestCase
 from lib.l10n_utils.fluent import fluent_l10n
-
 
 TEST_FILES_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test_files")
 TEST_L10N_MEDIA_PATH = os.path.join(TEST_FILES_ROOT, "media", "%s", "l10n")

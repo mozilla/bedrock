@@ -6,14 +6,12 @@ import jinja2
 from babel.core import Locale, UnknownLocaleError
 from babel.dates import format_date
 from babel.numbers import format_number
-from django_jinja import library
-
 from django.conf import settings
+from django_jinja import library
 
 from lib.l10n_utils.dotlang import lang_file_has_tag, translate
 from lib.l10n_utils.gettext import template_has_tag
 from lib.l10n_utils.translation import get_language
-
 
 babel_format_locale_map = {
     "hsb": "de",

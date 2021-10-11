@@ -4,21 +4,20 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 import codecs
+from io import IOBase, StringIO
 from os import path
-from io import StringIO, IOBase
 from pathlib import Path
 from textwrap import dedent
 
 from django.conf import settings
 from django.test import TestCase, override_settings
-
 from mock import ANY, MagicMock, Mock, patch
 
 from lib.l10n_utils.gettext import _append_to_lang_file, merge_lang_files
 from lib.l10n_utils.management.commands.l10n_check import (
-    get_todays_version,
     L10nParser,
     L10nTemplate,
+    get_todays_version,
     update_templates,
 )
 from lib.l10n_utils.management.commands.l10n_extract import extract_from_files

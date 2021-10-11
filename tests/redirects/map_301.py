@@ -1,6 +1,5 @@
 from .base import flatten, url_test
 
-
 URLS = flatten(
     (
         # from org-urls-301.txt

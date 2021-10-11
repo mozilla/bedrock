@@ -1,11 +1,9 @@
+import requests
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
-from bedrock.utils.git import GitRepo
-
-import requests
-
 from bedrock.legal_docs.models import LegalDoc
+from bedrock.utils.git import GitRepo
 
 
 class Command(BaseCommand):

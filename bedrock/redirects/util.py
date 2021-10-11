@@ -7,7 +7,11 @@ from urllib.parse import parse_qs, urlencode
 
 import commonware.log
 from django.conf.urls import url
-from django.http import HttpResponseGone, HttpResponsePermanentRedirect, HttpResponseRedirect
+from django.http import (
+    HttpResponseGone,
+    HttpResponsePermanentRedirect,
+    HttpResponseRedirect,
+)
 from django.urls import NoReverseMatch, URLResolver, reverse
 from django.urls.resolvers import RegexPattern
 from django.utils.encoding import force_text

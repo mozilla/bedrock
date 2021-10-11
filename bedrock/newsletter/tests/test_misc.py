@@ -5,7 +5,6 @@ from bedrock.newsletter import utils
 from bedrock.newsletter.models import Newsletter
 from bedrock.newsletter.tests import newsletters
 
-
 newsletters_mock = mock.Mock()
 newsletters_mock.return_value = newsletters
 

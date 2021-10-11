@@ -3,7 +3,6 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from bedrock.base.urlresolvers import reverse
-
 from bedrock.mozorg.util import page
 
 

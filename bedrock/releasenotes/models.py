@@ -4,21 +4,19 @@ import os
 from glob import glob
 from operator import attrgetter
 
+import bleach
+import markdown
 from django.conf import settings
 from django.core.cache import caches
 from django.db import models, transaction
 from django.http import Http404
 from django.utils.dateparse import parse_datetime
 from django.utils.functional import cached_property
-
-import bleach
-import markdown
 from django_extensions.db.fields.json import JSONField
 from product_details.version_compare import Version
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.releasenotes.utils import memoize
-
 
 LONG_RN_CACHE_TIMEOUT = 7200  # 2 hours
 cache = caches["release-notes"]

@@ -5,7 +5,6 @@
 import pytest
 import requests
 
-
 TIMEOUT = 60
 
 

@@ -4,7 +4,6 @@ from mock import patch
 from bedrock.base import waffle_config
 from bedrock.mozorg.tests import TestCase
 
-
 GOOD_CONFIG = {
     "THE_DUDE": "abides",
     "BOWLING": "true",

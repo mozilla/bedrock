@@ -1,5 +1,4 @@
 from django.conf import settings
-
 from mock import patch
 
 from bedrock.base import waffle

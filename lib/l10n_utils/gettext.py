@@ -8,16 +8,20 @@ import codecs
 import os
 import re
 from os.path import join
-from tokenize import generate_tokens, NAME, NEWLINE, OP, untokenize
+from tokenize import NAME, NEWLINE, OP, generate_tokens, untokenize
 
 from django.conf import settings
 from django.core.cache import caches
 from django.template.loader import get_template
 from jinja2 import Environment
 
-from .dotlang import parse as parse_lang, get_translations_for_langfile, lang_file_tag_set
 from lib.l10n_utils.utils import ContainsEverything, get_l10n_path
 
+from .dotlang import (
+    get_translations_for_langfile,
+    lang_file_tag_set,
+    parse as parse_lang,
+)
 
 ALL_THE_THINGS = ContainsEverything()
 REGEX_URL = re.compile(r".* (\S+/\S+\.[^:]+).*")

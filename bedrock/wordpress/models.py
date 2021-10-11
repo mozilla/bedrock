@@ -2,21 +2,20 @@
 
 import operator
 import random
+from functools import reduce
 
+import bleach
 from django.conf import settings
 from django.db import models
 from django.db.models import Q
 from django.db.utils import DatabaseError
 from django.utils.dateparse import parse_datetime
 from django.utils.timezone import make_aware, utc
-
-import bleach
 from django_extensions.db.fields.json import JSONField
 from jinja2 import Markup
 from sentry_sdk import capture_exception
 
-from bedrock.wordpress.api import get_posts_data, complete_posts_data
-from functools import reduce
+from bedrock.wordpress.api import complete_posts_data, get_posts_data
 
 
 def make_datetime(datestr):

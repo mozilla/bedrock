@@ -6,10 +6,10 @@ from django.conf import settings
 from django.conf.urls import url
 from django.urls import path
 
-from .util import page
-from . import views
 from bedrock.redirects.util import redirect
 
+from . import views
+from .util import page
 
 urlpatterns = (
     url(r"^$", views.home_view, name="mozorg.home"),

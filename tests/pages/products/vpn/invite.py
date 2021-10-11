@@ -3,10 +3,10 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from selenium.webdriver.common.by import By
-
-from pages.base import BasePage
 from selenium.webdriver.support import expected_conditions as expected
 from selenium.webdriver.support.select import Select
+
+from pages.base import BasePage
 
 
 class VPNInvitePage(BasePage):

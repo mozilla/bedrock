@@ -1,12 +1,11 @@
 # coding=utf-8
-from django.test import override_settings
-
-from jinja2 import Markup
 from pathlib import Path
+
+from django.test import override_settings
+from jinja2 import Markup
 
 from bedrock.contentcards import models
 from bedrock.mozorg.tests import TestCase
-
 
 DATA_PATH = Path(__file__).parent.joinpath("test_data")
 

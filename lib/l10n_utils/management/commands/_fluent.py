@@ -2,15 +2,15 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import re
 from collections import OrderedDict
 from importlib import import_module
 from pathlib import Path
-import re
 
 from django.conf import settings
+from fluent.migrate.context import MigrationContext
 
 from lib.l10n_utils.utils import strip_whitespace
-from fluent.migrate.context import MigrationContext
 
 
 def migration_name(template):

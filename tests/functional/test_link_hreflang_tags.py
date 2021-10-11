@@ -5,7 +5,6 @@
 import pytest
 import requests
 
-
 LINK_TEMPLATE = '<link rel="canonical" href="{url}">'
 
 

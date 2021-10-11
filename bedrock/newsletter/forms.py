@@ -9,11 +9,11 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import widgets
 from django.utils.safestring import mark_safe
-from lib.l10n_utils.fluent import ftl, ftl_lazy
 from product_details import product_details
 
 from bedrock.mozorg.forms import FORMATS, EmailInput, PrivacyWidget, strip_parenthetical
 from bedrock.newsletter import utils
+from lib.l10n_utils.fluent import ftl, ftl_lazy
 
 _newsletters_re = re.compile(r"^[\w,-]+$")
 

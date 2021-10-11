@@ -5,7 +5,7 @@
 from datetime import date
 
 from bedrock.mozorg.tests import TestCase
-from bedrock.security.models import MitreCVE, Product, HallOfFamer
+from bedrock.security.models import HallOfFamer, MitreCVE, Product
 
 
 class TestProduct(TestCase):

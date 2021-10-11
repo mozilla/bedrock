@@ -7,7 +7,6 @@ from io import BytesIO
 from django.core import mail
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test.client import RequestFactory
-
 from mock import Mock, patch
 from PIL import Image
 

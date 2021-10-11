@@ -1,5 +1,4 @@
-from django.test import RequestFactory
-from django.test import override_settings
+from django.test import RequestFactory, override_settings
 
 from bedrock.utils import views
 

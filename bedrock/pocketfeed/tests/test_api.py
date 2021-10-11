@@ -1,10 +1,10 @@
+import datetime
+
 from django.test import override_settings
 from django.utils.timezone import make_aware, utc
+from mock import patch
 
 from bedrock.pocketfeed import api
-
-import datetime
-from mock import patch
 
 
 @override_settings(POCKET_API_URL="test_url", POCKET_CONSUMER_KEY="1234", POCKET_ACCESS_TOKEN="5678")

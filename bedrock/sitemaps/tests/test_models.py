@@ -1,5 +1,5 @@
-from bedrock.sitemaps.models import NO_LOCALE, SitemapURL
 from bedrock.mozorg.tests import TestCase
+from bedrock.sitemaps.models import NO_LOCALE, SitemapURL
 
 
 class TestSitemapsModel(TestCase):

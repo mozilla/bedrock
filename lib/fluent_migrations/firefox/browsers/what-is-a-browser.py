@@ -1,8 +1,8 @@
 from __future__ import absolute_import
+
 import fluent.syntax.ast as FTL
-from fluent.migrate.helpers import transforms_from
-from fluent.migrate.helpers import VARIABLE_REFERENCE, TERM_REFERENCE
-from fluent.migrate import REPLACE, COPY
+from fluent.migrate import COPY, REPLACE
+from fluent.migrate.helpers import TERM_REFERENCE, VARIABLE_REFERENCE, transforms_from
 
 what_is_a_browser = "firefox/browsers/what-is-a-browser.lang"
 what_is_a_browser = "mozorg/what-is-a-browser.lang"

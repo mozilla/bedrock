@@ -7,7 +7,7 @@ from product_details.version_compare import Version
 
 from bedrock.mozorg.tests import TestCase
 from bedrock.security.models import Product
-from bedrock.security.views import ProductView, ProductVersionView, product_is_obsolete
+from bedrock.security.views import ProductVersionView, ProductView, product_is_obsolete
 
 
 def test_product_is_obsolete():

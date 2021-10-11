@@ -1,9 +1,8 @@
 from mock import patch
-
 from qrcode.image.svg import SvgPathImage
 
-from bedrock.mozorg.tests import TestCase
 from bedrock.mozorg.templatetags.qrcode import qrcode
+from bedrock.mozorg.tests import TestCase
 
 
 @patch("bedrock.mozorg.templatetags.qrcode.cache")

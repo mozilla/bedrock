@@ -5,11 +5,11 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.utils.functional import total_ordering
-
 from django_extensions.db.fields import ModificationDateTimeField
 from django_extensions.db.fields.json import JSONField
-from bedrock.base.urlresolvers import reverse
 from product_details.version_compare import Version
+
+from bedrock.base.urlresolvers import reverse
 
 
 @total_ordering

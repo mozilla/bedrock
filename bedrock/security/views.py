@@ -3,20 +3,19 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 import re
 
-from django.urls import NoReverseMatch
 from django.db.models import Q
+from django.urls import NoReverseMatch
 from django.utils.decorators import method_decorator
 from django.views.decorators.http import require_safe
 from django.views.generic import DetailView, ListView, RedirectView
-
 from jsonview.decorators import json_view
 from product_details import product_details
 from product_details.version_compare import Version
-from lib.l10n_utils import LangFilesMixin
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg.decorators import cache_control_expires
 from bedrock.security.models import HallOfFamer, MitreCVE, Product, SecurityAdvisory
+from lib.l10n_utils import LangFilesMixin
 
 
 @json_view

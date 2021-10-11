@@ -3,8 +3,8 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 from io import StringIO
 
-from django.core.management.base import BaseCommand
 from django.conf import settings
+from django.core.management.base import BaseCommand
 
 from bedrock.sitemaps.models import SitemapURL
 from bedrock.utils.git import GitRepo

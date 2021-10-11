@@ -1,6 +1,5 @@
-from django.conf import settings
-
 import requests
+from django.conf import settings
 from sentry_sdk import capture_exception
 
 

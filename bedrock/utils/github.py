@@ -1,7 +1,5 @@
 from django.conf import settings
-
 from github import Github
-
 
 GITHUB_CLIENT = None
 

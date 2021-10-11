@@ -7,15 +7,12 @@ import os
 import re
 import sys
 
+from dateutil.parser import parse as parsedate
 from django.conf import settings
 from django.core.management.base import CommandError
 from django.db.models import Count
 
-from dateutil.parser import parse as parsedate
-
 from bedrock.security.models import HallOfFamer, MitreCVE, Product, SecurityAdvisory
-from bedrock.utils.git import GitRepo
-from bedrock.utils.management.cron_command import CronCommand
 from bedrock.security.utils import (
     FILENAME_RE,
     check_hof_data,
@@ -25,7 +22,8 @@ from bedrock.security.utils import (
     parse_yml_file_base,
     update_advisory_bugs,
 )
-
+from bedrock.utils.git import GitRepo
+from bedrock.utils.management.cron_command import CronCommand
 
 ADVISORIES_REPO = settings.MOFO_SECURITY_ADVISORIES_REPO
 ADVISORIES_PATH = settings.MOFO_SECURITY_ADVISORIES_PATH

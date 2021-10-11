@@ -1,9 +1,4 @@
-from everett.manager import (
-    ConfigEnvFileEnv,
-    ConfigManager,
-    ConfigOSEnv,
-)
-
+from everett.manager import ConfigEnvFileEnv, ConfigManager, ConfigOSEnv
 
 config = ConfigManager(
     [

@@ -1,6 +1,5 @@
 from .base import flatten, url_test
 
-
 URLS = flatten(
     (
         # Bug 774331 - European press pages

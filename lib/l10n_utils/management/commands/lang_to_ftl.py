@@ -6,12 +6,12 @@ from hashlib import md5
 from io import StringIO
 from pathlib import Path
 
-from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
+from django.core.management.base import BaseCommand, CommandError
 from django.utils.html import strip_tags
 from django.utils.text import slugify
 
-from lib.l10n_utils.dotlang import parse as parse_lang, convert_variables
+from lib.l10n_utils.dotlang import convert_variables, parse as parse_lang
 
 
 def string_to_ftl_id(string):

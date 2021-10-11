@@ -1,11 +1,10 @@
 import datetime
 import re
+
 import requests
-
-from sentry_sdk import capture_exception
-
 from django.conf import settings
 from django.utils.timezone import make_aware, utc
+from sentry_sdk import capture_exception
 
 
 def get_articles_data(count=8):

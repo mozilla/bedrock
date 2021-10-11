@@ -3,9 +3,8 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.test.client import RequestFactory
+
 from bedrock.base.urlresolvers import reverse
-
-
 from bedrock.mozorg.context_processors import funnelcake_param
 from bedrock.mozorg.tests import TestCase
 

@@ -2,7 +2,6 @@
 
 from os import getenv
 
-
 bind = f'0.0.0.0:{getenv("PORT", "8000")}'
 workers = getenv("WEB_CONCURRENCY", 2)
 accesslog = "-"

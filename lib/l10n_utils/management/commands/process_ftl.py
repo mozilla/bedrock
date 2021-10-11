@@ -5,14 +5,13 @@
 import shutil
 from subprocess import CalledProcessError
 
-from django.core.management.base import CommandError
 from django.conf import settings
-
+from django.core.management.base import CommandError
 from fluent.syntax.parser import FluentParser, ParseError
 
 from lib.l10n_utils.fluent import fluent_l10n, get_metadata, write_metadata
-from ._ftl_repo_base import FTLRepoCommand
 
+from ._ftl_repo_base import FTLRepoCommand
 
 GIT_COMMIT_EMAIL = "meao-bots+mozmarrobot@mozilla.com"
 GIT_COMMIT_NAME = "MozMEAO Bot"

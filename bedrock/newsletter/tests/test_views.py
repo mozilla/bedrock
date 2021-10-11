@@ -4,10 +4,9 @@
 import json
 import uuid
 
+import basket
 from django.http import HttpResponse
 from django.test.client import RequestFactory
-
-import basket
 from mock import ANY, DEFAULT, patch
 from pyquery import PyQuery as pq
 

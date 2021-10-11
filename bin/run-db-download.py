@@ -4,17 +4,15 @@ import os
 import sys
 
 import requests
-
 from db_s3_utils import (
+    DATA_PATH,
+    DB_FILE,
+    JSON_DATA_FILE_NAME,
     get_db_checksum,
     get_git_sha,
     get_prev_db_data,
     set_db_data,
-    JSON_DATA_FILE_NAME,
-    DB_FILE,
-    DATA_PATH,
 )
-
 
 BUCKET_NAME = os.getenv("AWS_DB_S3_BUCKET", "bedrock-db-dev")
 REGION_NAME = os.getenv("AWS_DB_REGION", "us-west-2")

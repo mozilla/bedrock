@@ -6,7 +6,6 @@ from operator import itemgetter
 from urllib.parse import urlencode
 
 from django.conf import settings
-
 from everett.manager import ListOf
 from product_details import ProductDetails
 

@@ -2,7 +2,6 @@ import bleach
 import jinja2
 from django_jinja import library
 
-
 # based on bleach.sanitizer.ALLOWED_TAGS
 ALLOWED_TAGS = [
     "a",

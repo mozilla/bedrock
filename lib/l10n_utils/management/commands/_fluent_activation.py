@@ -3,12 +3,12 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import json
+
 from django.test.utils import override_settings
-from ._fluent import (
-    get_lang_files,
-    template_name,
-)
+
 from lib.l10n_utils.dotlang import get_translations_for_langfile
+
+from ._fluent import get_lang_files, template_name
 
 
 class Activation:

@@ -1,8 +1,8 @@
 from django.test.utils import override_settings
-from bedrock.base.urlresolvers import reverse
 from mock import patch
 from pyquery import PyQuery as pq
 
+from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg.tests import TestCase
 
 
