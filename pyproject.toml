@@ -2,11 +2,6 @@
 line-length = 150  # To match flake8
 target-version = ['py37']
 include = '\.pyi?$'
-exclude = '''
-/(
-	.+/migrations
-)
-'''
 
 [tool.isort]
 combine_as_imports = true
