@@ -1410,9 +1410,16 @@
     {
       "files": [
         "js/base/mozilla-lazy-load.js",
-        "js/products/vpn/resource-center.es6.js"
+        "js/products/vpn/resource-center.js"
       ],
       "name": "vpn-resource-center"
+    },
+    {
+      "files": [
+        "js/base/mozilla-lazy-load.js",
+        "js/products/vpn/resource-center-article.es6.js"
+      ],
+      "name": "vpn-resource-center-article"
     }
   ]
 }
