@@ -150,7 +150,7 @@ $image-path: '/media/protocol/img';
         display: flex;
 
         .date-icon {
-            @include bidi(((margin-right, $spacing-sm, margin-left, $spacing-sm),))
+            @include bidi(((margin-right, $spacing-sm, margin-left, $spacing-sm),));
         }
     }
 
