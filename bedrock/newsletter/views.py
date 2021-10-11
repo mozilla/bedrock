@@ -4,15 +4,10 @@
 
 import json
 import re
-from html import escape
 from collections import defaultdict
+from html import escape
 from operator import itemgetter
 
-import basket
-import basket.errors
-import commonware.log
-import lib.l10n_utils as l10n_utils
-import requests
 from django.conf import settings
 from django.contrib import messages
 from django.forms.formsets import formset_factory
@@ -20,18 +15,30 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import redirect
 from django.utils.safestring import mark_safe
 from django.views.decorators.cache import never_cache
-from jinja2 import Markup
-from lib.l10n_utils.fluent import ftl, ftl_lazy
 
+import basket
+import basket.errors
+import commonware.log
+import requests
+from jinja2 import Markup
+
+import lib.l10n_utils as l10n_utils
 from bedrock.base import waffle
-from bedrock.base.urlresolvers import reverse
 
 # Cannot use short "from . import utils" because we need to mock
 # utils.get_newsletters in our tests
 from bedrock.base.geo import get_country_from_request
+from bedrock.base.urlresolvers import reverse
 from bedrock.newsletter import utils
+from lib.l10n_utils.fluent import ftl, ftl_lazy
 
-from .forms import CountrySelectForm, EmailForm, ManageSubscriptionsForm, NewsletterFooterForm, NewsletterForm
+from .forms import (
+    CountrySelectForm,
+    EmailForm,
+    ManageSubscriptionsForm,
+    NewsletterFooterForm,
+    NewsletterForm,
+)
 
 log = commonware.log.getLogger("b.newsletter")
 

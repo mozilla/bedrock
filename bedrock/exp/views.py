@@ -2,11 +2,11 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from lib import l10n_utils
 from django.conf import settings
 
 from bedrock.contentcards.models import get_page_content_cards
 from bedrock.pocketfeed.models import PocketArticle
+from lib import l10n_utils
 
 
 def new(request):

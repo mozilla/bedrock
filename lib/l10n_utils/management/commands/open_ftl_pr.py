@@ -6,17 +6,16 @@ from datetime import datetime
 from os import getenv
 from subprocess import CalledProcessError
 
-from django.core.management.base import CommandError
 from django.conf import settings
+from django.core.management.base import CommandError
 from django.template.defaultfilters import slugify
 from django.utils.functional import cached_property
 
-from bedrock.utils import github
-
 from dirsync import sync
 
-from ._ftl_repo_base import FTLRepoCommand
+from bedrock.utils import github
 
+from ._ftl_repo_base import FTLRepoCommand
 
 GIT_HASH = getenv("GIT_SHA", None)
 

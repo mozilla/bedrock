@@ -5,10 +5,9 @@ from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
 from django_jinja.backend import Jinja2
-from mock import ANY, patch, call
+from mock import ANY, call, patch
 
 from lib import l10n_utils
-
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test_files")
 TEMPLATE_DIRS = (os.path.join(ROOT, "templates"),)

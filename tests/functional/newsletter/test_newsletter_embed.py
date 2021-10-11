@@ -4,11 +4,11 @@
 
 import pytest
 
-from pages.home import HomePage
 from pages.about import AboutPage
 from pages.contribute.contribute import ContributePage
-from pages.mission import MissionPage
 from pages.firefox.whatsnew.whatsnew_developer_70 import FirefoxWhatsNewDeveloper70Page
+from pages.home import HomePage
+from pages.mission import MissionPage
 from pages.newsletter.developer import DeveloperNewsletterPage
 from pages.newsletter.firefox import FirefoxNewsletterPage
 from pages.newsletter.mozilla import MozillaNewsletterPage

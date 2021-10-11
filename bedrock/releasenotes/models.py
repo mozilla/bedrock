@@ -19,7 +19,6 @@ from product_details.version_compare import Version
 from bedrock.base.urlresolvers import reverse
 from bedrock.releasenotes.utils import memoize
 
-
 LONG_RN_CACHE_TIMEOUT = 7200  # 2 hours
 cache = caches["release-notes"]
 markdowner = markdown.Markdown(

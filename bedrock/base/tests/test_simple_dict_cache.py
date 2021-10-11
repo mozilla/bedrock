@@ -8,8 +8,8 @@ import os
 import time
 import warnings
 
-from django.core.cache import cache, caches, CacheKeyWarning
-from django.test import override_settings, RequestFactory, TestCase
+from django.core.cache import CacheKeyWarning, cache, caches
+from django.test import RequestFactory, TestCase, override_settings
 
 
 # functions/classes for complex data type tests

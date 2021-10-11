@@ -6,11 +6,11 @@ import os
 
 from django.test.client import RequestFactory
 
-from bedrock.base.urlresolvers import reverse
 from mock import ANY, patch
 
-from bedrock.mozorg.tests import TestCase
+from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg import views
+from bedrock.mozorg.tests import TestCase
 
 
 class TestViews(TestCase):

@@ -10,9 +10,7 @@ from unittest.mock import patch
 from django.conf import settings
 from django.test import TestCase, override_settings
 
-from lib.l10n_utils import fluent
-from lib.l10n_utils import translation
-
+from lib.l10n_utils import fluent, translation
 
 L10N_PATH = Path(__file__).with_name("test_files").joinpath("l10n")
 

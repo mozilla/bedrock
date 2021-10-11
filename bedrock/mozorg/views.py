@@ -10,8 +10,6 @@ from django.views.decorators.http import require_safe
 from django.views.generic import TemplateView
 
 from commonware.decorators import xframe_allow
-from lib import l10n_utils
-from lib.l10n_utils import L10nTemplateView
 
 from bedrock.base.waffle import switch
 from bedrock.contentcards.models import get_page_content_cards
@@ -19,6 +17,8 @@ from bedrock.contentful.api import ContentfulPage
 from bedrock.contentful.models import ContentfulEntry
 from bedrock.mozorg.credits import CreditsFile
 from bedrock.pocketfeed.models import PocketArticle
+from lib import l10n_utils
+from lib.l10n_utils import L10nTemplateView
 
 credits_file = CreditsFile("credits")
 TECH_BLOG_SLUGS = ["hacks", "cd", "futurereleases"]

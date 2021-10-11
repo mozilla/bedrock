@@ -3,14 +3,22 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 from urllib.parse import parse_qs, urlparse
 
-from django.urls import URLPattern
 from django.test import TestCase
 from django.test.client import RequestFactory
+from django.urls import URLPattern
 
 from mock import patch
 
 from bedrock.redirects.middleware import RedirectsMiddleware
-from bedrock.redirects.util import get_resolver, header_redirector, is_firefox_redirector, no_redirect, redirect, ua_redirector, platform_redirector
+from bedrock.redirects.util import (
+    get_resolver,
+    header_redirector,
+    is_firefox_redirector,
+    no_redirect,
+    platform_redirector,
+    redirect,
+    ua_redirector,
+)
 
 
 class TestHeaderRedirector(TestCase):

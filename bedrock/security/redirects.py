@@ -1,6 +1,5 @@
 from bedrock.redirects.util import redirect
 
-
 redirectpatterns = (
     # bug 818323
     redirect(r"^projects/security/known-vulnerabilities\.html$", "security.known-vulnerabilities"),

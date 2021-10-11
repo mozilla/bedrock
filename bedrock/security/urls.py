@@ -6,17 +6,16 @@ from django.conf.urls import url
 
 from bedrock.mozorg.util import page
 from bedrock.security.views import (
-    mitre_cve_feed,
     AdvisoriesView,
     AdvisoryView,
     HallOfFameView,
     KVRedirectsView,
     OldAdvisoriesListView,
     OldAdvisoriesView,
-    ProductView,
     ProductVersionView,
+    ProductView,
+    mitre_cve_feed,
 )
-
 
 urlpatterns = (
     page("", "security/index.html"),

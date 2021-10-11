@@ -1,17 +1,17 @@
 from functools import partialmethod
+from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 
 from django.conf import settings
-from urllib.parse import urlparse, urlunparse, urlencode, parse_qs
+from django.utils.functional import cached_property
 
 import contentful as api
 from crum import get_current_request, set_current_request
-from django.utils.functional import cached_property
 from rich_text_renderer import RichTextRenderer
 from rich_text_renderer.base_node_renderer import BaseNodeRenderer
 from rich_text_renderer.block_renderers import BaseBlockRenderer
 from rich_text_renderer.text_renderers import BaseInlineRenderer
-from lib.l10n_utils import render_to_string, get_locale
 
+from lib.l10n_utils import get_locale, render_to_string
 
 # Bedrock to Contentful locale map
 LOCALE_MAP = {

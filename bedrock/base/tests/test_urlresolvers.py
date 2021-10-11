@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
-from django.urls import re_path
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
+from django.urls import re_path
 
 import pytest
-from bedrock.base.urlresolvers import find_supported, reverse, split_path, Prefixer
-from mock import patch, Mock
+from mock import Mock, patch
+
+from bedrock.base.urlresolvers import Prefixer, find_supported, reverse, split_path
 
 
 @pytest.mark.parametrize(

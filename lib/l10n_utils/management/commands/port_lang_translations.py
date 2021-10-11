@@ -3,17 +3,21 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import json
-from io import StringIO
 from hashlib import md5
+from io import StringIO
 from pathlib import Path
 
 from django.conf import settings
-from django.core.management.base import BaseCommand
 from django.core.management import call_command
+from django.core.management.base import BaseCommand
 from django.test import override_settings
 from django.utils.functional import cached_property
 
-from lib.l10n_utils.dotlang import parse as parse_lang, convert_variables, get_translations_for_langfile
+from lib.l10n_utils.dotlang import (
+    convert_variables,
+    get_translations_for_langfile,
+    parse as parse_lang,
+)
 from lib.l10n_utils.fluent import get_metadata_file_path
 from lib.l10n_utils.utils import get_ftl_file_data
 

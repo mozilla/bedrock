@@ -3,11 +3,12 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 from html import escape
 
-import basket
-import basket.errors
 from django.conf import settings
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST, require_safe
+
+import basket
+import basket.errors
 
 from bedrock.base.waffle import switch
 from bedrock.newsletter.views import general_error, invalid_email_address

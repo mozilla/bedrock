@@ -1,13 +1,13 @@
+import json
+from pathlib import Path
+
 from django.test import override_settings
+
+import pytest
+import responses
 
 from bedrock.pocketfeed import api
 from bedrock.pocketfeed.models import PocketArticle
-
-import json
-import pytest
-import responses
-from pathlib import Path
-
 
 TEST_DATA = Path(__file__).with_name("test_data")
 

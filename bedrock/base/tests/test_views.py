@@ -1,10 +1,9 @@
 import json
 from unittest.mock import patch
 
-from django.test import TestCase, RequestFactory
-from django.test import override_settings
+from django.test import RequestFactory, TestCase, override_settings
 
-from bedrock.base.views import geolocate, GeoRedirectView, GeoTemplateView
+from bedrock.base.views import GeoRedirectView, GeoTemplateView, geolocate
 
 
 class TestGeolocate(TestCase):

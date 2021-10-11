@@ -2,18 +2,17 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from django.conf import settings
+
 import jinja2
 from babel.core import Locale, UnknownLocaleError
 from babel.dates import format_date
 from babel.numbers import format_number
 from django_jinja import library
 
-from django.conf import settings
-
 from lib.l10n_utils.dotlang import lang_file_has_tag, translate
 from lib.l10n_utils.gettext import template_has_tag
 from lib.l10n_utils.translation import get_language
-
 
 babel_format_locale_map = {
     "hsb": "de",

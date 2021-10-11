@@ -9,12 +9,15 @@ from django.conf import settings
 from django.http import Http404, HttpResponseRedirect
 from django.urls import NoReverseMatch
 
-from lib import l10n_utils
-
 from bedrock.base.urlresolvers import reverse
 from bedrock.firefox.firefox_details import firefox_desktop
 from bedrock.firefox.templatetags.helpers import android_builds, ios_builds
-from bedrock.releasenotes.models import get_latest_release_or_404, get_release_or_404, get_releases_or_404
+from bedrock.releasenotes.models import (
+    get_latest_release_or_404,
+    get_release_or_404,
+    get_releases_or_404,
+)
+from lib import l10n_utils
 
 SUPPORT_URLS = {
     "Firefox for Android": "https://support.mozilla.org/products/mobile",

@@ -6,10 +6,8 @@
 
 from django import forms
 
-from lib.l10n_utils.dotlang import _, _lazy
-
 from bedrock.mozorg.forms import HoneyPotWidget
-
+from lib.l10n_utils.dotlang import _, _lazy
 
 FRAUD_REPORT_FILE_SIZE_LIMIT = 5242880  # 5MB
 

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import migrations, models
+
 import django_extensions.db.fields.json
 
 

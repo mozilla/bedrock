@@ -5,22 +5,31 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import io
+from pathlib import Path
+
 from django.conf import settings
 from django.core import mail
-from django.urls import clear_url_caches
 from django.http import HttpRequest
 from django.test.utils import override_settings
+from django.urls import clear_url_caches
 
 from django_jinja.backend import Jinja2
 from mock import patch
-from pathlib import Path
 from pyquery import PyQuery as pq
 
 from bedrock.mozorg.tests import TestCase
 from lib.l10n_utils import render
-from lib.l10n_utils.dotlang import _, _lazy, cache, FORMAT_IDENTIFIER_RE, lang_file_has_tag, lang_file_is_active, parse, translate
+from lib.l10n_utils.dotlang import (
+    FORMAT_IDENTIFIER_RE,
+    _,
+    _lazy,
+    cache,
+    lang_file_has_tag,
+    lang_file_is_active,
+    parse,
+    translate,
+)
 from lib.l10n_utils.extract import extract_python
-
 
 LANG_FILES = "test_file"
 ROOT_PATH = Path(__file__).with_name("test_files")

@@ -8,7 +8,6 @@ from bedrock.mozorg.tests import TestCase
 from bedrock.redirects.middleware import RedirectsMiddleware
 from bedrock.redirects.util import get_resolver, redirect
 
-
 patterns = [
     redirect(r"^dude/already/10th/", "/far/out/"),
     redirect(r"^walter/prior/restraint/", "/finishes/coffee/"),

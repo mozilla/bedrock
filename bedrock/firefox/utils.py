@@ -4,6 +4,7 @@
 
 from product_details import product_details
 from product_details.version_compare import Version
+
 from bedrock.firefox.firefox_details import firefox_desktop
 
 

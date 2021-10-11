@@ -18,7 +18,6 @@ from puente.settings import get_setting
 
 from lib.l10n_utils.gettext import pot_to_langfiles
 
-
 DOMAIN = "django"
 METHODS = settings.PUENTE["DOMAIN_METHODS"][DOMAIN]
 

@@ -6,7 +6,6 @@
 
 from lib.l10n_utils.dotlang import _
 
-
 LANG_FILES = [
     "lebowski",
     "dude",

@@ -1,7 +1,6 @@
 # flake8: noqa
 import os
 
-
 IS_HTTPS = os.environ.get("HTTPS", "").strip() == "on"
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "bedrock.settings")
 

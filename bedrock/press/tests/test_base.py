@@ -8,12 +8,12 @@ import datetime
 from django.core import mail
 from django.test.client import RequestFactory
 
-from bedrock.base.urlresolvers import reverse
 from mock import Mock, patch
 
+from bedrock.base.urlresolvers import reverse
+from bedrock.mozorg.tests import TestCase
 from bedrock.press import forms as press_forms, views as press_views
 from bedrock.press.forms import PressInquiryForm, SpeakerRequestForm
-from bedrock.mozorg.tests import TestCase
 
 
 class TestPressInquiry(TestCase):

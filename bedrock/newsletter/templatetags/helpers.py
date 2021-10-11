@@ -4,13 +4,13 @@
 
 import logging
 
-import jinja2
 from django.template.loader import render_to_string
+
+import jinja2
 from django_jinja import library
 
-from lib.l10n_utils import get_locale
 from bedrock.newsletter.forms import NewsletterFooterForm
-
+from lib.l10n_utils import get_locale
 
 log = logging.getLogger(__name__)
 

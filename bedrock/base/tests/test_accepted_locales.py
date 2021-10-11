@@ -4,7 +4,7 @@ import shutil
 from django.conf import settings
 from django.test import TestCase
 
-from bedrock.settings.base import get_dev_languages, data_path
+from bedrock.settings.base import data_path, get_dev_languages
 
 
 class AcceptedLocalesTest(TestCase):

@@ -4,9 +4,7 @@
 
 from django.conf import settings
 
-from ._fluent import (
-    get_migration_context,
-)
+from ._fluent import get_migration_context
 
 
 class FTLCreator:

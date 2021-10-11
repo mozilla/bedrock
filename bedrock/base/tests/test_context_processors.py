@@ -1,5 +1,5 @@
 from django.template.loader import render_to_string
-from django.test import override_settings, TestCase, RequestFactory
+from django.test import RequestFactory, TestCase, override_settings
 
 import jinja2
 

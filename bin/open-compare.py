@@ -6,11 +6,10 @@
 import argparse
 import json
 import sys
-import urllib.request
 import urllib.error
 import urllib.parse
+import urllib.request
 import webbrowser
-
 
 ENV_URLS = {
     "demo1": "https://www-demo1.allizom.org",

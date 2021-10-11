@@ -7,7 +7,6 @@ import unicodedata
 from collections import OrderedDict
 from operator import itemgetter
 
-
 from bedrock.externalfiles import ExternalFile
 
 

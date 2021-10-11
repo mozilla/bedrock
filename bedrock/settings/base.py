@@ -9,16 +9,15 @@ import socket
 import struct
 import sys
 from os.path import abspath
+from pathlib import Path
 
 from django.utils.functional import lazy
 
 import sentry_sdk
 from everett.manager import ListOf
-from pathlib import Path
 from sentry_sdk.integrations.django import DjangoIntegration
 
 from bedrock.base.config_manager import config
-
 
 # ROOT path of the project. A pathlib.Path object.
 DATA_PATH = config("DATA_PATH", default="data")
@@ -361,6 +360,7 @@ def lazy_lang_url_map():
 # Override Django's built-in with our native names
 def lazy_langs():
     from django.conf import settings
+
     from product_details import product_details
 
     langs = DEV_LANGUAGES if settings.DEV else settings.PROD_LANGUAGES
@@ -941,30 +941,30 @@ FXA_ENDPOINT = config("FXA_ENDPOINT", default="https://stable.dev.lcip.org/" if 
 FXA_ENDPOINT_MOZILLAONLINE = config("FXA_ENDPOINT_MOZILLAONLINE", default="https://accounts.firefox.com.cn/")
 
 # Google Play and Apple App Store settings
+from .appstores import GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE  # noqa
+from .appstores import GOOGLE_PLAY_FIREFOX_LINK_UTMS  # noqa
 from .appstores import (
-    GOOGLE_PLAY_FIREFOX_LINK,
-    GOOGLE_PLAY_FIREFOX_LINK_UTMS,  # noqa
-    GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE,  # noqa
-    APPLE_APPSTORE_FIREFOX_LINK,
-    APPLE_APPSTORE_COUNTRY_MAP,
-    APPLE_APPSTORE_FOCUS_LINK,
-    GOOGLE_PLAY_FOCUS_LINK,
-    APPLE_APPSTORE_KLAR_LINK,
-    GOOGLE_PLAY_KLAR_LINK,
-    APPLE_APPSTORE_POCKET_LINK,
-    GOOGLE_PLAY_POCKET_LINK,
-    APPLE_APPSTORE_LOCKWISE_LINK,
-    GOOGLE_PLAY_LOCKWISE_LINK,
-    GOOGLE_PLAY_FIREFOX_BETA_LINK,
-    GOOGLE_PLAY_FIREFOX_NIGHTLY_LINK,
-    AMAZON_FIREFOX_FIRE_TV_LINK,
-    GOOGLE_PLAY_FIREFOX_LITE_LINK,
-    GOOGLE_PLAY_FIREFOX_SEND_LINK,
     ADJUST_FIREFOX_URL,
     ADJUST_FOCUS_URL,
     ADJUST_KLAR_URL,
-    ADJUST_POCKET_URL,
     ADJUST_LOCKWISE_URL,
+    ADJUST_POCKET_URL,
+    AMAZON_FIREFOX_FIRE_TV_LINK,
+    APPLE_APPSTORE_COUNTRY_MAP,
+    APPLE_APPSTORE_FIREFOX_LINK,
+    APPLE_APPSTORE_FOCUS_LINK,
+    APPLE_APPSTORE_KLAR_LINK,
+    APPLE_APPSTORE_LOCKWISE_LINK,
+    APPLE_APPSTORE_POCKET_LINK,
+    GOOGLE_PLAY_FIREFOX_BETA_LINK,
+    GOOGLE_PLAY_FIREFOX_LINK,
+    GOOGLE_PLAY_FIREFOX_LITE_LINK,
+    GOOGLE_PLAY_FIREFOX_NIGHTLY_LINK,
+    GOOGLE_PLAY_FIREFOX_SEND_LINK,
+    GOOGLE_PLAY_FOCUS_LINK,
+    GOOGLE_PLAY_KLAR_LINK,
+    GOOGLE_PLAY_LOCKWISE_LINK,
+    GOOGLE_PLAY_POCKET_LINK,
 )
 
 # Locales that should display the 'Send to Device' widget

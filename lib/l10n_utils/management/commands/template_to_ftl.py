@@ -13,7 +13,6 @@ from django.utils.functional import cached_property
 from lib.l10n_utils.extract import tweak_message
 from lib.l10n_utils.utils import get_ftl_file_data
 
-
 GETTEXT_RE = re.compile(r'\b_\([\'"](?P<string>.+?)[\'"]\)' r"(\s*\|\s*format\((?P<args>\w.+?)\))?", re.S)
 TRANS_BLOCK_RE = re.compile(r"{%-?\s+trans\s+((?P<args>\w.+?)\s+)?-?%\}\s*" r"(?P<string>.+?)" r"\s*{%-?\s+endtrans\s+-?%\}", re.S)
 STR_VARIABLE_RE = re.compile(r"{{\s*(?P<var>\w+?)\s*}}")

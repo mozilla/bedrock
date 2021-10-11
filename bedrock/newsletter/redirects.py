@@ -1,6 +1,5 @@
 from bedrock.redirects.util import redirect
 
-
 redirectpatterns = (
     # bug 926629
     redirect(r"^newsletter/about_mobile(?:/(?:index\.html)?)?$", "newsletter.subscribe"),

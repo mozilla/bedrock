@@ -4,10 +4,9 @@
 
 from django.conf.urls import url
 
-from bedrock.mozorg.util import page
 from bedrock.legal import views
-
 from bedrock.legal_docs.views import LegalDocView
+from bedrock.mozorg.util import page
 
 urlpatterns = (
     page("", "legal/index.html", ftl_files=["mozorg/about/legal"]),

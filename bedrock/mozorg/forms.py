@@ -8,12 +8,11 @@ import re
 from datetime import datetime
 from random import randrange
 
-from django.urls import reverse
 from django.forms import widgets
+from django.urls import reverse
 from django.utils.safestring import mark_safe
 
 from lib.l10n_utils.fluent import ftl, ftl_lazy
-
 
 FORMATS = (("H", ftl_lazy("newsletter-form-html")), ("T", ftl_lazy("newsletter-form-text")))
 LANGS_TO_STRIP = ["en-US", "es"]

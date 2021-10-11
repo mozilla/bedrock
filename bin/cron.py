@@ -3,15 +3,13 @@
 import datetime
 import platform
 import sys
+from pathlib import Path
 from subprocess import check_call
 from time import time
 
 import babis
 from apscheduler.schedulers.blocking import BlockingScheduler
-from pathlib import Path
-
 from db_s3_utils import DATA_PATH
-
 
 # ROOT path of the project. A pathlib.Path object.
 ROOT_PATH = Path(__file__).resolve().parents[1]

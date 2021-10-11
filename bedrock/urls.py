@@ -4,11 +4,11 @@
 
 from django.conf import settings
 from django.conf.urls import include, url
-
 from django.utils.module_loading import import_string
 
-from bedrock.base import views as base_views
 from watchman import views as watchman_views
+
+from bedrock.base import views as base_views
 
 # The default django 404 and 500 handler doesn't run the ContextProcessors,
 # which breaks the base template page. So we replace them with views that do!

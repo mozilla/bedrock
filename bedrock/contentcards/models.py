@@ -1,15 +1,14 @@
 import json
 import re
+from pathlib import Path
 
 from django.conf import settings
 from django.db import models, transaction
 
 from django_extensions.db.fields.json import JSONField
 from jinja2 import Markup
-from pathlib import Path
 
 from bedrock.base.urlresolvers import reverse
-
 
 URL_RE = re.compile(r"^https?://", re.I)
 

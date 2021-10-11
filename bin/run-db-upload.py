@@ -6,17 +6,15 @@ from time import time
 
 import boto3
 from boto3.exceptions import Boto3Error
-
 from db_s3_utils import (
+    DB_FILE,
+    JSON_DATA_FILE,
+    JSON_DATA_FILE_NAME,
     get_db_checksum,
     get_git_sha,
     get_prev_db_data,
     set_db_data,
-    JSON_DATA_FILE,
-    JSON_DATA_FILE_NAME,
-    DB_FILE,
 )
-
 
 CACHE = {}
 BUCKET_NAME = os.getenv("AWS_DB_S3_BUCKET", "bedrock-db-dev")

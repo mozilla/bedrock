@@ -7,10 +7,10 @@ import re
 from collections import OrderedDict
 from datetime import date
 
-import yaml
 from django.template.loader import render_to_string
-from markdown import markdown
 
+import yaml
+from markdown import markdown
 
 FILENAME_RE = re.compile(r"mfsa(\d{4}-\d{2,3})\.(md|yml)$")
 

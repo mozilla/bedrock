@@ -4,7 +4,6 @@
 
 from django.utils.http import urlquote
 
-
 # Base link to Firefox for Android on the Google Play store.
 GOOGLE_PLAY_FIREFOX_LINK = "https://play.google.com/store/apps/details?id=org.mozilla.firefox"
 

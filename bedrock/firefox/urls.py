@@ -1,18 +1,16 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-from django.conf.urls import url
 from django.conf import settings
+from django.conf.urls import url
 from django.urls import path
 
 import bedrock.releasenotes.views
+from bedrock.firefox import views
 from bedrock.mozorg.util import page
 from bedrock.releasenotes import version_re
-
-from bedrock.firefox import views
 from bedrock.utils import views as utils_views
 from bedrock.utils.views import VariationTemplateView
-
 
 latest_re = r"^firefox(?:/(?P<version>%s))?/%s/$"
 firstrun_re = latest_re % (version_re, "firstrun")

@@ -9,7 +9,6 @@ from django_jinja.backend import Jinja2
 
 from bedrock.mozorg.tests import TestCase
 
-
 TEST_FXA_ENDPOINT = "https://accounts.firefox.com/"
 TEST_VPN_ENDPOINT = "https://vpn.mozilla.org/"
 TEST_VPN_PRODUCT_ID = "prod_FvnsFHIfezy3ZI"

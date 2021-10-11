@@ -9,11 +9,12 @@ import urllib.parse
 from urllib.parse import unquote
 from warnings import warn
 
-from commonware.middleware import FrameOptionsHeader as OldFrameOptionsHeader
 from django.conf import settings
 from django.core.exceptions import MiddlewareNotUsed
 from django.http import HttpResponse, HttpResponsePermanentRedirect
 from django.utils.deprecation import MiddlewareMixin
+
+from commonware.middleware import FrameOptionsHeader as OldFrameOptionsHeader
 
 from lib.l10n_utils import translation
 

@@ -10,37 +10,40 @@ from collections import OrderedDict
 from random import random
 from urllib.parse import urlparse
 
-import basket
-import querystringsafe_base64
 from django.conf import settings
 from django.http import (
     HttpResponsePermanentRedirect,
     HttpResponseRedirect,
     JsonResponse,
 )
-
 from django.utils.cache import add_never_cache_headers, patch_response_headers
 from django.utils.encoding import force_text
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
 from django.views.generic.base import TemplateView
-from lib import l10n_utils
-from lib.l10n_utils import L10nTemplateView
-from lib.l10n_utils.dotlang import get_translations_native_names
-from lib.l10n_utils.fluent import ftl, ftl_file_is_active
+
+import basket
+import querystringsafe_base64
 from product_details.version_compare import Version
 
 from bedrock.base.urlresolvers import reverse
+from bedrock.base.views import GeoRedirectView
 from bedrock.base.waffle import switch
-from bedrock.base.waffle_config import config, DictOf
+from bedrock.base.waffle_config import DictOf, config
 from bedrock.contentful.api import ContentfulPage
-from bedrock.firefox.firefox_details import firefox_android, firefox_desktop, firefox_ios
+from bedrock.firefox.firefox_details import (
+    firefox_android,
+    firefox_desktop,
+    firefox_ios,
+)
 from bedrock.firefox.forms import SendToDeviceWidgetForm
 from bedrock.newsletter.forms import NewsletterFooterForm
 from bedrock.products.forms import VPNWaitlistForm
 from bedrock.releasenotes import version_re
-from bedrock.base.views import GeoRedirectView
-
+from lib import l10n_utils
+from lib.l10n_utils import L10nTemplateView
+from lib.l10n_utils.dotlang import get_translations_native_names
+from lib.l10n_utils.fluent import ftl, ftl_file_is_active
 
 UA_REGEXP = re.compile(r"Firefox/(%s)" % version_re)
 

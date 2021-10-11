@@ -1,8 +1,8 @@
 import re
-from urllib.parse import urlparse, parse_qs
+from urllib.parse import parse_qs, urlparse
 
-from braceexpand import braceexpand
 import requests
+from braceexpand import braceexpand
 
 
 def get_abs_url(url, base_url):

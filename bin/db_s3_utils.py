@@ -1,8 +1,7 @@
 import json
 from hashlib import sha256
 from os import getenv
-from subprocess import check_output, CalledProcessError
-
+from subprocess import CalledProcessError, check_output
 
 JSON_DATA_FILE_NAME = "bedrock_db_info.json"
 DATA_PATH = getenv("DATA_PATH", "data")

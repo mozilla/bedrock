@@ -4,8 +4,8 @@
 
 import os
 
-from django.core.management.base import BaseCommand
 from django.conf import settings
+from django.core.management.base import BaseCommand
 
 from lib.l10n_utils.gettext import merge_lang_files
 

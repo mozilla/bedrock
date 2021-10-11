@@ -5,13 +5,12 @@
 import codecs
 import logging
 import os.path
-from time import mktime
 from io import StringIO
+from time import mktime
 
 from django.conf import settings
 from django.core.cache import caches
 from django.utils.http import http_date
-
 
 log = logging.getLogger(__name__)
 

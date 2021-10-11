@@ -3,8 +3,8 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 from django.conf.urls import url
 
-from bedrock.newsletter import views
 from bedrock.mozorg.util import page
+from bedrock.newsletter import views
 
 # A UUID looks like: f81d4fae-7dec-11d0-a765-00a0c91e6bf6
 # Here's a regex to match a UUID:

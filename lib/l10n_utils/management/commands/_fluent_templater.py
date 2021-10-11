@@ -3,11 +3,11 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from ._fluent import (
+    GETTEXT_RE,
+    TRANS_BLOCK_RE,
     get_migration_context,
     strip_whitespace,
     trans_to_lang,
-    GETTEXT_RE,
-    TRANS_BLOCK_RE,
 )
 
 

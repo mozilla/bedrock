@@ -6,7 +6,7 @@ from django.db.utils import DatabaseError
 from jinja2 import Markup
 from sentry_sdk import capture_exception
 
-from bedrock.pocketfeed.api import get_articles_data, complete_articles_data
+from bedrock.pocketfeed.api import complete_articles_data, get_articles_data
 
 
 class PocketArticleManager(models.Manager):

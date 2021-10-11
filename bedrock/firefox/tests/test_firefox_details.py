@@ -6,9 +6,10 @@ import os
 from urllib.parse import parse_qsl, urlparse
 
 from django.core.cache import caches
+
 from mock import Mock, patch
 
-from bedrock.firefox.firefox_details import FirefoxDesktop, FirefoxAndroid, FirefoxIOS
+from bedrock.firefox.firefox_details import FirefoxAndroid, FirefoxDesktop, FirefoxIOS
 from bedrock.mozorg.tests import TestCase
 
 TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), "test_data")

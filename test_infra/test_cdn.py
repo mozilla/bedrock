@@ -4,7 +4,6 @@ from pathlib import Path
 import pytest
 import requests
 
-
 MLS_URL = "https://location.services.mozilla.com/v1/country" "?key=ec4d0c4b-b9ac-4d72-9197-289160930e14"
 TESTS_PATH = Path(__file__).parent
 TLS_DATA_PATH = TESTS_PATH.joinpath("fixtures", "tls.json")

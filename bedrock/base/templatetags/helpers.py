@@ -6,13 +6,13 @@ from django.conf import settings
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.utils.encoding import smart_str
 
-from django_jinja import library
 import jinja2
+from django_jinja import library
 
-from ..urlresolvers import reverse
 from bedrock.base import waffle
 from bedrock.utils import expand_locale_groups
 
+from ..urlresolvers import reverse
 
 CSS_TEMPLATE = '<link href="%s" rel="stylesheet" type="text/css" />'
 JS_TEMPLATE = '<script type="text/javascript" src="%s" charset="utf-8"></script>'

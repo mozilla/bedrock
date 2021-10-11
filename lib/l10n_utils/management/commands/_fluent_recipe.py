@@ -9,17 +9,17 @@ from django.conf import settings
 from django.utils.html import strip_tags
 from django.utils.text import slugify
 
-from fluent.runtime import FluentResource, FluentBundle
+from fluent.runtime import FluentBundle, FluentResource
 
-from ._fluent import (
-    migration_name,
-    get_lang_files,
-    trans_to_lang,
-    GETTEXT_RE,
-    TRANS_BLOCK_RE,
-)
 from lib.l10n_utils.utils import strip_whitespace
 
+from ._fluent import (
+    GETTEXT_RE,
+    TRANS_BLOCK_RE,
+    get_lang_files,
+    migration_name,
+    trans_to_lang,
+)
 
 STR_VARIABLE_RE = re.compile(r"%(?P<var>\(\w+\))?s")
 RECIPE_INTRO = """\

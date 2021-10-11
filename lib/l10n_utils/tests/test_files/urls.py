@@ -2,9 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from bedrock.urls import urlpatterns
 from bedrock.mozorg.util import page
-
+from bedrock.urls import urlpatterns
 
 # have to append these to existing site patterns
 # because calls to e.g. {{ url('mozorg.home') }}

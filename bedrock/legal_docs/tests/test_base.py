@@ -2,11 +2,12 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from mock import patch
 from pathlib import Path
 
 from django.http import Http404, HttpResponse
-from django.test import override_settings, RequestFactory
+from django.test import RequestFactory, override_settings
+
+from mock import patch
 
 from bedrock.legal_docs import views
 from bedrock.legal_docs.models import LegalDoc, get_data_from_file_path

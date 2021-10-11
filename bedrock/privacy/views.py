@@ -5,13 +5,11 @@ import re
 
 from django.views.decorators.cache import cache_page
 
-from commonware.response.decorators import xframe_allow
 from bs4 import BeautifulSoup
-
-from lib import l10n_utils
+from commonware.response.decorators import xframe_allow
 
 from bedrock.legal_docs.views import LegalDocView, load_legal_doc
-
+from lib import l10n_utils
 
 HN_PATTERN = re.compile(r"^h(\d)$")
 HREF_PATTERN = re.compile(r"^https?\:\/\/www\.mozilla\.org")

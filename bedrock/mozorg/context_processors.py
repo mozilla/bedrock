@@ -11,7 +11,6 @@ from django.urls import reverse
 from bedrock.mozorg.util import get_fb_like_locale
 from lib.l10n_utils import get_locale
 
-
 # match 1 - 4 digits only
 FC_RE = re.compile(r"^\d{1,4}$")
 
