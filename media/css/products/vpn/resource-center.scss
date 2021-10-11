@@ -44,7 +44,6 @@ $image-path: '/media/protocol/img';
 }
 
 .mzp-c-category-list {
-    //This needs to be replaced with a token
     background-color: $color-light-gray-20;
     padding: $spacing-sm $spacing-md;
 
@@ -78,6 +77,10 @@ $image-path: '/media/protocol/img';
     }
 
     @media #{$mq-md} {
+        padding: $spacing-sm $layout-sm;
+    }
+
+    @media #{$mq-lg} {
         padding: $spacing-sm $layout-xl - $spacing-md;
     }
 }
