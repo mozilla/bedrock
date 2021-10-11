@@ -9,17 +9,17 @@
     Mozilla.LazyLoad.init();
 
     //event handlers for voting widget on article pages
-    var hasVoted = false;
-    var upvoteBtn = document.querySelector(".vpn-c-vote-btn.up");
-    var downvoteBtn = document.querySelector(".vpn-c-vote-btn.down");
+    let hasVoted = false;
+    const upvoteBtn = document.querySelector(".vpn-c-vote-btn.up");
+    const downvoteBtn = document.querySelector(".vpn-c-vote-btn.down");
 
-    function handleVote(e) {
-        var el = e.target;
-        var isUpvote = el.classList.contains('up')
-        if (el.classList.contains('active')) {
+    function handleVote({target}) {
+        const isUpvote = target.classList.contains('up');
+        if (target.classList.contains('active') && hasVoted) {
             return null;
         } else {
-            el.classList.add("active");
+            hasVoted = true;
+            target.classList.add("active");
             if (isUpvote) {
                 downvoteBtn.classList.remove("active")
             } else {
@@ -28,9 +28,7 @@
         }
     }
 
-    [upvoteBtn, downvoteBtn].forEach(function(element) {
-        element.addEventListener("click", handleVote)
-    });
+    [upvoteBtn, downvoteBtn].forEach((element) => element.addEventListener("click", handleVote));
 
 
 })();

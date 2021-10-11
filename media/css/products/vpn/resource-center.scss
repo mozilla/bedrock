@@ -3,7 +3,6 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 $font-path: '/media/fonts';
-$callout-image-path: '/media/img/home/2020/vpn-hero-high-res.png';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
@@ -15,13 +14,10 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
 @import '~@mozilla-protocol/core/protocol/css/includes/fonts/metropolis';
 @import '~@mozilla-protocol/core/protocol/css/includes/fonts/inter';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-vpn';
 
 .resource-center-page-header {
-    // no images are being used yet for the background
-    // background-image: url(#{$callout-image-path});
-    // background-position: top left;
-    // background-repeat: no-repeat;
-    // background-attachment: fixed;
     .mzp-l-content {
         max-width: 595px;
         .mzp-c-call-out-title {
@@ -31,6 +27,16 @@ $image-path: '/media/protocol/img';
             font-weight: 700;
         }
     }
+    @media #{$mq-md} {
+        background-image: url('/media/img/products/vpn/resource-center/moz_resource_center_header_bg.svg');
+        background-repeat: no-repeat;
+        background-size: 90% 100%;
+        background-position: center;
+    }
+    @media #{$mq-lg} {
+        background-size: auto;
+        background-position: 45% $layout-xs;
+    }
 }
 
 .resource-center-hero {
@@ -39,8 +45,8 @@ $image-path: '/media/protocol/img';
 
 .mzp-c-category-list {
     //This needs to be replaced with a token
-    background-color: #f3f3f3;
-    padding: 8px 18px;
+    background-color: $color-light-gray-20;
+    padding: $spacing-sm $spacing-md;
 
     .mzp-c-category-list-title {
         @include text-body-md;
@@ -76,58 +82,9 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.resource-center-hero-icon-list {
-    align-items: center;
-    display: flex;
-    justify-content: space-evenly;
-    margin-bottom: $spacing-lg;
-
-    li {
-        margin-left: 0;
-    }
-
-    @media #{$mq-md} {
-        justify-content: center;
-
-        li {
-            margin-left: $layout-md;
-
-            &:first-child {
-                margin-left: 0;
-            }
-        }
-    }
-}
 
 .resource-center-cta {
     margin-bottom: $spacing-lg;
-}
-
-.mzp-t-resource-center {
-    background: linear-gradient(
-        12deg,
-        #D0D4F9 0%,
-        #D0D4F9 85%,
-         $color-white 85%,
-         $color-white 100%);
-    padding-bottom: 0;
-    padding-top: 100px;
-    @media #{$mq-md} {
-        background: linear-gradient(
-            12deg,
-            #D0D4F9 0%,
-            #D0D4F9 65%,
-             $color-white 65%,
-             $color-white 100%);
-        padding-top: 0;
-    }
-}
-
-//this may be added + updated if this theme is used in other areas
-.mzp-c-button.mzp-t-vpn {
-    color: $color-blue-50;
-    background-color: $color-white;
-    border: transparent;
 }
 
 .resource-center-article-container {
@@ -147,10 +104,10 @@ $image-path: '/media/protocol/img';
     }
 }
 
-// temporary until we incorporate breadcrumb to protocol
 
+// temporary until we incorporate breadcrumb to protocol
 .mzp-c-breadcrumb {
-    background-color: #f3f3f3;
+    background-color: $color-light-gray-20;
     margin-bottom: 0;
     padding: $spacing-sm $spacing-md;
 
@@ -196,8 +153,8 @@ $image-path: '/media/protocol/img';
             background: none;
             border: none;
             cursor: pointer;
-            height: 38px;
-            width: 42px;
+            height: $layout-sm + 6px;
+            width: $layout-md - 6px;
 
             &.down {
                 @include bidi(((margin-left, $spacing-sm, margin-right, $spacing-sm),));
