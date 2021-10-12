@@ -1,7 +1,7 @@
 ########
 # assets builder and dev server
 #
-FROM node:12-slim AS assets
+FROM node:14-slim AS assets
 
 ENV PATH=/app/node_modules/.bin:$PATH
 WORKDIR /app
