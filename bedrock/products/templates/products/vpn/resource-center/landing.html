@@ -92,15 +92,13 @@
     </div>
     {% call split (
       image_url="img/products/vpn/resource-center/resource_center_split_1.svg",
-      media_after=True,
-      block_class='mzp-l-split-center-on-sm-md mzp-t-split-nospace',
-      theme_class="mzp-t-content-lg mzp-t-split-nospace"
-
+      block_class='resource-center-split mzp-t-split-nospace mzp-t-content-lg mzp-l-split-center-on-sm-md',
+      media_class='resource-center-split-media',
     ) %}
-      <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-vpn resource-center-wordmark"></div>
+      <h1 class="resource-center-wordmark">Mozilla VPN</h1>
       <h2 class="mzp-c-call-out-title">Start protecting your identity today</h2>
       <a class='mzp-c-button mzp-t-product resource-center-cta'>Save $40 on Mozilla VPN*</a>
-      <p class="resource-center-cta-desc">*When you subscribe to a 12 month plan</p>
+      <p class="resource-center-cta-desc"><em>*when you subscribe to a 12-month plan</em></p>
     {% endcall %}
     <div class="mzp-l-content mzp-l-card-third">
       {{ card (
@@ -130,13 +128,10 @@
   </div>
   {% call split (
     image_url="img/products/vpn/resource-center/resource_center_split_2.jpg",
-    media_after=True,
-    block_class='mzp-l-split-center-on-sm-md mzp-t-split-nospace',
-    theme_class="mzp-t-content-lg mzp-t-split-nospace"
-
+    block_class='mzp-t-content-lg',
   ) %}
-    <h2 class="mzp-c-call-out-title">Obsessed with your privacy since 1998.</h2>
-    <a class='mzp-c-button mzp-t-product'>Save 40% today</a>
+    <h2 class="resource-center-cta-title">Obsessed with your privacy since 1998</h2>
+    <a class='mzp-c-button mzp-t-product'>Get Mozilla VPN</a>
   {% endcall %}
 
 {% endblock %}

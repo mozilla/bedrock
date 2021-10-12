@@ -44,7 +44,7 @@
   <div>
   <div class="mzp-l-content mzp-l-card-third">
     <hr class="mzp-c-hr" />
-    <h3>Related Posts</h3>
+    <h3>Related posts</h3>
     <div class="mzp-l-card-third">
       {{card (
         title='Article title',
@@ -74,14 +74,11 @@
   </div>
   {% call split (
   image_url='img/products/vpn/resource-center/resource_center_split_2_2x.jpg',
-  media_after=True,
-  block_class='mzp-l-split-center-on-sm-md mzp-t-split-nospace',
-  theme_class='mzp-t-content-lg mzp-t-split-nospace',
+  block_class='mzp-t-content-lg',
 
   ) %}
-    <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-vpn resource-center-wordmark"></div>
-    <h2 class="mzp-c-call-out-title">Obsessed with your privacy since 1998.</h2>
-    <a class='mzp-c-button mzp-t-product'>Save 40% today</a>
+    <h2 class="resource-center-cta-title">Obsessed with your privacy since 1998</h2>
+    <a class='mzp-c-button mzp-t-product'>Get Mozilla VPN</a>
   {% endcall %}
 
 {% endblock content %}
