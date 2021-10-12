@@ -16,7 +16,7 @@ jobs:
 
   test_js:
     docker:
-      - image: "circleci/node:12-browsers"
+      - image: "circleci/node:14-browsers"
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
