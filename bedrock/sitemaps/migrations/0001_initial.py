@@ -7,17 +7,16 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='SitemapURL',
+            name="SitemapURL",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('path', models.CharField(max_length=200)),
-                ('locale', models.CharField(max_length=5)),
-                ('lastmod', models.CharField(blank=True, max_length=40)),
+                ("id", models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("path", models.CharField(max_length=200)),
+                ("locale", models.CharField(max_length=5)),
+                ("lastmod", models.CharField(blank=True, max_length=40)),
             ],
         ),
     ]

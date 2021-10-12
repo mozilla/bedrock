@@ -7,7 +7,6 @@ exclude: >
     | assets
     | static
     | bedrock/externalfiles/files_cache
-    | ^.*\b(migrations)\b.*$
     | git-repos
     | lib/fluent_migrations
   )

@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('newsletter', '0001_initial'),
+        ("newsletter", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='newsletter',
-            name='slug',
-            field=models.SlugField(help_text='The ID for the newsletter that will be used by clients', unique=True),
+            model_name="newsletter",
+            name="slug",
+            field=models.SlugField(help_text="The ID for the newsletter that will be used by clients", unique=True),
         ),
     ]
