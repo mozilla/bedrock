@@ -158,6 +158,11 @@ $image-path: '/media/protocol/img';
 .vpn-article-container {
     background: url('/media/img/products/vpn/resource-center/resource_center_article_gradient.svg');
     background-repeat: no-repeat;
+    background-size: auto;
+    // The background image will cut off on larger viewports
+    @media #{$mq-lg} {
+        background-size: contain;
+    }
 }
 
 .vpn-article {
