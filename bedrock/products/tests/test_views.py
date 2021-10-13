@@ -5,6 +5,7 @@
 import json
 
 from django.http import HttpResponse
+from django.test import override_settings
 from django.test.client import RequestFactory
 
 from mock import patch
@@ -80,18 +81,20 @@ class TestVPNLandingPage(TestCase):
         template = render_mock.call_args[0][1]
         assert template == "products/vpn/landing.html"
 
-    def test_vpn_landing_page_variant_a_template(self, render_mock):
-        req = RequestFactory().get("/products/vpn/?entrypoint_experiment=vpn-landing-page-cta-change&entrypoint_variation=a")
+    @override_settings(DEV=False)
+    def test_vpn_landing_page_geo_available(self, render_mock):
+        req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="de")
         req.locale = "en-US"
         view = views.vpn_landing_page
         view(req)
-        template = render_mock.call_args[0][1]
-        assert template == "products/vpn/variations/cta-a.html"
+        ctx = render_mock.call_args[0][2]
+        self.assertTrue(ctx["vpn_available"])
 
-    def test_vpn_landing_page_variant_b_template(self, render_mock):
-        req = RequestFactory().get("/products/vpn/?entrypoint_experiment=vpn-landing-page-cta-change&entrypoint_variation=b")
+    @override_settings(DEV=False)
+    def test_vpn_landing_page_geo_not_available(self, render_mock):
+        req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="cn")
         req.locale = "en-US"
         view = views.vpn_landing_page
         view(req)
-        template = render_mock.call_args[0][1]
-        assert template == "products/vpn/variations/cta-b.html"
+        ctx = render_mock.call_args[0][2]
+        self.assertFalse(ctx["vpn_available"])

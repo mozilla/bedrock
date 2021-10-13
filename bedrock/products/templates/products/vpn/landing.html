@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "products/vpn/includes/macros.html" import vpn_hero, vpn_nav_cta, vpn_content_block, vpn_content_media with context %}
+{% from "products/vpn/includes/macros.html" import vpn_hero, vpn_conditional_cta, vpn_nav_cta, vpn_content_block, vpn_content_media with context %}
 
 {% extends "products/vpn/base.html" %}
 
@@ -18,12 +18,6 @@
 {% set _utm_source = 'www.mozilla.org-vpn-product-page' %}
 {% set _utm_campaign = 'vpn-product-page' %}
 {% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
-
-{% block experiments %}
-  {% if switch('vpn-landing-page-cta-change', ['en-US']) %}
-    {{ js_bundle('vpn-landing-page-cta-change-experiment') }}
-  {% endif %}
-{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('mozilla-vpn-landing') }}
@@ -62,17 +56,7 @@
       subheading=ftl('vpn-landing-hero-sub-heading-v2', fallback='vpn-landing-hero-sub-heading'),
       desc=ftl('vpn-landing-hero-desc')
     ) %}
-      <div class="js-vpn-scroll-to-pricing">
-        {% block hero_cta_change %}
-          <a class="mzp-c-button mzp-t-xl" href="#pricing" data-cta-type="button" data-cta-text="Scroll to pricing" data-cta-position="primary">
-          {{ ftl('vpn-shared-subscribe-link') }}
-          </a>
-        {% endblock %}
-        <p class="guarantee-copy">
-          {{ ftl('vpn-shared-money-back-guarantee') }}
-        </p>
-      </div>
-      <div class="js-target-primary-cta"></div>
+      {{ vpn_conditional_cta(position='primary') }}
     {% endcall %}
   {% endblock %}
 
@@ -90,38 +74,36 @@
 
     {# note: `id=#pricing` is used as an anchor link from android in-product subscription flows, so do not remove (issue 10039) #}
     <div id="pricing" class="mzp-is-anchor-link">
-      {% include 'products/vpn/includes/pricing-variable.html' %}
-    </div>
+      {% if vpn_available %}
+        {% include 'products/vpn/includes/pricing-variable.html' %}
+      {% else %}
+        <div class="vpn-waitlist-feature-block hide-from-legacy-ie">
+          {% call vpn_content_block(
+            class_name='vpn-content-block-price t-highlight'
+          ) %}
+          <div class="l-columns-two">
+            <div class="l-column-first">
+              <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="secondary">
+                {{ ftl('vpn-shared-waitlist-link') }}
+              </a>
 
-    <div class="vpn-waitlist-feature-block js-vpn-waitlist-feature-block hide-from-legacy-ie">
-      {% call vpn_content_block(
-        class_name='vpn-content-block-price t-highlight'
-      ) %}
-      <div class="l-columns-two">
-        <div class="l-column-first">
-          <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="secondary">
-            {{ ftl('vpn-shared-waitlist-link') }}
-          </a>
-
-          <p class="availability-copy">
-            {% if switch('vpn-launch-wave-iv') %}
-              {{ ftl('vpn-shared-available-countries-v4') }}
-            {% else %}
-              {{ ftl('vpn-shared-available-countries-v3') }}
-            {% endif %}
-          </p>
+              <p class="availability-copy">
+                {{ ftl('vpn-shared-available-countries-v4', fallback='vpn-shared-available-countries-v3') }}
+              </p>
+            </div>
+            <div class="l-column-last">
+              <ul class="mzp-u-list-styled vpn-feature-list">
+                <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-devices', devices=connect_devices) }}</li>
+                <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-servers', servers=connect_servers, countries=connect_countries) }}</li>
+                <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-encrypt') }}</li>
+                <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-bandwidth') }}</li>
+                <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-activity') }}</li>
+              </ul>
+            </div>
+          </div>
+          {% endcall %}
         </div>
-        <div class="l-column-last">
-          <ul class="mzp-u-list-styled vpn-feature-list">
-            <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-devices', devices=connect_devices) }}</li>
-            <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-servers', servers=connect_servers, countries=connect_countries) }}</li>
-            <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-encrypt') }}</li>
-            <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-bandwidth') }}</li>
-            <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-activity') }}</li>
-          </ul>
-        </div>
-      </div>
-      {% endcall %}
+      {% endif %}
     </div>
 
     {% include 'products/vpn/includes/featured-press.html' %}
@@ -149,14 +131,14 @@
       <p>{{ ftl('vpn-landing-brand-trust-desc', url=url('mozorg.about.manifesto')) }}</p>
     {% endcall %}
 
-    {% call vpn_content_media(
-      heading=ftl('vpn-shared-features-server-countries', servers=connect_servers, countries=connect_countries),
-      image_url='img/products/vpn/landing/vpn-cntwell-05-v2.png',
-      class_name='vpn-content-media-left-half js-connect-to-countries-and-servers'
-    ) %}
-      <p>{{ ftl('vpn-shared-features-full-list-servers', url='https://mullvad.net/servers/', attrs='target="_blank" rel="external noopener noreferrer"') }}</p>
+    {% if vpn_available %}
+      {% call vpn_content_media(
+        heading=ftl('vpn-shared-features-server-countries', servers=connect_servers, countries=connect_countries),
+        image_url='img/products/vpn/landing/vpn-cntwell-05-v2.png',
+        class_name='vpn-content-media-left-half vpn-connect-to-countries-and-servers'
+      ) %}
+        <p>{{ ftl('vpn-shared-features-full-list-servers', url='https://mullvad.net/servers/', attrs='target="_blank" rel="external noopener noreferrer"') }}</p>
 
-      <div class="js-vpn-scroll-to-pricing">
         <a class="mzp-c-button mzp-t-xl" href="#pricing" data-cta-type="button" data-cta-text="Scroll to pricing" data-cta-position="secondary">
           {{ ftl('vpn-shared-subscribe-link') }}
         </a>
@@ -164,29 +146,23 @@
         <p class="guarantee-copy">
           {{ ftl('vpn-shared-money-back-guarantee') }}
         </p>
-      </div>
+      {% endcall %}
+    {% else %}
+      {% call vpn_content_media(
+        heading=ftl('vpn-shared-countries-coming-soon', countries=available_countries),
+        image_url='img/products/vpn/landing/vpn-cntwell-05-v2.png',
+        class_name='vpn-content-media-left-half vpn-more-countries-coming-soon hide-from-legacy-ie'
+      ) %}
 
-      <div class="js-target-secondary-cta"></div>
-    {% endcall %}
+        <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="secondary">
+          {{ ftl('vpn-shared-waitlist-link') }}
+        </a>
 
-    {% call vpn_content_media(
-      heading=ftl('vpn-shared-countries-coming-soon', countries=available_countries),
-      image_url='img/products/vpn/landing/vpn-cntwell-05-v2.png',
-      class_name='vpn-content-media-left-half js-more-countries-coming-soon hide-from-legacy-ie'
-    ) %}
-
-      <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="secondary">
-        {{ ftl('vpn-shared-waitlist-link') }}
-      </a>
-
-      <p class="availability-copy">
-        {% if switch('vpn-launch-wave-iv') %}
-          {{ ftl('vpn-shared-available-countries-v4') }}
-        {% else %}
-          {{ ftl('vpn-shared-available-countries-v3') }}
-        {% endif %}
-      </p>
-    {% endcall %}
+        <p class="availability-copy">
+          {{ ftl('vpn-shared-available-countries-v4', fallback='vpn-shared-available-countries-v3') }}
+        </p>
+      {% endcall %}
+    {% endif %}
   </div>
 
   <section id="faq" class="vpn-faq mzp-l-content mzp-t-content-lg">
@@ -315,11 +291,6 @@
   </footer>
 
 </main>
-
-{# HTML templates for common elements that are shown conditionally via JS #}
-{% block templates %}
-  {% include 'products/vpn/includes/templates.html' %}
-{% endblock %}
 
 {% endblock %}
 

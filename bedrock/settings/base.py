@@ -1449,42 +1449,38 @@ VPN_PLAN_ID_MATRIX = {
 # Each country can support both a default language and (optionally)
 # a set of one or more alternative languages.
 VPN_VARIABLE_PRICING = {
-    "at": {
+    "AT": {
         "default": VPN_PLAN_ID_MATRIX["euro"]["de"],
     },
-    "be": {
+    "BE": {
         "default": VPN_PLAN_ID_MATRIX["euro"]["nl"],
-        "alt": {
-            "de": VPN_PLAN_ID_MATRIX["euro"]["de"],
-            "fr": VPN_PLAN_ID_MATRIX["euro"]["fr"],
-        },
+        "de": VPN_PLAN_ID_MATRIX["euro"]["de"],
+        "fr": VPN_PLAN_ID_MATRIX["euro"]["fr"],
     },
-    "ch": {
+    "CH": {
         "default": VPN_PLAN_ID_MATRIX["chf"]["de"],
-        "alt": {
-            "fr": VPN_PLAN_ID_MATRIX["chf"]["fr"],
-            "it": VPN_PLAN_ID_MATRIX["chf"]["it"],
-        },
+        "fr": VPN_PLAN_ID_MATRIX["chf"]["fr"],
+        "it": VPN_PLAN_ID_MATRIX["chf"]["it"],
     },
-    "de": {
+    "DE": {
         "default": VPN_PLAN_ID_MATRIX["euro"]["de"],
     },
-    "es": {
+    "ES": {
         "default": VPN_PLAN_ID_MATRIX["euro"]["es"],
     },
-    "fr": {
+    "FR": {
         "default": VPN_PLAN_ID_MATRIX["euro"]["fr"],
     },
-    "ie": {
+    "IE": {
         "default": VPN_PLAN_ID_MATRIX["euro"]["en"],
     },
-    "it": {
+    "IT": {
         "default": VPN_PLAN_ID_MATRIX["euro"]["it"],
     },
-    "nl": {
+    "NL": {
         "default": VPN_PLAN_ID_MATRIX["euro"]["nl"],
     },
-    "us": {
+    "US": {
         "default": VPN_PLAN_ID_MATRIX["usd"]["en"],
     },
 }
@@ -1513,6 +1509,7 @@ VPN_COUNTRY_CODES = [
     "UM",  # United States Minor Outlying Islands
     "US",  # United States of America
     "VI",  # Virgin Islands (U.S.)
+    # EU Countries
     "DE",  # Germany
     "FR",  # France
     "AT",  # Austria
@@ -1520,15 +1517,11 @@ VPN_COUNTRY_CODES = [
     "CH",  # Switzerland
     "ES",  # Spain
     "IT",  # Italy
-]
-
-VPN_COUNTRY_CODES_WAVE_IV = [
     "IE",  # Ireland
     "NL",  # Netherlands
 ]
 
-VPN_AVAILABLE_COUNTRIES = 13
-VPN_AVAILABLE_COUNTRIES_WAVE_IV = 15
+VPN_AVAILABLE_COUNTRIES = 15
 VPN_CONNECT_SERVERS = 400
 VPN_CONNECT_COUNTRIES = 30
 VPN_CONNECT_DEVICES = 5

@@ -10,42 +10,24 @@ from django.views.decorators.http import require_POST, require_safe
 import basket
 import basket.errors
 
-from bedrock.base.waffle import switch
+from bedrock.base.geo import get_country_from_request
 from bedrock.newsletter.views import general_error, invalid_email_address
 from bedrock.products.forms import VPNWaitlistForm
 from lib import l10n_utils
 from lib.l10n_utils.fluent import ftl
 
 
-def vpn_country_codes():
-    if switch("vpn-launch-wave-iv"):
-        countries = settings.VPN_COUNTRY_CODES + settings.VPN_COUNTRY_CODES_WAVE_IV
-    else:
-        countries = settings.VPN_COUNTRY_CODES
-    return "|%s|" % "|".join(cc.lower() for cc in countries)
+def vpn_available(request):
+    country = get_country_from_request(request)
+
+    return country in settings.VPN_COUNTRY_CODES
 
 
 @require_safe
 def vpn_landing_page(request):
-    ftl_files = ["products/vpn/landing", "products/vpn/shared"]
     template_name = "products/vpn/landing.html"
+    ftl_files = ["products/vpn/landing", "products/vpn/shared"]
     sub_not_found = request.GET.get("vpn-sub-not-found", None)
-    locale = l10n_utils.get_locale(request)
-    pricing_params = settings.VPN_VARIABLE_PRICING.get(locale, settings.VPN_VARIABLE_PRICING["us"])
-    entrypoint_experiment = request.GET.get("entrypoint_experiment", None)
-    entrypoint_variation = request.GET.get("entrypoint_variation", None)
-
-    # ensure experiment parameters matches pre-defined values
-    if entrypoint_variation not in ["a", "b"]:
-        entrypoint_variation = None
-
-    if entrypoint_experiment != "vpn-landing-page-cta-change":
-        entrypoint_experiment = None
-
-    if entrypoint_experiment and entrypoint_variation:
-        template_name = "products/vpn/variations/cta-{}.html".format(entrypoint_variation)
-    else:
-        template_name = "products/vpn/landing.html"
 
     # error message for visitors who try to sign-in without a subscription (issue 10002)
     if sub_not_found == "true":
@@ -53,17 +35,9 @@ def vpn_landing_page(request):
     else:
         sub_not_found = False
 
-    if switch("vpn-launch-wave-iv"):
-        available_countries = settings.VPN_AVAILABLE_COUNTRIES_WAVE_IV
-    else:
-        available_countries = settings.VPN_AVAILABLE_COUNTRIES
-
     context = {
-        "country_codes": vpn_country_codes(),
-        "default_monthly_price": pricing_params["default"]["monthly"]["price"],
-        "default_6_month_price": pricing_params["default"]["6-month"]["price"],
-        "default_12_month_price": pricing_params["default"]["12-month"]["price"],
-        "available_countries": available_countries,
+        "vpn_available": vpn_available(request),
+        "available_countries": settings.VPN_AVAILABLE_COUNTRIES,
         "connect_servers": settings.VPN_CONNECT_SERVERS,
         "connect_countries": settings.VPN_CONNECT_COUNTRIES,
         "connect_devices": settings.VPN_CONNECT_DEVICES,

@@ -338,7 +338,7 @@ $image-path: '/media/protocol/img';
     .vpn-content-block-sub-heading {
         @include text-title-md;
 
-        .js-vpn-monthly-price-display span {
+        .vpn-monthly-price-display span {
             @include text-title-2xs;
             display: inline;
         }
@@ -393,7 +393,7 @@ $image-path: '/media/protocol/img';
             }
         }
 
-        .vpn-content-block-sub-heading .js-vpn-monthly-price-display span {
+        .vpn-content-block-sub-heading .vpn-monthly-price-display span {
             display: block;
             margin-top: $spacing-md;
         }
@@ -440,7 +440,7 @@ $image-path: '/media/protocol/img';
             }
         }
 
-        .vpn-content-block-sub-heading .js-vpn-monthly-price-display span {
+        .vpn-content-block-sub-heading .vpn-monthly-price-display span {
             display: inline;
         }
 

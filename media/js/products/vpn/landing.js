@@ -7,13 +7,6 @@
 (function () {
     'use strict';
 
-    // Init Geo-location lookup for product availability.
-    Mozilla.VPN.init();
-})();
-
-(function () {
-    'use strict';
-
     // Init hero image carousel for large viewports only.
     var hasMediaQueries = typeof window.matchMedia !== 'undefined';
 
