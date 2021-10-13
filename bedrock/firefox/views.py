@@ -677,7 +677,8 @@ class WhatsNewChinaView(WhatsnewView):
         if template in self.excluded_templates:
             template = ["firefox/whatsnew/index-account.html"]
 
-        return template
+        # return a list to conform with original intention
+        return [template]
 
 
 class DownloadThanksView(L10nTemplateView):
