@@ -675,7 +675,7 @@ class WhatsNewChinaView(WhatsnewView):
     def get_template_names(self):
         template = super().get_template_names()[0]
         if template in self.excluded_templates:
-            template = ["firefox/whatsnew/index-account.html"]
+            template = "firefox/whatsnew/index-account.html"
 
         # return a list to conform with original intention
         return [template]
