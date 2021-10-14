@@ -667,3 +667,58 @@ class TestFirefoxWelcomePage1(TestCase):
         req.locale = "en-US"
         views.firefox_welcome_page1(req)
         render_mock.assert_called_once_with(req, "firefox/welcome/page1.html", ANY, ftl_files="firefox/welcome/page1")
+
+
+class TestWhatsNewChinaView(TestCase):
+    @patch("bedrock.firefox.views.l10n_utils.render")
+    def test_wnp_china__template_substitution(self, render_mock):
+
+        INDEX_ACCOUNT_TEMPLATE = "firefox/whatsnew/index-account.html"
+
+        for params in (
+            # The following are featured in WhatsNewChinaView.excluded_templates -
+            # these would normally trigger special templates via WhatsNewView.get_template_names,
+            # not INDEX_ACCOUNT_TEMPLATE, but WhatsNewChinaView changes that to the index-account template
+            ("87.0", "en-US", INDEX_ACCOUNT_TEMPLATE),
+            ("88.0", "en-US", INDEX_ACCOUNT_TEMPLATE),
+            ("92.0", "en-US", INDEX_ACCOUNT_TEMPLATE),
+            ("92.0.1", "en-US", INDEX_ACCOUNT_TEMPLATE),  # real-world 500ing example
+            ("93.0", "en-US", INDEX_ACCOUNT_TEMPLATE),  # real-world 500ing example
+        ):
+            with self.subTest(params):
+                render_mock.reset_mock()
+                version_ref, locale, expected_template = params
+
+                req = RequestFactory(HTTP_USER_AGENT="Firefox").get("/firefox/whatsnew/china/")
+                req.locale = locale
+                view = views.WhatsNewChinaView.as_view()
+                view(req, version=version_ref)
+
+                template_used = render_mock.call_args[0][1]
+                assert template_used == [expected_template]
+
+    @patch("bedrock.firefox.views.WhatsnewView.get_template_names")
+    def test_wnp_china_get_template_names(self, mock_get_template_names):
+        # More unit-like test
+        for params in (
+            ("firefox/whatsnew/whatsnew-fx92-en.html", "firefox/whatsnew/index-account.html"),
+            ("firefox/whatsnew/whatsnew-fx93-v1-en.html", "firefox/whatsnew/index-account.html"),
+            ("firefox/whatsnew/whatsnew-fx93-v2-en.html", "firefox/whatsnew/index-account.html"),
+            ("firefox/whatsnew/whatsnew-fx93-v3-en.html", "firefox/whatsnew/index-account.html"),
+            ("firefox/whatsnew/whatsnew-fx93-v2-de.html", "firefox/whatsnew/index-account.html"),
+            ("firefox/whatsnew/whatsnew-fx93-v3-de.html", "firefox/whatsnew/index-account.html"),
+            ("firefox/whatsnew/whatsnew-fx93-v2-fr.html", "firefox/whatsnew/index-account.html"),
+            ("firefox/whatsnew/whatsnew-fx93-v3-fr.html", "firefox/whatsnew/index-account.html"),
+            ("firefox/whatsnew/whatsnew-fx93-it.html", "firefox/whatsnew/index-account.html"),
+            ("firefox/whatsnew/whatsnew-fx93-es.html", "firefox/whatsnew/index-account.html"),
+            ("firefox/whatsnew/whatsnew-fx93-nl.html", "firefox/whatsnew/index-account.html"),
+            # Control case - template not overwritten
+            ("foo/bar/baz.html", "foo/bar/baz.html"),
+        ):
+            with self.subTest(params):
+                mock_get_template_names.reset_mock()
+                superclass_template_name, expected_template_name = params
+                mock_get_template_names.return_value = [superclass_template_name]
+
+                view = views.WhatsNewChinaView()
+                assert view.get_template_names() == [expected_template_name]
