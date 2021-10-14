@@ -19,7 +19,7 @@ can be cloned and kept up-to-date using the ``l10n_update`` management command:
 If you don't already have a ``data/locale`` directory, this command will clone the
 git repo containing the .lang translation files (either the dev or prod files
 depending on your ``DEV`` setting). If the folder is already present, it will
-update the repository to the latest version. It do the same thing for the
+update the repository to the latest version. It does the same thing for the
 repository for the .ftl translation files in ``data/www-l10n`` directory.
 
 Fluent
@@ -70,7 +70,7 @@ exactly this works later.
 Translating with .ftl files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The `Fluent file syntax`_ is well document on the Fluent Project's site. We use "double hash" or
+The `Fluent file syntax`_ is well documented on the Fluent Project's site. We use "double hash" or
 "group" comments to indicate strings required for activation. A group comment only ends when
 another group comment starts however, so you should either group your required strings at the
 bottom of a file, or also have a "not required" group comment. Here's an example:
