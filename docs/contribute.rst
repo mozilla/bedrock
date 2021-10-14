@@ -86,7 +86,8 @@ then you should be working on a common topic branch.
 
 Once your code has been positively reviewed, it will be deployed shortly after.
 So if you want feedback on your code but it's not ready to be deployed, you
-should note it in the pull request.
+should note it in the pull request, or use a `Draft PR`_. Also make use of 
+an appropriate label, such as ``Do Not Merge``.
 
 Squashing your commits
 ----------------------
@@ -180,3 +181,4 @@ We automate pushing to production via tagged commits (see :ref:`tagged-commit`)
 .. _IT documentation: https://mana.mozilla.org/wiki/pages/viewpage.action?pageId=1802733
 .. _IT bug: https://bugzilla.mozilla.org/enter_bug.cgi?product=mozilla.org&format=itrequest
 .. _CircleCI: https://circleci.com/
+.. _Draft PR: https://github.blog/2019-02-14-introducing-draft-pull-requests/

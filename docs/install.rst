@@ -85,6 +85,16 @@ files and/or package.json file then simply running::
 
     $ make build
 
+
+.. note::   
+
+    **For Apple Silicon / M1 users**
+
+    If you find that when you're building you hit issues with Puppeteer not installing, these will help:
+
+    * `Set up a Rosetta Terminal <https://github.com/puppeteer/puppeteer/issues/6622#issuecomment-910101797>`_.
+    * Follow these `Puppeter installation tips: <https://github.com/puppeteer/puppeteer/issues/6622#issuecomment-787912758>`_.
+
 **Asset bundles**
 
 If you make a change to ``media/static-bundles.json``, you'll need to restart Docker.
