@@ -5,6 +5,8 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.test import RequestFactory
 
+from sentry_sdk import capture_exception
+
 from bedrock.contentful.api import ContentfulPage
 from bedrock.contentful.models import ContentfulEntry
 
@@ -49,8 +51,14 @@ class Command(BaseCommand):
         for ctype, page_id in content_ids:
             request = self.rf.get("/")
             request.locale = "en-US"
-            page = ContentfulPage(request, page_id)
-            page_data = page.get_content()
+            try:
+                page = ContentfulPage(request, page_id)
+                page_data = page.get_content()
+            except Exception:
+                # problem with the page, load other pages
+                capture_exception()
+                continue
+
             language = page_data["info"]["lang"]
             hash = data_hash(page_data)
 
