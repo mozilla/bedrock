@@ -29,6 +29,7 @@ urlpatterns = (
     url(r"", include("bedrock.newsletter.urls")),
     url(r"", include("bedrock.sitemaps.urls")),
     url(r"^exp/", include("bedrock.exp.urls")),
+    url(r"^external/", include("bedrock.externalpages.urls")),
     url(r"^healthz/$", watchman_views.ping, name="watchman.ping"),
     url(r"^readiness/$", watchman_views.status, name="watchman.status"),
     url(r"^healthz-cron/$", base_views.cron_health_check),
