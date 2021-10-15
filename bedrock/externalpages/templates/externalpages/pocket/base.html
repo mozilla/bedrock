@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>{% block title %}{% endblock %} | Pocket</title>
+  </head>
+  <body>
+    <nav>
+      <a href="{{ url('externalpages.pocket.index') }}">Home</a>
+      <a href="{{ url('externalpages.pocket.about') }}">About</a>
+      <a href="{{ url('externalpages.pocket.add') }}">How to Save</a>
+      <a href="{{ url('externalpages.pocket.android') }}">Pocket for Android</a>
+    </nav>
+    <main class="container">{% block content %}{% endblock %}</main>
+  </body>
+</html>
