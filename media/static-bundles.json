@@ -410,6 +410,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-92-fr.scss"
+      ],
+      "name": "firefox_whatsnew_92_fr"
+    },
+    {
+      "files": [
         "css/firefox/whatsnew/whatsnew-92-vpn.scss"
       ],
       "name": "firefox_whatsnew_92_vpn"
