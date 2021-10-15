@@ -6,11 +6,9 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/picto-card';
 @import '~@mozilla-protocol/core/protocol/css/components/picto';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 @import '~@mozilla-protocol/core/protocol/css/components/hero';
-@import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
 
 main {
     background-color: $color-ink-80;
@@ -36,29 +34,22 @@ main {
 .contribute {
     background: #321c64;
     padding-top: 0;
+}
 
-    .contribute-title {
-        @include text-title-xs;
-        color: get-theme('title-text-color-inverse');
-        font-weight: normal;
-        margin: $spacing-lg auto;
-        max-width: 580px;
-        text-align: center;
-    }
+.contribute-title {
+    @include text-title-xs;
+    color: get-theme('title-text-color-inverse');
+    font-weight: normal;
+    margin: $spacing-lg auto;
+    max-width: 580px;
+    text-align: center;
+}
 
-    .mzp-c-card-picto-content {
-        padding-top: 90px;
-
-        &:before {
-            background-color: transparent;
-            height: 70px;
-            margin-left: -35px;
-            width: 70px;
-        }
-    }
-
-    .mzp-c-card-picto-desc p {
-        color: $color-white;
+.contribute-list {
+    margin-top: $layout-md;
+    padding: $spacing-lg;
+    @media #{$mq-md} {
+        padding: $spacing-2xl;
     }
 }
 
@@ -72,13 +63,5 @@ main {
     h5,
     h6 {
         @include text-title-sm;
-    }
-}
-
-.mzp-l-columns .mzp-c-picto {
-    margin-bottom: $layout-md;
-    @media #{$mq-md} {
-        margin-bottom: 0;
-        padding: $spacing-2xl $spacing-2xl 0;
     }
 }

@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import hero, billboard, picto_card with context %}
+{% from "macros-protocol.html" import hero, billboard, picto with context %}
 
 {% extends "base-protocol-mozilla.html" %}
 
@@ -117,44 +117,46 @@
       </div>
     </section>
 
-    <section class="mzp-l-card-third">
-      <ul>
-        <li>
-          {% call picto_card(
-          custom_desc=True,
-          class='extensions') %}
-          <a class="mzp-c-cta-link" rel="external" href="https://addons.mozilla.org/{{ referrals }}">
-            <h2 class="mzp-c-card-picto-title">{{ ftl('home-extensions') }}</h2>
-          </a>
-          <p class="mzp-c-card-picto-desc">
-            {{ ftl('home-personalize-firefox-with-your') }}
-          </p>
+    <section class="externals">
+      <ul class="mzp-l-content mzp-l-columns mzp-t-columns-three mzp-t-picto-center">
+          {% call picto(
+            image_url='img/home/extensions.png',
+            image_width=100,
+            include_highres_image=True,
+            body=True,
+            base_el='li'
+          ) %}
+            <a class="mzp-c-cta-link" rel="external" href="https://addons.mozilla.org/{{ referrals }}">
+              <h2 class="mzp-c-picto-heading">{{ ftl('home-extensions') }}</h2>
+            </a>
+            <p>{{ ftl('home-personalize-firefox-with-your') }}</p>
           {% endcall %}
-        </li>
-        <li>
-          {% call picto_card(
-          custom_desc=True,
-          class='careers') %}
-          <a class="mzp-c-cta-link" rel="external" href="https://careers.mozilla.org/{{ referrals }}">
-            <h2 class="mzp-c-card-picto-title">{{ ftl('home-careers') }}</h2>
-          </a>
-          <p class="mzp-c-card-picto-desc">
-            {{ ftl('home-learn-about-the-benefits-of') }}
-          </p>
+
+          {% call picto(
+            image_url='img/home/careers.png',
+            image_width=100,
+            include_highres_image=True,
+            body=True,
+            base_el='li'
+          ) %}
+            <a class="mzp-c-cta-link" rel="external" href="https://careers.mozilla.org/{{ referrals }}">
+              <h2 class="mzp-c-picto-heading">{{ ftl('home-careers') }}</h2>
+            </a>
+            <p>{{ ftl('home-learn-about-the-benefits-of') }}</p>
           {% endcall %}
-        </li>
-        <li>
-          {% call picto_card(
-          custom_desc=True,
-          class='help') %}
-          <a class="mzp-c-cta-link" rel="external" href="https://support.mozilla.org/{{ referrals }}">
-            <h2 class="mzp-c-card-picto-title">{{ ftl('home-need-help') }}</h2>
-          </a>
-          <p class="mzp-c-card-picto-desc">
-            {{ ftl('home-get-answers-to-your-questions') }}
-          </p>
+
+          {% call picto(
+            image_url='img/home/help.png',
+            image_width=100,
+            include_highres_image=True,
+            body=True,
+            base_el='li'
+          ) %}
+            <a class="mzp-c-cta-link" rel="external" href="https://support.mozilla.org/{{ referrals }}">
+              <h2 class="mzp-c-picto-heading">{{ ftl('home-need-help') }}</h2>
+            </a>
+            <p>{{ ftl('home-get-answers-to-your-questions') }} </p>
           {% endcall %}
-        </li>
       </ul>
     </section>
 

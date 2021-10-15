@@ -560,7 +560,7 @@ When we find we are frequently re-using code for a particular Protocol component
 You can find parameter definitions for the available Protocol macros below.
 
 Picto
-^^^^^
+~~~~~
 
 - title
     String indicating heading text (usually a translation id wrapped in ftl function)
@@ -586,7 +586,7 @@ Picto
 - image_url
     image location to be used. Start it off with ‘img/…’.
 
-    Default: None
+    Default: ''
 
     Example: ``image_url='img/icons/mountain-purple.svg'``
 
@@ -636,7 +636,7 @@ Picto
 
 
 Call out
-^^^^^^^^
+~~~~~~~~
 
 - title
     **Required**. String indicating heading text (usually a translation id wrapped in ftl function).
@@ -675,7 +675,7 @@ Call out
 
 
 Split
-^^^^^
+~~~~~
 
 - block_id
     String providing id to the section tag (usually if it needs to be used as an in-page link).
@@ -763,7 +763,7 @@ Split
 
 
 Billboard
-^^^^^^^^^
+~~~~~~~~~
 
 - title
     **Required**. String indicating heading text (usually a translation id wrapped in ftl function).
@@ -830,7 +830,7 @@ Billboard
 
 
 Feature Card
-^^^^^^^^^^^^
+~~~~~~~~~~~~
 
 - title
     String indicating heading text (usually a translation id wrapped in ftl function).
@@ -911,7 +911,7 @@ Feature Card
 
 
 Card
-^^^^
+~~~~
 
 - youtube_id
     String indicating the Youtube ID found at the end of a Youtube video URL. Used when we are embedding a video to the card rather than an image.

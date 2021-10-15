@@ -10,8 +10,8 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/hero';
 @import '~@mozilla-protocol/core/protocol/css/components/billboard';
 @import '~@mozilla-protocol/core/protocol/css/components/newsletter-form';
-@import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
-@import '~@mozilla-protocol/core/protocol/css/components/picto-card';
+@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
+@import '~@mozilla-protocol/core/protocol/css/components/picto';
 
 .mzp-c-hero .c-primary-cta-title {
     @include font-firefox;
@@ -37,46 +37,24 @@ $image-path: '/media/protocol/img';
 }
 
 //* -------------------------------------------------------------------------- */
-// Picto Cards
+// Picto
 
-// Picto card custom icon sizes.
-// These should be standardized into a `large` icon size.
-// https://github.com/mozilla/protocol/issues/382
-
-.mzp-c-card-picto .mzp-c-card-picto-content {
-    padding-top: 140px;
-
-    &:before {
-        background-color: transparent;
-        background-position: top left;
-        background-repeat: no-repeat;
-        height: 100px;
-        margin-left: -52px;
-        width: 100px;
+.externals {
+    .mzp-l-content {
+        padding-bottom: 0;
     }
 
     @media #{$mq-lg} {
-        .mzp-c-card-picto-title {
+        .mzp-c-picto-heading {
             @include text-title-sm;
-            margin-bottom: $spacing-xl;
+        }
+
+        .mzp-c-picto-body {
+            max-width: $content-xs;
+            margin: 0 auto;
         }
     }
 }
-
-.extensions .mzp-c-card-picto-content::before {
-    @include at2x('/media/img/home/externals-sprite.png', 100px, 300px);
-}
-
-.careers .mzp-c-card-picto-content::before {
-    @include at2x('/media/img/home/externals-sprite.png', 100px, 300px);
-    background-position: left -100px;
-}
-
-.help .mzp-c-card-picto-content::before {
-    @include at2x('/media/img/home/externals-sprite.png', 100px, 300px);
-    background-position: left -200px;
-}
-
 
 //* -------------------------------------------------------------------------- */
 // Two column section
