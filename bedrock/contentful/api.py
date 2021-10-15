@@ -655,8 +655,9 @@ class ContentfulPage:
         if "image" in fields:
             card_image = fields.get("image")
             # TODO smaller image files when layout allows it
-            highres_image_url = _get_card_image_url(card_image, 800, aspect_ratio)
-            image_url = _get_card_image_url(card_image, 800, aspect_ratio)
+            if card_image:
+                highres_image_url = _get_card_image_url(card_image, 800, aspect_ratio)
+                image_url = _get_card_image_url(card_image, 800, aspect_ratio)
 
         if "you_tube" in fields:
             # TODO: add youtube JS to page_js
