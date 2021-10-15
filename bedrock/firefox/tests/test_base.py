@@ -428,6 +428,14 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ["firefox/whatsnew/whatsnew-fx92-de.html"]
 
+    def test_fx_92_0_0_fr(self, render_mock):
+        """Should use whatsnew-fx92-fr template for 92.0 in French"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "fr"
+        self.view(req, version="92.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx92-fr.html"]
+
     @patch.dict(os.environ, SWITCH_FIREFOX_WHATSNEW_92_VPN_PRICING="False")
     def test_fx_92_0_0_en(self, render_mock):
         """Should use whatsnew-fx92-en template for 92.0 in English when VPN switch is OFF"""

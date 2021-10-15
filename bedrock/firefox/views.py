@@ -507,7 +507,7 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx91-de.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx92-en.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx92-de.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx92-fr.html": ["firefox/whatsnew/whatsnew-fx90.ftl", "firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx92-fr.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx92-vpn-en.html": ["firefox/whatsnew/whatsnew", "products/vpn/shared"],
         "firefox/whatsnew/whatsnew-fx92-vpn-fr.html": ["firefox/whatsnew/whatsnew", "products/vpn/shared"],
         "firefox/whatsnew/whatsnew-fx93-v1-en.html": ["firefox/whatsnew/whatsnew"],
