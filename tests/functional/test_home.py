@@ -11,7 +11,7 @@ from pages.home import HomePage
 @pytest.mark.sanity
 @pytest.mark.smoke
 @pytest.mark.nondestructive
-@pytest.mark.parametrize("locale", ["en-US", "de", "fr"])
+@pytest.mark.parametrize("locale", ["de", "fr"])
 def test_download_button_is_displayed(locale, base_url, selenium):
     page = HomePage(selenium, base_url, locale=locale).open()
     assert page.is_primary_download_button_displayed
@@ -29,18 +29,16 @@ def test_accounts_button_is_displayed_rest_tier_1(locale, base_url, selenium):
     assert not page.is_secondary_download_button_displayed
 
 
-@pytest.mark.skip_if_not_firefox(reason="Alternative CTA is displayed only to Firefox users")
-@pytest.mark.nondestructive
-def test_accounts_button_is_displayed(base_url, selenium):
-    page = HomePage(selenium, base_url, locale="en-US").open()
-    assert page.is_primary_alt_button_displayed
-    assert page.is_secondary_accounts_button_displayed
-    assert not page.is_primary_download_button_displayed
-    assert not page.is_secondary_download_button_displayed
-
-
 @pytest.mark.skip_if_firefox(reason="Download button is displayed only to non-Firefox users")
 @pytest.mark.nondestructive
 def test_legacy_download_button_is_displayed(base_url, selenium):
     page = HomePage(selenium, base_url, locale="it").open()
     assert page.is_primary_download_button_displayed
+
+
+@pytest.mark.skip_if_not_firefox(reason="Alternative CTA is displayed only to Firefox users")
+@pytest.mark.nondestructive
+def test_accounts_button_is_displayed(base_url, selenium):
+    page = HomePage(selenium, base_url, locale="it").open()
+    assert page.is_primary_alt_button_displayed
+    assert not page.is_primary_download_button_displayed
