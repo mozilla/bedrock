@@ -16,12 +16,6 @@
   {{ css_bundle('firefox_whatsnew_91') }}
 {% endblock %}
 
-{% block experiments %}
-  {% if switch('firefox-whatsnew90-experiment', ['en-US', 'en-CA']) %}
-    {{ js_bundle('firefox_whatsnew90_experiment') }}
-  {% endif %}
-{% endblock %}
-
 {% set _entrypoint = 'mozilla.org-whatsnew91' %}
 {% set utm_campaign = campaign + '-en' %}
 
