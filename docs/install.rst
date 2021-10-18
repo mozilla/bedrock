@@ -86,7 +86,7 @@ files and/or package.json file then simply running::
     $ make build
 
 
-.. note::   
+.. note::
 
     **For Apple Silicon / M1 users**
 
@@ -116,19 +116,19 @@ You need to create a virtual environment for Python libraries:
 
 1. Create a virtual env in the folder `venv` ::
 
-    $ python3 -m venv venv             
+    $ python3 -m venv venv
 
-2. Activate the virtual env. On Windows, run: venv\Scripts\activate.bat ::    
+2. Activate the virtual env. On Windows, run: venv\Scripts\activate.bat ::
 
-    $ source venv/bin/activate             
+    $ source venv/bin/activate
 
 3. Securely upgrade pip ::
 
-    $ pip install --upgrade pip          
+    $ pip install --upgrade pip
 
 4. Installs dependencies ::
 
-    $ pip install -r requirements/dev.txt           
+    $ pip install -r requirements/dev.txt
 
 
 If you are on OSX and some of the compiled dependencies fails to compile, try explicitly setting the arch flags and try again
@@ -191,6 +191,16 @@ container and show you the output. You can also just run ``bash`` to get an inte
 the container which you can then use to run any commands you'd like and inspect the file system::
 
     $ docker-compose run test bash
+
+.. note::
+
+    Gotcha wanrning: the command above runs a bash shell in a fresh ``test``
+    container, which doesn't have your local .env file available to it.
+
+    If you want to run a shell on the actual running app container, to be able to
+    use your .env, specify the ``app`` service and ``exec`` not ``run``:
+
+        $ docker-compose exec app bash
 
 Local
 -----
@@ -284,7 +294,7 @@ If you see a typo or similarly small change, you can use the "Edit in GitHub" li
 
 If you want to make a bigger change or `find a Documentation issue on the repo <https://github.com/mozilla/bedrock/labels/Documentation>`_, it is best to edit and preview locally before submitting a pull request. You can do this with Docker or Local installations. Run the commands from your root folder. They will build documentation and start a live server to auto-update any changes you make to a documentation file.
 
-Docker: 
+Docker:
 
 .. code-block:: bash
 
