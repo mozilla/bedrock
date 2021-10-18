@@ -142,8 +142,9 @@ class Command(BaseCommand):
         * delete -> NO (ditto)
         """
 
-        viable_message_found = False
+        poll_queue = True
         may_purge_queue = False
+        viable_message_found = False
 
         GO_ACTIONS = {"create", "publish", "unarchive"}
         EXTRA_DEV_GO_ACTIONS = {"save", "auto_save"}
@@ -164,27 +165,33 @@ class Command(BaseCommand):
         )
         queue = sqs.Queue(settings.CONTENTFUL_NOTIFICATION_QUEUE_URL)
 
-        msgs = queue.receive_messages(
-            WaitTimeSeconds=settings.CONTENTFUL_NOTIFICATION_QUEUE_WAIT_TIME,
-            MaxNumberOfMessages=10,
-        )
+        while poll_queue:
+            msg_batch = queue.receive_messages(
+                WaitTimeSeconds=settings.CONTENTFUL_NOTIFICATION_QUEUE_WAIT_TIME,
+                MaxNumberOfMessages=10,
+            )
 
-        for sqs_msg in msgs:
-            msg_body = sqs_msg.body
-            action = self._get_message_action(msg_body)
-            if action in GO_ACTIONS:
-                # we've found a viable one, so that's great. Drain down the queue and move on
-                viable_message_found = True
-                self.log(f"Got a viable message: {msg_body}")
-                may_purge_queue = True
+            if len(msg_batch) == 0:
+                self.log("No messages in the queue")
                 break
-            else:
-                # Explicitly delete the message and move on to the next one.
-                # Note that we don't purge the entire queue even if all of the
-                # current messages are inviable, because we don't want the risk
-                # of a viable message being lost during the purge process.
-                sqs_msg.delete()
-                continue
+
+            for sqs_msg in msg_batch:
+                msg_body = sqs_msg.body
+                action = self._get_message_action(msg_body)
+                if action in GO_ACTIONS:
+                    # we've found a viable one, so that's great. Drain down the queue and move on
+                    viable_message_found = True
+                    self.log(f"Got a viable message: {msg_body}")
+                    may_purge_queue = True
+                    poll_queue = False  # no need to get more messages
+                    break
+                else:
+                    # Explicitly delete the message and move on to the next one.
+                    # Note that we don't purge the entire queue even if all of the
+                    # current messages are inviable, because we don't want the risk
+                    # of a viable message being lost during the purge process.
+                    sqs_msg.delete()
+                    continue
 
         if not viable_message_found:
             self.log(f"No viable message found in queue")
