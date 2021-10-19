@@ -5,7 +5,7 @@
 
 import json
 from hashlib import sha256
-from typing import Tuple, Union
+from typing import Dict, Tuple, Union
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
@@ -21,7 +21,7 @@ from bedrock.contentful.models import ContentfulEntry
 MAX_MESSAGES_PER_QUEUE_POLL = 10
 
 
-def data_hash(data: dict) -> str:
+def data_hash(data: Dict) -> str:
     str_data = json.dumps(data, sort_keys=True)
     return sha256(str_data.encode("utf8")).hexdigest()
 
