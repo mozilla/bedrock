@@ -1,6 +1,7 @@
+# -*- coding: utf-8 -*-
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import json
 from hashlib import sha256
@@ -16,6 +17,8 @@ from sentry_sdk import capture_exception
 
 from bedrock.contentful.api import ContentfulPage
 from bedrock.contentful.models import ContentfulEntry
+
+MAX_MESSAGES_PER_QUEUE_POLL = 10
 
 
 def data_hash(data: dict) -> str:
@@ -87,9 +90,9 @@ class Command(BaseCommand):
             label, _, _ = msg.split(",")
             _, _, action = label.split(".")
             return action
-        except ValueError as ve:
-            self.log(f"Problem getting message action from {msg}: {ve}")
-            capture_exception(ve)
+        except (AttributeError, ValueError) as e:
+            self.log(f"Problem getting message action from {msg}: {e}")
+            capture_exception(e)
             return None
 
     def _purge_queue(self, queue) -> None:
@@ -132,12 +135,13 @@ class Command(BaseCommand):
 
         What action types count as a 'go' signal?
 
-        * create -> YES
-        * save -> YES if on Dev (ie, preview mode)
         * auto_save -> YES
-        * archive -> NO (because we need to remove the page in Bedrock first)
-        * unarchive -> YES
+        * create -> YES
         * publish -> YES
+        * save -> YES if on Dev (ie, preview mode)
+        * unarchive -> YES
+
+        * archive -> NO (because we need to remove the page in Bedrock first)
         * unpublish  -> NO (for similar reasons as above)
         * delete -> NO (ditto)
         """
@@ -168,7 +172,7 @@ class Command(BaseCommand):
         while poll_queue:
             msg_batch = queue.receive_messages(
                 WaitTimeSeconds=settings.CONTENTFUL_NOTIFICATION_QUEUE_WAIT_TIME,
-                MaxNumberOfMessages=10,
+                MaxNumberOfMessages=MAX_MESSAGES_PER_QUEUE_POLL,
             )
 
             if len(msg_batch) == 0:
