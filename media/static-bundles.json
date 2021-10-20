@@ -1151,8 +1151,7 @@
     },
     {
       "files": [
-        "js/firefox/new/yandex/show-yandex.js",
-        "js/firefox/new/yandex/show-yandex-init.js"
+        "js/firefox/new/yandex/show-yandex.js"
       ],
       "name": "firefox_new_download_yandex"
     },

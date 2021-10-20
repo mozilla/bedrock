@@ -26,6 +26,7 @@ import basket
 import querystringsafe_base64
 from product_details.version_compare import Version
 
+from bedrock.base.geo import get_country_from_request
 from bedrock.base.urlresolvers import reverse
 from bedrock.base.views import GeoRedirectView
 from bedrock.base.waffle import switch
@@ -775,6 +776,7 @@ class NewView(L10nTemplateView):
 
     def get_template_names(self):
         locale = l10n_utils.get_locale(self.request)
+        country = get_country_from_request(self.request)
         variant = self.request.GET.get("v", None)
         experience = self.request.GET.get("xv", None)
 
@@ -782,7 +784,7 @@ class NewView(L10nTemplateView):
         if variant not in self.variations:
             variant = None
 
-        if locale == "ru" and switch("firefox-yandex"):
+        if country == "RU" and locale == "ru" and switch("firefox-yandex"):
             template = "firefox/new/desktop/download_yandex.html"
         elif ftl_file_is_active("firefox/new/desktop") and experience != "basic":
             template = "firefox/new/desktop/download.html"

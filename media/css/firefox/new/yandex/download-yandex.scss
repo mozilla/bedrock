@@ -6,60 +6,47 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/split';
+@import '~@mozilla-protocol/core/protocol/css/components/emphasis-box';
 @import '~@mozilla-protocol/core/protocol/css/components/call-out';
-
+@import '~@mozilla-protocol/core/protocol/css/components/picto';
+@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
 
 //* ====================================================================== */
-//  Conditional State Hooks
+// Release
 
-.t-yandex {
-    display: none;
-}
+.t-releases {
+    position: relative;
 
-.show-yandex {
-    main > * {
-        display: none;
-    }
-
-    main > .t-yandex {
+    &:before {
+        background-image: url('/media/img/firefox/new/desktop/release-noodles.svg');
+        content: '';
         display: block;
-    }
-}
-
-
-//* ====================================================================== */
-//  Yandex content
-
-.t-yandex {
-    .noodle-browser {
-        @include at2x('/media/img/firefox/new/yandex/yandex.jpg', 500px, 358);
-        height: 358px;
+        height: 212px;
+        left: 0;
+        position: absolute;
         top: 0;
-        width: 500px;
+        width: 287px;
+        z-index: 0;
     }
 
-    .t-intro .c-noodles {
-        height: 358px;
-        width: 500px;
+    .mzp-c-emphasis-box {
+        margin: 0 auto;
+        padding-left: $layout-xs;
+        padding-right: $layout-xs;
+        position: relative;
+        z-index: 1;
+
+    @media #{$mq-sm} {
+        padding-left: $layout-md;
+        padding-right: $layout-md;
     }
 
-    @media #{$mq-lg} {
-
-        .t-intro .c-noodles {
-            height: 441px;
-            width: 617px;
-        }
-
-        .noodle-browser {
-            @include at2x('/media/img/firefox/new/yandex/yandex.jpg', 617px, 441px);
-            height: 441px;
-            width: 617px;
-        }
-
-        .c-trio li {
-            margin-top: $layout-sm;
-            margin-bottom: $layout-sm;
-        }
-
+    @media #{$mq-md} {
+        padding-left: $layout-lg;
+        padding-right: $layout-lg;
+    }
     }
 }

@@ -11,6 +11,6 @@ from pages.firefox.privacy.products import FirefoxPrivacyProductsPage
 @pytest.mark.skip_if_firefox(reason="Download buttons are shown to non-Firefox browsers only")
 @pytest.mark.nondestructive
 def test_download_button_displayed(base_url, selenium):
-    page = FirefoxPrivacyProductsPage(selenium, base_url, params="").open()
+    page = FirefoxPrivacyProductsPage(selenium, base_url).open()
     assert page.primary_download_button.is_displayed
     assert page.secondary_download_button.is_displayed
