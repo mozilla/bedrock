@@ -11,7 +11,7 @@ from pages.firefox.accounts import FirefoxAccountsPage
 
 @pytest.mark.nondestructive
 def test_account_form(base_url, selenium):
-    page = FirefoxAccountsPage(selenium, base_url, params="").open()
+    page = FirefoxAccountsPage(selenium, base_url, params="?signed-in=false").open()
     page.join_firefox_form.type_email("success@example.com")
     page.join_firefox_form.click_continue()
     url = unquote(selenium.current_url)

@@ -40,7 +40,7 @@ class BasePage(ScrollElementIntoView, Page):
 
     @property
     def URL_TEMPLATE(self):
-        if "?" in self._URL_TEMPLATE:
+        if "{params}" in self._URL_TEMPLATE:
             return f"{self._URL_TEMPLATE}&automation=true"
         else:
             return f"{self._URL_TEMPLATE}?automation=true"

@@ -37,5 +37,8 @@ class YandexDownloadPage(BasePage):
 
     @property
     def is_yandex_download_button_displayed(self):
-        button = self.find_element(*self._yandex_download_button_locator)
-        return button.is_displayed() and "https://yandex.ru/firefox/mozilla/" in button.get_attribute("href")
+        if self.is_element_present(*self._yandex_download_button_locator):
+            button = self.find_element(*self._yandex_download_button_locator)
+            return button.is_displayed() and "https://yandex.ru/firefox/mozilla/" in button.get_attribute("href")
+        else:
+            return False

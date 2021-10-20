@@ -4,79 +4,86 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import call_out_compact with context %}
+{% from "macros-protocol.html" import call_out_compact, picto, split with context %}
 
-{% extends "firefox/new/desktop/download.html" %}
+{% extends "firefox/new/desktop/base.html" %}
 
 {% block extrahead %}
   {{ super() }}
   {{ css_bundle('firefox_new_download_yandex') }}
 {% endblock %}
 
-{% block string_data %}
-    {{ super() }}
-    data-page-title="Firefox с Яндексом"
-    data-page-desc="Версия браузера Firefox с сервисами Яндекса на русском языке доступна для пользователей в России. Сейчас в браузер встроены Дзен, Советник и Визуальные закладки. Основная версия браузера Firefox на русском языке доступна для пользователей по всему миру."
+{% block string_data %}{% endblock %}
+
+{% block page_title_full %}Firefox с Яндексом{% endblock %}
+{% block page_desc %}Версия браузера Firefox с сервисами Яндекса на русском языке доступна для пользователей в России. Сейчас в браузер встроены Дзен, Советник и Визуальные закладки. Основная версия браузера Firefox на русском языке доступна для пользователей по всему миру.{% endblock %}
+
+{% block sub_navigation %}
+  {% include 'firefox/new/desktop/includes/sub_nav.html' %}
 {% endblock %}
 
+{% block content %}
+<main class="t-yandex" role="main" {% if v %}data-variant="{{ v }}"{% endif %}>
+  {% call split(
+    block_id='desktop-banner',
+    block_class='show-else mzp-l-split-hide-media-on-sm-md',
+    image_url='img/firefox/new/yandex/yandex.jpg',
+    include_highres_image=True
+  )%}
+    <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox"><h1>{{ ftl('firefox-desktop-download-firefox') }}</h1></div>
+    <h2>Firefox с Яндексом</h2>
 
-{% block yandex %}
-<div class="t-yandex">
-  <section id="desktop-banner" class="c-block t-intro show-else mzp-has-media-hide-on-sm">
-    <div class="c-block-container">
-      <div class="c-block-body">
-        <h1 class="c-logo t-browser-word-hor-xs">{{ ftl('firefox-desktop-download-firefox') }}</h1>
-        <h2>Firefox с Яндексом</h2>
+    <p>Скачать версию Firefox с сервисами Яндекса на русском языке</p>
 
-        <p>Скачать версию Firefox с сервисами Яндекса на русском языке</p>
+    <div>
+      <p><a class="mzp-c-button mzp-t-product" href="https://yandex.ru/firefox/mozilla/">Скачать Firefox с Яндексом</a></p>
+      <p><small>Для обеспечения работы этих сервисов Яндекс собирает сведения о действиях при просмотре веб-страниц и некоторые дополнительные данные. Для получения дополнительной информации обратитесь к Политике конфиденциальности Яндекса.</small></p>
 
-        <div class="c-intro-download">
-          <p><a class="mzp-c-button mzp-t-product" href="https://yandex.ru/firefox/mozilla/">Скачать Firefox с Яндексом</a></p>
-          <p><small>Для обеспечения работы этих сервисов Яндекс собирает сведения о действиях при просмотре веб-страниц и некоторые дополнительные данные. Для получения дополнительной информации обратитесь к Политике конфиденциальности Яндекса.</small></p>
-
-        </div>
-      </div>
-      <div class="c-block-media l-v-center">
-        <div class="c-block-img">
-          <div class="c-noodles">
-            <div class="noodle-browser"></div>
-          </div>
-        </div>
-      </div>
     </div>
-  </section>
+  </div>
+  {% endcall %}
 
   <section class="mzp-l-content t-releases">
     <div class="mzp-c-emphasis-box js-animate">
-      <ul class="c-trio">
-        <li>
-          <img src="{{ static('protocol/img/icons/reader-mode.svg') }}" height="64" width="64">
-          <h3 class="mzp-u-title-xs">Дзен</h3>
+      <ul class="mzp-l-columns mzp-t-columns-three">
+        {#
+          Zen
+          Service of personal recommendations based on machine learning technologies. Zen forms a feed of publications, automatically adjusting to the interests of the user.
+        #}
+        {% call picto(
+          title='Дзен',
+          base_el='li',
+          image_url='protocol/img/icons/reader-mode.svg',
+          body=True
+        ) %}
           <p>Сервис персональных рекомендаций на основе технологий машинного обучения. Дзен формирует ленту публикаций, автоматически подстраиваясь под интересы пользователя.</p>
-        </li>
-          {#
-            Zen
-            Service of personal recommendations based on machine learning technologies. Zen forms a feed of publications, automatically adjusting to the interests of the user.
-          #}
-        <li>
-          <img src="{{ static('protocol/img/icons/turbo-mode.svg') }}" height="64" width="64">
-          <h3 class="mzp-u-title-xs">Советник</h3>
-          <p>Сервис, позволяющий сравнить цены на товары и выбрать предложение с наименьшей ценой.</p>
-          {#
-            Counselor
-            A service that allows you to compare prices for goods and select the offer with the lowest price.
-          #}
-        </li>
+        {% endcall %}
 
-        <li>
-          <img src="{{ static('protocol/img/icons/top-sites.svg') }}" height="64" width="64">
-          <h3 class="mzp-u-title-xs">Визуальные закладки</h3>
+        {#
+          Counselor
+          A service that allows you to compare prices for goods and select the offer with the lowest price.
+        #}
+        {% call picto(
+        title='Советник',
+        base_el='li',
+        image_url='protocol/img/icons/turbo-mode.svg',
+        body=True
+        ) %}
+          <p>Сервис, позволяющий сравнить цены на товары и выбрать предложение с наименьшей ценой.</p>
+        {% endcall %}
+
+        {#
+          Visual bookmarks
+          Browser extension that converts saved bookmarks into a graphical panel on the browser start page.
+        #}
+        {% call picto(
+          title='Визуальные закладки',
+          base_el='li',
+          image_url='protocol/img/icons/top-sites.svg',
+          body=True
+        ) %}
           <p>Браузерное расширение, которое преобразует сохраненные закладки в графическое панно на стартовой странице браузера.</p>
-          {#
-            Visual bookmarks
-            Browser extension that converts saved bookmarks into a graphical panel on the browser start page.
-          #}
-        </li>
+        {% endcall %}
       </ul>
     </div>
   </section>
@@ -88,13 +95,21 @@
     {{ download_firefox(alt_copy='Скачать Firefox без Яндекса', dom_id='download-secondary', locale_in_transition=True, download_location='secondary cta') }}
   {% endcall %}
 
-  </div>
+  </main>
 {% endblock %}
 
 
 {% block sticky_promo %}{% endblock %}
 
 {% block js %}
-  {{ super() }}
   {{ js_bundle('firefox_new_download_yandex') }}
+{% endblock %}
+
+{% block structured_data %}
+  {
+    "@context": "https://schema.org/",
+    "@graph": [
+      {% include 'includes/structured-data/software/firefox-browser-software.json' %}
+    ]
+  }
 {% endblock %}

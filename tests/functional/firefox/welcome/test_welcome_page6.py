@@ -10,7 +10,7 @@ from pages.firefox.welcome.page6 import FirefoxWelcomePage6
 @pytest.mark.skip_if_not_firefox(reason="Welcome pages are shown to Firefox only.")
 @pytest.mark.nondestructive
 def test_set_default_browser_button_displayed(base_url, selenium):
-    page = FirefoxWelcomePage6(selenium, base_url, params="").open()
+    page = FirefoxWelcomePage6(selenium, base_url, params="?default=false").open()
     assert page.is_set_default_browser_button_displayed
 
 
