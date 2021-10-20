@@ -2,7 +2,7 @@
 
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import codecs
 from io import IOBase, StringIO
 from os import path
@@ -48,7 +48,7 @@ class TestL10nExtract(TestCase):
         testfile = ("templates/even_more_lang_files.html",)
         with capture_stdio() as out:
             extracted = next(extract_from_files(testfile, method_map=METHODS))
-        self.assertTupleEqual(extracted, (testfile[0], 9, "Mark it 8 Dude.", [], None))
+        self.assertTupleEqual(extracted, (testfile[0], 11, "Mark it 8 Dude.", [], None))
         # test default callback
         self.assertEqual(out[0], "  %s" % testfile)
 
@@ -62,8 +62,8 @@ class TestL10nExtract(TestCase):
             basedir + "some_lang_files.html",
         )
         good_extracts = (
-            (testfiles[0], 9, "Mark it 8 Dude.", [], None),
-            (testfiles[1], 10, "Is this your homework Larry?", ["Said angrily, loudly, and repeatedly."], None),
+            (testfiles[0], 11, "Mark it 8 Dude.", [], None),
+            (testfiles[1], 12, "Is this your homework Larry?", ["Said angrily, loudly, and repeatedly."], None),
         )
         with capture_stdio() as out:
             for i, extracted in enumerate(extract_from_files(testfiles, method_map=METHODS)):
@@ -268,6 +268,12 @@ class TestL10nCheck(TestCase):
         # braces doubled for .format()
         good_value = dedent(
             """\
+            {{#
+             This Source Code Form is subject to the terms of the Mozilla Public
+             License, v. 2.0. If a copy of the MPL was not distributed with this
+             file, You can obtain one at https://mozilla.org/MPL/2.0/.
+            #}}
+
             {{# Version: {0} #}}
 
             {{% extends "l10n_blocks_with_langs.html" %}}

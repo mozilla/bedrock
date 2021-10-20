@@ -1,3 +1,7 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
 # intended to be sourced into other scripts to set the git environment varaibles
 # GIT_COMMIT, GIT_COMMIT_SHORT, GIT_TAG, GIT_TAG_DATE_BASED, GIT_BRANCH, and BRANCH_NAME.
 

@@ -1,3 +1,9 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
 {% for group, options, index in widget.optgroups %}{% if group %}
 <h5>{{ group }}</h5>{% endif %}{% for option in options %}
 {% include option.template_name with widget=option %}{% endfor %}{% endfor %}
