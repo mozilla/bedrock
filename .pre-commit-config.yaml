@@ -11,6 +11,51 @@ exclude: >
     | lib/fluent_migrations
   )
 repos:
+  # Note: hooks that add content must run before ones which check formatting, lint, etc 
+  - repo: https://github.com/Lucas-C/pre-commit-hooks
+    rev: v1.1.10
+    hooks:
+    -   id: insert-license
+        language: python
+        files: \.py$
+        args:
+          - --license-filepath
+          - license_header/mpl2_header.txt
+          - --comment-style
+          - "|#|"
+    -   id: insert-license
+        files: \.js$
+        args:
+          - --license-filepath
+          - license_header/mpl2_header.txt
+          - --comment-style
+          - /*|*|*/
+    -   id: insert-license
+        files: \.scss$
+        args:
+          - --license-filepath
+          - license_header/mpl2_header.txt
+          - --comment-style
+          - //
+    -   id: insert-license
+        files: \.sh$
+        args:
+          - --license-filepath
+          - license_header/mpl2_header.txt
+    -   id: insert-license
+        files: \.html$  # jinja2
+        args:
+          - --license-filepath
+          - license_header/mpl2_header.txt
+          - --comment-style
+          - '{#||#}'
+    -   id: insert-license
+        files: \.ftl$  # fluent templates
+        args:
+          - --license-filepath
+          - license_header/mpl2_header.txt
+          - --comment-style
+          - "|#|"
   - repo: https://github.com/psf/black
     rev: 21.9b0
     hooks:
