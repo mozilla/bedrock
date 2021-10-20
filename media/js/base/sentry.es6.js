@@ -25,12 +25,7 @@ if (
                 'https://plugin.ucads.ucweb.com/api/flow/',
                 'Non-Error promise rejection captured with value' // issue 10380
             ],
-            allowUrls: [
-                '/media/js/',
-                'https://www.googletagmanager.com/',
-                'https://www.google-analytics.com/',
-                'https://cdn-3.convertexperiments.com/'
-            ],
+            allowUrls: ['/media/js/', 'https://cdn-3.convertexperiments.com/'],
             beforeSend(event) {
                 try {
                     // https://github.com/getsentry/sentry-javascript/issues/3147
