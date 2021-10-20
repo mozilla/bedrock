@@ -12,6 +12,16 @@ class TestGeo(TestCase):
         req = self.factory.get("/", HTTP_CF_IPCOUNTRY="de")
         assert get_country_from_request(req) == "DE"
 
+    def test_alternate_geo_header(self):
+        """Country code from alternate request header should work"""
+        req = self.factory.get("/", HTTP_CLOUDFRONT_VIEWER_COUNTRY="fr")
+        assert get_country_from_request(req) == "FR"
+
+    def test_alternate_geo_header_order(self):
+        """Country code from alternate request header should win"""
+        req = self.factory.get("/", HTTP_CF_IPCOUNTRY="de", HTTP_CLOUDFRONT_VIEWER_COUNTRY="fr")
+        assert get_country_from_request(req) == "FR"
+
     @override_settings(DEV=False)
     def test_geo_no_header(self):
         """Country code when header absent should be None"""
