@@ -109,6 +109,7 @@
       <p><a class="mzp-c-cta-link" href="https://getpocket.com/firefox_learnmore/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Pocket">{{ ftl('firefox-products-learn-more-about-pocket') }}</a></p>
     </div>
 
+    {% if ftl_has_messages('firefox-products-protect-your-real') %}
     <div class="c-landing-grid-item">
       <img src="{{ static('img/firefox/products/relay.svg') }}" class="c-landing-grid-img" alt="" width="316" height="223">
       <h2 class="c-landing-grid-title"><a href="https://relay.firefox.com/">{{ ftl('firefox-products-relay') }}</a></h2>
@@ -116,6 +117,8 @@
 
       <p><a class="mzp-c-cta-link" href="https://relay.firefox.com/" rel="external noopener" data-cta-type="link" data-cta-text="Relay">{{ ftl('firefox-products-learn-more-about-relay') }}</a></p>
     </div>
+    {% endif %}
+
   </div>
 
   <div class="mzp-l-content is-js-dependent">
