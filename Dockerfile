@@ -7,10 +7,10 @@ ENV PATH=/app/node_modules/.bin:$PATH
 WORKDIR /app
 
 # copy dependency definitions
-COPY package.json yarn.lock ./
+COPY package.json package-lock.json ./
 
 # install dependencies
-RUN yarn install --pure-lockfile
+RUN npm ci
 
 # copy supporting files and media
 COPY .eslintrc.js .eslintignore .stylelintrc .stylelintignore .prettierignore .prettierrc.json webpack.config.js webpack.static.config.js ./
