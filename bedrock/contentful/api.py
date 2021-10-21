@@ -70,7 +70,7 @@ def get_client(raw_mode=False):
         client = api.Client(
             settings.CONTENTFUL_SPACE_ID,
             settings.CONTENTFUL_SPACE_KEY,
-            environment="V0",
+            environment=settings.CONTENTFUL_ENVIRONMENT,
             api_url=settings.CONTENTFUL_SPACE_API,
             raw_mode=raw_mode,
             content_type_cache=False,

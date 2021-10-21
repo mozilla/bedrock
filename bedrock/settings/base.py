@@ -1034,6 +1034,7 @@ CONTENT_CARDS_URL = config("CONTENT_CARDS_URL", default=STATIC_URL)
 
 CONTENTFUL_SPACE_ID = config("CONTENTFUL_SPACE_ID", raise_error=False)
 CONTENTFUL_SPACE_KEY = config("CONTENTFUL_SPACE_KEY", raise_error=False)
+CONTENTFUL_ENVIRONMENT = config("CONTENTFUL_ENVIRONMENT", default="master")
 CONTENTFUL_SPACE_API = ("preview" if DEV else "cdn") + ".contentful.com"
 CONTENTFUL_CONTENT_TYPES = config("CONTENTFUL_CONTENT_TYPES", default="connectHomepage", parser=ListOf(str))
 
