@@ -6,8 +6,6 @@
     'use strict';
 
     var href = window.location.href;
-    var isApprovedToRun =
-        require('../../base/experiment-utils.es6.js').isApprovedToRun; // relative path
 
     var initTrafficCop = function () {
         if (
@@ -26,7 +24,7 @@
                     'data-ex-name': 'vpn-landing-page-cta-change'
                 });
             }
-        } else if (isApprovedToRun()) {
+        } else {
             var cop = new Mozilla.TrafficCop({
                 id: 'vpn-landing-page-cta-change-experiment',
                 variations: {
