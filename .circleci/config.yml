@@ -24,15 +24,15 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v1-node-{{ checksum "yarn.lock" }}
+            - v1-node-{{ checksum "package-lock.json" }}
             - v1-node-
       - run:
           name: JS Tests
           command: |
-            yarn install --pure-lockfile
+            npm ci
             npm run test
       - save_cache:
-          key: v1-node-{{ checksum "yarn.lock" }}
+          key: v1-node-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
 

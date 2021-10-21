@@ -150,16 +150,16 @@ credits, release notes, localizations, legal-docs etc::
 
     $ bin/bootstrap.sh
 
-Next, you need to have `Node.js <https://nodejs.org/>`_ and `Yarn <https://yarnpkg.com/>`_ installed.
-The node dependencies for running the site can be installed with ``yarn``::
+Next, you need to have `Node.js <https://nodejs.org/>`_ and `npm <https://www.npmjs.com/>`_ installed.
+The node dependencies for running the site can be installed with ``npm install``::
 
-    $ yarn
+    $ npm install
 
 .. note::
 
-    Bedrock uses yarn to ensure that Node.js
+    Bedrock uses npm to ensure that Node.js
     packages that get installed are the exact ones we meant (similar to pip hash checking mode for python). Refer
-    to the `yarn documentation <https://yarnpkg.com/en/docs/yarn-workflow>`_
+    to the `npm documentation <https://docs.npmjs.com/>`_
     for adding or upgrading Node.js dependencies.
 
 .. _run-python-tests:

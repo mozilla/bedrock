@@ -46,7 +46,7 @@
     "karma-webpack": "^5.0.0",
     "prettier": "^2.4.1",
     "sinon": "11.1.2",
-    "svgo": "^1.2.2",
+    "svgo": "^2.7.0",
     "tinypng-cli": "^0.0.7"
   },
   "scripts": {
