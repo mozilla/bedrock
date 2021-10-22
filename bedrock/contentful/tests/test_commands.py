@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from typing import List, Tuple
 from unittest import mock
 
+from django.conf import settings
 from django.test import override_settings
 
 import pytest
@@ -22,6 +27,39 @@ def command_instance():
     command.quiet = False
     command.log = mock.Mock(name="log")
     return command
+
+
+@pytest.mark.parametrize(
+    "space_id, space_key, run_expected",
+    (
+        ("", "a_key", False),
+        ("an_id", "", False),
+        ("an_id", "a_key", True),
+    ),
+)
+def test_handle__no_contentful_configuration_results_in_pass_but_no_exception(
+    space_id,
+    space_key,
+    run_expected,
+    command_instance,
+):
+    # If Contentful is not set up, we should just return gracefully, not blow up
+    with mock.patch("builtins.print") as mock_print:
+        with override_settings(
+            CONTENTFUL_SPACE_ID=space_id,
+            CONTENTFUL_SPACE_KEY=space_key,
+        ):
+            command_instance.refresh = mock.Mock(
+                name="mock_refresh",
+                return_value=(True, 0, 0),
+            )
+            command_instance.handle(quiet=True, force=False)
+
+            if run_expected:
+                command_instance.refresh.assert_called_once()
+            else:
+                command_instance.refresh.assert_not_called()
+                mock_print.assert_called_once_with("Contentful credentials not configured")
 
 
 @pytest.mark.parametrize(
@@ -201,6 +239,19 @@ def test_update_contentful__queue_has_viable_messages__no_viable_message_found(
 
     assert command_instance._queue_has_viable_messages() is False
     mock_queue.purge.assert_not_called()
+
+
+@pytest.mark.parametrize("unconfigured_value", ("", None))
+def test_queue_has_viable_messages__no_sqs_configured(
+    unconfigured_value,
+    command_instance,
+):
+    # If SQS is not set up, we should just poll as if --force was used
+    with override_settings(
+        CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID=unconfigured_value,
+    ):
+        assert settings.CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID == unconfigured_value
+        assert command_instance._queue_has_viable_messages() is True
 
 
 @override_settings(

@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import json
@@ -8,7 +12,7 @@ from hashlib import sha256
 from typing import Dict, Tuple, Union
 
 from django.conf import settings
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from django.test import RequestFactory
 from django.utils.timezone import now as tz_now
 
@@ -55,7 +59,6 @@ class Command(BaseCommand):
         self.quiet = options["quiet"]
         self.force = options["force"]
         if settings.CONTENTFUL_SPACE_ID and settings.CONTENTFUL_SPACE_KEY:
-
             if self.force:
                 self.log("Running forced update from Contentful data")
             else:
@@ -68,7 +71,8 @@ class Command(BaseCommand):
             else:
                 self.log(f"Nothing to pull from Contentful")
         else:
-            raise CommandError("Contentful credentials not configured")
+            # This will always get shown, even if --quiet is passed
+            print("Contentful credentials not configured")
 
     def refresh(self) -> Tuple[bool, int, int]:
         update_ran = False
@@ -157,9 +161,13 @@ class Command(BaseCommand):
             GO_ACTIONS = GO_ACTIONS.union(EXTRA_DEV_GO_ACTIONS)
 
         if not settings.CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID:
-            raise CommandError(
+            self.log(
                 "AWS SQS Credentials not configured for Contentful webhook",
             )
+            # We don't want things to block/fail if we don't have SQS config.
+            # Instead, in this situation, it's better to just assume we got
+            # a 'go' signal and poll Contentful anyway.
+            return True
 
         sqs = boto3.resource(
             "sqs",
