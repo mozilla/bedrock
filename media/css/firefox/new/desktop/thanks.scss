@@ -7,6 +7,8 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/emphasis-box';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 @import '~@mozilla-protocol/core/protocol/css/components/zap';
 
@@ -47,6 +49,11 @@ main {
         }
     }
 
+    .mzp-c-logo {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     h1 {
         color: $color-marketing-gray-99;
         margin-bottom: $spacing-md;
@@ -58,20 +65,6 @@ main {
     display: none;
 }
 
-
-// --------------------------------------------------------------------------
-// logo
-
-.c-logo {
-    @include at2x('/media/protocol/img/logos/firefox/browser/logo-sm.png', auto, 64px);
-    @include bidi(((background-position, top left, top right),));
-    @include image-replaced;
-    background-repeat: no-repeat;
-    display: block;
-    height: 64px;
-    margin: 0 auto $layout-sm;
-    width: 64px;
-}
 
 // --------------------------------------------------------------------------
 // section titles

@@ -204,15 +204,18 @@
     height: 50px;
 
     .t-product-firefox & {
-        @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-stack-md.png', 144px, 50px);
+        @include background-size(144px, 50px);
+        background-image: url('/media/protocol/img/logos/firefox/browser/logo-word-hor-stack.svg');
     }
 
     .t-product-monitor & {
-        @include at2x('/media/protocol/img/logos/firefox/monitor/logo-word-hor-stack-md.png', 138px, 50px);
+        @include background-size(138px, 50px);
+        background-image: url('/media/protocol/img/logos/firefox/monitor/logo-word-hor-stack.svg');
     }
 
     .t-product-vpn & {
-        @include at2x('/media/protocol/img/logos/mozilla/vpn/logo-word-hor-stack-md.png', 143px, 50px);
+        @include background-size(143px, 50px);
+        background-image: url('/media/protocol/img/logos/mozilla/vpn/logo-word-hor-stack.svg');
     }
 
     @media #{$mq-md} {

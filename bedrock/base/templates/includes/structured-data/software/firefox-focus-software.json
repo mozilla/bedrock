@@ -4,7 +4,7 @@
   "@id": "https://www.mozilla.org/#firefoxfocus",
   "url": "https://www.mozilla.org/{{ LANG }}/firefox/browsers/mobile/focus/",
   "name": "Firefox Focus",
-  "image": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/browser/focus/logo-lg-high-res.png') }}{% endfilter %}",
+  "image": "{% filter absolute_url %}{{ static('img/structured-data/logo-firefox-focus.png') }}{% endfilter %}",
   "sameAs": [
     "https://www.wikidata.org/wiki/Q31020870",
     "https://{{ lang_short() }}.wikipedia.org/wiki/Firefox_Focus",

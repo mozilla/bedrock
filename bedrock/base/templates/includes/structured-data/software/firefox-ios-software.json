@@ -3,7 +3,7 @@
   "@type": "MobileApplication",
   "@id": "{{ structured_data_id('firefoxios') }}",
   "url": "{% filter absolute_url %}{{ url('firefox.browsers.mobile.ios') }}{% endfilter %}",
-  "image": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}{% endfilter %}",
+  "image": "{% filter absolute_url %}{{ static('img/structured-data/logo-firefox-browser.png') }}{% endfilter %}",
   "name": "Firefox Browser iOS",
   "alternateName": [
     "Firefox iOS",

@@ -38,19 +38,11 @@ $image-path: '/media/protocol/img';
 }
 
 .c-page-title:before {
-    background-image: url('/media/protocol/img/logos/firefox/browser/logo-sm.png');
-
-    @media #{$mq-high-res} {
-        background-image: url('/media/protocol/img/logos/firefox/browser/logo-sm-high-res.png');
-    }
+    background-image: url('/media/protocol/img/logos/firefox/browser/logo.svg');
 }
 
 .mzp-t-beta .c-page-title:before {
-    background-image: url('/media/protocol/img/logos/firefox/browser/beta/logo-sm.png');
-
-    @media #{$mq-high-res} {
-        background-image: url('/media/protocol/img/logos/firefox/browser/beta/logo-sm-high-res.png');
-    }
+    background-image: url('/media/protocol/img/logos/firefox/browser/beta/logo.svg');
 }
 
 .mzp-t-aurora .c-page-title:before {
@@ -62,11 +54,7 @@ $image-path: '/media/protocol/img';
 }
 
 .mzp-t-nightly .c-page-title:before {
-    background-image: url('#{$image-path}/logos/firefox/browser/nightly/logo-lg.png');
-
-    @media #{$mq-high-res} {
-        background-image: url('#{$image-path}/logos/firefox/browser/nightly/logo-lg-high-res.png');
-    }
+    background-image: url('#{$image-path}/logos/firefox/browser/nightly/logo.svg');
 }
 
 .mzp-c-article {

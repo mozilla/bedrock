@@ -4,7 +4,7 @@
   "@id": "{{ structured_data_id('firefoxlite') }}",
   "url": "https://support.mozilla.org/{{ LANG }}/kb/get-started-firefox-lite",
   "name": "Firefox Lite",
-  "image": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}{% endfilter %}",
+  "image": "{% filter absolute_url %}{{ static('img/structured-data/logo-firefox-browser.png') }}{% endfilter %}",
   "sameAs": [
     "{{ settings.GOOGLE_PLAY_FIREFOX_LITE_LINK }}"
   ],

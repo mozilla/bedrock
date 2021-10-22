@@ -10,6 +10,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 @import '~@mozilla-protocol/core/protocol/css/components/hero';
 
+
 main {
     background-color: $color-ink-80;
     color: $color-white;
@@ -20,12 +21,13 @@ main {
     padding-bottom: 0;
 
     .mzp-c-hero-title {
-        background-image: url('#{$image-path}/logos/firefox/browser/nightly/logo-lg-high-res.png');
+        background-image: url('#{$image-path}/logos/firefox/browser/nightly/logo.svg');
+        background-size: 80px 80px;
     }
 
     @media #{$mq-md} {
         .mzp-c-hero-title {
-            background-size: 180px 180px;
+            background-size: 160px 160px;
             padding-top: 200px;
         }
     }

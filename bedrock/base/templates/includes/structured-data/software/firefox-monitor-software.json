@@ -3,7 +3,7 @@
   "@type": "WebApplication",
   "@id": "{{ structured_data_id('firefoxmonitor') }}",
   "url": "https://monitor.firefox.com",
-  "image": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/monitor/logo-lg-high-res.png') }}{% endfilter %}",
+  "image": "{% filter absolute_url %}{{ static('img/structured-data/logo-firefox-monitor.png') }}{% endfilter %}",
   "name": "Firefox Monitor",
   "sameAs": [
     "https://www.wikidata.org/wiki/Q64828890",

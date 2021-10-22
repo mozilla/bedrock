@@ -20,7 +20,8 @@ $image-path: '/media/protocol/img';
 .mzp-c-hero {
 
     .mzp-c-hero-title {
-        @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-sm.png', 260px, 48px);
+        @include background-size(260px, 48px);
+        background-image: url('/media/protocol/img/logos/firefox/browser/logo-word-hor.svg');
         background-position: top center;
         background-repeat: no-repeat;
         padding-top: $layout-xl;

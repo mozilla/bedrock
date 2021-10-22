@@ -32,9 +32,10 @@
 {% block content %}
   <main>
     {% call split(
-      block_class='mzp-t-dark mzp-l-split-center-on-sm-md',
+      block_class='mzp-l-split-center-on-sm-md mzp-t-split-nospace',
+      theme_class='mzp-t-dark',
+      media_class='mzp-l-split-h-center',
       media_include=media_include,
-      media_class='mzp-l-split-h-center mzp-l-split-body-wide',
       media_after=True,
     ) %}
       <h1>{{ self.page_title() }}</h1>

@@ -4,63 +4,11 @@
 
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
+
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
 
-
-.c-logo {
-    @include text-title-xs;
-    color: inherit;
-    display: inline-block;
-    font-weight: bold;
-    margin-bottom: $spacing-lg;
-    text-decoration: none;
-
-    @media #{$mq-sm} {
-        align-items: center;
-        display: inline-flex;
-        margin-top: $layout-xs;
-        margin-bottom: $layout-sm;
-    }
-
-    @media #{$mq-md} {
-        margin-bottom: 0;
-    }
-
-    @media #{$mq-lg} {
-        @include bidi((
-            (margin-left, -48px - $spacing-md , margin-right, 0),
-        ));
-    }
-
-    &:before {
-        @include at2x('/media/protocol/img/logos/firefox/browser/logo-sm.png', 40px, 40px);
-        background-repeat: no-repeat;
-        content: '';
-        display: block;
-        height: 40px;
-        width: 40px;
-
-        @media #{$mq-sm} {
-            @include bidi((
-                (float, left, right),
-                (margin-right, $spacing-sm, margin-left, 0),
-            ));
-        }
-
-        @media #{$mq-lg} {
-            @include bidi((
-                (margin-right, $spacing-md, margin-left, 0),
-            ));
-            @include background-size(48px 48px);
-            height: 48px;
-            width: 48px;
-        }
-    }
-}
-
-.mzp-l-content h1 {
-    @include text-title-lg;
-}
 
 .c-release-list {
     line-height: 2;

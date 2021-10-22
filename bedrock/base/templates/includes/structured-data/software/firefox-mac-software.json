@@ -4,7 +4,7 @@
   "@id": "{{ structured_data_id('firefoxmac') }}",
   "url": "{% filter absolute_url %}{{ url('firefox.mac') }}{% endfilter %}",
   "name": "Firefox Browser Mac",
-  "image": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}{% endfilter %}",
+  "image": "{% filter absolute_url %}{{ static('img/structured-data/logo-firefox-browser.png') }}{% endfilter %}",
   "alternateName": [
     "Firefox Mac",
     "Firefox Browser for Mac"

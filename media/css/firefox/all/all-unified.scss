@@ -97,25 +97,26 @@ $image-path: '/media/protocol/img';
     margin-bottom: $layout-md;
 
     .c-intro-heading {
-        @include at2x('/media/protocol/img/logos/firefox/browser/logo-sm.png', 64px, 64px);
+        @include background-size(64px, 64px);
         @include bidi(((background-position, top left, top right),));
         @include text-title-md;
+        background-image: url('/media/protocol/img/logos/firefox/browser/logo.svg');
         background-repeat: no-repeat;
         margin-bottom: $spacing-xl;
         padding-top: 64px + $spacing-lg;
 
         [data-current="desktop_beta"] &,
         [data-current="android_beta"] & {
-            @include at2x('/media/protocol/img/logos/firefox/browser/beta/logo-sm.png', 64px, 64px);
+            background-image: url('/media/protocol/img/logos/firefox/browser/beta/logo.svg');
         }
 
         [data-current="desktop_developer"] &{
-            @include at2x('/media/protocol/img/logos/firefox/browser/developer/logo-sm.png', 64px, 64px);
+            background-image: url('/media/protocol/img/logos/firefox/browser/developer/logo.svg');
         }
 
         [data-current="desktop_nightly"] &,
         [data-current="android_nightly"] & {
-            @include at2x('/media/protocol/img/logos/firefox/browser/nightly/logo-sm.png', 64px, 64px);
+            background-image: url('/media/protocol/img/logos/firefox/browser/nightly/logo.svg');
         }
     }
 

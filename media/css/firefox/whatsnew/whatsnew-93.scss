@@ -112,7 +112,7 @@ $image-path: '/media/protocol/img';
 @media (prefers-color-scheme: dark) {
     // Override _header.scss since v3 doesn't support dark mode
     .wnp93-v3 .c-page-header-logo-fx {
-        background-image: url($image-path + '/logos/firefox/browser/logo-word-hor-sm.png');
+        background-image: url($image-path + '/logos/firefox/browser/logo-word-hor.svg');
     }
 
     .wnp93-v1,

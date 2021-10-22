@@ -1026,14 +1026,6 @@
       "files": [
         "protocol/js/protocol-modal.js",
         "js/base/send-to-device.js",
-        "js/firefox/welcome/welcome5.js"
-      ],
-      "name": "firefox_welcome_page5"
-    },
-    {
-      "files": [
-        "protocol/js/protocol-modal.js",
-        "js/base/send-to-device.js",
         "js/firefox/welcome/welcome6.js"
       ],
       "name": "firefox_welcome_page6"
