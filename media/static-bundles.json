@@ -965,6 +965,12 @@
         "css/base/mozilla-lazy-image.scss"
       ],
       "name": "vpn-resource-center"
+    },
+    {
+      "files": [
+        "css/externalpages/pocket/pocket-test.scss"
+      ],
+      "name": "external-pocket"
     }
   ],
   "js": [
