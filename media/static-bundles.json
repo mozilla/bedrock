@@ -976,6 +976,12 @@
         "css/products/vpn/vpn-info.scss"
       ],
       "name": "mozilla-vpn-info"
+    },
+    {
+      "files": [
+        "css/externalpages/pocket/pocket-test.scss"
+      ],
+      "name": "external-pocket"
     }
   ],
   "js": [
