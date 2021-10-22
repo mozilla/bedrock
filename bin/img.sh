@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
 # are there images to optimize?
 fileschanged=$(git diff --diff-filter=ACM --name-only HEAD | grep ".png\|.jpg\|.svg" | wc -l)
 if [ $fileschanged == 0 ]; then
