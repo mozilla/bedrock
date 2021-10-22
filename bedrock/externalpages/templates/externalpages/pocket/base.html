@@ -9,11 +9,16 @@
     <title>{% block title %}{% endblock %} | Pocket</title>
   </head>
   <body>
+    {#
+    NOTE: These URLs cannot use the `url(..)` pattern as that will include the
+    "/external/pocket/" in the path, but since these are proxied from
+    getpocket.com, that would result in a 404.
+    #}
     <nav>
-      <a href="{{ url('externalpages.pocket.index') }}">Home</a>
-      <a href="{{ url('externalpages.pocket.about') }}">About</a>
-      <a href="{{ url('externalpages.pocket.add') }}">How to Save</a>
-      <a href="{{ url('externalpages.pocket.android') }}">Pocket for Android</a>
+      <a href="../">Home</a>
+      <a href="../about/">About</a>
+      <a href="../add/">How to Save</a>
+      <a href="../android/">Pocket for Android</a>
     </nav>
     <main class="container">{% block content %}{% endblock %}</main>
   </body>
