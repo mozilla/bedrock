@@ -24,6 +24,7 @@ repos:
           - --comment-style
           - "|#|"
     -   id: insert-license
+        exclude: media\/.*\/libs\/.*$
         files: \.js$
         args:
           - --license-filepath
