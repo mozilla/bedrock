@@ -13,6 +13,8 @@ jobs:
       - run:
           name: Python Tests
           command: make clean test-image
+      - store_artifacts:
+          path: python_coverage
 
   test_js:
     docker:
