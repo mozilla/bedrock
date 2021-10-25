@@ -86,7 +86,7 @@ files and/or package.json file then simply running::
     $ make build
 
 
-.. note::   
+.. note::
 
     **For Apple Silicon / M1 users**
 
@@ -116,19 +116,19 @@ You need to create a virtual environment for Python libraries:
 
 1. Create a virtual env in the folder `venv` ::
 
-    $ python3 -m venv venv             
+    $ python3 -m venv venv
 
-2. Activate the virtual env. On Windows, run: venv\Scripts\activate.bat ::    
+2. Activate the virtual env. On Windows, run: venv\Scripts\activate.bat ::
 
-    $ source venv/bin/activate             
+    $ source venv/bin/activate
 
 3. Securely upgrade pip ::
 
-    $ pip install --upgrade pip          
+    $ pip install --upgrade pip
 
 4. Installs dependencies ::
 
-    $ pip install -r requirements/dev.txt           
+    $ pip install -r requirements/dev.txt
 
 
 If you are on OSX and some of the compiled dependencies fails to compile, try explicitly setting the arch flags and try again
@@ -284,7 +284,7 @@ If you see a typo or similarly small change, you can use the "Edit in GitHub" li
 
 If you want to make a bigger change or `find a Documentation issue on the repo <https://github.com/mozilla/bedrock/labels/Documentation>`_, it is best to edit and preview locally before submitting a pull request. You can do this with Docker or Local installations. Run the commands from your root folder. They will build documentation and start a live server to auto-update any changes you make to a documentation file.
 
-Docker: 
+Docker:
 
 .. code-block:: bash
 
