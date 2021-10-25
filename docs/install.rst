@@ -192,16 +192,6 @@ the container which you can then use to run any commands you'd like and inspect 
 
     $ docker-compose run test bash
 
-.. note::
-
-    Gotcha wanrning: the command above runs a bash shell in a fresh ``test``
-    container, which doesn't have your local .env file available to it.
-
-    If you want to run a shell on the actual running app container, to be able to
-    use your .env, specify the ``app`` service and ``exec`` not ``run``:
-
-        $ docker-compose exec app bash
-
 Local
 -----
 
