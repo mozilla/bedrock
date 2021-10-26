@@ -4,7 +4,7 @@
   "@id": "{{ structured_data_id('firefoxdeveloper') }}",
   "url": "{% filter absolute_url %}{{ url('firefox.developer.index') }}{% endfilter %}",
   "name": "Firefox Browser Developer Edition ",
-  "image": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/browser/developer/logo-lg-high-res.png') }}{% endfilter %}",
+  "image": "{% filter absolute_url %}{{ static('img/structured-data/logo-firefox-developer.png') }}{% endfilter %}",
   "alternateName": [
     "Firefox Developer Edition",
     "Firefox Developer Edition Browser"

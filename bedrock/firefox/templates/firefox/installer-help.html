@@ -23,13 +23,13 @@
 {% endblock %}
 
 {% if installer_channel == 'beta' %}
-  {% set channel_logo = 'protocol/img/logos/firefox/browser/beta/logo-word-hor-sm.png' %}
+  {% set channel_logo = 'protocol/img/logos/firefox/browser/beta/logo-word-hor.svg' %}
 {% elif installer_channel == 'alpha' %}
-  {% set channel_logo = 'protocol/img/logos/firefox/browser/developer/logo-word-hor-sm.png' %}
+  {% set channel_logo = 'protocol/img/logos/firefox/browser/developer/logo-word-hor.svg' %}
 {% elif installer_channel == 'nightly' %}
-  {% set channel_logo = 'protocol/img/logos/firefox/browser/nightly/logo-word-hor-sm.png' %}
+  {% set channel_logo = 'protocol/img/logos/firefox/browser/nightly/logo-word-hor.svg' %}
 {% else %}
-  {% set channel_logo = 'protocol/img/logos/firefox/browser/logo-word-hor-sm.png' %}
+  {% set channel_logo = 'protocol/img/logos/firefox/browser/logo-word-hor.svg' %}
 {% endif %}
 
 {% block content %}
@@ -52,7 +52,7 @@
 
   {% if installer_channel %}
     <section class="installer-channel-card mzp-c-card mzp-c-card-extra-small">
-      {{ high_res_img(channel_logo, {'alt': ftl('installer-help-firefox-release-title'), 'width': '347', 'height': '64'}) }}
+      <img src="{{ static(channel_logo) }}" alt="{{ ftl('installer-help-firefox-release-title') }}" width="347" height="64">
       <div class="mzp-c-card-content">
         {{ download_firefox(installer_channel, force_direct=True, force_full_installer=True, locale=installer_lang, button_class='mzp-t-md', alt_copy=ftl('download-button-download-now')) }}
       </div>
@@ -60,7 +60,7 @@
   {% else %}
     <div class="mzp-l-card-quarter">
       <section class="mzp-c-card mzp-c-card-extra-small">
-        {{ high_res_img('protocol/img/logos/firefox/browser/logo-word-hor-sm.png', {'alt': ftl('installer-help-firefox-release-title'), 'width': '347', 'height': '64', 'class': 'mzp-c-card-image'}) }}
+        <img src="{{ static('protocol/img/logos/firefox/browser/logo-word-hor.svg') }}" alt="{{ ftl('installer-help-firefox-release-title') }}" width="347" height="64" class="mzp-c-card-image">
         <div class="mzp-c-card-content">
           <p class="mzp-c-card-desc">
             {{ ftl('installer-help-firefox-release-desc', trackers=2000) }}
@@ -70,7 +70,7 @@
       </section>
 
       <section class="mzp-c-card mzp-c-card-extra-small">
-        {{ high_res_img('protocol/img/logos/firefox/browser/beta/logo-word-hor-sm.png', {'alt': ftl('installer-help-firefox-beta-title'), 'width': '347', 'height': '64', 'class': 'mzp-c-card-image'}) }}
+        <img src="{{ static('protocol/img/logos/firefox/browser/beta/logo-word-hor.svg') }}" alt="{{ ftl('installer-help-firefox-beta-title') }}" width="347" height="64" class="mzp-c-card-image">
         <div class="mzp-c-card-content">
           <p class="mzp-c-card-desc">
             {{ ftl('installer-help-firefox-beta-desc') }}
@@ -80,7 +80,7 @@
       </section>
 
       <section class="mzp-c-card mzp-c-card-extra-small">
-        {{ high_res_img('protocol/img/logos/firefox/browser/developer/logo-word-hor-sm.png', {'alt': ftl('installer-help-firefox-developer-title'), 'class': 'mzp-c-card-image'}) }}
+        <img src="{{ static('protocol/img/logos/firefox/browser/developer/logo-word-hor.svg') }}" alt="{{ ftl('installer-help-firefox-developer-title') }}" width="347" height="64" class="mzp-c-card-image">
         <div class="mzp-c-card-content">
           <p class="mzp-c-card-desc">
             {{ ftl('installer-help-firefox-developer-desc') }}
@@ -90,7 +90,7 @@
       </section>
 
       <section class="mzp-c-card mzp-c-card-extra-small">
-        {{ high_res_img('protocol/img/logos/firefox/browser/nightly/logo-word-hor-sm.png', {'alt': ftl('installer-help-firefox-nightly-title'), 'width': '347', 'height': '64', 'class': 'mzp-c-card-image'}) }}
+        <img src="{{ static('protocol/img/logos/firefox/browser/nightly/logo-word-hor.svg') }}" alt="{{ ftl('installer-help-firefox-nightly-title') }}" width="347" height="64" class="mzp-c-card-image">
         <div class="mzp-c-card-content">
           <p class="mzp-c-card-desc">
             {{ ftl('installer-help-firefox-nightly-desc') }}

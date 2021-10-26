@@ -9,6 +9,8 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/emphasis-box';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
 @import '~@mozilla-protocol/core/protocol/css/components/modal';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 @import '~@mozilla-protocol/core/protocol/css/components/section-heading';
@@ -276,43 +278,6 @@ button.mzp-c-cta-link {
 
 .mzp-c-section-heading {
     @include text-title-md;
-}
-
-
-// --------------------------------------------------------------------------
-// logos
-
-.c-logo.t-browser-word-hor-xs,
-.c-logo.t-browser-word-hor-white-xs {
-    @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-xs.png', auto, 40px);
-    @include bidi(((background-position, top left, top right),));
-    @include image-replaced;
-    background-repeat: no-repeat;
-    height: 48px; // for IE8
-    margin-bottom: 40px;
-
-    @media all and (min-width: 0) {
-        height: 40px;
-    }
-
-    @media #{$mq-md} {
-        background-size: auto 48px;
-        margin-bottom: 56px;
-        height: 48px;
-    }
-
-    @media #{$mq-lg} {
-        margin-bottom: 56px;
-    }
-}
-
-// logo in mobile banner
-.c-logo.t-browser-word-hor-white-xs {
-    @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-white-sm.png', auto, 40px);
-
-    @media #{$mq-md} {
-        background-size: auto 48px;
-    }
 }
 
 
@@ -675,6 +640,10 @@ button.mzp-c-cta-link {
 
     [lang=ar] & h2 {
         @include font-size(40px);
+    }
+
+    .mzp-c-wordmark {
+        margin-bottom: $v-grid-md;
     }
 
     p {

@@ -101,7 +101,8 @@
 }
 
 .c-secondary-cta-title {
-    @include at2x('#{$image-path}/logos/firefox/browser/logo-sm.png', 40px, 40px);
+    background-image: url('#{$image-path}/logos/firefox/browser/logo.svg');
+    @include background-size(40px, 40px);
     @include text-title-sm;
     background-position: center 35px;
     background-repeat: no-repeat;
@@ -140,7 +141,6 @@
 }
 
 
-
 //* -------------------------------------------------------------------------- */
 // Secondary FxA CTA (page bottom)
 
@@ -152,7 +152,8 @@
 .fxaccount-secondary-cta.mzp-t-product-firefox {
 
     .mzp-c-call-out-content {
-        @include at2x('#{$image-path}/logos/firefox/logo-md.png', 64px, 64px);
+        background-image: url('#{$image-path}/logos/firefox/logo.svg');
+        @include background-size(64px, 64px);
     }
 
     .mzp-c-call-out-title {
@@ -162,29 +163,6 @@
     }
 }
 
-//* -------------------------------------------------------------------------- */
-// YouTube iframe responsive in modal.
-
-.ytcontainer-video {
-    max-width: 100%;
-
-    .video-container {
-        height: 0;
-        margin-bottom: $spacing-lg;
-        overflow: hidden;
-        padding-bottom: 56.25%;
-        position: relative;
-        width: 100%;
-    }
-
-    iframe {
-        height: 100%;
-        left: 0;
-        position: absolute;
-        top:0;
-        width: 100%;
-    }
-}
 
 //* -------------------------------------------------------------------------- */
 // Conditional content

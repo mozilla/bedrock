@@ -4,7 +4,7 @@
   "@id": "{{ structured_data_id('firefoxnightly') }}",
   "url": "{% filter absolute_url %}{{ url('firefox.channel.desktop') }}{% endfilter %}",
   "name": "Firefox Browser Nightly",
-  "image": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/browser/nightly/logo-lg-high-res.png') }}{% endfilter %}",
+  "image": "{% filter absolute_url %}{{ static('img/structured-data/logo-firefox-nightly.png') }}{% endfilter %}",
   "alternateName": [
     "Firefox Nightly",
     "Firefox Nightly Browser"

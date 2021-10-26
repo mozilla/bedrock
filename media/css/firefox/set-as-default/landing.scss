@@ -12,7 +12,8 @@ $image-path: '/media/protocol/img';
 
 .mzp-c-hero {
     .mzp-c-hero-title {
-        @include at2x('/media/protocol/img/logos/firefox/browser/logo-2xl.png', 64px, 64px);
+        @include background-size(64px, 64px);
+        background-image: url('/media/protocol/img/logos/firefox/browser/logo.svg');
         background-position: top center;
         background-repeat: no-repeat;
         padding-top: $layout-xl;

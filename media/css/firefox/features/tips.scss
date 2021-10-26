@@ -6,14 +6,15 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import "~@mozilla-protocol/core/protocol/css/includes/lib";
-@import "~@mozilla-protocol/core/protocol/css/components/split";
-@import "~@mozilla-protocol/core/protocol/css/components/card";
-@import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
-@import "~@mozilla-protocol/core/protocol/css/components/section-heading";
-@import "~@mozilla-protocol/core/protocol/css/components/zap";
 @import "~@mozilla-protocol/core/protocol/css/components/call-out";
-@import "~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox";
+@import "~@mozilla-protocol/core/protocol/css/components/card";
 @import "~@mozilla-protocol/core/protocol/css/components/modal";
+@import "~@mozilla-protocol/core/protocol/css/components/section-heading";
+@import "~@mozilla-protocol/core/protocol/css/components/split";
+@import "~@mozilla-protocol/core/protocol/css/components/video";
+@import "~@mozilla-protocol/core/protocol/css/components/zap";
+@import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
+
 
 // Play button on videos
 .mzp-c-card-media-wrapper {
@@ -36,62 +37,6 @@ $image-path: '/media/protocol/img';
         opacity: 1;
         transform: scale(1.1);
     }
-}
-
-// YouTube iframe responsive in modal.
-
-.ytcontainer-video {
-    max-width: 100%;
-
-    .video-container {
-        height: 0;
-        margin-bottom: $spacing-lg;
-        overflow: hidden;
-        padding-bottom: 56.25%;
-        position: relative;
-        width: 100%;
-    }
-
-    iframe {
-        height: 100%;
-        left: 0;
-        position: absolute;
-        top:0;
-        width: 100%;
-    }
-}
-
-
-.mzp-c-split-container .mzp-c-split-media {
-    width: 100%;
-}
-
-// Responsive video container for featured video
-.video-container {
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    height: 100%;
-
-    @media #{$mq-lg} {
-        min-width: 480px;
-    }
-
-    // Force space for the YouTube's iframe
-    &::after {
-        content: '';
-        display: block;
-        padding-top: 56.25%; // 16:9 aspect ratio
-    }
-
-    iframe{
-        height: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-    }
-
 }
 
 // Call-out

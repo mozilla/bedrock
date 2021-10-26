@@ -6,12 +6,13 @@ $font-path: "/media/fonts";
 $image-path: "/media/protocol/img";
 
 @import "~@mozilla-protocol/core/protocol/css/includes/lib";
-@import "~@mozilla-protocol/core/protocol/css/components/split";
-@import "~@mozilla-protocol/core/protocol/css/components/logos/logo";
-@import "~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox";
-@import "~@mozilla-protocol/core/protocol/css/templates/card-layout";
 @import "~@mozilla-protocol/core/protocol/css/components/call-out";
 @import "~@mozilla-protocol/core/protocol/css/components/feature-card";
+@import "~@mozilla-protocol/core/protocol/css/components/logos/logo";
+@import "~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox";
+@import "~@mozilla-protocol/core/protocol/css/components/split";
+@import "~@mozilla-protocol/core/protocol/css/components/video";
+@import "~@mozilla-protocol/core/protocol/css/templates/card-layout";
 
 //* -------------------------------------------------------------------------- */
 // Components
@@ -34,47 +35,6 @@ $image-path: "/media/protocol/img";
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
-// Video
-
-// Override auto width to make way for the iframe
-// https://github.com/mozilla/protocol/issues/711
-.mzp-c-split-container .mzp-c-split-media {
-    width: 100%;
-}
-
-// Responsive video container
-.video-container {
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-
-    // Force space for YouTube's iframe
-    &::after {
-        content: '';
-        display: block;
-        padding-top: 56.25%; // 16:9 aspect ratio
-    }
-
-    iframe,
-    video {
-        height: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-    }
-}
-
-.fbcontainer-video {
-    @media #{$mq-md} {
-        @include bidi(((left, 50%, auto), (right, auto, 50%)));
-        align-items: center;
-        padding: 0;
-        z-index: 2;
-    }
-}
 
 //* -------------------------------------------------------------------------- */
 // Conditional CTAs

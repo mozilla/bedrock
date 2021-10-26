@@ -6,18 +6,11 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import "~@mozilla-protocol/core/protocol/css/includes/lib";
-@import "~@mozilla-protocol/core/protocol/css/components/hero";
-@import "~@mozilla-protocol/core/protocol/css/components/feature-card";
+@import "~@mozilla-protocol/core/protocol/css/components/split";
 @import "~@mozilla-protocol/core/protocol/css/components/picto";
+@import "~@mozilla-protocol/core/protocol/css/components/video";
 @import "~@mozilla-protocol/core/protocol/css/templates/multi-column";
 
-.mzp-c-hero.mzp-t-dark {
-    background: $color-ink-80;
-
-    @media #{$mq-lg} {
-        margin-bottom: $layout-lg;
-    }
-}
 
 .c-hero-pretitle {
     @include text-title-2xs;
@@ -28,62 +21,36 @@ $image-path: '/media/protocol/img';
     margin-bottom: 0;
 }
 
-.mzp-c-hero-image {
-    display: none;
-
-    img {
-        bottom: auto;
-        max-width: 100%;
-        top: 0;
-    }
-
-    @media #{$mq-md} {
-        display: block;
-    }
-}
-
-.content-extra {
-    margin: $layout-lg 0;
-
-    .content-extra-title {
-        @include text-title-xs;
-        text-align: center;
-        margin-bottom: $layout-lg;
-        color: $color-purple-60;
-    }
+.content-extra-title {
+    @include text-title-xs;
+    text-align: center;
+    margin-bottom: $layout-lg;
+    color: $color-purple-60;
 }
 
 // Video
-.video-content {
-    @include aspect-ratio(16, 9);
+.video-play {
+    position: absolute;
+    display: block;
 
-    iframe {
-        height: 100%;
-        width: 100%;
+    &:after {
+        background: url('/media/img/icons/video-play.svg') top left no-repeat;
+        content: '';
+        height: 100px;
+        left: 50%;
+        margin: -50px 0 0 -50px;
+        opacity: 0.7;
+        position: absolute;
+        top: 50%;
+        transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+        width: 100px;
+        z-index: 2;
     }
 
-    .video-play {
-        display: block;
-
-        &:after {
-            background: url('/media/img/icons/video-play.svg') top left no-repeat;
-            content: '';
-            height: 100px;
-            left: 50%;
-            margin: -50px 0 0 -50px;
-            opacity: 0.7;
-            position: absolute;
-            top: 50%;
-            transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
-            width: 100px;
-            z-index: 2;
-        }
-
-        &:hover:after,
-        &:focus:after {
-            opacity: 1;
-            transform: scale(1.1);
-        }
+    &:hover:after,
+    &:focus:after {
+        opacity: 1;
+        transform: scale(1.1);
     }
 }
 

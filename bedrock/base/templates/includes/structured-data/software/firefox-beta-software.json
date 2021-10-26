@@ -4,7 +4,7 @@
   "@id": "{{ structured_data_id('firefoxbeta') }}",
   "url": "{% filter absolute_url %}{{ url('firefox.channel.desktop') }}{% endfilter %}",
   "name": "Firefox Browser Beta",
-  "image": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/browser/beta/logo-lg-high-res.png') }}{% endfilter %}",
+  "image": "{% filter absolute_url %}{{ static('img/structured-data/logo-firefox-beta.png') }}{% endfilter %}",
   "alternateName": [
     "Firefox Beta",
     "Firefox Beta Browser"

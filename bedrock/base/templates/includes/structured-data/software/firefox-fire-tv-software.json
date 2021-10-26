@@ -4,7 +4,7 @@
   "@id": "{{ structured_data_id('firefoxfiretv') }}",
   "url": "https://support.mozilla.org/{{ LANG }}/kb/firefox-fire-tv",
   "name": "Firefox Browser Fire TV",
-  "image": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}{% endfilter %}",
+  "image": "{% filter absolute_url %}{{ static('img/structured-data/logo-firefox-browser.png') }}{% endfilter %}",
   "alternateName": [
     "Firefox for Fire TV",
     "Firefox Browser for Fire TV"

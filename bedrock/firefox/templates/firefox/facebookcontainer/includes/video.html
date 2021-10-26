@@ -5,14 +5,14 @@
 #}
 
 {% if LANG == 'de' %}
-<div class="video-container">
+<div class="mzp-c-video">
     <iframe src="https://www.youtube-nocookie.com/embed/7yLoRVwuZlc?rel=0&amp;showinfo=0" frameborder="0"
       allow="encrypted-media" allowfullscreen>
       <p><a href="https://www.youtube.com/watch?v=7yLoRVwuZlc">{{ ftl('ui-watch-the-video') }}</a></p>
   </iframe>
 </div>
 {% else %}
-<div class="video-container">
+<div class="mzp-c-video">
   <video id="fbcontainer-video" preload="metadata" controls
     poster="{{ static('img/firefox/facebook-container/video-poster.png') }}" data-ga-label="Facebook Container Video">
       <source src="https://assets.mozilla.net/video/facebook-container/facebook-container.webm" type="video/webm">

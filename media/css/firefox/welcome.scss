@@ -130,7 +130,6 @@ html {
 
     .welcome-page1 &,
     .welcome-page3 &,
-    .welcome-page5 &,
     .welcome-page6 &,
     .welcome-page7 &,
     .welcome-page8 &,
@@ -350,12 +349,9 @@ html {
         top: 0;
         width: $layout-lg;
 
-        .welcome-page5 & {
-            @include at2x('/media/protocol/img/logos/firefox/lockwise/logo-lg.png', auto, 100%);
-        }
-
         .welcome-page6 & {
-            @include at2x('/media/protocol/img/logos/firefox/browser/logo-lg.png', auto, 100%);
+            @include background-size(64px, 64px);
+            background-image: url('/media/protocol/img/logos/firefox/browser/logo.svg');
         }
     }
 }

@@ -6,6 +6,8 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
 
 
 //* -------------------------------------------------------------------------- */
@@ -14,12 +16,13 @@ $image-path: '/media/protocol/img';
 main {
     text-align: center;
 
+    .mzp-c-logo {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     h1 {
-        @include at2x('/media/protocol/img/logos/firefox/browser/logo-sm.png', 64px, 64px);
         @include text-title-md;
-        background-position: top center;
-        background-repeat: no-repeat;
-        padding-top: 64px + $spacing-lg;
         margin-bottom: 0;
 
         + p {

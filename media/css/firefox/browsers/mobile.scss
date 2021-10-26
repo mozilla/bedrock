@@ -9,13 +9,8 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/split';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-focus';
 
-
-// Temporary until updated Focus logo lands in Protocol
-// https://github.com/mozilla/protocol-assets/issues/73
-.mzp-c-wordmark.mzp-t-wordmark-md.mzp-t-product-focus {
-    background-image: url('/media/img/logos/firefox/focus-logo-word-hor.svg');
-}
 
 @media #{$mq-lg} {
     .c-page-header::before {

@@ -199,10 +199,8 @@
   {% if youtube_id %}
   <div class="mzp-c-card-video-wrapper hidden">
     <figure class="mzp-c-card-video-content">
-      <div class="ytcontainer-video">
-        <div class="video-container">
-          <div class="video-play" data-id="{{ youtube_id }}"></div>
-        </div>
+      <div class="mzp-c-video">
+        <div class="video-play" data-id="{{ youtube_id }}"></div>
       </div>
       <figcaption>
         <p>{% if desc %}{{ desc }}{% endif %} <a href="{{ link_url }}">{{ ftl('ui-learn-more') }}</a></p>

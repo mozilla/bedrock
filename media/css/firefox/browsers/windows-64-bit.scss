@@ -8,6 +8,8 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/article';
 @import '~@mozilla-protocol/core/protocol/css/components/call-out';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
 
 .mzp-c-hero {
     background: $color-purple-90;
@@ -18,6 +20,11 @@ $image-path: '/media/protocol/img';
 
     .hero-content {
         padding-top: $layout-xl;
+
+        .mzp-c-logo {
+            margin-left: auto;
+            margin-right: auto;
+        }
 
         h1 {
             @include text-title-lg;

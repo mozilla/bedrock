@@ -21,7 +21,7 @@ $color-vpn-brand-violet: #6a57dc;
 // Override _header.scss since this page doesn't support dark mode
 @media (prefers-color-scheme: dark) {
     .c-page-header-logo-fx {
-        background-image: url($image-path + '/logos/firefox/browser/logo-word-hor-sm.png');
+        background-image: url($image-path + '/logos/firefox/browser/logo-word-hor.svg');
     }
 }
 
