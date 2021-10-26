@@ -222,6 +222,12 @@
     },
     {
       "files": [
+        "css/mozorg/home/home-mr2-promo.scss"
+      ],
+      "name": "home-mr2-promo"
+    },
+    {
+      "files": [
         "css/newsletter/newsletter.scss"
       ],
       "name": "newsletter"

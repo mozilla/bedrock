@@ -41,10 +41,13 @@
 {% block page_css %}
   {% include 'includes/contentful/css.html' %}
   {{ css_bundle('home-contentful-en') }}
-  {{ css_bundle('home-mr1-promo') }}
 
   {% if switch('fundraising-banner-eoy2020') %}
     {{ css_bundle('fundraising-banner') }}
+  {% endif %}
+
+  {% if switch('homepage-mr2-promo') %}
+    {{ css_bundle('home-mr2-promo') }}
   {% endif %}
 {% endblock %}
 
@@ -80,25 +83,30 @@
     <h1>{{ self.page_title() }}</h1>
   </header>
 
-  {% include 'includes/contentful/all.html' %}
-<div class="mzp-l-content">
-  <aside class="mzp-c-newsletter">
-    <div class="mzp-c-newsletter-image">
-      {{ high_res_img('img/home/2018/newsletter-graphic.png', {'alt': ''}) }}
-    </div>
+  {% if switch('homepage-mr2-promo') %}
+    {% include 'mozorg/home/includes/mr2-promo.html' %}
+  {% endif %}
 
-    <div class="newsletter-content">
-      {% set newsletter_id = 'mozilla-foundation' if LANG.startswith('en-') else 'mozilla-and-you' %}
-      {{ email_newsletter_form(
-        newsletters=newsletter_id,
-        title=_('Love the Web?'),
-        desc=_('Get the Mozilla newsletter and help us keep it open and free.'),
-        button_class='button-dark',
-        submit_text=_('Sign up now')
-      )}}
-    </div>
-  </aside>
-</div>
+  {% include 'includes/contentful/all.html' %}
+
+  <div class="mzp-l-content">
+    <aside class="mzp-c-newsletter">
+      <div class="mzp-c-newsletter-image">
+        {{ high_res_img('img/home/2018/newsletter-graphic.png', {'alt': ''}) }}
+      </div>
+
+      <div class="newsletter-content">
+        {% set newsletter_id = 'mozilla-foundation' if LANG.startswith('en-') else 'mozilla-and-you' %}
+        {{ email_newsletter_form(
+          newsletters=newsletter_id,
+          title=_('Love the Web?'),
+          desc=_('Get the Mozilla newsletter and help us keep it open and free.'),
+          button_class='button-dark',
+          submit_text=_('Sign up now')
+        )}}
+      </div>
+    </aside>
+  </div>
 </main>
 
 {% call download_banner_secondary(
