@@ -13,7 +13,6 @@ class HomePage(BasePage):
 
     _primary_download_button_locator = (By.CSS_SELECTOR, "#download-primary > .download-link")
     _secondary_download_button_locator = (By.CSS_SELECTOR, "#download-secondary > .download-link")
-    _primary_alt_button_locator = (By.CSS_SELECTOR, ".c-fxpromo-altcta .mzp-c-button")
     _primary_accounts_button_locator = (By.ID, "fxa-learn-primary")
     _secondary_accounts_button_locator = (By.ID, "fxa-learn-secondary")
 
@@ -28,10 +27,6 @@ class HomePage(BasePage):
     @property
     def is_secondary_download_button_displayed(self):
         return self.is_element_displayed(*self._secondary_download_button_locator)
-
-    @property
-    def is_primary_alt_button_displayed(self):
-        return self.is_element_displayed(*self._primary_alt_button_locator)
 
     @property
     def is_secondary_accounts_button_displayed(self):
