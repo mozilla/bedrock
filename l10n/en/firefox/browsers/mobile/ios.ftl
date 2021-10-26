@@ -33,6 +33,12 @@ mobile-ios-if-you-want = If you want, you can easily select to go online and sea
 mobile-ios-get-more-firefox = Get more { -brand-name-firefox } in your life
 mobile-ios-add-firefox-across-v2 = Add { -brand-name-firefox } across your devices for secure, seamless browsing. Sync your devices to take your favorite bookmarks, saved logins, passwords and browsing history wherever you go. Plus, send open tabs between your phone and desktop to pick up where you left off.
 
+mobile-ios-get-to-your-go-to = Get to your go-to places faster on your { -brand-name-iphone } and { -brand-name-ipad }
+mobile-ios-see-your-open-tabs = See your open tabs, past searches and favorite sites all in one place with { -brand-name-firefox-browser } for { -brand-name-ios }.
+
+mobile-ios-own-your-home = Own your home screen
+mobile-ios-get-to-the-parts = Get to the parts of the internet you care about faster. Choose to see all your open tabs, recent searches, bookmarks and favorite sites all in one place.
+
 # Obsolete string
 mobile-ios-add-firefox-across = Add { -brand-name-firefox } across your devices for secure, seamless browsing. { -brand-name-sync } your devices to take your favorite bookmarks, saved logins, passwords and browsing history wherever you go. Plus, send open tabs between your phone and desktop to pick up where you left off.
 
