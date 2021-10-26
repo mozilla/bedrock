@@ -8,9 +8,12 @@
 mobile-ios-firefox-browser-ios = { -brand-name-firefox-browser } { -brand-name-ios } ({ -brand-name-iphone } & { -brand-name-ipad })
 
 # HTML description
+# Obsolete string
 mobile-ios-firefox-browser-for = { -brand-name-firefox } browser for { -brand-name-ios } is fast, secure and private from the first time you open it.
 
 mobile-ios-firefox-browser = { -brand-name-firefox-browser }
+
+# Obsolete string
 mobile-ios-get-automatic-privacy = Get automatic privacy on your { -brand-name-iphone } and { -brand-name-ipad }
 mobile-ios-get-firefox-for = Get { -brand-name-firefox } for { -brand-name-ios }
 
@@ -45,7 +48,9 @@ mobile-ios-add-firefox-across = Add { -brand-name-firefox } across your devices 
 mobile-ios-find-it-all = Find it all faster
 mobile-ios-get-search-suggestions = Get search suggestions in the search bar and quickly access the sites you visit most. Type in your search question, and get suggested and previously searched results across your favorite search engines.
 
+# Obsolete string
 mobile-ios-keep-tabs-on = Keep tabs on all those tabs
+# Obsolete string
 mobile-ios-create-as-many = Create as many tabs as you’d like without losing track. { -brand-name-firefox } displays your open tabs as thumbnails and numbered tabs, making it easy to find what you want quickly.
 
 mobile-ios-discover-more-of = Discover more of what you love

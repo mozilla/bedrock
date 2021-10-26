@@ -65,14 +65,12 @@
   ) %}
     <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">{{ ftl('firefox-ios-firefox-browser') }}</div>
     {% if switch("browser-mr2-promo") %}
-      <h1 class="mzp-u-title-xl">{{ ftl('mobile-android-short-cut-the-internet') }}</h1>
-      <p class="c-tagline">{{ ftl('mobile-android-see-all-your-open-tabs') }}</p>
+      <h1 class="mzp-u-title-xl">{{ ftl('mobile-android-short-cut-the-internet', fallback='mobile-android-go-mobile-go') }}</h1>
+      <p class="c-tagline">{{ ftl('mobile-android-see-all-your-open-tabs', fallback='mobile-android-when-you-download') }}</p>
     {% else %}
       <h1 class="mzp-u-title-xl">{{ ftl('mobile-android-go-mobile-go') }}</h1>
       <p class="c-tagline">{{ ftl('mobile-android-when-you-download') }}</p>
     {% endif %}
-    <h1 class="mzp-u-title-xl">{{ ftl('mobile-android-short-cut-the-internet') }}</h1>
-    <p class="c-tagline">{{ ftl('mobile-android-see-all-your-open-tabs') }}</p>
     <p class="c-cta">
       {{ google_play_button(href=android_url, id='playStoreLink-primary') }}
     </p>
@@ -118,8 +116,8 @@
     theme_class='mzp-t-background-alt'
   ) %}
     {% if switch("browser-mr2-promo") %}
-      <h3>{{ ftl('mobile-android-own-your-home') }}</h3>
-      <p>{{ ftl('mobile-android-get-to-the-parts') }}</p>
+      <h3>{{ ftl('mobile-android-own-your-home', fallback='mobile-android-easily-organize-your') }}</h3>
+      <p>{{ ftl('mobile-android-get-to-the-parts', fallback='mobile-android-got-lots-of') }}</p>
     {% else %}
       <h3>{{ ftl('mobile-android-easily-organize-your') }}</h3>
       <p>{{ ftl('mobile-android-got-lots-of') }}</p>
