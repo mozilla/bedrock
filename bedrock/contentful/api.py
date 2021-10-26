@@ -36,7 +36,7 @@ PRODUCT_THEMES = {
     "Firefox Browser Focus": "focus",
     "Firefox Monitor": "monitor",
     "Firefox Lockwise": "lockwise",
-    "Firefox Relat": "relay",
+    "Firefox Relay": "relay",
     "Mozilla": "mozilla",
     "Mozilla VPN": "vpn",
     "Pocket": "pocket",
