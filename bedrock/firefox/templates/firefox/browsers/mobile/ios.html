@@ -22,7 +22,13 @@
 {% endblock %}
 
 {% block page_title %}{{ ftl('mobile-ios-firefox-browser-ios') }}{% endblock %}
-{% block page_desc %}{{ ftl('mobile-ios-firefox-browser-for') }}{% endblock %}
+{% block page_desc %}
+  {% if switch("browser-mr2-promo") %}
+    {{ ftl('mobile-ios-see-your-open-tabs', fallback='mobile-ios-firefox-browser-for') }}
+  {% else %}
+    {{ ftl('mobile-ios-firefox-browser-for') }}
+  {% endif %}
+{% endblock %}
 
 {% block body_class %}{{ super() }} mobile-ios{% endblock %}
 
@@ -64,7 +70,13 @@
     media_after=True
   ) %}
     <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">{{ ftl('mobile-ios-firefox-browser') }}</div>
-    <h1 class="mzp-u-title-xl">{{ ftl('mobile-ios-get-automatic-privacy') }}</h1>
+    <h1 class="mzp-u-title-xl">
+      {% if switch("browser-mr2-promo") %}
+        {{ ftl('mobile-ios-get-to-your-go-to', fallback='mobile-ios-get-automatic-privacy') }}
+      {% else %}
+        {{ ftl('mobile-ios-get-automatic-privacy') }}
+      {% endif %}
+    </h1>
     <p class="c-tagline">{{ self.page_desc() }}</p>
     <p class="c-cta">
       <a href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
@@ -129,8 +141,13 @@
     block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace',
     theme_class='mzp-t-background-alt'
   ) %}
-    <h3>{{ ftl('mobile-ios-keep-tabs-on') }}</h3>
-    <p>{{ ftl('mobile-ios-create-as-many') }}</p>
+    {% if switch("browser-mr2-promo") %}
+      <h3>{{ ftl('mobile-ios-own-your-home', fallback='mobile-ios-keep-tabs-on') }}</h3>
+      <p>{{ ftl('mobile-ios-get-to-the-parts', fallback='mobile-ios-create-as-many') }}</p>
+    {% else %}
+      <h3>{{ ftl('mobile-ios-keep-tabs-on') }}</h3>
+      <p>{{ ftl('mobile-ios-create-as-many') }}</p>
+    {% endif %}
   {% endcall %}
 
   {% call split(

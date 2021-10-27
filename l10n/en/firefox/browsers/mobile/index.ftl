@@ -9,13 +9,20 @@ browsers-mobile-firefox-mobile-browsers-put = { -brand-name-firefox } mobile bro
 
 # HTML page description
 browsers-mobile-overview-of-all-mobile = An overview of all { -brand-name-firefox } mobile browsers ({ -brand-name-firefox } for { -brand-name-android }, { -brand-name-firefox } for { -brand-name-ios }, { -brand-name-firefox-focus })
+# Obsolete string
 browsers-mobile-at-home-or-on-the-move = At home or on the move, you deserve privacy on every device. Enhanced Tracking Protection is automatic in every { -brand-name-firefox } mobile browser.
 
 # The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words; please omit the strong tags if they need to be around multiple words in your language.
+# Obsolete string
 browsers-mobile-get-the-mobile-browser-privacy = Get the mobile browser that puts your <strong>privacy</strong> first
+
 browsers-mobile-firefox-for-android = { -brand-name-firefox } for { -brand-name-android }
 browsers-mobile-infinitely-customizable-private = Infinitely customizable, private and secure, { -brand-name-firefox } for { -brand-name-android } is a lightning-fast browser that will never sell you out.
 browsers-mobile-firefox-for-ios = { -brand-name-firefox } for { -brand-name-ios }
+browsers-mobile-go-your-own-way = Go your own way with { -brand-name-firefox } mobile
+browsers-mobile-firefox-mobile-adapts-to-you = { -brand-name-firefox } mobile adapts to you and makes it easier than ever to see all your open tabs, past searches and favorite sites.
+browsers-mobile-the-more-you-use = The more you use it, the smarter it gets. { -brand-name-firefox } home screen adapts to you and makes it easier to always pick up right where you left off.
+
 
 # "Enhanced Tracking Protection" is a feature name and should match what's used in the product.
 browsers-mobile-get-enhanced-tracking-protection = Get Enhanced Tracking Protection and make { -brand-name-firefox } your default, go-to, forever browser on your { -brand-name-iphone } and { -brand-name-ipad }.

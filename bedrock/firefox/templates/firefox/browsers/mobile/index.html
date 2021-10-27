@@ -61,8 +61,13 @@
     media_class='mzp-l-fit-flush mzp-l-constrain-height'
   ) %}
     <div class="mzp-c-logo mzp-t-logo-lg mzp-t-product-firefox"></div>
-    <h1 class="mzp-has-zap-11">{{ ftl('browsers-mobile-get-the-mobile-browser-privacy') }}</h1>
-    <p>{{ ftl('browsers-mobile-at-home-or-on-the-move') }}</p>
+    {% if switch("browser-mr2-promo") %}
+      <h1>{{ ftl('browsers-mobile-go-your-own-way', fallback='browsers-mobile-get-the-mobile-browser-privacy') }}</h1>
+      <p>{{ ftl('browsers-mobile-firefox-mobile-adapts-to-you', fallback='browsers-mobile-at-home-or-on-the-move') }}</p>
+    {% else %}
+      <h1 class="mzp-has-zap-11">{{ ftl('browsers-mobile-get-the-mobile-browser-privacy') }}</h1>
+      <p>{{ ftl('browsers-mobile-at-home-or-on-the-move') }}</p>
+    {% endif %}
   {% endcall %}
 
 
@@ -80,7 +85,11 @@
     </div>
 
     <div class="c-landing-grid-item">
-      {{ high_res_img('img/firefox/browsers/mobile/index/firefox-ios.png', {'alt': '', 'class': 'c-landing-grid-img', 'width': '350', 'height': '263'}) }}
+      {% if switch("browser-mr2-promo") %}
+        {{ high_res_img('img/firefox/browsers/mobile/index/firefox-ios-MR2.png', {'alt': '', 'class': 'c-landing-grid-img', 'width': '350', 'height': '218'}) }}
+      {% else %}
+        {{ high_res_img('img/firefox/browsers/mobile/index/firefox-ios.png', {'alt': '', 'class': 'c-landing-grid-img', 'width': '350', 'height': '263'}) }}
+      {% endif %}
       <h2 class="c-landing-grid-title"><a href="{{ url('firefox.browsers.mobile.ios') }}" data-cta-type="link" data-cta-text="Firefox for iOS">{{ ftl('browsers-mobile-firefox-for-ios') }}</a></h2>
       <p>{{ ftl('browsers-mobile-get-enhanced-tracking-protection') }}</p>
 
@@ -92,7 +101,11 @@
     </div>
 
     <div class="c-landing-grid-item">
-      {{ high_res_img('img/firefox/browsers/mobile/index/firefox-focus.png', {'alt': '', 'class': 'c-landing-grid-img', 'width': '350', 'height': '263'}) }}
+      {% if switch("browser-mr2-promo") %}
+        {{ high_res_img('img/firefox/browsers/mobile/index/firefox-focus-MR2.png', {'alt': '', 'class': 'c-landing-grid-img', 'width': '350', 'height': '218'}) }}
+      {% else %}
+        {{ high_res_img('img/firefox/browsers/mobile/index/firefox-focus.png', {'alt': '', 'class': 'c-landing-grid-img', 'width': '350', 'height': '263'}) }}
+      {% endif %}
       <h2 class="c-landing-grid-title"><a href="{{ url('firefox.browsers.mobile.focus') }}" data-cta-type="link" data-cta-text="Firefox Focus">{{ ftl('browsers-mobile-firefox-focus') }}</a></h2>
       <p>{{ ftl('browsers-mobile-looking-for-a-streamlined') }}</p>
 
