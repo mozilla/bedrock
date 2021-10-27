@@ -29,8 +29,8 @@
 
 
 {# Hero: https://protocol.mozilla.org/patterns/organisms/hero.html #}
-{% macro hero(title, tagline, product_class=None, desc=None, class=None, include_cta=False, heading_level=2, image_url=None, include_highres_image=False, l10n_image=False, image_alt='') -%}
-<section class="mzp-c-hero {% if class %} {{ class }}{% endif %} {% if image_url %} mzp-has-image{% endif %}">
+{% macro hero(title, tagline, desc=None, class=None, include_cta=False, heading_level=2, image_url=None, include_highres_image=False, l10n_image=False, image_alt='', product_class=None) -%}
+<section class="mzp-c-hero{% if class %} {{ class }}{% endif %}{% if image_url %} mzp-has-image{% endif %}">
   <div class="mzp-l-content">
     <div class="mzp-c-hero-body">
       {% if product_class %}
