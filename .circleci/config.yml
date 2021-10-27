@@ -1,4 +1,6 @@
-version: 2
+version: 2.1
+orbs:
+  codecov: codecov/codecov@3.1.1
 jobs:
   test_py:
     docker:
@@ -12,7 +14,14 @@ jobs:
           version: 19.03.13
       - run:
           name: Python Tests
-          command: make clean test-image
+          command: |
+            make clean test-image
+            CONTAINER_ID=$(docker ps -alq)
+            docker cp $CONTAINER_ID:/app/python_coverage .
+      - store_artifacts:
+          path: python_coverage
+      - codecov/upload:
+          file: python_coverage/coverage.xml
 
   test_js:
     docker:

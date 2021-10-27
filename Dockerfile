@@ -94,6 +94,7 @@ RUN pip install --no-cache-dir -r requirements/dev.txt
 RUN pip install --no-cache-dir -r requirements/docs.txt
 COPY ./setup.cfg ./
 COPY ./pyproject.toml ./
+COPY ./.coveragerc ./
 COPY ./tests ./tests
 
 RUN bin/run-sync-all.sh

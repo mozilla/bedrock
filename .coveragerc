@@ -45,4 +45,4 @@ ignore_errors = True
 
 
 [html]
-directory=python_coverage/
+directory=python_coverage
