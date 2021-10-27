@@ -27,48 +27,9 @@
 </section>
 {%- endmacro %}
 
-{# Hero: https://protocol.mozilla.org/patterns/organisms/hero.html #}
-{% macro hero(title, tagline, desc=None, class=None, include_cta=False, heading_level=2, image_url=None, include_highres_image=False, l10n_image=False, image_alt='') -%}
-<section class="mzp-c-hero{% if class %} {{ class }}{% endif %}{%if image_url%} mzp-has-image{% endif %}">
-  <div class="mzp-l-content">
-    <div class="mzp-c-hero-body">
-      <h{{ heading_level }} class="mzp-c-hero-title">{{ title }}</h{{ heading_level }}>
-      {% if tagline or desc %}
-      <div class="mzp-c-hero-desc">
-        {% if tagline %}
-          <p class="mzp-c-hero-tagline">{{ tagline }}</p>
-        {% endif %}
-        {% if desc %}
-          <p>{{ desc }}</p>
-        {% endif %}
-      </div>
-      {% endif %}
-      {% if include_cta %}
-        {{ caller() }}
-      {% endif %}
-    </div>
-  </div>
-  {% if image_url %}
-  <div class="mzp-c-hero-image">
-    {% if include_highres_image %}
-      {{ high_res_img(image_url, {'alt': image_alt, 'l10n': l10n_image}) }}
-    {% else %}
-      {% if image_url.startswith('https')  %}
-        <img src="{{ image_url }}" alt="">
-      {% elif l10n_image %}
-        <img src="{{ l10n_img(image_url) }}" alt="">
-      {% else %}
-        <img src="{{ static(image_url) }}" alt="">
-      {% endif %}
-    {% endif %}
-  </div>
-  {% endif %}
-</section>
-{%- endmacro %}
 
-<!-- This is a Contentful-specific fix for the deprecated hero components. DO NOT USE for normal bedrock stuff. -->
 {# Hero: https://protocol.mozilla.org/patterns/organisms/hero.html #}
-{% macro contentful_hero(title, tagline, product_class=None, desc=None, class=None, include_cta=False, heading_level=2, image_url=None, include_highres_image=False, l10n_image=False, image_alt='') -%}
+{% macro hero(title, tagline, product_class=None, desc=None, class=None, include_cta=False, heading_level=2, image_url=None, include_highres_image=False, l10n_image=False, image_alt='') -%}
 <section class="mzp-c-hero {% if class %} {{ class }}{% endif %} {% if image_url %} mzp-has-image{% endif %}">
   <div class="mzp-l-content">
     <div class="mzp-c-hero-body">
