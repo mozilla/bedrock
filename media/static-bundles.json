@@ -968,9 +968,10 @@
     },
     {
       "files": [
-        "css/externalpages/pocket/pocket-test.scss"
+        "css/externalpages/pocket/style.scss",
+        "css/externalpages/pocket/components/_about.scss"
       ],
-      "name": "external-pocket"
+      "name": "pocket-about"
     }
   ],
   "js": [
