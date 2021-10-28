@@ -80,14 +80,7 @@ urlpatterns = (
     page("firefox/mobile/get-app", "firefox/mobile/get-app.html", ftl_files=["firefox/mobile"]),
     url("^firefox/send-to-device-post/$", views.send_to_device_ajax, name="firefox.send-to-device-post"),
     page("firefox/unsupported-systems", "firefox/unsupported-systems.html"),
-    url(
-        r"^firefox/new/$",
-        views.NewView.as_view(
-            template_context_variations=["fx95"]
-
-        ),
-        name="firefox.new"
-    ),
+    url(r"^firefox/new/$", views.NewView.as_view(template_context_variations=["fx95"]), name="firefox.new"),
     url(r"^firefox/download/thanks/$", views.DownloadThanksView.as_view(), name="firefox.download.thanks"),
     page("firefox/nightly/firstrun", "firefox/nightly/firstrun.html", ftl_files=["firefox/nightly/firstrun"]),
     url(r"^firefox/installer-help/$", views.InstallerHelpView.as_view(), name="firefox.installer-help"),

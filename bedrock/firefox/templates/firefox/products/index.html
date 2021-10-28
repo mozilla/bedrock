@@ -50,7 +50,11 @@
 
   <div class="mzp-l-content c-landing-grid">
     <div class="c-landing-grid-item">
-      <img src="{{ static('img/firefox/products/monitor.svg') }}" class="c-landing-grid-img" alt="" width="316" height="223">
+      {% if switch("browser-mr2-promo") %}
+         <img src="{{ static('img/firefox/products/monitor-MR2.svg') }}" class="c-landing-grid-img" alt="" width="316" height="223">
+      {% else %}
+        <img src="{{ static('img/firefox/products/monitor.svg') }}" class="c-landing-grid-img" alt="" width="316" height="223">
+      {% endif %}
       <h2 class="c-landing-grid-title"><a href="https://monitor.firefox.com{{ referrals }}" data-cta-type="link" data-cta-text="Firefox Monitor">{{ ftl('firefox-products-firefox-monitor') }}</a></h2>
       <p>{{ ftl('firefox-products-see-if-your-personal-information') }}</p>
       <p><a class="mzp-c-cta-link" href="https://monitor.firefox.com/{{ referrals }}" data-cta-type="link" data-cta-text="Check for breaches">{{ ftl('firefox-products-check-for-breaches') }}</a></p>
@@ -65,7 +69,11 @@
     </div>
 
     <div class="c-landing-grid-item">
-      {{ high_res_img('img/firefox/products/browsers.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '316', 'height': '223'}) }}
+      {% if switch("browser-mr2-promo") %}
+         {{ high_res_img('img/firefox/products/browsers.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '316', 'height': '223'}) }}
+      {% else %}
+        {{ high_res_img('img/firefox/products/browsers.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '316', 'height': '223'}) }}
+      {% endif %}
       <h2 class="c-landing-grid-title "><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.index') }}" data-cta-type="link" data-cta-text="Firefox browsers">{{ ftl('firefox-products-firefox-browsers') }}</a></h2>
       <p>{{ ftl('firefox-products-get-the-browsers-that-block') }}</p>
       <div id="menu-browsers-wrapper" class="mzp-c-menu-list mzp-t-cta mzp-t-download">
@@ -96,7 +104,11 @@
   {% endif %}
 
     <div class="c-landing-grid-item">
-      <img src="{{ static('img/firefox/products/pocket.svg') }}" class="c-landing-grid-img" alt="" width="316" height="223">
+      {% if switch("browser-mr2-promo") %}
+        <img src="{{ static('img/firefox/products/pocket-MR2.svg') }}" class="c-landing-grid-img" alt="" width="316" height="223">
+      {% else %}
+        <img src="{{ static('img/firefox/products/pocket.svg') }}" class="c-landing-grid-img" alt="" width="316" height="223">
+      {% endif %}
       <h2 class="c-landing-grid-title"><a href="https://getpocket.com/firefox_learnmore/{{ referrals }}">{{ ftl('firefox-products-pocket') }}</a></h2>
       <p>{{ ftl('firefox-products-discover-the-best-content') }}</p>
       <div id="menu-pocket-wrapper"  class="mzp-c-menu-list mzp-t-cta mzp-t-download">
@@ -113,7 +125,11 @@
 
     {% if ftl_has_messages('firefox-products-protect-your-real') %}
     <div class="c-landing-grid-item">
-      <img src="{{ static('img/firefox/products/relay.svg') }}" class="c-landing-grid-img" alt="" width="316" height="223">
+      {% if switch("browser-mr2-promo") %}
+        <img src="{{ static('img/firefox/products/relay-MR2.svg') }}" class="c-landing-grid-img" alt="" width="316" height="223">
+      {% else %}
+        <img src="{{ static('img/firefox/products/relay.svg') }}" class="c-landing-grid-img" alt="" width="316" height="223">
+      {% endif %}
       <h2 class="c-landing-grid-title"><a href="https://relay.firefox.com/">{{ ftl('firefox-products-relay') }}</a></h2>
       <p>{{ ftl('firefox-products-protect-your-real') }}</p>
 
