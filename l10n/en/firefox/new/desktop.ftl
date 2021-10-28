@@ -37,6 +37,12 @@ firefox-desktop-download-blocks-social-trackers = Blocks social trackers
 firefox-desktop-download-os-availability = OS availability
 firefox-desktop-download-in-browser-screenshot = In-browser screenshot tool
 firefox-desktop-download-primary-password = Primary password
+firefox-desktop-love-your-life = Love your life online
+# Color is being used as slang here, means customize here. Alternative: Customize it the way you want...
+firefox-desktop-its-your-internet = It’s your internet. Color it the way you want with thousands of tools, themes and extensions. Firefox is the original alternative browser that puts people before profits.
+firefox-desktop-choose-your-color = Choose your color
+firefox-desktop-personalize-your-experience = Personalize your experience  with new colorways
+
 
 # Obsolete string
 firefox-desktop-download-master-password = Master password
