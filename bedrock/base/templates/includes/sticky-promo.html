@@ -20,17 +20,21 @@
             <img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" width="32" height="32" alt="">
             {{ ftl('firefox-sticky-promo-browsers') }}
           </a>
-          <a data-link-name="Monitor" data-link-type="link" data-link-position="sticky-promo" class="promo-products-link" href="https://monitor.firefox.com/{{ referral|safe }}{{ promo_referrals }}" rel="external noopener">
+          <a data-link-name="Monitor" data-link-type="link" data-link-position="sticky-promo" class="promo-products-link" href="https://monitor.firefox.com/{{ promo_referrals }}" rel="external noopener">
             <img src="{{ static('protocol/img/logos/firefox/monitor/logo.svg') }}" width="32" height="32" alt="">
             {{ ftl('firefox-sticky-promo-monitor') }}
           </a>
-          <a data-link-name="Pocket" data-link-type="link" data-link-position="sticky-promo" class="promo-products-link" rel="external noopener" href="https://getpocket.com/{{ referral|safe }}{{ promo_referrals }}">
+          <a data-link-name="Pocket" data-link-type="link" data-link-position="sticky-promo" class="promo-products-link" rel="external noopener" href="https://getpocket.com/{{ promo_referrals }}">
             <img src="{{ static('protocol/img/logos/pocket/logo.svg') }}" width="32" height="29" alt="">
             {{ ftl('firefox-sticky-promo-pocket') }}
           </a>
           <a data-link-name="Mozilla VPN" data-link-type="link" data-link-position="sticky-promo" class="promo-products-link" rel="external noopener" href="{{ url('products.vpn.landing') }}">
             <img src="{{ static('protocol/img/logos/mozilla/vpn/logo-flat-white.svg') }}" width="32" height="35" alt="">
             {{ ftl('firefox-sticky-promo-mozilla-vpn') }}
+          </a>
+          <a data-link-name="Relay" data-link-type="link" data-link-position="sticky-promo" class="promo-products-link" rel="external noopener" href="https://relay.firefox.com/{{ promo_referrals }}">
+            <img src="{{ static('img/logos/relay/logo-white.svg') }}" width="32" height="32" alt="">
+            {{ ftl('firefox-sticky-promo-relay') }}
           </a>
         </li>
       </ul>
