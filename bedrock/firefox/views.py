@@ -40,8 +40,8 @@ from bedrock.firefox.firefox_details import (
 from bedrock.firefox.forms import SendToDeviceWidgetForm
 from bedrock.newsletter.forms import NewsletterFooterForm
 from bedrock.products.forms import VPNWaitlistForm
-from bedrock.utils.views import VariationMixin
 from bedrock.releasenotes import version_re
+from bedrock.utils.views import VariationMixin
 from lib import l10n_utils
 from lib.l10n_utils import L10nTemplateView
 from lib.l10n_utils.dotlang import get_translations_native_names
