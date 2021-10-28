@@ -7,13 +7,31 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    {{ css_bundle('external-pocket') }}
-    <title>{% block title %}{% endblock %} | Pocket</title>
+    {% block shared_meta %}
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+      <meta name="description" content="{% block page_desc%}pocket_desc{% endblock %}"/>
+      <meta name="x-pocket-override-excerpt" content="{% block pocket_override %}{{ self.page_desc()}}{% endblock %}"/>
+      <meta itemprop="name" content="{{ self.page_title() }} | Pocket" />
+      <meta itemprop="description" content="{{ self.page_desc()}}"/>
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:url" content="{% block page_twitter_url %}{% endblock %}" />
+      <meta name="twitter:title" content="{{ self.page_title() }} | Pocket" />
+      <meta name="twitter:description" content="{% block twitter_desc %}{% endblock %}"
+      />
+      <meta name="twitter:site" content="@pocket" />
+      <meta property="fb:app_id" content="131450656879143" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="{% block page_og_url %}{% endblock %}" />
+      <meta property="og:title" content="{{ self.page_title() }} | Pocket" />
+      <meta property="og:description" content="{{ self.page_desc()}}"/>
+      <meta property="og:site_name" content="Pocket" />
+      <meta name="next-head-count" content="6" />
+    {% endblock shared_meta%}
+    {% block pocket_css %}
+      {{ css_bundle('pocket-about') }}
+    {% endblock  %}
+    <title>{% block page_title %}{% endblock page_title %} | Pocket</title>
   </head>
   <body>
     {#
@@ -21,13 +39,14 @@
     "/external/pocket/" in the path, but since these are proxied from
     getpocket.com, that would result in a 404.
     #}
-    Lang: {{ LANG }}
-    <nav>
+    {# Lang: {{ LANG }} #}
+    {# <nav>
       <a href="../">Home</a>
       <a href="../about/">About</a>
       <a href="../add/">How to Save</a>
       <a href="../android/">Pocket for Android</a>
-    </nav>
-    <main class="container">{% block content %}{% endblock %}</main>
-  </body>
+    </nav> #}
+      {% include 'externalpages/pocket/includes/nav.html' %}
+     <main class="main-container">{% block content %}{% endblock %}</main>
+     {% include 'externalpages/pocket/includes/footer.html' %}
 </html>
