@@ -1,0 +1,39 @@
+@font-face {
+    font-family: Doyle;
+    font-weight: 400;
+    src: url('/media/fonts/Doyle-Regular.woff') format('woff'),
+      url('/media/fonts/Doyle-Regular.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: Doyle;
+    font-weight: 500;
+    src: url('/media/fonts/Doyle-Medium.woff') format('woff'),
+      url('/media/fonts/Doyle-Medium.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: Graphik Web;
+    font-weight: 400;
+    src: url('/media/fonts/Graphik-Regular-Web.woff') format('woff'),
+      url('/media/fonts/Graphik-Regular-Web.woff2');
+  }
+
+  @font-face {
+    font-family: Graphik Web;
+    font-weight: 500;
+    src: url('/media/fonts/Graphik-Medium-Web.woff') format('woff'),
+      url('/media/fonts/Graphik-Medium-Web.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: Graphik Web;
+    font-weight: 600;
+    src: url('/media/fonts/Graphik-Semibold-Web.woff') format('woff'),
+      url('/media/fonts/Graphik-Semibold-Web.woff2') format('woff2');
+  }
+
+  @font-face {
+      font-family: Graphik Web;
+      font-weight: 700;
+      src: url('/media/fonts/Graphik-Bold-Web.woff') format('woff'),
+        url('/media/fonts/Graphik-Bold-Web.woff2') format('woff2');
+  }
