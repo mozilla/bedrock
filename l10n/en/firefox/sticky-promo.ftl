@@ -15,3 +15,4 @@ firefox-sticky-promo-monitor = { -brand-name-monitor }
 firefox-sticky-promo-lockwise = { -brand-name-lockwise }
 firefox-sticky-promo-pocket = { -brand-name-pocket }
 firefox-sticky-promo-mozilla-vpn = { -brand-name-mozilla-vpn }
+firefox-sticky-promo-relay = { -brand-name-relay }
