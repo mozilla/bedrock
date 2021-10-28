@@ -41,6 +41,7 @@ from bedrock.firefox.forms import SendToDeviceWidgetForm
 from bedrock.newsletter.forms import NewsletterFooterForm
 from bedrock.products.forms import VPNWaitlistForm
 from bedrock.releasenotes import version_re
+from bedrock.utils.views import VariationMixin
 from lib import l10n_utils
 from lib.l10n_utils import L10nTemplateView
 from lib.l10n_utils.dotlang import get_translations_native_names
@@ -702,7 +703,7 @@ class DownloadThanksView(L10nTemplateView):
         return [template]
 
 
-class NewView(L10nTemplateView):
+class NewView(VariationMixin, L10nTemplateView):
     ftl_files_map = {
         "firefox/new/basic/base_download.html": ["firefox/new/download"],
         "firefox/new/desktop/download.html": ["firefox/new/desktop"],
