@@ -15,9 +15,11 @@ Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, u
 {% block page_css %}
   {{ css_bundle('home-2018') }}
 
-  {% if switch('eu-mr1-banner') %}
-    {{ css_bundle('eu-mr1-banner') }}
-  {% elif show_firefox_app_store_banner %}
+  {% if switch('homepage-mr2-promo-eu') %}
+    {{ css_bundle('home-mr2-promo') }}
+  {% endif %}
+
+  {% if show_firefox_app_store_banner %}
     {{ css_bundle('firefox-app-store-banner') }}
   {% elif switch('fundraising-banner-eoy2020') %}
     {{ css_bundle('fundraising-banner') }}
@@ -25,9 +27,7 @@ Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, u
 {% endblock %}
 
 {% block page_banner %}
-  {% if switch('eu-mr1-banner', ['de', 'fr']) %}
-    {% include 'includes/banners/mr1/eu-banner.html' %}
-  {% elif show_firefox_app_store_banner %}
+  {% if show_firefox_app_store_banner %}
     {% include 'includes/banners/mobile/firefox-app-store.html' %}
   {% elif switch('fundraising-banner-eoy2020') and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
     {% include 'includes/banners/fundraiser.html' %}
@@ -41,18 +41,22 @@ Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, u
     <h1>{{ self.page_title() }}</h1>
   </header>
 
-  {% call download_banner(
-    title='Par amour du Net',
-    desc='Firefox - le navigateur indépendant soutenu par une organisation à but non lucratif.',
-    ) %}
-    {{ download_firefox_thanks(alt_copy='Télécharger Firefox', dom_id='download-primary', download_location='primary cta') }}
-  {% endcall %}
+  {% if switch('homepage-mr2-promo-eu') %}
+    {% include 'mozorg/home/includes/mr2-promo-eu.html' %}
+  {% else %}
+    {% call download_banner(
+      title='Par amour du Net',
+      desc='Firefox - le navigateur indépendant soutenu par une organisation à but non lucratif.',
+      ) %}
+      {{ download_firefox_thanks(alt_copy='Télécharger Firefox', dom_id='download-primary', download_location='primary cta') }}
+    {% endcall %}
 
-  {{ fxa_banner(
-    title='Par amour du Net',
-    desc='Firefox - le navigateur indépendant soutenu par une organisation à but non lucratif.',
-    link_cta='En savoir plus',
-  )}}
+    {{ fxa_banner(
+      title='Par amour du Net',
+      desc='Firefox - le navigateur indépendant soutenu par une organisation à but non lucratif.',
+      link_cta='En savoir plus',
+    )}}
+  {% endif %}
 
   <div class="mozilla-content">
     <div class="mzp-l-content mzp-t-mozilla">
@@ -139,9 +143,7 @@ Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, u
 {% block js %}
   {{ js_bundle('home') }}
 
-  {% if switch('eu-mr1-banner', ['de', 'fr']) %}
-    {{ js_bundle('eu-mr1-banner') }}
-  {% elif show_firefox_app_store_banner %}
+  {% if show_firefox_app_store_banner %}
     {{ js_bundle('firefox-app-store-banner') }}
   {% elif switch('fundraising-banner-eoy2020') %}
     {{ js_bundle('fundraising-banner') }}

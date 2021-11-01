@@ -1,0 +1,25 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split with context %}
+
+{% set image = 'img/home/2021/mr2-watercolor-de.png' if LANG == 'de' else 'img/home/2021/mr2-watercolor-fr.png' %}
+{% set set_the_tone = 'Gib den Ton an' if LANG == 'de' else 'Donnez le ton' %}
+{% set bring_creativity = 'Entfalte deine Kreativität mit dem anpassbarsten Firefox ever.' if LANG == 'de' else 'Soyez créatif avec le Firefox le plus personnalisable de son histoire.' %}
+{% set cta = 'Jetzt downloaden' if LANG == 'de' else 'Installer maintenant' %}
+
+{% call split(
+  image_url=image,
+  include_highres_image=True,
+  block_class='home-hero mzp-l-split-center-on-sm-md mzp-l-split-hide-media-on-sm-md',
+  body_class=None,
+  media_class='mzp-l-split-h-center mzp-l-split-v-center',
+  media_after=True,
+) %}
+  <h2 class="c-fxpromo-title">{{ set_the_tone }}</h2>
+  <p class="c-fxpromo-tagline">{{ bring_creativity }}</p>
+  <p class="c-fxpromo-cta"><a href="{{ url('firefox.browsers.mobile.index') }}" class="mzp-c-button mzp-t-product mzp-t-xl" data-cta-type="link" data-cta-text="Get the new Firefox" data-cta-position="MR2 Promo">{{ cta }}</a></p>
+{% endcall %}

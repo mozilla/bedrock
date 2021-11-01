@@ -7,6 +7,7 @@ import pytest
 from pages.home import HomePage
 
 
+@pytest.mark.skip(reason="MR2 promo temporarily hides standard CTA (Issue 10653")
 @pytest.mark.skip_if_firefox(reason="Download button is displayed only to non-Firefox users")
 @pytest.mark.sanity
 @pytest.mark.smoke
@@ -18,6 +19,7 @@ def test_download_button_is_displayed(locale, base_url, selenium):
     assert page.is_secondary_download_button_displayed
 
 
+@pytest.mark.skip(reason="MR2 promo temporarily hides standard CTA (Issue 10653")
 @pytest.mark.skip_if_not_firefox(reason="Firefox Accounts CTA is displayed only to Firefox users")
 @pytest.mark.nondestructive
 @pytest.mark.parametrize("locale", ["de", "fr"])
