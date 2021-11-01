@@ -1195,6 +1195,8 @@ if CSP_EXTRA_FRAME_SRC:
 # support older browsers (mainly Safari)
 CSP_FRAME_SRC = CSP_CHILD_SRC
 
+# FONT CSP to use fonts from getpocket.com
+CSP_FONT_SRC = ["'self'", "assets.getpocket.com"]
 # Bug 1331069 - Double Click tracking pixel for download page.
 AVAILABLE_TRACKING_PIXELS = {
     "doubleclick": (
