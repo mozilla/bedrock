@@ -247,11 +247,7 @@
 
       <ul class="vpn-faq-item-detail mzp-u-list-styled">
         <li>
-          {% if ftl_has_messages('vpn-landing-faq-compatibility-question-desc-windows-v2') %}
-            {{ ftl('vpn-landing-faq-compatibility-question-desc-windows-v2', url=url('products.vpn.platforms.windows')) }}
-          {% else %}
-            {{ ftl('vpn-landing-faq-compatibility-question-desc-windows') }}
-          {% endif %}
+          {{ ftl('vpn-landing-faq-compatibility-question-desc-windows-v3', fallback='vpn-landing-faq-compatibility-question-desc-windows-v2', url=url('products.vpn.platforms.windows')) }}
         </li>
         <li>
           {% if ftl_has_messages('vpn-landing-faq-compatibility-question-desc-mac-v3') %}
