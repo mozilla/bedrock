@@ -31,9 +31,7 @@
 {% block page_css %}
   {{ css_bundle('firefox-master') }}
 
-  {% if switch('eu-mr1-banner', ['de', 'fr']) %}
-    {{ css_bundle('eu-mr1-banner') }}
-  {% elif show_firefox_app_store_banner %}
+  {% if show_firefox_app_store_banner %}
     {{ css_bundle('firefox-app-store-banner') }}
   {% endif %}
 {% endblock %}
@@ -68,9 +66,7 @@
 {% endblock %}
 
 {% block page_banner %}
-  {% if switch('eu-mr1-banner', ['de', 'fr']) %}
-    {% include 'includes/banners/mr1/eu-banner.html' %}
-  {% elif show_firefox_app_store_banner %}
+  {% if show_firefox_app_store_banner %}
     {% include 'includes/banners/mobile/firefox-app-store.html' %}
   {% endif %}
 {% endblock %}
@@ -262,9 +258,7 @@
 {% block js %}
   {{ js_bundle('firefox-master') }}
 
-  {% if switch('eu-mr1-banner', ['de', 'fr']) %}
-    {{ js_bundle('eu-mr1-banner') }}
-  {% elif show_firefox_app_store_banner %}
+  {% if show_firefox_app_store_banner %}
     {{ js_bundle('firefox-app-store-banner') }}
   {% endif %}
 {% endblock %}
