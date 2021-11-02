@@ -1,9 +1,88 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
 {% extends "externalpages/pocket/base.html" %}
 
 {% block title %} How to Save {% endblock%}
 
 {% block content %}
 
-<h1>How to Save</h1>
+<div class="add-page">
+  <header>
+    <div class="add-header">
+      <div class="add-header__title">
+        <h2>Save to Pocket from Firefox</h2>
+      </div>
+      <div class="add-header__context">
+      <div class="add-header__context-image"><img src="{{ static('img/externalpages/pocket/add-pocket-header.jpg') }}" alt="Pocket logo in browser taskbar"></div>
+      <div class="add-header__context-info">
+        <p>
+          Click the Pocket button in your Firefox toolbar to save articles, videos,
+          pages, and more.
+        </p>
+        <a href="https://help.getpocket.com/article/900-saving-to-pocket-and-viewing-your-list-in-firefox" class="btn red-btn" target="_blank" rel="noopener noreferrer">Learn How</a>
+        <p>
+          <a
+          href="https://help.getpocket.com/article/942-where-is-the-pocket-button-in-firefox"
+          class="inline-link" target="_blank" rel="noopener noreferrer">
+          Don't see the Pocket button?
+          <span class="rarrow">›</span>
+        </a>
+      </p>
+    </div>
+    </div>
+    </div>
+</header>
+<main>
+  <section class="add-device">
+    <div class="add-device__header">
+      <h2>View from any Device</h2>
+    </div>
+    <div class="add-device__context">
+      <div class="add-device__context-image">
+        <img src="{{ static('img/externalpages/pocket/add-any-device.jpg') }}" alt="Different devices displaying Pocket articles">
+      </div>
+      <div class="add-device__context-store_list">
+        <ul>
+          <li><a href=""><img src="{{ static('img/externalpages/pocket/apple-app-store-badge.svg') }}" alt=""></a></li>
+          <li><a href=""><img src="{{ static('img/externalpages/pocket/google-play-badge.png') }}" alt=""></a></li>
+          <li><a href=""><img src="{{ static('img/externalpages/pocket/apple-mac-store-badge.svg') }}" alt=""></a></li>
+          <li><a href=""><img src="{{ static('img/externalpages/pocket/add-any-device.jpg') }}" alt=""></a></li>
+        </ul>
+        <ul>
+          <li>Windows</li>
+          <li>Kobo e-reader</li>
+          <li>Windows Mobile</li>
+          <li>Blackberry</li>
+          <li>More Apps</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <div>
+    <div>
+      <h2>Unlimited Ways to Save</h2>
+      <h3>Save via e-mail</h3>
+      <p>email any link to your list by sending it to add@getpocket.com</p>
+      <a
+      href="https://help.getpocket.com/article/1020-saving-to-pocket-via-email" target="_blank" rel="noopener noreferrer"
+      >Learn more</a
+      >
+    </div>
+    <div>
+      <h3>Integrated in 1500+ Apps</h3>
+      <p>Save to Pocket using your favorite apps, such as:</p>
+      <ul>
+        <li>Twitter Apps</li>
+        <li>News Apps</li>
+        <li>More</li>
+      </ul>
+    </div>
+  </div>
+</main>
+</div>
 
 {% endblock %}

@@ -1,0 +1,66 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+
+@import '../utils/variables';
+// @import '../utils/tokens';
+
+$image-path: '/media/img/externalpages/pocket';
+
+
+.add-page {
+
+    header {
+        background-color: #F0F0F0;
+
+        .add-header {
+            width: 70%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: $spacing100;
+
+            &__context {
+                display: flex;
+
+                &-image {
+                    width: 50%;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                &-info {
+                    width: 50%;
+                    margin-left: 30px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    align-items: flex-start;
+                }
+            }
+        }
+    }
+
+    .add-device {
+            width: 70%;
+            max-width: 1200px;
+            margin: 0 auto;
+
+            &__context {
+                display: flex;
+               width: 100%;
+                &-image {
+                    width: 500px;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                &-store_list {
+                    width: 50%;
+                }
+            }
+    }
+}
