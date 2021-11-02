@@ -156,9 +156,8 @@ class TestVPNSubscribeLink(TestCase):
         req = self.rf.get("/")
         req.locale = "en-US"
         return render(
-            "{{{{ vpn_subscribe_link('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', {6}, {7}) }}}}".format(
-                entrypoint, link_text, plan, class_name, country_code, lang, optional_parameters, optional_attributes
-            ),
+            f"""{{{{ vpn_subscribe_link('{entrypoint}', '{link_text}', '{plan}', '{class_name}', '{country_code}',
+                                        '{lang}', {optional_parameters}, {optional_attributes}) }}}}""",
             {"request": req},
         )
 
@@ -675,9 +674,7 @@ class TestVPNSignInLink(TestCase):
         req = self.rf.get("/")
         req.locale = "en-US"
         return render(
-            "{{{{ vpn_sign_in_link('{0}', '{1}', '{2}', {3}, {4}) }}}}".format(
-                entrypoint, link_text, class_name, optional_parameters, optional_attributes
-            ),
+            f"{{{{ vpn_sign_in_link('{entrypoint}', '{link_text}', '{class_name}', {optional_parameters}, {optional_attributes}) }}}}",
             {"request": req},
         )
 
@@ -771,7 +768,7 @@ class TestVPNTotalPrice(TestCase):
     def _render(self, plan, country_code, lang):
         req = self.rf.get("/")
         req.locale = "en-US"
-        return render("{{{{ vpn_total_price('{0}', '{1}', '{2}') }}}}".format(plan, country_code, lang), {"request": req})
+        return render(f"{{{{ vpn_total_price('{plan}', '{country_code}', '{lang}') }}}}", {"request": req})
 
     def test_vpn_6_month_total_price_usd(self):
         """Should return expected markup"""
@@ -817,7 +814,7 @@ class TestVPNSaving(TestCase):
     def _render(self, plan, country_code, lang):
         req = self.rf.get("/")
         req.locale = "en-US"
-        return render("{{{{ vpn_saving('{0}', '{1}', '{2}') }}}}".format(plan, country_code, lang), {"request": req})
+        return render(f"{{{{ vpn_saving('{plan}', '{country_code}', '{lang}') }}}}", {"request": req})
 
     def test_vpn_6_month_saving_usd(self):
         """Should return expected markup"""
@@ -864,9 +861,7 @@ class TestVPNProductReferralLink(TestCase):
             req = self.rf.get("/")
             req.locale = "en-US"
             return render(
-                "{{{{ vpn_product_referral_link('{0}', '{1}', '{2}', '{3}', {4}) }}}}".format(
-                    referral_id, page_anchor, link_text, class_name, optional_attributes
-                ),
+                f"{{{{ vpn_product_referral_link('{referral_id}', '{page_anchor}', '{link_text}', '{class_name}', {optional_attributes}) }}}}",
                 {"request": req},
             )
 

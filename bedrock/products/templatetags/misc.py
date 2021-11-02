@@ -13,7 +13,7 @@ from lib.l10n_utils.fluent import ftl
 FTL_FILES = ["products/vpn/shared"]
 
 
-def get_available_plans(country_code, lang):
+def _vpn_get_available_plans(country_code, lang):
     """
     Get subscription plan IDs using country_code and page language.
     Defaults to "US" if no matching country code is found.
@@ -90,7 +90,7 @@ def vpn_subscribe_link(
                               lang=LANG) }}
     """
 
-    available_plans = get_available_plans(country_code, lang)
+    available_plans = _vpn_get_available_plans(country_code, lang)
     selected_plan = available_plans.get(plan)
     plan_id = selected_plan.get("id")
 
@@ -116,7 +116,7 @@ def vpn_monthly_price(ctx, plan="monthly", country_code=None, lang=None):
                              lang=LANG) }}
     """
 
-    available_plans = get_available_plans(country_code, lang)
+    available_plans = _vpn_get_available_plans(country_code, lang)
     selected_plan = available_plans.get(plan)
     amount = selected_plan.get("price")
     price = ftl("vpn-shared-pricing-monthly", amount=amount, ftl_files=FTL_FILES)
@@ -143,7 +143,7 @@ def vpn_total_price(ctx, plan="12-month", country_code=None, lang=None):
                            lang=LANG) }}
     """
 
-    available_plans = get_available_plans(country_code, lang)
+    available_plans = _vpn_get_available_plans(country_code, lang)
     selected_plan = available_plans.get(plan)
     amount = selected_plan.get("total")
     price = ftl("vpn-shared-pricing-total", amount=amount, ftl_files=FTL_FILES)
@@ -170,7 +170,7 @@ def vpn_saving(ctx, plan="12-month", country_code=None, lang=None):
                       lang=LANG) }}
     """
 
-    available_plans = get_available_plans(country_code, lang)
+    available_plans = _vpn_get_available_plans(country_code, lang)
     selected_plan = available_plans.get(plan)
     percent = selected_plan.get("saving")
     saving = ftl("vpn-shared-pricing-save-percent", percent=percent, ftl_files=FTL_FILES)
