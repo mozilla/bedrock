@@ -31,7 +31,8 @@ $image-path: '/media/img/externalpages/pocket';
 
     .about-section-text-wrapper {
         color: $color-text-primary;
-        z-index: 1;
+        position: inherit;
+        z-index: 2;
 
         .about-section-heading {
             font-family: $fontSansAlt;
