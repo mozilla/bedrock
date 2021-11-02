@@ -12,12 +12,12 @@ class VPNLandingPage(BasePage):
     _URL_TEMPLATE = "/{locale}/products/vpn/{params}"
 
     # Hero
-    _get_vpn_hero_button_locator = (By.CSS_SELECTOR, ".vpn-hero .js-vpn-scroll-to-pricing .mzp-c-button")
-    _join_waitlist_hero_button_locator = (By.CSS_SELECTOR, ".vpn-hero .js-vpn-waitlist .mzp-c-button")
+    _get_vpn_hero_button_locator = (By.CSS_SELECTOR, '.vpn-hero .mzp-c-button[data-cta-text="Scroll to pricing"]')
+    _join_waitlist_hero_button_locator = (By.CSS_SELECTOR, '.vpn-hero .mzp-c-button[data-cta-text="Join the VPN Waitlist"]')
 
     # Navigation
-    _get_vpn_navigation_button_locator = (By.CSS_SELECTOR, ".c-navigation-shoulder .js-vpn-scroll-to-pricing .mzp-c-button")
-    _join_waitlist_navigation_button_locator = (By.CSS_SELECTOR, ".c-navigation-shoulder .js-target-navigation-cta .mzp-c-button")
+    _get_vpn_navigation_button_locator = (By.CSS_SELECTOR, '.c-navigation-shoulder .mzp-c-button[data-cta-text="Scroll to pricing"]')
+    _join_waitlist_navigation_button_locator = (By.CSS_SELECTOR, '.c-navigation-shoulder .mzp-c-button[data-cta-text="Join the VPN Waitlist"]')
 
     # Pricing section
     _get_vpn_monthly_button_locator = (By.CSS_SELECTOR, ".vpn-pricing-monthly .mzp-c-button")
@@ -25,15 +25,18 @@ class VPNLandingPage(BasePage):
     _get_vpn_12_months_button_locator = (By.CSS_SELECTOR, ".vpn-pricing-12-months .mzp-c-button")
 
     # Waitlist features section
-    _join_waitlist_features_button_locator = (By.CSS_SELECTOR, ".js-vpn-waitlist-feature-block .mzp-c-button")
+    _join_waitlist_features_button_locator = (By.CSS_SELECTOR, '.vpn-waitlist-feature-block .mzp-c-button[data-cta-text="Join the VPN Waitlist"]')
 
     # Connect section
-    _get_vpn_conntect_now_button_locator = (By.CSS_SELECTOR, ".js-connect-to-countries-and-servers .js-vpn-scroll-to-pricing .mzp-c-button")
-    _join_waitlist_coming_soon_button_locator = (By.CSS_SELECTOR, ".js-more-countries-coming-soon .mzp-c-button")
+    _get_vpn_conntect_now_button_locator = (By.CSS_SELECTOR, '.vpn-connect-to-countries-and-servers .mzp-c-button[data-cta-text="Scroll to pricing"]')
+    _join_waitlist_coming_soon_button_locator = (
+        By.CSS_SELECTOR,
+        '.vpn-more-countries-coming-soon .mzp-c-button[data-cta-text="Join the VPN Waitlist"]',
+    )
 
     # Footer
-    _get_vpn_footer_button_locator = (By.CSS_SELECTOR, ".vpn-footer .js-vpn-scroll-to-pricing .mzp-c-button")
-    _join_waitlist_footer_button_locator = (By.CSS_SELECTOR, ".vpn-footer .js-vpn-waitlist .mzp-c-button")
+    _get_vpn_footer_button_locator = (By.CSS_SELECTOR, '.vpn-footer .mzp-c-button[data-cta-text="Scroll to pricing"]')
+    _join_waitlist_footer_button_locator = (By.CSS_SELECTOR, '.vpn-footer .mzp-c-button[data-cta-text="Join the VPN Waitlist"]')
 
     # Hero
 

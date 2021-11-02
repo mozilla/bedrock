@@ -9,61 +9,6 @@ $image-path: '/media/protocol/img';
 @import 'includes/lib';
 
 //* -------------------------------------------------------------------------- */
-// Conditional states
-/* stylelint-disable declaration-no-important */
-
-// hide content that is only shown conditionally.
-.js-more-countries-coming-soon,
-.js-vpn-waitlist-feature-block {
-    display: none !important;
-}
-
-// if JS is enabled then hide pricing content until we know to show it.
-.js .js-vpn-scroll-to-pricing,
-.js .vpn-variable-pricing-block {
-    display: none !important;
-}
-
-// countries where VPN is available at variable pricing.
-.show-vpn-pricing {
-    .js-vpn-scroll-to-pricing,
-    .vpn-variable-pricing-block {
-        display: block !important;
-    }
-
-    span.js-vpn-scroll-to-pricing {
-        display: inline-block !important;
-    }
-}
-
-// countries where VPN is not available.
-.show-vpn-waitlist {
-
-    .js-connect-to-countries-and-servers {
-        display: none !important;
-    }
-
-    .js-more-countries-coming-soon {
-        display: block !important;
-
-        @supports(display: grid) {
-            display: grid !important;
-        }
-    }
-
-    .js-vpn-waitlist-feature-block {
-        display: block !important;
-    }
-}
-/* stylelint-enable declaration-no-important */
-
-// fade in conditional CTA containers when they display.
-.js-vpn-scroll-to-pricing,
-.js-vpn-waitlist {
-    @include animation(mzp-a-fade-in 100ms ease-in 0ms 1 normal both);
-}
-
-//* -------------------------------------------------------------------------- */
 // Guarantee / Availability Copy
 
 .availability-copy,

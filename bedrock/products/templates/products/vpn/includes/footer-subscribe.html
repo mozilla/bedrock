@@ -4,20 +4,10 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "products/vpn/includes/macros.html" import vpn_content_block with context %}
+{% from "products/vpn/includes/macros.html" import vpn_conditional_cta, vpn_content_block with context %}
 
 {% call vpn_content_block(
   class_name='vpn-footer-subscribe'
 ) %}
-  <div class="js-vpn-scroll-to-pricing">
-    <a class="mzp-c-button mzp-t-xl" href="#pricing" data-cta-type="button" data-cta-text="Scroll to pricing" data-cta-position="secondary">
-      {{ ftl('vpn-shared-subscribe-link') }}
-    </a>
-
-    <p class="guarantee-copy">
-      {{ ftl('vpn-shared-money-back-guarantee') }}
-    </p>
-  </div>
-
-  <div class="js-target-footer-cta"></div>
+  {{ vpn_conditional_cta(position='footer') }}
 {% endcall %}

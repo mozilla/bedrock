@@ -26,13 +26,14 @@
     ) %}
       <p class="vpn-pricing-variable-plan-tag">{{ ftl('vpn-shared-pricing-recommended-offer') }}</p>
       <h2 class="vpn-content-block-heading">{{ ftl('vpn-shared-pricing-plan-12-month') }}</h2>
-      <h3 class="vpn-content-block-sub-heading">{{ vpn_monthly_price(plan='12-month', lang=LANG) }}</h3>
+      <h3 class="vpn-content-block-sub-heading">{{ vpn_monthly_price(plan='12-month', country_code=country_code, lang=LANG) }}</h3>
 
       {{ vpn_subscribe_link(
         entrypoint=_utm_source,
         link_text=ftl('vpn-shared-pricing-get-12-month-v2', fallback='vpn-shared-pricing-get-12-month'),
         plan='12-month',
-        class_name='mzp-c-button mzp-t-xl ',
+        class_name='mzp-c-button mzp-t-xl',
+        country_code=country_code,
         lang=LANG,
         optional_parameters={
           'utm_campaign': _utm_campaign
@@ -45,21 +46,22 @@
       ) }}
 
       <p class="refund-policy"><a href="#faq-refunds">{{ ftl('vpn-shared-refund-policy') }}</a></p>
-      <p class="vpn-pricing-variable-saving">{{ vpn_saving(plan='12-month', lang=LANG) }}</p>
-      <p class="vpn-pricing-variable-total">{{ vpn_total_price(plan='12-month', lang=LANG) }}</p>
+      <p class="vpn-pricing-variable-saving">{{ vpn_saving(plan='12-month', country_code=country_code, lang=LANG) }}</p>
+      <p class="vpn-pricing-variable-total">{{ vpn_total_price(plan='12-month', country_code=country_code, lang=LANG) }}</p>
     {% endcall %}
 
     {% call vpn_content_block(
       class_name='vpn-pricing-6-months'
     ) %}
       <h2 class="vpn-content-block-heading">{{ ftl('vpn-shared-pricing-plan-6-month') }}</h2>
-      <h3 class="vpn-content-block-sub-heading">{{ vpn_monthly_price(plan='6-month', lang=LANG) }}</h3>
+      <h3 class="vpn-content-block-sub-heading">{{ vpn_monthly_price(plan='6-month', country_code=country_code, lang=LANG) }}</h3>
 
       {{ vpn_subscribe_link(
         entrypoint=_utm_source,
         link_text=ftl('vpn-shared-pricing-get-6-month-v2', fallback='vpn-shared-pricing-get-6-month'),
         plan='6-month',
-        class_name='mzp-c-button mzp-t-secondary mzp-t-xl ',
+        class_name='mzp-c-button mzp-t-secondary mzp-t-xl',
+        country_code=country_code,
         lang=LANG,
         optional_parameters={
           'utm_campaign': _utm_campaign
@@ -72,21 +74,22 @@
       ) }}
 
       <p class="refund-policy"><a href="#faq-refunds">{{ ftl('vpn-shared-refund-policy') }}</a></p>
-      <p class="vpn-pricing-variable-saving">{{ vpn_saving(plan='6-month', lang=LANG) }}</p>
-      <p class="vpn-pricing-variable-total">{{ vpn_total_price(plan='6-month', lang=LANG) }}</p>
+      <p class="vpn-pricing-variable-saving">{{ vpn_saving(plan='6-month', country_code=country_code, lang=LANG) }}</p>
+      <p class="vpn-pricing-variable-total">{{ vpn_total_price(plan='6-month', country_code=country_code, lang=LANG) }}</p>
     {% endcall %}
 
    {% call vpn_content_block(
      class_name='vpn-pricing-monthly'
      ) %}
      <h2 class="vpn-content-block-heading">{{ ftl('vpn-shared-pricing-plan-monthly') }}</h2>
-     <h3 class="vpn-content-block-sub-heading">{{ vpn_monthly_price(plan='monthly', lang=LANG) }}</h3>
+     <h3 class="vpn-content-block-sub-heading">{{ vpn_monthly_price(plan='monthly', country_code=country_code, lang=LANG) }}</h3>
 
      {{ vpn_subscribe_link(
        entrypoint=_utm_source,
        link_text=ftl('vpn-shared-pricing-get-monthly'),
        plan='monthly',
-       class_name='mzp-c-button mzp-t-secondary mzp-t-xl ',
+       class_name='mzp-c-button mzp-t-secondary mzp-t-xl',
+       country_code=country_code,
        lang=LANG,
        optional_parameters={
          'utm_campaign': _utm_campaign

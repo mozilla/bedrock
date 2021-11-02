@@ -416,12 +416,6 @@
     },
     {
       "files": [
-        "css/firefox/whatsnew/whatsnew-92-vpn.scss"
-      ],
-      "name": "firefox_whatsnew_92_vpn"
-    },
-    {
-      "files": [
         "css/firefox/whatsnew/whatsnew-93.scss"
       ],
       "name": "firefox_whatsnew_93"
@@ -1061,14 +1055,6 @@
     },
     {
       "files": [
-        "js/firefox/whatsnew/up-to-date.js",
-        "js/base/mozilla-fxa-product-button.js",
-        "js/base/mozilla-fxa-product-button-init.js"
-      ],
-      "name": "firefox_whatsnew_92_vpn"
-    },
-    {
-      "files": [
         "js/firefox/whatsnew/up-to-date.js"
       ],
       "name": "firefox_whatsnew_93"
@@ -1593,7 +1579,6 @@
     {
       "files": [
         "js/base/mozilla-fxa-product-button.js",
-        "js/products/vpn/geo.js",
         "js/products/vpn/landing.js"
       ],
       "name": "mozilla-vpn-landing"
@@ -1616,13 +1601,6 @@
         "js/contentful/lazyload-init.js"
       ],
       "name": "c-card"
-    },
-    {
-      "files": [
-        "js/libs/mozilla-traffic-cop.js",
-        "js/products/vpn/cta-change-experiment.js"
-      ],
-      "name": "vpn-landing-page-cta-change-experiment"
     }
   ]
 }
