@@ -10,8 +10,7 @@
 
 {% if action == 'Download Firefox' %}
 
-  <!-- TODO: unique dom_ID -->
-  {{ download_firefox_thanks(dom_id='download-button-primary', download_location=location, alt_copy=label, button_class=button_class) }}
+  <a href="{{ url('firefox.browsers.index') }}" class="mzp-c-button {{ button_class }}" data-cta-text="{{ cta_text }}" data-cta-type="link" data-cta-position="{{ location }}">{{ label }}</a>
 
 {% elif action == 'Create a Firefox Account' %}
 
@@ -31,6 +30,11 @@
 {% elif action == 'Get Mozilla VPN' %}
 
   <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button {{ button_class }}" data-cta-text="{{ cta_text }}" data-cta-type="link" data-cta-position="{{ location }}">{{ label }}</a>
+
+{% elif action == 'Try Relay' %}
+
+  {% set referral = '?utm_source=' + utm_source + '&utm_medium=referral&utm_campaign=' + utm_campaign %}
+  <a href="https://relay.firefox.com/{{ referral|safe }}" class="mzp-c-button {{ button_class }}" rel="external noopener" data-cta-text="{{ cta_text }}" data-cta-type="link" data-cta-position="{{ location }}">{{ label }}</a>
 
 {% endif %}
 
