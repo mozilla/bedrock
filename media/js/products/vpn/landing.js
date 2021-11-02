@@ -25,6 +25,15 @@
 (function () {
     'use strict';
 
+    // initiate FxA flow metrics after subscription URLs have been set.
+    if (typeof Mozilla.FxaProductButton !== 'undefined') {
+        Mozilla.FxaProductButton.init();
+    }
+})();
+
+(function () {
+    'use strict';
+
     function openFaqItem(id) {
         var faq = document.getElementById(id);
 
