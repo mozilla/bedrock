@@ -18,6 +18,7 @@
 {% block body_id %}home{% endblock %}
 
 {% set referrals="?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage" %}
+{% set show_mr2_promo = switch('homepage-mr2-promo') and ftl_has_messages('home-mr2-promo-title', 'home-mr2-promo-cta') %}
 
 {% block extra_meta %}
 <!-- validates bing webmaster tools -->
@@ -33,7 +34,7 @@
     {{ css_bundle('fundraising-banner') }}
   {% endif %}
 
-  {% if switch('homepage-mr2-promo') %}
+  {% if show_mr2_promo %}
     {{ css_bundle('home-mr2-promo') }}
   {% else %}
     {{ css_bundle('home-mr1-promo') }}
@@ -48,7 +49,7 @@
 
 {% block content %}
 <main role="main">
-  {% if switch('homepage-mr2-promo') and ftl_has_messages('home-mr2-promo-title', 'home-mr2-promo-cta') %}
+  {% if show_mr2_promo %}
     {% include 'mozorg/home/includes/mr2-promo.html' %}
   {% elif ftl_has_messages('home-promo-title-lalo', 'home-promo-title-soraya', 'home-promo-title-gary', 'home-promo-title-ryan') %}
     {%- set promos = [
