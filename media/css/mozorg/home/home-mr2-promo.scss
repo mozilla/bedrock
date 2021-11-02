@@ -9,50 +9,49 @@ $image-path: '/media/protocol/img';
 
 
 // Firefox MR2 promo
-.c-fxpromo-title {
-    @include font-firefox;
-    @include text-title-xl;
-    color: $color-ink-60;
-    margin-bottom: .25em;
-    text-align: center;
-
-    br {
-        display: none;
-    }
-}
-
-[lang^='en'] .c-fxpromo-title {
-    @include text-title-2xl;
-}
-
-.c-fxpromo-tagline {
-    @include font-firefox;
-    @include text-title-sm;
-    color: $color-ink-60;
-    margin-bottom: 1em;
-}
-
-
-@media #{$mq-md} {
-    .mzp-c-split-container .mzp-c-split-body {
-        @include bidi(((padding-left, get-theme('h-grid-sm'), padding-right, get-theme('h-grid-sm')),));
-    }
-
+.mr2-home-hero {
     .c-fxpromo-title {
-        @include bidi((
-            (text-align, left, right),
-            (margin-left, -$spacing-xs, 0),
-            (margin-right, 0, -$spacing-xs),
-        ));
+        @include font-firefox;
+        @include text-title-xl;
+        color: $color-ink-60;
+        margin-bottom: .25em;
+        text-align: center;
 
         br {
-            display: block;
+            display: none;
+        }
+
+        [lang^='en'] & {
+            @include text-title-2xl;
         }
     }
-}
 
-@media #{$mq-lg} {
-    .mzp-c-split.home-hero {
+    .c-fxpromo-tagline {
+        @include font-firefox;
+        @include text-title-sm;
+        color: $color-ink-60;
+        margin-bottom: 1em;
+    }
+
+    @media #{$mq-md} {
+        .mzp-c-split-body {
+            @include bidi(((padding-left, get-theme('h-grid-sm'), padding-right, get-theme('h-grid-sm')),));
+        }
+
+        .c-fxpromo-title {
+            @include bidi((
+                (text-align, left, right),
+                (margin-left, -$spacing-xs, 0),
+                (margin-right, 0, -$spacing-xs),
+            ));
+
+            br {
+                display: block;
+            }
+        }
+    }
+
+    @media #{$mq-lg} {
         padding-top: $layout-lg;
         padding-bottom: $layout-lg;
 
@@ -60,20 +59,20 @@ $image-path: '/media/protocol/img';
             margin-top: -$layout-md;
             margin-bottom: -$layout-md;
         }
+
+        .mzp-c-split-body {
+            @include bidi(((padding-left, get-theme('h-grid-md'), padding-right, get-theme('h-grid-md')),));
+        }
+
+        [lang^='en'] & .c-fxpromo-title {
+            @include font-size(100px);
+            line-height: .85;
+        }
     }
 
-    .mzp-c-split-container .mzp-c-split-body {
-        @include bidi(((padding-left, get-theme('h-grid-md'), padding-right, get-theme('h-grid-md')),));
-    }
-
-    [lang^='en'] .c-fxpromo-title {
-        @include font-size(100px);
-        line-height: .85;
-    }
-}
-
-@media #{$mq-xl} {
-    [lang^='en'] .c-fxpromo-title {
-        @include font-size(140px);
+    @media #{$mq-xl} {
+        [lang^='en'] & .c-fxpromo-title {
+            @include font-size(140px);
+        }
     }
 }
