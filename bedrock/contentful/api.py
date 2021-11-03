@@ -583,12 +583,9 @@ class ContentfulPage:
                 elif key == "component_callout":
                     proc(value)
         elif page_type == CONTENT_TYPE_PAGE_RESOURCE_CENTRE:
-            # TODO: can we actually make this generic?
-            _content = fields.get("main_content", {}).get("content")
-            # explicitly render the content, because proc() does not consume JSON
-            # which is what _content is
-            for item in _content:
-                entries.append(self.get_text_data(item))
+            # TODO: can we actually make this generic? Poss not: main_content is a custom field name
+            _content = fields.get("main_content", {})
+            entries.append(self.get_text_data(_content))
         else:
             # This covers pageVersatile, pageHome, etc
             content = fields.get("content")
