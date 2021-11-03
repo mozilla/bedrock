@@ -7,11 +7,16 @@
 {% set utm_source = request.page_info.utm_source %}
 {% set utm_campaign = request.page_info.utm_campaign %}
 {% set utm_content = label.replace(' ', '-') %}
+{% set referral = '?utm_source=' + utm_source + '&utm_medium=referral&utm_campaign=' + utm_campaign %}
 
 {% if action == 'Download Firefox' %}
 
   <!-- TODO: unique dom_ID -->
-  {{ download_firefox_thanks(dom_id='download-button-primary', download_location=location, alt_copy=label, button_class=button_class) }}
+  {{ download_firefox_thanks(dom_id='download-button-primary', alt_copy=label, button_class=button_class) }}
+
+{% elif action == 'Explore Firefox' %}
+
+  <a href="{{ url('firefox.browsers.index') }}" class="mzp-c-button {{ button_class }}" data-cta-text="{{ cta_text }}" data-cta-type="link">{{ label }}</a>
 
 {% elif action == 'Create a Firefox Account' %}
 
@@ -20,17 +25,20 @@
     button_text=label,
     class_name=button_class,
     optional_parameters={'utm_campaign': utm_campaign, 'utm_content': 'firefox-sync-' + utm_content },
-    optional_attributes={'data-cta-text': cta_text, 'data-cta-type': 'fxa-sync', 'data-cta-position': location}
+    optional_attributes={'data-cta-text': cta_text, 'data-cta-type': 'fxa-sync'}
   ) }}
 
 {% elif action == 'Get Pocket' %}
 
-    {% set referral = '?utm_source=' + utm_source + '&utm_medium=referral&utm_campaign=' + utm_campaign %}
-    <a href="https://getpocket.com/{{ referral|safe }}" class="mzp-c-button {{ button_class }}" rel="external noopener" data-cta-type="link" data-cta-text="{{ cta_text }}">{{ label }}</a>
+  <a href="https://getpocket.com/{{ referral|safe }}" class="mzp-c-button {{ button_class }}" rel="external noopener" data-cta-type="link" data-cta-text="{{ cta_text }}">{{ label }}</a>
 
 {% elif action == 'Get Mozilla VPN' %}
 
-  <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button {{ button_class }}" data-cta-text="{{ cta_text }}" data-cta-type="link" data-cta-position="{{ location }}">{{ label }}</a>
+  <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button {{ button_class }}" data-cta-text="{{ cta_text }}" data-cta-type="link">{{ label }}</a>
+
+{% elif action == 'Try Relay' %}
+
+  <a href="https://relay.firefox.com/{{ referral|safe }}" class="mzp-c-button {{ button_class }}" rel="external noopener" data-cta-text="{{ cta_text }}" data-cta-type="link">{{ label }}</a>
 
 {% endif %}
 
