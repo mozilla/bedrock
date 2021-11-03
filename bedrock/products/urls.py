@@ -31,6 +31,6 @@ urlpatterns = (
     page("vpn/more/do-i-need-a-vpn", "products/vpn/more/do-i-need.html", ftl_files=["products/vpn/shared"]),
     page("vpn/more/what-is-a-vpn-v2", "products/vpn/more/what-is-a-vpn-v2.html", ftl_files=["products/vpn/shared"]),
     # VPN Resource Center
-    page('vpn/resource-center', 'products/vpn/resource-center/landing.html', ftl_files=['products/vpn/shared']),
-    page('vpn/resource-center/article', 'products/vpn/resource-center/article.html', ftl_files=['products/vpn/shared'])
+    page("vpn/resource-center", "products/vpn/resource-center/landing.html", ftl_files=["products/vpn/shared"]),
+    page("vpn/resource-center/article", "products/vpn/resource-center/article.html", ftl_files=["products/vpn/shared"]),
 )
