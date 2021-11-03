@@ -190,10 +190,6 @@
       "name": "firefox-app-store-banner"
     },
     {
-      "files": ["css/base/banners/eu-mr1-banner.scss"],
-      "name": "eu-mr1-banner"
-    },
-    {
       "files": ["css/base/banners/mobile-compare.scss"],
       "name": "mobile-compare-banner"
     },
@@ -287,29 +283,6 @@
       "name": "flashback"
     },
     {
-      "files": [
-        "css/protocol/components/send-to-device.scss",
-        "css/firefox/whatsnew/whatsnew-86.scss"
-      ],
-      "name": "firefox_whatsnew_86"
-    },
-    {
-      "files": ["css/firefox/whatsnew/whatsnew-87.scss"],
-      "name": "firefox_whatsnew_87"
-    },
-    {
-      "files": ["css/firefox/whatsnew/whatsnew-88-en.scss"],
-      "name": "firefox_whatsnew_88_en"
-    },
-    {
-      "files": ["css/firefox/whatsnew/whatsnew-90.scss"],
-      "name": "firefox_whatsnew_90"
-    },
-    {
-      "files": ["css/firefox/whatsnew/whatsnew-90-eu.scss"],
-      "name": "firefox_whatsnew_90_eu"
-    },
-    {
       "files": ["css/firefox/whatsnew/whatsnew-91-en.scss"],
       "name": "firefox_whatsnew_91"
     },
@@ -336,10 +309,6 @@
         "css/firefox/whatsnew/whatsnew-93.scss"
       ],
       "name": "firefox_whatsnew_93"
-    },
-    {
-      "files": ["css/firefox/whatsnew/whatsnew-92-vpn.scss"],
-      "name": "firefox_whatsnew_92_vpn"
     },
     {
       "files": ["css/firefox/privacy/common.scss"],
@@ -1399,13 +1368,6 @@
         "js/contentful/lazyload-init.js"
       ],
       "name": "c-card"
-    },
-    {
-      "files": [
-        "js/libs/mozilla-traffic-cop.js",
-        "js/products/vpn/cta-change-experiment.js"
-      ],
-      "name": "vpn-landing-page-cta-change-experiment"
     },
     {
       "files": [
