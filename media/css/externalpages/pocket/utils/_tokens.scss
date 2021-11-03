@@ -5,7 +5,7 @@
 .main-container {
   overflow: hidden;
 
-  a {
+  .about-section a {
     color: $color-action-primary;
     text-decoration: underline;
     transition: color 0.1s ease-out;
@@ -34,7 +34,7 @@
     }
 }
 
-.inline-link {
+.dark-inline-link {
     font-weight: 700;
     color: $color-text-grey;
     text-decoration: none;
@@ -42,4 +42,8 @@
     &:hover {
         color: $color-text-cyan;
     }
+}
+
+li {
+    list-style: none;
 }

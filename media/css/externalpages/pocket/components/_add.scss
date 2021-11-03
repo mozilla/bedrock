@@ -9,103 +9,139 @@
 $image-path: '/media/img/externalpages/pocket';
 
 
-.add-page {
-
-    header {
+.add-page header {
         background-color: #F0F0F0;
+        }
 
-        .add-header {
-            width: 70%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: $spacing100;
 
-            &__context {
-                display: flex;
+.add-header {
+    width: 70%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: $spacing100;
 
-                &-image {
-                    width: 50%;
+    &__context {
+        display: flex;
+        &-image {
+            width: 50%;
 
-                    img {
-                        width: 100%;
-                        height: 100%;
-                    }
-                }
-                &-info {
-                    width: 50%;
-                    margin-left: 30px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-around;
-                    align-items: flex-start;
-                }
+            img {
+                width: 100%;
+                height: 100%;
             }
         }
+
+        &-info {
+            width: 50%;
+            margin-left: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: flex-start;
+        }
     }
+}
 
-    .add-device {
-            width: 70%;
-            max-width: 1200px;
-            margin: 0 auto;
 
-            &__context {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                 width: 100%;
-                &-image {
-                    width: 65%;
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        display: block;
-                    }
-                }
-                &-store_list {
-                    width: 30%;
-                    li {
-                        list-style: none;
-                    }
-                    .app-store-badge {
-                        width: 190px;
-                        height: 65px;
-                        border: 2px solid $color-action-primary;
-                        margin-bottom: $spacing025;
-                        color: $color-white;
-                        text-align: center;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        a  {
-                            height: 100%;
-                            width: 100%;
-                        }
-                    }
-                }
-            }
-    }
-
-    .add-save {
+.add-device {
         width: 70%;
         max-width: 1200px;
         margin: 0 auto;
 
-        .add-save__context {
+        &__context {
             display: flex;
             justify-content: space-between;
             align-items: center;
+             width: 100%;
 
-            &-email {
-                width: 50%;
-            }
             &-image {
-            //    width: 50%;
+                width: 70%;
+
                 img {
                     width: 100%;
                     height: 100%;
                     display: block;
                 }
             }
+            &-stores {
+                width: 25;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+
+                ul {
+                    padding: 0;
+                }
+
+                .app-store-badge {
+                    width: 190px;
+                    height: 65px;
+                    border: 2px solid $color-action-primary;
+                    margin-bottom: $spacing025;
+                    color: $color-white;
+                    text-align: center;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    a  {
+                        height: 100%;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+}
+
+.save {
+    background-color: #F0F0F0;
+}
+
+.add-save {
+    width: 70%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: $spacing100;
+    .add-save__context {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        &-email {
+            width: 45%;
+        }
+        &-image {
+               width: 400px;
+               margin-bottom: $spacing100;
+            img {
+                width: 100%;
+                height: 100%;
+                display: block;
+            }
+        }
+        &-apps {
+            width: 45%;
+            .app-types {
+                display: flex;
+                align-items: flex-start;
+                .app-board {
+                    display: flex;
+                    flex-wrap: wrap;
+                    width: 60%;
+                    padding: 0;
+                    li {
+                        width: 60px;
+                        height: 60px;
+                        border: 2px solid black;
+                        margin: 10px;
+                    }
+                }
+                .app-list {
+                    li {
+                        margin: $spacing150 0;
+                }
+            }
         }
     }
 }
+}
+
