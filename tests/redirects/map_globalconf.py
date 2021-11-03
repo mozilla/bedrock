@@ -1153,6 +1153,7 @@ URLS = flatten(
         url_test("/grants/{,reports/gnome-haeger-report,jambu.html}/", "/moss/"),
         # Issue 10292
         url_test("/firefox/90.0/whatsnew/africa/", "/firefox/90.0/whatsnew/"),
+        url_test("/firefox/90.0/whatsnew/africa/", "/firefox/90.0/whatsnew/"),
         url_test("/firefox/90.0/whatsnew/india/", "/firefox/90.0/whatsnew/"),
         url_test("/firefox/92.0/whatsnew/france/", "/firefox/92.0/whatsnew/"),
         url_test("/firefox/92.0/whatsnew/en/", "/firefox/92.0/whatsnew/"),
@@ -1160,6 +1161,13 @@ URLS = flatten(
         url_test("/firefox/whatsnew/india/", "/firefox/whatsnew/"),
         url_test("/firefox/whatsnew/france/", "/firefox/whatsnew/"),
         url_test("/firefox/whatsnew/en/", "/firefox/whatsnew/"),
+        # Issue 10590
+        url_test("/firefox/whatsnew/all/", "/firefox/whatsnew/"),
+        url_test("/firefox/whatsnew/china/", "/firefox/whatsnew/"),
+        url_test("/firefox/93.0/whatsnew/all/", "/firefox/93.0/whatsnew/"),
+        url_test("/firefox/93.0a2/whatsnew/all/", "/firefox/93.0a2/whatsnew/"),
+        url_test("/firefox/93.0/whatsnew/china/", "/firefox/93.0/whatsnew/"),
+        url_test("/firefox/93.0a1/whatsnew/china/", "/firefox/93.0a1/whatsnew/"),
         # Issue 10335
         url_test("/vpn/", "/products/vpn/"),
     )

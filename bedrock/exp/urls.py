@@ -6,10 +6,6 @@ from django.conf.urls import url
 
 from bedrock.exp import views
 from bedrock.mozorg.util import page
-from bedrock.releasenotes import version_re
-
-latest_re = r"^firefox(?:/(?P<version>%s))?/%s/$"
-whatsnew_re_all = latest_re % (version_re, "whatsnew/all")
 
 urlpatterns = (
     page("opt-out", "exp/opt-out.html"),

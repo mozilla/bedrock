@@ -427,38 +427,6 @@ valid variation were given in the URL.
     a mixin that implements this pattern that should work with most views:
     `bedrock.utils.views.VariationMixin`.
 
-
-Geo Redirect View
-^^^^^^^^^^^^^^^^^
-
-We sometimes need to have a special page variation for people visiting from certain
-countries. To make this easier we have a redirect view class that will allow you to
-define URLs per country as well as a default for everyone else.
-
-.. code-block:: python
-
-    from bedrock.base.views import GeoRedirectView
-
-    class CanadaIsSpecialView(GeoRedirectView):
-        geo_urls = {
-            'CA': 'app.canada-is-special',
-        }
-        default_url = 'app.everyone-else'
-
-
-In this example people in Canada would go to the URL that Django returns using `reverse()`
-(i.e. the name of the URL) and everyone else would go to the `app.everyone-else` URL. You
-may also use full URLs instead of URL names if you want to. It will look for strings that
-start with "http(s)://" and use it as is. The
-`country code <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements>`_
-must be 2 characters and upper case. If the patterns for the redirect and the destination(s) have
-URL parameters they will be passed to the reverse call for the URL pattern name. So for example
-if you're doing this for a Firefox page with a version number in the URL, as long as the view
-and destination URLs use the same URL parameter names it will be preserved in the resulting destination URL.
-So `/firefox/70.0beta/whatsnew/` would redirect to `/firefox/70.0beta/whatsnew/canada/` for example.
-The redirector will also preserve query parameters by default. You can turn that off by
-setting the `query_string = False` class variable.
-
 Geo Template View
 ^^^^^^^^^^^^^^^^^
 
@@ -544,11 +512,11 @@ Test coverage
 -------------
 
 When the Python tests are run, a coverage report is generated, showing which lines of the
-codebase have tests that execute them, and which do not. You can view this report in your 
-browser at ``file:///path/to/your/checkout/of/bedrock/python_coverage/index.html``. 
+codebase have tests that execute them, and which do not. You can view this report in your
+browser at ``file:///path/to/your/checkout/of/bedrock/python_coverage/index.html``.
 
-When adding code, please aim to provide solid test coverage, using the coverage report as 
-a guide. This doesn't necessarily mean every single line needs a test, and 100% coverage 
+When adding code, please aim to provide solid test coverage, using the coverage report as
+a guide. This doesn't necessarily mean every single line needs a test, and 100% coverage
 doesn't mean 0% defects.
 
 

@@ -542,7 +542,7 @@ redirectpatterns = (
     # issue 10182
     redirect(r"^/firefox/mobile/?$", "firefox.browsers.mobile.index"),
     redirect(r"^/exp/firefox/mobile/?$", "firefox.browsers.mobile.index"),
-    # issue 10292
-    redirect(r"^firefox/(?P<version>[^/]+)/whatsnew/(india|africa|france|en)/?$", "/firefox/{version}/whatsnew/"),
-    redirect(r"^firefox/whatsnew/(india|africa|france|en)/?$", "firefox.whatsnew"),
+    # issue 10292, 10590
+    redirect(r"^firefox/(?P<version>[^/]+)/whatsnew/(india|africa|france|en|all|china)/?$", "/firefox/{version}/whatsnew/"),
+    redirect(r"^firefox/whatsnew/(india|africa|france|en|all|china)/?$", "firefox.whatsnew"),
 )

@@ -28,7 +28,6 @@ from product_details.version_compare import Version
 
 from bedrock.base.geo import get_country_from_request
 from bedrock.base.urlresolvers import reverse
-from bedrock.base.views import GeoRedirectView
 from bedrock.base.waffle import switch
 from bedrock.base.waffle_config import DictOf, config
 from bedrock.contentful.api import ContentfulPage
@@ -371,35 +370,8 @@ def detect_channel(version):
     return "unknown"
 
 
-def show_38_0_5_firstrun(version):
-    try:
-        version = Version(version)
-    except ValueError:
-        return False
-
-    return version >= Version("38.0.5")
-
-
 def show_57_dev_whatsnew(version):
     version = version[:-2]
-    try:
-        version = Version(version)
-    except ValueError:
-        return False
-
-    return version >= Version("57.0")
-
-
-def show_62_firstrun(version):
-    try:
-        version = Version(version)
-    except ValueError:
-        return False
-
-    return version >= Version("62.0")
-
-
-def show_57_firstrun(version):
     try:
         version = Version(version)
     except ValueError:
@@ -416,15 +388,6 @@ def show_57_dev_firstrun(version):
         return False
 
     return version >= Version("57.0")
-
-
-def show_70_0_2_whatsnew(oldversion):
-    try:
-        oldversion = Version(oldversion)
-    except ValueError:
-        return False
-
-    return oldversion >= Version("70.0")
 
 
 def redirect_old_firstrun(version):
@@ -484,20 +447,6 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
         return [template]
 
 
-class WhatsNewRedirectorView(GeoRedirectView):
-    # https://bedrock.readthedocs.io/en/latest/coding.html#geo-redirect-view
-    geo_urls = {
-        "CN": "firefox.whatsnew.china",
-    }
-    default_url = "firefox.whatsnew.all"
-
-    def get_redirect_url(self, *args, **kwargs):
-        if "version" in kwargs and kwargs["version"] is None:
-            del kwargs["version"]
-
-        return super().get_redirect_url(*args, **kwargs)
-
-
 class WhatsnewView(L10nTemplateView):
 
     ftl_files_map = {
@@ -521,6 +470,21 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx93-it.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx93-nl.html": ["firefox/whatsnew/whatsnew"],
     }
+
+    # specific templates that should not be rendered in China
+    china_excluded_templates = [
+        "firefox/whatsnew/whatsnew-fx92-en.html",
+        "firefox/whatsnew/whatsnew-fx93-v1-en.html",
+        "firefox/whatsnew/whatsnew-fx93-v2-en.html",
+        "firefox/whatsnew/whatsnew-fx93-v3-en.html",
+        "firefox/whatsnew/whatsnew-fx93-v2-de.html",
+        "firefox/whatsnew/whatsnew-fx93-v3-de.html",
+        "firefox/whatsnew/whatsnew-fx93-v2-fr.html",
+        "firefox/whatsnew/whatsnew-fx93-v3-fr.html",
+        "firefox/whatsnew/whatsnew-fx93-it.html",
+        "firefox/whatsnew/whatsnew-fx93-es.html",
+        "firefox/whatsnew/whatsnew-fx93-nl.html",
+    ]
 
     # place expected ?v= values in this list
     variations = ["1", "2", "3"]
@@ -570,6 +534,7 @@ class WhatsnewView(L10nTemplateView):
         return ctx
 
     def get_template_names(self):
+        country = get_country_from_request(self.request)
         locale = l10n_utils.get_locale(self.request)
         version = self.kwargs.get("version") or ""
         variant = self.request.GET.get("v", None)
@@ -631,29 +596,8 @@ class WhatsnewView(L10nTemplateView):
             else:
                 template = "firefox/whatsnew/index.html"
 
-        # return a list to conform with original intention
-        return [template]
-
-
-class WhatsNewChinaView(WhatsnewView):
-    # specific templates that should not be rendered in China
-    excluded_templates = [
-        "firefox/whatsnew/whatsnew-fx92-en.html",
-        "firefox/whatsnew/whatsnew-fx93-v1-en.html",
-        "firefox/whatsnew/whatsnew-fx93-v2-en.html",
-        "firefox/whatsnew/whatsnew-fx93-v3-en.html",
-        "firefox/whatsnew/whatsnew-fx93-v2-de.html",
-        "firefox/whatsnew/whatsnew-fx93-v3-de.html",
-        "firefox/whatsnew/whatsnew-fx93-v2-fr.html",
-        "firefox/whatsnew/whatsnew-fx93-v3-fr.html",
-        "firefox/whatsnew/whatsnew-fx93-it.html",
-        "firefox/whatsnew/whatsnew-fx93-es.html",
-        "firefox/whatsnew/whatsnew-fx93-nl.html",
-    ]
-
-    def get_template_names(self):
-        template = super().get_template_names()[0]
-        if template in self.excluded_templates:
+        # do not promote Mozilla VPN in China.
+        if country == "CN" and template in self.china_excluded_templates:
             template = "firefox/whatsnew/index-account.html"
 
         # return a list to conform with original intention
