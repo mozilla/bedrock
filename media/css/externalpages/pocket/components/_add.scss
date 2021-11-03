@@ -2,12 +2,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-
 @import '../utils/variables';
-// @import '../utils/tokens';
 
 $image-path: '/media/img/externalpages/pocket';
-
 
 .add-page {
     .add-header {
@@ -82,41 +79,42 @@ $image-path: '/media/img/externalpages/pocket';
             flex-direction: column;
             align-items: flex-start;
 
-            ul {
+            .apps-list,
+            .device-list {
                 padding: 0;
+                margin-bottom: $spacing050;
+
+                li {
+                    margin: $spacing050 0;
+                }
             }
 
             .app-store-badge {
                 width: 190px;
                 height: 65px;
                 border: 2px solid $color-action-primary;
-                margin-bottom: $spacing025;
                 color: $color-white;
                 text-align: center;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+            }
 
-                a {
-                    height: 100%;
-                    width: 100%;
-                }
+            .device-list {
+                margin-top: 0;
             }
         }
     }
 }
 
-.save {
-    background-color: #f0f0f0;
-}
-
 .add-save {
-    width: 70%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: $spacing100;
+    background-color: #f0f0f0;
 
-    .add-save__context {
+    &__wrapper {
+        width: 70%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: $spacing100;
+    }
+
+    &__context {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
@@ -156,8 +154,7 @@ $image-path: '/media/img/externalpages/pocket';
                     }
                 }
 
-                .app-list {
-
+                .social-apps {
                     li {
                         margin: $spacing150 0;
                     }
