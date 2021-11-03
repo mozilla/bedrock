@@ -3,6 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from functools import partialmethod
+from typing import Dict, Union
 from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 
 from django.conf import settings
@@ -15,6 +16,11 @@ from rich_text_renderer.base_node_renderer import BaseNodeRenderer
 from rich_text_renderer.block_renderers import BaseBlockRenderer
 from rich_text_renderer.text_renderers import BaseInlineRenderer
 
+from bedrock.contentful.constants import (
+    COMPOSE_MAIN_PAGE_TYPE,
+    CONTENT_TYPE_PAGE_GENERAL,
+    CONTENT_TYPE_PAGE_RESOURCE_CENTRE,
+)
 from lib.l10n_utils import get_locale, render_to_string
 
 # Bedrock to Contentful locale map
@@ -444,25 +450,56 @@ class ContentfulPage:
             },
         )
 
-    def render_rich_text(self, node):
+    def render_rich_text(self, node) -> str:
         return self._renderer.render(node) if node else ""
 
-    def get_info_data(self, entry_obj):
+    def _get_preview_image_from_fields(self, fields: dict) -> Union[str, None]:
+        if "preview_image" in fields:
+            # TODO request proper size image
+            preview_image_url = fields["preview_image"].fields().get("file").get("url")
+            return "https:" + preview_image_url
+
+    def get_info_data(self, entry_obj, seo_obj=None) -> Dict:
         # TODO, need to enable connectors
         fields = entry_obj.fields()
+        if seo_obj:
+            seo_fields = seo_obj.fields()
+        else:
+            seo_fields = None
+
         folder = fields.get("folder", "")
         in_firefox = "firefox-" if "firefox" in folder else ""
-        slug = fields.get("slug", "home")
+
+        if self.page.content_type.id == COMPOSE_MAIN_PAGE_TYPE:
+            # This means we're dealing with a Compose-structured setup,
+            # and the slug lives not on the Entry, nor the SEO object
+            # but just on the top-level Compose `page`
+            slug = self.page.fields().get("slug")
+        else:
+            # Non-Compose pages
+            slug = fields.get("slug", "home")  # TODO: check if we can use a better fallback
+
+        if seo_fields:
+            title = seo_fields.get("title", "")
+            blurb = seo_fields.get("description", "")
+        else:
+            title = fields.get("preview_title", "")
+            blurb = fields.get("preview_blurb", "")
+
         campaign = f"{in_firefox}{slug}"
         page_type = entry_obj.content_type.id
+
+        # TODO: update this once we have a robust locale field available (ideally
+        # via Compose's parent `page`), because double-purposing the "name" field
+        # is a bit too brittle.
         if page_type == "pageHome":
             lang = fields["name"]
         else:
             lang = entry_obj.sys["locale"]
 
         data = {
-            "title": fields.get("preview_title", ""),
-            "blurb": fields.get("preview_blurb", ""),
+            "title": title,
+            "blurb": blurb,
             "slug": slug,
             "lang": lang,
             "theme": "firefox" if "firefox" in folder else "mozilla",
@@ -471,27 +508,44 @@ class ContentfulPage:
             "utm_campaign": campaign,  # eg firefox-sync
         }
 
-        if "preview_image" in fields:
-            # TODO request proper size image
-            preview_image_url = fields["preview_image"].fields().get("file").get("url")
-            data["image"] = "https:" + preview_image_url
+        _preview_image = self._get_preview_image_from_fields(fields)
+        if _preview_image:
+            data["image"] = _preview_image
+
+        if seo_fields:
+            _preview_image = self._get_preview_image_from_fields(seo_fields)
+            if _preview_image:
+                seo_fields["image"] = _preview_image
+                del seo_fields["preview_image"]
+            data.update({"seo": seo_fields})
 
         return data
 
     def get_entry_by_id(self, entry_id):
         return self.client.entry(entry_id, {"locale": self.locale})
 
-    def get_content(self):
-        # check if it is a page or a connector
+    def get_content(self) -> dict:
+        # Check if it is a page or a connector, or a Compose page type
+
         entry_type = self.page.content_type.id
-        if entry_type.startswith("page"):
+        seo_obj = None
+        if entry_type == COMPOSE_MAIN_PAGE_TYPE:
+            # Contentful Compose page, linking to content and SEO models
+            entry_obj = self.page.content  # The page with the actual content
+            seo_obj = self.page.seo  # The SEO model
+            # Note that the slug lives on self.page, not the seo_obj.
+        elif entry_type.startswith("page"):
             entry_obj = self.page
         elif entry_type == "connectHomepage":
+            # Legacy - TODO: remove me once we're no longer using Connect: Homepage
             entry_obj = self.page.fields()["entry"]
         else:
             raise ValueError(f"{entry_type} is not a recognized page type")
 
-        self.request.page_info = self.get_info_data(entry_obj)
+        self.request.page_info = self.get_info_data(
+            entry_obj,
+            seo_obj,
+        )
         page_type = entry_obj.content_type.id
         page_css = set()
         page_js = set()
@@ -519,7 +573,7 @@ class ContentfulPage:
 
                     page_js.update(js)
 
-        if page_type == "pageGeneral":
+        if page_type == CONTENT_TYPE_PAGE_GENERAL:
             # look through all entries and find content ones
             for key, value in fields.items():
                 if key == "component_hero":
@@ -528,9 +582,15 @@ class ContentfulPage:
                     entries.append(self.get_text_data(value))
                 elif key == "component_callout":
                     proc(value)
-        elif page_type == "pageVersatile":
-            content = fields.get("content")
-        elif page_type == "pageHome":
+        elif page_type == CONTENT_TYPE_PAGE_RESOURCE_CENTRE:
+            # TODO: can we actually make this generic?
+            _content = fields.get("main_content", {}).get("content")
+            # explicitly render the content, because proc() does not consume JSON
+            # which is what _content is
+            for item in _content:
+                entries.append(self.get_text_data(item))
+        else:
+            # This covers pageVersatile, pageHome, etc
             content = fields.get("content")
 
         if content:

@@ -16,9 +16,11 @@ import boto3
 from sentry_sdk import capture_exception
 
 from bedrock.contentful.api import ContentfulPage
+from bedrock.contentful.constants import (
+    COMPOSE_MAIN_PAGE_TYPE,
+    MAX_MESSAGES_PER_QUEUE_POLL,
+)
 from bedrock.contentful.models import ContentfulEntry
-
-MAX_MESSAGES_PER_QUEUE_POLL = 10
 
 
 def data_hash(data: Dict) -> str:
@@ -214,6 +216,8 @@ class Command(BaseCommand):
         updated_count = 0
         added_count = 0
         content_ids = []
+
+        # TODO: Stop syncing only selected content types and process the (paginated) lot
         for ctype in settings.CONTENTFUL_CONTENT_TYPES:
             for entry in ContentfulPage.client.entries(
                 {
@@ -234,28 +238,38 @@ class Command(BaseCommand):
                 capture_exception()
                 continue
 
+            # Compose-authored pages have a page_type of `page`
+            # but really we want the entity the Compage page references
+            if ctype == COMPOSE_MAIN_PAGE_TYPE:
+                # TODO: make this standard when we _only_ have Compose pages,
+                # because they all have a parent type of COMPOSE_MAIN_PAGE_TYPE
+                ctype = page_data["page_type"]
+
             language = page_data["info"]["lang"]
             hash = data_hash(page_data)
+            slug = page_data["info"]["slug"]
 
             try:
                 obj = ContentfulEntry.objects.get(contentful_id=page_id)
             except ContentfulEntry.DoesNotExist:
-                self.log("Creating new ContentfulEntry")
+                self.log(f"Creating new ContentfulEntry for {ctype}:{page_id}")
                 ContentfulEntry.objects.create(
                     contentful_id=page_id,
                     content_type=ctype,
                     language=language,
                     data_hash=hash,
                     data=page_data,
+                    slug=slug,
                 )
                 added_count += 1
             else:
                 if self.force or hash != obj.data_hash:
-                    self.log("Updating existing ContentfulEntry")
+                    self.log(f"Updating existing ContentfulEntry for {ctype}:{page_id}")
                     obj.language = language
                     obj.data_hash = hash
                     obj.data = page_data
                     obj.last_modified = tz_now()
+                    obj.slug = slug
                     obj.save()
                     updated_count += 1
 

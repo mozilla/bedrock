@@ -18,6 +18,9 @@ from everett.manager import ListOf
 from sentry_sdk.integrations.django import DjangoIntegration
 
 from bedrock.base.config_manager import config
+from bedrock.contentful.constants import (
+    DEFAULT_CONTENT_TYPES as CONTENTFUL_DEFAULT_CONTENT_TYPES,
+)
 
 # ROOT path of the project. A pathlib.Path object.
 DATA_PATH = config("DATA_PATH", default="data")
@@ -1035,7 +1038,11 @@ CONTENTFUL_SPACE_ID = config("CONTENTFUL_SPACE_ID", raise_error=False)
 CONTENTFUL_SPACE_KEY = config("CONTENTFUL_SPACE_KEY", raise_error=False)
 CONTENTFUL_ENVIRONMENT = config("CONTENTFUL_ENVIRONMENT", default="master")
 CONTENTFUL_SPACE_API = ("preview" if DEV else "cdn") + ".contentful.com"
-CONTENTFUL_CONTENT_TYPES = config("CONTENTFUL_CONTENT_TYPES", default="connectHomepage", parser=ListOf(str))
+CONTENTFUL_CONTENT_TYPES = config(
+    "CONTENTFUL_CONTENT_TYPES",
+    default=CONTENTFUL_DEFAULT_CONTENT_TYPES,
+    parser=ListOf(str),
+)
 
 CONTENTFUL_NOTIFICATION_QUEUE_URL = config("CONTENTFUL_NOTIFICATION_QUEUE_URL", default="", raise_error=False)
 CONTENTFUL_NOTIFICATION_QUEUE_REGION = config("CONTENTFUL_NOTIFICATION_QUEUE_REGION", default="", raise_error=False)
