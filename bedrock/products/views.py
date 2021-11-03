@@ -4,13 +4,16 @@
 from html import escape
 
 from django.conf import settings
-from django.http import JsonResponse
+from django.http import Http404, JsonResponse
 from django.views.decorators.http import require_POST, require_safe
 
 import basket
 import basket.errors
+from sentry_sdk import capture_exception
 
 from bedrock.base.geo import get_country_from_request
+from bedrock.contentful.constants import CONTENT_TYPE_PAGE_RESOURCE_CENTRE
+from bedrock.contentful.models import ContentfulEntry
 from bedrock.newsletter.views import general_error, invalid_email_address
 from bedrock.products.forms import VPNWaitlistForm
 from lib import l10n_utils
@@ -96,3 +99,70 @@ def vpn_invite_waitlist(request):
         resp = {"success": True}
 
     return JsonResponse(resp)
+
+
+def resource_center_landing_view(request):
+
+    ARTICLE_GROUP_SIZE = 6
+
+    locale = l10n_utils.get_locale(request)
+    # Short-term, serve the en-US page to en-GB users
+    if locale == "en-GB":
+        locale = "en-US"
+
+    template_name = "products/vpn/resource-center/landing.html"
+    ctx = {}
+
+    resource_articles = ContentfulEntry.objects.get_entries_by_type(
+        lang=locale,
+        content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTRE,
+    )
+
+    first_article_group, second_article_group = (
+        resource_articles[:ARTICLE_GROUP_SIZE],
+        resource_articles[ARTICLE_GROUP_SIZE:],
+    )
+
+    # TODO: Category list support. Template is expecting this format:
+    # category_list = [
+    #   {"name": "Cat1", "url": "/full/path/to/category"}, ...
+    # ]
+
+    ctx.update(
+        {
+            "first_article_group": first_article_group,
+            "second_article_group": second_article_group,
+        }
+    )
+
+    return l10n_utils.render(request, template_name, ctx, ftl_files=["products/vpn/shared"])
+
+
+def resource_center_detail_view(request, slug):
+    """Individual detail pages for the VPN Resource Center"""
+
+    locale = l10n_utils.get_locale(request)
+    # Short-term, serve the en-US page to en-GB users
+    if locale == "en-GB":
+        locale = "en-US"
+
+    template_name = "products/vpn/resource-center/article.html"
+
+    ctx = {}
+    try:
+        ctx.update(
+            # TODO: scope by category and/or tags in the future
+            ContentfulEntry.objects.get_page_by_slug(
+                slug=slug,
+                lang=locale,
+                content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTRE,
+            )
+        )
+    except (
+        ContentfulEntry.DoesNotExist,
+        Exception,  # Extra caution for now
+    ) as ex:
+        capture_exception(ex)
+        raise Http404()
+
+    return l10n_utils.render(request, template_name, ctx, ftl_files=["products/vpn/shared"])

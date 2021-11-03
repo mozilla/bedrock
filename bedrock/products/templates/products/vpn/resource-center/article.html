@@ -1,14 +1,20 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
 {% extends 'products/vpn/resource-center/includes/vpn_article.html' %}
 
-{% block article_category %}Category{% endblock %}
-{% block article_title %}Do I need a VPN at home?{% endblock %}
-{% block article_date %}August 26th, 2021{% endblock article_date %}
-
+{% block article_category %}
+  {% if info.category %}{{info.category}}{% endif %}
+{% endblock %}
+{% block article_title %}{{info.title}}{% endblock %}
+{# Date is not used
+{% block article_date %}{% endblock article_date %}
+#}
 {% block vpn_article %}
-  <p>It’s been less than a year since we launched Mozilla VPN, our fast and easy-to-use Virtual Private Network service brought to you by a trusted name in online consumer security and privacy services. Since then we added our Mozilla VPN service to Mac and Linux platforms, joining our VPN service offerings on Windows, Android and iOS platforms. As restrictions are slowly easing up and people are becoming more comfortable leaving their homes, one of the ways to keep your information safe when you go online is our Mozilla VPN service. Our Mozilla VPN provides encryption and device-level protection of your connection and information when you are on the Web.</p>
-  <p>Today, we’re launching two new features to give you an added layer of protection with our trusted Mozilla VPN service. Mozilla has a reputation for building products that help you keep your information safe. These new features will help users do the following:</p>
-  <h3 class="mzp-c-article-subtitle">For those who watch out for unsecure networks</h3>
-  <p>If you’re someone who keeps our Mozilla VPN service off and prefers to manually turn it on yourself, this feature will help you out. We’ll notify you when you’ve joined a network that is not password protected or has weak encryptions. By just clicking on the notification you can turn the Mozilla VPN service on, giving you an added layer of protection ensuring every conversation you have is encrypted over the network.  This feature is available on Windows, Linux, Mac, Android and iOS platforms.</p>
-  <h3 class="mzp-c-article-subtitle">For those at home, who want to keep all your devices connected</h3>
-  <p>Occasionally, you might need to print out forms for an upcoming doctor visit or your kid’s worksheets to keep them busy. Now, we’ve added Local Area Network Access, so your devices can talk with each other without having to turn off your VPN. Just make sure that the box is checked in Network Settings when you are on your home network.  This feature is available on Windows, Linux, Mac and Android platforms.</p>
+{% for entry in entries -%}
+  {{ entry.body|external_html }}
+{% endfor %}
 {% endblock vpn_article %}

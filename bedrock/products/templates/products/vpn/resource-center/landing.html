@@ -1,7 +1,16 @@
-{# This Source Code Form is subject to the terms of the Mozilla Public
- # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
-{% from 'macros-protocol.html' import call_out, card, split %}
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#}
+
+{% from 'macros-protocol.html' import call_out, split %}
 
 {% extends "products/vpn/base.html" %}
 
@@ -17,78 +26,26 @@
     desc='Discover how they work, why they’re important and what using a VPN can do for you.',
     class='resource-center-page-header resource-center-hero'
   )}}
-  {#Category component is out of the scope of this project, but still stubbed it out#}
+    {% if category_list %}
+    {# Category component is currently of the scope of this project, but still stubbed out #}
     <div class="mzp-c-category-list">
       <h2 class="mzp-c-category-list-title">
-        <a href="#">View All &#62</a>
+        <a href="{{ url('products.vpn.resource-center.landing') }}">View All &#62</a>
       </h2>
       <ul class="mzp-c-category-list-list">
+        {% for category in category_list  %}
         <li class="mzp-c-category-list-item">
-          <a href="#">Category 1</a>
+          <a href="{{category.url}}">{{category.name}}</a>
         </li>
-        <li class="mzp-c-category-list-item">
-          <a href="#">Category 2</a>
-        </li>
-        <li class="mzp-c-category-list-item">
-          <a href="#">Category 3</a>
-        </li>
-        <li class="mzp-c-category-list-item">
-          <a href="#">Category 4</a>
-        </li>
-        <li class="mzp-c-category-list-item">
-          <a href="#">Category 5</a>
-        </li>
+        {% endfor %}
       </ul>
     </div>
+    {% endif %}
+
     <div class="mzp-l-content mzp-l-card-third">
-      {{ card (
-        title='Do I need a VPN at home?',
-        ga_title='Do I need a VPN at home?',
-        aspect_ratio='mzp-has-aspect-16-9',
-        desc='You might have heard of VPNs — virtual private networks — at some point, and chalked them up to something only “super techy” people or hackers would ever use. ',
-        image_url="img/products/vpn/resource-center/article-1-light.svg",
-        link_url=url('products.vpn.resource-center.article')
-      )}}
-      {{ card (
-        title='Article title',
-        ga_title='Article title',
-        aspect_ratio='mzp-has-aspect-16-9',
-        desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
-        image_url="img/products/vpn/resource-center/article-1-dark.svg",
-        link_url=url('products.vpn.resource-center.article')
-      )}}
-      {{ card (
-        title='Article title',
-        ga_title='Article title',
-        aspect_ratio='mzp-has-aspect-16-9',
-        desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
-        image_url="img/products/vpn/resource-center/article-2-med.svg",
-        link_url=url('products.vpn.resource-center.article')
-      )}}
-      {{ card (
-        title='Article title',
-        ga_title='Article title',
-        aspect_ratio='mzp-has-aspect-16-9',
-        desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
-        image_url="img/products/vpn/resource-center/article-2-dark.svg",
-        link_url=url('products.vpn.resource-center.article')
-      )}}
-      {{ card (
-        title='Article title',
-        ga_title='Article title',
-        aspect_ratio='mzp-has-aspect-16-9',
-        desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
-        image_url="img/products/vpn/resource-center/article-1-med.svg",
-        link_url=url('products.vpn.resource-center.article')
-      )}}
-      {{ card (
-        title='Article title',
-        ga_title='Article title',
-        aspect_ratio='mzp-has-aspect-16-9',
-        desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
-        image_url="img/products/vpn/resource-center/article-2-light.svg",
-        link_url=url('products.vpn.resource-center.article')
-      )}}
+      {% for article in first_article_group %}
+        {% include "products/vpn/resource-center/includes/vpn_article_card.html" %}
+      {% endfor %}
     </div>
     {% call split (
       image_url="img/products/vpn/resource-center/resource_center_split_1.svg",
@@ -100,32 +57,12 @@
       <a class='mzp-c-button mzp-t-product resource-center-cta'>Save $40 on Mozilla VPN*</a>
       <p class="resource-center-cta-desc"><em>*when you subscribe to a 12-month plan</em></p>
     {% endcall %}
+
     <div class="mzp-l-content mzp-l-card-third">
-      {{ card (
-        title='Article title',
-        ga_title='Article title',
-        aspect_ratio='mzp-has-aspect-16-9',
-        desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
-        image_url="img/products/vpn/resource-center/article-3-dark.png",
-        link_url=url('products.vpn.resource-center.article')
-      )}}
-      {{ card (
-        title='Article title',
-        ga_title='Article title',
-        aspect_ratio='mzp-has-aspect-16-9',
-        desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
-        image_url="img/products/vpn/resource-center/article-3-med.png",
-        link_url=url('products.vpn.resource-center.article')
-      )}}
-      {{ card (
-        title='Article title',
-        ga_title='Article title',
-        aspect_ratio='mzp-has-aspect-16-9',
-        desc='Wafer wafer wafer donut cake gingerbread bear claw ice cream. Fruitcake biscuit cotton candy cake pastry dessert.',
-        image_url="img/products/vpn/resource-center/article-3-light.png",
-        link_url=url('products.vpn.resource-center.article')
-      )}}
-  </div>
+      {% for article in second_article_group %}
+        {% include "products/vpn/resource-center/includes/vpn_article_card.html" %}
+      {% endfor %}
+    </div>
   {% call split (
     image_url="img/products/vpn/resource-center/resource_center_split_2.jpg",
     block_class='mzp-t-content-lg',

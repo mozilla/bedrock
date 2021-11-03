@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from typing import Dict, List
+
 from django.db import models
 from django.utils.timezone import now
 
@@ -9,14 +11,34 @@ from django_extensions.db.fields.json import JSONField
 
 
 class ContentfulEntryManager(models.Manager):
-    def get_page_by_id(self, content_id):
+    def get_page_by_id(self, content_id) -> Dict:
         return self.get(contentful_id=content_id).data
 
-    def get_page(self, content_type, lang):
-        return self.get(content_type=content_type, language=lang).data
+    def get_page_by_slug(self, slug, lang, content_type) -> Dict:
+        return self.get(
+            slug=slug,
+            language=lang,
+            content_type=content_type,
+        ).data
 
-    def get_homepage(self, lang):
-        return self.get(content_type="connectHomepage", language=lang).data
+    def get_entries_by_type(self, content_type, lang, order_by="last_modified") -> List[Dict]:
+        qs = self.filter(
+            content_type=content_type,
+            language=lang,
+        ).order_by(order_by)
+        return [entry.data for entry in qs]
+
+    def get_page(self, content_type, lang) -> Dict:
+        return self.get(
+            content_type=content_type,
+            language=lang,
+        ).data
+
+    def get_homepage(self, lang) -> Dict:
+        return self.get(
+            content_type="connectHomepage",
+            language=lang,
+        ).data
 
 
 class ContentfulEntry(models.Model):
@@ -30,3 +52,6 @@ class ContentfulEntry(models.Model):
     data = JSONField()
 
     objects = ContentfulEntryManager()
+
+    def __str__(self) -> str:
+        return f"ContentfulEntry {self.content_type}:{self.contentful_id}"
