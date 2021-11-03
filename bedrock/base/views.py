@@ -4,7 +4,6 @@
 
 import json
 import os.path
-import re
 from datetime import datetime
 from os import getenv
 from time import time
@@ -14,7 +13,6 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_safe
-from django.views.generic import RedirectView
 
 import timeago
 
@@ -42,25 +40,6 @@ class GeoTemplateView(l10n_utils.L10nTemplateView):
             return [template]
 
         return super().get_template_names()
-
-
-class GeoRedirectView(RedirectView):
-    # dict of country codes to full URLs or URL names
-    geo_urls = None
-    # default URL or URL name for countries not in `geo_urls`
-    default_url = None
-    # default to sending the query parameters through to the redirect
-    query_string = True
-
-    def get_redirect_url(self, *args, **kwargs):
-        country_code = get_country_from_request(self.request)
-        url = self.geo_urls.get(country_code, self.default_url)
-        if re.match(r"https?://", url, re.I):
-            self.url = url
-        else:
-            self.pattern_name = url
-
-        return super().get_redirect_url(*args, **kwargs)
 
 
 @require_safe

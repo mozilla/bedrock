@@ -4,7 +4,7 @@
 
 ### URL: https://www-dev.allizom.org/firefox/developer/
 
-## Strings in this file also cover: https://www-dev.allizom.org/firefox/83.0a2/firstrun/ and https://www-dev.allizom.org/firefox/83.0a2/whatsnew/all/
+## Strings in this file also cover: https://www-dev.allizom.org/firefox/83.0a2/firstrun/ and https://www-dev.allizom.org/firefox/83.0a2/whatsnew/
 
 firefox-developer-page-title = { -brand-name-firefox-developer-edition }
 firefox-developer-firefox-developer-edition-desc = { -brand-name-firefox-developer-edition } is the blazing fast browser that offers cutting edge developer tools and latest features like CSS Grid support and framework debugging
