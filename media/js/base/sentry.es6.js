@@ -22,7 +22,8 @@ if (
             dsn: sentryDsn,
             sampleRate: 0.1,
             ignoreErrors: [
-                'https://plugin.ucads.ucweb.com/api/flow/',
+                "SecurityError: Failed to execute 'open' on 'XMLHttpRequest'", // issue 10683
+                'NetworkError when attempting to fetch resource', // issue 10683
                 'Non-Error promise rejection captured with value' // issue 10380
             ],
             allowUrls: ['/media/js/', 'https://cdn-3.convertexperiments.com/'],
