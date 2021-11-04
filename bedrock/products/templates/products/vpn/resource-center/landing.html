@@ -63,13 +63,17 @@
         {% include "products/vpn/resource-center/includes/vpn_article_card.html" %}
       {% endfor %}
     </div>
-  {% call split (
-    image_url="img/products/vpn/resource-center/resource_center_split_2.jpg",
-    block_class='mzp-t-content-lg',
-  ) %}
-    <h2 class="resource-center-cta-title">Obsessed with your privacy since 1998</h2>
-    <a class='mzp-c-button mzp-t-product'>Get Mozilla VPN</a>
-  {% endcall %}
+
+  {% if second_article_group %}
+    {# Only show the second split if there was something after the first split #}
+    {% call split (
+      image_url="img/products/vpn/resource-center/resource_center_split_2.jpg",
+      block_class='mzp-t-content-lg',
+    ) %}
+      <h2 class="resource-center-cta-title">Obsessed with your privacy since 1998</h2>
+      <a class='mzp-c-button mzp-t-product'>Get Mozilla VPN</a>
+    {% endcall %}
+  {% endif %}
 
 {% endblock %}
 
