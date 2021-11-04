@@ -1,0 +1,167 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '../utils/variables';
+
+$image-path: '/media/img/externalpages/pocket';
+
+.add-page {
+    .add-header {
+        background-color: #f0f0f0;
+    }
+
+    h2 {
+        color: $color-text-dark-grey;
+        font-size: $size200;
+        margin-bottom: $spacing100;
+    }
+
+    h3,
+    p {
+        color: $color-text-grey;
+    }
+}
+
+.add-header {
+    &__wrapper {
+        margin: 0 auto;
+        max-width: 1200px;
+        padding: $spacing100;
+        width: 70%;
+    }
+
+    &__context {
+        display: flex;
+        &-image {
+            width: 60%;
+
+            img {
+                display: block;
+                height: 100%;
+                width: 100%;
+            }
+        }
+
+        &-info {
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+            justify-content: space-around;
+            margin-left: 30px;
+            width: 35%;
+        }
+    }
+}
+
+.add-device {
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 70%;
+
+    &__context {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        width: 100%;
+
+        &-image {
+            width: 70%;
+
+            img {
+                display: block;
+                height: 100%;
+                width: 100%;
+            }
+        }
+        &-stores {
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+            width: 25%;
+
+            .apps-list,
+            .device-list {
+                margin-bottom: $spacing050;
+                padding: 0;
+
+                li {
+                    margin: $spacing050 0;
+                }
+            }
+
+            .app-store-badge {
+                border: 2px solid $color-action-primary;
+                color: $color-white;
+                height: 65px;
+                text-align: center;
+                width: 190px;
+            }
+
+            .device-list {
+                margin-top: 0;
+            }
+        }
+    }
+}
+
+.add-save {
+    background-color: #f0f0f0;
+
+    &__wrapper {
+        margin: 0 auto;
+        max-width: 1200px;
+        padding: $spacing100;
+        width: 70%;
+    }
+
+    &__context {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+
+        &-email {
+            width: 45%;
+        }
+
+        &-image {
+            margin-bottom: $spacing100;
+            width: 400px;
+
+            img {
+                display: block;
+                height: 100%;
+                width: 100%;
+            }
+        }
+
+        &-apps {
+            width: 45%;
+
+            .app-types {
+                display: flex;
+                align-items: flex-start;
+
+                .app-board {
+                    display: flex;
+                    flex-wrap: wrap;
+                    padding: 0;
+                    width: 60%;
+
+                    li {
+                        border: 2px solid black;
+                        height: 60px;
+                        margin: 10px;
+                        width: 60px;
+                    }
+                }
+
+                .social-apps {
+                    li {
+                        margin: $spacing150 0;
+                    }
+                }
+            }
+        }
+    }
+}
