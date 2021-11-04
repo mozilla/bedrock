@@ -493,15 +493,15 @@ class ContentfulPage:
         # via Compose's parent `page`), because double-purposing the "name" field
         # is a bit too brittle.
         if page_type == "pageHome":
-            lang = fields["name"]
+            locale = fields["name"]
         else:
-            lang = entry_obj.sys["locale"]
+            locale = entry_obj.sys["locale"]
 
         data = {
             "title": title,
             "blurb": blurb,
             "slug": slug,
-            "lang": lang,
+            "locale": locale,
             "theme": "firefox" if "firefox" in folder else "mozilla",
             # eg www.mozilla.org-firefox-accounts or www.mozilla.org-firefox-sync
             "utm_source": f"www.mozilla.org-{campaign}",

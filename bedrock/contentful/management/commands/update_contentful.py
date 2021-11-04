@@ -245,7 +245,7 @@ class Command(BaseCommand):
                 # because they all have a parent type of COMPOSE_MAIN_PAGE_TYPE
                 ctype = page_data["page_type"]
 
-            language = page_data["info"]["lang"]
+            locale = page_data["info"]["locale"]
             hash = data_hash(page_data)
             slug = page_data["info"]["slug"]
 
@@ -256,7 +256,7 @@ class Command(BaseCommand):
                 ContentfulEntry.objects.create(
                     contentful_id=page_id,
                     content_type=ctype,
-                    language=language,
+                    locale=locale,
                     data_hash=hash,
                     data=page_data,
                     slug=slug,
@@ -265,7 +265,7 @@ class Command(BaseCommand):
             else:
                 if self.force or hash != obj.data_hash:
                     self.log(f"Updating existing ContentfulEntry for {ctype}:{page_id}")
-                    obj.language = language
+                    obj.locale = locale
                     obj.data_hash = hash
                     obj.data = page_data
                     obj.last_modified = tz_now()
