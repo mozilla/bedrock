@@ -4,7 +4,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-/* global YT */
 /* eslint no-unused-vars: [2, { "varsIgnorePattern": "onYouTubeIframeAPIReady" }] */
 
 // YouTube API hook has to be in global scope
@@ -38,7 +37,12 @@ window.onYouTubeIframeAPIReady = function () {
         var videoId = videoLink.getAttribute('data-id');
         var title = videoLink.getAttribute('data-video-title');
 
-        new YT.Player(videoLink, {
+        // return early if youtube API fails to load or is blocked.
+        if (typeof window.YT === 'undefined') {
+            return;
+        }
+
+        new window.YT.Player(videoLink, {
             width: 500,
             height: 281,
             videoId: videoId,
@@ -60,13 +64,13 @@ window.onYouTubeIframeAPIReady = function () {
             var state;
 
             switch (event.data) {
-                case YT.PlayerState.PLAYING:
+                case window.YT.PlayerState.PLAYING:
                     state = 'video play';
                     break;
-                case YT.PlayerState.PAUSED:
+                case window.YT.PlayerState.PAUSED:
                     state = 'video paused';
                     break;
-                case YT.PlayerState.ENDED:
+                case window.YT.PlayerState.ENDED:
                     state = 'video complete';
                     break;
             }
