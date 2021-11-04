@@ -45,7 +45,7 @@ $image-path: '/media/img/externalpages/pocket';
         height: 24px;
         margin-bottom: -2px;
         display: inline-block;
-        margin-top: -0.25em;
+        margin-top: -4px;
         vertical-align: middle;
     }
 
@@ -269,7 +269,7 @@ $image-path: '/media/img/externalpages/pocket';
     }
 
     @media ($mq-md) {
-        margin-top: -0.25em;
+        margin-top: -4px;
         display: none;
     }
 
