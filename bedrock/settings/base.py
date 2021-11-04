@@ -1135,8 +1135,6 @@ if EXTRA_CSP_DEFAULT_SRC:
 CSP_IMG_SRC = CSP_DEFAULT_SRC + [
     "data:",
     "mozilla.org",
-    "firefox.com",
-    "www.firefox.com",
     "www.googletagmanager.com",
     "www.google-analytics.com",
     "adservice.google.com",
