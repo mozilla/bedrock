@@ -76,7 +76,7 @@
       {% if image_url %}
     <div class="mzp-c-split-media{% if media_class %} {{ media_class }}{% endif %}">
       {% if include_highres_image %}
-        {{ high_res_img(image_url, {'alt': image_alt, 'l10n': l10n_image, 'class': 'mzp-c-split-media-asset'}) }}
+        {{ high_res_img(image_url, {'alt': image_alt, 'l10n': l10n_image, 'class': 'mzp-c-split-media-asset', 'loading': loading}) }}
       {% else %}
         {% if image_url.startswith('https')  %}
           <img class="mzp-c-split-media-asset" src="{{ image_url }}" alt="{{ image_alt }}" loading="{{ loading }}">
@@ -100,7 +100,7 @@
     {% if image_url %}
     <div class="mzp-c-split-media{% if media_class %} {{ media_class }}{% endif %}">
       {% if include_highres_image %}
-        {{ high_res_img(image_url, {'alt': image_alt, 'l10n': l10n_image, 'class': 'mzp-c-split-media-asset'}) }}
+        {{ high_res_img(image_url, {'alt': image_alt, 'l10n': l10n_image, 'class': 'mzp-c-split-media-asset', 'loading': loading}) }}
       {% else %}
         {% if image_url.startswith('https')  %}
           <img class="mzp-c-split-media-asset" src="{{ image_url }}" alt="{{ image_alt }}", loading="{{ loading }}">
