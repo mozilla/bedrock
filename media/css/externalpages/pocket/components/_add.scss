@@ -12,9 +12,9 @@ $image-path: '/media/img/externalpages/pocket';
     }
 
     h2 {
-        margin-bottom: $spacing100;
-        font-size: $size200;
         color: $color-text-dark-grey;
+        font-size: $size200;
+        margin-bottom: $spacing100;
     }
 
     h3,
@@ -25,10 +25,10 @@ $image-path: '/media/img/externalpages/pocket';
 
 .add-header {
     &__wrapper {
-        width: 70%;
-        max-width: 1200px;
         margin: 0 auto;
+        max-width: 1200px;
         padding: $spacing100;
+        width: 70%;
     }
 
     &__context {
@@ -37,52 +37,53 @@ $image-path: '/media/img/externalpages/pocket';
             width: 60%;
 
             img {
-                width: 100%;
+                display: block;
                 height: 100%;
+                width: 100%;
             }
         }
 
         &-info {
-            width: 35%;
-            margin-left: 30px;
             display: flex;
+            align-items: flex-start;
             flex-direction: column;
             justify-content: space-around;
-            align-items: flex-start;
+            margin-left: 30px;
+            width: 35%;
         }
     }
 }
 
 .add-device {
-    width: 70%;
-    max-width: 1200px;
     margin: 0 auto;
+    max-width: 1200px;
+    width: 70%;
 
     &__context {
         display: flex;
-        justify-content: space-between;
         align-items: flex-start;
+        justify-content: space-between;
         width: 100%;
 
         &-image {
             width: 70%;
 
             img {
-                width: 100%;
-                height: 100%;
                 display: block;
+                height: 100%;
+                width: 100%;
             }
         }
         &-stores {
-            width: 25;
             display: flex;
-            flex-direction: column;
             align-items: flex-start;
+            flex-direction: column;
+            width: 25%;
 
             .apps-list,
             .device-list {
-                padding: 0;
                 margin-bottom: $spacing050;
+                padding: 0;
 
                 li {
                     margin: $spacing050 0;
@@ -90,11 +91,11 @@ $image-path: '/media/img/externalpages/pocket';
             }
 
             .app-store-badge {
-                width: 190px;
-                height: 65px;
                 border: 2px solid $color-action-primary;
                 color: $color-white;
+                height: 65px;
                 text-align: center;
+                width: 190px;
             }
 
             .device-list {
@@ -108,28 +109,28 @@ $image-path: '/media/img/externalpages/pocket';
     background-color: #f0f0f0;
 
     &__wrapper {
-        width: 70%;
-        max-width: 1200px;
         margin: 0 auto;
+        max-width: 1200px;
         padding: $spacing100;
+        width: 70%;
     }
 
     &__context {
         display: flex;
-        justify-content: space-between;
         align-items: flex-start;
+        justify-content: space-between;
 
         &-email {
             width: 45%;
         }
 
         &-image {
-            width: 400px;
             margin-bottom: $spacing100;
+            width: 400px;
             img {
-                width: 100%;
-                height: 100%;
                 display: block;
+                height: 100%;
+                width: 100%;
             }
         }
 
@@ -143,14 +144,14 @@ $image-path: '/media/img/externalpages/pocket';
                 .app-board {
                     display: flex;
                     flex-wrap: wrap;
-                    width: 60%;
                     padding: 0;
+                    width: 60%;
 
                     li {
-                        width: 60px;
-                        height: 60px;
                         border: 2px solid black;
+                        height: 60px;
                         margin: 10px;
+                        width: 60px;
                     }
                 }
 
