@@ -42,7 +42,7 @@
 <section class="mzp-c-hero">
   <div class="mzp-l-content">
     <div class="mzp-c-hero-body">
-      <img src="{{ static('img/firefox/privacy/book/privacy-eyes.png') }}" width="200" height="200" alt="" loading="lazy">
+      <img src="{{ static('img/firefox/privacy/book/privacy-eyes.png') }}" width="200" height="200" alt="">
       <h1 class="mzp-c-hero-title">{{ ftl('privacy-book-little-book-of') }}</h1>
       <div class="mzp-c-hero-desc">
         <p>{{ ftl('privacy-book-how-to-stay') }}</p>
@@ -55,7 +55,8 @@
 {% call split(
   image_url='img/firefox/privacy/book/privacy-healthy-internet.jpg',
   block_class='mzp-l-split-reversed',
-  media_class='mzp-l-split-v-start'
+  media_class='mzp-l-split-v-start',
+  loading='lazy',
 ) %}
   <h2>{{ ftl('privacy-book-a-healthy-private') }}</h2>
   <p>{{ ftl('privacy-book-we-believe-that') }}</p>
@@ -70,7 +71,8 @@
 <div id="data-breaches" class="data-breaches">
   {% call split(
     image_url='img/firefox/privacy/book/privacy-book-arrow-on-face.jpg',
-    media_class='mzp-l-split-v-start'
+    media_class='mzp-l-split-v-start',
+    loading='lazy',
   ) %}
     <h3>{{ ftl('privacy-book-data-breaches') }}</h3>
     <p>{{ ftl('privacy-book-even-when-organizations') }}</p>
@@ -82,7 +84,8 @@
   {% call split(
     image_url='img/firefox/privacy/book/privacy-troll.jpg',
     block_class='mzp-l-split-reversed',
-    media_class='mzp-l-split-v-start'
+    media_class='mzp-l-split-v-start',
+    loading='lazy',
   ) %}
     <h3>{{ ftl('privacy-book-trackers-everywhere-') }}</h3>
     <p>{{ ftl('privacy-book-trackers-cookies-youve') }}</p>
@@ -98,7 +101,8 @@
   image_url='img/firefox/privacy/book/privacy-callouts.png',
   theme_class='mzp-t-dark mzp-t-background-alt',
   block_class='mzp-t-split-nospace',
-  media_class='mzp-l-split-v-start'
+  media_class='mzp-l-split-v-start',
+  loading='lazy',
 ) %}
   <h3>{{ ftl('privacy-book-fake-news-and') }}</h3>
   <p>{{ ftl('privacy-book-news-recommendations-are') }}</p>
@@ -110,7 +114,8 @@
 <section id="tips" class="c-tips">
   {% call split(
     image_url='img/firefox/privacy/book/privacy-digital-life-growing.jpg',
-    block_class='c-tips-title mzp-l-split-reversed'
+    block_class='c-tips-title mzp-l-split-reversed',
+    loading='lazy',
   ) %}
     <h2>{{ ftl('privacy-book-tips-for') }}</h2>
   {% endcall %}
@@ -200,7 +205,8 @@
 
   {% call split(
     image_url='img/firefox/privacy/book/privacy-magnify.png',
-    block_class='c-tips-magnify mzp-l-split-reversed'
+    block_class='c-tips-magnify mzp-l-split-reversed',
+    loading='lazy',
   ) %}
     <ol>
       <li>{{ ftl('privacy-book-search-your-name') }}</li>
@@ -273,7 +279,8 @@
   </div>
 
   {% call split(
-    image_url='img/firefox/privacy/book/privacy-caution.jpg'
+    image_url='img/firefox/privacy/book/privacy-caution.jpg',
+    loading='lazy',
   ) %}
     <ol>
       <li>{{ ftl('privacy-book-from-time-to') }}</li>
@@ -304,7 +311,8 @@
 
   {% call split(
     image_url='img/firefox/privacy/book/privacy-globe.jpg',
-    block_class='mzp-l-split-reversed'
+    block_class='mzp-l-split-reversed',
+    loading='lazy',
   ) %}
     <ol>
       <li>{{ ftl('privacy-book-many-social-media') }}</li>
@@ -339,7 +347,8 @@
   block_id='trackers',
   image_url='img/firefox/privacy/book/privacy-target.png',
   block_class='mzp-t-split-nospace',
-  theme_class='mzp-t-dark mzp-t-background-alt'
+  theme_class='mzp-t-dark mzp-t-background-alt',
+  loading='lazy',
 ) %}
   <h3>{{ ftl('privacy-book-friendly-reminder-what') }}</h3>
   <p>{{ ftl('privacy-book-news-recommendations-are') }}</p>

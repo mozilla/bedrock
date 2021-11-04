@@ -66,7 +66,7 @@
 
 
 {# Split: https://protocol.mozilla.org/patterns/organisms/split.html #}
-{% macro split(base_el='section', block_id=None, block_class=None, theme_class=None, body_class=None, image_url=None, media_class=None, include_highres_image=False, l10n_image=False, image_alt='', mobile_class=None, media_after=False, media_include=None) -%}
+{% macro split(base_el='section', block_id=None, block_class=None, theme_class=None, body_class=None, image_url=None, media_class=None, include_highres_image=False, l10n_image=False, image_alt='', mobile_class=None, media_after=False, media_include=None, loading='eager') -%}
 <{{base_el}}{% if block_id %} id="{{ block_id }}"{% endif %} class="mzp-c-split{% if block_class %} {{ block_class }}{% endif %}{% if mobile_class %} {{ mobile_class }}{% endif %}">
   {% if theme_class %}
   <div class="mzp-c-split-bg {{ theme_class }}">
@@ -79,11 +79,11 @@
         {{ high_res_img(image_url, {'alt': image_alt, 'l10n': l10n_image, 'class': 'mzp-c-split-media-asset'}) }}
       {% else %}
         {% if image_url.startswith('https')  %}
-          <img class="mzp-c-split-media-asset" src="{{ image_url }}" alt="{{ image_alt }}">
+          <img class="mzp-c-split-media-asset" src="{{ image_url }}" alt="{{ image_alt }}" loading="{{ loading }}">
         {% elif l10n_image %}
-          <img class="mzp-c-split-media-asset" src="{{ l10n_img(image_url) }}" alt="{{ image_alt }}">
+          <img class="mzp-c-split-media-asset" src="{{ l10n_img(image_url) }}" alt="{{ image_alt }}", loading="{{ loading }}">
         {% else %}
-          <img class="mzp-c-split-media-asset" src="{{ static(image_url) }}" alt="{{ image_alt }}">
+          <img class="mzp-c-split-media-asset" src="{{ static(image_url) }}" alt="{{ image_alt }}", loading="{{ loading }}">
         {% endif %}
       {% endif %}
     </div>
@@ -103,11 +103,11 @@
         {{ high_res_img(image_url, {'alt': image_alt, 'l10n': l10n_image, 'class': 'mzp-c-split-media-asset'}) }}
       {% else %}
         {% if image_url.startswith('https')  %}
-          <img class="mzp-c-split-media-asset" src="{{ image_url }}" alt="{{ image_alt }}">
+          <img class="mzp-c-split-media-asset" src="{{ image_url }}" alt="{{ image_alt }}", loading="{{ loading }}">
         {% elif l10n_image %}
-          <img class="mzp-c-split-media-asset" src="{{ l10n_img(image_url) }}" alt="{{ image_alt }}">
+          <img class="mzp-c-split-media-asset" src="{{ l10n_img(image_url) }}" alt="{{ image_alt }}", loading="{{ loading }}">
         {% else %}
-          <img class="mzp-c-split-media-asset"  src="{{ static(image_url) }}" alt="{{ image_alt }}">
+          <img class="mzp-c-split-media-asset"  src="{{ static(image_url) }}" alt="{{ image_alt }}", loading="{{ loading }}">
         {% endif %}
       {% endif %}
     </div>
