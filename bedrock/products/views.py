@@ -105,14 +105,17 @@ def resource_center_landing_view(request):
 
     ARTICLE_GROUP_SIZE = 6
 
+    active_locales = [
+        "en-US",  # Initially, en-US is the only one available in Contentful
+    ]
     locale = l10n_utils.get_locale(request)
-    # Short-term, serve the en-US page to en-GB users
-    if locale == "en-GB":
-        locale = "en-US"
 
     template_name = "products/vpn/resource-center/landing.html"
-    ctx = {}
+    ctx = {
+        "active_locales": active_locales,
+    }
 
+    # TODO: scope by category and/or tags in the future
     resource_articles = ContentfulEntry.objects.get_entries_by_type(
         locale=locale,
         content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTRE,
@@ -135,34 +138,49 @@ def resource_center_landing_view(request):
         }
     )
 
-    return l10n_utils.render(request, template_name, ctx, ftl_files=["products/vpn/shared"])
+    return l10n_utils.render(
+        request,
+        template_name,
+        ctx,
+        ftl_files=["products/vpn/shared"],
+    )
 
 
 def resource_center_detail_view(request, slug):
     """Individual detail pages for the VPN Resource Center"""
 
+    # Initially, en-US is the only one available in Contentful
     locale = l10n_utils.get_locale(request)
-    # Short-term, serve the en-US page to en-GB users
-    if locale == "en-GB":
-        locale = "en-US"
+    active_locales = [
+        "en-US",
+    ]
 
     template_name = "products/vpn/resource-center/article.html"
 
-    ctx = {}
+    ctx = {
+        "active_locales": active_locales,
+    }
+    article_dict = {}
     try:
-        ctx.update(
-            # TODO: scope by category and/or tags in the future
-            ContentfulEntry.objects.get_page_by_slug(
-                slug=slug,
-                locale=locale,
-                content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTRE,
-            )
+        article_dict = ContentfulEntry.objects.get_page_by_slug(
+            slug=slug,
+            locale=locale,
+            content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTRE,
         )
-    except (
-        ContentfulEntry.DoesNotExist,
-        Exception,  # Extra caution for now
-    ) as ex:
+    except ContentfulEntry.DoesNotExist as ex:
         capture_exception(ex)
-        raise Http404()
+        # If our selected locale is valid but we get a genuine slug miss
+        # we need to 404 rather than fall through, because render()
+        # will trigger a 500 at the templating level if we don't have
+        # the article data in the context
+        if locale in active_locales:
+            raise Http404()
 
-    return l10n_utils.render(request, template_name, ctx, ftl_files=["products/vpn/shared"])
+    ctx.update(article_dict)
+
+    return l10n_utils.render(
+        request,
+        template_name,
+        ctx,
+        ftl_files=["products/vpn/shared"],
+    )
