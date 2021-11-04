@@ -230,7 +230,15 @@ if (typeof window.Mozilla === 'undefined') {
         var versions = isESR
             ? html.getAttribute('data-esr-versions').split(' ')
             : [html.getAttribute('data-latest-firefox')];
-        var userVerArr = userVer.match(/^(\d+(?:\.\d+){1,2})/)[1].split('.');
+        var userVerArr = userVer.match(/^(\d+(?:\.\d+){1,2})/);
+
+        if (userVerArr && userVerArr.length > 0) {
+            userVerArr = userVerArr[1].split('.');
+        } else {
+            // if there's no version in the UA string, assume out of date (issue 10582)
+            return false;
+        }
+
         var isUpToDate = false;
 
         // Sort product details version so we compare the newer version first
