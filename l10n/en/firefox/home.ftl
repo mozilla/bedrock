@@ -52,7 +52,7 @@ firefox-home-send = { -brand-name-send }
 firefox-home-mozilla = { -brand-name-mozilla }
 firefox-home-pocket = { -brand-name-pocket }
 firefox-home-mozilla-vpn = { -brand-name-mozilla-vpn }
-firefox-home-relay = { -brand-name-relay}
+firefox-home-relay = { -brand-name-relay }
 
 ## The strings below are visually hidden in the page and replaced by logo wordmark images. They are still important for a11y and SEO.
 
