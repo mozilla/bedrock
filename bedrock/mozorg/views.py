@@ -170,6 +170,8 @@ class ContentfulPreviewView(L10nTemplateView):
         theme = context["info"]["theme"]
         if page_type == "pageHome":
             template = "mozorg/contentful-homepage.html"
+        elif page_type == "pagePageResourceCenter":
+            template = "products/vpn/resource-center/article.html"
         elif theme == "firefox":
             template = "firefox/contentful-all.html"
         else:
