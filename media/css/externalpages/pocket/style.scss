@@ -7,9 +7,11 @@
 
 @import 'utils/variables';
 @import 'utils/fonts';
+@import 'utils/tokens';
 
 @import 'components/nav';
 @import 'components/footer';
+@import 'components/add';
 
 *,
 :after,
@@ -55,15 +57,4 @@ button:not(:disabled) {
     cursor: pointer;
 }
 
-.main-container {
-  overflow: hidden;
 
-  a {
-    color: $color-action-primary;
-    text-decoration: underline;
-    transition: color 0.1s ease-out;
-    &:hover {
-        color: $color-action-primary-hover;
-    }
-  }
-}
