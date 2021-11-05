@@ -61,8 +61,8 @@ privacy-passwords-2fa-is-a = 2FA is a great way to level-up your security. When 
 #   $url_sumo_2fa (string) - link to https://support.mozilla.org/kb/secure-firefox-account-two-step-authentication with additional attributes for analytics
 privacy-passwords-your-firefox-account = Your { -brand-name-firefox } account, for instance, can be protected with 2FA, <a { $url_sumo_2fa }>which you can learn more about here</a>.
 
-#   $url_2fa (string) - link to https://twofactorauth.org with additional attributes for analytics
-privacy-passwords-2fa-provides-much = 2FA provides much better security than passwords alone, but not every website supports it. You can find a list of websites that support 2FA at <a { $url_2fa }>https://twofactorauth.org</a>, as well as a list of sites that don’t support 2FA and ways you can ask them to add support.
+#   $url_2fa (string) - link to https://2fa.directory with additional attributes for analytics
+privacy-passwords-2fa-provides-much = 2FA provides much better security than passwords alone, but not every website supports it. You can find a list of websites that support 2FA at <a { $url_2fa }>https://2fa.directory</a>, as well as a list of sites that don’t support 2FA and ways you can ask them to add support.
 privacy-passwords-strong-diverse-and = Strong, diverse, and multi-factor
 privacy-passwords-for-better-or = For better or worse, we’re going to be using passwords to protect our online accounts for the foreseeable future. Use passwords that are <strong>strong</strong> and <strong>different for each site</strong>, and use a <strong>password manager</strong> to help you remember them safely. Set <strong>long, random answers</strong> for security questions (even if they’re not the truth). And <strong>use two-factor authentication</strong> on any site that supports it.
 
