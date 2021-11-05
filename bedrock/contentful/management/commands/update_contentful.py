@@ -62,10 +62,10 @@ class Command(BaseCommand):
             else:
                 self.log("Checking for updated Contentful data")
 
-            update_ran, added, updated = self.refresh()
+            update_ran, added, updated, errors = self.refresh()
 
             if update_ran:
-                self.log(f"Done. Added: {added}. Updated: {updated}")
+                self.log(f"Done. Added: {added}. Updated: {updated}. Errors: {errors}")
             else:
                 self.log(f"Nothing to pull from Contentful")
         else:
@@ -76,14 +76,15 @@ class Command(BaseCommand):
         update_ran = False
         added = -1
         updated = -1
+        errors = -1
 
         poll_contentful = self.force or self._queue_has_viable_messages()
 
         if poll_contentful:
-            added, updated = self._refresh_from_contentful()
+            added, updated, errors = self._refresh_from_contentful()
             update_ran = True
 
-        return update_ran, added, updated
+        return update_ran, added, updated, errors
 
     def _get_message_action(self, msg: str) -> Union[str, None]:
         # Format for these messages is:
@@ -211,10 +212,11 @@ class Command(BaseCommand):
 
         return viable_message_found
 
-    def _refresh_from_contentful(self) -> Tuple[int, int]:
+    def _refresh_from_contentful(self) -> Tuple[int, int, int]:
         self.log("Pulling from Contentful")
         updated_count = 0
         added_count = 0
+        error_count = 0
         content_ids = []
 
         # TODO: Stop syncing only selected content types and process the (paginated) lot
@@ -233,9 +235,11 @@ class Command(BaseCommand):
             try:
                 page = ContentfulPage(request, page_id)
                 page_data = page.get_content()
-            except Exception:
+            except Exception as ex:
                 # problem with the page, load other pages
-                capture_exception()
+                self.log(f"Problem with {ctype}:{page_id} -> {type(ex)}: {ex}")
+                capture_exception(ex)
+                error_count += 1
                 continue
 
             # Compose-authored pages have a page_type of `page`
@@ -277,4 +281,4 @@ class Command(BaseCommand):
                     obj.save()
                     updated_count += 1
 
-        return added_count, updated_count
+        return added_count, updated_count, error_count

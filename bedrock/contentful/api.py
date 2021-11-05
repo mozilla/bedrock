@@ -559,6 +559,9 @@ class ContentfulPage:
         else:
             raise ValueError(f"{entry_type} is not a recognized page type")
 
+        if not entry_obj:
+            raise Exception(f"No 'Entry' detected for {self.page.content_type.id}")
+
         self.request.page_info = self.get_info_data(
             entry_obj,
             seo_obj,
