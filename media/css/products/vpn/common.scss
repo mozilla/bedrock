@@ -35,6 +35,34 @@ $image-path: '/media/protocol/img';
         top: 2px;
         width: 16px;
     }
+
+    &:after {
+        @include bidi((
+            (padding-left, .1em, padding-right, 0),
+        ));
+        content: '*';
+    }
+
+    a:link,
+    a:visited {
+        color: inherit;
+        text-decoration: none;
+
+        &:hover,
+        &:active,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+}
+
+.vpn-features-guarantee {
+    &:after {
+        @include bidi((
+            (padding-left, .1em, padding-right, 0),
+        ));
+        content: '*';
+    }
 }
 
 .refund-policy {

@@ -137,7 +137,7 @@
         </a>
 
         <p class="guarantee-copy">
-          {{ ftl('vpn-shared-money-back-guarantee') }}
+          <a href="#faq-refunds">{{ ftl('vpn-shared-money-back-guarantee') }}</a>
         </p>
       {% endcall %}
     {% else %}
@@ -261,7 +261,12 @@
       <summary class="vpn-faq-item-heading">
         <h3>{{ ftl('vpn-landing-faq-refund-question-heading') }}</h3>
       </summary>
-      <p class="vpn-faq-item-detail">{{ ftl('vpn-landing-faq-refund-question-desc') }}</p>
+      {% if ftl_has_messages('vpn-landing-faq-refund-question-desc-v2', 'vpn-landing-faq-refund-question-additional-desc') %}
+        <p class="vpn-faq-item-detail">{{ ftl('vpn-landing-faq-refund-question-desc-v2') }}</p>
+        <p class="vpn-faq-item-detail">{{ ftl('vpn-landing-faq-refund-question-additional-desc') }}</p>
+      {% else %}
+        <p class="vpn-faq-item-detail">{{ ftl('vpn-landing-faq-refund-question-desc') }}</p>
+      {% endif %}
     </details>
 
     <details id="faq-subscriptions" class="vpn-faq-item mzp-is-anchor-link">

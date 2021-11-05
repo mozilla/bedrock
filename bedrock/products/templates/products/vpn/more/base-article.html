@@ -34,7 +34,7 @@
     <div class="vpn-hero-cta">
       <p><a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.landing') }}#pricing">{{ ftl('vpn-shared-subscribe-link') }}</a></p>
       <p class="guarantee-copy">
-        {{ ftl('vpn-shared-money-back-guarantee') }}
+        <a href="{{ url('products.vpn.landing') }}#faq-refunds">{{ ftl('vpn-shared-money-back-guarantee') }}</a>
       </p>
     </div>
     {% endcall %}
@@ -54,7 +54,7 @@
       <h3 class="vpn-content-well-title">{{ ftl('vpn-shared-subscribe-link') }}</h3>
       <div class="vpn-content-well-desc">
         <p><a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.landing') }}#pricing">{{ ftl('vpn-shared-platform-cta-button') }}</a></p>
-        <p class="guarantee-copy">{{ ftl('vpn-shared-money-back-guarantee') }}</p>
+        <p class="guarantee-copy"><a href="{{ url('products.vpn.landing') }}#faq-refunds">{{ ftl('vpn-shared-money-back-guarantee') }}</a></p>
       </div>
     {% endcall %}
   </div>
