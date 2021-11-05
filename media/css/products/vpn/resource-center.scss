@@ -191,7 +191,7 @@ $image-path: '/media/protocol/img';
     }
 
     h3 {
-        font-size: 32px;
+        @include text-title-sm;
     }
 }
 
