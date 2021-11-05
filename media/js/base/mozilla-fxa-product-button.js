@@ -20,7 +20,6 @@ if (typeof window.Mozilla === 'undefined') {
         'https://accounts.stage.mozaws.net/',
         'https://getpocket.com/',
         'https://guardian-dev.herokuapp.com/',
-        'https://latest.dev.lcip.org/',
         'https://monitor.firefox.com/',
         'https://stage-vpn.guardian.nonprod.cloudops.mozgcp.net/',
         'https://vpn.mozilla.org/'

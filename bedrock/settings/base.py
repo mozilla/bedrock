@@ -936,7 +936,7 @@ FIREFOX_INSTAGRAM_ACCOUNTS = {
 
 # Firefox Accounts product links
 # ***This URL *MUST* end in a traling slash!***
-FXA_ENDPOINT = config("FXA_ENDPOINT", default="https://stable.dev.lcip.org/" if DEV else "https://accounts.firefox.com/")
+FXA_ENDPOINT = config("FXA_ENDPOINT", default="https://accounts.stage.mozaws.net/" if DEV else "https://accounts.firefox.com/")
 
 FXA_ENDPOINT_MOZILLAONLINE = config("FXA_ENDPOINT_MOZILLAONLINE", default="https://accounts.firefox.com.cn/")
 
