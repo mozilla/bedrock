@@ -466,6 +466,8 @@ class ContentfulPage:
         else:
             seo_fields = None
 
+        data = {}
+
         folder = fields.get("folder", "")
         in_firefox = "firefox-" if "firefox" in folder else ""
 
@@ -474,6 +476,7 @@ class ContentfulPage:
             # and the slug lives not on the Entry, nor the SEO object
             # but just on the top-level Compose `page`
             slug = self.page.fields().get("slug")
+
         else:
             # Non-Compose pages
             slug = fields.get("slug", "home")  # TODO: check if we can use a better fallback
@@ -496,16 +499,18 @@ class ContentfulPage:
         else:
             locale = entry_obj.sys["locale"]
 
-        data = {
-            "title": title,
-            "blurb": blurb,
-            "slug": slug,
-            "locale": locale,
-            "theme": "firefox" if "firefox" in folder else "mozilla",
-            # eg www.mozilla.org-firefox-accounts or www.mozilla.org-firefox-sync
-            "utm_source": f"www.mozilla.org-{campaign}",
-            "utm_campaign": campaign,  # eg firefox-sync
-        }
+        data.update(
+            {
+                "title": title,
+                "blurb": blurb,
+                "slug": slug,
+                "locale": locale,
+                "theme": "firefox" if "firefox" in folder else "mozilla",
+                # eg www.mozilla.org-firefox-accounts or www.mozilla.org-firefox-sync
+                "utm_source": f"www.mozilla.org-{campaign}",
+                "utm_campaign": campaign,  # eg firefox-sync
+            }
+        )
 
         _preview_image = self._get_preview_image_from_fields(fields)
         if _preview_image:
@@ -517,6 +522,19 @@ class ContentfulPage:
                 seo_fields["image"] = _preview_image
                 del seo_fields["preview_image"]
             data.update({"seo": seo_fields})
+
+        # TODO: Check with plans for Contentful use - we may
+        # be able to relax this check and use it for page types
+        # once we're in all-Compose mode
+        if page_type == CONTENT_TYPE_PAGE_RESOURCE_CENTRE:
+            if "category" in fields:
+                data["category"] = fields["category"]
+            if "tags" in fields:
+                data["tags"] = fields["tags"]
+            if "product" in fields:
+                # NB: this is a re-mapping with an eye on flexibility - pages may not always have
+                # a 'product' key, but they might have something regarding overall classification
+                data["classification"] = fields["product"]
 
         return data
 

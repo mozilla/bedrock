@@ -50,6 +50,23 @@ class ContentfulEntry(models.Model):
     slug = models.CharField(max_length=255, blank=True)
     data_hash = models.CharField(max_length=64)
     data = JSONField()
+    # Fields we may need to query by
+    classification = models.CharField(
+        max_length=255,
+        blank=True,
+        default="",
+        help_text="Some pages may have custom fields on them, distinct from their content type - eg: pagePageResourceCenter has a 'Product' field",
+    )
+    category = models.CharField(
+        max_length=255,
+        blank=True,
+        default="",
+        help_text="Some pages may have a category",
+    )
+    tags = JSONField(
+        blank=True,
+        help_text="Some pages may have tags",
+    )
 
     objects = ContentfulEntryManager()
 

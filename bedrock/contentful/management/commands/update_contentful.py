@@ -245,9 +245,18 @@ class Command(BaseCommand):
                 # because they all have a parent type of COMPOSE_MAIN_PAGE_TYPE
                 ctype = page_data["page_type"]
 
-            locale = page_data["info"]["locale"]
             hash = data_hash(page_data)
-            slug = page_data["info"]["slug"]
+            _info = page_data["info"]
+
+            extra_params = dict(
+                locale=_info["locale"],
+                data_hash=hash,
+                data=page_data,
+                slug=_info["slug"],
+                classification=_info.get("classification", ""),
+                tags=_info.get("tags", []),
+                category=_info.get("category", ""),
+            )
 
             try:
                 obj = ContentfulEntry.objects.get(contentful_id=page_id)
@@ -256,20 +265,15 @@ class Command(BaseCommand):
                 ContentfulEntry.objects.create(
                     contentful_id=page_id,
                     content_type=ctype,
-                    locale=locale,
-                    data_hash=hash,
-                    data=page_data,
-                    slug=slug,
+                    **extra_params,
                 )
                 added_count += 1
             else:
                 if self.force or hash != obj.data_hash:
                     self.log(f"Updating existing ContentfulEntry for {ctype}:{page_id}")
-                    obj.locale = locale
-                    obj.data_hash = hash
-                    obj.data = page_data
+                    for key, value in extra_params.items():
+                        setattr(obj, key, value)
                     obj.last_modified = tz_now()
-                    obj.slug = slug
                     obj.save()
                     updated_count += 1
 
