@@ -26,7 +26,8 @@
 <div class="vpn-article-container">
   <div class="mzp-l-content mzp-t-content-md">
       <article class="mzp-c-article vpn-article">
-        <p class="vpn-article-category">{% block article_category %}{{ self.article_category().capitalize() }}{% endblock %}</p>
+        {# Categories will be used at some point but not yet #}
+        {# <p class="vpn-article-category">{% block article_category %}{{ self.article_category().capitalize() }}{% endblock %}</p> #}
         <h2>{{ self.article_title() }}</h2>
         {# Date is not used - content is evergreen
         <p class="vpn-article-date">

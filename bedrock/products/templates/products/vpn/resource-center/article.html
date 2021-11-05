@@ -10,9 +10,6 @@
   {% if info.category %}{{info.category}}{% endif %}
 {% endblock %}
 {% block article_title %}{{info.title}}{% endblock %}
-{# Date is not used - content is evergreen
-{% block article_date %}{% endblock article_date %}
-#}
 {% block vpn_article %}
 {% for entry in entries -%}
   {{ entry.body|external_html }}
