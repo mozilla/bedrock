@@ -124,7 +124,7 @@ urlpatterns = (
         name="firefox.welcome.page8",
     ),
     page("firefox/welcome/9", "firefox/welcome/page9.html", active_locales=["de", "fr"]),
-    page("firefox/welcome/10", "firefox/welcome/page10.html"),
+    page("firefox/welcome/10", "firefox/welcome/page10.html", ftl_files=["firefox/welcome/page10"]),
     page("firefox/switch", "firefox/switch.html", ftl_files=["firefox/switch"]),
     page("firefox/pocket", "firefox/pocket.html"),
     # Issue 6604, SEO firefox/new pages

@@ -164,8 +164,34 @@ locales = [
     reference = "en/firefox/set-as-default/**/*.ftl"
     l10n = "{locale}/firefox/set-as-default/**/*.ftl"
 [[paths]]
-    reference = "en/firefox/welcome/**/*.ftl"
-    l10n = "{locale}/firefox/welcome/**/*.ftl"
+    reference = "en/firefox/welcome/page1.ftl"
+    l10n = "{locale}/firefox/welcome/page1.ftl"
+[[paths]]
+    reference = "en/firefox/welcome/page2.ftl"
+    l10n = "{locale}/firefox/welcome/page2.ftl"
+[[paths]]
+    reference = "en/firefox/welcome/page3.ftl"
+    l10n = "{locale}/firefox/welcome/page3.ftl"
+[[paths]]
+    reference = "en/firefox/welcome/page4.ftl"
+    l10n = "{locale}/firefox/welcome/page4.ftl"
+[[paths]]
+    reference = "en/firefox/welcome/page6.ftl"
+    l10n = "{locale}/firefox/welcome/page6.ftl"
+[[paths]]
+    reference = "en/firefox/welcome/page7.ftl"
+    l10n = "{locale}/firefox/welcome/page7.ftl"
+[[paths]]
+    reference = "en/firefox/welcome/page8.ftl"
+    l10n = "{locale}/firefox/welcome/page8.ftl"
+[[paths]]
+    reference = "en/firefox/welcome/page10.ftl"
+    l10n = "{locale}/firefox/welcome/page10.ftl"
+    locales = [
+        "es-ES",
+        "it",
+        "nl",
+    ]
 [[paths]]
     reference = "en/firefox/whatsnew/whatsnew-account.ftl"
     l10n = "{locale}/firefox/whatsnew/whatsnew-account.ftl"

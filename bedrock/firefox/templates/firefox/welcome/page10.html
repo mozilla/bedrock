@@ -6,7 +6,7 @@
 
 {% extends "firefox/welcome/base.html" %}
 
-{% block page_title %}Firefox protects your browsing. Mozilla VPN protects you everywhere{% endblock %}
+{% block page_title %}{{ ftl('welcome-page10-page-title') }}{% endblock %}
 
 {% block page_image %}{{ static('img/products/vpn/common/social-share.png') }}{% endblock %}
 
@@ -27,11 +27,11 @@
     <div class="mzp-l-content mzp-t-content-md">
       <img class="c-main-image" src="{{ static('protocol/img/logos/mozilla/vpn/logo-flat.svg') }}" width="90" alt="">
 
-      <h1 class="c-main-title">Firefox protects your browsing. <strong>Mozilla VPN</strong> protects you everywhere.</h1>
-      <p class="c-main-tagline">Mozilla VPN (Virtual Private Network) protects your entire internet connection on your computer, your tablet, and even your phone. For even more security, it comes with a 30-day money back guarantee.</p>
+      <h1 class="c-main-title">{{ ftl('welcome-page10-main-heading') }}</h1>
+      <p class="c-main-tagline">{{ ftl('welcome-page10-main-description') }}</p>
 
       <div class="c-main-cta">
-        <a href="{{ url('products.vpn.landing') }}{{ source }}#pricing" class="mzp-c-button mzp-t-product mzp-t-xl" data-cta-text="Get Mozilla VPN" data-cta-type="button">Get Mozilla VPN</a>
+        <a href="{{ url('products.vpn.landing') }}{{ source }}#pricing" class="mzp-c-button mzp-t-product mzp-t-xl" data-cta-text="Get Mozilla VPN" data-cta-type="button">{{ ftl('welcome-page10-get-mozilla-vpn') }}</a>
       </div>
     </div>
   </section>
@@ -46,9 +46,9 @@
         <div class="mzp-c-picto-image">
           {% include 'firefox/welcome/includes/page10/laptop.svg' %}
         </div>
-        <h3 class="mzp-c-picto-title">It’s fast, very fast</h3>
+        <h3 class="mzp-c-picto-title">{{ ftl('welcome-page10-very-fast') }}</h3>
         <div class="mzp-c-picto-body">
-          <p>Our WireGuard® powered servers are built for speed so you can stream, download, and game as usual.</p>
+          <p>{{ ftl('welcome-page10-wireguard-powered') }}</p>
         </div>
       </div>
 
@@ -56,9 +56,9 @@
         <div class="mzp-c-picto-image">
           {% include 'firefox/welcome/includes/page10/mobile.svg' %}
         </div>
-        <h3 class="mzp-c-picto-title">Internet without a trace</h3>
+        <h3 class="mzp-c-picto-title">{{ ftl('welcome-page10-without-trace') }}</h3>
         <div class="mzp-c-picto-body">
-          <p>We never log, track, or share your network data — your online activity won’t leave a footprint on our VPN servers.</p>
+          <p>{{ ftl('welcome-page10-never-log') }}</p>
         </div>
       </div>
     </div>
@@ -70,7 +70,7 @@
 <p>
   <strong>
     <a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">
-      Why am I seeing this?
+      {{ ftl('welcome-page10-why-see-this') }}
     </a>
   </strong>
 </p>
