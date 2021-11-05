@@ -3,7 +3,6 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from functools import partialmethod
-from typing import Dict, Union
 from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 
 from django.conf import settings
@@ -450,16 +449,16 @@ class ContentfulPage:
             },
         )
 
-    def render_rich_text(self, node) -> str:
+    def render_rich_text(self, node):
         return self._renderer.render(node) if node else ""
 
-    def _get_preview_image_from_fields(self, fields: dict) -> Union[str, None]:
+    def _get_preview_image_from_fields(self, fields):
         if "preview_image" in fields:
             # TODO request proper size image
             preview_image_url = fields["preview_image"].fields().get("file").get("url")
-            return "https:" + preview_image_url
+            return f"https:{preview_image_url}"
 
-    def get_info_data(self, entry_obj, seo_obj=None) -> Dict:
+    def get_info_data(self, entry_obj, seo_obj=None):
         # TODO, need to enable connectors
         fields = entry_obj.fields()
         if seo_obj:
@@ -524,7 +523,7 @@ class ContentfulPage:
     def get_entry_by_id(self, entry_id):
         return self.client.entry(entry_id, {"locale": self.locale})
 
-    def get_content(self) -> dict:
+    def get_content(self):
         # Check if it is a page or a connector, or a Compose page type
 
         entry_type = self.page.content_type.id

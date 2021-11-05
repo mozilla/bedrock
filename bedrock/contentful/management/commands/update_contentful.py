@@ -239,7 +239,7 @@ class Command(BaseCommand):
                 continue
 
             # Compose-authored pages have a page_type of `page`
-            # but really we want the entity the Compage page references
+            # but really we want the entity the Compose page references
             if ctype == COMPOSE_MAIN_PAGE_TYPE:
                 # TODO: make this standard when we _only_ have Compose pages,
                 # because they all have a parent type of COMPOSE_MAIN_PAGE_TYPE
