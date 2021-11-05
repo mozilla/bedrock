@@ -17,8 +17,6 @@ if (typeof window.Mozilla === 'undefined') {
     var allowedList = [
         'https://accounts.firefox.com/',
         'https://accounts.stage.mozaws.net/',
-        'https://latest.dev.lcip.org/',
-        'https://stable.dev.lcip.org/',
         'https://accounts.firefox.com.cn/'
     ];
 

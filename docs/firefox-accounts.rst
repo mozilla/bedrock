@@ -415,7 +415,7 @@ Set the following in your local ``.env`` file:
 
 .. code-block:: text
 
-    FXA_ENDPOINT=https://stable.dev.lcip.org/
+    FXA_ENDPOINT=https://accounts.stage.mozaws.net/
 
 For Mozilla VPN links you can also set:
 
@@ -429,18 +429,6 @@ For Mozilla VPN links you can also set:
     The above values for staging are already set by default when ``Dev=True``,
     which will also apply to demo servers. You may only need to configure
     your ``.env`` file if you wish to change a setting to something else.
-
-**Local and demo server testing:**
-
-Follow the `instructions`_ provided by the FxA team. These instructions will launch a
-new Firefox instance with the necessary config already set. In the new instance of
-Firefox:
-
-#. Navigate to the page containing the Firefox Accounts CTA.
-#. If testing locally, be sure to use ``127.0.0.1`` instead of ``localhost``
-
-.. _instructions: https://github.com/vladikoff/fxa-dev-launcher#basic-usage-example-in-os-x
-
 
 Google Analytics Guidelines
 ---------------------------
