@@ -159,7 +159,14 @@ vpn-landing-faq-compatibility-question-desc-linux-v2 = <a href="{ $url }">{ -bra
 vpn-landing-faq-compatibility-question-desc-linux = { -brand-name-linux } ({ -brand-name-ubuntu }-only)
 
 vpn-landing-faq-refund-question-heading = What is { -brand-name-mozilla-vpn }’s refund policy?
+
+vpn-landing-faq-refund-question-desc-v2 = The first time you subscribe to { -brand-name-mozilla-vpn } through { -brand-name-mozilla }’s website, if you cancel your account within the first 30 days, you may request a refund and { -brand-name-mozilla } will refund your first subscription term.
+
+vpn-landing-faq-refund-question-additional-desc = If you purchase your subscription through in-app purchase from the { -brand-name-apple } { -brand-name-app-store } or the { -brand-name-google-play } Store, your payment is subject to the terms and conditions of the { -brand-name-app-store }. You must direct any billing and refund inquiries for such purchases to { -brand-name-apple } or { -brand-name-google }, as appropriate.
+
+# Outdated string
 vpn-landing-faq-refund-question-desc = You can get your money back within 30 days of purchasing your subscription. Contact us and submit the refund request by tapping the “Get Help” button in Settings on your { -brand-name-mozilla-vpn } app.
+
 vpn-landing-faq-manage-subscription-question-heading = How do I manage my subscription?
 
 # Variables:

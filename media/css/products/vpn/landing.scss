@@ -94,6 +94,15 @@ html {
     }
 }
 
+#faq-refunds .vpn-faq-item-heading h3 {
+    &:before {
+        @include bidi((
+            (padding-right, .1em, padding-left, 0),
+        ));
+        content: '*';
+    }
+}
+
 .vpn-faq-item-detail {
     @include bidi((
         (padding-right, $spacing-xl, padding-left, 0),
