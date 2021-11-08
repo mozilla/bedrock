@@ -9,7 +9,6 @@ from os import getenv
 from time import time
 
 from django.conf import settings
-from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_safe
@@ -40,42 +39,6 @@ class GeoTemplateView(l10n_utils.L10nTemplateView):
             return [template]
 
         return super().get_template_names()
-
-
-@require_safe
-def geolocate(request):
-    """Return the country code provided by our CDN
-
-    https://support.cloudflare.com/hc/en-us/articles/200168236-What-does-CloudFlare-IP-Geolocation-do-
-
-    Mimics the responses from the Mozilla Location Service:
-
-    https://ichnaea.readthedocs.io/en/latest/api/region.html
-    """
-    country_code = get_country_from_request(request)
-    if country_code is None:
-        return JsonResponse(
-            {
-                "error": {
-                    "errors": [
-                        {
-                            "domain": "geolocation",
-                            "reason": "notFound",
-                            "message": "Not found",
-                        }
-                    ],
-                    "code": 404,
-                    "message": "Not found",
-                }
-            },
-            status=404,
-        )
-
-    return JsonResponse(
-        {
-            "country_code": country_code,
-        }
-    )
 
 
 # file names and max seconds since last run

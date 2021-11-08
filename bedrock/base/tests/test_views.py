@@ -2,43 +2,11 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import json
 from unittest.mock import patch
 
 from django.test import RequestFactory, TestCase
 
-from bedrock.base.views import GeoTemplateView, geolocate
-
-
-class TestGeolocate(TestCase):
-    def get_country(self, country):
-        with patch("bedrock.base.views.get_country_from_request") as geo_mock:
-            geo_mock.return_value = country
-            rf = RequestFactory()
-            req = rf.get("/")
-            resp = geolocate(req)
-            return json.loads(resp.content)
-
-    def test_geo_returns(self):
-        self.assertDictEqual(self.get_country("US"), {"country_code": "US"})
-        self.assertDictEqual(self.get_country("FR"), {"country_code": "FR"})
-        self.assertDictEqual(
-            self.get_country(None),
-            {
-                "error": {
-                    "errors": [
-                        {
-                            "domain": "geolocation",
-                            "reason": "notFound",
-                            "message": "Not found",
-                        }
-                    ],
-                    "code": 404,
-                    "message": "Not found",
-                }
-            },
-        )
-
+from bedrock.base.views import GeoTemplateView
 
 geo_template_view = GeoTemplateView.as_view(
     geo_template_names={
