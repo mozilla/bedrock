@@ -192,25 +192,28 @@ def resource_center_landing_view(request):
 def resource_center_detail_view(request, slug):
     """Individual detail pages for the VPN Resource Center"""
 
+    template_name = "products/vpn/resource-center/article.html"
+
     # Initially, en-US is the only one available in Contentful
     locale = l10n_utils.get_locale(request)
     active_locales = [
         "en-US",
     ]
 
-    template_name = "products/vpn/resource-center/article.html"
-
     ctx = {
         "active_locales": active_locales,
     }
+
     article_dict = {}
     try:
-        article_dict = ContentfulEntry.objects.get_page_by_slug(
+        article = ContentfulEntry.objects.get_entry_by_slug(
             slug=slug,
             locale=locale,
             classification=CONTENT_CLASSIFICATION_VPN,
             content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTRE,
         )
+        article_dict.update(article.data)
+
     except ContentfulEntry.DoesNotExist as ex:
         capture_exception(ex)
         # If our selected locale is valid but we get a genuine slug miss
@@ -221,6 +224,12 @@ def resource_center_detail_view(request, slug):
             raise Http404()
 
     ctx.update(article_dict)
+
+    ctx.update(
+        {
+            "related_articles": [x.data for x in article.get_related_entries()],
+        }
+    )
 
     return l10n_utils.render(
         request,

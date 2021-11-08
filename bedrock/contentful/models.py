@@ -3,6 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from django.db import models
+from django.db.models.query_utils import Q
 from django.utils.timezone import now
 
 from django_extensions.db.fields.json import JSONField
@@ -12,7 +13,7 @@ class ContentfulEntryManager(models.Manager):
     def get_page_by_id(self, content_id):
         return self.get(contentful_id=content_id).data
 
-    def get_page_by_slug(self, slug, locale, content_type, classification=None):
+    def get_entry_by_slug(self, slug, locale, content_type, classification=None):
         kwargs = dict(
             slug=slug,
             locale=locale,
@@ -20,7 +21,16 @@ class ContentfulEntryManager(models.Manager):
         )
         if classification:
             kwargs["classification"] = classification
-        return self.get(**kwargs).data
+        return self.get(**kwargs)
+
+    def get_page_by_slug(self, slug, locale, content_type, classification=None):
+        # Thin wrapper that gets back only the JSON data
+        return self.get_entry_by_slug(
+            slug,
+            locale,
+            content_type,
+            classification,
+        ).data
 
     def get_entries_by_type(
         self,
@@ -95,3 +105,33 @@ class ContentfulEntry(models.Model):
 
     def __str__(self) -> str:
         return f"ContentfulEntry {self.content_type}:{self.contentful_id}"
+
+    def get_related_entries(self):
+        """Find ContentfulEntry records that:
+        * are for the same content_type
+        * are for the same classification
+        * share at least one tag with `self`
+
+        Returns:
+            QuerySet[ContentfulEntry]
+        """
+
+        if not self.tags:
+            return ContentfulEntry.objects.none()
+
+        _base_qs = ContentfulEntry.objects.filter(
+            content_type=self.content_type,
+            classification=self.classification,  # eg same Product/project/area of the site
+        ).exclude(
+            id=self.id,
+        )
+
+        # Tags are stored in a JSONField, but we can query it as text by quoting them
+        q = Q()
+        for _tag in self.tags:
+            q.add(
+                Q(tags__contains=f'"{_tag}"'),
+                Q.OR,
+            )
+
+        return _base_qs.filter(q).distinct()
