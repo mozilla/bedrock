@@ -12,30 +12,30 @@
   {{ css_bundle('vpn-resource-center')}}
 {% endblock page_css %}
 
-{% block page_title%}Knowledge Center{% endblock page_title%}
+{% block page_title%}{{ ftl('vpn-resource-center-title') }}{% endblock page_title %}
 
 {% block content %}
   {{ call_out (
-    title='What’s the deal with Virtual Private Networks?',
-    desc='Discover how they work, why they’re important and what using a VPN can do for you.',
+    title=ftl('vpn-resource-center-whats-the-deal'),
+    desc=ftl('vpn-resource-center-discover-how-they'),
     class='resource-center-page-header resource-center-hero'
   )}}
-    {% if category_list|length > 1 %}
+    {# {% if category_list|length > 1 %}
     {# Category component is currently of the scope of this project, but still stubbed out #}
-    <div class="mzp-c-category-list">
-      <h2 class="mzp-c-category-list-title">
-        <a href="{{ url('products.vpn.resource-center.landing') }}">View All &#62</a>
+    {# <div class="mzp-c-category-list"> #}
+      {# <h2 class="mzp-c-category-list-title"> #}
+        {# <a href="{{ url('products.vpn.resource-center.landing') }}">View All &#62</a>
       </h2>
       <ul class="mzp-c-category-list-list">
         {% for category in category_list  %}
         <li class="mzp-c-category-list-item">
           {# TODO? if selected_category == category.name, add selected state #}
-          <a href="{{category.url}}">{{category.name}}</a>
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
-    {% endif %}
+          {# <a href="{{category.url}}">{{category.name}}</a> #}
+        {# </li> #}
+        {# {% endfor %} #}
+      {# </ul> #}
+    {# </div> #}
+    {# {% endif %} #}
 
     <div class="mzp-l-content mzp-l-card-third">
       {% for article in first_article_group %}
@@ -47,10 +47,10 @@
       block_class='resource-center-split mzp-t-split-nospace mzp-t-content-lg mzp-l-split-center-on-sm-md',
       media_class='resource-center-split-media',
     ) %}
-      <h1 class="resource-center-wordmark">Mozilla VPN</h1>
-      <h2 class="mzp-c-call-out-title">Start protecting your identity today</h2>
-      <a class='mzp-c-button mzp-t-product resource-center-cta'>{{ vpn_saving(plan='12-month', country_code=country_code, lang=LANG) }} on Mozilla VPN*</a>
-      <p class="resource-center-cta-desc"><em>*when you subscribe to a 12-month plan</em></p>
+      <h1 class="resource-center-wordmark">{{ ftl('vpn-resource-center-mozilla-vpn') }}</h1>
+      <h2 class="mzp-c-call-out-title">{{ ftl('vpn-resource-center-start-protecting') }}</h2>
+      <a class='mzp-c-button mzp-t-product resource-center-cta'>{{ vpn_saving(plan='12-month', country_code=country_code, lang=LANG) }} {{ ftl('vpn-resource-center-on-mozilla-vpn') }}</a>
+      <p class="resource-center-cta-desc"><em>{{ ftl('vpn-resource-center-when-you-subscribe') }}</em></p>
     {% endcall %}
 
     <div class="mzp-l-content mzp-l-card-third">
@@ -65,8 +65,8 @@
       image_url="img/products/vpn/resource-center/resource_center_split_2.jpg",
       block_class='mzp-t-content-lg',
     ) %}
-      <h2 class="resource-center-cta-title">Obsessed with your privacy since 1998</h2>
-      <a class='mzp-c-button mzp-t-product'>Get Mozilla VPN</a>
+      <h2 class="resource-center-cta-title">{{ ftl('vpn-resource-center-obsessed-with') }}</h2>
+      <a class='mzp-c-button mzp-t-product'>{{ ftl('vpn-resource-center-get-mozilla-vpn') }}</a>
     {% endcall %}
   {% endif %}
 

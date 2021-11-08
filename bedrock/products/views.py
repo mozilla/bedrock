@@ -185,7 +185,7 @@ def resource_center_landing_view(request):
         request,
         template_name,
         ctx,
-        ftl_files=["products/vpn/shared"],
+        ftl_files=["products/vpn/shared", "products/vpn/resource-center"],
     )
 
 
