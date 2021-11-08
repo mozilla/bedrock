@@ -20,7 +20,7 @@
     desc='Discover how they work, why they’re important and what using a VPN can do for you.',
     class='resource-center-page-header resource-center-hero'
   )}}
-    {% if category_list %}
+    {% if category_list|length > 1 %}
     {# Category component is currently of the scope of this project, but still stubbed out #}
     <div class="mzp-c-category-list">
       <h2 class="mzp-c-category-list-title">
@@ -29,6 +29,7 @@
       <ul class="mzp-c-category-list-list">
         {% for category in category_list  %}
         <li class="mzp-c-category-list-item">
+          {# TODO? if selected_category == category.name, add selected state #}
           <a href="{{category.url}}">{{category.name}}</a>
         </li>
         {% endfor %}

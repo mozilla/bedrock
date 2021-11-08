@@ -2,8 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from typing import Dict, List
-
 from django.db import models
 from django.utils.timezone import now
 
@@ -11,30 +9,55 @@ from django_extensions.db.fields.json import JSONField
 
 
 class ContentfulEntryManager(models.Manager):
-    def get_page_by_id(self, content_id) -> Dict:
+    def get_page_by_id(self, content_id):
         return self.get(contentful_id=content_id).data
 
-    def get_page_by_slug(self, slug, locale, content_type) -> Dict:
-        return self.get(
+    def get_page_by_slug(self, slug, locale, content_type, classification=None):
+        kwargs = dict(
             slug=slug,
             locale=locale,
             content_type=content_type,
-        ).data
+        )
+        if classification:
+            kwargs["classification"] = classification
+        return self.get(**kwargs).data
 
-    def get_entries_by_type(self, content_type, locale, order_by="last_modified") -> List[Dict]:
-        qs = self.filter(
+    def get_entries_by_type(
+        self,
+        content_type,
+        locale,
+        classification=None,
+        order_by="last_modified",
+    ):
+        """Get multiple appropriate ContentfulEntry records, not just the JSON data.
+
+        Args:
+            content_type (str): the Contentful content type
+            locale (str): eg 'fr', 'en-US'
+            classification ([str], optional): specific type of content, used when have
+                a single content_type used for different areas of the site. Defaults to None.
+            order_by (str, optional): Sorting key for the queryset. Defaults to "last_modified".
+
+        Returns:
+            QuerySet[ContentfulEntry]: the main ContenfulEntry models, not just their JSON data
+        """
+
+        kwargs = dict(
             content_type=content_type,
             locale=locale,
-        ).order_by(order_by)
-        return [entry.data for entry in qs]
+        )
+        if classification:
+            kwargs["classification"] = classification
 
-    def get_page(self, content_type, locale) -> Dict:
+        return self.filter(**kwargs).order_by(order_by)
+
+    def get_page(self, content_type, locale):
         return self.get(
             content_type=content_type,
             locale=locale,
         ).data
 
-    def get_homepage(self, locale) -> Dict:
+    def get_homepage(self, locale):
         return self.get(
             content_type="connectHomepage",
             locale=locale,

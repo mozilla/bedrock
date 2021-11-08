@@ -2,9 +2,11 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from html import escape
+from urllib.parse import quote_plus, unquote_plus
 
 from django.conf import settings
 from django.http import Http404, JsonResponse
+from django.urls import reverse
 from django.views.decorators.http import require_POST, require_safe
 
 import basket
@@ -12,7 +14,11 @@ import basket.errors
 from sentry_sdk import capture_exception
 
 from bedrock.base.geo import get_country_from_request
-from bedrock.contentful.constants import CONTENT_TYPE_PAGE_RESOURCE_CENTRE
+from bedrock.contentful.constants import (
+    ARTICLE_CATEGORY_LABEL,
+    CONTENT_CLASSIFICATION_VPN,
+    CONTENT_TYPE_PAGE_RESOURCE_CENTRE,
+)
 from bedrock.contentful.models import ContentfulEntry
 from bedrock.newsletter.views import general_error, invalid_email_address
 from bedrock.products.forms import VPNWaitlistForm
@@ -101,6 +107,35 @@ def vpn_invite_waitlist(request):
     return JsonResponse(resp)
 
 
+def _build_category_list(entry_list):
+    # Template is expecting this format:
+    # category_list = [
+    #   {"name": "Cat1", "url": "/full/path/to/category"}, ...
+    # ]
+    category_list = []
+    root_url = reverse("products.vpn.resource-center.landing")
+    for entry in entry_list:
+        category = entry.category
+        if category:
+            category_list.append(
+                {
+                    "name": category,
+                    "url": f"{root_url}?{ARTICLE_CATEGORY_LABEL}={quote_plus(category)}",
+                }
+            )
+
+    category_list = sorted(category_list, key=lambda x: x["name"])
+    return category_list
+
+
+def _filter_articles(articles_list, category):
+
+    if not category:
+        return articles_list
+
+    return [article for article in articles_list if article.category == category]
+
+
 def resource_center_landing_view(request):
 
     ARTICLE_GROUP_SIZE = 6
@@ -115,24 +150,32 @@ def resource_center_landing_view(request):
         "active_locales": active_locales,
     }
 
-    # TODO: scope by category and/or tags in the future
     resource_articles = ContentfulEntry.objects.get_entries_by_type(
         locale=locale,
+        classification=CONTENT_CLASSIFICATION_VPN,
         content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTRE,
     )
+    category_list = _build_category_list(resource_articles)
+    selected_category = unquote_plus(request.GET.get(ARTICLE_CATEGORY_LABEL, ""))
 
-    first_article_group, second_article_group = (
-        resource_articles[:ARTICLE_GROUP_SIZE],
-        resource_articles[ARTICLE_GROUP_SIZE:],
+    _filtered_articles = _filter_articles(
+        resource_articles,
+        category=selected_category,
     )
 
-    # TODO: Category list support. Template is expecting this format:
-    # category_list = [
-    #   {"name": "Cat1", "url": "/full/path/to/category"}, ...
-    # ]
+    # The resource_articles are ContentfulEntry objects at the moment, but
+    # we really only need their JSON data from here on
+    _filtered_article_data = [x.data for x in _filtered_articles]
+
+    first_article_group, second_article_group = (
+        _filtered_article_data[:ARTICLE_GROUP_SIZE],
+        _filtered_article_data[ARTICLE_GROUP_SIZE:],
+    )
 
     ctx.update(
         {
+            "category_list": category_list,
+            "selected_category": selected_category,
             "first_article_group": first_article_group,
             "second_article_group": second_article_group,
         }
@@ -165,6 +208,7 @@ def resource_center_detail_view(request, slug):
         article_dict = ContentfulEntry.objects.get_page_by_slug(
             slug=slug,
             locale=locale,
+            classification=CONTENT_CLASSIFICATION_VPN,
             content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTRE,
         )
     except ContentfulEntry.DoesNotExist as ex:
