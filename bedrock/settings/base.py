@@ -375,7 +375,7 @@ FEED_CACHE = 3900
 # 30 min during dev and 10 min in prod
 DOTLANG_CACHE = config("DOTLANG_CACHE", default="1800" if DEBUG else "600", parser=int)
 
-# country code for /country-code.json to return in dev mode
+# country code for GEO-IP lookup to return in dev mode
 DEV_GEO_COUNTRY_CODE = config("DEV_GEO_COUNTRY_CODE", default="US")
 
 # Paths that don't require a locale code in the URL.
@@ -402,7 +402,6 @@ SUPPORTED_NONLOCALES = [
     "keymaster",
     "microsummaries",
     "xbl",
-    "country-code.json",
     "revision.txt",
     "locales",
     "sitemap_none.xml",

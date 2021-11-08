@@ -8,7 +8,6 @@ from pathlib import Path
 import pytest
 import requests
 
-MLS_URL = "https://location.services.mozilla.com/v1/country" "?key=ec4d0c4b-b9ac-4d72-9197-289160930e14"
 TESTS_PATH = Path(__file__).parent
 TLS_DATA_PATH = TESTS_PATH.joinpath("fixtures", "tls.json")
 
@@ -48,15 +47,6 @@ def test_media(url, base_url):
     assert resp.headers["cache-control"] == "max-age=315360000, public, immutable"
     # this means it came from s3
     assert "x-amz-version-id" in resp.headers
-
-
-@pytest.mark.nondestructive
-def test_geo(base_url):
-    """Make sure our geo results match MLS no matter where they're run"""
-    cdn_url = f"{base_url}/country-code.json"
-    mls_country = requests.get(MLS_URL).json()["country_code"]
-    cdn_country = requests.get(cdn_url).json()["country_code"]
-    assert cdn_country == mls_country
 
 
 @pytest.mark.nondestructive
