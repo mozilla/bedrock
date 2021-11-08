@@ -17,6 +17,7 @@ vpn-resource-center-on-mozilla-vpn = on { -brand-name-mozilla-vpn }*
 vpn-resource-center-when-you-subscribe = *when you subscribe to a 12-month plan
 vpn-resource-center-obsessed-with = Obsessed with your privacy since 1998
 vpn-resource-center-get-mozilla-vpn = Get { -brand-name-mozilla-vpn }
+vpn-resource-center-was-this-article = Was this article helpful?
 
 
 

@@ -38,7 +38,7 @@
         {% block vpn_article %}{% endblock vpn_article %}
       </article>
     <div class="vpn-c-vote">
-      <h3>Was this article helpful?</h3>
+      <h3>{{ ftl('vpn-resource-center-was-this-article') }}</h3>
       <div class="vpn-c-vote-btn-container">
         <button data-ga-type="button" data-ga-label="vpn-resource-center-article" data-ga-article-title="{{ self.article_title() }}" class="vpn-c-vote-btn up">
         </button>
@@ -66,8 +66,8 @@
   image_url='img/products/vpn/resource-center/resource_center_split_2_2x.jpg',
   block_class='mzp-t-content-lg',
   ) %}
-    <h2 class="resource-center-cta-title">Obsessed with your privacy since 1998</h2>
-    <a class='mzp-c-button mzp-t-product'>Get Mozilla VPN</a>
+    <h2 class="resource-center-cta-title">{{ ftl('vpn-resource-center-obsessed-with') }}</h2>
+    <a class='mzp-c-button mzp-t-product'>{{ ftl('vpn-resource-center-get-mozilla-vpn') }}</a>
   {% endcall %}
 
 {% endblock content %}
