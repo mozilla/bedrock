@@ -10,6 +10,7 @@
   {% if info.category %}{{info.category}}{% endif %}
 {% endblock %}
 {% block article_title %}{{info.title}}{% endblock %}
+{% block article_slug%}{{info.slug}}{% endblock %}
 {% block vpn_article %}
 {% for entry in entries -%}
   {{ entry.body|external_html }}

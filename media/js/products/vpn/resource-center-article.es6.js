@@ -13,10 +13,10 @@
     const upvoteBtn = document.querySelector('.vpn-c-vote-btn.up');
     const downvoteBtn = document.querySelector('.vpn-c-vote-btn.down');
 
-    function trackVoteInteraction(title, vote) {
+    function trackVoteInteraction(url, vote) {
         window.dataLayer.push({
             event: 'vpn-article-vote',
-            label: title,
+            label: url,
             value: vote
         });
     }

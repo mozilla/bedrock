@@ -40,9 +40,9 @@
     <div class="vpn-c-vote">
       <h3>{{ ftl('vpn-resource-center-was-this-article') }}</h3>
       <div class="vpn-c-vote-btn-container">
-        <button data-ga-type="button" data-ga-label="vpn-resource-center-article" data-ga-article-title="{{ self.article_title() }}" class="vpn-c-vote-btn up">
+        <button data-ga-type="button" data-ga-label="vpn-resource-center-article" data-ga-article-title="{% block article_slug %}{% endblock %}" class="vpn-c-vote-btn up">
         </button>
-        <button data-ga-type="button" data-ga-label="vpn-resource-center-article" data-ga-article-title="{{ self.article_title() }}" class="vpn-c-vote-btn down">
+        <button data-ga-type="button" data-ga-label="vpn-resource-center-article" data-ga-article-title="{{ self.article_slug() }}" class="vpn-c-vote-btn down">
         </button>
       </div>
     </div>
