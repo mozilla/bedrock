@@ -7,7 +7,7 @@ from bedrock.redirects.util import redirect
 
 urlpatterns = (
     # Issue 9727 /foundation/annualreport/2019/
-    redirect(r"^annualreport/$", "foundation.annualreport.2019.index", name="foundation.annualreport", locale_prefix=False),
+    redirect(r"^annualreport/$", "foundation.annualreport.2020.index", name="foundation.annualreport", locale_prefix=False),
     # Older annual report financial faqs - these are linked from blog posts
     # was e.g.: http://www.mozilla.org/foundation/documents/mozilla-2008-financial-faq.html
     page("documents/mozilla-2006-financial-faq", "foundation/documents/mozilla-2006-financial-faq.html"),
@@ -49,6 +49,7 @@ urlpatterns = (
     page("annualreport/2017", "foundation/annualreport/2017/index.html"),
     page("annualreport/2018", "foundation/annualreport/2018/index.html"),
     page("annualreport/2019", "foundation/annualreport/2019/index.html"),
+    page("annualreport/2020", "foundation/annualreport/2020/index.html"),
     page("feed-icon-guidelines", "foundation/feed-icon-guidelines/index.html"),
     page("feed-icon-guidelines/faq", "foundation/feed-icon-guidelines/faq.html"),
     page("licensing", "foundation/licensing.html"),

@@ -306,9 +306,9 @@
     },
     {
       "files": [
-        "css/foundation/annual-report-2019.scss"
+        "css/foundation/annual-report-2019-2020.scss"
       ],
-      "name": "annual_report_2019"
+      "name": "annual_report_2019_2020"
     },
     {
       "files": [
@@ -1532,9 +1532,9 @@
       "files": [
         "protocol/js/protocol-modal.js",
         "js/base/mozilla-lazy-load.js",
-        "js/foundation/annual-report-2019.es6.js"
+        "js/foundation/annual-report-2019-2020.es6.js"
       ],
-      "name": "annual_report_2019"
+      "name": "annual_report_2019_2020"
     },
     {
       "files": [

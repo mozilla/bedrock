@@ -1010,3 +1010,10 @@ Card
     Default: 3
 
     Example: ``heading_level=2``
+
+- attributes
+    A generic parameter to add any extra attributes to the component, such as data or aria attributes. Note that the quotes will pass through unescaped.
+
+    Default: N/A
+
+    Example: ``attributes='aria-role="menuitem"'``

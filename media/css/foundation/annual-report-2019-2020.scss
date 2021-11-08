@@ -431,10 +431,18 @@ $image-path: '/media/protocol/img';
     @extend .mzp-c-modal-button-close; /* stylelint-disable-line scss/at-extend-no-missing-placeholder */
 }
 
-.mzp-c-modal-overlay-contents,
-.mzp-c-modal-overlay-contents a:link,
-.mzp-c-modal-overlay-contents a:visited {
+.mzp-c-modal-overlay-contents {
     color: $color-black;
+    a:link,
+    a:visited {
+        color: $color-black;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: get-theme('link-color-hover');
+        }
+    }
 }
 
 .c-section-intro-bg {
