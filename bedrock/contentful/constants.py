@@ -18,6 +18,7 @@ COMPOSE_MAIN_PAGE_TYPE = "page"
 MAX_MESSAGES_PER_QUEUE_POLL = 10
 
 # Specific content types we need to target in DB lookups
+CONTENT_TYPE_CONNECT_HOMEPAGE = "connectHomepage"
 CONTENT_TYPE_PAGE_RESOURCE_CENTRE = "pagePageResourceCenter"
 CONTENT_TYPE_PAGE_GENERAL = "pageGeneral"
 

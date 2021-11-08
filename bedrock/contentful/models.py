@@ -8,8 +8,15 @@ from django.utils.timezone import now
 
 from django_extensions.db.fields.json import JSONField
 
+from bedrock.contentful.constants import CONTENT_TYPE_CONNECT_HOMEPAGE
+
 
 class ContentfulEntryManager(models.Manager):
+    """
+    The key distinction here is that get_page_* returns a JSONDict of page data, while
+    get_entry_* and get_entries_* returns a QuerySet of ContentfulEntry records.
+    """
+
     def get_page_by_id(self, content_id):
         return self.get(contentful_id=content_id).data
 
@@ -61,15 +68,9 @@ class ContentfulEntryManager(models.Manager):
 
         return self.filter(**kwargs).order_by(order_by)
 
-    def get_page(self, content_type, locale):
-        return self.get(
-            content_type=content_type,
-            locale=locale,
-        ).data
-
     def get_homepage(self, locale):
         return self.get(
-            content_type="connectHomepage",
+            content_type=CONTENT_TYPE_CONNECT_HOMEPAGE,
             locale=locale,
         ).data
 
@@ -106,7 +107,7 @@ class ContentfulEntry(models.Model):
     def __str__(self) -> str:
         return f"ContentfulEntry {self.content_type}:{self.contentful_id}"
 
-    def get_related_entries(self):
+    def get_related_entries(self, order_by="last_modified"):
         """Find ContentfulEntry records that:
         * are for the same content_type
         * are for the same classification
@@ -120,6 +121,7 @@ class ContentfulEntry(models.Model):
             return ContentfulEntry.objects.none()
 
         _base_qs = ContentfulEntry.objects.filter(
+            locale=self.locale,
             content_type=self.content_type,
             classification=self.classification,  # eg same Product/project/area of the site
         ).exclude(
@@ -127,11 +129,10 @@ class ContentfulEntry(models.Model):
         )
 
         # Tags are stored in a JSONField, but we can query it as text by quoting them
-        q = Q()
+        q_obj = Q()
         for _tag in self.tags:
-            q.add(
+            q_obj.add(
                 Q(tags__contains=f'"{_tag}"'),
                 Q.OR,
             )
-
-        return _base_qs.filter(q).distinct()
+        return _base_qs.filter(q_obj).order_by(order_by).distinct()
