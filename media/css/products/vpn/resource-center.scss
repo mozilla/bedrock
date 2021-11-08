@@ -32,13 +32,13 @@ $image-path: '/media/protocol/img';
     }
     @media #{$mq-md} {
         background-image: url('/media/img/products/vpn/resource-center/moz_resource_center_header_bg.svg');
+        background-position: center;
         background-repeat: no-repeat;
         background-size: 90% 100%;
-        background-position: center;
     }
     @media #{$mq-lg} {
-        background-size: auto;
         background-position: 45% $layout-xs;
+        background-size: auto;
     }
 }
 
@@ -46,52 +46,11 @@ $image-path: '/media/protocol/img';
     background-color: $color-white;
 }
 
-.mzp-c-category-list {
-    background-color: $color-light-gray-20;
-    padding: $spacing-sm $spacing-md;
-
-    .mzp-c-category-list-title {
-        @include text-body-md;
-        @include font-base;
-        display: inline-block;
-        margin-bottom: 0;
-
-        a {
-            text-decoration: none;
-        }
-    }
-
-    .mzp-c-category-list-list {
-        display: inline-block;
-        margin-bottom: 0;
-
-        .mzp-c-category-list-item {
-            @include bidi(((margin-left, $layout-sm, margin-left, $layout-sm),));
-            display: none;
-
-            a {
-                text-decoration: none;
-            }
-
-            @media #{$mq-md} {
-                display: inline-block;
-            }
-        }
-    }
-
-    @media #{$mq-md} {
-        padding: $spacing-sm $layout-sm;
-    }
-
-    @media #{$mq-lg} {
-        padding: $spacing-sm $layout-xl - $spacing-md;
-    }
-}
 
 .resource-center-wordmark {
     @include image-replaced();
-    background: transparent url('/media/img/logos/vpn/logo-with-wordmark.svg') top left no-repeat;
     @include background-size(175px 60px);
+    background: transparent url('/media/img/logos/vpn/logo-with-wordmark.svg') top left no-repeat;
     height: 60px;
     margin: 0 auto $spacing-lg;
     width: 175px;
