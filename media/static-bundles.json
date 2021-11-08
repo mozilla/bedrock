@@ -712,12 +712,6 @@
     },
     {
       "files": [
-        "css/contentful/general.scss"
-      ],
-      "name": "contentful_general"
-    },
-    {
-      "files": [
         "css/firefox/more/misinformation.scss"
       ],
       "name": "misinformation"
@@ -890,12 +884,6 @@
     },
     {
       "files": [
-        "css/contentful/mozilla/c-logo.scss"
-      ],
-      "name": "mozilla-c-logo"
-    },
-    {
-      "files": [
         "css/contentful/mozilla/t-card-layout.scss"
       ],
       "name": "mozilla-t-card-layout"
@@ -944,9 +932,9 @@
     },
     {
       "files": [
-        "css/contentful/firefox/c-logo.scss"
+        "css/contentful/c-logo.scss"
       ],
-      "name": "firefox-c-logo"
+      "name": "c-logo"
     },
     {
       "files": [
