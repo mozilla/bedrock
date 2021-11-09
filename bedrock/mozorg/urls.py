@@ -4,11 +4,11 @@
 
 from django.conf import settings
 from django.conf.urls import url
-from django.urls import path
 
 from bedrock.redirects.util import redirect
 
 from . import views
+from .dev_urls import urlpatterns as dev_only_urlpatterns
 from .util import page
 
 urlpatterns = (
@@ -116,10 +116,4 @@ urlpatterns = (
 )
 
 if settings.DEV:
-    urlpatterns += (
-        path(
-            "contentful-preview/<content_id>/",
-            views.ContentfulPreviewView.as_view(),
-            name="contentful.preview",
-        ),
-    )
+    urlpatterns += dev_only_urlpatterns

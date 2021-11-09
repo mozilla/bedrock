@@ -3,18 +3,13 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
-import sys
-from importlib import import_module, reload
 
-from django.conf import settings
 from django.http.response import HttpResponse
-from django.test import override_settings
 from django.test.client import RequestFactory
 
 import pytest
 from mock import ANY, Mock, patch
 
-from bedrock.base.config_manager import config
 from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg import views
 from bedrock.mozorg.tests import TestCase
@@ -90,14 +85,6 @@ class TestHomePage(TestCase):
         render_mock.assert_called_once_with(req, "mozorg/home/home.html", ANY)
 
 
-def _reload_urlconf():
-    try:
-        reload(sys.modules[settings.ROOT_URLCONF])
-    except KeyError:
-        pass
-    return import_module(settings.ROOT_URLCONF)
-
-
 @pytest.mark.django_db
 @pytest.mark.parametrize(
     "content_id, page_data, expected_template",
@@ -131,6 +118,11 @@ def _reload_urlconf():
 )
 @patch("bedrock.mozorg.views.l10n_utils.render")
 @patch("bedrock.mozorg.views.ContentfulPage")
+# Trying to hot-reload the URLconf with settings.DEV = True was not
+# viable when the tests were being run in CI or via Makefile, so
+# instead we're explicitly including the urlconf that is loaded
+# when settings.DEV is True
+@pytest.mark.urls("bedrock.mozorg.dev_urls")
 def test_contentful_preview_view(
     contentfulpage_mock,
     render_mock,
@@ -139,27 +131,15 @@ def test_contentful_preview_view(
     page_data,
     expected_template,
 ):
+
     mock_page_data = Mock(name="mock_page_data")
     mock_page_data.get_content.return_value = page_data
     contentfulpage_mock.return_value = mock_page_data
 
     render_mock.return_value = HttpResponse("dummy")
 
-    with override_settings(DEV=True):
-        _reload_urlconf()
-
-    url = reverse(
-        "contentful.preview",
-        kwargs={
-            "content_id": content_id,
-        },
-    )
+    url = reverse("contentful.preview", kwargs={"content_id": content_id})
 
     client.get(url, follow=True)
     assert render_mock.call_count == 1
     assert render_mock.call_args_list[0][0][1] == expected_template
-
-    with override_settings(
-        DEV=config("DEV", parser=bool, default="false"),
-    ):  # Revert to default after test
-        _reload_urlconf()
