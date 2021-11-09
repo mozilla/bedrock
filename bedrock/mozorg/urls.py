@@ -116,4 +116,10 @@ urlpatterns = (
 )
 
 if settings.DEV:
-    urlpatterns += (path("contentful-preview/<content_id>/", views.ContentfulPreviewView.as_view()),)
+    urlpatterns += (
+        path(
+            "contentful-preview/<content_id>/",
+            views.ContentfulPreviewView.as_view(),
+            name="contentful.preview",
+        ),
+    )
