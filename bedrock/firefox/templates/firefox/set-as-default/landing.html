@@ -34,7 +34,6 @@
     {% endcall %}
 
     <ul class="mzp-l-columns mzp-t-columns-three mzp-l-content mzp-t-content-lg">
-    {% if l10n_has_tag('default-browser-012020') %}
       {% call picto(
         title=ftl('set-as-default-landing-choose-automatic-privacy'),
         image_url='protocol/img/icons/brand/violet/no-eye.svg',
@@ -58,31 +57,6 @@
       ) %}
         <p>{{ ftl('set-as-default-landing-firefox-is-the-only') }}</p>
       {% endcall %}
-    {% else %}
-      {% call picto(
-        title=ftl('set-as-default-landing-choose-automatic-privacy'),
-        image_url='protocol/img/icons/brand/violet/no-eye.svg',
-        body=true,
-      ) %}
-        <p>{{ ftl('set-as-default-landing-the-internet-keeps') }}</p>
-      {% endcall %}
-
-      {% call picto(
-        title=ftl('set-as-default-landing-choose-freedom-on-every'),
-        image_url='protocol/img/icons/brand/orange/devices.svg',
-        body=true,
-      ) %}
-        <p>{{ ftl('set-as-default-landing-firefox-is-fast-no-interest') }}</p>
-      {% endcall %}
-
-      {% call picto(
-        title=ftl('set-as-default-landing-choose-corporate-independence'),
-        image_url='protocol/img/icons/brand/blue/mountain.svg',
-        body=true,
-      ) %}
-        <p>{{ ftl('set-as-default-landing-firefox-is-the-only-major') }}</p>
-      {% endcall %}
-    {% endif %}
     </ul>
   </main>
 {% endblock %}

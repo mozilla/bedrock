@@ -19,13 +19,8 @@
 {% set _utm_campaign = 'welcome-1-monitor' %}
 {% set _cta_type = 'lifecycle-monitor' %}
 
-{% if l10n_has_tag('monitor_title_30102019') %}
-  {% set hero_title = ftl('welcome-page1-stay-ahead-of-hackers-check') %}
-  {% set _utm_content = 'stay-ahead-hackers' %}
-{% else %}
-  {% set hero_title = ftl('welcome-page1-youre-on-track-to-stay-protected') %}
-  {% set _utm_content = 'on-track-protected' %}
-{% endif %}
+{% set hero_title = ftl('welcome-page1-stay-ahead-of-hackers-check') %}
+{% set _utm_content = 'stay-ahead-hackers' %}
 
 {% block content_intro %}
   {% call hero(

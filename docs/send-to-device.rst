@@ -21,21 +21,17 @@ Usage
 
     {% from "macros.html" import send_to_device with context %}
 
-2. Add the appropriate lang file to the page template::
-
-    {% add_lang_files "firefox/sendto" %}
-
-3. Make sure necessary files are in your CSS/JS bundles:
+2. Make sure necessary files are in your CSS/JS bundles:
 
   - ``'css/protocol/components/send-to-device.scss'``
 
   - ``'js/base/send-to-device.js'``
 
-4. Include the macro in your page template::
+3. Include the macro in your page template::
 
     {{ send_to_device() }}
 
-5. Initialize the widget:
+4. Initialize the widget:
 
   In your page JS, initialize the widget using::
 

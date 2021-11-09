@@ -12,7 +12,6 @@ from bedrock.mozorg.tests import TestCase
 
 
 @patch("bedrock.newsletter.forms.get_lang_choices", lambda *x: [["en", "English"], ["fr", "French"], ["pt", "Portuguese"]])
-@patch("lib.l10n_utils.translations_for_template", lambda *x: ["en-US", "fr", "pt-BR", "af"])
 class TestNewsletterFooter(TestCase):
     def setUp(self):
         self.view_name = "newsletter.subscribe"

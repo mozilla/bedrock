@@ -64,16 +64,15 @@ class TestRender(TestCase):
         # Should fallback to one of the site's fallback languages
         self._test(path, template, "es-CL", "es-CL,es;q=0.7,en;q=0.3", 302, "/es-ES/firefox/new/", active_locales=locales)
 
-    @patch.object(l10n_utils, "translations_for_template")
-    def test_add_active_locales(self, tft_mock):
+    def test_add_active_locales(self):
+        # expect same results as above, but with locales from `add_active_locales`
         path = "/firefox/new/"
         template = "firefox/new.html"
-        locales = ["en-US", "en-GB"]
-        tft_mock.return_value = ["fr", "es-ES"]
-        # expect same results as above, but with locales from different sources
+        locales = ["en-US", "en-GB", "fr", "es-ES"]
 
         # Nothing to do with a valid locale
         self._test(path, template, "en-US", "en-us,en;q=0.5", 200, add_active_locales=locales)
+
         # en-GB is activated on /firefox/new/
         self._test(path, template, "en-GB", "en-gb,en;q=0.5", 200, add_active_locales=locales)
 
@@ -96,9 +95,8 @@ class TestRender(TestCase):
         assert ftl_files == ["dude", "walter"]
 
     @patch.object(l10n_utils, "django_render")
-    @patch.object(l10n_utils, "translations_for_template")
     @patch.object(l10n_utils, "ftl_active_locales")
-    def test_activation_files(self, fal_mock, tft_mock, dr_mock):
+    def test_activation_files(self, fal_mock, dr_mock):
         ftl_files = ["dude", "walter"]
         path = "/firefox/new/"
         template = "firefox/new.html"
@@ -112,7 +110,6 @@ class TestRender(TestCase):
             ],
             any_order=True,
         )
-        tft_mock.assert_called_with(template)
 
 
 class TestGetAcceptLanguages(TestCase):

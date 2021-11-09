@@ -22,17 +22,7 @@ class Command(BaseCommand):
         if options["quiet"]:
             self.stdout._out = StringIO()
 
-        self.update_lang_files(options["clean"])
         self.update_fluent_files(options["clean"])
-
-    def update_lang_files(self, clean=False):
-        repo = GitRepo(settings.LOCALES_PATH, settings.LOCALES_REPO)
-        if clean:
-            repo.reclone()
-        else:
-            repo.update()
-
-        self.stdout.write("Updated .lang files")
 
     def update_fluent_files(self, clean=False):
         repo = GitRepo(settings.FLUENT_REPO_PATH, settings.FLUENT_REPO_URL)

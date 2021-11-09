@@ -224,14 +224,9 @@ PROD_LANGUAGES = (
     "zu",
 )
 
-LOCALES_PATH = DATA_PATH / "locale"
-default_locales_repo = "www.mozilla.org" if DEV else "bedrock-l10n"
-default_locales_repo = "https://github.com/mozilla-l10n/{}".format(default_locales_repo)
-LOCALES_REPO = config("LOCALES_REPO", default=default_locales_repo)
 GITHUB_REPO = "https://github.com/mozilla/bedrock"
 
 # Global L10n files.
-DOTLANG_FILES = ["main"]
 FLUENT_DEFAULT_FILES = [
     "banners/firefox-app-store",
     "banners/fundraising",
@@ -268,8 +263,6 @@ FLUENT_PATHS = [
     # remote FTL files from l10n team
     FLUENT_REPO_PATH,
 ]
-FLUENT_MIGRATIONS = "lib.fluent_migrations"
-FLUENT_MIGRATIONS_PATH = ROOT_PATH / "lib" / "fluent_migrations"
 
 # templates to exclude from having an "edit this page" link in the footer
 # these are typically ones for which most of the content is in the DB
@@ -502,22 +495,6 @@ PROJECT_MODULE = "bedrock"
 
 ROOT_URLCONF = "bedrock.urls"
 
-# Tells the extract script what files to look for L10n in and what function
-# handles the extraction.
-PUENTE = {
-    "BASE_DIR": ROOT,
-    "PROJECT": "Bedrock",
-    "MSGID_BUGS_ADDRESS": "https://bugzilla.mozilla.org/enter_bug.cgi?product=www.mozilla.org&component=L10N",
-    "DOMAIN_METHODS": {
-        "django": [
-            ("bedrock/**.py", "lib.l10n_utils.extract.extract_python"),
-            ("bedrock/**/templates/**.html", "lib.l10n_utils.extract.extract_jinja2"),
-            ("bedrock/**/templates/**.js", "lib.l10n_utils.extract.extract_jinja2"),
-            ("bedrock/**/templates/**.jsonp", "lib.l10n_utils.extract.extract_jinja2"),
-        ],
-    },
-}
-
 
 def get_app_name(hostname):
     """
@@ -573,7 +550,6 @@ INSTALLED_APPS = (
     # Third-party apps, patches, fixes
     "commonware.response.cookies",
     # L10n
-    "puente",  # for ./manage.py extract
     "product_details",
     # third-party apps
     "django_jinja_markdown",
@@ -652,12 +628,9 @@ WATCHMAN_CHECKS = (
     "watchman.checks.databases",
 )
 
-LOCALE_PATHS = (str(LOCALES_PATH),)
-
 TEMPLATES = [
     {
         "BACKEND": "django_jinja.backend.Jinja2",
-        "DIRS": LOCALE_PATHS,
         "APP_DIRS": True,
         "OPTIONS": {
             "match_extension": None,
@@ -690,8 +663,6 @@ TEMPLATES = [
                 "django_jinja.builtins.extensions.StaticFilesExtension",
                 "django_jinja.builtins.extensions.DjangoFiltersExtension",
                 "lib.l10n_utils.template.i18n",
-                "lib.l10n_utils.template.l10n_blocks",
-                "lib.l10n_utils.template.lang_blocks",
                 "django_jinja_markdown.extensions.MarkdownExtension",
             ],
         },

@@ -57,14 +57,8 @@ S3_BASE_URL = "https://s3-{}.amazonaws.com/{}".format(
 
 
 def get_l10n_repo_info():
-    repo = git.GitRepo(settings.LOCALES_PATH, settings.LOCALES_REPO)
     fluent_repo = git.GitRepo(settings.FLUENT_REPO_PATH, settings.FLUENT_REPO_URL)
     return (
-        {
-            "latest_ref": repo.current_hash,
-            "last_updated": repo.last_updated,
-            "repo_url": repo.clean_remote_url,
-        },
         {
             "latest_ref": fluent_repo.current_hash,
             "last_updated": fluent_repo.last_updated,

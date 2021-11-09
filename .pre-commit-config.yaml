@@ -8,7 +8,6 @@ exclude: >
     | static
     | bedrock/externalfiles/files_cache
     | git-repos
-    | lib/fluent_migrations
   )
 repos:
   # Note: hooks that add content must run before ones which check formatting, lint, etc 
