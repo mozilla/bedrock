@@ -1116,6 +1116,7 @@ MOZILLA_LOCATION_SERVICES_KEY = "a9b98c12-d9d5-4015-a2db-63536c26dc14"
 
 DEAD_MANS_SNITCH_URL = config("DEAD_MANS_SNITCH_URL", default="")
 
+# Sentry config for Backend and Frontend
 SENTRY_DSN = config("SENTRY_DSN", default="")
 if SENTRY_DSN:
     sentry_sdk.init(
@@ -1124,6 +1125,13 @@ if SENTRY_DSN:
         server_name=".".join(x for x in [APP_NAME, CLUSTER_NAME] if x),
         integrations=[DjangoIntegration()],
     )
+
+# Frontend uses the same DSN as backend by default, but we'll
+# specify a separate one for FE use in Production only
+SENTRY_FRONTEND_DSN = config(
+    "SENTRY_FRONTEND_DSN",
+    default=SENTRY_DSN,
+)
 
 # Django-CSP
 CSP_DEFAULT_SRC = ["'self'", "*.mozilla.net", "*.mozilla.org", "*.mozilla.com"]
