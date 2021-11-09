@@ -14,6 +14,7 @@ from django.test.client import RequestFactory
 import pytest
 from mock import ANY, Mock, patch
 
+from bedrock.base.config_manager import config
 from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg import views
 from bedrock.mozorg.tests import TestCase
@@ -130,8 +131,6 @@ def _reload_urlconf():
 )
 @patch("bedrock.mozorg.views.l10n_utils.render")
 @patch("bedrock.mozorg.views.ContentfulPage")
-@override_settings(DEV=True)
-@pytest.mark.urls("bedrock.urls")  # Forces re-loading of URLs
 def test_contentful_preview_view(
     contentfulpage_mock,
     render_mock,
@@ -146,6 +145,9 @@ def test_contentful_preview_view(
 
     render_mock.return_value = HttpResponse("dummy")
 
+    with override_settings(DEV=True):
+        _reload_urlconf()
+
     url = reverse(
         "contentful.preview",
         kwargs={
@@ -156,3 +158,8 @@ def test_contentful_preview_view(
     client.get(url, follow=True)
     assert render_mock.call_count == 1
     assert render_mock.call_args_list[0][0][1] == expected_template
+
+    with override_settings(
+        DEV=config("DEV", parser=bool, default="false"),
+    ):  # Revert to default after test
+        _reload_urlconf()
