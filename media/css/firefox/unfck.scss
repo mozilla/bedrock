@@ -27,10 +27,12 @@ $image-path: '/media/protocol/img';
     .cc-default {
         display: none;
     }
+
     .cc-firefox,
     .cc-send-to-mobile {
         display: block;
     }
+
     .cc-start {
         display: inline;
     }
@@ -48,6 +50,7 @@ $image-path: '/media/protocol/img';
     .cc-send-to-mobile {
         display: none;
     }
+
     .cc-mobile {
         display: block;
     }
@@ -88,18 +91,16 @@ $image-path: '/media/protocol/img';
 // --------------------------------------------------------------------------
 
 .u-visually-hidden {
-    @include visually-hidden();
+    @include visually-hidden;
 }
 
 // --------------------------------------------------------------------------
 
 $svg-icon-twitter: '<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M5.032 14.5c6.037 0 9.34-5.002 9.34-9.34 0-.142 0-.283-.01-.424A6.679 6.679 0 0 0 16 3.037c-.6.266-1.235.44-1.885.517a3.294 3.294 0 0 0 1.443-1.816 6.579 6.579 0 0 1-2.085.797A3.286 3.286 0 0 0 7.88 5.528 9.32 9.32 0 0 1 1.114 2.1 3.285 3.285 0 0 0 2.13 6.481 3.258 3.258 0 0 1 .64 6.07v.041A3.284 3.284 0 0 0 3.274 9.33c-.484.132-.99.151-1.483.056a3.286 3.286 0 0 0 3.067 2.28A6.587 6.587 0 0 1 0 13.025a9.294 9.294 0 0 0 5.032 1.472" fill="#88ffd1" fill-rule="nonzero"/></svg>';
 $svg-icon-cta: '<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><polyline vector-effect="non-scaling-stroke" stroke="#88ffd1" stroke-width="2" points="9 19 16 12 9 5"></polyline></g></svg>';
-
-$icon_twitter: svg-url($svg-icon-twitter);
-$icon_cta: svg-url($svg-icon-cta);
-$icon_width: $spacing-lg;
-
+$icon-twitter: svg-url($svg-icon-twitter);
+$icon-cta: svg-url($svg-icon-cta);
+$icon-width: $spacing-lg;
 
 // --------------------------------------------------------------------------
 // Protocol over-rides
@@ -111,11 +112,11 @@ $icon_width: $spacing-lg;
 $v-grid-xs: $layout-md;
 $h-grid-xs: $layout-xs;
 
-//md
+// md
 $v-grid-md: $layout-xl * 0.5;
 $h-grid-md: 64px;
 
-//lg
+// lg
 $v-grid-lg: 192px * 0.5;
 $h-grid-lg: 80px;
 
@@ -135,7 +136,9 @@ main {
         }
     }
 
-    h2, h3, h4 {
+    h2,
+    h3,
+    h4 {
         color: $color-white;
         margin-bottom: $spacing-md;
     }
@@ -148,89 +151,69 @@ main {
     }
 }
 
-
 // --------------------------------------------------------------------------
 // theme colours (white text, mint buttons and links)
 
 .t-unfck {
-    &,
+    @include light-links;
+    background-color: $color-purple-90;
+    color: $color-white;
+
     & .mzp-c-card-feature-desc,
-    & .mzp-c-hero {
-        @include light-links;
+    & .mzp-c-hero.mzp-t-dark {
         background-color: transparent;
+    }
+
+    & .mzp-c-hero.mzp-t-dark .mzp-c-hero-desc {
         color: $color-white;
     }
 
-    & {
-        background-color: $color-purple-90;
+    // bg texture
+    .loaded & {
+        @media #{$mq-sm} {
+            background-image:
+                url('/media/img/firefox/campaign/unfck/en/bg/top.png'),
+                url('/media/img/firefox/campaign/unfck/en/bg/3.jpg'),
+                url('/media/img/firefox/campaign/unfck/en/bg/4.jpg'),
+                url('/media/img/firefox/campaign/unfck/en/bg/2.jpg'),
+                url('/media/img/firefox/campaign/unfck/en/bg/6.jpg'),
+                url('/media/img/firefox/campaign/unfck/en/bg/1.jpg'),
+                url('/media/img/firefox/campaign/unfck/en/bg/7.jpg'),
+                url('/media/img/firefox/campaign/unfck/en/bg/10.jpg'),
+                url('/media/img/firefox/campaign/unfck/en/bg/9.jpg');
+            background-position:
+                top center,
+                top 700px right calc(50% + #{$content-sm * 0.5 }),
+                top 800px left calc(50% + #{$content-sm * 0.5 + 150px}),
+                top 1200px right calc(50% + #{$content-sm * 0.5 }),
+                top 1950px right calc(50% + #{$content-sm * 0.5 }),
+                top 2500px right calc(50% + #{$content-sm * 0.5 }),
+                top 2300px left calc(50% + #{$content-sm * 0.5 }),
+                bottom 50px right calc(50% + #{$content-sm * 0.5 }),
+                bottom 350px left calc(50% + #{$content-sm * 0.5 + 150px});
+            background-repeat: no-repeat;
+            background-size: (1944px * 0.5) (786px * 0.5),
+                (386px * 0.5) (350px * 0.5),
+                (534px * 0.5) (556px * 0.5),
+                (620px * 0.5) (662px * 0.5),
+                (386px * 0.5) (350px * 0.5),
+                (560px * 0.5) (408px * 0.5),
+                (314px * 0.5) (460px * 0.5),
+                (270px * 0.5) (168px * 0.5),
+                (296px * 0.5) (450px * 0.5);
+        }
 
-        // bg texture
-        .loaded & {
-
-            @media #{$mq-sm} {
-                background-image: url('/media/img/firefox/campaign/unfck/en/bg/top.png'),
-                                // checklist heading
-                                url('/media/img/firefox/campaign/unfck/en/bg/3.jpg'),
-                                url('/media/img/firefox/campaign/unfck/en/bg/4.jpg'),
-                                // ads
-                                url('/media/img/firefox/campaign/unfck/en/bg/2.jpg'),
-                                // fb
-                                url('/media/img/firefox/campaign/unfck/en/bg/6.jpg'),
-                                // youtube
-                                url('/media/img/firefox/campaign/unfck/en/bg/1.jpg'),
-                                url('/media/img/firefox/campaign/unfck/en/bg/7.jpg'),
-                                // giphy
-                                url('/media/img/firefox/campaign/unfck/en/bg/10.jpg'),
-                                url('/media/img/firefox/campaign/unfck/en/bg/9.jpg');
-                background-position: top center,
-                                    // checklist heading
-                                    top 700px right calc(50% + #{$content-sm * 0.5 }),
-                                    top 800px left calc(50% + #{$content-sm * 0.5 + 150px}),
-                                    // ads
-                                    top 1200px right calc(50% + #{$content-sm * 0.5 }),
-                                    // fb
-                                    top 1950px right calc(50% + #{$content-sm * 0.5 }),
-                                    // youtube
-                                    top 2500px right calc(50% + #{$content-sm * 0.5 }),
-                                    top 2300px left calc(50% + #{$content-sm * 0.5 }),
-                                    // giphy
-                                    bottom 50px right calc(50% + #{$content-sm * 0.5 } ),
-                                    bottom 350px left calc(50% + #{$content-sm * 0.5 + 150px});
-                background-repeat: no-repeat;
-                background-size: (1944px*0.5) (786px*0.5),
-                                //checklist heading
-                                (386px*0.5) (350px*0.5),
-                                (534px*0.5) (556px*0.5),
-                                //ads
-                                (620px*0.5) (662px*0.5),
-                                //fb
-                                (386px*0.5) (350px*0.5),
-                                //youtube
-                                (560px*0.5) (408px*0.5),
-                                (314px*0.5) (460px*0.5),
-                                //giphy
-                                (270px*0.5) (168px*0.5),
-                                (296px*0.5) (450px*0.5);
-            }
-
-
-
-            @media #{$mq-lg} {
-                background-position: top center,
-                                    // checklist heading
-                                    top 700px right calc(50% + #{$content-lg * 0.5 }),
-                                    top 800px left calc(50% + #{$content-lg * 0.5 + 150px}),
-                                    // ads
-                                    top 1200px right calc(50% + #{$content-lg * 0.5 }),
-                                    // fb
-                                    top 1950px right calc(50% + #{$content-lg * 0.5 }),
-                                    // youtube
-                                    top 2500px right calc(50% + #{$content-lg * 0.5 }),
-                                    top 2300px left calc(50% + #{$content-lg * 0.5 + 70px}),
-                                    // giphy
-                                    bottom 50px right calc(50% + #{$content-lg * 0.5 + 50px} ),
-                                    bottom 350px left calc(50% + #{$content-lg * 0.5 + 150px});
-            }
+        @media #{$mq-lg} {
+            background-position:
+                top center,
+                top 700px right calc(50% + #{$content-lg * 0.5 }),
+                top 800px left calc(50% + #{$content-lg * 0.5 + 150px}),
+                top 1200px right calc(50% + #{$content-lg * 0.5 }),
+                top 1950px right calc(50% + #{$content-lg * 0.5 }),
+                top 2500px right calc(50% + #{$content-lg * 0.5 }),
+                top 2300px left calc(50% + #{$content-lg * 0.5 + 70px}),
+                bottom 50px right calc(50% + #{$content-lg * 0.5 + 50px}),
+                bottom 350px left calc(50% + #{$content-lg * 0.5 + 150px});
         }
     }
 
@@ -265,12 +248,12 @@ main {
     }
 
     .fx-privacy-link {
-        display: none; //TODO
+        display: none; // TODO
     }
 
     .mzp-c-cta-link,
     .mzp-c-card-cta-text {
-        background: $icon_cta bottom 1px right no-repeat;
+        background: $icon-cta bottom 1px right no-repeat;
         background-size: $spacing-md auto;
         margin-bottom: 0;
         padding-right: $spacing-lg;
@@ -293,12 +276,11 @@ main {
     }
 }
 
-
 // --------------------------------------------------------------------------
 // banner & hero
 
 .c-banner {
-    margin: 0 auto 48px auto;
+    margin: 0 auto 48px;
     width: calc(100% - #{$layout-sm * 2});
     max-width: 531px;
     position: relative;
@@ -317,7 +299,7 @@ main {
         top: $v-grid-lg;
     }
 
-    .loaded &:after {
+    .loaded &::after {
         background: transparent url('/media/img/firefox/campaign/unfck/en/heart.gif') left bottom no-repeat;
         background-size: contain;
         display: block;
@@ -330,7 +312,7 @@ main {
     }
 
     @media (prefers-reduced-motion) {
-        .loaded &:after {
+        .loaded &::after {
             background-image: url('/media/img/firefox/campaign/unfck/en/still/heart.jpg');
         }
     }
@@ -358,7 +340,6 @@ main {
     @include visually-hidden;
 }
 
-
 // --------------------------------------------------------------------------
 // checklist
 
@@ -369,7 +350,8 @@ main {
 
     .t-unfck &:link {
         text-decoration: none;
-        &:after {
+
+        &::after {
             border-radius: $border-radius-md;
             border: 1px solid transparent;
             bottom: $spacing-md * -1;
@@ -384,7 +366,7 @@ main {
 
     .t-unfck &:hover,
     .t-unfck &:focus {
-        &:after {
+        &::after {
             border: 1px solid $color-green-50;
         }
     }
@@ -397,7 +379,7 @@ main {
         margin-top: $v-grid-lg;
 
         .t-unfck &:link {
-            &:after {
+            &::after {
                 bottom: $spacing-xl * -1;
                 left: $spacing-xl * -1;
                 right: $spacing-xl * -1;
@@ -448,9 +430,9 @@ main {
     .c-item-unfck {
         display: grid;
         grid-template-areas:
-            "image"
-            "title"
-            "desc";
+            'image'
+            'title'
+            'desc';
     }
 
     .c-item-img {
@@ -469,15 +451,15 @@ main {
             display: grid;
             grid-template-rows: min-content 1fr;
             grid-template-areas:
-                "image title"
-                "image desc";
+                'image title'
+                'image desc';
             max-width: 100%;
             margin-left: 0;
             margin-right: 0;
         }
 
         .c-item-img {
-            @include grid-column-gap($h-grid-md - $icon_width);
+            @include grid-column-gap($h-grid-md - $icon-width);
             justify-items: start;
         }
 
@@ -488,7 +470,7 @@ main {
         .c-item-title {
             grid-area: title;
 
-            &:before {
+            &::before {
                 position: absolute;
                 top: 0;
                 right: 100%;
@@ -503,11 +485,10 @@ main {
         }
 
         .c-item-img {
-            @include grid-column-gap($h-grid-lg - $icon_width);
+            @include grid-column-gap($h-grid-lg - $icon-width);
         }
     }
 }
-
 
 // --------------------------------------------------------------------------
 // section titles

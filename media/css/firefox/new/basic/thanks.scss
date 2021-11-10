@@ -33,7 +33,7 @@ main {
         @include bidi(((background-position, top left, top right),));
     }
 
-    html[dir="rtl"] & {
+    html[dir='rtl'] & {
         @include at2x('/media/img/firefox/new/basic/thanks-bg-rtl.png', 492px, 433px);
     }
 }
@@ -47,7 +47,6 @@ main {
         margin: 0 auto;
     }
 }
-
 
 // --------------------------------------------------------------------------
 // windows disclaimer
@@ -66,13 +65,12 @@ main {
     }
 }
 
-
 .c-support-install {
     margin: 0 auto;
     max-width: 30em;
     text-align: center;
 
-    &> span {
+    & > span {
         display: block;
         margin-top: $spacing-xl;
     }
@@ -83,4 +81,3 @@ main {
     padding: $layout-sm 0;
     text-align: center;
 }
-

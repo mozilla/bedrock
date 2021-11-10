@@ -13,7 +13,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/emphasis-box';
 @import '../protocol/components/sub-navigation';
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Content
 
 #beta .mzp-l-content,
@@ -23,7 +23,7 @@ $image-path: '/media/protocol/img';
     max-width: $content-lg;
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Hero
 .mzp-c-hero {
     background-color: $color-marketing-gray-20;
@@ -33,7 +33,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Call-outs
 
 .mzp-c-call-out-compact {
@@ -51,7 +51,6 @@ $image-path: '/media/protocol/img';
             }
         }
     }
-
 }
 
 .l-notes {
@@ -74,12 +73,13 @@ $image-path: '/media/protocol/img';
     text-align: center;
 }
 
-//*------------------------------------------------------------------*/
+// *------------------------------------------------------------------*/
 // Newsletter
 // styles from developer/includes/newsletter.scss
 
 .t-newsletter {
     padding: $layout-md $layout-xs;
+
     .mzp-l-content {
         max-width: $content-sm;
         min-width: 0;
@@ -98,12 +98,12 @@ $image-path: '/media/protocol/img';
         padding-top: 0;
         @include font-size(14px);
 
-        input[type=email],
+        input[type='email'],
         select {
             min-width: 0; // https://github.com/mozilla/protocol/issues/607
         }
 
-        label[for=id_email]{
+        label[for='id_email'] {
             @include visually-hidden;
         }
 

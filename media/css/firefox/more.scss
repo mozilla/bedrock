@@ -10,7 +10,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/card';
 @import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Primary CTA (page top)
 
 .page-hero {
@@ -30,4 +30,3 @@ $image-path: '/media/protocol/img';
         }
     }
 }
-

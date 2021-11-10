@@ -11,7 +11,6 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-focus';
 
-
 @media #{$mq-lg} {
     .c-page-header::before {
         background-repeat: no-repeat;
@@ -80,7 +79,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 //  Inline form variation
 
 .c-inline-form {
@@ -114,8 +113,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 //  Download buttons
 
 .mobile-download-buttons-wrapper {
@@ -159,7 +157,6 @@ $image-path: '/media/protocol/img';
     display: none;
 }
 
-
 // very basic styling for no-JS visitors
 .no-js {
     .header-product-ctas {
@@ -202,8 +199,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 //  Send to Device overrides
 
 #send-to-device {

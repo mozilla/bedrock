@@ -18,14 +18,12 @@ ul.download-list {
     }
 }
 
+/* !important used for strict download link enforcement */
+/* stylelint-disable declaration-no-important, selector-class-pattern  */
 .download-button {
     display: inline-block;
     vertical-align: top;
-}
 
-/* !important used for strict download link enforcement */
-/* stylelint-disable declaration-no-important  */
-.download-button {
     .download-list li,
     .unrecognized-download,
     .nojs-download {
@@ -37,4 +35,3 @@ ul.download-list {
     display: block !important;
 }
 /* stylelint-enable */
-

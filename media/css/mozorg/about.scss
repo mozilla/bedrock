@@ -13,7 +13,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/newsletter-form';
 @import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Hero image
 
 .mzp-c-hero.t-mission {
@@ -51,8 +51,7 @@ $image-path: '/media/protocol/img';
     max-width: 830px;
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Intro section
 
 .t-shade {
@@ -60,7 +59,7 @@ $image-path: '/media/protocol/img';
     background: $color-marketing-gray-20 linear-gradient($color-marketing-gray-20, $color-white 350px);
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Page title
 
 .c-page-title {
@@ -74,7 +73,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Cities
 
 .mzp-c-hero.t-global {
@@ -103,7 +102,7 @@ $city-image-size: 106px;
     position: relative;
     text-align: center;
 
-    &:before {
+    &::before {
         content: '';
         display: block;
         height: $city-image-size;
@@ -112,15 +111,15 @@ $city-image-size: 106px;
         margin: 0 auto $spacing-md;
     }
 
-    &.c-city-sf:before {
+    &.c-city-sf::before {
         background-image: url('/media/img/mozorg/about/city-sf.png');
     }
 
-    &.c-city-berlin:before {
+    &.c-city-berlin::before {
         background-image: url('/media/img/mozorg/about/city-berlin.png');
     }
 
-    &.c-city-toronto:before {
+    &.c-city-toronto::before {
         background-image: url('/media/img/mozorg/about/city-toronto.png');
     }
 
@@ -168,10 +167,10 @@ $city-image-size: 106px;
 @media screen and (min-width: 480px) and (max-width: 767px) {
     .c-city {
         margin: $spacing-2xl auto;
-        max-width: remify(250px); //rems to account for larger fonts
+        max-width: remify(250px); // rems to account for larger fonts
         padding-left: $city-image-size + ($spacing-xl * 2);
 
-        &:before {
+        &::before {
             position: absolute;
             top: 50%;
             left: $spacing-xl;

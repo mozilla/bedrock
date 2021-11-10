@@ -14,13 +14,13 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
 
-//* ====================================================================== */
+// * ====================================================================== */
 // Release
 
 .t-releases {
     position: relative;
 
-    &:before {
+    &::before {
         background-image: url('/media/img/firefox/new/desktop/release-noodles.svg');
         content: '';
         display: block;
@@ -39,14 +39,14 @@ $image-path: '/media/protocol/img';
         position: relative;
         z-index: 1;
 
-    @media #{$mq-sm} {
-        padding-left: $layout-md;
-        padding-right: $layout-md;
-    }
+        @media #{$mq-sm} {
+            padding-left: $layout-md;
+            padding-right: $layout-md;
+        }
 
-    @media #{$mq-md} {
-        padding-left: $layout-lg;
-        padding-right: $layout-lg;
-    }
+        @media #{$mq-md} {
+            padding-left: $layout-lg;
+            padding-right: $layout-lg;
+        }
     }
 }

@@ -11,8 +11,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 @import 'includes/header';
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Main content
 .wnp-content-main {
     padding: 0;
@@ -37,7 +36,7 @@ $image-path: '/media/protocol/img';
     margin-top: $layout-md;
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Extra content
 
 .mzp-c-card {
@@ -53,8 +52,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Utilities (link to release notes)
 .c-utilities {
     @include text-body-sm;
@@ -63,8 +61,7 @@ $image-path: '/media/protocol/img';
     text-align: center;
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Footer overrides
 .c-footer {
     background: $color-white;
@@ -106,11 +103,9 @@ $image-path: '/media/protocol/img';
     background-image: url('/media/protocol/img/logos/mozilla/logo-word-hor.svg');
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // For dark mode
 @media (prefers-color-scheme: dark) {
-
     html,
     .content-wrapper {
         background: $color-dark-gray-60;

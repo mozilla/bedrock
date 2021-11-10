@@ -14,11 +14,6 @@ $image-path: '/media/protocol/img';
 
 /* stylelint-disable declaration-no-important */
 
- // Show unknown state messaging by default.
-.show-unknown {
-    display: block !important;
-}
-
 // Hide platform specific messaging by default.
 .show-windows,
 .show-windows-10,
@@ -77,8 +72,11 @@ $image-path: '/media/protocol/img';
     }
 }
 
-// When platform is known, hide all unknown messaging.
 .show-unknown {
+    // Show unknown state messaging by default.
+    display: block !important;
+
+    // When platform is known, hide all unknown messaging.
     .js.osx &,
     .js.windows &,
     .js.linux &,

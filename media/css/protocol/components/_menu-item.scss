@@ -4,7 +4,6 @@
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
-
 $icon-size-sm: 24px;
 $icon-size-md: 32px;
 
@@ -171,11 +170,11 @@ $icon-size-md: 32px;
     }
 }
 
-.c-menu-item-link[href^="https://hubs.mozilla.com"] .c-menu-item-icon {
+.c-menu-item-link[href^='https://hubs.mozilla.com'] .c-menu-item-icon {
     transition: width 150ms ease, height 150ms ease;
     z-index: 100;
 }
 
-.c-menu-item-link[href^="https://hubs.mozilla.com"]:hover .c-menu-item-icon {
+.c-menu-item-link[href^='https://hubs.mozilla.com']:hover .c-menu-item-icon {
     animation: duckroll 23s ease-in-out 23s forwards;
 }

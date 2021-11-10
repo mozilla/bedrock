@@ -11,8 +11,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
 @import 'includes/header';
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Main content
 .wnp-content-main {
     padding: 0;
@@ -46,8 +45,7 @@ $image-path: '/media/protocol/img';
     margin: $spacing-lg auto;
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Utilities (link to release notes)
 .c-utilities {
     @include text-body-sm;
@@ -56,8 +54,7 @@ $image-path: '/media/protocol/img';
     text-align: center;
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // For dark mode
 @media (prefers-color-scheme: dark) {
     .content-wrapper {

@@ -42,19 +42,17 @@ $image-path: '/media/protocol/img';
 // horizontal
 
 @media #{$mq-md} {
-    @supports(display:grid) {
+    @supports (display:grid) {
         .horizontal {
             &.send-to-device {
                 max-width: 100%;
             }
 
             & .send-to-device-form-fields {
-                & {
-                    @include grid-column-gap($spacing-lg);
-                    display: grid;
-                    grid-template-columns: 1fr min-content;
-                    grid-template-rows: auto auto;
-                }
+                @include grid-column-gap($spacing-lg);
+                display: grid;
+                grid-template-columns: 1fr min-content;
+                grid-template-rows: auto auto;
 
                 &.hidden {
                     display: none;
@@ -74,8 +72,8 @@ $image-path: '/media/protocol/img';
                     margin-bottom: 0;
 
                     // put in fake form label to push button down height of real form label next to it
-                    &:before {
-                        @include field-label();
+                    &::before {
+                        @include field-label;
                         content: '.';
                         visibility: hidden;
                     }

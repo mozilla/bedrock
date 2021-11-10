@@ -8,9 +8,9 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 #firefox-app-store-banner {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
     position: relative;
-    z-index: 1000; //banner shares same z-index as sticky nav.
+    z-index: 1000; // banner shares same z-index as sticky nav.
 
     // conditional messaging for iOS (Android is default)
     .show-ios {
@@ -48,7 +48,7 @@ $image-path: '/media/protocol/img';
     .c-banner-button {
         @include bidi(((margin-left, auto, margin-right, 0),));
         @include text-body-md;
-        background-color: #68A036;
+        background-color: #68a036;
         border-radius: $border-radius-sm;
         color: $color-white;
         padding: $spacing-xs $spacing-md;
@@ -78,7 +78,7 @@ $image-path: '/media/protocol/img';
         @include bidi(((padding-right, $spacing-lg, 0), (padding-left, 0, $spacing-lg),));
         @include text-body-md;
         color: $color-black;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
         font-weight: 500;
         line-height: 1.2;
         margin: 0;
@@ -111,7 +111,7 @@ $image-path: '/media/protocol/img';
         &:hover,
         &:focus {
             @include transform(scale(1.1));
-            @include transition(transform .1s ease-in-out);
+            @include transition(transform 0.1s ease-in-out);
         }
 
         &:focus {

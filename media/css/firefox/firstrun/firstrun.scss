@@ -12,8 +12,7 @@ $break-large: 1305px;
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
 @import '../../protocol/components/fxa-form';
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Common elements & variables
 
 html {
@@ -54,7 +53,7 @@ html {
 
 .fxa-email-form-intro {
     &,
-    & strong{
+    & strong {
         @include text-title-xs;
         font-weight: bold;
         color: $color-ink-80;
@@ -62,12 +61,12 @@ html {
 }
 
 @media #{$mq-lg} {
-
     .page-content .mzp-l-content {
         max-width: $content-xl;
     }
 
-    .hero-form, .hero-image {
+    .hero-form,
+    .hero-image {
         @include border-box;
         display: inline-block;
         width: 49%; // not 50% because of the whitespace between the two
@@ -78,5 +77,4 @@ html {
         margin-left: 0;
         margin-right: 0;
     }
-
 }

@@ -2,16 +2,15 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Should be replaced by https://github.com/mozilla/protocol/issues/471
 
 .c-sub-navigation {
     background: $color-marketing-gray-10;
     box-shadow:
-        inset 0 10px 2px -10px rgba(29, 17, 51, .04),
-        inset 0 10px 4px -10px rgba(9, 32, 77, .12),
-        inset 0 10px 3px -10px rgba(29, 17, 51, .12);
+        inset 0 10px 2px -10px rgba(29, 17, 51, 0.04),
+        inset 0 10px 4px -10px rgba(9, 32, 77, 0.12),
+        inset 0 10px 3px -10px rgba(29, 17, 51, 0.12);
 
     .mzp-l-content {
         padding-top: 0;
@@ -70,7 +69,7 @@
                 outline: 1px dotted $color-black;
             }
 
-            button:before {
+            button::before {
                 background: $url-image-arrow-down-form top left no-repeat;
                 @include background-size(24px, 24px);
                 @include bidi(((right, $spacing-xs, left, auto),));
@@ -83,7 +82,7 @@
                 width: 24px;
             }
 
-            button[aria-expanded=true]:before {
+            button[aria-expanded='true']::before {
                 @include transform(rotate(180deg));
             }
         }
@@ -92,7 +91,7 @@
     .c-sub-navigation-list {
         margin: 0;
 
-        &.is-closed[aria-hidden="true"] {
+        &.is-closed[aria-hidden='true'] {
             display: none;
         }
 

@@ -2,13 +2,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-@use "sass:math";
+@use 'sass:math';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/article';
 @import '~@mozilla-protocol/core/protocol/css/includes/mixins/details';
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Index
 
 dt {
@@ -21,7 +21,7 @@ dd {
     padding: $spacing-sm;
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Base Template
 
 .reports-nav {
@@ -57,7 +57,7 @@ dd {
                 margin: $spacing-sm;
             }
 
-            &:not(:last-child):after {
+            &:not(:last-child)::after {
                 content: '•';
                 position: absolute;
             }
@@ -65,7 +65,7 @@ dd {
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Report Template
 
 .c-page-header {
@@ -102,10 +102,10 @@ h3 {
     @include text-body-sm;
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Collapsible Sections
 
-  .c-collapsible-section button {
+.c-collapsible-section button {
     @include summary;
     @include text-title-md;
     background: transparent;
@@ -117,10 +117,10 @@ h3 {
     width: 100%;
 }
 
-.c-collapsible-section button[aria-expanded=true]:before {
+.c-collapsible-section button[aria-expanded='true']::before {
     @include summary-open;
 }
 
-.c-collapsible-section .is-closed[aria-hidden=true] {
+.c-collapsible-section .is-closed[aria-hidden='true'] {
     display: none;
 }

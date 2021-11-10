@@ -19,7 +19,7 @@ help:
 	@echo "  clean         - remove all build, test, coverage and Python artifacts"
 	@echo "  rebuild       - force a rebuild of all of the docker images"
 	@echo "  lint          - check style with Flake8, ESlint, Stylelint, and Prettier"
-	@echo "  format        - format front-end code using Prettier"
+	@echo "  format        - format front-end code using Stylelint and Prettier"
 	@echo "  test          - run tests against local files"
 	@echo "  test-image    - run tests against files in docker image"
 	@echo "  test-cdn      - run CDN tests against TEST_DOMAIN"
@@ -99,7 +99,7 @@ lint: .docker-build-pull
 	${DC} run assets npm run lint
 
 format: .docker-build-pull
-	${DC} run assets npm run prettier
+	${DC} run assets npm run format
 	${DC} run app black .
 
 test: .docker-build-pull

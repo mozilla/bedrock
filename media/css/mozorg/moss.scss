@@ -120,7 +120,7 @@ $image-path: '/media/protocol/img';
 // Picto cards
 
 // Vertically align buttons in moss tracks lists.
-@supports(display: flex) {
+@supports (display: flex) {
     @media #{$mq-md} {
         .moss-tracks-list {
             display: flex;

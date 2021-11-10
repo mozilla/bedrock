@@ -16,8 +16,7 @@ $image-path: '/media/protocol/img';
 @import 'includes/newsletter';
 @import 'includes/performance';
 
-
-//*------------------------------------------------------------------*/
+// *------------------------------------------------------------------*/
 // Title and subtitles for entire page
 
 .c-title {
@@ -46,7 +45,6 @@ $image-path: '/media/protocol/img';
 
 @media #{$mq-md} {
     .c-subtitle {
-
         .t-features & {
             margin-bottom: $layout-xl;
 
@@ -57,12 +55,11 @@ $image-path: '/media/protocol/img';
     }
 }
 
-//*------------------------------------------------------------------*/
+// *------------------------------------------------------------------*/
 // Padding for page content sections
 
 .t-highlights,
 .t-features {
-
     &.mzp-l-content {
         padding-top: $layout-md;
         padding-bottom: $layout-sm;

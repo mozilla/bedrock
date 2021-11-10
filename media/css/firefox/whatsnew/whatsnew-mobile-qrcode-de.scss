@@ -9,7 +9,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 @import 'includes/header';
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Main content
 
 .wnp-content-main {
@@ -49,7 +49,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // To be replaced by revamped picto card. See https://github.com/mozilla/protocol/issues/382
 
 .c-picto-block {
@@ -90,7 +90,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Utilities (link to release notes)
 
 .c-utilities {
@@ -100,7 +100,7 @@ $image-path: '/media/protocol/img';
     text-align: center;
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // For dark mode
 
 @media (prefers-color-scheme: dark) {

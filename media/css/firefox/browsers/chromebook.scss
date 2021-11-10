@@ -13,12 +13,11 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
 @import '../../protocol/components/custom-menu-list';
 
-
 .mzp-c-section-heading span {
     @include zap('/media/protocol/img/zaps/zap-09.svg');
 }
 
-.mzp-c-menu-list-item.t-sumo a:hover:after {
+.mzp-c-menu-list-item.t-sumo a:hover::after {
     display: none;
 }
 

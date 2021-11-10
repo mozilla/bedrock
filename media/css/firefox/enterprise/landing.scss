@@ -5,7 +5,7 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import "~@mozilla-protocol/core/protocol/css/includes/lib";
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/call-out';
 @import '~@mozilla-protocol/core/protocol/css/components/feature-card';
 @import '~@mozilla-protocol/core/protocol/css/components/split';
@@ -17,14 +17,13 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/components/custom-menu-list';
 @import '../../protocol/components/sub-navigation';
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Generic Container Styles
 
 .cta-container {
     margin-bottom: 0;
 
-    &> .mzp-c-button-download-container {
+    & > .mzp-c-button-download-container {
         display: inline-block;
     }
 }
@@ -52,7 +51,7 @@ $image-path: '/media/protocol/img';
     text-align: center;
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Call Out Theme Color
 
 .mzp-c-call-out-compact.mzp-t-dark.enterprise-callout {
@@ -63,14 +62,15 @@ $image-path: '/media/protocol/img';
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Split
 
 .mzp-c-split.t-enterprise {
     // dark colour fallback incase svg image doesn't load/display
     background-color: $color-ink-80;
-    background-image: url('/media/img/firefox/enterprise/ent-noodles.svg'),
-                      linear-gradient(transparent 550px, #fff 550px, #fff 1000px);
+    background-image:
+        url('/media/img/firefox/enterprise/ent-noodles.svg'),
+        linear-gradient(transparent 550px, #fff 550px, #fff 1000px);
     background-position: bottom left, top center;
     background-repeat: no-repeat, repeat-x;
     background-size: 1221px 680px, 480px 1000px;
@@ -78,38 +78,37 @@ $image-path: '/media/protocol/img';
     min-height: 540px;
     padding-top: $layout-sm;
 
-    html[dir=rtl] & {
+    html[dir='rtl'] & {
         background-color: $color-ink-80;
         min-height: 0;
     }
 
-   .mzp-c-split-container {
+    .mzp-c-split-container {
         // need extra spacing to prevent clipping with the background image
         padding-bottom: $spacing-xl;
 
         @media #{$mq-md} {
             padding-bottom: inherit;
         }
-   }
+    }
 
-   .mzp-c-split-body {
-       background-color: $color-ink-80;
-       border-top-right-radius: 100px;
-       margin-bottom: 100px;
-       max-width: 580px;
-       position: relative;
+    .mzp-c-split-body {
+        background-color: $color-ink-80;
+        border-top-right-radius: 100px;
+        margin-bottom: 100px;
+        max-width: 580px;
+        position: relative;
 
-       .mzp-c-split-title {
+        .mzp-c-split-title {
             @include text-title-xl;
             margin-bottom: $spacing-md;
 
-             @media #{$mq-md} {
-               margin-bottom: $spacing-xl;
+            @media #{$mq-md} {
+                margin-bottom: $spacing-xl;
             }
+        }
 
-       }
-
-       .mzp-c-wordmark {
+        .mzp-c-wordmark {
             margin-left: auto;
             margin-right: auto;
 
@@ -117,17 +116,17 @@ $image-path: '/media/protocol/img';
                 margin-left: 0;
                 margin-right: 0;
             }
-       }
+        }
 
-       .mzp-c-split-desc {
+        .mzp-c-split-desc {
             @include text-body-lg;
             margin-bottom: $spacing-md;
 
             @media #{$mq-md} {
                 margin-bottom: $spacing-2xl;
             }
-       }
-   }
+        }
+    }
 
     @media #{$mq-sm} {
         background-position: top left, top center;
@@ -137,15 +136,16 @@ $image-path: '/media/protocol/img';
     }
 
     @media #{$mq-md} {
-        background-image: url('/media/img/firefox/enterprise/ent-noodles-wide.svg'),
-                          linear-gradient(transparent 680px, #fff 680px, #fff 1200px);
+        background-image:
+            url('/media/img/firefox/enterprise/ent-noodles-wide.svg'),
+            linear-gradient(transparent 680px, #fff 680px, #fff 1200px);
         background-position: top center, top center;
         background-repeat: no-repeat, repeat-x, repeat-x;
         background-size: 2560px 793px, 480px 1200px;
         min-height: 793px - $layout-md; // to keep bg image from being cut off
         padding-top: $layout-md;
 
-        html[dir=rtl] & {
+        html[dir='rtl'] & {
             background: $color-ink-80;
             min-height: 0;
         }
@@ -162,10 +162,10 @@ $image-path: '/media/protocol/img';
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Downloads Section
 
-@supports(display: grid) {
+@supports (display: grid) {
     @media #{$mq-md} {
         .enterprise-download-lists {
             display: grid;
@@ -224,7 +224,6 @@ $image-path: '/media/protocol/img';
                 grid-area: support-col3;
             }
         }
-
     }
 }
 
@@ -242,7 +241,7 @@ $image-path: '/media/protocol/img';
     min-height: 48px;
     position: relative;
 
-    &:before {
+    &::before {
         @include bidi(((left, 0, right, auto),));
         background-position: center center;
         background-repeat: no-repeat;
@@ -254,17 +253,17 @@ $image-path: '/media/protocol/img';
         width: 48px;
     }
 
-    .platform-win64 &:before {
+    .platform-win64 &::before {
         background-image: url('/media/img/firefox/enterprise/icon-win64.svg');
         background-size: 39px 40px;
     }
 
-    .platform-mac &:before {
+    .platform-mac &::before {
         background-image: url('/media/img/firefox/enterprise/icon-mac.svg');
         background-size: 32px 40px;
     }
 
-    .platform-win32 &:before {
+    .platform-win32 &::before {
         background-image: url('/media/img/firefox/enterprise/icon-win32.svg');
         background-size: 39px 40px;
     }
@@ -279,5 +278,3 @@ $image-path: '/media/protocol/img';
 .enterprise-download-subtitle {
     @include text-title-2xs;
 }
-
-

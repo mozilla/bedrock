@@ -3,7 +3,6 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 $brand-theme: 'firefox';
-
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
@@ -42,14 +41,13 @@ $image-path: '/media/protocol/img';
     width: 100%;
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Promo Products List Styles
 
 .promo-products-list {
     @include white-links;
     align-items: center;
-    border-top: $border-radius-xs solid rgba(255,255,255,0.5);
+    border-top: $border-radius-xs solid rgba(255, 255, 255, 0.5);
     display: flex;
     flex-direction: column;
     list-style: none;

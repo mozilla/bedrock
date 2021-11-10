@@ -7,7 +7,6 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
-
 // Firefox MR1 promo
 
 .c-fxpromo {
@@ -291,27 +290,32 @@ $image-path: '/media/protocol/img';
 
 // Animations
 @keyframes pill-one {
-    0%, 100% { transform: rotate(-15deg) translate(5px, -10px); }
+    0%,
+    100% { transform: rotate(-15deg) translate(5px, -10px); }
     50% { transform: rotate(-25deg) translate(-20px, 10px); }
 }
 
 @keyframes hollow-pill-one {
-    0%, 100% { transform: rotate(42deg) translate(-5px, 10px); }
+    0%,
+    100% { transform: rotate(42deg) translate(-5px, 10px); }
     50% { transform: rotate(48deg) translate(8px, -8px); }
 }
 
 @keyframes pill-two {
-    0%, 100% { transform: rotate(40deg) translate(5px, -10px); }
+    0%,
+    100% { transform: rotate(40deg) translate(5px, -10px); }
     50% { transform: rotate(36deg) translate(-20px, 10px); }
 }
 
 @keyframes hollow-pill-two {
-    0%, 100% { transform: rotate(106deg) translate(-5px, 10px); }
+    0%,
+    100% { transform: rotate(106deg) translate(-5px, 10px); }
     50% { transform: rotate(115deg) translate(5px, -8px); }
 }
 
 @keyframes spot {
-    0%, 100% { transform: translate(0, 0); }
+    0%,
+    100% { transform: translate(0, 0); }
     33% { transform: translate(5px, -30px); }
     66% { transform: translate(-5px, 10px); }
 }

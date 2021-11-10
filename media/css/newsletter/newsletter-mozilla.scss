@@ -9,9 +9,10 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/newsletter-form';
 
 .section-intro {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .1) 100%),
-                url('/media/img/newsletter/intro-mozsummit-600.jpg') center center no-repeat,
-                $color-ink-80;
+    background:
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.1) 100%),
+        url('/media/img/newsletter/intro-mozsummit-600.jpg') center center no-repeat,
+        $color-ink-80;
     @include background-size(cover);
     color: $color-white;
     text-align: center;
@@ -19,7 +20,6 @@ $image-path: '/media/protocol/img';
     .mzp-l-content {
         width: 100%;
         padding: 60px 0 40px;
-
 
         @media #{$mq-md} and #{$mq-tall} {
             padding: 100px 0;
@@ -33,29 +33,33 @@ $image-path: '/media/protocol/img';
     .page-title {
         color: $color-white;
         margin: 0;
-        text-shadow: 0 0 10px rgba(0, 0, 0, .01),
-                     0 0 5px rgba(0, 0, 0, .025),
-                     0 1px 1px rgba(0, 0, 0, .5);
+        text-shadow:
+            0 0 10px rgba(0, 0, 0, 0.01),
+            0 0 5px rgba(0, 0, 0, 0.025),
+            0 1px 1px rgba(0, 0, 0, 0.5);
     }
 
     @media #{$mq-md} {
-        background: linear-gradient(to bottom, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .1) 100%),
-                    url('/media/img/newsletter/intro-mozsummit-1000.jpg') center center no-repeat,
-                    $color-ink-80;
+        background:
+            linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.1) 100%),
+            url('/media/img/newsletter/intro-mozsummit-1000.jpg') center center no-repeat,
+            $color-ink-80;
         @include background-size(cover);
     }
 
     @media #{$mq-lg} {
-        background: linear-gradient(to bottom, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .1) 100%),
-                    url('/media/img/newsletter/intro-mozsummit-2000.jpg') center center no-repeat,
-                    $color-ink-80;
+        background:
+            linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.1) 100%),
+            url('/media/img/newsletter/intro-mozsummit-2000.jpg') center center no-repeat,
+            $color-ink-80;
         @include background-size(cover);
     }
 
     @media #{$mq-xl} {
-        background: linear-gradient(to bottom, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .1) 100%),
-                    url('/media/img/newsletter/intro-mozsummit-3000.jpg') center center no-repeat,
-                    $color-ink-80;
+        background:
+            linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.1) 100%),
+            url('/media/img/newsletter/intro-mozsummit-3000.jpg') center center no-repeat,
+            $color-ink-80;
         @include background-size(cover);
     }
 }

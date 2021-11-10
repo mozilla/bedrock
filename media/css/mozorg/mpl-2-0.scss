@@ -5,6 +5,7 @@
 body {
     font-family: serif;
     -moz-hyphens: auto;
+    hyphens: auto;
     font-size: 110%;
     margin-left: auto;
     margin-right: auto;
@@ -12,47 +13,50 @@ body {
     text-align: justify;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-variant: small-caps;
 }
 
 h1 {
     -moz-hyphens: none;
+    hyphens: none;
     font-size: 160%;
     text-align: center;
 }
 
 h2 {
     -moz-hyphens: none;
+    hyphens: none;
     font-size: 140%;
     text-align: left;
 }
 
 h3 {
     -moz-hyphens: none;
+    hyphens: none;
     font-size: 120%;
     text-align: left;
 }
 
 blockquote {
     -moz-hyphens: none;
+    hyphens: none;
     text-align: left;
 }
 
 code {
-    font-family: mono;
+    font-family: mono, monospace;
 }
 
 em {
-    background: #FEFD80;
-    border: 30px solid #FEFD80;
+    background: #fefd80;
+    border: 30px solid #fefd80;
     float: left;
     font-style: normal;
     line-height: 1.25em;
-    margin-bottom: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top:-10px;
+    margin: -10px 10px 10px;
 }
 
 dt {

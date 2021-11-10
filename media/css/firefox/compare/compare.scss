@@ -2,11 +2,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-@import "~@mozilla-protocol/core/protocol/css/includes/lib";
-@import "~@mozilla-protocol/core/protocol/css/components/split";
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/split';
 @import '../../protocol/components/sub-navigation';
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Hero
 
 .compare-hero-title {
@@ -58,7 +58,7 @@
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Summary section
 
 .compare-section-summary {
@@ -98,6 +98,7 @@
             margin-right: auto;
         }
     }
+
     .compare-section-summary-image {
         @media #{$mq-md} {
             width: 50%;
@@ -180,14 +181,14 @@
 }
 
 .compare-section-conclusion .compare-section-header h2 {
-    margin-bottom: .45em;
+    margin-bottom: 0.45em;
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Heading zaps ⚡️
 
 .compare-section-privacy .compare-section-header h2 strong {
-    @include zap("/media/protocol/img/zaps/zap-09.svg");
+    @include zap('/media/protocol/img/zaps/zap-09.svg');
 
     &::after {
         top: 100%;
@@ -195,7 +196,7 @@
 }
 
 .compare-section-utility .compare-section-header h2 strong {
-    @include zap("/media/protocol/img/zaps/zap-07.svg");
+    @include zap('/media/protocol/img/zaps/zap-07.svg');
 
     &::after {
         top: 100%;
@@ -203,7 +204,7 @@
 }
 
 .compare-section-portability .compare-section-header h2 strong {
-    @include zap("/media/protocol/img/zaps/zap-08.svg");
+    @include zap('/media/protocol/img/zaps/zap-08.svg');
 
     &::after {
         top: 100%;
@@ -211,7 +212,7 @@
 }
 
 .compare-section-features .compare-section-header h2 strong {
-    @include zap("/media/protocol/img/zaps/zap-11.svg");
+    @include zap('/media/protocol/img/zaps/zap-11.svg');
 
     &::after {
         top: 100%;
@@ -219,14 +220,14 @@
 }
 
 .compare-section-syncing .compare-section-header h2 strong {
-    @include zap("/media/protocol/img/zaps/zap-06.svg");
+    @include zap('/media/protocol/img/zaps/zap-06.svg');
 
     &::after {
         top: 100%;
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Comparison tables
 
 .mzp-u-data-table.compare-table {
@@ -286,7 +287,6 @@
         }
 
         tr:last-child {
-
             th,
             td {
                 border-bottom: 1px solid $color-marketing-gray-20;
@@ -313,7 +313,7 @@
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Bottom mission box
 
 .compare-mission-section {
@@ -370,13 +370,13 @@
     margin-top: $layout-lg;
     padding-top: $spacing-lg;
 
-    p, br {
+    p,
+    br {
         margin-bottom: $spacing-sm;
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 //  Send to Device widget overrides
 .compare-section-getapp {
     text-align: center;

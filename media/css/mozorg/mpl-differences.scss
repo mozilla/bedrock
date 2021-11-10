@@ -17,7 +17,9 @@ body {
     max-width: 40em;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-variant: small-caps;
 }
 
@@ -78,7 +80,7 @@ strong {
     font-variant: normal;
     font-weight: normal;
     left: 0;
-    margin: 0 5px 5px 5px;
+    margin: 0 5px 5px;
     padding: 5px;
     position: absolute;
     text-decoration: none;
@@ -91,10 +93,6 @@ strong {
 
 #moveacross a span {
     display: none;
-}
-
-#moveacross a:hover span {
-    display: block;
 }
 
 .alpha {

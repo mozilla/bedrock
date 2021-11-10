@@ -14,7 +14,7 @@ $image-path: '/media/protocol/img';
     margin-top: $spacing-2xl;
 }
 
-//* ------------------------------------------------------------------ */
+// * ------------------------------------------------------------------ */
 // Addendum
 
 .addendum-subtitle {
@@ -42,7 +42,7 @@ $image-path: '/media/protocol/img';
             @include bidi(((clear, left, right),));
         }
 
-        &:before {
+        &::before {
             @include bidi(((left, 0, right, auto),));
             background-color: $color-black;
             content: '';
@@ -55,8 +55,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-
-//* ------------------------------------------------------------------ */
+// * ------------------------------------------------------------------ */
 // Share section
 
 .share-addendum {
@@ -67,8 +66,7 @@ $image-path: '/media/protocol/img';
     margin-top: $spacing-lg;
 }
 
-
-//* ------------------------------------------------------------------ */
+// * ------------------------------------------------------------------ */
 // Principles
 
 .principles-header {

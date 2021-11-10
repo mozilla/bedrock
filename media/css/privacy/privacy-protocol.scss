@@ -13,7 +13,7 @@ $image-path: '/media/protocol/img';
 
 $border: 2px solid $color-marketing-gray-20;
 
-.mzp-c-sidemenu .mzp-c-sidemenu-title  {
+.mzp-c-sidemenu .mzp-c-sidemenu-title {
     @include font-base;
 }
 
@@ -37,7 +37,7 @@ $border: 2px solid $color-marketing-gray-20;
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Policy header
 
 .privacy-logo {
@@ -100,8 +100,7 @@ $border: 2px solid $color-marketing-gray-20;
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Policy header intro
 
 .privacy-lead-in {
@@ -115,11 +114,10 @@ $border: 2px solid $color-marketing-gray-20;
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Main policy content
 
 .privacy-body {
-
     > div > section > section {
         border-bottom: $border;
     }
@@ -154,7 +152,7 @@ $border: 2px solid $color-marketing-gray-20;
     margin-top: $layout-lg;
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Privacy choices widget
 
 .data-choices {
@@ -191,7 +189,7 @@ $border: 2px solid $color-marketing-gray-20;
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Policy footer
 
 .privacy-footnote {
@@ -203,7 +201,7 @@ $border: 2px solid $color-marketing-gray-20;
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Summary and details widget
 
 .format-headings .privacy-body {
@@ -215,7 +213,7 @@ $border: 2px solid $color-marketing-gray-20;
             @include bidi(((padding-left, 0, padding-right, 0),));
         }
 
-        button[aria-expanded=true]:before {
+        button[aria-expanded='true']::before {
             @include summary-open;
         }
 
@@ -233,7 +231,7 @@ $border: 2px solid $color-marketing-gray-20;
         button {
             padding: 0;
 
-            &:after {
+            &::after {
                 color: $color-link;
                 content: attr(data-open);
                 margin-left: 0.5ex;
@@ -241,7 +239,7 @@ $border: 2px solid $color-marketing-gray-20;
             }
         }
 
-        button[aria-expanded=true]:after {
+        button[aria-expanded='true']::after {
             content: attr(data-close);
         }
 
@@ -252,8 +250,7 @@ $border: 2px solid $color-marketing-gray-20;
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Privacy Principles page
 
 #privacy-principles,
@@ -264,7 +261,6 @@ $border: 2px solid $color-marketing-gray-20;
 }
 
 #privacy-principles {
-
     ol {
         @include text-title-md;
         @include font-mozilla;

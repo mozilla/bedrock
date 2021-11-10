@@ -7,12 +7,11 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import 'components/advisory',
-        'components/data-table',
-        'components/level',
-        'components/links',
-        'components/note';
+    'components/data-table',
+    'components/level',
+    'components/links',
+    'components/note';
 
 .pgp-key {
     overflow-x: scroll;
 }
-

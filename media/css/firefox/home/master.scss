@@ -17,7 +17,6 @@ $brand-theme: 'firefox';
 @import '../../protocol/components/custom-menu-list';
 @import '../sticky-promo';
 
-
 // conditional content
 .js-fx-only {
     display: none;
@@ -43,7 +42,6 @@ $brand-theme: 'firefox';
 // component over rides (content menu list, feature card)
 
 .firefox-home {
-
     // menu list
     .mzp-c-menu-list {
         margin-bottom: $spacing-lg;
@@ -109,7 +107,6 @@ $brand-theme: 'firefox';
     }
 }
 
-
 // ------------------------------------------------------------------------------
 // showcase
 
@@ -162,7 +159,6 @@ $brand-theme: 'firefox';
     }
 }
 
-
 // ------------------------------------------------------------------------------
 // promise background colour and image
 
@@ -171,7 +167,7 @@ $brand-theme: 'firefox';
 
     .mzp-c-split-bg {
         @include light-links;
-        background-image: linear-gradient(90deg,  $color-violet-80, $color-violet-90);
+        background-image: linear-gradient(90deg, $color-violet-80, $color-violet-90);
         border-radius: $border-radius-md;
         box-shadow: $box-shadow-md;
         margin: $layout-md auto;
@@ -191,21 +187,21 @@ $brand-theme: 'firefox';
         padding: 0 $layout-md;
 
         .mzp-c-split-bg {
-            background-image: url('/media/img/firefox/home/master/respect.jpg'), linear-gradient(90deg, #5731AB 50%, $color-violet-90);
+            background-image: url('/media/img/firefox/home/master/respect.jpg'), linear-gradient(90deg, #5731ab 50%, $color-violet-90);
             background-position: left -30px center, top left;
             background-repeat: no-repeat;
             background-size: 50%, auto;
 
             @media #{$mq-high-res} {
-                background-image: url('/media/img/firefox/home/master/respect-high-res.jpg'), linear-gradient(90deg, #5731AB 50%, $color-violet-90);
+                background-image: url('/media/img/firefox/home/master/respect-high-res.jpg'), linear-gradient(90deg, #5731ab 50%, $color-violet-90);
             }
 
-            [dir="rtl"] & {
-                background-image: url('/media/img/firefox/home/master/respect-rtl.jpg'), linear-gradient(-90deg, #5731AB 50%, $color-violet-90);
+            [dir='rtl'] & {
+                background-image: url('/media/img/firefox/home/master/respect-rtl.jpg'), linear-gradient(-90deg, #5731ab 50%, $color-violet-90);
                 background-position: right -30px center, top right;
 
                 @media #{$mq-high-res} {
-                    background-image: url('/media/img/firefox/home/master/respect-rtl-high-res.jpg'), linear-gradient(-90deg, #5731AB 50%, $color-violet-90);
+                    background-image: url('/media/img/firefox/home/master/respect-rtl-high-res.jpg'), linear-gradient(-90deg, #5731ab 50%, $color-violet-90);
                 }
             }
         }

@@ -4,12 +4,12 @@
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
-.para  ul {
+.para ul {
     @include bidi(((margin-left, $layout-sm, margin-right, 0),));
     list-style: disc;
 
     li {
-        margin-bottom: .25em;
+        margin-bottom: 0.25em;
     }
 
     ul {

@@ -14,7 +14,6 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 
-
 .c-section-title {
     @include text-title-md;
 }

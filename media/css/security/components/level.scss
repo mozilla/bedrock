@@ -10,7 +10,7 @@ $image-path: '/media/protocol/img';
 // Security impact levels
 
 .level-item {
-    padding: .714rem 0 .5rem;
+    padding: 0.714rem 0 0.5rem;
     position: relative;
 }
 
@@ -18,7 +18,7 @@ $image-path: '/media/protocol/img';
     @include text-body-xs;
     background: $color-marketing-gray-10;
     border-right: 3px solid $color-marketing-gray-30;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.05), 0 -1px 0 rgba(0,0,0,0.05) inset;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05), 0 -1px 0 rgba(0, 0, 0, 0.05) inset;
     color: #000;
     display: inline-block;
     font-style: normal;

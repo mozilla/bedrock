@@ -16,7 +16,6 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/video';
 @import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
 
-
 .main-page-heading {
     @include visually-hidden;
 }
@@ -25,8 +24,7 @@ $image-path: '/media/protocol/img';
     margin-top: $spacing-lg;
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Primary CTA (page top)
 
 .c-primary-cta {
@@ -121,7 +119,7 @@ h4 {
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Conditional content
 
 // Hide Firefox Account CTAs by default; show download unless we know otherwise.
@@ -143,8 +141,7 @@ h4 {
     }
 }
 
-
-/* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Custom card styles for lazy-loaded images.
 
 .mzp-c-card {
@@ -158,8 +155,7 @@ h4 {
     }
 }
 
-
-/* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Pocket highlights section.
 
 .pocket {
@@ -192,8 +188,7 @@ h4 {
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Secondary Download CTA (page bottom)
 
 .c-secondary-cta {
@@ -236,6 +231,7 @@ h4 {
     .c-secondary-cta-content {
         max-width: 48%;
     }
+
     .c-secondary-cta-title {
         background-position: left 35px;
     }
@@ -247,11 +243,8 @@ h4 {
     }
 }
 
-
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Secondary FxA CTA (page bottom)
-
 
 .fxaccount-secondary-cta.mzp-t-dark {
     background-color: $color-ink-80;

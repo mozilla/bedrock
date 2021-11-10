@@ -7,14 +7,13 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
-
 // Firefox MR2 promo
 .mr2-home-hero {
     .c-fxpromo-title {
         @include font-firefox;
         @include text-title-xl;
         color: $color-ink-60;
-        margin-bottom: .25em;
+        margin-bottom: 0.25em;
         text-align: center;
 
         br {
@@ -66,7 +65,7 @@ $image-path: '/media/protocol/img';
 
         [lang^='en'] & .c-fxpromo-title {
             @include font-size(100px);
-            line-height: .85;
+            line-height: 0.85;
         }
     }
 
