@@ -17,7 +17,7 @@ from bedrock.base.geo import get_country_from_request
 from bedrock.contentful.constants import (
     ARTICLE_CATEGORY_LABEL,
     CONTENT_CLASSIFICATION_VPN,
-    CONTENT_TYPE_PAGE_RESOURCE_CENTRE,
+    CONTENT_TYPE_PAGE_RESOURCE_CENTER,
 )
 from bedrock.contentful.models import ContentfulEntry
 from bedrock.newsletter.views import general_error, invalid_email_address
@@ -153,7 +153,7 @@ def resource_center_landing_view(request):
     resource_articles = ContentfulEntry.objects.get_entries_by_type(
         locale=locale,
         classification=CONTENT_CLASSIFICATION_VPN,
-        content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTRE,
+        content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
     )
     category_list = _build_category_list(resource_articles)
     selected_category = unquote_plus(request.GET.get(ARTICLE_CATEGORY_LABEL, ""))
@@ -210,7 +210,7 @@ def resource_center_detail_view(request, slug):
             slug=slug,
             locale=locale,
             classification=CONTENT_CLASSIFICATION_VPN,
-            content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTRE,
+            content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
         )
         article_dict.update(article.data)
 

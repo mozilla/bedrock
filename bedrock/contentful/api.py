@@ -18,7 +18,7 @@ from rich_text_renderer.text_renderers import BaseInlineRenderer
 from bedrock.contentful.constants import (
     COMPOSE_MAIN_PAGE_TYPE,
     CONTENT_TYPE_PAGE_GENERAL,
-    CONTENT_TYPE_PAGE_RESOURCE_CENTRE,
+    CONTENT_TYPE_PAGE_RESOURCE_CENTER,
 )
 from lib.l10n_utils import get_locale, render_to_string
 
@@ -526,7 +526,7 @@ class ContentfulPage:
         # TODO: Check with plans for Contentful use - we may
         # be able to relax this check and use it for page types
         # once we're in all-Compose mode
-        if page_type == CONTENT_TYPE_PAGE_RESOURCE_CENTRE:
+        if page_type == CONTENT_TYPE_PAGE_RESOURCE_CENTER:
             if "category" in fields:
                 data["category"] = fields["category"]
             if "tags" in fields:
@@ -602,7 +602,7 @@ class ContentfulPage:
                     entries.append(self.get_text_data(value))
                 elif key == "component_callout":
                     proc(value)
-        elif page_type == CONTENT_TYPE_PAGE_RESOURCE_CENTRE:
+        elif page_type == CONTENT_TYPE_PAGE_RESOURCE_CENTER:
             # TODO: can we actually make this generic? Poss not: main_content is a custom field name
             _content = fields.get("main_content", {})
             entries.append(self.get_text_data(_content))

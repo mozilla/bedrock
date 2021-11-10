@@ -19,7 +19,7 @@ MAX_MESSAGES_PER_QUEUE_POLL = 10
 
 # Specific content types we need to target in DB lookups
 CONTENT_TYPE_CONNECT_HOMEPAGE = "connectHomepage"
-CONTENT_TYPE_PAGE_RESOURCE_CENTRE = "pagePageResourceCenter"
+CONTENT_TYPE_PAGE_RESOURCE_CENTER = "pagePageResourceCenter"
 CONTENT_TYPE_PAGE_GENERAL = "pageGeneral"
 
 CONTENT_CLASSIFICATION_VPN = "VPN"  # Matches string in Contenful for VPN as `product`
