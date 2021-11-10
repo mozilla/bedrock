@@ -185,7 +185,7 @@ def resource_center_landing_view(request):
         request,
         template_name,
         ctx,
-        ftl_files=["products/vpn/shared", "products/vpn/resource-center"],
+        ftl_files=["products/vpn/resource-center", "products/vpn/shared"],
     )
 
 
@@ -235,5 +235,5 @@ def resource_center_detail_view(request, slug):
         request,
         template_name,
         ctx,
-        ftl_files=["products/vpn/shared", "products/vpn/resource-center"],
+        ftl_files=["products/vpn/resource-center", "products/vpn/shared"],
     )

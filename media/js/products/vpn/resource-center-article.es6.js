@@ -4,43 +4,46 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-(function () {
-    // Lazyload images
-    Mozilla.LazyLoad.init();
+// Lazyload images
+Mozilla.LazyLoad.init();
 
-    //event handlers for voting widget on article pages
-    let hasVoted = false;
-    const upvoteBtn = document.querySelector('.vpn-c-vote-btn.up');
-    const downvoteBtn = document.querySelector('.vpn-c-vote-btn.down');
+//event handlers for voting widget on article pages
+let hasVoted = false;
+const upvoteBtn = document.querySelector('.vpn-c-vote-btn.up');
+const downvoteBtn = document.querySelector('.vpn-c-vote-btn.down');
 
-    function trackVoteInteraction(url, vote) {
-        window.dataLayer.push({
-            event: 'vpn-article-vote',
-            label: url,
-            value: vote
-        });
-    }
+function trackVoteInteraction(url, vote) {
+    window.dataLayer.push({
+        event: 'vpn-article-vote',
+        label: url,
+        value: vote
+    });
+}
 
-    function handleVote({ target }) {
-        const isUpvote = target.classList.contains('up');
-        if (target.classList.contains('active') && hasVoted) {
-            return null;
+function handleVote({ target }) {
+    const isUpvote = upvoteBtn.contains(target);
+    if (
+        ((isUpvote && upvoteBtn.classList.contains('active')) ||
+            (!isUpvote && downvoteBtn.classList.contains('active'))) &&
+        hasVoted
+    ) {
+        return null;
+    } else {
+        hasVoted = true;
+        trackVoteInteraction(
+            target.getAttribute('data-cta-text'),
+            isUpvote ? 'helpful' : 'not helpful'
+        );
+        if (isUpvote) {
+            upvoteBtn.classList.add('active');
+            downvoteBtn.classList.remove('active');
         } else {
-            hasVoted = true;
-            target.classList.add('active');
-            trackVoteInteraction(
-                target.getAttribute('data-ga-article-title'),
-                isUpvote ? 'helpful ' : 'not helpful'
-            );
-            if (isUpvote) {
-                downvoteBtn.classList.remove('active');
-            } else {
-                upvoteBtn.classList.remove('active');
-            }
+            downvoteBtn.classList.add('active');
+            upvoteBtn.classList.remove('active');
         }
     }
+}
 
-    [upvoteBtn, downvoteBtn].forEach((element) =>
-        element.addEventListener('click', handleVote)
-    );
-})();
+[upvoteBtn, downvoteBtn].forEach((element) =>
+    element.addEventListener('click', handleVote, false)
+);

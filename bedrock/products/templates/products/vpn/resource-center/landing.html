@@ -38,36 +38,44 @@
     {# </div> #}
     {# {% endif %} #}
 
-    <div class="mzp-l-content mzp-l-card-third">
-      {% for article in first_article_group %}
-        {% include "products/vpn/resource-center/includes/vpn_article_card.html" %}
-      {% endfor %}
-    </div>
-    {% call split (
-      image_url="img/products/vpn/resource-center/resource_center_split_1.svg",
-      block_class='resource-center-split mzp-t-split-nospace mzp-t-content-lg mzp-l-split-center-on-sm-md',
-      media_class='resource-center-split-media',
-    ) %}
-      <h1 class="resource-center-wordmark">{{ ftl('vpn-resource-center-mozilla-vpn') }}</h1>
-      <h2 class="mzp-c-call-out-title">{{ ftl('vpn-resource-center-start-protecting') }}</h2>
-      <a class='mzp-c-button mzp-t-product resource-center-cta'>{{ vpn_saving(plan='12-month', country_code=country_code, lang=LANG) }} {{ ftl('vpn-resource-center-on-mozilla-vpn') }}</a>
-      <p class="resource-center-cta-desc"><em>{{ ftl('vpn-resource-center-when-you-subscribe') }}</em></p>
-    {% endcall %}
-
-    <div class="mzp-l-content mzp-l-card-third">
-      {% for article in second_article_group %}
-        {% include "products/vpn/resource-center/includes/vpn_article_card.html" %}
-      {% endfor %}
-    </div>
+  <div class="mzp-l-content mzp-l-card-third">
+    {% for article in first_article_group %}
+      {% include "products/vpn/resource-center/includes/vpn-article-card.html" %}
+    {% endfor %}
+  </div>
+  {% call split (
+    image_url="img/products/vpn/resource-center/resource_center_split_1.svg",
+    block_class='resource-center-split mzp-t-split-nospace mzp-t-content-lg mzp-l-split-center-on-sm-md',
+    media_class='resource-center-split-media',
+  ) %}
+    <h1 class="resource-center-wordmark">{{ ftl('vpn-resource-center-mozilla-vpn') }}</h1>
+    <h2 class="mzp-c-call-out-title">{{ ftl('vpn-resource-center-start-protecting') }}</h2>
+    <a class='mzp-c-button mzp-t-product resource-center-cta'>{{ ftl('vpn-resource-center-on-mozilla-vpn', amount=vpn_saving(plan='12-month', country_code=country_code, lang=LANG)) }}</a>
+    <p class="resource-center-cta-desc"><em>{{ ftl('vpn-resource-center-when-you-subscribe') }}</em></p>
+  {% endcall %}
 
   {% if second_article_group %}
+   <div class="mzp-l-content mzp-l-card-third">
+      {% for article in second_article_group %}
+        {% include "products/vpn/resource-center/includes/vpn-article-card.html" %}
+      {% endfor %}
+    </div>
     {# Only show the second split if there was something after the first split #}
     {% call split (
       image_url="img/products/vpn/resource-center/resource_center_split_2.jpg",
       block_class='mzp-t-content-lg',
     ) %}
       <h2 class="resource-center-cta-title">{{ ftl('vpn-resource-center-obsessed-with') }}</h2>
-      <a class='mzp-c-button mzp-t-product'>{{ ftl('vpn-resource-center-get-mozilla-vpn') }}</a>
+      {{ vpn_product_referral_link(
+          referral_id='vpn-resource-center',
+          page_anchor='#pricing',
+          link_text=ftl('vpn-resource-center-get-mozilla-vpn'),
+          class_name='mzp-c-button mzp-t-product',
+          optional_attributes= {
+            'data-cta-text' : 'Get Mozilla VPN',
+            'data-cta-type' : 'button',
+          }
+        ) }}
     {% endcall %}
   {% endif %}
 
@@ -76,4 +84,3 @@
 {% block js %}
     {{ js_bundle("vpn-resource-center")}}
 {% endblock js %}
-

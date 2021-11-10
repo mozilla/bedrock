@@ -46,14 +46,13 @@ $image-path: '/media/protocol/img';
     background-color: $color-white;
 }
 
-
 .resource-center-wordmark {
     @include image-replaced();
-    @include background-size(175px 60px);
+    @include background-size(94px 32px);
     background: transparent url('/media/img/logos/vpn/logo-with-wordmark.svg') top left no-repeat;
-    height: 60px;
+    height: 32px;
     margin: 0 auto $spacing-lg;
-    width: 175px;
+    width: 94px;
 
     @media #{$mq-md} {
         margin: 0 0 $spacing-xl;
@@ -172,26 +171,21 @@ $image-path: '/media/protocol/img';
         .vpn-c-vote-btn {
             background: none;
             border: none;
+            color: $color-moz-dark-gray;
             cursor: pointer;
+            fill: currentColor;
             height: $layout-sm + 6px;
             width: $layout-md - 6px;
 
             &.down {
                 @include bidi(((margin-left, $spacing-sm, margin-right, $spacing-sm),));
-                background: url('/media/img/products/vpn/resource-center/thumbs_down_off.svg');
                 position: absolute;
                 top: 13px;
-
-                &.active {
-                    background: url('/media/img/products/vpn/resource-center/thumbs_down_on.svg');
-                }
             }
-            &.up {
-                background: url('/media/img/products/vpn/resource-center/thumbs_up_off.svg');
 
-                &.active {
-                    background: url('/media/img/products/vpn/resource-center/thumbs_up_on.svg');
-                }
+            &.active {
+                color: $color-blue-50;
+                fill: currentColor;
             }
         }
     }
