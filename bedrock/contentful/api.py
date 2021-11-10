@@ -57,9 +57,9 @@ LAYOUT_CLASS = {
 }
 THEME_CLASS = {
     "Light": "",
-    "Light (alternative)": "mzp-t-background-alt",
+    "Light (alternative)": "mzp-t-background-secondary",
     "Dark": "mzp-t-dark",
-    "Dark (alternative)": "mzp-t-dark mzp-t-background-alt",
+    "Dark (alternative)": "mzp-t-dark mzp-t-background-secondary",
 }
 COLUMN_CLASS = {
     "1": "",
