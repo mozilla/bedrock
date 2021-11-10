@@ -9,11 +9,11 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/card';
 @import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
 @import '~@mozilla-protocol/core/protocol/css/components/feature-card';
-@import "~@mozilla-protocol/core/protocol/css/components/hero";
+@import '~@mozilla-protocol/core/protocol/css/components/hero';
 @import '~@mozilla-protocol/core/protocol/css/components/modal';
 @import '~@mozilla-protocol/core/protocol/css/components/split';
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Hero image & banner heading
 .c-hero-banner {
     background: url('/media/img/foundation/annualreport/2019/pixel-mobile-bg.svg') right center no-repeat;
@@ -26,7 +26,7 @@ $image-path: '/media/protocol/img';
         color: $color-black;
         display: inline-block;
         font-weight: bold;
-        line-height: .7;
+        line-height: 0.7;
         padding: 0;
     }
 
@@ -107,10 +107,13 @@ $image-path: '/media/protocol/img';
         margin-bottom: $spacing-2xl;
         font-weight: normal;
     }
+
+    .mzp-c-card-media-wrapper {
+        background-color: transparent;
+    }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Content sections
 .c-intro-section {
     p {
@@ -144,7 +147,6 @@ $image-path: '/media/protocol/img';
     }
 
     @media #{$mq-lg} {
-
         .c-copy-wrapper {
             @include clearfix;
             margin: 0 auto;
@@ -180,8 +182,7 @@ $image-path: '/media/protocol/img';
     padding: $spacing-2xl $spacing-lg $spacing-lg;
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Page footer
 .c-site-footer {
     ul {
@@ -233,7 +234,6 @@ $image-path: '/media/protocol/img';
 
             &:first-child a {
                 @include bidi(((margin-right, 10px, margin-left, 0),));
-
             }
 
             &:last-child a {
@@ -253,16 +253,15 @@ $image-path: '/media/protocol/img';
     opacity: 0;
 }
 
-
 // Hide enhanced content if JS isn't available
 .no-js-hidden {
-    .no-js  & {
+    .no-js & {
         @include hidden;
     }
 }
 
 .js-modal-content {
-    .js  & {
+    .js & {
         @include hidden;
     }
 
@@ -306,7 +305,7 @@ $image-path: '/media/protocol/img';
     position: relative;
 
     &::after {
-        content: " ";
+        content: ' ';
         background: url('/media/img/foundation/annualreport/2019/pixel-small-bg.svg') center center no-repeat;
         background-size: contain;
         width: 66px;
@@ -339,10 +338,12 @@ $image-path: '/media/protocol/img';
         margin-bottom: $spacing-lg;
         padding-left: $spacing-sm;
         font-weight: 100;
+
         .highlight {
             margin-left: -$spacing-sm;
         }
     }
+
     a:link {
         color: $color-black;
     }
@@ -391,12 +392,12 @@ $image-path: '/media/protocol/img';
     }
 
     .mzp-c-modal-button-close {
-        background-image: url("/media/protocol/img/icons/close.svg");
+        background-image: url('/media/protocol/img/icons/close.svg');
     }
 }
 
 .c-modal-next {
-    @extend .mzp-c-modal-close;
+    @extend .mzp-c-modal-close; /* stylelint-disable-line scss/at-extend-no-missing-placeholder  */
     right: 3.75rem;
 
     .hide-next & {
@@ -404,12 +405,12 @@ $image-path: '/media/protocol/img';
     }
 
     .c-modal-button-next {
-        background-image: url("/media/protocol/img/icons/arrow-right.svg");
+        background-image: url('/media/protocol/img/icons/arrow-right.svg');
     }
 }
 
 .c-modal-prev {
-    @extend .mzp-c-modal-close;
+    @extend .mzp-c-modal-close; /* stylelint-disable-line scss/at-extend-no-missing-placeholder  */
     right: 7.1rem;
 
     .hide-next & {
@@ -421,13 +422,13 @@ $image-path: '/media/protocol/img';
     }
 
     .c-modal-button-prev {
-        background-image: url("/media/protocol/img/icons/arrow-left.svg");
+        background-image: url('/media/protocol/img/icons/arrow-left.svg');
     }
 }
 
 .c-modal-button-next,
-.c-modal-button-prev,  {
-    @extend .mzp-c-modal-button-close;
+.c-modal-button-prev {
+    @extend .mzp-c-modal-button-close; /* stylelint-disable-line scss/at-extend-no-missing-placeholder */
 }
 
 .mzp-c-modal-overlay-contents,
@@ -497,10 +498,9 @@ $image-path: '/media/protocol/img';
 
         &:hover {
             background-color: $color-white;
-       }
+        }
     }
 }
-
 
 .c-report-pdfs {
     border-top: 1px solid $color-light-gray-90;
@@ -540,6 +540,7 @@ $image-path: '/media/protocol/img';
     h3 {
         @include text-title-md;
         padding: $spacing-lg 0 $spacing-sm;
+
         span {
             display: inline-block;
             margin-right: $spacing-xs;
@@ -565,7 +566,6 @@ $image-path: '/media/protocol/img';
     }
 }
 
-
 .c-leadership-article-title {
     margin-top: -$spacing-2xl;
     margin-bottom: $spacing-2xl;
@@ -580,11 +580,5 @@ $image-path: '/media/protocol/img';
         @include text-title-md;
         margin-bottom: 0;
         margin-top: $spacing-lg;
-    }
-}
-
-.leadership {
-    .mzp-c-card-media-wrapper  {
-        background-color: transparent;
     }
 }

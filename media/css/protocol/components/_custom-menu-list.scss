@@ -31,7 +31,7 @@ $image-path: '/media/protocol/img';
                 background: $color-marketing-gray-20;
                 border-color: $color-marketing-gray-40;
 
-                &:before {
+                &::before {
                     border-color: $color-marketing-gray-40;
                 }
             }
@@ -42,12 +42,12 @@ $image-path: '/media/protocol/img';
                 border-color: $color-link;
                 box-shadow: 0 0 2px 0 $color-blue-20;
 
-                &:before {
+                &::before {
                     border-color: $color-link;
                 }
             }
 
-            &:before {
+            &::before {
                 @include bidi((
                     (right, 42px, left, auto),
                     (border-left-width, 2px, 0),
@@ -63,7 +63,7 @@ $image-path: '/media/protocol/img';
                 width: 0;
             }
 
-            &:after {
+            &::after {
                 @include bidi(((right, 0, left, auto),));
                 background-position: center center;
                 height: 100%;

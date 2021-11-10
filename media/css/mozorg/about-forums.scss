@@ -7,13 +7,12 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
-
 .c-forum-search {
     background-color: $color-marketing-gray-20;
     margin-bottom: $spacing-md;
     padding: $spacing-sm;
 
-    input[type=text] {
+    input[type='text'] {
         margin-bottom: $spacing-sm;
     }
 }
@@ -44,7 +43,7 @@ $image-path: '/media/protocol/img';
         @include clearfix;
     }
 
-    & > li:target{
+    & > li:target {
         background: $color-yellow-05;
     }
 
@@ -69,7 +68,7 @@ $image-path: '/media/protocol/img';
     h4 {
         position: relative;
         letter-spacing: 0;
-        margin: 0 .5em 0 0;
+        margin: 0 0.5em 0 0;
         @include font-base;
         @include text-body-md;
         font-weight: bold;
@@ -90,7 +89,6 @@ $image-path: '/media/protocol/img';
 }
 
 .mzp-c-article {
-
     img {
         vertical-align: middle;
     }

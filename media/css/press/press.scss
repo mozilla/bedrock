@@ -20,13 +20,12 @@ $image-path: '/media/protocol/img';
     }
 }
 
-
 .mzp-c-emphasis-box {
     margin-top: $spacing-xl;
     margin-bottom: $layout-md;
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Form
 
 textarea {
@@ -42,4 +41,3 @@ textarea {
 #outer-wrapper .mzp-c-notification-bar {
     margin: $spacing-lg 0;
 }
-

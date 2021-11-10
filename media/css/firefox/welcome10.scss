@@ -9,7 +9,6 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/picto';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 
-
 .c-page-header {
     .mzp-l-content {
         padding-top: $spacing-md;
@@ -17,7 +16,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Main content
 .c-content-main {
     padding: 0;
@@ -59,8 +58,7 @@ $image-path: '/media/protocol/img';
     margin-right: auto;
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Secondary content
 .mzp-c-picto {
     max-width: $content-sm;
@@ -72,8 +70,7 @@ $image-path: '/media/protocol/img';
     margin-right: auto;
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Utilities
 .c-utilities {
     @include text-body-sm;

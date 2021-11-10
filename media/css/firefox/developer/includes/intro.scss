@@ -4,7 +4,7 @@
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
-//*------------------------------------------------------------------*/
+// *------------------------------------------------------------------*/
 // Intro
 
 .t-intro {
@@ -65,7 +65,6 @@
 
 @media #{$mq-lg} {
     .intro-image {
-
         img {
             left: 50%;
             margin-left: -600px;

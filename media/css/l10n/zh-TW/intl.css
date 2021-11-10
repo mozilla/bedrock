@@ -4,36 +4,30 @@
     font-family: X-LocaleSpecific;
     font-weight: normal;
     font-display: swap;
-    src: /* OS X */
-       local(FZLTXHB--B51-0), /* = Lantinghei TC Extralight */
-       /* Windows */
-       local('Microsoft JhengHei Light'),
-       /* Linux */
-       local(DroidSansFallbackFull);
+    src:
+        local(FZLTXHB--B51-0),
+        local('Microsoft JhengHei Light'),
+        local(DroidSansFallbackFull);
 }
 
 @font-face {
     font-family: X-LocaleSpecific;
     font-weight: bold;
     font-display: swap;
-    src: /* OS X */
-       local(FZLTZHB--B51-0), /* = Lantinghei TC Demibold */
-       /* Windows */
-       local('Microsoft JhengHei Bold'),
-       /* Linux */
-       local(DroidSansFallbackFull);
+    src:
+        local(FZLTZHB--B51-0),
+        local('Microsoft JhengHei Bold'),
+        local(DroidSansFallbackFull);
 }
 
 @font-face {
     font-family: X-LocaleSpecific-Extrabold;
     font-weight: 800;
     font-display: swap;
-    src: /* OS X */
-       local(FZLTTHB--B51-0), /* = Lantinghei TC Heavy */
-       /* Windows */
-       local('Microsoft JhengHei Bold'),
-       /* Linux */
-       local(DroidSansFallbackFull);
+    src:
+        local(FZLTTHB--B51-0),
+        local('Microsoft JhengHei Bold'),
+        local(DroidSansFallbackFull);
 }
 
 /* Bug 973171 */

@@ -10,14 +10,14 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/hero';
 @import '~@mozilla-protocol/core/protocol/css/components/newsletter-form';
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Hero
 
 .mzp-c-hero.mzp-t-dark {
     background-color: $color-ink-80;
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Newsletter Form
 
 h4 {
@@ -31,4 +31,3 @@ h4 {
 .mzp-u-inline label {
     display: inline-block;
 }
-

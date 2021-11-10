@@ -7,8 +7,7 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Hero image & banner heading
 .c-banner {
     color: $color-white;
@@ -72,7 +71,6 @@ $image-path: '/media/protocol/img';
     }
 }
 
-
 // 2017
 #annual-2017 {
     .c-banner .c-banner-content {
@@ -84,7 +82,6 @@ $image-path: '/media/protocol/img';
     }
 }
 
-
 // 2016
 #annual-2016 {
     .c-banner .c-banner-content {
@@ -95,7 +92,6 @@ $image-path: '/media/protocol/img';
         }
     }
 }
-
 
 // 2015
 #annual-2015 {
@@ -112,7 +108,6 @@ $image-path: '/media/protocol/img';
         }
     }
 }
-
 
 // 2014
 #annual-2014 {
@@ -134,7 +129,6 @@ $image-path: '/media/protocol/img';
     }
 }
 
-
 // 2013
 #annual-2013 {
     .c-banner .c-banner-content {
@@ -154,7 +148,6 @@ $image-path: '/media/protocol/img';
         }
     }
 }
-
 
 // 2012
 #annual-2012 {
@@ -189,12 +182,10 @@ $image-path: '/media/protocol/img';
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Content sections
 
 .c-intro-section {
-
     p {
         @include font-mozilla;
         @include text-title-sm;
@@ -226,7 +217,6 @@ $image-path: '/media/protocol/img';
     }
 
     @media #{$mq-lg} {
-
         .c-copy-wrapper {
             @include clearfix;
             margin: 0 auto;
@@ -265,13 +255,12 @@ $image-path: '/media/protocol/img';
 .c-media {
     margin: $spacing-lg 0;
 
-    h3  {
+    h3 {
         @include visually-hidden;
     }
 }
 
-
-/* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Financial table
 
 .financial-table {
@@ -285,8 +274,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Page footer
 
 .c-site-footer {
@@ -299,7 +287,7 @@ $image-path: '/media/protocol/img';
         margin: $spacing-lg auto;
 
         a {
-            @include transition(background-color .1s ease-in-out);
+            @include transition(background-color 0.1s ease-in-out);
             background-color: $color-link;
             color: $color-white;
             display: block;
@@ -339,20 +327,11 @@ $image-path: '/media/protocol/img';
 
             &:first-child a {
                 @include bidi(((margin-right, 10px, margin-left, 0),));
-
             }
 
             &:last-child a {
                 @include bidi(((margin-left, 10px, margin-right, 0),));
             }
         }
-    }
-}
-
-.c-media {
-    margin: $spacing-lg 0;
-
-    h3  {
-        @include visually-hidden;
     }
 }

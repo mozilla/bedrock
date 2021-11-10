@@ -2,6 +2,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+@use 'sass:color';
+
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
@@ -19,71 +21,73 @@ $image-path: '/media/protocol/img';
         display: none;
     }
 
-    &[data-current^="desktop"] {
+    &[data-current^='desktop'] {
         #download-button-primary {
             display: inline-block;
         }
     }
 
-    &[data-current="desktop_release"] {
-        [data-product="desktop_release"] {
+    &[data-current='desktop_release'] {
+        [data-product='desktop_release'] {
             display: block;
         }
     }
 
-    &[data-current="desktop_beta"] {
-       [data-product="desktop_beta"] {
+    &[data-current='desktop_beta'] {
+        [data-product='desktop_beta'] {
             display: block;
         }
     }
 
-    &[data-current="desktop_developer"] {
-        [data-product="desktop_developer"] {
+    &[data-current='desktop_developer'] {
+        [data-product='desktop_developer'] {
             display: block;
         }
     }
 
-    &[data-current="desktop_nightly"] {
-        [data-product="desktop_nightly"] {
+    &[data-current='desktop_nightly'] {
+        [data-product='desktop_nightly'] {
             display: block;
         }
     }
 
-    &[data-current="desktop_esr"] {
-        [data-product="desktop_esr"] {
+    &[data-current='desktop_esr'] {
+        [data-product='desktop_esr'] {
             display: block;
         }
     }
 
-    &[data-current="desktop_esr_next"] {
-        [data-product="desktop_esr_next"] {
+    &[data-current='desktop_esr_next'] {
+        [data-product='desktop_esr_next'] {
             display: block;
         }
 
         // ESR Next has the same product links as regular ESR
-        .c-product-links[data-product="desktop_esr"] {
+        .c-product-links[data-product='desktop_esr'] {
             display: block;
         }
     }
 
-    &[data-current="android_release"] {
-        [data-product="android_release"] {
-            display: block;
-        }
-    }
-    &[data-current="android_beta"] {
-        [data-product="android_beta"] {
-            display: block;
-        }
-    }
-    &[data-current="android_nightly"] {
-        [data-product="android_nightly"] {
+    &[data-current='android_release'] {
+        [data-product='android_release'] {
             display: block;
         }
     }
 
-    &[data-current="ios_release"] {
-        [data-product="ios_release"] {
+    &[data-current='android_beta'] {
+        [data-product='android_beta'] {
+            display: block;
+        }
+    }
+
+    &[data-current='android_nightly'] {
+        [data-product='android_nightly'] {
+            display: block;
+        }
+    }
+
+    &[data-current='ios_release'] {
+        [data-product='ios_release'] {
             display: block;
         }
     }
@@ -105,17 +109,17 @@ $image-path: '/media/protocol/img';
         margin-bottom: $spacing-xl;
         padding-top: 64px + $spacing-lg;
 
-        [data-current="desktop_beta"] &,
-        [data-current="android_beta"] & {
+        [data-current='desktop_beta'] &,
+        [data-current='android_beta'] & {
             background-image: url('/media/protocol/img/logos/firefox/browser/beta/logo.svg');
         }
 
-        [data-current="desktop_developer"] &{
+        [data-current='desktop_developer'] & {
             background-image: url('/media/protocol/img/logos/firefox/browser/developer/logo.svg');
         }
 
-        [data-current="desktop_nightly"] &,
-        [data-current="android_nightly"] & {
+        [data-current='desktop_nightly'] &,
+        [data-current='android_nightly'] & {
             background-image: url('/media/protocol/img/logos/firefox/browser/nightly/logo.svg');
         }
     }
@@ -190,18 +194,19 @@ $image-path: '/media/protocol/img';
 }
 
 .c-download-info {
-    border-bottom: 1px solid rgba(0, 0, 0, .2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     margin-bottom: $layout-sm;
     width: 100%;
 }
 
 .c-download-info-caption {
-    @include field-label();
+    @include field-label;
     display: table-caption;
 }
 
 .c-download-info-label {
     font-weight: normal;
+
     // make first column as narrow as possible https://stackoverflow.com/a/11267268/462195
     width: 1%;
     white-space: nowrap;
@@ -236,12 +241,12 @@ $image-path: '/media/protocol/img';
 
 .c-download-button {
     a {
-        display:inline-block;
+        display: inline-block;
     }
 
-    a[data-link-type="download"]:focus,
-    a[data-link-type="download"]:active {
-        box-shadow: 0 0 0 2px $field-border-color-hover, 0 0 0 4px mix($color-blue-40, $color-white);
+    a[data-link-type='download']:focus,
+    a[data-link-type='download']:active {
+        box-shadow: 0 0 0 2px $field-border-color-hover, 0 0 0 4px color.mix($color-blue-40, $color-white);
         border-radius: 6px;
         background-color: $field-border-color-hover;
     }
@@ -324,13 +329,11 @@ $image-path: '/media/protocol/img';
     }
 }
 
-
 // Custom narrow modal style.
 // These should be standardized into a narrow theme.
 // https://github.com/mozilla/protocol/issues/358
 
- .mzp-c-modal.help-modal {
-
+.mzp-c-modal.help-modal {
     .mzp-c-modal-window > .mzp-c-modal-inner {
         background: transparent;
         max-width: 600px;

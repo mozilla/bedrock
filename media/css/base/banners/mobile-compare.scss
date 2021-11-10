@@ -76,7 +76,7 @@ $image-path: '/media/protocol/img';
 
         &:hover,
         &:focus {
-            @include transition(transform .1s ease-in-out);
+            @include transition(transform 0.1s ease-in-out);
             @include transform(scale(1.1));
         }
 

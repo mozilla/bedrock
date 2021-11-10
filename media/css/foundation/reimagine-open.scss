@@ -2,12 +2,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+@use 'sass:color';
+
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core//protocol/css/includes/lib';
 @import '~@mozilla-protocol/core//protocol/css/components/hero';
-
 
 .mzp-c-hero {
     background: $color-moz-neon-green url('/media/img/foundation/reimagine-open/bg-header.png') left bottom no-repeat;
@@ -51,13 +52,12 @@ $image-path: '/media/protocol/img';
     }
 }
 
-
 // Section I: The Early Internet and the Power of Open
 .section-one {
     background-color: $color-light-gray-10;
 
     .mzp-l-content {
-        background: transparentize($color-light-gray-10, .15);
+        background: color.adjust($color-light-gray-10, $alpha: 0.15);
     }
 
     @media #{$mq-md} {
@@ -67,7 +67,6 @@ $image-path: '/media/protocol/img';
     }
 }
 
-
 // Section II: The Open Internet Comes of Age
 .section-two {
     @include at2x('/media/img/foundation/reimagine-open/section-two.png', 960px, 540px);
@@ -76,11 +75,11 @@ $image-path: '/media/protocol/img';
     background-attachment: fixed;
 
     .mzp-l-content {
-        background: transparentize($color-white, .15);
+        background: color.adjust($color-white, $alpha: 0.15);
     }
 
     .case-study {
-        background: transparentize($color-moz-warm-red, .95);
+        background: color.adjust($color-moz-warm-red, $alpha: 0.95);
     }
 
     @media #{$mq-md} {
@@ -88,21 +87,19 @@ $image-path: '/media/protocol/img';
     }
 }
 
-
 // Section III: The Future of Open: 2020 and Beyond
 .section-three {
-    background: lighten($color-moz-lemon-yellow, 20%) url('/media/img/foundation/reimagine-open/section-three.svg') right -20% top 10% no-repeat;
+    background: color.adjust($color-moz-lemon-yellow, $lightness: 20%) url('/media/img/foundation/reimagine-open/section-three.svg') right -20% top 10% no-repeat;
     @include background-size(600px, 514px);
 
     .case-study {
-        background: transparentize($color-moz-lemon-yellow, .8);
+        background: color.adjust($color-moz-lemon-yellow, $alpha: 0.8);
     }
 
     @media #{$mq-md} {
         @include background-size(1000px, 856px);
     }
 }
-
 
 // Section IV: Conclusion
 .section-four {
@@ -117,7 +114,6 @@ $image-path: '/media/protocol/img';
         }
     }
 }
-
 
 // Pull quotes
 @media #{$mq-md} {
@@ -146,7 +142,7 @@ $image-path: '/media/protocol/img';
             @include background-size(cover);
 
             blockquote {
-                background: rgba(0, 0, 0, .85);
+                background: rgba(0, 0, 0, 0.85);
             }
         }
 
@@ -189,4 +185,3 @@ $image-path: '/media/protocol/img';
         }
     }
 }
-

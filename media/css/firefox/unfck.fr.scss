@@ -2,13 +2,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-@use "sass:math";
+@use 'sass:math';
 
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-
 
 // --------------------------------------------------------------------------
 // Protocol over-rides
@@ -20,14 +19,13 @@ $image-path: '/media/protocol/img';
 $v-grid-xs: $layout-md;
 $h-grid-xs: $layout-xs;
 
-//md
+// md
 $v-grid-md: $layout-xl * 0.5;
 $h-grid-md: 64px;
 
-//lg
+// lg
 $v-grid-lg: 192px * 0.5;
 $h-grid-lg: 80px;
-
 
 // --------------------------------------------------------------------------
 // Masthead
@@ -63,7 +61,7 @@ $h-grid-lg: 80px;
     position: relative;
 
     @media #{$mq-lg} {
-        &:before {
+        &::before {
             @include at2x('/media/img/firefox/campaign/unfck/fr/speckles-top-left.png', 347px, 300px);
             content: '';
             display: block;
@@ -74,7 +72,7 @@ $h-grid-lg: 80px;
             width: 347px;
         }
 
-        &:after {
+        &::after {
             @include at2x('/media/img/firefox/campaign/unfck/fr/speckles-top-right.png', 345px, 300px);
             content: '';
             display: block;
@@ -97,7 +95,7 @@ $h-grid-lg: 80px;
         position: relative;
         top: 0;
 
-        &:after {
+        &::after {
             background: transparent url('/media/img/firefox/campaign/unfck/fr/button-click.gif') left bottom no-repeat;
             @include background-size(contain);
             bottom: 8.5%;
@@ -110,7 +108,7 @@ $h-grid-lg: 80px;
         }
 
         @media (prefers-reduced-motion) {
-            &:after {
+            &::after {
                 background-image: url('/media/img/firefox/campaign/unfck/fr/button-click.png');
                 bottom: 5%;
             }
@@ -165,7 +163,6 @@ $h-grid-lg: 80px;
 // GIF backgrounds (display while they are loading)
 
 .c-item-gif {
-
     #contain & {
         background-color: #1a90e8;
     }

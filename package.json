@@ -13,12 +13,10 @@
     "copy-webpack-plugin": "9.0.1",
     "css-loader": "6.2.0",
     "css-minimizer-webpack-plugin": "3.0.2",
-    "eslint": "^7.0.0",
     "mini-css-extract-plugin": "2.2.0",
     "sass": "^1.42.1",
     "sass-loader": "12.1.0",
     "style-loader": "3.2.1",
-    "stylelint": "^13.12.0",
     "webpack": "5.51.1",
     "webpack-cli": "4.8.0"
   },
@@ -35,6 +33,7 @@
     "browser-sync": "^2.26.13",
     "browser-sync-webpack-plugin": "^2.2.2",
     "concurrently": "^6.0.1",
+    "eslint": "^7.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-json": "^2.1.1",
     "jasmine-core": "3.9.0",
@@ -46,6 +45,8 @@
     "karma-webpack": "^5.0.0",
     "prettier": "^2.4.1",
     "sinon": "11.1.2",
+    "stylelint": "^14.0.1",
+    "stylelint-config-standard-scss": "^2.0.1",
     "svgo": "^2.7.0",
     "tinypng-cli": "^0.0.7"
   },
@@ -63,7 +64,9 @@
     "prewatch": "npm run static",
     "watch": "webpack --mode=development --watch",
     "prettier": "prettier --write .",
-    "prettier-check": "prettier --check ."
+    "prettier-check": "prettier --check .",
+    "stylelint-fix": "./node_modules/.bin/stylelint \"media/css/**/*.{css,scss}\" --fix",
+    "format": "npm run prettier && npm run stylelint-fix"
   },
   "browserslist": [
     "defaults",

@@ -5,12 +5,11 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import "~@mozilla-protocol/core/protocol/css/includes/lib";
-@import "~@mozilla-protocol/core/protocol/css/components/split";
-@import "~@mozilla-protocol/core/protocol/css/components/picto";
-@import "~@mozilla-protocol/core/protocol/css/components/video";
-@import "~@mozilla-protocol/core/protocol/css/templates/multi-column";
-
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/split';
+@import '~@mozilla-protocol/core/protocol/css/components/picto';
+@import '~@mozilla-protocol/core/protocol/css/components/video';
+@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 
 .c-hero-pretitle {
     @include text-title-2xs;
@@ -33,7 +32,7 @@ $image-path: '/media/protocol/img';
     position: absolute;
     display: block;
 
-    &:after {
+    &::after {
         background: url('/media/img/icons/video-play.svg') top left no-repeat;
         content: '';
         height: 100px;
@@ -47,8 +46,8 @@ $image-path: '/media/protocol/img';
         z-index: 2;
     }
 
-    &:hover:after,
-    &:focus:after {
+    &:hover::after,
+    &:focus::after {
         opacity: 1;
         transform: scale(1.1);
     }
@@ -57,7 +56,7 @@ $image-path: '/media/protocol/img';
 .has-pip-icon strong {
     @include bidi((
         (padding-right, 3.25ex, padding-left, 3.25ex),
-        (background-position, right .25ex top, left .25ex top),
+        (background-position, right 0.25ex top, left 0.25ex top),
     ));
     @include background-size(2.25ex, 2.25ex);
     background-image: url('/media/img/firefox/features/pip/pip-icon.svg');

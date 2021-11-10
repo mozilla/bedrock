@@ -5,7 +5,7 @@
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 @mixin highlighted {
-    &:after {
+    &::after {
         background: $color-black;
         bottom: -1px;
         content: '';
@@ -26,11 +26,16 @@
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Menu top navigation
 
 .c-menu {
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         @include font-base;
     }
 
@@ -80,7 +85,7 @@
     &.mzp-has-drop-down .c-menu-title {
         text-decoration: none;
 
-        &:before {
+        &::before {
             background: $url-image-arrow-down-form top left no-repeat;
             @include background-size(20px, 20px);
             @include bidi(((right, 8px, left, auto),));
@@ -94,7 +99,7 @@
         }
     }
 
-    @supports(display: flex) {
+    @supports (display: flex) {
         .c-menu-title {
             align-items: center;
             display: flex;
@@ -115,7 +120,7 @@
             }
         }
 
-        &.mzp-has-drop-down .c-menu-title:before {
+        &.mzp-has-drop-down .c-menu-title::before {
             display: none;
         }
 
@@ -138,13 +143,12 @@
 
 // Basic hover interactions with JavaScript disabled or not supported..
 .c-menu.mzp-is-basic .c-menu-category {
-
-    .c-menu-title:before {
+    .c-menu-title::before {
         display: none;
     }
 
     @media #{$mq-md} {
-        .c-menu-title:before {
+        .c-menu-title::before {
             display: none;
         }
 
@@ -178,7 +182,7 @@
 // Enhanced hover interactions with JavaScript enabled.
 .c-menu.mzp-is-enhanced .c-menu-category {
     &.mzp-is-selected {
-        .c-menu-title:before {
+        .c-menu-title::before {
             @include transform(rotate(180deg));
         }
 
@@ -191,7 +195,7 @@
     @media #{$mq-md} {
         &.mzp-is-animated {
             .c-menu-panel,
-            .c-menu-title:after {
+            .c-menu-title::after {
                 @include animation(mzp-a-fade-in 80ms ease-in 0ms 1 normal both);
             }
         }
@@ -211,8 +215,7 @@
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Menu panel
 
 .c-menu-panel {
@@ -270,7 +273,7 @@
             position: relative;
 
             @supports (display:grid) {
-                &> ul {
+                & > ul {
                     display: grid;
                     grid-auto-flow: row;
                     grid-template-columns: repeat(2, 1fr);
@@ -344,13 +347,13 @@
             @include clearfix;
             position: relative;
 
-            &> ul {
+            & > ul {
                 margin: 0;
             }
 
             // Undo the grid so items stack in one column on mid-size screens
             @supports (display:grid) {
-                &> ul {
+                & > ul {
                     display: block;
                 }
             }
@@ -371,7 +374,7 @@
             position: relative;
 
             @supports (display:grid) {
-                &> ul {
+                & > ul {
                     display: grid;
                     grid-auto-flow: row;
                     grid-template-columns: repeat(2, 1fr);
@@ -399,7 +402,6 @@
             }
         }
     }
-
 }
 
 .c-menu.mzp-is-basic .c-menu-panel {

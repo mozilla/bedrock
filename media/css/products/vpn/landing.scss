@@ -8,7 +8,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/inline-list';
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Smooth Scroll
 
 html {
@@ -19,7 +19,7 @@ html {
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Waitlist Feature Block
 
 .vpn-waitlist-feature-block {
@@ -43,7 +43,7 @@ html {
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Featured Press Logos
 
 .vpn-featured-press-logos {
@@ -61,7 +61,7 @@ html {
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // FAQ Section
 
 .vpn-faq {
@@ -95,9 +95,9 @@ html {
 }
 
 #faq-refunds .vpn-faq-item-heading h3 {
-    &:before {
+    &::before {
         @include bidi((
-            (padding-right, .1em, padding-left, 0),
+            (padding-right, 0.1em, padding-left, 0),
         ));
         content: '*';
     }

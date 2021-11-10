@@ -2,6 +2,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+@use 'sass:color';
+
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
@@ -10,12 +12,12 @@ $image-path: '/media/protocol/img';
 
 @font-face {
     font-family: FA-Icons-Contact;
-    src: url('#{$font-path}/icons-contact.woff2?20-12-2016') format('woff2'),
-         url('#{$font-path}/icons-contact.woff?20-12-2016') format('woff');
+    src:
+        url('#{$font-path}/icons-contact.woff2?20-12-2016') format('woff2'),
+        url('#{$font-path}/icons-contact.woff?20-12-2016') format('woff');
     font-weight: normal;
     font-style: normal;
 }
-
 
 // Navigation
 #page-nav {
@@ -34,11 +36,10 @@ $image-path: '/media/protocol/img';
     }
 }
 
-
 // Headings
 .section-title {
     @include text-title-md;
-    margin: .5em 0;
+    margin: 0.5em 0;
 }
 
 .section-intro {
@@ -49,7 +50,7 @@ $image-path: '/media/protocol/img';
 .group-title {
     @include text-title-sm;
     margin: 1em 0;
-    padding-top: .75em;
+    padding-top: 0.75em;
     border-top: 2px solid $color-marketing-gray-30;
 
     a {
@@ -64,7 +65,6 @@ $image-path: '/media/protocol/img';
     }
 }
 
-
 // Headshot galleries
 .gallery {
     @include clearfix;
@@ -73,14 +73,14 @@ $image-path: '/media/protocol/img';
 
 .vcard {
     width: 160px;
-    padding: 0 $spacing-lg .25em;
+    padding: 0 $spacing-lg 0.25em;
     margin: 0 auto $spacing-lg;
     position: relative;
 
     .headshot {
         @include transition(transform 200ms ease, box-shadow 200ms ease);
         background: $color-white;
-        box-shadow: 2px 3px 3px rgba(0, 0, 0, .1);
+        box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.1);
         border: 2px solid $color-marketing-gray-20;
         color: $color-black;
         display: block;
@@ -103,7 +103,7 @@ $image-path: '/media/protocol/img';
         margin: 0 0 5px;
         width: 160px;
         height: 160px;
-        outline: 1px solid rgba(0, 0, 0, .05);
+        outline: 1px solid rgba(0, 0, 0, 0.05);
     }
 
     .title,
@@ -130,20 +130,20 @@ $image-path: '/media/protocol/img';
             padding-left: 20px;
             position: relative;
 
-            &:before {
+            &::before {
                 color: $color-link;
                 font: 105% FA-Icons-Contact;
                 position: absolute;
                 left: 0;
-                top: .125em;
+                top: 0.125em;
             }
         }
 
-        a.website:before { content: '\e803'; } /* '' */
-        a.twitter:before { content: '\e809'; } /* '' */
-        a.book:before { content: '\e80e'; } /* '' */
-        a.file:before { content: '\e810'; } /* '' */
-        a.link:before { content: '\e801'; } /* '' */
+        a.website::before { content: '\e803'; } /* '' */
+        a.twitter::before { content: '\e809'; } /* '' */
+        a.book::before { content: '\e80e'; } /* '' */
+        a.file::before { content: '\e810'; } /* '' */
+        a.link::before { content: '\e801'; } /* '' */
     }
 
     .callout {
@@ -176,11 +176,11 @@ $image-path: '/media/protocol/img';
 
         .headshot {
             transform: translate(0, -3px);
-            box-shadow: 2px 6px 5px rgba(0, 0, 0, .1);
+            box-shadow: 2px 6px 5px rgba(0, 0, 0, 0.1);
         }
 
         .photo {
-            outline: 2px solid transparentize($color-link, .5);
+            outline: 2px solid color.adjust($color-link, $alpha: 0.5);
         }
 
         .fn {
@@ -254,7 +254,7 @@ $image-path: '/media/protocol/img';
 
     .photo {
         background: #fff;
-        box-shadow: 2px 3px 3px rgba(0, 0, 0, .1);
+        box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.1);
         float: right;
         margin: 0 0 30px 30px;
         padding: 10px;
@@ -305,7 +305,7 @@ $image-path: '/media/protocol/img';
                 transform: none;
 
                 .photo {
-                    outline: 1px solid rgba(0, 0, 0, .05);
+                    outline: 1px solid rgba(0, 0, 0, 0.05);
                 }
             }
         }
@@ -316,7 +316,7 @@ $image-path: '/media/protocol/img';
             &:hover,
             &:focus,
             &:active {
-                color: darken($color-link, 10%);
+                color: color.adjust($color-link, $lightness: 10%);
                 text-decoration: underline;
             }
         }
@@ -339,7 +339,7 @@ $image-path: '/media/protocol/img';
         }
 
         .photo {
-            box-shadow: 2px 3px 3px rgba(0, 0, 0, .1);
+            box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.1);
             float: none;
             height: 160px;
             margin: 0 auto $spacing-lg;

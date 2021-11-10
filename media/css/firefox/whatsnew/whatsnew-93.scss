@@ -9,8 +9,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 @import 'includes/header';
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Main content
 .wnp-content-main {
     padding: 0;
@@ -68,7 +67,6 @@ $image-path: '/media/protocol/img';
     margin: $layout-md auto;
 }
 
-
 // Responsive video container
 .video-container {
     margin: 0 auto;
@@ -96,7 +94,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Utilities (link to release notes)
 .c-utilities {
     @include text-body-sm;
@@ -105,8 +103,7 @@ $image-path: '/media/protocol/img';
     text-align: center;
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // For dark mode
 
 @media (prefers-color-scheme: dark) {

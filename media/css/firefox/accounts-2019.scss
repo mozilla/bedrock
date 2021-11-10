@@ -13,8 +13,7 @@
     text-align: center;
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Hero
 
 .c-accounts-hero {
@@ -96,9 +95,7 @@
     }
 }
 
-
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // FxA signup form
 
 .c-accounts-form {
@@ -128,8 +125,7 @@
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Products
 
 .c-product-list {
@@ -240,7 +236,6 @@
             @include bidi(((background-position, left top, right top),));
         }
     }
-
 }
 
 .c-product-list-desc {
@@ -256,8 +251,7 @@
     text-align: center;
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Value propositions
 
 .c-accounts-value {
@@ -431,8 +425,7 @@
     @include text-title-md;
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Join the movement
 
 .c-accounts-movement .c-section-title {
@@ -499,8 +492,7 @@
     @include text-body-lg;
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Flip backgrounds for right-to-left languages
 
 [dir='rtl'] {
@@ -513,9 +505,8 @@
             z-index: 2;
         }
 
-
         @media #{$mq-md} {
-            &:after {
+            &::after {
                 @include background-size(1660px 275px);
                 background-image: url('/media/img/firefox/accounts/trailhead/accounts-hero-logged-out.svg');
                 background-position: center top;
@@ -534,7 +525,7 @@
         }
 
         @media #{$mq-lg} {
-            &:after {
+            &::after {
                 @include background-size(3441px 570px);
                 height: 570px;
                 left: 50%;
@@ -545,7 +536,7 @@
     }
 
     @media #{$mq-md} {
-        .state-fxa-supported-signed-in .c-accounts-hero:after {
+        .state-fxa-supported-signed-in .c-accounts-hero::after {
             @include background-size(2188px 275px);
             background-image: url('/media/img/firefox/accounts/trailhead/accounts-hero-logged-in.svg');
             height: 275px;
@@ -555,7 +546,7 @@
     }
 
     @media #{$mq-lg} {
-        .state-fxa-supported-signed-in .c-accounts-hero:after {
+        .state-fxa-supported-signed-in .c-accounts-hero::after {
             @include background-size(3500px 440px);
             height: 440px;
             margin-left: -1750px;
@@ -563,4 +554,3 @@
         }
     }
 }
-

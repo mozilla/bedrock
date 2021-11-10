@@ -18,7 +18,6 @@ $image-path: '/media/protocol/img';
 }
 
 .mzp-c-hero {
-
     .mzp-c-hero-title {
         @include background-size(260px, 48px);
         background-image: url('/media/protocol/img/logos/firefox/browser/logo-word-hor.svg');
@@ -65,7 +64,6 @@ $image-path: '/media/protocol/img';
     }
 
     @media #{$mq-md} {
-
         &.mzp-has-image .mzp-c-hero-title {
             @include bidi(((background-position, top left, top right),));
         }

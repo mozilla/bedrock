@@ -55,7 +55,7 @@ $image-path: '/media/protocol/img';
 
         &:focus,
         &:hover {
-            background-color: rgba(255, 255, 255, .15);
+            background-color: rgba(255, 255, 255, 0.15);
         }
     }
 
@@ -81,7 +81,7 @@ $image-path: '/media/protocol/img';
         top: 0;
 
         &:checked + .mzp-c-button.mzp-t-secondary {
-            background-color: rgba(255, 255, 255, .25);
+            background-color: rgba(255, 255, 255, 0.25);
             font-weight: bold;
         }
     }

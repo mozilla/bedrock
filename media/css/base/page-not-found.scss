@@ -7,7 +7,6 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-
 .page-header {
     .mzp-l-content {
         padding-top: $layout-sm;
@@ -18,7 +17,7 @@ $image-path: '/media/protocol/img';
         .logo-mozilla {
             display: inline-block;
 
-            &:after {
+            &::after {
                 @include bidi(((float, right, left),));
                 background: $color-marketing-gray-30;
                 content: '';
@@ -77,15 +76,14 @@ $image-path: '/media/protocol/img';
     color: $color-link;
     cursor: pointer;
 
-    &:before {
-        content:"\2190\0020";
+    &::before {
+        content: '\2190\0020';
     }
 }
 
 .hide-back {
     display: none;
 }
-
 
 .prose { // Fallback content only
     list-style-type: disc;

@@ -6,11 +6,11 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 $brand-theme: 'firefox';
 
-@import "~@mozilla-protocol/core/protocol/css/includes/lib";
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
-@import "~@mozilla-protocol/core/protocol/css/components/split";
-@import "~@mozilla-protocol/core/protocol/css/components/call-out";
-@import "~@mozilla-protocol/core/protocol/css/components/picto";
+@import '~@mozilla-protocol/core/protocol/css/components/split';
+@import '~@mozilla-protocol/core/protocol/css/components/call-out';
+@import '~@mozilla-protocol/core/protocol/css/components/picto';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
 
 // -------------------------------------------------------------------------- //
@@ -81,7 +81,7 @@ $brand-theme: 'firefox';
             cursor: pointer;
         }
 
-        &:before {
+        &::before {
             @include bidi(((left, 0, right, 0),));
             border-radius: 100%;
             border: 3px solid $color-marketing-gray-80;

@@ -17,14 +17,14 @@ $image-path: '/media/protocol/img';
 
     .group-header {
         background-color: $color-marketing-gray-20;
-        padding-top: .5em;
+        padding-top: 0.5em;
         text-align: center;
         vertical-align: middle;
     }
 
     thead tr + tr th,
     thead tr + tr td {
-        padding-top: .5em;
+        padding-top: 0.5em;
     }
 }
 

@@ -3,7 +3,7 @@
 /* !important required for locale specific override */
 /* stylelint-disable declaration-no-important  */
 * {
-  text-transform: none !important;
-  font-variant: normal !important;
+    text-transform: none !important;
+    font-variant: normal !important;
 }
 /* stylelint-enable */

@@ -15,7 +15,7 @@ $brand-theme: 'firefox';
 @import '~@mozilla-protocol/core/protocol/css/components/split';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 
 // not yet recognized as valid by style lint, so we abstract it
 $mq-reduced-motion: 'screen and (prefers-reduced-motion: reduce)';
@@ -28,8 +28,7 @@ main .mzp-l-content {
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 //  Download buttons
 
 .mobile-download-buttons-wrapper {
@@ -73,7 +72,6 @@ main .mzp-l-content {
     display: none;
 }
 
-
 // very basic styling for no-JS visitors
 .no-js {
     .header-product-ctas {
@@ -116,7 +114,7 @@ main .mzp-l-content {
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Hero
 
 .c-page-header {
@@ -171,7 +169,7 @@ main .mzp-l-content {
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Private
 
 .t-private {
@@ -252,7 +250,7 @@ main .mzp-l-content {
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Splits
 
 .t-account,
@@ -266,13 +264,13 @@ main .mzp-l-content {
     }
 
     @media #{$mq-md} {
-        .mzp-c-split-container  {
+        .mzp-c-split-container {
             max-width: $content-md;
         }
     }
 
     @media #{$mq-lg} {
-        .mzp-c-split-container  {
+        .mzp-c-split-container {
             max-width: $content-max;
         }
     }
@@ -289,7 +287,7 @@ main .mzp-l-content {
 }
 
 .t-android-only {
-    .mzp-c-split  {
+    .mzp-c-split {
         padding-bottom: 0;
     }
 
@@ -318,15 +316,15 @@ main .mzp-l-content {
 .t-theme {
     margin-bottom: $layout-xl;
 
-     img {
-         background-image: url('/media/img/firefox/mobile/protocol/theme-yellow.svg'), url('/media/img/firefox/mobile/protocol/theme-pink.svg'), url('/media/img/firefox/mobile/protocol/theme-violet.svg');
-     }
+    img {
+        background-image: url('/media/img/firefox/mobile/protocol/theme-yellow.svg'), url('/media/img/firefox/mobile/protocol/theme-pink.svg'), url('/media/img/firefox/mobile/protocol/theme-violet.svg');
+    }
 
-     @media #{$mq-lg} {
+    @media #{$mq-lg} {
         .mzp-c-split-body {
             justify-self: end;
         }
-     }
+    }
 }
 
 @media #{$mq-reduced-motion} {
@@ -342,15 +340,17 @@ main .mzp-l-content {
     0% {
         background-position: 50% 75%, 500px 500px, 500px 500px;
     }
+
     33% {
         background-position: 500px 500px, 50% 75%, 500px 500px;
     }
+
     66% {
         background-position: 500px 500px, 500px 500px, 50% 75%;
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // secondary hero
 
 .t-hero-secondary {
@@ -365,8 +365,7 @@ main .mzp-l-content {
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 //  Send to Device overrides
 
 #send-to-device {

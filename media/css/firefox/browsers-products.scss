@@ -14,33 +14,32 @@ $brand-theme: 'firefox';
 @import '../protocol/components/custom-menu-list';
 @import './sticky-promo';
 
-
 $send-svg: '<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(3.000000, 1.000000)" stroke="#{$color-link-hover}" stroke-width="2"><path d="M2,16 L2,20 C2,21.1045695 2.8954305,22 4,22 L14,22 C15.1045695,22 16,21.1045695 16,20 L16,2 C16,0.8954305 15.1045695,-2.02906125e-16 14,0 L4,0 C2.8954305,2.02906125e-16 2,0.8954305 2,2 L2,6" stroke-linecap="round"></path><path d="M2,4 L16,4"></path><path d="M2,18 L16,18"></path><path d="M3.55271368e-15,11 L10,11" stroke-linecap="round" stroke-linejoin="round"></path><polyline stroke-linecap="round" stroke-linejoin="round" points="6 7 10 11 6 15"></polyline></g></g></svg>';
 $send-url: svg-url($send-svg);
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // put spacing into variables so it's easier to adjust spacing at each break point
 
 // xs
 $v-grid-xs: $layout-xs;
 $h-grid-xs: $layout-xs;
 
-//md
+// md
 $v-grid-md: $layout-md;
 $h-grid-md: $layout-lg;
 
-//lg
+// lg
 $v-grid-lg: $layout-lg;
 $h-grid-lg: $layout-xl;
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // utility class
 
 .hidden {
     display: none !important; /* stylelint-disable-line declaration-no-important */
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Protocol over-rides
 
 .mzp-c-menu-list {
@@ -52,11 +51,11 @@ $h-grid-lg: $layout-xl;
     margin-bottom: 0;
 }
 
-.mzp-t-download .mzp-c-menu-list-item.t-web a:hover:after {
+.mzp-t-download .mzp-c-menu-list-item.t-web a:hover::after {
     display: none;
 }
 
-.mzp-t-download .mzp-c-menu-list-item.t-getapp a:hover:after {
+.mzp-t-download .mzp-c-menu-list-item.t-getapp a:hover::after {
     background-image: $send-url;
 }
 
@@ -93,10 +92,9 @@ main .mzp-l-content {
             background-color: $color-marketing-gray-20;
         }
     }
-
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // use split component for top banner
 
 .c-landing-banner {
@@ -113,7 +111,7 @@ main .mzp-l-content {
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // landing grid
 
 .c-landing-grid-item {
@@ -174,7 +172,7 @@ main .mzp-l-content {
         margin-bottom: $v-grid-md * 2;
         margin-left: $h-grid-md;
         max-width: 100%;
-        width: calc(50% - #{$h-grid-md * 0.5}) ;
+        width: calc(50% - #{$h-grid-md * 0.5});
 
         &:nth-child(odd) {
             clear: left;
@@ -191,25 +189,24 @@ main .mzp-l-content {
     .c-landing-grid-item {
         margin-bottom: $v-grid-lg * 2;
         margin-left: $h-grid-lg;
-        width: calc(50% - #{$h-grid-lg * 0.5}) ;
+        width: calc(50% - #{$h-grid-lg * 0.5});
     }
 }
 
 // column grid for browsers that do support grid
 @supports (display:grid) {
-
     // two column
     @media #{$mq-md} {
         .c-landing-grid {
             @include grid-column-gap($h-grid-md);
             @include grid-row-gap(#{$v-grid-md * 2});
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr) );
+            grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
         // need to remove :after added by .mzp-l-content or we get an extra grid row
         // added for clearfix purposes but grids don't need a clearfix
-        .c-landing-grid:after {
+        .c-landing-grid::after {
             content: none;
         }
 
@@ -228,17 +225,17 @@ main .mzp-l-content {
         }
     }
 
-     // three column
+    // three column
     @media #{$mq-lg} {
         .c-landing-grid {
             @include grid-column-gap($h-grid-lg);
             @include grid-row-gap(#{$v-grid-lg * 2});
-            grid-template-columns: repeat(3, minmax(0, 1fr) );
+            grid-template-columns: repeat(3, minmax(0, 1fr));
         }
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Download icon for "download for desktop" link
 
 @function download-arrow($color) {
@@ -268,12 +265,12 @@ $url-download-link-hover: svg-url($download-link-hover);
         background: $color-marketing-gray-20;
         border-color: $color-marketing-gray-40;
 
-        &:before {
+        &::before {
             border-color: $color-marketing-gray-40;
         }
     }
 
-    &:after {
+    &::after {
         @include background-size(23px);
         @include bidi(((right, $spacing-md, left, auto),));
         background-image: $url-download-link;
@@ -287,13 +284,12 @@ $url-download-link-hover: svg-url($download-link-hover);
         width: 16px;
     }
 
-    &:hover:after {
+    &:hover::after {
         background-image: $url-download-link-hover;
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Mobile download links, show app store links when user is on mobile
 
 .appstore-android,
@@ -335,7 +331,7 @@ $url-download-link-hover: svg-url($download-link-hover);
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // dev tools and desktop compare blocks
 
 .t-dev,
@@ -406,7 +402,7 @@ $url-download-link-hover: svg-url($download-link-hover);
     }
 }
 
-@media (min-width:#{$screen-lg}) and (max-width:#{$screen-xl - 1px}) {
+@media (min-width: #{$screen-lg}) and (max-width: #{$screen-xl - 1px}) {
     .t-dev {
         .mzp-c-card-feature.mzp-l-card-feature-left-half {
             display: block;
@@ -423,8 +419,7 @@ $url-download-link-hover: svg-url($download-link-hover);
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // FxA account signup form
 
 // box around form
@@ -444,7 +439,7 @@ $url-download-link-hover: svg-url($download-link-hover);
         margin-bottom: $v-grid-lg;
         max-width: 100%;
 
-        &:after {
+        &::after {
             @include bidi((
                 (right, $layout-md, calc(560px + #{$layout-md * 2})),
                 (left, calc(560px + #{$layout-md * 2}), $layout-md),
@@ -460,7 +455,7 @@ $url-download-link-hover: svg-url($download-link-hover);
     }
 
     @media #{$mq-xl} {
-        &:after {
+        &::after {
             background-size: auto;
         }
     }
@@ -490,7 +485,7 @@ $url-download-link-hover: svg-url($download-link-hover);
 
 .fxa-email-field-container {
     @media #{$mq-md} {
-        @supports(display:grid) {
+        @supports (display:grid) {
             & {
                 @include grid-column-gap($spacing-lg);
                 display: grid;
@@ -505,8 +500,8 @@ $url-download-link-hover: svg-url($download-link-hover);
                 display: block; // not flex
 
                 // put in fake form label to push button down height of real form label next to it
-                &:before {
-                    @include field-label();
+                &::before {
+                    @include field-label;
                     content: '.';
                     visibility: hidden;
                 }

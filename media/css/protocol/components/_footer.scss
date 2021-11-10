@@ -2,7 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-@use "sass:math";
+@use 'sass:math';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
@@ -81,7 +81,7 @@
         }
 
         .c-footer-list-social li a {
-            opacity: .75;
+            opacity: 0.75;
 
             &:hover,
             &:focus,
@@ -104,8 +104,7 @@
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Footer primary section, contains logo and sections with links
 
 .c-footer-primary {
@@ -119,7 +118,7 @@
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Footer Mozilla logo
 
 .c-footer-primary-logo {
@@ -143,8 +142,7 @@
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Footer section containing list and heading
 
 .c-footer-sections {
@@ -248,7 +246,7 @@
             outline: 1px dotted $color-black;
         }
 
-        button:before {
+        button::before {
             background: $url-image-arrow-down-form top left no-repeat;
             @include background-size(24px, 24px);
             @include bidi(((right, 8px, left, auto),));
@@ -261,7 +259,7 @@
             width: 24px;
         }
 
-        button[aria-expanded=true]:before {
+        button[aria-expanded='true']::before {
             @include transform(rotate(180deg));
         }
     }
@@ -293,13 +291,12 @@
         }
     }
 
-    &.is-closed[aria-hidden="true"] {
+    &.is-closed[aria-hidden='true'] {
         display: none;
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Footer secondary contains langauge selector, social icons, legal, and license
 
 .c-footer-secondary {
@@ -307,7 +304,7 @@
     position: relative;
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Footer language selector
 
 .c-footer-language {
@@ -319,13 +316,13 @@
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Footer social icon links
 
 .c-footer-section-social .c-footer-heading {
     @include text-body-sm;
     font-weight: normal;
-    margin-top: .2em;
+    margin-top: 0.2em;
 }
 
 .c-footer-list-social {
@@ -343,7 +340,7 @@
             border-bottom: 1px solid transparent;
             display: block;
             height: 20px;
-            opacity: .5;
+            opacity: 0.5;
             padding-bottom: 2px;
             width: 20px;
 
@@ -379,9 +376,7 @@
     }
 }
 
-
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Footer license and terms
 
 .c-footer-legal {
@@ -395,8 +390,7 @@
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Footer license
 
 .c-footer-license {
@@ -408,8 +402,7 @@
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Footer license
 
 .c-footer-terms {

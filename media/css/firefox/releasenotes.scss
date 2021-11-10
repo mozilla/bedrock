@@ -2,7 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-@use "sass:math";
+@use 'sass:math';
 
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
@@ -13,8 +13,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/call-out';
 @import '../protocol/components/sub-navigation';
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Call out / page header
 
 .mzp-c-call-out.mzp-t-product-firefox,
@@ -24,14 +23,13 @@ $image-path: '/media/protocol/img';
 
 // nightly header gradient
 .mzp-c-call-out.mzp-t-product-nightly {
-    background: linear-gradient(#000000, #001e44);
+    background: linear-gradient(#000, #001e44);
 }
 
 // developer header gradient
 .mzp-c-call-out.mzp-t-product-developer {
-    background: linear-gradient(#000000, #001e44);
+    background: linear-gradient(#000, #001e44);
 }
-
 
 // old logos
 //  - cannot use at2x mixin here because it will over-ride the background-size,
@@ -143,8 +141,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // secondary navigation
 
 .t-release {
@@ -163,8 +160,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // release notes custom typography
 
 .c-release-summary {
@@ -186,7 +182,8 @@ $image-path: '/media/protocol/img';
         @include font-base;
         @include text-title-2xs;
     }
-     .c-release-date {
+
+    .c-release-date {
         @include font-base;
         @include text-title-2xs;
     }
@@ -198,7 +195,7 @@ $image-path: '/media/protocol/img';
         font-weight: bold;
 
         // pushes the text down after the big release-version text
-        &:before {
+        &::before {
             @include text-title-xl;
             content: '.';
             display: block;
@@ -216,7 +213,7 @@ $image-path: '/media/protocol/img';
 .c-release-notes > .mzp-l-content {
     padding-top: $layout-lg;
 
-    &:before {
+    &::before {
         content: '';
         display: block;
         width: calc(100% - #{ $layout-xs * 2});
@@ -273,7 +270,7 @@ $image-path: '/media/protocol/img';
             list-style: disc;
 
             li {
-                margin-bottom: .25em;
+                margin-bottom: 0.25em;
             }
 
             ul {
@@ -291,7 +288,7 @@ $image-path: '/media/protocol/img';
             list-style: decimal;
 
             li {
-                margin-bottom: .25em;
+                margin-bottom: 0.25em;
             }
 
             ol {
@@ -342,7 +339,7 @@ $image-path: '/media/protocol/img';
     @include justify-content(end);
     margin-top: 10px;
 
-    &:before {
+    &::before {
         content: ' ';
         background-image: url('/media/img/firefox/releasenotes/mdn-icon.png');
         background-repeat: no-repeat;
@@ -359,8 +356,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // all-download link
 
 .all-download {
@@ -374,8 +370,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Compact call out
 
 .mzp-c-call-out-compact {
@@ -392,8 +387,7 @@ $image-path: '/media/protocol/img';
     background: linear-gradient(#001e44, #002d66);
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // more information links at end of page
 
 .c-release-footer {
@@ -403,6 +397,7 @@ $image-path: '/media/protocol/img';
         @include font-base;
         @include text-body-md;
     }
+
     a {
         display: block;
     }

@@ -13,8 +13,9 @@ $image-path: '/media/protocol/img';
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-    src: url('/media/fonts/fx-lifestyle/antonio-regular-webfont.woff2') format('woff2'),
-         url('/media/fonts/fx-lifestyle/antonio-regular-webfont.woff') format('woff');
+    src:
+        url('/media/fonts/fx-lifestyle/antonio-regular-webfont.woff2') format('woff2'),
+        url('/media/fonts/fx-lifestyle/antonio-regular-webfont.woff') format('woff');
 }
 
 @font-face {
@@ -22,9 +23,9 @@ $image-path: '/media/protocol/img';
     font-weight: 700;
     font-style: normal;
     font-display: swap;
-    src: url('/media/fonts/fx-lifestyle/antonio-bold-webfont.woff2') format('woff2'),
-         url('/media/fonts/fx-lifestyle/antonio-bold-webfont.woff') format('woff');
-
+    src:
+        url('/media/fonts/fx-lifestyle/antonio-bold-webfont.woff2') format('woff2'),
+        url('/media/fonts/fx-lifestyle/antonio-bold-webfont.woff') format('woff');
 }
 
 #confetti-canvas {
@@ -40,7 +41,7 @@ $image-path: '/media/protocol/img';
 }
 
 main {
-    background: #45A5B3;
+    background: #45a5b3;
     color: $color-white;
     overflow: hidden;
     padding: 0 10px;
@@ -61,7 +62,7 @@ main {
         padding: $layout-lg 9px 0;
 
         h1 {
-            color: #F8EB57;
+            color: #f8eb57;
             font-size: 6.25rem;
             line-height: 6.25rem;
             text-shadow: -5px 0 0 rgb(215, 102, 40), -8px 0 0 rgba(32, 35, 36, 0.3);
@@ -98,7 +99,7 @@ main {
             }
 
             .time {
-                color: #CB6937;
+                color: #cb6937;
                 font-size: 1.375rem;
             }
 
@@ -121,7 +122,7 @@ main {
                     }
                 }
 
-                &:after {
+                &::after {
                     background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTRweCIgaGVpZ2h0PSIxNHB4IiB2aWV3Qm94PSIwIDAgMTQgMTQiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDQ1LjIgKDQzNTE0KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5hcnJvd19mb3J3YXJkIC0gbWF0ZXJpYWw8L3RpdGxlPgogICAgPGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+CiAgICA8ZGVmcz48L2RlZnM+CiAgICA8ZyBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8ZyBpZD0iVGhhbmstWW91LS0tTGFuZGluZy1QYWdlLXYxIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNDkxLjAwMDAwMCwgLTU3MC4wMDAwMDApIiBmaWxsPSIjMEU5QUQ4Ij4KICAgICAgICAgICAgPGcgaWQ9IkNPTlRFTlQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI2My4wMDAwMDAsIDQ0Ny4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxnIGlkPSJMSU5LLTEiPgogICAgICAgICAgICAgICAgICAgIDxwb2x5Z29uIGlkPSJhcnJvd19mb3J3YXJkLS0tbWF0ZXJpYWwiIHBvaW50cz0iMjM1IDEyMy4zMiAyNDEuNjggMTMwIDIzNSAxMzYuNjggMjMzLjgyIDEzNS41IDIzOC40OCAxMzAuODIgMjI4LjMyIDEzMC44MiAyMjguMzIgMTI5LjE4IDIzOC40OCAxMjkuMTggMjMzLjgyIDEyNC41Ij48L3BvbHlnb24+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==');
                     background-repeat: no-repeat;
                     content: '';
@@ -139,7 +140,9 @@ main {
     }
 
     html[lang^='en'] & {
-        h1, h2, .time {
+        h1,
+        h2,
+        .time {
             font-family: Antonio, sans-serif;
             text-transform: uppercase;
         }
@@ -147,7 +150,7 @@ main {
 }
 
 #newsletter-subscribe {
-    background: #F8EB57;
+    background: #f8eb57;
     color: $color-black;
     padding-top: $spacing-xl;
 
@@ -163,4 +166,3 @@ main {
         }
     }
 }
-

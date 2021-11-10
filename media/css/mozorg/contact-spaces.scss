@@ -16,8 +16,9 @@ $image-path: '/media/protocol/img';
     font-family: FA-Icons-Contact;
     font-style: normal;
     font-weight: normal;
-    src: url('/media/fonts/icons-contact.woff2') format('woff2'),
-         url('/media/fonts/icons-contact.woff') format('woff');
+    src:
+        url('/media/fonts/icons-contact.woff2') format('woff2'),
+        url('/media/fonts/icons-contact.woff') format('woff');
 }
 
 /* -------------------------------------------------------------------------- */
@@ -190,31 +191,30 @@ $image-path: '/media/protocol/img';
 
         .adr {
             @include bidi(((padding-left, $spacing-xl, padding-right, 0),));
-            margin: 0 0 .5em;
+            margin: 0 0 0.5em;
             position: relative;
 
-            &:before {
+            &::before {
                 @include bidi(((left, 0, right, auto),));
                 color: $color-red-60;
                 content: '\e800';
                 font: 105% FA-Icons-Contact;
                 position: absolute;
-                top: .125em;
+                top: 0.125em;
             }
         }
 
         .extra {
-
             a {
                 @include bidi(((padding-left, $spacing-xl, padding-right, 0),));
                 position: relative;
 
-                &:before {
+                &::before {
                     @include bidi(((left, 0, right, auto),));
                     color: $color-red-60;
                     font: 105% FA-Icons-Contact;
                     position: absolute;
-                    top: .125em;
+                    top: 0.125em;
                 }
             }
         }
@@ -274,17 +274,17 @@ $image-path: '/media/protocol/img';
 }
 
 // Icons
-.card .extra a.website:before { content: '\e803'; }
-.card .extra a.email:before { content: '\e806'; }
-.card .extra a.doc:before { content: '\e810'; }
-.card .extra a.book:before { content: '\e80e'; }
-.card .extra a.irc:before { content: '\e811'; }
-.card .extra a.twitter:before { content: '\e809'; }
-.card .extra a.facebook:before { content: '\e802'; }
-.card .extra a.gplus:before { content: '\f0d5'; }
-.card .extra a.instagram:before { content: '\e80a'; }
-.card .extra a.youtube:before { content: '\e80c'; }
-.card .extra a.flickr:before { content: '\e807'; }
+.card .extra a.website::before { content: '\e803'; }
+.card .extra a.email::before { content: '\e806'; }
+.card .extra a.doc::before { content: '\e810'; }
+.card .extra a.book::before { content: '\e80e'; }
+.card .extra a.irc::before { content: '\e811'; }
+.card .extra a.twitter::before { content: '\e809'; }
+.card .extra a.facebook::before { content: '\e802'; }
+.card .extra a.gplus::before { content: '\f0d5'; }
+.card .extra a.instagram::before { content: '\e80a'; }
+.card .extra a.youtube::before { content: '\e80c'; }
+.card .extra a.flickr::before { content: '\e807'; }
 
 /* -------------------------------------------------------------------------- */
 // Image & Video media
@@ -405,7 +405,6 @@ $image-path: '/media/protocol/img';
 // Contact links
 
 #contact {
-
     p {
         max-width: 35em;
     }

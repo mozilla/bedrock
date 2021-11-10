@@ -21,9 +21,11 @@ $image-path: '/media/protocol/img';
 .resource-center-page-header {
     .mzp-l-content {
         max-width: $content-md;
+
         .mzp-c-call-out-title {
             @include font-firefox;
         }
+
         .mzp-c-call-out-desc {
             font-weight: 700;
             margin-left: auto;
@@ -48,7 +50,7 @@ $image-path: '/media/protocol/img';
 }
 
 .resource-center-wordmark {
-    @include image-replaced();
+    @include image-replaced;
     @include background-size(94px 32px);
     background: transparent url('/media/img/logos/vpn/logo-with-wordmark.svg') top left no-repeat;
     height: 32px;
@@ -58,7 +60,6 @@ $image-path: '/media/protocol/img';
     @media #{$mq-md} {
         margin: 0 0 $spacing-xl;
     }
-
 }
 
 .resource-center-cta {
@@ -81,6 +82,7 @@ $image-path: '/media/protocol/img';
 .resource-center-cta-desc {
     @include text-body-sm;
     @include font-base;
+
     // this color will be added to protocol, this should be updated once its availible as a token
     color: #666;
 }
@@ -89,6 +91,7 @@ $image-path: '/media/protocol/img';
     background: url('/media/img/products/vpn/resource-center/resource_center_article_gradient.svg');
     background-repeat: no-repeat;
     background-size: auto;
+
     // The background image will cut off on larger viewports
     @media #{$mq-lg} {
         background-size: contain;
@@ -130,7 +133,7 @@ $image-path: '/media/protocol/img';
 }
 
 .vpn-article-bottom-title {
-    margin-bottom:$spacing-xl;
+    margin-bottom: $spacing-xl;
 }
 
 .vpn-article-hr {
@@ -140,6 +143,7 @@ $image-path: '/media/protocol/img';
 .vpn-c-vote {
     margin-top: $layout-xl;
     text-align: center;
+
     .vpn-c-vote-btn-container {
         @include bidi(((margin-right, $layout-lg, margin-left, $layout-lg),));
         position: relative;
@@ -159,7 +163,7 @@ $image-path: '/media/protocol/img';
                 top: 13px;
             }
 
-            &[aria-pressed=true] {
+            &[aria-pressed='true'] {
                 color: $color-blue-50;
                 fill: currentColor;
             }
@@ -168,8 +172,9 @@ $image-path: '/media/protocol/img';
                 @include visually-hidden;
             }
 
-            svg, path {
-               pointer-events: none;
+            svg,
+            path {
+                pointer-events: none;
             }
         }
     }

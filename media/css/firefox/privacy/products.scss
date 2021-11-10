@@ -21,7 +21,7 @@ $image-path: '/media/protocol/img';
     max-width: $content-xl;
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Top Page Call Out
 
 .privacy-products-call-out-main {
@@ -37,7 +37,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Main Hero
 
 .privacy-products {
@@ -61,7 +61,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Pictos
 
 .privacy-products-etp {
@@ -92,7 +92,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Tracker Counter Call Out
 
 .privacy-products-tracker-counter.mzp-t-dark {
@@ -117,7 +117,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Product List Splits
 
 .privacy-products-list {
@@ -174,7 +174,7 @@ $image-path: '/media/protocol/img';
     @include font-firefox;
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Conditional CTA Hooks
 
 .show-firefox-desktop-70,
@@ -184,7 +184,6 @@ $image-path: '/media/protocol/img';
 }
 
 .state-firefox-desktop-70 {
-
     .show-firefox-desktop-70 {
         display: block;
     }
@@ -192,11 +191,9 @@ $image-path: '/media/protocol/img';
     .show-default {
         display: none;
     }
-
 }
 
 .state-firefox-desktop-old {
-
     .show-firefox-desktop-old {
         display: block;
     }

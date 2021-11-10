@@ -14,7 +14,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 @import '~@mozilla-protocol/core/protocol/css/components/inline-list';
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Split component adjustments
 
 .data-breaches .mzp-c-split:not(:first-of-type) {
@@ -35,8 +35,7 @@ $image-path: '/media/protocol/img';
     max-width: 100%;
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // 15 tips section
 
 body {
@@ -57,9 +56,9 @@ body {
     h3 {
         @include text-title-md;
 
-        &:before {
+        &::before {
             counter-increment: tips;
-            content: counter(tips) ". ";
+            content: counter(tips) '. ';
             color: $color-pink-50;
         }
 

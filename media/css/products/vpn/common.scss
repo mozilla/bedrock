@@ -8,7 +8,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import 'includes/lib';
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Guarantee / Availability Copy
 
 .availability-copy,
@@ -21,7 +21,7 @@ $image-path: '/media/protocol/img';
     font-weight: bold;
     margin-bottom: $spacing-lg;
 
-    &:before {
+    &::before {
         @include bidi((
             (background-position, top left, top right),
             (padding-right, $spacing-xs, padding-left, 0),
@@ -36,9 +36,9 @@ $image-path: '/media/protocol/img';
         width: 16px;
     }
 
-    &:after {
+    &::after {
         @include bidi((
-            (padding-left, .1em, padding-right, 0),
+            (padding-left, 0.1em, padding-right, 0),
         ));
         content: '*';
     }
@@ -57,9 +57,9 @@ $image-path: '/media/protocol/img';
 }
 
 .vpn-features-guarantee {
-    &:after {
+    &::after {
         @include bidi((
-            (padding-left, .1em, padding-right, 0),
+            (padding-left, 0.1em, padding-right, 0),
         ));
         content: '*';
     }
@@ -69,7 +69,7 @@ $image-path: '/media/protocol/img';
     margin-bottom: 0;
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // VPN Nav Button
 
 .vpn-nav-cta {
@@ -102,7 +102,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Page VPN Button
 
 main .mzp-c-button.mzp-t-xl {
@@ -117,7 +117,7 @@ main .mzp-c-button.mzp-t-xl {
     background: $color-white;
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // VPN Product Feature List
 
 .vpn-feature-list.mzp-u-list-styled {
@@ -158,7 +158,7 @@ main .mzp-c-button.mzp-t-xl {
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Page Footer
 
 .vpn-footer {

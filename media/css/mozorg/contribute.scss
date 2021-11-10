@@ -48,7 +48,6 @@ $image-path: '/media/protocol/img';
         position: absolute;
         width: 100%;
 
-
         @media #{$mq-lg} {
             @include bidi(((right, -25px, auto),(left, auto, -25px),));
             left: auto;
@@ -57,6 +56,7 @@ $image-path: '/media/protocol/img';
         }
     }
 }
+
 .contribute-section-subheading {
     @include text-title-xs;
 }
@@ -192,7 +192,7 @@ $image-path: '/media/protocol/img';
             @include font-size(40px);
         }
 
-        &:before {
+        &::before {
             @include bidi(((left, 0, auto),(right, auto, 0),));
             background-image: url('/media/img/contribute/contribute-banner-gethelp-icon.svg');
             content: '';
@@ -224,8 +224,9 @@ $image-path: '/media/protocol/img';
 
     @media #{$mq-lg} {
         @include bidi(((background-position, (10% -45px, 96% 88%), (90% -45px, 13% 88%)),));
-        background-image: url('/media/img/contribute/contribute-problems-bulb.svg'),
-                          url('/media/img/contribute/contribute-problems-fly.svg');
+        background-image:
+            url('/media/img/contribute/contribute-problems-bulb.svg'),
+            url('/media/img/contribute/contribute-problems-fly.svg');
         background-repeat: no-repeat;
         background-size: 86px 241px, 33%;
         border: 4px solid $color-moz-light-gray;
@@ -252,7 +253,6 @@ $image-path: '/media/protocol/img';
         }
     }
 }
-
 
 .contribute-mission {
     margin-bottom: $layout-xl;
@@ -322,19 +322,19 @@ $image-path: '/media/protocol/img';
                 width: 24px;
             }
 
-            &.contribute-mission-learn-icon:before {
+            &.contribute-mission-learn-icon::before {
                 background-image: url('/media/img/contribute/icon/M.svg');
             }
 
-            &.contribute-mission-event-icon:before {
+            &.contribute-mission-event-icon::before {
                 background-image: url('/media/img/contribute/icon/cal.svg');
             }
 
-            &.contribute-mission-donate-icon:before {
+            &.contribute-mission-donate-icon::before {
                 background-image: url('/media/img/contribute/icon/heart.svg');
             }
 
-            &.contribute-mission-follow-icon:before {
+            &.contribute-mission-follow-icon::before {
                 background-image: url('/media/img/contribute/icon/twitter.svg');
             }
         }

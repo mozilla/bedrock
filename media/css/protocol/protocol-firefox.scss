@@ -4,7 +4,6 @@
 
 $brand-theme: 'firefox';
 $type-scale: 'standard';
-
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
@@ -37,7 +36,6 @@ $image-path: '/media/protocol/img';
 @import 'components/menu';
 @import 'components/menu-item';
 @import 'components/sub-navigation';
-
 
 // Temporary styling until the newsletter component is updated in Protocol
 // https://github.com/mozilla/protocol/issues/578

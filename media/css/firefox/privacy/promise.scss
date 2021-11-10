@@ -9,7 +9,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/picto';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Main Hero
 
 .privacy-promise-hero {
@@ -34,7 +34,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Data Promise Call Out
 
 .call-out-data-promise {
@@ -45,7 +45,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Privacy Promise Splits
 
 .privacy-promise-feature {
@@ -62,7 +62,7 @@ $image-path: '/media/protocol/img';
     max-width: 100%;
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Picto Cards
 
 .mzp-l-columns .mzp-c-picto {
@@ -76,4 +76,3 @@ $image-path: '/media/protocol/img';
 .privacy-promise-learn-more {
     background-color: $color-marketing-gray-10;
 }
-

@@ -14,7 +14,6 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 @import 'includes/header';
 
-
 // Override _header.scss since this page doesn't support dark mode
 @media (prefers-color-scheme: dark) {
     .c-page-header-logo-fx {
@@ -22,8 +21,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Main content
 .wnp-content-main {
     padding: 0;
@@ -53,8 +51,7 @@ $image-path: '/media/protocol/img';
     margin-right: auto;
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Utilities (link to release notes)
 .c-utilities {
     @include text-body-sm;

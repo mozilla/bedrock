@@ -2,7 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-@use "sass:math";
+@use 'sass:math';
 
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
@@ -21,11 +21,11 @@ $image-path: '/media/protocol/img';
 $v-grid-xs: $layout-md;
 $h-grid-xs: $layout-xs;
 
-//md
+// md
 $v-grid-md: $layout-xl * 0.5;
 $h-grid-md: 64px;
 
-//lg
+// lg
 $v-grid-lg: 192px * 0.5;
 $h-grid-lg: 80px;
 
@@ -47,12 +47,15 @@ main {
         }
     }
 
-    h2, h3, h4 {
+    h2,
+    h3,
+    h4 {
         color: $color-white;
         margin-bottom: $spacing-md;
     }
 
-    h1, h2 {
+    h1,
+    h2 {
         color: $color-white;
     }
 }
@@ -64,7 +67,7 @@ main {
     &,
     & .mzp-c-card-feature-desc,
     & .mzp-c-hero {
-        background-color: #6E40C8;
+        background-color: #6e40c8;
         color: $color-white;
     }
 
@@ -128,6 +131,7 @@ main {
         a:visited {
             display: inline-block;
         }
+
         a:hover,
         a:focus,
         a:active {
@@ -162,6 +166,14 @@ main {
     .show-firefox {
         display: block;
     }
+
+    .mobile-badge {
+        display: inline-block;
+
+        @media #{$mq-md} {
+            margin-right: $spacing-md;
+        }
+    }
 }
 
 // begin conditional CTA content
@@ -175,16 +187,6 @@ main {
 .ios {
     .download-button {
         display: none;
-    }
-}
-
-.is-firefox {
-    .mobile-badge {
-        display: inline-block;
-
-        @media #{$mq-md} {
-            margin-right: $spacing-md;
-        }
     }
 }
 
@@ -255,18 +257,6 @@ main {
 // --------------------------------------------------------------------------
 // Banner
 
-.c-banner-wrapper {
-    margin: 0 auto;
-
-    &.show-default {
-        max-width: 750px;
-    }
-
-    &.show-firefox {
-        max-width: 900px;
-    }
-}
-
 .c-banner {
     background-repeat: no-repeat;
     height: 0;
@@ -276,30 +266,38 @@ main {
     top: 0;
 }
 
-.c-banner-wrapper.show-default {
-    .c-banner {
-        @include background-size(contain);
-        background-image: url('/media/img/firefox/campaign/unfck/de/unfck-header.png');
-        padding-top: math.div(562 * 100%, 742);
-        top: 0;
+.c-banner-wrapper {
+    margin: 0 auto;
 
-        @media #{$mq-sm} {
-            @include at2x('/media/img/firefox/campaign/unfck/de/unfck-header.png', contain);
-            margin-bottom: 0;
+    &.show-default {
+        max-width: 750px;
+
+        .c-banner {
+            @include background-size(contain);
+            background-image: url('/media/img/firefox/campaign/unfck/de/unfck-header.png');
             padding-top: math.div(562 * 100%, 742);
+            top: 0;
+
+            @media #{$mq-sm} {
+                @include at2x('/media/img/firefox/campaign/unfck/de/unfck-header.png', contain);
+                margin-bottom: 0;
+                padding-top: math.div(562 * 100%, 742);
+            }
         }
     }
-}
 
-.c-banner-wrapper.show-firefox  {
-    .c-banner {
-        @include background-size(contain);
-        background-image: url('/media/img/firefox/campaign/unfck/de/danke.png');
-        max-width:  100%;
-        padding-top: math.div(439 * 100%, 900);
+    &.show-firefox {
+        max-width: 900px;
 
-        @media #{$mq-md} {
-            @include at2x('/media/img/firefox/campaign/unfck/de/danke.png', contain);
+        .c-banner {
+            @include background-size(contain);
+            background-image: url('/media/img/firefox/campaign/unfck/de/danke.png');
+            max-width: 100%;
+            padding-top: math.div(439 * 100%, 900);
+
+            @media #{$mq-md} {
+                @include at2x('/media/img/firefox/campaign/unfck/de/danke.png', contain);
+            }
         }
     }
 }
@@ -339,25 +337,24 @@ main {
     }
 
     @media #{$mq-xl} {
-
         .mzp-c-hero-body {
             position: relative;
 
-            &:before,
-            &:after {
+            &::before,
+            &::after {
                 content: '';
                 height: 410px;
                 position: absolute;
                 width: 622px;
             }
 
-            &:before {
+            &::before {
                 background: transparent url('/media/img/firefox/campaign/unfck/de/speckles1.png') left bottom no-repeat;
                 bottom: -170px;
                 left: -800px;
             }
 
-            &:after {
+            &::after {
                 background: transparent url('/media/img/firefox/campaign/unfck/de/speckles2.png') left bottom no-repeat;
                 bottom: -300px;
                 right: -800px;
@@ -425,12 +422,27 @@ main {
     display: block;
     margin: 0 auto $layout-sm;
     max-width: 280px;
+    text-align: center;
     width: 100%;
 
     source,
     img {
         display: block;
         width: 100%;
+    }
+
+    // GIF backgrounds (display while they are loading)
+    #contain & {
+        background-color: #1a90e8;
+    }
+
+    #desinformation & {
+        background-color: #2657fd;
+    }
+
+    #social & {
+        background-color: $color-white;
+        color: $color-black;
     }
 }
 
@@ -451,9 +463,9 @@ main {
         @include grid-column-gap($h-grid-xs);
         display: grid;
         grid-template-areas:
-            "image"
-            "title"
-            "desc";
+            'image'
+            'title'
+            'desc';
         grid-template-rows: min-content 1fr;
         text-align: left;
     }
@@ -473,9 +485,8 @@ main {
     .c-item-desc {
         grid-area: desc;
 
-
         p:last-child {
-             margin-bottom: 0;
+            margin-bottom: 0;
         }
     }
 
@@ -483,8 +494,8 @@ main {
         .c-item-unfck {
             @include grid-column-gap($h-grid-md);
             grid-template-areas:
-                "image title"
-                "image desc";
+                'image title'
+                'image desc';
             margin-left: 0;
             margin-right: 0;
             max-width: 100%;
@@ -496,7 +507,7 @@ main {
         }
 
         .c-item-title {
-            &:before {
+            &::before {
                 position: absolute;
                 right: 100%;
                 top: 0;
@@ -594,25 +605,5 @@ main {
                 @include bidi(((clear, left, right),));
             }
         }
-    }
-}
-
-// --------------------------------------------------------------------------
-// GIF backgrounds (display while they are loading)
-
-.c-item-gif {
-    text-align: center;
-
-    #contain & {
-        background-color: #1a90e8;
-    }
-
-    #desinformation & {
-        background-color: #2657fd;
-    }
-
-    #social & {
-        background-color: $color-white;
-        color: $color-black;
     }
 }

@@ -16,7 +16,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 @import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Global styles.
 
 h1 {
@@ -44,8 +44,7 @@ main {
     padding-bottom: $label-v-spacing;
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // newsletter/existing custom styles.
 
 .c-column {
@@ -58,7 +57,7 @@ main {
         width: 50%;
 
         &:first-child {
-            border-right: 1px solid rgba(0,0,0,.2);
+            border-right: 1px solid rgba(0, 0, 0, 0.2);
         }
     }
 
@@ -92,7 +91,7 @@ main {
         }
 
         tr {
-            border-bottom: 1px solid rgba(0,0,0,.2);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
         }
 
         th {
@@ -105,7 +104,6 @@ main {
             label {
                 @include visually-hidden;
             }
-
         }
 
         tr.indented th {
@@ -132,7 +130,7 @@ main {
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // newsletter/updated custom styles.
 
 .c-updated-block {
@@ -154,7 +152,7 @@ main {
         display: none;
         margin-top: $spacing-lg;
 
-        a:before {
+        a::before {
             content: '\2190\0020';
         }
 
@@ -191,15 +189,14 @@ main {
             text-indent: -$spacing-xl;
         }
 
-        input[type="checkbox"] {
+        input[type='checkbox'] {
             margin-right: 10px;
         }
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // newsletter/country/ custom styles.
-
 
 #country-newsletter-form {
     select {

@@ -2,7 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-@use "sass:math";
+@use 'sass:math';
 
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
@@ -32,7 +32,6 @@ $content-md: 688px;
 $content-lg: 928px;
 $content-xl: 1152px;
 $content-max: 1440px;
-
 $screen-xs: 320px;
 $screen-sm: 480px;
 $screen-md: 768px;
@@ -43,11 +42,11 @@ $screen-xl: 1312px;
 $v-grid-xs: $layout-md;
 $h-grid-xs: $layout-xs;
 
-//md
+// md
 $v-grid-md: $layout-xl * 0.5;
 $h-grid-md: 64px;
 
-//lg
+// lg
 $v-grid-lg: 192px * 0.5;
 $h-grid-lg: 80px;
 
@@ -55,7 +54,9 @@ main {
     background-color: $color-white; // for IE6
     color: $color-dark-gray-30;
 
-    h2, h3, h4 {
+    h2,
+    h3,
+    h4 {
         color: $color-marketing-gray-99;
         margin-bottom: $spacing-md;
     }
@@ -91,7 +92,6 @@ main {
         padding-left: $h-grid-lg;
         padding-right: $h-grid-lg;
     }
-
 }
 
 // button container
@@ -110,7 +110,6 @@ main {
         display: block;
     }
 }
-
 
 // cta link
 
@@ -270,9 +269,8 @@ button.mzp-c-cta-link {
 // --------------------------------------------------------------------------
 
 .u-visually-hidden {
-    @include visually-hidden();
+    @include visually-hidden;
 }
-
 
 // --------------------------------------------------------------------------
 // section titles
@@ -280,7 +278,6 @@ button.mzp-c-cta-link {
 .mzp-c-section-heading {
     @include text-title-md;
 }
-
 
 // --------------------------------------------------------------------------
 // trio
@@ -339,7 +336,6 @@ button.mzp-c-cta-link {
     }
 }
 
-
 // --------------------------------------------------------------------------
 // Blocks
 // used for highlights, hero, and mobile
@@ -360,19 +356,101 @@ button.mzp-c-cta-link {
 }
 
 .c-block-container {
-    @include clearfix();
+    @include clearfix;
     @include border-box;
     margin: 0 auto;
     max-width: $content-xl + $layout-xl * 2;
     min-width: $content-xs;
     padding: 0 $layout-sm;
 
-    @media #{$mq-md} {
-        padding: 0 $layout-lg;
+    .c-block-media-img {
+        margin: 0 auto;
     }
 
     @media #{$mq-lg} {
         padding: 0 $layout-xl;
+    }
+
+    // vertical and horizontal aligment for body or media
+    // text align works for float fallback
+    // justify positioning works for no constraint
+    // absolute positioning works on constrain-height
+    @media #{$mq-md} {
+        padding: 0 $layout-lg;
+
+        .l-h-start {
+            @include bidi(((text-align, left, right),));
+            justify-self: start;
+
+            .c-block-media-img {
+                @include bidi((
+                    (margin-right, auto, margin-left, 0),
+                    (margin-left, 0, margin-right, 0),
+                ));
+            }
+        }
+
+        .l-h-center {
+            justify-self: center;
+            text-align: center;
+
+            .c-block-media-img {
+                margin: 0 auto;
+            }
+
+            @supports (display:grid) {
+                &.l-media-constrain-height .c-block-media-img {
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+            }
+        }
+
+        .l-h-end {
+            justify-self: end;
+
+            .c-block-media-img {
+                @include bidi((
+                    (margin-left, auto, margin-right, 0),
+                    (margin-right, 0, margin-left, 0),
+                ));
+            }
+
+            @supports (display:grid) {
+                &.l-media-constrain-height .c-block-media-img {
+                    right: 0;
+                    left: auto;
+                }
+            }
+        }
+    }
+
+    // vertical alignment only browsers with grid support
+    @supports (display:grid) {
+        .l-v-start {
+            align-self: start;
+        }
+
+        .l-v-center {
+            align-self: center;
+
+            &.l-media-constrain-height .c-block-media-img {
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            &.l-h-center.l-media-constrain-height .c-block-media-img {
+                transform: translateY(-50%) translateX(-50%);
+            }
+        }
+
+        .l-v-end {
+            align-self: end;
+
+            &.l-media-constrain-height .c-block-media-img {
+                top: auto;
+            }
+        }
     }
 }
 
@@ -406,6 +484,44 @@ button.mzp-c-cta-link {
     @media (max-width: #{$content-md - 1px}) {
         .mzp-has-media-hide-on-sm & {
             display: none;
+        }
+    }
+
+    // constraints on height or width of media
+    @media all and (max-width: #{$screen-md - 1}) {
+        // center image & constrain width
+        &.l-media-constrain-on-sm {
+            text-align: center;
+
+            .c-block-media-img {
+                margin: 0 auto;
+                width: $content-sm;
+            }
+        }
+    }
+
+    @media #{$mq-md} {
+        @supports ( display:grid ) {
+            &.l-media-constrain-height {
+                height: 100%;
+                justify-self: auto !important; /* stylelint-disable-line declaration-no-important */
+
+                .c-block-media-img {
+                    bottom: 0;
+                    left: 0;
+                    max-height: 100%;
+                    max-width: auto;
+                    position: absolute;
+                    top: 0;
+                    width: auto;
+
+                    [dir='rtl'] &,
+                    .l-reversed & {
+                        left: auto;
+                        right: 0;
+                    }
+                }
+            }
         }
     }
 }
@@ -454,11 +570,11 @@ button.mzp-c-cta-link {
             // grid is all start/end based we don't need bidi declarations for RTL support \o/
             display: grid;
             grid-template-columns: 1fr 1fr;
-            grid-template-areas: "body media";
+            grid-template-areas: 'body media';
             grid-column-gap: $h-grid-lg;
 
             .l-reversed > & {
-                grid-template-areas: "media body";
+                grid-template-areas: 'media body';
             }
         }
 
@@ -466,7 +582,7 @@ button.mzp-c-cta-link {
         .c-block-media {
             .c-block-container & { // extra specificitly to over-ride the styles that make the float fall-back work
                 float: none;
-                min-width: 0; //because of https://stackoverflow.com/questions/43311943/prevent-content-from-expanding-grid-items
+                min-width: 0; // because of https://stackoverflow.com/questions/43311943/prevent-content-from-expanding-grid-items
                 padding: 0;
                 width: auto;
             }
@@ -488,143 +604,10 @@ button.mzp-c-cta-link {
     }
 }
 
-// --------------------------------------
-// constraints on height or width of media
-
-.c-block-media {
-    @media all and (max-width: #{$screen-md - 1}) {
-        // center image & constrain width
-        &.l-media-constrain-on-sm {
-            text-align: center;
-
-            .c-block-media-img {
-                margin: 0 auto;
-                width: $content-sm;
-            }
-        }
-    }
-
-    @media #{$mq-md} {
-        @supports ( display:grid ) {
-            &.l-media-constrain-height {
-                height: 100%;
-                justify-self: auto !important; /* stylelint-disable-line declaration-no-important */
-
-                .c-block-media-img {
-                    bottom: 0;
-                    left: 0;
-                    max-height: 100%;
-                    max-width: auto;
-                    position: absolute;
-                    top: 0;
-                    width: auto;
-
-                    [dir='rtl'] &,
-                    .l-reversed & {
-                        left: auto;
-                        right: 0;
-                    }
-                }
-            }
-        }
-    }
-}
-
-// --------------------------------------
-// vertical and horizontal aligment for body or media
-// text align works for float fallback
-// justify positioning works for no constraint
-// absolute positioning works on constrain-height
-
-.c-block-container {
-    .c-block-media-img {
-        margin: 0 auto;
-    }
-
-    @media #{$mq-md} {
-        .l-h-start {
-            @include bidi(((text-align, left, right),));
-            justify-self: start;
-
-            .c-block-media-img {
-                @include bidi((
-                    (margin-right, auto, margin-left, 0),
-                    (margin-left, 0, margin-right, 0),
-                ));
-            }
-        }
-
-        .l-h-center {
-            justify-self: center;
-            text-align: center;
-
-            .c-block-media-img {
-                margin: 0 auto;
-            }
-
-            @supports(display:grid) {
-                &.l-media-constrain-height .c-block-media-img {
-                    left: 50%;
-                    transform: translateX(-50%);
-                }
-            }
-        }
-
-        .l-h-end {
-            justify-self: end;
-
-            .c-block-media-img {
-                @include bidi((
-                    (margin-left, auto, margin-right, 0),
-                    (margin-right, 0, margin-left, 0),
-                ));
-            }
-
-            @supports(display:grid) {
-                &.l-media-constrain-height .c-block-media-img {
-                    right: 0;
-                    left: auto;
-                }
-            }
-        }
-    }
-
-    // vertical alignment only browsers with grid support
-    @supports(display:grid) {
-
-        .l-v-start {
-            align-self: start;
-        }
-
-        .l-v-center {
-            align-self: center;
-
-            &.l-media-constrain-height .c-block-media-img {
-                top: 50%;
-                transform: translateY(-50%);
-            }
-
-            &.l-h-center.l-media-constrain-height .c-block-media-img {
-                transform: translateY(-50%) translateX(-50%);
-            }
-        }
-
-        .l-v-end {
-            align-self: end;
-
-            &.l-media-constrain-height .c-block-media-img {
-                top: auto;
-            }
-        }
-    }
-}
-
-
 // --------------------------------------------------------------------------
 // intro banner
 
 .t-intro {
-
     &.c-block {
         @include text-body-md;
         padding-top: $layout-sm;
@@ -639,7 +622,7 @@ button.mzp-c-cta-link {
         max-width: $content-xl + $layout-xl * 2;
     }
 
-    [lang=ar] & h2 {
+    [lang='ar'] & h2 {
         @include font-size(40px);
     }
 
@@ -653,12 +636,10 @@ button.mzp-c-cta-link {
 }
 
 .c-intro-download-alt {
-    & {
-        @include text-body-xs;
-        color: $color-dark-gray-30;
-        display: block;
-        margin-top: $spacing-md;
-    }
+    @include text-body-xs;
+    color: $color-dark-gray-30;
+    display: block;
+    margin-top: $spacing-md;
 
     a:link,
     a:visited {
@@ -701,47 +682,13 @@ button.mzp-c-cta-link {
     width: 514px;
 }
 
-// shapes
+// animated shapes
 
 .noodle-pill {
     border: 1px solid transparent;
     border-radius: 500px;
     position: absolute;
 }
-
-.noodle-circle {
-    border: 1px solid transparent;
-    border-radius: 100%;
-    position: absolute;
-}
-
-.noodle-svg {
-    position: absolute;
-}
-
-// colours
-
-.t-outline-pink {
-    border-color: #ff008b;
-}
-
-.t-fill-pink-yellow {
-    background: linear-gradient(to left, #ff4ca1, #ffde67);
-}
-
-.t-fill-yellow-orange {
-    background: linear-gradient(to left, #ffde67, #ff671e);
-}
-
-.t-fill-blue {
-    background: linear-gradient(to left, #00e1ff, #005fe7);
-}
-
-.t-outline-yellow {
-    border-color: #ffa437;
-}
-
-// position & animation
 
 .noodle-svg {
     animation: curl 10s infinite alternate;
@@ -751,8 +698,11 @@ button.mzp-c-cta-link {
 
 .noodle-circle {
     animation: round 9s infinite linear;
+    border-radius: 100%;
+    border: 1px solid transparent;
     height: 20px;
     left: 296px;
+    position: absolute;
     top: 40px;
     transform-origin: 5px;
     width: 20px;
@@ -799,6 +749,7 @@ button.mzp-c-cta-link {
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }
@@ -808,6 +759,7 @@ button.mzp-c-cta-link {
     from {
         transform: rotate(-34deg) translate(7px, 0);
     }
+
     to {
         transform: rotate(-34deg) translate(-7px, 0);
     }
@@ -817,11 +769,33 @@ button.mzp-c-cta-link {
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(-2deg);
     }
 }
 
+// colours
+
+.t-outline-pink {
+    border-color: #ff008b;
+}
+
+.t-fill-pink-yellow {
+    background: linear-gradient(to left, #ff4ca1, #ffde67);
+}
+
+.t-fill-yellow-orange {
+    background: linear-gradient(to left, #ffde67, #ff671e);
+}
+
+.t-fill-blue {
+    background: linear-gradient(to left, #00e1ff, #005fe7);
+}
+
+.t-outline-yellow {
+    border-color: #ffa437;
+}
 
 // --------------------------------------------------------------------------
 // releases
@@ -830,7 +804,7 @@ button.mzp-c-cta-link {
     position: relative;
     max-width: $content-xl + $layout-xl * 2;
 
-    &:before {
+    &::before {
         background-image: url('/media/img/firefox/new/desktop/release-noodles.svg');
         content: '';
         display: block;
@@ -862,7 +836,6 @@ button.mzp-c-cta-link {
     text-align: center;
 }
 
-
 // --------------------------------------------------------------------------
 // highlights
 // includes t-compare, t-block, t-everone, and t-devices block components
@@ -872,7 +845,7 @@ button.mzp-c-cta-link {
         margin-bottom: $spacing-xl;
     }
 
-    @supports(display:grid) {
+    @supports (display:grid) {
         @media #{$mq-lg} {
             .c-block-body {
                 max-width: ($content-lg - $h-grid-lg) * 0.5;
@@ -887,7 +860,7 @@ button.mzp-c-cta-link {
     padding-top: 0;
 
     .mzp-c-emphasis-box {
-        margin: 0 -$layout-2xs;
+        margin: 0 (-$layout-2xs);
         padding: $layout-2xs;
 
         @media #{$mq-sm} {
@@ -972,7 +945,6 @@ button.mzp-c-cta-link {
         font-weight: normal;
         padding: $spacing-xs;
 
-
         &:first-child {
             @include bidi(((border-left-width, 0, border-right-width, 1px),));
             text-align: start;
@@ -984,7 +956,6 @@ button.mzp-c-cta-link {
     }
 
     tbody {
-
         td {
             width: 64px; // need fixed width to avoid content moving when switching tabs
         }
@@ -1030,7 +1001,7 @@ button.mzp-c-cta-link {
         outline: none;
     }
 
-    &[aria-pressed=true] {
+    &[aria-pressed='true'] {
         border-bottom-color: $color-link;
         font-weight: bold;
     }
@@ -1065,18 +1036,18 @@ button.mzp-c-cta-link {
     margin-right: $spacing-md;
 }
 
-
 // --------------------------------------------------------------------------
 
 .t-features {
     background-color: $color-light-gray-10;
     background-repeat: no-repeat;
-    background-position: 80% 63%, // C
-                         top left, // V
-                         bottom 10% right, // circle
-                         bottom left calc(50vw - 600px), // circle
-                         bottom 30% left, // oval
-                         top right;
+    background-position:
+        80% 63%,
+        top left,
+        bottom 10% right,
+        bottom left calc(50vw - 600px),
+        bottom 30% left,
+        top right;
     margin-bottom: $v-grid-xs;
     margin-top: $v-grid-xs;
 
@@ -1091,12 +1062,13 @@ button.mzp-c-cta-link {
     }
 
     .loaded & {
-        background-image: url('/media/img/firefox/new/desktop/features/one.svg'),
-                          url('/media/img/firefox/new/desktop/features/two.svg'),
-                          url('/media/img/firefox/new/desktop/features/oval-one.svg'),
-                          url('/media/img/firefox/new/desktop/features/oval-two.svg'),
-                          url('/media/img/firefox/new/desktop/features/rect-one.svg'),
-                          url('/media/img/firefox/new/desktop/features/rect-two.svg');
+        background-image:
+            url('/media/img/firefox/new/desktop/features/one.svg'),
+            url('/media/img/firefox/new/desktop/features/two.svg'),
+            url('/media/img/firefox/new/desktop/features/oval-one.svg'),
+            url('/media/img/firefox/new/desktop/features/oval-two.svg'),
+            url('/media/img/firefox/new/desktop/features/rect-one.svg'),
+            url('/media/img/firefox/new/desktop/features/rect-two.svg');
     }
 
     img {
@@ -1109,7 +1081,6 @@ button.mzp-c-cta-link {
     }
 }
 
-
 // --------------------------------------------------------------------------
 // customization
 
@@ -1117,7 +1088,6 @@ button.mzp-c-cta-link {
     position: relative;
     text-align: center;
     margin-bottom: $layout-sm;
-
     margin-left: -$layout-xs;
     margin-right: -$layout-xs;
 
@@ -1144,7 +1114,6 @@ button.mzp-c-cta-link {
     bottom: 0;
     width: 100%;
     text-align: center;
-
     padding-left: $layout-xs;
     padding-right: $layout-xs;
 
@@ -1170,7 +1139,6 @@ button.mzp-c-cta-link {
 // --------------------------------------------------------------------------
 
 .t-company {
-
     img {
         margin: 0 auto $spacing-xl;
         width: $content-xs;
@@ -1216,7 +1184,6 @@ button.mzp-c-cta-link {
     }
 }
 
-
 // --------------------------------------------------------------------------
 
 .t-discover {
@@ -1236,7 +1203,6 @@ button.mzp-c-cta-link {
     }
 }
 
-
 // --------------------------------------------------------------------------
 
 .c-support {
@@ -1247,7 +1213,6 @@ button.mzp-c-cta-link {
     padding: $spacing-lg;
     text-align: center;
 }
-
 
 // --------------------------------------------------------------------------
 // mobile
@@ -1265,42 +1230,46 @@ button.mzp-c-cta-link {
 .c-mobile {
     @include light-links;
     background-color: $color-violet-70;
-    background-position: bottom -120px right 10px,
-                         top right -200px,
-                         bottom -100px left 20px,
-                         top 100px left -50px,
-                         bottom right -500px,
-                         top 15% left 100px;
+    background-position:
+        bottom -120px right 10px,
+        top right -200px,
+        bottom -100px left 20px,
+        top 100px left -50px,
+        bottom right -500px,
+        top 15% left 100px;
     background-repeat: no-repeat;
     color: $color-white;
     position: relative;
     overflow-x: hidden;
 
     @media #{$mq-md} {
-        background-position: bottom left 120px,
-                             top right,
-                             bottom left 20px,
-                             top 100px left,
-                             bottom right,
-                             top 15% center;
+        background-position:
+            bottom left 120px,
+            top right,
+            bottom left 20px,
+            top 100px left,
+            bottom right,
+            top 15% center;
     }
 
     @media #{$mq-lg} {
-        background-position: bottom left 100px,
-                             top right,
-                             bottom left 40%,
-                             top 100px left,
-                             bottom right,
-                             top 15% center;
+        background-position:
+            bottom left 100px,
+            top right,
+            bottom left 40%,
+            top 100px left,
+            bottom right,
+            top 15% center;
     }
 
     .loaded & {
-        background-image: url('/media/img/firefox/new/desktop/mobile/circle-bottom.svg'),
-                          url('/media/img/firefox/new/desktop/mobile/circle-top-right.svg'),
-                          url('/media/img/firefox/new/desktop/mobile/oval-bottom.svg'),
-                          url('/media/img/firefox/new/desktop/mobile/oval-left.svg'),
-                          url('/media/img/firefox/new/desktop/mobile/elbow-bottom-right.svg'),
-                          url('/media/img/firefox/new/desktop/mobile/elbow.svg');
+        background-image:
+            url('/media/img/firefox/new/desktop/mobile/circle-bottom.svg'),
+            url('/media/img/firefox/new/desktop/mobile/circle-top-right.svg'),
+            url('/media/img/firefox/new/desktop/mobile/oval-bottom.svg'),
+            url('/media/img/firefox/new/desktop/mobile/oval-left.svg'),
+            url('/media/img/firefox/new/desktop/mobile/elbow-bottom-right.svg'),
+            url('/media/img/firefox/new/desktop/mobile/elbow.svg');
     }
 
     h2 {
@@ -1312,7 +1281,7 @@ button.mzp-c-cta-link {
     }
 
     @media #{$mq-sm} {
-        &:after {
+        &::after {
             @include bidi((
                 (left, 60%, right, auto),
                 (margin-left, $h-grid-xs * 0.5, margin-left, 0),
@@ -1345,7 +1314,7 @@ button.mzp-c-cta-link {
     }
 
     @media #{$mq-md} {
-        &:after {
+        &::after {
             @include bidi((
                 (left, 50%, right, auto),
                 (margin-left, $h-grid-md * 0.5, margin-right, 0),
@@ -1359,7 +1328,7 @@ button.mzp-c-cta-link {
     }
 
     @media #{$mq-lg} {
-        &:after {
+        &::after {
             @include bidi(((margin-left, $h-grid-lg * 0.5, margin-right, 0),));
         }
 
@@ -1382,7 +1351,6 @@ button.mzp-c-cta-link {
     text-decoration: none;
 }
 
-
 // --------------------------------------------------------------------------
 // scroll animation
 
@@ -1404,14 +1372,13 @@ button.mzp-c-cta-link {
             opacity: 0;
             transform: scaleX(0.8) scaleY(0.8);
         }
+
         to {
             opacity: 1;
             transform: scaleX(1) scaleY(1);
         }
     }
 }
-
-
 
 // --------------------------------------------------------------------------
 //  Join Firefox modal
@@ -1452,7 +1419,6 @@ button.mzp-c-cta-link {
  * https://github.com/mozilla/protocol/issues/358
  */
 .mzp-c-modal {
-
     .mzp-c-modal-window > .mzp-c-modal-inner {
         background: transparent;
         padding: $spacing-xl 0 0;

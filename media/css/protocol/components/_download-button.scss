@@ -35,11 +35,6 @@ ul.download-list {
     }
 }
 
-.download-button {
-    display: inline-block;
-    vertical-align: top;
-}
-
 .download-other {
     @include text-body-xs;
     color: #666;
@@ -58,10 +53,13 @@ ul.download-list {
 }
 
 /* !important used for strict download link enforcement */
-/* stylelint-disable declaration-no-important  */
+/* stylelint-disable declaration-no-important, selector-class-pattern  */
 
 // Product download buttons
 .download-button {
+    display: inline-block;
+    vertical-align: top;
+
     .ios-download,
     .unrecognized-download,
     .nojs-download {
@@ -126,4 +124,3 @@ ul.download-list {
 }
 
 /* stylelint-enable */
-

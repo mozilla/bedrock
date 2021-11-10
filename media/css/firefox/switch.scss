@@ -29,7 +29,7 @@ $image-path: '/media/protocol/img';
         z-index: 1;
 
         @media #{$mq-lg} {
-            &:before {
+            &::before {
                 background-image: url('/media/img/firefox/switch/bg.svg');
                 background-position: 300px bottom 100px left;
                 background-size: auto 100%;
@@ -53,8 +53,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Steps
 
 .c-steps {
@@ -73,7 +72,7 @@ $image-path: '/media/protocol/img';
     vertical-align: top;
     margin: 0 $layout-sm $layout-sm;
 
-    &:before {
+    &::before {
         @include font-size(42px);
         align-items: center;
         background-color: $color-violet-50;
@@ -93,11 +92,11 @@ $image-path: '/media/protocol/img';
         width: 1.7em;
     }
 
-    &:nth-child(2):before {
+    &:nth-child(2)::before {
         background-image: url('/media/img/firefox/switch/two.svg');
     }
 
-    &:nth-child(3):before {
+    &:nth-child(3)::before {
         background-image: url('/media/img/firefox/switch/three.svg');
     }
 }
@@ -121,7 +120,7 @@ $image-path: '/media/protocol/img';
     display: inline-block;
     position: relative;
 
-    &:before {
+    &::before {
         @include bidi(((left, 0, right, auto),));
         background-image: url('/media/img/logos/social/social-icon-sprite-dark.svg');
         background-size: 24px auto;
@@ -135,27 +134,26 @@ $image-path: '/media/protocol/img';
         bottom: 0;
     }
 
-    &.twitter:before {
+    &.twitter::before {
         background-position: 0 3px;
     }
 
     &.facebook {
-        &:before {
+        &::before {
             background-position: 4px -81px;
         }
 
         @media #{$mq-md} {
             @include bidi(((padding-left, 18px + $spacing-sm, padding-right, 0),));
 
-            &:before {
+            &::before {
                 background-position: 0 -81px;
                 width: 18px;
             }
-
         }
     }
 
-    &.email:before {
+    &.email::before {
         background-position: 0 -109px;
     }
 }

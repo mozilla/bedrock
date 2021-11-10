@@ -4,10 +4,8 @@
 
 $brand-theme: 'mozilla';
 $type-scale: 'standard';
-
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
-
 
 // These are general styles for elements/components that occur on every page.
 // Individual pages may include additional component styles as needed.
@@ -38,7 +36,6 @@ $image-path: '/media/protocol/img';
 @import 'components/menu';
 @import 'components/menu-item';
 @import 'components/sub-navigation';
-
 
 // Temporary styling until the newsletter component is updated in Protocol
 // https://github.com/mozilla/protocol/issues/578

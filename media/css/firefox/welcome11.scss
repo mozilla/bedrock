@@ -11,7 +11,6 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/picto';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 
-
 .c-page-header {
     .mzp-l-content {
         padding-top: $spacing-md;
@@ -19,7 +18,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Main content
 .c-content-main {
     padding: 0;
@@ -43,8 +42,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Secondary content
 .page-body .mzp-l-content {
     padding-top: 0;
@@ -70,8 +68,7 @@ $image-path: '/media/protocol/img';
     text-align: center;
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Utilities
 .c-utilities {
     @include text-body-sm;
@@ -80,8 +77,7 @@ $image-path: '/media/protocol/img';
     text-align: center;
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Dark mode
 @media (prefers-color-scheme: dark) {
     .c-page-header .c-header-logo {
@@ -163,5 +159,4 @@ $image-path: '/media/protocol/img';
     .c-footer-primary-logo a {
         background-image: url('/media/protocol/img/logos/mozilla/logo-word-hor-white.svg');
     }
-
 }

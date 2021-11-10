@@ -10,7 +10,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 @import '~@mozilla-protocol/core/protocol/css/components/emphasis-box';
 @import '~@mozilla-protocol/core/protocol/css/components/picto';
-@import "~@mozilla-protocol/core/protocol/css/components/split";
+@import '~@mozilla-protocol/core/protocol/css/components/split';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
 
@@ -37,8 +37,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Conditional content
 
 // Hide Firefox Account CTAs by default; show download unless we know otherwise.

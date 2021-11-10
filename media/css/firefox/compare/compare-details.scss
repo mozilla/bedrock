@@ -2,10 +2,10 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-@import "~@mozilla-protocol/core/protocol/css/includes/lib";
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/menu-list';
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Hero
 
 .compare-details-hero {
@@ -40,9 +40,11 @@
     0% {
         transform: translateY(0);
     }
+
     50% {
         transform: translateY(-12px);
     }
+
     100% {
         transform: translateY(0);
     }
@@ -70,7 +72,7 @@
     &::before {
         background: $color-marketing-gray-20;
         border-radius: 10px;
-        content: " ";
+        content: ' ';
         display: table;
         height: 100px;
         left: 50%;
@@ -112,7 +114,7 @@
     }
 }
 
-.mzp-u-data-table.compare-table--details {
+.mzp-u-data-table.compare-table-details {
     max-width: 480px;
 }
 

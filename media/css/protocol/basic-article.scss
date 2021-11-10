@@ -35,7 +35,7 @@ $image-path: '/media/protocol/img';
             padding-right: 0;
         }
 
-        .is-summary button[aria-expanded=true]:before {
+        .is-summary button[aria-expanded='true']::before {
             @include summary-open;
         }
     }

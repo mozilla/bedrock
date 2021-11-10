@@ -8,14 +8,14 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/newsletter-form';
 
-
 .section-intro {
     background-color: $color-ink-80;
 
     .mzp-l-content {
         @include background-size(141px 157px, 153px 115px);
-        background-image: url('/media/img/newsletter/firefox/mailbox.svg'),
-                          url('/media/img/newsletter/firefox/fox-tail.svg');
+        background-image:
+            url('/media/img/newsletter/firefox/mailbox.svg'),
+            url('/media/img/newsletter/firefox/fox-tail.svg');
         background-position: bottom -40px left 10px, bottom -45px right -10px;
         background-repeat: no-repeat, no-repeat;
         height: 167px;

@@ -29,7 +29,7 @@ body {
 }
 
 img {
-    -ms-interpolation-mode: bicubic;
+    -ms-interpolation-mode: bicubic; /* stylelint-disable-line property-no-unknown */
 }
 
 label {
@@ -48,7 +48,10 @@ label {
     display: none !important; /* stylelint-disable-line declaration-no-important */
 }
 
-header, main, section, footer {
+header,
+main,
+section,
+footer {
     display: block;
 }
 
@@ -67,7 +70,12 @@ header, main, section, footer {
     background: $color-ink-80;
     color: $color-white;
 
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         color: $color-white;
     }
 }

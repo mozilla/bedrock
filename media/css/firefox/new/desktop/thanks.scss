@@ -17,16 +17,15 @@ $image-path: '/media/protocol/img';
 // https://github.com/mozilla/protocol/issues/345
 // https://github.com/mozilla/protocol/issues/536
 
-
 // xs
 $v-grid-xs: $layout-md;
 $h-grid-xs: $layout-xs;
 
-//md
+// md
 $v-grid-md: $layout-xl * 0.5;
 $h-grid-md: 64px;
 
-//lg
+// lg
 $v-grid-lg: 192px * 0.5;
 $h-grid-lg: 80px;
 
@@ -65,7 +64,6 @@ main {
     display: none;
 }
 
-
 // --------------------------------------------------------------------------
 // section titles
 
@@ -97,7 +95,6 @@ main {
         margin-bottom: 0;
     }
 }
-
 
 // --------------------------------------------------------------------------
 

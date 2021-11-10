@@ -12,7 +12,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/forms/status';
 @import '~@mozilla-protocol/core/protocol/css/components/forms/set';
 
-//* -------------------------------------------------------------------------- */
+// * -------------------------------------------------------------------------- */
 // Newsletter Form
 
 .mzp-c-form-header {
@@ -39,7 +39,7 @@ $image-path: '/media/protocol/img';
         margin: $spacing-2xl 0;
     }
 
-    button[type="submit"] {
+    button[type='submit'] {
         display: block;
         margin: 0 auto;
     }
@@ -59,7 +59,6 @@ $image-path: '/media/protocol/img';
 }
 
 .vpn-invite-platform-options {
-
     .mzp-u-inline {
         font-weight: normal;
     }
