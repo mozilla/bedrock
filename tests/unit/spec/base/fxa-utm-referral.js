@@ -472,19 +472,6 @@ describe('fxa-utm-referral.js', function () {
             );
         });
 
-        it('should not set a referral cookie if DNT is enabled', function () {
-            spyOn(Mozilla, 'dntEnabled').and.returnValue(true);
-            spyOn(Mozilla.Cookies, 'enabled').and.returnValue(true);
-            spyOn(Mozilla.Cookies, 'setItem');
-            spyOn(Mozilla.UtmUrl, 'hasFxALinkReferralCookie').and.returnValue(
-                false
-            );
-
-            Mozilla.UtmUrl.setFxALinkReferralCookie('navigation');
-
-            expect(Mozilla.Cookies.setItem).not.toHaveBeenCalled();
-        });
-
         it('should not set a referral cookie if one already exists', function () {
             spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
             spyOn(Mozilla.Cookies, 'enabled').and.returnValue(true);

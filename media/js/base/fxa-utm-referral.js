@@ -122,15 +122,8 @@ if (typeof window.Mozilla === 'undefined') {
     UtmUrl.setFxALinkReferralCookie = function (id) {
         var cookiesEnabled =
             typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled();
-        var dntEnabled =
-            typeof Mozilla.dntEnabled === 'function' && Mozilla.dntEnabled();
 
-        if (
-            id &&
-            cookiesEnabled &&
-            !dntEnabled &&
-            !UtmUrl.hasFxALinkReferralCookie()
-        ) {
+        if (id && cookiesEnabled && !UtmUrl.hasFxALinkReferralCookie()) {
             var date = new Date();
             date.setTime(date.getTime() + 1 * 3600 * 1000); // expiry in 1 hour.
             var expires = date.toUTCString();
