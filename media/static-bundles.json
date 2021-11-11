@@ -368,19 +368,6 @@
     },
     {
       "files": [
-        "css/protocol/components/send-to-device.scss",
-        "css/firefox/whatsnew/whatsnew-mobile-de.scss"
-      ],
-      "name": "firefox_whatsnew_mobile_de"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-mobile-qrcode-de.scss"
-      ],
-      "name": "firefox_whatsnew_mobile_qrcode_de"
-    },
-    {
-      "files": [
         "css/firefox/firstrun/nightly.scss"
       ],
       "name": "nightly_firstrun"
