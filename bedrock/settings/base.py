@@ -863,6 +863,7 @@ DONATE_PARAMS = {
     "el": {"currency": "eur", "symbol": "€", "presets": "50,30,20,10", "default": "30"},
     "en-CA": {"currency": "cad", "symbol": "$", "presets": "65,30,15,4", "default": "30"},
     "en-GB": {"currency": "gbp", "symbol": "£", "presets": "40,25,15,8", "default": "25"},
+    "es-ES": {"currency": "eur", "symbol": "€", "presets": "50,30,20,10", "default": "30"},
     "es-MX": {"currency": "mxn", "symbol": "$", "presets": "400,200,100,60", "default": "200"},
     "et": {"currency": "eur", "symbol": "€", "presets": "50,30,20,10", "default": "30"},
     "fr": {"currency": "eur", "symbol": "€", "presets": "50,30,20,10", "default": "30"},

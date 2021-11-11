@@ -8,42 +8,21 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import 'includes/base';
 
-@keyframes swoosh {
-    0% {background: $color-blue-40;}
-    78% {background: $color-blue-40;}
-    79% {background: linear-gradient(125deg, $color-blue-40 5%);}
-    80% {background: linear-gradient(125deg, $color-green-40 0%, $color-blue-40 5%);}
-    81% {background: linear-gradient(125deg, $color-green-40 0%, $color-blue-40 10%);}
-    82% {background: linear-gradient(125deg, $color-green-40 5%, $color-blue-40 15%);}
-    83% {background: linear-gradient(125deg, $color-green-40 10%, $color-blue-40 20%);}
-    84% {background: linear-gradient(125deg, $color-green-40 15%, $color-blue-40 25%);}
-    85% {background: linear-gradient(125deg, $color-green-40 20%, $color-blue-40 30%);}
-    86% {background: linear-gradient(125deg, $color-green-40 25%, $color-blue-40 35%);}
-    87% {background: linear-gradient(125deg, $color-green-40 30%, $color-blue-40 40%);}
-    88% {background: linear-gradient(125deg, $color-green-40 35%, $color-blue-40 45%);}
-    89% {background: linear-gradient(125deg, $color-green-40 40%, $color-blue-40 50%);}
-    90% {background: linear-gradient(125deg, $color-green-40 45%, $color-blue-40 55%);}
-    91% {background: linear-gradient(125deg, $color-green-40 50%, $color-blue-40 60%);}
-    92% {background: linear-gradient(125deg, $color-green-40 55%, $color-blue-40 65%);}
-    93% {background: linear-gradient(125deg, $color-green-40 60%, $color-blue-40 70%);}
-    94% {background: linear-gradient(125deg, $color-green-40 65%, $color-blue-40 75%);}
-    95% {background: linear-gradient(125deg, $color-green-40 70%, $color-blue-40 80%);}
-    96% {background: linear-gradient(125deg, $color-green-40 75%, $color-blue-40 85%);}
-    97% {background: linear-gradient(125deg, $color-green-40 80%, $color-blue-40 90%);}
-    98% {background: linear-gradient(125deg, $color-green-40 85%, $color-blue-40 95%);}
-    99% {background: linear-gradient(125deg, $color-green-40 90%, $color-blue-40 100%);}
-    100% {background: linear-gradient(125deg, $color-green-40 95%, $color-blue-40 100%);}
-    100% {background-color: $color-green-40;}
+.c-banner {
+    @include at2x('/media/img/banners/fundraising/fundraising-bg-blue.jpg', cover);
+    background-color: #323fb2;
+    background-repeat: no-repeat;
 }
 
 .c-banner-title {
+    color: $color-white;
+    font-weight: normal;
     line-height: 1.25em;
+}
 
-    span {
-        animation-duration: 3s;
-        animation-name: swoosh;
-        background-color: $color-green-40;
-        color: $color-black;
+.c-banner-content {
+    p {
+        @include text-body-lg;
     }
 }
 
@@ -51,6 +30,7 @@ $image-path: '/media/protocol/img';
     margin-bottom: $spacing-lg;
 
     label {
+        @include text-body-lg;
         color: $color-white;
         display: inline-block;
 
@@ -63,11 +43,15 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.c-fundraiser-options {
+.c-fundraiser-donation-options {
     margin-bottom: $spacing-sm;
 
     .mzp-c-button.mzp-t-secondary {
+        @include text-body-lg;
         background-color: transparent;
+        text-align: center;
+        width: 100%;
+        padding: 6px $spacing-xl;
 
         &:focus,
         &:hover {
@@ -76,14 +60,16 @@ $image-path: '/media/protocol/img';
     }
 
     label {
-        @include bidi(((margin, $spacing-sm $spacing-sm 0 0, 0 0 $spacing-sm $spacing-sm),));
+        @include bidi((
+            (margin-right, $spacing-md, 0),
+            (margin-left, 0, $spacing-md)
+        ));
         display: inline-block;
         position: relative;
 
-        &:first-child {
+        &:last-child {
             @include bidi((
-                (margin-left, 0, $spacing-sm),
-                (margin-right, $spacing-sm, 0)
+                (margin-right, 0, margin-left, 0),
             ));
         }
     }
@@ -100,11 +86,46 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    @media #{$mq-md} {
-        @include bidi((
-            (margin-right, $spacing-md, 0),
-            (margin-left, 0, $spacing-md)
-        ));
-        display: inline-block;
+    @media #{$mq-xl} {
+        .mzp-c-button.mzp-t-secondary {
+            width: auto;
+        }
+    }
+}
+
+.c-fundraiser-submit .mzp-c-button {
+    @include text-body-lg;
+    color: $color-blue-50;
+    margin: 0;
+}
+
+@supports (display: grid) {
+    .c-fundraiser-donation-options {
+        display: grid;
+        grid-column-gap: $spacing-lg;
+        grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+
+        label {
+            @include bidi((
+                (margin-right, 0, 0),
+                (margin-left, 0, 0)
+            ));
+        }
+
+        @media #{$mq-xl} {
+            grid-template: 1fr / repeat(4, 1fr);
+        }
+    }
+
+    .c-fundraiser-donation-choice {
+        @media #{$mq-xl} {
+            display: grid;
+            grid-column-gap: $spacing-xl;
+            grid-template-columns: max-content 1fr;
+        }
+    }
+
+    .c-fundraiser-submit .mzp-c-button {
+        width: 100%;
     }
 }
