@@ -8,7 +8,6 @@
 Mozilla.LazyLoad.init();
 
 //event handlers for voting widget on article pages
-let hasVoted = false;
 const upvoteBtn = document.querySelector('.vpn-c-vote-btn.up');
 const downvoteBtn = document.querySelector('.vpn-c-vote-btn.down');
 
@@ -21,25 +20,20 @@ function trackVoteInteraction(url, vote) {
 }
 
 function handleVote({ target }) {
-    const isUpvote = upvoteBtn.contains(target);
-    if (
-        ((isUpvote && upvoteBtn.classList.contains('active')) ||
-            (!isUpvote && downvoteBtn.classList.contains('active'))) &&
-        hasVoted
-    ) {
+    const isUpvote = target.classList.contains('up');
+    if (upvoteBtn.ariaPressed || downvoteBtn.ariaPressed) {
         return null;
     } else {
-        hasVoted = true;
         trackVoteInteraction(
             target.getAttribute('data-cta-text'),
             isUpvote ? 'helpful' : 'not helpful'
         );
         if (isUpvote) {
-            upvoteBtn.classList.add('active');
-            downvoteBtn.classList.remove('active');
+            upvoteBtn.setAttribute('aria-pressed', true);
+            downvoteBtn.removeAttribute('aria-pressed');
         } else {
-            downvoteBtn.classList.add('active');
-            upvoteBtn.classList.remove('active');
+            downvoteBtn.setAttribute('aria-pressed', true);
+            upvoteBtn.removeAttribute('aria-pressed');
         }
     }
 }

@@ -83,36 +83,6 @@ $image-path: '/media/protocol/img';
     color: $color-marketing-gray-60;
 }
 
-// temporary until we incorporate breadcrumb to protocol
-.mzp-c-breadcrumb {
-    background-color: $color-light-gray-20;
-    margin-bottom: 0;
-    padding: $spacing-sm $spacing-md;
-
-    .mzp-c-breadcrumb-item, .mzp-c-breadcrumb-title {
-        display: inline-block;
-        font-weight: 400;
-
-        .mzp-c-breadcrumb-item-link {
-            text-decoration: none;
-        }
-    }
-
-    .mzp-c-breadcrumb-item {
-        font-weight: bold;
-        &:before {
-            @include bidi(((content, "\2192", "\2190"),));
-            font-weight: normal;
-            margin: 0 0.25em;
-        }
-    }
-
-    @media #{$mq-md} {
-        padding: $spacing-sm $layout-xl - $spacing-md;
-    }
-
-}
-
 .vpn-article-container {
     background: url('/media/img/products/vpn/resource-center/resource_center_article_gradient.svg');
     background-repeat: no-repeat;
@@ -157,7 +127,7 @@ $image-path: '/media/protocol/img';
     margin-bottom:$spacing-xl;
 }
 
-.mzp-c-hr {
+.vpn-article-hr {
     margin: $spacing-xl 0;
 }
 
@@ -183,11 +153,14 @@ $image-path: '/media/protocol/img';
                 top: 13px;
             }
 
-            &.active {
+            &[aria-pressed=true] {
                 color: $color-blue-50;
                 fill: currentColor;
+            }
+
+            svg, path {
+               pointer-events: none;
             }
         }
     }
 }
-

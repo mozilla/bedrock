@@ -25,7 +25,7 @@
     {# {% if category_list|length > 1 %}
     {# <div class="mzp-c-category-list"> #}
       {# <h2 class="mzp-c-category-list-title"> #}
-        {# <a href="{{ url('products.vpn.resource-center.landing') }}">View All &#62</a>
+        {# <a href="{{ url('products.vpn.resource-center.landing') }}">{{ ftl('vpn-resource-center-view-all') }}</a>
       </h2>
       <ul class="mzp-c-category-list-list">
         {% for category in category_list  %}
@@ -50,7 +50,16 @@
   ) %}
     <h1 class="resource-center-wordmark">{{ ftl('vpn-resource-center-mozilla-vpn') }}</h1>
     <h2 class="mzp-c-call-out-title">{{ ftl('vpn-resource-center-start-protecting') }}</h2>
-    <a class='mzp-c-button mzp-t-product resource-center-cta'>{{ ftl('vpn-resource-center-on-mozilla-vpn', amount=vpn_saving(plan='12-month', country_code=country_code, lang=LANG)) }}</a>
+    {{ vpn_product_referral_link(
+        referral_id='vpn-resource-center',
+        page_anchor='#pricing',
+        link_text=vpn_saving(plan='12-month', country_code=country_code, lang=LANG, ftl_string='vpn-resource-center-on-mozilla-vpn', ftl_files=['products/vpn/resource-center']),
+        class_name='mzp-c-button mzp-t-product',
+        optional_attributes= {
+          'data-cta-text' : 'Get Mozilla VPN',
+          'data-cta-type' : 'button',
+        }
+      )}}
     <p class="resource-center-cta-desc"><em>{{ ftl('vpn-resource-center-when-you-subscribe') }}</em></p>
   {% endcall %}
 
