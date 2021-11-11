@@ -30,7 +30,7 @@ privacy-index-get-involved = Get Involved
 privacy-index-as-an-open-source-project = As an open source project, transparency and openness are an essential part of { -brand-name-mozilla }’s founding principles. Our codebases are open and auditable. Our development work is open. Our bi-annual <a href="{ $report }">Transparency Report</a> also demonstrates our commitment to these principles.
 
 # Variables:
-#   $group (url) - link to https://groups.google.com/forum/?fromgroups#!forum/mozilla.governance
+#   $group (url) - link to https://groups.google.com/a/mozilla.org/g/governance/
 privacy-index-to-review-and-comment-on-proposed = To review and comment on proposed changes to our privacy policies, <a href="{ $group }"> subscribe to { -brand-name-mozilla }’s governance group</a>.
 
 # Variables:
