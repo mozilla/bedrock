@@ -42,7 +42,6 @@ module.exports = function (config) {
             'media/js/base/stub-attribution.js',
             'media/js/firefox/all/all-downloads-unified.js',
             'media/js/firefox/new/common/thanks.js',
-            'media/js/firefox/new/yandex/show-yandex.js',
             'tests/unit/spec/base/mozilla-banner.js',
             'tests/unit/spec/base/mozilla-run.js',
             'tests/unit/spec/base/core-datalayer-page-id.js',
@@ -66,7 +65,6 @@ module.exports = function (config) {
             'tests/unit/spec/base/stub-attribution.js',
             'tests/unit/spec/firefox/all/all-downloads-unified.js',
             'tests/unit/spec/firefox/new/common/thanks.js',
-            'tests/unit/spec/firefox/new/yandex/show-yandex.js',
             {
                 pattern: 'node_modules/sinon/pkg/sinon.js',
                 watched: false,

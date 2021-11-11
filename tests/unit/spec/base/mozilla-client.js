@@ -32,7 +32,9 @@ describe('mozilla-client.js', function () {
             fxos: {
                 mobile: 'Mozilla/5.0 (Mobile; rv:26.0) Gecko/26.0 Firefox/26.0',
                 tablet: 'Mozilla/5.0 (Tablet; rv:26.0) Gecko/26.0 Firefox/26.0'
-            }
+            },
+            modified:
+                'Mozilla/5.0 (Windows; U; ; de; rv:1.9.2.6) Gecko/20100625 Firefox/ Anonymisiert durch AlMiSoft Browser-Anonymisierer 37324401'
         },
         // Other Gecko browsers
         camino: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10.4; en; rv:1.9.2.24) Gecko/20111114 Camino/2.1 (like Firefox/3.6.24)',
@@ -362,6 +364,10 @@ describe('mozilla-client.js', function () {
             test(uas.safari).toEqual('0');
             test(uas.ie).toEqual('0');
         });
+
+        it('should return 0 for modified Firefox UA strings without a version number', function () {
+            test(uas.firefox.modified).toEqual('0');
+        });
     });
 
     describe('_getFirefoxMajorVersion', function () {
@@ -460,6 +466,10 @@ describe('mozilla-client.js', function () {
             test(false, false, '40.0.2').toBeFalsy();
             test(true, true, '31.7.0').toBeFalsy();
             test(false, true, '31.7.0').toBeFalsy();
+        });
+
+        it('should consider outdated if user version is not found', function () {
+            test(true, false, '0').toBeFalsy();
         });
     });
 
