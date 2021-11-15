@@ -81,7 +81,8 @@ $image-path: '/media/protocol/img';
 .resource-center-cta-desc {
     @include text-body-sm;
     @include font-base;
-    color: $color-marketing-gray-60;
+    // this color will be added to protocol, this should be updated once its availible as a token
+    color: #666;
 }
 
 .vpn-article-container {
