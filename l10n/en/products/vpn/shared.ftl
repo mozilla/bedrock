@@ -105,6 +105,13 @@ vpn-shared-pricing-get-monthly = Get monthly plan
 vpn-shared-pricing-save-percent = Save { $percent }%
 
 # Variables:
+#   $percent (string) - percentage saved with chosen subscription plan e.g. '40'.
+# Asterisk indicates a footnote for the following string
+vpn-shared-save-percent-on = Save { $percent }% on { -brand-name-mozilla-vpn }*
+# this is used as a footnote for the previous string and should include the asterisk OR matching character for both strings.
+vpn-shared-when-you-subscribe = *when you subscribe to a 12-month plan
+
+# Variables:
 #   $amount (string) - a string containing the total annual subscription price together with the appropriate currency symbol e.g. '35,94 €'
 vpn-shared-pricing-total = { $amount } total
 

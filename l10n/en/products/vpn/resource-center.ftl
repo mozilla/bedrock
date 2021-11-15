@@ -16,10 +16,3 @@ vpn-resource-center-start-protecting = Start protecting your identity today
 vpn-resource-center-obsessed-with = Obsessed with your privacy since 1998
 vpn-resource-center-get-mozilla-vpn = Get { -brand-name-mozilla-vpn }
 vpn-resource-center-was-this-article = Was this article helpful?
-
-# Variables:
-#   $percent (string) - percentage saved with chosen subscription plan e.g. '40'.
-# Asterisk indicates a footnote for the following string
-vpn-resource-center-on-mozilla-vpn = Save { $percent }% on { -brand-name-mozilla-vpn }*
-# this is used as a footnote for the previous string and should include the asterisk OR matching character for both strings.
-vpn-resource-center-when-you-subscribe = *when you subscribe to a 12-month plan

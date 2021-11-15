@@ -155,7 +155,7 @@ def vpn_total_price(ctx, plan="12-month", country_code=None, lang=None):
 
 @library.global_function
 @jinja2.contextfunction
-def vpn_saving(ctx, plan="12-month", country_code=None, lang=None, ftl_string="vpn-shared-pricing-save-percent", ftl_files=FTL_FILES):
+def vpn_saving(ctx, plan="12-month", country_code=None, lang=None, ftl_string="vpn-shared-pricing-save-percent"):
     """
     Render a localized string displaying saving (as a percentage) of a given VPN subscription plan.
 
@@ -173,7 +173,7 @@ def vpn_saving(ctx, plan="12-month", country_code=None, lang=None, ftl_string="v
     available_plans = _vpn_get_available_plans(country_code, lang)
     selected_plan = available_plans.get(plan)
     percent = selected_plan.get("saving")
-    saving = ftl(ftl_string, percent=percent, ftl_files=ftl_files)
+    saving = ftl(ftl_string, percent=percent, ftl_files=FTL_FILES)
 
     markup = saving
 

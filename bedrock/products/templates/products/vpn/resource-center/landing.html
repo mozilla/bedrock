@@ -15,6 +15,7 @@
 {% block page_title%}{{ ftl('vpn-resource-center-title') }}{% endblock page_title %}
 
 {% block content %}
+<div class="mzp-l-content">
   {{ call_out (
     title=ftl('vpn-resource-center-whats-the-deal'),
     desc=ftl('vpn-resource-center-discover-how-they'),
@@ -38,7 +39,7 @@
     {# </div> #}
     {# {% endif %} #}
 
-  <div class="mzp-l-content mzp-l-card-third">
+  <div class="mzp-l-card-third">
     {% for article in first_article_group %}
       {% include "products/vpn/resource-center/includes/vpn-article-card.html" %}
     {% endfor %}
@@ -53,7 +54,7 @@
     {{ vpn_product_referral_link(
         referral_id='vpn-resource-center',
         page_anchor='#pricing',
-        link_text=vpn_saving(plan='12-month', country_code=country_code, lang=LANG, ftl_string='vpn-resource-center-on-mozilla-vpn', ftl_files=['products/vpn/resource-center']),
+        link_text=vpn_saving(plan='12-month', country_code=country_code, lang=LANG, ftl_string='vpn-shared-save-percent-on'),
         class_name='mzp-c-button mzp-t-product',
         optional_attributes= {
           'data-cta-text' : 'Get Mozilla VPN',
@@ -64,7 +65,7 @@
   {% endcall %}
 
   {% if second_article_group %}
-   <div class="mzp-l-content mzp-l-card-third">
+   <div class="mzp-l-card-third">
       {% for article in second_article_group %}
         {% include "products/vpn/resource-center/includes/vpn-article-card.html" %}
       {% endfor %}
@@ -87,8 +88,8 @@
         ) }}
     {% endcall %}
   {% endif %}
-
-{% endblock %}
+</div>
+{% endblock content %}
 
 {% block js %}
     {{ js_bundle("vpn-resource-center")}}
