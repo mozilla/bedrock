@@ -37,17 +37,6 @@ TEST_DONATE_PARAMS = {
     "es-MX": {"currency": "eur", "presets": "100,50,25,15", "default": "15"},
 }
 
-TEST_FIREFOX_TWITTER_ACCOUNTS = {
-    "en-US": "https://twitter.com/firefox",
-    "es-ES": "https://twitter.com/firefox_es",
-    "pt-BR": "https://twitter.com/firefoxbrasil",
-}
-
-TEST_FIREFOX_INSTAGRAM_ACCOUNTS = {
-    "de": "https://www.instagram.com/unfcktheinternet/",
-    "en-US": "https://www.instagram.com/firefox/",
-}
-
 TEST_FXA_ENDPOINT = "https://accounts.firefox.com/"
 TEST_FXA_MOZILLAONLINE_ENDPOINT = "https://accounts.firefox.com.cn/"
 
@@ -379,7 +368,6 @@ class TestDonateUrl(TestCase):
         )
 
 
-@override_settings(FIREFOX_TWITTER_ACCOUNTS=TEST_FIREFOX_TWITTER_ACCOUNTS)
 class TestFirefoxTwitterUrl(TestCase):
     rf = RequestFactory()
 
@@ -412,30 +400,61 @@ class TestFirefoxTwitterUrl(TestCase):
         assert self._render("pt-PT") == "https://twitter.com/firefox"
 
 
-@override_settings(FIREFOX_INSTAGRAM_ACCOUNTS=TEST_FIREFOX_INSTAGRAM_ACCOUNTS)
-class TestFirefoxInstagramUrl(TestCase):
+class TestMozillaTwitterUrl(TestCase):
     rf = RequestFactory()
 
     def _render(self, locale):
         req = self.rf.get("/")
         req.locale = locale
-        return render("{{ firefox_instagram_url() }}", {"request": req})
+        return render("{{ mozilla_twitter_url() }}", {"request": req})
 
-    def test_firefox_twitter_url_no_locale(self):
+    def test_mozilla_twitter_url_no_locale(self):
         """No locale, fallback to default account"""
-        assert self._render("") == "https://www.instagram.com/firefox/"
+        assert self._render("") == "https://twitter.com/mozilla"
 
-    def test_firefox_twitter_url_english(self):
+    def test_mozilla_twitter_url_english(self):
         """en-US locale, default account"""
-        assert self._render("en-US") == "https://www.instagram.com/firefox/"
+        assert self._render("en-US") == "https://twitter.com/mozilla"
 
-    def test_firefox_twitter_url_spanish(self):
+    def test_mozilla_twitter_url_french(self):
+        """fr locale, a local account"""
+        assert self._render("fr") == "https://twitter.com/mozilla_france"
+
+    def test_mozilla_twitter_url_german(self):
+        """de locale, a local account"""
+        assert self._render("de") == "https://twitter.com/mozilla_germany"
+
+    def test_mozilla_twitter_url_other_locale(self):
+        """No account for locale, fallback to default account"""
+        assert self._render("es-AR") == "https://twitter.com/mozilla"
+        assert self._render("es-CL") == "https://twitter.com/mozilla"
+        assert self._render("es-MX") == "https://twitter.com/mozilla"
+        assert self._render("pt-PT") == "https://twitter.com/mozilla"
+
+
+class TestMozillaInstagramUrl(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, locale):
+        req = self.rf.get("/")
+        req.locale = locale
+        return render("{{ mozilla_instagram_url() }}", {"request": req})
+
+    def test_mozilla_instagram_url_no_locale(self):
+        """No locale, fallback to default account"""
+        assert self._render("") == "https://www.instagram.com/mozilla/"
+
+    def test_mozilla_instagram_url_english(self):
+        """en-US locale, default account"""
+        assert self._render("en-US") == "https://www.instagram.com/mozilla/"
+
+    def test_mozilla_instagram_url_german(self):
         """de locale, a local account"""
         assert self._render("de") == "https://www.instagram.com/unfcktheinternet/"
 
-    def test_firefox_twitter_url_other_locale(self):
+    def test_mozilla_instagram_url_other_locale(self):
         """No account for locale, fallback to default account"""
-        assert self._render("es-AR") == "https://www.instagram.com/firefox/"
+        assert self._render("es-AR") == "https://www.instagram.com/mozilla/"
 
 
 @override_settings(STATIC_URL="/media/")

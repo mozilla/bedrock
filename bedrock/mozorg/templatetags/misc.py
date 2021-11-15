@@ -447,7 +447,40 @@ def firefox_twitter_url(ctx):
 
 @library.global_function
 @jinja2.contextfunction
-def firefox_instagram_url(ctx):
+def mozilla_twitter_url(ctx):
+    """Output a link to Twitter taking locales into account.
+
+    Uses the locale from the current request. Checks to see if we have
+    a Twitter account that match this locale, returns the localized account
+    url or falls back to the US account url if not.
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {{ mozilla_twitter_url() }}
+
+    For en-US this would output:
+
+        https://twitter.com/mozilla
+
+    For DE this would output:
+
+        https://twitter.com/mozilla_germany
+
+    """
+    locale = getattr(ctx["request"], "locale", "en-US")
+    if locale not in settings.MOZILLA_TWITTER_ACCOUNTS:
+        locale = "en-US"
+
+    return settings.MOZILLA_TWITTER_ACCOUNTS[locale]
+
+
+@library.global_function
+@jinja2.contextfunction
+def mozilla_instagram_url(ctx):
     """Output a link to Instagram taking locales into account.
 
     Uses the locale from the current request. Checks to see if we have
@@ -460,11 +493,11 @@ def firefox_instagram_url(ctx):
     In Template
     -----------
 
-        {{ firefox_instagram_url() }}
+        {{ mozilla_instagram_url() }}
 
     For en-US this would output:
 
-        https://www.instagram.com/firefox/
+        https://www.instagram.com/mozilla/
 
     For DE this would output:
 
@@ -472,10 +505,10 @@ def firefox_instagram_url(ctx):
 
     """
     locale = getattr(ctx["request"], "locale", "en-US")
-    if locale not in settings.FIREFOX_INSTAGRAM_ACCOUNTS:
+    if locale not in settings.MOZILLA_INSTAGRAM_ACCOUNTS:
         locale = "en-US"
 
-    return settings.FIREFOX_INSTAGRAM_ACCOUNTS[locale]
+    return settings.MOZILLA_INSTAGRAM_ACCOUNTS[locale]
 
 
 @library.filter
