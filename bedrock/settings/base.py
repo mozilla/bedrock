@@ -920,17 +920,22 @@ DONATE_PARAMS = {
 
 # Official Firefox Twitter accounts
 FIREFOX_TWITTER_ACCOUNTS = {
-    "de": "https://twitter.com/firefox_DE",
     "en-US": "https://twitter.com/firefox",
     "es-ES": "https://twitter.com/firefox_es",
-    "fr": "https://twitter.com/firefox_FR",
     "pt-BR": "https://twitter.com/firefoxbrasil",
 }
 
+# Official Mozilla Twitter accounts
+MOZILLA_TWITTER_ACCOUNTS = {
+    "en-US": "https://twitter.com/mozilla",
+    "de": "https://twitter.com/mozilla_germany",
+    "fr": "https://twitter.com/mozilla_france",
+}
+
 # Official Firefox Instagram accounts
-FIREFOX_INSTAGRAM_ACCOUNTS = {
+MOZILLA_INSTAGRAM_ACCOUNTS = {
+    "en-US": "https://www.instagram.com/mozilla/",
     "de": "https://www.instagram.com/unfcktheinternet/",
-    "en-US": "https://www.instagram.com/firefox/",
 }
 
 # Firefox Accounts product links

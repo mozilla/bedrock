@@ -14,10 +14,10 @@
   "founder": "Mitchell Baker",
   "sameAs": [
     "https://www.wikidata.org/wiki/Q169925",
-    "https://twitter.com/mozilla",
+    "{{ mozilla_twitter_url() }}",
     "https://www.facebook.com/mozilla",
     "https://github.com/mozilla",
-    "https://www.instagram.com/mozilla/",
+    "{{ mozilla_instagram_url() }}",
     "https://www.youtube.com/user/Mozilla",
     "https://{{ lang_short() }}.wikipedia.org/wiki/Mozilla_Corporation",
     "https://www.linkedin.com/company/mozilla-corporation"
