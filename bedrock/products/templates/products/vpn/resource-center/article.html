@@ -1,0 +1,18 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends 'products/vpn/resource-center/base-article.html' %}
+
+{% block article_category %}
+  {% if info.category %}{{ info.category }}{% endif %}
+{% endblock %}
+{% block article_title %}{{ info.title }}{% endblock %}
+{% block article_slug %}{{ info.slug }}{% endblock %}
+{% block vpn_article %}
+{% for entry in entries -%}
+  {{ entry.body|external_html }}
+{% endfor %}
+{% endblock vpn_article %}

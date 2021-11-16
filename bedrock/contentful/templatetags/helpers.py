@@ -33,6 +33,7 @@ ALLOWED_TAGS = [
     "strike",
     "strong",
     "ul",
+    "hr",
 ]
 ALLOWED_ATTRS = [
     "alt",

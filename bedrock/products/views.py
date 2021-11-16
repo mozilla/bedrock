@@ -2,15 +2,24 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from html import escape
+from urllib.parse import quote_plus, unquote_plus
 
 from django.conf import settings
-from django.http import JsonResponse
+from django.http import Http404, JsonResponse
+from django.urls import reverse
 from django.views.decorators.http import require_POST, require_safe
 
 import basket
 import basket.errors
+from sentry_sdk import capture_exception
 
 from bedrock.base.geo import get_country_from_request
+from bedrock.contentful.constants import (
+    ARTICLE_CATEGORY_LABEL,
+    CONTENT_CLASSIFICATION_VPN,
+    CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+)
+from bedrock.contentful.models import ContentfulEntry
 from bedrock.newsletter.views import general_error, invalid_email_address
 from bedrock.products.forms import VPNWaitlistForm
 from lib import l10n_utils
@@ -96,3 +105,135 @@ def vpn_invite_waitlist(request):
         resp = {"success": True}
 
     return JsonResponse(resp)
+
+
+def _build_category_list(entry_list):
+    # Template is expecting this format:
+    # category_list = [
+    #   {"name": "Cat1", "url": "/full/path/to/category"}, ...
+    # ]
+    category_list = []
+    root_url = reverse("products.vpn.resource-center.landing")
+    for entry in entry_list:
+        category = entry.category
+        if category:
+            category_list.append(
+                {
+                    "name": category,
+                    "url": f"{root_url}?{ARTICLE_CATEGORY_LABEL}={quote_plus(category)}",
+                }
+            )
+
+    category_list = sorted(category_list, key=lambda x: x["name"])
+    return category_list
+
+
+def _filter_articles(articles_list, category):
+
+    if not category:
+        return articles_list
+
+    return [article for article in articles_list if article.category == category]
+
+
+def resource_center_landing_view(request):
+
+    ARTICLE_GROUP_SIZE = 6
+
+    active_locales = [
+        "en-US",  # Initially, en-US is the only one available in Contentful
+    ]
+    locale = l10n_utils.get_locale(request)
+
+    template_name = "products/vpn/resource-center/landing.html"
+    ctx = {
+        "active_locales": active_locales,
+    }
+
+    resource_articles = ContentfulEntry.objects.get_entries_by_type(
+        locale=locale,
+        classification=CONTENT_CLASSIFICATION_VPN,
+        content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+    )
+    category_list = _build_category_list(resource_articles)
+    selected_category = unquote_plus(request.GET.get(ARTICLE_CATEGORY_LABEL, ""))
+
+    _filtered_articles = _filter_articles(
+        resource_articles,
+        category=selected_category,
+    )
+
+    # The resource_articles are ContentfulEntry objects at the moment, but
+    # we really only need their JSON data from here on
+    _filtered_article_data = [x.data for x in _filtered_articles]
+
+    first_article_group, second_article_group = (
+        _filtered_article_data[:ARTICLE_GROUP_SIZE],
+        _filtered_article_data[ARTICLE_GROUP_SIZE:],
+    )
+
+    ctx.update(
+        {
+            "category_list": category_list,
+            "selected_category": escape(selected_category),
+            "first_article_group": first_article_group,
+            "second_article_group": second_article_group,
+        }
+    )
+
+    return l10n_utils.render(
+        request,
+        template_name,
+        ctx,
+        ftl_files=["products/vpn/resource-center", "products/vpn/shared"],
+    )
+
+
+def resource_center_detail_view(request, slug):
+    """Individual detail pages for the VPN Resource Center"""
+
+    template_name = "products/vpn/resource-center/article.html"
+
+    # Initially, en-US is the only one available in Contentful
+    locale = l10n_utils.get_locale(request)
+    active_locales = [
+        "en-US",
+    ]
+
+    ctx = {
+        "active_locales": active_locales,
+    }
+
+    article_dict = {}
+    try:
+        article = ContentfulEntry.objects.get_entry_by_slug(
+            slug=slug,
+            locale=locale,
+            classification=CONTENT_CLASSIFICATION_VPN,
+            content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+        )
+        article_dict.update(article.data)
+
+    except ContentfulEntry.DoesNotExist as ex:
+        capture_exception(ex)
+        # If our selected locale is valid but we get a genuine slug miss
+        # we need to 404 rather than fall through, because render()
+        # will trigger a 500 at the templating level if we don't have
+        # the article data in the context
+        if locale in active_locales:
+            raise Http404()
+
+    ctx.update(article_dict)
+
+    ctx.update(
+        {
+            "related_articles": [x.data for x in article.get_related_entries()],
+        }
+    )
+
+    return l10n_utils.render(
+        request,
+        template_name,
+        ctx,
+        ftl_files=["products/vpn/resource-center", "products/vpn/shared"],
+    )

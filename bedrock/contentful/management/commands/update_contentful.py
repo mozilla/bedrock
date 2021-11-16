@@ -16,9 +16,11 @@ import boto3
 from sentry_sdk import capture_exception
 
 from bedrock.contentful.api import ContentfulPage
+from bedrock.contentful.constants import (
+    COMPOSE_MAIN_PAGE_TYPE,
+    MAX_MESSAGES_PER_QUEUE_POLL,
+)
 from bedrock.contentful.models import ContentfulEntry
-
-MAX_MESSAGES_PER_QUEUE_POLL = 10
 
 
 def data_hash(data: Dict) -> str:
@@ -60,10 +62,10 @@ class Command(BaseCommand):
             else:
                 self.log("Checking for updated Contentful data")
 
-            update_ran, added, updated = self.refresh()
+            update_ran, added, updated, errors = self.refresh()
 
             if update_ran:
-                self.log(f"Done. Added: {added}. Updated: {updated}")
+                self.log(f"Done. Added: {added}. Updated: {updated}. Errors: {errors}")
             else:
                 self.log(f"Nothing to pull from Contentful")
         else:
@@ -74,14 +76,15 @@ class Command(BaseCommand):
         update_ran = False
         added = -1
         updated = -1
+        errors = -1
 
         poll_contentful = self.force or self._queue_has_viable_messages()
 
         if poll_contentful:
-            added, updated = self._refresh_from_contentful()
+            added, updated, errors = self._refresh_from_contentful()
             update_ran = True
 
-        return update_ran, added, updated
+        return update_ran, added, updated, errors
 
     def _get_message_action(self, msg: str) -> Union[str, None]:
         # Format for these messages is:
@@ -209,11 +212,14 @@ class Command(BaseCommand):
 
         return viable_message_found
 
-    def _refresh_from_contentful(self) -> Tuple[int, int]:
+    def _refresh_from_contentful(self) -> Tuple[int, int, int]:
         self.log("Pulling from Contentful")
         updated_count = 0
         added_count = 0
+        error_count = 0
         content_ids = []
+
+        # TODO: Change to syncing only `page` content types when we're in an all-Compose setup
         for ctype in settings.CONTENTFUL_CONTENT_TYPES:
             for entry in ContentfulPage.client.entries(
                 {
@@ -229,34 +235,50 @@ class Command(BaseCommand):
             try:
                 page = ContentfulPage(request, page_id)
                 page_data = page.get_content()
-            except Exception:
+            except Exception as ex:
                 # problem with the page, load other pages
-                capture_exception()
+                self.log(f"Problem with {ctype}:{page_id} -> {type(ex)}: {ex}")
+                capture_exception(ex)
+                error_count += 1
                 continue
 
-            language = page_data["info"]["lang"]
+            # Compose-authored pages have a page_type of `page`
+            # but really we want the entity the Compose page references
+            if ctype == COMPOSE_MAIN_PAGE_TYPE:
+                # TODO: make this standard when we _only_ have Compose pages,
+                # because they all have a parent type of COMPOSE_MAIN_PAGE_TYPE
+                ctype = page_data["page_type"]
+
             hash = data_hash(page_data)
+            _info = page_data["info"]
+
+            extra_params = dict(
+                locale=_info["locale"],
+                data_hash=hash,
+                data=page_data,
+                slug=_info["slug"],
+                classification=_info.get("classification", ""),
+                tags=_info.get("tags", []),
+                category=_info.get("category", ""),
+            )
 
             try:
                 obj = ContentfulEntry.objects.get(contentful_id=page_id)
             except ContentfulEntry.DoesNotExist:
-                self.log("Creating new ContentfulEntry")
+                self.log(f"Creating new ContentfulEntry for {ctype}:{page_id}")
                 ContentfulEntry.objects.create(
                     contentful_id=page_id,
                     content_type=ctype,
-                    language=language,
-                    data_hash=hash,
-                    data=page_data,
+                    **extra_params,
                 )
                 added_count += 1
             else:
                 if self.force or hash != obj.data_hash:
-                    self.log("Updating existing ContentfulEntry")
-                    obj.language = language
-                    obj.data_hash = hash
-                    obj.data = page_data
+                    self.log(f"Updating existing ContentfulEntry for {ctype}:{page_id}")
+                    for key, value in extra_params.items():
+                        setattr(obj, key, value)
                     obj.last_modified = tz_now()
                     obj.save()
                     updated_count += 1
 
-        return added_count, updated_count
+        return added_count, updated_count, error_count

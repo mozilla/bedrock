@@ -15,6 +15,11 @@ from rich_text_renderer.base_node_renderer import BaseNodeRenderer
 from rich_text_renderer.block_renderers import BaseBlockRenderer
 from rich_text_renderer.text_renderers import BaseInlineRenderer
 
+from bedrock.contentful.constants import (
+    COMPOSE_MAIN_PAGE_TYPE,
+    CONTENT_TYPE_PAGE_GENERAL,
+    CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+)
 from lib.l10n_utils import get_locale, render_to_string
 
 # Bedrock to Contentful locale map
@@ -447,34 +452,90 @@ class ContentfulPage:
     def render_rich_text(self, node):
         return self._renderer.render(node) if node else ""
 
-    def get_info_data(self, entry_obj):
-        # TODO, need to enable connectors
-        fields = entry_obj.fields()
-        folder = fields.get("folder", "")
-        in_firefox = "firefox-" if "firefox" in folder else ""
-        slug = fields.get("slug", "home")
-        campaign = f"{in_firefox}{slug}"
-        page_type = entry_obj.content_type.id
-        if page_type == "pageHome":
-            lang = fields["name"]
-        else:
-            lang = entry_obj.sys["locale"]
-
-        data = {
-            "title": fields.get("preview_title", ""),
-            "blurb": fields.get("preview_blurb", ""),
-            "slug": slug,
-            "lang": lang,
-            "theme": "firefox" if "firefox" in folder else "mozilla",
-            # eg www.mozilla.org-firefox-accounts or www.mozilla.org-firefox-sync
-            "utm_source": f"www.mozilla.org-{campaign}",
-            "utm_campaign": campaign,  # eg firefox-sync
-        }
-
+    def _get_preview_image_from_fields(self, fields):
         if "preview_image" in fields:
             # TODO request proper size image
             preview_image_url = fields["preview_image"].fields().get("file").get("url")
-            data["image"] = "https:" + preview_image_url
+            return f"https:{preview_image_url}"
+
+    def get_info_data(self, entry_obj, seo_obj=None):
+        # TODO, need to enable connectors
+        fields = entry_obj.fields()
+        if seo_obj:
+            seo_fields = seo_obj.fields()
+        else:
+            seo_fields = None
+
+        data = {}
+
+        folder = fields.get("folder", "")
+        in_firefox = "firefox-" if "firefox" in folder else ""
+
+        if self.page.content_type.id == COMPOSE_MAIN_PAGE_TYPE:
+            # This means we're dealing with a Compose-structured setup,
+            # and the slug lives not on the Entry, nor the SEO object
+            # but just on the top-level Compose `page`
+            slug = self.page.fields().get("slug")
+
+        else:
+            # Non-Compose pages
+            slug = fields.get("slug", "home")  # TODO: check if we can use a better fallback
+
+        title = getattr(self.page, "title", "")
+        title = fields.get("preview_title", title)
+        blurb = fields.get("preview_blurb", "")
+
+        if seo_fields:
+            # Defer to SEO fields for blurb if appropriate.
+            blurb = seo_fields.get("description", "")
+
+        campaign = f"{in_firefox}{slug}"
+        page_type = entry_obj.content_type.id
+
+        # TODO: update this once we have a robust locale field available (ideally
+        # via Compose's parent `page`), because double-purposing the "name" field
+        # is a bit too brittle.
+        if page_type == "pageHome":
+            locale = fields["name"]
+        else:
+            locale = entry_obj.sys["locale"]
+
+        data.update(
+            {
+                "title": title,
+                "blurb": blurb,
+                "slug": slug,
+                "locale": locale,
+                "theme": "firefox" if "firefox" in folder else "mozilla",
+                # eg www.mozilla.org-firefox-accounts or www.mozilla.org-firefox-sync
+                "utm_source": f"www.mozilla.org-{campaign}",
+                "utm_campaign": campaign,  # eg firefox-sync
+            }
+        )
+
+        _preview_image = self._get_preview_image_from_fields(fields)
+        if _preview_image:
+            data["image"] = _preview_image
+
+        if seo_fields:
+            _preview_image = self._get_preview_image_from_fields(seo_fields)
+            if _preview_image:
+                seo_fields["image"] = _preview_image
+                del seo_fields["preview_image"]
+            data.update({"seo": seo_fields})
+
+        # TODO: Check with plans for Contentful use - we may
+        # be able to relax this check and use it for page types
+        # once we're in all-Compose mode
+        if page_type == CONTENT_TYPE_PAGE_RESOURCE_CENTER:
+            if "category" in fields:
+                data["category"] = fields["category"]
+            if "tags" in fields:
+                data["tags"] = fields["tags"]
+            if "product" in fields:
+                # NB: this is a re-mapping with an eye on flexibility - pages may not always have
+                # a 'product' key, but they might have something regarding overall classification
+                data["classification"] = fields["product"]
 
         return data
 
@@ -482,16 +543,30 @@ class ContentfulPage:
         return self.client.entry(entry_id, {"locale": self.locale})
 
     def get_content(self):
-        # check if it is a page or a connector
+        # Check if it is a page or a connector, or a Compose page type
+
         entry_type = self.page.content_type.id
-        if entry_type.startswith("page"):
+        seo_obj = None
+        if entry_type == COMPOSE_MAIN_PAGE_TYPE:
+            # Contentful Compose page, linking to content and SEO models
+            entry_obj = self.page.content  # The page with the actual content
+            seo_obj = self.page.seo  # The SEO model
+            # Note that the slug lives on self.page, not the seo_obj.
+        elif entry_type.startswith("page"):
             entry_obj = self.page
         elif entry_type == "connectHomepage":
+            # Legacy - TODO: remove me once we're no longer using Connect: Homepage
             entry_obj = self.page.fields()["entry"]
         else:
             raise ValueError(f"{entry_type} is not a recognized page type")
 
-        self.request.page_info = self.get_info_data(entry_obj)
+        if not entry_obj:
+            raise Exception(f"No 'Entry' detected for {self.page.content_type.id}")
+
+        self.request.page_info = self.get_info_data(
+            entry_obj,
+            seo_obj,
+        )
         page_type = entry_obj.content_type.id
         page_css = set()
         page_js = set()
@@ -519,7 +594,7 @@ class ContentfulPage:
 
                     page_js.update(js)
 
-        if page_type == "pageGeneral":
+        if page_type == CONTENT_TYPE_PAGE_GENERAL:
             # look through all entries and find content ones
             for key, value in fields.items():
                 if key == "component_hero":
@@ -528,9 +603,12 @@ class ContentfulPage:
                     entries.append(self.get_text_data(value))
                 elif key == "component_callout":
                     proc(value)
-        elif page_type == "pageVersatile":
-            content = fields.get("content")
-        elif page_type == "pageHome":
+        elif page_type == CONTENT_TYPE_PAGE_RESOURCE_CENTER:
+            # TODO: can we actually make this generic? Poss not: main_content is a custom field name
+            _content = fields.get("main_content", {})
+            entries.append(self.get_text_data(_content))
+        else:
+            # This covers pageVersatile, pageHome, etc
             content = fields.get("content")
 
         if content:

@@ -30,4 +30,15 @@ urlpatterns = (
     page("vpn/more/why-mozilla-vpn", "products/vpn/more/why-mozilla-vpn.html", ftl_files=["products/vpn/shared"]),
     page("vpn/more/do-i-need-a-vpn", "products/vpn/more/do-i-need.html", ftl_files=["products/vpn/shared"]),
     page("vpn/more/what-is-a-vpn-v2", "products/vpn/more/what-is-a-vpn-v2.html", ftl_files=["products/vpn/shared"]),
+    # VPN Resource Center
+    path(
+        "vpn/resource-center/",
+        views.resource_center_landing_view,
+        name="products.vpn.resource-center.landing",
+    ),
+    path(
+        "vpn/resource-center/<slug:slug>/",
+        views.resource_center_detail_view,
+        name="products.vpn.resource-center.article",
+    ),
 )

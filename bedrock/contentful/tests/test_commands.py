@@ -51,7 +51,7 @@ def test_handle__no_contentful_configuration_results_in_pass_but_no_exception(
         ):
             command_instance.refresh = mock.Mock(
                 name="mock_refresh",
-                return_value=(True, 0, 0),
+                return_value=(True, 0, 0, 0),
             )
             command_instance.handle(quiet=True, force=False)
 
@@ -311,9 +311,9 @@ def test_update_contentful__queue_has_viable_messages__no_messages(
 @pytest.mark.parametrize(
     "must_force,has_viable_messages,expected",
     (
-        (False, False, (False, -1, -1)),
-        (True, False, (True, 1, 2)),
-        (False, True, (True, 1, 2)),
+        (False, False, (False, -1, -1, -1)),
+        (True, False, (True, 1, 2, 0)),
+        (False, True, (True, 1, 2, 0)),
     ),
     ids=(
         "Not forced, no viable messages in queue",
@@ -337,6 +337,7 @@ def test_update_contentful__refresh(
         return_value=(
             1,  # 'added'
             2,  # 'updated'
+            0,  # 'errors'
         ),
     )
 
