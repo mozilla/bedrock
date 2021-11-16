@@ -481,12 +481,13 @@ class ContentfulPage:
             # Non-Compose pages
             slug = fields.get("slug", "home")  # TODO: check if we can use a better fallback
 
+        title = getattr(self.page, "title", "")
+        title = fields.get("preview_title", title)
+        blurb = fields.get("preview_blurb", "")
+
         if seo_fields:
-            title = seo_fields.get("title", "")
+            # Defer to SEO fields for blurb if appropriate.
             blurb = seo_fields.get("description", "")
-        else:
-            title = fields.get("preview_title", "")
-            blurb = fields.get("preview_blurb", "")
 
         campaign = f"{in_firefox}{slug}"
         page_type = entry_obj.content_type.id
