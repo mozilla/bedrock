@@ -175,7 +175,7 @@ def resource_center_landing_view(request):
     ctx.update(
         {
             "category_list": category_list,
-            "selected_category": selected_category,
+            "selected_category": escape(selected_category),
             "first_article_group": first_article_group,
             "second_article_group": second_article_group,
         }
