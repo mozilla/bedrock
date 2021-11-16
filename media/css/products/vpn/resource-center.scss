@@ -160,6 +160,10 @@ $image-path: '/media/protocol/img';
                 fill: currentColor;
             }
 
+            span {
+                @include visually-hidden;
+            }
+
             svg, path {
                pointer-events: none;
             }
