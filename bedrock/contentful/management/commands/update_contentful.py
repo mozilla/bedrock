@@ -219,7 +219,7 @@ class Command(BaseCommand):
         error_count = 0
         content_ids = []
 
-        # TODO: Stop syncing only selected content types and process the (paginated) lot
+        # TODO: Change to syncing only `page` content types when we're in an all-Compose setup
         for ctype in settings.CONTENTFUL_CONTENT_TYPES:
             for entry in ContentfulPage.client.entries(
                 {
