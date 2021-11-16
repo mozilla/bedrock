@@ -38,7 +38,7 @@ urlpatterns = (
     ),
     path(
         "vpn/resource-center/<slug:slug>/",
-        views.resource_center_detail_view,
+        views.resource_center_article_view,
         name="products.vpn.resource-center.article",
     ),
 )

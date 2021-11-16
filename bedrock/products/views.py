@@ -189,7 +189,7 @@ def resource_center_landing_view(request):
     )
 
 
-def resource_center_detail_view(request, slug):
+def resource_center_article_view(request, slug):
     """Individual detail pages for the VPN Resource Center"""
 
     template_name = "products/vpn/resource-center/article.html"
