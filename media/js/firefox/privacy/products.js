@@ -33,35 +33,12 @@
                 var protectionReportLinks = document.querySelectorAll(
                     '.js-open-about-protections'
                 );
-                var pictoCardTitles = document.querySelectorAll(
-                    '.privacy-products-etp .mzp-c-card-picto-title'
-                );
 
                 for (var i = 0; i < protectionReportLinks.length; i++) {
                     protectionReportLinks[i].addEventListener(
                         'click',
                         handleOpenProtectionReport,
                         false
-                    );
-                }
-
-                for (var j = 0; j < pictoCardTitles.length; j++) {
-                    // Make picto card titles click and keyboard accessible.
-                    pictoCardTitles[j].setAttribute('role', 'link');
-                    pictoCardTitles[j].setAttribute('tabindex', 0);
-                    pictoCardTitles[j].addEventListener(
-                        'click',
-                        handleOpenProtectionReport,
-                        false
-                    );
-                    pictoCardTitles[j].addEventListener(
-                        'keydown',
-                        function (e) {
-                            if (e.key === 'Enter') {
-                                e.preventDefault();
-                                handleOpenProtectionReport(e);
-                            }
-                        }
                     );
                 }
             });
