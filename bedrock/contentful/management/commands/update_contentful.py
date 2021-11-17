@@ -5,7 +5,7 @@
 
 import json
 from hashlib import sha256
-from typing import Dict, Tuple, Union
+from typing import Dict, List, Tuple, Union
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
@@ -14,9 +14,17 @@ from django.utils.timezone import now as tz_now
 
 import boto3
 from sentry_sdk import capture_exception
+from sentry_sdk.api import capture_message
 
 from bedrock.contentful.api import ContentfulPage
 from bedrock.contentful.constants import (
+    ACTION_ARCHIVE,
+    ACTION_AUTO_SAVE,
+    ACTION_DELETE,
+    ACTION_PUBLISH,
+    ACTION_SAVE,
+    ACTION_UNARCHIVE,
+    ACTION_UNPUBLISH,
     COMPOSE_MAIN_PAGE_TYPE,
     MAX_MESSAGES_PER_QUEUE_POLL,
 )
@@ -62,29 +70,31 @@ class Command(BaseCommand):
             else:
                 self.log("Checking for updated Contentful data")
 
-            update_ran, added, updated, errors = self.refresh()
+            update_ran, added_count, updated_count, deleted_count, errors_count = self.refresh()
 
             if update_ran:
-                self.log(f"Done. Added: {added}. Updated: {updated}. Errors: {errors}")
+                self.log(f"Done. Added: {added_count}. Updated: {updated_count}. Deleted: {deleted_count}. Errors: {errors_count}")
             else:
                 self.log(f"Nothing to pull from Contentful")
         else:
             # This will always get shown, even if --quiet is passed
             print("Contentful credentials not configured")
 
-    def refresh(self) -> Tuple[bool, int, int]:
+    def refresh(self) -> Tuple[bool, int, int, int, int]:
         update_ran = False
-        added = -1
-        updated = -1
-        errors = -1
+
+        added_count = -1
+        updated_count = -1
+        deleted_count = -1
+        errors_count = -1
 
         poll_contentful = self.force or self._queue_has_viable_messages()
 
         if poll_contentful:
-            added, updated, errors = self._refresh_from_contentful()
+            added_count, updated_count, deleted_count, errors_count = self._refresh_from_contentful()
             update_ran = True
 
-        return update_ran, added, updated, errors
+        return update_ran, added_count, updated_count, deleted_count, errors_count
 
     def _get_message_action(self, msg: str) -> Union[str, None]:
         # Format for these messages is:
@@ -138,23 +148,31 @@ class Command(BaseCommand):
 
         What action types count as a 'go' signal?
 
-        * auto_save -> YES
-        * create -> YES
+        * auto_save -> YES if on Dev (ie, preview mode)
+        * create -> NO - not on prod or on DEV
         * publish -> YES
         * save -> YES if on Dev (ie, preview mode)
         * unarchive -> YES
-
-        * archive -> NO (because we need to remove the page in Bedrock first)
-        * unpublish  -> NO (for similar reasons as above)
-        * delete -> NO (ditto)
+        * archive -> YES (and we'll remove the page from bedrock's DB as well)
+        * unpublish  -> YES (as above)
+        * delete -> YES (as above)
         """
 
         poll_queue = True
         may_purge_queue = False
         viable_message_found = False
 
-        GO_ACTIONS = {"create", "publish", "unarchive"}
-        EXTRA_DEV_GO_ACTIONS = {"save", "auto_save"}
+        GO_ACTIONS = {
+            ACTION_ARCHIVE,
+            ACTION_PUBLISH,
+            ACTION_UNARCHIVE,
+            ACTION_UNPUBLISH,
+            ACTION_DELETE,
+        }
+        EXTRA_DEV_GO_ACTIONS = {
+            ACTION_AUTO_SAVE,
+            ACTION_SAVE,
+        }
 
         if settings.DEV:
             GO_ACTIONS = GO_ACTIONS.union(EXTRA_DEV_GO_ACTIONS)
@@ -212,12 +230,28 @@ class Command(BaseCommand):
 
         return viable_message_found
 
+    def _detect_and_delete_absent_entries(self, contentful_ids_synced: List[int]) -> int:
+        _entries_to_delete = ContentfulEntry.objects.exclude(contentful_id__in=contentful_ids_synced)
+        _num_entries_to_delete = _entries_to_delete.count()
+
+        res = _entries_to_delete.delete()
+        self.log(f"Deleted by _detect_and_delete_absent_entries: {res}")
+
+        # if things aren't right, we don't want to block the rest of the sync
+        if res[0] != _num_entries_to_delete:
+            capture_message(
+                message="Deleted more objects than expected based on these ids slated for deletion. Check the Contentful sync!",
+                level="warning",
+            )
+        return res[1]["contentful.ContentfulEntry"]
+
     def _refresh_from_contentful(self) -> Tuple[int, int, int]:
         self.log("Pulling from Contentful")
         updated_count = 0
         added_count = 0
+        deleted_count = 0
         error_count = 0
-        content_ids = []
+        content_to_sync = []
 
         # TODO: Change to syncing only `page` content types when we're in an all-Compose setup
         for ctype in settings.CONTENTFUL_CONTENT_TYPES:
@@ -227,9 +261,9 @@ class Command(BaseCommand):
                     "include": 0,
                 }
             ).items:
-                content_ids.append((ctype, entry.sys["id"]))
+                content_to_sync.append((ctype, entry.sys["id"]))
 
-        for ctype, page_id in content_ids:
+        for ctype, page_id in content_to_sync:
             request = self.rf.get("/")
             request.locale = "en-US"
             try:
@@ -281,4 +315,15 @@ class Command(BaseCommand):
                     obj.save()
                     updated_count += 1
 
-        return added_count, updated_count, error_count
+        try:
+            # Even if we failed to sync certain entities, we should act as if they
+            # were synced when we come to look for records to delete. If it was just
+            # a temporary glitch that caused the exception we would not want to unncessarily
+            # delete a page, even if the failed sync means its content is potentially stale
+            _ids_synced = [x[1] for x in content_to_sync]  # (x[0] is ctype, x[1] is the id)
+            deleted_count = self._detect_and_delete_absent_entries(_ids_synced)
+        except Exception as ex:
+            self.log(ex)
+            capture_exception(ex)
+
+        return added_count, updated_count, deleted_count, error_count

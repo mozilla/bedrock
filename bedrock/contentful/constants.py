@@ -25,3 +25,12 @@ CONTENT_TYPE_PAGE_GENERAL = "pageGeneral"
 CONTENT_CLASSIFICATION_VPN = "VPN"  # Matches string in Contenful for VPN as `product`
 
 ARTICLE_CATEGORY_LABEL = "category"  # for URL-param filtering
+
+ACTION_DELETE = "delete"
+ACTION_ARCHIVE = "archive"
+ACTION_UNARCHIVE = "unarchive"
+ACTION_PUBLISH = "publish"
+ACTION_UNPUBLISH = "unpublish"
+ACTION_CREATE = "create"
+ACTION_SAVE = "save"
+ACTION_AUTO_SAVE = "auto_save"
