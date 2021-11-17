@@ -8,28 +8,26 @@
 Localization
 ============
 
-The site is fully localizable. Localization files are not shipped with the code
-distribution, but are available in separate GitHub repositories. The proper repos
-can be cloned and kept up-to-date using the ``l10n_update`` management command:
+The site is fully localizable. Localization files are not shipped with the code distribution, but
+are available in separate GitHub repositories. The proper repos can be cloned and kept up-to-date
+using the ``l10n_update`` management command:
 
 .. code-block:: console
 
     $ ./manage.py l10n_update
 
-If you don't already have a ``data/locale`` directory, this command will clone the
-git repo containing the .lang translation files (either the dev or prod files
-depending on your ``DEV`` setting). If the folder is already present, it will
-update the repository to the latest version. It does the same thing for the
-repository for the .ftl translation files in ``data/www-l10n`` directory.
+If you don't already have a ``data/www-l10n`` directory, this command will clone the git repo
+containing the .ftl translation files (either the dev or prod files depending on your ``DEV``
+setting). If the folder is already present, it will update the repository to the latest version.
 
 Fluent
 ======
 
-Bedrock's Localization (l10n) system is based on `Project Fluent`_. This is a
-departure from the legacy system (see below) that relied on a gettext work flow
-of string extraction from template and code files, in that it relies on developers
-directly editing the default language (English in our case) Fluent files and using
-the string IDs created there in their templates and views.
+Bedrock's Localization (l10n) system is based on `Project Fluent`_. This is a departure from a
+standard Django project that relies on a gettext work flow of string extraction from template and
+code files, in that it relies on developers directly editing the default language (English in our
+case) Fluent files and
+using the string IDs created there in their templates and views.
 
 The default files for the Fluent system live in the ``l10n`` directory in the root
 of the bedrock project. This directory houses directories for each locale the developers
@@ -38,10 +36,6 @@ files are the default fallback for every string ID on the site and should be str
 are plain and easy to understand English, as free from colloquialisms as possible. The
 translators are able to easily understand the meaning of the string, and can then add their
 own local flair to the ideas.
-
-.. note::
-
-    We have some :ref:`fluent tools <fluent>` to aid in the transition from the legacy system.
 
 .. _Project Fluent: https://projectfluent.org/
 
@@ -350,12 +344,11 @@ FTL files for that template (or a single file name if that's all you need).
 
             return [template_name]
 
-If you need for your URL to use multiple Fluent files to determine the full list of active locales,
-for example when you are redesigning a page and have multiple templates in use for a single URL depending
-on locale, you can use the `activation_files` parameter. This should be a list of FTL filenames
-(or template file names if they are still using .lang) that should all be used when determining the full
-list of translations for the URL. Bedrock will gather the full list for each file and combine them into a
-single list so that the footer language switcher works properly.
+If you need for your URL to use multiple Fluent files to determine the full list of active locales, for
+example when you are redesigning a page and have multiple templates in use for a single URL depending on
+locale, you can use the `activation_files` parameter. This should be a list of FTL filenames that should all
+be used when determining the full list of translations for the URL. Bedrock will gather the full list for each
+file and combine them into a single list so that the footer language switcher works properly.
 
 Using in a view function
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -383,7 +376,7 @@ via a set of configuration files:
 
 Each configuration file consists of a pre-defined set of locales for which each group is
 responsible for translating. The locales defined in each file should not be changed without
-first consulting the with L10n team, and such changes should not be a regular occurence.
+first consulting the with L10n team, and such changes should not be a regular occurrence.
 
 To establish a localization strategy for a Fluent file, it needs to be included as a path
 in one or more configuration files. For example:
@@ -561,309 +554,6 @@ merged by the L10n team, everything is done.
 
 .. _mozilla-l10n/www-l10n: https://github.com/mozilla-l10n/www-l10n
 
-Legacy
-======
-
-This section describes the legacy l10n system based on .lang files, which will
-be frozen and no longer supported for new translations in January of 2020.
-
-.lang files
------------
-
-Bedrock supports a workflow similar to gettext. You extract all the
-strings from the codebase, then merge them into each locale to get
-them translated.
-
-The files containing the strings are called ".lang files" and end with
-a ``.lang`` extension.
-
-To extract all the strings from the codebase, run:
-
-.. code-block:: console
-
-    $ ./manage.py l10n_extract
-
-If you'd only like to extract strings from certain files, you may optionally
-list them on the command line:
-
-.. code-block:: console
-
-    $ ./manage.py l10n_extract bedrock/mozorg/templates/mozorg/contribute.html
-
-Command line glob matching will work as well if you want all of the HTML files
-in a directory, for example:
-
-.. code-block:: console
-
-    $ ./manage.py l10n_extract bedrock/mozorg/templates/mozorg/*.html
-
-That will use gettext to get all the needed localizations from Python
-and HTML files, and will convert the result into a series of .lang
-files inside ``locale/templates``. This directory represents the
-"reference" set of strings to be translated, and you are free to
-modify or split up .lang files here as needed (just make sure they are
-being referenced correctly, from the code, see
-:ref:`Which .lang file should it use? <which-lang>`).
-
-Once you have extracted .lang files locally, they can then be added via
-pull request to the `mozilla.org l10n repository`_ for translation.
-You can read the `full documentation`_ for more information on the
-extraction workflow.
-
-.. _using-lang:
-
-Translating with .lang files
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-To translate a string from a .lang file, simply use the gettext interface.
-
-In a jinja2 template:
-
-.. code-block:: jinja
-
-    <div>{{ _('Hello, how are you?') }}<div>
-
-    <div>{{ _('<a href="%s">Click here</a>')|format('http://mozilla.org/') }}</div>
-
-    <div>{{ _('<a href="%(url)s">Click here</a>')|format(url='http://mozilla.org/') }}</div>
-
-Note the usage of variable substitution in the latter examples. It is
-important not to hardcode URLs or other parameters in the string.
-jinja's `format` filter lets us apply variables outsite of the string.
-
-You can provide a one-line comment to the translators like this:
-
-.. code-block:: jinja
-
-    {# L10n: "like" as in "similar to", not "is fond of" #}
-    {{ _('Like this:') }}
-
-The comment will be included in the .lang files above the string to be
-translated.
-
-In a Python file, use ``lib.l10n_utils.dotlang._`` or
-``lib.l10n_utils.dotlang._lazy``, like this:
-
-.. code-block:: python
-
-    from lib.l10n_utils.dotlang import _lazy as _
-
-    sometext = _('Foo about bar.')
-
-You can provide a one-line comment to the translators like this:
-
-.. code-block:: python
-
-    # L10n: "like" as in "similar to", not "is fond of"
-    sometext = _('Like this:')
-
-The comment will be included in the .lang files above the string to be
-translated.
-
-
-There's another way to translate content within jinja2 templates. If
-you need a big chunk of content translated, you can put it all inside
-a `trans` block.
-
-.. code-block:: jinja
-
-    {% trans %}
-      <div>Hello, how are you</div>
-    {% endtrans %}
-
-    {% trans url='http://mozilla.org' %}
-      <div><a href="{{ url }}">Click here</a></div>
-    {% endtrans %}
-
-Note that it also allows variable substitution by passing variables
-into the block and using template variables to apply them.
-
-
-.. _which-lang:
-
-Which .lang file should it use?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Translated strings are split across several .lang files to make it
-easier to manage separate projects and pages. So how does the system
-know which one to use when translating a particular string?
-
-* All translations from Python files are put into main.lang. This
-  should be a very limited set of strings and most likely should be
-  available to all pages.
-* Templates always load `main.lang` and `download_button.lang`.
-* Additionally, each template has its own .lang file, so a template at
-  `mozorg/firefox.html` would use the .lang file at
-  `<locale>/mozorg/firefox.lang`.
-* Templates can override which .lang files are loaded. The above
-  global ones are always loaded, but instead of loading
-  `<locale>/mozorg/firefox.lang`, the template can specify a list of
-  additional lang files to load with a template block:
-
-.. code-block:: jinja
-
-    {% add_lang_files "foo" "bar" %}
-
-That will make the page load `foo.lang` and `bar.lang` in addition to
-`main.lang` and `download_button.lang`.
-
-When strings are extracted from a template, they are added to the
-template-specific .lang file. If the template explicitly specifies
-.lang files like above, it will add the strings to the first .lang
-file specified, so extracted strings from the above template would go
-into `foo.lang`.
-
-You can similarly specify extra .lang files in your Python source as well.
-Simply add a module-level constant in the file named `LANG_FILES`. The
-value should be either a string, or a list of strings, similar to the
-`add_lang_files` tag above.
-
-.. code-block:: python
-
-    # forms.py
-
-    from lib.l10n_utils.dotlang import _
-
-    LANG_FILES = ['foo', 'bar']
-
-    sometext = _('Foo about bar.')
-
-This file's strings would be extracted to `foo.lang`, and the lang files
-`foo.lang`, `bar.lang`, `main.lang` and `download_button.lang` would be
-searched for matches in that order.
-
-l10n blocks
------------
-
-Bedrock also has a block-based translation system that works like the
-``{% block %}`` template tag, and marks large sections of translatable
-content. This should not be used very often; lang files are the
-preferred way to translate content. However, there may be times when
-you want to control a large section of a page and customize it
-without caring very much about future updates to the English page.
-
-A Localizers' guide to l10n blocks
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Let's look at how we would translate an example file from **English** to
-**German**.
-
-The English source template, created by a developer, lives under
-`apps/appname/templates/appname/example.html` and looks like this:
-
-.. code-block:: jinja
-
-    {% extends "base-protocol.html" %}
-
-    {% block content %}
-      <img src="someimage.jpg">
-
-      {% l10n foo, 20110801 %}
-      <h1>Hello world!</h1>
-      {% endl10n %}
-
-      <hr>
-
-      {% l10n bar, 20110801 %}
-      <p>This is an example!</p>
-      {% endl10n %}
-    {% endblock %}
-
-The ``l10n`` blocks mark content that should be localized.
-Realistically, the content in these blocks would be much larger. For a
-short string like above, please use lang files. We'll use this trivial
-code for our example though.
-
-The ``l10n`` blocks are named and tagged with a date (in ISO format).
-The date indicates the time that this content was updated and needs to
-be translated. If you are changing trivial things, you shouldn't
-update it. The point of l10n blocks is that localizers completely
-customize the content, so they don't care about small updates.
-However, you may add something important that needs to be added in the
-localized blocks; hence, you should update the date in that case.
-
-When the command ``./manage.py l10n_extract`` is run, it generates
-the corresponding files in the ``locale`` folder (see below for more
-info on this command).
-
-The German version of this template is created at
-``locale/de/templates/appname/example.html``. The contents of it are:
-
-.. code-block:: jinja
-
-    {% extends "appname/example.html" %}
-
-    {% l10n foo %}
-    <h1>Hello world!</h1>
-    {% endl10n %}
-
-    {% l10n bar %}
-    <p>This is an example!</p>
-    {% endl10n %}
-
-This file is an actual template for the site. It extends the main
-template and contains a list of l10n blocks which override the content
-on the page.
-
-The localizer just needs to translate the content in the l10n blocks.
-
-When the reference template is updated with new content and the date
-is updated on an l10n block, the generated l10n file will simply add
-the new content. It will look like this:
-
-.. code-block:: jinja
-
-    {% extends "appname/example.html" %}
-
-    {% l10n foo %}
-    <h1>This is an English string that needs translating.</h1>
-    {% was %}
-    <h1>Dies ist ein English string wurde nicht.</h1>
-    {% endl10n %}
-
-    {% l10n bar %}
-    <p>This is an example!</p>
-    {% endl10n %}
-
-Note the ``was`` block in ``foo``. The old translated content is in
-there, and the new content is above it. The ``was`` content is always
-shown on the site, so the old translation still shows up. The
-localizer needs to update the translated content and remove the ``was``
-block.
-
-Generating the locale files
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: console
-
-    $ ./manage.py l10n_check
-
-This command will check which blocks need to be translated and update
-the locale templates with needed translations. It will copy the
-English blocks into the locale files if a translation is needed.
-
-You can specify a list of locales to update:
-
-.. code-block:: console
-
-    $ ./manage.py l10n_check fr
-
-.. code-block:: console
-
-    $ ./manage.py l10n_check fr de es
-
-Currency
---------
-
-When dealing with currency, make a separate gettext wrapper, placing the amount
-inside a variable. You should also include a comment describing the intent. For
-example:
-
-.. code-block:: jinja
-
-    {# L10n: Inserts a sum in US dollars, e.g. '$100'. Adapt the string in your translation for your locale conventions if needed, ex: %(sum)s US$ #}
-    {{ _('$%(sum)s')|format(sum='15') }}
-
 CSS
 ---
 
@@ -958,42 +648,15 @@ Sans* and *X-LocaleSpecific* so locale-specific fonts, if defined, will be
 applied to localized pages. The variant mixins, ``.open-sans-light`` and
 ``.open-sans-extrabold``, are also available.
 
-Staging Copy Changes
---------------------
-
-The need will often arise to push a copy change to production before the new
-copy has been translated for all locales. To prevent locales not yet translated
-from displaying English text, you can use the ``l10n_has_tag`` template
-function. For example, if the string "Firefox benefits" needs to be changed to
-"Firefox features":
-
-.. code-block:: jinja
-
-    {% if l10n_has_tag('firefox_products_headline_spring_2016') %}
-      <h1>{{ _('Firefox features') }}</h1>
-    {% else %}
-      <h1>{{ _('Firefox benefits') }}</h1>
-    {% endif %}
-
-This function will check the .lang file(s) of the current page for the tag
-``firefox_products_headline_spring_2016``. If it exists, the translation for
-"Firefox features" will be displayed. If not, the pre-existing translation for
-"Firefox benefits" will be displayed.
-
-When using ``l10n_has_tag``, be sure to coordinate with the localization team to
-decide on a good tag name. Always use underscores instead of hyphens if you need
-to visually separate words.
-
 All
 ===
 
 Locale-specific Templates
 -------------------------
 
-While the ``l10n_has_tag`` or ``ftl_has_messages`` template functions are great in small doses,
-they don't scale particularly well. A template filled with conditional copy can be
-difficult to comprehend, particularly when the conditional copy has associated
-CSS and/or JavaScript.
+While the ``ftl_has_messages`` template function is great in small doses, it doesn't scale
+particularly well. A template filled with conditional copy can be difficult to comprehend,
+particularly when the conditional copy has associated CSS and/or JavaScript.
 
 In instances where a large amount of a template's copy needs to be changed, or
 when a template has messaging targeting one particular locale, creating a
@@ -1014,12 +677,6 @@ render it instead of the originally specified (locale-agnostic) template.
     Creating a locale-specific template for en-US was not possible when this
     feature was introduced, but it is now. So you can create your en-US-only
     template and the rest of the locales will continue to use the default.
-
-.. IMPORTANT::
-
-    Note that the presence of an L10n template (e.g.
-    ``locale/de/templates/firefox/new.html``) will take precedence over
-    a locale-specific template in bedrock.
 
 
 Specifying Active Locales in Views
@@ -1072,18 +729,3 @@ from the lang files then you can use the `add_active_locales` name in all of the
 This is useful in situations where we would have needed the l10n team to create an empty .lang file with
 an active tag in it because we have a locale-specific-template with text in the language hard-coded into
 the template and therefore do not otherwise need a .lang file.
-
-Development
------------
-
-In local development environments and on demo servers all ``l10n_has_tag`` calls
-evaluate to true. If the content has not been translated it will display
-the English strings.
-
-To test l10n locally you can set ``DEV=False`` in your ``.env`` file.
-
-If you are running your local server you will need to restart it after altering
-your ``.env`` file.
-
-.. _mozilla.org l10n repository: https://github.com/mozilla-l10n/www.mozilla.org/
-.. _full documentation: https://mozilla-l10n.github.io/documentation/products/mozilla_org/

@@ -23,20 +23,6 @@ def test_get_locale_hsb():
     assert helpers.get_locale("hsb").language == "de"
 
 
-@patch.object(helpers, "lang_file_has_tag")
-class TestL10nHasTag(TestCase):
-    def test_uses_langfile(self, lfht_mock):
-        """If langfile param specified should only check that file."""
-        helpers.l10n_has_tag({"langfile": "dude", "LANG": "fr"}, "abide", langfile="uli")
-        lfht_mock.assert_called_with("uli", "fr", "abide")
-
-    @patch.object(helpers, "template_has_tag")
-    def test_checks_template_by_default(self, tht_mock, lfht_mock):
-        helpers.l10n_has_tag({"langfile": "dude", "template": "home.html", "LANG": "de"}, "abide")
-        tht_mock.assert_called_with("home.html", "de", "abide")
-        self.assertFalse(lfht_mock.called)
-
-
 class TestCurrentLocale(TestCase):
     @patch("lib.l10n_utils.templatetags.helpers.Locale")
     def test_unknown_locale(self, Locale):

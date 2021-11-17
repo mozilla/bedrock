@@ -42,9 +42,6 @@ update-l10n:
       - "l10n/**/*"
     refs:
       - master
-  except:
-    changes:
-      - "lib/fluent_migrations/**/*"
   script:
     - bin/open-ftl-pr.sh
   retry: 2

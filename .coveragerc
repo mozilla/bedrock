@@ -18,8 +18,6 @@ omit =
     tests/*
     venv/*
     wsgi/*
-    # There are no unit tests for this dir, and it is slated for removal anyway:
-    lib/fluent_migrations*
 
 [report]
 exclude_lines =
