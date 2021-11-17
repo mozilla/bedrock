@@ -19,7 +19,7 @@ from jinja2 import Markup
 cache = caches["l10n"]
 
 
-def translate(text, files):
+def translate(text, files=None):
     """
     An almost no-op to avoid triggering the old l10n machinery.
     """
@@ -30,6 +30,9 @@ def gettext(text, *args, **kwargs):
     """
     An almost no-op to avoid triggering the old l10n machinery.
     """
+    text = translate(text)
+    if args:
+        text = text % args
     return text
 
 
