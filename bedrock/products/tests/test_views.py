@@ -7,8 +7,9 @@ import json
 from django.http import HttpResponse
 from django.test import override_settings
 from django.test.client import RequestFactory
+from django.urls import reverse
 
-from mock import patch
+from mock import Mock, patch
 
 from bedrock.mozorg.tests import TestCase
 from bedrock.products import views
@@ -98,3 +99,86 @@ class TestVPNLandingPage(TestCase):
         view(req)
         ctx = render_mock.call_args[0][2]
         self.assertFalse(ctx["vpn_available"])
+
+
+class TestVPNResourceCenterHelpers(TestCase):
+    def _build_mock_entry(self, entry_category_name):
+        entry = Mock(name=entry_category_name)
+        entry.category = entry_category_name
+        return entry
+
+    def test__build_category_list(self):
+        root_url = reverse("products.vpn.resource-center.landing")
+        cases = [
+            {
+                "entry_list": [
+                    self._build_mock_entry("Category one"),
+                    self._build_mock_entry("category TWO"),
+                    self._build_mock_entry("Category three"),
+                ],
+                "expected": [
+                    # Alphabetical based on category name
+                    {
+                        "name": "Category one",
+                        "url": f"{root_url}?category=Category+one",
+                    },
+                    {
+                        "name": "Category three",
+                        "url": f"{root_url}?category=Category+three",
+                    },
+                    {
+                        "name": "category TWO",
+                        "url": f"{root_url}?category=category+TWO",
+                    },
+                ],
+            },
+            {
+                "entry_list": [
+                    self._build_mock_entry("Category one"),
+                    self._build_mock_entry("category TWO"),
+                    self._build_mock_entry("Category three"),
+                    self._build_mock_entry("category TWO"),
+                    self._build_mock_entry("Category three"),
+                ],
+                "expected": [
+                    {
+                        "name": "Category one",
+                        "url": f"{root_url}?category=Category+one",
+                    },
+                    {
+                        "name": "Category three",
+                        "url": f"{root_url}?category=Category+three",
+                    },
+                    {
+                        "name": "category TWO",
+                        "url": f"{root_url}?category=category+TWO",
+                    },
+                ],
+            },
+            {
+                "entry_list": [
+                    self._build_mock_entry("Category one"),
+                    self._build_mock_entry("Category one"),
+                    self._build_mock_entry("Category one"),
+                    self._build_mock_entry("Category one"),
+                    self._build_mock_entry("Category one"),
+                    self._build_mock_entry("Category one"),
+                ],
+                "expected": [
+                    {
+                        "name": "Category one",
+                        "url": f"{root_url}?category=Category+one",
+                    },
+                ],
+            },
+            {
+                "entry_list": [],
+                "expected": [],
+            },
+        ]
+        for case in cases:
+            with self.subTest(case=case):
+                output = views._build_category_list(
+                    case["entry_list"],
+                )
+                self.assertEqual(output, case["expected"])
