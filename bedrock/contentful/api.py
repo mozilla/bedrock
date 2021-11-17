@@ -302,13 +302,8 @@ class LiRenderer(BaseBlockRenderer):
 
 class PRenderer(BaseBlockRenderer):
     def render(self, node):
-        # contains only one node which is a link
-        if _only_child(node, "hyperlink"):
-            # add cta-link class
-            # TODO, class shoudl be added to <a>?
-            return f'<p class="mzp-c-cta-link">{self._render_content(node)}</p>'
         # contains only an empty text node
-        elif len(node["content"]) == 1 and node["content"][0]["nodeType"] == "text" and node["content"][0]["value"] == "":
+        if len(node["content"]) == 1 and node["content"][0]["nodeType"] == "text" and node["content"][0]["value"] == "":
             # just say no to empty p tags
             return ""
         else:
