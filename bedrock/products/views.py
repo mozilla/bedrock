@@ -112,17 +112,19 @@ def _build_category_list(entry_list):
     # category_list = [
     #   {"name": "Cat1", "url": "/full/path/to/category"}, ...
     # ]
+    categories_seen = set()
     category_list = []
     root_url = reverse("products.vpn.resource-center.landing")
     for entry in entry_list:
         category = entry.category
-        if category:
+        if category and category not in categories_seen:
             category_list.append(
                 {
                     "name": category,
                     "url": f"{root_url}?{ARTICLE_CATEGORY_LABEL}={quote_plus(category)}",
                 }
             )
+            categories_seen.add(category)
 
     category_list = sorted(category_list, key=lambda x: x["name"])
     return category_list
