@@ -1,0 +1,25 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "externalpages/pocket/base.html" %}
+
+{% block page_title %} Add Pocket to Chrome {% endblock %}
+
+{% block content %}
+  <div class="platform">
+    <div class="platform__wrapper">
+      <div class="platform__wrapper--image">
+        {% block platform_image %}{% endblock %}
+      </div>
+      <div class="platform__wrapper-content">
+        {% block platform_content %}{% endblock %}
+        <button>install</button>
+        <span><a href="">Install the bookmarklet</a></span>
+      </div>
+    </div>
+
+  </div>
+{% endblock %}
