@@ -8,7 +8,7 @@ from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 from django.conf import settings
 from django.utils.functional import cached_property
 
-import contentful as api
+import contentful as contentful_api
 from crum import get_current_request, set_current_request
 from rich_text_renderer import RichTextRenderer
 from rich_text_renderer.base_node_renderer import BaseNodeRenderer
@@ -68,7 +68,7 @@ THEME_CLASS = {
 }
 COLUMN_CLASS = {
     "1": "",
-    "2": "mzp-l-columns mzp-t-columns-two ",
+    "2": "mzp-l-columns mzp-t-columns-two",
     "3": "mzp-l-columns mzp-t-columns-three",
     "4": "mzp-l-columns mzp-t-columns-four",
 }
@@ -77,7 +77,7 @@ COLUMN_CLASS = {
 def get_client(raw_mode=False):
     client = None
     if settings.CONTENTFUL_SPACE_ID and settings.CONTENTFUL_SPACE_KEY:
-        client = api.Client(
+        client = contentful_api.Client(
             settings.CONTENTFUL_SPACE_ID,
             settings.CONTENTFUL_SPACE_KEY,
             environment=settings.CONTENTFUL_ENVIRONMENT,
@@ -153,7 +153,9 @@ def _get_column_class(columns):
 
 def _make_logo(entry):
     fields = entry.fields()
-    product = fields["product_icon"]
+    product = fields.get("product_icon")
+    if not product:
+        return ""
 
     data = {
         "product_name": product,
@@ -166,7 +168,9 @@ def _make_logo(entry):
 
 def _make_wordmark(entry):
     fields = entry.fields()
-    product = fields["product_icon"]
+    product = fields.get("product_icon")
+    if not product:
+        return ""
 
     data = {
         "product_name": product,
@@ -187,11 +191,10 @@ def _make_cta_button(entry):
         "mzp-t-secondary" if fields.get("theme") == "Secondary" else "",
         f'mzp-t-{WIDTHS.get(fields.get("size"), "")}' if fields.get("size") else "",
     ]
-
     data = {
         "action": action,
         "label": fields.get("label"),
-        "button_class": " ".join(button_class),
+        "button_class": " ".join([_class for _class in button_class if _class]),
         # TODO
         "location": "",  # eg primary, secondary
         "cta_text": fields.get("label"),  # TODO needs to use English in all locales
