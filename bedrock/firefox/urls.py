@@ -183,8 +183,6 @@ urlpatterns = (
     page("firefox/browsers/update-your-browser", "firefox/browsers/update-browser.html"),
     page("firefox/browsers/what-is-a-browser", "firefox/browsers/what-is-a-browser.html", ftl_files=["firefox/browsers/history/what-is-a-browser"]),
     page("firefox/browsers/windows-64-bit", "firefox/browsers/windows-64-bit.html", ftl_files=["firefox/browsers/windows-64-bit"]),
-    # Lockwise
-    page("firefox/lockwise", "firefox/products/lockwise.html", ftl_files=["firefox/products/lockwise"]),
     # Issue 7765, 7709
     page("firefox/privacy", "firefox/privacy/index.html", ftl_files=["firefox/privacy-hub"]),
     page("firefox/privacy/products", "firefox/privacy/products.html", ftl_files=["firefox/privacy-hub"]),

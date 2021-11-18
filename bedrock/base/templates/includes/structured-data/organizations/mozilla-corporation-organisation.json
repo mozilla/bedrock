@@ -326,36 +326,6 @@
   },
   {
     "@type": "Product",
-    "@id": "{{ structured_data_id('firefoxlockwise') }}",
-    "url": "{% filter absolute_url %}{{ url('firefox.products.lockwise') }}{% endfilter %}",
-    "logo": "{% filter absolute_url %}{{ static('img/structured-data/logo-firefox-lockwise.png') }}{% endfilter %}",
-    "image": [
-      "{% filter absolute_url %}{{ static('img/structured-data/lockwise.png') }}{% endfilter %}",
-      "{% filter absolute_url %}{{ static('img/structured-data/lockwise-onboarding.png') }}{% endfilter %}",
-      "{% filter absolute_url %}{{ static('img/structured-data/lockwise-autofill.png') }}{% endfilter %}"
-    ],
-    "name": "Firefox Lockwise",
-    "brand":
-    {
-      "@id": "{{ structured_data_id('firefoxbrand') }}"
-    },
-    "sameAs": [
-      "https://{{ lang_short() }}.wikipedia.org/wiki/Firefox_Lockwise",
-      "https://www.wikidata.org/wiki/Q64829394",
-      "{{ play_store_url('lockwise')|safe }}",
-      "{{ app_store_url('lockwise') }}"
-    ],
-    "offers":
-    {
-      "@type": "Offer",
-      "url": "{% filter absolute_url %}{{ url('firefox.products.lockwise') }}{% endfilter %}",
-      "priceCurrency": "USD",
-      "price": "0",
-      "availability": "https://schema.org/InStock"
-    }
-  },
-  {
-    "@type": "Product",
     "@id": "{{ structured_data_id('firefoxmac') }}",
     "url": "{% filter absolute_url %}{{ url('firefox.mac') }}{% endfilter %}",
     "logo": "{% filter absolute_url %}{{ static('img/structured-data/logo-firefox-browser.png') }}{% endfilter %}",
