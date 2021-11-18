@@ -1,0 +1,99 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+
+.pocket-header.platform {
+    box-shadow: 0 0 5px rgba(0, 0, 0, .15);
+    border-bottom-color: #c8c8c8;
+}
+
+.platform-header {
+    align-items: center;
+    display: flex;
+    height: 74px;
+    margin: 0 auto;
+    max-width: 1168px;
+    padding: 0 16px;
+
+    .pocket-logo {
+        margin-left: 0;
+
+        .pocket-logo-svg {
+            background-image: url('/media/img/externalpages/pocket/pocket-logo-grey.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            height: 38px;
+            width: 151px;
+
+            @media #{$mq-md} {
+                background-image: url('/media/img/externalpages/pocket/pocket-logo-grey-high-res.png');
+                height: 47px;
+                width: 189px;
+            }
+        }
+        .sr-only {
+            border: 0;
+            clip-path: polygon(0 0, 0 0, 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+            white-space: nowrap;
+        }
+    }
+
+
+    &__navigation {
+        display: flex;
+        justify-content: flex-end;
+        flex-grow: 2;
+        line-height: 1;
+        white-space: nowrap;
+
+        &-list {
+            display: flex;
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            font-size: 16px;
+            display: none;
+
+            &-item {
+                display: inline-block;
+                margin: 0;
+                padding: 0;
+
+                &-link {
+                    border-top: 6px solid transparent;
+                    font-family: proxima-nova, "Helvetica Neue", Helvetica, Arial, sans-serif;
+                    font-size: 14px;
+                    font-weight: 700;
+                    line-height: 1;
+                    padding: 24px 21px;
+                    text-decoration: none;
+                    color: #777;
+
+                    &:hover {
+                        border-top-color: #5dcfca;
+                        color: #5dcfca;
+                    }
+                }
+            }
+
+            @media #{$mq-md} {
+                display: flex;
+
+                &-item-link {
+                    padding: 24px 14px;
+                }
+            }
+
+        }
+    }
+
+}
