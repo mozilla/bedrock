@@ -123,6 +123,10 @@ $image-path: '/media/protocol/img';
     h3 {
         @include text-title-sm;
     }
+
+    img {
+        margin: 0 0 $spacing-lg;
+    }
 }
 
 .vpn-article-bottom-title {
