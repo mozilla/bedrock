@@ -374,12 +374,6 @@
     },
     {
       "files": [
-        "css/firefox/lockwise/lockwise.scss"
-      ],
-      "name": "lockwise"
-    },
-    {
-      "files": [
         "css/firefox/flashback/flashback.scss"
       ],
       "name": "flashback"
@@ -1079,12 +1073,6 @@
         "protocol/js/protocol-newsletter.js"
       ],
       "name": "legal"
-    },
-    {
-      "files": [
-        "js/firefox/lockwise/lockwise.js"
-      ],
-      "name": "lockwise"
     },
     {
       "files": [
