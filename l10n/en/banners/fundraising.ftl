@@ -11,7 +11,7 @@ banner-fundraising-title-giving-day = Help { -brand-name-mozilla } fight for a b
 # Outdated string
 banner-fundraising-title = The future is being decided online. Help { -brand-name-mozilla } fight for a web for all of us.
 
-banner-fundraising-body-v2 = We're proudly nonprofit, working to keep the web healthy. Your contributions help build a safe and open internet.
+banner-fundraising-body-v2 = We’re proudly nonprofit, working to keep the web healthy. Your contributions help build a safe and open internet.
 
 # Outdated string
 banner-fundraising-body = Our personal data is collected every time we access the web, and it's not easy to find out what happens with it. Misinformation is making it harder for us to find the truth. Web-connected devices are pushed to market without meeting minimum security standards. The non-profit { -brand-name-mozilla-foundation } fights to make the internet safe, open and accessible to all. <strong>Will you donate today?</strong>
