@@ -70,11 +70,7 @@
 
   <div class="mzp-l-content c-landing-grid">
     <div class="c-landing-grid-item">
-      {% if switch("browser-mr2-promo") %}
-         {{ high_res_img('img/firefox/browsers/desktop-MR2.png', {'alt': '', 'class': 'c-landing-grid-img', 'width': '327', 'height': '218'}) }}
-      {% else %}
-         {{ high_res_img('img/firefox/browsers/desktop.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '327', 'height': '223'}) }}
-      {% endif %}
+      {{ high_res_img('img/firefox/browsers/desktop.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '350', 'height': '233'}) }}
       <h2 class="c-landing-grid-title"><a href="{{ url('firefox.new') }}" data-cta-type="link" data-cta-text="Desktop">{{ ftl('firefox-browsers-desktop') }}</a></h2>
       <p>{{ ftl('firefox-browsers-seriously-private-browsing') }}</p>
 
@@ -93,11 +89,7 @@
     </div>
 
     <div class="c-landing-grid-item">
-      {% if switch("browser-mr2-promo") %}
-        {{ high_res_img('img/firefox/browsers/mobile-MR2.png', {'alt': '', 'class': 'c-landing-grid-img', 'width': '327', 'height': '218'}) }}
-      {% else %}
-        {{ high_res_img('img/firefox/browsers/mobile.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '327', 'height': '223'}) }}
-      {% endif %}
+      {{ high_res_img('img/firefox/browsers/mobile.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '350', 'height': '233'}) }}
       <h2 class="c-landing-grid-title "><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.mobile.index') }}" data-cta-type="link" data-cta-text="Mobile">{{ ftl('firefox-browsers-mobile') }}</a></h2>
       <p>{{ ftl('firefox-browsers-take-the-same-level-of-privacy') }}</p>
 
@@ -121,18 +113,14 @@
     </div>
 
     <div class="c-landing-grid-item">
-      {% if switch("browser-mr2-promo") %}
-       {{ high_res_img('img/firefox/browsers/enterprise-MR2.png', {'alt': '', 'class': 'c-landing-grid-img', 'width': '327', 'height': '218'}) }}
-        {% else %}
-         {{ high_res_img('img/firefox/browsers/enterprise.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '327', 'height': '223'}) }}
-      {% endif %}
+      {{ high_res_img('img/firefox/browsers/enterprise.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '350', 'height': '233'}) }}
       <h2 class="c-landing-grid-title"><a href="{{ url('firefox.enterprise.index') }}" data-cta-type="link" data-cta-text="Enterprise">{{ ftl('firefox-browsers-enterprise') }}</a></h2>
       <p>{{ ftl('firefox-browsers-get-unmatched-data-protection') }}</p>
       <p><a class="mzp-c-cta-link" href="{{ url('firefox.enterprise.index') }}#download" data-cta-type="link" data-cta-text="Enterprise packages">{{ ftl('firefox-browsers-enterprise-packages') }}</a></p>
       <p><a class="mzp-c-cta-link" href="{{ url('firefox.enterprise.index') }}" data-cta-type="link" data-cta-text="Enterprise Learn More">{{ ftl('ui-learn-more') }}</a></p>
     </div>
     <div class="c-landing-grid-item">
-      {{ high_res_img('img/firefox/browsers/reality.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '327', 'height': '223'}) }}
+      {{ high_res_img('img/firefox/browsers/reality.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '350', 'height': '223'}) }}
       <h2 class="c-landing-grid-title"><a href="https://mixedreality.mozilla.org/firefox-reality{{ referrals }}" data-cta-type="link" data-cta-text="Reality">{{ ftl('firefox-browsers-reality') }}</a></h2>
       <p>{{ ftl('firefox-browsers-go-beyond-two-dimensions-and') }}</p>
       <p><a class="mzp-c-cta-link" href="https://mixedreality.mozilla.org/firefox-reality{{ referrals }}" data-cta-type="link" data-cta-text="Reality Learn More">{{ ftl('ui-learn-more') }}</a></p>

@@ -158,12 +158,6 @@ main .mzp-l-content {
     margin: 0 auto;
 }
 
-@media #{$mq-sm} {
-    .c-landing-grid-img {
-        max-width: $content-xs;
-    }
-}
-
 // two column grid for browsers that don't support display:grid
 // works in RTL without bidi styles \o/
 @media #{$mq-md} {
