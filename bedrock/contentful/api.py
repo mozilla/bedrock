@@ -335,7 +335,7 @@ class AssetBlockRenderer(BaseBlockRenderer):
         return self.IMAGE_HTML.format(
             src=_get_image_url(asset, 688),
             src_highres=_get_image_url(asset, 1376),
-            alt=asset.title,
+            alt=asset.description,
         )
 
 
