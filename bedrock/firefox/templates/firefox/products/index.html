@@ -46,11 +46,7 @@
 
   <div class="mzp-l-content c-landing-grid">
     <div class="c-landing-grid-item">
-      {% if switch("browser-mr2-promo") %}
-         <img src="{{ static('img/firefox/products/monitor-MR2.svg') }}" class="c-landing-grid-img" alt="" width="316" height="223">
-      {% else %}
-        <img src="{{ static('img/firefox/products/monitor.svg') }}" class="c-landing-grid-img" alt="" width="316" height="223">
-      {% endif %}
+      <img src="{{ static('img/firefox/products/monitor.svg') }}" class="c-landing-grid-img" alt="" width="350" height="247">
       <h2 class="c-landing-grid-title"><a href="https://monitor.firefox.com{{ referrals }}" data-cta-type="link" data-cta-text="Firefox Monitor">{{ ftl('firefox-products-firefox-monitor') }}</a></h2>
       <p>{{ ftl('firefox-products-see-if-your-personal-information') }}</p>
       <p><a class="mzp-c-cta-link" href="https://monitor.firefox.com/{{ referrals }}" data-cta-type="link" data-cta-text="Check for breaches">{{ ftl('firefox-products-check-for-breaches') }}</a></p>
@@ -65,11 +61,7 @@
     </div>
 
     <div class="c-landing-grid-item">
-      {% if switch("browser-mr2-promo") %}
-         {{ high_res_img('img/firefox/products/browsers-MR2.png', {'alt': '', 'class': 'c-landing-grid-img', 'width': '316', 'height': '223'}) }}
-      {% else %}
-        {{ high_res_img('img/firefox/products/browsers.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '316', 'height': '223'}) }}
-      {% endif %}
+      {{ high_res_img('img/firefox/products/browsers.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '350', 'height': '247'}) }}
       <h2 class="c-landing-grid-title "><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.index') }}" data-cta-type="link" data-cta-text="Firefox browsers">{{ ftl('firefox-products-firefox-browsers') }}</a></h2>
       <p>{{ ftl('firefox-products-get-the-browsers-that-block') }}</p>
       <div id="menu-browsers-wrapper" class="mzp-c-menu-list mzp-t-cta mzp-t-download">
@@ -92,7 +84,7 @@
 
   {% if ftl_has_messages('firefox-products-surf-stream-and-get-work-done') %}
     <div class="c-landing-grid-item">
-      <img src="{{ static('img/firefox/products/vpn.svg') }}" class="c-landing-grid-img" alt="" width="316" height="223">
+      <img src="{{ static('img/firefox/products/vpn.svg') }}" class="c-landing-grid-img" alt="" width="350" height="247">
       <h2 class="c-landing-grid-title"><a href="{{ url('products.vpn.landing') }}" data-cta-type="link" data-cta-text="Mozilla VPN">{{ ftl('firefox-products-mozilla-vpn') }}</a></h2>
       <p>{{ ftl('firefox-products-surf-stream-and-get-work-done') }}</p>
       <p><a class="mzp-c-cta-link" href="{{ url('products.vpn.landing') }}" rel="external noopener" data-cta-type="link" data-cta-text="Get Mozilla VPN">{{ ftl('firefox-products-get-mozilla-vpn') }}</a></p>
@@ -100,11 +92,7 @@
   {% endif %}
 
     <div class="c-landing-grid-item">
-      {% if switch("browser-mr2-promo") %}
-        <img src="{{ static('img/firefox/products/pocket-MR2.svg') }}" class="c-landing-grid-img" alt="" width="316" height="223">
-      {% else %}
-        <img src="{{ static('img/firefox/products/pocket.svg') }}" class="c-landing-grid-img" alt="" width="316" height="223">
-      {% endif %}
+      <img src="{{ static('img/firefox/products/pocket.svg') }}" class="c-landing-grid-img" alt="" width="350" height="247">
       <h2 class="c-landing-grid-title"><a href="https://getpocket.com/firefox_learnmore/{{ referrals }}">{{ ftl('firefox-products-pocket') }}</a></h2>
       <p>{{ ftl('firefox-products-discover-the-best-content') }}</p>
       <div id="menu-pocket-wrapper"  class="mzp-c-menu-list mzp-t-cta mzp-t-download">
@@ -121,15 +109,29 @@
 
     {% if ftl_has_messages('firefox-products-protect-your-real') %}
     <div class="c-landing-grid-item">
-      {% if switch("browser-mr2-promo") %}
-        <img src="{{ static('img/firefox/products/relay-MR2.svg') }}" class="c-landing-grid-img" alt="" width="316" height="223">
-      {% else %}
-        <img src="{{ static('img/firefox/products/relay.svg') }}" class="c-landing-grid-img" alt="" width="316" height="223">
-      {% endif %}
+      <img src="{{ static('img/firefox/products/relay.svg') }}" class="c-landing-grid-img" alt="" width="350" height="247">
       <h2 class="c-landing-grid-title"><a href="https://relay.firefox.com/">{{ ftl('firefox-products-relay') }}</a></h2>
       <p>{{ ftl('firefox-products-protect-your-real') }}</p>
 
       <p><a class="mzp-c-cta-link" href="https://relay.firefox.com/" rel="external noopener" data-cta-type="link" data-cta-text="Relay">{{ ftl('firefox-products-learn-more-about-relay') }}</a></p>
+    </div>
+    {% endif %}
+
+    {% if ftl_has_messages('firefox-products-your-dedicated-privacy') %}
+    <div class="c-landing-grid-item">
+      <img src="{{ static('img/firefox/products/firefox-focus.jpg') }}" class="c-landing-grid-img" alt="" width="350" height="247">
+      <h2 class="c-landing-grid-title"><a href="{{ url('firefox.browsers.mobile.focus') }}">{{ ftl('firefox-products-firefox-focus') }}</a></h2>
+      <p>{{ ftl('firefox-products-your-dedicated-privacy') }}</p>
+
+      <div id="menu-focus-wrapper"  class="mzp-c-menu-list mzp-t-cta mzp-t-download">
+        <h3 class="mzp-c-menu-list-title">{{ ftl('download-button-download') }}</h3>
+        <ul class="mzp-c-menu-list-list" id="menu-mobile">
+          <li class="mzp-c-menu-list-item"><a href="{{ focus_adjust_url('android', 'firefox_products') }}" rel="external noopener" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android">{{ ftl('firefox-products-android') }}</a></li>
+          <li class="mzp-c-menu-list-item"><a href="{{ focus_adjust_url('ios', 'firefox_products') }}" rel="external noopener" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS">{{ ftl('firefox-products-ios') }}</a></li>
+        </ul>
+      </div>
+
+      <p><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.mobile.focus') }}" data-cta-type="link" data-cta-text="Focus Learn More">{{ ftl('ui-learn-more') }}</a></p>
     </div>
     {% endif %}
 
