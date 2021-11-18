@@ -12,6 +12,7 @@
 {% block gtm_page_id %}data-gtm-page-id="Homepage"{% endblock %}
 
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
+{% set show_fundraising_banner = switch('fundraising-banner-eoy2021') and donate_params and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
 
 {% block page_title %}{{ _('Internet for people, not profit') }}{% endblock %}
 
@@ -42,10 +43,10 @@
 {% block page_css %}
   {{ css_bundle('home-en') }}
 
-  {% if show_firefox_app_store_banner %}
-    {{ css_bundle('firefox-app-store-banner') }}
-  {% elif switch('fundraising-banner-eoy2020') %}
+  {% if show_fundraising_banner %}
     {{ css_bundle('fundraising-banner') }}
+  {% elif show_firefox_app_store_banner %}
+    {{ css_bundle('firefox-app-store-banner') }}
   {% endif %}
 
   {% if switch('homepage-mr2-promo') %}
@@ -56,10 +57,10 @@
 {% endblock %}
 
 {% block page_banner %}
-  {% if show_firefox_app_store_banner %}
-    {% include 'includes/banners/mobile/firefox-app-store.html' %}
-  {% elif switch('fundraising-banner-eoy2020') and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
+  {% if show_fundraising_banner %}
     {% include 'includes/banners/fundraiser.html' %}
+  {% elif show_firefox_app_store_banner %}
+    {% include 'includes/banners/mobile/firefox-app-store.html' %}
   {% endif %}
 {% endblock %}
 
@@ -234,10 +235,10 @@
 {% block js %}
   {{ js_bundle('home') }}
 
-  {% if show_firefox_app_store_banner %}
-    {{ js_bundle('firefox-app-store-banner') }}
-  {% elif switch('fundraising-banner-eoy2020') %}
+  {% if show_fundraising_banner %}
     {{ js_bundle('fundraising-banner') }}
+  {% elif show_firefox_app_store_banner %}
+    {{ js_bundle('firefox-app-store-banner') }}
   {% endif %}
 {% endblock %}
 

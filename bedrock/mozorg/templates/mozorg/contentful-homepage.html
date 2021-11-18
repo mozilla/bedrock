@@ -38,12 +38,16 @@
 <meta name="google-site-verification" content="U9a6gH32vLIykvntaDToj-ytYhlZ1AfAgVEKstixQIE">
 {% endblock %}
 
+{% set show_fundraising_banner = switch('fundraising-banner-eoy2021') and donate_params and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
+
 {% block page_css %}
   {% include 'includes/contentful/css.html' %}
   {{ css_bundle('home-contentful-en') }}
 
-  {% if switch('fundraising-banner-eoy2020') %}
+  {% if show_fundraising_banner %}
     {{ css_bundle('fundraising-banner') }}
+  {% elif show_firefox_app_store_banner %}
+    {{ css_bundle('firefox-app-store-banner') }}
   {% endif %}
 
   {% if switch('homepage-mr2-promo') %}
@@ -52,8 +56,10 @@
 {% endblock %}
 
 {% block page_banner %}
-  {% if switch('fundraising-banner-eoy2020') and donate_params and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
+  {% if show_fundraising_banner %}
     {% include 'includes/banners/fundraiser.html' %}
+  {% elif show_firefox_app_store_banner %}
+    {% include 'includes/banners/mobile/firefox-app-store.html' %}
   {% endif %}
 {% endblock %}
 
@@ -131,8 +137,10 @@
   {% include 'includes/contentful/js.html' %}
   {{ js_bundle('home-contentful') }}
 
-  {% if switch('fundraising-banner-eoy2020') %}
+  {% if show_fundraising_banner %}
     {{ js_bundle('fundraising-banner') }}
+  {% elif show_firefox_app_store_banner %}
+    {{ js_bundle('firefox-app-store-banner') }}
   {% endif %}
 {% endblock %}
 
