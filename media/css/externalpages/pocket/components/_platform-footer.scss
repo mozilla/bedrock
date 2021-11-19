@@ -1,0 +1,124 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.platform-footer {
+    border-top: 1px solid #cacaca;
+    background-color: $color-light-gray-05;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding-top: 32px;
+
+    &__navigation {
+        display: flex;
+        flex-direction: column-reverse;
+        margin: 0 auto;
+        max-width: 1000px;
+        width: 100%;
+
+        @media #{$mq-md} {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        &-links {
+            display: flex;
+            flex-direction: column;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 0 16px;
+            margin: 0;
+
+            &-item {
+                margin: 0 0 16px;
+                cursor: pointer;
+
+                a:hover {
+                    text-decoration: underline;
+                }
+            }
+
+            @media #{$mq-md} {
+                flex-direction: row;
+
+                &-item {
+                    margin: 0 10px 0;
+
+                }
+            }
+
+            @media #{$mq-lg} {
+                margin-right: 21px;
+            }
+        }
+
+        &-social-media {
+            padding: 0 16px;
+        }
+
+        &-social-media-list {
+            margin: 0;
+            padding: 0;
+            display: flex;
+
+            &-text {
+                font-size: 12px;
+                font-weight: 700;
+                margin-right: 16px;
+            }
+
+            &-item {
+                background: url('/media/img/externalpages/pocket/footer-socialicons-high-res.png') 0 1px no-repeat;
+                background-size: 240px 400px;
+                cursor: pointer;
+                width: 22px;
+                color: #1a1a1a;
+                display: block;
+                height: 21px;
+                margin-right: 16px;
+                overflow: hidden;
+                position: relative;
+                text-indent: -9999px;
+                top: -4px;
+
+                &.twitter {
+                    width: 22px;
+
+                    &:hover {
+                        background-position: -200px 1px;
+                    }
+                }
+
+                &.facebook {
+                    background-position: 0 -80px;
+                    width: 9px;
+
+                    &:hover {
+                        background-position: -200px -80px;
+                    }
+                }
+
+                &.google {
+                    background-position: 0 -159px;
+                    margin-right: 0;
+
+                    &:hover {
+                        background-position: -200px -159px;
+                    }
+                }
+            }
+        }
+
+        p {
+            color: #8c8c8c;
+            font-size: 11px;
+            font-weight: 300;
+            text-align: left;
+
+            @media #{$mq-md} {
+                text-align: right;
+            }
+        }
+    }
+}

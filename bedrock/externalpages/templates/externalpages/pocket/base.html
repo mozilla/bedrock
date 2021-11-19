@@ -32,9 +32,7 @@
 
       <!--[if !IE]><!-->
     {# Page-specific styles, hidden from IE9 and lower #}
-    {% block pocket_css %}
-      {{ css_bundle('pocket-about') }}
-    {% endblock  %}
+    {% block pocket_css %}{% endblock  %}
 
     <title>{% block page_title %}{% endblock page_title %} | Pocket</title>
   </head>
