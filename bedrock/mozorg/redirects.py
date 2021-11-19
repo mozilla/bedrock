@@ -188,7 +188,7 @@ redirectpatterns = (
     # bug 957637
     redirect(r"^sopa/?", "https://blog.mozilla.org/blog/2012/01/19/firefox-users-engage-congress-sopa-strike-stats/"),
     # bug 924687
-    redirect(r"^opportunities(?:/|/index\.html)?$", "https://careers.mozilla.org/"),
+    redirect(r"^opportunities(?:/|/index\.html)?$", "https://careers.mozilla.org/", permanent=False),
     # bug 818321
     redirect(r"^projects/security/tld-idn-policy-list\.html$", "https://wiki.mozilla.org/IDN_Display_Algorithm"),
     redirect(r"^projects/security/membership-policy\.html$", "/about/governance/policies/security-group/membership/"),
@@ -299,7 +299,7 @@ redirectpatterns = (
     redirect(r"^about/bookmarks\.html$", "https://wiki.mozilla.org/Historical_Documents"),
     redirect(r"^about/timeline\.html$", "https://wiki.mozilla.org/Timeline"),
     # bug 1016400
-    redirect(r"^about/careers\.html$", "https://careers.mozilla.org/"),
+    redirect(r"^about/careers\.html$", "https://careers.mozilla.org/", permanent=False),
     # bug 861243 and bug 869489
     redirect(r"^about/manifesto\.html$", "/about/manifesto/"),
     redirect(r"^about/manifesto\.(.*)\.html$", "/{}/about/manifesto/", locale_prefix=False),
@@ -393,7 +393,7 @@ redirectpatterns = (
     redirect(r"^projects/marketing(/.*)?$", "https://wiki.mozilla.org/MarketingGuide"),
     # bug 1288647, 1722760
     redirect(r"^hacking/?$", "https://firefox-source-docs.mozilla.org/"),
-    redirect(r"^(careers|jobs)/?$", "https://careers.mozilla.org/"),
+    redirect(r"^(careers|jobs)/?$", "https://careers.mozilla.org/", permanent=False),
     redirect(r"^join/?$", "https://donate.mozilla.org/"),
     # Bug 1262593
     redirect(r"^unix/remote\.html$", "http://www-archive.mozilla.org/unix/remote.html"),
