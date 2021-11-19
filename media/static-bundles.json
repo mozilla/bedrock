@@ -1165,9 +1165,9 @@
     {
       "files": [
         "js/firefox/new/common/thanks.js",
-        "js/firefox/new/common/thanks-amo-exp.js"
+        "js/firefox/new/common/thanks-direct.js"
       ],
-      "name": "firefox_new_thanks_amo_exp"
+      "name": "firefox_new_thanks_direct"
     },
     {
       "files": [

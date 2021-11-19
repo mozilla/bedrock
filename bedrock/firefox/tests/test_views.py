@@ -499,25 +499,27 @@ class TestFirefoxNew(TestCase):
         assert resp.status_code == 301
         assert resp["location"].endswith("/firefox/download/thanks/?scene=2&dude=abides")
 
-    # begin AMO experiment - issue 10207
+    # begin /thanks?s=direct URL - issue 10520
 
-    @patch.dict(os.environ, SWITCH_NEW_REDESIGN="True")
-    def test_thanks_amo_experiment_en(self, render_mock):
-        req = RequestFactory().get("/firefox/download/thanks/?xv=amo")
+    @patch.object(views, "ftl_file_is_active", lambda *x: True)
+    def test_thanks_desktop_direct(self, render_mock):
+        req = RequestFactory().get("/firefox/download/thanks/?s=direct")
         req.locale = "en-US"
         view = views.DownloadThanksView.as_view()
         view(req)
         template = render_mock.call_args[0][1]
-        assert template == ["firefox/new/desktop/thanks-amo-exp.html"]
+        assert template == ["firefox/new/desktop/thanks_direct.html"]
 
-    @patch.dict(os.environ, SWITCH_NEW_REDESIGN="True")
-    def test_thanks_amo_experiment_locales(self, render_mock):
-        req = RequestFactory().get("/firefox/download/thanks/?xv=amo")
-        req.locale = "de"
+    @patch.object(views, "ftl_file_is_active", lambda *x: False)
+    def test_thanks_basic_direct(self, render_mock):
+        req = RequestFactory().get("/firefox/download/thanks/?s=direct")
+        req.locale = "el"
         view = views.DownloadThanksView.as_view()
         view(req)
         template = render_mock.call_args[0][1]
-        assert template == ["firefox/new/desktop/thanks.html"]
+        assert template == ["firefox/new/basic/thanks_direct.html"]
+
+    # end /thanks?s=direct URL - issue 10520
 
     # begin yandex - issue 5635 & 10607
 

@@ -52,7 +52,7 @@
         // Fire GA event to log attribution success
         window.dataLayer.push({
             event: 'non-interaction',
-            eAction: 'amo-exp-attribution',
+            eAction: 'direct-attribution',
             eLabel: 'success'
         });
 
@@ -70,7 +70,7 @@
         // Fire GA event to log attribution timeout
         window.dataLayer.push({
             event: 'non-interaction',
-            eAction: 'amo-exp-attribution',
+            eAction: 'direct-attribution',
             eLabel: 'timeout'
         });
 
