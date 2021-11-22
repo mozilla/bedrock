@@ -2,13 +2,24 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from copy import deepcopy
 from unittest.mock import ANY, Mock, patch
 
 from django.test import override_settings
 
 import pytest
+from rich_text_renderer.block_renderers import ListItemRenderer
+from rich_text_renderer.text_renderers import TextRenderer
 
 from bedrock.contentful.api import (
+    AssetBlockRenderer,
+    EmphasisRenderer,
+    InlineEntryRenderer,
+    LinkRenderer,
+    OlRenderer,
+    PRenderer,
+    StrongRenderer,
+    UlRenderer,
     _get_abbr_from_width,
     _get_aspect_ratio_class,
     _get_card_image_url,
@@ -24,6 +35,7 @@ from bedrock.contentful.api import (
     _make_plain_text,
     _make_wordmark,
     _only_child,
+    _render_list,
     contentful_locale,
     get_client,
 )
@@ -466,3 +478,171 @@ def test__only_child():
     }
     assert _only_child(node, "text")
     assert not _only_child(node, "dummy-other")
+
+
+# These are what the rich_text_renderer library use for its own tests
+mock_simple_node = {"value": "foo"}
+mock_node = {"content": [{"value": "foo", "nodeType": "text"}]}
+mock_list_node = {"content": [{"content": [{"value": "foo", "nodeType": "text"}], "nodeType": "list-item"}]}
+mock_hyperlink_node = {
+    "data": {"uri": "https://example.com"},
+    "content": [{"value": "Example", "nodeType": "text", "marks": []}],
+}
+
+
+def test__StrongRenderer():
+    assert StrongRenderer().render(mock_simple_node) == "<strong>foo</strong>"
+
+
+def test__EmphasisRenderer():
+    assert EmphasisRenderer().render(mock_simple_node) == "<em>foo</em>"
+
+
+@patch("bedrock.contentful.api.get_current_request")
+def test__LinkRenderer__mozilla_link(mock_get_current_request):
+
+    mock_request = Mock()
+    mock_request.page_info = {"utm_campaign": "TEST"}
+    mock_get_current_request.return_value = mock_request
+    mozilla_mock_hyperlink_node = deepcopy(mock_hyperlink_node)
+    mozilla_mock_hyperlink_node["data"]["uri"] = "https://mozilla.org/test/page/"
+    output = LinkRenderer({"text": TextRenderer}).render(mozilla_mock_hyperlink_node)
+    expected = (
+        '<a href="https://mozilla.org/test/page/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=TEST" '
+        'data-cta-type="link" data-cta-text="Example" rel="external noopener">Example</a>'
+    )
+
+    assert output == expected
+
+
+@patch("bedrock.contentful.api.get_current_request")
+def test__LinkRenderer__mozilla_link__existing_utm(mock_get_current_request):
+
+    mock_request = Mock()
+    mock_request.page_info = {"utm_campaign": "TEST"}
+    mock_get_current_request.return_value = mock_request
+    mozilla_mock_hyperlink_node = deepcopy(mock_hyperlink_node)
+    mozilla_mock_hyperlink_node["data"]["uri"] = "https://mozilla.org/test/page/?utm_source=UTMTEST"
+    output = LinkRenderer({"text": TextRenderer}).render(mozilla_mock_hyperlink_node)
+    expected = (
+        '<a href="https://mozilla.org/test/page/?utm_source=UTMTEST" '
+        'data-cta-type="link" data-cta-text="Example" rel="external noopener">Example</a>'
+    )
+
+    assert output == expected
+
+
+def test__LinkRenderer__non_mozilla():
+    assert (
+        LinkRenderer(
+            {
+                "text": TextRenderer,
+            }
+        ).render(mock_hyperlink_node)
+        == '<a href="https://example.com" data-cta-type="link" data-cta-text="Example" rel="external noopener">Example</a>'
+    )
+
+
+def test__UlRenderer():
+    assert (
+        UlRenderer(
+            {
+                "text": TextRenderer,
+                "list-item": ListItemRenderer,
+            }
+        ).render(mock_list_node)
+        == "<ul class='mzp-u-list-styled'><li>foo</li></ul>"
+    )
+
+
+def test__OlRenderer():
+    assert (
+        OlRenderer(
+            {
+                "text": TextRenderer,
+                "list-item": ListItemRenderer,
+            }
+        ).render(mock_list_node)
+        == "<ol class='mzp-u-list-styled'><li>foo</li></ol>"
+    )
+
+
+@pytest.mark.skip("TODO")
+def test__LiRenderer():
+    assert False, "WRITE ME"
+
+
+def test__PRenderer():
+    assert PRenderer({"text": TextRenderer}).render(mock_node) == "<p>foo</p>"
+
+
+def test__PRenderer__empty():
+    empty_node = deepcopy(mock_node)
+    empty_node["content"][0]["value"] = ""
+    assert PRenderer({"text": TextRenderer}).render(empty_node) == ""
+
+
+@pytest.mark.parametrize(
+    "content_type_label",
+    (
+        "componentLogo",
+        "componentWordmark",
+        "componentCtaButton",
+        "somethingElse",
+    ),
+)
+@patch("bedrock.contentful.api.ContentfulPage.client.entry")
+@patch("bedrock.contentful.api._make_logo")
+@patch("bedrock.contentful.api._make_wordmark")
+@patch("bedrock.contentful.api._make_cta_button")
+def test__InlineEntryRenderer(
+    mock_make_cta_button,
+    mock_make_wordmark,
+    mock_make_logo,
+    mock_entry_method,
+    content_type_label,
+):
+
+    mock_entry = Mock()
+    mock_content_type = Mock()
+    mock_content_type.id = content_type_label
+    mock_entry.sys = {"content_type": mock_content_type}
+    mock_entry_method.return_value = mock_entry
+
+    node = {"data": {"target": {"sys": {"id": mock_entry}}}}
+
+    output = InlineEntryRenderer().render(node)
+
+    if content_type_label == "componentLogo":
+        mock_make_logo.assert_called_once_with(mock_entry)
+    elif content_type_label == "componentWordmark":
+        mock_make_wordmark.assert_called_once_with(mock_entry)
+    elif content_type_label == "componentCtaButton":
+        mock_make_cta_button.assert_called_once_with(mock_entry)
+    else:
+        assert output == content_type_label
+
+
+@patch("bedrock.contentful.api._get_image_url")
+@patch("bedrock.contentful.api.ContentfulPage.client.asset")
+def test__AssetBlockRenderer(mock_asset_method, mock__get_image_url):
+    mock_asset = Mock()
+    mock_asset.title = "test title"
+    mock_asset_method.return_value = mock_asset
+
+    node = {"data": {"target": {"sys": {"id": mock_asset}}}}
+    mock__get_image_url.side_effect = [
+        "https://example.com/image.png",
+        "https://example.com/image-hires.png",
+    ]
+    output = AssetBlockRenderer().render(node)
+    expected = '<img src="https://example.com/image.png" srcset="https://example.com/image-hires.png 1.5x" alt="test title" />'
+    assert output == expected
+
+    mock__get_image_url.call_args_list[0][0] == (mock_asset, 688)
+    mock__get_image_url.call_args_list[0][0] == (mock_asset, 1376)
+
+
+def test__render_list():
+    assert _render_list("ol", "test content here") == "<ol class='mzp-u-list-styled'>test content here</ol>"
+    assert _render_list("ul", "test content here") == "<ul class='mzp-u-list-styled'>test content here</ul>"

@@ -257,6 +257,8 @@ class LinkRenderer(BaseBlockRenderer):
         data_cta = ""
 
         # add referral info to links to other mozilla properties
+        # TODO: can we make this just if url.netloc == "mozilla.org" or are we expecting
+        # subdomains, because we set the utm_source to www.mozilla.org
         if "mozilla.org" in url.netloc and url.netloc != "www.mozilla.org":
             # don't add if there's already utms
             if "utm_" not in url.query:
@@ -297,7 +299,7 @@ class OlRenderer(BaseBlockRenderer):
 class LiRenderer(BaseBlockRenderer):
     def render(self, node):
         if _only_child(node, "text"):
-            # The outter text node gets rendered as a paragraph... don't do that if there's only one p in the li
+            # The outer text node gets rendered as a paragraph... don't do that if there's only one p in the li
             return f"<li>{self._render_content(node['content'][0])}</li>"
         else:
             return f"<li>{self._render_content(node)}</li>"
