@@ -977,19 +977,19 @@
       ],
       "name": "mozilla-vpn-info"
     },
+     {
+      "files": [
+        "css/externalpages/pocket/style.scss",
+        "css/externalpages/pocket/components/platforms.scss"
+      ],
+      "name": "pocket-platforms"
+    },
     {
       "files": [
         "css/externalpages/pocket/style.scss",
         "css/externalpages/pocket/components/_about.scss"
       ],
       "name": "pocket-about"
-    },
-    {
-      "files": [
-        "css/externalpages/pocket/style.scss",
-        "css/externalpages/pocket/components/platforms.scss"
-      ],
-      "name": "pocket-platforms"
     }
   ],
   "js": [
