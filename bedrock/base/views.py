@@ -58,13 +58,11 @@ S3_BASE_URL = "https://s3-{}.amazonaws.com/{}".format(
 
 def get_l10n_repo_info():
     fluent_repo = git.GitRepo(settings.FLUENT_REPO_PATH, settings.FLUENT_REPO_URL)
-    return (
-        {
-            "latest_ref": fluent_repo.current_hash,
-            "last_updated": fluent_repo.last_updated,
-            "repo_url": fluent_repo.clean_remote_url,
-        },
-    )
+    return {
+        "latest_ref": fluent_repo.current_hash,
+        "last_updated": fluent_repo.last_updated,
+        "repo_url": fluent_repo.clean_remote_url,
+    }
 
 
 def get_db_file_url(filename):
@@ -122,7 +120,6 @@ def cron_health_check(request):
             continue
         unique_repos[repo.repo_name] = repo
 
-    l10n_repo, fluent_repo = get_l10n_repo_info()
     return render(
         request,
         "cron-health-check.html",
@@ -131,8 +128,7 @@ def cron_health_check(request):
             "server_info": get_extra_server_info(),
             "success": check_pass,
             "git_repos": unique_repos.values(),
-            "l10n_repo": l10n_repo,
-            "fluent_repo": fluent_repo,
+            "fluent_repo": get_l10n_repo_info(),
         },
         status=200 if check_pass else 500,
     )
