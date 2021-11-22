@@ -17,26 +17,17 @@
 
 {% block content %}
   <div class="platform">
-    <!-- <div class="platform__wrapper">
-      <div class="platform__wrapper--image">
-        {% block platform_image %}{% endblock %}
+    <div class="platform__content">
+      {% call split(
+        block_class='mzp-l-split-center-on-sm-md mzp-t-content-lg',
+        media_class='mzp-l-split-h-center',
+        image_url=platform_image,
+        media_after=False,
+        )%}
+        <h1>{{ self.page_title() }}</h1>
+        <p>{{ self.page_desc() }}</p>
+        <a href="{{ self.page_url() }}" class="mzp-c-button" target="_blank" rel="external noopener">{{ self.page_cta() }}</a>
+        {% endcall %}
       </div>
-      <div class="platform__wrapper-content">
-        {% block platform_content %}{% endblock %}
-        <button>install</button>
-        <span><a href="">Install the bookmarklet</a></span>
-      </div>
-    </div> -->
-    {% call split(
-      block_class='mzp-l-split-center-on-sm-md',
-      media_include=media_include,
-      media_class='mzp-l-split-h-center',
-      media_after=True,
-      image_url=platform_image
-    )%}
-      <h1>{{ self.page_title() }}</h1>
-      <p>{{ self.page_desc() }}</p>
-      <a href="">{{ self.page_cta() }}</a>
-    {% endcall %}
   </div>
 {% endblock %}

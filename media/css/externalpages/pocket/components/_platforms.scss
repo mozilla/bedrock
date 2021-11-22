@@ -7,7 +7,32 @@ $image-path: '/media/img/externalpages/pocket';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import "~@mozilla-protocol/core/protocol/css/components/split";
+@import '~@mozilla-protocol/core/protocol/css/components/button';
 
-.platforms {
-    background: red;
-}
+.platform {
+    background-color: $color-light-gray-20;
+
+        .mzp-c-split-container {
+            background: $color-white;
+            border-radius: 10px;
+            border: 1px solid $color-light-gray-50;
+
+                h1 {
+                    @include text-title-sm;
+                }
+
+                p {
+                    @include text-body-xl;
+                    color: $color-text-grey;
+                }
+
+                .mzp-c-button {
+                    background-color: #E7132F;
+                    border: 0;
+
+                    &:hover {
+                        color: $color-white;
+                    }
+                }
+            }
+        }
