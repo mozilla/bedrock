@@ -6,11 +6,13 @@
 
 {% extends "externalpages/pocket/platform-pages.html" %}
 
+{% set platform_image = 'img/externalpages/pocket/welcome-android.jpg' %}
+
 
 {% block page_title %} Add Pocket to Android {% endblock %}
 {% block page_desc %} View your list on your Android device. Download the free Pocket app from Google Play. {% endblock %}
 {% block page_cta %} Get the app {% endblock %}
-{% block page_image %}{{ img/externalpages/pocket/welcome-android.jpg }}{% endblock %}
+{% block page_image %}{{ static('img/externalpages/pocket/welcome-android.jpg') }}{% endblock %}
 
 {% block platform_android %}
   {% block platform_content %}
