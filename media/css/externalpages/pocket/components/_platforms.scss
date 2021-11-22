@@ -3,11 +3,11 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 @import "../utils/variables";
-$image-path: '/media/img/externalpages/pocket';
+$image-path: "/media/img/externalpages/pocket";
 
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import "~@mozilla-protocol/core/protocol/css/includes/lib";
 @import "~@mozilla-protocol/core/protocol/css/components/split";
-@import '~@mozilla-protocol/core/protocol/css/components/button';
+@import "~@mozilla-protocol/core/protocol/css/components/button";
 
 .platform {
     background-color: $color-light-gray-20;
