@@ -980,7 +980,7 @@
      {
       "files": [
         "css/externalpages/pocket/style.scss",
-        "css/externalpages/pocket/components/platforms.scss"
+        "css/externalpages/pocket/components/_platforms.scss"
       ],
       "name": "pocket-platforms"
     },
