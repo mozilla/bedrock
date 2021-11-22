@@ -983,6 +983,13 @@
         "css/externalpages/pocket/components/_about.scss"
       ],
       "name": "pocket-about"
+    },
+    {
+      "files": [
+        "css/externalpages/pocket/style.scss",
+        "css/externalpages/pocket/components/_platforms.scss"
+      ],
+      "name": "pocket-platforms"
     }
   ],
   "js": [

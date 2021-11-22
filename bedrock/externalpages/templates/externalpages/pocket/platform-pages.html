@@ -6,7 +6,14 @@
 
 {% extends "externalpages/pocket/base.html" %}
 
+{% from "macros-protocol.html" import split with context %}
+
 {% block page_title %} Add Pocket to Chrome {% endblock %}
+
+
+{% block page_css %}
+ {{ css_bundle('pocket-platforms') }}
+{% endblock %}
 
 {% block content %}
   <div class="platform">
@@ -20,6 +27,15 @@
         <span><a href="">Install the bookmarklet</a></span>
       </div>
     </div>
-
+    {% call split(
+      block_class='mzp-l-split-center-on-sm-md',
+      media_include=media_include,
+      media_class='mzp-l-split-h-center mzp-l-split-body-wide',
+      media_after=True,
+    ) %}
+      <h1>{{ self.page_title() }}</h1>
+      <p>{{ self.page_desc() }}</p>
+      <a href="">{{ self.page_cta() }}</a>
+    {% endcall %}
   </div>
 {% endblock %}
