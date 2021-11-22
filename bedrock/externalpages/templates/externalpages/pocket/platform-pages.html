@@ -19,10 +19,10 @@
   <div class="platform">
     <div class="platform__content">
       {% call split(
-        block_class='mzp-l-split-center-on-sm-md mzp-t-content-lg',
+        block_class='mzp-l-split-center-on-sm-md mzp-t-content-lg mzp-l-split-reversed mzp-l-split-hide-media-on-sm-md',
         media_class='mzp-l-split-h-center',
         image_url=platform_image,
-        media_after=False,
+        media_after=True,
         )%}
         <h1>{{ self.page_title() }}</h1>
         <p>{{ self.page_desc() }}</p>
