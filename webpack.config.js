@@ -9,6 +9,7 @@
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const staticBundles = require('./media/static-bundles.json');
@@ -97,7 +98,8 @@ const jsConfig = {
                     to: 'js/careers/libs/'
                 }
             ]
-        })
+        }),
+        new Dotenv()
     ]
 };
 

@@ -1131,6 +1131,12 @@
     },
     {
       "files": [
+        "js/glean/init.es6.js"
+      ],
+      "name": "glean"
+    },
+    {
+      "files": [
         "protocol/js/protocol-modal.js",
         "js/base/send-to-device.js",
         "js/firefox/welcome/welcome4.js"

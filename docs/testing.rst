@@ -23,28 +23,33 @@ Installation
 ------------
 
 First follow the :ref:`installation instructions for bedrock<install>`, which
-will install the specific versions of Jasmine/Karma which are needed to run the
-unit tests, and guide you through installing pip and setting up a virtual
-environment for the functional tests. The additional requirements can then be
-installed by using the following commands:
+will install the dependencies required to run the various front-end test suites.
 
-.. code-block:: bash
-
-    $ source venv/bin/activate
-
-.. code-block:: bash
-
-    $ pip install -r requirements/dev.txt
 
 Running Jasmine tests using Karma
 ---------------------------------
 
-To perform a single run of the Jasmine test suite using Firefox, type the
-following command:
+To perform a single run of the Jasmine test suite using Firefox and Chrome,
+first make sure you have both browsers installed locally, and then activate
+your bedrock virtual env.
+
+.. code-block:: bash
+
+    $ pyenv activate bedrock
+
+You can then run the tests with the following command:
 
 .. code-block:: bash
 
     $ npm run test
+
+This will run all our front-end linters and formatting checks before running
+the Jasmine test suite. If you only want to run the tests themselves, you can
+run:
+
+.. code-block:: bash
+
+    $ npm run karma
 
 See the `Jasmine`_ documentation for tips on how to write JS behavioral or unit
 tests. We also use `Sinon`_ for creating test spies, stubs and mocks.

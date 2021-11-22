@@ -178,6 +178,20 @@
                             newsletter: newsletters
                         });
                     }
+
+                    const newsletterLabel = newsletters
+                        .map((n) => {
+                            return n;
+                        })
+                        .join(', ');
+
+                    // Track event in Glean.
+                    if (typeof window.Mozilla.Glean !== 'undefined') {
+                        window.Mozilla.Glean.pageEvent({
+                            label: `Newsletters: ${newsletterLabel}`,
+                            type: 'Newsletter Signup Success'
+                        });
+                    }
                 } else {
                     if (response.errors) {
                         for (let i = 0; i < response.errors.length; i++) {

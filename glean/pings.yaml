@@ -1,0 +1,41 @@
+---
+$schema: moz://mozilla.org/schemas/glean/pings/2-0-0
+
+page-view:
+  description: |
+    A ping which is sent everytime a page is viewed.
+  include_client_id: true
+  send_if_empty: false
+  bugs:
+    - https://github.com/mozilla/bedrock/issues/10746
+  data_reviews:
+    - https://bugzilla.mozilla.org/show_bug.cgi?id=1767442
+  notification_emails:
+    - marketing-websites-team@mozilla.com
+
+interaction:
+  description: |
+    A ping which is sent when a page element is
+    interacted with.
+  include_client_id: true
+  send_if_empty: false
+  bugs:
+    - https://github.com/mozilla/bedrock/issues/10746
+  data_reviews:
+    - https://bugzilla.mozilla.org/show_bug.cgi?id=1767442
+  notification_emails:
+    - marketing-websites-team@mozilla.com
+
+non-interaction:
+  description: |
+    A ping which is sent when a non-user initiated event
+    occurs. Examples: a specific banner impression is
+    displayed, a video auto-plays on scroll.
+  include_client_id: true
+  send_if_empty: false
+  bugs:
+    - https://github.com/mozilla/bedrock/issues/10746
+  data_reviews:
+    - https://bugzilla.mozilla.org/show_bug.cgi?id=1767442
+  notification_emails:
+    - marketing-websites-team@mozilla.com

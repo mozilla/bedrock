@@ -20,5 +20,13 @@
             languageSelected: newLanguage,
             previousLanguage: previousLanguage
         });
+
+        // Track event in Glean.
+        if (typeof window.Mozilla.Glean !== 'undefined') {
+            window.Mozilla.Glean.pageEvent({
+                label: 'Language Selected: ' + newLanguage,
+                type: 'Change Language'
+            });
+        }
     });
 })();

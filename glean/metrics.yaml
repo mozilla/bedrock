@@ -1,0 +1,173 @@
+---
+$schema: moz://mozilla.org/schemas/glean/metrics/2-0-0
+
+page:
+  viewed:
+    type: datetime
+    lifetime: application
+    send_in_pings:
+      - page-view
+      - interaction
+      - non-interaction
+    description: |
+      The time a page was viewed.
+    data_sensitivity:
+      - web_activity
+    bugs:
+      - https://github.com/mozilla/bedrock/issues/10746
+    data_reviews:
+      - https://bugzilla.mozilla.org/show_bug.cgi?id=1767442
+    notification_emails:
+      - marketing-websites-team@mozilla.com
+    expires: never
+  path:
+    type: string
+    lifetime: application
+    send_in_pings:
+      - page-view
+      - interaction
+      - non-interaction
+    description: |
+      The URL path of the page that was viewed, excluding locale.
+    data_sensitivity:
+      - web_activity
+    bugs:
+      - https://github.com/mozilla/bedrock/issues/10746
+    data_reviews:
+      - https://bugzilla.mozilla.org/show_bug.cgi?id=1767442
+    notification_emails:
+      - marketing-websites-team@mozilla.com
+    expires: never
+  locale:
+    type: string
+    lifetime: application
+    send_in_pings:
+      - page-view
+      - interaction
+      - non-interaction
+    description: |
+      The locale of the page that was viewed.
+    data_sensitivity:
+      - web_activity
+    bugs:
+      - https://github.com/mozilla/bedrock/issues/10746
+    data_reviews:
+      - https://bugzilla.mozilla.org/show_bug.cgi?id=1767442
+    notification_emails:
+      - marketing-websites-team@mozilla.com
+    expires: never
+  query_params:
+    type: labeled_string
+    lifetime: application
+    send_in_pings:
+      - page-view
+      - interaction
+      - non-interaction
+    description: |
+      Query parameters associated with the URL of
+      the page that was viewed.
+    bugs:
+      - https://github.com/mozilla/bedrock/issues/10746
+    data_reviews:
+      - https://bugzilla.mozilla.org/show_bug.cgi?id=1767442
+    notification_emails:
+      - marketing-websites-team@mozilla.com
+    expires: never
+    labels:
+      - utm_source
+      - utm_campaign
+      - utm_medium
+      - utm_content
+      - entrypoint_experiment
+      - entrypoing_variation
+      - experiment
+      - variation
+      - v
+      - xv
+  referrer:
+    type: string
+    lifetime: application
+    send_in_pings:
+      - page-view
+      - interaction
+      - non-interaction
+    description: |
+      The referring URL that linked to the page that was viewed.
+    data_sensitivity:
+      - web_activity
+    bugs:
+      - https://github.com/mozilla/bedrock/issues/10746
+    data_reviews:
+      - https://bugzilla.mozilla.org/show_bug.cgi?id=1767442
+    notification_emails:
+      - marketing-websites-team@mozilla.com
+    expires: never
+  page_event:
+    type: event
+    lifetime: ping
+    send_in_pings:
+      - interaction
+      - non-interaction
+    description: |
+      An event containing metrics related to a page level
+      completion or state that want to measure. This can be
+      sent in either an interaction and non-interaction ping,
+      depending upon the use-case. Examples: form completion,
+      scroll events, banner impressions.
+    data_sensitivity:
+      - web_activity
+    bugs:
+      - https://github.com/mozilla/bedrock/issues/10746
+    data_reviews:
+      - https://bugzilla.mozilla.org/show_bug.cgi?id=1767442
+    notification_emails:
+      - marketing-websites-team@mozilla.com
+    expires: never
+    extra_keys:
+      label:
+        description: |
+          The label used to describe the event.
+          Example: 'Newsletters: mozilla-and-you'
+        type: string
+      type:
+        description: |
+          The type of event.
+          Example: 'Newsletter Signup Success'
+        type: string
+
+element:
+  clicked:
+    type: event
+    lifetime: ping
+    send_in_pings:
+      - interaction
+    description: |
+      An event containing metrics related to which element
+      in the page was clicked.
+    data_sensitivity:
+      - web_activity
+    bugs:
+      - https://github.com/mozilla/bedrock/issues/10746
+    data_reviews:
+      - https://bugzilla.mozilla.org/show_bug.cgi?id=1767442
+    notification_emails:
+      - marketing-websites-team@mozilla.com
+    expires: never
+    extra_keys:
+      label:
+        description: |
+          Description of the page element that was
+          clicked. Examples: 'Download Firefox',
+          'Get Mozilla VPN'.
+        type: string
+      type:
+        description: |
+          The type of element that was clicked.
+          Examples: 'Button', 'Link'.
+        type: string
+      position:
+        description: |
+          The position of the element in the page.
+          Examples: 'Primary', 'Secondary',
+          'Navigation', 'Footer'.
+        type: string

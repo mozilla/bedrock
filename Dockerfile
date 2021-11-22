@@ -1,26 +1,4 @@
 ########
-# assets builder and dev server
-#
-FROM node:16-slim AS assets
-
-ENV PATH=/app/node_modules/.bin:$PATH
-WORKDIR /app
-
-# copy dependency definitions
-COPY package.json package-lock.json ./
-
-# install dependencies
-RUN npm ci
-
-# copy supporting files and media
-COPY .eslintrc.js .eslintignore .stylelintrc .prettierrc.json .prettierignore webpack.config.js webpack.static.config.js ./
-COPY ./media ./media
-COPY ./tests/unit ./tests/unit
-
-RUN npm run build
-
-
-########
 # Python dependencies builder
 #
 FROM python:3.9-slim-bullseye AS python-builder
@@ -39,6 +17,36 @@ COPY requirements/prod.txt ./requirements/
 
 # Install Python deps
 RUN pip install --require-hashes --no-cache-dir -r requirements/prod.txt
+
+
+########
+# assets builder and dev server
+#
+FROM node:16-slim AS assets
+
+ENV PATH=/app/node_modules/.bin:$PATH
+WORKDIR /app
+
+# copy dependency definitions
+COPY package.json package-lock.json ./
+
+# install dependencies
+RUN npm ci
+
+# copy supporting files and media
+COPY .eslintrc.js .eslintignore .stylelintrc .prettierrc.json .prettierignore webpack.config.js webpack.static.config.js ./
+COPY ./media ./media
+COPY ./tests/unit ./tests/unit
+COPY ./glean ./glean
+
+# Required for required glean_parser dependencies
+COPY docker/bin/apt-install /usr/local/bin/
+RUN apt-install python3 python3-venv
+RUN python3 -m venv /.venv
+COPY --from=python-builder /venv /.venv
+ENV PATH="/.venv/bin:$PATH"
+
+RUN npm run build
 
 
 ########
