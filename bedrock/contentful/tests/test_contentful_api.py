@@ -591,7 +591,7 @@ def test__PRenderer__empty():
         "somethingElse",
     ),
 )
-@patch("bedrock.contentful.api.ContentfulPage.client.entry")
+@patch("bedrock.contentful.api.ContentfulPage.client")
 @patch("bedrock.contentful.api._make_logo")
 @patch("bedrock.contentful.api._make_wordmark")
 @patch("bedrock.contentful.api._make_cta_button")
@@ -599,7 +599,7 @@ def test__InlineEntryRenderer(
     mock_make_cta_button,
     mock_make_wordmark,
     mock_make_logo,
-    mock_entry_method,
+    mock_client,
     content_type_label,
 ):
 
@@ -607,7 +607,7 @@ def test__InlineEntryRenderer(
     mock_content_type = Mock()
     mock_content_type.id = content_type_label
     mock_entry.sys = {"content_type": mock_content_type}
-    mock_entry_method.return_value = mock_entry
+    mock_client.entry.return_value = mock_entry
 
     node = {"data": {"target": {"sys": {"id": mock_entry}}}}
 
@@ -624,11 +624,11 @@ def test__InlineEntryRenderer(
 
 
 @patch("bedrock.contentful.api._get_image_url")
-@patch("bedrock.contentful.api.ContentfulPage.client.asset")
-def test__AssetBlockRenderer(mock_asset_method, mock__get_image_url):
+@patch("bedrock.contentful.api.ContentfulPage.client")
+def test__AssetBlockRenderer(mock_client, mock__get_image_url):
     mock_asset = Mock()
     mock_asset.title = "test title"
-    mock_asset_method.return_value = mock_asset
+    mock_client.asset.return_value = mock_asset
 
     node = {"data": {"target": {"sys": {"id": mock_asset}}}}
     mock__get_image_url.side_effect = [
@@ -639,8 +639,8 @@ def test__AssetBlockRenderer(mock_asset_method, mock__get_image_url):
     expected = '<img src="https://example.com/image.png" srcset="https://example.com/image-hires.png 1.5x" alt="test title" />'
     assert output == expected
 
-    mock__get_image_url.call_args_list[0][0] == (mock_asset, 688)
-    mock__get_image_url.call_args_list[0][0] == (mock_asset, 1376)
+    assert mock__get_image_url.call_args_list[0][0] == (mock_asset, 688)
+    assert mock__get_image_url.call_args_list[1][0] == (mock_asset, 1376)
 
 
 def test__render_list():
