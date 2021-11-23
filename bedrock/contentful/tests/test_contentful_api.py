@@ -627,7 +627,8 @@ def test_InlineEntryRenderer(
 @patch("bedrock.contentful.api.ContentfulPage.client")
 def test_AssetBlockRenderer(mock_client, mock__get_image_url):
     mock_asset = Mock()
-    mock_asset.title = "test title"
+    mock_asset.title = "test_title.png"
+    mock_asset.description = "Test Description"
     mock_client.asset.return_value = mock_asset
 
     node = {"data": {"target": {"sys": {"id": mock_asset}}}}
@@ -636,11 +637,12 @@ def test_AssetBlockRenderer(mock_client, mock__get_image_url):
         "https://example.com/image-hires.png",
     ]
     output = AssetBlockRenderer().render(node)
-    expected = '<img src="https://example.com/image.png" srcset="https://example.com/image-hires.png 1.5x" alt="test title" />'
-    assert output == expected
+    expected = '<img src="https://example.com/image.png" srcset="https://example.com/image-hires.png 1.5x" alt="Test Description" />'
 
     assert mock__get_image_url.call_args_list[0][0] == (mock_asset, 688)
     assert mock__get_image_url.call_args_list[1][0] == (mock_asset, 1376)
+
+    assert output == expected
 
 
 def test__render_list():
