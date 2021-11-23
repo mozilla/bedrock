@@ -8,7 +8,7 @@ $image-path: '/media/img/externalpages/pocket';
 
 .add-page {
     .add-header {
-        background-color: #f0f0f0;
+        background-color: $color-background-grey;
     }
 
     h2 {
@@ -106,7 +106,7 @@ $image-path: '/media/img/externalpages/pocket';
 }
 
 .add-save {
-    background-color: #f0f0f0;
+    background-color: $color-background-grey;
 
     &__wrapper {
         margin: 0 auto;

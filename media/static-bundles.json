@@ -959,6 +959,13 @@
       ],
       "name": "mozilla-vpn-info"
     },
+     {
+      "files": [
+        "css/externalpages/pocket/style.scss",
+        "css/externalpages/pocket/components/_platforms.scss"
+      ],
+      "name": "pocket-platforms"
+    },
     {
       "files": [
         "css/products/vpn/resource-center.scss",
