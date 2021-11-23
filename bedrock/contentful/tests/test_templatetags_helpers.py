@@ -92,6 +92,7 @@ def test_allowed_tags_const__remains_what_we_expect():
         "h4",
         "h5",
         "h6",
+        "hr",
         "i",
         "img",
         "li",
@@ -102,5 +103,4 @@ def test_allowed_tags_const__remains_what_we_expect():
         "strike",
         "strong",
         "ul",
-        "hr",
     ]

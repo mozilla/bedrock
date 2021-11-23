@@ -490,16 +490,16 @@ mock_hyperlink_node = {
 }
 
 
-def test__StrongRenderer():
+def test_StrongRenderer():
     assert StrongRenderer().render(mock_simple_node) == "<strong>foo</strong>"
 
 
-def test__EmphasisRenderer():
+def test_EmphasisRenderer():
     assert EmphasisRenderer().render(mock_simple_node) == "<em>foo</em>"
 
 
 @patch("bedrock.contentful.api.get_current_request")
-def test__LinkRenderer__mozilla_link(mock_get_current_request):
+def test_LinkRenderer__mozilla_link(mock_get_current_request):
 
     mock_request = Mock()
     mock_request.page_info = {"utm_campaign": "TEST"}
@@ -516,7 +516,7 @@ def test__LinkRenderer__mozilla_link(mock_get_current_request):
 
 
 @patch("bedrock.contentful.api.get_current_request")
-def test__LinkRenderer__mozilla_link__existing_utm(mock_get_current_request):
+def test_LinkRenderer__mozilla_link__existing_utm(mock_get_current_request):
 
     mock_request = Mock()
     mock_request.page_info = {"utm_campaign": "TEST"}
@@ -532,7 +532,7 @@ def test__LinkRenderer__mozilla_link__existing_utm(mock_get_current_request):
     assert output == expected
 
 
-def test__LinkRenderer__non_mozilla():
+def test_LinkRenderer__non_mozilla():
     assert (
         LinkRenderer(
             {
@@ -543,7 +543,7 @@ def test__LinkRenderer__non_mozilla():
     )
 
 
-def test__UlRenderer():
+def test_UlRenderer():
     assert (
         UlRenderer(
             {
@@ -555,7 +555,7 @@ def test__UlRenderer():
     )
 
 
-def test__OlRenderer():
+def test_OlRenderer():
     assert (
         OlRenderer(
             {
@@ -568,15 +568,15 @@ def test__OlRenderer():
 
 
 @pytest.mark.skip("TODO")
-def test__LiRenderer():
+def test_LiRenderer():
     assert False, "WRITE ME"
 
 
-def test__PRenderer():
+def test_PRenderer():
     assert PRenderer({"text": TextRenderer}).render(mock_node) == "<p>foo</p>"
 
 
-def test__PRenderer__empty():
+def test_PRenderer__empty():
     empty_node = deepcopy(mock_node)
     empty_node["content"][0]["value"] = ""
     assert PRenderer({"text": TextRenderer}).render(empty_node) == ""
@@ -595,7 +595,7 @@ def test__PRenderer__empty():
 @patch("bedrock.contentful.api._make_logo")
 @patch("bedrock.contentful.api._make_wordmark")
 @patch("bedrock.contentful.api._make_cta_button")
-def test__InlineEntryRenderer(
+def test_InlineEntryRenderer(
     mock_make_cta_button,
     mock_make_wordmark,
     mock_make_logo,
@@ -625,7 +625,7 @@ def test__InlineEntryRenderer(
 
 @patch("bedrock.contentful.api._get_image_url")
 @patch("bedrock.contentful.api.ContentfulPage.client")
-def test__AssetBlockRenderer(mock_client, mock__get_image_url):
+def test_AssetBlockRenderer(mock_client, mock__get_image_url):
     mock_asset = Mock()
     mock_asset.title = "test title"
     mock_client.asset.return_value = mock_asset
