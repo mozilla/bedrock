@@ -8,7 +8,13 @@
 
 {% block page_title %} How to Save {% endblock %}
 
+{% block pocket_css %}
+  {{ css_bundle('pocket-add') }}
+{% endblock  %}
+
 {% block content %}
+
+{% include 'externalpages/pocket/includes/platform-nav.html' %}
 
 <div class="add-page">
    <section class="add-header">
@@ -105,6 +111,6 @@
    </section>
 </div>
 
-
+{% include 'externalpages/pocket/includes/platform-footer.html' %}
 
 {% endblock %}
