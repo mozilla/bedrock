@@ -158,6 +158,8 @@ def get_static_urls():
 
 
 def _get_vrc_urls():
+    # URLs for individual VRC articles - the listing/landing page is declared
+    # separately in bedrock/products/urls.py so we don't need to include it here
 
     urls = defaultdict(list)
 
@@ -167,10 +169,6 @@ def _get_vrc_urls():
     ):
         _path = f"{VRC_ROOT_PATH}{entry.slug}/"
         urls[_path].append(entry.locale)  # In the future one, slug may support multiple locales
-
-    if urls:
-        # We only show the VRC listing page if there are VRC articles in the DB
-        urls[VRC_ROOT_PATH] = ["en-US"]  # TODO: support more locales
 
     return urls
 

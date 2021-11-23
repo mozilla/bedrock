@@ -41,12 +41,10 @@ def test__get_vrc_urls(dummy_vrc_pages):
         "/products/vpn/resource-center/test-slug-2/": ["en-US"],
         "/products/vpn/resource-center/test-slug-3/": ["en-US"],
         "/products/vpn/resource-center/test-slug-4/": ["en-US"],
-        "/products/vpn/resource-center/": ["en-US"],
     }
 
 
 def test__get_vrc_urls__no_content():
-    # If there are no VRC pages in the DB, don't even show the listing page
     output = _get_vrc_urls()
     assert output == {}
 
