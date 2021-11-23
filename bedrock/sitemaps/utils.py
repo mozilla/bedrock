@@ -165,7 +165,7 @@ def _get_vrc_urls():
         content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
         classification=CONTENT_CLASSIFICATION_VPN,
     ):
-        _path = f"{VRC_ROOT_PATH}{entry.slug}"
+        _path = f"{VRC_ROOT_PATH}{entry.slug}/"
         urls[_path].append(entry.locale)  # In the future one, slug may support multiple locales
 
     if urls:

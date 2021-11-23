@@ -36,11 +36,11 @@ def test__get_vrc_urls(dummy_vrc_pages):
     # TODO: support different locales
     output = _get_vrc_urls()
     assert output == {
-        "/products/vpn/resource-center/test-slug-0": ["en-US"],
-        "/products/vpn/resource-center/test-slug-1": ["en-US"],
-        "/products/vpn/resource-center/test-slug-2": ["en-US"],
-        "/products/vpn/resource-center/test-slug-3": ["en-US"],
-        "/products/vpn/resource-center/test-slug-4": ["en-US"],
+        "/products/vpn/resource-center/test-slug-0/": ["en-US"],
+        "/products/vpn/resource-center/test-slug-1/": ["en-US"],
+        "/products/vpn/resource-center/test-slug-2/": ["en-US"],
+        "/products/vpn/resource-center/test-slug-3/": ["en-US"],
+        "/products/vpn/resource-center/test-slug-4/": ["en-US"],
         "/products/vpn/resource-center/": ["en-US"],
     }
 
