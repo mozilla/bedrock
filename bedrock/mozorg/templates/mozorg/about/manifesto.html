@@ -10,6 +10,8 @@
 
 {% from 'macros.html' import twitter_share_url with context %}
 
+{% set show_pocket_banner = switch('fundraising-banner-pocket') and ftl_has_messages('banner-pocket-title', 'banner-pocket-button') %}
+
 {% block page_title %}{{ ftl('manifesto-details-the-mozilla-manifesto') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 {% block page_desc %}{{ ftl('manifesto-these-are-the-principles') }}{% endblock %}
@@ -18,6 +20,10 @@
 
 {% block page_css %}
   {{ css_bundle('manifesto') }}
+
+  {% if show_pocket_banner %}
+    {{ css_bundle('pocket-banner') }}
+  {% endif %}
 {% endblock %}
 
 {% macro twitter_link(content_id, text) -%}
@@ -45,6 +51,12 @@
 {% set principle_number_08 = ftl('manifesto-principle-8') %}
 {% set principle_number_09 = ftl('manifesto-principle-9') %}
 {% set principle_number_10 = ftl('manifesto-principle-10') %}
+
+{% block page_banner %}
+  {% if show_pocket_banner %}
+    {% include 'includes/banners/pocket.html' %}
+  {% endif %}
+{% endblock %}
 
 {% block content %}
 <main role="main" itemscope itemtype="http://schema.org/Article">
@@ -155,4 +167,8 @@
 
 {% block js %}
   {{ js_bundle('manifesto') }}
+
+  {% if show_pocket_banner %}
+    {{ js_bundle('pocket-banner') }}
+  {% endif %}
 {% endblock %}

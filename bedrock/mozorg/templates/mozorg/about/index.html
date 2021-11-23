@@ -8,6 +8,8 @@
 
 {% extends "base-protocol-mozilla.html" %}
 
+{% set show_pocket_banner = switch('fundraising-banner-pocket') and ftl_has_messages('banner-pocket-title', 'banner-pocket-button') %}
+
 {% block page_title %}{{ ftl('about-learn-about-mozilla') }}{% endblock %}
 
 {% block page_desc %}
@@ -18,6 +20,16 @@
 
 {% block page_css %}
   {{ css_bundle('about') }}
+
+  {% if show_pocket_banner %}
+    {{ css_bundle('pocket-banner') }}
+  {% endif %}
+{% endblock %}
+
+{% block page_banner %}
+  {% if show_pocket_banner %}
+    {% include 'includes/banners/pocket.html' %}
+  {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -185,4 +197,8 @@
 
 {% block js %}
   {{ js_bundle('about') }}
+
+  {% if show_pocket_banner %}
+    {{ js_bundle('pocket-banner') }}
+  {% endif %}
 {% endblock %}
