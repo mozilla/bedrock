@@ -505,10 +505,12 @@ def test_LinkRenderer__mozilla_link(mock_get_current_request):
     mock_request.page_info = {"utm_campaign": "TEST"}
     mock_get_current_request.return_value = mock_request
     mozilla_mock_hyperlink_node = deepcopy(mock_hyperlink_node)
-    mozilla_mock_hyperlink_node["data"]["uri"] = "https://mozilla.org/test/page/"
+    # Here we're assuming that we need to set a subdomain, because if we
+    # used a naked mozilla.org domain we'd get 30Xed to www.mozilla.org
+    mozilla_mock_hyperlink_node["data"]["uri"] = "https://subdomain.mozilla.org/test/page/"
     output = LinkRenderer({"text": TextRenderer}).render(mozilla_mock_hyperlink_node)
     expected = (
-        '<a href="https://mozilla.org/test/page/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=TEST" '
+        '<a href="https://subdomain.mozilla.org/test/page/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=TEST" '
         'data-cta-type="link" data-cta-text="Example" rel="external noopener">Example</a>'
     )
 
