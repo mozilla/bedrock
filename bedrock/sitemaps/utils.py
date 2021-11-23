@@ -3,6 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import json
 import re
+from collections import defaultdict
 
 from django.conf import settings
 from django.http import HttpResponse
@@ -12,6 +13,12 @@ from django.urls import resolvers
 
 from mock import patch
 
+from bedrock.contentful.constants import (
+    CONTENT_CLASSIFICATION_VPN,
+    CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+    VRC_ROOT_PATH,
+)
+from bedrock.contentful.models import ContentfulEntry
 from bedrock.releasenotes.models import ProductRelease
 from bedrock.security.models import SecurityAdvisory
 
@@ -150,10 +157,33 @@ def get_static_urls():
     return urls
 
 
+def _get_vrc_urls():
+    # URLs for individual VRC articles - the listing/landing page is declared
+    # separately in bedrock/products/urls.py so we don't need to include it here
+
+    urls = defaultdict(list)
+
+    for entry in ContentfulEntry.objects.filter(
+        content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+        classification=CONTENT_CLASSIFICATION_VPN,
+    ):
+        _path = f"{VRC_ROOT_PATH}{entry.slug}/"
+        urls[_path].append(entry.locale)  # In the future one, slug may support multiple locales
+
+    return urls
+
+
+def get_contentful_urls():
+    urls = {}
+    urls.update(_get_vrc_urls())
+    return urls
+
+
 def update_sitemaps():
     urls = get_static_urls()
     urls.update(get_release_notes_urls())
     urls.update(get_security_urls())
+    urls.update(get_contentful_urls())
     # Output static files
     output_json(urls)
 

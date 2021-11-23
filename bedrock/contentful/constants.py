@@ -34,3 +34,5 @@ ACTION_UNPUBLISH = "unpublish"
 ACTION_CREATE = "create"
 ACTION_SAVE = "save"
 ACTION_AUTO_SAVE = "auto_save"
+
+VRC_ROOT_PATH = "/products/vpn/resource-center/"
