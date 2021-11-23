@@ -10,12 +10,12 @@ $image-path: "/media/img/externalpages/pocket";
 @import "~@mozilla-protocol/core/protocol/css/components/button";
 
 .platform {
-    background-color: $color-light-gray-20;
+    background-color: $color-background-grey;
 
         .mzp-c-split-container {
             background: $color-white;
             border-radius: 10px;
-            border: 1px solid $color-light-gray-50;
+            border: 1px solid $color-divider;
             padding-bottom: $spacing-lg;
 
             @media #{$mq-md} {

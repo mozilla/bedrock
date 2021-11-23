@@ -16,7 +16,6 @@
 
 {% block content %}
   <div class="platform">
-    <div class="platform__content">
       {% call split(
         block_class='mzp-l-split-center-on-sm-md mzp-t-content-lg mzp-l-split-reversed mzp-l-split-hide-media-on-sm-md',
         media_class='mzp-l-split-h-center',
@@ -26,6 +25,5 @@
         <p>{{ self.page_desc() }}</p>
         <a href="{{ self.page_url() }}" class="mzp-c-button" target="_blank" rel="external noopener">{{ self.page_cta() }}</a>
         {% endcall %}
-      </div>
   </div>
 {% endblock %}
