@@ -28,9 +28,12 @@
       <meta property="og:site_name" content="Pocket" />
       <meta name="next-head-count" content="6" />
     {% endblock shared_meta%}
-    {% block pocket_css %}
-      {{ css_bundle('pocket-about') }}
-    {% endblock  %}
+
+
+      <!--[if !IE]><!-->
+    {# Page-specific styles, hidden from IE9 and lower #}
+    {% block pocket_css %}{% endblock  %}
+
     <title>{% block page_title %}{% endblock page_title %} | Pocket</title>
   </head>
   <body>
@@ -46,7 +49,5 @@
       <a href="../add/">How to Save</a>
       <a href="../android/">Pocket for Android</a>
     </nav> #}
-      {% include 'externalpages/pocket/includes/nav.html' %}
      <main class="main-container">{% block content %}{% endblock %}</main>
-     {% include 'externalpages/pocket/includes/footer.html' %}
 </html>

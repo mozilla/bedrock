@@ -7,7 +7,14 @@
 {% extends "externalpages/pocket/base.html" %}
 
 {% block page_title %}About Us{% endblock %}
+
+{% block pocket_css %}
+  {{ css_bundle('pocket-about') }}
+{% endblock  %}
+
 {% block content %}
+{% include 'externalpages/pocket/includes/nav.html' %}
+
     <div class="intro-wrapper">
         <section class="about-section first">
             <div class="about-section-text-wrapper">
@@ -51,6 +58,8 @@
         <p class="about-cta-body">Contact us for press inquiries at <a href="mailto:press@getpocket.com">press@getpocket.com</a>.</p>
         <p class="about-cta-body">Download our images and press kit <a id="press-page" href="https://blog.getpocket.com/press/">here</a>.</p>
     </section>
+
+    {% include 'externalpages/pocket/includes/nav.html' %}
 {% endblock %}
 
 
