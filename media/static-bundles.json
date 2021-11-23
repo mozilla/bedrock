@@ -264,6 +264,12 @@
     },
     {
       "files": [
+        "css/base/banners/pocket.scss"
+      ],
+      "name": "pocket-banner"
+    },
+    {
+      "files": [
         "css/base/banners/firefox-app-store.scss"
       ],
       "name": "firefox-app-store-banner"
@@ -1232,6 +1238,13 @@
         "js/mozorg/home/banner-init.js"
       ],
       "name": "fundraising-banner"
+    },
+    {
+      "files": [
+        "js/base/banners/mozilla-banner.js",
+        "js/base/banners/pocket-banner-init.js"
+      ],
+      "name": "pocket-banner"
     },
     {
       "files": [

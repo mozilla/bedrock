@@ -1,0 +1,131 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+// stylelint-disable declaration-no-important
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+$brand-theme: 'firefox';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import 'includes/base';
+
+@font-face {
+    font-family: Inter;
+    font-display: swap;
+    font-weight: 700;
+    src:
+        url('https://assets.getpocket.com/web-ui/assets/Inter-Bold.c9c89216b48bee4d8727bf39d948b125.woff'),
+        url('https://assets.getpocket.com/web-ui/assets/Inter-Bold.fe38e3f307fcbac1a801c0c38dff56ef.woff2');
+}
+
+// Pocket theme variables
+$color-text-primary: #1a1a1a;
+$font-text-primary: inter, 'Helvetica Neue', helvetica, arial, sans-serif;
+
+// leave space for Close button
+$close-btn-space: calc(1rem + (2 * #{$spacing-lg}));
+
+.c-banner {
+    // banner base overrides
+    background-color: #9871ef;
+    text-align: center;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+
+    &-title,
+    &-content {
+        display: block;
+        width: 100%;
+    }
+
+    // protocol overrides
+    a:link {
+        color: $color-text-primary;
+    }
+
+    .mzp-c-button {
+        background-color: $color-white;
+        border-color: $color-white;
+        color: $color-text-primary;
+        font-family: $font-text-primary;
+
+        &:hover,
+        &:active {
+            background-color: $color-white;
+            border-color: $color-white;
+            color: $color-text-primary;
+            text-decoration: underline !important;
+        }
+    }
+
+    .mzp-l-content {
+        max-width: 100%;
+        padding: 0;
+    }
+
+    // end overrides
+
+    &-title {
+        @include text-title-xs;
+        box-sizing: border-box;
+        color: $color-white;
+        font-family: $font-text-primary;
+        margin-bottom: 0;
+        padding: $spacing-md $close-btn-space;
+    }
+
+    &-content {
+        padding-bottom: $spacing-md;
+    }
+}
+
+@supports (display: grid) {
+    @media #{$mq-md} {
+        $max-width-column-third: $content-lg * 0.33;
+
+        .c-banner {
+            overflow-x: hidden;
+            padding-inline-end: $close-btn-space;
+
+            &-main {
+                display: grid;
+                column-gap: $spacing-lg;
+                align-items: center;
+                grid-template-areas: '. . title cta .';
+                grid-template-columns: 1fr minmax(0, $max-width-column-third) repeat(2, minmax(min-content, $max-width-column-third)) 1fr;
+            }
+
+            &-title {
+                grid-area: title;
+                @include bidi(((text-align, left, right),));
+                position: relative;
+                padding-right: unset;
+                padding-left: unset;
+
+                &::before {
+                    $offset: 50vw; // needs to be large enough to extend to the edge of the screen
+                    $offset-with-spacing: calc((#{$offset} + #{$spacing-md}) * -1); // leaves spacing between 2021 and title
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    @include bidi(((left, $offset-with-spacing, initial),));
+                    @include bidi(((right, initial,  $offset-with-spacing),));
+                    width: $offset;
+                    display: block;
+                    background-image: url('/media/img/banners/pocket/best-of-2021.svg');
+                    background-repeat: repeat;
+                    @include bidi(((background-position, center right,  center left),));
+                }
+            }
+
+            &-content {
+                grid-area: cta;
+                @include bidi(((text-align, right,  left),));
+                padding-bottom: 0;
+            }
+        }
+    }
+}

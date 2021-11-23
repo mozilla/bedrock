@@ -1,0 +1,17 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+ {% extends 'includes/banners/base.html' %}
+
+ {% block banner_id %}pocket-banner{% endblock %}
+
+ {% block banner_title %}{{ ftl('banner-pocket-title') }}{% endblock %}
+
+ {% block banner_content %}
+  <a href="https://getpocket.com/collections?utm_source=mozilla.org" rel="external noopener" class="mzp-c-button mzp-t-md">
+    {{ ftl('banner-pocket-button') }}
+  </a>
+ {% endblock %}
