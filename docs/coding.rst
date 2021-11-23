@@ -283,11 +283,36 @@ This domain is simply an AWS S3 bucket with a CloudFront CDN in front of it. It 
 and fast. We've made adding files to this domain very simple using `git-lfs <https://git-lfs.github.com/>`_.
 You simply install git-lfs, clone our `assets.mozilla.net repo <https://github.com/mozmeao/assets.mozilla.net>`_,
 and then add and commit files under the ``assets`` directory there as usual. Open a PR, and once it's merged
-it will be automatically uploaded to the S3 buket and be available on the domain.
+it will be automatically uploaded to the S3 bucket and be available on the domain.
 
 For example, if you add a file to the repo under ``assets/pdf/the-dude-abides.pdf``, it will be available
 as https://assets.mozilla.net/pdf/the-dude-abides.pdf. Once that is done you can link to that URL from bedrock
 as you would any other URL.
+
+Writing Migrations
+------------------
+
+Bedrock uses Django's built-in Migrations framework for its database migrations, and has no custom
+routing database routing, etc. So, no big surprises here – write things as you regularly would.
+
+*However*, as with any complex system, care needs to be taken with schema changes that
+drop or rename database columns. Due to the way the rollout process works (ask for
+details directly from the team), an absent column can cause some of the rollout to
+enter a crashloop.
+
+To avoid this, split your changes across releases, such as below.
+
+For column renames:
+
+* Release 1: Add your new column and amend the codebase to use it instead of the old column
+* Release 2: Clean up - drop the old, deprecated column, which should not be referenced in code at this point.
+
+For column drops:
+
+* Release 1: Update all code that uses the relevant column, so that nothing interacts with it any more.
+* Release 2: Clean up - drop the old, deprecated column.
+
+With both paths, check for any custom schema or data migrations that might reference the deprecated column.
 
 Writing Views
 -------------
