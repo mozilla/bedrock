@@ -15,13 +15,13 @@
     display: flex;
     height: 74px;
     margin: 0 auto;
-    max-width: 1168px;
-    padding: 0 16px;
+    max-width: $screen-lg;
+    padding: 0 $spacing-md;
 
-    .pocket-logo {
+    &__pocket-logo {
         margin-left: 0;
 
-        .pocket-logo-svg {
+        &--svg {
             background-image: url('/media/img/externalpages/pocket/pocket-logo-grey.png');
             background-repeat: no-repeat;
             background-size: contain;
@@ -33,17 +33,10 @@
                 height: 47px;
                 width: 189px;
             }
-        }
-        .sr-only {
-            border: 0;
-            clip-path: polygon(0 0, 0 0, 0 0);
-            height: 1px;
-            margin: -1px;
-            overflow: hidden;
-            padding: 0;
-            position: absolute;
-            width: 1px;
-            white-space: nowrap;
+
+            span {
+                @include visually-hidden;
+            }
         }
     }
 
@@ -55,12 +48,11 @@
         line-height: 1;
         white-space: nowrap;
 
-        &-list {
+        &--list {
             display: flex;
             margin: 0;
             padding: 0;
             list-style-type: none;
-            font-size: 16px;
             display: none;
 
             &-item {
@@ -68,13 +60,12 @@
                 margin: 0;
                 padding: 0;
 
-                &-link {
+                &--link {
+                    @include text-body-sm;
                     border-top: 6px solid transparent;
                     font-family: proxima-nova, "Helvetica Neue", Helvetica, Arial, sans-serif;
-                    font-size: 14px;
                     font-weight: 700;
-                    line-height: 1;
-                    padding: 24px 21px;
+                    padding: $spacing-lg 21px;
                     text-decoration: none;
                     color: #777;
 
@@ -89,7 +80,7 @@
                 display: flex;
 
                 &-item-link {
-                    padding: 24px 14px;
+                    padding: $spacing-lg 14px;
                 }
             }
 
