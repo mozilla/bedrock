@@ -14,8 +14,6 @@ from contextlib import contextmanager
 from django.core.cache import cache
 from django.core.management.base import BaseCommand
 
-from bedrock.utils.management.decorators import alert_sentry_on_exception
-
 
 @contextmanager
 def cache_lock(lock_key):
@@ -36,7 +34,6 @@ def cache_lock(lock_key):
         yield False
 
 
-@alert_sentry_on_exception
 class CronCommand(BaseCommand):
     lock_key = "cron-command"
 
