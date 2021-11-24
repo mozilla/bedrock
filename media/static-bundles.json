@@ -416,6 +416,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-95-de.scss"
+      ],
+      "name": "firefox_whatsnew_95_de"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -1073,6 +1079,14 @@
         "js/firefox/whatsnew/whatsnew93-cycle.js"
       ],
       "name": "firefox_whatsnew_93_cycle"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/up-to-date.js",
+        "js/base/mozilla-fxa-product-button.js",
+        "js/base/mozilla-fxa-product-button-init.js"
+      ],
+      "name": "firefox_whatsnew_95_de"
     },
     {
       "files": [
