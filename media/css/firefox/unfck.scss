@@ -192,7 +192,8 @@ main {
                 bottom 50px right calc(50% + #{$content-sm * 0.5 }),
                 bottom 350px left calc(50% + #{$content-sm * 0.5 + 150px});
             background-repeat: no-repeat;
-            background-size: (1944px * 0.5) (786px * 0.5),
+            background-size:
+                (1944px * 0.5) (786px * 0.5),
                 (386px * 0.5) (350px * 0.5),
                 (534px * 0.5) (556px * 0.5),
                 (620px * 0.5) (662px * 0.5),
