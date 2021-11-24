@@ -293,7 +293,7 @@ Writing Migrations
 ------------------
 
 Bedrock uses Django's built-in Migrations framework for its database migrations, and has no custom
-routing database routing, etc. So, no big surprises here – write things as you regularly would.
+database routing, etc. So, no big surprises here – write things as you regularly would.
 
 *However*, as with any complex system, care needs to be taken with schema changes that
 drop or rename database columns. Due to the way the rollout process works (ask for
@@ -304,8 +304,9 @@ To avoid this, split your changes across releases, such as below.
 
 For column renames:
 
-* Release 1: Add your new column and amend the codebase to use it instead of the old column
-* Release 2: Clean up - drop the old, deprecated column, which should not be referenced in code at this point.
+* Release 1: Add your new column
+* Release 2: Amend the codebase to use it instead of the old column
+* Release 3: Clean up - drop the old, deprecated column, which should not be referenced in code at this point.
 
 For column drops:
 
