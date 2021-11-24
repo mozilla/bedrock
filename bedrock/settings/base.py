@@ -1100,7 +1100,9 @@ FIREFOX_MOBILE_SYSREQ_URL = "https://support.mozilla.org/kb/will-firefox-work-my
 
 MOZILLA_LOCATION_SERVICES_KEY = "a9b98c12-d9d5-4015-a2db-63536c26dc14"
 
-DEAD_MANS_SNITCH_URL = config("DEAD_MANS_SNITCH_URL", default="")
+DEAD_MANS_SNITCH_URL = config("DEAD_MANS_SNITCH_URL", default="")  # see cron.py
+# There is also a DB_UPDATE_SCRIPT_DMS_URL defined in env vars, which is called directly from
+# the bash script bin/run-db-update.sh
 
 # Sentry config for Backend and Frontend
 SENTRY_DSN = config("SENTRY_DSN", default="")
