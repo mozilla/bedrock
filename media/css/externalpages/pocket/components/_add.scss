@@ -25,6 +25,10 @@ $image-path: '/media/img/externalpages/pocket';
     }
 }
 
+.rarrow::after {
+    content: " ›";
+}
+
 .add-header {
     &__wrapper {
         margin: 0 auto;
