@@ -5,9 +5,11 @@
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
+from bedrock.utils.management.decorators import alert_sentry_on_exception
 from bedrock.wordpress.models import BlogPost
 
 
+@alert_sentry_on_exception
 class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument("-q", "--quiet", action="store_true", dest="quiet", default=False, help="If no error occurs, swallow all output."),

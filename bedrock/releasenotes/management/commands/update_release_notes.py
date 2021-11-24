@@ -7,8 +7,10 @@ from django.core.management.base import BaseCommand
 
 from bedrock.releasenotes.models import ProductRelease
 from bedrock.utils.git import GitRepo
+from bedrock.utils.management.decorators import alert_sentry_on_exception
 
 
+@alert_sentry_on_exception
 class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument("-q", "--quiet", action="store_true", dest="quiet", default=False, help="If no error occurs, swallow all output."),

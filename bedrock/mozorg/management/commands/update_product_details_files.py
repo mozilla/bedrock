@@ -11,6 +11,7 @@ from django.db import transaction
 from product_details.storage import PDDatabaseStorage, PDFileStorage
 
 from bedrock.utils.git import GitRepo
+from bedrock.utils.management.decorators import alert_sentry_on_exception
 
 FIREFOX_VERSION_KEYS = (
     "FIREFOX_NIGHTLY",
@@ -23,6 +24,7 @@ FIREFOX_VERSION_KEYS = (
 )
 
 
+@alert_sentry_on_exception
 class Command(BaseCommand):
     def __init__(self, stdout=None, stderr=None, no_color=False):
         self.file_storage = PDFileStorage(json_dir=settings.PROD_DETAILS_TEST_DIR)

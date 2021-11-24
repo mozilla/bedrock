@@ -11,6 +11,7 @@ from envcat import get_env_vars
 
 from bedrock.base.models import ConfigValue
 from bedrock.utils.git import GitRepo
+from bedrock.utils.management.decorators import alert_sentry_on_exception
 
 
 def get_config_file_name(app_name=None):
@@ -37,6 +38,7 @@ def refresh_db_values():
     return count
 
 
+@alert_sentry_on_exception
 class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument("-q", "--quiet", action="store_true", dest="quiet", default=False, help="If no error occurs, swallow all output."),

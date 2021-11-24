@@ -8,8 +8,10 @@ from django.core.management.base import BaseCommand
 
 from bedrock.sitemaps.models import SitemapURL
 from bedrock.utils.git import GitRepo
+from bedrock.utils.management.decorators import alert_sentry_on_exception
 
 
+@alert_sentry_on_exception
 class Command(BaseCommand):
     help = "Clones or updates sitemaps info from github"
 
