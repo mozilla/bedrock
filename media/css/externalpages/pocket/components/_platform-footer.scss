@@ -24,6 +24,11 @@ $image-path: '/media/protocol/img';
             justify-content: space-between;
         }
 
+        a {
+            color: $color-text-primary;
+            text-decoration: none;
+        }
+
         &--list {
             @include text-body-xs;
             display: flex;
@@ -36,9 +41,15 @@ $image-path: '/media/protocol/img';
                 margin: 0 0 $spacing-md;
                 cursor: pointer;
 
-                a:hover {
+                a {
+                color: $color-text-primary;
+                text-decoration: none;
+
+                &:hover {
                     text-decoration: underline;
                 }
+        }
+
             }
 
             @media #{$mq-md} {

@@ -38,6 +38,10 @@
         "no-unknown-animations": true,
         "no-extra-semicolons": true,
         "no-missing-end-of-source-newline": true,
-        "no-eol-whitespace": true
+        "no-eol-whitespace": true,
+        "ignoreFiles": [
+        "media/css/libs/**/*",
+        "media/css/externalpages/pocket/**/*"
+        ]
     }
 }
