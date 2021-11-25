@@ -25,7 +25,7 @@ def _vpn_get_available_plans(country_code, lang):
 
 def _vpn_product_link(product_url, entrypoint, link_text, class_name=None, optional_parameters=None, optional_attributes=None):
     separator = "&" if "?" in product_url else "?"
-    href = f"{product_url}{separator}entrypoint={entrypoint}&form_type=button&utm_source={entrypoint}&utm_medium=referral"
+    href = f"{product_url}{separator}entrypoint={entrypoint}&form_type=button&service=guardian-vpn&utm_source={entrypoint}&utm_medium=referral"
 
     if optional_parameters:
         params = "&".join("%s=%s" % (param, val) for param, val in optional_parameters.items())
