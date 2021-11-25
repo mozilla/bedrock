@@ -42,7 +42,7 @@ $image-path: '/media/protocol/img';
                 cursor: pointer;
 
                 a {
-                color: red;
+                color: $color-text-primary;
                 text-decoration: none;
 
                 &:hover {
