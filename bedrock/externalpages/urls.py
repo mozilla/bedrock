@@ -5,7 +5,6 @@
 from bedrock.mozorg.util import page
 
 urlpatterns = (
-    page("pocket", "externalpages/pocket/index.html"),
     page("pocket/about", "externalpages/pocket/about.html"),
     page("pocket/add", "externalpages/pocket/add.html"),
     page("pocket/android", "externalpages/pocket/android.html"),
