@@ -55,6 +55,12 @@ if (typeof window.Mozilla === 'undefined') {
 
         // add required params to the token fetch request
         metricsURL += '?form_type=' + params.form_type;
+
+        // add service identifier for VPN (issue #10811)
+        if (params.service) {
+            metricsURL += '&service=' + params.service;
+        }
+
         metricsURL += '&entrypoint=' + params.entrypoint;
         metricsURL += '&utm_source=' + params.utm_source;
 

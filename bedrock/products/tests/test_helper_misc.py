@@ -172,7 +172,7 @@ class TestVPNSubscribeLink(TestCase):
         )
         expected = (
             '<a href="https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=price_1Iw85dJNcmPzuWtRyhMDdtM7'
-            "&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&utm_source=www.mozilla.org-vpn-product-page"
+            "&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=guardian-vpn&utm_source=www.mozilla.org-vpn-product-page"
             '&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
             'class="js-vpn-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" '
             'data-cta-position="primary">Get Mozilla VPN</a>'
@@ -190,7 +190,7 @@ class TestVPNSubscribeLink(TestCase):
         )
         expected = (
             '<a href="https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=price_1Iw87cJNcmPzuWtRefuyqsOd'
-            "&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&utm_source=www.mozilla.org-vpn-product-page"
+            "&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=guardian-vpn&utm_source=www.mozilla.org-vpn-product-page"
             '&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
             'class="js-vpn-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" '
             'data-cta-position="primary">Get Mozilla VPN</a>'
@@ -208,7 +208,7 @@ class TestVPNSubscribeLink(TestCase):
         )
         expected = (
             '<a href="https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=price_1Iw7qSJNcmPzuWtRMUZpOwLm'
-            "&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&utm_source=www.mozilla.org-vpn-product-page"
+            "&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=guardian-vpn&utm_source=www.mozilla.org-vpn-product-page"
             '&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
             'class="js-vpn-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" '
             'data-cta-position="primary">Get Mozilla VPN</a>'
@@ -689,7 +689,7 @@ class TestVPNDownloadLink(TestCase):
         )
         expected = (
             '<a href="https://vpn.mozilla.org/vpn/download?entrypoint=www.mozilla.org-vpn-product-page'
-            "&form_type=button&utm_source=www.mozilla.org-vpn-product-page&utm_medium=referral"
+            "&form_type=button&service=guardian-vpn&utm_source=www.mozilla.org-vpn-product-page&utm_medium=referral"
             '&utm_campaign=vpn-product-page&data_cta_position=navigation" data-action="https://accounts.firefox.com/" '
             'class="js-vpn-cta-link js-fxa-product-button mzp-c-cta-link" data-cta-text="VPN Sign In" '
             'data-cta-type="fxa-vpn" data-cta-position="navigation">Already a Subscriber?</a>'
