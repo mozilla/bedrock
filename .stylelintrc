@@ -23,17 +23,16 @@
                 "ignoreFontFamilies": ["FA-Icons-Contact"]
             }
         ],
-        "declaration-block-no-redundant-longhand-properties": [
-            true,
-            {
-                "ignoreShorthands": [
-                    "grid-area",
-                    "grid-column",
-                    "grid-gap",
-                    "grid-row",
-                    "grid-template"
-                ]
-            }
-        ]
-    }
+        "comment-no-empty": true,
+        "max-nesting-depth": 5,
+        "no-invalid-double-slash-comments": true,
+        "no-unknown-animations": true,
+        "no-extra-semicolons": true,
+        "no-missing-end-of-source-newline": true,
+        "no-eol-whitespace": true,
+    },
+    "ignoreFiles": [
+    "media/css/libs/**/*",
+    "media/css/externalpages/pocket/**/*"
+]
 }
