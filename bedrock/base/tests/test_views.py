@@ -2,11 +2,16 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import datetime
 from unittest.mock import patch
 
 from django.test import RequestFactory, TestCase
+from django.utils.timezone import now as tz_now
 
-from bedrock.base.views import GeoTemplateView
+import pytest
+
+from bedrock.base.views import GeoTemplateView, get_contentful_sync_info
+from bedrock.contentful.models import ContentfulEntry
 
 geo_template_view = GeoTemplateView.as_view(
     geo_template_names={
@@ -38,3 +43,26 @@ class TestGeoTemplateView(TestCase):
     def test_no_country(self):
         template = self.get_template(None)
         assert template == "firefox-mobile.html"
+
+
+@pytest.mark.django_db
+def test_get_contentful_sync_info():
+
+    middle = tz_now()
+    first = middle - datetime.timedelta(hours=3)
+    last = middle + datetime.timedelta(hours=3)
+
+    for idx, timestamp in enumerate([middle, last, first]):
+        ContentfulEntry.objects.create(
+            contentful_id=f"id-{idx}",
+            last_modified=timestamp,
+        )
+
+    assert get_contentful_sync_info() == {
+        "latest_sync": last,
+    }
+
+    ContentfulEntry.objects.all().delete()
+    assert get_contentful_sync_info() == {
+        "latest_sync": None,
+    }

@@ -104,6 +104,12 @@
         <td><a href="{{ server_info.db_file_url }}">{{ server_info.db_file_name }}</a></td>
       </tr>
       {% endif %}
+      {% if contentful_info %}
+      <tr>
+        <td title="Timestamp of the most recently updated ContentfulEntry">Latest Contentful sync</td>
+        <td>{{ contentful_info.latest_sync.strftime('%Y-%m-%d %H:%M:%S')}}</td>
+      </tr>
+      {% endif %}
     </tbody>
   </table>
 
