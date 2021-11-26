@@ -539,9 +539,6 @@ class ContentfulPage:
 
         return data
 
-    def get_entry_by_id(self, entry_id):
-        return self.client.entry(entry_id, {"locale": self.locale})
-
     def get_content(self):
         # Check if it is a page or a connector, or a Compose page type
 
