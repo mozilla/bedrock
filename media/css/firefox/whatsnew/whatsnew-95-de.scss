@@ -75,12 +75,13 @@ $image-path: '/media/protocol/img';
     a:link,
     a:visited {
         color: $color-ink-80;
-    }
 
-    a:hover,
-    a:focus,
-    a:active {
-        color: $color-ink-90;
+        &:hover,
+        &:focus,
+        &:active {
+            color: $color-ink-90;
+            text-decoration: underline;
+        }
     }
 
     .c-footer-sections {
@@ -91,6 +92,12 @@ $image-path: '/media/protocol/img';
 }
 
 .c-footer-list-social li {
+    a:hover,
+    a:active,
+    a:focus {
+        border-bottom-color: transparent;
+    }
+
     a.twitter {
         background-image: url('/media/protocol/img/icons/social/twitter/black.svg');
     }
@@ -106,6 +113,17 @@ $image-path: '/media/protocol/img';
 
 .c-footer-primary-logo a {
     background-image: url('/media/protocol/img/logos/mozilla/logo-word-hor.svg');
+}
+
+.c-footer-legal {
+    a:link,
+    a:visited {
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: none;
+        }
+    }
 }
 
 // * -------------------------------------------------------------------------- */
@@ -140,7 +158,6 @@ $image-path: '/media/protocol/img';
             &:focus,
             &:active {
                 color: $color-white;
-                text-decoration: underline;
             }
         }
 
