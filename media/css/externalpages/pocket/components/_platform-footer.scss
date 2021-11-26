@@ -36,8 +36,13 @@ $image-path: '/media/protocol/img';
                 margin: 0 0 $spacing-md;
                 cursor: pointer;
 
-                a:hover {
-                    text-decoration: underline;
+                a {
+                    color: $color-text-primary;
+                    text-decoration: none;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
                 }
             }
 
