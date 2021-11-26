@@ -35,5 +35,9 @@
                 ]
             }
         ]
-    }
+    },
+    "ignoreFiles": [
+        "media/css/libs/**/*",
+        "media/css/externalpages/pocket/**/*"
+    ]
 }
