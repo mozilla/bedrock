@@ -40,7 +40,7 @@ $image-path: '/media/protocol/img';
                     color: $color-text-primary;
                     text-decoration: none;
 
-                    &:hover {
+                    &:hover, &:active, &:focus {
                         text-decoration: underline;
                     }
                 }
