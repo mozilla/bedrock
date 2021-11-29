@@ -4,11 +4,14 @@
 
 @import '../utils/variables';
 
-$image-path: '/media/img/externalpages/pocket';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+$image-path: '/media/protocol/img';
+$pocket-image-path: '/media/img/externalpages/pocket';
 
 .pocket-footer-container {
     border-top: 1px solid transparent;
-    background-image: url('#{$image-path}/footer-border.svg');
+    background-image: url('#{$pocket-image-path}/footer-border.svg');
     background-size: 1440px 9px;
     background-repeat: repeat-x;
     background-position: top;
@@ -56,7 +59,8 @@ $image-path: '/media/img/externalpages/pocket';
         @media ($mq-md) {
             width: 33%;
 
-            &:nth-child(odd), &:nth-child(2n) {
+            &:nth-child(odd),
+            &:nth-child(2n) {
                 width: 33%;
             }
 
@@ -72,10 +76,10 @@ $image-path: '/media/img/externalpages/pocket';
         @media ($mq-lg) {
             width: 25%;
 
-            &:nth-child(odd), &:nth-child(2n) {
+            &:nth-child(odd),
+            &:nth-child(2n) {
                 width: 25%;
             }
-
         }
 
         .pocket-footer-heading {
@@ -161,9 +165,7 @@ $image-path: '/media/img/externalpages/pocket';
     border-top: 1px solid $color-divider;
     padding: 24px 0;
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-
+    justify-content: space-between;
 
     a {
         color: $color-text-primary;
@@ -174,7 +176,6 @@ $image-path: '/media/img/externalpages/pocket';
         &:active {
             color: $color-action-primary;
         }
-
     }
 
     .legal {
@@ -187,24 +188,70 @@ $image-path: '/media/img/externalpages/pocket';
             margin-right: 16px;
         }
     }
+}
 
-    .cookie-show-settings {
-        background: transparent;
-        color: $color-text-primary;
-        text-decoration: underline;
-        border: none;
-        outline: none;
-        padding: 0;
-        cursor: pointer;
-        font-weight: 400;
-        font-size: 16px;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        line-height: 1.5;
-    }
 
-    a:hover, .cookie-show-settings:hover {
-        color: $color-action-primary;
+.pocket-footer-socials {
+    display: flex;
+    margin: 0;
+    padding: 0;
+
+    .pocket-footer-socials-item {
+        margin-right: $spacing-md;
+
+        .pocket-footer-socials-item-link {
+            background-repeat: no-repeat;
+            background-size: 20px 20px;
+            cursor: pointer;
+            display: block;
+            height: 20px;
+            width: 20px;
+
+
+            &.twitter {
+                background-image: url('/media/img/externalpages/pocket/platform-footer/twitter-logo.svg');
+
+                &:hover,
+                &:focus,
+                &:active {
+                    background-image: url('#{$image-path}/icons/social/twitter/brand.svg');
+                }
+            }
+
+            &.facebook {
+                background-image: url('/media/img/externalpages/pocket/platform-footer/facebook-logo.svg');
+
+                &:hover,
+                &:focus,
+                &:active {
+                    background-image: url('#{$image-path}/icons/social/facebook/brand.svg');
+                }
+            }
+
+            span {
+                @include visually-hidden;
+            }
+        }
     }
+}
+
+.cookie-show-settings {
+    background: transparent;
+    color: $color-text-primary;
+    text-decoration: underline;
+    border: none;
+    outline: none;
+    padding: 0;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 16px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.5;
+}
+
+a:hover,
+.cookie-show-settings:hover {
+    color: $color-action-primary;
 }
