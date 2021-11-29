@@ -8,6 +8,22 @@
 Developing on Bedrock
 =====================
 
+Managing Dependencies
+---------------------
+
+For Python we use `hashin <https://pypi.org/project/hashin/>`_ to pin dependencies in
+`requirements files <https://github.com/mozilla/bedrock/tree/master/requirements>`_.
+To use hashin it must first be installed using pip:
+
+.. code-block:: python
+
+    pip install hashin
+
+See the hashin `documentation <https://pypi.org/project/hashin/#how-to-use-it>`_ for how to install new packages.
+
+For Node packages we use `NPM <https://docs.npmjs.com/cli/v8/commands/npm-install>`_, which should already be
+installed alongside `Node.js <https://nodejs.org/>`_.
+
 Asset Management and Bundling
 -----------------------------
 
@@ -108,13 +124,13 @@ Writing JavaScript
 Bedrock's Webpack configuration supports some different options for writing
 JavaScript:
 
-Default configuration
+Default Configuration
 ~~~~~~~~~~~~~~~~~~~~~
 
 Write ``example-script.js`` using ES5 syntax and features. Webpack will bundle
 the JS as-is, without any additional pre-processing.
 
-Babel configuration
+Babel Configuration
 ~~~~~~~~~~~~~~~~~~~
 
 Write ``example-script.es6.js`` using ES2015+ syntax. Webpack will transpile
@@ -169,7 +185,7 @@ template data as keyword arguments:
 
 The variable `latest_version` will be available in the template.
 
-Optimizing images
+Optimizing Images
 -----------------
 
 Images can take a long time to load and eat up a lot of bandwidth. Always take care
@@ -191,13 +207,14 @@ The script will:
 - check that SVGs have a viewbox (needed for IE support)
 - check that images that end in `-high-res` have low res versions as well
 
-Embedding images
+Embedding Images
 ----------------
 
 Images should be included on pages using helper functions.
 
 static()
-^^^^^^^^
+~~~~~~~~
+
 For a simple image, the `static()` function is used to generate the image URL. For example:
 
 .. code-block:: html
@@ -211,7 +228,8 @@ will output an image:
     <img src="/media/img/firefox/new/firefox-logo.png" alt="Firefox">
 
 high_res_img()
-^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~
+
 For images that include a high-resolution alternative for displays with a high pixel density, use the `high_res_img()` function:
 
 .. code-block:: python
@@ -229,7 +247,8 @@ The `high_res_img()` function will automatically look for the image in the URL p
 When using localization, `high_res_img()` will look for images in the appropriate locale folder. In the above example, for the `de` locale, both standard and high-res versions of the image should be located at `media/img/l10n/de/firefox/new/`.
 
 l10n_img()
-^^^^^^^^^^
+~~~~~~~~~~
+
 Images that have translatable text can be handled with `l10n_img()`:
 
 .. code-block:: html
@@ -239,7 +258,8 @@ Images that have translatable text can be handled with `l10n_img()`:
 The images referenced by `l10n_img()` must exist in `media/img/l10n/`, so for above example, the images could include `media/img/l10n/en-US/firefox/os/have-it-all/messages.jpg` and `media/img/l10n/es-ES/firefox/os/have-it-all/messages.jpg`.
 
 platform_img()
-^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~
+
 Finally, for outputting an image that differs depending on the platform being used, the `platform_img()` function will automatically display the image for the user's browser:
 
 .. code-block:: python
@@ -257,7 +277,8 @@ Finally, for outputting an image that differs depending on the platform being us
 When using localization, `platform_img()` will look for images in the appropriate locale folder. In the above example, for the `es-ES` locale, all platform versions of the image should be located at `media/img/l10n/es-ES/firefox/new/`.
 
 qrcode()
-^^^^^^^^
+~~~~~~~~
+
 This is a helper function that will output SVG data for a QR Code at the spot in the template
 where it is called. It caches the results to the ``data/qrcode_cache`` directory, so it only
 generates the SVG data one time per data and box_size combination.
@@ -363,7 +384,7 @@ The `L10nTemplateView` functionality is mostly in a template mixin called `LangF
 you can use with other generic Django view classes if you need one other than `TemplateView`.
 
 Variation Views
-^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~
 
 We have a generic view that allows you to easily create and use a/b testing
 templates. If you'd like to have either separate templates or just a template
@@ -454,7 +475,7 @@ valid variation were given in the URL.
     `bedrock.utils.views.VariationMixin`.
 
 Geo Template View
-^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~
 
 Now that we have our CDN configured properly, we can also just swap out templates
 per request country. This is very similar to the above, but it will simply use
@@ -476,7 +497,7 @@ with a ``geo`` query param (e.g. ``/firefox/?geo=DE``) and that will take
 precedence over the country from the request header.
 
 Other Geo Stuff
-^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~
 
 There are a couple of other tools at your disposal if you need to change things
 depending on the location of the user. You can use the
@@ -546,7 +567,7 @@ a guide. This doesn't necessarily mean every single line needs a test, and 100% 
 doesn't mean 0% defects.
 
 
-Configuring your code editor
+Configuring your Code Editor
 ----------------------------
 
 Bedrock includes an `.editorconfig` file in the root directory that you can
