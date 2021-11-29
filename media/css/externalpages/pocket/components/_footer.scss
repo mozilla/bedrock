@@ -162,12 +162,19 @@ $image-path: '/media/img/externalpages/pocket';
     padding: 24px 0;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column ;
+    flex-direction: column;
 
 
     a {
         color: $color-text-primary;
         text-decoration: underline;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: $color-action-primary;
+        }
+
     }
 
     .legal {
