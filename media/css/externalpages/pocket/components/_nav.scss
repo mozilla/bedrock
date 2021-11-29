@@ -207,7 +207,10 @@ $image-path: '/media/img/externalpages/pocket';
     text-decoration: none;
     color: $color-text-primary;
 
-    &:focus {
+    &:focus,
+    &:focus,
+    &:active {
+        color: $color-action-primary;
         outline: 0;
 
         &:before {

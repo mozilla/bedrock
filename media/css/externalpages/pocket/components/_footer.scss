@@ -104,6 +104,12 @@ $image-path: '/media/img/externalpages/pocket';
                     color: $color-text-secondary;
                     text-decoration: none;
                     transition: color 0.1s ease-out;
+
+                    &:hover,
+                    &:focus,
+                    &:active {
+                        color: $color-action-primary;
+                    }
                 }
             }
 
@@ -150,12 +156,14 @@ $image-path: '/media/img/externalpages/pocket';
 
 .pocket-footer-secondary {
     margin-top: 40px;
-    display: flex;
     color: $color-text-primary;
-    flex-wrap: wrap;
     font-family: $fontSans;
     border-top: 1px solid $color-divider;
     padding: 24px 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column ;
+
 
     a {
         color: $color-text-primary;
@@ -164,7 +172,6 @@ $image-path: '/media/img/externalpages/pocket';
 
     .legal {
         span {
-            display: block;
             margin: 0;
         }
 
