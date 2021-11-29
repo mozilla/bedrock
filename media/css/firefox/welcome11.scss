@@ -126,19 +126,18 @@ $image-path: '/media/protocol/img';
     }
 
     .c-footer {
+        @include white-links;
         background: $color-dark-gray-60;
         color: $color-white;
 
-        a:link,
-        a:visited,
-        a:hover,
-        a:focus,
-        a:active {
-            color: $color-white;
-        }
-
         .c-footer-sections {
             border-color: $color-dark-gray-30;
+
+            a:hover,
+            a:focus,
+            a:active {
+                text-decoration: underline;
+            }
         }
     }
 
