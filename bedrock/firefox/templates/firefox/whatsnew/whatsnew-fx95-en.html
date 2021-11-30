@@ -12,7 +12,6 @@
 
 {#- This will appear as <meta property="og:description"> which can be used for social share -#}
 {% block page_og_desc %}What’s new with Firefox{% endblock %}
-{% block page_og_desc %}What’s new with Firefox{% endblock %}
 
 {% block body_id %}firefox-whatsnew{% endblock %}
 {% block body_class %}{% endblock %}
@@ -36,10 +35,7 @@
       <p class="wnp-main-tagline">
         The long reads we all couldn’t put down. The most popular tech articles on the web. The great pieces of advice that we needed to hear. Dive into the most interesting articles of the year in Pocket’s Best of 2021.
       </p>
-
-      <div class="wnp-main-cta">
-        {{ pocket_fxa_button(entrypoint=entrypoint, button_text='See the winners', optional_parameters={'s': entrypoint, 'utm_campaign': utm_campaign, 'utm_content': 'signup-fxa'}, optional_attributes={'data-cta-text': 'Sign up and read now', 'data-cta-type': 'button'}) }}
-      </div>
+      <a href="https://getpocket.com/collections" class="wnp-main-cta mzp-c-button mzp-t-product">See the Winners</a>
     </div>
   </section>
 

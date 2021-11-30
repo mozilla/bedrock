@@ -115,13 +115,8 @@ $image-path: '/media/protocol/img';
         color: $color-white;
     }
 
-    .wnp-main-title,
-    .wnp-footer-title {
+    .wnp-main-title {
         color: get-theme('title-text-color-inverse');
-    }
-
-    .c-utilities {
-        @include white-links;
     }
 
     .c-footer {
