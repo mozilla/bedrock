@@ -1,0 +1,119 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+
+// variables from pocket
+$easingAccelerate: cubic-bezier(.4, 0, 1, 1);
+$easingDecelerate: cubic-bezier(0, 0, .2, 1);
+$easingStandard: cubic-bezier(0.4, 0, .2, 1);
+
+.mobile-nav-wrapper {
+    background: rgba(26, 26, 26, 0.4) none repeat scroll 0 0;
+    bottom: 0;
+    left: 0;
+    mix-blend-mode: normal;
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    right: 0;
+    transition: opacity 75ms $easingAccelerate, transform 75ms $easingAccelerate;
+    top: 0;
+    z-index: 20;
+
+    &.active {
+        pointer-events: auto;
+        opacity: 1;
+
+        .mobile-nav {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+}
+
+.mobile-nav {
+    background: $color-white;
+    border-radius: 0;
+    bottom: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .12);
+    display: none;
+    left: 0;
+    max-height: 100%;
+    max-width: 256px;
+    right: auto;
+    top: 0;
+    transform: translateX(-256px);
+    transition: all 250ms $easingDecelerate;
+
+    .mobile-nav-close {
+        align-items: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .05);
+        border-bottom: 1px solid #d9d9d9;
+        display: flex;
+        height: 64px;
+        margin-bottom: 8px;
+        padding: 0;
+
+        .mobile-nav-close-btn {
+            color: $color-text-primary;
+            height: 48px;
+            width: 48px;
+
+            svg {
+                height: 24px;
+                width: 24px;
+            }
+        }
+    }
+}
+
+.mobile-nav-list {
+    background: $color-white;
+    display: flex;
+    flex-direction: column;
+    font-family: $fontSans;
+    font-size: 16px;
+    font-weight: 500;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    .mobile-nav-list-item {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        
+        .mobile-nav-list-link {
+            align-items: center;
+            color: $color-text-primary;
+            fill: currentColor;
+            line-height: 24px;
+            display: inline-flex;
+            padding: 12px 16px;
+            position: relative;
+            text-decoration: none;
+            transition: background-color 100ms ease-out;
+            width: 100%;
+            
+            &:hover:not(.selected):not(.disabled) {
+                background-color: $color-action-primary;
+                color: $color-white;
+            }
+
+            &.selected {
+                background-color: $color-nav-current;
+                color: $color-action-primary;
+            }
+
+            svg {
+                height: 24px;
+                margin-right: 12px;
+                margin-top: 1px;
+                width: 24px;
+            }
+        }
+    }
+}

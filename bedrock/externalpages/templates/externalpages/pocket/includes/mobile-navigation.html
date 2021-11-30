@@ -1,0 +1,79 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<div class="mobile-nav-wrapper">
+    <nav class="mobile-nav" role="dialog" aria-modal="true" aria-label="Pocket Mobile Menu" tabindex="-1">
+        <div class="mobile-nav-close">
+            <button class="mobile-nav-close-btn" aria-label="Close the Pocket Mobile Menu" data-tooltip="Close">
+                <svg aria-labelledby=" " fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.707 4.293a1 1 0 0 1 0 1.414L8.414 12l6.293 6.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0Z"></path></svg>
+                <span>Close the Pocket Mobile Menu</span>
+            </button>
+        </div>
+        <ul class="mobile-nav-list">
+            <li class="mobile-nav-list-item">
+                <a href="https://getpocket.com/home?src=navbar" id="global-nav-home-link">
+                    <svg aria-labelledby=" " fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.671 1.442a2.004 2.004 0 0 1 2.658 0l8 7.09c.427.378.671.92.671 1.49v9.922a1.997 1.997 0 0 1-2 1.994h-3c-1.105 0-2-.893-2-1.994v-4.985c0-.275-.175-1.072-.689-1.789-.48-.67-1.201-1.203-2.311-1.203-1.11 0-1.831.533-2.311 1.203C9.175 13.887 9 14.684 9 14.96v4.986a1.996 1.996 0 0 1-2 1.993H4c-1.105 0-2-.893-2-1.994v-9.922c0-.57.244-1.112.671-1.49l8-7.09ZM12 2.932l-8 7.09v9.922h3v-4.985c0-.723.325-1.92 1.061-2.948.77-1.074 2.049-2.038 3.939-2.038 1.89 0 3.169.963 3.939 2.038.736 1.028 1.061 2.225 1.061 2.948v4.985h3v-9.922l-8-7.09ZM7 19.944Zm.002 0H7h.002Zm0 0Z"></path></svg>
+                    <span>Home</span>
+                    <span>BETA</span>
+                </a>
+            </li>
+            <li class="mobile-nav-list-item">
+                <a class="mobile-nav-list-link" href="https://getpocket.com/my-list?src=navbar" id="global-nav-collections-link">
+                    <svg aria-labelledby=" " fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0ZM5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0ZM5 19a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M7 5a1 1 0 0 1 1-1h13a1 1 0 1 1 0 2H8a1 1 0 0 1-1-1ZM7 12a1 1 0 0 1 1-1h13a1 1 0 1 1 0 2H8a1 1 0 0 1-1-1ZM7 19a1 1 0 0 1 1-1h13a1 1 0 1 1 0 2H8a1 1 0 0 1-1-1Z"></path></svg>
+                    <span>My List</span>
+                </a>
+            </li>
+            <li class="mobile-nav-list-item">
+                <a class="mobile-nav-list-link" href="https://getpocket.com/explore?src=navbar" id="global-nav-discover-link">
+                    <svg aria-labelledby=" " fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.422 6.122a1 1 0 0 0-1.3 1.3l2.828 7.07a1 1 0 0 0 .557.558l7.071 2.828a1 1 0 0 0 1.3-1.3l-2.828-7.07a1 1 0 0 0-.557-.558L7.422 6.122Zm3.226 7.23 4.507 1.803-1.803-4.507-2.704 2.704Z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 2c6.075 0 11-4.925 11-11S18.075 1 12 1 1 5.925 1 12s4.925 11 11 11Z"></path></svg>
+                    <span>Discover</span>
+                </a>
+            </li>
+            <li class="mobile-nav-list-item">
+                <a href="https://getpocket.com/collections?src=navbar" id="global-nav-collections-link">
+                    <svg aria-labelledby=" " fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.052 2.13h-2.59c-.921 0-1.667.896-1.667 2v12c0 .204.025.401.073.587l-.023.09c-.32 1.269.215 2.579 1.239 3.298-1.663-.225-2.956-1.919-2.956-3.975v-12c0-2.209 1.492-4 3.333-4h8.334c1.606 0 2.948 1.365 3.263 3.18l-2.087-.596c-.3-.36-.717-.584-1.176-.584h-.865l-2.146-.614a2.888 2.888 0 0 0-2.732.614z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="m9.94 19.75-2.934.786c-.889.239-1.841-.433-2.127-1.5L1.773 7.445c-.286-1.067.203-2.125 1.092-2.363l2.263-.607V3.13c0-.271.054-.53.152-.766l-2.932.786C.57 3.626-.41 5.742.163 7.876L3.27 19.467c.572 2.134 2.477 3.478 4.255 3.001l6.278-1.682L9.94 19.75zm2.115-18.703a2.893 2.893 0 0 0-1.658-.054l-.512.137h1.994c.057-.03.116-.057.176-.083z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="m20.386 5.382-7.66-2.444c-.847-.27-1.779.388-2.083 1.47L7.342 16.17c-.304 1.083.136 2.179.982 2.449l7.66 2.444c.846.27 1.778-.388 2.082-1.47L21.368 7.83c.303-1.083-.136-2.179-.982-2.449zM13.276.978c-1.692-.54-3.557.777-4.165 2.942L5.81 15.68c-.608 2.165.271 4.358 1.963 4.898l7.66 2.444c1.693.54 3.557-.777 4.165-2.942L22.9 8.32c.607-2.165-.272-4.358-1.964-4.898L13.276.978z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.625 6.858c.152-.541.618-.87 1.041-.736l6.128 1.956c.423.135.643.683.491 1.224-.152.541-.618.87-1.04.736l-6.129-1.956c-.423-.135-.643-.683-.49-1.224zm-1.1 3.92c.152-.541.618-.87 1.04-.736l6.129 1.956c.423.135.643.683.49 1.224-.151.541-.617.87-1.04.736l-6.128-1.956c-.424-.135-.643-.683-.491-1.224zm-1.101 3.92c.152-.541.618-.87 1.041-.736l3.064.978c.423.135.643.683.491 1.225-.152.54-.618.87-1.04.735l-3.065-.978c-.423-.135-.643-.683-.49-1.224z" fill="currentColor"></path></svg>
+                    <span>Collections</span>
+                </a>
+            </li>
+            <li class="mobile-nav-list-item">
+                <a href="https://getpocket.com/my-list/archive">
+                    <svg aria-labelledby=" " fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 4a2 2 0 0 1 2-2h18a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4Zm2 0v2h18V4H3Z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8Zm2 10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8H5v10Z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M15.707 11.293a1 1 0 0 1 0 1.414l-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 1 1 1.414-1.414L11 14.586l3.293-3.293a1 1 0 0 1 1.414 0Z"></path></svg>
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li class="mobile-nav-list-item">
+                <a href="https://getpocket.com/my-list/favorites">
+                    <svg aria-labelledby=" " fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1a1 1 0 0 1 .897.557l2.706 5.484 6.051.88a1 1 0 0 1 .555 1.705l-4.38 4.268 1.034 6.027a1 1 0 0 1-1.45 1.054L12 18.13l-5.413 2.845a1 1 0 0 1-1.45-1.054l1.033-6.027-4.379-4.268a1 1 0 0 1 .555-1.706l6.051-.88 2.706-5.483A1 1 0 0 1 12 1Zm0 3.26L9.958 8.397a1 1 0 0 1-.753.548l-4.567.663 3.305 3.221a1 1 0 0 1 .287.885l-.78 4.548 4.085-2.147a1 1 0 0 1 .93 0l4.085 2.147-.78-4.548a1 1 0 0 1 .287-.885l3.305-3.22-4.567-.664a1 1 0 0 1-.753-.548L12 4.26Z"></path></svg>
+                    <span>Favorites</span>
+                </a>
+            </li>
+            <li class="mobile-nav-list-item">
+                <a href="https://getpocket.com/my-list/highlights">
+                    <svg aria-labelledby=" " fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.512 8.546a3 3 0 0 0-.51 4.195l-.724.723a3.001 3.001 0 0 0-.586 3.415L1.18 19.391a1 1 0 0 0 .39 1.656l4.243 1.414a1 1 0 0 0 1.023-.241l1.098-1.098a3.001 3.001 0 0 0 3.415-.586l.746-.746a3.001 3.001 0 0 0 4.133-.77l6.406-9.15a3 3 0 0 0-.337-3.842l-4.112-4.112a3 3 0 0 0-3.98-.233L5.512 8.546Zm9.932-5.294-8.693 6.863a1 1 0 0 0-.087 1.492l6.4 6.4a1 1 0 0 0 1.526-.134l6.405-9.15a1 1 0 0 0-.112-1.28L16.771 3.33a1 1 0 0 0-1.327-.078ZM6.4 14.172l-.707.707a1 1 0 0 0 0 1.414l2.829 2.828a1 1 0 0 0 1.414 0l.707-.707L6.4 14.172Z"></path></svg>
+                    <span>Highlights</span>
+                </a>
+            </li>
+            <li class="mobile-nav-list-item">
+                <a href="https://getpocket.com/my-list/articles">
+                    <svg aria-labelledby=" " fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M17 4H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2ZM7 2a4 4 0 0 0-4 4v12a4 4 0 0 0 4 4h10a4 4 0 0 0 4-4V6a4 4 0 0 0-4-4H7Z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M7 8a1 1 0 0 1 1-1h8a1 1 0 1 1 0 2H8a1 1 0 0 1-1-1ZM7 12a1 1 0 0 1 1-1h8a1 1 0 1 1 0 2H8a1 1 0 0 1-1-1ZM7 16a1 1 0 0 1 1-1h4a1 1 0 1 1 0 2H8a1 1 0 0 1-1-1Z"></path></svg>
+                    <span>Articles</span>
+                </a>
+            </li>
+            <li class="mobile-nav-list-item">
+                <a href="https://getpocket.com/my-list/videos">
+                    <svg aria-labelledby=" " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="3" stroke="currentColor" fill="none" stroke-width="2" rx="3"></rect><path fill="currentColor" d="M9 14.461V9.54a1 1 0 0 1 1.406-.914l5.538 2.461c.792.352.792 1.476 0 1.828l-5.538 2.461A1 1 0 0 1 9 14.461z"></path></svg>
+                    <span>Videos</span>
+                </a>
+            </li>
+            <li class="mobile-nav-list-item">
+                <a href="https://getpocket.com/my-list/tags">
+                    <svg aria-labelledby=" " fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 1.414.586L20 11.172a4 4 0 0 1 0 5.656L16.828 20a4 4 0 0 1-5.656 0l-8.586-8.586A2 2 0 0 1 2 10V4Zm8 0 8.586 8.586a2 2 0 0 1 0 2.828l-3.172 3.172a2 2 0 0 1-2.828 0L4 10V4h6Z"></path><path d="M9 7.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"></path></svg>
+                    <span>All Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
