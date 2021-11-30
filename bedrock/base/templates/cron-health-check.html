@@ -95,7 +95,9 @@
       {% if server_info.db_last_update %}
       <tr>
         <td>DB Last Updated</td>
-        <td>{{ server_info.db_last_update }}</td>
+        <td title={{server_info.db_last_updated_timestamp}}>
+          {{ server_info.db_last_update }}
+        </td>
       </tr>
       {% endif %}
       {% if server_info.db_file_name %}
@@ -104,12 +106,16 @@
         <td><a href="{{ server_info.db_file_url }}">{{ server_info.db_file_name }}</a></td>
       </tr>
       {% endif %}
-      {% if contentful_info %}
       <tr>
-        <td title="Timestamp of the most recently updated ContentfulEntry">Latest Contentful sync</td>
-        <td>{{ contentful_info.latest_sync.strftime('%Y-%m-%d %H:%M:%S')}}</td>
+        <td>Latest Contentful sync</td>
+        <td{% if contentful_info.latest_sync %} title="{{contentful_info.latest_sync|datetime(settings.STRFTIME_FORMAT_INTERNAL_USE)}}"{% endif %}>
+          {% if contentful_info.time_since_latest_sync %}
+            {{ contentful_info.time_since_latest_sync }}
+          {% else %}
+            No data!
+          {% endif %}
+        </td>
       </tr>
-      {% endif %}
     </tbody>
   </table>
 
@@ -126,13 +132,17 @@
       <tr>
         <td><a href="{{ fluent_repo.repo_url }}">L10n Fluent Files</a></td>
         <td><a href="{{ fluent_repo.repo_url }}/commit/{{ fluent_repo.latest_ref }}">{{ fluent_repo.latest_ref[:10] }}</a></td>
-        <td>{{ fluent_repo.last_updated }}</td>
+        <td{% if fluent_repo.last_updated_timestamp %} title="{{fluent_repo.last_updated_timestamp|datetime(settings.STRFTIME_FORMAT_INTERNAL_USE)}}"{% endif %}>
+          {{ fluent_repo.last_updated }}
+        </td>
       </tr>
       {% for repo in git_repos %}
       <tr>
         <td><a href="{{ repo.repo_url }}">{{ repo.repo_name }}</a></td>
         <td><a href="{{ repo.commit_url }}">{{ repo.latest_ref[:10] }}</a></td>
-        <td>{{ repo.last_updated }}</td>
+        <td{% if repo.last_updated_timestamp %} title="{{repo.last_updated_timestamp|datetime(settings.STRFTIME_FORMAT_INTERNAL_USE)}}"{% endif %}>
+          {{ repo.last_updated }}
+        </td>
       </tr>
       {% endfor %}
     </tbody>
