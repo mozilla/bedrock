@@ -89,8 +89,9 @@ def get_extra_server_info():
     except (IOError, ValueError):
         pass
     else:
-        db_info["last_update"] = timeago.format(datetime.fromtimestamp(db_info["updated"]))
-        db_info["last_updated_timestamp"] = datetime.fromtimestamp(db_info["updated"])
+        last_updated_timestamp = datetime.fromtimestamp(db_info["updated"])
+        db_info["last_updated_timestamp"] = last_updated_timestamp
+        db_info["last_update"] = timeago.format(last_updated_timestamp)
         db_info["file_url"] = get_db_file_url(db_info["file_name"])
         for key, value in db_info.items():
             server_info["db_%s" % key] = value
@@ -102,7 +103,6 @@ def get_contentful_sync_info():
     data = {}
     latest = ContentfulEntry.objects.order_by("last_modified").last()
     if latest:
-
         latest_sync = latest.last_modified
         time_since_latest_sync = timeago.format(
             latest_sync,

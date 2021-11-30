@@ -6,7 +6,7 @@ import datetime
 from unittest.mock import patch
 
 from django.test import RequestFactory, TestCase
-from django.utils.timezone import now as tz_now
+from django.utils.timezone import now as tz_now, utc
 
 import pytest
 
@@ -45,8 +45,15 @@ class TestGeoTemplateView(TestCase):
         assert template == "firefox-mobile.html"
 
 
+@patch("bedrock.base.views.tz_now")
+@patch("bedrock.base.views.timeago.format")
 @pytest.mark.django_db
-def test_get_contentful_sync_info():
+def test_get_contentful_sync_info(mock_timeago_format, mock_tz_now):
+
+    mock_timeago_format.return_value = "mock-formatted-time-delta"
+    _now = datetime.datetime.utcnow().replace(tzinfo=utc)
+    print("_now", _now)
+    mock_tz_now.return_value = _now
 
     middle = tz_now()
     first = middle - datetime.timedelta(hours=3)
@@ -60,9 +67,11 @@ def test_get_contentful_sync_info():
 
     assert get_contentful_sync_info() == {
         "latest_sync": last,
+        "time_since_latest_sync": "mock-formatted-time-delta",
     }
 
+    mock_timeago_format.assert_called_once_with(last, now=_now)
+
+    # Also check the no-data context dict:
     ContentfulEntry.objects.all().delete()
-    assert get_contentful_sync_info() == {
-        "latest_sync": None,
-    }
+    assert get_contentful_sync_info() == {}
