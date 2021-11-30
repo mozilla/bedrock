@@ -9,8 +9,10 @@ import requests
 
 from bedrock.legal_docs.models import LegalDoc
 from bedrock.utils.git import GitRepo
+from bedrock.utils.management.decorators import alert_sentry_on_exception
 
 
+@alert_sentry_on_exception
 class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument("-q", "--quiet", action="store_true", dest="quiet", default=False, help="If no error occurs, swallow all output."),

@@ -25,6 +25,7 @@ from bedrock.security.utils import (
 )
 from bedrock.utils.git import GitRepo
 from bedrock.utils.management.cron_command import CronCommand
+from bedrock.utils.management.decorators import alert_sentry_on_exception
 
 ADVISORIES_REPO = settings.MOFO_SECURITY_ADVISORIES_REPO
 ADVISORIES_PATH = settings.MOFO_SECURITY_ADVISORIES_PATH
@@ -217,6 +218,7 @@ def delete_orphaned_products():
     return num_products
 
 
+@alert_sentry_on_exception
 class Command(CronCommand):
     help = "Refresh database of MoFo Security Advisories."
     lock_key = "update_security_advisories"

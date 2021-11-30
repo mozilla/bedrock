@@ -29,6 +29,7 @@ from bedrock.contentful.constants import (
     MAX_MESSAGES_PER_QUEUE_POLL,
 )
 from bedrock.contentful.models import ContentfulEntry
+from bedrock.utils.management.decorators import alert_sentry_on_exception
 
 
 def data_hash(data: Dict) -> str:
@@ -36,6 +37,7 @@ def data_hash(data: Dict) -> str:
     return sha256(str_data.encode("utf8")).hexdigest()
 
 
+@alert_sentry_on_exception
 class Command(BaseCommand):
     rf = RequestFactory()
 
@@ -61,7 +63,7 @@ class Command(BaseCommand):
         if not self.quiet:
             print(msg)
 
-    def handle(self, *args, **options) -> None:
+    def handle(self, *args, **options):
         self.quiet = options["quiet"]
         self.force = options["force"]
         if settings.CONTENTFUL_SPACE_ID and settings.CONTENTFUL_SPACE_KEY:
