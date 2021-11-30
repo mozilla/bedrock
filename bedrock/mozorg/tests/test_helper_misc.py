@@ -679,7 +679,7 @@ def test_datetime():
     s = render("{{ d|datetime }}", {"d": time})
     assert s == "December 25, 2009"
 
-    s = render('{{ d|datetime("%Y-%m-%d %H:%M:%S") }}', {"d": time})
+    s = render(f"{{ d|datetime(settings.STRFTIME_FORMAT_INTERNAL_USE) }}", {"d": time})
     assert s == "2009-12-25 10:11:12"
 
     s = render("{{ None|datetime }}")
