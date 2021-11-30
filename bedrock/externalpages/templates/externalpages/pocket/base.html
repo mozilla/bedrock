@@ -27,12 +27,8 @@
       <meta property="og:site_name" content="Pocket" />
       <link rel="icon" type="image/png" sizes="196x196" href="{% block page_favicon_large %}{{ static('img/favicons/pocket/favicon-196x196.png') }}{% endblock %}">
       <link rel="shortcut icon" href="{% block page_favicon %}{{ static('img/favicons/pocket/favicon.ico') }}{% endblock %}">
+    {% endblock shared_meta %}
 
-    {% endblock shared_meta%}
-
-
-      <!--[if !IE]><!-->
-    {# Page-specific styles, hidden from IE9 and lower #}
     {% block pocket_css %}{% endblock  %}
 
     <title>{% block page_title %}{% endblock page_title %} | Pocket</title>
