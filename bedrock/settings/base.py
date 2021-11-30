@@ -438,6 +438,7 @@ NOINDEX_URLS = [
     r"^foundation/annualreport/$" r"^firefox/notes/$" r"^teach/$" r"^about/legal/impressum/$",
     r"^security/announce/",
     r"^exp/",
+    r"^external/",
 ]
 
 # Pages we do want indexed but don't show up in automated URL discovery
@@ -569,6 +570,7 @@ INSTALLED_APPS = (
     "bedrock.privacy",
     "bedrock.products",
     "bedrock.externalfiles",
+    "bedrock.externalpages",
     "bedrock.security",
     "bedrock.releasenotes",
     "bedrock.contentcards",
@@ -1188,6 +1190,8 @@ if CSP_EXTRA_FRAME_SRC:
 # support older browsers (mainly Safari)
 CSP_FRAME_SRC = CSP_CHILD_SRC
 
+# FONT CSP to use fonts from getpocket.com
+CSP_FONT_SRC = ["'self'", "assets.getpocket.com"]
 # Bug 1331069 - Double Click tracking pixel for download page.
 AVAILABLE_TRACKING_PIXELS = {
     "doubleclick": (

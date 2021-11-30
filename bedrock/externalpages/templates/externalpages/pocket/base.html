@@ -1,0 +1,50 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block shared_meta %}
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+      <meta name="description" content="{% block page_desc%}pocket_desc{% endblock %}"/>
+      <meta name="x-pocket-override-excerpt" content="{% block pocket_override %}{{ self.page_desc()}}{% endblock %}"/>
+      <meta itemprop="name" content="{{ self.page_title() }} | Pocket" />
+      <meta itemprop="description" content="{{ self.page_desc()}}"/>
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:url" content="{% block page_twitter_url %}{% endblock %}" />
+      <meta name="twitter:title" content="{{ self.page_title() }} | Pocket" />
+      <meta name="twitter:description" content="{% block twitter_desc %}{% endblock %}"
+      />
+      <meta name="twitter:site" content="@pocket" />
+      <meta property="fb:app_id" content="131450656879143" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="{% block page_og_url %}{% endblock %}" />
+      <meta property="og:title" content="{{ self.page_title() }} | Pocket" />
+      <meta property="og:description" content="{{ self.page_desc()}}"/>
+      <meta property="og:site_name" content="Pocket" />
+      <link rel="icon" type="image/png" sizes="196x196" href="{% block page_favicon_large %}{{ static('img/favicons/pocket/favicon-196x196.png') }}{% endblock %}">
+      <link rel="shortcut icon" href="{% block page_favicon %}{{ static('img/favicons/pocket/favicon.ico') }}{% endblock %}">
+    {% endblock shared_meta %}
+
+    {% block pocket_css %}{% endblock  %}
+
+    <title>{% block page_title %}{% endblock page_title %} | Pocket</title>
+  </head>
+  <body>
+    {#
+    NOTE: These URLs cannot use the `url(..)` pattern as that will include the
+    "/external/pocket/" in the path, but since these are proxied from
+    getpocket.com, that would result in a 404.
+    #}
+    {# Lang: {{ LANG }} #}
+    {# <nav>
+      <a href="../">Home</a>
+      <a href="../about/">About</a>
+      <a href="../add/">How to Save</a>
+      <a href="../android/">Pocket for Android</a>
+    </nav> #}
+     <main class="main-container">{% block content %}{% endblock %}</main>
+</html>
