@@ -13,6 +13,10 @@ locales = [
     "ms",
 ]
 
+[[paths]]
+    reference = "en/*.ftl"
+    l10n = "{locale}/*.ftl"
+
 ## Examples:
 
 # [[paths]]
