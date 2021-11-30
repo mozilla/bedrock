@@ -36,8 +36,15 @@ $image-path: '/media/protocol/img';
                 margin: 0 0 $spacing-md;
                 cursor: pointer;
 
-                a:hover {
-                    text-decoration: underline;
+                a {
+                    color: $color-text-primary;
+                    text-decoration: none;
+
+                    &:hover,
+                    &:active,
+                    &:focus {
+                        text-decoration: underline;
+                    }
                 }
             }
 
@@ -89,7 +96,9 @@ $image-path: '/media/protocol/img';
                 &.twitter {
                     background-image: url('/media/img/externalpages/pocket/platform-footer/twitter-logo.svg');
 
-                    &:hover {
+                    &:hover,
+                    &:focus,
+                    &:active {
                         background-image: url('#{$image-path}/icons/social/twitter/brand.svg');
                     }
                 }
@@ -97,7 +106,9 @@ $image-path: '/media/protocol/img';
                 &.facebook {
                     background-image: url('/media/img/externalpages/pocket/platform-footer/facebook-logo.svg');
 
-                    &:hover {
+                    &:hover,
+                    &:focus,
+                    &:active {
                         background-image: url('#{$image-path}/icons/social/facebook/brand.svg');
                     }
                 }
