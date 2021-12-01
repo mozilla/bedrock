@@ -13,6 +13,7 @@ $easingStandard: cubic-bezier(0.4, 0, .2, 1);
 .mobile-nav-wrapper {
     background: rgba(26, 26, 26, 0.4) none repeat scroll 0 0;
     bottom: 0;
+    display: none;
     left: 0;
     mix-blend-mode: normal;
     opacity: 0;
@@ -24,6 +25,7 @@ $easingStandard: cubic-bezier(0.4, 0, .2, 1);
     z-index: 20;
 
     &.active {
+        display: block;
         pointer-events: auto;
         opacity: 1;
 
