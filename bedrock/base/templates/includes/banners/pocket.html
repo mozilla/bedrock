@@ -8,22 +8,26 @@
 
  {% block banner_id %}pocket-banner{% endblock %}
 
- {% block banner_title %}{{ ftl('banner-pocket-title') }}{% endblock %}
-
  {% if LANG.startswith('en') %}
-  {% set pocket_utm_campaign = '&utm_campaign=best-of-en' %}
+  {% set pocket_lang = '-en' %}
+  {% set pocket_title = 'The top articles of the year are here' %}
+  {% set pocket_button = 'Read Pocket\'s Best of 2021' %}
  {% elif LANG == 'de'%}
-  {% set pocket_utm_campaign = '&utm_campaign=best-of-de' %}
+  {% set pocket_lang = '-de' %}
+  {% set pocket_title = 'Die meistgelesenen Artikel des Jahres warten auf dich' %}
+  {% set pocket_button = 'Jetzt die Pocket Best of 2021 lesen' %}
  {% endif %}
+
+ {% block banner_title %}{{ pocket_title }}{% endblock %}
 
  {% block banner_content %}
   <a
-    href="https://getpocket.com/collections?utm_source=mozilla.org{{ pocket_utm_campaign }}"
+    href="https://getpocket.com/collections?utm_source=mozilla.org&utm_campaign=best-of{{ pocket_lang }}"
     rel="external noopener"
     class="mzp-c-button mzp-t-md"
     data-cta-type="button"
     data-cta-text="Read Pocket's Best of 2021"
   >
-    {{ ftl('banner-pocket-button') }}
+    {{ pocket_button }}
   </a>
  {% endblock %}

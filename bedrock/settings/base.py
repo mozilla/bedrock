@@ -230,7 +230,6 @@ GITHUB_REPO = "https://github.com/mozilla/bedrock"
 FLUENT_DEFAULT_FILES = [
     "banners/firefox-app-store",
     "banners/fundraising",
-    "banners/pocket",
     "brands",
     "download_button",
     "firefox/sticky-promo",

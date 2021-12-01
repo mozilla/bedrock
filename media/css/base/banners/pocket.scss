@@ -83,18 +83,18 @@ $close-btn-space: calc(1rem + (2 * #{$spacing-lg}));
 
 @supports (display: grid) {
     @media #{$mq-md} {
-        $max-width-column-third: $content-lg * 0.33;
+        // this is to match the pocket banner max width
+        $max-width-column-third: 1000px * 0.33;
 
         .c-banner {
             overflow-x: hidden;
-            padding-inline-end: $close-btn-space;
 
             &-main {
                 display: grid;
                 column-gap: $spacing-lg;
                 align-items: center;
                 grid-template-areas: '. . title cta .';
-                grid-template-columns: 1fr minmax(0, $max-width-column-third) repeat(2, minmax(min-content, $max-width-column-third)) 1fr;
+                grid-template-columns: 1fr minmax(0, $max-width-column-third) minmax(min-content, $max-width-column-third) minmax(max-content, $max-width-column-third) minmax($close-btn-space, 1fr);
             }
 
             &-title {
