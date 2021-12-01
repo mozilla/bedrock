@@ -1088,15 +1088,15 @@
     },
     {
       "files": [
-        "js/firefox/whatsnew/up-to-date.js"
+        "js/firefox/whatsnew/up-to-date.js",
+        "js/base/mozilla-fxa-product-button.js",
+        "js/base/mozilla-fxa-product-button-init.js"
       ],
       "name": "firefox_whatsnew_95_de"
     },
     {
       "files": [
-        "js/firefox/whatsnew/up-to-date.js",
-        "js/base/mozilla-fxa-product-button.js",
-        "js/base/mozilla-fxa-product-button-init.js"
+        "js/firefox/whatsnew/up-to-date.js"
       ],
       "name": "firefox_whatsnew_95_en"
     },
