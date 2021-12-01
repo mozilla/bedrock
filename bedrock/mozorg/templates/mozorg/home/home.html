@@ -27,7 +27,7 @@
 <meta name="google-site-verification" content="U9a6gH32vLIykvntaDToj-ytYhlZ1AfAgVEKstixQIE">
 {% endblock %}
 
-{% set show_pocket_banner = switch('fundraising-banner-pocket') and ftl_has_messages('banner-pocket-title', 'banner-pocket-button') %}
+{% set show_pocket_banner = switch('pocket-banner') and ftl_has_messages('banner-pocket-title', 'banner-pocket-button') %}
 {% set show_fundraising_banner = switch('fundraising-banner-eoy2021') and donate_params and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
 
 {% block page_css %}

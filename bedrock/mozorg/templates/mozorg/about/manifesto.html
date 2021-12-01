@@ -10,7 +10,7 @@
 
 {% from 'macros.html' import twitter_share_url with context %}
 
-{% set show_pocket_banner = switch('fundraising-banner-pocket') and ftl_has_messages('banner-pocket-title', 'banner-pocket-button') %}
+{% set show_pocket_banner = switch('pocket-banner') and ftl_has_messages('banner-pocket-title', 'banner-pocket-button') %}
 
 {% block page_title %}{{ ftl('manifesto-details-the-mozilla-manifesto') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}

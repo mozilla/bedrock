@@ -11,7 +11,7 @@
 
 {% block gtm_page_id %}data-gtm-page-id="Homepage"{% endblock %}
 
-{% set show_pocket_banner = switch('fundraising-banner-pocket') and ftl_has_messages('banner-pocket-title', 'banner-pocket-button') %}
+{% set show_pocket_banner = switch('pocket-banner') and ftl_has_messages('banner-pocket-title', 'banner-pocket-button') %}
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 {% set show_fundraising_banner = switch('fundraising-banner-eoy2021') and donate_params and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
 
