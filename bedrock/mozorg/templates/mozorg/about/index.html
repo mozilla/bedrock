@@ -8,7 +8,7 @@
 
 {% extends "base-protocol-mozilla.html" %}
 
-{% set show_pocket_banner = switch('pocket-banner') and ftl_has_messages('banner-pocket-title', 'banner-pocket-button') %}
+{% set show_pocket_banner = switch('pocket-banner') and (LANG.startswith('en') or LANG == 'de') %}
 
 {% block page_title %}{{ ftl('about-learn-about-mozilla') }}{% endblock %}
 
