@@ -15,8 +15,14 @@ $image-path: '/media/img/externalpages/pocket';
 
     h2 {
         color: $color-text-dark-grey;
-        font-size: $size200;
         margin-bottom: $spacing100;
+        font-size: $size150;
+        text-align: center;
+
+        @media #{$mq-md}{
+            font-size: $size200;
+            text-align: left;;
+        }
     }
 
     h3,
@@ -30,33 +36,49 @@ $image-path: '/media/img/externalpages/pocket';
 }
 
 .add-header {
+
     &__wrapper {
         margin: 0 auto;
         max-width: 1200px;
-        padding: $spacing100;
-        width: 70%;
+        width: 90%;
+
+        @media #{$mq-md} {
+            padding: $spacing100;
+            width: 70%;
+        }
     }
 
     &__context {
         display: flex;
 
         &-image {
-            width: 60%;
+            width: 100%;
 
             img {
-                display: block;
-                height: 100%;
-                width: 100%;
-            }
+                    display: block;
+                    height: 100%;
+                    width: 100%;
+                }
         }
 
-        &-info {
+         &-info {
             display: flex;
             align-items: flex-start;
             flex-direction: column;
             justify-content: space-around;
-            margin-left: 30px;
-            width: 35%;
+            width: 100%;
+        }
+
+        @media #{$mq-md} {
+            &-image {
+                width: 60%;
+            }
+
+            &-info {
+                margin-left: 30px;
+                width: 35%;
+            }
+
         }
     }
 }
