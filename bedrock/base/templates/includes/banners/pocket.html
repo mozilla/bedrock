@@ -17,7 +17,13 @@
  {% endif %}
 
  {% block banner_content %}
-  <a href="https://getpocket.com/collections?utm_source=mozilla.org{{ pocket_utm_campaign }}" rel="external noopener" class="mzp-c-button mzp-t-md">
+  <a
+    href="https://getpocket.com/collections?utm_source=mozilla.org{{ pocket_utm_campaign }}"
+    rel="external noopener"
+    class="mzp-c-button mzp-t-md"
+    data-cta-type="button"
+    data-cta-text="Read Pocket's Best of 2021"
+  >
     {{ ftl('banner-pocket-button') }}
   </a>
  {% endblock %}
