@@ -1,0 +1,124 @@
+{% extends "careers/base.html" %}
+
+{% set meta_title = "Mozilla Careers &mdash; " + position.title + " &mdash; Open Positions" %}
+{% set meta_description = "Mozilla Careers &mdash; " + meta_description|truncate(175, end='…') %}
+
+{% block body_class %}position-page{% endblock %}
+
+{% block content %}
+<section class="job-post" id="job-post">
+  <div class="job-row">
+    <div>
+      <div class="job-title">
+        <strong>{{ position.title }}</strong>
+      </div>
+      <div class="title-location">
+        at 
+        {% if position.is_mofo %} 
+          Mozilla Foundation
+        {% else %}
+          Mozilla Corporation
+        {% endif %}
+      </div>
+      <dl class="mzp-u-list-styled">
+        {% if not position.is_mofo %}
+          <dt class="job-post-team-head">Team:</dt>
+          <dd class="job-post-team">{{ position.department }}</dd>
+        {% endif %}
+        <dt class="job-post-location-head">Locations:</dt>
+        <dd class="job-post-location">{{ position.job_locations }}</dd>
+      </dl>
+    </div>
+    <div class="appy-btn">
+      <a href="{{ position.apply_url }}" class="mzp-c-button">Apply Now</a>
+    </div>
+  </div>
+  <div class="appy-btn-sm apply-sm">
+    <a href="{{ position.apply_url }}" class="mzp-c-button">Apply Now</a>
+  </div>
+  <div>
+    {{ position.description|safe }}
+  </div>
+  <div class="c-apply-button-container">
+    <a href="{{ position.apply_url }}" class="mzp-c-button">Apply for this job</a>
+    <small>
+      <a rel="external" href="https://assets.mozilla.net/pdf/Mozilla_Applicant_Privacy_Notice_May_2021.pdf">Applicant Privacy Notice</a>
+    </small>
+  </div>
+</section>
+
+<section id="why" class="mzp-c-call-out">
+  <div class="mzp-l-content">
+    <h2 class="mzp-c-call-out-title">Why Mozilla?</h2>
+    <p class="mzp-c-call-out-desc">
+      At Mozilla, we’re serving humanity—by maintaining a safe, open internet—while also
+      helping the individual humans employed here to reach their personal and
+      professional goals. With a relatively small team serving hundreds of millions of
+      people, a culture of exploration, and a commitment to mentorship, opportunities
+      abound to learn and grow at Mozilla.
+    </p>
+  </div>
+</section>
+
+<br />
+
+<section class="mzp-l-card-third">
+  <div class="mzp-c-card">
+    <div class="mzp-c-card-content">
+      <h3 class="mzp-c-card-title">Our values drive our actions</h3>
+      <div class="mzp-c-card-desc">
+        <ul class="mzp-u-list-styled">
+          <li>
+            Purpose is built into our work, with our mission driving every decision
+          </li>
+          <li>We challenge assumptions, the status quo, ourselves, and each other</li>
+          <li>
+            We are transparent: in our code, our business partnerships, and our everyday
+            interactions
+          </li>
+          <li>
+            We seek out people from diverse backgrounds and with perspectives different
+            from our own
+          </li>
+          <li>We pair purpose with performance and put people ahead of profit</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="mzp-c-card">
+    <div class="mzp-c-card-content">
+      <h3 class="mzp-c-card-title">Our impact is global</h3>
+      <div class="mzp-c-card-desc">
+        <ul class="mzp-u-list-styled">
+          <li>700+ paid staff from over 30 countries</li>
+          <li>Thousands of volunteer contributors across six continents</li>
+          <li>
+            9 global offices: Mountain View, San Francisco, Portland, Vancouver,
+            Toronto, Paris, London, Berlin, and Beijing
+          </li>
+          <li>Hundreds of home offices globally</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="mzp-c-card">
+    <div class="mzp-c-card-content">
+      <h3 class="mzp-c-card-title">Our benefits are world-class</h3>
+      <div class="mzp-c-card-desc">
+        <ul class="mzp-u-list-styled">
+          <li>Flexible work environment (nearly half of Mozillians work remotely)</li>
+          <li>
+            Industry-leading paid parental leave (up to 26 weeks of fully paid leave for
+            childbearing parents and up to 12 weeks for non-childbearing parents)
+          </li>
+          <li>Reimbursement for professional development (up to $3,000/year)</li>
+          <li>A work setup including the latest hardware and software of your choice</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

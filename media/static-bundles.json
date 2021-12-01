@@ -1023,6 +1023,15 @@
         "css/externalpages/pocket/components/contact-info.scss"
       ],
       "name": "pocket-contact-info"
+    },
+    {
+      "files": [
+        "css/careers/protocol.min.scss",
+        "css/careers/protocol-extra.min.scss",
+        "css/careers/careers.scss",
+        "css/careers/internships.scss"
+      ],
+      "name": "careers"
     }
   ],
   "js": [

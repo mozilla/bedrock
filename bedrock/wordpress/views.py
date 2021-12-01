@@ -17,7 +17,7 @@ class BlogPostsMixin:
     blog_posts_template_variable = "blog_posts"
 
     def get_context_data(self, **kwargs):
-        ctx = super(BlogPostsMixin, self).get_context_data(**kwargs)
+        ctx = super().get_context_data(**kwargs)
         blog = BlogPost.objects.all()
         if self.blog_slugs:
             if isinstance(self.blog_slugs, str):

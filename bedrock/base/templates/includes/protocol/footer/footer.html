@@ -20,7 +20,7 @@
           {% if ftl_has_messages('footer-corporate-blog') %}
             <li><a href="https://blog.mozilla.org/?{{ utm_params }}&utm_content=company" data-link-type="footer" data-link-name="Corporate Blog">{{ ftl('footer-corporate-blog') }}</a></li>
           {% endif %}
-            <li><a href="https://careers.mozilla.org/?{{ utm_params }}&utm_content=company" data-link-type="footer" data-link-name="Careers">{{ ftl('footer-careers') }}</a></li>
+            <li><a href="{{ url('careers.home') }}" data-link-type="footer" data-link-name="Careers">{{ ftl('footer-careers') }}</a></li>
             <li><a href="{{ url('mozorg.contact.contact-landing') }}" data-link-type="footer" data-link-name="Contact">{{ ftl('footer-contact') }}</a></li>
             <li><a href="{{ donate_url('company') }}&utm_campaign=footer" data-link-type="footer" data-link-name="Donate">{{ ftl('footer-donate', fallback='navigation-donate') }}</a></li>
           </ul>

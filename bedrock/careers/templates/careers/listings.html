@@ -1,0 +1,77 @@
+{% extends "careers/base.html" %}
+
+{% set meta_title = "Mozilla Careers &mdash; All open positions at Mozilla" %}
+{% set meta_description = "Mozilla Careers &mdash; We have a mighty mandate, serving hundreds of millions of people. Add a culture of exploration, and there is always a new way to learn and grow here." %}
+
+{% block body_class %}listings-page{% endblock %}
+
+{% block content %}
+
+<section class="mzp-c-hero mzp-t-dark page-hero">
+  <div class="mzp-l-content">
+    <div class="mzp-c-hero-body">
+      <h1 class="mzp-c-hero-title">Feel good about your work again</h1>
+
+      <div class="mzp-c-hero-desc">
+        <p>
+          Join us.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mzp-l-content">
+  <h2>Listings</h2>
+
+  <form id="listings-filters">
+    <div class="listings-filter listings-filter-location">
+      {{ form.location }}
+      <label for="id_location" class="visually-hidden">Location</label>
+    </div>
+
+    {# hidden input keeps JS/python working, but removes the old form field #}
+    <input type="hidden" id="id_position_type" name="position_type" value=""/>
+
+    <div class="listings-filter listings-filter-name">
+      {{ form.team }}
+      <label for="id_team" class="visually-hidden">Team</label>
+    </div>
+  </form>
+</section>
+
+<section class="mzp-l-content">
+  <table class="listings-positions" id="listings-positions">
+    <thead>
+      <tr>
+        <th class="title" scope="col"><h4>Job Title</h4></th>
+        <th class="location" scope="col"><h4>Location</h4></th>
+        <th class="name" scope="col"><h4>Team</h4></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for position in positions %}
+      <tr class="position"
+          data-team="{{ position.department }},"
+          data-type="{{ position.position_type }},"
+          data-location="{{ position.location }},">
+        <td class="title"><a href="{{ position.get_absolute_url() }}">{{ position.title }}</a></td>
+        <td class="location">{{ position.job_locations }}</td>
+        <td class="name">{{ position.department }}</td>
+      </tr>
+    {% endfor %}
+      <tr class="empty-filter-message hidden" id="empty-filter-message">
+        <td colspan="4">
+          <p>No jobs found that match the selected filters.</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+{% endblock %}
+
+{% block site_js %}
+  {{ super() }}
+  <script src="{{ static('js/careers/listings.js') }}"></script>
+  <script src="{{ static('js/careers/filters.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% macro breadcrumbs() -%}
+  <header id="jobs-header">
+    <p id="breadcrumbs">
+      <a href="http://www.mozilla.org/{{ LANG }}" class="home">Home</a>
+      <strong>»</strong>
+      <a href="http://www.mozilla.org/{{ LANG }}/about">About</a>
+      <strong>»</strong>
+      {% for crumb in varargs -%}
+        <a href="{{ crumb[0] }}">{{ crumb[1] }}</a>
+        <strong>»</strong>
+      {% endfor -%}
+      <span>{{ kwargs.last }}</span>
+    </p>
+  </header>
+{% endmacro -%}
+
+{% macro position_listing(category) -%}
+  <li>
+    <h2>{{ category.name }}</h2>
+    <ul>
+      {% for position in category.position_set.order_by('title') %}
+        <li>
+          <a href="{{ url('careers.position', job_id=position.job_id) }}"
+             data-jobtype="{{ position.job_type.lower() }}"
+             alt="{{ position.title }}"
+             title="{{ position.title }}">{{ position.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </li>
+{% endmacro -%}
