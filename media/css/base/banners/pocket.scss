@@ -41,7 +41,8 @@ $close-btn-space: calc(1rem + (2 * #{$spacing-lg}));
     }
 
     // protocol overrides
-    a:link {
+    a:link,
+    a:visited {
         color: $color-text-primary;
     }
 
