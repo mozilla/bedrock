@@ -10,8 +10,14 @@
 
  {% block banner_title %}{{ ftl('banner-pocket-title') }}{% endblock %}
 
+ {% if LANG.startswith('en') %}
+  {% set pocket_utm_campaign = '&utm_campaign=best-of-en' %}
+ {% elif LANG == 'de'%}
+  {% set pocket_utm_campaign = '&utm_campaign=best-of-de' %}
+ {% endif %}
+
  {% block banner_content %}
-  <a href="https://getpocket.com/collections?utm_source=mozilla.org" rel="external noopener" class="mzp-c-button mzp-t-md">
+  <a href="https://getpocket.com/collections?utm_source=mozilla.org{{ pocket_utm_campaign }}" rel="external noopener" class="mzp-c-button mzp-t-md">
     {{ ftl('banner-pocket-button') }}
   </a>
  {% endblock %}

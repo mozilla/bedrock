@@ -105,15 +105,13 @@ $close-btn-space: calc(1rem + (2 * #{$spacing-lg}));
                 padding-left: unset;
 
                 &::before {
-                    $offset: 50vw; // needs to be large enough to extend to the edge of the screen
-                    $offset-with-spacing: calc((#{$offset} + #{$spacing-md}) * -1); // leaves spacing between 2021 and title
+                    $width: 50vw; // needs to be large enough to extend to the edge of the screen
                     content: '';
                     position: absolute;
                     top: 0;
                     bottom: 0;
-                    @include bidi(((left, $offset-with-spacing, initial),));
-                    @include bidi(((right, initial,  $offset-with-spacing),));
-                    width: $offset;
+                    @include bidi(((left, calc((#{$width} + #{$spacing-md}) * -1), calc(100% + #{$spacing-md})),));
+                    width: $width;
                     display: block;
                     background-image: url('/media/img/banners/pocket/best-of-2021.svg');
                     background-repeat: repeat;
