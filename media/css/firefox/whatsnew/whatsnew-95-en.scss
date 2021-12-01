@@ -119,6 +119,10 @@ $image-path: '/media/protocol/img';
         color: get-theme('title-text-color-inverse');
     }
 
+    .c-utilities {
+        @include white-links;
+    }
+
     .c-footer {
         background: $color-dark-gray-60;
         color: $color-white;

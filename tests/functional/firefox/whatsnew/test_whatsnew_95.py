@@ -18,4 +18,4 @@ def test_pocket_buttons_are_displayed(base_url, selenium):
 @pytest.mark.nondestructive
 def test_pocket_button_is_displayed_en(base_url, selenium):
     page = FirefoxWhatsNew95Page(selenium, base_url, locale="en-US").open()
-    assert page.is_pocket_button_displayed
+    assert page.is_pocket_button_displayed_en
