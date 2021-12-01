@@ -86,16 +86,17 @@ $image-path: '/media/img/externalpages/pocket';
 .add-device {
     margin: 0 auto;
     max-width: 1200px;
-    width: 70%;
+    width: 90%;
 
     &__context {
         display: flex;
+        flex-direction: column;
         align-items: flex-start;
         justify-content: space-between;
         width: 100%;
 
         &-image {
-            width: 70%;
+            width: 100%;
 
             img {
                 display: block;
@@ -108,7 +109,7 @@ $image-path: '/media/img/externalpages/pocket';
             display: flex;
             align-items: flex-start;
             flex-direction: column;
-            width: 25%;
+            width: 100%;
 
             .apps-list,
             .device-list {
@@ -130,6 +131,22 @@ $image-path: '/media/img/externalpages/pocket';
 
             .device-list {
                 margin-top: 0;
+            }
+        }
+    }
+
+    @media #{$mq-md} {
+        width: 70%;
+
+        &__context {
+            flex-direction: row;
+
+            &-image {
+                width: 70%;
+            }
+
+            &-stores {
+                width:25%;
             }
         }
     }
