@@ -28,18 +28,26 @@ function handleMenuOpen() {
     window.addEventListener('scroll', noScroll);
     window.addEventListener('keydown', handleKeyDown);
 
-    // move focus to close button when modal is opened
-    navCloseBtn.focus();
+    // move focus to close button when modal is opened, need to use setTimeout to get the animation working correctly
+    setTimeout(function () {
+        mobileNavWrapper.style.opacity = 1;
+        mobileNav.classList.add('active');
+        navCloseBtn.focus();
+    }, 10);
 }
 
 function handleMenuClose() {
-    mobileNavWrapper.classList.remove('active');
+    mobileNav.classList.remove('active');
+    mobileNavWrapper.style.opacity = 0;
     document.removeEventListener('click', detectClickOutside);
     window.removeEventListener('scroll', noScroll);
     window.removeEventListener('keydown', handleKeyDown);
 
-    // move focus to nav open button when modal is closed
-    navOpenBtn.focus();
+    // move focus to close button when modal is closed need to use setTimeout to get the animation working correctly
+    setTimeout(function () {
+        mobileNavWrapper.classList.remove('active');
+        navCloseBtn.focus();
+    }, 250);
 }
 
 function handleKeyDown(e) {

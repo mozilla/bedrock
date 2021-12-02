@@ -8,7 +8,6 @@
 // variables from pocket
 $easingAccelerate: cubic-bezier(.4, 0, 1, 1);
 $easingDecelerate: cubic-bezier(0, 0, .2, 1);
-$easingStandard: cubic-bezier(0.4, 0, .2, 1);
 
 .mobile-nav-wrapper {
     background: rgba(26, 26, 26, 0.4) none repeat scroll 0 0;
@@ -20,19 +19,13 @@ $easingStandard: cubic-bezier(0.4, 0, .2, 1);
     pointer-events: none;
     position: fixed;
     right: 0;
-    transition: opacity 75ms $easingAccelerate, transform 75ms $easingAccelerate;
+    transition: opacity 150ms $easingAccelerate, transform 75ms $easingAccelerate;
     top: 0;
     z-index: 20;
 
     &.active {
         display: block;
         pointer-events: auto;
-        opacity: 1;
-
-        .mobile-nav {
-            opacity: 1;
-            transform: translateX(0);
-        }
     }
 }
 
@@ -50,6 +43,12 @@ $easingStandard: cubic-bezier(0.4, 0, .2, 1);
     transform: translateX(-256px);
     transition: all 250ms $easingDecelerate;
     width: 100%;
+
+    &.active {
+        opacity: 1;
+        transform: translateX(0);
+        transition: all 250ms $easingDecelerate;
+    }
 
     .mobile-nav-close {
         align-items: center;
