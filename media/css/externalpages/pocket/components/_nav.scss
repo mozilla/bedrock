@@ -34,6 +34,10 @@ $image-path: '/media/img/externalpages/pocket';
     border-radius: 4px;
     transition: all 0.15s ease-out;
 
+    &:focus, &:focus-within {
+        border: 1px solid $color-action-primary;
+    }   
+
     &.inline {
         background: none;
         padding: 0;
