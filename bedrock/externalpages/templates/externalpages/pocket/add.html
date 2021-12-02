@@ -6,6 +6,8 @@
 
 {% extends "externalpages/pocket/base.html" %}
 
+{% from "macros-protocol.html" import split with context %}
+
 {% block page_title %} How to Save {% endblock %}
 
 {% block pocket_css %}
@@ -18,7 +20,7 @@
 
 <div class="add-page">
    <section class="add-header">
-      <div class="add-header__wrapper">
+      <!-- <div class="add-header__wrapper">
          <div class="add-header__title">
             <h2>Save to Pocket from Firefox</h2>
          </div>
@@ -37,7 +39,22 @@
                </p>
             </div>
          </div>
-      </div>
+      </div> -->
+         {% call split(
+          block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-l-split-reversed mzp-l-split-body-narrow',
+          media_class='mzp-l-split-h-center',
+          image_url='img/externalpages/pocket/add-pocket-header.jpg',
+          )%}
+          <h2>Save to Pocket from Firefox</h2>
+          <p>Click the Pocket button in your Firefox toolbar to save articles, videos, pages, and more.</p>
+          <a href="https://help.getpocket.com/article/900-saving-to-pocket-and-viewing-your-list-in-firefox" class="mzp-c-button" target="_blank" rel="external noopener">Learn how</a>
+           <p>
+              <a href="https://help.getpocket.com/article/942-where-is-the-pocket-button-in-firefox" class="dark-inline-link rarrow" target="_blank" rel="noopener noreferrer">
+                Don't see the Pocket button?
+              </a>
+          </p>
+          {% endcall %}
+
    </section>
 
    <section class="add-device">
