@@ -48,10 +48,10 @@ $image-path: '/media/img/externalpages/pocket';
         &:hover,
         &:focus,
         &:active {
-            background-color: #ededf0;
-            border-color: $color-button-red;
-            box-shadow: none;
-            color: $color-button-red;
+            text-decoration: underline!important;
+            background-color: $color-button-red;
+            border: 2px solid $color-button-red;
+            color: $color-white;
         }
     }
 }
