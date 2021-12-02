@@ -39,3 +39,40 @@ See `helpers.py`_ for documentation and supported parameters for both buttons.
 
 .. _helpers.py: https://github.com/mozilla/bedrock/blob/master/bedrock/firefox/templatetags/helpers.py
 
+External referrers
+------------------
+
+Generally we encourage other websites in the Mozilla ecosystem to link to the `/firefox/new/`_ page when
+prompting visitors to download Firefox, since it provides a consistent user experience and also benefits
+SEO. In some circumstances however sites may want to provide a download button that initiates a file
+download automatically when clicked. For cases like this, sites can link to the following URL:
+
+.. code-block::
+
+    https://www.mozilla.org/firefox/download/thanks/?s=direct
+
+.. Important::
+
+    Including the ``s=direct`` query parameter here will ensure that Windows download attribution is
+    collected and recorded correctly in Telemetry. Also, make sure to **not** include the locale in
+    the URL, so that bedrock can serve the most suitable language based on the visitor's browser
+    preference.
+
+.. Note::
+
+    This download URL will not automatically trigger a download in older Internet Explorer browsers. If
+    that's important to your visitors, then you can use a `conditional comment`_ to provide a different link.
+
+    .. code-block:: html
+
+        <!--[if !IE]><!-->
+            <a href="https://www.mozilla.org/firefox/download/thanks/?s=direct">Download Firefox</a>
+        <!--<![endif]-->
+
+        <!--[if IE]>
+            <a href="https://www.mozilla.org/firefox/new/">Download Firefox</a>
+        <![endif]-->
+
+.. _/firefox/new/: https://www.mozilla.org/firefox/new/
+.. _conditional comment: https://en.wikipedia.org/wiki/Conditional_comment
+
