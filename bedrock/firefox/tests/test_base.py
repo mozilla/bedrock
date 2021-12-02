@@ -574,6 +574,14 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ["firefox/whatsnew/whatsnew-fx95-de.html"]
 
+    def test_fx_95_0_0_en(self, render_mock):
+        """Should use whatsnew-fx95-de template for 95.0 in English - US"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "en-US"
+        self.view(req, version="95.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx95-en.html"]
+
     # end 95.0 whatsnew tests
 
 

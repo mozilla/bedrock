@@ -13,6 +13,12 @@ class FirefoxWhatsNew95Page(BasePage):
 
     _pocket_button_locator = (By.CSS_SELECTOR, ".wnp-main-cta .mzp-c-button")
 
+    _pocket_button_locator_en = (By.CSS_SELECTOR, ".wnp-main-cta.mzp-c-button")
+
     @property
     def is_pocket_button_displayed(self):
         return self.is_element_displayed(*self._pocket_button_locator)
+
+    @property
+    def is_pocket_button_displayed_en(self):
+        return self.is_element_displayed(*self._pocket_button_locator_en)
