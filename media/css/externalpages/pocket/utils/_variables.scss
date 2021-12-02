@@ -2,31 +2,26 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$color-white:#fff;
+$color-white: #fff;
 $color-divider: #d9d9d9;
 $color-action-primary: #008078;
 $color-action-primary-hover: #004d48;
 $color-text-primary: #1a1a1a;
 $color-text-secondary: #666;
 $color-text-grey: #555;
-$color-text-dark-grey: #333333;
+$color-text-dark-grey: #333;
 $color-button-red: #e7132f;
 $color-text-cyan: #5dcfca;
-$color-background-grey:#f0f0f0;
-
+$color-background-grey: #f0f0f0;
 $box-shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.08);
-
-
 $mq-md: 'min-width: 720px';
 $mq-lg: 'min-width: 1024px';
-
-$spacing025: .25em;
-$spacing075: .75em;
-$spacing050: .5em;
+$spacing025: 0.25em;
+$spacing075: 0.75em;
+$spacing050: 0.5em;
 $spacing100: 1em;
 $spacing150: 1.5em;
-
-$size025: .25rem;
+$size025: 0.25rem;
 $size100: 1rem;
 $size125: 1.25rem;
 $size150: 1.5rem;
@@ -34,9 +29,7 @@ $size200: 2rem;
 $size250: 2.5rem;
 $size300: 3rem;
 $size400: 4rem;
-
-$fontSize100: 1rem;
-
-$fontSerif: "Blanco OSF", Garamond, Times, Serif;
-$fontSans: "Graphik Web", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
-$fontSansAlt: "Doyle", Garamond, Times, Serif;
+$font-size100: 1rem;
+$font-serif: 'Blanco OSF', garamond, times, serif;
+$font-sans: 'Graphik Web', 'Helvetica Neue', helvetica, arial, sans-serif;
+$font-sans-alt: 'Doyle', garamond, times, serif;
