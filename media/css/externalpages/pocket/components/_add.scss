@@ -26,7 +26,7 @@ $image-path: '/media/img/externalpages/pocket';
 
         @media #{$mq-md}{
             font-size: $size200;
-            text-align: left;;
+            text-align: left;
         }
     }
 
@@ -42,24 +42,25 @@ $image-path: '/media/img/externalpages/pocket';
 
 .add-header {
     .mzp-c-button {
-                    background-color: $color-button-red;
-                    border: 2px solid $color-button-red;
+        background-color: $color-button-red;
+        border: 2px solid $color-button-red;
 
-                    &:hover,
-                    &:focus,
-                    &:active {
-                        background-color: #ededf0;
-                        border-color: $color-button-red;
-                        box-shadow: none;
-                        color: $color-button-red;
-                    }
-                }
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: #ededf0;
+            border-color: $color-button-red;
+            box-shadow: none;
+            color: $color-button-red;
+        }
+    }
 }
 
 .add-device {
     margin: 0 auto;
-    max-width: 1200px;
-    width: 90%;
+    max-width: 62.5em;
+    padding: $spacing100;
+    width: 100%;
 
     &__context {
         display: flex;
@@ -130,23 +131,24 @@ $image-path: '/media/img/externalpages/pocket';
 
     &__wrapper {
         margin: 0 auto;
-        max-width: 1200px;
+        max-width: 62.5em;
         padding: $spacing100;
-        width: 70%;
+        width: 100%;
     }
 
     &__context {
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
+        flex-direction: column;
 
         &-email {
-            width: 45%;
+            width: 100%;
         }
 
         &-image {
             margin-bottom: $spacing100;
-            width: 400px;
+            width: 100%;
 
             img {
                 display: block;
@@ -154,32 +156,70 @@ $image-path: '/media/img/externalpages/pocket';
                 width: 100%;
             }
         }
+
+        @media #{$mq-md} {
+            flex-direction: row;
+            align-items: center;
+
+            &-email {
+                width: 45%;
+            }
+
+            &-image {
+                width: 400px;
+            }
+        }
     }
 }
 
-.add-save__context-apps { /* stylelint-disable-line selector-class-pattern */
-    width: 45%;
+        .add-save__context-apps {
+            width: 100%;
+            margin-top: $spacing-md;
 
-    .app-types {
-        display: flex;
-        align-items: flex-start;
-        justify-content: flex-start;
+            .app-types {
+                display: flex;
+                align-items: flex-start;
+                justify-content: flex-start;
+                width: 100%;
 
-        .app-board {
-            display: flex;
-            flex-wrap: wrap;
-            padding: 0;
-            width: 60%;
 
-            &__icon {
-                height: $layout-lg;
-                margin: $spacing-sm;
-                width: $layout-lg;
+                .app-board {
+                    display: flex;
+                    flex-wrap: wrap;
+                    padding: 0;
+                    width: 60%;
 
-                img {
-                    height: 100%;
-                    width: 100%;
+                    &__icon {
+                        height: $layout-lg;
+                        margin: $spacing-sm;
+                        width: $layout-lg;
+
+                            img {
+                            height: 100%;
+                            width: 100%;
+                            display: block;
+                        }
+                    }
                 }
+
+                .social-apps {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                    flex-wrap: wrap;
+                    padding: 0;
+                    margin-left: $spacing-lg;
+
+                    li {
+                        margin: $spacing-sm;
+                        width: 100%;
+                    }
+                }
+            }
+
+            @media #{$mq-md} {
+                width: 45%
             }
         }
 
@@ -195,5 +235,3 @@ $image-path: '/media/img/externalpages/pocket';
                 margin: $spacing-sm;
             }
         }
-    }
-}
