@@ -26,7 +26,7 @@ $image-path: '/media/img/externalpages/pocket';
 }
 
 .rarrow::after {
-    content: " ›";
+    content: ' ›';
 }
 
 .add-header {
@@ -39,6 +39,7 @@ $image-path: '/media/img/externalpages/pocket';
 
     &__context {
         display: flex;
+
         &-image {
             width: 60%;
 
@@ -80,6 +81,7 @@ $image-path: '/media/img/externalpages/pocket';
                 width: 100%;
             }
         }
+
         &-stores {
             display: flex;
             align-items: flex-start;
@@ -143,45 +145,43 @@ $image-path: '/media/img/externalpages/pocket';
     }
 }
 
-        .add-save__context-apps {
-            width: 45%;
+.add-save__context-apps { /* stylelint-disable-line selector-class-pattern */
+    width: 45%;
 
-            .app-types {
-                display: flex;
-                align-items: flex-start;
-                justify-content: flex-start;
+    .app-types {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
 
-                .app-board {
-                    display: flex;
-                    flex-wrap: wrap;
-                    padding: 0;
-                    width: 60%;
+        .app-board {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0;
+            width: 60%;
 
-                    &__icon {
-                        height: $layout-lg;
-                        margin: $spacing-sm;
-                        width: $layout-lg;
+            &__icon {
+                height: $layout-lg;
+                margin: $spacing-sm;
+                width: $layout-lg;
 
-                            img {
-                            height: 100%;
-                            width: 100%;
-                        }
-                    }
-                }
-
-                .social-apps {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: flex-start;
-                    justify-content: flex-start;
-                    padding: 0;
-                    margin-left: $spacing-lg;
-
-                    li {
-                        margin: $spacing-sm;
-                    }
+                img {
+                    height: 100%;
+                    width: 100%;
                 }
             }
         }
 
+        .social-apps {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding: 0;
+            margin-left: $spacing-lg;
 
+            li {
+                margin: $spacing-sm;
+            }
+        }
+    }
+}

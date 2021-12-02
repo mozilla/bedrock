@@ -2,7 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-@import "../utils/variables";
+@import '../utils/variables';
 
 $image-path: '/media/img/externalpages/pocket';
 
@@ -65,8 +65,8 @@ $image-path: '/media/img/externalpages/pocket';
     &:focus {
         outline: none;
 
-        &:before {
-            content: "";
+        &::before {
+            content: '';
             display: block;
             position: absolute;
             top: -2px;
@@ -78,7 +78,8 @@ $image-path: '/media/img/externalpages/pocket';
         }
     }
 
-    &:active:before, &:hover:before {
+    &:active::before,
+    &:hover::before {
         display: none;
     }
 
@@ -97,9 +98,9 @@ $image-path: '/media/img/externalpages/pocket';
     @media ($mq-md) {
         margin-right: 56px;
 
-         &:hover {
+        &:hover {
             cursor: pointer;
-         }
+        }
     }
 
     @media ($mq-lg) {
@@ -155,8 +156,8 @@ $image-path: '/media/img/externalpages/pocket';
     &:focus {
         outline: 0;
 
-        &:before {
-            content: "";
+        &::before {
+            content: '';
             display: block;
             box-sizing: border-box;
             position: absolute;
@@ -169,20 +170,20 @@ $image-path: '/media/img/externalpages/pocket';
         }
     }
 
-    &:hover:before {
+    &:hover::before {
         display: none;
     }
 
     &:active {
         display: none;
 
-        &:before {
+        &::before {
             display: none;
         }
     }
 
-    &.selected:after {
-        content: "";
+    &.selected::after {
+        content: '';
         display: block;
         position: absolute;
         bottom: 0;
@@ -192,7 +193,7 @@ $image-path: '/media/img/externalpages/pocket';
         background-color: $color-action-primary;
     }
 
-    &.selected:active:after {
+    &.selected:active::after {
         background-color: $color-action-primary-hover;
     }
 }
@@ -208,13 +209,12 @@ $image-path: '/media/img/externalpages/pocket';
     color: $color-text-primary;
 
     &:focus,
-    &:focus,
     &:active {
         color: $color-action-primary;
         outline: 0;
 
-        &:before {
-            content: "";
+        &::before {
+            content: '';
             display: block;
             box-sizing: border-box;
             position: absolute;
@@ -231,7 +231,8 @@ $image-path: '/media/img/externalpages/pocket';
         text-decoration: none;
     }
 
-    &:hover:before, &:active:before {
+    &:hover::before,
+    &:active::before {
         display: none;
     }
 
@@ -240,7 +241,6 @@ $image-path: '/media/img/externalpages/pocket';
     }
 
     &.signup-link {
-        border: none;
         border-radius: 4px;
         padding: 12px;
         transition: all 0.15s ease-out;
@@ -252,7 +252,6 @@ $image-path: '/media/img/externalpages/pocket';
             background-color: $color-text-primary;
             color: #f2f2f2;
         }
-
     }
 
     @media ($mq-md) {
@@ -275,8 +274,4 @@ $image-path: '/media/img/externalpages/pocket';
         margin-top: -4px;
         display: none;
     }
-
 }
-
-
-

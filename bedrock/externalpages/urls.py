@@ -13,5 +13,4 @@ urlpatterns = (
     page("pocket/safari", "externalpages/pocket/safari.html"),
     page("pocket/opera", "externalpages/pocket/opera.html"),
     page("pocket/edge", "externalpages/pocket/edge.html"),
-    page("pocket/safari", "externalpages/pocket/safari.html"),
 )

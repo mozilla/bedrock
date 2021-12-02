@@ -9,7 +9,7 @@ $image-path: '/media/protocol/img';
 .platform-footer {
     border-top: 1px solid #cacaca;
     background-color: $color-light-gray-05;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     padding-top: $spacing-xl;
 
     &__navigation {
@@ -63,7 +63,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.platform-footer__navigation--social-media {
+.platform-footer__navigation--social-media { /* stylelint-disable-line selector-class-pattern */
     padding: 0 $spacing-md;
 
     &__wrapper {
@@ -80,7 +80,6 @@ $image-path: '/media/protocol/img';
         margin: 0;
         padding: 0;
         display: flex;
-
 
         &-item {
             margin-right: $spacing-xs;

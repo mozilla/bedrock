@@ -2,13 +2,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-
 @import '../utils/variables';
 @import './nav';
 @import './footer';
 
 $image-path: '/media/img/externalpages/pocket';
-
 
 .intro-wrapper {
     background-color: #95d5d2;
@@ -18,7 +16,7 @@ $image-path: '/media/img/externalpages/pocket';
 }
 
 .about-section {
-    font-family: $fontSans;
+    font-family: $font-sans;
     position: relative;
     max-width: 1128px;
     box-sizing: content-box;
@@ -26,8 +24,8 @@ $image-path: '/media/img/externalpages/pocket';
     margin-left: auto;
     margin-right: auto;
 
-    &:before {
-        content: "";
+    &::before {
+        content: '';
         position: absolute;
     }
 
@@ -37,7 +35,7 @@ $image-path: '/media/img/externalpages/pocket';
         z-index: 2;
 
         .about-section-heading {
-            font-family: $fontSansAlt;
+            font-family: $font-sans-alt;
             font-weight: 500;
             margin-top: 0;
             margin-bottom: 8px;
@@ -45,7 +43,7 @@ $image-path: '/media/img/externalpages/pocket';
         }
 
         .about-section-body {
-            font-family: $fontSans;
+            font-family: $font-sans;
             margin: 0 0 24px;
             font-size: 1rem;
         }
@@ -68,7 +66,7 @@ $image-path: '/media/img/externalpages/pocket';
         margin: 0 auto;
         padding: 40px 16px 118vw;
 
-        &:before {
+        &::before {
             background: url('#{$image-path}/people-enjoying-content-md.svg') no-repeat 100% 0 / contain;
             width: 200vw;
             height: 134vw;
@@ -85,11 +83,10 @@ $image-path: '/media/img/externalpages/pocket';
             font-size: 14px;
         }
 
-
         @media ($mq-md) {
-            padding: 104px 40px 496px 40px;
+            padding: 104px 40px 496px;
 
-            &:before {
+            &::before {
                 right: calc(50% - 656px);
                 width: 1176px;
                 height: 875px;
@@ -102,9 +99,9 @@ $image-path: '/media/img/externalpages/pocket';
         }
 
         @media ($mq-lg) {
-            padding: 128px 40px 352px 40px;
+            padding: 128px 40px 352px;
 
-            &:before {
+            &::before {
                 background-image: url('#{$image-path}/people-enjoying-content-lg.svg');
                 top: 40px;
                 right: calc(50% - 872px);
@@ -115,7 +112,6 @@ $image-path: '/media/img/externalpages/pocket';
             .about-section-heading {
                 font-size: 48px;
             }
-
         }
     }
 
@@ -123,7 +119,7 @@ $image-path: '/media/img/externalpages/pocket';
         margin-top: 64px;
         margin-bottom: 304px;
 
-        &:before {
+        &::before {
             background: url('#{$image-path}/swirly-saving-xs.svg') no-repeat 100% 0 / contain;
             bottom: -540px;
             height: 845px;
@@ -136,7 +132,7 @@ $image-path: '/media/img/externalpages/pocket';
             margin-top: 80px;
             margin-bottom: 490px;
 
-            &:before {
+            &::before {
                 background-image: url('#{$image-path}/swirly-saving-sm.svg');
                 height: 845px;
                 right: -195px;
@@ -149,7 +145,7 @@ $image-path: '/media/img/externalpages/pocket';
             margin-top: 175px;
             margin-bottom: 608px;
 
-            &:before {
+            &::before {
                 background-image: url('#{$image-path}/swirly-saving-lg.svg');
                 height: 750px;
                 right: -90px;
@@ -164,7 +160,7 @@ $image-path: '/media/img/externalpages/pocket';
         justify-content: flex-end;
         padding-bottom: 656px;
 
-        &:before {
+        &::before {
             background: url('#{$image-path}/rainbow-hand-gem-sm.svg') no-repeat 100% 0 / contain;
             bottom: 110px;
             height: 590px;
@@ -176,7 +172,7 @@ $image-path: '/media/img/externalpages/pocket';
         @media (min-width: 599px) {
             padding-bottom: 720px;
 
-            &:before {
+            &::before {
                 bottom: 109px;
                 height: 643px;
                 right: calc(50% - 320px);
@@ -188,7 +184,8 @@ $image-path: '/media/img/externalpages/pocket';
             display: flex;
             justify-content: flex-end;
             padding-bottom: 320px;
-            &:before {
+
+            &::before {
                 height: 872px;
                 right: 345px;
                 top: -80px;
@@ -201,7 +198,7 @@ $image-path: '/media/img/externalpages/pocket';
         @media ($mq-lg) {
             padding-bottom: 544px;
 
-            &:before {
+            &::before {
                 height: 982px;
                 right: 50%;
                 top: -240px;
@@ -213,7 +210,7 @@ $image-path: '/media/img/externalpages/pocket';
     &.fourth {
         padding-bottom: 668px;
 
-        &:before {
+        &::before {
             background: url('#{$image-path}/floating-content-md.svg') no-repeat 100% / contain;
             height: 212vw;
             bottom: 80px;
@@ -224,7 +221,7 @@ $image-path: '/media/img/externalpages/pocket';
         @media (min-width: 599px) {
             padding-bottom: 1020px;
 
-            &:before {
+            &::before {
                 bottom: 16px;
                 right: -96px;
             }
@@ -233,7 +230,7 @@ $image-path: '/media/img/externalpages/pocket';
         @media ($mq-md) {
             padding-bottom: 272px;
 
-            &:before {
+            &::before {
                 background-image: url('#{$image-path}/floating-content-lg.svg');
                 height: 1175px;
                 left: 57.5%;
@@ -246,7 +243,7 @@ $image-path: '/media/img/externalpages/pocket';
         @media ($mq-lg) {
             padding-bottom: 384px;
 
-            &:before {
+            &::before {
                 top: -448px;
                 width: 848px;
             }
@@ -256,7 +253,7 @@ $image-path: '/media/img/externalpages/pocket';
     &.fifth {
         padding-bottom: 181vw;
 
-        &:before {
+        &::before {
             background: url('#{$image-path}/sunny-content-md.svg') no-repeat 100% 0 / contain;
             bottom: -29vw;
             height: 242vw;
@@ -270,7 +267,7 @@ $image-path: '/media/img/externalpages/pocket';
             justify-content: flex-end;
             padding-bottom: 520px;
 
-            &:before {
+            &::before {
                 background-image: url('#{$image-path}/sunny-content-lg.svg');
                 height: 1192px;
                 right: calc(50% - 144px);
@@ -282,7 +279,7 @@ $image-path: '/media/img/externalpages/pocket';
         @media ($mq-lg) {
             padding-bottom: 672px;
 
-            &:before {
+            &::before {
                 height: 1228px;
                 top: -310px;
                 width: 1136px;
@@ -296,7 +293,7 @@ $image-path: '/media/img/externalpages/pocket';
     padding: 0 20px;
 
     .about-cta-heading {
-        font-family: $fontSansAlt;
+        font-family: $font-sans-alt;
         font-size: 28px;
         font-weight: 500;
         margin-bottom: 32px;
@@ -345,7 +342,7 @@ $image-path: '/media/img/externalpages/pocket';
     .about-cta-body {
         max-width: 416px;
         text-align: center;
-        margin-left:auto;
+        margin-left: auto;
         margin-right: auto;
     }
 }
