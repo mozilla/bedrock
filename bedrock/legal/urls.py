@@ -20,11 +20,6 @@ urlpatterns = (
     # requested in any other locale. (Bug 1248393)
     page("impressum", "legal/impressum.html", active_locales=["de"], ftl_files=["mozorg/about/legal"]),
     url(
-        r"^terms/betterweb/$",
-        LegalDocView.as_view(template_name="legal/terms/betterweb.html", legal_doc_name="better_web_terms"),
-        name="legal.terms.betterweb",
-    ),
-    url(
         r"^terms/mozilla/$", LegalDocView.as_view(template_name="legal/terms/mozilla.html", legal_doc_name="Websites_ToU"), name="legal.terms.mozilla"
     ),
     url(
