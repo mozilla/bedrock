@@ -3,6 +3,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '../utils/variables';
 
 // variables from pocket
 $easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
