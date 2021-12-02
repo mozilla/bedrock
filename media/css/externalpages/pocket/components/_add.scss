@@ -8,9 +8,9 @@
 
 $image-path: '/media/img/externalpages/pocket';
 
-@import "~@mozilla-protocol/core/protocol/css/includes/lib";
-@import "~@mozilla-protocol/core/protocol/css/components/split";
-@import "~@mozilla-protocol/core/protocol/css/components/button";
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/split';
+@import '~@mozilla-protocol/core/protocol/css/components/button';
 
 .add-page {
     .add-header {
@@ -24,7 +24,7 @@ $image-path: '/media/img/externalpages/pocket';
         font-size: $size150;
         text-align: center;
 
-        @media #{$mq-md}{
+        @media #{$mq-md} {
             font-size: $size200;
             text-align: left;
         }
@@ -48,7 +48,7 @@ $image-path: '/media/img/externalpages/pocket';
         &:hover,
         &:focus,
         &:active {
-            text-decoration: underline!important;
+            text-decoration: underline !important;
             background-color: $color-button-red;
             border: 2px solid $color-button-red;
             color: $color-white;
@@ -120,7 +120,7 @@ $image-path: '/media/img/externalpages/pocket';
             }
 
             &-stores {
-                width:25%;
+                width: 25%;
             }
         }
     }
@@ -172,54 +172,32 @@ $image-path: '/media/img/externalpages/pocket';
     }
 }
 
-        .add-save__context-apps {
-            width: 100%;
-            margin-top: $spacing-md;
+.add-save__context-apps {
+    width: 100%;
+    margin-top: $spacing-md;
 
-            .app-types {
-                display: flex;
-                align-items: flex-start;
-                justify-content: flex-start;
-                width: 100%;
+    .app-types {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        width: 100%;
 
+        .app-board {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0;
+            width: 60%;
 
-                .app-board {
-                    display: flex;
-                    flex-wrap: wrap;
-                    padding: 0;
-                    width: 60%;
+            &__icon {
+                height: $layout-lg;
+                margin: $spacing-sm;
+                width: $layout-lg;
 
-                    &__icon {
-                        height: $layout-lg;
-                        margin: $spacing-sm;
-                        width: $layout-lg;
-
-                            img {
-                            height: 100%;
-                            width: 100%;
-                            display: block;
-                        }
-                    }
+                img {
+                    height: 100%;
+                    width: 100%;
+                    display: block;
                 }
-
-                .social-apps {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: flex-start;
-                    justify-content: flex-start;
-                    flex-wrap: wrap;
-                    padding: 0;
-                    margin-left: $spacing-lg;
-
-                    li {
-                        margin: $spacing-sm;
-                        width: 100%;
-                    }
-                }
-            }
-
-            @media #{$mq-md} {
-                width: 45%
             }
         }
 
@@ -228,10 +206,31 @@ $image-path: '/media/img/externalpages/pocket';
             flex-direction: column;
             align-items: flex-start;
             justify-content: flex-start;
+            flex-wrap: wrap;
             padding: 0;
             margin-left: $spacing-lg;
 
             li {
                 margin: $spacing-sm;
+                width: 100%;
             }
         }
+    }
+
+    @media #{$mq-md} {
+        width: 45%;
+    }
+}
+
+.social-apps {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0;
+    margin-left: $spacing-lg;
+
+    li {
+        margin: $spacing-sm;
+    }
+}
