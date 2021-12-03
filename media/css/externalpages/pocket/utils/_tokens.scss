@@ -10,7 +10,9 @@
         text-decoration: underline;
         transition: color 0.1s ease-out;
 
-        &:hover {
+        &:hover,
+        &:active,
+        &:focus {
             color: $color-action-primary-hover;
         }
     }
@@ -40,7 +42,9 @@
     color: $color-text-grey;
     text-decoration: none;
 
-    &:hover {
+    &:hover,
+    &:focus,
+    &:active {
         color: $color-text-cyan;
     }
 }

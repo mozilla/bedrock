@@ -6,6 +6,8 @@
 
 {% extends "externalpages/pocket/base.html" %}
 
+{% from "macros-protocol.html" import split with context %}
+
 {% block page_title %} How to Save {% endblock %}
 
 {% block pocket_css %}
@@ -18,26 +20,21 @@
 
 <div class="add-page">
    <section class="add-header">
-      <div class="add-header__wrapper">
-         <div class="add-header__title">
-            <h2>Save to Pocket from Firefox</h2>
-         </div>
-         <div class="add-header__context">
-            <div class="add-header__context-image"><img src="{{ static('img/externalpages/pocket/add-pocket-header.jpg') }}" alt="Pocket logo in browser taskbar"></div>
-            <div class="add-header__context-info">
-               <p>
-                  Click the Pocket button in your Firefox toolbar to save articles, videos,
-                  pages, and more.
-               </p>
-               <a href="https://help.getpocket.com/article/900-saving-to-pocket-and-viewing-your-list-in-firefox" class="btn red-btn" target="_blank" rel="noopener noreferrer">Learn How</a>
-               <p>
-                  <a href="https://help.getpocket.com/article/942-where-is-the-pocket-button-in-firefox" class="dark-inline-link rarrow" target="_blank" rel="noopener noreferrer">
-                    Don't see the Pocket button?
-                  </a>
-               </p>
-            </div>
-         </div>
-      </div>
+         {% call split(
+          block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-l-split-reversed mzp-l-split-body-narrow',
+          media_class='mzp-l-split-h-center',
+          image_url='img/externalpages/pocket/add-pocket-header.jpg',
+          )%}
+          <h2>Save to Pocket from Firefox</h2>
+          <p>Click the Pocket button in your Firefox toolbar to save articles, videos, pages, and more.</p>
+          <a href="https://help.getpocket.com/article/900-saving-to-pocket-and-viewing-your-list-in-firefox" class="mzp-c-button" target="_blank" rel="external noopener">Learn how</a>
+           <p>
+              <a href="https://help.getpocket.com/article/942-where-is-the-pocket-button-in-firefox" class="dark-inline-link rarrow" target="_blank" rel="noopener noreferrer">
+                Don't see the Pocket button?
+              </a>
+          </p>
+          {% endcall %}
+
    </section>
 
    <section class="add-device">
@@ -51,10 +48,10 @@
          <div class="add-device__context-stores">
             <h3>Get Pocket for:</h3>
             <ul class="apps-list">
-               <li class="app-store-badge"><a href="https://apps.apple.com/app/read-it-later-pro/id309601447" target="_blank" rel="noopener noreferrer" class="dark-inline-link">iOS Store</a></li>
-               <li class="app-store-badge"><a href="https://apps.apple.com/app/pocket/id568494494?ls=1&mt=12" target="_blank" rel="noopener noreferrer" class="dark-inline-link">Mac App Store</a></li>
-               <li class="app-store-badge"><a href="https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro" target="_blank" rel="noopener noreferrer" class="dark-inline-link">Google Play Store</a></li>
-               <li class="app-store-badge"><a href="https://www.amazon.com/dp/B0057PAY8G" target="_blank" rel="noopener noreferrer" class="dark-inline-link">Amazon Store</a></li>
+               <li class="app-store-badge" aria-label="ios store"><a href="https://apps.apple.com/app/read-it-later-pro/id309601447" target="_blank" rel="noopener noreferrer" class="dark-inline-link"><img src="{{ static('img/externalpages/pocket/app-button-apple.png') }}" alt=""></a></li>
+               <li class="app-store-badge" aria-label="mac app store"><a href="https://apps.apple.com/app/pocket/id568494494?ls=1&mt=12" target="_blank" rel="noopener noreferrer" class="dark-inline-link"><img src="{{ static('img/externalpages/pocket/app-button-mac.png') }}" alt=""></a></li>
+               <li class="app-store-badge" aria-label="google play store"><a href="https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro" target="_blank" rel="noopener noreferrer" class="dark-inline-link"><img src="{{ static('img/externalpages/pocket/app-button-google.png') }}" alt=""></a></li>
+               <li class="app-store-badge" aria-label="amazon app store"><a href="https://www.amazon.com/dp/B0057PAY8G" target="_blank" rel="noopener noreferrer" class="dark-inline-link"><img src="{{ static('img/externalpages/pocket/app-button-amazon.png') }}" alt=""></a></li>
             </ul>
             <ul class="device-list">
                <li><a href="https://chrome.google.com/webstore/detail/save-to-pocket/niloccemoadcdkdjlinkgdfekeahmflj?hl=en" target="_blank" rel="noopener noreferrer" class="dark-inline-link rarrow">Windows</a></li>
@@ -79,7 +76,7 @@
                <div class="add-save__context-image">
                   <img src="{{ static('img/externalpages/pocket/save-via-email.png') }}" alt="">
                </div>
-               <a href="https://help.getpocket.com/article/1020-saving-to-pocket-via-email" target="_blank" rel="noopener noreferrer" class="dark-inline-link">Learn more</a>
+               <a href="https://help.getpocket.com/article/1020-saving-to-pocket-via-email" target="_blank" rel="noopener noreferrer" class="dark-inline-link rarrow">Learn more</a>
             </div>
             <div class="add-save__context-apps">
                <h3>Integrated in 1500+ Apps</h3>

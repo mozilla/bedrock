@@ -8,15 +8,26 @@
 
 $image-path: '/media/img/externalpages/pocket';
 
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/split';
+@import '~@mozilla-protocol/core/protocol/css/components/button';
+
 .add-page {
     .add-header {
         background-color: $color-background-grey;
+        padding: 5px;
     }
 
     h2 {
         color: $color-text-dark-grey;
-        font-size: $size200;
         margin-bottom: $spacing100;
+        font-size: $size150;
+        text-align: center;
+
+        @media #{$mq-md} {
+            font-size: $size200;
+            text-align: left;
+        }
     }
 
     h3,
@@ -30,50 +41,36 @@ $image-path: '/media/img/externalpages/pocket';
 }
 
 .add-header {
-    &__wrapper {
-        margin: 0 auto;
-        max-width: 1200px;
-        padding: $spacing100;
-        width: 70%;
-    }
+    .mzp-c-button {
+        background-color: $color-button-red;
+        border: 2px solid $color-button-red;
 
-    &__context {
-        display: flex;
-
-        &-image {
-            width: 60%;
-
-            img {
-                display: block;
-                height: 100%;
-                width: 100%;
-            }
-        }
-
-        &-info {
-            display: flex;
-            align-items: flex-start;
-            flex-direction: column;
-            justify-content: space-around;
-            margin-left: 30px;
-            width: 35%;
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: underline !important;
+            background-color: $color-button-red;
+            border: 2px solid $color-button-red;
+            color: $color-white;
         }
     }
 }
 
 .add-device {
     margin: 0 auto;
-    max-width: 1200px;
-    width: 70%;
+    max-width: 62.5em;
+    padding: $spacing100;
+    width: 100%;
 
     &__context {
         display: flex;
+        flex-direction: column;
         align-items: flex-start;
         justify-content: space-between;
         width: 100%;
 
         &-image {
-            width: 70%;
+            width: 100%;
 
             img {
                 display: block;
@@ -86,7 +83,7 @@ $image-path: '/media/img/externalpages/pocket';
             display: flex;
             align-items: flex-start;
             flex-direction: column;
-            width: 25%;
+            width: 100%;
 
             .apps-list,
             .device-list {
@@ -99,15 +96,34 @@ $image-path: '/media/img/externalpages/pocket';
             }
 
             .app-store-badge {
-                border: 2px solid $color-action-primary;
-                color: $color-white;
                 height: 65px;
-                text-align: center;
                 width: 190px;
+                text-align: center;
+
+                img {
+                    width: 100%;
+                    height: auto;
+                }
             }
 
             .device-list {
                 margin-top: 0;
+            }
+        }
+    }
+
+    @media #{$mq-md} {
+        width: 70%;
+
+        &__context {
+            flex-direction: row;
+
+            &-image {
+                width: 70%;
+            }
+
+            &-stores {
+                width: 25%;
             }
         }
     }
@@ -118,23 +134,24 @@ $image-path: '/media/img/externalpages/pocket';
 
     &__wrapper {
         margin: 0 auto;
-        max-width: 1200px;
+        max-width: 62.5em;
         padding: $spacing100;
-        width: 70%;
+        width: 100%;
     }
 
     &__context {
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
+        flex-direction: column;
 
         &-email {
-            width: 45%;
+            width: 100%;
         }
 
         &-image {
             margin-bottom: $spacing100;
-            width: 400px;
+            width: 100%;
 
             img {
                 display: block;
@@ -142,46 +159,81 @@ $image-path: '/media/img/externalpages/pocket';
                 width: 100%;
             }
         }
+
+        @media #{$mq-md} {
+            flex-direction: row;
+            align-items: center;
+
+            &-email {
+                width: 45%;
+            }
+
+            &-image {
+                width: 400px;
+            }
+        }
+
+        &-apps {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+
+            .app-types {
+                display: flex;
+                align-items: flex-start;
+                justify-content: flex-start;
+                width: 100%;
+
+                .app-board {
+                    display: flex;
+                    flex-wrap: wrap;
+                    padding: 0;
+                    width: 60%;
+
+                    &__icon {
+                        height: $layout-lg;
+                        margin: $spacing-sm;
+                        width: $layout-lg;
+
+                        img {
+                            height: 100%;
+                            width: 100%;
+                            display: block;
+                        }
+                    }
+                }
+
+                .social-apps {
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                    flex-flow: column wrap;
+                    padding: 0;
+                    margin-left: $spacing-lg;
+
+                    li {
+                        margin: $spacing-sm;
+                        width: 100%;
+                    }
+                }
+            }
+
+            @media #{$mq-md} {
+                width: 45%;
+            }
+        }
     }
 }
 
-.add-save__context-apps { /* stylelint-disable-line selector-class-pattern */
-    width: 45%;
+.social-apps {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0;
+    margin-left: $spacing-lg;
 
-    .app-types {
-        display: flex;
-        align-items: flex-start;
-        justify-content: flex-start;
-
-        .app-board {
-            display: flex;
-            flex-wrap: wrap;
-            padding: 0;
-            width: 60%;
-
-            &__icon {
-                height: $layout-lg;
-                margin: $spacing-sm;
-                width: $layout-lg;
-
-                img {
-                    height: 100%;
-                    width: 100%;
-                }
-            }
-        }
-
-        .social-apps {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: flex-start;
-            padding: 0;
-            margin-left: $spacing-lg;
-
-            li {
-                margin: $spacing-sm;
-            }
-        }
+    li {
+        margin: $spacing-sm;
     }
 }
