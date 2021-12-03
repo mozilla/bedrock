@@ -96,11 +96,14 @@ $image-path: '/media/img/externalpages/pocket';
             }
 
             .app-store-badge {
-                border: 2px solid $color-action-primary;
-                color: $color-white;
                 height: 65px;
-                text-align: center;
                 width: 190px;
+                text-align: center;
+
+                img {
+                    width: 100%;
+                    height: auto;
+                }
             }
 
             .device-list {
@@ -172,7 +175,8 @@ $image-path: '/media/img/externalpages/pocket';
 
         &-apps {
             width: 100%;
-            margin-top: $spacing-md;
+            display: flex;
+            flex-direction: column;
 
             .app-types {
                 display: flex;
