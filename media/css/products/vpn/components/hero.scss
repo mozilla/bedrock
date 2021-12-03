@@ -78,7 +78,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-@media #{mq-md} {
+@media #{$mq-md} {
     .vpn-hero-sub-heading {
         @include text-title-lg;
     }

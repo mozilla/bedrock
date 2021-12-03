@@ -49,7 +49,7 @@ $image-path: '/media/img/externalpages/pocket';
         vertical-align: middle;
     }
 
-    @media ($mq-md) {
+    @media #{$mq-md} {
         display: none;
     }
 }
@@ -95,7 +95,7 @@ $image-path: '/media/img/externalpages/pocket';
         display: none;
     }
 
-    @media ($mq-md) {
+    @media #{$mq-md} {
         margin-right: 56px;
 
         &:hover {
@@ -103,7 +103,7 @@ $image-path: '/media/img/externalpages/pocket';
         }
     }
 
-    @media ($mq-lg) {
+    @media #{$mq-lg} {
         margin-right: 96px;
     }
 }
@@ -140,7 +140,7 @@ $image-path: '/media/img/externalpages/pocket';
             padding: 0;
         }
 
-        @media ($mq-md) {
+        @media #{$mq-md} {
             display: flex;
         }
     }
@@ -254,7 +254,7 @@ $image-path: '/media/img/externalpages/pocket';
         }
     }
 
-    @media ($mq-md) {
+    @media #{$mq-md} {
         display: inline-block;
     }
 }
@@ -270,7 +270,7 @@ $image-path: '/media/img/externalpages/pocket';
         height: 100%;
     }
 
-    @media ($mq-md) {
+    @media #{$mq-md} {
         margin-top: -4px;
         display: none;
     }
