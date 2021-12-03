@@ -1004,6 +1004,13 @@
         "css/externalpages/pocket/components/_add.scss"
       ],
       "name": "pocket-add"
+    }, 
+    {
+      "files": [
+        "css/externalpages/pocket/style.scss",
+        "css/externalpages/pocket/components/_contact-info.scss"
+      ],
+      "name": "pocket-contact-info"
     }
   ],
   "js": [
