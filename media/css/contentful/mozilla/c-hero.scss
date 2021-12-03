@@ -8,3 +8,12 @@ $brand-theme: 'mozilla';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/hero';
+
+// issue 10666
+@media screen and (max-width: #{$screen-md}) {
+    .mzp-c-hero .mzp-c-wordmark {
+        margin-right: auto;
+        margin-left: auto;
+        background-position: top center;
+    }
+}
