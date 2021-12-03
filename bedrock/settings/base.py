@@ -690,7 +690,7 @@ WP_BLOGS = {
     },
 }
 
-GREENHOUSE_BOARD_TOKEN = "mozilla"
+GREENHOUSE_BOARD_TOKEN = config("GREENHOUSE_BOARD_TOKEN", default="mozilla")
 
 # used to connect to @MozillaHQ Pocket account
 POCKET_API_URL = config("POCKET_API_URL", default="https://getpocket.com/v3/firefox/profile-recs")

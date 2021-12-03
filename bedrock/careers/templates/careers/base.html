@@ -11,11 +11,11 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{ meta_title|default(default_slug, true)|safe }}">
     <meta property="og:description" content="{{ meta_description|default(default_slug, true)|safe }}">
-    <meta property="og:image" content="https://careers.mozilla.org{{ meta_image|default(static('img/careers/moz-m.png'), true)|safe }}">
+    <meta property="og:image" content="{{ static('img/careers/moz-m.png') }}">
     <meta property="og:image:alt" content="{{ meta_title|default(default_slug, true)|safe }}">
     <meta name="twitter:title" content="{{ meta_title|default(default_slug, true)|safe }}">
     <meta name="twitter:description" content="{{ meta_description|default(default_slug, true)|safe }}">
-    <meta name="twitter:image" content="https://careers.mozilla.org{{ meta_image|default(static('img/careers/moz-m.png'), true)|safe }}">
+    <meta name="twitter:image" content="{{ static('img/careers/moz-m.png') }}">
     <meta name="twitter:card" content="summary">
     <meta name="description" content="{{ meta_description|default(default_slug, true)|safe }}">
     <title>{{ meta_title|default(default_slug, true)|safe }}</title>
@@ -26,7 +26,7 @@
     {% endblock %}
 
     {# js #}
-    <script src="{{ static('js/careers/dnt-helper.js') }}"></script>
+    <script src="{{ static('js/base/dnt-helper.js') }}"></script>
     <script src="{{ static('js/careers/protocol-base.min.js') }}"></script>
     <script src="{{ static('js/careers/protocol-utils.min.js') }}"></script>
     <script src="{{ static('js/careers/protocol-supports.min.js') }}"></script>
@@ -38,18 +38,12 @@
     <link rel="alternate" type="application/rss+xml"
           href="{{ url('careers.feed') }}" title="Current Mozilla job openings" />
 
-    {# TODO: Configure GA #}
+    {% include 'includes/google-analytics.html' %}
 
   </head>
   <body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}"
     {%- block body_data %}
     {%- endblock %}>
-    {%- if settings.GTM_ACCOUNT_CODE %}
-      <noscript>
-        <iframe src="//www.googletagmanager.com/ns.html?id={{ settings. GTM_ACCOUNT_CODE }}"
-                height="0" width="0" style="display:none;visibility:hidden"></iframe>
-      </noscript>
-    {%- endif %}
 
     {% include "careers/includes/header.html" %}
 

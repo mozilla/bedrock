@@ -31,7 +31,7 @@ failure_detected=false
 
 python manage.py update_product_details_files || failure_detected=true
 python manage.py update_security_advisories --quiet || failure_detected=true
-#python manage.py update_wordpress --quiet || failure_detected=true
+python manage.py update_wordpress --quiet || failure_detected=true
 python manage.py update_release_notes --quiet || failure_detected=true
 python manage.py update_content_cards --quiet || failure_detected=true
 python manage.py update_contentful --quiet || failure_detected=true

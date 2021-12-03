@@ -14,6 +14,9 @@ venv
 media/js/libs/**/
 media/js/ie/libs/**/
 
+# Ignore careers JS files for now
+media/js/careers/*
+
 # Ignore file types:
 # https://github.com/prettier/prettier/issues/6356 blocks formating scss/css.
 *.html

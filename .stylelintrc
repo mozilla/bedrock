@@ -36,5 +36,8 @@
             }
         ]
     },
-    "ignoreFiles": ["media/css/libs/**/*"]
+    "ignoreFiles": [
+        "media/css/libs/**/*",
+        "media/css/careers/*"
+    ]
 }

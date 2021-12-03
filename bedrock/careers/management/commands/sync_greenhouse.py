@@ -10,6 +10,7 @@ import requests
 from html5lib.filters.base import Filter
 
 from bedrock.careers.models import Position
+from bedrock.utils.management.decorators import alert_sentry_on_exception
 
 GREENHOUSE_URL = "https://api.greenhouse.io/v1/boards/{}/jobs/?content=true"
 # to see the raw data for debugging use this command:
@@ -72,6 +73,7 @@ class HeaderConverterFilter(Filter):
 cleaner = bleach.sanitizer.Cleaner(tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRS, styles=ALLOWED_STYLES, strip=True, filters=[HeaderConverterFilter])
 
 
+@alert_sentry_on_exception
 class Command(BaseCommand):
     args = "(no args)"
     help = "Sync jobs from Greenhouse"

@@ -13,7 +13,7 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 # copy supporting files and media
-COPY .eslintrc.js .eslintignore .stylelintrc .prettierignore .prettierrc.json webpack.config.js webpack.static.config.js ./
+COPY .eslintrc.js .eslintignore .stylelintrc .prettierrc.json .prettierignore webpack.config.js webpack.static.config.js ./
 COPY ./media ./media
 COPY ./tests/unit ./tests/unit
 
