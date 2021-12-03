@@ -1562,7 +1562,7 @@
       "files": [
         "js/externalpages/pocket/mobile-nav.es6.js"
       ],
-      "name": "pocket-about"
+      "name": "pocket-nav"
     },
     {
       "files": [
