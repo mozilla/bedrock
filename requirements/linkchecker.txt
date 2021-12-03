@@ -1,5 +1,0 @@
-linkchecker==9.3 \
-    --hash=sha256:ee0aa60de440fdcf8587ddebf1f691bc777a32d8d4f119beed63f405dc56176d
-requests==2.20.0 \
-    --hash=sha256:99dcfdaaeb17caf6e526f32b6a7b780461512ab3f1d992187801694cba42770c \
-    --hash=sha256:a84b8c9ab6239b578f22d1c21d51b696dcfe004032bb80ea832398d6909d7279
