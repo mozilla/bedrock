@@ -73,21 +73,14 @@ $easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
         }
 
         .mobile-nav-close-btn {
-            background-color: transparent;
+            @include image-replaced;
+            background: url('#{$icon-path}/back-btn.svg') no-repeat transparent;
             border: none;
             color: $color-text-primary;
-            height: 48px;
+            height: $spacing-lg;
+            margin: 0 $spacing-sm;
             outline: none;
-            width: 48px;
-
-            svg {
-                height: 24px;
-                width: 24px;
-            }
-
-            span {
-                @include visually-hidden;
-            }
+            width: $spacing-lg;
         }
     }
 }
@@ -123,8 +116,8 @@ $easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
             &::before {
                 background-repeat: no-repeat;
                 content: '';
-                height: 24px;
-                width: 36px;
+                height: $spacing-lg;
+                width: $spacing-xl;
             }
 
             &.home {
