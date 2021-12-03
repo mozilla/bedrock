@@ -12,7 +12,7 @@ from bedrock.mozorg.tests import TestCase
 REQUESTS = "bedrock.careers.management.commands.sync_greenhouse.requests"
 
 
-@override_settings(GREENHOUSE_BOARD_TOKEN="mozilla")
+@override_settings(GREENHOUSE_BOARD="mozilla")
 class SyncGreenhouseTests(TestCase):
     def test_job_fetch(self):
         jobs_response = {
