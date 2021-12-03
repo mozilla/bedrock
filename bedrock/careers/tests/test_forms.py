@@ -9,10 +9,11 @@ class PositionFilterFormTests(TestCase):
         The choices for the position_type field should be dynamically
         generated from the available values in the database.
         """
-        PositionFactory.create(position_type="Foo")
-        PositionFactory.create(position_type="Bar")
-        PositionFactory.create(position_type="Baz")
-        PositionFactory.create(position_type="Foo")
+        PositionFactory(position_type="Foo")
+        PositionFactory(position_type="Bar")
+        PositionFactory(position_type="Baz")
+        PositionFactory(position_type="Foo")
+        PositionFactory(position_type="")
 
         form = PositionFilterForm()
         self.assertEqual(
@@ -22,5 +23,41 @@ class PositionFilterFormTests(TestCase):
                 ("Bar", "Bar"),  # Alphabetical order
                 ("Baz", "Baz"),
                 ("Foo", "Foo"),
+            ],
+        )
+
+    def test_locations(self):
+        """
+        Test locations, and that "All Offices" and an errant empty value is not
+        included, and the choices are sorted.
+        """
+        PositionFactory(location="All Offices,,Mountain View,Canada")
+
+        form = PositionFilterForm()
+        self.assertEqual(
+            form.fields["location"].choices,
+            [
+                ("", "All Locations"),
+                ("Canada", "Canada"),
+                ("Mountain View", "Mountain View"),
+            ],
+        )
+
+    def test_categories(self):
+        """
+        Test categories, and an errant empty value is not included, and the
+        choices are sorted.
+        """
+        PositionFactory(department="Marketing")
+        PositionFactory(department="")
+        PositionFactory(department="IT")
+
+        form = PositionFilterForm()
+        self.assertEqual(
+            form.fields["team"].choices,
+            [
+                ("", "All Teams"),
+                ("IT", "IT"),
+                ("Marketing", "Marketing"),
             ],
         )

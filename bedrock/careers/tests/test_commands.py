@@ -58,8 +58,8 @@ class SyncGreenhouseTests(TestCase):
         self.assertEqual(position.description, "<h4>foo</h4> bar")
 
     def test_job_removal(self):
-        PositionFactory.create(job_id="xxx")
-        PositionFactory.create(job_id="yyy")
+        PositionFactory(job_id="xxx")
+        PositionFactory(job_id="yyy")
         jobs_response = {
             "jobs": [
                 {
@@ -96,3 +96,43 @@ class SyncGreenhouseTests(TestCase):
         self.assertEqual(Position.objects.all().count(), 1)
         self.assertEqual(Position.objects.all()[0].position_type, "")
         self.assertEqual(Position.objects.all()[0].description, "")
+
+    def test_position_is_mofo(self):
+        jobs_response = {
+            "jobs": [
+                {
+                    "id": "xxx",
+                    "title": "Web Fox",
+                    "departments": [{"name": "Mozilla Foundation"}],
+                    "absolute_url": "http://example.com/foo",
+                    "updated_at": "2016-07-25T14:45:57-04:00",
+                },
+            ]
+        }
+        with patch(REQUESTS) as requests:
+            requests.get().json.return_value = jobs_response
+            call_command("sync_greenhouse", stdout=StringIO())
+        self.assertEqual(Position.objects.all().count(), 1)
+        self.assertEqual(Position.objects.all()[0].is_mofo, True)
+
+    def test_repeat_job_ids(self):
+        jobs_response = {
+            "jobs": [
+                {
+                    "id": "xxx",
+                    "title": "Web Fox",
+                    "absolute_url": "http://example.com/foo",
+                    "updated_at": "2016-07-25T14:45:57-04:00",
+                },
+                {
+                    "id": "xxx",
+                    "title": "Web Fox",
+                    "absolute_url": "http://example.com/foo",
+                    "updated_at": "2016-07-25T14:45:57-04:00",
+                },
+            ]
+        }
+        with patch(REQUESTS) as requests:
+            requests.get().json.return_value = jobs_response
+            call_command("sync_greenhouse", stdout=StringIO())
+        self.assertEqual(Position.objects.all().count(), 1)

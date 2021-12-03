@@ -10,7 +10,7 @@ class PositionFactory(factory.django.DjangoModelFactory):
     job_id = factory.Faker("pyint")
     title = factory.Faker("job")
     department = factory.Faker("random_element", elements=["Data Analytics", "Engineering"])
-    location = factory.Faker("random_element", elements=["Mountain View", "San Francisco", "Remote", "Toronto"])
+    location = factory.Faker("random_element", elements=["Mountain View", "San Francisco", "Toronto"])
     description = factory.Faker("sentence")
     source = "gh"
     position_type = factory.Faker("random_element", elements=["Full-Time", "Part-Time", "Contractor", "Intern"])

@@ -9,6 +9,7 @@ class FeedTests(TestCase):
     def test_career_feed(self):
         job_id_1 = "oflWVfwb"
         job_id_2 = "oFlWVfwB"
+        job_id_3 = "oFlWVfwc"
         job_1 = PositionFactory(job_id=job_id_1)
         job_2 = PositionFactory(job_id=job_id_2)
 
@@ -25,7 +26,11 @@ class FeedTests(TestCase):
             self.assertIn(job.title, content)
             self.assertIn(job.description, content)
             self.assertIn(job.department, content)
-            print(job.updated_at)
-            print(content)
             self.assertIn(job.updated_at.strftime("%a, %d %b %Y %H:%M:%S %z"), content)
             self.assertIn(job.get_absolute_url(), content)
+            self.assertNotIn("Worldwide", content)
+
+        PositionFactory(job_id=job_id_3, location="Remote")
+        response = self.client.get(url, follow=True)
+        content = response.content.decode("utf-8")
+        self.assertIn("Worldwide", content)

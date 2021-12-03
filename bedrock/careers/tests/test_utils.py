@@ -5,7 +5,7 @@ from bedrock.mozorg.tests import TestCase
 
 class GeneratePositionMetaDescriptionTests(TestCase):
     def setUp(self):
-        self.position = PositionFactory.create(title="Bowler", position_type="Full time", location="Los Angeles,Ralphs")
+        self.position = PositionFactory(title="Bowler", position_type="Full time", location="Los Angeles,Ralphs")
 
     def test_position_type_consonant_beginning(self):
         meta = generate_position_meta_description(self.position)
