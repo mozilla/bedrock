@@ -5,6 +5,8 @@
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '../utils/variables';
 
+$icon-path: '/media/img/externalpages/pocket/mobile-nav/';
+
 // variables from pocket
 $easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
 $easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
@@ -118,6 +120,113 @@ $easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
             transition: background-color 100ms ease-out;
             width: 100%;
 
+            &::before {
+                background-repeat: no-repeat;
+                content: '';
+                height: 24px;
+                width: 36px;
+            }
+
+            &.home {
+                &::before {
+                    background-image: url('#{$icon-path}home-icon.svg');
+                }
+
+                &:hover::before {
+                    background-image: url('#{$icon-path}home-icon-active.svg');
+                }
+            }
+
+            &.my-list {
+                &::before {
+                    background-image: url('#{$icon-path}my-list-icon.svg');
+                }
+
+                &:hover::before {
+                    background-image: url('#{$icon-path}my-list-icon-active.svg');
+                }
+            }
+
+            &.discover {
+                &::before {
+                    background-image: url('#{$icon-path}discover-icon.svg');
+                }
+
+                &:hover::before {
+                    background-image: url('#{$icon-path}discover-icon-active.svg');
+                }
+            }
+
+            &.collections {
+                &::before {
+                    background-image: url('#{$icon-path}collections-icon.svg');
+                }
+
+                &:hover::before {
+                    background-image: url('#{$icon-path}collections-icon-active.svg');
+                }
+            }
+
+            &.archive {
+                &::before {
+                    background-image: url('#{$icon-path}archive-icon.svg');
+                }
+
+                &:hover::before {
+                    background-image: url('#{$icon-path}archive-icon-active.svg');
+                }
+            }
+
+            &.favorites {
+                &::before {
+                    background-image: url('#{$icon-path}favorites-icon.svg');
+                }
+
+                &:hover::before {
+                    background-image: url('#{$icon-path}favorites-icon-active.svg');
+                }
+            }
+
+            &.highlights {
+                &::before {
+                    background-image: url('#{$icon-path}highlights-icon.svg');
+                }
+
+                &:hover::before {
+                    background-image: url('#{$icon-path}highlights-icon-active.svg');
+                }
+            }
+
+            &.articles {
+                &::before {
+                    background-image: url('#{$icon-path}articles-icon.svg');
+                }
+
+                &:hover::before {
+                    background-image: url('#{$icon-path}articles-icon-active.svg');
+                }
+            }
+
+            &.videos {
+                &::before {
+                    background-image: url('#{$icon-path}videos-icon.svg');
+                }
+
+                &:hover::before {
+                    background-image: url('#{$icon-path}videos-icon-active.svg');
+                }
+            }
+
+            &.tags {
+                &::before {
+                    background-image: url('#{$icon-path}tags-icon.svg');
+                }
+
+                &:hover::before {
+                    background-image: url('#{$icon-path}tags-icon-active.svg');
+                }
+            }
+
             &:focus,
             &:focus-within {
                 border: 1px solid $color-action-primary;
@@ -131,13 +240,6 @@ $easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
             &.selected {
                 background-color: $color-nav-current;
                 color: $color-action-primary;
-            }
-
-            svg {
-                height: 24px;
-                margin-right: 12px;
-                margin-top: 1px;
-                width: 24px;
             }
 
             .beta {
