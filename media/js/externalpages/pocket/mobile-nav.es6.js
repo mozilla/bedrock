@@ -8,13 +8,10 @@ const navOpenBtn = document.querySelector('.global-nav-mobile-menu-btn');
 const mobileNavWrapper = document.querySelector('.mobile-nav-wrapper');
 const mobileNav = document.querySelector('.mobile-nav');
 const navCloseBtn = document.querySelector('.mobile-nav-close-btn');
+const contentWrapper = document.querySelector('body');
 
 const TAB = 9;
 const ESC = 27;
-
-function noScroll() {
-    window.scrollTo(0, 0);
-}
 
 function detectClickOutside(event) {
     if (!mobileNav.contains(event.target) && event.target !== navOpenBtn) {
@@ -24,8 +21,8 @@ function detectClickOutside(event) {
 
 function handleMenuOpen() {
     mobileNavWrapper.classList.add('active');
+    contentWrapper.classList.add('mobile-nav-open');
     document.addEventListener('click', detectClickOutside);
-    window.addEventListener('scroll', noScroll);
     window.addEventListener('keydown', handleKeyDown);
 
     // move focus to close button when modal is opened, need to use setTimeout to get the animation working correctly
@@ -40,12 +37,12 @@ function handleMenuClose() {
     mobileNav.classList.remove('active');
     mobileNavWrapper.style.opacity = 0;
     document.removeEventListener('click', detectClickOutside);
-    window.removeEventListener('scroll', noScroll);
     window.removeEventListener('keydown', handleKeyDown);
 
     // move focus to close button when modal is closed need to use setTimeout to get the animation working correctly
     setTimeout(function () {
         mobileNavWrapper.classList.remove('active');
+        contentWrapper.classList.remove('mobile-nav-open');
         navCloseBtn.focus();
     }, 250);
 }

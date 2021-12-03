@@ -280,6 +280,10 @@ $image-path: '/media/img/externalpages/pocket';
         height: 100%;
     }
 
+    span {
+        @include visually-hidden;
+    }
+
     @media #{$mq-md} {
         display: none;
         margin-top: -$spacing-xs;

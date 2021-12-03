@@ -9,6 +9,11 @@
 $easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
 $easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
 
+// this class will be added to the body to disable scroll while the nav is open
+.mobile-nav-open {
+    overflow: hidden;
+}
+
 .mobile-nav-wrapper {
     background: rgba(26, 26, 26, 0.4) none repeat scroll 0 0;
     bottom: 0;
@@ -37,6 +42,7 @@ $easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
     left: 0;
     max-height: 100%;
     max-width: 256px;
+    overflow-y: scroll;
     position: absolute;
     right: auto;
     top: 0;
