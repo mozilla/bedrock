@@ -40,6 +40,7 @@ python manage.py update_newsletter_data --quiet || failure_detected=true
 python manage.py update_www_config --quiet || failure_detected=true
 python manage.py update_legal_docs --quiet || failure_detected=true
 python manage.py update_sitemaps_data --quiet || failure_detected=true
+python manage.py sync_greenhouse --quiet || failure_detected=true
 
 if [[ "$AUTH" == true ]]; then
     # jobs that require some auth. don't run these during build.

@@ -78,8 +78,17 @@ class Command(BaseCommand):
     args = "(no args)"
     help = "Sync jobs from Greenhouse"
 
+    def add_arguments(self, parser):
+        parser.add_argument(
+            "--quiet",
+            action="store_true",
+            dest="quiet",
+            default=False,
+            help="Do not print output to stdout.",
+        )
+
     @transaction.atomic
-    def handle(self, *args, **options):
+    def handle(self, quiet, *args, **options):
         jobs_added = 0
         jobs_updated = 0
         jobs_removed = 0
@@ -162,6 +171,5 @@ class Command(BaseCommand):
         jobs_removed = positions_to_be_removed.count()
         positions_to_be_removed.delete()
 
-        self.stdout.write(
-            "Jobs added: {added} updated: {updated} removed: {removed}".format(added=jobs_added, updated=jobs_updated, removed=jobs_removed)
-        )
+        if not quiet:
+            self.stdout.write(f"Jobs added: {jobs_added} updated: {jobs_updated} removed: {jobs_removed}")
