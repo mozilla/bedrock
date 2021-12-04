@@ -49,7 +49,7 @@ $image-path: '/media/img/externalpages/pocket';
         }
     }
 
-    @media ($mq-md) {
+    @media #{$mq-md} {
         padding: 0 40px;
 
         .about-section-text-wrapper {
@@ -83,7 +83,7 @@ $image-path: '/media/img/externalpages/pocket';
             font-size: 14px;
         }
 
-        @media ($mq-md) {
+        @media #{$mq-md} {
             padding: 104px 40px 496px;
 
             &::before {
@@ -98,7 +98,7 @@ $image-path: '/media/img/externalpages/pocket';
             }
         }
 
-        @media ($mq-lg) {
+        @media #{$mq-lg} {
             padding: 128px 40px 352px;
 
             &::before {
@@ -128,7 +128,7 @@ $image-path: '/media/img/externalpages/pocket';
             width: 1150px;
         }
 
-        @media ($mq-md) {
+        @media #{$mq-md} {
             margin-top: 80px;
             margin-bottom: 490px;
 
@@ -141,7 +141,7 @@ $image-path: '/media/img/externalpages/pocket';
             }
         }
 
-        @media ($mq-lg) {
+        @media #{$mq-lg} {
             margin-top: 175px;
             margin-bottom: 608px;
 
@@ -180,7 +180,7 @@ $image-path: '/media/img/externalpages/pocket';
             }
         }
 
-        @media ($mq-md) {
+        @media #{$mq-md} {
             display: flex;
             justify-content: flex-end;
             padding-bottom: 320px;
@@ -195,7 +195,7 @@ $image-path: '/media/img/externalpages/pocket';
             }
         }
 
-        @media ($mq-lg) {
+        @media #{$mq-lg} {
             padding-bottom: 544px;
 
             &::before {
@@ -227,7 +227,7 @@ $image-path: '/media/img/externalpages/pocket';
             }
         }
 
-        @media ($mq-md) {
+        @media #{$mq-md} {
             padding-bottom: 272px;
 
             &::before {
@@ -240,7 +240,7 @@ $image-path: '/media/img/externalpages/pocket';
             }
         }
 
-        @media ($mq-lg) {
+        @media #{$mq-lg} {
             padding-bottom: 384px;
 
             &::before {
@@ -262,7 +262,7 @@ $image-path: '/media/img/externalpages/pocket';
             z-index: -1;
         }
 
-        @media ($mq-md) {
+        @media #{$mq-md} {
             display: flex;
             justify-content: flex-end;
             padding-bottom: 520px;
@@ -276,7 +276,7 @@ $image-path: '/media/img/externalpages/pocket';
             }
         }
 
-        @media ($mq-lg) {
+        @media #{$mq-lg} {
             padding-bottom: 672px;
 
             &::before {
@@ -327,7 +327,7 @@ $image-path: '/media/img/externalpages/pocket';
             }
         }
 
-        @media ($mq-md) {
+        @media #{$mq-md} {
             margin-bottom: 64px;
         }
     }
