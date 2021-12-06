@@ -29,6 +29,12 @@
 
     a {
         color: $color-text-secondary;
+
+        &:hover,
+        &:active,
+        &:focus {
+            color: $color-action-primary;
+        }
     }
 
     &.address {
