@@ -987,28 +987,28 @@
     {
       "files": [
         "css/externalpages/pocket/style.scss",
-        "css/externalpages/pocket/components/_platforms.scss"
+        "css/externalpages/pocket/components/platforms.scss"
       ],
       "name": "pocket-platforms"
     },
     {
       "files": [
         "css/externalpages/pocket/style.scss",
-        "css/externalpages/pocket/components/_about.scss"
+        "css/externalpages/pocket/components/about.scss"
       ],
       "name": "pocket-about"
     },
     {
       "files": [
         "css/externalpages/pocket/style.scss",
-        "css/externalpages/pocket/components/_add.scss"
+        "css/externalpages/pocket/components/add.scss"
       ],
       "name": "pocket-add"
     }, 
     {
       "files": [
         "css/externalpages/pocket/style.scss",
-        "css/externalpages/pocket/components/_contact-info.scss"
+        "css/externalpages/pocket/components/contact-info.scss"
       ],
       "name": "pocket-contact-info"
     }

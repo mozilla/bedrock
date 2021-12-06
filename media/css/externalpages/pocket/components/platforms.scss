@@ -3,8 +3,8 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 @import '../utils/variables';
-@import './platform-footer';
-@import './platform-nav';
+@import '../includes/platform-footer';
+@import '../includes/platform-nav';
 
 $image-path: '/media/img/externalpages/pocket';
 
