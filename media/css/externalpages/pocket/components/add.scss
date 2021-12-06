@@ -13,6 +13,7 @@ $image-path: '/media/img/externalpages/pocket';
 @import '~@mozilla-protocol/core/protocol/css/components/button';
 
 .add-page {
+
     .add-header {
         background-color: $color-background-grey;
         padding: 5px;
@@ -41,6 +42,7 @@ $image-path: '/media/img/externalpages/pocket';
 }
 
 .add-header {
+
     .mzp-c-button {
         background-color: $color-button-red;
         border: 2px solid $color-button-red;
@@ -62,14 +64,14 @@ $image-path: '/media/img/externalpages/pocket';
     padding: $spacing100;
     width: 100%;
 
-    &__context {
+    .device-context {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         justify-content: space-between;
         width: 100%;
 
-        &-image {
+        .devices-image {
             width: 100%;
 
             img {
@@ -79,7 +81,7 @@ $image-path: '/media/img/externalpages/pocket';
             }
         }
 
-        &-stores {
+        .devices-stores {
             display: flex;
             align-items: flex-start;
             flex-direction: column;
@@ -95,6 +97,10 @@ $image-path: '/media/img/externalpages/pocket';
                 }
             }
 
+             .device-list {
+                margin-top: 0;
+            }
+
             .app-store-badge {
                 height: 65px;
                 width: 190px;
@@ -104,10 +110,6 @@ $image-path: '/media/img/externalpages/pocket';
                     width: 100%;
                     height: auto;
                 }
-            }
-
-            .device-list {
-                margin-top: 0;
             }
         }
     }
