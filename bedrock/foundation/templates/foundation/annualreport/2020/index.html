@@ -55,12 +55,11 @@
       us or to <a href="https://donate.mozilla.org/">make a donation</a> to support the work of internet health leaders around the world.
     </p>
 
-    <!-- <div class="mzp-c-video ">
-        <iframe title="vimeo-player" src="https://player.vimeo.com/video/640138682?h=96c4ede4ba" width="640" height="360" frameborder="0" allowfullscreen>
+    <div class="mzp-c-video ">
+        <iframe title="vimeo-player" src="https://www.youtube.com/embed/ISYtFzMXVbM" width="640" height="360" frameborder="0" allowfullscreen>
           <p>watch the video</p>
         </iframe>
-    </div> -->
-
+    </div>
   </div>
 
   <!-- Leadership Cards -->
@@ -210,29 +209,28 @@
       <div class="c-section-intro-bg">
         <div class="mzp-l-content">
           <div class="c-section-intro">
-            <h2><span class="highlight green">Section 1</span></h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores repudiandae dolore, velit error tempora reprehenderit voluptatum dolorem iusto odio laboriosam unde modi maiores dolor asperiores quia et rem optio accusantium. Soluta aspernatur aliquid, cupiditate qui amet assumenda repudiandae reiciendis, voluptatibus iure suscipit rem esse dolorem mollitia. Quos excepturi debitis numquam.</p>
+            <h2><span class="highlight green">Building a more joyful internet</span></h2>
+            <p>We know there are a lot of issues facing us on the internet today. We also know and believe that the internet is a source of joy, connection and delight. As creators, technologists and internet advocates, this is the internet we want more people to encounter and have access to, and this is the internet we want to help build.</p>
+            <p>
+              This year we thought about how our products can connect people to the joy of the internet. Whether that’s helping people get to where they want to go faster, with less clicks, delighting them with new ways to express who they are, or surfacing good quality content we know they will love, we delivered on our hope for a more joyful internet by making people’s online experience easier and more delightful.
+            </p>
            </div>
         </div>
       </div>
 
-
+      <!-- First section cards -->
       <div class="has-modal" data-modal-id="first-section-card-1">
         {% call split(
           image_url='img/foundation/annualreport/2019/victory-ring.jpg',
           include_highres_image=True,
           block_class='mzp-l-split-body-narrow mzp-t-split-nospace'
          ) %}
-           <span>Nice tiny headline</span>
-           <h2>Lorem ipsum dolor sit.</h2>
-           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum odio sunt iste, nobis accusamus tenetur.</p>
-           <button type="button" class="mzp-c-button mzp-t-secondary">
-             This button does something
-           </button>
+           <span>An (even more) elegant Firefox for desktop</span>
+           <h2>Firefox desktop redesign</h2>
           {% endcall %}
       </div>
 
-        <div class="mzp-l-card-half mzp-l-content">
+        <div class="mzp-l-card-third mzp-l-content">
             {{ card(
               title='This is a title',
               ga_title='lThis is a title',
@@ -253,6 +251,17 @@
               attributes='data-modal-id="first-section-card-3"',
               aspect_ratio='mzp-has-aspect-16-9',
               link_url='first-section-card-3',
+              image_url='img/foundation/annualreport/2019/political-ads-streaming-platforms.jpg',
+              )}}
+              {{ card(
+              title='This is a title',
+              ga_title='lThis is a title',
+              tag_label='Steering Committee',
+              desc='This is a description of the card',
+              class='has-modal',
+              attributes='data-modal-id="first-section-card-4"',
+              aspect_ratio='mzp-has-aspect-16-9',
+              link_url='first-section-card-4',
               image_url='img/foundation/annualreport/2019/political-ads-streaming-platforms.jpg',
               )}}
       </div>

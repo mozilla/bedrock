@@ -461,11 +461,12 @@ $image-path: '/media/protocol/img';
     margin: 0 auto;
     padding-top: $layout-lg;
     max-width: $content-md;
-    text-align: center;
+    text-align: left;
 
     h2 {
         @include text-title-lg;
         font-weight: 100;
+        text-align: center;
     }
 }
 
