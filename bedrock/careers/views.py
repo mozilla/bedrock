@@ -5,9 +5,10 @@ from bedrock.careers.forms import PositionFilterForm
 from bedrock.careers.models import Position
 from bedrock.careers.utils import generate_position_meta_description
 from bedrock.wordpress.models import BlogPost
+from lib.l10n_utils import LangFilesMixin
 
 
-class HomeView(TemplateView):
+class HomeView(LangFilesMixin, TemplateView):
     template_name = "careers/home.html"
 
     def get_context_data(self, **kwargs):
@@ -25,15 +26,15 @@ class HomeView(TemplateView):
         return context
 
 
-class InternshipsView(TemplateView):
+class InternshipsView(LangFilesMixin, TemplateView):
     template_name = "careers/internships.html"
 
 
-class BenefitsView(TemplateView):
+class BenefitsView(LangFilesMixin, TemplateView):
     template_name = "careers/benefits.html"
 
 
-class PositionListView(ListView):
+class PositionListView(LangFilesMixin, ListView):
     model = Position
     template_name = "careers/listings.html"
     context_object_name = "positions"
@@ -44,7 +45,7 @@ class PositionListView(ListView):
         return context
 
 
-class PositionDetailView(DetailView):
+class PositionDetailView(LangFilesMixin, DetailView):
     model = Position
     context_object_name = "position"
     template_name = "careers/position.html"

@@ -13,7 +13,7 @@ class PositionTests(TestCase):
     def test_context(self):
         response = self.client.get(reverse("careers.listings"), follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(type(response.context_data["form"]), type(PositionFilterForm()))
+        self.assertEqual(type(response.context["form"]), type(PositionFilterForm()))
 
     def test_position_case_sensitive_match(self):
         """
@@ -28,12 +28,12 @@ class PositionTests(TestCase):
         url = reverse("careers.position", kwargs={"job_id": job_id_1, "source": "gh"})
         response = self.client.get(url, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context_data["position"].job_id, job_id_1)
+        self.assertEqual(response.context["position"].job_id, job_id_1)
 
         url = reverse("careers.position", kwargs={"job_id": job_id_2, "source": "gh"})
         response = self.client.get(url, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context_data["position"].job_id, job_id_2)
+        self.assertEqual(response.context["position"].job_id, job_id_2)
 
 
 class BlogTests(TestCase):
@@ -58,9 +58,9 @@ class BlogTests(TestCase):
 
         response = self.client.get(reverse("careers.home"), follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context_data["featured_post"], None)
+        self.assertEqual(response.context["featured_post"], None)
         # Coerse to a list, not a `QuerySet`.
-        self.assertEqual(list(response.context_data["recent_posts"]), [recent_today, recent_older1, recent_older2])
+        self.assertEqual(list(response.context["recent_posts"]), [recent_today, recent_older1, recent_older2])
 
     def test_blog_posts_featured(self):
         recent_today, recent_older1, recent_older2 = self._populate_blog_posts()
@@ -72,6 +72,6 @@ class BlogTests(TestCase):
 
         response = self.client.get(reverse("careers.home"), follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context_data["featured_post"], featured)
+        self.assertEqual(response.context["featured_post"], featured)
         # Coerse to a list, not a `QuerySet`.
-        self.assertEqual(list(response.context_data["recent_posts"]), [recent_today, recent_older1])
+        self.assertEqual(list(response.context["recent_posts"]), [recent_today, recent_older1])
