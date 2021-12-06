@@ -219,10 +219,9 @@
       </div>
 
       <!-- First section cards -->
-      <div class="has-modal" data-modal-id="first-section-card-1">
+      <div class="has-modal" data-modal-id="firefox-desktop-redesign">
         {% call split(
-          image_url='img/foundation/annualreport/2019/victory-ring.jpg',
-          include_highres_image=True,
+          image_url='img/foundation/annualreport/2020/firefox-header-logo.png',
           block_class='mzp-l-split-body-narrow mzp-t-split-nospace'
          ) %}
            <span>An (even more) elegant Firefox for desktop</span>
@@ -240,7 +239,7 @@
               attributes='data-modal-id="first-section-card-2"',
               aspect_ratio='mzp-has-aspect-16-9',
               link_url='first-section-card-2',
-              image_url='img/foundation/annualreport/2019/misinfo-mondays.jpg',
+              image_url='img/foundation/annualreport/2020/firefox-mobile-redesign-header.png',
               )}}
             {{ card(
               title='This is a title',
@@ -262,7 +261,7 @@
               attributes='data-modal-id="first-section-card-4"',
               aspect_ratio='mzp-has-aspect-16-9',
               link_url='first-section-card-4',
-              image_url='img/foundation/annualreport/2019/political-ads-streaming-platforms.jpg',
+              image_url='img/foundation/annualreport/2020/youtube-regrets.png',
               )}}
       </div>
     </section>
@@ -372,12 +371,13 @@
   <!-- First section modal content -->
   <div class="mzp-l-content js-modal-content">
     <!-- First article -->
-    <article data-modal-parent="first-section-card-1" id="first-section-card-1">
+    <article data-modal-parent="firefox-desktop-redesign" id="firefox-desktop-redesign" class="mzp-c-card-feature-content-container">
+      <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
       <h2>
-       <span class="highlight green">First section card 1</span>
+       <span class="highlight green">Firefox desktop redesign</span>
      </h2>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id, expedita. Harum reprehenderit at consequuntur fuga explicabo facilis aliquam natus. Quos accusamus vitae dolorum maxime veniam iure ad aliquid, suscipit quia ipsam magni aliquam odio, mollitia blanditiis quidem deserunt fugiat eos, veritatis at consectetur laboriosam iste hic necessitatibus! Maiores, eius iure.</p>
-      <a href="#">here is a link</a>
+      <p>Firefox desktop received a major makeover in 2021. Our goal? To get you where you’re going online — fast, safe, and distraction-free. The makeover entailed a clean, new design; streamlined toolbar and menus; expanded privacy protections, and lots more.</p>
+      <a href="https://blog.mozilla.org/en/mozilla/news/modern-clean-new-firefox-clears-the-way-to-all-you-need-online/" class="mzp-c-button mzp-t-secondary">Learn more</a>
     </article>
 
     <!-- Second article -->
