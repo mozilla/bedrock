@@ -21,7 +21,7 @@ function detectClickOutside(event) {
 
 function handleMenuOpen() {
     mobileNavWrapper.classList.add('active');
-    mobileNav.ariaExpanded = 'true';
+    mobileNav.setAttribute('aria-expanded', true);
     contentWrapper.classList.add('mobile-nav-open');
     document.addEventListener('click', detectClickOutside);
     window.addEventListener('keydown', handleKeyDown);
@@ -36,7 +36,7 @@ function handleMenuOpen() {
 
 function handleMenuClose() {
     mobileNav.classList.remove('active');
-    mobileNav.ariaExpanded = 'false';
+    mobileNav.setAttribute('aria-expanded', false);
     mobileNavWrapper.style.opacity = 0;
     document.removeEventListener('click', detectClickOutside);
     window.removeEventListener('keydown', handleKeyDown);
