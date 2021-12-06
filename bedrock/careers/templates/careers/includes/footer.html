@@ -3,7 +3,7 @@
     <nav class="mzp-c-footer-primary">
       <div class="mzp-c-foot-sections">
         <div class="mzp-c-footer-section mzp-c-footer-primary-logo">
-          <a href="https://www.mozilla.org/">Mozilla</a>
+          <a href="{{ url('mozorg.home') }}">Mozilla</a>
         </div>
         <div class="mzp-c-footer-section">
           <a target="_blank" href='https://www.glassdoor.com/Overview/Working-at-Mozilla-EI_IE19129.11,18.htm'>
@@ -17,7 +17,7 @@
             Company
           </h5>
           <ul class="mzp-c-footer-list">
-            <li><a href="https://www.mozilla.org/about/">About</a></li>
+            <li><a href="{{ url('mozorg.about.index') }}">About</a></li>
             <li><a href="https://blog.mozilla.org/press/">Press Center</a>
           </ul>
         </section>
@@ -26,8 +26,8 @@
             Resources
           </h5>
           <ul class="mzp-c-footer-list">
-            <li><a href="https://www.mozilla.org/privacy/">Privacy</a></li>
-            <li><a href="https://www.mozilla.org/contact/">Contact</a></li>
+            <li><a href="{{ url('privacy') }}">Privacy</a></li>
+            <li><a href="{{ url('mozorg.contact.contact-landing') }}">Contact</a></li>
           </ul>
         </section>
       </div>
@@ -41,7 +41,7 @@
         <p class="mzp-c-footer-license">
             Visit Mozilla Corporation’s not-for-profit parent, the <a href="https://foundation.mozilla.org">Mozilla Foundation</a>.
             Portions of this content are ©1998–{{ thisyear() }} by individual mozilla.org
-            contributors. Content available under a <a rel="license" href="https://www.mozilla.org/foundation/licensing/website-content/">Creative Commons license</a>.
+            contributors. Content available under a <a rel="license" href="{{ url('foundation.licensing.website-content') }}">Creative Commons license</a>.
         </p>
       </div>
     </nav>

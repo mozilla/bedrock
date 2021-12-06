@@ -44,13 +44,8 @@
       </div>
 
       <p><em>
-      {{ _('This Mozilla Space is not a support center.') }}
-      {% trans link_sumo='https://support.mozilla.org/' %}
-        Need help with Firefox? <a href="{{ link_sumo }}">Get it on our support site</a>
-      {% endtrans %}
-      {% trans link_careers='https://careers.mozilla.org/listings/?location=Portland' %}
-      <br> <a href="{{ link_careers }}">View open positions at this location</a>
-      {% endtrans %}
+        This Mozilla Space is not a support center. Need help with Firefox? <a href="https://support.mozilla.org/">Get it on our support site</a>
+        <br> <a href="{{ url('careers.listings')|urlparams(location='Portland Office') }}">View open positions at this location</a>
       </em></p>
     </section>
   </div>
