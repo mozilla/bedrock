@@ -26,7 +26,7 @@
     {% endblock %}
 
     {# js #}
-    <script src="{{ static('js/base/dnt-helper.js') }}"></script>
+    {{ js_bundle('careers-dnt-helper') }}
     <script src="{{ static('js/careers/protocol-base.min.js') }}"></script>
     <script src="{{ static('js/careers/protocol-utils.min.js') }}"></script>
     <script src="{{ static('js/careers/protocol-supports.min.js') }}"></script>

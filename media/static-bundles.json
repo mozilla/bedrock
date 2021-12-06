@@ -1698,6 +1698,12 @@
         "js/products/vpn/resource-center-article.es6.js"
       ],
       "name": "vpn-resource-center-article"
+    },
+    {
+      "files": [
+        "js/base/dnt-helper.js"
+      ],
+      "name": "careers-dnt-helper"
     }
   ]
 }
