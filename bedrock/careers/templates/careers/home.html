@@ -135,7 +135,7 @@
       <a href="{{ post.link }}" class="mzp-c-card-block-link">
         <div class="mzp-c-card-media-wrapper">
           <div class="lazy-image-container">
-            <img src="{{ post.image|default(static('img/careers/blog-fallback.png'), true) }}" alt="{{ post.title }}" class="mzp-c-card-image" />
+            <img src="{{ post.get_featured_image_url('post-large')|default(static('img/careers/blog-fallback.png'), true) }}" alt="{{ post.title }}" class="mzp-c-card-image" />
           </div>
         </div>
         <div class="mzp-c-card-content">
