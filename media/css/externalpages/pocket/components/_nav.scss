@@ -3,6 +3,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 @import '../utils/variables';
+@import './mobile-nav';
 
 $image-path: '/media/img/externalpages/pocket';
 
@@ -24,14 +25,19 @@ $image-path: '/media/img/externalpages/pocket';
 
 .global-nav-mobile-menu-btn {
     display: block;
-    margin-left: calc($spacing075 * -1);
-    width: 48px;
-    height: 48px;
+    margin-left: -$spacing-sm;
+    width: 36px;
+    height: 36px;
     position: relative;
     line-height: 110%;
     border: none;
     border-radius: 4px;
     transition: all 0.15s ease-out;
+
+    &:focus,
+    &:focus-within {
+        border: 1px solid $color-action-primary;
+    }
 
     &.inline {
         background: none;
@@ -46,6 +52,7 @@ $image-path: '/media/img/externalpages/pocket';
         margin-bottom: -2px;
         display: inline-block;
         margin-top: -4px;
+        pointer-events: none;
         vertical-align: middle;
     }
 
@@ -57,9 +64,9 @@ $image-path: '/media/img/externalpages/pocket';
 .pocket-logo {
     display: inline-block;
     position: relative;
+    margin-left: 8px;
     margin-right: 0;
-    margin-left: calc($spacing075 * -1);
-    padding: $spacing050 $spacing050;
+    padding: 8px 0;
     line-height: 1;
 
     &:focus {
@@ -89,6 +96,10 @@ $image-path: '/media/img/externalpages/pocket';
         background-image: url('#{$image-path}/pocket-logo-light-mode.svg');
         width: 94px;
         height: 24px;
+
+        span {
+            @include visually-hidden;
+        }
     }
 
     &.logged-in .logo {
@@ -128,10 +139,10 @@ $image-path: '/media/img/externalpages/pocket';
     white-space: nowrap;
 
     .page-navigation-list {
+        @include text-body-md;
         margin: 0;
         padding: 0;
         list-style-type: none;
-        font-size: 16px;
         display: none;
 
         .page-navigation-list-item {
@@ -148,7 +159,7 @@ $image-path: '/media/img/externalpages/pocket';
 
 .page-navigation-list-item-link {
     font-weight: 500;
-    line-height: 24px;
+    line-height: $spacing-lg;
     text-decoration: none;
     padding: 20px;
     position: relative;
@@ -161,12 +172,12 @@ $image-path: '/media/img/externalpages/pocket';
             display: block;
             box-sizing: border-box;
             position: absolute;
-            left: $spacing025;
-            right: $spacing025;
-            top: $spacing050;
-            bottom: $spacing050;
+            left: $spacing-xs;
+            right: $spacing-xs;
+            top: $spacing-sm;
+            bottom: $spacing-sm;
             border: 2px solid $color-action-primary;
-            border-radius: 4px;
+            border-radius: $border-radius-sm;
         }
     }
 
@@ -189,7 +200,7 @@ $image-path: '/media/img/externalpages/pocket';
         bottom: 0;
         left: 10px;
         right: 10px;
-        height: 4px;
+        height: $spacing-xs;
         background-color: $color-action-primary;
     }
 
@@ -201,9 +212,7 @@ $image-path: '/media/img/externalpages/pocket';
 .nav-link {
     display: none;
     position: relative;
-    padding: $spacing075 $spacing050;
     vertical-align: middle;
-    line-height: 110%;
     font-weight: 500;
     text-decoration: none;
     color: $color-text-primary;
@@ -223,7 +232,7 @@ $image-path: '/media/img/externalpages/pocket';
             top: -2px;
             bottom: -2px;
             border: 2px solid $color-action-primary;
-            border-radius: 4px;
+            border-radius: $border-radius-sm;
         }
     }
 
@@ -237,11 +246,11 @@ $image-path: '/media/img/externalpages/pocket';
     }
 
     &.login-link {
-        margin-right: $spacing150;
+        margin-right: $spacing-lg;
     }
 
     &.signup-link {
-        border-radius: 4px;
+        border-radius: $border-radius-sm;
         padding: 12px;
         transition: all 0.15s ease-out;
         cursor: pointer;
@@ -264,14 +273,19 @@ $image-path: '/media/img/externalpages/pocket';
     line-height: 0;
     vertical-align: middle;
     margin-top: 0;
-    height: 24px;
+    height: $spacing-lg;
+    color: $color-text-primary;
 
     svg {
         height: 100%;
     }
 
+    span {
+        @include visually-hidden;
+    }
+
     @media #{$mq-md} {
-        margin-top: -4px;
         display: none;
+        margin-top: -$spacing-xs;
     }
 }
