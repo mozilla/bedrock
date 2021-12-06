@@ -357,6 +357,18 @@ $image-path: '/media/protocol/img';
 
 .mzp-c-modal-overlay-contents {
     padding-top: $spacing-2xl;
+    color: $color-black;
+
+    a:link,
+    a:visited {
+        color: $color-black;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: get-theme('link-color-hover');
+        }
+    }
 
     .mzp-c-card-feature-content-container {
         position: relative;
@@ -430,20 +442,6 @@ $image-path: '/media/protocol/img';
 .c-modal-button-next,
 .c-modal-button-prev {
     @extend .mzp-c-modal-button-close; /* stylelint-disable-line scss/at-extend-no-missing-placeholder */
-}
-
-.mzp-c-modal-overlay-contents {
-    color: $color-black;
-    a:link,
-    a:visited {
-        color: $color-black;
-
-        &:hover,
-        &:focus,
-        &:active {
-            color: get-theme('link-color-hover');
-        }
-    }
 }
 
 .c-section-intro-bg {
