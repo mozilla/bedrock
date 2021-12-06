@@ -38,8 +38,11 @@ $image-path: '/media/img/externalpages/pocket';
             background-color: $color-button-red;
             border: 0;
 
-            &:hover {
+            &:hover,
+            &:focus,
+            &:active {
                 color: $color-white;
+                text-decoration: underline !important;
             }
         }
     }
