@@ -8,13 +8,7 @@
 
 {% block banner_id %}fundraising-banner{% endblock %}
 
-{% block banner_title %}
-  {% if switch('fundraising-banner-giving-tuesday-2021') %}
-    {{ ftl('banner-fundraising-title-giving-day', fallback='banner-fundraising-title') }}
-  {% else %}
-    {{ ftl('banner-fundraising-title-v2', fallback='banner-fundraising-title') }}
-  {% endif %}
-{% endblock %}
+{% block banner_title %}{{ ftl('banner-fundraising-title-v2', fallback='banner-fundraising-title') }}{% endblock %}
 
 {% block banner_content %}
   {% if ftl_has_messages('banner-fundraising-body-v2', 'banner-fundraising-body-extra') %}
@@ -46,13 +40,13 @@
             {% else %}
               {% set amount_copy = ftl('banner-fundraising-amount', amount=amount) %}
             {% endif %}
-            <span class="mzp-c-button mzp-t-secondary mzp-t-lg mzp-t-dark">{{ amount_copy }}</span>
+            <span class="mzp-c-button mzp-t-product mzp-t-secondary mzp-t-lg">{{ amount_copy }}</span>
           </label>
         {% endfor %}
       </fieldset>
 
       <div class="c-fundraiser-submit">
-        <button type="submit" class="mzp-c-button mzp-t-lg mzp-t-dark">{{ ftl('banner-fundraising-donate') }}</button>
+        <button type="submit" class="mzp-c-button mzp-t-product mzp-t-lg">{{ ftl('banner-fundraising-donate') }}</button>
       </div>
     </div>
 
