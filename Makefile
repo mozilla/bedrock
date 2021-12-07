@@ -103,7 +103,7 @@ format: .docker-build-pull
 	${DC} run app black .
 
 test: .docker-build-pull
-	${DC} run test
+	${DC} run --rm test
 
 test-cdn: .docker-build-pull test_infra/fixtures/tls.json
 	${DC} run test py.test --base-url https://${TEST_DOMAIN} test_infra
