@@ -3,8 +3,9 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from copy import deepcopy
-from unittest.mock import ANY, Mock, patch
+from unittest.mock import ANY, Mock, call, patch
 
+from django.conf import settings
 from django.test import override_settings
 
 import pytest
@@ -13,9 +14,11 @@ from rich_text_renderer.text_renderers import TextRenderer
 
 from bedrock.contentful.api import (
     AssetBlockRenderer,
+    ContentfulPage,
     EmphasisRenderer,
     InlineEntryRenderer,
     LinkRenderer,
+    LiRenderer,
     OlRenderer,
     PRenderer,
     StrongRenderer,
@@ -38,6 +41,11 @@ from bedrock.contentful.api import (
     _render_list,
     contentful_locale,
     get_client,
+)
+from bedrock.contentful.constants import (
+    COMPOSE_MAIN_PAGE_TYPE,
+    CONTENT_TYPE_CONNECT_HOMEPAGE,
+    CONTENT_TYPE_PAGE_RESOURCE_CENTER,
 )
 
 
@@ -569,9 +577,26 @@ def test_OlRenderer():
     )
 
 
-@pytest.mark.skip("TODO")
-def test_LiRenderer():
-    assert False, "WRITE ME"
+@patch("bedrock.contentful.api._only_child")
+def test__LiRenderer(mock__only_child):
+
+    li_renderer = LiRenderer()
+
+    li_renderer._render_content = Mock("mocked__render_content")
+    li_renderer._render_content.return_value = "rendered_content"
+
+    mock__only_child.return_value = True
+
+    output = li_renderer.render(mock_node)
+    assert output == "<li>rendered_content</li>"
+    mock__only_child.assert_called_once_with(mock_node, "text")
+
+    mock__only_child.reset_mock()
+    mock__only_child.return_value = False
+
+    output = li_renderer.render(mock_node)
+    assert output == "<li>rendered_content</li>"
+    mock__only_child.assert_called_once_with(mock_node, "text")
 
 
 def test_PRenderer():
@@ -650,3 +675,549 @@ def test_AssetBlockRenderer(mock_client, mock__get_image_url):
 def test__render_list():
     assert _render_list("ol", "test content here") == "<ol class='mzp-u-list-styled'>test content here</ol>"
     assert _render_list("ul", "test content here") == "<ul class='mzp-u-list-styled'>test content here</ul>"
+
+
+@pytest.fixture
+def basic_contentful_page(rf):
+    """Naive reusable fixutre for setting up a ContentfulPage
+    Note that it does NOTHING with set_current_request / thread-locals
+    """
+    with patch("bedrock.contentful.api.set_current_request"):
+        with patch("bedrock.contentful.api.get_locale") as mock_get_locale:
+            mock_get_locale.return_value = settings.LANGUAGE_CODE  # use the fallback
+            mock_request = rf.get("/")
+            page = ContentfulPage(mock_request, "test-page-id")
+
+    return page
+
+
+@patch("bedrock.contentful.api.set_current_request")
+@patch("bedrock.contentful.api.get_locale")
+def test_ContentfulPage__init(mock_get_locale, mock_set_current_request, rf):
+
+    mock_request = rf.get("/")
+    page = ContentfulPage(mock_request, "test-page-id")
+
+    mock_get_locale.assert_called_once_with(mock_request)
+    mock_set_current_request.assert_called_once_with(mock_request)
+    assert page.request == mock_request
+    assert page.page_id == "test-page-id"
+
+
+def test_ContentfulPage__page_property(basic_contentful_page):
+    page = basic_contentful_page
+    page.client = Mock()
+    page.client.entry.return_value = "fake page data"
+
+    output = page.page
+    assert output == "fake page data"
+    page.client.entry.assert_called_once_with(
+        "test-page-id",
+        {
+            "include": 10,
+        },
+    )
+
+
+def test_ContentfulPage__render_rich_text(basic_contentful_page):
+
+    # The actual/underlying RichTextRenderer is tested in its own package
+    # - this test just checks our usage
+
+    basic_contentful_page._renderer.render = Mock()
+    basic_contentful_page._renderer.render.return_value = "mock rendered rich text"
+    output = basic_contentful_page.render_rich_text(mock_node)
+    assert output == "mock rendered rich text"
+    basic_contentful_page._renderer.render.assert_called_once_with(mock_node)
+
+    basic_contentful_page._renderer.render.reset_mock()
+    output = basic_contentful_page.render_rich_text(None)
+    assert output == ""
+    assert not basic_contentful_page._renderer.render.called
+
+    basic_contentful_page._renderer.render.reset_mock()
+    output = basic_contentful_page.render_rich_text("")
+    assert output == ""
+    assert not basic_contentful_page._renderer.render.called
+
+
+def test_ContentfulPage___get_preview_image_from_fields__data_present(basic_contentful_page):
+    mock_image = Mock(name="preview_image")
+    mock_image.fields.return_value = {
+        "file": {
+            "url": "//example.com/image.png",
+        }
+    }
+
+    fields = {"preview_image": mock_image}
+
+    output = basic_contentful_page._get_preview_image_from_fields(fields)
+    assert output == "https://example.com/image.png"
+
+
+def test_ContentfulPage___get_preview_image_from_fields__no_data(
+    basic_contentful_page,
+):
+    assert basic_contentful_page._get_preview_image_from_fields({}) is None
+
+
+def test_ContentfulPage___get_preview_image_from_fields__bad_data(
+    basic_contentful_page,
+):
+    mock_image = Mock(name="preview_image")
+    mock_image.fields.return_value = {
+        # no file key
+    }
+    fields = {"preview_image": mock_image}
+    output = basic_contentful_page._get_preview_image_from_fields(fields)
+    assert output is None
+
+    mock_image = Mock(name="preview_image")
+    mock_image.fields.return_value = {"file": {}}  # no url key
+    fields = {"preview_image": mock_image}
+    output = basic_contentful_page._get_preview_image_from_fields(fields)
+    assert output is None
+
+
+@pytest.mark.parametrize(
+    "entry_fields, expected",
+    (
+        (
+            {"folder": "firefox"},
+            ("firefox", "firefox-test-test-test"),
+        ),
+        (
+            {"folder": "mentions-firefox-in-title"},
+            ("firefox", "firefox-test-test-test"),
+        ),
+        (
+            {"folder": "other-thing"},
+            ("mozilla", "test-test-test"),
+        ),
+        (
+            {"folder": ""},
+            ("mozilla", "test-test-test"),
+        ),
+        (
+            {},
+            ("mozilla", "test-test-test"),
+        ),
+    ),
+)
+def test_ContentfulPage__get_info_data__theme_campaign(
+    basic_contentful_page,
+    entry_fields,
+    expected,
+):
+
+    slug = "test-test-test"
+
+    output = basic_contentful_page._get_info_data__theme_campaign(entry_fields, slug)
+
+    assert output == expected
+
+
+@pytest.mark.parametrize(
+    "page_type, entry_fields, entry_obj__sys__locale, expected",
+    (
+        (
+            "pageHome",
+            {
+                "name": "locale temporarily in overridden name field",
+            },
+            "Not used",
+            "locale temporarily in overridden name field",
+        ),
+        (
+            "pagePageResourceCenter",
+            {"name": "NOT USED"},
+            "fr-CA",
+            "fr-CA",
+        ),
+    ),
+)
+def test_ContentfulPage__get_info_data__locale(
+    basic_contentful_page,
+    page_type,
+    entry_fields,
+    entry_obj__sys__locale,
+    expected,
+):
+    entry_obj = Mock()
+    entry_obj.sys = {"locale": entry_obj__sys__locale}
+    output = basic_contentful_page._get_info_data__locale(
+        page_type,
+        entry_fields,
+        entry_obj,
+    )
+    assert output == expected
+
+
+@pytest.mark.parametrize(
+    "page_title, page_type, page_fields, entry_fields, seo_fields, expected",
+    (
+        (
+            "test page one",
+            COMPOSE_MAIN_PAGE_TYPE,
+            {"slug": "compose-main-page-slug"},
+            {},
+            {},
+            ("compose-main-page-slug", "test page one", ""),
+        ),
+        (
+            "",
+            COMPOSE_MAIN_PAGE_TYPE,
+            {"slug": "compose-main-page-slug"},
+            {},
+            {},
+            ("compose-main-page-slug", "", ""),
+        ),
+        (
+            "",
+            COMPOSE_MAIN_PAGE_TYPE,
+            {"slug": "compose-main-page-slug"},
+            {
+                "preview_title": "preview title",
+                "preview_blurb": "preview blurb",
+            },
+            {},
+            ("compose-main-page-slug", "preview title", "preview blurb"),
+        ),
+        (
+            "",
+            COMPOSE_MAIN_PAGE_TYPE,
+            {"slug": "compose-main-page-slug"},
+            {
+                "preview_title": "preview title",
+                "preview_blurb": "preview blurb",
+            },
+            {"description": "seo description"},
+            ("compose-main-page-slug", "preview title", "seo description"),
+        ),
+        (
+            "page title",
+            CONTENT_TYPE_CONNECT_HOMEPAGE,
+            {},
+            {
+                "slug": "homepage-slug",
+                "preview_title": "preview title",
+                "preview_blurb": "preview blurb",
+            },
+            {},  # SEO fields not present for non-Compose pages
+            ("homepage-slug", "preview title", "preview blurb"),
+        ),
+        (
+            "page title",
+            CONTENT_TYPE_CONNECT_HOMEPAGE,
+            {},
+            {
+                # no slug field, so will fall back to default of 'home'
+                "preview_title": "preview title",
+                "preview_blurb": "preview blurb",
+            },
+            {},  # SEO fields not present for non-Compose pages
+            ("home", "preview title", "preview blurb"),
+        ),
+    ),
+    ids=[
+        "compose page with slug, title, no blurb",
+        "compose page with slug, no title, no blurb",
+        "compose page with slug, title from entry, blurb from entry",
+        "compose page with slug, no title, blurb from seo",
+        "Non-Compose page with slug, title, blurb from entry",
+        "Non-Compose page with default slug, title, blurb from entry",
+    ],
+)
+def test_ContentfulPage__get_info_data__slug_title_blurb(
+    basic_contentful_page,
+    page_title,
+    page_type,
+    page_fields,
+    entry_fields,
+    seo_fields,
+    expected,
+):
+    basic_contentful_page.page = Mock()
+    basic_contentful_page.page.content_type.id = page_type
+    basic_contentful_page.page.fields = Mock(return_value=page_fields)
+    if page_title:
+        basic_contentful_page.page.title = page_title
+    else:
+        basic_contentful_page.page.title = ""
+
+    assert (
+        basic_contentful_page._get_info_data__slug_title_blurb(
+            entry_fields,
+            seo_fields,
+        )
+        == expected
+    )
+
+
+@pytest.mark.parametrize(
+    "entry_fields, page_type, expected",
+    (
+        (
+            {
+                "category": "test category",
+                "tags": [
+                    "test tag1",
+                    "test tag2",
+                ],
+                "product": "test product",
+            },
+            CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+            {
+                "category": "test category",
+                "tags": [
+                    "test tag1",
+                    "test tag2",
+                ],
+                "classification": "test product",
+            },
+        ),
+        (
+            {
+                "category": "test category",
+                "tags": [
+                    "test tag1",
+                    "test tag2",
+                ],
+                "product": "test product",
+            },
+            "NOT A CONTENT_TYPE_PAGE_RESOURCE_CENTER",
+            {},  # no data expected if it's not a VRC page
+        ),
+    ),
+)
+def test_ContentfulPage__get_info_data__category_tags_classification(
+    basic_contentful_page,
+    entry_fields,
+    page_type,
+    expected,
+):
+
+    assert basic_contentful_page._get_info_data__category_tags_classification(entry_fields, page_type) == expected
+
+
+@pytest.mark.parametrize(
+    "entry_obj__fields, seo_obj__fields, expected",
+    (
+        (
+            {
+                "dummy": "entry fields",
+                "preview_image": "https://example.com/test-entry.png",
+            },
+            {
+                "dummy": "seo fields",
+                "preview_image": "https://example.com/test-seo.png",
+            },
+            {
+                "title": "test title",
+                "blurb": "test blurb",
+                "slug": "test-slug",
+                "locale": "fr-CA",
+                "theme": "test-theme",
+                "utm_source": "www.mozilla.org-test-campaign",
+                "utm_campaign": "test-campaign",
+                "image": "https://example.com/test-entry.png",
+                "category": "test category",
+                "tags": [
+                    "test tag1",
+                    "test tag2",
+                ],
+                "product": "test product",
+                "seo": {
+                    "dummy": "seo fields",
+                    "image": "https://example.com/test-seo.png",
+                },
+            },
+        ),
+        (
+            {
+                "dummy": "entry fields",
+                "preview_image": "https://example.com/test-entry.png",
+            },
+            None,  # no SEO fields
+            {
+                "title": "test title",
+                "blurb": "test blurb",
+                "slug": "test-slug",
+                "locale": "fr-CA",
+                "theme": "test-theme",
+                "utm_source": "www.mozilla.org-test-campaign",
+                "utm_campaign": "test-campaign",
+                "image": "https://example.com/test-entry.png",
+                "category": "test category",
+                "tags": [
+                    "test tag1",
+                    "test tag2",
+                ],
+                "product": "test product",
+            },
+        ),
+    ),
+    ids=["entry_obj and seo_obj", "entry_obj, no seo_obj"],
+)
+@patch("bedrock.contentful.api.ContentfulPage._get_preview_image_from_fields")
+@patch("bedrock.contentful.api.ContentfulPage._get_info_data__locale")
+@patch("bedrock.contentful.api.ContentfulPage._get_info_data__theme_campaign")
+@patch("bedrock.contentful.api.ContentfulPage._get_info_data__slug_title_blurb")
+@patch("bedrock.contentful.api.ContentfulPage._get_info_data__category_tags_classification")
+def test_ContentfulPage__get_info_data(
+    mock__get_info_data__category_tags_classification,
+    mock__get_info_data__slug_title_blurb,
+    mock__get_info_data__theme_campaign,
+    mock__get_info_data__locale,
+    mock__get_preview_image_from_fields,
+    basic_contentful_page,
+    entry_obj__fields,
+    seo_obj__fields,
+    expected,
+):
+
+    mock__get_preview_image_from_fields.side_effect = [
+        "https://example.com/test-entry.png",
+        "https://example.com/test-seo.png",
+    ]
+    mock__get_info_data__theme_campaign.return_value = ("test-theme", "test-campaign")
+    mock__get_info_data__locale.return_value = "fr-CA"
+    mock__get_info_data__slug_title_blurb.return_value = (
+        "test-slug",
+        "test title",
+        "test blurb",
+    )
+    mock__get_info_data__category_tags_classification.return_value = {
+        "category": "test category",
+        "tags": [
+            "test tag1",
+            "test tag2",
+        ],
+        "product": "test product",
+    }
+
+    mock_entry_obj = Mock()
+    mock_entry_obj.fields.return_value = entry_obj__fields
+    mock_entry_obj.content_type.id = "mock-page-type"
+
+    if seo_obj__fields:
+        mock_seo_obj = Mock()
+        mock_seo_obj.fields.return_value = seo_obj__fields
+    else:
+        mock_seo_obj = None
+
+    output = basic_contentful_page.get_info_data(mock_entry_obj, mock_seo_obj)
+
+    assert output == expected
+
+    if seo_obj__fields:
+        assert mock__get_preview_image_from_fields.call_count == 2
+        assert (
+            call(
+                {
+                    "dummy": "entry fields",
+                    "preview_image": "https://example.com/test-entry.png",
+                }
+            )
+            in mock__get_preview_image_from_fields.call_args_list
+        )
+        assert (
+            call(
+                {
+                    "dummy": "seo fields",
+                    "preview_image": "https://example.com/test-seo.png",
+                },
+            )
+            in mock__get_preview_image_from_fields.call_args_list
+        )
+
+    else:
+        assert mock__get_preview_image_from_fields.call_count == 1
+        mock__get_preview_image_from_fields.assert_called_once_with(entry_obj__fields)
+
+    mock__get_info_data__category_tags_classification.assert_called_once_with(
+        entry_obj__fields,
+        "mock-page-type",
+    )
+    mock__get_info_data__slug_title_blurb.assert_called_once_with(
+        entry_obj__fields,
+        seo_obj__fields,
+    )
+    mock__get_info_data__theme_campaign.assert_called_once_with(
+        entry_obj__fields,
+        "test-slug",
+    )
+    mock__get_info_data__locale.assert_called_once_with(
+        "mock-page-type",
+        entry_obj__fields,
+        mock_entry_obj,
+    )
+
+
+# FURTHER TESTS TO COME
+# def test_ContentfulPage__get_content():
+#     assert False, "WRITE ME"
+
+
+# def test_ContentfulPage__get_content__proc():
+#     assert False, "WRITE ME"
+
+
+# def test_ContentfulPage__get_text_data():
+#     assert False, "WRITE ME"
+
+
+# def test_ContentfulPage__get_hero_data():
+#     assert False, "WRITE ME"
+
+
+# def test_ContentfulPage__get_section_data():
+#     assert False, "WRITE ME"
+
+
+# def test_ContentfulPage__get_split_data():
+#     assert False, "WRITE ME"
+
+
+# def test_ContentfulPage__get_split_data__get_split_class():
+#     assert False, "WRITE ME"
+
+
+# def test_ContentfulPage__get_split_data__get_body_class():
+#     assert False, "WRITE ME"
+
+
+# def test_ContentfulPage__get_split_data__get_media_class():
+#     assert False, "WRITE ME"
+
+
+# def test_ContentfulPage__get_split_data__get_mobile_class():
+#     assert False, "WRITE ME"
+
+
+# def test_ContentfulPage__get_callout_data():
+#     assert False, "WRITE ME"
+
+
+# def test_ContentfulPage__get_card_data():
+#     assert False, "WRITE ME"
+
+
+# def test_ContentfulPage__get_large_card_data():
+#     assert False, "WRITE ME"
+
+
+# def test_ContentfulPage__get_card_layout_data():
+#     assert False, "WRITE ME"
+
+
+# def test_ContentfulPage__get_picto_data():
+#     assert False, "WRITE ME"
+
+
+# def test_ContentfulPage__get_picto_layout_data():
+#     assert False, "WRITE ME"
+
+
+# def test_ContentfulPage__get_text_column_data():
+#     assert False, "WRITE ME"

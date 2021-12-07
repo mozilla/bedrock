@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from copy import deepcopy
 from functools import partialmethod
 from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 
@@ -455,87 +456,112 @@ class ContentfulPage:
     def _get_preview_image_from_fields(self, fields):
         if "preview_image" in fields:
             # TODO request proper size image
-            preview_image_url = fields["preview_image"].fields().get("file").get("url")
-            return f"https:{preview_image_url}"
+            preview_image_url = fields["preview_image"].fields().get("file", {}).get("url", {})
+            if preview_image_url:
+                return f"https:{preview_image_url}"
 
-    def get_info_data(self, entry_obj, seo_obj=None):
-        # TODO, need to enable connectors
-        fields = entry_obj.fields()
-        if seo_obj:
-            seo_fields = seo_obj.fields()
-        else:
-            seo_fields = None
-
-        data = {}
-
-        folder = fields.get("folder", "")
-        in_firefox = "firefox-" if "firefox" in folder else ""
+    def _get_info_data__slug_title_blurb(self, entry_fields, seo_fields):
 
         if self.page.content_type.id == COMPOSE_MAIN_PAGE_TYPE:
             # This means we're dealing with a Compose-structured setup,
             # and the slug lives not on the Entry, nor the SEO object
             # but just on the top-level Compose `page`
             slug = self.page.fields().get("slug")
-
         else:
             # Non-Compose pages
-            slug = fields.get("slug", "home")  # TODO: check if we can use a better fallback
+            slug = entry_fields.get("slug", "home")  # TODO: check if we can use a better fallback
 
         title = getattr(self.page, "title", "")
-        title = fields.get("preview_title", title)
-        blurb = fields.get("preview_blurb", "")
+        title = entry_fields.get("preview_title", title)
+        blurb = entry_fields.get("preview_blurb", "")
 
         if seo_fields:
             # Defer to SEO fields for blurb if appropriate.
             blurb = seo_fields.get("description", "")
 
-        campaign = f"{in_firefox}{slug}"
-        page_type = entry_obj.content_type.id
+        return slug, title, blurb
 
-        # TODO: update this once we have a robust locale field available (ideally
-        # via Compose's parent `page`), because double-purposing the "name" field
-        # is a bit too brittle.
-        if page_type == "pageHome":
-            locale = fields["name"]
-        else:
-            locale = entry_obj.sys["locale"]
+    def _get_info_data__category_tags_classification(self, entry_fields, page_type):
 
-        data.update(
-            {
-                "title": title,
-                "blurb": blurb,
-                "slug": slug,
-                "locale": locale,
-                "theme": "firefox" if "firefox" in folder else "mozilla",
-                # eg www.mozilla.org-firefox-accounts or www.mozilla.org-firefox-sync
-                "utm_source": f"www.mozilla.org-{campaign}",
-                "utm_campaign": campaign,  # eg firefox-sync
-            }
-        )
-
-        _preview_image = self._get_preview_image_from_fields(fields)
-        if _preview_image:
-            data["image"] = _preview_image
-
-        if seo_fields:
-            _preview_image = self._get_preview_image_from_fields(seo_fields)
-            if _preview_image:
-                seo_fields["image"] = _preview_image
-                del seo_fields["preview_image"]
-            data.update({"seo": seo_fields})
+        data = {}
 
         # TODO: Check with plans for Contentful use - we may
         # be able to relax this check and use it for page types
         # once we're in all-Compose mode
         if page_type == CONTENT_TYPE_PAGE_RESOURCE_CENTER:
-            if "category" in fields:
-                data["category"] = fields["category"]
-            if "tags" in fields:
-                data["tags"] = fields["tags"]
-            if "product" in fields:
+            if "category" in entry_fields:
+                data["category"] = entry_fields["category"]
+            if "tags" in entry_fields:
+                data["tags"] = entry_fields["tags"]
+            if "product" in entry_fields:
                 # NB: this is a re-mapping with an eye on flexibility - pages may not always have
                 # a 'product' key, but they might have something regarding overall classification
-                data["classification"] = fields["product"]
+                data["classification"] = entry_fields["product"]
+        return data
+
+    def _get_info_data__theme_campaign(self, entry_fields, slug):
+        _folder = entry_fields.get("folder", "")
+        _in_firefox = "firefox-" if "firefox" in _folder else ""
+        campaign = f"{_in_firefox}{slug}"
+        theme = "firefox" if "firefox" in _folder else "mozilla"
+        return theme, campaign
+
+    def _get_info_data__locale(self, page_type, entry_fields, entry_obj):
+        # TODO: update this once we have a robust locale field available (ideally
+        # via Compose's parent `page`), because double-purposing the "name" field
+        # is a bit too brittle.
+        if page_type == "pageHome":
+            locale = entry_fields["name"]
+        else:
+            locale = entry_obj.sys["locale"]
+        return locale
+
+    def get_info_data(self, entry_obj, seo_obj=None):
+        # TODO, need to enable connectors
+        entry_fields = entry_obj.fields()
+        if seo_obj:
+            seo_fields = seo_obj.fields()
+        else:
+            seo_fields = None
+
+        page_type = entry_obj.content_type.id
+
+        slug, title, blurb = self._get_info_data__slug_title_blurb(entry_fields, seo_fields)
+        theme, campaign = self._get_info_data__theme_campaign(entry_fields, slug)
+        locale = self._get_info_data__locale(page_type, entry_fields, entry_obj)
+
+        data = {
+            "title": title,
+            "blurb": blurb,
+            "slug": slug,
+            "locale": locale,
+            "theme": theme,
+            # eg www.mozilla.org-firefox-accounts or www.mozilla.org-firefox-sync
+            "utm_source": f"www.mozilla.org-{campaign}",
+            "utm_campaign": campaign,  # eg firefox-sync
+        }
+
+        _preview_image = self._get_preview_image_from_fields(entry_fields)
+        if _preview_image:
+            data["image"] = _preview_image
+
+        if seo_fields:
+            _preview_image = self._get_preview_image_from_fields(seo_fields)
+
+            _seo_fields = deepcopy(seo_fields)  # NB: don't mutate the source dict
+            if _preview_image:
+                _seo_fields["image"] = _preview_image
+
+                # We don't need the preview_image key if we've had it in the past
+                _seo_fields.pop("preview_image", None)
+            data.update({"seo": _seo_fields})
+
+        data.update(
+            self._get_info_data__category_tags_classification(
+                entry_fields,
+                page_type,
+            )
+        )
 
         return data
 
@@ -708,7 +734,6 @@ class ContentfulPage:
             "image": split_image_url,
             "mobile_class": get_mobile_class(),
         }
-
         return data
 
     def get_callout_data(self, entry_obj):
