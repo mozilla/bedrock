@@ -1018,6 +1018,13 @@
     },
     {
       "files": [
+        "css/externalpages/pocket/style.scss",
+        "css/externalpages/pocket/components/pocket-hits-signup.scss"
+      ],
+      "name": "pocket-hits-signup"
+    },
+    {
+      "files": [
         "css/careers/protocol.min.scss",
         "css/careers/protocol-extra.min.scss",
         "css/careers/careers.scss",

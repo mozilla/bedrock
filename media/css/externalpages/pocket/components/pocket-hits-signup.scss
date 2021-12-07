@@ -1,0 +1,47 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import './nav';
+@import './footer';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/base/elements/containers';
+
+.pocket-hits-header {
+    @include text-title-sm;
+    color: $color-text-primary;
+    font-family: $font-sans-alt;
+    font-weight: 400;
+    margin: 0 0 $spacing-md;
+    text-align: center;
+}
+
+.pocket-hits-subheader {
+    @include text-body-xl;
+    color: $color-text-primary;
+    font-family: $font-sans;
+    font-weight: 300;
+    margin: 0 0 $spacing-xl;
+    text-align: center;
+}
+
+.pocket-hits-signup-form {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+
+    label {
+        width: 100%;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    @media #{$mq-md} {
+        input {
+            width: 70%;
+        }
+    }
+}
