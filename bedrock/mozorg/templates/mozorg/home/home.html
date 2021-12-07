@@ -6,26 +6,13 @@
 
 {% from "macros-protocol.html" import hero, billboard, picto with context %}
 
-{% extends "base-protocol-mozilla.html" %}
-
-{% block gtm_page_id %}data-gtm-page-id="Homepage"{% endblock %}
+{% extends "mozorg/home/base.html" %}
 
 {% block page_title %}{{ ftl('home-internet-for-people-not-profit') }}{% endblock %}
 {% block page_desc %}{{ ftl('home-did-you-know-mozilla-the-maker') }}{% endblock %}
 
-{% block body_class %}lang-{{ LANG }}{% endblock %}
-
-{% block body_id %}home{% endblock %}
-
 {% set referrals="?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage" %}
 {% set show_mr2_promo = switch('homepage-mr2-promo') and ftl_has_messages('home-mr2-promo-title', 'home-mr2-promo-cta') %}
-
-{% block extra_meta %}
-<!-- validates bing webmaster tools -->
-<meta name="msvalidate.01" content="B7B177115A634927D608514DA17B2574">
-<!-- YouTube Verification -->
-<meta name="google-site-verification" content="U9a6gH32vLIykvntaDToj-ytYhlZ1AfAgVEKstixQIE">
-{% endblock %}
 
 {% set show_fundraising_banner = switch('fundraising-banner-eoy2021') and donate_params and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
 
@@ -40,8 +27,6 @@
 
   {% if show_mr2_promo %}
     {{ css_bundle('home-mr2-promo') }}
-  {% else %}
-    {{ css_bundle('home-mr1-promo') }}
   {% endif %}
 {% endblock %}
 
@@ -57,15 +42,6 @@
 <main role="main">
   {% if show_mr2_promo %}
     {% include 'mozorg/home/includes/mr2-promo.html' %}
-  {% elif ftl_has_messages('home-promo-title-lalo', 'home-promo-title-soraya', 'home-promo-title-gary', 'home-promo-title-ryan') %}
-    {%- set promos = [
-      'mozorg/home/includes/mr1-promo-lalo.html',
-      'mozorg/home/includes/mr1-promo-soraya.html',
-      'mozorg/home/includes/mr1-promo-gary.html',
-      'mozorg/home/includes/mr1-promo-ryan.html'
-    ] -%}
-
-    {% include promos|random() %}
   {% else %}
     {% call hero(
     class='mzp-c-hero mzp-has-image',
@@ -201,8 +177,4 @@
   {% elif show_firefox_app_store_banner %}
     {{ js_bundle('firefox-app-store-banner') }}
   {% endif %}
-{% endblock %}
-
-{% block structured_data %}
-  {% include 'includes/structured-data/organizations/mozilla-corporation-organisation.json' %}
 {% endblock %}

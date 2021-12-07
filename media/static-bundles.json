@@ -216,12 +216,6 @@
     },
     {
       "files": [
-        "css/mozorg/home/home-mr1-promo.scss"
-      ],
-      "name": "home-mr1-promo"
-    },
-    {
-      "files": [
         "css/mozorg/home/home-mr2-promo.scss"
       ],
       "name": "home-mr2-promo"
@@ -240,21 +234,15 @@
     },
     {
       "files": [
-        "css/mozorg/home/home-2018.scss"
+        "css/mozorg/home/home-eu.scss"
       ],
-      "name": "home-2018"
+      "name": "home-eu"
     },
     {
       "files": [
-        "css/mozorg/home/home-en.scss"
+        "css/mozorg/home/home-contentful.scss"
       ],
-      "name": "home-en"
-    },
-    {
-      "files": [
-        "css/mozorg/home/home-contentful-en.scss"
-      ],
-      "name": "home-contentful-en"
+      "name": "home-contentful"
     },
     {
       "files": [

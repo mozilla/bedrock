@@ -4,14 +4,20 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% extends "mozorg/home/home-en.html" %}
+{% from "macros-protocol.html" import split, billboard, card, call_out_compact, content_card with context %}
+{% from "mozorg/home/includes/macros.html" import download_banner, download_banner_secondary, fxa_banner %}
+
+{% extends "mozorg/home/base.html" %}
 
 {% block page_title %}Internet für Menschen, nicht für Profit{% endblock %}
-
 {% block page_desc %}Mozilla ist die gemeinnützige Organisation hinter Firefox. Menschen sollten auch online die Kontrolle über ihr Leben haben. Dafür setzen wir uns ein.{% endblock %}
 
+{% set show_pocket_banner = switch('pocket-banner') %}
+{% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
+{% set show_fundraising_banner = switch('fundraising-banner-eoy2021') and donate_params and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
+
 {% block page_css %}
-  {{ css_bundle('home-2018') }}
+  {{ css_bundle('home-eu') }}
 
   {% if switch('homepage-mr2-promo-eu') %}
     {{ css_bundle('home-mr2-promo') }}
@@ -36,7 +42,7 @@
   {% endif %}
 {% endblock %}
 
-{% block main %}
+{% block content %}
 <main>
   <header class="main-page-heading">
     {# Main page h1 is hidden from view and exists mainly for SEO purposes #}
