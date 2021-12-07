@@ -203,8 +203,10 @@
   </div>
 
   <!-- Content Cards -->
+
   <div class="pixel-effect c-article-list">
     <!-- First Section -->
+
     <section class="no-js-hidden">
       <div class="c-section-intro-bg">
         <div class="mzp-l-content">
@@ -219,6 +221,8 @@
       </div>
 
       <!-- First section cards -->
+
+      <!-- Firefox -->
       <div class="has-modal" data-modal-id="firefox-desktop-redesign">
         {% call split(
           image_url='img/foundation/annualreport/2020/mr1-behind-design.jpg',
@@ -261,6 +265,39 @@
               image_url='img/foundation/annualreport/2020/blog-header-pip.png',
               )}}
       </div>
+
+      <div class="has-modal" data-modal-id="pocket-joy-collection">
+        {% call split(
+          image_url='img/foundation/annualreport/2020/pocket-joy-collection.png',
+          block_class='mzp-l-split-body-narrow mzp-t-split-nospace'
+         ) %}
+           <span>We put joy on your reading list</span>
+           <h2>Pocket joy lists + collections</h2>
+          {% endcall %}
+      </div>
+
+      <div class="mzp-l-card-half mzp-l-content">
+            {{ card(
+              title='Pocket + Slate partnership',
+              ga_title='Pocket + Slate partnership',
+              tag_label='Your back-stage podcast pass',
+              class='has-modal',
+              attributes='data-modal-id="pocket-slate-partnership"',
+              aspect_ratio='mzp-has-aspect-16-9',
+              link_url='pocket-slate-partnership',
+              image_url='img/foundation/annualreport/2020/pocket-slate-podcast.jpg',
+              )}}
+            {{ card(
+              title='Pocket + Hercampus',
+              ga_title='Pocket + Hercampus',
+              tag_label='And the winner is...',
+              class='has-modal',
+              attributes='data-modal-id="pocket-hercampus"',
+              aspect_ratio='mzp-has-aspect-16-9',
+              link_url='pocket-hercampus',
+              image_url='img/foundation/annualreport/2020/hercampus-blog-header.png',
+              )}}
+      </div>
     </section>
 
     <!-- Second main section -->
@@ -268,8 +305,10 @@
       <div class="c-section-intro-bg">
         <div class="mzp-l-content">
           <div class="c-section-intro">
-            <h2><span class="highlight green">Section 2</span></h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores repudiandae dolore, velit error tempora reprehenderit voluptatum dolorem iusto odio laboriosam unde modi maiores dolor asperiores quia et rem optio accusantium. Soluta aspernatur aliquid, cupiditate qui amet assumenda repudiandae reiciendis, voluptatibus iure suscipit rem esse dolorem mollitia. Quos excepturi debitis numquam.</p>
+            <h2><span class="highlight green">Building a safer, more private internet</span></h2>
+            <p>Privacy is the word. The internet is on the brink of the depreciation of third-party cookies, there are heated talks of the future of advertising on the web, and more and more people understand what exactly is at stake when their data is commoditized.</p>
+            <p>We’ve been waiting a long time for this moment.</p>
+            <p>People’s privacy and security is at the center of everything we do. It’s not a fad. It’s who we are. And the internet is better for all of us when it’s safer and more private. This year we continued our leadership in privacy bringing new privacy features to our products, advocating for a more private web, calling on companies to join us, and raising awareness around companies that didn’t, until well, they did.</p>
            </div>
         </div>
       </div>
@@ -437,6 +476,57 @@
               Now, Firefox has you covered. We introduced multiple <a target="_blank" rel="external noopener" href="https://blog.mozilla.org/en/products/firefox/latest-firefox-release-includes-multiple-picture-in-picture-and-total-cookie-protection/">picture-in-picture</a> (multi-PiP), allowing multiple videos to play at the same time. Multi-PiP is available on Mac, Linux and Windows, and includes keyboard controls for fast forward and rewind.
             </p>
             <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://blog.mozilla.org/en/products/firefox/how-to-watch-ncaa-basketball-tournament-firefox-multiple-picture-in-picture/">Learn more</a>
+          </div>
+        </div>
+    </article>
+
+    <!-- Pocket joy lists -->
+    <article data-modal-parent="pocket-joy-collection" id="pocket-joy-collection" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+        <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            {{ lazy_img(image_url='img/foundation/annualreport/2020/pocket-joy-collection.png', placeholder_url='img/foundation/annualreport/2019/spacer.gif', optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+            <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+            <h2 class="mzp-c-card-feature-title"><span class="highlight green">Pocket joy lists + collections</span></h2>
+            <p class="mzp-c-card-feature-desc">2021 was another tough year — so we used Pocket to give users a pick-me-up. Our Joy List Project had luminaries like Mary H.K. Choi and Angelina Spicer share their very favorite essays, songs, podcasts, and recipes. </p>
+            <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://getpocket.com/collections/the-joy-list-project">Learn more</a>
+          </div>
+        </div>
+    </article>
+
+    <!-- Pocket + Slate -->
+    <article data-modal-parent="pocket-slate-partnership" id="pocket-slate-partnership" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+        <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            {{ lazy_img(image_url='img/foundation/annualreport/2020/pocket-slate-podcast.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+            <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+            <h2 class="mzp-c-card-feature-title"><span class="highlight green">Pocket + Slate partnership</span></h2>
+            <p class="mzp-c-card-feature-desc">Pocket teamed up with Slate’s world-class podcast hosts to provide deep dives into your favorite episodes. Through curated Pocket Collections, podcast fans received their very own back-stage pass to explore the stories behind their favorite Slate podcast episode — straight from the hosts’ notes.</p>
+            <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://blog.mozilla.org/en/products/pocket/pocket-slate-podcast-partnership-announcement/">Learn more</a>
+          </div>
+        </div>
+    </article>
+
+    <!-- Pocket + Hercampus -->
+    <article data-modal-parent="pocket-hercampus" id="pocket-hercampus" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+        <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            {{ lazy_img(image_url='img/foundation/annualreport/2020/hercampus-blog-header.png', placeholder_url='img/foundation/annualreport/2019/spacer.gif', optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+            <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+            <h2 class="mzp-c-card-feature-title"><span class="highlight green">Pocket + Hercampus</span></h2>
+            <p class="mzp-c-card-feature-desc">This past May, Pocket and <a href="https://www.hercampus.com/" target="_blank" rel="external noopener">HerCampus</a> teamed up for an essay contest asking college students to reflect on what it’s like to come of age in a hyper-online world for a $5,000 cash prize and the opportunity to be published and promoted on Pocket. We had over 800 entries, and one winner — Esther Omole — a recent graduate of Stanford University.</p>
+            <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://blog.mozilla.org/en/products/pocket/college-esssay-contest-winner-mozilla-pocket-hercampus/">Learn more</a>
           </div>
         </div>
     </article>
