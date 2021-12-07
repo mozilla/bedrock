@@ -17,21 +17,22 @@
 <div class="mzp-l-content mzp-t-content-lg">
     <h1 class="pocket-hits-header">Your guide to the most fascinating articles from top publications.</h1>
     <h2 class="pocket-hits-subheader">Join millions of Pocket Hits subscribers and get inspired with our daily newsletter.</h2>
-    <form class="pocket-hits-signup-form top" autocomplete="off">
+    <form class="pocket-hits-signup-form top" id="pocket-hits-signup-top" autocomplete="off">
         <label for="top-email-signup-input">Your email address</label>
-        <input type="email" placeholder="yourname@example.com" name="top-email-signup-input" value=""/>
+        <input type="email" placeholder="yourname@example.com" id="top-email-signup-input" value=""/>
         <button type="submit">Subscribe</button>
     </form>
     <div class="signup-form-text">
-        <p>Not sure yet? <a href="https://getpocket.com/explore/pocket-hits" class="pockt-hits-link" target="_blank" rel="noopener noreferrer">See an example</a><p>
+        <p>Not sure yet? <a href="https://getpocket.com/explore/pocket-hits" class="pocket-hits-example" target="_blank" rel="noopener noreferrer">See an example</a></p>
         <p class="pocket-hits-privacy">
             <a href="https://getpocket.com/privacy" target="_blank" rel="noopener noreferrer">Privacy</a>
+            <span>•</span>
             <a href="https://getpocket.com/tos" target="_blank" rel="noopener noreferrer">Terms</a>
         </p>
     </div>
-    <img class="pocket-hits-signup-image" src="{{ static('img/externalpages/pocket/pocket-hits-signup/rainbow-reader.svg') }}" width="735" height="828" alt=""/>
-    <h3 class="pocket-signup-hits-section-header">See stories from publishers like these</h3>
-    <ul clss="publisher-list">
+    <img class="pocket-hits-signup-image" src="{{ static('img/externalpages/pocket/pocket-hits-signup/rainbow-reader.svg') }}" alt=""/>
+    <h3 class="pocket-signup-hits-section-header publisher">See stories from publishers like these</h3>
+    <ul class="publisher-list">
         <li class="publisher-list-item"><img src="{{ static('img/externalpages/pocket/pocket-hits-signup/popular-science.png') }}" alt="Popular Science" /> </li>
         <li class="publisher-list-item"><img src="{{ static('img/externalpages/pocket/pocket-hits-signup/city-lab.png') }}" alt="Citylab"/></li>
         <li class="publisher-list-item"><img src="{{ static('img/externalpages/pocket/pocket-hits-signup/nautilus.png') }}" alt="Nautilus"/></li>
@@ -49,10 +50,10 @@
         <li class="publisher-list-item"><img src="{{ static('img/externalpages/pocket/pocket-hits-signup/quartz.png') }}" alt="Quartz"/></li>
         <li class="publisher-list-item"><img src="{{ static('img/externalpages/pocket/pocket-hits-signup/guardian.png') }}" alt="The Guardian"/></li>
     </ul>
-    <h3 class="pocket-signup-hits-section-header">Sign up for Pocket Hits</h3>
-     <form class="pocket-hits-signup-form top" autocomplete="off">
-        <label for="top-email-signup-input">Your email address</label>
-        <input type="email" placeholder="yourname@example.com" name="top-email-signup-input" value=""/>
+    <h3 class="pocket-signup-hits-section-header signup">Sign up for Pocket Hits</h3>
+     <form class="pocket-hits-signup-form" autocomplete="off">
+        <label for="email-signup-input-bottom">Your email address</label>
+        <input type="email" placeholder="yourname@example.com" id="email-signup-input-bottom" name="top-email-signup-input" value=""/>
         <button type="submit">Subscribe</button>
     </form>
 </div>

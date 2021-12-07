@@ -28,20 +28,172 @@
 
 .pocket-hits-signup-form {
     display: flex;
+    font-family: $font-sans;
     flex-wrap: wrap;
     width: 100%;
 
     label {
+        @include text-body-sm;
+        font-weight: 500;
+        margin-bottom: $spacing-sm;
+        margin-left: $spacing-xs;
         width: 100%;
     }
 
     input {
+        @include text-body-md;
+        background: none;
+        border: none;
+        border-radius: $border-radius-md;
+        box-shadow: 0 0 0 1px #8c8c8c;
+        color: $color-text-primary;
+        flex-grow: initial;
+        max-width: 100%;
+        outline: none;
+        padding: $spacing-sm $spacing-sm;
         width: 100%;
+
+        &:active,
+        &:focus {
+            box-shadow: 0 0 0 2px $color-action-primary;
+        }
+    }
+
+    button {
+        @include text-body-md;
+        background-color: $color-button-red-10;
+        border-radius: 4px;
+        border: none;
+        box-shadow: none;
+        color: $color-white;
+        flex-grow: initial;
+        margin-top: $spacing-sm;
+        outline: none;
+        padding: $spacing-sm;
+        text-align: center;
+        text-decoration: none;
+        transition: all 0.15s ease-out;
+        width: 100%;
+
+        &:active,
+        &:focus {
+            border: 2px solid $color-action-primary;
+        }
+
+        &:hover {
+            background-color: $color-brand-hover;
+        }
     }
 
     @media #{$mq-md} {
         input {
-            width: 70%;
+            flex-grow: 2;
+            width: initial;
+        }
+
+        button {
+            @include bidi(((margin-left, $spacing-md, margin-right, $spacing-md),));
+            flex-grow: 1;
+            margin-top: 0;
+            width: initial;
+        }
+    }
+}
+
+.signup-form-text {
+    @include text-body-sm;
+    display: flex;
+    font-family: $font-sans;
+    justify-content: space-between;
+    margin-bottom: $layout-lg;
+
+    .pocket-hits-example {
+        color: $color-button-red-10;
+        position: relative;
+        text-decoration: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: underline;
+        }
+
+        &::after {
+            @include bidi(((margin-left, $spacing-xs, margin-right, $spacing-xs), ));
+            background: url('/media/img/externalpages/pocket/pocket-hits-signup/right-arrow.svg') no-repeat;
+            content: '';
+            height: 15px;
+            position: absolute;
+            top: 3px;
+            width: 15px;
+        }
+    }
+
+    .pocket-hits-privacy {
+        display: flex;
+        font-weight: 300;
+
+        a {
+            color: $color-text-primary;
+
+            &:hover {
+                color: $color-action-primary;
+            }
+        }
+
+        span {
+            font-size: 12px;
+            padding: 2px $spacing-xs 0;
+        }
+    }
+}
+
+.pocket-hits-signup-image {
+    left: -20%;
+    margin: 0 0 $layout-sm;
+    position: relative;
+    top: -20%;
+    width: 140%;
+
+    @media (min-width: 495px) {
+        left: -6%;
+        max-width: 110%;
+        top: -6%;
+    }
+}
+
+.pocket-signup-hits-section-header {
+    @include text-body-md;
+    border-bottom: 2px solid;
+    color: $color-text-secondary;
+    font-family: $font-sans;
+    font-weight: 400;
+    margin-bottom: $layout-sm;
+    padding-bottom: $spacing-sm;
+
+    &.publisher {
+        border-color: #fcb643;
+    }
+
+    &.signup {
+        border-color: $color-button-red-10;
+    }
+}
+
+.publisher-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 0 0 $layout-lg;
+    padding: 0;
+    width: 100%;
+
+    .publisher-list-item {
+        width: 110px;
+        margin: $spacing-md $spacing-xl;
+
+        img {
+            max-width: 100%;
         }
     }
 }
