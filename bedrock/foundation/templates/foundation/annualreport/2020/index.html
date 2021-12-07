@@ -6,7 +6,7 @@
 
 {% extends "base-protocol-mozilla.html" %}
 
-{% from "macros-protocol.html" import split, picto, card, with context %}
+{% from "macros-protocol.html" import split, picto, card, feature_card, with context %}
 
 {% block page_title %}The State of Mozilla: 2020 Annual Report{% endblock %}
 {% block page_desc %}Every year, in the spirit of openness upon which Mozilla was founded, we share publicly the ways we have protected, fought for and helped advance the internet in service of the people who rely on it every day.{% endblock %}
@@ -221,7 +221,7 @@
       <!-- First section cards -->
       <div class="has-modal" data-modal-id="firefox-desktop-redesign">
         {% call split(
-          image_url='img/foundation/annualreport/2020/firefox-header-logo.png',
+          image_url='img/foundation/annualreport/2020/mr1-behind-design.jpg',
           block_class='mzp-l-split-body-narrow mzp-t-split-nospace'
          ) %}
            <span>An (even more) elegant Firefox for desktop</span>
@@ -231,37 +231,34 @@
 
         <div class="mzp-l-card-third mzp-l-content">
             {{ card(
-              title='This is a title',
-              ga_title='lThis is a title',
-              tag_label='Steering Committee',
-              desc='This is a description of the card',
+              title='Firefox mobile redesign',
+              ga_title='Firefox mobile redesign',
+              tag_label='...and for mobile',
               class='has-modal',
-              attributes='data-modal-id="first-section-card-2"',
+              attributes='data-modal-id="firefox-mobile-redesign"',
               aspect_ratio='mzp-has-aspect-16-9',
-              link_url='first-section-card-2',
-              image_url='img/foundation/annualreport/2020/firefox-mobile-redesign-header.png',
+              link_url='firefox-mobile-redesign',
+              image_url='img/foundation/annualreport/2020/firefox-android.png',
               )}}
             {{ card(
-              title='This is a title',
-              ga_title='lThis is a title',
-              tag_label='Steering Committee',
-              desc='This is a description of the card',
+              title='Firefox suggest',
+              ga_title='Firefox suggest',
+              tag_label='Suggestions you can trust',
               class='has-modal',
-              attributes='data-modal-id="first-section-card-3"',
+              attributes='data-modal-id="firefox-suggest"',
               aspect_ratio='mzp-has-aspect-16-9',
-              link_url='first-section-card-3',
-              image_url='img/foundation/annualreport/2019/political-ads-streaming-platforms.jpg',
+              link_url='firefox-suggest',
+              image_url='img/foundation/annualreport/2020/firefox-blog-header.jpg',
               )}}
               {{ card(
-              title='This is a title',
-              ga_title='lThis is a title',
-              tag_label='Steering Committee',
-              desc='This is a description of the card',
+              title='Multi picture-in-picture',
+              ga_title='Multi picture-in-picture',
+              tag_label='We made online video even better',
               class='has-modal',
-              attributes='data-modal-id="first-section-card-4"',
+              attributes='data-modal-id="picture-in-picture"',
               aspect_ratio='mzp-has-aspect-16-9',
-              link_url='first-section-card-4',
-              image_url='img/foundation/annualreport/2020/youtube-regrets.png',
+              link_url='picture-in-picture',
+              image_url='img/foundation/annualreport/2020/blog-header-pip.png',
               )}}
       </div>
     </section>
@@ -370,35 +367,86 @@
 
   <!-- First section modal content -->
   <div class="mzp-l-content js-modal-content">
-    <!-- First article -->
-    <article data-modal-parent="firefox-desktop-redesign" id="firefox-desktop-redesign" class="mzp-c-card-feature-content-container">
-      <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
-      <h2>
-       <span class="highlight green">Firefox desktop redesign</span>
-     </h2>
-      <p>Firefox desktop received a major makeover in 2021. Our goal? To get you where you’re going online — fast, safe, and distraction-free. The makeover entailed a clean, new design; streamlined toolbar and menus; expanded privacy protections, and lots more.</p>
-      <a href="https://blog.mozilla.org/en/mozilla/news/modern-clean-new-firefox-clears-the-way-to-all-you-need-online/" class="mzp-c-button mzp-t-secondary">Learn more</a>
+    <!-- Desktop redesign -->
+    <article data-modal-parent="firefox-desktop-redesign" id="firefox-desktop-redesign" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+      <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            {{ lazy_img(image_url='img/foundation/annualreport/2020/mr1-behind-design.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+            <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+            <h2 class="mzp-c-card-feature-title"><span class="highlight green">Firefox desktop redesign</span></h2>
+            <p class="mzp-c-card-feature-desc">Firefox desktop received a major makeover in 2021. Our goal? To get you where you’re going online — fast, safe, and distraction-free. The makeover entailed a clean, new design; streamlined toolbar and menus; expanded privacy protections, and lots more.</p>
+            <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://blog.mozilla.org/en/mozilla/news/modern-clean-new-firefox-clears-the-way-to-all-you-need-online/">Learn more</a>
+          </div>
+        </div>
     </article>
 
-    <!-- Second article -->
-    <article data-modal-parent="first-section-card-2" id="first-section-card-2">
-      <h2>First section card 2</h2>
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ab consectetur, veniam omnis odit minus rerum. Voluptatem ratione eius accusantium! Laborum a error alias impedit. Placeat adipisci asperiores minima distinctio alias iure deleniti, tempora beatae totam? Eligendi animi nisi magnam?</p>
-      <a href="#">here is a link</a>
+    <!-- Mobile redesign -->
+    <article data-modal-parent="firefox-mobile-redesign" id="firefox-mobile-redesign" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+       <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            {{ lazy_img(image_url='img/foundation/annualreport/2020/firefox-android.png', placeholder_url='img/foundation/annualreport/2019/spacer.gif', optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+            <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+            <h2 class="mzp-c-card-feature-title"><span class="highlight green">Firefox mobile redesign</span></h2>
+            <p class="mzp-c-card-feature-desc">Firefox received a mobile makeover in 2021, too. In addition to a clean, new design, functionality was optimized for Android and iOS mobile devices. Search, navigation, and tab actions now take fewer steps, meaning you can focus on what matters most — browsing.</p>
+            <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://blog.mozilla.org/en/mozilla/news/firefox-brings-you-a-new-homepage/">Learn more</a>
+          </div>
+        </div>
     </article>
 
-    <!-- Third article -->
-    <article data-modal-parent="first-section-card-3" id="first-section-card-3">
-      <h2>First section card 3</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore consequatur sed repellendus neque optio id unde non nostrum quos! Quod ullam tempora et rem officiis voluptas, repellendus ad facilis maxime nihil neque omnis possimus, vero laborum, iure labore excepturi nobis.</p>
-      <a href="#">here is a link</a>
+    <!-- Firefox suggest -->
+    <article data-modal-parent="firefox-suggest" id="firefox-suggest" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+        <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            {{ lazy_img(image_url='img/foundation/annualreport/2020/firefox-blog-header.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+            <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+            <h2 class="mzp-c-card-feature-title"><span class="highlight green">Firefox suggest</span></h2>
+            <p class="mzp-c-card-feature-desc">It can be challenging to navigate all the content, clutter, and click-bait online. So Mozilla built a new discovery feature directly into Firefox.</p>
+            <p class="mzp-c-card-feature-desc">
+              Firefox Suggest provides trustworthy suggestions related to your search, surfacing Wikipedia entries, Pocket articles, reviews, and other credible content to help you find what you're looking for.
+            </p>
+            <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://blog.mozilla.org/en/products/firefox/firefox-news/firefox-suggest/">Learn more</a>
+          </div>
+        </div>
     </article>
+
+      <!-- Picture-in-picture -->
+    <article data-modal-parent="picture-in-picture" id="picture-in-picture" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+        <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            {{ lazy_img(image_url='img/foundation/annualreport/2020/blog-header-pip.png', placeholder_url='img/foundation/annualreport/2019/spacer.gif', optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+            <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+            <h2 class="mzp-c-card-feature-title"><span class="highlight green">Multi picture-in-picture</span></h2>
+            <p class="mzp-c-card-feature-desc">What if you want to watch that cute raccoon video, but also check your inbox? What if you want to watch <em>two</em> cute raccoonn videos, but also check your inbox?</p>
+            <p class="mzp-c-card-feature-desc">
+              Now, Firefox has you covered. We introduced multiple <a target="_blank" rel="external noopener" href="https://blog.mozilla.org/en/products/firefox/latest-firefox-release-includes-multiple-picture-in-picture-and-total-cookie-protection/">picture-in-picture</a> (multi-PiP), allowing multiple videos to play at the same time. Multi-PiP is available on Mac, Linux and Windows, and includes keyboard controls for fast forward and rewind.
+            </p>
+            <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://blog.mozilla.org/en/products/firefox/how-to-watch-ncaa-basketball-tournament-firefox-multiple-picture-in-picture/">Learn more</a>
+          </div>
+        </div>
+    </article>
+
     </div>
 
     <!-- Second section modal content -->
     <div class="mzp-l-content js-modal-content">
          <!-- First article -->
-    <article data-modal-parent="second-section-card-1" id="second-section-card-1">
+    <article data-modal-parent="second-section-card-1" id="second-section-card-1" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <h2>
        <span class="highlight green">Second section card 1</span>
      </h2>
@@ -407,13 +455,13 @@
     </article>
 
     <!-- Second article -->
-    <article data-modal-parent="second-section-card-2" id="second-section-card-2">
+    <article data-modal-parent="second-section-card-2" id="second-section-card-2" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <h2>Second section card 2</h2>
       <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ab consectetur, veniam omnis odit minus rerum. Voluptatem ratione eius accusantium! Laborum a error alias impedit. Placeat adipisci asperiores minima distinctio alias iure deleniti, tempora beatae totam? Eligendi animi nisi magnam?</p>
     </article>
 
     <!-- Third article -->
-    <article data-modal-parent="second-section-card-3" id="second-section-card-3">
+    <article data-modal-parent="second-section-card-3" id="second-section-card-3" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <h2>Second section card 3</h2>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore consequatur sed repellendus neque optio id unde non nostrum quos! Quod ullam tempora et rem officiis voluptas, repellendus ad facilis maxime nihil neque omnis possimus, vero laborum, iure labore excepturi nobis.</p>
       <a href="#">here is a link</a>
@@ -422,7 +470,7 @@
 
     <!-- Thirs section modal content -->
     <div class="mzp-l-content js-modal-content">
-    <article data-modal-parent="third-section-card-1" id="third-section-card-1">
+    <article data-modal-parent="third-section-card-1" id="third-section-card-1" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
      <h2>
        <span class="highlight green">Third section card 1</span>
      </h2>
@@ -431,14 +479,14 @@
     </article>
 
     <!-- Second article -->
-    <article data-modal-parent="third-section-card-2" id="third-section-card-2">
+    <article data-modal-parent="third-section-card-2" id="third-section-card-2" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <h2>Third section card 2</h2>
       <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ab consectetur, veniam omnis odit minus rerum. Voluptatem ratione eius accusantium! Laborum a error alias impedit. Placeat adipisci asperiores minima distinctio alias iure deleniti, tempora beatae totam? Eligendi animi nisi magnam?</p>
       <a href="#">here is a link</a>
     </article>
 
     <!-- Third article -->
-    <article data-modal-parent="third-section-card-3" id="third-section-card-3">
+    <article data-modal-parent="third-section-card-3" id="third-section-card-3" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <h2>Third section card 3</h2>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore consequatur sed repellendus neque optio id unde non nostrum quos! Quod ullam tempora et rem officiis voluptas, repellendus ad facilis maxime nihil neque omnis possimus, vero laborum, iure labore excepturi nobis.</p>
       <a href="#">here is a link</a>
