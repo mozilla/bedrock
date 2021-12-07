@@ -784,23 +784,23 @@ def test_ContentfulPage___get_preview_image_from_fields__bad_data(
     (
         (
             {"folder": "firefox"},
-            ("firefox", "firefox-test-test-test"),
+            {"theme": "firefox", "campaign": "firefox-test-test-test"},
         ),
         (
             {"folder": "mentions-firefox-in-title"},
-            ("firefox", "firefox-test-test-test"),
+            {"theme": "firefox", "campaign": "firefox-test-test-test"},
         ),
         (
             {"folder": "other-thing"},
-            ("mozilla", "test-test-test"),
+            {"theme": "mozilla", "campaign": "test-test-test"},
         ),
         (
             {"folder": ""},
-            ("mozilla", "test-test-test"),
+            {"theme": "mozilla", "campaign": "test-test-test"},
         ),
         (
             {},
-            ("mozilla", "test-test-test"),
+            {"theme": "mozilla", "campaign": "test-test-test"},
         ),
     ),
 )
@@ -826,13 +826,13 @@ def test_ContentfulPage__get_info_data__theme_campaign(
                 "name": "locale temporarily in overridden name field",
             },
             "Not used",
-            "locale temporarily in overridden name field",
+            {"locale": "locale temporarily in overridden name field"},
         ),
         (
             "pagePageResourceCenter",
             {"name": "NOT USED"},
             "fr-CA",
-            "fr-CA",
+            {"locale": "fr-CA"},
         ),
     ),
 )
@@ -862,7 +862,11 @@ def test_ContentfulPage__get_info_data__locale(
             {"slug": "compose-main-page-slug"},
             {},
             {},
-            ("compose-main-page-slug", "test page one", ""),
+            {
+                "slug": "compose-main-page-slug",
+                "title": "test page one",
+                "blurb": "",
+            },
         ),
         (
             "",
@@ -870,7 +874,11 @@ def test_ContentfulPage__get_info_data__locale(
             {"slug": "compose-main-page-slug"},
             {},
             {},
-            ("compose-main-page-slug", "", ""),
+            {
+                "slug": "compose-main-page-slug",
+                "title": "",
+                "blurb": "",
+            },
         ),
         (
             "",
@@ -881,7 +889,11 @@ def test_ContentfulPage__get_info_data__locale(
                 "preview_blurb": "preview blurb",
             },
             {},
-            ("compose-main-page-slug", "preview title", "preview blurb"),
+            {
+                "slug": "compose-main-page-slug",
+                "title": "preview title",
+                "blurb": "preview blurb",
+            },
         ),
         (
             "",
@@ -892,7 +904,11 @@ def test_ContentfulPage__get_info_data__locale(
                 "preview_blurb": "preview blurb",
             },
             {"description": "seo description"},
-            ("compose-main-page-slug", "preview title", "seo description"),
+            {
+                "slug": "compose-main-page-slug",
+                "title": "preview title",
+                "blurb": "seo description",
+            },
         ),
         (
             "page title",
@@ -904,7 +920,11 @@ def test_ContentfulPage__get_info_data__locale(
                 "preview_blurb": "preview blurb",
             },
             {},  # SEO fields not present for non-Compose pages
-            ("homepage-slug", "preview title", "preview blurb"),
+            {
+                "slug": "homepage-slug",
+                "title": "preview title",
+                "blurb": "preview blurb",
+            },
         ),
         (
             "page title",
@@ -916,7 +936,11 @@ def test_ContentfulPage__get_info_data__locale(
                 "preview_blurb": "preview blurb",
             },
             {},  # SEO fields not present for non-Compose pages
-            ("home", "preview title", "preview blurb"),
+            {
+                "slug": "home",
+                "title": "preview title",
+                "blurb": "preview blurb",
+            },
         ),
     ),
     ids=[
@@ -1080,13 +1104,18 @@ def test_ContentfulPage__get_info_data(
         "https://example.com/test-entry.png",
         "https://example.com/test-seo.png",
     ]
-    mock__get_info_data__theme_campaign.return_value = ("test-theme", "test-campaign")
-    mock__get_info_data__locale.return_value = "fr-CA"
-    mock__get_info_data__slug_title_blurb.return_value = (
-        "test-slug",
-        "test title",
-        "test blurb",
-    )
+    mock__get_info_data__theme_campaign.return_value = {
+        "theme": "test-theme",
+        "campaign": "test-campaign",
+    }
+    mock__get_info_data__locale.return_value = {
+        "locale": "fr-CA",
+    }
+    mock__get_info_data__slug_title_blurb.return_value = {
+        "slug": "test-slug",
+        "title": "test title",
+        "blurb": "test blurb",
+    }
     mock__get_info_data__category_tags_classification.return_value = {
         "category": "test category",
         "tags": [

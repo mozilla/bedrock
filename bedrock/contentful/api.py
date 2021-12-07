@@ -479,7 +479,11 @@ class ContentfulPage:
             # Defer to SEO fields for blurb if appropriate.
             blurb = seo_fields.get("description", "")
 
-        return slug, title, blurb
+        return {
+            "slug": slug,
+            "title": title,
+            "blurb": blurb,
+        }
 
     def _get_info_data__category_tags_classification(self, entry_fields, page_type):
 
@@ -504,7 +508,10 @@ class ContentfulPage:
         _in_firefox = "firefox-" if "firefox" in _folder else ""
         campaign = f"{_in_firefox}{slug}"
         theme = "firefox" if "firefox" in _folder else "mozilla"
-        return theme, campaign
+        return {
+            "theme": theme,
+            "campaign": campaign,
+        }
 
     def _get_info_data__locale(self, page_type, entry_fields, entry_obj):
         # TODO: update this once we have a robust locale field available (ideally
@@ -514,7 +521,7 @@ class ContentfulPage:
             locale = entry_fields["name"]
         else:
             locale = entry_obj.sys["locale"]
-        return locale
+        return {"locale": locale}
 
     def get_info_data(self, entry_obj, seo_obj=None):
         # TODO, need to enable connectors
@@ -526,20 +533,19 @@ class ContentfulPage:
 
         page_type = entry_obj.content_type.id
 
-        slug, title, blurb = self._get_info_data__slug_title_blurb(entry_fields, seo_fields)
-        theme, campaign = self._get_info_data__theme_campaign(entry_fields, slug)
-        locale = self._get_info_data__locale(page_type, entry_fields, entry_obj)
+        data = {}
 
-        data = {
-            "title": title,
-            "blurb": blurb,
-            "slug": slug,
-            "locale": locale,
-            "theme": theme,
-            # eg www.mozilla.org-firefox-accounts or www.mozilla.org-firefox-sync
-            "utm_source": f"www.mozilla.org-{campaign}",
-            "utm_campaign": campaign,  # eg firefox-sync
-        }
+        data.update(self._get_info_data__slug_title_blurb(entry_fields, seo_fields))
+        data.update(self._get_info_data__theme_campaign(entry_fields, data["slug"]))
+        data.update(self._get_info_data__locale(page_type, entry_fields, entry_obj))
+        campaign = data.pop("campaign")
+        data.update(
+            {
+                # eg www.mozilla.org-firefox-accounts or www.mozilla.org-firefox-sync
+                "utm_source": f"www.mozilla.org-{campaign}",
+                "utm_campaign": campaign,  # eg firefox-sync
+            }
+        )
 
         _preview_image = self._get_preview_image_from_fields(entry_fields)
         if _preview_image:
