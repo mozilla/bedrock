@@ -772,6 +772,18 @@
     },
     {
       "files": [
+        "css/firefox/welcome12.scss"
+      ],
+      "name": "firefox_welcome_page12"
+    },
+    {
+      "files": [
+        "css/firefox/welcome13.scss"
+      ],
+      "name": "firefox_welcome_page13"
+    },
+    {
+      "files": [
         "css/firefox/unfck.scss"
       ],
       "name": "firefox-unfck"
