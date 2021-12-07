@@ -181,7 +181,7 @@
     <p>The Foundation also uses grassroots organizing and public education campaigns to mobilize tens of millions of internet users. In 2019, Mozilla’s advocacy work urged Facebook, Amazon, Apple, and other big tech companies to address issues like online privacy and the spread of disinformation. Last year, Mozilla spent $4,853,516 to support this advocacy work.</p>
     <p>And the Foundation provides support to people and projects on the front lines of the internet health movement. We do so through fellowships and awards for technologists and researchers addressing issues like online privacy and digital inclusion. In 2019, Mozilla also held its 10th-annual Mozilla Festival, a week-long convening for the internet health movement. Last year, Mozilla spent $10,387,096 to support this leadership development work.</p>
 
-    <p>The Foundation’s revenue comes partially from the Mozilla Corporation. For 2019, the Mozilla Foundation received $15,858,258 per a trademark license agreement with Mozilla Corporation, allowing us to reinvest earnings from our products  into advocacy and grant making that grow the internet health movement. </p>
+    <p>The Foundation’s revenue comes partially from the Mozilla Corporation. For 2019, the Mozilla Foundation received $15,858,258 per a trademark license agreement with Mozilla Corporation, allowing us to reinvest earnings from our products  into advocacy and grant making that grow the internet health movement.</p>
     <p>Individual donations and grants to Mozilla Foundation complement  this revenue from our social enterprise work. In 2019, the Foundation raised $11.7M through these avenues. We view these contributions not as donations to Mozilla, but rather as a way to match Mozilla’s own investment in the broader movement for internet health. The majority of these resources are used to fund Fellows and other organizations within the movement.</p>
     <h3>Although two organizations exist beneath the Mozilla banner, they operate in tandem and with a shared mission.</h3>
     <p>By combining our expertise both in the market and as a nonprofit, we are strongly positioned to protect the internet as a global public resource, open and accessible to all.</p>
@@ -315,43 +315,83 @@
         </div>
       </div>
 
-        <div class="has-modal" data-modal-id="second-section-card-1">
+      <!-- Second section cards -->
+        <div class="has-modal" data-modal-id="privacy-not-included">
           {% call split(
-            image_url='img/foundation/annualreport/2019/victory-ring.jpg',
-            include_highres_image=True,
+            image_url='img/foundation/annualreport/2020/moz-pni-header.jpg',
             block_class='mzp-l-split-body-narrow mzp-t-split-nospace'
             ) %}
-            <span>Nice tiny headline</span>
-            <h2>Lorem ipsum dolor sit.</h2>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum odio sunt iste, nobis accusamus tenetur.</p>
-            <button type="button" class="mzp-c-button mzp-t-secondary">
-              This button does something
-            </button>
+            <span>We help consumers choose  gadgets they can trust</span>
+            <h2>Privacy not included</h2>
             {% endcall %}
         </div>
 
         <div class="mzp-l-card-half mzp-l-content">
           {{ card(
-            title='This is a title',
-            ga_title='lThis is a title',
-            tag_label='Tiny title',
-            desc='This is a description of the card',
+            title='Mofo letter to ISPs basic user privacy protections',
+            ga_title='Mofo letter to ISPs basic user privacy protections',
+            tag_label='Mozilla and its allies demand that ISPs prioritize privacy',
             class='has-modal',
-            attributes='data-modal-id="second-section-card-2"',
+            attributes='data-modal-id="mofo-letter-privacy"',
             aspect_ratio='mzp-has-aspect-16-9',
-            image_url='img/foundation/annualreport/2019/misinfo-mondays.jpg',
+            link_url='mofo-letter-privacy',
+            image_url='img/foundation/annualreport/2020/mofo-privacy-header.png',
           )}}
           {{ card(
-            title='This is a title',
-            ga_title='lThis is a title',
-            tag_label='Tiny title',
-            desc='This is a description of the card',
+            title='DoH Canada rollout',
+            ga_title='DoH Canada rollout',
+            tag_label='DoH Canada!',
             class='has-modal',
-            attributes='data-modal-id="second-section-card-3"',
+            attributes='data-modal-id="doh-canada"',
             aspect_ratio='mzp-has-aspect-16-9',
-            image_url='img/foundation/annualreport/2019/political-ads-streaming-platforms.jpg',
+            link_url='doh-canada',
+            image_url='img/foundation/annualreport/2020/doh-canada-rollout.png',
           )}}
         </div>
+
+        <div class="mzp-l-card-quarter mzp-l-content">
+          {{ card(
+            title='Apple IDFA campaign',
+            ga_title='Apple IDFA campaign',
+            tag_label='Making mobile apps less creepy',
+            class='has-modal',
+            attributes='data-modal-id="apple-idfa"',
+            aspect_ratio='mzp-has-aspect-16-9',
+            link_url='apple-idfa',
+            image_url='img/foundation/annualreport/2020/apple-idfa-campaign.png',
+          )}}
+          {{ card(
+            title='Venmo privacy campaign',
+            ga_title='Venmo privacy campaign',
+            tag_label='We told Venmo to take privacy more seriously. They listened',
+            class='has-modal',
+            attributes='data-modal-id="venmo-privacy"',
+            aspect_ratio='mzp-has-aspect-16-9',
+            link_url='venmo-privacy',
+            image_url='img/foundation/annualreport/2020/venmo-privacy.png',
+          )}}
+           {{ card(
+            title='VPN expansion',
+            ga_title='VPN expansion',
+            tag_label='The ever-expanding Mozilla VPN',
+            class='has-modal',
+            attributes='data-modal-id="vpn-expansion"',
+            aspect_ratio='mzp-has-aspect-16-9',
+            link_url='vpn-expansion',
+            image_url='img/foundation/annualreport/2020/vpn-blog-header.jpg',
+          )}}
+           {{ card(
+            title='Global privacy control',
+            ga_title='Global privacy control',
+            tag_label='Firefox hangs a ‘not for sale’ sign on every site you visit',
+            class='has-modal',
+            attributes='data-modal-id="privacy-control"',
+            aspect_ratio='mzp-has-aspect-16-9',
+            link_url='privacy-control',
+            image_url='img/foundation/annualreport/2020/firefox-asset.png',
+          )}}
+        </div>
+
     </section>
 
     <!-- Third main section -->
@@ -493,7 +533,7 @@
           <div class="mzp-c-card-feature-content-container">
             <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
             <h2 class="mzp-c-card-feature-title"><span class="highlight green">Pocket joy lists + collections</span></h2>
-            <p class="mzp-c-card-feature-desc">2021 was another tough year — so we used Pocket to give users a pick-me-up. Our Joy List Project had luminaries like Mary H.K. Choi and Angelina Spicer share their very favorite essays, songs, podcasts, and recipes. </p>
+            <p class="mzp-c-card-feature-desc">2021 was another tough year — so we used Pocket to give users a pick-me-up. Our Joy List Project had luminaries like Mary H.K. Choi and Angelina Spicer share their very favorite essays, songs, podcasts, and recipes.</p>
             <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://getpocket.com/collections/the-joy-list-project">Learn more</a>
           </div>
         </div>
@@ -537,27 +577,125 @@
 
     <!-- Second section modal content -->
     <div class="mzp-l-content js-modal-content">
-         <!-- First article -->
-    <article data-modal-parent="second-section-card-1" id="second-section-card-1" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
-      <h2>
-       <span class="highlight green">Second section card 1</span>
-     </h2>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id, expedita. Harum reprehenderit at consequuntur fuga explicabo facilis aliquam natus. Quos accusamus vitae dolorum maxime veniam iure ad aliquid, suscipit quia ipsam magni aliquam odio, mollitia blanditiis quidem deserunt fugiat eos, veritatis at consectetur laboriosam iste hic necessitatibus! Maiores, eius iure.</p>
-      <a href="#">here is a link</a>
+         <!-- Privacy not included -->
+    <article data-modal-parent="privacy-not-included" id="privacy-not-included" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+        <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            {{ lazy_img(image_url='img/foundation/annualreport/2020/moz-pni-header.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+            <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+            <h2 class="mzp-c-card-feature-title"><span class="highlight green">Privacy not included</span></h2>
+            <p class="mzp-c-card-feature-desc">Mozilla's <a href="https://foundation.mozilla.org/en/privacynotincluded/" target="_blank" rel="external noopener">*Privacy Not Included</a> buyers guide had three installments in 2021. We helped consumers choose <a href="https://foundation.mozilla.org/en/blog/should-you-trust-your-dating-app-or-sex-toy/" target="_blank" rel="external noopener">dating apps</a>, <a href="https://foundation.mozilla.org/en/blog/privacy-problems-persist-on-top-video-call-apps-mozilla-research/" target="_blank" rel="external noopener">video call software</a>, and popular connected products that respect their personal data. Why? Because we believe privacy matters just as much as price and performance.</p>
+            <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://blog.mozilla.org/en/products/pocket/college-esssay-contest-winner-mozilla-pocket-hercampus/">Learn more</a>
+          </div>
+        </div>
     </article>
 
-    <!-- Second article -->
-    <article data-modal-parent="second-section-card-2" id="second-section-card-2" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
-      <h2>Second section card 2</h2>
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ab consectetur, veniam omnis odit minus rerum. Voluptatem ratione eius accusantium! Laborum a error alias impedit. Placeat adipisci asperiores minima distinctio alias iure deleniti, tempora beatae totam? Eligendi animi nisi magnam?</p>
+    <!-- Mofo letter -->
+    <article data-modal-parent="mofo-letter-privacy" id="mofo-letter-privacy" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+          <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            {{ lazy_img(image_url='img/foundation/annualreport/2020/mofo-privacy-header.png', placeholder_url='img/foundation/annualreport/2019/spacer.gif', optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+            <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+            <h2 class="mzp-c-card-feature-title"><span class="highlight green">Mofo letter to ISPs basic user privacy protections</span></h2>
+            <p class="mzp-c-card-feature-desc">Internet Service Providers (ISPs) like Comcast, Verizon, and AT&T have complete, unfettered, and unregulated access to our personal data. To better protect people's privacy, Mozilla and its allies EFF and the Internet Society are <a href="https://foundation.mozilla.org/en/blog/internet-advocates-call-on-isps-commit-to-basic-user-privacy-protections/">fighting for privacy commitments from ISPs</a>, and also and stricter privacy laws.</p>
+            <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://foundation.mozilla.org/en/blog/internet-advocates-call-on-isps-commit-to-basic-user-privacy-protections/">Learn more</a>
+          </div>
+        </div>
     </article>
 
-    <!-- Third article -->
-    <article data-modal-parent="second-section-card-3" id="second-section-card-3" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
-      <h2>Second section card 3</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore consequatur sed repellendus neque optio id unde non nostrum quos! Quod ullam tempora et rem officiis voluptas, repellendus ad facilis maxime nihil neque omnis possimus, vero laborum, iure labore excepturi nobis.</p>
-      <a href="#">here is a link</a>
+    <!-- DoH -->
+    <article data-modal-parent="doh-canada" id="doh-canada" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+     <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            {{ lazy_img(image_url='img/foundation/annualreport/2020/doh-canada-rollout.png', placeholder_url='img/foundation/annualreport/2019/spacer.gif', optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+            <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+            <h2 class="mzp-c-card-feature-title"><span class="highlight green">DoH Canada rollout</span></h2>
+            <p class="mzp-c-card-feature-desc">Firefox users in Canada receive upgraded privacy and security features with by-default DNS-over-HTTPS (DoH) rollout.</p>
+            <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://blog.mozilla.org/en/mozilla/news/firefox-by-default-dns-over-https-rollout-in-canada/">Learn more</a>
+          </div>
+        </div>
     </article>
+
+    <!-- Apple IDFA -->
+    <article data-modal-parent="apple-idfa" id="apple-idfa" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+     <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            {{ lazy_img(image_url='img/foundation/annualreport/2020/apple-idfa-campaign.png', placeholder_url='img/foundation/annualreport/2019/spacer.gif', optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+            <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+            <h2 class="mzp-c-card-feature-title"><span class="highlight green">Apple IDFA campaign </span></h2>
+            <p class="mzp-c-card-feature-desc">Mozilla had been urging Apple to reform its app tracking policies and live up to its reputation as a privacy advocate. Apple listened, and <a href="https://foundation.mozilla.org/en/blog/applause-for-apples-idfa-decision/" target="_blank" rel="external noopener">announced the reform</a> in 2020. In 2021, that change went into effect, giving millions of consumers more privacy online.</p>
+            <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://foundation.mozilla.org/en/blog/thank-you-apple-for-standing-strong-for-privacy/">Learn more</a>
+          </div>
+        </div>
+    </article>
+
+    <!-- Venmo privacy -->
+     <article data-modal-parent="venmo-privacy" id="venmo-privacy" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+     <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            {{ lazy_img(image_url='img/foundation/annualreport/2020/venmo-privacy.png', placeholder_url='img/foundation/annualreport/2019/spacer.gif', optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+            <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+            <h2 class="mzp-c-card-feature-title"><span class="highlight green">Venmo privacy campaign</span></h2>
+            <p class="mzp-c-card-feature-desc">For years, Mozilla has urged the payment app Venmo to remove its public feed, a feature that let users see transactions between total strangers. In July, Venmo finally listened — a big win for consumer privacy.</p>
+            <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://foundation.mozilla.org/en/blog/venmo-finally-gets-the-message-people-want-privacy/">Learn more</a>
+          </div>
+        </div>
+    </article>
+
+    <!-- VPN expansion -->
+    <article data-modal-parent="vpn-expansion" id="vpn-expansion" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+     <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            {{ lazy_img(image_url='img/foundation/annualreport/2020/vpn-blog-header.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+            <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+            <h2 class="mzp-c-card-feature-title"><span class="highlight green">VPN expansion</span></h2>
+            <p class="mzp-c-card-feature-desc">In just one year, Mozilla VPN, our fast and easy-to-use Virtual Private Network service has expanded to seven more countries including Austria, Belgium, France, Germany, Italy, Spain and Switzerland. That makes 13 countries where Mozilla VPN is available. Our VPN service is also now available on Windows, Mac, Linux, Android and iOS platforms and with more payment options.</p>
+            <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://blog.mozilla.org/en/mozilla/celebrating-mozilla-vpn-how-were-keeping-your-data-safe-for-you/">Learn more</a>
+          </div>
+        </div>
+    </article>
+
+    <!-- Global privacy control -->
+    <article data-modal-parent="vpn-expansion" id="vpn-expansion" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+     <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            {{ lazy_img(image_url='img/foundation/annualreport/2020/firefox-asset.png', placeholder_url='img/foundation/annualreport/2019/spacer.gif', optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+            <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+            <h2 class="mzp-c-card-feature-title"><span class="highlight green">Global privacy control</span></h2>
+            <p class="mzp-c-card-feature-desc">Firefox joins other browsers to add a signal that sends mass ‘do not sell’ requests on behalf of users.</p>
+            <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://twitter.com/washingtonpost/status/1453016457781055492?s=20">Learn more</a>
+          </div>
+        </div>
+    </article>
+
     </div>
 
     <!-- Thirs section modal content -->
