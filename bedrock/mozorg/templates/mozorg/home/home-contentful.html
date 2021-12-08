@@ -20,10 +20,10 @@
   {% include 'includes/contentful/css.html' %}
   {{ css_bundle('home-contentful') }}
 
-  {% if show_pocket_banner %}
-    {{ css_bundle('pocket-banner') }}
-  {% elif show_fundraising_banner %}
+  {% if show_fundraising_banner %}
     {{ css_bundle('fundraising-banner') }}
+  {% elif show_pocket_banner %}
+    {{ css_bundle('pocket-banner') }}
   {% elif show_firefox_app_store_banner %}
     {{ css_bundle('firefox-app-store-banner') }}
   {% endif %}
@@ -34,10 +34,10 @@
 {% endblock %}
 
 {% block page_banner %}
-  {% if show_pocket_banner %}
-    {% include 'includes/banners/pocket.html' %}
-  {% elif show_fundraising_banner %}
+  {% if show_fundraising_banner %}
     {% include 'includes/banners/fundraiser.html' %}
+  {% elif show_pocket_banner %}
+    {% include 'includes/banners/pocket.html' %}
   {% elif show_firefox_app_store_banner %}
     {% include 'includes/banners/mobile/firefox-app-store.html' %}
   {% endif %}
@@ -114,10 +114,10 @@
   {% include 'includes/contentful/js.html' %}
   {{ js_bundle('home-contentful') }}
 
-  {% if show_pocket_banner %}
-    {{ js_bundle('pocket-banner') }}
-  {% elif show_fundraising_banner %}
+  {% if show_fundraising_banner %}
     {{ js_bundle('fundraising-banner') }}
+  {% elif show_pocket_banner %}
+    {{ js_bundle('pocket-banner') }}
   {% elif show_firefox_app_store_banner %}
     {{ js_bundle('firefox-app-store-banner') }}
   {% endif %}

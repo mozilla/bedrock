@@ -9,13 +9,42 @@ $image-path: '/media/protocol/img';
 @import 'includes/base';
 
 .c-banner {
-    @include at2x('/media/img/banners/fundraising/fundraising-bg-blue.jpg', cover);
-    background-color: #323fb2;
-    background-repeat: no-repeat;
+    background: #c4c6fa linear-gradient(#c4c6fa, #f0deeb) top center no-repeat;
+    @include at2x('/media/img/banners/fundraising/dear-internet-bg-sm.png');
+    @include background-size(cover);
+    color: $color-black;
+
+    // this is needed here and below, as the high-res media query
+    // created by the at2x mixin needs overriding as well.
+    // see https://github.com/mozilla/protocol/issues/751
+    @media #{$mq-high-res} {
+        @include background-size(cover);
+    }
+
+    @media #{$mq-lg} {
+        @include at2x('/media/img/banners/fundraising/dear-internet-bg-lg-simple.png');
+        @include background-size(cover);
+
+        @media #{$mq-high-res} {
+            @include background-size(cover);
+        }
+    }
+
+    // left-to-right locales get the globe graphic on larger viewports.
+    html[dir='ltr'] & {
+        @media #{$mq-lg} and (max-width: 2000px) {
+            @include at2x('/media/img/banners/fundraising/dear-internet-bg-lg.png');
+            @include background-size(cover);
+            min-height: 320px;
+
+            @media #{$mq-high-res} {
+                @include background-size(cover);
+            }
+        }
+    }
 }
 
 .c-banner-title {
-    color: $color-white;
     font-weight: normal;
     line-height: 1.25em;
 }
@@ -31,8 +60,8 @@ $image-path: '/media/protocol/img';
 
     label {
         @include text-body-lg;
-        color: $color-white;
         display: inline-block;
+        font-weight: normal;
 
         &:first-child {
             @include bidi((
@@ -48,15 +77,10 @@ $image-path: '/media/protocol/img';
 
     .mzp-c-button.mzp-t-secondary {
         @include text-body-lg;
-        background-color: transparent;
+        font-weight: normal;
+        padding: 6px $spacing-xl;
         text-align: center;
         width: 100%;
-        padding: 6px $spacing-xl;
-
-        &:focus,
-        &:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-        }
     }
 
     label {
@@ -80,9 +104,14 @@ $image-path: '/media/protocol/img';
         position: absolute;
         top: 0;
 
-        &:checked + .mzp-c-button.mzp-t-secondary {
-            background-color: rgba(255, 255, 255, 0.25);
-            font-weight: bold;
+        &:checked + .mzp-c-button.mzp-t-product.mzp-t-secondary {
+            background-color: $color-white;
+
+            &:hover,
+            &:active,
+            &:focus {
+                background-color: $color-blue-60;
+            }
         }
     }
 
@@ -95,7 +124,6 @@ $image-path: '/media/protocol/img';
 
 .c-fundraiser-submit .mzp-c-button {
     @include text-body-lg;
-    color: $color-blue-50;
     margin: 0;
 }
 
@@ -128,4 +156,9 @@ $image-path: '/media/protocol/img';
     .c-fundraiser-submit .mzp-c-button {
         width: 100%;
     }
+}
+
+// Close button
+.c-banner-close {
+    background-image: url('#{$image-path}/icons/close.svg');
 }
