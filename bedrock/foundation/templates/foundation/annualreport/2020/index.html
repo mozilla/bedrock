@@ -399,48 +399,81 @@
       <div class="c-section-intro-bg">
         <div class="mzp-l-content">
           <div class="c-section-intro">
-            <h2><span class="highlight green">Section 3</span></h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores repudiandae dolore, velit error tempora reprehenderit voluptatum dolorem iusto odio laboriosam unde modi maiores dolor asperiores quia et rem optio accusantium. Soluta aspernatur aliquid, cupiditate qui amet assumenda repudiandae reiciendis, voluptatibus iure suscipit rem esse dolorem mollitia. Quos excepturi debitis numquam.</p>
+            <h2><span class="highlight green">Building a more trustworthy internet</span></h2>
+            <p>The future of the internet depends on being able to fix the problems we are facing today: untrustworthy algorithms, bias online, social media’s impact on society and democracies, an opaque business model that lends itself to harm. Yet to enact smart and comprehensive fixes that will help us build a better internet, we must first understand the root causes of the problems. </p>
+            <p>This requires transparency. And a lot more of it than we have today.</p>
+            <p>Our work this year helped shine a light on what’s really happening online through new research, new innovations and teaming up with new and old friends to push for change. This might not be surprising coming from a company founded on open-source, but we just think the internet is a better place when it’s more open and transparent, and we intend to do whatever we can to help fight for it.</p>
            </div>
         </div>
       </div>
 
 
-        <div class="has-modal" data-modal-id="third-section-card-1">
+      <div class="has-modal" data-modal-id="privacy-advertising">
         {% call split(
-          image_url='img/foundation/annualreport/2019/victory-ring.jpg',
-          include_highres_image=True,
+          image_url='img/foundation/annualreport/2020/firefox-privacy.jpg',
           block_class='mzp-l-split-body-narrow mzp-t-split-nospace'
          ) %}
-           <span>Nice tiny headline</span>
-           <h2>Lorem ipsum dolor sit.</h2>
-           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum odio sunt iste, nobis accusamus tenetur.</p>
-           <button type="button" class="mzp-c-button mzp-t-secondary">
-             This button does something
-           </button>
+           <span>Making a statement — in the New York Times</span>
+           <h2>Privacy Preserving Advertising series</h2>
           {% endcall %}
       </div>
 
         <div class="mzp-l-card-half mzp-l-content">
           {{ card(
-            title='This is a title',
-            ga_title='lThis is a title',
-            tag_label='Tiny title',
-            desc='This is a description of the card',
+            title='Regrets Reporter research',
+            ga_title='Regrets Reporter research',
+            tag_label='Holding YouTube accountable for harmful recommendations',
             class='has-modal',
-            attributes='data-modal-id="third-section-card-2"',
+            attributes='data-modal-id="youtube-regrets"',
             aspect_ratio='mzp-has-aspect-16-9',
-            image_url='img/foundation/annualreport/2019/misinfo-mondays.jpg',
+            link_url='privacy-control',
+            link_url='youtube-regrets',
+            image_url='img/foundation/annualreport/2020/youtube-regrets.png',
           )}}
           {{ card(
-            title='This is a title',
-            ga_title='lThis is a title',
-            tag_label='Tiny title',
-            desc='This is a description of the card',
+            title='Tiktok research',
+            ga_title='Tiktok research',
+            tag_label='Pushing TikTok to take election disinformation seriously ',
             class='has-modal',
-            attributes='data-modal-id="third-section-card-3"',
+            attributes='data-modal-id="tiktok-research"',
             aspect_ratio='mzp-has-aspect-16-9',
-            image_url='img/foundation/annualreport/2019/political-ads-streaming-platforms.jpg',
+            link_url='tiktok-research',
+            image_url='img/foundation/annualreport/2020/tiktok-research.png',
+          )}}
+      </div>
+
+
+      <div class="has-modal" data-modal-id="nyt-op-ed">
+        {% call split(
+          image_url='img/foundation/annualreport/2020/nyt-op-ed.jpg',
+          block_class='mzp-l-split-body-narrow mzp-t-split-nospace'
+         ) %}
+           <span>Ensuring the future of advertising is more private and transparent</span>
+           <h2>Ashley Boyd NYT op-ed</h2>
+          {% endcall %}
+      </div>
+
+        <div class="mzp-l-card-half mzp-l-content">
+          {{ card(
+            title='Ad Transparency: NYU, privacy blog, DSA positioning',
+            ga_title='Ad Transparency: NYU, privacy blog, DSA positioning',
+            tag_label='Fighting for ad transparency online',
+            class='has-modal',
+            attributes='data-modal-id="ad-transparancy"',
+            aspect_ratio='mzp-has-aspect-16-9',
+            link_url='privacy-control',
+            link_url='ad-transparancy',
+            image_url='img/foundation/annualreport/2020/ad-transparancy.jpg',
+          )}}
+          {{ card(
+            title='Fellow research in Kenya',
+            ga_title='Fellow research in Kenya',
+            tag_label='Investigating disinformation on Twitter',
+            class='has-modal',
+            attributes='data-modal-id="kenya-research"',
+            aspect_ratio='mzp-has-aspect-16-9',
+            link_url='kenya-research',
+            image_url='img/foundation/annualreport/2020/tiktok-research.png',
           )}}
       </div>
     </section>
@@ -578,7 +611,7 @@
     <!-- Second section modal content -->
     <div class="mzp-l-content js-modal-content">
          <!-- Privacy not included -->
-    <article data-modal-parent="privacy-not-included" id="privacy-not-included" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+      <article data-modal-parent="privacy-not-included" id="privacy-not-included" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
         <div class="mzp-c-card-feature-media-wrapper">
           <div class="mzp-c-card-feature-media">
             {{ lazy_img(image_url='img/foundation/annualreport/2020/moz-pni-header.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
@@ -589,13 +622,13 @@
             <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
             <h2 class="mzp-c-card-feature-title"><span class="highlight green">Privacy not included</span></h2>
             <p class="mzp-c-card-feature-desc">Mozilla's <a href="https://foundation.mozilla.org/en/privacynotincluded/" target="_blank" rel="external noopener">*Privacy Not Included</a> buyers guide had three installments in 2021. We helped consumers choose <a href="https://foundation.mozilla.org/en/blog/should-you-trust-your-dating-app-or-sex-toy/" target="_blank" rel="external noopener">dating apps</a>, <a href="https://foundation.mozilla.org/en/blog/privacy-problems-persist-on-top-video-call-apps-mozilla-research/" target="_blank" rel="external noopener">video call software</a>, and popular connected products that respect their personal data. Why? Because we believe privacy matters just as much as price and performance.</p>
-            <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://blog.mozilla.org/en/products/pocket/college-esssay-contest-winner-mozilla-pocket-hercampus/">Learn more</a>
+            <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://foundation.mozilla.org/en/privacynotincluded/">Learn more</a>
           </div>
         </div>
     </article>
 
     <!-- Mofo letter -->
-    <article data-modal-parent="mofo-letter-privacy" id="mofo-letter-privacy" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+      <article data-modal-parent="mofo-letter-privacy" id="mofo-letter-privacy" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
           <div class="mzp-c-card-feature-media-wrapper">
           <div class="mzp-c-card-feature-media">
             {{ lazy_img(image_url='img/foundation/annualreport/2020/mofo-privacy-header.png', placeholder_url='img/foundation/annualreport/2019/spacer.gif', optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
@@ -612,8 +645,8 @@
     </article>
 
     <!-- DoH -->
-    <article data-modal-parent="doh-canada" id="doh-canada" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
-     <div class="mzp-c-card-feature-media-wrapper">
+       <article data-modal-parent="doh-canada" id="doh-canada" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+        <div class="mzp-c-card-feature-media-wrapper">
           <div class="mzp-c-card-feature-media">
             {{ lazy_img(image_url='img/foundation/annualreport/2020/doh-canada-rollout.png', placeholder_url='img/foundation/annualreport/2019/spacer.gif', optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
           </div>
@@ -629,8 +662,8 @@
     </article>
 
     <!-- Apple IDFA -->
-    <article data-modal-parent="apple-idfa" id="apple-idfa" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
-     <div class="mzp-c-card-feature-media-wrapper">
+      <article data-modal-parent="apple-idfa" id="apple-idfa" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+        <div class="mzp-c-card-feature-media-wrapper">
           <div class="mzp-c-card-feature-media">
             {{ lazy_img(image_url='img/foundation/annualreport/2020/apple-idfa-campaign.png', placeholder_url='img/foundation/annualreport/2019/spacer.gif', optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
           </div>
@@ -646,8 +679,8 @@
     </article>
 
     <!-- Venmo privacy -->
-     <article data-modal-parent="venmo-privacy" id="venmo-privacy" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
-     <div class="mzp-c-card-feature-media-wrapper">
+      <article data-modal-parent="venmo-privacy" id="venmo-privacy" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+        <div class="mzp-c-card-feature-media-wrapper">
           <div class="mzp-c-card-feature-media">
             {{ lazy_img(image_url='img/foundation/annualreport/2020/venmo-privacy.png', placeholder_url='img/foundation/annualreport/2019/spacer.gif', optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
           </div>
@@ -663,8 +696,8 @@
     </article>
 
     <!-- VPN expansion -->
-    <article data-modal-parent="vpn-expansion" id="vpn-expansion" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
-     <div class="mzp-c-card-feature-media-wrapper">
+      <article data-modal-parent="vpn-expansion" id="vpn-expansion" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+        <div class="mzp-c-card-feature-media-wrapper">
           <div class="mzp-c-card-feature-media">
             {{ lazy_img(image_url='img/foundation/annualreport/2020/vpn-blog-header.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
           </div>
@@ -680,8 +713,8 @@
     </article>
 
     <!-- Global privacy control -->
-    <article data-modal-parent="vpn-expansion" id="vpn-expansion" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
-     <div class="mzp-c-card-feature-media-wrapper">
+    <article data-modal-parent="privacy-control" id="privacy-control" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+      <div class="mzp-c-card-feature-media-wrapper">
           <div class="mzp-c-card-feature-media">
             {{ lazy_img(image_url='img/foundation/annualreport/2020/firefox-asset.png', placeholder_url='img/foundation/annualreport/2019/spacer.gif', optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
           </div>
@@ -698,28 +731,110 @@
 
     </div>
 
-    <!-- Thirs section modal content -->
+    <!-- Third section modal content -->
+
     <div class="mzp-l-content js-modal-content">
-    <article data-modal-parent="third-section-card-1" id="third-section-card-1" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
-     <h2>
-       <span class="highlight green">Third section card 1</span>
-     </h2>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id, expedita. Harum reprehenderit at consequuntur fuga explicabo facilis aliquam natus. Quos accusamus vitae dolorum maxime veniam iure ad aliquid, suscipit quia ipsam magni aliquam odio, mollitia blanditiis quidem deserunt fugiat eos, veritatis at consectetur laboriosam iste hic necessitatibus! Maiores, eius iure.</p>
-      <a href="#">here is a link</a>
+
+      <!-- Privacy advertising -->
+       <article data-modal-parent="privacy-advertising" id="privacy-advertising" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+         <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            {{ lazy_img(image_url='img/foundation/annualreport/2020/firefox-privacy.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+            <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+            <h2 class="mzp-c-card-feature-title"><span class="highlight green">Privacy Preserving Advertising series</span></h2>
+            <p class="mzp-c-card-feature-desc"></p>
+            <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://blog.mozilla.org/en/mozilla/building-a-more-privacy-preserving-ads-based-ecosystem/">Learn more</a>
+          </div>
+        </div>
     </article>
 
-    <!-- Second article -->
-    <article data-modal-parent="third-section-card-2" id="third-section-card-2" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
-      <h2>Third section card 2</h2>
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed ab consectetur, veniam omnis odit minus rerum. Voluptatem ratione eius accusantium! Laborum a error alias impedit. Placeat adipisci asperiores minima distinctio alias iure deleniti, tempora beatae totam? Eligendi animi nisi magnam?</p>
-      <a href="#">here is a link</a>
+       <!-- Youtube regrets -->
+       <article data-modal-parent="youtube-regrets" id="youtube-regrets" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+         <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            {{ lazy_img(image_url='img/foundation/annualreport/2020/youtube-regrets.png', placeholder_url='img/foundation/annualreport/2019/spacer.gif', optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+            <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+            <h2 class="mzp-c-card-feature-title"><span class="highlight green">Global privacy control</span></h2>
+            <p class="mzp-c-card-feature-desc">Mozilla <a href="https://foundation.mozilla.org/en/youtube/findings/" target="_blank" rel="external noopener">published findings</a> from our ambitious RegretsReporter research project, revealing that YouTube's algorithm recommends videos that violate the platform’s very own policies. The revelations were covered by the <a href="https://www.wsj.com/articles/youtubes-search-algorithm-directs-viewers-to-false-and-sexualized-videos-study-finds-11625644803" target="_blank" rel="external noopener">Wall Street Journal</a>, <a href="https://www.nbcnews.com/tech/tech-news/youtubes-recommendations-still-push-harmful-videos-crowdsourced-study-rcna1355" target="_blank" rel="external noopener">NBC News</a>, and NPR — and have already pressured YouTube to release more information about how its recommendation AI works. </p>
+            <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://foundation.mozilla.org/en/campaigns/regrets-reporter/findings/">Learn more</a>
+          </div>
+        </div>
     </article>
 
-    <!-- Third article -->
-    <article data-modal-parent="third-section-card-3" id="third-section-card-3" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
-      <h2>Third section card 3</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore consequatur sed repellendus neque optio id unde non nostrum quos! Quod ullam tempora et rem officiis voluptas, repellendus ad facilis maxime nihil neque omnis possimus, vero laborum, iure labore excepturi nobis.</p>
-      <a href="#">here is a link</a>
+    <!-- Tiktok research -->
+       <article data-modal-parent="tiktok-research" id="tiktok-research" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+        <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            {{ lazy_img(image_url='img/foundation/annualreport/2020/tiktok-research.png', placeholder_url='img/foundation/annualreport/2019/spacer.gif', optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+            <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+            <h2 class="mzp-c-card-feature-title"><span class="highlight green">Tiktok research</span></h2>
+            <p class="mzp-c-card-feature-desc">TikTok is the fastest-growing social media app, and so it's vital that the platform take election content seriously. But recent Mozilla research revealed TikTok wasn't living up to its election promises <a href="https://foundation.mozilla.org/en/campaigns/tiktok-political-ads/" target="_blank" rel="external noopener">in the U.S.</a> and <a href="https://foundation.mozilla.org/en/blog/mozilla-investigation-tiktok-fails-to-curb-disinformation-ahead-of-german-election/" target="_blank" rel="external noopener">in Germany</a>. When we went public with our findings, TikTok responded by shutting down the fake accounts Mozilla had identified.</p>
+            <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://foundation.mozilla.org/en/campaigns/tiktok-german-election-2021/">Learn more</a>
+          </div>
+        </div>
+    </article>
+
+    <!-- NYT -->
+    <article data-modal-parent="nyt-op-ed" id="nyt-op-ed" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+      <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            {{ lazy_img(image_url='img/foundation/annualreport/2020/nyt-op-ed.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+            <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+            <h2 class="mzp-c-card-feature-title"><span class="highlight green">Ashley Boyd NYT op-ed</span></h2>
+            <p class="mzp-c-card-feature-desc">Ashley Boyd, Mozilla's VP of Advocacy, authored a biting op-ed in the New York Times, calling on Facebook, YouTube, and other platforms to build more trustworthy AI systems. She writes: "Just as polluters green-wash their products by bedecking their packaging with green imagery, major tech platforms are opting for style, not substance."</p>
+            <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://www.nytimes.com/2021/08/08/opinion/tiktok-facebook-youtube-transparency.html">Learn more</a>
+          </div>
+        </div>
+    </article>
+
+    <!-- Ad transparancy -->
+    <article data-modal-parent="ad-transparancy" id="ad-transparancy" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+      <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            {{ lazy_img(image_url='img/foundation/annualreport/2020/ad-transparancy.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+            <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+            <h2 class="mzp-c-card-feature-title"><span class="highlight green">Ad Transparency: NYU, privacy blog, DSA positioning </span></h2>
+            <p class="mzp-c-card-feature-desc">Internet users have a right to know who's trying to influence them online. So in 2021, Mozilla continued its pioneering work to make online advertising more transparent. We <a href="https://foundation.mozilla.org/en/blog/ahead-of-congressional-testimony-mozilla-and-nyus-edelson-say-facebook-cant-be-trusted/">stood up</a> for transparency researchers being bullied by Facebook, we <a href="https://www.ft.com/content/12c6e100-a4c8-485d-8768-1b97578a79fe">championed</a> the EU's Digital Services Act, and more."</p>
+            <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://www.nytimes.com/2021/08/08/opinion/tiktok-facebook-youtube-transparency.html">Learn more</a>
+          </div>
+        </div>
+    </article>
+
+    <!-- Kenya research -->
+     <article data-modal-parent="kenya-research" id="kenya-research" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+      <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            {{ lazy_img(image_url='img/foundation/annualreport/2020/ad-transparancy.jpg', placeholder_url='img/foundation/annualreport/2019/spacer.gif', optional_attributes={'alt': '', 'width': '930', 'height': '523', 'class': 'mzp-c-card-image'}) }}
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+            <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+            <h2 class="mzp-c-card-feature-title"><span class="highlight green">Ad Transparency: NYU, privacy blog, DSA positioning </span></h2>
+            <p class="mzp-c-card-feature-desc">Mozilla Fellows Odanga Madung and Brian Obilo published not <a href="https://foundation.mozilla.org/en/blog/fellow-research-inside-the-shadowy-world-of-disinformation-for-hire-in-kenya/" target="_blank" rel="external noopener">one</a>, but <a href="https://foundation.mozilla.org/en/blog/new-research-in-kenya-disinformation-campaigns-seek-to-discredit-pandora-papers/" target="_blank" rel="external noopener">two</a> investigations into Kenya's disinformation industry and its connection to Twitter. Their work was covered by the <a href="https://www.bbc.com/news/world-africa-58474936" target="_blank" rel="external noopener">BBC</a> and the <a href="https://www.nytimes.com/live/2020/2020-election-misinformation-distortions#researchers-say-a-coordinated-misinformation-campaign-on-twitter-backed-kenyas-president" target="_blank" rel="external noopener">New York Times</a>, and spurred Twitter to <a href="https://foundation.mozilla.org/en/blog/responding-to-mozilla-fellows-research-twitter-removes-100-accounts/" target="_blank" rel="external noopener">remove dozens</a> fake accounts.</p>
+            <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://www.nytimes.com/2021/08/08/opinion/tiktok-facebook-youtube-transparency.html">Learn more</a>
+          </div>
+        </div>
     </article>
     </div>
 
