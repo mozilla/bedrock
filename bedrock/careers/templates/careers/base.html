@@ -12,11 +12,11 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{ meta_title|default(default_slug, true)|safe }}">
     <meta property="og:description" content="{{ meta_description|default(default_slug, true)|safe }}">
-    <meta property="og:image" content="{{ static('img/careers/moz-m.png') }}">
+    <meta property="og:image" content="{% filter trim|absolute_url %}{{ static('img/careers/moz-m.png') }}{% endfilter %}">
     <meta property="og:image:alt" content="{{ meta_title|default(default_slug, true)|safe }}">
     <meta name="twitter:title" content="{{ meta_title|default(default_slug, true)|safe }}">
     <meta name="twitter:description" content="{{ meta_description|default(default_slug, true)|safe }}">
-    <meta name="twitter:image" content="{{ static('img/careers/moz-m.png') }}">
+    <meta name="twitter:image" content="{% filter trim|absolute_url %}{{ static('img/careers/moz-m.png') }}{% endfilter %}">
     <meta name="twitter:card" content="summary">
     <meta name="description" content="{{ meta_description|default(default_slug, true)|safe }}">
     <title>{{ meta_title|default(default_slug, true)|safe }}</title>
