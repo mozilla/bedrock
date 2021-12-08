@@ -558,8 +558,9 @@ class ContentfulPage:
             if _preview_image:
                 _seo_fields["image"] = _preview_image
 
-                # We don't need the preview_image key if we've had it in the past
-                _seo_fields.pop("preview_image", None)
+            # We don't need the preview_image key if we've had it in the past, and
+            # if reading it fails then we don't want it sticking around, either
+            _seo_fields.pop("preview_image", None)
             data.update({"seo": _seo_fields})
 
         data.update(
