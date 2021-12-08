@@ -129,7 +129,7 @@ def home_view(request):
     if locale.startswith("en-"):
         if switch("contentful-homepage-en"):
             try:
-                template_name = "mozorg/home/home-en.html"
+                template_name = "mozorg/home/home-contentful.html"
                 # TODO: use a better system to get the pages than the ID
                 ctx.update(ContentfulEntry.objects.get_page_by_id("58YIvwDmzSDjtvpSqstDcL"))
             except Exception:
@@ -140,7 +140,7 @@ def home_view(request):
     elif locale == "de":
         if switch("contentful-homepage-de"):
             try:
-                template_name = "mozorg/home/home-en.html"
+                template_name = "mozorg/home/home-contentful.html"
                 ctx.update(ContentfulEntry.objects.get_page_by_id("4k3CxqZGjxXOjR1I0dhyto"))
             except Exception:
                 # if anything goes wrong, use the old page
@@ -171,7 +171,7 @@ class ContentfulPreviewView(L10nTemplateView):
         page_type = context["page_type"]
         theme = context["info"]["theme"]
         if page_type == "pageHome":
-            template = "mozorg/home/home-en.html"
+            template = "mozorg/home/home-contentful.html"
         elif page_type == "pagePageResourceCenter":
             template = "products/vpn/resource-center/article.html"
         elif theme == "firefox":

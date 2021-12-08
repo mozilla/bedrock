@@ -92,7 +92,7 @@ class TestHomePage(TestCase):
         (
             "abc",
             {"page_type": "pageHome", "info": {"theme": "mozilla"}},
-            "mozorg/home/home-en.html",
+            "mozorg/home/home-contentful.html",
         ),
         (
             "def",
