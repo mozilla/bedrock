@@ -122,27 +122,25 @@ def home_view(request):
         "donate_locale": donate_locale,
         "donate_params": donate_params,
         "pocket_articles": PocketArticle.objects.all()[:4],
-        "ftl_files": ["mozorg/home", "mozorg/home-mr1-promo", "mozorg/home-mr2-promo"],
+        "ftl_files": ["mozorg/home", "mozorg/home-mr2-promo"],
         "add_active_locales": ["de", "fr"],
     }
 
     if locale.startswith("en-"):
         if switch("contentful-homepage-en"):
             try:
-                template_name = "mozorg/contentful-homepage.html"
+                template_name = "mozorg/home/home-contentful.html"
                 # TODO: use a better system to get the pages than the ID
                 ctx.update(ContentfulEntry.objects.get_page_by_id("58YIvwDmzSDjtvpSqstDcL"))
             except Exception:
-                # if anything goes wrong, use the old page
-                template_name = "mozorg/home/home-en.html"
-                ctx["page_content_cards"] = get_page_content_cards("home-en", "en-US")
+                # if anything goes wrong, use the rest-of-world home page
+                template_name = "mozorg/home/home.html"
         else:
-            template_name = "mozorg/home/home-en.html"
-            ctx["page_content_cards"] = get_page_content_cards("home-en", "en-US")
+            template_name = "mozorg/home/home.html"
     elif locale == "de":
         if switch("contentful-homepage-de"):
             try:
-                template_name = "mozorg/contentful-homepage.html"
+                template_name = "mozorg/home/home-contentful.html"
                 ctx.update(ContentfulEntry.objects.get_page_by_id("4k3CxqZGjxXOjR1I0dhyto"))
             except Exception:
                 # if anything goes wrong, use the old page
@@ -173,7 +171,7 @@ class ContentfulPreviewView(L10nTemplateView):
         page_type = context["page_type"]
         theme = context["info"]["theme"]
         if page_type == "pageHome":
-            template = "mozorg/contentful-homepage.html"
+            template = "mozorg/home/home-contentful.html"
         elif page_type == "pagePageResourceCenter":
             template = "products/vpn/resource-center/article.html"
         elif theme == "firefox":

@@ -2,10 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from django.conf import settings
-
-from bedrock.contentcards.models import get_page_content_cards
-from bedrock.pocketfeed.models import PocketArticle
 from lib import l10n_utils
 
 
@@ -30,30 +26,3 @@ def new(request):
     context = {"experience": experience, "v": variant}
 
     return l10n_utils.render(request, template_name, context, ftl_files="firefox/new/desktop")
-
-
-def home_view(request):
-    locale = l10n_utils.get_locale(request)
-    donate_params = settings.DONATE_PARAMS.get(locale, settings.DONATE_PARAMS["en-US"])
-
-    # presets are stored as a string but, for the home banner
-    # we need it as a list.
-    donate_params["preset_list"] = donate_params["presets"].split(",")
-    ctx = {
-        "donate_params": donate_params,
-        "pocket_articles": PocketArticle.objects.all()[:4],
-        "ftl_files": ["mozorg/home-mr2-promo"],
-        "active_locales": ["de", "fr", "en-US"],
-    }
-
-    if locale == "de":
-        template_name = "exp/home/home-de.html"
-        ctx["page_content_cards"] = get_page_content_cards("home-de", "de")
-    elif locale == "fr":
-        template_name = "exp/home/home-fr.html"
-        ctx["page_content_cards"] = get_page_content_cards("home-fr", "fr")
-    else:
-        template_name = "exp/home/home-en.html"
-        ctx["page_content_cards"] = get_page_content_cards("home-2019", "en-US")
-
-    return l10n_utils.render(request, template_name, ctx)

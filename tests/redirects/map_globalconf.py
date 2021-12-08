@@ -1172,5 +1172,7 @@ URLS = flatten(
         url_test("/vpn/", "/products/vpn/"),
         # issue 10703
         url_test("/firefox/lockwise/", "https://support.mozilla.org/kb/end-of-support-firefox-lockwise"),
+        # issue 10879
+        url_test("/exp/", "/"),
     )
 )

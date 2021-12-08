@@ -64,7 +64,7 @@ class TestHomePage(TestCase):
         req = RequestFactory().get("/")
         req.locale = "en-US"
         views.home_view(req)
-        render_mock.assert_called_once_with(req, "mozorg/home/home-en.html", ANY)
+        render_mock.assert_called_once_with(req, "mozorg/home/home.html", ANY)
 
     def test_home_de_template(self, render_mock):
         req = RequestFactory().get("/")
@@ -92,7 +92,7 @@ class TestHomePage(TestCase):
         (
             "abc",
             {"page_type": "pageHome", "info": {"theme": "mozilla"}},
-            "mozorg/contentful-homepage.html",
+            "mozorg/home/home-contentful.html",
         ),
         (
             "def",

@@ -11,6 +11,5 @@ urlpatterns = (
     page("opt-out", "exp/opt-out.html"),
     page("firefox", "exp/firefox/index.html", ftl_files=["firefox/home"]),
     url(r"^firefox/new/$", views.new, name="exp.firefox.new"),
-    url(r"^$", views.home_view, name="exp.mozorg.home"),
     page("firefox/accounts", "exp/firefox/accounts.html", ftl_files=["firefox/accounts"]),
 )

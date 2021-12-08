@@ -8,42 +8,17 @@
 
 {% from "mozorg/home/includes/macros.html" import download_banner, download_banner_secondary, fxa_banner %}
 
-{% extends "base-protocol-mozilla.html" %}
-
-{% block gtm_page_id %}data-gtm-page-id="Homepage"{% endblock %}
+{% extends "mozorg/home/base.html" %}
 
 {% block page_title %}{{ _('Internet for people, not profit') }}{% endblock %}
-
-{# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
-{%- block page_title_suffix -%}
-  {% if LANG == 'en-CA' %}
-    — Mozilla (CA)
-  {% elif LANG == 'en-GB' %}
-    — Mozilla (UK)
-  {% else %}
-    — Mozilla
-  {% endif %}
-{%- endblock -%}
-
-{% block page_desc %}
-  {{ _('Mozilla is the not-for-profit behind the lightning fast Firefox browser. We put people over profit to give everyone more power online.') }}
-{% endblock %}
-
-{% block body_id %}home{% endblock %}
-
-{% block extra_meta %}
-<!-- validates bing webmaster tools -->
-<meta name="msvalidate.01" content="B7B177115A634927D608514DA17B2574">
-<!-- YouTube Verification -->
-<meta name="google-site-verification" content="U9a6gH32vLIykvntaDToj-ytYhlZ1AfAgVEKstixQIE">
-{% endblock %}
+{% block page_desc %}{{ _('Mozilla is the not-for-profit behind the lightning fast Firefox browser. We put people over profit to give everyone more power online.') }}{% endblock %}
 
 {% set show_pocket_banner = switch('pocket-banner', ['en-US', 'en-CA', 'en-GB', 'de']) %}
 {% set show_fundraising_banner = switch('fundraising-banner-eoy2021') and donate_params and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
 
 {% block page_css %}
   {% include 'includes/contentful/css.html' %}
-  {{ css_bundle('home-contentful-en') }}
+  {{ css_bundle('home-contentful') }}
 
   {% if show_pocket_banner %}
     {{ css_bundle('pocket-banner') }}
@@ -85,9 +60,7 @@
   {% endif %}
 {%- endmacro %}
 
-
 {% block content %}
-{% block main %}
 <main role="main">
   <header class="main-page-heading visually-hidden">
     {# Main page h1 is hidden from view and exists mainly for SEO purposes #}
@@ -136,7 +109,6 @@
 
 </main>
 {% endblock %}
-{% endblock %}
 
 {% block js %}
   {% include 'includes/contentful/js.html' %}
@@ -149,8 +121,4 @@
   {% elif show_firefox_app_store_banner %}
     {{ js_bundle('firefox-app-store-banner') }}
   {% endif %}
-{% endblock %}
-
-{% block structured_data %}
-  {% include 'includes/structured-data/organizations/mozilla-corporation-organisation.json' %}
 {% endblock %}

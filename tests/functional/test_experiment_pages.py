@@ -14,7 +14,7 @@ def pytest_generate_tests(metafunc):
     base_url = metafunc.config.option.base_url
     if not base_url:
         pytest.skip("This test requires a base URL to be specified on the command line or in a configuration file.")
-    paths = ("/exp/firefox/", "/exp/firefox/new/", "/exp/", "/exp/firefox/accounts")
+    paths = ("/exp/firefox/", "/exp/firefox/new/", "/exp/firefox/accounts")
     metafunc.parametrize("url", [base_url + path for path in paths])
 
 
