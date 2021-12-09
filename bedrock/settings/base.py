@@ -580,6 +580,7 @@ INSTALLED_APPS = (
     "bedrock.sitemaps",
     "bedrock.pocketfeed",
     "bedrock.exp",
+    "bedrock.careers",
     # last so that redirects here will be last
     "bedrock.redirects",
     # libs
@@ -682,7 +683,14 @@ WP_BLOGS = {
     #     uncomment and change this to get more
     #     'num_posts': 20,
     # },
+    "careers": {
+        "url": "https://blog.mozilla.org/careers/",
+        "name": "Life@Mozilla",
+        "num_posts": 20,
+    },
 }
+
+GREENHOUSE_BOARD = config("GREENHOUSE_BOARD", default="mozilla")
 
 # used to connect to @MozillaHQ Pocket account
 POCKET_API_URL = config("POCKET_API_URL", default="https://getpocket.com/v3/firefox/profile-recs")

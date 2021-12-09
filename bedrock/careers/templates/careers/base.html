@@ -1,0 +1,71 @@
+{% set default_slug = "Mozilla Careers &mdash; Feel good about your work again" %}
+<!DOCTYPE html>
+<html lang="{{ LANG }}"
+      dir="{{ DIR }}"
+      class="no-js"
+      {% if settings.GTM_CONTAINER_ID %}data-gtm-container-id="{{ settings.GTM_CONTAINER_ID }}"{% endif %}>
+  <head>
+    {# meta #}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ meta_title|default(default_slug, true)|safe }}">
+    <meta property="og:description" content="{{ meta_description|default(default_slug, true)|safe }}">
+    <meta property="og:image" content="{% filter trim|absolute_url %}{{ static('img/careers/moz-m.png') }}{% endfilter %}">
+    <meta property="og:image:alt" content="{{ meta_title|default(default_slug, true)|safe }}">
+    <meta name="twitter:title" content="{{ meta_title|default(default_slug, true)|safe }}">
+    <meta name="twitter:description" content="{{ meta_description|default(default_slug, true)|safe }}">
+    <meta name="twitter:image" content="{% filter trim|absolute_url %}{{ static('img/careers/moz-m.png') }}{% endfilter %}">
+    <meta name="twitter:card" content="summary">
+    <meta name="description" content="{{ meta_description|default(default_slug, true)|safe }}">
+    <title>{{ meta_title|default(default_slug, true)|safe }}</title>
+
+    {# css #}
+    {% block site_css %}
+      {{ css_bundle('careers') }}
+    {% endblock %}
+
+    {# js #}
+    {{ js_bundle('careers-dnt-helper') }}
+    <script src="{{ static('js/careers/protocol-base.min.js') }}"></script>
+    <script src="{{ static('js/careers/protocol-utils.min.js') }}"></script>
+    <script src="{{ static('js/careers/protocol-supports.min.js') }}"></script>
+
+    {# icons #}
+    <link rel="shortcut icon" type="image/png" href="{{ static('img/careers/favicon.ico') }}"/>
+
+    {# feeds #}
+    <link rel="alternate" type="application/rss+xml"
+          href="{{ url('careers.feed') }}" title="Current Mozilla job openings" />
+
+    {% include 'includes/google-analytics.html' %}
+
+  </head>
+  <body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}"
+    {%- block body_data %}
+    {%- endblock %}>
+
+    {% include "careers/includes/header.html" %}
+
+    <div id="wrapper" class="mzp-l-content mzp-t-mozilla">
+      <main role="main">
+
+        {% block content %}{% endblock %}
+
+      </main>
+    </div><!-- /#wrapper -->
+
+    {% block site_footer %}
+      {% include "careers/includes/footer.html" %}
+    {% endblock %}
+
+    {# js #}
+    {% block site_js %}
+      <script src="{{ static('js/careers/protocol-navigation.min.js') }}"></script>
+      <script src="{{ static('js/careers/protocol-menu.min.js') }}"></script>
+      <script src="{{ static('js/careers/base.js') }}"></script>
+    {% endblock %}
+
+  </body>
+</html>
