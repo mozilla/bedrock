@@ -76,7 +76,7 @@ class ContentfulEntryManager(models.Manager):
 
 
 class ContentfulEntry(models.Model):
-    contentful_id = models.CharField(max_length=20, unique=True)
+    contentful_id = models.CharField(max_length=20)
     content_type = models.CharField(max_length=20)
     locale = models.CharField(max_length=5)
     last_modified = models.DateTimeField(default=now)
@@ -104,8 +104,11 @@ class ContentfulEntry(models.Model):
 
     objects = ContentfulEntryManager()
 
+    class Meta:
+        unique_together = ["contentful_id", "locale"]
+
     def __str__(self) -> str:
-        return f"ContentfulEntry {self.content_type}:{self.contentful_id}"
+        return f"ContentfulEntry {self.content_type}:{self.contentful_id}[{self.locale}]"
 
     def get_related_entries(self, order_by="last_modified"):
         """Find ContentfulEntry records that:
