@@ -1,0 +1,22 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/features/base-article.html" %}
+
+{% block page_image %}{{ static('img/firefox/features/private-high-res.png') }}{% endblock %}
+{% block page_desc %}{{ ftl('features-private-were-focused-on-your-right-to') }}{% endblock %}
+
+{% block article_title %}{{ ftl('features-private-is-firefox-a-private-browser') }}{% endblock %}
+
+{% block article_content %}
+<p>{{ ftl('features-private-yes-firefox-protects-your', url=url('firefox.features.private-browsing')) }}</p>
+<p>{{ ftl('features-private-firefox-also-protects-your', url='https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features') }}</p>
+<p>{{ ftl('features-private-sidenote-we-are-not-big-tech') }}</p>
+
+<h2>{{ ftl('features-private-what-information-does-firefox') }}</h2>
+<p>{{ ftl('features-private-mozilla-the-maker-of-firefox', url=url('firefox.privacy.index')) }}</p>
+<p>{{ ftl('features-private-read-firefoxs-privacy-notice', url=url('privacy.notices.firefox')) }}</p>
+{% endblock article_content %}

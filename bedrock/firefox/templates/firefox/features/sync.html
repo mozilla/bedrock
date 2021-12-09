@@ -1,0 +1,46 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/features/base-article.html" %}
+
+{% block article_title %}{{ ftl('features-sync-firefox-browser-sync') }}{% endblock %}
+{% block page_desc %}{{ ftl('features-sync-access-your-firefox-bookmarks') }}{% endblock %}
+
+{% block article_content %}
+<p>{{ ftl('features-sync-with-firefox-you-can-pick-up-where') }}</p>
+<p>{{ ftl('features-sync-sign-up-for-a-free-firefox-account', fxa=url('firefox.accounts')) }}</p>
+
+<figure class="c-article-figure">
+  {{ resp_img(
+    url="img/firefox/features/sync.jpg",
+    srcset={
+        "img/firefox/features/sync-high-res.jpg": "1.5x"
+    },
+    optional_attributes={
+      "alt": "",
+      "width": "600"
+    }
+  ) }}
+</figure>
+
+<p>{{ ftl('features-sync-all-your-data-is-encrypted-on-our', privacy=url('firefox.privacy.index')) }}</p>
+
+<h2>{{ ftl('features-sync-send-tabs-from-one-device-to-another') }}</h2>
+<p>{{ ftl('features-sync-the-send-tab-feature-in-firefox') }}</p>
+
+<figure class="c-article-figure">
+  {{ resp_img(
+    url="img/firefox/features/send-tab.png",
+    srcset={
+        "img/firefox/features/send-tab-high-res.png": "1.5x"
+    },
+    optional_attributes={
+      "alt": ftl('features-sync-an-image-of-a-firefox-application'),
+      "width": "600"
+    }
+  ) }}
+</figure>
+{% endblock article_content %}

@@ -4,374 +4,172 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import split, picto with context %}
+{% from 'macros-protocol.html' import card, call_out %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% block page_title %}{{ftl('features-index-protect-your-privacy-and-browse')}}{% endblock %}
-{% block page_desc %}{{ ftl('features-index-youre-in-control-with-firefoxs') }}{% endblock %}
+{% macro feature_item(
+  link,
+  title,
+  ga_title,
+  desc
+) -%}
+<li class="c-feature-item">
+  <a href="{{ link }}" data-link-name="{{ ga_title }}" data-link-type="link">
+    <h3 class="c-feature-item-title">{{ title }}</h3>
+    <p>{{ desc }}</p>
+    <p class="c-feature-item-cta">{{ ftl('ui-learn-more') }}</p>
+  </a>
+</li>
+{%- endmacro %}
 
 {% block page_css %}
-  {{ css_bundle('protocol-split') }}
-  {{ css_bundle('protocol-picto') }}
-  {{ css_bundle('firefox-features-index') }}
-{% endblock %}
+  {{ css_bundle('firefox-features-index')}}
+{% endblock page_css %}
 
-{% block sub_navigation %}
-  {% include "firefox/features/includes/subnav.html" %}
-{% endblock %}
+{% block page_title %}{{ ftl('features-index-firefox-browser-features') }}{% endblock page_title %}
+{% block page_desc %}{{ ftl('features-index-firefox-is-the-fast-lightweight') }}{% endblock page_desc %}
+
+{% block body_class %}features-index{% endblock %}
 
 {% block content %}
-  {% call split(
-      block_class='mzp-l-split-hide-media-on-sm-md mzp-l-split-center-on-sm-md',
-      theme_class='',
-      media_class='mzp-l-split-h-center',
-      image=resp_img('img/firefox/features/index/features-hero.png',
-        srcset={ 'img/firefox/features/index/features-hero-high-res.png': '2x' },
-        optional_attributes={ 'class': 'mzp-c-split-media-asset'}
+{{ call_out (
+  title=self.page_title(),
+  desc=self.page_desc(),
+  class='c-feature-header mzp-t-content-md'
+)}}
+
+<div class="mzp-l-content">
+  <div class="mzp-l-card-half">
+    {{ card (
+      title=ftl('features-index-is-firefox-a-fast-browser'),
+      ga_title="Is Firefox a fast browser?",
+      aspect_ratio="mzp-has-aspect-16-9",
+      desc=ftl('features-index-firefox-uses-less-memory-than'),
+      image=resp_img(
+        url="img/firefox/features/fast.png",
+        srcset={
+          "img/firefox/features/fast-high-res.png": "2x"
+        },
+        optional_attributes={
+          "loading": "lazy",
+          "class": "mzp-c-card-image"
+        }
       ),
-    ) %}
-      <h1 class="mzp-u-title-xl">{{ ftl('features-index-firefox-features') }}</h1>
-      <div class="c-hero-desc">
-        <p>{{ ftl('features-index-firefox-is-fast') }}</p>
-      </div>
-      {{ download_firefox(alt_copy=ftl('features-index-download-latest'), dom_id='features-header-download', download_location='primary cta') }}
-  {% endcall %}
+      link_url=url('firefox.features.fast')
+    )}}
 
-  <section class="mzp-l-content mzp-t-content-lg main-content">
-    <h2 class="mzp-c-section-heading">{{ ftl('features-shared-a-better-internet-experience') }}</h2>
+    {{ card (
+      title=ftl('features-index-is-firefox-a-private-browser'),
+      ga_title="Is Firefox a private browser?",
+      aspect_ratio="mzp-has-aspect-16-9",
+      desc=ftl('features-index-were-focused-on-your-right-to'),
+      image=resp_img(
+        url="img/firefox/features/private.png",
+        srcset={
+          "img/firefox/features/private-high-res.png": "2x"
+        },
+        optional_attributes={
+          "loading": "lazy",
+          "class": "mzp-c-card-image"
+        }
+      ),
+      link_url=url('firefox.features.private')
+    )}}
+  </div>
 
-    <ul class="mzp-l-columns mzp-t-columns-three">
-      {% call picto(
-        base_el='li',
-        title=ftl('features-shared-browse-faster'),
-        image=resp_img(
-          url='protocol/img/icons/brand/orange/speedometer.svg',
-          optional_attributes={
-            'class': 'mzp-c-picto-image',
-            'width': '64',
-            'loading': 'lazy'
-          }
-        ),
-        body=True,
-      ) %}
-        <p>{{ ftl('features-index-use-less-memory') }}</p>
-        <a class="mzp-c-cta-link" href="{{ url('firefox.features.fast') }}">{{ ftl('ui-learn-more') }}</a>
-      {% endcall %}
+  <ul class="mzp-l-columns mzp-t-columns-three">
+    {{ feature_item(
+        link=url('firefox.features.password-manager'),
+        title=ftl('features-index-free-password-manager'),
+        ga_title="Free password manager",
+        desc=ftl('features-index-get-help-creating-new-passwords'),
+    ) }}
 
-      {% call picto(
-        base_el='li',
-        title=ftl('features-shared-your-favorite-extensions'),
-        image=resp_img(
-          url='protocol/img/icons/brand/orange/feature-extensions-puzzle.svg',
-          optional_attributes={
-            'class': 'mzp-c-picto-image',
-            'width': '64',
-            'loading': 'lazy'
-          }
-        ),
-        body=True,
-      ) %}
-        <p>{{ ftl('features-index-add-powerful-functions') }}</p>
-        <a class="mzp-c-cta-link" href="https://addons.mozilla.org/firefox/{{ utm_params }}" rel="external">{{ ftl('features-index-see-all') }}</a>
-      {% endcall %}
+    {{ feature_item(
+      link=url('firefox.features.sync'),
+      title=ftl('features-index-firefox-browser-sync'),
+      ga_title="Firefox browser sync",
+      desc=ftl('features-index-access-your-firefox-bookmarks'),
+    ) }}
 
-      {% call picto(
-        base_el='li',
-        title=ftl('features-shared-balanced-memory'),
-        image=resp_img(
-          url='protocol/img/icons/brand/orange/microchip.svg',
-          optional_attributes={
-            'class': 'mzp-c-picto-image',
-            'width': '64',
-            'loading': 'lazy'
-          }
-        ),
-        body=True,
-      ) %}
-        <p>{{ ftl('features-index-just-enough') }}</p>
-        <a class="mzp-c-cta-link" href="{{ url('firefox.features.memory') }}">{{ ftl('ui-learn-more') }}</a>
-      {% endcall %}
+    {{ feature_item(
+      link=url('firefox.features.bookmarks'),
+      title=ftl('features-index-bookmark-manager'),
+      ga_title="Bookmark manager",
+      desc=ftl('features-index-organize-your-bookmarks-with'),
+    ) }}
 
-      {% call picto(
-        base_el='li',
-        title=ftl('features-shared-more-powerful-private-browsing'),
-        image=resp_img(
-          url='protocol/img/icons/brand/violet/feature-private-browsing-mask.svg',
-          optional_attributes={
-            'class': 'mzp-c-picto-image',
-            'width': '64',
-            'loading': 'lazy'
-          }
-        ),
-        body=True,
-      ) %}
-        <p>{{ ftl('features-index-private-browsing-mode') }}</p>
-        <a class="mzp-c-cta-link" href="{{ url('firefox.features.private-browsing') }}">{{ ftl('ui-learn-more') }}</a>
-      {% endcall %}
+    {{ feature_item(
+      link=url('firefox.features.private-browsing'),
+      title=ftl('features-index-private-browsing-mode'),
+      ga_title="Private browsing mode",
+      desc=ftl('features-index-automatically-delete-cookies'),
+    ) }}
 
-      {% call picto(
-        base_el='li',
-        title=ftl('features-shared-ad-tracker-blocking'),
-        image=resp_img(
-          url='protocol/img/icons/brand/violet/feature-tracking-protection-shield.svg',
-          optional_attributes={
-            'class': 'mzp-c-picto-image',
-            'width': '64',
-            'loading': 'lazy'
-          }
-        ),
-        body=True,
-      ) %}
-        <p>{{ ftl('features-index-firefox-automatically') }}</p>
-        <a class="mzp-c-cta-link" href="{{ url('firefox.features.adblocker') }}">{{ ftl('ui-learn-more') }}</a>
-      {% endcall %}
+    {{ feature_item(
+      link=url('firefox.features.customize'),
+      title=ftl('features-index-customize-your-firefox-browser'),
+      ga_title="Customize your Firefox browser",
+      desc=ftl('features-index-choose-how-your-browser-looks'),
+    ) }}
 
-      {% call picto(
-        base_el='li',
-        title=ftl('features-shared-password-manager'),
-        image=resp_img(
-          url='protocol/img/icons/brand/violet/password.svg',
-          optional_attributes={
-            'class': 'mzp-c-picto-image',
-            'width': '64',
-            'loading': 'lazy'
-          }
-        ),
-        body=True,
-      ) %}
-        <p>{{ ftl('features-index-access-all-passwords') }}</p>
-        <a class="mzp-c-cta-link" href="{{ url('firefox.features.password-manager') }}">{{ ftl('ui-learn-more') }}</a>
-      {% endcall %}
+    {{ feature_item(
+      link=url('firefox.features.add-ons'),
+      title=ftl('features-index-firefox-add-ons-and-browser-extensions'),
+      ga_title="Firefox add-ons and browser extensions",
+      desc=ftl('features-index-add-new-tools-capabilities-and'),
+    ) }}
 
-      {% call picto(
-        base_el='li',
-        title=ftl('features-shared-customize-your-browser'),
-        image=resp_img(
-          url='protocol/img/icons/brand/pink/paintbrush.svg',
-          optional_attributes={
-            'class': 'mzp-c-picto-image',
-            'width': '64',
-            'loading': 'lazy'
-          }
-        ),
-        body=True,
-      ) %}
-        <p>{{ ftl('features-index-give-your-browser') }}</p>
-        <a class="mzp-c-cta-link" href="https://addons.mozilla.org/firefox/themes/{{ utm_params }}" rel="external">{{ ftl('features-index-see-themes') }}</a>
-      {% endcall %}
+    {{ feature_item(
+      link=url('firefox.features.pinned-tabs'),
+      title=ftl('features-index-pinned-browser-tabs'),
+      ga_title="Pinned browser tabs",
+      desc=ftl('features-index-keep-your-favorite-pages-open'),
+    ) }}
 
-      {% call picto(
-        base_el='li',
-        title=ftl('features-shared-sync-between-devices'),
-        image=resp_img(
-          url='protocol/img/icons/brand/pink/feature-sync-arrows.svg',
-          optional_attributes={
-            'class': 'mzp-c-picto-image',
-            'width': '64',
-            'loading': 'lazy'
-          }
-        ),
-        body=True,
-      ) %}
-        <p>{{ ftl('features-index-important-stuff') }}</p>
-        <a class="mzp-c-cta-link" href="{{ url('firefox.sync') }}">{{ ftl('features-index-get-an-account') }}</a>
-      {% endcall %}
+    {{ feature_item(
+      link=url('firefox.features.eyedropper'),
+      title=ftl('features-index-eyedropper-tool'),
+      ga_title="Eyedropper tool",
+      desc=ftl('features-index-identify-the-exact-color-on-a'),
+    ) }}
 
-      {% call picto(
-        base_el='li',
-        title=ftl('features-shared-better-bookmarks'),
-        image=resp_img(
-          url='protocol/img/icons/brand/pink/feature-bookmarks-star.svg',
-          optional_attributes={
-            'class': 'mzp-c-picto-image',
-            'width': '64',
-            'loading': 'lazy'
-          }
-        ),
-        body=True,
-      ) %}
-        <p>{{ ftl('features-index-use-the-bookmark') }}</p>
-        <a class="mzp-c-cta-link" href="{{ url('firefox.features.bookmarks') }}">{{ ftl('ui-learn-more') }}</a>
-      {% endcall %}
+    {{ feature_item(
+      link=url('firefox.features.pdf-editor'),
+      title=ftl('features-index-pdf-editor'),
+      ga_title="PDF editor",
+      desc=ftl('features-index-view-and-edit-pdf-files'),
+    ) }}
 
-    {% if ftl_has_messages('features-index-fingerprinter-blocking', 'features-index-fingerprinting-is-a') %}
-      {% call picto(
-        base_el='li',
-        title=ftl('features-index-fingerprinter-blocking'),
-        image=resp_img(
-          url='img/firefox/features/index/feature_icons/fingerprint_blue.svg',
-          optional_attributes={
-            'class': 'mzp-c-picto-image',
-            'width': '64',
-            'loading': 'lazy'
-          }
-        ),
-        body=True,
-      ) %}
-        <p>{{ ftl('features-index-fingerprinting-is-a') }}</p>
-        <a class="mzp-c-cta-link" href="{{ url('firefox.features.fingerprinting') }}">{{ ftl('features-index-block-fingerprinters') }}</a>
-      {% endcall %}
-    {% endif %}
+    {{ feature_item(
+      link=url('firefox.features.fingerprinting'),
+      title=ftl('features-index-fingerprint-blocking'),
+      ga_title="Fingerprint blocking",
+      desc=ftl('features-index-ditch-the-sticky-ads'),
+    ) }}
 
-    {% if ftl_has_messages('features-index-translate-the-web', 'features-index-translate-more-than') %}
-      {% call picto(
-        base_el='li',
-        title=ftl('features-index-translate-the-web'),
-        image=resp_img(
-          url='img/firefox/features/index/feature_icons/language_blue.svg',
-          optional_attributes={
-            'class': 'mzp-c-picto-image',
-            'width': '64',
-            'loading': 'lazy'
-          }
-        ),
-        body=True,
-      ) %}
-        <p>{{ ftl('features-index-translate-more-than') }}</p>
-        <a class="mzp-c-cta-link" href="{{ url('firefox.features.translate') }}">{{ ftl('features-index-translate-to-your') }}</a>
-      {% endcall %}
-    {% endif %}
+    {{ feature_item(
+      link=url('firefox.features.adblocker'),
+      title=ftl('features-index-ad-tracker-blocking'),
+      ga_title="Ad tracker blocking",
+      desc=ftl('features-index-firefox-automatically-blocks'),
+    ) }}
 
-    {% if ftl_has_messages('features-index-picture-in-picture', 'features-index-got-things-to-do') %}
-      {% call picto(
-        base_el='li',
-        title=ftl('features-index-picture-in-picture'),
-        image=resp_img(
-          url='img/firefox/features/index/feature_icons/picture-in-picture_blue.svg',
-          optional_attributes={
-            'class': 'mzp-c-picto-image',
-            'width': '64',
-            'loading': 'lazy'
-          }
-        ),
-        body=True,
-      ) %}
-        <p>{{ ftl('features-index-got-things-to-do') }}</p>
-        <a class="mzp-c-cta-link" href="{{ url('firefox.features.picture-in-picture') }}">{{ ftl('ui-learn-more') }}</a>
-      {% endcall %}
-    {% endif %}
-    </ul>
-  </section>
+    {{ feature_item(
+      link=url('firefox.features.translate'),
+      title=ftl('features-index-translate-the-web'),
+      ga_title="Translate the Web",
+      desc=ftl('features-index-translate-more-than'),
+    ) }}
 
-  <section class="secondary-content mzp-t-background-secondary">
-    <div class="mzp-l-content">
-      <h2 class="mzp-c-section-heading">{{ ftl('features-index-from-the-company')}}</h2>
+    {{ feature_item(
+      link=url('firefox.features.picture-in-picture'),
+      title=ftl('features-index-picture-in-picture'),
+      ga_title="Picture-in-Picture",
+      desc=ftl('features-index-got-things-to-do'),
+    ) }}
+  </ul>
 
-      <ul class="mzp-l-columns mzp-t-columns-three mzp-t-picto-side">
-        {% call picto(
-          base_el='li',
-          title=ftl('features-index-open-source-minds'),
-          image=resp_img(
-            url='img/firefox/features/index/benefit_icons/opensource.svg',
-            optional_attributes={
-              'class': 'mzp-c-picto-image',
-              'width': '24',
-              'loading': 'lazy'
-            }
-          ),
-          body=True,
-        ) %}
-          <p>{{ ftl('features-index-mozilla-creates') }}</p>
-          <a class="mzp-c-cta-link" href="{{ url('firefox.features.independent') }}">{{ ftl('features-index-see-what-makes-us-different') }}</a>
-        {% endcall %}
-
-        {% call picto(
-          base_el='li',
-          title=ftl('features-index-by-not-for-profit-mozilla', fallback='features-index-by-non-profit-mozilla'),
-          image=resp_img(
-            url='img/firefox/features/index/benefit_icons/mozilla.svg',
-            optional_attributes={
-              'class': 'mzp-c-picto-image',
-              'width': '24',
-              'loading': 'lazy'
-            }
-          ),
-          body=True,
-        ) %}
-          <p>{{ ftl('features-index-on-a-mission') }}</p>
-          <a class="mzp-c-cta-link" href="{{ url('mozorg.mission') }}" rel="external">{{ ftl('features-index-read-mozillas-mission') }}</a>
-        {% endcall %}
-
-        {% call picto(
-          base_el='li',
-          title=ftl('features-index-keep-corporate-power'),
-          image=resp_img(
-            url='img/firefox/features/index/benefit_icons/mountain.svg',
-            optional_attributes={
-              'class': 'mzp-c-picto-image',
-              'width': '24',
-              'loading': 'lazy'
-            }
-          ),
-          body=True,
-        ) %}
-          <p>{{ ftl('features-index-independent-browser') }}</p>
-          <a class="mzp-c-cta-link" href="{{ url('firefox.features.independent') }}">{{ ftl('features-index-choose-independence') }}</a>
-        {% endcall %}
-
-        {% call picto(
-          base_el='li',
-          title=ftl('features-index-private-by-default'),
-          image=resp_img(
-            url='img/firefox/features/index/benefit_icons/lock.svg',
-            optional_attributes={
-              'class': 'mzp-c-picto-image',
-              'width': '24',
-              'loading': 'lazy'
-            }
-          ),
-          body=True,
-        ) %}
-          <p>{{ ftl('features-index-opted-in-to-privacy-so-you') }}</p>
-          <a class="mzp-c-cta-link" href="{{ url('privacy') }}">{{ ftl('features-index-read-our-privacy-policy') }}</a>
-        {% endcall %}
-
-        {% call picto(
-          base_el='li',
-          title=ftl('features-index-enhanced-tracking'),
-          image=resp_img(
-            url='img/firefox/features/index/benefit_icons/shield.svg',
-            optional_attributes={
-              'class': 'mzp-c-picto-image',
-              'width': '24',
-              'loading': 'lazy'
-            }
-          ),
-          body=True,
-        ) %}
-          <p>{{ ftl('features-index-we-dont-sell-access-to-your') }}</p>
-          <a class="mzp-c-cta-link" href="{{ url('firefox.features.private-browsing') }}">{{ ftl('features-index-get-firefox-for-privacy') }}</a>
-        {% endcall %}
-
-        {% call picto(
-          base_el='li',
-          title=ftl('features-index-firefox-vs'),
-          image=resp_img(
-            url='img/firefox/features/index/benefit_icons/browser.svg',
-            optional_attributes={
-              'class': 'mzp-c-picto-image',
-              'width': '24',
-              'loading': 'lazy'
-            }
-          ),
-          body=True,
-        ) %}
-          <p>{{ ftl('features-index-stack-up') }}</p>
-          <a class="mzp-c-cta-link" href="{{ url('firefox.browsers.compare.index') }}">{{ ftl('features-index-compare-browsers') }}</a>
-        {% endcall %}
-      </ul>
-
-    </div>
-  </section>
-{% endblock %}
-
-{% block sticky_promo %}
-  {% with non_fx_only=True %}
-    {% include '/includes/sticky-promo.html' %}
-  {% endwith %}
-{% endblock %}
-
-{% block js %}
-  {{ js_bundle('sticky_promo') }}
-{% endblock %}
+</div>
+{% endblock content %}

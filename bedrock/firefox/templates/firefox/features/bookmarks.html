@@ -4,73 +4,59 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import split with context %}
+{% extends "firefox/features/base-article.html" %}
 
-{% extends "firefox/base/base-protocol.html" %}
+{% block article_title %}{{ ftl('bookmark-manager-bookmark-manager') }}{% endblock %}
+{% block page_desc %}{{ ftl('bookmark-manager-organize-your-bookmarks-with') }}{% endblock %}
 
-{% block page_title %}{{ ftl('features-bookmarks-firefox-browser-better') }}{% endblock %}
-{% block page_desc %}{{ ftl('features-bookmarks-easily-organize-your-bookmarks') }}{% endblock %}
+{% block article_content %}
+<p>{{ ftl('bookmark-manager-bookmarks-are-links-you-save', sync='href="%s"'|safe|format(url('firefox.features.sync'))) }}</p>
 
-{% block page_css %}
-  {{ css_bundle('protocol-split') }}
-  {{ css_bundle('protocol-picto') }}
-  {{ css_bundle('firefox-features-hub-detail') }}
-{% endblock %}
+<h2>{{ ftl('bookmark-manager-organize-your-boomarks-into') }}</h2>
+<p>{{ ftl('bookmark-manager-collect-your-bookmarks-in-folders') }}</p>
 
-{% block body_id %}firefox-features-bookmarks{% endblock %}
+<figure class="c-article-figure">
+  {{ resp_img(
+    url="img/firefox/features/bookmark-manager.png",
+    srcset={
+        "img/firefox/features/bookmark-manager-high-res.png": "1.5x"
+    },
+    optional_attributes={
+      "alt": "Image of the bookmark manager window in Firefox.",
+      "width": "600"
+    }
+  ) }}
+</figure>
 
-{% block sub_navigation %}
-  {% include "firefox/features/includes/subnav.html" %}
-{% endblock %}
+<h2>{{ ftl('bookmark-manager-easily-import-bookmarks') }}</h2>
+<p>{{ ftl('bookmark-manager-you-can-import-your-bookmarks') }}</p>
 
-{% block content %}
-  <header class="c-hero">
-    <div class="mzp-l-content c-hero-content">
-      <img class="c-hero-icon" src="{{ static('protocol/img/icons/brand/pink/feature-bookmarks-star.svg')}}" alt="" width="64" height="64">
-      <h1 class="c-hero-title">{{ ftl('features-bookmarks-better-bookmarks')}}</h1>
-      <p class="c-hero-desc">{{ ftl('features-bookmarks-dont-agonize-lovers-of')}}</p>
-      <div class="c-hero-cta">
-        {{ download_firefox(dom_id='features-header-download', download_location='primary cta') }}
-      </div>
-    </div>
-  </header>
+<figure class="c-article-figure">
+  {{ resp_img(
+    url="img/firefox/features/import-wizard.png",
+    srcset={
+        "img/firefox/features/import-wizard-high-res.png": "1.5x"
+    },
+    optional_attributes={
+      "alt": ftl('bookmark-manager-image-of-the-firefox-import-wizard'),
+      "width": "600"
+    }
+  ) }}
+</figure>
 
-  {% call split(
-    image=resp_img('img/firefox/features/thumbnails/bookmarks.png', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
-    block_class='mzp-t-split-nospace',
-    theme_class='mzp-l-split-reversed',
-  ) %}
-    <h2>{{ ftl('features-bookmarks-file-that-bookmark') }}</h2>
-    <p>{{ ftl('features-bookmarks-get-your-faves-all-sorted') }}</p>
-  {% endcall %}
+<h2>{{ ftl('bookmark-manager-bookmarks-toolbar') }}</h2>
+<p>{{ ftl('bookmark-manager-get-quick-access-to-your') }}</p>
 
-  {% call split(
-    image=resp_img('img/firefox/features/thumbnails/bookmarks/bookmarks-sync.png', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
-    block_class='mzp-t-split-nospace',
-  ) %}
-    <h2>{{ ftl('features-bookmarks-fly-with-that-bookmark') }}</h2>
-    <p>{{ ftl('features-bookmarks-take-your-favorites-on', url='https://getpocket.com/pocket-and-firefox/') }}</p>
-  {% endcall %}
-
-  {% call split(
-    image=resp_img('img/firefox/features/thumbnails/bookmarks/bookmarks-addons.png', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
-    block_class='mzp-t-split-nospace',
-    theme_class='mzp-l-split-reversed',
-  ) %}
-    <h2>{{ ftl('features-bookmarks-customize-that-bookmark', fallback='features-bookmarks-futz-with-that-bookmark') }}</h2>
-    <p>{{ ftl('features-bookmarks-practice-your-precision', fallback='features-bookmarks-practice-your-exactitude', url='https://addons.mozilla.org/firefox/search/?q=bookmark%20managers') }}</p>
-  {% endcall %}
-
-  {% include "firefox/features/includes/features-content.html" %}
-
-{% endblock %}
-
-{% block sticky_promo %}
-  {% with non_fx_only=True %}
-    {% include '/includes/sticky-promo.html' %}
-  {% endwith %}
-{% endblock %}
-
-{% block js %}
-  {{ js_bundle('sticky_promo') }}
-{% endblock %}
+<figure class="c-article-figure">
+  {{ resp_img(
+    url="img/firefox/features/bookmark-toolbar.png",
+    srcset={
+        "img/firefox/features/bookmark-toolbar-high-res.png": "1.5x"
+    },
+    optional_attributes={
+      "alt": ftl('bookmark-manager-image-of-firefox-showing-a-collection'),
+      "width": "600"
+    }
+  ) }}
+</figure>
+{% endblock article_content %}

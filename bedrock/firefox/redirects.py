@@ -83,7 +83,7 @@ redirectpatterns = (
     redirect(r"^firefox/aurora/(?P<page>all|notes|system-requirements)/?$", "/firefox/developer/{page}/"),
     redirect(r"^firefox/organizations/all\.html$", "firefox.all", anchor="product-desktop-esr"),
     # bug 729329
-    redirect(r"^mobile/sync", "firefox.sync"),
+    redirect(r"^mobile/sync", "firefox.features.sync"),
     # bug 882845
     redirect(r"^firefox/toolkit/download-to-your-devices", "firefox.new"),
     # bug 1014823
@@ -116,13 +116,13 @@ redirectpatterns = (
     redirect(r"^products/?$", "firefox"),
     # Bug 1110927
     redirect(r"^(products/)?firefox/start/central\.html$", "firefox.new"),
-    redirect(r"^firefox/sync/firstrun\.html$", "firefox.sync"),
+    redirect(r"^firefox/sync/firstrun\.html$", "firefox.features.sync"),
     # Bug 920212
     redirect(r"^firefox/fx(/.*)?", "firefox"),
     # Bug 979531, 1003727, 979664, 979654, 979660
     redirect(r"^firefox/customize/?$", "https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars"),
     redirect(r"^firefox/(?:performance|happy|speed|memory)/?$", "firefox.features.fast"),
-    redirect(r"^firefox/security/?$", "firefox.features.independent"),
+    redirect(r"^firefox/security/?$", "firefox.features.private"),
     redirect(r"^firefox/technology/?$", "https://developer.mozilla.org/docs/Tools"),
     # Previously Bug 979527 / Github #10004 "Getting Started" Page
     redirect(r"^(products/)?firefox/central(/|\.html|-lite\.html)?$", "firefox"),
@@ -239,7 +239,7 @@ redirectpatterns = (
     # Bug 1239863, 1329931
     redirect(r"^firefox/os(/.*)?$", "https://support.mozilla.org/products/firefox-os"),
     # Bug 1252332
-    redirect(r"^sync/?$", "firefox.sync"),
+    redirect(r"^sync/?$", "firefox.features.sync"),
     # Bug 424204
     redirect(r"^firefox/help/?$", "https://support.mozilla.org/"),
     redirect(r"^fxandroid/?$", "firefox.browsers.mobile.android"),
@@ -451,15 +451,15 @@ redirectpatterns = (
     redirect(r"^firefox/android/faq/?", "https://support.mozilla.org/products/mobile"),
     # bug 1392796
     redirect(r"^firefox/desktop/fast/?", "firefox.features.fast"),
-    redirect(r"^firefox/desktop/trust/?", "firefox.features.independent"),
-    redirect(r"^firefox/desktop/tips/?", "firefox.features.index"),
+    redirect(r"^firefox/desktop/trust/?", "firefox.features.private"),
+    redirect(r"^firefox/desktop/tips/?", "firefox.features.tips"),
     redirect(r"^firefox/desktop/customize/?", "https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars"),
     redirect(r"^firefox/private-browsing/?", "firefox.features.private-browsing"),
     # bug 1405436
     redirect(r"^firefox/organic", "/firefox/"),
     redirect(r"^firefox/landing/better", "/firefox/"),
     redirect(r"^firefox/(new/)?addon", "https://addons.mozilla.org"),
-    redirect(r"^firefox/tips", "/firefox/features/"),
+    redirect(r"^firefox/tips", "firefox.features.tips"),
     redirect(r"^firefox/new/.+", "/firefox/new/"),
     redirect(r"^firefox/38\.0\.3/releasenotes/$", "/firefox/38.0.5/releasenotes/"),
     redirect(r"^firefox/default\.htm", "/firefox/"),
@@ -498,8 +498,6 @@ redirectpatterns = (
     redirect(r"^/firefox/election/?$", "firefox"),
     # fxa
     redirect(r"^firefox/accounts/features/?", "firefox.accounts"),
-    # issue 9490
-    redirect(r"^firefox/features/sync/?", "firefox.sync"),
     # bug 1577449
     redirect(r"^firefox/features/send-tabs/?", "https://support.mozilla.org/kb/send-tab-firefox-desktop-other-devices"),
     # issue 6512
@@ -553,4 +551,8 @@ redirectpatterns = (
     redirect(r"^/exp/?$", "mozorg.home"),
     # issue 12107
     redirect(r"^/firefox/families/?$", "firefox.family.index"),
+    redirect(r"^firefox/features/memory/?$", "firefox.features.fast"),
+    redirect(r"^firefox/features/independent/?$", "firefox.features.index"),
+    redirect(r"^firefox/features/safebrowser/?$", "firefox.features.private"),
+    redirect(r"^firefox/sync/?$", "firefox.features.sync"),
 )

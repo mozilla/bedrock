@@ -11,6 +11,9 @@ features-translate-translate-the-web-title = Translate the web - directly in you
 features-translate-translate-more-than = Translate from more than 100 languages to your language directly in your { -brand-name-firefox-browser } - easier than ever.
 features-translate-translate-the-web = Translate the web with { -brand-name-firefox }
 
+# Shorter title used in subnav
+features-translate-translate-the-web-short = Translate the web
+
 # Obsolete string
 features-translate-the-google-translate = The To { -brand-name-google } Translate extension for { -brand-name-firefox } makes the web accessible to the world.
 
@@ -25,12 +28,13 @@ features-translate-the-firefox-translations-extension-provides = The <a { $attrs
 # links to https://addons.mozilla.org/firefox/addon/firefox-translations/
 features-translate-get-firefox-translations = Get { -brand-name-firefox-translations }
 
+# "To Google Translate" is a brand name
 features-translate-to-google-translate = To { -brand-name-google } Translate
-
 # $attrs (string) - link to https://addons.mozilla.org/firefox/addon/to-google-translate/
 features-translate-google-translate-with = { -brand-name-google } Translate, with over 100 languages* at the ready, is used by millions of people around the world. But moving back and forth between translate.google.com and the page you’re trying to read isn’t an ideal experience. The <a { $attrs }>To { -brand-name-google } Translate</a> extension makes translating the page you’re on easier than ever.
 
 # links to: https://addons.mozilla.org/firefox/addon/to-google-translate/
+# "To Google Translate" is a brand name
 features-translate-get-to-google-translate = Get To { -brand-name-google } Translate
 
 # Obsolete string
