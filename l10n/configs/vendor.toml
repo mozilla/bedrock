@@ -14,8 +14,8 @@ locales = [
 ]
 
 [[paths]]
-    reference = "en/*.ftl"
-    l10n = "{locale}/*.ftl"
+    reference = "en/**/*.ftl"
+    l10n = "{locale}/**/*.ftl"
 
 ## Examples:
 
