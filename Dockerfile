@@ -100,6 +100,12 @@ COPY ./tests ./tests
 RUN bin/run-sync-all.sh
 
 RUN chown webdev.webdev -R .
+
+# for bpython
+RUN mkdir /home/webdev/
+RUN touch /home/webdev/.pythonhist
+RUN chown -R webdev /home/webdev/
+
 USER webdev
 
 # build args
