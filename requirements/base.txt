@@ -200,8 +200,8 @@ contextlib2==0.5.4 \
 django_csp==3.5 \
     --hash=sha256:04600237701e6d6ff78ed7d41209ff923988148bf292c128f6b474b9befe444f \
     --hash=sha256:8b9997df89a7a936d7c397e051367f974aa1d1a97d0b32acb4300087b3bed071
-querystringsafe_base64==1.1.1 \
-    --hash=sha256:bad9187c0406456020ee354be7f51d2e0dfc262dadde0449cbdd1fd78d437eed
+querystringsafe_base64==1.2.0 \
+    --hash=sha256:850913d05558d31a6bdb90711c3ef5ca855d8e1730bf8bc0ca2bcc1ef273c130
 funcsigs==1.0.2 \
     --hash=sha256:330cc27ccbf7f1e992e69fef78261dc7c6569012cf397db8d3de0234e6c937ca \
     --hash=sha256:a7bb0f2cf3a3fd1ab2732cb49eba4252c2af4240442415b4abce3b87022a8f50
