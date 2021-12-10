@@ -24,10 +24,7 @@
 
 {% set landing_source = '?source=' + campaign if campaign else '' %}
 
-{% block content %}
-<main class="content-wrapper mzp-t-firefox">
-  {% include 'firefox/whatsnew/includes/header.html' %}
-
+{% block wnp_content %}
   <div class="mzp-l-content mzp-t-content-lg">
     <section class="wnp-content-main">
       {% include 'firefox/whatsnew/includes/fx92-fr/mozilla-vpn-logo.svg' %}
@@ -112,8 +109,6 @@
       <p>{{ ftl('whatsnew-release-notes', url=releasenotes_url) }}</p>
     </aside>
   </div>
-
-</main>
 {% endblock %}
 
 {% block js %}

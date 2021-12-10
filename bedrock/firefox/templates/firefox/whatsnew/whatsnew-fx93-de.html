@@ -22,10 +22,7 @@
 
 {% block site_header %}{% endblock %}
 
-{% block content %}
-<main class="content-wrapper mzp-t-firefox">
-  {% include 'firefox/whatsnew/includes/header.html' %}
-
+{% block wnp_content %}
   <section class="wnp-content-main">
     <div class="mzp-l-content mzp-t-content-lg">
       <h1 class="wnp-pre-title">Es ist Cyber Security Month</h1>
@@ -54,12 +51,6 @@
       </div>
     </div>
   </section>
-
-  <aside class="mzp-l-content c-utilities">
-    {% set releasenotes_url = url('firefox.releases.index') if not version else '/firefox/%s/releasenotes/'|format(version) %}
-    <p>{{ ftl('whatsnew-release-notes', url=releasenotes_url) }}</p>
-  </aside>
-</main>
 {% endblock %}
 
 {% block js %}

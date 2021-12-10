@@ -26,10 +26,7 @@
 
 {% set send_to_device_message_set = 'fx-whatsnew' %}
 
-{% block content %}
-<main class="content-wrapper mzp-t-firefox">
-  {% include 'firefox/whatsnew/includes/header.html' %}
-
+{% block wnp_content %}
   <section class="wnp-content-main{% if show_send_to_device %} show-send-to-device{% endif %}">
     <div class="mzp-l-content mzp-t-content-md">
       <header>
@@ -59,14 +56,7 @@
         </div>
       {% endif %}
     </div>
-  </section>{#-- /.main-content --#}
-
-  <aside class="mzp-l-content c-utilities">
-    {% set releasenotes_url = url('firefox.releases.index') if not version else '/firefox/%s/releasenotes/'|format(version) %}
-    <p>{{ ftl('whatsnew-release-notes', url=releasenotes_url) }}</p>
-  </aside>
-
-</main>
+  </section>
 {% endblock %}
 
 {% block js %}
