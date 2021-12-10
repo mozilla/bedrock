@@ -23,7 +23,7 @@ RUN npm run build
 ########
 # Python dependencies builder
 #
-FROM python:3.7-slim-buster AS python-builder
+FROM python:3.10.1-slim-buster AS python-builder
 
 WORKDIR /app
 ENV LANG=C.UTF-8
@@ -44,7 +44,7 @@ RUN pip install --no-cache-dir -r requirements/prod.txt
 ########
 # django app container
 #
-FROM python:3.7-slim-buster AS app-base
+FROM python:3.10.1-slim-buster AS app-base
 
 # Extra python env
 ENV PYTHONDONTWRITEBYTECODE=1
