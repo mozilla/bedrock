@@ -466,18 +466,16 @@ class TestWhatsNew(TestCase):
 
     # begin 93.0 whatsnew tests
 
-    @patch.dict(os.environ, SWITCH_FIREFOX_WHATSNEW_93_EXPERIMENT_FR_DE="False")
     def test_fx_93_0_0_de(self, render_mock):
-        """Should use whatsnew-fx93-v3-de template for 93.0 in German when switch is OFF"""
+        """Should use whatsnew-fx93-de template for 93.0 in German"""
         req = self.rf.get("/firefox/whatsnew/")
         req.locale = "de"
         self.view(req, version="93.0")
         template = render_mock.call_args[0][1]
         assert template == ["firefox/whatsnew/whatsnew-fx93-v3-de.html"]
 
-    @patch.dict(os.environ, SWITCH_FIREFOX_WHATSNEW_93_EXPERIMENT_EN="False")
     def test_fx_93_0_0_en(self, render_mock):
-        """Should use whatsnew-fx93-v3-en template for 93.0 in English when switch is OFF"""
+        """Should use whatsnew-fx93-en template for 93.0 in English"""
         req = self.rf.get("/firefox/whatsnew/")
         req.locale = "en-US"
         self.view(req, version="93.0")

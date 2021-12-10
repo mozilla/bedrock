@@ -1004,7 +1004,7 @@
         "css/externalpages/pocket/components/add.scss"
       ],
       "name": "pocket-add"
-    }, 
+    },
     {
       "files": [
         "css/externalpages/pocket/style.scss",
@@ -1108,26 +1108,6 @@
         "js/firefox/whatsnew/up-to-date.js"
       ],
       "name": "firefox_whatsnew_93"
-    },
-    {
-      "files": [
-        "js/libs/mozilla-traffic-cop.js",
-        "js/firefox/whatsnew/whatsnew93-experiment-en.js"
-      ],
-      "name": "firefox_whatsnew_93_experiment_en"
-    },
-    {
-      "files": [
-        "js/libs/mozilla-traffic-cop.js",
-        "js/firefox/whatsnew/whatsnew93-experiment-fr-de.js"
-      ],
-      "name": "firefox_whatsnew_93_experiment_fr_de"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew93-cycle.js"
-      ],
-      "name": "firefox_whatsnew_93_cycle"
     },
     {
       "files": [

@@ -14,16 +14,10 @@
 {% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
 
 {% block body_id %}firefox-whatsnew{% endblock %}
-{% block body_class %}wnp93-v3{% endblock %}
+{% block body_class %}wnp93{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('firefox_whatsnew_93') }}
-{% endblock %}
-
-{% block experiments %}
-  {% if switch('firefox-whatsnew-93-experiment-en') %}
-    {{ js_bundle('firefox_whatsnew_93_experiment_en') }}
-  {% endif %}
 {% endblock %}
 
 {% block site_header %}{% endblock %}
@@ -34,8 +28,8 @@
 
   <section class="wnp-content-main">
     <div class="mzp-l-content mzp-t-content-lg">
-      <h1 class="wnp-pre-title">It’s Cyber Security Month</h1>
-      <h2 class="wnp-main-title">Now’s the time to get true privacy online</h2>
+      <h1 class="wnp-pre-title">C’est le mois de la cybersécurité</h1>
+      <h2 class="wnp-main-title">Offrez-vous le confort de la confidentialité</h2>
 
       <div class="wnp-main-image video-container">
         <video id="video" preload="metadata" autoplay loop muted poster="{{ static('img/firefox/whatsnew/whatsnew93/hero-v3.svg') }}">
@@ -43,16 +37,16 @@
         </video>
       </div>
 
-      <p class="wnp-main-tagline">Block prying eyes from seeing your location and browsing history with a Virtual Private Network from Mozilla, the most trusted name in tech.</p>
+      <p class="wnp-main-tagline">Empêchez les intrus de voir votre emplacement et votre historique de navigation grâce à un réseau privé virtuel proposé par l’entreprise tech en qui vous avez déjà confiance.</p>
 
       <div class="wnp-main-cta">
-        {% set referral_id = 'whatsnew93-en-v' + variant if variant else 'whatsnew93-en' %}
+        {% set referral_id = 'whatsnew93-fr-v' + variant if variant else 'whatsnew93-fr' %}
         {{ vpn_product_referral_link(
             referral_id=referral_id,
-            link_text='Boost your privacy',
+            link_text='Installez Mozilla VPN',
             class_name='mzp-t-product mzp-t-lg',
             optional_attributes= {
-                'data-cta-text' : 'Boost your privacy',
+                'data-cta-text' : 'Get Mozilla VPN',
                 'data-cta-type' : 'button',
                 'data-cta-position' : 'primary-cta',
             }

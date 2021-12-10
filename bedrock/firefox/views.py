@@ -457,13 +457,9 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx92-en.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx92-de.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx92-fr.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx93-v1-en.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx93-v2-en.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx93-v3-en.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx93-v2-de.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx93-v3-de.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx93-v2-fr.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx93-v3-fr.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx93-en.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx93-de.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx93-fr.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx93-es.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx93-it.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx93-nl.html": ["firefox/whatsnew/whatsnew"],
@@ -474,20 +470,16 @@ class WhatsnewView(L10nTemplateView):
     # specific templates that should not be rendered in China
     china_excluded_templates = [
         "firefox/whatsnew/whatsnew-fx92-en.html",
-        "firefox/whatsnew/whatsnew-fx93-v1-en.html",
-        "firefox/whatsnew/whatsnew-fx93-v2-en.html",
-        "firefox/whatsnew/whatsnew-fx93-v3-en.html",
-        "firefox/whatsnew/whatsnew-fx93-v2-de.html",
-        "firefox/whatsnew/whatsnew-fx93-v3-de.html",
-        "firefox/whatsnew/whatsnew-fx93-v2-fr.html",
-        "firefox/whatsnew/whatsnew-fx93-v3-fr.html",
+        "firefox/whatsnew/whatsnew-fx93-en.html",
+        "firefox/whatsnew/whatsnew-fx93-de.html",
+        "firefox/whatsnew/whatsnew-fx93-fr.html",
         "firefox/whatsnew/whatsnew-fx93-it.html",
         "firefox/whatsnew/whatsnew-fx93-es.html",
         "firefox/whatsnew/whatsnew-fx93-nl.html",
     ]
 
     # place expected ?v= values in this list
-    variations = ["1", "2", "3"]
+    variations = []
 
     def get_context_data(self, **kwargs):
         ctx = super(WhatsnewView, self).get_context_data(**kwargs)
@@ -562,22 +554,11 @@ class WhatsnewView(L10nTemplateView):
         elif version.startswith("95.") and locale.startswith("en"):
             template = "firefox/whatsnew/whatsnew-fx95-en.html"
         elif version.startswith("93.") and locale.startswith("en-"):
-            if variant == "1":
-                template = "firefox/whatsnew/whatsnew-fx93-v1-en.html"
-            elif variant == "2":
-                template = "firefox/whatsnew/whatsnew-fx93-v2-en.html"
-            else:
-                template = "firefox/whatsnew/whatsnew-fx93-v3-en.html"
+            template = "firefox/whatsnew/whatsnew-fx93-en.html"
         elif version.startswith("93.") and locale == "de":
-            if variant == "2":
-                template = "firefox/whatsnew/whatsnew-fx93-v2-de.html"
-            else:
-                template = "firefox/whatsnew/whatsnew-fx93-v3-de.html"
+            template = "firefox/whatsnew/whatsnew-fx93-de.html"
         elif version.startswith("93.") and locale == "fr":
-            if variant == "2":
-                template = "firefox/whatsnew/whatsnew-fx93-v2-fr.html"
-            else:
-                template = "firefox/whatsnew/whatsnew-fx93-v3-fr.html"
+            template = "firefox/whatsnew/whatsnew-fx93-fr.html"
         elif version.startswith("93.") and locale.startswith("es-"):
             template = "firefox/whatsnew/whatsnew-fx93-es.html"
         elif version.startswith("93.") and locale == "it":
