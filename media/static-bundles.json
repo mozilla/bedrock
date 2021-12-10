@@ -374,36 +374,6 @@
     },
     {
       "files": [
-        "css/firefox/whatsnew/whatsnew-91-en.scss"
-      ],
-      "name": "firefox_whatsnew_91"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-91-de.scss"
-      ],
-      "name": "firefox_whatsnew_91_de"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-92-en.scss"
-      ],
-      "name": "firefox_whatsnew_92_en"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-92-de.scss"
-      ],
-      "name": "firefox_whatsnew_92_de"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-92-fr.scss"
-      ],
-      "name": "firefox_whatsnew_92_fr"
-    },
-    {
-      "files": [
         "css/firefox/whatsnew/whatsnew-93.scss"
       ],
       "name": "firefox_whatsnew_93"
@@ -1086,22 +1056,6 @@
         "js/firefox/welcome/welcome8-traffic-cop.js"
       ],
       "name": "firefox_welcome_page8_traffic_cop"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/up-to-date.js",
-        "js/base/mozilla-fxa-product-button.js",
-        "js/base/mozilla-fxa-product-button-init.js"
-      ],
-      "name": "firefox_whatsnew_91"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/up-to-date.js",
-        "js/base/mozilla-fxa-product-button.js",
-        "js/base/mozilla-fxa-product-button-init.js"
-      ],
-      "name": "firefox_whatsnew_91_de"
     },
     {
       "files": [

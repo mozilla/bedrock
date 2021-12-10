@@ -452,11 +452,6 @@ class WhatsnewView(L10nTemplateView):
         "firefox/nightly/whatsnew.html": ["firefox/nightly/whatsnew", "firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/index-account.html": ["firefox/whatsnew/whatsnew-account", "firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/index.html": ["firefox/whatsnew/whatsnew-s2d", "firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx91-en.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx91-de.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx92-en.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx92-de.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx92-fr.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx93-en.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx93-de.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx93-fr.html": ["firefox/whatsnew/whatsnew"],
@@ -469,7 +464,6 @@ class WhatsnewView(L10nTemplateView):
 
     # specific templates that should not be rendered in China
     china_excluded_templates = [
-        "firefox/whatsnew/whatsnew-fx92-en.html",
         "firefox/whatsnew/whatsnew-fx93-en.html",
         "firefox/whatsnew/whatsnew-fx93-de.html",
         "firefox/whatsnew/whatsnew-fx93-fr.html",
@@ -565,16 +559,6 @@ class WhatsnewView(L10nTemplateView):
             template = "firefox/whatsnew/whatsnew-fx93-it.html"
         elif version.startswith("93.") and locale == "nl":
             template = "firefox/whatsnew/whatsnew-fx93-nl.html"
-        elif version.startswith("92.") and locale.startswith("en-"):
-            template = "firefox/whatsnew/whatsnew-fx92-en.html"
-        elif version.startswith("92.") and locale == "de":
-            template = "firefox/whatsnew/whatsnew-fx92-de.html"
-        elif version.startswith("92.") and locale == "fr":
-            template = "firefox/whatsnew/whatsnew-fx92-fr.html"
-        elif version.startswith("91.") and locale.startswith("en-"):
-            template = "firefox/whatsnew/whatsnew-fx91-en.html"
-        elif version.startswith("91.") and locale == "de":
-            template = "firefox/whatsnew/whatsnew-fx91-de.html"
         else:
             if show_default_account_whatsnew(version) and ftl_file_is_active("firefox/whatsnew/whatsnew-account"):
                 template = "firefox/whatsnew/index-account.html"
