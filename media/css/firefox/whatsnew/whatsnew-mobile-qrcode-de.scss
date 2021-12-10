@@ -109,6 +109,11 @@ $image-path: '/media/protocol/img';
         color: $color-white;
     }
 
+    .c-page-header-logo-fx {
+        background: url($image-path + '/logos/firefox/browser/logo-word-hor-white.svg') no-repeat;
+        @include background-size(216px, 40px);
+    }
+
     .wnp-main-title,
     .wnp-main-subtitle {
         color: get-theme('title-text-color-inverse');

@@ -71,13 +71,3 @@ $image-path: '/media/protocol/img';
     padding-bottom: $layout-xl;
     text-align: center;
 }
-
-// * -------------------------------------------------------------------------- */
-// For dark mode
-
-@media (prefers-color-scheme: dark) {
-    // Override _header.scss since v3 doesn't support dark mode
-    .c-page-header-logo-fx {
-        background-image: url($image-path + '/logos/firefox/browser/logo-word-hor.svg');
-    }
-}

@@ -14,13 +14,6 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 @import 'includes/header';
 
-// Override _header.scss since this page doesn't support dark mode
-@media (prefers-color-scheme: dark) {
-    .c-page-header-logo-fx {
-        background-image: url($image-path + '/logos/firefox/browser/logo-word-hor.svg');
-    }
-}
-
 // * -------------------------------------------------------------------------- */
 // Main content
 .wnp-content-main {
