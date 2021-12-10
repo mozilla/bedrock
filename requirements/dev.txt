@@ -55,8 +55,8 @@ coverage==6.1.2 \
     --hash=sha256:d9a635114b88c0ab462e0355472d00a180a5fbfd8511e7f18e4ac32652e7d972 \
     --hash=sha256:fae3fe111670e51f1ebbc475823899524e3459ea2db2cb88279bbfb2a0b8a3de \
     --hash=sha256:fd92ece726055e80d4e3f01fff3b91f54b18c9c357c48fcf6119e87e2461a091
-chkcrontab==1.6 \
-    --hash=sha256:10fd86e7e3d3d0339e0e93e0876a8702eac82649ec3b4abe4d350dc08c389a0e
+chkcrontab==1.7 \
+    --hash=sha256:5686794374910b146704c2d660cb592fa1322f73c5b1e49ef6724f39e556bd3e
 translate-toolkit==2.3.1 \
     --hash=sha256:1d156b376487254ac2e4d99cf36e3cf8e891e58aeacf2a29584bf2063d864ebb
 responses==0.5.1 \
