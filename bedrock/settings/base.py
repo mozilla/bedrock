@@ -1046,6 +1046,13 @@ CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID = config("CONTENTFUL_NOTIFICATION_QU
 CONTENTFUL_NOTIFICATION_QUEUE_SECRET_ACCESS_KEY = config("CONTENTFUL_NOTIFICATION_QUEUE_SECRET_ACCESS_KEY", default="", raise_error=False)
 CONTENTFUL_NOTIFICATION_QUEUE_WAIT_TIME = config("CONTENTFUL_NOTIFICATION_QUEUE_WAIT_TIME", default="10", parser=int, raise_error=False)
 
+CONTENTFUL_HOMEPAGE_LOOKUP = {
+    # TEMPORARY lookup table for which Contentful `connectHomepage` page ID to get for which locale
+    "en-US": "58YIvwDmzSDjtvpSqstDcL",
+    "de": "4k3CxqZGjxXOjR1I0dhyto",
+}
+
+
 RELEASE_NOTES_PATH = config("RELEASE_NOTES_PATH", default=data_path("release_notes"))
 RELEASE_NOTES_REPO = config("RELEASE_NOTES_REPO", default="https://github.com/mozilla/release-notes.git")
 RELEASE_NOTES_BRANCH = config("RELEASE_NOTES_BRANCH", default="master")

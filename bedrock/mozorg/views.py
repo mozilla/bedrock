@@ -131,8 +131,8 @@ def home_view(request):
             try:
                 template_name = "mozorg/home/home-contentful.html"
                 # TODO: use a better system to get the pages than the ID
-                ctx.update(ContentfulEntry.objects.get_page_by_id("58YIvwDmzSDjtvpSqstDcL"))
             except Exception:
+                ctx.update(ContentfulEntry.objects.get_page_by_id(content_id=settings.CONTENTFUL_HOMEPAGE_LOOKUP["en-US"]))
                 # if anything goes wrong, use the rest-of-world home page
                 template_name = "mozorg/home/home.html"
         else:
@@ -141,8 +141,8 @@ def home_view(request):
         if switch("contentful-homepage-de"):
             try:
                 template_name = "mozorg/home/home-contentful.html"
-                ctx.update(ContentfulEntry.objects.get_page_by_id("4k3CxqZGjxXOjR1I0dhyto"))
             except Exception:
+                ctx.update(ContentfulEntry.objects.get_page_by_id(content_id=settings.CONTENTFUL_HOMEPAGE_LOOKUP["de"]))
                 # if anything goes wrong, use the old page
                 template_name = "mozorg/home/home-de.html"
                 ctx["page_content_cards"] = get_page_content_cards("home-de", "de")
