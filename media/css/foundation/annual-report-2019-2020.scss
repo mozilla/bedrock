@@ -91,6 +91,10 @@ $image-path: '/media/protocol/img';
     h2 {
         @include text-title-md;
     }
+
+    .mzp-c-video {
+        margin-top: $layout-md;
+    }
 }
 
 .leadership {
