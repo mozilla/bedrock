@@ -208,9 +208,9 @@ funcsigs==1.0.2 \
 pbr==1.10.0 \
     --hash=sha256:f5cf7265a80636ecff66806d13494cbf9d77a3758a65fd8b4d4d4bee81b0c375 \
     --hash=sha256:186428c270309e6fdfe2d5ab0949ab21ae5f7dea831eab96701b86bd666af39c
-mock==2.0.0 \
-    --hash=sha256:5ce3c71c5545b472da17b72268978914d0252980348636840bd34a00b5cc96c1 \
-    --hash=sha256:b158b6df76edd239b8208d481dc46b6afd45a846b7812ff0ce58971cf5bc8bba
+mock==4.0.3 \
+    --hash=sha256:122fcb64ee37cfad5b3f48d7a7d51875d7031aaf3d8be7c42e2bee25044eee62 \
+    --hash=sha256:7d3fbbde18228f4ff2f1f119a45cdffa458b4c0dee32eb4d2bb2f82554bac7bc
 django-memoize==2.1.0 \
     --hash=sha256:ad969e02f25dab6484626cc3b023c2ff17004b0e3bbd8386467865826bc2bc6c
 django-allow-cidr==0.3.0 \
