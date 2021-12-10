@@ -197,9 +197,9 @@ django-mozilla-product-details==0.13.1 \
 contextlib2==0.5.4 \
     --hash=sha256:399f659f2a8b5d5d529f132e1136fc404fbbc28e34e4618c5c92bd595be9b162 \
     --hash=sha256:710626cde569f51a87f216ff757fe60f5cd13ae8f8114706590510cd5649ce88
-django_csp==3.5 \
-    --hash=sha256:04600237701e6d6ff78ed7d41209ff923988148bf292c128f6b474b9befe444f \
-    --hash=sha256:8b9997df89a7a936d7c397e051367f974aa1d1a97d0b32acb4300087b3bed071
+django_csp==3.7 \
+    --hash=sha256:01443a07723f9a479d498bd7bb63571aaa771e690f64bde515db6cdb76e8041a \
+    --hash=sha256:01eda02ad3f10261c74131cdc0b5a6a62b7c7ad4fd017fbefb7a14776e0a9727
 querystringsafe_base64==1.1.1 \
     --hash=sha256:bad9187c0406456020ee354be7f51d2e0dfc262dadde0449cbdd1fd78d437eed
 funcsigs==1.0.2 \
