@@ -302,7 +302,6 @@ class Command(BaseCommand):
                     if not self._page_is_syncable(ctype, entry.sys["id"], _locale_code):
                         self.log(f"Page {ctype}:{entry.sys['id']} deemed not syncable for {_locale_code}")
                     else:
-                        self.log(f"Page {ctype}:{entry.sys['id']} IS syncable for {_locale_code}")
                         content_to_sync.append((ctype, entry.sys["id"], _locale_code))
 
         # 2. Pull down each page and store
