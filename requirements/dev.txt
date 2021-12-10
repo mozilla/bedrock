@@ -59,9 +59,9 @@ chkcrontab==1.6 \
     --hash=sha256:10fd86e7e3d3d0339e0e93e0876a8702eac82649ec3b4abe4d350dc08c389a0e
 translate-toolkit==2.3.1 \
     --hash=sha256:1d156b376487254ac2e4d99cf36e3cf8e891e58aeacf2a29584bf2063d864ebb
-responses==0.5.1 \
-    --hash=sha256:3a907f7aae2fd2286d06cfdf238957786c38bbcadc451adceecc769a4ef882b7 \
-    --hash=sha256:8cad64c45959a651ceaf0023484bd26180c927fea64a81e63d334ddf6377ecea
+responses==0.16.0 \
+    --hash=sha256:f358ef75e8bf431b0aa203cc62625c3a1c80a600dbe9de91b944bf4e9c600b92 \
+    --hash=sha256:a2e3aca2a8277e61257cd3b1c154b1dd0d782b1ae3d38b7fa37cbe3feb531791
 cookies==2.2.1 \
     --hash=sha256:15bee753002dff684987b8df8c235288eb8d45f8191ae056254812dfd42c81d3 \
     --hash=sha256:d6b698788cae4cfa4e62ef8643a9ca332b79bd96cb314294b864ae8d7eb3ee8e
