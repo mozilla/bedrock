@@ -4,21 +4,19 @@ updates:
     directory: '/'
     schedule:
       interval: daily
-    open-pull-requests-limit: 99
+    open-pull-requests-limit: 10
     labels:
-      - backend
+      - Backend
+      - dependencies
   - package-ecosystem: docker
     directory: '/'
     schedule:
       interval: daily
-    open-pull-requests-limit: 99
-    labels:
-      - backend
+    open-pull-requests-limit: 10
   # - package-ecosystem: npm
   #   directory: '/'
   #   schedule:
   #     interval: daily
-  #   open-pull-requests-limit: 99
+  #   open-pull-requests-limit: 10
   #   labels:
-  #     - frontend
   #     - dependencies
