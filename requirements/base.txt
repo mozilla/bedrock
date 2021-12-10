@@ -118,9 +118,9 @@ beautifulsoup4==4.7.1 \
 soupsieve==1.9.1 \
     --hash=sha256:6898e82ecb03772a0d82bd0d0a10c0d6dcc342f77e0701d0ec4a8271be465ece \
     --hash=sha256:b20eff5e564529711544066d7dc0f7661df41232ae263619dede5059799cdfca
-certifi==2019.3.9 \
-    --hash=sha256:59b7658e26ca9c7339e00f8f4636cdfe59d34fa37b9b04f6f9e9926b3cece1a5 \
-    --hash=sha256:b26104d6835d1f5e49452a26eb2ff87fe7090b89dfcaee5ea2212697e1e1d7ae
+certifi==2021.10.8 \
+    --hash=sha256:d62a0163eb4c2344ac042ab2bdf75399a71a2d8c7d47eac2e2ee91b9d6339569 \
+    --hash=sha256:78884e7c1d4b00ce3cea67b44566851c4343c120abd683433ce934a68ea58872
 django-recaptcha==1.0.3 \
     --hash=sha256:bbb7365a42f95e32942e6a24657e7a760c9be660ef641daccec9fa8336faea69
 django-picklefield==1.0.0 \
