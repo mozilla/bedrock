@@ -17,8 +17,12 @@ class ContentfulEntryManager(models.Manager):
     get_entry_* and get_entries_* returns a QuerySet of ContentfulEntry records.
     """
 
-    def get_page_by_id(self, content_id):
-        return self.get(contentful_id=content_id).data
+    def get_page_by_id(self, content_id, locale=None):
+        kwargs = {"contentful_id": content_id}
+        if locale:
+            kwargs["locale"] = locale
+
+        return self.get(**kwargs).data
 
     def get_entry_by_slug(self, slug, locale, content_type, classification=None):
         kwargs = dict(
