@@ -142,9 +142,9 @@ whitenoise==3.3.0 \
 django-localflavor==1.1 \
     --hash=sha256:3b5503b512248af661cf91e4f402327619ffc3bc5b3b0ea774a969ed3bf84594 \
     --hash=sha256:afd6627cd0fd396824e44a5e4f7bfe9c8d7a45d9bf09b4db2c0683d92681ba93
-django-filter==0.11.0 \
-    --hash=sha256:7d17547b65216cc5c6fbc04aee55088ccd5917c0775304d96f7017c26c789cd7 \
-    --hash=sha256:00cc47935afbbd83260fdd283b0aa790e658d2a71922049f6e467dca8a124537
+django-filter==21.1 \
+    --hash=sha256:f4a6737a30104c98d2e2a5fb93043f36dd7978e0c7ddc92f5998e85433ea5063 \
+    --hash=sha256:632a251fa8f1aadb4b8cceff932bb52fe2f826dd7dfe7f3eac40e5c463d6836e
 https://github.com/kurtmckee/feedparser/archive/2aa5286245ed40b13a0f77f997d124c1844bcb43.tar.gz#egg=feedparser \
     --hash=sha256:70a0535bc9252a01f062713af800658a21eee34e5474b2823ea706eda222a26f
 django-extensions==2.1.6 \
