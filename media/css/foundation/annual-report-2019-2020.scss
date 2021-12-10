@@ -12,6 +12,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/hero';
 @import '~@mozilla-protocol/core/protocol/css/components/modal';
 @import '~@mozilla-protocol/core/protocol/css/components/split';
+@import '~@mozilla-protocol/core/protocol/css/components/video';
 
 // * -------------------------------------------------------------------------- */
 // Hero image & banner heading
@@ -356,6 +357,18 @@ $image-path: '/media/protocol/img';
 
 .mzp-c-modal-overlay-contents {
     padding-top: $spacing-2xl;
+    color: $color-black;
+
+    a:link,
+    a:visited {
+        color: $color-black;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: get-theme('link-color-hover');
+        }
+    }
 
     .mzp-c-card-feature-content-container {
         position: relative;
@@ -431,12 +444,6 @@ $image-path: '/media/protocol/img';
     @extend .mzp-c-modal-button-close; /* stylelint-disable-line scss/at-extend-no-missing-placeholder */
 }
 
-.mzp-c-modal-overlay-contents,
-.mzp-c-modal-overlay-contents a:link,
-.mzp-c-modal-overlay-contents a:visited {
-    color: $color-black;
-}
-
 .c-section-intro-bg {
     @media #{$mq-lg} {
         background: url('/media/img/foundation/annualreport/2019/moz_site_som_fighting_for_people_left.svg') left center no-repeat, url('/media/img/foundation/annualreport/2019/moz_site_som_fighting_for_people_right.svg') right center no-repeat;
@@ -452,11 +459,12 @@ $image-path: '/media/protocol/img';
     margin: 0 auto;
     padding-top: $layout-lg;
     max-width: $content-md;
-    text-align: center;
+    text-align: left;
 
     h2 {
         @include text-title-lg;
         font-weight: 100;
+        text-align: center;
     }
 }
 
