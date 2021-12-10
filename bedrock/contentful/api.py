@@ -107,9 +107,6 @@ def get_client(raw_mode=False):
 
 def contentful_locale(locale):
     """Returns the Contentful locale for the Bedrock locale"""
-    if locale.startswith("es-"):
-        return "es"
-
     return BEDROCK_TO_CONTENTFUL_LOCALE_MAP.get(locale, locale)
 
 
