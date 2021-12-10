@@ -16,7 +16,7 @@ import boto3
 from sentry_sdk import capture_exception
 from sentry_sdk.api import capture_message
 
-from bedrock.contentful.api import ContentfulPage
+from bedrock.contentful.api import CONTENTFUL_TO_BEDROCK_LOCALE_MAP, ContentfulPage
 from bedrock.contentful.constants import (
     ACTION_ARCHIVE,
     ACTION_AUTO_SAVE,
@@ -26,6 +26,7 @@ from bedrock.contentful.constants import (
     ACTION_UNARCHIVE,
     ACTION_UNPUBLISH,
     COMPOSE_MAIN_PAGE_TYPE,
+    CONTENT_TYPE_CONNECT_HOMEPAGE,
     MAX_MESSAGES_PER_QUEUE_POLL,
 )
 from bedrock.contentful.models import ContentfulEntry
@@ -77,7 +78,7 @@ class Command(BaseCommand):
             if update_ran:
                 self.log(f"Done. Added: {added_count}. Updated: {updated_count}. Deleted: {deleted_count}. Errors: {errors_count}")
             else:
-                self.log(f"Nothing to pull from Contentful")
+                self.log("Nothing to pull from Contentful")
         else:
             # This will always get shown, even if --quiet is passed
             print("Contentful credentials not configured")
@@ -228,7 +229,7 @@ class Command(BaseCommand):
                     continue
 
         if not viable_message_found:
-            self.log(f"No viable message found in queue")
+            self.log("No viable message found in queue")
 
         if may_purge_queue:
             self._purge_queue(queue)
@@ -250,6 +251,27 @@ class Command(BaseCommand):
             )
         return res[1]["contentful.ContentfulEntry"]
 
+    def _update_locale_for_bedrock(self, locale: str) -> str:
+        return CONTENTFUL_TO_BEDROCK_LOCALE_MAP.get(locale, locale)
+
+    def _page_is_syncable(
+        self,
+        ctype: str,
+        page_id: str,
+        locale_code: str,
+    ) -> bool:
+        """Utility method for deliberately blocking the sync of certain pages/entries"""
+
+        # Case 1. The EN and DE homepages are modelled using the connectHomepage entry
+        # in Contentful, with no explicit locale field, so the DE homepage is actually
+        # sent with en-US locale. We currently load these into Bedrock by ID, and we
+        # ONLY want to sync them for a single locale (en-US) only, to avoid an error.
+
+        if ctype == CONTENT_TYPE_CONNECT_HOMEPAGE and locale_code != "en-US":
+            return False
+
+        return True
+
     def _refresh_from_contentful(self) -> Tuple[int, int, int]:
         self.log("Pulling from Contentful")
         updated_count = 0
@@ -258,24 +280,56 @@ class Command(BaseCommand):
         error_count = 0
         content_to_sync = []
 
-        # TODO: Change to syncing only `page` content types when we're in an all-Compose setup
-        for ctype in settings.CONTENTFUL_CONTENT_TYPES:
-            for entry in ContentfulPage.client.entries(
-                {
-                    "content_type": ctype,
-                    "include": 0,
-                }
-            ).items:
-                content_to_sync.append((ctype, entry.sys["id"]))
+        EMPTY_ENTRY_ATTRIBUTE_STRING = "'Entry' object has no attribute 'content'"
 
-        for ctype, page_id in content_to_sync:
+        available_locales = ContentfulPage.client.locales()
+
+        # 1. Build a lookup of pages to sync by type, ID and locale
+
+        # TODO: Change to syncing only `page` content types when we're in an all-Compose setup
+        for locale in available_locales:
+            _locale_code = locale.code
+
+            # TODO: treat the connectHomepage differently because its locale is an overloaded name field
+            for ctype in settings.CONTENTFUL_CONTENT_TYPES:
+                for entry in ContentfulPage.client.entries(
+                    {
+                        "content_type": ctype,
+                        "include": 0,
+                        "locale": _locale_code,
+                    }
+                ).items:
+                    if not self._page_is_syncable(ctype, entry.sys["id"], _locale_code):
+                        self.log(f"Page {ctype}:{entry.sys['id']} deemed not syncable for {_locale_code}")
+                    else:
+                        self.log(f"Page {ctype}:{entry.sys['id']} IS syncable for {_locale_code}")
+                        content_to_sync.append((ctype, entry.sys["id"], _locale_code))
+
+        # 2. Pull down each page and store
+        # TODO: we may (TBC) be able to do a wholesale refactor and get all the locale variations
+        # of a single Page (where entry['myfield'] in a single-locale setup changes to
+        # entry['myfield']['en-US'], entry['myfield']['de'], etc. That might be particularly useful
+        # when we have a lot of locales in play. For now, the heavier-IO approach should be OK.
+
+        for ctype, page_id, locale_code in content_to_sync:
+
             request = self.rf.get("/")
-            request.locale = "en-US"
+            request.locale = locale_code
             try:
                 page = ContentfulPage(request, page_id)
                 page_data = page.get_content()
+            except AttributeError as ae:
+                # Problem with the page - most likely not-really-a-page-in-this-locale-after-all.
+                # (Contentful seems to send back a Compose `page` in en-US for _any_ other locale,
+                # even if the page has no child entries. This false positive / absent entry is
+                # only apparent when we try to get content and find there is none.)
+                if str(ae) == EMPTY_ENTRY_ATTRIBUTE_STRING:
+                    self.log(f"No content for {page_id} for {locale_code}")
+                    continue
+                else:
+                    raise
             except Exception as ex:
-                # problem with the page, load other pages
+                # Problem with the page, load other pages
                 self.log(f"Problem with {ctype}:{page_id} -> {type(ex)}: {ex}")
                 capture_exception(ex)
                 error_count += 1
@@ -291,6 +345,23 @@ class Command(BaseCommand):
             hash = data_hash(page_data)
             _info = page_data["info"]
 
+            # Check we're definitely getting the locales we're expecting (with a temporary caveat)
+            if (
+                locale_code != _info["locale"]
+                and
+                # Temporary workaround till Homepage moves into Compose from Connect
+                page_id not in settings.CONTENTFUL_HOMEPAGE_LOOKUP.values()
+            ):
+                msg = f"Locale mismatch on {ctype}:{page_id} -> {locale_code} vs {_info['locale']}"
+                self.log(msg)
+                capture_message(msg)
+                error_count += 1
+                continue
+
+            # Now we've done the check, let's convert any Contentful-specific
+            # locale name into one we use in Bedrock before it reaches the database
+            _info["locale"] = self._update_locale_for_bedrock(_info["locale"])
+
             extra_params = dict(
                 locale=_info["locale"],
                 data_hash=hash,
@@ -302,9 +373,12 @@ class Command(BaseCommand):
             )
 
             try:
-                obj = ContentfulEntry.objects.get(contentful_id=page_id)
+                obj = ContentfulEntry.objects.get(
+                    contentful_id=page_id,
+                    locale=_info["locale"],
+                )
             except ContentfulEntry.DoesNotExist:
-                self.log(f"Creating new ContentfulEntry for {ctype}:{page_id}")
+                self.log(f"Creating new ContentfulEntry for {ctype}:{locale_code}:{page_id}")
                 ContentfulEntry.objects.create(
                     contentful_id=page_id,
                     content_type=ctype,
@@ -313,7 +387,7 @@ class Command(BaseCommand):
                 added_count += 1
             else:
                 if self.force or hash != obj.data_hash:
-                    self.log(f"Updating existing ContentfulEntry for {ctype}:{page_id}")
+                    self.log(f"Updating existing ContentfulEntry for {ctype}:{locale_code}:{page_id}")
                     for key, value in extra_params.items():
                         setattr(obj, key, value)
                     obj.last_modified = tz_now()

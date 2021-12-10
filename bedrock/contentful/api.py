@@ -23,10 +23,24 @@ from bedrock.contentful.constants import (
 )
 from lib.l10n_utils import get_locale, render_to_string
 
-# Bedrock to Contentful locale map
-LOCALE_MAP = {
+# Bedrock and Contentful have slightly differing locale lists.
+BEDROCK_TO_CONTENTFUL_LOCALE_MAP = {
     "de": "de-DE",
+    "fr": "fr-FR",
+    "zh-TW": "zh-Hant-TW",  # NB: we should move to zh-Hant-TW in Bedrock - https://github.com/mozilla/bedrock/issues/10891
+    "nl-NL": "nl",
+    "id-ID": "id",
+    "it-IT": "it",
+    "ja-JP": "jp",
+    "ko-KR": "ko",
+    "ms-MY": "ms",
+    "pl-PL": "pl",
+    "ru-RU": "ru",
+    "tr-TR": "tr",
+    "vi-VN": "vi",
 }
+CONTENTFUL_TO_BEDROCK_LOCALE_MAP = {v: k for k, v in BEDROCK_TO_CONTENTFUL_LOCALE_MAP.items()}
+
 ASPECT_RATIOS = {
     "1:1": "1-1",
     "3:2": "3-2",
@@ -85,6 +99,7 @@ def get_client(raw_mode=False):
             api_url=settings.CONTENTFUL_SPACE_API,
             raw_mode=raw_mode,
             content_type_cache=False,
+            timeout_s=settings.CONTENTFUL_API_TIMEOUT,
         )
 
     return client
@@ -95,7 +110,7 @@ def contentful_locale(locale):
     if locale.startswith("es-"):
         return "es"
 
-    return LOCALE_MAP.get(locale, locale)
+    return BEDROCK_TO_CONTENTFUL_LOCALE_MAP.get(locale, locale)
 
 
 def _get_height(width, aspect):
@@ -447,6 +462,9 @@ class ContentfulPage:
             self.page_id,
             {
                 "include": 10,
+                "locale": self.locale,
+                # ie, get ONLY the page for the specificed locale, as long as
+                # the locale doesn't have a fallback configured in Contentful
             },
         )
 
