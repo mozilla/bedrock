@@ -472,7 +472,7 @@ class TestWhatsNew(TestCase):
         req.locale = "de"
         self.view(req, version="93.0")
         template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/whatsnew-fx93-v3-de.html"]
+        assert template == ["firefox/whatsnew/whatsnew-fx93-de.html"]
 
     def test_fx_93_0_0_en(self, render_mock):
         """Should use whatsnew-fx93-en template for 93.0 in English"""
@@ -480,7 +480,7 @@ class TestWhatsNew(TestCase):
         req.locale = "en-US"
         self.view(req, version="93.0")
         template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/whatsnew-fx93-v3-en.html"]
+        assert template == ["firefox/whatsnew/whatsnew-fx93-en.html"]
 
     def test_fx_93_0_0_nl(self, render_mock):
         """Should use whatsnew-fx93-nl template for 93.0 in Dutch"""
