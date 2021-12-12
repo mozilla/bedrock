@@ -40,7 +40,13 @@
           <label for="id_email" class="mzp-c-field-label">
             {{ ftl('newsletters-your-email-address') }}
             {% if form.email.errors %}
-              <em class="mzp-c-fieldnote">{{ form.email.errors }}</em>
+              <em class="mzp-c-fieldnote">
+                <ul class="errorlist">
+                {% for error in form.email.errors %}
+                  <li> {{ error|safe }} </li>
+                {% endfor %}
+                </ul>
+              </em>
             {% endif %}
           </label>
           {{ field_with_attrs(form.email, class='mzp-c-field-control'|safe) }}
