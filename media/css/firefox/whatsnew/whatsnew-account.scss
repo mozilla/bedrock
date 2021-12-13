@@ -9,7 +9,8 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
-@import 'includes/header';
+@import 'includes/base';
+@import 'includes/dark-mode';
 
 // * -------------------------------------------------------------------------- */
 // Main content
@@ -61,27 +62,8 @@ $image-path: '/media/protocol/img';
 }
 
 // * -------------------------------------------------------------------------- */
-// Utilities (link to release notes)
-.c-utilities {
-    @include text-body-sm;
-    max-width: $content-md;
-    padding-bottom: $layout-xl;
-    text-align: center;
-}
-
-// * -------------------------------------------------------------------------- */
 // For dark mode
 @media (prefers-color-scheme: dark) {
-    .content-wrapper {
-        background: $color-dark-gray-60;
-        color: $color-white;
-    }
-
-    .c-page-header-logo-fx {
-        background: url($image-path + '/logos/firefox/browser/logo-word-hor-white.svg') no-repeat;
-        @include background-size(216px, 40px);
-    }
-
     .send-to-device {
         color: $color-white;
 
@@ -96,61 +78,5 @@ $image-path: '/media/protocol/img';
         strong {
             color: $color-violet-20;
         }
-    }
-
-    .c-utilities {
-        @include light-links;
-    }
-
-    .c-utilities a {
-        &:link,
-        &:visited {
-            color: $color-blue-10;
-        }
-
-        &:active,
-        &:focus,
-        &:hover {
-            color: $color-white;
-        }
-    }
-
-    .c-footer {
-        background: $color-dark-gray-60;
-        color: $color-white;
-
-        a:link,
-        a:visited {
-            color: $color-light-gray-20;
-            text-decoration: underline;
-
-            &:hover,
-            &:focus,
-            &:active {
-                color: $color-white;
-            }
-        }
-
-        .c-footer-sections {
-            border-color: $color-dark-gray-30;
-        }
-    }
-
-    .c-footer-list-social li {
-        a.twitter {
-            background-image: url('/media/protocol/img/icons/social/twitter/white.svg');
-        }
-
-        a.instagram {
-            background-image: url('/media/protocol/img/icons/social/instagram/white.svg');
-        }
-
-        a.youtube {
-            background-image: url('/media/protocol/img/icons/social/youtube/white.svg');
-        }
-    }
-
-    .c-footer-primary-logo a {
-        background-image: url('/media/protocol/img/logos/mozilla/logo-word-hor-white.svg');
     }
 }

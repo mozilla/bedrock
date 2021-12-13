@@ -7,7 +7,7 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
-@import 'includes/header';
+@import 'includes/base';
 
 // * -------------------------------------------------------------------------- */
 // Main content
@@ -61,13 +61,4 @@ $image-path: '/media/protocol/img';
         top: 0;
         width: 100%;
     }
-}
-
-// * -------------------------------------------------------------------------- */
-// Utilities (link to release notes)
-.c-utilities {
-    @include text-body-sm;
-    max-width: $content-md;
-    padding-bottom: $layout-xl;
-    text-align: center;
 }
