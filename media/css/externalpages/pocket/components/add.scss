@@ -12,6 +12,7 @@ $image-path: '/media/img/externalpages/pocket';
 @import '~@mozilla-protocol/core/protocol/css/components/split';
 @import '~@mozilla-protocol/core/protocol/css/components/button';
 
+// Header section
 .add-page {
     .add-header {
         background-color: $color-background-grey;
@@ -56,172 +57,162 @@ $image-path: '/media/img/externalpages/pocket';
     }
 }
 
+// Device section
 .add-device {
     margin: 0 auto;
     max-width: 62.5em;
     padding: $spacing100;
     width: 100%;
 
-    &__context {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: space-between;
-        width: 100%;
-
-        &-image {
-            width: 100%;
-
-            img {
-                display: block;
-                height: 100%;
-                width: 100%;
-            }
-        }
-
-        &-stores {
-            display: flex;
-            align-items: flex-start;
-            flex-direction: column;
-            width: 100%;
-
-            .apps-list,
-            .device-list {
-                margin-bottom: $spacing050;
-                padding: 0;
-
-                li {
-                    margin: $spacing050 0;
-                }
-            }
-
-            .app-store-badge {
-                height: 65px;
-                width: 190px;
-                text-align: center;
-
-                img {
-                    width: 100%;
-                    height: auto;
-                }
-            }
-
-            .device-list {
-                margin-top: 0;
-            }
-        }
-    }
-
     @media #{$mq-md} {
         width: 70%;
 
-        &__context {
+        .device-context {
             flex-direction: row;
+        }
 
-            &-image {
-                width: 70%;
-            }
+        .device-image {
+            width: 70%;
+        }
 
-            &-stores {
-                width: 25%;
-            }
+        .app-stores {
+            width: 25%;
         }
     }
 }
 
+.device-context {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.device-image {
+    width: 100%;
+
+    img {
+        display: block;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.device-stores {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+}
+
+.app-store-list,
+.device-list {
+    margin-bottom: $spacing050;
+    padding: 0;
+
+    li {
+        margin: $spacing050 0;
+    }
+}
+
+.device-list {
+    margin-top: 0;
+}
+
+.app-store-badge {
+    height: 65px;
+    width: 190px;
+    text-align: center;
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+// Save section
 .add-save {
     background-color: $color-background-grey;
 
-    &__wrapper {
-        margin: 0 auto;
-        max-width: 62.5em;
-        padding: $spacing100;
-        width: 100%;
-    }
-
-    &__context {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        flex-direction: column;
-
-        &-email {
-            width: 100%;
-        }
-
-        &-image {
-            margin-bottom: $spacing100;
-            width: 100%;
-
-            img {
-                display: block;
-                height: 100%;
-                width: 100%;
-            }
-        }
-
-        @media #{$mq-md} {
+    @media #{$mq-md} {
+        .save-context {
             flex-direction: row;
             align-items: center;
-
-            &-email {
-                width: 45%;
-            }
-
-            &-image {
-                width: 400px;
-            }
         }
 
-        &-apps {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-
-            .app-types {
-                display: flex;
-                align-items: flex-start;
-                justify-content: flex-start;
-                width: 100%;
-
-                .app-board {
-                    display: flex;
-                    flex-wrap: wrap;
-                    padding: 0;
-                    width: 60%;
-
-                    &__icon {
-                        height: $layout-lg;
-                        margin: $spacing-sm;
-                        width: $layout-lg;
-
-                        img {
-                            height: 100%;
-                            width: 100%;
-                            display: block;
-                        }
-                    }
-                }
-
-                .social-apps {
-                    display: flex;
-                    align-items: flex-start;
-                    justify-content: flex-start;
-                    flex-flow: column wrap;
-                    padding: 0;
-                    margin-left: $spacing-lg;
-
-                    li {
-                        margin: $spacing-sm;
-                        width: 100%;
-                    }
-                }
-            }
-
-            @media #{$mq-md} {
-                width: 45%;
-            }
+        .save-email {
+            width: 45%;
         }
+
+        .save-email-image {
+            width: 400px;
+        }
+    }
+}
+
+.add-save-wrapper {
+    margin: 0 auto;
+    max-width: 62.5em;
+    padding: $spacing100;
+    width: 100%;
+}
+
+.save-context {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.save-email {
+    width: 100%;
+}
+
+.save-email-image {
+    margin-bottom: $spacing100;
+    width: 100%;
+
+    img {
+        display: block;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.save-apps {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    @media #{$mq-md} {
+        width: 45%;
+    }
+}
+
+.app-types {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.app-board {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    width: 60%;
+}
+
+.app-icon {
+    height: $layout-lg;
+    margin: $spacing-sm;
+    width: $layout-lg;
+
+    img {
+        height: 100%;
+        width: 100%;
+        display: block;
     }
 }
 
@@ -235,5 +226,6 @@ $image-path: '/media/img/externalpages/pocket';
 
     li {
         margin: $spacing-sm;
+        white-space: nowrap;
     }
 }

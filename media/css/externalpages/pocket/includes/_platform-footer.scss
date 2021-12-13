@@ -12,7 +12,7 @@ $image-path: '/media/protocol/img';
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     padding-top: $spacing-xl;
 
-    &__navigation {
+    .footer-navigation {
         display: flex;
         flex-direction: column-reverse;
         margin: 0 auto;
@@ -24,7 +24,7 @@ $image-path: '/media/protocol/img';
             justify-content: space-between;
         }
 
-        &--list {
+        .footer-navigation-list {
             @include text-body-xs;
             display: flex;
             flex-direction: column;
@@ -32,7 +32,7 @@ $image-path: '/media/protocol/img';
             margin: 0;
             padding: 0 $spacing-md;
 
-            &-item {
+            .footer-navigation-list-item {
                 margin: 0 0 $spacing-md;
                 cursor: pointer;
 
@@ -51,7 +51,7 @@ $image-path: '/media/protocol/img';
             @media #{$mq-md} {
                 flex-direction: row;
 
-                &-item {
+                .footer-navigation-list-item {
                     margin: 0 $spacing-sm 0;
                 }
             }
@@ -63,28 +63,28 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.platform-footer__navigation--social-media { /* stylelint-disable-line selector-class-pattern */
+.platform-footer-socials { /* stylelint-disable-line selector-class-pattern */
     padding: 0 $spacing-md;
 
-    &__wrapper {
+    .footer-socials-wrapper {
         display: flex;
     }
 
-    &--text {
+    .footer-socials-text {
         @include text-body-xs;
         font-weight: 700;
         margin-right: $spacing-md;
     }
 
-    &--list {
+    .socials-list {
         margin: 0;
         padding: 0;
         display: flex;
 
-        &-item {
+        .socials-list-item {
             margin-right: $spacing-xs;
 
-            &-link {
+            .socials-list-item-link {
                 background-repeat: no-repeat;
                 background-size: 20px 20px;
                 cursor: pointer;
@@ -119,7 +119,7 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    &--copyright {
+    .platform-footer-copyright {
         @include text-body-xs;
         color: #8c8c8c;
         font-weight: 300;
