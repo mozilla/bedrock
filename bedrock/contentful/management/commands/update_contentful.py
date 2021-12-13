@@ -5,10 +5,11 @@
 
 import json
 from hashlib import sha256
-from typing import Dict, List, Tuple, Union
+from typing import Dict, Tuple, Union
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
+from django.db.models import Q
 from django.test import RequestFactory
 from django.utils.timezone import now as tz_now
 
@@ -233,8 +234,24 @@ class Command(BaseCommand):
 
         return viable_message_found
 
-    def _detect_and_delete_absent_entries(self, contentful_ids_synced: List[int]) -> int:
-        _entries_to_delete = ContentfulEntry.objects.exclude(contentful_id__in=contentful_ids_synced)
+    def _detect_and_delete_absent_entries(self, contentful_data_attempted_for_sync) -> int:
+
+        q_obj = Q()
+        for ctype, _contentful_id, _locale in contentful_data_attempted_for_sync:
+            if ctype == CONTENT_TYPE_CONNECT_HOMEPAGE:
+                base_q = Q(contentful_id=_contentful_id)
+            else:
+                base_q = Q(
+                    contentful_id=_contentful_id,
+                    # DANGER: the _locale up till now is a Contentful locale
+                    # not how we express it in Bedrock, so we need to remap it
+                    locale=self._update_locale_for_bedrock(_locale),
+                )
+            q_obj.add(base_q, Q.OR)
+
+        _entries_to_delete = ContentfulEntry.objects.exclude(q_obj)
+        self.log(f"Entries to be deleted: {_entries_to_delete}")
+
         _num_entries_to_delete = _entries_to_delete.count()
 
         res = _entries_to_delete.delete()
@@ -276,6 +293,7 @@ class Command(BaseCommand):
         deleted_count = 0
         error_count = 0
         content_to_sync = []
+        content_missing_localised_version = set()
 
         EMPTY_ENTRY_ATTRIBUTE_STRING = "'Entry' object has no attribute 'content'"
 
@@ -318,9 +336,11 @@ class Command(BaseCommand):
                 # Problem with the page - most likely not-really-a-page-in-this-locale-after-all.
                 # (Contentful seems to send back a Compose `page` in en-US for _any_ other locale,
                 # even if the page has no child entries. This false positive / absent entry is
-                # only apparent when we try to get content and find there is none.)
+                # only apparent when we try to call page.get_content() and find there is none.)
                 if str(ae) == EMPTY_ENTRY_ATTRIBUTE_STRING:
-                    self.log(f"No content for {page_id} for {locale_code}")
+                    self.log(f"No content for {page_id} for {locale_code} - page will be deleted from DB if it exists")
+                    # We want to track this explicitly, because we need to do cleanup later on.
+                    content_missing_localised_version.add((ctype, page_id, locale_code))
                     continue
                 else:
                     raise
@@ -391,12 +411,18 @@ class Command(BaseCommand):
                     updated_count += 1
 
         try:
-            # Even if we failed to sync certain entities, we should act as if they
-            # were synced when we come to look for records to delete. If it was just
-            # a temporary glitch that caused the exception we would not want to unncessarily
-            # delete a page, even if the failed sync means its content is potentially stale
-            _ids_synced = [x[1] for x in content_to_sync]  # (x[0] is ctype, x[1] is the id)
-            deleted_count = self._detect_and_delete_absent_entries(_ids_synced)
+            # Even if we failed to sync certain entities that are usually syncable, we
+            # should act as if they were synced when we come to look for records to delete.
+            # (If it was just a temporary glitch that caused the exception we would not
+            # want to unncessarily delete a page, even if the failed sync means its content
+            # is potentially stale)
+            # HOWEVER, there are some entities which are just not syncable at all - such as
+            # a Compose `page` which has no entry for a specific locale, and so is skipped
+            # above. For these, we DO want to delete them, so remove them from the list of
+            # synced items
+
+            entries_processed_in_sync = set(content_to_sync).difference(content_missing_localised_version)
+            deleted_count = self._detect_and_delete_absent_entries(entries_processed_in_sync)
         except Exception as ex:
             self.log(ex)
             capture_exception(ex)
