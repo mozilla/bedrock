@@ -5,14 +5,6 @@
 
 # Which models do we want to sync?
 
-DEFAULT_CONTENT_TYPES = ",".join(
-    # Soon, we'll only need to sync the Compose-driven `page` type, but
-    # until then we also still have homepages set with the Connect pattern
-    [
-        "connectHomepage",  # Connect: Homepage - mapped to pageHome page type in the DB
-        "page",  # General Compose Page type - the related `content` type's name is what we store in the DB
-    ]
-)
 
 COMPOSE_MAIN_PAGE_TYPE = "page"
 MAX_MESSAGES_PER_QUEUE_POLL = 10
@@ -21,6 +13,15 @@ MAX_MESSAGES_PER_QUEUE_POLL = 10
 CONTENT_TYPE_CONNECT_HOMEPAGE = "connectHomepage"
 CONTENT_TYPE_PAGE_RESOURCE_CENTER = "pagePageResourceCenter"
 CONTENT_TYPE_PAGE_GENERAL = "pageGeneral"
+
+DEFAULT_CONTENT_TYPES = ",".join(
+    # Soon, we'll only need to sync the Compose-driven `page` type, but
+    # until then we also still have homepages set with the Connect pattern
+    [
+        CONTENT_TYPE_CONNECT_HOMEPAGE,  # The Connect-based approach, used for the homepage
+        COMPOSE_MAIN_PAGE_TYPE,  # General Compose Page type - the related `content` type's name is what we store in the DB
+    ]
+)
 
 CONTENT_CLASSIFICATION_VPN = "VPN"  # Matches string in Contenful for VPN as `product`
 
