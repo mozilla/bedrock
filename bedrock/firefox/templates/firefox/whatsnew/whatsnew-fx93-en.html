@@ -14,24 +14,15 @@
 {% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
 
 {% block body_id %}firefox-whatsnew{% endblock %}
-{% block body_class %}wnp93-v3{% endblock %}
+{% block body_class %}wnp93{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('firefox_whatsnew_93') }}
 {% endblock %}
 
-{% block experiments %}
-  {% if switch('firefox-whatsnew-93-experiment-en') %}
-    {{ js_bundle('firefox_whatsnew_93_experiment_en') }}
-  {% endif %}
-{% endblock %}
-
 {% block site_header %}{% endblock %}
 
-{% block content %}
-<main class="content-wrapper mzp-t-firefox">
-  {% include 'firefox/whatsnew/includes/header.html' %}
-
+{% block wnp_content %}
   <section class="wnp-content-main">
     <div class="mzp-l-content mzp-t-content-lg">
       <h1 class="wnp-pre-title">It’s Cyber Security Month</h1>
@@ -60,12 +51,6 @@
       </div>
     </div>
   </section>
-
-  <aside class="mzp-l-content c-utilities">
-    {% set releasenotes_url = url('firefox.releases.index') if not version else '/firefox/%s/releasenotes/'|format(version) %}
-    <p>{{ ftl('whatsnew-release-notes', url=releasenotes_url) }}</p>
-  </aside>
-</main>
 {% endblock %}
 
 {% block js %}

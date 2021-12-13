@@ -25,10 +25,7 @@
 
 {% block site_header %}{% endblock %}
 
-{% block content %}
-<main class="content-wrapper mzp-t-firefox">
-  {% include 'firefox/whatsnew/includes/header.html' %}
-
+{% block wnp_content %}
   <section class="wnp-content-main">
     <div class="mzp-l-content mzp-t-content-md">
       <img alt="Best of Pocket 2021" class="wnp-main-img" src="{{ static('img/firefox/whatsnew/whatsnew95-en/wnp95-en-graphic.svg') }}" height="405" width="720" />
@@ -39,13 +36,6 @@
       <a href="https://getpocket.com/collections?utm_source={{ entrypoint }}&utm_campaign={{ utm_campaign }}&entrypoint={{ entrypoint }}&utm_medium=referral" class="wnp-main-cta mzp-c-button mzp-t-product" data-cta-type="button" data-cta-text="See the Winners">See the Winners</a>
     </div>
   </section>
-
-  <aside class="mzp-l-content c-utilities">
-    {% set releasenotes_url = url('firefox.releases.index') if not version else '/firefox/%s/releasenotes/'|format(version) %}
-    <p>{{ ftl('whatsnew-release-notes', url=releasenotes_url) }}</p>
-  </aside>
-
-</main>
 {% endblock %}
 
 {% block js %}

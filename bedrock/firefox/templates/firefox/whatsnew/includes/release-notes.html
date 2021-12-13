@@ -1,0 +1,10 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<aside class="mzp-l-content c-utilities">
+  {% set releasenotes_url = url('firefox.releases.index') if not version else '/firefox/%s/releasenotes/'|format(version) %}
+  <p>{{ ftl('whatsnew-release-notes', url=releasenotes_url) }}</p>
+</aside>
