@@ -20,6 +20,8 @@ from bedrock.contentful.constants import (
     ACTION_SAVE,
     ACTION_UNARCHIVE,
     ACTION_UNPUBLISH,
+    COMPOSE_MAIN_PAGE_TYPE,
+    CONTENT_TYPE_CONNECT_HOMEPAGE,
 )
 from bedrock.contentful.management.commands.update_contentful import (
     MAX_MESSAGES_PER_QUEUE_POLL,
@@ -457,28 +459,154 @@ def test_update_contentful__refresh(
 
 @pytest.mark.django_db
 @pytest.mark.parametrize(
-    "total_to_create, contentful_ids_synced, expected_deletion_count",
+    "total_to_create_per_locale, locales_to_use, entries_processed_in_sync, expected_deletion_count",
     (
-        (3, ["entry_1", "entry_2", "entry_3"], 0),
-        (3, ["entry_1", "entry_2"], 1),
-        (5, ["entry_2", "entry_3", "entry_4"], 2),
-        (3, [], 3),
+        (
+            3,
+            ["en-US"],
+            [
+                (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "en-US"),
+                (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "en-US"),
+                (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "en-US"),
+            ],
+            0,
+        ),
+        (
+            3,
+            ["en-US"],
+            [
+                (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "en-US"),
+                (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "en-US"),
+            ],
+            1,
+        ),
+        (
+            5,
+            ["en-US"],
+            [
+                (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "en-US"),
+                (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "en-US"),
+                (COMPOSE_MAIN_PAGE_TYPE, "entry_4", "en-US"),
+            ],
+            2,
+        ),
+        (
+            3,
+            ["en-US"],
+            [],
+            3,
+        ),
+        (
+            3,
+            ["en-US", "de", "fr", "it"],
+            [
+                (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "en-US"),
+                # (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "de"),  # simulating deletion/absence from sync
+                (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "fr"),
+                # (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "it"),
+                # (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "en-US"),
+                (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "de"),
+                (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "fr"),
+                (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "it"),
+                (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "en-US"),
+                # (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "de"),
+                # (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "fr"),
+                # (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "it"),
+            ],
+            6,
+        ),
     ),
     ids=[
         "All ids attempted, so none deleted",
         "First two ids attempted, so one deleted",
         "Middle three of five ids attempted,, so two deleted",
         "No ids attempted, so all deleted",
+        "Pages remain but some locales zapped, reducing entries",
     ],
 )
 def test_update_contentful__detect_and_delete_absent_entries(
-    total_to_create,
-    contentful_ids_synced,
+    total_to_create_per_locale,
+    locales_to_use,
+    entries_processed_in_sync,
     expected_deletion_count,
     command_instance,
 ):
-    for idx in range(total_to_create):
-        ContentfulEntry.objects.create(contentful_id=f"entry_{idx+1}")
+    for locale in locales_to_use:
+        for idx in range(total_to_create_per_locale):
+            ContentfulEntry.objects.create(
+                content_type=COMPOSE_MAIN_PAGE_TYPE,
+                contentful_id=f"entry_{idx+1}",
+                locale=locale,
+            )
 
-    retval = command_instance._detect_and_delete_absent_entries(contentful_ids_synced)
+    retval = command_instance._detect_and_delete_absent_entries(entries_processed_in_sync)
     assert retval == expected_deletion_count
+
+
+@pytest.mark.django_db
+def test_update_contentful__detect_and_delete_absent_entries__homepage_involved(command_instance):
+
+    # Make two homepages, with en-US locales (because that's how it rolls for now)
+    ContentfulEntry.objects.create(
+        content_type=CONTENT_TYPE_CONNECT_HOMEPAGE,
+        contentful_id=f"home_1",
+        locale="en-US",
+    )
+    ContentfulEntry.objects.create(
+        content_type=CONTENT_TYPE_CONNECT_HOMEPAGE,
+        contentful_id=f"home_2",
+        locale="en-US",
+    )
+
+    # Make some other pages
+    for locale in ["en-US", "fr", "it"]:
+        for idx in range(3):
+            ContentfulEntry.objects.create(
+                content_type=COMPOSE_MAIN_PAGE_TYPE,
+                contentful_id=f"entry_{idx+1}",
+                locale=locale,
+            )
+
+    # Let's pretend the second homepage and some others have been deleted
+    entries_processed_in_sync = [
+        (CONTENT_TYPE_CONNECT_HOMEPAGE, "home_1", "en-US"),
+        # (CONTENT_TYPE_CONNECT_HOMEPAGE, "home_2", "en-US"),
+        (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "en-US"),
+        (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "fr"),
+        (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "it"),
+        # (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "en-US"),
+        (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "fr"),
+        # (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "it"),
+        (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "en-US"),
+        # (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "fr"),
+        (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "it"),
+    ]
+    retval = command_instance._detect_and_delete_absent_entries(entries_processed_in_sync)
+    assert retval == 4
+
+    for ctype, contentful_id, locale in [
+        (CONTENT_TYPE_CONNECT_HOMEPAGE, "home_1", "en-US"),
+        (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "en-US"),
+        (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "fr"),
+        (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "it"),
+        (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "fr"),
+        (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "en-US"),
+        (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "it"),
+    ]:
+        assert ContentfulEntry.objects.get(
+            content_type=ctype,
+            contentful_id=contentful_id,
+            locale=locale,
+        )
+
+    for ctype, contentful_id, locale in [
+        (CONTENT_TYPE_CONNECT_HOMEPAGE, "home_2", "en-US"),
+        (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "en-US"),
+        (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "it"),
+        (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "fr"),
+    ]:
+        assert not ContentfulEntry.objects.filter(
+            content_type=ctype,
+            contentful_id=contentful_id,
+            locale=locale,
+        ).exists()
