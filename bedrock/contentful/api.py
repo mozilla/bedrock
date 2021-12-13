@@ -28,16 +28,16 @@ BEDROCK_TO_CONTENTFUL_LOCALE_MAP = {
     "de": "de-DE",
     "fr": "fr-FR",
     "zh-TW": "zh-Hant-TW",  # NB: we should move to zh-Hant-TW in Bedrock - https://github.com/mozilla/bedrock/issues/10891
-    "nl-NL": "nl",
-    "id-ID": "id",
-    "it-IT": "it",
-    "ja-JP": "jp",
-    "ko-KR": "ko",
-    "ms-MY": "ms",
-    "pl-PL": "pl",
-    "ru-RU": "ru",
-    "tr-TR": "tr",
-    "vi-VN": "vi",
+    "nl": "nl-NL",
+    "id": "id-ID",
+    "it": "it-IT",
+    "jp": "ja-JP",
+    "ko": "ko-KR",
+    "ms": "ms-MY",
+    "pl": "pl-PL",
+    "ru": "ru-RU",
+    "tr": "tr-TR",
+    "vi": "vi-VN",
 }
 CONTENTFUL_TO_BEDROCK_LOCALE_MAP = {v: k for k, v in BEDROCK_TO_CONTENTFUL_LOCALE_MAP.items()}
 
