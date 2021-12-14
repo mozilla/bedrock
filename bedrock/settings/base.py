@@ -57,7 +57,7 @@ CACHES = {
             "MAX_ENTRIES": 5000,
             "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
         },
-    }
+    },
 }
 
 # in case django-pylibmc is in use
@@ -1045,6 +1045,17 @@ CONTENTFUL_HOMEPAGE_LOOKUP = {
     "en-US": "58YIvwDmzSDjtvpSqstDcL",
     "de": "4k3CxqZGjxXOjR1I0dhyto",
 }
+
+CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE = config(
+    "CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE",
+    default="60",
+    parser=float,
+)
+CONTENTFUL_LOCALE_ACTIVATION_CACHE_TIMEOUT = config(
+    "CONTENTFUL_LOCALE_ACTIVATION_CACHE_TIMEOUT",
+    default="900",  # 60s * 15m
+    parser=int,
+)
 
 
 RELEASE_NOTES_PATH = config("RELEASE_NOTES_PATH", default=data_path("release_notes"))
