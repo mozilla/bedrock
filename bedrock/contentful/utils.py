@@ -35,32 +35,27 @@ def get_active_locales(
     default_locale: str = "en-US",
 ) -> List:
     """How many locales do we have 'enough' of to consider them an active locale?"""
-    default_locale_count = ContentfulEntry.objects.filter(
+
+    all_locales = ContentfulEntry.objects.filter(
         content_type=content_type,
         classification=classification,
-        locale=default_locale,
-    ).count()
+    ).values_list("locale", flat=True)
 
+    locale_counts = defaultdict(int)
+    for locale in all_locales:
+        locale_counts[locale] += 1
+
+    default_locale_count = locale_counts.pop(default_locale, 0)
     active_locales = set()
 
     if default_locale_count > 0:
         active_locales.add(default_locale)
     else:
+        # no default locale count, and also not possible to say the other
+        # locales are more active relative to it, because of division by zero
         return []
 
-    other_locales = (
-        ContentfulEntry.objects.filter(
-            content_type=content_type,
-            classification=classification,
-        )
-        .exclude(locale=default_locale)
-        .values_list("locale", flat=True)
-    )
-    other_locale_counts = defaultdict(int)
-    for locale in other_locales:
-        other_locale_counts[locale] += 1
-    print("other_locale_counts", other_locale_counts)
-    for locale, count in other_locale_counts.items():
+    for locale, count in locale_counts.items():
         relative_pc = (count / default_locale_count) * 100
         if relative_pc >= settings.CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE:
             active_locales.add(locale)
