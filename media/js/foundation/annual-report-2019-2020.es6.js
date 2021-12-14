@@ -4,9 +4,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-// Lazyload images
-window.Mozilla.LazyLoad.init();
-
 const modalContainers = document.getElementsByClassName('has-modal');
 const content = document.querySelector('.mzp-u-modal-content');
 const articleArray = document.querySelectorAll('[data-modal-id]');
@@ -59,23 +56,6 @@ function keyboardNextPrev(event) {
 }
 
 function modalInit() {
-    // Lazy load images in the modal
-    const modalImage = document.querySelector(
-        '.mzp-c-modal-overlay-contents .mzp-c-card-image'
-    );
-
-    if (modalImage) {
-        const srcset = modalImage.getAttribute('data-srcset');
-
-        if (srcset) {
-            modalImage.srcset = srcset;
-        }
-
-        modalImage.src = modalImage.getAttribute('data-src');
-        modalImage.removeAttribute('data-src');
-        modalImage.removeAttribute('data-srcset');
-    }
-
     const modalNextButton = document.querySelector('.c-modal-next');
     const modalPrevButton = document.querySelector('.c-modal-prev');
 
@@ -182,7 +162,7 @@ for (let i = 0; i < modalContainers.length; i++) {
                     modalPrevButtonFragment
                 );
 
-                // Lazy load images in the modal and set next/prev listeners
+                // set next/prev listeners
                 modalInit();
             },
             onDestroy: () => {

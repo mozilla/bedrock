@@ -292,6 +292,28 @@ is the "box size". It's a parameter that tells the generator how large to set th
 parameters on the XML SVG tag, the units of which are "mm". This can be overriden with CSS so you
 may not need to use it at all. The ``box_size`` parameter is optional.
 
+image()
+~~~~~~~
+
+We also have an image macro that should be imported with context if the image might need localization. This macro is mainly used to encapsulate the conditional logic needed for `Protocol macros <https://bedrock.readthedocs.io/en/latest/coding.html#working-with-protocol>`_ containing images.
+
+.. code-block:: jinja
+
+    {% from 'macros.html' import image with context %}
+
+    {{ image(
+        url='example.jpg',
+        alt='example alt',
+        class='example class',
+        width='64',
+        height='64',
+        loading='lazy',
+        include_highres=True,
+        include_l10n=True
+    ) }}
+
+Only **url** is required. By default, alt text will be an empty string, loading will use browser default ('eager'), and highres/l10n images will not be included.
+
 Using Large Assets
 ------------------
 
@@ -654,12 +676,12 @@ Picto
     Example: ``l10n_image=True``
 
 
-- lazy_loading
-    Boolean to provide “lazy” value for “loading” attribute. This will be “eager” by default. Lazy loading defers fetching of images to a browser decision based on user scroll and connection.
+- loading
+    String to provide value for image loading attribute. This will use browser default ("eager") if not set. Lazy loading defers fetching of images to a browser decision based on user scroll and connection.
 
-    Default: False
+    Default: None
 
-    Example: ``lazy_loading=True``
+    Example: ``loading='lazy'``
 
 
 
@@ -789,6 +811,13 @@ Split
 
     Example: ``media_include='firefox/facebookcontainer/includes/video.html'``
 
+- loading
+    String to provide value for image loading attribute. This will use browser default ("eager") if not set. Lazy loading defers fetching of images to a browser decision based on user scroll and connection.
+
+    Default: None
+
+    Example: ``loading='lazy'``
+
 
 Billboard
 ~~~~~~~~~
@@ -855,6 +884,13 @@ Billboard
     Default: 2
 
     Example: ``heading_level=1``
+
+- loading
+    String to provide value for image loading attribute. This will use browser default ("eager") if not set. Lazy loading defers fetching of images to a browser decision based on user scroll and connection.
+
+    Default: None
+
+    Example: ``loading='lazy'``
 
 
 Feature Card
@@ -936,6 +972,13 @@ Feature Card
     Default: False
 
     Example: ``media_after=True``
+
+- loading
+    String to provide value for image loading attribute. This will use browser default ("eager") if not set. Lazy loading defers fetching of images to a browser decision based on user scroll and connection.
+
+    Default: None
+
+    Example: ``loading='lazy'``
 
 
 Card

@@ -29,7 +29,6 @@ Contents
    pipeline
    testing
    redirects
-   javascript-libs
    newsletters
    contentful
    content-cards

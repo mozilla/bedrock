@@ -4,10 +4,8 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-(function (Mozilla) {
+(function () {
     'use strict';
 
-    Mozilla.LazyLoad.init();
-
     window.Mzp.Details.init('.mzp-c-menu-list-title');
-})(window.Mozilla);
+})();
