@@ -258,6 +258,12 @@
     },
     {
       "files": [
+        "css/base/banners/vpn-promo.scss"
+      ],
+      "name": "vpn-promo-banner"
+    },
+    {
+      "files": [
         "css/base/banners/firefox-app-store.scss"
       ],
       "name": "firefox-app-store-banner"
@@ -1207,6 +1213,13 @@
         "js/base/banners/pocket-banner-init.js"
       ],
       "name": "pocket-banner"
+    },
+    {
+      "files": [
+        "js/base/banners/mozilla-banner.js",
+        "js/base/banners/vpn-promo-banner-init.js"
+      ],
+      "name": "vpn-promo-banner"
     },
     {
       "files": [

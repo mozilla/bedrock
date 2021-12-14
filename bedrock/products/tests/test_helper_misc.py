@@ -871,12 +871,12 @@ class TestVPNProductReferralLink(TestCase):
             referral_id="navigation",
             page_anchor="#pricing",
             link_text="Get Mozilla VPN",
-            class_name="mzp-t-secondary mzp-t-md",
+            class_name="mzp-t-product mzp-t-secondary mzp-t-md",
             optional_attributes={"data-cta-text": "Get Mozilla VPN", "data-cta-type": "button"},
         )
         expected = (
-            '<a href="/en-US/products/vpn/#pricing" class="mzp-c-button mzp-t-product '
-            'js-fxa-product-referral-link mzp-t-secondary mzp-t-md" data-referral-id="navigation" '
+            '<a href="/en-US/products/vpn/#pricing" class="mzp-c-button js-fxa-product-referral-link '
+            'mzp-t-product mzp-t-secondary mzp-t-md" data-referral-id="navigation" '
             'data-cta-text="Get Mozilla VPN" data-cta-type="button">Get Mozilla VPN</a>'
         )
         self.assertEqual(markup, expected)

@@ -15,6 +15,8 @@
 {% set show_pocket_banner = switch('pocket-banner') %}
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 {% set show_fundraising_banner = switch('fundraising-banner-eoy2021') and donate_params and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
+{% set show_vpn_promo_banner = switch('vpn-promo-banner') %}
+
 
 {% block page_css %}
   {{ css_bundle('home-eu') }}
@@ -27,6 +29,8 @@
     {{ css_bundle('fundraising-banner') }}
   {% elif show_pocket_banner %}
     {{ css_bundle('pocket-banner') }}
+  {% elif show_vpn_promo_banner %}
+    {{ css_bundle('vpn-promo-banner') }}
   {% elif show_firefox_app_store_banner %}
     {{ css_bundle('firefox-app-store-banner') }}
   {% endif %}
@@ -37,6 +41,8 @@
     {% include 'includes/banners/fundraiser.html' %}
   {% elif show_pocket_banner %}
     {% include 'includes/banners/pocket.html' %}
+  {% elif show_vpn_promo_banner %}
+    {% include 'includes/banners/vpn-promo.html' %}
   {% elif show_firefox_app_store_banner %}
     {% include 'includes/banners/mobile/firefox-app-store.html' %}
   {% endif %}
@@ -156,6 +162,8 @@
     {{ js_bundle('fundraising-banner') }}
   {% elif show_pocket_banner %}
     {{ js_bundle('pocket-banner') }}
+  {% elif show_vpn_promo_banner %}
+    {{ js_bundle('vpn-promo-banner') }}
   {% elif show_firefox_app_store_banner %}
     {{ js_bundle('firefox-app-store-banner') }}
   {% endif %}
