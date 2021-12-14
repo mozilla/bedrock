@@ -6,13 +6,12 @@
 
 {% extends "careers/base.html" %}
 
-{% set meta_title = "Mozilla Careers &mdash; Experience an internship at Mozilla" %}
-{% set meta_description = "Mozilla Careers &mdash; Interns at Mozilla work alongside industry leaders on meaningful projects like online privacy protection." %}
+{% block page_title %}Mozilla Careers — Experience an internship at Mozilla{% endblock %}
+{% block page_desc %}Interns at Mozilla work alongside industry leaders on meaningful projects like online privacy protection.{% endblock %}
 
 {% block body_class %}internships-page{% endblock %}
 
-{% block content %}
-
+{% block careers_content %}
 <section class="mzp-l-content mzp-c-hero mzp-t-dark">
   <div class="mzp-c-hero-body">
     <h1 class="mzp-c-hero-title">Make an Impact</h1>
@@ -127,7 +126,6 @@
   </div>
 </section>
 
-
 <section class="internships-grey-section">
   <div class="l-internships-apply mzp-l-content c-section-heading">
     <h2>Application process</h2>
@@ -220,5 +218,4 @@
       internship</a>
   </div>
 </section>
-
 {% endblock %}

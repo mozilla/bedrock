@@ -6,13 +6,12 @@
 
 {% extends "careers/base.html" %}
 
-{% set meta_title = "Mozilla Careers &mdash; All open positions at Mozilla" %}
-{% set meta_description = "Mozilla Careers &mdash; We have a mighty mandate, serving hundreds of millions of people. Add a culture of exploration, and there is always a new way to learn and grow here." %}
+{% block page_title %}Mozilla Careers — All open positions at Mozilla{% endblock %}
+{% block page_desc %}We have a mighty mandate, serving hundreds of millions of people. Add a culture of exploration, and there is always a new way to learn and grow here.{% endblock %}
 
 {% block body_class %}listings-page{% endblock %}
 
-{% block content %}
-
+{% block careers_content %}
 <section class="mzp-c-hero mzp-t-dark page-hero">
   <div class="mzp-l-content">
     <div class="mzp-c-hero-body">
@@ -30,7 +29,7 @@
 <section class="mzp-l-content">
   <h2>Listings</h2>
 
-  <form id="listings-filters">
+  <form id="listings-filters" class="hide-from-legacy-ie">
     <div class="listings-filter listings-filter-location">
       {{ form.location }}
       <label for="id_location" class="visually-hidden">Location</label>
@@ -76,8 +75,6 @@
 </section>
 {% endblock %}
 
-{% block site_js %}
-  {{ super() }}
-  <script src="{{ static('js/careers/listings.js') }}"></script>
-  <script src="{{ static('js/careers/filters.js') }}"></script>
+{% block js %}
+  {{ js_bundle('careers-listings') }}
 {% endblock %}

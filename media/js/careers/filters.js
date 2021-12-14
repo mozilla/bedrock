@@ -1,24 +1,37 @@
-(function() {
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ */
+
+(function () {
     'use strict';
 
     /**
      * Monitors inputs and filters a list of positions when they change.
      */
-    function PositionFilters(typeInput, teamInput, locationInput, positionTable) {
+    function PositionFilters(
+        typeInput,
+        teamInput,
+        locationInput,
+        positionTable
+    ) {
         this.typeInput = typeInput;
         this.teamInput = teamInput;
         this.locationInput = locationInput;
         this.positionTable = positionTable;
-        this.emptyFilterMessage = document.getElementById('empty-filter-message');
+        this.emptyFilterMessage = document.getElementById(
+            'empty-filter-message'
+        );
     }
 
     PositionFilters.prototype = {
         /**
          * Bind onFilterChange to the change events for each input.
          */
-        bindEvents: function() {
+        bindEvents: function () {
             var self = this;
-            var callback = function() {
+            var callback = function () {
                 self.onFilterChange();
             };
 
@@ -30,17 +43,18 @@
         /**
          * When a filter changes, refresh the position list.
          */
-        onFilterChange: function() {
+        onFilterChange: function () {
             var i;
             // collection of tr.position elements
-            var positions = this.positionTable.getElementsByClassName('position');
+            var positions =
+                this.positionTable.getElementsByClassName('position');
             var positionsVisible = false;
             var querystring = '';
 
             var filters = {
-                'position_type': this.typeInput.value,
-                'team': this.teamInput.value,
-                'location': this.locationInput.value
+                position_type: this.typeInput.value,
+                team: this.teamInput.value,
+                location: this.locationInput.value
             };
 
             // Hide table and show all positions.
@@ -70,7 +84,10 @@
 
             // Get rid of unset filters.
             for (var k in filters) {
-                if (filters.hasOwnProperty(k) && !filters[k]) {
+                if (
+                    Object.prototype.hasOwnProperty.call(filters, k) &&
+                    !filters[k]
+                ) {
                     delete filters[k];
                 }
             }
@@ -81,11 +98,12 @@
             }
 
             // Preserve Google Analytics parameters.
-            var ga_parameters = window.location.search.substr(1).split('&').filter(
-                function(parameter) {
+            var ga_parameters = window.location.search
+                .substr(1)
+                .split('&')
+                .filter(function (parameter) {
                     return parameter.indexOf('utm_') === 0;
-                }
-            );
+                });
 
             if (querystring.length && ga_parameters.length) {
                 querystring += '&';
@@ -98,7 +116,11 @@
             }
 
             // Replace history state with this filtered state.
-            window.history.replaceState(filters, 'Filtered', location.pathname + querystring);
+            window.history.replaceState(
+                filters,
+                'Filtered',
+                location.pathname + querystring
+            );
 
             this.positionTable.classList.remove('hidden');
         },
@@ -106,11 +128,11 @@
         /**
          * Hide any positions that do have the correct value for the given field.
          */
-        filterPositions: function(field, value) {
-            if (!value)
-                return;
+        filterPositions: function (field, value) {
+            if (!value) return;
 
-            var positions = this.positionTable.getElementsByClassName('position');
+            var positions =
+                this.positionTable.getElementsByClassName('position');
 
             for (var i = 0; i < positions.length; i++) {
                 var data = positions.item(i).dataset[field];
@@ -121,11 +143,11 @@
             }
         },
 
-        filterLocations: function(value) {
-            if (!value)
-                return;
+        filterLocations: function (value) {
+            if (!value) return;
 
-            var positions = this.positionTable.getElementsByClassName('position');
+            var positions =
+                this.positionTable.getElementsByClassName('position');
 
             for (var i = 0; i < positions.length; i++) {
                 var data = positions.item(i).dataset.location;
@@ -137,16 +159,23 @@
                     if (data.indexOf(value + ',') === -1) {
                         positions.item(i).classList.add('hidden');
                     }
-                } else if (data.indexOf(value + ',') === -1 && data.indexOf('All Offices,') === -1) {
+                } else if (
+                    data.indexOf(value + ',') === -1 &&
+                    data.indexOf('All Offices,') === -1
+                ) {
                     positions.item(i).classList.add('hidden');
                 }
-            };
+            }
         }
     };
 
     var inputs = document.getElementById('listings-filters').elements;
-    var filters = new PositionFilters(inputs.position_type, inputs.team, inputs.location,
-                                        document.getElementById('listings-positions'));
+    var filters = new PositionFilters(
+        inputs.position_type,
+        inputs.team,
+        inputs.location,
+        document.getElementById('listings-positions')
+    );
     filters.bindEvents();
     filters.onFilterChange(); // Trigger sorting on initial load for querystring arguments.
 })();

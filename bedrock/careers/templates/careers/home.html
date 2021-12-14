@@ -6,11 +6,10 @@
 
 {% extends "careers/base.html" %}
 
-{% set meta_title = "Mozilla Careers &mdash; Feel good about your work again." %}
-{% set meta_description = "Mozilla Careers &mdash; Feel good about your work again. At Mozilla, you can pursue your future while working to protect the future of the internet for everyone, everywhere." %}
+{% block page_title %}Mozilla Careers — Feel good about your work again.{% endblock %}
+{% block page_desc %}At Mozilla, you can pursue your future while working to protect the future of the internet for everyone, everywhere.{% endblock %}
 
-{% block content %}
-
+{% block careers_content %}
 <section class="mzp-c-hero mzp-t-dark page-hero">
   <div class="mzp-l-content">
     <div class="mzp-c-hero-body">
@@ -381,5 +380,4 @@
     </li>
   </ul>
 </section>
-
 {% endblock %}
