@@ -1051,12 +1051,6 @@ CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE = config(
     default="60",
     parser=float,
 )
-CONTENTFUL_LOCALE_ACTIVATION_CACHE_TIMEOUT = config(
-    "CONTENTFUL_LOCALE_ACTIVATION_CACHE_TIMEOUT",
-    default="900",  # 60s * 15m
-    parser=int,
-)
-
 
 RELEASE_NOTES_PATH = config("RELEASE_NOTES_PATH", default=data_path("release_notes"))
 RELEASE_NOTES_REPO = config("RELEASE_NOTES_REPO", default="https://github.com/mozilla/release-notes.git")
