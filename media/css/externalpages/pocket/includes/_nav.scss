@@ -185,12 +185,8 @@ $image-path: '/media/img/externalpages/pocket';
         display: none;
     }
 
-    &:active {
+    &:active::before {
         display: none;
-
-        &::before {
-            display: none;
-        }
     }
 
     &.selected::after {
