@@ -196,7 +196,7 @@ def vpn_product_referral_link(ctx, referral_id="", page_anchor="", link_text=Non
     """
 
     href = reverse("products.vpn.landing")
-    css_class = "mzp-c-button mzp-t-product js-fxa-product-referral-link"
+    css_class = "mzp-c-button js-fxa-product-referral-link"
     attrs = f'data-referral-id="{referral_id}" '
 
     if optional_attributes:
