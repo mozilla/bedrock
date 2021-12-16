@@ -1396,6 +1396,20 @@ button.mzp-c-cta-link {
 
     .join-firefox-button {
         margin-bottom: $spacing-lg;
+
+        // Overriding visited link styling from Protocol
+        // https://github.com/mozilla/bedrock/issues/9866
+        // https://github.com/mozilla/protocol/issues/758
+        &:link,
+        &:visited {
+            color: $color-white;
+
+            &:hover,
+            &:active,
+            &:focus {
+                color: $color-white;
+            }
+        }
     }
 
     .mzp-c-button,
