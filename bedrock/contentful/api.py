@@ -31,7 +31,7 @@ BEDROCK_TO_CONTENTFUL_LOCALE_MAP = {
     "nl": "nl-NL",
     "id": "id-ID",
     "it": "it-IT",
-    "jp": "ja-JP",
+    "ja": "ja-JP",
     "ko": "ko-KR",
     "ms": "ms-MY",
     "pl": "pl-PL",
