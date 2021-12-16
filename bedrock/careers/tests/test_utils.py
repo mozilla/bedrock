@@ -1,3 +1,7 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
 from bedrock.careers.tests import PositionFactory
 from bedrock.careers.utils import generate_position_meta_description
 from bedrock.mozorg.tests import TestCase
