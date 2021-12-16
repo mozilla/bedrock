@@ -33,13 +33,18 @@ def get_active_locales(
     content_type: str,
     classification: str,
     default_locale: str = "en-US",
+    slug: str = None,
 ) -> List:
     """How many locales do we have 'enough' of to consider them an active locale?"""
 
-    all_locales = ContentfulEntry.objects.filter(
+    kwargs = dict(
         content_type=content_type,
         classification=classification,
-    ).values_list("locale", flat=True)
+    )
+    if slug:
+        kwargs["slug"] = slug
+
+    all_locales = ContentfulEntry.objects.filter(**kwargs).values_list("locale", flat=True)
 
     locale_counts = defaultdict(int)
     for locale in all_locales:
