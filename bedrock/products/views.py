@@ -6,6 +6,7 @@ from urllib.parse import quote_plus, unquote_plus
 
 from django.conf import settings
 from django.http import Http404, JsonResponse
+from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.decorators.http import require_POST, require_safe
 
@@ -20,10 +21,13 @@ from bedrock.contentful.constants import (
     CONTENT_TYPE_PAGE_RESOURCE_CENTER,
 )
 from bedrock.contentful.models import ContentfulEntry
+from bedrock.contentful.utils import get_active_locales as get_active_contentful_locales
 from bedrock.newsletter.views import general_error, invalid_email_address
 from bedrock.products.forms import VPNWaitlistForm
 from lib import l10n_utils
 from lib.l10n_utils.fluent import ftl
+
+DEFAULT_LOCALE = "en-US"
 
 
 def vpn_available(request):
@@ -108,6 +112,7 @@ def vpn_invite_waitlist(request):
 
 
 def _build_category_list(entry_list):
+
     # Template is expecting this format:
     # category_list = [
     #   {"name": "Cat1", "url": "/full/path/to/category"}, ...
@@ -140,17 +145,23 @@ def _filter_articles(articles_list, category):
 
 def resource_center_landing_view(request):
 
+    template_name = "products/vpn/resource-center/landing.html"
+
     ARTICLE_GROUP_SIZE = 6
 
-    active_locales = [
-        "en-US",  # Initially, en-US is the only one available in Contentful
-    ]
+    active_locales = get_active_contentful_locales(
+        classification=CONTENT_CLASSIFICATION_VPN,
+        content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+    )
+
     locale = l10n_utils.get_locale(request)
 
-    template_name = "products/vpn/resource-center/landing.html"
-    ctx = {
-        "active_locales": active_locales,
-    }
+    # If you go to the VRC for a language we're working on but
+    # which isn't active yet because it doesn't meet the activation
+    # threshold percentage, we should send you to the default locale
+    if locale not in active_locales:
+        _path = reverse("products.vpn.resource-center.landing")
+        return redirect(f"/{DEFAULT_LOCALE}{_path}")
 
     resource_articles = ContentfulEntry.objects.get_entries_by_type(
         locale=locale,
@@ -174,20 +185,22 @@ def resource_center_landing_view(request):
         _filtered_article_data[ARTICLE_GROUP_SIZE:],
     )
 
-    ctx.update(
-        {
-            "category_list": category_list,
-            "selected_category": escape(selected_category),
-            "first_article_group": first_article_group,
-            "second_article_group": second_article_group,
-        }
-    )
+    ctx = {
+        "active_locales": active_locales,
+        "category_list": category_list,
+        "first_article_group": first_article_group,
+        "second_article_group": second_article_group,
+        "selected_category": escape(selected_category),
+    }
 
     return l10n_utils.render(
         request,
         template_name,
         ctx,
-        ftl_files=["products/vpn/resource-center", "products/vpn/shared"],
+        ftl_files=[
+            "products/vpn/resource-center",
+            "products/vpn/shared",
+        ],
     )
 
 
@@ -196,15 +209,21 @@ def resource_center_article_view(request, slug):
 
     template_name = "products/vpn/resource-center/article.html"
 
-    # Initially, en-US is the only one available in Contentful
     locale = l10n_utils.get_locale(request)
-    active_locales = [
-        "en-US",
-    ]
+    active_locales_for_this_article = get_active_contentful_locales(
+        classification=CONTENT_CLASSIFICATION_VPN,
+        content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+        slug=slug,
+    )
+    if not active_locales_for_this_article:
+        raise Http404()
 
-    ctx = {
-        "active_locales": active_locales,
-    }
+    if locale not in active_locales_for_this_article:
+        _path = reverse(
+            "products.vpn.resource-center.article",
+            args=[slug],
+        )
+        return redirect(f"/{DEFAULT_LOCALE}{_path}")
 
     article_dict = {}
     try:
@@ -215,20 +234,16 @@ def resource_center_article_view(request, slug):
             content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
         )
         article_dict.update(article.data)
-
     except ContentfulEntry.DoesNotExist as ex:
+        # We shouldn't get this far, given active_locales_for_this_article,
+        # so log it loudly before 404ing.
         capture_exception(ex)
-        # If our selected locale is valid but we get a genuine slug miss
-        # we need to 404 rather than fall through, because render()
-        # will trigger a 500 at the templating level if we don't have
-        # the article data in the context
-        if locale in active_locales:
-            raise Http404()
+        raise Http404()
 
-    ctx.update(article_dict)
-
+    ctx = article_dict
     ctx.update(
         {
+            "active_locales": active_locales_for_this_article,
             "related_articles": [x.data for x in article.get_related_entries()],
         }
     )
