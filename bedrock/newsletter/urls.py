@@ -1,7 +1,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from django.conf.urls import url
+from django.urls import path, re_path
 
 from bedrock.mozorg.util import page
 from bedrock.newsletter import views
@@ -15,20 +15,20 @@ urlpatterns = (
     # view.existing allows a user who has a link including their token to
     # subscribe, unsubscribe, change their preferences. Each newsletter
     # includes that link for them.
-    url("^newsletter/existing/(?P<token>[^/]*)/?$", views.existing, name="newsletter.existing.token"),
+    re_path("^newsletter/existing/(?P<token>[^/]*)/?$", views.existing, name="newsletter.existing.token"),
     # After submitting on the `existing` page, users end up on the
     # `updated` page.  There are optional query params; see the view.
-    url("^newsletter/updated/$", views.updated, name="newsletter.updated"),
+    path("newsletter/updated/", views.updated, name="newsletter.updated"),
     # Confirm subscriptions
-    url("^newsletter/confirm/(?P<token>%s)/$" % uuid_regex, views.confirm, name="newsletter.confirm"),
+    re_path("^newsletter/confirm/(?P<token>%s)/$" % uuid_regex, views.confirm, name="newsletter.confirm"),
     # Update country
-    url("^newsletter/country/(?P<token>%s)/$" % uuid_regex, views.set_country, name="newsletter.country"),
+    re_path("^newsletter/country/(?P<token>%s)/$" % uuid_regex, views.set_country, name="newsletter.country"),
     # Request recovery message with link to manage subscriptions
-    url("^newsletter/recovery/$", views.recovery, name="newsletter.recovery"),
+    path("newsletter/recovery/", views.recovery, name="newsletter.recovery"),
     # Receives POSTs from all subscribe forms
-    url("^newsletter/$", views.newsletter_subscribe, name="newsletter.subscribe"),
+    path("newsletter/", views.newsletter_subscribe, name="newsletter.subscribe"),
     # Welcome program out-out confirmation page (bug 1442129)
-    url("^newsletter/opt-out-confirmation/$", views.recovery, name="newsletter.opt-out-confirmation"),
+    path("newsletter/opt-out-confirmation/", views.recovery, name="newsletter.opt-out-confirmation"),
     # Branded signup pages for individual newsletters
     page("newsletter/mozilla", "newsletter/mozilla.html", ftl_files=["mozorg/newsletters"]),
     page("newsletter/firefox", "newsletter/firefox.html", ftl_files=["mozorg/newsletters"]),

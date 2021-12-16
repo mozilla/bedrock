@@ -3,8 +3,8 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from django.conf import settings
-from django.conf.urls import include, url
 from django.http import HttpResponse
+from django.urls import include, path
 
 from bedrock.mozorg.util import page
 
@@ -14,7 +14,7 @@ def mock_view(request):
 
 
 urlpatterns = [
-    url(r"", include("%s.urls" % settings.PROJECT_MODULE)),
+    path("", include("%s.urls" % settings.PROJECT_MODULE)),
     # Used by test_helper
     page("base", "base-protocol.html"),
 ]

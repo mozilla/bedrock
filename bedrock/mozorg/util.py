@@ -5,7 +5,7 @@
 import os
 
 from django.conf import settings
-from django.conf.urls import url
+from django.urls import re_path
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
@@ -83,7 +83,7 @@ def page(name, tmpl, decorators=None, url_name=None, ftl_files=None, **kwargs):
             except TypeError:
                 log.exception("decorators not iterable or does not contain callable items")
 
-    return url(pattern, _view, name=url_name)
+    return re_path(pattern, _view, name=url_name)
 
 
 def get_fb_like_locale(request_locale):

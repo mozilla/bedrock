@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from django.conf.urls import url
+from django.urls import path
 
 from bedrock.legal import views
 from bedrock.legal_docs.views import LegalDocView
@@ -19,64 +19,62 @@ urlpatterns = (
     # The "impressum" page is intended for Germany. Redirect to German (de) if
     # requested in any other locale. (Bug 1248393)
     page("impressum", "legal/impressum.html", active_locales=["de"], ftl_files=["mozorg/about/legal"]),
-    url(
-        r"^terms/mozilla/$", LegalDocView.as_view(template_name="legal/terms/mozilla.html", legal_doc_name="Websites_ToU"), name="legal.terms.mozilla"
-    ),
-    url(
-        r"^terms/mozilla-vpn/$",
+    path("terms/mozilla/", LegalDocView.as_view(template_name="legal/terms/mozilla.html", legal_doc_name="Websites_ToU"), name="legal.terms.mozilla"),
+    path(
+        "terms/mozilla-vpn/",
         LegalDocView.as_view(template_name="legal/terms/mozilla-vpn.html", legal_doc_name="Mozilla_VPN_ToS"),
         name="legal.terms.mozilla-vpn",
     ),
-    url(
-        r"^terms/firefox/$",
+    path(
+        "terms/firefox/",
         LegalDocView.as_view(template_name="legal/terms/firefox.html", legal_doc_name="firefox_about_rights"),
         name="legal.terms.firefox",
     ),
-    url(
-        r"^terms/firefox-lite/$",
+    path(
+        "terms/firefox-lite/",
         LegalDocView.as_view(template_name="legal/terms/firefox-lite.html", legal_doc_name="firefox_lite_contentservices_ToS"),
         name="legal.terms.firefox-lite",
     ),
-    url(
-        r"^terms/firefox-lite/reward/$",
+    path(
+        "terms/firefox-lite/reward/",
         LegalDocView.as_view(template_name="legal/terms/firefox-lite-reward.html", legal_doc_name="firefox_lite_contentservices_reward"),
         name="legal.terms.firefox-lite-reward",
     ),
-    url(
-        r"^terms/firefox-reality/$",
+    path(
+        "terms/firefox-reality/",
         LegalDocView.as_view(template_name="legal/terms/firefox-reality.html", legal_doc_name="firefox_reality_about_rights"),
         name="legal.terms.firefox-reality",
     ),
-    url(
-        r"^terms/firefox-private-network/$",
+    path(
+        "terms/firefox-private-network/",
         LegalDocView.as_view(template_name="legal/terms/firefox-private-network.html", legal_doc_name="Firefox_Private_Network_ToS"),
         name="legal.terms.firefox-private-network",
     ),
-    url(
-        r"^terms/firefox-relay/$",
+    path(
+        "terms/firefox-relay/",
         LegalDocView.as_view(template_name="legal/terms/firefox-relay.html", legal_doc_name="firefox_relay_ToS"),
         name="legal.terms.firefox-relay",
     ),
-    url(
-        r"^terms/thunderbird/$",
+    path(
+        "terms/thunderbird/",
         LegalDocView.as_view(template_name="legal/terms/thunderbird.html", legal_doc_name="thunderbird_about_rights"),
         name="legal.terms.thunderbird",
     ),
-    url(
-        r"^terms/services/$",
+    path(
+        "terms/services/",
         LegalDocView.as_view(template_name="legal/terms/services.html", legal_doc_name="firefox_cloud_services_ToS"),
         name="legal.terms.services",
     ),
     page("terms/vpn", "legal/terms/vpn.html"),
-    url(
-        r"^acceptable-use/$",
+    path(
+        "acceptable-use/",
         LegalDocView.as_view(template_name="legal/terms/acceptable-use.html", legal_doc_name="acceptable_use_policy"),
         name="legal.terms.acceptable-use",
     ),
-    url(
-        r"^report-infringement/$",
+    path(
+        "report-infringement/",
         LegalDocView.as_view(template_name="legal/report-infringement.html", legal_doc_name="report_infringement"),
         name="legal.report-infringement",
     ),
-    url("^defend-mozilla-trademarks/$", views.fraud_report, name="legal.fraud-report"),
+    path("defend-mozilla-trademarks/", views.fraud_report, name="legal.fraud-report"),
 )

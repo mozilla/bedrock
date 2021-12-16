@@ -3,7 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from django.conf import settings
-from django.conf.urls import url
+from django.urls import path
 
 from bedrock.redirects.util import redirect
 
@@ -12,7 +12,7 @@ from .dev_urls import urlpatterns as dev_only_urlpatterns
 from .util import page
 
 urlpatterns = (
-    url(r"^$", views.home_view, name="mozorg.home"),
+    path("", views.home_view, name="mozorg.home"),
     page("about", "mozorg/about/index.html", ftl_files=["mozorg/about"]),
     page("about/manifesto", "mozorg/about/manifesto.html", ftl_files=["mozorg/about/manifesto"]),
     page("about/manifesto/details", "mozorg/about/manifesto-details.html", ftl_files=["mozorg/about/manifesto"]),
@@ -26,14 +26,14 @@ urlpatterns = (
     page("about/policy/patents/license/1.0", "mozorg/about/policy/patents/license-1.0.html"),
     page("about/policy/patents/guide", "mozorg/about/policy/patents/guide.html"),
     page("book", "mozorg/book.html"),
-    url("^credits/$", views.credits_view, name="mozorg.credits"),
+    path("credits/", views.credits_view, name="mozorg.credits"),
     page("credits/faq", "mozorg/credits-faq.html"),
     page("about/history", "mozorg/about/history.html", ftl_files=["mozorg/about/history"]),
     # Bug 981063, catch all for old calendar urls.
     # must be here to avoid overriding the above
     redirect(r"^projects/calendar/", "https://www.thunderbird.net/calendar/", locale_prefix=False),
     page("mission", "mozorg/mission.html", ftl_files=["mozorg/mission"]),
-    url("^about/forums/$", views.forums_view, name="mozorg.about.forums.forums"),
+    path("about/forums/", views.forums_view, name="mozorg.about.forums.forums"),
     page("about/forums/etiquette", "mozorg/about/forums/etiquette.html"),
     page("about/forums/cancellation", "mozorg/about/forums/cancellation.html"),
     page("about/governance", "mozorg/about/governance/governance.html"),
@@ -102,16 +102,16 @@ urlpatterns = (
     page("moss/foundational-technology", "mozorg/moss/foundational-technology.html"),
     page("moss/mission-partners", "mozorg/moss/mission-partners.html"),
     page("moss/secure-open-source", "mozorg/moss/secure-open-source.html"),
-    url(r"^robots\.txt$", views.Robots.as_view(), name="robots.txt"),
+    path("robots.txt", views.Robots.as_view(), name="robots.txt"),
     # namespaces
-    url(r"^2004/em-rdf$", views.namespaces, {"namespace": "em-rdf"}),
-    url(r"^2005/app-update$", views.namespaces, {"namespace": "update"}),
-    url(r"^2006/addons-blocklist$", views.namespaces, {"namespace": "addons-bl"}),
-    url(r"^2006/browser/search/$", views.namespaces, {"namespace": "mozsearch"}),
-    url(r"^keymaster/gatekeeper/there\.is\.only\.xul$", views.namespaces, {"namespace": "xul"}),
-    url(r"^microsummaries/0\.1$", views.namespaces, {"namespace": "microsummaries"}),
-    url(r"^projects/xforms/2005/type$", views.namespaces, {"namespace": "xforms-type"}),
-    url(r"^xbl$", views.namespaces, {"namespace": "xbl"}),
+    path("2004/em-rdf", views.namespaces, {"namespace": "em-rdf"}),
+    path("2005/app-update", views.namespaces, {"namespace": "update"}),
+    path("2006/addons-blocklist", views.namespaces, {"namespace": "addons-bl"}),
+    path("2006/browser/search/", views.namespaces, {"namespace": "mozsearch"}),
+    path("keymaster/gatekeeper/there.is.only.xul", views.namespaces, {"namespace": "xul"}),
+    path("microsummaries/0.1", views.namespaces, {"namespace": "microsummaries"}),
+    path("projects/xforms/2005/type", views.namespaces, {"namespace": "xforms-type"}),
+    path("xbl", views.namespaces, {"namespace": "xbl"}),
     page("locales", "mozorg/locales.html"),
 )
 
