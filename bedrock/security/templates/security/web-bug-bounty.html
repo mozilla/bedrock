@@ -75,6 +75,12 @@
         <td>$500<sup>5</sup></td>
       </tr>
       <tr>
+        <th scope="row">Server Side Request Forgery (SSRF)<sup>8</sup></th>
+        <td>$5000</td>
+        <td>$2000</td>
+        <td>$500<sup>5</sup></td>
+      </tr>
+      <tr>
         <th scope="row">XSS (minor)</th>
         <td>$2000</td>
         <td>$1000</td>
@@ -109,6 +115,7 @@
     <li>For *.mozilla.org, *.mozilla.com, *.mozilla.net, and *.firefox.com.</li>
     <li>Lack of clickjacking protection (XFO, CSP) is insufficient to claim a bounty</li>
     <li>Requires a proof of concept to be eligible</li>
+    <li>SSRF must be proven to reach internal network hosts, pinging Burp Collaborator and performing DNS lookups are not enough to prove SSRF</li>
   </ol>
 
   <p>Any bounty that receives a payout also obtains inclusion on our <a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">Hall of Fame</a>.</p>
@@ -134,6 +141,7 @@
     <li>Source code disclosures, as most of our code is open source</li>
     <li>Vulnerabilities discovered shortly after their public release</li>
     <li>Outdated TLS configurations which remain to support downloads from Windows XP systems</li>
+    <li>SSRF reports on services that are designed to load resources from the internet</li>
   </ul>
 
   <h2 id="how-to-submit-bugs">How To Submit Bugs</h2>
