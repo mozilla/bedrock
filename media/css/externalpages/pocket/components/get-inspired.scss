@@ -5,8 +5,76 @@
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/split';
 
+
 @import '../utils/variables';
 @import '../includes/nav';
 @import '../includes/footer';
 
 $image-path: '/media/img/externalpages/pocket';
+
+.section-heading {
+    @include text-title-sm;
+    font-family: $font-sans-alt;
+    font-weight: 500;
+}
+
+.sub-section-heading {
+    @include text-title-xs;
+    font-family: $font-sans-alt;
+    font-weight: 500;
+}
+
+.section-lede {
+    @include text-body-xl;
+    text-align: left;
+}
+
+.app-store-badges {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+     a {
+        width: 150px;
+        height: 100%;
+
+        &.apple-store {
+            margin-bottom: $spacing-md;
+        }
+
+        img {
+            max-height: 50px;
+            width: 100%;
+        }
+    }
+
+    @media #{$mq-md} {
+        justify-content: flex-start;
+        flex-direction: row;
+
+       .apple-store {
+            margin-bottom: 0 !important;
+            margin-right: $spacing-md;
+        }
+    }
+}
+
+.personal-library {
+    text-align: center;
+    margin: $spacing-xl auto;
+
+    .app-store-badges {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        a {
+            width: 210px;
+
+            img {
+                max-height: 100%;
+            }
+        }
+    }
+}
+
