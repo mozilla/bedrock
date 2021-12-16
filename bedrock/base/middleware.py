@@ -94,8 +94,8 @@ class BasicAuthMiddleware:
     def process_request(self, request):
         required_auth = settings.BASIC_AUTH_CREDS
         if required_auth:
-            if "HTTP_AUTHORIZATION" in request.META:
-                auth = request.META["HTTP_AUTHORIZATION"].split()
+            if "Authorization" in request.headers:
+                auth = request.headers["Authorization"].split()
                 if len(auth) == 2:
                     if auth[0].lower() == "basic":
                         provided_auth = base64.b64decode(auth[1])

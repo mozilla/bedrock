@@ -151,7 +151,7 @@ def get_accept_languages(request):
     languages = []
     pattern = re.compile(r"^([A-Za-z]{2,3})(?:-([A-Za-z]{2})(?:-[A-Za-z0-9]+)?)?$")
 
-    parsed = parse_accept_lang_header(request.META.get("HTTP_ACCEPT_LANGUAGE", ""))
+    parsed = parse_accept_lang_header(request.headers.get("Accept-Language", ""))
 
     for lang, priority in parsed:
         m = pattern.match(lang)

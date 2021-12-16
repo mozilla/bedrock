@@ -100,7 +100,7 @@ class Prefixer:
         user's Accept-Language header to determine which is best. This
         mostly follows the RFCs but read bug 439568 for details.
         """
-        accept_lang = self.request.META.get("HTTP_ACCEPT_LANGUAGE")
+        accept_lang = self.request.headers.get("Accept-Language")
         if accept_lang:
             best = self.get_best_language(accept_lang)
             if best:

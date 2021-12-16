@@ -21,7 +21,7 @@ def get_country_from_param(request):
 
 def get_country_from_header(request):
     """Return an uppercase 2 letter country code retrieved from the request header."""
-    country_code = request.META.get("HTTP_CLOUDFRONT_VIEWER_COUNTRY", request.META.get("HTTP_CF_IPCOUNTRY"))
+    country_code = request.headers.get("Cloudfront-Viewer-Country", request.headers.get("CF-IPCountry"))
     country_code = valid_country_code(country_code)
     if not country_code and settings.DEV:
         country_code = settings.DEV_GEO_COUNTRY_CODE
