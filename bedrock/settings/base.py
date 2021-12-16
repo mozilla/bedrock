@@ -1059,6 +1059,10 @@ CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE = config(
     parser=float,
 )
 
+if DEV is True:
+    # Effectively turn consider all locales with any contentful entries as active if we're in dev mode
+    CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE = 1.0
+
 RELEASE_NOTES_PATH = config("RELEASE_NOTES_PATH", default=data_path("release_notes"))
 RELEASE_NOTES_REPO = config("RELEASE_NOTES_REPO", default="https://github.com/mozilla/release-notes.git")
 RELEASE_NOTES_BRANCH = config("RELEASE_NOTES_BRANCH", default="master")
