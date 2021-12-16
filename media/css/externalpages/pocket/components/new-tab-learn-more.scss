@@ -166,6 +166,7 @@ $image-path: '/media/protocol/img';
 
 .sub-cta {
     @include text-body-sm;
+    color: $color-text-primary;
     cursor: pointer;
     display: block;
     margin-top: $spacing-sm;
