@@ -9,7 +9,7 @@
     {% block shared_meta %}
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-      <meta name="description" content="{% block page_desc%}pocket_desc{% endblock %}"/>
+      <meta name="description" content="{% block page_desc %}When you find something you want to view later, put it in Pocket.{% endblock %}"/>
       <meta name="x-pocket-override-excerpt" content="{% block pocket_override %}{{ self.page_desc()}}{% endblock %}"/>
       <meta itemprop="name" content="{{ self.page_title() }} | Pocket" />
       <meta itemprop="description" content="{{ self.page_desc()}}"/>
