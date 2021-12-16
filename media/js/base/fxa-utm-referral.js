@@ -178,9 +178,13 @@ if (typeof window.Mozilla === 'undefined') {
         for (var i = 0; i < acceptedParams.length; i++) {
             var acceptedParam = acceptedParams[i];
             if (Object.prototype.hasOwnProperty.call(params, acceptedParam)) {
-                var foundParam = decodeURIComponent(params[acceptedParam]);
-                if (allowedChars.test(foundParam)) {
-                    finalParams[acceptedParam] = foundParam;
+                try {
+                    var foundParam = decodeURIComponent(params[acceptedParam]);
+                    if (allowedChars.test(foundParam)) {
+                        finalParams[acceptedParam] = foundParam;
+                    }
+                } catch (e) {
+                    // silently drop malformed parameter values (issue #10897)
                 }
             }
         }
