@@ -1,0 +1,34 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "externalpages/pocket/base.html" %}
+
+{% from "macros-protocol.html" import split with context %}
+
+{% block pocket_css %}
+  {{ css_bundle('pocket-about') }}
+{% endblock  %}
+
+{% block page_title %}Get Inspired{% endblock %}
+
+{% block content %}
+
+{% include 'externalpages/pocket/includes/nav.html' %}
+
+<section>
+{% call split(
+  block_class='mzp-l-split-center-on-sm-md new-tab-section top',
+  media_class='mzp-l-split-h-center',
+  image_url='img/externalpages/pocket/save-inspirations.png',
+  )%}
+  <h2>Save what inspires you</h2>
+  <p>Pocket is your save button for the internet. When a story catches your eye anywhere online, save it to Pocket and it’ll go straight to your list, ready for you to dig into when you’re free.</p>
+  {% endcall %}
+</section>
+
+{% include 'externalpages/pocket/includes/footer.html' %}
+
+{% endblock %}
