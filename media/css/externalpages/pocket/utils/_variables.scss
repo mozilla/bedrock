@@ -1,8 +1,9 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
+$color-black: #000;
 $color-white: #fff;
+$color-white-10: #f2f2f2;
 $color-divider: #d9d9d9;
 $color-action-primary: #008078;
 $color-action-primary-hover: #004d48;
@@ -11,8 +12,10 @@ $color-text-secondary: #666;
 $color-text-grey: #555;
 $color-text-dark-grey: #333;
 $color-button-red: #e7132f;
+$color-button-red-10: #ef4056;
 $color-text-cyan: #5dcfca;
 $color-background-grey: #f0f0f0;
+$color-background-grey-10: #f4f4f4;
 $color-nav-current: #e0f0ef;
 $box-shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.08);
 $mq-md: '(min-width: 720px)';
