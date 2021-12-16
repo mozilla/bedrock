@@ -318,6 +318,23 @@ describe('fxa-utm-referral.js', function () {
                 encodedSource
             );
         });
+
+        it('should drop any malformed parameter values', function () {
+            const encodedData = {
+                utm_source: 'email',
+                utm_campaign: 'fxa',
+                utm_content: 'uns_footer%'
+            };
+
+            const encodedSource = {
+                utm_source: 'email',
+                utm_campaign: 'fxa'
+            };
+
+            expect(Mozilla.UtmUrl.getAttributionData(encodedData)).toEqual(
+                encodedSource
+            );
+        });
     });
 
     describe('appendToDownloadURL', function () {
