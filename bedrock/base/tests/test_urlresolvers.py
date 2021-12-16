@@ -67,7 +67,7 @@ class TestPrefixer(TestCase):
         """
         request = self.factory.get("/")
         self.assertFalse("lang" in request.GET)
-        self.assertFalse(request.META.get("HTTP_ACCEPT_LANGUAGE"))
+        self.assertFalse(request.headers.get("Accept-Language"))
         prefixer = Prefixer(request)
         assert prefixer.get_language() == "en-US"
 

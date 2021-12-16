@@ -76,8 +76,8 @@ def vpn_invite_waitlist(request):
 
         # NOTE this is not a typo; Referrer is misspelled in the HTTP spec
         # https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.36
-        if not kwargs.get("source_url") and request.META.get("HTTP_REFERER"):
-            kwargs["source_url"] = request.META["HTTP_REFERER"]
+        if not kwargs.get("source_url") and request.headers.get("Referer"):
+            kwargs["source_url"] = request.headers["Referer"]
 
         try:
             basket.subscribe(**kwargs)

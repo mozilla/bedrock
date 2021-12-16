@@ -41,10 +41,9 @@ def get_resolver(patterns=None):
 def header_redirector(header_name, regex, match_dest, nomatch_dest, case_sensitive=False):
     flags = 0 if case_sensitive else re.IGNORECASE
     regex_obj = re.compile(regex, flags)
-    header_name = "HTTP_" + header_name.upper().replace("-", "_")
 
     def decider(request, *args, **kwargs):
-        value = request.META.get(header_name, "")
+        value = request.headers.get(header_name, "")
         match = regex_obj.search(value)
         if match:
             return match_dest
@@ -63,7 +62,7 @@ def is_firefox_redirector(fx_dest, nonfx_dext):
     exclude_re = re.compile(r"\b(Camino|Iceweasel|SeaMonkey)\b", flags=re.I)
 
     def decider(request, *args, **kwargs):
-        value = request.META.get("HTTP_USER_AGENT", "")
+        value = request.headers.get("User-Agent", "")
         if include_re.search(value) and not exclude_re.search(value):
             return fx_dest
         else:
@@ -77,7 +76,7 @@ def platform_redirector(desktop_dest, android_dest, ios_dest):
     ios_re = re.compile(r"\b(iPhone|iPad|iPod)\b", flags=re.I)
 
     def decider(request, *args, **kwargs):
-        value = request.META.get("HTTP_USER_AGENT", "")
+        value = request.headers.get("User-Agent", "")
         if android_re.search(value):
             return android_dest
         elif ios_re.search(value):
