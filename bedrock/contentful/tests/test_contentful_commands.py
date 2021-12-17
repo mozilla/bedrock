@@ -71,6 +71,30 @@ def test_handle__no_contentful_configuration_results_in_pass_but_no_exception(
                 mock_print.assert_called_once_with("Contentful credentials not configured")
 
 
+@override_settings(CONTENTFUL_SPACE_ID="space_id", CONTENTFUL_SPACE_KEY="space_key")
+def test_handle__message_logging__forced__and__successful(command_instance):
+    command_instance.refresh = mock.Mock(
+        name="mock_refresh",
+        return_value=(True, 1, 2, 3, 4),
+    )
+    command_instance.handle(quiet=False, force=True)
+    assert command_instance.log.call_count == 2
+    command_instance.log.call_args_list[0][0] == ("Running forced update from Contentful data",)
+    assert command_instance.log.call_args_list[1][0] == ("Done. Added: 1. Updated: 2. Deleted: 3. Errors: 4",)
+
+
+@override_settings(CONTENTFUL_SPACE_ID="space_id", CONTENTFUL_SPACE_KEY="space_key")
+def test_handle__message_logging__not_forced__and__nothing_changed(command_instance):
+    command_instance.refresh = mock.Mock(
+        name="mock_refresh",
+        return_value=(False, 0, 0, 0, 0),
+    )
+    command_instance.handle(quiet=False, force=True)
+    assert command_instance.log.call_count == 2
+    command_instance.log.call_args_list[0][0] == ("Checking for updated Contentful data",)
+    assert command_instance.log.call_args_list[1][0] == ("Nothing to pull from Contentful",)
+
+
 @pytest.mark.parametrize(
     "param,expected",
     (
@@ -610,3 +634,18 @@ def test_update_contentful__detect_and_delete_absent_entries__homepage_involved(
             contentful_id=contentful_id,
             locale=locale,
         ).exists()
+
+
+def test_log():
+    command_instance = UpdateContentfulCommand()
+    command_instance.quiet = False
+    with mock.patch("builtins.print") as mock_print:
+        command_instance.log("This SHALL be printed")
+    mock_print.assert_called_once_with("This SHALL be printed")
+
+    mock_print.reset_mock()
+
+    command_instance.quiet = True
+    with mock.patch("builtins.print") as mock_print:
+        command_instance.log("This shall not be printed")
+    assert not mock_print.called
