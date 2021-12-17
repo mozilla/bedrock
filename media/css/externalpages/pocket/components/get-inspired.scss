@@ -60,7 +60,7 @@ $image-path: '/media/img/externalpages/pocket';
 
 .personal-library {
     text-align: center;
-    margin: $spacing-xl auto;
+    margin: $layout-lg auto;
 
     .app-store-badges {
         display: flex;
@@ -74,5 +74,47 @@ $image-path: '/media/img/externalpages/pocket';
                 max-height: 100%;
             }
         }
+    }
+}
+
+.pocket-premium {
+    margin: $spacing-xl auto;
+    border-top: 1px solid $color-divider;
+    border-bottom: 1px solid $color-divider;
+    padding: $spacing-sm;
+    transition: background-color 0.2s;
+
+    a {
+        text-decoration: none;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: $color-cream;
+    }
+}
+
+.pocket-premium-wrapper {
+    @include text-body-md;
+    display: flex;
+    align-items: center;
+    color: $color-text-primary;
+    font-family: $font-sans;
+    margin: 0 auto;
+    max-width: 930px;
+
+    .premium-diamond {
+        height: 48px;
+        width: 48px;
+        margin-right: $spacing-xl;
+
+        img {
+            height: 100%;
+        }
+    }
+
+    span {
+        font-weight: 600;
     }
 }
