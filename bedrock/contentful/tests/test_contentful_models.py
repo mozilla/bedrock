@@ -420,3 +420,18 @@ def test_contentfulentry__get_related_entries__show_content_type_and_classificat
 
     entry = ContentfulEntry.objects.get(contentful_id=source_id)
     assert [x.contentful_id for x in entry.get_related_entries()] == expected_related_ids
+
+
+def test_contentfulentry__get_related_entries__no_tags(dummy_entries):
+    entry = ContentfulEntry.objects.get(contentful_id="abcdef000005")
+
+    assert entry.tags and len(entry.get_related_entries()) != 0  # initially related items are shown
+
+    entry.tags = {}
+    entry.save()
+    assert not entry.tags and len(entry.get_related_entries()) == 0  # Because not tags, no related items
+
+
+def test_contentfulentry__str__method(dummy_entries):
+    entry = ContentfulEntry.objects.get(contentful_id="abcdef000005")
+    assert f"{entry}" == "ContentfulEntry test_type_1:abcdef000005"
