@@ -3,7 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from django.conf import settings
-from django.conf.urls import include, url
+from django.urls import include, path
 from django.utils.module_loading import import_string
 
 from watchman import views as watchman_views
@@ -18,27 +18,27 @@ handler404 = "bedrock.base.views.page_not_found_view"
 
 urlpatterns = (
     # Main pages
-    url(r"^foundation/", include("bedrock.foundation.urls")),
-    url(r"^about/legal/", include("bedrock.legal.urls")),
-    url(r"^press/", include("bedrock.press.urls")),
-    url(r"^privacy/", include("bedrock.privacy.urls")),
-    url(r"^products/", include("bedrock.products.urls")),
-    url(r"^security/", include("bedrock.security.urls")),
-    url(r"", include("bedrock.firefox.urls")),
-    url(r"", include("bedrock.mozorg.urls")),
-    url(r"", include("bedrock.newsletter.urls")),
-    url(r"", include("bedrock.sitemaps.urls")),
-    url(r"^careers/", include("bedrock.careers.urls")),
-    url(r"^exp/", include("bedrock.exp.urls")),
-    url(r"^external/", include("bedrock.externalpages.urls")),
-    url(r"^healthz/$", watchman_views.ping, name="watchman.ping"),
-    url(r"^readiness/$", watchman_views.status, name="watchman.status"),
-    url(r"^healthz-cron/$", base_views.cron_health_check),
+    path("foundation/", include("bedrock.foundation.urls")),
+    path("about/legal/", include("bedrock.legal.urls")),
+    path("press/", include("bedrock.press.urls")),
+    path("privacy/", include("bedrock.privacy.urls")),
+    path("products/", include("bedrock.products.urls")),
+    path("security/", include("bedrock.security.urls")),
+    path("", include("bedrock.firefox.urls")),
+    path("", include("bedrock.mozorg.urls")),
+    path("", include("bedrock.newsletter.urls")),
+    path("", include("bedrock.sitemaps.urls")),
+    path("careers/", include("bedrock.careers.urls")),
+    path("exp/", include("bedrock.exp.urls")),
+    path("external/", include("bedrock.externalpages.urls")),
+    path("healthz/", watchman_views.ping, name="watchman.ping"),
+    path("readiness/", watchman_views.status, name="watchman.status"),
+    path("healthz-cron/", base_views.cron_health_check),
 )
 
 if settings.DEBUG:
 
     urlpatterns += (
-        url(r"^404/$", import_string(handler404)),
-        url(r"^500/$", import_string(handler500)),
+        path("404/", import_string(handler404)),
+        path("500/", import_string(handler500)),
     )

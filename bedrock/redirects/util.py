@@ -5,13 +5,12 @@
 import re
 from urllib.parse import parse_qs, urlencode
 
-from django.conf.urls import url
 from django.http import (
     HttpResponseGone,
     HttpResponsePermanentRedirect,
     HttpResponseRedirect,
 )
-from django.urls import NoReverseMatch, URLResolver, reverse
+from django.urls import NoReverseMatch, URLResolver, re_path, reverse
 from django.urls.resolvers import RegexPattern
 from django.utils.encoding import force_text
 from django.utils.html import strip_tags
@@ -108,7 +107,7 @@ def no_redirect(pattern, locale_prefix=True, re_flags=None):
     def _view(request, *args, **kwargs):
         return None
 
-    return url(pattern, _view)
+    return re_path(pattern, _view)
 
 
 def redirect(
@@ -253,7 +252,7 @@ def redirect(
     except TypeError:
         log.exception("decorators not iterable or does not contain callable items")
 
-    return url(pattern, _view, name=name)
+    return re_path(pattern, _view, name=name)
 
 
 def gone_view(request, *args, **kwargs):
@@ -262,4 +261,4 @@ def gone_view(request, *args, **kwargs):
 
 def gone(pattern):
     """Return a url matcher suitable for urlpatterns that returns a 410."""
-    return url(pattern, gone_view)
+    return re_path(pattern, gone_view)
