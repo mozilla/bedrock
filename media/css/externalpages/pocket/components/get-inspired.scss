@@ -26,7 +26,6 @@ $image-path: '/media/img/externalpages/pocket';
 .section-lede {
     @include text-body-xl;
     font-family: $font-sans;
-    text-align: left;
 }
 
 .app-store-badges {
