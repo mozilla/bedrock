@@ -132,9 +132,9 @@ urlpatterns = (
     page("firefox/switch", "firefox/switch.html", ftl_files=["firefox/switch"]),
     page("firefox/pocket", "firefox/pocket.html"),
     # Issue 6604, SEO firefox/new pages
-    path("firefox/linux", views.PlatformViewLinux.as_view(), name="firefox.linux"),
-    path("firefox/mac", views.PlatformViewMac.as_view(), name="firefox.mac"),
-    path("firefox/windows", views.PlatformViewWindows.as_view(), name="firefox.windows"),
+    path("firefox/linux/", views.PlatformViewLinux.as_view(), name="firefox.linux"),
+    path("firefox/mac/", views.PlatformViewMac.as_view(), name="firefox.mac"),
+    path("firefox/windows/", views.PlatformViewWindows.as_view(), name="firefox.windows"),
     page(
         "firefox/browsers/compare",
         "firefox/browsers/compare/index.html",
