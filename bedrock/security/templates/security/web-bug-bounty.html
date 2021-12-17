@@ -115,7 +115,7 @@
     <li>For *.mozilla.org, *.mozilla.com, *.mozilla.net, and *.firefox.com.</li>
     <li>Lack of clickjacking protection (XFO, CSP) is insufficient to claim a bounty</li>
     <li>Requires a proof of concept to be eligible</li>
-    <li>SSRF must be proven to reach internal network hosts, pinging Burp Collaborator and performing DNS lookups are not enough to prove SSRF</li>
+    <li>SSRF must be proven to reach <b>internal</b> network hosts. Pinging Burp Collaborator or performing DNS lookups are not enough to prove SSRF, this is because there could be other services in the middle, such as a reverse proxy or a WAF that send those requests.</li>
   </ol>
 
   <p>Any bounty that receives a payout also obtains inclusion on our <a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">Hall of Fame</a>.</p>
