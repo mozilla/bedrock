@@ -104,14 +104,14 @@ urlpatterns = (
     page("moss/secure-open-source", "mozorg/moss/secure-open-source.html"),
     path("robots.txt", views.Robots.as_view(), name="robots.txt"),
     # namespaces
-    path("2004/em-rdf/", views.namespaces, {"namespace": "em-rdf"}),
-    path("2005/app-update/", views.namespaces, {"namespace": "update"}),
-    path("2006/addons-blocklist/", views.namespaces, {"namespace": "addons-bl"}),
+    path("2004/em-rdf", views.namespaces, {"namespace": "em-rdf"}),
+    path("2005/app-update", views.namespaces, {"namespace": "update"}),
+    path("2006/addons-blocklist", views.namespaces, {"namespace": "addons-bl"}),
     path("2006/browser/search/", views.namespaces, {"namespace": "mozsearch"}),
     path("keymaster/gatekeeper/there.is.only.xul", views.namespaces, {"namespace": "xul"}),
-    path("microsummaries/0.1/", views.namespaces, {"namespace": "microsummaries"}),
-    path("projects/xforms/2005/type/", views.namespaces, {"namespace": "xforms-type"}),
-    path("xbl/", views.namespaces, {"namespace": "xbl"}),
+    path("microsummaries/0.1", views.namespaces, {"namespace": "microsummaries"}),
+    path("projects/xforms/2005/type", views.namespaces, {"namespace": "xforms-type"}),
+    path("xbl", views.namespaces, {"namespace": "xbl"}),
     page("locales", "mozorg/locales.html"),
 )
 
