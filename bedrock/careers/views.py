@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.http.response import Http404
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView, TemplateView
 
@@ -9,7 +10,7 @@ from bedrock.careers.forms import PositionFilterForm
 from bedrock.careers.models import Position
 from bedrock.careers.utils import generate_position_meta_description
 from bedrock.wordpress.models import BlogPost
-from lib.l10n_utils import LangFilesMixin
+from lib.l10n_utils import LangFilesMixin, render
 
 
 class HomeView(LangFilesMixin, TemplateView):
@@ -69,3 +70,14 @@ class PositionDetailView(LangFilesMixin, DetailView):
         context["related_positions"] = related_positions
 
         return context
+
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            return super().dispatch(request, *args, **kwargs)
+        except Http404:
+            return render(
+                self.request,
+                "careers/404.html",
+                ftl_files=["404", "careers/404"],
+                status=404,
+            )
