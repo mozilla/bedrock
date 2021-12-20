@@ -2,7 +2,10 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.conf import settings
 from django.urls import path, re_path
+
+from bedrock.mozorg.util import page
 
 from . import views
 from .feeds import LatestPositionsFeed
@@ -15,3 +18,13 @@ urlpatterns = [
     path("internships/", views.InternshipsView.as_view(), name="careers.internships"),
     path("benefits/", views.BenefitsView.as_view(), name="careers.benefits"),
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += [
+        page(
+            "404",
+            "careers/404.html",
+            ftl_files=["404", "careers/404"],
+        ),
+    ]

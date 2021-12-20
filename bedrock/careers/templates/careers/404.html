@@ -1,0 +1,41 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+ {% extends "404.html" %}
+
+ {% block page_title %}{{ ftl('job-not-found-page-not-found-page-page-not-found') }}{% endblock %}
+
+ {% block content %}
+  <main role="main" class="mzp-l-content message-section">
+    <h1 class="error-title">{{ ftl('job-not-found-page-sorry-we-cant-find-that-job') }}</h1>
+    <p>
+      {{ftl('job-not-found-page-not-open-position') }}
+      <a href="{{ url('careers.listings') }}">
+        {{ftl('job-not-found-page-check-out-current-opportunities') }}
+      </a>
+    </p>
+
+    {# Re-use Fluent strings from the base 404 page for the rest of these #}
+
+    <p class="hide-back" id="go-back">
+      <a class="back-button">{{ ftl('not-found-page-go-back') }}</a>
+    </p>
+    <ul class="content-list">
+      <li>
+        <img class="list-icon" alt="" src="{{ static('protocol/img/icons/mozilla.svg') }}" width="30" height="30">
+        {{ ftl('not-found-page-learn-about-mozilla-the-non', about=url('mozorg.about.index')) }}
+      </li>
+      <li>
+        <img class="list-icon" alt="" src="{{ static('protocol/img/logos/firefox/logo-flat.svg') }}" width="30" height="30">
+        {{ ftl('not-found-page-explore-the-entire-family-for', explore=url('firefox')) }}
+      </li>
+      <li>
+        <img class="list-icon" alt="" src="{{ static('protocol/img/icons/desktop.svg') }}" width="30" height="30">
+        {{ ftl('not-found-page-download-the-firefox-browser', download=url('firefox.new')) }}
+      </li>
+    </ul>
+  </main>
+{% endblock %}
