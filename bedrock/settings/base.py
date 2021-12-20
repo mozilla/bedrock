@@ -932,8 +932,6 @@ MOZILLA_INSTAGRAM_ACCOUNTS = {
 # ***This URL *MUST* end in a traling slash!***
 FXA_ENDPOINT = config("FXA_ENDPOINT", default="https://accounts.stage.mozaws.net/" if DEV else "https://accounts.firefox.com/")
 
-FXA_ENDPOINT_MOZILLAONLINE = config("FXA_ENDPOINT_MOZILLAONLINE", default="https://accounts.firefox.com.cn/")
-
 # Google Play and Apple App Store settings
 from .appstores import GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE  # noqa
 from .appstores import GOOGLE_PLAY_FIREFOX_LINK_UTMS  # noqa
@@ -1215,7 +1213,6 @@ CSP_CONNECT_SRC = CSP_DEFAULT_SRC + [
     "cdn.cookielaw.org",
     "privacyportal.onetrust.com",
     FXA_ENDPOINT,
-    FXA_ENDPOINT_MOZILLAONLINE,
 ]
 CSP_REPORT_ONLY = config("CSP_REPORT_ONLY", default="false", parser=bool)
 CSP_REPORT_URI = config("CSP_REPORT_URI", default="") or None

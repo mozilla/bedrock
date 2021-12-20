@@ -4,11 +4,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-(function () {
-    'use strict';
+import FxaForm from './fxa-form.es6.js';
 
-    var urlParams = new window._SearchParams();
-
-    // Track external URL parameter referrals for Firefox Accounts related CTAs.
-    Mozilla.UtmUrl.init(urlParams.params);
-})();
+FxaForm.init();

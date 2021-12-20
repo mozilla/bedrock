@@ -156,6 +156,7 @@
 {% endblock %}
 
 {% block js %}
+  {{ js_bundle('fxa_form') }}
   {{ js_bundle('firefox-browsers-products') }}
 
   {% if show_firefox_app_store_banner %}

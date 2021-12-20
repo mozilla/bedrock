@@ -908,9 +908,8 @@ def relay_fxa_button(
 @jinja2.contextfunction
 def fxa_link_fragment(ctx, entrypoint, action="signup", optional_parameters=None):
     """
-    Returns `href` and `data-mozillaonline-link` attributes as a string fragment.
-    This is useful for inline links that appear inside a string of localized copy,
-    such as a paragraph.
+    Returns `href` attribute as a string fragment. This is useful for inline links
+    that appear inside a string of localized copy, such as a paragraph.
 
     Examples
     ========
@@ -927,9 +926,8 @@ def fxa_link_fragment(ctx, entrypoint, action="signup", optional_parameters=None
         action = "?action=email"
 
     fxa_url = _fxa_product_url(f"{settings.FXA_ENDPOINT}{action}", entrypoint, optional_parameters)
-    mozillaonline_url = _fxa_product_url(f"{settings.FXA_ENDPOINT_MOZILLAONLINE}{action}", entrypoint, optional_parameters)
 
-    markup = f'href="{fxa_url}" data-mozillaonline-link="{mozillaonline_url}" ' f'data-mozillaonline-action="{settings.FXA_ENDPOINT_MOZILLAONLINE}"'
+    markup = f'href="{fxa_url}"'
 
     return jinja2.Markup(markup)
 
@@ -963,15 +961,8 @@ def fxa_button(
         action = "?action=email"
 
     product_url = f"{settings.FXA_ENDPOINT}{action}"
-    mozillaonline_product_url = f"{settings.FXA_ENDPOINT_MOZILLAONLINE}{action}"
-
-    mozillaonline_attribute = {
-        "data-mozillaonline-link": _fxa_product_url(mozillaonline_product_url, entrypoint, optional_parameters),
-        "data-mozillaonline-action": settings.FXA_ENDPOINT_MOZILLAONLINE,
-    }
 
     optional_attributes = optional_attributes or {}
-    optional_attributes.update(mozillaonline_attribute)
 
     return _fxa_product_button(
         product_url, entrypoint, button_text, class_name, is_button_class, include_metrics, optional_parameters, optional_attributes

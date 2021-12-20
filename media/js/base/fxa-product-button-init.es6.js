@@ -4,8 +4,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-(function () {
-    'use strict';
+import FxaProductButton from './fxa-product-button.es6.js';
 
-    Mozilla.FxaProductButton.init();
-})();
+FxaProductButton.init();

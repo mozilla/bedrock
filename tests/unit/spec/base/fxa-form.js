@@ -11,10 +11,12 @@
 
 /* global sinon */
 
-describe('mozilla-fxa-form.js', function () {
+import FxaForm from '../../../../media/js/base/fxa-form.es6.js';
+
+describe('fxa-form.js', function () {
     describe('init', function () {
         beforeEach(function () {
-            const form = `<form action="https://accounts.firefox.com/" data-mozillaonline-action="https://accounts.firefox.com.cn/" id="fxa-email-form" class="fxa-email-form">
+            const form = `<form action="https://accounts.firefox.com/" id="fxa-email-form" class="fxa-email-form">
                     <input type="hidden" name="action" value="email">
                     <input type="hidden" name="entrypoint" value="mozilla.org-privacy-products" id="fxa-email-form-entrypoint">
                     <input type="hidden" name="entrypoint_experiment" value="exp" id="fxa-email-form-entrypoint-experiment">
@@ -46,6 +48,12 @@ describe('mozilla-fxa-form.js', function () {
                 window.Promise.resolve(mockResponse)
             );
 
+            window.Mozilla.UITour = sinon.stub();
+            window.Mozilla.UITour.showFirefoxAccounts = sinon
+                .stub()
+                .returns(true);
+            window.Mozilla.UITour.ping = sinon.stub().callsArg(0);
+
             document.body.insertAdjacentHTML('beforeend', form);
         });
 
@@ -55,32 +63,18 @@ describe('mozilla-fxa-form.js', function () {
             });
         });
 
-        it('should configure the form for Firefox desktop < 71', function () {
+        it('should configure the form for Firefox desktop < 80', function () {
             spyOn(window.Mozilla.Client, '_isFirefoxDesktop').and.returnValue(
                 true
             );
             spyOn(window.Mozilla.Client, '_getFirefoxVersion').and.returnValue(
-                '70.0'
-            );
-            spyOn(Mozilla.Client, 'getFirefoxDetails').and.callFake(
-                (callback) => {
-                    callback({
-                        accurate: true,
-                        distribution: undefined
-                    });
-                }
+                '79.0'
             );
 
-            return Mozilla.FxaForm.init().then(() => {
+            return FxaForm.init().then(() => {
                 const form = document.getElementById('fxa-email-form');
                 expect(form.getAttribute('action')).toEqual(
                     'https://accounts.firefox.com/'
-                );
-                expect(form.querySelector('[name="context"]').value).toEqual(
-                    'fx_desktop_v3'
-                );
-                expect(form.querySelector('[name="service"]').value).toEqual(
-                    'sync'
                 );
                 expect(form.querySelector('[name="flow_id"]').value).toEqual(
                     '75f9a48a0f66c2f5919a0989605d5fa5dd04625ea5a2ee59b2d5d54637c566d1'
@@ -94,23 +88,15 @@ describe('mozilla-fxa-form.js', function () {
             });
         });
 
-        it('should configure the form for Firefox desktop >= 71', function () {
+        it('should configure the form for Firefox desktop >= 80', function () {
             spyOn(window.Mozilla.Client, '_isFirefoxDesktop').and.returnValue(
                 true
             );
             spyOn(window.Mozilla.Client, '_getFirefoxVersion').and.returnValue(
-                '71.0'
-            );
-            spyOn(Mozilla.Client, 'getFirefoxDetails').and.callFake(
-                (callback) => {
-                    callback({
-                        accurate: true,
-                        distribution: undefined
-                    });
-                }
+                '80.0'
             );
 
-            return Mozilla.FxaForm.init().then(() => {
+            return FxaForm.init().then(() => {
                 const form = document.getElementById('fxa-email-form');
                 expect(form.getAttribute('action')).toEqual(
                     'https://accounts.firefox.com/'
@@ -118,7 +104,6 @@ describe('mozilla-fxa-form.js', function () {
                 expect(form.querySelector('[name="context"]').value).toEqual(
                     'fx_desktop_v3'
                 );
-                expect(form.querySelector('[name="service"]')).toBeNull();
                 expect(form.querySelector('[name="flow_id"]').value).toEqual(
                     '75f9a48a0f66c2f5919a0989605d5fa5dd04625ea5a2ee59b2d5d54637c566d1'
                 );
@@ -136,50 +121,12 @@ describe('mozilla-fxa-form.js', function () {
                 false
             );
 
-            return Mozilla.FxaForm.init().then(() => {
+            return FxaForm.init().then(() => {
                 var form = document.getElementById('fxa-email-form');
                 expect(form.getAttribute('action')).toEqual(
                     'https://accounts.firefox.com/'
                 );
                 expect(form.querySelector('[name="context"]')).toBeNull();
-                expect(form.querySelector('[name="service"]')).toBeNull();
-                expect(form.querySelector('[name="flow_id"]').value).toEqual(
-                    '75f9a48a0f66c2f5919a0989605d5fa5dd04625ea5a2ee59b2d5d54637c566d1'
-                );
-                expect(
-                    form.querySelector('[name="flow_begin_time"]').value
-                ).toEqual('1573052386673');
-                expect(form.querySelector('[name="device_id"]').value).toEqual(
-                    '848377ff6e3e4fc982307a316f4ca3d6'
-                );
-            });
-        });
-
-        it('should configure the form action for china repack', function () {
-            spyOn(window.Mozilla.Client, '_isFirefoxDesktop').and.returnValue(
-                true
-            );
-            spyOn(window.Mozilla.Client, '_getFirefoxVersion').and.returnValue(
-                '71.0'
-            );
-            spyOn(Mozilla.Client, 'getFirefoxDetails').and.callFake(function (
-                callback
-            ) {
-                callback({
-                    accurate: true,
-                    distribution: 'mozillaonline'
-                });
-            });
-
-            return Mozilla.FxaForm.init().then(function () {
-                var form = document.getElementById('fxa-email-form');
-                expect(form.getAttribute('action')).toEqual(
-                    'https://accounts.firefox.com.cn/'
-                );
-                expect(form.querySelector('[name="context"]').value).toEqual(
-                    'fx_desktop_v3'
-                );
-                expect(form.querySelector('[name="service"]')).toBeNull();
                 expect(form.querySelector('[name="flow_id"]').value).toEqual(
                     '75f9a48a0f66c2f5919a0989605d5fa5dd04625ea5a2ee59b2d5d54637c566d1'
                 );
@@ -197,7 +144,7 @@ describe('mozilla-fxa-form.js', function () {
                 false
             );
             /* eslint-disable camelcase */
-            spyOn(window.Mozilla.FxaForm, 'getUTMParams').and.returnValue({
+            spyOn(FxaForm, 'getUTMParams').and.returnValue({
                 utm_source: 'desktop-snippet',
                 utm_content: 'rel-esr',
                 utm_medium: 'referral',
@@ -206,7 +153,7 @@ describe('mozilla-fxa-form.js', function () {
             });
             /* eslint-enable camelcase */
 
-            return Mozilla.FxaForm.init().then(function () {
+            return FxaForm.init().then(function () {
                 var form = document.getElementById('fxa-email-form');
                 expect(form.getAttribute('action')).toEqual(
                     'https://accounts.firefox.com/'
@@ -253,14 +200,9 @@ describe('mozilla-fxa-form.js', function () {
                     distribution: undefined
                 });
             });
-            window.Mozilla.UITour = sinon.stub();
-            window.Mozilla.UITour.showFirefoxAccounts = sinon
-                .stub()
-                .returns(true);
-            window.Mozilla.UITour.ping = sinon.stub().callsArg(0);
             spyOn(window.Mozilla.UITour, 'showFirefoxAccounts');
             /* eslint-disable camelcase */
-            spyOn(window.Mozilla.FxaForm, 'getUTMParams').and.returnValue({
+            spyOn(FxaForm, 'getUTMParams').and.returnValue({
                 utm_source: 'desktop-snippet',
                 utm_content: 'rel-esr',
                 utm_medium: 'referral',
@@ -268,7 +210,7 @@ describe('mozilla-fxa-form.js', function () {
                 utm_campaign: 'F100_4242_otherstuff_in_here'
             });
             /* eslint-enable camelcase */
-            return Mozilla.FxaForm.init().then(function () {
+            return FxaForm.init().then(function () {
                 var form = document.getElementById('fxa-email-form');
                 form.querySelector('#fxa-email-field').value = 'a@a.com';
                 expect(form.getAttribute('action')).toEqual(
