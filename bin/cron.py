@@ -44,13 +44,15 @@ DEAD_MANS_SNITCH_URL = config("DEAD_MANS_SNITCH_URL", default="")
 MANAGE = str(ROOT_PATH / "manage.py")
 HEALTH_FILE_BASE = f"{DATA_PATH}/last-run"
 
+TIMEOUT = 60 * 9
+
 
 def set_updated_time(name):
-    check_call("touch {}-{}".format(HEALTH_FILE_BASE, name), shell=True)
+    check_call("touch {}-{}".format(HEALTH_FILE_BASE, name), shell=True, timeout=TIMEOUT)
 
 
 def call_command(command):
-    check_call("python {0} {1}".format(MANAGE, command), shell=True)
+    check_call("python {0} {1}".format(MANAGE, command), shell=True, timeout=TIMEOUT)
 
 
 class scheduled_job:
@@ -107,9 +109,9 @@ def schedule_database_jobs():
         if time_since > 21600:  # 6 hours
             command += " --all"
 
-        check_call(command, shell=True)
+        check_call(command, shell=True, timeout=TIMEOUT)
         if not LOCAL_DB_UPDATE:
-            check_call("python bin/run-db-upload.py", shell=True)
+            check_call("python bin/run-db-upload.py", shell=True, timeout=TIMEOUT)
 
         if command.endswith("--all"):
             # must set this after command run so that it won't update
@@ -132,7 +134,7 @@ def schedule_file_jobs():
             if DB_DOWNLOAD_IGNORE_GIT:
                 command += " --ignore-git"
 
-            check_call(command, shell=True)
+            check_call(command, shell=True, timeout=TIMEOUT)
 
 
 def main(args):
