@@ -29,6 +29,8 @@ from bedrock.contentful.management.commands.update_contentful import (
 )
 from bedrock.contentful.models import ContentfulEntry
 
+UPDATE_CONTENTFUL_COMMAND = "bedrock.contentful.management.commands.update_contentful"
+
 
 @pytest.fixture
 def command_instance():
@@ -152,7 +154,7 @@ def test_handle__message_logging__not_forced__and__nothing_changed(command_insta
         ),
     ),
 )
-@mock.patch("bedrock.contentful.management.commands.update_contentful.capture_exception")
+@mock.patch(f"{UPDATE_CONTENTFUL_COMMAND}.capture_exception")
 def test_update_contentful__get_message_action(
     mock_capture_exception,
     param,
@@ -208,7 +210,7 @@ def _establish_mock_queue(batched_messages: List[List]) -> Tuple[mock.Mock, mock
     CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID="dummy",
     APP_NAME="bedrock-dev",
 )
-@mock.patch("bedrock.contentful.management.commands.update_contentful.boto3")
+@mock.patch(f"{UPDATE_CONTENTFUL_COMMAND}.boto3")
 @pytest.mark.parametrize(
     "message_actions_sequence",
     (
@@ -258,7 +260,7 @@ def test_update_contentful__queue_has_viable_messages__viable_message_found__dev
     CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID="dummy",
     APP_NAME="bedrock-prod",
 )
-@mock.patch("bedrock.contentful.management.commands.update_contentful.boto3")
+@mock.patch(f"{UPDATE_CONTENTFUL_COMMAND}.boto3")
 @pytest.mark.parametrize(
     "message_actions_sequence",
     (
@@ -304,7 +306,7 @@ def test_update_contentful__queue_has_viable_messages__viable_message_found__pro
     CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID="dummy",
     APP_NAME="bedrock-dev",
 )
-@mock.patch("bedrock.contentful.management.commands.update_contentful.boto3")
+@mock.patch(f"{UPDATE_CONTENTFUL_COMMAND}.boto3")
 @pytest.mark.parametrize(
     "message_actions_sequence",
     (
@@ -338,7 +340,7 @@ def test_update_contentful__queue_has_viable_messages__no_viable_message_found__
     CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID="dummy",
     APP_NAME="bedrock-prod",
 )
-@mock.patch("bedrock.contentful.management.commands.update_contentful.boto3")
+@mock.patch(f"{UPDATE_CONTENTFUL_COMMAND}.boto3")
 @pytest.mark.parametrize(
     "message_actions_sequence",
     (
@@ -390,7 +392,7 @@ def test_queue_has_viable_messages__no_sqs_configured(
     CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID="dummy",
     APP_NAME="bedrock-dev",
 )
-@mock.patch("bedrock.contentful.management.commands.update_contentful.boto3")
+@mock.patch(f"{UPDATE_CONTENTFUL_COMMAND}.boto3")
 @pytest.mark.parametrize(
     "message_actions_sequence",
     (
@@ -427,7 +429,7 @@ def test_update_contentful__iteration_through_message_batch_thresholds(
     CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID="dummy",
     APP_NAME="bedrock-dev",
 )
-@mock.patch("bedrock.contentful.management.commands.update_contentful.boto3")
+@mock.patch(f"{UPDATE_CONTENTFUL_COMMAND}.boto3")
 def test_update_contentful__queue_has_viable_messages__no_messages(
     mock_boto_3,
     command_instance,
@@ -479,6 +481,134 @@ def test_update_contentful__refresh(
 
     retval = command_instance.refresh()
     assert retval == expected
+
+
+def _build_mock_entries(mock_entry_data: List[dict]) -> List[mock.Mock]:
+
+    output = []
+    for datum_dict in mock_entry_data:
+        mock_entry = mock.Mock()
+        for attr, val in datum_dict.items():
+            setattr(mock_entry, attr, val)
+
+        output.append(mock_entry)
+    return output
+
+
+@override_settings(CONTENTFUL_CONTENT_TYPES=["type_one", "type_two"])
+@mock.patch(f"{UPDATE_CONTENTFUL_COMMAND}.ContentfulPage.client.entries")
+def test_update_contentful__get_content_to_sync(
+    mock_entries_method,
+    command_instance,
+):
+    mock_en_us_locale = mock.Mock()
+    mock_en_us_locale.code = "en-US"
+    mock_de_locale = mock.Mock()
+    mock_de_locale.code = "de"
+
+    available_locales = [
+        mock_en_us_locale,
+        mock_de_locale,
+    ]
+
+    _first_batch = _build_mock_entries(
+        [
+            {"sys": {"id": "one"}},
+            {"sys": {"id": "two"}},
+            {"sys": {"id": "three"}},
+            {"sys": {"id": "four"}},
+        ],
+    )
+
+    _second_batch = _build_mock_entries(
+        [
+            {"sys": {"id": "1"}},
+            {"sys": {"id": "2"}},
+            {"sys": {"id": "3"}},
+            {"sys": {"id": "4"}},
+        ],
+    )
+
+    _third_batch = _build_mock_entries(
+        # These will not be used/requested
+        [
+            {"sys": {"id": "X"}},
+            {"sys": {"id": "Y"}},
+            {"sys": {"id": "Z"}},
+        ],
+    )
+
+    mock_retval_1 = mock.Mock()
+    mock_retval_1.items = _first_batch
+    mock_retval_2 = mock.Mock()
+    mock_retval_2.items = _second_batch
+    mock_retval_3 = mock.Mock()
+    mock_retval_3.items = _first_batch
+    mock_retval_4 = mock.Mock()
+    mock_retval_4.items = _second_batch
+    mock_retval_5 = mock.Mock()
+    mock_retval_5.items = _third_batch
+
+    mock_entries_method.side_effect = [
+        mock_retval_1,
+        mock_retval_2,
+        mock_retval_3,
+        mock_retval_4,
+        mock_retval_5,  # will not be called for
+    ]
+
+    output = command_instance._get_content_to_sync(available_locales)
+
+    assert output == [
+        ("type_one", "one", "en-US"),
+        ("type_one", "two", "en-US"),
+        ("type_one", "three", "en-US"),
+        ("type_one", "four", "en-US"),
+        ("type_two", "1", "en-US"),
+        ("type_two", "2", "en-US"),
+        ("type_two", "3", "en-US"),
+        ("type_two", "4", "en-US"),
+        ("type_one", "one", "de"),
+        ("type_one", "two", "de"),
+        ("type_one", "three", "de"),
+        ("type_one", "four", "de"),
+        ("type_two", "1", "de"),
+        ("type_two", "2", "de"),
+        ("type_two", "3", "de"),
+        ("type_two", "4", "de"),
+        # and deliberately nothing from the third batch
+    ]
+
+    assert mock_entries_method.call_count == 4
+
+    assert mock_entries_method.call_args_list[0][0] == (
+        {
+            "content_type": "type_one",
+            "include": 0,
+            "locale": "en-US",
+        },
+    )
+    assert mock_entries_method.call_args_list[1][0] == (
+        {
+            "content_type": "type_two",
+            "include": 0,
+            "locale": "en-US",
+        },
+    )
+    assert mock_entries_method.call_args_list[2][0] == (
+        {
+            "content_type": "type_one",
+            "include": 0,
+            "locale": "de",
+        },
+    )
+    assert mock_entries_method.call_args_list[3][0] == (
+        {
+            "content_type": "type_two",
+            "include": 0,
+            "locale": "de",
+        },
+    )
 
 
 @pytest.mark.django_db

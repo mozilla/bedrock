@@ -289,25 +289,17 @@ class Command(BaseCommand):
 
         return True
 
-    def _refresh_from_contentful(self) -> Tuple[int, int, int]:
-        self.log("Pulling from Contentful")
-        updated_count = 0
-        added_count = 0
-        deleted_count = 0
-        error_count = 0
+    def _get_content_to_sync(
+        self,
+        available_locales,
+    ) -> list((str, str),):
+        """Fetches which content types and ids to query, individually, from the Contentful API"""
         content_to_sync = []
-        content_missing_localised_version = set()
 
-        EMPTY_ENTRY_ATTRIBUTE_STRING = "'Entry' object has no attribute 'content'"
-
-        available_locales = ContentfulPage.client.locales()
-
-        # 1. Build a lookup of pages to sync by type, ID and locale
-
-        # TODO: Change to syncing only `page` content types when we're in an all-Compose setup
         for locale in available_locales:
             _locale_code = locale.code
 
+            # TODO: Change to syncing only `page` content types when we're in an all-Compose setup
             # TODO: treat the connectHomepage differently because its locale is an overloaded name field
             for ctype in settings.CONTENTFUL_CONTENT_TYPES:
                 for entry in ContentfulPage.client.entries(
@@ -321,6 +313,23 @@ class Command(BaseCommand):
                         self.log(f"Page {ctype}:{entry.sys['id']} deemed not syncable for {_locale_code}")
                     else:
                         content_to_sync.append((ctype, entry.sys["id"], _locale_code))
+
+        return content_to_sync
+
+    def _refresh_from_contentful(self) -> Tuple[int, int, int]:
+        self.log("Pulling from Contentful")
+        updated_count = 0
+        added_count = 0
+        deleted_count = 0
+        error_count = 0
+        content_missing_localised_version = set()
+
+        EMPTY_ENTRY_ATTRIBUTE_STRING = "'Entry' object has no attribute 'content'"
+
+        available_locales = ContentfulPage.client.locales()
+
+        # 1. Build a lookup of pages to sync by type, ID and locale
+        content_to_sync = self._get_content_to_sync(available_locales)
 
         # 2. Pull down each page and store
         # TODO: we may (TBC) be able to do a wholesale refactor and get all the locale variations
