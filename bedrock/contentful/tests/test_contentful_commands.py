@@ -29,8 +29,6 @@ from bedrock.contentful.management.commands.update_contentful import (
 )
 from bedrock.contentful.models import ContentfulEntry
 
-UPDATE_CONTENTFUL_COMMAND = "bedrock.contentful.management.commands.update_contentful"
-
 
 @pytest.fixture
 def command_instance():
@@ -154,7 +152,7 @@ def test_handle__message_logging__not_forced__and__nothing_changed(command_insta
         ),
     ),
 )
-@mock.patch(f"{UPDATE_CONTENTFUL_COMMAND}.capture_exception")
+@mock.patch("bedrock.contentful.management.commands.update_contentful.capture_exception")
 def test_update_contentful__get_message_action(
     mock_capture_exception,
     param,
@@ -210,7 +208,7 @@ def _establish_mock_queue(batched_messages: List[List]) -> Tuple[mock.Mock, mock
     CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID="dummy",
     APP_NAME="bedrock-dev",
 )
-@mock.patch(f"{UPDATE_CONTENTFUL_COMMAND}.boto3")
+@mock.patch("bedrock.contentful.management.commands.update_contentful.boto3")
 @pytest.mark.parametrize(
     "message_actions_sequence",
     (
@@ -260,7 +258,7 @@ def test_update_contentful__queue_has_viable_messages__viable_message_found__dev
     CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID="dummy",
     APP_NAME="bedrock-prod",
 )
-@mock.patch(f"{UPDATE_CONTENTFUL_COMMAND}.boto3")
+@mock.patch("bedrock.contentful.management.commands.update_contentful.boto3")
 @pytest.mark.parametrize(
     "message_actions_sequence",
     (
@@ -306,7 +304,7 @@ def test_update_contentful__queue_has_viable_messages__viable_message_found__pro
     CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID="dummy",
     APP_NAME="bedrock-dev",
 )
-@mock.patch(f"{UPDATE_CONTENTFUL_COMMAND}.boto3")
+@mock.patch("bedrock.contentful.management.commands.update_contentful.boto3")
 @pytest.mark.parametrize(
     "message_actions_sequence",
     (
@@ -340,7 +338,7 @@ def test_update_contentful__queue_has_viable_messages__no_viable_message_found__
     CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID="dummy",
     APP_NAME="bedrock-prod",
 )
-@mock.patch(f"{UPDATE_CONTENTFUL_COMMAND}.boto3")
+@mock.patch("bedrock.contentful.management.commands.update_contentful.boto3")
 @pytest.mark.parametrize(
     "message_actions_sequence",
     (
@@ -392,7 +390,7 @@ def test_queue_has_viable_messages__no_sqs_configured(
     CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID="dummy",
     APP_NAME="bedrock-dev",
 )
-@mock.patch(f"{UPDATE_CONTENTFUL_COMMAND}.boto3")
+@mock.patch("bedrock.contentful.management.commands.update_contentful.boto3")
 @pytest.mark.parametrize(
     "message_actions_sequence",
     (
@@ -429,7 +427,7 @@ def test_update_contentful__iteration_through_message_batch_thresholds(
     CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID="dummy",
     APP_NAME="bedrock-dev",
 )
-@mock.patch(f"{UPDATE_CONTENTFUL_COMMAND}.boto3")
+@mock.patch("bedrock.contentful.management.commands.update_contentful.boto3")
 def test_update_contentful__queue_has_viable_messages__no_messages(
     mock_boto_3,
     command_instance,
@@ -496,9 +494,9 @@ def _build_mock_entries(mock_entry_data: List[dict]) -> List[mock.Mock]:
 
 
 @override_settings(CONTENTFUL_CONTENT_TYPES=["type_one", "type_two"])
-@mock.patch(f"{UPDATE_CONTENTFUL_COMMAND}.ContentfulPage.client.entries")
+@mock.patch("bedrock.contentful.management.commands.update_contentful.ContentfulPage")
 def test_update_contentful__get_content_to_sync(
-    mock_entries_method,
+    mock_contentful_page,
     command_instance,
 ):
     mock_en_us_locale = mock.Mock()
@@ -549,7 +547,7 @@ def test_update_contentful__get_content_to_sync(
     mock_retval_5 = mock.Mock()
     mock_retval_5.items = _third_batch
 
-    mock_entries_method.side_effect = [
+    mock_contentful_page.client.entries.side_effect = [
         mock_retval_1,
         mock_retval_2,
         mock_retval_3,
@@ -579,30 +577,30 @@ def test_update_contentful__get_content_to_sync(
         # and deliberately nothing from the third batch
     ]
 
-    assert mock_entries_method.call_count == 4
+    assert mock_contentful_page.client.entries.call_count == 4
 
-    assert mock_entries_method.call_args_list[0][0] == (
+    assert mock_contentful_page.client.entries.call_args_list[0][0] == (
         {
             "content_type": "type_one",
             "include": 0,
             "locale": "en-US",
         },
     )
-    assert mock_entries_method.call_args_list[1][0] == (
+    assert mock_contentful_page.client.entries.call_args_list[1][0] == (
         {
             "content_type": "type_two",
             "include": 0,
             "locale": "en-US",
         },
     )
-    assert mock_entries_method.call_args_list[2][0] == (
+    assert mock_contentful_page.client.entries.call_args_list[2][0] == (
         {
             "content_type": "type_one",
             "include": 0,
             "locale": "de",
         },
     )
-    assert mock_entries_method.call_args_list[3][0] == (
+    assert mock_contentful_page.client.entries.call_args_list[3][0] == (
         {
             "content_type": "type_two",
             "include": 0,

@@ -434,4 +434,4 @@ def test_contentfulentry__get_related_entries__no_tags(dummy_entries):
 
 def test_contentfulentry__str__method(dummy_entries):
     entry = ContentfulEntry.objects.get(contentful_id="abcdef000005")
-    assert f"{entry}" == "ContentfulEntry test_type_1:abcdef000005"
+    assert f"{entry}" == "ContentfulEntry test_type_1:abcdef000005[en-US]"
