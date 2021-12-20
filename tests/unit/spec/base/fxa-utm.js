@@ -11,7 +11,9 @@
 
 /* global sinon */
 
-describe('fxa-utm-referral.js', function () {
+import FxaUtm from '../../../../media/js/base/fxa-utm.es6.js';
+
+describe('fxa-utm.js', function () {
     describe('getHostName', function () {
         it('should return a hostname as expected', function () {
             const url1 =
@@ -21,20 +23,18 @@ describe('fxa-utm-referral.js', function () {
             const url3 =
                 'https://getpocket.com/ff_signup?s=ffwelcome2&form_type=button&entrypoint=mozilla.org-firefox-welcome-2&utm_source=source-one&utm_campaign=campaign-one';
 
-            expect(Mozilla.UtmUrl.getHostName(url1)).toEqual(
+            expect(FxaUtm.getHostName(url1)).toEqual(
                 'https://monitor.firefox.com/'
             );
-            expect(Mozilla.UtmUrl.getHostName(url2)).toEqual(
+            expect(FxaUtm.getHostName(url2)).toEqual(
                 'https://accounts.firefox.com/'
             );
-            expect(Mozilla.UtmUrl.getHostName(url3)).toEqual(
-                'https://getpocket.com/'
-            );
+            expect(FxaUtm.getHostName(url3)).toEqual('https://getpocket.com/');
         });
 
         it('should return null if no match is found', function () {
             const url = 'thedude';
-            expect(Mozilla.UtmUrl.getHostName(url)).toBeNull();
+            expect(FxaUtm.getHostName(url)).toBeNull();
         });
     });
 
@@ -48,7 +48,7 @@ describe('fxa-utm-referral.js', function () {
                 entrypoint_variation: 'test-variation'
             };
 
-            expect(Mozilla.UtmUrl.hasUtmParams(data)).toBeTruthy();
+            expect(FxaUtm.hasUtmParams(data)).toBeTruthy();
         });
 
         it('should return false when utm params are not present', function () {
@@ -57,16 +57,16 @@ describe('fxa-utm-referral.js', function () {
                 entrypoint_variation: 'test-variation'
             };
 
-            expect(Mozilla.UtmUrl.hasUtmParams(data)).toBeFalsy();
+            expect(FxaUtm.hasUtmParams(data)).toBeFalsy();
         });
 
         it('should return false when data is not a valid object', function () {
             const data1 = undefined;
-            expect(Mozilla.UtmUrl.hasUtmParams(data1)).toBeFalsy();
+            expect(FxaUtm.hasUtmParams(data1)).toBeFalsy();
             const data2 = null;
-            expect(Mozilla.UtmUrl.hasUtmParams(data2)).toBeFalsy();
+            expect(FxaUtm.hasUtmParams(data2)).toBeFalsy();
             const data3 = {};
-            expect(Mozilla.UtmUrl.hasUtmParams(data3)).toBeFalsy();
+            expect(FxaUtm.hasUtmParams(data3)).toBeFalsy();
         });
     });
 
@@ -88,9 +88,7 @@ describe('fxa-utm-referral.js', function () {
                 utm_campaign: 'F100_4242_otherstuff_in_here'
             };
 
-            expect(Mozilla.UtmUrl.getAttributionData(validObj)).toEqual(
-                validData
-            );
+            expect(FxaUtm.getAttributionData(validObj)).toEqual(validData);
         });
 
         it('should return a additional entrypoint params if present', function () {
@@ -114,9 +112,7 @@ describe('fxa-utm-referral.js', function () {
                 entrypoint_variation: 'test-variation'
             };
 
-            expect(Mozilla.UtmUrl.getAttributionData(validObj)).toEqual(
-                validData
-            );
+            expect(FxaUtm.getAttributionData(validObj)).toEqual(validData);
         });
 
         it('should return entrypoint params if not utms are present', function () {
@@ -130,9 +126,7 @@ describe('fxa-utm-referral.js', function () {
                 entrypoint_variation: 'test-variation'
             };
 
-            expect(Mozilla.UtmUrl.getAttributionData(validObj)).toEqual(
-                validData
-            );
+            expect(FxaUtm.getAttributionData(validObj)).toEqual(validData);
         });
 
         it('should return FxA flow params if present together with experiment entrypoint params', function () {
@@ -162,9 +156,7 @@ describe('fxa-utm-referral.js', function () {
                 flow_begin_time: '1234567899'
             };
 
-            expect(Mozilla.UtmUrl.getAttributionData(validObj)).toEqual(
-                validData
-            );
+            expect(FxaUtm.getAttributionData(validObj)).toEqual(validData);
         });
 
         it('should not return FxA flow params if experiment entrypoint params are also not present', function () {
@@ -187,9 +179,7 @@ describe('fxa-utm-referral.js', function () {
                 utm_campaign: 'F100_4242_otherstuff_in_here'
             };
 
-            expect(Mozilla.UtmUrl.getAttributionData(validObj)).toEqual(
-                validData
-            );
+            expect(FxaUtm.getAttributionData(validObj)).toEqual(validData);
         });
 
         it('should return entrypoint and utm params if supported source attribute is present', function () {
@@ -203,9 +193,7 @@ describe('fxa-utm-referral.js', function () {
                 utm_campaign: 'whatsnew88'
             };
 
-            expect(Mozilla.UtmUrl.getAttributionData(validObj1)).toEqual(
-                validData1
-            );
+            expect(FxaUtm.getAttributionData(validObj1)).toEqual(validData1);
 
             const validObj2 = {
                 source: 'welcome9'
@@ -217,9 +205,7 @@ describe('fxa-utm-referral.js', function () {
                 utm_campaign: 'welcome9'
             };
 
-            expect(Mozilla.UtmUrl.getAttributionData(validObj2)).toEqual(
-                validData2
-            );
+            expect(FxaUtm.getAttributionData(validObj2)).toEqual(validData2);
         });
 
         it('should return null if source attribute is non-specific', function () {
@@ -227,7 +213,7 @@ describe('fxa-utm-referral.js', function () {
                 source: 'the-dude'
             };
 
-            expect(Mozilla.UtmUrl.getAttributionData(validObj)).toBeNull();
+            expect(FxaUtm.getAttributionData(validObj)).toBeNull();
         });
 
         it('should return an object without any danagerous params', function () {
@@ -242,7 +228,7 @@ describe('fxa-utm-referral.js', function () {
                 utm_campaign: 'rel-esr'
             };
 
-            expect(Mozilla.UtmUrl.getAttributionData(dangerousSource)).toEqual(
+            expect(FxaUtm.getAttributionData(dangerousSource)).toEqual(
                 safeSource
             );
         });
@@ -256,7 +242,7 @@ describe('fxa-utm-referral.js', function () {
                 utm_campaign: '%22'
             };
 
-            expect(Mozilla.UtmUrl.getAttributionData(dangerousData)).toBeNull();
+            expect(FxaUtm.getAttributionData(dangerousData)).toBeNull();
         });
 
         it('should not return an object if utm_source is missing', function () {
@@ -267,7 +253,7 @@ describe('fxa-utm-referral.js', function () {
                 utm_campaign: 'F100_4242_otherstuff_in_here'
             };
 
-            expect(Mozilla.UtmUrl.getAttributionData(data)).toBeNull();
+            expect(FxaUtm.getAttributionData(data)).toBeNull();
         });
 
         it('should not return an object if utm_campaign is missing', function () {
@@ -278,7 +264,7 @@ describe('fxa-utm-referral.js', function () {
                 utm_term: 4242
             };
 
-            expect(Mozilla.UtmUrl.getAttributionData(data)).toBeNull();
+            expect(FxaUtm.getAttributionData(data)).toBeNull();
         });
 
         it('should not strip allowed special characters', function () {
@@ -296,7 +282,7 @@ describe('fxa-utm-referral.js', function () {
                 utm_term: '/'
             };
 
-            expect(Mozilla.UtmUrl.getAttributionData(specialData)).toEqual(
+            expect(FxaUtm.getAttributionData(specialData)).toEqual(
                 specialSource
             );
         });
@@ -312,7 +298,7 @@ describe('fxa-utm-referral.js', function () {
                 utm_campaign: '/'
             };
 
-            expect(Mozilla.UtmUrl.getAttributionData(encodedData)).toEqual(
+            expect(FxaUtm.getAttributionData(encodedData)).toEqual(
                 encodedSource
             );
         });
@@ -329,7 +315,7 @@ describe('fxa-utm-referral.js', function () {
                 utm_campaign: 'fxa'
             };
 
-            expect(Mozilla.UtmUrl.getAttributionData(encodedData)).toEqual(
+            expect(FxaUtm.getAttributionData(encodedData)).toEqual(
                 encodedSource
             );
         });
@@ -347,7 +333,7 @@ describe('fxa-utm-referral.js', function () {
 
             const url = 'https://accounts.firefox.com/';
 
-            expect(Mozilla.UtmUrl.appendToDownloadURL(url, data)).toEqual(
+            expect(FxaUtm.appendToDownloadURL(url, data)).toEqual(
                 'https://accounts.firefox.com/?utm_source=desktop-snippet&utm_content=rel-esr&utm_medium=referral&utm_term=4242&utm_campaign=F100_4242_otherstuff_in_here'
             );
         });
@@ -359,7 +345,7 @@ describe('fxa-utm-referral.js', function () {
 
             const url = 'https://accounts.firefox.com/?spice=pumpkin';
 
-            expect(Mozilla.UtmUrl.appendToDownloadURL(url, data)).toEqual(
+            expect(FxaUtm.appendToDownloadURL(url, data)).toEqual(
                 'https://accounts.firefox.com/?spice=pumpkin&utm_source=test-source'
             );
         });
@@ -376,7 +362,7 @@ describe('fxa-utm-referral.js', function () {
             const url =
                 'https://accounts.firefox.com/?utm_medium=medium-one&utm_term=term-one&utm_campaign=campaign-one&utm_source=source-one&utm_content=content-one';
 
-            expect(Mozilla.UtmUrl.appendToDownloadURL(url, data)).toEqual(
+            expect(FxaUtm.appendToDownloadURL(url, data)).toEqual(
                 'https://accounts.firefox.com/?utm_source=source-two&utm_content=content-two&utm_medium=medium-two&utm_term=term-two&utm_campaign=campaign-two'
             );
         });
@@ -393,7 +379,7 @@ describe('fxa-utm-referral.js', function () {
             const url =
                 'https://accounts.firefox.com/?utm_campaign=campaign-one&utm_source=source-one&utm_content=content-one';
 
-            expect(Mozilla.UtmUrl.appendToDownloadURL(url, data)).toEqual(
+            expect(FxaUtm.appendToDownloadURL(url, data)).toEqual(
                 'https://accounts.firefox.com/?utm_source=source-two&utm_content=content-two&utm_medium=medium-two&utm_term=term-two&utm_campaign=campaign-two'
             );
         });
@@ -407,7 +393,7 @@ describe('fxa-utm-referral.js', function () {
             const url =
                 'https://accounts.firefox.com/?utm_campaign=campaign-one&utm_source=source-one&utm_content=content-one';
 
-            expect(Mozilla.UtmUrl.appendToDownloadURL(url, data)).toEqual(
+            expect(FxaUtm.appendToDownloadURL(url, data)).toEqual(
                 'https://accounts.firefox.com/?utm_source=source-two&utm_campaign=campaign-two'
             );
         });
@@ -420,7 +406,7 @@ describe('fxa-utm-referral.js', function () {
             const url =
                 'https://accounts.firefox.com:8000/grande/nofat.html?spice=pumpkin';
 
-            expect(Mozilla.UtmUrl.appendToDownloadURL(url, data)).toEqual(
+            expect(FxaUtm.appendToDownloadURL(url, data)).toEqual(
                 'https://accounts.firefox.com:8000/grande/nofat.html?spice=pumpkin&utm_source=test-source'
             );
         });
@@ -438,7 +424,7 @@ describe('fxa-utm-referral.js', function () {
 
             const url = 'https://accounts.firefox.com/';
 
-            expect(Mozilla.UtmUrl.appendToDownloadURL(url, data)).toEqual(
+            expect(FxaUtm.appendToDownloadURL(url, data)).toEqual(
                 'https://accounts.firefox.com/?utm_source=desktop-snippet&utm_content=rel-esr&utm_medium=referral&utm_term=4242&utm_campaign=F100_4242_otherstuff_in_here&entrypoint_experiment=test-id&entrypoint_variation=test-variation'
             );
         });
@@ -452,7 +438,7 @@ describe('fxa-utm-referral.js', function () {
             const url =
                 'https://accounts.firefox.com/?utm_medium=medium-one&utm_term=term-one&utm_campaign=campaign-one&utm_source=source-one&utm_content=content-one';
 
-            expect(Mozilla.UtmUrl.appendToDownloadURL(url, data)).toEqual(
+            expect(FxaUtm.appendToDownloadURL(url, data)).toEqual(
                 'https://accounts.firefox.com/?utm_medium=medium-one&utm_term=term-one&utm_campaign=campaign-one&utm_source=source-one&utm_content=content-one&entrypoint_experiment=test-id&entrypoint_variation=test-variation'
             );
         });
@@ -473,11 +459,9 @@ describe('fxa-utm-referral.js', function () {
             spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
             spyOn(Mozilla.Cookies, 'enabled').and.returnValue(true);
             spyOn(Mozilla.Cookies, 'setItem');
-            spyOn(Mozilla.UtmUrl, 'hasFxALinkReferralCookie').and.returnValue(
-                false
-            );
+            spyOn(FxaUtm, 'hasFxALinkReferralCookie').and.returnValue(false);
 
-            Mozilla.UtmUrl.setFxALinkReferralCookie('navigation');
+            FxaUtm.setFxALinkReferralCookie('navigation');
 
             expect(Mozilla.Cookies.setItem).toHaveBeenCalledWith(
                 'fxa-product-referral-id',
@@ -491,11 +475,9 @@ describe('fxa-utm-referral.js', function () {
             spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
             spyOn(Mozilla.Cookies, 'enabled').and.returnValue(true);
             spyOn(Mozilla.Cookies, 'setItem');
-            spyOn(Mozilla.UtmUrl, 'hasFxALinkReferralCookie').and.returnValue(
-                true
-            );
+            spyOn(FxaUtm, 'hasFxALinkReferralCookie').and.returnValue(true);
 
-            Mozilla.UtmUrl.setFxALinkReferralCookie('navigation');
+            FxaUtm.setFxALinkReferralCookie('navigation');
 
             expect(Mozilla.Cookies.setItem).not.toHaveBeenCalled();
         });
@@ -516,9 +498,9 @@ describe('fxa-utm-referral.js', function () {
 
             // link to change
             const links = `<div id="test-links">
-                    <a id="test-expected" class="js-fxa-cta-link" href="https://accounts.firefox.com/?service=sync&amp;action=email&amp;context=fx_desktop_v3&amp;entrypoint=mozilla.org-accounts_page&amp;utm_content=accounts-page-top-cta&amp;utm_source=accounts-page&amp;utm_medium=referral&amp;utm_campaign=fxa-benefits-page" data-mozillaonline-link="https://accounts.firefox.com.cn/?service=sync&amp;action=email&amp;context=fx_desktop_v3&amp;entrypoint=mozilla.org-accounts_page&amp;utm_content=accounts-page-top-cta&amp;utm_source=accounts-page&amp;utm_medium=referral&amp;utm_campaign=fxa-benefits-page">Create a Firefox Account</a>
-                    <a id="test-not-accounts" class="js-fxa-cta-link" href="https://www.mozilla.org/?service=sync&amp;action=email&amp;context=fx_desktop_v3&amp;entrypoint=mozilla.org-accounts_page&amp;utm_content=accounts-page-top-cta&amp;utm_source=accounts-page&amp;utm_medium=referral&amp;utm_campaign=fxa-benefits-page" data-mozillaonline-link="https://accounts.firefox.com.cn/?service=sync&amp;action=email&amp;context=fx_desktop_v3&amp;entrypoint=mozilla.org-accounts_page&amp;utm_content=accounts-page-top-cta&amp;utm_source=accounts-page&amp;utm_medium=referral&amp;utm_campaign=fxa-benefits-page">Create a Firefox Account</a>
-                    <a id="test-second-expected" class="js-fxa-cta-link" href="https://monitor.firefox.com/oauth/init?form_type=button&amp;entrypoint=mozilla.org-firefox-accounts&amp;utm_content=accounts-page-top-cta&amp;utm_source=accounts-page&amp;utm_medium=referral&amp;utm_campaign=fxa-benefits-page" data-mozillaonline-link="https://accounts.firefox.com.cn/?service=sync&amp;action=email&amp;context=fx_desktop_v3&amp;entrypoint=mozilla.org-accounts_page&amp;utm_content=accounts-page-top-cta&amp;utm_source=mozilla.org-accounts_page&amp;utm_medium=referral&amp;utm_campaign=fxa-benefits-page">Sign In to Firefox Monitor</a>
+                    <a id="test-expected" class="js-fxa-cta-link" href="https://accounts.firefox.com/?service=sync&amp;action=email&amp;context=fx_desktop_v3&amp;entrypoint=mozilla.org-accounts_page&amp;utm_content=accounts-page-top-cta&amp;utm_source=accounts-page&amp;utm_medium=referral&amp;utm_campaign=fxa-benefits-page">Create a Firefox Account</a>
+                    <a id="test-not-accounts" class="js-fxa-cta-link" href="https://www.mozilla.org/?service=sync&amp;action=email&amp;context=fx_desktop_v3&amp;entrypoint=mozilla.org-accounts_page&amp;utm_content=accounts-page-top-cta&amp;utm_source=accounts-page&amp;utm_medium=referral&amp;utm_campaign=fxa-benefits-page">Create a Firefox Account</a>
+                    <a id="test-second-expected" class="js-fxa-cta-link" href="https://monitor.firefox.com/oauth/init?form_type=button&amp;entrypoint=mozilla.org-firefox-accounts&amp;utm_content=accounts-page-top-cta&amp;utm_source=accounts-page&amp;utm_medium=referral&amp;utm_campaign=fxa-benefits-page">Sign In to Firefox Monitor</a>
                     <a id="test-third-expected" class="js-fxa-cta-link" href="https://getpocket.com/ff_signup?s=ffwelcome2&form_type=button&entrypoint=mozilla.org-firefox-welcome-2&utm_source=mozilla.org-firefox-welcome-2&utm_campaign=welcome-2-pocket&utm_medium=referral">Activate Pocket</a>
                 </div>`;
 
@@ -539,7 +521,7 @@ describe('fxa-utm-referral.js', function () {
                 utm_campaign: 'campaign-two'
             };
 
-            Mozilla.UtmUrl.init(data);
+            FxaUtm.init(data);
 
             const expected = document.getElementById('test-expected');
             const expectedHref = expected.getAttribute('href');
@@ -563,43 +545,16 @@ describe('fxa-utm-referral.js', function () {
             );
         });
 
-        it('should update the data-mozilla-online attribute of links with class js-fxa-cta-link', function () {
-            const data = {
-                utm_source: 'source-two',
-                utm_content: 'content-two',
-                utm_medium: 'medium-two',
-                utm_term: 'term-two',
-                utm_campaign: 'campaign-two'
-            };
-
-            Mozilla.UtmUrl.init(data);
-
-            const expected = document.getElementById('test-expected');
-            const expectedOnline = expected.getAttribute(
-                'data-mozillaonline-link'
-            );
-
-            expect(expectedOnline).toEqual(
-                'https://accounts.firefox.com.cn/?service=sync&action=email&context=fx_desktop_v3&entrypoint=mozilla.org-accounts_page&utm_source=source-two&utm_campaign=campaign-two&utm_content=content-two&utm_term=term-two&utm_medium=medium-two'
-            );
-        });
-
         it('should not make changes if there are no UTM params', function () {
             const data = {};
 
-            Mozilla.UtmUrl.init(data);
+            FxaUtm.init(data);
 
             const expected = document.getElementById('test-expected');
             const expectedHref = expected.getAttribute('href');
-            const expectedOnline = expected.getAttribute(
-                'data-mozillaonline-link'
-            );
 
             expect(expectedHref).toEqual(
                 'https://accounts.firefox.com/?service=sync&action=email&context=fx_desktop_v3&entrypoint=mozilla.org-accounts_page&utm_content=accounts-page-top-cta&utm_source=accounts-page&utm_medium=referral&utm_campaign=fxa-benefits-page'
-            );
-            expect(expectedOnline).toEqual(
-                'https://accounts.firefox.com.cn/?service=sync&action=email&context=fx_desktop_v3&entrypoint=mozilla.org-accounts_page&utm_content=accounts-page-top-cta&utm_source=accounts-page&utm_medium=referral&utm_campaign=fxa-benefits-page'
             );
         });
 
@@ -612,88 +567,58 @@ describe('fxa-utm-referral.js', function () {
                 utm_campaign: 'campaign-two'
             };
 
-            Mozilla.UtmUrl.init(data);
+            FxaUtm.init(data);
 
             const unexpected = document.getElementById('test-not-accounts');
             const unexpectedHref = unexpected.getAttribute('href');
-            const unexpectedOnline = unexpected.getAttribute(
-                'data-mozillaonline-link'
-            );
 
             expect(unexpectedHref).toEqual(
                 'https://www.mozilla.org/?service=sync&action=email&context=fx_desktop_v3&entrypoint=mozilla.org-accounts_page&utm_content=accounts-page-top-cta&utm_source=accounts-page&utm_medium=referral&utm_campaign=fxa-benefits-page'
-            );
-            expect(unexpectedOnline).toEqual(
-                'https://accounts.firefox.com.cn/?service=sync&action=email&context=fx_desktop_v3&entrypoint=mozilla.org-accounts_page&utm_content=accounts-page-top-cta&utm_source=accounts-page&utm_medium=referral&utm_campaign=fxa-benefits-page'
             );
         });
 
         it('should get referral cookie data if there are no UTM params', function () {
             const data = {};
             spyOn(Mozilla.Cookies, 'getItem').and.returnValue('navigation');
-            spyOn(Mozilla.UtmUrl, 'hasFxALinkReferralCookie').and.returnValue(
-                true
-            );
+            spyOn(FxaUtm, 'hasFxALinkReferralCookie').and.returnValue(true);
 
-            Mozilla.UtmUrl.init(data);
+            FxaUtm.init(data);
 
             const expected = document.getElementById('test-expected');
             const expectedHref = expected.getAttribute('href');
-            const expectedOnline = expected.getAttribute(
-                'data-mozillaonline-link'
-            );
 
             expect(expectedHref).toEqual(
                 'https://accounts.firefox.com/?service=sync&action=email&context=fx_desktop_v3&entrypoint=www.mozilla.org&utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=navigation'
-            );
-            expect(expectedOnline).toEqual(
-                'https://accounts.firefox.com.cn/?service=sync&action=email&context=fx_desktop_v3&entrypoint=www.mozilla.org&utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=navigation'
             );
         });
 
         it('should set expected values for in-product /whatsnew page referrals', function () {
             const data = {};
             spyOn(Mozilla.Cookies, 'getItem').and.returnValue('whatsnew92');
-            spyOn(Mozilla.UtmUrl, 'hasFxALinkReferralCookie').and.returnValue(
-                true
-            );
+            spyOn(FxaUtm, 'hasFxALinkReferralCookie').and.returnValue(true);
 
-            Mozilla.UtmUrl.init(data);
+            FxaUtm.init(data);
 
             const expected = document.getElementById('test-expected');
             const expectedHref = expected.getAttribute('href');
-            const expectedOnline = expected.getAttribute(
-                'data-mozillaonline-link'
-            );
 
             expect(expectedHref).toEqual(
                 'https://accounts.firefox.com/?service=sync&action=email&context=fx_desktop_v3&entrypoint=www.mozilla.org-whatsnew&utm_source=www.mozilla.org-whatsnew&utm_medium=referral&utm_campaign=whatsnew92'
-            );
-            expect(expectedOnline).toEqual(
-                'https://accounts.firefox.com.cn/?service=sync&action=email&context=fx_desktop_v3&entrypoint=www.mozilla.org-whatsnew&utm_source=www.mozilla.org-whatsnew&utm_medium=referral&utm_campaign=whatsnew92'
             );
         });
 
         it('should set expected values for in-product /welcome page referrals', function () {
             const data = {};
             spyOn(Mozilla.Cookies, 'getItem').and.returnValue('welcome12');
-            spyOn(Mozilla.UtmUrl, 'hasFxALinkReferralCookie').and.returnValue(
-                true
-            );
+            spyOn(FxaUtm, 'hasFxALinkReferralCookie').and.returnValue(true);
 
-            Mozilla.UtmUrl.init(data);
+            FxaUtm.init(data);
 
             const expected = document.getElementById('test-expected');
             const expectedHref = expected.getAttribute('href');
-            const expectedOnline = expected.getAttribute(
-                'data-mozillaonline-link'
-            );
 
             expect(expectedHref).toEqual(
                 'https://accounts.firefox.com/?service=sync&action=email&context=fx_desktop_v3&entrypoint=www.mozilla.org-welcome&utm_source=www.mozilla.org-welcome&utm_medium=referral&utm_campaign=welcome12'
-            );
-            expect(expectedOnline).toEqual(
-                'https://accounts.firefox.com.cn/?service=sync&action=email&context=fx_desktop_v3&entrypoint=www.mozilla.org-welcome&utm_source=www.mozilla.org-welcome&utm_medium=referral&utm_campaign=welcome12'
             );
         });
 
@@ -703,23 +628,15 @@ describe('fxa-utm-referral.js', function () {
                 entrypoint_variation: 'test-variation'
             };
             spyOn(Mozilla.Cookies, 'getItem').and.returnValue('navigation');
-            spyOn(Mozilla.UtmUrl, 'hasFxALinkReferralCookie').and.returnValue(
-                true
-            );
+            spyOn(FxaUtm, 'hasFxALinkReferralCookie').and.returnValue(true);
 
-            Mozilla.UtmUrl.init(data);
+            FxaUtm.init(data);
 
             const expected = document.getElementById('test-expected');
             const expectedHref = expected.getAttribute('href');
-            const expectedOnline = expected.getAttribute(
-                'data-mozillaonline-link'
-            );
 
             expect(expectedHref).toEqual(
                 'https://accounts.firefox.com/?service=sync&action=email&context=fx_desktop_v3&entrypoint=www.mozilla.org&entrypoint_experiment=test-experiment&entrypoint_variation=test-variation&utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=navigation'
-            );
-            expect(expectedOnline).toEqual(
-                'https://accounts.firefox.com.cn/?service=sync&action=email&context=fx_desktop_v3&entrypoint=www.mozilla.org&entrypoint_experiment=test-experiment&entrypoint_variation=test-variation&utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=navigation'
             );
         });
     });
