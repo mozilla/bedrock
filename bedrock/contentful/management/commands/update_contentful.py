@@ -171,13 +171,15 @@ class Command(BaseCommand):
             ACTION_UNPUBLISH,
             ACTION_DELETE,
         }
-        EXTRA_DEV_GO_ACTIONS = {
+        EXTRA_PREVIEW_API_GO_ACTIONS = {
+            # Sites that are using the preview API key (Dev and Stage) act upon
+            # two more state changes
             ACTION_AUTO_SAVE,
             ACTION_SAVE,
         }
 
-        if settings.DEV:
-            GO_ACTIONS = GO_ACTIONS.union(EXTRA_DEV_GO_ACTIONS)
+        if not settings.PROD:
+            GO_ACTIONS = GO_ACTIONS.union(EXTRA_PREVIEW_API_GO_ACTIONS)
 
         if not settings.CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID:
             self.log(

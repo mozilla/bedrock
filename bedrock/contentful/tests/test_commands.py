@@ -310,7 +310,7 @@ def test_update_contentful__queue_has_viable_messages__no_viable_message_found__
 
 @override_settings(
     CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID="dummy",
-    DEV=False,
+    PROD=True,
 )
 @mock.patch("bedrock.contentful.management.commands.update_contentful.boto3")
 @pytest.mark.parametrize(
@@ -337,7 +337,7 @@ def test_update_contentful__queue_has_viable_messages__no_viable_message_found__
 ):
     # In prod mode we don't want creation or draft editing to trigger a
     # re-poll of the API because it's unnecessary.
-    assert settings.DEV is False
+    assert settings.PROD is True
     messages_for_queue = _build_mock_messages(message_actions_sequence)
     mock_sqs, mock_queue = _establish_mock_queue(messages_for_queue)
 
@@ -362,7 +362,7 @@ def test_queue_has_viable_messages__no_sqs_configured(
 
 @override_settings(
     CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID="dummy",
-    DEV=True,
+    PROD=False,
 )
 @mock.patch("bedrock.contentful.management.commands.update_contentful.boto3")
 @pytest.mark.parametrize(
