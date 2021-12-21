@@ -27,7 +27,16 @@
       <meta property="og:site_name" content="Pocket" />
       <link rel="icon" type="image/png" sizes="196x196" href="{% block page_favicon_large %}{{ static('img/favicons/pocket/favicon-196x196.png') }}{% endblock %}">
       <link rel="shortcut icon" href="{% block page_favicon %}{{ static('img/favicons/pocket/favicon.ico') }}{% endblock %}">
-    {% endblock shared_meta %}
+      {% endblock shared_meta %}
+      <!-- OneTrust Cookies Consent Notice start for getpocket.com -->
+      <script type="text/javascript" src="https://cdn.cookielaw.org/consent/a7ff9c31-9f59-421f-9a8e-49b11a3eb24e/OtAutoBlock.js"></script>
+      <script type="text/javascript" src="https://cdn.cookielaw.org/consent/a7ff9c31-9f59-421f-9a8e-49b11a3eb24e/otSDKStub.js" charset="UTF-8"data-domain-script="a7ff9c31-9f59-421f-9a8e-49b11a3eb24e"></script>
+      <script type="text/javascript">
+        function OptanonWrapper() {}
+      </script>
+      <!-- end OneTrust Cookies Consent Notice -->
+      {# Cookie Helper #}
+      <script src="{{ static('js/base/mozilla-cookie-helper.js') }}"></script>
 
     {% block pocket_css %}{% endblock  %}
 
