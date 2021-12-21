@@ -4,7 +4,7 @@
 
 ### URL: https://www-dev.allizom.org/careers/404/
 
-job-not-found-page-not-found-page-page-not-found = 404: Job Not Found
+job-not-found-page-title = 404: Job Not Found
 job-not-found-page-sorry-we-cant-find-that-job = Sorry, we can’t find that job posting
 job-not-found-page-not-open-position = The link you followed doesn’t seem to be an open position.
 job-not-found-page-check-out-current-opportunities = Check out our current job listings.
