@@ -39,6 +39,12 @@ class PositionTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context["position"].job_id, job_id_2)
 
+    def test_position_view_404_uses_custom_template(self):
+        url = reverse("careers.position", kwargs={"job_id": "aabbccdd", "source": "gh"})
+        response = self.client.get(url, follow=True)
+        self.assertEqual(response.status_code, 404)
+        self.assertTemplateUsed(response, "careers/404.html")
+
 
 class BlogTests(TestCase):
     blog_data = {
