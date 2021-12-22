@@ -39,11 +39,13 @@ if (typeof window.Mozilla === 'undefined') {
                     stateClass = 'state-fxa-android';
                 }
             } else {
-                // Query param `signed-in=true` is used for integration testing and demo review only.
-                if (
-                    details.setup ||
-                    window.location.search.indexOf('signed-in=true') !== -1
-                ) {
+                var search = window.location.search;
+                // Query param `signed-in=true|false` is used for integration testing and demo review only.
+                if (search.indexOf('signed-in=false') !== -1) {
+                    stateClass = 'state-fxa-supported-signed-out';
+                } else if (search.indexOf('signed-in=true') !== -1) {
+                    stateClass = 'state-fxa-supported-signed-in';
+                } else if (details.setup) {
                     stateClass = 'state-fxa-supported-signed-in';
                 } else {
                     stateClass = 'state-fxa-supported-signed-out';

@@ -21,6 +21,7 @@ if (typeof window.Mozilla === 'undefined') {
         'https://getpocket.com/',
         'https://guardian-dev.herokuapp.com/',
         'https://monitor.firefox.com/',
+        'https://relay.firefox.com/',
         'https://stage-vpn.guardian.nonprod.cloudops.mozgcp.net/',
         'https://vpn.mozilla.org/'
     ];
