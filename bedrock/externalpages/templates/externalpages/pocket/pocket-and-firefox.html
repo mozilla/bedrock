@@ -1,0 +1,38 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "externalpages/pocket/base.html" %}
+
+{% from "macros-protocol.html" import split with context %}
+
+{% block pocket_css %}
+  {{ css_bundle('pocket-and-firefox') }}
+{% endblock  %}
+
+{% block page_title %}Pocket for Firefox{% endblock %}
+
+{% block content %}
+
+{% include 'externalpages/pocket/includes/nav.html' %}
+
+<section>
+{% call split(
+  block_class='mzp-l-split-center-on-sm-md',
+  media_class='mzp-l-split-h-center',
+  image_url='img/externalpages/pocket/save-inspirations.png',
+  )%}
+  <span class="tagline">Pocket for Firefox</span>
+  <h1 class="section-heading">Build your personal library of fascinating reads.</h1>
+  <p class="section-lede">Included inside Firefox, the <span class="pocket-logo-inline">Pocket Logo</span>button lets you save articles from across the web and read them in a quiet, private space.</p>
+  <div class="app-store-badges">
+     {{ pocket_fxa_button(entrypoint='pocket', class_name='new-tab-pocket-cta', button_text='<span class="mzp-c-logo mzp-t-logo-sm mzp-t-product-family"></span>Activate Pocket in Firefox', optional_parameters={'s': 'fflearnmore', 'utm_campaign': 'landing-page', 'utm_content': 'page-button'}, optional_attributes={'data-cta-text': 'Activate Pocket', 'data-cta-type': 'activate pocket', 'data-cta-position': 'primary'}) }}
+  </div>
+  {% endcall %}
+</section>
+
+{% include 'externalpages/pocket/includes/footer.html' %}
+
+{% endblock %}

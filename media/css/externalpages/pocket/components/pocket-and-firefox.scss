@@ -1,0 +1,82 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/split';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-family';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-pocket';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-pocket';
+
+@import '../utils/variables';
+@import '../includes/nav';
+@import '../includes/footer';
+
+$image-path: '/media/img/externalpages/pocket';
+
+.pocket-logo-inline {
+    @include image-replaced;
+    background: url('/media/img/externalpages/pocket/new-tab/pocket-logo-inline.svg') no-repeat;
+    display: inline-block;
+    height: 20px;
+    vertical-align: middle;
+    width: 20px;
+}
+
+.section-heading,
+.sub-section-heading {
+    font-family: $font-sans-alt;
+    font-weight: 500;
+    color: $color-text-primary;
+}
+
+.section-heading {
+    @include text-title-sm;
+    margin-top: $spacing-sm;
+}
+
+.sub-section-heading {
+    @include text-title-xs;
+}
+
+.tagline {
+    font-family: $font-sans;
+    @include text-body-sm;
+    text-transform: uppercase;
+}
+
+.section-lede {
+    font-family: $font-sans;
+    @include text-body-xl;
+    color: $color-text-primary;
+}
+
+.new-tab-pocket-cta {
+    @include text-body-xl;
+    background-color: $color-button-red-10;
+    border-radius: $border-radius-sm;
+    color: $color-white;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 1;
+    padding: $spacing-md 36px $spacing-md $spacing-lg;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.15s ease-out;
+
+    .mzp-t-logo-sm {
+        display: inline-block;
+        margin-bottom: 0;
+        margin-right: $spacing-sm;
+        margin-top: $spacing-xs;
+        vertical-align: middle;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: #901424;
+    }
+}
