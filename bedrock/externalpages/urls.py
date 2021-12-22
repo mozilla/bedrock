@@ -17,4 +17,5 @@ urlpatterns = (
     page("pocket/contact-info", "externalpages/pocket/contact-info.html"),
     page("pocket/firefox/new_tab_learn_more", "externalpages/pocket/firefox/new-tab-learn-more.html"),
     page("pocket/get-inspired", "externalpages/pocket/get-inspired.html"),
+    page("pocket/jobs", "externalpages/pocket/jobs.html"),
 )

@@ -1004,6 +1004,13 @@
     },
     {
       "files": [
+        "css/externalpages/pocket/style.scss",
+        "css/externalpages/pocket/components/jobs.scss"
+      ],
+      "name": "pocket-jobs"
+    },
+    {
+      "files": [
         "css/careers/protocol.min.scss",
         "css/careers/protocol-extra.min.scss",
         "css/careers/careers.scss",
