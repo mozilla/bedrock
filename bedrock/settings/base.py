@@ -604,10 +604,9 @@ VARY_NOCACHE_EXEMPT_URL_PREFIXES = (
 
 # Sessions
 #
-# By default, be at least somewhat secure with our session cookies.
-SESSION_COOKIE_HTTPONLY = not DEBUG
-SESSION_COOKIE_SECURE = not DEBUG
-SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+# NB: There are no sessions in Bedrock - it's currently stateless.
+# Django's messages framework is configured to use cookie storage,
+# not session storage - see MESSAGE_STORAGE below
 
 # legacy setting. backward compat.
 DISABLE_SSL = config("DISABLE_SSL", default="true", parser=bool)
