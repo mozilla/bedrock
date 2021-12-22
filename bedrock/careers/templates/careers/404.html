@@ -2,39 +2,43 @@
   This Source Code Form is subject to the terms of the Mozilla Public
   License, v. 2.0. If a copy of the MPL was not distributed with this
   file, You can obtain one at https://mozilla.org/MPL/2.0/.
- #}
+#}
 
- {% extends "404.html" %}
+{#
+  We're extending 404.html to get CSS, JS and other <head> optimisations,
+  but overriding the entire 'content' block
+#}
 
- {% block page_title %}{{ ftl('job-not-found-page-title') }}{% endblock %}
+{% extends "404.html" %}
 
- {% block content %}
+{% block page_title %}404: Job Not Found{% endblock %}
+
+{% block content %}
   <main role="main" class="mzp-l-content message-section">
-    <h1 class="error-title">{{ ftl('job-not-found-page-sorry-we-cant-find-that-job') }}</h1>
+    <h1 class="error-title">Sorry, we can’t find that job posting</h1>
     <p>
-      {{ftl('job-not-found-page-not-open-position') }}
+      The link you followed doesn’t seem to be for an open position.
       <a href="{{ url('careers.listings') }}">
-        {{ftl('job-not-found-page-check-out-current-opportunities') }}
+        Check out our current job listings.
       </a>
     </p>
 
-    {# Re-use Fluent strings from the base 404 page for the rest of these #}
-
     <p class="hide-back" id="go-back">
-      <a class="back-button">{{ ftl('not-found-page-go-back') }}</a>
+      <a class="back-button">Go Back</a>
     </p>
+
     <ul class="content-list">
       <li>
         <img class="list-icon" alt="" src="{{ static('protocol/img/icons/mozilla.svg') }}" width="30" height="30">
-        {{ ftl('not-found-page-learn-about-mozilla-the-non', about=url('mozorg.about.index')) }}
+        <a href="{{ url('mozorg.about.index') }}">Learn</a> about Mozilla, the not-for-profit behind Firefox.
       </li>
       <li>
         <img class="list-icon" alt="" src="{{ static('protocol/img/logos/firefox/logo-flat.svg') }}" width="30" height="30">
-        {{ ftl('not-found-page-explore-the-entire-family-for', explore=url('firefox')) }}
+        <a href="{{ url('firefox') }}">Explore</a> the entire family for Firefox products designed to respect your privacy.
       </li>
       <li>
         <img class="list-icon" alt="" src="{{ static('protocol/img/icons/desktop.svg') }}" width="30" height="30">
-        {{ ftl('not-found-page-download-the-firefox-browser', download=url('firefox.new')) }}
+        <a href="{{ url('firefox.new') }}">Download</a> the Firefox browser for your mobile device or desktop.
       </li>
     </ul>
   </main>

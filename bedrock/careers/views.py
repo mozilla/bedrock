@@ -78,6 +78,5 @@ class PositionDetailView(LangFilesMixin, DetailView):
             return render(
                 self.request,
                 "careers/404.html",
-                ftl_files=["404", "careers/404"],
                 status=404,
             )
