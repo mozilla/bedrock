@@ -1149,7 +1149,7 @@ CSP_IMG_SRC = CSP_DEFAULT_SRC + [
     "cdn-3.convertexperiments.com",
     "logs.convertexperiments.com",
     "images.ctfassets.net",
-    "cdn.cookielaw.org"
+    "cdn.cookielaw.org",
 ]
 CSP_SCRIPT_SRC = CSP_DEFAULT_SRC + [
     # TODO fix things so that we don't need this
@@ -1167,13 +1167,13 @@ CSP_SCRIPT_SRC = CSP_DEFAULT_SRC + [
     "data.track.convertexperiments.com",
     "1003350.track.convertexperiments.com",
     "1003343.track.convertexperiments.com",
-    "cdn.cookielaw.org"
+    "cdn.cookielaw.org",
 ]
 CSP_STYLE_SRC = CSP_DEFAULT_SRC + [
     # TODO fix things so that we don't need this
     "'unsafe-inline'",
     "app.convert.com",
-    "cdn.cookielaw.org"
+    "cdn.cookielaw.org",
 ]
 CSP_CHILD_SRC = CSP_DEFAULT_SRC + [
     "www.googletagmanager.com",
@@ -1184,7 +1184,7 @@ CSP_CHILD_SRC = CSP_DEFAULT_SRC + [
     "accounts.firefox.com",
     "accounts.firefox.com.cn",
     "www.youtube.com",
-    "cdn.cookielaw.org"
+    "cdn.cookielaw.org",
 ]
 CSP_CONNECT_SRC = CSP_DEFAULT_SRC + [
     "www.googletagmanager.com",
