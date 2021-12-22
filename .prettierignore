@@ -14,7 +14,7 @@ venv
 media/js/libs/**/
 media/js/ie/libs/**/
 
-# Ignore careers JS files for now
+# Ignore pre-built careers JS files for now
 media/js/careers/libs/*
 
 # Ignore file types:
