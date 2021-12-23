@@ -37,9 +37,16 @@ def data_path(*args):
     return abspath(str(DATA_PATH.joinpath(*args)))
 
 
-# Is this a dev instance?
+# Is this a development-mode deployment where we might have
+# extra behaviour/helpers/URLs enabled? (eg, local dev or demo)
+# (Don't infer that this specifically means our Dev _deployment_
+# - it doesn't. You can use APP_NAME, below, to get that)
 DEV = config("DEV", parser=bool, default="false")
+
+# Is this particular deployment running in _production-like_ mode?
+# (This will include the Dev and Staging deployments, for instance)
 PROD = config("PROD", parser=bool, default="false")
+
 DEBUG = config("DEBUG", parser=bool, default="false")
 DATABASES = {
     "default": {
