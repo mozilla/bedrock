@@ -67,7 +67,9 @@
     a {
         color: $color-text-secondary;
 
-        &:hover {
+        &:hover,
+        &:focus,
+        &:active {
             color: $color-action-primary;
         }
     }
