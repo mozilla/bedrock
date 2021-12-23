@@ -977,9 +977,9 @@
     {
       "files": [
         "css/externalpages/pocket/style.scss",
-        "css/externalpages/pocket/components/get-inspired.scss"
+        "css/externalpages/pocket/components/pocket-features.scss"
       ],
-      "name": "pocket-get-inspired"
+      "name": "pocket-features"
     },
     {
       "files": [

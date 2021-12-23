@@ -6,7 +6,6 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/split';
-@import '~@mozilla-protocol/core/protocol/css/components/button';
 @import '~@mozilla-protocol/core/protocol/css/base/elements/containers';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-family';
@@ -14,6 +13,10 @@ $image-path: '/media/protocol/img';
 @import '../utils/variables';
 @import '../includes/nav';
 @import '../includes/footer';
+
+.mzp-c-split {
+    padding: 64px 0;
+}
 
 .pocket-logo-inline {
     @include image-replaced;
@@ -99,7 +102,6 @@ $image-path: '/media/protocol/img';
 
 .pocket-premium {
     border-top: 1px solid $color-divider;
-    border-bottom: 1px solid $color-divider;
     padding: $spacing-sm;
     transition: background-color 0.2s;
 
@@ -143,7 +145,11 @@ $image-path: '/media/protocol/img';
     flex-direction: column;
 
     a {
-        align-self: flex-start;
+        align-self: center;
+
+        @media #{$mq-md} {
+            align-self: flex-start;
+        }
     }
 
     .section-signup {
@@ -166,13 +172,12 @@ $image-path: '/media/protocol/img';
     display: inline-block;
     font-family: $font-sans;
     line-height: 1;
-    padding: $spacing-md 36px $spacing-md $spacing-lg;
+    padding: 10px 36px 10px $spacing-lg;
     text-align: center;
     text-decoration: none;
     transition: all 0.15s ease-out;
     margin-bottom: $spacing-sm;
-    display: flex;
-    align-items: center;
+    vertical-align: middle;
 
     .mzp-t-logo-sm {
         display: inline-block;
@@ -191,9 +196,12 @@ $image-path: '/media/protocol/img';
 }
 
 .explore-stories {
-    background: no-repeat url(media/img/externalpages/pocket/articles-grid-right.png), url(media/img/externalpages/pocket/articles-grid-left.png);
-    background-size: 100vh;
-    background-repeat: no-repeat;
+    @media #{$mq-xl} {
+        background: no-repeat url('/media/img/externalpages/pocket/articles-grid-right.png') right, url('/media/img/externalpages/pocket/articles-grid-left.png') left, linear-gradient(180deg, hsla(0, 0%, 90.2%, 0.3), hsla(0, 0%, 90.2%, 0) 17%), linear-gradient(0deg, hsla(0, 0%, 90.2%, 0.3), hsla(0, 0%, 90.2%, 0) 17%);
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin:  $layout-lg;
+    }
 
 
     .explore-stories-wrapper {
@@ -202,5 +210,29 @@ $image-path: '/media/protocol/img';
         p {
             font-size: 19px;
         }
+    }
+}
+
+.discover-cta {
+    @include text-body-md;
+    border: 2px solid $color-text-primary;
+    border-radius: $border-radius-sm;
+    color: $color-text-primary;
+    cursor: pointer;
+    display: inline-block;
+    font-family: $font-sans;
+    line-height: 1;
+    padding: 18px 36px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.15s ease-out;
+    margin-bottom: $spacing-sm;
+    vertical-align: middle;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: $color-white;
+        background-color: $color-text-primary;
     }
 }

@@ -9,7 +9,7 @@
 {% from "macros-protocol.html" import split with context %}
 
 {% block pocket_css %}
-  {{ css_bundle('pocket-get-inspired') }}
+  {{ css_bundle('pocket-features') }}
 {% endblock  %}
 
 {% block page_title %}Pocket for Firefox{% endblock %}
@@ -38,7 +38,7 @@
   <div class="explore-stories-wrapper mzp-l-content mzp-t-content-md">
     <h2 class="sub-section-heading">Get thought-provoking article recommendations</h2>
     <p class="section-lede">In addition to saving stories from all over, you can also dig into the latest articles we're recommending in Pocket. Our editors find seriously interesting stuff — stories that dig deep into a subject, offer a new perspective, or make you think.</p>
-    <a href="https://getpocket.com/explore" class="mzp-c-button mzp-t-secondary" role="button">Discover stories in Pocket</a>
+    <a href="https://getpocket.com/explore" class="discover-cta" role="button">Discover stories in Pocket</a>
   </div>
 </section>
 
@@ -82,7 +82,7 @@
   </h2>
   <div class="library-ctas">
     {{ pocket_fxa_button(entrypoint='pocket', class_name='new-tab-pocket-cta', button_text='<span class="mzp-c-logo mzp-t-logo-sm mzp-t-product-family"></span>Activate Pocket in Firefox', optional_parameters={'s': 'fflearnmore', 'utm_campaign': 'landing-page', 'utm_content': 'page-button'}, optional_attributes={'data-cta-text': 'Activate Pocket', 'data-cta-type': 'activate pocket', 'data-cta-position': 'primary'}) }}
-    <a href="https://getpocket.com/explore" class="mzp-c-button mzp-t-secondary" role="button">Discover stories in Pocket</a>
+    <a href="https://getpocket.com/explore" class="discover-cta" role="button">Discover stories in Pocket</a>
   </div>
   </section>
 
