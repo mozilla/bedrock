@@ -15,8 +15,8 @@ $image-path: '/media/protocol/img';
 @import '../includes/footer';
 @import '../includes/pocket-premium';
 
-.mzp-c-split {
-    padding: 64px 0;
+.pocket-feature-page-split {
+    padding: $layout-lg 0;
 }
 
 .pocket-logo-inline {
