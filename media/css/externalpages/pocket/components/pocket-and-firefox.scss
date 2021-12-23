@@ -6,6 +6,8 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/split';
+@import '~@mozilla-protocol/core/protocol/css/components/button';
+@import '~@mozilla-protocol/core/protocol/css/base/elements/containers';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-family';
 
@@ -13,7 +15,7 @@ $image-path: '/media/protocol/img';
 @import '../includes/nav';
 @import '../includes/footer';
 
-$pocket-image-path: '/media/img/externalpages/pocket';
+$pocket-image-path: '../media/img/externalpages/pocket';
 
 .pocket-logo-inline {
     @include image-replaced;
@@ -96,5 +98,17 @@ $pocket-image-path: '/media/img/externalpages/pocket';
     &:active {
         background-color: #901424;
         color: $color-white;
+    }
+}
+
+.explore-stories {
+    background: url(media/img/externalpages/pocket/articles-grid-right.png) no-repeat calc(var(4rem) * -1) / contain;
+
+    .explore-stories-wrapper {
+        text-align: center;
+
+        p {
+            font-size: 19px;
+        }
     }
 }
