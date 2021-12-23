@@ -197,12 +197,11 @@ $image-path: '/media/protocol/img';
 
 .explore-stories {
     @media #{$mq-xl} {
-        background: no-repeat url('/media/img/externalpages/pocket/articles-grid-right.png') right, url('/media/img/externalpages/pocket/articles-grid-left.png') left, linear-gradient(180deg, hsla(0, 0%, 90.2%, 0.3), hsla(0, 0%, 90.2%, 0) 17%), linear-gradient(0deg, hsla(0, 0%, 90.2%, 0.3), hsla(0, 0%, 90.2%, 0) 17%);
+        background: no-repeat url('/media/img/externalpages/pocket/articles-grid-right.png') right, url('/media/img/externalpages/pocket/articles-grid-left.png') left, linear-gradient(180deg, hsla(0deg, 0%, 90.2%, 0.3), hsla(0deg, 0%, 90.2%, 0) 17%), linear-gradient(0deg, hsla(0deg, 0%, 90.2%, 0.3), hsla(0deg, 0%, 90.2%, 0) 17%);
         background-size: contain;
         background-repeat: no-repeat;
-        margin:  $layout-lg;
+        margin: $layout-lg;
     }
-
 
     .explore-stories-wrapper {
         text-align: center;
