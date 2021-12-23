@@ -180,7 +180,7 @@ def _establish_mock_queue(batched_messages: List[List]) -> Tuple[mock.Mock, mock
 
 @override_settings(
     CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID="dummy",
-    DEV=True,
+    APP_NAME="bedrock-dev",
 )
 @mock.patch("bedrock.contentful.management.commands.update_contentful.boto3")
 @pytest.mark.parametrize(
@@ -276,7 +276,7 @@ def test_update_contentful__queue_has_viable_messages__viable_message_found__pro
 
 @override_settings(
     CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID="dummy",
-    DEV=True,
+    APP_NAME="bedrock-dev",
 )
 @mock.patch("bedrock.contentful.management.commands.update_contentful.boto3")
 @pytest.mark.parametrize(
@@ -298,7 +298,7 @@ def test_update_contentful__queue_has_viable_messages__no_viable_message_found__
     command_instance,
 ):
     # Create is the only message that will not trigger a contenful poll in Dev
-    assert settings.DEV is True
+    assert settings.APP_NAME == "bedrock-dev"
     messages_for_queue = _build_mock_messages(message_actions_sequence)
     mock_sqs, mock_queue = _establish_mock_queue(messages_for_queue)
 
@@ -310,7 +310,7 @@ def test_update_contentful__queue_has_viable_messages__no_viable_message_found__
 
 @override_settings(
     CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID="dummy",
-    PROD=True,
+    APP_NAME="bedrock-prod",
 )
 @mock.patch("bedrock.contentful.management.commands.update_contentful.boto3")
 @pytest.mark.parametrize(
@@ -337,7 +337,7 @@ def test_update_contentful__queue_has_viable_messages__no_viable_message_found__
 ):
     # In prod mode we don't want creation or draft editing to trigger a
     # re-poll of the API because it's unnecessary.
-    assert settings.PROD is True
+    assert settings.APP_NAME == "bedrock-prod"
     messages_for_queue = _build_mock_messages(message_actions_sequence)
     mock_sqs, mock_queue = _establish_mock_queue(messages_for_queue)
 
@@ -387,7 +387,7 @@ def test_update_contentful__iteration_through_message_batch_thresholds(
 ):
     # ie, show we handle less and more than 10 messages in the queue.
     # Only the last message in each test case is viable, because
-    # ACTION_CREATE should not trigger anything in Dev or Prod
+    # ACTION_CREATE should NOT trigger anything in Dev, Stage or Prod
     messages_for_queue = _build_mock_messages(message_actions_sequence)
     mock_sqs, mock_queue = _establish_mock_queue(messages_for_queue)
 
@@ -399,7 +399,7 @@ def test_update_contentful__iteration_through_message_batch_thresholds(
 
 @override_settings(
     CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID="dummy",
-    DEV=True,
+    APP_NAME="bedrock-dev",
 )
 @mock.patch("bedrock.contentful.management.commands.update_contentful.boto3")
 def test_update_contentful__queue_has_viable_messages__no_messages(

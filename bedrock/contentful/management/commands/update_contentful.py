@@ -150,10 +150,10 @@ class Command(BaseCommand):
 
         What action types count as a 'go' signal?
 
-        * auto_save -> YES if on Dev (ie, preview mode)
-        * create -> NO - not on prod or on DEV
+        * auto_save -> YES if using preview mode (ie on Dev/Stage)
+        * create -> NO, NEVER - not on Prod, Stage or Dev
         * publish -> YES
-        * save -> YES if on Dev (ie, preview mode)
+        * save -> YES if using preview mode
         * unarchive -> YES
         * archive -> YES (and we'll remove the page from bedrock's DB as well)
         * unpublish  -> YES (as above)
@@ -178,7 +178,12 @@ class Command(BaseCommand):
             ACTION_SAVE,
         }
 
-        if not settings.PROD:
+        if settings.APP_NAME in [
+            # See settings.base.get_app_name()
+            "bedrock",  # Default, returned for local dev
+            "bedrock-dev",
+            "bedrock-stage",
+        ]:
             GO_ACTIONS = GO_ACTIONS.union(EXTRA_PREVIEW_API_GO_ACTIONS)
 
         if not settings.CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID:
