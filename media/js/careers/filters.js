@@ -144,6 +144,9 @@
         },
 
         filterLocations: function (value) {
+            // Note that filtering is based on a data attr, but the position's
+            // location shown in the HTML may be different to (or contain _more_
+            // items than) the data attribute's value.
             if (!value) return;
 
             var positions =
