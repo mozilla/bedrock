@@ -93,8 +93,8 @@ const jsConfig = {
                 },
                 {
                     // Copy minified careers pages JS.
-                    from: path.resolve(__dirname, 'media/js/careers/'),
-                    to: 'js/careers/'
+                    from: path.resolve(__dirname, 'media/js/careers/libs/'),
+                    to: 'js/careers/libs/'
                 }
             ]
         })

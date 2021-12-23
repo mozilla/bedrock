@@ -6,19 +6,18 @@
 
 {% extends "careers/base.html" %}
 
-{% set meta_title = "Mozilla Careers &mdash; Feel good about your work again." %}
-{% set meta_description = "Mozilla Careers &mdash; Feel good about your work again. At Mozilla, you can pursue your future while working to protect the future of the internet for everyone, everywhere." %}
+{% block page_title %}Mozilla Careers — Feel good about your work again.{% endblock %}
+{% block page_desc %}At Mozilla, you can pursue your future while working to protect the future of the internet for everyone, everywhere.{% endblock %}
 
 {% block body_class %}benefits-page{% endblock %}
 
-{% block content %}
-
+{% block careers_content %}
 <section class="mzp-c-hero mzp-t-dark page-hero"></section>
 
 <section class="mzp-l-content">
     <h2>Benefits</h2>
     <p>
-        To ensure our employees and their families feel safe, cared for, and supported, we offer world-class benefits, including: 
+        To ensure our employees and their families feel safe, cared for, and supported, we offer world-class benefits, including:
     </p>
     <ul class="mzp-u-list-styled">
         <li>Flexible work environment (nearly half of Mozillians work remotely)</li>
@@ -26,7 +25,7 @@
         <li>Generous medical, dental and vision coverage for you and your family (including no payroll deductions in most countries)</li>
         <li>Reimbursement for professional development (up to $3,000 USD/year)</li>
         <li>A work setup including the latest hardware and software of your choice</li>
-        <li>Wellness programs—we reimburse up to $1700 USD/year for a variety of expenses like child and elder care, mental wellness, and personal enrichment</li> 
+        <li>Wellness programs—we reimburse up to $1700 USD/year for a variety of expenses like child and elder care, mental wellness, and personal enrichment</li>
     </ul>
 </section>
 
@@ -35,5 +34,4 @@
     <a class="mzp-c-button" href="{{ url('careers.listings') }}">Apply Now</a>
   </div>
 </div>
-
 {% endblock %}
