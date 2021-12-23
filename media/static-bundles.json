@@ -984,13 +984,6 @@
     {
       "files": [
         "css/externalpages/pocket/style.scss",
-        "css/externalpages/pocket/components/pocket-and-firefox.scss"
-      ],
-      "name": "pocket-and-firefox"
-    },
-    {
-      "files": [
-        "css/externalpages/pocket/style.scss",
         "css/externalpages/pocket/components/add.scss"
       ],
       "name": "pocket-add"
