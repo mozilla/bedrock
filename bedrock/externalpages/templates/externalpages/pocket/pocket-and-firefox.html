@@ -27,8 +27,9 @@
   <span class="tagline">Pocket for Firefox</span>
   <h1 class="section-heading">Build your personal library of fascinating reads.</h1>
   <p class="section-lede">Included inside Firefox, the <span class="pocket-logo-inline">Pocket Logo</span>button lets you save articles from across the web and read them in a quiet, private space.</p>
-  <div class="app-store-badges">
-     {{ pocket_fxa_button(entrypoint='pocket', class_name='new-tab-pocket-cta', button_text='<span class="mzp-c-logo mzp-t-logo-sm mzp-t-product-family"></span>Activate Pocket in Firefox', optional_parameters={'s': 'fflearnmore', 'utm_campaign': 'landing-page', 'utm_content': 'page-button'}, optional_attributes={'data-cta-text': 'Activate Pocket', 'data-cta-type': 'activate pocket', 'data-cta-position': 'primary'}) }}
+  <div class="section-ctas">
+    {{ pocket_fxa_button(entrypoint='pocket', class_name='new-tab-pocket-cta', button_text='<span class="mzp-c-logo mzp-t-logo-sm mzp-t-product-family"></span>Activate Pocket in Firefox', optional_parameters={'s': 'fflearnmore', 'utm_campaign': 'landing-page', 'utm_content': 'page-button'}, optional_attributes={'data-cta-text': 'Activate Pocket', 'data-cta-type': 'activate pocket', 'data-cta-position': 'primary'}) }}
+    <a href="https://getpocket.com/signup">More ways to sign up</a>
   </div>
   {% endcall %}
 </section>

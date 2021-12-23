@@ -2,17 +2,18 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+$image-path: '/media/protocol/img';
+
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/split';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-family';
 
-
 @import '../utils/variables';
 @import '../includes/nav';
 @import '../includes/footer';
 
-$image-path: '/media/img/externalpages/pocket';
+$pocket-image-path: '/media/img/externalpages/pocket';
 
 .pocket-logo-inline {
     @include image-replaced;
@@ -51,18 +52,36 @@ $image-path: '/media/img/externalpages/pocket';
     color: $color-text-primary;
 }
 
+.section-ctas {
+    display: flex;
+    flex-direction: column;
+
+    .section-signup {
+        color: $color-text-primary;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: $color-action-primary;
+        }
+    }
+}
+
 .new-tab-pocket-cta {
-    @include text-body-xl;
+    @include text-body-lg;
+    align-self: flex-start;
     background-color: $color-button-red-10;
     border-radius: $border-radius-sm;
     color: $color-white;
     cursor: pointer;
     display: inline-block;
+    font-family: $font-sans;
     line-height: 1;
     padding: $spacing-md 36px $spacing-md $spacing-lg;
     text-align: center;
     text-decoration: none;
     transition: all 0.15s ease-out;
+    margin-bottom: $spacing-sm;
 
     .mzp-t-logo-sm {
         display: inline-block;
@@ -76,5 +95,6 @@ $image-path: '/media/img/externalpages/pocket';
     &:focus,
     &:active {
         background-color: #901424;
+        color: $color-white;
     }
 }
