@@ -13,6 +13,7 @@ $image-path: '/media/protocol/img';
 @import '../utils/variables';
 @import '../includes/nav';
 @import '../includes/footer';
+@import '../includes/pocket-premium';
 
 .mzp-c-split {
     padding: 64px 0;
@@ -97,46 +98,6 @@ $image-path: '/media/protocol/img';
                 max-height: 100%;
             }
         }
-    }
-}
-
-.pocket-premium {
-    border-top: 1px solid $color-divider;
-    padding: $spacing-sm;
-    transition: background-color 0.2s;
-
-    a {
-        text-decoration: none;
-    }
-
-    &:hover,
-    &:focus,
-    &:active {
-        background-color: $color-cream;
-    }
-}
-
-.pocket-premium-wrapper {
-    @include text-body-md;
-    display: flex;
-    align-items: center;
-    color: $color-text-primary;
-    font-family: $font-sans;
-    margin: 0 auto;
-    max-width: 930px;
-
-    .premium-diamond {
-        height: 48px;
-        width: 48px;
-        margin-right: $spacing-xl;
-
-        img {
-            height: 100%;
-        }
-    }
-
-    span {
-        font-weight: 600;
     }
 }
 
@@ -233,5 +194,33 @@ $image-path: '/media/protocol/img';
     &:active {
         color: $color-white;
         background-color: $color-text-primary;
+    }
+}
+
+.library-ctas {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-right: $spacing-md;
+
+        span {
+            @include text-body-sm;
+            margin-left: $spacing-sm;
+
+            a {
+                color: $color-text-primary;
+
+                &:hover,
+                &:focus,
+                &:active {
+                    color: $color-action-primary;
+                }
+            }
+        }
     }
 }
