@@ -128,7 +128,8 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.new-tab-pocket-cta, .red-cta {
+.new-tab-pocket-cta,
+.red-cta {
     @include text-body-lg;
     background-color: $color-button-red-10;
     border-radius: $border-radius-sm;
