@@ -50,6 +50,10 @@ $image-path: '/media/protocol/img';
 .section-lede {
     @include text-body-xl;
     font-family: $font-sans;
+
+    li {
+        list-style: disc;
+    }
 }
 
 .app-store-badges {
@@ -113,7 +117,7 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    .section-signup {
+    .secondary-cta {
         color: $color-text-primary;
 
         &:hover,
@@ -124,7 +128,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.new-tab-pocket-cta {
+.new-tab-pocket-cta, .red-cta {
     @include text-body-lg;
     background-color: $color-button-red-10;
     border-radius: $border-radius-sm;
@@ -156,6 +160,10 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.red-cta {
+    padding: $spacing-md 80px;
+}
+
 .explore-stories {
     @media #{$mq-xl} {
         background: no-repeat url('/media/img/externalpages/pocket/articles-grid-right.png') right, url('/media/img/externalpages/pocket/articles-grid-left.png') left, linear-gradient(180deg, hsla(0deg, 0%, 90.2%, 0.3), hsla(0deg, 0%, 90.2%, 0) 17%), linear-gradient(0deg, hsla(0deg, 0%, 90.2%, 0.3), hsla(0deg, 0%, 90.2%, 0) 17%);
@@ -173,7 +181,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.discover-cta {
+.black-white-cta {
     @include text-body-md;
     border: 2px solid $color-text-primary;
     border-radius: $border-radius-sm;
@@ -182,7 +190,7 @@ $image-path: '/media/protocol/img';
     display: inline-block;
     font-family: $font-sans;
     line-height: 1;
-    padding: 18px 36px;
+    padding: 12px 36px;
     text-align: center;
     text-decoration: none;
     transition: all 0.15s ease-out;
@@ -224,6 +232,14 @@ $image-path: '/media/protocol/img';
         }
     }
 
+    .black-white-cta {
+        @include text-body-lg;
+
+        &.login-cta {
+            padding: 10px 80px;
+        }
+    }
+
     @media #{$mq-md} {
         flex-direction: row;
         align-items: flex-start;
@@ -232,5 +248,24 @@ $image-path: '/media/protocol/img';
             align-items: flex-start;
             margin-right: $spacing-md;
         }
+    }
+}
+
+.green-line-cta {
+    @include text-body-lg;
+    font-family: $font-sans;
+    font-weight: 500;
+    color: $color-text-primary;
+    padding-bottom: 6.4px;
+    text-decoration: none;
+    text-shadow: -0.126em 0.063em 0 $color-white, -0.063em 0.063em 0 $color-white, 0 0.063em 0 $color-white, 0.063em 0.063em 0 $color-white, 0.126em 0.063em 0 $color-white, -0.126em 0 0 $color-white;
+    box-shadow: inset 0 0 $color-white, inset 0 -3px #00b2a8;
+    transition: 0.15s;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: $color-action-primary;
+        box-shadow: inset 0 -6px $color-white, inset 0 -8px $color-action-primary;
     }
 }
