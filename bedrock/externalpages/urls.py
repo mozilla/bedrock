@@ -21,4 +21,5 @@ urlpatterns = (
     page("pocket/jobs", "externalpages/pocket/jobs.html"),
     page("pocket/privacy", "externalpages/pocket/privacy.html"),
     page("pocket/tos", "externalpages/pocket/tos.html"),
+    page("pocket/save-to-pocket", "externalpages/pocket/save-to-pocket.html"),
 )
