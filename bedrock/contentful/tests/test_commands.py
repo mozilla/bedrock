@@ -230,7 +230,7 @@ def test_update_contentful__queue_has_viable_messages__viable_message_found__dev
 
 @override_settings(
     CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID="dummy",
-    DEV=False,
+    APP_NAME="bedrock-prod",
 )
 @mock.patch("bedrock.contentful.management.commands.update_contentful.boto3")
 @pytest.mark.parametrize(
@@ -362,7 +362,7 @@ def test_queue_has_viable_messages__no_sqs_configured(
 
 @override_settings(
     CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID="dummy",
-    PROD=False,
+    APP_NAME="bedrock-dev",
 )
 @mock.patch("bedrock.contentful.management.commands.update_contentful.boto3")
 @pytest.mark.parametrize(
