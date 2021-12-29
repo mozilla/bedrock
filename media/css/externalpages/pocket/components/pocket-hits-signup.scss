@@ -2,8 +2,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-@import './nav';
-@import './footer';
+@import '../includes/nav';
+@import '../includes/footer';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/base/elements/containers';
@@ -12,6 +12,7 @@
     @include text-title-sm;
     color: $color-text-primary;
     font-family: $font-sans-alt;
+    font-size: 40px;
     font-weight: 400;
     margin: 0 0 $spacing-md;
     text-align: center;
@@ -21,6 +22,7 @@
     @include text-body-xl;
     color: $color-text-primary;
     font-family: $font-sans;
+    font-size: 19px;
     font-weight: 300;
     margin: 0 0 $spacing-xl;
     text-align: center;
@@ -103,12 +105,20 @@
 .signup-form-text {
     @include text-body-sm;
     display: flex;
+    flex-wrap: wrap;
     font-family: $font-sans;
     justify-content: space-between;
     margin-bottom: $layout-lg;
 
+    p {
+        font-weight: 300;
+        margin-bottom: 0;
+    }
+
     .pocket-hits-example {
         color: $color-button-red-10;
+        font-weight: 400;
+        margin-right: 20px;
         position: relative;
         text-decoration: none;
 
