@@ -178,12 +178,8 @@ class Command(BaseCommand):
             ACTION_SAVE,
         }
 
-        if settings.APP_NAME in [
+        if settings.APP_NAME != "bedrock-prod":
             # See settings.base.get_app_name()
-            "bedrock",  # Default, returned for local dev
-            "bedrock-dev",
-            "bedrock-stage",
-        ]:
             GO_ACTIONS = GO_ACTIONS.union(EXTRA_PREVIEW_API_GO_ACTIONS)
 
         if not settings.CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID:
