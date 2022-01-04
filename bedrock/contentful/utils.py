@@ -46,6 +46,14 @@ def get_active_locales(
 
     all_locales = ContentfulEntry.objects.filter(**kwargs).values_list("locale", flat=True)
 
+    if slug:
+        # There's no need to check the proportion of entries in each locale, because we're
+        # down to a very, very specific combination of slug + content_type + classification
+        # so all results will match/be viable
+        return list(all_locales)
+
+    # Otherwise, we're looking at just entries of a particular content_type and classification
+    # across any number of slugs, so we do need to see if there are enough to activate the locale
     locale_counts = defaultdict(int)
     for locale in all_locales:
         locale_counts[locale] += 1
