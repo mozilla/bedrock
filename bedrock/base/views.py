@@ -81,9 +81,9 @@ def get_extra_server_info():
         "git_sha": GIT_SHA,
     }
     try:
-        with open(DB_INFO_FILE, "r") as fp:
+        with open(DB_INFO_FILE) as fp:
             db_info = json.load(fp)
-    except (IOError, ValueError):
+    except (OSError, ValueError):
         pass
     else:
         last_updated_timestamp = datetime.fromtimestamp(db_info["updated"])

@@ -52,9 +52,9 @@ def get_git_sha():
 
 def get_prev_db_data():
     try:
-        with open(JSON_DATA_FILE, "r") as fp:
+        with open(JSON_DATA_FILE) as fp:
             return json.load(fp)
-    except IOError:
+    except OSError:
         # file does not exist
         return None
 
