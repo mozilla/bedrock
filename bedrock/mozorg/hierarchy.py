@@ -137,7 +137,7 @@ class PageRoot(PageNode):
     """
 
     def __init__(self, *args, **kwargs):
-        super(PageRoot, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         # Buid a pre-order traversal of this tree's nodes.
         self.preordered_nodes = []

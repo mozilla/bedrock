@@ -75,7 +75,7 @@ class BooleanTabularRadioSelect(widgets.RadioSelect):
             ("true", ftl("newsletter-form-yes")),
             ("false", ftl("newsletter-form-no")),
         )
-        super(BooleanTabularRadioSelect, self).__init__(attrs, choices)
+        super().__init__(attrs, choices)
 
     def format_value(self, value):
         try:
@@ -98,7 +98,7 @@ class BooleanTabularRadioSelect(widgets.RadioSelect):
         }.get(value)
 
     def get_context(self, name, value, attrs):
-        context = super(BooleanTabularRadioSelect, self).get_context(name, value, attrs)
+        context = super().get_context(name, value, attrs)
         context["wrap_label"] = False
         return context
 
@@ -107,7 +107,7 @@ class TableCheckboxInput(widgets.CheckboxInput):
     """Add table cell markup around the rendered checkbox"""
 
     def render(self, *args, **kwargs):
-        out = super(TableCheckboxInput, self).render(*args, **kwargs)
+        out = super().render(*args, **kwargs)
         return mark_safe("<td>" + out + "</td>")
 
 
@@ -123,7 +123,7 @@ class CountrySelectForm(forms.Form):
     def __init__(self, locale, *args, **kwargs):
         regions = product_details.get_regions(locale)
         regions = sorted(iter(regions.items()), key=itemgetter(1))
-        super(CountrySelectForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.fields["country"].choices = regions
 
 
@@ -193,7 +193,7 @@ class ManageSubscriptionsForm(forms.Form):
             initial["lang"] = lang
 
         kwargs["initial"] = initial
-        super(ManageSubscriptionsForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.fields["country"].choices = regions
         self.fields["lang"].choices = lang_choices
 
@@ -205,7 +205,7 @@ class ManageSubscriptionsForm(forms.Form):
             if newsletter not in valid_newsletters:
                 msg = ftl("newsletters-is-not-a-valid-newsletter", newsletter=newsletter, ftl_files=["mozorg/newsletters"])
                 raise ValidationError(msg)
-        return super(ManageSubscriptionsForm, self).clean()
+        return super().clean()
 
 
 class NewsletterForm(forms.Form):
@@ -273,7 +273,7 @@ class NewsletterFooterForm(forms.Form):
             lang = ""
             lang_choices.insert(0, ("", ftl_lazy("newsletter-form-available-languages")))
 
-        super(NewsletterFooterForm, self).__init__(data, *args, **kwargs)
+        super().__init__(data, *args, **kwargs)
 
         required_args = {
             "required": "required",

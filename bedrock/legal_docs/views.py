@@ -72,7 +72,7 @@ class LegalDocView(TemplateView):
         if legal_doc is None:
             raise Http404("Legal doc not found")
 
-        context = super(LegalDocView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context[self.legal_doc_context_name] = legal_doc["content"]
         context["active_locales"] = legal_doc["active_locales"]
         return context
@@ -80,4 +80,4 @@ class LegalDocView(TemplateView):
     @classmethod
     def as_view(cls, **initkwargs):
         cache_timeout = initkwargs.pop("cache_timeout", cls.cache_timeout)
-        return cache_page(cache_timeout)(super(LegalDocView, cls).as_view(**initkwargs))
+        return cache_page(cache_timeout)(super().as_view(**initkwargs))

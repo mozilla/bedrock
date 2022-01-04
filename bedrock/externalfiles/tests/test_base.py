@@ -16,7 +16,7 @@ from bedrock.mozorg.tests import TestCase
 class TestExternalFile(TestCase):
     @classmethod
     def setUpClass(cls):
-        super(TestExternalFile, cls).setUpClass()
+        super().setUpClass()
         timezone.activate(utc)
 
     def setUp(self):

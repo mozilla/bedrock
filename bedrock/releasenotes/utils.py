@@ -28,14 +28,14 @@ class ReleaseMemoizer(Memoizer):
 
     def __init__(self, version_timeout=300):
         self.version_timeout = version_timeout
-        return super(ReleaseMemoizer, self).__init__(cache=caches["release-notes"])
+        return super().__init__(cache=caches["release-notes"])
 
     def _memoize_make_version_hash(self):
         return get_data_version()
 
     def _memoize_version(self, f, args=None, reset=False, delete=False, timeout=None):
         """Use a shorter timeout for the version so that we can refresh based on git hash"""
-        return super(ReleaseMemoizer, self)._memoize_version(f, args, reset, delete, self.version_timeout)
+        return super()._memoize_version(f, args, reset, delete, self.version_timeout)
 
 
 memoizer = ReleaseMemoizer()

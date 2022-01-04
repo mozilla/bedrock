@@ -123,7 +123,7 @@ class MarkdownField(models.TextField):
     """Field that takes Markdown text as input and saves HTML to the database"""
 
     def pre_save(self, model_instance, add):
-        value = super(MarkdownField, self).pre_save(model_instance, add)
+        value = super().pre_save(model_instance, add)
         value = process_markdown(value)
         setattr(model_instance, self.attname, value)
         return value

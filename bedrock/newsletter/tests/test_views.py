@@ -85,7 +85,7 @@ class TestExistingNewsletterView(TestCase):
             "form-3-subscribed_check": "false",
             "submit": "Save Preferences",
         }
-        super(TestExistingNewsletterView, self).setUp()
+        super().setUp()
 
     @patch("bedrock.newsletter.utils.get_newsletters")
     def test_will_show_confirm_copy(self, get_newsletters, mock_basket_request):

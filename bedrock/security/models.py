@@ -59,7 +59,7 @@ class Product(models.Model):
         self.product = product
         self.product_slug = slugify(product)
         self.slug = "{0}-{1}".format(self.product_slug, vers)
-        super(Product, self).save(force_insert, force_update, using, update_fields)
+        super().save(force_insert, force_update, using, update_fields)
 
 
 class SecurityAdvisory(models.Model):

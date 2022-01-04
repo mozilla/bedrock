@@ -26,10 +26,10 @@ class PressInquiryView(FormView):
 
     @method_decorator(csrf_protect)
     def dispatch(self, request, *args, **kwargs):
-        return super(PressInquiryView, self).dispatch(request, *args, **kwargs)
+        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        context = super(PressInquiryView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context["form_success"] = "success" in self.request.GET
         return context
 
@@ -38,7 +38,7 @@ class PressInquiryView(FormView):
 
     def form_valid(self, form):
         self.send_email(form)
-        return super(PressInquiryView, self).form_valid(form)
+        return super().form_valid(form)
 
     def send_email(self, form):
         subject = PRESS_INQUIRY_EMAIL_SUBJECT
@@ -59,15 +59,15 @@ class SpeakerRequestView(FormView):
 
     @method_decorator(csrf_protect)
     def dispatch(self, request, *args, **kwargs):
-        return super(SpeakerRequestView, self).dispatch(request, *args, **kwargs)
+        return super().dispatch(request, *args, **kwargs)
 
     def get_form_kwargs(self):
-        kwargs = super(SpeakerRequestView, self).get_form_kwargs()
+        kwargs = super().get_form_kwargs()
         kwargs["auto_id"] = "%s"
         return kwargs
 
     def get_context_data(self, **kwargs):
-        context = super(SpeakerRequestView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context["form_success"] = "success" in self.request.GET
         return context
 
@@ -76,7 +76,7 @@ class SpeakerRequestView(FormView):
 
     def form_valid(self, form):
         self.send_email(form)
-        return super(SpeakerRequestView, self).form_valid(form)
+        return super().form_valid(form)
 
     def send_email(self, form):
         subject = SPEAKER_REQUEST_EMAIL_SUBJECT

@@ -32,7 +32,7 @@ class PrivacyWidget(widgets.CheckboxInput):
 
     def render(self, name, value, attrs=None, renderer=None):
         attrs["required"] = "required"
-        input_txt = super(PrivacyWidget, self).render(name, value, attrs)
+        input_txt = super().render(name, value, attrs)
 
         policy_txt = ftl("newsletter-form-im-okay-with-mozilla", url=reverse("privacy.notices.websites"))
 

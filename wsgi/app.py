@@ -20,7 +20,7 @@ class WSGIHTTPSRequest(WSGIRequest):
         if IS_HTTPS:
             return "https"
 
-        return super(WSGIHTTPSRequest, self)._get_scheme()
+        return super()._get_scheme()
 
 
 application = get_wsgi_application()

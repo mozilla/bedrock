@@ -35,7 +35,7 @@ class Command(BaseCommand):
         # fake last-modified string since the releng repo doesn't store those files
         # and we rely on git commits for updates
         self.last_modified = datetime.now().isoformat()
-        super(Command, self).__init__(stdout, stderr, no_color)
+        super().__init__(stdout, stderr, no_color)
 
     def add_arguments(self, parser):
         parser.add_argument("-q", "--quiet", action="store_true", dest="quiet", default=False, help="If no error occurs, swallow all output."),

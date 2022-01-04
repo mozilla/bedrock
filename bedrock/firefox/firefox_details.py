@@ -73,7 +73,7 @@ class FirefoxDesktop(_ProductDetails):
     }
 
     def __init__(self, **kwargs):
-        super(FirefoxDesktop, self).__init__(**kwargs)
+        super().__init__(**kwargs)
 
     def platforms(self, channel="release", classified=False):
         """

@@ -108,7 +108,7 @@ class ProductView(LangFilesMixin, ListView):
         return sorted(versions, reverse=True)
 
     def get_context_data(self, **kwargs):
-        cxt = super(ProductView, self).get_context_data(**kwargs)
+        cxt = super().get_context_data(**kwargs)
         cxt["product_name"] = cxt["product_versions"][0].product
         return cxt
 
@@ -132,7 +132,7 @@ class ProductVersionView(LangFilesMixin, ListView):
         return sorted(versions, reverse=True)
 
     def get_context_data(self, **kwargs):
-        cxt = super(ProductVersionView, self).get_context_data(**kwargs)
+        cxt = super().get_context_data(**kwargs)
         prod_name, version = self.kwargs["product"], self.kwargs["version"]
         cxt["is_obsolete"] = product_is_obsolete(prod_name, version)
         cxt["product_name"] = "{0} {1}".format(cxt["product_versions"][0].product, version)
@@ -145,7 +145,7 @@ class CachedRedirectView(RedirectView):
 
     @method_decorator(cache_control_expires(24 * 30))  # 30 days
     def dispatch(self, request, *args, **kwargs):
-        return super(CachedRedirectView, self).dispatch(request, *args, **kwargs)
+        return super().dispatch(request, *args, **kwargs)
 
 
 class OldAdvisoriesView(CachedRedirectView):
