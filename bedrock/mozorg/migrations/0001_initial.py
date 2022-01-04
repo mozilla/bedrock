@@ -43,6 +43,6 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterUniqueTogether(
             name="contributoractivity",
-            unique_together=set([("date", "source_name", "team_name")]),
+            unique_together={("date", "source_name", "team_name")},
         ),
     ]

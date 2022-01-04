@@ -94,7 +94,7 @@ class SecurityAdvisory(models.Model):
 
     @property
     def products(self):
-        prods_set = set(v.product for v in self.fixed_in.all())
+        prods_set = {v.product for v in self.fixed_in.all()}
         return sorted(prods_set)
 
 

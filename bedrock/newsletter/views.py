@@ -400,13 +400,11 @@ def existing(request, token=None):
             if formset.is_valid():
                 formset_is_valid = True
                 # What newsletters do they say they want to be subscribed to?
-                newsletters = set(
-                    [
-                        subform.cleaned_data["newsletter"]
-                        for subform in formset
-                        if (subform.cleaned_data["subscribed_radio"] or subform.cleaned_data["subscribed_check"])
-                    ]
-                )
+                newsletters = {
+                    subform.cleaned_data["newsletter"]
+                    for subform in formset
+                    if (subform.cleaned_data["subscribed_radio"] or subform.cleaned_data["subscribed_check"])
+                }
                 form_kwargs["newsletters"] = newsletters
 
         form = ManageSubscriptionsForm(locale, data=request.POST, initial=user, **form_kwargs)
@@ -617,8 +615,8 @@ def newsletter_subscribe(request):
             kwargs = {"format": data["fmt"]}
             # add optional data
             kwargs.update(
-                dict(
-                    (k, data[k])
+                {
+                    k: data[k]
                     for k in [
                         "country",
                         "lang",
@@ -627,7 +625,7 @@ def newsletter_subscribe(request):
                         "last_name",
                     ]
                     if data[k]
-                )
+                }
             )
 
             # NOTE this is not a typo; Referrer is misspelled in the HTTP spec

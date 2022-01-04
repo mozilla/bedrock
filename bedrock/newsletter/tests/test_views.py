@@ -138,9 +138,9 @@ class TestExistingNewsletterView(TestCase):
         request, template_name, context = render.call_args[0]
         forms = context["formset"].initial_forms
 
-        shown = set([form.initial["newsletter"] for form in forms])
-        inactive = set([newsletter for newsletter, data in newsletters.items() if not data.get("active", False)])
-        to_show = set([newsletter for newsletter, data in newsletters.items() if data.get("show", False)]) - inactive
+        shown = {form.initial["newsletter"] for form in forms}
+        inactive = {newsletter for newsletter, data in newsletters.items() if not data.get("active", False)}
+        to_show = {newsletter for newsletter, data in newsletters.items() if data.get("show", False)} - inactive
         subscribed = set(self.user["newsletters"])
 
         # All subscribed newsletters except inactive ones are shown
@@ -226,9 +226,9 @@ class TestExistingNewsletterView(TestCase):
         # Should have called update_user with subscription list
         self.assertEqual(1, basket_patches["update_user"].call_count)
         kwargs = basket_patches["update_user"].call_args[1]
-        self.assertEqual(set(kwargs), set(["api_key", "newsletters", "lang"]))
+        self.assertEqual(set(kwargs), {"api_key", "newsletters", "lang"})
         self.assertEqual(kwargs["lang"], "en")
-        self.assertEqual(set(kwargs["newsletters"].split(",")), set(["mozilla-and-you", "firefox-tips"]))
+        self.assertEqual(set(kwargs["newsletters"].split(",")), {"mozilla-and-you", "firefox-tips"})
         # Should not have called unsubscribe
         self.assertEqual(0, basket_patches["unsubscribe"].call_count)
         # Should not have called subscribe

@@ -45,7 +45,7 @@ class Position(models.Model):
     @classmethod
     def locations(cls):
         return sorted(
-            set(location.strip() for location in chain(*[locations.split(",") for locations in cls.objects.values_list("location", flat=True)]))
+            {location.strip() for location in chain(*[locations.split(",") for locations in cls.objects.values_list("location", flat=True)])}
         )
 
     @classmethod
