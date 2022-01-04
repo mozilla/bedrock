@@ -23,7 +23,9 @@ from bedrock.contentful.constants import (
 )
 from lib.l10n_utils import get_locale, render_to_string
 
-# Bedrock and Contentful have slightly differing locale lists.
+# Some of Bedrock and Contentful's locale codes slightly differ, so we translate between them.
+# This is not the controlling list of which locales we read from Contentful - that's determined
+# by what Contentful has configured/enabled and we try to pull in all of what's offered.
 BEDROCK_TO_CONTENTFUL_LOCALE_MAP = {
     "de": "de-DE",
     "fr": "fr-FR",
