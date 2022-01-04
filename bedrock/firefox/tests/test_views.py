@@ -4,6 +4,7 @@
 
 import json
 import os
+from unittest.mock import ANY, patch
 from urllib.parse import parse_qs
 
 from django.http import HttpResponse
@@ -11,7 +12,6 @@ from django.test import override_settings
 from django.test.client import RequestFactory
 
 import querystringsafe_base64
-from mock import ANY, patch
 from pyquery import PyQuery as pq
 
 from bedrock.firefox import views

@@ -3,13 +3,13 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import json
 import uuid
+from unittest.mock import ANY, DEFAULT, patch
 
 from django.http import HttpResponse
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
 import basket
-from mock import ANY, DEFAULT, patch
 from pyquery import PyQuery as pq
 
 from bedrock.base.urlresolvers import reverse

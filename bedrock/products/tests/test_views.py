@@ -3,13 +3,12 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import json
+from unittest.mock import Mock, patch
 
 from django.http import HttpResponse
 from django.test import override_settings
 from django.test.client import RequestFactory
 from django.urls import reverse
-
-from mock import Mock, patch
 
 from bedrock.contentful.constants import (
     CONTENT_CLASSIFICATION_VPN,

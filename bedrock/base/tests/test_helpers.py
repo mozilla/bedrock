@@ -2,10 +2,11 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from unittest.mock import patch
+
 from django.test import TestCase, override_settings
 
 from django_jinja.backend import Jinja2
-from mock import patch
 
 from bedrock.base.templatetags import helpers
 

@@ -3,11 +3,10 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from pathlib import Path
+from unittest.mock import patch
 
 from django.http import Http404, HttpResponse
 from django.test import RequestFactory, override_settings
-
-from mock import patch
 
 from bedrock.legal_docs import views
 from bedrock.legal_docs.models import LegalDoc, get_data_from_file_path

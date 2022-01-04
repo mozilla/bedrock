@@ -3,10 +3,9 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import os.path
+from unittest.mock import patch
 
 from django.conf import settings
-
-from mock import patch
 
 from bedrock.mozorg.tests import TestCase
 from bedrock.security.management.commands import update_security_advisories

@@ -3,11 +3,10 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import datetime
+from unittest.mock import patch
 
 from django.test import override_settings
 from django.utils.timezone import make_aware, utc
-
-from mock import patch
 
 from bedrock.pocketfeed import api
 

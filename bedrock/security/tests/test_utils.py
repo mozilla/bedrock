@@ -4,9 +4,9 @@
 from datetime import date
 from io import StringIO
 from textwrap import dedent
+from unittest.mock import call, patch
 
 import pytest
-from mock import call, patch
 
 from bedrock.security.utils import (
     check_hof_data,

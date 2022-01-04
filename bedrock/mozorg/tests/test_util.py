@@ -3,10 +3,9 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import os
+from unittest.mock import ANY, patch
 
 from django.test import RequestFactory
-
-from mock import ANY, patch
 
 from bedrock.mozorg.tests import TestCase
 from bedrock.mozorg.util import get_fb_like_locale, page

@@ -2,8 +2,9 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from unittest.mock import patch
+
 from everett.manager import ConfigManager, ConfigurationMissingError
-from mock import patch
 
 from bedrock.base import waffle_config
 from bedrock.mozorg.tests import TestCase

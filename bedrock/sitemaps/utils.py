@@ -4,14 +4,13 @@
 import json
 import re
 from collections import defaultdict
+from unittest.mock import patch
 
 from django.conf import settings
 from django.http import HttpResponse
 from django.test import override_settings
 from django.test.client import Client
 from django.urls import resolvers
-
-from mock import patch
 
 from bedrock.contentful.constants import (
     CONTENT_CLASSIFICATION_VPN,

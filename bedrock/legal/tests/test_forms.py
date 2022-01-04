@@ -2,12 +2,12 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from io import BytesIO
+from unittest.mock import Mock, patch
 
 from django.core import mail
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test.client import RequestFactory
 
-from mock import Mock, patch
 from PIL import Image
 
 from bedrock.base.urlresolvers import reverse

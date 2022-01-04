@@ -2,13 +2,14 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from unittest.mock import Mock, patch
+
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from django.urls import re_path
 
 import pytest
-from mock import Mock, patch
 
 from bedrock.base.urlresolvers import Prefixer, find_supported, reverse, split_path
 

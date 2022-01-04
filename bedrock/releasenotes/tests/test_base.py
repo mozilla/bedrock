@@ -3,13 +3,12 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from pathlib import Path
+from unittest.mock import Mock, patch
 
 from django.core.cache import caches
 from django.http import Http404, HttpResponse
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
-
-from mock import Mock, patch
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.firefox.firefox_details import FirefoxDesktop
