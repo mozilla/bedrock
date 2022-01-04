@@ -145,63 +145,62 @@ def _filter_articles(articles_list, category):
 
 def resource_center_landing_view(request):
 
-    template_name = "products/vpn/resource-center/landing.html"
-
     ARTICLE_GROUP_SIZE = 6
-
+    template_name = "products/vpn/resource-center/landing.html"
     active_locales = get_active_contentful_locales(
         classification=CONTENT_CLASSIFICATION_VPN,
         content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
     )
+    ctx = {"active_locales": active_locales}
+    requested_locale = l10n_utils.get_locale(request)
 
-    locale = l10n_utils.get_locale(request)
+    # Trade-off: define render params in one place now for stability, but we
+    # have to take care when updating `ctx` later - only do it by reference, not
+    # assign a whole new new value for ctx, becase render_args will not use that
+    render_args = [request, template_name, ctx]
+    render_kwargs = dict(
+        ftl_files=[
+            "products/vpn/resource-center",
+            "products/vpn/shared",
+        ],
+    )
 
-    # If you go to the VRC for a language we're working on but
-    # which isn't active yet because it doesn't meet the activation
-    # threshold percentage, we should send you to the default locale
-    if locale not in active_locales:
-        _path = reverse("products.vpn.resource-center.landing")
-        return redirect(f"/{DEFAULT_LOCALE}{_path}")
+    if requested_locale not in active_locales:
+        # Calling render() early will redirect the user to the most
+        # appropriate default/alternative locale for their browser
+        return l10n_utils.render(*render_args, **render_kwargs)
 
     resource_articles = ContentfulEntry.objects.get_entries_by_type(
-        locale=locale,
+        locale=requested_locale,
         classification=CONTENT_CLASSIFICATION_VPN,
         content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
     )
     category_list = _build_category_list(resource_articles)
     selected_category = unquote_plus(request.GET.get(ARTICLE_CATEGORY_LABEL, ""))
 
-    _filtered_articles = _filter_articles(
+    filtered_articles = _filter_articles(
         resource_articles,
         category=selected_category,
     )
 
     # The resource_articles are ContentfulEntry objects at the moment, but
     # we really only need their JSON data from here on
-    _filtered_article_data = [x.data for x in _filtered_articles]
+    filtered_article_data = [x.data for x in filtered_articles]
 
     first_article_group, second_article_group = (
-        _filtered_article_data[:ARTICLE_GROUP_SIZE],
-        _filtered_article_data[ARTICLE_GROUP_SIZE:],
+        filtered_article_data[:ARTICLE_GROUP_SIZE],
+        filtered_article_data[ARTICLE_GROUP_SIZE:],
     )
 
-    ctx = {
-        "active_locales": active_locales,
-        "category_list": category_list,
-        "first_article_group": first_article_group,
-        "second_article_group": second_article_group,
-        "selected_category": escape(selected_category),
-    }
-
-    return l10n_utils.render(
-        request,
-        template_name,
-        ctx,
-        ftl_files=[
-            "products/vpn/resource-center",
-            "products/vpn/shared",
-        ],
+    ctx.update(
+        {
+            "category_list": category_list,
+            "first_article_group": first_article_group,
+            "second_article_group": second_article_group,
+            "selected_category": escape(selected_category),
+        }
     )
+    return l10n_utils.render(*render_args, **render_kwargs)
 
 
 def resource_center_article_view(request, slug):

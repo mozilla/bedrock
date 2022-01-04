@@ -9,7 +9,7 @@ from django.test import override_settings
 from django.test.client import RequestFactory
 from django.urls import reverse
 
-from mock import Mock, patch
+from mock import ANY, Mock, patch
 
 from bedrock.contentful.constants import (
     CONTENT_CLASSIFICATION_VPN,
@@ -286,18 +286,43 @@ class TestVPNResourceListingView(TestCase):
             ],
         )
 
+    def test_simple_get__for_invalid_locale(self, render_mock):
+        self._request(locale="xx", expected_status=200)
+
+        # Note that this is an early call/early return, where the context
+        # lacks data for category_list, selected_category, and the two
+        # article groups
+        render_mock.assert_called_once_with(
+            ANY,
+            "products/vpn/resource-center/landing.html",
+            {"active_locales": ["en-US", "fr", "ja"]},
+            ftl_files=[
+                "products/vpn/resource-center",
+                "products/vpn/shared",
+            ],
+        )
+
     @override_settings(CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE=95)
     def test_simple_get__for_valid_locale_WITHOUT_enough_content(self, render_mock):
-        # ie, if you go to the VRC for a language we're working on but which isn't active yet because
-        # it doesn't meet the activation threshold percentage, we should send you to the default locale
+        # ie, if you go to the VRC for a language we're working on but which
+        # isn't active yet because it doesn't meet the activation threshold
+        # percentage, we should send you to the default locale by calling render() early
         ContentfulEntry.objects.filter(locale="fr").last().delete()
         assert ContentfulEntry.objects.filter(locale="fr").count() < ContentfulEntry.objects.filter(locale="en-US").count()
-        resp = self._request(locale="fr", expected_status=302)
-        self.assertEqual(resp._headers["location"], ("Location", "/en-US/products/vpn/resource-center/"))
+        self._request(locale="fr", expected_status=200)
 
-    def test_simple_get__for_invalid_locale(self, render_mock):
-        resp = self._request(locale="xx", expected_status=302)
-        self.assertEqual(resp._headers["location"], ("Location", "/en-US/products/vpn/resource-center/"))
+        # Note that this is an early call/early return, where the context
+        # lacks data for category_list, selected_category, and the two
+        # article groups
+        render_mock.assert_called_once_with(
+            ANY,
+            "products/vpn/resource-center/landing.html",
+            {"active_locales": ["en-US", "ja"]},  # fr is absent because it's not active
+            ftl_files=[
+                "products/vpn/resource-center",
+                "products/vpn/shared",
+            ],
+        )
 
     def test_category_filtering(self, render_mock):
 
