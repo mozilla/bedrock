@@ -578,17 +578,107 @@ editors and available plugins.
 Working with Protocol
 ---------------------
 
-Bedrock uses the `Protocol Design System <https://protocol.mozilla.org/>`_ to quickly produce consistent, stable components.
+Bedrock uses the `Protocol Design System <https://protocol.mozilla.org/>`_ to quickly produce consistent, stable components. This involves two steps:
 
-When we find we are frequently re-using code for a particular Protocol component (i.e.
-`Split <https://protocol.mozilla.org/patterns/organisms/split.html>`_), we convert it to a
-`macro template <https://github.com/mozilla/bedrock/blob/master/bedrock/base/templates
-/macros-protocol.html/>`_ with parameters for customization.
+1. Adding the `correct markup <#styles-and-components>`_ or importing the `appropriate macro <#macros>`_ to the page's HTML file.
+2. Importing the necessary Protocol styles to a page's SCSS file.
 
-You can find parameter definitions for the available Protocol macros below.
+Styles and Components
+~~~~~~~~~~~~~~~~~~~~~
+The base templates in Bedrock have global styles from Protocol that apply to every page. When we need to extend these styles on a page-specific basis, we set up Protocol in a page-specific SCSS file.
+
+For example, on a Firefox product page, we might want to use Firefox logos or wordmarks that do not exist on every page.
+
+To do this, we add Protocol ``mzp-`` classes to the HTML:
+
+.. code-block:: html
+
+    // bedrock/bedrock/firefox/templates/firefox/{specific-page}.html
+
+    <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">
+        Firefox Browser
+    </div>
+
+Then we need to include those Protocol styles in the page's SCSS file:
+
+.. code-block:: css
+
+    /* bedrock/media/css/firefox/{specific-page}.scss */
+
+    /* if we need to use protocol images, we need to set the $image-path variable */
+    $image-path: '/media/protocol/img';
+    /* mozilla is the default theme, so if we want a different one, we need to set the $brand-theme variable */
+    $brand-theme: 'firefox';
+
+    /* the lib import is always essential: it provides access to tokens, functions, mixins, and theming */
+    @import '~@mozilla-protocol/core/protocol/css/includes/lib';
+    /* then you add whatever specific protocol styling you need */
+    @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+    @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
+
+.. note::
+    If you create a new SCSS file for a page, you will have to include it in that page's CSS bundle by updating
+    `static-bundles.json <#asset-bundling>`_ file.
+
+
+Macros
+~~~~~~
+
+The team has created several `Jinja macros <https://jinja2docs.readthedocs.io/en/stable/templates.html#macros>`_ out of Protocol components to simplify the usage of components housing larger blocks of code (i.e. Split). The code housing the custom macros can be found in our `protocol macros file <https://github.com/mozilla/bedrock/blob/master/bedrock/base/templates/macros-protocol.html>`_. These Jinja macros include parameters that are simple to define and customize based on how the component should look like on a given page.
+
+To use these macros in files, we simply import a macro to the page's HTML code and call it with the desired arguments, instead of manually adding Protocol markup. We can import multiple macros in a comma-separated fashion, ending the import with ``with context``:
+
+.. code-block:: html
+
+    // bedrock/bedrock/firefox/templates/firefox/{specific-page}.html
+
+    {% from "macros-protocol.html" import split, picto with context %}
+
+    {% call split(
+        image_url='img/firefox/browsers/hero.jpg',
+        include_highres_image=True,
+        block_class='mzp-l-split-center-on-sm-md',
+        media_class='mzp-l-split-media-overflow',
+        media_after=True
+    ) %}
+        <h1>This is Mozilla</h1>
+        <p>Get the privacy you deserve with Firefox</p>
+    {% endcall %}
+
+Because Split styles are not global, we still have to import the page-specific Protocol styles in SCSS:
+
+.. code-block:: css
+
+    /* bedrock/media/css/firefox/{specific-page}.scss */
+
+    $brand-theme: 'firefox';
+
+    @import '~@mozilla-protocol/core/protocol/css/includes/lib';
+    @import '~@mozilla-protocol/core/protocol/css/components/split';
+    @import '~@mozilla-protocol/core/protocol/css/components/picto';
+
+
+You can find parameter definitions for the available Protocol macros below, including their import paths.
+
+.. note::
+    You can use macros without Protocol and you can use Protocol without macros. They are not dependent on each other but they work well together. 10/10 would recommend!
 
 Picto
-~~~~~
+<<<<<
+
+**HTML import**
+
+.. code-block:: html
+
+   {% from "macros-protocol.html" import picto with context %}
+
+**CSS import**
+
+.. code-block:: css
+
+   @import '~@mozilla-protocol/core/protocol/css/components/picto';
+
+**Macro parameters**
 
 - title
     String indicating heading text (usually a translation id wrapped in ftl function)
@@ -664,7 +754,21 @@ Picto
 
 
 Call out
-~~~~~~~~
+<<<<<<<<
+
+**HTML import**
+
+.. code-block:: html
+
+   {% from "macros-protocol.html" import call_out with context %}
+
+**CSS import**
+
+.. code-block:: css
+
+   @import '~@mozilla-protocol/core/protocol/css/components/call-out';
+
+**Macro parameters**
 
 - title
     **Required**. String indicating heading text (usually a translation id wrapped in ftl function).
@@ -703,7 +807,21 @@ Call out
 
 
 Split
-~~~~~
+<<<<<
+
+**HTML import**
+
+.. code-block:: html
+
+   {% from "macros-protocol.html" import split with context %}
+
+**CSS import**
+
+.. code-block:: css
+
+   @import '~@mozilla-protocol/core/protocol/css/components/split';
+
+**Macro parameters**
 
 - block_id
     String providing id to the section tag (usually if it needs to be used as an in-page link).
@@ -791,7 +909,21 @@ Split
 
 
 Billboard
-~~~~~~~~~
+<<<<<<<<<
+
+**HTML import**
+
+.. code-block:: html
+
+   {% from "macros-protocol.html" import billboard with context %}
+
+**CSS import**
+
+.. code-block:: css
+
+   @import '~@mozilla-protocol/core/protocol/css/components/billboard';
+
+**Macro parameters**
 
 - title
     **Required**. String indicating heading text (usually a translation id wrapped in ftl function).
@@ -858,7 +990,21 @@ Billboard
 
 
 Feature Card
-~~~~~~~~~~~~
+<<<<<<<<<<<<
+
+**HTML import**
+
+.. code-block:: html
+
+   {% from "macros-protocol.html" import feature_card with context %}
+
+**CSS import**
+
+.. code-block:: css
+
+   @import '~@mozilla-protocol/core/protocol/css/components/feature-card';
+
+**Macro parameters**
 
 - title
     String indicating heading text (usually a translation id wrapped in ftl function).
@@ -939,7 +1085,22 @@ Feature Card
 
 
 Card
-~~~~
+<<<<
+
+**HTML import**
+
+.. code-block:: html
+
+   {% from "macros-protocol.html" import card with context %}
+
+**CSS import**
+
+.. code-block:: css
+
+   @import '~@mozilla-protocol/core/protocol/css/components/card';
+   @import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
+
+**Macro parameters**
 
 - youtube_id
     String indicating the Youtube ID found at the end of a Youtube video URL. Used when we are embedding a video to the card rather than an image.
