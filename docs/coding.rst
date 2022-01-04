@@ -666,11 +666,19 @@ You can find parameter definitions for the available Protocol macros below, incl
 Picto
 <<<<<
 
-- macro import
-   ``{% from "macros-protocol.html" import picto with context %}``
+**HTML import**
 
-- Protocol import
-   ``@import '~@mozilla-protocol/core/protocol/css/components/picto';``
+.. code-block:: html
+
+   {% from "macros-protocol.html" import picto with context %}
+
+**CSS import**
+
+.. code-block:: css
+
+   @import '~@mozilla-protocol/core/protocol/css/components/picto';
+
+**Macro parameters**
 
 - title
     String indicating heading text (usually a translation id wrapped in ftl function)
@@ -748,11 +756,19 @@ Picto
 Call out
 <<<<<<<<
 
-- macro import
-   ``{% from "macros-protocol.html" import call_out with context %}``
+**HTML import**
 
-- Protocol import
-   ``@import '~@mozilla-protocol/core/protocol/css/components/call-out';``
+.. code-block:: html
+
+   {% from "macros-protocol.html" import call_out with context %}
+
+**CSS import**
+
+.. code-block:: css
+
+   @import '~@mozilla-protocol/core/protocol/css/components/call-out';
+
+**Macro parameters**
 
 - title
     **Required**. String indicating heading text (usually a translation id wrapped in ftl function).
@@ -793,11 +809,19 @@ Call out
 Split
 <<<<<
 
-- macro import
-   ``{% from "macros-protocol.html" import split with context %}``
+**HTML import**
 
-- Protocol import
-   ``@import '~@mozilla-protocol/core/protocol/css/components/split';``
+.. code-block:: html
+
+   {% from "macros-protocol.html" import split with context %}
+
+**CSS import**
+
+.. code-block:: css
+
+   @import '~@mozilla-protocol/core/protocol/css/components/split';
+
+**Macro parameters**
 
 - block_id
     String providing id to the section tag (usually if it needs to be used as an in-page link).
@@ -887,11 +911,19 @@ Split
 Billboard
 <<<<<<<<<
 
-- macro import
-   ``{% from "macros-protocol.html" import billboard with context %}``
+**HTML import**
 
-- Protocol import
-   ``@import '~@mozilla-protocol/core/protocol/css/components/billboard';``
+.. code-block:: html
+
+   {% from "macros-protocol.html" import billboard with context %}
+
+**CSS import**
+
+.. code-block:: css
+
+   @import '~@mozilla-protocol/core/protocol/css/components/billboard';
+
+**Macro parameters**
 
 - title
     **Required**. String indicating heading text (usually a translation id wrapped in ftl function).
@@ -960,11 +992,19 @@ Billboard
 Feature Card
 <<<<<<<<<<<<
 
-- macro import
-   ``{% from "macros-protocol.html" import feature_card with context %}``
+**HTML import**
 
-- Protocol import
-   ``@import '~@mozilla-protocol/core/protocol/css/components/feature-card';``
+.. code-block:: html
+
+   {% from "macros-protocol.html" import feature_card with context %}
+
+**CSS import**
+
+.. code-block:: css
+
+   @import '~@mozilla-protocol/core/protocol/css/components/feature-card';
+
+**Macro parameters**
 
 - title
     String indicating heading text (usually a translation id wrapped in ftl function).
@@ -1047,12 +1087,20 @@ Feature Card
 Card
 <<<<
 
-- macro import
-   ``{% from "macros-protocol.html" import card with context %}``
+**HTML import**
 
-- protocol import
-   ``@import '~@mozilla-protocol/core/protocol/css/components/card';``
-   ``@import '~@mozilla-protocol/core/protocol/css/templates/card-layout';``
+.. code-block:: html
+
+   {% from "macros-protocol.html" import card with context %}
+
+**CSS import**
+
+.. code-block:: css
+
+   @import '~@mozilla-protocol/core/protocol/css/components/card';
+   @import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
+
+**Macro parameters**
 
 - youtube_id
     String indicating the Youtube ID found at the end of a Youtube video URL. Used when we are embedding a video to the card rather than an image.
