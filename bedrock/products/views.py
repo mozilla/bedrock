@@ -6,7 +6,6 @@ from urllib.parse import quote_plus, unquote_plus
 
 from django.conf import settings
 from django.http import Http404, JsonResponse
-from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.decorators.http import require_POST, require_safe
 
@@ -26,8 +25,6 @@ from bedrock.newsletter.views import general_error, invalid_email_address
 from bedrock.products.forms import VPNWaitlistForm
 from lib import l10n_utils
 from lib.l10n_utils.fluent import ftl
-
-DEFAULT_LOCALE = "en-US"
 
 
 def vpn_available(request):
@@ -159,10 +156,7 @@ def resource_center_landing_view(request):
     # assign a whole new new value for ctx, becase render_args will not use that
     render_args = [request, template_name, ctx]
     render_kwargs = dict(
-        ftl_files=[
-            "products/vpn/resource-center",
-            "products/vpn/shared",
-        ],
+        ftl_files=["products/vpn/resource-center", "products/vpn/shared"],
     )
 
     if requested_locale not in active_locales:
@@ -208,7 +202,7 @@ def resource_center_article_view(request, slug):
 
     template_name = "products/vpn/resource-center/article.html"
 
-    locale = l10n_utils.get_locale(request)
+    requested_locale = l10n_utils.get_locale(request)
     active_locales_for_this_article = get_active_contentful_locales(
         classification=CONTENT_CLASSIFICATION_VPN,
         content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
@@ -217,18 +211,28 @@ def resource_center_article_view(request, slug):
     if not active_locales_for_this_article:
         raise Http404()
 
-    if locale not in active_locales_for_this_article:
-        _path = reverse(
-            "products.vpn.resource-center.article",
-            args=[slug],
-        )
-        return redirect(f"/{DEFAULT_LOCALE}{_path}")
+    ctx = {"active_locales": active_locales_for_this_article}
+
+    # Trade-off: define render params in one place now for stability, but we
+    # have to take care when updating `ctx` later - only do it by reference, not
+    # assign a whole new new value for ctx, becase render_args will not use that
+    render_args = [request, template_name, ctx]
+    render_kwargs = dict(
+        ftl_files=[
+            "products/vpn/resource-center",
+            "products/vpn/shared",
+        ],
+    )
+    if requested_locale not in active_locales_for_this_article:
+        # Calling render() early will redirect the user to the most
+        # appropriate default/alternative locale for their browser
+        return l10n_utils.render(*render_args, **render_kwargs)
 
     article_dict = {}
     try:
         article = ContentfulEntry.objects.get_entry_by_slug(
             slug=slug,
-            locale=locale,
+            locale=requested_locale,
             classification=CONTENT_CLASSIFICATION_VPN,
             content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
         )
@@ -239,17 +243,11 @@ def resource_center_article_view(request, slug):
         capture_exception(ex)
         raise Http404()
 
-    ctx = article_dict
+    ctx.update(article_dict)
     ctx.update(
         {
-            "active_locales": active_locales_for_this_article,
             "related_articles": [x.data for x in article.get_related_entries()],
         }
     )
 
-    return l10n_utils.render(
-        request,
-        template_name,
-        ctx,
-        ftl_files=["products/vpn/resource-center", "products/vpn/shared"],
-    )
+    return l10n_utils.render(*render_args, **render_kwargs)
