@@ -248,7 +248,7 @@ class Command(BaseCommand):
                     contentful_id=_contentful_id,
                     # DANGER: the _locale up till now is a Contentful locale
                     # not how we express it in Bedrock, so we need to remap it
-                    locale=self._update_locale_for_bedrock(_locale),
+                    locale=self._remap_locale_for_bedrock(_locale),
                 )
             q_obj.add(base_q, Q.OR)
 
@@ -268,7 +268,7 @@ class Command(BaseCommand):
             )
         return res[1]["contentful.ContentfulEntry"]
 
-    def _update_locale_for_bedrock(self, locale: str) -> str:
+    def _remap_locale_for_bedrock(self, locale: str) -> str:
         return CONTENTFUL_TO_BEDROCK_LOCALE_MAP.get(locale, locale)
 
     def _page_is_syncable(
@@ -388,7 +388,7 @@ class Command(BaseCommand):
 
             # Now we've done the check, let's convert any Contentful-specific
             # locale name into one we use in Bedrock before it reaches the database
-            _info["locale"] = self._update_locale_for_bedrock(_info["locale"])
+            _info["locale"] = self._remap_locale_for_bedrock(_info["locale"])
 
             extra_params = dict(
                 locale=_info["locale"],
