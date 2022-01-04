@@ -186,5 +186,4 @@ def flatten(urls_list):
         if isinstance(url, dict):
             yield url
         else:
-            for sub_url in url:
-                yield sub_url
+            yield from url
