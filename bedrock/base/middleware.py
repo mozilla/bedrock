@@ -105,7 +105,7 @@ class BasicAuthMiddleware:
 
             response = HttpResponse(status=401, content="<h1>Unauthorized. This site is in private demo mode.</h1>")
             realm = settings.APP_NAME or "bedrock-demo"
-            response["WWW-Authenticate"] = 'Basic realm="{}"'.format(realm)
+            response["WWW-Authenticate"] = f'Basic realm="{realm}"'
             return response
 
 

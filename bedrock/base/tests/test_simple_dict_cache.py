@@ -33,7 +33,7 @@ def custom_key_func(key, key_prefix, version):
 
 _caches_setting_base = {
     "default": {},
-    "prefix": {"KEY_PREFIX": "cacheprefix{}".format(os.getpid())},
+    "prefix": {"KEY_PREFIX": f"cacheprefix{os.getpid()}"},
     "v2": {"VERSION": 2},
     "custom_key": {"KEY_FUNCTION": custom_key_func},
     "custom_key2": {"KEY_FUNCTION": "bedrock.base.tests.test_simple_dict_cache.custom_key_func"},
@@ -324,11 +324,11 @@ class SimpleDictCacheTests(TestCase):
         # Create initial cache key entries. This will overflow the cache,
         # causing a cull.
         for i in range(1, initial_count):
-            cull_cache.set("cull%d" % i, "value", 1000)
+            cull_cache.set(f"cull{i}", "value", 1000)
         count = 0
         # Count how many keys are left in the cache.
         for i in range(1, initial_count):
-            if "cull%d" % i in cull_cache:  # noqa
+            if f"cull{i}" in cull_cache:  # noqa
                 count = count + 1
         self.assertEqual(count, final_count)
 

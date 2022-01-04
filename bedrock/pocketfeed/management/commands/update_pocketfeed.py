@@ -23,10 +23,10 @@ class Command(BaseCommand):
 
             if not options["quiet"]:
                 if updated:
-                    print("Refreshed %s articles from Pocket" % updated)
+                    print(f"Refreshed {updated} articles from Pocket")
 
                     if deleted:
-                        print("Deleted %s old articles" % deleted)
+                        print(f"Deleted {deleted} old articles")
                 else:
                     print("Pocket feed is already up to date")
         else:

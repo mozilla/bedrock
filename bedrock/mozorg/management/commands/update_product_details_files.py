@@ -92,7 +92,7 @@ class Command(BaseCommand):
                 return
         builds = len([locale for locale, build in self.file_storage.data("firefox_primary_builds.json").items() if version in build])
         if builds < min_builds:
-            raise ValueError("Too few builds for {}".format(version_key))
+            raise ValueError(f"Too few builds for {version_key}")
 
     def validate_data(self):
         self.file_storage.clear_cache()

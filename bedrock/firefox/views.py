@@ -512,7 +512,7 @@ class WhatsnewView(L10nTemplateView):
         ctx["analytics_version"] = analytics_version
         ctx["entrypoint"] = entrypoint
         ctx["campaign"] = campaign
-        ctx["utm_params"] = "utm_source={0}&utm_medium=referral&utm_campaign={1}&entrypoint={2}".format(entrypoint, campaign, entrypoint)
+        ctx["utm_params"] = f"utm_source={entrypoint}&utm_medium=referral&utm_campaign={campaign}&entrypoint={entrypoint}"
 
         variant = self.request.GET.get("v", None)
 

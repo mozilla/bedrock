@@ -33,4 +33,4 @@ class LeadershipPage(BasePage):
         return modal
 
     def is_biography_displayed(self, value):
-        return self.is_element_displayed(*(By.CSS_SELECTOR, '.mzp-c-modal .vcard.has-bio[data-id="{0}"]'.format(value)))
+        return self.is_element_displayed(*(By.CSS_SELECTOR, f'.mzp-c-modal .vcard.has-bio[data-id="{value}"]'))

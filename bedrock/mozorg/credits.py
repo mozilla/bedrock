@@ -14,7 +14,7 @@ class CreditsFile(ExternalFile):
     def validate_content(self, content):
         rows = list(csv.reader(content.strip().split("\n")))
         if len(rows) < 2200:  # it's 2273 as of now
-            raise ValueError("Much smaller file than expected. {0} rows.".format(len(rows)))
+            raise ValueError(f"Much smaller file than expected. {len(rows)} rows.")
 
         if len(rows[0]) != 2 or len(rows[-1]) != 2:
             raise ValueError("CSV Content corrupted.")

@@ -70,7 +70,7 @@ class BlogPostQuerySet(models.QuerySet):
         return self.filter(wp_blog_slug__in=blog_slugs)
 
     def filter_by_tags(self, *tags):
-        tag_qs = [Q(tags__contains='"{}"'.format(t)) for t in tags]
+        tag_qs = [Q(tags__contains=f'"{t}"') for t in tags]
         return self.filter(reduce(operator.or_, tag_qs))
 
 
@@ -157,7 +157,7 @@ class BlogPost(models.Model):
         ordering = ["-date"]
 
     def __str__(self):
-        return "%s: %s" % (self.blog_name, self.title)
+        return f"{self.blog_name}: {self.title}"
 
     def get_absolute_url(self):
         return self.link

@@ -52,10 +52,7 @@ DB_INFO_FILE = getenv("AWS_DB_JSON_DATA_FILE", f"{settings.DATA_PATH}/bedrock_db
 GIT_SHA = getenv("GIT_SHA")
 BUCKET_NAME = getenv("AWS_DB_S3_BUCKET", "bedrock-db-dev")
 REGION_NAME = os.getenv("AWS_DB_REGION", "us-west-2")
-S3_BASE_URL = "https://s3-{}.amazonaws.com/{}".format(
-    REGION_NAME,
-    BUCKET_NAME,
-)
+S3_BASE_URL = f"https://s3-{REGION_NAME}.amazonaws.com/{BUCKET_NAME}"
 
 
 def get_l10n_repo_info():
@@ -94,7 +91,7 @@ def get_extra_server_info():
         db_info["last_update"] = timeago.format(last_updated_timestamp)
         db_info["file_url"] = get_db_file_url(db_info["file_name"])
         for key, value in db_info.items():
-            server_info["db_%s" % key] = value
+            server_info[f"db_{key}"] = value
 
     return server_info
 

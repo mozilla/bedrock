@@ -26,7 +26,7 @@ def _sha256_sum(filename):
 
 def get_db_checksum(filename=None):
     filename = filename or DB_FILE
-    cache_key = "db_sum_%s" % filename
+    cache_key = f"db_sum_{filename}"
     db_sum = CACHE.get(cache_key)
     if not db_sum:
         db_sum = _sha256_sum(filename)

@@ -32,7 +32,7 @@ class Command(BaseCommand):
         self.output("Loading content cards into database")
         count = ContentCard.objects.refresh()
 
-        self.output("%s content cards successfully loaded" % count)
+        self.output(f"{count} content cards successfully loaded")
 
         repo.set_db_latest()
 

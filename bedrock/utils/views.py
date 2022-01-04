@@ -30,7 +30,7 @@ class VariationMixin:
             variation = self.request.GET.get("v")
             if variation in self.template_name_variations:
                 name, ext = self.template_name.rsplit(".", 1)
-                names = ["{0}-{1}.{2}".format(name, variation, ext)]
+                names = [f"{name}-{variation}.{ext}"]
 
         return names
 

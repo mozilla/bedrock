@@ -35,7 +35,7 @@ def release_notes_template(channel, product, version=None):
 
     dir = "firefox"
 
-    return "{dir}/releases/{channel}-notes.html".format(dir=dir, channel=channel.lower())
+    return f"{dir}/releases/{channel.lower()}-notes.html"
 
 
 def equivalent_release_url(release):
@@ -130,7 +130,7 @@ def release_notes(request, version, product="Firefox"):
 def system_requirements(request, version, product="Firefox"):
     release = get_release_or_404(version, product)
     dir = "firefox"
-    return l10n_utils.render(request, "{dir}/releases/system_requirements.html".format(dir=dir), {"release": release, "version": version})
+    return l10n_utils.render(request, f"{dir}/releases/system_requirements.html", {"release": release, "version": version})
 
 
 def latest_release(product="firefox", platform=None, channel=None):
@@ -184,9 +184,7 @@ def releases_index(request, product):
             ),
         }
 
-    return l10n_utils.render(
-        request, "{product}/releases/index.html".format(product=product.lower()), {"releases": sorted(releases.items(), reverse=True)}
-    )
+    return l10n_utils.render(request, f"{product.lower()}/releases/index.html", {"releases": sorted(releases.items(), reverse=True)})
 
 
 def nightly_feed(request):
@@ -205,7 +203,7 @@ def nightly_feed(request):
                 continue
 
             if note.is_public and note.tag:
-                note.link = "%s#note-%s" % (link, note.id)
+                note.link = f"{link}#note-{note.id}"
                 note.version = release.version
                 notes[note.id] = note
 

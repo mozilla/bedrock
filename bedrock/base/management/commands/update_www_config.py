@@ -16,7 +16,7 @@ from bedrock.utils.management.decorators import alert_sentry_on_exception
 
 def get_config_file_name(app_name=None):
     app_name = app_name or settings.APP_NAME or "bedrock-dev"
-    return os.path.join(settings.WWW_CONFIG_PATH, "waffle_configs", "%s.env" % app_name)
+    return os.path.join(settings.WWW_CONFIG_PATH, "waffle_configs", f"{app_name}.env")
 
 
 def get_config_values():
@@ -61,7 +61,7 @@ class Command(BaseCommand):
         count = refresh_db_values()
 
         if count:
-            self.output("%s configs successfully loaded" % count)
+            self.output(f"{count} configs successfully loaded")
         else:
             self.output("No configs found. Please try again later.")
 

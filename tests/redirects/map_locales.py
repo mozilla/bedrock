@@ -61,6 +61,6 @@ for locale in LOCALES:
     variants.extend(LOCALE_VARIANTS.get(locale, []))
     for variant in variants:
         # check the landing page redirects for each locale variant
-        _urls.append(url_test("/", "/{locale}/".format(locale=locale), req_headers={"Accept-Language": variant}))
+        _urls.append(url_test("/", f"/{locale}/", req_headers={"Accept-Language": variant}))
 
 URLS = flatten(_urls)

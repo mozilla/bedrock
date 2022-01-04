@@ -29,7 +29,7 @@ class Position(models.Model):
         )
 
     def __str__(self):
-        return "{}@{}".format(self.job_id, self.source)
+        return f"{self.job_id}@{self.source}"
 
     @property
     def location_list(self):

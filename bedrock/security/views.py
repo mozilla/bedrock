@@ -135,7 +135,7 @@ class ProductVersionView(LangFilesMixin, ListView):
         cxt = super().get_context_data(**kwargs)
         prod_name, version = self.kwargs["product"], self.kwargs["version"]
         cxt["is_obsolete"] = product_is_obsolete(prod_name, version)
-        cxt["product_name"] = "{0} {1}".format(cxt["product_versions"][0].product, version)
+        cxt["product_name"] = f"{cxt['product_versions'][0].product} {version}"
         cxt["product_slug"] = prod_name
         return cxt
 
@@ -175,8 +175,7 @@ class KVRedirectsView(CachedRedirectView):
         match = self.prod_ver_re.match(url_component)
         if match:
             product, version = match.groups()
-            version = "{0}.{1}".format(*version)
-            return dict(viewname="security.product-version-advisories", kwargs={"product": product, "version": version})
+            return dict(viewname="security.product-version-advisories", kwargs={"product": product, "version": f"{version[0]}.{version[1]}"})
 
         if url_component.endswith("ESR"):
             return dict(viewname="security.product-advisories", kwargs={"slug": url_component[:-3] + "-esr"})

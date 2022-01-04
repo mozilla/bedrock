@@ -92,7 +92,7 @@ class TestExistingNewsletterView(TestCase):
         # After successful confirm, ensure proper context var is set to display
         # confirmation-specific copy.
         get_newsletters.return_value = newsletters
-        url = "%s?confirm=1" % reverse("newsletter.existing.token", args=(self.token,))
+        url = f"{reverse('newsletter.existing.token', args=(self.token,))}?confirm=1"
         # noinspection PyUnresolvedReferences
         with patch.multiple("basket", request=DEFAULT) as basket_patches:
             with patch("lib.l10n_utils.render") as render:
@@ -278,8 +278,7 @@ class TestExistingNewsletterView(TestCase):
         self.assertEqual((self.token, self.user["email"]), args)
         self.assertTrue(kwargs["optout"])
         # Should redirect to the 'updated' view with unsub=1 and token
-        url = reverse("newsletter.updated") + "?unsub=1"
-        url += "&token=%s" % self.token
+        url = f"{reverse('newsletter.updated')}?unsub=1&token={self.token}"
         assert rsp["Location"] == url
 
     @patch("bedrock.newsletter.utils.get_newsletters")
@@ -365,7 +364,7 @@ class TestConfirmView(TestCase):
             confirm.return_value = {"status": "ok"}
             rsp = self.client.get(self.url)
             self.assertEqual(302, rsp.status_code)
-            self.assertTrue(rsp["Location"].endswith("%s?confirm=1" % reverse("newsletter.existing.token", kwargs={"token": self.token})))
+            self.assertTrue(rsp["Location"].endswith(f"{reverse('newsletter.existing.token', kwargs={'token': self.token})}?confirm=1"))
 
     def test_normal_with_query_params(self):
         """Confirm works with a valid token"""
@@ -375,8 +374,8 @@ class TestConfirmView(TestCase):
             self.assertEqual(302, rsp.status_code)
             self.assertTrue(
                 rsp["Location"].endswith(
-                    "%s?confirm=1&utm_tracking=oh+definitely+yes&"
-                    "utm_source=malibu" % reverse("newsletter.existing.token", kwargs={"token": self.token})
+                    f"{reverse('newsletter.existing.token', kwargs={'token': self.token})}"
+                    "?confirm=1&utm_tracking=oh+definitely+yes&utm_source=malibu"
                 )
             )
 

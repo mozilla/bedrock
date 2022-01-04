@@ -258,8 +258,8 @@ class FirefoxDesktop(_ProductDetails):
 
         # Bug 1345467 - Only allow specifically configured funnelcake builds
         if funnelcake_id:
-            fc_platforms = config("FUNNELCAKE_%s_PLATFORMS" % funnelcake_id, default="", parser=ListOf(str))
-            fc_locales = config("FUNNELCAKE_%s_LOCALES" % funnelcake_id, default="", parser=ListOf(str))
+            fc_platforms = config(f"FUNNELCAKE_{funnelcake_id}_PLATFORMS", default="", parser=ListOf(str))
+            fc_locales = config(f"FUNNELCAKE_{funnelcake_id}_LOCALES", default="", parser=ListOf(str))
             include_funnelcake_param = platform in fc_platforms and _locale in fc_locales
 
         # Check if direct download link has been requested
@@ -269,15 +269,15 @@ class FirefoxDesktop(_ProductDetails):
             transition_url = self.download_base_url_transition
             if funnelcake_id:
                 # include funnelcake in scene 2 URL
-                transition_url += "?f=%s" % funnelcake_id
+                transition_url += f"?f={funnelcake_id}"
 
             if locale_in_transition:
-                transition_url = "/%s%s" % (locale, transition_url)
+                transition_url = f"/{locale}{transition_url}"
 
             return transition_url
 
         # otherwise build a full download URL
-        prod_name = "firefox" if channel == "release" else "firefox-%s" % channel
+        prod_name = "firefox" if channel == "release" else f"firefox-{channel}"
         suffix = "latest-ssl"
         if is_msi:
             suffix = "msi-" + suffix
@@ -291,7 +291,7 @@ class FirefoxDesktop(_ProductDetails):
             # Use the stub installer for approved platforms
             # append funnelcake id to version if we have one
             if include_funnelcake_param:
-                suffix = "stub-f%s" % funnelcake_id
+                suffix = f"stub-f{funnelcake_id}"
             else:
                 suffix = "stub"
         elif channel == "nightly" and locale != "en-US":
@@ -301,7 +301,7 @@ class FirefoxDesktop(_ProductDetails):
             if is_msi:
                 suffix = "msi-" + suffix
 
-        product = "%s-%s" % (prod_name, suffix)
+        product = f"{prod_name}-{suffix}"
 
         return "?".join(
             [

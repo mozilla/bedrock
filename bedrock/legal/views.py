@@ -67,7 +67,7 @@ def fraud_report(request):
         # send a response to avoid problem described below.
         # @see https://bugzilla.mozilla.org/show_bug.cgi?id=873476 (3.2)
         response = redirect(reverse("legal.fraud-report"), template_vars)
-        response["Location"] += "?submitted=%s" % form_submitted
+        response["Location"] += f"?submitted={form_submitted}"
 
         return response
     else:

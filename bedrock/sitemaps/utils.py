@@ -126,7 +126,7 @@ def get_static_urls():
 
             path_prefix = path.split("/", 2)[0]
             nonlocale = path_prefix in settings.SUPPORTED_NONLOCALES
-            path = "/%s" % path
+            path = f"/{path}"
             if nonlocale:
                 locales = []
             else:

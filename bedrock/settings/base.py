@@ -488,7 +488,7 @@ if DEBUG:
 
 def set_whitenoise_headers(headers, path, url):
     if "/fonts/" in url or "/caldata/" in url:
-        cache_control = "public, max-age={}".format(604800)  # one week
+        cache_control = "public, max-age=604800"  # one week
         headers["Cache-Control"] = cache_control
 
     if url.startswith("/.well-known/matrix/"):

@@ -175,7 +175,7 @@ def update_db_from_file(filename):
     elif filename.endswith(".yml"):
         parser = parse_yml_file
     else:
-        raise RuntimeError("Unknown file type %s" % filename)
+        raise RuntimeError(f"Unknown file type {filename}")
 
     data, html = parser(filename)
     if "advisories" in data:
@@ -207,7 +207,7 @@ def get_files_to_delete_from_db(filenames):
     file_ids = set(get_ids_from_files(filenames))
     db_ids = set(SecurityAdvisory.objects.values_list("id", flat=True))
     to_delete = db_ids - file_ids
-    return ["mfsa{0}.md".format(fid) for fid in to_delete]
+    return [f"mfsa{fid}.md" for fid in to_delete]
 
 
 def delete_orphaned_products():
@@ -280,7 +280,7 @@ class Command(CronCommand):
             try:
                 update_db_from_file(mf)
             except Exception as e:
-                errors.append("ERROR parsing %s: %s" % (mf, e))
+                errors.append(f"ERROR parsing {mf}: {e}")
                 if not quiet:
                     sys.stdout.write("E")
                     sys.stdout.flush()
@@ -289,17 +289,17 @@ class Command(CronCommand):
                 sys.stdout.write(".")
                 sys.stdout.flush()
             updates += 1
-        printout("\nUpdated {0} files.".format(updates))
+        printout(f"\nUpdated {updates} files.")
 
         if not clear_db:
             deleted_files = get_files_to_delete_from_db(all_files)
             delete_files(deleted_files)
-            printout("Deleted {0} files.".format(len(deleted_files)))
+            printout(f"Deleted {len(deleted_files)} files.")
             num_products = delete_orphaned_products()
             if num_products:
-                printout("Deleted {0} orphaned products.".format(num_products))
+                printout(f"Deleted {num_products} orphaned products.")
 
         if errors:
-            raise CommandError("Encountered {0} errors:\n\n".format(len(errors)) + "\n==========\n".join(errors))
+            raise CommandError(f"Encountered {len(errors)} errors:\n\n" + "\n==========\n".join(errors))
 
         repo.set_db_latest()

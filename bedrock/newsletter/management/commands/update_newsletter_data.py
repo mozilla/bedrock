@@ -23,6 +23,6 @@ class Command(BaseCommand):
         count = Newsletter.objects.refresh(newsletters)
         if not options["quiet"]:
             if count:
-                print("Updated %d newsletters" % count)
+                print(f"Updated {count} newsletters")
             else:
                 print("Nothing to update")

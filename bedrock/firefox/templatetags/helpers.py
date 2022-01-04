@@ -150,7 +150,7 @@ def download_firefox(
     alt_channel = "" if channel == "release" else channel
     locale = locale or get_locale(ctx["request"])
     funnelcake_id = ctx.get("funnelcake_id", False)
-    dom_id = dom_id or "download-button-%s-%s" % ("desktop" if platform == "all" else platform, channel)
+    dom_id = dom_id or f"download-button-{'desktop' if platform == 'all' else platform}-{channel}"
 
     # Gather data about the build for each platform
     builds = []
@@ -174,7 +174,7 @@ def download_firefox(
     data = {
         "locale_name": locale_name,
         "version": version,
-        "product": "firefox-%s" % platform,
+        "product": f"firefox-{platform}",
         "builds": builds,
         "id": dom_id,
         "channel": alt_channel,
@@ -216,10 +216,10 @@ def download_firefox_thanks(ctx, dom_id=None, locale=None, alt_copy=None, button
     # if there's a funnelcake param in the page URL e.g. ?f=123
     if funnelcake_id:
         # include param in transitional URL e.g. /firefox/download/thanks/?f=123
-        transition_url += "?f=%s" % funnelcake_id
+        transition_url += f"?f={funnelcake_id}"
 
     if locale_in_transition:
-        transition_url = "/%s%s" % (locale, transition_url)
+        transition_url = f"/{locale}{transition_url}"
 
     download_link_direct = firefox_desktop.get_download_url(
         channel,
@@ -259,7 +259,7 @@ def download_firefox_desktop_list(ctx, channel="release", dom_id=None, locale=No
             the stub installer (for aurora).
 
     """
-    dom_id = dom_id or "download-platform-list-%s" % (channel)
+    dom_id = dom_id or f"download-platform-list-{channel}"
     locale = locale or get_locale(ctx["request"])
 
     # Make sure funnelcake_id is not passed as builds are often Windows only.

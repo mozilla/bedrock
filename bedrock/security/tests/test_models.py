@@ -50,7 +50,7 @@ class TestMitreCVE(TestCase):
         self.cve_id_order += 1
         products = products or ["Firefox 60", "Firefox 60.0.1"]
         return MitreCVE.objects.create(
-            id="CVE-2018-%s" % self.cve_id_order,
+            id=f"CVE-2018-{self.cve_id_order}",
             year=2018,
             order=self.cve_id_order,
             title="A Testing Problem",

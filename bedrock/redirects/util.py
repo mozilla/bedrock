@@ -102,7 +102,7 @@ def no_redirect(pattern, locale_prefix=True, re_flags=None):
         pattern = LOCALE_RE + pattern
 
     if re_flags:
-        pattern = "(?{})".format(re_flags) + pattern
+        pattern = f"(?{re_flags})" + pattern
 
     def _view(request, *args, **kwargs):
         return None
@@ -175,7 +175,7 @@ def redirect(
         pattern = LOCALE_RE + pattern
 
     if re_flags:
-        pattern = "(?{})".format(re_flags) + pattern
+        pattern = f"(?{re_flags})" + pattern
 
     view_decorators = []
     if cache_timeout is not None:

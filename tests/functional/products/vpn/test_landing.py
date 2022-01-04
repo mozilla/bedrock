@@ -12,7 +12,7 @@ from pages.products.vpn.landing import VPNLandingPage
     "country", [("us"), ("ca"), ("my"), ("nz"), ("sg"), ("gb"), ("de"), ("fr"), ("at"), ("be"), ("ch"), ("es"), ("it"), ("ie"), ("nl")]
 )
 def test_vpn_available_in_country(country, base_url, selenium):
-    page = VPNLandingPage(selenium, base_url, params="?geo={0}".format(country)).open()
+    page = VPNLandingPage(selenium, base_url, params=f"?geo={country}").open()
     # Hero
     assert not page.is_join_waitlist_hero_button_displayed
     assert page.is_get_vpn_hero_button_displayed

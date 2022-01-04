@@ -26,5 +26,5 @@ class PositionFactory(factory.django.DjangoModelFactory):
     @factory.lazy_attribute
     def apply_url(self):
         if self.source == "gh":
-            url = "https://boards.greenhouse.io/{}/jobs/{}".format(settings.GREENHOUSE_BOARD, self.job_id)
+            url = f"https://boards.greenhouse.io/{settings.GREENHOUSE_BOARD}/jobs/{self.job_id}"
             return url.format(self.job_id)

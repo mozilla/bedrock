@@ -271,7 +271,7 @@ class ProductRelease(models.Model):
         channel and major version with the highest minor version,
         or None if no such releases exist
         """
-        releases = ProductRelease.objects.product(product, self.channel).filter(version__startswith="%s." % self.major_version)
+        releases = ProductRelease.objects.product(product, self.channel).filter(version__startswith=f"{self.major_version}.")
         if releases:
             return sorted(releases, reverse=True, key=attrgetter("version_obj"))[0]
 
