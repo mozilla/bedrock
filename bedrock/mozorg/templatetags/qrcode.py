@@ -17,7 +17,7 @@ cache = caches["qrcode"]
 
 @library.global_function
 def qrcode(data, box_size=20):
-    key = sha1(f"{data}-{box_size}".encode("utf-8")).hexdigest()
+    key = sha1(f"{data}-{box_size}".encode()).hexdigest()
     svg = cache.get(key)
     if not svg:
         img = qr.make(data, image_factory=SvgPathImage, box_size=box_size)
