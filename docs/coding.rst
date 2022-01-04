@@ -295,7 +295,7 @@ may not need to use it at all. The ``box_size`` parameter is optional.
 image()
 ~~~~~~~
 
-We also have an image macro that should be imported with context if the image might need localization. This macro is mainly used to encapsulate the conditional logic needed for `Protocol macros <https://bedrock.readthedocs.io/en/latest/coding.html#working-with-protocol>`_ containing images.
+We also have an image macro, which is mainly used to encapsulate the conditional logic needed for `Protocol macros <https://bedrock.readthedocs.io/en/latest/coding.html#working-with-protocol>`_ containing images. You can also import the macro directly into a template.
 
 .. code-block:: jinja
 
@@ -312,7 +312,7 @@ We also have an image macro that should be imported with context if the image mi
         include_l10n=True
     ) }}
 
-Only **url** is required. By default, alt text will be an empty string, loading will use browser default ('eager'), and highres/l10n images will not be included.
+Only ``url`` is required. By default, alt text will be an empty string, loading will be determined by the browser, and highres/l10n images will not be included. For ``include_l10n=True`` to work, you must import the macro `with context`.
 
 Using Large Assets
 ------------------

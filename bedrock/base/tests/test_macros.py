@@ -22,6 +22,9 @@ EXPECTED_IMAGES = {
     "highres": """<img class="" src="/media/test.jpg" srcset="/media/test-high-res.jpg 1.5x" alt="">""",
     "l10n": """<img src="/media/img/l10n/en-US/test.jpg" alt="" />""",
     "external": """<img src="https://test.jpg" alt="" />""",
+    "l10n_highres": """<img class="" src="/media/img/l10n/en-US/test.jpg" srcset="/media/img/l10n/en-US/test-high-res.jpg 1.5x" alt="">""",
+    "highres_lazy": """<img class="" src="/media/test.jpg" srcset="/media/test-high-res.jpg 1.5x" alt="" loading="lazy">""",
+    "all_attributes": """<img class="test" src="/media/img/l10n/en-US/test.jpg" srcset="/media/img/l10n/en-US/test-high-res.jpg 1.5x" alt="test" width="64" height="64" loading="lazy">""",  # noqa: E501
 }
 
 
@@ -36,6 +39,12 @@ EXPECTED_IMAGES = {
         ("url='test.jpg', include_highres=True", EXPECTED_IMAGES["highres"]),
         ("url='test.jpg', include_l10n=True", EXPECTED_IMAGES["l10n"]),
         ("url='https://test.jpg'", EXPECTED_IMAGES["external"]),
+        ("url='test.jpg', include_highres=True, include_l10n=True", EXPECTED_IMAGES["l10n_highres"]),
+        ("url='test.jpg', include_highres=True, loading='lazy'", EXPECTED_IMAGES["highres_lazy"]),
+        (
+            "url='test.jpg', class='test', alt='test', loading='lazy', width='64', height='64',include_highres=True, include_l10n=True",
+            EXPECTED_IMAGES["all_attributes"],
+        ),
     ],
 )
 def test_markup(test_input, expected):
