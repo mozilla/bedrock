@@ -152,8 +152,7 @@ def resource_center_landing_view(request):
     requested_locale = l10n_utils.get_locale(request)
 
     # Trade-off: define render params in one place now for stability, but we
-    # have to take care when updating `ctx` later - only do it by reference, not
-    # assign a whole new new value for ctx, becase render_args will not use that
+    # have to take care when updating `ctx` later - only do it by reference
     render_args = [request, template_name, ctx]
     render_kwargs = dict(
         ftl_files=["products/vpn/resource-center", "products/vpn/shared"],
@@ -214,8 +213,7 @@ def resource_center_article_view(request, slug):
     ctx = {"active_locales": active_locales_for_this_article}
 
     # Trade-off: define render params in one place now for stability, but we
-    # have to take care when updating `ctx` later - only do it by reference, not
-    # assign a whole new new value for ctx, becase render_args will not use that
+    # have to take care when updating `ctx` later - only do it by reference
     render_args = [request, template_name, ctx]
     render_kwargs = dict(
         ftl_files=[
