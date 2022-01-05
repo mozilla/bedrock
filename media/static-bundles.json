@@ -404,6 +404,19 @@
     },
     {
       "files": [
+        "css/protocol/components/send-to-device.scss",
+        "css/firefox/whatsnew/whatsnew-96-en-mobile.scss"
+      ],
+      "name": "firefox_whatsnew_96_en_mobile"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-96-en-rally.scss"
+      ],
+      "name": "firefox_whatsnew_96_en_rally"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -1121,6 +1134,13 @@
         "js/base/mozilla-fxa-product-button-init.js"
       ],
       "name": "firefox_whatsnew_96_eu"
+    },
+    {
+      "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/firefox/whatsnew/whatsnew-96-en-experiment.js"
+      ],
+      "name": "firefox_whatsnew_96_en_experiment"
     },
     {
       "files": [
