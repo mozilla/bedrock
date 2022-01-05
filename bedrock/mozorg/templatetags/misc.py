@@ -886,6 +886,28 @@ def monitor_fxa_button(
 
 @library.global_function
 @jinja2.contextfunction
+def relay_fxa_button(
+    ctx, entrypoint, button_text, class_name=None, is_button_class=True, include_metrics=True, optional_parameters=None, optional_attributes=None
+):
+    """
+    Render a relay.firefox.com link with required params for FxA authentication.
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {{ monitor_fxa_button(entrypoint='mozilla.org-firefox-accounts', button_text='Sign In to Relay') }}
+    """
+    product_url = "https://relay.firefox.com/accounts/fxa/login/?process=login"
+    return _fxa_product_button(
+        product_url, entrypoint, button_text, class_name, is_button_class, include_metrics, optional_parameters, optional_attributes
+    )
+
+
+@library.global_function
+@jinja2.contextfunction
 def fxa_link_fragment(ctx, entrypoint, action="signup", optional_parameters=None):
     """
     Returns `href` and `data-mozillaonline-link` attributes as a string fragment.

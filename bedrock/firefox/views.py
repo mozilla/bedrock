@@ -460,6 +460,8 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx93-nl.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx95-de.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx95-en.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx96-de.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx96-fr.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in China
@@ -543,6 +545,10 @@ class WhatsnewView(L10nTemplateView):
                 template = "firefox/developer/whatsnew.html"
             else:
                 template = "firefox/whatsnew/index.html"
+        elif version.startswith("96.") and locale == "de":
+            template = "firefox/whatsnew/whatsnew-fx96-de.html"
+        elif version.startswith("96.") and locale == "fr":
+            template = "firefox/whatsnew/whatsnew-fx96-fr.html"
         elif version.startswith("95.") and locale == "de":
             template = "firefox/whatsnew/whatsnew-fx95-de.html"
         elif version.startswith("95.") and locale.startswith("en"):
