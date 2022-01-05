@@ -4,9 +4,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-// Lazyload images
-Mozilla.LazyLoad.init();
-
 //event handlers for voting widget on article pages
 const upvoteBtn = document.querySelector('.vpn-c-vote-btn.up');
 const downvoteBtn = document.querySelector('.vpn-c-vote-btn.down');

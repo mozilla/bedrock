@@ -17,7 +17,4 @@
             window.history.back();
         });
     }
-
-    // Lazyload images
-    Mozilla.LazyLoad.init();
 })();

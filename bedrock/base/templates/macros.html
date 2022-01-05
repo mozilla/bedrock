@@ -197,3 +197,40 @@
 
   </form>
 {%- endmacro %}
+
+{# Docs: https://bedrock.readthedocs.io/en/latest/coding.html#image #}
+{% macro image(
+  url,
+  alt="",
+  class=None,
+  width=None,
+  height=None,
+  loading=None,
+  include_highres=False,
+  include_l10n=False
+) -%}
+  {% if include_highres %}
+    {% set unclean = {
+      'alt': alt,
+      'class': class,
+      'width': width,
+      'height': height,
+      'loading': loading,
+      'l10n': include_l10n
+    } %}
+    {% set optional_attributes = dict() %}
+    {% for key, value in unclean.items() %}
+      {% if value is not none and value is not false %}{{ optional_attributes.update({ key: value }) }}{% endif %}
+    {% endfor %}
+    {{ high_res_img(url, optional_attributes) }}
+  {% else %}
+    {% if url.startswith('https')  %}
+      {% set src = url %}
+    {% elif include_l10n %}
+      {% set src = l10n_img(url) %}
+    {% else %}
+      {% set src = static(url) %}
+    {% endif %}
+    <img src="{{ src }}" alt="{{ alt }}" {% if class %}class="{{ class }}" {% endif %}{% if loading %}loading="{{ loading }}" {% endif %}{% if width %}width="{{ width }}" {% endif %}{% if height %}height="{{ height }}" {% endif %}/>
+  {% endif %}
+{%- endmacro %}

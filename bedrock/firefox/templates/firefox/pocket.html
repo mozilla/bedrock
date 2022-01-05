@@ -4,6 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+{% from "macros.html" import image with context %}
 {% from "macros-protocol.html" import card, call_out, split with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
@@ -101,7 +102,7 @@
     </div>
 
     <div class="mzp-c-hero-image">
-      {{ lazy_img(image_url='img/firefox/pocket/pocket-illo-mobile.png', include_highres_image=True, placeholder_url='img/placeholder.png') }}
+      {{ image(url='img/firefox/pocket/pocket-illo-mobile.png', include_highres=True, loading="lazy") }}
     </div>
   </section>
 

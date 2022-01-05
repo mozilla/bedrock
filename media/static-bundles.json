@@ -501,14 +501,12 @@
     },
     {
       "files": [
-        "css/firefox/home/master.scss",
-        "css/base/mozilla-lazy-image.scss"
+        "css/firefox/home/master.scss"
       ],
       "name": "firefox-master"
     },
     {
       "files": [
-        "css/base/mozilla-lazy-image.scss",
         "css/firefox/browsers-products.scss"
       ],
       "name": "firefox-browsers-products"
@@ -772,8 +770,7 @@
     },
     {
       "files": [
-        "css/firefox/more.scss",
-        "css/base/mozilla-lazy-image.scss"
+        "css/firefox/more.scss"
       ],
       "name": "more"
     },
@@ -932,7 +929,6 @@
     },
     {
       "files": [
-        "css/base/mozilla-lazy-image.scss",
         "css/contentful/firefox/t-card-layout.scss"
       ],
       "name": "firefox-t-card-layout"
@@ -955,8 +951,7 @@
     },
     {
       "files": [
-        "css/products/vpn/resource-center.scss",
-        "css/base/mozilla-lazy-image.scss"
+        "css/products/vpn/resource-center.scss"
       ],
       "name": "vpn-resource-center"
     },
@@ -1203,10 +1198,8 @@
       "files": [
         "protocol/js/protocol-modal.js",
         "protocol/js/protocol-newsletter.js",
-        "js/base/mozilla-lazy-load.js",
         "js/newsletter/form-protocol.js",
-        "js/mozorg/home/youtube.js",
-        "js/mozorg/home/home.js"
+        "js/mozorg/home/youtube.js"
       ],
       "name": "home"
     },
@@ -1222,9 +1215,7 @@
     {
       "files": [
         "protocol/js/protocol-modal.js",
-        "js/base/mozilla-lazy-load.js",
-        "js/firefox/features/tips/tips-youtube.js",
-        "js/firefox/features/tips/tips.js"
+        "js/firefox/features/tips/tips-youtube.js"
       ],
       "name": "firefox_tips"
     },
@@ -1260,9 +1251,7 @@
     {
       "files": [
         "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.js",
-        "js/base/mozilla-lazy-load.js",
-        "js/mozorg/about.js"
+        "js/newsletter/form-protocol.js"
       ],
       "name": "about"
     },
@@ -1323,7 +1312,6 @@
       "files": [
         "js/base/mozilla-fxa-product-button.js",
         "js/base/mozilla-fxa-product-button-init.js",
-        "js/base/mozilla-lazy-load.js",
         "protocol/js/protocol-sticky-promo.js",
         "js/firefox/sticky-promo.js",
         "js/firefox/home/master.js"
@@ -1465,9 +1453,7 @@
     {
       "files": [
         "protocol/js/protocol-newsletter.js",
-        "js/base/mozilla-lazy-load.js",
-        "js/newsletter/form-protocol.js",
-        "js/mozorg/moss.js"
+        "js/newsletter/form-protocol.js"
       ],
       "name": "moss"
     },
@@ -1522,7 +1508,6 @@
     {
       "files": [
         "protocol/js/protocol-modal.js",
-        "js/base/mozilla-lazy-load.js",
         "js/foundation/annual-report-2019-2020.es6.js"
       ],
       "name": "annual_report_2019_2020"
@@ -1542,10 +1527,8 @@
     },
     {
       "files": [
-        "js/base/mozilla-lazy-load.js",
         "js/base/mozilla-fxa-product-button.js",
-        "js/base/mozilla-fxa-product-button-init.js",
-        "js/firefox/pocket.js"
+        "js/base/mozilla-fxa-product-button-init.js"
       ],
       "name": "product_pocket"
     },
@@ -1570,7 +1553,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-lazy-load.js",
         "js/newsletter/confirm.js"
       ],
       "name": "newsletter-confirm"
@@ -1601,13 +1583,6 @@
         "js/firefox/campaign/unfck.js"
       ],
       "name": "firefox-unfck"
-    },
-    {
-      "files": [
-        "js/base/mozilla-lazy-load.js",
-        "js/firefox/more.js"
-      ],
-      "name": "more"
     },
     {
       "files": [
@@ -1643,21 +1618,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-lazy-load.js",
-        "js/contentful/lazyload-init.js"
-      ],
-      "name": "c-card"
-    },
-    {
-      "files": [
-        "js/base/mozilla-lazy-load.js",
-        "js/products/vpn/resource-center.js"
-      ],
-      "name": "vpn-resource-center"
-    },
-    {
-      "files": [
-        "js/base/mozilla-lazy-load.js",
         "js/products/vpn/resource-center-article.es6.js"
       ],
       "name": "vpn-resource-center-article"
