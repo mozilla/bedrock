@@ -148,20 +148,13 @@ def resource_center_landing_view(request):
         classification=CONTENT_CLASSIFICATION_VPN,
         content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
     )
-    ctx = {"active_locales": active_locales}
     requested_locale = l10n_utils.get_locale(request)
 
-    # Trade-off: define render params in one place now for stability, but we
-    # have to take care when updating `ctx` later - only do it by reference
-    render_args = [request, template_name, ctx]
-    render_kwargs = dict(
-        ftl_files=["products/vpn/resource-center", "products/vpn/shared"],
-    )
-
     if requested_locale not in active_locales:
-        # Calling render() early will redirect the user to the most
-        # appropriate default/alternative locale for their browser
-        return l10n_utils.render(*render_args, **render_kwargs)
+        return l10n_utils.redirect_to_best_locale(
+            request,
+            translations=active_locales,
+        )
 
     resource_articles = ContentfulEntry.objects.get_entries_by_type(
         locale=requested_locale,
@@ -185,15 +178,19 @@ def resource_center_landing_view(request):
         filtered_article_data[ARTICLE_GROUP_SIZE:],
     )
 
-    ctx.update(
-        {
-            "category_list": category_list,
-            "first_article_group": first_article_group,
-            "second_article_group": second_article_group,
-            "selected_category": escape(selected_category),
-        }
+    ctx = {
+        "active_locales": active_locales,
+        "category_list": category_list,
+        "first_article_group": first_article_group,
+        "second_article_group": second_article_group,
+        "selected_category": escape(selected_category),
+    }
+    return l10n_utils.render(
+        request,
+        template_name,
+        ctx,
+        ftl_files=["products/vpn/resource-center", "products/vpn/shared"],
     )
-    return l10n_utils.render(*render_args, **render_kwargs)
 
 
 def resource_center_article_view(request, slug):
@@ -210,23 +207,15 @@ def resource_center_article_view(request, slug):
     if not active_locales_for_this_article:
         raise Http404()
 
-    ctx = {"active_locales": active_locales_for_this_article}
-
-    # Trade-off: define render params in one place now for stability, but we
-    # have to take care when updating `ctx` later - only do it by reference
-    render_args = [request, template_name, ctx]
-    render_kwargs = dict(
-        ftl_files=[
-            "products/vpn/resource-center",
-            "products/vpn/shared",
-        ],
-    )
     if requested_locale not in active_locales_for_this_article:
         # Calling render() early will redirect the user to the most
         # appropriate default/alternative locale for their browser
-        return l10n_utils.render(*render_args, **render_kwargs)
+        return l10n_utils.redirect_to_best_locale(
+            request,
+            translations=active_locales_for_this_article,
+        )
 
-    article_dict = {}
+    ctx = {}
     try:
         article = ContentfulEntry.objects.get_entry_by_slug(
             slug=slug,
@@ -234,18 +223,26 @@ def resource_center_article_view(request, slug):
             classification=CONTENT_CLASSIFICATION_VPN,
             content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
         )
-        article_dict.update(article.data)
+        ctx.update(article.data)
     except ContentfulEntry.DoesNotExist as ex:
         # We shouldn't get this far, given active_locales_for_this_article,
         # so log it loudly before 404ing.
         capture_exception(ex)
         raise Http404()
 
-    ctx.update(article_dict)
     ctx.update(
         {
+            "active_locales": active_locales_for_this_article,
             "related_articles": [x.data for x in article.get_related_entries()],
         }
     )
 
-    return l10n_utils.render(*render_args, **render_kwargs)
+    return l10n_utils.render(
+        request,
+        template_name,
+        ctx,
+        ftl_files=[
+            "products/vpn/resource-center",
+            "products/vpn/shared",
+        ],
+    )

@@ -9,7 +9,7 @@ from django.test import override_settings
 from django.test.client import RequestFactory
 from django.urls import reverse
 
-from mock import ANY, Mock, patch
+from mock import Mock, patch
 
 from bedrock.contentful.constants import (
     CONTENT_CLASSIFICATION_VPN,
@@ -287,36 +287,20 @@ class TestVPNResourceListingView(TestCase):
         )
 
     def test_simple_get__for_unavailable_locale(self, render_mock):
-        self._request(locale="sk", expected_status=200)
-
-        # Note that this is an early call/early return, where the context
-        # lacks data for category_list, selected_category, and the two
-        # article groups
-        render_mock.assert_called_once_with(
-            ANY,
-            "products/vpn/resource-center/landing.html",
-            {"active_locales": ["en-US", "fr", "ja"]},
-            ftl_files=[
-                "products/vpn/resource-center",
-                "products/vpn/shared",
-            ],
+        resp = self._request(locale="sk", expected_status=302, path="/test-path/")
+        self.assertEqual(
+            resp._headers["location"],
+            ("Location", "/en-US/test-path/"),
         )
+        render_mock.assert_not_called()
 
     def test_simple_get__for_invalid_locale(self, render_mock):
-        self._request(locale="xx", expected_status=200)
-
-        # Note that this is an early call/early return, where the context
-        # lacks data for category_list, selected_category, and the two
-        # article groups
-        render_mock.assert_called_once_with(
-            ANY,
-            "products/vpn/resource-center/landing.html",
-            {"active_locales": ["en-US", "fr", "ja"]},
-            ftl_files=[
-                "products/vpn/resource-center",
-                "products/vpn/shared",
-            ],
+        resp = self._request(locale="xx", expected_status=302, path="/test-path/")
+        self.assertEqual(
+            resp._headers["location"],
+            ("Location", "/en-US/test-path/"),
         )
+        render_mock.assert_not_called()
 
     @override_settings(CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE=95)
     def test_simple_get__for_valid_locale_WITHOUT_enough_content(self, render_mock):
@@ -325,20 +309,13 @@ class TestVPNResourceListingView(TestCase):
         # percentage, we should send you to the default locale by calling render() early
         ContentfulEntry.objects.filter(locale="fr").last().delete()
         assert ContentfulEntry.objects.filter(locale="fr").count() < ContentfulEntry.objects.filter(locale="en-US").count()
-        self._request(locale="fr", expected_status=200)
 
-        # Note that this is an early call/early return, where the context
-        # lacks data for category_list, selected_category, and the two
-        # article groups
-        render_mock.assert_called_once_with(
-            ANY,
-            "products/vpn/resource-center/landing.html",
-            {"active_locales": ["en-US", "ja"]},  # fr is absent because it's not active
-            ftl_files=[
-                "products/vpn/resource-center",
-                "products/vpn/shared",
-            ],
+        resp = self._request(locale="fr", expected_status=302, path="/test-path/")
+        self.assertEqual(
+            resp._headers["location"],
+            ("Location", "/en-US/test-path/"),
         )
+        render_mock.assert_not_called()
 
     def test_category_filtering(self, render_mock):
 
@@ -396,19 +373,6 @@ class TestVPNResourceArticleView(TestCase):
                     data={"slug_for_test": f"slug-{i+1}-{locale}"},
                 )
 
-    def _request(
-        self,
-        locale,
-        path="/",
-        expected_status=200,
-    ):
-        req = RequestFactory().get(path)
-        req.locale = locale
-        slug = path.split("/")[-1]
-        resp = views.resource_center_article_view(req, slug)
-        assert resp.status_code == expected_status
-        return resp
-
     @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
     def test_appropriate_active_locales_is_in_context(self, render_mock):
         # ie, not the full set of available locales, but the ones specific to this page
@@ -442,30 +406,18 @@ class TestVPNResourceArticleView(TestCase):
 
     @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
     def test_simple_get__for_unavailable_locale(self, render_mock):
-        self._request("/sk/products/vpn/resource-center/slug-2/")
-
-        # Render is called early with the other locales that ARE available
-        render_mock.assert_called_once_with(
-            ANY,
-            "products/vpn/resource-center/article.html",
-            {"active_locales": ["en-US", "fr", "ja"]},
-            ftl_files=[
-                "products/vpn/resource-center",
-                "products/vpn/shared",
-            ],
+        resp = self.client.get("/de/products/vpn/resource-center/slug-2/")
+        self.assertEqual(
+            resp._headers["location"],
+            ("Location", "/en-US/products/vpn/resource-center/slug-2/"),  # Which will 404 as expected
         )
+        render_mock.assert_not_called()
 
     @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
     def test_simple_get__for_invalid_locale(self, render_mock):
-        self._request("/xx/products/vpn/resource-center/slug-2/")
-
-        # Render is called early with the other locales that ARE available
-        render_mock.assert_called_once_with(
-            ANY,
-            "products/vpn/resource-center/article.html",
-            {"active_locales": ["en-US", "fr", "ja"]},
-            ftl_files=[
-                "products/vpn/resource-center",
-                "products/vpn/shared",
-            ],
+        resp = self.client.get("/xx/products/vpn/resource-center/slug-2/")
+        self.assertEqual(
+            resp._headers["location"],
+            ("Location", "/en-US/xx/products/vpn/resource-center/slug-2/"),  # Which will 404 as expected
         )
+        render_mock.assert_not_called()
