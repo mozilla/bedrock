@@ -4,9 +4,11 @@
 
 import re
 from os.path import relpath, splitext
+from typing import List
 
 from django.conf import settings
 from django.http import HttpResponseRedirect
+from django.http.request import HttpRequest
 from django.shortcuts import render as django_render
 from django.template import TemplateDoesNotExist, loader
 from django.utils.translation.trans_real import parse_accept_lang_header
@@ -48,6 +50,15 @@ def render_to_string(template_name, context=None, request=None, using=None, ftl_
         else:
             context["fluent_l10n"] = fluent_l10n([locale, "en"], settings.FLUENT_DEFAULT_FILES)
     return loader.render_to_string(template_name, context, request, using)
+
+
+def redirect_to_best_locale(request: HttpRequest, translations: List[str]) -> HttpResponseRedirect:
+    # Note that translations is list of locale strings (eg ["en-GB", "ru", "fr"])
+    lang = get_best_translation(translations, get_accept_languages(request))
+    response = HttpResponseRedirect("/" + "/".join([lang, split_path(request.get_full_path())[1]]))
+    # Add the Vary header to avoid wrong redirects due to a cache
+    response["Vary"] = "Accept-Language"
+    return response
 
 
 def render(request, template, context=None, ftl_files=None, activation_files=None, **kwargs):
@@ -123,11 +134,7 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
         # Redirect to one of the user's accept languages or the site's default
         # language (en-US) if the current locale not active
         if request.locale not in translations:
-            lang = get_best_translation(translations, get_accept_languages(request))
-            response = HttpResponseRedirect("/" + "/".join([lang, split_path(request.get_full_path())[1]]))
-            # Add the Vary header to avoid wrong redirects due to a cache
-            response["Vary"] = "Accept-Language"
-            return response
+            return redirect_to_best_locale(request, translations)
 
         # Look for locale-specific template in app/templates/
         locale_tmpl = ".{}".format(request.locale).join(splitext(template))
