@@ -1055,13 +1055,9 @@ CONTENTFUL_HOMEPAGE_LOOKUP = {
 
 CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE = config(
     "CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE",
-    default="60",
+    default="1" if DEV is True else "60",
     parser=float,
 )
-
-if DEV is True:
-    # Effectively turn consider all locales with any contentful entries as active if we're in dev mode
-    CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE = 1.0
 
 RELEASE_NOTES_PATH = config("RELEASE_NOTES_PATH", default=data_path("release_notes"))
 RELEASE_NOTES_REPO = config("RELEASE_NOTES_REPO", default="https://github.com/mozilla/release-notes.git")
