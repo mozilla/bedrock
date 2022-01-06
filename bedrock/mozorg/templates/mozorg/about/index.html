@@ -20,12 +20,6 @@
   {{ css_bundle('about') }}
 {% endblock %}
 
-{% block page_banner %}
-  {% if show_pocket_banner %}
-    {% include 'includes/banners/pocket.html' %}
-  {% endif %}
-{% endblock %}
-
 {% block content %}
 <section class="mzp-c-hero t-mission" {% if variant %}data-variant="{{ variant }}"{% endif%}>
   <div class="mzp-l-content">
