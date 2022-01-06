@@ -12,7 +12,6 @@
 {% block page_title %}Internet für Menschen, nicht für Profit{% endblock %}
 {% block page_desc %}Mozilla ist die gemeinnützige Organisation hinter Firefox. Menschen sollten auch online die Kontrolle über ihr Leben haben. Dafür setzen wir uns ein.{% endblock %}
 
-{% set show_pocket_banner = switch('pocket-banner') %}
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 {% set show_fundraising_banner = switch('fundraising-banner-eoy2021') and donate_params and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
 {% set show_vpn_promo_banner = switch('vpn-promo-banner') %}
@@ -27,8 +26,6 @@
 
   {% if show_fundraising_banner %}
     {{ css_bundle('fundraising-banner') }}
-  {% elif show_pocket_banner %}
-    {{ css_bundle('pocket-banner') }}
   {% elif show_vpn_promo_banner %}
     {{ css_bundle('vpn-promo-banner') }}
   {% elif show_firefox_app_store_banner %}
@@ -160,8 +157,6 @@
 
   {% if show_fundraising_banner %}
     {{ js_bundle('fundraising-banner') }}
-  {% elif show_pocket_banner %}
-    {{ js_bundle('pocket-banner') }}
   {% elif show_vpn_promo_banner %}
     {{ js_bundle('vpn-promo-banner') }}
   {% elif show_firefox_app_store_banner %}
