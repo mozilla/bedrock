@@ -9,7 +9,8 @@ class SimpleDictCache(LocMemCache):
     """A local memory cache that doesn't pickle values.
 
     Only for use with simple immutable data structures that can be
-    inserted into a dict.
+    inserted into a dict. If you put something mutable in here, then
+    mutate it elsewhere, the cached data will also be changed.
     """
 
     def add(self, key, value, timeout=DEFAULT_TIMEOUT, version=None):

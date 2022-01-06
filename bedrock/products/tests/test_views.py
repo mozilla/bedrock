@@ -11,6 +11,11 @@ from django.urls import reverse
 
 from mock import Mock, patch
 
+from bedrock.contentful.constants import (
+    CONTENT_CLASSIFICATION_VPN,
+    CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+)
+from bedrock.contentful.models import ContentfulEntry
 from bedrock.mozorg.tests import TestCase
 from bedrock.products import views
 
@@ -107,6 +112,44 @@ class TestVPNResourceCenterHelpers(TestCase):
         entry.category = entry_category_name
         return entry
 
+    def test__filter_articles(self):
+
+        articles = {
+            "a": self._build_mock_entry("Category one"),
+            "b": self._build_mock_entry("category TWO"),
+            "c": self._build_mock_entry("Category three"),
+            "d": self._build_mock_entry("category TWO"),
+            "e": self._build_mock_entry("category TWO"),
+            "f": self._build_mock_entry("category TWO"),
+        }
+
+        article_list = articles.values()
+        self.assertEqual(
+            views._filter_articles(article_list, "category TWO"),
+            [
+                articles["b"],
+                articles["d"],
+                articles["e"],
+                articles["f"],
+            ],
+        )
+
+        self.assertEqual(
+            views._filter_articles(article_list, "Category one"),
+            [
+                articles["a"],
+            ],
+        )
+        self.assertEqual(
+            views._filter_articles(article_list, ""),
+            article_list,
+        )
+
+        self.assertEqual(
+            views._filter_articles(article_list, None),
+            article_list,
+        )
+
     def test__build_category_list(self):
         root_url = reverse("products.vpn.resource-center.landing")
         cases = [
@@ -182,3 +225,199 @@ class TestVPNResourceCenterHelpers(TestCase):
                     case["entry_list"],
                 )
                 self.assertEqual(output, case["expected"])
+
+
+@override_settings(CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE=60)
+@patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
+class TestVPNResourceListingView(TestCase):
+    def setUp(self):
+        for i in range(8):
+            for locale in ["en-US", "fr", "ja"]:
+                ContentfulEntry.objects.create(
+                    content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+                    category="Test Category",
+                    classification=CONTENT_CLASSIFICATION_VPN,
+                    locale=locale,
+                    contentful_id=f"entry_{i+1}",
+                    slug=f"slug-{i+1}",
+                    # We only get back the .data field, so let's put something useful in here to look for
+                    data={"slug_for_test": f"slug-{i+1}-{locale}"},
+                )
+
+    def _request(
+        self,
+        locale,
+        path="/",
+        expected_status=200,
+    ):
+        req = RequestFactory().get(path)
+        req.locale = locale
+        resp = views.resource_center_landing_view(req)
+        assert resp.status_code == expected_status
+        return resp
+
+    def test_simple_get__for_valid_locale_with_enough_content(self, render_mock):
+
+        self._request(locale="fr")
+        passed_context = render_mock.call_args_list[0][0][2]
+
+        self.assertEqual(passed_context["active_locales"], ["en-US", "fr", "ja"])
+        self.assertEqual(
+            passed_context["category_list"],
+            [{"name": "Test Category", "url": "/products/vpn/resource-center/?category=Test+Category"}],
+        )
+        self.assertEqual(passed_context["selected_category"], "")
+        self.assertEqual(
+            [x["slug_for_test"] for x in passed_context["first_article_group"]],
+            [
+                "slug-1-fr",
+                "slug-2-fr",
+                "slug-3-fr",
+                "slug-4-fr",
+                "slug-5-fr",
+                "slug-6-fr",
+            ],
+        )
+        self.assertEqual(
+            [x["slug_for_test"] for x in passed_context["second_article_group"]],
+            [
+                "slug-7-fr",
+                "slug-8-fr",
+            ],
+        )
+
+    def test_simple_get__for_unavailable_locale(self, render_mock):
+        resp = self._request(locale="sk", expected_status=302, path="/test-path/")
+        self.assertEqual(
+            resp._headers["location"],
+            ("Location", "/en-US/test-path/"),
+        )
+        render_mock.assert_not_called()
+
+    def test_simple_get__for_invalid_locale(self, render_mock):
+        resp = self._request(locale="xx", expected_status=302, path="/test-path/")
+        self.assertEqual(
+            resp._headers["location"],
+            ("Location", "/en-US/test-path/"),
+        )
+        render_mock.assert_not_called()
+
+    @override_settings(CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE=95)
+    def test_simple_get__for_valid_locale_WITHOUT_enough_content(self, render_mock):
+        # ie, if you go to the VRC for a language we're working on but which
+        # isn't active yet because it doesn't meet the activation threshold
+        # percentage, we should send you to the default locale by calling render() early
+        ContentfulEntry.objects.filter(locale="fr").last().delete()
+        assert ContentfulEntry.objects.filter(locale="fr").count() < ContentfulEntry.objects.filter(locale="en-US").count()
+
+        resp = self._request(locale="fr", expected_status=302, path="/test-path/")
+        self.assertEqual(
+            resp._headers["location"],
+            ("Location", "/en-US/test-path/"),
+        )
+        render_mock.assert_not_called()
+
+    def test_category_filtering(self, render_mock):
+
+        first = ContentfulEntry.objects.filter(locale="en-US").first()
+        first.category = "other category"
+        first.save()
+
+        last = ContentfulEntry.objects.filter(locale="en-US").last()
+        last.category = "other category"
+        last.save()
+
+        self._request(locale="en-US", path="/?category=other+category")
+        passed_context = render_mock.call_args_list[0][0][2]
+
+        self.assertEqual(passed_context["active_locales"], ["en-US", "fr", "ja"])
+        self.assertEqual(
+            passed_context["category_list"],
+            [
+                {"name": "Test Category", "url": "/products/vpn/resource-center/?category=Test+Category"},
+                {"name": "other category", "url": "/products/vpn/resource-center/?category=other+category"},
+            ],
+        )
+        self.assertEqual(passed_context["selected_category"], "other category")
+        self.assertEqual(
+            [x["slug_for_test"] for x in passed_context["first_article_group"]],
+            [
+                "slug-1-en-US",
+                "slug-8-en-US",
+            ],
+        )
+        self.assertEqual(
+            [x["slug_for_test"] for x in passed_context["second_article_group"]],
+            [],
+        )
+
+    def test_active_locales_is_in_context(self, render_mock):
+        self._request(locale="en-US")
+        passed_context = render_mock.call_args_list[0][0][2]
+        self.assertEqual(passed_context["active_locales"], ["en-US", "fr", "ja"])
+
+
+@override_settings(CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE=60)
+class TestVPNResourceArticleView(TestCase):
+    def setUp(self):
+        for i in range(8):
+            for locale in ["en-US", "fr", "ja"]:
+                ContentfulEntry.objects.create(
+                    content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+                    category="Test Category",
+                    classification=CONTENT_CLASSIFICATION_VPN,
+                    locale=locale,
+                    contentful_id=f"entry_{i+1}",
+                    slug=f"slug-{i+1}",
+                    # We only get back the .data field, so let's put something useful in here to look for
+                    data={"slug_for_test": f"slug-{i+1}-{locale}"},
+                )
+
+    @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
+    def test_appropriate_active_locales_is_in_context(self, render_mock):
+        # ie, not the full set of available locales, but the ones specific to this page
+
+        # Zap an entry and show that it's not available as a locale option for its locale siblings
+        ContentfulEntry.objects.get(locale="fr", slug="slug-4").delete()
+        self.client.get("/en-US/products/vpn/resource-center/slug-4/")
+        passed_context = render_mock.call_args_list[0][0][2]
+        self.assertEqual(passed_context["active_locales"], ["en-US", "ja"])
+
+        # Show that it is for other pages where all three locales are active
+        render_mock.reset_mock()
+        self.client.get("/en-US/products/vpn/resource-center/slug-2/")
+        passed_context = render_mock.call_args_list[0][0][2]
+        self.assertEqual(passed_context["active_locales"], ["en-US", "fr", "ja"])
+
+    def test_simple_get__no_active_locales_for_slug_at_all__gives_404(self):
+        # change all entries so that get_active_locales helper will return []
+        ContentfulEntry.objects.all().update(classification="something-that-will-not-match-query")
+        resp = self.client.get("/en-US/products/vpn/resource-center/slug-4/")
+        assert resp.status_code == 404
+
+    @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
+    def test_simple_get(self, render_mock):
+        resp = self.client.get("/ja/products/vpn/resource-center/slug-2/")
+        assert resp.status_code == 200  # From the Mock, but still not a 30x/40x
+        passed_context = render_mock.call_args_list[0][0][2]
+        self.assertEqual(passed_context["active_locales"], ["en-US", "fr", "ja"])
+        self.assertEqual(passed_context["slug_for_test"], "slug-2-ja")
+        self.assertEqual(passed_context["related_articles"], [])  # TODO: test independently
+
+    @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
+    def test_simple_get__for_unavailable_locale(self, render_mock):
+        resp = self.client.get("/de/products/vpn/resource-center/slug-2/")
+        self.assertEqual(
+            resp._headers["location"],
+            ("Location", "/en-US/products/vpn/resource-center/slug-2/"),  # Which will 404 as expected
+        )
+        render_mock.assert_not_called()
+
+    @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
+    def test_simple_get__for_invalid_locale(self, render_mock):
+        resp = self.client.get("/xx/products/vpn/resource-center/slug-2/")
+        self.assertEqual(
+            resp._headers["location"],
+            ("Location", "/en-US/xx/products/vpn/resource-center/slug-2/"),  # Which will 404 as expected
+        )
+        render_mock.assert_not_called()

@@ -64,7 +64,7 @@ CACHES = {
             "MAX_ENTRIES": 5000,
             "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
         },
-    }
+    },
 }
 
 # in case django-pylibmc is in use
@@ -1034,6 +1034,7 @@ CONTENTFUL_SPACE_ID = config("CONTENTFUL_SPACE_ID", raise_error=False)
 CONTENTFUL_SPACE_KEY = config("CONTENTFUL_SPACE_KEY", raise_error=False)
 CONTENTFUL_ENVIRONMENT = config("CONTENTFUL_ENVIRONMENT", default="master")
 CONTENTFUL_SPACE_API = ("preview" if DEV else "cdn") + ".contentful.com"
+CONTENTFUL_API_TIMEOUT = config("CONTENTFUL_API_TIMEOUT", default="5", parser=int)
 CONTENTFUL_CONTENT_TYPES = config(
     "CONTENTFUL_CONTENT_TYPES",
     default=CONTENTFUL_DEFAULT_CONTENT_TYPES,
@@ -1045,6 +1046,18 @@ CONTENTFUL_NOTIFICATION_QUEUE_REGION = config("CONTENTFUL_NOTIFICATION_QUEUE_REG
 CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID = config("CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID", default="", raise_error=False)
 CONTENTFUL_NOTIFICATION_QUEUE_SECRET_ACCESS_KEY = config("CONTENTFUL_NOTIFICATION_QUEUE_SECRET_ACCESS_KEY", default="", raise_error=False)
 CONTENTFUL_NOTIFICATION_QUEUE_WAIT_TIME = config("CONTENTFUL_NOTIFICATION_QUEUE_WAIT_TIME", default="10", parser=int, raise_error=False)
+
+CONTENTFUL_HOMEPAGE_LOOKUP = {
+    # TEMPORARY lookup table for which Contentful `connectHomepage` page ID to get for which locale
+    "en-US": "58YIvwDmzSDjtvpSqstDcL",
+    "de": "4k3CxqZGjxXOjR1I0dhyto",
+}
+
+CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE = config(
+    "CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE",
+    default="1" if DEV is True else "60",
+    parser=float,
+)
 
 RELEASE_NOTES_PATH = config("RELEASE_NOTES_PATH", default=data_path("release_notes"))
 RELEASE_NOTES_REPO = config("RELEASE_NOTES_REPO", default="https://github.com/mozilla/release-notes.git")

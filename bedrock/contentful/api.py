@@ -23,10 +23,26 @@ from bedrock.contentful.constants import (
 )
 from lib.l10n_utils import get_locale, render_to_string
 
-# Bedrock to Contentful locale map
-LOCALE_MAP = {
+# Some of Bedrock and Contentful's locale codes slightly differ, so we translate between them.
+# This is not the controlling list of which locales we read from Contentful - that's determined
+# by what Contentful has configured/enabled and we try to pull in all of what's offered.
+BEDROCK_TO_CONTENTFUL_LOCALE_MAP = {
     "de": "de-DE",
+    "fr": "fr-FR",
+    "zh-TW": "zh-Hant-TW",  # NB: we should move to zh-Hant-TW in Bedrock - https://github.com/mozilla/bedrock/issues/10891
+    "nl": "nl-NL",
+    "id": "id-ID",
+    "it": "it-IT",
+    "ja": "ja-JP",
+    "ko": "ko-KR",
+    "ms": "ms-MY",
+    "pl": "pl-PL",
+    "ru": "ru-RU",
+    "tr": "tr-TR",
+    "vi": "vi-VN",
 }
+CONTENTFUL_TO_BEDROCK_LOCALE_MAP = {v: k for k, v in BEDROCK_TO_CONTENTFUL_LOCALE_MAP.items()}
+
 ASPECT_RATIOS = {
     "1:1": "1-1",
     "3:2": "3-2",
@@ -85,6 +101,7 @@ def get_client(raw_mode=False):
             api_url=settings.CONTENTFUL_SPACE_API,
             raw_mode=raw_mode,
             content_type_cache=False,
+            timeout_s=settings.CONTENTFUL_API_TIMEOUT,
         )
 
     return client
@@ -92,10 +109,7 @@ def get_client(raw_mode=False):
 
 def contentful_locale(locale):
     """Returns the Contentful locale for the Bedrock locale"""
-    if locale.startswith("es-"):
-        return "es"
-
-    return LOCALE_MAP.get(locale, locale)
+    return BEDROCK_TO_CONTENTFUL_LOCALE_MAP.get(locale, locale)
 
 
 def _get_height(width, aspect):
@@ -447,6 +461,9 @@ class ContentfulPage:
             self.page_id,
             {
                 "include": 10,
+                "locale": self.locale,
+                # ie, get ONLY the page for the specificed locale, as long as
+                # the locale doesn't have a fallback configured in Contentful
             },
         )
 
@@ -558,8 +575,9 @@ class ContentfulPage:
             if _preview_image:
                 _seo_fields["image"] = _preview_image
 
-                # We don't need the preview_image key if we've had it in the past
-                _seo_fields.pop("preview_image", None)
+            # We don't need the preview_image key if we've had it in the past, and
+            # if reading it fails then we don't want it sticking around, either
+            _seo_fields.pop("preview_image", None)
             data.update({"seo": _seo_fields})
 
         data.update(

@@ -55,6 +55,7 @@ from bedrock.contentful.constants import (
     CONTENTFUL_SPACE_KEY="test_space_key",
     CONTENTFUL_ENVIRONMENT="test_environment",
     CONTENTFUL_SPACE_API="https://example.com/test/",
+    CONTENTFUL_API_TIMEOUT=987654321,
 )
 @patch("bedrock.contentful.api.contentful_api")
 def test_get_client(mock_contentful_api, raw_mode):
@@ -71,6 +72,7 @@ def test_get_client(mock_contentful_api, raw_mode):
         api_url="https://example.com/test/",
         raw_mode=raw_mode,
         content_type_cache=False,
+        timeout_s=987654321,
     )
 
 
@@ -88,19 +90,19 @@ def test_get_client__no_credentials(mock_contentful_api, raw_mode):
 
 
 @pytest.mark.parametrize(
-    "locale, expected",
+    "bedrock_locale, expected",
     (
         ("en-US", "en-US"),
         ("en-GB", "en-GB"),
         ("de", "de-DE"),
-        ("fr", "fr"),
+        ("fr", "fr-FR"),
         ("fr-CA", "fr-CA"),
-        ("es", "es"),
-        ("es-mx", "es"),
+        ("es-ES", "es-ES"),
+        ("es-MX", "es-MX"),
     ),
 )
-def test_contentful_locale(locale, expected):
-    assert contentful_locale(locale) == expected
+def test_contentful_locale(bedrock_locale, expected):
+    assert contentful_locale(bedrock_locale) == expected
 
 
 @pytest.mark.parametrize(
@@ -691,21 +693,32 @@ def basic_contentful_page(rf):
     return page
 
 
+@pytest.mark.parametrize("locale_to_patch", ("fr", "de-DE", "es-MX"))
 @patch("bedrock.contentful.api.set_current_request")
 @patch("bedrock.contentful.api.get_locale")
-def test_ContentfulPage__init(mock_get_locale, mock_set_current_request, rf):
+def test_ContentfulPage__init(
+    mock_get_locale,
+    mock_set_current_request,
+    locale_to_patch,
+    rf,
+):
 
+    mock_get_locale.side_effect = lambda x: x.locale
     mock_request = rf.get("/")
+    mock_request.locale = locale_to_patch
     page = ContentfulPage(mock_request, "test-page-id")
 
     mock_get_locale.assert_called_once_with(mock_request)
     mock_set_current_request.assert_called_once_with(mock_request)
     assert page.request == mock_request
     assert page.page_id == "test-page-id"
+    assert page.locale == locale_to_patch
 
 
-def test_ContentfulPage__page_property(basic_contentful_page):
+@pytest.mark.parametrize("locale_to_patch", ("fr", "de-DE", "es-MX"))
+def test_ContentfulPage__page_property(basic_contentful_page, locale_to_patch):
     page = basic_contentful_page
+    page.locale = locale_to_patch
     page.client = Mock()
     page.client.entry.return_value = "fake page data"
 
@@ -715,6 +728,7 @@ def test_ContentfulPage__page_property(basic_contentful_page):
         "test-page-id",
         {
             "include": 10,
+            "locale": locale_to_patch,
         },
     )
 

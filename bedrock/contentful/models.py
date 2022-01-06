@@ -17,8 +17,12 @@ class ContentfulEntryManager(models.Manager):
     get_entry_* and get_entries_* returns a QuerySet of ContentfulEntry records.
     """
 
-    def get_page_by_id(self, content_id):
-        return self.get(contentful_id=content_id).data
+    def get_page_by_id(self, content_id, locale=None):
+        kwargs = {"contentful_id": content_id}
+        if locale:
+            kwargs["locale"] = locale
+
+        return self.get(**kwargs).data
 
     def get_entry_by_slug(self, slug, locale, content_type, classification=None):
         kwargs = dict(
@@ -76,7 +80,7 @@ class ContentfulEntryManager(models.Manager):
 
 
 class ContentfulEntry(models.Model):
-    contentful_id = models.CharField(max_length=20, unique=True)
+    contentful_id = models.CharField(max_length=20)
     content_type = models.CharField(max_length=20)
     locale = models.CharField(max_length=5)
     last_modified = models.DateTimeField(default=now)
@@ -104,8 +108,11 @@ class ContentfulEntry(models.Model):
 
     objects = ContentfulEntryManager()
 
+    class Meta:
+        unique_together = ["contentful_id", "locale"]
+
     def __str__(self) -> str:
-        return f"ContentfulEntry {self.content_type}:{self.contentful_id}"
+        return f"ContentfulEntry {self.content_type}:{self.contentful_id}[{self.locale}]"
 
     def get_related_entries(self, order_by="last_modified"):
         """Find ContentfulEntry records that:
