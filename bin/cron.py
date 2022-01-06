@@ -53,7 +53,7 @@ HEALTH_FILE_BASE = f"{DATA_PATH}/last-run"
 TIMEOUT_SECS = 290  # Just shy of five minutes.
 
 
-sentry_dsn = config("SENTRY_DSN")
+sentry_dsn = config("SENTRY_DSN", raise_error=False)
 if sentry_dsn:
     # Set up Sentry logging if we can.
     sentry_logging = LoggingIntegration(
