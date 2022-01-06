@@ -22,7 +22,7 @@
 {% endblock %}
 
 {% block experiments %}
-{% if switch('experiment-firefox-whatsnew-96-en', ['en-US', 'en-GB', 'en-CA']) %}
+{% if switch('experiment-firefox-whatsnew-96-en', ['en-US', 'en-GB']) %}
   {{ js_bundle('firefox_whatsnew_96_en_experiment') }}
 {% endif %}
 {% endblock %}
@@ -30,7 +30,7 @@
 {% if variant %}
   {% set creative = 'whatsnew-96-v1-s2d' %}
 {% else %}
-{% set creative = 'whatsnew-96' %}
+  {% set creative = 'whatsnew-96' %}
 {% endif %}
 
 {% set android_url = firefox_adjust_url('android', creative) %}
