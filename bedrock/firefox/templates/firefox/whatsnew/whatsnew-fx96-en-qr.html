@@ -21,9 +21,6 @@
   {{ css_bundle('firefox_whatsnew_96_en_mobile') }}
 {% endblock %}
 
-{% set android_url = firefox_adjust_url('android', 'whatsnew-96-v2-qr') %}
-{% set ios_url = firefox_adjust_url('ios', 'whatsnew-96-v2-qr') %}
-
 {% block site_header %}{% endblock %}
 
 {% block wnp_content %}
@@ -40,10 +37,10 @@
     <div class="mobile-download-buttons-wrapper">
       <ul class="mobile-download-buttons">
         <li class="android">
-          {{ google_play_button(href=android_url, id='playStoreLink-primary') }}
+          {{ google_play_button(href='https://app.adjust.com/8abpl22?redirect=https://play.google.com/store/apps/details?id=org.mozilla.firefox&campaign=www.mozilla.org&adgroup=whatsnew-96-v2-qr', id='playStoreLink-primary') }}
         </li>
         <li class="ios">
-          <a id="appStoreLink-primary" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
+          <a id="appStoreLink-primary" href="https://app.adjust.com/5jpoe35?redirect=https://itunes.apple.com/us/app/firefox-private-safe-browser/id989804926&campaign=www.mozilla.org&adgroup=whatsnew-96-v2-qr" data-link-type="download" data-download-os="iOS">
             <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
           </a>
         </li>
