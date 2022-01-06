@@ -21,3 +21,37 @@ def test_relay_button_is_displayed_signed_in(locale, base_url, selenium):
 def test_fxa_button_is_displayed_signed_out(locale, base_url, selenium):
     page = FirefoxWhatsNew96Page(selenium, base_url, locale=locale, params="?signed-in=false").open()
     assert page.is_fxa_button_displayed_when_signed_out
+
+
+@pytest.mark.skip_if_not_firefox(reason="Whatsnew pages are shown to Firefox only.")
+@pytest.mark.nondestructive
+def test_send_to_device_success(base_url, selenium):
+    page = FirefoxWhatsNew96Page(selenium, base_url, locale="en-US", params="?v=1").open()
+    send_to_device = page.send_to_device
+    send_to_device.type_email("success@example.com")
+    send_to_device.click_send()
+    assert send_to_device.send_successful
+
+
+@pytest.mark.skip_if_not_firefox(reason="Whatsnew pages are shown to Firefox only.")
+@pytest.mark.nondestructive
+def test_send_to_device_failure(base_url, selenium):
+    page = FirefoxWhatsNew96Page(selenium, base_url, locale="en-US", params="?v=1").open()
+    send_to_device = page.send_to_device
+    send_to_device.type_email("invalid@email")
+    send_to_device.click_send(expected_result="error")
+    assert send_to_device.is_form_error_displayed
+
+
+@pytest.mark.skip_if_not_firefox(reason="Whatsnew pages are shown to Firefox only.")
+@pytest.mark.nondestructive
+def test_get_firefox_qr_code(base_url, selenium):
+    page = FirefoxWhatsNew96Page(selenium, base_url, locale="en-US", params="?v=2").open()
+    assert page.is_qr_code_displayed
+
+
+@pytest.mark.skip_if_not_firefox(reason="Whatsnew pages are shown to Firefox only.")
+@pytest.mark.nondestructive
+def test_get_rally_cta(base_url, selenium):
+    page = FirefoxWhatsNew96Page(selenium, base_url, locale="en-US", params="?v=3").open()
+    assert page.is_rally_cta_displayed

@@ -1,0 +1,70 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+{% from "macros.html" import google_play_button, send_to_device with context %}
+{% from "macros-protocol.html" import split with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}What’s new with Firefox{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}What’s new with Firefox{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_96_en_mobile') }}
+{% endblock %}
+
+{% block experiments %}
+{% if switch('experiment-firefox-whatsnew-96-en', ['en-US', 'en-GB']) %}
+  {{ js_bundle('firefox_whatsnew_96_en_experiment') }}
+{% endif %}
+{% endblock %}
+
+{% if variant %}
+  {% set creative = 'whatsnew-96-v1-s2d' %}
+{% else %}
+  {% set creative = 'whatsnew-96' %}
+{% endif %}
+
+{% set android_url = firefox_adjust_url('android', creative) %}
+{% set ios_url = firefox_adjust_url('ios', creative) %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+<section class="wnp-content-main mzp-t-content-xl">
+  {% call split(
+    block_class='c-main-content mzp-t-split-nospace mzp-l-split-center-on-sm-md',
+    media_class='mzp-l-split-h-center',
+    media_after=True,
+    media_include='firefox/whatsnew/includes/fx96-en/s2d.html'
+  ) %}
+    <h1 class="wnp-main-title">Jump back in with Firefox mobile</h1>
+    <p class="wnp-main-tagline">See your open tabs, bookmarks and favorite sites on your phone or tablet all in one place.</p>
+
+    <div class="mobile-download-buttons-wrapper">
+      <ul class="mobile-download-buttons">
+        <li class="android">
+          {{ google_play_button(href=android_url, id='playStoreLink-primary') }}
+        </li>
+        <li class="ios">
+          <a id="appStoreLink-primary" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
+            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
+          </a>
+        </li>
+      </ul>
+    </div>
+  {% endcall %}
+</section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew') }}
+{% endblock %}

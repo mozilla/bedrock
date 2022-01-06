@@ -1,0 +1,56 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/components/split';
+@import '~@mozilla-protocol/core/protocol/css/components/emphasis-box';
+@import 'includes/base';
+
+// * -------------------------------------------------------------------------- */
+// Main content
+
+.c-main-content {
+    .mzp-c-split-media {
+        @include at2x('/media/img/firefox/whatsnew/whatsnew96-en/watercolor.png', contain);
+        background-position: center center;
+        background-repeat: no-repeat;
+        padding: $layout-md;
+
+        @media #{$mq-lg} {
+            padding: $layout-xl;
+        }
+    }
+
+    .mzp-c-emphasis-box {
+        margin: 0 auto;
+        max-width: $content-xs;
+        min-width: 220px;
+    }
+
+    .send-to-device-input {
+        min-width: 0;
+    }
+}
+
+.wnp-main-title {
+    @include text-title-md;
+    color: get-theme('title-text-color');
+}
+
+.wnp-main-tagline {
+    @include text-body-lg;
+}
+
+.mobile-download-buttons-wrapper {
+    display: inline-block;
+}
+
+.mobile-download-buttons li {
+    padding-top: $spacing-sm;
+    display: inline-block;
+}
