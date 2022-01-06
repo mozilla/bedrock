@@ -65,7 +65,6 @@ urlpatterns = (
         LegalDocView.as_view(template_name="legal/terms/services.html", legal_doc_name="firefox_cloud_services_ToS"),
         name="legal.terms.services",
     ),
-    page("terms/vpn", "legal/terms/vpn.html"),
     path(
         "acceptable-use/",
         LegalDocView.as_view(template_name="legal/terms/acceptable-use.html", legal_doc_name="acceptable_use_policy"),
