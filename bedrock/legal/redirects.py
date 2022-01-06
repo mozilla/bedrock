@@ -11,4 +11,6 @@ redirectpatterns = (
     redirect(r"^about/legal/terms/firefox-hello", "privacy.archive.hello-2014-11"),
     # issue 5816, Issue 8418
     redirect(r"^about/logo", "https://mozilla.design/"),
+    # issue 11092
+    redirect(r"^about/legal/terms/vpn/?$", "legal.terms.mozilla-vpn"),
 )
