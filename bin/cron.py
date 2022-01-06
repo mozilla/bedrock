@@ -5,6 +5,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import datetime
+import logging
 import platform
 import sys
 from pathlib import Path
@@ -12,8 +13,10 @@ from subprocess import check_call
 from time import time
 
 import babis
+import sentry_sdk
 from apscheduler.schedulers.blocking import BlockingScheduler
 from db_s3_utils import DATA_PATH
+from sentry_sdk.integrations.logging import LoggingIntegration
 
 # ROOT path of the project. A pathlib.Path object.
 ROOT_PATH = Path(__file__).resolve().parents[1]
@@ -50,12 +53,33 @@ HEALTH_FILE_BASE = f"{DATA_PATH}/last-run"
 TIMEOUT_SECS = 290  # Just shy of five minutes.
 
 
+sentry_dsn = config("SENTRY_DSN")
+if sentry_dsn:
+    # Set up Sentry logging if we can.
+    sentry_logging = LoggingIntegration(
+        level=logging.DEBUG,  # Capture debug and above as breadcrumbs
+        event_level=logging.ERROR,  # Send errors and above as events
+    )
+    sentry_sdk.init(
+        dsn=sentry_dsn,
+        integrations=[sentry_logging],
+    )
+
+
 def set_updated_time(name):
-    check_call("touch {}-{}".format(HEALTH_FILE_BASE, name), shell=True, timeout=TIMEOUT_SECS)
+    try:
+        check_call("touch {}-{}".format(HEALTH_FILE_BASE, name), shell=True, timeout=TIMEOUT_SECS)
+    except Exception as ex:
+        logging.error(ex)
+        raise
 
 
 def call_command(command):
-    check_call("python {0} {1}".format(MANAGE, command), shell=True, timeout=TIMEOUT_SECS)
+    try:
+        check_call("python {0} {1}".format(MANAGE, command), shell=True, timeout=TIMEOUT_SECS)
+    except Exception as ex:
+        logging.error(ex)
+        raise
 
 
 class scheduled_job:
@@ -112,9 +136,13 @@ def schedule_database_jobs():
         if time_since > 21600:  # 6 hours
             command += " --all"
 
-        check_call(command, shell=True, timeout=TIMEOUT_SECS)
-        if not LOCAL_DB_UPDATE:
-            check_call("python bin/run-db-upload.py", shell=True, timeout=TIMEOUT_SECS)
+        try:
+            check_call(command, shell=True, timeout=TIMEOUT_SECS)
+            if not LOCAL_DB_UPDATE:
+                check_call("python bin/run-db-upload.py", shell=True, timeout=TIMEOUT_SECS)
+        except Exception as ex:
+            logging.error(ex)
+            raise
 
         if command.endswith("--all"):
             # must set this after command run so that it won't update
@@ -137,7 +165,11 @@ def schedule_file_jobs():
             if DB_DOWNLOAD_IGNORE_GIT:
                 command += " --ignore-git"
 
-            check_call(command, shell=True, timeout=TIMEOUT_SECS)
+            try:
+                check_call(command, shell=True, timeout=TIMEOUT_SECS)
+            except Exception as ex:
+                logging.error(ex)
+                raise
 
 
 def main(args):
