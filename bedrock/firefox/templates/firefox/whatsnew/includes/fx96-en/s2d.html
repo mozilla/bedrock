@@ -9,8 +9,7 @@
 <div class="mzp-c-emphasis-box">
   <h3>Get Firefox for mobile</h3>
 {% if show_send_to_device %}
-  <p>Email yourself a download link</p>
-  {{ send_to_device(include_title=False, message_set='fx-whatsnew-96', spinner_color='#ccc;', class='vertical', id='send-to-device') }}
+  {{ send_to_device(include_title=False, input_label='Email yourself a download link', message_set='fx-whatsnew-96', spinner_color='#ccc;', class='vertical', id='send-to-device') }}
 {% else %}
   <p>Scan the QR code to get started</p>
   <div class="qr-code-wrapper">
