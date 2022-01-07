@@ -15,21 +15,8 @@ $image-path: '/media/protocol/img';
 // Main content
 
 .c-main-content {
-    .mzp-c-split-media {
-        @include at2x('/media/img/firefox/whatsnew/whatsnew96-en/watercolor.png', contain);
-        background-position: center center;
-        background-repeat: no-repeat;
-        padding: $layout-md;
-
-        @media #{$mq-lg} {
-            padding: $layout-xl;
-        }
-    }
-
     .mzp-c-emphasis-box {
         margin: 0 auto;
-        max-width: $content-xs;
-        min-width: 220px;
     }
 
     .send-to-device-input {
@@ -53,4 +40,26 @@ $image-path: '/media/protocol/img';
 .mobile-download-buttons li {
     padding-top: $spacing-sm;
     display: inline-block;
+}
+
+@media #{$mq-md} {
+    .c-main-content {
+        .mzp-c-split-media {
+            @include at2x('/media/img/firefox/whatsnew/whatsnew96-en/watercolor.png', contain);
+            background-position: center center;
+            background-repeat: no-repeat;
+            padding: $layout-md;
+        }
+
+        .mzp-c-emphasis-box {
+            max-width: $content-xs;
+            min-width: 220px;
+        }
+    }
+}
+
+@media #{$mq-lg} {
+    .c-main-content .mzp-c-split-media {
+        padding: $layout-xl;
+    }
 }
