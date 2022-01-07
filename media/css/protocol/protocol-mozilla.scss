@@ -48,7 +48,15 @@ $image-path: '/media/protocol/img';
 }
 
 // style classes automatically added by python to match Protocol form error styles
-.errorlist,
+.errorlist {
+    @include white-links;
+    background-color: $form-red;
+    border-radius: $field-border-radius;
+    color: $color-white;
+    padding: $spacing-sm;
+    margin-bottom: $spacing-xl;
+}
+
 .error-msg {
     @include light-links;
     background-color: $form-red;
