@@ -50,12 +50,7 @@ $image-path: '/media/protocol/img';
 }
 
 .resource-center-wordmark {
-    @include image-replaced;
-    @include background-size(94px 32px);
-    background: transparent url('/media/img/logos/vpn/logo-with-wordmark.svg') top left no-repeat;
-    height: 32px;
     margin: 0 auto $spacing-lg;
-    width: 94px;
 
     @media #{$mq-md} {
         margin: 0 0 $spacing-xl;
