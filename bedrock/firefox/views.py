@@ -354,7 +354,7 @@ def firefox_all(request):
 
 
 def detect_channel(version):
-    match = re.match(r"\d{1,2}", version)
+    match = re.match(r"\d{1,3}", version)
     if match:
         num_version = int(match.group(0))
         if num_version >= 35:
@@ -493,7 +493,7 @@ class WhatsnewView(L10nTemplateView):
             ctx["active_locales"] = locale
 
         # add version to context for use in templates
-        match = re.match(r"\d{1,2}", version)
+        match = re.match(r"\d{1,3}", version)
         num_version = int(match.group(0)) if match else ""
         ctx["version"] = version
         ctx["num_version"] = num_version
