@@ -300,16 +300,16 @@ class TestWhatsNew(TestCase):
     def test_context_variables_whatsnew_nightly(self, render_mock):
         """Should pass the correct context variables for nightly channel"""
         req = self.rf.get("/en-US/firefox/whatsnew/")
-        self.view(req, version="72.0a1")
+        self.view(req, version="100.0a1")
         template = render_mock.call_args[0][1]
         ctx = render_mock.call_args[0][2]
         assert template == ["firefox/nightly/whatsnew.html"]
-        assert ctx["version"] == "72.0a1"
-        assert ctx["analytics_version"] == "72nightly"
-        assert ctx["entrypoint"] == "mozilla.org-whatsnew72nightly"
-        assert ctx["campaign"] == "whatsnew72nightly"
+        assert ctx["version"] == "100.0a1"
+        assert ctx["analytics_version"] == "100nightly"
+        assert ctx["entrypoint"] == "mozilla.org-whatsnew100nightly"
+        assert ctx["campaign"] == "whatsnew100nightly"
         assert ctx["utm_params"] == (
-            "utm_source=mozilla.org-whatsnew72nightly&utm_medium=referral&utm_campaign=whatsnew72nightly&entrypoint=mozilla.org-whatsnew72nightly"
+            "utm_source=mozilla.org-whatsnew100nightly&utm_medium=referral&utm_campaign=whatsnew100nightly&entrypoint=mozilla.org-whatsnew100nightly"
         )
 
     # end context variable tests
@@ -321,6 +321,14 @@ class TestWhatsNew(TestCase):
         """Should show nightly whatsnew template"""
         req = self.rf.get("/en-US/firefox/whatsnew/")
         self.view(req, version="68.0a1")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/nightly/whatsnew.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_nightly_100_0_a1_whatsnew(self, render_mock):
+        """Should show nightly whatsnew template"""
+        req = self.rf.get("/en-US/firefox/whatsnew/")
+        self.view(req, version="100.0a1")
         template = render_mock.call_args[0][1]
         assert template == ["firefox/nightly/whatsnew.html"]
 
@@ -350,6 +358,15 @@ class TestWhatsNew(TestCase):
         """Should show regular dev browser whatsnew template"""
         req = self.rf.get("/en-US/firefox/whatsnew/")
         self.view(req, version="68.0a2")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/developer/whatsnew.html"]
+
+    @override_settings(DEV=True)
+    @patch.dict(os.environ, SWITCH_DEV_WHATSNEW_68="False")
+    def test_fx_dev_browser_100_0_a2_whatsnew_off(self, render_mock):
+        """Should show regular dev browser whatsnew template"""
+        req = self.rf.get("/en-US/firefox/whatsnew/")
+        self.view(req, version="100.0a2")
         template = render_mock.call_args[0][1]
         assert template == ["firefox/developer/whatsnew.html"]
 
