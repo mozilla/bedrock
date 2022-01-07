@@ -27,6 +27,21 @@ describe('dnt-helper.js', function () {
             expect(Mozilla.dntEnabled(dnt, ua)).toBe(false);
         });
 
+        // sanity check for Firefox v100 UA string (issue 9575)
+        it('should return true for Fx100 with DNT set to true', function () {
+            const dnt = 1;
+            const ua =
+                'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:100.0) Gecko/20100101 Firefox/100.0';
+            expect(Mozilla.dntEnabled(dnt, ua)).toBe(true);
+        });
+
+        it('should return false for Fx100 with DNT set to true', function () {
+            const dnt = 0;
+            const ua =
+                'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:100.0) Gecko/20100101 Firefox/100.0';
+            expect(Mozilla.dntEnabled(dnt, ua)).toBe(false);
+        });
+
         // this test is required because of bug 887703
         it('should return false for Fx28 on Mac with DNT set to true', function () {
             const dnt = 1;
