@@ -34,7 +34,8 @@ describe('mozilla-client.js', function () {
                 tablet: 'Mozilla/5.0 (Tablet; rv:26.0) Gecko/26.0 Firefox/26.0'
             },
             modified:
-                'Mozilla/5.0 (Windows; U; ; de; rv:1.9.2.6) Gecko/20100625 Firefox/ Anonymisiert durch AlMiSoft Browser-Anonymisierer 37324401'
+                'Mozilla/5.0 (Windows; U; ; de; rv:1.9.2.6) Gecko/20100625 Firefox/ Anonymisiert durch AlMiSoft Browser-Anonymisierer 37324401',
+            v100: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:100.0) Gecko/20100101 Firefox/100.0'
         },
         // Other Gecko browsers
         camino: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10.4; en; rv:1.9.2.24) Gecko/20111114 Camino/2.1 (like Firefox/3.6.24)',
@@ -330,6 +331,7 @@ describe('mozilla-client.js', function () {
             test(uas.firefox.windows).toEqual('10.0');
             test(uas.firefox.osx).toEqual('23.0');
             test(uas.firefox.linux).toEqual('10.0');
+            test(uas.firefox.v100).toEqual('100.0');
         });
 
         it('should return a version number for Firefox on Maemo', function () {
@@ -379,6 +381,7 @@ describe('mozilla-client.js', function () {
             test(uas.firefox.windows).toEqual(10);
             test(uas.firefox.osx).toEqual(23);
             test(uas.firefox.linux).toEqual(10);
+            test(uas.firefox.v100).toEqual(100);
         });
 
         it('should return a version number for Firefox on Maemo', function () {
@@ -425,8 +428,8 @@ describe('mozilla-client.js', function () {
         };
 
         beforeEach(function () {
-            h.setAttribute('data-latest-firefox', '46.0.2');
-            h.setAttribute('data-esr-versions', '38.8.0 45.1.0');
+            h.setAttribute('data-latest-firefox', '95.1.2');
+            h.setAttribute('data-esr-versions', '78.1.2 91.4.1');
         });
 
         afterEach(function () {
@@ -435,37 +438,38 @@ describe('mozilla-client.js', function () {
         });
 
         it('should consider up to date if user version is equal to latest version', function () {
-            test(true, false, '46.0.2').toBeTruthy();
-            test(true, true, '38.8.0').toBeTruthy();
-            test(true, true, '45.1.0').toBeTruthy();
+            test(true, false, '95.1.2').toBeTruthy();
+            test(true, true, '78.1.2').toBeTruthy();
+            test(true, true, '91.4.1').toBeTruthy();
         });
 
         it('should consider up to date if user version is greater than latest version', function () {
-            test(true, false, '46.0.3').toBeTruthy();
-            test(true, false, '47.0').toBeTruthy();
-            test(true, true, '38.9.0').toBeTruthy();
-            test(true, true, '45.2.0').toBeTruthy();
+            test(true, false, '96.0.1').toBeTruthy();
+            test(true, false, '100.0').toBeTruthy();
+            test(true, false, '100.0.1').toBeTruthy();
+            test(true, true, '92.1.2').toBeTruthy();
+            test(true, true, '102.0.1').toBeTruthy();
         });
 
         it('should consider up to date if user version is slightly less than latest version but strict option is false', function () {
-            test(false, false, '46.0.1').toBeTruthy();
-            test(false, false, '46.0').toBeTruthy();
-            test(false, true, '38.7.0').toBeTruthy();
-            test(false, true, '45.0').toBeTruthy();
+            test(false, false, '95.1.1').toBeTruthy();
+            test(false, false, '95.0').toBeTruthy();
+            test(false, true, '78.0.1').toBeTruthy();
+            test(false, true, '91.3.0').toBeTruthy();
         });
 
         it('should consider outdated if user version is slightly less than latest version and strict option is true', function () {
-            test(true, false, '46.0.1').toBeFalsy();
-            test(true, false, '46.0').toBeFalsy();
-            test(true, false, '38.7.0').toBeFalsy();
-            test(true, false, '45.0').toBeFalsy();
+            test(true, false, '95.1.1').toBeFalsy();
+            test(true, false, '95.0').toBeFalsy();
+            test(true, true, '78.1.1').toBeFalsy();
+            test(true, true, '78.0').toBeFalsy();
         });
 
         it('should consider outdated if user version is much less than latest version, regardless of strict option', function () {
-            test(true, false, '40.0.2').toBeFalsy();
-            test(false, false, '40.0.2').toBeFalsy();
-            test(true, true, '31.7.0').toBeFalsy();
-            test(false, true, '31.7.0').toBeFalsy();
+            test(true, false, '94.1.2').toBeFalsy();
+            test(false, false, '94.1.2').toBeFalsy();
+            test(true, true, '61.1.5').toBeFalsy();
+            test(false, true, '61.1.5').toBeFalsy();
         });
 
         it('should consider outdated if user version is not found', function () {
@@ -477,8 +481,8 @@ describe('mozilla-client.js', function () {
         const h = document.documentElement;
 
         beforeEach(function () {
-            h.setAttribute('data-latest-firefox', '46.0.2');
-            h.setAttribute('data-esr-versions', '38.8.0 45.1.0');
+            h.setAttribute('data-latest-firefox', '95.1.2');
+            h.setAttribute('data-esr-versions', '78.1.2 91.4.1');
             jasmine.clock().install();
         });
 
@@ -494,7 +498,7 @@ describe('mozilla-client.js', function () {
             const callback2 = jasmine.createSpy('callback2');
             const result = {
                 accurate: false, // Because the mozUITour API doesn't get called in tests, this won't be true
-                version: '46.0.2',
+                version: '95.1.2',
                 channel: 'release',
                 distribution: undefined,
                 isUpToDate: true,
@@ -505,7 +509,7 @@ describe('mozilla-client.js', function () {
                 true
             );
             spyOn(window.Mozilla.Client, '_getFirefoxVersion').and.returnValue(
-                '46.0.2'
+                '95.1.2'
             );
             window.Mozilla.Client.getFirefoxDetails(callback1);
             jasmine.clock().tick(500);
@@ -704,6 +708,13 @@ describe('mozilla-client.js', function () {
                 '56.0'
             );
             expect(result4).toBeTruthy();
+
+            const result5 = Mozilla.Client.isFirefoxOutOfDate(
+                '99.0.1',
+                1,
+                '100.0'
+            );
+            expect(result5).toBeTruthy();
         });
 
         it('should return false if client version is greater than the major version considered out of date', function () {
@@ -734,6 +745,13 @@ describe('mozilla-client.js', function () {
                 '56.0.1'
             );
             expect(result4).toBeFalsy();
+
+            const result5 = Mozilla.Client.isFirefoxOutOfDate(
+                '100.0',
+                1,
+                '99.0.1'
+            );
+            expect(result5).toBeFalsy();
         });
     });
 
@@ -773,6 +791,13 @@ describe('mozilla-client.js', function () {
                 '56.0'
             );
             expect(result5).toBeTruthy();
+
+            const result6 = Mozilla.Client.isFirefoxURLOutOfDate(
+                1,
+                '/firefox/100.0/',
+                '101.0'
+            );
+            expect(result6).toBeTruthy();
         });
 
         it('should return false if URL version is greater than the major version considered out of date', function () {
@@ -810,6 +835,13 @@ describe('mozilla-client.js', function () {
                 '56.0'
             );
             expect(result5).toBeFalsy();
+
+            const result6 = Mozilla.Client.isFirefoxURLOutOfDate(
+                2,
+                '/firefox/100.0/',
+                '99.0'
+            );
+            expect(result6).toBeFalsy();
         });
 
         it('should return false if the URL version is invalid', function () {
