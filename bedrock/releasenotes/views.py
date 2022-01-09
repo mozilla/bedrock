@@ -59,10 +59,11 @@ def get_download_url(release):
 
 
 def show_android_sys_req(version):
-    match = re.match(r"\d{1,2}", version)
-    if match:
-        num_version = int(match.group(0))
-        return num_version >= 46
+    if version:
+        match = re.match(r"\d{1,3}", version)
+        if match:
+            num_version = int(match.group(0))
+            return num_version >= 46
 
     return False
 
