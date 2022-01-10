@@ -4,11 +4,11 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-const navOpenBtn = document.querySelector('.global-nav-mobile-menu-btn');
-const mobileNavWrapper = document.querySelector('.mobile-nav-wrapper');
-const mobileNav = document.querySelector('.mobile-nav');
-const navCloseBtn = document.querySelector('.mobile-nav-close-btn');
-const contentWrapper = document.querySelector('body');
+let navOpenBtn;
+let mobileNavWrapper;
+let mobileNav;
+let navCloseBtn;
+let contentWrapper;
 
 const TAB = 9;
 const ESC = 27;
@@ -21,7 +21,7 @@ function detectClickOutside(event) {
 
 function handleMenuOpen() {
     mobileNavWrapper.classList.add('active');
-    mobileNav.setAttribute('aria-expanded', true);
+    navOpenBtn.setAttribute('aria-expanded', true);
     contentWrapper.classList.add('mobile-nav-open');
     document.addEventListener('click', detectClickOutside);
     window.addEventListener('keydown', handleKeyDown);
@@ -36,16 +36,16 @@ function handleMenuOpen() {
 
 function handleMenuClose() {
     mobileNav.classList.remove('active');
-    mobileNav.setAttribute('aria-expanded', false);
+    navOpenBtn.setAttribute('aria-expanded', false);
     mobileNavWrapper.style.opacity = 0;
     document.removeEventListener('click', detectClickOutside);
     window.removeEventListener('keydown', handleKeyDown);
 
-    // move focus to close button when modal is closed need to use setTimeout to get the animation working correctly
+    // move focus to open button when modal is closed need to use setTimeout to get the animation working correctly
     setTimeout(function () {
         mobileNavWrapper.classList.remove('active');
         contentWrapper.classList.remove('mobile-nav-open');
-        navCloseBtn.focus();
+        navOpenBtn.focus();
     }, 250);
 }
 
@@ -82,7 +82,6 @@ function handleKeyDown(e) {
         }
     }
 
-    // function handleForwardTab(){}
     switch (e.keyCode) {
         case TAB:
             if (e.shiftKey) {
@@ -99,5 +98,17 @@ function handleKeyDown(e) {
     }
 }
 
-navOpenBtn.addEventListener('click', handleMenuOpen, false);
-navCloseBtn.addEventListener('click', handleMenuClose, false);
+const init = function () {
+    // set element references
+    navOpenBtn = document.querySelector('.global-nav-mobile-menu-btn');
+    mobileNavWrapper = document.querySelector('.mobile-nav-wrapper');
+    mobileNav = document.querySelector('.mobile-nav');
+    navCloseBtn = document.querySelector('.mobile-nav-close-btn');
+    contentWrapper = document.querySelector('body');
+
+    // add event listeners
+    navOpenBtn.addEventListener('click', handleMenuOpen, false);
+    navCloseBtn.addEventListener('click', handleMenuClose, false);
+};
+
+export default init;

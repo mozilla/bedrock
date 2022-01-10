@@ -20,6 +20,7 @@ module.exports = function (config) {
             'media/js/base/mozilla-utils.js',
             'media/js/base/mozilla-client.js',
             'media/js/base/search-params.js',
+            'media/js/externalpages/pocket/base.js',
             // end common dependencies.
             'media/js/base/banners/mozilla-banner.js',
             'media/js/base/mozilla-run.js',
@@ -35,6 +36,7 @@ module.exports = function (config) {
             'media/js/base/stub-attribution.js',
             'media/js/firefox/all/all-downloads-unified.js',
             'media/js/firefox/new/common/thanks.js',
+            'media/js/externalpages/pocket/mobile-nav.es6.js',
             'tests/unit/spec/base/core-datalayer-page-id.js',
             'tests/unit/spec/base/core-datalayer.js',
             'tests/unit/spec/base/dnt-helper.js',
@@ -59,6 +61,7 @@ module.exports = function (config) {
             'tests/unit/spec/careers/params.js',
             'tests/unit/spec/firefox/all/all-downloads-unified.js',
             'tests/unit/spec/firefox/new/common/thanks.js',
+            'tests/unit/spec/externalpages/pocket/mobile-nav.es6.js',
             {
                 pattern: 'node_modules/sinon/pkg/sinon.js',
                 watched: false,

@@ -45,6 +45,10 @@
   <body>
     <main class="main-container">{% block content %}{% endblock %}</main>
 
+     {% block base_js %}
+      {{ js_bundle('pocket-base') }}
+     {% endblock %}
+
      {% block js %}{% endblock %}
   </body>
 </html>
