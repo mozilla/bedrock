@@ -735,6 +735,24 @@
     },
     {
       "files": [
+        "css/protocol/components/split.scss"
+      ],
+      "name": "protocol_split"
+    },
+    {
+      "files": [
+        "css/protocol/components/cards.scss"
+      ],
+      "name": "protocol_card"
+    },
+    {
+      "files": [
+        "css/protocol/components/call-out.scss"
+      ],
+      "name": "protocol_call_out"
+    },
+    {
+      "files": [
         "css/firefox/welcome10.scss"
       ],
       "name": "firefox_welcome_page10"
