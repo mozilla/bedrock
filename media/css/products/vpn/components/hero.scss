@@ -27,7 +27,7 @@ $image-path: '/media/protocol/img';
 
 .vpn-hero-heading {
     @include image-replaced;
-    background: transparent url('/media/img/logos/vpn/logo-with-wordmark.svg') top left no-repeat;
+    background: transparent url('/media/protocol/img/logos/mozilla/vpn/logo-word-hor-stack.svg') top left no-repeat;
     @include background-size(175px 60px);
     height: 60px;
     margin: 0 auto $spacing-lg;
