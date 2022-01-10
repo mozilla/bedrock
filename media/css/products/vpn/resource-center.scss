@@ -55,6 +55,11 @@ $image-path: '/media/protocol/img';
     @media #{$mq-md} {
         margin: 0 0 $spacing-xl;
     }
+
+    // patch fix to center the word-mark. Similar to issue #10666
+    @media screen and (max-width: #{$screen-md}) {
+        background-position: top center;
+    }
 }
 
 .resource-center-cta {
