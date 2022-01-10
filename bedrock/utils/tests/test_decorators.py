@@ -10,12 +10,12 @@ from bedrock.utils.management.decorators import alert_sentry_on_exception
 
 
 @alert_sentry_on_exception
-class TestCommandWithException(BaseCommand):
+class _TestCommandWithException(BaseCommand):
     def handle(self, *args, **options):
         raise Exception("This is a test")
 
 
-class TestCommandWithoutException(BaseCommand):
+class _TestCommandWithoutException(BaseCommand):
     def foo(self):
         # just for mocking in tests
         pass
@@ -30,7 +30,7 @@ def test_sentry_alerting_base_command__exception_raised(mock_capture_exception):
     assert not mock_capture_exception.called
 
     try:
-        TestCommandWithException().handle()
+        _TestCommandWithException().handle()
         assert False, "Expected an exception to have been raised"
     except Exception as ex:
         # The same exception raised should have been passed to Sentry
@@ -42,7 +42,7 @@ def test_sentry_alerting_base_command__no_exception_raised(mock_capture_exceptio
 
     assert not mock_capture_exception.called
 
-    command = TestCommandWithoutException()
+    command = _TestCommandWithoutException()
     command.foo = Mock()
     command.handle()
 
