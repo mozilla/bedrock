@@ -4,8 +4,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-'use strict';
-
 module.exports = function (config) {
     config.set({
         // Karma configuration
@@ -61,6 +59,8 @@ module.exports = function (config) {
             'tests/unit/spec/base/send-to-device.js',
             'tests/unit/spec/base/site.js',
             'tests/unit/spec/base/stub-attribution.js',
+            'tests/unit/spec/careers/filters.js',
+            'tests/unit/spec/careers/params.js',
             'tests/unit/spec/firefox/all/all-downloads-unified.js',
             'tests/unit/spec/firefox/new/common/thanks.js',
             {

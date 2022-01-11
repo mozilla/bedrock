@@ -10,8 +10,6 @@
  */
 
 describe('mozilla-fxa.js', function () {
-    'use strict';
-
     describe('FxaState.applyStateToBody', function () {
         beforeEach(function () {
             document.body.classList.add('js', 'state-fxa-default');

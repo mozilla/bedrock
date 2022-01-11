@@ -72,11 +72,20 @@ module.exports = {
             files: [
                 'media/js/firefox/welcome/**/*.js',
                 'media/js/firefox/whatsnew/**/*.js',
-                'media/js/firefox/firstrun/**/*.js',
-                'tests/unit/**/*.js'
+                'media/js/firefox/firstrun/**/*.js'
             ],
             env: {
                 es2017: true
+            }
+        },
+        {
+            // JS Karma test files.
+            files: ['tests/unit/**/*.js'],
+            env: {
+                es2017: true
+            },
+            parserOptions: {
+                sourceType: 'module'
             }
         },
         {

@@ -12,8 +12,6 @@
 /* global sinon */
 
 describe('mozilla-pixel.js', function () {
-    'use strict';
-
     afterEach(function () {
         document.querySelectorAll('.moz-px').forEach((e) => {
             e.parentNode.removeChild(e);

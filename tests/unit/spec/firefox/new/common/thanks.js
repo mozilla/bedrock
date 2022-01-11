@@ -10,8 +10,6 @@
  */
 
 describe('thanks.js', function () {
-    'use strict';
-
     describe('shouldAutoDownload', function () {
         it('should return true for supported platforms', function () {
             expect(

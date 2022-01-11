@@ -12,8 +12,6 @@
 /* global sinon */
 
 describe('fxa-utm-referral.js', function () {
-    'use strict';
-
     describe('getHostName', function () {
         it('should return a hostname as expected', function () {
             const url1 =

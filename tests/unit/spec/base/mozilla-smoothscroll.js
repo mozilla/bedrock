@@ -10,8 +10,6 @@
  */
 
 describe('mozilla-smoothscroll.js', function () {
-    'use strict';
-
     describe('Mozilla.smoothScroll scrolling', function () {
         it('should use window.scrollTo when native smooth scrolling is supported', function () {
             spyOn(window, 'scrollTo');

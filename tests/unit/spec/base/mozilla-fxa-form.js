@@ -12,8 +12,6 @@
 /* global sinon */
 
 describe('mozilla-fxa-form.js', function () {
-    'use strict';
-
     describe('init', function () {
         beforeEach(function () {
             const form = `<form action="https://accounts.firefox.com/" data-mozillaonline-action="https://accounts.firefox.com.cn/" id="fxa-email-form" class="fxa-email-form">

@@ -12,8 +12,6 @@
 /* global sinon */
 
 describe('core-datalayer-page-id.js', function () {
-    'use strict';
-
     beforeEach(function () {
         // stub out Mozilla.Cookie lib
         window.Mozilla.Cookies = sinon.stub();

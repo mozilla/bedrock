@@ -14,8 +14,6 @@
 /* eslint new-cap: [2, {"capIsNewExceptions": ["Deferred"]}] */
 
 describe('send-to-device.js', function () {
-    'use strict';
-
     let form;
 
     beforeEach(function () {

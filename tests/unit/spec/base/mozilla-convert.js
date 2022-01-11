@@ -10,8 +10,6 @@
  */
 
 describe('mozilla-convert.js', function () {
-    'use strict';
-
     describe('getCurrentExperiment', function () {
         it('should return the current experiment name and variation', function () {
             const data = {

@@ -13,8 +13,6 @@
 /* eslint new-cap: [2, {"capIsNewExceptions": ["Deferred"]}] */
 
 describe('stub-attribution.js', function () {
-    'use strict';
-
     const GA_VISIT_ID = '1456954538.1610960957';
 
     beforeEach(function () {

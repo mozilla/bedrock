@@ -1653,8 +1653,7 @@
     },
     {
       "files": [
-        "js/careers/listings.js",
-        "js/careers/filters.js"
+        "js/careers/listings/listings.es6.js"
       ],
       "name": "careers-listings"
     }

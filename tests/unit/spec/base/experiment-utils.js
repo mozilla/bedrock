@@ -10,8 +10,6 @@
  */
 
 describe('experiment-utils.es6.js', function () {
-    'use strict';
-
     describe('isApprovedToRun', function () {
         it('should return true if experimental params are not found in the page URL', function () {
             const isApprovedToRun =

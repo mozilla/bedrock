@@ -10,8 +10,6 @@
  */
 
 describe('mozilla-utils.js', function () {
-    'use strict';
-
     describe('trans', function () {
         let stringDiv;
 

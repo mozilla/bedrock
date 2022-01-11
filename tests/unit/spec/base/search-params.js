@@ -12,8 +12,6 @@
 /* global _SearchParams */
 
 describe('search-params.js', function () {
-    'use strict';
-
     describe('_SearchParams', function () {
         it('should return a proper value', function () {
             const params = new _SearchParams('scene=2&source=getfirefox');

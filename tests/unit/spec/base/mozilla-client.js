@@ -10,8 +10,6 @@
  */
 
 describe('mozilla-client.js', function () {
-    'use strict';
-
     // User-agent strings for the most of the following tests
     const uas = {
         // Firefox family

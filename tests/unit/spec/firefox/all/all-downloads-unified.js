@@ -14,8 +14,6 @@
 /* global sinon */
 
 describe('all-downloads-unified.js', function () {
-    'use strict';
-
     describe('getSelectOption', function () {
         const select = `<select id="select-product" class="c-selection-input">
                 <option value="desktop_developer">Firefox Developer Edition</option>
