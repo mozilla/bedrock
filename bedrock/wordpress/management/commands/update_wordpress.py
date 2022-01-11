@@ -19,16 +19,16 @@ class Command(BaseCommand):
         for feed_id in settings.WP_BLOGS:
             updated, deleted = BlogPost.objects.refresh(feed_id)
             if updated is None:
-                errors.append("There was a problem updating the %s blog" % feed_id)
+                errors.append(f"There was a problem updating the {feed_id} blog")
                 continue
 
             if not options["quiet"]:
                 if updated:
-                    print("Refreshed %s posts from the %s blog" % (updated, feed_id))
+                    print(f"Refreshed {updated} posts from the {feed_id} blog")
                     if deleted:
-                        print("Deleted %s old posts from the %s blog" % (deleted, feed_id))
+                        print(f"Deleted {deleted} old posts from the {feed_id} blog")
                 else:
-                    print("The %s blog is already up to date" % feed_id)
+                    print(f"The {feed_id} blog is already up to date")
 
         if errors:
             raise CommandError("\n".join(errors))

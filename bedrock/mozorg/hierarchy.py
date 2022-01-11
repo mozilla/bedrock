@@ -125,7 +125,7 @@ class PageNode:
             return None
 
     def __repr__(self):
-        return '{0}(display_name="{1}", path="{2}", template="{3})"'.format(self.__class__.__name__, self.display_name, self.full_path, self.template)
+        return f'{self.__class__.__name__}(display_name="{self.display_name}", path="{self.full_path}", template="{self.template})"'
 
 
 class PageRoot(PageNode):
@@ -137,7 +137,7 @@ class PageRoot(PageNode):
     """
 
     def __init__(self, *args, **kwargs):
-        super(PageRoot, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         # Buid a pre-order traversal of this tree's nodes.
         self.preordered_nodes = []

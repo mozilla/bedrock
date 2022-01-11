@@ -34,7 +34,7 @@ def process_legal_doc(content):
 
 class PrivacyDocView(LegalDocView):
     def get_legal_doc(self):
-        doc = super(PrivacyDocView, self).get_legal_doc()
+        doc = super().get_legal_doc()
         if doc is not None:
             doc["content"] = process_legal_doc(doc["content"])
         return doc
@@ -42,7 +42,7 @@ class PrivacyDocView(LegalDocView):
 
 class FirefoxPrivacyDocView(PrivacyDocView):
     def get_legal_doc(self):
-        doc = super(FirefoxPrivacyDocView, self).get_legal_doc()
+        doc = super().get_legal_doc()
         if len(doc["content"].select(".privacy-header-firefox")) > 0:
             self.template_name = "privacy/notices/firefox.html"
         else:

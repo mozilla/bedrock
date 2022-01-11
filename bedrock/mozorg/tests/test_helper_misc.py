@@ -6,6 +6,7 @@
 
 import os.path
 from datetime import datetime
+from unittest.mock import patch
 
 from django.conf import settings
 from django.test.client import RequestFactory
@@ -14,7 +15,6 @@ from django.test.utils import override_settings
 import pytest
 from django_jinja.backend import Jinja2
 from jinja2 import Markup
-from mock import patch
 from pyquery import PyQuery as pq
 
 from bedrock.base.templatetags.helpers import static
@@ -62,7 +62,7 @@ class TestImgL10n(TestCase):
     def _render(self, locale, url):
         req = self.rf.get("/")
         req.locale = locale
-        return render("{{{{ l10n_img('{0}') }}}}".format(url), {"request": req})
+        return render(f"{{{{ l10n_img('{url}') }}}}", {"request": req})
 
     def test_works_for_default_lang(self, media_exists_mock):
         """Should output correct path for default lang always."""
@@ -215,12 +215,12 @@ class TestPlatformImg(TestCase):
     def _render(self, url, optional_attributes=None):
         req = self.rf.get("/")
         req.locale = "en-US"
-        return render("{{{{ platform_img('{0}', {1}) }}}}".format(url, optional_attributes), {"request": req})
+        return render(f"{{{{ platform_img('{url}', {optional_attributes}) }}}}", {"request": req})
 
     def _render_l10n(self, url):
         req = self.rf.get("/")
         req.locale = "en-US"
-        return render("{{{{ l10n_img('{0}') }}}}".format(url), {"request": req})
+        return render(f"{{{{ l10n_img('{url}') }}}}", {"request": req})
 
     def test_platform_img_no_optional_attributes(self, find_static):
         """Should return expected markup without optional attributes"""
@@ -335,7 +335,7 @@ class TestDonateUrl(TestCase):
     def _render(self, locale, source=""):
         req = self.rf.get("/")
         req.locale = locale
-        return render("{{{{ donate_url('{0}') }}}}".format(source), {"request": req})
+        return render(f"{{{{ donate_url('{source}') }}}}", {"request": req})
 
     def test_donate_url_no_locale(self):
         """No locale, fallback to generic link"""
@@ -464,12 +464,12 @@ class TestHighResImg(TestCase):
     def _render(self, url, optional_attributes=None):
         req = self.rf.get("/")
         req.locale = "en-US"
-        return render("{{{{ high_res_img('{0}', {1}) }}}}".format(url, optional_attributes), {"request": req})
+        return render(f"{{{{ high_res_img('{url}', {optional_attributes}) }}}}", {"request": req})
 
     def _render_l10n(self, url):
         req = self.rf.get("/")
         req.locale = "en-US"
-        return render("{{{{ l10n_img('{0}') }}}}".format(url), {"request": req})
+        return render(f"{{{{ l10n_img('{url}') }}}}", {"request": req})
 
     def test_high_res_img_no_optional_attributes(self):
         """Should return expected markup without optional attributes"""
@@ -695,7 +695,7 @@ class TestStructuredDataID(TestCase):
         sd_id = "firefoxbrowser"
 
         if domain:
-            return render("{{{{ structured_data_id('{0}', '{1}') }}}}".format(sd_id, domain), {"request": req})
+            return render(f"{{{{ structured_data_id('{sd_id}', '{domain}') }}}}", {"request": req})
 
         return render("{{ structured_data_id('%s') }}" % sd_id, {"request": req})
 
@@ -737,9 +737,9 @@ class TestFirefoxAdjustUrl(TestCase):
         req.locale = locale
 
         if creative:
-            return render("{{{{ firefox_adjust_url('{0}', '{1}', '{2}') }}}}".format(redirect, adgroup, creative), {"request": req})
+            return render(f"{{{{ firefox_adjust_url('{redirect}', '{adgroup}', '{creative}') }}}}", {"request": req})
 
-        return render("{{{{ firefox_adjust_url('{0}', '{1}') }}}}".format(redirect, adgroup), {"request": req})
+        return render(f"{{{{ firefox_adjust_url('{redirect}', '{adgroup}') }}}}", {"request": req})
 
     def test_firefox_ios_adjust_url(self):
         """Firefox for mobile with an App Store URL redirect"""
@@ -778,9 +778,9 @@ class TestFocusAdjustUrl(TestCase):
         req.locale = locale
 
         if creative:
-            return render("{{{{ focus_adjust_url('{0}', '{1}', '{2}') }}}}".format(redirect, adgroup, creative), {"request": req})
+            return render(f"{{{{ focus_adjust_url('{redirect}', '{adgroup}', '{creative}') }}}}", {"request": req})
 
-        return render("{{{{ focus_adjust_url('{0}', '{1}') }}}}".format(redirect, adgroup), {"request": req})
+        return render(f"{{{{ focus_adjust_url('{redirect}', '{adgroup}') }}}}", {"request": req})
 
     def test_focus_ios_adjust_url(self):
         """Firefox Focus with an App Store URL redirect"""
@@ -835,9 +835,9 @@ class TestLockwiseAdjustUrl(TestCase):
         req.locale = locale
 
         if creative:
-            return render("{{{{ lockwise_adjust_url('{0}', '{1}', '{2}') }}}}".format(redirect, adgroup, creative), {"request": req})
+            return render(f"{{{{ lockwise_adjust_url('{redirect}', '{adgroup}', '{creative}') }}}}", {"request": req})
 
-        return render("{{{{ lockwise_adjust_url('{0}', '{1}') }}}}".format(redirect, adgroup), {"request": req})
+        return render(f"{{{{ lockwise_adjust_url('{redirect}', '{adgroup}') }}}}", {"request": req})
 
     def test_lockwise_ios_adjust_url(self):
         """Firefox Lockwise for mobile with an App Store URL redirect"""
@@ -876,9 +876,9 @@ class TestPocketAdjustUrl(TestCase):
         req.locale = locale
 
         if creative:
-            return render("{{{{ pocket_adjust_url('{0}', '{1}', '{2}') }}}}".format(redirect, adgroup, creative), {"request": req})
+            return render(f"{{{{ pocket_adjust_url('{redirect}', '{adgroup}', '{creative}') }}}}", {"request": req})
 
-        return render("{{{{ pocket_adjust_url('{0}', '{1}') }}}}".format(redirect, adgroup), {"request": req})
+        return render(f"{{{{ pocket_adjust_url('{redirect}', '{adgroup}') }}}}", {"request": req})
 
     def test_pocket_ios_adjust_url(self):
         """Pocket for mobile with an App Store URL redirect"""
@@ -1135,7 +1135,7 @@ class TestFxALinkFragment(TestCase):
     def _render(self, entrypoint, action="signup", optional_parameters=None):
         req = self.rf.get("/")
         req.locale = "en-US"
-        return render("{{{{ fxa_link_fragment('{0}', '{1}', {2}) }}}}".format(entrypoint, action, optional_parameters), {"request": req})
+        return render(f"{{{{ fxa_link_fragment('{entrypoint}', '{action}', {optional_parameters}) }}}}", {"request": req})
 
     def test_fxa_button_signup(self):
         """Should return expected markup"""

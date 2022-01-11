@@ -1,14 +1,13 @@
-# -*- coding: utf-8 -*-
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
+from unittest.mock import ANY, Mock, patch
 
 from django.http.response import HttpResponse
 from django.test.client import RequestFactory
 
 import pytest
-from mock import ANY, Mock, patch
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg import views

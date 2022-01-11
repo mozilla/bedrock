@@ -1,13 +1,11 @@
-# -*- coding: utf-8 -*-
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
+from unittest.mock import Mock, patch
 from urllib.parse import parse_qsl, urlparse
 
 from django.core.cache import caches
-
-from mock import Mock, patch
 
 from bedrock.firefox.firefox_details import FirefoxAndroid, FirefoxDesktop, FirefoxIOS
 from bedrock.mozorg.tests import TestCase

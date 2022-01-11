@@ -3,12 +3,12 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from pathlib import Path
+from unittest.mock import ANY, Mock, patch
 
 from django.template import TemplateDoesNotExist
 from django.test import RequestFactory
 
 from django_jinja.backend import Jinja2
-from mock import ANY, Mock, patch
 
 from bedrock.mozorg.tests import TestCase
 from lib.l10n_utils import render

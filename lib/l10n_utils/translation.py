@@ -34,7 +34,7 @@ def _fix_case(locale):
     if len(parts) == 1:
         return locale
     else:
-        return "%s-%s" % (parts[0], parts[1].upper())
+        return f"{parts[0]}-{parts[1].upper()}"
 
 
 def get_language(fix_case=False):

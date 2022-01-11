@@ -1,12 +1,11 @@
-# -*- coding: utf-8 -*-
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from unittest.mock import ANY, patch
+
 from django.test import override_settings
 from django.test.client import RequestFactory
-
-from mock import ANY, patch
 
 from bedrock.exp import views
 from bedrock.mozorg.tests import TestCase

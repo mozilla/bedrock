@@ -704,7 +704,7 @@ class TestVPNMonthlyPrice(TestCase):
     def _render(self, plan, country_code, lang):
         req = self.rf.get("/")
         req.locale = "en-US"
-        return render("{{{{ vpn_monthly_price('{0}', '{1}', '{2}') }}}}".format(plan, country_code, lang), {"request": req})
+        return render(f"{{{{ vpn_monthly_price('{plan}', '{country_code}', '{lang}') }}}}", {"request": req})
 
     def test_vpn_monthly_price_usd(self):
         """Should return expected markup"""

@@ -11,7 +11,7 @@ from textwrap import dedent
 
 
 def get_hashed_filenames(static_path):
-    json_file = "{}/staticfiles.json".format(static_path)
+    json_file = f"{static_path}/staticfiles.json"
     with open(json_file) as jsonf:
         staticfiles = json.load(jsonf)
 
@@ -41,7 +41,7 @@ def move_hashed_files(static_path, hashed_path):
 
 def main(static_path, hashed_path):
     moved = move_hashed_files(static_path, hashed_path)
-    print("Successfully moved {} files".format(moved))
+    print(f"Successfully moved {moved} files")
 
 
 if __name__ == "__main__":

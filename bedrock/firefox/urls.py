@@ -84,11 +84,11 @@ urlpatterns = (
     re_path(firstrun_re, views.FirstrunView.as_view(), name="firefox.firstrun"),
     re_path(whatsnew_re, views.WhatsnewView.as_view(), name="firefox.whatsnew"),
     # Release notes
-    re_path("^firefox/(?:%s/)?(?:%s/)?notes/$" % (platform_re, channel_re), bedrock.releasenotes.views.latest_notes, name="firefox.notes"),
+    re_path(f"^firefox/(?:{platform_re}/)?(?:{channel_re}/)?notes/$", bedrock.releasenotes.views.latest_notes, name="firefox.notes"),
     path("firefox/nightly/notes/feed/", bedrock.releasenotes.views.nightly_feed, name="firefox.nightly.notes.feed"),
     re_path("firefox/(?:latest/)?releasenotes/$", bedrock.releasenotes.views.latest_notes, {"product": "firefox"}),
     re_path(
-        "^firefox/(?:%s/)?(?:%s/)?system-requirements/$" % (platform_re, channel_re),
+        f"^firefox/(?:{platform_re}/)?(?:{channel_re}/)?system-requirements/$",
         bedrock.releasenotes.views.latest_sysreq,
         {"product": "firefox"},
         name="firefox.sysreq",

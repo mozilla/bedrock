@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
@@ -74,7 +72,7 @@ class InstallerHelpView(L10nTemplateView):
     ftl_files = ["firefox/installer-help"]
 
     def get_context_data(self, **kwargs):
-        ctx = super(InstallerHelpView, self).get_context_data(**kwargs)
+        ctx = super().get_context_data(**kwargs)
         installer_lang = self.request.GET.get("installer_lang", None)
         installer_channel = self.request.GET.get("channel", None)
         ctx["installer_lang"] = None
@@ -420,10 +418,10 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
         if redirect_old_firstrun(version):
             return HttpResponsePermanentRedirect(reverse("firefox.new"))
         else:
-            return super(FirstrunView, self).get(*args, **kwargs)
+            return super().get(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        ctx = super(FirstrunView, self).get_context_data(**kwargs)
+        ctx = super().get_context_data(**kwargs)
 
         # add version to context for use in templates
         ctx["version"] = self.kwargs.get("version") or ""
@@ -481,7 +479,7 @@ class WhatsnewView(L10nTemplateView):
     variations = ["1", "2", "3"]
 
     def get_context_data(self, **kwargs):
-        ctx = super(WhatsnewView, self).get_context_data(**kwargs)
+        ctx = super().get_context_data(**kwargs)
         version = self.kwargs.get("version") or ""
         pre_release_channels = ["nightly", "developer", "beta"]
         channel = detect_channel(version)
@@ -512,7 +510,7 @@ class WhatsnewView(L10nTemplateView):
         ctx["analytics_version"] = analytics_version
         ctx["entrypoint"] = entrypoint
         ctx["campaign"] = campaign
-        ctx["utm_params"] = "utm_source={0}&utm_medium=referral&utm_campaign={1}&entrypoint={2}".format(entrypoint, campaign, entrypoint)
+        ctx["utm_params"] = f"utm_source={entrypoint}&utm_medium=referral&utm_campaign={campaign}&entrypoint={entrypoint}"
 
         variant = self.request.GET.get("v", None)
 
@@ -605,7 +603,7 @@ class DownloadThanksView(L10nTemplateView):
     variations = []
 
     def get_context_data(self, **kwargs):
-        ctx = super(DownloadThanksView, self).get_context_data(**kwargs)
+        ctx = super().get_context_data(**kwargs)
         variant = self.request.GET.get("v", None)
 
         # ensure variant matches pre-defined value
@@ -662,7 +660,7 @@ class NewView(L10nTemplateView):
                 thanks_url = "?".join([thanks_url, force_text(query_string, errors="ignore")])
             return HttpResponsePermanentRedirect(thanks_url)
 
-        return super(NewView, self).get(*args, **kwargs)
+        return super().get(*args, **kwargs)
 
     def render_to_response(self, context, **response_kwargs):
         # set experimental percentages per locale with this config
@@ -693,7 +691,7 @@ class NewView(L10nTemplateView):
         return super().render_to_response(context, **response_kwargs)
 
     def get_context_data(self, **kwargs):
-        ctx = super(NewView, self).get_context_data(**kwargs)
+        ctx = super().get_context_data(**kwargs)
 
         # note: v and xv params only allow a-z, A-Z, 0-9, -, and _ characters
         variant = self.request.GET.get("v", None)
@@ -776,7 +774,7 @@ class FirefoxHomeView(L10nTemplateView):
     variations = []
 
     def get_context_data(self, **kwargs):
-        ctx = super(FirefoxHomeView, self).get_context_data(**kwargs)
+        ctx = super().get_context_data(**kwargs)
         variant = self.request.GET.get("v", None)
 
         # ensure variant matches pre-defined value

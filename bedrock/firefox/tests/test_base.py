@@ -1,8 +1,8 @@
-# -*- coding: utf-8 -*-
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
+from unittest.mock import Mock, call, patch
 
 from django.core.cache import caches
 from django.http import HttpResponse
@@ -11,7 +11,6 @@ from django.test.utils import override_settings
 
 from django_jinja.backend import Jinja2
 from jinja2 import Markup
-from mock import Mock, call, patch
 from pyquery import PyQuery as pq
 
 from bedrock.base.urlresolvers import reverse

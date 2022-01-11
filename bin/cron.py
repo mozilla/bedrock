@@ -68,7 +68,7 @@ if sentry_dsn:
 
 def set_updated_time(name):
     try:
-        check_call("touch {}-{}".format(HEALTH_FILE_BASE, name), shell=True, timeout=TIMEOUT_SECS)
+        check_call(f"touch {HEALTH_FILE_BASE}-{name}", shell=True, timeout=TIMEOUT_SECS)
     except Exception as ex:
         logging.error(ex)
         raise
@@ -76,7 +76,7 @@ def set_updated_time(name):
 
 def call_command(command):
     try:
-        check_call("python {0} {1}".format(MANAGE, command), shell=True, timeout=TIMEOUT_SECS)
+        check_call(f"python {MANAGE} {command}", shell=True, timeout=TIMEOUT_SECS)
     except Exception as ex:
         logging.error(ex)
         raise
@@ -101,14 +101,14 @@ class scheduled_job:
         try:
             self.callback()
         except Exception as e:
-            self.log("CRASHED: {}".format(e))
+            self.log(f"CRASHED: {e}")
             raise
         else:
             set_updated_time(self.name)
             self.log("finished successfully")
 
     def log(self, message):
-        msg = "[{}] Clock job {}@{}: {}".format(datetime.datetime.utcnow(), self.name, HOSTNAME, message)
+        msg = f"[{datetime.datetime.utcnow()}] Clock job {self.name}@{HOSTNAME}: {message}"
         print(msg, file=sys.stderr)
 
 

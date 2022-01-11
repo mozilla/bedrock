@@ -31,7 +31,7 @@ def template_source_url(template):
         return None
 
     relative_path = relpath(absolute_path, settings.ROOT)
-    return "%s/tree/master/%s" % (settings.GITHUB_REPO, relative_path)
+    return f"{settings.GITHUB_REPO}/tree/master/{relative_path}"
 
 
 def render_to_string(template_name, context=None, request=None, using=None, ftl_files=None):
@@ -137,7 +137,7 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
             return redirect_to_best_locale(request, translations)
 
         # Look for locale-specific template in app/templates/
-        locale_tmpl = ".{}".format(request.locale).join(splitext(template))
+        locale_tmpl = f".{request.locale}".join(splitext(template))
         try:
             return django_render(request, locale_tmpl, context, **kwargs)
         except TemplateDoesNotExist:

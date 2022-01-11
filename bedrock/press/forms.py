@@ -1,5 +1,3 @@
-# coding: utf-8
-
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
@@ -44,7 +42,7 @@ class PressInquiryForm(forms.Form):
     office_fax = forms.CharField(widget=HoneyPotWidget, required=False)
 
     def clean_office_fax(self):
-        cleaned_data = super(PressInquiryForm, self).clean()
+        cleaned_data = super().clean()
         honeypot = cleaned_data.pop("office_fax", None)
 
         if honeypot:
@@ -299,7 +297,7 @@ class SpeakerRequestForm(forms.Form):
     office_fax = forms.CharField(widget=HoneyPotWidget, required=False)
 
     def clean_sr_attachment(self):
-        cleaned_data = super(SpeakerRequestForm, self).clean()
+        cleaned_data = super().clean()
         attachment = cleaned_data.get("sr_attachment")
 
         if attachment:
@@ -309,7 +307,7 @@ class SpeakerRequestForm(forms.Form):
         return attachment
 
     def clean_office_fax(self):
-        cleaned_data = super(SpeakerRequestForm, self).clean()
+        cleaned_data = super().clean()
         honeypot = cleaned_data.pop("office_fax", None)
 
         if honeypot:

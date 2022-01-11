@@ -14,7 +14,7 @@ class I18nExtension(InternationalizationExtension):
     """
 
     def _parse_block(self, parser, allow_pluralize):
-        ref, buffer = super(I18nExtension, self)._parse_block(parser, allow_pluralize)
+        ref, buffer = super()._parse_block(parser, allow_pluralize)
         return ref, strip_whitespace(buffer)
 
 

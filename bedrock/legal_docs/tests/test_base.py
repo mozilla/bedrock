@@ -3,11 +3,10 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from pathlib import Path
+from unittest.mock import patch
 
 from django.http import Http404, HttpResponse
 from django.test import RequestFactory, override_settings
-
-from mock import patch
 
 from bedrock.legal_docs import views
 from bedrock.legal_docs.models import LegalDoc, get_data_from_file_path
@@ -98,7 +97,7 @@ class TestLegalDocView(TestCase):
         req.locale = "de"
         view = views.LegalDocView.as_view(template_name="base.html", legal_doc_name="the_dude_exists")
         resp = view(req)
-        assert resp["cache-control"] == "max-age={0!s}".format(views.CACHE_TIMEOUT)
+        assert resp["cache-control"] == f"max-age={views.CACHE_TIMEOUT!s}"
         assert resp.content.decode("utf-8") == doc_value
         assert render_mock.call_args[0][2]["doc"] == doc_value
         lld_mock.assert_called_with("the_dude_exists", "de")

@@ -18,5 +18,5 @@ def test_change_language(base_url, selenium):
     available = [l for l in page.footer.languages if l not in excluded]
     new = random.choice(available)
     page.footer.select_language(new)
-    assert "/{0}/".format(new) in selenium.current_url, "Language is not in URL"
+    assert f"/{new}/" in selenium.current_url, "Language is not in URL"
     assert new == page.footer.language, "Language has not been selected"

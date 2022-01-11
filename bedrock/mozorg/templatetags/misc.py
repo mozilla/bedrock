@@ -188,7 +188,7 @@ def platform_img(ctx, url, optional_attributes=None):
         img_attrs["data-high-res"] = "true"
 
     img_attrs.update(optional_attributes)
-    attrs = " ".join('%s="%s"' % (attr, val) for attr, val in img_attrs.items())
+    attrs = " ".join(f'{attr}="{val}"' for attr, val in img_attrs.items())
 
     # Don't download any image until the javascript sets it based on
     # data-src so we can do platform detection. If no js, show the
@@ -217,15 +217,13 @@ def high_res_img(ctx, url, optional_attributes=None):
 
     if optional_attributes:
         class_name = optional_attributes.pop("class", "")
-        attrs = " " + " ".join('%s="%s"' % (attr, val) for attr, val in optional_attributes.items())
+        attrs = " " + " ".join(f'{attr}="{val}"' for attr, val in optional_attributes.items())
     else:
         class_name = ""
         attrs = ""
 
     # Use native srcset attribute for high res images
-    markup = ('<img class="{class_name}" src="{url}" ' 'srcset="{url_high_res} 1.5x"' "{attrs}>").format(
-        url=url, url_high_res=url_high_res, attrs=attrs, class_name=class_name
-    )
+    markup = f'<img class="{class_name}" src="{url}" srcset="{url_high_res} 1.5x"{attrs}>'
 
     return jinja2.Markup(markup)
 
@@ -609,7 +607,7 @@ def f(s, *args, **kwargs):
     >>> {{ "{0} arguments and {x} arguments"|f('positional', x='keyword') }}
     "positional arguments and keyword arguments"
     """
-    s = six.text_type(s)
+    s = str(s)
     return s.format(*args, **kwargs)
 
 
@@ -803,7 +801,7 @@ def _fxa_product_url(product_url, entrypoint, optional_parameters=None):
     url = f"{product_url}{separator}entrypoint={entrypoint}&form_type=button&utm_source={entrypoint}&utm_medium=referral"
 
     if optional_parameters:
-        params = "&".join("%s=%s" % (param, val) for param, val in optional_parameters.items())
+        params = "&".join(f"{param}={val}" for param, val in optional_parameters.items())
         url += f"&{params}"
 
     return url
@@ -824,7 +822,7 @@ def _fxa_product_button(
     attrs = ""
 
     if optional_attributes:
-        attrs += " ".join('%s="%s"' % (attr, val) for attr, val in optional_attributes.items())
+        attrs += " ".join(f'{attr}="{val}"' for attr, val in optional_attributes.items())
 
     if include_metrics:
         css_class += " js-fxa-product-button"

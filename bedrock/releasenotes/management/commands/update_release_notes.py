@@ -32,7 +32,7 @@ class Command(BaseCommand):
         self.output("Loading releases into database")
         count = ProductRelease.objects.refresh()
 
-        self.output("%s release notes successfully loaded" % count)
+        self.output(f"{count} release notes successfully loaded")
 
         repo.set_db_latest()
 

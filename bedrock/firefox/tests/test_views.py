@@ -1,10 +1,10 @@
-# -*- coding: utf-8 -*-
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import json
 import os
+from unittest.mock import ANY, patch
 from urllib.parse import parse_qs
 
 from django.http import HttpResponse
@@ -12,7 +12,6 @@ from django.test import override_settings
 from django.test.client import RequestFactory
 
 import querystringsafe_base64
-from mock import ANY, patch
 from pyquery import PyQuery as pq
 
 from bedrock.firefox import views

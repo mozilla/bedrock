@@ -13,7 +13,7 @@ class ScrollElementIntoView:
     def scroll_element_into_view(self, strategy, locator):
         # scroll elements so they are not beneath the navigation
         offset = {"x": 0, "y": -100}
-        return super(ScrollElementIntoView, self).scroll_element_into_view(strategy, locator, **offset)
+        return super().scroll_element_into_view(strategy, locator, **offset)
 
 
 class BaseRegion(ScrollElementIntoView, Region):
@@ -22,7 +22,7 @@ class BaseRegion(ScrollElementIntoView, Region):
 
 class BasePage(ScrollElementIntoView, Page):
     def __init__(self, selenium, base_url, locale="en-US", **url_kwargs):
-        super(BasePage, self).__init__(selenium, base_url, locale=locale, **url_kwargs)
+        super().__init__(selenium, base_url, locale=locale, **url_kwargs)
 
     def wait_for_page_to_load(self):
         browser_name = self.selenium.capabilities.get("browserName").lower()
@@ -145,4 +145,4 @@ class BasePage(ScrollElementIntoView, Page):
         def select_language(self, value):
             el = self.find_element(*self._language_locator)
             Select(el).select_by_value(value)
-            self.wait.until(lambda s: "/{0}/".format(value) in s.current_url)
+            self.wait.until(lambda s: f"/{value}/" in s.current_url)

@@ -16,9 +16,8 @@ class LatestPositionsFeed(Feed):
     title = "Current Mozilla job openings"
     description = "The current list of job openings, available internships and contract opportunities at Mozilla."
     feed_copyright = (
-        "Portions of this content are ©1998–%s by individual "
-        "mozilla.org contributors. Content available under a "
-        "Creative Commons license." % date.today().year
+        f"Portions of this content are ©1998–{date.today().year} by individual "
+        "mozilla.org contributors. Content available under a Creative Commons license."
     )
 
     def link(self):

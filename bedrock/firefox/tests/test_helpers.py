@@ -34,7 +34,7 @@ class TestDownloadButtons(TestCase):
         """Desktop links should have the correct firefox version"""
         # valid product strings
         keys = [
-            "firefox-%s" % self.latest_version(),
+            f"firefox-{self.latest_version()}",
             "firefox-stub",
             "firefox-latest-ssl",
             "firefox-beta-stub",
@@ -375,7 +375,7 @@ class TestDownloadList(TestCase):
         """Desktop links should have the correct firefox version"""
         # valid product strings
         keys = [
-            "firefox-%s" % self.latest_version(),
+            f"firefox-{self.latest_version()}",
             "firefox-stub",
             "firefox-latest-ssl",
             "firefox-msi-latest-ssl",
@@ -483,9 +483,9 @@ class TestFirefoxURL(TestCase):
     def _render(self, platform, page, channel=None):
         req = self.rf.get("/")
         if channel:
-            tmpl = "{{ firefox_url('%s', '%s', '%s') }}" % (platform, page, channel)
+            tmpl = f"{{{{ firefox_url('{platform}', '{page}', '{channel}') }}}}"
         else:
-            tmpl = "{{ firefox_url('%s', '%s') }}" % (platform, page)
+            tmpl = f"{{{{ firefox_url('{platform}', '{page}') }}}}"
         return render(tmpl, {"request": req})
 
     def test_firefox_all(self):

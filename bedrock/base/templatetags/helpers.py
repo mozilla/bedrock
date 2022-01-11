@@ -124,7 +124,7 @@ def js_bundle(name):
 
     Bundles are defined in the "media/static-bundles.json" file.
     """
-    path = "js/{}.js".format(name)
+    path = f"js/{name}.js"
     path = staticfiles_storage.url(path)
     return jinja2.Markup(JS_TEMPLATE % path)
 
@@ -135,7 +135,7 @@ def css_bundle(name):
 
     Bundles are defined in the "media/static-bundles.json" file.
     """
-    path = "css/{}.css".format(name)
+    path = f"css/{name}.css"
     path = staticfiles_storage.url(path)
     return jinja2.Markup(CSS_TEMPLATE % path)
 

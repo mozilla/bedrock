@@ -183,7 +183,7 @@ def get_metadata(ftl_file):
     try:
         with path.open() as mdf:
             return json.load(mdf)
-    except (IOError, ValueError):
+    except (OSError, ValueError):
         return {}
 
 

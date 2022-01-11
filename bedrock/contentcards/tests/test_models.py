@@ -78,7 +78,7 @@ class TestContentCardModel(TestCase):
 
     def test_get_page_cards(self):
         cards = models.ContentCard.objects.get_page_cards("home")
-        self.assertTrue(all(name in cards for name in ["card_%d" % i for i in range(1, 6)]))
+        self.assertTrue(all(name in cards for name in [f"card_{i}" for i in range(1, 6)]))
         self.assertDictEqual(
             cards["card_2"],
             {

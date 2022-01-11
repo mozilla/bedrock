@@ -29,7 +29,7 @@ class Position(models.Model):
         )
 
     def __str__(self):
-        return "{}@{}".format(self.job_id, self.source)
+        return f"{self.job_id}@{self.source}"
 
     @property
     def location_list(self):
@@ -45,7 +45,7 @@ class Position(models.Model):
     @classmethod
     def locations(cls):
         return sorted(
-            set(location.strip() for location in chain(*[locations.split(",") for locations in cls.objects.values_list("location", flat=True)]))
+            {location.strip() for location in chain(*[locations.split(",") for locations in cls.objects.values_list("location", flat=True)])}
         )
 
     @classmethod

@@ -3,10 +3,9 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import os.path
+from unittest.mock import patch
 
 from django.conf import settings
-
-from mock import patch
 
 from bedrock.mozorg.tests import TestCase
 from bedrock.security.management.commands import update_security_advisories
@@ -72,7 +71,7 @@ class TestDBActions(TestCase):
         make_mfsa("2015-102")
         make_mfsa("2015-103")
         all_files = ["mfsa2015-100.md", "mfsa2015-101.md"]
-        assert set(update_security_advisories.get_files_to_delete_from_db(all_files)) == set(["mfsa2015-102.md", "mfsa2015-103.md"])
+        assert set(update_security_advisories.get_files_to_delete_from_db(all_files)) == {"mfsa2015-102.md", "mfsa2015-103.md"}
 
     def test_delete_orphaned_products(self):
         make_mfsa("2015-100")

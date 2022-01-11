@@ -1,5 +1,3 @@
-# coding: utf-8
-
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
@@ -32,13 +30,11 @@ class PrivacyWidget(widgets.CheckboxInput):
 
     def render(self, name, value, attrs=None, renderer=None):
         attrs["required"] = "required"
-        input_txt = super(PrivacyWidget, self).render(name, value, attrs)
+        input_txt = super().render(name, value, attrs)
 
         policy_txt = ftl("newsletter-form-im-okay-with-mozilla", url=reverse("privacy.notices.websites"))
 
-        return mark_safe(
-            '<label for="%s" class="privacy-check-label">' "%s " '<span class="title">%s</span></label>' % (attrs["id"], input_txt, policy_txt)
-        )
+        return mark_safe(f"""<label for="{attrs['id']}" class="privacy-check-label">{input_txt}<span class="title">{policy_txt}</span></label>""")
 
 
 class HoneyPotWidget(widgets.TextInput):

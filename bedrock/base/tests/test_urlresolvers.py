@@ -1,7 +1,8 @@
-# -*- coding: utf-8 -*-
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+from unittest.mock import Mock, patch
 
 from django.test import TestCase
 from django.test.client import RequestFactory
@@ -9,7 +10,6 @@ from django.test.utils import override_settings
 from django.urls import re_path
 
 import pytest
-from mock import Mock, patch
 
 from bedrock.base.urlresolvers import Prefixer, find_supported, reverse, split_path
 
@@ -47,7 +47,7 @@ class TestReverse(TestCase):
     def test_unicode_url(self, get_url_prefix):
         # If the prefixer returns a unicode URL it should be escaped and cast
         # as a str object.
-        get_url_prefix.return_value = FakePrefixer(lambda p: "/Françoi%s" % p)
+        get_url_prefix.return_value = FakePrefixer(lambda p: f"/Françoi{p}")
         result = reverse("test.view")
 
         # Ensure that UTF-8 characters are escaped properly.

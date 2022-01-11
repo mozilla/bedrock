@@ -22,7 +22,7 @@ class ViewDecoratorTests(TestCase):
         test_request = self.rf.get("/hi-there-dude/")
         resp = view(test_request)
         num_seconds = hours * 60 * 60
-        self.assertEqual(resp["cache-control"], "max-age=%d" % num_seconds)
+        self.assertEqual(resp["cache-control"], f"max-age={num_seconds}")
 
         now_date = floor(time.time())
         exp_date = parse_http_date(resp["expires"])

@@ -83,7 +83,7 @@ def update_advisory_bugs(advisory):
     if advisory.get("bugs", None):
         for bug in advisory["bugs"]:
             if not bug.get("desc", None):
-                bug["desc"] = "Bug %s" % bug["url"]
+                bug["desc"] = f"Bug {bug['url']}"
             bug["url"] = parse_bug_url(bug["url"])
 
 
@@ -110,10 +110,10 @@ def parse_bug_url(url):
     # could be an int
     url = str(url).strip()
     if re.match(r"^\d+$", url):
-        url = "https://bugzilla.mozilla.org/show_bug.cgi?id=%s" % url
+        url = f"https://bugzilla.mozilla.org/show_bug.cgi?id={url}"
     elif re.match(r"^[\d\s,]+$", url):
         url = re.sub(r"\s", "", url).replace(",", "%2C")
-        url = "https://bugzilla.mozilla.org/buglist.cgi?bug_id=%s" % url
+        url = f"https://bugzilla.mozilla.org/buglist.cgi?bug_id={url}"
 
     return url
 
@@ -153,6 +153,6 @@ def check_hof_data(data):
         if "date" not in name:
             raise ValueError('Key "date" required for every entry in "names"')
         if not isinstance(name["date"], date):
-            raise ValueError('Key "date" should be formatted as a date (YYYY-MM-DD): %s' % name["date"])
+            raise ValueError(f'Key "date" should be formatted as a date (YYYY-MM-DD): {name["date"]}')
         if name["date"] < date(2004, 11, 9):
             raise ValueError("A date can't be set before the launch date of Firefox")

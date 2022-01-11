@@ -38,7 +38,7 @@ cfg = {
         "prod": {
             "()": commonware.log.Formatter,
             "datefmt": "%H:%M:%s",
-            "format": "%s %s: [%%(REMOTE_ADDR)s] %s" % (hostname, settings.SYSLOG_TAG, base_fmt),
+            "format": f"{hostname} {settings.SYSLOG_TAG}: [%(REMOTE_ADDR)s] {base_fmt}",
         },
         "cef": {
             "()": cef.SysLogFormatter,

@@ -3,10 +3,9 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import time
+from unittest.mock import Mock, patch
 
 from django.core.cache import caches
-
-from mock import Mock, patch
 
 from bedrock.mozorg.tests import TestCase
 from bedrock.releasenotes import utils

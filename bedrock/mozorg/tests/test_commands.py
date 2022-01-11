@@ -1,12 +1,10 @@
-# -*- coding: utf-8 -*-
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from pathlib import Path
+from unittest.mock import DEFAULT, patch
 
 from django.test import override_settings
-
-from mock import DEFAULT, patch
 
 from bedrock.mozorg.management.commands import update_product_details_files
 from bedrock.mozorg.tests import TestCase

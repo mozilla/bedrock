@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
@@ -488,7 +487,7 @@ if DEBUG:
 
 def set_whitenoise_headers(headers, path, url):
     if "/fonts/" in url or "/caldata/" in url:
-        cache_control = "public, max-age={}".format(604800)  # one week
+        cache_control = "public, max-age=604800"  # one week
         headers["Cache-Control"] = cache_control
 
     if url.startswith("/.well-known/matrix/"):
@@ -1127,7 +1126,7 @@ def get_default_gateway_linux():
 
                 return socket.inet_ntoa(struct.pack("<L", int(fields[2], 16)))
         return "localhost"
-    except IOError:
+    except OSError:
         return "localhost"
 
 

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
@@ -33,7 +31,7 @@ def custom_key_func(key, key_prefix, version):
 
 _caches_setting_base = {
     "default": {},
-    "prefix": {"KEY_PREFIX": "cacheprefix{}".format(os.getpid())},
+    "prefix": {"KEY_PREFIX": f"cacheprefix{os.getpid()}"},
     "v2": {"VERSION": 2},
     "custom_key": {"KEY_FUNCTION": custom_key_func},
     "custom_key2": {"KEY_FUNCTION": "bedrock.base.tests.test_simple_dict_cache.custom_key_func"},
@@ -49,7 +47,7 @@ def caches_setting_for_tests(base=None, **params):
     # This results in the following search order:
     # params -> _caches_setting_base -> base
     base = base or {}
-    setting = dict((k, base.copy()) for k in _caches_setting_base.keys())
+    setting = {k: base.copy() for k in _caches_setting_base.keys()}
     for key, cache_params in setting.items():
         cache_params.update(_caches_setting_base[key])
         cache_params.update(params)
@@ -324,11 +322,11 @@ class SimpleDictCacheTests(TestCase):
         # Create initial cache key entries. This will overflow the cache,
         # causing a cull.
         for i in range(1, initial_count):
-            cull_cache.set("cull%d" % i, "value", 1000)
+            cull_cache.set(f"cull{i}", "value", 1000)
         count = 0
         # Count how many keys are left in the cache.
         for i in range(1, initial_count):
-            if "cull%d" % i in cull_cache:  # noqa
+            if f"cull{i}" in cull_cache:  # noqa
                 count = count + 1
         self.assertEqual(count, final_count)
 

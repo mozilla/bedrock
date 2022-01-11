@@ -58,8 +58,8 @@ class Product(models.Model):
         product, vers = self.name_and_version
         self.product = product
         self.product_slug = slugify(product)
-        self.slug = "{0}-{1}".format(self.product_slug, vers)
-        super(Product, self).save(force_insert, force_update, using, update_fields)
+        self.slug = f"{self.product_slug}-{vers}"
+        super().save(force_insert, force_update, using, update_fields)
 
 
 class SecurityAdvisory(models.Model):
@@ -80,7 +80,7 @@ class SecurityAdvisory(models.Model):
         get_latest_by = "last_modified"
 
     def __str__(self):
-        return "MFSA {0}".format(self.id)
+        return f"MFSA {self.id}"
 
     def get_absolute_url(self):
         return reverse("security.advisory", kwargs={"pk": self.id})
@@ -94,7 +94,7 @@ class SecurityAdvisory(models.Model):
 
     @property
     def products(self):
-        prods_set = set(v.product for v in self.fixed_in.all())
+        prods_set = {v.product for v in self.fixed_in.all()}
         return sorted(prods_set)
 
 
@@ -129,7 +129,7 @@ class HallOfFamer(models.Model):
     @property
     def quarter_string(self):
         year, quarter = self.year_quarter
-        return "%s Quarter %s" % (self.ORDINALS[quarter], year)
+        return f"{self.ORDINALS[quarter]} Quarter {year}"
 
 
 class MitreCVE(models.Model):
@@ -165,7 +165,7 @@ class MitreCVE(models.Model):
     def get_description(self):
         versions = []
         for prod_name, prod_versions in self.product_versions().items():
-            versions.extend("%s < %s" % (prod_name, v) for v in prod_versions)
+            versions.extend(f"{prod_name} < {v}" for v in prod_versions)
 
         description = self.description.strip()
         if versions:
@@ -182,7 +182,7 @@ class MitreCVE(models.Model):
                 else:
                     description += ". "
 
-            description += "This vulnerability affects %s." % vers_str
+            description += f"This vulnerability affects {vers_str}."
 
         return description
 
@@ -201,7 +201,7 @@ class MitreCVE(models.Model):
         return product_data
 
     def get_reference_data(self):
-        reference_data = [{"url": "https://www.mozilla.org/security/advisories/mfsa{}/".format(mfsa_id)} for mfsa_id in set(self.mfsa_ids)]
+        reference_data = [{"url": f"https://www.mozilla.org/security/advisories/mfsa{mfsa_id}/"} for mfsa_id in set(self.mfsa_ids)]
         reference_data.extend([{"url": bug["url"]} for bug in self.bugs])
         return reference_data
 

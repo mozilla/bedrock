@@ -19,7 +19,7 @@ class TestCase(DjTestCase):
         old_prefix = get_url_prefix()
         old_locale = translation.get_language()
         rf = RequestFactory()
-        set_url_prefix(Prefixer(rf.get("/%s/" % (locale,))))
+        set_url_prefix(Prefixer(rf.get(f"/{locale}/")))
         translation.activate(locale)
         yield
         set_url_prefix(old_prefix)

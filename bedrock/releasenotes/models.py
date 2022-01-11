@@ -123,7 +123,7 @@ class MarkdownField(models.TextField):
     """Field that takes Markdown text as input and saves HTML to the database"""
 
     def pre_save(self, model_instance, add):
-        value = super(MarkdownField, self).pre_save(model_instance, add)
+        value = super().pre_save(model_instance, add)
         value = process_markdown(value)
         setattr(model_instance, self.attname, value)
         return value
@@ -271,7 +271,7 @@ class ProductRelease(models.Model):
         channel and major version with the highest minor version,
         or None if no such releases exist
         """
-        releases = ProductRelease.objects.product(product, self.channel).filter(version__startswith="%s." % self.major_version)
+        releases = ProductRelease.objects.product(product, self.channel).filter(version__startswith=f"{self.major_version}.")
         if releases:
             return sorted(releases, reverse=True, key=attrgetter("version_obj"))[0]
 

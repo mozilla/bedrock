@@ -13,7 +13,7 @@ class ConfigValue(models.Model):
         app_label = "base"
 
     def __str__(self):
-        return "%s=%s" % (self.name, self.value)
+        return f"{self.name}={self.value}"
 
 
 def get_config_dict():

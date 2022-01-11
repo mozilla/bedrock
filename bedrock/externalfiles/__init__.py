@@ -20,12 +20,12 @@ class ExternalFile:
         try:
             fileinfo = settings.EXTERNAL_FILES[file_id]
         except KeyError:
-            raise ValueError("No external file with the {0} ID.".format(file_id))
+            raise ValueError(f"No external file with the {file_id} ID.")
 
         self._cache = caches["externalfiles"]
         self.file_id = file_id
         self.name = fileinfo["name"]
-        self.cache_key = "externalfile:{}".format(self.file_id)
+        self.cache_key = f"externalfile:{self.file_id}"
         self.file_path = os.path.join(settings.EXTERNAL_FILES_PATH, self.name)
 
     @property
@@ -78,7 +78,7 @@ class ExternalFile:
             content = fp.read()
 
         if not content:
-            raise ValueError("%s is empty" % self.name)
+            raise ValueError(f"{self.name} is empty")
 
         return self.validate_content(content)
 
@@ -91,7 +91,7 @@ class ExternalFile:
     def update(self):
         from bedrock.externalfiles.models import ExternalFile as EFModel
 
-        log.info("Updating {0}.".format(self.name))
+        log.info(f"Updating {self.name}.")
         content = self.validate_file()
         fo = self.file_object
         if fo:
@@ -100,7 +100,7 @@ class ExternalFile:
         else:
             EFModel.objects.create(name=self.file_id, content=content)
 
-        log.info("Successfully updated {0}.".format(self.name))
+        log.info(f"Successfully updated {self.name}.")
         return True
 
     def clear_cache(self):

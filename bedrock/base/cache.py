@@ -49,7 +49,7 @@ class SimpleDictCache(LocMemCache):
     def incr(self, key, delta=1, version=None):
         value = self.get(key, version=version)
         if value is None:
-            raise ValueError("Key '%s' not found" % key)
+            raise ValueError(f"Key '{key}' not found")
         new_value = value + delta
         key = self.make_key(key, version=version)
         with self._lock:

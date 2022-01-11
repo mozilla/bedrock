@@ -27,7 +27,7 @@ def process_md_file(file_path):
             extensions=["markdown.extensions.attr_list", "markdown.extensions.toc", OutlineExtension((("wrapper_cls", ""),))],
         )
         content = output.getvalue().decode("utf-8")
-    except IOError:
+    except OSError:
         content = None
     finally:
         output.close()

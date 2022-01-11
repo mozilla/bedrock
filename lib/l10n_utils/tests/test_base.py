@@ -3,13 +3,13 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import os
+from unittest.mock import ANY, call, patch
 
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
 from django_jinja.backend import Jinja2
-from mock import ANY, call, patch
 
 from lib import l10n_utils
 

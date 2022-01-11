@@ -24,7 +24,7 @@ def _request(api_url, limit=None, page=1):
 
 
 def _api_url(feed_url, data_type, data_id):
-    api_url = "{}/wp-json/wp/v2/{}/".format(feed_url.rstrip("/"), data_type)
+    api_url = f"{feed_url.rstrip('/')}/wp-json/wp/v2/{data_type}/"
     if data_id:
         api_url += str(data_id)
     return api_url

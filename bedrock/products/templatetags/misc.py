@@ -29,14 +29,14 @@ def _vpn_product_link(product_url, entrypoint, link_text, class_name=None, optio
     href = f"{product_url}{separator}entrypoint={entrypoint}&form_type=button&service={client_id}&utm_source={entrypoint}&utm_medium=referral"
 
     if optional_parameters:
-        params = "&".join("%s=%s" % (param, val) for param, val in optional_parameters.items())
+        params = "&".join(f"{param}={val}" for param, val in optional_parameters.items())
         href += f"&{params}"
 
     css_class = "js-vpn-cta-link js-fxa-product-button"
     attrs = ""
 
     if optional_attributes:
-        attrs += " ".join('%s="%s"' % (attr, val) for attr, val in optional_attributes.items())
+        attrs += " ".join(f'{attr}="{val}"' for attr, val in optional_attributes.items())
 
         # If there's a `data-cta-position` attribute for GA, also pass that as a query param to vpn.m.o.
         position = optional_attributes.get("data-cta-position", None)
@@ -201,7 +201,7 @@ def vpn_product_referral_link(ctx, referral_id="", page_anchor="", link_text=Non
     attrs = f'data-referral-id="{referral_id}" '
 
     if optional_attributes:
-        attrs += " ".join('%s="%s"' % (attr, val) for attr, val in optional_attributes.items())
+        attrs += " ".join(f'{attr}="{val}"' for attr, val in optional_attributes.items())
 
     if class_name:
         css_class += f" {class_name}"

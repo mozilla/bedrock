@@ -13,7 +13,7 @@ class PositionFilterForm(forms.Form):
     location = forms.ChoiceField(widget=forms.Select(attrs={"autocomplete": "off"}))
 
     def __init__(self, *args, **kwargs):
-        super(PositionFilterForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         # Populate position type choices dynamically.
         locations = Position.locations()

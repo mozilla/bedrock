@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # bedrock documentation build configuration file, created by
 # sphinx-quickstart on Tue Jan  4 15:11:09 2011.
