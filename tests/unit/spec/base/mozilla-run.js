@@ -10,8 +10,6 @@
  */
 
 describe('mozilla-run.js', function () {
-    'use strict';
-
     describe('run', function () {
         afterEach(function () {
             window.site.isModernBrowser = window.site.cutsTheMustard();

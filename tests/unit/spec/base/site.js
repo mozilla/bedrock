@@ -12,8 +12,6 @@
 /* global sinon */
 
 describe('site.js', function () {
-    'use strict';
-
     describe('getPlatform', function () {
         it('should identify Windows', function () {
             expect(

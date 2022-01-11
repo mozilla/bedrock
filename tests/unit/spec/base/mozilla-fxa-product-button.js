@@ -10,8 +10,6 @@
  */
 
 describe('mozilla-fxa-product-button.js', function () {
-    'use strict';
-
     beforeEach(function () {
         const button = `<a class="js-fxa-product-button" href="https://accounts.firefox.com/signup?form_type=button&service=test&entrypoint=mozilla.org-whatsnew60&utm_source=mozilla.org-whatsnew60&utm_medium=referral&utm_campaign=whatsnew60&context=fx_desktop_v3" data-action="https://accounts.firefox.com/" data-mozillaonline-link="https://accounts.firefox.com.cn/signup?form_type=button&service=test&entrypoint=mozilla.org-whatsnew60&utm_source=mozilla.org-whatsnew60&utm_medium=referral&utm_campaign=whatsnew60&context=fx_desktop_v3" data-mozillaonline-action="https://accounts.firefox.com.cn/">Sign Up to Monitor</a>
              <a class="js-fxa-product-button" href="https://getpocket.com/ff_signup?s=ffwelcome2&amp;form_type=button&amp;entrypoint=mozilla.org-firefox-welcome-2&amp;utm_source=mozilla.org-firefox-welcome-2&amp;utm_campaign=welcome-2-pocket&amp;utm_medium=referral" data-action="https://accounts.firefox.com/">Activate Pocket</a>

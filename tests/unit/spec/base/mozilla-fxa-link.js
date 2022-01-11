@@ -12,8 +12,6 @@
 /* global sinon */
 
 describe('mozilla-fxa-link.js', function () {
-    'use strict';
-
     describe('init', function () {
         beforeEach(function () {
             const link =

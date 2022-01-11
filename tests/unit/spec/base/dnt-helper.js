@@ -10,8 +10,6 @@
  */
 
 describe('dnt-helper.js', function () {
-    'use strict';
-
     describe('Mozilla.dntEnabled', function () {
         it('should return true for Fx41 on Mac with DNT set to true', function () {
             const dnt = 1;

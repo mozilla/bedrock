@@ -12,8 +12,6 @@
 /* global sinon */
 
 describe('core-datalayer.js', function () {
-    'use strict';
-
     describe('pageHasDownload', function () {
         it('will return "true" when download button is present on page.', function () {
             const downloadMarkup =
