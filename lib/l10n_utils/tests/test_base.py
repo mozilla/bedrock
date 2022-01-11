@@ -9,6 +9,7 @@ from django.test import TestCase
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
+import pytest
 from django_jinja.backend import Jinja2
 
 from lib import l10n_utils
@@ -63,6 +64,9 @@ class TestRender(TestCase):
 
         # Should fallback to one of the site's fallback languages
         self._test(path, template, "es-CL", "es-CL,es;q=0.7,en;q=0.3", 302, "/es-ES/firefox/new/", active_locales=locales)
+
+        # Should use the user's base language (en-CA -> en) if no exact matches
+        self._test(path, template, "en-CA", "en-CA,fr", 302, "/en-US/firefox/new/", active_locales=locales)
 
     def test_add_active_locales(self):
         # expect same results as above, but with locales from `add_active_locales`
@@ -160,3 +164,25 @@ class TestL10nTemplateView(TestCase):
         view = l10n_utils.L10nTemplateView.as_view(template_name="dude.html", ftl_files="dude", activation_files=["dude", "donny"])
         view(self.req)
         render_mock.assert_called_with(self.req, ["dude.html"], ANY, ftl_files="dude", activation_files=["dude", "donny"])
+
+
+@pytest.mark.parametrize(
+    "translations, accept_languages, expected",
+    (
+        # Anything with a 'en-US' transtion and 'en' root accept languages, goes to 'en-US'.
+        (["en-US"], ["en-US"], "en-US"),
+        (["en-US"], ["en-CA"], "en-US"),
+        (["en-US"], ["en"], "en-US"),
+        (["en-US", "de"], ["en-GB"], "en-US"),
+        # Anything with a 'en-US' transtion and unsupported translations, goes to 'en-US' by default.
+        (["en-US"], ["zu"], "en-US"),
+        (["en-US"], ["fr"], "en-US"),
+        (["en-US", "de"], ["fr"], "en-US"),
+        # The user's prioritized accept language should be chosen first.
+        (["en-US", "de"], ["de", "en-US"], "de"),
+        (["en-US", "de", "fr"], ["fr", "de"], "fr"),
+        (["en-US", "de", "fr"], ["en-CA", "fr", "de"], "en-US"),
+    ),
+)
+def test_get_best_translation(translations, accept_languages, expected):
+    assert l10n_utils.get_best_translation(translations, accept_languages) == expected
