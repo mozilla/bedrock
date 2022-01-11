@@ -16,7 +16,7 @@ from django.views.generic import TemplateView
 
 from product_details import product_details
 
-from bedrock.base.urlresolvers import split_path
+from bedrock.base.urlresolvers import _get_language_map, split_path
 
 from .fluent import fluent_l10n, get_active_locales as ftl_active_locales
 
@@ -180,27 +180,17 @@ def get_accept_languages(request):
 
 
 def get_best_translation(translations, accept_languages):
-    # Look for the user's Accept-Language HTTP header to find another
-    # locale we can offer
+    lang_map = _get_language_map()
+    valid_lang_map = {k: v for k, v in lang_map.items() if v in translations}
     for lang in accept_languages:
-        if lang in translations:
-            return lang
+        lang.lower()
+        if lang in valid_lang_map:
+            return valid_lang_map[lang]
+        pre = lang.split("-")[0]
+        if pre in valid_lang_map:
+            return valid_lang_map[pre]
 
-    # Check for the fallback locales if the previous look-up doesn't
-    # work. This is useful especially in the Spanish locale where es-ES
-    # should be offered as the fallback of es, es-AR, es-CL and es-MX
-    for lang in accept_languages:
-        lang = settings.FALLBACK_LOCALES.get(lang)
-        if lang in translations:
-            return lang
-
-    # If all the attempts failed, just use en-US, the default locale of
-    # the site
-    if settings.LANGUAGE_CODE in translations:
-        return settings.LANGUAGE_CODE
-
-    # fall back to just the first locale in the list
-    return translations[0]
+    return lang_map[translations[0].lower()]
 
 
 def get_translations_native_names(locales):
