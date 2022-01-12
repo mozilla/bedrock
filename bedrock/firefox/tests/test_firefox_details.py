@@ -15,7 +15,10 @@ PROD_DETAILS_DIR = os.path.join(TEST_DATA_DIR, "product_details_json")
 
 
 GOOD_PLATS = {"Windows": {}, "OS X": {}, "Linux": {}}
-GOOD_BUILDS = {
+
+# In the run-up to FF100, these tests support both two-digit and
+# three-digit major version numbers
+GOOD_BUILDS__TWO_DIGITS = {
     "en-US": {
         "25.0": GOOD_PLATS,  # current release
         "26.0b2": GOOD_PLATS,
@@ -24,27 +27,50 @@ GOOD_BUILDS = {
     "de": {"25.0": GOOD_PLATS},
     "fr": {"24.0": GOOD_PLATS},  # prev release
 }
-GOOD_VERSIONS = {
+GOOD_BUILDS__THREE_DIGITS = {
+    "en-US": {
+        "125.0": GOOD_PLATS,  # current release
+        "126.0b2": GOOD_PLATS,
+        "127.0a1": GOOD_PLATS,
+    },
+    "de": {"125.0": GOOD_PLATS},
+    "fr": {"124.0": GOOD_PLATS},  # prev release
+}
+
+GOOD_VERSIONS__TWO_DIGITS = {
     "LATEST_FIREFOX_VERSION": "25.0",
     "LATEST_FIREFOX_DEVEL_VERSION": "26.0b2",
     "FIREFOX_DEVEDITION": "26.0b2",
     "FIREFOX_AURORA": "",
     "FIREFOX_ESR": "24.1.0esr",
 }
-GOOD_VERSIONS_NO_DEV = {
+GOOD_VERSIONS__THREE_DIGITS = {
+    "LATEST_FIREFOX_VERSION": "125.0",
+    "LATEST_FIREFOX_DEVEL_VERSION": "126.0b2",
+    "FIREFOX_DEVEDITION": "126.0b2",
+    "FIREFOX_AURORA": "",
+    "FIREFOX_ESR": "124.1.0esr",
+}
+GOOD_VERSIONS__TWO_DIGITS_NO_DEV = {
     "LATEST_FIREFOX_VERSION": "25.0",
     "LATEST_FIREFOX_DEVEL_VERSION": "26.0b2",
     "FIREFOX_AURORA": "",
     "FIREFOX_ESR": "24.1.0esr",
 }
+GOOD_VERSIONS__THREE_DIGITS_NO_DEV = {
+    "LATEST_FIREFOX_VERSION": "125.0",
+    "LATEST_FIREFOX_DEVEL_VERSION": "126.0b2",
+    "FIREFOX_AURORA": "",
+    "FIREFOX_ESR": "124.1.0esr",
+}
 
 
-class PatchFirefoxDesktopMixin:
-    firefox_desktop_versions = GOOD_VERSIONS
+class PatchFirefoxDesktopTwoDigitsMixin:
+    firefox_desktop_versions = GOOD_VERSIONS__TWO_DIGITS
 
     def setUp(self):
         self.firefox_desktop = FirefoxDesktop(json_dir=PROD_DETAILS_DIR)
-        self.p1 = patch.object(self.firefox_desktop, "firefox_primary_builds", GOOD_BUILDS)
+        self.p1 = patch.object(self.firefox_desktop, "firefox_primary_builds", GOOD_BUILDS__TWO_DIGITS)
         self.p2 = patch.object(self.firefox_desktop, "firefox_beta_builds", {})
         self.p3 = patch.object(self.firefox_desktop, "firefox_versions", self.firefox_desktop_versions)
         self.p1.start()
@@ -56,12 +82,39 @@ class PatchFirefoxDesktopMixin:
         self.p2.stop()
         self.p3.stop()
 
+    def _patch_if_necessary(self, expected):
+        # no patching needed for two-digit version numbers
+        return expected
 
-class TestLatestBuilds(PatchFirefoxDesktopMixin, TestCase):
-    def test_latest_builds(self):
+
+class PatchFirefoxDesktopThreeDigitsMixin:
+    firefox_desktop_versions = GOOD_VERSIONS__THREE_DIGITS
+
+    def setUp(self):
+        self.firefox_desktop = FirefoxDesktop(json_dir=PROD_DETAILS_DIR)
+        self.p1 = patch.object(self.firefox_desktop, "firefox_primary_builds", GOOD_BUILDS__THREE_DIGITS)
+        self.p2 = patch.object(self.firefox_desktop, "firefox_beta_builds", {})
+        self.p3 = patch.object(self.firefox_desktop, "firefox_versions", self.firefox_desktop_versions)
+        self.p1.start()
+        self.p2.start()
+        self.p3.start()
+
+    def tearDown(self):
+        self.p1.stop()
+        self.p2.stop()
+        self.p3.stop()
+
+    def _patch_if_necessary(self, expected):
+        # Patching is needed for three-digit version numbers
+        return f"1{expected}"
+
+
+class _TestLatestBuildsBase:
+    def test_latest_builds(self, expected="25.0"):
         """Should return platforms if localized build does exist."""
         result = self.firefox_desktop.latest_builds("de", "release")
-        self.assertEqual(result[0], "25.0")
+        expected = self._patch_if_necessary(expected)
+        self.assertEqual(result[0], expected)
         self.assertIs(result[1], GOOD_PLATS)
 
     def test_latest_builds_is_none_if_no_build(self):
@@ -69,26 +122,44 @@ class TestLatestBuilds(PatchFirefoxDesktopMixin, TestCase):
         result = self.firefox_desktop.latest_builds("fr", "release")
         self.assertIsNone(result)
 
-    def test_latest_builds_channels(self):
+    def test_latest_builds_channels(self, expected="26.0b2"):
         """Should work with all channels."""
+        expected = self._patch_if_necessary(expected)
         result = self.firefox_desktop.latest_builds("en-US", "beta")
-        self.assertEqual(result[0], "26.0b2")
+        self.assertEqual(result[0], expected)
         self.assertIs(result[1], GOOD_PLATS)
 
         result = self.firefox_desktop.latest_builds("en-US", "alpha")
-        self.assertEqual(result[0], "26.0b2")
+        self.assertEqual(result[0], expected)
         self.assertIs(result[1], GOOD_PLATS)
 
 
-class TestLatestBuildsNoDevEdition(PatchFirefoxDesktopMixin, TestCase):
+class TestLatestBuildsTwoDigits(
+    PatchFirefoxDesktopTwoDigitsMixin,
+    _TestLatestBuildsBase,
+    TestCase,
+):
+    pass
+
+
+class TestLatestBuildsThreeDigits(
+    PatchFirefoxDesktopThreeDigitsMixin,
+    _TestLatestBuildsBase,
+    TestCase,
+):
+    pass
+
+
+class _TestLatestBuildsBaseNoDevEditionBase:
     """Should get same results as above and not blow up"""
 
-    firefox_desktop_versions = GOOD_VERSIONS_NO_DEV
+    firefox_desktop_versions = GOOD_VERSIONS__TWO_DIGITS_NO_DEV
 
-    def test_latest_builds(self):
+    def test_latest_builds(self, expected="25.0"):
         """Should return platforms if localized build does exist."""
+        expected = self._patch_if_necessary(expected)
         result = self.firefox_desktop.latest_builds("de", "release")
-        self.assertEqual(result[0], "25.0")
+        self.assertEqual(result[0], expected)
         self.assertIs(result[1], GOOD_PLATS)
 
     def test_latest_builds_is_none_if_no_build(self):
@@ -96,18 +167,35 @@ class TestLatestBuildsNoDevEdition(PatchFirefoxDesktopMixin, TestCase):
         result = self.firefox_desktop.latest_builds("fr", "release")
         self.assertIsNone(result)
 
-    def test_latest_builds_channels(self):
+    def test_latest_builds_channels(self, expected="26.0b2"):
         """Should work with all channels."""
+        expected = self._patch_if_necessary(expected)
         result = self.firefox_desktop.latest_builds("en-US", "beta")
-        self.assertEqual(result[0], "26.0b2")
+        self.assertEqual(result[0], expected)
         self.assertIs(result[1], GOOD_PLATS)
 
         result = self.firefox_desktop.latest_builds("en-US", "alpha")
-        self.assertEqual(result[0], "26.0b2")
+        self.assertEqual(result[0], expected)
         self.assertIs(result[1], GOOD_PLATS)
 
 
-class TestFirefoxDesktop(TestCase):
+class TestLatestBuildsNoDevEditionTwoDigits(
+    PatchFirefoxDesktopTwoDigitsMixin,
+    _TestLatestBuildsBaseNoDevEditionBase,
+    TestCase,
+):
+    pass
+
+
+class TestLatestBuildsNoDevEditionThreeDigits(
+    PatchFirefoxDesktopThreeDigitsMixin,
+    _TestLatestBuildsBaseNoDevEditionBase,
+    TestCase,
+):
+    pass
+
+
+class TestFirefoxDesktopBase(TestCase):
     pd_cache = caches["product-details"]
 
     def setUp(self):
