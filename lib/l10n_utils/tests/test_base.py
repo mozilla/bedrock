@@ -126,11 +126,13 @@ class TestGetAcceptLanguages(TestCase):
         """
         Should return a list of valid lang codes
         """
-        self._test("fr-FR", ["fr"])
-        self._test("en-us,en;q=0.5", ["en-US", "en"])
-        self._test("pt-pt,fr;q=0.8,it-it;q=0.5,de;q=0.3", ["pt-PT", "fr", "it", "de"])
-        self._test("ja-JP-mac,ja-JP;q=0.7,ja;q=0.3", ["ja"])
+        self._test("fr-FR", ["fr-fr"])
+        self._test("en-us,en;q=0.5", ["en-us", "en"])
+        self._test("pt-pt,fr;q=0.8,it-it;q=0.5,de;q=0.3", ["pt-pt", "fr", "it-it", "de"])
+        self._test("ja-JP-mac,ja-JP;q=0.7,ja;q=0.3", ["ja-jp-mac", "ja-jp", "ja"])
         self._test("foo,bar;q=0.5", ["foo", "bar"])
+        # Verify the return lang codes are ordered by rank.
+        self._test("de;q=0.5,en-us", ["en-us", "de"])
 
     def test_invalid_lang_codes(self):
         """
@@ -138,7 +140,7 @@ class TestGetAcceptLanguages(TestCase):
         """
         self._test("", [])
         self._test("en_us,en*;q=0.5", [])
-        self._test("Chinese,zh-cn;q=0.5", ["zh-CN"])
+        self._test("Chinese,zh-cn;q=0.5", ["chinese", "zh-cn"])
 
 
 @patch.object(l10n_utils, "render")

@@ -2,7 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import re
 from os.path import relpath, splitext
 from typing import List
 
@@ -153,33 +152,23 @@ def get_locale(request):
 
 def get_accept_languages(request):
     """
-    Parse the user's Accept-Language HTTP header and return a list of languages
+    Parse the user's Accept-Language HTTP header and return a list of languages in ranked order.
     """
-    languages = []
-    pattern = re.compile(r"^([A-Za-z]{2,3})(?:-([A-Za-z]{2})(?:-[A-Za-z0-9]+)?)?$")
-
-    parsed = parse_accept_lang_header(request.headers.get("Accept-Language", ""))
-
-    for lang, priority in parsed:
-        m = pattern.match(lang)
-
-        if not m:
-            continue
-
-        lang = m.group(1).lower()
-
-        # Check if the shorter code is supported. This covers obsolete long
-        # codes like fr-FR (should match fr) or ja-JP (should match ja)
-        if m.group(2) and lang not in settings.PROD_LANGUAGES:
-            lang += "-" + m.group(2).upper()
-
-        if lang not in languages:
-            languages.append(lang)
-
-    return languages
+    ranked = parse_accept_lang_header(request.headers.get("Accept-Language", ""))
+    return [lang for lang, rank in ranked]
 
 
 def get_best_translation(translations, accept_languages):
+    """
+    Return the best translation available comparing the accept languages against available translations.
+
+    This attempts to find a matching translation for each accept language. It
+    compares each accept language in full, and also the root. For example,
+    "en-CA" looks for "en-CA" as well as "en", which maps to "en-US".
+
+    If none found, it returns the first language code for the first available translation.
+
+    """
     lang_map = _get_language_map()
     valid_lang_map = {k: v for k, v in lang_map.items() if v in translations}
     for lang in accept_languages:
