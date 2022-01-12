@@ -226,6 +226,12 @@ class TestFirefoxDesktopBase(TestCase):
             parse_qsl(urlparse(url).query),
             [("product", "firefox-latest-ssl"), ("os", "linux64"), ("lang", "en-US")],
         )
+        # Check three-digit version does not break things
+        url = self.firefox_desktop.get_download_url("release", "117.0.1", "osx", "pt-BR", True)
+        self.assertListEqual(
+            parse_qsl(urlparse(url).query),
+            [("product", "firefox-latest-ssl"), ("os", "osx"), ("lang", "pt-BR")],
+        )
 
     def test_get_download_url_esr(self):
         """
@@ -776,12 +782,24 @@ class TestFirefoxDesktopBase(TestCase):
 
     def test_latest_major_version(self):
         """latest_major_version should return an int of the major version."""
-        with patch.object(
-            self.firefox_desktop._storage,
-            "data",
-            Mock(return_value=dict(LATEST_FIREFOX_VERSION="18.0.1")),
+        for case in (
+            ("18", 18),
+            ("18.0a1", 18),
+            ("18.0.1", 18),
+            ("100.0.1", 100),
+            ("100", 100),
+            ("100.0a1", 100),
+            ("119.0.1", 119),
+            ("119", 119),
+            ("119.0a1", 119),
         ):
-            assert self.firefox_desktop.latest_major_version("release") == 18
+            with self.subTest(case=case):
+                with patch.object(
+                    self.firefox_desktop._storage,
+                    "data",
+                    Mock(return_value=dict(LATEST_FIREFOX_VERSION=case[0])),
+                ):
+                    assert self.firefox_desktop.latest_major_version("release") == case[1]
 
     def test_latest_major_version_no_int(self):
         """latest_major_version should return 0 when no int."""
