@@ -88,7 +88,10 @@ FROM app-base AS devapp
 
 CMD ["./bin/run-tests.sh"]
 
+
+
 RUN apt-install make sqlite3
+COPY docker/bin/ssllabs-scan /usr/local/bin/ssllabs-scan
 COPY requirements/base.txt requirements/dev.txt requirements/migration.txt requirements/docs.txt ./requirements/
 RUN pip install --no-cache-dir -r requirements/dev.txt
 RUN pip install --no-cache-dir -r requirements/docs.txt
