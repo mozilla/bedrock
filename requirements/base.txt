@@ -162,8 +162,6 @@ https://github.com/jezdez/django-appconf/archive/d7ff3bb0c35a0c2ec83afdb31f7bb79
     --hash=sha256:3e80e498209d7253e2cc1a4f9b02e7da819179a910c9275d5bc232de48e67c33
 https://github.com/mozilla/commonware/archive/v0.5.0.tar.gz#egg=commonware \
     --hash=sha256:edefcb5081b702bccba7c279df259ef80ad1e8f9f889d99f3fe621fb05edf756
-https://github.com/mozilla/nuggets/archive/ce506882b6943ea45ea4f98290fc4ef23e09a083.tar.gz#egg=nuggets \
-    --hash=sha256:79eabfcf8d793503c11778f9f5f9b2e891a3b67a43815431c30bc52b19c3431d
 basket-client==1.0.0 \
     --hash=sha256:f9f9ff4870cc1d171ff9f00a8d968336d0e74178f5ac1612bc85be39a3f0cc2c \
     --hash=sha256:fee512c8deabde53aa33b08fa34a992de3085e781be192c4120adb086d0d20c1
