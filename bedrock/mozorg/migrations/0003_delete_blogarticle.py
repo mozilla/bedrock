@@ -11,8 +11,4 @@ class Migration(migrations.Migration):
         ("mozorg", "0002_blogarticle"),
     ]
 
-    operations = [
-        migrations.DeleteModel(
-            name="BlogArticle",
-        ),
-    ]
+    operations = []
