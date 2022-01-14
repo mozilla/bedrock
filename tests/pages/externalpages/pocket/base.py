@@ -4,6 +4,7 @@
 
 from pypom import Page, Region
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as expected
 
 
 class BaseRegion(Region):
@@ -21,6 +22,7 @@ class BasePage(Page):
 
         # Dismiss cookie prompt before running tests
         cookie_prompt = self.wait.until(lambda s: s.find_element(By.ID, "onetrust-accept-btn-handler"))
+        self.wait.until(lambda s: expected.element_to_be_clickable(cookie_prompt))
         cookie_prompt.click()
         self.wait.until(lambda s: cookie_prompt.is_displayed() is False)
 
