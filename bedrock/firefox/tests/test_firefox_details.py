@@ -899,21 +899,25 @@ class TestFirefoxAndroid(TestCase):
 
     def test_latest_release_version(self):
         """latest_version should return the latest release version."""
-        with patch.object(
-            self.firefox_android._storage,
-            "data",
-            Mock(return_value=dict(version="22.0.1")),
-        ):
-            assert self.firefox_android.latest_version("release") == "22.0.1"
+        for version in ["22.0.1", "100.0.1", "122.0.1"]:
+            with self.subTest(version=version):
+                with patch.object(
+                    self.firefox_android._storage,
+                    "data",
+                    Mock(return_value=dict(version=version)),
+                ):
+                    assert self.firefox_android.latest_version("release") == version
 
     def test_latest_beta_version(self):
         """latest_version should return the latest beta version."""
-        with patch.object(
-            self.firefox_android._storage,
-            "data",
-            Mock(return_value=dict(beta_version="23.0")),
-        ):
-            assert self.firefox_android.latest_version("beta") == "23.0"
+        for version in ["23.0.1", "101.0.1", "123.0.1"]:
+            with self.subTest(version=version):
+                with patch.object(
+                    self.firefox_android._storage,
+                    "data",
+                    Mock(return_value=dict(beta_version=version)),
+                ):
+                    assert self.firefox_android.latest_version("beta") == version
 
     def test_get_download_url_nightly(self):
         """
@@ -1023,3 +1027,25 @@ class TestFirefoxIos(TestCase):
     def test_latest_beta_version(self):
         """latest_version should return the latest beta version."""
         assert self.firefox_ios.latest_version("beta") == "6.0"
+
+
+class TestFirefox100Ios(TestCase):
+    def setUp(self):
+        self.firefox_ios = FirefoxIOS(json_dir=PROD_DETAILS_DIR)
+        self.patcher = patch.object(
+            self.firefox_ios._storage,
+            "data",
+            Mock(return_value=dict(ios_version="100.0", ios_beta_version="101.0")),
+        )
+        self.patcher.start()
+
+    def tearDown(self):
+        self.patcher.stop()
+
+    def test_latest_release_version(self):
+        """latest_version should return the latest release version."""
+        assert self.firefox_ios.latest_version("release") == "100.0"
+
+    def test_latest_beta_version(self):
+        """latest_version should return the latest beta version."""
+        assert self.firefox_ios.latest_version("beta") == "101.0"
