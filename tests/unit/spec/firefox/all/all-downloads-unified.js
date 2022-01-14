@@ -5,7 +5,7 @@
  */
 
 /* For reference read the Jasmine and Sinon docs
- * Jasmine docs: http://pivotal.github.io/jasmine/
+ * Jasmine docs: https://jasmine.github.io/
  * Sinon docs: http://sinonjs.org/docs/
  */
 
