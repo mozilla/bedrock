@@ -134,16 +134,9 @@ six==1.11.0 \
     --hash=sha256:70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9
 cef==0.5 \
     --hash=sha256:2d1cb558391673df5109a3fe5e84fde6160edc8b241b3eb19ab3d3abe9b8df31
-django-session-csrf==0.5 \
-    --hash=sha256:44e4639ec057a6b6a9dddb869d4e3a4818fc9278ec490cce39aef08440592a93
 whitenoise==3.3.0 \
     --hash=sha256:1d62a003a0ab747de96da45c831cbb512dcb7f69c1ef0bd20b1cd4ae45d8a0c4 \
     --hash=sha256:d098327276de6fd189398a7bcb95789d1bb2d41b3e011eeae4562f6b1a107dd4
-django-localflavor==1.1 \
-    --hash=sha256:3b5503b512248af661cf91e4f402327619ffc3bc5b3b0ea774a969ed3bf84594 \
-    --hash=sha256:afd6627cd0fd396824e44a5e4f7bfe9c8d7a45d9bf09b4db2c0683d92681ba93
-https://github.com/kurtmckee/feedparser/archive/2aa5286245ed40b13a0f77f997d124c1844bcb43.tar.gz#egg=feedparser \
-    --hash=sha256:70a0535bc9252a01f062713af800658a21eee34e5474b2823ea706eda222a26f
 django-extensions==2.1.6 \
     --hash=sha256:109004f80b6f45ad1f56addaa59debca91d94aa0dc1cb19678b9364b4fe9b6f4 \
     --hash=sha256:307766e5e6c1caffe76c5d99239d8115d14ae3f7cab2cd991fcffd763dad904b
@@ -156,10 +149,6 @@ bleach==3.3.0 \
     --hash=sha256:98b3170739e5e83dd9dc19633f074727ad848cbedb6026708c8ac2d3b697a433
 https://github.com/aleray/mdx_outline/archive/41e22622a17a0d8e410bd921698ec767213a6305.tar.gz#egg=mdx_outline \
     --hash=sha256:07fea056c4f85d4093856d8fdf08ace9fcc46e183a047b9f4758e9d7ef64fa0f
-https://github.com/timmyomahony/django-pagedown/archive/78556863faa5654f749c5562b390317c6cad10b3.tar.gz#egg=django-pagedown \
-    --hash=sha256:3e7bfaf54a560889838104c100d8b37930306243d8913942c4675cfcc54bccc7
-https://github.com/jezdez/django-appconf/archive/d7ff3bb0c35a0c2ec83afdb31f7bb79e0f1b222c.tar.gz#egg=django-appconf \
-    --hash=sha256:3e80e498209d7253e2cc1a4f9b02e7da819179a910c9275d5bc232de48e67c33
 https://github.com/mozilla/commonware/archive/v0.5.0.tar.gz#egg=commonware \
     --hash=sha256:edefcb5081b702bccba7c279df259ef80ad1e8f9f889d99f3fe621fb05edf756
 https://github.com/mozilla/nuggets/archive/ce506882b6943ea45ea4f98290fc4ef23e09a083.tar.gz#egg=nuggets \
@@ -205,9 +194,6 @@ funcsigs==1.0.2 \
 pbr==1.10.0 \
     --hash=sha256:f5cf7265a80636ecff66806d13494cbf9d77a3758a65fd8b4d4d4bee81b0c375 \
     --hash=sha256:186428c270309e6fdfe2d5ab0949ab21ae5f7dea831eab96701b86bd666af39c
-mock==2.0.0 \
-    --hash=sha256:5ce3c71c5545b472da17b72268978914d0252980348636840bd34a00b5cc96c1 \
-    --hash=sha256:b158b6df76edd239b8208d481dc46b6afd45a846b7812ff0ce58971cf5bc8bba
 django-memoize==2.1.0 \
     --hash=sha256:ad969e02f25dab6484626cc3b023c2ff17004b0e3bbd8386467865826bc2bc6c
 django-allow-cidr==0.3.0 \
@@ -294,8 +280,6 @@ requests-oauthlib==1.2.0 \
 oauthlib==3.0.1 \
     --hash=sha256:0ce32c5d989a1827e3f1148f98b9085ed2370fc939bf524c9c851d8714797298 \
     --hash=sha256:3e1e14f6cde7e5475128d30e97edc3bfb4dc857cb884d8714ec161fdbb3b358e
-PySocks==1.6.8 \
-    --hash=sha256:3fe52c55890a248676fd69dc9e3c4e811718b777834bcaab7a8125cf9deac672
 urllib3==1.26.5 \
     --hash=sha256:753a0374df26658f99d826cfe40394a686d05985786d946fbe4165b5148f5a7c \
     --hash=sha256:a7acd0977125325f516bda9735fa7142b909a8d01e8b2e4c8108d0984e6e0098
