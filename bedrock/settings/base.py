@@ -561,8 +561,6 @@ INSTALLED_APPS = (
     "product_details",
     # third-party apps
     "django_jinja_markdown",
-    "pagedown",
-    "localflavor",
     "django_jinja",
     "watchman",
     # Local apps
