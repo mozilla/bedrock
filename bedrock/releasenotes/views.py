@@ -163,6 +163,8 @@ def latest_sysreq(request, product="firefox", platform=None, channel=None):
 
 def releases_index(request, product):
     releases = {}
+    major_releases = []
+
     if product == "Firefox":
         major_releases = firefox_desktop.firefox_history_major_releases
         minor_releases = firefox_desktop.firefox_history_stability_releases
