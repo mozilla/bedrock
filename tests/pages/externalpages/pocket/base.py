@@ -21,11 +21,16 @@ class BasePage(Page):
         self.wait.until(lambda s: "loaded" in el.get_attribute("class"))
 
         # Dismiss cookie prompt before running tests
-        cookie_prompt = self.wait.until(lambda s: s.find_element(By.ID, "onetrust-accept-btn-handler"))
-        self.wait.until(lambda s: expected.element_to_be_clickable(cookie_prompt))
-        cookie_prompt.click()
-        self.wait.until(lambda s: cookie_prompt.is_displayed() is False)
+        self.wait.until(lambda s: expected.presence_of_element_located(s.find_element(By.ID, "onetrust-banner-sdk")))
+        cookie_banner = self.find_element(By.ID, "onetrust-banner-sdk")
+        self.wait.until(lambda s: "animation-name" not in cookie_banner.get_attribute("style"))
 
+        accept_cookie_button = self.find_element(By.ID, "onetrust-accept-btn-handler")
+        self.wait.until(lambda s: expected.element_to_be_clickable(accept_cookie_button))
+        accept_cookie_button.click()
+
+        self.wait.until(lambda s: cookie_banner.is_displayed() is False)
+        
         return self
 
     @property
