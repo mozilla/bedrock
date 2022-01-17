@@ -148,10 +148,7 @@ PositionFilters.prototype = {
                 if (data.indexOf(value + ',') === -1) {
                     positions.item(i).classList.add('hidden');
                 }
-            } else if (
-                value.indexOf('Remote') !== -1 && data === 'Remote,'
-
-            ) {
+            } else if (value.indexOf('Remote') !== -1 && data === 'Remote,') {
                 continue;
             } else if (
                 data.indexOf(value + ',') === -1 &&
