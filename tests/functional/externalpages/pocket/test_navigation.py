@@ -24,14 +24,14 @@ def test_mobile_menu(base_url, selenium_mobile):
 
 
 def test_accessible_mobile_menu_open_name(base_url, selenium_mobile):
-    expected_accessible_name = "Open"
     page = AboutPage(selenium_mobile, base_url).open()
     button_label_reference = page.navigation.mobile_menu_open_button.get_attribute("aria-labelledby")
-    assert page.navigation.mobile_menu_open_button.find_element(By.ID, button_label_reference).text == expected_accessible_name
+    string = page.navigation.mobile_menu_open_button.find_element(By.ID, button_label_reference).text
+    assert len(string) > 0
 
 
 def test_accessible_mobile_menu_close_name(base_url, selenium_mobile):
-    expected_accessible_name = "Close the Pocket Mobile Menu"
     page = AboutPage(selenium_mobile, base_url).open()
     page.navigation.open_mobile_menu()
-    assert page.navigation.mobile_menu_close_button.text == expected_accessible_name
+    string = page.navigation.mobile_menu_close_button.text
+    assert len(string) > 0
