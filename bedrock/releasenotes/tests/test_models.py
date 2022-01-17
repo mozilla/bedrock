@@ -41,13 +41,34 @@ class TestReleaseModel(TestCase):
         models.ProductRelease.objects.refresh()
         release_cache.clear()
 
+    def _add_in_ff100(self):
+        # TODO: remove once FF100 data is properly in the dataset
+        last = models.ProductRelease.objects.filter(channel="Release").last()
+        last.pk = None
+        last.version = "100.0a1"
+        last.save()
+        last.refresh_from_db()
+        assert last.pk is not None
+
     def test_release_major_version(self):
         rel = models.get_release("firefox", "57.0a1")
         assert rel.major_version == "57"
 
+    def test_release_major_version__ff100(self):
+        self._add_in_ff100()
+        rel = models.get_release("firefox", "100.0a1")
+        assert rel.major_version == "100"
+
     def test_get_bug_search_url(self):
         rel = models.get_release("firefox", "57.0a1")
         assert "=Firefox%2057&" in rel.get_bug_search_url()
+        rel.bug_search_url = "custom url"
+        assert "custom url" == rel.get_bug_search_url()
+
+    def test_get_bug_search_url__ff100(self):
+        self._add_in_ff100()
+        rel = models.get_release("firefox", "100.0a1")
+        assert "=Firefox%20100&" in rel.get_bug_search_url()
         rel.bug_search_url = "custom url"
         assert "custom url" == rel.get_bug_search_url()
 
