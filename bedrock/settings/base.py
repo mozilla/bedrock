@@ -1089,8 +1089,21 @@ LOGGING = {
     "formatters": {
         "verbose": {"format": "%(levelname)s %(asctime)s %(module)s %(message)s"},
     },
-    "handlers": {"console": {"class": "logging.StreamHandler", "stream": sys.stdout, "formatter": "verbose"}},
+    "handlers": {
+        "null": {
+            "class": "logging.NullHandler",
+        },
+        "console": {
+            "class": "logging.StreamHandler",
+            "stream": sys.stdout,
+            "formatter": "verbose",
+        },
+    },
     "loggers": {
+        "django.security.DisallowedHost": {  # NB: this exception changes base in Django 4
+            "handlers": ["null"],
+            "propagate": False,
+        },
         "django.db.backends": {
             "level": "ERROR",
             "handlers": ["console"],
