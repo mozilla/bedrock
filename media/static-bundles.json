@@ -753,6 +753,30 @@
     },
     {
       "files": [
+        "css/protocol/components/picto.scss"
+      ],
+      "name": "protocol_picto"
+    },
+    {
+      "files": [
+        "css/protocol/components/article.scss"
+      ],
+      "name": "protocol_article"
+    },
+    {
+      "files": [
+        "css/protocol/components/newsletter-form.scss"
+      ],
+      "name": "protocol_newsletter"
+    },
+    {
+      "files": [
+        "css/protocol/components/emphasis-box.scss"
+      ],
+      "name": "protocol_emphasis_box"
+    },
+    {
+      "files": [
         "css/firefox/welcome10.scss"
       ],
       "name": "firefox_welcome_page10"
