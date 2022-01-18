@@ -328,7 +328,6 @@ $url-download-link-hover: svg-url($download-link-hover);
 // * -------------------------------------------------------------------------- */
 // dev tools and desktop compare blocks
 
-.t-dev,
 .t-compare {
     background-color: $color-marketing-gray-20;
     margin-top: $layout-xs + $layout-2xl;
@@ -353,14 +352,12 @@ $url-download-link-hover: svg-url($download-link-hover);
     }
 }
 
-.c-dev-title,
 .c-compare-title {
     @include text-title-sm;
     font-weight: bold;
 }
 
 @media #{$mq-sm} {
-    .t-dev,
     .t-compare {
         margin-left: auto;
         margin-right: auto;
@@ -373,7 +370,6 @@ $url-download-link-hover: svg-url($download-link-hover);
 }
 
 @media #{$mq-md} {
-    .t-dev,
     .t-compare {
         border-radius: $border-radius-sm;
         margin-top: 0;
@@ -392,23 +388,6 @@ $url-download-link-hover: svg-url($download-link-hover);
 
         .mzp-c-split-media-asset {
             width: 100%;
-        }
-    }
-}
-
-@media (min-width: #{$screen-lg}) and (max-width: #{$screen-xl - 1px}) {
-    .t-dev {
-        .mzp-c-card-feature.mzp-l-card-feature-left-half {
-            display: block;
-        }
-
-        .mzp-c-split-body {
-            width: 100%;
-            text-align: center;
-        }
-
-        .mzp-c-split-media {
-            display: none;
         }
     }
 }
