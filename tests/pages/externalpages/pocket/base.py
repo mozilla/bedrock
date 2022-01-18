@@ -46,6 +46,7 @@ class BasePage(Page):
 
     class Navigation(BaseRegion):
 
+        _content_wrapper_locator = (By.TAG_NAME, "body")
         _mobile_menu_open_btn_locator = (By.CLASS_NAME, "global-nav-mobile-menu-btn")
         _mobile_menu_close_btn_locator = (By.CLASS_NAME, "mobile-nav-close-btn")
         _mobile_menu_locator = (By.CLASS_NAME, "mobile-nav")
@@ -64,14 +65,14 @@ class BasePage(Page):
         @property
         def is_mobile_menu_open(self):
             return (
-                "active" in self.find_element(*self._mobile_menu_locator).get_attribute("class")
+                "mobile-nav-open" in self.find_element(*self._content_wrapper_locator).get_attribute("class")
                 and self.mobile_menu_open_button.get_attribute("aria-expanded") == "true"
             )
 
         @property
         def is_mobile_menu_closed(self):
             return (
-                "active" not in self.find_element(*self._mobile_menu_wrapper_locator).get_attribute("class")
+                "mobile-nav-open" not in self.find_element(*self._content_wrapper_locator).get_attribute("class")
                 and self.mobile_menu_open_button.get_attribute("aria-expanded") == "false"
             )
 

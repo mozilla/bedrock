@@ -19,34 +19,34 @@ function detectClickOutside(event) {
     }
 }
 
+function toggleContentWrapperClass(e) {
+    if (e.target === mobileNavWrapper) {
+        contentWrapper.classList.toggle('mobile-nav-open');
+    }
+}
+
 function handleMenuOpen() {
     mobileNavWrapper.classList.add('active');
+    mobileNavWrapper.style.opacity = 1;
+    mobileNav.classList.add('active');
     navOpenBtn.setAttribute('aria-expanded', true);
-    contentWrapper.classList.add('mobile-nav-open');
+
     document.addEventListener('click', detectClickOutside);
     window.addEventListener('keydown', handleKeyDown);
 
-    // move focus to close button when modal is opened, need to use setTimeout to get the animation working correctly
-    setTimeout(function () {
-        mobileNavWrapper.style.opacity = 1;
-        mobileNav.classList.add('active');
-        navCloseBtn.focus();
-    }, 10);
+    navCloseBtn.focus();
 }
 
 function handleMenuClose() {
     mobileNav.classList.remove('active');
-    navOpenBtn.setAttribute('aria-expanded', false);
+    mobileNavWrapper.classList.remove('active');
     mobileNavWrapper.style.opacity = 0;
+    navOpenBtn.setAttribute('aria-expanded', false);
+
     document.removeEventListener('click', detectClickOutside);
     window.removeEventListener('keydown', handleKeyDown);
 
-    // move focus to open button when modal is closed need to use setTimeout to get the animation working correctly
-    setTimeout(function () {
-        mobileNavWrapper.classList.remove('active');
-        contentWrapper.classList.remove('mobile-nav-open');
-        navOpenBtn.focus();
-    }, 250);
+    navOpenBtn.focus();
 }
 
 function handleKeyDown(e) {
@@ -109,6 +109,12 @@ const init = function () {
     // add event listeners
     navOpenBtn.addEventListener('click', handleMenuOpen, false);
     navCloseBtn.addEventListener('click', handleMenuClose, false);
+    // this event is used both for styling and as a test condition
+    mobileNavWrapper.addEventListener(
+        'transitionend',
+        toggleContentWrapperClass,
+        { capture: true }
+    );
 };
 
 export default init;
