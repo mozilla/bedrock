@@ -12,6 +12,9 @@
 {% block page_ios_icon %}{{ static('img/logos/master/favicon-180.png') }}{% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('protocol-call-out') }}
   {{ css_bundle('firefox-privacy-common') }}
 {% endblock %}
 

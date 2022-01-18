@@ -14,6 +14,7 @@
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-split') }}
   {{ css_bundle('firefox-browsers-products') }}
 
   {% if show_firefox_app_store_banner %}

@@ -737,43 +737,43 @@
       "files": [
         "css/protocol/components/split.scss"
       ],
-      "name": "protocol_split"
+      "name": "protocol-split"
     },
     {
       "files": [
         "css/protocol/components/cards.scss"
       ],
-      "name": "protocol_card"
+      "name": "protocol-card"
     },
     {
       "files": [
         "css/protocol/components/call-out.scss"
       ],
-      "name": "protocol_call_out"
+      "name": "protocol-call-out"
     },
     {
       "files": [
         "css/protocol/components/picto.scss"
       ],
-      "name": "protocol_picto"
+      "name": "protocol-picto"
     },
     {
       "files": [
         "css/protocol/components/article.scss"
       ],
-      "name": "protocol_article"
+      "name": "protocol-article"
     },
     {
       "files": [
         "css/protocol/components/newsletter-form.scss"
       ],
-      "name": "protocol_newsletter"
+      "name": "protocol-newsletter"
     },
     {
       "files": [
         "css/protocol/components/emphasis-box.scss"
       ],
-      "name": "protocol_emphasis_box"
+      "name": "protocol-emphasis-box"
     },
     {
       "files": [
