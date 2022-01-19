@@ -8,6 +8,7 @@ from selenium.webdriver.common.by import By
 from pages.externalpages.pocket.about import AboutPage
 
 
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_mobile_menu(base_url, selenium_mobile):
     page = AboutPage(selenium_mobile, base_url).open()
