@@ -25,6 +25,7 @@ ciphers = (
     ("strong_ECDHE_RSA_AES_256", "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"),
 )
 
+
 # helper functions
 def write_ssl_results(base_url, tmp_filename):
     print("get results")
