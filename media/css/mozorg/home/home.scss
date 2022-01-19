@@ -9,10 +9,6 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/fonts/metropolis';
 @import '~@mozilla-protocol/core/protocol/css/components/billboard';
 @import '~@mozilla-protocol/core/protocol/css/components/hero';
-@import '~@mozilla-protocol/core/protocol/css/components/newsletter-form';
-@import '~@mozilla-protocol/core/protocol/css/components/picto';
-@import '~@mozilla-protocol/core/protocol/css/components/split';
-@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 
 .mzp-c-hero .c-primary-cta-title {
     @include font-firefox;

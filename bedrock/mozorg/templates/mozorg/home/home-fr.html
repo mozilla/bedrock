@@ -17,6 +17,10 @@
 {% set show_vpn_promo_banner = switch('vpn-promo-banner') %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-card') }}
+  {{ css_bundle('protocol-newsletter') }}
+  {{ css_bundle('protocol-call-out') }}
   {{ css_bundle('home-eu') }}
 
   {% if switch('homepage-mr2-promo-eu') %}

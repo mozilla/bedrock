@@ -6,14 +6,10 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/call-out';
 @import '~@mozilla-protocol/core/protocol/css/components/feature-card';
-@import '~@mozilla-protocol/core/protocol/css/components/split';
 @import '~@mozilla-protocol/core/protocol/css/components/button';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
-@import '~@mozilla-protocol/core/protocol/css/components/picto';
-@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 @import '../../protocol/components/custom-menu-list';
 @import '../../protocol/components/sub-navigation';
 

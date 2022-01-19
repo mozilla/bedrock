@@ -6,10 +6,7 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/split';
-@import '~@mozilla-protocol/core/protocol/css/components/picto';
 @import '~@mozilla-protocol/core/protocol/css/components/video';
-@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 
 .c-hero-pretitle {
     @include text-title-2xs;
