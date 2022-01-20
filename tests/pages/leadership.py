@@ -19,12 +19,12 @@ class LeadershipPage(BasePage):
     @property
     def corporation(self):
         leaders = self.find_elements(*self._corporation_bios_locator)
-        return [l.get_attribute("id") for l in leaders]
+        return [leader.get_attribute("id") for leader in leaders]
 
     @property
     def foundation(self):
         leaders = self.find_elements(*self._foundation_bios_locator)
-        return [l.get_attribute("id") for l in leaders]
+        return [leader.get_attribute("id") for leader in leaders]
 
     def open_biography(self, value):
         modal = ModalProtocol(self)

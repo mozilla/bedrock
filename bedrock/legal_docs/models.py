@@ -80,7 +80,7 @@ class LegalDocsManager(models.Manager):
             all_locales[all_locales.index("en")] = "en-US"
 
         # filter locales not active on the site
-        all_locales = [l for l in all_locales if l in settings.PROD_LANGUAGES]
+        all_locales = [loc for loc in all_locales if loc in settings.PROD_LANGUAGES]
 
         return {
             "content": doc.content,
