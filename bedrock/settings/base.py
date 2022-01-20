@@ -590,7 +590,6 @@ INSTALLED_APPS = (
     # libs
     "django_extensions",
     "lib.l10n_utils",
-    "captcha",
 )
 
 # Must match the list at CloudFlare if the
