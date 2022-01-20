@@ -290,7 +290,7 @@ class TestPressBlogUrl(TestCase):
     def _render(self, locale):
         req = self.rf.get("/")
         req.locale = locale
-        return render("{{{{ press_blog_url() }}}}".format("/"), {"request": req})
+        return render("{{{{ press_blog_url() }}}}".format("/"), {"request": req})  # noqa: F523
 
     def test_press_blog_url_no_locale(self):
         """No locale, fallback to default press blog"""
