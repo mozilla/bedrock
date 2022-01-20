@@ -1514,9 +1514,16 @@
     },
     {
       "files": [
-        "js/externalpages/pocket/mobile-nav.es6.js"
+        "js/externalpages/pocket/mobile-nav.es6.js",
+        "js/externalpages/pocket/mobile-nav-init.es6.js"
       ],
       "name": "pocket-nav"
+    },
+    {
+      "files": [
+        "js/externalpages/pocket/base.js"
+      ],
+      "name": "pocket-base"
     },
     {
       "files": [
