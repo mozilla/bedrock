@@ -85,7 +85,7 @@ repos:
           - "postcss-scss@4.0.2"
           - "postcss@8.3.11"
   - repo: https://github.com/eslint/eslint
-    rev: v8.7.0
+    rev: v7.32.0
     hooks:
       - id: eslint
         additional_dependencies:
