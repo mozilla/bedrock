@@ -43,8 +43,8 @@
   <body>
     <main class="main-container">{% block content %}{% endblock %}</main>
 
-     {% block base_js %}
-      {{ js_bundle('pocket-base') }}
+     {% block site_js %}
+      {{ js_bundle('pocket-site') }}
      {% endblock %}
 
      {% block js %}{% endblock %}
