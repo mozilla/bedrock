@@ -1521,9 +1521,11 @@
     },
     {
       "files": [
-        "js/externalpages/pocket/base.js"
+        "js/externalpages/pocket/base.js",
+        "js/base/mozilla-cookie-helper.js",
+        "js/externalpages/pocket/snowplow.es6.js"
       ],
-      "name": "pocket-base"
+      "name": "pocket-site"
     },
     {
       "files": [

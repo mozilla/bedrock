@@ -1199,6 +1199,7 @@ CSP_SCRIPT_SRC = CSP_DEFAULT_SRC + [
     "1003350.track.convertexperiments.com",
     "1003343.track.convertexperiments.com",
     "cdn.cookielaw.org",
+    "assets.getpocket.com",  # allow Pocket Snowplow analytics
 ]
 CSP_STYLE_SRC = CSP_DEFAULT_SRC + [
     # TODO fix things so that we don't need this
@@ -1225,6 +1226,8 @@ CSP_CONNECT_SRC = CSP_DEFAULT_SRC + [
     "cdn.cookielaw.org",
     "privacyportal.onetrust.com",
     FXA_ENDPOINT,
+    "com-getpocket-prod1.mini.snplow.net",  # Dev Pocket Snowplow
+    "getpocket.com",  # Prod Pocket Snowplow
 ]
 CSP_REPORT_ONLY = config("CSP_REPORT_ONLY", default="false", parser=bool)
 CSP_REPORT_URI = config("CSP_REPORT_URI", default="") or None
