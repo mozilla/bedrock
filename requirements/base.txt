@@ -264,9 +264,9 @@ django-watchman==1.2.0 \
 django-jsonview==2.0.0 \
     --hash=sha256:1871983f6c7ab0bec1bad3249b06ce64c47d3bed57cd190f87e5acaf65722ebb \
     --hash=sha256:77345393f8e8bb3279b9ba9fb2db687adfa74d41feab972521545d47103d321b
-boto3==1.20.40 \
-    --hash=sha256:66aef9a6d8cad393f69166112ba49e14e2c6766f9278c96134101314a9af2992 \
-    --hash=sha256:cfe85589e4a0a997c7b9ae7432400b03fa6fa5fea29fdc48db3099a903b76998
+boto3==1.20.42 \
+    --hash=sha256:49499acf3f1dbb5f09eb93abfeb4025cd76fb7880c16a01a2901dfa335496f0d \
+    --hash=sha256:d2fce99e42cb7cb263f3ff272bc707aa6a66bc6ab30d90bf0ff6cbdddd867cfa
 botocore==1.23.40 \
     --hash=sha256:49baa1fca4483b24769f0743fbf72afe4db391f41f1fc12ea34e06036db642a4 \
     --hash=sha256:88a314fe27cd97a0c731094c5b34db01ebe930801700e5d1b68485ebde746c3c
