@@ -43,12 +43,15 @@ class TestReleaseModel(TestCase):
 
     def _add_in_ff100(self):
         # TODO: remove once FF100 data is properly in the dataset
-        last = models.ProductRelease.objects.filter(channel="Release").last()
+        last = models.ProductRelease.objects.filter(channel="Nightly").last()
         last.pk = None
         last.version = "100.0a1"
+        last.title = "Firefox 100.0a1 Nightly"
+        last.slug = "firefox-100.0a1-nightly"
+        last.notes = []
         last.save()
-        last.refresh_from_db()
         assert last.pk is not None
+        release_cache.clear()
 
     def test_release_major_version(self):
         rel = models.get_release("firefox", "57.0a1")
