@@ -2,7 +2,6 @@
 exclude: >
   (?x)^(
     docs
-    | bedrock/settings
     | node_modules
     | assets
     | static
