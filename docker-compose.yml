@@ -121,3 +121,20 @@ services:
       target: app-base
     image: mozmeao/bedrock_code:${GIT_COMMIT:-latest}
     platform: linux/amd64
+
+  # Python dependency management
+  compile-requirements:
+    image: mozmeao/bedrock_build:${GIT_COMMIT:-latest}
+    platform: linux/amd64
+    command:
+      ./bin/compile-requirements.sh
+    volumes:
+      - .:/app
+
+  upgrade-requirements:
+    image: mozmeao/bedrock_build:${GIT_COMMIT:-latest}
+    platform: linux/amd64
+    command:
+      ./bin/compile-requirements.sh --upgrade
+    volumes:
+      - .:/app
