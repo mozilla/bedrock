@@ -11,15 +11,30 @@ Developing on Bedrock
 Managing Dependencies
 ---------------------
 
-For Python we use `hashin <https://pypi.org/project/hashin/>`_ to pin dependencies in
-`requirements files <https://github.com/mozilla/bedrock/tree/master/requirements>`_.
-To use hashin it must first be installed using pip:
+For Python we use `pip-compile-multi <https://pypi.org/project/pip-compile-multi/>`_ to manage dependencies expressed in
+our `requirements files <https://github.com/mozilla/bedrock/tree/master/requirements>`_.
+``pip-compile-multi`` is wrapped up in Makefile commands, to ensure we use it consistently.
 
-.. code-block:: python
+If you add a new Python dependency (eg to ``requirements/prod.in`` or ``requirements/dev.in``) you can generate a pinned and hash-marked
+addition to our requirements files just by running:
 
-    pip install hashin
+.. code-block:: shell
 
-See the hashin `documentation <https://pypi.org/project/hashin/#how-to-use-it>`_ for how to install new packages.
+    make compile-requirements
+
+and committing any changes that are made. Please re-build your docker image and test it with ``make build test`` to be sure the dependency does not cause a regression.
+
+To check for stale Python dependencies (basically ``pip list -o`` but in the Docker container):
+
+.. code-block:: shell
+
+    make check-requirements
+
+To upgrade Python dependencies:
+
+.. code-block:: shell
+
+    make upgrade-requirements
 
 For Node packages we use `NPM <https://docs.npmjs.com/cli/v8/commands/npm-install>`_, which should already be
 installed alongside `Node.js <https://nodejs.org/>`_.
