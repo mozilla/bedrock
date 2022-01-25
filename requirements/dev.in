@@ -1,4 +1,4 @@
--r prod.txt
+-r prod.in
 
 async_generator==1.10
 backports.cached-property==1.0.1
@@ -18,7 +18,6 @@ entrypoints==0.3
 factory-boy==3.2.1
 Faker==11.3.0
 flake8==4.0.1
-greenlet==1.1.2
 h11==0.13.0
 iniconfig==1.1.1
 isort==5.10.1
