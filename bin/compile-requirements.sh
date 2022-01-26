@@ -14,7 +14,17 @@ pip install --upgrade pip-tools==6.4.0  # needs at least this version to build
 pip install pip-compile-multi
 
 if [[ "$1" == "--upgrade" ]]; then
-    pip-compile-multi --generate-hashes prod --generate-hashes dev --generate-hashes docs --upgrade
+    pip-compile-multi \
+        --generate-hashes prod \
+        --generate-hashes dev \
+        --generate-hashes docs \
+        --header=/app/bin/pip-compile-multi-header-message.txt \
+        --upgrade
+
 else
-    pip-compile-multi --generate-hashes prod --generate-hashes dev --generate-hashes docs
+    pip-compile-multi \
+        --generate-hashes prod \
+        --generate-hashes dev \
+        --generate-hashes docs \
+        --header=/app/bin/pip-compile-multi-header-message.txt
 fi
