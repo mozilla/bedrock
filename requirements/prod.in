@@ -11,7 +11,6 @@ certifi==2021.10.8
 chardet==3.0.4
 charset-normalizer==2.0.10
 commonware==0.6.0
-configobj==5.0.6
 contentful==1.13.1
 contextlib2==0.5.4
 cryptography==36.0.1
@@ -31,7 +30,7 @@ django-watchman==1.2.0
 Django==2.2.26
 docutils==0.17.1
 envcat==0.1.1
-everett==0.9
+everett==3.0.0
 fluent.runtime==0.3
 fluent.syntax==0.17.0
 funcsigs==1.0.2
