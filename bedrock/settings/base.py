@@ -932,9 +932,9 @@ MOZILLA_INSTAGRAM_ACCOUNTS = {
 FXA_ENDPOINT = config("FXA_ENDPOINT", default="https://accounts.stage.mozaws.net/" if DEV else "https://accounts.firefox.com/")
 
 # Google Play and Apple App Store settings
-from .appstores import GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE  # noqa
-from .appstores import GOOGLE_PLAY_FIREFOX_LINK_UTMS  # noqa
-from .appstores import (
+from .appstores import GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE  # noqa: E402, F401
+from .appstores import GOOGLE_PLAY_FIREFOX_LINK_UTMS  # noqa: E402, F401
+from .appstores import (  # noqa: E402, F401
     ADJUST_FIREFOX_URL,
     ADJUST_FOCUS_URL,
     ADJUST_KLAR_URL,
@@ -1226,9 +1226,10 @@ CSP_CONNECT_SRC = CSP_DEFAULT_SRC + [
     "cdn.cookielaw.org",
     "privacyportal.onetrust.com",
     FXA_ENDPOINT,
-    "com-getpocket-prod1.mini.snplow.net",  # Dev Pocket Snowplow
-    "getpocket.com",  # Prod Pocket Snowplow
+    "getpocket.com",  # Pocket Snowplow
 ]
+if DEV:
+    CSP_CONNECT_SRC.append("com-getpocket-prod1.mini.snplow.net")
 CSP_REPORT_ONLY = config("CSP_REPORT_ONLY", default="false", parser=bool)
 CSP_REPORT_URI = config("CSP_REPORT_URI", default="") or None
 
