@@ -109,48 +109,101 @@ If you make a change to ``media/static-bundles.json``, you'll need to restart Do
 Local Installation
 ------------------
 
-These instructions assume you have Python 3.6+, pip, and NodeJS installed. If you don't have `pip` installed
+These instructions assume you have Python, pip, and NodeJS installed. If you don't have `pip` installed
 (you probably do) you can install it with the instructions in `the pip docs <https://pip.pypa.io/en/stable/installing/>`_.
 
-You need to create a virtual environment for Python libraries:
+Bedrock currently uses Python 3.9.10. The recommended way to install and use that version is
+with `pyenv <https://github.com/pyenv/pyenv>`_ and to create a virtualenv using
+`pyenv-virtualenv <https://github.com/pyenv/pyenv-virtualenv>`_ that will isolate Bedrock's
+dependencies from other things installed on the system.
 
-1. Create a virtual env in the folder `venv` ::
+The following assumes you are on MacOS, using ``zsh`` as your shell and `Homebrew <https://brew.sh/>`_
+as your package manager. If you are not, there are installation instructions for a variety of
+platforms and shells in the READMEs for the two pyenv projects.
 
-    $ python3 -m venv venv
+**Install Python 3.9.10 with pyenv**
 
-2. Activate the virtual env. On Windows, run: venv\Scripts\activate.bat ::
+1. Install ``pyenv`` itself ::
 
-    $ source venv/bin/activate
+    $ brew install pyenv
 
-3. Securely upgrade pip ::
+2. Configure your shell to init ``pyenv`` on start - this is noted in the project's `own docs <https://github.com/pyenv/pyenv>`_, in more detail ::
+
+    $ echo 'eval "$(pyenv init --path)"' >> ~/.zprofile
+
+    % echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+
+3. Restart your login session for the changes to profile files to take effect - if you're not
+using ``zsh``, the ``pyenv`` docs have other routes ::
+
+    $ zsh -l
+
+4. Install Python 3.9.10, then test it's there::
+
+    $ pyenv install 3.9.10
+    ...
+
+    $ pyenv shell 3.9.10  # This temporarily switches your shell session to using 3.9.10
+
+    $ python --version
+    Python 3.9.10
+
+
+**Install a plugin to manage virtualenvs via pyenv and create a virtualenv for Bedrock's dependencies**
+
+1. Install ``pyenv-virtualenv`` ::
+
+    $ brew install pyenv-virtualenv
+
+2. Configure your shell to init ``pyenv-virtualenv`` on start - again, this is noted in the ``pyenv-virtualenv`` project's `own docs <https://github.com/pyenv/pyenv-virtualenv>`_, in more detail ::
+
+    $ eval "$(pyenv virtualenv-init -)"
+
+3. Restart your login session for the changes to profile files to take effect ::
+
+    $ zsh -l
+
+4. Make a virtualenv we can use - in this example we'll call it ``bedrock39`` but use whatever you want ::
+
+    $ pyenv virtualenv 3.9.10 bedrock39
+
+**Use the virtualenv**
+
+1. Switch to the virtualenv - this is the command you will use any time you need this virtualenv ::
+
+    $ pyenv activate bedrock39
+
+2. Securely upgrade pip ::
 
     $ pip install --upgrade pip
 
-4. Installs dependencies ::
+3. Install / update dependencies ::
 
-    $ pip install -r requirements/dev.txt
+    $ pip install -U -r requirements/dev.txt --no-cache-dir
+
+.. note::
+
+    If you are on OSX and some of the compiled dependencies fails to compile, try explicitly setting the arch flags and try again. The following are relevant to Intel Macs only. If you're on Apple Silicon, 3.9.10 should 'just work':
+
+    .. code-block:: bash
+
+        $ export ARCHFLAGS="-arch i386 -arch x86_64"
 
 
-If you are on OSX and some of the compiled dependencies fails to compile, try explicitly setting the arch flags and try again
+    .. code-block:: bash
 
-.. code-block:: bash
+        $ pip install -r requirements/dev.txt
 
-    $ export ARCHFLAGS="-arch i386 -arch x86_64"
+    If you are on Linux, you may need at least the following packages or their equivalent for your distro::
 
-.. code-block:: bash
+        python3-dev libxslt-dev
 
-    $ pip install -r requirements/dev.txt
-
-If you are on Linux, you will need at least the following packages or their equivalent for your distro::
-
-    $ python3-dev libxslt-dev
-
-Sync the database and all of the external data locally. This gets product-details, security-advisories,
+**Sync the database and all of the external data locally.** This gets product-details, security-advisories,
 credits, release notes, localizations, legal-docs etc::
 
     $ bin/bootstrap.sh
 
-Next, you need to have `Node.js <https://nodejs.org/>`_ and `npm <https://www.npmjs.com/>`_ installed.
+**Next, you need to have `Node.js <https://nodejs.org/>`_ and `npm <https://www.npmjs.com/>`_ installed**.
 The node dependencies for running the site can be installed with ``npm install``::
 
     $ npm install
