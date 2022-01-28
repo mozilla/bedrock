@@ -1,7 +1,6 @@
 -r prod.in
 
 async_generator==1.10
-backports.cached-property==1.0.1
 black==21.12b0
 blessings==1.7
 bpython==0.22.1
@@ -61,7 +60,6 @@ tomli==1.2.3
 translate-toolkit==3.5.3
 trio-websocket==0.9.2
 trio==0.19.0
-typed-ast==1.5.1
 wcwidth==0.2.5
 wsproto==1.0.0
 
