@@ -4,9 +4,8 @@ cl-ext.lang==0.1.0 \
 compare-locales==7.6.0 \
     --hash=sha256:312b67f913c75f2b352a63f10fda9bdb824d8edd366e5590f07ca5bb79aea805 \
     --hash=sha256:617e95574a67d96dc44ec080188e1c60b6c210fe10319f27ab8708a23ed2a5e0
-fluent.migrate==0.8.1 \
-    --hash=sha256:0dd5db3cde2c3ac4aed7def1af6f76497b98444308a91febaa19429de7935c75 \
-    --hash=sha256:18a87eeb39dd97ca0f40afb97180429a21e8663c5665e80766a7da96c147bd93
+fluent.migrate==0.11 \
+    --hash=sha256:3b93fdba9cbc8702d160367ba3a0d5c120707fdde752af35aecf516ce80ed252
 parsimonious==0.8.1 \
     --hash=sha256:3add338892d580e0cb3b1a39e4a1b427ff9f687858fdd61097053742391a9f6b
 pytoml==0.1.21 \
