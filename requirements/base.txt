@@ -236,9 +236,9 @@ requests==2.27.1 \
 django-mozilla-product-details==1.0.1 \
     --hash=sha256:484b61deb99663c131c7e386bc683c83cab612777055b12588e91844a1508a04 \
     --hash=sha256:ef25e5e9bce4bfe6c7ba9c87245f5be93c0ac3fc7f1d60afd459e55e9dcc8bc7
-contextlib2==0.5.4 \
-    --hash=sha256:399f659f2a8b5d5d529f132e1136fc404fbbc28e34e4618c5c92bd595be9b162 \
-    --hash=sha256:710626cde569f51a87f216ff757fe60f5cd13ae8f8114706590510cd5649ce88
+contextlib2==21.6.0 \
+    --hash=sha256:3fbdb64466afd23abaf6c977627b75b6139a5a3e8ce38405c5b413aed7a0471f \
+    --hash=sha256:ab1e2bfe1d01d968e1b7e8d9023bc51ef3509bba217bb730cee3827e1ee82869
 django-csp==3.7 \
     --hash=sha256:01443a07723f9a479d498bd7bb63571aaa771e690f64bde515db6cdb76e8041a \
     --hash=sha256:01eda02ad3f10261c74131cdc0b5a6a62b7c7ad4fd017fbefb7a14776e0a9727
