@@ -130,11 +130,3 @@ services:
       ./bin/compile-requirements.sh
     volumes:
       - .:/app
-
-  upgrade-requirements:
-    image: mozmeao/bedrock_build:${GIT_COMMIT:-latest}
-    platform: linux/amd64
-    command:
-      ./bin/compile-requirements.sh --upgrade
-    volumes:
-      - .:/app

@@ -4,8 +4,6 @@
 # Do do this, just use the following from your host:
 #
 # $ make compile-requirements
-# or
-# $ make upgrade-requirements
 #
 -r prod.txt
 async-generator==1.10 \

@@ -145,10 +145,7 @@ test-ci: .docker-build-ci
 compile-requirements: .docker-build-pull
 	${DC} run --rm compile-requirements
 
-upgrade-requirements: .docker-build-pull
-	${DC} run --rm upgrade-requirements
-
 check-requirements: .docker-build-pull
 	${DC} run --rm test pip list -o
 
-.PHONY: all clean build pull docs livedocs build-docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod build-prod test-cdn compile-requirements upgrade-requirements check-requirements
+.PHONY: all clean build pull docs livedocs build-docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod build-prod test-cdn compile-requirements check-requirements

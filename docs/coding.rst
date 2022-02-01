@@ -22,19 +22,17 @@ addition to our requirements files just by running:
 
     make compile-requirements
 
-and committing any changes that are made. Please re-build your docker image and test it with ``make build test`` to be sure the dependency does not cause a regression.
+and committing any changes that are made. Please re-build your docker image and test
+it with ``make build test`` to be sure the dependency does not cause a regression.
+
+Similarly, if you *upgrade* a pinned dependency in an ``*.in`` file, run
+``make compile-requirements`` then rebuild, test and commit the results
 
 To check for stale Python dependencies (basically ``pip list -o`` but in the Docker container):
 
 .. code-block:: shell
 
     make check-requirements
-
-To upgrade Python dependencies:
-
-.. code-block:: shell
-
-    make upgrade-requirements
 
 For Node packages we use `NPM <https://docs.npmjs.com/cli/v8/commands/npm-install>`_, which should already be
 installed alongside `Node.js <https://nodejs.org/>`_.

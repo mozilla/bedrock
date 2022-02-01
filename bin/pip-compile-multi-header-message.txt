@@ -3,6 +3,4 @@
 # Do do this, just use the following from your host:
 #
 # $ make compile-requirements
-# or
-# $ make upgrade-requirements
 #

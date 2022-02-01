@@ -4,8 +4,6 @@
 # Do do this, just use the following from your host:
 #
 # $ make compile-requirements
-# or
-# $ make upgrade-requirements
 #
 apscheduler==3.0.5 \
     --hash=sha256:009dcf552035b30ee967f2677d0d7a49a88f2d36291c42669aa069dd549da9e4 \
