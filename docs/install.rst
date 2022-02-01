@@ -163,15 +163,15 @@ using ``zsh``, the ``pyenv`` docs have other routes ::
 
     $ zsh -l
 
-4. Make a virtualenv we can use - in this example we'll call it ``bedrock39`` but use whatever you want ::
+4. Make a virtualenv we can use - in this example we'll call it ``bedrock`` but use whatever you want ::
 
-    $ pyenv virtualenv 3.9.10 bedrock39
+    $ pyenv virtualenv 3.9.10 bedrock
 
 **Use the virtualenv**
 
 1. Switch to the virtualenv - this is the command you will use any time you need this virtualenv ::
 
-    $ pyenv activate bedrock39
+    $ pyenv activate bedrock
 
 2. Securely upgrade pip ::
 
