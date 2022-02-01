@@ -1,4 +1,4 @@
-# SHA1:8799202cd0d18aa16d9b881b6a76aa0d9279f97d
+# SHA1:a33847fac60ed6d8efe744e76e60d6eaee3d05a0
 # Please recompile requirements inside the Docker image, not on your local, host machine.
 #
 # Do do this, just use the following from your host:
@@ -163,9 +163,9 @@ deprecated==1.2.13 \
 dirsync==2.2.5 \
     --hash=sha256:1e3a4cd2b639a2eae5afc03c2b8a003fc43d56a0da5114db579386da9a14a8be
     # via -r requirements/prod.in
-django==2.2.26 \
-    --hash=sha256:85e62019366692f1d5afed946ca32fef34c8693edf342ac9d067d75d64faf0ac \
-    --hash=sha256:dfa537267d52c6243a62b32855a744ca83c37c70600aacffbfd98bc5d6d8518f
+django==2.2.27 \
+    --hash=sha256:1ee37046b0bf2b61e83b3a01d067323516ec3b6f2b17cd49b1326dd4ba9dc913 \
+    --hash=sha256:90763c764738586b11d7e1f44828032c153366e43ad7f782908193a1bb2d6d92
     # via
     #   -r requirements/prod.in
     #   django-allow-cidr
