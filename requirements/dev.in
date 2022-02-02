@@ -3,16 +3,10 @@
 black==21.12b0
 bpython==0.22.1
 braceexpand==0.1.7
-chkcrontab==1.7
-cookies==2.2.1
-diff-match-patch==20200713
-entrypoints==0.3
 factory-boy==3.2.1
 flake8==4.0.1
 importlib-metadata==4.2.0
 isort==5.10.1
-more-itertools==8.12.0
-pep8==1.7.1
 pipdeptree==2.2.1
 PyPOM==1.0
 pyquery==1.4.3
@@ -23,12 +17,9 @@ pytest-parallel==0.1.1
 pytest-rerunfailures==10.2
 pytest-selenium==1.17.0
 pytest==6.2.5  # Included because we use it directly, but also a subdep of pytest-selenium's subdeps
-regex==2022.1.18
 responses==0.17.0
 selenium==3.141.0  # Pinned for stability - 4.x will need test updates
 translate-toolkit==3.5.3
-trio-websocket==0.9.2
-wcwidth==0.2.5
 # Related to moz-l10n-lint, used in CI
 cl-ext.lang==0.1.0
 compare-locales==7.6.0
