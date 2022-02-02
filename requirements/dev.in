@@ -26,7 +26,6 @@ pytest==6.2.5  # Included because we use it directly, but also a subdep of pytes
 regex==2022.1.18
 responses==0.17.0
 selenium==3.141.0  # Pinned for stability - 4.x will need test updates
-tenacity==6.3.1
 translate-toolkit==3.5.3
 trio-websocket==0.9.2
 wcwidth==0.2.5
