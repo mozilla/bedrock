@@ -38,7 +38,7 @@ RUN python -m venv /venv
 COPY requirements/prod.txt ./requirements/
 
 # Install Python deps
-RUN pip install --no-cache-dir -r requirements/prod.txt
+RUN pip install --require-hashes --no-cache-dir -r requirements/prod.txt
 
 
 ########
@@ -90,8 +90,8 @@ CMD ["./bin/run-tests.sh"]
 
 RUN apt-install make sqlite3
 COPY requirements/* ./requirements/
-RUN pip install --no-cache-dir -r requirements/dev.txt
-RUN pip install --no-cache-dir -r requirements/docs.txt
+RUN pip install --require-hashes --no-cache-dir -r requirements/dev.txt
+RUN pip install --require-hashes --no-cache-dir -r requirements/docs.txt
 COPY ./setup.cfg ./
 COPY ./pyproject.toml ./
 COPY ./.coveragerc ./
