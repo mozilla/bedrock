@@ -26,12 +26,10 @@ envcat==0.1.1
 everett==3.0.0
 fluent.runtime==0.3
 fluent.syntax==0.17.0
-funcsigs==1.0.2
 greenlet==0.4.17  # pinned for stability but subdep of Meinheld
 gunicorn==19.7.1
 honcho==1.1.0
 html5lib==1.1
-lxml==4.7.1
 Markdown==3.1  # downpinned so that importlib-metadata subdep doesn't clash
 https://github.com/mozmeao/mdx_outline/archive/refs/tags/python-3.9-compat.tar.gz#egg=mdx_outline
 meinheld==1.0.2
@@ -48,6 +46,4 @@ rich-text-renderer==0.2.4
 sentry-sdk==1.5.4
 supervisor==4.2.4
 timeago==1.0.15
-typing_extensions==4.0.1
 whitenoise==3.3.0
-zipp==3.7.0
