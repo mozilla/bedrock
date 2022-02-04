@@ -17,6 +17,7 @@
   {{ css_bundle('firefox_whatsnew_97_eu') }}
 {% endblock %}
 
+{% set _entrypoint = 'mozilla.org-whatsnew97' %}
 {% set utm_campaign = campaign + '-fr' %}
 
 {% block site_header %}{% endblock %}
@@ -32,7 +33,7 @@
           </p>
 
           <p class="wnp-main-cta">
-            <a href="https://www.youtube.com/watch?v=_obdx3VUzuQ&cc_lang_pref=fr&cc_load_policy=1" class="mzp-c-button mzp-t-product mzp-t-lg js-video-play">▶ Regarder la vidéo</a>
+            <a href="https://www.youtube.com/watch?v=_obdx3VUzuQ&cc_lang_pref=fr&cc_load_policy=1" class="mzp-c-button mzp-t-product mzp-t-lg js-video-play" data-cta-text="Play video" data-cta-type="button" data-cta-position="primary">▶ Regarder la vidéo</a>
           </p>
         </div>
       </div>
@@ -46,7 +47,7 @@
         <h2 class="mzp-c-picto-heading">La vie privée au-delà de Firefox</h2>
         <div class="mzp-c-picto-body">
           <p>Protégez votre vie privée depuis vos appareils : Mozilla VPN offre un moyen sûr de naviguer autrement et de découvrir le Web au-delà de votre localisation grâce à 400 serveurs dans plus de 30 pays.</p>
-          <p><a class="mzp-c-cta-link" href="{{ url('products.vpn.landing') }}">En savoir plus sur Mozilla VPN</a></p>
+          <p><a class="mzp-c-cta-link" href="{{ url('products.vpn.landing') }}" data-cta-text="Learn more about Mozilla VPN" data-cta-type="link" data-cta-position="secondary">En savoir plus sur Mozilla VPN</a></p>
         </div>
       </div>
 
@@ -55,7 +56,7 @@
         <h2 class="mzp-c-picto-heading">Plongez dans des récits fascinants</h2>
         <div class="mzp-c-picto-body">
           <p>Pocket est votre espace de lecture personnel, où vous pouvez prendre le temps de découvrir des sujets sérieux ou légers, mais toujours intéressants.</p>
-          <p><a class="mzp-c-cta-link" href="https://getpocket.com/signup/">En savoir plus sur Pocket</a></p>
+          <p><a class="mzp-c-cta-link" href="https://getpocket.com/signup/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ utm_campaign }}" data-cta-text="Learn more about Pocket" data-cta-type="link" data-cta-position="secondary">En savoir plus sur Pocket</a></p>
         </div>
       </div>
     </div>

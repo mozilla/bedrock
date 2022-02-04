@@ -17,6 +17,7 @@
   {{ css_bundle('firefox_whatsnew_97_eu') }}
 {% endblock %}
 
+{% set _entrypoint = 'mozilla.org-whatsnew97' %}
 {% set utm_campaign = campaign + '-de' %}
 
 {% block site_header %}{% endblock %}
@@ -32,7 +33,7 @@
           </p>
 
           <p class="wnp-main-cta">
-            <a href="https://www.youtube.com/watch?v=_obdx3VUzuQ&cc_lang_pref=de&cc_load_policy=1" class="mzp-c-button mzp-t-product mzp-t-lg js-video-play">▶ Video abspielen</a>
+            <a href="https://www.youtube.com/watch?v=_obdx3VUzuQ&cc_lang_pref=de&cc_load_policy=1" class="mzp-c-button mzp-t-product mzp-t-lg js-video-play" data-cta-text="Play video" data-cta-type="button" data-cta-position="primary">▶ Video abspielen</a>
           </p>
         </div>
       </div>
@@ -46,7 +47,7 @@
         <h2 class="mzp-c-picto-heading">Privatsphäre über Firefox hinaus</h2>
         <div class="mzp-c-picto-body">
           <p>Schütze deine Privatsphäre auch auf Geräte-Ebene: Mit Mozilla VPN kannst du deine Verbindung zum Internet schützen und das Web dank 400 Servern in über 30 Ländern auch jenseits deines Standortes entdecken.</p>
-          <p><a class="mzp-c-cta-link" href="{{ url('products.vpn.landing') }}">Erfahre mehr über Mozilla VPN</a></p>
+          <p><a class="mzp-c-cta-link" href="{{ url('products.vpn.landing') }}" data-cta-text="Learn more about Mozilla VPN" data-cta-type="link" data-cta-position="secondary">Erfahre mehr über Mozilla VPN</a></p>
         </div>
       </div>
 
@@ -55,7 +56,7 @@
         <h2 class="mzp-c-picto-heading">Tauche tief ein in faszinierende Geschichten</h2>
         <div class="mzp-c-picto-body">
           <p>Pocket ist deine persönliche Leseecke, in der du dir die Zeit nehmen kannst, das große Ganze zu betrachten. Zu ernsten oder lustigen, aber immer interessanten Themen.</p>
-          <p><a class="mzp-c-cta-link" href="https://getpocket.com/signup/">Erfahre mehr über Pocket</a></p>
+          <p><a class="mzp-c-cta-link" href="https://getpocket.com/signup/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ utm_campaign }}" data-cta-text="Learn more about Pocket" data-cta-type="link" data-cta-position="secondary">Erfahre mehr über Pocket</a></p>
         </div>
       </div>
     </div>
