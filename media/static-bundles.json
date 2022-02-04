@@ -411,6 +411,18 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-97-en.scss"
+      ],
+      "name": "firefox_whatsnew_97_en"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-97-eu.scss"
+      ],
+      "name": "firefox_whatsnew_97_eu"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -1106,6 +1118,14 @@
         "js/firefox/whatsnew/whatsnew-96-en-experiment.js"
       ],
       "name": "firefox_whatsnew_96_en_experiment"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/up-to-date.js",
+        "protocol/js/protocol-modal.js",
+        "js/firefox/whatsnew/whatsnew-97-eu.js"
+      ],
+      "name": "firefox_whatsnew_97_eu"
     },
     {
       "files": [
