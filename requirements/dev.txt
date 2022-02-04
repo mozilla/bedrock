@@ -1,7 +1,7 @@
 # SHA1:835718e7a4d50c372a5b00bd3d8713a040e14cb2
 # Please recompile requirements inside the Docker image, not on your local, host machine.
 #
-# Do do this, just use the following from your host:
+# To do this, just use the following from your host:
 #
 # $ make compile-requirements
 #
