@@ -21,7 +21,7 @@ babis==0.2.4 \
     --hash=sha256:a901e8c27a47dfe22077f60c3f2daf324909a9f3f9838ecfa4100af346703fff \
     --hash=sha256:c33bc3c754a0bacfe09179b5c4d1a2a3b5c6ddd453cd1050251fcbf9c0bd1473
     # via -r requirements/prod.in
-backports.zoneinfo==0.2.1 \
+backports-zoneinfo==0.2.1 \
     --hash=sha256:17746bd546106fa389c51dbea67c8b7c8f0d14b5526a579ca6ccf5ed72c526cf \
     --hash=sha256:1b13e654a55cd45672cb54ed12148cd33628f672548f373963b0bff67b217328 \
     --hash=sha256:1c5742112073a563c81f786e77514969acb58649bcdf6cdf0b4ed31a348d4546 \
@@ -57,9 +57,9 @@ boto3==1.20.40 \
     --hash=sha256:66aef9a6d8cad393f69166112ba49e14e2c6766f9278c96134101314a9af2992 \
     --hash=sha256:cfe85589e4a0a997c7b9ae7432400b03fa6fa5fea29fdc48db3099a903b76998
     # via -r requirements/prod.in
-botocore==1.23.47 \
-    --hash=sha256:82da38e309bd6fd6303394e6e9d1ea50626746f2911e3fec996f9046c5d85085 \
-    --hash=sha256:a89b1be0a7f235533d8279d90b0b15dc2130d0552a9f7654ba302b564ab5688a
+botocore==1.23.49 \
+    --hash=sha256:3f72d20c65c89b694d9c7d164eb499877331783577f0207739088d11eaf315e7 \
+    --hash=sha256:b013b2911379d1de896eb6ef375126bb2fc2b77b3e0af75821661b7ea817d029
     # via
     #   boto3
     #   s3transfer
@@ -240,11 +240,11 @@ everett==3.0.0 \
     --hash=sha256:43c208e09ef53adb8e8739ad96999893a2c0a27753e33f89be346e916e71efb0 \
     --hash=sha256:80ce592168ce50643711eceff3ec94fdeec755f228de746f20b1bfc94ea20682
     # via -r requirements/prod.in
-fluent.runtime==0.3 \
+fluent-runtime==0.3 \
     --hash=sha256:8d41d4bf4cb19039370e14de78f2991cae9721d44e66165989a69ff5c22d90f0 \
     --hash=sha256:d8a81a36d111ba3e66af27f9224e94ef305cf3bec407c3f98a7c597eef554652
     # via -r requirements/prod.in
-fluent.syntax==0.17.0 \
+fluent-syntax==0.17.0 \
     --hash=sha256:ac3db2f77d62b032fdf1f17ef5c390b7801a9e9fb58d41eca3825c0d47b88d79 \
     --hash=sha256:e26be470aeebe4badd84f7bb0b648414e0f2ef95d26e5336d634af99e402ea61
     # via
@@ -438,7 +438,7 @@ markupsafe==2.0.1 \
     --hash=sha256:f9081981fe268bd86831e5c75f7de206ef275defcb82bc70740ae6dc507aee51 \
     --hash=sha256:fa130dd50c57d53368c9d59395cb5526eda596d3ffe36666cd81a44d56e48872
     # via jinja2
-mdx-outline @ https://github.com/mozmeao/mdx_outline/archive/refs/tags/python-3.9-compat.tar.gz     --hash=sha256:c37385f222866684a0a92e3b38588003c6d8c3dbcf55aea854cf543baae425c5
+mdx_outline @ https://github.com/mozmeao/mdx_outline/archive/refs/tags/python-3.9-compat.tar.gz     --hash=sha256:c37385f222866684a0a92e3b38588003c6d8c3dbcf55aea854cf543baae425c5
     # via -r requirements/prod.in
 meinheld==1.0.2 \
     --hash=sha256:008c76937ac2117cc69e032dc69cea9f85fc605de9bac1417f447c41c16a56d6

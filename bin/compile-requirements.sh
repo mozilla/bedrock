@@ -11,8 +11,8 @@ export CUSTOM_COMPILE_COMMAND="make compile-requirements"
 # We need this installed, but we don't want it to live in the main requirements
 # We will need to periodically review this pinning
 
-pip install -U "pip<22"  # Until pip-tools gains compat with pip 22, we need to stay on 21
-pip install pip-tools==6.4.0
+pip install -U pip==22.0.3
+pip install pip-tools==6.5.0
 pip install pip-compile-multi==2.4.3
 
 pip-compile-multi \

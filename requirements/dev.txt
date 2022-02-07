@@ -6,7 +6,7 @@
 # $ make compile-requirements
 #
 -r prod.txt
-backports.cached-property==1.0.1 \
+backports-cached-property==1.0.1 \
     --hash=sha256:1a5ef1e750f8bc7d0204c807aae8e0f450c655be0cf4b30407a35fd4bb27186c \
     --hash=sha256:687b5fe14be40aadcf547cae91337a1fdb84026046a39370274e54d3fe4fb4f9
     # via
@@ -29,7 +29,7 @@ braceexpand==0.1.7 \
     --hash=sha256:91332d53de7828103dcae5773fb43bc34950b0c8160e35e0f44c4427a3b85014 \
     --hash=sha256:e6e539bd20eaea53547472ff94f4fb5c3d3bf9d0a89388c4b56663aba765f705
     # via -r requirements/dev.in
-cl-ext.lang==0.1.0 \
+cl-ext-lang==0.1.0 \
     --hash=sha256:662fcccc1ff77063dd9d6bad770c26d1345cf4cf01e679eab136e80f3ec2935c \
     --hash=sha256:90b94aaee4afecbf2a9be3cd65656940f38edea3ddde14b93a02a9e1ee5d1f72
     # via -r requirements/dev.in
@@ -130,9 +130,9 @@ factory-boy==3.2.1 \
     --hash=sha256:a98d277b0c047c75eb6e4ab8508a7f81fb03d2cb21986f627913546ef7a2a55e \
     --hash=sha256:eb02a7dd1b577ef606b75a253b9818e6f9eaf996d94449c9d5ebb124f90dc795
     # via -r requirements/dev.in
-faker==12.0.0 \
-    --hash=sha256:4894ce3309c0099e8e6eb1db6e376372e7bcab822334bbdbcd2b1fa4df3d2231 \
-    --hash=sha256:56397929f87baf1d40b794dbcc4edbb9a393ad1d02d865c67f871f5921b9ae4a
+faker==12.1.0 \
+    --hash=sha256:534c9410cd003b794900504d37f0afaf8275bfe8865583250799f696cf227cd3 \
+    --hash=sha256:820e55f62b428a4d55f6700358167e84a6ba3f8371e9ef39f9ca03a504dcae18
     # via factory-boy
 flake8==4.0.1 \
     --hash=sha256:479b1304f72536a55948cb40a32dce8bb0ffe3501e26eaf292c7e60eb5e0428d \
@@ -159,7 +159,7 @@ mccabe==0.6.1 \
     --hash=sha256:ab8a6258860da4b6677da4bd2fe5dc2c659cff31b3ee4f7f5d64e79735b80d42 \
     --hash=sha256:dd8d182285a0fe56bace7f45b5e7d1a6ebcbf524e8f3bd87eb0f125271b8831f
     # via flake8
-mdx-outline @ https://github.com/mozmeao/mdx_outline/archive/refs/tags/python-3.9-compat.tar.gz     --hash=sha256:c37385f222866684a0a92e3b38588003c6d8c3dbcf55aea854cf543baae425c5
+mdx_outline @ https://github.com/mozmeao/mdx_outline/archive/refs/tags/python-3.9-compat.tar.gz     --hash=sha256:c37385f222866684a0a92e3b38588003c6d8c3dbcf55aea854cf543baae425c5
     # via -r requirements/prod.in
 mypy-extensions==0.4.3 \
     --hash=sha256:090fedd75945a69ae91ce1303b5824f428daf5a028d2f6ab8a299250a846f15d \
