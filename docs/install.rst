@@ -138,7 +138,7 @@ using ``zsh``, the ``pyenv`` docs have other routes ::
 
     $ zsh -l
 
-4. Install Python 3.9.10, then test it's there::
+4. Install the latest Python 3.9.x (eg 3.9.10), then test it's there::
 
     $ pyenv install 3.9.10
     ...
@@ -148,6 +148,12 @@ using ``zsh``, the ``pyenv`` docs have other routes ::
     $ python --version
     Python 3.9.10
 
+
+.. note ::
+
+    At the time of writing, Python 3.9.10 was the 3.9 release that worked with least complication
+    across the core team's local-development platforms, incl both Intel and Apple Silicon Macs.
+    It's also the version of 3.9 in the ``slim-bullseye`` image used for the Dockerized version.
 
 **Install a plugin to manage virtualenvs via pyenv and create a virtualenv for Bedrock's dependencies**
 
