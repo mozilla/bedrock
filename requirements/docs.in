@@ -3,7 +3,7 @@ fluent.pygments==0.1.0
 fluent.syntax==0.17.0  # hard-pinned subdep to avoid compatibility issues
 myst-parser==0.16.1
 sphinx-autobuild==2021.3.14
-sphinx-copybutton==0.4.0
+sphinx-copybutton==0.5.0
 sphinx-rtd-theme==1.0.0
 Sphinx==4.4.0
 sphinxcontrib-websupport==1.2.4
