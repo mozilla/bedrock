@@ -1,4 +1,4 @@
-chardet==3.0.4
+chardet==4.0.0
 fluent.pygments==0.1.0
 fluent.syntax==0.17.0  # hard-pinned subdep to avoid compatibility issues
 myst-parser==0.16.1
