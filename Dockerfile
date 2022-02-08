@@ -23,7 +23,7 @@ RUN npm run build
 ########
 # Python dependencies builder
 #
-FROM python:3.7-slim-buster AS python-builder
+FROM python:3.9-slim-bullseye AS python-builder
 
 WORKDIR /app
 ENV LANG=C.UTF-8
@@ -35,16 +35,16 @@ COPY docker/bin/apt-install /usr/local/bin/
 RUN apt-install gettext build-essential libxml2-dev libxslt1-dev libxslt1.1
 RUN python -m venv /venv
 
-COPY requirements/base.txt requirements/prod.txt ./requirements/
+COPY requirements/prod.txt ./requirements/
 
 # Install Python deps
-RUN pip install --no-cache-dir -r requirements/prod.txt
+RUN pip install --require-hashes --no-cache-dir -r requirements/prod.txt
 
 
 ########
 # django app container
 #
-FROM python:3.7-slim-buster AS app-base
+FROM python:3.9-slim-bullseye AS app-base
 
 # Extra python env
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -89,9 +89,9 @@ FROM app-base AS devapp
 CMD ["./bin/run-tests.sh"]
 
 RUN apt-install make sqlite3
-COPY requirements/base.txt requirements/dev.txt requirements/migration.txt requirements/docs.txt ./requirements/
-RUN pip install --no-cache-dir -r requirements/dev.txt
-RUN pip install --no-cache-dir -r requirements/docs.txt
+COPY requirements/* ./requirements/
+RUN pip install --require-hashes --no-cache-dir -r requirements/dev.txt
+RUN pip install --require-hashes --no-cache-dir -r requirements/docs.txt
 COPY ./setup.cfg ./
 COPY ./pyproject.toml ./
 COPY ./.coveragerc ./

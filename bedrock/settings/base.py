@@ -76,7 +76,7 @@ HAS_SYSLOG = True
 SYSLOG_TAG = "http_app_bedrock"
 LOGGING_CONFIG = None
 
-# CEF Logging
+# CEF Logging - TODO: remove these if def redundant
 CEF_PRODUCT = "Bedrock"
 CEF_VENDOR = "Mozilla"
 CEF_VERSION = "0"
