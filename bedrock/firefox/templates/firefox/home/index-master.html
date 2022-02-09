@@ -8,6 +8,7 @@
 
 {% from "macros-protocol.html" import call_out, call_out_compact, split with context %}
 
+{% set show_turning_red_banner = country_code == 'US' and switch('turning-red-banner-firefox', ['en-US', 'en-CA', 'en-GB']) %}
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 {% set show_vpn_promo_banner = switch('vpn-promo-banner', ['en-US', 'en-CA', 'en-GB', 'de', 'fr']) %}
 
@@ -36,7 +37,9 @@
     {{ css_bundle('firefox-app-store-banner') }}
   {% endif %}
 
-  {% if show_vpn_promo_banner %}
+  {% if show_turning_red_banner %}
+    {{ css_bundle('turning-red-banner') }}
+  {% elif show_vpn_promo_banner %}
     {{ css_bundle('vpn-promo-banner') }}
   {% endif %}
 {% endblock %}
@@ -71,7 +74,9 @@
 {% endblock %}
 
 {% block page_banner %}
-  {% if show_vpn_promo_banner %}
+  {% if show_turning_red_banner %}
+    {% include 'includes/banners/turning-red.html' %}
+  {% elif show_vpn_promo_banner %}
     {% include 'includes/banners/vpn-promo.html' %}
   {% endif %}
 
@@ -284,7 +289,9 @@
     {{ js_bundle('firefox-app-store-banner') }}
   {% endif %}
 
-  {% if show_vpn_promo_banner %}
+  {% if show_turning_red_banner %}
+    {{ js_bundle('turning-red-banner') }}
+  {% elif show_vpn_promo_banner %}
     {{ js_bundle('vpn-promo-banner') }}
   {% endif %}
 {% endblock %}

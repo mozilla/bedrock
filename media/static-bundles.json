@@ -264,6 +264,12 @@
     },
     {
       "files": [
+        "css/base/banners/turning-red.scss"
+      ],
+      "name": "turning-red-banner"
+    },
+    {
+      "files": [
         "css/base/banners/mobile-compare.scss"
       ],
       "name": "mobile-compare-banner"
@@ -1259,6 +1265,13 @@
         "js/base/banners/vpn-promo-banner-init.js"
       ],
       "name": "vpn-promo-banner"
+    },
+    {
+      "files": [
+        "js/base/banners/mozilla-banner.js",
+        "js/base/banners/turning-red-banner-init.js"
+      ],
+      "name": "turning-red-banner"
     },
     {
       "files": [
