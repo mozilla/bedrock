@@ -427,6 +427,10 @@ packaging==21.3 \
     --hash=sha256:dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb \
     --hash=sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522
     # via bleach
+phonenumberslite==8.12.42 \
+    --hash=sha256:656230684742fa4bb24eda791e38f6766fd9197ea3f14fe940b1c1306aecbacc \
+    --hash=sha256:dfa4947e6fddd92b95540400f447727c516fde18a0e7942993ec1274eb28f46e
+    # via -r requirements/prod.in
 pillow==9.0.0 \
     --hash=sha256:03b27b197deb4ee400ed57d8d4e572d2d8d80f825b6634daf6e2c18c3c6ccfa6 \
     --hash=sha256:0b281fcadbb688607ea6ece7649c5d59d4bbd574e90db6cd030e9e85bde9fecc \
@@ -472,7 +476,9 @@ pygithub==1.55 \
 pyjwt==2.3.0 \
     --hash=sha256:b888b4d56f06f6dcd777210c334e69c737be74755d3e5e9ee3fe67dc18a0ee41 \
     --hash=sha256:e0c4bb8d9f0af0c7f5b1ec4c5036309617d03d56932877f2f7a0beeb5318322f
-    # via pygithub
+    # via
+    #   pygithub
+    #   twilio
 pynacl==1.5.0 \
     --hash=sha256:06b8f6fa7f5de8d5d2f7573fe8c863c051225a27b61e6860fd047b1775807858 \
     --hash=sha256:0c84947a22519e013607c9be43706dd42513f9e6ae5d39d3613ca1e142fba44d \
@@ -511,6 +517,7 @@ pytz==2021.3 \
     #   babel
     #   django
     #   fluent.runtime
+    #   twilio
 pytz-deprecation-shim==0.1.0.post0 \
     --hash=sha256:8314c9692a636c8eb3bda879b9f119e350e93223ae83e70e80c31675a0fdc1a6 \
     --hash=sha256:af097bae1b616dde5c5744441e2ddc69e74dfdcb0c263129610d85b87445a59d
@@ -565,6 +572,7 @@ requests==2.27.1 \
     #   django-mozilla-product-details
     #   pygithub
     #   requests-oauthlib
+    #   twilio
 requests-oauthlib==1.3.0 \
     --hash=sha256:7f71572defaecd16372f9006f33c2ec8c077c3cfa6f5911a9a90202beb513f3d \
     --hash=sha256:b4261601a71fd721a8bd6d7aa1cc1d6a8a93b4a9f5e96626f8e4d91e8beeaa6a
@@ -608,6 +616,10 @@ supervisor==4.2.4 \
     # via -r requirements/prod.in
 timeago==1.0.15 \
     --hash=sha256:cfce420d82892af6b2439d0f69eeb3e876bbeddab6670c3c88ebf7676407bf4c
+    # via -r requirements/prod.in
+twilio==7.5.1 \
+    --hash=sha256:8e2f487e49a37da9caf61bfc3ca61883c8af5f478aafe4160cce738f81bd1e5a \
+    --hash=sha256:d6f22603065b6bac232e0fb16e9a35abb71b6a9b38b7aa7fccf64d37aff4d01c
     # via -r requirements/prod.in
 tzdata==2021.5 \
     --hash=sha256:3eee491e22ebfe1e5cfcc97a4137cd70f092ce59144d81f8924a844de05ba8f5 \

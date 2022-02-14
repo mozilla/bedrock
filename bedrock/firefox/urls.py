@@ -80,6 +80,7 @@ urlpatterns = (
         name="firefox.mobile.get-app",
     ),
     path("firefox/send-to-device-post/", views.send_to_device_ajax, name="firefox.send-to-device-post"),
+    path("firefox/sms-send-to-device-post/", views.sms_send_to_device_ajax, name="firefox.sms-send-to-device-post"),
     page("firefox/unsupported-systems", "firefox/unsupported-systems.html"),
     path("firefox/new/", views.NewView.as_view(), name="firefox.new"),
     path("firefox/download/thanks/", views.DownloadThanksView.as_view(), name="firefox.download.thanks"),

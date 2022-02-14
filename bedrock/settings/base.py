@@ -1032,6 +1032,11 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
     },
 }
 
+# Twilio
+TWILIO_ACCOUNT_SID = config("TWILIO_ACCOUNT_SID", default="")
+TWILIO_AUTH_TOKEN = config("TWILIO_AUTH_TOKEN", default="")
+TWILIO_MESSAGING_SERVICE_SID = config("TWILIO_MESSAGING_SERVICE_SID", default="")
+
 if DEV:
     content_cards_default_branch = "dev-processed"
 else:
