@@ -16,7 +16,6 @@ from django.contrib.staticfiles.finders import find as find_static
 from django.template.defaultfilters import slugify as django_slugify
 from django.template.defaulttags import CsrfTokenNode
 from django.template.loader import render_to_string
-from django.utils import six
 from django.utils.encoding import smart_str
 from django.utils.translation import gettext as _
 
@@ -612,10 +611,6 @@ def datetime(t, fmt=None):
     """Call ``datetime.strftime`` with the given format string."""
     if fmt is None:
         fmt = _("%B %e, %Y")
-    if not six.PY3:
-        # The datetime.strftime function strictly does not
-        # support Unicode in Python 2 but is Unicode only in 3.x.
-        fmt = fmt.encode("utf-8")
     return smart_str(t.strftime(fmt)) if t else ""
 
 
