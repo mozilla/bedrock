@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.conf import settings
 from django.template.loader import render_to_string
 from django.test import RequestFactory, TestCase, override_settings
 
@@ -29,7 +30,7 @@ class TestContext(TestCase):
         assert self.render("{{ settings.LANGUAGE_CODE }}") == "en-US"
 
     def test_languages(self):
-        assert self.render("{{ LANGUAGES['en-us'] }}") == "English (US)"
+        assert self.render("{{ LANGUAGES[-1][1] }}") == settings.LANGUAGES[-1][1]
 
     def test_lang_setting(self):
         assert self.render("{{ LANG }}") == "en-US"

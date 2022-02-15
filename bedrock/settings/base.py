@@ -359,19 +359,25 @@ def lazy_lang_url_map():
     return {i.lower(): i for i in langs}
 
 
-# Override Django's built-in with our native names
 def lazy_langs():
+    """
+    Override Django's built-in with our native names
+
+    Note: Unlike the above lazy methods, this one returns a list of tuples to
+    match Django's expectations.
+
+    """
     from django.conf import settings
 
     from product_details import product_details
 
     langs = DEV_LANGUAGES if settings.DEV else settings.PROD_LANGUAGES
-    return {lang.lower(): product_details.languages[lang]["native"] for lang in langs if lang in product_details.languages}
+    return [(lang.lower(), product_details.languages[lang]["native"]) for lang in langs if lang in product_details.languages]
 
 
 LANG_GROUPS = lazy(lazy_lang_group, dict)()
 LANGUAGE_URL_MAP = lazy(lazy_lang_url_map, dict)()
-LANGUAGES = lazy(lazy_langs, dict)()
+LANGUAGES = lazy(lazy_langs, list)()
 
 FEED_CACHE = 3900
 # 30 min during dev and 10 min in prod
