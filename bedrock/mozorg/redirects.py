@@ -539,4 +539,16 @@ redirectpatterns = (
     redirect(r"^/about/legal/fraud-report/?$", "/about/legal/defend-mozilla-trademarks/"),
     # Issue 10335
     redirect(r"^vpn/?$", "products.vpn.landing"),
+    # Issue 11204
+    redirect(
+        r"^(truecolors|turningred)/?$",
+        "https://truecolors.firefox.com/",
+        merge_query=True,
+        query={
+            "utm_campaign": "firefox-disney-us",
+            "utm_medium": "web",
+            "utm_source": "redirect",
+            "utm_content": "mozilla.org-turningred",
+        },
+    ),
 )
