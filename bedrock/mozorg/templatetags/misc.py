@@ -9,6 +9,7 @@ import re
 import urllib.parse
 from os import path
 from os.path import splitext
+from urllib.parse import quote
 
 from django.conf import settings
 from django.contrib.staticfiles.finders import find as find_static
@@ -16,13 +17,8 @@ from django.template.defaultfilters import slugify as django_slugify
 from django.template.defaulttags import CsrfTokenNode
 from django.template.loader import render_to_string
 from django.utils import six
-from django.utils.http import urlquote
-from django.utils.translation import ugettext as _
-
-try:
-    from django.utils.encoding import smart_unicode as smart_text
-except ImportError:
-    from django.utils.encoding import smart_text
+from django.utils.encoding import smart_str
+from django.utils.translation import gettext as _
 
 import bleach
 import jinja2
@@ -620,7 +616,7 @@ def datetime(t, fmt=None):
         # The datetime.strftime function strictly does not
         # support Unicode in Python 2 but is Unicode only in 3.x.
         fmt = fmt.encode("utf-8")
-    return smart_text(t.strftime(fmt)) if t else ""
+    return smart_str(t.strftime(fmt)) if t else ""
 
 
 @library.filter
@@ -695,7 +691,7 @@ def _get_adjust_link(adjust_url, app_store_url, google_play_url, redirect, local
         params += "&creative=" + creative
 
     if redirect_url:
-        link += "?redirect=" + urlquote(redirect_url, safe="") + "&" + params
+        link += "?redirect=" + quote(redirect_url, safe="") + "&" + params
     else:
         link += "?" + params
 

@@ -20,7 +20,7 @@ django-jsonview==2.0.0
 django-memoize==2.3.1
 django-mozilla-product-details==1.0.1
 django-watchman==1.2.0
-Django==2.2.27
+Django>=3.0,<3.1
 docutils==0.17.1
 envcat==0.1.1
 everett==3.0.0

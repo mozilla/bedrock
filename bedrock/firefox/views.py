@@ -15,7 +15,7 @@ from django.http import (
     JsonResponse,
 )
 from django.utils.cache import add_never_cache_headers, patch_response_headers
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
 from django.views.generic.base import TemplateView
@@ -669,7 +669,7 @@ class NewView(L10nTemplateView):
             thanks_url = reverse("firefox.download.thanks")
             query_string = self.request.META.get("QUERY_STRING", "")
             if query_string:
-                thanks_url = "?".join([thanks_url, force_text(query_string, errors="ignore")])
+                thanks_url = "?".join([thanks_url, force_str(query_string, errors="ignore")])
             return HttpResponsePermanentRedirect(thanks_url)
 
         return super().get(*args, **kwargs)
@@ -692,7 +692,7 @@ class NewView(L10nTemplateView):
                     exp_url = reverse("exp.firefox.new")
                     query_string = self.request.META.get("QUERY_STRING", "")
                     if query_string:
-                        exp_url = "?".join([exp_url, force_text(query_string, errors="ignore")])
+                        exp_url = "?".join([exp_url, force_str(query_string, errors="ignore")])
                     response = HttpResponseRedirect(exp_url)
                 else:
                     response = super().render_to_response(context, **response_kwargs)

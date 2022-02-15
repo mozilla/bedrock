@@ -12,7 +12,7 @@ from django.http import (
 )
 from django.urls import NoReverseMatch, URLResolver, re_path, reverse
 from django.urls.resolvers import RegexPattern
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.html import strip_tags
 from django.views.decorators.vary import vary_on_headers
 
@@ -221,7 +221,7 @@ def redirect(
 
         # use info from url captures.
         if args or kwargs:
-            redirect_url = strip_tags(force_text(redirect_url).format(*args, **kwargs))
+            redirect_url = strip_tags(force_str(redirect_url).format(*args, **kwargs))
 
         if query:
             if merge_query:
