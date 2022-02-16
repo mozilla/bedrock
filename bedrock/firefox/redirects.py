@@ -56,8 +56,10 @@ redirectpatterns = (
     # bug 988044
     redirect(r"^firefox/unsupported-systems\.html$", "firefox.unsupported-systems"),
     # bug 736934, 860865, 1101220, 1153351
-    redirect(r"^mobile/(?P<channel>(?:beta|aurora)/)?notes/?$", "/firefox/android/{channel}notes/"),
-    redirect(r"^firefox/(?P<channel>(?:beta|aurora|organizations)/)?system-requirements(\.html)?$", "/firefox/{channel}system-requirements/"),
+    redirect(r"^mobile/notes/?$", "/firefox/android/notes/"),
+    redirect(r"^mobile/(?P<channel>(beta|aurora))/notes/?$", "/firefox/android/{channel}/notes/"),
+    redirect(r"^firefox/system-requirements(\.html)?$", "/firefox/system-requirements/"),
+    redirect(r"^firefox/(?P<channel>(beta|aurora|organizations))/system-requirements(\.html)?$", "/firefox/{channel}/system-requirements/"),
     # bug 1155870
     redirect(r"^firefox/os/(releases|notes)/?$", "https://developer.mozilla.org/Firefox_OS/Releases"),
     redirect(r"^firefox/os/(?:release)?notes/(?P<v>[^/]+)/?$", "https://developer.mozilla.org/Firefox_OS/Releases/{v}"),

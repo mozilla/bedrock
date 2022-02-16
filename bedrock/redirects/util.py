@@ -3,6 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import re
+from collections import defaultdict
 from urllib.parse import parse_qs, urlencode
 
 from django.http import (
@@ -12,7 +13,6 @@ from django.http import (
 )
 from django.urls import NoReverseMatch, URLResolver, re_path, reverse
 from django.urls.resolvers import RegexPattern
-from django.utils.encoding import force_str
 from django.utils.html import strip_tags
 from django.views.decorators.vary import vary_on_headers
 
@@ -221,7 +221,12 @@ def redirect(
 
         # use info from url captures.
         if args or kwargs:
-            redirect_url = strip_tags(force_str(redirect_url).format(*args, **kwargs))
+            if args:
+                redirect_url = redirect_url.format(*args)
+            if kwargs:
+                # Use `defaultdict` to default to empty string for missing kwargs.
+                redirect_url = redirect_url.format_map(defaultdict(str, kwargs))
+            redirect_url = strip_tags(redirect_url)
 
         if query:
             if merge_query:
