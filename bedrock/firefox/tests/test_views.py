@@ -581,7 +581,7 @@ class TestFirefoxNew(TestCase):
         resp = view(req)
         assert resp.status_code == 302
         assert resp["location"].endswith("/exp/firefox/new/")
-        assert resp["cache-control"] == "max-age=0, no-cache, no-store, must-revalidate"
+        assert resp["cache-control"] == "max-age=0, no-cache, no-store, must-revalidate, private"
         req.locale = "en-US"
         resp = view(req)
         assert resp.status_code == 200
