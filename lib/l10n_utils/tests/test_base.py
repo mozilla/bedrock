@@ -3,7 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import os
-from unittest.mock import ANY, call, patch
+from unittest.mock import ANY, Mock, call, patch
 
 from django.test import TestCase
 from django.test.client import RequestFactory
@@ -168,6 +168,7 @@ class TestL10nTemplateView(TestCase):
         render_mock.assert_called_with(self.req, ["dude.html"], ANY, ftl_files="dude", activation_files=["dude", "donny"])
 
 
+@patch.object(l10n_utils, "_get_language_map", Mock(return_value={"an": "an", "de": "de", "en": "en-US", "en-us": "en-US", "fr": "fr"}))
 @pytest.mark.parametrize(
     "translations, accept_languages, expected",
     (
@@ -184,6 +185,10 @@ class TestL10nTemplateView(TestCase):
         (["en-US", "de"], ["de", "en-US"], "de"),
         (["en-US", "de", "fr"], ["fr", "de"], "fr"),
         (["en-US", "de", "fr"], ["en-CA", "fr", "de"], "en-US"),
+        # A request for only inactive translations should default to 'en-US'. Bug 1752823
+        (["am", "an", "en-US"], ["mk", "gu-IN"], "en-US"),
+        # "am" is not a valid language in the list of PROD_LANGUAGES
+        (["am", "an"], ["mk", "gu-IN"], "an"),
     ),
 )
 def test_get_best_translation(translations, accept_languages, expected):

@@ -44,14 +44,23 @@ The form can then be invoked using:
 
     {{ fxa_email_form(entrypoint='mozilla.org-firefox-accounts') }}
 
-The template's respective JavaScript and CSS bundles should also include the following dependencies:
+The macro's respective JavaScript and CSS dependencies should also be
+imported in the page:
 
 **Javascript:**
 
-.. code-block:: text
+.. code-block:: javascript
 
-    js/base/mozilla-fxa-form.js
-    js/base/mozilla-fxa-form-init.js
+    import FxaForm from './path/to/fxa-form.es6.js';
+
+    FxaForm.init();
+
+The above JS is also available as a pre-compiled bundle, which can be included
+directly in a template:
+
+.. code-block:: jinja
+
+    {{ js_bundle('fxa_form') }}
 
 **CSS:**
 
@@ -59,9 +68,8 @@ The template's respective JavaScript and CSS bundles should also include the fol
 
     @import '../path/to/fxa-form';
 
-The JavaScript files will automatically handle things adding metrics parameters, as well as
-configuring Sync and distribution ID (e.g. the China re-pack) for Firefox desktop browsers (more
-info on these further down the page). The CSS file contains some default styling for the signup form.
+The JavaScript files will automatically handle things such as adding metrics parameters
+for Firefox desktop browsers. The CSS file contains some default styling for the signup form.
 
 Configuration
 ~~~~~~~~~~~~~
@@ -117,9 +125,8 @@ Usage
 
 .. Note::
 
-    There is also a ``fxa_link_fragment`` helper which will construct only valid ``href``
-    and ``data-mozillaonline-link`` properties. This is useful when constructing an
-    inline link inside a paragraph, for example.
+    There is also a ``fxa_link_fragment`` helper which will construct a valid ``href``
+    property. This is useful when constructing an inline link inside a paragraph, for example.
 
 For more information on the available parameters, read the "Common FxA Parameters"
 section further below.
@@ -311,13 +318,21 @@ Link Metrics
 ------------
 
 When using any of the FxA or VPN helpers that link directly to FxA,
-a templates's respective JavaScript bundle should also include the following
-dependencies:
+a templates's respective JavaScript bundle should also import and
+initialize the ``FxaProductButton`` script.
 
-.. code-block:: text
+.. code-block:: javascript
 
-    js/base/mozilla-fxa-product-button.js
-    js/base/mozilla-fxa-product-button-init.js
+    import FxaProductButton from './path/to/fxa-product-button.es6.js';
+
+    FxaProductButton.init();
+
+The above JS is also available as a pre-compiled bundle, which can
+be included directly in a template:
+
+.. code-block:: jinja
+
+    {{ js_bundle('fxa_product_button') }}
 
 This script automatically adds metrics parameters to the button ``href``:
 
@@ -375,32 +390,14 @@ Firefox Sync and UITour
 Since Firefox 80 the FxA link and email form macros use :ref:`UITour<ui-tour>` to show the Firefox Accounts page
 and log the browser into Sync or an Account. For non-Firefox browsers or if UITour is not available, the flow uses
 normal links that allow users to log into FxA as a website only without connecting the Firefox Desktop client.
-This UITour flow allows the Firefox browser to determine the correct FxA server and authentication flow.
-This transition was introduced to later migrate Firefox Desktop to an OAuth based client authentication flow.
+This UITour flow allows the Firefox browser to determine the correct FxA server and authentication flow
+(this includes handling the China Repack build of Firefox). This transition was introduced to later migrate
+Firefox Desktop to an OAuth based client authentication flow.
 
-The script that handles this logic is ``/media/js/base/mozilla-fxa-link.js``, and will automatically apply
+The script that handles this logic is ``/media/js/base/fxa-link.js``, and will automatically apply
 to any link with a ``js-fxa-cta-link`` class name. The current code automatically detects if you are in the
 supported browser for this flow and updates links to drive them through the UITour API. The UITour
 ``showFirefoxAccounts`` action supports flow id parameters, UTM parameters and the email data field.
-
-We hope to remove the legacy non-UITour login logic after 1 or 2 ESRs.
-
-
-Handling Distribution (aka China Repack)
-----------------------------------------
-
-The China repack of Firefox points to https://accounts.firefox.com.cn/ by default for
-FxA accounts signups. To compensate for this on https://www.mozilla.org (so we don't send
-those visitors to the wrong place), we rely on :ref:`UITour<ui-tour>` to check the
-distribution ID of the browser. If the distribution ID is ``mozillaonline``
-(i.e. China repack), then we replace our accounts endpoints with the alternate domain
-specified in the ``data-mozillaonline-link`` attribute. The logic to handle this is
-self contained in the associated helper scripts and handled automatically.
-
-.. Note::
-
-    This logic does not apply to Mozilla VPN, since the product is not available
-    in China.
 
 
 Testing Signup Flows

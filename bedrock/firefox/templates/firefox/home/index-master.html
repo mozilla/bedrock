@@ -277,6 +277,7 @@
 {% endblock %}
 
 {% block js %}
+  {{ js_bundle('fxa_product_button') }}
   {{ js_bundle('firefox-master') }}
 
   {% if show_firefox_app_store_banner %}

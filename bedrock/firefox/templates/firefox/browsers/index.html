@@ -119,24 +119,6 @@
       <p><a class="mzp-c-cta-link" href="{{ url('firefox.enterprise.index') }}#download" data-cta-type="link" data-cta-text="Enterprise packages">{{ ftl('firefox-browsers-enterprise-packages') }}</a></p>
       <p><a class="mzp-c-cta-link" href="{{ url('firefox.enterprise.index') }}" data-cta-type="link" data-cta-text="Enterprise Learn More">{{ ftl('ui-learn-more') }}</a></p>
     </div>
-    <div class="c-landing-grid-item">
-      {{ high_res_img('img/firefox/browsers/reality.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '350', 'height': '223'}) }}
-      <h2 class="c-landing-grid-title"><a href="https://mixedreality.mozilla.org/firefox-reality{{ referrals }}" data-cta-type="link" data-cta-text="Reality">{{ ftl('firefox-browsers-reality') }}</a></h2>
-      <p>{{ ftl('firefox-browsers-go-beyond-two-dimensions-and') }}</p>
-      <p><a class="mzp-c-cta-link" href="https://mixedreality.mozilla.org/firefox-reality{{ referrals }}" data-cta-type="link" data-cta-text="Reality Learn More">{{ ftl('ui-learn-more') }}</a></p>
-    </div>
-
-    <div class="c-landing-grid-item c-landing-grid-wide">
-    {% call split(
-      image_url='img/firefox/browsers/dev.png',
-      include_highres_image=True,
-      block_class='t-dev'
-    ) %}
-      <h2>{{ ftl('firefox-browsers-developer-edition') }}</h2>
-      <p class="c-dev-title mzp-has-zap-16">{{ ftl('firefox-browsers-build-sites-and-refine-your') }}</p>
-      <p><a class="mzp-c-cta-link" href="{{ url('firefox.developer.index') }}" data-cta-type="link" data-cta-text="Developer Learn More">{{ ftl('firefox-browsers-learn-more-about-devtools') }}</a></p>
-    {% endcall %}
-    </div>
   </div>
 
   <div class="mzp-l-content is-js-dependent">
@@ -166,6 +148,7 @@
 {% endblock %}
 
 {% block js %}
+  {{ js_bundle('fxa_form') }}
   {{ js_bundle('firefox-browsers-products') }}
 
   {% if show_firefox_app_store_banner %}

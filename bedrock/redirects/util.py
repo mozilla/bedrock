@@ -192,6 +192,10 @@ def redirect(
         else:
             view_decorators.extend(decorators)
 
+    if query:
+        # prevent updating in place
+        query = query.copy()
+
     def _view(request, *args, **kwargs):
         # don't want to have 'None' in substitutions
         kwargs = {k: v or "" for k, v in kwargs.items()}
@@ -222,10 +226,9 @@ def redirect(
         if query:
             if merge_query:
                 req_query = parse_qs(request.META.get("QUERY_STRING", ""))
-                req_query.update(query)
-                querystring = urlencode(req_query, doseq=True)
-            else:
-                querystring = urlencode(query, doseq=True)
+                query.update(req_query)
+
+            querystring = urlencode(query, doseq=True)
         elif query is None:
             querystring = request.META.get("QUERY_STRING", "")
         else:

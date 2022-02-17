@@ -1175,5 +1175,26 @@ URLS = flatten(
         url_test("/exp/", "/"),
         # issue 11092
         url_test("/about/legal/terms/vpn/", "/about/legal/terms/mozilla-vpn/"),
+        # Issue 11204
+        url_test(
+            "/{truecolors,turningred}/",
+            "https://truecolors.firefox.com/",
+            query={
+                "utm_campaign": "firefox-disney-us",
+                "utm_medium": "web",
+                "utm_source": "redirect",
+                "utm_content": "mozilla.org-turningred",
+            },
+        ),
+        url_test(
+            "/{truecolors,turningred}/?utm_source=dude",
+            "https://truecolors.firefox.com/",
+            query={
+                "utm_campaign": "firefox-disney-us",
+                "utm_medium": "web",
+                "utm_source": "dude",
+                "utm_content": "mozilla.org-turningred",
+            },
+        ),
     )
 )

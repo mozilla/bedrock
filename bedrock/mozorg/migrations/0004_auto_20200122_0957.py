@@ -13,11 +13,4 @@ class Migration(migrations.Migration):
         ("mozorg", "0003_delete_blogarticle"),
     ]
 
-    operations = [
-        migrations.DeleteModel(
-            name="ContributorActivity",
-        ),
-        migrations.DeleteModel(
-            name="TwitterCache",
-        ),
-    ]
+    operations = []

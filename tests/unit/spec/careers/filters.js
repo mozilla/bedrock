@@ -136,7 +136,7 @@ describe('filters.js', function () {
             document.querySelectorAll(
                 '.listings-positions tbody tr.position:not(.hidden)'
             ).length
-        ).toEqual(3);
+        ).toEqual(4);
     });
 
     it('should filter the table based on selected team', function () {

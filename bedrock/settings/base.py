@@ -76,7 +76,7 @@ HAS_SYSLOG = True
 SYSLOG_TAG = "http_app_bedrock"
 LOGGING_CONFIG = None
 
-# CEF Logging
+# CEF Logging - TODO: remove these if def redundant
 CEF_PRODUCT = "Bedrock"
 CEF_VENDOR = "Mozilla"
 CEF_VERSION = "0"
@@ -486,9 +486,8 @@ if DEBUG:
 
 
 def set_whitenoise_headers(headers, path, url):
-    if "/fonts/" in url or "/caldata/" in url:
-        cache_control = "public, max-age=604800"  # one week
-        headers["Cache-Control"] = cache_control
+    if "/fonts/" in url:
+        headers["Cache-Control"] = "public, max-age=604800"  # one week
 
     if url.startswith("/.well-known/matrix/"):
         headers["Content-Type"] = "application/json"
@@ -561,8 +560,6 @@ INSTALLED_APPS = (
     "product_details",
     # third-party apps
     "django_jinja_markdown",
-    "pagedown",
-    "localflavor",
     "django_jinja",
     "watchman",
     # Local apps
@@ -593,7 +590,6 @@ INSTALLED_APPS = (
     # libs
     "django_extensions",
     "lib.l10n_utils",
-    "captcha",
 )
 
 # Must match the list at CloudFlare if the
@@ -935,12 +931,10 @@ MOZILLA_INSTAGRAM_ACCOUNTS = {
 # ***This URL *MUST* end in a traling slash!***
 FXA_ENDPOINT = config("FXA_ENDPOINT", default="https://accounts.stage.mozaws.net/" if DEV else "https://accounts.firefox.com/")
 
-FXA_ENDPOINT_MOZILLAONLINE = config("FXA_ENDPOINT_MOZILLAONLINE", default="https://accounts.firefox.com.cn/")
-
 # Google Play and Apple App Store settings
-from .appstores import GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE  # noqa
-from .appstores import GOOGLE_PLAY_FIREFOX_LINK_UTMS  # noqa
-from .appstores import (
+from .appstores import GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE  # noqa: E402, F401
+from .appstores import GOOGLE_PLAY_FIREFOX_LINK_UTMS  # noqa: E402, F401
+from .appstores import (  # noqa: E402, F401
     ADJUST_FIREFOX_URL,
     ADJUST_FOCUS_URL,
     ADJUST_KLAR_URL,
@@ -1094,8 +1088,21 @@ LOGGING = {
     "formatters": {
         "verbose": {"format": "%(levelname)s %(asctime)s %(module)s %(message)s"},
     },
-    "handlers": {"console": {"class": "logging.StreamHandler", "stream": sys.stdout, "formatter": "verbose"}},
+    "handlers": {
+        "null": {
+            "class": "logging.NullHandler",
+        },
+        "console": {
+            "class": "logging.StreamHandler",
+            "stream": sys.stdout,
+            "formatter": "verbose",
+        },
+    },
     "loggers": {
+        "django.security.DisallowedHost": {  # NB: this exception changes base in Django 4
+            "handlers": ["null"],
+            "propagate": False,
+        },
         "django.db.backends": {
             "level": "ERROR",
             "handlers": ["console"],
@@ -1192,6 +1199,7 @@ CSP_SCRIPT_SRC = CSP_DEFAULT_SRC + [
     "1003350.track.convertexperiments.com",
     "1003343.track.convertexperiments.com",
     "cdn.cookielaw.org",
+    "assets.getpocket.com",  # allow Pocket Snowplow analytics
 ]
 CSP_STYLE_SRC = CSP_DEFAULT_SRC + [
     # TODO fix things so that we don't need this
@@ -1218,8 +1226,10 @@ CSP_CONNECT_SRC = CSP_DEFAULT_SRC + [
     "cdn.cookielaw.org",
     "privacyportal.onetrust.com",
     FXA_ENDPOINT,
-    FXA_ENDPOINT_MOZILLAONLINE,
+    "getpocket.com",  # Pocket Snowplow
 ]
+if DEV:
+    CSP_CONNECT_SRC.append("com-getpocket-prod1.mini.snplow.net")
 CSP_REPORT_ONLY = config("CSP_REPORT_ONLY", default="false", parser=bool)
 CSP_REPORT_URI = config("CSP_REPORT_URI", default="") or None
 

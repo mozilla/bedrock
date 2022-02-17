@@ -411,6 +411,18 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-97-en.scss"
+      ],
+      "name": "firefox_whatsnew_97_en"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-97-eu.scss"
+      ],
+      "name": "firefox_whatsnew_97_eu"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -1065,13 +1077,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-fxa-product-button.js",
-        "js/base/mozilla-fxa-product-button-init.js"
-      ],
-      "name": "firefox_welcome_page"
-    },
-    {
-      "files": [
         "protocol/js/protocol-modal.js",
         "js/base/send-to-device.js",
         "js/firefox/welcome/welcome4.js"
@@ -1101,31 +1106,9 @@
     },
     {
       "files": [
-        "js/firefox/whatsnew/up-to-date.js"
-      ],
-      "name": "firefox_whatsnew_93"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/up-to-date.js",
-        "js/base/mozilla-fxa-product-button.js",
-        "js/base/mozilla-fxa-product-button-init.js"
-      ],
-      "name": "firefox_whatsnew_95_de"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/up-to-date.js"
-      ],
-      "name": "firefox_whatsnew_95_en"
-    },
-    {
-      "files": [
         "js/firefox/whatsnew/up-to-date.js",
         "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js",
-        "js/base/mozilla-fxa-product-button.js",
-        "js/base/mozilla-fxa-product-button-init.js"
+        "js/base/mozilla-fxa-init.js"
       ],
       "name": "firefox_whatsnew_96_eu"
     },
@@ -1135,6 +1118,14 @@
         "js/firefox/whatsnew/whatsnew-96-en-experiment.js"
       ],
       "name": "firefox_whatsnew_96_en_experiment"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/up-to-date.js",
+        "protocol/js/protocol-modal.js",
+        "js/firefox/whatsnew/whatsnew-97-eu.js"
+      ],
+      "name": "firefox_whatsnew_97_eu"
     },
     {
       "files": [
@@ -1333,8 +1324,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-fxa-product-button.js",
-        "js/base/mozilla-fxa-product-button-init.js",
         "protocol/js/protocol-sticky-promo.js",
         "js/firefox/sticky-promo.js",
         "js/firefox/home/master.js"
@@ -1352,8 +1341,6 @@
       "files": [
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
-        "js/base/mozilla-fxa-form.js",
-        "js/base/mozilla-fxa-form-init.js",
         "protocol/js/protocol-sticky-promo.js",
         "js/firefox/sticky-promo.js",
         "js/firefox/browsers-products.js"
@@ -1397,18 +1384,21 @@
       "files": [
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
-        "js/base/mozilla-fxa-form.js",
-        "js/base/mozilla-fxa-product-button.js",
-        "js/firefox/accounts-2019.js"
+        "js/firefox/accounts-2019.es6.js"
       ],
       "name": "firefox_accounts_2019"
     },
     {
       "files": [
-        "js/base/mozilla-fxa-form.js",
-        "js/base/mozilla-fxa-form-init.js"
+        "js/base/fxa-form-init.es6.js"
       ],
-      "name": "firefox_firstrun_quantum"
+      "name": "fxa_form"
+    },
+    {
+      "files": [
+        "js/base/fxa-product-button-init.es6.js"
+      ],
+      "name": "fxa_product_button"
     },
     {
       "files": [
@@ -1435,17 +1425,9 @@
     },
     {
       "files": [
-        "js/firefox/whatsnew/up-to-date.js"
-      ],
-      "name": "firefox_nightly_whatsnew"
-    },
-    {
-      "files": [
         "js/firefox/whatsnew/up-to-date.js",
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
-        "js/base/mozilla-fxa-product-button.js",
-        "js/base/mozilla-fxa-product-button-init.js",
         "js/base/send-to-device.js",
         "js/firefox/whatsnew/whatsnew-account.js"
       ],
@@ -1453,8 +1435,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-fxa-form.js",
-        "js/base/mozilla-fxa-form-init.js",
         "js/firefox/privacy/products.js"
       ],
       "name": "firefox-privacy-products"
@@ -1504,18 +1484,22 @@
         "protocol/js/protocol-details.js",
         "js/base/protocol/protocol-footer.js",
         "js/base/protocol/protocol-sub-navigation.js",
-        "js/base/mozilla-fxa-link.js",
-        "js/base/mozilla-fxa-link-init.js",
         "js/base/base-page-init.js"
       ],
       "name": "ui"
     },
     {
       "files": [
+        "js/base/fxa-link.es6.js",
+        "js/base/fxa-utm.es6.js",
+        "js/base/fxa-bundle-init.es6.js"
+      ],
+      "name": "fxa"
+    },
+    {
+      "files": [
         "js/base/core-datalayer.js",
-        "js/base/core-datalayer-init.js",
-        "js/base/fxa-utm-referral.js",
-        "js/base/fxa-utm-referral-init.js"
+        "js/base/core-datalayer-init.js"
       ],
       "name": "data"
     },
@@ -1550,16 +1534,18 @@
     },
     {
       "files": [
-        "js/base/mozilla-fxa-product-button.js",
-        "js/base/mozilla-fxa-product-button-init.js"
+        "js/externalpages/pocket/mobile-nav.es6.js",
+        "js/externalpages/pocket/mobile-nav-init.es6.js"
       ],
-      "name": "product_pocket"
+      "name": "pocket-nav"
     },
     {
       "files": [
-        "js/externalpages/pocket/mobile-nav.es6.js"
+        "js/externalpages/pocket/base.js",
+        "js/base/mozilla-cookie-helper.js",
+        "js/externalpages/pocket/snowplow.es6.js"
       ],
-      "name": "pocket-nav"
+      "name": "pocket-site"
     },
     {
       "files": [
@@ -1615,14 +1601,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-fxa-product-button.js",
-        "js/base/mozilla-fxa-product-button-init.js"
-      ],
-      "name": "sync"
-    },
-    {
-      "files": [
-        "js/base/mozilla-fxa-product-button.js",
         "js/products/vpn/landing.js"
       ],
       "name": "mozilla-vpn-landing"

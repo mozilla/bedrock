@@ -700,12 +700,12 @@ def test_update_contentful__detect_and_delete_absent_entries__homepage_involved(
     # Make two homepages, with en-US locales (because that's how it rolls for now)
     ContentfulEntry.objects.create(
         content_type=CONTENT_TYPE_CONNECT_HOMEPAGE,
-        contentful_id=f"home_1",
+        contentful_id="home_1",
         locale="en-US",
     )
     ContentfulEntry.objects.create(
         content_type=CONTENT_TYPE_CONNECT_HOMEPAGE,
-        contentful_id=f"home_2",
+        contentful_id="home_2",
         locale="en-US",
     )
 

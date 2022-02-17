@@ -170,6 +170,10 @@ def get_best_translation(translations, accept_languages):
 
     """
     lang_map = _get_language_map()
+    # translations contains mixed-case items e.g. "en-US" while the keys
+    # of `lang_map` are all lowercase. But this works because the values
+    # of the `lang_map` dict are mixed-case like translations and the
+    # comparison below is with the values.
     valid_lang_map = {k: v for k, v in lang_map.items() if v in translations}
     for lang in accept_languages:
         lang.lower()
@@ -179,7 +183,14 @@ def get_best_translation(translations, accept_languages):
         if pre in valid_lang_map:
             return valid_lang_map[pre]
 
-    return lang_map[translations[0].lower()]
+    # If all the attempts failed, just use en-US, the default locale of
+    # the site, if it is an available translation.
+    if settings.LANGUAGE_CODE in translations:
+        return settings.LANGUAGE_CODE
+
+    # In the rare case the default language isn't in the list, return the
+    # first translation in the valid_lang_map.
+    return list(valid_lang_map.values())[0]
 
 
 def get_translations_native_names(locales):

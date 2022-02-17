@@ -19,11 +19,10 @@ $easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
 .mobile-nav-wrapper {
     background: rgba(26, 26, 26, 0.4) none repeat scroll 0 0;
     bottom: 0;
-    display: none;
+    visibility: hidden;
     left: 0;
     mix-blend-mode: normal;
     opacity: 0;
-    pointer-events: none;
     position: fixed;
     right: 0;
     transition: opacity 150ms $easing-accelerate, transform 75ms $easing-accelerate;
@@ -31,8 +30,7 @@ $easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
     z-index: 20;
 
     &.active {
-        display: block;
-        pointer-events: auto;
+        visibility: visible;
     }
 }
 

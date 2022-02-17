@@ -340,7 +340,9 @@ def existing(request, token=None):
         if (
             data.get("show", False)
             or newsletter in user["newsletters"]
-            or (user["has_fxa"] and newsletter in settings.FXA_NEWSLETTERS and any(locale.startswith(l) for l in settings.FXA_NEWSLETTERS_LOCALES))
+            or (
+                user["has_fxa"] and newsletter in settings.FXA_NEWSLETTERS and any(locale.startswith(loc) for loc in settings.FXA_NEWSLETTERS_LOCALES)
+            )
         ):
             langs = data["languages"]
             nstrings = NEWSLETTER_STRINGS.get(newsletter)
