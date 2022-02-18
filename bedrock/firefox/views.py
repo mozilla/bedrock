@@ -93,7 +93,7 @@ class InstallerHelpView(L10nTemplateView):
 @require_GET
 def stub_attribution_code(request):
     """Return a JSON response containing the HMAC signed stub attribution value"""
-    if not request.is_ajax():
+    if not request.headers.get("x-requested-with") == "XMLHttpRequest":
         return JsonResponse({"error": "Resource only available via XHR"}, status=400)
 
     response = None

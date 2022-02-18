@@ -656,7 +656,7 @@ def newsletter_subscribe(request):
         # form error messages may contain unsanitized user input
         errors = [escape(e) for e in errors]
 
-        if request.is_ajax():
+        if request.headers.get("x-requested-with") == "XMLHttpRequest":
             # return JSON
             if errors:
                 resp = {
