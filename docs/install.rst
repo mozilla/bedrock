@@ -292,7 +292,7 @@ run the server::
 
 If you are not inside a virtualenv, you can activate it by doing::
 
-    $ source venv/bin/activate
+    $ pyenv activate bedrock
 
 Browsersync
 -----------
