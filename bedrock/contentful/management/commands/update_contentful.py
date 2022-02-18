@@ -265,7 +265,7 @@ class Command(BaseCommand):
                 message="Deleted more objects than expected based on these ids slated for deletion. Check the Contentful sync!",
                 level="warning",
             )
-        return res[1]["contentful.ContentfulEntry"]
+        return res[1]["contentful.ContentfulEntry"] if res[0] > 0 else 0
 
     def _remap_locale_for_bedrock(self, locale: str) -> str:
         return CONTENTFUL_TO_BEDROCK_LOCALE_MAP.get(locale, locale)
