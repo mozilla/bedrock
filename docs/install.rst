@@ -209,8 +209,7 @@ credits, release notes, localizations, legal-docs etc::
 
     $ bin/bootstrap.sh
 
-**Next, you need to have `Node.js <https://nodejs.org/>`_ and `npm <https://www.npmjs.com/>`_ installed**.
-The node dependencies for running the site can be installed with ``npm install``::
+**Install the node dependencies to run the site**. This will only work if you already have `Node.js <https://nodejs.org/>`_ and `npm <https://www.npmjs.com/>`_ installed::
 
     $ npm install
 
