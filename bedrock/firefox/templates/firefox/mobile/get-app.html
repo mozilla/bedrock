@@ -27,6 +27,12 @@
   {% endwith %}
 {% endblock %}
 
+{% if variation == 'mfm' %}
+  {% set message_set = 'fx-mobile-download-desktop-experiment' %}
+{% else %}
+  {% set message_set = 'fx-mobile-download-desktop' %}
+{% endif %}
+
 {% block content %}
 <main role="main" class="mzp-l-content mzp-t-content-md mzp-t-firefox">
   <section>
@@ -34,7 +40,7 @@
     <h1>{{ ftl('firefox-mobile-get-firefox-mobile') }}</h1>
     {% if show_send_to_device %}
       <p>{{ ftl('firefox-mobile-send-a-download-link-to-your') }}</p>
-      {{ send_to_device(include_title=False, message_set='fx-mobile-download-desktop', class='vertical') }}
+      {{ send_to_device(include_title=False, message_set=message_set, class='vertical') }}
     {% else %}
       <p>{{ ftl('firefox-mobile-scan-the-qr-code-to-get-started') }}</p>
       <div class="qr-code-wrapper">
