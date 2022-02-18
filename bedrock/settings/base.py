@@ -53,6 +53,7 @@ DATABASES = {
         "NAME": data_path("bedrock.db"),
     },
 }
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 CACHES = {
     "default": {
