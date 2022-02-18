@@ -218,6 +218,13 @@ locales = [
     reference = "en/firefox/whatsnew/whatsnew.ftl"
     l10n = "{locale}/firefox/whatsnew/whatsnew.ftl"
 [[paths]]
+    reference = "en/firefox/whatsnew/whatsnew-fx98-vpn-eu.html"
+    l10n = "{locale}/firefox/whatsnew/whatsnew-fx98-vpn-eu.html"
+    locales = [
+        "fi",
+        "sv-SE",
+    ]
+[[paths]]
     reference = "en/mozorg/contribute.ftl"
     l10n = "{locale}/mozorg/contribute.ftl"
 [[paths]]
