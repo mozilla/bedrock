@@ -429,15 +429,15 @@ context variable for switching, this will help you out. For example.
 
     # urls.py
 
-    from django.conf.urls import url
+    from django.urls import path
 
     from bedrock.utils.views import VariationTemplateView
 
     urlpatterns = [
-        url(r'^testing/$',
-            VariationTemplateView.as_view(template_name='testing.html',
-                                          template_context_variations=['a', 'b']),
-            name='testing'),
+        path(r"^testing/$",
+             VariationTemplateView.as_view(template_name="testing.html",
+                                           template_context_variations=["a", "b"]),
+             name="testing"),
     ]
 
 This will give you a context variable called `variation` that will either be an empty
@@ -457,15 +457,15 @@ If you'd rather have a fully separate template for your test, you can use the
 
     # urls.py
 
-    from django.conf.urls import url
+    from django.urls import path
 
     from bedrock.utils.views import VariationTemplateView
 
     urlpatterns = [
-        url(r'^testing/$',
-            VariationTemplateView.as_view(template_name='testing.html',
-                                          template_name_variations=['1', '2']),
-            name='testing'),
+        path(r"^testing/$",
+             VariationTemplateView.as_view(template_name="testing.html",
+                                           template_name_variations=["1", "2"]),
+             name="testing"),
     ]
 
 This will not provide any extra template context variables, but will instead look for
@@ -488,16 +488,16 @@ the template name example above could be modified to only work for English or Ge
 
     # urls.py
 
-    from django.conf.urls import url
+    from django.urls import path
 
     from bedrock.utils.views import VariationTemplateView
 
     urlpatterns = [
-        url(r'^testing/$',
-            VariationTemplateView.as_view(template_name='testing.html',
-                                          template_name_variations=['1', '2'],
-                                          variation_locales=['en-US', 'de']),
-            name='testing'),
+        path(r"^testing/$",
+             VariationTemplateView.as_view(template_name="testing.html",
+                                           template_name_variations=["1", "2"],
+                                           variation_locales=["en-US", "de"]),
+             name="testing"),
     ]
 
 Any request to the page in for example French would not use the alternate template even if a
