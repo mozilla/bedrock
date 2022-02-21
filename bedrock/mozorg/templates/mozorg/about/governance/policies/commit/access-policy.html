@@ -24,7 +24,11 @@ This document states what permissions you need when following the <a href="{{ ur
 
 <p>
 {% trans %}
-There are two sorts of control which can be used to stop people checking in - technical and social. A "full technical" implementation would have per-directory permissions everywhere, but would lead to a greatly-increased management overhead for IT, vouchers and developers alike. A "full social" implementation would just have a single permission which gave you complete access to everything, but (depending on the height of the barrier to that permission) there is a risk of making developer's lives more difficult when they are excluded, or of giving the untrustworthy or incompetent power to mess things up.
+There are two sorts of control which can be used to stop people checking in - technical and social.
+<ol>
+<li>A "full technical" implementation would have per-directory permissions everywhere, but would lead to a greatly-increased management overhead for IT, vouchers and developers alike.</li>
+<li>A "full social" implementation would just have a single permission which gave you complete access to everything, but (depending on the height of the barrier to that permission) there is a risk of making developer's lives more difficult when they are excluded, or of giving the untrustworthy or incompetent power to mess things up.</li>
+</ol>
 {% endtrans %}
 </p>
 
@@ -87,7 +91,7 @@ This is the lowest level of access. It allows someone to check in to the <a href
 
 <h4 id="L10n">{{ _('L10n') }}</h4>
 
-<p>{{ _('In addition, l10n is a separate category so l10n-only access can be more freely given than might be the case if it were included in level 2. This exception is worth making because of the size and diversity of the l10n community and the looser relationship people in it sometimes have to the rest of the project. l10n access implies level 1 access but not level 2 access. The named vouchers are Axel Hecht and Jeff Beatty.') }}</p>
+<p>{{ _('In addition, l10n is a separate category so l10n-only access can be more freely given than might be the case if it were included in level 2. This exception is worth making because of the size and diversity of the l10n community and the looser relationship people in it sometimes have to the rest of the project. l10n access implies level 1 access but not level 2 access. <!--The named vouchers are Axel Hecht and Jeff Beatty. -->') }}</p>
 
 <h2 id="Level2">{{ _('Level 2 - General Access') }}</h2>
 
