@@ -1,0 +1,74 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+ {% from "macros-protocol.html" import picto with context %}
+
+ {% extends "firefox/whatsnew/base.html" %}
+
+ {% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+
+ {#- This will appear as <meta property="og:description"> which can be used for social share -#}
+ {% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+ {% block body_id %}firefox-whatsnew{% endblock %}
+
+ {% block page_css %}
+   {{ css_bundle('firefox_whatsnew_98_vpn_eu') }}
+ {% endblock %}
+
+ {% block site_header %}{% endblock %}
+
+ {% block wnp_content %}
+   <section class="wnp-content-main">
+      <div class="wnp-main-image">
+        {% include 'firefox/whatsnew/includes/fx98-vpn-eu/vpn-header.svg' %}
+      </div>
+      <div class="mzp-l-content mzp-t-content-md">
+        <h2 class="wnp-main-title">{{ ftl('whatsnew-98-vpn-eu-title') }}</h2>
+        <p class="wnp-main-tagline">{{ ftl('whatsnew-98-vpn-eu-desc') }}</p>
+
+        <div class="wnp-main-cta qa-main-cta-vpn">
+          {{ vpn_product_referral_link(
+              referral_id='whatsnew-98-vpn-eu',
+              link_text=ftl('whatsnew-98-vpn-eu-cta'),
+              class_name='mzp-t-product mzp-t-lg',
+              optional_attributes= {
+                  'data-cta-text' : 'Go to Mozilla VPN',
+                  'data-cta-type' : 'button',
+                  'data-cta-position' : 'primary-cta',
+              }
+          ) }}
+        </div>
+
+        <section class="wnp-content-extra">
+          <div class="mzp-l-columns mzp-t-columns-two">
+            <div class="mzp-c-picto">
+              <div class="mzp-c-picto-image">
+                {% include 'firefox/whatsnew/includes/fx98-vpn-eu/one-tap.svg' %}
+              </div>
+              <h3 class="mzp-c-picto-heading">{{ ftl('whatsnew-98-vpn-eu-extra-heading-1') }}</h3>
+              <div class="mzp-c-picto-body">
+                <p>{{ ftl('whatsnew-98-vpn-eu-extra-desc-1') }}</p>
+              </div>
+            </div>
+
+            <div class="mzp-c-picto">
+              <div class="mzp-c-picto-image">
+                {% include 'firefox/whatsnew/includes/fx98-vpn-eu/heart.svg' %}
+              </div>
+              <h3 class="mzp-c-picto-heading">{{ ftl('whatsnew-98-vpn-eu-extra-heading-2') }}</h3>
+              <div class="mzp-c-picto-body">
+                <p>{{ ftl('whatsnew-98-vpn-eu-extra-desc-2', url=url('mozorg.about.manifesto')) }}</p>
+            </div>
+          </div>
+        </section>
+     </div>
+   </section>
+ {% endblock %}
+
+ {% block js %}
+   {{ js_bundle('firefox_whatsnew_update') }}
+ {% endblock %}

@@ -580,6 +580,28 @@ class TestWhatsNew(TestCase):
 
     # end 97.0 whatsnew tests
 
+    # begin 98.0 whatsnew tests
+
+    @override_settings(DEV=False)
+    def test_fx_98_0_0_se(self, render_mock):
+        """Should use whatsnew-fx98-vpn-eu template for 98.0 in Sweden"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="se")
+        req.locale = "en-US"
+        self.view(req, version="98.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx98-vpn-eu.html"]
+
+    @override_settings(DEV=False)
+    def test_fx_98_0_0_fi(self, render_mock):
+        """Should use whatsnew-fx98-vpn-eu template for 98.0 in Finland"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="fi")
+        req.locale = "en-US"
+        self.view(req, version="98.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx98-vpn-eu.html"]
+
+    # end 98.0 whatsnew tests
+
 
 @patch("bedrock.firefox.views.l10n_utils.render", return_value=HttpResponse())
 class TestFirstRun(TestCase):

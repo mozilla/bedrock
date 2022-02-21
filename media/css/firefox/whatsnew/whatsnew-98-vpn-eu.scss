@@ -1,0 +1,106 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/components/picto';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
+@import 'includes/base';
+@import 'includes/dark-mode';
+
+// * -------------------------------------------------------------------------- */
+// Main content
+
+.wnp-content-main {
+    padding: 0;
+    text-align: center;
+}
+
+.wnp-main-image {
+    max-width: $content-lg;
+    margin: 0 auto -#{$layout-md} auto;
+
+    @media #{$mq-xl} {
+        margin-bottom: -#{$layout-xl};
+    }
+}
+
+.wnp-main-cta {
+    margin-top: $spacing-2xl;
+}
+
+.wnp-content-extra {
+    margin-top: $layout-xl;
+}
+
+.mzp-c-picto {
+    text-align: center;
+
+    @media #{$mq-md} {
+        text-align: left;
+    }
+}
+
+.mzp-c-picto-image {
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+// * -------------------------------------------------------------------------- */
+// For dark mode
+@media (prefers-color-scheme: dark) {
+    .wnp-main-title,
+    .mzp-c-picto-heading {
+        color: get-theme('title-text-color-inverse');
+    }
+
+    .wnp-main-image {
+        .line {
+            fill: #fff;
+        }
+
+        .globe,
+        .magnifying-glass,
+        .credit-card,
+        .laptop {
+            fill: none;
+        }
+
+        .wheel,
+        .cloud {
+            fill: #a577ff;
+        }
+
+        .signal {
+            fill: #c4c6fc;
+        }
+
+        .marker {
+            fill: #2b2a33;
+        }
+    }
+
+    .mzp-c-picto {
+        .line,
+        .circle {
+            stroke: #fff;
+        }
+
+        .card {
+            fill: none;
+            stroke: #fff;
+        }
+
+        .fill-line {
+            fill: #fff;
+        }
+    }
+
+    .mzp-c-picto-body {
+        @include light-links;
+    }
+}
