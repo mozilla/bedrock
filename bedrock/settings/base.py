@@ -1358,7 +1358,7 @@ VPN_PLAN_ID_MATRIX = {
             },
             "monthly": {
                 "id": "price_1IXw4eKb9q6OnNsLqnVP4PvO" if DEV else "price_1IgwZVJNcmPzuWtRg9Wssh2y",
-                "price": "9,99‎ €",
+                "price": "9,99 €",
                 "total": None,
                 "saving": None,
             },
@@ -1378,7 +1378,7 @@ VPN_PLAN_ID_MATRIX = {
             },
             "monthly": {
                 "id": "price_1Jcu7uKb9q6OnNsLG4JAAXuw" if DEV else "price_1JcdsSJNcmPzuWtRGF9Y5TMJ",
-                "price": "9,99‎ €",
+                "price": "9,99 €",
                 "total": None,
                 "saving": None,
             },
@@ -1398,7 +1398,7 @@ VPN_PLAN_ID_MATRIX = {
             },
             "monthly": {
                 "id": "price_1J4pFSKb9q6OnNsLEyiFLbvB" if DEV else "price_1J5JDgJNcmPzuWtRqQtIbktk",
-                "price": "9,99‎ €",
+                "price": "9,99 €",
                 "total": None,
                 "saving": None,
             },
@@ -1418,7 +1418,7 @@ VPN_PLAN_ID_MATRIX = {
             },
             "monthly": {
                 "id": "price_1IXw4eKb9q6OnNsLqnVP4PvO" if DEV else "price_1IgowHJNcmPzuWtRzD7SgAYb",
-                "price": "9,99‎ €",
+                "price": "9,99 €",
                 "total": None,
                 "saving": None,
             },
@@ -1438,7 +1438,7 @@ VPN_PLAN_ID_MATRIX = {
             },
             "monthly": {
                 "id": "price_1J4p6wKb9q6OnNsLTb6kCDsC" if DEV else "price_1J5J6iJNcmPzuWtRK5zfoguV",
-                "price": "9,99‎ €",
+                "price": "9,99 €",
                 "total": None,
                 "saving": None,
             },
@@ -1511,6 +1511,9 @@ VPN_VARIABLE_PRICING = {
     "ES": {
         "default": VPN_PLAN_ID_MATRIX["euro"]["es"],
     },
+    "FI": {
+        "default": VPN_PLAN_ID_MATRIX["euro"]["en"],
+    },
     "FR": {
         "default": VPN_PLAN_ID_MATRIX["euro"]["fr"],
     },
@@ -1522,6 +1525,9 @@ VPN_VARIABLE_PRICING = {
     },
     "NL": {
         "default": VPN_PLAN_ID_MATRIX["euro"]["nl"],
+    },
+    "SE": {
+        "default": VPN_PLAN_ID_MATRIX["euro"]["en"],
     },
     "US": {
         "default": VPN_PLAN_ID_MATRIX["usd"]["en"],
@@ -1563,6 +1569,12 @@ VPN_COUNTRY_CODES = [
     "IE",  # Ireland
     "NL",  # Netherlands
 ]
+
+VPN_COUNTRY_CODES_WAVE_V = [
+    "SE",  # Sweden
+    "FI",  # Finland
+]
+VPN_AVAILABLE_COUNTRIES_WAVE_V = 17
 
 VPN_AVAILABLE_COUNTRIES = 15
 VPN_CONNECT_SERVERS = 400
