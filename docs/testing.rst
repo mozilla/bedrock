@@ -214,28 +214,6 @@ be enough to cover our most critical pages where legacy browser support is impor
 You can run smoke tests only by adding ``-m smoke`` when running the test suite on the
 command line.
 
-Sanity tests
-~~~~~~~~~~~~
-
-Sanity tests behave in much the same way as smoke tests, but will also run against Internet
-Explorer 9, which is a browser that does not receive 1st class CSS/JS support (except on
-certain download pages such as /firefox/new/). The number of sanity tests we run should be
-small and cover only a handful key of pages.
-
-.. code-block:: python
-
-    import pytest
-
-    @pytest.mark.sanity
-    @pytest.mark.smoke
-    @pytest.mark.nondestructive
-    def test_download_button_displayed(base_url, selenium):
-        page = DownloadPage(selenium, base_url, params='').open()
-        assert page.is_download_button_displayed
-
-You can run sanity tests only by adding ``-m sanity`` when running the test suite on the
-command line.
-
 Waits and Expected Conditions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
