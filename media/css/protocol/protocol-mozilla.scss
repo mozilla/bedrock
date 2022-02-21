@@ -47,6 +47,11 @@ $image-path: '/media/protocol/img';
     @include text-body-md;
 }
 
+#newsletter-submit + .mzp-c-fieldnote {
+    @include text-body-xs;
+    margin-top: 0;
+}
+
 // style classes automatically added by python to match Protocol form error styles
 .errorlist {
     @include white-links;

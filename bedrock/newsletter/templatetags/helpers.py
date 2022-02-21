@@ -49,6 +49,8 @@ def email_newsletter_form(
     if not form:
         form = NewsletterFooterForm(newsletters, get_locale(request))
 
+    is_multi_newsletter_form = True if "," in newsletters else False
+
     context.update(
         dict(
             id=newsletters,
@@ -65,11 +67,12 @@ def email_newsletter_form(
             include_title=include_title if include_title is not None else footer,
             form=form,
             submit_text=submit_text,
-            button_class=button_class,
+            button_class="button-dark" if is_multi_newsletter_form else button_class,
             spinner_color=spinner_color,
             success=success,
             email_label=email_label,
             email_placeholder=email_placeholder,
+            is_multi_newsletter_form=is_multi_newsletter_form,
         )
     )
 

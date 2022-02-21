@@ -156,25 +156,6 @@ class TestNewsletterForm(TestCase):
         self.assertTrue(form.is_valid())
         self.assertEqual(title, form.cleaned_data["title"])
 
-    def test_multiple_newsletters(self):
-        """Should allow to subscribe to multiple newsletters at a time."""
-        newsletters = "mozilla-and-you,beta"
-        data = {
-            "email": "dude@example.com",
-            "lang": "en",
-            "privacy": "Y",
-            "fmt": "H",
-            "newsletters": newsletters,
-        }
-        form = NewsletterFooterForm(newsletters, "en-US", data=data.copy())
-        self.assertTrue(form.is_valid())
-        self.assertEqual(form.cleaned_data["newsletters"], newsletters)
-
-        # whitespace shouldn't matter
-        form = NewsletterFooterForm("mozilla-and-you , beta ", "en-US", data=data.copy())
-        self.assertTrue(form.is_valid())
-        self.assertEqual(form.cleaned_data["newsletters"], newsletters)
-
 
 @mock.patch("bedrock.newsletter.utils.get_newsletters", newsletters_mock)
 class TestNewsletterFooterForm(TestCase):
@@ -327,3 +308,22 @@ class TestNewsletterFooterForm(TestCase):
         self.assertFalse(form.is_valid())
         self.assertIn("newsletters", form.errors)
         self.assertEqual(form.errors["newsletters"], ["Invalid Newsletter"])
+
+    def test_multiple_newsletters(self):
+        """Should allow to subscribe to multiple newsletters at a time."""
+        newsletters = "mozilla-and-you,beta"
+        data = {
+            "email": "dude@example.com",
+            "lang": "en",
+            "privacy": "Y",
+            "fmt": "H",
+            "newsletters": newsletters,
+        }
+        form = NewsletterFooterForm(newsletters, "en-US", data=data.copy())
+        self.assertTrue(form.is_valid())
+        self.assertEqual(form.cleaned_data["newsletters"], newsletters)
+
+        # whitespace shouldn't matter
+        form = NewsletterFooterForm("mozilla-and-you , beta ", "en-US", data=data.copy())
+        self.assertTrue(form.is_valid())
+        self.assertEqual(form.cleaned_data["newsletters"], newsletters)
