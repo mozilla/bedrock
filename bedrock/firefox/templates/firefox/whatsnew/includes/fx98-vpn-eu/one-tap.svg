@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480">
 <style>.st7{fill:none;stroke:#fff}.st15,.st19,.st7{stroke-width:4;stroke-miterlimit:10}.st15{fill:none;stroke:#000}.st19{stroke-linejoin:round}.st19,.st23{fill:none;stroke:#000;stroke-linecap:round}.st23,.st24,.st25,.st26{stroke-width:4;stroke-miterlimit:10}.st24{stroke-linecap:round;fill:none;stroke:#fff}.st25,.st26{fill:#fff;stroke:#2b2a33}.st26{fill:#a77ffa;stroke:#000}</style>
-<g id="Layer_1">
+<g id="svg-one-tap">
   <path d="M358.9 409H199.4c-9.3 0-16.8-7.5-16.8-16.8V151.3c0-9.3 7.5-16.8 16.8-16.8H359c9.3 0 16.8 7.5 16.8 16.8v240.9c-.1 9.3-7.6 16.8-16.9 16.8z" fill="#c5c8fb" stroke="#c5c9fb" stroke-miterlimit="10"/>
   <path class="line st15" d="M393.5 132c1.7 0 3.1-1.4 3.1-3.1 0-1.7-1.4-3.1-3.1-3.1-1.7 0-3.1 1.4-3.1 3.1 0 1.7 1.4 3.1 3.1 3.1zM123.3 32.3c1.7 0 3.1-1.4 3.1-3.1 0-1.7-1.4-3.1-3.1-3.1s-3.1 1.4-3.1 3.1c-.1 1.7 1.4 3.1 3.1 3.1zM59.3 334.3c1.7 0 3.1-1.4 3.1-3.1 0-1.7-1.4-3.1-3.1-3.1-1.7 0-3.1 1.4-3.1 3.1-.1 1.7 1.4 3.1 3.1 3.1z"/>
   <path class="line st23" d="M105.6 197.7v6.7M102.2 201h6.7"/>
