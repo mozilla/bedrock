@@ -131,7 +131,7 @@ platforms and shells in the READMEs for the two pyenv projects.
 
     $ echo 'eval "$(pyenv init --path)"' >> ~/.zprofile
 
-    % echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+    $ echo 'eval "$(pyenv init -)"' >> ~/.zshrc
 
 3. Restart your login session for the changes to profile files to take effect - if you're not
 using ``zsh``, the ``pyenv`` docs have other routes ::
@@ -161,9 +161,9 @@ using ``zsh``, the ``pyenv`` docs have other routes ::
 
     $ brew install pyenv-virtualenv
 
-2. Configure your shell to init ``pyenv-virtualenv`` on start - again, this is noted in the ``pyenv-virtualenv`` project's `own docs <https://github.com/pyenv/pyenv-virtualenv>`_, in more detail ::
+2. Configure your shell to init ``pyenv-virtualenv`` on start - again, this is noted in the ``pyenv-virtualenv`` project's `own documentation <https://github.com/pyenv/pyenv-virtualenv>`_, in more detail. The following will slot in a command that will work as long as you have pyenv-virtualenv installed::
 
-    $ eval "$(pyenv virtualenv-init -)"
+    $ echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.zshrc
 
 3. Restart your login session for the changes to profile files to take effect ::
 
