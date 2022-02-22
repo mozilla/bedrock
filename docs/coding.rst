@@ -434,7 +434,7 @@ context variable for switching, this will help you out. For example.
     from bedrock.utils.views import VariationTemplateView
 
     urlpatterns = [
-        path(r"^testing/$",
+        path("testing/",
              VariationTemplateView.as_view(template_name="testing.html",
                                            template_context_variations=["a", "b"]),
              name="testing"),
@@ -462,7 +462,7 @@ If you'd rather have a fully separate template for your test, you can use the
     from bedrock.utils.views import VariationTemplateView
 
     urlpatterns = [
-        path(r"^testing/$",
+        path("testing/",
              VariationTemplateView.as_view(template_name="testing.html",
                                            template_name_variations=["1", "2"]),
              name="testing"),
@@ -493,7 +493,7 @@ the template name example above could be modified to only work for English or Ge
     from bedrock.utils.views import VariationTemplateView
 
     urlpatterns = [
-        path(r"^testing/$",
+        path("testing/",
              VariationTemplateView.as_view(template_name="testing.html",
                                            template_name_variations=["1", "2"],
                                            variation_locales=["en-US", "de"]),
