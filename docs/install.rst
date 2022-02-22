@@ -127,10 +127,13 @@ platforms and shells in the READMEs for the two pyenv projects.
 
     $ brew install pyenv
 
-2. Configure your shell to init ``pyenv`` on start - this is noted in the project's `own docs <https://github.com/pyenv/pyenv>`_, in more detail ::
+2. Configure your shell to init ``pyenv`` on start - this is noted in the project's
+`own docs <https://github.com/pyenv/pyenv>`_, in more detail, but omits that setting
+`PYENV_ROOT` and adding it to the path is needed::
 
-    $ echo 'eval "$(pyenv init --path)"' >> ~/.zprofile
-
+    $ echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+    $ echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+    $ echo 'eval "$(pyenv init --path)"' >> ~/.zshrc
     $ echo 'eval "$(pyenv init -)"' >> ~/.zshrc
 
 3. Restart your login session for the changes to profile files to take effect - if you're not
