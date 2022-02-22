@@ -109,7 +109,7 @@ Configuration
 -------------
 
 Currently, information about the available newsletters is configured in
-Basket. See Basket for more information.
+Basket. `See Basket for more information <https://basket.readthedocs.io/>`_.
 
 Footer signup
 -------------
