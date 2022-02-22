@@ -97,7 +97,7 @@ NAMESPACES = {
     "xul": {
         "namespace": "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul",
         "standard": "XML User Interface Language (XUL)",
-        "docs": "https://developer.mozilla.org/en/XUL",
+        "docs": "https://en.wikipedia.org/wiki/XUL",
     },
 }
 
