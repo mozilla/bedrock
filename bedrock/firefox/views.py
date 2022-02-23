@@ -467,6 +467,8 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx97-de.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx97-fr.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx98-vpn-eu.html": ["firefox/whatsnew/whatsnew-98-vpn-eu", "firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx98-mobile-de.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx98-mobile-fr.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in China
@@ -550,8 +552,15 @@ class WhatsnewView(L10nTemplateView):
                 template = "firefox/developer/whatsnew.html"
             else:
                 template = "firefox/whatsnew/index.html"
-        elif version.startswith("98.") and ftl_file_is_active("firefox/whatsnew/whatsnew-fx98-vpn-eu.html") and country in ["SE", "FI"]:
-            template = "firefox/whatsnew/whatsnew-fx98-vpn-eu.html"
+        elif version.startswith("98."):
+            if ftl_file_is_active("firefox/whatsnew/whatsnew-fx98-vpn-eu.html") and country in ["SE", "FI"]:
+                template = "firefox/whatsnew/whatsnew-fx98-vpn-eu.html"
+            elif locale == "de":
+                template = "firefox/whatsnew/whatsnew-fx98-mobile-de.html"
+            elif locale == "fr":
+                template = "firefox/whatsnew/whatsnew-fx98-mobile-fr.html"
+            else:
+                template = "firefox/whatsnew/index.html"
         elif version.startswith("97.") and locale == "de":
             template = "firefox/whatsnew/whatsnew-fx97-de.html"
         elif version.startswith("97.") and locale == "fr":

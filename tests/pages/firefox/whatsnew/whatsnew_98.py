@@ -12,7 +12,12 @@ class FirefoxWhatsNew98Page(BasePage):
     _URL_TEMPLATE = "/{locale}/firefox/98.0/whatsnew/{params}"
 
     _vpn_button_locator = (By.CSS_SELECTOR, ".qa-main-cta-vpn .mzp-c-button")
+    _qrcode_locator = (By.CSS_SELECTOR, ".qr-code-wrapper > svg")
 
     @property
     def is_vpn_button_displayed(self):
         return self.is_element_displayed(*self._vpn_button_locator)
+
+    @property
+    def is_qr_code_displayed(self):
+        return self.is_element_displayed(*self._qrcode_locator)

@@ -600,6 +600,30 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ["firefox/whatsnew/whatsnew-fx98-vpn-eu.html"]
 
+    def test_fx_98_0_0_de(self, render_mock):
+        """Should use whatsnew-fx98-mobile-de template for 98.0 for German"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "de"
+        self.view(req, version="98.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx98-mobile-de.html"]
+
+    def test_fx_98_0_0_fr(self, render_mock):
+        """Should use whatsnew-fx98-mobile-fr template for 98.0 for French"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "fr"
+        self.view(req, version="98.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx98-mobile-fr.html"]
+
+    def test_fx_98_0_0_en(self, render_mock):
+        """Should use default whatsnew template for 98.0 for English"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "en-US"
+        self.view(req, version="98.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/index.html"]
+
     # end 98.0 whatsnew tests
 
 

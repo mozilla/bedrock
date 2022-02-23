@@ -1,0 +1,55 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros.html" import google_play_button with context %}
+{% from "macros-protocol.html" import split with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-emphasis-box') }}
+  {{ css_bundle('firefox_whatsnew_98_mobile_eu') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+<section class="wnp-content-main mzp-t-content-xl">
+  {% call split(
+    block_class='c-main-content mzp-t-split-nospace mzp-l-split-center-on-sm-md',
+    media_class='mzp-l-split-h-center',
+    media_after=True,
+    media_include='firefox/whatsnew/includes/fx98-mobile-de/qr.html'
+  ) %}
+    <h1 class="wnp-main-title">Mach da weiter, wo du aufgehört hast mit Firefox</h1>
+    <p class="wnp-main-tagline">Hab all deine offenen Tabs, Lesezeichen und Lieblingsseiten im Blick. Hol dir Firefox für dein Handy.</p>
+
+    <div class="mobile-download-buttons-wrapper">
+      <ul class="mobile-download-buttons">
+        <li class="android">
+          {{ google_play_button(href='https://app.adjust.com/psjvd69?redirect=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dorg.mozilla.firefox&campaign=www.mozilla.org&adgroup=whatsnew-98-de-qr|safe', id='playStoreLink-primary') }}
+        </li>
+        <li class="ios">
+          <a id="appStoreLink-primary" href="https://app.adjust.com/8bdcye2?redirect=https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Ffirefox-private-safe-browser%2Fid989804926&campaign=www.mozilla.org&adgroup=whatsnew-98-de-qr" data-link-type="download" data-download-os="iOS">
+            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
+          </a>
+        </li>
+      </ul>
+    </div>
+  {% endcall %}
+</section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew') }}
+{% endblock %}
