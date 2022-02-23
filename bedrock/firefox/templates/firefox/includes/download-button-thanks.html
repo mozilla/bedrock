@@ -21,7 +21,7 @@
 
   {# legacy IE visitors get a direct download link instead of going to /thanks. #}
   <!--[if IE]>
-    <a href="{{ download_link_direct}}"
+    <a href="{{ download_link_direct|safe }}"
       class="download-link mzp-c-button mzp-t-product {% if button_class %}{{ button_class }}{% else %}mzp-t-xl{% endif %}"
       data-link-type="download" data-download-os="Desktop" data-display-name="Windows 32-bit" data-download-version="win"
       {% if download_location %}data-download-location="{{ download_location }}"{% endif %}>

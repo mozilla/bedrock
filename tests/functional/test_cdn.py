@@ -165,6 +165,7 @@ def test_enabled_ciphers(cipher, get_ssllabs_results):
 
 
 @pytest.mark.cdn
+@pytest.mark.cdnprod
 @pytest.mark.nondestructive
 def test_tls(get_ssllabs_results):
     """Check get_ssllabs_results to make sure that all expected clients connected without issue"""

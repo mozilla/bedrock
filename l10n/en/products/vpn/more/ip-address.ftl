@@ -20,6 +20,8 @@ vpn-ip-address-does-it-travel = Does it travel with you?
 
 # Variables
 #   $url (url) - https://www.mozilla.org/products/vpn/more/when-to-use-a-vpn/
+vpn-ip-address-no-your-ip-v2 = No. Your IP address is only associated with one location unless you are using a VPN (we will get more into that later). When you are at your home and connecting to the internet you pay for, you are using one. However, if you check your email at home in the morning, then scan the news at a local coffee shop while waiting for your coffee, and then work from an office, you will have used different IP addresses at each location.
+# Outdated string
 vpn-ip-address-no-your-ip = No. Your IP address is only associated with one location unless you are <a href="{ $url }">using a VPN</a> (we will get more into that later). When you are at your home and connecting to the internet you pay for, you are using one. However, if you check your email at home in the morning, then scan the news at a local coffee shop while waiting for your coffee, and then work from an office, you will have used different IP addresses at each location.
 vpn-ip-address-does-your-ip = Does your IP address change?
 vpn-ip-address-yes-even-if = Yes. Even if you are only using the internet at home, the IP address for your home can change. You can contact your internet service provider (ISP) to change it, but even something as routine as restarting your modem or router because of internet connection problems could result in a change.
