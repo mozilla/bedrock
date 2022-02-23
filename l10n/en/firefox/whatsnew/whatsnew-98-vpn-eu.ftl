@@ -10,7 +10,7 @@ whatsnew-98-vpn-eu-title = Good news! <br>{ -brand-name-mozilla-vpn } is finally
 whatsnew-98-vpn-eu-desc = Surfing, streaming, gaming, and getting work done have just gotten much safer. Protect your privacy while traveling, using public WiFi, or just in general anytime you go online.
 whatsnew-98-vpn-eu-cta = Go to { -brand-name-mozilla-vpn }
 whatsnew-98-vpn-eu-extra-heading-1 = One tap to privacy
-whatsnew-98-vpn-eu-extra-desc-1 = Our Virtual Private Network (VPN) uses the most advanced encryption technology to give you a secure, fast, and reliable connection to the Internet.
+whatsnew-98-vpn-eu-extra-desc-1 = Our Virtual Private Network (VPN) uses the most advanced encryption technology to give you a secure, fast, and reliable connection to the internet.
 whatsnew-98-vpn-eu-extra-heading-2 = A VPN from a brand you can trust
 
 # Variables:
