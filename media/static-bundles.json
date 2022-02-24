@@ -1742,6 +1742,7 @@
     },
     {
       "files": [
+        "protocol/js/protocol-modal.js",
         "js/careers/diversity/diversity-2021.js"
       ],
       "name": "diversity-2021"

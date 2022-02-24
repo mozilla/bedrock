@@ -99,6 +99,15 @@ $image-path: '/media/protocol/img';
 }
 
 .leadership {
+    display: flex;
+    flex-direction: column;
+
+    @media #{$mq-md} {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
     .leadership-intro {
         @include text-title-md;
         font-weight: 100;
@@ -301,6 +310,11 @@ $image-path: '/media/protocol/img';
         color: $color-black;
     }
 
+    &.black {
+        background: black;
+        color: $color-white;
+    }
+
     &.plum {
         background: #5a61ef;
         color: $color-white;
@@ -463,13 +477,25 @@ $image-path: '/media/protocol/img';
 .c-section-intro {
     margin: 0 auto;
     padding-top: $layout-lg;
-    max-width: $content-md;
+    max-width: $content-lg;
     text-align: left;
 
     h2 {
         @include text-title-lg;
         font-weight: 100;
-        text-align: center;
+    }
+
+    .c-list-title {
+        margin-top: $spacing-2xl;
+        margin-bottom: $spacing-md;
+    }
+
+    ul {
+        list-style-type: disc;
+
+        li {
+            margin-bottom: $spacing-sm;
+        }
     }
 }
 

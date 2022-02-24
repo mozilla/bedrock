@@ -20,6 +20,8 @@
 {% endblock %}
 
 {% block content %}
+
+
 <main role="main">
   <header class="c-hero-banner">
     <div class="mzp-l-content">
@@ -34,14 +36,148 @@
   </header>
 
   <!-- Executive Summary -->
-        <div class="mzp-l-content">
-          <div class="c-section-intro">
-            <h2><span class="highlight green">Executive Summary</span></h2>
+  <div class="mzp-l-content">
+    <div class="c-section-intro">
+      <h2><span class="highlight green">Executive Summary</span></h2>
+      <p><strong>As an organization with employees, volunteers, and community members spanning the globe we strive to ensure that our people, products, and partners reflect the communities we serve and that all contributors feel empowered to join our movement. Investing in diversity and inclusion is imperative to our mission of ensuring the future of the internet and the future of our society. #AllWelcomeHere</strong></p>
+      <p>Each year we aim to account for our progress and challenges in advancing our commitment to being a diverse, equitable, inclusive, and anti-racist organization. This 2022 disclosure captures our progress through 2021. This year, we are pleased to provide data that captures the intersectional experiences of our employees in recognition of the complexity of our identities. In assessing our data and programs we have found that we have made strides in some areas and have growth opportunities in others. From our engagement survey data we have gleaned that our programming and initiatives have made a difference in the experience of our employees. We made strides in some areas of representation and remained stagnant in other areas. There are useful lessons to be learned from the goals we met and missed, and we are eager to continue our journey…</p>
+    </div>
+  </div>
 
-            <p><strong>As an organization with employees, volunteers, and community members spanning the globe we strive to ensure that our people, products, and partners reflect the communities we serve and that all contributors feel empowered to join our movement. Investing in diversity and inclusion is imperative to our mission of ensuring the future of the internet and the future of our society. #AllWelcomeHere</strong></p>
+  <div class="mzp-l-content leadership no-js-hidden">
+      <h2 class="leadership-intro">A word<br> <strong>from our leadership</strong></h2>
+    <div>
+      {{ card(
+        title='Mitchell Baker',
+        ga_title='Mitchell Baker',
+        tag_label='Steering Committee',
+        desc='Chief Executive Officer, Chairwoman of Mozilla Foundation',
+        class='has-modal',
+        attributes='data-modal-id="mitchell-baker-modal"',
+        link_url='#mitchell-baker-modal',
+        image_url='img/foundation/annualreport/2019/leadership-mitchell.jpg',
+        )}}
+    </div>
+    </div>
 
-            <p>Each year we aim to account for our progress and challenges in advancing our commitment to being a diverse, equitable, inclusive, and anti-racist organization. This 2022 disclosure captures our progress through 2021. This year, we are pleased to provide data that captures the intersectional experiences of our employees in recognition of the complexity of our identities. In assessing our data and programs we have found that we have made strides in some areas and have growth opportunities in others. From our engagement survey data we have gleaned that our programming and initiatives have made a difference in the experience of our employees. We made strides in some areas of representation and remained stagnant in other areas. There are useful lessons to be learned from the goals we met and missed, and we are eager to continue our journey…</p>
-           </div>
+    <!-- Leadership Modal -->
+    <div class="mzp-l-content js-modal-content">
+    <!-- Mitchell Baker modal -->
+    <article data-modal-parent="mitchell-baker-modal" class="mzp-c-article c-leadership-article" id="mitchell-baker-modal">
+      <div class="c-leadership-article-title" id="mitchell-baker-modal">
+        <span class="highlight green">A word from our leadership</span>
+        <h2>Mitchell Baker</h2>
+        <span>Chief Executive Officer, Chairwoman of Mozilla Foundation</span>
+      </div>
+      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem quas praesentium fugit amet voluptas? Aut repudiandae, asperiores laboriosam eveniet praesentium quibusdam facilis deleniti, distinctio iusto repellendus, id cupiditate atque. Voluptatum earum id repudiandae, natus possimus voluptates consectetur velit cupiditate nemo.</p>
+    </article>
+    </div>
+
+    <!-- Introduction -->
+  <div class="mzp-l-content">
+    <div class="c-section-intro">
+      <h2><span class="highlight black">Introduction</span></h2>
+      <p><strong>Our goal is to ensure that principles of diversity, equity, inclusion, belonging, and anti-racism are embedded within every facet of our organization. With our three pillar strategy we strive to ensure that our values are reflected in our people, our products, and our community.</strong></p>
+      <p>In thinking about our approach and philosophy as it relates to diversity and inclusion, we wanted to invite a genuine spirit of curiosity, innovation, and continuous improvement. Borrowing from the culture of engineering that values experimentation and multiple iterations, we wondered what that could look like in the space of diversity and inclusion. With that mindset, we set out to test and pilot programs, capture feedback, refine or set aside an effort, in hopes of finding what worked best. In 2021, we ran over 100 experimental programs and initiatives of varying scale, complexity, and size. Each effort enabled us to learn more about how best to serve the needs of our organization and strengthen our culture of inclusion. We invited deep introspection, thoughtful critique, and provided opportunities for proactively moving this work forward. Programs ranged from the launch of a 6 month program aimed to build skills for allyship, the convening of a global diversity council, partnership with podcasts to amplify historic events, and even investment in venture capital. Each of these efforts enabled X% of our organization to meaningfully engage with DEI. </p>
+      <p><strong>So what did we learn from our experiments?</strong></p>
+      <ul>
+        <li>Mozillians care and are willing to invest their work and personal time to fostering a more inclusive work environment</li>
+        <li>We are all on the journey of awareness and though we may be in different stages of our journey we recognize the ongoing commitment from each of us is imperative</li>
+        <li>The more people we have further along the journey, the more chances we have to consistently identify opportunities to improve who we are, how we work, and how we show up in the world</li>
+        <li>More than ever before we have the necessary tools and capabilities to accelerate our work in this space than we did in the past</li>
+        <li>Curating unique opportunities for learning and engagement helps people participate in ways that are authentic to them</li>
+      </ul>
+    </div>
+
+      <!-- Racial justice commitments -->
+    <div class="c-section-intro">
+      <h2><span class="highlight black">Racial Justice Commitments</span></h2>
+      <p>In June 2020, gripped by the racist events happening around the world and in the wake of George Floyd’s murder, we set <a href="https://blog.mozilla.org/en/mozilla/first-steps-toward-lasting-change/" target="_blank" rel="external noopener">Racial Justice Commitments</a>. Recognizing that these efforts do not begin to atone for the racial injustice around us, we sought to find what we could uniquely offer as an organization, how we could grow into an anti-racist organization, and work in service of rectifying at some of the wrongs around us. We published our racial justice commitments in June 2020 and offered an update on these efforts a year later. We aimed to measure the results of the targets and goals that we set out to achieve by the end of 2021. We are encouraged by the targets that were able to meet but we did not meet them all. The growth and learning that we experienced as an organization through this work has been invaluable. The framework offered by our Racial Justice Commitments continues to guide our work "<strong>what we build</strong>, <strong>what we do beyond products</strong>, and <strong>who we are</strong>".</p>
+      <p class="c-list-title"><strong>Here are some of the key lessons gleaned from these efforts:</strong></p>
+      <ul>
+        <li>Aggressive targets provide us the internal momentum to direct significant resources to an outcome</li>
+        <li>Had we not had aggressive targets, we would have made progress but not at the scale we achieved </li>
+        <li>Aggressive targets were also instrumental in our entire organization feeling accountable and looking for ways small and large to impact the outcome</li>
+        <li>Where we fell short was primarily in building capabilities to maintain the momentum and focus that are agnostic of individuals in role</li>
+        <li>Through the collective efforts of the organization we were able to meet some of these goals and continuously look for opportunities to do more </li>
+      </ul>
+      <p class="c-list-title"><strong>Targets Met:</strong></p>
+      <ul>
+        <li>We exceeded our goal of increasing Black representation in the U.S. at the leadership level to 6%, with Black employees at the Director level and above now at 9.3%</li>
+        <li>We met our goal of having Black representation on Mozilla Corporation and Mozilla Foundation boards</li>
+        <li>We participated in recruiting events to strengthen our pool of Black and Latinx talent and invested in connection, learning and development opportunities for our Afrozilla and Latin Pride resource groups</li>
+        <li>We leveraged Pocket to amplify the voices and experiences of communities of color by curating collections capturing historic movements and moments, uplifting empowering and joyful narratives, and calls to action, with these collections garnering over 217,000 views</li>
+        <li>We led User Research and Design project that resulted in a 5 step recommendation for debiasing our design processes</li>
+        <li>We built partnerships with HBCUs, deploying three programs across Hampton University, Virginia State University, Spelman College, and the Atlanta University Center Data Science Initiative. Our programs featured over 20 HBCU scholars and faculty, $150K in grants awarded, to aid in the exploration of topics around ethical tech, trustworthy A.I., and building careers in tech</li>
+        <li>We partnered with multiple organizations to support campaigns and initiatives that addressed racial justice and amplified Black Voices. This included a call to Nextdoor and Amazon Ring to pause their relationships with police departments and hosting a series called Dialogues and Debates bringing diverse voices to discuss the impact of technicality and AI on communities of color.</li>
+      </ul>
+      <p class="c-list-title"><strong>Targets Missed:</strong></p>
+      <ul>
+        <li>We missed our goal of doubling Black and Latinx staff in the U.S. Black representation grew from 4.8% to 7.7% while Hispanic/Latinx representation grew from 4.1% to 4.3% overall. </li>
+        <li>Mozilla committed to directing at least 40% of Mozilla Foundation grants in 2020 to Black-led projects or organizations. We fell short of our 40% target and ultimately committed 33% of our Awards and Fellowships team funding (over $480,000) to Black-led projects and organizations in 2020. This funding included Mozilla’s latest round of Creative Media Awards. These awards provided $260,000+ to Black artists who are exploring the effects of AI systems on everyday lives and how AI can perpetuate and amplify biases that have long existed offline. These funds also include $220,000+ to support Fellows working to increase the technical capacity of civil society organizations around the globe.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Heading leading to pages -->
+  <section class="no-js-hidden">
+  <div class="mzp-l-content">
+    <div class="c-section-intro">
+      <h2><span class="highlight green">Some Heading</span></h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, at eaque sunt commodi aut velit aliquid mollitia, enim quia officiis aperiam, rem laboriosam quis cum harum laborum nostrum blanditiis animi.</p>
+    </div>
+    </div>
+    <div class="mzp-l-content">
+    <div class="mzp-l-card-half">
+          {{ card(
+            title='What we build',
+            ga_title='Putting cookies where they belong',
+            tag_label='Product',
+            class='has-modal',
+            attributes='data-modal-id="total-cookie-protection"',
+            aspect_ratio='mzp-has-aspect-16-9',
+            link_url='#total-cookie-protection',
+            image_url='img/foundation/annualreport/2020/total-cookie-protection.jpg',
+          )}}
+
+          {{ card(
+            title='Who we are',
+            ga_title='The ever-expanding Mozilla VPN',
+            tag_label='Products',
+            class='has-modal',
+            attributes='data-modal-id="vpn-expansion"',
+            aspect_ratio='mzp-has-aspect-16-9',
+            link_url='#vpn-expansion',
+            image_url='img/foundation/annualreport/2020/vpn-blog-header.jpg',
+          )}}
         </div>
+        <div class="mzp-l-card-half">
+          {{ card(
+            title='Beyond our products',
+            ga_title='Putting cookies where they belong',
+            tag_label='Product',
+            class='has-modal',
+            attributes='data-modal-id="total-cookie-protection"',
+            aspect_ratio='mzp-has-aspect-16-9',
+            link_url='#total-cookie-protection',
+            image_url='img/foundation/annualreport/2020/total-cookie-protection.jpg',
+          )}}
+
+          {{ card(
+            title='Data and methodology',
+            ga_title='The ever-expanding Mozilla VPN',
+            tag_label='Products',
+            class='has-modal',
+            attributes='data-modal-id="vpn-expansion"',
+            aspect_ratio='mzp-has-aspect-16-9',
+            link_url='#vpn-expansion',
+            image_url='img/foundation/annualreport/2020/vpn-blog-header.jpg',
+          )}}
+        </div>
+  </div>
+  </section>
+
 </main>
+
+<div class="mzp-u-modal-content"></div>
 {% endblock %}
