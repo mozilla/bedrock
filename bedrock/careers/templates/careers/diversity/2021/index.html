@@ -11,6 +11,37 @@
 
 {% block page_title %}D&I report 2021{% endblock %}
 
+{% block page_css %}
+  {{ css_bundle('diversity-2021') }}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('diversity-2021') }}
+{% endblock %}
+
 {% block content %}
-<h1>hello this is a test</h1>
+<main role="main">
+  <header class="c-hero-banner">
+    <div class="mzp-l-content">
+      <div class="c-banner-content">
+        <div class="c-header-container">
+          <h1>
+            Diversity & Inclusion at Mozilla: 2021 Results
+          </h1>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Executive Summary -->
+        <div class="mzp-l-content">
+          <div class="c-section-intro">
+            <h2><span class="highlight green">Executive Summary</span></h2>
+
+            <p><strong>As an organization with employees, volunteers, and community members spanning the globe we strive to ensure that our people, products, and partners reflect the communities we serve and that all contributors feel empowered to join our movement. Investing in diversity and inclusion is imperative to our mission of ensuring the future of the internet and the future of our society. #AllWelcomeHere</strong></p>
+
+            <p>Each year we aim to account for our progress and challenges in advancing our commitment to being a diverse, equitable, inclusive, and anti-racist organization. This 2022 disclosure captures our progress through 2021. This year, we are pleased to provide data that captures the intersectional experiences of our employees in recognition of the complexity of our identities. In assessing our data and programs we have found that we have made strides in some areas and have growth opportunities in others. From our engagement survey data we have gleaned that our programming and initiatives have made a difference in the experience of our employees. We made strides in some areas of representation and remained stagnant in other areas. There are useful lessons to be learned from the goals we met and missed, and we are eager to continue our journey…</p>
+           </div>
+        </div>
+</main>
 {% endblock %}

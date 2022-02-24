@@ -1122,6 +1122,12 @@
         "css/careers/internships.scss"
       ],
       "name": "careers"
+    },
+    {
+      "files":[
+        "css/careers/diversity/diversity-2021.scss"
+      ],
+      "name": "diversity-2021"
     }
   ],
   "js": [
@@ -1733,6 +1739,12 @@
         "js/careers/listings/listings.es6.js"
       ],
       "name": "careers-listings"
+    },
+    {
+      "files": [
+        "js/careers/diversity/diversity-2021.js"
+      ],
+      "name": "diversity-2021"
     }
   ]
 }
