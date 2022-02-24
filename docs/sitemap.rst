@@ -10,7 +10,7 @@ Sitemaps
 
 ``bedrock`` serves a root sitemap at ``/sitemap.xml``, which links to localised sitemaps for each supported locale.
 
-The sitemap data is (re)generated on a schedule by `www-sitemap-generator <https://github.com/mozmeao/www-sitemap-generator>`_ and then is pulled into ``bedrock``.
+The sitemap data is (re)generated on a schedule by `www-sitemap-generator <https://github.com/mozmeao/www-sitemap-generator>`_ and then is pulled into ``bedrock``'s database, from which the XML sitemaps are rendered.
 
 
 Quick summary
