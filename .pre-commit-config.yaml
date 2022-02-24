@@ -11,7 +11,7 @@ exclude: >
 repos:
   # Note: hooks that add content must run before ones which check formatting, lint, etc
   - repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.1.10
+    rev: v1.1.13
     hooks:
     -   id: insert-license
         language: python
@@ -56,7 +56,7 @@ repos:
           - --comment-style
           - "|#|"
   - repo: https://github.com/psf/black
-    rev: 21.12b0
+    rev: 22.1.0
     hooks:
       - id: black
         language_version: python3
