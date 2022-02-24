@@ -1743,7 +1743,7 @@
     {
       "files": [
         "protocol/js/protocol-modal.js",
-        "js/careers/diversity/diversity-2021.js"
+        "js/careers/diversity/diversity-2021.es6.js"
       ],
       "name": "diversity-2021"
     }
