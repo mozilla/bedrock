@@ -31,6 +31,7 @@ Contents
    redirects
    newsletters
    contentful
+   sitemap
    content-cards
    banners
    uitour
