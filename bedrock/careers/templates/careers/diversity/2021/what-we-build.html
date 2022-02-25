@@ -4,21 +4,19 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% extends "base-protocol-mozilla.html" %}
-
-{% from "macros.html" import image with context %}
-{% from "macros-protocol.html" import split, picto, card, feature_card, with context %}
-
-{% block page_title %}D&I report 2021 - What we Build{% endblock %}
-
-{% block page_css %}
-  {{ css_bundle('diversity-2021') }}
-{% endblock %}
-
-{% block js %}
-  {{ js_bundle('diversity-2021') }}
-{% endblock %}
+{% extends "careers/diversity/2021/index.html" %}
 
 {% block content %}
-  <h1>What we build!</h1>
+  <main role="main">
+     <!-- Heading leading to pages -->
+  <section class="no-js-hidden">
+    <div class="c-section-intro-bg">
+    <div class="c-section-intro">
+      <h2><span class="highlight green">What we build</span></h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, at eaque sunt commodi aut velit aliquid mollitia, enim quia officiis aperiam, rem laboriosam quis cum harum laborum nostrum blanditiis animi.</p>
+      <p><strong>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut soluta consequatur quam nulla cupiditate a sint temporibus quo odio. Adipisci modi tempora, necessitatibus quos mollitia ullam quo corrupti saepe omnis obcaecati repudiandae quia blanditiis. Quisquam, doloremque maiores, vero odit explicabo nemo cupiditate incidunt facere recusandae optio excepturi impedit sit eius voluptatum aperiam. Sit repellat ex officia adipisci, ipsum deleniti natus.</strong></p>
+    </div>
+    </div>
+  </section>
+  </main>
 {% endblock %}
