@@ -16,11 +16,23 @@
 
 {% block body_id %}about{% endblock %}
 
+{% set show_turning_red_banner = country_code == 'US' and switch('turning-red-banner-about', ['en-US', 'en-CA', 'en-GB']) %}
+
 {% block page_css %}
   {{ css_bundle('protocol-split') }}
   {{ css_bundle('protocol-card') }}
   {{ css_bundle('protocol-newsletter') }}
   {{ css_bundle('about') }}
+
+  {% if show_turning_red_banner %}
+    {{ css_bundle('turning-red-banner') }}
+  {% endif %}
+{% endblock %}
+
+{% block page_banner %}
+  {% if show_turning_red_banner %}
+    {% include 'includes/banners/turning-red.html' %}
+  {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -188,4 +200,8 @@
 
 {% block js %}
   {{ js_bundle('about') }}
+
+  {% if show_turning_red_banner %}
+    {{ js_bundle('turning-red-banner') }}
+  {% endif %}
 {% endblock %}

@@ -13,6 +13,7 @@
 {% block page_title %}{{ _('Internet for people, not profit') }}{% endblock %}
 {% block page_desc %}{{ _('Mozilla is the not-for-profit behind the lightning fast Firefox browser. We put people over profit to give everyone more power online.') }}{% endblock %}
 
+{% set show_turning_red_banner = country_code == 'US' and switch('turning-red-banner-home', ['en-US', 'en-CA', 'en-GB']) %}
 {% set show_fundraising_banner = switch('fundraising-banner-eoy2021') and donate_params and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 {% set show_vpn_promo_banner = switch('vpn-promo-banner', ['en-US', 'en-CA', 'en-GB', 'de']) %}
@@ -21,7 +22,9 @@
   {% include 'includes/contentful/css.html' %}
   {{ css_bundle('home-contentful') }}
 
-  {% if show_fundraising_banner %}
+  {% if show_turning_red_banner %}
+    {{ css_bundle('turning-red-banner') }}
+  {% elif show_fundraising_banner %}
     {{ css_bundle('fundraising-banner') }}
   {% elif show_vpn_promo_banner %}
     {{ css_bundle('vpn-promo-banner') }}
@@ -35,7 +38,9 @@
 {% endblock %}
 
 {% block page_banner %}
-  {% if show_fundraising_banner %}
+  {% if show_turning_red_banner %}
+    {% include 'includes/banners/turning-red.html' %}
+  {% elif show_fundraising_banner %}
     {% include 'includes/banners/fundraiser.html' %}
   {% elif show_vpn_promo_banner %}
     {% include 'includes/banners/vpn-promo.html' %}
@@ -115,7 +120,9 @@
   {% include 'includes/contentful/js.html' %}
   {{ js_bundle('home-contentful') }}
 
-  {% if show_fundraising_banner %}
+  {% if show_turning_red_banner %}
+    {{ js_bundle('turning-red-banner') }}
+  {% elif show_fundraising_banner %}
     {{ js_bundle('fundraising-banner') }}
   {% elif show_vpn_promo_banner %}
     {{ js_bundle('vpn-promo-banner') }}
