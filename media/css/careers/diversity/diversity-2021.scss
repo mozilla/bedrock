@@ -478,11 +478,19 @@ $image-path: '/media/protocol/img';
     margin: 0 auto;
     padding-top: $layout-lg;
     max-width: $content-lg;
-    text-align: left;
 
     h2 {
         @include text-title-lg;
         font-weight: 100;
+
+        .green {
+            text-align: center;
+        }
+
+        .black {
+            text-align: left;
+        }
+
     }
 
     .c-list-title {

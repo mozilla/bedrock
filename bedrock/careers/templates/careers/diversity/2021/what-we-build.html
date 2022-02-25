@@ -1,0 +1,24 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% from "macros.html" import image with context %}
+{% from "macros-protocol.html" import split, picto, card, feature_card, with context %}
+
+{% block page_title %}D&I report 2021 - What we Build{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('diversity-2021') }}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('diversity-2021') }}
+{% endblock %}
+
+{% block content %}
+  <h1>What we build!</h1>
+{% endblock %}

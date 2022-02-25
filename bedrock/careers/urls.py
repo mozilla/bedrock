@@ -23,6 +23,10 @@ urlpatterns = [
     path("benefits/", views.BenefitsView.as_view(), name="careers.benefits"),
     # Diversity and inclusion pages
     page("diversity/2021", "careers/diversity/2021/index.html"),
+    page("diversity/2021/what-we-build", "careers/diversity/2021/what-we-build.html"),
+    page("diversity/2021/beyond-our-products", "careers/diversity/2021/beyond-products.html"),
+    page("diversity/2021/who-we-are", "careers/diversity/2021/who-we-are.html"),
+    page("diversity/2021/data-and-methodology", "careers/diversity/2021/data-and-methods.html"),
 ]
 
 
