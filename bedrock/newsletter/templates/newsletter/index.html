@@ -11,9 +11,16 @@
 {% block content %}
 <main role="main">
   <div class="mzp-l-content mzp-t-content-sm">
-    {{ email_newsletter_form(
-      newsletters='mozilla-foundation, mozilla-and-you'
-    )}}
+    {% if ftl_has_messages('multi-newsletter-form-title', 'multi-newsletter-form-desc', 'multi-newsletter-form-checkboxes-legend') %}
+      {{ email_newsletter_form(
+        newsletters='mozilla-foundation, mozilla-and-you'
+      )}}
+    {% else %}
+      {{ email_newsletter_form(
+        title=ftl('newsletters-read-all-about-it-in-our-newsletter'),
+        desc=ftl('newsletters-subscribe-here-to-keep-current', fallback='newsletters-subscribe-to-updates-and-keep'),
+        newsletters='mozilla-foundation') }}
+    {% endif %}
   </div>
 </main>
 {% endblock %}

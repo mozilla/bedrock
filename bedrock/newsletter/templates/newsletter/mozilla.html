@@ -35,10 +35,14 @@
   <section class="section section-subscribe" id="subscribe">
     <div class="mzp-l-content mzp-t-content-sm">
       <h2 class="section-title">{{ self.page_desc() }}</h2>
-      {{ email_newsletter_form(
-        newsletters='mozilla-foundation, mozilla-and-you'
-        include_title=False,
-      )}}
+      {% if ftl_has_messages('multi-newsletter-form-title', 'multi-newsletter-form-desc', 'multi-newsletter-form-checkboxes-legend') %}
+        {{ email_newsletter_form(
+          newsletters='mozilla-foundation, mozilla-and-you',
+          include_title=False,
+        )}}
+      {% else %}
+        {{ email_newsletter_form(newsletters='mozilla-foundation', include_title=False, spinner_color='#c13832') }}
+      {% endif %}
     </div>
   </section>
 </main>

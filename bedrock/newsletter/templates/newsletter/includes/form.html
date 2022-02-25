@@ -114,9 +114,7 @@
 
       <p class="mzp-c-form-submit">
         <button type="submit" id="newsletter-submit" class="mzp-c-button {{ button_class }}" data-cta-type="Newsletter-{{ id }}" data-cta-text="Newsletter Sign Up">
-          {% if is_multi_newsletter_form %}
-            {{ ftl('multi-newsletter-form-submit', fallback='newsletter-form-sign-up-now') }}
-          {% elif submit_text %}
+          {% if submit_text %}
             {{ submit_text }}
           {% else %}
             {{ ftl('newsletter-form-sign-up-now', fallback='newsletter-form-sign-me-up') }}
@@ -125,7 +123,7 @@
 
         {% if details %}
           <span class="mzp-c-fieldnote">{{ details }}</span>
-        {% else %}
+        {% elif not is_multi_newsletter_form %}
             <span class="mzp-c-fieldnote">
               {# Issue 7460 `mozilla-and-you` is the ID for the Firefox newsletter, because history... #}
               {% if id == 'mozilla-and-you' %}

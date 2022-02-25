@@ -141,9 +141,15 @@
         </div>
 
         <div class="newsletter-content">
-          {{ email_newsletter_form(
-            newsletters='mozilla-foundation, mozilla-and-you'
-          )}}
+          {% if ftl_has_messages('multi-newsletter-form-title', 'multi-newsletter-form-desc', 'multi-newsletter-form-checkboxes-legend') %}
+            {{ email_newsletter_form(
+              newsletters='mozilla-foundation, mozilla-and-you'
+            )}}
+          {% elif LANG.startswith('en-') %}
+            {{ email_newsletter_form(newsletters='mozilla-foundation', title='Love the web?', desc='Get the Mozilla newsletter and help us keep it open and free.', spinner_color='#fff') }}
+          {% else %}
+            {{ email_newsletter_form(spinner_color='#fff') }}
+          {% endif %}
         </div>
       </aside>
     </div>

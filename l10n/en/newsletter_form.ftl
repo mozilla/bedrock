@@ -41,4 +41,3 @@ multi-newsletter-form-checkboxes-label-firefox = { -brand-name-firefox }
 multi-newsletter-form-checkboxes-error = Please check at least one of the newsletter options.
 multi-newsletter-form-title = Love the Web
 multi-newsletter-form-desc = Get the { -brand-name-mozilla } newsletters and help us keep the web open and free.
-multi-newsletter-form-submit = Sign up now
