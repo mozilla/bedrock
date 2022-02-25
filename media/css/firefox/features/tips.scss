@@ -6,14 +6,10 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/call-out';
-@import '~@mozilla-protocol/core/protocol/css/components/card';
 @import '~@mozilla-protocol/core/protocol/css/components/modal';
 @import '~@mozilla-protocol/core/protocol/css/components/section-heading';
-@import '~@mozilla-protocol/core/protocol/css/components/split';
 @import '~@mozilla-protocol/core/protocol/css/components/video';
 @import '~@mozilla-protocol/core/protocol/css/components/zap';
-@import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
 
 // Play button on videos
 .mzp-c-card-media-wrapper {

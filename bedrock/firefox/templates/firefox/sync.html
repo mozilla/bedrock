@@ -13,7 +13,10 @@
 {% block page_desc %}{{ ftl('firefox-sync-access-and-sync') }}{% endblock %}
 
 {% block page_css %}
- {{ css_bundle('sync') }}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('protocol-emphasis-box') }}
+  {{ css_bundle('sync') }}
 {% endblock %}
 
 {% block sub_navigation %}

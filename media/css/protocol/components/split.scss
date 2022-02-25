@@ -6,17 +6,4 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
-
-.mzp-c-emphasis-box {
-    margin-bottom: $layout-xl;
-}
-
-.quantum-highlights {
-    margin-bottom: $layout-xl;
-
-    @media #{$mq-lg} {
-        padding-left: $layout-xl;
-        padding-right: $layout-xl;
-    }
-}
+@import '~@mozilla-protocol/core/protocol/css/components/split';

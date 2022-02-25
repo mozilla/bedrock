@@ -8,13 +8,8 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/includes/fonts/metropolis';
 @import '~@mozilla-protocol/core/protocol/css/components/billboard';
-@import '~@mozilla-protocol/core/protocol/css/components/card';
-@import '~@mozilla-protocol/core/protocol/css/components/call-out';
 @import '~@mozilla-protocol/core/protocol/css/components/modal';
-@import '~@mozilla-protocol/core/protocol/css/components/newsletter-form';
-@import '~@mozilla-protocol/core/protocol/css/components/split';
 @import '~@mozilla-protocol/core/protocol/css/components/video';
-@import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
 
 .main-page-heading {
     @include visually-hidden;

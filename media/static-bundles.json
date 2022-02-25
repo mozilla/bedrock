@@ -753,6 +753,48 @@
     },
     {
       "files": [
+        "css/protocol/components/split.scss"
+      ],
+      "name": "protocol-split"
+    },
+    {
+      "files": [
+        "css/protocol/components/cards.scss"
+      ],
+      "name": "protocol-card"
+    },
+    {
+      "files": [
+        "css/protocol/components/call-out.scss"
+      ],
+      "name": "protocol-call-out"
+    },
+    {
+      "files": [
+        "css/protocol/components/picto.scss"
+      ],
+      "name": "protocol-picto"
+    },
+    {
+      "files": [
+        "css/protocol/components/article.scss"
+      ],
+      "name": "protocol-article"
+    },
+    {
+      "files": [
+        "css/protocol/components/newsletter-form.scss"
+      ],
+      "name": "protocol-newsletter"
+    },
+    {
+      "files": [
+        "css/protocol/components/emphasis-box.scss"
+      ],
+      "name": "protocol-emphasis-box"
+    },
+    {
+      "files": [
         "css/firefox/welcome10.scss"
       ],
       "name": "firefox_welcome_page10"

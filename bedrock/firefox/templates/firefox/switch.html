@@ -12,6 +12,7 @@
 {% block page_desc %}{{ ftl('switch-switching-to-firefox-is-fast-updated', fallback='switch-switching-to-firefox-is-fast') }}{% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-split') }}
   {{ css_bundle('firefox-switch') }}
 {% endblock %}
 

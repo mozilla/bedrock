@@ -30,6 +30,7 @@
 {% block page_ios_icon %}{{ static('img/favicons/firefox/apple-touch-icon.png') }}{% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-split') }}
   {{ css_bundle('firefox-master') }}
 
   {% if show_firefox_app_store_banner %}

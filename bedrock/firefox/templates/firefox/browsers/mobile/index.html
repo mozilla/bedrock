@@ -21,6 +21,8 @@
 {% block body_class %}{{ super() }} mobile-overview{% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-emphasis-box')}}
   {{ css_bundle('firefox-browsers-products') }}
 
   {% if show_firefox_app_store_banner %}
