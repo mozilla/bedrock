@@ -435,6 +435,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-98-mobile-eu.scss"
+      ],
+      "name": "firefox_whatsnew_98_mobile_eu"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"

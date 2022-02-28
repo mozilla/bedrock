@@ -13,3 +13,11 @@ from pages.firefox.whatsnew.whatsnew_98 import FirefoxWhatsNew98Page
 def test_vpn_button_is_displayed(country, base_url, selenium):
     page = FirefoxWhatsNew98Page(selenium, base_url, locale="en-US", params=f"?geo={country}").open()
     assert page.is_vpn_button_displayed
+
+
+@pytest.mark.skip_if_not_firefox(reason="Whatsnew pages are shown to Firefox only.")
+@pytest.mark.nondestructive
+@pytest.mark.parametrize("locale", [("de"), ("fr")])
+def test_qr_code_is_displayed(locale, base_url, selenium):
+    page = FirefoxWhatsNew98Page(selenium, base_url, locale=locale, params="?geo=us").open()
+    assert page.is_qr_code_displayed
