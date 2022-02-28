@@ -306,7 +306,7 @@ $image-path: '/media/protocol/img';
     }
 
     &.green {
-        background: $color-green-40;
+        background: $color-violet-10;
         color: $color-black;
     }
 
@@ -482,19 +482,26 @@ $image-path: '/media/protocol/img';
     h2 {
         @include text-title-lg;
         font-weight: 100;
+        text-align: center;
+    }
 
-        .green {
-            text-align: center;
-        }
-
-        .black {
-            text-align: left;
-        }
+    h3 {
+        @include text-title-sm;
+        font-weight: 600;
+        text-align: left;
     }
 
     .c-list-title {
         margin-top: $spacing-2xl;
         margin-bottom: $spacing-md;
+    }
+
+    .bold-item {
+        font-weight: 600;
+
+        ul {
+            font-weight: 400;
+        }
     }
 
     ul {
@@ -626,5 +633,15 @@ $image-path: '/media/protocol/img';
         @include text-title-md;
         margin-bottom: 0;
         margin-top: $spacing-lg;
+    }
+}
+
+.c-section-table {
+    margin: 0 auto;
+    max-width: 420px;
+    margin-top: $spacing-2xl;
+
+    .mzp-u-data-table {
+        width: 100%;
     }
 }
