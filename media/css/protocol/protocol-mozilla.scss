@@ -47,6 +47,10 @@ $image-path: '/media/protocol/img';
     @include text-body-md;
 }
 
+.mzp-c-newsletter-details legend {
+    font-family: get-theme('body-font-family');
+}
+
 #newsletter-submit + .mzp-c-fieldnote {
     @include text-body-xs;
     margin-top: 0;
