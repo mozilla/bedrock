@@ -178,14 +178,14 @@ Example:
 
 .. code-block:: python
 
-    url(r'^channel/$', channel, name='mozorg.channel')
+    path("channel/", channel, name="mozorg.channel")
 
 Bedrock comes with a handy shortcut to automate all of this:
 
 .. code-block:: python
 
     from bedrock.mozorg.util import page
-    page('channel', 'mozorg/channel.html')
+    page("channel", "mozorg/channel.html")
 
 You don't even need to create a view. It will serve up the specified
 template at the given URL (the first parameter). You can also pass
@@ -193,8 +193,8 @@ template data as keyword arguments:
 
 .. code-block:: python
 
-    page('channel', 'mozorg/channel.html',
-         latest_version=product_details.firefox_versions['LATEST_FIREFOX_VERSION'])
+    page("channel", "mozorg/channel.html",
+         latest_version=product_details.firefox_versions["LATEST_FIREFOX_VERSION"])
 
 The variable `latest_version` will be available in the template.
 
@@ -247,7 +247,7 @@ For images that include a high-resolution alternative for displays with a high p
 
 .. code-block:: python
 
-    high_res_img('img/firefox/new/firefox-logo.png', {'alt': 'Firefox', 'width': '200', 'height': '100'})
+    high_res_img("img/firefox/new/firefox-logo.png", {"alt": "Firefox", "width": "200", "height": "100"})
 
 The `high_res_img()` function will automatically look for the image in the URL parameter suffixed with `'-high-res'`, e.g. `img/firefox/new/firefox-logo-high-res.png` and switch to it if the display has high pixel density.
 
@@ -255,7 +255,7 @@ The `high_res_img()` function will automatically look for the image in the URL p
 
 .. code-block:: python
 
-    high_res_img('img/firefox/new/firefox-logo.png', {'l10n': True, 'alt': 'Firefox', 'width': '200', 'height': '100'})
+    high_res_img("img/firefox/new/firefox-logo.png", {"l10n": True, "alt": "Firefox", "width": "200", "height": "100"})
 
 When using localization, `high_res_img()` will look for images in the appropriate locale folder. In the above example, for the `de` locale, both standard and high-res versions of the image should be located at `media/img/l10n/de/firefox/new/`.
 
@@ -277,7 +277,7 @@ Finally, for outputting an image that differs depending on the platform being us
 
 .. code-block:: python
 
-    platform_img('img/firefox/new/browser.png', {'alt': 'Firefox screenshot'})
+    platform_img("img/firefox/new/browser.png", {"alt": "Firefox screenshot"})
 
 `platform_img()` will automatically look for the images `browser-mac.png`, `browser-win.png`, `browser-linux.png`, etc. Platform image also supports hi-res images by adding `'high-res': True` to the list of optional attributes.
 
@@ -285,7 +285,7 @@ Finally, for outputting an image that differs depending on the platform being us
 
 .. code-block:: python
 
-    platform_img('img/firefox/new/firefox-logo.png', {'l10n': True, 'alt': 'Firefox screenshot'})
+    platform_img("img/firefox/new/firefox-logo.png", {"l10n": True, "alt": "Firefox screenshot"})
 
 When using localization, `platform_img()` will look for images in the appropriate locale folder. In the above example, for the `es-ES` locale, all platform versions of the image should be located at `media/img/l10n/es-ES/firefox/new/`.
 
@@ -298,7 +298,7 @@ generates the SVG data one time per data and box_size combination.
 
 .. code-block:: python
 
-    qrcode('https://accounts.firefox.com', 30)
+    qrcode("https://accounts.firefox.com", 30)
 
 The first argument is the data you'd like to encode in the QR Code (usually a URL), and the second
 is the "box size". It's a parameter that tells the generator how large to set the height and width
@@ -387,8 +387,8 @@ template.
 
     def my_view(request):
         # do your fancy things
-        ctx = {'template_variable': 'awesome data'}
-        return l10n_utils.render(request, 'app/template.html', ctx)
+        ctx = {"template_variable": "awesome data"}
+        return l10n_utils.render(request, "app/template.html", ctx)
 
 Make sure to namespace your templates by putting them in a directory
 named after your app, so instead of templates/template.html they would
@@ -405,14 +405,14 @@ your own, or use it directly in a `urls.py` file.
     from lib.l10n_utils import L10nTemplateView
 
     class FirefoxRoxView(L10nTemplateView):
-        template_name = 'app/firefox-rox.html'
+        template_name = "app/firefox-rox.html"
 
     # app/urls.py
     urlpatterns = [
         # from views.py
-        path('firefox/rox/', FirefoxRoxView.as_view()),
+        path("firefox/rox/", FirefoxRoxView.as_view()),
         # directly
-        path('firefox/sox/', L10nTemplateView.as_view(template_name='app/firefox-sox.html')),
+        path("firefox/sox/", L10nTemplateView.as_view(template_name="app/firefox-sox.html")),
     ]
 
 The `L10nTemplateView` functionality is mostly in a template mixin called `LangFilesMixin` which
@@ -429,15 +429,15 @@ context variable for switching, this will help you out. For example.
 
     # urls.py
 
-    from django.conf.urls import url
+    from django.urls import path
 
     from bedrock.utils.views import VariationTemplateView
 
     urlpatterns = [
-        url(r'^testing/$',
-            VariationTemplateView.as_view(template_name='testing.html',
-                                          template_context_variations=['a', 'b']),
-            name='testing'),
+        path("testing/",
+             VariationTemplateView.as_view(template_name="testing.html",
+                                           template_context_variations=["a", "b"]),
+             name="testing"),
     ]
 
 This will give you a context variable called `variation` that will either be an empty
@@ -457,15 +457,15 @@ If you'd rather have a fully separate template for your test, you can use the
 
     # urls.py
 
-    from django.conf.urls import url
+    from django.urls import path
 
     from bedrock.utils.views import VariationTemplateView
 
     urlpatterns = [
-        url(r'^testing/$',
-            VariationTemplateView.as_view(template_name='testing.html',
-                                          template_name_variations=['1', '2']),
-            name='testing'),
+        path("testing/",
+             VariationTemplateView.as_view(template_name="testing.html",
+                                           template_name_variations=["1", "2"]),
+             name="testing"),
     ]
 
 This will not provide any extra template context variables, but will instead look for
@@ -488,16 +488,16 @@ the template name example above could be modified to only work for English or Ge
 
     # urls.py
 
-    from django.conf.urls import url
+    from django.urls import path
 
     from bedrock.utils.views import VariationTemplateView
 
     urlpatterns = [
-        url(r'^testing/$',
-            VariationTemplateView.as_view(template_name='testing.html',
-                                          template_name_variations=['1', '2'],
-                                          variation_locales=['en-US', 'de']),
-            name='testing'),
+        path("testing/",
+             VariationTemplateView.as_view(template_name="testing.html",
+                                           template_name_variations=["1", "2"],
+                                           variation_locales=["en-US", "de"]),
+             name="testing"),
     ]
 
 Any request to the page in for example French would not use the alternate template even if a
@@ -522,9 +522,9 @@ the proper template for the country from which the request originated.
 
     class CanadaIsSpecialView(GeoTemplateView):
         geo_template_names = {
-            'CA': 'mozorg/canada-is-special.html',
+            "CA": "mozorg/canada-is-special.html",
         }
-        template_name = 'mozorg/everywhere-else-is-also-good.html'
+        template_name = "mozorg/everywhere-else-is-also-good.html"
 
 For testing purposes while you're developing or on any deployment that is not
 accessed via the production domain (www.mozilla.org) you can append your URL
@@ -546,7 +546,7 @@ just like above).
 
     def dude_view(request):
         country = get_country_from_request(request)
-        if country == 'US':
+        if country == "US":
             # do a thing for the US
         else:
             # do the default thing
@@ -558,7 +558,7 @@ location of the user.
 
 .. code-block:: jinja
 
-    {% if country_code == 'US' %}
+    {% if country_code == "US" %}
         <h1>GO MURICA!</h1>
     {% else %}
         <h1>Yay World!</h1>
