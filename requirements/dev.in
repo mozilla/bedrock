@@ -5,7 +5,7 @@ bpython==0.22.1
 braceexpand==0.1.7
 factory-boy==3.2.1
 flake8==4.0.1
-importlib-metadata==4.2.0
+importlib-metadata==4.11.2
 isort==5.10.1
 pipdeptree==2.2.1
 PyPOM==1.0
