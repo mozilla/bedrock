@@ -18,8 +18,6 @@
 {% block page_og_desc %}{{ ftl('firefox-mobile-check-out-firefox-again-its') }}{% endblock %}
 
 {% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
-{% set android_url = firefox_adjust_url('android', 'mobile-get-app-page') %}
-{% set ios_url = firefox_adjust_url('ios', 'mobile-get-app-page') %}
 
 {% block site_header %}
   {% with hide_nav_download_button=True %}
@@ -29,8 +27,12 @@
 
 {% if variation == 'mfm' %}
   {% set message_set = 'fx-mobile-download-desktop-experiment' %}
+  {% set android_url = 'https://app.adjust.com/y68hlxi?campaign=firefox-desktop&adgroup=about-prefs&creative=mfm-fxvt-default-global-email-site-and&fallback=http%3A%2F%2Fmozilla.org%2Ffirefox%2Fmobile%2F' %}
+  {% set ios_url = 'https://app.adjust.com/y68hlxi?campaign=firefox-desktop&adgroup=about-prefs&creative=mfm-fxvt-default-global-email-site-ios&fallback=http%3A%2F%2Fmozilla.org%2Ffirefox%2Fmobile%2F' %}
 {% else %}
   {% set message_set = 'fx-mobile-download-desktop' %}
+  {% set android_url = firefox_adjust_url('android', 'mobile-get-app-page') %}
+  {% set ios_url = firefox_adjust_url('ios', 'mobile-get-app-page') %}
 {% endif %}
 
 {% block content %}
