@@ -12,8 +12,6 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "bedrock.settings")
 from django.core.handlers.wsgi import WSGIRequest
 from django.core.wsgi import get_wsgi_application
 
-from whitenoise.django import DjangoWhiteNoise
-
 
 class WSGIHTTPSRequest(WSGIRequest):
     def _get_scheme(self):
@@ -25,4 +23,3 @@ class WSGIHTTPSRequest(WSGIRequest):
 
 application = get_wsgi_application()
 application.request_class = WSGIHTTPSRequest
-application = DjangoWhiteNoise(application)
