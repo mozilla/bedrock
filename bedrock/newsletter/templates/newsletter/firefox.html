@@ -37,6 +37,7 @@
         {{ email_newsletter_form(
           newsletters='mozilla-foundation, mozilla-and-you',
           include_title=False,
+          button_class='button-dark'
         )}}
       {% else %}
         {{ email_newsletter_form(include_title=False, spinner_color='#3a304b', button_class='mzp-t-product mzp-t-lg') }}
