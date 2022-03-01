@@ -18,5 +18,5 @@ urlpatterns = [
     page("diversity/2021", "diversity/2021/index.html"),
     page("diversity/2021/what-we-build", "diversity/2021/what-we-build.html"),
     page("diversity/2021/beyond-our-products", "diversity/2021/beyond-products.html"),
-    page("diversity/2021/who-we-are", "diversity/2021/who-we-are.html")
+    page("diversity/2021/who-we-are", "diversity/2021/who-we-are.html"),
 ]
