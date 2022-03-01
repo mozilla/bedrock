@@ -1125,7 +1125,7 @@
     },
     {
       "files":[
-        "css/careers/diversity/diversity-2021.scss"
+        "css/mozorg/diversity/2021/diversity-2021.scss"
       ],
       "name": "diversity-2021"
     }
@@ -1743,7 +1743,7 @@
     {
       "files": [
         "protocol/js/protocol-modal.js",
-        "js/careers/diversity/diversity-2021.es6.js"
+        "js/mozorg/diversity/2021/diversity-2021.es6.js"
       ],
       "name": "diversity-2021"
     }
