@@ -23,6 +23,9 @@
 
 {% block site_header %}{% endblock %}
 
+{% set play_store_link = play_store_url('firefox') + '&utm_source=WNP&utm_campaign=WNP98DE' %}
+{% set app_store_link = app_store_url('firefox') %}
+
 {% block wnp_content %}
 <section class="wnp-content-main mzp-t-content-xl">
   {% call split(
@@ -37,10 +40,10 @@
     <div class="mobile-download-buttons-wrapper">
       <ul class="mobile-download-buttons">
         <li class="android">
-          {{ google_play_button(href='https://app.adjust.com/psjvd69?redirect=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dorg.mozilla.firefox&campaign=www.mozilla.org&adgroup=whatsnew-98-de-qr|safe', id='playStoreLink-primary') }}
+          {{ google_play_button(href=play_store_link, id='playStoreLink-primary') }}
         </li>
         <li class="ios">
-          <a id="appStoreLink-primary" href="https://app.adjust.com/8bdcye2?redirect=https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Ffirefox-private-safe-browser%2Fid989804926&campaign=www.mozilla.org&adgroup=whatsnew-98-de-qr" data-link-type="download" data-download-os="iOS">
+          <a id="appStoreLink-primary" href="{{ app_store_link }}" data-link-type="download" data-download-os="iOS">
             <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
           </a>
         </li>
