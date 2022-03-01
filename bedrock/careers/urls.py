@@ -12,8 +12,6 @@ from . import views
 from .feeds import LatestPositionsFeed
 
 urlpatterns = [
-    # Diversity and inclusion redirect
-    redirect(r"^diversity/$", "careers.diversity.2021.index", name="careers.diversity", locale_prefix=False),
     # Main paths
     path("", views.HomeView.as_view(), name="careers.home"),
     re_path(r"^position/(?P<source>[\w]+)/(?P<job_id>[\w]+)/$", views.PositionDetailView.as_view(), name="careers.position"),
@@ -21,12 +19,6 @@ urlpatterns = [
     path("listings/", views.PositionListView.as_view(), name="careers.listings"),
     path("internships/", views.InternshipsView.as_view(), name="careers.internships"),
     path("benefits/", views.BenefitsView.as_view(), name="careers.benefits"),
-    # Diversity and inclusion pages
-    page("diversity/2021", "careers/diversity/2021/index.html"),
-    page("diversity/2021/what-we-build", "careers/diversity/2021/what-we-build.html"),
-    page("diversity/2021/beyond-our-products", "careers/diversity/2021/beyond-products.html"),
-    page("diversity/2021/who-we-are", "careers/diversity/2021/who-we-are.html"),
-    page("diversity/2021/data-and-methodology", "careers/diversity/2021/data-and-methods.html"),
 ]
 
 
