@@ -1110,6 +1110,7 @@
     {
       "files": [
         "protocol/js/protocol-newsletter.js",
+        "js/libs/array-from.js",
         "js/newsletter/form-protocol.es6.js"
       ],
       "name": "firefox_channel"
@@ -1245,6 +1246,7 @@
     {
       "files": [
         "protocol/js/protocol-newsletter.js",
+        "js/libs/array-from.js",
         "js/newsletter/form-protocol.es6.js",
         "js/firefox/retention/confetti.js"
       ],
@@ -1279,6 +1281,7 @@
       "files": [
         "protocol/js/protocol-modal.js",
         "protocol/js/protocol-newsletter.js",
+        "js/libs/array-from.js",
         "js/newsletter/form-protocol.es6.js",
         "js/mozorg/home/youtube.js"
       ],
@@ -1288,6 +1291,7 @@
       "files": [
         "protocol/js/protocol-modal.js",
         "protocol/js/protocol-newsletter.js",
+        "js/libs/array-from.js",
         "js/newsletter/form-protocol.es6.js",
         "js/mozorg/home/youtube.js"
       ],
@@ -1332,6 +1336,7 @@
     {
       "files": [
         "protocol/js/protocol-newsletter.js",
+        "js/libs/array-from.js",
         "js/newsletter/form-protocol.es6.js"
       ],
       "name": "about"
@@ -1339,6 +1344,7 @@
     {
       "files": [
         "protocol/js/protocol-newsletter.js",
+        "js/libs/array-from.js",
         "js/newsletter/form-protocol.es6.js"
       ],
       "name": "contribute"
@@ -1443,6 +1449,7 @@
     {
       "files": [
         "protocol/js/protocol-newsletter.js",
+        "js/libs/array-from.js",
         "js/newsletter/form-protocol.es6.js"
       ],
       "name": "firefox_developer"
@@ -1515,6 +1522,7 @@
     {
       "files": [
         "protocol/js/protocol-newsletter.js",
+        "js/libs/array-from.js",
         "js/newsletter/form-protocol.es6.js",
         "js/mozorg/manifesto.js"
       ],
@@ -1523,6 +1531,7 @@
     {
       "files": [
         "protocol/js/protocol-newsletter.js",
+        "js/libs/array-from.js",
         "js/newsletter/form-protocol.es6.js"
       ],
       "name": "moss"
@@ -1573,6 +1582,7 @@
     {
       "files": [
         "js/base/mozilla-article.js",
+        "js/libs/array-from.js",
         "js/newsletter/form-protocol.es6.js",
         "protocol/js/protocol-newsletter.js",
         "protocol/js/protocol-sidemenu.js"
@@ -1623,6 +1633,7 @@
     {
       "files": [
         "protocol/js/protocol-newsletter.js",
+        "js/libs/array-from.js",
         "js/newsletter/form-protocol.es6.js"
       ],
       "name": "newsletter"
