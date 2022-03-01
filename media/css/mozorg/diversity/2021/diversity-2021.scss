@@ -636,6 +636,22 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.c-section-graphs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    figure {
+        max-width: 420px;
+        border: 1px solid lightgrey;
+        margin: $spacing-md 0;
+
+        img {
+            display: block;
+        }
+    }
+}
+
 .c-section-table {
     margin: 0 auto;
     max-width: 420px;

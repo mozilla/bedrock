@@ -6,7 +6,6 @@ from django.conf import settings
 from django.urls import path, re_path
 
 from bedrock.mozorg.util import page
-from bedrock.redirects.util import redirect
 
 from . import views
 from .feeds import LatestPositionsFeed
