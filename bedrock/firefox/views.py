@@ -553,7 +553,7 @@ class WhatsnewView(L10nTemplateView):
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("98."):
-            if ftl_file_is_active("firefox/whatsnew/whatsnew-fx98-vpn-eu.html") and country in ["SE", "FI"]:
+            if ftl_file_is_active("firefox/whatsnew/whatsnew-98-vpn-eu") and country in ["SE", "FI"]:
                 template = "firefox/whatsnew/whatsnew-fx98-vpn-eu.html"
             elif locale == "de":
                 template = "firefox/whatsnew/whatsnew-fx98-mobile-de.html"

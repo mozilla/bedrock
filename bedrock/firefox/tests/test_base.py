@@ -582,6 +582,7 @@ class TestWhatsNew(TestCase):
 
     # begin 98.0 whatsnew tests
 
+    @patch.object(fx_views, "ftl_file_is_active", lambda *x: True)
     @override_settings(DEV=False)
     def test_fx_98_0_0_se(self, render_mock):
         """Should use whatsnew-fx98-vpn-eu template for 98.0 in Sweden"""
@@ -591,6 +592,7 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ["firefox/whatsnew/whatsnew-fx98-vpn-eu.html"]
 
+    @patch.object(fx_views, "ftl_file_is_active", lambda *x: True)
     @override_settings(DEV=False)
     def test_fx_98_0_0_fi(self, render_mock):
         """Should use whatsnew-fx98-vpn-eu template for 98.0 in Finland"""
@@ -599,6 +601,26 @@ class TestWhatsNew(TestCase):
         self.view(req, version="98.0")
         template = render_mock.call_args[0][1]
         assert template == ["firefox/whatsnew/whatsnew-fx98-vpn-eu.html"]
+
+    @patch.object(fx_views, "ftl_file_is_active", lambda *x: True)
+    @override_settings(DEV=False)
+    def test_fx_98_0_0_locale_active(self, render_mock):
+        """Should use whatsnew-fx98-vpn-eu template if locale is active"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="se")
+        req.locale = "sv-SE"
+        self.view(req, version="98.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx98-vpn-eu.html"]
+
+    @patch.object(fx_views, "ftl_file_is_active", lambda *x: False)
+    @override_settings(DEV=False)
+    def test_fx_98_0_0_locale_inactive(self, render_mock):
+        """Should use default template for 98.0 if locale is not active"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="fi")
+        req.locale = "fi"
+        self.view(req, version="98.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/index.html"]
 
     def test_fx_98_0_0_de(self, render_mock):
         """Should use whatsnew-fx98-mobile-de template for 98.0 for German"""
