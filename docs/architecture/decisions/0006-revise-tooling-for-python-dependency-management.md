@@ -4,7 +4,7 @@ Date: 2022-02-25
 
 ## Status
 
-Accepted
+Superseded by 0007, but the context in this ADR is still useful
 
 ## Context
 
