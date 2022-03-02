@@ -1,4 +1,5 @@
-# NB: this does not include prod deps, which must be installed separately
+# Use the prod.txt file for constraints, to ensure compatibility
+-c prod.txt
 
 black==21.12b0
 bpython==0.22.1
