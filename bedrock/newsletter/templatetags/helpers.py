@@ -70,7 +70,7 @@ def email_newsletter_form(
             success=success,
             email_label=email_label,
             email_placeholder=email_placeholder,
-            is_multi_newsletter_form=True if "," in newsletters else False,
+            is_multi_newsletter_form="," in newsletters,
         )
     )
 
