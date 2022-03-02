@@ -638,13 +638,34 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ["firefox/whatsnew/whatsnew-fx98-mobile-fr.html"]
 
+    @override_settings(DEV=False)
     def test_fx_98_0_0_en(self, render_mock):
-        """Should use default whatsnew template for 98.0 for English"""
-        req = self.rf.get("/firefox/whatsnew/")
+        """Should use whatsnew-fx98-vpn-en template for 98.0 in English outside the US"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="it")
         req.locale = "en-US"
         self.view(req, version="98.0")
         template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/index.html"]
+        assert template == ["firefox/whatsnew/whatsnew-fx98-vpn-en.html"]
+
+    @override_settings(DEV=False)
+    @patch.dict(os.environ, SWITCH_WHATSNEW_FIREFOX_98_TURNING_RED="True")
+    def test_fx_98_0_0_turningred_en_on(self, render_mock):
+        """Should use whatsnew-fx98-turningred-en template for 98.0 in US if switch is on"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="us")
+        req.locale = "en-US"
+        self.view(req, version="98.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx98-turningred-en.html"]
+
+    @override_settings(DEV=False)
+    @patch.dict(os.environ, SWITCH_WHATSNEW_FIREFOX_98_TURNING_RED="False")
+    def test_fx_98_0_0_turningred_en_off(self, render_mock):
+        """Should use whatsnew-fx98-vpn-en template for 98.0 in US if switch is off"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="us")
+        req.locale = "en-US"
+        self.view(req, version="98.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx98-vpn-en.html"]
 
     # end 98.0 whatsnew tests
 

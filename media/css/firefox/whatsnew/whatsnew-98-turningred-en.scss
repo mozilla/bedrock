@@ -1,0 +1,170 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import 'includes/base';
+
+$notebook-green: #9ff0d7;
+$notebook-green-light: #cbf3e6;
+$notebook-red: rgba(246, 147, 169, 0.5);
+$notebook-gradient: #fff radial-gradient(circle at bottom, $notebook-green 1px, transparent 0) top/ 1px 36px;
+$notebook-gradient-light: #fff radial-gradient(circle at bottom, $notebook-green-light 1px, transparent 0) top/ 1px 36px;
+
+.content-wrapper {
+    background: $notebook-gradient;
+    position: relative;
+
+    // note book red line
+    &::before {
+        background: $notebook-red;
+        content: '';
+        height: 100%;
+        left: 10%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        z-index: 0;
+    }
+}
+
+.c-page-header {
+    .mzp-l-content {
+        padding-top: $spacing-md;
+        padding-bottom: $spacing-md;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Main content
+.wnp-content-main {
+    padding: 0;
+    text-align: center;
+    color: $color-black;
+
+    .mzp-l-content {
+        padding-top: 0;
+    }
+}
+
+.wnp-main-image {
+    margin: $layout-sm auto;
+}
+
+.wnp-main-title {
+    @include text-title-lg;
+    color: $color-black;
+    max-width: $content-md;
+    margin-left: auto;
+    margin-right: auto;
+
+    strong {
+        font-weight: inherit;
+        position: relative;
+
+        &::after {
+            background: transparent url('/media/img/firefox/whatsnew/whatsnew98/underline-red.svg') center center no-repeat;
+            background-size: contain;
+            content: '';
+            display: block;
+            height: 0.4em;
+            left: -0.1em;
+            position: absolute;
+            top: calc(100% - 0.2em);
+            width: calc(100% + 0.2em);
+        }
+    }
+}
+
+.wnp-main-tagline {
+    @include text-body-xl;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: $content-md;
+}
+
+.wnp-main-cta {
+    margin: $layout-md auto;
+}
+
+.wnp-secondary-cta {
+    position: relative;
+    z-index: 10;
+}
+
+.c-common-things {
+    color: $color-black;
+    text-align: center;
+
+    .mzp-l-content {
+        padding-bottom: 0;
+        padding-top: 0;
+    }
+
+    h2 b {
+        font-weight: inherit;
+        position: relative;
+
+        &::after {
+            background: transparent url('/media/img/firefox/whatsnew/whatsnew98/circle-red.svg') center center no-repeat;
+            background-size: contain;
+            content: '';
+            display: block;
+            height: calc(100% + 0.7em);
+            left: -0.3em;
+            position: absolute;
+            top: -0.35em;
+            width: calc(100% + 1em);
+        }
+    }
+}
+
+// Sticky gradient only shown if JS is available
+.js .c-common-things {
+    padding-top: 10em; // this along with the negative top margin pushes the gradient down so it doesn't overlap the headline... hacky, I know.
+    position: relative;
+
+    .mzp-l-content {
+        margin-top: -10em;
+    }
+
+    &::after {
+        background: linear-gradient(to top, $color-white 20%, transparent);
+        bottom: 0;
+        content: '';
+        display: block;
+        height: 100px;
+        opacity: 1;
+        position: sticky;
+        transition: opacity 150ms ease-in;
+        width: 100%;
+    }
+
+    &.hide-gradient::after {
+        opacity: 0;
+    }
+}
+
+.c-common-things-list {
+    @include font-firefox;
+    @include font-size(24px);
+    margin: $layout-sm auto $layout-md;
+    max-width: $content-sm;
+    text-align: left;
+    position: relative;
+
+    li {
+        margin-bottom: 0.25em;
+        padding-left: 0.5em;
+        margin-left: 0.5em;
+
+        &::marker {
+            content: '♥';
+        }
+    }
+}
