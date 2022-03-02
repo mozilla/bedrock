@@ -639,10 +639,10 @@ $image-path: '/media/protocol/img';
 .c-section-graphs {
     display: flex;
     flex-wrap: wrap;
+
     &.graph-center {
         justify-content: center;
     }
-
     justify-content: space-between;
 
     figure {
