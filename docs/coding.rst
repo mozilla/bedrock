@@ -11,9 +11,9 @@ Developing on Bedrock
 Managing Dependencies
 ---------------------
 
-For Python we use `pip-compile-multi <https://pypi.org/project/pip-compile-multi/>`_ to manage dependencies expressed in
+For Python we use ``pip-compile`` from `pip-tools <https://pypi.org/project/pip-tools/>`_ to manage dependencies expressed in
 our `requirements files <https://github.com/mozilla/bedrock/tree/master/requirements>`_.
-``pip-compile-multi`` is wrapped up in Makefile commands, to ensure we use it consistently.
+``pip-compile`` is wrapped up in Makefile commands, to ensure we use it consistently.
 
 If you add a new Python dependency (eg to ``requirements/prod.in`` or ``requirements/dev.in``) you can generate a pinned and hash-marked
 addition to our requirements files just by running:

@@ -28,7 +28,7 @@ help:
 	@echo "  build-docs             - generate Sphinx HTML documentation using Docker"
 	@echo "  build-ci               - build docker images for use in our CI pipeline"
 	@echo "  test-ci                - run tests against files in docker image built by CI"
-	@echo "  compile-requirements   - update Python requirements files using pip-compile-multi"
+	@echo "  compile-requirements   - update Python requirements files using pip-compile"
 	@echo "  check-requirements     - get a report on stale/old Python dependencies in use"
 
 .env:
