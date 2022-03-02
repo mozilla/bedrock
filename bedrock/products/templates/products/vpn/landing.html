@@ -13,6 +13,8 @@
 
 {% block page_desc %}{{ ftl('vpn-landing-page-desc', countries=available_countries) }}{% endblock %}
 
+{% block html_attrs %}{{ super() }} data-vpn-affiliate-endpoint="{{ settings.VPN_AFFILIATE_ENDPOINT }}"{% endblock %}
+
 {% block body_id %}mozilla-vpn-landing{% endblock %}
 
 {% set _utm_source = 'www.mozilla.org-vpn-product-page' %}
@@ -43,6 +45,10 @@
 
 {% block content %}
 <main>
+  {% if vpn_affiliate_attribution_enabled %}
+    {% include 'products/vpn/includes/cookie-notification.html' %}
+  {% endif %}
+
   {% block hero %}
     {% call vpn_hero(
       heading=ftl('vpn-shared-product-name'),
@@ -293,6 +299,11 @@
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('fxa_product_button') }}
+  {% if vpn_affiliate_attribution_enabled %}
+    {{ js_bundle('mozilla-vpn-affiliate') }}
+  {% else %}
+    {{ js_bundle('fxa_product_button') }}
+  {% endif %}
+
   {{ js_bundle('mozilla-vpn-landing') }}
 {% endblock %}

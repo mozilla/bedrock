@@ -898,6 +898,7 @@
     },
     {
       "files": [
+        "css/products/vpn/components/affiliate.scss",
         "css/products/vpn/components/hero.scss",
         "css/products/vpn/components/block.scss",
         "css/products/vpn/common.scss",
@@ -1691,6 +1692,12 @@
         "js/products/vpn/landing.js"
       ],
       "name": "mozilla-vpn-landing"
+    },
+    {
+      "files": [
+        "js/products/vpn/affiliate-init.es6.js"
+      ],
+      "name": "mozilla-vpn-affiliate"
     },
     {
       "files": [

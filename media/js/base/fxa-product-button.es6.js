@@ -102,7 +102,11 @@ FxaProductButton.fetchTokens = function (buttons) {
  * @param {Object} Node List
  * @param {String} flowParams
  */
-FxaProductButton.updateProductLinks = function (buttons, flowParams) {
+FxaProductButton.updateProductLinks = function (
+    buttons,
+    flowParams,
+    overwrite
+) {
     // if flowParams are undefined (e.g. blocked by CORS), then do nothing.
     if (!flowParams) {
         return;
@@ -114,23 +118,55 @@ FxaProductButton.updateProductLinks = function (buttons, flowParams) {
         const hostName = FxaProductButton.getHostName(href);
         // check if link is in the FxA referral allowedListDomains.
         if (hostName && allowedList.indexOf(hostName) !== -1) {
-            // Only add flow params if they do not already exist.
+            // Only add flow params if they do not already exist,
+            // unless `overwrite` is true.
             if (
+                !overwrite &&
                 href.indexOf('flow_id') === -1 &&
                 href.indexOf('flow_begin_time') === -1 &&
                 href.indexOf('device_id') === -1
             ) {
                 buttons[i].href += flowParams;
+            } else if (overwrite) {
+                const buttonParams = window._SearchParams.queryStringToObject(
+                    href.split('?')[1]
+                );
+                const updated =
+                    window._SearchParams.queryStringToObject(flowParams);
+
+                if (buttonParams.flow_id) {
+                    buttonParams.flow_id = updated.flow_id;
+                }
+
+                if (buttonParams.flow_begin_time) {
+                    buttonParams.flow_begin_time = updated.flow_begin_time;
+                }
+
+                if (buttonParams.device_id) {
+                    buttonParams.device_id = updated.device_id;
+                }
+
+                const newParams =
+                    window._SearchParams.objectToQueryString(buttonParams);
+
+                buttons[i].href = `${href.split('?')[0]}?${newParams}`;
             }
         }
     }
 };
 
 FxaProductButton.isSupported = function () {
-    return 'Promise' in window && 'fetch' in window;
+    return (
+        'Promise' in window &&
+        'fetch' in window &&
+        typeof window._SearchParams !== 'undefined'
+    );
 };
 
-FxaProductButton.init = function () {
+FxaProductButton.init = function (overwrite) {
+    // Do not overwrite existing flow params by default.
+    const ow = typeof overwrite === 'boolean' ? overwrite : false;
+
     // Collect all Fxa product buttons
     _buttons = document.getElementsByClassName('js-fxa-product-button');
 
@@ -141,8 +177,8 @@ FxaProductButton.init = function () {
     return new window.Promise(function (resolve, reject) {
         if (_buttons.length) {
             FxaProductButton.fetchTokens(_buttons).then(function (flowParams) {
-                FxaProductButton.updateProductLinks(_buttons, flowParams);
-                resolve();
+                FxaProductButton.updateProductLinks(_buttons, flowParams, ow);
+                resolve(flowParams);
             });
         } else {
             reject();

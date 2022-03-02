@@ -41,6 +41,7 @@ Contents
    funnelcake
    abtest
    analytics
-   stub-attribution
+   firefox-stub-attribution
+   vpn-affiliate-attribution
    architectural-decisions
    browser-support

@@ -3,6 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import json
+import os
 from unittest.mock import Mock, patch
 
 from django.http import HttpResponse
@@ -103,6 +104,50 @@ class TestVPNLandingPage(TestCase):
         view(req)
         ctx = render_mock.call_args[0][2]
         self.assertFalse(ctx["vpn_available"])
+
+    @override_settings(DEV=False)
+    @patch.dict(os.environ, SWITCH_VPN_AFFILIATE_ATTRIBUTION="True")
+    def test_vpn_landing_page_geo_available_affiliate_flow_enabled(self, render_mock):
+        req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="us")
+        req.locale = "en-US"
+        view = views.vpn_landing_page
+        view(req)
+        ctx = render_mock.call_args[0][2]
+        self.assertTrue(ctx["vpn_available"])
+        self.assertTrue(ctx["vpn_affiliate_attribution_enabled"])
+
+    @override_settings(DEV=False)
+    @patch.dict(os.environ, SWITCH_VPN_AFFILIATE_ATTRIBUTION="False")
+    def test_vpn_landing_page_geo_available_affiliate_flow_disabled(self, render_mock):
+        req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="us")
+        req.locale = "en-US"
+        view = views.vpn_landing_page
+        view(req)
+        ctx = render_mock.call_args[0][2]
+        self.assertTrue(ctx["vpn_available"])
+        self.assertFalse(ctx["vpn_affiliate_attribution_enabled"])
+
+    @override_settings(DEV=False)
+    @patch.dict(os.environ, SWITCH_VPN_AFFILIATE_ATTRIBUTION="True")
+    def test_vpn_landing_page_geo_not_available_affiliate_flow_enabled(self, render_mock):
+        req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="cn")
+        req.locale = "en-US"
+        view = views.vpn_landing_page
+        view(req)
+        ctx = render_mock.call_args[0][2]
+        self.assertFalse(ctx["vpn_available"])
+        self.assertFalse(ctx["vpn_affiliate_attribution_enabled"])
+
+    @override_settings(DEV=False)
+    @patch.dict(os.environ, SWITCH_VPN_AFFILIATE_ATTRIBUTION="True")
+    def test_vpn_landing_page_geo_available_affiliate_not_supported_in_country(self, render_mock):
+        req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="it")
+        req.locale = "en-US"
+        view = views.vpn_landing_page
+        view(req)
+        ctx = render_mock.call_args[0][2]
+        self.assertTrue(ctx["vpn_available"])
+        self.assertFalse(ctx["vpn_affiliate_attribution_enabled"])
 
 
 class TestVPNResourceCenterHelpers(TestCase):
