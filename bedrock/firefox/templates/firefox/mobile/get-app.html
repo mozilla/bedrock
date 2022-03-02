@@ -18,14 +18,22 @@
 {% block page_og_desc %}{{ ftl('firefox-mobile-check-out-firefox-again-its') }}{% endblock %}
 
 {% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
-{% set android_url = firefox_adjust_url('android', 'mobile-get-app-page') %}
-{% set ios_url = firefox_adjust_url('ios', 'mobile-get-app-page') %}
 
 {% block site_header %}
   {% with hide_nav_download_button=True %}
     {% include 'includes/protocol/navigation/navigation.html' %}
   {% endwith %}
 {% endblock %}
+
+{% if variation == 'mfm' %}
+  {% set message_set = 'fx-mobile-download-desktop-experiment' %}
+  {% set android_url = 'https://app.adjust.com/y68hlxi?campaign=firefox-desktop&adgroup=about-prefs&creative=mfm-fxvt-default-global-email-site-and&fallback=http%3A%2F%2Fmozilla.org%2Ffirefox%2Fmobile%2F' %}
+  {% set ios_url = 'https://app.adjust.com/y68hlxi?campaign=firefox-desktop&adgroup=about-prefs&creative=mfm-fxvt-default-global-email-site-ios&fallback=http%3A%2F%2Fmozilla.org%2Ffirefox%2Fmobile%2F' %}
+{% else %}
+  {% set message_set = 'fx-mobile-download-desktop' %}
+  {% set android_url = firefox_adjust_url('android', 'mobile-get-app-page') %}
+  {% set ios_url = firefox_adjust_url('ios', 'mobile-get-app-page') %}
+{% endif %}
 
 {% block content %}
 <main role="main" class="mzp-l-content mzp-t-content-md mzp-t-firefox">
@@ -34,7 +42,7 @@
     <h1>{{ ftl('firefox-mobile-get-firefox-mobile') }}</h1>
     {% if show_send_to_device %}
       <p>{{ ftl('firefox-mobile-send-a-download-link-to-your') }}</p>
-      {{ send_to_device(include_title=False, message_set='fx-mobile-download-desktop', class='vertical') }}
+      {{ send_to_device(include_title=False, message_set=message_set, class='vertical') }}
     {% else %}
       <p>{{ ftl('firefox-mobile-scan-the-qr-code-to-get-started') }}</p>
       <div class="qr-code-wrapper">

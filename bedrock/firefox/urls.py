@@ -74,7 +74,11 @@ urlpatterns = (
         name="firefox.features.tips",
     ),
     path("firefox/ios/testflight/", views.ios_testflight, name="firefox.ios.testflight"),
-    page("firefox/mobile/get-app", "firefox/mobile/get-app.html", ftl_files=["firefox/mobile"]),
+    path(
+        "firefox/mobile/get-app/",
+        VariationTemplateView.as_view(template_name="firefox/mobile/get-app.html", template_context_variations=["mfm"], ftl_files=["firefox/mobile"]),
+        name="firefox.mobile.get-app",
+    ),
     path("firefox/send-to-device-post/", views.send_to_device_ajax, name="firefox.send-to-device-post"),
     page("firefox/unsupported-systems", "firefox/unsupported-systems.html"),
     path("firefox/new/", views.NewView.as_view(), name="firefox.new"),

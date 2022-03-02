@@ -989,6 +989,11 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
             "all": "download-firefox-mobile-reco",
         }
     },
+    "fx-mobile-download-desktop-experiment": {
+        "email": {
+            "all": "download-firefox-mobile-reco-exp",
+        }
+    },
     "fx-whatsnew": {
         "email": {
             "all": "download-firefox-mobile-whatsnew",
