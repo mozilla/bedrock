@@ -188,7 +188,7 @@ using ``zsh``, the ``pyenv`` docs have other routes ::
 
 3. Install / update dependencies ::
 
-    $ pip install -U -r requirements/dev.txt --no-cache-dir
+    $ make install-local-python-deps
 
 .. note::
 
@@ -201,7 +201,7 @@ using ``zsh``, the ``pyenv`` docs have other routes ::
 
     .. code-block:: bash
 
-        $ pip install -r requirements/dev.txt
+        $ make install-local-python-deps
 
     If you are on Linux, you may need at least the following packages or their equivalent for your distro::
 

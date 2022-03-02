@@ -7,29 +7,30 @@ all: help
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
-	@echo "  build                  - build docker images for dev"
-	@echo "  run                    - docker-compose up the entire system for dev"
-	@echo "  stop                   - stop all docker containers"
-	@echo "  kill                   - kill all docker containers (more forceful than stop)"
-	@echo "  pull                   - pull the latest production images from Docker Hub"
-	@echo "  run-shell              - open a bash shell in a fresh container"
-	@echo "  shell                  - open a bash shell in the running app"
-	@echo "  djshell                - start the Django Python shell in the running app"
-	@echo "  fresh-data             - pull the latest database and update all external data"
-	@echo "  clean                  - remove all build, test, coverage and Python artifacts"
-	@echo "  rebuild                - force a rebuild of all of the docker images"
-	@echo "  lint                   - check style with Flake8, ESlint, Stylelint, and Prettier"
-	@echo "  format                 - format front-end code using Stylelint and Prettier"
-	@echo "  test                   - run tests against local files"
-	@echo "  test-image             - run tests against files in docker image"
-	@echo "  test-cdn               - run CDN tests against TEST_DOMAIN"
-	@echo "  docs                   - generate Sphinx HTML documentation with server and live reload using Docker"
-	@echo "  livedocs               - generate Sphinx HTML documentation with server and live reload"
-	@echo "  build-docs             - generate Sphinx HTML documentation using Docker"
-	@echo "  build-ci               - build docker images for use in our CI pipeline"
-	@echo "  test-ci                - run tests against files in docker image built by CI"
-	@echo "  compile-requirements   - update Python requirements files using pip-compile"
-	@echo "  check-requirements     - get a report on stale/old Python dependencies in use"
+	@echo "  build                      - build docker images for dev"
+	@echo "  run                        - docker-compose up the entire system for dev"
+	@echo "  stop                       - stop all docker containers"
+	@echo "  kill                       - kill all docker containers (more forceful than stop)"
+	@echo "  pull                       - pull the latest production images from Docker Hub"
+	@echo "  run-shell                  - open a bash shell in a fresh container"
+	@echo "  shell                      - open a bash shell in the running app"
+	@echo "  djshell                    - start the Django Python shell in the running app"
+	@echo "  fresh-data                 - pull the latest database and update all external data"
+	@echo "  clean                      - remove all build, test, coverage and Python artifacts"
+	@echo "  rebuild                    - force a rebuild of all of the docker images"
+	@echo "  lint                       - check style with Flake8, ESlint, Stylelint, and Prettier"
+	@echo "  format                     - format front-end code using Stylelint and Prettier"
+	@echo "  test                       - run tests against local files"
+	@echo "  test-image                 - run tests against files in docker image"
+	@echo "  test-cdn                   - run CDN tests against TEST_DOMAIN"
+	@echo "  docs                       - generate Sphinx HTML documentation with server and live reload using Docker"
+	@echo "  livedocs                   - generate Sphinx HTML documentation with server and live reload"
+	@echo "  build-docs                 - generate Sphinx HTML documentation using Docker"
+	@echo "  build-ci                   - build docker images for use in our CI pipeline"
+	@echo "  test-ci                    - run tests against files in docker image built by CI"
+	@echo "  compile-requirements       - update Python requirements files using pip-compile"
+	@echo "  check-requirements         - get a report on stale/old Python dependencies in use"
+	@echo "  install-local-python-deps  - install Python dependencies for local development"
 
 .env:
 	@if [ ! -f .env ]; then \
@@ -150,4 +151,13 @@ compile-requirements: .docker-build-pull
 check-requirements: .docker-build-pull
 	${DC} run --rm test pip list -o
 
-.PHONY: all clean build pull docs livedocs build-docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod build-prod test-cdn compile-requirements check-requirements
+######################################################
+# For use in local-machine development (not in Docker)
+######################################################
+
+install-local-python-deps:
+	pip install -U -r requirements/prod.txt --no-cache-dir
+	pip install -U -r requirements/dev.txt --no-cache-dir
+	pip install -U -r requirements/docs.txt --no-cache-dir
+
+.PHONY: all clean build pull docs livedocs build-docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod build-prod test-cdn compile-requirements check-requirements install-local-python-deps

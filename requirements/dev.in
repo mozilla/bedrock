@@ -1,4 +1,4 @@
--r prod.in
+# NB: this does not include prod deps, which must be installed separately
 
 black==21.12b0
 bpython==0.22.1
