@@ -610,7 +610,7 @@ class TestNewsletterSubscribe(TestCase):
             "fmt": "H",
             "privacy": True,
         }
-        resp = self.request(data)
+        resp = self.request(data=data)
         doc = pq(resp.content)
         self.assertFalse(doc("#newsletter-submit"))
         self.assertFalse(doc('input[value="mozilla-and-you"]'))
@@ -618,18 +618,42 @@ class TestNewsletterSubscribe(TestCase):
         basket_mock.subscribe.assert_called_with("fred@example.com", "flintstones", format="H")
 
     @patch("bedrock.newsletter.views.basket")
-    def test_returns_failure(self, basket_mock):
-        """Bad non-ajax post should return form with errors."""
+    def test_returns_failure__invalid_newsletter(self, basket_mock):
+        """
+        Test non-ajax POST with invalid newsletter returns form with errors.
+
+        An invalid newsletter is one with invalid characters, it doesn't check
+        against a known list of newsletters.
+
+        """
+        data = {
+            "newsletters": "fl!ntstones",
+            "email": "fred@example.com",
+            "fmt": "H",
+            "privacy": True,
+        }
+        resp = self.request(data=data)
+        doc = pq(resp.content)
+        self.assertTrue(doc("#newsletter-form"))
+        self.assertTrue(doc('input[value="mozilla-and-you"]')[0].checked)
+        self.assertFalse(doc("#email-form"))
+        # Note: An invalid newsletter isn't shown as an error since these are
+        # chosen from a checkbox or hidden field and isn't something the user
+        # can correct themselves.
+        self.assertFalse(basket_mock.subscribe.called)
+
+    @patch("bedrock.newsletter.views.basket")
+    def test_returns_failure__missing_privacy(self, basket_mock):
+        """Test non-ajax POST with missing privacy acceptance."""
         data = {
             "newsletters": "flintstones",
             "email": "fred@example.com",
             "fmt": "H",
         }
-        resp = self.request(data)
+        resp = self.request(data=data)
         doc = pq(resp.content)
         self.assertTrue(doc("#newsletter-form"))
-        self.assertFalse(doc('input[value="mozilla-and-you"]'))
-        self.assertTrue(doc('input[value="flintstones"]'))
+        self.assertTrue(doc('input[value="mozilla-and-you"]')[0].checked)
         self.assertFalse(doc("#email-form"))
-        self.assertIn("privacy", doc("#newsletter-errors .mzp-u-list-styled li").eq(0).text())
+        self.assertIn("privacy", doc("#newsletter-errors").text())
         self.assertFalse(basket_mock.subscribe.called)

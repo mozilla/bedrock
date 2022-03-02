@@ -161,11 +161,17 @@
       </div>
 
       <div class="newsletter-content">
-        {{ email_newsletter_form(
-        newsletters='mozilla-and-you',
-        button_class='button-dark',
-        submit_text=ftl('newsletter-form-sign-up-now')
-        )}}
+        {% if ftl_has_messages('multi-newsletter-form-title', 'multi-newsletter-form-desc', 'multi-newsletter-form-checkboxes-legend') %}
+          {{ email_newsletter_form(
+            newsletters='mozilla-foundation, mozilla-and-you',
+            button_class='button-dark'
+          )}}
+        {% else %}
+          {{ email_newsletter_form(
+            button_class='button-dark',
+            submit_text=ftl('newsletter-form-sign-up-now')
+          )}}
+        {% endif %}
       </div>
     </aside>
   </div>

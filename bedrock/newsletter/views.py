@@ -608,7 +608,7 @@ def recovery(request):
 
 def newsletter_subscribe(request):
     if request.method == "POST":
-        newsletters = request.POST.get("newsletters", None)
+        newsletters = request.POST.get("newsletters")
         form = NewsletterFooterForm(newsletters, l10n_utils.get_locale(request), request.POST)
         errors = []
         if form.is_valid():
@@ -649,7 +649,7 @@ def newsletter_subscribe(request):
                 errors.append(ftl("newsletter-form-please-enter-a-valid"))
             if "privacy" in form.errors:
                 errors.append(ftl("newsletter-form-you-must-agree-to"))
-            for fieldname in ("fmt", "lang", "country"):
+            for fieldname in ("newsletters", "fmt", "lang", "country"):
                 if fieldname in form.errors:
                     errors.extend(form.errors[fieldname])
 
