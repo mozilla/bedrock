@@ -1,0 +1,73 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_98_vpn_en') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-md">
+      <img class="wnp-main-image" src="{{ static('protocol/img/logos/mozilla/vpn/logo-flat.svg') }}" width="90" alt="">
+
+      <h1 class="wnp-main-title">Firefox protects your browsing. <strong>Mozilla VPN</strong> protects you everywhere.</h1>
+      <p class="wnp-main-tagline">Mozilla VPN (Virtual Private Network) protects your entire internet connection on your computer, your tablet, and even your phone. For even more security, it comes with a 30-day money back guarantee.</p>
+
+      <div class="wnp-main-cta">
+        {{ vpn_product_referral_link(
+            referral_id='whatsnew-98-vpn-en',
+            link_text='Get Mozilla VPN',
+            class_name='mzp-t-product mzp-t-lg',
+            optional_attributes= {
+                'data-cta-text' : 'Get Mozilla VPN',
+                'data-cta-type' : 'button',
+                'data-cta-position' : 'primary-cta',
+            }
+        ) }}
+      </div>
+    </div>
+  </section>
+
+  <section class="wnp-content-extra">
+    <div class="mzp-l-content mzp-t-content-md">
+      <div class="mzp-l-columns mzp-t-columns-two">
+
+        <div class="mzp-c-picto">
+          <div class="mzp-c-picto-image">
+            {% include 'firefox/whatsnew/includes/fx98-vpn-en/laptop.svg' %}
+          </div>
+          <h3 class="mzp-c-picto-title">It’s fast, very fast</h3>
+          <div class="mzp-c-picto-body">
+            <p>Our WireGuard® powered servers are built for speed so you can stream, download, and game as usual.</p>
+          </div>
+        </div>
+
+        <div class="mzp-c-picto">
+          <div class="mzp-c-picto-image">
+            {% include 'firefox/whatsnew/includes/fx98-vpn-en/mobile.svg' %}
+          </div>
+          <h3 class="mzp-c-picto-title">Internet without a trace</h3>
+          <div class="mzp-c-picto-body">
+            <p>We never log, track, or share your network data — your online activity won’t leave a footprint on our VPN servers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+{% endblock %}

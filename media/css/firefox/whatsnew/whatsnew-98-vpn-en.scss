@@ -1,0 +1,99 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/components/picto';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
+@import 'includes/base';
+@import 'includes/dark-mode';
+
+.c-page-header {
+    .mzp-l-content {
+        padding-top: $spacing-md;
+        padding-bottom: $spacing-md;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Main content
+.wnp-content-main {
+    padding: 0;
+    text-align: center;
+}
+
+.wnp-main-image {
+    margin: 0 auto $layout-lg;
+    padding: 12px;
+    border-radius: 100%;
+
+    @media #{$mq-tall} {
+        margin: $layout-lg auto $layout-xl;
+    }
+}
+
+.wnp-main-title {
+    @include text-title-md;
+    color: get-theme('title-text-color');
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+
+    strong {
+        color: $color-violet-50;
+    }
+}
+
+.wnp-main-tagline {
+    @include text-body-lg;
+    max-width: $content-md;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+// * -------------------------------------------------------------------------- */
+// Secondary content
+.mzp-c-picto {
+    max-width: $content-sm;
+}
+
+.mzp-c-picto-image {
+    max-width: $content-xs;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+// * -------------------------------------------------------------------------- */
+// Dark mode
+@media (prefers-color-scheme: dark) {
+    .wnp-main-title,
+    .mzp-c-picto-title {
+        color: get-theme('title-text-color-inverse');
+    }
+
+    .wnp-main-image {
+        background-color: $color-white;
+    }
+
+    .wnp-main-title strong {
+        color: $color-violet-20;
+    }
+
+    .mzp-c-picto-image {
+        .line {
+            fill: #fff;
+        }
+
+        .invert-fill {
+            fill: #fff;
+        }
+
+        .invert-card {
+            fill: #a77ffa;
+        }
+    }
+}

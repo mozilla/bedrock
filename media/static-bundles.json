@@ -441,6 +441,18 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-98-vpn-en.scss"
+      ],
+      "name": "firefox_whatsnew_98_vpn_en"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-98-turningred-en.scss"
+      ],
+      "name": "firefox_whatsnew_98_turningred_en"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -1186,6 +1198,12 @@
         "js/firefox/whatsnew/whatsnew-97-eu.js"
       ],
       "name": "firefox_whatsnew_97_eu"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-98-turningred-en.js"
+      ],
+      "name": "firefox_whatsnew_98_turningred_en"
     },
     {
       "files": [
