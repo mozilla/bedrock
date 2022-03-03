@@ -156,8 +156,7 @@ check-requirements: .docker-build-pull
 ######################################################
 
 install-local-python-deps:
-	pip install -U -r requirements/prod.txt --no-cache-dir
-	pip install -U -r requirements/dev.txt --no-cache-dir
-	pip install -U -r requirements/docs.txt --no-cache-dir
+	pip install -r requirements/prod.txt
+	pip install -r requirements/dev.txt
 
 .PHONY: all clean build pull docs livedocs build-docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod build-prod test-cdn compile-requirements check-requirements install-local-python-deps
