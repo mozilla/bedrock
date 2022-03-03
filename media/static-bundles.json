@@ -276,6 +276,12 @@
     },
     {
       "files": [
+        "css/base/banners/mozilla-connect.scss"
+      ],
+      "name": "mozilla-connect-banner"
+    },
+    {
+      "files": [
         "css/protocol/common-old-ie.scss"
       ],
       "name": "common-old-ie"
@@ -1320,6 +1326,13 @@
         "js/base/banners/turning-red-banner-init.js"
       ],
       "name": "turning-red-banner"
+    },
+    {
+      "files": [
+        "js/base/banners/mozilla-banner.js",
+        "js/base/banners/mozilla-connect-banner-init.js"
+      ],
+      "name": "mozilla-connect-banner"
     },
     {
       "files": [

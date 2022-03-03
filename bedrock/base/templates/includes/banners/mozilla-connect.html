@@ -1,0 +1,13 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+{% extends 'includes/banners/base.html' %}
+
+{% block banner_id %}mozilla-connect-banner{% endblock %}
+
+{% block banner_title %}<a rel="external" data-cta-text="Mozilla Connect is here" data-cta-type="link" data-cta-position="banner" href="https://connect.mozilla.org?utm_source=contribute-website&utm_medium=banner&utm_campaign=connect-campaign&utm_content=15032022">{{ ftl('banner-mozilla-connect-title') }}</a>{% endblock %}
+
+{% block banner_content %}{{ ftl('banner-mozilla-connect-content') }}{% endblock %}
