@@ -115,7 +115,7 @@ urlpatterns = (
     path("xbl", views.namespaces, {"namespace": "xbl"}),
     page("locales", "mozorg/locales.html"),
     # Diversity and inclusion redirect
-    redirect(r"^diversity/$", "diversity.2021.index", name="diversity", locale_prefix=False),
+    redirect(r"^diversity/$", "mozorg.diversity.2021.index", name="diversity", locale_prefix=False),
     # Main paths
     page("diversity/2021", "mozorg/diversity/2021/index.html"),
     page("diversity/2021/what-we-build", "mozorg/diversity/2021/what-we-build.html"),
