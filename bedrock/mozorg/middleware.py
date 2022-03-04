@@ -30,6 +30,20 @@ class CacheMiddleware:
         return response
 
 
+class ReferrerPolicyMiddleware:
+    def __init__(self, get_response=None):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        response = self.get_response(request)
+        return self.process_response(request, response)
+
+    @staticmethod
+    def process_response(request, response):
+        response["Referrer-Policy"] = "strict-origin-when-cross-origin"
+        return response
+
+
 class ClacksOverheadMiddleware:
     # bug 1144901
 

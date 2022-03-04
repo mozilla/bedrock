@@ -5,8 +5,23 @@ from django.conf import settings
 from django.http import HttpRequest, HttpResponse
 from django.test.utils import override_settings
 
-from bedrock.mozorg.middleware import ClacksOverheadMiddleware, HostnameMiddleware
+from bedrock.mozorg.middleware import (
+    ClacksOverheadMiddleware,
+    HostnameMiddleware,
+    ReferrerPolicyMiddleware,
+)
 from bedrock.mozorg.tests import TestCase
+
+
+class TestReferrerPolicyMiddleware(TestCase):
+    def setUp(self):
+        self.middleware = ReferrerPolicyMiddleware()
+        self.request = HttpRequest()
+        self.response = HttpResponse()
+
+    def test_good_response_has_header(self):
+        self.middleware.process_response(self.request, self.response)
+        self.assertEqual(self.response["Referrer-Policy"], "strict-origin-when-cross-origin")
 
 
 class TestClacksOverheadMiddleware(TestCase):
