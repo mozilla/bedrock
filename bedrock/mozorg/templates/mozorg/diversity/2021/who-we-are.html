@@ -7,16 +7,63 @@
 {% extends "mozorg/diversity/2021/index.html" %}
 
 {% block content %}
-  <main role="main">
-     <!-- Heading leading to pages -->
+
+<main role="main">
   <section class="no-js-hidden">
-    <div class="c-section-intro-bg">
     <div class="c-section-intro">
       <h2><span class="highlight green">Who we are</span></h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, at eaque sunt commodi aut velit aliquid mollitia, enim quia officiis aperiam, rem laboriosam quis cum harum laborum nostrum blanditiis animi.</p>
-      <p><strong>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut soluta consequatur quam nulla cupiditate a sint temporibus quo odio. Adipisci modi tempora, necessitatibus quos mollitia ullam quo corrupti saepe omnis obcaecati repudiandae quia blanditiis. Quisquam, doloremque maiores, vero odit explicabo nemo cupiditate incidunt facere recusandae optio excepturi impedit sit eius voluptatum aperiam. Sit repellat ex officia adipisci, ipsum deleniti natus.</strong></p>
+      <h3 class="c-subtitle"><strong>Our employee base and our communities</strong></h3>
+      <p>As a global organization, we are committed to building a workforce that is representative of the communities we serve and the world we live in. We also recognize that building a representative workforce is only the beginning, so we are equally committed to fostering an inclusive culture in which all feel they belong and are empowered to do their best work.</p>
     </div>
+    <div class="c-section-intro">
+      <h3><span class="highlight black">Diversifying Our Talent Network</span></h3>
+      <p><strong>Mozilla employees spent over 300 hours volunteering as program mentors, event representatives, and speakers.</strong></p>
+      <div class="mzp-l-card-half">
+      {{ card(
+      title='Outreachy',
+      class='has-modal',
+      attributes='data-modal-id="outreachy-program"',
+      aspect_ratio='mzp-has-aspect-3-2',
+      link_url='#outreachy-program',
+      image_url='img/mozorg/diversity/2021/card-images/outreachy-logo.png',
+      )}}
+      {{ card(
+      title='What we build',
+      ga_title='Putting cookies where they belong',
+      desc='Our outreach with our products',
+      aspect_ratio='mzp-has-aspect-3-2',
+      link_url=url('mozorg.diversity.2021.what-we-build'),
+      image_url='img/mozorg/diversity/2021/card-images/what-we-build-card.png',
+      )}}
+    </div>
+
     </div>
   </section>
-  </main>
+
+  <!-- Modal content -->
+  <div class="mzp-l-content js-modal-content">
+
+    <!-- Outreachy -->
+    <article data-modal-parent="outreachy-program" id="outreachy-program" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+      <div class="mzp-c-card-feature-media-wrapper">
+        <div class="mzp-c-card-feature-media">
+          {{ image(url='img/mozorg/diversity/2021/card-images/conservancy.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+        </div>
+      </div>
+
+      <div class="mzp-c-card-feature-content">
+        <div class="mzp-c-card-feature-content-container">
+          <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+          <h2 class="mzp-c-card-feature-title"><span class="highlight green">Outreachy</span></h2>
+
+          <p class="mzp-c-card-feature-desc">Since 2013, Mozilla has participated in the Outreachy program, which aims to increase participation from underrepresented groups in free and open-source software. All Outreachy participants work remotely with their Mozilla mentors, allowing for a geographically diverse group of interns. Round 23 was hosted from May through August 2021, and we recently welcomed Round 24 participants for the December 2021 through March 2022 cohort, with interns hailing from Australia, Germany, Nigeria, and Pakistan. </p>
+        </div>
+      </div>
+    </article>
+  </div>
+</main>
+
+<div class="mzp-u-modal-content"></div>
+
+
 {% endblock %}
