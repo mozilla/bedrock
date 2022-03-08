@@ -53,7 +53,13 @@ $notebook-gradient-light: #fff radial-gradient(circle at bottom, $notebook-green
 }
 
 .wnp-main-image {
+    left: -25px;
     margin: $layout-sm auto;
+    position: relative;
+
+    @media #{$mq-lg} {
+        left: -50px;
+    }
 }
 
 .wnp-main-title {
@@ -106,20 +112,24 @@ $notebook-gradient-light: #fff radial-gradient(circle at bottom, $notebook-green
         padding-top: 0;
     }
 
-    h2 b {
-        font-weight: inherit;
-        position: relative;
+    h2 {
+        @include text-title-sm;
 
-        &::after {
-            background: transparent url('/media/img/firefox/whatsnew/whatsnew98/circle-red.svg') center center no-repeat;
-            background-size: contain;
-            content: '';
-            display: block;
-            height: calc(100% + 0.7em);
-            left: -0.3em;
-            position: absolute;
-            top: -0.35em;
-            width: calc(100% + 1em);
+        b {
+            font-weight: inherit;
+            position: relative;
+
+            &::after {
+                background: transparent url('/media/img/firefox/whatsnew/whatsnew98/circle-red.svg') center center no-repeat;
+                background-size: contain;
+                content: '';
+                display: block;
+                height: calc(100% + 0.7em);
+                left: -0.3em;
+                position: absolute;
+                top: -0.35em;
+                width: calc(100% + 1em);
+            }
         }
     }
 }
