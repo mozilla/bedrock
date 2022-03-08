@@ -412,6 +412,12 @@ $image-path: '/media/protocol/img';
         p {
             margin-bottom: $spacing-md;
         }
+
+        ul,
+        ol {
+            @include text-body-md;
+            color: $color-marketing-gray-90;
+        }
     }
 }
 
@@ -474,7 +480,7 @@ $image-path: '/media/protocol/img';
     margin-top: $spacing-2xl;
 }
 
-.c-section-intro {
+.c-section-wrapper {
     margin: 0 auto;
     padding-top: $layout-lg;
     max-width: $content-lg;
@@ -491,6 +497,12 @@ $image-path: '/media/protocol/img';
         text-align: left;
     }
 
+    h4 {
+        @include text-title-xs;
+        font-weight: 600;
+        text-align: left;
+    }
+
     .c-subtitle {
         text-align: center;
     }
@@ -500,20 +512,20 @@ $image-path: '/media/protocol/img';
         margin-bottom: $spacing-md;
     }
 
-    .bold-item {
-        font-weight: 600;
-
-        ul {
-            font-weight: 400;
-        }
-    }
-
     ul {
         list-style-type: disc;
 
         li {
             margin-bottom: $spacing-sm;
         }
+    }
+}
+
+.bold-item {
+    font-weight: 600;
+
+    ul {
+        font-weight: 400;
     }
 }
 
@@ -673,6 +685,7 @@ $image-path: '/media/protocol/img';
     .status {
         padding: 3px;
         font-weight: 600;
+        border-radius: 4px;
 
         &.achieved {
             background-color: $color-green-30;

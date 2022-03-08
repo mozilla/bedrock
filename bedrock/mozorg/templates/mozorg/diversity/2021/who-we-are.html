@@ -8,60 +8,620 @@
 
 {% block content %}
 
+
+
 <main role="main">
-  <section class="no-js-hidden">
-    <div class="c-section-intro">
-      <h2><span class="highlight green">Who we are</span></h2>
-      <h3 class="c-subtitle"><strong>Our employee base and our communities</strong></h3>
-      <p>As a global organization, we are committed to building a workforce that is representative of the communities we serve and the world we live in. We also recognize that building a representative workforce is only the beginning, so we are equally committed to fostering an inclusive culture in which all feel they belong and are empowered to do their best work.</p>
-    </div>
-    <div class="c-section-intro">
-      <h3><span class="highlight black">Diversifying Our Talent Network</span></h3>
-      <p><strong>Mozilla employees spent over 300 hours volunteering as program mentors, event representatives, and speakers.</strong></p>
-      <div class="mzp-l-card-half">
-      {{ card(
-      title='Outreachy',
-      class='has-modal',
-      attributes='data-modal-id="outreachy-program"',
-      aspect_ratio='mzp-has-aspect-3-2',
-      link_url='#outreachy-program',
-      image_url='img/mozorg/diversity/2021/card-images/outreachy-logo.png',
-      )}}
-      {{ card(
-      title='What we build',
-      ga_title='Putting cookies where they belong',
-      desc='Our outreach with our products',
-      aspect_ratio='mzp-has-aspect-3-2',
-      link_url=url('mozorg.diversity.2021.what-we-build'),
-      image_url='img/mozorg/diversity/2021/card-images/what-we-build-card.png',
-      )}}
-    </div>
-
-    </div>
-  </section>
-
-  <!-- Modal content -->
-  <div class="mzp-l-content js-modal-content">
-
-    <!-- Outreachy -->
-    <article data-modal-parent="outreachy-program" id="outreachy-program" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
-      <div class="mzp-c-card-feature-media-wrapper">
-        <div class="mzp-c-card-feature-media">
-          {{ image(url='img/mozorg/diversity/2021/card-images/conservancy.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
-        </div>
+   <section class="no-js-hidden mzp-l-content">
+      <div class="c-section-wrapper">
+         <h2><span class="highlight green">Who we are</span></h2>
+         <h3 class="c-subtitle"><strong>Our employee base and our communities</strong></h3>
+         <p>As a global organization, we are committed to building a workforce that is representative of the communities we serve and the world we live in. We also recognize that building a representative workforce is only the beginning, so we are equally committed to fostering an inclusive culture in which all feel they belong and are empowered to do their best work.</p>
       </div>
-
-      <div class="mzp-c-card-feature-content">
-        <div class="mzp-c-card-feature-content-container">
-          <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
-          <h2 class="mzp-c-card-feature-title"><span class="highlight green">Outreachy</span></h2>
-
-          <p class="mzp-c-card-feature-desc">Since 2013, Mozilla has participated in the Outreachy program, which aims to increase participation from underrepresented groups in free and open-source software. All Outreachy participants work remotely with their Mozilla mentors, allowing for a geographically diverse group of interns. Round 23 was hosted from May through August 2021, and we recently welcomed Round 24 participants for the December 2021 through March 2022 cohort, with interns hailing from Australia, Germany, Nigeria, and Pakistan. </p>
-        </div>
+      <div class="c-article-list">
+         <div class="c-section-wrapper">
+            <h3><span class="highlight black">Diversifying our talent network</span></h3>
+            <p><strong>Mozilla employees spent over 300 hours volunteering as program mentors, event representatives, and speakers.</strong></p>
+            <div class="mzp-l-card-half ">
+               {{ card(
+               title='Outreachy',
+               ga_title='Outreachy',
+               class='has-modal',
+               attributes='data-modal-id="outreachy-program"',
+               aspect_ratio='mzp-has-aspect-16-9',
+               link_url='#outreachy-program',
+               image_url='img/mozorg/diversity/2021/card-images/outreachy-logo.png',
+               )}}
+               {{ card(
+               title='Virtual career fairs',
+               ga_title='Virtual career fairs',
+               class='has-modal',
+               attributes='data-modal-id="virtual-career-fair"',
+               aspect_ratio='mzp-has-aspect-16-9',
+               link_url='#virtual-career-fair',
+               image_url='img/mozorg/diversity/2021/card-images/bit-career-fair.png',
+               )}}
+            </div>
+         </div>
+         <div class="c-section-wrapper">
+            <h3><span class="highlight black">Building community and connections</span></h3>
+            <h4>Mozilla resource groups</h4>
+            <p>Mozilla resource groups (MRGs) are internal networks where people can find connection and community across different experiences and backgrounds. These groups have formed organically over the years through employee interest, and nearly one-third of all Mozilla employees belong to at least one MRG. We believe our growing list of MRGs — Afrozillians, Disability@Mozilla, LatinPride, MozAPI, Pridezilla, and Women of Mozilla — are critical to our success as an organization and our journey toward inclusion. In 2021, our MRGs sought to define themselves and determine how to show up in a way that was authentic to their experiences. MRG members also had access to learning and development opportunities, including group leadership coaching, and introductory chats to build their networks. It was also a year of firsts for our MRGs, with the founding of MozAPI, Disability@Mozilla, and Pridezilla_allies.</p>
+            <h4>Inside Mozilla MRGs</h4>
+            <p>We believe the best way to understand these groups is through the people in them. Read along as MRG members share what they’ve learned and what they are looking forward to.</p>
+            <div class="mzp-l-card-half">
+               {{ card(
+               title='Afrozilla',
+               ga_title='Afrozilla',
+               class='has-modal',
+               attributes='data-modal-id="afrozilla"',
+               aspect_ratio='mzp-has-aspect-16-9',
+               link_url='#afrozilla',
+               image_url='img/mozorg/diversity/2021/card-images/afrozilla.png',
+               )}}
+               {{ card(
+               title='Disability@Mozilla',
+               ga_title='Disability@Mozilla',
+               class='has-modal',
+               attributes='data-modal-id="disability-at-mozilla"',
+               aspect_ratio='mzp-has-aspect-16-9',
+               link_url='#disability-at-mozilla',
+               image_url='img/mozorg/diversity/2021/card-images/disability-at-mozilla.png',
+               )}}
+            </div>
+            <div class="mzp-l-card-half">
+               {{ card(
+               title='LatinPride',
+               ga_title='LatinPride',
+               class='has-modal',
+               attributes='data-modal-id="latin-pride"',
+               aspect_ratio='mzp-has-aspect-16-9',
+               link_url='#latin-pride',
+               image_url='img/mozorg/diversity/2021/card-images/mozilla-resource-groups-latin-pride.png',
+               )}}
+               {{ card(
+               title='MozAPI',
+               ga_title='MozAPI',
+               class='has-modal',
+               attributes='data-modal-id="moz-api"',
+               aspect_ratio='mzp-has-aspect-16-9',
+               link_url='#moz-api',
+               image_url='img/mozorg/diversity/2021/card-images/moz-api.png',
+               )}}
+            </div>
+            <div class="mzp-l-card-half">
+               {{ card(
+               title='Pridezilla',
+               ga_title='Pridezilla',
+               class='has-modal',
+               attributes='data-modal-id="pridezilla"',
+               aspect_ratio='mzp-has-aspect-16-9',
+               link_url='#pridezilla',
+               image_url='img/mozorg/diversity/2021/card-images/pridezilla.png',
+               )}}
+               {{ card(
+               title='WoMoz',
+               ga_title='WoMoz',
+               class='has-modal',
+               attributes='data-modal-id="womoz"',
+               aspect_ratio='mzp-has-aspect-16-9',
+               link_url='#womoz',
+               image_url='img/mozorg/diversity/2021/card-images/womoz.png',
+               )}}
+            </div>
+            <h4>Celebratory months</h4>
+            <p>Mozillians celebrate and acknowledge the cultural diversity and heritages that form the tapestry of our organization. Throughout the year during celebratory awareness months and days, our MRGs, in concert with our centralized Diversity and Inclusion team, curate guides that take participants on a unique learning journey to understand different cultures and experiences. Our celebrations typically feature learning resources, custom Zoom expressions, co-created playlists for internal meetings and personal use, cooking classes, dance classes, and family-friendly fun.</p>
+            <div class="mzp-l-card-third">
+               {{ card(
+               title='Black history month',
+               ga_title='Black history month',
+               tag_label='Feb’21: Celebrating black history month',
+               class='has-modal',
+               attributes='data-modal-id="black-history-month"',
+               aspect_ratio='mzp-has-aspect-16-9',
+               link_url='#black-history-month',
+               image_url='img/mozorg/diversity/2021/card-images/bhm-xavier.png',
+               )}}
+               {{ card(
+               title='Women’s history month',
+               ga_title='Women’s history month',
+               tag_label='Mar’21: Celebrating women',
+               class='has-modal',
+               attributes='data-modal-id="womens-history-month"',
+               aspect_ratio='mzp-has-aspect-16-9',
+               link_url='#womens-history-month',
+               image_url='img/mozorg/diversity/2021/card-images/whm-leslie-and-jean.jpg',
+               )}}
+               {{ card(
+               title='AAPI Month',
+               ga_title='AAPI Month',
+               tag_label='May’21: Asian Pacific American heritage month, and beyond',
+               class='has-modal',
+               attributes='data-modal-id="aapi-month"',
+               aspect_ratio='mzp-has-aspect-16-9',
+               link_url='#aapi-month',
+               image_url='img/mozorg/diversity/2021/card-images/api-panel.png',
+               )}}
+            </div>
+            <div class="mzp-l-card-third">
+               {{ card(
+               title='Pride month',
+               ga_title='Pride month',
+               tag_label='Jun’21: Proud at Mozilla',
+               class='has-modal',
+               attributes='data-modal-id="pride-month"',
+               aspect_ratio='mzp-has-aspect-16-9',
+               link_url='#pride-month',
+               image_url='img/mozorg/diversity/2021/card-images/pride2021.png',
+               )}}
+               {{ card(
+               title='Hispanic heritage month',
+               ga_title='Hispanic heritage month',
+               tag_label='Sept’21 - Oct’21: Celebrating Latinx heritage',
+               class='has-modal',
+               attributes='data-modal-id="hispanic-month"',
+               aspect_ratio='mzp-has-aspect-16-9',
+               link_url='#hispanic-month',
+               image_url='img/mozorg/diversity/2021/card-images/hispanic-heritage-month.png',
+               )}}
+               {{ card(
+               title='Holidays, awareness days, and acknowledgements',
+               ga_title='Holidays, awareness days, and acknowledgements',
+               tag_label='Holidays and awareness',
+               class='has-modal',
+               attributes='data-modal-id="holidays-and-awareness"',
+               aspect_ratio='mzp-has-aspect-16-9',
+               link_url='#holidays-and-awareness',
+               image_url='img/mozorg/diversity/2021/card-images/hispanic-heritage-month.png',
+               )}}
+            </div>
+         </div>
+         <div class="c-section-wrapper">
+            <h3><span class="highlight black">Learning and development</span></h3>
+            <p>We launched a series of coaching and professional development classes to support employee growth and create safe spaces for learning for members of MRGs and Allies.</p>
+            <h4>Career coaching & development programs</h4>
+            <p>We increased our professional development offerings and provided participants with the option to join learning pods with members of our affinity groups and allies. We also launched a learning series for WoMoz members that focused on strengths, values and passion, and personal brand. Each course consisted of four one-hour sessions where participants worked in group settings with other WoMoz members and two expert facilitators.</p>
+         </div>
+         <div class="c-section-wrapper">
+            <h3><span class="highlight black">Creating Avenues for Inclusion and Allyship (RJAAG)</span></h3>
+            <p>Allyship is a critical feature of an organization striving to advance a culture of inclusion. Allies can shift culture and transform organizations.</p>
+            <div class="mzp-l-card-hero">
+               {{ card(
+               title='Racial Justice Ally Action Group',
+               ga_title='Racial Justice Ally Action Group',
+               class='has-modal mzp-c-card-large',
+               attributes='data-modal-id="rjaag"',
+               aspect_ratio='mzp-has-aspect-16-9',
+               link_url='#rjaag',
+               image_url='img/mozorg/diversity/2021/card-images/hispanic-heritage-month.png',
+               )}}
+               {{ card(
+               title='Inclusion Champions Pilot Program',
+               ga_title='Inclusion Champions Pilot Program',
+               class='has-modal',
+               attributes='data-modal-id="inclusion-champions"',
+               aspect_ratio='mzp-has-aspect-16-9',
+               link_url='#inclusion-champions',
+               image_url='img/mozorg/diversity/2021/card-images/inclusion-champions.png',
+               )}}
+               {{ card(
+               title='Global DEI Council',
+               ga_title='Global DEI Council',
+               class='has-modal',
+               attributes='data-modal-id="dei-council"',
+               aspect_ratio='mzp-has-aspect-16-9',
+               link_url='#dei-council',
+               image_url='img/mozorg/diversity/2021/card-images/zoom-group-photo.png',
+               )}}
+               {{ card(
+               title='Gather@',
+               ga_title='Gather@',
+               class='has-modal',
+               attributes='data-modal-id="gather-at"',
+               aspect_ratio='mzp-has-aspect-16-9',
+               link_url='#gather-at',
+               image_url='img/mozorg/diversity/2021/card-images/gather-at-moz.png',
+               )}}
+               {{ card(
+               title='MoFo’s Racial Equity and Belonging Audit',
+               ga_title='Mozilla Foundation’s Racial Equity and Belonging Audit',
+               class='has-modal',
+               attributes='data-modal-id="mofo-reba"',
+               aspect_ratio='mzp-has-aspect-16-9',
+               link_url='#mofo-reba',
+               image_url='img/mozorg/diversity/2021/card-images/mmg-mofo.png',
+               )}}
+            </div>
+         </div>
+         <div class="c-section-wrapper">
+            <h3><span class="highlight black">Wellness</span></h3>
+            <p><strong>“At Mozilla, the idea of a global week off came about due to the popularity of the days off the company began offering once a month in 2021 as a way to fight burnout and fatigue among its more than 700 employees.” - <a href="https://qz.com/work/2016593/linkedin-mozilla-are-fighting-burnout-with-company-vacation-days/" target="_blank" rel="external noopener">The case for a week-long, company-wide vacation, Quartz</a></strong></p>
+            <p>
+               In 2021, as the pandemic continued on, the “great resignation” began, and a general feeling of exhaustion set in. Continuing wellness days was a clear necessity and we had an opportunity to raise the bar. In addition to offering one wellness day each month, the People and leadership teams set their sights on a wellness week. Instead of the annual in-person All Hands, we identified one week in July for company-wide paid time off. The response from Mozilla employees was overwhelmingly positive; employees cited the program as a clear indication that Mozilla cares about them.
+            <ul class="mzp-u-list-styled">
+               <li><a href="https://www.forbes.com/sites/jackkelly/2021/07/27/companies-are-giving-workers-a-free-week-off-to-improve-morale-mental-health-and-burnout/?sh=1c57c74f2156" target="_blank" rel="external noopener">Companies Are Giving Workers A Free Week Off To Improve Morale, Mental Health And Burnout, Forbes | 7.27.21</a></li>
+               <li><a href="https://www.washingtonpost.com/business/2021/06/28/employee-burnout-corporate-america/" target="_blank" rel="external noopener">America’s workers are exhausted and burned out — and some employers are taking notice, Washington Post | 6.29.2021</a></li>
+            </ul>
+            </p>
+            <p>
+               At the Mozilla Foundation, a 3-day weekend policy, known as “Summer Fridays” was instituted in 2020. This policy was originally designed to address the stress and disruptions caused by COVID-19. Feedback from staff indicated there were significant benefits to work and home life and the policy was expanded in 2021 to include 9 Fridays over July and August.
+            </p>
+         </div>
       </div>
-    </article>
-  </div>
+   </section>
+   <!-- Modal content -->
+   <div class="mzp-l-content js-modal-content">
+      <!-- Outreachy -->
+      <article data-modal-parent="outreachy-program" id="outreachy-program" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+         <div class="mzp-c-card-feature-media-wrapper">
+            <div class="mzp-c-card-feature-media">
+               {{ image(url='img/mozorg/diversity/2021/card-images/conservancy.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+            </div>
+         </div>
+         <div class="mzp-c-card-feature-content">
+            <div class="mzp-c-card-feature-content-container">
+               <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+               <h2 class="mzp-c-card-feature-title"><span class="highlight green">Outreachy</span></h2>
+               <p class="mzp-c-card-feature-desc">Since 2013, Mozilla has participated in the Outreachy program, which aims to increase participation from underrepresented groups in free and open-source software. All Outreachy participants work remotely with their Mozilla mentors, allowing for a geographically diverse group of interns. Round 23 was hosted from May through August 2021, and we recently welcomed Round 24 participants for the December 2021 through March 2022 cohort, with interns hailing from Australia, Germany, Nigeria, and Pakistan.</p>
+            </div>
+         </div>
+      </article>
+      <!-- Virtual career fairs -->
+      <article data-modal-parent="virtual-career-fair" id="virtual-career-fair" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+         <div class="mzp-c-card-feature-media-wrapper">
+            <div class="mzp-c-card-feature-media">
+               {{ image(url='img/mozorg/diversity/2021/card-images/refactor-tech.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+            </div>
+         </div>
+         <div class="mzp-c-card-feature-content">
+            <div class="mzp-c-card-feature-content-container">
+               <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+               <h2 class="mzp-c-card-feature-title"><span class="highlight green">Outreachy</span></h2>
+               <p class="mzp-c-card-feature-desc">Mozilla engaged in a few regional or discipline-specific virtual hiring events, including REFACTR.TECH, the AUC Data Science Symposium, and Blacks in Technology x Techqueria Career Fair. We found the virtual conferences were a hit with Mozillians. Mozilla staff were able to diversify their own professional networks while connecting candidates to open positions.</p>
+            </div>
+         </div>
+      </article>
+      <!-- Afrozilla -->
+      <article data-modal-parent="afrozilla" id="afrozilla" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+         <div class="mzp-c-card-feature-media-wrapper">
+            <div class="mzp-c-card-feature-media">
+               {{ image(url='img/mozorg/diversity/2021/card-images/afrozilla.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+            </div>
+         </div>
+         <div class="mzp-c-card-feature-content">
+            <div class="mzp-c-card-feature-content-container">
+               <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+               <h2 class="mzp-c-card-feature-title"><span class="highlight green">Afrozilla</span></h2>
+               <p class="mzp-c-card-feature-desc">Mozilla Channel Marketing Manager Tina Rattliff shares her experience as an Afrozillian — and her hopes for the future of the group.</p>
+               <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://blog.mozilla.org/careers/afrozillians-a-resource-group-for-black-mozillians-and-allies/">Learn more</a>
+            </div>
+         </div>
+      </article>
+      <!-- Disability at Mozilla -->
+      <article data-modal-parent="disability-at-mozilla" id="disability-at-mozilla" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+         <div class="mzp-c-card-feature-media-wrapper">
+            <div class="mzp-c-card-feature-media">
+               {{ image(url='img/mozorg/diversity/2021/card-images/disability-at-mozilla.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+            </div>
+         </div>
+         <div class="mzp-c-card-feature-content">
+            <div class="mzp-c-card-feature-content-container">
+               <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+               <h2 class="mzp-c-card-feature-title"><span class="highlight green">Disability@Mozilla</span></h2>
+               <p class="mzp-c-card-feature-desc">
+                  Kim Bryant, Head of Operations for <a href="https://rally.mozilla.org" target="_blank" rel="external noopener">Mozilla Rally</a>, explains how and why she recently co-founded the group with Hillary Juma, Community Manager for <a href="https://voice.mozilla.org/" target="_blank" rel="external noopener">Common Voice</a>, and what they and their fellow members have in store for the months and years ahead.
+               </p>
+               <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://blog.mozilla.org/careers/resource-group-for-mozillians-with-disabilities/">Learn more</a>
+            </div>
+         </div>
+      </article>
+      <!-- Latin pride -->
+      <article data-modal-parent="latin-pride" id="latin-pride" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+         <div class="mzp-c-card-feature-media-wrapper">
+            <div class="mzp-c-card-feature-media">
+               {{ image(url='img/mozorg/diversity/2021/card-images/mozilla-resource-groups-latin-pride.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+            </div>
+         </div>
+         <div class="mzp-c-card-feature-content">
+            <div class="mzp-c-card-feature-content-container">
+               <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+               <h2 class="mzp-c-card-feature-title"><span class="highlight green">LatinPride</span></h2>
+               <p class="mzp-c-card-feature-desc">
+                  LatinPride member and Editor of the Mozilla Foundation’s <a href="https://2020.internethealthreport.org/" target="_blank" rel="external noopener">Internet Health Report</a> Solana Larsen explains why she got involved in the group, reflects on some of the work they’ve done so far, and shares her hopes for the future of LatinPride — and for a more diverse, inclusive Mozilla.
+               </p>
+               <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://blog.mozilla.org/careers/latin-pride-a-resource-group-for-latinx-mozillians-and-allies/">Learn more</a>
+            </div>
+         </div>
+      </article>
+      <!-- MozAPI -->
+      <article data-modal-parent="moz-api" id="moz-api" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+         <div class="mzp-c-card-feature-media-wrapper">
+            <div class="mzp-c-card-feature-media">
+               {{ image(url='img/mozorg/diversity/2021/card-images/moz-api.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+            </div>
+         </div>
+         <div class="mzp-c-card-feature-content">
+            <div class="mzp-c-card-feature-content-container">
+               <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+               <h2 class="mzp-c-card-feature-title"><span class="highlight green">MozAPI</span></h2>
+               <p class="mzp-c-card-feature-desc">
+                  Senior Data Science Manager Julie Hollek explains why MozAPI is important to her, what the company does to support its goals, and what she hopes for D&I at Mozilla going forward.
+               </p>
+               <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://blog.mozilla.org/careers/mozilla-api-resource-group/">Learn more</a>
+            </div>
+         </div>
+      </article>
+      <!-- Pridezilla -->
+      <article data-modal-parent="pridezilla" id="pridezilla" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+         <div class="mzp-c-card-feature-media-wrapper">
+            <div class="mzp-c-card-feature-media">
+               {{ image(url='img/mozorg/diversity/2021/card-images/pridezilla.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+            </div>
+         </div>
+         <div class="mzp-c-card-feature-content">
+            <div class="mzp-c-card-feature-content-container">
+               <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+               <h2 class="mzp-c-card-feature-title"><span class="highlight green">Pridezilla</span></h2>
+               <p class="mzp-c-card-feature-desc">
+                  Mozilla Consumer Media Manager Damiano DeMonte shares some of the work Pridezilla is doing, how the rest of the company supports it, and his hopes for the future of the group.
+               </p>
+               <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://blog.mozilla.org/careers/pridezilla-a-resource-group-for-lgbtqia-mozillians-and-allies/">Learn more</a>
+            </div>
+         </div>
+      </article>
+      <!-- Womoz -->
+      <article data-modal-parent="womoz" id="womoz" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+         <div class="mzp-c-card-feature-media-wrapper">
+            <div class="mzp-c-card-feature-media">
+               {{ image(url='img/mozorg/diversity/2021/card-images/womoz.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+            </div>
+         </div>
+         <div class="mzp-c-card-feature-content">
+            <div class="mzp-c-card-feature-content-container">
+               <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+               <h2 class="mzp-c-card-feature-title"><span class="highlight green">WoMoz</span></h2>
+               <p class="mzp-c-card-feature-desc">
+                  Mozilla Senior Product Manager Elgin-Skye McLaren shares what she’s learned from getting involved with Women of Mozilla and other MRGs — and what she’s excited about going forward.
+               </p>
+               <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://blog.mozilla.org/careers/women-of-mozilla-resource-group/">Learn more</a>
+            </div>
+         </div>
+      </article>
+      <!-- Black history month -->
+      <article data-modal-parent="black-history-month" id="black-history-month" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+         <div class="mzp-c-card-feature-media-wrapper">
+            <div class="mzp-c-card-feature-media">
+               {{ image(url='img/mozorg/diversity/2021/card-images/bhm-xavier.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+            </div>
+         </div>
+         <div class="mzp-c-card-feature-content">
+            <div class="mzp-c-card-feature-content-container">
+               <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+               <h2 class="mzp-c-card-feature-title"><span class="highlight green">Black history month</span></h2>
+               <p class="mzp-c-card-feature-desc">
+                  Mozillians were invited to ally with the Black community during Black History Month by committing to a continuous process of learning and growth. The Afrozilla MRG curated a calendar of events featuring learning recommendations, cooking classes with a professional chef, a panel discussion titled “Not Another Black History Month,” and a playlist featuring artists from across genres and time periods. Afrozilla aimed to provide a balanced perspective that equally captured the joy, resilience, and spirit of the Black diaspora.
+               </p>
+               <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://blog.mozilla.org/careers/celebrating-black-history-month/">Learn more</a>
+            </div>
+         </div>
+      </article>
+      <!-- Women's history month -->
+      <article data-modal-parent="womens-history-month" id="womens-history-month" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+         <div class="mzp-c-card-feature-media-wrapper">
+            <div class="mzp-c-card-feature-media">
+               {{ image(url='img/mozorg/diversity/2021/card-images/whm-leslie-and-jean.jpg', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+            </div>
+         </div>
+         <div class="mzp-c-card-feature-content">
+            <div class="mzp-c-card-feature-content-container">
+               <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+               <h2 class="mzp-c-card-feature-title"><span class="highlight green">Women's history month</span></h2>
+               <p class="mzp-c-card-feature-desc">
+                  For women’s history month, women at Mozilla focused on simply getting to know each other better. We hosted fun activities, including a cardio fitness session, a jazz piano bar, and a virtual Vietnamese coffee bar experience. Executive women at Mozilla hosted candid and fun fireside chats that enabled participants to make genuine connections. Group coaching sessions were offered to WoMoz members to help them identify their strengths and create greater impact at work.
+               </p>
+               <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://blog.mozilla.org/careers/celebrating-women/">Learn more</a>
+            </div>
+         </div>
+      </article>
+      <!-- AAPI -->
+      <article data-modal-parent="aapi-month" id="aapi-month" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+         <div class="mzp-c-card-feature-media-wrapper">
+            <div class="mzp-c-card-feature-media">
+               {{ image(url='img/mozorg/diversity/2021/card-images/api-panel.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+            </div>
+         </div>
+         <div class="mzp-c-card-feature-content">
+            <div class="mzp-c-card-feature-content-container">
+               <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+               <h2 class="mzp-c-card-feature-title"><span class="highlight green">AAPI month</span></h2>
+               <p class="mzp-c-card-feature-desc">
+                  Each May, many in the U.S. recognize Asian Pacific American Heritage Month. MozAPI, Mozilla’s resource group for Asian and Pacific Islanders, held events and created resources to honor, explore, and acknowledge the breadth of experiences across Asia and the Pacific Islands. Celebrations included a music lounge featuring Filipino American artist Jessica Lousie and a cooking class on the classic Filipino dish, chicken adobo. To bring the beauty of Asian American art to our fingertips, MozAPI created a Slack-bot that showcased different pieces of art from the Asian American Art Museum. Panel discussions were held to examine the impact of the model minority myth and explore the variety of ethnicities within Asia and the Pacific Islands. A facilitated discussion was also held to contend with the surge in physical and emotional violence against people of Asian descent in the U.S.
+               </p>
+               <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://blog.mozilla.org/careers/asian-pacific-heritage-month-and-beyond/">Learn more</a>
+            </div>
+         </div>
+      </article>
+      <!-- Pride month -->
+      <article data-modal-parent="pride-month" id="pride-month" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+         <div class="mzp-c-card-feature-media-wrapper">
+            <div class="mzp-c-card-feature-media">
+               {{ image(url='img/mozorg/diversity/2021/card-images/pride2021.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+            </div>
+         </div>
+         <div class="mzp-c-card-feature-content">
+            <div class="mzp-c-card-feature-content-container">
+               <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+               <h2 class="mzp-c-card-feature-title"><span class="highlight green">Pride month</span></h2>
+               <p class="mzp-c-card-feature-desc">
+                  In 2021, LGBTQIA+ staff carefully considered how to honor Pride, and the consensus was clear: avoid anything that could be perceived as <a href="https://en.wikipedia.org/wiki/Pinkwashing_(LGBT)" target="_blank" rel="external noopener">pinkwashing</a>. Because we are committed to an internet that promotes civil discourse, human dignity, and individual expression, we didn’t want Pride to be about promoting ourselves. Instead, we focused on connecting with and celebrating one another across Mozilla. Over the course of the month, we hosted movie nights highlighting diverse experiences within the LGTBQIA+ community, provided two pronoun trainings for Mozillians, and held a panel discussion featuring LGBTQIA+ staff at Mozilla. Prominent LGBTQIA+ activists, researchers, and technologists convened for the <a href="https://foundation.mozilla.org/en/blog/pride-the-internet-and-the-pandemic-a-june-22-virtual-panel/" target="_blank" rel="external noopener">Dialogues & Debates</a> speaker series. We discussed how the internet has intersected with their careers and community — especially during the last year, in which the pandemic forced so much of life online. We also hosted a Q&A with author of The Queer Bible, Jack Guinness, where he shared his inspiration for the book (see Jack’s <a href="https://getpocket.com/collections/my-joy-list-jack-guinness" target="_blank" rel="external noopener">Pocket collection</a> featuring queer creators). With Pride parades reduced or eliminated due to COVID-19, our Hubs team created a first of its kind internal virtual reality <a href="https://hubs.mozilla.com/h43gdBA/mozilla-pride-fest-2021" target="_blank" rel="external noopener">Mozilla Pride parade</a>.
+               </p>
+               <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://blog.mozilla.org/careers/proud-at-mozilla/">Learn more</a>
+            </div>
+         </div>
+      </article>
+      <!-- Hispanic heritage month -->
+      <article data-modal-parent="hispanic-month" id="hispanic-month" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+         <div class="mzp-c-card-feature-media-wrapper">
+            <div class="mzp-c-card-feature-media">
+               {{ image(url='img/mozorg/diversity/2021/card-images/hispanic-heritage-month-2.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+            </div>
+         </div>
+         <div class="mzp-c-card-feature-content">
+            <div class="mzp-c-card-feature-content-container">
+               <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+               <h2 class="mzp-c-card-feature-title"><span class="highlight green">Hispanic heritage month</span></h2>
+               <p class="mzp-c-card-feature-desc">
+                  In 2021, the LatinPride MRG chose to honor Hispanic Heritage Month by exploring themes around language and identity. Through the cultural guide we designed, we examined the many ways our community members may choose to identify (Tejano, Afro-Latino, Hispanic, Taíno, Chicano, Latinx, Indigenous) and the implications of growing up either speaking Spanish or not. Mozilla employees with diverse Hispanic heritage and backgrounds led a panel discussion to explore how language shaped their collective experiences. The month also featured over 30 events across various regions including a cooking class in Mexico City, Spanish language lessons, Tango lessons, and an immersive tour of Hispanic and Latinx art.
+               </p>
+               <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://blog.mozilla.org/careers/proud-at-mozilla/">Learn more</a>
+            </div>
+         </div>
+      </article>
+      <!-- Holidays and awareness days -->
+      <article data-modal-parent="holidays-and-awareness" id="holidays-and-awareness" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+         <div class="mzp-c-card-feature-media-wrapper">
+            <div class="mzp-c-card-feature-media">
+               {{ image(url='img/mozorg/diversity/2021/card-images/hispanic-heritage-month-2.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+            </div>
+         </div>
+         <div class="mzp-c-card-feature-content">
+            <div class="mzp-c-card-feature-content-container">
+               <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+               <h2 class="mzp-c-card-feature-title"><span class="highlight green">Holidays, awareness days, and acknowledgements</span></h2>
+               <p class="mzp-c-card-feature-desc">
+               <ul class="mzp-u-list-styled">
+                  <li class="bold-item">
+                     MLK Day | Jan 18, 2021
+                     <ul class="mzp-u-list-styled">
+                        <li>For MLK Day 2021, Mozilla provided several publicly available virtual events and resources to increase awareness around Dr. King’s vision and mission.</li>
+                     </ul>
+                  </li>
+                  <li class="bold-item">
+                     National Day for Truth and Reconciliation (Canada) | Sept 30, 2021
+                     <ul class="mzp-u-list-styled">
+                        <li>Sept 30, 2021 marked the first National Day for For Truth and Reconciliation in Canada. Mozilla employees in Canada shared resources for learning about, supporting, and honoring the survivors of the residential school systems. </li>
+                     </ul>
+                  </li>
+                  <li class="bold-item">
+                     Spirit Day | Oct 21, 2021
+                     <ul class="mzp-u-list-styled">
+                        <li>LGBTQIA+ youth disproportionately face bullying and harassment because of their identities. Each year, millions go purple for Spirit Day to support LGBTQIA+ youth in a united stand against bullying. Mozilla employees were invited to wear purple to spread awareness of LGBTQIA+ human rights.</li>
+                     </ul>
+                  </li>
+                  <li class="bold-item">
+                     Intersex Awareness Day | Oct 26, 2021
+                     <ul class="mzp-u-list-styled">
+                        <li>Mozilla recognized Intersex Awareness Day by welcoming stories from individuals within the intersex community and providing education and awareness to highlight human rights issues faced by intersex people.</li>
+                     </ul>
+                  </li>
+               </ul>
+               </p>
+               <a target="_blank" rel="external noopener" class="mzp-c-button mzp-t-secondary" href="https://blog.mozilla.org/careers/proud-at-mozilla/">Learn more</a>
+            </div>
+         </div>
+      </article>
+      <!-- RJAAG -->
+      <article data-modal-parent="rjaag" id="rjaag" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+         <div class="mzp-c-card-feature-media-wrapper">
+            <div class="mzp-c-card-feature-media">
+               {{ image(url='img/mozorg/diversity/2021/card-images/hispanic-heritage-month-2.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+            </div>
+         </div>
+         <div class="mzp-c-card-feature-content">
+            <div class="mzp-c-card-feature-content-container">
+               <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+               <h2 class="mzp-c-card-feature-title"><span class="highlight green">Racial Justice Ally Action Group (RJAAG)</span></h2>
+               <p class="mzp-c-card-feature-desc">
+                  We convened the second cohort of the Racial Justice Ally Action Group (RJAAG) in early 2021 with the goal of taking the recommendations from the first RJAAG and identifying which recommendations to move forward. The group chose to focus on creating a culture of allyship and identifying reliable bias reporting tools. The RJAAG helped us determine that our current tools sufficiently meet the needs of our organization but need additional process improvement. The RJAAG also played an instrumental role in helping shape and define the pilot for the Inclusion Champions program, including defining goals of the program, criteria, and review.
+               </p>
+            </div>
+         </div>
+      </article>
+      <!-- Inclusion champions -->
+      <article data-modal-parent="inclusion-champions" id="inclusion-champions" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+         <div class="mzp-c-card-feature-media-wrapper">
+            <div class="mzp-c-card-feature-media">
+               {{ image(url='img/mozorg/diversity/2021/card-images/sarah-and-jeff-inclusion-champions.jpg', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+            </div>
+         </div>
+         <div class="mzp-c-card-feature-content">
+            <div class="mzp-c-card-feature-content-container">
+               <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+               <h2 class="mzp-c-card-feature-title"><span class="highlight green">Inclusion champions</span></h2>
+               <p class="mzp-c-card-feature-desc">
+                  In 2021, Mozillians were invited to apply for the pilot <a target="_blank" rel="external noopener" href="https://blog.mozilla.org/careers/mozilla-inclusion-champions/">Inclusion Champions Program</a>. Through this immersive learning experience, we invited participants to learn critical skills for allyship to serve as change agents within the organization. Inclusion Champions spend six months in a learning cohort exploring topics related to DEI in the workplace. They participate in over 20 hours of multi-modal learning, including workshop sessions and reflection exercises. At the conclusion of the program, champions define an ally action and bring their learning to the broader Mozilla community in the form of workshops, discussion sessions, resource creation, and more.
+               </p>
+            </div>
+         </div>
+      </article>
+      <!-- DEI council -->
+      <article data-modal-parent="dei-council" id="dei-council" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+         <div class="mzp-c-card-feature-media-wrapper">
+            <div class="mzp-c-card-feature-media">
+               {{ image(url='img/mozorg/diversity/2021/card-images/zoom-group-photo.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+            </div>
+         </div>
+         <div class="mzp-c-card-feature-content">
+            <div class="mzp-c-card-feature-content-container">
+               <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+               <h2 class="mzp-c-card-feature-title"><span class="highlight green">Global DEI Council</span></h2>
+               <p class="mzp-c-card-feature-desc">
+                  In 2021, the D&I team convened the first Global DEI Council. Mozilla’s Global DEI Council (GDEIC) included over 40 members across every major business unit across Mozilla. The GDEIC served as connective tissue between DEI-related efforts happening across the organization. We held the first Global DEI Council Retreat, over four days where we explored a framework for creating inclusive cultures and grounded ourselves in a general understanding of DEI work underway at Mozilla. We examined our internal DEI-related data to gain an understanding of how we measure diversity and inclusion, explored the DEI landscape across tech to examine trends and innovative solutions, and workshopped ideas to define strategic actions for strengthening our DEI strategy.
+               </p>
+            </div>
+         </div>
+      </article>
+      <!-- Gather@ -->
+      <article data-modal-parent="gather-at" id="gather-at" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+         <div class="mzp-c-card-feature-media-wrapper">
+            <div class="mzp-c-card-feature-media">
+               {{ image(url='img/mozorg/diversity/2021/card-images/gather-at-moz.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+            </div>
+         </div>
+         <div class="mzp-c-card-feature-content">
+            <div class="mzp-c-card-feature-content-container">
+               <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+               <h2 class="mzp-c-card-feature-title"><span class="highlight green">Gather@</span></h2>
+               <p class="mzp-c-card-feature-desc">
+                  In 2021, Mozilla began hosting Gather@ sessions. These facilitated discussions were designed to provide Mozillians with an opportunity to engage in deep listening and sharing following the onslaught of white supremacist violence, police brutality, and mass shootings occurring across the United States. These sessions gave us an opportunity to collectively process some of the traumatic and triggering events happening around us. Mozillians were invited to join if they were impacted or wanted to show support as allies.
+               </p>
+            </div>
+         </div>
+      </article>
+      <!-- MoFo REBA -->
+      <article data-modal-parent="mofo-reba" id="mofo-reba" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
+         <div class="mzp-c-card-feature-media-wrapper">
+            <div class="mzp-c-card-feature-media">
+               {{ image(url='img/mozorg/diversity/2021/card-images/mmg-mofo.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+            </div>
+         </div>
+         <div class="mzp-c-card-feature-content">
+            <div class="mzp-c-card-feature-content-container">
+               <img src="{{ static('img/foundation/annualreport/2019/modal-dots-2.svg') }}" alt="">
+               <h2 class="mzp-c-card-feature-title"><span class="highlight green">Mozilla Foundation’s Racial Equity and Belonging Audit</span></h2>
+               <p class="mzp-c-card-feature-desc">
+                  In 2021, and in partnership with <a href="https://www.mmg.earth/about-us/" target="_blank" rel="external noopener">MMG</a> consulting firm, the Mozilla Foundation completed its first Racial Equity and Belonging Audit (REBA). Through interviews, policy and process review, surveys, workshops, and a collaborative decision-making process with key stakeholders, we aligned on four priority focus areas to guide our efforts in becoming a more equitable, inclusive force in the world:
+               <ol class="mzp-u-list-styled">
+                  <li>Well-being of Women of Color and the state of racial justice</li>
+                  <li>Governance structure for accountability and trust</li>
+                  <li>Equity in employment and compensation</li>
+                  <li>Addressing conflict, confronting harm, seeking repair.</li>
+               </ol>
+               </p>
+               <p class="mzp-c-card-feature-desc">
+                  The Foundation is hiring a Diversity, Equity and Inclusion Lead to report to the Executive Director, and will invest in putting the REBA into action at multiple levels:
+               <ul class="mzp-u-list-styled">
+                  <li><span class="bold-item">Organizational:</span> creating a culture and structure that reflects a commitment to equity and belonging.</li>
+                  <li><span class="bold-item">Programmatic:</span> expressing this commitment across all the work we do, from our funding to our events to our campaigns.</li>
+                  <li><span class="bold-item">Personal:</span> situating ourselves -- and challenging ourselves -- to be a part of this collective transformation. </li>
+               </ul>
+               </p>
+            </div>
+         </div>
+      </article>
+   </div>
 </main>
+
+
 
 <div class="mzp-u-modal-content"></div>
 
