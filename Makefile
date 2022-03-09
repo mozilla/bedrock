@@ -156,7 +156,7 @@ check-requirements: .docker-build-pull
 ######################################################
 
 install-local-python-deps:
-	pip install -r requirements/prod.txt
+	# Dev requirements are a superset of prod requirements
 	pip install -r requirements/dev.txt
 
 .PHONY: all clean build pull docs livedocs build-docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod build-prod test-cdn compile-requirements check-requirements install-local-python-deps

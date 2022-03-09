@@ -1,5 +1,4 @@
-# Use the requirements/prod.txt file for constraints, to ensure compatibility
--c ../prod.txt
+-r prod.txt
 
 black==21.12b0
 bpython==0.22.1
