@@ -492,7 +492,7 @@ class TestNewsletterSubscribe(TestCase):
     def test_returns_ajax_errors(self, basket_mock):
         """Incomplete data should return specific errors in JSON"""
         data = {
-            "newsletters": "flintstones",
+            "newsletters": ["flintstones"],
             "email": "fred@example.com",
             "fmt": "H",
         }
@@ -510,7 +510,7 @@ class TestNewsletterSubscribe(TestCase):
         Bug 1116754
         """
         data = {
-            "newsletters": "flintstones",
+            "newsletters": ["flintstones"],
             "email": "fred@example.com",
             "fmt": "H",
             "privacy": True,
@@ -529,7 +529,7 @@ class TestNewsletterSubscribe(TestCase):
     def test_no_source_url_use_referrer(self, basket_mock):
         """Should set source_url to referrer if not sent"""
         data = {
-            "newsletters": "flintstones",
+            "newsletters": ["flintstones"],
             "email": "fred@example.com",
             "fmt": "H",
             "privacy": True,
@@ -544,7 +544,7 @@ class TestNewsletterSubscribe(TestCase):
     def test_use_source_url_with_referer(self, basket_mock):
         """Should use source_url even if there's a good referrer"""
         source_url = "https://example.com/bambam"
-        data = {"newsletters": "flintstones", "email": "fred@example.com", "fmt": "H", "privacy": True, "source_url": source_url}
+        data = {"newsletters": ["flintstones"], "email": "fred@example.com", "fmt": "H", "privacy": True, "source_url": source_url}
         resp = self.ajax_request(data, HTTP_REFERER=source_url + "_WILMA")
         resp_data = json.loads(resp.content)
         self.assertDictEqual(resp_data, {"success": True})
@@ -554,7 +554,7 @@ class TestNewsletterSubscribe(TestCase):
     def test_returns_ajax_success(self, basket_mock):
         """Good post should return success JSON"""
         data = {
-            "newsletters": "flintstones",
+            "newsletters": ["flintstones"],
             "email": "fred@example.com",
             "fmt": "H",
             "privacy": True,
@@ -569,7 +569,7 @@ class TestNewsletterSubscribe(TestCase):
         """Invalid email AJAX post should return proper error."""
         subscribe_mock.side_effect = basket.BasketException(code=basket.errors.BASKET_INVALID_EMAIL)
         data = {
-            "newsletters": "flintstones",
+            "newsletters": ["flintstones"],
             "email": "fred@example.com",
             "fmt": "H",
             "privacy": True,
@@ -584,7 +584,7 @@ class TestNewsletterSubscribe(TestCase):
         """Basket error AJAX post should return proper error."""
         subscribe_mock.side_effect = basket.BasketException(code=basket.errors.BASKET_NETWORK_FAILURE)
         data = {
-            "newsletters": "flintstones",
+            "newsletters": ["flintstones"],
             "email": "fred@example.com",
             "fmt": "H",
             "privacy": True,
@@ -605,7 +605,7 @@ class TestNewsletterSubscribe(TestCase):
     def test_returns_success(self, basket_mock):
         """Good non-ajax post should return thank-you page."""
         data = {
-            "newsletters": "flintstones",
+            "newsletters": ["flintstones"],
             "email": "fred@example.com",
             "fmt": "H",
             "privacy": True,
@@ -627,7 +627,7 @@ class TestNewsletterSubscribe(TestCase):
 
         """
         data = {
-            "newsletters": "fl!ntstones",
+            "newsletters": ["!nv@lid"],
             "email": "fred@example.com",
             "fmt": "H",
             "privacy": True,
@@ -635,7 +635,7 @@ class TestNewsletterSubscribe(TestCase):
         resp = self.request(data=data)
         doc = pq(resp.content)
         self.assertTrue(doc("#newsletter-form"))
-        self.assertTrue(doc('input[value="mozilla-and-you"]')[0].checked)
+        self.assertFalse(doc('input[value="mozilla-and-you"]')[0].checked)
         self.assertFalse(doc("#email-form"))
         # Note: An invalid newsletter isn't shown as an error since these are
         # chosen from a checkbox or hidden field and isn't something the user
@@ -646,14 +646,14 @@ class TestNewsletterSubscribe(TestCase):
     def test_returns_failure__missing_privacy(self, basket_mock):
         """Test non-ajax POST with missing privacy acceptance."""
         data = {
-            "newsletters": "flintstones",
+            "newsletters": ["flintstones"],
             "email": "fred@example.com",
             "fmt": "H",
         }
         resp = self.request(data=data)
         doc = pq(resp.content)
         self.assertTrue(doc("#newsletter-form"))
-        self.assertTrue(doc('input[value="mozilla-and-you"]')[0].checked)
+        self.assertTrue(doc('input[value="flintstones"]')[0].checked)
         self.assertFalse(doc("#email-form"))
         self.assertIn("privacy", doc("#newsletter-errors").text())
         self.assertFalse(basket_mock.subscribe.called)

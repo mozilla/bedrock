@@ -171,7 +171,7 @@ class TestNewsletterFooterForm(TestCase):
             "privacy": True,
             "fmt": "H",
             "source_url": "https://accounts.firefox.com",
-            "newsletters": self.newsletter_name,
+            "newsletters": [self.newsletter_name],
         }
         form = NewsletterFooterForm(self.newsletter_name, locale="en-US", data=data.copy())
         self.assertTrue(form.is_valid(), form.errors)
@@ -190,7 +190,7 @@ class TestNewsletterFooterForm(TestCase):
             "privacy": True,
             "fmt": "H",
             "source_url": "about:devtools?dude=abiding",
-            "newsletters": self.newsletter_name,
+            "newsletters": [self.newsletter_name],
         }
         form = NewsletterFooterForm(self.newsletter_name, locale="en-US", data=data.copy())
         self.assertTrue(form.is_valid(), form.errors)
@@ -207,7 +207,7 @@ class TestNewsletterFooterForm(TestCase):
             "privacy": True,
             "fmt": "H",
             "source_url": "about:devtools" * 20,
-            "newsletters": self.newsletter_name,
+            "newsletters": [self.newsletter_name],
         }
         form = NewsletterFooterForm(self.newsletter_name, locale="en-US", data=data.copy())
         self.assertTrue(form.is_valid(), form.errors)
@@ -257,7 +257,7 @@ class TestNewsletterFooterForm(TestCase):
             "email": "foo@example.com",
             "privacy": True,
             "fmt": "H",
-            "newsletters": self.newsletter_name,
+            "newsletters": [self.newsletter_name],
         }
         form = NewsletterFooterForm(self.newsletter_name, locale="en-US", data=data.copy())
         self.assertTrue(form.is_valid(), form.errors)
@@ -272,7 +272,7 @@ class TestNewsletterFooterForm(TestCase):
             "email": "foo@example.com",
             "privacy": False,
             "fmt": "H",
-            "newsletters": self.newsletter_name,
+            "newsletters": [self.newsletter_name],
         }
         form = NewsletterFooterForm(self.newsletter_name, locale="en-US", data=data)
         self.assertFalse(form.is_valid())
@@ -289,7 +289,7 @@ class TestNewsletterFooterForm(TestCase):
             "lang": "fr",
             "privacy": True,
             "fmt": "H",
-            "newsletters": "",
+            "newsletters": [],
         }
         form = NewsletterFooterForm("", locale="en-US", data=data.copy())
         self.assertFalse(form.is_valid())
@@ -302,16 +302,16 @@ class TestNewsletterFooterForm(TestCase):
             "lang": "fr",
             "privacy": True,
             "fmt": "H",
-            "newsletters": invalid_newsletter,
+            "newsletters": [invalid_newsletter],
         }
         form = NewsletterFooterForm(invalid_newsletter, locale="en-US", data=data.copy())
         self.assertFalse(form.is_valid())
         self.assertIn("newsletters", form.errors)
-        self.assertEqual(form.errors["newsletters"], ["Invalid Newsletter"])
+        self.assertTrue(form.errors["newsletters"][0].startswith("Select a valid choice."))
 
     def test_multiple_newsletters(self):
-        """Should allow to subscribe to multiple newsletters at a time."""
-        newsletters = "mozilla-and-you,beta"
+        newsletters = ["mozilla-and-you", "beta"]
+        spacey_newsletters = [f" {n} " for n in newsletters]
         data = {
             "email": "dude@example.com",
             "lang": "en",
@@ -320,10 +320,10 @@ class TestNewsletterFooterForm(TestCase):
             "newsletters": newsletters,
         }
         form = NewsletterFooterForm(newsletters, "en-US", data=data.copy())
-        self.assertTrue(form.is_valid())
+        self.assertTrue(form.is_valid(), form.errors)
         self.assertEqual(form.cleaned_data["newsletters"], newsletters)
 
         # whitespace shouldn't matter
-        form = NewsletterFooterForm("mozilla-and-you , beta ", "en-US", data=data.copy())
+        form = NewsletterFooterForm(spacey_newsletters, "en-US", data=data.copy())
         self.assertTrue(form.is_valid())
         self.assertEqual(form.cleaned_data["newsletters"], newsletters)

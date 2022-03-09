@@ -11,8 +11,8 @@ Newsletters
 Bedrock includes support for signing up for and managing subscriptions and
 preferences for Mozilla newsletters.
 
-By default, every page's footer has a form to signup for the default newsletter,
-"Firefox & You".
+By default, every page's footer has a form to signup for the default newsletters,
+"Mozilla Foundation" and "Firefox & You".
 
 Features
 --------
@@ -129,14 +129,23 @@ The default is:
 
 which gives a signup for Firefox & You.  You can pass parameters to the
 macro ``email_newsletter_form`` to change that.  For example, the
-``newsletter_id`` parameter controls which newsletter is signed up for,
+``newsletters`` parameter controls which newsletter is signed up for,
 and ``title`` can override the text:
 
 .. code-block:: jinja
 
     {% block email_form %}
         {{ email_newsletter_form('app-dev',
-                                 _('Sign up for more news about the Firefox Marketplace.')) }})
+                                 _('Sign up for more news about the Firefox Marketplace.')) }}
+    {% endblock %}
+
+The `newsletters` parameter, the first positional argument, can be either a list
+of newsletter IDs or a comma separated list of newsletters IDs:
+
+.. code-block:: jinja
+
+    {% block email_form %}
+        {{ email_newsletter_form('mozilla-foundation, mozilla-and-you') }}
     {% endblock %}
 
 Pages can control whether country or language fields are included by passing
