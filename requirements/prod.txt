@@ -207,9 +207,9 @@ django-mozilla-product-details==1.0.1 \
     --hash=sha256:484b61deb99663c131c7e386bc683c83cab612777055b12588e91844a1508a04 \
     --hash=sha256:ef25e5e9bce4bfe6c7ba9c87245f5be93c0ac3fc7f1d60afd459e55e9dcc8bc7
     # via -r requirements/prod.in
-django-watchman==1.2.0 \
-    --hash=sha256:6c0b8889456ed644fcfe2f7c3294cb4ef8568a85772b7f95842e2d8c9b4bbff5 \
-    --hash=sha256:c38830c58984b8eb29db30a3e332968d1c7e235dee3f5c0a907d8d79a37a3125
+django-watchman==1.3.0 \
+    --hash=sha256:33b5fc734d689b83cb96fc17beda624ae2955f4cede0856897d990c363eac962 \
+    --hash=sha256:5f04300bd7fbdd63b8a883b2730ed1e4d9b0f9991133b33a1281134b81f466eb
     # via -r requirements/prod.in
 docutils==0.17.1 \
     --hash=sha256:686577d2e4c32380bb50cbb22f575ed742d58168cee37e99117a854bcd88f125 \
