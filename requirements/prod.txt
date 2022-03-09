@@ -168,9 +168,9 @@ django==3.2.12 \
     #   django-memoize
     #   django-mozilla-product-details
     #   django-watchman
-django-allow-cidr==0.3.1 \
-    --hash=sha256:d9a3b22c14e91c26ddd010c278ddf7e2c69a5421c862a3a3cd448ae57fd833e8 \
-    --hash=sha256:e8708c0511a78b80d9b74f718ee46685a1425e6d3520143bd00c773fdca56cc7
+django-allow-cidr==0.4.0 \
+    --hash=sha256:9f6c3ffbad47f0e722fb208bc857e10153054d6ef02c462047fa4815671adc57 \
+    --hash=sha256:b9758a7c9626fa2b00735ce0e3f45b46471a2bb7c21edc7cee1d52ec04e63788
     # via -r requirements/prod.in
 django-cors-headers==3.11.0 \
     --hash=sha256:a22be2befd4069c4fc174f11cf067351df5c061a3a5f94a01650b4e928b0372b \
