@@ -553,8 +553,8 @@ pyyaml==6.0 \
 qrcode==7.3.1 \
     --hash=sha256:375a6ff240ca9bd41adc070428b5dfc1dcfbb0f2507f1ac848f6cded38956578
     # via -r requirements/prod.in
-querystringsafe-base64==1.1.1 \
-    --hash=sha256:bad9187c0406456020ee354be7f51d2e0dfc262dadde0449cbdd1fd78d437eed
+querystringsafe-base64==1.2.0 \
+    --hash=sha256:850913d05558d31a6bdb90711c3ef5ca855d8e1730bf8bc0ca2bcc1ef273c130
     # via -r requirements/prod.in
 requests==2.27.1 \
     --hash=sha256:68d7c56fd5a8999887728ef304a6d12edc7be74f1cfa47714fc8b414525c9a61 \
