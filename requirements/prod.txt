@@ -4,9 +4,9 @@
 #
 #    $ make compile-requirements
 #
-apscheduler==3.8.1 \
-    --hash=sha256:5cf344ebcfbdaa48ae178c029c055cec7bc7a4a47c21e315e4d1f08bd35f2355 \
-    --hash=sha256:c22cb14b411a31435eb2c530dfbbec948ac63015b517087c7978adb61b574865
+apscheduler==3.9.1 \
+    --hash=sha256:65e6574b6395498d371d045f2a8a7e4f7d50c6ad21ef7313d15b1c7cf20df1e3 \
+    --hash=sha256:ddc25a0ddd899de44d7f451f4375fb971887e65af51e41e5dcf681f59b8b2c9a
     # via -r requirements/prod.in
 asgiref==3.5.0 \
     --hash=sha256:2f8abc20f7248433085eda803936d98992f1343ddb022065779f37c5da0181d0 \
