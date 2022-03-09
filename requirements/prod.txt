@@ -7,7 +7,7 @@
 apscheduler==3.8.1 \
     --hash=sha256:5cf344ebcfbdaa48ae178c029c055cec7bc7a4a47c21e315e4d1f08bd35f2355 \
     --hash=sha256:c22cb14b411a31435eb2c530dfbbec948ac63015b517087c7978adb61b574865
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 asgiref==3.5.0 \
     --hash=sha256:2f8abc20f7248433085eda803936d98992f1343ddb022065779f37c5da0181d0 \
     --hash=sha256:88d59c13d634dcffe0510be048210188edd79aeccb6a6c9028cdad6f31d730a9
@@ -23,23 +23,23 @@ babel==2.9.1 \
 babis==0.2.4 \
     --hash=sha256:a901e8c27a47dfe22077f60c3f2daf324909a9f3f9838ecfa4100af346703fff \
     --hash=sha256:c33bc3c754a0bacfe09179b5c4d1a2a3b5c6ddd453cd1050251fcbf9c0bd1473
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 basket-client==1.0.0 \
     --hash=sha256:f9f9ff4870cc1d171ff9f00a8d968336d0e74178f5ac1612bc85be39a3f0cc2c \
     --hash=sha256:fee512c8deabde53aa33b08fa34a992de3085e781be192c4120adb086d0d20c1
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 beautifulsoup4==4.10.0 \
     --hash=sha256:9a315ce70049920ea4572a4055bc4bd700c940521d36fc858205ad4fcde149bf \
     --hash=sha256:c23ad23c521d818955a4151a67d81580319d4bf548d3d49f4223ae041ff98891
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 bleach==4.1.0 \
     --hash=sha256:0900d8b37eba61a802ee40ac0061f8c2b5dee29c1927dd1d233e075ebf5a71da \
     --hash=sha256:4d2651ab93271d1129ac9cbc679f524565cc8a1b791909c4a51eac4446a15994
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 boto3==1.20.40 \
     --hash=sha256:66aef9a6d8cad393f69166112ba49e14e2c6766f9278c96134101314a9af2992 \
     --hash=sha256:cfe85589e4a0a997c7b9ae7432400b03fa6fa5fea29fdc48db3099a903b76998
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 botocore==1.23.54 \
     --hash=sha256:06ae8076c4dcf3d72bec4d37e5f2dce4a92a18a8cdaa3bfaa6e3b7b5e30a8d7e \
     --hash=sha256:4bb9ba16cccee5f5a2602049bc3e2db6865346b2550667f3013bdf33b0a01ceb
@@ -109,7 +109,7 @@ cffi==1.15.0 \
 chardet==4.0.0 \
     --hash=sha256:0d6f53a15db4120f2b08c94f11e7d93d2c911ee118b6b30a04ec3ee8310179fa \
     --hash=sha256:f864054d66fd9118f2e67044ac8981a54775ec5b67aed0441892edb553d21da5
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 charset-normalizer==2.0.12 \
     --hash=sha256:2857e29ff0d34db842cd7ca3230549d1a697f96ee6d3fb071cfa6c7393832597 \
     --hash=sha256:6881edbebdb17b39b4eaaa821b438bf6eddffb4468cf344f09f89def34a8b1df
@@ -117,14 +117,14 @@ charset-normalizer==2.0.12 \
 commonware==0.6.0 \
     --hash=sha256:0e9520986e292f2bf8cdf80b32f21ef01e4058fd7baa61d2d282d21ed7085b1f \
     --hash=sha256:f596962fd11bc53b5453ffa766dc99f297895021946096d3e6b4826f9ae075ea
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 contentful==1.13.1 \
     --hash=sha256:5d0a2ac8fe2d8fb1e8d5295a65228cc785a14e2fd21a9231dd0299894a384d4c
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 contextlib2==0.5.4 \
     --hash=sha256:399f659f2a8b5d5d529f132e1136fc404fbbc28e34e4618c5c92bd595be9b162 \
     --hash=sha256:710626cde569f51a87f216ff757fe60f5cd13ae8f8114706590510cd5649ce88
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 cryptography==36.0.1 \
     --hash=sha256:0a817b961b46894c5ca8a66b599c745b9a3d9f822725221f0e0fe49dc043a3a3 \
     --hash=sha256:2d87cdcb378d3cfed944dac30596da1968f88fb96d7fc34fdae30a99054b2e31 \
@@ -153,12 +153,12 @@ deprecated==1.2.13 \
     # via pygithub
 dirsync==2.2.5 \
     --hash=sha256:1e3a4cd2b639a2eae5afc03c2b8a003fc43d56a0da5114db579386da9a14a8be
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 django==3.2.12 \
     --hash=sha256:9772e6935703e59e993960832d66a614cf0233a1c5123bc6224ecc6ad69e41e2 \
     --hash=sha256:9b06c289f9ba3a8abea16c9c9505f25107809fb933676f6c891ded270039d965
     # via
-    #   -r requirements/prod.in
+    #   -r requirements/inputs/prod.in
     #   django-allow-cidr
     #   django-cors-headers
     #   django-crum
@@ -171,67 +171,67 @@ django==3.2.12 \
 django-allow-cidr==0.3.1 \
     --hash=sha256:d9a3b22c14e91c26ddd010c278ddf7e2c69a5421c862a3a3cd448ae57fd833e8 \
     --hash=sha256:e8708c0511a78b80d9b74f718ee46685a1425e6d3520143bd00c773fdca56cc7
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 django-cors-headers==3.11.0 \
     --hash=sha256:a22be2befd4069c4fc174f11cf067351df5c061a3a5f94a01650b4e928b0372b \
     --hash=sha256:eb98389bf7a2afc5d374806af4a9149697e3a6955b5a2dc2bf049f7d33647456
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 django-crum==0.7.9 \
     --hash=sha256:037cc8b822975bb1d41cd24269b59a512cc77448fadc3f34ab9a17b229b4b471 \
     --hash=sha256:65e9bc0f070a663fafc4d9e357f45fd4e6f01838b20a9e2fb7670f5706754288
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 django-csp==3.7 \
     --hash=sha256:01443a07723f9a479d498bd7bb63571aaa771e690f64bde515db6cdb76e8041a \
     --hash=sha256:01eda02ad3f10261c74131cdc0b5a6a62b7c7ad4fd017fbefb7a14776e0a9727
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 django-extensions==3.1.5 \
     --hash=sha256:28e1e1bf49f0e00307ba574d645b0af3564c981a6dfc87209d48cb98f77d0b1a \
     --hash=sha256:9238b9e016bb0009d621e05cf56ea8ce5cce9b32e91ad2026996a7377ca28069
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 django-jinja==2.10.0 \
     --hash=sha256:ae6a3fdf1ffa7a9ef6fd2f0a59c1a68c96b29f7f00f5166375658ef392f1ed32 \
     --hash=sha256:cce084eaf0be8a89f0955cde34cf33da7faaf6c68d05c076eda6fcd98481264c
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 django-jinja-markdown==1.0.1 \
     --hash=sha256:233dcde5d6895416f5613e4ca030e88f18a163e4b676e7aa815d191754f53085 \
     --hash=sha256:d41db694bbf3085b026df227428427b859478a2846b55088429e3ccc7115c0c5
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 django-jsonview==2.0.0 \
     --hash=sha256:1871983f6c7ab0bec1bad3249b06ce64c47d3bed57cd190f87e5acaf65722ebb \
     --hash=sha256:77345393f8e8bb3279b9ba9fb2db687adfa74d41feab972521545d47103d321b
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 django-memoize==2.3.1 \
     --hash=sha256:62ac4807710ecf22a7397d008d64d0f798e7230482d4b6072d916cac852a47cd
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 django-mozilla-product-details==1.0.1 \
     --hash=sha256:484b61deb99663c131c7e386bc683c83cab612777055b12588e91844a1508a04 \
     --hash=sha256:ef25e5e9bce4bfe6c7ba9c87245f5be93c0ac3fc7f1d60afd459e55e9dcc8bc7
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 django-watchman==1.2.0 \
     --hash=sha256:6c0b8889456ed644fcfe2f7c3294cb4ef8568a85772b7f95842e2d8c9b4bbff5 \
     --hash=sha256:c38830c58984b8eb29db30a3e332968d1c7e235dee3f5c0a907d8d79a37a3125
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 docutils==0.17.1 \
     --hash=sha256:686577d2e4c32380bb50cbb22f575ed742d58168cee37e99117a854bcd88f125 \
     --hash=sha256:cf316c8370a737a022b72b56874f6602acf974a37a9fba42ec2876387549fc61
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 envcat==0.1.1 \
     --hash=sha256:3659c6bad8f47cd3c2691d754a5659c1953480c066718c8a1d87367b03f11bc8 \
     --hash=sha256:6831806d205b7b1c8456bba5d9cd7ced90f52cf2fc8cfbe234d48d3fdb91111d
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 everett==3.0.0 \
     --hash=sha256:43c208e09ef53adb8e8739ad96999893a2c0a27753e33f89be346e916e71efb0 \
     --hash=sha256:80ce592168ce50643711eceff3ec94fdeec755f228de746f20b1bfc94ea20682
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 fluent-runtime==0.3 \
     --hash=sha256:8d41d4bf4cb19039370e14de78f2991cae9721d44e66165989a69ff5c22d90f0 \
     --hash=sha256:d8a81a36d111ba3e66af27f9224e94ef305cf3bec407c3f98a7c597eef554652
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 fluent-syntax==0.17.0 \
     --hash=sha256:ac3db2f77d62b032fdf1f17ef5c390b7801a9e9fb58d41eca3825c0d47b88d79 \
     --hash=sha256:e26be470aeebe4badd84f7bb0b648414e0f2ef95d26e5336d634af99e402ea61
     # via
-    #   -r requirements/prod.in
+    #   -r requirements/inputs/prod.in
     #   fluent.runtime
 greenlet==0.4.17 \
     --hash=sha256:1023d7b43ca11264ab7052cb09f5635d4afdb43df55e0854498fc63070a0b206 \
@@ -253,20 +253,20 @@ greenlet==0.4.17 \
     --hash=sha256:e495096e3e2e8f7192afb6aaeba19babc4fb2bdf543d7b7fed59e00c1df7f170 \
     --hash=sha256:e66a824f44892bc4ec66c58601a413419cafa9cec895e63d8da889c8a1a4fa4a
     # via
-    #   -r requirements/prod.in
+    #   -r requirements/inputs/prod.in
     #   meinheld
 gunicorn==19.7.1 \
     --hash=sha256:75af03c99389535f218cc596c7de74df4763803f7b63eb09d77e92b3956b36c6 \
     --hash=sha256:eee1169f0ca667be05db3351a0960765620dad53f53434262ff8901b68a1b622
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 honcho==1.1.0 \
     --hash=sha256:a4d6e3a88a7b51b66351ecfc6e9d79d8f4b87351db9ad7e923f5632cc498122f \
     --hash=sha256:c5eca0bded4bef6697a23aec0422fd4f6508ea3581979a3485fc4b89357eb2a9
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 html5lib==1.1 \
     --hash=sha256:0d78f8fde1c230e99fe37986a60526d7049ed4bf8a9fadbad5f00e22e58e041d \
     --hash=sha256:b2e5b40261e20f354d198eae92afc10d750afb487ed5e50f9c4eaf07c184146f
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 idna==3.3 \
     --hash=sha256:84d9dd047ffa80596e0f246e2eab0b391788b0503584e8945f2368256d2735ff \
     --hash=sha256:9d643ff0a55b762d5cdb124b8eaa99c66322e2157b69160bc32796e824360e6d
@@ -342,12 +342,12 @@ lxml==4.7.1 \
     --hash=sha256:f76dbe44e31abf516114f6347a46fa4e7c2e8bceaa4b6f7ee3a0a03c8eba3c17 \
     --hash=sha256:fc15874816b9320581133ddc2096b644582ab870cf6a6ed63684433e7af4b0d3 \
     --hash=sha256:fc9fb11b65e7bc49f7f75aaba1b700f7181d95d4e151cf2f24d51bfd14410b77
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 markdown==3.1 \
     --hash=sha256:fc4a6f69a656b8d858d7503bda633f4dd63c2d70cf80abdc6eafa64c4ae8c250 \
     --hash=sha256:fe463ff51e679377e3624984c829022e2cfb3be5518726b06f608a07a3aad680
     # via
-    #   -r requirements/prod.in
+    #   -r requirements/inputs/prod.in
     #   django-jinja-markdown
     #   mdx-outline
 markupsafe==2.1.0 \
@@ -394,10 +394,10 @@ markupsafe==2.1.0 \
     # via jinja2
 mdx_outline @ https://github.com/mozmeao/mdx_outline/archive/refs/tags/python-3.9-compat.tar.gz \
     --hash=sha256:c37385f222866684a0a92e3b38588003c6d8c3dbcf55aea854cf543baae425c5
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 meinheld==1.0.2 \
     --hash=sha256:008c76937ac2117cc69e032dc69cea9f85fc605de9bac1417f447c41c16a56d6
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 netaddr==0.8.0 \
     --hash=sha256:9666d0232c32d2656e5e5f8d735f58fd6c7457ce52fc21c98d45f2af78f990ac \
     --hash=sha256:d6cc57c7a07b1d9d2e917aa8b36ae8ce61c35ba3fcd1b83ca31c5a0ee2b5a243
@@ -418,7 +418,7 @@ newrelic==7.4.0.172 \
     --hash=sha256:e7272aaff9efc4b6d9fd0224a836c8b953b84ac0dbcc107041d3bc1ef710b86a \
     --hash=sha256:f42c760aad643b700c5d19600baf7d5c1928a036561d2c41ecf80ef7b5842ba3 \
     --hash=sha256:f72f7d017309dc97b102dfb3826c16e9220e001ebe1ec32329a062b229ba734f
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 oauthlib==3.2.0 \
     --hash=sha256:23a8208d75b902797ea29fd31fa80a15ed9dc2c6c16fe73f5d346f83f6fa27a2 \
     --hash=sha256:6db33440354787f9b7f3a6dbd4febf5d0f93758354060e802f6c06cb493022fe
@@ -460,7 +460,7 @@ pillow==9.0.0 \
     --hash=sha256:d5dcea1387331c905405b09cdbfb34611050cc52c865d71f2362f354faee1e9f \
     --hash=sha256:ee6e2963e92762923956fe5d3479b1fdc3b76c83f290aad131a2f98c3df0593e \
     --hash=sha256:fd0e5062f11cb3e730450a7d9f323f4051b532781026395c4323b8ad055523c4
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 pycparser==2.21 \
     --hash=sha256:8ee45429555515e1f6b185e78100aea234072576aa43ab53aefcae078162fca9 \
     --hash=sha256:e644fdec12f7872f86c58ff790da456218b10f863970249516d60a5eaca77206
@@ -468,7 +468,7 @@ pycparser==2.21 \
 pygithub==1.55 \
     --hash=sha256:1bbfff9372047ff3f21d5cd8e07720f3dbfdaf6462fcaed9d815f528f1ba7283 \
     --hash=sha256:2caf0054ea079b71e539741ae56c5a95e073b81fa472ce222e81667381b9601b
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 pyjwt==2.3.0 \
     --hash=sha256:b888b4d56f06f6dcd777210c334e69c737be74755d3e5e9ee3fe67dc18a0ee41 \
     --hash=sha256:e0c4bb8d9f0af0c7f5b1ec4c5036309617d03d56932877f2f7a0beeb5318322f
@@ -488,7 +488,7 @@ pynacl==1.5.0 \
 pyopenssl==21.0.0 \
     --hash=sha256:5e2d8c5e46d0d865ae933bef5230090bdaf5506281e9eec60fa250ee80600cb3 \
     --hash=sha256:8935bd4920ab9abfebb07c41a4f58296407ed77f04bd1a92914044b848ba1ed6
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 pyparsing==3.0.7 \
     --hash=sha256:18ee9022775d270c55187733956460083db60b37d0d0fb357445f3094eed3eea \
     --hash=sha256:a6c06a88f252e6c322f65faf8f418b16213b51bdfaece0524c1c1bc30c63c484
@@ -502,7 +502,7 @@ python-dateutil==2.8.2 \
 python-memcached==1.59 \
     --hash=sha256:4dac64916871bd3550263323fc2ce18e1e439080a2d5670c594cf3118d99b594 \
     --hash=sha256:a2e28637be13ee0bf1a8b6843e7490f9456fd3f2a4cb60471733c7b5d5557e4f
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 pytz==2021.3 \
     --hash=sha256:3672058bc3453457b622aab7a1c3bfd5ab0bdae451512f6cf25f64ed37f5b87c \
     --hash=sha256:acad2d8b20a1af07d4e4c9d2e9285c5ed9104354062f275f3fcd88dcef4f1326
@@ -549,13 +549,13 @@ pyyaml==6.0 \
     --hash=sha256:daf496c58a8c52083df09b80c860005194014c3698698d1a57cbcfa182142a3a \
     --hash=sha256:e61ceaab6f49fb8bdfaa0f92c4b57bcfbea54c09277b1b4f7ac376bfb7a7c174 \
     --hash=sha256:f84fbc98b019fef2ee9a1cb3ce93e3187a6df0b2538a651bfb890254ba9f90b5
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 qrcode==7.3.1 \
     --hash=sha256:375a6ff240ca9bd41adc070428b5dfc1dcfbb0f2507f1ac848f6cded38956578
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 querystringsafe-base64==1.1.1 \
     --hash=sha256:bad9187c0406456020ee354be7f51d2e0dfc262dadde0449cbdd1fd78d437eed
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 requests==2.27.1 \
     --hash=sha256:68d7c56fd5a8999887728ef304a6d12edc7be74f1cfa47714fc8b414525c9a61 \
     --hash=sha256:f22fa1e554c9ddfd16e6e41ac79759e17be9e492b3587efa038054674760e72d
@@ -568,10 +568,10 @@ requests==2.27.1 \
 requests-oauthlib==1.3.0 \
     --hash=sha256:7f71572defaecd16372f9006f33c2ec8c077c3cfa6f5911a9a90202beb513f3d \
     --hash=sha256:b4261601a71fd721a8bd6d7aa1cc1d6a8a93b4a9f5e96626f8e4d91e8beeaa6a
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 rich-text-renderer==0.2.4 \
     --hash=sha256:1363679aa1873a411d5cc461330143489727488f0b7a64688b8a088e93a7d53d
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 s3transfer==0.5.2 \
     --hash=sha256:7a6f4c4d1fdb9a2b640244008e142cbc2cd3ae34b386584ef044dd0f27101971 \
     --hash=sha256:95c58c194ce657a5f4fb0b9e60a84968c808888aed628cd98ab8771fe1db98ed
@@ -579,7 +579,7 @@ s3transfer==0.5.2 \
 sentry-sdk==1.5.4 \
     --hash=sha256:4fc7960a82c95d906a0514cf4d9aacba1743eb9863a5b7c2a01c525a7d9b21e6 \
     --hash=sha256:f7e54567937ebcbe938c4df1075ec891587faeb7c74184b88cf2894e47c86116
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 six==1.16.0 \
     --hash=sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926 \
     --hash=sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254
@@ -605,10 +605,10 @@ sqlparse==0.4.2 \
 supervisor==4.2.4 \
     --hash=sha256:40dc582ce1eec631c3df79420b187a6da276bbd68a4ec0a8f1f123ea616b97a2 \
     --hash=sha256:bbae57abf74e078fe0ecc9f30068b6da41b840546e233ef1e659a12e4c875af6
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 timeago==1.0.15 \
     --hash=sha256:cfce420d82892af6b2439d0f69eeb3e876bbeddab6670c3c88ebf7676407bf4c
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 tzdata==2021.5 \
     --hash=sha256:3eee491e22ebfe1e5cfcc97a4137cd70f092ce59144d81f8924a844de05ba8f5 \
     --hash=sha256:68dbe41afd01b867894bbdfd54fa03f468cfa4f0086bfb4adcd8de8f24f3ee21
@@ -633,7 +633,7 @@ webencodings==0.5.1 \
 whitenoise==6.0.0 \
     --hash=sha256:08c42bc535f9777eea1a599289d9433f081921f97887eaf6f559446b2a080374 \
     --hash=sha256:5a4aff543ee860fbe40d743e556adf92ccd41b7df45697cae074afdf657056b9
-    # via -r requirements/prod.in
+    # via -r requirements/inputs/prod.in
 wrapt==1.13.3 \
     --hash=sha256:086218a72ec7d986a3eddb7707c8c4526d677c7b35e355875a0fe2918b059179 \
     --hash=sha256:0877fe981fd76b183711d767500e6b3111378ed2043c145e21816ee589d91096 \

@@ -8,12 +8,12 @@ attrs==21.4.0 \
     --hash=sha256:2d27e3784d7a565d36ab851fe94887c5eccd6a463168875832a1be79c82828b4 \
     --hash=sha256:626ba8234211db98e869df76230a137c4c40a12d72445c45d5f5b716f076e2fd
     # via
-    #   -c requirements/prod.txt
+    #   -c requirements/inputs/../prod.txt
     #   pytest
 black==21.12b0 \
     --hash=sha256:77b80f693a569e2e527958459634f18df9b0ba2625ba4e0c2d5da5be42e6f2b3 \
     --hash=sha256:a615e69ae185e08fdd73e4715e260e2479c861b5740057fde6e8b4e3b7dd589f
-    # via -r requirements/dev.in
+    # via -r requirements/inputs/dev.in
 blessings==1.7 \
     --hash=sha256:98e5854d805f50a5b58ac2333411b0482516a8210f23f43308baeb58d77c157d \
     --hash=sha256:b1fdd7e7a675295630f9ae71527a8ebc10bfefa236b3d6aa4932ee4462c17ba3 \
@@ -22,27 +22,27 @@ blessings==1.7 \
 bpython==0.22.1 \
     --hash=sha256:1fb1e0a52332579fc4e3dcf75e21796af67aae2be460179ecfcce9530a49a200 \
     --hash=sha256:27ab07d64b9f0268990612aa5c1ab7be8705aa819b14b72c9e4b3b0418458937
-    # via -r requirements/dev.in
+    # via -r requirements/inputs/dev.in
 braceexpand==0.1.7 \
     --hash=sha256:91332d53de7828103dcae5773fb43bc34950b0c8160e35e0f44c4427a3b85014 \
     --hash=sha256:e6e539bd20eaea53547472ff94f4fb5c3d3bf9d0a89388c4b56663aba765f705
-    # via -r requirements/dev.in
+    # via -r requirements/inputs/dev.in
 certifi==2021.10.8 \
     --hash=sha256:78884e7c1d4b00ce3cea67b44566851c4343c120abd683433ce934a68ea58872 \
     --hash=sha256:d62a0163eb4c2344ac042ab2bdf75399a71a2d8c7d47eac2e2ee91b9d6339569
     # via
-    #   -c requirements/prod.txt
+    #   -c requirements/inputs/../prod.txt
     #   requests
 charset-normalizer==2.0.12 \
     --hash=sha256:2857e29ff0d34db842cd7ca3230549d1a697f96ee6d3fb071cfa6c7393832597 \
     --hash=sha256:6881edbebdb17b39b4eaaa821b438bf6eddffb4468cf344f09f89def34a8b1df
     # via
-    #   -c requirements/prod.txt
+    #   -c requirements/inputs/../prod.txt
     #   requests
 cl-ext-lang==0.1.0 \
     --hash=sha256:662fcccc1ff77063dd9d6bad770c26d1345cf4cf01e679eab136e80f3ec2935c \
     --hash=sha256:90b94aaee4afecbf2a9be3cd65656940f38edea3ddde14b93a02a9e1ee5d1f72
-    # via -r requirements/dev.in
+    # via -r requirements/inputs/dev.in
 click==8.0.4 \
     --hash=sha256:6a7a62563bbfabfda3a38f3023a1db4a35978c0abd76f6c9605ecd6554d6d9b1 \
     --hash=sha256:8458d7b1287c5fb128c90e23381cf99dcde74beaf6c7ff6384ce84d6fe090adb
@@ -51,7 +51,7 @@ compare-locales==7.6.0 \
     --hash=sha256:312b67f913c75f2b352a63f10fda9bdb824d8edd366e5590f07ca5bb79aea805 \
     --hash=sha256:617e95574a67d96dc44ec080188e1c60b6c210fe10319f27ab8708a23ed2a5e0
     # via
-    #   -r requirements/dev.in
+    #   -r requirements/inputs/dev.in
     #   cl-ext.lang
 coverage[toml]==6.3.2 \
     --hash=sha256:03e2a7826086b91ef345ff18742ee9fc47a6839ccd517061ef8fa1976e652ce9 \
@@ -139,7 +139,7 @@ cwcwidth==0.1.6 \
 factory-boy==3.2.1 \
     --hash=sha256:a98d277b0c047c75eb6e4ab8508a7f81fb03d2cb21986f627913546ef7a2a55e \
     --hash=sha256:eb02a7dd1b577ef606b75a253b9818e6f9eaf996d94449c9d5ebb124f90dc795
-    # via -r requirements/dev.in
+    # via -r requirements/inputs/dev.in
 faker==13.2.0 \
     --hash=sha256:206050b40d6dfb6efe8ccfbbb9866c56477c53edfdab83f80de3b59f38a88ce0 \
     --hash=sha256:edb62f9511a0977abcea6a78e43b99d1f26c915d2142bbf4c6bf02a9bb597c7f
@@ -147,7 +147,7 @@ faker==13.2.0 \
 flake8==4.0.1 \
     --hash=sha256:479b1304f72536a55948cb40a32dce8bb0ffe3501e26eaf292c7e60eb5e0428d \
     --hash=sha256:806e034dda44114815e23c16ef92f95c91e4c71100ff52813adf7132a6ad870d
-    # via -r requirements/dev.in
+    # via -r requirements/inputs/dev.in
 fluent-syntax==0.17.0 \
     --hash=sha256:ac3db2f77d62b032fdf1f17ef5c390b7801a9e9fb58d41eca3825c0d47b88d79 \
     --hash=sha256:e26be470aeebe4badd84f7bb0b648414e0f2ef95d26e5336d634af99e402ea61
@@ -172,18 +172,18 @@ greenlet==0.4.17 \
     --hash=sha256:e495096e3e2e8f7192afb6aaeba19babc4fb2bdf543d7b7fed59e00c1df7f170 \
     --hash=sha256:e66a824f44892bc4ec66c58601a413419cafa9cec895e63d8da889c8a1a4fa4a
     # via
-    #   -c requirements/prod.txt
+    #   -c requirements/inputs/../prod.txt
     #   bpython
 idna==3.3 \
     --hash=sha256:84d9dd047ffa80596e0f246e2eab0b391788b0503584e8945f2368256d2735ff \
     --hash=sha256:9d643ff0a55b762d5cdb124b8eaa99c66322e2157b69160bc32796e824360e6d
     # via
-    #   -c requirements/prod.txt
+    #   -c requirements/inputs/../prod.txt
     #   requests
 importlib-metadata==4.2.0 \
     --hash=sha256:057e92c15bc8d9e8109738a48db0ccb31b4d9d5cfbee5a8670879a30be66304b \
     --hash=sha256:b7e52a1f8dec14a75ea73e0891f3060099ca1d8e6a462a4dff11c3e119ea1b31
-    # via -r requirements/dev.in
+    # via -r requirements/inputs/dev.in
 iniconfig==1.1.1 \
     --hash=sha256:011e24c64b7f47f6ebd835bb12a743f2fbe9a26d4cecaa7f53bc4f35ee9da8b3 \
     --hash=sha256:bc3af051d7d14b2ee5ef9969666def0cd1a000e121eaea580d4a313df4b37f32
@@ -191,7 +191,7 @@ iniconfig==1.1.1 \
 isort==5.10.1 \
     --hash=sha256:6f62d78e2f89b4500b080fe3a81690850cd254227f27f75c3a0c491a1f351ba7 \
     --hash=sha256:e8443a5e7a020e9d7f97f1d7d9cd17c88bcb3bc7e218bf9cf5095fe550be2951
-    # via -r requirements/dev.in
+    # via -r requirements/inputs/dev.in
 lxml==4.7.1 \
     --hash=sha256:0607ff0988ad7e173e5ddf7bf55ee65534bd18a5461183c33e8e41a59e89edf4 \
     --hash=sha256:09b738360af8cb2da275998a8bf79517a71225b0de41ab47339c2beebfff025f \
@@ -254,7 +254,7 @@ lxml==4.7.1 \
     --hash=sha256:fc15874816b9320581133ddc2096b644582ab870cf6a6ed63684433e7af4b0d3 \
     --hash=sha256:fc9fb11b65e7bc49f7f75aaba1b700f7181d95d4e151cf2f24d51bfd14410b77
     # via
-    #   -c requirements/prod.txt
+    #   -c requirements/inputs/../prod.txt
     #   pyquery
     #   translate-toolkit
 mccabe==0.6.1 \
@@ -269,7 +269,7 @@ packaging==21.3 \
     --hash=sha256:dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb \
     --hash=sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522
     # via
-    #   -c requirements/prod.txt
+    #   -c requirements/inputs/../prod.txt
     #   pytest
 parsimonious==0.8.1 \
     --hash=sha256:3add338892d580e0cb3b1a39e4a1b427ff9f687858fdd61097053742391a9f6b
@@ -281,7 +281,7 @@ pathspec==0.9.0 \
 pipdeptree==2.2.1 \
     --hash=sha256:2b97d80c64d229e01ad242f14229a899263c6e8645c588ec5b054c1b81f3065d \
     --hash=sha256:e20655a38d6e363d8e86d6a85e8a648680a3f4b6d039d6ee3ab0f539da1ad6ce
-    # via -r requirements/dev.in
+    # via -r requirements/inputs/dev.in
 platformdirs==2.5.1 \
     --hash=sha256:7535e70dfa32e84d4b34996ea99c5e432fa29a708d0f4e394bbcb2a8faa4f16d \
     --hash=sha256:bcae7cab893c2d310a711b70b24efb93334febe65f8de776ee320b517471e227
@@ -310,21 +310,21 @@ pyparsing==3.0.7 \
     --hash=sha256:18ee9022775d270c55187733956460083db60b37d0d0fb357445f3094eed3eea \
     --hash=sha256:a6c06a88f252e6c322f65faf8f418b16213b51bdfaece0524c1c1bc30c63c484
     # via
-    #   -c requirements/prod.txt
+    #   -c requirements/inputs/../prod.txt
     #   packaging
 pypom==1.0 \
     --hash=sha256:5c98e3d8ef2c7f96c3365a3b8295560446f2447eecdcfe393a30abf2fcc16d96 \
     --hash=sha256:a8728981970404c3c9a14efeb23da92191749a4a4ad489130fd855e4cf8f154e
-    # via -r requirements/dev.in
+    # via -r requirements/inputs/dev.in
 pyquery==1.4.3 \
     --hash=sha256:1fc33b7699455ed25c75282bc8f80ace1ac078b0dda5a933dacbd8b1c1f83963 \
     --hash=sha256:a388eefb6bc4a55350de0316fbd97cda999ae669b6743ae5b99102ba54f5aa72
-    # via -r requirements/dev.in
+    # via -r requirements/inputs/dev.in
 pytest==6.2.5 \
     --hash=sha256:131b36680866a76e6781d13f101efb86cf674ebb9762eb70d3082b6f29889e89 \
     --hash=sha256:7310f8d27bc79ced999e760ca304d69f6ba6c6649c0b60fb0e04a4a77cacc134
     # via
-    #   -r requirements/dev.in
+    #   -r requirements/inputs/dev.in
     #   pytest-base-url
     #   pytest-cov
     #   pytest-django
@@ -342,11 +342,11 @@ pytest-base-url==1.4.2 \
 pytest-cov==3.0.0 \
     --hash=sha256:578d5d15ac4a25e5f961c938b85a05b09fdaae9deef3bb6de9a6e766622ca7a6 \
     --hash=sha256:e7f0f5b1617d2210a2cabc266dfe2f4c75a8d32fb89eafb7ad9d06f6d076d470
-    # via -r requirements/dev.in
+    # via -r requirements/inputs/dev.in
 pytest-django==4.5.2 \
     --hash=sha256:c60834861933773109334fe5a53e83d1ef4828f2203a1d6a0fa9972f4f75ab3e \
     --hash=sha256:d9076f759bb7c36939dbdd5ae6633c18edfc2902d1a69fdbefd2426b970ce6c2
-    # via -r requirements/dev.in
+    # via -r requirements/inputs/dev.in
 pytest-html==3.1.1 \
     --hash=sha256:3ee1cf319c913d19fe53aeb0bc400e7b0bc2dbeb477553733db1dad12eb75ee3 \
     --hash=sha256:b7f82f123936a3f4d2950bc993c2c1ca09ce262c9ae12f9ac763a2401380b455
@@ -358,19 +358,19 @@ pytest-metadata==1.11.0 \
 pytest-mock==3.6.1 \
     --hash=sha256:30c2f2cc9759e76eee674b81ea28c9f0b94f8f0445a1b87762cadf774f0df7e3 \
     --hash=sha256:40217a058c52a63f1042f0784f62009e976ba824c418cced42e88d5f40ab0e62
-    # via -r requirements/dev.in
+    # via -r requirements/inputs/dev.in
 pytest-parallel==0.1.1 \
     --hash=sha256:9aac3fc199a168c0a8559b60249d9eb254de7af58c12cee0310b54d4affdbfab \
     --hash=sha256:9e3703015b0eda52be9e07d2ba3498f09340a56d5c79a39b50f22fc5c38212fe
-    # via -r requirements/dev.in
+    # via -r requirements/inputs/dev.in
 pytest-rerunfailures==10.2 \
     --hash=sha256:9e1e1bad51e07642c5bbab809fc1d4ec8eebcb7de86f90f1a26e6ef9de446697 \
     --hash=sha256:d31d8e828dfd39363ad99cd390187bf506c7a433a89f15c3126c7d16ab723fe2
-    # via -r requirements/dev.in
+    # via -r requirements/inputs/dev.in
 pytest-selenium==1.17.0 \
     --hash=sha256:caf049839d12297e01f0521a968e44ae854f4eca1afd80b28f6a2510df02c883 \
     --hash=sha256:e8034ebabc3b55fad57bfb97e7b0b2137532dbc65f33706e1ce1ed8e547caa1a
-    # via -r requirements/dev.in
+    # via -r requirements/inputs/dev.in
 pytest-variables==1.9.0 \
     --hash=sha256:ccf4afcd70de1f5f18b4463758a19f24647a9def1805f675e80db851c9e00ac0 \
     --hash=sha256:f79851e4c92a94c93d3f1d02377b5ac97cc8800392e87d108d2cbfda774ecc2a
@@ -379,7 +379,7 @@ python-dateutil==2.8.2 \
     --hash=sha256:0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86 \
     --hash=sha256:961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9
     # via
-    #   -c requirements/prod.txt
+    #   -c requirements/inputs/../prod.txt
     #   faker
 pytoml==0.1.21 \
     --hash=sha256:57a21e6347049f73bfb62011ff34cd72774c031b9828cb628a752225136dfc33 \
@@ -393,7 +393,7 @@ requests==2.27.1 \
     --hash=sha256:68d7c56fd5a8999887728ef304a6d12edc7be74f1cfa47714fc8b414525c9a61 \
     --hash=sha256:f22fa1e554c9ddfd16e6e41ac79759e17be9e492b3587efa038054674760e72d
     # via
-    #   -c requirements/prod.txt
+    #   -c requirements/inputs/../prod.txt
     #   bpython
     #   pytest-base-url
     #   pytest-selenium
@@ -401,19 +401,19 @@ requests==2.27.1 \
 responses==0.17.0 \
     --hash=sha256:e4fc472fb7374fb8f84fcefa51c515ca4351f198852b4eb7fc88223780b472ea \
     --hash=sha256:ec675e080d06bf8d1fb5e5a68a1e5cd0df46b09c78230315f650af5e4036bec7
-    # via -r requirements/dev.in
+    # via -r requirements/inputs/dev.in
 selenium==3.141.0 \
     --hash=sha256:2d7131d7bc5a5b99a2d9b04aaf2612c411b03b8ca1b1ee8d3de5845a9be2cb3c \
     --hash=sha256:deaf32b60ad91a4611b98d8002757f29e6f2c2d5fcaf202e1c9ad06d6772300d
     # via
-    #   -r requirements/dev.in
+    #   -r requirements/inputs/dev.in
     #   pypom
     #   pytest-selenium
 six==1.16.0 \
     --hash=sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926 \
     --hash=sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254
     # via
-    #   -c requirements/prod.txt
+    #   -c requirements/inputs/../prod.txt
     #   blessings
     #   compare-locales
     #   parsimonious
@@ -435,7 +435,7 @@ tomli==1.2.3 \
     #   coverage
 translate-toolkit==3.5.3 \
     --hash=sha256:b7ca3e0e8f69c306c372e05a0a814ecafa6176d30ce314e787378dabf3e48dfb
-    # via -r requirements/dev.in
+    # via -r requirements/inputs/dev.in
 typing-extensions==4.1.1 \
     --hash=sha256:1a9462dcc3347a79b1f1c0271fbe79e844580bb598bafa1ed208b94da3cdcd42 \
     --hash=sha256:21c85e0fe4b9a155d0799430b0ad741cdce7e359660ccbd8b530613e8df88ce2
@@ -446,7 +446,7 @@ urllib3==1.26.8 \
     --hash=sha256:000ca7f471a233c2251c6c7023ee85305721bfdf18621ebff4fd17a8653427ed \
     --hash=sha256:0e7c33d9a63e7ddfcb86780aac87befc2fbddf46c58dbb487e0855f7ceec283c
     # via
-    #   -c requirements/prod.txt
+    #   -c requirements/inputs/../prod.txt
     #   requests
     #   responses
     #   selenium

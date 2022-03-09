@@ -15,6 +15,6 @@ export CUSTOM_COMPILE_COMMAND="$ make compile-requirements"
 pip install -U pip==22.0.3
 pip install pip-tools==6.5.0
 
-pip-compile --generate-hashes -r requirements/prod.in
-pip-compile --generate-hashes -r requirements/dev.in
-pip-compile --generate-hashes -r requirements/docs.in
+pip-compile --generate-hashes -r requirements/inputs/prod.in -o requirements/prod.txt
+pip-compile --generate-hashes -r requirements/inputs/dev.in -o requirements/dev.txt
+pip-compile --generate-hashes -r requirements/inputs/docs.in -o requirements/docs.txt
