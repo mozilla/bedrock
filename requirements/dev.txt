@@ -420,10 +420,12 @@ idna==3.3 \
     # via
     #   -r requirements/prod.txt
     #   requests
-importlib-metadata==4.2.0 \
-    --hash=sha256:057e92c15bc8d9e8109738a48db0ccb31b4d9d5cfbee5a8670879a30be66304b \
-    --hash=sha256:b7e52a1f8dec14a75ea73e0891f3060099ca1d8e6a462a4dff11c3e119ea1b31
-    # via -r requirements/dev.in
+importlib-metadata==4.11.2 \
+    --hash=sha256:b36ffa925fe3139b2f6ff11d6925ffd4fa7bc47870165e3ac260ac7b4f91e6ac \
+    --hash=sha256:d16e8c1deb60de41b8e8ed21c1a7b947b0bc62fab7e1d470bcdf331cea2e6735
+    # via
+    #   -r requirements/prod.txt
+    #   markdown
 iniconfig==1.1.1 \
     --hash=sha256:011e24c64b7f47f6ebd835bb12a743f2fbe9a26d4cecaa7f53bc4f35ee9da8b3 \
     --hash=sha256:bc3af051d7d14b2ee5ef9969666def0cd1a000e121eaea580d4a313df4b37f32
@@ -510,9 +512,9 @@ lxml==4.7.1 \
     #   -r requirements/prod.txt
     #   pyquery
     #   translate-toolkit
-markdown==3.1 \
-    --hash=sha256:fc4a6f69a656b8d858d7503bda633f4dd63c2d70cf80abdc6eafa64c4ae8c250 \
-    --hash=sha256:fe463ff51e679377e3624984c829022e2cfb3be5518726b06f608a07a3aad680
+markdown==3.3.6 \
+    --hash=sha256:76df8ae32294ec39dcf89340382882dfa12975f87f45c3ed1ecdb1e8cefc7006 \
+    --hash=sha256:9923332318f843411e9932237530df53162e29dc7a4e2b91e35764583c46c9a3
     # via
     #   -r requirements/prod.txt
     #   django-jinja-markdown
@@ -1053,7 +1055,9 @@ wrapt==1.13.3 \
 zipp==3.7.0 \
     --hash=sha256:9f50f446828eb9d45b267433fd3e9da8d801f614129124863f9c51ebceafb87d \
     --hash=sha256:b47250dd24f92b7dd6a0a8fc5244da14608f3ca90a5efcd37a3b1642fac9a375
-    # via importlib-metadata
+    # via
+    #   -r requirements/prod.txt
+    #   importlib-metadata
 
 # WARNING: The following packages were not pinned, but pip requires them to be
 # pinned when the requirements file includes hashes. Consider using the --allow-unsafe flag.

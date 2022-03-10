@@ -31,7 +31,7 @@ gunicorn==19.7.1
 honcho==1.1.0
 html5lib==1.1
 lxml==4.7.1  # needed as a top-level dep so that it's available for BeautifulSoup
-Markdown==3.1  # downpinned so that importlib-metadata subdep doesn't clash
+Markdown==3.3.6
 https://github.com/mozmeao/mdx_outline/archive/refs/tags/python-3.9-compat.tar.gz#egg=mdx_outline
 meinheld==1.0.2
 newrelic==7.4.0.172
