@@ -6,15 +6,18 @@
 
 {% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer' %}
 
-<footer class="c-footer {% if theme_class %}{{ theme_class }}{% endif %}" id="colophon">
+<footer class="mzp-c-footer {% if theme_class %}{{ theme_class }}{% endif %}" id="colophon">
   <div class="mzp-l-content">
-    <nav class="c-footer-primary">
-      <div class="c-footer-sections">
-        <section class="c-footer-section">
-          <h5 class="c-footer-heading">
+    <nav class="mzp-c-footer-primary">
+      <div class="mzp-c-footer-primary-logo">
+        <a href="{{ url('mozorg.home') }}" data-link-type="footer" data-link-name="Mozilla">{{ ftl('footer-mozilla') }}</a>
+      </div>
+      <div class="mzp-c-footer-sections">
+        <section class="mzp-c-footer-section">
+          <h5 class="mzp-c-footer-heading">
             {{ ftl('footer-company') }}
           </h5>
-          <ul class="c-footer-list">
+          <ul class="mzp-c-footer-list">
             <li><a href="{{ url('mozorg.about.manifesto') }}" data-link-type="footer" data-link-name="Mozilla Manifesto">{{ ftl('footer-mozilla-manifesto') }}</a></li>
             <li><a href="{{ press_blog_url() }}?{{ utm_params }}&utm_content=company" data-link-type="footer" data-link-name="Press Center">{{ ftl('footer-press-center') }}</a></li>
           {% if ftl_has_messages('footer-corporate-blog') %}
@@ -26,11 +29,11 @@
           </ul>
         </section>
 
-        <section class="c-footer-section">
-          <h5 class="c-footer-heading">
+        <section class="mzp-c-footer-section">
+          <h5 class="mzp-c-footer-heading">
             {{ ftl('footer-resources') }}
           </h5>
-          <ul class="c-footer-list">
+          <ul class="mzp-c-footer-list">
             <li><a href="{{ url('privacy') }}" data-link-type="footer" data-link-name="Privacy Hub">{{ ftl('footer-privacy-hub', fallback='footer-privacy') }}</a></li>
           {% if ftl_has_messages('footer-browser-comparison') %}
             <li><a href="{{ url('firefox.browsers.compare.index') }}" data-link-type="footer" data-link-name="Browser Comparison">{{ ftl('footer-browser-comparison') }}</a></li>
@@ -39,21 +42,21 @@
           </ul>
         </section>
 
-        <section class="c-footer-section">
-          <h5 class="c-footer-heading">
+        <section class="mzp-c-footer-section">
+          <h5 class="mzp-c-footer-heading">
             {{ ftl('footer-support') }}
           </h5>
-          <ul class="c-footer-list">
+          <ul class="mzp-c-footer-list">
             <li><a href="https://support.mozilla.org/?{{ utm_params }}&utm_content=support" data-link-type="footer" data-link-name="Product Help">{{ ftl('footer-product-help', fallback='footer-support') }}</a></li>
             <li><a href="https://bugzilla.mozilla.org/?{{ utm_params }}&utm_content=support" data-link-type="footer" data-link-name="File a Bug">{{ ftl('footer-file-a-bug') }}</a></li>
           </ul>
         </section>
 
-        <section class="c-footer-section">
-          <h5 class="c-footer-heading">
+        <section class="mzp-c-footer-section">
+          <h5 class="mzp-c-footer-heading">
             {{ ftl('footer-developers') }}
           </h5>
-          <ul class="c-footer-list">
+          <ul class="mzp-c-footer-list">
             <li><a href="{{ url('firefox.developer.index') }}" data-link-type="footer" data-link-name="Firefox Developer Edition">{{ ftl('footer-developer-edition') }}</a></li>
             <li><a href="{{ url('firefox.channel.desktop') }}#beta" data-link-type="footer" data-link-name="Firefox Beta">{{ ftl('footer-beta') }}</a></li>
             <li><a href="{{ url('firefox.channel.android') }}#beta" data-link-type="footer" data-link-name="Firefox Beta for Android">{{ ftl('footer-beta-for-android') }}</a></li>
@@ -64,15 +67,15 @@
           </ul>
         </section>
 
-        <section class="c-footer-section-social">
-          <h5 class="c-footer-heading">{{ ftl('footer-follow-mozilla') }}</h5>
-          <ul class="c-footer-list-social">
+        <section class="mzp-c-footer-section">
+          <h5 class="mzp-c-footer-heading">{{ ftl('footer-follow-mozilla') }}</h5>
+          <ul class="mzp-c-footer-links-social">
             <li><a class="twitter" href="{{ mozilla_twitter_url() }}" data-link-type="footer" data-link-name="Twitter (@mozilla)">{{ ftl('footer-twitter') }}<span> (@mozilla)</span></a></li>
             <li><a class="instagram" href="{{ mozilla_instagram_url() }}" data-link-type="footer" data-link-name="Instagram (@mozilla)">{{ ftl('footer-instagram') }}<span> (@mozilla)</span></a></li>
           </ul>
 
-          <h5 class="c-footer-heading">{{ ftl('footer-follow-firefox') }}</h5>
-          <ul class="c-footer-list-social">
+          <h5 class="mzp-c-footer-heading">{{ ftl('footer-follow-firefox') }}</h5>
+          <ul class="mzp-c-footer-links-social">
             <li><a class="twitter" href="{{ firefox_twitter_url() }}" data-link-type="footer" data-link-name="Twitter (@firefox)">{{ ftl('footer-twitter') }}<span> (@firefox)</span></a></li>
             <li><a class="instagram" href="https://www.instagram.com/firefox/" data-link-type="footer" data-link-name="Instagram (@firefox)">{{ ftl('footer-instagram') }}<span> (@firefox)</span></a></li>
             <li><a class="youtube" href="https://www.youtube.com/user/firefoxchannel" data-link-type="footer" data-link-name="YouTube (@firefoxchannel)">{{ ftl('footer-youtube') }}<span> (@firefoxchannel)</span></a></li>
@@ -80,21 +83,18 @@
         </section>
       </div>
     </nav>
-    <nav class="c-footer-secondary">
-      <div class="c-footer-language">
+    <nav class="mzp-c-footer-secondary">
+      <div class="mzp-c-footer-language">
        {% include 'includes/protocol/lang-switcher.html' %}
       </div>
-      <div class="c-footer-primary-logo">
-        <a href="{{ url('mozorg.home') }}" data-link-type="footer" data-link-name="Mozilla">{{ ftl('footer-mozilla') }}</a>
-      </div>
-      <div class="c-footer-legal">
-        <ul class="c-footer-terms">
+      <div class="mzp-c-footer-legal">
+        <ul class="mzp-c-footer-terms">
           <li><a href="{{ url('privacy.notices.websites') }}" data-link-type="footer" data-link-name="Privacy">{{ ftl('footer-websites-privacy-notice') }}</a></li>
           <li><a href="{{ url('privacy.notices.websites') }}#user-choices" data-link-type="footer" data-link-name="Cookies">{{ ftl('footer-websites-cookies') }}</a></li>
           <li><a href="{{ url('legal.index') }}" data-link-type="footer" data-link-name="Legal">{{ ftl('footer-websites-legal') }}</a></li>
           <li><a href="{{ url('mozorg.about.governance.policies.participation') }}" data-link-type="footer" data-link-name="Community Participation Guidelines">{{ ftl('footer-community-participation-guidelines') }}</a></li>
         </ul>
-        <p class="c-footer-license" rel="license">
+        <p class="mzp-c-footer-license" rel="license">
           {% set moco_link = 'href="%s" data-link-type="footer" data-link-name="Mozilla Corporation"'|safe|format(url('mozorg.home')) %}
           {% set mofo_link = 'href="https://foundation.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer" rel="external noopener" data-link-type="footer" data-link-name="Mozilla Foundation"'|safe %}
           {{ ftl('footer-visit-mozilla-corporations', moco_link=moco_link, mofo_link=mofo_link) }}<br>
