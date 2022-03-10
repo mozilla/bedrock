@@ -1377,6 +1377,13 @@
     },
     {
       "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/firefox/browsers/firefox-ios-sms-experiment.js"
+      ],
+      "name": "firefox_ios_sms_experiment"
+    },
+    {
+      "files": [
         "js/base/send-to-device.js",
         "js/firefox/browsers/mobile-compare.js"
       ],

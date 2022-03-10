@@ -23,6 +23,20 @@
   {% endif %}
 {% endblock %}
 
+{% block experiments %}
+  {% if switch('firefox-ios-sms-experiment', ['en-US']) and country_code == "US" %}
+    {{ js_bundle('firefox_ios_sms_experiment') }}
+  {% endif %}
+{% endblock %}
+
+{% if variation == '2' %}
+  {% set s2d_include = 'firefox/browsers/mobile/includes/s2d-ios-sms.html' %}
+{% elif variation == '3' %}
+  {% set s2d_include = 'firefox/browsers/mobile/includes/s2d-ios-qr.html' %}
+{% else %}
+  {% set s2d_include = 'firefox/browsers/mobile/includes/s2d-ios.html' %}
+{% endif %}
+
 {% block page_title %}{{ ftl('mobile-ios-firefox-browser-ios') }}{% endblock %}
 {% block page_desc %}{{ ftl('mobile-ios-see-your-open-tabs', fallback='mobile-ios-firefox-browser-for') }}{% endblock %}
 
@@ -62,7 +76,7 @@
   {% call split(
     block_class='mzp-l-split-center-on-sm-md c-page-header',
     media_class='mzp-l-split-h-center',
-    media_include='firefox/browsers/mobile/includes/s2d-ios.html',
+    media_include=s2d_include,
     media_after=True
   ) %}
     <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">{{ ftl('mobile-ios-firefox-browser') }}</div>

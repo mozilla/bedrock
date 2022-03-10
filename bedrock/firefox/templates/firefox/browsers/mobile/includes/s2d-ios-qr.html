@@ -1,0 +1,17 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{# Send-to-device widget for Firefox for iOS #}
+
+<div class="c-inline-form">
+  <h2 class="c-inline-form-title">{{ ftl('mobile-ios-get-firefox-for') }}</h2>
+  <p class="c-inline-form-body">{{ ftl('mobile-ios-scan-the-qr-code-to-get-started') }}</p>
+  <div class="qr-code-wrapper">
+    <img src="{{ static('img/firefox/browsers/mobile/qr-firefox.png') }}" width="400" height="400" id="firefox-qr"
+      data-mozillaonline-link="{{ static('img/firefox/browsers/mobile/qr-firefox-mozillaonline.png') }}"
+      alt="{{ ftl('mobile-ios-scan-alt-text') }}">
+  </div>
+</div>
