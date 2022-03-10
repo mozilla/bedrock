@@ -13,7 +13,7 @@ $color-panda-red: #fc4055;
 #turning-red-banner {
     &.c-banner {
         @include clearfix;
-        @include at2x('https://www.mozilla.org/media/img/banners/turningred/mobile.jpg', 320px, 110px);
+        @include at2x('https://www.mozilla.org/media/img/banners/turningred/mobile-streaming.jpg', 320px, 110px);
         background-color: $color-panda-red;
         background-position: center top;
         background-repeat: no-repeat;
@@ -98,7 +98,7 @@ $color-panda-red: #fc4055;
 
     @media #{$mq-md} {
         &.c-banner {
-            @include at2x('https://www.mozilla.org/media/img/banners/turningred/desktop.jpg', 400px, 214px);
+            @include at2x('https://www.mozilla.org/media/img/banners/turningred/desktop-streaming.jpg', 400px, 214px);
             background-position: -7px -6px;
             padding-left: 410px;
             padding-top: 0;
