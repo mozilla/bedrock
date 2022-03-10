@@ -480,9 +480,13 @@ $image-path: '/media/protocol/img';
     margin-top: $spacing-2xl;
 }
 
+.c-section-intro {
+    margin-top: $layout-xl;
+}
+
 .c-section-wrapper {
     margin: 0 auto;
-    padding-top: $layout-lg;
+    padding-top: $layout-sm;
     max-width: $content-lg;
 
     h2 {
@@ -505,11 +509,6 @@ $image-path: '/media/protocol/img';
 
     .c-subtitle {
         text-align: center;
-    }
-
-    .c-list-title {
-        margin-top: $spacing-2xl;
-        margin-bottom: $spacing-md;
     }
 
     ul {
