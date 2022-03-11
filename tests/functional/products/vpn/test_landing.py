@@ -9,7 +9,8 @@ from pages.products.vpn.landing import VPNLandingPage
 
 @pytest.mark.nondestructive
 @pytest.mark.parametrize(
-    "country", [("us"), ("ca"), ("my"), ("nz"), ("sg"), ("gb"), ("de"), ("fr"), ("at"), ("be"), ("ch"), ("es"), ("it"), ("ie"), ("nl")]
+    "country",
+    [("us"), ("ca"), ("my"), ("nz"), ("sg"), ("gb"), ("de"), ("fr"), ("at"), ("be"), ("ch"), ("es"), ("it"), ("ie"), ("nl"), ("se"), ("fi")],
 )
 def test_vpn_available_in_country(country, base_url, selenium):
     page = VPNLandingPage(selenium, base_url, params=f"?geo={country}").open()
