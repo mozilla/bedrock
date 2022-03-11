@@ -49,9 +49,14 @@ def email_newsletter_form(
     if not form:
         form = NewsletterFooterForm(newsletters, get_locale(request))
 
+    if isinstance(newsletters, list):
+        newsletters = ", ".join(newsletters)
+
+    is_multi_newsletter = "," in newsletters
+
     context.update(
         dict(
-            id=newsletters,
+            id="mozilla-firefox-multi" if is_multi_newsletter else newsletters,
             title=title,
             subtitle=subtitle,  # nested in/depends on include_title
             desc=desc,  # nested in/depends on include_title
@@ -70,7 +75,7 @@ def email_newsletter_form(
             success=success,
             email_label=email_label,
             email_placeholder=email_placeholder,
-            is_multi_newsletter_form="," in newsletters,
+            is_multi_newsletter_form=is_multi_newsletter,
         )
     )
 

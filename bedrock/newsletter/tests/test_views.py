@@ -594,12 +594,21 @@ class TestNewsletterSubscribe(TestCase):
         self.assertFalse(resp_data["success"])
         self.assertEqual(resp_data["errors"][0], str(general_error))
 
-    def test_shows_normal_form(self):
-        """A normal GET should show the form."""
+    def test_shows_form_multi(self):
+        """The footer form subscribes to multiple newsletters."""
         resp = self.request()
         doc = pq(resp.content)
         self.assertTrue(doc("#newsletter-form"))
         self.assertTrue(doc('input[value="mozilla-foundation"]'))
+        self.assertEqual(doc("#newsletter-submit")[0].attrib["data-cta-type"], "Newsletter-mozilla-firefox-multi")
+
+    def test_shows_form_single(self):
+        """The MPL page only subscribes to 'mozilla-foundation', so not a multi-newsletter form."""
+        resp = self.client.get("/MPL", follow=True)
+        doc = pq(resp.content)
+        self.assertTrue(doc("#newsletter-form"))
+        self.assertTrue(doc('input[value="mozilla-foundation"]'))
+        self.assertEqual(doc("#newsletter-submit")[0].attrib["data-cta-type"], "Newsletter-mozilla-foundation")
 
     @patch("bedrock.newsletter.views.basket")
     def test_returns_success(self, basket_mock):
