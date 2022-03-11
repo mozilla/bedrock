@@ -14,7 +14,6 @@ import basket.errors
 from sentry_sdk import capture_exception
 
 from bedrock.base.geo import get_country_from_request
-from bedrock.base.waffle import switch
 from bedrock.contentful.constants import (
     ARTICLE_CATEGORY_LABEL,
     CONTENT_CLASSIFICATION_VPN,
@@ -32,9 +31,6 @@ def vpn_available(request):
     country = get_country_from_request(request)
     country_list = settings.VPN_COUNTRY_CODES
 
-    if switch("vpn-wave-v"):
-        country_list = settings.VPN_COUNTRY_CODES + settings.VPN_COUNTRY_CODES_WAVE_V
-
     return country in country_list
 
 
@@ -43,9 +39,6 @@ def vpn_landing_page(request):
     template_name = "products/vpn/landing.html"
     ftl_files = ["products/vpn/landing", "products/vpn/shared"]
     available_countries = settings.VPN_AVAILABLE_COUNTRIES
-
-    if switch("vpn-wave-v"):
-        available_countries = settings.VPN_AVAILABLE_COUNTRIES_WAVE_V
 
     context = {
         "vpn_available": vpn_available(request),
