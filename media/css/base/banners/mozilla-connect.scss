@@ -8,6 +8,16 @@
 .c-banner {
     background-color: #e7ffff; // match light blue in image backgrounds
 
+    &-title {
+        @include text-title-md;
+    }
+
+    &-content {
+        p {
+            margin-bottom: 0;
+        }
+    }
+
     &,
     & a:link,
     & a:visited {
