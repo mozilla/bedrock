@@ -8,7 +8,12 @@
 
 {% extends "base-protocol-mozilla.html" %}
 
+{% set show_mozilla_connect_banner = switch('mozilla-connect-banner') %}
+
 {% block page_css %}
+  {% if show_mozilla_connect_banner %}
+    {{ css_bundle('mozilla-connect-banner') }}
+  {% endif %}
   {{ css_bundle('protocol-split') }}
   {{ css_bundle('protocol-card') }}
   {{ css_bundle('protocol-newsletter') }}
@@ -20,6 +25,12 @@
 {% block body_class %}{{ super() }} contribute{% endblock %}
 
 {% set utm_params = '?utm_source=mozilla.org-contribute&utm_medium=referral&utm_campaign=contribute-page' %}
+
+{% block page_banner %}
+  {% if show_mozilla_connect_banner %}
+    {% include 'includes/banners/mozilla-connect.html' %}
+  {% endif %}
+{% endblock %}
 
 {% block content %}
 <main role="main">
@@ -217,5 +228,8 @@
 {% endblock content %}
 
 {% block js %}
+  {% if show_mozilla_connect_banner %}
+    {{ js_bundle('mozilla-connect-banner') }}
+  {% endif %}
   {{ js_bundle('contribute') }}
 {% endblock %}

@@ -98,7 +98,7 @@ urlpatterns = (
     page("MPL/2.0/combining-mpl-and-gpl", "mozorg/mpl/2.0/combining-mpl-and-gpl.html"),
     page("MPL/2.0/differences", "mozorg/mpl/2.0/differences.html"),
     page("MPL/2.0/permissive-code-into-mpl", "mozorg/mpl/2.0/permissive-code-into-mpl.html"),
-    page("contribute", "mozorg/contribute.html", ftl_files=["mozorg/contribute"]),
+    page("contribute", "mozorg/contribute.html", ftl_files=["mozorg/contribute", "banners/mozilla-connect"]),
     page("moss", "mozorg/moss/index.html"),
     page("moss/foundational-technology", "mozorg/moss/foundational-technology.html"),
     page("moss/mission-partners", "mozorg/moss/mission-partners.html"),

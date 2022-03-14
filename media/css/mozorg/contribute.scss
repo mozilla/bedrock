@@ -12,7 +12,6 @@ $image-path: '/media/protocol/img';
 .contribute-intro {
     overflow: hidden;
     padding-bottom: 90%;
-    padding-top: 0;
     position: relative;
 
     @media #{$mq-md} {
@@ -21,6 +20,7 @@ $image-path: '/media/protocol/img';
 
     @media #{$mq-lg} {
         padding-bottom: $layout-xl;
+        padding-top: 0;
     }
 
     @media #{$mq-xl} {
