@@ -203,9 +203,9 @@ django-jsonview==2.0.0 \
 django-memoize==2.3.1 \
     --hash=sha256:62ac4807710ecf22a7397d008d64d0f798e7230482d4b6072d916cac852a47cd
     # via -r requirements/prod.in
-django-mozilla-product-details==1.0.1 \
-    --hash=sha256:484b61deb99663c131c7e386bc683c83cab612777055b12588e91844a1508a04 \
-    --hash=sha256:ef25e5e9bce4bfe6c7ba9c87245f5be93c0ac3fc7f1d60afd459e55e9dcc8bc7
+django-mozilla-product-details==1.0.3 \
+    --hash=sha256:1d139ba01f4484f3bb43b72864ce33f249835405449e0dc940217cfa42ce5b46 \
+    --hash=sha256:a4aba6a68b296dffe8c1afb95d236cdbd402bd855cd49eef4d8a1a610105fd36
     # via -r requirements/prod.in
 django-watchman==1.3.0 \
     --hash=sha256:33b5fc734d689b83cb96fc17beda624ae2955f4cede0856897d990c363eac962 \
