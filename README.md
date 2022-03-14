@@ -1,6 +1,8 @@
 Bedrock
 =======
 
+THIS IS A TEST OF THE HEROKU DEPLOYMENT SYSTEM. THIS IS ONLY A TEST.
+
 *Bedrock* is the code name of [mozilla.org][mozilla]. It is as shiny,
 awesome, and open source as always. Perhaps even a little more.
 
