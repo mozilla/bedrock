@@ -7,6 +7,7 @@ import pytest
 from pages.firefox.new.download_yandex import YandexDownloadPage
 
 
+@pytest.mark.skip(reason="Switch disabled")
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_download_buttons_are_displayed(base_url, selenium):
@@ -15,6 +16,7 @@ def test_download_buttons_are_displayed(base_url, selenium):
     assert not page.is_yandex_download_button_displayed
 
 
+@pytest.mark.skip(reason="Switch disabled")
 @pytest.mark.nondestructive
 @pytest.mark.skip_if_not_firefox(reason="Join Firefox form is only displayed to Firefox users")
 def test_firefox_account_modal(base_url, selenium):
@@ -24,6 +26,7 @@ def test_firefox_account_modal(base_url, selenium):
     modal.close()
 
 
+@pytest.mark.skip(reason="Switch disabled")
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_yandex_download_button_displayed(base_url, selenium):
