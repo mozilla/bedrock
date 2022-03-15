@@ -18,11 +18,6 @@
 
   <p>These websites and services are considered critical to Mozilla operations and pay out at the highest bounty rate.</p>
 
-  <h3>ABSearch</h3>
-  <ul class="mzp-u-list-styled">
-    <li>search.services.mozilla.com</li>
-  </ul>
-
   <h3>Add-ons</h3>
   <ul class="mzp-u-list-styled">
     <li>addons.mozilla.org</li>
@@ -31,20 +26,9 @@
     <li>versioncheck.addons.mozilla.org</li>
   </ul>
 
-  <h3>Autograph</h3>
-  <ul class="mzp-u-list-styled">
-    <li>edge.prod.autograph.services.mozaws.net</li>
-  </ul>
-
-  <h3>Bedrock (www)</h3>
-  <ul class="mzp-u-list-styled">
-    <li>www.mozilla.org</li>
-  </ul>
-
   <h3>Bugzilla</h3>
   <ul class="mzp-u-list-styled">
     <li>bugzilla.mozilla.org</li>
-    <li>*.bmoattachments.org (excludes XSS and open redirects)</li>
   </ul>
   <p>
     <strong>Please do not use automated scanners, create, or modify bugs when testing Bugzilla.</strong>
@@ -54,8 +38,7 @@
 
   <h3>Crash Reports</h3>
   <ul class="mzp-u-list-styled">
-    <li>crash-stats.mozilla.com</li>
-    <li>symbols.mozilla.org</li>
+    <li>crash-reports.mozilla.com</li>
   </ul>
 
   <h3>Downloads (Product Delivery)</h3>
@@ -96,6 +79,11 @@
     <li>api.lando.services.mozilla.com</li>
     <li>api-private.lando.services.mozilla.com</li>
     <li>lando.services.mozilla.com</li>
+  </ul>
+
+  <h3>Localization</h3>
+  <ul class="mzp-u-list-styled">
+    <li>pontoon.mozilla.org</li>
   </ul>
 
   <h3>Location Services</h3>
@@ -139,9 +127,14 @@
 
   <p>Core websites pay out bounties, but at a reduced rate.</p>
 
-  <h3>Delivery Console</h3>
+  <h3>ABSearch</h3>
   <ul class="mzp-u-list-styled">
-    <li>delivery-console.prod.mozaws.net</li>
+    <li>search.services.mozilla.com</li>
+  </ul>
+
+  <h3>Bedrock (www)</h3>
+  <ul class="mzp-u-list-styled">
+    <li>www.mozilla.org</li>
   </ul>
 
   <h3>Firefox Monitor</h3>
@@ -155,26 +148,16 @@
     <li>reticulum.io</li>
   </ul>
 
-  <h3>Localization</h3>
+  <h3>Payment Subscription</h3>
   <ul class="mzp-u-list-styled">
-    <li>pontoon.mozilla.org</li>
-  </ul>
-
-  <h3>Observatory</h3>
-  <ul class="mzp-u-list-styled">
-    <li>observatory.mozilla.org</li>
-    <li>tls-observatory.services.mozilla.com</li>
+    <li>subscriptions.firefox.com</li>
   </ul>
 
   <h3>Pocket</h3>
   <ul class="mzp-u-list-styled">
     <li>getpocket.com</li>
     <li>api.getpocket.com</li>
-  </ul>
-
-  <h3>Private Network</h3>
-  <ul class="mzp-u-list-styled">
-    <li>fpn.firefox.com</li>
+    <li>widgets.getpocket.com</li>
   </ul>
 
   <h3>Private Relay</h3>
@@ -191,13 +174,5 @@
   <ul class="mzp-u-list-styled">
     <li>vpn.mozilla.org</li>
   </ul>
-
-  <h3>Support</h3>
-  <ul class="mzp-u-list-styled">
-    <li>support.mozilla.org</li>
-  </ul>
-  <p>
-    <br> Please use our <a href="support.allizom.org">staging instance</a> for testing to avoid disrupting users.
-  </p>
 
 {% endblock %}
