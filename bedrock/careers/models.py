@@ -21,6 +21,9 @@ class Position(models.Model):
     source = models.CharField(max_length=100)
     position_type = models.CharField(max_length=100)
     updated_at = models.DateTimeField(default=datetime.utcnow)
+    # Store the Greenhouse internal ID for grouping the same jobs with multiple
+    # listings per location.
+    internal_job_id = models.PositiveIntegerField()
 
     class Meta:
         ordering = (
@@ -45,7 +48,7 @@ class Position(models.Model):
     @classmethod
     def locations(cls):
         return sorted(
-            {location.strip() for location in chain(*[locations.split(",") for locations in cls.objects.values_list("location", flat=True)])}
+            {location.strip() for location in chain(*[locations.split(",") for locations in cls.objects.values_list("job_locations", flat=True)])}
         )
 
     @classmethod

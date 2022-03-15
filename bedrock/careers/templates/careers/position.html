@@ -14,7 +14,7 @@
 {% block careers_content %}
 <section class="job-post" id="job-post">
   <div class="job-row">
-    <div>
+    <div class="job-info">
       <div class="job-title">
         <strong>{{ position.title }}</strong>
       </div>
@@ -32,25 +32,47 @@
           <dd class="job-post-team">{{ position.department }}</dd>
         {% endif %}
         <dt class="job-post-location-head">Locations:</dt>
-        <dd class="job-post-location">{{ position.job_locations }}</dd>
+        <dd class="job-post-location">{{ postings | map(attribute='job_locations') | join(', ') }}</dd>
       </dl>
     </div>
-    <div class="appy-btn">
-      <a href="{{ position.apply_url }}" class="mzp-c-button">Apply Now</a>
+    <div class="job-apply">
+    {% if postings|length == 1 %}
+      <div class="appy-btn">
+        <a href="{{ position.apply_url }}" class="mzp-c-button">Apply Now</a>
+      </div>
+    {% else %}
+      <div class="mzp-c-menu-list">
+        <h3 class="mzp-c-menu-list-title">Apply Now</h3>
+        <ul class="mzp-c-menu-list-list">
+        {% for job in postings %}
+          <li class="mzp-c-menu-list-item"><a href="{{ job.apply_url }}">{{ job.job_locations }}</a></li>
+        {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
     </div>
-  </div>
-  <div class="appy-btn-sm apply-sm">
-    <a href="{{ position.apply_url }}" class="mzp-c-button">Apply Now</a>
   </div>
   <div>
     {{ position.description|safe }}
   </div>
-  <div class="c-apply-button-container">
-    <a href="{{ position.apply_url }}" class="mzp-c-button">Apply for this job</a>
-    <small>
-      <a rel="external" href="https://docs.google.com/document/d/e/2PACX-1vTEeCImDA-kqr0wm3JwfOv_2MS5FZ8oyL2pEWfVsZbeO87E41r2wePoOhppQ4qX6w/pub">Applicant Privacy Notice</a>
-    </small>
+  <div class="job-apply">
+  {% if postings|length == 1 %}
+    <div class="appy-btn">
+      <a href="{{ position.apply_url }}" class="mzp-c-button">Apply Now</a>
+    </div>
+  {% else %}
+    <div class="mzp-c-menu-list">
+      <h3 class="mzp-c-menu-list-title">Apply Now</h3>
+      <ul class="mzp-c-menu-list-list">
+      {% for job in postings %}
+        <li class="mzp-c-menu-list-item"><a href="{{ job.apply_url }}">{{ job.job_locations }}</a></li>
+      {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
   </div>
+
+  <p><a rel="external" href="https://docs.google.com/document/d/e/2PACX-1vTEeCImDA-kqr0wm3JwfOv_2MS5FZ8oyL2pEWfVsZbeO87E41r2wePoOhppQ4qX6w/pub">Applicant Privacy Notice</a></p>
 </section>
 
 <section id="why" class="mzp-c-call-out">
@@ -99,10 +121,7 @@
         <ul class="mzp-u-list-styled">
           <li>700+ paid staff from over 30 countries</li>
           <li>Thousands of volunteer contributors across six continents</li>
-          <li>
-            5 global offices: San Francisco,
-            Toronto, Paris, Berlin, and Beijing
-          </li>
+          <li>5 global offices: San Francisco, Toronto, Paris, Berlin, and Beijing</li>
           <li>Hundreds of home offices globally</li>
         </ul>
       </div>
@@ -126,4 +145,8 @@
     </div>
   </div>
 </section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('careers-position') }}
 {% endblock %}

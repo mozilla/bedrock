@@ -55,18 +55,19 @@
       </tr>
     </thead>
     <tbody>
-    {% for position in positions %}
+    {% for internal_job_id, postings in positions | groupby("internal_job_id") %}
       {#
         When the options list for the Django Form is built, we strip()
         whitespace from around each option. We need to do the same here
         to make sure the values can match, else we get filtering 'misses'.
       #}
+      {% set position = postings | first %}
       <tr class="position"
-          data-team="{{ position.department.strip() }},"
-          data-type="{{ position.position_type.strip() }},"
-          data-location="{{ position.location.strip() }},">
+          data-team="{{ position.department | trim }},"
+          data-type="{{ position.position_type | trim }},"
+          data-location="{{ postings | join(',', attribute='job_locations') }},">
         <td class="title"><a href="{{ position.get_absolute_url() }}">{{ position.title }}</a></td>
-        <td class="location">{{ position.job_locations }}</td>
+        <td class="location">{{ postings | map(attribute='job_locations') | join(', ') }}</td>
         <td class="name">{{ position.department }}</td>
       </tr>
     {% endfor %}

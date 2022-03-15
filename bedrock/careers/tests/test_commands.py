@@ -23,13 +23,14 @@ class SyncGreenhouseTests(TestCase):
             "jobs": [
                 {
                     "id": "xxx",
-                    "internal_job_id": 144381,
+                    "internal_job_id": 1234,
                     "title": "Web Fox",
                     "updated_at": "2016-07-25T14:45:57-04:00",
                     "absolute_url": "http://example.com/foo",
                     "content": "&lt;h2&gt;foo&lt;/h2&gt; bar",
                     "metadata": [{"id": 69450, "name": "Employment Type", "value": "Full-time", "value_type": "single_select"}],
                     "departments": [{"id": 13585, "name": "Engineering"}],
+                    "location": {"name": "Remote US"},
                     "offices": [
                         {
                             "id": 1,
@@ -52,9 +53,11 @@ class SyncGreenhouseTests(TestCase):
             call_command("sync_greenhouse", stdout=StringIO())
         position = Position.objects.get()
         self.assertEqual(position.job_id, "xxx")
+        self.assertEqual(position.internal_job_id, 1234)
         self.assertEqual(position.title, "Web Fox")
         self.assertEqual(position.updated_at, datetime(2016, 7, 25, 18, 45, 57, tzinfo=timezone.utc))
         self.assertEqual(position.location_list, ["Greece", "Portland", "Remote"])
+        self.assertEqual(position.job_locations, "Remote US")
         self.assertEqual(position.department, "Engineering")
         self.assertEqual(position.apply_url, "http://example.com/foo")
         self.assertEqual(position.source, "gh")
@@ -62,12 +65,13 @@ class SyncGreenhouseTests(TestCase):
         self.assertEqual(position.description, "<h4>foo</h4> bar")
 
     def test_job_removal(self):
-        PositionFactory(job_id="xxx")
-        PositionFactory(job_id="yyy")
+        PositionFactory(job_id="xxx", internal_job_id=99)
+        PositionFactory(job_id="yyy", internal_job_id=99)
         jobs_response = {
             "jobs": [
                 {
                     "id": "xxx",
+                    "internal_job_id": 99,
                     "title": "Web Fox",
                     "absolute_url": "http://example.com/foo",
                     "updated_at": "2016-07-25T14:45:57-04:00",
@@ -88,6 +92,7 @@ class SyncGreenhouseTests(TestCase):
             "jobs": [
                 {
                     "id": "xxx",
+                    "internal_job_id": 99,
                     "title": "Web Fox",
                     "absolute_url": "http://example.com/foo",
                     "updated_at": "2016-07-25T14:45:57-04:00",
@@ -106,6 +111,7 @@ class SyncGreenhouseTests(TestCase):
             "jobs": [
                 {
                     "id": "xxx",
+                    "internal_job_id": 99,
                     "title": "Web Fox",
                     "departments": [{"name": "Mozilla Foundation"}],
                     "absolute_url": "http://example.com/foo",
@@ -124,12 +130,14 @@ class SyncGreenhouseTests(TestCase):
             "jobs": [
                 {
                     "id": "xxx",
+                    "internal_job_id": 99,
                     "title": "Web Fox",
                     "absolute_url": "http://example.com/foo",
                     "updated_at": "2016-07-25T14:45:57-04:00",
                 },
                 {
                     "id": "xxx",
+                    "internal_job_id": 99,
                     "title": "Web Fox",
                     "absolute_url": "http://example.com/foo",
                     "updated_at": "2016-07-25T14:45:57-04:00",
