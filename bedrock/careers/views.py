@@ -65,9 +65,7 @@ class PositionDetailView(LangFilesMixin, RequireSafeMixin, DetailView):
         position = context["position"]
 
         context["meta_description"] = generate_position_meta_description(position)
-
-        related_positions = Position.objects.filter(department=position.department).exclude(id=position.id)
-        context["related_positions"] = related_positions
+        context["postings"] = list(Position.objects.filter(internal_job_id=position.internal_job_id))
 
         return context
 

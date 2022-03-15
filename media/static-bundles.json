@@ -1857,6 +1857,13 @@
     },
     {
       "files": [
+        "protocol/js/protocol-details.js",
+        "js/careers/position/position.js"
+      ],
+      "name": "careers-position"
+    },
+    {
+      "files": [
         "protocol/js/protocol-modal.js",
         "js/mozorg/diversity/2021/diversity-2021.es6.js"
       ],

@@ -3,6 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from datetime import date
+from itertools import groupby
 
 from django.contrib.syndication.views import Feed
 from django.urls import reverse
@@ -30,7 +31,7 @@ class LatestPositionsFeed(Feed):
         return Position.categories()
 
     def items(self):
-        return Position.objects.all()
+        return [list(g)[0] for k, g in groupby(Position.objects.all().order_by("job_id"), key=lambda p: p.internal_job_id)]
 
     def item_title(self, item):
         return item.title
