@@ -14,6 +14,7 @@ from django.utils.functional import lazy
 
 import sentry_sdk
 from everett.manager import ListOf
+from sentry_processor import DesensitizationProcessor
 from sentry_sdk.integrations.django import DjangoIntegration
 
 from bedrock.base.config_manager import config
@@ -1159,14 +1160,33 @@ DEAD_MANS_SNITCH_URL = config("DEAD_MANS_SNITCH_URL", default="")  # see cron.py
 # There is also a DB_UPDATE_SCRIPT_DMS_URL defined in env vars, which is called directly from
 # the bash script bin/run-db-update.sh
 
-# Sentry config for Backend and Frontend
+# SENTRY CONFIG
 SENTRY_DSN = config("SENTRY_DSN", default="")
+
+# Data scrubbing before Sentry
+# https://github.com/laiyongtao/sentry-processor
+SENSITIVE_FIELDS_TO_MASK_ENTIRELY = [
+    "email",
+    # "token",  # token is on the default blocklist, which we also use via `with_default_keys`
+]
+
+
+def before_send(event, hint):
+    processor = DesensitizationProcessor(
+        with_default_keys=True,
+        sensitive_keys=SENSITIVE_FIELDS_TO_MASK_ENTIRELY,
+    )
+    event = processor.process(event, hint)
+    return event
+
+
 if SENTRY_DSN:
     sentry_sdk.init(
         dsn=SENTRY_DSN,
         release=config("GIT_SHA", default=""),
         server_name=".".join(x for x in [APP_NAME, CLUSTER_NAME] if x),
         integrations=[DjangoIntegration()],
+        before_send=before_send,
     )
 
 # Frontend uses the same DSN as backend by default, but we'll
