@@ -7,7 +7,7 @@ factory-boy==3.2.1
 flake8==4.0.1
 isort==5.10.1
 pipdeptree==2.2.1
-PyPOM==1.0
+PyPOM==2.2.3
 pyquery==1.4.3
 pytest-cov==3.0.0
 pytest-datadir==1.3.1
@@ -15,7 +15,7 @@ pytest-django==4.5.2
 pytest-mock==3.6.1
 pytest-parallel==0.1.1
 pytest-rerunfailures==10.2
-pytest-selenium==1.17.0
+pytest-selenium==2.0.1
 pytest==6.2.5  # Included because we use it directly, but also a subdep of pytest-selenium's subdeps
 responses==0.17.0
 selenium==3.141.0  # Pinned for stability - 4.x will need test updates

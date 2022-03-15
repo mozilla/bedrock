@@ -25,17 +25,9 @@ class BasePage(ScrollElementIntoView, Page):
         super().__init__(selenium, base_url, locale=locale, **url_kwargs)
 
     def wait_for_page_to_load(self):
-        browser_name = self.selenium.capabilities.get("browserName").lower()
-        browser_version = self.selenium.capabilities.get("browserVersion") or self.selenium.capabilities.get("version")
-        is_ie9 = browser_name == "internet explorer" and browser_version == "9"
-
         self.wait.until(lambda s: self.seed_url in s.current_url)
-
-        # legacy IE browsers are not served JS, so they do not get the 'loaded' conditional class name.
-        if not is_ie9:
-            el = self.find_element(By.TAG_NAME, "html")
-            self.wait.until(lambda s: "loaded" in el.get_attribute("class"))
-
+        el = self.find_element(By.TAG_NAME, "html")
+        self.wait.until(lambda s: "loaded" in el.get_attribute("class"))
         return self
 
     @property
