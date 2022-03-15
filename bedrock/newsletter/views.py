@@ -608,7 +608,7 @@ def recovery(request):
 
 def newsletter_subscribe(request):
     if request.method == "POST":
-        newsletters = request.POST.get("newsletters")
+        newsletters = request.POST.getlist("newsletters")
         form = NewsletterFooterForm(newsletters, l10n_utils.get_locale(request), request.POST)
         errors = []
         if form.is_valid():
