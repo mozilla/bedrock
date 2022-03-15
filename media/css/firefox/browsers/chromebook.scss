@@ -6,11 +6,8 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/card';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
 @import '~@mozilla-protocol/core/protocol/css/components/section-heading';
-@import '~@mozilla-protocol/core/protocol/css/components/split';
-@import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
 @import '../../protocol/components/custom-menu-list';
 
 .mzp-c-section-heading span {

@@ -7,10 +7,6 @@ $image-path: '/media/protocol/img';
 $brand-theme: 'firefox';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/call-out';
-@import '~@mozilla-protocol/core/protocol/css/components/split';
-@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
-@import '~@mozilla-protocol/core/protocol/css/components/picto';
 @import '../../protocol/components/sub-navigation';
 
 /* -------------------------------------------------------------------------- */

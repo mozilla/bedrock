@@ -29,18 +29,20 @@ from lib.l10n_utils.fluent import ftl
 
 def vpn_available(request):
     country = get_country_from_request(request)
+    country_list = settings.VPN_COUNTRY_CODES
 
-    return country in settings.VPN_COUNTRY_CODES
+    return country in country_list
 
 
 @require_safe
 def vpn_landing_page(request):
     template_name = "products/vpn/landing.html"
     ftl_files = ["products/vpn/landing", "products/vpn/shared"]
+    available_countries = settings.VPN_AVAILABLE_COUNTRIES
 
     context = {
         "vpn_available": vpn_available(request),
-        "available_countries": settings.VPN_AVAILABLE_COUNTRIES,
+        "available_countries": available_countries,
         "connect_servers": settings.VPN_CONNECT_SERVERS,
         "connect_countries": settings.VPN_CONNECT_COUNTRIES,
         "connect_devices": settings.VPN_CONNECT_DEVICES,

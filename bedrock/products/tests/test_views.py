@@ -287,18 +287,12 @@ class TestVPNResourceListingView(TestCase):
 
     def test_simple_get__for_unavailable_locale(self, render_mock):
         resp = self._request(locale="sk", expected_status=302, path="/test-path/")
-        self.assertEqual(
-            resp._headers["location"],
-            ("Location", "/en-US/test-path/"),
-        )
+        self.assertEqual(resp.headers["location"], "/en-US/test-path/")
         render_mock.assert_not_called()
 
     def test_simple_get__for_invalid_locale(self, render_mock):
         resp = self._request(locale="xx", expected_status=302, path="/test-path/")
-        self.assertEqual(
-            resp._headers["location"],
-            ("Location", "/en-US/test-path/"),
-        )
+        self.assertEqual(resp.headers["location"], "/en-US/test-path/")
         render_mock.assert_not_called()
 
     @override_settings(CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE=95)
@@ -310,10 +304,7 @@ class TestVPNResourceListingView(TestCase):
         assert ContentfulEntry.objects.filter(locale="fr").count() < ContentfulEntry.objects.filter(locale="en-US").count()
 
         resp = self._request(locale="fr", expected_status=302, path="/test-path/")
-        self.assertEqual(
-            resp._headers["location"],
-            ("Location", "/en-US/test-path/"),
-        )
+        self.assertEqual(resp.headers["location"], "/en-US/test-path/")
         render_mock.assert_not_called()
 
     def test_category_filtering(self, render_mock):
@@ -406,17 +397,13 @@ class TestVPNResourceArticleView(TestCase):
     @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
     def test_simple_get__for_unavailable_locale(self, render_mock):
         resp = self.client.get("/de/products/vpn/resource-center/slug-2/")
-        self.assertEqual(
-            resp._headers["location"],
-            ("Location", "/en-US/products/vpn/resource-center/slug-2/"),  # Which will 404 as expected
-        )
+        # Which will 404 as expected
+        self.assertEqual(resp.headers["location"], "/en-US/products/vpn/resource-center/slug-2/")
         render_mock.assert_not_called()
 
     @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
     def test_simple_get__for_invalid_locale(self, render_mock):
         resp = self.client.get("/xx/products/vpn/resource-center/slug-2/")
-        self.assertEqual(
-            resp._headers["location"],
-            ("Location", "/en-US/xx/products/vpn/resource-center/slug-2/"),  # Which will 404 as expected
-        )
+        # Which will 404 as expected
+        self.assertEqual(resp.headers["location"], "/en-US/xx/products/vpn/resource-center/slug-2/")
         render_mock.assert_not_called()

@@ -168,7 +168,6 @@ def assert_valid_url(
 
     if resp_headers and not follow_redirects:
         for name, value in resp_headers.items():
-            print(name, value)
             assert name in resp.headers
             assert resp.headers[name].lower() == value.lower()
 

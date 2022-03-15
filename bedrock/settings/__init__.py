@@ -9,7 +9,7 @@ from .base import *  # noqa
 
 try:
     from .local import *  # noqa
-except ImportError as exc:
+except ImportError:
     "local.py is supported, but no longer necessary"
 
 

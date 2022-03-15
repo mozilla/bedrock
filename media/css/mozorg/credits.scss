@@ -3,13 +3,48 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 html {
-    background-color: #fff;
+    background: -moz-dialog;
+    color: -moz-dialogtext;
+    padding: 0 1em;
+    font: message-box;
+    line-height: 1.6em;
 }
 
 body {
-    color: #000;
+    position: relative;
+    min-width: 330px;
+    max-width: 50em;
+    margin: 4em auto;
+    padding-inline-start: 30px;
+}
+
+.about-page-wide-container {
+    max-width: 80%;
 }
 
 h1 {
-    text-align: center;
+    font-weight: lighter;
+    font-size: 2.4em;
+}
+
+img {
+    border: 0;
+}
+
+ul {
+    margin: 0;
+    margin-inline-start: 1.5em;
+    padding: 0;
+}
+
+ul > li {
+    margin-top: 0.5em;
+}
+
+th {
+    padding: 0 5px;
+}
+
+td {
+    padding: 0 5px;
 }

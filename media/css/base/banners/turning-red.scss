@@ -1,0 +1,201 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+$brand-theme: 'firefox';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+$color-panda-red: #fc4055;
+
+#turning-red-banner {
+    &.c-banner {
+        @include clearfix;
+        @include at2x('https://www.mozilla.org/media/img/banners/turningred/mobile-streaming.jpg', 320px, 110px);
+        background-color: $color-panda-red;
+        background-position: center top;
+        background-repeat: no-repeat;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.25) inset;
+        color: $color-white;
+        min-width: $content-xs;
+        padding-top: 110px;
+        position: relative;
+        text-align: center;
+        z-index: 3;
+
+        .mzp-l-content {
+            padding: $spacing-lg;
+        }
+
+        // hide by default if JS is available to avoid flicker
+        // (if visitor previously dismissed)
+        .js & {
+            display: none;
+        }
+
+        // conditional class used to display the banner.
+        &.c-banner-is-visible {
+            display: block;
+        }
+    }
+
+    .c-banner-main {
+        max-width: $content-sm;
+        margin: 0 auto;
+    }
+
+    .c-button {
+        @include image-replaced;
+        background: transparent url('/media/img/banners/turningred/button-fun.png') center top no-repeat;
+        background-size: 199px 100px;
+        display: inline-block;
+        height: 50px;
+        width: 199px;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-position: center -50px;
+        }
+    }
+
+    .c-banner-title {
+        @include font-firefox;
+        @include font-size(18px);
+        line-height: 1.2;
+        margin-bottom: 1em;
+
+        b {
+            font-weight: inherit;
+            position: relative;
+
+            &::after {
+                background: transparent url('/media/img/banners/turningred/underline.svg') center center no-repeat;
+                background-size: contain;
+                content: '';
+                display: block;
+                height: 0.4em;
+                left: 0;
+                position: absolute;
+                top: calc(100% - 0.15em);
+                width: calc(100% - 0.5em);
+            }
+        }
+    }
+
+    @media #{$mq-sm} {
+        &.c-banner {
+            background-size: 487px 168px;
+            padding-top: 170px;
+        }
+
+        .c-banner-title {
+            @include font-size(24px);
+        }
+    }
+
+    @media #{$mq-md} {
+        &.c-banner {
+            @include at2x('https://www.mozilla.org/media/img/banners/turningred/desktop-streaming.jpg', 400px, 214px);
+            background-position: -7px -6px;
+            padding-left: 410px;
+            padding-top: 0;
+            text-align: left;
+        }
+
+        .c-banner-main {
+            margin: 0;
+            max-width: none;
+        }
+
+        .c-banner-content {
+            padding-right: $spacing-2xl; // make room for the close button
+
+            p {
+                margin-bottom: 0;
+            }
+        }
+
+        .c-banner-title {
+            margin: 0 0 1em;
+        }
+    }
+
+    @media #{$mq-lg} {
+        &.c-banner {
+            background-position: -5px -4px;
+            background-size: 261px 140px;
+            padding-left: 265px;
+        }
+
+        .c-banner-main {
+            display: flex;
+            align-items: center;
+        }
+
+        .c-banner-title {
+            margin: 0;
+        }
+
+        .c-cta {
+            line-height: 0;
+            min-width: 180px;
+            padding-right: $spacing-2xl; // make room for the close button
+        }
+    }
+
+    // Close button
+    .c-banner-close {
+        @include bidi((
+            (right, $spacing-sm, auto),
+            (left, auto, $spacing-sm),
+        ));
+        @include image-replaced;
+        background: transparent url('/media/img/banners/turningred/close-x.svg') center center no-repeat;
+        background-size: 20px 20px;
+        border: none;
+        cursor: pointer;
+        display: none;
+        height: 42px;
+        min-width: 0;
+        padding: 0;
+        position: absolute;
+        top: $spacing-sm;
+        width: 42px;
+        z-index: 1;
+
+        @media (prefers-reduced-motion: 'no-preference') {
+            transition-property: filter scale;
+            transition-duration: 250ms;
+            transition-delay: 0ms, 100ms;
+        }
+
+        &:hover,
+        &:focus {
+            @media (prefers-reduced-motion: 'no-preference') {
+                transform: scale(1.3);
+                transition: filter 150ms transform 150ms;
+            }
+            filter: hue-rotate(20deg) drop-shadow(0 5px 0 black);
+        }
+
+        @media (prefers-reduced-motion: 'no-preference') {
+            &:active {
+                transform: scale(1.3) translateY(5px);
+                filter: drop-shadow(0 2px 0 black);
+            }
+        }
+
+        // hide the 'Close' text
+        span {
+            @include visually-hidden;
+        }
+
+        // only display when JS is available
+        .js & {
+            display: block;
+        }
+    }
+}

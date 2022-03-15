@@ -9,7 +9,11 @@
 {% extends "products/vpn/base.html" %}
 
 {% block page_css %}
-  {{ css_bundle('vpn-resource-center')}}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-card') }}
+  {{ css_bundle('protocol-call-out') }}
+  {{ css_bundle('protocol-article') }}
+  {{ css_bundle('vpn-resource-center') }}
 {% endblock page_css %}
 
 {% block page_title%}{{ ftl('vpn-resource-center-title') }}{% endblock page_title %}

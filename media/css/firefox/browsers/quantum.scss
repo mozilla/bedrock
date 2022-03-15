@@ -6,11 +6,7 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/split';
-@import '~@mozilla-protocol/core/protocol/css/components/emphasis-box';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
-@import '~@mozilla-protocol/core/protocol/css/components/picto';
-@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 
 .mzp-c-emphasis-box {
     margin-bottom: $layout-xl;

@@ -15,7 +15,7 @@ from django.http import (
     JsonResponse,
 )
 from django.utils.cache import add_never_cache_headers, patch_response_headers
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
 from django.views.generic.base import TemplateView
@@ -93,7 +93,7 @@ class InstallerHelpView(L10nTemplateView):
 @require_GET
 def stub_attribution_code(request):
     """Return a JSON response containing the HMAC signed stub attribution value"""
-    if not request.is_ajax():
+    if not request.headers.get("x-requested-with") == "XMLHttpRequest":
         return JsonResponse({"error": "Resource only available via XHR"}, status=400)
 
     response = None
@@ -466,6 +466,11 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx97-en.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx97-de.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx97-fr.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx98-vpn-eu.html": ["firefox/whatsnew/whatsnew-98-vpn-eu", "firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx98-mobile-de.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx98-mobile-fr.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx98-vpn-en.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx98-turningred-en.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in China
@@ -547,6 +552,22 @@ class WhatsnewView(L10nTemplateView):
         elif channel == "developer":
             if show_57_dev_whatsnew(version):
                 template = "firefox/developer/whatsnew.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif version.startswith("98."):
+            if locale.startswith("en"):
+                if switch("whatsnew-firefox-98-turning-red") and country == "US":
+                    template = "firefox/whatsnew/whatsnew-fx98-turningred-en.html"
+                elif country in ["SE", "FI"]:
+                    template = "firefox/whatsnew/whatsnew-fx98-vpn-eu.html"
+                else:
+                    template = "firefox/whatsnew/whatsnew-fx98-vpn-en.html"
+            elif ftl_file_is_active("firefox/whatsnew/whatsnew-98-vpn-eu") and country in ["SE", "FI"]:
+                template = "firefox/whatsnew/whatsnew-fx98-vpn-eu.html"
+            elif locale == "de":
+                template = "firefox/whatsnew/whatsnew-fx98-mobile-de.html"
+            elif locale == "fr":
+                template = "firefox/whatsnew/whatsnew-fx98-mobile-fr.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("97.") and locale == "de":
@@ -666,7 +687,7 @@ class NewView(L10nTemplateView):
             thanks_url = reverse("firefox.download.thanks")
             query_string = self.request.META.get("QUERY_STRING", "")
             if query_string:
-                thanks_url = "?".join([thanks_url, force_text(query_string, errors="ignore")])
+                thanks_url = "?".join([thanks_url, force_str(query_string, errors="ignore")])
             return HttpResponsePermanentRedirect(thanks_url)
 
         return super().get(*args, **kwargs)
@@ -689,7 +710,7 @@ class NewView(L10nTemplateView):
                     exp_url = reverse("exp.firefox.new")
                     query_string = self.request.META.get("QUERY_STRING", "")
                     if query_string:
-                        exp_url = "?".join([exp_url, force_text(query_string, errors="ignore")])
+                        exp_url = "?".join([exp_url, force_str(query_string, errors="ignore")])
                     response = HttpResponseRedirect(exp_url)
                 else:
                     response = super().render_to_response(context, **response_kwargs)

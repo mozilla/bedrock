@@ -5,34 +5,34 @@
  */
 
 (function () {
-    'use strict';
-
     // TODO port this JS to Protocol
-    // !! this file assumes only one signup form per page !!
+    // multi-newsletter signup allowed since issue #11120
 
-    var newsletterForm = document.getElementById('newsletter-form');
+    const newsletterForm = document.getElementById('newsletter-form');
 
     if (!newsletterForm) {
         return;
     }
 
     // handle errors
-    var errorArray = [];
-    var newsletterErrors = document.getElementById('newsletter-errors');
-    var newsletterContent = document.querySelector('.mzp-c-newsletter-content');
+    let errorArray = [];
+    let newsletterErrors = document.getElementById('newsletter-errors');
+    const newsletterContent = document.querySelector(
+        '.mzp-c-newsletter-content'
+    );
 
     function disableFormFields() {
-        var formFields = newsletterForm.querySelectorAll('input, select');
+        const formFields = newsletterForm.querySelectorAll('input, select');
 
-        for (var i = 0; i < formFields.length; i++) {
+        for (let i = 0; i < formFields.length; i++) {
             formFields[i].disabled = true;
         }
     }
 
     function enableFormFields() {
-        var formFields = newsletterForm.querySelectorAll('input, select');
+        const formFields = newsletterForm.querySelectorAll('input, select');
 
-        for (var i = 0; i < formFields.length; i++) {
+        for (let i = 0; i < formFields.length; i++) {
             formFields[i].disabled = false;
         }
     }
@@ -52,10 +52,10 @@
                 );
             }
 
-            var errorList = document.createElement('ul');
+            const errorList = document.createElement('ul');
 
-            for (var i = 0; i < errorArray.length; i++) {
-                var item = document.createElement('li');
+            for (let i = 0; i < errorArray.length; i++) {
+                const item = document.createElement('li');
                 item.appendChild(document.createTextNode(errorArray[i]));
                 errorList.appendChild(item);
             }
@@ -71,7 +71,7 @@
 
     // show sucess message
     function newsletterThanks() {
-        var thanks = document.getElementById('newsletter-thanks');
+        const thanks = document.getElementById('newsletter-thanks');
 
         // show thanks message
         thanks.style.display = 'block';
@@ -87,7 +87,7 @@
                 })
             );
         } else if (typeof document.createEvent === 'function') {
-            var event = document.createEvent('Event');
+            const event = document.createEvent('Event');
             event.initEvent('newsletterSuccess', true, true);
             document.dispatchEvent(event);
         }
@@ -95,7 +95,7 @@
 
     // XHR subscribe; handle errors; display thanks message on success.
     function newsletterSubscribe(evt) {
-        var skipXHR = newsletterForm.getAttribute('data-skip-xhr');
+        const skipXHR = newsletterForm.getAttribute('data-skip-xhr');
         if (skipXHR) {
             return true;
         }
@@ -113,21 +113,41 @@
             }
         }
 
-        var fmtHtml = document.getElementById('format-html');
-        var fmtText = document.getElementById('format-text');
-        var fmt = fmtText.checked ? fmtText.value : fmtHtml.value;
-        var email = document.getElementById('id_email').value;
-        var newsletter = document.getElementById('id_newsletters').value;
-        var privacy = document.querySelector('input[name="privacy"]:checked')
+        const fmtHtml = document.getElementById('format-html');
+        const fmtText = document.getElementById('format-text');
+        const fmt = fmtText.checked ? fmtText.value : fmtHtml.value;
+        const email = document.getElementById('id_email').value;
+
+        // Get newsletters by hidden id or checked inputs
+        let newsletters = '';
+        const singleNewsletterForm = document.getElementById('id_newsletters');
+        if (singleNewsletterForm) {
+            newsletters = singleNewsletterForm.value;
+        } else {
+            const checkedNewsletters = Array.from(
+                document.querySelectorAll("input[name='newsletter-id']:checked")
+            ).map((newsletter) => newsletter.value);
+
+            // confirm at least one newsletter is checked
+            if (checkedNewsletters.length === 0) {
+                const errorString = document
+                    .getElementById('newsletter-error-strings')
+                    .getAttribute('data-form-checkboxes-error');
+                errorArray.push(errorString);
+                return newsletterError();
+            }
+            newsletters = checkedNewsletters.join(',');
+        }
+        const privacy = document.querySelector('input[name="privacy"]:checked')
             ? '&privacy=true'
             : '';
-        var country = document.getElementById('id_country').value;
-        var lang = document.getElementById('id_lang').value;
-        var params =
+        const country = document.getElementById('id_country').value;
+        const lang = document.getElementById('id_lang').value;
+        const params =
             'email=' +
             encodeURIComponent(email) +
             '&newsletters=' +
-            newsletter +
+            newsletters +
             privacy +
             '&fmt=' +
             fmt +
@@ -138,11 +158,11 @@
             '&source_url=' +
             encodeURIComponent(document.location.href);
 
-        var xhr = new XMLHttpRequest();
+        const xhr = new XMLHttpRequest();
 
         xhr.onload = function (r) {
             if (r.target.status >= 200 && r.target.status < 300) {
-                var response = r.target.response || r.target.responseText;
+                let response = r.target.response || r.target.responseText;
 
                 if (typeof response !== 'object') {
                     response = JSON.parse(response);
@@ -157,12 +177,12 @@
                     if (window.dataLayer) {
                         window.dataLayer.push({
                             event: 'newsletter-signup-success',
-                            newsletter: newsletter
+                            newsletter: newsletters
                         });
                     }
                 } else {
                     if (response.errors) {
-                        for (var i = 0; i < response.errors.length; i++) {
+                        for (let i = 0; i < response.errors.length; i++) {
                             errorArray.push(response.errors[i]);
                         }
                     }
@@ -177,7 +197,7 @@
             newsletterError(e);
         };
 
-        var url = newsletterForm.getAttribute('action');
+        const url = newsletterForm.getAttribute('action');
 
         xhr.open('POST', url, true);
         xhr.setRequestHeader(

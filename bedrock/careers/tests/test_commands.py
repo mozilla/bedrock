@@ -3,11 +3,11 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from datetime import datetime, timezone
+from io import StringIO
 from unittest.mock import patch
 
 from django.core.management import call_command
 from django.test.utils import override_settings
-from django.utils.six import StringIO
 
 from bedrock.careers.models import Position
 from bedrock.careers.tests import PositionFactory

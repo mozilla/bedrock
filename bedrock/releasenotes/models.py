@@ -132,7 +132,7 @@ class MarkdownField(models.TextField):
 class NotesField(JSONField):
     """Field that returns a list of Note objects instead of dicts"""
 
-    def from_db_value(self, value, expression, connection, context):
+    def from_db_value(self, value, expression, connection):
         if not value:
             return value
 

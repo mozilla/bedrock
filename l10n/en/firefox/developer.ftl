@@ -57,7 +57,11 @@ firefox-developer-firefox-devtools-now-grays-out = { -brand-name-firefox-devtool
 firefox-developer-firefox-devtools = { -brand-name-firefox-devtools }
 firefox-developer-the-new-firefox-devtools = The new { -brand-name-firefox-devtools } are powerful, flexible, and best of all, hackable. This includes a best-in-class JavaScript debugger, which can target multiple browsers and is built in React and Redux.
 firefox-developer-master-css-grid = Master CSS Grid
+
+# outdated
 firefox-developer-next-gen-css-engine = Next-Gen CSS Engine
+
+firefox-developer-built-for-developers = Built for Developers
 firefox-developer-a-next-generation = A Next-Generation CSS Engine
 firefox-developer-master-innovative-features = Innovative Features
 firefox-developer-want-to-be-on-the-cutting-edge = Want to be on the cutting-edge?

@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from django.utils.http import urlquote
+from urllib.parse import quote
 
 # Base link to Firefox for Android on the Google Play store.
 GOOGLE_PLAY_FIREFOX_LINK = "https://play.google.com/store/apps/details?id=org.mozilla.firefox"
@@ -11,7 +11,7 @@ GOOGLE_PLAY_FIREFOX_LINK = "https://play.google.com/store/apps/details?id=org.mo
 # campaign parameters.
 # To clarify below, 'referrer' key value must be a URL encoded string of utm_*
 # key/values (https://bugzilla.mozilla.org/show_bug.cgi?id=1099429#c0).
-GOOGLE_PLAY_FIREFOX_LINK_UTMS = GOOGLE_PLAY_FIREFOX_LINK + "&referrer=" + urlquote("utm_source=mozilla&utm_medium=Referral&utm_campaign=mozilla-org")
+GOOGLE_PLAY_FIREFOX_LINK_UTMS = GOOGLE_PLAY_FIREFOX_LINK + "&referrer=" + quote("utm_source=mozilla&utm_medium=Referral&utm_campaign=mozilla-org")
 
 # Bug 1264843: link to China build of Fx4A, for display within Fx China repack
 GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE = GOOGLE_PLAY_FIREFOX_LINK_UTMS.replace("org.mozilla.firefox", "cn.mozilla.firefox")

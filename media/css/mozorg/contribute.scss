@@ -7,16 +7,11 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/includes/fonts/metropolis';
-@import '~@mozilla-protocol/core/protocol/css/components/newsletter-form';
-@import '~@mozilla-protocol/core/protocol/css/components/card';
-@import '~@mozilla-protocol/core/protocol/css/components/split';
 @import '~@mozilla-protocol/core/protocol/css/components/section-heading';
-@import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
 
 .contribute-intro {
     overflow: hidden;
     padding-bottom: 90%;
-    padding-top: 0;
     position: relative;
 
     @media #{$mq-md} {
@@ -25,6 +20,7 @@ $image-path: '/media/protocol/img';
 
     @media #{$mq-lg} {
         padding-bottom: $layout-xl;
+        padding-top: 0;
     }
 
     @media #{$mq-xl} {

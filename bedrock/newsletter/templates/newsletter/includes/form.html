@@ -8,10 +8,19 @@
 
 {% if not success %}
   <form id="newsletter-form" class="mzp-c-newsletter-form" action="{{ url('newsletter.subscribe') }}" method="post">
-    {{ form.newsletters|safe }}
+    {% if is_multi_newsletter_form %}
+      <div id="newsletter-error-strings" data-form-checkboxes-error="{{ ftl('multi-newsletter-form-checkboxes-error') }}"></div>
+    {% else %}
+      {{ form.newsletters|safe }}
+    {% endif %}
     <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
 
-    {% if include_title %}
+    {% if include_title and is_multi_newsletter_form %}
+    <header class="mzp-c-newsletter-header">
+      <h3 class="mzp-c-newsletter-title">{{ ftl('multi-newsletter-form-title') }}</h3>
+      <p class="mzp-c-newsletter-desc">{{ ftl('multi-newsletter-form-desc') }}</p>
+    </header>
+    {% elif include_title %}
     <header class="mzp-c-newsletter-header">
       <h3 class="mzp-c-newsletter-title">{{ title|d(ftl('newsletter-form-get-firefox-news'), true) }}</h3>
       {% if subtitle %}
@@ -68,6 +77,20 @@
           <input type="hidden" name="lang" id="id_lang"  value="en">
         {% endif %}
 
+        {% if is_multi_newsletter_form %}
+          <fieldset class="mzp-u-inline">
+            <legend>{{ ftl('multi-newsletter-form-checkboxes-legend') }}</legend>
+            <p>
+              <label for="newsletter-mozilla" class="mzp-u-inline">
+                <input type="checkbox" id="newsletter-mozilla" name="newsletter-id" value="mozilla-foundation" checked> {{ ftl('multi-newsletter-form-checkboxes-label-mozilla')}}
+              </label>
+              <label for="newsletter-firefox" class="mzp-u-inline">
+                <input type="checkbox" id="newsletter-firefox" name="newsletter-id" value="mozilla-and-you" checked> {{ ftl('multi-newsletter-form-checkboxes-label-firefox') }}
+              </label>
+            </p>
+          </fieldset>
+        {% endif %}
+
         <fieldset class="mzp-u-inline">
           <legend>{{ ftl('newsletter-form-format') }}</legend>
           <p>
@@ -98,7 +121,7 @@
 
         {% if details %}
           <span class="mzp-c-fieldnote">{{ details }}</span>
-        {% else %}
+        {% elif not is_multi_newsletter_form %}
             <span class="mzp-c-fieldnote">
               {# Issue 7460 `mozilla-and-you` is the ID for the Firefox newsletter, because history... #}
               {% if id == 'mozilla-and-you' %}

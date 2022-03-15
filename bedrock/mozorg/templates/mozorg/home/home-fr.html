@@ -17,6 +17,10 @@
 {% set show_vpn_promo_banner = switch('vpn-promo-banner') %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-card') }}
+  {{ css_bundle('protocol-newsletter') }}
+  {{ css_bundle('protocol-call-out') }}
   {{ css_bundle('home-eu') }}
 
   {% if switch('homepage-mr2-promo-eu') %}
@@ -118,12 +122,19 @@
         </div>
 
         <div class="newsletter-content">
-          {{ email_newsletter_form(
-            title=_('Vous adorez Internet ?'),
-            desc=_('Abonnez-vous à la newsletter Firefox et soutenez notre vision d’un Internet libre et sécurisé.'),
-            button_class='button-dark',
-            submit_text=_('S’abonner')
-          )}}
+          {% if ftl_has_messages('multi-newsletter-form-title', 'multi-newsletter-form-desc', 'multi-newsletter-form-checkboxes-legend') %}
+            {{ email_newsletter_form(
+              newsletters='mozilla-foundation, mozilla-and-you',
+              button_class='button-dark'
+            )}}
+          {% else %}
+            {{ email_newsletter_form(
+              title=_('Vous adorez Internet ?'),
+              desc=_('Abonnez-vous à la newsletter Firefox et soutenez notre vision d’un Internet libre et sécurisé.'),
+              button_class='button-dark',
+              submit_text=_('S’abonner')
+            )}}
+          {% endif %}
         </div>
       </aside>
     </div>

@@ -450,6 +450,22 @@ class TestSendToDeviceView(TestCase):
             lang="en-US",
         )
 
+    # issue #11206
+    def test_fx_mobile_download_desktop_experiment_email(self):
+        resp_data = self._request(
+            {
+                "s2d-email": "dude@example.com",
+                "message-set": "fx-mobile-download-desktop-experiment",
+            }
+        )
+        assert resp_data["success"]
+        self.mock_subscribe.assert_called_with(
+            "dude@example.com",
+            views.SEND_TO_DEVICE_MESSAGE_SETS["fx-mobile-download-desktop-experiment"]["email"]["all"],
+            source_url=None,
+            lang="en-US",
+        )
+
 
 @override_settings(DEV=False)
 @patch("bedrock.firefox.views.l10n_utils.render", return_value=HttpResponse())
@@ -581,7 +597,7 @@ class TestFirefoxNew(TestCase):
         resp = view(req)
         assert resp.status_code == 302
         assert resp["location"].endswith("/exp/firefox/new/")
-        assert resp["cache-control"] == "max-age=0, no-cache, no-store, must-revalidate"
+        assert resp["cache-control"] == "max-age=0, no-cache, no-store, must-revalidate, private"
         req.locale = "en-US"
         resp = view(req)
         assert resp.status_code == 200

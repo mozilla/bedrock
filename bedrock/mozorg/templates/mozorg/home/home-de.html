@@ -18,6 +18,10 @@
 
 
 {% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-card') }}
+  {{ css_bundle('protocol-newsletter') }}
+  {{ css_bundle('protocol-call-out') }}
   {{ css_bundle('home-eu') }}
 
   {% if switch('homepage-mr2-promo-eu') %}
@@ -120,12 +124,19 @@
         </div>
 
         <div class="newsletter-content">
-          {{ email_newsletter_form(
-            title='Du liebst das Internet?',
-            desc='Hol dir den Firefox Newsletter und sorg mit uns zusammen dafür, dass das Web frei und offen für alle bleibt.',
-            button_class='button-dark',
-            submit_text='Anmelden'
-          )}}
+          {% if ftl_has_messages('multi-newsletter-form-title', 'multi-newsletter-form-desc', 'multi-newsletter-form-checkboxes-legend') %}
+            {{ email_newsletter_form(
+              newsletters='mozilla-foundation, mozilla-and-you',
+              button_class='button-dark'
+            )}}
+          {% else %}
+            {{ email_newsletter_form(
+              title='Du liebst das Internet?',
+              desc='Hol dir den Firefox Newsletter und sorg mit uns zusammen dafür, dass das Web frei und offen für alle bleibt.',
+              button_class='button-dark',
+              submit_text='Anmelden'
+            )}}
+          {% endif %}
         </div>
       </aside>
     </div>

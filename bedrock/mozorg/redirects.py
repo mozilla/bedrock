@@ -541,7 +541,7 @@ redirectpatterns = (
     redirect(r"^vpn/?$", "products.vpn.landing"),
     # Issue 11204
     redirect(
-        r"^(truecolors|turningred)/?$",
+        r"^(truecolou?rs|turningred)/?$",
         "https://truecolors.firefox.com/",
         merge_query=True,
         query={

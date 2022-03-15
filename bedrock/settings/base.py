@@ -53,6 +53,7 @@ DATABASES = {
         "NAME": data_path("bedrock.db"),
     },
 }
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 CACHES = {
     "default": {
@@ -359,19 +360,25 @@ def lazy_lang_url_map():
     return {i.lower(): i for i in langs}
 
 
-# Override Django's built-in with our native names
 def lazy_langs():
+    """
+    Override Django's built-in with our native names
+
+    Note: Unlike the above lazy methods, this one returns a list of tuples to
+    match Django's expectations.
+
+    """
     from django.conf import settings
 
     from product_details import product_details
 
     langs = DEV_LANGUAGES if settings.DEV else settings.PROD_LANGUAGES
-    return {lang.lower(): product_details.languages[lang]["native"] for lang in langs if lang in product_details.languages}
+    return [(lang.lower(), product_details.languages[lang]["native"]) for lang in langs if lang in product_details.languages]
 
 
 LANG_GROUPS = lazy(lazy_lang_group, dict)()
 LANGUAGE_URL_MAP = lazy(lazy_lang_url_map, dict)()
-LANGUAGES = lazy(lazy_langs, dict)()
+LANGUAGES = lazy(lazy_langs, list)()
 
 FEED_CACHE = 3900
 # 30 min during dev and 10 min in prod
@@ -530,6 +537,7 @@ BASIC_AUTH_CREDS = config("BASIC_AUTH_CREDS", default="")
 MIDDLEWARE = [
     "allow_cidr.middleware.AllowCIDRMiddleware",
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "bedrock.mozorg.middleware.HostnameMiddleware",
     "django.middleware.http.ConditionalGetMiddleware",
     "corsheaders.middleware.CorsMiddleware",
@@ -614,6 +622,7 @@ VARY_NOCACHE_EXEMPT_URL_PREFIXES = (
 # legacy setting. backward compat.
 DISABLE_SSL = config("DISABLE_SSL", default="true", parser=bool)
 # SecurityMiddleware settings
+SECURE_REFERRER_POLICY = config("SECURE_REFERRER_POLICY", default="strict-origin-when-cross-origin")
 SECURE_HSTS_SECONDS = config("SECURE_HSTS_SECONDS", default="0", parser=int)
 SECURE_HSTS_INCLUDE_SUBDOMAINS = False
 SECURE_BROWSER_XSS_FILTER = config("SECURE_BROWSER_XSS_FILTER", default="true", parser=bool)
@@ -979,6 +988,11 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
     "fx-mobile-download-desktop": {
         "email": {
             "all": "download-firefox-mobile-reco",
+        }
+    },
+    "fx-mobile-download-desktop-experiment": {
+        "email": {
+            "all": "download-firefox-mobile-reco-exp",
         }
     },
     "fx-whatsnew": {
@@ -1358,7 +1372,7 @@ VPN_PLAN_ID_MATRIX = {
             },
             "monthly": {
                 "id": "price_1IXw4eKb9q6OnNsLqnVP4PvO" if DEV else "price_1IgwZVJNcmPzuWtRg9Wssh2y",
-                "price": "9,99‎ €",
+                "price": "9,99 €",
                 "total": None,
                 "saving": None,
             },
@@ -1378,7 +1392,7 @@ VPN_PLAN_ID_MATRIX = {
             },
             "monthly": {
                 "id": "price_1Jcu7uKb9q6OnNsLG4JAAXuw" if DEV else "price_1JcdsSJNcmPzuWtRGF9Y5TMJ",
-                "price": "9,99‎ €",
+                "price": "9,99 €",
                 "total": None,
                 "saving": None,
             },
@@ -1398,7 +1412,7 @@ VPN_PLAN_ID_MATRIX = {
             },
             "monthly": {
                 "id": "price_1J4pFSKb9q6OnNsLEyiFLbvB" if DEV else "price_1J5JDgJNcmPzuWtRqQtIbktk",
-                "price": "9,99‎ €",
+                "price": "9,99 €",
                 "total": None,
                 "saving": None,
             },
@@ -1418,7 +1432,7 @@ VPN_PLAN_ID_MATRIX = {
             },
             "monthly": {
                 "id": "price_1IXw4eKb9q6OnNsLqnVP4PvO" if DEV else "price_1IgowHJNcmPzuWtRzD7SgAYb",
-                "price": "9,99‎ €",
+                "price": "9,99 €",
                 "total": None,
                 "saving": None,
             },
@@ -1438,7 +1452,7 @@ VPN_PLAN_ID_MATRIX = {
             },
             "monthly": {
                 "id": "price_1J4p6wKb9q6OnNsLTb6kCDsC" if DEV else "price_1J5J6iJNcmPzuWtRK5zfoguV",
-                "price": "9,99‎ €",
+                "price": "9,99 €",
                 "total": None,
                 "saving": None,
             },
@@ -1511,6 +1525,9 @@ VPN_VARIABLE_PRICING = {
     "ES": {
         "default": VPN_PLAN_ID_MATRIX["euro"]["es"],
     },
+    "FI": {
+        "default": VPN_PLAN_ID_MATRIX["euro"]["en"],
+    },
     "FR": {
         "default": VPN_PLAN_ID_MATRIX["euro"]["fr"],
     },
@@ -1522,6 +1539,9 @@ VPN_VARIABLE_PRICING = {
     },
     "NL": {
         "default": VPN_PLAN_ID_MATRIX["euro"]["nl"],
+    },
+    "SE": {
+        "default": VPN_PLAN_ID_MATRIX["euro"]["en"],
     },
     "US": {
         "default": VPN_PLAN_ID_MATRIX["usd"]["en"],
@@ -1562,9 +1582,11 @@ VPN_COUNTRY_CODES = [
     "IT",  # Italy
     "IE",  # Ireland
     "NL",  # Netherlands
+    "SE",  # Sweden
+    "FI",  # Finland
 ]
 
-VPN_AVAILABLE_COUNTRIES = 15
+VPN_AVAILABLE_COUNTRIES = 17
 VPN_CONNECT_SERVERS = 400
 VPN_CONNECT_COUNTRIES = 30
 VPN_CONNECT_DEVICES = 5

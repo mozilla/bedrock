@@ -17,6 +17,9 @@
 {% set show_fundraising_banner = switch('fundraising-banner-eoy2021') and donate_params and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('protocol-newsletter') }}
   {{ css_bundle('home') }}
 
   {% if show_fundraising_banner %}
@@ -158,11 +161,17 @@
       </div>
 
       <div class="newsletter-content">
-        {{ email_newsletter_form(
-        newsletters='mozilla-and-you',
-        button_class='button-dark',
-        submit_text=ftl('newsletter-form-sign-up-now')
-        )}}
+        {% if ftl_has_messages('multi-newsletter-form-title', 'multi-newsletter-form-desc', 'multi-newsletter-form-checkboxes-legend') %}
+          {{ email_newsletter_form(
+            newsletters='mozilla-foundation, mozilla-and-you',
+            button_class='button-dark'
+          )}}
+        {% else %}
+          {{ email_newsletter_form(
+            button_class='button-dark',
+            submit_text=ftl('newsletter-form-sign-up-now')
+          )}}
+        {% endif %}
       </div>
     </aside>
   </div>

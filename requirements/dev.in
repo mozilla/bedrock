@@ -1,11 +1,10 @@
--r prod.in
+-r prod.txt
 
 black==21.12b0
 bpython==0.22.1
 braceexpand==0.1.7
 factory-boy==3.2.1
 flake8==4.0.1
-importlib-metadata==4.2.0
 isort==5.10.1
 pipdeptree==2.2.1
 PyPOM==1.0

@@ -1177,7 +1177,7 @@ URLS = flatten(
         url_test("/about/legal/terms/vpn/", "/about/legal/terms/mozilla-vpn/"),
         # Issue 11204
         url_test(
-            "/{truecolors,turningred}/",
+            "/{truecolors,truecolours,turningred}/",
             "https://truecolors.firefox.com/",
             query={
                 "utm_campaign": "firefox-disney-us",
@@ -1187,7 +1187,7 @@ URLS = flatten(
             },
         ),
         url_test(
-            "/{truecolors,turningred}/?utm_source=dude",
+            "/{truecolors,truecolours,turningred}/?utm_source=dude",
             "https://truecolors.firefox.com/",
             query={
                 "utm_campaign": "firefox-disney-us",

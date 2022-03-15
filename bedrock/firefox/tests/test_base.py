@@ -580,6 +580,95 @@ class TestWhatsNew(TestCase):
 
     # end 97.0 whatsnew tests
 
+    # begin 98.0 whatsnew tests
+
+    @patch.object(fx_views, "ftl_file_is_active", lambda *x: True)
+    @override_settings(DEV=False)
+    def test_fx_98_0_0_se(self, render_mock):
+        """Should use whatsnew-fx98-vpn-eu template for 98.0 in Sweden"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="se")
+        req.locale = "en-US"
+        self.view(req, version="98.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx98-vpn-eu.html"]
+
+    @patch.object(fx_views, "ftl_file_is_active", lambda *x: True)
+    @override_settings(DEV=False)
+    def test_fx_98_0_0_fi(self, render_mock):
+        """Should use whatsnew-fx98-vpn-eu template for 98.0 in Finland"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="fi")
+        req.locale = "en-US"
+        self.view(req, version="98.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx98-vpn-eu.html"]
+
+    @patch.object(fx_views, "ftl_file_is_active", lambda *x: True)
+    @override_settings(DEV=False)
+    def test_fx_98_0_0_locale_active(self, render_mock):
+        """Should use whatsnew-fx98-vpn-eu template if locale is active"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="se")
+        req.locale = "sv-SE"
+        self.view(req, version="98.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx98-vpn-eu.html"]
+
+    @patch.object(fx_views, "ftl_file_is_active", lambda *x: False)
+    @override_settings(DEV=False)
+    def test_fx_98_0_0_locale_inactive(self, render_mock):
+        """Should use default template for 98.0 if locale is not active"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="fi")
+        req.locale = "fi"
+        self.view(req, version="98.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/index.html"]
+
+    def test_fx_98_0_0_de(self, render_mock):
+        """Should use whatsnew-fx98-mobile-de template for 98.0 for German"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "de"
+        self.view(req, version="98.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx98-mobile-de.html"]
+
+    def test_fx_98_0_0_fr(self, render_mock):
+        """Should use whatsnew-fx98-mobile-fr template for 98.0 for French"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "fr"
+        self.view(req, version="98.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx98-mobile-fr.html"]
+
+    @override_settings(DEV=False)
+    def test_fx_98_0_0_en(self, render_mock):
+        """Should use whatsnew-fx98-vpn-en template for 98.0 in English outside the US"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="it")
+        req.locale = "en-US"
+        self.view(req, version="98.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx98-vpn-en.html"]
+
+    @override_settings(DEV=False)
+    @patch.dict(os.environ, SWITCH_WHATSNEW_FIREFOX_98_TURNING_RED="True")
+    def test_fx_98_0_0_turningred_en_on(self, render_mock):
+        """Should use whatsnew-fx98-turningred-en template for 98.0 in US if switch is on"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="us")
+        req.locale = "en-US"
+        self.view(req, version="98.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx98-turningred-en.html"]
+
+    @override_settings(DEV=False)
+    @patch.dict(os.environ, SWITCH_WHATSNEW_FIREFOX_98_TURNING_RED="False")
+    def test_fx_98_0_0_turningred_en_off(self, render_mock):
+        """Should use whatsnew-fx98-vpn-en template for 98.0 in US if switch is off"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="us")
+        req.locale = "en-US"
+        self.view(req, version="98.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx98-vpn-en.html"]
+
+    # end 98.0 whatsnew tests
+
 
 @patch("bedrock.firefox.views.l10n_utils.render", return_value=HttpResponse())
 class TestFirstRun(TestCase):

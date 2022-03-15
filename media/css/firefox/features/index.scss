@@ -5,10 +5,7 @@
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/split';
-@import '~@mozilla-protocol/core/protocol/css/components/picto';
 @import '~@mozilla-protocol/core/protocol/css/components/section-heading';
-@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 
 .c-hero-desc {
     @include text-body-xl;

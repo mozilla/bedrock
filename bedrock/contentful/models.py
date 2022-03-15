@@ -138,8 +138,5 @@ class ContentfulEntry(models.Model):
         # Tags are stored in a JSONField, but we can query it as text by quoting them
         q_obj = Q()
         for _tag in self.tags:
-            q_obj.add(
-                Q(tags__contains=f'"{_tag}"'),
-                Q.OR,
-            )
+            q_obj |= Q(tags__contains=f'"{_tag}"')
         return _base_qs.filter(q_obj).order_by(order_by).distinct()

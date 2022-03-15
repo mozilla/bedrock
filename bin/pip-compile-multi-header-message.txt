@@ -1,6 +1,0 @@
-# Please recompile requirements inside the Docker image, not on your local, host machine.
-#
-# To do this, just use the following from your host:
-#
-# $ make compile-requirements
-#

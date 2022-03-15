@@ -264,9 +264,21 @@
     },
     {
       "files": [
+        "css/base/banners/turning-red.scss"
+      ],
+      "name": "turning-red-banner"
+    },
+    {
+      "files": [
         "css/base/banners/mobile-compare.scss"
       ],
       "name": "mobile-compare-banner"
+    },
+    {
+      "files": [
+        "css/base/banners/mozilla-connect.scss"
+      ],
+      "name": "mozilla-connect-banner"
     },
     {
       "files": [
@@ -420,6 +432,30 @@
         "css/firefox/whatsnew/whatsnew-97-eu.scss"
       ],
       "name": "firefox_whatsnew_97_eu"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-98-vpn-eu.scss"
+      ],
+      "name": "firefox_whatsnew_98_vpn_eu"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-98-mobile-eu.scss"
+      ],
+      "name": "firefox_whatsnew_98_mobile_eu"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-98-vpn-en.scss"
+      ],
+      "name": "firefox_whatsnew_98_vpn_en"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-98-turningred-en.scss"
+      ],
+      "name": "firefox_whatsnew_98_turningred_en"
     },
     {
       "files": [
@@ -747,6 +783,48 @@
     },
     {
       "files": [
+        "css/protocol/components/split.scss"
+      ],
+      "name": "protocol-split"
+    },
+    {
+      "files": [
+        "css/protocol/components/cards.scss"
+      ],
+      "name": "protocol-card"
+    },
+    {
+      "files": [
+        "css/protocol/components/call-out.scss"
+      ],
+      "name": "protocol-call-out"
+    },
+    {
+      "files": [
+        "css/protocol/components/picto.scss"
+      ],
+      "name": "protocol-picto"
+    },
+    {
+      "files": [
+        "css/protocol/components/article.scss"
+      ],
+      "name": "protocol-article"
+    },
+    {
+      "files": [
+        "css/protocol/components/newsletter-form.scss"
+      ],
+      "name": "protocol-newsletter"
+    },
+    {
+      "files": [
+        "css/protocol/components/emphasis-box.scss"
+      ],
+      "name": "protocol-emphasis-box"
+    },
+    {
+      "files": [
         "css/firefox/welcome10.scss"
       ],
       "name": "firefox_welcome_page10"
@@ -1050,7 +1128,7 @@
     {
       "files": [
         "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.js"
+        "js/newsletter/form-protocol.es6.js"
       ],
       "name": "firefox_channel"
     },
@@ -1129,6 +1207,12 @@
     },
     {
       "files": [
+        "js/firefox/whatsnew/whatsnew-98-turningred-en.js"
+      ],
+      "name": "firefox_whatsnew_98_turningred_en"
+    },
+    {
+      "files": [
         "protocol/js/protocol-newsletter.js"
       ],
       "name": "legal"
@@ -1185,7 +1269,7 @@
     {
       "files": [
         "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.js",
+        "js/newsletter/form-protocol.es6.js",
         "js/firefox/retention/confetti.js"
       ],
       "name": "firefox-retention-thank-you"
@@ -1219,7 +1303,7 @@
       "files": [
         "protocol/js/protocol-modal.js",
         "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.js",
+        "js/newsletter/form-protocol.es6.js",
         "js/mozorg/home/youtube.js"
       ],
       "name": "home"
@@ -1228,7 +1312,7 @@
       "files": [
         "protocol/js/protocol-modal.js",
         "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.js",
+        "js/newsletter/form-protocol.es6.js",
         "js/mozorg/home/youtube.js"
       ],
       "name": "home-contentful"
@@ -1256,6 +1340,20 @@
     },
     {
       "files": [
+        "js/base/banners/mozilla-banner.js",
+        "js/base/banners/turning-red-banner-init.js"
+      ],
+      "name": "turning-red-banner"
+    },
+    {
+      "files": [
+        "js/base/banners/mozilla-banner.js",
+        "js/base/banners/mozilla-connect-banner-init.js"
+      ],
+      "name": "mozilla-connect-banner"
+    },
+    {
+      "files": [
         "protocol/js/protocol-sidemenu.js",
         "js/base/mozilla-article.js",
         "js/privacy/privacy-protocol.js"
@@ -1265,14 +1363,14 @@
     {
       "files": [
         "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.js"
+        "js/newsletter/form-protocol.es6.js"
       ],
       "name": "about"
     },
     {
       "files": [
         "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.js"
+        "js/newsletter/form-protocol.es6.js"
       ],
       "name": "contribute"
     },
@@ -1376,7 +1474,7 @@
     {
       "files": [
         "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.js"
+        "js/newsletter/form-protocol.es6.js"
       ],
       "name": "firefox_developer"
     },
@@ -1448,7 +1546,7 @@
     {
       "files": [
         "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.js",
+        "js/newsletter/form-protocol.es6.js",
         "js/mozorg/manifesto.js"
       ],
       "name": "manifesto"
@@ -1456,7 +1554,7 @@
     {
       "files": [
         "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.js"
+        "js/newsletter/form-protocol.es6.js"
       ],
       "name": "moss"
     },
@@ -1464,6 +1562,7 @@
       "files": [
         "js/base/globals.js",
         "js/libs/classlist.js",
+        "js/libs/array-from.js",
         "js/base/search-params.js",
         "js/base/uitour-lib.js",
         "js/base/mozilla-run.js",
@@ -1506,7 +1605,7 @@
     {
       "files": [
         "js/base/mozilla-article.js",
-        "js/newsletter/form-protocol.js",
+        "js/newsletter/form-protocol.es6.js",
         "protocol/js/protocol-newsletter.js",
         "protocol/js/protocol-sidemenu.js"
       ],
@@ -1556,7 +1655,7 @@
     {
       "files": [
         "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.js"
+        "js/newsletter/form-protocol.es6.js"
       ],
       "name": "newsletter"
     },

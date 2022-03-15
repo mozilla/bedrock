@@ -30,14 +30,14 @@
     "url": "https://bugzilla.mozilla.org/"
   },
   "devDependencies": {
-    "browser-sync": "^2.26.13",
+    "browser-sync": "^2.27.8",
     "browser-sync-webpack-plugin": "^2.2.2",
     "concurrently": "^6.0.1",
     "eslint": "^7.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-json": "^2.1.1",
     "jasmine-core": "3.9.0",
-    "karma": "^6.3.2",
+    "karma": "^6.3.17",
     "karma-chrome-launcher": "3.1.0",
     "karma-firefox-launcher": "2.1.1",
     "karma-jasmine": "4.0.1",
