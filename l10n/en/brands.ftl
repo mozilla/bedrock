@@ -101,7 +101,6 @@
 -brand-name-mozilla-vpn = Mozilla VPN
 -brand-name-mdn-web-docs = MDN Web Docs
 -brand-name-thunderbird = Thunderbird
--brand-name-mozilla-connect = Mozilla Connect
 
 ## Mozilla projects (short names)
 
