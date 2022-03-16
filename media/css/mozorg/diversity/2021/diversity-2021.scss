@@ -67,7 +67,7 @@ $image-path: '/media/protocol/img';
         background-position: right center;
         background-size: auto 100%;
         padding-top: $spacing-2xl;
-        // margin-bottom: $spacing-2xl;
+        margin-bottom: $spacing-2xl;
 
         h1 {
             @include font-size(80px);
