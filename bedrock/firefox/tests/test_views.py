@@ -687,6 +687,21 @@ class TestFirefoxHome(TestCase):
         assert template == ["firefox/home/index-master.html"]
 
 
+class TestFirefoxGA(TestCase):
+    def test_data_cta_type(self):
+        cta_types = ["link", "fxa-sync", "button"]
+        req = RequestFactory().get("/firefox/")
+        view = views.FirefoxHomeView.as_view()
+        response = view(req)
+        doc = pq(response.content)
+        links = doc("a[data-cta-type]")
+        for link in links.items():
+            type = link.attr("data-cta-type")
+            contain_cta = any(type in list for list in cta_types)
+            assert contain_cta is True
+            assert link.attr("data-cta-text").length > 0
+
+
 class TestFirefoxWelcomePage1(TestCase):
     @patch("bedrock.firefox.views.l10n_utils.render")
     def test_firefox_welcome_page1(self, render_mock):
