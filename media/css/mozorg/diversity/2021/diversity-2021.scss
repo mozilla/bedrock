@@ -128,136 +128,6 @@ $image-path: '/media/protocol/img';
     }
 }
 
-// * -------------------------------------------------------------------------- */
-// Content sections
-.c-intro-section {
-    p {
-        @include font-mozilla;
-        @include text-title-sm;
-        font-style: italic;
-        margin-bottom: 0;
-    }
-}
-
-.c-intro-section,
-.c-content-section {
-    padding: $spacing-lg 0;
-
-    .c-copy-wrapper {
-        h2 {
-            @include text-title-sm;
-        }
-
-        h3 {
-            @include text-title-xs;
-        }
-
-        img {
-            margin: $spacing-xl auto;
-        }
-
-        .c-copy-intro {
-            font-style: italic;
-        }
-    }
-
-    @media #{$mq-lg} {
-        .c-copy-wrapper {
-            @include clearfix;
-            margin: 0 auto;
-            width: 90%;
-
-            header {
-                @include bidi(((float, left, right),));
-                width: 30%;
-            }
-
-            .c-copy {
-                @include bidi(((float, right, left),));
-                width: 65%;
-            }
-        }
-
-        &:nth-child(even) {
-            padding: $spacing-2xl 0 $spacing-lg;
-        }
-    }
-
-    @media #{$mq-xl} {
-        padding: $spacing-2xl 0 $spacing-lg;
-
-        .c-copy-wrapper {
-            width: 70%;
-        }
-    }
-}
-
-.c-content-section:nth-child(odd) {
-    background: $color-marketing-gray-20;
-    padding: $spacing-2xl $spacing-lg $spacing-lg;
-}
-
-// * -------------------------------------------------------------------------- */
-// Page footer
-.c-site-footer {
-    ul {
-        margin: 0 auto $spacing-xl;
-    }
-
-    li {
-        display: block;
-        margin: $spacing-lg auto;
-
-        a {
-            @include transition(background-color 100ms ease-in-out);
-            background-color: $color-link;
-            color: $color-white;
-            display: block;
-            font-weight: bold;
-            height: 100%;
-            line-height: 1.5;
-            min-height: 60px;
-            padding: $spacing-lg;
-            text-decoration: none;
-            text-transform: uppercase;
-
-            small {
-                display: block;
-                font-weight: 100;
-                text-transform: none;
-            }
-
-            &:hover,
-            &:active,
-            &:focus {
-                background-color: $color-link-hover;
-                color: $color-white;
-                text-decoration: none;
-            }
-        }
-    }
-
-    @media #{$mq-lg} {
-        ul {
-            @include flexbox;
-            @include align-items(stretch);
-            width: 70%;
-        }
-
-        li {
-            flex: 1;
-
-            &:first-child a {
-                @include bidi(((margin-right, 10px, margin-left, 0),));
-            }
-
-            &:last-child a {
-                @include bidi(((margin-left, 10px, margin-right, 0),));
-            }
-        }
-    }
-}
-
 // Fade in lazy images
 .lazy-image-container .mzp-c-card-image {
     opacity: 1;
@@ -338,34 +208,6 @@ $image-path: '/media/protocol/img';
         @media #{$mq-lg} {
             top: -66px;
         }
-    }
-}
-
-.c-som-list {
-    border-left: 1px solid $color-black;
-    margin: 0;
-    padding: $spacing-xl 0;
-
-    @media #{$mq-md} {
-        width: 50%;
-        margin-left: auto;
-    }
-
-    li {
-        @include font-mozilla;
-        @include text-title-sm;
-        margin-left: $spacing-md;
-        margin-bottom: $spacing-lg;
-        padding-left: $spacing-sm;
-        font-weight: 100;
-
-        .highlight {
-            margin-left: -$spacing-sm;
-        }
-    }
-
-    a:link {
-        color: $color-black;
     }
 }
 
@@ -570,108 +412,29 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.c-report-pdfs {
-    border-top: 1px solid $color-light-gray-90;
-    padding-top: $spacing-xl;
-
-    li {
-        text-align: center;
-        margin-bottom: $spacing-xl;
-
-        @media #{$mq-md} {
-            width: 50%;
-            padding: $spacing-xl 0;
-
-            &:first-child {
-                border-right: 1px solid $color-light-gray-90;
-            }
-        }
-    }
-
-    span {
-        @include font-mozilla;
-        @include text-title-xs;
-        font-weight: bold;
-        display: block;
-        margin-bottom: $spacing-md;
-    }
-
-    @media #{$mq-md} {
-        padding-top: $spacing-2xl;
-        width: 100%;
-        display: flex;
-        justify-content: space-around;
-    }
-}
-
-.c-leadership-article {
-    h3 {
-        @include text-title-md;
-        padding: $spacing-lg 0 $spacing-sm;
-
-        span {
-            display: inline-block;
-            margin-right: $spacing-xs;
-        }
-
-        @media #{$mq-md} {
-            @include text-title-sm;
-            padding-top: $spacing-2xl;
-        }
-    }
-
-    img {
-        max-width: $screen-sm;
-        display: block;
-        margin: 0 auto $spacing-xl;
-    }
-
-    .mzp-c-card-image {
-        @include bidi((
-            (float, right, left),
-            (margin, 0 0 $spacing-md $spacing-lg, 0 $spacing-lg $spacing-md 0),
-        ));
-        max-width: 100%;
-    }
-}
-
-.c-leadership-article-title {
-    margin-top: -$spacing-2xl;
-    margin-bottom: $spacing-2xl;
-
-    .highlight {
-        @include font-mozilla;
-        @include text-title-xs;
-        font-weight: bold;
-    }
-
-    h2 {
-        @include text-title-md;
-        margin-bottom: 0;
-        margin-top: $spacing-lg;
-    }
-}
-
 .c-section-graphs {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
 
     &.graph-center {
         justify-content: center;
     }
 
     figure {
-        // max-width: 420px;
         border: 1px solid $color-marketing-gray-30;
         margin: $spacing-md 0;
 
         img {
             display: block;
-            width: 420px !important;
+            width: 420px;
             max-width: 100%;
-            height: auto !important;
+            height: auto;
         }
+    }
+
+    @media #{$mq-md} {
+        justify-content: space-between;
     }
 }
 
