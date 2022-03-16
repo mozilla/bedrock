@@ -124,7 +124,6 @@ function prevModalArticle() {
 for (let i = 0; i < modalContainers.length; i++) {
     const modalContainer = modalContainers[i];
 
-    modalContainer.setAttribute('aria-role', 'button');
     modalContainer.setAttribute('data-current-index', i);
 
     modalContainer.addEventListener('click', function (e) {
@@ -141,7 +140,7 @@ for (let i = 0; i < modalContainers.length; i++) {
         window.location.hash = modalId;
 
         modalContent.removeAttribute('id');
-        modalContent.setAttribute('aria-role', 'article');
+        modalContent.setAttribute('role', 'article');
 
         window.Mzp.Modal.createModal(this, content, {
             allowScroll: false,

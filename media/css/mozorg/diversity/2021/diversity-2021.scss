@@ -44,6 +44,8 @@ $image-path: '/media/protocol/img';
         font-weight: normal;
         justify-content: center;
         line-height: 0.9;
+        text-align: center;
+        margin-bottom: 0;
     }
 
     .left {
@@ -65,7 +67,7 @@ $image-path: '/media/protocol/img';
         background-position: right center;
         background-size: auto 100%;
         padding-top: $spacing-2xl;
-        margin-bottom: $spacing-2xl;
+        // margin-bottom: $spacing-2xl;
 
         h1 {
             @include font-size(80px);
