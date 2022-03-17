@@ -81,7 +81,7 @@ $image-path: '/media/protocol/img';
 
     @media #{$mq-lg} {
         h1 {
-            @include font-size(7rem);
+            @include font-size(112px);
         }
 
         img {
@@ -409,7 +409,7 @@ $image-path: '/media/protocol/img';
 
     figure {
         border: 1px solid $color-marketing-gray-30;
-        margin: $spacing-md 0;
+        margin: $spacing-md auto;
 
         img {
             display: block;
