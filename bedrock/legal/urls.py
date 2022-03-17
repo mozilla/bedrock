@@ -61,6 +61,11 @@ urlpatterns = (
         name="legal.terms.thunderbird",
     ),
     path(
+        "terms/mdn-plus/",
+        LegalDocView.as_view(template_name="legal/terms/mdn-plus.html", legal_doc_name="mdn_plus_terms"),
+        name="legal.terms.mdn-plus",
+    ),
+    path(
         "terms/services/",
         LegalDocView.as_view(template_name="legal/terms/services.html", legal_doc_name="firefox_cloud_services_ToS"),
         name="legal.terms.services",

@@ -83,6 +83,8 @@ firefox_private_network = PrivacyDocView.as_view(
 
 mozilla_vpn = PrivacyDocView.as_view(template_name="privacy/notices/mozilla-vpn.html", legal_doc_name="mozilla_vpn_privacy_notice")
 
+mdn_plus = PrivacyDocView.as_view(template_name="privacy/notices/mdn-plus.html", legal_doc_name="mdn_plus_privacy")
+
 
 @cache_page(60 * 60)  # cache for 1 hour
 def privacy(request):

@@ -31,4 +31,6 @@ legal-firefox-private-network-terms = { -brand-name-firefox-private-network } Te
 legal-firefox-reality-rights = { -brand-name-firefox-reality }: About Your Rights
 legal-firefox-relay-terms = { -brand-name-firefox-relay } Terms of Service
 legal-mozilla-vpn-terms = { -brand-name-mozilla-vpn } Terms of Service
+legal-mdn-plus = { -brand-name-mdn-plus }
+legal-mdn-plus-terms = { -brand-name-mdn-plus } Terms of Service
 legal-report-copyright = Report Copyright or Trademark Infringement
