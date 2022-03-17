@@ -81,7 +81,7 @@ $image-path: '/media/protocol/img';
 
     @media #{$mq-lg} {
         h1 {
-            font-size: 7rem;
+            @include font-size(7rem);
         }
 
         img {
@@ -353,22 +353,6 @@ $image-path: '/media/protocol/img';
 
     .c-subtitle {
         text-align: center;
-    }
-
-    ul {
-        list-style-type: disc;
-
-        li {
-            margin-bottom: $spacing-sm;
-        }
-    }
-}
-
-.bold-item {
-    font-weight: 600;
-
-    ul {
-        font-weight: 400;
     }
 }
 
