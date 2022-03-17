@@ -154,12 +154,6 @@
     },
     {
       "files": [
-        "css/firefox/new/yandex/download-yandex.scss"
-      ],
-      "name": "firefox_new_download_yandex"
-    },
-    {
-      "files": [
         "css/exp/opt-out.scss"
       ],
       "name": "exp-opt-out"
@@ -1258,12 +1252,6 @@
         "js/firefox/new/common/thanks-direct.js"
       ],
       "name": "firefox_new_thanks_direct"
-    },
-    {
-      "files": [
-        "js/firefox/new/yandex/show-yandex.js"
-      ],
-      "name": "firefox_new_download_yandex"
     },
     {
       "files": [
