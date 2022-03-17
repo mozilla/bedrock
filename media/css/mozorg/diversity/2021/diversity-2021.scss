@@ -1,0 +1,459 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/card';
+@import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
+@import '~@mozilla-protocol/core/protocol/css/components/feature-card';
+@import '~@mozilla-protocol/core/protocol/css/components/hero';
+@import '~@mozilla-protocol/core/protocol/css/components/modal';
+@import '~@mozilla-protocol/core/protocol/css/components/split';
+@import '~@mozilla-protocol/core/protocol/css/components/video';
+
+// * -------------------------------------------------------------------------- */
+// Hero image & banner heading
+
+.c-hero-banner {
+    background: url('/media/img/foundation/annualreport/2019/pixel-mobile-bg.svg') right center no-repeat;
+    background-size: contain;
+    margin-bottom: $spacing-lg;
+    padding-top: $spacing-lg;
+
+    .l-highlight {
+        background: $color-green-40;
+        color: $color-black;
+        display: inline-block;
+        font-weight: bold;
+        line-height: 0.7;
+        padding: 0;
+    }
+
+    .right {
+        align-self: flex-start;
+        margin-left: $spacing-sm;
+    }
+
+    h1 {
+        align-items: flex-start;
+        color: $color-black;
+        display: flex;
+        font-weight: normal;
+        justify-content: center;
+        line-height: 0.9;
+        text-align: center;
+        margin-bottom: 0;
+    }
+
+    .left {
+        position: relative;
+        text-align: right;
+    }
+
+    img {
+        display: block;
+        margin-right: 1px;
+        margin-top: $spacing-sm;
+        max-width: $layout-2xl;
+        position: absolute;
+        right: 0;
+    }
+
+    @media #{$mq-md} {
+        background-image: url('/media/img/foundation/annualreport/2019/pixel-bg.svg');
+        background-position: right center;
+        background-size: auto 100%;
+        padding-top: $spacing-2xl;
+        margin-bottom: $spacing-2xl;
+
+        h1 {
+            @include font-size(80px);
+        }
+
+        img {
+            margin-top: 14px;
+            max-width: $content-xs;
+        }
+    }
+
+    @media #{$mq-lg} {
+        h1 {
+            @include font-size(112px);
+        }
+
+        img {
+            max-width: $content-sm;
+        }
+    }
+}
+
+.c-page-intro {
+    h2 {
+        @include text-title-md;
+    }
+
+    .mzp-c-video {
+        margin-top: $layout-md;
+    }
+}
+
+.leadership {
+    display: flex;
+    flex-direction: column;
+
+    @media #{$mq-md} {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .leadership-intro {
+        @include text-title-md;
+        font-weight: 100;
+
+        strong {
+            font-weight: bold;
+        }
+    }
+
+    .mzp-c-card-title {
+        @include text-title-md;
+        margin-bottom: $spacing-2xl;
+        font-weight: normal;
+    }
+
+    .mzp-c-card-media-wrapper {
+        background-color: transparent;
+    }
+}
+
+// Fade in lazy images
+.lazy-image-container .mzp-c-card-image {
+    opacity: 1;
+    transition: opacity 300ms;
+}
+
+.lazy-image-container .mzp-c-card-image[data-src] {
+    opacity: 0;
+}
+
+// Hide enhanced content if JS isn't available
+.no-js-hidden {
+    .no-js & {
+        @include hidden;
+    }
+}
+
+.js-modal-content {
+    .js & {
+        @include hidden;
+    }
+
+    section + section {
+        margin-top: $spacing-2xl;
+        padding-top: $spacing-2xl;
+        border-top: 1px solid $color-black;
+    }
+}
+
+.mzp-c-modal .mzp-c-modal-overlay-contents .mzp-c-modal-content {
+    display: block;
+}
+
+.has-modal {
+    cursor: pointer;
+}
+
+.highlight {
+    @include box-decoration-break(clone);
+    line-height: 1.3;
+    padding: 0 $spacing-sm;
+
+    &.dark {
+        background-color: $color-black;
+        color: $color-white;
+    }
+
+    &.violet {
+        background: $color-violet-10;
+        color: $color-black;
+    }
+
+    &.black {
+        background: black;
+        color: $color-white;
+    }
+
+    &.plum {
+        background: #5a61ef;
+        color: $color-white;
+    }
+}
+
+.pixel-effect {
+    position: relative;
+
+    &::after {
+        content: ' ';
+        background: url('/media/img/foundation/annualreport/2019/pixel-small-bg.svg') center center no-repeat;
+        background-size: contain;
+        width: 66px;
+        height: 66px;
+        top: -33px;
+        right: 0;
+        position: absolute;
+        display: block;
+        z-index: 1;
+        @media #{$mq-lg} {
+            top: -66px;
+        }
+    }
+}
+
+.mzp-c-modal-inner {
+    background-color: $color-white;
+    padding-top: $layout-lg;
+}
+
+.mzp-c-modal-overlay-contents {
+    padding-top: $spacing-2xl;
+    color: $color-black;
+
+    a:link,
+    a:visited {
+        color: $color-black;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: get-theme('link-color-hover');
+        }
+    }
+
+    .mzp-c-card-feature-content-container {
+        position: relative;
+
+        img {
+            margin-top: -$spacing-2xl;
+            margin-bottom: $spacing-md;
+            width: 100%;
+            max-width: $content-sm;
+            height: auto;
+            display: none;
+
+            @media #{$mq-md} {
+                display: block;
+            }
+
+            @media #{$mq-lg} {
+                margin-top: -$layout-lg;
+            }
+        }
+
+        p {
+            margin-bottom: $spacing-md;
+        }
+
+        ul,
+        ol {
+            @include text-body-md;
+            color: $color-marketing-gray-90;
+        }
+    }
+}
+
+.mzp-c-modal-close {
+    background: $color-green-40;
+    border-radius: 100%;
+
+    button {
+        cursor: pointer;
+    }
+
+    .mzp-c-modal-button-close {
+        background-image: url('/media/protocol/img/icons/close.svg');
+    }
+}
+
+.c-modal-next {
+    @extend .mzp-c-modal-close; /* stylelint-disable-line scss/at-extend-no-missing-placeholder  */
+    right: 3.75rem;
+
+    .hide-next & {
+        display: none;
+    }
+
+    .c-modal-button-next {
+        background-image: url('/media/protocol/img/icons/arrow-right.svg');
+    }
+}
+
+.c-modal-prev {
+    @extend .mzp-c-modal-close; /* stylelint-disable-line scss/at-extend-no-missing-placeholder  */
+    right: 7.1rem;
+
+    .hide-next & {
+        right: 3.75rem;
+    }
+
+    .hide-prev & {
+        display: none;
+    }
+
+    .c-modal-button-prev {
+        background-image: url('/media/protocol/img/icons/arrow-left.svg');
+    }
+}
+
+.c-modal-button-next,
+.c-modal-button-prev {
+    @extend .mzp-c-modal-button-close; /* stylelint-disable-line scss/at-extend-no-missing-placeholder */
+}
+
+.c-section-intro-bg {
+    @media #{$mq-lg} {
+        background: url('/media/img/foundation/annualreport/2019/moz_site_som_fighting_for_people_left.svg') left center no-repeat, url('/media/img/foundation/annualreport/2019/moz_site_som_fighting_for_people_right.svg') right center no-repeat;
+        background-size: auto 100%;
+    }
+}
+
+.mzp-l-content + .c-section-intro-bg {
+    margin-top: $spacing-2xl;
+}
+
+.c-section-intro {
+    margin-top: $layout-xl;
+}
+
+.c-section-wrapper {
+    margin: 0 auto;
+    padding-top: $layout-sm;
+    max-width: $content-lg;
+
+    h2 {
+        @include text-title-lg;
+        font-weight: 100;
+        text-align: center;
+    }
+
+    h3 {
+        @include text-title-sm;
+        font-weight: 600;
+        text-align: left;
+    }
+
+    h4 {
+        @include text-title-xs;
+        font-weight: 600;
+        text-align: left;
+    }
+
+    .c-subtitle {
+        text-align: center;
+    }
+}
+
+.c-article-list {
+    .mzp-l-card-quarter,
+    .mzp-l-card-half {
+        .mzp-c-card-title {
+            @include text-title-xs;
+        }
+    }
+
+    .mzp-l-card-hero {
+        .mzp-c-card + .mzp-c-card {
+            .mzp-c-card-title {
+                @include text-title-xs;
+            }
+        }
+    }
+
+    .mzp-c-card-feature-title,
+    .mzp-c-card-title {
+        font-weight: 100;
+    }
+
+    .mzp-c-card-feature .mzp-c-card-feature-title {
+        @include text-title-md;
+
+        @media #{$mq-lg} {
+            @include text-title-lg;
+        }
+    }
+
+    .mzp-c-card-feature {
+        margin-bottom: $spacing-lg;
+    }
+
+    .mzp-c-card {
+        background-color: transparent;
+
+        &:hover {
+            background-color: $color-white;
+        }
+    }
+}
+
+.c-section-graphs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    &.graph-center {
+        justify-content: center;
+    }
+
+    figure {
+        border: 1px solid $color-marketing-gray-30;
+        margin: $spacing-md auto;
+
+        img {
+            display: block;
+            width: 420px;
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+    @media #{$mq-md} {
+        justify-content: space-between;
+    }
+}
+
+.commitments-table {
+    margin: 0 auto;
+    margin-top: $spacing-2xl;
+    table-layout: fixed;
+    width: 100%;
+
+    .status {
+        padding: 3px;
+        font-weight: 600;
+        border-radius: 4px;
+
+        &.achieved {
+            background-color: $color-green-30;
+        }
+
+        &.partially-achieved {
+            background-color: $color-orange-30;
+        }
+
+        &.not-achieved {
+            background-color: $color-red-50;
+        }
+    }
+
+    th,
+    td {
+        max-width: 420px;
+    }
+
+    ul {
+        list-style: none;
+    }
+}

@@ -1122,6 +1122,12 @@
         "css/careers/internships.scss"
       ],
       "name": "careers"
+    },
+    {
+      "files":[
+        "css/mozorg/diversity/2021/diversity-2021.scss"
+      ],
+      "name": "diversity-2021"
     }
   ],
   "js": [
@@ -1733,6 +1739,13 @@
         "js/careers/listings/listings.es6.js"
       ],
       "name": "careers-listings"
+    },
+    {
+      "files": [
+        "protocol/js/protocol-modal.js",
+        "js/mozorg/diversity/2021/diversity-2021.es6.js"
+      ],
+      "name": "diversity-2021"
     }
   ]
 }

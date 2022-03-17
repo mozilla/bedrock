@@ -1,0 +1,196 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% from "macros.html" import image with context %}
+{% from "macros-protocol.html" import split, picto, card, feature_card, with context %}
+
+{% block page_title %}D&I report 2021{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('diversity-2021') }}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('diversity-2021') }}
+{% endblock %}
+
+{% block sub_navigation %}
+<nav class="c-sub-navigation">
+  <div class="mzp-l-content">
+    <div class="c-sub-navigation-content">
+      <h2 class="c-sub-navigation-title">Diversity & Inclusion 2021</h2>
+      <ul class="c-sub-navigation-list">
+        <li class="c-sub-navigation-item"><a href="{{ url('mozorg.diversity.2021.index') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Diversity and inclusion overview">Overview</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('mozorg.diversity.2021.mofo-data') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Mozilla Foundation data">Foundation data</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('mozorg.diversity.2021.moco-data') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Mozilla Corporation data">Corporation data</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('mozorg.diversity.2021.racial-justice') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Racial justice commitments">Racial justice commitments</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('mozorg.diversity.2021.who-we-are') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Who we are">Who we are</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('mozorg.diversity.2021.what-we-build') }}" data-link-type="nav" data-link-position="subnav" data-link-name="What we build">What we build</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('mozorg.diversity.2021.beyond-products') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Beyond our products">Beyond our products</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+
+<main role="main">
+  <header class="c-hero-banner">
+    <div class="mzp-l-content">
+      <div class="c-banner-content">
+        <div class="c-header-container">
+          <h1>
+            Diversity & Inclusion at Mozilla: 2021 Results
+          </h1>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- Introduction -->
+  <section class="mzp-l-content">
+    <div class="c-section-wrapper">
+      <h2><span class="highlight violet">Introduction</span></h2>
+      <p><strong>As an organization with employees, volunteers, and community members spanning the globe, we strive to ensure that who we are, what we build, and how we choose to engage the world around us reflect our commitment to diversity, equity, and inclusion — and that all feel empowered to join our movement.</strong></p>
+      <p>Our annual disclosure gives us an opportunity to both reflect on our ambition to be a more diverse and inclusive organization and to hold ourselves accountable to the commitments we've made. In 2021, we leveraged the momentum from 2020 to build a more representative workforce and an inclusive culture internally and externally. We did this by uplifting voices that have been historically marginalized and by building a better internet that works for everyone. </p>
+      <p>Leaning into our own culture of technical experimentation we piloted programs, captured feedback, and refined and scaled efforts, all in hopes of increasing our impact. With a spirit of curiosity and an openness to innovation, we ran over 100 experimental programs and initiatives of varying scale, complexity, and size. Our experiments included launching a 6-month program aimed at <a href="https://blog.mozilla.org/careers/mozilla-inclusion-champions/" target="_blank" rel="external noopener">building skills for allyship</a>, partnering with podcasts to <a href="https://getpocket.com/collections/behind-the-worlds-first-viral-video" target="_blank" rel="external noopener">amplify historic events</a>, expanding partnerships with HBCUs to explore ethical computing and apply an <a href="https://foundation.mozilla.org/en/blog/using-education-and-intersectionality-to-fight-bias/">intersectional lens to bias in AI</a>, and increasing investment in a venture capital fund supporting women and minority-led businesses. Each effort enabled us to learn more about how best to serve the needs of our organization and our communities. These actions enabled over 65% of our organization to meaningfully engage with DEI efforts and make progress in their own learning journey. </p>
+      <div class="mzp-c-video">
+        <iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/oDifVXtL10w" title="Diversity and Inclusion at Mozilla" frameborder="0" allowfullscreen>
+          <p><a href="https://www.youtube.com/watch?v=oDifVXtL10w">Watch the video</a></p>
+        </iframe>
+      </div>
+    </div>
+        <div class="c-section-wrapper">
+      <h3><span class="highlight black">Looking back: progress across Mozilla</span></h3>
+      <p>In the five years of reporting representation metrics, we have seen a 13 percentage point increase in women at Mozilla Corporation and a 10 percentage point increase in women at Mozilla Foundation. Mozilla Corporation also saw a 6 percentage point increase in Black/African American representation.</p>
+      <div class="c-section-graphs">
+        <figure>
+          <img src="{{ static('img/mozorg/diversity/2021/graphs/mofo-gender-all.png') }}" alt="Graphs showing Mozilla Foundation's gender diversity between 2017 and 2021. In 2017, 41.6% men, and 58.4% women. In 2021, 30.3% men, 68.4% women, and 1.3% other gender identities.">
+        </figure>
+        <figure>
+          <img src="{{ static('img/mozorg/diversity/2021/graphs/mofo-race-ethnicity-US.png') }}" alt="Graphs showing Mozilla Foundation's racial and ethnic diversity between 2017 to 2021 for the U.S.. In 2017, 70.5% White, 9.1% Asian, 9.1% Black or African American, 6.8% Hispanic or Latinx, 0% American Indian or Alaskan Native, 0% Native Hawaiian or Pacific Islander, and 4.5% two or more races. In 2021, 66.7 White, 5.6% Asian, 8.3% Black or African American, 8.3% Hispanic or Latinx, 0% American Indian or Alaskan Native, 0% Native Hawaiian or Pacific Islander, and 5.6% two or more races.">
+        </figure>
+        <figure>
+          <img src="{{ static('img/mozorg/diversity/2021/graphs/moco-gender-all.png') }}" alt="Graphs showing Mozilla Corporation's gender diversity between 2017 and 2021. In 2017, 75.5% men, 24.4% women, and 0.1% made up of other gender identities. In 2021, 63% men, 37% women, and 0% gender identities.">
+        </figure>
+        <figure>
+          <img src="{{ static('img/mozorg/diversity/2021/graphs/moco-race-ethnicity-US.png') }}" alt="Graphs showing Mozilla Corporation's racial and ethnic diversity between 2017 to 2021 for the U.S.. In 2017, 75.1% White, 15.5% Asian, 1.8% Black or African American, 3.9% Hispanic or Latinx, 0.7% American Indian or Alaskan Native, 0.5% Native Hawaiian or Pacific Islander, and 2.5% two or more races. In 2021, 62.2% White, 16% Asian, 7.8% Black or African American, 4.3% Hispanic or Latinx, 0.2% American Indian or Alaskan Native, 0.4% Native Hawaiian or Pacific Islander, and 3.5% two or more races.">
+        </figure>
+      </div>
+    </div>
+    <div class="c-section-wrapper">
+      <h3><span class="highlight black">2021 Impact Highlights</span></h3>
+      <ul class="mzp-u-list-styled">
+        <li>
+          <strong>Increased the representation of historically excluded communities:</strong>
+          <ul class="mzp-u-list-styled">
+            <li>At the Mozilla Corporation we increased the representation of Black/African Americans in the US from 4.8% to 7.8% and increased representation of women from 33.5% to 37.0%.</li>
+            <li>At the Mozilla Foundation, we increased representation of Black/African Americans in the US from 5.7% to 8.3% and we increased representation of Hispanic/Latinx in the US from 5.7% to 8.3%.</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Expanded outreach and advocacy:</strong>
+          <ul class="mzp-u-list-styled">
+            <li>Garnered 18,000 hours of donated voice recordings in over 100 languages for Mozilla Common Voice, an initiative to help diversify voice data sets.</li>
+            <li>Hosted our first-time-zone agnostic MozFest, going “live” over 20 hours a day. We welcomed over 9,500 participants from 143 countries around the world, increasing global majority participation by over 2000%.</li>
+            <li>Engaged three Historically Black Colleges and Universities (HBCUs) and over 20 students in curriculum exploring ethical computing practices.</li>
+            <li>Partnered with an HBCU and HBCU consortium to launch a speaker series at MozFest and develop projects as part of our global Trustworthy AI Working Group.</li>
+            <li>Hosted 15 Dialogues & Debates panels where 75% of speakers were women and over 50% were people of color. These leaders discussed biased algorithms; how AI in our daily lives reinforces historical power imbalances across gender, race, and class; and how to build better data stewardship models that return value to communities.</li>
+            <li>Awarded $260,000 in funding through the Creative Media Awards for Black artists who use art to spotlight how AI can reinforce — or disrupt — systems of oppression.</li>
+            <li>Increased our curated content in Pocket with 10 new collections celebrating heritage, historic moments, and social justice movements resulting in 217,000 views.</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="c-section-wrapper">
+      <h3><span class="highlight black">Looking Forward in 2022</span></h3>
+      <p>In 2021, we continued to build upon our three-pillar strategy
+        <strong>(who we are, what we build, and what we do beyond products)</strong> and approached our efforts with a spirit of innovation, experimentation, and impact. We were inspired by Mozillians and their dedication to creating a more diverse and inclusive workplace and world.
+      </p>
+      <p>Our commitment to diversity and inclusion does not stop with our Racial Justice Commitments nor our progress over the past few years. In 2022, we will enhance our focus in the following areas: </p>
+      <h4>Who we are</h4>
+      <ul class="mzp-u-list-styled">
+        <li>Representation of historically excluded groups in technical and leadership roles at the Mozilla Corporation and for Mozilla Foundation in leadership and across all roles</li>
+        <li>Process and policy changes for a more sustained diverse, and inclusive work environment</li>
+        <li>Implementing Mozilla Foundation's Racial Equity and Belonging Audit (REBA) action plan with commitments towards greater equity and belonging</li>
+        <li>Curated experiences to move Mozillians along their learning journeys</li>
+        <li>Official observance of Juneteenth and Veteran’s Day as paid holidays for U.S. Employees</li>
+        <li>Continuation of Wellness Days that help us to unplug and recharge</li>
+        <li>Globalization of celebratory events from the Lunar New Year to Girls' Day in Germany to Global Accessibility and Awareness Day</li>
+      </ul>
+      <h4>What we build</h4>
+      <ul class="mzp-u-list-styled">
+        <li>Application of our values of inclusion to the design of our products through the development of inclusive guides and resources</li>
+        <li>Amplification of voices from women and people of color through the continuation of our curated Pocket collections</li>
+      </ul>
+      <h4>What we do beyond our products</h4>
+      <ul class="mzp-u-list-styled">
+        <li>Launching partnerships with Hispanic-Serving Institutions (HSIs) and organizations</li>
+        <li>Expanding our Responsible Computer Science Challenge to serve Historically Black Colleges and Universities (HBCUs) across the U.S.</li>
+        <li>Building an open-source data set of under-served languages — like Kiswahili and Kinyarwanda — to make voice technology more inclusive </li>
+        <li>Hosting a cohort of senior fellows in trustworthy AI, several of whom focus on the intersection of race and technology</li>
+        <li>Further hone our intersectional lens across grantmaking broadly, ensuring our fellowships and awards address vital issues like bias and exclusion in AI systems</li>
+      </ul>
+    </div>
+  </section>
+  <!-- Heading leading to pages -->
+  <section class="mzp-l-content">
+    <div class="mzp-l-card-third">
+      {{ card(
+      title='Mozilla Foundation data',
+      ga_title='Mozilla Foundation data',
+      aspect_ratio='mzp-has-aspect-16-9',
+      link_url=url('mozorg.diversity.2021.mofo-data'),
+      image_url='img/mozorg/diversity/2021/card-images/mofo-data-card.jpg',
+      )}}
+      {{ card(
+      title='Mozilla Corporation data',
+      ga_title='Mozilla Corporation data',
+      aspect_ratio='mzp-has-aspect-16-9',
+      link_url=url('mozorg.diversity.2021.moco-data'),
+      image_url='img/mozorg/diversity/2021/card-images/moco-data-card.jpg',
+      )}}
+      {{ card(
+      title='Racial justice commitments',
+      ga_title='Racial justice commitments',
+      aspect_ratio='mzp-has-aspect-16-9',
+      link_url=url('mozorg.diversity.2021.racial-justice'),
+      image_url='img/mozorg/diversity/2021/card-images/racial-justice-card.jpg',
+      )}}
+    </div>
+    <div class="mzp-l-card-third">
+      {{ card(
+      title='Who we are',
+      ga_title='Who we are',
+      desc='Our employee base and our communities',
+      aspect_ratio='mzp-has-aspect-16-9',
+      link_url=url('mozorg.diversity.2021.who-we-are'),
+      image_url='img/mozorg/diversity/2021/card-images/who-we-are-card.jpg',
+      )}}
+      {{ card(
+      title='What we build',
+      ga_title='What we build',
+      desc='Our outreach with our products',
+      aspect_ratio='mzp-has-aspect-16-9',
+      link_url=url('mozorg.diversity.2021.what-we-build'),
+      image_url='img/mozorg/diversity/2021/card-images/what-we-build-card.jpg',
+      )}}
+      {{ card(
+      title='Beyond our products',
+      ga_title='Beyond our products',
+      desc='Our broader engagement with the world',
+      aspect_ratio='mzp-has-aspect-16-9',
+      link_url=url('mozorg.diversity.2021.beyond-products'),
+      image_url='img/mozorg/diversity/2021/card-images/beyond-our-products.jpg',
+      )}}
+    </div>
+  </section>
+</main>
+
+<div class="mzp-u-modal-content"></div>
+{% endblock %}

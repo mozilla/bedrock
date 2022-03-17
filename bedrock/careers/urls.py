@@ -11,6 +11,7 @@ from . import views
 from .feeds import LatestPositionsFeed
 
 urlpatterns = [
+    # Main paths
     path("", views.HomeView.as_view(), name="careers.home"),
     re_path(r"^position/(?P<source>[\w]+)/(?P<job_id>[\w]+)/$", views.PositionDetailView.as_view(), name="careers.position"),
     path("feed/", LatestPositionsFeed(), name="careers.feed"),

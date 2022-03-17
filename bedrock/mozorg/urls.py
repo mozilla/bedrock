@@ -114,6 +114,16 @@ urlpatterns = (
     path("projects/xforms/2005/type", views.namespaces, {"namespace": "xforms-type"}),
     path("xbl", views.namespaces, {"namespace": "xbl"}),
     page("locales", "mozorg/locales.html"),
+    # Diversity and inclusion redirect
+    redirect(r"^diversity/$", "mozorg.diversity.2021.index", name="diversity", locale_prefix=False),
+    # Main paths
+    page("diversity/2021", "mozorg/diversity/2021/index.html"),
+    page("diversity/2021/mozilla-foundation-data", "mozorg/diversity/2021/mofo-data.html"),
+    page("diversity/2021/mozilla-corporation-data", "mozorg/diversity/2021/moco-data.html"),
+    page("diversity/2021/racial-justice-commitments", "mozorg/diversity/2021/racial-justice.html"),
+    page("diversity/2021/what-we-build", "mozorg/diversity/2021/what-we-build.html"),
+    page("diversity/2021/beyond-our-products", "mozorg/diversity/2021/beyond-products.html"),
+    page("diversity/2021/who-we-are", "mozorg/diversity/2021/who-we-are.html"),
 )
 
 if settings.DEV:
