@@ -688,7 +688,7 @@ class TestFirefoxHome(TestCase):
 
 
 class TestFirefoxGA(TestCase):
-    def test_data_cta_type(self):
+    def test_firefox_home_GA(self):
         cta_types = ["link", "fxa-sync", "button"]
         req = RequestFactory().get("/firefox/")
         view = views.FirefoxHomeView.as_view()
