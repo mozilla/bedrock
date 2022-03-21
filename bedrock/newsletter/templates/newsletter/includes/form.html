@@ -11,7 +11,9 @@
     {% if is_multi_newsletter_form %}
       <div id="newsletter-error-strings" data-form-checkboxes-error="{{ ftl('multi-newsletter-form-checkboxes-error') }}"></div>
     {% else %}
-      {{ form.newsletters|safe }}
+      <div hidden="true">
+        {{ form.newsletters|safe }}
+      </div>
     {% endif %}
     <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
 
