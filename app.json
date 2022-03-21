@@ -12,7 +12,7 @@
     "CSP_DEFAULT_SRC": "*.allizom.org",
     "CSP_EXTRA_FRAME_SRC": "*.mozaws.net",
     "CSP_REPORT_ENABLE": "True",
-    "CSP_REPORT_URI": "https://sentry.prod.mozaws.net/api/156/security/?sentry_key=b89cacf912c24702a2fa6e3dc4610ade",
+    "CSP_REPORT_URI": "https://o1069899.ingest.sentry.io/api/6260338/security/?sentry_key=97ec0cd426714b728e92f3b3aa62f00b",
     "DB_DOWNLOAD_IGNORE_GIT": "True",
     "DEBUG": "False",
     "DEV": "True",
@@ -25,7 +25,7 @@
       "description": "A secret key for verifying the integrity of signed cookies, though we don't use them.",
       "generator": "secret"
     },
-    "SENTRY_DSN": "https://b89cacf912c24702a2fa6e3dc4610ade@sentry.prod.mozaws.net/156",
+    "SENTRY_DSN": "https://97ec0cd426714b728e92f3b3aa62f00b@o1069899.ingest.sentry.io/6260338",
     "WEB_CONCURRENCY": "2"
   }
 }
