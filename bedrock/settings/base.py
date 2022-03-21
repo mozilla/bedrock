@@ -1256,7 +1256,8 @@ CSP_CONNECT_SRC = CSP_DEFAULT_SRC + [
     "logs.convertexperiments.com",
     "1003350.metrics.convertexperiments.com",
     "1003343.metrics.convertexperiments.com",
-    "sentry.prod.mozaws.net",
+    "sentry.prod.mozaws.net",  # DEPRECATED. TODO: remove this once all sites are talking to sentry.io instead
+    "o1069899.sentry.io",
     "cdn.cookielaw.org",
     "privacyportal.onetrust.com",
     FXA_ENDPOINT,
