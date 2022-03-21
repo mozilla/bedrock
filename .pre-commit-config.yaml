@@ -71,7 +71,7 @@ repos:
   #        TODO Add this and fix issues found
   #        additional_dependencies: [flake8-bugbear]
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v2.5.1
+    rev: v2.6.0
     hooks:
       - id: prettier
   - repo: https://github.com/awebdeveloper/pre-commit-stylelint
@@ -84,10 +84,10 @@ repos:
           - "postcss-scss@4.0.2"
           - "postcss@8.3.11"
   - repo: https://github.com/eslint/eslint
-    rev: v7.32.0
+    rev: v8.11.0
     hooks:
       - id: eslint
         additional_dependencies:
-          - "eslint-plugin-json@2.1.1"
-          - "eslint-config-prettier@8.3.0"
+          - "eslint-plugin-json@3.1.0"
+          - "eslint-config-prettier@8.5.0"
   #       Additional excludes in /.eslintignore file

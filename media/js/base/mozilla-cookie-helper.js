@@ -144,6 +144,8 @@ Mozilla.Cookies = {
         'use strict';
         var aKeys = document.cookie
             .replace(
+                // see issue 11338.
+                // eslint-disable-next-line no-useless-backreference
                 /((?:^|\s*;)[^=]+)(?=;|$)|^\s*|\s*(?:=[^;]*)?(?:\1|$)/g,
                 ''
             )
