@@ -6,9 +6,7 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/card';
 @import '~@mozilla-protocol/core/protocol/css/components/hero';
-@import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
 
 .mzp-c-card {
     .mzp-c-card-desc {
