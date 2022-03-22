@@ -91,11 +91,7 @@ class iOSTestFlightPage(BasePage):
         # scroll newsletter into view before expanding the form
         self.scroll_element_into_view(*self._email_locator)
         assert not self.is_form_detail_displayed, "Form detail is already displayed"
-        # Click the submit button to expand the form when not visible.
-        # Ideally here we would focus on the email field, but Selenium has issues
-        # dealing with focus events when the window is not active.
-        # See bug https://bugzilla.mozilla.org/show_bug.cgi?id=704583
-        self.find_element(*self._submit_button_locator).click()
+        self.find_element(*self._email_locator).send_keys("")
         self.wait.until(expected.visibility_of_element_located(self._privacy_policy_checkbox_locator))
 
     @property

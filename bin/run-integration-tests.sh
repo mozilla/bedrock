@@ -15,7 +15,13 @@ set -xe
 : ${RESULTS_PATH:="${TESTS_PATH}/results"}
 
 # Common arguments
-CMD="py.test"
+if [ "${DRIVER}" = "SauceLabs" ]; then
+  # Temporarily exclude logs for Saucelabs jobs https://github.com/pytest-dev/pytest-selenium/issues/288
+  CMD="SAUCELABS_W3C=true SELENIUM_EXCLUDE_DEBUG=logs py.test"
+else
+  CMD="py.test"
+fi
+
 CMD="${CMD} -r a"
 CMD="${CMD} --verbose"
 CMD="${CMD} --workers ${PYTEST_PROCESSES}"
@@ -37,8 +43,8 @@ fi
 # Sauce Labs arguments
 if [ "${DRIVER}" = "SauceLabs" ]; then
   CMD="${CMD} --capability browserName \"${BROWSER_NAME}\""
-  if [ -n "${BROWSER_VERSION}" ]; then CMD="${CMD} --capability version \"${BROWSER_VERSION}\""; fi
-  if [ -n "${PLATFORM}" ]; then CMD="${CMD} --capability platform \"${PLATFORM}\""; fi
+  if [ -n "${BROWSER_VERSION}" ]; then CMD="${CMD} --capability browserVersion \"${BROWSER_VERSION}\""; fi
+  if [ -n "${PLATFORM}" ]; then CMD="${CMD} --capability platformName \"${PLATFORM}\""; fi
   if [ -n "${SELENIUM_VERSION}" ]; then CMD="${CMD} --capability selenium-version \"${SELENIUM_VERSION}\""; fi
   if [ -n "${BUILD_TAG}" ]; then CMD="${CMD} --capability build \"${BUILD_TAG}\""; fi
   if [ -n "${SCREEN_RESOLUTION}" ]; then CMD="${CMD} --capability screenResolution \"${SCREEN_RESOLUTION}\""; fi
