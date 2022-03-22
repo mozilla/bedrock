@@ -45,6 +45,8 @@
 {% block body_class %}mzp-t-firefox {{ theme_class }}{% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-call-out') }}
+  {{ css_bundle('protocol-article') }}
   {{ css_bundle('firefox_releasenotes') }}
 {% endblock %}
 

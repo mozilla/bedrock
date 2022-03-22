@@ -11,6 +11,9 @@
 {% block page_og_title %}{{ self.page_title() }}{% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('protocol-newsletter') }}
+  {{ css_bundle('protocol-call-out') }}
   {{ css_bundle('firefox_channel') }}
 {% endblock %}
 

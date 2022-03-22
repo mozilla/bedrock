@@ -19,6 +19,7 @@
 {% block body_class %}mzp-t-firefox mzp-t-{{ channel_name|lower }}{% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-call-out') }}
   {{ css_bundle('firefox_system_requirements') }}
 {% endblock %}
 
