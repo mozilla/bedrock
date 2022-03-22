@@ -16,13 +16,6 @@ describe('stub-attribution.js', function () {
     const GA_VISIT_ID = '1456954538.1610960957';
 
     beforeEach(function () {
-        // stub out Mozilla.Cookie lib
-        window.Mozilla.Cookies = sinon.stub();
-        window.Mozilla.Cookies.enabled = sinon.stub().returns(true);
-        window.Mozilla.Cookies.setItem = sinon.stub();
-        window.Mozilla.Cookies.getItem = sinon.stub();
-        window.Mozilla.Cookies.hasItem = sinon.stub();
-
         // stub out GA client ID
         spyOn(Mozilla.StubAttribution, 'getGAVisitID').and.returnValue(
             GA_VISIT_ID

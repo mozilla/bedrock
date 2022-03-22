@@ -9,17 +9,7 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global sinon */
-
 describe('core-datalayer-page-id.js', function () {
-    beforeEach(function () {
-        // stub out Mozilla.Cookie lib
-        window.Mozilla.Cookies = sinon.stub();
-        window.Mozilla.Cookies.hasItem = sinon.stub();
-        window.Mozilla.Cookies.getItem = sinon.stub();
-        window.Mozilla.Cookies.removeItem = sinon.stub();
-    });
-
     describe('getPageId', function () {
         const html = document.documentElement;
 
