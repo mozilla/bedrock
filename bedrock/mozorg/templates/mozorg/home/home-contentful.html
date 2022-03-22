@@ -20,6 +20,8 @@
 
 {% block page_css %}
   {% include 'includes/contentful/css.html' %}
+  {{ css_bundle('protocol-call-out') }}
+  {{ css_bundle('protocol-newsletter') }}
   {{ css_bundle('home-contentful') }}
 
   {% if show_turning_red_banner %}
