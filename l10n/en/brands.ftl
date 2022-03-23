@@ -68,7 +68,6 @@
 -brand-name-firefox-sync = Firefox Sync
 -brand-name-firefox-relay = Firefox Relay
 -brand-name-firefox-private-network = Firefox Private Network
--brand-name-firefox-mdn-plus = MDN Plus
 
 ## Firefox products (short names)
 
