@@ -18,13 +18,28 @@
 */
 
 describe('mozilla-cookie-helper.js', function () {
+    function clearCookies() {
+        document.cookies = '';
+    }
+
+    beforeEach(clearCookies);
+
+    afterEach(clearCookies);
+
     describe('setItem method', function () {
         const cookieId = 'test-cookie';
+        var date = new Date();
+        date.setHours(date.getHours() + 48);
+
         it('should set a cookie onto document.cookie', function () {
-            var date = new Date();
-            date.setHours(date.getHours() + 48);
             window.Mozilla.Cookies.setItem(cookieId, true, date, '/');
             expect(document.cookie).toContain(cookieId);
+        });
+        it('will return false if you dont pass the sKey property', function () {
+            expect(window.Mozilla.Cookies.setItem()).toBeFalse();
+        });
+        it('will return false if sKey starts with any: expires|max-age|path|domain|secure|samesite', function () {
+            expect(window.Mozilla.Cookies.setItem()).toBeFalse();
         });
     });
 });
