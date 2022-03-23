@@ -16,8 +16,9 @@
  # the view for the platform pages will activate the locale if either language file is active  #}
 
 {% block extrahead %}
- {{ super() }}
- {{ css_bundle('firefox_new_platform') }}
+  {{ super() }}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('firefox_new_platform') }}
 {% endblock %}
 
 {% if ftl_file_is_active('firefox/new/platform') %}
