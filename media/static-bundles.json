@@ -154,12 +154,6 @@
     },
     {
       "files": [
-        "css/exp/opt-out.scss"
-      ],
-      "name": "exp-opt-out"
-    },
-    {
-      "files": [
         "css/security/security.scss"
       ],
       "name": "security"
