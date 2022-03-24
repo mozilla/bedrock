@@ -10,9 +10,7 @@
  */
 
 /*
-|*|  * Mozilla.Cookies.getItem(name)
 |*|  * Mozilla.Cookies.removeItem(name[, path[, domain]])
-|*|  * Mozilla.Cookies.hasItem(name)
 |*|  * Mozilla.Cookies.keys()
 */
 
@@ -20,9 +18,6 @@ describe('mozilla-cookie-helper.js', function () {
     function clearCookies() {
         document.cookies = '';
     }
-
-    beforeEach(clearCookies);
-    afterEach(clearCookies);
 
     describe('setItem method', function () {
         const cookieId = 'test-cookie';
@@ -50,16 +45,20 @@ describe('mozilla-cookie-helper.js', function () {
         const cookieId = 'test-cookie';
         var date = new Date();
         date.setHours(date.getHours() + 48);
-        window.Mozilla.Cookies.setItem(cookieId, 'test', date, '/');
+
+        beforeEach(function () {
+            clearCookies();
+            window.Mozilla.Cookies.setItem(cookieId, 'test', date, '/');
+        });
+
+        afterEach(clearCookies);
 
         it('should return the value of the cookie that is passed to the getItem method', function () {
             expect(window.Mozilla.Cookies.getItem(cookieId)).toBe('test');
         });
 
         it('should return null if no cookie with that name is found', function () {
-            expect(
-                window.Mozilla.Cookies.getItem("Nathan's secret stuff")
-            ).toBeNull();
+            expect(window.Mozilla.Cookies.getItem('oatmeal-raisin')).toBeNull();
         });
         it('should return null if no argument for sKey is passed', function () {
             expect(window.Mozilla.Cookies.getItem()).toBeNull();
@@ -70,7 +69,13 @@ describe('mozilla-cookie-helper.js', function () {
         const cookieId = 'test-cookie';
         var date = new Date();
         date.setHours(date.getHours() + 48);
-        window.Mozilla.Cookies.setItem(cookieId, 'test', date, '/');
+
+        beforeEach(function () {
+            clearCookies();
+            window.Mozilla.Cookies.setItem(cookieId, 'test', date, '/');
+        });
+
+        afterEach(clearCookies);
 
         it('should return false if no argument for sKey is passed', function () {
             expect(window.Mozilla.Cookies.hasItem()).toBeFalse();
@@ -82,6 +87,54 @@ describe('mozilla-cookie-helper.js', function () {
         });
         it('should return true if matching cookie is found', function () {
             expect(window.Mozilla.Cookies.hasItem(cookieId)).toBeTrue();
+        });
+    });
+
+    describe('removeItem method', function () {
+        const cookieId = 'test-cookie';
+        var date = new Date();
+        date.setHours(date.getHours() + 48);
+
+        beforeEach(function () {
+            clearCookies();
+            window.Mozilla.Cookies.setItem(cookieId, 'test', date, '/');
+        });
+
+        afterEach(clearCookies);
+
+        it('should return false if the cookie doesnt exist', function () {
+            expect(
+                window.Mozilla.Cookies.removeItem('snickerdoodle')
+            ).toBeFalse();
+        });
+
+        it('should return true if the cookie is found in document.cookie', function () {
+            expect(window.Mozilla.Cookies.removeItem(cookieId)).toBeTrue();
+        });
+    });
+
+    describe('keys method', function () {
+        const cookieId = 'test-cookie';
+        var date = new Date();
+        date.setHours(date.getHours() + 48);
+
+        beforeEach(function () {
+            clearCookies();
+            window.Mozilla.Cookies.setItem(cookieId, 'test', date, '/');
+        });
+
+        afterEach(clearCookies);
+
+        it('should return the cookie keys found in document.cookies', function () {
+            expect(window.Mozilla.Cookies.keys()).toContain(cookieId);
+            expect(window.Mozilla.Cookies.keys().length).toEqual(1);
+            window.Mozilla.Cookies.setItem(
+                'oatmeal-chocolate-chip',
+                'tasty',
+                date,
+                '/'
+            );
+            expect(window.Mozilla.Cookies.keys().length).toEqual(2);
         });
     });
 });
