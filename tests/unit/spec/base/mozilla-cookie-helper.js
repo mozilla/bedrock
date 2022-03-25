@@ -9,28 +9,44 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/*
-|*|  * Mozilla.Cookies.removeItem(name[, path[, domain]])
-|*|  * Mozilla.Cookies.keys()
-*/
-
 describe('mozilla-cookie-helper.js', function () {
     function clearCookies() {
-        document.cookies = '';
+        document.cookie = '';
     }
+
+    beforeEach(clearCookies);
+    afterEach(clearCookies);
 
     describe('setItem method', function () {
         const cookieId = 'test-cookie';
         var date = new Date();
         date.setHours(date.getHours() + 48);
 
+        beforeEach(clearCookies);
+        afterEach(clearCookies);
+
         it('should set a cookie onto document.cookie', function () {
             window.Mozilla.Cookies.setItem(cookieId, 'test', date, '/');
             expect(document.cookie).toContain(cookieId);
         });
+
+        it('should add samesite property of "lax" when calling setItem if passed vSameSite argument of string (not including "none" or "strict"', function () {
+            window.Mozilla.Cookies.setItem(
+                cookieId,
+                'test',
+                date,
+                '/',
+                undefined,
+                false,
+                'flour'
+            );
+            expect(document.cookie).toContain('samesite=lax');
+        });
+
         it('will return false if you dont pass the sKey property', function () {
             expect(window.Mozilla.Cookies.setItem()).toBeFalse();
         });
+
         it('will return false if sKey equals any of the folllowing: expires|max-age|path|domain|secure|samesite', function () {
             expect(window.Mozilla.Cookies.setItem('expires')).toBeFalse();
             expect(window.Mozilla.Cookies.setItem('max-age')).toBeFalse();
@@ -118,14 +134,12 @@ describe('mozilla-cookie-helper.js', function () {
         var date = new Date();
         date.setHours(date.getHours() + 48);
 
-        beforeEach(function () {
-            clearCookies();
-            window.Mozilla.Cookies.setItem(cookieId, 'test', date, '/');
-        });
+        beforeEach(clearCookies);
 
         afterEach(clearCookies);
 
-        it('should return the cookie keys found in document.cookies', function () {
+        it('should return the cookie keys found in document.cookie', function () {
+            window.Mozilla.Cookies.setItem(cookieId, 'test', date, '/');
             expect(window.Mozilla.Cookies.keys()).toContain(cookieId);
             expect(window.Mozilla.Cookies.keys().length).toEqual(1);
             window.Mozilla.Cookies.setItem(
