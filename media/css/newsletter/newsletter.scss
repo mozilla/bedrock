@@ -6,14 +6,11 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/card';
-@import '~@mozilla-protocol/core/protocol/css/components/emphasis-box';
 @import '~@mozilla-protocol/core/protocol/css/components/forms/form';
 @import '~@mozilla-protocol/core/protocol/css/components/forms/field';
 @import '~@mozilla-protocol/core/protocol/css/components/forms/button-container';
 @import '~@mozilla-protocol/core/protocol/css/components/hero';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
-@import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
 
 // * -------------------------------------------------------------------------- */
 // Global styles.
