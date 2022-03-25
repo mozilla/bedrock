@@ -80,27 +80,8 @@ Mozilla.Cookies = {
                     break;
             }
         }
-        /**
-         *  valid vSamesite values are 'lax', 'strict' and 'none' (case insensitive).
-         *  otherwise it will be 'lax'
-         */
-        function checkSameSite(vSamesite) {
-            if (!vSamesite) {
-                return null;
-            }
-            vSamesite = vSamesite.toString().toLowerCase();
 
-            if (
-                vSamesite === 'lax' ||
-                vSamesite === 'none' ||
-                vSamesite === 'strict'
-            ) {
-                return vSamesite;
-            } else {
-                return 'lax';
-            }
-        }
-        vSamesite = checkSameSite(vSamesite);
+        vSamesite = this.checkSameSite(vSamesite);
 
         // setting the samesite attribute to 'none' requires the cookie to be 'secure'
         if (vSamesite === 'none') {
@@ -179,6 +160,29 @@ Mozilla.Cookies = {
             return ret;
         } catch (e) {
             return false;
+        }
+    },
+
+    checkSameSite: function (vSamesite) {
+        'use strict';
+        /**
+         *  valid vSamesite values are 'lax', 'strict' and 'none' (case insensitive).
+         *  otherwise it will be 'lax'
+         */
+
+        if (!vSamesite) {
+            return null;
+        }
+        vSamesite = vSamesite.toString().toLowerCase();
+
+        if (
+            vSamesite === 'lax' ||
+            vSamesite === 'none' ||
+            vSamesite === 'strict'
+        ) {
+            return vSamesite;
+        } else {
+            return 'lax';
         }
     }
 };

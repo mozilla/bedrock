@@ -30,19 +30,6 @@ describe('mozilla-cookie-helper.js', function () {
             expect(document.cookie).toContain(cookieId);
         });
 
-        it('should add samesite property of "lax" when calling setItem if passed vSameSite argument of string (not including "none" or "strict"', function () {
-            window.Mozilla.Cookies.setItem(
-                cookieId,
-                'test',
-                date,
-                '/',
-                undefined,
-                false,
-                'flour'
-            );
-            expect(document.cookie).toContain('samesite=lax');
-        });
-
         it('will return false if you dont pass the sKey property', function () {
             expect(window.Mozilla.Cookies.setItem()).toBeFalse();
         });
@@ -54,6 +41,37 @@ describe('mozilla-cookie-helper.js', function () {
             expect(window.Mozilla.Cookies.setItem('domain')).toBeFalse();
             expect(window.Mozilla.Cookies.setItem('secure')).toBeFalse();
             expect(window.Mozilla.Cookies.setItem('samesite')).toBeFalse();
+        });
+    });
+
+    describe('checkSameSite method', function () {
+        const cookieId = 'test-cookie';
+        var date = new Date();
+        date.setHours(date.getHours() + 48);
+
+        beforeEach(clearCookies);
+        afterEach(clearCookies);
+
+        it('should be called when calling Mozilla.Cookies.setItem', function () {
+            const spy = spyOn(window.Mozilla.Cookies, 'checkSameSite');
+            window.Mozilla.Cookies.setItem(cookieId);
+            expect(spy).toHaveBeenCalled();
+        });
+
+        it('should return null if no argument is passed', function () {
+            expect(window.Mozilla.Cookies.checkSameSite()).toBeNull();
+        });
+
+        it('should return "lax" if a truthy string is passed (but not strict | none)', function () {
+            expect(window.Mozilla.Cookies.checkSameSite('flour')).toBe('lax');
+            expect(window.Mozilla.Cookies.checkSameSite('lax')).toBe('lax');
+        });
+        it('should return "none" if "none" is passed to function', function () {
+            expect(window.Mozilla.Cookies.checkSameSite('none')).toBe('none');
+        });
+
+        it('should return "lax" if "lax" is passed to function', function () {
+            expect(window.Mozilla.Cookies.checkSameSite('none')).toBe('none');
         });
     });
 
