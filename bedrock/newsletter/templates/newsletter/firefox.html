@@ -12,6 +12,7 @@
 {% block body_class %}{{ super() }} newsletter-mozilla{% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-newsletter') }}
   {{ css_bundle('newsletter-firefox') }}
 {% endblock %}
 
