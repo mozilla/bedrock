@@ -11,7 +11,6 @@
 
 /* eslint camelcase: [2, {properties: "never"}] */
 /* eslint new-cap: [2, {"capIsNewExceptions": ["Deferred"]}] */
-/* global sinon */
 
 describe('all-downloads-unified.js', function () {
     describe('getSelectOption', function () {
@@ -199,7 +198,6 @@ describe('all-downloads-unified.js', function () {
 
     describe('setAttributionURL', function () {
         beforeEach(function () {
-            window.Mozilla.Cookies = sinon.stub();
             spyOn(Mozilla.StubAttribution, 'getCookie').and.returnValue({
                 attribution_code: 'some-attribution-code',
                 attribution_sig: 'some-attribution-signature'

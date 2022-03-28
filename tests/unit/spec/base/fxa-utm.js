@@ -9,8 +9,6 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global sinon */
-
 import FxaUtm from '../../../../media/js/base/fxa-utm.es6.js';
 
 describe('fxa-utm.js', function () {
@@ -445,16 +443,6 @@ describe('fxa-utm.js', function () {
     });
 
     describe('setFxALinkReferralCookie', function () {
-        beforeEach(function () {
-            // stub out Mozilla.Cookies lib
-            window.Mozilla.Cookies = sinon.stub();
-            window.Mozilla.Cookies.enabled = sinon.stub();
-            window.Mozilla.Cookies.setItem = sinon.stub();
-            window.Mozilla.Cookies.getItem = sinon.stub();
-            window.Mozilla.Cookies.hasItem = sinon.stub();
-            window.Mozilla.Cookies.removeItem = sinon.stub();
-        });
-
         it('should set a referral cookie as expected', function () {
             spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
             spyOn(Mozilla.Cookies, 'enabled').and.returnValue(true);
@@ -485,13 +473,8 @@ describe('fxa-utm.js', function () {
 
     describe('init', function () {
         beforeEach(function () {
-            // stub out Mozilla.Cookies lib
-            window.Mozilla.Cookies = sinon.stub();
-            window.Mozilla.Cookies.enabled = sinon.stub().returns(true);
-            window.Mozilla.Cookies.setItem = sinon.stub();
-            window.Mozilla.Cookies.getItem = sinon.stub();
-            window.Mozilla.Cookies.hasItem = sinon.stub();
-            window.Mozilla.Cookies.removeItem = sinon.stub();
+            // assume cookie are enabled.
+            spyOn(Mozilla.Cookies, 'enabled').and.returnValue(true);
 
             // assume DNT is disabled
             spyOn(Mozilla, 'dntEnabled').and.returnValue(false);

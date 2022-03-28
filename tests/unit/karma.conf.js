@@ -21,6 +21,7 @@ module.exports = function (config) {
             'media/js/base/mozilla-client.js',
             'media/js/base/search-params.js',
             'media/js/externalpages/pocket/base.js',
+            'media/js/base/mozilla-cookie-helper.js',
             // end common dependencies.
             'media/js/base/banners/mozilla-banner.js',
             'media/js/base/mozilla-run.js',
@@ -40,6 +41,7 @@ module.exports = function (config) {
             'tests/unit/spec/base/core-datalayer-page-id.js',
             'tests/unit/spec/base/core-datalayer.js',
             'tests/unit/spec/base/dnt-helper.js',
+            'tests/unit/spec/base/mozilla-cookie-helper.js',
             'tests/unit/spec/base/experiment-utils.js',
             'tests/unit/spec/base/fxa-form.js',
             'tests/unit/spec/base/fxa-link.js',
