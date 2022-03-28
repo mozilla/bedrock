@@ -62,6 +62,7 @@ PRODUCT_THEMES = {
     "Mozilla": "mozilla",
     "Mozilla VPN": "vpn",
     "Pocket": "pocket",
+    "MDN Plus": "mdn-plus",
 }
 WIDTHS = {
     "Extra Small": "xs",
@@ -202,7 +203,7 @@ def _make_cta_button(entry):
 
     button_class = [
         # TODO, only add on Firefox themed pages
-        "mzp-t-product" if action != "Get Mozilla VPN" else "",
+        "mzp-t-product" if action != "Get Mozilla VPN" and action != "Get MDN Plus" else "",
         "mzp-t-secondary" if fields.get("theme") == "Secondary" else "",
         f'mzp-t-{WIDTHS.get(fields.get("size"), "")}' if fields.get("size") else "",
     ]
