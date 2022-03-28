@@ -904,13 +904,19 @@ describe('stub-attribution.js', function () {
                 Mozilla.StubAttribution.COOKIE_CODE_ID,
                 data.attribution_code,
                 jasmine.any(String),
-                '/'
+                '/',
+                undefined,
+                false,
+                'lax'
             );
             expect(Mozilla.Cookies.setItem).toHaveBeenCalledWith(
                 Mozilla.StubAttribution.COOKIE_SIGNATURE_ID,
                 data.attribution_sig,
                 jasmine.any(String),
-                '/'
+                '/',
+                undefined,
+                false,
+                'lax'
             );
         });
 
