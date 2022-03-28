@@ -16,6 +16,7 @@ import sentry_sdk
 from everett.manager import ListOf
 from sentry_processor import DesensitizationProcessor
 from sentry_sdk.integrations.django import DjangoIntegration
+from sentry_sdk.integrations.logging import ignore_logger
 
 from bedrock.base.config_manager import config
 from bedrock.contentful.constants import (
@@ -1114,10 +1115,6 @@ LOGGING = {
         },
     },
     "loggers": {
-        "django.security.DisallowedHost": {  # NB: this exception changes base in Django 4
-            "handlers": ["null"],
-            "propagate": False,
-        },
         "django.db.backends": {
             "level": "ERROR",
             "handlers": ["console"],
@@ -1125,6 +1122,11 @@ LOGGING = {
         },
     },
 }
+
+# DisallowedHost gets a lot of action thanks to scans/bots/scripts,
+# but we need not take any action because it's already HTTP 400-ed.
+# Note that we ignore at the Sentry client level
+ignore_logger("django.security.DisallowedHost")
 
 PASSWORD_HASHERS = ["django.contrib.auth.hashers.PBKDF2PasswordHasher"]
 ADMINS = MANAGERS = config("ADMINS", parser=json.loads, default="[]")
