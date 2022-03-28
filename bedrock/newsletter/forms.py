@@ -1,13 +1,12 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-import re
 from operator import itemgetter
 
 from django import forms
 from django.core.exceptions import ValidationError
+from django.core.validators import validate_unicode_slug
 from django.forms import widgets
-from django.utils.safestring import mark_safe
 
 from product_details import product_details
 
@@ -15,16 +14,17 @@ from bedrock.mozorg.forms import FORMATS, EmailInput, PrivacyWidget, strip_paren
 from bedrock.newsletter import utils
 from lib.l10n_utils.fluent import ftl, ftl_lazy
 
-_newsletters_re = re.compile(r"^[\w,-]+$")
-
 
 def validate_newsletters(newsletters):
     if not newsletters:
         raise ValidationError("No Newsletter Provided")
 
-    newsletters = newsletters.replace(" ", "")
-    if not _newsletters_re.match(newsletters):
-        raise ValidationError("Invalid Newsletter")
+    newsletters = [n.replace(" ", "") for n in newsletters]
+    for newsletter in newsletters:
+        try:
+            validate_unicode_slug(newsletter)
+        except ValidationError:
+            raise ValidationError("Invalid newsletter")
 
     return newsletters
 
@@ -100,14 +100,6 @@ class BooleanTabularRadioSelect(widgets.RadioSelect):
         context = super().get_context(name, value, attrs)
         context["wrap_label"] = False
         return context
-
-
-class TableCheckboxInput(widgets.CheckboxInput):
-    """Add table cell markup around the rendered checkbox"""
-
-    def render(self, *args, **kwargs):
-        out = super().render(*args, **kwargs)
-        return mark_safe("<td>" + out + "</td>")
 
 
 class CountrySelectForm(forms.Form):
@@ -233,6 +225,11 @@ class NewsletterFooterForm(forms.Form):
     on a dedicated page.
     """
 
+    choice_labels = {
+        "mozilla-foundation": ftl("multi-newsletter-form-checkboxes-label-mozilla"),
+        "mozilla-and-you": ftl("multi-newsletter-form-checkboxes-label-firefox"),
+    }
+
     email = forms.EmailField(widget=EmailInput(attrs={"required": "required"}))
     # first/last_name not yet included in email_newsletter_form helper
     # currently used on /contribute/friends/ (custom markup)
@@ -241,7 +238,7 @@ class NewsletterFooterForm(forms.Form):
     fmt = forms.ChoiceField(widget=SimpleRadioSelect, choices=FORMATS, initial="H")
     privacy = forms.BooleanField(widget=PrivacyWidget)
     source_url = forms.CharField(required=False)
-    newsletters = forms.CharField(widget=forms.HiddenInput, required=True, max_length=100)
+    newsletters = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple())
 
     # has to take a newsletters argument so it can figure
     # out which languages to list in the form.
@@ -250,11 +247,13 @@ class NewsletterFooterForm(forms.Form):
         regions = sorted(iter(regions.items()), key=itemgetter(1))
 
         try:
+            if isinstance(newsletters, str):
+                newsletters = newsletters.split(",")
             newsletters = validate_newsletters(newsletters)
         except ValidationError:
             # replace with most common good newsletter
             # form validation will work with submitted data
-            newsletters = "mozilla-and-you"
+            newsletters = ["mozilla-and-you"]
 
         lang = locale.lower()
         if "-" in lang:
@@ -282,6 +281,7 @@ class NewsletterFooterForm(forms.Form):
         self.fields["country"] = forms.ChoiceField(widget=country_widget, choices=regions, initial=country, required=False)
         lang_widget = widgets.Select(attrs=required_args)
         self.fields["lang"] = forms.TypedChoiceField(widget=lang_widget, choices=lang_choices, initial=lang, required=False)
+        self.fields["newsletters"].choices = [(n, self.choice_labels.get(n, n)) for n in newsletters]
         self.fields["newsletters"].initial = newsletters
 
     def clean_newsletters(self):

@@ -608,7 +608,7 @@ def recovery(request):
 
 def newsletter_subscribe(request):
     if request.method == "POST":
-        newsletters = request.POST.get("newsletters")
+        newsletters = request.POST.getlist("newsletters")
         form = NewsletterFooterForm(newsletters, l10n_utils.get_locale(request), request.POST)
         errors = []
         if form.is_valid():
@@ -635,13 +635,18 @@ def newsletter_subscribe(request):
             if not kwargs.get("source_url") and request.headers.get("Referer"):
                 kwargs["source_url"] = request.headers["Referer"]
 
+            # Convert data["newsletters"] to a comma separated string.
+            newsletters = data["newsletters"]
+            if isinstance(newsletters, list):
+                newsletters = ",".join(newsletters)
+
             try:
-                basket.subscribe(data["email"], data["newsletters"], **kwargs)
+                basket.subscribe(data["email"], newsletters, **kwargs)
             except basket.BasketException as e:
                 if e.code == basket.errors.BASKET_INVALID_EMAIL:
                     errors.append(str(invalid_email_address))
                 else:
-                    log.exception(f"Error subscribing {data['email']} to newsletter {data['newsletters']}")
+                    log.exception(f"Error subscribing {data['email']} to newsletter(s) {newsletters}")
                     errors.append(str(general_error))
 
         else:

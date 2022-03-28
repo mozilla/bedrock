@@ -11,7 +11,9 @@
     {% if is_multi_newsletter_form %}
       <div id="newsletter-error-strings" data-form-checkboxes-error="{{ ftl('multi-newsletter-form-checkboxes-error') }}"></div>
     {% else %}
-      {{ form.newsletters|safe }}
+      <div hidden="true">
+        {{ form.newsletters|safe }}
+      </div>
     {% endif %}
     <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
 
@@ -81,12 +83,11 @@
           <fieldset class="mzp-u-inline">
             <legend>{{ ftl('multi-newsletter-form-checkboxes-legend') }}</legend>
             <p>
-              <label for="newsletter-mozilla" class="mzp-u-inline">
-                <input type="checkbox" id="newsletter-mozilla" name="newsletter-id" value="mozilla-foundation" checked> {{ ftl('multi-newsletter-form-checkboxes-label-mozilla')}}
-              </label>
-              <label for="newsletter-firefox" class="mzp-u-inline">
-                <input type="checkbox" id="newsletter-firefox" name="newsletter-id" value="mozilla-and-you" checked> {{ ftl('multi-newsletter-form-checkboxes-label-firefox') }}
-              </label>
+              {% for field in form.newsletters %}
+                <label for="{{ field.id_for_label }}" class="mzp-u-inline">
+                  {{ field.tag() }} {{ field.choice_label }}
+                </label>
+              {% endfor %}
             </p>
           </fieldset>
         {% endif %}
