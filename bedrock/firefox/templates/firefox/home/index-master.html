@@ -223,6 +223,19 @@
       <p><a class="mzp-c-cta-link" href="https://getpocket.com/signup/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Download for iOS" data-link-name="Pocket">{{ ftl('firefox-home-learn-more-about-pocket') }}</a></p>
     {% endcall %}
 
+    {% call split(
+      image_url='img/firefox/home/master/firefox-relay.jpg',
+      block_class='t-monitor mzp-l-split-reversed',
+      media_class='mzp-l-split-h-center',
+      media_after=True
+    ) %}
+      <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-relay">
+        <h3>{{ ftl('firefox-home-firefox-relay') }}</h3>
+      </div>
+      <h4>{{ ftl('firefox-home-un-spam-your-life') }}</h4>
+      <a class="mzp-c-cta-link" href="{{ 'https://relay.firefox.com/' + referrals }}" data-link-name="Monitor" data-link-type="link">{{ ftl('firefox-home-try-relay') }}</a>
+    {% endcall %}
+
     <div class="c-end mzp-t-dark">
       <div class="mzp-l-content">
         <div class="c-showcase t-small">
