@@ -132,7 +132,7 @@ Mozilla.TrafficCop.prototype.init = function() {
  */
 Mozilla.TrafficCop.prototype.initiateCustomCallbackRoutine = function() {
     // set a cookie to remember the chosen variation
-    Mozilla.Cookies.setItem(this.id, this.chosenVariation || Mozilla.TrafficCop.noVariationCookieValue, this.cookieExpiresDate);
+    Mozilla.Cookies.setItem(this.id, this.chosenVariation || Mozilla.TrafficCop.noVariationCookieValue, this.cookieExpiresDate, undefined, undefined, false, "lax");
 
     // invoke the developer supplied callback, passing in the chosen variation
     this.customCallback(this.chosenVariation);
@@ -166,13 +166,13 @@ Mozilla.TrafficCop.prototype.initiateRedirectRoutine = function() {
             }
 
             // set a cookie containing the chosen variation
-            Mozilla.Cookies.setItem(this.id, this.chosenVariation, this.cookieExpiresDate);
+            Mozilla.Cookies.setItem(this.id, this.chosenVariation, this.cookieExpiresDate, undefined, undefined, false, "lax");
 
             Mozilla.TrafficCop.performRedirect(redirectUrl);
         } else {
             // if no variation, set a cookie so user isn't re-entered into
             // the dice roll on next page load
-            Mozilla.Cookies.setItem(this.id, Mozilla.TrafficCop.noVariationCookieValue, this.cookieExpiresDate);
+            Mozilla.Cookies.setItem(this.id, Mozilla.TrafficCop.noVariationCookieValue, this.cookieExpiresDate, undefined, undefined, false, "lax");
 
             // same as above - referrer cookie could be set from previous experiment, so best to clear
             Mozilla.TrafficCop.clearReferrerCookie();
@@ -320,7 +320,7 @@ Mozilla.TrafficCop.setReferrerCookie = function(expirationDate, referrer) {
     // 3. 'direct' string literal
     referrer = referrer || Mozilla.TrafficCop.getDocumentReferrer() || 'direct';
 
-    Mozilla.Cookies.setItem(Mozilla.TrafficCop.referrerCookieName, referrer, expirationDate);
+    Mozilla.Cookies.setItem(Mozilla.TrafficCop.referrerCookieName, referrer, expirationDate, undefined, undefined, false, "lax");
 };
 
 Mozilla.TrafficCop.clearReferrerCookie = function() {
