@@ -5,5 +5,5 @@ myst-parser==0.16.1
 sphinx-autobuild==2021.3.14
 sphinx-copybutton==0.4.0
 sphinx-rtd-theme==1.0.0
-Sphinx==4.4.0
+Sphinx==4.5.0
 sphinxcontrib-websupport==1.2.4
