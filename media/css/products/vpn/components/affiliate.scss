@@ -1,0 +1,47 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+
+.vpn-affiliate-notification {
+    display: none;
+    margin: $spacing-lg $spacing-md 0;
+    max-width: none;
+
+    &.show {
+        @include animation(mzp-a-fade-in 150ms ease-in 0ms 1 normal both);
+        display: block;
+    }
+
+    a:link,
+    a:visited {
+        display: inline;
+        font-weight: normal;
+        margin: 0;
+
+        &:hover,
+        &:active,
+        &:focus {
+            color: inherit;
+            text-decoration: none;
+        }
+    }
+
+    .vpn-affiliate-notification-reject {
+        margin: $spacing-sm auto 0;
+    }
+
+    @media #{$mq-md} {
+        margin: $spacing-lg auto 0;
+        max-width: $content-md;
+    }
+}
+
+.vpn-affiliate-notification + .vpn-hero {
+    margin-top: 0;
+}

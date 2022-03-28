@@ -1264,6 +1264,8 @@ CSP_CONNECT_SRC = CSP_DEFAULT_SRC + [
     "privacyportal.onetrust.com",
     FXA_ENDPOINT,
     "getpocket.com",  # Pocket Snowplow
+    "stage.cjms.nonprod.cloudops.mozgcp.net",
+    "cjms.mozilla.org",  # Prod URL TBD
 ]
 if DEV:
     CSP_CONNECT_SRC.append("com-getpocket-prod1.mini.snplow.net")
@@ -1495,7 +1497,7 @@ VPN_PLAN_ID_MATRIX = {
             },
             "monthly": {
                 "id": "price_1J4s0MKb9q6OnNsLS19LMKBb" if DEV else "price_1J5JSkJNcmPzuWtR54LPH2zi",
-                "price": "9,99‎ €",
+                "price": "9,99 €",
                 "total": None,
                 "saving": None,
             },
@@ -1609,6 +1611,7 @@ VPN_COUNTRY_CODES = [
     "FI",  # Finland
 ]
 
+VPN_AFFILIATE_COUNTRIES = ["CA", "DE", "FR", "IE", "UK", "US"]
 VPN_AVAILABLE_COUNTRIES = 17
 VPN_CONNECT_SERVERS = 400
 VPN_CONNECT_COUNTRIES = 30
@@ -1616,3 +1619,6 @@ VPN_CONNECT_DEVICES = 5
 
 # VPN client ID for referral parameter tracking (issue 10811)
 VPN_CLIENT_ID = "e6eb0d1e856335fc"
+
+# VNP affiliate micro service (CJMS) endpoint (issue 11212)
+VPN_AFFILIATE_ENDPOINT = "https://stage.cjms.nonprod.cloudops.mozgcp.net/aic" if DEV else "https://cjms.mozilla.org/aic"  # Prod URL TBD

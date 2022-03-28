@@ -95,7 +95,7 @@ describe('fxa-product-button.js', function () {
         });
     });
 
-    it('should not attach flow parameters if already present', function () {
+    it('should not overwrite flow parameters if already present', function () {
         spyOn(Mozilla.Client, 'getFirefoxDetails').and.callFake((callback) => {
             callback({
                 accurate: true,
@@ -107,6 +107,23 @@ describe('fxa-product-button.js', function () {
             const buttons = document.querySelectorAll('.js-fxa-product-button');
             expect(buttons[3].href).toEqual(
                 'https://accounts.firefox.com/subscriptions/products/prod_FiJ42WCzZNRSbS?plan=plan_FvPMH5lVx1vhV0&device_id=123456789&flow_begin_time=123456789&flow_id=123456789'
+            );
+        });
+    });
+
+    it('should overwrite flow parameters if explicitly stated', function () {
+        spyOn(Mozilla.Client, 'getFirefoxDetails').and.callFake((callback) => {
+            callback({
+                accurate: true,
+                distribution: undefined
+            });
+        });
+
+        const overwrite = true;
+        return FxaProductButton.init(overwrite).then(() => {
+            const buttons = document.querySelectorAll('.js-fxa-product-button');
+            expect(buttons[3].href).toEqual(
+                'https://accounts.firefox.com/subscriptions/products/prod_FiJ42WCzZNRSbS?plan=plan_FvPMH5lVx1vhV0&device_id=848377ff6e3e4fc982307a316f4ca3d6&flow_begin_time=1573052386673&flow_id=75f9a48a0f66c2f5919a0989605d5fa5dd04625ea5a2ee59b2d5d54637c566d1'
             );
         });
     });

@@ -38,6 +38,7 @@ module.exports = function (config) {
             'media/js/firefox/all/all-downloads-unified.js',
             'media/js/firefox/new/common/thanks.js',
             'media/js/externalpages/pocket/mobile-nav.es6.js',
+            'media/js/products/vpn/affiliate-attribution.es6.js',
             'tests/unit/spec/base/core-datalayer-page-id.js',
             'tests/unit/spec/base/core-datalayer.js',
             'tests/unit/spec/base/dnt-helper.js',
@@ -63,7 +64,8 @@ module.exports = function (config) {
             'tests/unit/spec/careers/params.js',
             'tests/unit/spec/firefox/all/all-downloads-unified.js',
             'tests/unit/spec/firefox/new/common/thanks.js',
-            'tests/unit/spec/externalpages/pocket/mobile-nav.es6.js',
+            'tests/unit/spec/externalpages/pocket/mobile-nav.js',
+            'tests/unit/spec/products/vpn/affiliate-attribution.js',
             {
                 pattern: 'node_modules/sinon/pkg/sinon.js',
                 watched: false,

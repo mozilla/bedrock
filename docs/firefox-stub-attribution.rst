@@ -2,11 +2,11 @@
 .. License, v. 2.0. If a copy of the MPL was not distributed with this
 .. file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-.. _stub_attribution:
+.. _firefox_stub_attribution:
 
-================
-Stub Attribution
-================
+========================
+Firefox Stub Attribution
+========================
 
 Stub Attribution is a process that enables the construction and transmission
 of marketing attribution code on www.mozilla.org. When a user visits a mozilla.org
