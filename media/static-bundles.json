@@ -966,9 +966,9 @@
     },
     {
       "files": [
-        "css/contentful/mozilla/t-card-layout.scss"
+        "css/contentful/mozilla/c-card.scss"
       ],
-      "name": "mozilla-t-card-layout"
+      "name": "mozilla-c-card"
     },
     {
       "files": [
@@ -1020,9 +1020,9 @@
     },
     {
       "files": [
-        "css/contentful/firefox/t-card-layout.scss"
+        "css/contentful/firefox/c-card.scss"
       ],
-      "name": "firefox-t-card-layout"
+      "name": "firefox-c-card"
     },
     {
       "files": [
