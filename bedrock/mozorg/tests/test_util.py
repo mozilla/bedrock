@@ -61,3 +61,8 @@ class TestPageUtil(TestCase):
         """If provided the URL pattern name should be set from the parameter."""
         url = page("lebowski/urban_achievers/", "lebowski/achievers.html", url_name="proud.we.are.of.all.of.them")
         assert url.name == "proud.we.are.of.all.of.them"
+
+    def test_url_pattern_no_slash(self, l10n_mock):
+        "The url route should pass through unchanged"
+        url = page("dude/abides.json", "dude/abides.html", donny="ashes")
+        assert str(url.pattern) == "dude/abides.json"

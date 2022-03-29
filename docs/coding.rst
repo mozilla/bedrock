@@ -170,9 +170,9 @@ in our `ESLint config <https://github.com/mozilla/bedrock/blob/master/.eslintrc.
 Writing URL Patterns
 --------------------
 
-URL patterns should be as strict as possible. It also forces a trailing slash.
-You should also give the URL a name so that other pages can reference it instead
-of hardcoding the URL. Example:
+URL patterns should be the entire URL you desire, minus any prefixes from URLs files
+importing this one, and including a trailing slash.  You should also give the URL a name
+so that other pages can reference it instead of hardcoding the URL. Example:
 
 .. code-block:: python
 
@@ -187,8 +187,9 @@ Bedrock comes with a handy shortcut to automate all of this:
     page("channel/", "mozorg/channel.html")
 
 You don't need to create a view. It will serve up the specified
-template at the given URL (the first parameter). You can also pass
-template data as keyword arguments:
+template at the given URL (the first parameter. see the
+`Django docs <https://docs.djangoproject.com/en/3.2/ref/urls/#django.urls.path>`_ for details).
+You can also pass template data as keyword arguments:
 
 .. code-block:: python
 
