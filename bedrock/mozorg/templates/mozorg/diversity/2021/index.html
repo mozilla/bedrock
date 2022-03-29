@@ -6,7 +6,7 @@
 
 {% extends "base-protocol-mozilla.html" %}
 
-{% from "macros.html" import image with context %}
+{% from "macros.html" import image, sub_nav with context %}
 {% from "macros-protocol.html" import split, picto, card, feature_card, with context %}]
 
 
@@ -24,22 +24,47 @@
 {% endblock %}
 
 {% block sub_navigation %}
-<nav class="c-sub-navigation">
-  <div class="mzp-l-content">
-    <div class="c-sub-navigation-content">
-      <h2 class="c-sub-navigation-title is-summary">Diversity & Inclusion 2021</h2>
-      <ul class="c-sub-navigation-list is-details is-closed">
-        <li class="c-sub-navigation-item"><a href="{{ url('mozorg.diversity.2021.index') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Diversity and inclusion overview">Overview</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('mozorg.diversity.2021.mofo-data') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Mozilla Foundation data">Foundation data</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('mozorg.diversity.2021.moco-data') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Mozilla Corporation data">Corporation data</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('mozorg.diversity.2021.racial-justice') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Racial justice commitments">Racial justice commitments</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('mozorg.diversity.2021.who-we-are') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Who we are">Who we are</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('mozorg.diversity.2021.what-we-build') }}" data-link-type="nav" data-link-position="subnav" data-link-name="What we build">What we build</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('mozorg.diversity.2021.beyond-products') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Beyond our products">Beyond our products</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+{{ sub_nav(
+  title={
+    'text': "Diversity & Inclusion 2021"
+  },
+  links=[
+  {
+    'text': "Overview",
+    'href': url('mozorg.diversity.2021.index'),
+    'cta_name': "Diversity and inclusion overview"
+  },
+  {
+    'text': "Foundation data",
+    'href': url('mozorg.diversity.2021.mofo-data'),
+    'cta_name': "Mozilla Foundation data"
+  },
+  {
+    'text': "Corporation data",
+    'href': url('mozorg.diversity.2021.moco-data'),
+    'cta_name': "Mozilla Corporation data"
+  },
+  {
+    'text': "Racial justice commitments",
+    'href': url('mozorg.diversity.2021.racial-justice'),
+    'cta_name': "Racial justice commitments"
+  },
+  {
+    'text': "Who we are",
+    'href': url('mozorg.diversity.2021.who-we-are'),
+    'cta_name': "Who we are"
+  },
+  {
+    'text': "What we build",
+    'href': url('mozorg.diversity.2021.what-we-build'),
+    'cta_name': "What we build"
+  },
+  {
+    'text': "Beyond our products",
+    'href': url('mozorg.diversity.2021.beyond-products'),
+    'cta_name': "Beyond our products"
+  }]
+) }}
 {% endblock %}
 
 {% block content %}

@@ -6,6 +6,7 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
+{% from "macros.html" import sub_nav with context %}
 {% from "macros-protocol.html" import hero, feature_card, call_out_compact, picto with context %}
 
 {% block page_og_title %}{{ self.page_title() }}{% endblock %}
@@ -20,23 +21,30 @@
 {% block body_class %}{% endblock %}
 
 {% block sub_navigation %}
-<nav class="c-sub-navigation">
-  <div class="mzp-l-content">
-    <div class="c-sub-navigation-content">
-      <h2 class="c-sub-navigation-title is-summary">
-        <a href="{{ url('firefox.browsers.index') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Firefox">
-          <img class="c-sub-navigation-icon" src="{{ static('protocol/img/logos/firefox/logo.svg') }}" width="24" height="24" alt="">
-         {{ ftl('sub-navigation-firefox') }}
-        </a>
-      </h2>
-      <ul class="c-sub-navigation-list is-details is-closed">
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.channel.desktop') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Nightly and Beta">{{ ftl('sub-navigation-nightly-and-beta', fallback='firefox-channel-desktop') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.channel.android') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Android Nightly and Beta">{{ ftl('sub-navigation-android-nightly-and-beta', fallback='firefox-channel-android') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.channel.ios') }}" data-link-type="nav" data-link-position="subnav" data-link-name="iOS TestFlight">{{ ftl('sub-navigation-ios-test-flight', fallback='firefox-channel-ios') }}</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+{{ sub_nav(
+  title={
+    'text':  ftl('sub-navigation-firefox'),
+    'href':  url('firefox.browsers.index'),
+    'cta_name': "Firefox",
+    'icon': static('protocol/img/logos/firefox/logo.svg')
+  },
+  links=[
+  {
+    'text': ftl('sub-navigation-nightly-and-beta', fallback='firefox-channel-desktop'),
+    'href': url('firefox.channel.desktop'),
+    'cta_name': "Nightly and Beta"
+  },
+  {
+    'text': ftl('sub-navigation-android-nightly-and-beta', fallback='firefox-channel-android'),
+    'href': url('firefox.channel.android'),
+    'cta_name': "Android Nightly and Beta"
+  },
+  {
+    'text': ftl('sub-navigation-ios-test-flight', fallback='firefox-channel-ios'),
+    'href': url('firefox.channel.ios'),
+    'cta_name': "iOS TestFlight"
+  }]
+) }}
 {% endblock %}
 
 {% block content %}

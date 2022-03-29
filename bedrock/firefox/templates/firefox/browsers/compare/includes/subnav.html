@@ -4,20 +4,44 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{# Subnav menu for /firefox/browsers/compare/ #}
+{% from 'macros.html' import sub_nav with context %}
 
-<nav class="c-sub-navigation">
-  <div class="mzp-l-content">
-    <div class="c-sub-navigation-content">
-      <h2 class="c-sub-navigation-title is-summary"><a href="{{ url('firefox.browsers.compare.index') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Compare Browsers">{{ ftl('sub-navigation-compare-browsers') }}</a></h2>
-      <ul class="c-sub-navigation-list is-details is-closed">
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.compare.chrome') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Chrome">{{ ftl('sub-navigation-chrome') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.compare.edge') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Edge">{{ ftl('sub-navigation-edge') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.compare.safari') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Safari">{{ ftl('sub-navigation-safari') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.compare.opera') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Opera">{{ ftl('sub-navigation-opera') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.compare.brave') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Brave">{{ ftl('sub-navigation-brave') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.compare.ie') }}" data-link-type="nav" data-link-position="subnav" data-link-name="IE">{{ ftl('sub-navigation-ie') }}</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+{# Subnav menu for /firefox/browsers/compare/ #}
+{{ sub_nav(
+  title={
+    'text': ftl('sub-navigation-compare-browsers'),
+    'href': url('firefox.browsers.compare.index'),
+    'cta_name': "Compare browsers"
+  },
+  links=[
+  {
+    'text': ftl('sub-navigation-chrome'),
+    'href': url('firefox.browsers.compare.chrome'),
+    'cta_name': "Chrome"
+  },
+  {
+    'text': ftl('sub-navigation-edge'),
+    'href': url('firefox.browsers.compare.edge'),
+    'cta_name': "Edge"
+  },
+  {
+    'text': ftl('sub-navigation-safari'),
+    'href': url('firefox.browsers.compare.safari'),
+    'cta_name': "Safari"
+  },
+  {
+    'text': ftl('sub-navigation-opera'),
+    'href': url('firefox.browsers.compare.opera'),
+    'cta_name': "Opera"
+  },
+  {
+    'text': ftl('sub-navigation-brave'),
+    'href': url('firefox.browsers.compare.brave'),
+    'cta_name': "Brave"
+  },
+  {
+    'text': ftl('sub-navigation-ie'),
+    'href': url('firefox.browsers.compare.ie') ,
+    'cta_name': "IE"
+  }]
+) }}

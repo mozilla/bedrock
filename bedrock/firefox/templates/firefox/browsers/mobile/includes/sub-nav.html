@@ -1,0 +1,41 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros.html" import sub_nav with context %}
+
+{{ sub_nav(
+  title={
+    'text':  ftl('sub-navigation-firefox-for-mobile', fallback='navigation-firefox-browser-for-mobile'),
+    'href':  url('firefox.browsers.mobile.index'),
+    'cta_name': "Firefox for Mobile"
+  },
+  links=[
+  {
+    'text': ftl('sub-navigation-android'),
+    'href': url('firefox.browsers.mobile.android'),
+    'cta_name': "Android"
+  },
+  {
+    'text': ftl('sub-navigation-ios'),
+    'href': url('firefox.browsers.mobile.ios'),
+    'cta_name': "iOS"
+  },
+  {
+    'text': ftl('sub-navigation-firefox-focus'),
+    'href': url('firefox.browsers.mobile.focus'),
+    'cta_name': "Firefox Focus"
+  },
+  {
+    'text': ftl('sub-navigation-chromebook'),
+    'href': url('firefox.browsers.chromebook'),
+    'cta_name': "Chromebook"
+  },
+  {
+    'text': ftl('sub-navigation-compare-mobile-browsers'),
+    'href': url('firefox.browsers.mobile.compare'),
+    'cta_name': "Compare Mobile Browsers"
+  }]
+) }}

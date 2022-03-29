@@ -4,18 +4,36 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+{% from "macros.html" import sub_nav with context %}
+
 {% if ftl_has_messages('vpn-subnav-whats-a-vpn', 'vpn-subnav-faqs', 'vpn-subnav-get-help') %}
-  <nav class="c-sub-navigation">
-    <div class="mzp-l-content">
-      <div class="c-sub-navigation-content">
-        <h2 class="c-sub-navigation-title is-summary"><a href="{{ url('products.vpn.landing') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Mozilla VPN">{{ ftl('vpn-subnav-title') }}</a></h2>
-        <ul class="c-sub-navigation-list is-details is-closed">
-          <li class="c-sub-navigation-item"><a href="{{ url('products.vpn.more.what-is-a-vpn') }}" data-link-type="nav" data-link-position="subnav" data-link-name="What’s a VPN?">{{ ftl('vpn-subnav-whats-a-vpn') }}</a></li>
-          <li class="c-sub-navigation-item"><a href="{{ url('products.vpn.more.ip-address') }}" data-link-type="nav" data-link-position="subnav" data-link-name="What’s an IP address?">{{ ftl('vpn-subnav-whats-an-ip-address') }}</a></li>
-          <li class="c-sub-navigation-item"><a href="{{ url('products.vpn.more.when-to-use') }}" data-link-type="nav" data-link-position="subnav" data-link-name="When to use a VPN">{{ ftl('vpn-subnav-when-to-use-a-vpn') }}</a></li>
-          <li class="c-sub-navigation-item"><a href="{{ url('products.vpn.more.vpn-or-proxy') }}" data-link-type="nav" data-link-position="subnav" data-link-name="VPN vs Proxy">{{ ftl('vpn-subnav-vpn-vs-proxy') }}</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  {{ sub_nav(
+    title={
+      'text': ftl('vpn-subnav-title'),
+      'href': url('products.vpn.landing'),
+      'cta_name': "Mozilla VPN"
+    },
+    links=[
+    {
+      'text': ftl('vpn-subnav-whats-a-vpn'),
+      'href': url('products.vpn.more.what-is-a-vpn'),
+      'cta_name': "What’s a VPN?"
+    },
+    {
+      'text': ftl('vpn-subnav-whats-an-ip-address'),
+      'href': url('products.vpn.more.ip-address') ,
+      'cta_name': "What’s an IP address?"
+    },
+    {
+      'text': ftl('vpn-subnav-when-to-use-a-vpn'),
+      'href': url('products.vpn.more.when-to-use'),
+      'cta_name': "When to use a VPN"
+    },
+    {
+      'text': ftl('vpn-subnav-vpn-vs-proxy'),
+      'href': url('products.vpn.more.vpn-or-proxy'),
+      'cta_name': "VPN vs Proxy"
+    }]
+  ) }}
 {% endif %}
+

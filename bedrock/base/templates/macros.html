@@ -234,3 +234,55 @@
     <img src="{{ src }}" alt="{{ alt }}" {% if class %}class="{{ class }}" {% endif %}{% if loading %}loading="{{ loading }}" {% endif %}{% if width %}width="{{ width }}" {% endif %}{% if height %}height="{{ height }}" {% endif %}/>
   {% endif %}
 {%- endmacro %}
+
+{% macro sub_nav(
+  title,
+  links
+) -%}
+
+{% if 'releasenotes' in request.path %}
+  <!-- remove 'releasenotes' and version number -->
+  {% set root_path = ("/").join(request.path.split("/")[0:-3]) %}
+  <!-- Firefox Desktop, Android, and iOS include channel in request path -->
+  {% if release.channel == 'Release' %}
+    {% set current_page = ("{}/notes/").format(root_path) %}
+  {% else %}
+  <!-- Beta/Developer and Nightly need the channel added -->
+    {% set current_page = ("{}/{}/notes/").format(root_path, release.channel.lower()) %}
+  {% endif %}
+{% else %}
+  {% set current_page = request.path %}
+{% endif %}
+<nav class="c-sub-navigation">
+  <div class="mzp-l-content">
+    <div class="c-sub-navigation-content">
+      <h2 class="c-sub-navigation-title">
+        {% if title.href %}
+          <a href="{{ title.href }}" data-link-type="nav" data-link-position="subnav" data-link-name="{{ title.cta_name }}">
+            {% if title.icon %}<img class="c-sub-navigation-icon" src="{{ title.icon }}" width="24" height="24" alt="">{% endif %}
+            {{ title.text }}
+          </a>
+        {% else %}
+          {% if title.icon %}<img class="c-sub-navigation-icon" src="{{ title.icon }}" width="24" height="24" alt="">{% endif %}
+          {{ title.text }}
+        {% endif %}
+      </h2>
+      <ul class="c-sub-navigation-list">
+        {% for link in links %}
+        <li class="c-sub-navigation-item">
+          <a
+            href="{{ link.href }}"
+            data-link-type="nav"
+            data-link-position="subnav"
+            data-link-name="{{ link.cta_name }}"
+            {% if current_page == link.href %} aria-current="page"{% endif %}
+          >
+            {{ link.text }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</nav>
+{%- endmacro %}

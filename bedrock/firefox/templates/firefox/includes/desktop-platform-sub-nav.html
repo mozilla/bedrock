@@ -1,0 +1,45 @@
+
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros.html" import sub_nav with context %}
+
+{{ sub_nav(
+  title={
+    'text': ftl('sub-navigation-firefox-for-desktop', fallback='navigation-firefox-browser-for-desktop')
+  },
+  links=[
+  {
+    'text':  ftl('sub-navigation-windows') ,
+    'href':  url('firefox.windows'),
+    'cta_name': "Windows"
+  },
+  {
+    'text': ftl('sub-navigation-windows-64-bit'),
+    'href': url('firefox.browsers.windows-64-bit') ,
+    'cta_name': "Windows 64-bit"
+  },
+  {
+    'text': ftl('sub-navigation-mac'),
+    'href': url('firefox.mac'),
+    'cta_name': "Mac"
+  },
+  {
+    'text': ftl('sub-navigation-linux'),
+    'href': url('firefox.linux'),
+    'cta_name': "Linux"
+  },
+  {
+    'text': ftl('sub-navigation-chromebook'),
+    'href': url('firefox.browsers.chromebook'),
+    'cta_name': "Chromebook"
+  },
+  {
+    'text': ftl('sub-navigation-all-languages', fallback='download-button-systems-languages'),
+    'href': url('firefox.all'),
+    'cta_name': "All Languages "
+  }]
+) }}
