@@ -689,17 +689,23 @@ class TestFirefoxHome(TestCase):
 
 class TestFirefoxGA(TestCase):
     def test_firefox_home_GA(self):
-        cta_types = ["link", "fxa-sync", "button"]
+        cta_types = ["link", "button"]
         req = RequestFactory().get("/firefox/")
         view = views.FirefoxHomeView.as_view()
         response = view(req)
         doc = pq(response.content)
-        links = doc("a[data-cta-type]")
+        links = doc(".mzp-c-button")
         for link in links.items():
-            type = link.attr("data-cta-type")
-            contain_cta = any(type in list for list in cta_types)
-            assert contain_cta is True
-            assert link.attr("data-cta-text").length > 0
+            cta_data = link.attr("data-cta-type")
+            cta_link = link.attr("data-link-type")
+            if cta_data:
+                contain_cta = any(cta_data in list for list in cta_types)
+                assert contain_cta or "fxa-" in cta_data
+            elif cta_link:
+                assert cta_link == "download"
+            else:
+                print(f"{link} does not contain attr cta-type or link-type")
+                assert False
 
 
 class TestFirefoxWelcomePage1(TestCase):
