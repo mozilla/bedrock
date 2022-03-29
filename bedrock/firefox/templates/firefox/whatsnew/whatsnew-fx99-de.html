@@ -1,0 +1,46 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+{% from "macros-protocol.html" import card with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_99_eu') }}
+{% endblock %}
+
+{% set _entrypoint = 'mozilla.org-whatsnew99' %}
+{% set utm_campaign = campaign + '-fr' %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-lg">
+      {{ high_res_img('img/firefox/whatsnew/whatsnew99/pocket-hero-eu.png', {'alt': '', 'width': '720', 'height': '406', 'class': 'wnp-main-image'}) }}
+      <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-pocket">Pocket</div>
+      <h1 class="wnp-main-title">Frühjahrsputz für deinen Browser</h1>
+      <p class="wnp-main-tagline">
+        1721531 offene Firefox Tabs und dein Browser platzt aus allen Nähten? Zeit zum Aufräumen! Entrümpele all die Inhalte, für die du jetzt keinen Kopf hast und sortiere sie fein säuberlich in deine Pocket Liste. Dort sind sie bereit für dich, sobald du es bist.
+      </p>
+
+      <p class="wnp-main-cta">
+        {{ pocket_fxa_button(entrypoint=_entrypoint, button_text='In Firefox aktivieren', optional_parameters={'s': _entrypoint, 'utm_campaign': utm_campaign, 'utm_content': 'signup-fxa-primary'}, optional_attributes={'data-cta-text': 'Activate Pocket in Firefox', 'data-cta-type': 'button', 'data-cta-position': 'primary'}) }}
+      </p>
+    </div>
+  </section>
+
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+  {{ js_bundle('fxa_product_button') }}
+{% endblock %}
