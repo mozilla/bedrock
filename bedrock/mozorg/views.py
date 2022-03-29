@@ -3,9 +3,10 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from django.conf import settings
+from django.http import Http404
 from django.shortcuts import render as django_render
 from django.utils.decorators import method_decorator
-from django.views.decorators.cache import never_cache
+from django.views.decorators.cache import cache_page, never_cache
 from django.views.decorators.http import require_safe
 from django.views.generic import TemplateView
 
@@ -17,6 +18,7 @@ from bedrock.contentcards.models import get_page_content_cards
 from bedrock.contentful.api import ContentfulPage
 from bedrock.contentful.models import ContentfulEntry
 from bedrock.mozorg.credits import CreditsFile
+from bedrock.mozorg.models import WebvisionDoc
 from bedrock.pocketfeed.models import PocketArticle
 from lib import l10n_utils
 from lib.l10n_utils import L10nTemplateView
@@ -183,3 +185,42 @@ class ContentfulPreviewView(L10nTemplateView):
             template = "mozorg/contentful-all.html"
 
         return l10n_utils.render(self.request, template, context, **response_kwargs)
+
+
+class WebvisionDocView(TemplateView):
+    """
+    Generic view for loading a webvision doc and displaying it with a template.
+
+    Class attributes in addition to standard Django TemplateView:
+
+    * doc_name: The name of the file in the webvision repo.
+    * doc_context_name: (default 'doc') template variable name for doc.
+
+    This view automatically adds the `cache_page` decorator. The default timeout
+    is 10 minutes, configurable by setting the `WEBVISION_DOCS_CACHE_TIMEOUT` setting to change
+    the default for all views, or the `cache_timeout` property for an single instance.
+
+    """
+
+    doc_name = None
+    doc_context_name = "doc"
+    cache_timeout = settings.WEBVISION_DOCS_CACHE_TIMEOUT
+
+    def render_to_response(self, context, **response_kwargs):
+        response_kwargs.setdefault("content_type", self.content_type)
+        return l10n_utils.render(self.request, self.get_template_names()[0], context, **response_kwargs)
+
+    def get_context_data(self, **kwargs):
+        try:
+            doc = WebvisionDoc.objects.get(name=self.doc_name)
+        except WebvisionDoc.DoesNotExist:
+            raise Http404("Webvision doc not found")
+
+        context = super().get_context_data(**kwargs)
+        context[self.doc_context_name] = doc.content
+        return context
+
+    @classmethod
+    def as_view(cls, **initkwargs):
+        cache_timeout = initkwargs.pop("cache_timeout", cls.cache_timeout)
+        return cache_page(cache_timeout)(super().as_view(**initkwargs))

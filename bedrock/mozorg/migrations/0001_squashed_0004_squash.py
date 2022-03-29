@@ -9,13 +9,6 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    replaces = [
-        ("mozorg", "0001_initial"),
-        ("mozorg", "0002_blogarticle"),
-        ("mozorg", "0003_delete_blogarticle"),
-        ("mozorg", "0004_auto_20200122_0957"),
-    ]
-
     initial = True
 
     dependencies = []

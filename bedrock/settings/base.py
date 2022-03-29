@@ -1087,6 +1087,12 @@ LEGAL_DOCS_BRANCH = config("LEGAL_DOCS_BRANCH", default="master" if DEV else "pr
 LEGAL_DOCS_DMS_URL = config("LEGAL_DOCS_DMS_URL", default="")
 LEGAL_DOCS_CACHE_TIMEOUT = config("LEGAL_DOCS_CACHE_TIMEOUT", default="60" if DEV else "600", parser=int)
 
+WEBVISION_DOCS_PATH = DATA_PATH / "webvisions"
+WEBVISION_DOCS_REPO = config("WEBVISION_DOCS_REPO", default="https://github.com/mozilla/webvision.git")
+WEBVISION_DOCS_BRANCH = config("WEBVISION_DOCS_BRANCH", default="main")
+WEBVISION_DOCS_DMS_URL = config("WEBVISION_DOCS_DMS_URL", default="")
+WEBVISION_DOCS_CACHE_TIMEOUT = config("WEBVISION_DOCS_CACHE_TIMEOUT", default="60" if DEV else "600", parser=int)
+
 MOFO_SECURITY_ADVISORIES_PATH = config("MOFO_SECURITY_ADVISORIES_PATH", default=data_path("mofo_security_advisories"))
 MOFO_SECURITY_ADVISORIES_REPO = config("MOFO_SECURITY_ADVISORIES_REPO", default="https://github.com/mozilla/foundation-security-advisories.git")
 MOFO_SECURITY_ADVISORIES_BRANCH = config("MOFO_SECURITY_ADVISORIES_BRANCH", default="master")

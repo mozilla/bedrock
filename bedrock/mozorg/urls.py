@@ -126,8 +126,16 @@ urlpatterns = (
     page("diversity/2021/who-we-are/", "mozorg/diversity/2021/who-we-are.html"),
     # Webvision
     redirect(r"^webvision", "mozorg.about.webvision.summary", name="webvision", locale_prefix=False),
-    page("about/webvision", "mozorg/about/webvision/summary.html"),
-    page("about/webvision/full", "mozorg/about/webvision/full-vision.html"),
+    path(
+        "about/webvision",
+        views.WebvisionDocView.as_view(template_name="mozorg/about/webvision/summary.html", doc_name="summary"),
+        name="mozorg.about.webvision.summary",
+    ),
+    path(
+        "about/webvision/full",
+        views.WebvisionDocView.as_view(template_name="mozorg/about/webvision/full.html", doc_name="full"),
+        name="mozorg.about.webvision.full",
+    ),
 )
 
 if settings.DEV:
