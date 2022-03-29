@@ -170,30 +170,29 @@ in our `ESLint config <https://github.com/mozilla/bedrock/blob/master/.eslintrc.
 Writing URL Patterns
 --------------------
 
-URL patterns should be as strict as possible. It should begin with a
-`^` and end with `/$` to make sure it only matches what you specifiy.
-It also forces a trailing slash. You should also give the URL a name
-so that other pages can reference it instead of hardcoding the URL.
-Example:
+URL patterns should be as strict as possible. It also forces a trailing slash.
+You should also give the URL a name so that other pages can reference it instead
+of hardcoding the URL. Example:
 
 .. code-block:: python
 
     path("channel/", channel, name="mozorg.channel")
 
+If you only want to render a template and don't need to do anything else in a custom view,
 Bedrock comes with a handy shortcut to automate all of this:
 
 .. code-block:: python
 
     from bedrock.mozorg.util import page
-    page("channel", "mozorg/channel.html")
+    page("channel/", "mozorg/channel.html")
 
-You don't even need to create a view. It will serve up the specified
+You don't need to create a view. It will serve up the specified
 template at the given URL (the first parameter). You can also pass
 template data as keyword arguments:
 
 .. code-block:: python
 
-    page("channel", "mozorg/channel.html",
+    page("channel/", "mozorg/channel.html",
          latest_version=product_details.firefox_versions["LATEST_FIREFOX_VERSION"])
 
 The variable `latest_version` will be available in the template.

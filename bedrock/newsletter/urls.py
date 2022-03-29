@@ -30,9 +30,9 @@ urlpatterns = (
     # Welcome program out-out confirmation page (bug 1442129)
     path("newsletter/opt-out-confirmation/", views.recovery, name="newsletter.opt-out-confirmation"),
     # Branded signup pages for individual newsletters
-    page("newsletter/mozilla", "newsletter/mozilla.html", ftl_files=["mozorg/newsletters"]),
-    page("newsletter/firefox", "newsletter/firefox.html", ftl_files=["mozorg/newsletters"]),
-    page("newsletter/developer", "newsletter/developer.html", ftl_files=["mozorg/newsletters"]),
-    page("newsletter/country/success", "newsletter/country_success.html", ftl_files=["mozorg/newsletters"]),
-    page("newsletter/fxa-error", "newsletter/fxa-error.html", ftl_files=["mozorg/newsletters"]),
+    page("newsletter/mozilla/", "newsletter/mozilla.html", ftl_files=["mozorg/newsletters"]),
+    page("newsletter/firefox/", "newsletter/firefox.html", ftl_files=["mozorg/newsletters"]),
+    page("newsletter/developer/", "newsletter/developer.html", ftl_files=["mozorg/newsletters"]),
+    page("newsletter/country/success/", "newsletter/country_success.html", ftl_files=["mozorg/newsletters"]),
+    page("newsletter/fxa-error/", "newsletter/fxa-error.html", ftl_files=["mozorg/newsletters"]),
 )

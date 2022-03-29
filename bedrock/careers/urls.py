@@ -22,4 +22,4 @@ urlpatterns = [
 
 
 if settings.DEBUG:
-    urlpatterns += [page("404", "careers/404.html", ftl_files=["404", "careers/404"])]
+    urlpatterns += [page("404/", "careers/404.html", ftl_files=["404", "careers/404"])]
