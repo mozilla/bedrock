@@ -30,8 +30,7 @@ def page(name, tmpl, decorators=None, url_name=None, ftl_files=None, **kwargs):
     page's URL name will be "path.to.template". Set the `url_name` parameter
     to override this name.
 
-    @param name: The URL path. It is passed to `django.urls.path`. If not empty, a trailing slash is
-        added automatically if not already present.
+    @param name: The URL path. It is passed to `django.urls.path`.
     @param tmpl: The template name.  Also used to come up with the URL name.
     @param decorators: A decorator or an iterable of decorators that should
         be applied to the view.
@@ -47,9 +46,6 @@ def page(name, tmpl, decorators=None, url_name=None, ftl_files=None, **kwargs):
     @param kwargs: Any additional arguments are passed to l10n_utils.render
         as the context.
     """
-    if name and not name.endswith("/"):
-        name = name + "/"
-
     if url_name is None:
         # Set the name of the view to the template path replaced with dots
         (base, ext) = os.path.splitext(tmpl)
