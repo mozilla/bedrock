@@ -16,5 +16,5 @@ def mock_view(request):
 urlpatterns = [
     path("", include(f"{settings.PROJECT_MODULE}.urls")),
     # Used by test_helper
-    page("base", "base-protocol.html"),
+    page("base/", "base-protocol.html"),
 ]

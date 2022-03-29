@@ -8,8 +8,8 @@ from bedrock.exp import views
 from bedrock.mozorg.util import page
 
 urlpatterns = (
-    page("opt-out", "exp/opt-out.html"),
-    page("firefox", "exp/firefox/index.html", ftl_files=["firefox/home"]),
+    page("opt-out/", "exp/opt-out.html"),
+    page("firefox/", "exp/firefox/index.html", ftl_files=["firefox/home"]),
     path("firefox/new/", views.new, name="exp.firefox.new"),
-    page("firefox/accounts", "exp/firefox/accounts.html", ftl_files=["firefox/accounts"]),
+    page("firefox/accounts/", "exp/firefox/accounts.html", ftl_files=["firefox/accounts"]),
 )

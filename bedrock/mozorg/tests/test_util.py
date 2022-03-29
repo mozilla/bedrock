@@ -42,7 +42,7 @@ class TestPageUtil(TestCase):
 
     def test_locale_redirect(self, l10n_mock):
         """Should use l10n render."""
-        url = page("walter/abides", "walter/abides.html", donny="ashes")
+        url = page("walter/abides/", "walter/abides.html", donny="ashes")
         url.callback(self.rf.get("/walter/abides/"))
         l10n_mock.render.assert_called_with(ANY, "walter/abides.html", {"urlname": "walter.abides", "donny": "ashes"}, ftl_files=None)
 
@@ -54,10 +54,10 @@ class TestPageUtil(TestCase):
 
     def test_url_name_set_from_template(self, l10n_mock):
         """If not provided the URL pattern name should be set from the template path."""
-        url = page("lebowski/urban_achievers", "lebowski/achievers.html")
+        url = page("lebowski/urban_achievers/", "lebowski/achievers.html")
         assert url.name == "lebowski.achievers"
 
     def test_url_name_set_from_param(self, l10n_mock):
         """If provided the URL pattern name should be set from the parameter."""
-        url = page("lebowski/urban_achievers", "lebowski/achievers.html", url_name="proud.we.are.of.all.of.them")
+        url = page("lebowski/urban_achievers/", "lebowski/achievers.html", url_name="proud.we.are.of.all.of.them")
         assert url.name == "proud.we.are.of.all.of.them"
