@@ -92,13 +92,19 @@ if (typeof window.Mozilla === 'undefined') {
             StubAttribution.COOKIE_CODE_ID,
             data.attribution_code,
             expires,
-            '/'
+            '/',
+            undefined,
+            false,
+            'lax'
         );
         Mozilla.Cookies.setItem(
             StubAttribution.COOKIE_SIGNATURE_ID,
             data.attribution_sig,
             expires,
-            '/'
+            '/',
+            undefined,
+            false,
+            'lax'
         );
     };
 

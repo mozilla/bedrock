@@ -20,7 +20,15 @@ if (typeof window.Mozilla === 'undefined') {
         var date = new Date();
         var cookieDuration = 1 * 24 * 60 * 60 * 1000; // 1 day expiration
         date.setTime(date.getTime() + cookieDuration); // 1 day expiration
-        Mozilla.Cookies.setItem(id, true, date.toUTCString(), '/');
+        Mozilla.Cookies.setItem(
+            id,
+            true,
+            date.toUTCString(),
+            '/',
+            undefined,
+            false,
+            'lax'
+        );
     };
 
     Banner.hasCookie = function (id) {

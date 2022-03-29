@@ -82,7 +82,10 @@
                 STICKY_PROMO_COOKIE_ID,
                 true,
                 date.toUTCString(),
-                '/'
+                '/',
+                undefined,
+                false,
+                'lax'
             );
         };
 

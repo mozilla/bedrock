@@ -121,7 +121,15 @@ FxaUtm.setFxALinkReferralCookie = function (id) {
         date.setTime(date.getTime() + 1 * 3600 * 1000); // expiry in 1 hour.
         const expires = date.toUTCString();
 
-        Mozilla.Cookies.setItem('fxa-product-referral-id', id, expires, '/');
+        Mozilla.Cookies.setItem(
+            'fxa-product-referral-id',
+            id,
+            expires,
+            '/',
+            undefined,
+            false,
+            'lax'
+        );
     }
 };
 

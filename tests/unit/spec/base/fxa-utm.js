@@ -455,7 +455,10 @@ describe('fxa-utm.js', function () {
                 'fxa-product-referral-id',
                 'navigation',
                 jasmine.any(String),
-                '/'
+                '/',
+                undefined,
+                false,
+                'lax'
             );
         });
 
