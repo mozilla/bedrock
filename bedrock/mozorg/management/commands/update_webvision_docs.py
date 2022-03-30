@@ -5,8 +5,6 @@
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
-import requests
-
 from bedrock.mozorg.models import WebvisionDoc
 from bedrock.utils.git import GitRepo
 from bedrock.utils.management.decorators import alert_sentry_on_exception
@@ -22,10 +20,6 @@ class Command(BaseCommand):
         if not self.quiet:
             print(msg)
 
-    def snitch(self):
-        if dms_url := settings.WEBVISION_DOCS_DMS_URL:
-            requests.get(dms_url)
-
     def handle(self, *args, **options):
         self.quiet = options["quiet"]
         repo = GitRepo(settings.WEBVISION_DOCS_PATH, settings.WEBVISION_DOCS_REPO, branch_name=settings.WEBVISION_DOCS_BRANCH, name="Webvision Docs")
@@ -33,7 +27,6 @@ class Command(BaseCommand):
         repo.update()
         if not (options["force"] or repo.has_changes()):
             self.output("No webvision docs updates")
-            self.snitch()
             return
 
         self.output("Loading webvision docs into database")
@@ -43,9 +36,7 @@ class Command(BaseCommand):
             self.output(f"Encountered {errors} errors while loading docs")
         else:
             # Only `set_db_latest` if there are no errors so that it will try without errors again next time.
-            # Also so that it will not ping the snitch so that we'll be notified.
             repo.set_db_latest()
             self.output("Saved latest git repo state to database")
-            self.snitch()
 
         self.output("Done!")

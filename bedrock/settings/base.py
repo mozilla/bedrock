@@ -1090,7 +1090,6 @@ LEGAL_DOCS_CACHE_TIMEOUT = config("LEGAL_DOCS_CACHE_TIMEOUT", default="60" if DE
 WEBVISION_DOCS_PATH = DATA_PATH / "webvisions"
 WEBVISION_DOCS_REPO = config("WEBVISION_DOCS_REPO", default="https://github.com/mozilla/webvision.git")
 WEBVISION_DOCS_BRANCH = config("WEBVISION_DOCS_BRANCH", default="main")
-WEBVISION_DOCS_DMS_URL = config("WEBVISION_DOCS_DMS_URL", default="")
 WEBVISION_DOCS_CACHE_TIMEOUT = config("WEBVISION_DOCS_CACHE_TIMEOUT", default="60" if DEV else "600", parser=int)
 
 MOFO_SECURITY_ADVISORIES_PATH = config("MOFO_SECURITY_ADVISORIES_PATH", default=data_path("mofo_security_advisories"))
