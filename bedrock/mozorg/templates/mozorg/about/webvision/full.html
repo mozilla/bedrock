@@ -4,19 +4,11 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% extends "base-protocol-mozilla.html" %}
-
-{% from "macros.html" import image with context %}
-{% from "macros-protocol.html" import split, picto, card, feature_card, with context %}]
-
-{% block page_css %}
-{% endblock %}
-
-{% block js %}
-{% endblock %}
+{% extends "mozorg/about/webvision/summary.html" %}
 
 {% block content %}
-  <h1>Full vision of Webvision</h1>
-
-  {{ doc|safe }}
+<div class="mzp-l-content mzp-c-article">
+    <h1>Mozilla’s vision for the evolution of the Web</h1>
+    {{ doc|safe }}
+  </div>
 {% endblock %}

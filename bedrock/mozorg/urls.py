@@ -127,12 +127,12 @@ urlpatterns = (
     # Webvision
     redirect(r"^webvision", "mozorg.about.webvision.summary", name="webvision", locale_prefix=False),
     path(
-        "about/webvision",
+        "about/webvision/",
         views.WebvisionDocView.as_view(template_name="mozorg/about/webvision/summary.html", doc_name="summary"),
         name="mozorg.about.webvision.summary",
     ),
     path(
-        "about/webvision/full",
+        "about/webvision/full/",
         views.WebvisionDocView.as_view(template_name="mozorg/about/webvision/full.html", doc_name="full"),
         name="mozorg.about.webvision.full",
     ),
