@@ -39,6 +39,7 @@ python manage.py update_externalfiles --quiet || failure_detected=true
 python manage.py update_newsletter_data --quiet || failure_detected=true
 python manage.py update_www_config --quiet || failure_detected=true
 python manage.py update_legal_docs --quiet || failure_detected=true
+python manage.py update_webvision_docs --quiet || failure_detected=true
 python manage.py update_sitemaps_data --quiet || failure_detected=true
 python manage.py sync_greenhouse --quiet || failure_detected=true
 
