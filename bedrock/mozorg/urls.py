@@ -125,7 +125,7 @@ urlpatterns = (
     page("diversity/2021/beyond-our-products/", "mozorg/diversity/2021/beyond-products.html"),
     page("diversity/2021/who-we-are/", "mozorg/diversity/2021/who-we-are.html"),
     # Webvision
-    redirect(r"^webvision", "mozorg.about.webvision.summary", name="webvision", locale_prefix=False),
+    redirect(r"^webvision/?$", "mozorg.about.webvision.summary", name="webvision", locale_prefix=False),
     path(
         "about/webvision/",
         views.WebvisionDocView.as_view(template_name="mozorg/about/webvision/summary.html", doc_name="summary"),
