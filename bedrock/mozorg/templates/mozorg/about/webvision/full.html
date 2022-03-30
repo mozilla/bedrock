@@ -7,8 +7,12 @@
 {% extends "mozorg/about/webvision/summary.html" %}
 
 {% block content %}
-<div class="mzp-l-content mzp-c-article">
+  <main role="main">
+    <article class="mzp-c-article mzp-l-content c-webvision-article">
     <h1>Mozilla’s vision for the evolution of the Web</h1>
     {{ doc|safe }}
-  </div>
+    </article>
+  </main>
+
+
 {% endblock %}

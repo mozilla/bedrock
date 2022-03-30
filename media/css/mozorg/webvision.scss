@@ -1,3 +1,25 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.c-webvision-article {
+    h2 {
+        @include text-title-sm;
+    }
+
+    h3 {
+        @include text-title-xs;
+    }
+
+    ul {
+        li {
+            margin: $spacing-sm $spacing-lg;
+            list-style-type: disc;
+        }
+    }
+}
