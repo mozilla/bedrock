@@ -18,6 +18,10 @@ $image-path: '/media/protocol/img';
         @include text-title-xs;
     }
 
+    h4 {
+        @include text-title-2xs;
+    }
+
     h1,
     h2,
     h3,
@@ -50,5 +54,14 @@ $image-path: '/media/protocol/img';
             margin: $spacing-sm $spacing-lg;
             list-style-type: disc;
         }
+    }
+}
+
+.c-webvision-article-full {
+    display: flex;
+    flex-direction: column;
+
+    .toc {
+        margin-right: auto;
     }
 }
