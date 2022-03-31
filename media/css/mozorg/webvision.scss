@@ -6,6 +6,8 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/sidebar-menu';
+@import '~@mozilla-protocol/core/protocol/css/templates/main-with-sidebar';
 
 .c-webvision-article {
     h2 {
@@ -14,13 +16,6 @@ $image-path: '/media/protocol/img';
 
     h3 {
         @include text-title-xs;
-    }
-
-    ul {
-        li {
-            margin: $spacing-sm $spacing-lg;
-            list-style-type: disc;
-        }
     }
 
     h1,
@@ -47,6 +42,13 @@ $image-path: '/media/protocol/img';
                     visibility: visible;
                 }
             }
+        }
+    }
+
+    ul {
+        li {
+            margin: $spacing-sm $spacing-lg;
+            list-style-type: disc;
         }
     }
 }
