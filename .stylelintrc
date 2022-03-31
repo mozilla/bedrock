@@ -13,6 +13,7 @@
         "value-keyword-case": [
             "lower",
             {
+                "camelCaseSvgKeywords": true,
                 "ignoreFunctions": ["local"]
             }
         ],
