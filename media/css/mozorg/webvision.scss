@@ -22,4 +22,31 @@ $image-path: '/media/protocol/img';
             list-style-type: disc;
         }
     }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        a {
+            position: relative;
+            transition: 2s;
+            visibility: hidden;
+
+            &::after {
+                content: '#';
+                position: absolute;
+                left: 5px;
+                opacity: 0;
+                transition: all 0.2s;
+                visibility: visible;
+            }
+
+            &:hover {
+                &::after {
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+        }
+    }
 }

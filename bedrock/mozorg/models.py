@@ -19,7 +19,7 @@ def process_md_file(file_path):
             input=str(file_path),
             output=output,
             output_format="html5",
-            extensions=[TocExtension(permalink=True)],
+            extensions=[TocExtension(permalink=True, baselevel=2)],
         )
         content = output.getvalue().decode("utf-8")
     except OSError:
