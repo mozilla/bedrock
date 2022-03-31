@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import json
+
 from django.conf import settings
 from django.http import Http404
 from django.shortcuts import render as django_render
@@ -216,8 +218,10 @@ class WebvisionDocView(TemplateView):
         except WebvisionDoc.DoesNotExist:
             raise Http404("Webvision doc not found")
 
+        doc = json.loads(doc.content)
+
         context = super().get_context_data(**kwargs)
-        context[self.doc_context_name] = doc.content
+        context[self.doc_context_name] = doc
         return context
 
     @classmethod

@@ -7,10 +7,13 @@
 {% extends "mozorg/about/webvision/summary.html" %}
 
 {% block content %}
+<div class="toc-wrapper">
+  {{ doc.toc|safe }}
+</div>
 <main role="main">
   <article class="mzp-c-article c-webvision-article c-webvision-article-full">
     <h1>Mozilla’s vision for the evolution of the Web</h1>
-    {{ doc|safe }}
+    {{ doc.content|safe }}
   </article>
 </main>
 {% endblock %}
