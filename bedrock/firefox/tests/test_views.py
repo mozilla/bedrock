@@ -688,8 +688,7 @@ class TestFirefoxHome(TestCase):
 
 
 class TestFirefoxGA(TestCase):
-    @staticmethod
-    def assert_ga_attr(response):
+    def assert_ga_attr(self, response):
         cta_types = ["link", "button"]
         doc = pq(response.content)
         links = doc(".mzp-c-button")
