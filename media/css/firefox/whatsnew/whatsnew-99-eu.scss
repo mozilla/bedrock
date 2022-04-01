@@ -26,7 +26,7 @@ $image-path: '/media/protocol/img';
 }
 
 .wnp-main-image {
-    margin: 0 auto $layout-md;
+    margin: $layout-md auto;
 }
 
 .wnp-main-title {

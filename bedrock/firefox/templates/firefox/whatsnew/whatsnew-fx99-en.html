@@ -10,10 +10,8 @@
 
 {% extends "firefox/whatsnew/base.html" %}
 
-{% block page_title %}What’s new with Firefox{% endblock %}
-
-{#- This will appear as <meta property="og:description"> which can be used for social share -#}
-{% block page_og_desc %}What’s new with Firefox{% endblock %}
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
 
 {% block body_id %}firefox-whatsnew{% endblock %}
 {% block body_class %}{% endblock %}
@@ -42,7 +40,8 @@
     <div class="mzp-l-content mzp-t-content-lg">
       <div class="mzp-c-logo mzp-t-logo-xl mzp-t-product-pocket">Pocket</div>
       <h1 class="wnp-main-title">Save the best articles in one place</h1>
-      <p class="wnp-main-tagline">No more emailing yourself links or keeping 30 (or 300) tabs open. When you come across an interesting article, hit the <img class="inline-icon" src="{{ static('img/firefox/whatsnew/whatsnew99/icon-pocket.svg') }}" width="16" height="16" alt="Save to Pocket icon"> built right into Firefox to save to your Pocket and read it when you have the time.</p>
+      <p class="wnp-main-tagline">No more emailing yourself links or keeping 30 (or 300) tabs open.
+      When you come across an interesting article, hit the <img class="inline-icon" src="{{ static('img/firefox/whatsnew/whatsnew99/icon-pocket.svg') }}" width="16" height="16" alt="Save to Pocket icon" title="Save to Pocket"> built right into Firefox. It’ll save the article to your Pocket so you can read it later when you have time.</p>
 
       <p class="wnp-main-cta">
         {{ pocket_fxa_button(entrypoint=_entrypoint, button_text='Activate Pocket in Firefox', optional_parameters={'s': _entrypoint, 'utm_campaign': utm_campaign, 'utm_content': 'signup-fxa-primary'}, optional_attributes={'data-cta-text': 'Activate Pocket in Firefox', 'data-cta-type': 'button', 'data-cta-position': 'primary'}) }}
