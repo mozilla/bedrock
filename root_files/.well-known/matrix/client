@@ -1,8 +1,0 @@
-{
-    "m.homeserver": {
-        "base_url": "https://mozilla.modular.im"
-    },
-    "m.identity_server": {
-        "base_url": "https://vector.im"
-    }
-}
