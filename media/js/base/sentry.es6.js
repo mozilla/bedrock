@@ -4,7 +4,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import * as Sentry from '@sentry/browser';
+import { init } from '@sentry/browser';
 
 // Respect Do Not Track
 if (
@@ -18,7 +18,7 @@ if (
 
     // Configure Sentry SDK
     if (sentryDsn) {
-        Sentry.init({
+        init({
             dsn: sentryDsn,
             sampleRate: 0.1,
             ignoreErrors: [
