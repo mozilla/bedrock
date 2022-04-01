@@ -136,7 +136,7 @@ For example, to run the home page tests using Internet Explorer via Sauce Labs:
 
 .. code-block:: bash
 
-    $ SAUCELABS_USERNAME=thedude SAUCELABS_API_KEY=123456789 py.test --base-url https://www-dev.allizom.org --driver SauceLabs --capability browserName 'internet explorer' -n auto --html tests/functional/results.html tests/functional/test_home.py
+    $ SAUCELABS_USERNAME=thedude SAUCELABS_API_KEY=123456789 SAUCELABS_W3C=true py.test --base-url https://www-dev.allizom.org --driver SauceLabs --capability browserName 'internet explorer' --capability platformName='Windows 10' --html tests/functional/results.html tests/functional/test_home.py
 
 
 Writing Selenium tests
