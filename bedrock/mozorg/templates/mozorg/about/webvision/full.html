@@ -6,14 +6,29 @@
 
 {% extends "mozorg/about/webvision/summary.html" %}
 
-{% block content %}
-<div class="toc-wrapper">
-  {{ doc.toc|safe }}
-</div>
-<main role="main">
-  <article class="mzp-c-article c-webvision-article c-webvision-article-full">
-    <h1>Mozilla’s vision for the evolution of the Web</h1>
-    {{ doc.content|safe }}
-  </article>
-</main>
+
+
+<!-- <div class="c-webvision-article-full"> -->
+  {% block content %}
+  <main role="main" class="c-webvision-article-full mzp-l-content">
+    {% block side_nav %}
+    <nav class="mzp-c-sidemenu">
+      <section class="mzp-c-sidemenu-summary mzp-js-toggle" aria-controls="sidebar-menu">
+        <h3 class="mzp-c-sidemenu-label">table of contents</h3>
+      </section>
+      <section class="mzp-c-sidemenu-main mzp-u-list-styled" id="sidebar-menu">
+        {{ doc.toc|safe }}
+      </section>
+    </nav>
+    {% endblock %}
+    <article class="mzp-c-article c-webvision-article">
+      <h1>Mozilla’s vision for the evolution of the Web</h1>
+      {{ doc.content|safe }}
+    </article>
+  </main>
+<!-- </div> -->
 {% endblock %}
+
+<script>
+  console.log("hello")
+</script>

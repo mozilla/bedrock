@@ -59,9 +59,12 @@ $image-path: '/media/protocol/img';
 
 .c-webvision-article-full {
     display: flex;
-    flex-direction: column;
 
     .toc {
-        margin-right: auto;
+        ul {
+            li {
+                margin: $spacing-sm $spacing-lg;
+            }
+        }
     }
 }

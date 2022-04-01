@@ -6,11 +6,18 @@
 
 {% extends "base-protocol-mozilla.html" %}
 
+{% block page_title %}Mozilla's Vision of the Web{% endblock %}
+
 {% block page_css %}
   {{ css_bundle("protocol-article") }}
   {{ css_bundle("protocol-call-out") }}
   {{ css_bundle("webvision") }}
 {% endblock %}
+
+{% block site_js %}
+  {{ js_bundle('webvision') }}
+{% endblock %}
+
 
 {% block content %}
 <main role="main">
