@@ -447,6 +447,24 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-99-en.scss"
+      ],
+      "name": "firefox_whatsnew_99_en"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-99-en-rally.scss"
+      ],
+      "name": "firefox_whatsnew_99_en_rally"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-99-eu.scss"
+      ],
+      "name": "firefox_whatsnew_99_eu"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -1205,6 +1223,13 @@
         "js/firefox/whatsnew/whatsnew-98-turningred-en.js"
       ],
       "name": "firefox_whatsnew_98_turningred_en"
+    },
+    {
+      "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/firefox/whatsnew/whatsnew-99-en-experiment.js"
+      ],
+      "name": "firefox_whatsnew_99_en_experiment"
     },
     {
       "files": [

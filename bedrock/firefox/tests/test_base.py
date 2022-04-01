@@ -669,6 +669,34 @@ class TestWhatsNew(TestCase):
 
     # end 98.0 whatsnew tests
 
+    # begin 99.0 whatsnew tests
+
+    def test_fx_99_0_0_de(self, render_mock):
+        """Should use whatsnew-fx99-de template for 99.0 in German"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "de"
+        self.view(req, version="99.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx99-de.html"]
+
+    def test_fx_99_0_0_fr(self, render_mock):
+        """Should use whatsnew-fx99-fr template for 99.0 in French"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "fr"
+        self.view(req, version="99.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx99-fr.html"]
+
+    def test_fx_99_0_0_en(self, render_mock):
+        """Should use whatsnew-fx99-en template for 99.0 in English - US"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "en-US"
+        self.view(req, version="99.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx99-en.html"]
+
+    # end 99.0 whatsnew tests
+
 
 @patch("bedrock.firefox.views.l10n_utils.render", return_value=HttpResponse())
 class TestFirstRun(TestCase):
