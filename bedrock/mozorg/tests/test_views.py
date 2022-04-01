@@ -147,10 +147,10 @@ def test_contentful_preview_view(
 
 class TestWebvisionDocView(TestCase):
     def test_doc(self):
-        WebvisionDoc.objects.create(name="summary", content="<h1>Summary</h1>")
+        WebvisionDoc.objects.create(name="summary", content='{"title":"<h1>Summary</h1>"}')
         resp = self.client.get(reverse("mozorg.about.webvision.summary"), follow=True)
         self.assertEqual(resp.status_code, 200)
-        self.assertEqual(resp.context["doc"], "<h1>Summary</h1>")
+        self.assertEqual(resp.context["doc"], {"title": "<h1>Summary</h1>"})
 
     def test_missing_doc_is_404(self):
         resp = self.client.get(reverse("mozorg.about.webvision.full"))
