@@ -59,6 +59,11 @@ $image-path: '/media/protocol/img';
 
 .c-webvision-article-full {
     display: flex;
+    flex-direction: column;
+
+    @media #{$mq-md} {
+        flex-direction: row;
+    }
 
     .toc {
         ul {

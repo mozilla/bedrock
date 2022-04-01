@@ -17,7 +17,9 @@ def process_md_file(file_path):
         with open(str(file_path)) as f:
             input = f.read()
 
-        md = markdown.Markdown(extensions=["markdown.extensions.attr_list", TocExtension(permalink=True, baselevel=2)], output_format="html5")
+        md = markdown.Markdown(
+            extensions=["markdown.extensions.attr_list", TocExtension(permalink=True, baselevel=2, toc_depth="2-3")], output_format="html5"
+        )
         content = md.convert(input)
     except OSError:
         content = ""

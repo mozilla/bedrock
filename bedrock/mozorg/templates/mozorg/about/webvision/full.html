@@ -6,15 +6,15 @@
 
 {% extends "mozorg/about/webvision/summary.html" %}
 
-
-
-<!-- <div class="c-webvision-article-full"> -->
-  {% block content %}
+{% block content %}
   <main role="main" class="c-webvision-article-full mzp-l-content">
     {% block side_nav %}
     <nav class="mzp-c-sidemenu">
       <section class="mzp-c-sidemenu-summary mzp-js-toggle" aria-controls="sidebar-menu">
-        <h3 class="mzp-c-sidemenu-label">table of contents</h3>
+        <h3 class="mzp-c-sidemenu-label">Menu</h3>
+        <ul>
+          <li>Mozilla's Webvision</li>
+        </ul>
       </section>
       <section class="mzp-c-sidemenu-main mzp-u-list-styled" id="sidebar-menu">
         {{ doc.toc|safe }}
@@ -26,7 +26,6 @@
       {{ doc.content|safe }}
     </article>
   </main>
-<!-- </div> -->
 {% endblock %}
 
 <script>
