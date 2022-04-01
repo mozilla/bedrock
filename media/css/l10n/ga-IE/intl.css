@@ -1,9 +1,0 @@
-/* Bug 854756, 1174423 */
-
-/* !important required for locale specific override */
-/* stylelint-disable declaration-no-important  */
-* {
-    text-transform: none !important;
-    font-variant: normal !important;
-}
-/* stylelint-enable */

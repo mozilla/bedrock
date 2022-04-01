@@ -1,6 +1,0 @@
-/* Bug 944269 */
-
-* {
-    /* !important required for locale specific override */
-    letter-spacing: normal !important; /* stylelint-disable-line declaration-no-important */
-}

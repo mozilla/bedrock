@@ -1,6 +1,0 @@
-/* Bug 1174423 */
-
-* {
-    /* !important required for locale specific override */
-    font-variant: normal !important; /* stylelint-disable-line declaration-no-important */
-}
