@@ -24,11 +24,17 @@ def driver_log():
 
 @pytest.fixture(scope="session")
 def session_capabilities(pytestconfig, session_capabilities):
-    if pytestconfig.getoption("driver") == "SauceLabs":
+    driver = pytestconfig.getoption("driver")
+    if driver == "SauceLabs":
         session_capabilities.setdefault("tags", []).append("bedrock")
 
-        # Avoid default SauceLabs proxy for IE.
-        session_capabilities["avoidProxy"] = True
+        if session_capabilities.get("browserName", driver).lower() == "internet explorer":
+            # Avoid default SauceLabs proxy for IE.
+            session_capabilities["avoidProxy"] = True
+
+            # Use JavaScript events instead of native
+            # window events for more reliable IE testing.
+            session_capabilities["se:ieOptions"] = {"nativeEvents": False}
 
     return session_capabilities
 
