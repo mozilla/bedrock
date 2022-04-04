@@ -348,7 +348,7 @@ class InlineEntryRenderer(BaseNodeRenderer):
 
 
 class AssetBlockRenderer(BaseBlockRenderer):
-    IMAGE_HTML = '<img src="{src}" srcset="{src_highres} 1.5x" alt="{alt}" />'
+    IMAGE_HTML = '<img src="{src}" srcset="{src_highres} 1.5x" alt="{alt}" loading="lazy" />'
 
     def render(self, node):
         asset_id = node["data"]["target"]["sys"]["id"]

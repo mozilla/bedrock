@@ -13,8 +13,10 @@
 
     {% if entries.index(entry) == 0: %}
       {% set heading_level = 1 %}
+      {% set loading = 'eager' %}
     {% else %}
       {% set heading_level = 2 %}
+      {% set loading = 'lazy' %}
     {% endif %}
 
       {% call hero(
@@ -27,6 +29,7 @@
         heading_level=heading_level,
         image_url=entry.image,
         include_highres_image=False,
+        loading=loading
       ) %}
 
         {{ entry.cta|external_html }}
@@ -117,6 +120,12 @@
 
     {% elif entry.component == 'split' %}
 
+      {% if entries.index(entry) == 0: %}
+        {% set loading = 'eager' %}
+      {% else %}
+        {% set loading = 'lazy' %}
+      {% endif %}
+
       {% call split(
         block_class=entry.block_class,
         body_class=entry.body_class,
@@ -125,6 +134,7 @@
         mobile_class=entry.mobile_class,
         image_url=entry.image,
         include_highres_image=False,
+        loading=loading
       ) %}
 
         {{ entry.body|external_html }}
