@@ -53,12 +53,17 @@ $image-path: '/media/protocol/img';
             outline-color: $color-black;
         }
     }
+
+    & .mzp-c-footer-heading.is-summary button::before {
+        background: $url-image-expand-black top left no-repeat;
+    }
 }
 
 // * -------------------------------------------------------------------------- */
 // Reset social icon styles for primary footer navigation on larger screens
 
 .mzp-c-footer .mzp-c-footer-links-social {
+    margin-bottom: $spacing-lg; // reduce spacing on mobile
     @media #{$mq-md} {
         margin-bottom: $spacing-2xl;
         max-width: unset;
@@ -85,4 +90,18 @@ $image-path: '/media/protocol/img';
             border-bottom-color: transparent;
         }
     }
+}
+
+// * -------------------------------------------------------------------------- */
+// Keep .mzp-c-footer-heading styles on social headings
+// (social heading class altered to prevent Mzp Details styling/functionality)
+
+.mzp-c-footer-heading-social {
+    @include text-body-sm;
+    color: inherit;
+    font-family: inherit;
+    font-weight: 400;
+    margin-bottom: 0;
+    padding-bottom: $spacing-md;
+    padding-top: $spacing-md;
 }
