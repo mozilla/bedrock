@@ -6,11 +6,17 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 $brand-theme: 'firefox';
 
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/zap';
-@import '../protocol/components/fxa-form';
 @import '../protocol/components/custom-menu-list';
+@import '../protocol/components/fxa-form';
 @import './sticky-promo';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
+@import '~@mozilla-protocol/core/protocol/css/components/zap';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+// Hello developer in the future! This file serves multiple different pages
+// which isn't so obvious, so make changes with care! Be sure to check the
+// following pages: /firefox/browsers/, /firefox/products/, /firefox/mobile/.
+// See issue https://github.com/mozilla/bedrock/issues/11405
 
 $send-svg: '<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(3.000000, 1.000000)" stroke="#{$color-link-hover}" stroke-width="2"><path d="M2,16 L2,20 C2,21.1045695 2.8954305,22 4,22 L14,22 C15.1045695,22 16,21.1045695 16,20 L16,2 C16,0.8954305 15.1045695,-2.02906125e-16 14,0 L4,0 C2.8954305,2.02906125e-16 2,0.8954305 2,2 L2,6" stroke-linecap="round"></path><path d="M2,4 L16,4"></path><path d="M2,18 L16,18"></path><path d="M3.55271368e-15,11 L10,11" stroke-linecap="round" stroke-linejoin="round"></path><polyline stroke-linecap="round" stroke-linejoin="round" points="6 7 10 11 6 15"></polyline></g></g></svg>';
 $send-url: svg-url($send-svg);
@@ -89,6 +95,15 @@ main .mzp-l-content {
             color: $color-link-hover;
             background-color: $color-marketing-gray-20;
         }
+    }
+}
+
+// center firefox logo on small viewports
+.mzp-c-split.mzp-l-split-center-on-sm-md .mzp-c-logo {
+    margin: 0 auto $spacing-2xl;
+
+    @media #{$mq-md} {
+        margin: 0 0 $spacing-2xl;
     }
 }
 
