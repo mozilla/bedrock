@@ -91,8 +91,19 @@
     .c-sub-navigation-list {
         margin: 0;
 
-        &.is-closed[aria-hidden='true'] {
+        // minimize sub navigation on mobile by default to reduce CLS
+        // see issue https://github.com/mozilla/bedrock/issues/9823
+        &.is-closed {
             display: none;
+
+            // ensure sub-nav is still accessible with JS disabled
+            .no-js & {
+                display: block;
+            }
+
+            @media #{$mq-md} {
+                display: block;
+            }
         }
 
         &.mzp-js-details-wrapper {
