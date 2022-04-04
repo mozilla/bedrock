@@ -45,8 +45,13 @@ $image-path: '/media/protocol/img';
 }
 
 .c-banner-title {
+    @include text-title-md;
     font-weight: normal;
     line-height: 1.25em;
+
+    html[lang^='en'] & {
+        @include text-title-lg;
+    }
 }
 
 .c-banner-content {
