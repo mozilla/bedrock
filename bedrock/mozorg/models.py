@@ -2,8 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import json
-
 from django.conf import settings
 from django.db import models, transaction
 
@@ -42,7 +40,7 @@ class WebvisionDocsManager(models.Manager):
                     errors += 1
                     continue
 
-                doc_objs.append(WebvisionDoc(name=name, content=json.dumps({"content": content, "toc": toc})))
+                doc_objs.append(WebvisionDoc(name=name, content={"content": content, "toc": toc}))
             self.bulk_create(doc_objs)
 
         return len(doc_objs), errors
@@ -50,7 +48,7 @@ class WebvisionDocsManager(models.Manager):
 
 class WebvisionDoc(models.Model):
     name = models.CharField(max_length=100)
-    content = models.TextField()
+    content = models.JSONField()
 
     objects = WebvisionDocsManager()
 
