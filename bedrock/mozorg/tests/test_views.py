@@ -155,3 +155,14 @@ class TestWebvisionDocView(TestCase):
     def test_missing_doc_is_404(self):
         resp = self.client.get(reverse("mozorg.about.webvision.full"))
         self.assertEqual(resp.status_code, 404)
+
+
+class TestWebvisionRedirect(TestCase):
+    def test_redirect(self):
+        # Since the webvision URL requires a WebvisionDoc to exist, we test this
+        # here instead of in the redirects tests.
+        WebvisionDoc.objects.create(name="summary", content="")
+        resp = self.client.get("/webvision/", follow=True)
+        self.assertEqual(resp.redirect_chain[0], ("/en-US/webvision/", 301))
+        self.assertEqual(resp.redirect_chain[1], ("/about/webvision/", 301))
+        self.assertEqual(resp.redirect_chain[2], ("/en-US/about/webvision/", 301))
