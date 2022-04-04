@@ -46,10 +46,6 @@
 
 {% block content %}
 <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
-  <aside class="mzp-l-sidebar">
-    {{ sidemenu_lists([navigation_bar], body_id) }}
-    {% block side_extra %}{% endblock %}
-  </aside>
   <article class="mzp-l-main" itemtype="http://schema.org/Article">
     {% block article %}
     <header>
@@ -80,6 +76,10 @@
     </footer>
     {% endblock %}
   </article>
+  <aside class="mzp-l-sidebar">
+    {{ sidemenu_lists([navigation_bar], body_id) }}
+    {% block side_extra %}{% endblock %}
+  </aside>
 </div>
 {% endblock %}
 
