@@ -7,6 +7,7 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/sidebar-menu';
+@import '~@mozilla-protocol/core/protocol/css/templates/main-with-sidebar';
 
 .c-webvision-article {
     h2 {
@@ -66,9 +67,33 @@ $image-path: '/media/protocol/img';
 .c-webvision-article-full {
     display: flex;
     flex-direction: column;
-
+    position: relative;
+    align-items: center;
+    justify-content: center;
     @media #{$mq-md} {
         flex-direction: row;
+    }
+
+    @media #{$mq-lg} {
+        .c-webvision-article {
+            margin-left: auto;
+            margin-right: 150px;
+        }
+
+        .mzp-c-sidemenu-main {
+            box-sizing: border-box;
+            display: block;
+            height: 100%;
+            left: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding: 20px;
+            position: fixed;
+            z-index: 1;
+            width: 400px;
+            width: auto;
+            top: 70px;
+        }
     }
 
     .toc {
