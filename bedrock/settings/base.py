@@ -1265,7 +1265,7 @@ CSP_CONNECT_SRC = CSP_DEFAULT_SRC + [
     FXA_ENDPOINT,
     "getpocket.com",  # Pocket Snowplow
     "stage.cjms.nonprod.cloudops.mozgcp.net",
-    "cjms.mozilla.org",  # Prod URL TBD
+    "cjms.services.mozilla.com",
 ]
 if DEV:
     CSP_CONNECT_SRC.append("com-getpocket-prod1.mini.snplow.net")
@@ -1621,4 +1621,4 @@ VPN_CONNECT_DEVICES = 5
 VPN_CLIENT_ID = "e6eb0d1e856335fc"
 
 # VNP affiliate micro service (CJMS) endpoint (issue 11212)
-VPN_AFFILIATE_ENDPOINT = "https://stage.cjms.nonprod.cloudops.mozgcp.net/aic" if DEV else "https://cjms.mozilla.org/aic"  # Prod URL TBD
+VPN_AFFILIATE_ENDPOINT = "https://stage.cjms.nonprod.cloudops.mozgcp.net/aic" if DEV else "https://cjms.services.mozilla.com/aic"
