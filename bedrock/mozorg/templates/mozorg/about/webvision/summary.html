@@ -14,26 +14,26 @@
   {{ css_bundle("webvision") }}
 {% endblock %}
 
-{% block site_js %}
+{% block js %}
   {{ js_bundle('webvision') }}
 {% endblock %}
 
 
 {% block content %}
-<main role="main" class="mzp-l-content">
+<main role="main" class="c-webvision-article-summary mzp-l-content">
   <article class="mzp-c-article c-webvision-article" role="article">
     <h1>Mozilla’s vision for the evolution of the Web</h1>
     <h2>Executive Summary</h2>
     <p><em>Note: this is a brief summary of the <a href="{{ url('mozorg.about.webvision.full') }}">full document</a></em></p>
     {{ doc.content|safe }}
   </article>
-  <section class="mzp-c-call-out">
-    <div class="mzp-l-content">
-      <h2 class="mzp-c-call-out-title">Ready for more?</h2>
-      <p class="mzp-c-call-out-desc">This was just the summary. You can read our <a href="{{ url('mozorg.about.webvision.full') }}">entire vision for the evolution of the Web here</a>.</p>
-    </div>
-  </section>
 </main>
+<section class="mzp-c-call-out">
+  <div class="mzp-l-content">
+    <h2 class="mzp-c-call-out-title">Ready for more?</h2>
+    <p class="mzp-c-call-out-desc">This was just the summary. You can read our <a href="{{ url('mozorg.about.webvision.full') }}">entire vision for the evolution of the Web here</a>.</p>
+  </div>
+</section>
 {% endblock %}
 
 

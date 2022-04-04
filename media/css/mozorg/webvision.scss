@@ -7,7 +7,6 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/sidebar-menu';
-@import '~@mozilla-protocol/core/protocol/css/templates/main-with-sidebar';
 
 .c-webvision-article {
     h2 {
@@ -55,6 +54,13 @@ $image-path: '/media/protocol/img';
             list-style-type: disc;
         }
     }
+}
+
+.c-webvision-article-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .c-webvision-article-full {
