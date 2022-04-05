@@ -33,16 +33,19 @@ $image-path: '/media/protocol/img';
 
             &::after {
                 content: '#';
+                color: $color-marketing-gray-30;
                 position: absolute;
                 left: 5px;
-                opacity: 0;
+
+                // opacity: 0;
                 transition: all 0.2s;
                 visibility: visible;
             }
 
             &:hover {
                 &::after {
-                    opacity: 1;
+                    // opacity: 1;
+                    color: $color-blue-50;
                     visibility: visible;
                 }
             }
@@ -65,38 +68,41 @@ $image-path: '/media/protocol/img';
 }
 
 .c-webvision-article-full {
-    // display: flex;
+    display: flex;
     flex-direction: column;
     position: relative;
-    align-items: center;
     justify-content: center;
-    @media #{$mq-md} {
-        flex-direction: row;
+
+    // Sticky sidemenu
+    .mzp-c-sidemenu-main {
+        .mzp-c-sidemenu-summary {
+            position: sticky;
+        }
     }
 
-    @media #{$mq-lg} {
+    @media #{$mq-md} {
+        flex-direction: row;
+
         .c-webvision-article {
-            margin-left: auto;
-            margin-right: 150px;
+            margin-left: 200px;
         }
 
-        // Sticky sidemenu
         .mzp-c-sidemenu-main {
             height: 100%;
             left: 0;
             overflow-y: scroll;
-            padding: 20px;
             position: fixed;
             z-index: 1;
             width: 400px;
             width: auto;
-            top: 50px;
+            top: 100px;
         }
     }
 
     .toc {
         overflow: scroll;
-        height: 900px;
+        height: 1200px;
+        width: 250px;
 
         ul {
             li {
