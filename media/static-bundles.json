@@ -374,43 +374,6 @@
     },
     {
       "files": [
-        "css/firefox/whatsnew/whatsnew-93.scss"
-      ],
-      "name": "firefox_whatsnew_93"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-95-de.scss"
-      ],
-      "name": "firefox_whatsnew_95_de"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-95-en.scss"
-      ],
-      "name": "firefox_whatsnew_95_en"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-96-eu.scss"
-      ],
-      "name": "firefox_whatsnew_96_eu"
-    },
-    {
-      "files": [
-        "css/protocol/components/send-to-device.scss",
-        "css/firefox/whatsnew/whatsnew-96-en-mobile.scss"
-      ],
-      "name": "firefox_whatsnew_96_en_mobile"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-96-en-rally.scss"
-      ],
-      "name": "firefox_whatsnew_96_en_rally"
-    },
-    {
-      "files": [
         "css/firefox/whatsnew/whatsnew-97-en.scss"
       ],
       "name": "firefox_whatsnew_97_en"
@@ -438,12 +401,6 @@
         "css/firefox/whatsnew/whatsnew-98-vpn-en.scss"
       ],
       "name": "firefox_whatsnew_98_vpn_en"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-98-turningred-en.scss"
-      ],
-      "name": "firefox_whatsnew_98_turningred_en"
     },
     {
       "files": [
@@ -1198,31 +1155,10 @@
     {
       "files": [
         "js/firefox/whatsnew/up-to-date.js",
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js"
-      ],
-      "name": "firefox_whatsnew_96_eu"
-    },
-    {
-      "files": [
-        "js/libs/mozilla-traffic-cop.js",
-        "js/firefox/whatsnew/whatsnew-96-en-experiment.js"
-      ],
-      "name": "firefox_whatsnew_96_en_experiment"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/up-to-date.js",
         "protocol/js/protocol-modal.js",
         "js/firefox/whatsnew/whatsnew-97-eu.js"
       ],
       "name": "firefox_whatsnew_97_eu"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-98-turningred-en.js"
-      ],
-      "name": "firefox_whatsnew_98_turningred_en"
     },
     {
       "files": [

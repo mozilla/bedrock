@@ -26,7 +26,6 @@ from product_details.version_compare import Version
 
 from bedrock.base.geo import get_country_from_request
 from bedrock.base.urlresolvers import reverse
-from bedrock.base.waffle import switch
 from bedrock.base.waffle_config import DictOf, config
 from bedrock.contentful.api import ContentfulPage
 from bedrock.firefox.firefox_details import (
@@ -36,7 +35,6 @@ from bedrock.firefox.firefox_details import (
 )
 from bedrock.firefox.forms import SendToDeviceWidgetForm
 from bedrock.newsletter.forms import NewsletterFooterForm
-from bedrock.products.forms import VPNWaitlistForm
 from bedrock.releasenotes import version_re
 from lib import l10n_utils
 from lib.l10n_utils import L10nTemplateView, get_translations_native_names
@@ -450,19 +448,6 @@ class WhatsnewView(L10nTemplateView):
         "firefox/nightly/whatsnew.html": ["firefox/nightly/whatsnew", "firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/index-account.html": ["firefox/whatsnew/whatsnew-account", "firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/index.html": ["firefox/whatsnew/whatsnew-s2d", "firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx93-en.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx93-de.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx93-fr.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx93-es.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx93-it.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx93-nl.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx95-de.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx95-en.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx96-de.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx96-fr.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx96-en-s2d.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx96-en-qr.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx96-en-rally.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx97-en.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx97-de.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx97-fr.html": ["firefox/whatsnew/whatsnew"],
@@ -478,13 +463,10 @@ class WhatsnewView(L10nTemplateView):
     }
 
     # specific templates that should not be rendered in China
+    # do not promote Mozilla VPN in China in any language
     china_excluded_templates = [
-        "firefox/whatsnew/whatsnew-fx93-en.html",
-        "firefox/whatsnew/whatsnew-fx93-de.html",
-        "firefox/whatsnew/whatsnew-fx93-fr.html",
-        "firefox/whatsnew/whatsnew-fx93-it.html",
-        "firefox/whatsnew/whatsnew-fx93-es.html",
-        "firefox/whatsnew/whatsnew-fx93-nl.html",
+        "firefox/whatsnew/whatsnew-fx98-vpn-en.html",
+        "firefox/whatsnew/whatsnew-fx98-vpn-eu.html",
     ]
 
     # place expected ?v= values in this list
@@ -511,10 +493,6 @@ class WhatsnewView(L10nTemplateView):
         # add analytics parameters to context for use in templates
         if channel not in pre_release_channels:
             channel = ""
-
-        # add VPN waitlist form for WNP 87/88 (Issue 9956, 10049)
-        if version.startswith("87.") or version.startswith("88.") and locale in ["de", "fr"]:
-            ctx["newsletter_form"] = VPNWaitlistForm(locale)
 
         analytics_version = str(num_version) + channel
         entrypoint = "mozilla.org-whatsnew" + analytics_version
@@ -572,9 +550,7 @@ class WhatsnewView(L10nTemplateView):
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("98."):
             if locale.startswith("en"):
-                if switch("whatsnew-firefox-98-turning-red") and country == "US":
-                    template = "firefox/whatsnew/whatsnew-fx98-turningred-en.html"
-                elif country in ["SE", "FI"]:
+                if country in ["SE", "FI"]:
                     template = "firefox/whatsnew/whatsnew-fx98-vpn-eu.html"
                 else:
                     template = "firefox/whatsnew/whatsnew-fx98-vpn-en.html"
@@ -592,33 +568,6 @@ class WhatsnewView(L10nTemplateView):
             template = "firefox/whatsnew/whatsnew-fx97-fr.html"
         elif version.startswith("97.") and locale.startswith("en"):
             template = "firefox/whatsnew/whatsnew-fx97-en.html"
-        elif version.startswith("96.") and locale == "de":
-            template = "firefox/whatsnew/whatsnew-fx96-de.html"
-        elif version.startswith("96.") and locale == "fr":
-            template = "firefox/whatsnew/whatsnew-fx96-fr.html"
-        elif version.startswith("96.") and locale.startswith("en"):
-            if variant == "2":
-                template = "firefox/whatsnew/whatsnew-fx96-en-qr.html"
-            elif variant == "3":
-                template = "firefox/whatsnew/whatsnew-fx96-en-rally.html"
-            else:
-                template = "firefox/whatsnew/whatsnew-fx96-en-s2d.html"
-        elif version.startswith("95.") and locale == "de":
-            template = "firefox/whatsnew/whatsnew-fx95-de.html"
-        elif version.startswith("95.") and locale.startswith("en"):
-            template = "firefox/whatsnew/whatsnew-fx95-en.html"
-        elif version.startswith("93.") and locale.startswith("en-"):
-            template = "firefox/whatsnew/whatsnew-fx93-en.html"
-        elif version.startswith("93.") and locale == "de":
-            template = "firefox/whatsnew/whatsnew-fx93-de.html"
-        elif version.startswith("93.") and locale == "fr":
-            template = "firefox/whatsnew/whatsnew-fx93-fr.html"
-        elif version.startswith("93.") and locale.startswith("es-"):
-            template = "firefox/whatsnew/whatsnew-fx93-es.html"
-        elif version.startswith("93.") and locale == "it":
-            template = "firefox/whatsnew/whatsnew-fx93-it.html"
-        elif version.startswith("93.") and locale == "nl":
-            template = "firefox/whatsnew/whatsnew-fx93-nl.html"
         else:
             if show_default_account_whatsnew(version) and ftl_file_is_active("firefox/whatsnew/whatsnew-account"):
                 template = "firefox/whatsnew/index-account.html"

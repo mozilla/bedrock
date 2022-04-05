@@ -39,7 +39,7 @@ $image-path: '/media/protocol/img';
 @media #{$mq-md} {
     .c-main-content {
         .mzp-c-split-media {
-            @include at2x('/media/img/firefox/whatsnew/whatsnew96-en/watercolor.png', contain);
+            @include at2x('/media/img/firefox/whatsnew/whatsnew98/watercolor.png', contain);
             background-position: center center;
             background-repeat: no-repeat;
             padding: $layout-md;
