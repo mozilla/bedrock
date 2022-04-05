@@ -36,15 +36,12 @@ $image-path: '/media/protocol/img';
                 color: $color-marketing-gray-30;
                 position: absolute;
                 left: 5px;
-
-                // opacity: 0;
                 transition: all 0.2s;
                 visibility: visible;
             }
 
             &:hover {
                 &::after {
-                    // opacity: 1;
                     color: $color-blue-50;
                     visibility: visible;
                 }
@@ -73,41 +70,46 @@ $image-path: '/media/protocol/img';
     position: relative;
     justify-content: center;
 
-    // Sticky sidemenu
-    .mzp-c-sidemenu-main {
-        .mzp-c-sidemenu-summary {
-            position: sticky;
-        }
-    }
-
     @media #{$mq-md} {
         flex-direction: row;
 
         .c-webvision-article {
-            margin-left: 200px;
+            margin-left: 250px;
         }
+    }
 
-        .mzp-c-sidemenu-main {
+    .mzp-c-sidemenu-main {
+        padding-top: 120px;
+
+        @media #{$mq-md} {
             height: 100%;
             left: 0;
-            overflow-y: scroll;
+            overflow-y: auto;
             position: fixed;
             z-index: 1;
-            width: 400px;
-            width: auto;
-            top: 100px;
+            width: 280px;
+            top: 0;
+            padding-top: 110px;
+        }
+
+        @media #{$mq-xl} {
+            width: 350px;
         }
     }
 
     .toc {
-        overflow: scroll;
-        height: 1200px;
+        overflow: auto;
+        height: 1240px;
         width: 250px;
 
         ul {
             li {
                 margin: $spacing-sm $spacing-lg;
             }
+        }
+
+        @media #{$mq-md} {
+            width: 100%;
         }
     }
 }
