@@ -65,7 +65,7 @@ $image-path: '/media/protocol/img';
 }
 
 .c-webvision-article-full {
-    display: flex;
+    // display: flex;
     flex-direction: column;
     position: relative;
     align-items: center;
@@ -80,23 +80,24 @@ $image-path: '/media/protocol/img';
             margin-right: 150px;
         }
 
+        // Sticky sidemenu
         .mzp-c-sidemenu-main {
-            box-sizing: border-box;
-            display: block;
             height: 100%;
             left: 0;
-            overflow-x: hidden;
-            overflow-y: auto;
+            overflow-y: scroll;
             padding: 20px;
             position: fixed;
             z-index: 1;
             width: 400px;
             width: auto;
-            top: 70px;
+            top: 50px;
         }
     }
 
     .toc {
+        overflow: scroll;
+        height: 900px;
+
         ul {
             li {
                 margin: $spacing-sm $spacing-lg;
