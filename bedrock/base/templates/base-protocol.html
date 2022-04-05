@@ -100,7 +100,9 @@
       {% block content %}{% endblock %}
 
       {% block site_footer %}
-        {% include 'includes/protocol/footer/footer.html' %}
+        {% with theme_class='mzp-t-light' %}
+          {% include 'includes/protocol/footer/footer.html' %}
+        {% endwith %}
       {% endblock %}
 
       {% block sticky_promo %}{% endblock %}

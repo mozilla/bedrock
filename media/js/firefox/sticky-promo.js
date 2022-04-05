@@ -112,7 +112,7 @@
             }, 100);
 
             // Add modifier class to the footer to make sure the language selection drop-down is not obscured by the sticky promo
-            var footer = document.querySelector('.c-footer');
+            var footer = document.querySelector('.mzp-c-footer');
             if (footer) {
                 document.addEventListener(
                     'scroll',
