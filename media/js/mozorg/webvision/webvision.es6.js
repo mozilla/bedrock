@@ -6,23 +6,24 @@
 
 const stickySideMenu = document.querySelector('.mzp-c-sidemenu-main');
 const globalFooter = document.querySelector('.c-footer');
-
-// const mainArticleWrapper = document.querySelector('.c-webvision-article-full');
-
-const sideBarWrapper = document.querySelector('.mzp-l-sidebar');
+const article = document.querySelector('.c-webvision-article');
 
 function checkOffSet() {
     function getRectTop(el) {
         const rect = el.getBoundingClientRect();
         return rect.top;
     }
+
     if (
         getRectTop(stickySideMenu) +
             document.body.scrollTop +
             stickySideMenu.offsetHeight >=
-        getRectTop(globalFooter) + document.body.scrollTop - 100
+        getRectTop(globalFooter) + document.body.scrollTop
     ) {
         stickySideMenu.style.position = 'absolute';
+        article.style.height = '130vh';
+        article.style.overflow = 'hidden';
+        stickySideMenu.classList.add('mzp-c-sidemenu-absolute');
     }
 
     if (
@@ -30,15 +31,10 @@ function checkOffSet() {
         getRectTop(globalFooter) + document.body.scrollTop
     ) {
         stickySideMenu.style.position = 'fixed';
+        stickySideMenu.classList.remove('mzp-c-sidemenu-absolute');
     }
 }
 
 document.addEventListener('scroll', function () {
     checkOffSet();
-});
-
-const output = document.querySelector('#output');
-
-sideBarWrapper.addEventListener('scroll', function () {
-    output.textContent = `scrollTop: ${sideBarWrapper.scrollTop}`;
 });
