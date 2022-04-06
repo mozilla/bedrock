@@ -153,5 +153,6 @@ vpn-subnav-vpn-vs-proxy = VPN vs Proxy
 vpn-shared-affiliate-notification-message = We use cookies to understand which affiliate partner led you to { -brand-name-mozilla-vpn }. We do not share personally identifying information with our partners. Read our <a { $attrs }>Privacy Policy</a>.
 
 vpn-shared-affiliate-notification-reject = Reject
+vpn-shared-affiliate-notification-ok = OK
 
 ##

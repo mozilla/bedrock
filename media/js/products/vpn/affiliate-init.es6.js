@@ -11,6 +11,10 @@ const notification = document.querySelector('.vpn-affiliate-notification');
 function bindNotificationEvents() {
     if (notification) {
         notification
+            .querySelector('.vpn-affiliate-notification-ok')
+            .addEventListener('click', handleOkClick, false);
+
+        notification
             .querySelector('.vpn-affiliate-notification-reject')
             .addEventListener('click', handleOptOutClick, false);
 
@@ -22,6 +26,10 @@ function bindNotificationEvents() {
 
 function unbindNotificationEvents() {
     if (notification) {
+        notification
+            .querySelector('.vpn-affiliate-notification-ok')
+            .removeEventListener('click', handleOkClick, false);
+
         notification
             .querySelector('.vpn-affiliate-notification-reject')
             .removeEventListener('click', handleOptOutClick, false);
@@ -42,9 +50,10 @@ function handleOptOutClick(e) {
             unbindNotificationEvents();
 
             window.dataLayer.push({
-                event: 'in-page-interaction',
-                eAction: 'link click',
-                eLabel: 'Affiliate notification opt-out'
+                eLabel: 'Banner Click (Reject)',
+                'data-banner-name': 'VPN affiliate notification',
+                'data-banner-click': '1',
+                event: 'in-page-interaction'
             });
         })
         .catch((e) => {
@@ -52,11 +61,32 @@ function handleOptOutClick(e) {
         });
 }
 
+function handleOkClick(e) {
+    e.preventDefault();
+    AffiliateAttribution.setPreferenceCookie('accept');
+    notification.classList.remove('show');
+    unbindNotificationEvents();
+
+    window.dataLayer.push({
+        eLabel: 'Banner Click (OK)',
+        'data-banner-name': 'VPN affiliate notification',
+        'data-banner-click': '1',
+        event: 'in-page-interaction'
+    });
+}
+
 function handleCloseNotification(e) {
     e.preventDefault();
     AffiliateAttribution.setPreferenceCookie('accept');
     notification.classList.remove('show');
     unbindNotificationEvents();
+
+    window.dataLayer.push({
+        eLabel: 'Banner Dismissal',
+        'data-banner-name': 'VPN affiliate notification',
+        'data-banner-dismissal': '1',
+        event: 'in-page-interaction'
+    });
 }
 
 function showOptOutNotification() {
@@ -67,9 +97,10 @@ function showOptOutNotification() {
         bindNotificationEvents();
 
         window.dataLayer.push({
-            event: 'non-interaction',
-            eAction: 'affiliate-attribution',
-            eLabel: 'Affiliate notification shown'
+            eLabel: 'Banner Impression',
+            'data-banner-name': 'VPN affiliate notification',
+            'data-banner-impression': '1',
+            event: 'non-interaction'
         });
     }
 }
