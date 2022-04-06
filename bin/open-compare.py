@@ -30,7 +30,7 @@ def get_current_rev(env):
     url = None
     try:
         url = urllib.request.urlopen(ENV_URLS[env] + REV_PATH)
-        return url.read().strip()[:10]
+        return url.read().strip()[:10] or "prod"
     finally:
         if url:
             url.close()
