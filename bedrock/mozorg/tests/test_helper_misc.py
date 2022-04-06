@@ -909,6 +909,49 @@ class TestPocketAdjustUrl(TestCase):
 
 
 @override_settings(FXA_ENDPOINT=TEST_FXA_ENDPOINT)
+class TestRelayFxAButton(TestCase):
+    rf = RequestFactory()
+
+    def _render(
+        self,
+        entrypoint,
+        button_text,
+        class_name=None,
+        is_button_class=True,
+        include_metrics=True,
+        optional_parameters=None,
+        optional_attributes=None,
+    ):
+        req = self.rf.get("/")
+        req.locale = "en-US"
+        return render(
+            "{{{{ relay_fxa_button('{0}', '{1}', '{2}', {3}, {4}, {5}, {6}) }}}}".format(
+                entrypoint, button_text, class_name, is_button_class, include_metrics, optional_parameters, optional_attributes
+            ),
+            {"request": req},
+        )
+
+    def test_relay_fxa_button(self):
+        """Should return expected markup"""
+        markup = self._render(
+            entrypoint="mozilla.org-whatsnew",
+            button_text="Sign In to Relay",
+            class_name="relay-main-cta-button",
+            is_button_class=True,
+            include_metrics=True,
+            optional_parameters={"utm_campaign": "whatsnew96"},
+            optional_attributes={"data-cta-text": "Sign In to Relay", "data-cta-type": "fxa-relay", "data-cta-position": "primary"},
+        )
+        expected = (
+            '<a href="https://relay.firefox.com/accounts/fxa/login/?process=login&entrypoint=mozilla.org-whatsnew&form_type=button'
+            '&utm_source=mozilla.org-whatsnew&utm_medium=referral&utm_campaign=whatsnew96" data-action="https://accounts.firefox.com/" '
+            'class="js-fxa-cta-link js-fxa-product-button mzp-c-button mzp-t-product relay-main-cta-button" '
+            'data-cta-text="Sign In to Relay" data-cta-type="fxa-relay" data-cta-position="primary">Sign In to Relay</a>'
+        )
+        self.assertEqual(markup, expected)
+
+
+@override_settings(FXA_ENDPOINT=TEST_FXA_ENDPOINT)
 class TestPocketFxAButton(TestCase):
     rf = RequestFactory()
 

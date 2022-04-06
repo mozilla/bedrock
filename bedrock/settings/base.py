@@ -1002,11 +1002,6 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
             "all": "download-firefox-mobile-whatsnew",
         }
     },
-    "fx-whatsnew-96": {
-        "email": {
-            "all": "download-firefox-mobile-whatsnew-96",
-        }
-    },
     "fx-focus": {
         "email": {
             "all": "download-focus-mobile-whatsnew",
