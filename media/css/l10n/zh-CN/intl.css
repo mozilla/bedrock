@@ -30,7 +30,7 @@
      * DroidSansFallbackFull (linux)
      */
     src:
-        local(FZLTZHK--GBK1-0)
+        local(FZLTZHK--GBK1-0),
         local(HiraginoSansGB-W6),
         local('Microsoft YaHei Bold'),
         local(DroidSansFallbackFull);
