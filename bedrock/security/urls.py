@@ -41,5 +41,5 @@ urlpatterns = (
     re_path(r"^known-vulnerabilities/(?P<filename>.*)\.html$", KVRedirectsView.as_view()),
     re_path(r"^(?:announce|advisories)(?:/.*)?/mfsa(?P<pk>\d{4}-\d{2,3})\.html$", OldAdvisoriesView.as_view()),
     path("announce/", OldAdvisoriesListView.as_view()),
-    page("third-party-software-injection", "security/third-party-injection-policy.html"),
+    page("third-party-software-injection/", "security/third-party-injection-policy.html"),
 )
