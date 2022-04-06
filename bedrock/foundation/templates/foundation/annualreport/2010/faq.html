@@ -6,57 +6,57 @@
 
 {% extends "foundation/annualreport/2010/base.html" %}
 
-{% block page_title %}{{ _('The State of Mozilla Annual Report - FAQ') }}{% endblock %}
+{% block page_title %}The State of Mozilla Annual Report - FAQ{% endblock %}
 
 {% set body_id = 'faq' %}
 
 {% block article_header %}
-  <h2>{{ _('The State of Mozilla Annual Report, 2010') }}</h2>
-  <p>{{ _('FAQ') }}</p>
+  <h2>The State of Mozilla Annual Report, 2010</h2>
+  <p>FAQ</p>
 {% endblock %}
 
 {% block article_content %}
   <div class="img-right">
     <img src="{{ static('img/foundation/annualreport/2010/photo-not-every-venture.jpg') }}" width="297" height="396" alt="Mozilla Firefox billboard, San Francisco" />
-    <p>{{ _('Mozilla Firefox billboard, San Francisco') }}</p>
+    <p>Mozilla Firefox billboard, San Francisco</p>
   </div>
 
-  <h3 id="q1">{{ _('What are the key projects for Mozilla in the next year? How do you plan to influence the market going forward?') }}</h3>
+  <h3 id="q1">What are the key projects for Mozilla in the next year? How do you plan to influence the market going forward?</h3>
   <p>{% trans capabilities=url('foundation.annualreport.2010.opportunities') + '#capabilities' %}Firefox continues to be a fundamental lever in driving the Web forward and advancing the Mozilla mission. At the same time, the Web is evolving and moving into new areas and so is Mozilla. In addition to delivering Firefox on mobile phones and tablets, we will focus on new projects in the important areas of <a href="{{ capabilities }}">Apps, Identity, Education, and more.{% endtrans %}</a>
 
-  <h3 id="q2">{{ _('Do you see a continued need for an independent player like Mozilla, now that competition in the browser market has accelerated?') }}</h3>
+  <h3 id="q2">Do you see a continued need for an independent player like Mozilla, now that competition in the browser market has accelerated?</h3>
   <p>{% trans %}Absolutely, Mozilla’s public benefit mission and nonprofit nature enables us to advocate for the user and remain  committed to keeping the Web open and participatory, rather than focusing  on market share or profits. The desktop browser market is  innovative and competitive, but no one other than Mozilla is organized solely for the good of the Web as a whole, and we believe that as people become increasingly aware and informed online citizens that more and more people will look for a Web browser, like Firefox, that answers only to them.{% endtrans %}</p>
 
-  <h3 id="q3">{{ _('What was Mozilla’s total revenue for 2010?') }}</h3>
+  <h3 id="q3">What was Mozilla’s total revenue for 2010?</h3>
   <p>{% trans %}Mozilla’s consolidated reported revenue (Mozilla Foundation and all subsidiaries)  for 2010 was $123 million, up approximately 18 percent from 2009. {% endtrans %}</p>
 
-  <h3 id="q4">{{ _('How does Mozilla generate revenue?') }}</h3>
+  <h3 id="q4">How does Mozilla generate revenue?</h3>
   <p>{% trans %}The  majority of Mozilla’s revenue is generated from search functionality  included in our Firefox product through all major search partners  including Google, Bing, Yahoo, Yandex, Amazon, Ebay and others.  Mozilla’s reported revenues also include very important individual and  corporate donations and grants as well as other forms of income from our  investable assets.{% endtrans %}</p>
 
-  <h3 id="q5">{{ _('What is the status of the organization’s search partnerships?') }}</h3>
+  <h3 id="q5">What is the status of the organization’s search partnerships?</h3>
   <p>{% trans %}We currently have partnerships with a number of search providers that differ by market. Our largest contract, with Google, comes up for renewal in November.  We have every confidence that search partnerships will remain a solid generator of  revenue for Mozilla for the foreseeable future.{% endtrans %}</p>
 
-  <h3 id="q6">{{ _('Do Mozilla’s partnerships affect its independence?') }}</h3>
+  <h3 id="q6">Do Mozilla’s partnerships affect its independence?</h3>
   <p>{% trans %}Our mission and development process are completely unrelated to revenue or revenue generating relationships. Our open development process is governed by Mozilla’s mission  and our commitment to improving the Web. {% endtrans %}</p>
 
-  <h3 id="q7">{{ _('Are you exploring partnership opportunities to diversify your revenue stream?') }}</h3>
+  <h3 id="q7">Are you exploring partnership opportunities to diversify your revenue stream?</h3>
   <p>{% trans %}We currently have several key business partnerships  and are actively exploring search partnership opportunities and other potential revenue opportunities.  We’ll continue to build great products that help people enjoy the richness of  the Internet, and we’re confident that this allows us to identify appropriate sources of revenue. {% endtrans %}</p>
 
-  <p class="return-to-top"><a href="#">{{ _('Return to top') }}</a></p>
+  <p class="return-to-top"><a href="#">Return to top</a></p>
 
   <div class="content-block pdf">
       <div>
-        {{ _('2010 Audited Financial Statement') }}<br/>
-        <a href="https://static.mozilla.com/moco/en-US/pdf/Mozilla%20Foundation%20and%20Subsidiaries%202010%20Audited%20Financial%20Statement.pdf" class="button">{{ _('Download PDF') }}</a>
+        2010 Audited Financial Statement<br/>
+        <a href="https://static.mozilla.com/moco/en-US/pdf/Mozilla%20Foundation%20and%20Subsidiaries%202010%20Audited%20Financial%20Statement.pdf" class="button">Download PDF</a>
       </div>
 
       <div>
-        {{ _('2010 Form 990') }}<br/>
-        <a href="https://static.mozilla.com/moco/en-US/pdf/Mozilla%20Foundation%20-%202010%20Public%20Disclosure%20990.pdf" class="button">{{ _('Download PDF') }}</a>
+        2010 Form 990<br/>
+        <a href="https://static.mozilla.com/moco/en-US/pdf/Mozilla%20Foundation%20-%202010%20Public%20Disclosure%20990.pdf" class="button">Download PDF</a>
       </div>
   </div>
 
   <ul class="mzp-u-list-styled">
-      <li class="prev"><a href="{{ url('foundation.annualreport.2010.ahead') }}">{{ _('Ahead') }}</a></li>
+      <li class="prev"><a href="{{ url('foundation.annualreport.2010.ahead') }}">Ahead</a></li>
   </ul>
  {% endblock %}

@@ -13,7 +13,7 @@
 {% set channel_name = '' if release.channel == 'Release' else release.channel %}
 
 {% block page_title_prefix %}{% endblock %}
-{% block page_title %}{{ _('{product} {channel} {version} System Requirements')|f(product=release.product, channel=channel_name, version=version) }}{% endblock %}
+{% block page_title %}{{ release.product }} {{ channel_name }} {{ version }} System Requirements{% endblock %}
 
 {% block body_id %}notes{% endblock %}
 {% block body_class %}mzp-t-firefox mzp-t-{{ channel_name|lower }}{% endblock %}
@@ -26,7 +26,7 @@
 {% block content %}
   <main class="mzp-l-content mzp-t-content-md">
     <h1 class="c-page-title">Firefox System Requirements</h1>
-    <h2 class="c-version-title">{{ _('{product} {channel} {version}')|f(product=release.product, channel=channel_name, version=version) }}</h2>
+    <h2 class="c-version-title">{{ release.product }} {{ channel_name }} {{ version }}</h2>
 
     <div class="mzp-c-article">
       {{ release.system_requirements|safe }}
@@ -34,14 +34,14 @@
   </main>
 
   {% call call_out_compact(
-    title=_('Get the most recent version'),
+    title='Get the most recent version',
     class='mzp-t-firefox mzp-t-product-firefox'
   ) %}
     {{ download_firefox(alt_copy=ftl('download-button-download-firefox'), download_location='primary cta') }}
   {% endcall %}
 
   <section class="all-download">
-    <a href="{{ url('firefox.all') }}">{{ _('All Firefox downloads') }}</a>
+    <a href="{{ url('firefox.all') }}">All Firefox downloads</a>
   </section>
 
   {% block sidebar %}{% endblock %}

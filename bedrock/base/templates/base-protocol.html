@@ -27,7 +27,7 @@
     <title>{% filter striptags|e %}{% block page_title_full %}{% block page_title_prefix %}{% endblock %}{% block page_title %}{% endblock %}{% endblock page_title_full %}{% block page_title_suffix %} — Mozilla{% endblock %}{% endfilter %}</title>
     <meta name="description" content="{% filter striptags|e %}{% block page_desc %}{% endblock %}{% endfilter %}">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="{{ _('Mozilla') }}">
+    <meta property="og:site_name" content="Mozilla">
     <meta property="og:locale" content="{{ LANG|replace("-", "_") }}">
     <meta property="og:url" content="{% filter trim|absolute_url %}{% block page_og_url %}{{ settings.CANONICAL_URL + '/' + LANG + canonical_path }}{% endblock %}{% endfilter %}">
     <meta property="og:image" content="{% filter trim|absolute_url %}{% block page_image %}{{ static('img/mozorg/mozilla-256.jpg') }}{% endblock %}{% endfilter %}">
@@ -37,11 +37,11 @@
     <meta name="twitter:card" content="{% block twitter_card %}summary{% endblock %}">
     <meta name="twitter:site" content="@{% block twitter_id %}mozilla{% endblock %}">
     <meta name="twitter:domain" content="mozilla.org">
-    <meta name="twitter:app:name:googleplay" content="{% block android_app_name %}{{ _('Firefox') }}{% endblock %}">
+    <meta name="twitter:app:name:googleplay" content="{% block android_app_name %}Firefox{% endblock %}">
     <meta name="twitter:app:id:googleplay" content="{% block android_app_id %}org.mozilla.firefox{% endblock %}">
-    <meta name="twitter:app:name:iphone" content="{% block iphone_app_name %}{{ _('Firefox') }}{% endblock %}">
+    <meta name="twitter:app:name:iphone" content="{% block iphone_app_name %}Firefox{% endblock %}">
     <meta name="twitter:app:id:iphone" content="{% block iphone_app_id %}989804926{% endblock %}">
-    <meta name="twitter:app:name:ipad" content="{% block ipad_app_name %}{{ _('Firefox') }}{% endblock %}">
+    <meta name="twitter:app:name:ipad" content="{% block ipad_app_name %}Firefox{% endblock %}">
     <meta name="twitter:app:id:ipad" content="{% block ipad_app_id %}989804926{% endblock %}">
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="{% block page_ios_icon %}{{ static('img/favicons/mozilla/apple-touch-icon.png') }}{% endblock %}">
     <link rel="icon" type="image/png" sizes="196x196" href="{% block page_favicon_large %}{{ static('img/favicons/mozilla/favicon-196x196.png') }}{% endblock %}">

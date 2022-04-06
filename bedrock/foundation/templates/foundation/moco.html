@@ -6,10 +6,10 @@
 
 {% extends "foundation/base.html" %}
 
-{% block page_title %}{{ _('About the Mozilla Corporation') }}{% endblock %}
+{% block page_title %}About the Mozilla Corporation{% endblock %}
 
 {% block article_title %}
-  {{ _('About the Mozilla Corporation') }}
+  About the Mozilla Corporation
 {% endblock %}
 
 {% block article_content %}
@@ -34,26 +34,25 @@
     {% endtrans %}
   </p>
 
-  <h2>{{ _('Organization') }}</h2>
+  <h2>Organization</h2>
   <p>
     {% trans %}
       The Mozilla Corporation is governed by its Board of Directors.
     {% endtrans %}
   </p>
 
-  <h3>{{ _('Board of Directors') }}</h3>
+  <h3>Board of Directors</h3>
   <ul class="mzp-u-list-styled">
-    {# L10n: This "Chair" is the chairperson of the board of directors, not something to sit on #}
-    <li><a href="{{ url('mozorg.about.leadership') }}#mitchell-baker">Mitchell Baker</a>, {{ _('Chair') }}</li>
+    <li><a href="{{ url('mozorg.about.leadership') }}#mitchell-baker">Mitchell Baker</a>, Chair</li>
     <li><a href="{{ url('mozorg.about.leadership') }}#laura-chambers">Laura Chambers</a></li>
     <li><a href="{{ url('mozorg.about.leadership') }}#karim-lakhani">Karim Lakhani</a></li>
     <li><a href="{{ url('mozorg.about.leadership') }}#bob-lisbonne">Bob Lisbonne</a></li>
     <li><a href="{{ url('mozorg.about.leadership') }}#hugh-molotsi">Hugh Molotsi</a></li>
   </ul>
 
-  <h2>{{ _('Documents') }}</h2>
+  <h2>Documents</h2>
   <ul class="mzp-u-list-styled">
-    <li><a href="{{ url('foundation.documents.articles-of-incorporation') }}">{{ _('Articles of  Incorporation') }}</a></li>
-    <li><a href="{{ url('foundation.documents.bylaws') }}">{{ _('Bylaws of the Mozilla Corporation') }}</a></li>
+    <li><a href="{{ url('foundation.documents.articles-of-incorporation') }}">Articles of  Incorporation</a></li>
+    <li><a href="{{ url('foundation.documents.bylaws') }}">Bylaws of the Mozilla Corporation</a></li>
   </ul>
 {% endblock %}

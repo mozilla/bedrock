@@ -136,7 +136,7 @@ and ``title`` can override the text:
 
     {% block email_form %}
         {{ email_newsletter_form('app-dev',
-                                 _('Sign up for more news about the Firefox Marketplace.')) }}
+                                 'Sign up for more news about the Firefox Marketplace.') }}
     {% endblock %}
 
 The `newsletters` parameter, the first positional argument, can be either a list

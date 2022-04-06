@@ -6,7 +6,7 @@
 
 {% extends "mozorg/about-base.html" %}
 
-{% block page_title %}{{ _('Commit Access Requirements') }}{% endblock %}
+{% block page_title %}Commit Access Requirements{% endblock %}
 {% set body_id = "commit-access-requirements" %}
 
 {% block page_css %}
@@ -17,31 +17,31 @@
 {% block article %}
 <h1 class="mzp-c-article-title">{{ self.page_title() }}</h1>
 
-<p>{{ _('By committing to Mozilla repositories - that is, by directly contributing
+<p>By committing to Mozilla repositories - that is, by directly contributing
 source code, documentation or other data ("Code") to a website or repository
 operated, controlled or managed by the Mozilla Foundation or its affiliates (a "Mozilla
-Repository") - you are indicating your agreement to the terms set out below.') }}</p>
+Repository") - you are indicating your agreement to the terms set out below.</p>
 
-<p>{{ _('For the avoidance of doubt: this document commits you to a set of
-good behaviours; it is not a copyright assignment.') }}</p>
+<p>For the avoidance of doubt: this document commits you to a set of
+good behaviours; it is not a copyright assignment.</p>
 
-<h2>{{ _('Treatment of Account') }}</h2>
+<h2>Treatment of Account</h2>
 
-<p>{{ _('You will receive one or more sets of Mozilla project access credentials, and/or
+<p>You will receive one or more sets of Mozilla project access credentials, and/or
 one or more sets of credentials you already have will be given the power to
 access a Mozilla Repository. You will not allow anyone else to use these
 credentials to access any Mozilla system. Should You become aware of any such
 use, You will immediately notify the Mozilla Foundation; until such notice is
 received You will be presumed to have taken all actions made using Your
-credentials.') }}</p>
+credentials.</p>
 
-<p>{{ _('The Mozilla Foundation and their designates will have complete control and
+<p>The Mozilla Foundation and their designates will have complete control and
 discretion over capabilities associated with Your credentials and may change
 them for any reason at any time. Your name and email address, or a derivative
 of it, may be attached to your contributions and so be visible worldwide via
-the Internet.') }}</p>
+the Internet.</p>
 
-<h2>{{ _('License Terms') }}</h2>
+<h2>License Terms</h2>
 
 <p>
 {% trans license_policy=url('mozorg.mpl.license-policy'),
@@ -57,29 +57,29 @@ You will verify that committed Code contains
 {% endtrans %}
 </p>
 
-<h2>{{ _('Notices and Knowledge') }}</h2>
+<h2>Notices and Knowledge</h2>
 
-<p>{{ _('By contributing Code, You confirm that, to the best of Your knowledge, the Code
-does not violate the rights of any person or entity.') }}</p>
+<p>By contributing Code, You confirm that, to the best of Your knowledge, the Code
+does not violate the rights of any person or entity.</p>
 
-<p>{{ _('If You contribute Code on behalf of Your employer, then You confirm that an
+<p>If You contribute Code on behalf of Your employer, then You confirm that an
 appropriate representative of that employer has authorized the inclusion of
 such Code in a Mozilla Repository and that it meets these
-requirements.') }}</p>
+requirements.</p>
 
-<h2>{{ _('Committing Code Created by Others') }}</h2>
+<h2>Committing Code Created by Others</h2>
 
-<p>{{ _('You may check in Code to a Mozilla Foundation repository that was not written
-by You, provided that:') }}</p>
+<p>You may check in Code to a Mozilla Foundation repository that was not written
+by You, provided that:</p>
 
 <ol>
-<li>{{ _(' The checkin comment contains information (or references to information)
+<li> The checkin comment contains information (or references to information)
 sufficient to identify the author of the Code, the license of the Code, and
 the third-party public source code repository the code was taken from, if it
-came from such a repository; and') }}</li>
+came from such a repository; and</li>
 
-<li>{{ _('You make all reasonable and appropriate efforts to ensure that such Code
-conforms to sections 2 and 3 of this document.') }}</li>
+<li>You make all reasonable and appropriate efforts to ensure that such Code
+conforms to sections 2 and 3 of this document.</li>
 </ol>
 
 {% endblock %}

@@ -8,10 +8,10 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% block page_title %}{{ _('Incognito browser: What it really means') }}{% endblock %}
+{% block page_title %}Incognito browser: What it really means{% endblock %}
 
 {% block page_desc %}
-  {{ _('Firefox calls it private browsing, Chrome calls it incognito mode. Both let you browse the web without saving your browsing history.') }}
+  Firefox calls it private browsing, Chrome calls it incognito mode. Both let you browse the web without saving your browsing history.
 {% endblock %}
 
 {% block page_css %}
@@ -25,17 +25,17 @@
   <article class="mzp-c-article">
 
     <h1 class="mzp-c-article-title">{{ self.page_title() }}</h1>
-    <p class="mzp-c-article-intro">{{ _('Firefox calls it private browsing, Chrome calls it incognito mode. Both let you browse the web without saving your browsing history.') }}</p>
+    <p class="mzp-c-article-intro">Firefox calls it private browsing, Chrome calls it incognito mode. Both let you browse the web without saving your browsing history.</p>
 
     {{ download_firefox_thanks(dom_id='download-button-primary', download_location='primary') }}
 
     <img src="{{ static('img/firefox/browsers/incognito-browser/incognito-browser-a.png') }}" alt="" class="c-article-image">
 
-    <h2 class="c-section-title">{{ _('What Incognito/Private Mode Does') }}</h2>
+    <h2 class="c-section-title">What Incognito/Private Mode Does</h2>
 
-    <p>{{ _('Incognito or private mode keeps your browsing history private. That’s it.') }}</p>
+    <p>Incognito or private mode keeps your browsing history private. That’s it.</p>
 
-    <h2 class="c-section-title">{{ _('What Incognito/Private Mode Doesn’t Do') }}</h2>
+    <h2 class="c-section-title">What Incognito/Private Mode Doesn’t Do</h2>
 
     <p>
     {% trans url='https://www.cnbc.com/2018/07/12/private-web-browsing-not-as-private-as-you-think-research.html' %}
@@ -48,7 +48,7 @@
     {% endtrans %}
     </p>
 
-    <h2 class="c-section-title-large">{{ _('Why go private/incognito?') }}</h2>
+    <h2 class="c-section-title-large">Why go private/incognito?</h2>
 
     <p>
     {% trans %}
@@ -61,7 +61,7 @@
     {% endtrans %}
     </p>
 
-    <h3 class="c-section-title">{{ _('Web Tracking') }}</h3>
+    <h3 class="c-section-title">Web Tracking</h3>
 
     <p>
     {% trans %}
@@ -80,7 +80,7 @@
     {% endtrans %}
     </p>
 
-    <h3 class="c-section-title">{{ _('Cookies') }}</h3>
+    <h3 class="c-section-title">Cookies</h3>
 
     <p>
     {% trans %}
@@ -109,7 +109,7 @@
 
     <img src="{{ static('img/firefox/browsers/incognito-browser/incognito-browser-b.png') }}" alt="" class="c-article-image">
 
-    <h2 class="c-section-title-large">{{ _('Going Incognito') }}</h2>
+    <h2 class="c-section-title-large">Going Incognito</h2>
 
     <p>
     {% trans %}
@@ -129,7 +129,7 @@
     {% endtrans %}
     </p>
 
-    <h3 class="c-section-title">{{ _('Firefox Tracking Protection') }}</h3>
+    <h3 class="c-section-title">Firefox Tracking Protection</h3>
 
     <p>
     {% trans tp='https://support.mozilla.org/kb/tracking-protection',
@@ -142,7 +142,7 @@
     {% endtrans %}
     </p>
 
-    <h3 class="c-section-title">{{ _('Firefox Multi-Account Containers') }}</h3>
+    <h3 class="c-section-title">Firefox Multi-Account Containers</h3>
 
     <p>
     {% trans containers='https://addons.mozilla.org/firefox/addon/multi-account-containers/' %}
@@ -157,7 +157,7 @@
     {% endtrans %}
     </p>
 
-    <h3 class="c-section-title">{{ _('Is Incognito/Private Mode Really Private?') }}</h3>
+    <h3 class="c-section-title">Is Incognito/Private Mode Really Private?</h3>
 
     <p>
     {% trans %}
@@ -190,8 +190,7 @@
     {% endtrans %}
     </p>
 
-    {# L10n: TL:DR is internet slang for 'Too Long Didn’t Read'. An alternate string for translation could be 'Incognito: The Short Version'. #}
-    <h3 class="c-section-title">{{ _('Incognito: TL:DR') }}</h3>
+    <h3 class="c-section-title">Incognito: TL:DR</h3>
 
     <p>
     {% trans tp='https://support.mozilla.org/kb/tracking-protection',
@@ -207,7 +206,7 @@
 </div>
 
 {% call call_out_compact(
-  title=_('Take control of your browser.'),
+  title='Take control of your browser.',
   class='mzp-t-product-firefox mzp-t-firefox'
 ) %}
   <div class="download-firefox">

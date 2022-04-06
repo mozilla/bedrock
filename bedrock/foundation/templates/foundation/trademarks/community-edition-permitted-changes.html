@@ -6,10 +6,10 @@
 
 {% extends "foundation/base.html" %}
 
-{% block page_title %}{{ _('Permitted Changes to Legacy Community Edition Builds') }}{% endblock %}
+{% block page_title %}Permitted Changes to Legacy Community Edition Builds{% endblock %}
 
 {% block article_title %}
-  {{ _('Permitted Changes to Legacy Community Edition Builds') }}
+  Permitted Changes to Legacy Community Edition Builds
 {% endblock %}
 
 {% block article_content %}
@@ -19,18 +19,18 @@
       created and distributed before April 7, 2009:{% endtrans %}</p>
 
   <ul class="mzp-u-list-styled">
-    <li>{{ _('Change certain preference settings') }}</li>
-    <li>{{ _('Change the default start page') }}</li>
-    <li>{{ _('Change both the structure and the contents of the default bookmarks and personal toolbar') }}</li>
-    <li>{{ _('Change the default search engine and other search engines in the search engine pulldown box') }}</li>
+    <li>Change certain preference settings</li>
+    <li>Change the default start page</li>
+    <li>Change both the structure and the contents of the default bookmarks and personal toolbar</li>
+    <li>Change the default search engine and other search engines in the search engine pulldown box</li>
     <li>{% trans addons="https://addons.mozilla.org/" %}
         Include extensions that are also available through
         <a href="{{ addons }}">addons.mozilla.org</a>
         {% endtrans %}
     </li>
-    <li>{{ _('Include plugins, provided they can legally do so') }}</li>
-    <li>{{ _('Porting the software to different operating systems') }}</li>
-    <li>{{ _('Custom builds created using options to configure') }}</li>
-    <li>{{ _('We may require individuals or teams to stop distributing these builds in the future if they are redistributing software with low quality and efforts to remedy the situation have not succeeded.') }}</li>
+    <li>Include plugins, provided they can legally do so</li>
+    <li>Porting the software to different operating systems</li>
+    <li>Custom builds created using options to configure</li>
+    <li>We may require individuals or teams to stop distributing these builds in the future if they are redistributing software with low quality and efforts to remedy the situation have not succeeded.</li>
   </ul>
 {% endblock %}

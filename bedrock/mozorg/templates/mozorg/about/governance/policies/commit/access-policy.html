@@ -6,13 +6,13 @@
 
 {% extends "mozorg/about-base.html" %}
 
-{% block page_title %}{{ _('Mozilla Commit Access Policy') }}{% endblock %}
+{% block page_title %}Mozilla Commit Access Policy{% endblock %}
 {% set body_id = "commit-access-policy" %}
 
 {% block article %}
 <h1 class="mzp-c-article-title">{{ self.page_title() }}</h1>
 
-<h2>{{ _('v.1.1') }}</h2>
+<h2>v.1.1</h2>
 
 <p>
 {% trans url=url('mozorg.about.governance.policies.commit') %}
@@ -20,7 +20,7 @@ This document states what permissions you need when following the <a href="{{ ur
 {% endtrans %}
 </p>
 
-<h2 id="rationale">{{ _('Rationale') }}</h2>
+<h2 id="rationale">Rationale</h2>
 
 <p>
 {% trans %}
@@ -38,30 +38,30 @@ Therefore, a good policy balances the use of technical and social controls to mi
 {% endtrans %}
 </p>
 
-<h2 id="summary">{{ _('Summary') }}</h2>
+<h2 id="summary">Summary</h2>
 
-<p>{{ _('3 levels, in order of increasing access:') }}</p>
+<p>3 levels, in order of increasing access:</p>
 
 <ol class="mzp-u-list-styled">
   <li>
-    {{ _('Try/User access - ‘try’ trees and user repositories in Hg, plus any other tree placed at this level.') }}
-    <p>{{ _('Requirements: one voucher - any other user with level 2 or above access.') }}</p>
+    Try/User access - ‘try’ trees and user repositories in Hg, plus any other tree placed at this level.
+    <p>Requirements: one voucher - any other user with level 2 or above access.</p>
   </li>
   <li>
-    {{ _('General access - all of Hg not in level 3 or listed as an exception.') }}
-    <p>{{ _('Requirements: one voucher - any Mozilla code module owner.') }}</p>
+    General access - all of Hg not in level 3 or listed as an exception.
+    <p>Requirements: one voucher - any Mozilla code module owner.</p>
   </li>
   <li>
-    {{ _('Hg core product (Firefox/Thunderbird/GeckoView) access.') }}
-    <p>{{ _('Requirements: two vouchers - module owners or peers of code stored in a repo at this level.') }}</p>
+    Hg core product (Firefox/Thunderbird/GeckoView) access.
+    <p>Requirements: two vouchers - module owners or peers of code stored in a repo at this level.</p>
   </li>
 </ol>
 
-<p>{{ _('Each level of permission implies having the previous levels - e.g. level 2 implies level 1. A module owner creating a new tree can decide at what level that tree should live, depending on the trade-off they want to make between control and ease of access.') }}</p>
+<p>Each level of permission implies having the previous levels - e.g. level 2 implies level 1. A module owner creating a new tree can decide at what level that tree should live, depending on the trade-off they want to make between control and ease of access.</p>
 
-<h2 id="Level1">{{ _('Level 1 - Try/User/Incubator Access') }}</h2>
+<h2 id="Level1">Level 1 - Try/User/Incubator Access</h2>
 
-<p>{{ _('Requirements: Contributors require one voucher - any other user with level 2 or above access. Mozilla employees do not require vouching.') }}</p>
+<p>Requirements: Contributors require one voucher - any other user with level 2 or above access. Mozilla employees do not require vouching.</p>
 
 <p>
 {% trans try='https://wiki.mozilla.org/Build:TryServer'
@@ -70,13 +70,13 @@ This is the lowest level of access. It allows someone to check in to the <a href
 {% endtrans %}
 </p>
 
-<h3 id="Level1a">{{ _('Level 1a - Named Voucher') }}</h3>
+<h3 id="Level1a">Level 1a - Named Voucher</h3>
 
-<p>{{ _('Requirements: one voucher - the module owner or a peer responsible for that tree') }}</p>
+<p>Requirements: one voucher - the module owner or a peer responsible for that tree</p>
 
-<p>{{ _('Some trees, most often those from which code is pushed automatically into use on major Mozilla websites, requires special permission for checkin access. You need permission from the listed owner in order to get access to check in to their tree. The trees and owners are:') }}</p>
+<p>Some trees, most often those from which code is pushed automatically into use on major Mozilla websites, requires special permission for checkin access. You need permission from the listed owner in order to get access to check in to their tree. The trees and owners are:</p>
 
-<h4>{{ _('Hg') }}</h4>
+<h4>Hg</h4>
 
 <table class="mzp-u-data-table">
   <tr>
@@ -89,29 +89,29 @@ This is the lowest level of access. It allows someone to check in to the <a href
   </tr>
 </table>
 
-<h4 id="L10n">{{ _('L10n') }}</h4>
+<h4 id="L10n">L10n</h4>
 
-<p>{{ _('In addition, l10n is a separate category so l10n-only access can be more freely given than might be the case if it were included in level 2. This exception is worth making because of the size and diversity of the l10n community and the looser relationship people in it sometimes have to the rest of the project. l10n access implies level 1 access but not level 2 access. The named vouchers are the owner and peers of the Localization module.') }}</p>
+<p>In addition, l10n is a separate category so l10n-only access can be more freely given than might be the case if it were included in level 2. This exception is worth making because of the size and diversity of the l10n community and the looser relationship people in it sometimes have to the rest of the project. l10n access implies level 1 access but not level 2 access. The named vouchers are the owner and peers of the Localization module.</p>
 
-<h2 id="Level2">{{ _('Level 2 - General Access') }}</h2>
+<h2 id="Level2">Level 2 - General Access</h2>
 
-<p>{{ _('Requirements: one voucher - any Mozilla code module owner') }}</p>
+<p>Requirements: one voucher - any Mozilla code module owner</p>
 
-<p>{{ _('This access allows one to check in to everywhere in any SCM (Hg or Git) except the core product code in Hg and the exceptions listed above.') }}</p>
+<p>This access allows one to check in to everywhere in any SCM (Hg or Git) except the core product code in Hg and the exceptions listed above.</p>
 
-<h2 id="Level3">{{ _('Level 3 - Core Product Access') }}</h2>
+<h2 id="Level3">Level 3 - Core Product Access</h2>
 
-<p>{{ _('Requirements: two vouchers - module owners or peers of code stored at this level, or owners or peers of the "Tree Sheriffs" module') }}</p>
+<p>Requirements: two vouchers - module owners or peers of code stored at this level, or owners or peers of the "Tree Sheriffs" module</p>
 
-<p>{{ _('Someone can be upgraded from level 2 to level 3 by being vouched for by a single module owner of level-3-stored code.') }}</p>
+<p>Someone can be upgraded from level 2 to level 3 by being vouched for by a single module owner of level-3-stored code.</p>
 
-<p>{{ _('This permission gives access to check into any tree from which executable code becomes part of our core products - Firefox, Firefox for Android and Thunderbird. To put it another way, the unifying factor is that it should not be possible to break core product tinderboxes unless you have this access. This is fundamentally a statement of trust in and familiarity with an individual, and so access to one such tree gives access to all such trees, although social controls may prevent people checking in to certain ones. (Peers can vouch because the number of modules at this level is smaller, and because if you are working only in a single area of the code, there may not be multiple module owners familiar with your work.)') }}</p>
+<p>This permission gives access to check into any tree from which executable code becomes part of our core products - Firefox, Firefox for Android and Thunderbird. To put it another way, the unifying factor is that it should not be possible to break core product tinderboxes unless you have this access. This is fundamentally a statement of trust in and familiarity with an individual, and so access to one such tree gives access to all such trees, although social controls may prevent people checking in to certain ones. (Peers can vouch because the number of modules at this level is smaller, and because if you are working only in a single area of the code, there may not be multiple module owners familiar with your work.)</p>
 
-<p>{{ _('People with this access may not actually be working on Firefox, Firefox for Android or Thunderbird, but their ability to affect them means that the level of trust and familarity required for access are higher.') }}</p>
+<p>People with this access may not actually be working on Firefox, Firefox for Android or Thunderbird, but their ability to affect them means that the level of trust and familarity required for access are higher.</p>
 
-<p>{{ _('The repositories which fall in this category are:') }}</p>
+<p>The repositories which fall in this category are:</p>
 
-<h4>{{ _('Hg') }}</h4>
+<h4>Hg</h4>
 
 <pre>
 autoland
@@ -120,6 +120,6 @@ comm-central
 releases/*
 </pre>
 
-<p>{{ _('...plus any other repo from which code is merged to any of the above without a thorough review at merge time.') }}</p>
+<p>...plus any other repo from which code is merged to any of the above without a thorough review at merge time.</p>
 
 {% endblock %}

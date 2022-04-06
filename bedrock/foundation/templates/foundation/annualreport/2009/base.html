@@ -13,11 +13,11 @@
 {% block body_class %}mzp-t-mozilla{% endblock %}
 
 {% set navigation_bar = [
-  (url('foundation.annualreport.2009.index'), 'introduction', _('Introduction')),
-  (url('foundation.annualreport.2009.a-competitive-world'), 'competitive-world', _('A Competitive World')),
-  (url('foundation.annualreport.2009.broadening-our-scope'), 'broadening-scope', _('Broadening our Scope')),
-  (url('foundation.annualreport.2009.sustainability'), 'sustainability', _('Sustainability')),
-  (url('foundation.annualreport.2009.faq'), 'faq', _('FAQ')),
+  (url('foundation.annualreport.2009.index'), 'introduction', 'Introduction'),
+  (url('foundation.annualreport.2009.a-competitive-world'), 'competitive-world', 'A Competitive World'),
+  (url('foundation.annualreport.2009.broadening-our-scope'), 'broadening-scope', 'Broadening our Scope'),
+  (url('foundation.annualreport.2009.sustainability'), 'sustainability', 'Sustainability'),
+  (url('foundation.annualreport.2009.faq'), 'faq', 'FAQ'),
 ] %}
 
 {% block side_nav %}
@@ -26,7 +26,7 @@
 
 {% block article %}
   <header>
-    <h1 class="mzp-c-article-title">{{ _('The Mozilla Foundation') }}</h1>
+    <h1 class="mzp-c-article-title">The Mozilla Foundation</h1>
     {% block article_header %}
       <h2>{{ self.article_title() }}</h2>
     {% endblock %}
@@ -43,7 +43,7 @@
 
       <div class="newsletter-content">
         {% if LANG.startswith('en-') %}
-          {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Sign up. Read up.<br> Make a difference.'), desc=_('Get the Mozilla newsletter and help us keep the Web free and open.'), button_class='button-red') }}
+          {{ email_newsletter_form(newsletters='mozilla-foundation', title='Sign up. Read up.<br> Make a difference.'|safe, desc='Get the Mozilla newsletter and help us keep the Web free and open.', button_class='button-red') }}
         {% else %}
           {{ email_newsletter_form(button_class='button-red') }}
         {% endif %}

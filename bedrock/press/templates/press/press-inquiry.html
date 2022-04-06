@@ -6,7 +6,7 @@
 
 {% extends "base-article.html" %}
 
-{% block page_title %}{{_('Press Inquiry Form')}}{% endblock %}
+{% block page_title %}Press Inquiry Form{% endblock %}
 
 {% block page_css %}
 {{ css_bundle('press') }}
@@ -18,69 +18,69 @@
 
 {% block article %}
 <header>
-  <h1 class="mzp-c-article-title">{{_('Press Inquiry')}}</h1>
+  <h1 class="mzp-c-article-title">Press Inquiry</h1>
 </header>
 {% if not form_success %}
 {% if form.errors %}
 <aside class="mzp-c-notification-bar mzp-t-error">
   <p>
-    <strong>{{ _('An error has occurred with your submission. Please review your information below and try again.') }}</strong>
+    <strong>An error has occurred with your submission. Please review your information below and try again.</strong>
   </p>
 </aside>
 {% endif %}
 
 {% if not form_success %}
-  <h2>{{ _('Please complete and submit the form below with your press inquiry.') }}</h2>
+  <h2>Please complete and submit the form below with your press inquiry.</h2>
 {% endif %}
 
 <form name="mozilla-contact-us" id="press_inquiry" class="press-inquiry" action="{{ url('press.press-inquiry') }}" method="post">
   {{ csrf() }}
   <fieldset>
-    <label for="id_jobtitle">{{ _('Job Title') }}</label>
+    <label for="id_jobtitle">Job Title</label>
     {% if form.jobtitle.errors %}
-    <strong class="error-msg">{{_('Please enter your job title.')}}</strong>
+    <strong class="error-msg">Please enter your job title.</strong>
     {% endif %}
     {{ form.jobtitle }}
 
-    <label for="id_name">{{ _('Name') }}</label>
+    <label for="id_name">Name</label>
     {% if form.name.errors %}
-    <strong class="error-msg">{{_('Please enter your name.')}}</strong>
+    <strong class="error-msg">Please enter your name.</strong>
     {% endif %}
     {{ form.name }}
 
-    <label for="id_user_email">{{ _('Email Address') }}</label>
+    <label for="id_user_email">Email Address</label>
     {% if form.user_email.errors %}
-    <strong class="error-msg">{{_('Please enter a valid email address.')}}</strong>
+    <strong class="error-msg">Please enter a valid email address.</strong>
     {% endif %}
     {{ form.user_email }}
 
-    <label for="id_media_org">{{ _('Media Organization') }}</label>
+    <label for="id_media_org">Media Organization</label>
     {% if form.media_org.errors %}
-    <strong class="error-msg">{{_('Please enter the name of your media organization.')}}</strong>
+    <strong class="error-msg">Please enter the name of your media organization.</strong>
     {% endif %}
     {{ form.media_org }}
 
-    <label for="id_inquiry">{{ _('Inquiry') }}</label>
+    <label for="id_inquiry">Inquiry</label>
     {% if form.inquiry.errors %}
-    <strong class="error-msg">{{_('Please enter the subject of your inquiry.')}}</strong>
+    <strong class="error-msg">Please enter the subject of your inquiry.</strong>
     {% endif %}
     {{ form.inquiry }}
 
-    <label for="id_deadline">{{ _('Deadline') }}</label>
+    <label for="id_deadline">Deadline</label>
     {% if form.deadline.errors %}
-    <strong class="error-msg">{{_('Please enter your deadline.')}}</strong>
+    <strong class="error-msg">Please enter your deadline.</strong>
     {% endif %}
     {{ form.deadline }}
 
     {{ form.office_fax }}
   </fieldset>
-  <button type="submit" id="form-submit" class="mzp-c-button mzp-t-primary">{{_('Submit')}}</button>
+  <button type="submit" id="form-submit" class="mzp-c-button mzp-t-primary">Submit</button>
 </form>
 {% else %}
 <aside class="mzp-c-notification-bar mzp-t-success">
   <p>
-    <strong>{{ _('Your request has been sent.') }}</strong>
-    {{ _('Thank you for your inquiry.') }}
+    <strong>Your request has been sent.</strong>
+    Thank you for your inquiry.
   </p>
 </aside>
 {% endif %}

@@ -69,7 +69,7 @@
             button_class='button-dark'
           )}}
         {% elif LANG.startswith('en-') %}
-          {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Sign up. Read up.<br> Make a difference.'), desc=_('Get the Mozilla newsletter and help us keep the Web free and open.')) }}
+          {{ email_newsletter_form(newsletters='mozilla-foundation', title='Sign up. Read up.<br> Make a difference.'|safe, desc='Get the Mozilla newsletter and help us keep the Web free and open.') }}
         {% else %}
           {{ email_newsletter_form() }}
         {% endif %}

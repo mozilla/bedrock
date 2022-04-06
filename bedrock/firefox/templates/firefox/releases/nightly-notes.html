@@ -10,8 +10,8 @@
 {% set blog_feed = 'https://blog.nightly.mozilla.org/feed/' %}
 
 {% block extrahead %}
-<link rel="alternate" type="application/atom+xml" title="{{ _('Firefox Nightly Notes Feed') }}" href="{{ notes_feed }}">
-<link rel="alternate" type="application/atom+xml" title="{{ _('Firefox Nightly News Feed') }}" href="{{ blog_feed }}">
+<link rel="alternate" type="application/atom+xml" title="Firefox Nightly Notes Feed" href="{{ notes_feed }}">
+<link rel="alternate" type="application/atom+xml" title="Firefox Nightly News Feed" href="{{ blog_feed }}">
 {% endblock %}
 
 {% block page_image %}{{ static('protocol/img/logos/firefox/browser/nightly/og.png') }}{% endblock %}
@@ -23,21 +23,21 @@
 {% set page_id = 'data-gtm-page-id="/firefox/nightly/releasenotes"' %}
 
 {% if release.is_latest %}
-  {% set primary_heading = _('See what landed recently in <span>Firefox Nightly</span>!') %}
+  {% set primary_heading = 'See what landed recently in <span>Firefox Nightly</span>!'|safe %}
 {% endif %}
 
 {% set download_button_primary %}
-  {{ download_firefox('nightly', platform='desktop', force_direct=True, alt_copy=_('Download Firefox Nightly'), dom_id="download-nightly-primary") }}
+  {{ download_firefox('nightly', platform='desktop', force_direct=True, alt_copy='Download Firefox Nightly', dom_id="download-nightly-primary") }}
 {% endset %}
 
 {% set download_button_secondary %}
-  {{ download_firefox('nightly', platform='desktop', force_direct=True, alt_copy=_('Download Firefox Nightly'), dom_id="download-nightly-secondary") }}
+  {{ download_firefox('nightly', platform='desktop', force_direct=True, alt_copy='Download Firefox Nightly', dom_id="download-nightly-secondary") }}
 {% endset %}
 
 {% set download_all_link = firefox_url('desktop', 'all', channel='nightly') %}
 
 {% block extra_resources %}
-  <a rel="external" href="https://blog.nightly.mozilla.org/">{{ _('Firefox Nightly News') }}</a>
+  <a rel="external" href="https://blog.nightly.mozilla.org/">Firefox Nightly News</a>
 {% endblock %}
 
 {% block extra_draft_description %}

@@ -11,7 +11,7 @@
 {% block body_id %}moss-home{% endblock %}
 
 {% block page_heading %}
-  {{ _('Mozilla Open Source Support Awards') }}
+  Mozilla Open Source Support Awards
 {% endblock %}
 
 {% block page_content %}
@@ -30,7 +30,7 @@
 
 <div class="t-medium">
   <section class="mzp-l-content moss-section">
-    <h2 class="moss-section-heading">{{ _('2020 Funding Update') }}</h2>
+    <h2 class="moss-section-heading">2020 Funding Update</h2>
 
     <p>
     {% trans blogpost='https://blog.mozilla.org/blog/2020/08/11/changing-world-changing-mozilla/' %}
@@ -43,54 +43,54 @@
 <section>
   <div class="t-medium">
     <div class="mzp-l-content">
-      <h2 class="moss-section-heading">{{ _('Award Tracks') }}</h2>
-      <p>{{ _('MOSS awards are available in multiple tracks:') }}</p>
+      <h2 class="moss-section-heading">Award Tracks</h2>
+      <p>MOSS awards are available in multiple tracks:</p>
     </div>
   </div>
   <div class="mzp-l-content">
   <ul class="mzp-l-columns mzp-t-columns-three mzp-t-picto-center moss-tracks-list">
     {% call picto(
-      title=_('Track I: Foundational Technology'),
+      title='Track I: Foundational Technology',
       heading_level=3,
       image_url='img/mozorg/moss/foundational-technology.svg',
       image_width=200,
       body=True,
       base_el='li'
     ) %}
-      <p>{{ _('The Foundational Technology track supports open source projects that Mozilla relies on, either as an embedded part of our products or as part of our everyday work.') }}</p>
+      <p>The Foundational Technology track supports open source projects that Mozilla relies on, either as an embedded part of our products or as part of our everyday work.</p>
       <div class="moss-track-cta">
         <p><a href="{{ url('mozorg.moss.foundational-technology') }}">{{ ftl('ui-learn-more') }}</a></p>
-        <p><a href="https://mozilla.fluxx.io/apply/MOSS" rel="external" class="mzp-c-button">{{ _('Apply Now') }}</a></p>
+        <p><a href="https://mozilla.fluxx.io/apply/MOSS" rel="external" class="mzp-c-button">Apply Now</a></p>
       </div>
     {% endcall %}
 
     {% call picto(
-      title=_('Track II: Mission Partners'),
+      title='Track II: Mission Partners',
       heading_level=3,
       image_url='img/mozorg/moss/mission-partners.svg',
       image_width=200,
       body=True,
       base_el='li'
     ) %}
-      <p>{{ _('The Mission Partners track supports open source projects that significantly advance Mozilla’s mission.') }}</p>
+      <p>The Mission Partners track supports open source projects that significantly advance Mozilla’s mission.</p>
       <div class="moss-track-cta">
         <p><a href="{{ url('mozorg.moss.mission-partners') }}">{{ ftl('ui-learn-more') }}</a></p>
-        <p><a href="https://mozilla.fluxx.io/apply/MOSS" rel="external" class="mzp-c-button">{{ _('Apply Now') }}</a></p>
+        <p><a href="https://mozilla.fluxx.io/apply/MOSS" rel="external" class="mzp-c-button">Apply Now</a></p>
       </div>
     {% endcall %}
 
     {% call picto(
-      title=_('Track III: Secure Open Source Fund'),
+      title='Track III: Secure Open Source Fund',
       heading_level=3,
       image_url='img/mozorg/moss/secure-open-source.svg',
       image_width=200,
       body=True,
       base_el='li'
     ) %}
-      <p>{{ _('The Secure Open Source (“SOS”) track supports security audits for widely used open source software projects as well as the remedial work needed to rectify the problems found.') }}</p>
+      <p>The Secure Open Source (“SOS”) track supports security audits for widely used open source software projects as well as the remedial work needed to rectify the problems found.</p>
       <div class="moss-track-cta">
         <p><a href="{{ url('mozorg.moss.secure-open-source') }}">{{ ftl('ui-learn-more') }}</a></p>
-        <p><a href="https://docs.google.com/a/mozilla.com/forms/d/e/1FAIpQLScLwANEOvLBE6gnFVoiamqHOYzzkaChpdQJ7f0PlZGmfyy94w/viewform" rel="external" class="mzp-c-button">{{ _('Nominate Now') }}</a></p>
+        <p><a href="https://docs.google.com/a/mozilla.com/forms/d/e/1FAIpQLScLwANEOvLBE6gnFVoiamqHOYzzkaChpdQJ7f0PlZGmfyy94w/viewform" rel="external" class="mzp-c-button">Nominate Now</a></p>
       </div>
     {% endcall %}
   </ul>
@@ -100,7 +100,7 @@
 
 <div class="t-medium">
   <section class="mzp-l-content moss-section">
-    <h2 class="moss-section-heading">{{ _('Award Selection') }}</h2>
+    <h2 class="moss-section-heading">Award Selection</h2>
 
     <p>
     {% trans directory='https://github.com/mozilla/MOSS-Directory' %}
@@ -113,7 +113,7 @@
 <section>
   <div class="t-medium">
     <div class="mzp-l-content moss-section">
-      <h2 class="moss-section-heading">{{ _('Past Recipients') }}</h2>
+      <h2 class="moss-section-heading">Past Recipients</h2>
 
       <p>
       {% trans directory='https://github.com/mozilla/MOSS-Directory' %}
@@ -128,7 +128,7 @@
       class='mzp-c-card',
       title='Tor ($152,500)',
       ga_title='Tor',
-      desc=_('Tor is free software and an open network that helps you defend against network surveillance.'),
+      desc='Tor is free software and an open network that helps you defend against network surveillance.',
       image_url='img/mozorg/moss/tor.png',
       include_highres_image=True,
       aspect_ratio='mzp-has-aspect-16-9',
@@ -139,7 +139,7 @@
       class='mzp-c-card',
       title='Tails ($77,000)',
       ga_title='Tails',
-      desc=_('Tails is a live operating system that you can start on almost any computer from a DVD, USB stick, or SD card.'),
+      desc='Tails is a live operating system that you can start on almost any computer from a DVD, USB stick, or SD card.',
       image_url='img/mozorg/moss/tails.png',
       include_highres_image=True,
       aspect_ratio='mzp-has-aspect-16-9',
@@ -150,7 +150,7 @@
       class='mzp-c-card',
       title='Caddy ($50,000)',
       ga_title='Caddy',
-      desc=_('Caddy is an alternative web server that is easy to configure and use.'),
+      desc='Caddy is an alternative web server that is easy to configure and use.',
       image_url='img/mozorg/moss/caddy.png',
       include_highres_image=True,
       aspect_ratio='mzp-has-aspect-16-9',
@@ -161,7 +161,7 @@
       class='mzp-c-card',
       title='Godot ($20,000)',
       ga_title='Save It Fast',
-      desc=_('Godot is an advanced, feature-packed, multi-platform 2D and 3D open source game engine.'),
+      desc='Godot is an advanced, feature-packed, multi-platform 2D and 3D open source game engine.',
       image_url='img/mozorg/moss/godot.png',
       include_highres_image=True,
       aspect_ratio='mzp-has-aspect-16-9',
@@ -172,7 +172,7 @@
       class='mzp-c-card',
       title='SecureDrop ($250,000)',
       ga_title='SecureDrop',
-      desc=_('SecureDrop is a free and open source whistleblower submission system originally created by the late Aaron Swartz.'),
+      desc='SecureDrop is a free and open source whistleblower submission system originally created by the late Aaron Swartz.',
       image_url='img/mozorg/moss/securedrop.png',
       include_highres_image=True,
       aspect_ratio='mzp-has-aspect-16-9',
@@ -183,7 +183,7 @@
       class='mzp-c-card',
       title='NVDA ($15,000)',
       ga_title='NVDA',
-      desc=_('NVDA (NonVisual Desktop Access) is a free “screen reader” which enables blind and vision impaired people to use computers.'),
+      desc='NVDA (NonVisual Desktop Access) is a free “screen reader” which enables blind and vision impaired people to use computers.',
       image_url='img/mozorg/moss/nvaccess.png',
       include_highres_image=True,
       aspect_ratio='mzp-has-aspect-16-9',
@@ -194,19 +194,19 @@
 
 <div class="t-medium">
   <section class="mzp-l-content moss-section">
-    <h2 class="moss-section-heading">{{ _('About MOSS') }}</h2>
+    <h2 class="moss-section-heading">About MOSS</h2>
 
     <p>
-      {{ _('MOSS is an awards program of Mozilla Corporation, which is ultimately responsible for selecting and funding final award recipients.') }}
-      {{ _('MOSS is administered in part by the Mozilla Foundation, the nonprofit owner of the Mozilla Corporation.') }}
+      MOSS is an awards program of Mozilla Corporation, which is ultimately responsible for selecting and funding final award recipients.
+      MOSS is administered in part by the Mozilla Foundation, the nonprofit owner of the Mozilla Corporation.
     </p>
   </section>
 
   <section class="mzp-l-content moss-section">
-    <h2 class="moss-section-heading">{{ _('Frequently Asked Questions') }}</h2>
+    <h2 class="moss-section-heading">Frequently Asked Questions</h2>
 
     <dl class="mzp-u-list-styled">
-      <dt>{{ _('When is the application deadline?') }}</dt>
+      <dt>When is the application deadline?</dt>
       <dd>
         <p>
         {% trans %}
@@ -215,7 +215,7 @@
         </p>
       </dd>
 
-      <dt>{{ _('What is the range of award amounts that the committee usually provides?') }}</dt>
+      <dt>What is the range of award amounts that the committee usually provides?</dt>
       <dd>
         <p>
         {% trans %}
@@ -224,7 +224,7 @@
         </p>
       </dd>
 
-      <dt>{{ _('How mature does a project need to be in order to apply for a MOSS award?') }}</dt>
+      <dt>How mature does a project need to be in order to apply for a MOSS award?</dt>
       <dd>
         <p>
         {% trans moss_email='mailto:MOSS@mozilla.com' %}
@@ -233,7 +233,7 @@
         </p>
       </dd>
 
-      <dt>{{ _('What types of open source projects does the committee fund?') }}</dt>
+      <dt>What types of open source projects does the committee fund?</dt>
       <dd>
         <p>
         {% trans %}
@@ -242,7 +242,7 @@
         </p>
       </dd>
 
-      <dt>{{ _('How should I determine what size of an award to apply for?') }}</dt>
+      <dt>How should I determine what size of an award to apply for?</dt>
       <dd>
         <p>
         {% trans %}
@@ -251,7 +251,7 @@
         </p>
       </dd>
 
-      <dt>{{ _('What licenses are accepted?') }}</dt>
+      <dt>What licenses are accepted?</dt>
       <dd>
         <p>
         {% trans fsf='https://www.fsf.org/', osi='https://opensource.org/' %}
@@ -260,7 +260,7 @@
         </p>
       </dd>
 
-      <dt>{{ _('Can I include indirect costs in my budget?') }}</dt>
+      <dt>Can I include indirect costs in my budget?</dt>
       <dd>
         <p>
         {% trans %}
@@ -269,14 +269,14 @@
         </p>
 
         <ul class="mzp-u-list-styled">
-          <li>{{ _('Organizations may charge up to 10% of direct costs.') }}</li>
-          <li>{{ _('Ten percent is a maximum. If an applicant’s actual indirect cost rate is lower, the actual rate should be proposed in the budget.') }}</li>
-          <li>{{ _('Mozilla may request substantiation of any applicant’s indirect cost rate.') }}</li>
-          <li>{{ _('Individual applicants should not include indirect costs in their budget.') }}</li>
+          <li>Organizations may charge up to 10% of direct costs.</li>
+          <li>Ten percent is a maximum. If an applicant’s actual indirect cost rate is lower, the actual rate should be proposed in the budget.</li>
+          <li>Mozilla may request substantiation of any applicant’s indirect cost rate.</li>
+          <li>Individual applicants should not include indirect costs in their budget.</li>
         </ul>
       </dd>
 
-      <dt>{{ _('What are indirect and direct costs?') }}</dt>
+      <dt>What are indirect and direct costs?</dt>
       <dd>
         <p>
         {% trans %}
@@ -291,7 +291,7 @@
         </p>
       </dd>
 
-      <dt>{{ _('Can I request additional funds after a final decision is made on my request?') }}</dt>
+      <dt>Can I request additional funds after a final decision is made on my request?</dt>
       <dd>
         <p>
         {% trans %}
@@ -300,7 +300,7 @@
         </p>
       </dd>
 
-      <dt>{{ _('Who can apply to MOSS?') }}</dt>
+      <dt>Who can apply to MOSS?</dt>
       <dd>
         <p>
         {% trans community_guidelines=url('mozorg.about.governance.policies.participation') %}
@@ -309,7 +309,7 @@
         </p>
       </dd>
 
-      <dt>{{ _('For Track I, what are you looking for in the reference letter from a Mozilla Champion?') }}</dt>
+      <dt>For Track I, what are you looking for in the reference letter from a Mozilla Champion?</dt>
       <dd>
         <p>
         {% trans %}
@@ -318,21 +318,21 @@
         </p>
       </dd>
 
-      <dt>{{ _('What about taxes?') }}</dt>
+      <dt>What about taxes?</dt>
       <dd>
         <p>
           Recipients are responsible for determining the tax implications of receiving an award, based on their respective countries’ tax laws and compliance requirements. Amounts applied for should be sized such that any tax or other liability that will be incurred is accounted for. Mozilla reserves the right to use different payment mechanisms or tax characterizations for different awards in the MOSS program based on a number of factors specific to each award.
         </p>
       </dd>
 
-      <dt>{{ _('Can you share an example Schedule of Work (SoW) for a past MOSS project?') }}</dt>
+      <dt>Can you share an example Schedule of Work (SoW) for a past MOSS project?</dt>
       <dd>
         <p>
           A Schedule of Work sample can be found <a href="https://wiki.mozilla.org/images/3/3c/Kea-sow.pdf">here</a>.
         </p>
       </dd>
 
-      <dt>{{ _('How can I learn more about MOSS?') }} {{ _('Is there someone I can talk to about my project idea?') }}</dt>
+      <dt>How can I learn more about MOSS? Is there someone I can talk to about my project idea?</dt>
       <dd>
         <p>
         {% trans moss_email='mailto:MOSS@mozilla.com' %}

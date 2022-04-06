@@ -6,12 +6,12 @@
 
 {% extends "base-protocol-mozilla.html" %}
 
-{% block page_title %}{{ _('Mozilla Open Source Support') }}{% endblock %}
+{% block page_title %}Mozilla Open Source Support{% endblock %}
 
 {% block page_title_suffix %}{% endblock %}
 
 {% block page_desc %}
-  {{ _('Get funding for your open source and free software projects from Mozilla.') }}
+  Get funding for your open source and free software projects from Mozilla.
 {% endblock %}
 
 {% block page_css %}
@@ -41,8 +41,8 @@
     <div class="newsletter-content">
       {{ email_newsletter_form(
         newsletters='mozilla-foundation',
-        title=_('What’s next?'),
-        desc=_('Get the Mozilla newsletter for our latest tech news and more.'),
+        title='What’s next?',
+        desc='Get the Mozilla newsletter for our latest tech news and more.',
         spinner_color='#fff')
       }}
     </div>

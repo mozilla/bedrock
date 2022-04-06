@@ -8,10 +8,10 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% block page_title %}{{ _('A safe browser that fights for you') }}{% endblock %}
+{% block page_title %}A safe browser that fights for you{% endblock %}
 
 {% block page_desc %}
-{{ _('You have the right to internet safety. That’s why Firefox has features and add-ons that help us make the web more secure.') }}
+You have the right to internet safety. That’s why Firefox has features and add-ons that help us make the web more secure.
 {% endblock %}
 
 {% block page_css %}
@@ -28,8 +28,8 @@
 <div class="mzp-c-hero">
   <div class="hero-content">
     <div class="mzp-c-logo mzp-t-logo-md mzp-t-product-firefox"></div>
-    <p>{{ _('Internet Security') }}</p>
-    <h1>{{ _('Take the stress out of finding a safe browser.') }}</h1>
+    <p>Internet Security</p>
+    <h1>Take the stress out of finding a safe browser.</h1>
     <div class="download-firefox">
       {{ download_firefox(dom_id='features-header-download', download_location='primary cta') }}
     </div>
@@ -60,7 +60,7 @@
     </p>
 
     <section class="article-section">
-      <h2>{{ _('Password Management') }}</h2>
+      <h2>Password Management</h2>
       <p>
         {% trans %}
         A password manager should help you create strong passwords and protect them across accounts. Most people can’t remember every single password, especially if they’re secure passwords. (Unless you have a photographic memory, in which case, congratulations!)
@@ -79,7 +79,7 @@
     </section>
 
     <section class="article-section">
-      <h2>{{ _('Tracking Protection') }}</h2>
+      <h2>Tracking Protection</h2>
       <p>
         {% trans %}
         Being followed doesn’t make anyone feel safe, even if it’s an annoying ad following you on the web. Blocking third-party trackers can help by not allowing the annoying “cookies” tracking that enables ads.
@@ -93,7 +93,7 @@
     </section>
 
     <section class="article-section">
-      <h2>{{ _('Private Browsing') }}</h2>
+      <h2>Private Browsing</h2>
       <p>
         {% trans %}
         Speaking of private browsing, it’s a powerful privacy tool that’s easy to use. On Firefox, private browsing means we don’t save information about where you’ve been, clicked or looked. Private browsing leaves smaller digital footprints, giving away less about what you do and where you go online.
@@ -102,7 +102,7 @@
     </section>
 
     <section class="article-section">
-      <h2>{{ _('Containers') }}</h2>
+      <h2>Containers</h2>
       <p>
         {# L10n: Feng shui is a traditional Chinese practice meant to bring harmony to one's environment. This is an anglicized form of a Chinese word and may be difficult to translate. Alternative: 'good housekeeping'. #}
 
@@ -123,7 +123,7 @@
     </section>
 
     <section class="article-section">
-      <h2>{{ _('Firefox Monitor') }}</h2>
+      <h2>Firefox Monitor</h2>
       <p>
         {% trans %}
         It’s hard to go a week without hearing of a new data breach. If you’re a human who lives and works, you probably don’t have the time to keep track of data news. We thought it might be nice to have a tool that kept watch on accounts and could let you know if anything fishy is going on.
@@ -145,7 +145,7 @@
 </div>
 
 {% call call_out_compact(
-  title=_('Take control of your browser.'),
+  title='Take control of your browser.',
   class='mzp-t-product-firefox mzp-t-firefox mzp-t-dark'
 ) %}
 <div class="download-firefox">

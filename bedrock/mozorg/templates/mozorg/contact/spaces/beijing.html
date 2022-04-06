@@ -6,7 +6,7 @@
 
 {% extends "mozorg/contact/spaces/base.html" %}
 
-{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Beijing') }}{% endblock %}
+{% block page_title %}Contacts, Spaces and Communities — Beijing{% endblock %}
 
 {% block map %}
   {{ map_image('img/contact/osm/spaces/beijing-large.jpg', 'img/contact/osm/spaces/beijing-large-high-res.jpg') }}
@@ -22,8 +22,7 @@
   <div id="entry-container">
     <section class="entry entry-space" id="beijing" data-tab="spaces">
       <div itemscope itemtype="http://schema.org/Organization" class="card vcard">
-        {# L10n: This span around the Mozilla name is presentational. It's included in the string in case some locales need to change the order. #}
-        <h2 itemprop="name" class="fn org">{{ _('<span>Mozilla</span> Beijing') }}</h2>
+        <h2 itemprop="name" class="fn org"><span>Mozilla</span> Beijing</h2>
         <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" class="adr">
         {# L10n: Addresses are marked up with hCard microformat and Schema.org. See http://microformats.org/wiki/h-card and http://schema.org/PostalAddress #}
         {% trans %}
@@ -40,7 +39,7 @@
       </div>
 
       <p><em>
-      {{ _('This Mozilla Space is not a support center.') }}
+      This Mozilla Space is not a support center.
       {% trans link_sumo='https://support.mozilla.org/' %}
         Need help with Firefox? <a href="{{ link_sumo }}">Get it on our support site</a>
       {% endtrans %}

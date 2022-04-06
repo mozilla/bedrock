@@ -6,14 +6,14 @@
 
 {% extends "foundation/base.html" %}
 
-{% block page_title %}{{ _('Termination of the Community Edition Builds') }}{% endblock %}
+{% block page_title %}Termination of the Community Edition Builds{% endblock %}
 
 {% block article_title %}
-  {{ _('Termination of the Community Edition Builds') }}
+  Termination of the Community Edition Builds
 {% endblock %}
 
 {% block article_content %}
-  <p><em><time datetime="2009-04-07">{{ _('April 7, 2009') }}</time></em></p>
+  <p><em><time datetime="2009-04-07">April 7, 2009</time></em></p>
 
   <p>{% trans discussion="https://groups.google.com/group/mozilla.governance/browse_thread/thread/2903bc645085b41d/54e8efe5d335ac3f" %}
     This was the page for the Community Editions Policy.  However, after
@@ -25,16 +25,16 @@
   {% endtrans %}</p>
 
   <ul class="mzp-u-list-styled">
-    <li><a href="#create">{{ _('What Do I Do If I Want to Create a Modified Build?') }}</a></li>
-    <li><a href="#before">{{ _('What Happens to Builds Made Before the Policy Change?') }}</a></li>
+    <li><a href="#create">What Do I Do If I Want to Create a Modified Build?</a></li>
+    <li><a href="#before">What Happens to Builds Made Before the Policy Change?</a></li>
   </ul>
 
   <dl class="mzp-u-list-styled">
-    <dt><a name="create">{{ _('What Do I Do If I Want to Create a Modified Build?') }}</a></dt>
+    <dt><a name="create">What Do I Do If I Want to Create a Modified Build?</a></dt>
     <dd>
       <br>
       <ul>
-        <li><u>{{ _('Localized Builds') }}</u>:
+        <li><u>Localized Builds</u>:
           {% trans l10n="https://wiki.mozilla.org/L10n:Home_Page" %}
           We have an established localization (“l10n”) program with more support
           and infrastructure to help our localizers.
@@ -44,7 +44,7 @@
           {% endtrans %}
         </li>
 
-        <li><u>{{ _('Unbranded Builds') }}</u>:
+        <li><u>Unbranded Builds</u>:
           {% trans %}If you want to distribute a
             modified version of a Mozilla product, you may still do so without
             permission from us as long as you do not use our trademarks or logos.
@@ -60,7 +60,7 @@
       </p>
     </dd>
 
-    <dt><a name="before">{{ _('What Happens to Builds Made Before the Policy Change?') }}</a></dt>
+    <dt><a name="before">What Happens to Builds Made Before the Policy Change?</a></dt>
     <dd>
       <p>{% trans changes=url('foundation.trademarks.community-edition-permitted-changes') %}
         Any Community Editions builds created and distributed prior to April 7, 2009, and making the

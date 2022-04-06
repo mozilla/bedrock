@@ -6,17 +6,17 @@
 
 {% extends "base-article.html" %}
 
-{% block page_title %}{{ _('The State of Mozilla: 2011 Annual Report') }} | {{ _('Frequently Asked Questions') }}{% endblock %}
+{% block page_title %}The State of Mozilla: 2011 Annual Report | Frequently Asked Questions{% endblock %}
 {% block body_id %}annual-2011{% endblock %}
 {% block body_class %}mzp-t-mozilla{% endblock %}
 
 {% set navigation_bar = [
-  ('#welcome', 'welcome', _('Welcome')),
-  ('#mobilized', 'mobilized', _('Mobilized') ),
-  ('#action', 'action', _('Action')),
-  ('#community', 'community', _('Community')),
-  ('#sustainability', 'sustainability', _('Sustainability')),
-  (url('foundation.annualreport.2011faq'), 'faq', _('FAQ')),
+  ('#welcome', 'welcome', 'Welcome'),
+  ('#mobilized', 'mobilized', 'Mobilized'),
+  ('#action', 'action', 'Action'),
+  ('#community', 'community', 'Community'),
+  ('#sustainability', 'sustainability', 'Sustainability'),
+  (url('foundation.annualreport.2011faq'), 'faq', 'FAQ'),
 ] %}
 
 {% block side_nav %}
@@ -26,9 +26,9 @@
 {% block article %}
   <article id="main-content">
     <header>
-      <h1 class="mzp-c-article-title">{{ _('The State of Mozilla') }}</h1>
+      <h1 class="mzp-c-article-title">The State of Mozilla</h1>
     </header>
-    <h2>{{ _('Frequently Asked Questions') }}</h2>
+    <h2>Frequently Asked Questions</h2>
 
     <dl class="mzp-u-list-styled">
       <dt>

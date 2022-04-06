@@ -13,8 +13,8 @@
 {% block body_class %}{{ super() }} format-headings{% endblock %}
 
 {% block string_data %}
-  data-choices-copy="{{ _('Choose how you want to share this data in Firefox.') }}"
-  data-choices-button="{{ _('Choose…') }}"
+  data-choices-copy="Choose how you want to share this data in Firefox."
+  data-choices-button="Choose…"
 {% endblock %}
 
 {% set has_parent_section = doc.select('h1') %}

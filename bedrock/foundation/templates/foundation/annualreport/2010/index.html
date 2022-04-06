@@ -6,12 +6,12 @@
 
 {% extends "foundation/annualreport/2010/base.html" %}
 
-{% block page_title %}{{ _('The State of Mozilla Annual Report, 2010') }}{% endblock %}
+{% block page_title %}The State of Mozilla Annual Report, 2010{% endblock %}
 
 {% set body_id = 'welcome' %}
 
 {% block article_title %}
-  {{ _('The State of Mozilla Annual Report, 2010') }}
+  The State of Mozilla Annual Report, 2010
 {% endblock %}
 
 {% block article_content %}
@@ -26,26 +26,26 @@
   </figure></br>
 
   <div id="video-description">{# FIXME: put this to the right of the video like it is on the old page? #}
-    <h3>{{ _('A Different Kind of Browser') }} <span class="time">1:45</span></h3>
-    <p>{{ _('What’s Mozilla all about? Why are we doing this? We’re glad you asked.') }}</p>
-    <p class="download">{{ _('Download this video:') }}</p>
+    <h3>A Different Kind of Browser <span class="time">1:45</span></h3>
+    <p>What’s Mozilla all about? Why are we doing this? We’re glad you asked.</p>
+    <p class="download">Download this video:</p>
     <ul class="mzp-u-list-styled">
-      <li><a href="https://videos.cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.webm">{{ _('WebM format') }}</a></li>
-      <li><a href="https://videos.cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.theora.ogv">{{ _('Ogg Theora format') }}</a></li>
-      <li><a href="https://videos.cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4">{{ _('MPEG-4 format') }}</a></li>
-      <li><a href="http://www.universalsubtitles.org/en/videos/NNxEqfuQSaPN/">{{ _('Other languages & sharing') }}</a></li>
+      <li><a href="https://videos.cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.webm">WebM format</a></li>
+      <li><a href="https://videos.cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.theora.ogv">Ogg Theora format</a></li>
+      <li><a href="https://videos.cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4">MPEG-4 format</a></li>
+      <li><a href="http://www.universalsubtitles.org/en/videos/NNxEqfuQSaPN/">Other languages & sharing</a></li>
     </ul>
   </div>
 
   <div id="content">
-    <h2>{{ _('Welcome') }}</h2>
-    <p>{{ _('We are pleased to share with you this year’s annual State of Mozilla report. It details our opportunities and challenges, expanding set of initiatives, community and 2010 financials.') }}</p>
-    <p>{{ _('People are living more of their lives online and Mozilla’s role is expanding to keep these new onramps to the Web open, transparent, and interoperable. We believe that all people on this planet should benefit from the power of the Web and have control over their online experiences.') }}</p>
-    <p>{{ _('We invite you to learn more about the Mozilla Project and join us in our ongoing efforts to build a better Internet.') }}</p>
+    <h2>Welcome</h2>
+    <p>We are pleased to share with you this year’s annual State of Mozilla report. It details our opportunities and challenges, expanding set of initiatives, community and 2010 financials.</p>
+    <p>People are living more of their lives online and Mozilla’s role is expanding to keep these new onramps to the Web open, transparent, and interoperable. We believe that all people on this planet should benefit from the power of the Web and have control over their online experiences.</p>
+    <p>We invite you to learn more about the Mozilla Project and join us in our ongoing efforts to build a better Internet.</p>
   </div>
 
   <ul class="nav-paging bottom">
-    <li class="next"><a href="{{ url('foundation.annualreport.2010.opportunities') }}">{{ _('Opportunities') }}</a></li>
+    <li class="next"><a href="{{ url('foundation.annualreport.2010.opportunities') }}">Opportunities</a></li>
   </ul>
 
 {% endblock %}

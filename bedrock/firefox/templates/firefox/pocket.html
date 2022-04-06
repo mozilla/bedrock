@@ -9,8 +9,8 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% block page_title %}{{ _('Pocket | Discover, Capture and Savor Content That Fascinates You') }}{% endblock %}
-{% block page_desc %}{{ _('Pocket is the place to save, read and get fueled by content that fascinates you. (Like a bookmark and a content recommendation engine, but better.)') }}{% endblock %}
+{% block page_title %}Pocket | Discover, Capture and Savor Content That Fascinates You{% endblock %}
+{% block page_desc %}Pocket is the place to save, read and get fueled by content that fascinates you. (Like a bookmark and a content recommendation engine, but better.){% endblock %}
 {% block page_favicon %}{{ static('img/favicons/pocket/favicon.ico') }}{% endblock %}
 {% block page_favicon_large %}{{ static('img/favicons/pocket/favicon-196x196.png') }}{% endblock %}
 {% block page_ios_icon %}{{ static('img/favicons/pocket/apple-touch-icon.png') }}{% endblock %}
@@ -41,10 +41,10 @@
   ) %}
     <h1>
       <span class="mzp-c-wordmark mzp-t-wordmark-sm mzp-t-product-pocket">Pocket</span>
-      {{ _('An Award-Winning App From Firefox') }}
+      An Award-Winning App From Firefox
     </h1>
-    <p>{{ _('Over 10 million users rely on Pocket to discover and savor the best articles, news, stories and videos. And as a member of the Firefox family, privacy is paramount.') }}</p>
-    <p>{{ pocket_fxa_button(entrypoint=_entrypoint, button_text=_('Try Pocket Now'), optional_parameters={'s': _source}, optional_attributes={'data-cta-text': 'Try Pocket Now', 'data-cta-type': 'activate pocket', 'data-cta-position': 'primary'}) }}</p>
+    <p>Over 10 million users rely on Pocket to discover and savor the best articles, news, stories and videos. And as a member of the Firefox family, privacy is paramount.</p>
+    <p>{{ pocket_fxa_button(entrypoint=_entrypoint, button_text='Try Pocket Now', optional_parameters={'s': _source}, optional_attributes={'data-cta-text': 'Try Pocket Now', 'data-cta-type': 'activate pocket', 'data-cta-position': 'primary'}) }}</p>
   {% endcall %}
 
   {% call split(
@@ -53,24 +53,24 @@
     include_highres_image=True,
     block_class='pocket-popularity mzp-l-split-reversed mzp-l-split-body-narrow'
   ) %}
-    <h2>{{ _('Capture What Fascinates You') }}</h2>
-    <p>{{ _('Turn your downtime into quality time. Pocket is the place to save, read and get fueled by the best content on the web.') }}</p>
+    <h2>Capture What Fascinates You</h2>
+    <p>Turn your downtime into quality time. Pocket is the place to save, read and get fueled by the best content on the web.</p>
   {% endcall %}
 
   <section id="pocket-features">
     <div class="mzp-c-call-out">
       {{ call_out(
-        title=_('Fill Your Pocket in Firefox'),
-        desc=_('Use Firefox to browse, log in, save and see suggested content in Pocket.')
+        title='Fill Your Pocket in Firefox',
+        desc='Use Firefox to browse, log in, save and see suggested content in Pocket.'
       )}}
     </div>
 
     <div class="mzp-l-content mzp-l-card-half">
       {{ card(
         class='mzp-c-card-medium',
-        title=_('Save It Fast'),
+        title='Save It Fast',
         ga_title='Save It Fast',
-        desc=_('One click on the Pocket icon and content is saved to read later on any device, online or off. With your Firefox Account, logins and preferences travel with you.'),
+        desc='One click on the Pocket icon and content is saved to read later on any device, online or off. With your Firefox Account, logins and preferences travel with you.',
         image_url='img/firefox/pocket/pocket-save.png',
         include_highres_image=True,
         aspect_ratio='mzp-has-aspect-3-2',
@@ -79,9 +79,9 @@
 
       {{ card(
         class='mzp-c-card-medium',
-        title=_('Get Great Recommendations'),
+        title='Get Great Recommendations',
         ga_title='Get Great Recommendations',
-        desc=_('Every new Firefox tab is a chance to discover quality content that compels you, selected by real people who have their pulse on the web.'),
+        desc='Every new Firefox tab is a chance to discover quality content that compels you, selected by real people who have their pulse on the web.',
         image_url='img/firefox/pocket/pocket-discover.png',
         include_highres_image=True,
         aspect_ratio='mzp-has-aspect-3-2',
@@ -95,11 +95,11 @@
     <div class="mzp-l-content">
       <div class="mzp-c-hero-body">
         <h2 class="mzp-c-hero-title">
-          {{ _('The Content You Love Belongs in Your Pocket.') }}
+          The Content You Love Belongs in Your Pocket.
         </h2>
 
         <div class="mzp-c-hero-cta">
-          <p>{{ pocket_fxa_button(entrypoint=_entrypoint, button_text=_('Try Pocket Now'), optional_parameters={'s': _source}, optional_attributes={'data-cta-text': 'Try Pocket Now', 'data-cta-type': 'activate pocket', 'data-cta-position': 'secondary'}) }}</p>
+          <p>{{ pocket_fxa_button(entrypoint=_entrypoint, button_text='Try Pocket Now', optional_parameters={'s': _source}, optional_attributes={'data-cta-text': 'Try Pocket Now', 'data-cta-type': 'activate pocket', 'data-cta-position': 'secondary'}) }}</p>
         </div>
       </div>
     </div>

@@ -6,16 +6,16 @@
 
 {% extends "foundation/base.html" %}
 
-{% block page_title %}{{ _('Mozilla Licensing Policies') }}{% endblock %}
+{% block page_title %}Mozilla Licensing Policies{% endblock %}
 
 {% set body_id = "licensing" %}
 
 {% block article_title %}
-  {{ _('Licensing & Trademarks') }}
+  Licensing & Trademarks
 {% endblock %}
 
 {% block article_content %}
-  <h2>{{ _('Source Code') }}</h2>
+  <h2>Source Code</h2>
   <p>
     {% trans
       osd="http://www.opensource.org/docs/osd",
@@ -40,7 +40,7 @@
     {% endtrans %}
   </p>
 
-  <h2>{{ _('Trademarks') }}</h2>
+  <h2>Trademarks</h2>
   <p>
     {% trans %}
     Although our code is free, it is very important that we strictly enforce our trademark rights, in order to be able to protect our users against people who use the marks to commit fraud. This means that, while you have considerable freedom to redistribute and modify our software, there are tight restrictions on your ability to use the Mozilla names and logos in ways which fall in the domain of trademark law, even when built into binaries that we provide.
@@ -52,7 +52,7 @@
     {% endtrans %}
   </p>
 
-  <h2>{{ _('Website Content') }}</h2>
+  <h2>Website Content</h2>
   <p>
     {% trans %}
       The text of Mozilla websites is generally licensed under a Creative Commons Attribution (CC BY) or Attribution-ShareAlike (CC BY-SA) license, as indicated. Also, certain Mozilla websites (such as addons.mozilla.org) may allow users to choose Creative Commons licenses for content that they upload to our sites.
@@ -65,7 +65,7 @@
     {% endtrans %}
   </p>
 
-  <h2>{{ _('Website Code') }}</h2>
+  <h2>Website Code</h2>
   <p>
     {% trans %}
       You may use the HTML and CSS files on www.mozilla.org or other
@@ -78,7 +78,7 @@
     {% endtrans %}
   </p>
 
-  <h2>{{ _('Executable Software') }}</h2>
+  <h2>Executable Software</h2>
   <p>
     {% trans
       binary=url('foundation.licensing.binary-components.index')
@@ -91,7 +91,7 @@
     {% endtrans %}
   </p>
 
-  <h2>{{ _('Informative, Not Authoritative') }}</h2>
+  <h2>Informative, Not Authoritative</h2>
   <p>
     {% trans %}
       This page is designed to inform, not to be the final, authoritative
@@ -114,7 +114,7 @@
     {% endtrans %}
   </p>
 
-  <h2>{{ _('Questions?') }}</h2>
+  <h2>Questions?</h2>
   <p>
     {% trans
       email="mailto:licensing@mozilla.org"

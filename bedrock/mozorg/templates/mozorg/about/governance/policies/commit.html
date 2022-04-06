@@ -6,14 +6,14 @@
 
 {% extends "mozorg/about-base.html" %}
 
-{% block page_title %}{{ _('Becoming A Mozilla Committer') }}{% endblock %}
+{% block page_title %}Becoming A Mozilla Committer{% endblock %}
 {% set body_id = "commit-access" %}
 
 
 {% block article %}
 <h1 class="mzp-c-article-title">{{ self.page_title() }}</h1>
 
-<p>{{ _('This document outlines the procedure for getting commit access to the Mozilla Foundation repositories.') }}</p>
+<p>This document outlines the procedure for getting commit access to the Mozilla Foundation repositories.</p>
 
 <p>
 {% trans policy=url('mozorg.about.governance.policies.commit.access-policy') %}
@@ -23,9 +23,9 @@
 {% endtrans %}
 </p>
 
-<h2 id="procedure">{{ _('Procedure') }}</h2>
+<h2 id="procedure">Procedure</h2>
 
-<p>{{ _('Here is a list of the steps that need to happen to become a Mozilla committer. Employment with any particular entity (including the Mozilla Foundation or Corporation) does not change the need to follow these steps.') }}</p>
+<p>Here is a list of the steps that need to happen to become a Mozilla committer. Employment with any particular entity (including the Mozilla Foundation or Corporation) does not change the need to follow these steps.</p>
 
 <ol class="mzp-u-list-styled">
   <li>{% trans policy=url('mozorg.about.governance.policies.commit.access-policy') %}
@@ -35,12 +35,12 @@
   <a href="{{ bug }}">File a bug</a> in the "Repository Account Requests" component.
   {% endtrans %}
     <ul>
-      <li>{{ _('Make the bug title of the form "Commit Access (Level X) for Fred Bloggs fred@bloggs.com"') }}</li>
-      <li>{{ _('Say what email address you want to use as your login name') }}</li>
-      <li>{{ _('If you need access to particular trees on the exceptions list, list them') }}</li>
+      <li>Make the bug title of the form "Commit Access (Level X) for Fred Bloggs fred@bloggs.com"</li>
+      <li>Say what email address you want to use as your login name</li>
+      <li>If you need access to particular trees on the exceptions list, list them</li>
     </ul>
   </li>
-  <li>{{ _('Attach your SSH <em>public</em> key to the bug - a file with extension ".pub". (Please mark it as <code>text/plain</code> when attaching it!)') }}
+  <li>Attach your SSH <em>public</em> key to the bug - a file with extension ".pub". (Please mark it as <code>text/plain</code> when attaching it!)
     <ul>
       <li>{% trans tutorial='https://help.github.com/articles/generating-ssh-keys/' %}
       GitHub has a <a href="{{ tutorial }}">useful tutorial on generating SSH keys</a>.
@@ -50,32 +50,32 @@
   <li>{% trans requirements=url('mozorg.about.governance.policies.commit.requirements') %}
     Make sure you are happy with the <a href="{{ requirements }}">Commit Access Requirements</a>.
   {% endtrans %}</li>
-  <li>{{ _('Add a comment to the bug saying “I have read, and agree to abide by, the Commit Access Requirements.”') }}</li>
-  <li>{{ _('Get your voucher(s), and/or the owner of the exception tree you want access for, to add a comment to the bug saying they support your application.') }}</li>
-  <li>{{ _('So, to recap, the bug needs:') }}
+  <li>Add a comment to the bug saying “I have read, and agree to abide by, the Commit Access Requirements.”</li>
+  <li>Get your voucher(s), and/or the owner of the exception tree you want access for, to add a comment to the bug saying they support your application.</li>
+  <li>So, to recap, the bug needs:
     <ul>
-      <li>{{ _('Declaration of what level you want and the email address to use') }}
-      <li>{{ _('SSH public key') }}
-      <li>{{ _('Comments from all the necessary vouchers') }}
+      <li>Declaration of what level you want and the email address to use
+      <li>SSH public key
+      <li>Comments from all the necessary vouchers
     </ul>
   </li>
-  <li>{{ _('A Mozilla representative will double-check that the needed info is recorded and, if so, reassign the bug to IT to have your account created.') }}</li>
-  <li>{{ _('A Mozilla IT representative will update the bug with account creation information and close the bug.') }}</li>
+  <li>A Mozilla representative will double-check that the needed info is recorded and, if so, reassign the bug to IT to have your account created.</li>
+  <li>A Mozilla IT representative will update the bug with account creation information and close the bug.</li>
 </ol>
 
-<h2 id="vouchers">{{ _('Vouchers') }}</h2>
+<h2 id="vouchers">Vouchers</h2>
 <p>
 {% trans policy=url('mozorg.about.governance.policies.commit.access-policy') %}
 You will need one or more vouchers. The <a href="{{ policy }}">Commit Access Policy</a> sets out who is allowed to vouch, and it depends on what level of access you are requesting. Each voucher must already have commit access and be confident enough in you to be associated with your check-ins. Your vouchers are responsible for your bustages in the unfortunate event that you break things and leave. They are responsible for making sure you know and follow the rules in general, act promptly to fix regressions, are aware of and respect tree closures, etc. The vouchers' responsibility extends for three months after you are granted source code commit access. If you've lived in the tree without significant issues for three months, we assume you're ready to stand on your own. If somehow there are persistent problems during the first three months, the vouchers have the authority to request revocation of your access during this period. Vouching is a big responsibility, so people will make this commitment only after due consideration. A voucher who helps people who aren't prepared get access to the source tree will find that their own credibility suffers as well.
 {% endtrans %}</p>
 
-<h2 id="revoking-commit-access">{{ _('Revoking Commit Access') }}</h2>
-<p>{{ _('If someone consistently causes difficulties with these source repositories due to poor behavior or other serious problems then commit access may be revoked. We have no precise process for this as it has been a rare or nonexistent problem to date. The process for this is for one or more committers with concerns to notify the owner of the Commit Access Policy sub-module if you have clear examples of someone whom you believe has reached this level of problem. Do not do so carelessly, or based on passing irritation or without a sense that you are not alone in your concerns. The Commit Access Policy owner will investigate or cause an investigation to occur, privately at first and perhaps completely privately.') }}</p>
+<h2 id="revoking-commit-access">Revoking Commit Access</h2>
+<p>If someone consistently causes difficulties with these source repositories due to poor behavior or other serious problems then commit access may be revoked. We have no precise process for this as it has been a rare or nonexistent problem to date. The process for this is for one or more committers with concerns to notify the owner of the Commit Access Policy sub-module if you have clear examples of someone whom you believe has reached this level of problem. Do not do so carelessly, or based on passing irritation or without a sense that you are not alone in your concerns. The Commit Access Policy owner will investigate or cause an investigation to occur, privately at first and perhaps completely privately.</p>
 
-<h2 id="dormant-accounts">{{ _('Dormant Accounts') }}</h2>
-<p>{{ _('If your account in a particular SCM is inactive for more than 6 months, it may be deactivated. However, the knowledge that you have achieved a particular level of access is retained. Therefore, getting your account reactivated is a simple matter of filing a bug asking IT to turn it back on. Such bugs should be dealt with extremely quickly.') }}</p>
+<h2 id="dormant-accounts">Dormant Accounts</h2>
+<p>If your account in a particular SCM is inactive for more than 6 months, it may be deactivated. However, the knowledge that you have achieved a particular level of access is retained. Therefore, getting your account reactivated is a simple matter of filing a bug asking IT to turn it back on. Such bugs should be dealt with extremely quickly.</p>
 
-<h2 id="problems">{{ _('Useful Information') }}</h2>
+<h2 id="problems">Useful Information</h2>
 <p>
 {% trans docs='https://firefox-source-docs.mozilla.org/', setup='https://firefox-source-docs.mozilla.org/setup/index.html', chat='https://chat.mozilla.org/#/room/#introduction:mozilla.org' %}
   You can see the <a href="{{ docs }}">Firefox Source Documentation</a> and learn <a href="{{ setup }}">how to get set up to work in it here</a>. You can also <a href="{{ chat }}">join us on our Matrix instance</a> if you're just getting started.

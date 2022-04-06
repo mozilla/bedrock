@@ -6,8 +6,8 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% block page_title %}{{ _('Mozilla Firefox Release Notes') }}{% endblock %}
-{% block page_desc %}{{ _('Release notes for each version of Firefox.') }}{% endblock %}
+{% block page_title %}Mozilla Firefox Release Notes{% endblock %}
+{% block page_desc %}Release notes for each version of Firefox.{% endblock %}
 {% block body_id %}firefox-releases-index{% endblock %}
 
 {% block page_css %}
@@ -21,8 +21,8 @@
     <a href="{{ url('firefox.new') }}">
       <span class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">Firefox</span>
     </a>
-    <h1>{{ _('Firefox Releases') }}</h1>
-    <p>{{ _('Firefox release notes are specific to each version of the application. Select your version from the list below to see the release notes for it.') }}</p>
+    <h1>Firefox Releases</h1>
+    <p>Firefox release notes are specific to each version of the application. Select your version from the list below to see the release notes for it.</p>
     <ol reversed class="c-release-list">
       {% for int_version, versions in releases -%}
       <li>

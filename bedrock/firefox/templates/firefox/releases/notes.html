@@ -37,7 +37,7 @@
 {% endif %}
 
 {% block page_title_prefix %}{% endblock %}
-{% block page_title %}{{ _('{product} {channel} {version}, See All New Features, Updates and Fixes')|f(product=release.product, channel=channel_name, version=release.version) }}{% endblock %}
+{% block page_title %}{{ release.product }} {{ channel_name }} {{ release.version }}, See All New Features, Updates and Fixes{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 {% block gtm_page_id %}{{ page_id }}{% endblock %}
 
@@ -52,7 +52,7 @@
 
 {% set channel_name = '' if release.channel == 'Release' else release.channel %}
 
-{% set download_title = download_title|default(_('Get the most recent version')) %}
+{% set download_title = download_title|default('Get the most recent version') %}
 
 {% block sub_navigation %}
 <nav class="c-sub-navigation">
@@ -107,8 +107,7 @@
       <div class="intro">
         <div class="container">
           {% if not primary_heading %}
-            {# L10n: The replacement text will be filled in with a product name. Example:  "Firefox for Android Release Notes" #}
-            {% set primary_heading = _('%s <br> Release Notes')|format(product_name) %}
+            {% set primary_heading = '{0} <br> Release Notes'|f(product_name)|safe %}
           {% endif %}
           {% if release.product == 'Firefox for Android' %}
             {% set feedback_url='https://input.mozilla.org/feedback/android/' + release.version + '?utm_source=releasenotes' %}
@@ -116,7 +115,7 @@
             {% set feedback_url='https://input.mozilla.org/feedback/firefox/' + release.version + '?utm_source=releasenotes' %}
           {% endif %}
           {% set bugzilla_url='https://bugzilla.mozilla.org/' %}
-          {% set call_out_desc = _('Release Notes tell you what’s new in Firefox. As always, we welcome your <a href="%(feedback)s">feedback</a>. You can also <a href="%(bugzilla)s">file a bug in Bugzilla</a> or see the <a href="%(check)s">system requirements</a> of this release.')|format(feedback=feedback_url, bugzilla=bugzilla_url, check=check_url) %}
+          {% set call_out_desc = 'Release Notes tell you what’s new in Firefox. As always, we welcome your <a href="%(feedback)s">feedback</a>. You can also <a href="%(bugzilla)s">file a bug in Bugzilla</a> or see the <a href="%(check)s">system requirements</a> of this release.'|format(feedback=feedback_url, bugzilla=bugzilla_url, check=check_url) %}
           {% call call_out(
             heading_level=1,
             title=primary_heading,
@@ -139,19 +138,19 @@
       <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
         <div class="mzp-l-sidebar">
           <h2 class="c-release-summary">
-            <div class="c-release-version">{{ _('{version}')|f(version=release.version) }}</div>
+            <div class="c-release-version">{{ release.version }}</div>
             <div class="c-release-product">{{ release.product }} {{ release.channel }}</div>
           </h2>
           {% if release.is_public %}
-            <p class="c-release-date">{{ _('{date}')|f(date=release.release_date|l10n_format_date) }}</p>
+            <p class="c-release-date">{{ release.release_date|l10n_format_date }}</p>
           {% endif %}
         </div>
         <div class="mzp-l-main mzp-l-article">
           {% if release.is_public %}
-            <div class="c-release-first-title">{{ _('Version {version}, first offered to {channel} channel users on {date}')|f(channel=release.channel, date=release.release_date|l10n_format_date, version=release.version) }}</div>
+            <div class="c-release-first-title">Version {{ release.version }}, first offered to {{ release.channel }} channel users on {{ release.release_date|l10n_format_date }}</div>
             <div class="c-release-first-text">{{ release.text|safe }}</div>
           {% else %}
-            <h2 class="c-release-draft-title">{{ _('We’re still preparing the notes for this release, and will post them here when they are ready. Please check back later.') }}</h2>
+            <h2 class="c-release-draft-title">We’re still preparing the notes for this release, and will post them here when they are ready. Please check back later.</h2>
             {% block extra_draft_description %}{% endblock %}
           {% endif %}
         </div>
@@ -247,7 +246,7 @@
           <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
             <div class="mzp-l-sidebar">
               <img class="sidebar-icon" alt="" src="{{ static('protocol/img/icons/developer.svg') }}" width="30" height="30">
-              <h3>{{ _('Developer') }}</h3>
+              <h3>Developer</h3>
             </div>
             <div class="mzp-l-main mzp-l-article">
               <ul>
@@ -265,7 +264,7 @@
           <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
             <div class="mzp-l-sidebar">
               <img class="sidebar-icon" alt="" src="{{ static('protocol/img/icons/globe.svg') }}" width="30" height="30">
-              <h3>{{ _('Web Platform') }}</h3>
+              <h3>Web Platform</h3>
             </div>
             <div class="mzp-l-main mzp-l-article">
               <ul>
@@ -314,7 +313,7 @@
         {% if loop.first %}
           <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="known">
             <img class="sidebar-icon" alt="" src="{{ static('protocol/img/icons/stop.svg') }}" width="30" height="30">
-            <div class="mzp-l-sidebar"><h3>{{ _('unresolved') }}</h3></div>
+            <div class="mzp-l-sidebar"><h3>unresolved</h3></div>
             <div class="mzp-l-main mzp-l-article">
               <ul>
         {% endif %}
@@ -355,7 +354,7 @@
 
     {% if download_all_link %}
     <section class="all-download">
-      <a href="{{ download_all_link }}">{{ _('All %s downloads')|format(product_name) }}</a>
+      <a href="{{ download_all_link }}">All {{ product_name }} downloads</a>
     </section>
     {% endif %}
 
@@ -363,25 +362,25 @@
     <footer class="c-release-footer">
       <div class="mzp-l-content">
         <div class="c-release-footer-col">
-          <h2>{{ _('Need help or want to leave feedback?') }}</h2>
-          <a rel="external" href="https://bugzilla.mozilla.org/enter_bug.cgi">{{ _('File a bug') }}</a>
-          <a rel="external" href="https://input.mozilla.org/feedback?utm_source=releasenotes">{{ _('Leave feedback') }}</a>
+          <h2>Need help or want to leave feedback?</h2>
+          <a rel="external" href="https://bugzilla.mozilla.org/enter_bug.cgi">File a bug</a>
+          <a rel="external" href="https://input.mozilla.org/feedback?utm_source=releasenotes">Leave feedback</a>
         </div>
         <div class="c-release-footer-col">
-          <h2>{{ _('Get Involved') }}</h2>
-          <p>{{ _('Did you know that most of the content in Firefox Support was written by volunteers?') }}</p>
-          <a rel="external" href="https://support.mozilla.org/get-involved">{{ _('Find out more') }}</a>
+          <h2>Get Involved</h2>
+          <p>Did you know that most of the content in Firefox Support was written by volunteers?</p>
+          <a rel="external" href="https://support.mozilla.org/get-involved">Find out more</a>
         </div>
         <div class="c-release-footer-col">
-          <h2>{{ _('Other Resources') }}</h2>
+          <h2>Other Resources</h2>
           {% block extra_resources %}{% endblock %}
-          <a rel="external" href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/{{ release.major_version }}">{{ _('Developer Information') }}</a>
-          <a rel="external"  href="{{ release.get_bug_search_url() }}">{{ _('Complete list of changes for this release') }}</a>
-          <a rel="external" href="https://blog.mozilla.org/press/kits/">{{ _('Press Kit') }}</a>
-          <a rel="external" href="https://blog.mozilla.org/press/">{{ _('Mozilla and Firefox News') }}</a>
-          <a href="{{ url('firefox.enterprise.index') }}">{{ _('Firefox Extended Support Release') }}</a>
-          <a href="{{ url('firefox.releases.index') }}">{{ _('All Firefox for Desktop Releases') }}</a>
-          <a href="{{ url('firefox.more') }}">{{ _('Learn more about Firefox') }}</a>
+          <a rel="external" href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/{{ release.major_version }}">Developer Information</a>
+          <a rel="external"  href="{{ release.get_bug_search_url() }}">Complete list of changes for this release</a>
+          <a rel="external" href="https://blog.mozilla.org/press/kits/">Press Kit</a>
+          <a rel="external" href="https://blog.mozilla.org/press/">Mozilla and Firefox News</a>
+          <a href="{{ url('firefox.enterprise.index') }}">Firefox Extended Support Release</a>
+          <a href="{{ url('firefox.releases.index') }}">All Firefox for Desktop Releases</a>
+          <a href="{{ url('firefox.more') }}">Learn more about Firefox</a>
         </div>
       </div>
     </footer>
@@ -407,7 +406,7 @@
   <li id="note-{{ note.id }}">
     {{ note.note|safe }}
     {% if release.channel == 'Nightly' and note.bug -%}
-    <span class="bug-id"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id={{ note.bug }}">{{ _('Bug %d')|format(note.bug) }}</a></span>
+    <span class="bug-id"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id={{ note.bug }}">Bug {{ note.bug }}</a></span>
     {%- endif %}
   </li>
 {% endmacro %}

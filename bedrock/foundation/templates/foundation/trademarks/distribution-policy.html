@@ -6,10 +6,10 @@
 
 {% extends "foundation/base.html" %}
 
-{% block page_title %}{{ _('Distribution Policy for Mozilla Software') }}{% endblock %}
+{% block page_title %}Distribution Policy for Mozilla Software{% endblock %}
 
 {% block article_title %}
-  {{ _('Distribution Policy for Mozilla Software') }}
+  Distribution Policy for Mozilla Software
 {% endblock %}
 
 {% block article_content %}
@@ -20,11 +20,11 @@
   </p>
 
   <p>
-  {{_('The Mozilla Public License does not contain grant permission to use Mozilla trademarks, as is set out in its section 2.1. "Grants":')}}
+  The Mozilla Public License does not contain grant permission to use Mozilla trademarks, as is set out in its section 2.1. "Grants":
   </p>
 
   <blockquote class="t-small" cite="{{ url('mozorg.mpl.2.0.index') }}">
-    <p>{{ _('"Each Contributor hereby grants You a world-wide, royalty-free, non-exclusive license: (a) under intellectual property rights (<em>other than patent or trademark</em>)…"') }}</p>
+    <p>"Each Contributor hereby grants You a world-wide, royalty-free, non-exclusive license: (a) under intellectual property rights (<em>other than patent or trademark</em>)…"</p>
   </blockquote>
 
   <p>
@@ -33,7 +33,7 @@
     {% endtrans %}
   </p>
 
-  <h2>{{ _('Unaltered Software Distribution Policy') }}</h2>
+  <h2>Unaltered Software Distribution Policy</h2>
 
   <p>
     {% trans mozorg=url('mozorg.home') %}
@@ -41,18 +41,18 @@
     {% endtrans %}
   </p>
   <ul class="mzp-u-list-styled">
-    <li>{{_('You may not charge for the software. That means:') }}
+    <li>You may not charge for the software. That means:
       <ul>
-        <li>{{ _('Distribution may not be subject to any fee.') }}</li>
-        <li>{{ _('Distribution may not be tied to purchasing a product or service.') }}</li>
+        <li>Distribution may not be subject to any fee.</li>
+        <li>Distribution may not be tied to purchasing a product or service.</li>
       </ul>
     </li>
 
-    <li>{{ _('You may not collect personal information in the context of your distribution of the software.') }}</li>
+    <li>You may not collect personal information in the context of your distribution of the software.</li>
 
-    <li>{{ _('You may not add to, remove, or change any part of the software, including the Mozilla trademarks themselves. For example, you may not add any extensions to Firefox, change default settings, or alter search codes.') }}</li>
+    <li>You may not add to, remove, or change any part of the software, including the Mozilla trademarks themselves. For example, you may not add any extensions to Firefox, change default settings, or alter search codes.</li>
 
-    <li>{{ _('You may not modify the installation process of the software or use it to install any other themes, plugins, extensions, or software.') }}</li>
+    <li>You may not modify the installation process of the software or use it to install any other themes, plugins, extensions, or software.</li>
 
     <li>
       {% trans
@@ -62,7 +62,7 @@
       {% endtrans %}
     </li>
 
-    <li>{{ _('When distributing you must distribute the most recent version of Firefox and other Mozilla software.') }}</li>
+    <li>When distributing you must distribute the most recent version of Firefox and other Mozilla software.</li>
 
     <li>
       {% trans %}
@@ -77,7 +77,7 @@
     {% endtrans %}
   </p>
 
-  <h2>{{ _('Modified Versions Require Prior Written Permission') }}</h2>
+  <h2>Modified Versions Require Prior Written Permission</h2>
 
   <p>
     {% trans %}
@@ -86,14 +86,14 @@
   </p>
 
   <ul class="mzp-u-list-styled">
-    <li>{{ _('Changes requiring Mozilla’s prior written permission include (but are not limited to):') }}
+    <li>Changes requiring Mozilla’s prior written permission include (but are not limited to):
       <ul>
-        <li>{{ _('Changing the default home page or adding bookmarks,') }}</li>
-        <li>{{ _('Adding, modifying, or deleting source files,') }}</li>
-        <li>{{ _('Adding, modifying, or deleting content from installer files,') }}</li>
-        <li>{{ _('File location changes,') }}</li>
-        <li>{{ _('Adding extensions, add-ons or plugins, or') }}</li>
-        <li>{{ _('Installing themes other than those available in the most recent stable version of Firefox available at Mozilla.org.') }}</li>
+        <li>Changing the default home page or adding bookmarks,</li>
+        <li>Adding, modifying, or deleting source files,</li>
+        <li>Adding, modifying, or deleting content from installer files,</li>
+        <li>File location changes,</li>
+        <li>Adding extensions, add-ons or plugins, or</li>
+        <li>Installing themes other than those available in the most recent stable version of Firefox available at Mozilla.org.</li>
       </ul>
     </li>
   </ul>
@@ -103,7 +103,7 @@
     If you wish to distribute a modified version of Firefox or other Mozilla software with Mozilla trademarks please contact us with your request at <a href="{{ permissions }}">trademark-permissions@mozilla.com</a>.
     {% endtrans %}
   </p>
-  <h4>{{ _('Mozilla General Trademark Guidelines') }}</h4>
+  <h4>Mozilla General Trademark Guidelines</h4>
   <p>
     {% trans trademark_guidlines=url('foundation.trademarks.policy') %}
     Mozilla’s general <a href="{{ trademark_guidlines }}" >trademark guidelines</a> include more information about permitted uses of our trademarks.

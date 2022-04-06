@@ -6,7 +6,7 @@
 
   {% extends "base-article.html" %}
 
-  {% block page_title %}{{_('Speaker Request Form')}}{% endblock %}
+  {% block page_title %}Speaker Request Form{% endblock %}
 
   {% block page_css %}
   {{ css_bundle('protocol-emphasis-box') }}
@@ -19,12 +19,12 @@
 
   {% block article %}
   <header>
-    <h1 class="mzp-c-article-title">{{_('Speaker request form')}}</h1>
+    <h1 class="mzp-c-article-title">Speaker request form</h1>
   </header>
 
   {% if not form_success %}
   <h2>
-    {{ _('Please complete and submit the form below to request a speaker from Mozilla for your upcoming event.') }}
+    Please complete and submit the form below to request a speaker from Mozilla for your upcoming event.
   </h2>
 
   {% endif %}
@@ -40,7 +40,7 @@
   {% if form.errors %}
   <aside class="mzp-c-notification-bar mzp-t-error">
     <p>
-      <strong>{{ _('An error has occurred with your submission. Please review your information and try again.') }}</strong>
+      <strong>An error has occurred with your submission. Please review your information and try again.</strong>
     </p>
   </aside>
   {% endif %}
@@ -51,66 +51,66 @@
 
     <fieldset class="mzp-c-field-set">
       <div class="mzp-c-field {% if form.sr_event_name.errors %}mzp-is-error{% endif %}">
-        <label class="mzp-c-field-label" for="sr_event_name">{{ _('Event Name') }}</label>
+        <label class="mzp-c-field-label" for="sr_event_name">Event Name</label>
         {{ field_with_attrs(form.sr_event_name, class='mzp-c-field-control'|safe) }}
         <div class="mzp-c-field-info">{{ form.sr_event_name.errors }}</div>
       </div>
 
       <div class="mzp-c-field {% if form.sr_event_url.errors %}mzp-is-error{% endif %}">
-        <label class="mzp-c-field-label" for="sr_event_url">{{ _('Event URL') }}</label>
+        <label class="mzp-c-field-label" for="sr_event_url">Event URL</label>
         {{ field_with_attrs(form.sr_event_url, class='mzp-c-field-control'|safe) }}
         <div class="mzp-c-field-info">{{ form.sr_event_url.errors }}</div>
       </div>
 
       <div class="mzp-c-field {% if form.sr_event_date.errors %}mzp-is-error{% endif %}">
-        <label class="mzp-c-field-label"  for="sr_event_date">{{ _('Date') }}</label>
+        <label class="mzp-c-field-label"  for="sr_event_date">Date</label>
         {{ field_with_attrs(form.sr_event_date, class='mzp-c-field-control'|safe) }}
-        <p class="mzp-c-field-info date-note">{{ _('2015-03-14 or March 14, 2015') }}</p>
+        <p class="mzp-c-field-info date-note">2015-03-14 or March 14, 2015</p>
         <div class="mzp-c-field-info">{{ form.sr_event_date.errors }}</div>
       </div>
 
       <div class="mzp-c-field {% if form.sr_event_time.errors %}mzp-is-error{% endif %}">
-        <label class="mzp-c-field-label"  for="sr_event_time">{{ _('Time') }}</label>
+        <label class="mzp-c-field-label"  for="sr_event_time">Time</label>
         {{ field_with_attrs(form.sr_event_time, class='mzp-c-field-control'|safe) }}
-        <p class="mzp-c-field-info time-note">{{ _('2:30 PM or 14:30') }}</p>
+        <p class="mzp-c-field-info time-note">2:30 PM or 14:30</p>
         <div class="mzp-c-field-info">{{ form.sr_event_time.errors }}</div>
       </div>
 
       <div class="mzp-c-field {% if form.sr_guest_speaker1.errors %}mzp-is-error{% endif %}">
-        <label class="mzp-c-field-label" for="sr_guest_speaker1">{{ _('Guest Speaker Choice #1') }}</label>
+        <label class="mzp-c-field-label" for="sr_guest_speaker1">Guest Speaker Choice #1</label>
         {{ field_with_attrs(form.sr_guest_speaker1, class='mzp-c-field-control'|safe) }}
         <div class="mzp-c-field-info">{{ form.sr_guest_speaker1.errors }}</div>
       </div>
 
       <div class="mzp-c-field {% if form.sr_guest_speaker2.errors %}mzp-is-error{% endif %}">
-        <label class="mzp-c-field-label" for="sr_guest_speaker2">{{ _('Guest Speaker Choice #2') }}</label>
+        <label class="mzp-c-field-label" for="sr_guest_speaker2">Guest Speaker Choice #2</label>
         {{ field_with_attrs(form.sr_guest_speaker2, class='mzp-c-field-control'|safe) }}
         <div class="mzp-c-field-info">{{ form.sr_guest_speaker2.errors }}</div>
       </div>
     </fieldset>
 
     <fieldset class="mzp-c-field-set">
-      <legend class="mzp-c-form-subtitle">{{ _('Contact Information') }}</legend>
+      <legend class="mzp-c-form-subtitle">Contact Information</legend>
       <div class="mzp-c-field {% if form.sr_contact_name.errors %}mzp-is-error{% endif %}">
-        <label class="mzp-c-field-label" for="sr_contact_name">{{ _('Name') }}</label>
+        <label class="mzp-c-field-label" for="sr_contact_name">Name</label>
         {{ field_with_attrs(form.sr_contact_name, class='mzp-c-field-control'|safe) }}
         <div class="mzp-c-field-info">{{ form.sr_contact_name.errors }}</div>
       </div>
 
       <div class="mzp-c-field {% if form.sr_contact_title.errors %}mzp-is-error{% endif %}">
-        <label class="mzp-c-field-label" for="sr_contact_title">{{ _('Title') }}</label>
+        <label class="mzp-c-field-label" for="sr_contact_title">Title</label>
         {{ field_with_attrs(form.sr_contact_title, class='mzp-c-field-control'|safe) }}
         <div class="mzp-c-field-info">{{ form.sr_contact_title.errors }}</div>
       </div>
 
       <div class="mzp-c-field {% if form.sr_contact_company.errors %}mzp-is-error{% endif %}">
-        <label class="mzp-c-field-label" for="sr_contact_company">{{ _('Company') }}</label>
+        <label class="mzp-c-field-label" for="sr_contact_company">Company</label>
         {{ field_with_attrs(form.sr_contact_company, class='mzp-c-field-control'|safe) }}
         <div class="mzp-c-field-info">{{ form.sr_contact_company.errors }}</div>
       </div>
 
       <div class="mzp-c-field {% if form.sr_contact_phone.errors %}mzp-is-error{% endif %}">
-        <label class="mzp-c-field-label" for="sr_contact_phone">{{ _('Phone') }}</label>
+        <label class="mzp-c-field-label" for="sr_contact_phone">Phone</label>
         {{ field_with_attrs(form.sr_contact_phone, class='mzp-c-field-control'|safe) }}
         <div class="mzp-c-field-info">{{ form.sr_contact_phone.errors }}</div>
       </div>
@@ -118,140 +118,140 @@
         {{ field_with_attrs(form.office_fax, class='mzp-c-field-control'|safe) }}
 
       <div class="mzp-c-field {% if form.sr_contact_email.errors %}mzp-is-error{% endif %}">
-        <label class="mzp-c-field-label" for="sr_contact_email">{{ _('Email') }}</label>
+        <label class="mzp-c-field-label" for="sr_contact_email">Email</label>
         {{ field_with_attrs(form.sr_contact_email, class='mzp-c-field-control'|safe) }}
         <div class="mzp-c-field-info">{{ form.sr_contact_email.errors }}</div>
       </div>
 
       <div class="mzp-c-field {% if form.sr_contact_company_url.errors %}mzp-is-error{% endif %}">
-        <label class="mzp-c-field-label" for="sr_contact_company_url">{{ _('Company URL') }}</label>
+        <label class="mzp-c-field-label" for="sr_contact_company_url">Company URL</label>
         {{ field_with_attrs(form.sr_contact_company_url, class='mzp-c-field-control'|safe) }}
         <div class="mzp-c-field-info">{{ form.sr_contact_company_url.errors }}</div>
       </div>
     </fieldset>
 
     <fieldset class="mzp-c-field-set">
-      <legend class="mzp-c-form-subtitle">{{ _('Event Details') }}</legend>
+      <legend class="mzp-c-form-subtitle">Event Details</legend>
 
       <div class="mzp-c-field {% if form.sr_event_venue.errors %}mzp-is-error{% endif %}">
-        <label class="mzp-c-field-label" for="sr_event_venue">{{ _('Venue') }}</label>
+        <label class="mzp-c-field-label" for="sr_event_venue">Venue</label>
         {{ field_with_attrs(form.sr_event_venue, class='mzp-c-field-control'|safe) }}
         <div class="mzp-c-field-info">{{ form.sr_event_venue.errors }}</div>
       </div>
 
       <div class="mzp-c-field {% if form.sr_event_theme.errors %}mzp-is-error{% endif %}">
-        <label class="mzp-c-field-label" for="sr_event_theme">{{ _('Theme') }}</label>
+        <label class="mzp-c-field-label" for="sr_event_theme">Theme</label>
         {{ field_with_attrs(form.sr_event_theme, class='mzp-c-field-control'|safe) }}
         <div class="mzp-c-field-info">{{ form.sr_event_theme.errors }}</div>
       </div>
 
       <div class="mzp-c-field {% if form.sr_event_goal.errors %}mzp-is-error{% endif %}">
-        <label class="mzp-c-field-label" for="sr_event_goal">{{ _('Goal') }}</label>
+        <label class="mzp-c-field-label" for="sr_event_goal">Goal</label>
         {{ field_with_attrs(form.sr_event_goal, class='mzp-c-field-control'|safe) }}
         <div class="mzp-c-field-info">{{ form.sr_event_goal.errors }}</div>
       </div>
 
       <div class="mzp-c-field {% if form.sr_event_format.errors %}mzp-is-error{% endif %}">
-        <label class="mzp-c-field-label" for="sr_event_format">{{ _('Format') }}</label>
+        <label class="mzp-c-field-label" for="sr_event_format">Format</label>
         {{ field_with_attrs(form.sr_event_format, class='mzp-c-field-control'|safe) }}
         <div class="mzp-c-field-info">{{ form.sr_event_format.errors }}</div>
       </div>
 
       <div class="mzp-c-field {% if form.sr_event_audience_size.errors %}mzp-is-error{% endif %}">
-        <label class="mzp-c-field-label" for="sr_event_audience_size">{{ _('Expected Audience Size') }}</label>
+        <label class="mzp-c-field-label" for="sr_event_audience_size">Expected Audience Size</label>
         {{ field_with_attrs(form.sr_event_audience_size, class='mzp-c-field-control'|safe) }}
         <div class="mzp-c-field-info">{{ form.sr_event_audience_size.errors }}</div>
       </div>
 
       <div class="mzp-c-field {% if form.sr_event_audience_demographics.errors %}mzp-is-error{% endif %}">
-        <label class="mzp-c-field-label" for="sr_event_audience_demographics">{{ _('Audience Demographics') }}</label>
+        <label class="mzp-c-field-label" for="sr_event_audience_demographics">Audience Demographics</label>
         {{ field_with_attrs(form.sr_event_audience_demographics, class='mzp-c-field-control'|safe) }}
         <div class="mzp-c-field-info">{{ form.sr_event_audience_demographics.errors }}</div>
       </div>
 
       <div class="mzp-c-field {% if form.sr_event_speakers_confirmed.errors %}mzp-is-error{% endif %}">
-        <label class="mzp-c-field-label" or="sr_event_speakers_confirmed">{{ _('Confirmed Speakers') }}</label>
+        <label class="mzp-c-field-label" or="sr_event_speakers_confirmed">Confirmed Speakers</label>
         {{ field_with_attrs(form.sr_event_speakers_confirmed, class='mzp-c-field-control'|safe) }}
         <div class="mzp-c-field-info">{{ form.sr_event_speakers_confirmed.errors }}</div>
       </div>
 
       <div class="mzp-c-field {% if form.sr_event_speakers_invited.errors %}mzp-is-error{% endif %}">
-        <label class="mzp-c-field-label" for="sr_event_speakers_invited">{{ _('Invited Speakers') }}</label>
+        <label class="mzp-c-field-label" for="sr_event_speakers_invited">Invited Speakers</label>
         {{ field_with_attrs(form.sr_event_speakers_invited, class='mzp-c-field-control'|safe) }}
         <div class="mzp-c-field-info">{{ form.sr_event_speakers_invited.errors }}</div>
       </div>
 
       <div class="mzp-c-field {% if form.sr_event_speakers_past.errors %}mzp-is-error{% endif %}">
-        <label class="mzp-c-field-label" for="sr_event_speakers_past">{{ _('Past Speakers') }}</label>
+        <label class="mzp-c-field-label" for="sr_event_speakers_past">Past Speakers</label>
         {{ field_with_attrs(form.sr_event_speakers_past, class='mzp-c-field-control'|safe) }}
         <div class="mzp-c-field-info">{{ form.sr_event_speakers_past.errors }}</div>
       </div>
 
       <div class="mzp-c-field {% if form.sr_event_media_coverage.errors %}mzp-is-error{% endif %}">
-        <label class="mzp-c-field-label" for="sr_event_media_coverage">{{ _('Media Coverage') }}</label>
+        <label class="mzp-c-field-label" for="sr_event_media_coverage">Media Coverage</label>
         {{ field_with_attrs(form.sr_event_media_coverage, class='mzp-c-field-control'|safe) }}
         <div class="mzp-c-field-info">{{ form.sr_event_media_coverage.errors }}</div>
       </div>
 
       <div class="mzp-c-field {% if form.sr_event_sponsors.errors %}mzp-is-error{% endif %}">
-        <label class="mzp-c-field-label" for="sr_event_sponsors">{{ _('Event Sponsors') }}</label>
+        <label class="mzp-c-field-label" for="sr_event_sponsors">Event Sponsors</label>
         {{ field_with_attrs(form.sr_event_sponsors, class='mzp-c-field-control'|safe) }}
         <div class="mzp-c-field-info">{{ form.sr_event_sponsors.errors }}</div>
       </div>
 
       <div class="mzp-c-field {% if form.sr_event_confirmation_deadline.errors %}mzp-is-error{% endif %}">
-        <label class="mzp-c-field-label" for="sr_event_confirmation_deadline">{{ _('Confirmation Deadline') }}</label>
+        <label class="mzp-c-field-label" for="sr_event_confirmation_deadline">Confirmation Deadline</label>
         {{ field_with_attrs(form.sr_event_confirmation_deadline, class='mzp-c-field-control'|safe) }}
-        <p class="mzp-c-field-info">{{ _('2015-03-14 or March 14, 2015') }}</p>
+        <p class="mzp-c-field-info">2015-03-14 or March 14, 2015</p>
         <div class="mzp-c-field-info">{{ form.sr_event_confirmation_deadline.errors }}</div>
       </div>
     </fieldset>
 
     <fieldset class="mzp-c-field-set">
-      <legend class="mzp-c-form-subtitle">{{ _('Presentation Details') }}</legend>
+      <legend class="mzp-c-form-subtitle">Presentation Details</legend>
 
       <div>
-        <label class="mzp-c-field-label" for="sr_presentation_type">{{ _('Type of Presentation') }}</label>
+        <label class="mzp-c-field-label" for="sr_presentation_type">Type of Presentation</label>
         {{ form.sr_presentation_type }}
       </div>
 
       <div class="mzp-c-field {% if form.sr_presentation_topic.errors %}mzp-is-error{% endif %}">
-        <legend class="mzp-c-field-label">{{ _('Topic of Presentation') }}</legend>
+        <legend class="mzp-c-field-label">Topic of Presentation</legend>
         {{ field_with_attrs(form.sr_presentation_topic, class='mzp-c-field-control'|safe) }}
         <div class="mzp-c-field-info">{{ form.sr_presentation_topic.errors }}</div>
       </div>
 
       <div class="mzp-c-field {% if form.sr_presentation_length.errors %}mzp-is-error{% endif %}">
-        <label class="mzp-c-field-label" for="sr_presentation_length">{{ _('Expected Length') }}</label>
+        <label class="mzp-c-field-label" for="sr_presentation_length">Expected Length</label>
         {{ field_with_attrs(form.sr_presentation_length, class='mzp-c-field-control'|safe) }}
-        <p class="mzp-c-field-info">({{ _('in hours, e.g. 2.5') }})</p>
+        <p class="mzp-c-field-info">(in hours, e.g. 2.5)</p>
         <div class="mzp-c-field-info">{{ form.sr_presentation_length.errors }}</div>
       </div>
     </fieldset>
 
     <fieldset class="mzp-c-field-set">
-      <legend class="mzp-c-form-subtitle">{{ _('Additional Information') }}</legend>
+      <legend class="mzp-c-form-subtitle">Additional Information</legend>
 
       <div class="mzp-c-field {% if form.sr_attachment.errors %}mzp-is-error{% endif %}" id="sr_attachment">
-        <label class="mzp-c-field-label" for="sr_attachment">{{ _('PDF Attachment') }}</label>
+        <label class="mzp-c-field-label" for="sr_attachment">PDF Attachment</label>
         {{ field_with_attrs(form.sr_attachment, class='mzp-c-field-control'|safe) }}
         <div class="mzp-c-field-info">
-          <em>{{ _('Agenda, media list, etc.') }}</em>
-          <p>{{ _('Maximum file size is 5 MB.') }}</p>
+          <em>Agenda, media list, etc.</em>
+          <p>Maximum file size is 5 MB.</p>
         </div>
         <div class="mzp-c-field-info">{{ form.sr_attachment.errors }}</div>
       </div>
     </fieldset>
     <div class="mzp-c-button-container">
-      <button type="submit" name="submit_form" class="mzp-c-button mzp-t-primary">{{ _('Submit') }}</button>
+      <button type="submit" name="submit_form" class="mzp-c-button mzp-t-primary">Submit</button>
     </div>
   </form>
 
   {% else %}
   <aside class="mzp-c-notification-bar mzp-t-success">
     <p>
-      <strong>{{ _('Your request has been sent.') }}</strong>
-      {{ _('Thank you for your interest.') }}
+      <strong>Your request has been sent.</strong>
+      Thank you for your interest.
     </p>
   </aside>
   {% endif %}

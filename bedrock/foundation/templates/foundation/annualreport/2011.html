@@ -6,7 +6,7 @@
 
 {% extends "base-article.html" %}
 
-{% block page_title %}{{ _('The State of Mozilla: 2011 Annual Report') }}{% endblock %}
+{% block page_title %}The State of Mozilla: 2011 Annual Report{% endblock %}
 {% block body_id %}annual-2011{% endblock %}
 {% block body_class %}mzp-t-mozilla{% endblock %}
 
@@ -16,12 +16,12 @@
 {% endblock %}
 
 {% set navigation_bar = [
-  ('#welcome', 'welcome', _('Welcome')),
-  ('#mobilized', 'mobilized', _('Mobilized') ),
-  ('#action', 'action', _('Action')),
-  ('#community', 'community', _('Community')),
-  ('#sustainability', 'sustainability', _('Sustainability')),
-  (url('foundation.annualreport.2011faq'), 'faq', _('FAQ')),
+  ('#welcome', 'welcome', 'Welcome'),
+  ('#mobilized', 'mobilized', 'Mobilized'),
+  ('#action', 'action', 'Action'),
+  ('#community', 'community', 'Community'),
+  ('#sustainability', 'sustainability', 'Sustainability'),
+  (url('foundation.annualreport.2011faq'), 'faq', 'FAQ'),
 ] %}
 
 {% block side_nav %}
@@ -31,14 +31,14 @@
 {% block article %}
   <article id="main-content">
     <header>
-      <h1 class="mzp-c-article-title">{{ _('The State of Mozilla') }}</h1>
+      <h1 class="mzp-c-article-title">The State of Mozilla</h1>
     </header>
 
     <section id="welcome" class="section">
 
       <figure class="media">
-        <a href="https://videos.cdn.mozilla.net/brand/Mozilla_2011_Story.webm" data-video-source="https://videos.cdn.mozilla.net/brand/Mozilla_2011_Story" title="{{ _('Click to play this video') }}">
-          <img src="{{ static('img/foundation/annualreport/2011/vid-welcome.jpg') }}" alt="{{ _('Watch a brief video about Mozilla and our mission') }}" width="380">
+        <a href="https://videos.cdn.mozilla.net/brand/Mozilla_2011_Story.webm" data-video-source="https://videos.cdn.mozilla.net/brand/Mozilla_2011_Story" title="Click to play this video">
+          <img src="{{ static('img/foundation/annualreport/2011/vid-welcome.jpg') }}" alt="Watch a brief video about Mozilla and our mission" width="380">
         </a>
       </figure>
 
@@ -82,7 +82,7 @@
     </section>
 
     <section id="mobilized" class="section">
-      <h2 class="section-title">{{ _('Mozilla Mobilized') }}</h2>
+      <h2 class="section-title">Mozilla Mobilized</h2>
 
       <section class="sub-section mob-intro">
         <div class="overlay-wrap">
@@ -120,7 +120,7 @@
       </section>
 
       <section class="sub-section">
-        <h3>{{ _('Firefox OS') }}</h3>
+        <h3>Firefox OS</h3>
 
         <div class="overlay-wrap">
           <aside class="pull">
@@ -174,13 +174,12 @@
       </section>
 
       <section class="sub-section">
-        <h3>{{ _('Firefox for Android') }}</h3>
+        <h3>Firefox for Android</h3>
 
         <img class="media" src="{{ static('img/foundation/annualreport/2011/fxandroid-phone.png') }}" alt="">
 
         <div class="right overlay-wrap">
-          {# L10n: "Fast. Smart. Safe." is a slogan for Firefox for Android. It appears here as three separate strings for styling and layout purposes. #}
-          <h4>{{ _('Fast.') }} {{ _('Smart.') }} {{ _('Safe.') }}</h4>
+          <h4>Fast. Smart. Safe.</h4>
 
           <div class="overlay">
             <p>
@@ -204,7 +203,7 @@
       </section>
 
       <section class="sub-section">
-        <h3>{{ _('Firefox for Windows, Mac and Linux') }}</h3>
+        <h3>Firefox for Windows, Mac and Linux</h3>
 
         <div class="overlay-wrap">
           <aside class="pull">
@@ -252,7 +251,7 @@
       </section>
 
       <section class="sub-section">
-        <h3>{{ _('Webmaker: Teaching the world the Web') }}</h3>
+        <h3>Webmaker: Teaching the world the Web</h3>
 
         <div class="overlay-wrap">
           <aside class="pull">
@@ -294,7 +293,7 @@
 
       <div class="sub-section">
         <section class="c-media">
-          <h3>{{ _('Webmaker: Video') }}</h3>
+          <h3>Webmaker: Video</h3>
 
           {{ video(
               'webmakers-instructors.mp4',
@@ -306,7 +305,7 @@
       </div>
 
       <section class="sub-section">
-        <h3>{{ _('Advocating for Web standards') }}</h3>
+        <h3>Advocating for Web standards</h3>
 
         <div class="overlay-wrap">
 
@@ -352,7 +351,7 @@
     </section>
 
     <section id="action" class="section">
-      <h2 class="section-title">{{ _('Action') }}</h2>
+      <h2 class="section-title">Action</h2>
 
       <section class="sub-section">
         <div class="overlay-wrap">
@@ -381,7 +380,7 @@
       </section>
 
       <section class="sub-section">
-        <h3>{{ _('Do Not Track') }}</h3>
+        <h3>Do Not Track</h3>
 
         <div class="overlay-wrap">
           <img class="media" src="{{ static('img/foundation/annualreport/2011/logo-donottrack.png') }}" alt="">
@@ -425,14 +424,13 @@
       </section>
 
       <section class="sub-section">
-        {# L10n: These acronyms don't require translation, but the structure of the heading may change for some locales. #}
-        <h3>{{ _('SOPA / PIPA & ACTA') }}</h3>
+        <h3>SOPA / PIPA & ACTA</h3>
 
         <div class="overlay-wrap">
           <img class="media" src="{{ static('img/foundation/annualreport/2011/act-sopa.jpg') }}" alt="">
 
           <div class="overlay">
-            <h4>{{ _('SOPA/PIPA') }}</h4>
+            <h4>SOPA/PIPA</h4>
 
             <p>
             {% trans %}
@@ -476,7 +474,7 @@
       </section>
 
       <section class="sub-section">
-        <h3>{{ _('Firefox Flicks') }}</h3>
+        <h3>Firefox Flicks</h3>
 
         <div class="overlay-wrap">
           <img class="media" src="{{ static('img/foundation/annualreport/2011/logo-firefoxflicks.png') }}" alt="">
@@ -499,7 +497,7 @@
       </section>
 
       <section class="sub-section">
-        <h3>{{ _('Collusion') }}</h3>
+        <h3>Collusion</h3>
 
         <div class="left overlay-wrap">
           <img class="media" src="{{ static('img/foundation/annualreport/2011/act-collusion.jpg') }}" alt="">
@@ -520,8 +518,8 @@
         </div>
 
         <figure class="media">
-          <a class="vid-youtube" href="https://www.youtube.com/watch?v=f_f5wNw-2c0" title="{{ _('Click to view this video') }}">
-            <img src="{{ static('img/foundation/annualreport/2011/vid-kovacsted.jpg') }}" alt="{{ _('Watch a video of Mozilla CEO Gary Kovacs presenting Collusion at TED') }}">
+          <a class="vid-youtube" href="https://www.youtube.com/watch?v=f_f5wNw-2c0" title="Click to view this video">
+            <img src="{{ static('img/foundation/annualreport/2011/vid-kovacsted.jpg') }}" alt="Watch a video of Mozilla CEO Gary Kovacs presenting Collusion at TED">
           </a>
         </figure>
 
@@ -530,12 +528,12 @@
     </section>
 
     <section id="community" class="section">
-      <h2 class="section-title">{{ _('Community') }}</h2>
+      <h2 class="section-title">Community</h2>
 
       <section class="sub-section">
         <aside class="pull">
           <img class="media" src="{{ static('img/foundation/annualreport/2011/com-intro.png') }}" alt="">
-          <h3><span>{{ _('Our success begins with you.') }}</span></h3>
+          <h3><span>Our success begins with you.</span></h3>
         </aside>
 
         <p>
@@ -558,7 +556,7 @@
       </section>
 
       <section class="sub-section">
-        <h3>{{ _('Mozilla Reps') }}</h3>
+        <h3>Mozilla Reps</h3>
 
         <div class="overlay-wrap left">
           <img class="media" src="{{ static('img/foundation/annualreport/2011/com-reps.jpg') }}" alt="">
@@ -585,12 +583,12 @@
       </section>
 
       <section class="sub-section">
-        <h3>{{ _('MozCamps') }}</h3>
+        <h3>MozCamps</h3>
 
         <aside class="video left">
           <img class="media" src="{{ static('img/foundation/annualreport/2011/logo-mozcamp.png') }}" alt="">
-          <a class="media" href="https://videos.cdn.mozilla.net/serv/drafts/MozCamp-Latam.webm" data-video-source="https://videos.cdn.mozilla.net/serv/drafts/MozCamp-Latam" title="{{ _('Click to play this video') }}">
-            <img src="{{ static('img/foundation/annualreport/2011/vid-mozcamp.jpg') }}" alt="{{ _('Watch this video showing some of the activities from MozCamp in Latin America') }}">
+          <a class="media" href="https://videos.cdn.mozilla.net/serv/drafts/MozCamp-Latam.webm" data-video-source="https://videos.cdn.mozilla.net/serv/drafts/MozCamp-Latam" title="Click to play this video">
+            <img src="{{ static('img/foundation/annualreport/2011/vid-mozcamp.jpg') }}" alt="Watch this video showing some of the activities from MozCamp in Latin America">
           </a>
         </aside>
 
@@ -628,7 +626,7 @@
       </section>
 
       <section class="sub-section">
-        <h3>{{ _('Emerging Communities') }}</h3>
+        <h3>Emerging Communities</h3>
 
         <div class="overlay-wrap left">
           <img class="media" src="{{ static('img/foundation/annualreport/2011/com-emerging.jpg') }}" alt="">
@@ -659,17 +657,17 @@
       </section>
 
       <section class="sub-section">
-        <h3>{{ _('Contributor Stories') }}</h3>
+        <h3>Contributor Stories</h3>
 
         <div class="jcarousel-container">
           <div class="jcarousel-clip">
             <ul id="story-slider">
               <li id="story-chit" class="vcard sub-section">
                 <header>
-                  <h4 class="fn">{{ _('Chit Thiri Maung') }}</h4>
+                  <h4 class="fn">Chit Thiri Maung</h4>
                   <h5>
-                    <span class="role">{{ _('Mozilla Rep, Web Developer') }}</span>
-                    <span class="country-name">{{ _('Myanmar') }}</span>
+                    <span class="role">Mozilla Rep, Web Developer</span>
+                    <span class="country-name">Myanmar</span>
                   </h5>
                 </header>
                 <a href="https://videos.cdn.mozilla.net/serv/drafts/Contributorstory1.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/chit-poster.jpg') }}">
@@ -685,10 +683,10 @@
 
               <li id="story-viking" class="vcard sub-section">
                 <header>
-                  <h4 class="fn">{{ _('Viking Karwur') }}</h4>
+                  <h4 class="fn">Viking Karwur</h4>
                   <h5>
-                    <span class="role">{{ _('Mozilla Rep & Community Lead') }}</span>
-                    <span class="country-name">{{ _('Indonesia') }}</span>
+                    <span class="role">Mozilla Rep & Community Lead</span>
+                    <span class="country-name">Indonesia</span>
                   </h5>
                 </header>
                 <a href="https://videos.cdn.mozilla.net/serv/drafts/Contributorstory2.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/viking-poster.jpg') }}">
@@ -705,10 +703,10 @@
 
               <li id="story-keng" class="vcard sub-section">
                 <header>
-                  <h4 class="fn">{{ _('Patipat “Keng” Susumpow') }}</h4>
+                  <h4 class="fn">Patipat “Keng” Susumpow</h4>
                   <h5>
-                    <span class="role">{{ _('Mozilla Rep & Localization Lead') }}</span>
-                    <span class="country-name">{{ _('Thailand') }}</span>
+                    <span class="role">Mozilla Rep & Localization Lead</span>
+                    <span class="country-name">Thailand</span>
                   </h5>
                 </header>
                 <a href="https://videos.cdn.mozilla.net/serv/drafts/Contributorstory4.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/keng-poster.jpg') }}">
@@ -724,10 +722,10 @@
 
               <li id="story-claire" class="vcard sub-section">
                 <header>
-                  <h4 class="fn">{{ _('Claire Corgnou') }}</h4>
+                  <h4 class="fn">Claire Corgnou</h4>
                   <h5>
-                    <span class="role">{{ _('Mozilla Rep & Communications Lead') }}</span>
-                    <span class="country-name">{{ _('France') }}</span>
+                    <span class="role">Mozilla Rep & Communications Lead</span>
+                    <span class="country-name">France</span>
                   </h5>
                 </header>
                 <a href="https://videos.cdn.mozilla.net/serv/drafts/Contributorstory5.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/claire-poster.jpg') }}">
@@ -743,10 +741,10 @@
 
               <li id="story-haitham" class="vcard sub-section">
                 <header>
-                  <h4 class="fn">{{ _('Haitham El-Ghareeb') }}</h4>
+                  <h4 class="fn">Haitham El-Ghareeb</h4>
                   <h5>
-                    <span class="role">{{ _('Mozilla Rep, Open Source Evangelist') }}</span>
-                    <span class="country-name">{{ _('Egypt') }}</span>
+                    <span class="role">Mozilla Rep, Open Source Evangelist</span>
+                    <span class="country-name">Egypt</span>
                   </h5>
                 </header>
                 <a href="https://videos.cdn.mozilla.net/serv/drafts/Contributorstory6.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/haitham-poster.jpg') }}">
@@ -762,10 +760,10 @@
 
               <li id="story-ioana" class="vcard sub-section">
                 <header>
-                  <h4 class="fn">{{ _('Ioana Chiorean') }}</h4>
+                  <h4 class="fn">Ioana Chiorean</h4>
                   <h5>
-                    <span class="role">{{ _('Mozilla Rep, QA Lead') }}</span>
-                    <span class="country-name">{{ _('Romania') }}</span>
+                    <span class="role">Mozilla Rep, QA Lead</span>
+                    <span class="country-name">Romania</span>
                   </h5>
                 </header>
                 <a href="https://videos.cdn.mozilla.net/serv/drafts/Contributorstory7.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/ioana-poster.jpg') }}">
@@ -781,10 +779,10 @@
 
               <li id="story-brian" class="vcard sub-section">
                 <header>
-                  <h4 class="fn">{{ _('Brian King') }}</h4>
+                  <h4 class="fn">Brian King</h4>
                   <h5>
-                    <span class="role">{{ _('Mozilla Rep, Add-ons Developer') }}</span>
-                    <span class="country-name">{{ _('Slovenia') }}</span>
+                    <span class="role">Mozilla Rep, Add-ons Developer</span>
+                    <span class="country-name">Slovenia</span>
                   </h5>
                 </header>
                 <a href="https://videos.cdn.mozilla.net/serv/drafts/Contributorstory8.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/brian-poster.jpg') }}">
@@ -800,10 +798,10 @@
 
               <li id="story-mohomodou" class="vcard sub-section">
                 <header>
-                  <h4 class="fn">{{ _('Mohomodou Houssouba') }}</h4>
+                  <h4 class="fn">Mohomodou Houssouba</h4>
                   <h5>
-                    <span class="role">{{ _('Localization Lead') }}</span>
-                    <span class="country-name">{{ _('Mali') }}</span>
+                    <span class="role">Localization Lead</span>
+                    <span class="country-name">Mali</span>
                   </h5>
                 </header>
                 <a href="https://videos.cdn.mozilla.net/serv/drafts/Contributorstory9.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/mohomodou-poster.jpg') }}">
@@ -825,7 +823,7 @@
     </section>
 
     <section id="sustainability" class="section">
-      <h2 class="section-title">{{ _('Sustainability and Partnerships') }}</h2>
+      <h2 class="section-title">Sustainability and Partnerships</h2>
 
       <p>
       {% trans %}
@@ -865,9 +863,9 @@
       </p>
 
       <ul class="mzp-u-list-styled">
-        <li><a class="sus-faq" href="{{ url('foundation.annualreport.2011faq') }}">{{ _('FAQ') }}</a></li>
-        <li><a class="sus-fin" href="https://static.mozilla.com/moco/en-US/pdf/Mozilla%20Foundation%20and%20Subsidiaries%202011%20Audited%20Financial%20Statement.pdf" hreflang="en-US">{{ _('2011 Audited Financial Statement') }} <small>{{ _('Download PDF') }}</small></a></li>
-        <li><a class="sus-990" href="https://static.mozilla.com/moco/en-US/pdf/Mozilla%20Foundation%20-%202011%20Public%20Disclosure%20990.pdf" hreflang="en-US">{{ _('2011 Form 990') }} <small>{{ _('Download PDF') }}</small></a></li>
+        <li><a class="sus-faq" href="{{ url('foundation.annualreport.2011faq') }}">FAQ</a></li>
+        <li><a class="sus-fin" href="https://static.mozilla.com/moco/en-US/pdf/Mozilla%20Foundation%20and%20Subsidiaries%202011%20Audited%20Financial%20Statement.pdf" hreflang="en-US">2011 Audited Financial Statement <small>Download PDF</small></a></li>
+        <li><a class="sus-990" href="https://static.mozilla.com/moco/en-US/pdf/Mozilla%20Foundation%20-%202011%20Public%20Disclosure%20990.pdf" hreflang="en-US">2011 Form 990 <small>Download PDF</small></a></li>
       </ul>
     </section>
 
