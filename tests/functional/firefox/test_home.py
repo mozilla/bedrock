@@ -3,7 +3,6 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import pytest
-from selenium.webdriver.support.ui import WebDriverWait
 
 from pages.firefox.home import FirefoxHomePage
 
@@ -31,7 +30,7 @@ def test_desktop_download_datalayer(base_url, selenium):
     data_link_type = page.browser_menu_list.desktop_download.get_attribute("data-link-type")
     assert data_link_type == "Desktop"
     page.browser_menu_list.desktop_download_click()
-    data_layer = WebDriverWait(selenium, 20).until(lambda selenium: selenium.execute_script("return window.dataLayer"))
+    data_layer = selenium.execute_script("return window.dataLayer")
     # currently this event is not added to the dataLayer object
-    print(data_layer)
-    assert True
+    page_id = {"event": "page-id-loaded", "pageId": "/firefox/download/thanks/"}
+    assert page_id in data_layer

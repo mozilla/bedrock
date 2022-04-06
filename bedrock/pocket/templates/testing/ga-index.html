@@ -1,0 +1,15 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% block content %}
+<main class="mzp-l-content">
+  <button class="mzp-c-button mzp-t-product" data-link-type="download-test" data-download-os="Desktop" data-download-location="test">download firefox</button>
+  <button class="mzp-c-button" data-cta-type="button" data-cta-text="click here to test" data-download-location="test">click here to test</button>
+  <button class="mzp-c-button" data-cta-type="fxa-sync" data-cta-text="fxa-button" data-cta-position="test">fxa button</button>
+</main>
+{% endblock %}
