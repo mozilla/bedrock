@@ -1,0 +1,215 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "security/base.html" %}
+
+{% block page_title %}Third-party Injection Policy{% endblock %}
+{% set body_id = "third-party-innection-policy" %}
+
+{% block article %}
+  <header>
+    <h1 class="mzp-c-article-title">Third-party Injection Policy</h1>
+  </header>
+
+  <p>
+    The Firefox browser supports expanding its functionality with browser
+    extensions and provides an extensive and well documented set of APIs
+    for developers known as the <a href="https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions">WebExtensions API</a>.
+    To date, developers have contributed tens of thousands of extensions
+    available on addons.mozilla.org. Nevertheless, some third-party
+    developers seek to modify the browser in ways beyond what is possible
+    with a browser extension and resort to “hooking” the browser, effectively
+    injecting third-party executable code modules into Firefox processes.
+    Security software such as anti-virus products on Windows are the most
+    prevalent examples.
+  </p>
+
+  <h2>Maintaining the User Experience - Reliable and Secure Browsing</h2>
+
+  <p>
+    Even when the desired behavior might be beneficial to users, modifying
+    Firefox in this way is inherently risky. Such modifications may cause
+    browser crashes, broken features, or other unexpected problems that
+    degrade the user experience. When third-party software is found to
+    destabilize the browser, Firefox may intervene.
+  </p>
+
+  <p>Interventions* may include, but are not limited to:</p>
+
+  <ol class="mzp-u-list-styled">
+    <li>
+      Detecting instability locally, notifying the user, and offering them
+      the opportunity to block specific modules from being injected.
+    </li>
+    <li>
+      Detecting instability locally, automatically blocking the unstable
+      module, and providing the user an option to unblock it.
+    </li>
+    <li>
+      Detecting aggregate instability across many users, and proactively
+      blocking the module globally across all Firefox instances.
+    </li>
+  </ol>
+
+  <p>
+    <em>
+      *Current versions of Firefox do not automatically block problematic
+      modules or prompt the user to do so, but we are exploring this
+      functionality. Firefox does maintain a block list which is already
+      used when problems are discovered from crash reporting and bug
+      reports. See below for more information.
+    </em>
+  </p>
+
+  <p>
+    If a third-party feature achieved with Firefox injection works well,
+    that’s great. However, if we become aware of a problem, we will
+    contact the vendor if they have shared a responsive support contact
+    with Mozilla. We are happy to alert external vendors about such
+    issues and welcome proactive communication with vendors before
+    issues arise. Please contact us at
+    <a href="mailto:thirdpartysoftware@mozilla.com">thirdpartysoftware@mozilla.com</a>.
+  </p>
+
+  <p>
+    While we prefer to work cooperatively with other developers, our
+    resources are finite and oftentimes we have to act quickly. We reserve
+    the right to block third-party injections whenever we believe this is
+    in the best interest of Firefox users.
+  </p>
+
+  <p>
+    We intend to review this position over time and may be more restrictive
+    with third-party module injection in the future.
+  </p>
+
+  <h2>In-Browser Diagnostics</h2>
+
+  <p>
+    When we encounter an interoperability issue caused by a third-party module,
+    we look for a workaround or implement a mitigation patch in Firefox while
+    contacting the vendor to request a fix. If those attempts are not
+    successful, we globally block the module using our
+    <a href="https://wiki.mozilla.org/Blocklisting/DLL">blocklist</a>.
+    In most cases, blocking can be limited to the problematic versions of the
+    module and modules can be unblocked after a fix is implemented. Not all
+    third-party interoperability issues are addressed. For example, some may
+    only affect a small number of users.
+  </p>
+
+  <p>
+    In Firefox, we provide an in-browser diagnostics page. The about:third-party
+    page (<a href="https://support.mozilla.org/kb/identify-problems-third-party-modules-firefox-windows">only available on Firefox for Windows</a>)
+    in Firefox lists the injected modules together with details about the injection
+    technique, loading time, and - if possible - vendor and product names.
+  </p>
+
+  <p>
+    If we detect at runtime that previous Firefox crashes were caused by a
+    third-party module, we may prompt the user to block or we may automatically
+    block the module giving the user the option to unblock the module in the
+    future, depending on the severity of the impact.
+  </p>
+
+  <h2>Technical Recommendations</h2>
+
+  <p>
+    The rest of this document contains guidelines and best practices to
+    minimize the risk of instability. We strongly recommend following these
+    guidelines, both to reduce stability risk and to avoid potentially being
+    misclassified as a source of instability.
+  </p>
+
+  <p>
+    Some of the details in this document concern implementation details that
+    are subject to change as we improve the performance, security and functionality
+    of the browser. Note that Mozilla publishes Beta and Nightly versions of
+    Firefox that can give you an early warning about upcoming changes that may
+    affect your software. We recommend testing on Nightly and Beta as well as
+    Release versions of Firefox.
+  </p>
+
+  <h2>Firefox Process Structure</h2>
+
+  <ul class="mzp-u-list-styled">
+    <li>
+      <p>Launcher Process (Windows-specific)</p>
+      <ul>
+        <li>
+          <p>
+            Browser Process (main process, sometimes referred to as ‘parent process’
+            or ‘chrome process’ inside Firefox sources and legacy documentation)
+          </p>
+          <ul>
+            <li>Content Processes (render web pages)</li>
+            <li>Privileged Content Process (for Firefox Accounts and addons.mozilla.org)</li>
+            <li>Privileged about: Content-like Process</li>
+            <li>GPU Process</li>
+            <li>RDD Process (media decoding)</li>
+            <li>GMP Process (DRM decoding)</li>
+            <li>Socket Process (network handling - WebRTC)</li>
+            <li>WebExtensions Process</li>
+            <li>WebVR Process</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2>Guidelines for Module Injection</h2>
+
+  <p>
+    Processes other than the Browser Process and the Socket Process should
+    preferably not be injected into. Specifically, processes sitting below
+    the browser process will tend to be heavily sandboxed and may have very
+    limited ability to interact with the operating system, including standard
+    Win32 APIs (i.e. win32k.sys may not even be accessible), or may be blocked
+    from loading code with third party signatures (Arbitrary Code Guard/Code
+    Injection Guard). <strong>Injecting into these may stop security
+    functionality from working, or render the browser non functional</strong>.
+  </p>
+
+  <p>
+    As more functionality related to networking moves to the Socket Process,
+    injecting there may be unavoidable for software that wants to monitor
+    low-level network access.
+  </p>
+
+  <p>
+    The Launcher Process is a process to launch the browser process and apply
+    several security mitigations.  Because the launcher process terminates quickly
+    after launching the browser process and is isolated from browsing-related work,
+    there is no benefit to injecting a third-party module into the launcher process.
+  </p>
+
+  <p>
+    These guidelines mean that if a third party vendor wants a module to be loaded
+    into our process, it is necessary that their module or injector program recognizes
+    the target process type and does not modify our sandboxed processes. With the
+    current design, the easiest way to detect the process type is to check the last
+    token in the command line string. If this is  “-contentproc”, then you are dealing
+    with a child process (of any type, not necessarily content!) and typically do not
+    want to inject. If the type of child process is needed, this corresponds to the
+    last token (With “socket” being the Socket Process). Such implementation details
+    are subject to change.
+  </p>
+
+  <p>
+    On Windows, there are many known techniques to inject a module into a remote process.
+    In general, a technique implemented as a part of Windows OS is safer, such as
+    <a href="https://docs.microsoft.com/windows/win32/winmsg/hooks">Window message hook</a>
+    or <a href="https://docs.microsoft.com/windows/win32/win7appqual/appinit-dlls-in-windows-7-and-windows-server-2008-r2">AppInit_DLLs</a>.
+    On the other hand, a technique that modifies a code segment of a mapped image, such as
+    <a href="https://github.com/microsoft/detours">Microsoft Detours</a>, is strongly NOT
+    recommended because if <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1696571">more than one application applies a hook on the same function</a>,
+    behavior is undefined and the result is almost certainly breakage.
+  </p>
+
+  <p>
+    Please contact us at <a href="mailto:thirdpartiesplaceholder@mozilla.com">thirdpartysoftware@mozilla.com</a>
+    with questions.
+  </p>
+{% endblock %}
