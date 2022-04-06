@@ -32,14 +32,26 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    .vpn-affiliate-notification-reject {
-        display: block;
-        margin: $spacing-sm auto 0;
+    .vpn-affiliate-notification-options {
+        margin: $spacing-md auto 0;
     }
 
-    @media #{$mq-md} {
+    .vpn-affiliate-notification-ok,
+    .vpn-affiliate-notification-reject {
+        margin: $spacing-sm $spacing-sm 0;
+        width: calc(100% - #{ $spacing-sm * 2});
+    }
+
+    @media #{$mq-sm} {
         margin: $spacing-lg auto 0;
         max-width: $content-md;
+
+        .vpn-affiliate-notification-ok,
+        .vpn-affiliate-notification-reject {
+            margin: 0 $spacing-sm;
+            width: auto;
+            min-width: 100px;
+        }
     }
 }
 
