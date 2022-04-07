@@ -11,7 +11,7 @@
     {% if is_multi_newsletter_form %}
       <div id="newsletter-error-strings" data-form-checkboxes-error="{{ ftl('multi-newsletter-form-checkboxes-error') }}"></div>
     {% else %}
-      <div hidden="true">
+      <div hidden>
         {{ form.newsletters|safe }}
       </div>
     {% endif %}

@@ -31,8 +31,9 @@
   <form id="newsletter-form" class="mzp-c-newsletter-form" action="{{ url('products.vpn.invite.waitlist') }}" method="post" data-spinner-color="#000">
     <h1 class="mzp-c-form-header">{{ ftl('vpn-landing-invite-page-heading') }}</h1>
     <p class="mzp-c-form-subtitle">{{ ftl('vpn-landing-invite-page-desc') }}</p>
-
-    {{ newsletter_form.newsletters|safe }}
+    <div hidden>
+      {{ newsletter_form.newsletters|safe }}
+    </div>
     <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
     <input type="hidden" name="privacy" id="id_privacy" value="true">
     <input type="hidden" name="fmt" id="format-html" value="H">

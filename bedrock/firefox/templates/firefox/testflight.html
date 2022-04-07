@@ -36,7 +36,9 @@
 
   <section class="mzp-l-content mzp-t-content-sm">
     <form id="newsletter-form" class="mzp-c-newsletter-form" action="{{ url('newsletter.subscribe') }}" method="post" data-spinner-color="#fff">
-      {{ newsletter_form.newsletters|safe }}
+      <div hidden>
+        {{ newsletter_form.newsletters|safe }}
+      </div>
       {# test flight program is only available in english #}
       <input type="hidden" name="lang" id="id_lang" value="en">
       <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
