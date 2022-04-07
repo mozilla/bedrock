@@ -4,9 +4,10 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-const stickySideMenu = document.querySelector('.mzp-c-sidemenu-main');
+const stickySideMenu = document.querySelector('.webvision-sidebar');
 const globalFooter = document.querySelector('.c-footer');
-const article = document.querySelector('.c-webvision-article');
+
+const { scrollTop } = document.documentElement;
 
 function checkOffSet() {
     function getRectTop(el) {
@@ -15,14 +16,10 @@ function checkOffSet() {
     }
 
     if (
-        getRectTop(stickySideMenu) +
-            document.body.scrollTop +
-            stickySideMenu.offsetHeight >=
-        getRectTop(globalFooter) + document.body.scrollTop
+        getRectTop(stickySideMenu) + scrollTop + stickySideMenu.offsetHeight >=
+        getRectTop(globalFooter) + scrollTop
     ) {
-        stickySideMenu.style.position = 'absolute';
-        article.style.height = '130vh';
-        article.style.overflow = 'hidden';
+        stickySideMenu.style.removeProperty('position');
         stickySideMenu.classList.add('mzp-c-sidemenu-absolute');
     }
 
@@ -30,7 +27,6 @@ function checkOffSet() {
         document.body.scrollTop + window.innerHeight <
         getRectTop(globalFooter) + document.body.scrollTop
     ) {
-        stickySideMenu.style.position = 'fixed';
         stickySideMenu.classList.remove('mzp-c-sidemenu-absolute');
     }
 }
