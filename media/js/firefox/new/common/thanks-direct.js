@@ -92,7 +92,12 @@
         Mozilla.StubAttribution.waitForGoogleAnalytics(function () {
             var data = Mozilla.StubAttribution.getAttributionData();
 
-            if (data && Mozilla.StubAttribution.withinAttributionRate()) {
+            // make sure we check referrer for AMO (issue 11467)
+            if (
+                data &&
+                Mozilla.StubAttribution.withinAttributionRate() &&
+                Mozilla.StubAttribution.hasValidData(data)
+            ) {
                 Mozilla.StubAttribution.successCallback = onSuccess;
                 Mozilla.StubAttribution.timeoutCallback = onTimeout;
                 // We don't want to delay the download indefinitely for a stub attribution call,
