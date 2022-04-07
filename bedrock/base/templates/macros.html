@@ -256,7 +256,7 @@
 <nav class="c-sub-navigation">
   <div class="mzp-l-content">
     <div class="c-sub-navigation-content">
-      <h2 class="c-sub-navigation-title">
+      <h2 class="c-sub-navigation-title is-summary">
         {% if title.href %}
           <a href="{{ title.href }}" data-link-type="nav" data-link-position="subnav" data-link-name="{{ title.cta_name }}">
             {% if title.icon %}<img class="c-sub-navigation-icon" src="{{ title.icon }}" width="24" height="24" alt="">{% endif %}
@@ -267,7 +267,7 @@
           {{ title.text }}
         {% endif %}
       </h2>
-      <ul class="c-sub-navigation-list">
+      <ul class="c-sub-navigation-list is-details is-closed">
         {% for link in links %}
         <li class="c-sub-navigation-item">
           <a

@@ -74,6 +74,8 @@ EXPECTED_NAV_HTML = {
     "title_link": """<a href="/category" data-link-type="nav" data-link-position="subnav" data-link-name="Test Title">""",
     "current_link": """<a href="/current" data-link-type="nav" data-link-position="subnav" data-link-name="Test Link" aria-current="page"> Testing current link </a>""",  # noqa: E501
     "regular_link": """<a href="/regular" data-link-type="nav" data-link-position="subnav" data-link-name="Test Link"> Testing link </a>""",
+    "is_summary": """is-summary""",
+    "is_details_default_closed": """is-details is-closed""",
 }
 
 
@@ -119,8 +121,12 @@ def test_sub_nav_markup(test_input, expected):
 
     title = doc(".c-sub-navigation-title")
     assert title.text() == expected["title_text"]
+    assert EXPECTED_NAV_HTML["is_summary"] in title.outer_html()
 
-    links = doc(".c-sub-navigation-list").find(".c-sub-navigation-item")
+    list = doc(".c-sub-navigation-list")
+    assert EXPECTED_NAV_HTML["is_details_default_closed"] in list.outer_html()
+
+    links = list.find(".c-sub-navigation-item")
     assert len(links) == len(expected["links"])
     for index, link in enumerate(links):
         assert inner_html(pq(link)) == expected["links"][index]
