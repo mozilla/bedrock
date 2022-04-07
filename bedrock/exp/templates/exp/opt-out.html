@@ -28,20 +28,18 @@
     <h1 class="mzp-c-article-title">Opt-out of Convert experiments</h1>
 
     <p>
-    {% trans convert='https://www.convert.com/', websites=url('privacy.notices.websites'), privacy='https://www.convert.com/privacy-notice/' %}
+    {% with convert='https://www.convert.com/', websites=url('privacy.notices.websites'), privacy='https://www.convert.com/privacy-notice/' %}
       Your privacy is very important to Mozilla. In an effort to improve user experiences on www.mozilla.org, Mozilla sometimes runs
       website experiments using a tool called <a href="{{ convert }}">Convert</a>. Convert does not collect any personally
       identifiable information, is committed to data privacy and security, and does not share data with any parties other than
       Mozilla. You can read more information in the <a href="{{ websites }}">Mozilla Websites Privacy Policy</a> and the
       <a href="{{ privacy }}">Convert Privacy Policy</a>.
-    {% endtrans %}
+    {% endwith %}
     </p>
 
     <p>
-    {% trans %}
       If you still want to opt-out of Convert experiments on www.mozilla.org, you can do so by clicking the link below.
       The link will automatically replace Convert cookies and verify your opt-out status.
-    {% endtrans %}
     </p>
 
     <noscript>
@@ -55,10 +53,10 @@
     <p><a class="mzp-c-cta-link" href="{{ url('exp.opt-out') }}?convert_canceloptout=1">Opt-in to Convert experiments</a></p>
 
     <p>
-    {% trans dnt='https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature' %}
+    {% with dnt='https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature' %}
       Note: If you already have <a href="{{ dnt }}">Do Not Track</a> enabled then Convert will respect your preference,
       and you will not be entered into website experiments.
-    {% endtrans %}
+    {% endwith %}
     </p>
   </article>
 </div>

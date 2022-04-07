@@ -190,8 +190,8 @@
     <h3>Legislative Reform</h3>
 
     <p>
-      {% trans charter='https://blog.mozilla.org/netpolicy/2017/11/15/white-house-releases-new-vep-charter/',
-                 advocated='https://blog.mozilla.org/netpolicy/2017/10/03/vulnerability-disclosure-should-be-in-new-eu-cybersecurity-strategy/' %}
+      {% with charter='https://blog.mozilla.org/netpolicy/2017/11/15/white-house-releases-new-vep-charter/',
+              advocated='https://blog.mozilla.org/netpolicy/2017/10/03/vulnerability-disclosure-should-be-in-new-eu-cybersecurity-strategy/' %}
       In the Reporting Period, Mozilla continued to push for reforms to the
       U.S. Government’s process for handling security vulnerabilities,
       culminating in the release by the White House of a
@@ -201,13 +201,13 @@
       review processes to be included in the forthcoming EU Cybersecurity
       Act, including as members of the Centre for European Policy Studies
       Task Force on Software Vulnerability Disclosure.
-      {% endtrans %}
+      {% endwith %}
     </p>
     <p>
-      {% trans vocal='https://blog.mozilla.org/netpolicy/2017/11/16/need-aadhaar-to-investigate-lost-package/',
-                 regulation='https://blog.mozilla.org/netpolicy/2017/10/12/mozilla-releases-recommendations-draft-eu-eprivacy-regulation/',
-                 crossborder='https://blog.mozilla.org/netpolicy/files/2017/10/Mozilla-e-evidence-submission.pdf',
-                 copyright='http://copybuzz.com/copyright/interview-raegan-macdonald/' %}
+      {% with vocal='https://blog.mozilla.org/netpolicy/2017/11/16/need-aadhaar-to-investigate-lost-package/',
+              regulation='https://blog.mozilla.org/netpolicy/2017/10/12/mozilla-releases-recommendations-draft-eu-eprivacy-regulation/',
+              crossborder='https://blog.mozilla.org/netpolicy/files/2017/10/Mozilla-e-evidence-submission.pdf',
+              copyright='http://copybuzz.com/copyright/interview-raegan-macdonald/' %}
       We’ve been <a href="{{ vocal }}">vocal</a> in the debate around
       India’s first data protection law, and we continued to engage with
       Europe’s <a href="{{ regulation }}">e-Privacy Regulation</a>. We've
@@ -215,13 +215,13 @@
       <a href="{{ crossborder }}">cross-border access to data</a>, and
       worked to influence the EU Commission’s ongoing
       <a href="{{ copyright }}">copyright reform</a> efforts.
-      {% endtrans %}
+      {% endwith %}
     </p>
     <p>
-      {% trans urging='https://blog.mozilla.org/wp-content/uploads/2017/08/No.-16-402-ac-Technology-Companies1.pdf' %}
+      {% with urging='https://blog.mozilla.org/wp-content/uploads/2017/08/No.-16-402-ac-Technology-Companies1.pdf' %}
       In July 2017, Mozilla joined with other technology companies in an amicus brief urging the Supreme Court of the
       United States to reexamine how the 4th Amendment and search warrant requirements should apply in our digital era.
-      {% endtrans %}
+      {% endwith %}
     </p>
 
     <h3>Threat Indicators &amp; Data Disclosures</h3>
@@ -250,12 +250,12 @@
 
     <aside class="footnotes">
       <p>
-        {% trans link_cybertipline='http://www.missingkids.org/cybertipline' %}
+        {% with link_cybertipline='http://www.missingkids.org/cybertipline' %}
         * Information about possible child sexual exploitation can be voluntarily reported by anyone to the National
         Center for Missing & Exploited Children’s (NCMEC) <a href="{{ link_cybertipline }}">CyberTipline</a>. We take
         this issue seriously. In the Reporting Period, Mozilla disclosed Specific User data to the NCMEC in connection
         with content that was uploaded to a Mozilla service and implicated child sexual exploitation.
-        {% endtrans %}
+        {% endwith %}
       </p>
     </aside>
 

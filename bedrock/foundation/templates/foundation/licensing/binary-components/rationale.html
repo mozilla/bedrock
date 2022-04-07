@@ -16,10 +16,9 @@
 {% block article_content %}
   <h2>Direct 3D DLL</h2>
   <p>
-    {% trans
-      binary=url('foundation.licensing.binary-components.index'),
-      webgl="https://en.wikipedia.org/wiki/WebGL",
-      angle="https://code.google.com/p/angleproject/"
+    {% with binary=url('foundation.licensing.binary-components.index'),
+            webgl="https://en.wikipedia.org/wiki/WebGL",
+            angle="https://code.google.com/p/angleproject/"
     %}
       The Microsoft D3DCompiler DLL is an example of an application of the
       <a href="{{ binary }}">binary components</a> policy. To provide a good
@@ -37,6 +36,6 @@
       a relevant portion of users. In addition, the D3DCompiler library also
       supports the long term adoption of WebGL as an open standard for 3D
       rendering on the web.
-      {% endtrans %}
+      {% endwith %}
     </p>
 {% endblock %}

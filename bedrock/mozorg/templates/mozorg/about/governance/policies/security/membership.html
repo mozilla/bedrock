@@ -13,20 +13,20 @@
 
   <p>Version 1.01 - 2008-03-07</p>
 
-  <p>{% trans bugzilla="https://bugzilla.mozilla.org/" %}
+  <p>{% with bugzilla="https://bugzilla.mozilla.org/" %}
     The Mozilla project has a Security Group, which maintains a private mailing list for defining security policies, and assessing and discussing both individual and broader security issues. The list is also used for coordinating security-related information pertaining to releases (e.g. MSA/CVE numbers). Membership of the Security Group is given to anyone who the group considers would be useful. Membership includes access to bugs in the “security” group in <a href="{{ bugzilla }}">Bugzilla</a>.
-  {% endtrans %}</p>
+  {% endwith %}</p>
 
-  <p>{% trans %}
+  <p>
     A second group of people have access to those bugs but are not members of the mailing list. These are people who need to see or work on security bugs as part of their role in the project. This might include coders, QA, build/release engineers, or drivers.
-  {% endtrans %}</p>
+  </p>
 
-  <p>{% trans %}
+  <p>
     Membership of each group is decided by the current membership of the Security Group. The Security Group moderator may, at his discretion, move inactive members to an “Alumni” list. This would involve removing them from the mailing list and/or removing their bug access, as appropriate. They can be reactivated by him at their request. This is to keep the size of the group to the minimum necessary, for information security reasons.
-  {% endtrans %}</p>
+  </p>
 
-  <p>{% trans %}
+  <p>
     We also maintain a “security-announce” list for keeping representatives of organisations who ship our code informed of progress. This is the correct list for people who are shipping derivative products rather than developing policy or making Mozilla releases. Membership of this list can be obtained from Dan Veditz, the Security Group moderator.
-  {% endtrans %}</p>
+  </p>
 
 {% endblock %}

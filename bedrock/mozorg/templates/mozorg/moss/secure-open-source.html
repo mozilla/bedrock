@@ -20,16 +20,14 @@
     <h2 class="moss-section-heading">About</h2>
 
     <p>
-    {% trans %}
       The Secure Open Source ("SOS") track of MOSS supports security audits for
       open source software projects, and remedial work to rectify the problems
       found.
-    {% endtrans %}
 
-    {% trans url1='https://wiki.mozilla.org/MOSS/Secure_Open_Source/Completed' %}
+    {% with url1='https://wiki.mozilla.org/MOSS/Secure_Open_Source/Completed' %}
       You can read about the
       <a href="{{ url1 }}">audits we’ve completed so far</a>.
-    {% endtrans %}
+    {% endwith %}
     </p>
 
     <div class="moss-cta">
@@ -50,10 +48,8 @@
 
     <ul class="mzp-u-list-styled">
       <li>
-      {% trans %}
         The software must be open source/free software, with a license that is
         OSI-certified and/or FSF-approved
-      {% endtrans %}
       </li>
       <li>
         The software must be actively maintained
@@ -65,13 +61,9 @@
     <h2 class="moss-section-heading">How we’ll make our decision</h2>
 
     <p>
-    {% trans %}
       We have a series of factors we consider when evaluating an application.
-    {% endtrans %}
 
-    {% trans %}
       For example:
-    {% endtrans %}
     </p>
 
     <ul class="mzp-u-list-styled">
@@ -79,32 +71,22 @@
         How commonly used is the software?
       </li>
       <li>
-      {% trans %}
         Is the software network-facing or does it regularly process untrusted
         data?
-      {% endtrans %}
       </li>
       <li>
-      {% trans %}
         How vital is the software to the continued functioning of the Internet
         or the Web?
-      {% endtrans %}
       </li>
       <li>
-      {% trans %}
         Is the project known for something besides the code we are relying on?
-      {% endtrans %}
       </li>
       <li>
-      {% trans %}
         Does the software depend on closed-source code, e.g. in a web service?
-      {% endtrans %}
       </li>
       <li>
-      {% trans %}
         Are the software’s maintainers aware of and supportive of the
         application for support from the SOS fund?
-      {% endtrans %}
       </li>
       <li>
         Has the software been audited before?
@@ -116,18 +98,14 @@
         If so, where?
       </li>
       <li>
-      {% trans %}
         Does the software have existing corporate backing or involvement?
-      {% endtrans %}
       </li>
     </ul>
 
     <p>
-    {% trans %}
       The answers to such questions are often not “yes” or “no”, but matters of
       degree, and so Mozilla will take the entire picture into account when
       assessing projects.
-    {% endtrans %}
     </p>
   </section>
 
@@ -135,15 +113,11 @@
     <h2 class="moss-section-heading">How to apply</h2>
 
     <p>
-    {% trans %}
       At this time, candidates for an award are chosen by Mozilla.
-    {% endtrans %}
 
-    {% trans %}
       If you have a suggestion for a project which you think meets the criteria
       above, and where an audit might particularly benefit the project and the
       Internet community, please fill out the form through the link below.
-    {% endtrans %}
     </p>
 
     <div class="moss-cta">
@@ -160,57 +134,39 @@
 
     <dl class="mzp-u-list-styled">
       <dt>
-      {% trans %}
         We’ve been asked how this project compares to the Core Infrastructure
         Initiative of the Linux Foundation.
-      {% endtrans %}
 
-      {% trans %}
         Here’s a short answer:
-      {% endtrans %}
       </dt>
 
       <dd>
-      {% trans %}
         We believe our model of support is different from and complementary to
         CII’s.
-      {% endtrans %}
 
-      {% trans %}
         We view CII as focused on necessary, deeper-dive investments into the core
         OS security infrastructure, like in OpenSSL.
-      {% endtrans %}
 
-      {% trans %}
         This is important work.
-      {% endtrans %}
 
-      {% trans %}
         Focusing on more point-in-time solutions, the SOS Fund’s audit and
         remediation methodology targets a different class of OSS projects with
         lower-hanging fruit security needs, using an open public-facing
         application form.
-      {% endtrans %}
 
-      {% trans %}
         To have substantial and lasting benefit in tackling such a significant
         issue as open source security, we need a broad range of solutions,
         including investment, audits, education, best practices, and a host of
         others.
-      {% endtrans %}
 
-      {% trans %}
         We believe the SOS Fund, alongside CII and other efforts, can help
         catalyze industry momentum to strengthen open source security.
-      {% endtrans %}
       </dd>
     </dl>
 
     <p>
-    {% trans %}
       If you have further questions, please feel free to contact us at
       <a href="mailto:sosfund@mozilla.com">sosfund@mozilla.com</a>.
-    {% endtrans %}
     </p>
   </section>
 </div>

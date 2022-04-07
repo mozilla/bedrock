@@ -213,34 +213,37 @@
     <h3>Legislative Reform</h3>
 
     <p>
-      {% trans india='https://blog.mozilla.org/netpolicy/2018/03/30/effective-rights-protective-procedures-tackling-illegal-content-mozilla-files-comment-european-commission/',
-                   california='https://blog.mozilla.org/netpolicy/2018/06/26/privacy-progress-and-protections-for-california/',
-                   carpenter='https://blog.mozilla.org/netpolicy/2018/06/22/the-supreme-court-scores-a-win-for-privacy/' %}
+      {% with india='https://blog.mozilla.org/netpolicy/2018/03/30/effective-rights-protective-procedures-tackling-illegal-content-mozilla-files-comment-european-commission/',
+              california='https://blog.mozilla.org/netpolicy/2018/06/26/privacy-progress-and-protections-for-california/',
+              carpenter='https://blog.mozilla.org/netpolicy/2018/06/22/the-supreme-court-scores-a-win-for-privacy/'
+      %}
       In this Reporting Period, Mozilla continued to push for strong privacy protections around the world including work
       on the e-Privacy Regulation in Europe, <a href="{{india}}">India’s first data protection law</a>, <a
         href="{{ california }}">California’s Privacy Act</a>, as well as engagement on discussions about a privacy law
       at the US federal level. Additionally, in Carpenter, a case where <a href="{{ carpenter }}">we filed an amicus
         brief</a>, the US Supreme Court found that the government must get a warrant to obtain records of where
       someone’s cell phone has been.
-      {% endtrans %}
+      {% endwith %}
     </p>
     <p>
-      {% trans europe='https://blog.mozilla.org/netpolicy/2018/04/24/mozilla-publishes-recommendations-on-government-vulnerability-disclosure-in-europe/',
-                   recommendations='https://www.ceps.eu/publications/software-vulnerability-disclosure-europe-technology-policies-and-legal-challenges' %}
+      {% with europe='https://blog.mozilla.org/netpolicy/2018/04/24/mozilla-publishes-recommendations-on-government-vulnerability-disclosure-in-europe/',
+              recommendations='https://www.ceps.eu/publications/software-vulnerability-disclosure-europe-technology-policies-and-legal-challenges'
+      %}
       We also continued our engagement with European stakeholders around <a href="{{ europe }}">government vulnerability
         disclosure in Europe</a>, including through our participation in the Centre for European Policy Studies Task
       Force on Software Vulnerability Disclosure which published its <a href="{{ recommendations }}">recommendations</a>
       in June.
-      {% endtrans %}
+      {% endwith %}
     </p>
     <p>
-      {% trans reform='https://blog.mozilla.org/netpolicy/2018/06/22/jurivote/',
-                   illegal='https://blog.mozilla.org/netpolicy/2018/03/30/effective-rights-protective-procedures-tackling-illegal-content-mozilla-files-comment-european-commission/' %}
+      {% with reform='https://blog.mozilla.org/netpolicy/2018/06/22/jurivote/',
+              illegal='https://blog.mozilla.org/netpolicy/2018/03/30/effective-rights-protective-procedures-tackling-illegal-content-mozilla-files-comment-european-commission/'
+      %}
       We were also deeply engaged on other fronts in Europe, including <a href="{{ reform }}">pushing for better
         copyright reform</a>, filing on the <a href="{{ illegal }}">European Commission’s consultation on illegal
         content</a>, fighting for additional protections as part of the EU’s E-Evidence proposal around cross-border
       data access, and engaging on discussions about the EU’s terrorist content regulation.
-      {% endtrans %}
+      {% endwith %}
     </p>
 
     <h3>Threat Indicators &amp; Data Disclosures</h3>

@@ -45,9 +45,9 @@
     <p>As part of the Initiative, we plan on selectively applying for patents to protect free and open source software development. As we obtain these patents, we will immediately license them out under a royalty-free license to all comers. Each entity that receives the license must also, in turn, allow open source software projects to freely innovate without fear from patents.
     </p>
     <p>
-    {% trans license=url('mozorg.about.policy.patents.license') %}
+    {% with license=url('mozorg.about.policy.patents.license') %}
       This means that effective immediately, for every patent Mozilla acquires, Mozilla will immediately offer everyone a royalty-free non-exclusive license to all of Mozilla’s patents under the <a href="{{ license }}">Mozilla Open Software Patent License (MOSPL)</a>. The MOSPL grants you a license to make, use, or distribute any software that would be covered by one of our patents, so long as (i) you don’t offensively sue, threaten, or accuse anyone’s <a href="{{ license }}#software">Software</a> of infringing your patents (using your portfolio to defend yourself against a prior-filed patent lawsuit is OK) and (ii) you agree to grant (upon request) your own royalty-free license under any patents you own to all open-source software projects that agrees or has agreed to be bound by the MOSPL. Read all the terms of the full license.
-    {% endtrans %}
+    {% endwith %}
     </p>
   </section>
 
@@ -72,9 +72,9 @@
       </details>
       <details>
         <summary><h3>How does this project address the software patent quality issues?</h3></summary>
-        {% trans guide=url('mozorg.about.policy.patents.guide') %}
+        {% with guide=url('mozorg.about.policy.patents.guide') %}
           <p>The more innovations in open source projects are patented, the easier it will be for patent examiners to identify them as prior art for future applications. This will lead to higher quality software patents. We do not predict that Mozilla’s own patents and defensive publications will, by themselves, be enough to substantially increase the quality of every type of issued patent. However, we hope that the example this project sets along with the <a href="{{ guide }}">Open Software Patent Licensing Guide</a> we’ve provided will encourage others to consider openly licensing their portfolio and applying for patents on their open source innovations to help increase software patent quality. Mozilla has also begun to advocate publicly for patent law reform that would further advance software patent quality: <a rel="external" href="https://blog.mozilla.org/netpolicy/files/2015/05/Mozilla-USPTO-Filing-May-2015-5-6.pdf">https://blog.mozilla.org/netpolicy/files/2015/05/Mozilla-USPTO-Filing-May-2015-5-6.pdf</a>.</p>
-        {% endtrans %}
+        {% endwith %}
       </details>
       <details>
         <summary><h3>Why aren’t the License on Transfer (LOT) or the Innovator’s Patent Agreement (IPA) on your list of potential open patent licenses?</h3></summary>

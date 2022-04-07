@@ -18,12 +18,12 @@
 {% block article_content %}
   <h3 class="timestamp">November 18, 2010</h3>
 
-  <p>{% trans %}Mozilla remains well positioned, both financially and organizationally, to
+  <p>Mozilla remains well positioned, both financially and organizationally, to
     advance our mission of building openness and participation into the
     Internet. Our financial situation is very similar to last year and our
-    revenues continue to grow steadily.{% endtrans %}</p>
+    revenues continue to grow steadily.</p>
 
-  <p>{% trans %}For the calendar year 2009, Mozilla's consolidated reported revenues
+  <p>For the calendar year 2009, Mozilla's consolidated reported revenues
     (Mozilla Foundation and all subsidiaries) were $104 million, up 34 percent
     from 2008 reported revenues of $78 million. Revenues include a 2009 reported
     loss of $104,000 in investments from the Foundation's long-term portfolio as
@@ -33,9 +33,9 @@
     million compared to $86 million in 2008, an annual increase of 22 percent.
     The majority of Mozilla revenue continues to be generated from the search
     functionality included in Mozilla's Firefox product from organizations such
-    as Google, Yahoo, Yandex, Amazon, eBay and a handful of others.{% endtrans %}</p>
+    as Google, Yahoo, Yandex, Amazon, eBay and a handful of others.</p>
 
-  <p>{% trans %}Mozilla consolidated expenses for 2009 were $61 million, up approximately
+  <p>Mozilla consolidated expenses for 2009 were $61 million, up approximately
     26 percent from 2008 expenses of $49 million. Mozilla operating expenses in
     2009 continued to remain highly focused on people and infrastructure. At the
     end of 2009, Mozilla was funding approximately 250 people working around the
@@ -48,9 +48,9 @@
     accessibility support such as Orca screen reader, jQuery library and HTML 5
     video. In late 2009, the Mozilla Foundation began refocusing its public
     support programs toward Mozilla Drumbeat, which was launched in early
-    2010.{% endtrans %}</p>
+    2010.</p>
 
-  <p>{% trans %}Total assets as of December 31, 2009 were $143 million compared with $116
+  <p>Total assets as of December 31, 2009 were $143 million compared with $116
     million at the end of 2008, an increase of 23 percent. Unrestricted net
     assets at the end of 2009 were $120 million compared with $94 million in
     2008, a 28 percent increase. The restricted assets remain the same as last
@@ -58,20 +58,20 @@
     the Mozilla Foundation received that year from the search engine providers.
     As noted last year, the IRS has opened an audit of the Mozilla Foundation.
     We do not yet have a good feel for how long this process will take or the
-    overall scope of what will be involved.{% endtrans %}</p>
+    overall scope of what will be involved.</p>
 
-  <p>{% trans %}We believe Mozilla's financial resources will continue with relative
-    stability and we continue to use our assets to execute on our mission.{% endtrans %}</p>
+  <p>We believe Mozilla's financial resources will continue with relative
+    stability and we continue to use our assets to execute on our mission.</p>
 
   <p>
-    {% trans form990='https://static.mozilla.com/foundation/documents/mf-2009-irs-form-990.pdf',
-      statement='https://static.mozilla.com/foundation/documents/mf-2009-audited-financial-statement.pdf',
-      faq=url('foundation.annualreport.2009.faq')
+    {% with form990='https://static.mozilla.com/foundation/documents/mf-2009-irs-form-990.pdf',
+            statement='https://static.mozilla.com/foundation/documents/mf-2009-audited-financial-statement.pdf',
+            faq=url('foundation.annualreport.2009.faq')
     %}
       More details can be found in our <a
       href="{{ form990 }}">Form 990</a>, <a
       href="{{ statement }}">Audited
       Financial Statement</a> and <a href="{{ faq }}">related FAQ</a>.
-    {% endtrans %}
+    {% endwith %}
   </p>
 {% endblock %}

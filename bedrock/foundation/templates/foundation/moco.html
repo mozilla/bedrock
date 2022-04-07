@@ -14,31 +14,25 @@
 
 {% block article_content %}
   <p>
-    {% trans
-      established="http://www-archive.mozilla.org/press/mozilla-2005-08-03.html"
-    %}
+    {% with established="http://www-archive.mozilla.org/press/mozilla-2005-08-03.html" %}
       The Mozilla Corporation was
       <a href="{{ established }}">established in August 2005</a>
       as a wholly owned taxable subsidiary that serves the non-profit,
       public benefit goals of its parent,
       the Mozilla Foundation, and the vast Mozilla community.
-    {% endtrans %}
+    {% endwith %}
   </p>
 
   <p>
-    {% trans
-      manifesto=url('mozorg.about.manifesto')
-    %}
+    {% with manifesto=url('mozorg.about.manifesto') %}
       The Mozilla Corporation is guided by the principles of the
       <a href="{{ manifesto }}">Mozilla Manifesto</a>.
-    {% endtrans %}
+    {% endwith %}
   </p>
 
   <h2>Organization</h2>
   <p>
-    {% trans %}
       The Mozilla Corporation is governed by its Board of Directors.
-    {% endtrans %}
   </p>
 
   <h3>Board of Directors</h3>

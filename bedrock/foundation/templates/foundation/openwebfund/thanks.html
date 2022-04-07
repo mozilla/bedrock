@@ -17,17 +17,15 @@
 
 {% block article_content %}
   <p>
-  {% trans %}
     Your donation will help Mozilla support projects and people who are
     committed to making the web better. Interested in becoming a part of the Mozilla
     project? Here are some easy ways to get involved:
-  {% endtrans %}
   </p>
 
   <ul class="mzp-u-list-styled">
-    <li>{% trans join="http://www.drumbeat.org/people" %}<a href="{{ join }}">Join</a> Mozilla Drumbeat and start making the web more open and awesome right now{% endtrans %}</li>
-    <li>{% trans getinvolved=url('mozorg.contribute') %}<a href="{{ getinvolved }}">Get involved</a> with Mozilla{% endtrans %}</li>
-    <li>{% trans firefox=url('firefox.new') %}Introduce someone to <a href="{{ firefox }}">Mozilla Firefox</a>{% endtrans %}</li>
+    <li><a href="http://www.drumbeat.org/people">Join</a> Mozilla Drumbeat and start making the web more open and awesome right now</li>
+    <li><a href="{{ url('mozorg.contribute') }}">Get involved</a> with Mozilla</li>
+    <li>Introduce someone to <a href="{{ url('firefox.new') }}">Mozilla Firefox</a></li>
   </ul>
 
 {% endblock %}

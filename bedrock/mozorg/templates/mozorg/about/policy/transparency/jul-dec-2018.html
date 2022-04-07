@@ -229,12 +229,12 @@
   <div data-accordion-role="tabpanel">
     <h3>Legislative Reform</h3>
     <p>
-      {% trans india='https://blog.mozilla.org/netpolicy/2018/07/27/indian-draft-data-protection-bill/',
-                      kenya='https://ca.go.ke/wp-content/uploads/2018/11/Mozilla-Submission-of-Comments-Kenya-Privacy-and-Data-Protection-Bill-2018.pdf',
-                      brazil='https://blog.mozilla.org/netpolicy/2018/07/02/brazilian-data-protection-bill/',
-                      american='https://blog.mozilla.org/netpolicy/2018/11/20/mozilla-files-comments-on-ntias-proposed-american-privacy-framework/',
-                      workshop='https://blog.mozilla.org/netpolicy/2018/12/21/privacy-in-practice-mozilla-talks-lean-data-in-india/',
-                      panel='https://blog.mozilla.org/netpolicy/2018/09/19/lessons-from-carpenter-mozilla-panel-discussion-at-icdppc/' %}
+      {% with india='https://blog.mozilla.org/netpolicy/2018/07/27/indian-draft-data-protection-bill/',
+              kenya='https://ca.go.ke/wp-content/uploads/2018/11/Mozilla-Submission-of-Comments-Kenya-Privacy-and-Data-Protection-Bill-2018.pdf',
+              brazil='https://blog.mozilla.org/netpolicy/2018/07/02/brazilian-data-protection-bill/',
+              american='https://blog.mozilla.org/netpolicy/2018/11/20/mozilla-files-comments-on-ntias-proposed-american-privacy-framework/',
+              workshop='https://blog.mozilla.org/netpolicy/2018/12/21/privacy-in-practice-mozilla-talks-lean-data-in-india/',
+              panel='https://blog.mozilla.org/netpolicy/2018/09/19/lessons-from-carpenter-mozilla-panel-discussion-at-icdppc/' %}
       During the Reporting Period, we continued fighting for strong data protection rules around the world, including
       work on the first data protection laws in <a href="{{ india }}">India</a>, <a href="{{ kenya }}">Kenya</a>, and <a
         href="{{ brazil }}">Brazil</a>, pushing for the swift adoption of the EU’s ePrivacy Regulation, and filing
@@ -243,25 +243,25 @@
         in Delhi</a> with companies large and small on our Lean Data Practices framework, and held a <a
         href="{{ panel }}">panel</a> in Brussels on the recent US Supreme Court Carpenter decision, which extended
       warrant protections to cell site location information.
-      {% endtrans %}
+      {% endwith %}
     </p>
     <p>
-      {% trans government='https://blog.mozilla.org/netpolicy/2018/07/04/a-step-forward-for-government-vulnerability-disclosure-in-europe/',
-                     commented='https://blog.mozilla.org/netpolicy/2018/08/22/europe_lawful_access/',
-                     action='https://blog.mozilla.org/netpolicy/files/2019/06/Sub46.pdf' %}
+      {% with government='https://blog.mozilla.org/netpolicy/2018/07/04/a-step-forward-for-government-vulnerability-disclosure-in-europe/',
+              commented='https://blog.mozilla.org/netpolicy/2018/08/22/europe_lawful_access/',
+              action='https://blog.mozilla.org/netpolicy/files/2019/06/Sub46.pdf' %}
       Mozilla continued advocating for EU Member States to enact <a href="{{ government }}">government vulnerability
         disclosure programs in the EU Cybersecurity Act</a>, and <a href="{{ commented }}">commented</a> on the EU
       proposals around cross-border data access for law enforcement. In Australia, we <a href="{{ action }}">took
         action</a> on legislation that would give the government new powers to undermine encryption.
-      {% endtrans %}
+      {% endwith %}
     </p>
     <p>
-      {% trans copyright='https://blog.mozilla.org/netpolicy/2018/09/07/eu-copyright-reform-the-facts/',
-                     content='https://blog.mozilla.org/netpolicy/2018/11/21/the-eu-terrorist-content-regulation-a-threat-to-the-ecosystem-and-our-users-rights/' %}
+      {% with copyright='https://blog.mozilla.org/netpolicy/2018/09/07/eu-copyright-reform-the-facts/',
+              content='https://blog.mozilla.org/netpolicy/2018/11/21/the-eu-terrorist-content-regulation-a-threat-to-the-ecosystem-and-our-users-rights/' %}
       We also <a href="{{ copyright }}">engaged heavily on the EU Copyright Directive</a>, to minimise the damage to
       individuals’ rights and the open internet arising from the directive’s upload filters, and spoke out against the
       <a href="{{ content }}">EU’s Terrorist Content Regulation</a>.
-      {% endtrans %}
+      {% endwith %}
     </p>
 
     <h3>Threat Indicators &amp; Data Disclosures</h3>

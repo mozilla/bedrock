@@ -199,11 +199,9 @@
   <div data-accordion-role="tabpanel">
     <h3>Legislative Reform</h3>
     <p>
-      {% trans %}
       In the Reporting Period, we advocated for stronger encryption, privacy, and security practices.
-      {% endtrans %}
 
-      {% trans
+      {% with
           link_encryption='https://mzl.la/encrypt',
           link_principles='https://surveillance.mozilla.org',
           link_disclosure='https://blog.mozilla.org/blog/2016/05/11/advanced-disclosure-needed-to-keep-users-secure/',
@@ -216,11 +214,11 @@
       backdoors in the Apple and FBI dispute and a <a href="{{ link_letter }}">letter to the U.S. Senate Judiciary
         Committee</a> opposing legislation that would compel companies to disclose the content of user communications
       without judicial oversight.
-      {% endtrans %}
+      {% endwith %}
     </p>
 
     <p>
-      {% trans link_us1='https://blog.mozilla.org/netpolicy/2016/03/07/challenges-to-openness-under-u-s-copyright-law/',
+      {% with link_us1='https://blog.mozilla.org/netpolicy/2016/03/07/challenges-to-openness-under-u-s-copyright-law/',
           link_us2='https://blog.mozilla.org/netpolicy/2016/04/05/reining-in-abuses-of-the-dmca-notice-system/',
           link_eu1='https://blog.mozilla.org/netpolicy/files/2016/05/Mozilla-IPRED-filing-April-2016.pdf',
           link_eu2='https://blog.mozilla.org/netpolicy/2016/05/02/this-is-what-a-rightsholder-looks-like-in-2016/',
@@ -231,15 +229,15 @@
       Commission’s proposed overhaul of the EU’s copyright laws (<a href="{{ link_eu1 }}">here</a> and <a
         href="{{ link_eu2 }}">here</a>). We also commented on the U.S. Federal Communications Commission <a
         href="{{ link_fcc }}">recently proposed framework for broadband privacy</a>.
-      {% endtrans %}
+      {% endwith %}
 
-      {% trans
+      {% with
           link_fund='https://blog.mozilla.org/blog/2016/06/09/help-make-open-source-secure/',
           link_leandata=url('mozorg.about.policy.lean-data.index') %}
       In addition, we launched the <a href="{{ link_fund }}">Secure Open Source Fund</a> to promote security auditing
       and patching of widely used open source technologies and our <a href="{{ link_leandata }}">Lean Data
         Initiative</a> to encourage companies to be responsible in their use and stewardship of data.
-      {% endtrans %}
+      {% endwith %}
     </p>
 
     <h3>Threat Indicators &amp; Data Disclosures</h3>

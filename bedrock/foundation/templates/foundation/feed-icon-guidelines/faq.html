@@ -15,76 +15,77 @@
 
 {% block article_content %}
   <p>
-    {% trans guide=url('foundation.feed-icon-guidelines.index') %}
+    {% with guide=url('foundation.feed-icon-guidelines.index') %}
     This FAQ attempts to answer a variety of questions that might
     be asked about the <a href="{{ guide }}">feed icon usage guidelines</a>.
-    {% endtrans %}
+    {% endwith %}
   </p>
 
   <h3>Feed icon basics</h3>
 
   <dl class="mzp-u-list-styled">
-    <dt>{% trans %}What is the feed icon?{% endtrans %}</dt>
-    <dd><p>{% trans link='https://support.mozilla.org/kb/Live+Bookmarks' %}
+    <dt>What is the feed icon?</dt>
+    <dd><p>{% with link='https://support.mozilla.org/kb/Live+Bookmarks' %}
     The feed icon was created originally for
     use with the <a href="{{ link }}">Live Bookmarks</a>
     feature of the Mozilla Firefox browser. In that context the
     presence of the icon in association with a displayed web page
     indicates that information contained in the page is also
     available in the form of a web feed using the RSS or Atom web
-    syndication formats.{% endtrans %}</p>
+    syndication formats.{% endwith %}</p>
 
-    <p>{% trans %}The Mozilla Foundation subsequently proposed having the icon
+    <p>The Mozilla Foundation subsequently proposed having the icon
     be used universally in connection with feed-enabled applications
     or online services, blogs, news sites, and in general any web
     site offering information via open web syndication
-    formats.{% endtrans %}</p></dd>
+    formats.</p></dd>
 
-    <dt>{% trans %}Where can I get versions of the feed icon?{% endtrans %}</dt>
+    <dt>Where can I get versions of the feed icon?</dt>
     <dd><p>
-    {% trans icon14=static('img/trademarks/feed-icon-14x14.png'),
-        icon28=static('img/trademarks/feed-icon-28x28.png'),
-        feedicons="http://www.feedicons.com/" %}
+    {% with icon14=static('img/trademarks/feed-icon-14x14.png'),
+            icon28=static('img/trademarks/feed-icon-28x28.png'),
+            feedicons="http://www.feedicons.com/"
+    %}
     The <q>canonical</q> icon is available in a
     <a href="{{ icon14 }}" title="14 by 14-pixel canonical version of the feed icon">14x14-pixel version</a>
     and a
     <a href="{{ icon28 }}" title="28 by 28-pixel canonical version of the feed icon">28x28-pixel version</a>.
     You can also get high-resolution and variant versions through the
     <a href="{{ feedicons }}">feedicons.com web site</a>.
-    {% endtrans %}
+    {% endwith %}
     </p>
     </dd>
 
-    <dt>{% trans %}Am I required to follow the proposed
-    feed icon usage guidelines?{% endtrans %}</dt>
+    <dt>Am I required to follow the proposed
+    feed icon usage guidelines?</dt>
 
-    <dd><p>{% trans %}No. The proposed usage guidelines are not
+    <dd><p>No. The proposed usage guidelines are not
     legally binding in any way. However we hope that users of the
     icon will honor the guidelines in the spirit in which they were
-    intended.{% endtrans %}</p></dd>
+    intended.</p></dd>
 
-    <dt>{% trans %}What&#8217;s the role of the wider
-    community in all of this?{% endtrans %}</dt>
+    <dt>What&#8217;s the role of the wider
+    community in all of this?</dt>
 
-    <dd><p>{% trans %}As noted above the proposed usage
+    <dd><p>As noted above the proposed usage
     guidelines for the feed icon are not legally binding, and in
     general we don&#8217;t think that use of the icon should be
     regulated using trademark law and related mechanisms. Instead we
     propose relying on community oversight and enforcement of the
-    guidelines using non-legal means.{% endtrans %}</p>
+    guidelines using non-legal means.</p>
 
-    <p>{% trans %}Community members are also invited to assist in determining
+    <p>Community members are also invited to assist in determining
     the proper interpretation of the guidelines in particular
     situations, and evolving the guidelines and the icon itself to
-    accomodate future uses not yet envisioned.{% endtrans %}</p></dd>
+    accomodate future uses not yet envisioned.</p></dd>
   </dl>
 
   <h3>Reasons and rationales</h3>
 
   <dl class="mzp-u-list-styled">
-    <dt>{% trans %}Why publish any usage guidelines at all?{% endtrans %}</dt>
+    <dt>Why publish any usage guidelines at all?</dt>
     <dd><p>
-    {% trans blog="https://blog.lizardwrangler.com/2006/06/08/what-do-icons-mean-part-1/" %}
+    {% with blog="https://blog.lizardwrangler.com/2006/06/08/what-do-icons-mean-part-1/" %}
     Because as <a href="{{ blog }}">we&#8217;ve previously discussed</a>,
     the Mozilla Foundation felt it was important that the icon
     <q>mean something</q> to people, particularly to end users who
@@ -95,122 +96,122 @@
     users&#8217; expectations to be completely violated, for example
     by frequently encountering information in web syndication
     formats that were proprietary and could not be processed by most
-    feed-enabled applications.{% endtrans %}</p></dd>
+    feed-enabled applications.{% endwith %}</p></dd>
 
-    <dt>{% trans %}Why do the proposed usage guidelines
+    <dt>Why do the proposed usage guidelines
     restrict use of the icon to open formats? Won&#8217;t that
     stifle innovation in future applications of web syndication
-    formats?{% endtrans %}</dt>
+    formats?</dt>
     <dd>
-      <p>{% trans %}
+      <p>
         We don&#8217;t believe so. We believe our proposed approach
         is consistent with encouraging innovation, for the following reasons:
-      {% endtrans %}</p>
+      </p>
       <ul>
-        <li>{% trans %}The usage guidelines as proposed do not have a
+        <li>The usage guidelines as proposed do not have a
         restrictive definition of the formats and protocols with which
         the icon may be used. In particular, the guidelines do not
         restrict use of the icon to the present-day RSS or Atom
         formats; in addition, the guidelines do not rule out the use
-        of protocols other than HTTP to deliver web feeds.{% endtrans %}</li>
+        of protocols other than HTTP to deliver web feeds.</li>
 
-        <li>{% trans %}The usage guidelines as proposed do not rule out
+        <li>The usage guidelines as proposed do not rule out
         techniques like using proprietary media types for content
         items within a web feed published using an open web
         syndication format. Granted, if taken to an extreme such
         practices would lessen the usefulness of having open formats,
         but that&#8217;s a question for the broader community to
-        consider in interpreting and evolving the guidelines.{% endtrans %}</li>
+        consider in interpreting and evolving the guidelines.</li>
 
-        <li>{% trans %}Finally, the guidelines are not legally binding. If you
+        <li>Finally, the guidelines are not legally binding. If you
         believe that the goal of innovation requires your defining and
         using partly or completely proprietary web syndication formats
         then you&#8217;re free both to do so and to use the icon in
         connection with those formats. However if you&#8217;ve
         previously publicly committed to comply with the guidelines
         then it&#8217;s up to you to justify to the broader community
-        why you felt it necessary to act differently.{% endtrans %}</li>
+        why you felt it necessary to act differently.</li>
       </ul>
     </dd>
 
-    <dt>{% trans %}Why do the proposed guidelines require
+    <dt>Why do the proposed guidelines require
     that formats used in association with the icon be implementable
-    by free and open source software developers?{% endtrans %}</dt>
+    by free and open source software developers?</dt>
 
-    <dd><p>{% trans %}Because the icon was originally created
+    <dd><p>Because the icon was originally created
     for use with free and open source software (FOSS), and because
     FOSS developers form a major part of the community promoting the
     use of web feeds for new and interesting applications. We
     don&#8217;t want there to be web syndication formats for which
     the icon is used but which we can&#8217;t implement (e.g., due
     to patent or other restrictions), and we believe other FOSS
-    developers would agree.{% endtrans %}</p></dd>
+    developers would agree.</p></dd>
 
-    <dt>{% trans %}Why do the proposed guidelines require
+    <dt>Why do the proposed guidelines require
     that formats used in association with the icon be developed
-    and/or maintained using an open process?{% endtrans %}</dt>
+    and/or maintained using an open process?</dt>
 
-    <dd><p>{% trans %}Because ultimately it&#8217;s the broad
+    <dd><p>Because ultimately it&#8217;s the broad
     community implementing and using web syndication formats that
     creates the value associated with the icon, and we don&#8217;t
     believe it&#8217;s fair to that community to use the icon in
     association with formats over which that community has no
-    influence.{% endtrans %}</p></dd>
+    influence.</p></dd>
   </dl>
 
   <h2>Interpreting the guidelines</h2>
 
   <dl class="mzp-u-list-styled">
-    <dt>{% trans %}I don&#8217;t like orange; can I use
-    the feed icon in a different color?{% endtrans %}</dt>
+    <dt>I don&#8217;t like orange; can I use
+    the feed icon in a different color?</dt>
 
-    <dd><p>{% trans %}As noted in the guidelines, we
+    <dd><p>As noted in the guidelines, we
     don&#8217;t intend to discourage alternative uses and
     representations of the icon that conform to the overall spirit
     of the guidelines, including using a different color for the
     icon in cases where you think it&#8217;s appropriate (e.g., to
-    match the overall color scheme for your web site).{% endtrans %}</p>
+    match the overall color scheme for your web site).</p>
 
-    <p>{% trans %}However at the same time we believe that the color of the
+    <p>However at the same time we believe that the color of the
     icon is an important visual cue for people, and that arbitrarily
     changing the color could disrupt that cue and could confuse
     users. (Just as, for example, changing the standard colors used
     for road signs could confuse drivers.) We therefore recommend
     <em>not</em> changing the color of the icon when it&#8217;s used
     in the context of feed readers and related products and
-    services.{% endtrans %}</p></dd>
+    services.</p></dd>
 
-    <dt>{% trans %}Can I use the icon in association with
-    web feeds that are subscription-only and/or fee-based?{% endtrans %}</dt>
+    <dt>Can I use the icon in association with
+    web feeds that are subscription-only and/or fee-based?</dt>
 
-    <dd<p>{% trans %}Yes. The proposed requirement to use the
+    <dd<p>Yes. The proposed requirement to use the
     icon in association only with open formats doesn&#8217;t imply
     that the content carried by the format must be made generally
-    available.{% endtrans %}</p></dd>
+    available.</p></dd>
 
-    <dt>{% trans %}Can I use the icon in association with
+    <dt>Can I use the icon in association with
     web feeds that include content that might itself be in
     proprietary formats and not necessarily anticipated in the
     format specification (e.g., for podcasting or
-    photocasting)?{% endtrans %}</dt>
+    photocasting)?</dt>
 
-    <dd><p>{% trans %}In principle yes, although particular
+    <dd><p>In principle yes, although particular
     instances of such practices may merit individual
     consideration. Open web syndication formats can be designed to
     allow for arbitrary content; for example, the atom:content
     element in Atom can be used for media types other than text and
     (X)HTML. Such open formats can also be designed to be extended
     in various ways, e.g., through Atom&#8217;s Simple Extension and
-    Structured Extension elements.{% endtrans %}</p>
+    Structured Extension elements.</p>
 
-    <p>{% trans %}In some cases the additional media types and extension
+    <p>In some cases the additional media types and extension
     elements may be defined by open formats, and in some cases they
     may not be, In some cases the additional items may need to be
     interpreted by the application processing the feed, and in other
     cases they may not be (e.g., an audio or video media type might
-    simply handed off to a third-party media player).{% endtrans %}</p>
+    simply handed off to a third-party media player).</p>
 
-    <p>{% trans %}Ultimately it&#8217;s up to the community to decide how far
+    <p>Ultimately it&#8217;s up to the community to decide how far
     use of the icon should strech to cover
     <q>edge cases</q>involving the use of proprietary formats in certain
     contexts. For example, using the icon in association with a web
@@ -220,31 +221,31 @@
     violate the spirit of the guidelines to use the icon in
     association with a feed format that extended Atom in proprietary
     ways outside those allowed by Atom&#8217;s defined extension
-    mechanisms. Other cases might be more ambiguous.{% endtrans %}</p>
+    mechanisms. Other cases might be more ambiguous.</p>
     </dd>
 
-    <dt>{% trans %}What about cases where the entity
+    <dt>What about cases where the entity
     making use of the icon doesn&#8217;t necessarily control the
     format of what&#8217;s being referenced by it (for example, a
     web portal that uses the icon to identify web feeds made
-    available by third parties)?{% endtrans %}</dt>
+    available by third parties)?</dt>
 
-    <dd><p>{% trans %}In general individuals and organizations
+    <dd><p>In general individuals and organizations
     should be held responsible for their own actions, but
     can&#8217;t necessarily be held responsible for the actions of
     others. If a site states or implies that its web feeds are in
     open web syndication formats but this is not in fact the case,
     the fault lies with the site offering the feeds, not with others
     who might mistakenly or inadvertantly use the feed icon in
-    association with the original site&#8217;s feeds.{% endtrans %}</p></dd>
+    association with the original site&#8217;s feeds.</p></dd>
 
-    <dt>{% trans %}How can I report possible violations of
-    the proposed usage guidelines?{% endtrans %}</dt>
+    <dt>How can I report possible violations of
+    the proposed usage guidelines?</dt>
 
     <dd>
       <p>
-        {% trans group="https://groups.google.com/group/mozilla.legal",
-           list="https://lists.mozilla.org/listinfo/legal"
+        {% with group="https://groups.google.com/group/mozilla.legal",
+                list="https://lists.mozilla.org/listinfo/legal"
          %}
           That&#8217;s really up to you. If you
           think someone&#8217;s misusing the icon you can blog about it,
@@ -253,14 +254,14 @@
           <a href="{{ list }}">mailing list</a>),
           or notify anyone else whom you think might have an interest in
           the matter.
-        {% endtrans %}
+        {% endwith %}
       </p>
     </dd>
 
-    <dt>{% trans %}How will violations of the proposed
-    guidelines be punished?{% endtrans %}</dt>
+    <dt>How will violations of the proposed
+    guidelines be punished?</dt>
 
-    <dd><p>{% trans %}As previously discussed the proposed feed
+    <dd><p>As previously discussed the proposed feed
     icon usage guidelines are not legally binding, so no legal
     recourse is available against those who might violate the
     guidelines. However community members are certainly free to take
@@ -268,6 +269,6 @@
     (e.g., to a corporation&#8217;s senior managers), publicizing
     the violations to other community members, the press, and the
     public at large, boycotting the violator&#8217;s products and
-    services, and so on.{% endtrans %}</p></dd>
+    services, and so on.</p></dd>
   </dl>
 {% endblock %}

@@ -21,9 +21,7 @@
   <p>Firefox 4 is going to be great.</p>
 
   <p>
-    {% trans
-      speed="https://blog.mozilla.org/blog/2010/11/10/fasten-your-seatbelts-latest-firefox-4-beta-boosts-speed-in-the-browser/"
-    %}
+    {% with speed="https://blog.mozilla.org/blog/2010/11/10/fasten-your-seatbelts-latest-firefox-4-beta-boosts-speed-in-the-browser/" %}
       We've made <a href="{{ speed }}">dramatic speed and performance
       advancements</a> across the
       board in Firefox 4. Everything from startup time to page load speed to
@@ -34,18 +32,18 @@
       comparison to previous versions of Firefox and in comparison to other
       modern
       Web browsers.
-    {% endtrans %}
+    {% endwith %}
   </p>
 
-  <p>{% trans %}Firefox 4 has a fresh and streamlined look to make it easy for
+  <p>Firefox 4 has a fresh and streamlined look to make it easy for
     people to
     engage with the Web the way they want. Today, many of us use the Web in
     complex and idiosyncratic ways. We "live" in a few website applications, we
     visit many other websites briefly or repeatedly, we interweave work and
     personal tasks, we share, we complete many quick tasks in the midst of
-    ongoing interaction with other websites.{% endtrans %}</p>
+    ongoing interaction with other websites.</p>
 
-  <p>{% trans beta=url('firefox.channel.desktop') + '#beta' %}To make these
+  <p>{% with beta=url('firefox.channel.desktop') + '#beta' %}To make these
     experiences effortless and fun, we've developed features to
     reduce the complexity of navigating today's web. These include enabling "app
     tabs" that are always instantly available, placing tabs on top of the URL
@@ -55,25 +53,25 @@
     gives us access to our bookmarks, browser history, saved passwords and
     recently open browser tabs, no matter where we are. Early adopters can check
     out the <a href="{{ beta }}">most recent beta</a>; general
-    consumers should wait until we get to a final release.{% endtrans %}</p>
+    consumers should wait until we get to a final release.{% endwith %}</p>
 
-  <p>{% trans %}In addition, Mozilla plays a key role in pushing the industry to
+  <p>In addition, Mozilla plays a key role in pushing the industry to
     adopt open
     Web standards like HTML5. Firefox 4 adds considerable new capabilities to
     the Web platform by pioneering support for Web technologies like the
     &lt;video&gt; tag and the WebM codec which enable video without plugins, and
     WebGL for great 3D graphics. It also improves existing tools like CSS, Canvas
     and SVG to make exciting Web pages. Firefox 4 enables developers to create rich new
-    experiences on the Web.{% endtrans %}</p>
+    experiences on the Web.</p>
 
-  <p>{% trans %}We couldn't build such an amazing Firefox without our community
+  <p>We couldn't build such an amazing Firefox without our community
     of contributors and beta testers. They are exceptional, and a key part of the
-    reason why the future of Firefox has so much promise.{% endtrans %}</p>
+    reason why the future of Firefox has so much promise.</p>
 
   <img src="{{ static('img/foundation/annualreport/2009/Infographic.png') }}" alt="">
 
   <p>
-    {% trans feedback=url('firefox.channel.desktop') + '#beta', awesome="https://support.mozilla.org/army-of-awesome" %}
+    {% with feedback=url('firefox.channel.desktop') + '#beta', awesome="https://support.mozilla.org/army-of-awesome" %}
       Mozilla has tens of thousands of people contributing code and helping to
       localize and evangelize Firefox, and we've worked to expand/increase the
       ways that all Firefox users can participate in making Firefox better. With
@@ -90,16 +88,16 @@
       Firefox users to respond to each other and
       answer support questions on Twitter. In the first couple of weeks,
       hundreds of volunteers have already begun responding to thousands of user
-      requests on Twitter.{% endtrans %}</p>
+      requests on Twitter.{% endwith %}</p>
 
-  <p>{% trans %}The browser world is now intensely competitive and products are
+  <p>The browser world is now intensely competitive and products are
     improving constantly. Firefox continues to be at the forefront of technology and user
     experience. Firefox brings a great product and Mozilla's vision of openness
     and empowerment directly to more than 400 million people in more than 80
     languages. We also spur these developments indirectly by serving as an
     "honest broker" showing what Internet life can be, and encouraging others to
     build products that incorporate openness and individual control. This is an
-    immense success for Mozilla.{% endtrans %}</p>
+    immense success for Mozilla.</p>
 
 
     {{ video('Firefox_global_final.mp4',

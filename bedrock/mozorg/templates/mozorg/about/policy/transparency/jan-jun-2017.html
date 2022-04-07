@@ -204,42 +204,43 @@
     <h3>Legislative Reform</h3>
 
     <p>
-      {% trans link_patch='https://blog.mozilla.org/netpolicy/2017/05/17/working-together-towards-secure-internet-vep-reform/' %}
+      {% with link_patch='https://blog.mozilla.org/netpolicy/2017/05/17/working-together-towards-secure-internet-vep-reform/' %}
       In the Reporting Period, we worked to <a href="{{ link_patch }}">support the introduction of the Protecting Our
         Ability to Counter Hacking (PATCH) Act</a>, which codifies and includes important reforms to the U.S.
       Government’s process for handling vulnerabilities.
-      {% endtrans %}
+      {% endwith %}
 
-      {% trans link_amicus='https://blog.mozilla.org/blog/2017/01/06/fighting-back-against-unlawful-warrants-and-indefinite-gag-orders-to-protect-internet-privacy-and-security/' %}
+      {% with link_amicus='https://blog.mozilla.org/blog/2017/01/06/fighting-back-against-unlawful-warrants-and-indefinite-gag-orders-to-protect-internet-privacy-and-security/' %}
       We joined with other major technology companies to file an <a href="{{ link_amicus }}">amicus brief</a> supporting
       Facebook’s ability to challenge both a search warrant and an accompanying indefinite gag order.
-      {% endtrans %}
+      {% endwith %}
 
-      {% trans link_govhack1='http://cyberlaw.stanford.edu/events/government-hacking-assessing-and-mitigating-security-risk',
+      {% with link_govhack1='http://cyberlaw.stanford.edu/events/government-hacking-assessing-and-mitigating-security-risk',
           link_govhack2='http://cyberlaw.stanford.edu/blog/2017/05/government-hacking-evidence-and-vulnerability-disclosure-court' %}
       We continued to sponsor a speaker series on <a href="{{ link_govhack1 }}">government</a> <a
         href="{{ link_govhack2 }}">hacking</a>.
-      {% endtrans %}
+      {% endwith %}
     </p>
 
     <p>
-      {% trans link_dmca='https://blog.mozilla.org/netpolicy/2017/02/21/we-are-all-creators-now/' %}
+      {% with link_dmca='https://blog.mozilla.org/netpolicy/2017/02/21/we-are-all-creators-now/' %}
       We filed comment with the U.S. Copyright Office on their <a href="{{ link_dmca }}">review of Section 512 of the
         Digital Millennium Copyright Act</a> (DMCA).
-      {% endtrans %}
+      {% endwith %}
 
-      {% trans link_eucopyright='http://www.ipprotheinternet.com/interviews/interview.php?interview_id=116',
-          link_eprivacy='https://blog.mozilla.org/netpolicy/2017/06/07/engaging-e-privacy-european-parliament/',
-          link_dataecon='https://blog.mozilla.org/netpolicy/files/2017/04/Mozilla-EU-Data-Economy-submission.pdf' %}
+      {% with link_eucopyright='http://www.ipprotheinternet.com/interviews/interview.php?interview_id=116',
+              link_eprivacy='https://blog.mozilla.org/netpolicy/2017/06/07/engaging-e-privacy-european-parliament/',
+              link_dataecon='https://blog.mozilla.org/netpolicy/files/2017/04/Mozilla-EU-Data-Economy-submission.pdf'
+      %}
       In the EU, we’ve worked to influence the EU Commission’s <a href="{{ link_eucopyright }}">ongoing copyright reform
         efforts</a>, and continued to engage with the EU <a href="{{ link_eprivacy }}">e-Privacy Regulation</a> and <a
         href="{{ link_dataecon }}">Data Economy consultation</a>.
-      {% endtrans %}
+      {% endwith %}
 
-      {% trans link_aadhaar='https://blog.mozilla.org/netpolicy/2017/05/26/aadhaar-isnt-progress/' %}
+      {% with link_aadhaar='https://blog.mozilla.org/netpolicy/2017/05/26/aadhaar-isnt-progress/' %}
       Together with the Mozilla Community in India, we also <a href="{{ link_aadhaar }}">published an op-ed</a>
       highlighting the need for privacy protections in Aadhaar, the Indian national biometric identity system.
-      {% endtrans %}
+      {% endwith %}
     </p>
 
     <h3>Threat Indicators &amp; Data Disclosures</h3>
@@ -268,12 +269,12 @@
 
     <aside class="footnotes">
       <p>
-        {% trans link_cybertipline='http://www.missingkids.org/cybertipline' %}
+        {% with link_cybertipline='http://www.missingkids.org/cybertipline' %}
         * Information about possible child sexual exploitation can be voluntarily reported by anyone to the National
         Center for Missing & Exploited Children’s (NCMEC) <a href="{{ link_cybertipline }}">CyberTipline</a>. We take
         this issue seriously. In the Reporting Period, Mozilla disclosed Specific User data to the NCMEC in connection
         with content that was uploaded to a Mozilla service and implicated child sexual exploitation.
-        {% endtrans %}
+        {% endwith %}
       </p>
     </aside>
 

@@ -14,12 +14,12 @@
 
 {% block article_content %}
 
-  <p>{% trans openSource=url('foundation.licensing') %}Mozilla is an open <a href="{{ openSource }}">source company</a>. Because we make our code available to download and modify, proper use of our trademarks is essential to inform users whether or not Mozilla stands behind a product or service. When using Mozilla trademarks you must comply with these Mozilla Trademark Guidelines.{% endtrans %}</p>
+  <p>{% with openSource=url('foundation.licensing') %}Mozilla is an open <a href="{{ openSource }}">source company</a>. Because we make our code available to download and modify, proper use of our trademarks is essential to inform users whether or not Mozilla stands behind a product or service. When using Mozilla trademarks you must comply with these Mozilla Trademark Guidelines.{% endwith %}</p>
 
-  <p>{% trans list=url('foundation.trademarks.list') %}A list of Mozilla’s and its affiliates’ trademarks can be found here: <a href="{{ list }}">Trademarks List</a>. However, that is not a complete list of our names, logos, and brand features, all of which are subject to these guidelines.{% endtrans %}</p>
+  <p>{% with list=url('foundation.trademarks.list') %}A list of Mozilla’s and its affiliates’ trademarks can be found here: <a href="{{ list }}">Trademarks List</a>. However, that is not a complete list of our names, logos, and brand features, all of which are subject to these guidelines.{% endwith %}</p>
 
-  <p>{% trans report=url('legal.fraud-report') %}If you want to report misuse of a Mozilla trademark, please contact us here:<br>
-  <a href="{{ report }}">https://www.mozilla.org/about/legal/defend-mozilla-trademarks/</a>{% endtrans %}</p>
+  <p>{% with report=url('legal.fraud-report') %}If you want to report misuse of a Mozilla trademark, please contact us here:<br>
+  <a href="{{ report }}">https://www.mozilla.org/about/legal/defend-mozilla-trademarks/</a>{% endwith %}</p>
 
   <h2>When do I need specific permission to use a Mozilla trademark?</h2>
 
@@ -39,7 +39,7 @@
 
   </ul>
 
-  <p>{% trans trademarks="mailto:trademark-permissions@mozilla.com" %}<strong>All other uses of a Mozilla trademark require our prior written permission.</strong> This includes any use of a Mozilla trademark in a domain name. Contact us at <a href="{{ trademarks }}">trademark-permissions@mozilla.com</a> for more information.{% endtrans %}</p>
+  <p>{% with trademarks="mailto:trademark-permissions@mozilla.com" %}<strong>All other uses of a Mozilla trademark require our prior written permission.</strong> This includes any use of a Mozilla trademark in a domain name. Contact us at <a href="{{ trademarks }}">trademark-permissions@mozilla.com</a> for more information.{% endwith %}</p>
 
   <h2>When allowed, how should I use a Mozilla trademark?</h2>
 
@@ -52,7 +52,7 @@
     <li>Give a Mozilla logo adequate spacing from the other elements on the web page or document (see the <a href="#logo-guidelines">Mozilla Logo and Firefox Logo Guidelines</a> below).</li>
 
     <li>
-      {% trans list=url('foundation.trademarks.list') %}Use the Mozilla trademark exactly as shown in the <a href="{{ list }}">Trademarks List</a>.{% endtrans %}
+      {% with list=url('foundation.trademarks.list') %}Use the Mozilla trademark exactly as shown in the <a href="{{ list }}">Trademarks List</a>.{% endwith %}
     </li>
 
     <li>
@@ -66,7 +66,7 @@
     <li>
       Include a trademark attribution notice.
       <ul>
-        <li>{% trans list=url('foundation.trademarks.list') %}Use a clearly visible notice to provide attribution to Mozilla, such as: “[Mozilla trademark] is a trademark of the Mozilla Foundation in the US and other countries.” Please see the <a href="{{ list }}">Trademarks List</a> for examples of attribution notices.{% endtrans %}</li>
+        <li>{% with list=url('foundation.trademarks.list') %}Use a clearly visible notice to provide attribution to Mozilla, such as: “[Mozilla trademark] is a trademark of the Mozilla Foundation in the US and other countries.” Please see the <a href="{{ list }}">Trademarks List</a> for examples of attribution notices.{% endwith %}</li>
       </ul>
     </li>
 
@@ -96,7 +96,7 @@
 
   <h4>Software Distribution Guidelines</h4>
 
-  <p>{% trans distribution=url('foundation.trademarks.distribution-policy') %} Our <a href="{{ distribution }}">distribution policy</a> contains additional guidelines that apply to distribution of the Firefox Browser and other Mozilla software.{% endtrans %} </p>
+  <p>{% with distribution=url('foundation.trademarks.distribution-policy') %} Our <a href="{{ distribution }}">distribution policy</a> contains additional guidelines that apply to distribution of the Firefox Browser and other Mozilla software.{% endwith %} </p>
 
   <h4 id="logo-guidelines">Mozilla Logo and Firefox Logo Guidelines</h4>
 
@@ -108,7 +108,7 @@
 
   <h4 id="firefox-add-on">Firefox Add-on Guidelines</h4>
 
-  <p>{% trans %}In addition to the General Guidelines above, your add-on developer name and everything about your add-on (including the add-on name, icon, description, graphics and screenshots) must be unique and free of Mozilla trademarks unless (1) you’ve received prior written permission from Mozilla or (2) you’re only using a Mozilla wordmark to describe that your add-on works with Firefox and as long as your add-on icon and/or name:{% endtrans %}</p>
+  <p>In addition to the General Guidelines above, your add-on developer name and everything about your add-on (including the add-on name, icon, description, graphics and screenshots) must be unique and free of Mozilla trademarks unless (1) you’ve received prior written permission from Mozilla or (2) you’re only using a Mozilla wordmark to describe that your add-on works with Firefox and as long as your add-on icon and/or name:</p>
 
   <ul class="mzp-u-list-styled">
 
@@ -122,13 +122,13 @@
 
   <h4 id="social-media">Social Media Guidelines</h4>
 
-  <p>{% trans %}In addition to the General Guidelines above, the name and handle of your social media account and any and all pages cannot begin with a Mozilla trademark. In addition, Mozilla logos cannot be used in a way that might suggest affiliation with Mozilla, including, but not limited to, the account, profile, or header images. The only exception to these requirements is if you’ve received prior permission from Mozilla.{% endtrans %}</p>
+  <p>In addition to the General Guidelines above, the name and handle of your social media account and any and all pages cannot begin with a Mozilla trademark. In addition, Mozilla logos cannot be used in a way that might suggest affiliation with Mozilla, including, but not limited to, the account, profile, or header images. The only exception to these requirements is if you’ve received prior permission from Mozilla.</p>
 
-  <p>{% trans %}For example, you cannot name your account, page, or community “Firefox Representatives” or “Mozilla Software.” However, it would be acceptable to name your account, page, or community “Fans of Firefox” or “Information about Mozilla Software” as long as you do not use the Firefox or Mozilla logos or otherwise suggest any affiliation with Mozilla.{% endtrans %}</p>
+  <p>For example, you cannot name your account, page, or community “Firefox Representatives” or “Mozilla Software.” However, it would be acceptable to name your account, page, or community “Fans of Firefox” or “Information about Mozilla Software” as long as you do not use the Firefox or Mozilla logos or otherwise suggest any affiliation with Mozilla.</p>
 
   <h4 id="open-source-guidelines">Open Source Project Guidelines</h4>
 
-  <p>{% trans %}The specific license for each of Mozilla’s software products and code says what you can and cannot do with the code itself but does not give permission to use Mozilla’s trademarks. If you choose to build on or modify Mozilla’s open source code for your own project,{% endtrans %}</p>
+  <p>The specific license for each of Mozilla’s software products and code says what you can and cannot do with the code itself but does not give permission to use Mozilla’s trademarks. If you choose to build on or modify Mozilla’s open source code for your own project,</p>
   <h4>You Must:</h4>
 
   <ul class="mzp-u-list-styled">
@@ -194,10 +194,10 @@
 
   <h4>Mozilla Community Guidelines</h4>
 
-  <p>{% trans discourse=("https://discourse.mozilla.org/") %}Various permissions to use Mozilla Trademarks have been provided to various members of the Mozilla Community, and these Mozilla Trademark Guidelines do not alter any such previously granted permissions.{% endtrans %}</p>
+  <p>{% with discourse=("https://discourse.mozilla.org/") %}Various permissions to use Mozilla Trademarks have been provided to various members of the Mozilla Community, and these Mozilla Trademark Guidelines do not alter any such previously granted permissions.{% endwith %}</p>
 
   <h3>Questions</h3>
 
-  <p>{% trans trademarks="mailto:trademark-permissions@mozilla.com" %}If you have any questions, please contact us at <a href="{{ trademarks }}">trademark-permissions@mozilla.com</a>.{% endtrans %}</p>
+  <p>{% with trademarks="mailto:trademark-permissions@mozilla.com" %}If you have any questions, please contact us at <a href="{{ trademarks }}">trademark-permissions@mozilla.com</a>.{% endwith %}</p>
 
 {% endblock %}

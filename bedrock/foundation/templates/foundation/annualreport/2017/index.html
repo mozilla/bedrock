@@ -29,12 +29,10 @@
       <div class="c-intro-section">
         <div class="c-copy-wrapper">
             <p>
-            {% trans %}
               The State of Mozilla 2017 is our annual report. This report highlights activities
               for 2017-2018 and is accompanied by detailed 2017 financials. This report is
               released when we submit the Mozilla non-profit tax filing for the previous
               calendar year.
-            {% endtrans %}
             </p>
         </div>{#--/.c-copy-wrapper--#}
       </div>{#--/.c-intro-section--#}
@@ -46,34 +44,27 @@
           </header>
           <div class="c-copy">
             <p>
-            {% trans %}
               2017 and 2018 have been years of the “techlash” — a growing chorus of sentiment along
               the lines of, “The Internet is broken! What can we do?” For half of humanity, digital
               life is online life. We are experiencing the glories of online life, where knowledge
               and opportunity abound in ways unimaginable a decade ago. We also see all the flaws of
               humanity on display, from violence to lies to exploitation to the control and seeming
               lack of accountability of a small handful of companies.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               For a generation we have looked to the big tech companies as the voice of what digital
               life could be. Today trust in the big tech platforms and their effect on life has eroded.
               The focus is becoming how to limit the effects of the tech platforms. There is a growing
               hunger for experienced and credible voices who can describe and build a better Internet.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               Mozilla seeks to help fill this void. Not alone of course — many participants are needed
               to create meaningful improvement in digital life. Mozilla plays a particular role — to
               bring the voice of world-class technologists, advocates and activists who are intimately
               familiar with the internet architecture, products and experiences into the creation of a
               better internet.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               For twenty years Mozilla has been at the heart of the internet/web platform, building core
               capabilities and product features aimed at security, privacy and individual empowerment and
               control. We share this capability with today’s giant tech “platforms” but we are radically
@@ -84,10 +75,8 @@
               internet. Increasingly we are also developing new ways to bring policy, technology and
               committed people to impact issues from misinformation to the surveillance economy and
               manipulation of people through use of our personal information and behavioral profiles.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               Mozilla works with many others to pursue this goal. When the United States Federal
               Communications Commission attacks net neutrality or the Indian government undermines
               privacy with Aadhaar, we see people around the world — including hundreds of thousands
@@ -95,7 +84,6 @@
               Whether you call this work open source or digital rights or internet health, there is a
               growing movement around the world of people who are actively trying to make the
               internet/digital life better.
-            {% endtrans %}
             </p>
           </div>{#--/.c-copy--#}
         </div>{#--/.c-copy-wrapper--#}
@@ -108,7 +96,6 @@
           </header>
           <div class="c-copy">
             <p>
-            {% trans %}
               Mozilla is unique. Founded as a community open source project in 1998, Mozilla
               currently consists of two organizations: the 501(c)3 Mozilla Foundation, which
               backs emerging leaders and mobilizes citizens to create a global movement for
@@ -119,14 +106,11 @@
               separate board of directors. The two organizations work in concert with each
               other and a global community of tens of thousands of volunteers under the
               single banner: Mozilla.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               Because of its unique structure, Mozilla stands apart from its peers in the
               technology and social enterprise sectors globally as one of the most impactful
               and successful social enterprises in the world.
-            {% endtrans %}
             </p>
           </div>{#--/.c-copy--#}
         </div>{#--/.c-copy-wrapper--#}
@@ -139,38 +123,32 @@
           </header>
           <div class="c-copy">
             <p class="c-copy-intro">
-            {% trans %}
               Recently when the world became aware of widespread data misuse by one of the most
               far-reaching companies to ever exist, we leveraged our experience to develop a software
               solution for users while also using our unique role as an advocacy group to lead campaigns
               to demand better data privacy and security.
-            {% endtrans %}
             </p>
             <p>
-            {% trans url='https://en.wikipedia.org/wiki/Facebook%E2%80%93Cambridge_Analytica_data_scandal' %}
+            {% with url='https://en.wikipedia.org/wiki/Facebook%E2%80%93Cambridge_Analytica_data_scandal' %}
               In <a href="{{ url }}">March 2018</a> the world learned that Cambridge Analytica, a
               controversial political data firm, gained access to data on more than 50 million Facebook
               users. The data included sensitive information such as users’ identities, friend networks
               and “likes.”
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans %}
               Guided by our enduring commitment to standing up for user transparency and choice, we leveraged
               our technical expertise and advocacy voice to call for changes within the platform.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               The Mozilla Foundation rallied hundreds of thousands of Facebook users to successfully push the
               company to fully eliminate the features Cambridge Analytica exploited, as well as testify about
               the Cambridge Analytica incident and related data privacy practices.
-            {% endtrans %}
             </p>
             <p>
-            {% trans manifesto=url('mozorg.about.manifesto'),
-                     facebook='https://blog.mozilla.org/blog/2018/03/21/mozilla-presses-pause-facebook-advertising/',
-                     cbs='https://www.cbsnews.com/news/facebook-advertisers-pull-ads-mozilla-sonos/'
+            {% with manifesto=url('mozorg.about.manifesto'),
+                    facebook='https://blog.mozilla.org/blog/2018/03/21/mozilla-presses-pause-facebook-advertising/',
+                    cbs='https://www.cbsnews.com/news/facebook-advertisers-pull-ads-mozilla-sonos/'
             %}
               After getting the facts on Facebook and Cambridge Analytica, Mozilla Corporation took several
               decisive actions. Guided by the <a href="{{ manifesto }}">Mozilla Manifesto</a>, which says that,
@@ -179,19 +157,19 @@
               Facebook</a>. The move was widely celebrated. Several <a href="{{ cbs }}">others followed our
               lead</a>, sending a powerful statement that Facebook must take stronger action to safeguard its
               customers’ data.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans url=url('firefox.facebookcontainer.index') %}
+            {% with url=url('firefox.facebookcontainer.index') %}
               The Mozilla Corporation also released <a href="{{ url}} ">Facebook Container</a> for Firefox -
               a version of Multi-Account Containers that prevents Facebook from tracking people around the web
               when they aren’t on the platform.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans focus=url('firefox.browsers.mobile.focus'),
-                     privacy='https://blog.mozilla.org/futurereleases/2018/08/30/changing-our-approach-to-anti-tracking/',
-                     containers='https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers/'
+            {% with focus=url('firefox.browsers.mobile.focus'),
+                    privacy='https://blog.mozilla.org/futurereleases/2018/08/30/changing-our-approach-to-anti-tracking/',
+                    containers='https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers/'
             %}
               Mozilla was ready to respond to this breaking news because of our long-standing engineering and
               advocacy efforts related to user privacy. In the months prior to the Cambridge Analytica revelations,
@@ -202,15 +180,13 @@
               including <a href="{{ focus }}">Firefox Focus</a>, the <a href="{{ privacy }}">advanced privacy
               protections in Firefox</a>, and <a href="{{ containers }}">Multi-Account Containers</a>, which
               allow people to manage various parts of their online life without intermingling their accounts.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans %}
               Everyone deserves both the right to keep their private information private and the power to
               control their own experiences on the web. Our response to the Facebook/Cambridge Analytica scandal
               represents the progress that’s possible when we utilize our products, technologies, and advocacy
               together.
-            {% endtrans %}
             </p>
 
           </div>{#--/.c-copy--#}
@@ -225,126 +201,108 @@
           <div class="c-copy">
             <h3>To lead, we need to evolve.</h3>
             <p>
-            {% trans %}
               To lead the charge of changing the culture of the internet, we need to do more to develop the
               direct relationships that make the Firefox and Mozilla experiences fully responsive to the needs
               of consumers  today. It is no longer enough to build great products, package them up and put
               them out there for people to use.
-            {% endtrans %}
             </p>
             <p>
-            {% trans url='https://www.techradar.com/news/are-you-a-conscious-chooser-how-your-decisions-can-shape-the-internets-ethics' %}
+            {% with url='https://www.techradar.com/news/are-you-a-conscious-chooser-how-your-decisions-can-shape-the-internets-ethics' %}
               Over the coming years, we will become the leading provider of user agency and online privacy
               by developing long-term trusted relationships with <a href="{{ url }}">"conscious choosers"</a>
               with a focus on helping people navigate their connected lives.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans %}
               In 2018, we began taking the steps to soon be able to offer a fully connected and integrated
               Firefox experience directly to the people who use our products and services. Some of these
               efforts have also been designed to enable Mozilla to support revenue diversification and growth.
               By growing additional sources of revenue in addition to our successful search engine partnerships,
               we can continue to independently provide the products and services users want, and fuel the Mozilla
               Foundation’s movement building and advocacy work.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               We have undertaken this new work, while still remaining true to our roots and the transparent open
               source tradition in which we started.
-            {% endtrans %}
             </p>
             <h3>Continuously building our core to fuel growth</h3>
             <p>
-            {% trans %}
               Mozilla Corporation creates products, advances public policy and explores new technology that
               give people more control over their lives online, and shapes the future of the internet platform
               for the public good.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               Building on the success of Firefox Quantum, Mozilla Corporation has a renewed focus on better
               enabling people to take control of their internet-connected lives as their trusted personal agent.
               In 2018, this has driven a focus on continuing the evolution of the Firefox browsers while we
               explore new products, technology and business models to better serve our users and advance our
               agenda for a healthier internet.
-            {% endtrans %}
             </p>
             <p>
-            {% trans quantum='https://blog.mozilla.org/blog/2017/11/14/introducing-firefox-quantum/',
-                     news='https://www.newsweek.com/mozilla-firefox-quantum-download-windows-browser-chrome-711765'
+            {% with quantum='https://blog.mozilla.org/blog/2017/11/14/introducing-firefox-quantum/',
+                    news='https://www.newsweek.com/mozilla-firefox-quantum-download-windows-browser-chrome-711765'
             %}
               With the relaunch of the <a href="{{ quantum }}">Firefox Quantum</a> desktop web browser in
               <a href="{{ news }}">2017</a>, the focus has been on testing and introducing a variety of new
               web-based products and services.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans %}
               Millions of people have relied upon Mozilla products as their trusted resource for desktop and
               mobile web browsing. Billions benefit from the open web platform we have championed.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               The internet now permeates everyday life. People connect across multiple devices. Personal data
               is now the source of power and influence over individuals, outside of their control and to the
               benefit of bad actors and the world’s largest companies. People are outclassed and the user agents
               of the past are no longer sufficient to deliver upon our vision of the future.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               We have led a cultural shift with a growing and influential market of consumers waking up and
               demanding more. We expect this shift to accelerate, and now is our opportunity to evolve to become
               the leading provider of user agency and privacy online.
-            {% endtrans %}
             </p>
             <p>
-              {% set vpn='https://www.engadget.com/2018/10/23/mozilla-firefox-protonvpn-test/' %}
-              {% set lockwise='https://testpilot.firefox.com/experiments/firefox-lockbox/' %}
-              {% set lockbox=lockwise %}
-
-              {% trans vpn=vpn, lockwise=lockwise %}
+              {% with vpn='https://www.engadget.com/2018/10/23/mozilla-firefox-protonvpn-test/',
+                      lockwise='https://testpilot.firefox.com/experiments/firefox-lockbox/'
+              %}
                 The overhaul of our core browser has given Mozilla Corporation the ability to begin the exploration of new user engagement and revenue models derived from Firefox to meet these ambitious goals. Specifically in 2018 we began testing in Firefox a new paid virtual private network (<a href="{{ vpn }}">VPN</a>) service and a password manager called <a href="{{ lockwise }}">Lockwise</a> which is currently being offered for free. Over time, with deep engagement with our users, we expect to offer premium solutions.
-              {% endtrans %}
+              {% endwith %}
             </p>
             <p>
-            {% trans sponsored='https://blog.mozilla.org/futurereleases/2018/04/30/a-privacy-conscious-approach-to-sponsored-content/' %}
+            {% with sponsored='https://blog.mozilla.org/futurereleases/2018/04/30/a-privacy-conscious-approach-to-sponsored-content/' %}
               For instance, our market tests drove our decision to integrate Pocket recommendations and
               <a href="{{ sponsored }}">sponsored content</a> into the Firefox new tab experience.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans launched='https://blog.mozilla.org/blog/2018/09/25/introducing-firefox-monitor-helping-people-take-control-after-a-data-breach/',
-                     monitor='https://monitor.firefox.com/'
+            {% with launched='https://blog.mozilla.org/blog/2018/09/25/introducing-firefox-monitor-helping-people-take-control-after-a-data-breach/',
+                    monitor='https://monitor.firefox.com/'
             %}
               In 2018 we also <a href="{{ launched }}">launched</a> <a href="{{ monitor }}">Firefox Monitor</a>, a
               free service which allows people to check whether their email address has been a part of a recent
               security breach. We’ve integrated this notification feature into the Firefox desktop and mobile
               browsers so users know if sites they are visiting have been recently breached. The Monitor service is
               now offered in 20 languages worldwide.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans dns='https://hacks.mozilla.org/2018/05/a-cartoon-intro-to-dns-over-https/',
-                     sni='https://blog.mozilla.org/security/2018/10/18/encrypted-sni-comes-to-firefox-nightly/'
+            {% with dns='https://hacks.mozilla.org/2018/05/a-cartoon-intro-to-dns-over-https/',
+                    sni='https://blog.mozilla.org/security/2018/10/18/encrypted-sni-comes-to-firefox-nightly/'
             %}
               Additionally, given the scope of our ambition to change the culture of the internet, the Mozilla
               Corporation has also evolved its partnership model so we can work in concert with like-minded
               technology providers to test and develop new security-focused protocols like
               <a href="{{ dns }}">DNS over HTTPS</a> and <a href="{{ sni }}">Encrypted Server Name Indication</a>
               - both of which we’ve partnered with Cloudflare to test in the U.S. market.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans glassroom='https://www.wired.co.uk/article/mozilla-firefox-quantum-browser-vs-google-chrome',
-                     electionbundle='https://blog.mozilla.org/firefox/firefox-election-bundle/',
-                     dataleeks='https://blog.mozilla.org/internetcitizen/2018/11/01/data-leeks-made-with-love-leaked-by-hackers/',
-                     award='https://www.webbyawards.com/winners/2018/podcasts-digital-audio/features/best-branded-podcast-or-segment/irl-podcast/',
-                     irl='https://blog.mozilla.org/internetcitizen/2018/11/07/irl-podcast-manoush-zomorodi/'
+            {% with glassroom='https://www.wired.co.uk/article/mozilla-firefox-quantum-browser-vs-google-chrome',
+                    electionbundle='https://blog.mozilla.org/firefox/firefox-election-bundle/',
+                    dataleeks='https://blog.mozilla.org/internetcitizen/2018/11/01/data-leeks-made-with-love-leaked-by-hackers/',
+                    award='https://www.webbyawards.com/winners/2018/podcasts-digital-audio/features/best-branded-podcast-or-segment/irl-podcast/',
+                    irl='https://blog.mozilla.org/internetcitizen/2018/11/07/irl-podcast-manoush-zomorodi/'
             %}
               We’ve applied our new partnership model to marketing efforts as well, developing unique
               collaborations with partners from ProPublica to artist collectives to bring information and
@@ -352,37 +310,35 @@
               Room in London</a>, the <a href="{{ electionbundle }}">Firefox Election Bundle</a> and the
               <a href="{{ dataleeks}}">Data Leeks</a> awareness campaign, as well as an
               <a href="{{ award }}">award-winning</a> podcast <a href="{{ irl }}">IRL</a>.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans contentblocking='https://blog.mozilla.org/futurereleases/2018/08/30/changing-our-approach-to-anti-tracking/' %}
+            {% with contentblocking='https://blog.mozilla.org/futurereleases/2018/08/30/changing-our-approach-to-anti-tracking/' %}
               Our exploration of these new arenas and partnerships is a good complement to our ongoing
               focus on making Firefox the most performant web browser available. To that end, we have begun
               rolling out a new approach to limit online tracking called
               <a href="{{ contentblocking }}">Content Blocking</a> that protects user privacy while still
               enabling publishers and advertisers to reach their intended audiences and users to access
               and discover relevant worthwhile content.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans %}
               We are also looking to the future, identifying the smart bets that will enable Mozilla
               to stay at the leading edge of innovation.
-            {% endtrans %}
             </p>
             <p>
-            {% trans rocket='https://www.androidpolice.com/2017/10/09/mozilla-testing-another-new-browser-called-firefox-rocket-specifically-indonesia/',
-                     lite='https://gadgets.ndtv.com/apps/news/mozilla-firefox-rocket-lite-browser-android-download-features-1893490'
+            {% with rocket='https://www.androidpolice.com/2017/10/09/mozilla-testing-another-new-browser-called-firefox-rocket-specifically-indonesia/',
+                    lite='https://gadgets.ndtv.com/apps/news/mozilla-firefox-rocket-lite-browser-android-download-features-1893490'
             %}
               In 2017 we launched <a href="{{ rocket }}">Firefox Rocket</a> in Indonesia, a lightweight
               browser designed specifically to meet the needs of consumers in this emerging market.
               Based on user feedback, Rocket was rebranded as <a href="{{ lite }}">Firefox Lite</a> in 2018
               and updated to include a feature that allows users to save web pages for offline reading.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans reality='https://blog.mozilla.org/blog/2018/09/18/firefox-reality-now-available/',
-                     commonvoice='https://voice.mozilla.org/new'
+            {% with reality='https://blog.mozilla.org/blog/2018/09/18/firefox-reality-now-available/',
+                    commonvoice='https://voice.mozilla.org/new'
             %}
               Mozilla’s growth isn’t limited by geography. In 2018, the mixed reality team at Mozilla
               Corporation brought Firefox to another dimension with the launch of a new web browser that
@@ -392,22 +348,20 @@
               project is crowdsourcing global voice data to protect the ability for many to contribute
               to the development of speech-enabled products and services, instead of just a handful of
               large companies.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans %}
               Mozilla Corporation’s global efforts are not limited to production development and innovation
               either. Sitting at the nexus of product and policy, Mozilla is a trusted, independent voice
               in the development of legislation, business practices and industry standards that shape the
               web internationally.
-            {% endtrans %}
             </p>
             <p>
-            {% trans dataprotection='https://blog.mozilla.org/netpolicy/2017/11/14/trai-data-protection-comment/',
-                     aadhaar='https://blog.mozilla.org/netpolicy/2018/07/27/indian-draft-data-protection-bill/',
-                     usa='https://blog.mozilla.org/netpolicy/2018/06/26/privacy-progress-and-protections-for-california/',
-                     brazil='https://blog.mozilla.org/netpolicy/2018/07/02/brazilian-data-protection-bill/',
-                     eu='https://blog.mozilla.org/netpolicy/2017/10/12/mozilla-releases-recommendations-draft-eu-eprivacy-regulation/'
+            {% with dataprotection='https://blog.mozilla.org/netpolicy/2017/11/14/trai-data-protection-comment/',
+                    aadhaar='https://blog.mozilla.org/netpolicy/2018/07/27/indian-draft-data-protection-bill/',
+                    usa='https://blog.mozilla.org/netpolicy/2018/06/26/privacy-progress-and-protections-for-california/',
+                    brazil='https://blog.mozilla.org/netpolicy/2018/07/02/brazilian-data-protection-bill/',
+                    eu='https://blog.mozilla.org/netpolicy/2017/10/12/mozilla-releases-recommendations-draft-eu-eprivacy-regulation/'
             %}
               As an example, Mozilla Corporation’s policy team has been instrumental in highlighting the
               need for strong <a href="{{ dataprotection }}">data protection measures</a> in India as a way
@@ -416,55 +370,55 @@
               been working on privacy and data protection globally, including in the
               <a href="{{ usa }}">United States</a>, <a href="{{ brazil }}">Brazil</a>, the
               <a href="{{ eu }}">European Union</a>, and Kenya.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans competition='https://blog.mozilla.org/netpolicy/2018/09/28/contributing-to-the-european-commissions-review-of-digital-competition/' %}
+            {% with competition='https://blog.mozilla.org/netpolicy/2018/09/28/contributing-to-the-european-commissions-review-of-digital-competition/' %}
               As the internet grows more and more centralized, Mozilla is working to establish
               interoperability as a key piece of <a href="{{ competition }}">competition online</a>,
               engaging with policymakers in the United States and the European Union.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans disinformation='https://blog.mozilla.org/netpolicy/2018/09/26/eucodeondisinfo/',
-                     misinformation='https://blog.mozilla.org/netpolicy/2018/03/13/mozilla-files-response-to-european-commission-fake-news-and-online-disinformation-public-consultation/',
-                     fakenews='https://blog.mozilla.org/netpolicy/2018/03/26/hlegonfakenews/'
+            {% with disinformation='https://blog.mozilla.org/netpolicy/2018/09/26/eucodeondisinfo/',
+                    misinformation='https://blog.mozilla.org/netpolicy/2018/03/13/mozilla-files-response-to-european-commission-fake-news-and-online-disinformation-public-consultation/',
+                    fakenews='https://blog.mozilla.org/netpolicy/2018/03/26/hlegonfakenews/'
             %}
               <a href="{{ disinformation }}">Disinformation</a> and <a href="{{ misinformation }}">misinformation</a>
               online are undermining stability and democracy around the world, and the road ahead is long.
               Working with industry allies in Brussels, Mozilla is leading the way to identify practices
               and principles that will make a real difference, including examining responses to
               <a href="{{ fakenews }}">fake news</a>.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans usa='https://blog.mozilla.org/blog/2018/08/20/mozilla-files-arguments-against-the-fcc-latest-step-in-fight-to-save-net-neutrality/',
-                     india='https://blog.mozilla.org/netpolicy/2018/07/12/india-advances-net-neutrality/'
+            {% with usa='https://blog.mozilla.org/blog/2018/08/20/mozilla-files-arguments-against-the-fcc-latest-step-in-fight-to-save-net-neutrality/',
+                    india='https://blog.mozilla.org/netpolicy/2018/07/12/india-advances-net-neutrality/'
             %}
               Mozilla continues its leadership on net neutrality through litigation and legislative
               advocacy in the <a href="{{ usa }}">United States</a> and <a href="{{ india }}">India</a>.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans vulnerabilities='https://blog.mozilla.org/netpolicy/2017/11/15/white-house-releases-new-vep-charter/',
-                     europe='https://blog.mozilla.org/netpolicy/2018/04/24/mozilla-publishes-recommendations-on-government-vulnerability-disclosure-in-europe/'
+            {% with vulnerabilities='https://blog.mozilla.org/netpolicy/2017/11/15/white-house-releases-new-vep-charter/',
+                    europe='https://blog.mozilla.org/netpolicy/2018/04/24/mozilla-publishes-recommendations-on-government-vulnerability-disclosure-in-europe/'
             %}
               Mozilla led the industry and civil society coalition that produced a new government
               <a href="{{ vulnerabilities }}">vulnerabilities equities process charter</a>, improving
               transparency and due process in how the U.S. government handles security vulnerabilities
               it discovers - and then we took that agenda to <a href="{{ europe }}">Europe</a>, and are
               continuing our advocacy in Brussels.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans fight='https://blog.mozilla.org/netpolicy/2018/09/07/eu-copyright-reform-the-facts/',
-                     outcome='https://blog.mozilla.org/netpolicy/2018/06/22/jurivote'
+            {% with fight='https://blog.mozilla.org/netpolicy/2018/09/07/eu-copyright-reform-the-facts/',
+                    outcome='https://blog.mozilla.org/netpolicy/2018/06/22/jurivote'
             %}
               With the European Union nearing the end of a lengthy copyright reform process, and moving
               to adopt dangerous restrictive proposals that would harm creativity and innovation online
               - Mozilla continues our <a href="{{ fight }}">years-long fight</a> to improve the
               <a href="{{ outcome }}">outcome</a> as best we can.
-            {% endtrans %}
+            {% endwith %}
             </p>
 
           </div>{#--/.c-copy--#}
@@ -479,24 +433,19 @@
           <div class="c-copy">
             <h3>Internet Health and leadership</h3>
             <p>
-            {% trans %}
               In addition to building products and technology, Mozilla also invests in people and
               organizations around the world who share its mission. This movement building work is
               carried out by the Mozilla Foundation in concert with hundreds of allied organizations
               around the world.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               Our work has taken center stage this year as the threats - and opportunities - facing the
               internet and its users have come into focus. With every news story about a massive data
               breach, a hacked election or the way platforms track users’ every move around the internet,
               people are seeking information about how they can protect themselves and what they can do
               to keep the internet secure, open and accessible for all.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               Through a combination of research, advocacy and inspiring leadership, the Mozilla Foundation
               is guiding the way forward. Our advocacy campaigns push back against the worst violations
               of user privacy to demonstrate that the global internet community cares and that we expect
@@ -504,25 +453,20 @@
               what’s possible in the future so we define what’s possible in our connected lives. And our
               internet health agenda tracks what’s working, where and why to leverage our movement’s
               investments for the most global impact.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               Our core program areas work together to bring the most effective ideas forward, quickly and
               where they have the most impact. As a result of our work, internet users see a change in the
               products they use and the policies that govern them.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               The Mozilla Foundation’s efforts to grow the movement for internet health include three main strategies:
-            {% endtrans %}
             </p>
             <ul class="mzp-u-list-styled">
               <li>
                 <p>
-                {% trans healthreport='https://internethealthreport.org/',
-                         agenda='https://www.wired.com/story/mozilla-internet-health-report/'
+                {% with healthreport='https://internethealthreport.org/',
+                        agenda='https://www.wired.com/story/mozilla-internet-health-report/'
                 %}
                   <strong>Focusing​ ​–​ ​and​ ​amplifying​ ​–​ ​the​ ​internet​ ​health​ ​agenda.</strong> Leveraging our
                   network of internet health leaders, the Mozilla Foundation produces the annual, open source
@@ -532,17 +476,14 @@
                   decentralization; web literacy; and digital inclusion) and offer an initial and ongoing
                   prognosis for each. This report sets the <a href="{{ agenda }}">definitive agenda for
                   internet health</a>, which helps fuel this global movement by making it a mainstream issue.
-                {% endtrans %}
+                {% endwith %}
                 </p>
                 <p>
-                {% trans %}
                   In 2017, Mozilla spent $966,365 on its agenda-setting work.
-                {% endtrans %}
                 </p>
               </li>
               <li>
                 <p>
-                {% trans %}
                   <strong>Mobilizing​ ​a​ ​critical​ ​mass​ ​of​ ​conscious​ ​internet​ ​users.​</strong> ​The internet health
                   movement’s greatest asset is the internet’s users. Like Mozilla, internet users around the
                   world value the open, accessible web and they will fight for it. In response to the increasing
@@ -550,16 +491,15 @@
                   to fight for their privacy and security online. Mozilla is there to support and guide this
                   consumer advocacy, using our technical expertise and community of 1.5 million and growing
                   advocates as key assets to drive change.
-                {% endtrans %}
                 </p>
                 <p>
-                {% trans aadhaar='https://foundation.mozilla.org/en/campaigns/aadhaar/',
-                         copyright='https://www.wired.co.uk/article/article-13-eu-copyright-directive-memes',
-                         tracking='https://foundation.mozilla.org/en/campaigns/facebook-update/',
-                         twofactor='https://foundation.mozilla.org/en/campaigns/enoughisenough/',
-                         netneutrality='https://advocacy.mozilla.org/en-us/net-neutrality/',
-                         products='https://www.bbc.com/news/technology-44382135',
-                         iot='https://medium.com/read-write-participate/minimum-standards-for-tackling-iot-security-70f90b37f2d5'
+                {% with aadhaar='https://foundation.mozilla.org/en/campaigns/aadhaar/',
+                        copyright='https://www.wired.co.uk/article/article-13-eu-copyright-directive-memes',
+                        tracking='https://foundation.mozilla.org/en/campaigns/facebook-update/',
+                        twofactor='https://foundation.mozilla.org/en/campaigns/enoughisenough/',
+                        netneutrality='https://advocacy.mozilla.org/en-us/net-neutrality/',
+                        products='https://www.bbc.com/news/technology-44382135',
+                        iot='https://medium.com/read-write-participate/minimum-standards-for-tackling-iot-security-70f90b37f2d5'
                 %}
                   Our consumer mobilization work has included public education and campaigns around key threats
                   to internet users including personal privacy under <a href="{{ aadhaar }}">India’s Aadhaar
@@ -570,11 +510,11 @@
                   of consumers has led to <a href="{{ products }}">products being pulled from shelves</a>,
                   companies changing or amending their practices to focus on consumers’ best interests, and, most
                   recently, proposed <a href="{{ iot }}">minimum standards for tackling IoT security</a>.
-                {% endtrans %}
+                {% endwith %}
                 </p>
                 <p>
-                {% trans campaign='https://foundation.mozilla.org/en/campaigns/amazon-echo-kids/',
-                         cloudpets='https://www.bbc.com/news/technology-44382135'
+                {% with campaign='https://foundation.mozilla.org/en/campaigns/amazon-echo-kids/',
+                        cloudpets='https://www.bbc.com/news/technology-44382135'
                 %}
                   We’ve made significant progress in changing the way companies think about privacy and security
                   online. Our <a href="{{ campaign }}">campaign</a> challenging Amazon on its data protection
@@ -585,11 +525,11 @@
                   Center for Democracy and Technology, Center for Digital Democracy, Consumer Action, Consumer
                   Federation of America, Consumers International, Color of Change, Common Sense Media, Electronic
                   Frontier Foundation, Norwegian Consumer Council, Open Mic, Story of Stuff, and USPIRG.
-                {% endtrans %}
+                {% endwith %}
                 </p>
                 <p>
-                {% trans standards='https://medium.com/read-write-participate/minimum-standards-for-tackling-iot-security-70f90b37f2d5',
-                         guide='https://www.wired.com/story/mozilla-privacy-not-included-internet-connected-toys/'
+                {% with standards='https://medium.com/read-write-participate/minimum-standards-for-tackling-iot-security-70f90b37f2d5',
+                        guide='https://www.wired.com/story/mozilla-privacy-not-included-internet-connected-toys/'
                 %}
                   As leaders in internet health, we’re also paving a way forward by suggesting practical,
                   achievable standards for internet products and services. For example, in response to increasing
@@ -598,33 +538,31 @@
                   minimum standards are useful for consumers and retailers who are buying, selling and designing
                   devices connected to the internet. We put these standards to use ourselves to evaluate products
                   reviewed in this year’s <a href="{{ guide }}">*Privacy Not Included holiday buyer’s guide</a>.
-                {% endtrans %}
+                {% endwith %}
                 </p>
                 <p>
-                {% trans %}
                   In 2017, Mozilla spent $2,733,016 to support our mobilization work.
-                {% endtrans %}
                 </p>
               </li>
               <li>
                 <p>
-                {% trans leaders='https://boingboing.net/2018/08/23/putting-together-a-team.html' %}
+                {% with leaders='https://boingboing.net/2018/08/23/putting-together-a-team.html' %}
                   <strong>Investing​ ​in​ ​and​ ​connecting​ ​internet​ ​health​ ​leaders</strong>.​ When the media seeks to
                   understand a breaking internet news story or a government official wants to understand what policies
                   may be most effective, Mozilla fellows offer insight, solutions and inspiration. Through our
                   leadership program, Mozilla finds, supports and connects a <a href="{{ leaders }}">new wave of
                   leaders</a> through our fellowships, awards and open leaders training. In this way, we’re seeding the
                   internet health movement with a strong, connected and diverse leadership cohort for the years ahead.
-                {% endtrans %}
+                {% endwith %}
                 </p>
                 <p>
-                {% trans aadhaar='https://indianexpress.com/article/opinion/columns/right-to-privacy-justice-krishna-committee-information-theft-big-data-large-concerns-5060033/',
-                         misinformation='https://www.wired.com/story/free-speech-is-not-the-same-as-free-reach/',
-                         payments='https://www.theguardian.com/world/2018/jul/17/venmo-payments-app-default-privacy-settings-public-information',
-                         renee='https://www.youtube.com/watch?v=baPF-sOXP24',
-                         diresta='https://www.wired.com/author/renee-diresta/',
-                         fellows='https://blog.mozilla.org/blog/2018/08/21/mozilla-announces-25-new-fellows-in-openness-science-and-tech-policy/',
-                         amba='https://economictimes.indiatimes.com/blogs/author/amba-kak/'
+                {% with aadhaar='https://indianexpress.com/article/opinion/columns/right-to-privacy-justice-krishna-committee-information-theft-big-data-large-concerns-5060033/',
+                        misinformation='https://www.wired.com/story/free-speech-is-not-the-same-as-free-reach/',
+                        payments='https://www.theguardian.com/world/2018/jul/17/venmo-payments-app-default-privacy-settings-public-information',
+                        renee='https://www.youtube.com/watch?v=baPF-sOXP24',
+                        diresta='https://www.wired.com/author/renee-diresta/',
+                        fellows='https://blog.mozilla.org/blog/2018/08/21/mozilla-announces-25-new-fellows-in-openness-science-and-tech-policy/',
+                        amba='https://economictimes.indiatimes.com/blogs/author/amba-kak/'
                 %}
                   Our fellows have spoken out and moved the needle on issues such as <a href="{{ aadhaar }}">Aadhar in India</a>
                   and <a href="{{ misinformation }}">misinformation</a>, and <a href="{{ payments }}">exposed privacy and security
@@ -635,12 +573,12 @@
                     Camille Francois and Stefania Koskova</a> push for change through their research and advocacy in this space.
                     And, our fellows, including <a href="{{ amba }}">Amba Kak</a>, have been instrumental in leading the charge
                     on key issues including the fight for strong data protection law in India.
-                {% endtrans %}
+                {% endwith %}
                 </p>
                 <p>
-                {% trans unconnected='https://www.cleveland.com/expo/news/erry-2018/09/297f2797e8466/digitalc-is-a-finalist-for-a-n.html',
-                         computerscience='https://www.fastcompany.com/90248074/mozillas-ambitious-plan-to-teach-ethics-in-the-age-of-evil-tech',
-                         leaders='https://www.reuters.com/article/us-technology-www/father-of-web-says-tech-giants-may-have-to-be-split-up-idUSKCN1N63MV'
+                {% with unconnected='https://www.cleveland.com/expo/news/erry-2018/09/297f2797e8466/digitalc-is-a-finalist-for-a-n.html',
+                        computerscience='https://www.fastcompany.com/90248074/mozillas-ambitious-plan-to-teach-ethics-in-the-age-of-evil-tech',
+                        leaders='https://www.reuters.com/article/us-technology-www/father-of-web-says-tech-giants-may-have-to-be-split-up-idUSKCN1N63MV'
                 %}
                   The Foundation also carries out this work through grant programs that support initiatives like the WINS
                   Challenge (Wireless Innovation for a Networked Society) to <a href="{{ unconnected }}">connect the
@@ -648,30 +586,24 @@
                   <a href="{{ computerscience }}">computer science programs</a>. Additionally, the Foundation
                   <a href="{{ leaders }}">convenes leaders around the globe</a> at events like the Mozilla Festival, which
                   gathers 2,500 like-minded internet health advocates annually.
-                {% endtrans %}
+                {% endwith %}
                 </p>
                 <p>
-                {% trans %}
                   In 2017, Mozilla spent $13,256,720 to support the Mozilla Leadership Program.
-                {% endtrans %}
                 </p>
               </li>
             </ul>
             <p>
-            {% trans %}
               Overall, Mozilla invested $24M in this work in 2017. Total revenue and income support to the Mozilla
               Foundation in CY 2017 was $20.6M. $10.1M of this revenue came from the proceeds from Firefox, which are
               transferred from Mozilla Corporation to Mozilla Foundation through a trademark royalty agreement. An
               additional $4.2M came from public donations made by 250,000 people. $5.6M came from partnerships with
               allied organizations like the Ford Foundation, the Knight Foundation and the Siegel Family Endowment.
               A full list of 2017 funding partners is outlined in our Form 990.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               We are grateful to the tens of thousands of supporters who signed petitions and took actions on these
               issue over the last few years.
-            {% endtrans %}
             </p>
 
           </div>{#--/.c-copy--#}
@@ -685,19 +617,17 @@
           </header>
           <div class="c-copy">
             <p>
-            {% trans %}
               Mozilla believes that attracting diverse talent that is motivated, creative and passionate
               is crucial to our success. We want to attract and retain that talent while ensuring total
               compensation is competitively reasonable and aligned with Mozilla’s culture and mission.
               While the compensation philosophy is similar between the Mozilla Foundation and the Mozilla
               Corporation, the market frameworks used to benchmark total compensation are different given
               the nature of work and the talent required.
-            {% endtrans %}
             </p>
             <p>
-            {% trans guidelines=url('mozorg.about.governance.policies.participation'),
-                     measurement='https://blog.mozilla.org/inclusion/2018/04/19/diversity-and-inclusion-at-mozilla/',
-                     stand='https://blog.mozilla.org/blog/2018/11/07/mozilla-reaffirms-commitment-to-transgender-equality/'
+            {% with guidelines=url('mozorg.about.governance.policies.participation'),
+                    measurement='https://blog.mozilla.org/inclusion/2018/04/19/diversity-and-inclusion-at-mozilla/',
+                    stand='https://blog.mozilla.org/blog/2018/11/07/mozilla-reaffirms-commitment-to-transgender-equality/'
             %}
               Building and fostering a diverse and inclusive organization is core to who we are at Mozilla.
               For example, in 2017 we updated our <a href="{{ guidelines }}">Community Participation Guidelines</a>
@@ -706,50 +636,42 @@
               more visibly diverse workforce. We continue to develop policies and practices, and
               <a href="{{ stand }}">take public stands</a> that foster and make clear our commitment to building
               a more inclusive work environment.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <h3>Mozilla Corporation</h3>
             <p>
-            {% trans performance='https://assets.mozilla.net/pdf/mozilla-careers-comp-brochure.pdf' %}
+            {% with performance='https://assets.mozilla.net/pdf/mozilla-careers-comp-brochure.pdf' %}
               With over 1,000 full-time employees worldwide, Mozilla Corporation employee compensation is
               benchmarked to market by role and level balancing total compensation between individual and
               company performance with a <a href="{{ performance }}">pay-for-performance</a> compensation model.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans %}
               For non-executive roles, we employ a market framework of 20 top public and private tech companies
               that we compete with for talent.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               For VPs and above, we benchmark compensation against a blended peer group comprised of 70%
               similarly-sized public and private tech companies and 30% non-profit organizations. This
               approach serves to reinforce our mission-first orientation. Consistent with market best
               practice, at least 70% of compensation for senior leadership is “at risk” and tied to
               individual and company performance.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               Performance and compensation policies are reviewed and approved annually by a Compensation
               Committee comprised of independent members of our Board of Directors. All employees, including
               senior leadership, in addition to base salary and benefits, share the same variable “at risk”
               components of pay: 1) an individual bonus based on performance against individual goals, and 2)
               a company bonus based on our performance against company goals.
-            {% endtrans %}
             </p>
             <h3>Mozilla Foundation</h3>
             <p>
-            {% trans %}
               Mozilla Foundation non-profit programs are carried out by 80 employees and thousands of volunteers
               around the world. For the Mozilla Foundation, the core goal of the compensation philosophy is to
               attract, motivate and retain top talent while ensuring total pay is competitive and reasonable in
               relation to our nonprofit status. We benchmark against a peer group that reflects the unique
               nature of our organization and aim to provide an appealing, flexible and market-appropriate total
               compensation package.
-            {% endtrans %}
             </p>
           </div>{#--/.c-copy--#}
         </div>{#--/.c-copy-wrapper--#}
@@ -762,46 +684,36 @@
           </header>
           <div class="c-copy">
             <p>
-            {% trans %}
               As always, revenue from Mozilla Corporation and donations to Mozilla Foundation are reinvested into
               advancing the Mozilla mission of protecting internet health. Firefox users and Mozilla Foundation
               contributors also have the knowledge that they are supporting the Mozilla mission with their
               payments and contributions.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               This annual report includes the below links that detail audited 2017 financial statements for Mozilla.
-            {% endtrans %}
             </p>
             <p>
-            {% trans partnerships='https://wiki.mozilla.org/Global_Search_Strategy_Status',
-                     google='https://blog.mozilla.org/blog/2017/11/14/firefox-features-google-as-default-search-provider-in-the-u-s-canada-hong-kong-and-taiwan/',
-                     yahoo='https://blog.mozilla.org/blog/2017/12/05/mozilla-files-cross-complaint-against-yahoo-holdings-and-oath/'
+            {% with partnerships='https://wiki.mozilla.org/Global_Search_Strategy_Status',
+                    google='https://blog.mozilla.org/blog/2017/11/14/firefox-features-google-as-default-search-provider-in-the-u-s-canada-hong-kong-and-taiwan/',
+                    yahoo='https://blog.mozilla.org/blog/2017/12/05/mozilla-files-cross-complaint-against-yahoo-holdings-and-oath/'
             %}
               Today, the majority of Mozilla Corporation revenue is generated from <a href="{{ partnerships }}">global
               browser search partnerships</a>, including the <a href="{{ google }}">deal negotiated with Google in 2017</a>
               following Mozilla’s termination of its <a href="{{ yahoo }}">search agreement with Yahoo/Oath</a> which
               required ongoing payments to Mozilla that remain the subject of litigation.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans %}
               In CY 2017 Mozilla Corporation generated $542 Million from royalties, subscriptions and advertising
               revenue compared to $506 Million in CY 2016.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               A portion of search revenue combined with grants and donations is used to fuel the advocacy and movement
               building work of the Mozilla Foundation and its broad network of supporters of Mozilla’s mission.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               The combined efforts of the Mozilla Foundation and Mozilla Corporation contribute to the overall
               sustainability and health of the internet.
-            {% endtrans %}
             </p>
           </div>{#--/.c-copy--#}
         </div>{#--/.c-copy-wrapper--#}
@@ -814,10 +726,10 @@
           </header>
           <div class="c-copy">
             <p>
-            {% trans download=url('firefox.new'),
-                     volunteer=url('mozorg.contribute'),
-                     donate='https://donate.mozilla.org/?utm_source=website&utm_medium=referral&utm_campaign=stateofmoz&utm_content=footer',
-                     mozorg=url('mozorg.home')
+            {% with download=url('firefox.new'),
+                    volunteer=url('mozorg.contribute'),
+                    donate='https://donate.mozilla.org/?utm_source=website&utm_medium=referral&utm_campaign=stateofmoz&utm_content=footer',
+                    mozorg=url('mozorg.home')
             %}
               Our mission is to ensure the internet is a global public resource, open and accessible to all.
               This mission is as important now as it has ever been. We urge everyone who is interested to find
@@ -825,7 +737,7 @@
               Firefox</a> or <a href="{{ volunteer }}">volunteer</a> to be part of Mozilla or
               <a href="{{ donate }}">donate</a> to support the work of internet health leaders around the world.
               Learn more at <a href="{{ mozorg }}">mozilla.org</a>.
-            {% endtrans %}
+            {% endwith %}
             </p>
           </div>{#--/.c-copy--#}
         </div>{#--/.c-copy-wrapper--#}

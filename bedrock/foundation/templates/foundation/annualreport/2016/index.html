@@ -29,12 +29,10 @@
       <div class="c-intro-section">
         <div class="c-copy-wrapper">
             <p>
-            {% trans %}
               The State of Mozilla 2016 is our annual report. This report highlights
               activities for 2016 and is accompanied by detailed financials. This report
               is released when we submit the Mozilla non-profit tax filing for the previous
               calendar year.
-            {% endtrans %}
             </p>
         </div>{#--/.copy-wrapper--#}
       </div>{#--/.content-section--#}
@@ -46,30 +44,24 @@
           </header>
           <div class="c-copy">
             <p>
-            {% trans %}
               Billions of people depend on an open and accessible internet for knowledge,
               livelihood, and self-expression. It’s nearly impossible to imagine modern
               life without it. Billions more deserve the same chance.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               Mozilla works to harness the power of the internet for the public good.
               That’s why as a not-for-profit, Mozilla supports technologies and products,
               like Firefox, and leaders and citizens across the globe to make the internet
               healthier — easier to access, safer to use, and more empowering for
               everyone, everywhere.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               Guided by the principles of the Mozilla manifesto we focus the energy of
               thousands of Mozillians (employees, allies, volunteers) to influence the key
               issues impacting the health -- and future -- of the internet. Motivated by
               creating public benefit versus commercial gains, Mozilla is able to do the
               work that others won't, as both a guardian of the internet and an advocate
               of people's online lives.
-            {% endtrans %}
             </p>
 
           </div>{#--/.copy--#}
@@ -83,7 +75,6 @@
           </header>
           <div class="c-copy">
             <p>
-            {% trans %}
               Mozilla is not your average organization. Founded as a community open source
               project in 1998, Mozilla is structured as two organizations: the 501(c)3
               Mozilla Foundation, which backs emerging leaders and mobilizes citizens to
@@ -94,10 +85,9 @@
               board of directors. The two organizations work in close concert with each other
               and a global community of tens of thousands of volunteers under the single
               banner: Mozilla.
-            {% endtrans %}
             </p>
             <p>
-            {% trans eeo="https://static.mozilla.com/moco/en-US/pdf/2016_Mozilla_EEO-1.png" %}
+            {% with eeo="https://static.mozilla.com/moco/en-US/pdf/2016_Mozilla_EEO-1.png" %}
               Mozilla is deeply committed to diversity and inclusion. We want Mozilla to be a
               welcoming and productive place for everyone working towards our mission. We know
               we have a ways to go to fulfill this aspiration and we are committed to positive
@@ -107,10 +97,9 @@
               participate fully) and focus on reporting and enforcement. For example, Mozilla
               Corporation files an <a href="{{ eeo }}">EEO-1</a> describing its employee base
               and voluntarily makes this document public annually.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans %}
               Mozilla Corporation has just over 1,000 employees worldwide. We believe that
               attracting talent that is motivated, creative and passionate is crucial to our
               success. We want to attract and retain that talent while ensuring total
@@ -121,25 +110,20 @@
               Mozilla Corporation is benchmarked against a composite of similar-sized non-profits
               and for-profit consumer internet software companies. Mozilla seeks to align total
               compensation for its employees between individual and company performance.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               Mozilla Foundation’s programs are carried out by 80 employees and thousands of
               volunteers around the world. We also believe that attracting talent that is motivated,
               creative and passionate is crucial to the success of the Mozilla Foundation. Mozilla
               Foundation is benchmarked against similar-sized nonprofit organizations and socially
               oriented technology companies. Mozilla Foundation also seeks to align total
               compensation for its employees between individual and company performance.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               This annual report provides an overview of activities from across Mozilla: including
               the social enterprise, market-based work of Mozilla Corporation; the philanthropic,
               social-movement efforts of Mozilla Foundation; and the vast and diverse activities of
               the broader Mozilla community.
-            {% endtrans %}
             </p>
 
           </div>{#--/.copy--#}
@@ -153,26 +137,22 @@
           </header>
           <div class="c-copy">
             <p>
-            {% trans %}
               Mozilla products are built to contribute to a healthy internet and deliver an amazing
               user experience. We measure our success not only by the adoption of our products, but
               also by our ability to increase the control people have in their online lives, our
               impact on the health of the internet, our contribution to standards, and how we work
               to protect and build the web that users need and want.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               With these broader aims in mind, Mozilla launched new Firefox products in 2016 across
               desktop and mobile platforms, with multi-process technology creating a faster experience
               for desktop users, as well as major updates of Firefox for iOS and Android. We also
               launched a new version of Firefox Focus for iOS (Firefox Klar in German-speaking countries)
               as a privacy focused browser that automatically blocks trackers. This work paved the way
               for the Android release of Firefox Focus in 2017.
-            {% endtrans %}
             </p>
             <p>
-            {% trans fastest='https://blog.mozilla.org/blog/2017/11/14/introducing-firefox-quantum/' %}
+            {% with fastest='https://blog.mozilla.org/blog/2017/11/14/introducing-firefox-quantum/' %}
               We also invested in major experiments through programs like Firefox Test Pilot and Mozilla
               Emerging Technologies. These efforts help us to develop our new products in alignment with
               what our users seek, and help us to foster web technologies along with the technology
@@ -180,19 +160,16 @@
               Firefox Screenshots, with over 16 million screenshots created every month, and Activity
               Stream, which were all launched in the <a href="{{ fastest }}">fastest Firefox yet</a>,
               Firefox Quantum in November 2017.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans %}
               Project Quantum powers the new Firefox, and was initiated in 2016 by combining the hard
               work of Quantum Flow with a new interface, Photon, and technologies like the Rust
               programming language and components of Servo such as Stylo and Webrender. Both Rust and
               Servo result from our long-term R&D investments for safety, performance, and
               interoperability in the web ecosystem.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               The web platform took a major step forward in 2016 with new versions of WebAssembly and
               WebGL 2 released, enabling unheard of performance for web applications. Additional
               progress was made with AV1 and the Open Media Alliance to achieve a video codec that
@@ -200,10 +177,9 @@
               developers & WebVR released in Firefox Nightly in 2016 and then in 2017 to all users,
               Mozilla contributed to a growing ecosystem that supports content creation that works
               across multiple platforms.
-            {% endtrans %}
             </p>
             <p>
-            {% trans pocket='https://getpocket.com/' %}
+            {% with pocket='https://getpocket.com/' %}
               In 2016 Mozilla Corporation continued its relationship with Read It Later, Inc. the
               developers of <a href="{{ pocket }}">Pocket</a>. Pocket began as a Firefox Add-on
               nearly a decade ago and has become known as the world’s leading “save and read it
@@ -212,10 +188,10 @@
               apps. The relationship deepened resulting in Mozilla Corporation acquiring Read It
               Later, Inc. in 2017. It is now a wholly owned subsidiary of Mozilla Corporation with
               roughly 30 employees.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans transparency=url('mozorg.about.policy.transparency.index') %}
+            {% with transparency=url('mozorg.about.policy.transparency.index') %}
               In all of our work in product and technology, transparency is a key part of how Mozilla
               gains and maintains trust in the global environment in which we work. As an open source
               project that relies on open development, we build transparency into the way we write our
@@ -225,7 +201,7 @@
               to users as a way to create deeper opportunities for understanding and choice. With this
               transparency in mind, we publish bi­-annual <a href="{{ transparency }}">transparency reports</a>
               that help provide additional transparency to government disclosures and takedown requests.
-            {% endtrans %}
+            {% endwith %}
             </p>
 
           </div>{#--/.copy--#}
@@ -239,17 +215,14 @@
           </header>
           <div class="c-copy">
             <p>
-            {% trans %}
               As a complement to Mozilla's work in the market, Mozilla Foundation leads a
               series of philanthropic efforts to ensure the internet remains a force for
               public good. These efforts are  driven by a global community of employees,
               volunteers, partners, allies, donors and supporters. In many ways, this community
               is akin to the early environmental movement: promoting the idea that the digital
               environment we live in should be open, accessible and healthy for all of us.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               At the core of this work is Mozilla Foundation’s efforts to find, support and
               connect leaders with the talent, resources, drive and deep social connections to
               each other that are necessary to keep the internet healthy. Some of these leaders
@@ -258,10 +231,9 @@
               using their craft to protect and enrich the health of the internet. In 2016,
               Mozilla invested $2.5M in fellowships and grants to leaders like these. This
               number will double to $5M in 2017.
-            {% endtrans %}
             </p>
             <p>
-            {% trans report='https://internethealthreport.org/' %}
+            {% with report='https://internethealthreport.org/' %}
               The Mozilla Foundation is also focused on simplifying and humanizing issues related
               to digital life and making the concept of ‘a healthy internet’ mainstream. During
               late 2016 and early 2017, we developed the alpha version of the
@@ -271,10 +243,9 @@
               researchers from around the world – as well as colleagues in the Mozilla Corporation
               policy and issue marketing teams – play a central role in this and other efforts to
               define and explain the most important internet issues of our day.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans %}
               Finally, the Mozilla Foundation runs campaigns to educate and empower citizens across
               the web. In 2016, this included an education campaign on the critical role encryption
               plays in everyday internet life. Launched amidst the February 2016 Apple v. FBI case,
@@ -285,7 +256,6 @@
               launched a ‘privacy not included’ holiday shopping guide reviewing toys and other
               electronics – this was a first step in a large scale plan for consumer engagement
               on data and privacy issues.
-            {% endtrans %}
             </p>
 
           </div>{#--/.copy--#}
@@ -299,15 +269,12 @@
           </header>
           <div class="c-copy">
             <p>
-            {% trans %}
               This annual report includes links to the detailed audited 2016 financial statements
               for Mozilla.  Mozilla’s consolidated reported revenue (Mozilla Foundation, Mozilla
               Corporation and all subsidiaries) for CY 2016 was $520M (US), as compared to $421M
               in 2015.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               Mozilla Foundation philanthropic programs and activities are funded by public support
               from individual donors and foundations ($13.8M), as well as from royalties earned
               that are paid by the Mozilla Corporation ($8.3M). Total revenue and income support to
@@ -315,7 +282,6 @@
               foundations are used to support agenda setting work like the Internet Health Report,
               campaigns such as ‘privacy not included’ and fellowships and awards for internet
               health leaders from around the world.
-            {% endtrans %}
             </p>
           </div>{#--/.copy--#}
 
@@ -414,8 +380,8 @@
           <div class="c-copy">
 
             <p>
-            {% trans cliqz='https://blog.mozilla.org/press-uk/2016/08/23/mozilla-makes-strategic-investment-in-cliqz-to-enable-privacy-focused-search-innovation/',
-                     foot_note='#foot-note'
+            {% with cliqz='https://blog.mozilla.org/press-uk/2016/08/23/mozilla-makes-strategic-investment-in-cliqz-to-enable-privacy-focused-search-innovation/',
+                    foot_note='#foot-note'
             %}
               The majority of Mozilla Corporation’s revenue is from royalties earned through Firefox
               web browser search partnerships and distribution deals around the world. Mozilla
@@ -429,26 +395,24 @@
               <a href="{{ cliqz }}">strategic investment in Cliqz</a> GmbH (German-based provider of
               search and privacy tools) to enable innovation of privacy-focused search experiences.
               Mozilla Corporation continues this collaboration today with even more developments in 2017.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans %}
               Revenue from Mozilla Corporation and donations to Mozilla Foundation are reinvested into
               advancing the Mozilla mission and protecting internet health, which means that all of our
               resources at Mozilla contribute to the overall sustainability and health of the internet.
-            {% endtrans %}
             </p>
 
             <p id="foot-note"><small>
-            {% trans announced='https://blog.mozilla.org/blog/2017/11/14/firefox-features-google-as-default-search-provider-in-the-u-s-canada-hong-kong-and-taiwan/',
-                     decision='https://blog.mozilla.org/blog/2017/11/14/firefox-features-google-as-default-search-provider-in-the-u-s-canada-hong-kong-and-taiwan/',
-                     announced_2014='https://blog.mozilla.org/blog/2014/11/19/promoting-choice-and-innovation-on-the-web/' %}
+            {% with announced='https://blog.mozilla.org/blog/2017/11/14/firefox-features-google-as-default-search-provider-in-the-u-s-canada-hong-kong-and-taiwan/',
+                    decision='https://blog.mozilla.org/blog/2017/11/14/firefox-features-google-as-default-search-provider-in-the-u-s-canada-hong-kong-and-taiwan/',
+                    announced_2014='https://blog.mozilla.org/blog/2014/11/19/promoting-choice-and-innovation-on-the-web/' %}
               <sup>1</sup> In November 2017, Mozilla <a href="{{ announced }}">announced</a> Google as the
               Firefox default search provider in the United States, Canada, Hong Kong and Taiwan. This
               <a href="{{ decision }}">decision was made</a> as part of our ongoing search strategy,
               <a href="{{ announced_2014 }}">announced in 2014</a> to evaluate and select the best search
               experience in each region as opposed to having a single global default.
-            {% endtrans %}
+            {% endwith %}
             </small></p>
 
           </div>{#--/.copy--#}
@@ -462,10 +426,10 @@
           </header>
           <div class="c-copy">
             <p>
-            {% trans download=url('firefox.new'),
-                     volunteer=url('mozorg.contribute'),
-                     mozorg=url('mozorg.home'),
-                     donate='https://donate.mozilla.org/?utm_source=website&utm_medium=referral&utm_campaign=stateofmoz&utm_content=footer'
+            {% with download=url('firefox.new'),
+                    volunteer=url('mozorg.contribute'),
+                    mozorg=url('mozorg.home'),
+                    donate='https://donate.mozilla.org/?utm_source=website&utm_medium=referral&utm_campaign=stateofmoz&utm_content=footer'
             %}
               Our mission is to ensure the internet is a global public resource, open and accessible to all.
               This mission is as important now as it has ever been. We urge everyone who is interested to
@@ -473,7 +437,7 @@
               <a href="{{ download }}">download Firefox</a>  or <a href="{{ volunteer }}">volunteer</a>
               to be part of Mozilla or <a href="{{ donate }}">donate</a> to support the work of internet
               health leaders around the world. Learn more at <a href="{{ mozorg }}">mozilla.org</a>.
-            {% endtrans %}
+            {% endwith %}
             </p>
 
           </div>{#--/.copy--#}

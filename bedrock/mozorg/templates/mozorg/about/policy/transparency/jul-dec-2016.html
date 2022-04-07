@@ -200,7 +200,7 @@
     <h3>Legislative Reform</h3>
 
     <p>
-      {% trans
+      {% with
           shared_responsibility='https://blog.mozilla.org/blog/2016/09/13/cybersecurity-is-a-shared-responsibility/',
           security_vuln='https://blog.mozilla.org/netpolicy/2016/09/19/improving-government-disclosure-of-security-vulnerabilities/',
           speaker_gov='http://cyberlaw.stanford.edu/events/government-hacking-vulnerabilities-equities-process',
@@ -218,11 +218,11 @@
         gag orders</a>.
       We also filed comments on the <a href="{{ eu_privacy }}">EU’s proposed e-Privacy Regulation</a> as well as
       <a href="{{ india_cloud }}">India’s proposed Cloud Computing regulations</a>.
-      {% endtrans %}
+      {% endwith %}
     </p>
 
     <p>
-      {% trans
+      {% with
           eu_copyright='https://www.changecopyright.org/',
           dmca_1201='https://blog.mozilla.org/netpolicy/files/2017/01/AdditionalCommentsonSection1201Study.pdf',
           berec_neutrality='https://blog.mozilla.org/netpolicy/files/2016/07/Mozilla-comments-on-draft-BEREC-guidelines-of-EU-net-neutrality-rules.pdf'
@@ -232,7 +232,7 @@
         Digital Millennium Copyright Act</a>,
       and filed <a href="{{ berec_neutrality }}">comments with the Body of European Regulators of Electronic
         Communications on their net neutrality implementation guidelines</a>.
-      {% endtrans %}
+      {% endwith %}
     </p>
 
     <h3>Threat Indicators &amp; Data Disclosures</h3>

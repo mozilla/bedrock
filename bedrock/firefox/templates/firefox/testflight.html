@@ -65,10 +65,8 @@ Sign up to test pre-release beta versions of Firefox for iOS via Apple’s TestF
           </fieldset>
             <label for="id_terms" class="mzp-u-inline">
               <input id="id_terms" name="terms" required aria-required="true" type="checkbox">
-              {% trans url='#terms-conditions' %}
               I have read and agree to these
-              <a href="{{ url }}">Terms and Conditions</a>
-              {% endtrans %}
+              <a href="#terms-conditions">Terms and Conditions</a>
             </label>
           <p>
             {{ newsletter_form.privacy|safe }}
@@ -87,11 +85,9 @@ Sign up to test pre-release beta versions of Firefox for iOS via Apple’s TestF
       <h3>Congrats!</h3>
       <h4>You have been added to the Firefox for iOS testing program.</h4>
       <p>
-        {% trans %}
         When test spots are available, you will receive an invitation from
         TestFlight, Apple's App Store program that manages pre-release
         software, to participate in the program.
-        {% endtrans %}
         <strong>Please accept it.</strong>
       </p>
       <p>Be aware that this email may be in your spam folder.</p>
@@ -110,15 +106,13 @@ Sign up to test pre-release beta versions of Firefox for iOS via Apple’s TestF
       <li>
         <p>
           <strong>Installation of TestFlight is required for Program participation.</strong>
-          {% trans url='https://www.apple.com/legal/internet-services/itunes/testflight/sren/terms.html' %}
+          {% with url='https://www.apple.com/legal/internet-services/itunes/testflight/sren/terms.html' %}
           TestFlight is published by Apple and its
           <a href="{{ url }}" rel="external">terms and conditions</a> apply.
-          {% endtrans %}
+          {% endwith %}
 
-          {% trans url=url('privacy') %}
           When Mozilla receives data from you or TestFlight, we handle it in
-          accordance with our <a href="{{ url }}">Privacy Policy</a>.
-          {% endtrans %}
+          accordance with our <a href="{{ url('privacy') }}">Privacy Policy</a>.
         </p>
       </li>
       <li>

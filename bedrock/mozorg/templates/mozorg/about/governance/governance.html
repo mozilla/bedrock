@@ -11,20 +11,13 @@
 
 {% block article %}
 <h1 class="mzp-c-article-title">Governance</h1>
-{% trans open_source_url="https://opensource.org/" %}
-<p>Mozilla is an <a href="{{ open_source_url }}">open source</a> project. Our community is structured as a virtual organization. Authority is primarily distributed to both volunteer and employed community members irrespective of employment affiliation as they show their ability through contributions to the project. The project also seeks to debias this system of distributing authority through active interventions that engage and encourage participation from diverse communities.</p>
+<p>Mozilla is an <a href="https://opensource.org/">open source</a> project. Our community is structured as a virtual organization. Authority is primarily distributed to both volunteer and employed community members irrespective of employment affiliation as they show their ability through contributions to the project. The project also seeks to debias this system of distributing authority through active interventions that engage and encourage participation from diverse communities.</p>
 <p>Learn more about who is involved with governance and how our global community works together on our common mission.</p>
-{% endtrans %}
-{% trans roles_url=url('mozorg.about.governance.roles'),
-    policies_url=url('mozorg.about.governance.policies.policies'),
-    organizations_url=url('mozorg.about.governance.organizations'),
-    discussion_url='https://groups.google.com/a/mozilla.org/g/governance'%}
 <ol class="mzp-u-list-styled">
-  <li><a href="{{ roles_url }}">Roles and Responsibilities</a></li>
-  <li><a href="{{ policies_url }}">Policies</a></li>
-  <li><a href="{{ organizations_url }}">Organizations</a></li>
-  <li><a href="{{ discussion_url }}">Discussion forum</a></li>
+  <li><a href="{{ url('mozorg.about.governance.roles') }}">Roles and Responsibilities</a></li>
+  <li><a href="{{ url('mozorg.about.governance.policies.policies') }}">Policies</a></li>
+  <li><a href="{{ url('mozorg.about.governance.organizations') }}">Organizations</a></li>
+  <li><a href="https://groups.google.com/a/mozilla.org/g/governance">Discussion forum</a></li>
 </ol>
-{% endtrans %}
 
 {% endblock %}

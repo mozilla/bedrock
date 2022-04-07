@@ -51,7 +51,7 @@
     </div>
     <p>We also began including Android as a first tier platform along with our desktop platforms. This important shift has helped reinforce the expansion of Mozilla’s mission to the next phase of the Web. In this new setting, Firefox is not only a browser on your desktop but evolves to be a trusted environment where a user has a consistent set of core controls over his or her experience, regardless of device.</p>
 
-    <p>{% trans donottrack="https://blog.mozilla.org/privacy" %}As part of that ongoing effort to put people in control of their Web experiences, we developed the <a href="{{ donottrack }}">“Do Not Track”</a> feature in Firefox for both desktop and mobile. Industry support quickly followed. Apple and Microsoft implemented the same solution into their browsers. The United States Federal Trade Commission publicly supported Do Not Track, and the Vice President of the European Commission called for adoption of Do Not Track by 2012. We intend to build on our work in this area, and will continue to act as an advocate for the user, exploring new ways to bring transparency and user control to online user data collection methods.{% endtrans %}</p>
+    <p>{% with donottrack="https://blog.mozilla.org/privacy" %}As part of that ongoing effort to put people in control of their Web experiences, we developed the <a href="{{ donottrack }}">“Do Not Track”</a> feature in Firefox for both desktop and mobile. Industry support quickly followed. Apple and Microsoft implemented the same solution into their browsers. The United States Federal Trade Commission publicly supported Do Not Track, and the Vice President of the European Commission called for adoption of Do Not Track by 2012. We intend to build on our work in this area, and will continue to act as an advocate for the user, exploring new ways to bring transparency and user control to online user data collection methods.{% endwith %}</p>
 
     <p>Firefox is and will continue to be a fundamental lever in driving and advancing the Web with key Mozilla values of openness, transparency and interoperability.</p>
 
@@ -68,24 +68,24 @@
 
     <h3>Identity</h3>
 
-    <p>{% trans identity="http://identity.mozilla.com/" %}Today’s Web needs an open source, standards-based platform for universally accessible, decentralized, customized <a href="{{ identity }}">identity</a> on the Web. Mozilla has set about building it, with the BrowserID project as a first step. Browser ID is a secure, decentralized, open source, cross-browser way to sign onto websites using your email address.{% endtrans %}</p>
+    <p>{% with identity="http://identity.mozilla.com/" %}Today’s Web needs an open source, standards-based platform for universally accessible, decentralized, customized <a href="{{ identity }}">identity</a> on the Web. Mozilla has set about building it, with the BrowserID project as a first step. Browser ID is a secure, decentralized, open source, cross-browser way to sign onto websites using your email address.{% endwith %}</p>
 
     <h3>Apps</h3>
 
     <p>
-      {% trans apps="https://marketplace.firefox.com/", features="https://blog.lizardwrangler.com/2011/08/09/the-app-model-and-the-web/" %}
+      {% with apps="https://marketplace.firefox.com/", features="https://blog.lizardwrangler.com/2011/08/09/the-app-model-and-the-web/" %}
           <a href="{{ apps }}">Apps</a> represent a new, convenient way of interacting with the Internet,
           but they lack <a href="{{ features }}">a number of the features</a> that are great about the Web.
           The Mozilla open app ecosystem will let users take their apps with them across platforms and devices.
-          It will bridge contact lists and social graphs from different providers across the Web. It will allow users to discover apps in open and flexible ways, just as we discover other content on the Web.{% endtrans %}</p>
+          It will bridge contact lists and social graphs from different providers across the Web. It will allow users to discover apps in open and flexible ways, just as we discover other content on the Web.{% endwith %}</p>
 
     <h3>Education</h3>
 
-    <p>{% trans webcraft="https://p2pu.org/webcraft", hack="http://hackasaurus.org/", badges="http://openbadges.org/" %}Mozilla’s education programs are designed to inspire a new generation of Webmakers. The <a href="{{ webcraft }}">School of Webcraft</a> teaches open Web development skills through peer-to-peer collaboration, community and mentorship. The <a href="{{ hack }}">Mozilla Hackasaurus</a> program teaches youth the building blocks of Web technology and development. Mozilla is also developing new approaches to recognizing online learning through our <a href="{{ badges }}">Open Badges</a> project.{% endtrans %}</p>
+    <p>{% with webcraft="https://p2pu.org/webcraft", hack="http://hackasaurus.org/", badges="http://openbadges.org/" %}Mozilla’s education programs are designed to inspire a new generation of Webmakers. The <a href="{{ webcraft }}">School of Webcraft</a> teaches open Web development skills through peer-to-peer collaboration, community and mentorship. The <a href="{{ hack }}">Mozilla Hackasaurus</a> program teaches youth the building blocks of Web technology and development. Mozilla is also developing new approaches to recognizing online learning through our <a href="{{ badges }}">Open Badges</a> project.{% endwith %}</p>
 
     <h3>Media</h3>
 
-    <p>{% trans movies="https://popcorn.webmaker.org/", journalism="http://drumbeat.org/journalism", subtitles="https://www.universalsubtitles.org", openvideo="http://openvideoalliance.org/", bavc="https://www.bavc.org/" %}Mozilla supports programs and tools that bring openness and innovation to online media. These include <a href="{{ movies }}">Web Made Movies</a>, an open video lab joining filmmakers and Web developers. Mozilla’s partnership with the Knight Foundation similarly brings together Web innovators, journalists and respected news organizations to drive <a href="{{ journalism }}">innovation in journalism</a>. Mozilla also supports projects like <a href="{{ subtitles }}">Universal Subtitles</a>, the <a href="{{ openvideo }}">Open Video Alliance</a> and the <a href="{{ bavc }}">Bay Area Video Coalition</a>.{% endtrans %}</p>
+    <p>{% with movies="https://popcorn.webmaker.org/", journalism="http://drumbeat.org/journalism", subtitles="https://www.universalsubtitles.org", openvideo="http://openvideoalliance.org/", bavc="https://www.bavc.org/" %}Mozilla supports programs and tools that bring openness and innovation to online media. These include <a href="{{ movies }}">Web Made Movies</a>, an open video lab joining filmmakers and Web developers. Mozilla’s partnership with the Knight Foundation similarly brings together Web innovators, journalists and respected news organizations to drive <a href="{{ journalism }}">innovation in journalism</a>. Mozilla also supports projects like <a href="{{ subtitles }}">Universal Subtitles</a>, the <a href="{{ openvideo }}">Open Video Alliance</a> and the <a href="{{ bavc }}">Bay Area Video Coalition</a>.{% endwith %}</p>
 
     <h3>WebFWD</h3>
 
@@ -93,7 +93,7 @@
         <img src="{{ static('img/foundation/annualreport/2010/photo-remo-in-paris.jpg') }}" width="294" height="261" alt="ReMo Work Week in Paris" />
         <p>ReMo Work Week in Paris</p>
     </div>
-    <p>{% trans webfwd="https://webfwd.org/" %}<a href="{{ webfwd }}">WebFWD</a> (Web Forward) is Mozilla’s incubator program. We bring together WebFWD Fellows, groups of builders and innovators of the next great Web advancements and provide them with a space at Mozilla, close mentorship from many leaders in the technology space and other world-class resources that help move the Web forward, together.{% endtrans %}</p>
+    <p>{% with webfwd="https://webfwd.org/" %}<a href="{{ webfwd }}">WebFWD</a> (Web Forward) is Mozilla’s incubator program. We bring together WebFWD Fellows, groups of builders and innovators of the next great Web advancements and provide them with a space at Mozilla, close mentorship from many leaders in the technology space and other world-class resources that help move the Web forward, together.{% endwith %}</p>
 
     <h3>Boot to Gecko</h3>
 

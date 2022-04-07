@@ -22,18 +22,18 @@
     <header class="page-head">
       <h1 class="page-title"><span>Where is Mozilla?</span></h1>
       <p class="help">
-      {% trans link_sumo='https://support.mozilla.org/' %}
+      {% with link_sumo='https://support.mozilla.org/' %}
         Need help with Firefox? <a href="{{ link_sumo }}">Get it on our support site</a>
-      {% endtrans %}
+      {% endwith %}
       </p>
     </header>
 
     <div class="map">
       {% block map %}{% endblock %}
       <small>
-        {% trans link_openstreetmap='http://openstreetmap.org/copyright' %}
+        {% with link_openstreetmap='http://openstreetmap.org/copyright' %}
           © <a href="{{ link_openstreetmap }}">OpenStreetMap</a> contributors.
-        {% endtrans %}
+        {% endwith %}
       </small>
     </div>
 
@@ -59,12 +59,10 @@
     </div>{# end page-content #}
 
     <p class="attribution">
-    {% trans link_openstreetmap='http://openstreetmap.org/copyright' %}
+    {% with link_openstreetmap='http://openstreetmap.org/copyright' %}
       Maps © <a href="{{ link_openstreetmap }}">OpenStreetMap</a> contributors.
-    {% endtrans %}
-    {% trans %}
+    {% endwith %}
       Community photos courtesy of Mozilla contributors, used with permission.
-    {% endtrans %}
     </p>
   </div>
 </main>

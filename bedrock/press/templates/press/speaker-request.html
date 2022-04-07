@@ -30,11 +30,11 @@
   {% endif %}
   {% if not form_success %}
   <section class="mzp-c-emphasis-box">
-    {% trans url='https://bugzilla.mozilla.org/form.dev-engagement-event' %}
+    {% with url='https://bugzilla.mozilla.org/form.dev-engagement-event' %}
     If you are hosting a developer conference or event and want someone from
     Mozilla's developer team to speak, please fill out the
     <a href="{{ url }}">Developer Events Request Form</a> instead.
-    {% endtrans %}
+    {% endwith %}
   </section>
 
   {% if form.errors %}

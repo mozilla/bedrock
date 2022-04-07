@@ -15,27 +15,23 @@
 <h2>v.1.1</h2>
 
 <p>
-{% trans url=url('mozorg.about.governance.policies.commit') %}
+{% with url=url('mozorg.about.governance.policies.commit') %}
 This document states what permissions you need when following the <a href="{{ url }}">procedure to gain access to commit</a> to various Mozilla source code repositories.
-{% endtrans %}
+{% endwith %}
 </p>
 
 <h2 id="rationale">Rationale</h2>
 
 <p>
-{% trans %}
 There are two sorts of control which can be used to stop people checking in - technical and social.
 <ol>
 <li>A "full technical" implementation would have per-directory permissions everywhere, but would lead to a greatly-increased management overhead for IT, vouchers and developers alike.</li>
 <li>A "full social" implementation would just have a single permission which gave you complete access to everything, but (depending on the height of the barrier to that permission) there is a risk of making developer's lives more difficult when they are excluded, or of giving the untrustworthy or incompetent power to mess things up.</li>
 </ol>
-{% endtrans %}
 </p>
 
 <p>
-{% trans %}
 Therefore, a good policy balances the use of technical and social controls to minimize both management overhead and risk to the development process.
-{% endtrans %}
 </p>
 
 <h2 id="summary">Summary</h2>
@@ -64,10 +60,9 @@ Therefore, a good policy balances the use of technical and social controls to mi
 <p>Requirements: Contributors require one voucher - any other user with level 2 or above access. Mozilla employees do not require vouching.</p>
 
 <p>
-{% trans try='https://wiki.mozilla.org/Build:TryServer'
-%}
+{% with try='https://wiki.mozilla.org/Build:TryServer' %}
 This is the lowest level of access. It allows someone to check in to the <a href="{{ try }}">try trees</a> (<code>try</code> and <code>try-comm-central</code>) and the user trees. Because this is all it gives, this sort of access can be given out generously to anyone who would find it convenient when helping us or working on a developer's personal project, without worrying about them affecting core code. In other words, the target audience for this sort of access might be defined as "friends of and collaborators with Mozilla".
-{% endtrans %}
+{% endwith %}
 </p>
 
 <h3 id="Level1a">Level 1a - Named Voucher</h3>

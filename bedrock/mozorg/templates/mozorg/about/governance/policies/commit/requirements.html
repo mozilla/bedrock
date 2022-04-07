@@ -44,8 +44,8 @@ the Internet.</p>
 <h2>License Terms</h2>
 
 <p>
-{% trans license_policy=url('mozorg.mpl.license-policy'),
-         headers=url('mozorg.mpl.headers.index') %}
+{% with license_policy=url('mozorg.mpl.license-policy'),
+        headers=url('mozorg.mpl.headers.index') %}
 Code committed by you to a Mozilla Repository, whether written by you or a
 third party, must be governed by the Mozilla Public License 2.0, or another
 license or set of licenses acceptable to the Mozilla Foundation for the Code
@@ -54,7 +54,7 @@ the Foundation
 <a href="{{ license_policy }}">declares them to be acceptable in writing</a>.
 You will verify that committed Code contains
 <a href="{{ headers }}">appropriate boilerplate licensing text</a>.
-{% endtrans %}
+{% endwith %}
 </p>
 
 <h2>Notices and Knowledge</h2>

@@ -38,73 +38,61 @@
     <h2 class="c-section-title">What Incognito/Private Mode Doesn’t Do</h2>
 
     <p>
-    {% trans url='https://www.cnbc.com/2018/07/12/private-web-browsing-not-as-private-as-you-think-research.html' %}
+    {% with url='https://www.cnbc.com/2018/07/12/private-web-browsing-not-as-private-as-you-think-research.html' %}
       A 2018 survey of 460 internet users by the University of Chicago found that
       <a href="{{ url }}">there are a lot of misconceptions</a> out there about private
       browsing or incognito mode. It won’t protect you from viruses or malware. It won’t
       keep your internet service provider (ISP) from seeing where you’ve been online. It
       won’t stop websites from seeing your physical location. And any bookmarks you save
       while in private browsing or incognito mode won’t disappear when you switch it off.
-    {% endtrans %}
+    {% endwith %}
     </p>
 
     <h2 class="c-section-title-large">Why go private/incognito?</h2>
 
     <p>
-    {% trans %}
       Just because you’re using private browsing mode doesn’t mean you’re up to something
       nefarious. Perhaps you want to keep your work and personal life separate. You might
       share a computer or device and you don’t want your siblings snooping. You could be
       shopping for a gift and you don’t want anything to spoil the surprise. Or maybe you
       just want to limit the amount of data companies collect about you and you value privacy.
       Incognito or private browsing mode is made for any of these scenarios.
-    {% endtrans %}
     </p>
 
     <h3 class="c-section-title">Web Tracking</h3>
 
     <p>
-    {% trans %}
       A lot of sites keep track of your browsing activity. Most do it to understand if you’re
       interested in purchasing a product or clicking on an article. They can also do it to help
       make their sites easier to use. But almost all tracking is done to serve you ads.
-    {% endtrans %}
     </p>
 
     <p>
-    {% trans %}
       Online ads are customized based on your browsing. Been searching for a new pair of sandals?
       “Shoe Store X” has a great deal for you. The company knows where you’ve been because they
       dropped a bit of code into your browser called a cookie. The cookie tracks you, and so do
       Shoe Store X ads.
-    {% endtrans %}
     </p>
 
     <h3 class="c-section-title">Cookies</h3>
 
     <p>
-    {% trans %}
       Cookies were first used to customize websites, keep track of shopping carts, and maintain
       online account security, but today most are used to help companies serve targeted ads.
-    {% endtrans %}
     </p>
 
     <p>
-    {% trans %}
       Here’s how it works: You visit a site, an advertiser leaves a cookie on your browser.
       The cookie is your unique ID. Your information is stored in the cloud along with that ID.
       That can include which sites you visited, how long you visited them, what you clicked on,
       your language preferences and more.
-    {% endtrans %}
     </p>
 
     <p>
-    {% trans %}
       Cookies also help advertisers deliver ads in your social media feeds. Social sites have
       their own tracking schemes and they’re far more robust. They can track every click, post,
       and comment. In addition, cookies can report what you’ve been doing online to a social site,
       which is how some ads follow you into social media.
-    {% endtrans %}
     </p>
 
     <img src="{{ static('img/firefox/browsers/incognito-browser/incognito-browser-b.png') }}" alt="" class="c-article-image">
@@ -112,40 +100,36 @@
     <h2 class="c-section-title-large">Going Incognito</h2>
 
     <p>
-    {% trans %}
       So you’ve decided to keep to yourself online, to go incognito or enter private browsing mode.
       What does that mean? In Firefox, Private Browsing deletes cookie data when you close the browser
       window and doesn’t track your browsing data. It also blocks tracking cookies by default. Finally,
       it won’t remember any files you download, but those files will still be on your computer.
-    {% endtrans %}
     </p>
 
     <p>
-    {% trans %}
       In Chrome, incognito mode does the same thing. In either case, your actions could be visible
       to the websites you visit, your employer or school, or your internet service provider (ISP).
       Also, if you sign into any accounts, your browsing activity may be saved to that account. And
       chances are if you’re using Chrome, you’ll be logged into your Google account.
-    {% endtrans %}
     </p>
 
     <h3 class="c-section-title">Firefox Tracking Protection</h3>
 
     <p>
-    {% trans tp='https://support.mozilla.org/kb/tracking-protection',
-             disconnect='http://disconnect.me/'
+    {% with tp='https://support.mozilla.org/kb/tracking-protection',
+            disconnect='http://disconnect.me/'
     %}
       Firefox goes beyond private browsing with <a href="{{ tp }}">Tracking Protection</a>.
       It stops companies from following you around the web. It uses a list of tracking sites compiled
       by <a href="{{ disconnect }}">Disconnect.me</a>. Whenever a cookie tries to reach a site on the
       list, Tracking Protection blocks it.
-    {% endtrans %}
+    {% endwith %}
     </p>
 
     <h3 class="c-section-title">Firefox Multi-Account Containers</h3>
 
     <p>
-    {% trans containers='https://addons.mozilla.org/firefox/addon/multi-account-containers/' %}
+    {% with containers='https://addons.mozilla.org/firefox/addon/multi-account-containers/' %}
       The Firefox <a href="{{ containers }}">Multi-Account Containers</a> add-on isn’t technically
       a form of private browsing or tracking protection, but it can help keep companies from knowing
       everything you do online. It lets you open fresh, cookie-free tabs that can be used for
@@ -154,21 +138,19 @@
       won’t associate the different accounts, keeping your work life separate from your personal
       life online. Some more advanced trackers, however, can and will track you across different
       accounts, so beware.
-    {% endtrans %}
+    {% endwith %}
     </p>
 
     <h3 class="c-section-title">Is Incognito/Private Mode Really Private?</h3>
 
     <p>
-    {% trans %}
       Incognito or private mode will keep your local browsing private, but it won’t stop your ISP,
       school, or employer from seeing where you’ve been online. In fact, your ISP has access to all
       your browsing activity pretty much no matter what you do.
-    {% endtrans %}
     </p>
 
     <p>
-    {% trans vpn='https://blog.mozilla.org/internetcitizen/2017/08/29/do-you-need-a-vpn/' %}
+    {% with vpn='https://blog.mozilla.org/internetcitizen/2017/08/29/do-you-need-a-vpn/' %}
       You can, however, use a <a href="{{ vpn }}">Virtual Private Network (VPN) service</a>. VPN
       services route traffic through remote servers, so it looks like you’re browsing from another
       location or multiple locations. VPN providers can track where you’ve been online, though, so
@@ -176,30 +158,30 @@
       VPNs won’t block third-party cookies from advertisers, but those cookies won’t be able to
       identify your location accurately, making it difficult or impossible for ad trackers to be
       effective.
-    {% endtrans %}
+    {% endwith %}
     </p>
 
     <p>
-    {% trans tor='https://www.torproject.org/' %}
+    {% with tor='https://www.torproject.org/' %}
       <a href="{{ tor }}">Tor Browser</a> can truly mask your online activity. It bounces traffic
       through multiple servers around the globe, making it difficult to track that traffic. The
       website you visit really has no idea where you are, only the approximate location of the last
       server your request was routed through. But again, even Tor proxy won’t stop third-party
       advertisers from installing cookies in your browser. Tor Browser deletes all cookies when
       closed. People can also start a new session in Tor Browser to clear them as well.
-    {% endtrans %}
+    {% endwith %}
     </p>
 
     <h3 class="c-section-title">Incognito: TL:DR</h3>
 
     <p>
-    {% trans tp='https://support.mozilla.org/kb/tracking-protection',
-             vpn='https://blog.mozilla.org/internetcitizen/2017/08/29/do-you-need-a-vpn/'
+    {% with tp='https://support.mozilla.org/kb/tracking-protection',
+            vpn='https://blog.mozilla.org/internetcitizen/2017/08/29/do-you-need-a-vpn/'
     %}
       Incognito mode keeps your browser history private, and that’s pretty much it. If you want more
       privacy, you’ll need to add <a href="{{ tp }}">Tracking Protection</a> and maybe even browse
       through a <a href="{{ vpn }}">Virtual Private Network (VPN) service</a>. Incognito mode can’t.
-    {% endtrans %}
+    {% endwith %}
     </p>
 
   </article>

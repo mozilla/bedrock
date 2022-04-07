@@ -18,20 +18,20 @@
 {% block article_content %}
   <h3 class="timestamp">November 18, 2010</h3>
 
-  <p>{% trans %}The Internet is in a period of dramatic change. We've built the traits we
+  <p>The Internet is in a period of dramatic change. We've built the traits we
     care about -- innovation, opportunity, interoperability, individual control
     -- into one layer of Internet life through the browser. We also need to
     build these traits into the new ways people use the browser and the
     Internet. Three of our largest areas of focus are mobile, "Open Web Apps"
     and the social and data sharing aspects of the Web. We're also increasing
-    participation and collaboration with the Mozilla Drumbeat project.{% endtrans %}</p>
+    participation and collaboration with the Mozilla Drumbeat project.</p>
 
   <ol>
     <li>
       <h4 class="section-title" id="mobile">Mobile</h4>
 
       <p>
-        {% trans
+        {% with
           maemo="https://blog.mozilla.org/blog/2010/01/29/firefox-for-maemo-now-available/",
           android="https://blog.mozilla.org/blog/2010/11/04/firefox-4-beta-for-mobile-is-now-faster-and-sleeker/"
         %}
@@ -42,18 +42,18 @@
           We released <a href="{{ maemo }}">Firefox on the Maemo (now known as Meego)
           platform</a> in Jan. of 2010.
           <a href="{{ android }}">Firefox for the Android operating system</a>
-          is in beta now and will be available in a few months.{% endtrans %}</p>
+          is in beta now and will be available in a few months.{% endwith %}</p>
 
-      <p>{% trans %}Firefox 4 for mobile phones is a compelling product for both users and
+      <p>Firefox 4 for mobile phones is a compelling product for both users and
         developers. For users, it includes what they love about Firefox: the
         Awesome Bar, support for browser Add-ons, integrated sharing, and
         seamless synchronization of bookmarks, history and passwords with
         desktop Firefox. And because Firefox 4 for mobile is built upon the same
         browser engine as desktop Firefox, it provides developers with the same
-        rich support for HTML5 and related technologies.{% endtrans %}</p>
+        rich support for HTML5 and related technologies.</p>
 
       <p>
-        {% trans
+        {% with
            home="https://blog.mozilla.org/blog/2010/07/15/get-firefox-home-on-your-iphone/",
            nytimes="http://www.nytimes.com/2010/11/11/technology/personaltech/11smart.html"
           %}
@@ -66,7 +66,7 @@
           the iphone; Apple forbids
           development of such a product in the terms of its software developer
           kit.)
-        {% endtrans %}
+        {% endwith %}
       </p>
 
       <figure class="figure">
@@ -91,7 +91,7 @@
     <li>
       <h4 class="section-title" id="apps">"Apps."</h4>
 
-      <p>{% trans %}We know that the "app" and "app store" model has a set of
+      <p>We know that the "app" and "app store" model has a set of
         characteristics that people like. These include such things as
         discoverability, ratings, easy installation, easy payment for paid apps,
         and quick access from the device. However, the current app model also
@@ -104,18 +104,16 @@
         developers often need to get permission from one or more gatekeepers to
         reach people -- from a network operator, a device manufacturer, a
         "store" operator. Similarly, consumers must go through these filters to
-        access new functionality.{% endtrans %}</p>
+        access new functionality.</p>
 
       <p>
-        {% trans
-           proto="https://blog.mozilla.org/blog/2010/10/19/prototype-of-an-open-web-app-ecosystem/"
-          %}
+        {% with proto="https://blog.mozilla.org/blog/2010/10/19/prototype-of-an-open-web-app-ecosystem/" %}
           It's important for the future to see the positive characteristics of
           apps and app stores integrated with the great traits of the Web. To do
           this we've <a href="{{ proto }}">designed a prototype of an Open Web App
           ecosystem</a>: this includes a system design, technical documentation
           and examples of what such a system would look like and work like.
-        {% endtrans %}
+        {% endwith %}
       </p>
 
       <figure class="figure">
@@ -139,7 +137,7 @@
       <h4 class="section-title" id="services">Sharing, Data and Services</h4>
 
       <p>
-        {% trans f1="http://f1.mozillamessaging.com/" %}
+        {% with f1="http://f1.mozillamessaging.com/" %}
         People are generating immense amounts of digital information about
         themselves. Right now there's no good way for an individual to control
         or manage the information we generate other than to rely on the
@@ -155,7 +153,7 @@
         <a href="{{ f1 }}">F-1 is a browser extension</a>
         that allows you to share links from any webpage
         in a fast and fun way.
-        {% endtrans %}
+        {% endwith %}
       </p>
 
       <figure class="figure">
@@ -183,7 +181,7 @@
       </h4>
 
       <p>
-        {% trans
+        {% with
           logo=static('img/foundation/annualreport/2009/drumbeat-logo.jpg'),
           webcraft="http://www.drumbeat.org/",
           festival="http://www.drumbeat.org/",
@@ -214,7 +212,7 @@
           which gives people a
           chance to donate and show their support for Mozilla's efforts to expand
           into these new areas.
-        {% endtrans %}</p>
+        {% endwith %}</p>
     </li>
   </ol>
 {% endblock %}

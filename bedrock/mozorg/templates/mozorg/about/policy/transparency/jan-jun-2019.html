@@ -221,11 +221,11 @@
     <aside class="footnotes">
       <section id="notation">
         <p>
-          {% trans privacy=url('privacy') %}
+          {% with privacy=url('privacy') %}
           * During the Reporting Period we surfaced additional methods to contact us in our <a
             href="{{ privacy }}">Mozilla Privacy Policy</a>. This higher level visibility likely caused the increase in
           Personal Data Requests that we received compared to 2018 H2.
-          {% endtrans %}
+          {% endwith %}
         </p>
       </section>
     </aside>
@@ -238,44 +238,44 @@
   <div data-accordion-role="tabpanel">
     <h3>Legislative Reform</h3>
     <p>
-      {% trans consumer='https://blog.mozilla.org/netpolicy/files/2019/04/Mozilla-U.S.-Consumer-Privacy-Bill-Blueprint-4.4.19-2.pdf',
-                     letter='https://blog.mozilla.org/netpolicy/files/2019/01/Mozilla-letter-re-FB-claims-of-data-partner.pdf' %}
+      {% with consumer='https://blog.mozilla.org/netpolicy/files/2019/04/Mozilla-U.S.-Consumer-Privacy-Bill-Blueprint-4.4.19-2.pdf',
+              letter='https://blog.mozilla.org/netpolicy/files/2019/01/Mozilla-letter-re-FB-claims-of-data-partner.pdf' %}
       During this reporting period, Mozilla continued our fight for greater data security and privacy across the globe.
       In the US, we released our <a href="{{ consumer }}">US Consumer Privacy Bill Blueprint</a> and we sent <a
         href="{{ letter }}">a letter to the US Congress</a> about Facebook data sharing. In the wake of the US Supreme
       Court’s Carpenter ruling, we released two studies for Firefox users on privacy expectations of location
       information shared online.
-      {% endtrans %}
+      {% endwith %}
     </p>
     <p>
-      {% trans kenyan='https://ca.go.ke/wp-content/uploads/2018/11/Mozilla-Submission-of-Comments-Kenya-Privacy-and-Data-Protection-Bill-2018.pdf',
-                     data='https://www.tespok.co.ke/?p=13513' %}
+      {% with kenyan='https://ca.go.ke/wp-content/uploads/2018/11/Mozilla-Submission-of-Comments-Kenya-Privacy-and-Data-Protection-Bill-2018.pdf',
+              data='https://www.tespok.co.ke/?p=13513' %}
       In Kenya, we advocated for a strong data protection law, and spoke out against <a href="{{ kenyan }}">Kenyan
         legislation for a new ID system</a> that would allow the government to collect the DNA, biometrics, and other
       sensitive data of everyone in Kenya. We also held a series of <a href="{{ data }}">Lean Data Practices
         workshops</a> in Nairobi with government, business, and civil society stakeholders.
-      {% endtrans %}
+      {% endwith %}
     </p>
     <p>
-      {% trans cybersecurity='https://blog.mozilla.org/netpolicy/2017/10/03/vulnerability-disclosure-should-be-in-new-eu-cybersecurity-strategy/',
-                     seehere='https://blog.mozilla.org/netpolicy/files/2019/06/Sub-62-TOLA-Act.pdf' %}
+      {% with cybersecurity='https://blog.mozilla.org/netpolicy/2017/10/03/vulnerability-disclosure-should-be-in-new-eu-cybersecurity-strategy/',
+              seehere='https://blog.mozilla.org/netpolicy/files/2019/06/Sub-62-TOLA-Act.pdf' %}
       The the <a href="{{ cybersecurity }}">EU Cybersecurity Act</a> included an important provision that we advocated
       for to grant ENISA (the EU Cybersecurity Agency) a mandate to work with Member States to stand up government
       vulnerability disclosure programs. We also continued to speak out against legislation in Australia that
       dangerously undermines encryption (see <a href="{{ seehere }}">here</a>); although there is much more progress
       needed, our advocacy did lead to a limited government vulnerability disclosure program.
-      {% endtrans %}
+      {% endwith %}
     </p>
     <p>
-      {% trans content='https://blog.mozilla.org/netpolicy/2018/11/21/the-eu-terrorist-content-regulation-a-threat-to-the-ecosystem-and-our-users-rights/',
-                     comments='https://blog.mozilla.org/netpolicy/2019/04/10/uk_online-harms/',
-                     liability='https://blog.mozilla.org/netpolicy/2019/01/02/india-attempts-to-turn-online-companies-into-censors-and-undermines-security-mozilla-responds/' %}
+      {% with content='https://blog.mozilla.org/netpolicy/2018/11/21/the-eu-terrorist-content-regulation-a-threat-to-the-ecosystem-and-our-users-rights/',
+              comments='https://blog.mozilla.org/netpolicy/2019/04/10/uk_online-harms/',
+              liability='https://blog.mozilla.org/netpolicy/2019/01/02/india-attempts-to-turn-online-companies-into-censors-and-undermines-security-mozilla-responds/' %}
       We continued to pushback on the <a href="{{ content }}">EU Terrorist Content Regulation</a>, and filed <a
         href="{{ comments }}">comments</a> against the UK government’s overreaching white paper on Online Harms, which
       had worrying effects on individual liberties and the competitive ecosystem. And we spoke out strongly against
       India’s proposed <a href="{{ liability }}">intermediary liability rules</a>, which would force all online
       intermediaries to censor and surveil their users and threatened encryption as well.
-      {% endtrans %}
+      {% endwith %}
     </p>
 
     <h3>Threat Indicators &amp; Data Disclosures</h3>

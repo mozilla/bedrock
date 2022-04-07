@@ -14,10 +14,10 @@
   <p> Version 1.1</p>
 
   <p><strong>
-  {% trans bounty=url('security.bug-bounty') %}
+  {% with bounty=url('security.bug-bounty') %}
     IMPORTANT: Anyone who believes they have found a Mozilla-related security vulnerability should visit
     our <a href="{{ bounty }}">bug bounty program</a> for information on how to submit them.
-  {% endtrans %}
+  {% endwith %}
   </strong></p>
 
   <h2 id="intro">Introduction</h2>
@@ -60,9 +60,9 @@
 
   <h3 id="security-group">The Mozilla security bug group</h3>
 
-  <p>{% trans %}
+  <p>
   The Mozilla security module owner and peers will form the core of the Mozilla security bug group, and will select a number of other people to round out the group’s membership. Each and every member of the Mozilla security bug group will automatically have access to all Mozilla bugs marked “Security-Sensitive.” The members of the Mozilla security bug group will be drawn primarily from the following groups:
-  {% endtrans %}</p>
+  </p>
 
   <ul class="mzp-u-list-styled">
     <li>security developers (i.e., those whose bugs are often singled out as security-relevant or who have security-relevant bugs assigned to them), and security QA people who are the QA contacts for those bugs;</li>
@@ -127,9 +127,9 @@
     <li>to establish, for each bug, the amount of information a distributor can reveal immediately (before a fix is available) without putting other distributors and their customers at risk.</li>
   </ul>
 
-  <p>{% trans known='http://www.mozilla.org/projects/security/known-vulnerabilities.html' %}
+  <p>{% with known='http://www.mozilla.org/projects/security/known-vulnerabilities.html' %}
   A typical warning will mention the application or module affected, the affected versions, and a workaround (e.g. disabling JavaScript). If the group decides to publish a warning, the module owner, a peer, or some other person they may designate will post this message to the <a href="{{ known }}"> Known Vulnerabilities</a> page (which will be the authoritative source for this information) and will also send a copy of this message to an appropriate moderated mailing list and/or newsgroup (e.g., netscape.public.mozilla.announce and/or some other newsgroup/list established specifically for this purpose). Mozilla distributors who wish to inform their users of the existence of a vulnerability may repost any information from the Known Vulnerabilities page to their own websites, mailing lists, release notes, etc., but should not disclose any additional information about the bug.
-  {% endtrans %}</p>
+  {% endwith %}</p>
 
   <p>The original reporter of a security bug may decide when that bug report will be made public; disclosure is done by clearing the bug’s “Security-Sensitive” flag, after which the bug will revert to being an ordinary bug. We believe that investing this power in the bug reporter simply acknowledges reality: Nothing prevents the person reporting a security bug from publicizing information about the bug by posting it to channels outside the context of the Mozilla project. By not doing so, and by instead choosing to report bugs through the standard Bugzilla processes, the bug reporter is doing a positive service to the Mozilla project; thus it makes sense that the bug reporter should be able to decide when the relevant Bugzilla data should be made public.</p>
 

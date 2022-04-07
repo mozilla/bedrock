@@ -30,13 +30,11 @@
               </dt>
               <dd>
                 <p>
-                {% trans %}
                   At Mozilla, we measure success not only by the adoption of our products,
                   but also by our ability to advance our mission. We do this by improving
                   the health of the internet, increasing the control people have in their
                   online lives, impacting the web with open technologies, and influencing
                   open standards.
-                {% endtrans %}
                 </p>
               </dd>
               <dt>
@@ -44,10 +42,8 @@
               </dt>
               <dd>
                 <p>
-                {% trans %}
                   Mozilla’s consolidated reported revenue (Mozilla Foundation and all
                   subsidiaries) for 2015 was $421.3M (US), as compared to $329.6M in 2014.
-                {% endtrans %}
                 </p>
               </dd>
               <dt>
@@ -55,14 +51,12 @@
               </dt>
               <dd>
                 <p>
-                {% trans %}
                   The majority of Mozilla revenue is from Firefox Web browser search
                   partnerships around the world. Mozilla’s work is also supported through
                   grants and individual donations. These contributions fund our nonprofit
                   work in education, journalism, science, leadership development and other
                   fields. And, in turn, all of the work we do at Mozilla contributes to
                   the overall sustainability and health of the Internet.
-                {% endtrans %}
                 </p>
               </dd>
               <dt>
@@ -70,33 +64,27 @@
               </dt>
               <dd>
                 <p>
-                {% trans %}
                   More than 75% of Mozilla spending is on people-related investments to
                   produce the products and programs that support our mission: keeping the
                   web open, free, and accessible.
-                {% endtrans %}
                 </p>
                 <p>
-                {% trans %}
                   2015 Total Operating Expenses in our People, Products and Programs were
                   relatively flat as we realigned product investments. There was a 6% year
                   over year growth from 2014.
-                {% endtrans %}
                 </p>
                 <p>
-                {% trans %}
                   In 2015, Mozilla invested in education and advocacy initiatives, working
                   to reinforce the importance of an open web and teach web literacy around
                   the world. In 2015, Mozilla also continued its commitment to
                   building a vibrant, healthy Web ecosystem defined by user choice in our
                   product, policy, and advocacy work.
-                {% endtrans %}
                 </p>
                 <p>
-                {% trans url='https://foundation.mozilla.org/about/public-records/' %}
+                {% with url='https://foundation.mozilla.org/about/public-records/' %}
                   Mozilla’s tax returns and financial documents from past years are
                   publicly available <a href="{{ url }}">here</a>.
-                {% endtrans %}
+                {% endwith %}
                 </p>
               </dd>
               <dt>
@@ -104,27 +92,23 @@
               </dt>
               <dd>
                 <p>
-                {% trans %}
                   The majority of Mozilla revenue is from Firefox web browser search
                   partnerships around the world. Mozilla’s work is also supported through
                   grants and individual donations. These contributions fund our nonprofit
                   work in education, journalism, science, leadership development and other
                   fields. And, in turn, all of the work we do at Mozilla contributes to
                   the overall sustainability and health of the internet.
-                {% endtrans %}
                 </p>
                 <p>
-                {% trans %}
                   The Mozilla Corporation entered into a new search strategy at the end of
                   2014. We decided that one global default search partner was no longer
                   the right choice for our users or the web. Instead, we adopted a more
                   local and flexible approach by country to control our own destiny and to
                   diversify the user experience and competitive landscape of web search
                   globally.
-                {% endtrans %}
                 </p>
                 <p>
-                {% trans yahoo="https://blog.mozilla.org/blog/2014/11/19/promoting-choice-and-innovation-on-the-web/ "%}
+                {% with yahoo="https://blog.mozilla.org/blog/2014/11/19/promoting-choice-and-innovation-on-the-web/ "%}
                   We <a href="{{ yahoo }}">announced</a> Yahoo as our default Firefox
                   search provider in the US at the end of 2014, as well as continued
                   search relationships with Baidu, Yandex and other regional partners
@@ -133,26 +117,24 @@
                   DuckDuckGo, Google, Yahoo and more. We also continue to have
                   relationships with Amazon, Bing, Twitter, Wikipedia, and regional search
                   providers.
-                {% endtrans %}
+                {% endwith %}
                 </p>
                 <p>
-                {% trans search_strategy="https://wiki.mozilla.org/Global_Search_Strategy_Status" %}
+                {% with search_strategy="https://wiki.mozilla.org/Global_Search_Strategy_Status" %}
                   Firefox users can easily choose to change their search provider from a
                   number of pre-installed alternatives, including Amazon, Bing, Google,
                   Twitter, Wikipedia and many regional search providers. This supports our
                   <a href="{{ search_strategy }}">global search strategy</a> and
                   user-focused product strategy to provide people with choice and control
                   over their web experience.
-                {% endtrans %}
+                {% endwith %}
                 </p>
                 <p>
-                {% trans %}
                   In 2015 and 2016, Mozilla entered into additional search partnerships,
                   bringing our total to 12 partners and including all major internet
                   search providers. The new search strategy diversified revenue sources
                   for Mozilla. While some of this is evident in the 2015 financials, the
                   improvement will be more notable in 2016.
-                {% endtrans %}
                 </p>
               </dd>
               <dt>
@@ -160,8 +142,8 @@
               </dt>
               <dd>
                 <p>
-                {% trans diversity="https://wiki.mozilla.org/Diversity_and_Inclusion_Strategy",
-                          eeo="https://static.mozilla.com/moco/en-US/pdf/2016_Mozilla_EEO-1.png"
+                {% with diversity="https://wiki.mozilla.org/Diversity_and_Inclusion_Strategy",
+                        eeo="https://static.mozilla.com/moco/en-US/pdf/2016_Mozilla_EEO-1.png"
                 %}
                   Inclusion and diversity are central to the Mozilla mission. We know
                   innovation stems from a diverse workforce to fuel different approaches.
@@ -177,7 +159,7 @@
                   are committed to ongoing transparency in this regard. You can find out
                   more about Mozilla's inclusion and diversity strategy
                   <a href="{{ diversity }}">here</a>.
-                {% endtrans %}
+                {% endwith %}
                 </p>
               </dd>
               <dt>
@@ -185,9 +167,7 @@
               </dt>
               <dd>
                 <p>
-                {% trans servo="https://servo.org/",
-                          rust="https://www.rust-lang.org/"
-                %}
+                {% with servo="https://servo.org/", rust="https://www.rust-lang.org/" %}
                   In 2017, Mozilla will continue our investments in product development
                   with a focus on more mobile products including connected devices
                   experiments and Firefox mobile products like those recently launched
@@ -201,10 +181,9 @@
                   <a href="{{ rust }}">Rust</a> with Project Quantum) to meet the
                   increasing performance and security needs as the internet grows and
                   evolves.
-                {% endtrans %}
+                {% endwith %}
                 </p>
                 <p>
-                {% trans %}
                   In 2017, Mozilla will expand our work in protecting the health of the
                   internet through policy, advocacy, education and products. We will launch
                   our first Internet Health Report, a thorough, compelling examination of
@@ -212,20 +191,17 @@
                   features, our inaugural report will unpack internet health through the
                   lenses of privacy and security, web literacy, digital inclusion,
                   decentralization, and open innovation.
-                {% endtrans %}
                 </p>
                 <p>
-                {% trans %}
                   Mozilla will continue to fuel the larger open internet movement.
                   Wielding advocacy campaigns and educational tools and curriculum,
                   Mozilla will work alongside allies in the realms of technology, civil
                   society, and journalism to build a powerful and effective movement.
-                {% endtrans %}
                 </p>
                 <p>
-                {% trans download=url('firefox.new'),
-                          volunteer=url('mozorg.contribute'),
-                          mozorg=url('mozorg.home')
+                {% with download=url('firefox.new'),
+                        volunteer=url('mozorg.contribute'),
+                        mozorg=url('mozorg.home')
                 %}
                   Our mission is to enable the internet as a global public resource, open
                   and accessible to all. This mission is as important now as it has ever
@@ -235,7 +211,7 @@
                   We invite you to <a href="{{ download }}">download</a> Firefox or
                   <a href="{{ volunteer }}">volunteer</a> to be part of Mozilla. Learn
                   more at <a href="{{ mozorg }}">mozilla.org</a>.
-                {% endtrans %}
+                {% endwith %}
                 </p>
               </dd>
             </dl>

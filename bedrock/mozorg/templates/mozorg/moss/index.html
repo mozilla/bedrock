@@ -18,12 +18,10 @@
 <div class="t-medium">
   <div class="mzp-l-content">
     <p class="moss-section-lead-in">
-      {% trans %}
         Mozilla was born out of and remains part of the open source and free software
         movement. Through the Mozilla Open Source Support (MOSS) awards program, we
         recognize, celebrate, and support open source projects that contribute to
         Mozilla’s work and to the health of the Internet. MOSS broadens access, increases security, and empowers users by providing catalytic funding to open source technologists.
-      {% endtrans %}
     </p>
   </div>
 </div>
@@ -33,9 +31,9 @@
     <h2 class="moss-section-heading">2020 Funding Update</h2>
 
     <p>
-    {% trans blogpost='https://blog.mozilla.org/blog/2020/08/11/changing-world-changing-mozilla/' %}
+    {% with blogpost='https://blog.mozilla.org/blog/2020/08/11/changing-world-changing-mozilla/' %}
       Due to the <a href="{{ blogpost }}">recently-announced restructuring at Mozilla</a>, MOSS is not currently accepting applications and will not be making any new awards this year. We are conducting a comprehensive review of the program and hope to share information about future award cycles in 2021.
-    {% endtrans %}
+    {% endwith %}
     </p>
   </section>
 </div>
@@ -103,9 +101,9 @@
     <h2 class="moss-section-heading">Award Selection</h2>
 
     <p>
-    {% trans directory='https://github.com/mozilla/MOSS-Directory' %}
+    {% with directory='https://github.com/mozilla/MOSS-Directory' %}
       MOSS applications are accepted on a rolling basis and are reviewed monthly by an expert selection panel. Reviewers include current Mozilla staff, senior Mozilla alumni, and other respected open source experts. For a full listing of all current committee members, please see the <a href="{{ directory }}">MOSS directory</a> on GitHub.
-    {% endtrans %}
+    {% endwith %}
     </p>
   </section>
 </div>
@@ -116,9 +114,9 @@
       <h2 class="moss-section-heading">Past Recipients</h2>
 
       <p>
-      {% trans directory='https://github.com/mozilla/MOSS-Directory' %}
+      {% with directory='https://github.com/mozilla/MOSS-Directory' %}
         Past MOSS awardees include the projects listed below. For more information on past MOSS awards, please see the <a href="{{ directory }}">MOSS directory</a> on GitHub.
-      {% endtrans %}
+      {% endwith %}
       </p>
     </div>
   </div>
@@ -209,63 +207,53 @@
       <dt>When is the application deadline?</dt>
       <dd>
         <p>
-        {% trans %}
           MOSS applications are accepted on a rolling basis and are reviewed monthly. Depending on when your application is received in our review cycle, it may take up to two months to receive committee feedback.
-        {% endtrans %}
         </p>
       </dd>
 
       <dt>What is the range of award amounts that the committee usually provides?</dt>
       <dd>
         <p>
-        {% trans %}
           While there is no set range, historically, the MOSS Committee has mostly chosen to award between $5,000 and $150,000 USD per project; the average project size is roughly $70,000 USD. Awards of $150,000 and greater have historically been approved mostly for return awardees who have already successfully completed a smaller MOSS project. In general, the larger the award, the more scrutiny the application will receive and the more questions the committee will have regarding how the money will be used. All projects should include a statement of work that helps the committee understand how the amount of funding requested was determined and how that funding maps to specific tasks.
-        {% endtrans %}
         </p>
       </dd>
 
       <dt>How mature does a project need to be in order to apply for a MOSS award?</dt>
       <dd>
         <p>
-        {% trans moss_email='mailto:MOSS@mozilla.com' %}
+        {% with moss_email='mailto:MOSS@mozilla.com' %}
           Historically, the MOSS Committee has chosen to fund projects which are important in their ecosystems and can demonstrate some success and momentum with regard to acquiring users and building an active community of contributors. Unfortunately, the MOSS Committee does not consider applications from brand new projects, projects which are not open source, projects which have yet to be built or projects which have yet to build a community of users and contributors. If you are unsure if your project qualifies for MOSS funding, please <a href="{{ moss_email }}">email the MOSS team</a>.
-        {% endtrans %}
+        {% endwith %}
         </p>
       </dd>
 
       <dt>What types of open source projects does the committee fund?</dt>
       <dd>
         <p>
-        {% trans %}
           The MOSS Committee is happy to consider any open source project, including but not limited to software, hardware, firmware, design, and networking projects. All projects must generally involve some amount of technical development. MOSS does not sponsor conferences and events.
-        {% endtrans %}
         </p>
       </dd>
 
       <dt>How should I determine what size of an award to apply for?</dt>
       <dd>
         <p>
-        {% trans %}
           The award amount you request should be determined by the scope of work that you wish to complete using your MOSS award. Your application should contain a rough scope of work, including an expected number of hours and hourly rates to complete each task.
-        {% endtrans %}
         </p>
       </dd>
 
       <dt>What licenses are accepted?</dt>
       <dd>
         <p>
-        {% trans fsf='https://www.fsf.org/', osi='https://opensource.org/' %}
+        {% with fsf='https://www.fsf.org/', osi='https://opensource.org/' %}
           The MOSS committee will only consider projects which are released publicly under a license that is either a free software license according to the <a href="{{ fsf }}">FSF</a> or an open source license according to the <a href="{{ osi }}">OSI</a>. Projects which are not licensed for use under an open source license are not eligible for MOSS funding.
-        {% endtrans %}
+        {% endwith %}
         </p>
       </dd>
 
       <dt>Can I include indirect costs in my budget?</dt>
       <dd>
         <p>
-        {% trans %}
           The MOSS committee prefers to fund direct project costs, but we recognize that recovery of indirect costs may be a necessity.
-        {% endtrans %}
         </p>
 
         <ul class="mzp-u-list-styled">
@@ -279,42 +267,34 @@
       <dt>What are indirect and direct costs?</dt>
       <dd>
         <p>
-        {% trans %}
           Direct costs are expenses directly attributable to the scope of work described in your request. Generally, direct costs would not be incurred if the proposed scope of work did not exist. Direct costs may include staff salaries, contractors/consultants, and materials required to execute the scope of work.
-        {% endtrans %}
         </p>
 
         <p>
-        {% trans %}
           Indirect costs are those costs not readily identified with a specific project/activity but incurred for the joint benefit of multiple projects/activities. Indirect costs are usually grouped into common pools and charged to benefiting objectives through an allocation process/indirect cost rate. Indirect costs include expenses frequently referred to as overhead (rent, utilities, general and administrative expenses, etc.)
-        {% endtrans %}
         </p>
       </dd>
 
       <dt>Can I request additional funds after a final decision is made on my request?</dt>
       <dd>
         <p>
-        {% trans %}
           MOSS committee decisions are final. We cannot increase award amounts after a decision has been made. Should you need to revise your scope of work, please contact the MOSS program officer immediately.
-        {% endtrans %}
         </p>
       </dd>
 
       <dt>Who can apply to MOSS?</dt>
       <dd>
         <p>
-        {% trans community_guidelines=url('mozorg.about.governance.policies.participation') %}
+        {% with community_guidelines=url('mozorg.about.governance.policies.participation') %}
           Generally anyone who maintains an open source project can apply to MOSS, including individuals, NGOs, and for-profit companies. Individuals and entities on the SDN list, other sanctions lists, or who Mozilla is otherwise legally prohibited from engaging are not eligible to receive funding from MOSS. Individuals with a documented violation of <a href="{{ community_guidelines }}">Mozilla’s Community Participation Guidelines</a> may not be eligible to receive funding from MOSS.
-        {% endtrans %}
+        {% endwith %}
         </p>
       </dd>
 
       <dt>For Track I, what are you looking for in the reference letter from a Mozilla Champion?</dt>
       <dd>
         <p>
-        {% trans %}
           For Track I (Foundational Technologies) projects, your application should include an endorsement from a Mozilla Champion who can describe how your project is used by Mozilla and why it is an important dependency for our work.
-        {% endtrans %}
         </p>
       </dd>
 
@@ -335,9 +315,9 @@
       <dt>How can I learn more about MOSS? Is there someone I can talk to about my project idea?</dt>
       <dd>
         <p>
-        {% trans moss_email='mailto:MOSS@mozilla.com' %}
+        {% with moss_email='mailto:MOSS@mozilla.com' %}
           We would love to talk to you about your project idea or answer any questions you may have about MOSS. To reach the MOSS project team, please contact us at <a href="{{ moss_email }}">MOSS@mozilla.com</a>.
-        {% endtrans %}
+        {% endwith %}
         </p>
       </dd>
     </dl>

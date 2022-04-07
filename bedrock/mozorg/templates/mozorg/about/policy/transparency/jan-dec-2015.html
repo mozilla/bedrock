@@ -204,7 +204,7 @@
   <div data-accordion-role="tabpanel">
     <h3>Legislative Reform</h3>
     <p>
-      {% trans
+      {% with
           link_reform='https://blog.mozilla.org/netpolicy/2015/04/14/stop-mass-surveillance-under-the-patriot-act/',
           link_london='https://blog.mozilla.org/netpolicy/2015/12/04/uk-ip-bill-is-a-threat-to-privacy-security-and-trust-online/',
           link_berlin='https://blog.mozilla.org/netpolicy/2015/10/15/data-retention-in-deutschland/',
@@ -215,8 +215,8 @@
       back against overbroad intelligence laws from <a href="{{ link_london }}">London</a> to <a
         href="{{ link_berlin }}">Berlin</a> to <a href="{{ link_paris }}">Paris</a> to <a
         href="{{ link_ottawa }}">Ottawa</a>.
-      {% endtrans %}
-      {% trans
+      {% endwith %}
+      {% with
           link_cisa='https://blog.mozilla.org/netpolicy/2015/03/02/mozilla-statement-on-cisa/',
           link_delphi='https://blog.mozilla.org/netpolicy/2015/07/28/experts-develop-cybersecurity-recommendations/'
       %}
@@ -224,7 +224,7 @@
         portions of the Cybersecurity Information Sharing Act</a> (CISA), and convening more than 30 leading
       cybersecurity experts from a wide variety ofbackgrounds to identify pro­defense <a
         href="{{ link_delphi }}">Cybersecurity Delphi Project</a>.
-      {% endtrans %}
+      {% endwith %}
     </p>
 
     <h3>Sharing of Cybersecurity Threat Indicators</h3>

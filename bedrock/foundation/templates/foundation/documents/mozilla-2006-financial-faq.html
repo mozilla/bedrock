@@ -14,31 +14,31 @@
 
 {% block article_content %}
   <p>
-   {% trans form990='https://static.mozilla.com/foundation/documents/mf-2006-irs-form-990.pdf',
-     statement='https://static.mozilla.com/foundation/documents/mf-2006-audited-financial-statement.pdf'
+   {% with form990='https://static.mozilla.com/foundation/documents/mf-2006-irs-form-990.pdf',
+           statement='https://static.mozilla.com/foundation/documents/mf-2006-audited-financial-statement.pdf'
    %}
      This FAQ supplements the <a href="{{ form990 }}">Mozilla
      Foundation 2006 Form 990</a> and the <a
      href="{{ statement }}">consolidated financial
      statement for the Mozilla Foundation and the Mozilla
-     Corporation</a>.{% endtrans %}
+     Corporation</a>.{% endwith %}
   </p>
 
   <dl class="mzp-u-list-styled">
-    <dt>{% trans %}Your contract with Google ends in November 2008. What happens
-    then?{% endtrans %}</dt>
+    <dt>Your contract with Google ends in November 2008. What happens
+    then?</dt>
     <dd>
-    <p>{% trans %}We have a range of options. We may continue to work with Google
+    <p>We have a range of options. We may continue to work with Google
     which has so far provided a good fit with what our users find useful
     in the product.  If for some reason that doesn't make sense then we
     could look at other potential partners.  We have significant retained
-    earnings, which allows us a good degree of flexibility.{% endtrans %}</p>
+    earnings, which allows us a good degree of flexibility.</p>
     </dd>
 
-    <dt>{% trans %}Your partnership with Google accounts for over 85% of your 2006
-    revenue. How does this affect your independence?{% endtrans %}</dt>
+    <dt>Your partnership with Google accounts for over 85% of your 2006
+    revenue. How does this affect your independence?</dt>
     <dd>
-    <p>{% trans %}We develop our product and technical direction as part of an open
+    <p>We develop our product and technical direction as part of an open
     process unrelated to the search relationship with Google. We talk to
     Google about the parts of the product that offer Google services
     (i.e., the Firefox Start Page) and the services they provide, like
@@ -46,13 +46,13 @@
     to Mozilla project activities. We do not vet our initiatives with
     Google. We spent months talking to Google and Yahoo! before entering
     relationships with them to make sure they understood the separation
-    between a search relationship and the rest of our activities.{% endtrans %}</p>
+    between a search relationship and the rest of our activities.</p>
     </dd>
 
-    <dt>{% trans %}You have a sizable cash reserve on hand (relative to your revenue).
-    What plans do you have?{% endtrans %}</dt>
+    <dt>You have a sizable cash reserve on hand (relative to your revenue).
+    What plans do you have?</dt>
     <dd>
-    <p>{% trans %}First, the cash reserve is of course a form of insurance against
+    <p>First, the cash reserve is of course a form of insurance against
     the loss of income.  We will continue to maintain enough of a reserve
     to allow us flexibility in making product decisions. Second, our main
     expenses to date &ndash; people and infrastructure &ndash; are increasing,
@@ -61,21 +61,21 @@
     financial resources allow us to launch significant new programs, such
     as our mobile initiative we've started recently. And fifth, we expect
     the Mozilla Foundation to undertake significant new programs
-    shortly.{% endtrans %}</p>
+    shortly.</p>
     </dd>
 
-    <dt>{% trans %}Mozilla Foundation spending in 2006 seems low, especially the
-    $80,000 in grants. Can you say more?{% endtrans %}</dt>
+    <dt>Mozilla Foundation spending in 2006 seems low, especially the
+    $80,000 in grants. Can you say more?</dt>
     <dd>
-    <p>{% trans %}We planned 2006 spending on a conservative basis to make sure the
+    <p>We planned 2006 spending on a conservative basis to make sure the
     Foundation remained sustainable amid the growth and change of becoming
     a much larger project. This meant we planned to spend income but not
     the basic principal of the Foundation in 2006 and perhaps 2007, until
     we have a good plan for the appropriate programs to put in place, and
     the people make good programs happen. It turned out that our
-    investment income was greater than budgeted in 2006 as well.{% endtrans %}</p>
+    investment income was greater than budgeted in 2006 as well.</p>
 
-    <p>{% trans %}The total spent on grants and grant-related expenditures was
+    <p>The total spent on grants and grant-related expenditures was
     approximately $285,000 in 2006. "Grants" has a very precise meaning in
     the tax and accounting world, and this is narrower than the funding
     programs we have in place.  So our forms show $80,000 in pure
@@ -92,15 +92,15 @@
     OpenSSH projects and covering the expenses for a representative to the
     IETF. Finally, through our Community Giving Program we committed about
     $65,000 for machines (both individual PCs and hosted servers) for a
-    number of community members and projects.{% endtrans %}</p>
+    number of community members and projects.</p>
     </dd>
 
-    <dt>{% trans %}Any further corrections?{% endtrans %}</dt>
+    <dt>Any further corrections?</dt>
     <dd>
-    <p>{% trans %}Mitchell Baker's 2006 salary is over-stated by 20%.  The amount
+    <p>Mitchell Baker's 2006 salary is over-stated by 20%.  The amount
     reported in the Form 990 includes approximately $100,000 for a salary
     increase and one time bonus for 2005 that was not finally approved and
-    paid until 2006.{% endtrans %}</p>
+    paid until 2006.</p>
     </dd>
   </dl>
 {% endblock %}

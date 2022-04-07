@@ -29,21 +29,21 @@
       <img src="{{ static('img/foundation/annualreport/2010/photo-arabic-mozilla.jpg') }}" width="425" height="275" alt="Arabic Mozilla" />
       <p>Arabic Mozilla</p>
     </div>
-    <p>{% trans arabicmozilla="http://www.arabicmozilla.org/", inaugural="http://pierros.papadeas.gr/?p=253" %}Communities and locales in the Arabic-speaking world experienced inspiring growth this year and came together to form a collective community called <a href="{{ arabicmozilla }}">ArabicMozilla</a>. Participating countries include Egypt, Jordan, Tunisia, Algeria, Lebanon, Palestine, Syria, Morocco and Sudan. In July, Mozilla Jordan hosted the region’s <a href="{{ inaugural }}">inaugural inter-community meetup</a> in Amman.{% endtrans %}</p>
+    <p>{% with arabicmozilla="http://www.arabicmozilla.org/", inaugural="http://pierros.papadeas.gr/?p=253" %}Communities and locales in the Arabic-speaking world experienced inspiring growth this year and came together to form a collective community called <a href="{{ arabicmozilla }}">ArabicMozilla</a>. Participating countries include Egypt, Jordan, Tunisia, Algeria, Lebanon, Palestine, Syria, Morocco and Sudan. In July, Mozilla Jordan hosted the region’s <a href="{{ inaugural }}">inaugural inter-community meetup</a> in Amman.{% endwith %}</p>
 
     <div class="img-left">
       <img src="{{ static('img/foundation/annualreport/2010/photo-mozilla-kenya.jpg') }}" width="294" height="198" alt="Mozilla Kenya" />
       <p>Mozilla Kenya</p>
     </div>
-    <p>{% trans ghana="http://mozilla-ghana.org", kenya="http://www.mozilla-kenya.org/", outreach="http://www.mozilla-kenya.org/blog/18-road-trip" %}Representatives from <a href="{{ ghana }}">Mozilla Ghana</a> have begun participating in technical events and <a href="{{ kenya }}">Mozilla Kenya’s</a> community coordinator Alex Wafula has started an <a href="{{ outreach }}">outreach project</a> with universities across the country.{% endtrans %}</p>
+    <p>{% with ghana="http://mozilla-ghana.org", kenya="http://www.mozilla-kenya.org/", outreach="http://www.mozilla-kenya.org/blog/18-road-trip" %}Representatives from <a href="{{ ghana }}">Mozilla Ghana</a> have begun participating in technical events and <a href="{{ kenya }}">Mozilla Kenya’s</a> community coordinator Alex Wafula has started an <a href="{{ outreach }}">outreach project</a> with universities across the country.{% endwith %}</p>
 
-    <p>{% trans hispano="http://www.mozilla-hispano.org", local=url('mozorg.contribute') %}Mozilla Cuba and Mozilla Nicaragua were organized and launched by local volunteers. At the same time, our <a href="{{ hispano }}">Mozilla Hispano</a> community has continued to thrive, expanding its ranks to 11 Spanish-speaking countries (find <a href="{{ local }}#location">full list of local communities here</a>).{% endtrans %}</p>
+    <p>{% with hispano="http://www.mozilla-hispano.org", local=url('mozorg.contribute') %}Mozilla Cuba and Mozilla Nicaragua were organized and launched by local volunteers. At the same time, our <a href="{{ hispano }}">Mozilla Hispano</a> community has continued to thrive, expanding its ranks to 11 Spanish-speaking countries (find <a href="{{ local }}#location">full list of local communities here</a>).{% endwith %}</p>
 
     <div class="img-right">
       <img src="{{ static('img/foundation/annualreport/2010/photo-mozilla-indonesia.jpg') }}" width="187" height="249" alt="Mozilla Indonesia" />
       <p>Mozilla Indonesia</p>
     </div>
-    <p>{% trans indonesia="http://www.mozilla.web.id/" %}The <a href="{{ indonesia }}">Mozilla community in Indonesia</a> has developed an Indonesian mascot character, “Kumi,” which  has been  celebrated and distributed as a paper toy at many of this  year’s  events. The community now has regional leaders in the five largest cities in Indonesia, which have been actively promoting Mozilla and Firefox. Thanks to the enthusiasm and passion of this community, Firefox enjoys the largest market share in the world in Indonesia.{% endtrans %}</p>
+    <p>{% with indonesia="http://www.mozilla.web.id/" %}The <a href="{{ indonesia }}">Mozilla community in Indonesia</a> has developed an Indonesian mascot character, “Kumi,” which  has been  celebrated and distributed as a paper toy at many of this  year’s  events. The community now has regional leaders in the five largest cities in Indonesia, which have been actively promoting Mozilla and Firefox. Thanks to the enthusiasm and passion of this community, Firefox enjoys the largest market share in the world in Indonesia.{% endwith %}</p>
 
     <img src="{{ static('img/foundation/annualreport/2010/kumi.png') }}" width="134" height="104" alt="Kumi" />
 
@@ -53,14 +53,14 @@
     </div>
 
     <p>The Mozilla communities in Europe are among our oldest and strongest. They remain fundamental to the health of the Mozilla project and led important discussions around how the Mozilla community can scale, while preserving local ownership and decision-making.</p>
-    <p>{% trans mojo="https://wiki.mozilla.org/Drumbeat/MoJo" %}We’re growing Mozilla communities not directly related to building and evangelizing consumer products like Firefox in particular among educators, <a href="{{ mojo }}">journalists</a> and filmmakers.{% endtrans %}</p>
+    <p>{% with mojo="https://wiki.mozilla.org/Drumbeat/MoJo" %}We’re growing Mozilla communities not directly related to building and evangelizing consumer products like Firefox in particular among educators, <a href="{{ mojo }}">journalists</a> and filmmakers.{% endwith %}</p>
 
   <p class="return-to-top"><a href="#">Return to top</a></p>
 
   <div id="video-content">
     <h2>Get Involved</h2>
 
-    <p>{% trans contribute=url('mozorg.contribute') %}The Mozilla community is far-reaching, diverse and growing. Whoever you are, regardless of skill set, level of interest or time commitment, we welcome you to <a href="{{ contribute }}">become a part of it</a>.{% endtrans %}</p>
+    <p>{% with contribute=url('mozorg.contribute') %}The Mozilla community is far-reaching, diverse and growing. Whoever you are, regardless of skill set, level of interest or time commitment, we welcome you to <a href="{{ contribute }}">become a part of it</a>.{% endwith %}</p>
 
     <figure class="figure">
       <div class="mozilla-video-control">

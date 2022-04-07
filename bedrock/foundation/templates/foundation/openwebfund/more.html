@@ -13,46 +13,46 @@
 {% endblock %}
 
 {% block article_content %}
-  <p>{% trans %}The Mozilla community's greatest achievement is the creation of the open source Firefox web browser. Building on our experience with Firefox, we
+  <p>The Mozilla community's greatest achievement is the creation of the open source Firefox web browser. Building on our experience with Firefox, we
   believe that even more people can – and must – get involved in the cause of keeping the internet open. Artists, lawyers, teachers, filmmakers, anyone who
   cares about the future of the internet - these people have skills and creativity that can help make the open web stronger in very concrete ways. We've
-  started Mozilla Drumbeat to make this kind of participation possible, and easy.{% endtrans %}</p>
+  started Mozilla Drumbeat to make this kind of participation possible, and easy.</p>
 
-  <p>{% trans %}Ultimately, our goal is a strong, safe, open internet: an internet built and backed by a massive global community committed to the idea that everyone
-  should all be able to freely create, innovate and express ideas online without asking permission from others.{% endtrans %}</p>
+  <p>Ultimately, our goal is a strong, safe, open internet: an internet built and backed by a massive global community committed to the idea that everyone
+  should all be able to freely create, innovate and express ideas online without asking permission from others.</p>
 
-  <p>{% trans %}Of course, we will make this in the same way we make Firefox -- using an open, participatory and global approach to build things that simultaneously make
-  the web stronger and delight the people who use them.{% endtrans %}</p>
+  <p>Of course, we will make this in the same way we make Firefox -- using an open, participatory and global approach to build things that simultaneously make
+  the web stronger and delight the people who use them.</p>
 
   <h2>What is the Open Web Fund?</h2>
 
-  <p>{% trans drumbeat="//www.drumbeat.org" %}
+  <p>{% with drumbeat="//www.drumbeat.org" %}
       Mozilla has launched <a href="{{ drumbeat }}">Drumbeat</a>: an invitation to everyday internet users to help keep the web open. This year,
   Mozilla Foundation has committed more than $1.5 million to Drumbeat, including the Mozilla Drumbeat Open Web Fund to support initiatives will grow and
-  protect internet freedom.{% endtrans %}</p>
+  protect internet freedom.{% endwith %}</p>
 
-  <p>{% trans projects="//www.drumbeat.org/projects", events="//www.drumbeat.org/events" %}
+  <p>{% with projects="//www.drumbeat.org/projects", events="//www.drumbeat.org/events" %}
       The first goal with Drumbeat is to develop new ways for everyday internet users to participate in building a better internet. We believe hands on,
   participatory web projects are the best place to start. We'll back the best of these projects with modest seed funding and help recruit contributors
   through local events. We began experiments with this model in early 2010 and innovative open web <a href="{{ projects }}">projects</a>
-  and vibrant <a href="{{ events }}">local events</a> are already starting to roll.{% endtrans %}</p>
+  and vibrant <a href="{{ events }}">local events</a> are already starting to roll.{% endwith %}</p>
 
-  <p>{% trans %}While this approach draws inspiration from other challenge-style programs, one thing is unique – projects have the opportunity to get going right away
+  <p>While this approach draws inspiration from other challenge-style programs, one thing is unique – projects have the opportunity to get going right away
   without waiting around to see if they have 'won' the challenge. Members of the drumbeat community can join, volunteer or vote for any project as soon as
   it has been created. Projects that gain community support move from emerging to featured status. Successful featured projects that fit closely with the
-  Drumbeat mission will be considered for a grant from the Mozilla Drumbeat Open Web Fund.{% endtrans %}</p>
+  Drumbeat mission will be considered for a grant from the Mozilla Drumbeat Open Web Fund.</p>
 
-  <p>{% trans %}The benefit of this approach is that participating projects can get value even if they never receive full support or funding. Also, there is an increased
-  likelihood that funded projects will succeed as they have already developed a community and traction.{% endtrans %}</p>
+  <p>The benefit of this approach is that participating projects can get value even if they never receive full support or funding. Also, there is an increased
+  likelihood that funded projects will succeed as they have already developed a community and traction.</p>
 
-  <p>{% trans %}Right now we can only support so many projects. If you can support Drumbeat we can do more.{% endtrans %}</p>
+  <p>Right now we can only support so many projects. If you can support Drumbeat we can do more.</p>
 
   <h2>How can you be a part of Mozilla Drumbeat?</h2>
 
   <ul class="mzp-u-list-styled">
-    <li>{% trans people="//www.drumbeat.org/people" %}<a href="{{ people }}">Join</a> Drumbeat{% endtrans %}</li>
-    <li>{% trans projects="//www.drumbeat.org/projects" %}Get involved in a <a href="{{ projects }}">project</a>{% endtrans %}</li>
-    <li>{% trans openwebfund=donate_url('openwebfund') %}<a href="{{ openwebfund }}">Donate</a> to the Mozilla Drumbeat Open Web Fund</a>{% endtrans %}</li>
+    <li><a href="//www.drumbeat.org/people">Join</a> Drumbeat</li>
+    <li>Get involved in a <a href="//www.drumbeat.org/projects">project</a></li>
+    <li><a href="{{ donate_url('openwebfund') }}">Donate</a> to the Mozilla Drumbeat Open Web Fund</a></li>
   </ul>
 
 {% endblock %}

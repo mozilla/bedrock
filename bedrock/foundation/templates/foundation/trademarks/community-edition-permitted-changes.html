@@ -13,20 +13,20 @@
 {% endblock %}
 
 {% block article_content %}
-  <p>{% trans policy=url('foundation.trademarks.community-edition-policy') %}
+  <p>{% with policy=url('foundation.trademarks.community-edition-policy') %}
       The following are the changes that are permitted within the
       <a href="{{ policy }}">legacy Community Edition builds</a>
-      created and distributed before April 7, 2009:{% endtrans %}</p>
+      created and distributed before April 7, 2009:{% endwith %}</p>
 
   <ul class="mzp-u-list-styled">
     <li>Change certain preference settings</li>
     <li>Change the default start page</li>
     <li>Change both the structure and the contents of the default bookmarks and personal toolbar</li>
     <li>Change the default search engine and other search engines in the search engine pulldown box</li>
-    <li>{% trans addons="https://addons.mozilla.org/" %}
+    <li>{% with addons="https://addons.mozilla.org/" %}
         Include extensions that are also available through
         <a href="{{ addons }}">addons.mozilla.org</a>
-        {% endtrans %}
+        {% endwith %}
     </li>
     <li>Include plugins, provided they can legally do so</li>
     <li>Porting the software to different operating systems</li>
