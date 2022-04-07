@@ -78,57 +78,6 @@ $image-path: '/media/protocol/img';
 }
 
 // * -------------------------------------------------------------------------- */
-// Utilities (link to release notes)
-.c-utilities {
-    @include text-body-sm;
-    max-width: $content-md;
-    padding-bottom: $layout-xl;
-    text-align: center;
-}
-
-// * -------------------------------------------------------------------------- */
-// Footer overrides
-.c-footer {
-    background: $color-white;
-    color: $color-ink-80;
-
-    a:link,
-    a:visited {
-        color: $color-ink-80;
-    }
-
-    a:hover,
-    a:focus,
-    a:active {
-        color: $color-ink-90;
-    }
-
-    .c-footer-sections {
-        border-top: 1px solid $color-light-gray-30;
-        border-bottom: 1px solid $color-light-gray-30;
-        padding: $layout-md 0;
-    }
-}
-
-.c-footer-list-social li {
-    a.twitter {
-        background-image: url('/media/protocol/img/icons/social/twitter/black.svg');
-    }
-
-    a.instagram {
-        background-image: url('/media/protocol/img/icons/social/instagram/black.svg');
-    }
-
-    a.youtube {
-        background-image: url('/media/protocol/img/icons/social/youtube/black.svg');
-    }
-}
-
-.c-footer-primary-logo a {
-    background-image: url('/media/protocol/img/logos/mozilla/logo-word-hor.svg');
-}
-
-// * -------------------------------------------------------------------------- */
 // For dark mode
 @media (prefers-color-scheme: dark) {
     .content-wrapper {
@@ -170,43 +119,7 @@ $image-path: '/media/protocol/img';
         color: get-theme('title-text-color-inverse');
     }
 
-    .c-utilities,
     .c-sub-cta {
         @include white-links;
-    }
-
-    .c-footer {
-        background: $color-dark-gray-60;
-        color: $color-white;
-
-        a:link,
-        a:visited,
-        a:hover,
-        a:focus,
-        a:active {
-            color: $color-white;
-        }
-
-        .c-footer-sections {
-            border-color: $color-dark-gray-30;
-        }
-    }
-
-    .c-footer-list-social li {
-        a.twitter {
-            background-image: url('/media/protocol/img/icons/social/twitter/white.svg');
-        }
-
-        a.instagram {
-            background-image: url('/media/protocol/img/icons/social/instagram/white.svg');
-        }
-
-        a.youtube {
-            background-image: url('/media/protocol/img/icons/social/youtube/white.svg');
-        }
-    }
-
-    .c-footer-primary-logo a {
-        background-image: url('/media/protocol/img/logos/mozilla/logo-word-hor-white.svg');
     }
 }

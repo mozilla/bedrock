@@ -154,12 +154,12 @@ $image-path: '/media/protocol/img';
         @include white-links;
     }
 
-    .c-footer {
+    .mzp-c-footer.mzp-t-light {
         @include white-links;
         background: $color-dark-gray-60;
         color: $color-white;
 
-        .c-footer-sections {
+        .mzp-c-footer-sections {
             border-color: $color-dark-gray-30;
 
             a:hover,
@@ -168,23 +168,33 @@ $image-path: '/media/protocol/img';
                 text-decoration: underline;
             }
         }
-    }
 
-    .c-footer-list-social li {
-        a.twitter {
-            background-image: url('/media/protocol/img/icons/social/twitter/white.svg');
+        .mzp-c-footer-links-social li {
+            a.twitter {
+                background-image: url('/media/protocol/img/icons/social/twitter/white.svg');
+            }
+
+            a.instagram {
+                background-image: url('/media/protocol/img/icons/social/instagram/white.svg');
+            }
+
+            a.youtube {
+                background-image: url('/media/protocol/img/icons/social/youtube/white.svg');
+            }
+
+            a:hover,
+            a:focus,
+            a:active {
+                outline-color: $color-white;
+            }
         }
 
-        a.instagram {
-            background-image: url('/media/protocol/img/icons/social/instagram/white.svg');
+        .mzp-c-footer-primary-logo a {
+            background-image: url('/media/protocol/img/logos/mozilla/logo-word-hor-white.svg');
         }
 
-        a.youtube {
-            background-image: url('/media/protocol/img/icons/social/youtube/white.svg');
+        .mzp-c-footer-heading.is-summary button::before {
+            background: $url-image-expand-white top left no-repeat;
         }
-    }
-
-    .c-footer-primary-logo a {
-        background-image: url('/media/protocol/img/logos/mozilla/logo-word-hor-white.svg');
     }
 }
