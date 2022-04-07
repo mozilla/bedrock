@@ -33,11 +33,13 @@ class LocaleURLMiddleware:
     """
 
     def __init__(self, get_response=None):
-        if not settings.USE_I18N or not settings.USE_L10N:
+        if not settings.USE_L10N:
             warn(
-                "USE_I18N or USE_L10N is False but LocaleURLMiddleware is "
-                "loaded. Consider removing bedrock.base.middleware."
-                "LocaleURLMiddleware from your MIDDLEWARE setting."
+                """
+                The `USE_L10N` setting is False but LocaleURLMiddleware is
+                loaded. Consider removing bedrock.base.middleware.LocaleURLMiddleware
+                from your MIDDLEWARE setting.
+                """.strip()
             )
         self.get_response = get_response
 

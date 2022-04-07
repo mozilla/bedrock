@@ -132,7 +132,6 @@ def test_git_diff():
         "media/css/pebbles/base/elements/_document.scss",
         "media/css/pebbles/base/elements/_typography.scss",
         "media/css/pebbles/base/elements/_links.scss",
-        "lib/l10n_utils/tests/test_dotlang.py",
         "docs/javascript-libs.rst",
         "docker/run.sh",
         "media/css/pebbles/components/_masthead.scss",
@@ -176,7 +175,6 @@ R072    etc/supervisor_available/cron.conf      etc/supervisor_available/cron_db
 A       etc/supervisor_available/cron_l10n.conf
 M       lib/l10n_utils/management/commands/l10n_update.py
 M       lib/l10n_utils/tests/test_commands.py
-M       lib/l10n_utils/tests/test_dotlang.py
 M       lib/l10n_utils/tests/test_template.py
 A       media/css/firefox/firstrun/ravioli.less
 A       media/css/mozorg/home/home-variant.scss
