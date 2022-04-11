@@ -10,10 +10,14 @@
   <h2 class="c-inline-form-title">{{ ftl('mobile-focus-get-firefox-focus') }}</h2>
   <p class="c-inline-form-body">{{ ftl('mobile-focus-scan-the-qr-code-to-get-started') }}</p>
   <div class="qr-code-wrapper">
-  {% if LANG == 'de' %}
-    <img src="{{ static('img/firefox/browsers/mobile/qr-klar.png') }}" id="focus-qr" width="400" height="400" alt="{{ ftl('mobile-focus-scan-alt-text') }}">
+  {% if variation == 'pb' %}
+    <img src="{{ static('img/firefox/browsers/mobile/qr-variation.svg') }}"id="focus-qr" width="400" height="400" alt="{{ ftl('mobile-focus-scan-alt-text') }}" />
   {% else %}
-    <img src="{{ static('img/firefox/browsers/mobile/qr-focus.png') }}" id="focus-qr" width="400" height="400" alt="{{ ftl('mobile-focus-scan-alt-text') }}">
+    {% if LANG == 'de' %}
+      <img src="{{ static('img/firefox/browsers/mobile/qr-klar.png') }}" id="focus-qr" width="400" height="400" alt="{{ ftl('mobile-focus-scan-alt-text') }}">
+    {% else %}
+      <img src="{{ static('img/firefox/browsers/mobile/qr-focus.png') }}" id="focus-qr" width="400" height="400" alt="{{ ftl('mobile-focus-scan-alt-text') }}">
+    {% endif %}
   {% endif %}
   </div>
 </div>

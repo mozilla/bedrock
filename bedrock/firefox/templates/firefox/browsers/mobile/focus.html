@@ -17,6 +17,8 @@
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 {% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
 {% set android_url = focus_adjust_url('android', 'mobile-focus-page') %}
+{% set variation_android_adjust_url = 'https://app.adjust.com/167k4ih?campaign=firefox-desktop&adgroup=pb&creative=focus-omc171-uk&redirect=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dorg.mozilla.focus' %}
+{% set variation_ios_adjust_url = 'https://app.adjust.com/167k4ih?campaign=firefox-desktop&adgroup=pb&creative=focus ![qr-code](https://user-images.githubusercontent.com/2030656/162119789-a4541259-76b6-4096-bddf-61867cb46f6e.svg) -omc171-uk&redirect=https%3A%2F%2Fapps.apple.com%2Fus%2Fapp%2Ffirefox-focus-privacy-browser%2Fid1055677337' %}
 {% set ios_url = focus_adjust_url('ios', 'mobile-focus-page') %}
 
 {% block page_css %}
@@ -77,11 +79,16 @@
     <p>{{ ftl('mobile-focus-firefox-focus-is-available') }}</p>
 
     <ul class="mobile-download-buttons">
+
       <li class="android">
-        {{ google_play_button(href=android_url, id='playStoreLink-primary') }}
+        {% if variation == 'pb' %}
+          {{ google_play_button(href=variation_android_adjust_url, id="playStoreLink-primary")}}
+        {% else %}
+          {{ google_play_button(href=android_url, id='playStoreLink-primary') }}
+        {% endif %}
       </li>
       <li class="ios">
-        <a id="appStoreLink-primary" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
+        <a id="appStoreLink-primary" href="{% if variation == 'pb' %}{{ variation_ios_adjust_url}}{% else %}{{ ios_url }}{% endif %}" data-link-type="download" data-download-os="iOS">
           <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
         </a>
       </li>

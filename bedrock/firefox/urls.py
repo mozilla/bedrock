@@ -178,7 +178,13 @@ urlpatterns = (
     path("firefox/browsers/mobile/", views.FirefoxMobileView.as_view(), name="firefox.browsers.mobile.index"),
     page("firefox/browsers/mobile/android/", "firefox/browsers/mobile/android.html", ftl_files=["firefox/browsers/mobile/android"]),
     page("firefox/browsers/mobile/ios/", "firefox/browsers/mobile/ios.html", ftl_files=["firefox/browsers/mobile/ios"]),
-    page("firefox/browsers/mobile/focus/", "firefox/browsers/mobile/focus.html", ftl_files=["firefox/browsers/mobile/focus"]),
+    path(
+        "firefox/browsers/mobile/focus/",
+        utils_views.VariationTemplateView.as_view(
+            template_name="firefox/browsers/mobile/focus.html", ftl_files=["firefox/browsers/mobile/focus"], template_context_variations=["pb"]
+        ),
+        name="firefox.browsers.mobile.focus",
+    ),
     page(
         "firefox/browsers/mobile/compare/",
         "firefox/browsers/mobile/compare.html",
