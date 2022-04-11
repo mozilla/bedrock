@@ -154,9 +154,9 @@ deprecated==1.2.13 \
 dirsync==2.2.5 \
     --hash=sha256:1e3a4cd2b639a2eae5afc03c2b8a003fc43d56a0da5114db579386da9a14a8be
     # via -r requirements/prod.in
-django==3.2.12 \
-    --hash=sha256:9772e6935703e59e993960832d66a614cf0233a1c5123bc6224ecc6ad69e41e2 \
-    --hash=sha256:9b06c289f9ba3a8abea16c9c9505f25107809fb933676f6c891ded270039d965
+django==3.2.13 \
+    --hash=sha256:6d93497a0a9bf6ba0e0b1a29cccdc40efbfc76297255b1309b3a884a688ec4b6 \
+    --hash=sha256:b896ca61edc079eb6bbaa15cf6071eb69d6aac08cce5211583cfb41515644fdf
     # via
     #   -r requirements/prod.in
     #   django-allow-cidr
