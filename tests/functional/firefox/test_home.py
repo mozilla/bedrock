@@ -22,15 +22,3 @@ def test_sticky_promo(base_url, selenium):
     assert page.promo.is_displayed
     page.promo.close()
     assert not page.promo.is_displayed
-
-
-@pytest.mark.nondestructive
-def test_desktop_download_datalayer(base_url, selenium):
-    page = FirefoxHomePage(selenium, base_url).open()
-    data_link_type = page.browser_menu_list.desktop_download.get_attribute("data-link-type")
-    assert data_link_type == "Desktop"
-    page.browser_menu_list.desktop_download_click()
-    data_layer = selenium.execute_script("return window.dataLayer")
-    # currently this event is not added to the dataLayer object
-    page_id = {"event": "page-id-loaded", "pageId": "/firefox/download/thanks/"}
-    assert page_id in data_layer
