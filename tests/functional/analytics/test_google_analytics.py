@@ -19,9 +19,24 @@ def test_download_button(base_url, selenium):
     page.click_download_button()
     data_layer = selenium.execute_script("return window.dataLayer")
     link_type = page.download_button.get_attribute("data-link-type")
-    for layer in data_layer:
-        if "gtm.element" in layer and layer["gtm.element"].get_attribute("data-link-type") == link_type:
-            breakpoint()
+    assert any("gtm.element" in layer and layer["gtm.element"].get_attribute("data-link-type") == link_type for layer in data_layer)
 
-    # match = any(hasattr(layer, "gtm.element") and link_type in layer["gtm.element"] for layer in data_layer)
-    # breakpoint()
+
+@pytest.mark.nondestructive
+def test_link_button(base_url, selenium):
+    page = AnalyticsTestPage(selenium, base_url).open()
+    assert page.link_button_is_displayed
+    page.click_link_button()
+    data_layer = selenium.execute_script("return window.dataLayer")
+    cta_type = page.link_button.get_attribute("data-cta-type")
+    assert any("gtm.element" in layer and layer["gtm.element"].get_attribute("data-cta-type") == cta_type for layer in data_layer)
+
+
+@pytest.mark.nondestructive
+def test_account_button(base_url, selenium):
+    page = AnalyticsTestPage(selenium, base_url).open()
+    assert page.account_button_is_displayed
+    page.click_accounts_button()
+    data_layer = selenium.execute_script("return window.dataLayer")
+    cta_type = page.account_button.get_attribute("data-cta-type")
+    assert any("gtm.element" in layer and layer["gtm.element"].get_attribute("data-cta-type") == cta_type for layer in data_layer)

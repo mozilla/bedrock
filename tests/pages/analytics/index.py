@@ -32,8 +32,16 @@ class AnalyticsTestPage(BasePage):
         return self.is_element_displayed(*self._ga_test_button_link_locator)
 
     @property
+    def link_button(self):
+        return self.find_element(*self._ga_test_button_link_locator)
+
+    @property
     def account_button_is_displayed(self):
         return self.is_element_displayed(*self._ga_test_button_account_link_locator)
+
+    @property
+    def account_button(self):
+        return self.find_element(*self._ga_test_button_link_locator)
 
     def click_download_button(self):
         return self.find_element(*self._ga_test_button_download_locator).click()
