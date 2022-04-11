@@ -15,9 +15,9 @@ class AnalyticsTestPage(BasePage):
     # GA buttons to test
     _ga_test_button_download_locator = (By.CSS_SELECTOR, ".mzp-c-button[data-link-type=download-test]")
 
-    _ga_test_button_link_locator = (By.CSS_SELECTOR, ".mzp-c-button[data-cta-type=button]")
+    _ga_test_button_link_locator = (By.CSS_SELECTOR, ".mzp-c-button[data-cta-type=button-test]")
 
-    _ga_test_button_account_link_locator = (By.CSS_SELECTOR, ".mzp-c-button[data-cta-type=fxa-sync]")
+    _ga_test_button_account_link_locator = (By.CSS_SELECTOR, ".mzp-c-button[data-cta-type=fxa-sync-test]")
 
     @property
     def download_button_is_displayed(self):
@@ -41,7 +41,7 @@ class AnalyticsTestPage(BasePage):
 
     @property
     def account_button(self):
-        return self.find_element(*self._ga_test_button_link_locator)
+        return self.find_element(*self._ga_test_button_account_link_locator)
 
     def click_download_button(self):
         return self.find_element(*self._ga_test_button_download_locator).click()
@@ -49,5 +49,5 @@ class AnalyticsTestPage(BasePage):
     def click_link_button(self):
         return self.find_element(*self._ga_test_button_link_locator).click()
 
-    def click_accounts_button(self):
+    def click_account_button(self):
         return self.find_element(*self._ga_test_button_account_link_locator).click()

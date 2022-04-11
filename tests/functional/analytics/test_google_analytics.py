@@ -36,7 +36,7 @@ def test_link_button(base_url, selenium):
 def test_account_button(base_url, selenium):
     page = AnalyticsTestPage(selenium, base_url).open()
     assert page.account_button_is_displayed
-    page.click_accounts_button()
+    page.click_account_button()
     data_layer = selenium.execute_script("return window.dataLayer")
     cta_type = page.account_button.get_attribute("data-cta-type")
     assert any("gtm.element" in layer and layer["gtm.element"].get_attribute("data-cta-type") == cta_type for layer in data_layer)
