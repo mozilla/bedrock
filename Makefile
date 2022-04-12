@@ -2,6 +2,8 @@ DC_CI = "bin/docker-compose.sh"
 DC = $(shell which docker-compose)
 DOCKER = $(shell which docker)
 TEST_DOMAIN = www.mozilla.org
+POCKET_MODE = Pocket
+MOZORG_MODE = Mozorg
 
 all: help
 
@@ -57,11 +59,28 @@ pull: .env
 
 rebuild: clean build
 
+# Run Bedrock in default mode, serving all of Mozorg and also Pocket as /externalpages/pocket/*
+# TODO: amend this when the Pocket-mode split has been completed to ask if the user
+# meant run-pocket[-prod] or run-mozorg[-prod]
 run: .docker-build-pull
 	${DC} up assets app
 
 run-prod: .docker-build-pull
 	${DC} up release-local
+
+# Run in Mozorg-only mode, using Bedrock to serve ONLY Mozorg pages
+run-mozorg: .docker-build-pull
+	-DJANGO_CONFIGURATION=${MOZORG_MODE} ${DC} up assets app
+
+run-mozorg-prod: .docker-build-pull
+	-DJANGO_CONFIGURATION=${MOZORG_MODE} ${DC} up release-local
+
+# Run in Pocket-only mode, using Bedrock to serve ONLY Pocket pages _at the root path_
+run-pocket: .docker-build-pull
+	-DJANGO_CONFIGURATION=${POCKET_MODE} ${DC} up assets app
+
+run-pocket-prod: .docker-build-pull
+	-DJANGO_CONFIGURATION=${POCKET_MODE} ${DC} up release-local
 
 stop:
 	${DC} stop
@@ -159,4 +178,4 @@ install-local-python-deps:
 	# Dev requirements are a superset of prod requirements
 	pip install -r requirements/dev.txt
 
-.PHONY: all clean build pull docs livedocs build-docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod build-prod test-cdn compile-requirements check-requirements install-local-python-deps
+.PHONY: all clean build pull docs livedocs build-docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod run-mozorg run-mozorg-prod run-pocket run-pocket-prod build-prod test-cdn compile-requirements check-requirements install-local-python-deps
