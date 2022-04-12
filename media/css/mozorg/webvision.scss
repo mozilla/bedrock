@@ -84,18 +84,12 @@ $image-path: '/media/protocol/img';
     }
 
     .webvision-sidebar {
-        position: fixed;
+        position: sticky;
+        max-height: 100vh;
         top: 0;
         left: 0;
-        bottom: 540px;
-    }
-
-    .mzp-c-sidemenu-absolute {
-        position: absolute;
-        overflow: visible;
-        top: revert;
-        bottom: 0;
-        left: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 
     .mzp-c-sidemenu-main {
