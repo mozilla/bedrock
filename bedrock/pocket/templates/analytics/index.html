@@ -4,7 +4,12 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+{# This file is used only for automated testing for google tag manager #}
+
 {% extends "firefox/base/base-protocol.html" %}
+
+{# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
 {% block content %}
 <main class="mzp-l-content">

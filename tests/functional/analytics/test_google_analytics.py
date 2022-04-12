@@ -7,14 +7,19 @@ import pytest
 from pages.externalpages.analytics.index import AnalyticsTestPage
 
 
-def parse_event(data_layer, element):
-    for item in data_layer:
-        return filter(lambda x: x["gtm.element"][item] == element)
+def assert_ga_loaded(selenium):
+    # if the datalayer list doesnt contain the gtm.load event then GA has not been loaded or it has been blocked
+    data_layer = selenium.execute_script("return window.dataLayer")
+    assert any(
+        "event" in layer and layer["event"] == "gtm.load" for layer in data_layer
+    ), "These tests require Google Analytics to be configured. \
+       Please ensure you have set a GTM_CONTAINER_ID environment variable in your .env and you are not blocking GA in your browser."
 
 
 @pytest.mark.nondestructive
 def test_download_button(base_url, selenium):
     page = AnalyticsTestPage(selenium, base_url).open()
+    assert_ga_loaded(selenium)
     assert page.download_button_is_displayed
     page.click_download_button()
     data_layer = selenium.execute_script("return window.dataLayer")
@@ -25,6 +30,7 @@ def test_download_button(base_url, selenium):
 @pytest.mark.nondestructive
 def test_link_button(base_url, selenium):
     page = AnalyticsTestPage(selenium, base_url).open()
+    assert_ga_loaded(selenium)
     assert page.link_button_is_displayed
     page.click_link_button()
     data_layer = selenium.execute_script("return window.dataLayer")
@@ -35,6 +41,7 @@ def test_link_button(base_url, selenium):
 @pytest.mark.nondestructive
 def test_account_button(base_url, selenium):
     page = AnalyticsTestPage(selenium, base_url).open()
+    assert_ga_loaded(selenium)
     assert page.account_button_is_displayed
     page.click_account_button()
     data_layer = selenium.execute_script("return window.dataLayer")

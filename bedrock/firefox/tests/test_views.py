@@ -701,7 +701,8 @@ class TestFirefoxGA(TestCase):
             elif cta_link:
                 # some links with the data-link-type use button instead of download which is what is described
                 # in the docs, so not sure if we should allow this or not
-                assert cta_link == "download" or cta_link == "button"
+                cta_link_types = ["download", "button", "link"]
+                assert cta_link in cta_link_types
             else:
                 print(f"{link} does not contain attr cta-type or link-type")
                 assert False

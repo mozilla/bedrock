@@ -10,7 +10,7 @@ from pages.base import BasePage
 
 class AnalyticsTestPage(BasePage):
 
-    _URL_TEMPLATE = "/{locale}/external/analytics"
+    _URL_TEMPLATE = "/{locale}/external/analytics/"
 
     # GA buttons to test
     _ga_test_button_download_locator = (By.CSS_SELECTOR, ".mzp-c-button[data-link-type=download-test]")
