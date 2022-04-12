@@ -689,14 +689,13 @@ class TestFirefoxHome(TestCase):
 
 class TestFirefoxGA(TestCase):
     def assert_ga_attr(self, response):
-        cta_types = ["link", "button"]
         doc = pq(response.content)
         links = doc(".mzp-c-button")
         for link in links.items():
             cta_data = link.attr("data-cta-type")
             cta_link = link.attr("data-link-type")
             if cta_data:
-                contain_cta = any(cta_data in list for list in cta_types)
+                contain_cta = any(cta_data in item for item in ["link", "button"])
                 assert contain_cta or "fxa-" in cta_data
             elif cta_link:
                 # some links with the data-link-type use button instead of download which is what is described
@@ -704,8 +703,7 @@ class TestFirefoxGA(TestCase):
                 cta_link_types = ["download", "button", "link"]
                 assert cta_link in cta_link_types
             else:
-                print(f"{link} does not contain attr cta-type or link-type")
-                assert False
+                assert False, f"{link} does not contain attr cta-type or link-type"
 
     def test_firefox_home_GA(self):
         req = RequestFactory().get("/firefox/")
