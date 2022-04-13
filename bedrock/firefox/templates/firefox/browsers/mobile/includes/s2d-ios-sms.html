@@ -1,0 +1,51 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{# Send-to-device SMS widget for Firefox for iOS #}
+
+<div class="c-inline-form">
+  <h2 class="c-inline-form-title">{{ ftl('mobile-ios-get-firefox-for') }}</h2>
+  <p class="c-inline-form-body">{{ ftl('mobile-ios-send-a-download-link-to-your') }}</p>
+  <section id="s2d-sms" class="send-to-device vertical" data-spinner-color="#000" data-countries="US">
+    <div class="form-container">
+      <h2 class="mzp-u-title-xs thank-you hidden">{{ ftl('send-to-device-your-download-link') }}</h2>
+      <form class="send-to-device-form" action="{{ url('firefox.sms-send-to-device-post') }}" method="post">
+        <ul class="mzp-c-form-errors hidden">
+          <li class="number">Enter a 10-digit phone number</li>
+          <li class="sms">Sorry, we can’t send SMS messages to this phone number.</li>
+          <li class="system">{{ ftl('send-to-device-an-error-occured') }}</li>
+        </ul>
+        <div class="send-to-device-form-fields">
+          <div class="platform-container">
+            <input type="hidden" name="platform" value="all">
+            <input type="hidden" name="source-url" value="{{ request.build_absolute_uri(request.path) }}">
+            <input type="hidden" name="message-set" value="fx-mobile-download-desktop">
+            <input type="hidden" name="product" value="firefox">
+          </div>
+          <div class="mzp-c-field mzp-l-stretch">
+            <label class="mzp-c-field-label" for="send-to-device-input">
+              Enter your 10-digit phone number
+            </label>
+            <input id="send-to-device-input" class="mzp-c-field-control send-to-device-input" name="phone_number" type="tel" required>
+          </div>
+          <div class="mzp-c-button-container mzp-l-stretch">
+            <button type="submit" class="button mzp-c-button mzp-t-product">{{ ftl('send-to-device-send') }}</button>
+          </div>
+          <p class="mzp-c-button-info sms">
+            SMS service available to U.S. phone numbers only. SMS &amp; data rates may apply.
+            The intended recipient of the SMS must have consented.
+            <a href="{{ url('privacy.notices.websites') }}#campaigns" class="more">{{ ftl('ui-learn-more') }}</a>
+          </p>
+        </div>
+        <div class="thank-you hidden">
+          <p class="sms">Check your device for the text message!</p>
+          <a href="#" role="button" class="more send-another">{{ ftl('send-to-device-send-to-another') }}</a>
+        </div>
+        <div class="loading-spinner"></div>
+      </form>
+    </div>
+  </section>
+</div>

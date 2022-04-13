@@ -7,12 +7,15 @@ import os
 from unittest.mock import ANY, patch
 from urllib.parse import parse_qs
 
+from django.conf import settings
 from django.http import HttpResponse
 from django.test import override_settings
 from django.test.client import RequestFactory
+from django.urls import reverse
 
 import querystringsafe_base64
 from pyquery import PyQuery as pq
+from twilio.base.exceptions import TwilioRestException
 
 from bedrock.firefox import views
 from bedrock.mozorg.tests import TestCase
@@ -341,10 +344,6 @@ class TestSendToDeviceView(TestCase):
         self.mock_subscribe = patcher.start()
         self.addCleanup(patcher.stop)
 
-        patcher = patch("bedrock.firefox.views.basket.request")
-        self.mock_send_sms = patcher.start()
-        self.addCleanup(patcher.stop)
-
     def _request(self, data, expected_status=200, locale="en-US"):
         req = RequestFactory().post("/", data)
         req.locale = locale
@@ -356,7 +355,6 @@ class TestSendToDeviceView(TestCase):
         resp_data = self._request({"platform": "android"})
         assert not resp_data["success"]
         assert "s2d-email" in resp_data["errors"]
-        assert not self.mock_send_sms.called
         assert not self.mock_subscribe.called
 
     def test_send_android_email(self):
@@ -641,3 +639,74 @@ class TestFirefoxWelcomePage1(TestCase):
         req.locale = "en-US"
         views.firefox_welcome_page1(req)
         render_mock.assert_called_once_with(req, "firefox/welcome/page1.html", ANY, ftl_files="firefox/welcome/page1")
+
+
+@override_settings(
+    TWILIO_ACCOUNT_SID="",
+    TWILIO_AUTH_TOKEN="",
+    TWILIO_MESSAGING_SERVICE_SID="",
+)
+class TestSMSSendToDevice(TestCase):
+    def setUp(self):
+        self.url = "/en-US" + reverse("firefox.sms-send-to-device-post")
+
+    def _do_post(self, params):
+        return self.client.post(
+            self.url,
+            data=params,
+        )
+
+    @patch("bedrock.firefox.views.TWILIO_CLIENT")
+    def test_no_data(self, mock_client):
+        resp = self._do_post({})
+        assert resp.status_code == 200
+        data = resp.json()
+        assert not data["success"]
+        assert data["errors"] == ["Invalid phone number"]
+
+    @patch("bedrock.firefox.views.TWILIO_CLIENT")
+    def test_invalid_number(self, mock_client):
+        resp = self._do_post({"phone_number": "abcdef"})
+        assert resp.status_code == 200
+        data = resp.json()
+        assert not data["success"]
+        assert data["errors"] == ["Invalid phone number"]
+
+    @patch("bedrock.firefox.views.TWILIO_CLIENT")
+    def test_invalid_number_for_region(self, mock_client):
+        resp = self._do_post({"phone_number": "98 555 1212"})
+        assert resp.status_code == 200
+        data = resp.json()
+        assert not data["success"]
+        assert data["errors"] == ["Invalid phone number for region: US"]
+
+    @patch("bedrock.firefox.views.TWILIO_CLIENT")
+    def test_valid_number(self, mock_client):
+        valid_numbers = ["4155551212", "(415) 555-1212", "415.555.1212", "415-555-1212"]
+        for number in valid_numbers:
+            resp = self._do_post({"phone_number": number})
+            assert resp.status_code == 200
+            data = resp.json()
+            assert data["success"] is True
+            mock_client.messages.create.assert_called_once_with(
+                to="+14155551212",
+                body="Download the Firefox mobile browser for automatic protection on all your devices. https://app.adjust.com/kwd7bhf",
+                messaging_service_sid=settings.TWILIO_MESSAGING_SERVICE_SID,
+            )
+            mock_client.reset_mock()
+
+    @patch("bedrock.firefox.views.TWILIO_CLIENT")
+    def test_twilio_exception(self, mock_client):
+        mock_client.messages.create.side_effect = TwilioRestException(status=500, uri="/", msg="Some error")
+        resp = self._do_post({"phone_number": "415 555 1212"})
+        assert resp.status_code == 200
+        data = resp.json()
+        assert not data["success"]
+        assert data["errors"] == ["Message failed to send"]
+
+    def test_missing_twilio_settings(self):
+        resp = self._do_post({"phone_number": "415 555 1212"})
+        assert resp.status_code == 200
+        data = resp.json()
+        assert not data["success"]
+        assert data["errors"] == ["SMS not configured"]
