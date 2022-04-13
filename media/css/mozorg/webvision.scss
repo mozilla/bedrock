@@ -69,13 +69,12 @@ $image-path: '/media/protocol/img';
     flex-direction: column;
     position: relative;
     justify-content: center;
-    height: auto;
 
     @media #{$mq-md} {
         flex-direction: row;
 
         .c-webvision-article {
-            margin-left: 250px;
+            margin-left: 30px;
         }
     }
 
@@ -89,14 +88,13 @@ $image-path: '/media/protocol/img';
         top: 0;
         left: 0;
         overflow-y: auto;
-        overflow-x: hidden;
     }
 
     .mzp-c-sidemenu-main {
-        padding-top: 120px;
-        height: 100vh;
-        overflow-y: auto;
-        left: 0;
+
+        @media #{$mq-md} {
+            padding: 100px 0;
+        }
 
         @media #{$mq-xl} {
             width: 350px;
@@ -104,14 +102,16 @@ $image-path: '/media/protocol/img';
     }
 
     .toc {
-        overflow: auto;
-        height: 1000px;
-        width: 250px;
+        width: 100%;
 
         ul {
             li {
                 margin: $spacing-sm $spacing-lg;
             }
+        }
+
+        @media #{$mq-md} {
+            width: 250px;
         }
 
         @media #{$mq-md} {
