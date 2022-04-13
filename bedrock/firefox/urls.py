@@ -80,6 +80,7 @@ urlpatterns = (
         name="firefox.mobile.get-app",
     ),
     path("firefox/send-to-device-post/", views.send_to_device_ajax, name="firefox.send-to-device-post"),
+    path("firefox/sms-send-to-device-post/", views.sms_send_to_device_ajax, name="firefox.sms-send-to-device-post"),
     page("firefox/unsupported-systems/", "firefox/unsupported-systems.html"),
     path("firefox/new/", views.NewView.as_view(), name="firefox.new"),
     path("firefox/download/thanks/", views.DownloadThanksView.as_view(), name="firefox.download.thanks"),
@@ -177,14 +178,17 @@ urlpatterns = (
     # Issue 10182
     path("firefox/browsers/mobile/", views.FirefoxMobileView.as_view(), name="firefox.browsers.mobile.index"),
     page("firefox/browsers/mobile/android/", "firefox/browsers/mobile/android.html", ftl_files=["firefox/browsers/mobile/android"]),
-    page("firefox/browsers/mobile/ios/", "firefox/browsers/mobile/ios.html", ftl_files=["firefox/browsers/mobile/ios"]),
     path(
-        "firefox/browsers/mobile/focus/",
-        utils_views.VariationTemplateView.as_view(
-            template_name="firefox/browsers/mobile/focus.html", ftl_files=["firefox/browsers/mobile/focus"], template_context_variations=["pb"]
+        "firefox/browsers/mobile/ios/",
+        VariationTemplateView.as_view(
+            template_name="firefox/browsers/mobile/ios.html",
+            template_context_variations=["1", "2", "3"],
+            variation_locales=["en-US"],
+            ftl_files=["firefox/browsers/mobile/ios"],
         ),
-        name="firefox.browsers.mobile.focus",
+        name="firefox.browsers.mobile.ios",
     ),
+    page("firefox/browsers/mobile/focus/", "firefox/browsers/mobile/focus.html", ftl_files=["firefox/browsers/mobile/focus"]),
     page(
         "firefox/browsers/mobile/compare/",
         "firefox/browsers/mobile/compare.html",

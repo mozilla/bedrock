@@ -1340,6 +1340,20 @@
     },
     {
       "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/firefox/browsers/firefox-ios-sms-experiment.js"
+      ],
+      "name": "firefox-ios-sms-experiment"
+    },
+    {
+      "files": [
+        "js/base/send-to-device-sms.js",
+        "js/firefox/browsers/mobile-sms.js"
+      ],
+      "name": "firefox-browsers-ios-sms"
+    },
+    {
+      "files": [
         "js/base/send-to-device.js",
         "js/firefox/browsers/mobile-compare.js"
       ],
