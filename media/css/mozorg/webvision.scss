@@ -68,7 +68,7 @@ $image-path: '/media/protocol/img';
     display: flex;
     flex-direction: column;
     position: relative;
-    justify-content: center;
+    justify-content: space-between;
 
     @media #{$mq-md} {
         flex-direction: row;
@@ -88,6 +88,7 @@ $image-path: '/media/protocol/img';
         top: 0;
         left: 0;
         overflow-y: auto;
+        overflow-x: hidden;
     }
 
     .mzp-c-sidemenu-main {

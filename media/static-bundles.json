@@ -1745,8 +1745,7 @@
     {
       "files": [
         "protocol/js/protocol-sidemenu.js",
-        "js/base/mozilla-article.js",
-        "js/mozorg/webvision/webvision.es6.js"
+        "js/base/mozilla-article.js"
       ],
       "name": "webvision"
     }
