@@ -119,20 +119,20 @@ def test_sub_nav_markup(test_input, expected):
     markup = render("{% from 'macros.html' import sub_nav with context %}" + "{{{{ sub_nav({0}) }}}}".format(test_input), mock_request)
     doc = pq(markup)
 
-    title = doc(".c-sub-navigation-title")
-    assert title.text() == expected["title_text"]
-    assert EXPECTED_NAV_HTML["is_summary"] in title.outer_html()
+    nav_title = doc(".c-sub-navigation-title")
+    assert nav_title.text() == expected["title_text"]
+    assert EXPECTED_NAV_HTML["is_summary"] in nav_title.outer_html()
 
-    list = doc(".c-sub-navigation-list")
-    assert EXPECTED_NAV_HTML["is_details_default_closed"] in list.outer_html()
+    nav_list = doc(".c-sub-navigation-list")
+    assert EXPECTED_NAV_HTML["is_details_default_closed"] in nav_list.outer_html()
 
-    links = list.find(".c-sub-navigation-item")
-    assert len(links) == len(expected["links"])
-    for index, link in enumerate(links):
-        assert inner_html(pq(link)) == expected["links"][index]
+    nav_links = nav_list.find(".c-sub-navigation-item")
+    assert len(nav_links) == len(expected["links"])
+    for index, nav_link in enumerate(nav_links):
+        assert inner_html(pq(nav_link)) == expected["links"][index]
 
     if "title_icon" in expected:
-        assert title.find(".c-sub-navigation-icon").outer_html() == expected["title_icon"]
+        assert nav_title.find(".c-sub-navigation-icon").outer_html() == expected["title_icon"]
 
     if "title_link" in expected:
-        assert expected["title_link"] in inner_html(title)
+        assert expected["title_link"] in inner_html(nav_title)
