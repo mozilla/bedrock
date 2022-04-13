@@ -36,9 +36,9 @@ bleach==4.1.0 \
     --hash=sha256:0900d8b37eba61a802ee40ac0061f8c2b5dee29c1927dd1d233e075ebf5a71da \
     --hash=sha256:4d2651ab93271d1129ac9cbc679f524565cc8a1b791909c4a51eac4446a15994
     # via -r requirements/prod.in
-boto3==1.21.23 \
-    --hash=sha256:44a30268702c78aa355a0044fa7fea5f1e7e7c125ad029196028787eea003c2e \
-    --hash=sha256:c60d2401226c723db809df5c611a850c101b562e0e0790be7631a38b82813038
+boto3==1.21.40 \
+    --hash=sha256:03fe95333a51e3a14d7ab9644ae702f9feb008a4f5d308724eaa9ab8fd4c7d71 \
+    --hash=sha256:f99417fb53d0af357eb91152b30686c40dd22381499bfab0d61830eee72d5a0b
     # via -r requirements/prod.in
 botocore==1.24.23 \
     --hash=sha256:1c8a77809dd59bf4084780ea1785c38d0ebcacd385d83fb7f6ad81648bbb22dc \
@@ -432,6 +432,10 @@ packaging==21.3 \
     --hash=sha256:dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb \
     --hash=sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522
     # via bleach
+phonenumberslite==8.12.42 \
+    --hash=sha256:656230684742fa4bb24eda791e38f6766fd9197ea3f14fe940b1c1306aecbacc \
+    --hash=sha256:dfa4947e6fddd92b95540400f447727c516fde18a0e7942993ec1274eb28f46e
+    # via -r requirements/prod.in
 pillow==9.0.1 \
     --hash=sha256:011233e0c42a4a7836498e98c1acf5e744c96a67dd5032a6f666cc1fb97eab97 \
     --hash=sha256:0f29d831e2151e0b7b39981756d201f7108d3d215896212ffe2e992d06bfe049 \
@@ -480,7 +484,9 @@ pygithub==1.55 \
 pyjwt==2.3.0 \
     --hash=sha256:b888b4d56f06f6dcd777210c334e69c737be74755d3e5e9ee3fe67dc18a0ee41 \
     --hash=sha256:e0c4bb8d9f0af0c7f5b1ec4c5036309617d03d56932877f2f7a0beeb5318322f
-    # via pygithub
+    # via
+    #   pygithub
+    #   twilio
 pynacl==1.5.0 \
     --hash=sha256:06b8f6fa7f5de8d5d2f7573fe8c863c051225a27b61e6860fd047b1775807858 \
     --hash=sha256:0c84947a22519e013607c9be43706dd42513f9e6ae5d39d3613ca1e142fba44d \
@@ -519,6 +525,7 @@ pytz==2021.3 \
     #   babel
     #   django
     #   fluent.runtime
+    #   twilio
 pytz-deprecation-shim==0.1.0.post0 \
     --hash=sha256:8314c9692a636c8eb3bda879b9f119e350e93223ae83e70e80c31675a0fdc1a6 \
     --hash=sha256:af097bae1b616dde5c5744441e2ddc69e74dfdcb0c263129610d85b87445a59d
@@ -573,6 +580,7 @@ requests==2.27.1 \
     #   django-mozilla-product-details
     #   pygithub
     #   requests-oauthlib
+    #   twilio
 requests-oauthlib==1.3.1 \
     --hash=sha256:2577c501a2fb8d05a304c09d090d6e47c306fef15809d102b327cf8364bddab5 \
     --hash=sha256:75beac4a47881eeb94d5ea5d6ad31ef88856affe2332b9aafb52c6452ccf0d7a
@@ -619,6 +627,10 @@ supervisor==4.2.4 \
     # via -r requirements/prod.in
 timeago==1.0.15 \
     --hash=sha256:cfce420d82892af6b2439d0f69eeb3e876bbeddab6670c3c88ebf7676407bf4c
+    # via -r requirements/prod.in
+twilio==7.5.1 \
+    --hash=sha256:8e2f487e49a37da9caf61bfc3ca61883c8af5f478aafe4160cce738f81bd1e5a \
+    --hash=sha256:d6f22603065b6bac232e0fb16e9a35abb71b6a9b38b7aa7fccf64d37aff4d01c
     # via -r requirements/prod.in
 tzdata==2021.5 \
     --hash=sha256:3eee491e22ebfe1e5cfcc97a4137cd70f092ce59144d81f8924a844de05ba8f5 \
