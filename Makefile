@@ -70,17 +70,17 @@ run-prod: .docker-build-pull
 
 # Run in Mozorg-only mode, using Bedrock to serve ONLY Mozorg pages
 run-mozorg: .docker-build-pull
-	-DJANGO_CONFIGURATION=${MOZORG_MODE} ${DC} up assets app
+	-SITE_MODE=${MOZORG_MODE} ${DC} up assets app
 
 run-mozorg-prod: .docker-build-pull
-	-DJANGO_CONFIGURATION=${MOZORG_MODE} ${DC} up release-local
+	-SITE_MODE=${MOZORG_MODE} ${DC} up release-local
 
 # Run in Pocket-only mode, using Bedrock to serve ONLY Pocket pages _at the root path_
 run-pocket: .docker-build-pull
-	-DJANGO_CONFIGURATION=${POCKET_MODE} ${DC} up assets app
+	-SITE_MODE=${POCKET_MODE} ${DC} up assets app
 
 run-pocket-prod: .docker-build-pull
-	-DJANGO_CONFIGURATION=${POCKET_MODE} ${DC} up release-local
+	-SITE_MODE=${POCKET_MODE} ${DC} up release-local
 
 stop:
 	${DC} stop

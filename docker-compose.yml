@@ -28,11 +28,11 @@ services:
       target: devapp
     image: mozmeao/bedrock_test:${GIT_COMMIT:-latest}
     platform: linux/amd64
-    # TODO: Switch CoreConfiguration to Mozorg when Pocket mode is in production
+    # TODO: Switch Default to Mozorg when Pocket mode is in production
     command: python manage.py runserver 0.0.0.0:8080
     env_file: .env
     environment:
-        DJANGO_CONFIGURATION: "${DJANGO_CONFIGURATION:-CoreConfiguration}"
+        SITE_MODE: "${SITE_MODE:-Default}"
 
     ports:
       - "8080:8080"
@@ -89,8 +89,8 @@ services:
     env_file: .env
     environment:
       RUN_SUPERVISOR: "true"
-      # TODO: Switch CoreConfiguration to Mozorg when Pocket mode is in production
-      DJANGO_CONFIGURATION: "${DJANGO_CONFIGURATION:-CoreConfiguration}"
+      # TODO: Switch Default to Mozorg when Pocket mode is in production
+      SITE_MODE: "${SITE_MODE:-Default}"
     ports:
       - "8000:8000"
     volumes:

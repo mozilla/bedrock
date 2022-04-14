@@ -2,6 +2,10 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+"""IMPORTANT: bedrock/settings/__init__.py contains important logic that determines
+which site will be served.
+"""
+
 import json
 import platform
 import socket
@@ -235,6 +239,8 @@ PROD_LANGUAGES = (
 
 GITHUB_REPO = "https://github.com/mozilla/bedrock"
 
+# Default l10n config is for mozorg. See settings/__init__.py for where we [will] plug in
+# an alternative Pocket-appropriate l10n setup.
 # Global L10n files.
 FLUENT_DEFAULT_FILES = [
     "banners/firefox-app-store",
@@ -510,8 +516,6 @@ WHITENOISE_ROOT = config("WHITENOISE_ROOT", default=path("root_files"))
 WHITENOISE_MAX_AGE = 6 * 60 * 60  # 6 hours
 
 PROJECT_MODULE = "bedrock"
-
-ROOT_URLCONF = "bedrock.urls"
 
 
 def get_app_name(hostname):
