@@ -28,7 +28,6 @@ $image-path: '/media/protocol/img';
     h4 {
         a {
             position: relative;
-            transition: 2s;
             visibility: hidden;
 
             &::after {
@@ -36,14 +35,13 @@ $image-path: '/media/protocol/img';
                 color: $color-marketing-gray-30;
                 position: absolute;
                 left: 5px;
-                transition: all 0.2s;
+                transition: color 200ms;
                 visibility: visible;
             }
 
             &:hover {
                 &::after {
                     color: $color-blue-50;
-                    visibility: visible;
                 }
             }
         }
@@ -74,19 +72,14 @@ $image-path: '/media/protocol/img';
         flex-direction: row;
 
         .c-webvision-article {
-            margin-left: 30px;
+            margin-left: $layout-sm;
         }
-    }
-
-    .mzp-c-sidemenu {
-        position: relative;
     }
 
     .webvision-sidebar {
         position: sticky;
         max-height: 100vh;
         top: 0;
-        left: 0;
         overflow-y: auto;
         overflow-x: hidden;
     }
@@ -94,7 +87,7 @@ $image-path: '/media/protocol/img';
     .mzp-c-sidemenu-main {
 
         @media #{$mq-md} {
-            padding: 100px 0;
+            padding: $layout-lg 0;
         }
 
         @media #{$mq-xl} {
@@ -103,20 +96,12 @@ $image-path: '/media/protocol/img';
     }
 
     .toc {
-        width: 100%;
+        padding: $spacing-xs;
 
         ul {
             li {
-                margin: $spacing-sm $spacing-lg;
+                margin: $spacing-sm;
             }
-        }
-
-        @media #{$mq-md} {
-            width: 250px;
-        }
-
-        @media #{$mq-md} {
-            width: 100%;
         }
     }
 }
