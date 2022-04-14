@@ -1088,7 +1088,7 @@ WWW_CONFIG_BRANCH = config("WWW_CONFIG_BRANCH", default="master")
 
 LEGAL_DOCS_PATH = DATA_PATH / "legal_docs"
 LEGAL_DOCS_REPO = config("LEGAL_DOCS_REPO", default="https://github.com/mozilla/legal-docs.git")
-LEGAL_DOCS_BRANCH = config("LEGAL_DOCS_BRANCH", default="master" if DEV else "prod")
+LEGAL_DOCS_BRANCH = config("LEGAL_DOCS_BRANCH", default="main" if DEV else "prod")
 LEGAL_DOCS_DMS_URL = config("LEGAL_DOCS_DMS_URL", default="")
 LEGAL_DOCS_CACHE_TIMEOUT = config("LEGAL_DOCS_CACHE_TIMEOUT", default="60" if DEV else "600", parser=int)
 
