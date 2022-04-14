@@ -6,66 +6,66 @@
 
 {% extends "mozorg/about-base.html" %}
 
-{% block page_title %}{{ _('Official Mozilla Policies') }}{% endblock %}
+{% block page_title %}Official Mozilla Policies{% endblock %}
 {% set body_id = "about-governance-roles" %}
 
 
 {% block article %}
-<h1 class="mzp-c-article-title">{{ _('Official Mozilla Policies') }}</h1>
+<h1 class="mzp-c-article-title">Official Mozilla Policies</h1>
 
-<p>{{ _('This page provides links to various policies that are used to run the Mozilla community. This list is not necessarily comprehensive and other policies may be posted on other Mozilla sites.') }}</p>
+<p>This page provides links to various policies that are used to run the Mozilla community. This list is not necessarily comprehensive and other policies may be posted on other Mozilla sites.</p>
 
-<h2>{{ _('Governance') }}</h2>
+<h2>Governance</h2>
 
 <ul class="mzp-u-list-styled">
-  <li><a href="{{ url('mozorg.about.governance.policies.module-ownership') }}">{{ _('Mozilla Modules and Module Ownership') }}</a></li>
-  <li><a href="//wiki.mozilla.org/Modules">{{ _('Module Owners List') }}</a></li>
-  <li><a href="{{ url('mozorg.about.governance.policies.participation') }}">{{ _('Mozilla Community Participation Guidelines') }}</a></li>
+  <li><a href="{{ url('mozorg.about.governance.policies.module-ownership') }}">Mozilla Modules and Module Ownership</a></li>
+  <li><a href="//wiki.mozilla.org/Modules">Module Owners List</a></li>
+  <li><a href="{{ url('mozorg.about.governance.policies.participation') }}">Mozilla Community Participation Guidelines</a></li>
 </ul>
 
-<p>{{ _('For additional information on Mozilla’s governance structure, see <a href="%s">the Roles and Responsibilities</a> page.')|format(url('mozorg.about.governance.roles')) }}</p>
+<p>For additional information on Mozilla’s governance structure, see <a href="{{ url('mozorg.about.governance.roles') }}">the Roles and Responsibilities</a> page.</p>
 
-<h2>{{ _('Hacking') }}</h2>
+<h2>Hacking</h2>
 
 <ul class="mzp-u-list-styled">
-  <li><a href="{{ url('mozorg.about.governance.policies.commit.access-policy') }}">{{ _('Commit Access Policy') }}</a></li>
-  <li><a href="{{ url('mozorg.about.governance.policies.regressions') }}">{{ _('Performance Regressions Policy') }}</a></li>
+  <li><a href="{{ url('mozorg.about.governance.policies.commit.access-policy') }}">Commit Access Policy</a></li>
+  <li><a href="{{ url('mozorg.about.governance.policies.regressions') }}">Performance Regressions Policy</a></li>
 </ul>
 
-<h2>{{ _('Licensing') }}</h2>
+<h2>Licensing</h2>
 
 <ul class="mzp-u-list-styled">
-  <li><a href="{{ url('mozorg.mpl.index') }}">{{ _('Source Code Licensing Terms') }}</a></li>
-  <li><a href="{{ url('mozorg.mpl.license-policy') }}">{{ _('Mozilla Foundation License Policy') }}</a></li>
-  <li><a href="{{ url('legal.eula') }}">{{ _('Mozilla Corporation End-User Licensing Agreement') }}</a></li>
-  <li><a href="{{ url('legal.eula') }}">{{ _('Mozilla Foundation End-User Licensing Agreement') }}</a></li>
+  <li><a href="{{ url('mozorg.mpl.index') }}">Source Code Licensing Terms</a></li>
+  <li><a href="{{ url('mozorg.mpl.license-policy') }}">Mozilla Foundation License Policy</a></li>
+  <li><a href="{{ url('legal.eula') }}">Mozilla Corporation End-User Licensing Agreement</a></li>
+  <li><a href="{{ url('legal.eula') }}">Mozilla Foundation End-User Licensing Agreement</a></li>
 </ul>
 
-<h2>{{ _('Privacy') }}</h2>
+<h2>Privacy</h2>
 
 <ul class="mzp-u-list-styled">
-  <li><a href="{{ url('privacy') }}">{{ _('Mozilla Privacy Policy') }}</a></li>
-  <li><a href="{{ url('privacy.notices.firefox') }}">{{ _('Mozilla Firefox Privacy Notice') }}</a></li>
+  <li><a href="{{ url('privacy') }}">Mozilla Privacy Policy</a></li>
+  <li><a href="{{ url('privacy.notices.firefox') }}">Mozilla Firefox Privacy Notice</a></li>
 </ul>
 
-<h2>{{ _('Security') }}</h2>
+<h2>Security</h2>
 
 <ul class="mzp-u-list-styled">
-  <li><a href="{{ url('mozorg.about.governance.policies.security.certs.policy') }}">{{ _('Mozilla CA Certificate Policy') }}</a></li>
-  <li><a href="{{ url('mozorg.about.governance.policies.security.membership') }}">{{ _('Mozilla Security Group Membership Policy') }}</a></li>
-  <li><a href="{{ url('mozorg.about.governance.policies.security.bugs') }}">{{ _('Security Bugs Policy') }}</a></li>
+  <li><a href="{{ url('mozorg.about.governance.policies.security.certs.policy') }}">Mozilla CA Certificate Policy</a></li>
+  <li><a href="{{ url('mozorg.about.governance.policies.security.membership') }}">Mozilla Security Group Membership Policy</a></li>
+  <li><a href="{{ url('mozorg.about.governance.policies.security.bugs') }}">Security Bugs Policy</a></li>
 </ul>
 
-<h2>{{ _('Trademarks') }} </h2>
+<h2>Trademarks </h2>
 <ul class="mzp-u-list-styled">
-  <li><a href="{{ url('foundation.trademarks.policy') }}">{{ _('Mozilla Trademark Guidelines') }}</a></li>
-  <li><a href="{{ url('foundation.trademarks.distribution-policy') }}">{{ _('Distribution of Firefox with Mozilla Trademarks') }}</a></li>
+  <li><a href="{{ url('foundation.trademarks.policy') }}">Mozilla Trademark Guidelines</a></li>
+  <li><a href="{{ url('foundation.trademarks.distribution-policy') }}">Distribution of Firefox with Mozilla Trademarks</a></li>
 </ul>
 
-<h2>{{ _('Website') }}</h2>
+<h2>Website</h2>
 
 <ul class="mzp-u-list-styled">
-  <li><a href="{{ url('foundation.licensing.website-markup') }}">{{ _('Website Markup Usage Policy') }}</a></li>
-  <li><a href="{{ url('foundation.licensing.website-content') }}">{{ _('Mozilla.org Site Licensing Policies') }}</a></li>
+  <li><a href="{{ url('foundation.licensing.website-markup') }}">Website Markup Usage Policy</a></li>
+  <li><a href="{{ url('foundation.licensing.website-content') }}">Mozilla.org Site Licensing Policies</a></li>
 </ul>
 {% endblock %}

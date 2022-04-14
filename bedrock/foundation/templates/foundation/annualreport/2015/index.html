@@ -6,7 +6,7 @@
 
 {% extends "base-protocol-mozilla.html" %}
 
-{% block page_title %}{{ _('The State of Mozilla: 2015 Annual Report') }}{% endblock %}
+{% block page_title %}The State of Mozilla: 2015 Annual Report{% endblock %}
 {% block body_id %}annual-2015{% endblock %}
 
 {% block page_css %}
@@ -20,62 +20,50 @@
       <section class="c-content-section">
         <div class="c-copy-wrapper">
           <header>
-            <h2>{{ _('Advancing the Mozilla Mission') }}</h2>
+            <h2>Advancing the Mozilla Mission</h2>
           </header>
           <div class="c-copy">
             <p><em>
-            {% trans %}
               This is the State of Mozilla for 2015, our annual report. This report
               highlights activities for 2015 and is accompanied by detailed financials.
               This report is released when we submit our non-profit tax filing for the
               previous calendar year.
-            {% endtrans %}
             </em></p>
             <p>
-            {% trans url=url('mozorg.about.manifesto') %}
               The Mozilla Foundation was created in 2003 and our mission is to ensure the
               internet is a global public resource, open and accessible to all.
-              <a href="{{ url }}">The first principle</a> in that mission is understanding
+              <a href="{{ url('mozorg.about.manifesto') }}">The first principle</a> in that mission is understanding
               that the internet is an integral part of modern life — a key component in
               education, communication, collaboration, business, entertainment and society
               as a whole.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               Mozilla champions web technologies and open standards to promote openness,
               innovation and opportunity online. We protect the health of the internet and
               the critical balance between commercial profit and public benefit to help
               fulfill our mission.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               The growth of the web makes the Mozilla mission more important today than
               ever before. We see an exploding world of connected devices where parts of
               the web are being monopolized and controlled by a few. There are billions of
               people online, but not enough transparency and control in the form of
               security and privacy protections for users from companies, app developers
               and governments.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               Mozilla is focused on influencing key internet health issues like privacy
               and security, web literacy, open innovation, digital inclusion and
               decentralization. We’re best known for creating the independent Firefox
               web browser that hundreds of millions of people around the world use today.
               We build products, organize communities, provide education tools and run
               advocacy campaigns to help people protect the internet.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               We measure our success not only by the adoption of our products, but also by
               our ability to increase the control people have in their online lives, our
               impact on the internet, our contribution to standards, and how we work to
               protect the web that users want.
-            {% endtrans %}
             </p>
           </div>
         </div>
@@ -84,35 +72,31 @@
       <section class="c-content-section">
         <div class="c-copy-wrapper">
           <header>
-            <h2>{{ _('Developing Products') }}</h2>
+            <h2>Developing Products</h2>
           </header>
           <div class="c-copy">
             <p>
-            {% trans %}
               We created Firefox in 2004 as an independent alternative to give people
               choice and control online and Firefox has influenced innovation in browser
               features and developer tools since then. Today, Mozilla continues to create
               leverage that helps us advocate for openness, innovation and opportunity
               online to help fulfill our mission.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               Today, we see a lot of competition in browsers and web technology and we are
               proud that Firefox ignited this competition. Competition spurs innovation:
               this is what we wanted to build when we created Firefox. Mozilla also
               believes it’s important that there be an independent alternative that
               promotes openness, innovation and opportunity online: we seek to occupy that
               role.
-            {% endtrans %}
             </p>
             <p>
-            {% trans ios="https://blog.mozilla.org/blog/2015/11/11/firefox-users-can-now-choose-their-favorite-browser-on-ios/",
-                      private_browsing="https://blog.mozilla.org/blog/2015/11/03/firefox-now-offers-a-more-private-browsing-experience/",
-                      focus="https://blog.mozilla.org/blog/2015/12/07/focus-by-firefox-content-blocking-for-the-open-web/",
-                      e10s="https://blog.mozilla.org/blog/2016/08/02/exciting-improvements-in-firefox-for-desktop-and-android/",
-                      test_pilot="https://blog.mozilla.org/blog/2016/09/28/three-new-test-pilot-experiments/",
-                      context_graph="https://medium.com/@osunick/context-graph-its-time-to-bring-context-back-to-the-web-a7542fe45cf3#.66mv2tpxk"
+            {% with ios="https://blog.mozilla.org/blog/2015/11/11/firefox-users-can-now-choose-their-favorite-browser-on-ios/",
+                    private_browsing="https://blog.mozilla.org/blog/2015/11/03/firefox-now-offers-a-more-private-browsing-experience/",
+                    focus="https://blog.mozilla.org/blog/2015/12/07/focus-by-firefox-content-blocking-for-the-open-web/",
+                    e10s="https://blog.mozilla.org/blog/2016/08/02/exciting-improvements-in-firefox-for-desktop-and-android/",
+                    test_pilot="https://blog.mozilla.org/blog/2016/09/28/three-new-test-pilot-experiments/",
+                    context_graph="https://medium.com/@osunick/context-graph-its-time-to-bring-context-back-to-the-web-a7542fe45cf3#.66mv2tpxk"
             %}
               Mozilla introduced new Firefox products in 2015 across desktop and mobile
               platforms, including <a href="{{ ios }}">Firefox for iOS</a>,
@@ -125,12 +109,12 @@
               Firefox Test Pilot program</a> for experimental features and our new
               <a href="{{ context_graph }}">Context Graph project</a>, both of which
               launched in 2016.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans mdn="https://developer.mozilla.org/",
-                      ten_years="https://blog.mozilla.org/blog/2015/07/23/mdn-celebrates-10-years-of-documenting-your-web/",
-                      dev_edition="https://hacks.mozilla.org/2014/11/mozilla-introduces-the-first-browser-built-for-developers-firefox-developer-edition/"
+            {% with mdn="https://developer.mozilla.org/",
+                    ten_years="https://blog.mozilla.org/blog/2015/07/23/mdn-celebrates-10-years-of-documenting-your-web/",
+                    dev_edition="https://hacks.mozilla.org/2014/11/mozilla-introduces-the-first-browser-built-for-developers-firefox-developer-edition/"
             %}
               Mozilla works to empower developers with tools, resources and education to
               create open web technologies to inspire ideas, encourage collaboration,
@@ -143,7 +127,7 @@
               <a href="{{ dev_edition }}">Firefox Developer Edition</a>, the first browser
               dedicated solely to developers, at the end of 2014 and have made
               improvements to the browser throughout 2015 and 2016.
-            {% endtrans %}
+            {% endwith %}
             </p>
           </div>
         </div>
@@ -152,12 +136,12 @@
       <section class="c-content-section">
         <div class="c-copy-wrapper">
           <header>
-            <h2>{{ _('Establishing Web Technologies') }}</h2>
+            <h2>Establishing Web Technologies</h2>
           </header>
           <div class="c-copy">
             <p>
-            {% trans eme="https://blog.mozilla.org/blog/2015/05/12/update-on-digital-rights-management-and-firefox/",
-                      http2="https://www.mozilla.org/en-US/firefox/36.0/releasenotes/"
+            {% with eme="https://blog.mozilla.org/blog/2015/05/12/update-on-digital-rights-management-and-firefox/",
+                    http2="https://www.mozilla.org/en-US/firefox/36.0/releasenotes/"
             %}
               Mozilla builds technologies that benefit the entire web ecosystem. We all
               benefit when every browser supports open and interoperable technologies.
@@ -167,17 +151,17 @@
               the web today replacing Adobe Flash. We also <a href="{{ http2 }}">support
               HTTP/2</a> which dramatically increases the control website authors have
               over the traffic between client and server.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans aframe="https://aframe.io/",
-                      webvr="https://mozvr.com/",
-                      gaming="https://blog.mozilla.org/blog/2016/03/14/mozilla-pushes-the-web-to-new-levels-as-a-platform-for-games/",
-                      webgl2="https://blog.mozilla.org/futurereleases/2015/03/03/an-early-look-at-webgl-2/",
-                      unity="https://blog.mozilla.org/blog/2015/03/03/unity-5-ships-and-brings-one-click-webgl-export-to-legions-of-game-developers/",
-                      quantum="https://medium.com/mozilla-tech/a-quantum-leap-for-the-web-a3b7174b3c12",
-                      servo="https://servo.org/",
-                      rust="https://www.rust-lang.org/"
+            {% with aframe="https://aframe.io/",
+                    webvr="https://mozvr.com/",
+                    gaming="https://blog.mozilla.org/blog/2016/03/14/mozilla-pushes-the-web-to-new-levels-as-a-platform-for-games/",
+                    webgl2="https://blog.mozilla.org/futurereleases/2015/03/03/an-early-look-at-webgl-2/",
+                     unity="https://blog.mozilla.org/blog/2015/03/03/unity-5-ships-and-brings-one-click-webgl-export-to-legions-of-game-developers/",
+                     quantum="https://medium.com/mozilla-tech/a-quantum-leap-for-the-web-a3b7174b3c12",
+                     servo="https://servo.org/",
+                     rust="https://www.rust-lang.org/"
             %}
               Mozilla contributed to the web platform by building <a href="{{ aframe }}">
               A-Frame</a>, a library of building blocks for <a href="{{ webvr }}">Mozilla
@@ -191,13 +175,11 @@
               <a href="{{ quantum }}">Project Quantum</a> in 2016, building on long-term
               R&amp;D investments in <a href="{{ servo }}">Servo</a> and <a href="{{ rust }}">
               Rust</a>, is one way Mozilla is working to build for this future.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans %}
               We know the future of the web will only increase performance and security
               demands, and Mozilla works to meet these needs in new and innovative ways.
-            {% endtrans %}
             </p>
           </div>
         </div>
@@ -206,22 +188,20 @@
       <section class="c-content-section">
         <div class="c-copy-wrapper">
           <header>
-            <h2>{{ _('Protecting Internet Health: Policy, Advocacy, Education') }}</h2>
+            <h2>Protecting Internet Health: Policy, Advocacy, Education</h2>
           </header>
           <div class="c-copy">
             <p>
-            {% trans %}
               We also expanded Mozilla efforts in policy, advocacy and education in 2015
               to advance our mission and help protect the health of the internet. These
               efforts all tie back to key internet health issues: from privacy to digital
               inclusion.
-            {% endtrans %}
             </p>
-            <h3>{{ _('Privacy and Security') }}</h3>
+            <h3>Privacy and Security</h3>
             <p>
-            {% trans freedom="https://blog.mozilla.org/netpolicy/2015/06/02/mozilla-applauds-u-s-senates-passage-of-the-usa-freedom-act/",
-                      uk="https://blog.mozilla.org/netpolicy/2015/12/04/uk-ip-bill-is-a-threat-to-privacy-security-and-trust-online/",
-                      germany="https://blog.mozilla.org/netpolicy/2015/10/15/data-retention-in-deutschland/"
+            {% with freedom="https://blog.mozilla.org/netpolicy/2015/06/02/mozilla-applauds-u-s-senates-passage-of-the-usa-freedom-act/",
+                    uk="https://blog.mozilla.org/netpolicy/2015/12/04/uk-ip-bill-is-a-threat-to-privacy-security-and-trust-online/",
+                    germany="https://blog.mozilla.org/netpolicy/2015/10/15/data-retention-in-deutschland/"
             %}
               At Mozilla, we fight to protect privacy and security online. We believe that
               there must be transparency, trust and user control in cybersecurity. Mozilla
@@ -235,11 +215,11 @@
               also <a href="{{ germany }}">campaigned against a German data retention
               law</a> that would require telecommunications and internet service providers
               to store German citizens’ digital data.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans lets_encrypt="https://letsencrypt.org/",
-                      cyber_security="https://blog.mozilla.org/netpolicy/2015/07/28/experts-develop-cybersecurity-recommendations/" %}
+            {% with lets_encrypt="https://letsencrypt.org/",
+                    cyber_security="https://blog.mozilla.org/netpolicy/2015/07/28/experts-develop-cybersecurity-recommendations/" %}
               Mozilla worked with Akamai, Cisco, the Electronic Frontier Foundation,
               Identrust, and the University of Michigan to found
               <a href="{{ lets_encrypt }}">Let’s Encrypt</a> and move the web towards
@@ -247,11 +227,11 @@
               cybersecurity, including cybercrime in South Africa and approaching
               <a href="{{ cyber_security }}">cybersecurity with a global, user-centric
               perspective</a>.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans encryption="https://advocacy.mozilla.org/en-US/encrypt/social/1",
-                      apple="https://blog.mozilla.org/blog/2016/03/16/user-security-relies-on-encryption/"
+            {% with encryption="https://advocacy.mozilla.org/en-US/encrypt/social/1",
+                    apple="https://blog.mozilla.org/blog/2016/03/16/user-security-relies-on-encryption/"
             %}
               In 2016, Mozilla launched a <a href="{{ encryption }}">global encryption
               advocacy and education campaign</a> to help people understand and engage
@@ -261,29 +241,27 @@
               <a href="{{ apple }}">in support of Apple and encryption overall</a>. We
               called out the dangerous precedent of governments asking companies to weaken
               security, in violation of the responsibility to protect users.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans lean_data=url('mozorg.about.policy.lean-data.index')%}
+            {% with lean_data=url('mozorg.about.policy.lean-data.index')%}
               Work that we did in 2015 resulted in the introduction of the
               <a href="{{ lean_data }}">lean data principles</a> in 2016 to help companies
               and services build user trust by staying lean, building in security and
               engaging users.
-            {% endtrans %}
+            {% endwith %}
             </p>
-            <h3>{{ _('Open Innovation') }}</h3>
+            <h3>Open Innovation</h3>
             <p>
-            {% trans %}
               Mozilla supports open innovation at the core of everything we do. We develop
               Firefox and all our products as completely open source technologies,
               resulting in rapid open development and many other products using Mozilla
               code.
-            {% endtrans %}
             </p>
             <p>
-            {% trans net_neutrality="https://blog.mozilla.org/netpolicy/2015/05/05/mozilla-view-on-zero-rating/",
-                      peru="https://blog.mozilla.org/netpolicy/files/2015/12/Comentarios-generales-a-OSIPTEL.pdf",
-                      europe="https://blog.mozilla.org/netpolicy/2015/10/24/net-neutrality-amendments-and-final-vote-in-the-eu/"
+            {% with net_neutrality="https://blog.mozilla.org/netpolicy/2015/05/05/mozilla-view-on-zero-rating/",
+                    peru="https://blog.mozilla.org/netpolicy/files/2015/12/Comentarios-generales-a-OSIPTEL.pdf",
+                    europe="https://blog.mozilla.org/netpolicy/2015/10/24/net-neutrality-amendments-and-final-vote-in-the-eu/"
             %}
               Mozilla has been a strong advocate for net neutrality developments and
               introduced a <a href="{{ net_neutrality }}">novel approach to certain net
@@ -294,12 +272,12 @@
               Mozilla engaged globally in the net neutrality and zero-rating debates,
               including in <a href="{{ peru }}">Peru</a>, <a href="{{ europe }}">Europe</a>
               and <a href="{{ net_neutrality }}">India</a>.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans copyright="https://blog.mozilla.org/netpolicy/2015/05/28/copyright-reform-in-the-european-union/",
-                      manifesto=url('mozorg.about.manifesto'),
-                      educate="https://www.changecopyright.org/"
+            {% with copyright="https://blog.mozilla.org/netpolicy/2015/05/28/copyright-reform-in-the-european-union/",
+                    manifesto=url('mozorg.about.manifesto'),
+                    educate="https://www.changecopyright.org/"
             %}
               In 2015, Mozilla took a strong stance on the improvements we’d like to see
               to <a href="{{ copyright }}">copyright reform in Europe</a> to preserve and
@@ -309,21 +287,21 @@
               competition through copyright law. Mozilla continued to
               <a href="{{ educate }}">educate and advocate for copyright reform</a> in
               Europe throughout 2016.
-            {% endtrans %}
+            {% endwith %}
             </p>
-            <h3>{{ _('Decentralization') }}</h3>
+            <h3>Decentralization</h3>
             <p>
-            {% trans manifesto=url('mozorg.about.manifesto') %}
+            {% with manifesto=url('mozorg.about.manifesto') %}
               The <a href="{{ manifesto }}">Mozilla Manifesto</a> outlines that the
               effectiveness of the internet as a public resource depends on decentralized
               participation worldwide. Decentralization means that the internet is
               controlled by many, not just a few.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans patent_reform="https://blog.mozilla.org/netpolicy/files/2015/05/Mozilla-USPTO-Filing-May-2015-5-6.pdf",
-                      patents=url('mozorg.about.policy.patents.index'),
-                      patents_license=url('mozorg.about.policy.patents.license')
+            {% with patent_reform="https://blog.mozilla.org/netpolicy/files/2015/05/Mozilla-USPTO-Filing-May-2015-5-6.pdf",
+                    patents=url('mozorg.about.policy.patents.index'),
+                    patents_license=url('mozorg.about.policy.patents.license')
             %}
               Mozilla has advocated for <a href="{{ patent_reform }}">patent reform in the
               U.S</a>. We believe that the software patent system is challenging for open
@@ -336,28 +314,24 @@
               Software Patent License</a> (“MOSPL”) as our proposal for a first step
               towards improving the impact of patents on open source software development,
               and we continued patent reform work in 2016.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans %}
               Mozilla also entered into a new decentralized global search strategy at the
               end of 2014. We shifted from one having global search default in Firefox to
               a more local and flexible approach by country to offer users more choice and
               to enable innovation and competition in search.
-            {% endtrans %}
             </p>
-            <h3>{{ _('Web Literacy') }}</h3>
+            <h3>Web Literacy</h3>
             <p>
-            {% trans %}
               Web literacy means having the skills to read, write and participate in the
               digital world. Everyone needs these skills so they can be in control of
               their own experiences online.
-            {% endtrans %}
             </p>
             <p>
-            {% trans thimble="https://thimble.webmaker.org/",
-                      webmaker="https://webmaker.org/",
-                      hive="https://hivelearningnetworks.org/"
+            {% with thimble="https://thimble.webmaker.org/",
+                    webmaker="https://webmaker.org/",
+                    hive="https://hivelearningnetworks.org/"
             %}
               To help fulfill our vision of universal web literacy, Mozilla developed,
               released and upgraded our free, open-source education tools like
@@ -366,11 +340,11 @@
               <a href="{{ hive }}">Hive Learning Networks</a>, which empowers the next
               generation to develop and use digital literacy skills that will keep the web
               open.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans maker_party="https://blog.mozilla.org/blog/2015/07/14/mozillas-maker-party-starts-today/",
-                      clubs="https://learning.mozilla.org/clubs/"
+            {% with maker_party="https://blog.mozilla.org/blog/2015/07/14/mozillas-maker-party-starts-today/",
+                    clubs="https://learning.mozilla.org/clubs/"
             %}
               Mozilla hosted <a href="{{ maker_party }}">Maker Party</a>, a distributed
               global event that encourages formal and informal educators alike to teach
@@ -378,46 +352,42 @@
               To build on the momentum of Maker Party, Mozilla launched
               <a href="{{ clubs }}">Mozilla Clubs</a>, a network of ongoing web literacy
               gatherings.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans %}
               Last year, 10,000-plus Mozillians taught critical 21st-century skills to
               individuals of all ages and backgrounds; they translated open source
               products into a range of new languages; they defended the free and open
               nature of the web; and much more.
-            {% endtrans %}
             </p>
-            <h3>{{ _('Digital Inclusion') }}</h3>
+            <h3>Digital Inclusion</h3>
             <p>
-            {% trans %}
               Mozilla is working toward the goal of creating a more inclusive internet,
               rich with opportunity for everyone. This begins with all products and
               experiments being developed as an open source project with open code, and
               being completely open to a global, diverse and inclusive community.
-            {% endtrans %}
             </p>
             <p>
-            {% trans un_women="https://blog.mozilla.org/blog/2016/08/01/womens-economic-empowerment-united-nations-high-level-panel/" %}
+            {% with un_women="https://blog.mozilla.org/blog/2016/08/01/womens-economic-empowerment-united-nations-high-level-panel/" %}
               As a part of our focus on digital inclusion, Mozilla began a partnership
               with UN Women to teach critical digital skills to girls and women in these
               regions. <a href="{{ un_women }}">Mozilla and UN Women</a> set out to work
               alongside local educators and build a network of web literacy clubs that
               promote peer-to peer-learning. This work is happening on the ground in
               Nairobi, Kenya and Cape Town, South Africa.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans caribou_digital="https://blog.mozilla.org/blog/2016/02/01/mozilla-caribou-digital-release-report-exploring-the-global-app-economy/ "%}
+            {% with caribou_digital="https://blog.mozilla.org/blog/2016/02/01/mozilla-caribou-digital-release-report-exploring-the-global-app-economy/ "%}
               We also <a href="{{ caribou_digital }}">partnered with UK-based think tank
               Caribou Digital</a> to research the forces behind inequality and exclusion
               online. Understanding the effects of the global app economy, and helping to
               build a more inclusive mobile web, are key.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans moss="https://blog.mozilla.org/blog/2015/10/23/mozilla-launches-open-source-support-program/",
-                      sos="https://blog.mozilla.org/blog/2016/06/09/help-make-open-source-secure/"
+            {% with moss="https://blog.mozilla.org/blog/2015/10/23/mozilla-launches-open-source-support-program/",
+                    sos="https://blog.mozilla.org/blog/2016/06/09/help-make-open-source-secure/"
             %}
               Mozilla started the <a href="{{ moss }}">Mozilla Open Source Support</a>
               program to recognize and celebrate communities who are leading the way with
@@ -425,7 +395,7 @@
               technologies. We also created the <a href="{{ sos }}">Secure Open Source
               (SOS) Fund</a> to support security audits and the development of patches for
               widely used open source technologies.
-            {% endtrans %}
+            {% endwith %}
             </p>
           </div>
         </div>
@@ -434,12 +404,12 @@
       <section class="c-content-section">
         <div class="c-copy-wrapper">
           <header>
-            <h2>{{ _('How Mozilla Operates') }}</h2>
+            <h2>How Mozilla Operates</h2>
           </header>
           <div class="c-copy">
             <p>
-            {% trans established="http://www-archive.mozilla.org/press/mozilla-2005-08-03.html",
-                      manifesto=url('mozorg.about.manifesto')
+            {% with established="http://www-archive.mozilla.org/press/mozilla-2005-08-03.html",
+                    manifesto=url('mozorg.about.manifesto')
             %}
               The Mozilla Foundation was formed in 2003 to protect the open nature of the
               internet by developing open source software and building a global community.
@@ -449,10 +419,9 @@
               and Mozilla Corporation are guided by the principles of the
               <a href="{{ manifesto }}">Mozilla Manifesto</a> and each is governed by a
               respective Board of Directors.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans %}
               The Mozilla Foundation focuses on advancing the Mozilla mission through
               education, advocacy and movement building. The Mozilla Foundation’s programs
               are carried out by 65 employees and thousands of volunteers around the
@@ -460,19 +429,16 @@
               and foundations and from royalties earned that are paid by the Mozilla
               Corporation. The Mozilla Foundation is the sole shareholder in the Mozilla
               Corporation.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               The Mozilla Corporation focuses on advancing the Mozilla mission through
               product and policy work, and revenue from products and services is
               reinvested into the organization. Mozilla Corporation has just over 1,000
               employees worldwide.
-            {% endtrans %}
             </p>
             <p>
-            {% trans diversity="https://wiki.mozilla.org/Diversity_and_Inclusion_Strategy",
-                      eeo="https://static.mozilla.com/moco/en-US/pdf/2016_Mozilla_EEO-1.png"
+            {% with diversity="https://wiki.mozilla.org/Diversity_and_Inclusion_Strategy",
+                    eeo="https://static.mozilla.com/moco/en-US/pdf/2016_Mozilla_EEO-1.png"
             %}
               Inclusion and diversity are central to the Mozilla mission. We know
               innovation stems from a diverse workforce to fuel different approaches.
@@ -487,10 +453,9 @@
               and inclusion at Mozilla and in the technology industry. We are committed to
               ongoing transparency in this regard. You can find out more about Mozilla’s
               inclusion and diversity strategy <a href="{{ diversity }}">here</a>.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans %}
               We also believe that attracting talent that is motivated, creative and
               passionate is crucial to our success. We want to attract and retain that
               talent while ensuring total compensation is competitively reasonable and
@@ -503,10 +468,9 @@
               similar-sized non-profits and for-profit consumer internet software
               companies. Mozilla seeks to align total compensation for its employees
               between individual and company performance.
-            {% endtrans %}
             </p>
             <p>
-            {% trans transparency=url('mozorg.about.policy.transparency.index') %}
+            {% with transparency=url('mozorg.about.policy.transparency.index') %}
               Transparency is a key part of how Mozilla approaches user trust. As an open
               source project that relies on open development, we build transparency into
               the way we write our code. Additionally, our product documentation and
@@ -514,7 +478,7 @@
               this transparency in mind, we publish bi­-annual
               <a href="{{ transparency }}">transparency reports</a> that help provide
               additional transparency to government disclosures and takedown requests.
-            {% endtrans %}
+            {% endwith %}
             </p>
           </div>
         </div>
@@ -523,36 +487,30 @@
       <section class="c-content-section">
         <div class="c-copy-wrapper">
           <header>
-            <h2>{{ _('Maintaining Sustainability') }}</h2>
+            <h2>Maintaining Sustainability</h2>
           </header>
           <div class="c-copy">
             <p>
-            {% trans %}
               This annual report includes the below links that detail audited 2015
               financial statements for Mozilla.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               The majority of Mozilla revenue is from Firefox web browser search
               partnerships around the world. Mozilla’s work is also supported through
               grants and individual donations. These contributions fund our nonprofit
               work in education, journalism, science, leadership development and other
               fields. And, in turn, all of the work we do at Mozilla contributes to the
               overall sustainability and health of the internet.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               The Mozilla Corporation entered into a new search strategy at the end of
               2014. We decided that one global default search partner was no longer the
               right choice for our users or the web. Instead, we adopted a more local and
               flexible approach by country to control our own destiny and to diversify
               the user experience and competitive landscape of web search globally.
-            {% endtrans %}
             </p>
             <p>
-            {% trans yahoo="https://blog.mozilla.org/blog/2014/11/19/promoting-choice-and-innovation-on-the-web/" %}
+            {% with yahoo="https://blog.mozilla.org/blog/2014/11/19/promoting-choice-and-innovation-on-the-web/" %}
               We <a href="{{ yahoo }}">announced</a> Yahoo as our default Firefox search
               provider in the US at the end of 2014, as well as continued search
               relationships with Baidu, Yandex and other regional partners around the
@@ -560,26 +518,24 @@
               Firefox users. We have new partnerships with DuckDuckGo, Google, Yahoo and
               more. We also continue to have relationships with Amazon, Bing, Twitter,
               Wikipedia and regional search providers.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans search_strategy="https://wiki.mozilla.org/Global_Search_Strategy_Status" %}
+            {% with search_strategy="https://wiki.mozilla.org/Global_Search_Strategy_Status" %}
               Firefox users can easily choose to change their search provider from a
               number of pre-installed alternatives, including Amazon, Bing, Google,
               Twitter, Wikipedia and many regional search providers. This supports our
               <a href="{{ search_strategy }}">global search strategy</a> and user-focused
               product strategy to provide people with choice and control over their web
               experience.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans %}
               In 2015 and 2016, Mozilla entered into additional search partnerships,
               bringing our total to 12 partners and including all major internet search
               providers. The new search strategy diversified revenue sources for Mozilla.
               While some of this is evident in the 2015 financials, the improvement will
               be more notable in 2016.
-            {% endtrans %}
             </p>
           </div>
         </div>
@@ -588,11 +544,10 @@
       <section class="c-content-section">
         <div class="c-copy-wrapper">
           <header>
-            <h2>{{ _('Powered by Mozillians') }}</h2>
+            <h2>Powered by Mozillians</h2>
           </header>
           <div class="c-copy">
             <p>
-            {% trans %}
               All of the work Mozilla does is made possible by the global community of
               people we call Mozillians. Mozillians are employees, volunteers, partners
               and anyone who contributes their time and work to Mozilla. Volunteer
@@ -601,11 +556,10 @@
               efforts. We are proud of our diverse and passionate global community and
               would like to thank the thousands of people who help support the Mozilla
               mission every day.
-            {% endtrans %}
             </p>
             <p>
-            {% trans leadership_network='https://foundation.mozilla.org/',
-                      mozfest="https://blog.mozilla.org/blog/2015/11/09/mozfest-2015-connecting-leaders-and-rallying-communities-for-the-open-web/"
+            {% with leadership_network='https://foundation.mozilla.org/',
+                    mozfest="https://blog.mozilla.org/blog/2015/11/09/mozfest-2015-connecting-leaders-and-rallying-communities-for-the-open-web/"
             %}
               Mozilla invests in a new generation of leaders who will ensure the next wave
               of access, inclusion and opportunity online. Our
@@ -618,10 +572,10 @@
               leaders of the global internet health movement. Technologists, activists and
               educators from around the globe donate their time and talent to lead
               hundreds of interactive sessions.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans fellows="https://advocacy.mozilla.org/en-US/open-web-fellows/fellows2016" %}
+            {% with fellows="https://advocacy.mozilla.org/en-US/open-web-fellows/fellows2016" %}
               Mozilla’s investment in young leaders also includes a series of fellowships
               focused on bringing open source approaches into new places. In 2015, we
               expanded this work through a partnership with Ford Foundation. In 2015, the
@@ -631,7 +585,7 @@
               Mozilla also continued to support fellows and invest in young leaders in
               partnership with allies such as Knight Foundation, MacArthur Foundation and
               Alfred P. Sloan Foundation.
-            {% endtrans %}
+            {% endwith %}
             </p>
           </div>
         </div>
@@ -640,12 +594,12 @@
       <section class="c-content-section">
         <div class="c-copy-wrapper">
           <header>
-            <h2>{{ _('Building the Future') }}</h2>
+            <h2>Building the Future</h2>
           </header>
           <div class="c-copy">
             <p>
-            {% trans servo="https://servo.org/",
-                      rust="https://www.rust-lang.org/"
+            {% with servo="https://servo.org/",
+                    rust="https://www.rust-lang.org/"
             %}
               In 2017, Mozilla will continue our investments in product development with
               a focus on more mobile products including connected devices experiments and
@@ -658,10 +612,9 @@
               to new web technologies (like <a href="{{ servo }}">Servo</a> and
               <a href="{{ rust }}">Rust</a> with Project Quantum) to meet the increasing
               performance and security needs as the internet grows and evolves.
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p>
-            {% trans %}
               In 2017, Mozilla will expand our work in protecting the health of the
               internet through policy, advocacy, education and products. We will launch
               our first Internet Health Report, a thorough, compelling examination of the
@@ -669,20 +622,17 @@
               inaugural report will unpack internet health through the lenses of privacy
               and security, web literacy, digital inclusion, decentralization and open
               innovation.
-            {% endtrans %}
             </p>
             <p>
-            {% trans %}
               Mozilla will continue to fuel the larger open internet movement. Wielding
               advocacy campaigns and educational tools and curriculum, Mozilla will work
               alongside allies in the realms of technology, civil society and journalism
               to build a powerful and effective movement.
-            {% endtrans %}
             </p>
             <p>
-            {% trans download=url('firefox.new'),
-                      volunteer=url('mozorg.contribute'),
-                      mozorg=url('mozorg.home')
+            {% with download=url('firefox.new'),
+                    volunteer=url('mozorg.contribute'),
+                    mozorg=url('mozorg.home')
             %}
               Our mission is to enable the internet as a global public resource, open and
               accessible to all. This mission is as important now as it has ever been. We
@@ -692,7 +642,7 @@
               <a href="{{ download }}">download</a> Firefox or
               <a href="{{ volunteer }}">volunteer</a> to be part of Mozilla. Learn more
               at <a href="{{ mozorg }}">mozilla.org</a>.
-            {% endtrans %}
+            {% endwith %}
             </p>
           </div>
         </div>

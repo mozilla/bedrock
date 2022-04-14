@@ -11,18 +11,18 @@
 {% block body_class %}mzp-t-mozilla{% endblock %}
 
 {% set navigation_bar = [
-    ('https://foundation.mozilla.org/', 'index', _('The Mozilla Foundation')),
-    ('https://foundation.mozilla.org/about/', 'about', _('About the Foundation')),
-    ('https://mzl.la/foundation-strategy', 'strategy', _('2016-2018 Strategy')),
-    (url('foundation.licensing'), 'licensing', _('Licensing & Trademarks')),
-    ('https://foundation.mozilla.org/about/public-records/', 'documents', _('Public Documents')),
-    (url('careers.home'), 'careers', _('Careers')),
+    ('https://foundation.mozilla.org/', 'index', 'The Mozilla Foundation'),
+    ('https://foundation.mozilla.org/about/', 'about', 'About the Foundation'),
+    ('https://mzl.la/foundation-strategy', 'strategy', '2016-2018 Strategy'),
+    (url('foundation.licensing'), 'licensing', 'Licensing & Trademarks'),
+    ('https://foundation.mozilla.org/about/public-records/', 'documents', 'Public Documents'),
+    (url('careers.home'), 'careers', 'Careers'),
 ] %}
 
 {% set programs = [
-  ('https://foundation.mozilla.org/initiatives/', 'issues', _('Key Internet Issues')),
-  ('https://foundation.mozilla.org/', 'advocacy', _('Advocacy')),
-  ('https://foundation.mozilla.org/', 'leadership-network', _('Leadership Network'))
+  ('https://foundation.mozilla.org/initiatives/', 'issues', 'Key Internet Issues'),
+  ('https://foundation.mozilla.org/', 'advocacy', 'Advocacy'),
+  ('https://foundation.mozilla.org/', 'leadership-network', 'Leadership Network')
 ] %}
 
 {% block side_nav %}
@@ -31,7 +31,7 @@
 
 {% block article %}
   <header>
-    <h1 class="mzp-c-article-title">{{ _('The Mozilla Foundation') }}</h1>
+    <h1 class="mzp-c-article-title">The Mozilla Foundation</h1>
     {% block article_header %}
       <h2>{{ self.article_title() }}</h2>
     {% endblock %}
@@ -48,7 +48,7 @@
 
       <div class="newsletter-content">
         {% if LANG.startswith('en-') %}
-          {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Sign up. Read up.<br> Make a difference.'), desc=_('Get the Mozilla newsletter and help us keep the Web free and open.'), button_class='button-red') }}
+          {{ email_newsletter_form(newsletters='mozilla-foundation', title='Sign up. Read up.<br> Make a difference.'|safe, desc='Get the Mozilla newsletter and help us keep the Web free and open.', button_class='button-red') }}
         {% else %}
           {{ email_newsletter_form(button_class='button-red') }}
         {% endif %}

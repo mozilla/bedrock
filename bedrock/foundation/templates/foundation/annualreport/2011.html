@@ -6,7 +6,7 @@
 
 {% extends "base-article.html" %}
 
-{% block page_title %}{{ _('The State of Mozilla: 2011 Annual Report') }}{% endblock %}
+{% block page_title %}The State of Mozilla: 2011 Annual Report{% endblock %}
 {% block body_id %}annual-2011{% endblock %}
 {% block body_class %}mzp-t-mozilla{% endblock %}
 
@@ -16,12 +16,12 @@
 {% endblock %}
 
 {% set navigation_bar = [
-  ('#welcome', 'welcome', _('Welcome')),
-  ('#mobilized', 'mobilized', _('Mobilized') ),
-  ('#action', 'action', _('Action')),
-  ('#community', 'community', _('Community')),
-  ('#sustainability', 'sustainability', _('Sustainability')),
-  (url('foundation.annualreport.2011faq'), 'faq', _('FAQ')),
+  ('#welcome', 'welcome', 'Welcome'),
+  ('#mobilized', 'mobilized', 'Mobilized'),
+  ('#action', 'action', 'Action'),
+  ('#community', 'community', 'Community'),
+  ('#sustainability', 'sustainability', 'Sustainability'),
+  (url('foundation.annualreport.2011faq'), 'faq', 'FAQ'),
 ] %}
 
 {% block side_nav %}
@@ -31,58 +31,50 @@
 {% block article %}
   <article id="main-content">
     <header>
-      <h1 class="mzp-c-article-title">{{ _('The State of Mozilla') }}</h1>
+      <h1 class="mzp-c-article-title">The State of Mozilla</h1>
     </header>
 
     <section id="welcome" class="section">
 
       <figure class="media">
-        <a href="https://videos.cdn.mozilla.net/brand/Mozilla_2011_Story.webm" data-video-source="https://videos.cdn.mozilla.net/brand/Mozilla_2011_Story" title="{{ _('Click to play this video') }}">
-          <img src="{{ static('img/foundation/annualreport/2011/vid-welcome.jpg') }}" alt="{{ _('Watch a brief video about Mozilla and our mission') }}" width="380">
+        <a href="https://videos.cdn.mozilla.net/brand/Mozilla_2011_Story.webm" data-video-source="https://videos.cdn.mozilla.net/brand/Mozilla_2011_Story" title="Click to play this video">
+          <img src="{{ static('img/foundation/annualreport/2011/vid-welcome.jpg') }}" alt="Watch a brief video about Mozilla and our mission" width="380">
         </a>
       </figure>
 
       <p>
-      {% trans %}
         Mozilla‘s vision of the Internet is a place where anyone can
         access information, a place where everyone can hack and tinker;
         one that has openness, freedom and transparency; where users have
         control over their personal data and where all minds have the
         freedom to create and to consume without walls or tight restrictions.
-      {% endtrans %}
       </p>
 
       <p>
-      {% trans %}
         In less than 20 years the Internet has changed our lives. It
         is a powerful platform with unprecedented opportunity and connectedness.
         But even with great growth and innovation there are significant
         challenges to this vision of a healthy Internet.
-      {% endtrans %}
       </p>
 
       <p>
-      {% trans %}
         Mozilla is mobilized to ensure the protection of the Web and to
         empower tomorrow’s webmakers and Web users. Today, Mozilla is growing
         — with more employees, contributors, products and locations — to
         ensure that the Web remains an open, vibrant ecosystem. Because, the
         Web is the platform for building the world we want.
-      {% endtrans %}
       </p>
 
       <p>
-      {% trans %}
         Please explore this site to learn more about Mozilla, our priorities
         and focus areas that enable us to ensure the healthy growth of this
         large and precious global resource.
-      {% endtrans %}
       </p>
 
     </section>
 
     <section id="mobilized" class="section">
-      <h2 class="section-title">{{ _('Mozilla Mobilized') }}</h2>
+      <h2 class="section-title">Mozilla Mobilized</h2>
 
       <section class="sub-section mob-intro">
         <div class="overlay-wrap">
@@ -94,17 +86,14 @@
 
           <div class="overlay">
             <p>
-            {% trans %}
               Mozilla is mobilizing millions of people to build the world
               they want. Mobilizing to set the mobile Web free from proprietary
               platforms and gatekeepers. Mobilizing to empower the world's next
               two billion Web users. And mobilizing to build a new generation
               of digital innovators, creators and webmakers.
-            {% endtrans %}
             </p>
 
             <p>
-            {% trans %}
               Moving forward we will continue to focus on building products,
               technology solutions and educational offerings that incorporate
               Mozilla values into the Web. Today, Mozilla’s mission remains as
@@ -113,42 +102,38 @@
               It’s about unlocking the full creative power of mobile; standing
               up for user sovereignty, privacy and freedom; and helping millions
               of people move from using the Web to actively building its future.
-            {% endtrans %}
             </p>
           </div>
         </div>
       </section>
 
       <section class="sub-section">
-        <h3>{{ _('Firefox OS') }}</h3>
+        <h3>Firefox OS</h3>
 
         <div class="overlay-wrap">
           <aside class="pull">
             <blockquote>
               <p>
-              {% trans %}
                 Just like we did on the desktop, Mozilla is setting out to
                 ensure that the mobile Web is full of freedom, choice &
                 opportunity.
-              {% endtrans %}
               </p>
             </blockquote>
           </aside>
 
           <div class="overlay">
             <p>
-            {% trans fxos_url='https://support.mozilla.org/products/firefox-os' %}
+            {% with fxos_url='https://support.mozilla.org/products/firefox-os' %}
               Just like we did on the desktop, Mozilla is setting out to
               ensure that the mobile Web is full of freedom, choice and
               opportunity and that it has the ability for users to create
               anything they want. With <a href="{{ fxos_url }}" rel="external">Firefox OS</a>,
               we can break open the world of native operating systems and
               closed platforms once again.
-            {% endtrans %}
+            {% endwith %}
             </p>
 
             <p>
-            {% trans %}
               Firefox OS is the first truly open mobile platform. Developers
               are already embracing HTML5, but so far HTML5 applications on
               mobile have been held back because they can’t access the device’s
@@ -157,34 +142,32 @@
               <abbr title="Application Program Interfaces">APIs</abbr> to
               show how it is possible to run an entire device using open
               standards.
-            {% endtrans %}
             </p>
 
             <p>
-            {% trans telefonica_url='http://www.telefonica.com' %}
+            {% with telefonica_url='http://www.telefonica.com' %}
               Firefox OS devices will launch in early 2013 through <a href="{{ telefonica_url }}" rel="external">Telefónica</a>,
               establishing HTML5 as a viable platform for the mobile industry.
               The Web as the platform will free developers to create groundbreaking
               new apps that work seamlessly across all devices, spurring a new
               era of innovation and creativity for the ubiquitous Web.
-            {% endtrans %}
+            {% endwith %}
             </p>
           </div>
         </div>
       </section>
 
       <section class="sub-section">
-        <h3>{{ _('Firefox for Android') }}</h3>
+        <h3>Firefox for Android</h3>
 
         <img class="media" src="{{ static('img/foundation/annualreport/2011/fxandroid-phone.png') }}" alt="">
 
         <div class="right overlay-wrap">
-          {# L10n: "Fast. Smart. Safe." is a slogan for Firefox for Android. It appears here as three separate strings for styling and layout purposes. #}
-          <h4>{{ _('Fast.') }} {{ _('Smart.') }} {{ _('Safe.') }}</h4>
+          <h4>Fast. Smart. Safe.</h4>
 
           <div class="overlay">
             <p>
-            {% trans mobile_url=url('firefox.browsers.mobile.android') %}
+            {% with mobile_url=url('firefox.browsers.mobile.android') %}
               In June 2012 we released an update to <a href="{{ mobile_url }}" rel="external">Firefox for Android</a>
               that we believe is the best browser for Android available. We completely
               rebuilt and redesigned the product in native UI, resulting in a
@@ -197,33 +180,31 @@
               to offer Do Not Track. Firefox for Android is a critical part of
               supporting the open Web. This is a great start, but it is only a start.
               We want these opportunities to exist at all layers of our Web experience.
-            {% endtrans %}
+            {% endwith %}
             </p>
           </div>
         </div>
       </section>
 
       <section class="sub-section">
-        <h3>{{ _('Firefox for Windows, Mac and Linux') }}</h3>
+        <h3>Firefox for Windows, Mac and Linux</h3>
 
         <div class="overlay-wrap">
           <aside class="pull">
             <blockquote>
               <p>
-              {% trans %}
                 Firefox will always be the part of the Mozilla mission that
                 people can see, feel and touch.
-              {% endtrans %}
               </p>
             </blockquote>
           </aside>
 
           <div class="overlay">
             <p>
-            {% trans
-                cmdline_url='https://hacks.mozilla.org/2012/08/new-firefox-command-line-helps-you-develop-faster/',
-                console_url='https://developer.mozilla.org/docs/Tools/Web_Console',
-                tilt_url='https://blog.mozilla.org/tilt/' %}
+            {% with cmdline_url='https://hacks.mozilla.org/2012/08/new-firefox-command-line-helps-you-develop-faster/',
+                    console_url='https://developer.mozilla.org/docs/Tools/Web_Console',
+                    tilt_url='https://blog.mozilla.org/tilt/'
+            %}
               Firefox will always be the part of the Mozilla mission that people
               can see, feel and touch. We are excited by the progress and innovation
               we have seen with the desktop version of Firefox over the past year.
@@ -233,11 +214,10 @@
               like <a href="{{ cmdline_url }}" rel="external" hreflang="en-US">Developer Command Line</a>,
               <a href="{{ console_url }}" rel="external" hreflang="en-US">Web Console</a>
               and <a href="{{ tilt_url }}" rel="external" hreflang="en-US">“Tilt” the 3D Page Inspector</a>.
-            {% endtrans %}
+            {% endwith %}
             </p>
 
             <p>
-            {% trans %}
               Recently, we have been experimenting with ways to integrate social
               functionality into Firefox. Firefox will support a new Social API that
               lets developers integrate social services directly into the browser.
@@ -245,40 +225,35 @@
               for integrating social networks, e-mail, finance, news and other
               applications into your Firefox experience. Our first experimental
               provider is Facebook.
-            {% endtrans %}
             </p>
           </div>
         </div>
       </section>
 
       <section class="sub-section">
-        <h3>{{ _('Webmaker: Teaching the world the Web') }}</h3>
+        <h3>Webmaker: Teaching the world the Web</h3>
 
         <div class="overlay-wrap">
           <aside class="pull">
             <blockquote>
               <p>
-              {% trans %}
                 The unique power of the Web is that anyone can make
                 and build with it.
-              {% endtrans %}
               </p>
             </blockquote>
           </aside>
 
           <div class="overlay">
             <p>
-            {% trans webmaker_url='https://webmaker.org' %}
+            {% with webmaker_url='https://webmaker.org' %}
               The unique power of the Web means that anyone can make and build
               with it. Our new educational offering, <a href="{{ webmaker_url }}" rel="external">Mozilla Webmaker</a>,
               will place that power in the hands of millions of new creators everywhere.
-            {% endtrans %}
+            {% endwith %}
             </p>
 
             <p>
-            {% trans
-                popcorn_url='https://popcorn.webmaker.org/',
-                thimble_url='https://thimble.webmaker.org/' %}
+            {% with popcorn_url='https://popcorn.webmaker.org/', thimble_url='https://thimble.webmaker.org/' %}
               Webmaker tools, projects and events help educators, youth, media-makers
               and everyday consumers around the world move from using the Web to
               making the Web. In 2013, Webmaker will mobilize a global community of
@@ -286,7 +261,7 @@
               revolutionary Webmaker software tools like <a href="{{ popcorn_url }}" rel="external">Popcorn</a>
               and <a href="{{ thimble_url }}" rel="external">Thimble</a>; and work together to
               build a more Web-literate planet.
-            {% endtrans %}
+            {% endwith %}
             </p>
           </div>
         </div>
@@ -294,7 +269,7 @@
 
       <div class="sub-section">
         <section class="c-media">
-          <h3>{{ _('Webmaker: Video') }}</h3>
+          <h3>Webmaker: Video</h3>
 
           {{ video(
               'webmakers-instructors.mp4',
@@ -306,25 +281,23 @@
       </div>
 
       <section class="sub-section">
-        <h3>{{ _('Advocating for Web standards') }}</h3>
+        <h3>Advocating for Web standards</h3>
 
         <div class="overlay-wrap">
 
           <p class="pull"><em>
-          {% trans %}
             Mozilla will continue to contribute to Web standards.
-          {% endtrans %}
           </em></p>
 
           <div class="overlay">
             <p>
-            {% trans
-                cofound_url='https://brendaneich.com/2004/06/the-non-world-non-wide-non-web/',
-                whatwg_url='https://whatwg.org/',
-                html5_url='http://dev.w3.org/html5/spec/Overview.html',
-                javascript_url='http://ecmascript.org/',
-                dbaron_url='http://dbaron.org/',
-                ocallahan_url='http://robert.ocallahan.org/' %}
+            {% with cofound_url='https://brendaneich.com/2004/06/the-non-world-non-wide-non-web/',
+                    whatwg_url='https://whatwg.org/',
+                    html5_url='http://dev.w3.org/html5/spec/Overview.html',
+                    javascript_url='http://ecmascript.org/',
+                    dbaron_url='http://dbaron.org/',
+                    ocallahan_url='http://robert.ocallahan.org/'
+            %}
               Mozilla has always contributed to Web standards, going back
               as far as the start of the project, and we will continue to do
               that moving forward. We <a href="{{ cofound_url }}" rel="external" hreflang="en-US">co-founded</a>
@@ -333,17 +306,15 @@
               <a href="{{ javascript_url }}" rel="external" hreflang="en-US">JavaScript standardization</a>. We
               have some of the top <a href="{{ dbaron_url }}" rel="external" hreflang="en-US">CSS</a> and
               <a href="{{ ocallahan_url }}" rel="external" hreflang="en-US">layout</a> experts in the world.
-            {% endtrans %}
+            {% endwith %}
             </p>
 
             <p>
-            {% trans %}
               Standards are a multi-vendor effort, but Mozilla is proud of
               the many technologies we have pioneered and submitted to standards
               bodies to make them interoperable for the Web as a whole. Some
               examples of these include geolocation, WebGL, the Gamepad API, Web
               Telephony and IndexedDB.
-            {% endtrans %}
             </p>
           </div>
         </div>
@@ -352,19 +323,16 @@
     </section>
 
     <section id="action" class="section">
-      <h2 class="section-title">{{ _('Action') }}</h2>
+      <h2 class="section-title">Action</h2>
 
       <section class="sub-section">
         <div class="overlay-wrap">
           <p class="pull"><em>
-            {% trans %}
               Fighting for you: Standing up for your security, privacy and freedom
-            {% endtrans %}
           </em></p>
 
           <div class="overlay">
             <p>
-            {% trans %}
               Mozilla is proudly non-profit and answers to no one but you.
               That means we're uniquely able to fight for users at a critical
               moment in the Web's history. Looking forward, we will mobilize
@@ -374,33 +342,30 @@
               to short-sighted government legislation. Together we will set the
               mobile Web free, reassert the vital importance of privacy and user
               sovereignty, and join others in building a more Web-literate world.
-            {% endtrans %}
             </p>
           </div>
         </div>
       </section>
 
       <section class="sub-section">
-        <h3>{{ _('Do Not Track') }}</h3>
+        <h3>Do Not Track</h3>
 
         <div class="overlay-wrap">
           <img class="media" src="{{ static('img/foundation/annualreport/2011/logo-donottrack.png') }}" alt="">
 
           <div class="overlay">
             <p>
-            {% trans %}
               Our Internet experiences involve more of our personal data,
               which forms a picture or profile of who we are online. The ability
               for organizations to monitor, log, store, use, correlate and sell
               information about who we are and what we do has huge implications
               for individuals and for society.
-            {% endtrans %}
             </p>
 
             <p>
-            {% trans
-                dnt_url='https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature',
-                dntfxos_url='https://blog.mozilla.org/privacy/2012/02/28/do-not-track-goes-mobile-mozilla-demos-preference-at-mobile-world-congress/' %}
+            {% with dnt_url='https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature',
+                    dntfxos_url='https://blog.mozilla.org/privacy/2012/02/28/do-not-track-goes-mobile-mozilla-demos-preference-at-mobile-world-congress/'
+            %}
               In an effort to give users more control over their Web experiences,
               we developed the <a href="{{ dnt_url }}" rel="external">Do Not Track</a> feature
               in Firefox. We also became the first browser manufacturer to offer
@@ -409,57 +374,50 @@
               so that user privacy settings can be controlled on a system-wide
               level to ensure that every third-party application on a user's device
               respects their choice.
-            {% endtrans %}
+            {% endwith %}
             </p>
 
             <p>
-            {% trans %}
               Do Not Track is important because it gives users a voice online
               to express their preference for privacy and personalization. It
               captures the user’s intent and allows them to put their hand up
               and ask for privacy online.
-            {% endtrans %}
             </p>
           </div>
         </div>
       </section>
 
       <section class="sub-section">
-        {# L10n: These acronyms don't require translation, but the structure of the heading may change for some locales. #}
-        <h3>{{ _('SOPA / PIPA & ACTA') }}</h3>
+        <h3>SOPA / PIPA & ACTA</h3>
 
         <div class="overlay-wrap">
           <img class="media" src="{{ static('img/foundation/annualreport/2011/act-sopa.jpg') }}" alt="">
 
           <div class="overlay">
-            <h4>{{ _('SOPA/PIPA') }}</h4>
+            <h4>SOPA/PIPA</h4>
 
             <p>
-            {% trans %}
               Mozilla was instrumental in the movement to motivate the Web
               community to act against the Stop Online Piracy Act and the Protect
               IP act. These laws, had they gone into effect, would have given the
               US government and private businesses incredible censorship powers
               that would have global ramifications, weaken the Internet's security
               and discourage innovation and investment worldwide.
-            {% endtrans %}
             </p>
 
             <p>
-            {% trans %}
               Mozilla was one of many organizations that blacked out its websites
               in opposition to the SOPA/PIPA bills in congress. For the first time,
               the Web community of more than 15 million people came together to
               speak against a policy that affected the Web as a whole. This historic
               protest represented a significant turning point for the Web as a way
               to engage the electorate and mobilize citizens for change.
-            {% endtrans %}
             </p>
 
             <h4>ACTA</h4>
 
             <p>
-            {% trans acta_url='https://blog.lizardwrangler.com/2012/02/10/acta-is-a-bad-way-to-develop-internet-policy/' %}
+            {% with acta_url='https://blog.lizardwrangler.com/2012/02/10/acta-is-a-bad-way-to-develop-internet-policy/' %}
               Early in 2012, Mozilla warned against the ratification of the
               Anti-Counterfeiting Trade Agreement (<abbr>ACTA</abbr>) by the
               European Parliament. <a href="{{ acta_url }}" rel="external" hreflang="en-US">In a blog post</a>,
@@ -469,20 +427,20 @@
               of all the stakeholders. After massive street protests of Net-savvy
               citizens across Europe, the European Parliament rejected ACTA on
               July 4th in an unequivocal vote.
-            {% endtrans %}
+            {% endwith %}
             </p>
           </div>
         </div>
       </section>
 
       <section class="sub-section">
-        <h3>{{ _('Firefox Flicks') }}</h3>
+        <h3>Firefox Flicks</h3>
 
         <div class="overlay-wrap">
           <img class="media" src="{{ static('img/foundation/annualreport/2011/logo-firefoxflicks.png') }}" alt="">
           <div class="overlay">
             <p>
-            {% trans flicks_url='https://firefoxflicks.mozilla.org/' %}
+            {% with flicks_url='https://firefoxflicks.mozilla.org/' %}
               This year we brought back <a href="{{ flicks_url }}" rel="external">Firefox Flicks</a>
               — a video challenge for aspiring filmmakers, animators and creatives
               from around the world to produce and submit short films. These films
@@ -492,20 +450,20 @@
               using their own voices. Celebrities and film-industry experts helped
               select the regional winners from more than 400 submissions from
               thousands of filmmakers worldwide.
-            {% endtrans %}
+            {% endwith %}
             </p>
           </div>
         </div>
       </section>
 
       <section class="sub-section">
-        <h3>{{ _('Collusion') }}</h3>
+        <h3>Collusion</h3>
 
         <div class="left overlay-wrap">
           <img class="media" src="{{ static('img/foundation/annualreport/2011/act-collusion.jpg') }}" alt="">
           <div class="overlay">
             <p>
-            {% trans collusion_url='https://addons.mozilla.org/firefox/addon/lightbeam/' %}
+            {% with collusion_url='https://addons.mozilla.org/firefox/addon/lightbeam/' %}
               <a href="{{ collusion_url }}" rel="external" hreflang="en-US">Mozilla Collusion</a>
               gives consumers a powerful tool to protect their privacy, arming
               them with transparency, facts and the power to make their own
@@ -514,14 +472,14 @@
               users to see who is tracking them across the Web. It shows, in real
               time, how that data creates a spider-web of interaction between
               companies and other trackers.
-            {% endtrans %}
+            {% endwith %}
             </p>
           </div>
         </div>
 
         <figure class="media">
-          <a class="vid-youtube" href="https://www.youtube.com/watch?v=f_f5wNw-2c0" title="{{ _('Click to view this video') }}">
-            <img src="{{ static('img/foundation/annualreport/2011/vid-kovacsted.jpg') }}" alt="{{ _('Watch a video of Mozilla CEO Gary Kovacs presenting Collusion at TED') }}">
+          <a class="vid-youtube" href="https://www.youtube.com/watch?v=f_f5wNw-2c0" title="Click to view this video">
+            <img src="{{ static('img/foundation/annualreport/2011/vid-kovacsted.jpg') }}" alt="Watch a video of Mozilla CEO Gary Kovacs presenting Collusion at TED">
           </a>
         </figure>
 
@@ -530,16 +488,15 @@
     </section>
 
     <section id="community" class="section">
-      <h2 class="section-title">{{ _('Community') }}</h2>
+      <h2 class="section-title">Community</h2>
 
       <section class="sub-section">
         <aside class="pull">
           <img class="media" src="{{ static('img/foundation/annualreport/2011/com-intro.png') }}" alt="">
-          <h3><span>{{ _('Our success begins with you.') }}</span></h3>
+          <h3><span>Our success begins with you.</span></h3>
         </aside>
 
         <p>
-        {% trans %}
           Mozilla is an organization that is fundamentally about people and
           making the Web better for everyone. The Mozilla community is essential
           to the success of the project. We can’t fight for an open, hackable and
@@ -548,24 +505,23 @@
           people are responsible for coding, testing, localizing, hosting
           hackfests and summer code parties, teaching Webmakers, marketing,
           evangelizing Mozilla products and much more.
-        {% endtrans %}
       {% if request.locale.startswith('en') %}
-        {% trans contribute_url=url('mozorg.contribute') %}
+        {% with contribute_url=url('mozorg.contribute') %}
           Learn more about how you can <a href="{{ contribute_url }}" rel="external" hreflang="en-US">get involved with Mozilla</a>.
-        {% endtrans %}
+        {% endwith %}
       {% endif %}
         </p>
       </section>
 
       <section class="sub-section">
-        <h3>{{ _('Mozilla Reps') }}</h3>
+        <h3>Mozilla Reps</h3>
 
         <div class="overlay-wrap left">
           <img class="media" src="{{ static('img/foundation/annualreport/2011/com-reps.jpg') }}" alt="">
 
           <div class="overlay">
             <p>
-            {% trans reps_url='https://reps.mozilla.org/' %}
+            {% with reps_url='https://reps.mozilla.org/' %}
               The <a href="{{ reps_url }}" rel="external">Mozilla Reps</a> program,
               designed to empower volunteers to become official representatives of
               Mozilla in their region, has grown to more than 350 people in more
@@ -576,7 +532,7 @@
               organized more than 700 events around the world and have successfully
               recruited and trained hundreds of new contributors across dozens of
               functional areas.
-            {% endtrans %}
+            {% endwith %}
             </p>
           </div>
         </div>
@@ -585,12 +541,12 @@
       </section>
 
       <section class="sub-section">
-        <h3>{{ _('MozCamps') }}</h3>
+        <h3>MozCamps</h3>
 
         <aside class="video left">
           <img class="media" src="{{ static('img/foundation/annualreport/2011/logo-mozcamp.png') }}" alt="">
-          <a class="media" href="https://videos.cdn.mozilla.net/serv/drafts/MozCamp-Latam.webm" data-video-source="https://videos.cdn.mozilla.net/serv/drafts/MozCamp-Latam" title="{{ _('Click to play this video') }}">
-            <img src="{{ static('img/foundation/annualreport/2011/vid-mozcamp.jpg') }}" alt="{{ _('Watch this video showing some of the activities from MozCamp in Latin America') }}">
+          <a class="media" href="https://videos.cdn.mozilla.net/serv/drafts/MozCamp-Latam.webm" data-video-source="https://videos.cdn.mozilla.net/serv/drafts/MozCamp-Latam" title="Click to play this video">
+            <img src="{{ static('img/foundation/annualreport/2011/vid-mozcamp.jpg') }}" alt="Watch this video showing some of the activities from MozCamp in Latin America">
           </a>
         </aside>
 
@@ -598,47 +554,41 @@
           <img class="media" src="{{ static('img/foundation/annualreport/2011/com-mozcamp.jpg') }}" alt="">
           <div class="overlay">
             <p>
-            {% trans %}
               MozCamps are regional events that bring together core paid and
               volunteer Mozilla staff members from all areas of the project for
               two full days of presentations, discussions, brainstorms, work
               sprints, hackathons and, of course, a little bit of fun.
-            {% endtrans %}
             </p>
 
             <p>
-            {% trans %}
               While the main focus is on community leaders and core contributors,
               MozCamps also aim to train up future leaders — those Mozilla contributors
               who have been particularly active in the past six months and
               represent the next generation of Mozilla leadership in the
               community.
-            {% endtrans %}
             </p>
 
             <p>
-            {% trans %}
               This year‘s MozCamps were held in Buenos Aires, Warsaw and
               Singapore, bringing together more than 300 employees and 600
               volunteers.
-            {% endtrans %}
             </p>
           </div>
         </div>
       </section>
 
       <section class="sub-section">
-        <h3>{{ _('Emerging Communities') }}</h3>
+        <h3>Emerging Communities</h3>
 
         <div class="overlay-wrap left">
           <img class="media" src="{{ static('img/foundation/annualreport/2011/com-emerging.jpg') }}" alt="">
           <div class="overlay">
             <p>
-            {% trans
-                tunisia_url='http://mozilla-tunisia.org/',
-                kenya_url='http://www.mozilla-kenya.org/',
-                philippines_url='http://www.mozillaphilippines.org/',
-                myanmar_url='http://mozillamyanmar.org/' %}
+            {% with tunisia_url='http://mozilla-tunisia.org/',
+                    kenya_url='http://www.mozilla-kenya.org/',
+                    philippines_url='http://www.mozillaphilippines.org/',
+                    myanmar_url='http://mozillamyanmar.org/'
+            %}
               Some of the fastest growing and most dynamic communities are some
               of our youngest communities. They can be found in the Middle East,
               Africa and South East Asia and many of their members have been invited
@@ -651,7 +601,7 @@
               localization, QA, marketing and development. One of the newest Mozilla
               communities launched in 2012 is in
               <a href="{{ myanmar_url }}" rel="external">Myanmar</a>.
-            {% endtrans %}
+            {% endwith %}
             </p>
           </div>
         </div>
@@ -659,161 +609,145 @@
       </section>
 
       <section class="sub-section">
-        <h3>{{ _('Contributor Stories') }}</h3>
+        <h3>Contributor Stories</h3>
 
         <div class="jcarousel-container">
           <div class="jcarousel-clip">
             <ul id="story-slider">
               <li id="story-chit" class="vcard sub-section">
                 <header>
-                  <h4 class="fn">{{ _('Chit Thiri Maung') }}</h4>
+                  <h4 class="fn">Chit Thiri Maung</h4>
                   <h5>
-                    <span class="role">{{ _('Mozilla Rep, Web Developer') }}</span>
-                    <span class="country-name">{{ _('Myanmar') }}</span>
+                    <span class="role">Mozilla Rep, Web Developer</span>
+                    <span class="country-name">Myanmar</span>
                   </h5>
                 </header>
                 <a href="https://videos.cdn.mozilla.net/serv/drafts/Contributorstory1.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/chit-poster.jpg') }}">
                   <img class="media" src="{{ static('img/foundation/annualreport/2011/contributors/chit-thumb.jpg') }}" alt="">
                   <p class="note">
-                  {% trans %}
                     Chit started contributing to Mozilla in 2010 and has been
                     leading community building efforts in Myanmar ever since.
-                  {% endtrans %}
                   </p>
                 </a>
               </li>
 
               <li id="story-viking" class="vcard sub-section">
                 <header>
-                  <h4 class="fn">{{ _('Viking Karwur') }}</h4>
+                  <h4 class="fn">Viking Karwur</h4>
                   <h5>
-                    <span class="role">{{ _('Mozilla Rep & Community Lead') }}</span>
-                    <span class="country-name">{{ _('Indonesia') }}</span>
+                    <span class="role">Mozilla Rep & Community Lead</span>
+                    <span class="country-name">Indonesia</span>
                   </h5>
                 </header>
                 <a href="https://videos.cdn.mozilla.net/serv/drafts/Contributorstory2.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/viking-poster.jpg') }}">
                   <img class="media" src="{{ static('img/foundation/annualreport/2011/contributors/viking-thumb.jpg') }}" alt="">
                   <p class="note">
-                  {% trans %}
                     Viking organized the first ever Firefox launch party in
                     Indonesia back in 2007 and has led community marketing efforts
                     across the country.
-                  {% endtrans %}
                   </p>
                 </a>
               </li>
 
               <li id="story-keng" class="vcard sub-section">
                 <header>
-                  <h4 class="fn">{{ _('Patipat “Keng” Susumpow') }}</h4>
+                  <h4 class="fn">Patipat “Keng” Susumpow</h4>
                   <h5>
-                    <span class="role">{{ _('Mozilla Rep & Localization Lead') }}</span>
-                    <span class="country-name">{{ _('Thailand') }}</span>
+                    <span class="role">Mozilla Rep & Localization Lead</span>
+                    <span class="country-name">Thailand</span>
                   </h5>
                 </header>
                 <a href="https://videos.cdn.mozilla.net/serv/drafts/Contributorstory4.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/keng-poster.jpg') }}">
                   <img class="media" src="{{ static('img/foundation/annualreport/2011/contributors/keng-thumb.jpg') }}" alt="">
                   <p class="note">
-                  {% trans %}
                     Keng kickstarted efforts to get Firefox localized in Thai and
                     has been a community lead since 2008.
-                  {% endtrans %}
                   </p>
                 </a>
               </li>
 
               <li id="story-claire" class="vcard sub-section">
                 <header>
-                  <h4 class="fn">{{ _('Claire Corgnou') }}</h4>
+                  <h4 class="fn">Claire Corgnou</h4>
                   <h5>
-                    <span class="role">{{ _('Mozilla Rep & Communications Lead') }}</span>
-                    <span class="country-name">{{ _('France') }}</span>
+                    <span class="role">Mozilla Rep & Communications Lead</span>
+                    <span class="country-name">France</span>
                   </h5>
                 </header>
                 <a href="https://videos.cdn.mozilla.net/serv/drafts/Contributorstory5.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/claire-poster.jpg') }}">
                   <img class="media" src="{{ static('img/foundation/annualreport/2011/contributors/claire-thumb.jpg') }}" alt="">
                   <p class="note">
-                  {% trans %}
                     Claire started contributing to Mozilla in 2009 and is the editor
                     of the Bonjour Mozilla blog.
-                  {% endtrans %}
                   </p>
                 </a>
               </li>
 
               <li id="story-haitham" class="vcard sub-section">
                 <header>
-                  <h4 class="fn">{{ _('Haitham El-Ghareeb') }}</h4>
+                  <h4 class="fn">Haitham El-Ghareeb</h4>
                   <h5>
-                    <span class="role">{{ _('Mozilla Rep, Open Source Evangelist') }}</span>
-                    <span class="country-name">{{ _('Egypt') }}</span>
+                    <span class="role">Mozilla Rep, Open Source Evangelist</span>
+                    <span class="country-name">Egypt</span>
                   </h5>
                 </header>
                 <a href="https://videos.cdn.mozilla.net/serv/drafts/Contributorstory6.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/haitham-poster.jpg') }}">
                   <img class="media" src="{{ static('img/foundation/annualreport/2011/contributors/haitham-thumb.jpg') }}" alt="">
                   <p class="note">
-                  {% trans %}
                     A passionate open source evangelist in his native Egypt, Haitham
                     became a Mozilla Rep in early 2011.
-                  {% endtrans %}
                   </p>
                 </a>
               </li>
 
               <li id="story-ioana" class="vcard sub-section">
                 <header>
-                  <h4 class="fn">{{ _('Ioana Chiorean') }}</h4>
+                  <h4 class="fn">Ioana Chiorean</h4>
                   <h5>
-                    <span class="role">{{ _('Mozilla Rep, QA Lead') }}</span>
-                    <span class="country-name">{{ _('Romania') }}</span>
+                    <span class="role">Mozilla Rep, QA Lead</span>
+                    <span class="country-name">Romania</span>
                   </h5>
                 </header>
                 <a href="https://videos.cdn.mozilla.net/serv/drafts/Contributorstory7.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/ioana-poster.jpg') }}">
                   <img class="media" src="{{ static('img/foundation/annualreport/2011/contributors/ioana-thumb.jpg') }}" alt="">
                   <p class="note">
-                  {% trans %}
                     Ioana has been driving Mozilla hackathons across her native Romania
                     since 2010.
-                  {% endtrans %}
                   </p>
                 </a>
               </li>
 
               <li id="story-brian" class="vcard sub-section">
                 <header>
-                  <h4 class="fn">{{ _('Brian King') }}</h4>
+                  <h4 class="fn">Brian King</h4>
                   <h5>
-                    <span class="role">{{ _('Mozilla Rep, Add-ons Developer') }}</span>
-                    <span class="country-name">{{ _('Slovenia') }}</span>
+                    <span class="role">Mozilla Rep, Add-ons Developer</span>
+                    <span class="country-name">Slovenia</span>
                   </h5>
                 </header>
                 <a href="https://videos.cdn.mozilla.net/serv/drafts/Contributorstory8.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/brian-poster.jpg') }}">
                   <img class="media" src="{{ static('img/foundation/annualreport/2011/contributors/brian-thumb.jpg') }}" alt="">
                   <p class="note">
-                  {% trans %}
                     Brian has been contributing to Mozilla for more than a decade and
                     recently sat on the Mozilla Reps Council.
-                  {% endtrans %}
                   </p>
                 </a>
               </li>
 
               <li id="story-mohomodou" class="vcard sub-section">
                 <header>
-                  <h4 class="fn">{{ _('Mohomodou Houssouba') }}</h4>
+                  <h4 class="fn">Mohomodou Houssouba</h4>
                   <h5>
-                    <span class="role">{{ _('Localization Lead') }}</span>
-                    <span class="country-name">{{ _('Mali') }}</span>
+                    <span class="role">Localization Lead</span>
+                    <span class="country-name">Mali</span>
                   </h5>
                 </header>
                 <a href="https://videos.cdn.mozilla.net/serv/drafts/Contributorstory9.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/mohomodou-poster.jpg') }}">
                   <img class="media" src="{{ static('img/foundation/annualreport/2011/contributors/mohomodou-thumb.jpg') }}" alt="">
                   <p class="note">
-                  {% trans %}
                     Passionate about reviving Songay, a dialect in his native Mali,
                     Mohomodou has led localization efforts to get Firefox translated
                     into Songay.
-                  {% endtrans %}
                   </p>
                 </a>
               </li>
@@ -825,49 +759,41 @@
     </section>
 
     <section id="sustainability" class="section">
-      <h2 class="section-title">{{ _('Sustainability and Partnerships') }}</h2>
+      <h2 class="section-title">Sustainability and Partnerships</h2>
 
       <p>
-      {% trans %}
         Along with this annual report, we released our audited financial
         statements for 2011. Mozilla remains well positioned, both financially
         and organizationally, to advance our mission of building openness,
         freedom and participation into the Internet.
-      {% endtrans %}
       </p>
 
       <p>
-      {% trans %}
         Mozilla remains financially healthy; we continue to hire more
         people globally, we’ve opened new Mozilla Spaces around the world,
         have launched significant new initiatives such as Firefox OS and
         are able to support those with viable resources.
-      {% endtrans %}
       </p>
 
       <p>
-      {% trans %}
         The majority of our revenue comes from the search functionality
         in the Firefox browser. Google is the largest source of revenue and
         in December 2011, we announced that we negotiated a significant and
         mutually beneficial revenue agreement with Google. This new agreement
         extends our long term search relationship with Google for at least
         three additional years.
-      {% endtrans %}
       </p>
 
       <p>
-      {% trans %}
         Mozilla has a number of other relationships in the Web community,
         as well as new relationships with mobile operators, device manufacturers,
         third-party content partners and other players in the mobile ecosystem.
-      {% endtrans %}
       </p>
 
       <ul class="mzp-u-list-styled">
-        <li><a class="sus-faq" href="{{ url('foundation.annualreport.2011faq') }}">{{ _('FAQ') }}</a></li>
-        <li><a class="sus-fin" href="https://static.mozilla.com/moco/en-US/pdf/Mozilla%20Foundation%20and%20Subsidiaries%202011%20Audited%20Financial%20Statement.pdf" hreflang="en-US">{{ _('2011 Audited Financial Statement') }} <small>{{ _('Download PDF') }}</small></a></li>
-        <li><a class="sus-990" href="https://static.mozilla.com/moco/en-US/pdf/Mozilla%20Foundation%20-%202011%20Public%20Disclosure%20990.pdf" hreflang="en-US">{{ _('2011 Form 990') }} <small>{{ _('Download PDF') }}</small></a></li>
+        <li><a class="sus-faq" href="{{ url('foundation.annualreport.2011faq') }}">FAQ</a></li>
+        <li><a class="sus-fin" href="https://static.mozilla.com/moco/en-US/pdf/Mozilla%20Foundation%20and%20Subsidiaries%202011%20Audited%20Financial%20Statement.pdf" hreflang="en-US">2011 Audited Financial Statement <small>Download PDF</small></a></li>
+        <li><a class="sus-990" href="https://static.mozilla.com/moco/en-US/pdf/Mozilla%20Foundation%20-%202011%20Public%20Disclosure%20990.pdf" hreflang="en-US">2011 Form 990 <small>Download PDF</small></a></li>
       </ul>
     </section>
 

@@ -5,7 +5,6 @@
 from django import forms
 
 from bedrock.mozorg.forms import HoneyPotWidget
-from lib.l10n_utils.dotlang import _, _lazy
 
 FRAUD_REPORT_FILE_SIZE_LIMIT = 5242880  # 5MB
 
@@ -15,12 +14,12 @@ class FraudReportForm(forms.Form):
         max_length=2000,
         required=True,
         error_messages={
-            "required": _lazy("Please enter a URL."),
+            "required": "Please enter a URL.",
         },
         widget=forms.TextInput(
             attrs={
                 "size": 40,
-                "placeholder": _lazy("http://offendingsite.com"),
+                "placeholder": "http://offendingsite.com",
                 "class": "required fill-width",
                 "required": "required",
                 "aria-required": "true",
@@ -29,19 +28,19 @@ class FraudReportForm(forms.Form):
     )
     input_category = forms.ChoiceField(
         choices=(
-            ("Charging for software", _lazy("Charging for software")),
-            ("Collecting personal information", _lazy("Collecting personal information")),
-            ("Domain name violation", _lazy("Domain name violation")),
-            ("Logo misuse/modification", _lazy("Logo misuse/modification")),
-            ("Distributing modified Firefox/malware", _lazy("Distributing modified Firefox/malware")),
+            ("Charging for software", "Charging for software"),
+            ("Collecting personal information", "Collecting personal information"),
+            ("Domain name violation", "Domain name violation"),
+            ("Logo misuse/modification", "Logo misuse/modification"),
+            ("Distributing modified Firefox/malware", "Distributing modified Firefox/malware"),
         ),
         required=True,
         error_messages={
-            "required": _lazy("Please select a category."),
+            "required": "Please select a category.",
         },
         widget=forms.Select(
             attrs={
-                "title": _lazy("Category"),
+                "title": "Category",
                 "class": "required",
                 "required": "required",
                 "aria-required": "true",
@@ -50,18 +49,18 @@ class FraudReportForm(forms.Form):
     )
     input_product = forms.ChoiceField(
         choices=(
-            ("Firefox", _lazy("Firefox")),
-            ("SeaMonkey", _lazy("SeaMonkey")),
-            ("Thunderbird", _lazy("Thunderbird")),
-            ("Other Mozilla Product/Project", _lazy("Other Mozilla Product/Project (specify)")),
+            ("Firefox", "Firefox"),
+            ("SeaMonkey", "SeaMonkey"),
+            ("Thunderbird", "Thunderbird"),
+            ("Other Mozilla Product/Project", "Other Mozilla Product/Project (specify)"),
         ),
         required=True,
         error_messages={
-            "required": _lazy("Please select a product."),
+            "required": "Please select a product.",
         },
         widget=forms.Select(
             attrs={
-                "title": _lazy("Product"),
+                "title": "Product",
                 "class": "required",
                 "required": "required",
                 "aria-required": "true",
@@ -78,7 +77,7 @@ class FraudReportForm(forms.Form):
         max_length=254,
         required=False,
         error_messages={
-            "invalid": _lazy("Please enter a valid email address"),
+            "invalid": "Please enter a valid email address",
         },
         widget=forms.TextInput(attrs={"size": 20, "class": "fill-width"}),
     )
@@ -90,7 +89,7 @@ class FraudReportForm(forms.Form):
 
         if attachment:
             if attachment.size > FRAUD_REPORT_FILE_SIZE_LIMIT:
-                raise forms.ValidationError(_("Attachment must not exceed 5MB"))
+                raise forms.ValidationError("Attachment must not exceed 5MB")
 
         return attachment
 
@@ -98,4 +97,4 @@ class FraudReportForm(forms.Form):
         honeypot = self.cleaned_data.pop("office_fax", None)
 
         if honeypot:
-            raise forms.ValidationError(_("Your submission could not be processed"))
+            raise forms.ValidationError("Your submission could not be processed")

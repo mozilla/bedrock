@@ -10,8 +10,8 @@
 
 {% extends "mozorg/home/base.html" %}
 
-{% block page_title %}{{ _('Internet for people, not profit') }}{% endblock %}
-{% block page_desc %}{{ _('Mozilla is the not-for-profit behind the lightning fast Firefox browser. We put people over profit to give everyone more power online.') }}{% endblock %}
+{% block page_title %}Internet for people, not profit{% endblock %}
+{% block page_desc %}Mozilla is the not-for-profit behind the lightning fast Firefox browser. We put people over profit to give everyone more power online.{% endblock %}
 
 {% set show_fundraising_banner = switch('fundraising-banner-eoy2021') and donate_params and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}

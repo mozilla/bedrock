@@ -6,50 +6,47 @@
 
 {% extends "foundation/base.html" %}
 
-{% block page_title %}{{ _('Mozilla.org Site Licensing Policies') }}{% endblock %}
+{% block page_title %}Mozilla.org Site Licensing Policies{% endblock %}
 
 {% block article_title %}
-  {{ _('Mozilla.org Site Licensing Policies') }}
+  Mozilla.org Site Licensing Policies
 {% endblock %}
 
 {% block article_content %}
   <p>
-  {% trans %}
     Unless otherwise indicated, the text of documents in this collection is available under the Creative
     Commons Attribution Share-Alike 3.0 Unported license, or any later version.
-  {% endtrans %}
   </p>
   <p>
     <a rel="license" href="https://creativecommons.org/licenses/by-sa/3.0/deed.locale">
-      <img alt="{{ _('Creative Commons License') }}"src="https://creativecommons.org/images/public/somerights20.gif" />
+      <img alt="Creative Commons License"src="https://creativecommons.org/images/public/somerights20.gif" />
     </a>
   </p>
   <p>
-  {% trans
-    license3='https://creativecommons.org/licenses/by-sa/3.0/deed.locale',
-    legalcode='https://creativecommons.org/licenses/by-sa/3.0/legalcode'
+  {% with license3='https://creativecommons.org/licenses/by-sa/3.0/deed.locale',
+          legalcode='https://creativecommons.org/licenses/by-sa/3.0/legalcode'
   %}
     A <a href="{{ license3 }}">summary</a> of the terms of this license is available, as well as its <a href="{{ legalcode }}">detailed terms</a>.
-  {% endtrans %}
+  {% endwith %}
   </p>
   <p>
-  {% trans policy=url('foundation.trademarks.policy') %}
+  {% with policy=url('foundation.trademarks.policy') %}
     Rights in the trademarks and service marks of Mozilla, as well as the look and feel of this website, are not licensed under the terms mentioned above. However, we support you making full use of your rights under fair use, fair dealing and other exceptions and limitations to trademark, and Mozilla also allows some additional uses under our <a href="{{ policy }}">Trademark Policy</a>. Please see our Trademark Policy for further information.
-  {% endtrans %}
+  {% endwith %}
   </p>
-  <p>{{ _('If you have any questions about complying with our licensing terms for this collection, you should email:') }}</p>
+  <p>If you have any questions about complying with our licensing terms for this collection, you should email:</p>
 
   <ul class="mzp-u-list-styled">
-    <li>{{ _('<a href="mailto:%(email)s">%(email)s</a> for general trademark questions; or'|format(email='trademarks@mozilla.com')) }}
-    <li>{{ _('<a href="mailto:%(email)s">%(email)s</a> for permission to use Mozilla’s trademarks or logos; or'|format(email='trademark-permissions@mozilla.com')) }} </li>
-    <li>{{ _('<a href="mailto:%(email)s">%(email)s</a> for copyright questions.'|format(email='licensing@mozilla.org')) }}</li>
+    <li><a href="mailto:trademarks@mozilla.com">trademarks@mozilla.com</a> for general trademark questions; or</li>
+    <li><a href="mailto:trademark-permissions@mozilla.com">trademark-permissions@mozilla.com</a> for permission to use Mozilla’s trademarks or logos; or</li>
+    <li><a href="mailto:licensing@mozilla.org">licensing@mozilla.org</a> for copyright questions.</li>
   </ul>
 
   <p>
-  {% trans licensing=url('foundation.licensing') %}
+  {% with licensing=url('foundation.licensing') %}
     For more information about these and other licensing policies, please see our
     <a href="{{ licensing }}">Licensing Policies</a> page.
-  {% endtrans %}
+  {% endwith %}
   </p>
 
 {% endblock %}

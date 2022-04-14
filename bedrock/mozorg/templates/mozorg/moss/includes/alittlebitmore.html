@@ -6,31 +6,31 @@
 
 <div class="t-medium">
   <section class="mzp-l-content moss-section">
-    <h2 class="moss-section-heading">{{ _('A little bit more') }}</h2>
+    <h2 class="moss-section-heading">A little bit more</h2>
 
     <ul class="moss-list moss-list-half">
       <li>
         {{ high_res_img('img/mozorg/moss/selection-committee.jpg', {'width': '450'}) }}
 
-        <h3 class="moss-section-subhead">{{ _('Selection Committee') }}</h3>
+        <h3 class="moss-section-subhead">Selection Committee</h3>
 
         <p>
-        {% trans directory='https://github.com/mozilla/MOSS-Directory' %}
+        {% with directory='https://github.com/mozilla/MOSS-Directory' %}
           Meet the <a href="{{ directory }}">Mozillians and Open Source experts</a>
           who will be making the decision on your application.
-        {% endtrans %}
+        {% endwith %}
         </p>
       </li>
       <li>
         {{ high_res_img('img/mozorg/moss/past-recipients.jpg', {'width': '450'}) }}
 
-        <h3 class="moss-section-subhead">{{ _('Past Recipients') }}</h3>
+        <h3 class="moss-section-subhead">Past Recipients</h3>
 
         <p>
-        {% trans url1='https://github.com/mozilla/MOSS-Awards-Directory' %}
+        {% with url1='https://github.com/mozilla/MOSS-Awards-Directory' %}
           Take a look at some of the <a href="{{ url1 }}">previously funded
           projects</a> and the people behind them.
-        {% endtrans %}
+        {% endwith %}
         </p>
       </li>
     </ul>

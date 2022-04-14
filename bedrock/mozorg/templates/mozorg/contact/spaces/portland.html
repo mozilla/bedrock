@@ -6,7 +6,7 @@
 
 {% extends "mozorg/contact/spaces/base.html" %}
 
-{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Portland') }}{% endblock %}
+{% block page_title %}Contacts, Spaces and Communities — Portland{% endblock %}
 
 {% block map %}
   {{ map_image('img/contact/osm/spaces/portland-large.jpg', 'img/contact/osm/spaces/portland-large-high-res.jpg') }}
@@ -22,20 +22,16 @@
   <div id="entry-container">
     <section class="entry entry-space" id="portland" data-tab="spaces">
       <div itemscope itemtype="http://schema.org/Organization" class="card vcard">
-        {# L10n: This span around the Mozilla name is presentational. It's included in the string in case some locales need to change the order. #}
-        <h2 itemprop="name" class="fn org">{{ _('<span>Mozilla</span> Portland') }}</h2>
+        <h2 itemprop="name" class="fn org"><span>Mozilla</span> Portland</h2>
         <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" class="adr">
-        {# L10n: Addresses are marked up with hCard microformat and Schema.org. See http://microformats.org/wiki/h-card and http://schema.org/PostalAddress #}
-        {% trans %}
           Brewery Block 2<br>
           <span itemprop="streetAddress" class="street-address">1120 NW Couch St, Suite 320</span><br>
           <span itemprop="addressLocality" class="locality">Portland</span>, <abbr itemprop="addressRegion" class="region" title="Oregon">OR</abbr> <span itemprop="postalCode" class="postal-code">97209</span><br>
           <span itemprop="addressCountry" class="country-name">USA</span>
-        {% endtrans %}
         </p>
 
         <ul class="extra">
-          <li><a href="https://wiki.mozilla.org/People:_MozSpaces_Guidelines:_Portland" class="book">{{ _('Space operations guide') }}</a></li>
+          <li><a href="https://wiki.mozilla.org/People:_MozSpaces_Guidelines:_Portland" class="book">Space operations guide</a></li>
         </ul>
 
         <figure class="feature-img">

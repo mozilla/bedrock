@@ -6,7 +6,7 @@
 
 {% extends "mozorg/about-base.html" %}
 
-{% block page_title %}{{ _('Forums') }}{% endblock %}
+{% block page_title %}Forums{% endblock %}
 {% set body_id = "about-forums" %}
 
 {% block page_css %}
@@ -19,34 +19,34 @@
 <section class="lead-content">
 
   <p>
-  {{ _('Mozilla provides discussion forums to enable communication among the Mozilla community.') }}
-  {{ _('As of April 2021 some of our forums have changed to provide a better experience for our community.') }}
-  {{ _('See our current options below.') }}
+  Mozilla provides discussion forums to enable communication among the Mozilla community.
+  As of April 2021 some of our forums have changed to provide a better experience for our community.
+  See our current options below.
   </p>
 
   <p>
-    {{ _('Please note that participants in all forums and methods of communicating are expected to adhere to the <a href="%s">Community Participation Guidelines</a>.')|format(url('mozorg.about.governance.policies.participation')) }}
+    Please note that participants in all forums and methods of communicating are expected to adhere to the <a href="{{ url('mozorg.about.governance.policies.participation') }}">Community Participation Guidelines</a>.
   </p>
 
 </section>
 
-<h2 id="discourse">{{ _('Web & Email Forums (Discourse)') }}</h2>
+<h2 id="discourse">Web & Email Forums (Discourse)</h2>
 
 <p>
-{{ _('We invite you to participate in discussions across all topics related to the project and our development efforts at <a href="%(discourse_url)s">Mozilla’s Discourse server</a>.')|format(discourse_url='https://discourse.mozilla.org/') }}
-{{ _('If you prefer to participate via email, you can subscribe to topics you are interested via the website, and then email them directly.')}}
+We invite you to participate in discussions across all topics related to the project and our development efforts at <a href="https://discourse.mozilla.org/">Mozilla’s Discourse server</a>.
+If you prefer to participate via email, you can subscribe to topics you are interested via the website, and then email them directly.
 </p>
 
-<h2 id="chat">{{ _('Realtime Chat') }}</h2>
+<h2 id="chat">Realtime Chat</h2>
 
 <p>
-{{ _('You can talk to people in the community in real time by logging on <a href="%(chat_url)s">Mozilla’s chat server</a>.')|format(chat_url='https://wiki.mozilla.org/Matrix') }}
+You can talk to people in the community in real time by logging on <a href="https://wiki.mozilla.org/Matrix">Mozilla’s chat server</a>.
 </p>
 
-<h2 id="support">{{ _('Product Support') }}</h2>
+<h2 id="support">Product Support</h2>
 
 <p>
-{{ _('If you are looking for technical support for our products please visit our <a href="%(sumo_url)s">support site</a>.')|format(sumo_url='https://support.mozilla.org/')}}
+If you are looking for technical support for our products please visit our <a href="https://support.mozilla.org/">support site</a>.
 </p>
 
 {% endblock %}

@@ -62,11 +62,11 @@ The Jinja macro supports parameters as follows (* indicates a required parameter
 +----------------------+------------------------------------------------------------------------+----------------------+--------------------------------------------------------------------+
 |    include_title     | Should the widget contain a title. Defaults to 'True'.                 | Boolean              | 'True', 'False'                                                    |
 +----------------------+------------------------------------------------------------------------+----------------------+--------------------------------------------------------------------+
-|    title_text        | Provides a custom string for the form title, overriding the default.   | Localizable string   | _('Send Firefox Lite to your smartphone or tablet')                |
+|    title_text        | Provides a custom string for the form title, overriding the default.   | Localizable string   | 'Send Firefox Lite to your smartphone or tablet' .                 |
 +----------------------+------------------------------------------------------------------------+----------------------+--------------------------------------------------------------------+
-|    input_label       | Provides a custom label for the input field, overriding the default.   | Localizable string   | _('Enter your email')                                              |
+|    input_label       | Provides a custom label for the input field, overriding the default.   | Localizable string   | 'Enter your email' .                                               |
 +----------------------+------------------------------------------------------------------------+----------------------+--------------------------------------------------------------------+
-|    legal_note_email  | Provides a custom legal note for email use.                            | Localizable String.  | _('The intended recipient of the email must have consented.')      |
+|    legal_note_email  | Provides a custom legal note for email use.                            | Localizable String.  | 'The intended recipient of the email must have consented.'         |
 +----------------------+------------------------------------------------------------------------+----------------------+--------------------------------------------------------------------+
 |    spinner_color     | Hex color for the form spinner. Defaults to '#000'.                    | String               | '#fff'                                                             |
 +----------------------+------------------------------------------------------------------------+----------------------+--------------------------------------------------------------------+

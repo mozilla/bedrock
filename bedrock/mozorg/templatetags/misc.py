@@ -17,7 +17,6 @@ from django.template.defaultfilters import slugify as django_slugify
 from django.template.defaulttags import CsrfTokenNode
 from django.template.loader import render_to_string
 from django.utils.encoding import smart_str
-from django.utils.translation import gettext as _
 
 import bleach
 import jinja2
@@ -610,7 +609,7 @@ def f(s, *args, **kwargs):
 def datetime(t, fmt=None):
     """Call ``datetime.strftime`` with the given format string."""
     if fmt is None:
-        fmt = _("%B %e, %Y")
+        fmt = "%B %e, %Y"
     return smart_str(t.strftime(fmt)) if t else ""
 
 

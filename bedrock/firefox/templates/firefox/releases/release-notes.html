@@ -32,7 +32,7 @@
   {% set download_all_link = firefox_url('android', 'all', channel=channel_name|lower()) %}
 {% elif release.product == 'Firefox' %}
   {% set product_name = 'Firefox' %}
-  {% set primary_heading =  _('See what’s new in Firefox!') if release.is_latest else _('Firefox Release Notes') %}
+  {% set primary_heading = 'See what’s new in Firefox!' if release.is_latest else 'Firefox Release Notes' %}
   {% set download_button_primary %}
     {{ download_firefox(dom_id='download-release-primary') }}
   {% endset %}

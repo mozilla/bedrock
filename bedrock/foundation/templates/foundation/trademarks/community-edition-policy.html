@@ -6,78 +6,78 @@
 
 {% extends "foundation/base.html" %}
 
-{% block page_title %}{{ _('Termination of the Community Edition Builds') }}{% endblock %}
+{% block page_title %}Termination of the Community Edition Builds{% endblock %}
 
 {% block article_title %}
-  {{ _('Termination of the Community Edition Builds') }}
+  Termination of the Community Edition Builds
 {% endblock %}
 
 {% block article_content %}
-  <p><em><time datetime="2009-04-07">{{ _('April 7, 2009') }}</time></em></p>
+  <p><em><time datetime="2009-04-07">April 7, 2009</time></em></p>
 
-  <p>{% trans discussion="https://groups.google.com/group/mozilla.governance/browse_thread/thread/2903bc645085b41d/54e8efe5d335ac3f" %}
+  <p>{% with discussion="https://groups.google.com/group/mozilla.governance/browse_thread/thread/2903bc645085b41d/54e8efe5d335ac3f" %}
     This was the page for the Community Editions Policy.  However, after
     <a href="{{ discussion }}">some discussion</a>,
     it was clear the program needs were being
     addressed elsewhere and the cost outweighed the utility. As of April 7, 2009,
     new builds are no longer authorized under the Community
     Edition program.
-  {% endtrans %}</p>
+  {% endwith %}</p>
 
   <ul class="mzp-u-list-styled">
-    <li><a href="#create">{{ _('What Do I Do If I Want to Create a Modified Build?') }}</a></li>
-    <li><a href="#before">{{ _('What Happens to Builds Made Before the Policy Change?') }}</a></li>
+    <li><a href="#create">What Do I Do If I Want to Create a Modified Build?</a></li>
+    <li><a href="#before">What Happens to Builds Made Before the Policy Change?</a></li>
   </ul>
 
   <dl class="mzp-u-list-styled">
-    <dt><a name="create">{{ _('What Do I Do If I Want to Create a Modified Build?') }}</a></dt>
+    <dt><a name="create">What Do I Do If I Want to Create a Modified Build?</a></dt>
     <dd>
       <br>
       <ul>
-        <li><u>{{ _('Localized Builds') }}</u>:
-          {% trans l10n="https://wiki.mozilla.org/L10n:Home_Page" %}
+        <li><u>Localized Builds</u>:
+          {% with l10n="https://wiki.mozilla.org/L10n:Home_Page" %}
           We have an established localization (“l10n”) program with more support
           and infrastructure to help our localizers.
           Under the <a href="{{ l10n }}">l10n program</a>
           the localized versions of our products are easier to create so
           the community rarely uses Community Edition builds for this purpose.
-          {% endtrans %}
+          {% endwith %}
         </li>
 
-        <li><u>{{ _('Unbranded Builds') }}</u>:
-          {% trans %}If you want to distribute a
+        <li><u>Unbranded Builds</u>:
+          If you want to distribute a
             modified version of a Mozilla product, you may still do so without
             permission from us as long as you do not use our trademarks or logos.
-          {% endtrans %}
+          
         </li>
       </ul>
 
-      <p>{% trans %}
+      <p>
         We believe that the above provide options for you to distribute customized version of our products, while allowing us to ensure the quality
   of those builds using our trademarks.  In addition to the fact that the Community Edition builds no longer served their original purpose, such
   builds contained unknown additional software or were based on out-dated versions of our product.
-        {% endtrans %}
+        
       </p>
     </dd>
 
-    <dt><a name="before">{{ _('What Happens to Builds Made Before the Policy Change?') }}</a></dt>
+    <dt><a name="before">What Happens to Builds Made Before the Policy Change?</a></dt>
     <dd>
-      <p>{% trans changes=url('foundation.trademarks.community-edition-permitted-changes') %}
+      <p>{% with changes=url('foundation.trademarks.community-edition-permitted-changes') %}
         Any Community Editions builds created and distributed prior to April 7, 2009, and making the
         <a href="{{ changes }}">permitted changes</a>,
         may continue to be distributed and call themselves “Community
         Edition.” For these existing builds, there is no change to the long standing policy:
-      {% endtrans %}</p>
+      {% endwith %}</p>
 
       <ul>
-        <li>{% trans %}If it is a Community Edition of Mozilla Firefox or Thunderbird and you want to use the name Firefox of Thunderbird, it must use the names
-        “Firefox Community Edition” or “Thunderbird Community Edition” to identify the software.  The words “Community Edition” may be translated. {% endtrans %}</li>
+        <li>If it is a Community Edition of Mozilla Firefox or Thunderbird and you want to use the name Firefox of Thunderbird, it must use the names
+        “Firefox Community Edition” or “Thunderbird Community Edition” to identify the software.  The words “Community Edition” may be translated. </li>
 
-        <li>{% trans %}These builds cannot be branded and distributed as “Mozilla Firefox,” may not use the Mozilla name or trademarked Mozilla logos, and must be
-        identified as Community Editions. For example, “Mozilla Firefox Community Edition” is not allowed.{% endtrans %}</li>
+        <li>These builds cannot be branded and distributed as “Mozilla Firefox,” may not use the Mozilla name or trademarked Mozilla logos, and must be
+        identified as Community Editions. For example, “Mozilla Firefox Community Edition” is not allowed.</li>
 
-        <li>{% trans %}We may require individuals or teams to stop distributing these builds in the future if they are redistributing software with low quality and
-        efforts to remedy the situation have not succeeded.{% endtrans %}</li>
+        <li>We may require individuals or teams to stop distributing these builds in the future if they are redistributing software with low quality and
+        efforts to remedy the situation have not succeeded.</li>
         </li>
       </ul>
     </dd>

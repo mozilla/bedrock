@@ -6,65 +6,60 @@
 
 {% extends "mozorg/about-base.html" %}
 
-{% block page_title %}{{ _('Roles and Leadership') }}{% endblock %}
+{% block page_title %}Roles and Leadership{% endblock %}
 {% set body_id = "about-governance-roles" %}
 
 
 {% block article %}
-<h1 class="mzp-c-article-title">{{_('Mozilla Roles and Leadership')}}</h1>
+<h1 class="mzp-c-article-title">Mozilla Roles and Leadership</h1>
 
-<p>{{_('The Mozilla project is governed by a virtual management team made up of experts from various parts of the community. Some people with leadership roles are employed to work on the Mozilla project and others are not. Leadership roles are primarily granted to individuals based on how active they are in the community, as well as the quality and nature of their contribution. This is a resilient and effective way to guide our global community. The different community leadership roles include:')}} </p>
+<p>The Mozilla project is governed by a virtual management team made up of experts from various parts of the community. Some people with leadership roles are employed to work on the Mozilla project and others are not. Leadership roles are primarily granted to individuals based on how active they are in the community, as well as the quality and nature of their contribution. This is a resilient and effective way to guide our global community. The different community leadership roles include: </p>
 
-<h2 id="module-owners-and-peers">{{_('Module Owners and Peers')}}</h2>
+<h2 id="module-owners-and-peers">Module Owners and Peers</h2>
 
-{% trans
-	moduleowners_url=url('mozorg.about.governance.policies.module-ownership'),
-	module_url="https://wiki.mozilla.org/Modules",
-	module_activities_url="https://wiki.mozilla.org/Module_Owners_Activities_Modules" %}
-<p><a href="{{ moduleowners_url }}">Module owners</a> are responsible for leading the development of a module of code or a community activity. This role requires a range of tasks, including approving patches to be checked into the module or resolving conflicts among community members. Lists of <a href="{{ module_url }}">code module owners</a> and <a href="{{ module_activities_url }}">non-code module owners are available.</a></p>
+{% with moduleowners_url=url('mozorg.about.governance.policies.module-ownership'),
+	    module_url="https://wiki.mozilla.org/Modules",
+	    module_activities_url="https://wiki.mozilla.org/Module_Owners_Activities_Modules"
+%}
+  <p><a href="{{ moduleowners_url }}">Module owners</a> are responsible for leading the development of a module of code or a community activity. This role requires a range of tasks, including approving patches to be checked into the module or resolving conflicts among community members. Lists of <a href="{{ module_url }}">code module owners</a> and <a href="{{ module_activities_url }}">non-code module owners are available.</a></p>
+{% endwith %}
 
-{% endtrans %}
+<h2 id="release-drivers">Release Drivers</h2>
+{% with drivers_url="https://wiki.mozilla.org/Firefox/Drivers"%}
+  <p><a href="{{ drivers_url }}">Release drivers</a> provide project management for milestone releases. The drivers provide guidance to developers as to which bug fixes are important for a given release and also make a range of tree management decisions.</p>
+{% endwith %}
 
-<h2 id="release-drivers">{{_('Release Drivers')}}</h2>
-{% trans
-	drivers_url="https://wiki.mozilla.org/Firefox/Drivers"%}
-<p><a href="{{ drivers_url }}">Release drivers</a> provide project management for milestone releases. The drivers provide guidance to developers as to which bug fixes are important for a given release and also make a range of tree management decisions.</p>
+<h2 id="bugzilla-component-owners">Bugzilla Component Owners</h2>
 
-{% endtrans %}
+{% with bugzilla_url="https://bugzilla.mozilla.org/describecomponents.cgi?product=mozilla.org" %}
+  <a href="{{ bugzilla_url }}">Bugzilla component owners</a> are the default recipient of bugs filed against that component. Component owners are expected to review bug reports regularly, reassign bugs to correct owners, ensure test cases exist, track the progress toward resolving important fixes, and otherwise manage the bugs in the component. The Bugzilla component owner and the related module owner may be the same person, but in many cases they will be different.</p>
+{% endwith %}
 
-<h2 id="bugzilla-component-owners">{{_('Bugzilla Component Owners')}}</h2>
+<h2 id="former-module-owners">Former Module Owners</h2>
 
-{% trans
-	bugzilla_url="https://bugzilla.mozilla.org/describecomponents.cgi?product=mozilla.org" %}
-<a href="{{ bugzilla_url }}">Bugzilla component owners</a> are the default recipient of bugs filed against that component. Component owners are expected to review bug reports regularly, reassign bugs to correct owners, ensure test cases exist, track the progress toward resolving important fixes, and otherwise manage the bugs in the component. The Bugzilla component owner and the related module owner may be the same person, but in many cases they will be different.</p>
-{% endtrans %}
+<p>When module owners and similar leaders pass on their leadership and authority to others we refer to them as Former Module Owners. This allows us to continue to acknowledge their contributions to our (collective) success -- mentoring new leadership and passing on authority to new leaders is an important part of maintaining a healthy project. "Former" status can apply to people who move to other roles within Mozilla, and to people who are no longer active in Mozilla. It is intended to be factual, not subjective or evaluative.</p>
 
-<h2 id="former-module-owners">{{_('Former Module Owners')}}</h2>
+<h2 id="reps">Mozilla Reps</h2>
 
-<p>{{_('When module owners and similar leaders pass on their leadership and authority to others we refer to them as Former Module Owners. This allows us to continue to acknowledge their contributions to our (collective) success -- mentoring new leadership and passing on authority to new leaders is an important part of maintaining a healthy project. "Former" status can apply to people who move to other roles within Mozilla, and to people who are no longer active in Mozilla. It is intended to be factual, not subjective or evaluative.')}} </p>
+<p>Reps are passionate Mozillians who mobilize and develop functional and local/regional Mozilla communities. They are committed to educate and empower people to support Mozilla’s mission and contribute to the project based on Mozilla’s leadership agreements. They are also creating collaborations with other local communities to expand Mozilla’s outreach in the open source ecosystem.</p>
 
-<h2 id="reps">{{_('Mozilla Reps')}}</h2>
+<h2 id="reps-mentors">Mozilla Reps Mentors</h2>
 
-<p>{{_('Reps are passionate Mozillians who mobilize and develop functional and local/regional Mozilla communities. They are committed to educate and empower people to support Mozilla’s mission and contribute to the project based on Mozilla’s leadership agreements. They are also creating collaborations with other local communities to expand Mozilla’s outreach in the open source ecosystem.')}} </p>
+<p>Reps in this role provide coaching and guidance to ensure that Reps are successful in fulfilling their responsibilities.</p>
 
-<h2 id="reps-mentors">{{_('Mozilla Reps Mentors')}}</h2>
+<h2 id="reps-council">Mozilla Reps Council</h2>
 
-<p>{{_('Reps in this role provide coaching and guidance to ensure that Reps are successful in fulfilling their responsibilities.')}} </p>
+<p>The Council is the program’s 9-member governing body composed of 2 permanently appointed Staff members and 7 elected volunteers who are serving 12-month terms. The Council exists to ensure that the Mozilla Reps program runs smoothly, oversees the governance and finances of the program and serves as an advisory body within the Mozilla organization. The Reps Council takes strategic decisions regarding the program with input by the rest of the leadership body.</p>
 
-<h2 id="reps-council">{{_('Mozilla Reps Council')}}</h2>
+<h2 id="stewards">Stewards</h2>
 
-<p>{{_("The Council is the program’s 9-member governing body composed of 2 permanently appointed Staff members and 7 elected volunteers who are serving 12-month terms. The Council exists to ensure that the Mozilla Reps program runs smoothly, oversees the governance and finances of the program and serves as an advisory body within the Mozilla organization. The Reps Council takes strategic decisions regarding the program with input by the rest of the leadership body.")}} </p>
+{% with stewards_url="https://wiki.mozilla.org/Contribute#Community_Builders"%}
+  <p><a href="{{ stewards_url }}">Stewards</a>  are responsible for the growth and health of the community around functional and regional areas. Although everyone in Mozilla has a responsibility to help new people join the community, Stewards maintain the contribution pathways that connect potential contributors to teams that have contribution opportunities. Stewards also run recognition, education and metrics projects that keep those pathways functioning well.</p>
+{% endwith %}
 
-<h2 id="stewards">{{_('Stewards')}}</h2>
+<h2 id="ultimate-decision-makers">Ultimate Decision-Makers</h2>
 
-{% trans  stewards_url="https://wiki.mozilla.org/Contribute#Community_Builders"%}
-<p><a href="{{ stewards_url }}">Stewards</a>  are responsible for the growth and health of the community around functional and regional areas. Although everyone in Mozilla has a responsibility to help new people join the community, Stewards maintain the contribution pathways that connect potential contributors to teams that have contribution opportunities. Stewards also run recognition, education and metrics projects that keep those pathways functioning well.</p>
-{% endtrans %}
-
-<h2 id="ultimate-decision-makers">{{_('Ultimate Decision-Makers')}}</h2>
-
-{% trans
-	model_url="http://fringe.davesource.com/Fringe/Computers/Philosophy/Homesteading_The_Noosphere/homesteading-15.html" %}
-<p>The ultimate decision-maker is a trusted member of the community who has the final say in the case of disputes. This is a <a href="{{ model_url }}">model</a> followed by many successful open source projects, and they are sometimes called the "benevolent dictator". Mozilla has evolved in the past to have two people in this role, but only has one at present: Mitchell Baker. Mitchell has been in this role since 1999.</p>
-{% endtrans %}
+{% with model_url="http://fringe.davesource.com/Fringe/Computers/Philosophy/Homesteading_The_Noosphere/homesteading-15.html" %}
+  <p>The ultimate decision-maker is a trusted member of the community who has the final say in the case of disputes. This is a <a href="{{ model_url }}">model</a> followed by many successful open source projects, and they are sometimes called the "benevolent dictator". Mozilla has evolved in the past to have two people in this role, but only has one at present: Mitchell Baker. Mitchell has been in this role since 1999.</p>
+{% endwith %}
 {% endblock %}

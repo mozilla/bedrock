@@ -6,38 +6,37 @@
 
 {% extends "foundation/base.html" %}
 
-{% block page_title %}{{ _('Feed Icon Guidelines') }}{% endblock %}
+{% block page_title %}Feed Icon Guidelines{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('foundation-feed-icon-guidelines') }}
 {% endblock %}
 
 {% block article_title %}
-  {{ _('Feed Icon Guidelines') }}
+  Feed Icon Guidelines
 {% endblock %}
 
 {% block article_content %}
   <p>
-    {% trans
-      synd="https://en.wikipedia.org/wiki/Web_syndication",
-      rss="https://en.wikipedia.org/wiki/RSS_%28file_format%29",
-      atom="https://en.wikipedia.org/wiki/Atom_%28standard%29" %}
+    {% with synd="https://en.wikipedia.org/wiki/Web_syndication",
+            rss="https://en.wikipedia.org/wiki/RSS_%28file_format%29",
+            atom="https://en.wikipedia.org/wiki/Atom_%28standard%29"
+    %}
       Previous versions of the Mozilla Firefox web browser introduced
       a new <q>feed icon</q> (also known as the <q>RSS icon</q>) used
       in association with open
       <a href="{{ synd }}">web syndication</a> formats such as
       <a href="{{ rss }}">RSS</a> and
       <a href="{{ atom }}">Atom</a>:
-    {% endtrans %}
+    {% endwith %}
   </p>
 
   <p>
-    <img src="{{ static('img/trademarks/feed-icon-28x28.png') }}" alt="{{ _('28 by 28 pixel feed icon') }}" title="" />
-    <img src="{{ static('img/trademarks/feed-icon-14x14.png') }}" alt="{{ _('14 by 14 pixel feed icon') }}" title="" />
+    <img src="{{ static('img/trademarks/feed-icon-28x28.png') }}" alt="28 by 28 pixel feed icon" title="" />
+    <img src="{{ static('img/trademarks/feed-icon-14x14.png') }}" alt="14 by 14 pixel feed icon" title="" />
   </p>
 
   <div class="para">
-    {% trans %}
       <p>
         The Mozilla Foundation has made these icons
         freely available for use by others; this document contains
@@ -54,23 +53,21 @@
         services and rely on the standard meaning of the feed icon as
         indicating the use of open web syndication formats.</li>
       </ul>
-    {% endtrans %}
   </div>
 
-  <h2>{{ _('Using the feed icon') }}</h2>
+  <h2>Using the feed icon</h2>
 
   <p>
-    {% trans feed="https://en.wikipedia.org/wiki/Web_feed" %}
+    {% with feed="https://en.wikipedia.org/wiki/Web_feed" %}
       The feed icon is freely available for general use in connection
       with <a href="{{ feed }}"> web feeds</a> using open web syndication
       formats, without the need to enter into
       a trademark license agreement or similar legal arrangement. Note
       that these guidelines are <em>not</em> legally binding.
-    {% endtrans %}
+    {% endwith %}
   </p>
 
   <div class="para">
-    {% trans %}
       <p>However if you</p>
       <ul>
         <li>create and distribute software or hardware for the purposes
@@ -85,21 +82,20 @@
       services then we request that you (or your authorized
       representative) make a public statement signifying your commitment
       to comply with these guidelines.</p>
-    {% endtrans %}
   </div>
 
   <p>
-    {% trans faq=url('foundation.feed-icon-guidelines.faq') %}
+    {% with faq=url('foundation.feed-icon-guidelines.faq') %}
       The following sections present the suggested guidelines; for
       more information see the
       <a href="{{ faq }}">accompanying FAQ.</a>
-    {% endtrans %}
+    {% endwith %}
   </p>
 
-  <h2>{{ _('Usage guidelines') }}</h2>
+  <h2>Usage guidelines</h2>
 
   <p>
-    {% trans rss="http://web.resource.org/rss/1.0/spec",
+    {% with rss="http://web.resource.org/rss/1.0/spec",
         atom="https://tools.ietf.org/html/4287",
         rss2="http://www.rssboard.org/rss-specification"
     %}
@@ -111,11 +107,11 @@
       and
       <a href="{{ atom }}">Atom 1.0</a>
       formats.
-    {% endtrans %}
+    {% endwith %}
   </p>
 
   <p>
-    {% trans xml="http://www.w3.org/XML/", http="http://www.ietf.org/rfc/rfc2616.txt" %}
+    {% with xml="http://www.w3.org/XML/", http="http://www.ietf.org/rfc/rfc2616.txt" %}
       By <q>web syndication</q> we mean a process in which content
       items from a web site or other source (e.g., news stories or blog
       posts or summaries thereof) are made available for other sites or
@@ -123,11 +119,10 @@
       <a href="{{ xml }}">XML</a>-based document format
       transferred using the
       <a href="{{ http }}">HTTP</a> protocol.
-    {% endtrans %}
+    {% endwith %}
   </p>
 
   <div class="para">
-    {% trans %}
       <p>By <q>open format</q> we mean a format that is</p>
       <ul>
         <li>defined by a published specification</li>
@@ -138,24 +133,23 @@
 
         <li>developed and/or maintained through an open process</li>
       </ul>
-    {% endtrans %}
   </div>
 
-  <p>{% trans %}The canonical use of the feed icon is on a web page containing
+  <p>The canonical use of the feed icon is on a web page containing
   information (such as blog posts, news articles, and so on) that is
   also made available via web syndication, with the icon linking to
-  a URL for the web feed.{% endtrans %}</p>
+  a URL for the web feed.</p>
 
-  <p>{% trans %}The feed icon <em>may</em> be used in other contexts that
+  <p>The feed icon <em>may</em> be used in other contexts that
   involve discovery, retrieval, reading, creation, or manipulation
   of information in open web syndication formats. For example, the
   icon <em>may</em> be used as (or incorporated as part of) a menu
   icon or toolbar icon invoking particular features of an
   application or online service that are related to open web
-  syndication formats.{% endtrans %}</p>
+  syndication formats.</p>
 
   <div class="para">
-    {% trans %}
+    
       <p>The feed icon (or confusingly-similar variants of it)
       <em>should not</em> be used in the following contexts:</p>
       <ul>
@@ -176,42 +170,42 @@
         associated with a particular individual, organization, product,
         or service.</li>
       </ul>
-    {% endtrans %}
+    
   </div>
 
-  <p>{% trans %}Note that these guidelines are <em>not</em> intended to
+  <p>Note that these guidelines are <em>not</em> intended to
   preclude in any way making fair use of the feed icon, including
   using the icon in connection with blog posts, news stories,
   magazine articles, books, television programs, movies, or other
   works discussing open web syndication formats or applications or
-  web sites supporting such formats.{% endtrans %}</p>
+  web sites supporting such formats.</p>
 
-  <h2>{{ _('Visual guidelines') }}</h2>
+  <h2>Visual guidelines</h2>
 
-  <p>{% trans %}The feed icon <em>should</em> be displayed in its entirety on
+  <p>The feed icon <em>should</em> be displayed in its entirety on
   either a solid light or dark background (avoid mid-tone or
   strongly colored backgrounds). The feed icon <em>should not</em>
   be displayed in parts or with other elements superimposed on top
-  of the icon.{% endtrans %}</p>
+  of the icon.</p>
 
-  <p>{% trans %}The feed icon <em>should</em> be displayed at a size that is
+  <p>The feed icon <em>should</em> be displayed at a size that is
   both large enough to render it legible to its intended users and
-  compatible with the size of any related text elements.{% endtrans %}</p>
+  compatible with the size of any related text elements.</p>
 
-  <p>{% trans %}The feed icon <em>may</em> be displayed using the colors black
+  <p>The feed icon <em>may</em> be displayed using the colors black
   and white in contexts where color reproduction is not
   possible. The feed icon <em>may</em> be used with the colors of
   the icon inverted (e.g., white used instead of orange and vice
   versa), as long as there is adequate contrast between the
-  background and foreground colors.{% endtrans %}</p>
+  background and foreground colors.</p>
 
-  <p>{% trans %}When used as an element in a user interface (e.g., as a toolbar
+  <p>When used as an element in a user interface (e.g., as a toolbar
   button) the feed icon <em>should</em> be displayed in a manner
   consistent with related UI elements and any applicable user
   interface standards (e.g., for the underlying operating system
-  and/or window system).{% endtrans %}</p>
+  and/or window system).</p>
 
-  <div class="para">{% trans %}<p>The feed icon <em>should not</em> be
+  <div class="para"><p>The feed icon <em>should not</em> be
   displayed in modified forms inconsistent with the above guidelines
   or in ways that visually compromise the icon. In particular, the
   icon <em>should not</em >be displayed</p>
@@ -225,18 +219,18 @@
 
     <li>with the corners of the <q>rounded square</q> element of the
     icon made sharp rather than rounded.</li>
-  </ul>{% endtrans %}</div>
+  </ul></div>
 
-  <p>{% trans %}Note that the above guidelines regarding size and color are
+  <p>Note that the above guidelines regarding size and color are
   <em>not</em> intended to restrict the ways in which the feed icon
   might be represented by assistive technologies designed for use by
   people with impaired vision. (Such technologies include software
   to magnify the contents of the screen and/or change screen colors,
   contrast, and brightness; alternative stylesheets for web sites;
-  and the like.){% endtrans %}</p>
+  and the like.)</p>
 
   <p>
-    {% trans feeds="http://www.nytimes.com/services/xml/rss/" %}
+    {% with feeds="http://www.nytimes.com/services/xml/rss/" %}
       Note also that these guidelines are <em>not</em> intended to
       discourage other uses of the feed icon that conform to the overall
       spirit of these guidelines. Such cases include using different
@@ -249,6 +243,6 @@
       users we suggest that providers of feed readers and related goods
       and services make minimum use of such alternative representations
       of the icon.
-    {% endtrans %}
+    {% endwith %}
   </p>
 {% endblock %}

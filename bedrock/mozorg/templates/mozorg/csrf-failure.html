@@ -6,7 +6,7 @@
 
 {% extends "base-protocol-mozilla.html" %}
 
-{% block page_title %}{{ _('Invalid Request') }}{% endblock %}
+{% block page_title %}Invalid Request{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('csrf-failure') }}
@@ -18,12 +18,10 @@
 
 <main role="main">
   <div class="mzp-l-content">
-    <h1>{{ _('Invalid Request') }}</h1>
+    <h1>Invalid Request</h1>
 
     <p>
-    {% trans %}
       We could not process your request.
-    {% endtrans %}
     </p>
   </div>
 </main>

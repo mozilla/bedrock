@@ -6,8 +6,8 @@
 
 {% extends "/firefox/base/base-protocol.html" %}
 
-{% block page_title %}{{ _('Unsupported Systems') }}{% endblock %}
-{% block page_desc %}{{ _('We’re sorry to report this, but your computer does not meet the minimum system requirements to run this version.') }}{% endblock %}
+{% block page_title %}Unsupported Systems{% endblock %}
+{% block page_desc %}We’re sorry to report this, but your computer does not meet the minimum system requirements to run this version.{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('protocol-emphasis-box') }}
@@ -18,32 +18,30 @@
 <main class="mzp-l-content mzp-t-content-md">
   <header class="">
     <a href="{{ url('firefox.new') }}"><img src="{{ static('protocol/img/logos/firefox/browser/logo-word-hor.svg') }}" alt="Firefox" width="347" height="64"></a>
-    <h1 class="c-header-main">{{ _('Thanks for choosing Firefox!') }}</h1>
-    <p class="c-header-subhead">{{_('We’re sorry to report this, but your computer does not meet the minimum system requirements to run this version.')}}</p>
+    <h1 class="c-header-main">Thanks for choosing Firefox!</h1>
+    <p class="c-header-subhead">We’re sorry to report this, but your computer does not meet the minimum system requirements to run this version.</p>
   </header>
 
   <section class="c-help-block mzp-c-emphasis-box">
-    <h2 class="c-help-block-title">{{ _('Need <span>Help?</span>') }}</h2>
-    <p>{{ _('Our Support page has plenty of answers, including full instructions for downloading and installing Firefox and a live chat feature to guide you through any tricky spots.') }}</p>
-    <a href="https://support.mozilla.org/products/firefox">{{ _('Visit Firefox Support') }}</a>
+    <h2 class="c-help-block-title">Need <span>Help?</span></h2>
+    <p>Our Support page has plenty of answers, including full instructions for downloading and installing Firefox and a live chat feature to guide you through any tricky spots.</p>
+    <a href="https://support.mozilla.org/products/firefox">Visit Firefox Support</a>
   </section>
 
   <section class="c-help-block">
-    <h2 class="c-help-block-title">{{ _('For more information on supported systems') }}</h2>
-    <a href="{{ url('firefox.sysreq') }}">{{ _('View System Requirements') }}</a>
+    <h2 class="c-help-block-title">For more information on supported systems</h2>
+    <a href="{{ url('firefox.sysreq') }}">View System Requirements</a>
   </section>
 
   <div class="c-help-block">
     <p>
-    {% trans %}
       To make your computer more secure, we recommend upgrading your operating system to a newer version
       as soon as possible (plus, you’ll be able to use Firefox!). But, if you can’t do so, here are some
       alternate browsers that should be compatible with your current system:
-    {% endtrans %}
     </p>
     <ul class="mzp-u-list-styled">
-      <li>{{ _('<a href="%s">Opera</a> for Windows 95 and above and Mac OS 10.3 and above')|format('https://www.opera.com/') }}</li>
-      <li>{{ _('<a href="%s">iCab</a> for Mac OS 10.3 and above')|format('http://www.icab.de/') }}</li>
+      <li><a href="https://www.opera.com/">Opera</a> for Windows 95 and above and Mac OS 10.3 and above</li>
+      <li><a href="http://www.icab.de/">iCab</a> for Mac OS 10.3 and above</li>
     </ul>
   </div>
 </main>

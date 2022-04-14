@@ -6,11 +6,10 @@
 
 {% extends "mozorg/contact/contact-base.html" %}
 
-{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Spaces') }}{% endblock %}
+{% block page_title %}Contacts, Spaces and Communities — Spaces{% endblock %}
 
 {% block string_data %}
-  {# L10n: Used as a labels for a form dropdown to navigate to other pages. #}
-  data-nav-label='{{_('Select a space:')}}'
+  data-nav-label='Select a space:'
 {% endblock %}
 
 {% block tab_navigation %}
@@ -26,11 +25,11 @@
 {% block meta_category %}
 <aside id="meta-spaces" class="meta-category">
   <ul class="meta-help">
-    <li><a href="https://wiki.mozilla.org/People:MozSpaces_Guidelines">{{ _('MozSpace Guidelines') }}</a></li>
+    <li><a href="https://wiki.mozilla.org/People:MozSpaces_Guidelines">MozSpace Guidelines</a></li>
     <li>
-    {% trans link_question='mailto:mozspaces@mozilla.com' %}
+    {% with link_question='mailto:mozspaces@mozilla.com' %}
       Have a question about MozSpaces? <a href="{{ link_question }}">Ask us here</a>
-    {% endtrans %}
+    {% endwith %}
     </li>
   </ul>
 

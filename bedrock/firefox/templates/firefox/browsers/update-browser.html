@@ -8,10 +8,10 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% block page_title %}{{ _('Update your browser to fast, safe and secure Firefox.') }}{% endblock %}
+{% block page_title %}Update your browser to fast, safe and secure Firefox.{% endblock %}
 
 {% block page_desc %}
-  {{ _('Get the fastest Firefox yet for protection against hacks, powerful privacy extensions and exciting new features. Update to a browser that fights for you.') }}
+  Get the fastest Firefox yet for protection against hacks, powerful privacy extensions and exciting new features. Update to a browser that fights for you.
 {% endblock %}
 
 {% block page_css %}
@@ -24,64 +24,60 @@
   <div class="mzp-l-content">
   <article class="mzp-c-article">
     <h1 class="mzp-c-article-title">{{ self.page_title() }}</h1>
-    <p class="mzp-c-article-intro">{{ _('One of the most important things you can do to have a safe, fast and secure online browsing experience is to make sure your browser is up to date. Update your browser like you would update your apps. No matter which browser you use, make sure you’re using the latest version.') }}</p>
+    <p class="mzp-c-article-intro">One of the most important things you can do to have a safe, fast and secure online browsing experience is to make sure your browser is up to date. Update your browser like you would update your apps. No matter which browser you use, make sure you’re using the latest version.</p>
 
     {{ download_firefox_thanks(dom_id='download-button-primary', download_location='primary') }}
 
     <img src="{{ static('img/firefox/browsers/update-browser/fast.png') }}" alt="" class="c-article-image">
 
-    <h2 class="c-section-title">{{ _('Stay safe, browse safe') }}</h2>
+    <h2 class="c-section-title">Stay safe, browse safe</h2>
     <p>
-    {% trans security="https://hacks.mozilla.org/2018/03/shipping-a-security-update-of-firefox-in-less-than-a-day/"%}
+    {% with security="https://hacks.mozilla.org/2018/03/shipping-a-security-update-of-firefox-in-less-than-a-day/"%}
       Up-to-date browsers protect you from viruses, security breaches and hacks. Older versions of browsers may be vulnerable to attacks and security holes. Firefox engineers have been known to ship a security update <a href="{{ security }}">within a day</a> of learning of a vulnerability.
-    {% endtrans %}
+    {% endwith %}
     </p>
 
-    <h2 class="c-section-title">{{ _('The fastest Firefox yet') }}</h2>
+    <h2 class="c-section-title">The fastest Firefox yet</h2>
     <p>
-    {% trans %}
       We work tirelessly to make sure Firefox is the fastest it can be, while making sure it doesn’t hog your memory or system resources. With each version we make improvements to the code that makes Firefox quick and nimble as you browse.
-    {% endtrans %}
     </p>
 
-    <h2 class="c-section-title">{{ _('The best privacy') }}</h2>
+    <h2 class="c-section-title">The best privacy</h2>
     <p>
-    {% trans privacy="https://blog.mozilla.org/firefox/make-your-firefox-browser-a-privacy-superpower-with-these-extensions/"%}
+    {% with privacy="https://blog.mozilla.org/firefox/make-your-firefox-browser-a-privacy-superpower-with-these-extensions/"%}
       We are passionate about user privacy. With each new release we give you more ways to control who sees and accesses your personal browsing data. Tracking protection, private browsing and <a href="{{ privacy }}">powerful privacy extensions</a> all work together to make sure your private browsing information stays yours.
-    {% endtrans %}
+    {% endwith %}
     </p>
 
-    <h2 class="c-section-title">{{ _('New features') }}</h2>
+    <h2 class="c-section-title">New features</h2>
     <p>
-    {% trans accessibility="https://support.mozilla.org/kb/accessibility-features-firefox-make-firefox-and-we", extensions="https://blog.mozilla.org/firefox/its-a-new-firefox-multi-tasking-extension-side-view/" %}
+    {% with accessibility="https://support.mozilla.org/kb/accessibility-features-firefox-make-firefox-and-we", extensions="https://blog.mozilla.org/firefox/its-a-new-firefox-multi-tasking-extension-side-view/" %}
       Whether it’s enabling powerful new Mixed Reality features, improving <a href="{{ accessibility }}">accessibility</a> or testing <a href="{{ extensions }}">extensions that enrich your life</a>, new browser releases always have something new and innovative for you to enjoy. Don’t miss out by lagging behind on an older version.
-    {% endtrans %}
+    {% endwith %}
     </p>
 
     <img src="{{ static('img/firefox/browsers/update-browser/device.png') }}" alt="" class="c-article-image">
-    <h1 class="mzp-c-article-title">{{ _('Why Firefox?') }}</h1>
+    <h1 class="mzp-c-article-title">Why Firefox?</h1>
     <p>
-      {% trans %}
         Firefox is independent and a part of the not-for-profit Mozilla, which fights for your online rights, keeps corporate powers in check and makes the internet accessible to everyone, everywhere. We believe the internet is for people, not profit. Unlike other companies, we don’t sell access to your data. You’re in control over who sees your search and browsing history. All that and exceptional performance too.
-      {% endtrans %}
     </p>
-    <h2 class="c-section-title">{{ _('How do I update?') }}</h2>
+    <h2 class="c-section-title">How do I update?</h2>
     <p>
-    {% trans version="https://blog.mozilla.org/firefox/info-worth-knowing-firefox-version-using/",
-             firefox="https://support.mozilla.org/kb/update-firefox-latest-version",
-             edge="https://www.microsoft.com/en-ca/windows/microsoft-edge",
-             chrome="https://support.google.com/chrome/answer/95414",
-             opera="https://help.opera.com/opera-tutorials/how-do-i-update-my-opera-browser/",
-             safari="https://support.apple.com/HT204416"
+    {% with version="https://blog.mozilla.org/firefox/info-worth-knowing-firefox-version-using/",
+            firefox="https://support.mozilla.org/kb/update-firefox-latest-version",
+            edge="https://www.microsoft.com/en-ca/windows/microsoft-edge",
+            chrome="https://support.google.com/chrome/answer/95414",
+            opera="https://help.opera.com/opera-tutorials/how-do-i-update-my-opera-browser/",
+            safari="https://support.apple.com/HT204416"
     %}
       Most major browsers update automatically, which means that when a new version is available, your system will download and install it for you. So that’s one less thing you have to worry about keeping on top of. First find out <a href="{{ version }}">which version of your browser you’re on</a>. Then, if auto update is switched off, here’s how to manually update <a href="{{ firefox }}">Firefox</a>, <a href="{{ edge }}">Edge</a>, <a href="{{ chrome }}">Chrome</a>, <a href="{{ opera }}">Opera</a> or <a href="{{ safari }}">Safari</a>.
-    {% endtrans %}
+    {% endwith %}
     </p>
   </article>
 </div>
 
 {% call call_out_compact(
-  title=_('Take control of your browser.'),
+  title='Take control of your browser.',
   class='mzp-t-product-firefox mzp-t-firefox'
 ) %}
   <div class="download-firefox">

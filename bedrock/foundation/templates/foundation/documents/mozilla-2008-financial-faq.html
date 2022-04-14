@@ -6,78 +6,77 @@
 
 {% extends 'foundation/base.html' %}
 
-{% block page_title %}{{ _('Mozilla 2008 Financial FAQ') }}{% endblock %}
+{% block page_title %}Mozilla 2008 Financial FAQ{% endblock %}
 
 {% block article_title %}
-  {{ _('Mozilla 2008 Financial FAQ') }}
+  Mozilla 2008 Financial FAQ
 {% endblock %}
 
 {% block article_content %}
   <p>
-    {% trans
-      form990='https://static.mozilla.com/foundation/documents/mf-2008-irs-form-990.pdf',
-      statement='https://static.mozilla.com/foundation/documents/mf-2008-audited-financial-statement.pdf'
+    {% with form990='https://static.mozilla.com/foundation/documents/mf-2008-irs-form-990.pdf',
+            statement='https://static.mozilla.com/foundation/documents/mf-2008-audited-financial-statement.pdf'
     %}
       This FAQ supplements the
       <a href="{{ form990 }}">Mozilla Foundation 2008 Form 990</a> and
       the <a href="{{ statement }}">consolidated 2008 financial statement for the
       Mozilla Foundation and the Mozilla Corporation</a>.
-    {% endtrans %}
+    {% endwith %}
   </p>
 
   <dl class="mzp-u-list-styled">
-    <dt>{% trans %}What was Mozilla's total revenue for 2008?{% endtrans %}</dt>
+    <dt>What was Mozilla's total revenue for 2008?</dt>
     <dd>
-    <p>{% trans %}Mozilla's consolidated reported revenues (Mozilla Foundation and all Subsidiaries) for 2008 were $79 million, up approximately
-    5% from 2007 reported revenues of $75 million.{% endtrans %}</p>
+    <p>Mozilla's consolidated reported revenues (Mozilla Foundation and all Subsidiaries) for 2008 were $79 million, up approximately
+    5% from 2007 reported revenues of $75 million.</p>
     </dd>
 
-    <dt>{% trans %}How does Mozilla generate revenue?{% endtrans %}</dt>
+    <dt>How does Mozilla generate revenue?</dt>
     <dd>
-    <p>{% trans %}The majority of this revenue is generated from the search functionality in Mozilla Firefox from partners such as Google,
+    <p>The majority of this revenue is generated from the search functionality in Mozilla Firefox from partners such as Google,
     Yahoo, Amazon, EBay, and others.  Mozilla takes in additional revenue from donations, online affiliate programs, the Mozilla
     Store, and income on our invested assets.  In 2008, we expanded our Firefox partnerships with new firms such as Yandex (Russia
-    Search), Canonical (Ubuntu), and Nokia (Mobile).{% endtrans %}</p>
+    Search), Canonical (Ubuntu), and Nokia (Mobile).</p>
     </dd>
 
-    <dt>{% trans %}How does Mozilla measure success?{% endtrans %}</dt>
+    <dt>How does Mozilla measure success?</dt>
     <dd>
-    <p>{% trans %}We measure success by examining factors that reflect our growth such as community code contributions, localizations, market
+    <p>We measure success by examining factors that reflect our growth such as community code contributions, localizations, market
     share, the number of nightly testers, and total users. Over the longer term, we measure success against the level of openness and
     participation on the Internet, and the degree to which the open Web remains the primary platform used to innovate and create things
-    online.{% endtrans %}</p>
+    online.</p>
     </dd>
 
-    <dt>{% trans %}Your partnership with Google accounts for the majority of your revenue. How does this affect your independence?{% endtrans %}</dt>
+    <dt>Your partnership with Google accounts for the majority of your revenue. How does this affect your independence?</dt>
     <dd>
-    <p>{% trans %}We develop our product and technical direction as part of an open process unrelated to the search relationship with Google.
+    <p>We develop our product and technical direction as part of an open process unrelated to the search relationship with Google.
     Mozilla teams do collaborate with Google teams on parts of the product that offer Google services (i.e., the Firefox Start Page)
-    and the services they provide, like anti-phishing. We do not vet our initiatives with Google.{% endtrans %}</p>
+    and the services they provide, like anti-phishing. We do not vet our initiatives with Google.</p>
     </dd>
 
-    <dt>{% trans %}What is the status of your contract with Google?{% endtrans %}</dt>
+    <dt>What is the status of your contract with Google?</dt>
     <dd>
-    <p>{% trans %}The agreement between Google and the Mozilla Corporation that accounts for the bulk of the revenue currently extends through
-    2011.{% endtrans %}</p>
+    <p>The agreement between Google and the Mozilla Corporation that accounts for the bulk of the revenue currently extends through
+    2011.</p>
     </dd>
 
-    <dt>{% trans %}Are you exploring opportunities to diversify your revenue stream?{% endtrans %}</dt>
+    <dt>Are you exploring opportunities to diversify your revenue stream?</dt>
     <dd>
-    <p>{% trans %}Mozilla has always focused on building open products that people love, in ways that are participatory, and then developing
+    <p>Mozilla has always focused on building open products that people love, in ways that are participatory, and then developing
     revenue to support that work. For long-term financial viability, we will of course look carefully at ways to diversify our
     revenue mix over time. We'll continue to build great products that help people enjoy the richness of the Internet, and we're
     confident that this allows us to identify appropriate sources of revenue diversification. We are active in pursuing additional
-    revenue partnerships with various potential partners across all our products and projects.{% endtrans %}</p>
+    revenue partnerships with various potential partners across all our products and projects.</p>
     </dd>
 
-    <dt>{% trans %}Can you tell us more about Mozilla Messaging and their plans?{% endtrans %}</dt>
+    <dt>Can you tell us more about Mozilla Messaging and their plans?</dt>
     <dd>
-    <p>{% trans %}In February we launched Mozilla Messaging, an organization responsible both for the Mozilla Thunderbird email client and also for
+    <p>In February we launched Mozilla Messaging, an organization responsible both for the Mozilla Thunderbird email client and also for
     developing new possibilities in the broader messaging arena. 2008 was primarily a start-up year for Mozilla Messaging, building
     the team and getting a handle on the complexities of our existing product and the various communities around it. In 2009 we're
     starting to see Mozilla Messaging deliver on the promise. The initial developer version of "Raindrop" &ndash; a prototype for a new
     way of integrating different kinds of messages &ndash; has been released and the final version of Thunderbird 3 is due to be released
-    shortly.{% endtrans %}</p>
+    shortly.</p>
     </dd>
   </dl>
 {% endblock %}

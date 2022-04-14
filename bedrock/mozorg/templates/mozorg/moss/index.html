@@ -11,31 +11,29 @@
 {% block body_id %}moss-home{% endblock %}
 
 {% block page_heading %}
-  {{ _('Mozilla Open Source Support Awards') }}
+  Mozilla Open Source Support Awards
 {% endblock %}
 
 {% block page_content %}
 <div class="t-medium">
   <div class="mzp-l-content">
     <p class="moss-section-lead-in">
-      {% trans %}
         Mozilla was born out of and remains part of the open source and free software
         movement. Through the Mozilla Open Source Support (MOSS) awards program, we
         recognize, celebrate, and support open source projects that contribute to
         Mozilla’s work and to the health of the Internet. MOSS broadens access, increases security, and empowers users by providing catalytic funding to open source technologists.
-      {% endtrans %}
     </p>
   </div>
 </div>
 
 <div class="t-medium">
   <section class="mzp-l-content moss-section">
-    <h2 class="moss-section-heading">{{ _('2020 Funding Update') }}</h2>
+    <h2 class="moss-section-heading">2020 Funding Update</h2>
 
     <p>
-    {% trans blogpost='https://blog.mozilla.org/blog/2020/08/11/changing-world-changing-mozilla/' %}
+    {% with blogpost='https://blog.mozilla.org/blog/2020/08/11/changing-world-changing-mozilla/' %}
       Due to the <a href="{{ blogpost }}">recently-announced restructuring at Mozilla</a>, MOSS is not currently accepting applications and will not be making any new awards this year. We are conducting a comprehensive review of the program and hope to share information about future award cycles in 2021.
-    {% endtrans %}
+    {% endwith %}
     </p>
   </section>
 </div>
@@ -43,54 +41,54 @@
 <section>
   <div class="t-medium">
     <div class="mzp-l-content">
-      <h2 class="moss-section-heading">{{ _('Award Tracks') }}</h2>
-      <p>{{ _('MOSS awards are available in multiple tracks:') }}</p>
+      <h2 class="moss-section-heading">Award Tracks</h2>
+      <p>MOSS awards are available in multiple tracks:</p>
     </div>
   </div>
   <div class="mzp-l-content">
   <ul class="mzp-l-columns mzp-t-columns-three mzp-t-picto-center moss-tracks-list">
     {% call picto(
-      title=_('Track I: Foundational Technology'),
+      title='Track I: Foundational Technology',
       heading_level=3,
       image_url='img/mozorg/moss/foundational-technology.svg',
       image_width=200,
       body=True,
       base_el='li'
     ) %}
-      <p>{{ _('The Foundational Technology track supports open source projects that Mozilla relies on, either as an embedded part of our products or as part of our everyday work.') }}</p>
+      <p>The Foundational Technology track supports open source projects that Mozilla relies on, either as an embedded part of our products or as part of our everyday work.</p>
       <div class="moss-track-cta">
         <p><a href="{{ url('mozorg.moss.foundational-technology') }}">{{ ftl('ui-learn-more') }}</a></p>
-        <p><a href="https://mozilla.fluxx.io/apply/MOSS" rel="external" class="mzp-c-button">{{ _('Apply Now') }}</a></p>
+        <p><a href="https://mozilla.fluxx.io/apply/MOSS" rel="external" class="mzp-c-button">Apply Now</a></p>
       </div>
     {% endcall %}
 
     {% call picto(
-      title=_('Track II: Mission Partners'),
+      title='Track II: Mission Partners',
       heading_level=3,
       image_url='img/mozorg/moss/mission-partners.svg',
       image_width=200,
       body=True,
       base_el='li'
     ) %}
-      <p>{{ _('The Mission Partners track supports open source projects that significantly advance Mozilla’s mission.') }}</p>
+      <p>The Mission Partners track supports open source projects that significantly advance Mozilla’s mission.</p>
       <div class="moss-track-cta">
         <p><a href="{{ url('mozorg.moss.mission-partners') }}">{{ ftl('ui-learn-more') }}</a></p>
-        <p><a href="https://mozilla.fluxx.io/apply/MOSS" rel="external" class="mzp-c-button">{{ _('Apply Now') }}</a></p>
+        <p><a href="https://mozilla.fluxx.io/apply/MOSS" rel="external" class="mzp-c-button">Apply Now</a></p>
       </div>
     {% endcall %}
 
     {% call picto(
-      title=_('Track III: Secure Open Source Fund'),
+      title='Track III: Secure Open Source Fund',
       heading_level=3,
       image_url='img/mozorg/moss/secure-open-source.svg',
       image_width=200,
       body=True,
       base_el='li'
     ) %}
-      <p>{{ _('The Secure Open Source (“SOS”) track supports security audits for widely used open source software projects as well as the remedial work needed to rectify the problems found.') }}</p>
+      <p>The Secure Open Source (“SOS”) track supports security audits for widely used open source software projects as well as the remedial work needed to rectify the problems found.</p>
       <div class="moss-track-cta">
         <p><a href="{{ url('mozorg.moss.secure-open-source') }}">{{ ftl('ui-learn-more') }}</a></p>
-        <p><a href="https://docs.google.com/a/mozilla.com/forms/d/e/1FAIpQLScLwANEOvLBE6gnFVoiamqHOYzzkaChpdQJ7f0PlZGmfyy94w/viewform" rel="external" class="mzp-c-button">{{ _('Nominate Now') }}</a></p>
+        <p><a href="https://docs.google.com/a/mozilla.com/forms/d/e/1FAIpQLScLwANEOvLBE6gnFVoiamqHOYzzkaChpdQJ7f0PlZGmfyy94w/viewform" rel="external" class="mzp-c-button">Nominate Now</a></p>
       </div>
     {% endcall %}
   </ul>
@@ -100,12 +98,12 @@
 
 <div class="t-medium">
   <section class="mzp-l-content moss-section">
-    <h2 class="moss-section-heading">{{ _('Award Selection') }}</h2>
+    <h2 class="moss-section-heading">Award Selection</h2>
 
     <p>
-    {% trans directory='https://github.com/mozilla/MOSS-Directory' %}
+    {% with directory='https://github.com/mozilla/MOSS-Directory' %}
       MOSS applications are accepted on a rolling basis and are reviewed monthly by an expert selection panel. Reviewers include current Mozilla staff, senior Mozilla alumni, and other respected open source experts. For a full listing of all current committee members, please see the <a href="{{ directory }}">MOSS directory</a> on GitHub.
-    {% endtrans %}
+    {% endwith %}
     </p>
   </section>
 </div>
@@ -113,12 +111,12 @@
 <section>
   <div class="t-medium">
     <div class="mzp-l-content moss-section">
-      <h2 class="moss-section-heading">{{ _('Past Recipients') }}</h2>
+      <h2 class="moss-section-heading">Past Recipients</h2>
 
       <p>
-      {% trans directory='https://github.com/mozilla/MOSS-Directory' %}
+      {% with directory='https://github.com/mozilla/MOSS-Directory' %}
         Past MOSS awardees include the projects listed below. For more information on past MOSS awards, please see the <a href="{{ directory }}">MOSS directory</a> on GitHub.
-      {% endtrans %}
+      {% endwith %}
       </p>
     </div>
   </div>
@@ -128,7 +126,7 @@
       class='mzp-c-card',
       title='Tor ($152,500)',
       ga_title='Tor',
-      desc=_('Tor is free software and an open network that helps you defend against network surveillance.'),
+      desc='Tor is free software and an open network that helps you defend against network surveillance.',
       image_url='img/mozorg/moss/tor.png',
       include_highres_image=True,
       aspect_ratio='mzp-has-aspect-16-9',
@@ -139,7 +137,7 @@
       class='mzp-c-card',
       title='Tails ($77,000)',
       ga_title='Tails',
-      desc=_('Tails is a live operating system that you can start on almost any computer from a DVD, USB stick, or SD card.'),
+      desc='Tails is a live operating system that you can start on almost any computer from a DVD, USB stick, or SD card.',
       image_url='img/mozorg/moss/tails.png',
       include_highres_image=True,
       aspect_ratio='mzp-has-aspect-16-9',
@@ -150,7 +148,7 @@
       class='mzp-c-card',
       title='Caddy ($50,000)',
       ga_title='Caddy',
-      desc=_('Caddy is an alternative web server that is easy to configure and use.'),
+      desc='Caddy is an alternative web server that is easy to configure and use.',
       image_url='img/mozorg/moss/caddy.png',
       include_highres_image=True,
       aspect_ratio='mzp-has-aspect-16-9',
@@ -161,7 +159,7 @@
       class='mzp-c-card',
       title='Godot ($20,000)',
       ga_title='Save It Fast',
-      desc=_('Godot is an advanced, feature-packed, multi-platform 2D and 3D open source game engine.'),
+      desc='Godot is an advanced, feature-packed, multi-platform 2D and 3D open source game engine.',
       image_url='img/mozorg/moss/godot.png',
       include_highres_image=True,
       aspect_ratio='mzp-has-aspect-16-9',
@@ -172,7 +170,7 @@
       class='mzp-c-card',
       title='SecureDrop ($250,000)',
       ga_title='SecureDrop',
-      desc=_('SecureDrop is a free and open source whistleblower submission system originally created by the late Aaron Swartz.'),
+      desc='SecureDrop is a free and open source whistleblower submission system originally created by the late Aaron Swartz.',
       image_url='img/mozorg/moss/securedrop.png',
       include_highres_image=True,
       aspect_ratio='mzp-has-aspect-16-9',
@@ -183,7 +181,7 @@
       class='mzp-c-card',
       title='NVDA ($15,000)',
       ga_title='NVDA',
-      desc=_('NVDA (NonVisual Desktop Access) is a free “screen reader” which enables blind and vision impaired people to use computers.'),
+      desc='NVDA (NonVisual Desktop Access) is a free “screen reader” which enables blind and vision impaired people to use computers.',
       image_url='img/mozorg/moss/nvaccess.png',
       include_highres_image=True,
       aspect_ratio='mzp-has-aspect-16-9',
@@ -194,150 +192,132 @@
 
 <div class="t-medium">
   <section class="mzp-l-content moss-section">
-    <h2 class="moss-section-heading">{{ _('About MOSS') }}</h2>
+    <h2 class="moss-section-heading">About MOSS</h2>
 
     <p>
-      {{ _('MOSS is an awards program of Mozilla Corporation, which is ultimately responsible for selecting and funding final award recipients.') }}
-      {{ _('MOSS is administered in part by the Mozilla Foundation, the nonprofit owner of the Mozilla Corporation.') }}
+      MOSS is an awards program of Mozilla Corporation, which is ultimately responsible for selecting and funding final award recipients.
+      MOSS is administered in part by the Mozilla Foundation, the nonprofit owner of the Mozilla Corporation.
     </p>
   </section>
 
   <section class="mzp-l-content moss-section">
-    <h2 class="moss-section-heading">{{ _('Frequently Asked Questions') }}</h2>
+    <h2 class="moss-section-heading">Frequently Asked Questions</h2>
 
     <dl class="mzp-u-list-styled">
-      <dt>{{ _('When is the application deadline?') }}</dt>
+      <dt>When is the application deadline?</dt>
       <dd>
         <p>
-        {% trans %}
           MOSS applications are accepted on a rolling basis and are reviewed monthly. Depending on when your application is received in our review cycle, it may take up to two months to receive committee feedback.
-        {% endtrans %}
         </p>
       </dd>
 
-      <dt>{{ _('What is the range of award amounts that the committee usually provides?') }}</dt>
+      <dt>What is the range of award amounts that the committee usually provides?</dt>
       <dd>
         <p>
-        {% trans %}
           While there is no set range, historically, the MOSS Committee has mostly chosen to award between $5,000 and $150,000 USD per project; the average project size is roughly $70,000 USD. Awards of $150,000 and greater have historically been approved mostly for return awardees who have already successfully completed a smaller MOSS project. In general, the larger the award, the more scrutiny the application will receive and the more questions the committee will have regarding how the money will be used. All projects should include a statement of work that helps the committee understand how the amount of funding requested was determined and how that funding maps to specific tasks.
-        {% endtrans %}
         </p>
       </dd>
 
-      <dt>{{ _('How mature does a project need to be in order to apply for a MOSS award?') }}</dt>
+      <dt>How mature does a project need to be in order to apply for a MOSS award?</dt>
       <dd>
         <p>
-        {% trans moss_email='mailto:MOSS@mozilla.com' %}
+        {% with moss_email='mailto:MOSS@mozilla.com' %}
           Historically, the MOSS Committee has chosen to fund projects which are important in their ecosystems and can demonstrate some success and momentum with regard to acquiring users and building an active community of contributors. Unfortunately, the MOSS Committee does not consider applications from brand new projects, projects which are not open source, projects which have yet to be built or projects which have yet to build a community of users and contributors. If you are unsure if your project qualifies for MOSS funding, please <a href="{{ moss_email }}">email the MOSS team</a>.
-        {% endtrans %}
+        {% endwith %}
         </p>
       </dd>
 
-      <dt>{{ _('What types of open source projects does the committee fund?') }}</dt>
+      <dt>What types of open source projects does the committee fund?</dt>
       <dd>
         <p>
-        {% trans %}
           The MOSS Committee is happy to consider any open source project, including but not limited to software, hardware, firmware, design, and networking projects. All projects must generally involve some amount of technical development. MOSS does not sponsor conferences and events.
-        {% endtrans %}
         </p>
       </dd>
 
-      <dt>{{ _('How should I determine what size of an award to apply for?') }}</dt>
+      <dt>How should I determine what size of an award to apply for?</dt>
       <dd>
         <p>
-        {% trans %}
           The award amount you request should be determined by the scope of work that you wish to complete using your MOSS award. Your application should contain a rough scope of work, including an expected number of hours and hourly rates to complete each task.
-        {% endtrans %}
         </p>
       </dd>
 
-      <dt>{{ _('What licenses are accepted?') }}</dt>
+      <dt>What licenses are accepted?</dt>
       <dd>
         <p>
-        {% trans fsf='https://www.fsf.org/', osi='https://opensource.org/' %}
+        {% with fsf='https://www.fsf.org/', osi='https://opensource.org/' %}
           The MOSS committee will only consider projects which are released publicly under a license that is either a free software license according to the <a href="{{ fsf }}">FSF</a> or an open source license according to the <a href="{{ osi }}">OSI</a>. Projects which are not licensed for use under an open source license are not eligible for MOSS funding.
-        {% endtrans %}
+        {% endwith %}
         </p>
       </dd>
 
-      <dt>{{ _('Can I include indirect costs in my budget?') }}</dt>
+      <dt>Can I include indirect costs in my budget?</dt>
       <dd>
         <p>
-        {% trans %}
           The MOSS committee prefers to fund direct project costs, but we recognize that recovery of indirect costs may be a necessity.
-        {% endtrans %}
         </p>
 
         <ul class="mzp-u-list-styled">
-          <li>{{ _('Organizations may charge up to 10% of direct costs.') }}</li>
-          <li>{{ _('Ten percent is a maximum. If an applicant’s actual indirect cost rate is lower, the actual rate should be proposed in the budget.') }}</li>
-          <li>{{ _('Mozilla may request substantiation of any applicant’s indirect cost rate.') }}</li>
-          <li>{{ _('Individual applicants should not include indirect costs in their budget.') }}</li>
+          <li>Organizations may charge up to 10% of direct costs.</li>
+          <li>Ten percent is a maximum. If an applicant’s actual indirect cost rate is lower, the actual rate should be proposed in the budget.</li>
+          <li>Mozilla may request substantiation of any applicant’s indirect cost rate.</li>
+          <li>Individual applicants should not include indirect costs in their budget.</li>
         </ul>
       </dd>
 
-      <dt>{{ _('What are indirect and direct costs?') }}</dt>
+      <dt>What are indirect and direct costs?</dt>
       <dd>
         <p>
-        {% trans %}
           Direct costs are expenses directly attributable to the scope of work described in your request. Generally, direct costs would not be incurred if the proposed scope of work did not exist. Direct costs may include staff salaries, contractors/consultants, and materials required to execute the scope of work.
-        {% endtrans %}
         </p>
 
         <p>
-        {% trans %}
           Indirect costs are those costs not readily identified with a specific project/activity but incurred for the joint benefit of multiple projects/activities. Indirect costs are usually grouped into common pools and charged to benefiting objectives through an allocation process/indirect cost rate. Indirect costs include expenses frequently referred to as overhead (rent, utilities, general and administrative expenses, etc.)
-        {% endtrans %}
         </p>
       </dd>
 
-      <dt>{{ _('Can I request additional funds after a final decision is made on my request?') }}</dt>
+      <dt>Can I request additional funds after a final decision is made on my request?</dt>
       <dd>
         <p>
-        {% trans %}
           MOSS committee decisions are final. We cannot increase award amounts after a decision has been made. Should you need to revise your scope of work, please contact the MOSS program officer immediately.
-        {% endtrans %}
         </p>
       </dd>
 
-      <dt>{{ _('Who can apply to MOSS?') }}</dt>
+      <dt>Who can apply to MOSS?</dt>
       <dd>
         <p>
-        {% trans community_guidelines=url('mozorg.about.governance.policies.participation') %}
+        {% with community_guidelines=url('mozorg.about.governance.policies.participation') %}
           Generally anyone who maintains an open source project can apply to MOSS, including individuals, NGOs, and for-profit companies. Individuals and entities on the SDN list, other sanctions lists, or who Mozilla is otherwise legally prohibited from engaging are not eligible to receive funding from MOSS. Individuals with a documented violation of <a href="{{ community_guidelines }}">Mozilla’s Community Participation Guidelines</a> may not be eligible to receive funding from MOSS.
-        {% endtrans %}
+        {% endwith %}
         </p>
       </dd>
 
-      <dt>{{ _('For Track I, what are you looking for in the reference letter from a Mozilla Champion?') }}</dt>
+      <dt>For Track I, what are you looking for in the reference letter from a Mozilla Champion?</dt>
       <dd>
         <p>
-        {% trans %}
           For Track I (Foundational Technologies) projects, your application should include an endorsement from a Mozilla Champion who can describe how your project is used by Mozilla and why it is an important dependency for our work.
-        {% endtrans %}
         </p>
       </dd>
 
-      <dt>{{ _('What about taxes?') }}</dt>
+      <dt>What about taxes?</dt>
       <dd>
         <p>
           Recipients are responsible for determining the tax implications of receiving an award, based on their respective countries’ tax laws and compliance requirements. Amounts applied for should be sized such that any tax or other liability that will be incurred is accounted for. Mozilla reserves the right to use different payment mechanisms or tax characterizations for different awards in the MOSS program based on a number of factors specific to each award.
         </p>
       </dd>
 
-      <dt>{{ _('Can you share an example Schedule of Work (SoW) for a past MOSS project?') }}</dt>
+      <dt>Can you share an example Schedule of Work (SoW) for a past MOSS project?</dt>
       <dd>
         <p>
           A Schedule of Work sample can be found <a href="https://wiki.mozilla.org/images/3/3c/Kea-sow.pdf">here</a>.
         </p>
       </dd>
 
-      <dt>{{ _('How can I learn more about MOSS?') }} {{ _('Is there someone I can talk to about my project idea?') }}</dt>
+      <dt>How can I learn more about MOSS? Is there someone I can talk to about my project idea?</dt>
       <dd>
         <p>
-        {% trans moss_email='mailto:MOSS@mozilla.com' %}
+        {% with moss_email='mailto:MOSS@mozilla.com' %}
           We would love to talk to you about your project idea or answer any questions you may have about MOSS. To reach the MOSS project team, please contact us at <a href="{{ moss_email }}">MOSS@mozilla.com</a>.
-        {% endtrans %}
+        {% endwith %}
         </p>
       </dd>
     </dl>

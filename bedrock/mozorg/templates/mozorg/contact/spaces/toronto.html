@@ -6,7 +6,7 @@
 
 {% extends "mozorg/contact/spaces/base.html" %}
 
-{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Toronto') }}{% endblock %}
+{% block page_title %}Contacts, Spaces and Communities — Toronto{% endblock %}
 
 {% block map %}
   {{ map_image('img/contact/osm/spaces/toronto-large.jpg', 'img/contact/osm/spaces/toronto-large-high-res.jpg') }}
@@ -23,21 +23,17 @@
   <div id="entry-container">
     <section class="entry entry-space" id="toronto" data-tab="spaces">
       <div itemscope itemtype="http://schema.org/Organization" class="card vcard">
-        {# L10n: This span around the Mozilla name is presentational. It's included in the string in case some locales need to change the order. #}
-        <h2 itemprop="name" class="fn org">{{ _('<span>Mozilla</span> Toronto') }}</h2>
+        <h2 itemprop="name" class="fn org"><span>Mozilla</span> Toronto</h2>
         <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" class="adr">
-        {# L10n: Addresses are marked up with hCard microformat and Schema.org. See http://microformats.org/wiki/h-card and http://schema.org/PostalAddress #}
-        {% trans %}
           <span itemprop="streetAddress" class="street-address">366 Adelaide St W, Suite 500</span><br>
           <span itemprop="addressLocality" class="locality">Toronto</span>, <abbr itemprop="addressRegion" class="region" title="Ontario">ON</abbr> <span itemprop="postalCode" class="postal-code">M5V 1R9</span><br>
           <span itemprop="addressCountry" class="country-name">Canada</span>
-        {% endtrans %}
         </p>
 
         <ul class="extra">
           <li><a href="https://twitter.com/MozToronto" class="twitter">@MozToronto</a></li>
           <li><a href="https://www.facebook.com/groups/224642234231741/" class="facebook">Facebook</a></li>
-          <li><a href="https://wiki.mozilla.org/People:MozSpaces_Guidelines:Toronto" class="book">{{ _('Space operations guide') }}</a></li>
+          <li><a href="https://wiki.mozilla.org/People:MozSpaces_Guidelines:Toronto" class="book">Space operations guide</a></li>
         </ul>
 
         <figure class="feature-img">

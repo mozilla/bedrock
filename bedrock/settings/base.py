@@ -99,7 +99,7 @@ TIME_ZONE = config("TIME_ZONE", default="America/Los_Angeles")
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
-USE_I18N = True
+USE_I18N = False
 
 # If you set this to False, Django will not format dates, numbers and
 # calendars according to the current locale
@@ -652,10 +652,7 @@ TEMPLATES = [
         "APP_DIRS": True,
         "OPTIONS": {
             "match_extension": None,
-            "undefined": "jinja2.Undefined",
             "finalize": lambda x: x if x is not None else "",
-            "translation_engine": "lib.l10n_utils.template",
-            "newstyle_gettext": False,
             "context_processors": [
                 "django.contrib.auth.context_processors.auth",
                 "django.template.context_processors.debug",
@@ -675,12 +672,12 @@ TEMPLATES = [
             "extensions": [
                 "jinja2.ext.do",
                 "jinja2.ext.with_",
+                "jinja2.ext.i18n",
                 "jinja2.ext.loopcontrols",
                 "jinja2.ext.autoescape",
                 "django_jinja.builtins.extensions.CsrfExtension",
                 "django_jinja.builtins.extensions.StaticFilesExtension",
                 "django_jinja.builtins.extensions.DjangoFiltersExtension",
-                "lib.l10n_utils.template.i18n",
                 "django_jinja_markdown.extensions.MarkdownExtension",
             ],
         },

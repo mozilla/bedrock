@@ -6,7 +6,7 @@
 
 {% extends "mozorg/contact/contact-base.html" %}
 
-{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Contact us') }}{% endblock %}
+{% block page_title %}Contacts, Spaces and Communities — Contact us{% endblock %}
 {% block body_id %}contact-landing{% endblock %}
 
 {% block tab_navigation %}
@@ -23,56 +23,56 @@
   <div id="entry-container">
     <section class="entry" id="contact" data-tab="contact">
       <header>
-        <h2>{{ _('Contacting Mozilla')}}</h2>
+        <h2>Contacting Mozilla</h2>
       </header>
 
       <ul class="mzp-u-list-styled">
-        <li><a href="https://support.mozilla.org/">{{ _('I’m having problems with using Firefox') }}</a></li>
-        <li><a href="{{ donate_url('contact_us_page') }}">{{ _('I want to donate to Mozilla') }}</a></li>
-        <li><a href="{{ url('foundation.trademarks.policy') }}">{{ _('I have questions about using Mozilla’s trademarks') }}</a></li>
-        <li><a href="{{ url('legal.fraud-report') }}">{{ _('I’d like to report misuse of a Mozilla trademark') }}</a></li>
-        <li><a href="https://wiki.mozilla.org/People:MozSpaces_Guidelines">{{ _('I want to hold an event in a Mozilla space') }}</a></li>
-        <li><a href="https://bugzilla.mozilla.org/form.dev-engagement-event">{{ _('I want Mozilla to sponsor my event') }}</a></li>
-        <li><a href="mailto:trademark-permissions@mozilla.com">{{ _('I’d like permission to use a Mozilla logo') }}</a></li>
-        <li><a href="https://getpocket.com/sponsor">{{ _('I’m interested in Pocket’s sponsored content on Firefox') }}</a></li>
-        <li><a href="{{ url('press.press-inquiry') }}">{{ _('I’m a member of the Press and have a question for Mozilla') }}</a></li>
+        <li><a href="https://support.mozilla.org/">I’m having problems with using Firefox</a></li>
+        <li><a href="{{ donate_url('contact_us_page') }}">I want to donate to Mozilla</a></li>
+        <li><a href="{{ url('foundation.trademarks.policy') }}">I have questions about using Mozilla’s trademarks</a></li>
+        <li><a href="{{ url('legal.fraud-report') }}">I’d like to report misuse of a Mozilla trademark</a></li>
+        <li><a href="https://wiki.mozilla.org/People:MozSpaces_Guidelines">I want to hold an event in a Mozilla space</a></li>
+        <li><a href="https://bugzilla.mozilla.org/form.dev-engagement-event">I want Mozilla to sponsor my event</a></li>
+        <li><a href="mailto:trademark-permissions@mozilla.com">I’d like permission to use a Mozilla logo</a></li>
+        <li><a href="https://getpocket.com/sponsor">I’m interested in Pocket’s sponsored content on Firefox</a></li>
+        <li><a href="{{ url('press.press-inquiry') }}">I’m a member of the Press and have a question for Mozilla</a></li>
       </ul>
 
       <p>
-      {% trans link_sumo='https://support.mozilla.org' %}
+      {% with link_sumo='https://support.mozilla.org' %}
         To reach Mozilla anywhere in the world, check out the locations above. For help
         with any of our products, including Firefox (for desktop, Android and iOS) and
         Thunderbird, please <a href="{{ link_sumo }}">visit our support site</a>.
-      {% endtrans %}
+      {% endwith %}
       </p>
 
       <div class="contact-sections">
         <div class="contact-section">
-          <h4>{{ _('Find us online') }}</h4>
+          <h4>Find us online</h4>
           <ul class="mzp-u-list-styled">
-            <li><a href="https://facebook.com/mozilla" hreflang="en-US" rel="external">{{ _('Facebook') }}</a></li>
-            <li><a href="{{ mozilla_twitter_url() }}" rel="external">{{ _('Twitter') }}</a></li>
-            <li><a href="{{ url('mozorg.about.forums.forums') }}">{{ _('Forums &amp; e-mail lists') }}</a></li>
+            <li><a href="https://facebook.com/mozilla" hreflang="en-US" rel="external">Facebook</a></li>
+            <li><a href="{{ mozilla_twitter_url() }}" rel="external">Twitter</a></li>
+            <li><a href="{{ url('mozorg.about.forums.forums') }}">Forums &amp; e-mail lists</a></li>
           </ul>
         </div>
 
         <div class="contact-section">
-          <h4>{{ _('Join us') }}</h4>
+          <h4>Join us</h4>
           <ul class="mzp-u-list-styled">
-            <li><a href="{{ url('mozorg.contribute') }}">{{ _('Get involved') }}</a></li>
-            <li><a href="{{ url('careers.home') }}">{{ _('Career opportunities') }}</a></li>
-            <li><a href="https://mozillians.org">{{ _('Mozillians') }}</a></li>
+            <li><a href="{{ url('mozorg.contribute') }}">Get involved</a></li>
+            <li><a href="{{ url('careers.home') }}">Career opportunities</a></li>
+            <li><a href="https://mozillians.org">Mozillians</a></li>
           </ul>
         </div>
 
         <div class="contact-section">
-          <h4>{{ _('Questions &amp; feedback') }}</h4>
+          <h4>Questions &amp; feedback</h4>
           <ul class="mzp-u-list-styled">
-            <li><a href="https://support.mozilla.org/">{{ _('Get support') }}</a></li>
-            <li><a href="{{ url('foundation.licensing') }}">{{ _('Browser distribution &amp; licensing') }}</a></li>
-            <li><a href="https://input.mozilla.org/feedback">{{ _('Firefox feedback') }}</a></li>
-            <li><a href="https://support.mozilla.org/kb/websites-look-wrong-or-appear-differently">{{ _('Report a broken site') }}</a></li>
-            <li><a href="https://developer.mozilla.org/docs/Mozilla/QA/Bug_writing_guidelines">{{ _('How to report software issues') }}</a></li>
+            <li><a href="https://support.mozilla.org/">Get support</a></li>
+            <li><a href="{{ url('foundation.licensing') }}">Browser distribution &amp; licensing</a></li>
+            <li><a href="https://input.mozilla.org/feedback">Firefox feedback</a></li>
+            <li><a href="https://support.mozilla.org/kb/websites-look-wrong-or-appear-differently">Report a broken site</a></li>
+            <li><a href="https://developer.mozilla.org/docs/Mozilla/QA/Bug_writing_guidelines">How to report software issues</a></li>
           </ul>
         </div>
       </div>

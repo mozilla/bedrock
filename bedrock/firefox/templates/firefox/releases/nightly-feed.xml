@@ -6,10 +6,10 @@
 
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:webfeeds="http://webfeeds.org/rss/1.0">
-  <title>{{ _('Firefox Nightly Notes') }}</title>
-  <subtitle>{{ _('Firefox Nightly gets a new version every day and as a consequence, the release notes for the Nightly channel are updated continuously to reflect features that have reached sufficient maturity to benefit from community feedback and bug reports.') }}</subtitle>
+  <title>Firefox Nightly Notes</title>
+  <subtitle>Firefox Nightly gets a new version every day and as a consequence, the release notes for the Nightly channel are updated continuously to reflect features that have reached sufficient maturity to benefit from community feedback and bug reports.</subtitle>
   <author>
-    <name>{{ _('Mozilla') }}</name>
+    <name>Mozilla</name>
   </author>
   <id>{{ url('firefox.nightly.notes.feed')|absolute_url }}</id>
   <link rel="self" type="application/atom+xml" href="{{ url('firefox.nightly.notes.feed')|absolute_url }}"/>
@@ -26,8 +26,8 @@
     <updated>{{ note.modified.isoformat() }}</updated>
     <content type="xhtml">
       <div xmlns="http://www.w3.org/1999/xhtml">
-        {{ note.version }} / {{ note.tag|replace('HTML5', _('Web Platform')) }}
-        {%- if note.bug %} / <a href="https://bugzilla.mozilla.org/show_bug.cgi?id={{ note.bug }}">{{ _('Bug %d')|format(note.bug) }}</a>{% endif %}
+        {{ note.version }} / {{ note.tag|replace('HTML5', 'Web Platform') }}
+        {%- if note.bug %} / <a href="https://bugzilla.mozilla.org/show_bug.cgi?id={{ note.bug }}">Bug {{ note.bug }}</a>{% endif %}
         {{ note.note|markdown|safe }}
       </div>
     </content>

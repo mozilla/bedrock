@@ -6,7 +6,7 @@
 
 {% extends "base-protocol-mozilla.html" %}
 
-{% block page_title %}{{ _('The State of Mozilla: 2012 Annual Report') }}{% endblock %}
+{% block page_title %}The State of Mozilla: 2012 Annual Report{% endblock %}
 {% block body_id %}annual-2012{% endblock %}
 
 {% block page_css %}
@@ -20,7 +20,7 @@
       <section class="c-intro-section">
         <div class="c-copy-wrapper">
           <blockquote>
-            {{ _('We are champions of a Web where people know more, do more and do better.') }}
+            We are champions of a Web where people know more, do more and do better.
             <footer>
               <cite>Mitchell Baker</cite>
             </footer>
@@ -31,36 +31,29 @@
       <section class="c-content-section">
         <div class="c-copy-wrapper">
           <header>
-            <h2>{{ _('A Web For All') }}</h2>
+            <h2>A Web For All</h2>
           </header>
           <div class="c-copy">
             <p>
-            {% trans %}
               As the Web expands to reach billions of new people and touch our lives in new ways,
               it has become an essential part of our individual growth and collective future. And
               that Web is what the Mozilla community has pledged to protect and promote: a
               platform providing opportunity, connectivity and inspiration for all.
-            {% endtrans %}
             </p>
 
             <p>
-            {% trans %}
               We live our principles by making products, empowering communities, teaching skills
               and shaping environments in order to build the Internet the world needs.
-            {% endtrans %}
             </p>
 
             <p>
-            {% trans %}
               At this year’s Mozilla Summit, 2,000 people representing 90 countries and 114
               languages gathered to develop a shared understanding of who we are and what we will
               accomplish together. Below is a sample of perspectives from leaders of the project.
-            {% endtrans %}
             </p>
 
             <section class="c-media">
-              {# L10n: Text in <span> below visible to screen readers only. Line break is for visual formatting. #}
-              <h3>{{ _('<span>Play a video of </span>Mitchell <br>Baker') }}</h3>
+              <h3><span>Play a video of </span>Mitchell <br>Baker</h3>
 
               {{ video(
                   'State_of_Mozilla_Mitchell Baker_Who_is_Mozilla.webm',
@@ -73,8 +66,7 @@
 
 
             <section class="c-media">
-              {# L10n: Text in <span> below visible to screen readers only. Line break is for visual formatting. #}
-              <h3>{{ _('<span>Play a video of </span>Jay <br>Sullivan') }}</h3>
+              <h3><span>Play a video of </span>Jay <br>Sullivan</h3>
 
               {{ video(
                   'State_of_Mozilla_Jay_Sullivan_vision_for_Mozilla_products.webm',
@@ -86,8 +78,7 @@
             </section>
 
             <section class="c-media">
-              {# L10n: Text in <span> below visible to screen readers only. Line break is for visual formatting. #}
-              <h3>{{ _('<span>Play a video of </span>Harvey <br>Anderson') }}</h3>
+              <h3><span>Play a video of </span>Harvey <br>Anderson</h3>
 
               {{ video(
                   'State_of_Mozilla_Harvey_Anderson_Health_of_the_web.webm',
@@ -99,8 +90,7 @@
             </section>
 
             <section class="c-media">
-              {# L10n: Text in <span> below visible to screen readers only. Line break is for visual formatting. #}
-              <h3>{{ _('<span>Play a video of </span>Mark <br>Surman') }}</h3>
+              <h3><span>Play a video of </span>Mark <br>Surman</h3>
 
               {{ video(
                   'State_of_Mozilla_Mark_Surman_how_are_we_teaching_the_web_to_the_world.webm',
@@ -112,8 +102,7 @@
             </section>
 
             <section class="c-media">
-              {# L10n: Text in <span> below visible to screen readers only. Line break is for visual formatting. #}
-              <h3>{{ _('<span>Play a video of </span>Johnathan <br>Nightingale')}}</h3>
+              <h3><span>Play a video of </span>Johnathan <br>Nightingale</h3>
 
               {{ video(
                   'State of Mozilla - Johnathan Nightingale - How Firefox is continuing to break new ground..webm',
@@ -125,8 +114,7 @@
             </section>
 
             <section class="c-media">
-              {# L10n: Text in <span> below visible to screen readers only. Line break is for visual formatting. #}
-              <h3>{{ _('<span>Play a video of </span>Brendan <br>Eich') }}</h3>
+              <h3><span>Play a video of </span>Brendan <br>Eich</h3>
 
               {{ video(
                   'State_of_Mozilla_Brendan Eich_Envolving_the_web.webm',
@@ -144,23 +132,20 @@
       <section class="c-content-section">
         <div class="c-copy-wrapper">
           <header>
-            <h2>{{ _('Powered By Mozillians') }}</h2>
+            <h2>Powered By Mozillians</h2>
           </header>
           <div class="c-copy">
             <p>
-            {% trans %}
               Mozillians are a diverse group of thinkers, builders, educators and hackers
               with a shared purpose to bring openness, freedom and participation to the
               Internet. Our collective global effort advanced Firefox OS from concept to
               phones in stores within two years, hosted 1,600 events in three months to
               teach the Web, and many more accomplishments. We’re celebrating our journey
               and the promising path ahead.
-            {% endtrans %}
             </p>
 
             <section class="c-media">
-              {# L10n: Text in <span> below visible to screen readers only. #}
-              <h3>{{ _('<span>Play the "</span>I am a Mozillian<span>" video</span>') }}</h3>
+              <h3><span>Play the "</span>I am a Mozillian<span>" video</span></h3>
 
               {{ video(
                 'I_am_a_Mozillian.webm',
@@ -177,34 +162,28 @@
       <section class="c-content-section">
         <div class="c-copy-wrapper">
           <header>
-            <h2>{{ _('Sustainability') }}</h2>
+            <h2>Sustainability</h2>
           </header>
           <div class="c-copy">
             <p>
-            {% trans %}
               Along with this annual report, we’re releasing our audited financial statements
               for 2012. Mozilla remains well positioned, both financially and organizationally,
               to advance our mission.
-            {% endtrans %}
             </p>
 
             <p>
-            {% trans %}
               The majority of our revenue comes from the search functionality in the Firefox
               browser through a number of major partners, including Google, Bing, Yahoo,
               Yandex, Amazon and eBay. This 2012 financial statement includes revenue from a
               mutually beneficial commercial agreement with Google, our largest search
               provider, that was signed in December 2011 and extends at least three years.
-            {% endtrans %}
             </p>
 
             <p>
-            {% trans %}
               A growing percentage of our revenue also comes from support from the public,
               including grants and individual donors like you. These donations are directly
               applied to important projects such as Webmaker, Open Badges and Mozilla-Knight
               Open News that extend Mozilla's influence in new areas.
-            {% endtrans %}
             </p>
           </div>
         </div>

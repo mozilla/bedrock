@@ -6,377 +6,281 @@
 
 {% extends "mozorg/moss/base.html" %}
 
-{% block page_title %}{{ _('Foundational Technology') }} — {{ super() }}{% endblock %}
+{% block page_title %}Foundational Technology — {{ super() }}{% endblock %}
 
 {% block body_id %}moss-foundational-technology{% endblock %}
 
 {% block page_heading %}
-  {{ _('Foundational Technology') }}
+  Foundational Technology
 {% endblock %}
 
 {% block page_content %}
 <div class="t-medium">
   <section class="mzp-l-content">
-    <h2 class="moss-section-heading">{{ _('About') }}</h2>
+    <h2 class="moss-section-heading">About</h2>
 
     <p>
-    {% trans %}
       Mozilla currently relies on a number of open source and free software
       projects.
-    {% endtrans %}
 
-    {% trans %}
       In some cases the software produced by these projects is incorporated into
       Mozilla products.
-    {% endtrans %}
 
-    {% trans %}
       In other cases we run it as part of our infrastructure, or Mozillians use it
       to get their jobs done.
-    {% endtrans %}
 
-    {% trans %}
       The Foundational Technology track is open to such projects who are in need
       of funds.
-    {% endtrans %}
     </p>
 
     <div class="moss-cta">
-      <p>{{ _('Ready to go?') }}</p>
+      <p>Ready to go?</p>
 
-      <a href="https://mozilla.fluxx.io/apply/MOSS" rel="external" class="mzp-c-button">{{ _('Apply Now') }}</a>
+      <a href="https://mozilla.fluxx.io/apply/MOSS" rel="external" class="mzp-c-button">Apply Now</a>
     </div>
   </section>
 
   <section class="mzp-l-content moss-section">
-    <h2 class="moss-section-heading">{{ _('What your application should include') }}</h2>
+    <h2 class="moss-section-heading">What your application should include</h2>
 
     <p>
-    {% trans %}
       Applications should be jointly submitted by the leader of a project and an
       established Mozillian who will champion the award.
-    {% endtrans %}
 
-      {{ _('Your application needs to meet the following criteria:') }}
+      Your application needs to meet the following criteria:
     </p>
 
     <ul class="moss-list moss-list-third">
       <li>
-        <h3 class="moss-section-subhead">{{ _('Financial Request') }}</h3>
+        <h3 class="moss-section-subhead">Financial Request</h3>
 
         <p>
-        {% trans %}
           Award requests should be for the amount of financial support needed to
           accomplish a clear and current project goal.
-        {% endtrans %}
 
-        {% trans %}
           Projects that don’t have a need for funds at this time can be considered
           when such a need arises.
-        {% endtrans %}
 
-        {% trans %}
           A $10,000 award request is just as valid as a $50,000 or $100,000
           request.
-        {% endtrans %}
 
-        {% trans %}
           The money must be used to benefit the project, but it does not have to
           be used on things which themselves would directly benefit Mozilla.
-        {% endtrans %}
         </p>
       </li>
       <li>
-        <h3 class="moss-section-subhead">{{ _('Project Origin') }}</h3>
+        <h3 class="moss-section-subhead">Project Origin</h3>
 
         <p>
-        {% trans %}
           The project’s home can be anywhere in the world where we can make
           payment without undue burden.
-        {% endtrans %}
 
-        {% trans %}
           We have a reasonably strong preference for funding legal organizations
           rather than individuals representing projects, although exceptional
           circumstances could lead to some flexibility.
-        {% endtrans %}
         </p>
       </li>
       <li>
-        <h3 class="moss-section-subhead">{{ _('Champion Involvement') }}</h3>
+        <h3 class="moss-section-subhead">Champion Involvement</h3>
 
         <p>
-        {% trans %}
           The Mozillian champion may be (but does not need to be) a project
           contributor to the project they are championing.
-        {% endtrans %}
 
-        {% trans %}
           The Mozillian champion must vouch for the usefulness of the software,
           commit to monitoring the project, and report on the effectiveness of the
           award after the money is spent.
-        {% endtrans %}
 
-        {% trans %}
           They will also make themselves available to the application evaluation
           committee to help them assess the appropriateness of the award to the
           needs of the project.
-        {% endtrans %}
         </p>
       </li>
     </ul>
 
     <p>
-    {% trans %}
       We expect the vast majority of MOSS awards to be singular rather than
       regular — that is, support for doing a particular defined thing, rather than
       ongoing support for a project in general.
-    {% endtrans %}
 
-    {% trans %}
       However a previous award proposal, successful or unsuccessful, does not
       disqualify a project from applying again.
-    {% endtrans %}
 
-    {% trans %}
       The minimum award for the Foundational Technology track is $10,000, and the
       maximum is $250,000.
-    {% endtrans %}
     </p>
   </section>
 
   <section class="mzp-l-content moss-section">
-    <h2 class="moss-section-heading">{{ _('How we’ll make our decision') }}</h2>
+    <h2 class="moss-section-heading">How we’ll make our decision</h2>
 
     <p>
-    {% trans %}
       All criteria are indicative rather than determinative — that is to say, they
       will make us more or less likely to make an award, but none will guarantee a
       particular outcome.
-    {% endtrans %}
     </p>
 
     <p>
-      {{ _('Selection criteria:') }}
+      Selection criteria:
     </p>
 
     <ul class="mzp-u-list-styled">
       <li>
-        {{ _('How reliant is Mozilla on the project’s technology?') }}
+        How reliant is Mozilla on the project’s technology?
       </li>
       <li>
-        {{ _('Do others also rely on it outside of Mozilla products?') }}
+        Do others also rely on it outside of Mozilla products?
       </li>
       <li>
-        {{ _('Is the technology unique?') }}
-        {{ _('Are they doing something different?') }}
+        Is the technology unique?
+        Are they doing something different?
       </li>
       <li>
-        {{ _('What role does the project play in the open source ecosystem?') }}
+        What role does the project play in the open source ecosystem?
       </li>
       <li>
-        {% trans %}
           What sort of reputation does the project have in general, if any?
-        {% endtrans %}
 
         <ul>
           <li>
-          {% trans %}
             This includes reputation in technical, inclusion and other areas
-          {% endtrans %}
           </li>
           <li>
-          {% trans %}
             Is the project known for something besides the code we are relying on?
-          {% endtrans %}
           </li>
         </ul>
       </li>
       <li>
-        {{ _('Will this award make a significant impact on the project?') }}
+        Will this award make a significant impact on the project?
       </li>
       <li>
-      {% trans %}
         Is the level of funding appropriate for the task to be accomplished?
-      {% endtrans %}
       </li>
       <li>
-      {% trans %}
         Does the person (or group) who will receive the money have a track record
         of delivering?
-      {% endtrans %}
       </li>
       <li>
-        {{ _('What does the champion have to say?') }}
-        {{ _('Is the case compelling?') }}
+        What does the champion have to say?
+        Is the case compelling?
       </li>
     </ul>
   </section>
 
   <section class="mzp-l-content moss-section">
-    <h2 class="moss-section-heading">{{ _('What a Mozilla champion does') }}</h2>
+    <h2 class="moss-section-heading">What a Mozilla champion does</h2>
 
     <p>
-    {% trans %}
       Applications need to be jointly submitted by the project and a Mozilla
       Champion.
-    {% endtrans %}
 
-    {% trans %}
       A Champion is an established member of the Mozilla community who knows the
       project concerned.
-    {% endtrans %}
 
-    {% trans %}
       Being a champion means you believe in the project and its impact.
-    {% endtrans %}
 
-    {% trans %}
       You believe that funds from a MOSS Award would make a meaningful difference
       in the success and effectiveness of the project.
-    {% endtrans %}
 
-    {% trans %}
       You believe the range of funds requested in the Award proposal is
       appropriate.
-    {% endtrans %}
 
-    {% trans %}
       And you believe that the project and the task fit the award criteria for the
       track you are applying for.
-    {% endtrans %}
     </p>
 
     <p>
-      {{ _('A champion does a few different things:') }}
+      A champion does a few different things:
     </p>
 
     <ul class="mzp-u-list-styled">
       <li>
-      {% trans %}
         sponsors the project’s award proposal (it is akin to vouching for
         someone);
-      {% endtrans %}
       </li>
       <li>
-      {% trans %}
         serves as the liaison between that project and Mozilla with regard to
         the award;
-      {% endtrans %}
       </li>
       <li>
-      {% trans %}
         reviews the effectiveness of the award funds after an agreed upon period,
         to help Mozilla improve the effectiveness and impact of the MOSS program.
-      {% endtrans %}
       </li>
     </ul>
 
     <p>
-    {% trans %}
       This review process might involve answering a set of standard assessment
       questions at the mid-point and at the end of the award period, and giving
       your written opinion of the overall success of the award.
-    {% endtrans %}
 
-    {% trans %}
       The time commitment should not be massive, but it will require
       thoughtfulness and honesty.
-    {% endtrans %}
     </p>
   </section>
 
   <section class="mzp-l-content moss-section">
-    <h2 class="moss-section-heading">{{ _('How to apply') }}</h2>
+    <h2 class="moss-section-heading">How to apply</h2>
 
     <p>
-    {% trans %}
       To get started with your application, simply follow the link below.
-    {% endtrans %}
 
-    {% trans %}
       MOSS applications are considered by the committee on a rolling basis each month; typically, you can expect to hear back from us within two months of submitting your application.
-    {% endtrans %}
 
-    {% trans %}
       If you have any questions regarding your application, please
       <a href="mailto:moss@mozilla.com">email the MOSS team</a>.
-    {% endtrans %}
     </p>
 
     <div class="moss-cta">
       <p>
-        {{ _('I’m ready!') }}
+        I’m ready!
       </p>
 
-      <a href="https://mozilla.fluxx.io/apply/MOSS" rel="external" class="mzp-c-button">{{ _('Apply Now') }}</a>
+      <a href="https://mozilla.fluxx.io/apply/MOSS" rel="external" class="mzp-c-button">Apply Now</a>
     </div>
   </section>
 
   <section class="mzp-l-content moss-section">
-    <h2 class="moss-section-heading">{{ _('FAQs') }}</h2>
+    <h2 class="moss-section-heading">FAQs</h2>
 
     <dl class="mzp-u-list-styled">
       <dt>
-      {% trans %}
         What if my project doesn’t have a legal organizational home?
-      {% endtrans %}
 
-      {% trans %}
         I see this is disfavored, and exceptional circumstances are required.
-      {% endtrans %}
 
-      {% trans %}
         What might count as “exceptional”?
-      {% endtrans %}
       </dt>
 
       <dd>
-      {% trans %}
         You tell us.
-      {% endtrans %}
 
-      {% trans %}
         If a project doesn’t have a legal organizational home, we will be handing
         a large sum of money to an individual with only limited accountability.
-      {% endtrans %}
 
-      {% trans %}
         This means a higher level of complexity and risk.
-      {% endtrans %}
 
-      {% trans %}
         So you need to describe why it’s reasonable and important for us to accept
         that additional risk.
-      {% endtrans %}
 
-      {% trans %}
         We will listen because Mozilla is a pretty flexible organization, but we
         can’t promise the result will be as you hope.
-      {% endtrans %}
       </dd>
 
       <dt>
-        {{ _('What about tax?') }}
+        What about tax?
       </dt>
 
       <dd>
-      {% trans %}
         Recipients are responsible to determine the tax implications of receiving
         an award, based on their respective countries’ tax laws and compliance
         requirements.
-      {% endtrans %}
 
-      {% trans %}
         Amounts applied for should be sized such that any tax or other liability
         that will be incurred is accounted for.
-      {% endtrans %}
 
-      {% trans %}
         Mozilla reserves the right to use different payment mechanisms or tax
         characterizations for different awards in the MOSS program based on a
         number of factors specific to the award.
-      {% endtrans %}
       </dd>
     </dl>
   </section>

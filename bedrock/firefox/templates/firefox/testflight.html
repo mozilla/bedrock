@@ -9,13 +9,13 @@
 {% from "macros-protocol.html" import hero with context %}
 
 {% block page_title_prefix %}
-{{ _('Firefox for iOS Beta') }} —
+Firefox for iOS Beta —
 {% endblock %}
 
-{% block page_title %}{{ _('TestFlight') }}{% endblock %}
+{% block page_title %}TestFlight{% endblock %}
 
 {% block page_desc %}
-{{ _('Sign up to test pre-release beta versions of Firefox for iOS via Apple’s TestFlight program and help make our mobile browser for iPhone, iPad and iPod touch even better.') }}
+Sign up to test pre-release beta versions of Firefox for iOS via Apple’s TestFlight program and help make our mobile browser for iPhone, iPad and iPod touch even better.
 {% endblock %}
 
 {% block page_css %}
@@ -27,8 +27,8 @@
 {% block content %}
 <main role="main">
   {% call hero(
-  title=_('Help shape the future <br>of Firefox for iOS'),
-  desc=_('Sign up to test pre-release versions to make Firefox even better.'),
+  title='Help shape the future <br>of Firefox for iOS'|safe,
+  desc='Sign up to test pre-release versions to make Firefox even better.',
   class='mzp-t-firefox mzp-t-dark mzp-t-product-firefox',
   include_cta=False,
   heading_level=1) %}
@@ -47,7 +47,7 @@
         <div class="mzp-c-form-errors" id="newsletter-errors"></div>
 
         <div>
-          <label for="id_email">{{ _('Email') }}</label>
+          <label for="id_email">Email</label>
           <input type="email" class="mzp-js-email-field" id="id_email" name="email" required aria-required="true">
         </div>
 
@@ -65,10 +65,8 @@
           </fieldset>
             <label for="id_terms" class="mzp-u-inline">
               <input id="id_terms" name="terms" required aria-required="true" type="checkbox">
-              {% trans url='#terms-conditions' %}
               I have read and agree to these
-              <a href="{{ url }}">Terms and Conditions</a>
-              {% endtrans %}
+              <a href="#terms-conditions">Terms and Conditions</a>
             </label>
           <p>
             {{ newsletter_form.privacy|safe }}
@@ -76,7 +74,7 @@
         </div>
 
         <p class="mzp-c-form-submit">
-          <button class="mzp-c-button mzp-t-product" id="newsletter-submit" type="submit">{{ _('Submit') }}</button>
+          <button class="mzp-c-button mzp-t-product" id="newsletter-submit" type="submit">Submit</button>
         </p>
       </fieldset>
 
@@ -84,46 +82,42 @@
     </form>
 
     <div id="newsletter-thanks" class="mzp-c-newsletter-thanks">
-      <h3>{{ _('Congrats!') }}</h3>
-      <h4>{{ _('You have been added to the Firefox for iOS testing program.') }}</h4>
+      <h3>Congrats!</h3>
+      <h4>You have been added to the Firefox for iOS testing program.</h4>
       <p>
-        {% trans %}
         When test spots are available, you will receive an invitation from
         TestFlight, Apple's App Store program that manages pre-release
         software, to participate in the program.
-        {% endtrans %}
-        <strong>{{ _('Please accept it.') }}</strong>
+        <strong>Please accept it.</strong>
       </p>
-      <p>{{ _('Be aware that this email may be in your spam folder.') }}</p>
+      <p>Be aware that this email may be in your spam folder.</p>
     </div>
   </section>
 
   <section class="mzp-l-content mzp-t-content-sm" id="terms-conditions">
-    <h4>{{ _('Terms and Conditions') }}</h4>
+    <h4>Terms and Conditions</h4>
     <ol class="mzp-u-list-styled">
       <li>
         <p>
-          {{ _('This pre-release program (“Program”) is only available in English.') }}
-          {{ _('You must be at least 18 years old or have your parent consent to your participation in the Program.') }}
+          This pre-release program (“Program”) is only available in English.
+          You must be at least 18 years old or have your parent consent to your participation in the Program.
         </p>
       </li>
       <li>
         <p>
-          <strong>{{ _('Installation of TestFlight is required for Program participation.') }}</strong>
-          {% trans url='https://www.apple.com/legal/internet-services/itunes/testflight/sren/terms.html' %}
+          <strong>Installation of TestFlight is required for Program participation.</strong>
+          {% with url='https://www.apple.com/legal/internet-services/itunes/testflight/sren/terms.html' %}
           TestFlight is published by Apple and its
           <a href="{{ url }}" rel="external">terms and conditions</a> apply.
-          {% endtrans %}
+          {% endwith %}
 
-          {% trans url=url('privacy') %}
           When Mozilla receives data from you or TestFlight, we handle it in
-          accordance with our <a href="{{ url }}">Privacy Policy</a>.
-          {% endtrans %}
+          accordance with our <a href="{{ url('privacy') }}">Privacy Policy</a>.
         </p>
       </li>
       <li>
         <p>
-          {{ _('You may receive emails from TestFlight or Mozilla in connection with your participation in this Program.') }}
+          You may receive emails from TestFlight or Mozilla in connection with your participation in this Program.
         </p>
       </li>
     </ol>
