@@ -11,6 +11,7 @@ import pytest
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg import views
+from bedrock.mozorg.models import WebvisionDoc
 from bedrock.mozorg.tests import TestCase
 
 
@@ -142,3 +143,26 @@ def test_contentful_preview_view(
     client.get(url, follow=True)
     assert render_mock.call_count == 1
     assert render_mock.call_args_list[0][0][1] == expected_template
+
+
+class TestWebvisionDocView(TestCase):
+    def test_doc(self):
+        WebvisionDoc.objects.create(name="summary", content={"title": "<h1>Summary</h1>"})
+        resp = self.client.get(reverse("mozorg.about.webvision.summary"), follow=True)
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.context["doc"], {"title": "<h1>Summary</h1>"})
+
+    def test_missing_doc_is_404(self):
+        resp = self.client.get(reverse("mozorg.about.webvision.full"))
+        self.assertEqual(resp.status_code, 404)
+
+
+class TestWebvisionRedirect(TestCase):
+    def test_redirect(self):
+        # Since the webvision URL requires a WebvisionDoc to exist, we test this
+        # here instead of in the redirects tests.
+        WebvisionDoc.objects.create(name="summary", content="")
+        resp = self.client.get("/webvision/", follow=True)
+        self.assertEqual(resp.redirect_chain[0], ("/en-US/webvision/", 301))
+        self.assertEqual(resp.redirect_chain[1], ("/about/webvision/", 301))
+        self.assertEqual(resp.redirect_chain[2], ("/en-US/about/webvision/", 301))

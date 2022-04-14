@@ -1,0 +1,39 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% block page_title %}Mozilla's Vision of the Web{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle("protocol-article") }}
+  {{ css_bundle("protocol-call-out") }}
+  {{ css_bundle("webvision") }}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('webvision') }}
+{% endblock %}
+
+
+{% block content %}
+<main role="main" class="c-webvision-article-summary mzp-l-content">
+  <article class="mzp-c-article c-webvision-article" role="article">
+    <h1>Mozilla’s vision for the evolution of the Web</h1>
+    <h2>Executive Summary</h2>
+    <p><em>Note: this is a brief summary of the <a href="{{ url('mozorg.about.webvision.full') }}">full document</a></em></p>
+    {{ doc.content|safe }}
+  </article>
+</main>
+<section class="mzp-c-call-out">
+  <div class="mzp-l-content">
+    <h2 class="mzp-c-call-out-title">Ready for more?</h2>
+    <p class="mzp-c-call-out-desc">This was just the summary. You can read our <a href="{{ url('mozorg.about.webvision.full') }}">entire vision for the evolution of the Web here</a>.</p>
+  </div>
+</section>
+{% endblock %}
+
+

@@ -1,0 +1,107 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/sidebar-menu';
+@import '~@mozilla-protocol/core/protocol/css/templates/main-with-sidebar';
+
+.c-webvision-article {
+    h2 {
+        @include text-title-sm;
+    }
+
+    h3 {
+        @include text-title-xs;
+    }
+
+    h4 {
+        @include text-title-2xs;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        a {
+            position: relative;
+            visibility: hidden;
+
+            &::after {
+                content: '#';
+                color: $color-marketing-gray-30;
+                position: absolute;
+                left: 5px;
+                transition: color 200ms;
+                visibility: visible;
+            }
+
+            &:hover {
+                &::after {
+                    color: $color-blue-50;
+                }
+            }
+        }
+    }
+
+    ul {
+        li {
+            margin: $spacing-sm $spacing-lg;
+            list-style-type: disc;
+        }
+    }
+}
+
+.c-webvision-article-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.c-webvision-article-full {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: space-between;
+
+    @media #{$mq-md} {
+        flex-direction: row;
+
+        .c-webvision-article {
+            margin-left: $layout-sm;
+        }
+    }
+
+    .webvision-sidebar {
+        position: sticky;
+        max-height: 100vh;
+        top: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .mzp-c-sidemenu-main {
+
+        @media #{$mq-md} {
+            padding: $layout-lg 0;
+        }
+
+        @media #{$mq-xl} {
+            width: 350px;
+        }
+    }
+
+    .toc {
+        padding: $spacing-xs;
+
+        ul {
+            li {
+                margin: $spacing-sm;
+            }
+        }
+    }
+}

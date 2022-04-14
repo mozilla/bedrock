@@ -1092,6 +1092,12 @@
         "css/mozorg/diversity/2021/diversity-2021.scss"
       ],
       "name": "diversity-2021"
+    },
+    {
+      "files":[
+        "css/mozorg/webvision.scss"
+      ],
+      "name": "webvision"
     }
   ],
   "js": [
@@ -1710,6 +1716,13 @@
         "js/mozorg/diversity/2021/diversity-2021.es6.js"
       ],
       "name": "diversity-2021"
+    },
+    {
+      "files": [
+        "protocol/js/protocol-sidemenu.js",
+        "js/base/mozilla-article.js"
+      ],
+      "name": "webvision"
     }
   ]
 }

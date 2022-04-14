@@ -1,0 +1,29 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "mozorg/about/webvision/summary.html" %}
+
+{% block content %}
+  <main role="main" class="c-webvision-article-full mzp-l-content">
+    <aside class="mzp-l-sidebar">
+      <nav class="mzp-c-sidemenu webvision-sidebar">
+        <section class="mzp-c-sidemenu-summary mzp-js-toggle" aria-controls="sidebar-menu">
+          <h3 class="mzp-c-sidemenu-label">Menu</h3>
+          <ul>
+            <li>Mozilla's Webvision</li>
+          </ul>
+        </section>
+        <section class="mzp-c-sidemenu-main mzp-u-list-styled" id="sidebar-menu">
+          {{ doc.toc|safe }}
+        </section>
+      </nav>
+    </aside>
+    <article class="mzp-c-article c-webvision-article" role="article">
+      <h1>Mozilla’s vision for the evolution of the Web</h1>
+      {{ doc.content|safe }}
+    </article>
+  </main>
+{% endblock %}
