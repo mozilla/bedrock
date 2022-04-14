@@ -28,7 +28,6 @@ services:
       target: devapp
     image: mozmeao/bedrock_test:${GIT_COMMIT:-latest}
     platform: linux/amd64
-    # TODO: Switch CoreConfiguration to Mozorg when Pocket mode is in production
     command: python manage.py runserver 0.0.0.0:8080
     env_file: .env
     environment:
