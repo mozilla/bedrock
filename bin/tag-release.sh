@@ -23,20 +23,20 @@ while [[ $# -ge 1 ]]; do
   shift # past argument or value
 done
 
-# compare master and stage
-echo "Comparing master branch to staging..."
+# compare main and stage
+echo "Comparing main branch to staging..."
 git fetch "$moz_git_remote"
 stage_hash=$(git rev-parse "${moz_git_remote}/stage")
-master_hash=$(git rev-parse master)
-if [[ "$stage_hash" != "$master_hash" ]]; then
-    read -p "Master branch does NOT match stage branch! Are you sure you want to continue? (Type Override to continue, n to cancel)" no_match
+main_hash=$(git rev-parse main)
+if [[ "$stage_hash" != "$main_hash" ]]; then
+    read -p "Main branch does NOT match stage branch! Are you sure you want to continue? (Type Override to continue, n to cancel)" no_match
     if [ "$no_match" == "${no_match#[Override]}" ]; then
         # do not continue tagging release
         echo "Cancelled."
         exit
     fi
 else
-    echo "✓ Master branch matches staging."
+    echo "✓ Main branch matches staging."
 fi
 
 # prompt for confirmation, evaluate after first letter typed

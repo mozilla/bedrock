@@ -141,7 +141,7 @@ to make adjustments should it suit their particular language.
     for a particular locale, then it does not fall back to English like a regular string does. Instead,
     the term variable name is displayed on the page.
 
-.. _brands.ftl: https://github.com/mozilla/bedrock/blob/master/l10n/en/brands.ftl
+.. _brands.ftl: https://github.com/mozilla/bedrock/blob/main/l10n/en/brands.ftl
 .. _terms: https://projectfluent.org/fluent/guide/terms.html
 .. _mozilla-l10n/www-l10n: https://github.com/mozilla-l10n/www-l10n
 
@@ -410,9 +410,9 @@ with them, and pontoon leans on the goodwill of our volunteer community. Typical
 non-marketing content should go through Pontoon for all locales. Everything that is marketing
 related should feature one of the staff/vendor/pontoon configurations.
 
-.. _Vendor: https://github.com/mozilla/bedrock/blob/master/l10n/configs/vendor.toml
-.. _Pontoon: https://github.com/mozilla/bedrock/blob/master/l10n/configs/pontoon.toml
-.. _Special templates: https://github.com/mozilla/bedrock/blob/master/l10n/configs/special-templates.toml
+.. _Vendor: https://github.com/mozilla/bedrock/blob/main/l10n/configs/vendor.toml
+.. _Pontoon: https://github.com/mozilla/bedrock/blob/main/l10n/configs/pontoon.toml
+.. _Special templates: https://github.com/mozilla/bedrock/blob/main/l10n/configs/special-templates.toml
 .. _L10n Project Configuration: https://moz-l10n-config.readthedocs.io/
 
 Fluent File Activation
@@ -546,7 +546,7 @@ String extraction
 -----------------
 
 The string extraction process for both new .ftl content and updates to existing .ftl
-content is handled through automation. On each commit to master a command is run that
+content is handled through automation. On each commit to main a command is run that
 looks for changes to the ``l10n/`` directory. If a change is detected, it will copy
 those files into a new branch in `mozilla-l10n/www-l10n`_ and then a bot will open a
 pull request containing those changes. Once the pull request has been reviewed and

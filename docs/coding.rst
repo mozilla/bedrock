@@ -12,7 +12,7 @@ Managing Dependencies
 ---------------------
 
 For Python we use ``pip-compile`` from `pip-tools <https://pypi.org/project/pip-tools/>`_ to manage dependencies expressed in
-our `requirements files <https://github.com/mozilla/bedrock/tree/master/requirements>`_.
+our `requirements files <https://github.com/mozilla/bedrock/tree/main/requirements>`_.
 ``pip-compile`` is wrapped up in Makefile commands, to ensure we use it consistently.
 
 If you add a new Python dependency (eg to ``requirements/prod.in`` or ``requirements/dev.in``) you can generate a pinned and hash-marked
@@ -165,7 +165,7 @@ For pages that are served to Firefox browsers only, such as ``/whatsnew``, it is
 also possible to write native ES2015+ syntax and serve that directly in production.
 Here there is no need to include the ``.es6.js`` file extension. Instead, you can
 simply use ``.js`` instead. The rules that which files you can do this in are defined
-in our `ESLint config <https://github.com/mozilla/bedrock/blob/master/.eslintrc.js>`_.
+in our `ESLint config <https://github.com/mozilla/bedrock/blob/main/.eslintrc.js>`_.
 
 Writing URL Patterns
 --------------------
@@ -659,7 +659,7 @@ Then we need to include those Protocol styles in the page's SCSS file:
 Macros
 ~~~~~~
 
-The team has created several `Jinja macros <https://jinja2docs.readthedocs.io/en/stable/templates.html#macros>`_ out of Protocol components to simplify the usage of components housing larger blocks of code (i.e. Split). The code housing the custom macros can be found in our `protocol macros file <https://github.com/mozilla/bedrock/blob/master/bedrock/base/templates/macros-protocol.html>`_. These Jinja macros include parameters that are simple to define and customize based on how the component should look like on a given page.
+The team has created several `Jinja macros <https://jinja2docs.readthedocs.io/en/stable/templates.html#macros>`_ out of Protocol components to simplify the usage of components housing larger blocks of code (i.e. Split). The code housing the custom macros can be found in our `protocol macros file <https://github.com/mozilla/bedrock/blob/main/bedrock/base/templates/macros-protocol.html>`_. These Jinja macros include parameters that are simple to define and customize based on how the component should look like on a given page.
 
 To use these macros in files, we simply import a macro to the page's HTML code and call it with the desired arguments, instead of manually adding Protocol markup. We can import multiple macros in a comma-separated fashion, ending the import with ``with context``:
 

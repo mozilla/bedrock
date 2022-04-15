@@ -36,10 +36,10 @@ Pull request
 Once a pull request is submitted, `CircleCI`_ will run both the Python and JavaScript
 unit tests, as well as the suite of redirect headless HTTP(s) response checks.
 
-Push to master branch
+Push to main branch
 ~~~~~~~~~~~~~~~~~~~~~
 
-Whenever a change is pushed to the master branch, a new image is built and deployed to the
+Whenever a change is pushed to the main branch, a new image is built and deployed to the
 dev environment, and the full suite of headless and UI tests are run. This is handled by the
 pipeline, and is subject to change according to the settings in the `.gitlab-ci.yml file
 in the www-config repository`_.
@@ -78,10 +78,10 @@ to change according to the settings in the `.gitlab-ci.yml file in the www-confi
 
 **Push to prod cheat sheet**
 
-#. Check out the ``master`` branch
-#. Make sure the ``master`` branch is up to date with ``mozilla/bedrock master``
+#. Check out the ``main`` branch
+#. Make sure the ``main`` branch is up to date with ``mozilla/bedrock main``
 #. Check that dev deployment is green:
-    #. View `deployment pipeline`_ and look at ``master`` branch
+    #. View `deployment pipeline`_ and look at ``main`` branch
 #. Tag and push the deployment by running ``bin/tag-release.sh --push``
 
 .. note::
@@ -153,8 +153,8 @@ If you have commit rights to our Github repo (mozilla/bedrock) you can simply pu
 your branch to the branch named ``run-integration-tests``, and the app will be deployed
 and the full suite of integration tests for that branch will be run. Please announce in
 our Slack channel (#www on mozilla.slack.com) that you'll be doing this so
-that we don't get conflicts. Also remember that you'll likely need to force push, as there 
-may be commits on that branch which aren't in yours – so, if you have the 
+that we don't get conflicts. Also remember that you'll likely need to force push, as there
+may be commits on that branch which aren't in yours – so, if you have the
 ``mozilla/bedrock`` remote set as ``mozilla``:
 
 .. code-block:: bash
@@ -167,7 +167,7 @@ may be commits on that branch which aren't in yours – so, if you have the
 .. _CircleCI: https://circleci.com/
 .. _Sauce Labs: https://saucelabs.com/
 .. _.gitlab-ci.yml file in the www-config repository: https://github.com/mozmeao/www-config/tree/master/.gitlab-ci.yml
-.. _test dependencies: https://github.com/mozilla/bedrock/blob/master/requirements/dev.txt
+.. _test dependencies: https://github.com/mozilla/bedrock/blob/main/requirements/dev.txt
 .. _Selenium Docker versions: https://hub.docker.com/r/selenium/hub/tags/
 .. _Sauce Labs platform configurator: https://wiki.saucelabs.com/display/DOCS/Platform+Configurator/
 .. _public staging environment: https://www.allizom.org

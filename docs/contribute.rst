@@ -15,12 +15,12 @@ JavaScript and CSS.
 
 Git workflow
 ------------
-When you want to start contributing, you should create a branch from master.
+When you want to start contributing, you should create a branch from main.
 This allows you to work on different project at the same time:
 
 .. code-block:: bash
 
-    $ git checkout master
+    $ git checkout main
 
 .. code-block:: bash
 
@@ -35,11 +35,11 @@ called mozilla:
 
 .. code-block:: bash
 
-    $ git checkout master
+    $ git checkout main
 
 .. code-block:: bash
 
-    $ git merge mozilla/master
+    $ git merge mozilla/main
 
 .. code-block:: bash
 
@@ -47,7 +47,7 @@ called mozilla:
 
 .. code-block:: bash
 
-    $ git rebase master
+    $ git rebase main
 
 If you need more Git expertise, a good resource is the `Git book`_.
 
@@ -64,7 +64,7 @@ done.
   any line, not only the first one.
 * If you use the syntax ``bug xxx``, Github will reference the commit into
   Bugzilla. With ``fix bug xxx``, it will even close the bug once it goes into
-  master.
+  main.
 
 If you're asked to change your commit message, you can use these commands:
 
@@ -80,13 +80,13 @@ If you're asked to change your commit message, you can use these commands:
 
 Submitting your work
 --------------------
-In general, you should submit your work with a pull request to master. If you
+In general, you should submit your work with a pull request to main. If you
 are working with other people or you want to put your work on a demo server,
 then you should be working on a common topic branch.
 
 Once your code has been positively reviewed, it will be deployed shortly after.
 So if you want feedback on your code but it's not ready to be deployed, you
-should note it in the pull request, or use a `Draft PR`_. Also make use of 
+should note it in the pull request, or use a `Draft PR`_. Also make use of
 an appropriate label, such as ``Do Not Merge``.
 
 Squashing your commits
@@ -141,7 +141,7 @@ Server architecture
 
 - *URL:* http://www-dev.allizom.org/
 - *Bedrock locales:* dev repo
-- *Bedrock Git branch:* master, deployed on git push
+- *Bedrock Git branch:* main, deployed on git push
 
 **Stage**
 
@@ -172,7 +172,7 @@ following command:
     $ ./bin/open-compare.py
 
 This will discover the currently deployed git hash, and open a compare URL at github
-to the latest master. Look at ``open-compare.py -h`` for more options.
+to the latest main. Look at ``open-compare.py -h`` for more options.
 
 We automate pushing to production via tagged commits (see :ref:`tagged-commit`)
 

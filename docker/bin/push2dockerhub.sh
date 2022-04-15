@@ -18,7 +18,7 @@ else
     docker push "$IMG_TO_PUSH"
 fi
 
-if [[ "$BRANCH_NAME" == "master" ]]; then
+if [[ "$BRANCH_NAME" == "main" ]]; then
     docker tag $IMG_TO_PUSH $FROM_DOCKER_REPOSITORY:latest
     docker push $FROM_DOCKER_REPOSITORY:latest
 fi

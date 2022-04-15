@@ -298,8 +298,8 @@ via product details are well formed and return valid 200 responses.
 .. _waits: http://seleniumhq.github.io/selenium/docs/api/py/webdriver_support/selenium.webdriver.support.wait.html
 .. _expected conditions: http://seleniumhq.github.io/selenium/docs/api/py/webdriver_support/selenium.webdriver.support.expected_conditions.html
 .. _Web QA style guide: https://wiki.mozilla.org/QA/Execution/Web_Testing/Docs/Automation/StyleGuide
-.. _download: https://github.com/mozilla/bedrock/blob/master/tests/functional/test_download.py
-.. _localized download: https://github.com/mozilla/bedrock/blob/master/tests/functional/test_download_l10n.py
+.. _download: https://github.com/mozilla/bedrock/blob/main/tests/functional/test_download.py
+.. _localized download: https://github.com/mozilla/bedrock/blob/main/tests/functional/test_download_l10n.py
 .. _Basket: https://github.com/mozilla/basket
 .. _geckodriver: https://github.com/mozilla/geckodriver/releases/latest
 .. _system path: https://developer.mozilla.org/docs/Mozilla/QA/Marionette/WebDriver#Add_executable_to_system_path
