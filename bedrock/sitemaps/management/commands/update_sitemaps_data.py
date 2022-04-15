@@ -23,7 +23,7 @@ class Command(BaseCommand):
         if options["quiet"]:
             self.stdout._out = StringIO()
 
-        repo = GitRepo(settings.SITEMAPS_PATH, settings.SITEMAPS_REPO, name="Sitemaps")
+        repo = GitRepo(settings.SITEMAPS_PATH, settings.SITEMAPS_REPO, settings.SITEMAPS_REPO_BRANCH, name="Sitemaps")
         self.stdout.write("Updating git repo")
         repo.update()
         if not (options["force"] or repo.has_changes()):

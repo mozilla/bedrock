@@ -256,12 +256,14 @@ FLUENT_DEFAULT_FILES = [
 FLUENT_DEFAULT_PERCENT_REQUIRED = config("FLUENT_DEFAULT_PERCENT_REQUIRED", default="80", parser=int)
 FLUENT_REPO = config("FLUENT_REPO", default="mozmeao/www-l10n")
 FLUENT_REPO_URL = f"https://github.com/{FLUENT_REPO}"
+FLUENT_REPO_BRANCH = config("FLUENT_REPO_BRANCH", default="master")
 FLUENT_REPO_PATH = DATA_PATH / "www-l10n"
 # will be something like "<github username>:<github token>"
 FLUENT_REPO_AUTH = config("FLUENT_REPO_AUTH", default="")
 FLUENT_LOCAL_PATH = ROOT_PATH / "l10n"
 FLUENT_L10N_TEAM_REPO = config("FLUENT_L10N_TEAM_REPO", default="mozilla-l10n/www-l10n")
 FLUENT_L10N_TEAM_REPO_URL = f"https://github.com/{FLUENT_L10N_TEAM_REPO}"
+FLUENT_L10N_TEAM_REPO_BRANCH = config("FLUENT_L10N_TEAM_REPO_BRANCH", default="master")
 FLUENT_L10N_TEAM_REPO_PATH = DATA_PATH / "l10n-team"
 # 10 seconds during dev and 10 min in prod
 FLUENT_CACHE_TIMEOUT = config("FLUENT_CACHE_TIMEOUT", default="10" if DEBUG else "600", parser=int)
@@ -464,6 +466,7 @@ EXTRA_INDEX_URLS = {
 }
 
 SITEMAPS_REPO = config("SITEMAPS_REPO", default="https://github.com/mozmeao/www-sitemap-generator.git")
+SITEMAPS_REPO_BRANCH = config("SITEMAPS_REPO_BRANCH", default="master")
 SITEMAPS_PATH = DATA_PATH / "sitemaps"
 
 # Pages that have different URLs for different locales, e.g.
@@ -1081,7 +1084,7 @@ RELEASE_NOTES_BRANCH = config("RELEASE_NOTES_BRANCH", default="master")
 
 WWW_CONFIG_PATH = config("WWW_CONFIG_PATH", default=data_path("www_config"))
 WWW_CONFIG_REPO = config("WWW_CONFIG_REPO", default="https://github.com/mozmeao/www-config.git")
-WWW_CONFIG_BRANCH = config("WWW_CONFIG_BRANCH", default="master")
+WWW_CONFIG_BRANCH = config("WWW_CONFIG_BRANCH", default="main")
 
 LEGAL_DOCS_PATH = DATA_PATH / "legal_docs"
 LEGAL_DOCS_REPO = config("LEGAL_DOCS_REPO", default="https://github.com/mozilla/legal-docs.git")
