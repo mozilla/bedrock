@@ -166,7 +166,7 @@ may be commits on that branch which aren't in yours – so, if you have the
 .. _pipeline configuration: https://gitlab.com/mozmeao/www-config/-/pipelines/207024459
 .. _CircleCI: https://circleci.com/
 .. _Sauce Labs: https://saucelabs.com/
-.. _.gitlab-ci.yml file in the www-config repository: https://github.com/mozmeao/www-config/tree/master/.gitlab-ci.yml
+.. _.gitlab-ci.yml file in the www-config repository: https://github.com/mozmeao/www-config/tree/main/.gitlab-ci.yml
 .. _test dependencies: https://github.com/mozilla/bedrock/blob/main/requirements/dev.txt
 .. _Selenium Docker versions: https://hub.docker.com/r/selenium/hub/tags/
 .. _Sauce Labs platform configurator: https://wiki.saucelabs.com/display/DOCS/Platform+Configurator/

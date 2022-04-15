@@ -1,7 +1,7 @@
 variables:
   CLUSTER_NAME: iowa-a
   CONFIG_REPO: git@github.com:mozmeao/www-config
-  CONFIG_BRANCH: master
+  CONFIG_BRANCH: main
 
 stages:
   - build
