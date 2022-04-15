@@ -63,7 +63,7 @@ class Command(FTLRepoCommand):
         if GIT_HASH:
             message += f"From file changes in https://github.com/mozilla/bedrock/commit/{GIT_HASH}"
         else:
-            message += "From file changes in https://github.com/mozilla/bedrock/commits/master"
+            message += "From file changes in https://github.com/mozilla/bedrock/commits/main"
 
         return message
 

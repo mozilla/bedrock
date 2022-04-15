@@ -35,7 +35,7 @@ number being requested.
     https://www.mozilla.org/en-US/firefox/download/thanks/?f=137
 
 Bedrock checks to see if the funnelcake is configured (this is handled in the
-`www-config repo <https://github.com/mozmeao/www-config/blob/master/waffle_configs/bedrock-prod.env>`_)
+`www-config repo <https://github.com/mozmeao/www-config/blob/main/waffle_configs/bedrock-prod.env>`_)
 
 .. code-block:: bash
 
