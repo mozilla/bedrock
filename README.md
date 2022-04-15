@@ -31,7 +31,7 @@ to get started.
 
 [gh-bedrock]: https://github.com/mozilla/bedrock
 [github-issue]: https://github.com/mozilla/bedrock/issues/new?template=bug_report.md
-[contributing]: https://github.com/mozilla/bedrock/blob/master/.github/CONTRIBUTING.md
+[contributing]: https://github.com/mozilla/bedrock/blob/main/.github/CONTRIBUTING.md
 
 Code of Conduct
 ---------------
@@ -39,7 +39,7 @@ Code of Conduct
 This repository is governed by Mozilla's [Community Participation Guidelines][participation]
 and [Developer Etiquette Guidelines][etiquette].
 
-[participation]: https://github.com/mozilla/bedrock/blob/master/CODE_OF_CONDUCT.md
+[participation]: https://github.com/mozilla/bedrock/blob/main/CODE_OF_CONDUCT.md
 [etiquette]: https://bugzilla.mozilla.org/page.cgi?id=etiquette.html
 
 License
@@ -49,7 +49,7 @@ This software is licensed under the [MPL version 2.0][MPL]. For more
 information, read this repository's [LICENSE][LICENSE].
 
 [MPL]: https://www.mozilla.org/MPL/
-[LICENSE]: https://github.com/mozilla/bedrock/blob/master/LICENSE
+[LICENSE]: https://github.com/mozilla/bedrock/blob/main/LICENSE
 
 ![](http://i.imgur.com/ElotJSI.jpg)
 

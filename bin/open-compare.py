@@ -21,7 +21,7 @@ ENV_URLS = {
 }
 REV_PATH = "/revision.txt"
 DEFAULT_REPO = "mozilla/bedrock"
-DEFAULT_BRANCH = "master"
+DEFAULT_BRANCH = "main"
 URL_TEMPLATE = "https://github.com/{repo}/compare/{rev}...{branch}"
 GITHUB_API_TEMPLATE = "https://api.github.com/repos/{repo}/branches/{branch}"
 
@@ -36,7 +36,7 @@ def get_current_rev(env):
             url.close()
 
 
-def get_current_master(repo, branch):
+def get_current_main(repo, branch):
     url = GITHUB_API_TEMPLATE.format(repo=repo, branch=branch)
     conn = None
     try:
@@ -52,7 +52,7 @@ def get_current_master(repo, branch):
 
 def get_compare_url(env, branch=DEFAULT_BRANCH, repo=DEFAULT_REPO):
     rev = get_current_rev(env)
-    sha = get_current_master(repo, branch)
+    sha = get_current_main(repo, branch)
     return URL_TEMPLATE.format(rev=rev, branch=sha, repo=repo)
 
 

@@ -10,7 +10,7 @@ stages:
 build:
   stage: build
   only:
-    - master
+    - main
     - stage
     - prod
   tags:
@@ -41,7 +41,7 @@ update-l10n:
     changes:
       - "l10n/**/*"
     refs:
-      - master
+      - main
   script:
     - bin/open-ftl-pr.sh
   retry: 2
@@ -58,7 +58,7 @@ update-l10n:
 dev:
   extends: .update-config
   only:
-    - master
+    - main
   variables:
     NAMESPACE: bedrock-dev
 

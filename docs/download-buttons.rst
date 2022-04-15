@@ -37,7 +37,7 @@ Documentation
 
 See `helpers.py`_ for documentation and supported parameters for both buttons.
 
-.. _helpers.py: https://github.com/mozilla/bedrock/blob/master/bedrock/firefox/templatetags/helpers.py
+.. _helpers.py: https://github.com/mozilla/bedrock/blob/main/bedrock/firefox/templatetags/helpers.py
 
 External referrers
 ------------------
@@ -75,4 +75,3 @@ download automatically when clicked. For cases like this, sites can link to the 
 
 .. _/firefox/new/: https://www.mozilla.org/firefox/new/
 .. _conditional comment: https://en.wikipedia.org/wiki/Conditional_comment
-
