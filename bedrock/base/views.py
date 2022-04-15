@@ -56,7 +56,7 @@ S3_BASE_URL = f"https://s3-{REGION_NAME}.amazonaws.com/{BUCKET_NAME}"
 
 
 def get_l10n_repo_info():
-    fluent_repo = git.GitRepo(settings.FLUENT_REPO_PATH, settings.FLUENT_REPO_URL)
+    fluent_repo = git.GitRepo(settings.FLUENT_REPO_PATH, settings.FLUENT_REPO_URL, settings.FLUENT_REPO_BRANCH)
     data = {
         "latest_ref": fluent_repo.current_hash,
         "last_updated": fluent_repo.last_updated,

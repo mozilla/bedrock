@@ -22,7 +22,7 @@ class Command(BaseCommand):
             self.stdout._out = StringIO()
 
         data_path = settings.SITEMAPS_PATH.joinpath("data")
-        repo = GitRepo(settings.SITEMAPS_PATH, settings.SITEMAPS_REPO)
+        repo = GitRepo(settings.SITEMAPS_PATH, settings.SITEMAPS_REPO, settings.SITEMAPS_REPO_BRANCH)
         repo.update()
 
         for src_path in data_path.rglob("*.*"):

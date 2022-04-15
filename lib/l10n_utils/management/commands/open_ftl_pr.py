@@ -129,7 +129,7 @@ class Command(FTLRepoCommand):
         pr = self.github.create_pull(
             title=title,
             body=body,
-            base="master",
+            base=self.l10n_repo.branch_name,
             head=self.branch_name,
         )
         self.stdout.write(f"Opened a pull-request: {pr.html_url}")
