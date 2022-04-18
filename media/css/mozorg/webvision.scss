@@ -111,6 +111,10 @@ $image-path: '/media/protocol/img';
             margin: $spacing-sm;
             font-weight: 600;
 
+            a {
+                padding: 0;
+            }
+
             ul {
                 li {
                     font-weight: 400;
