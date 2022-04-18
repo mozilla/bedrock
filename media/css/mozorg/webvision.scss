@@ -70,37 +70,51 @@ $image-path: '/media/protocol/img';
 
     @media #{$mq-md} {
         flex-direction: row;
-
-        .c-webvision-article {
-            margin-left: $layout-sm;
-        }
     }
 
-    .webvision-sidebar {
-        position: sticky;
-        max-height: 100vh;
-        top: 0;
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
-
-    .mzp-c-sidemenu-main {
+    .c-webvision-article {
 
         @media #{$mq-md} {
-            padding: $layout-lg 0;
+            margin-right: 0;
         }
 
-        @media #{$mq-xl} {
-            width: 350px;
+        @media #{$mq-lg} {
+            margin-right: $layout-2xl;
         }
     }
+}
 
-    .toc {
-        padding: $spacing-xs;
+.webvision-sidebar {
+    position: sticky;
+    max-height: 100vh;
+    top: 80px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
 
-        ul {
-            li {
-                margin: $spacing-sm;
+.mzp-c-sidemenu-main {
+
+    @media #{$mq-md} {
+        padding-bottom: $layout-xl;
+    }
+
+    @media #{$mq-xl} {
+        width: 350px;
+    }
+}
+
+.toc {
+    padding: $spacing-xs;
+
+    ul {
+        li {
+            margin: $spacing-sm;
+            font-weight: 600;
+
+            ul {
+                li {
+                    font-weight: 400;
+                }
             }
         }
     }
