@@ -73,14 +73,7 @@ $image-path: '/media/protocol/img';
     }
 
     .c-webvision-article {
-
-        @media #{$mq-md} {
-            margin-right: 0;
-        }
-
-        @media #{$mq-lg} {
-            margin-right: $layout-2xl;
-        }
+        margin-right: auto;
     }
 }
 
@@ -108,12 +101,8 @@ $image-path: '/media/protocol/img';
 
     ul {
         li {
-            margin: $spacing-sm;
+            margin-left: $spacing-sm;
             font-weight: 600;
-
-            a {
-                padding: 0;
-            }
 
             ul {
                 li {
