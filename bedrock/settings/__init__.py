@@ -5,8 +5,6 @@
 import logging.config
 import sys
 
-from django.core.exceptions import ImproperlyConfigured
-
 from .base import *  # noqa
 
 if DEV:
@@ -92,35 +90,25 @@ logging.config.dictConfig(LOGGING)
 
 # OPERATION MODE SELECTION
 # Which site do we want Bedrock to serve?
-DEFAULT_SITE_MODE = "Default"
 POCKET_SITE_MODE = "Pocket"
 MOZORG_SITE_MODE = "Mozorg"
 
-site_mode = config("SITE_MODE", default=DEFAULT_SITE_MODE)
+site_mode = config("SITE_MODE", default=MOZORG_SITE_MODE)
 
-if site_mode == MOZORG_SITE_MODE:
-    ROOT_URLCONF = "bedrock.urls_mozorg_mode"
-elif site_mode == POCKET_SITE_MODE:
-    ROOT_URLCONF = "bedrock.urls_pocket_mode"
-    # TODO: from settings.pocket import *
-    # to switch in Pocket-appropriate versions of
+if site_mode == POCKET_SITE_MODE:
+    ROOT_URLCONF = "bedrock.urls.pocket_mode"
+    # TODO: define in Pocket-appropriate versions of
     # DEV_LANGUAGES, PROD_LANGUAGES, CANONICAL_LOCALES,
     # FLUENT_* overrides for Pocket L10N, etc
-    # (The import from settings.pocket is just one option)
-elif site_mode == DEFAULT_SITE_MODE:
-    # For now, the default behaviour should not be changed
-    # TODO: remove this option once Pocket mode is in production AND
-    # we've made Mozorg mode an explicit mode for production, too
-    ROOT_URLCONF = "bedrock.urls"
 else:
-    raise ImproperlyConfigured(f"SITE_MODE of '{site_mode}' not recognised, so cannot run")
+    ROOT_URLCONF = "bedrock.urls.mozorg_mode"
+    # TODO: move Mozorg-appropriate versions of
+    # DEV_LANGUAGES, PROD_LANGUAGES, CANONICAL_LOCALES,
+    # FLUENT_* overrides for Pocket L10N into this file
 
 # TEST-SPECIFIC SETTINGS
 # TODO: make this selectable by an env var, like the other modes
 if (len(sys.argv) > 1 and sys.argv[1] == "test") or "pytest" in sys.modules:
-
-    # Ensure we have all URLs available for tests
-    ROOT_URLCONF = "bedrock.urls"
 
     # Using the CachedStaticFilesStorage for tests breaks all the things.
     STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"

@@ -53,7 +53,6 @@
   "scripts": {
     "start": "concurrently --kill-others \"python manage.py runserver 0.0.0.0:8080\" \"npm run watch\"",
     "in-pocket-mode": "SITE_MODE=Pocket npm start",
-    "in-mozorg-mode": "SITE_MODE=Mozorg npm start",
     "lint-js": "./node_modules/.bin/eslint \"media/js/**/*.js\" \"tests/unit/spec/**/*.js\" webpack.config.js webpack.static.config.js",
     "lint-css": "./node_modules/.bin/stylelint \"media/css/**/*.{css,scss}\"",
     "lint-json": "./node_modules/.bin/eslint \"bedrock/base/templates/includes/structured-data/**/*.json\"",

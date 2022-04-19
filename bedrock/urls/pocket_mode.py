@@ -17,20 +17,7 @@ handler404 = "bedrock.base.views.page_not_found_view"
 
 
 urlpatterns = (
-    # Main pages
-    path("foundation/", include("bedrock.foundation.urls")),
-    path("about/legal/", include("bedrock.legal.urls")),
-    path("press/", include("bedrock.press.urls")),
-    path("privacy/", include("bedrock.privacy.urls")),
-    path("products/", include("bedrock.products.urls")),
-    path("security/", include("bedrock.security.urls")),
-    path("", include("bedrock.firefox.urls")),
-    path("", include("bedrock.mozorg.urls")),
-    path("", include("bedrock.newsletter.urls")),
-    path("", include("bedrock.sitemaps.urls")),
-    path("careers/", include("bedrock.careers.urls")),
-    path("exp/", include("bedrock.exp.urls")),
-    path("external/pocket/", include("bedrock.pocket.urls")),
+    path("", include("bedrock.pocket.urls")),
     path("healthz/", watchman_views.ping, name="watchman.ping"),
     path("readiness/", watchman_views.status, name="watchman.status"),
     path("healthz-cron/", base_views.cron_health_check),
