@@ -336,6 +336,22 @@ image first:
 
     $ make build-prod run-prod
 
+
+Pocket Mode
+-----------
+
+By default, Bedrock will serve the content of ``www.mozilla.org``. However, it is also possible to
+make Bedrock serve the content pages for Pocket (``getpocket.com``). This is done, ultimately, by
+setting a ``SITE_MODE`` env var to the value of ``Pocket``.
+
+For local development, setting this env var is already supported in the standard ways to run the site:
+
+* Docker: ``make run-pocket`` and ``make run-pocket prod``
+* Node/webpack and Django runserver: ``npm run in-pocket-mode``
+* ``SITE_MODE=Pocket ./manage.py runserver`` for plain ol' Django runserver, in Pocket mode
+
+For demos on servers, remember to set the SITE_MODE env var to be the value you need (``Pocket`` or ``Morzorg``/null)
+
 Documentation
 -------------
 
