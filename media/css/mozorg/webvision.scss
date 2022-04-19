@@ -70,37 +70,44 @@ $image-path: '/media/protocol/img';
 
     @media #{$mq-md} {
         flex-direction: row;
-
-        .c-webvision-article {
-            margin-left: $layout-sm;
-        }
     }
 
-    .webvision-sidebar {
-        position: sticky;
-        max-height: 100vh;
-        top: 0;
-        overflow-y: auto;
-        overflow-x: hidden;
+    .c-webvision-article {
+        margin-right: auto;
+    }
+}
+
+.webvision-sidebar {
+    position: sticky;
+    max-height: 100vh;
+    top: 80px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.mzp-c-sidemenu-main {
+
+    @media #{$mq-md} {
+        padding-bottom: $layout-xl;
     }
 
-    .mzp-c-sidemenu-main {
-
-        @media #{$mq-md} {
-            padding: $layout-lg 0;
-        }
-
-        @media #{$mq-xl} {
-            width: 350px;
-        }
+    @media #{$mq-xl} {
+        width: 350px;
     }
+}
 
-    .toc {
-        padding: $spacing-xs;
+.toc {
+    padding: $spacing-xs;
 
-        ul {
-            li {
-                margin: $spacing-sm;
+    ul {
+        li {
+            margin-left: $spacing-sm;
+            font-weight: 600;
+
+            ul {
+                li {
+                    font-weight: 400;
+                }
             }
         }
     }
