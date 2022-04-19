@@ -350,7 +350,7 @@ For local development, setting this env var is already supported in the standard
 * Node/webpack and Django runserver: ``npm run in-pocket-mode``
 * ``SITE_MODE=Pocket ./manage.py runserver`` for plain ol' Django runserver, in Pocket mode
 
-For demos on servers, remember to set the SITE_MODE env var to be the value you need (``Pocket`` or ``Morzorg``/null)
+For demos on servers, remember to set the SITE_MODE env var to be the value you need (``Pocket`` or ``Mozorg`` – or nothing, which is the same as setting ``Mozorg``)
 
 Documentation
 -------------

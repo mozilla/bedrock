@@ -31,8 +31,7 @@ services:
     command: python manage.py runserver 0.0.0.0:8080
     env_file: .env
     environment:
-        # TODO: Switch Default to Mozorg when Pocket mode is in production
-        SITE_MODE: "${SITE_MODE:-Default}"
+        SITE_MODE: "${SITE_MODE:-Mozorg}"
 
     ports:
       - "8080:8080"
@@ -89,8 +88,7 @@ services:
     env_file: .env
     environment:
       RUN_SUPERVISOR: "true"
-      # TODO: Switch Default to Mozorg when Pocket mode is in production
-      SITE_MODE: "${SITE_MODE:-Default}"
+      SITE_MODE: "${SITE_MODE:-Mozorg}"
     ports:
       - "8000:8000"
     volumes:
