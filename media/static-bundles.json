@@ -1018,57 +1018,57 @@
     },
     {
       "files": [
-        "css/externalpages/pocket/style.scss",
-        "css/externalpages/pocket/components/platforms.scss"
+        "css/pocket/style.scss",
+        "css/pocket/components/platforms.scss"
       ],
       "name": "pocket-platforms"
     },
     {
       "files": [
-        "css/externalpages/pocket/style.scss",
-        "css/externalpages/pocket/components/about.scss"
+        "css/pocket/style.scss",
+        "css/pocket/components/about.scss"
       ],
       "name": "pocket-about"
     },
     {
       "files": [
-        "css/externalpages/pocket/style.scss",
-        "css/externalpages/pocket/components/pocket-features.scss"
+        "css/pocket/style.scss",
+        "css/pocket/components/pocket-features.scss"
       ],
       "name": "pocket-features"
     },
     {
       "files": [
-        "css/externalpages/pocket/style.scss",
-        "css/externalpages/pocket/components/add.scss"
+        "css/pocket/style.scss",
+        "css/pocket/components/add.scss"
       ],
       "name": "pocket-add"
     },
     {
       "files": [
-        "css/externalpages/pocket/style.scss",
-        "css/externalpages/pocket/components/contact-info.scss"
+        "css/pocket/style.scss",
+        "css/pocket/components/contact-info.scss"
       ],
       "name": "pocket-contact-info"
     },
     {
       "files": [
-        "css/externalpages/pocket/style.scss",
-        "css/externalpages/pocket/components/new-tab-learn-more.scss"
+        "css/pocket/style.scss",
+        "css/pocket/components/new-tab-learn-more.scss"
       ],
       "name": "pocket-new-tab"
     },
     {
       "files": [
-        "css/externalpages/pocket/style.scss",
-        "css/externalpages/pocket/components/jobs.scss"
+        "css/pocket/style.scss",
+        "css/pocket/components/jobs.scss"
       ],
       "name": "pocket-jobs"
     },
     {
       "files": [
-        "css/externalpages/pocket/style.scss",
-        "css/externalpages/pocket/components/privacy-tos.scss"
+        "css/pocket/style.scss",
+        "css/pocket/components/privacy-tos.scss"
       ],
       "name": "pocket-privacy-tos"
     },
@@ -1590,16 +1590,16 @@
     },
     {
       "files": [
-        "js/externalpages/pocket/mobile-nav.es6.js",
-        "js/externalpages/pocket/mobile-nav-init.es6.js"
+        "js/pocket/mobile-nav.es6.js",
+        "js/pocket/mobile-nav-init.es6.js"
       ],
       "name": "pocket-nav"
     },
     {
       "files": [
-        "js/externalpages/pocket/base.js",
+        "js/pocket/base.js",
         "js/base/mozilla-cookie-helper.js",
-        "js/externalpages/pocket/snowplow.es6.js"
+        "js/pocket/snowplow.es6.js"
       ],
       "name": "pocket-site"
     },

@@ -461,7 +461,6 @@ NOINDEX_URLS = [
     r"^foundation/annualreport/$" r"^firefox/notes/$" r"^teach/$" r"^about/legal/impressum/$",
     r"^security/announce/",
     r"^exp/",
-    r"^external/",
 ]
 
 # Pages we do want indexed but don't show up in automated URL discovery
@@ -591,7 +590,7 @@ INSTALLED_APPS = (
     "bedrock.privacy",
     "bedrock.products",
     "bedrock.externalfiles",
-    "bedrock.externalpages",
+    "bedrock.pocket",
     "bedrock.security",
     "bedrock.releasenotes",
     "bedrock.contentcards",

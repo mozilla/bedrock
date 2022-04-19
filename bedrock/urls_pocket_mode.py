@@ -19,7 +19,7 @@ handler404 = "bedrock.base.views.page_not_found_view"
 urlpatterns = (
     # Main pages
     # path("", include("bedrock.sitemaps.urls")), ## TODO sort out a pocket sitemap
-    path("", include("bedrock.externalpages.pocket_urls")),
+    path("", include("bedrock.pocket.urls")),
     path("healthz/", watchman_views.ping, name="watchman.ping"),
     path("readiness/", watchman_views.status, name="watchman.status"),
     path("healthz-cron/", base_views.cron_health_check),

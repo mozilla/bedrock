@@ -59,7 +59,7 @@ pull: .env
 
 rebuild: clean build
 
-# Run Bedrock in default mode, serving all of Mozorg and also Pocket as /externalpages/pocket/*
+# Run Bedrock in default mode, serving all of Mozorg and also Pocket as /pocket/*
 # TODO: amend this when the Pocket-mode split has been completed to ask if the user
 # meant run-pocket[-prod] or run-mozorg[-prod]
 run: .docker-build-pull

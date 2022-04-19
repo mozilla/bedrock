@@ -1,0 +1,73 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "pocket/base.html" %}
+
+{% from "macros-protocol.html" import split with context %}
+
+{% block pocket_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('pocket-features') }}
+{% endblock  %}
+
+{% block page_title %}Get Inspired{% endblock %}
+
+{% block content %}
+
+{% include 'pocket/includes/nav.html' %}
+
+<section>
+{% call split(
+  block_class='mzp-l-split-center-on-sm-md pocket-feature-page-split',
+  media_class='mzp-l-split-h-center',
+  image_url='img/pocket/save-inspirations.png',
+  )%}
+  <h1 class="section-heading">Save what inspires you</h1>
+  <p class="section-lede">Pocket is your save button for the internet. When a story catches your eye anywhere online, save it to Pocket and it’ll go straight to your list, ready for you to dig into when you’re free.</p>
+  <div class="app-store-badges">
+    <a href="https://apps.apple.com/us/app/pocket-save-read-grow/" target="_blank" rel="noopener noreferrer" class="apple-store"><img src="{{ static('img/pocket/app-button-apple.png') }}" alt="Get it from the Apple Store"></a>
+    <a href="https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro" target="_blank" rel="noopener noreferrer" class="google-play-store"><img src="{{ static('img/pocket/app-button-google.png') }}" alt="Get it from Google Play Store"></a>
+  </div>
+  {% endcall %}
+</section>
+
+<section>
+  {% call split(
+  block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed pocket-feature-page-split',
+  media_class='mzp-l-split-h-center',
+  image_url='img/pocket/focused-reading.png',
+  )%}
+  <h2 class="sub-section-heading">Special features for focused reading</h2>
+  <p class="section-lede">Use the Pocket app to listen to stories with our audio playback option. Customize how you see stories in Pocket with dark mode and font options. Keep track of your saves with tags, and preserve important passages with highlights. You can even read offline.</p>
+  {% endcall %}
+</section>
+
+<section>
+  {% call split(
+  block_class='mzp-l-split-center-on-sm-md pocket-feature-page-split',
+  media_class='mzp-l-split-h-center',
+  image_url='img/pocket/reading-nook.png',
+  )%}
+  <h2 class="sub-section-heading">Your private reading nook</h2>
+  <p class="section-lede">When you’re ready to dig into what you’ve saved, Pocket provides a quiet, calm space that’s perfect for reading. It strips away all the distractions of the internet — like flashing banners and pop-ups — so you can really focus.</p>
+  {% endcall %}
+</section>
+
+<section class="personal-library">
+  <h2 class="section-heading">
+    Start building your personal library now
+  </h2>
+  <div class="app-store-badges">
+    <a href="https://apps.apple.com/us/app/pocket-save-read-grow/" target="_blank" rel="noopener noreferrer" class="apple-store"><img src="{{ static('img/pocket/app-button-apple.png') }}" alt="Get it from the Apple Store"></a>
+    <a href="https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro" target="_blank" rel="noopener noreferrer" class="google-play-store"><img src="{{ static('img/pocket/app-button-google.png') }}" alt="Get it from Google Play Store"></a>
+  </div>
+</section>
+
+{% include 'pocket/includes/pocket-premium.html' %}
+
+{% include 'pocket/includes/footer.html' %}
+
+{% endblock %}

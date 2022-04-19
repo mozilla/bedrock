@@ -1,0 +1,287 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '../utils/variables';
+@import './mobile-nav';
+
+$image-path: '/media/img/pocket';
+
+.pocket-header {
+    width: 100%;
+    background: $color-white;
+    box-shadow: $box-shadow-sm;
+    border-bottom: 1px solid $color-divider;
+
+    .global-nav-container {
+        padding: 0 $spacing100;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        max-width: 1168px;
+        margin: 0 auto;
+    }
+}
+
+.global-nav-mobile-menu-btn {
+    display: block;
+    margin-left: -$spacing-sm;
+    width: 36px;
+    height: 36px;
+    position: relative;
+    line-height: 110%;
+    border: none;
+    border-radius: 4px;
+    transition: all 0.15s ease-out;
+
+    &:focus,
+    &:focus-within {
+        border: 1px solid $color-action-primary;
+    }
+
+    &.inline {
+        background: none;
+        padding: 0;
+        color: $color-text-primary;
+        text-decoration: underline;
+    }
+
+    .hamburger-btn {
+        width: 24px;
+        height: 24px;
+        margin-bottom: -2px;
+        display: inline-block;
+        margin-top: -4px;
+        pointer-events: none;
+        vertical-align: middle;
+    }
+
+    @media #{$mq-md} {
+        display: none;
+    }
+}
+
+.pocket-logo {
+    display: inline-block;
+    position: relative;
+    margin-left: 8px;
+    margin-right: 0;
+    padding: 8px 0;
+    line-height: 1;
+
+    &:focus {
+        outline: none;
+
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            bottom: -2px;
+            right: -2px;
+            border: 2px solid $color-action-primary;
+            border-radius: 4px;
+        }
+    }
+
+    &:active::before,
+    &:hover::before {
+        display: none;
+    }
+
+    .pocket-logo-svg {
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: url('#{$image-path}/pocket-logo-light-mode.svg');
+        width: 94px;
+        height: 24px;
+
+        span {
+            @include visually-hidden;
+        }
+    }
+
+    &.logged-in .logo {
+        display: none;
+    }
+
+    @media #{$mq-md} {
+        margin-right: 56px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    @media #{$mq-lg} {
+        margin-right: 96px;
+    }
+}
+
+.sr-only {
+    border: 0;
+    clip-path: polygon(0 0, 0 0, 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap;
+}
+
+.page-navigation {
+    display: flex;
+    justify-content: flex-start;
+    flex-grow: 2;
+    line-height: 1;
+    white-space: nowrap;
+
+    .page-navigation-list {
+        @include text-body-md;
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        display: none;
+
+        .page-navigation-list-item {
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+        }
+
+        @media #{$mq-md} {
+            display: flex;
+        }
+    }
+}
+
+.page-navigation-list-item-link {
+    font-weight: 500;
+    line-height: $spacing-lg;
+    text-decoration: none;
+    padding: 20px;
+    position: relative;
+
+    &:focus {
+        outline: 0;
+
+        &::before {
+            content: '';
+            display: block;
+            box-sizing: border-box;
+            position: absolute;
+            left: $spacing-xs;
+            right: $spacing-xs;
+            top: $spacing-sm;
+            bottom: $spacing-sm;
+            border: 2px solid $color-action-primary;
+            border-radius: $border-radius-sm;
+        }
+    }
+
+    &:hover::before {
+        display: none;
+    }
+
+    &:active::before {
+        display: none;
+    }
+
+    &.selected::after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 10px;
+        right: 10px;
+        height: $spacing-xs;
+        background-color: $color-action-primary;
+    }
+
+    &.selected:active::after {
+        background-color: $color-action-primary-hover;
+    }
+}
+
+.nav-link {
+    display: none;
+    position: relative;
+    vertical-align: middle;
+    font-weight: 500;
+    text-decoration: none;
+    color: $color-text-primary;
+
+    &:focus,
+    &:active {
+        color: $color-action-primary;
+        outline: 0;
+
+        &::before {
+            content: '';
+            display: block;
+            box-sizing: border-box;
+            position: absolute;
+            left: -2px;
+            right: -2px;
+            top: -2px;
+            bottom: -2px;
+            border: 2px solid $color-action-primary;
+            border-radius: $border-radius-sm;
+        }
+    }
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    &:hover::before,
+    &:active::before {
+        display: none;
+    }
+
+    &.login-link {
+        margin-right: $spacing-lg;
+    }
+
+    &.signup-link {
+        border-radius: $border-radius-sm;
+        padding: 12px;
+        transition: all 0.15s ease-out;
+        cursor: pointer;
+        background: none;
+        border: 2px solid $color-text-primary;
+
+        &:hover {
+            background-color: $color-text-primary;
+            color: #f2f2f2;
+        }
+    }
+
+    @media #{$mq-md} {
+        display: inline-block;
+    }
+}
+
+.signup-icon {
+    display: inline-block;
+    line-height: 0;
+    vertical-align: middle;
+    margin-top: 0;
+    height: $spacing-lg;
+    color: $color-text-primary;
+
+    svg {
+        height: 100%;
+    }
+
+    span {
+        @include visually-hidden;
+    }
+
+    @media #{$mq-md} {
+        display: none;
+        margin-top: -$spacing-xs;
+    }
+}

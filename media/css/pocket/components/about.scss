@@ -1,0 +1,348 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '../utils/variables';
+@import '../includes/nav';
+@import '../includes/footer';
+
+$image-path: '/media/img/pocket';
+
+.intro-wrapper {
+    background-color: #95d5d2;
+    color: $color-text-primary;
+    position: relative;
+    width: 100%;
+}
+
+.about-section {
+    font-family: $font-sans;
+    position: relative;
+    max-width: 1128px;
+    box-sizing: content-box;
+    padding: 0 20px;
+    margin-left: auto;
+    margin-right: auto;
+
+    &::before {
+        content: '';
+        position: absolute;
+    }
+
+    .about-section-text-wrapper {
+        color: $color-text-primary;
+        position: inherit;
+        z-index: 2;
+
+        .about-section-heading {
+            font-family: $font-sans-alt;
+            font-weight: 500;
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 28px;
+        }
+
+        .about-section-body {
+            font-family: $font-sans;
+            margin: 0 0 24px;
+            font-size: 1rem;
+        }
+    }
+
+    @media #{$mq-md} {
+        padding: 0 40px;
+
+        .about-section-text-wrapper {
+            max-width: 50%;
+
+            .about-section-heading {
+                font-size: 32px;
+                line-height: 40px;
+            }
+        }
+    }
+
+    &.first {
+        margin: 0 auto;
+        padding: 40px 16px 118vw;
+
+        &::before {
+            background: url('#{$image-path}/people-enjoying-content-md.svg') no-repeat 100% 0 / contain;
+            width: 200vw;
+            height: 134vw;
+            top: unset;
+            bottom: 14px;
+            right: -38vw;
+        }
+
+        .about-section-heading {
+            font-size: 32px;
+        }
+
+        .about-section-body {
+            font-size: 14px;
+        }
+
+        @media #{$mq-md} {
+            padding: 104px 40px 496px;
+
+            &::before {
+                right: calc(50% - 656px);
+                width: 1176px;
+                height: 875px;
+                top: -64px;
+            }
+
+            .about-section-text-wrapper {
+                max-width: 60%;
+            }
+        }
+
+        @media #{$mq-lg} {
+            padding: 128px 40px 352px;
+
+            &::before {
+                background-image: url('#{$image-path}/people-enjoying-content-lg.svg');
+                top: 40px;
+                right: calc(50% - 872px);
+                width: 1616px;
+                height: 730px;
+            }
+
+            .about-section-heading {
+                font-size: 48px;
+            }
+        }
+    }
+
+    &.second {
+        margin-top: 64px;
+        margin-bottom: 304px;
+
+        &::before {
+            background: url('#{$image-path}/swirly-saving-xs.svg') no-repeat 100% 0 / contain;
+            bottom: -540px;
+            height: 845px;
+            right: -370px;
+            top: unset;
+            width: 1150px;
+        }
+
+        @media #{$mq-md} {
+            margin-top: 80px;
+            margin-bottom: 490px;
+
+            &::before {
+                background-image: url('#{$image-path}/swirly-saving-sm.svg');
+                height: 845px;
+                right: -195px;
+                top: -160px;
+                width: 1488px;
+            }
+        }
+
+        @media #{$mq-lg} {
+            margin-top: 175px;
+            margin-bottom: 608px;
+
+            &::before {
+                background-image: url('#{$image-path}/swirly-saving-lg.svg');
+                height: 750px;
+                right: -90px;
+                top: -212px;
+                width: 1692px;
+            }
+        }
+    }
+
+    &.third {
+        display: flex;
+        justify-content: flex-end;
+        padding-bottom: 656px;
+
+        &::before {
+            background: url('#{$image-path}/rainbow-hand-gem-sm.svg') no-repeat 100% 0 / contain;
+            bottom: 110px;
+            height: 590px;
+            right: -155px;
+            width: 630px;
+            z-index: -1;
+        }
+
+        @media (min-width: 599px) {
+            padding-bottom: 720px;
+
+            &::before {
+                bottom: 109px;
+                height: 643px;
+                right: calc(50% - 320px);
+                width: 688px;
+            }
+        }
+
+        @media #{$mq-md} {
+            display: flex;
+            justify-content: flex-end;
+            padding-bottom: 320px;
+
+            &::before {
+                height: 872px;
+                right: 345px;
+                top: -80px;
+                width: 800px;
+                transform: rotate(13deg);
+                background-image: url('#{$image-path}/rainbow-hand-gem-lg.svg');
+            }
+        }
+
+        @media #{$mq-lg} {
+            padding-bottom: 544px;
+
+            &::before {
+                height: 982px;
+                right: 50%;
+                top: -240px;
+                width: 1010px;
+            }
+        }
+    }
+
+    &.fourth {
+        padding-bottom: 668px;
+
+        &::before {
+            background: url('#{$image-path}/floating-content-md.svg') no-repeat 100% / contain;
+            height: 212vw;
+            bottom: 80px;
+            right: -15vw;
+            width: 100vw;
+        }
+
+        @media (min-width: 599px) {
+            padding-bottom: 1020px;
+
+            &::before {
+                bottom: 16px;
+                right: -96px;
+            }
+        }
+
+        @media #{$mq-md} {
+            padding-bottom: 272px;
+
+            &::before {
+                background-image: url('#{$image-path}/floating-content-lg.svg');
+                height: 1175px;
+                left: 57.5%;
+                top: -496px;
+                width: 688px;
+                z-index: -1;
+            }
+        }
+
+        @media #{$mq-lg} {
+            padding-bottom: 384px;
+
+            &::before {
+                top: -448px;
+                width: 848px;
+            }
+        }
+    }
+
+    &.fifth {
+        padding-bottom: 181vw;
+
+        &::before {
+            background: url('#{$image-path}/sunny-content-md.svg') no-repeat 100% 0 / contain;
+            bottom: -29vw;
+            height: 242vw;
+            right: -25vw;
+            width: 228vw;
+            z-index: -1;
+        }
+
+        @media #{$mq-md} {
+            display: flex;
+            justify-content: flex-end;
+            padding-bottom: 520px;
+
+            &::before {
+                background-image: url('#{$image-path}/sunny-content-lg.svg');
+                height: 1192px;
+                right: calc(50% - 144px);
+                top: -310px;
+                width: 1105px;
+            }
+        }
+
+        @media #{$mq-lg} {
+            padding-bottom: 672px;
+
+            &::before {
+                height: 1228px;
+                top: -310px;
+                width: 1136px;
+            }
+        }
+    }
+}
+
+.about-cta-section {
+    margin: 0 auto 64px;
+    padding: 0 20px;
+
+    .about-cta-heading {
+        font-family: $font-sans-alt;
+        font-size: 28px;
+        font-weight: 500;
+        margin-bottom: 32px;
+        text-align: center;
+    }
+
+    .cta-wrapper {
+        margin: 0 auto 40px;
+        max-width: 295px;
+        width: 100%;
+
+        a {
+            background: none;
+            border: 2px solid $color-text-primary;
+            border-radius: 4px;
+            color: $color-text-primary;
+            display: inline-block;
+            font-size: 19px;
+            line-height: 110%;
+            padding: 16px 64px;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.15s ease-out;
+            width: 100%;
+
+            &:hover {
+                background-color: $color-text-primary;
+                color: #f2f2f2;
+                text-decoration: none;
+            }
+        }
+
+        @media #{$mq-md} {
+            margin-bottom: 64px;
+        }
+    }
+
+    hr {
+        border: 0;
+        height: 0;
+        border-top: 2px solid #00ccc0;
+        max-width: 360px;
+    }
+
+    .about-cta-body {
+        max-width: 416px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
