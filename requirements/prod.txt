@@ -634,9 +634,9 @@ twilio==7.8.1 \
     --hash=sha256:ae1d1224da7268c3aec1e811c303fcda5cc1f55258c2368fcbecaa4b391c1937 \
     --hash=sha256:b6aeccff49c973a50eb1cbbb9eac277b3219552eac1fd8a51fe101a8e2f43a97
     # via -r requirements/prod.in
-tzdata==2021.5 \
-    --hash=sha256:3eee491e22ebfe1e5cfcc97a4137cd70f092ce59144d81f8924a844de05ba8f5 \
-    --hash=sha256:68dbe41afd01b867894bbdfd54fa03f468cfa4f0086bfb4adcd8de8f24f3ee21
+tzdata==2022.1 \
+    --hash=sha256:238e70234214138ed7b4e8a0fab0e5e13872edab3be586ab8198c407620e2ab9 \
+    --hash=sha256:8b536a8ec63dc0751342b3984193a3118f8fca2afe25752bb9b7fffd398552d3
     # via pytz-deprecation-shim
 tzlocal==4.1 \
     --hash=sha256:0f28015ac68a5c067210400a9197fc5d36ba9bc3f8eaf1da3cbd59acdfed9e09 \
