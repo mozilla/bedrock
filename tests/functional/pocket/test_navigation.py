@@ -8,6 +8,7 @@ from selenium.webdriver.common.by import By
 from pages.pocket.about import AboutPage
 
 
+@pytest.mark.skip(reason="Disabled until we have a Pocket-mode server to test against - see #11509")
 @pytest.mark.nondestructive
 def test_mobile_menu(base_url, selenium_mobile):
     page = AboutPage(selenium_mobile, base_url).open()
@@ -22,6 +23,7 @@ def test_mobile_menu(base_url, selenium_mobile):
     assert not page.navigation.is_mobile_menu_my_list_link_displayed
 
 
+@pytest.mark.skip(reason="Disabled until we have a Pocket-mode server to test against - see #11509")
 def test_accessible_mobile_menu_open_name(base_url, selenium_mobile):
     page = AboutPage(selenium_mobile, base_url).open()
     button_label_reference = page.navigation.mobile_menu_open_button.get_attribute("aria-labelledby")
@@ -29,6 +31,7 @@ def test_accessible_mobile_menu_open_name(base_url, selenium_mobile):
     assert len(string) > 0
 
 
+@pytest.mark.skip(reason="Disabled until we have a Pocket-mode server to test against - see #11509")
 def test_accessible_mobile_menu_close_name(base_url, selenium_mobile):
     page = AboutPage(selenium_mobile, base_url).open()
     page.navigation.open_mobile_menu()
