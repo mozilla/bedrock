@@ -9,17 +9,17 @@ isort==5.10.1
 pipdeptree==2.2.1
 PyPOM==2.2.3
 pyquery==1.4.3
+pytest==7.1.1  # Included because we use it directly, but also a subdep of pytest-selenium's subdeps
 pytest-cov==3.0.0
 pytest-datadir==1.3.1
 pytest-django==4.5.2
-pytest-mock==3.6.1
+pytest-mock==3.7.0
 pytest-parallel==0.1.1
 pytest-rerunfailures==10.2
 pytest-selenium==2.0.1
-pytest==6.2.5  # Included because we use it directly, but also a subdep of pytest-selenium's subdeps
-responses==0.17.0
+responses==0.20.0
 selenium==4.1.3
-translate-toolkit==3.5.3
+translate-toolkit==3.6.0
 # Related to moz-l10n-lint, used in CI
 cl-ext.lang==0.1.0
 compare-locales==7.6.0
