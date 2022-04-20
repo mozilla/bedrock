@@ -7,3 +7,12 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/split';
+
+// Issue 11457
+
+@media screen and (max-width: $screen-md) {
+    .t-mobile-nospace {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}
