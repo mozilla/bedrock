@@ -35,7 +35,7 @@ a high level the logic that bedrock is responsible for is as follows:
    the affiliate marketing cookie, replacing it with a "reject" preference
    cookie that will prevent attribution from initiating on repeat visits.
    This preference cookie will expire after 1 month.
-#. If someone explicitly closes the opt-out notification by clicking the "X"
+#. If someone clicks "OK" or closes the opt-out notification by clicking the "X"
    icon, here we assume the website visitor is OK with attribution. We set an
    "accept" preference cookie that will prevent displaying the opt-out
    notification on future visits (again with a 1 month expiry) and allow
