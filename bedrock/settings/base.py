@@ -564,7 +564,7 @@ ENABLE_CSP_MIDDLEWARE = config("ENABLE_CSP_MIDDLEWARE", default="true", parser=b
 if ENABLE_CSP_MIDDLEWARE:
     MIDDLEWARE.append("csp.middleware.CSPMiddleware")
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     # Django contrib apps
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -606,7 +606,7 @@ INSTALLED_APPS = (
     # libs
     "django_extensions",
     "lib.l10n_utils",
-)
+]
 
 # Must match the list at CloudFlare if the
 # VaryNoCacheMiddleware is enabled. The home
