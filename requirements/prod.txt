@@ -255,9 +255,9 @@ greenlet==0.4.17 \
     # via
     #   -r requirements/prod.in
     #   meinheld
-gunicorn==19.7.1 \
-    --hash=sha256:75af03c99389535f218cc596c7de74df4763803f7b63eb09d77e92b3956b36c6 \
-    --hash=sha256:eee1169f0ca667be05db3351a0960765620dad53f53434262ff8901b68a1b622
+gunicorn==20.1.0 \
+    --hash=sha256:9dcc4547dbb1cb284accfb15ab5667a0e5d1881cc443e0677b4882a4067a807e \
+    --hash=sha256:e0a968b5ba15f8a328fdfd7ab1fcb5af4470c28aaf7e55df02a99bc13138e6e8
     # via -r requirements/prod.in
 honcho==1.1.0 \
     --hash=sha256:a4d6e3a88a7b51b66351ecfc6e9d79d8f4b87351db9ad7e923f5632cc498122f \
