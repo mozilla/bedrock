@@ -5,7 +5,6 @@
 from django.conf import settings
 from django.urls import include, path
 from django.utils.module_loading import import_string
-from django.views.generic import TemplateView
 
 from watchman import views as watchman_views
 
@@ -22,14 +21,6 @@ urlpatterns = (
     path("healthz/", watchman_views.ping, name="watchman.ping"),
     path("readiness/", watchman_views.status, name="watchman.status"),
     path("healthz-cron/", base_views.cron_health_check),
-    path(
-        "robots.txt",
-        TemplateView.as_view(
-            content_type="text/plain",
-            template_name="pocket/robots.txt",
-        ),
-        name="robots.txt",
-    ),
 )
 
 if settings.DEBUG:
