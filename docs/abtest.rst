@@ -93,7 +93,7 @@ During review, the engineer will compare the following to the experiment plan:
 
 Once the engineer is satisfied, the engineer (or someone else with write privileges) will:
 
-#. Add ``https://www.mozilla.org/*`` to the list of urls the experiment can run on.
+#. Add ``https://www.mozilla.org/*`` to the list of URLs the experiment can run on.
 #. Reset the experiment (eliminating any data gathered during QA).
 #. Activate (or schedule) the experiment.
 
@@ -165,7 +165,7 @@ mostly use the redirect method in bedrock. This makes testing easier.
 Create a `variation view <http://bedrock.readthedocs.io/en/latest/coding.html#variation-views>`_
 for the a/b test.
 
-The view can handle the url redirect in one of two ways:
+The view can handle the URL redirect in one of two ways:
 
 #. the same page, with some different content based on the `variation` variable
 #. a totally different page
@@ -185,7 +185,7 @@ Useful for large page changes where content and assets are dramatically
 different.
 
 Create the variant page like you would a new page. Make sure it is ``noindex``
-and does not have a ``canonical`` url.
+and does not have a ``canonical`` URL.
 
 .. code-block:: jinja
 
