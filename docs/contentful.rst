@@ -4,9 +4,9 @@
 
 .. _contentful:
 
-======================
-Contentful Integration
-======================
+==========================
+Contentful CMS Integration
+==========================
 
 Overview
 --------
@@ -283,9 +283,9 @@ the `ContentfulPage` class in api.py. The renderers themselves are also defined 
 L10N
 ----
 
-Localization has no been finalized.
+The localization approach has been decided, and is currently being implemented.
 
-Here are three possible approaches for translation:
+Here are three possible approaches for translation - we are going with the first (Contentful + Smartling)
 
 Smartling
 ~~~~~~~~~
@@ -307,6 +307,8 @@ that we are paying to have active in Smartling.
 Fluent
 ~~~~~~
 
+**NB: Not selected for use, but notes retained for reference**
+
 Instead of using the language translation fields in Contentful to store translations we
 could designate one of the locales to contain a fluent string ID. Bedrock could then
 use the string IDs and the English content to create Fluent files for submission into our
@@ -322,6 +324,8 @@ the benefit of using our current translation system, including community contrib
 
 No English Equivalent
 ~~~~~~~~~~~~~~~~~~~~~
+
+**NB: Not selected for use, but notes retained for reference**
 
 Components could be created in the language they are intended to display in. The localized
 content would be written in the English content fields.
@@ -368,6 +372,8 @@ Specific URLs will only update every 5 minutes as the data is pulled from the AP
 can be previewed up to the second at the `contentful-preview` URL. This preview will include
 "changed" and "draft" changes (even if there is an error in the data) not just published changes.
 
+For previewing on localhost, see Development Practices, below.
+
 
 Roles/Permissions
 -----------------
@@ -378,6 +384,71 @@ guard rails have been installed.
 One exception is the Connect component, only developers should have permission to create one.
 It's not problematic to have them created by non developers, it's just that they won't work
 without corresponding bedrock code.
+
+
+Development practices
+---------------------
+
+This section outlines tasks generally required if developing features against Contentful.
+
+Get bedrock set up locally to work with Contentful
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In your ``.env`` file for Bedrock, make sure you have the followign environment variables
+set up.
+
+* ``CONTENTFUL_SPACE_ID`` - this is the ID of our Contentful integration
+* ``CONTENTFUL_SPACE_KEY`` - this is the API key that allows you access to our space. Note that two types of key are available: a Preview key allows you to load in draft content; the Delivery key only loads published contnet. For local dev, you want a Preview key.
+* ``SWITCH_CONTENTFUL_HOMEPAGE_DE`` should be set to ``True`` if you are working on the German Contentful-powered homepage
+* ``CONTENTFUL_ENVIRONMENT`` Contentful has 'branches' which it calls environments. `master` is what we use in production, and `sandbox` is generally what we use in development. It's also possible to refference a specific environment - eg ``CONTENTFUL_ENVIRONMENT=sandbox-2021-11-02``
+
+To get values for these vars, please check with someone on the backend team.
+
+If you are working on the Contentful Sync backed by the message-queue (and if you don't know what this is, you don't need it for local dev), you will also need to set the following env vars:
+
+``CONTENTFUL_NOTIFICATION_QUEUE_URL``
+``CONTENTFUL_NOTIFICATION_QUEUE_REGION``
+``CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID``
+``CONTENTFUL_NOTIFICATION_QUEUE_SECRET_ACCESS_KEY``
+
+
+How to preview your changes on localhost
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+When viewing a page in Contentful, it's possible to trigger a preview of the draft page. This is typically rendered on www-dev.allizom.org. However, that's only useful for code that's already in ``main``.
+If you want to preview Contentful content on your local machine - eg you're working on a feature branch that isn't ready for merging - do the following:
+
+* In the right-hand sidebar of the editor page in Contentful...
+* ...find the Preview section...
+* ...select ``Change`` and pick ``Localhost Preview``
+* Click ``Open preview`` to trigger a preview on your local machine.
+
+Note that previewing a page will require it to be pulled from Contentful's API, so you will need ``CONTENTFUL_SPACE_ID`` and ``CONTENTFUL_SPACE_KEY`` set in your ``.env``. It may take a few seconds to get the data.
+
+Also note that when you select ``Localhost preview``, the choice sticks, so you should set it back to ``Preview on web`` when you're done.
+
+
+How to update/refresh the sandbox environment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+It helps to think of Contentful 'environments' as simply branches of a git-like repo full of content. You can take a particular environment and branch off it to make a new environment for WIP or experimental content, using the original one as your starting point.
+On top of this, Contentful has the concept of aliases for environments and we use two aliases in our setup:
+
+* ``master`` is used for production and is an alias currently pointing to the `V1` environment. It is pretty stable and access to it is limited.
+* ``sandbox`` is used for development and more team members have access to edit content. Again, it's an alias and is pointed at an environment (think, branch) with a name in the format ``sandbox-YYYY-MM-DD``.
+
+
+While updating ``master`` is something that we generally don't do (at the moment only Dan B would do this), updating the sandbox happens more often, typically to populate it with data more recently added to master.
+To do this:
+* Go to ``Settings > Environments``
+* Ensure we have at least one spare environment slot. If we don't delete the oldest ``sandbox-XXXX-XX-XX`` environment.
+* Click the blue Add Environment button, to the right. Name it using the ``sandbox-YYYY-MM-DD`` pattern and base it on whatever environment is aliased to ``master`` - this will basically create a new 'branch' with the content currently in master.
+* In the Environment Aliases section of the main page, find `sandbox` and click Change alias target, then select the ``sandbox-XXXX-XX-XX`` environment you just made.
+
+Which environment is connected to where?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+``master`` is the environment used in Bedrock production, stage, dev and test
+``sandbox`` may, in the future, be made the default environment for dev. It's also the one we should use for local development.
+
+If you develop a new feature that adds to Contentful (eg page or component) and you author it in the sandbox, you will need to re-create it in master before the corresponding bedrock changes hit production.
 
 
 Useful Contentful Docs
