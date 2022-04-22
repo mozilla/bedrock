@@ -239,7 +239,6 @@
   title,
   links
 ) -%}
-
 {% if 'releasenotes' in request.path %}
   <!-- remove 'releasenotes' and version number -->
   {% set root_path = ("/").join(request.path.split("/")[0:-3]) %}
