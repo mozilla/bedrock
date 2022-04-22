@@ -5,12 +5,12 @@
 .. _vpn_affiliate_attribution:
 
 =========================
-VPN Affiliate Attribution
+:abbr:`VPN (Virtual Private Network)` Affiliate Attribution
 =========================
 
-The affiliate attribution flow for the Mozilla VPN `landing page`_ comprises
+The affiliate attribution flow for the Mozilla :abbr:`VPN (Virtual Private Network)` `landing page`_ comprises
 an integration between the `Commission Junction (CJ)`_ affiliate marketing
-event system, bedrock, and the VPN product team's `CJ micro service (CJMS)`_.
+event system, bedrock, and the :abbr:`VPN (Virtual Private Network)` product team's `CJ micro service (CJMS)`_.
 For a more detailed breakdown you can view the `full flow diagram`_, but at
 a high level the logic that bedrock is responsible for is as follows:
 

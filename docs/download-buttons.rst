@@ -44,7 +44,7 @@ External referrers
 
 Generally we encourage other websites in the Mozilla ecosystem to link to the `/firefox/new/`_ page when
 prompting visitors to download Firefox, since it provides a consistent user experience and also benefits
-SEO. In some circumstances however sites may want to provide a download button that initiates a file
+:abbr:`SEO (Search Engine Optimization)`. In some circumstances however sites may want to provide a download button that initiates a file
 download automatically when clicked. For cases like this, sites can link to the following URL:
 
 .. code-block::

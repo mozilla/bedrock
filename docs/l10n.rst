@@ -105,8 +105,8 @@ above .ftl file for a simple Jinja template example:
 
 .. _Fluent file syntax: https://projectfluent.org/fluent/guide/
 
-FTL String IDs
-~~~~~~~~~~~~~~
+:abbr:`FTL (Fluent Translation List)` String IDs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Our convention for string ID creation is the following:
 
@@ -316,7 +316,7 @@ so by setting ``ftl_files`` in the context instead of the class attribute.
             ctx['ftl_files'] = ftl_files
             return ctx
 
-A common case is needing to use FTL files when one template is used, but not with another. In this case
+A common case is needing to use :abbr:`FTL (Fluent Translation List)` files when one template is used, but not with another. In this case
 you would have some logic to decide which template to use in the ``get_template_names()`` method. You can
 set the ``ftl_files_map`` class variable to a dict containing a map of template names to the list of
 FTL files for that template (or a single file name if that's all you need).
@@ -346,7 +346,7 @@ FTL files for that template (or a single file name if that's all you need).
 
 If you need for your URL to use multiple Fluent files to determine the full list of active locales, for
 example when you are redesigning a page and have multiple templates in use for a single URL depending on
-locale, you can use the `activation_files` parameter. This should be a list of FTL filenames that should all
+locale, you can use the `activation_files` parameter. This should be a list of :abbr:`FTL (Fluent Translation List)` filenames that should all
 be used when determining the full list of translations for the URL. Bedrock will gather the full list for each
 file and combine them into a single list so that the footer language switcher works properly.
 
@@ -433,7 +433,7 @@ Deactivation
 
 If the automated system activates a locale but we for some reason need to ensure that this page remains
 unavailable in that locale, we can add this locale to a list of deactivated locales in the metadata file
-for that FTL file. For example, say we needed to make sure that the `mozorg/mission.ftl` file remained
+for that :abbr:`FTL (Fluent Translation List)` file. For example, say we needed to make sure that the `mozorg/mission.ftl` file remained
 inactive for German, even though the translation is already done. We would add ``de`` to the ``inactive_locales``
 list in the ``metadata/mozorg/mission.json`` file:
 

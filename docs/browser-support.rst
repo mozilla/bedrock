@@ -55,7 +55,7 @@ consists of no page-specific CSS or JS. Instead, we deliver well formed semantic
 and a universal CSS stylesheet that gets applied to all pages. We do not serve these
 older browsers any JS, with the exception of the following scripts:
 
-  * Google Analytics / GTM snippet.
+  * Google Analytics / :abbr:`GTM (Google Tag Manager)` snippet.
   * HTML5shiv for parsing modern HTML semantic elements.
   * Stub Attribution script (IE8 / IE9).
 

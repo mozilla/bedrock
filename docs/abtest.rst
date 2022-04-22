@@ -149,8 +149,8 @@ experiments and make sure a visitor always sees the same variation.
 It's possible to test more than 2 variants.
 
 Traffic Cop sends users to experiments and then we use Google Analytics (GA) to
-analyze which variation is more successful. (If the user has DNT enabled they
-do not participate in experiments.)
+analyze which variation is more successful. (If the user has :abbr:`DNT (Do Not Track)`
+enabled they do not participate in experiments.)
 
 All a/b tests should have a `mana page <https://mana.mozilla.org/wiki/display/EN/Details+of+experiments+by+mozilla.org+team>`_
 detailing the experiment and recording the results.
@@ -223,8 +223,8 @@ Recording the data
     If you are measuring installs as part of your experiment be sure to configure `custom stub attribution <https://bedrock.readthedocs.io/en/latest/stub-attribution.html#measuring-campaigns-and-experiments>`_ as well.
 
 Including the ``data-ex-variant`` and ``data-ex-name`` in the analytics
-reporting will add the test to an auto generated report in GA. The variable
-values may be provided by the analytics team.
+reporting will add the test to an auto generated report in :abbr:`GA (Google Analytics)`.
+The variable values may be provided by the analytics team.
 
 .. code-block:: javascript
 
@@ -241,7 +241,7 @@ values may be provided by the analytics team.
     }
 
 Make sure any buttons and interaction which are being compared as part of the
-test and will report into GA.
+test and will report into :abbr:`GA (Google Analytics)`.
 
 Viewing the data
 ~~~~~~~~~~~~~~~~~~
