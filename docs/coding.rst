@@ -610,13 +610,18 @@ use with your code editor to help maintain consistent coding styles. Please
 see `editorconfig.org <http://editorconfig.org/>`_. for a list of supported
 editors and available plugins.
 
-Working with Protocol
+Working with Protocol Design System
 ---------------------
 
-Bedrock uses the `Protocol Design System <https://protocol.mozilla.org/>`_ to quickly produce consistent, stable components. This involves two steps:
+Bedrock uses the `Protocol Design System <https://protocol.mozilla.org/>`_ to quickly produce consistent, stable components. There are different methods -- depending on the component -- to import a Protocol component in our codebase.
+
+One method involves two steps:
 
 1. Adding the `correct markup <#styles-and-components>`_ or importing the `appropriate macro <#macros>`_ to the page's HTML file.
 2. Importing the necessary Protocol styles to a page's SCSS file.
+
+The other method is to `import CSS bundles <#import-css-bundles>`_ onto the HTML file. However, this only works for certain components, which are listed below in the respective section.
+
 
 Styles and Components
 ~~~~~~~~~~~~~~~~~~~~~
@@ -667,20 +672,17 @@ To use these macros in files, we simply import a macro to the page's HTML code a
 
     // bedrock/bedrock/firefox/templates/firefox/{specific-page}.html
 
-    {% from "macros-protocol.html" import split, picto with context %}
+    {% from "macros-protocol.html" import billboard with context %}
 
-    {% call split(
-        image_url='img/firefox/browsers/hero.jpg',
-        include_highres_image=True,
-        block_class='mzp-l-split-center-on-sm-md',
-        media_class='mzp-l-split-media-overflow',
-        media_after=True
-    ) %}
-        <h1>This is Mozilla</h1>
-        <p>Get the privacy you deserve with Firefox</p>
-    {% endcall %}
+    {{ billboard(
+        title='This is Firefox.',
+        ga_title='This is Firefox',
+        desc='Firefox is an awesome web browser.',
+        link_cta='Click here to install',
+        link_url='mozilla.org/firefox',
+      )}}
 
-Because Split styles are not global, we still have to import the page-specific Protocol styles in SCSS:
+Because component styles are not global, we still have to import the page-specific Protocol styles in SCSS:
 
 .. code-block:: css
 
@@ -689,14 +691,39 @@ Because Split styles are not global, we still have to import the page-specific P
     $brand-theme: 'firefox';
 
     @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-    @import '~@mozilla-protocol/core/protocol/css/components/split';
-    @import '~@mozilla-protocol/core/protocol/css/components/picto';
+    @import '~@mozilla-protocol/core/protocol/css/components/billboard';
 
 
-You can find parameter definitions for the available Protocol macros below, including their import paths.
+Import CSS Bundles
+~~~~~~~~~~~~~~~~~~
+We created pre-built CSS bundles to be used for said components due to their frequency of use. This method only requires an import into the HTML page. Since it’s already a CSS bundle, we don’t need to import it in the respective CSS page.
+The CSS bundle import only works for the following components:
+
+* Split
+* Card
+* Picto
+* Callout
+* Article
+* Newsletter form
+* Emphasis box
+
+To import a respective bundle, all that is required to place the CSS bundle into the ``page_css`` block like the following:
+
+.. code-block:: html
+
+    {% block page_css %}
+        {{ css_bundle('protocol-split') }}
+        {{ css_bundle('protocol-card') }}
+    {% endblock %}
+
+
+Imports and Parameters
+~~~~~~~~~~~~~~~~~~~~~~
+
+You can find import examples and parameter definitions for the available Protocol macros below.
 
 .. note::
-    You can use macros without Protocol and you can use Protocol without macros. They are not dependent on each other but they work well together. 10/10 would recommend!
+    You can use Protocol without macros. They are not dependent on each other but they work well together. 10/10 would recommend!
 
 Picto
 <<<<<
@@ -705,13 +732,9 @@ Picto
 
 .. code-block:: html
 
-   {% from "macros-protocol.html" import picto with context %}
-
-**CSS import**
-
-.. code-block:: css
-
-   @import '~@mozilla-protocol/core/protocol/css/components/picto';
+   {% block page_css %}
+        {{ css_bundle('protocol-picto') }}
+    {% endblock %}
 
 **Macro parameters**
 
@@ -795,13 +818,9 @@ Call out
 
 .. code-block:: html
 
-   {% from "macros-protocol.html" import call_out with context %}
-
-**CSS import**
-
-.. code-block:: css
-
-   @import '~@mozilla-protocol/core/protocol/css/components/call-out';
+   {% block page_css %}
+        {{ css_bundle('protocol-call-out') }}
+    {% endblock %}
 
 **Macro parameters**
 
@@ -848,13 +867,9 @@ Split
 
 .. code-block:: html
 
-   {% from "macros-protocol.html" import split with context %}
-
-**CSS import**
-
-.. code-block:: css
-
-   @import '~@mozilla-protocol/core/protocol/css/components/split';
+   {% block page_css %}
+        {{ css_bundle('protocol-split') }}
+    {% endblock %}
 
 **Macro parameters**
 
@@ -1147,14 +1162,9 @@ Card
 
 .. code-block:: html
 
-   {% from "macros-protocol.html" import card with context %}
-
-**CSS import**
-
-.. code-block:: css
-
-   @import '~@mozilla-protocol/core/protocol/css/components/card';
-   @import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
+    {% block page_css %}
+        {{ css_bundle('protocol-split') }}
+    {% endblock %}
 
 **Macro parameters**
 
