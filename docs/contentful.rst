@@ -29,7 +29,7 @@ like buttons. The larger ones group together several entries for the smaller com
 into a bigger component or an entire page.
 
 For example: The *Page: General* model allows editors to include a hero entry, body
-entry, and callout entry. The callout layout entry, in turn, includes a CTA
+entry, and callout entry. The callout layout entry, in turn, includes a :abbr:`CTA (Call To Action)`
 entry.
 
 One advantage of storing the content in small chunks like this is that is can be
@@ -55,7 +55,7 @@ it into macros to create Protocol components. These are the same macros we use o
 non-Contentful pages. There are also includes which will import the appropriate JS and
 CSS files to support the components.
 
-Once rendered the pages get cached on the CDN as usual.
+Once rendered the pages get cached on the :abbr:`CDN (Content Delivery Network)` as usual.
 
 
 Content Models
@@ -112,7 +112,7 @@ Body (Body Width, Body Vertical Alignment, Body Horizontal Alignment)
     Rich text field in a Component. Do not use this for multi reference fields, even if the only content on the page is other content entries.
     Do not use MarkDown for body fields, we can’t restrict the markup. Copy configuration and validation from an existing page.
 
-CTA
+:abbr:`CTA (Call To Action)`
     The button/link/dropdown that we want a user to interact with following some content. Most often appearing in Split and Callout components.
 
 
@@ -204,7 +204,7 @@ Example: Picto
    * *Follow the naming conventions*.
    * You may need two models if you are configuring layout separately.
 
-#. Add the new content model to the list of allowed references in other content models (ATM this is just the "content" reference field on pages).
+#. Add the new content model to the list of allowed references in other content models (At the moment this is just the "content" reference field on pages).
 #. In bedrock create CSS and JS entries in static-bundles for the new component.
 #. In api.py write a def for the component.
 #. In api.py add the component name, def, and bundles to the CONTENT_TYPE_MAP.
@@ -339,15 +339,16 @@ Assets
 ------
 
 Images that are uploaded in Contentful will be served to site visitors from the Contentful
-CDN. The cost of using the CDN are not by request so we don't have to worry about how
-many times an image will be requested.
+:abbr:`CDN (Content Delivery Network)`. The cost of using the CDN are not by request so we
+don't have to worry about how many times an image will be requested.
 
-Using the Contentful CDN lets us use their [Images API](https://www.contentful.com/developers/docs/references/images-api/)
+Using the Contentful :abbr:`CDN (Content Delivery Network)` lets us use their
+[Images API](https://www.contentful.com/developers/docs/references/images-api/)
 to format our images.
 
 In theory, a large high quality image is uploaded in Contentful and then bedrock inserts
-links to the CDN for images which are cropped to fit their component and resized to fit
-their place on the page.
+links to the :abbr:`CDN (Content Delivery Network)` for images which are cropped to fit their
+component and resized to fit their place on the page.
 
 Because we cannot rely on the dimensions of the image uploaded to Contentful as a guide
 for displaying the image - bedrock needs to be opinionated about what size images it requests

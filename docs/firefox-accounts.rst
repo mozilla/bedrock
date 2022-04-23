@@ -104,7 +104,7 @@ The signup form macro accepts the following parameters (* indicates a required p
 |    utm_content             | Declared when more than one piece of content (on a page or at a URL) links to the same place, to distinguish between them. | Description of content, or name of experiment treatment  | 'get-the-rest-of-firefox'                       |
 +----------------------------+----------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
 
-Invoking the macro will automatically include a set of default UTM parameters as hidden form input fields:
+Invoking the macro will automatically include a set of default :abbr:`UTM (Urchin Tracking Module)` parameters as hidden form input fields:
 
 - ``utm_source`` is automatically assigned the value of the ``entrypoint`` parameter.
 - ``utm_campaign`` is automatically set as the value of ``fxa-embedded-form``. This can be prefixed with a custom value by passing a ``utm_campaign`` value to the macro. For example, ``utm_campaign='trailhead'`` would result in a value of ``trailhead-fxa-embedded-form``.
@@ -114,7 +114,7 @@ Invoking the macro will automatically include a set of default UTM parameters as
 Firefox Account Links
 ---------------------
 
-Use the ``fxa_button`` helper to create a CTA button or link to https://accounts.firefox.com/.
+Use the ``fxa_button`` helper to create a :abbr:`CTA (Call To Action)` button or link to https://accounts.firefox.com/.
 
 Usage
 ~~~~~
@@ -166,8 +166,8 @@ For more information on the available parameters, read the "Common FxA Parameter
 section below.
 
 
-Common FxA Parameters
----------------------
+Common :abbr:`FxA (Firefox Account)` Parameters
+-----------------------------------------------
 
 The ``fxa_button``, ``pocket_fxa_button``, and ``monitor_fxa_button`` helpers
 all support the same standard parameters:
@@ -181,13 +181,13 @@ all support the same standard parameters:
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 |    class_name              | A class name to be applied to the link (typically for styling with CSS).                                               | String of one or more class names                        | 'pocket-main-cta-button'                                                                               |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    is_button_class         | A boolean value that dictates if the CTA should be styled as a button or a link. Defaults to 'True'.                   | Boolean                                                  | True or False                                                                                          |
+|    is_button_class         | A boolean value that dictates if the :abbr:`CTA (Call To Action)` should be styled as a button or a link. Defaults to 'True'.                   | Boolean                                                  | True or False                                                                                          |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 |    include_metrics         | A boolean value that dictates if metrics parameters should be added to the button href. Defaults to 'True'.            | Boolean                                                  | True or False                                                                                          |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 |    optional_parameters     | An dictionary of key value pairs containing additional parameters to append the the href.                              | Dictionary                                               | {'s': 'ffpocket'}                                                                                      |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    optiona_attributes      | An dictionary of key value pairs containing additional data attributes to include in the button.                       | Dictionary                                               | {'data-cta-text': 'Try Pocket Now', 'data-cta-type': 'activate pocket','data-cta-position': 'primary'} |
+|    optional_attributes     | An dictionary of key value pairs containing additional data attributes to include in the button.                       | Dictionary                                               | {'data-cta-text': 'Try Pocket Now', 'data-cta-type': 'activate pocket','data-cta-position': 'primary'} |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 
 .. Note::
@@ -197,11 +197,11 @@ all support the same standard parameters:
     configuring the type of authentication flow.
 
 
-Mozilla VPN Links
------------------
+Mozilla :abbr:`VPN (Virtual Private Network)` Links
+---------------------------------------------------
 
 Use the ``vpn_download_link`` helper to create a link to https://vpn.mozilla.org/vpn/download/
-with FxA metrics params attached.
+with :abbr:`FxA (Firefox Account)` metrics params attached.
 
 Usage
 ~~~~~
@@ -210,7 +210,7 @@ Usage
 
     {{ vpn_download_link(entrypoint='www.mozilla.org-vpn-product-page', link_text='Already a subscriber?') }}
 
-Use the ``vpn_subscribe_link`` helpers to create a VPN subscription link via a
+Use the ``vpn_subscribe_link`` helpers to create a :abbr:`VPN (Virtual Private Network)` subscription link via a
 Firefox Accounts auth flow.
 
 Usage
@@ -220,28 +220,28 @@ Usage
 
     {{ vpn_subscribe_link(entrypoint='www.mozilla.org-vpn-product-page', link_text='Get Mozilla VPN') }}
 
-Common VPN Parameters
-~~~~~~~~~~~~~~~~~~~~~
+Common :abbr:`VPN (Virtual Private Network)` Parameters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Both helpers for Mozilla VPN support the same parameters (* indicates a required parameter)
+Both helpers for Mozilla :abbr:`VPN (Virtual Private Network)` support the same parameters (* indicates a required parameter)
 
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    Parameter name          |                                                       Definition                                                       |                          Format                          |                                                Example                                                 |
-+============================+========================================================================================================================+==========================================================+========================================================================================================+
-|    entrypoint*             | Unambiguous identifier for which page of the site is the referrer. This also serves as a value for 'utm_source'.       | 'www.mozilla.org-page-name'                              | 'www.mozilla.org-vpn-product-page'                                                                     |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    link_text*              | The link copy to be used in the call to action.                                                                        | Localizable string                                       | 'Get Mozilla VPN'                                                                                      |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    class_name              | A class name to be applied to the link (typically for styling with CSS).                                               | String of one or more class names                        | 'vpn-button'                                                                                           |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    lang                    | Page locale code. Used to query the right subscription plan ID in conjunction to country code.                         | Locale string                                            | 'de'                                                                                                   |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    country_code            | Country code provided by the CDN. Used to determine the appropriate subscription plan ID.                              | Two digit, uppercase country code                        | 'DE'                                                                                                   |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    optional_parameters     | An dictionary of key value pairs containing additional parameters to append the the href.                              | Dictionary                                               | {'utm_campaign': 'vpn-product-page'}                                                                   |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    optiona_attributes      | An dictionary of key value pairs containing additional data attributes to include in the button.                       | Dictionary                                               | {'data-cta-text': 'VPN Sign In', 'data-cta-type': 'fxa-vpn', 'data-cta-position': 'navigation'}        |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
++----------------------------+------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    Parameter name          |                                                       Definition                                                             |                Format                |                                                Example                                                 |
++============================+==============================================================================================================================+======================================+========================================================================================================+
+|    entrypoint*             | Unambiguous identifier for which page of the site is the referrer. This also serves as a value for 'utm_source'.             | 'www.mozilla.org-page-name'          | 'www.mozilla.org-vpn-product-page'                                                                     |
++----------------------------+------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    link_text*              | The link copy to be used in the call to action.                                                                              | Localizable string                   | 'Get Mozilla VPN'                                                                                      |
++----------------------------+------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    class_name              | A class name to be applied to the link (typically for styling with CSS).                                                     | String of one or more class names    | 'vpn-button'                                                                                           |
++----------------------------+------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    lang                    | Page locale code. Used to query the right subscription plan ID in conjunction to country code.                               | Locale string                        | 'de'                                                                                                   |
++----------------------------+------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    country_code            | Country code provided by the :abbr:`CDN (Content Delivery Network)`. Used to determine the appropriate subscription plan ID. | Two digit, uppercase country code    | 'DE'                                                                                                   |
++----------------------------+------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    optional_parameters     | An dictionary of key value pairs containing additional parameters to append the the href.                                    | Dictionary                           | {'utm_campaign': 'vpn-product-page'}                                                                   |
++----------------------------+------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    optional_attributes     | An dictionary of key value pairs containing additional data attributes to include in the button.                             | Dictionary                           | {'data-cta-text': 'VPN Sign In', 'data-cta-type': 'fxa-vpn', 'data-cta-position': 'navigation'}        |
++----------------------------+------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+--------------------------------------------------------------------------------------------------------+
 
 The ``vpn_subscribe_link`` helper has an additional ``plan`` parameter to support linking to different subscription plans.
 
@@ -251,19 +251,19 @@ The ``vpn_subscribe_link`` helper has an additional ``plan`` parameter to suppor
 |    plan                    | Subscription plan ID. Defaults to 12-month plan.                                                                       | '12-month'                                               | '12-month', '6-month', or 'monthly'                                                                    |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 
-Tracking Same-Site Links for Mozilla VPN
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Tracking Same-Site Links for Mozilla :abbr:`VPN (Virtual Private Network)`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Often we promote Mozilla VPN on different pages via the use of same-site referral
+Often we promote Mozilla :abbr:`VPN (Virtual Private Network)` on different pages via the use of same-site referral
 links to the product landing page. For example, we display a "Get Mozilla VPN"
 button in the main navigation that links to the ``/products/vpn/`` landing page.
 
 In scenarios such as this we want to understand how many people click the link in the
-navigation and go on to signup / subscribe to VPN. To achieve this, we have some
+navigation and go on to signup / subscribe to :abbr:`VPN (Virtual Private Network)`. To achieve this, we have some
 additional logic in ``fxa-utm-referral.js`` that will check for a specific cookie
 that gets set when someone clicks a specific referral link.
 
-To create a Mozilla VPN referral link, you can use the ``vpn_product_referral_link`` helper:
+To create a Mozilla :abbr:`VPN (Virtual Private Network)` referral link, you can use the ``vpn_product_referral_link`` helper:
 
 .. code-block:: jinja
 
@@ -292,7 +292,7 @@ The helper supports the following parameters:
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 |    page_anchor             | An optional page anchor for the link destination.                                                                      | String                                                   | '#pricing'                                                                                             |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    optiona_attributes      | An dictionary of key value pairs containing additional data attributes to include in the button.                       | Dictionary                                               | {'data-cta-text': 'Get Mozilla VPN', 'data-cta-type': 'button', 'data-cta-position': 'navigation'}     |
+|    optional_attributes     | An dictionary of key value pairs containing additional data attributes to include in the button.                       | Dictionary                                               | {'data-cta-text': 'Get Mozilla VPN', 'data-cta-type': 'button', 'data-cta-position': 'navigation'}     |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 
 When someone clicks the link a cookie gets set with a 1 hour expiry. The
@@ -311,13 +311,13 @@ in the following utm parameters being set:
 
     The above attribution will only be applied if there are not already
     utm parameters on the product landing page URL. We will also respect
-    privacy and only set the cookie if DNT is disabled.
+    privacy and only set the cookie if :abbr:`DNT (Do Not Track)` is disabled.
 
 
 Link Metrics
 ------------
 
-When using any of the FxA or VPN helpers that link directly to FxA,
+When using any of the :abbr:`FxA (Firefox Account)` or :abbr:`VPN (Virtual Private Network)` helpers that link directly to FxA,
 a templates's respective JavaScript bundle should also import and
 initialize the ``FxaProductButton`` script.
 
@@ -345,10 +345,10 @@ the destination link along with the other standard referral parameters.
 
 .. Important::
 
-    Requests to metrics API endpoints should only be made when an associated CTA is
+    Requests to metrics API endpoints should only be made when an associated :abbr:`CTA (Call To Action)` is
     visibly displayed on a page. For example, if a page contains both a Firefox Accounts
-    signup form and a Firefox Monitor button, but only one CTA is displayed at any one
-    time, then only the metrics request associated with that CTA should occur. For links
+    signup form and a Firefox Monitor button, but only one :abbr:`CTA (Call To Action)` is displayed at any one
+    time, then only the metrics request associated with that :abbr:`CTA (Call To Action)` should occur. For links
     generated using the ``fxa_link_fragment`` helper, you will also need to manually
     add a CSS class of ``js-fxa-product-button`` to trigger the script.
 
@@ -356,19 +356,19 @@ the destination link along with the other standard referral parameters.
 Tracking External Referrers
 ---------------------------
 
-If the URL of a bedrock page contains existing UTM parameters on page load, bedrock will
-attempt to automatically use those values to replace the inline UTM parameters in
-Firefox Account and Mozilla VPN links. This is handled using a client side script in the
+If the URL of a bedrock page contains existing :abbr:`UTM (Urchin Tracking Module)` parameters on page load, bedrock will
+attempt to automatically use those values to replace the inline UTM parameters in Firefox Account and Mozilla
+:abbr:`VPN (Virtual Private Network)` links. This is handled using a client side script in the
 site common bundle which can be found in ``/media/js/base/fxa-utm-referral.js``.
 
 The behavior is as follows:
 
-- UTM paramters will only be replaced if the page URL contains both a valid ``utm_source`` and ``utm_campaign`` parameter. All other UTM parameters are considered optional, but will still be passed as long as the required parameters exist.
-- If the above criteria is satisfied, then UTM parameters on FxA links will be replaced in their entirety with the UTM parameters from the page URL. This is to avoid mixing referral data from different campaigns.
+- :abbr:`UTM (Urchin Tracking Module)` paramters will only be replaced if the page URL contains both a valid ``utm_source`` and ``utm_campaign`` parameter. All other UTM parameters are considered optional, but will still be passed as long as the required parameters exist.
+- If the above criteria is satisfied, then :abbr:`UTM (Urchin Tracking Module)` parameters on :abbr:`FxA (Firefox Account)` links will be replaced in their entirety with the UTM parameters from the page URL. This is to avoid mixing referral data from different campaigns.
 
 .. Important::
 
-    Links generated by the FxA button helpers will automatically be covered by this
+    Links generated by the :abbr:`FxA (Firefox Account)` button helpers will automatically be covered by this
     script. For links generated using the ``fxa_link_fragment`` helper, you will
     need to manually add a CSS class of ``js-fxa-cta-link`` to trigger the behavior.
 
@@ -387,7 +387,7 @@ predictability in retroactive analysis.
 Firefox Sync and UITour
 -----------------------
 
-Since Firefox 80 the FxA link and email form macros use :ref:`UITour<ui-tour>` to show the Firefox Accounts page
+Since Firefox 80 the :abbr:`FxA (Firefox Account)` link and email form macros use :ref:`UITour<ui-tour>` to show the Firefox Accounts page
 and log the browser into Sync or an Account. For non-Firefox browsers or if UITour is not available, the flow uses
 normal links that allow users to log into FxA as a website only without connecting the Firefox Desktop client.
 This UITour flow allows the Firefox browser to determine the correct FxA server and authentication flow
@@ -397,7 +397,7 @@ Firefox Desktop to an OAuth based client authentication flow.
 The script that handles this logic is ``/media/js/base/fxa-link.js``, and will automatically apply
 to any link with a ``js-fxa-cta-link`` class name. The current code automatically detects if you are in the
 supported browser for this flow and updates links to drive them through the UITour API. The UITour
-``showFirefoxAccounts`` action supports flow id parameters, UTM parameters and the email data field.
+``showFirefoxAccounts`` action supports flow id parameters, :abbr:`UTM (Urchin Tracking Module)` parameters and the email data field.
 
 
 Testing Signup Flows
@@ -414,7 +414,7 @@ Set the following in your local ``.env`` file:
 
     FXA_ENDPOINT=https://accounts.stage.mozaws.net/
 
-For Mozilla VPN links you can also set:
+For Mozilla :abbr:`VPN (Virtual Private Network)` links you can also set:
 
 .. code-block:: text
 
@@ -430,4 +430,4 @@ For Mozilla VPN links you can also set:
 Google Analytics Guidelines
 ---------------------------
 
-For GTM datalayer attribute values in FxA links, please use the :ref:`analytics<analytics>` documentation.
+For :abbr:`GTM (Google Tag Manager)` datalayer attribute values in :abbr:`FxA (Firefox Account)` links, please use the :ref:`analytics<analytics>` documentation.

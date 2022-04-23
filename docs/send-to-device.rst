@@ -10,7 +10,7 @@ Send to Device Widget
 
 The *Send to Device* widget is a single macro form which facilitates the sending of a download link from a desktop browser to a mobile device. The form allows sending via email.
 
-.. important:: This widget should only be shown to a limited set of locales who are set up to receive the emails. For those locales not in the list, direct links to the respective app stores should be shown instead. If a user is on iOS or Android, CTA buttons should also link directly to respective app stores instead of showing the widget. This logic should be handled on a page-by-page basis to cover individual needs.
+.. important:: This widget should only be shown to a limited set of locales who are set up to receive the emails. For those locales not in the list, direct links to the respective app stores should be shown instead. If a user is on iOS or Android, :abbr:`CTA (Call To Action)` buttons should also link directly to respective app stores instead of showing the widget. This logic should be handled on a page-by-page basis to cover individual needs.
 
 .. note:: A full list of supported locales can be found in ``settings/base.py`` under ``SEND_TO_DEVICE_LOCALES``, which can be used in the template logic for each page to show the form.
 

@@ -93,7 +93,7 @@ During review, the engineer will compare the following to the experiment plan:
 
 Once the engineer is satisfied, the engineer (or someone else with write privileges) will:
 
-#. Add ``https://www.mozilla.org/*`` to the list of urls the experiment can run on.
+#. Add ``https://www.mozilla.org/*`` to the list of URLs the experiment can run on.
 #. Reset the experiment (eliminating any data gathered during QA).
 #. Activate (or schedule) the experiment.
 
@@ -149,8 +149,8 @@ experiments and make sure a visitor always sees the same variation.
 It's possible to test more than 2 variants.
 
 Traffic Cop sends users to experiments and then we use Google Analytics (GA) to
-analyze which variation is more successful. (If the user has DNT enabled they
-do not participate in experiments.)
+analyze which variation is more successful. (If the user has :abbr:`DNT (Do Not Track)`
+enabled they do not participate in experiments.)
 
 All a/b tests should have a `mana page <https://mana.mozilla.org/wiki/display/EN/Details+of+experiments+by+mozilla.org+team>`_
 detailing the experiment and recording the results.
@@ -165,7 +165,7 @@ mostly use the redirect method in bedrock. This makes testing easier.
 Create a `variation view <http://bedrock.readthedocs.io/en/latest/coding.html#variation-views>`_
 for the a/b test.
 
-The view can handle the url redirect in one of two ways:
+The view can handle the URL redirect in one of two ways:
 
 #. the same page, with some different content based on the `variation` variable
 #. a totally different page
@@ -185,7 +185,7 @@ Useful for large page changes where content and assets are dramatically
 different.
 
 Create the variant page like you would a new page. Make sure it is ``noindex``
-and does not have a ``canonical`` url.
+and does not have a ``canonical`` URL.
 
 .. code-block:: jinja
 
@@ -223,8 +223,8 @@ Recording the data
     If you are measuring installs as part of your experiment be sure to configure `custom stub attribution <https://bedrock.readthedocs.io/en/latest/stub-attribution.html#measuring-campaigns-and-experiments>`_ as well.
 
 Including the ``data-ex-variant`` and ``data-ex-name`` in the analytics
-reporting will add the test to an auto generated report in GA. The variable
-values may be provided by the analytics team.
+reporting will add the test to an auto generated report in :abbr:`GA (Google Analytics)`.
+The variable values may be provided by the analytics team.
 
 .. code-block:: javascript
 
@@ -241,7 +241,7 @@ values may be provided by the analytics team.
     }
 
 Make sure any buttons and interaction which are being compared as part of the
-test and will report into GA.
+test and will report into :abbr:`GA (Google Analytics)`.
 
 Viewing the data
 ~~~~~~~~~~~~~~~~~~

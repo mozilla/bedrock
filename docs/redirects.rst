@@ -16,7 +16,7 @@ Add a redirect
 --------------
 
 You should add redirects in the app that makes the most sense. For example, if the source
-url is ``/firefox/...`` then the ``bedrock.firefox`` app is the best place. Redirects
+URL is ``/firefox/...`` then the ``bedrock.firefox`` app is the best place. Redirects
 are added to a ``redirects.py`` file within the app. If the app you want to add redirects
 to doesn't have such a file, you can create one and it will automatically be discovered
 and used by bedrock as long as said app is in the ``INSTALLED_APPS`` setting (see
@@ -53,11 +53,11 @@ The ``redirect()`` function has several options. Its signature is as follows:
             destination.
         permanent: boolean whether to send a 301 or 302 response.
         locale_prefix: automatically prepend `pattern` with a regex for an optional locale
-            in the url. This locale (or None) will show up in captured kwargs as 'locale'.
-        anchor: if set it will be appended to the destination url after a '#'.
+            in the URL. This locale (or None) will show up in captured kwargs as 'locale'.
+        anchor: if set it will be appended to the destination URL after a '#'.
         name: if used in a `urls.py` the redirect URL will be available as the name
             for use in calls to `reverse()`. Does _NOT_ work if used in a `redirects.py` file.
-        query: a dict of query params to add to the destination url.
+        query: a dict of query params to add to the destination URL.
         vary: if you used an HTTP header to decide where to send users you should include that
             header's name in the `vary` arg.
         cache_timeout: number of hours to cache this redirect. just sets the proper `cache-control`
@@ -81,14 +81,14 @@ Differences
 
 This all differs from ``urlpatterns`` in ``urls.py`` files in some important ways. The first is
 that these happen first. If something matches in a ``redirects.py`` file it will always win the
-race if another url in a ``urls.py`` file would also have matched. Another is that these are
+race if another URL in a ``urls.py`` file would also have matched. Another is that these are
 matched before any locale prefix stuff happens. So what you're matching against in the redirects
 files is the original URL that the user requested. By default (unless you set ``locale_prefix=False``)
-your patterns will match either the plain url (e.g. ``/firefox/os/``) or one with a locale
+your patterns will match either the plain URL (e.g. ``/firefox/os/``) or one with a locale
 prefix (e.g. ``/fr/firefox/os/``). If you wish to include this locale in the destination URL
 you can simply use python's string ``format()`` function syntax. It is passed to the ``format``
 method as the keyword argument ``locale`` (e.g. ``redirect('^stuff/$', '{locale}whatnot/')``). If
-there was no locale in the url the ``{locale}`` substitution will be an empty string. Similarly
+there was no locale in the URL the ``{locale}`` substitution will be an empty string. Similarly
 if you wish to include a part of the original URL in the destination, just capture it with
 the regex using a named capture (e.g. ``r'^stuff/(?P<rest>.*)$'`` will let you do
 ``'/whatnot/{rest}'``).
@@ -117,8 +117,8 @@ to send the user. For example:
                  cache_timeout=0),
     ]
 
-You simply pass it a regex to match, the destination url (substitutions from the original URL do
-work) if the regex matches, and another destination url if the regex does not match. The match is
+You simply pass it a regex to match, the destination URL (substitutions from the original URL do
+work) if the regex matches, and another destination URL if the regex does not match. The match is
 not case sensitive unless you add the optional ``case_sensitive=True`` argument.
 
 .. note::

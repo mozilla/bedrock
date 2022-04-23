@@ -335,10 +335,10 @@ Files such as large PDFs or very-high-res JPG files (e.g. leadership team photos
 well-tracked in git and will make every checkout after they're added slower and this diffs less useful.
 So we have another domain at which we upload these files: assets.mozilla.net
 
-This domain is simply an AWS S3 bucket with a CloudFront CDN in front of it. It is highly available
+This domain is simply an AWS S3 bucket with a CloudFront :abbr:`CDN (Content Delivery Network)` in front of it. It is highly available
 and fast. We've made adding files to this domain very simple using `git-lfs <https://git-lfs.github.com/>`_.
 You simply install git-lfs, clone our `assets.mozilla.net repo <https://github.com/mozmeao/assets.mozilla.net>`_,
-and then add and commit files under the ``assets`` directory there as usual. Open a PR, and once it's merged
+and then add and commit files under the ``assets`` directory there as usual. Open a pull request, and once it's merged
 it will be automatically uploaded to the S3 bucket and be available on the domain.
 
 For example, if you add a file to the repo under ``assets/pdf/the-dude-abides.pdf``, it will be available
@@ -512,7 +512,7 @@ valid variation were given in the URL.
 Geo Template View
 ~~~~~~~~~~~~~~~~~
 
-Now that we have our CDN configured properly, we can also just swap out templates
+Now that we have our :abbr:`CDN (Content Delivery Network)` configured properly, we can also just swap out templates
 per request country. This is very similar to the above, but it will simply use
 the proper template for the country from which the request originated.
 
@@ -537,7 +537,7 @@ Other Geo Stuff
 There are a couple of other tools at your disposal if you need to change things
 depending on the location of the user. You can use the
 ``bedrock.base.geo.get_country_from_request`` function in a view and it will
-return the country code for the request (either from the CDN or the query param,
+return the country code for the request (either from the :abbr:`CDN (Content Delivery Network)` or the query param,
 just like above).
 
 .. code-block:: python
@@ -551,7 +551,7 @@ just like above).
         else:
             # do the default thing
 
-The other convenience available is that the country code, either from the CDN
+The other convenience available is that the country code, either from the :abbr:`CDN (Content Delivery Network)`
 or the query param, is avilable in any template in the ``country_code`` variable.
 This allows you to change anything about how the template renders based on the
 location of the user.
