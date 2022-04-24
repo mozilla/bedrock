@@ -405,10 +405,10 @@ To get values for these vars, please check with someone on the backend team.
 
 If you are working on the Contentful Sync backed by the message-queue (and if you don't know what this is, you don't need it for local dev), you will also need to set the following env vars:
 
-``CONTENTFUL_NOTIFICATION_QUEUE_URL``
-``CONTENTFUL_NOTIFICATION_QUEUE_REGION``
-``CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID``
-``CONTENTFUL_NOTIFICATION_QUEUE_SECRET_ACCESS_KEY``
+* ``CONTENTFUL_NOTIFICATION_QUEUE_URL``
+* ``CONTENTFUL_NOTIFICATION_QUEUE_REGION``
+* ``CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID``
+* ``CONTENTFUL_NOTIFICATION_QUEUE_SECRET_ACCESS_KEY``
 
 
 How to preview your changes on localhost
@@ -438,6 +438,7 @@ On top of this, Contentful has the concept of aliases for environments and we us
 
 While updating ``master`` is something that we generally don't do (at the moment only a product owner and/or admin would do this), updating the sandbox happens more often, typically to populate it with data more recently added to master.
 To do this:
+
 * Go to ``Settings > Environments``
 * Ensure we have at least one spare environment slot. If we don't delete the oldest ``sandbox-XXXX-XX-XX`` environment.
 * Click the blue Add Environment button, to the right. Name it using the ``sandbox-YYYY-MM-DD`` pattern and base it on whatever environment is aliased to ``master`` - this will basically create a new 'branch' with the content currently in master.
@@ -467,12 +468,8 @@ https://github.com/contentful/rich-text-renderer.py/blob/a1274a11e65f3f728c278de
 
 
 
+Assumptions we still need to deal with
+--------------------------------------
 
-
-
-
-
-
-Assumptions
     - image sizes
 
