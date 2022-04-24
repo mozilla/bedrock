@@ -4,14 +4,14 @@
 
 .. _contentful:
 
-==========================
-Contentful CMS Integration
-==========================
+==============================================================
+Contentful :abbr:`CMS (Content Management System)` Integration
+==============================================================
 
 Overview
 --------
 
-Contentful is a headless CMS. It stores content for our website in a structured
+Contentful is a headless :abbr:`CMS (Content Management System)`. It stores content for our website in a structured
 format. We request the content from Contentful using an API. Then the content
 gets made into Protocol components for display on the site.
 
@@ -399,7 +399,7 @@ set up.
 * ``CONTENTFUL_SPACE_ID`` - this is the ID of our Contentful integration
 * ``CONTENTFUL_SPACE_KEY`` - this is the API key that allows you access to our space. Note that two types of key are available: a Preview key allows you to load in draft content; the Delivery key only loads published contnet. For local dev, you want a Preview key.
 * ``SWITCH_CONTENTFUL_HOMEPAGE_DE`` should be set to ``True`` if you are working on the German Contentful-powered homepage
-* ``CONTENTFUL_ENVIRONMENT`` Contentful has 'branches' which it calls environments. `master` is what we use in production, and `sandbox` is generally what we use in development. It's also possible to refference a specific environment - eg ``CONTENTFUL_ENVIRONMENT=sandbox-2021-11-02``
+* ``CONTENTFUL_ENVIRONMENT`` Contentful has 'branches' which it calls environments. `master` is what we use in production, and `sandbox` is generally what we use in development. It's also possible to reference a specific environment - e.g. ``CONTENTFUL_ENVIRONMENT=sandbox-2021-11-02``
 
 To get values for these vars, please check with someone on the backend team.
 
@@ -414,7 +414,7 @@ If you are working on the Contentful Sync backed by the message-queue (and if yo
 How to preview your changes on localhost
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 When viewing a page in Contentful, it's possible to trigger a preview of the draft page. This is typically rendered on www-dev.allizom.org. However, that's only useful for code that's already in ``main``.
-If you want to preview Contentful content on your local machine - eg you're working on a feature branch that isn't ready for merging - do the following:
+If you want to preview Contentful content on your local machine - e.g. you're working on a feature branch that isn't ready for merging - do the following:
 
 * In the right-hand sidebar of the editor page in Contentful...
 * ...find the Preview section...
@@ -429,14 +429,14 @@ Also note that when you select ``Localhost preview``, the choice sticks, so you 
 How to update/refresh the sandbox environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-It helps to think of Contentful 'environments' as simply branches of a git-like repo full of content. You can take a particular environment and branch off it to make a new environment for WIP or experimental content, using the original one as your starting point.
+It helps to think of Contentful 'environments' as simply branches of a git-like repo full of content. You can take a particular environment and branch off it to make a new environment for :abbr:`WIP (Work in Progress)` or experimental content, using the original one as your starting point.
 On top of this, Contentful has the concept of aliases for environments and we use two aliases in our setup:
 
 * ``master`` is used for production and is an alias currently pointing to the `V1` environment. It is pretty stable and access to it is limited.
 * ``sandbox`` is used for development and more team members have access to edit content. Again, it's an alias and is pointed at an environment (think, branch) with a name in the format ``sandbox-YYYY-MM-DD``.
 
 
-While updating ``master`` is something that we generally don't do (at the moment only Dan B would do this), updating the sandbox happens more often, typically to populate it with data more recently added to master.
+While updating ``master`` is something that we generally don't do (at the moment only a product owner and/or admin would do this), updating the sandbox happens more often, typically to populate it with data more recently added to master.
 To do this:
 * Go to ``Settings > Environments``
 * Ensure we have at least one spare environment slot. If we don't delete the oldest ``sandbox-XXXX-XX-XX`` environment.
@@ -448,7 +448,7 @@ Which environment is connected to where?
 ``master`` is the environment used in Bedrock production, stage, dev and test
 ``sandbox`` may, in the future, be made the default environment for dev. It's also the one we should use for local development.
 
-If you develop a new feature that adds to Contentful (eg page or component) and you author it in the sandbox, you will need to re-create it in master before the corresponding bedrock changes hit production.
+If you develop a new feature that adds to Contentful (e.g. page or component) and you author it in the sandbox, you will need to re-create it in master before the corresponding bedrock changes hit production.
 
 
 Useful Contentful Docs
