@@ -27,7 +27,7 @@ everett==3.0.0
 fluent.runtime==0.3
 fluent.syntax==0.17.0  # hard-pinned subdep to avoid compatibility issues
 greenlet==0.4.17  # Pinned for stability but subdep of Meinheld
-gunicorn==20.1.0
+gunicorn==19.7.1
 honcho==1.1.0
 html5lib==1.1
 lxml==4.8.0  # Needed as a top-level dep so that it's available for BeautifulSoup
