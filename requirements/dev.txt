@@ -433,9 +433,9 @@ greenlet==0.4.17 \
     #   -r requirements/prod.txt
     #   bpython
     #   meinheld
-gunicorn==20.1.0 \
-    --hash=sha256:9dcc4547dbb1cb284accfb15ab5667a0e5d1881cc443e0677b4882a4067a807e \
-    --hash=sha256:e0a968b5ba15f8a328fdfd7ab1fcb5af4470c28aaf7e55df02a99bc13138e6e8
+gunicorn==19.7.1 \
+    --hash=sha256:75af03c99389535f218cc596c7de74df4763803f7b63eb09d77e92b3956b36c6 \
+    --hash=sha256:eee1169f0ca667be05db3351a0960765620dad53f53434262ff8901b68a1b622
     # via -r requirements/prod.txt
 h11==0.13.0 \
     --hash=sha256:70813c1135087a248a4d38cc0e1a0181ffab2188141a93eaf567940c3957ff06 \
