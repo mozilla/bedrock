@@ -198,6 +198,87 @@ You can also pass template data as keyword arguments:
 
 The variable `latest_version` will be available in the template.
 
+Finding Templates by URL
+------------------------
+
+General Structure
+~~~~~~~~~~~~~~~~~
+
+Bedrock follows the Django app structure and most templates are easy to find by matching URL path segments to folders and files within the correct app.
+
+| URL: ``https://www.mozilla.org/en-US/firefox/features/private-browsing/``
+| Template path:  ``bedrock/bedrock/firefox/templates/firefox/features/private-browsing.html``
+
+To get from URL to template path:
+
+- Ignore ``https://www.mozilla.org`` and the locale path segment ``/en-US``. The next path segment is the app name ``/firefox``.
+- From the root folder of bedrock, find the app's template folder at ``bedrock/{app}/templates/{app}``
+- Match remaining URL path segments (``/features/private-browsing``) to the template folder's structure (``/features/private-browsing.html``)
+
+.. note::
+
+    ``mozorg`` is the app name for the home page and child pages related to Mozilla Corporation (i.e. About, Contact, Diversity).
+
+Whatsnew and Firstrun
+~~~~~~~~~~~~~~~~~~~~~
+
+These pages are specific to Firefox browsers, and only appear when a user updates or installs and runs a Firefox browser for the first time.
+The URL and template depend on what Firefox browser and version are in use.
+
+.. note::
+
+    There may be extra logic in the app's ``views.py`` file to change the template based on locale or geographic location as well.
+
+Firefox release
+^^^^^^^^^^^^^^^
+
+Version number is digits only.
+
+| Whatsnew URL: https://www.mozilla.org/en-US/firefox/99.0/whatsnew/
+| Template path:  https://github.com/mozilla/bedrock/tree/main/bedrock/firefox/templates/firefox/whatsnew
+
+| Firstrun URL: https://www.mozilla.org/en-US/firefox/99.0/firstrun/
+| Template path:  https://github.com/mozilla/bedrock/blob/main/bedrock/firefox/templates/firefox/firstrun/firstrun.html
+
+Firefox Nightly
+^^^^^^^^^^^^^^^
+
+Version number is digits and **a1**.
+
+| Whatsnew URL: https://www.mozilla.org/en-US/firefox/99.0a1/whatsnew/
+| Template path:  https://github.com/mozilla/bedrock/blob/main/bedrock/firefox/templates/firefox/nightly/whatsnew.html
+
+| Firstrun URL: https://www.mozilla.org/en-US/firefox/nightly/firstrun/
+| Template path:  https://github.com/mozilla/bedrock/tree/main/bedrock/firefox/templates/firefox/nightly
+
+Firefox Developer
+^^^^^^^^^^^^^^^^^
+
+Version number is digits and **a2**.
+
+| Whatsnew URL: https://www.mozilla.org/en-US/firefox/99.0a2/whatsnew/
+| Template path:  https://github.com/mozilla/bedrock/blob/main/bedrock/firefox/templates/firefox/developer/whatsnew.html
+
+| Firstrun URL: https://www.mozilla.org/en-US/firefox/99.0a2/firstrun/
+| Template path:  https://github.com/mozilla/bedrock/blob/main/bedrock/firefox/templates/firefox/developer/firstrun.html
+
+
+Release Notes
+~~~~~~~~~~~~~
+
+Release note templates live here: https://github.com/mozilla/bedrock/tree/main/bedrock/firefox/templates/firefox/releases
+
+.. note::
+
+    Release note content is pulled in from an external data source.
+
+- Firefox release: https://www.mozilla.org/en-US/firefox/99.0.1/releasenotes/
+- Firefox Developer and Beta: https://www.mozilla.org/en-US/firefox/100.0beta/releasenotes/
+- Firefox Nightly: https://www.mozilla.org/en-US/firefox/101.0a1/releasenotes/
+- Firefox Android: https://www.mozilla.org/en-US/firefox/android/99.0/releasenotes/
+- Firefox iOS: https://www.mozilla.org/en-US/firefox/ios/99.0/releasenotes/
+
+
 Optimizing Images
 -----------------
 
