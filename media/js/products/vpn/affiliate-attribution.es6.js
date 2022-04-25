@@ -124,7 +124,7 @@ AffiliateAttribution.fetch = function (flowId, cjID, value) {
                 if (resp.status >= 200 && resp.status <= 299) {
                     return resp.json();
                 } else if (resp.status === 404 && method === 'PUT') {
-                    return `Unknown aicID: ${value}`;
+                    return 'Unknown aicID';
                 } else {
                     return resp
                         .text()
@@ -217,7 +217,30 @@ AffiliateAttribution.init = function () {
                                 resolve();
                             })
                             .catch((e) => {
-                                reject(e);
+                                /**
+                                 * If PUT throws a 404 due to unknown aic id then the cookie
+                                 * is no longer active in CJMS and has been archived. In this
+                                 * instance we should treat it as a new POST request instead.
+                                 * See https://github.com/mozilla/bedrock/issues/11506
+                                 */
+                                if (e === 'Unknown aicID') {
+                                    AffiliateAttribution.fetch(
+                                        flowId,
+                                        cjEventParamValue
+                                    )
+                                        .then((data) => {
+                                            AffiliateAttribution.setMarketingCookie(
+                                                data.aic_id,
+                                                data.expires
+                                            );
+                                            resolve();
+                                        })
+                                        .catch((e) => {
+                                            reject(e);
+                                        });
+                                } else {
+                                    reject(e);
+                                }
                             });
                     } else {
                         // Else just send the flow ID and cjevent param.
