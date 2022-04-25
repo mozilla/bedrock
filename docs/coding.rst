@@ -229,8 +229,8 @@ The URL and template depend on what Firefox browser and version are in use.
 
     There may be extra logic in the app's ``views.py`` file to change the template based on locale or geographic location as well.
 
-Firefox (Release)
-^^^^^^^^^^^^^^^^^
+Firefox release
+^^^^^^^^^^^^^^^
 
 Version number is digits only.
 
@@ -272,7 +272,7 @@ Release note templates live here: https://github.com/mozilla/bedrock/tree/main/b
 
     Release note content is pulled in from an external data source.
 
-- Firefox (Release): https://www.mozilla.org/en-US/firefox/99.0.1/releasenotes/
+- Firefox release: https://www.mozilla.org/en-US/firefox/99.0.1/releasenotes/
 - Firefox Developer and Beta: https://www.mozilla.org/en-US/firefox/100.0beta/releasenotes/
 - Firefox Nightly: https://www.mozilla.org/en-US/firefox/101.0a1/releasenotes/
 - Firefox Android: https://www.mozilla.org/en-US/firefox/android/99.0/releasenotes/
