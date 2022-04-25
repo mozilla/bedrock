@@ -258,13 +258,26 @@ describe('affiliate-attribution.es6.js', function () {
                 });
             });
 
-            it('should reject if existing cookie ID is not found by the micro service', function () {
-                const mockResponse = new window.Response(JSON.stringify({}), {
-                    status: 404,
-                    headers: {
-                        'Content-type': 'application/json'
+            it('should do a new POST if PUT fails with a 404', function () {
+                const mock404Response = new window.Response(
+                    JSON.stringify({}),
+                    {
+                        status: 404,
+                        headers: {
+                            'Content-type': 'application/json'
+                        }
                     }
-                });
+                );
+
+                const mock200Response = new window.Response(
+                    JSON.stringify(responseData),
+                    {
+                        status: 200,
+                        headers: {
+                            'Content-type': 'application/json'
+                        }
+                    }
+                );
 
                 spyOn(
                     AffiliateAttribution,
@@ -286,13 +299,34 @@ describe('affiliate-attribution.es6.js', function () {
                 ).and.returnValue(_cjmsCookieValue);
                 spyOn(FxaProductButton, 'init').and.resolveTo(_flowParamString);
 
-                spyOn(window, 'fetch').and.returnValue(
-                    window.Promise.resolve(mockResponse)
+                spyOn(window, 'fetch').and.returnValues(
+                    window.Promise.resolve(mock404Response),
+                    window.Promise.resolve(mock200Response)
                 );
 
-                return AffiliateAttribution.init().catch((reason) => {
-                    expect(reason).toEqual(
-                        `Unknown aicID: ${_cjmsCookieValue}`
+                return AffiliateAttribution.init().then(() => {
+                    expect(window.fetch).toHaveBeenCalledTimes(2);
+                    expect(window.fetch).toHaveBeenCalledWith(
+                        'https://stage.cjms.nonprod.cloudops.mozgcp.net/aic/365fd94a-c507-43b3-b867-034f786d2cee',
+                        {
+                            method: 'PUT',
+                            headers: {
+                                Accept: 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: '{"flow_id":"75f9a48a0f66c2f5919a0989605d5fa5dd04625ea5a2ee59b2d5d54637c566d1","cj_id":"09d8676b716a11ec831e01500a18050e"}'
+                        }
+                    );
+                    expect(window.fetch).toHaveBeenCalledWith(
+                        'https://stage.cjms.nonprod.cloudops.mozgcp.net/aic',
+                        {
+                            method: 'POST',
+                            headers: {
+                                Accept: 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: '{"flow_id":"75f9a48a0f66c2f5919a0989605d5fa5dd04625ea5a2ee59b2d5d54637c566d1","cj_id":"09d8676b716a11ec831e01500a18050e"}'
+                        }
                     );
                 });
             });
