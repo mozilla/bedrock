@@ -464,6 +464,54 @@ class TestSendToDeviceView(TestCase):
             lang="en-US",
         )
 
+    # issue #11547
+    def test_fx_mobile_download_desktop_reco_exp_a_email(self):
+        resp_data = self._request(
+            {
+                "s2d-email": "dude@example.com",
+                "message-set": "fx-mobile-download-desktop-reco-exp-a",
+            }
+        )
+        assert resp_data["success"]
+        self.mock_subscribe.assert_called_with(
+            "dude@example.com",
+            views.SEND_TO_DEVICE_MESSAGE_SETS["fx-mobile-download-desktop-reco-exp-a"]["email"]["all"],
+            source_url=None,
+            lang="en-US",
+        )
+
+    # issue #11547
+    def test_fx_mobile_download_desktop_reco_exp_b_email(self):
+        resp_data = self._request(
+            {
+                "s2d-email": "dude@example.com",
+                "message-set": "fx-mobile-download-desktop-reco-exp-b",
+            }
+        )
+        assert resp_data["success"]
+        self.mock_subscribe.assert_called_with(
+            "dude@example.com",
+            views.SEND_TO_DEVICE_MESSAGE_SETS["fx-mobile-download-desktop-reco-exp-b"]["email"]["all"],
+            source_url=None,
+            lang="en-US",
+        )
+
+    # issue #11547
+    def test_fx_mobile_download_desktop_reco_exp_c_email(self):
+        resp_data = self._request(
+            {
+                "s2d-email": "dude@example.com",
+                "message-set": "fx-mobile-download-desktop-reco-exp-c",
+            }
+        )
+        assert resp_data["success"]
+        self.mock_subscribe.assert_called_with(
+            "dude@example.com",
+            views.SEND_TO_DEVICE_MESSAGE_SETS["fx-mobile-download-desktop-reco-exp-c"]["email"]["all"],
+            source_url=None,
+            lang="en-US",
+        )
+
 
 @override_settings(DEV=False)
 @patch("bedrock.firefox.views.l10n_utils.render", return_value=HttpResponse())

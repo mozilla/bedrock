@@ -76,7 +76,9 @@ urlpatterns = (
     path("firefox/ios/testflight/", views.ios_testflight, name="firefox.ios.testflight"),
     path(
         "firefox/mobile/get-app/",
-        VariationTemplateView.as_view(template_name="firefox/mobile/get-app.html", template_context_variations=["mfm"], ftl_files=["firefox/mobile"]),
+        VariationTemplateView.as_view(
+            template_name="firefox/mobile/get-app.html", template_context_variations=["mfm", "eco-a", "eco-b", "eco-c"], ftl_files=["firefox/mobile"]
+        ),
         name="firefox.mobile.get-app",
     ),
     path("firefox/send-to-device-post/", views.send_to_device_ajax, name="firefox.send-to-device-post"),
