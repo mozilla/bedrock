@@ -1710,6 +1710,12 @@
         "js/base/mozilla-article.js"
       ],
       "name": "webvision"
+    },
+    {
+      "files": [
+        "js/privacy/data-preferences.es6.js"
+      ],
+      "name": "privacy-data-preferences"
     }
   ]
 }
