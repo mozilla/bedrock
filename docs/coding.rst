@@ -808,7 +808,7 @@ You can find import examples and parameter definitions for the available Protoco
     You can use Protocol without macros. They are not dependent on each other but they work well together. 10/10 would recommend!
 
 Picto
-<<<<<
+^^^^^
 
 **HTML import**
 
@@ -894,7 +894,7 @@ Picto
 
 
 Call out
-<<<<<<<<
+^^^^^^^^
 
 **HTML import**
 
@@ -943,7 +943,7 @@ Call out
 
 
 Split
-<<<<<
+^^^^^
 
 **HTML import**
 
@@ -1048,7 +1048,7 @@ Split
 
 
 Billboard
-<<<<<<<<<
+^^^^^^^^^
 
 **HTML import**
 
@@ -1136,7 +1136,7 @@ Billboard
 
 
 Feature Card
-<<<<<<<<<<<<
+^^^^^^^^^^^^
 
 **HTML import**
 
@@ -1238,7 +1238,7 @@ Feature Card
 
 
 Card
-<<<<
+^^^^
 
 **HTML import**
 
