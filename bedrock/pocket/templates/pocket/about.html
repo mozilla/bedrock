@@ -6,9 +6,9 @@
 
 {% extends "pocket/base.html" %}
 
-{% block page_title %}About Us{% endblock %}
+{% block page_title %}{{ ftl('pocket-about-us') }}{% endblock %}
 
-{% block page_desc %}Pocket empowers people to keep their minds focused, stimulated, and nourished. We’re powered by a community of interesting people with curious minds.{% endblock %}
+{% block page_desc %}{{ ftl('pocket-about-us-page-desc') }}{% endblock %}
 
 {% block pocket_css %}
   {{ css_bundle('pocket-about') }}
@@ -20,45 +20,54 @@
     <div class="intro-wrapper">
         <section class="about-section first">
             <div class="about-section-text-wrapper">
-                <h1 class="about-section-heading">Hi, we're Pocket.</h1>
-                <p class="about-section-body"> We’re powered by a community of interesting people with curious minds, and we empower people to keep their minds focused, stimulated, and nourished. Which makes us a refreshing change from other digital spaces.</p>
+                <h1 class="about-section-heading">{{ ftl('pocket-about-us-hi') }}</h1>
+                <p class="about-section-body">{{ ftl('pocket-about-powered-by-community-of-interesting-people') }}</p>
             </div>
         </section>
     </div>
     <section class="about-section second">
         <div class="about-section-text-wrapper">
-            <h3 class="about-section-heading">Save your inspirations</h3>
-            <p class="about-section-body">If something catches your interest, there’s probably something to it. With our <a id="save-button-for-the-internet" href="https://getpocket.com/save-to-pocket"> save button for the internet</a> and our award-winning <a id="top-pocket-app" href="https://getpocket.com/add">Pocket app</a> you can save anything from across the web in a distraction free space, for you to focus and let the ideas flow.</p>
+            <h3 class="about-section-heading">{{ ftl('pocket-about-us-save-inspirations') }}</h3>
+            <p class="about-section-body">{{ ftl('pocket-about-if-something-catches-your-interest',
+              savetopocket='/save-to-pocket',
+              addtopocket='/add' ) }}
+            </p>
         </div>
     </section>
     <section class="about-section third">
         <div class="about-section-text-wrapper">
-            <h3 class="about-section-heading">Find hidden gems</h3>
-            <p class="about-section-body">The internet is filled with buried treasures and our vibrant, well-read community has a real knack for finding them. Through the act of saving and consuming content, Pocket users signal where fascination can be found.</p>
-            <p class="about-section-body">Our curators vet the most fascinating finds to ensure they’re from a diverse range of publications with a track record of trustworthy and accurate coverage, and we share them on <a id="home-page" href="https://getpocket.com/">GetPocket.com</a>, <a id="pocket-and-firefox" href="https://getpocket.com/pocket-and-firefox">Pocket for Firefox</a>, in our <a id="daily-newsletter" href="https://getpocket.com/explore/pocket-hits-signup">daily newsletter</a>, and within the <a id="bottom-pocket-app" href="https://getpocket.com/add">Pocket app</a>. Our recommendations are available primarily in English and German, though we look forward to sharing in more languages in the future.</p>
+            <h3 class="about-section-heading">{{ ftl('pocket-about-find-hidden-gems')}}</h3>
+            <p class="about-section-body">{{ ftl('pocket-about-internet-filled-with-buried-treasures') }}</p>
+            <p class="about-section-body">{{ ftl('pocket-about-our-curators-vet-the-most-fascinating',
+            pockethome='/',
+            pockethomedomain='GetPocket.com',
+            pocketandfirefox='/pocket-and-firefox',
+            pocketdailynewsletter='/explore/pocket-hits-signup',
+            addtopocket='/add' ) }}
+            </p>
         </div>
     </section>
     <section class="about-section fourth">
         <div class="about-section-text-wrapper">
-            <h3 class="about-section-heading">Use Pocket your way</h3>
-            <p class="about-section-body">There are lots of ways you can use Pocket. Some people use it to save stories throughout the day to read when they’re ready. Hunter-gatherer types use it to save all the things they want to read, watch, listen to, or buy. Others use Pocket to highlight key passages to help them grow, learn, and thrive.</p>
-            <p class="about-section-body">And some folks love exploring Pocket’s recommendations to find inspiration, challenge their views, and see the occasional cat (or dog) story. </p>
+            <h3 class="about-section-heading">{{ ftl('pocket-about-use-pocket-your-way') }}</h3>
+            <p class="about-section-body">{{ ftl('pocket-about-there-are-lots-of-ways') }}</p>
+            <p class="about-section-body">{{ ftl('pocket-about-some-folks-love-exploring') }}</p>
         </div>
     </section>
     <section class="about-section fifth">
         <div class="about-section-text-wrapper">
-            <h3 class="about-section-heading">Know it's good</h3>
-            <p class="about-section-body"> The internet’s only as good as the content you encounter, so — by saving and consuming with intent — together we make Pocket a brighter corner of the internet. And, as part of the Mozilla and Firefox family, we do all this with the same dedication to privacy you’ve come to expect from Firefox and Mozilla. </p>
+            <h3 class="about-section-heading">{{ ftl('pocket-about-know-its-good') }}</h3>
+            <p class="about-section-body">{{ ftl('pocket-about-internets-only-as-good-as') }}</p>
         </div>
     </section>
     <section class="about-cta-section">
-        <h2 class="about-cta-heading">Welcome to the sunny side of the web.</h2>
+        <h2 class="about-cta-heading">{{ ftl('pocket-about-welcome-to-the-sunny-side') }}</h2>
         <div class="cta-wrapper">
-            <a id="start-using-pocket" href="https://getpocket.com/signup">Start using Pocket</a>
+            <a id="start-using-pocket" href="https://getpocket.com/signup">{{ ftl('pocket-about-start-using-pocket') }}</a>
         </div>
         <hr/>
-        <p class="about-cta-body">Contact us for press inquiries at <a href="mailto:press@getpocket.com">press@getpocket.com</a>.</p>
-        <p class="about-cta-body">Download our images and press kit <a id="press-page" href="https://blog.getpocket.com/press/">here</a>.</p>
+        <p class="about-cta-body">{{ ftl('pocket-about-contact-us-press', pressemail='press@getpocket.com') }}</p>
+        <p class="about-cta-body">{{ ftl('pocket-about-download-press-kit', downloadurl='https://blog.getpocket.com/press/')}}</p>
     </section>
 
     {% include 'pocket/includes/footer.html' %}

@@ -37,6 +37,13 @@ are plain and easy to understand English, as free from colloquialisms as possibl
 translators are able to easily understand the meaning of the string, and can then add their
 own local flair to the ideas.
 
+.. note::
+
+    Much of this documentation also applies to the use of Fluent with Pocket templates,
+    with the main differences being that:
+    * the English Pocket Fluent directory is called ``l10n-pocket/``.
+
+
 .. _Project Fluent: https://projectfluent.org/
 
 .ftl files

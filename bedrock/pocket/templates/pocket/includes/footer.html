@@ -8,72 +8,72 @@
     <div class="pocket-footer-content">
         <nav class="pocket-footer-primary">
             <section class="pocket-footer-section">
-                <h6 class="pocket-footer-heading">Products</h6>
+                <h6 class="pocket-footer-heading">{{ ftl('pocket-footer-products') }}</h6>
                 <ul class="pocket-footer-list">
                     <li>
-                        <a href="https://getpocket.com/explore" rel="external noopener" target="_blank">Must-read articles</a>
+                        <a href="https://getpocket.com/explore" rel="external noopener" target="_blank">{{ ftl('pocket-footer-must-read-articles') }}</a>
                     </li>
                     <li>
-                        <a href="https://getpocket.com/explore/pocket-hits" rel="external noopener" target="_blank">Daily newsletter</a>
+                        <a href="https://getpocket.com/explore/pocket-hits" rel="external noopener" target="_blank">{{ ftl('pocket-footer-daily-newsletter')}}</a>
                     </li>
                     <li>
-                        <a href="https://getpocket.com/premium" rel="external noopener" target="_blank">Pocket Premium</a>
+                        <a href="https://getpocket.com/premium" rel="external noopener" target="_blank">{{ ftl('pocket-footer-pocket-premium') }}</a>
                     </li>
                     <li>
-                         <a href="https://getpocket.com/welcome" rel="external noopener" target="_blank">Save to Pocket extensions</a>
+                         <a href="https://getpocket.com/welcome" rel="external noopener" target="_blank">{{ ftl('pocket-footer-save-to-pocket-extensions') }}</a>
                     </li>
                 </ul>
             </section>
             <section class="pocket-footer-section">
-                <h6 class="pocket-footer-heading">Company</h6>
+                <h6 class="pocket-footer-heading">{{ ftl('pocket-footer-company') }}</h6>
                 <ul class="pocket-footer-list">
                     <li>
-                      <a href="https://getpocket.com/about" rel="external noopener" target="_blank">About</a>
+                      <a href="https://getpocket.com/about" rel="external noopener" target="_blank">{{ ftl('pocket-footer-about') }}</a>
                     </li>
                     <li>
-                      <a href="https://getpocket.com/jobs" rel="external noopener" target="_blank">Careers</a>
+                      <a href="https://getpocket.com/jobs" rel="external noopener" target="_blank">{{ ftl('pocket-footer-careers') }}</a>
 
                     </li>
                     <li>
-                        <a href="https://getpocket.com/blog" rel="external noopener" target="_blank">Blog</a>
+                        <a href="https://getpocket.com/blog" rel="external noopener" target="_blank">{{ ftl('pocket-footer-blog') }}</a>
 
                     </li>
                     <ul>
             </section>
             <section class="pocket-footer-section">
-                <h6 class="pocket-footer-heading">Resources</h6>
+                <h6 class="pocket-footer-heading">{{ ftl('pocket-footer-resources') }}</h6>
                 <ul class="pocket-footer-list">
                     <li>
-                         <a href="https://help.getpocket.com/" rel="external noopener" target="_blank">Get help</a>
+                         <a href="https://help.getpocket.com/" rel="external noopener" target="_blank">{{ ftl('pocket-footer-get-help') }}</a>
 
                     </li>
                     <li>
-                          <a href="https://getpocket.com/developer/" rel="external noopener" target="_blank">Developer API</a>
+                          <a href="https://getpocket.com/developer/" rel="external noopener" target="_blank">{{ ftl('pocket-footer-developer-api') }}</a>
 
                     </li>
                     <li>
-                        <a href="https://getpocket.com/publisher/" rel="external noopener" target="_blank">Pocket for publishers</a>
+                        <a href="https://getpocket.com/publisher/" rel="external noopener" target="_blank">{{ ftl('pocket-footer-pocket-for-publishers') }}</a>
                     </li>
                     <li>
-                        <a href="https://getpocket.com/sponsor/" rel="external noopener" target="_blank">Advertise</a>
+                        <a href="https://getpocket.com/sponsor/" rel="external noopener" target="_blank">{{ ftl('pocket-footer-advertise') }}</a>
                     </li>
                     <ul>
             </section>
             <section class="pocket-footer-section">
-                <h6 class="pocket-footer-heading">Get the app</h6>
+                <h6 class="pocket-footer-heading">{{ ftl('pocket-footer-get-the-app') }}</h6>
                 <ul class="pocket-footer-list download-links">
                     <li>
                         <a class="app-download-link"
                             href="https://apps.apple.com/us/app/pocket-save-read-grow/id309601447" target="_blank"
                             rel="noopener noreferrer">
-                            <img src="{{ static('img/pocket/apple-app-store-badge.svg') }}" alt="Download On the Apple App Store">
+                            <img src="{{ static('img/pocket/apple-app-store-badge.svg') }}" alt="{{ ftl('pocket-footer-download-on-apple-app-store') }}">
                         </a>
                     </li>
                     <li>
                         <a class="app-download-link google-play-badge"
                             href="https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro"
                             target="_blank" rel="noopener noreferrer">
-                            <img src="{{ static('img/pocket/google-play-badge.png') }}" alt="Get It On Google Play">
+                            <img src="{{ static('img/pocket/google-play-badge.png') }}" alt="{{ ftl('pocket-footer-get-it-google-play') }}">
                         </a>
                     </li>
                 </ul>
@@ -81,21 +81,22 @@
         </nav>
         <div class="pocket-footer-secondary">
           <div class="pocket-footer-legal-details">
-            <p class="pocket-footer-secondary-desc">Pocket is part of the <a href="https://www.mozilla.org/about/">Mozilla</a> family of products.</p>
-
-            <div class="legal" aria-label="Legal">
-              <span>© 2021 Read It Later, Inc.</span>
-              <a href="https://getpocket.com/privacy?src=footer_v2">Privacy policy</a>
-              <a href="https://getpocket.com/tos?src=footer_v2">Terms of service</a>
-              <button id="ot-sdk-btn" class="ot-sdk-show-settings">Cookie preferences</button>
+            <p class="pocket-footer-secondary-desc">
+            {{ ftl('pocket-footer-pocket-is-part-of-mozilla-family',
+            mozorgabout='https://www.mozilla.org/about/') }}</p>
+            <div class="legal" aria-label="{{ ftl('pocket-footer-aria-label-legal') }}">
+              <span>© 2021 {{ ftl ('pocket-footer-read-it-later-name') }}</span>
+              <a href="https://getpocket.com/privacy?src=footer_v2">{{ ftl ('pocket-footer-privacy-policy') }}</a>
+              <a href="https://getpocket.com/tos?src=footer_v2">{{ ftl ('pocket-footer-terms-of-service') }}</a>
+              <button id="ot-sdk-btn" class="ot-sdk-show-settings">{{ ftl ('pocket-footer-cookie-preferences') }}</button>
             </div>
           </div>
           <ul class="pocket-footer-socials">
             <li class="pocket-footer-socials-item">
-              <a href="https://twitter.com/pocket" class="pocket-footer-socials-item-link twitter" target="_blank" rel="external noopener noreferrer"><span>Twitter</span></a>
+              <a href="https://twitter.com/pocket" class="pocket-footer-socials-item-link twitter" target="_blank" rel="external noopener noreferrer"><span>{{ ftl ('-brand-name-twitter') }}</span></a>
             </li>
             <li class="pocket-footer-socials-item">
-              <a href="https://facebook.com/pocket" class="pocket-footer-socials-item-link facebook" target="_blank" rel="external noopener noreferrer"><span>Facebook</span></a>
+              <a href="https://facebook.com/pocket" class="pocket-footer-socials-item-link facebook" target="_blank" rel="external noopener noreferrer"><span>{{ ftl ('-brand-name-facebook') }}</span></a>
             </li>
           </ul>
         </div>

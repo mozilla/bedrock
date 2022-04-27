@@ -22,25 +22,25 @@
                 d="M2 5a1 1 0 011-1h18a1 1 0 110 2H3a1 1 0 01-1-1zM2 12a1 1 0 011-1h18a1 1 0 110 2H3a1 1 0 01-1-1zM2 19a1 1 0 011-1h18a1 1 0 110 2H3a1 1 0 01-1-1z"
                 clip-rule="evenodd"
                 ></path>
-                <title id="mobile-menu-icon-title">Open</title>
-                <desc id="mobile-menu-icon-description">Open the Pocket mobile menu</desc>
+                <title id="mobile-menu-icon-title">{{ ftl('pocket-nav-open-icon-title') }}</title>
+                <desc id="mobile-menu-icon-description">{{ ftl('pocket-nav-open-menu-desc') }}</desc>
             </svg>
         </button>
         <a id="pocket-logo-nav" class="pocket-logo" href="https://getpocket.com/explore?src=navbar">
             <div class="pocket-logo-svg logo">
-                <span>Pocket</span>
+                <span>{{ ftl('pocket-nav-logo-text') }}</span>
             </div>
         </a>
-        <div class="page-navigation" aria-label="Page navigation">
+        <div class="page-navigation" aria-label="{{ ftl('pocket-nav-aria-label') }}">
             <ul class="page-navigation-list links">
-                <li class="page-navigation-list-item"><a id="global-nav-discover-link" class="page-navigation-list-item-link selected nav-link" href="https://getpocket.com/explore?src=navbar">Discover</a></li>
-                <li class="page-navigation-list-item"><a id="global-nav-my-list-link" class="page-navigation-list-item-link nav-link" href="https://getpocket.com/login?src=navbar">My List</a></li>
+                <li class="page-navigation-list-item"><a id="global-nav-discover-link" class="page-navigation-list-item-link selected nav-link" href="https://getpocket.com/explore?src=navbar">{{ ftl('pocket-nav-discover') }}</a></li>
+                <li class="page-navigation-list-item"><a id="global-nav-my-list-link" class="page-navigation-list-item-link nav-link" href="https://getpocket.com/login?src=navbar">{{ ftl('pocket-nav-my-list') }}</a></li>
             </ul>
         </div>
         <div>
-            <a class="login-link nav-link" href="https://getpocket.com/login?src=navbar" id="global-nav-login-link">Log in</a>
+            <a class="login-link nav-link" href="https://getpocket.com/login?src=navbar" id="global-nav-login-link">{{ ftl('pocket-nav-log-in') }}</a>
             <a class="signup-link nav-link" href="https://getpocket.com/signup?src=navbar" id="global-nav-signup-link">
-                <span class="label">Sign up</span>
+                <span class="label">{{ ftl('pocket-nav-sign-up') }}</span>
             </a>
             <a id="global-nav-signup-link" href="https://getpocket.com/signup?src=navbar" class="signup-icon">
                 <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
@@ -49,7 +49,7 @@
                     >
                     </path>
                 </svg>
-                <span>Sign up</span>
+                <span>{{ ftl('pocket-nav-sign-up') }}</span>
             </a>
         </div>
     </nav>
