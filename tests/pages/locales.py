@@ -11,10 +11,10 @@ class LocalesPage(BasePage):
 
     _URL_TEMPLATE = "/locales/"
 
-    _america_locales_locator = (By.CSS_SELECTOR, "#america ul > li > a")
+    _america_locales_locator = (By.CSS_SELECTOR, "#americas ul > li > a")
     _asia_pacific_locales_locator = (By.CSS_SELECTOR, "#asia-pacific ul > li > a")
     _europe_locales_locator = (By.CSS_SELECTOR, "#europe ul > li > a")
-    _middle_east_locales_locator = (By.CSS_SELECTOR, "#middle-east ul > li > a")
+    _middle_east_locales_locator = (By.CSS_SELECTOR, "#middle-east-and-africa ul > li > a")
 
     @property
     def number_of_america_locales(self):
