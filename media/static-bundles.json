@@ -210,6 +210,12 @@
     },
     {
       "files": [
+        "css/mozorg/home/home-fx100-promo.scss"
+      ],
+      "name": "home-fx100-promo"
+    },
+    {
+      "files": [
         "css/newsletter/newsletter.scss"
       ],
       "name": "newsletter"
