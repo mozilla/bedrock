@@ -223,8 +223,9 @@ PROD_LANGUAGES = sorted(sum(LOCALES_BY_REGION.values(), []) + ["ja-JP-mac"])
 
 GITHUB_REPO = "https://github.com/mozilla/bedrock"
 
-# Default l10n config is for mozorg. See settings/__init__.py for where we [will] plug in
-# an alternative Pocket-appropriate l10n setup.
+# IMPORTANT: The default l10n config here is for Mozorg. See settings/__init__.py
+# for where we plug in an alternative Pocket-appropriate l10n setup.
+
 # Global L10n files.
 FLUENT_DEFAULT_FILES = [
     "banners/firefox-app-store",

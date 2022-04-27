@@ -95,7 +95,10 @@ MOZORG_SITE_MODE = "Mozorg"
 
 site_mode = config("SITE_MODE", default=MOZORG_SITE_MODE)
 
-if site_mode == POCKET_SITE_MODE:
+IS_POCKET_MODE = site_mode == POCKET_SITE_MODE
+IS_MOZORG_MODE = not IS_POCKET_MODE
+
+if IS_POCKET_MODE:
     ROOT_URLCONF = "bedrock.urls.pocket_mode"
 
     # DROP the redirects app and middleware, because it's contains Mozorg-specific rules that
@@ -106,11 +109,15 @@ if site_mode == POCKET_SITE_MODE:
     # TODO: define in Pocket-appropriate versions of
     # DEV_LANGUAGES, PROD_LANGUAGES, CANONICAL_LOCALES,
     # FLUENT_* overrides for Pocket L10N, etc
+    FLUENT_DEFAULT_FILES = [
+        "nav",
+        "footer",
+    ]
+    FLUENT_POCKET_LOCAL_PATH = ROOT_PATH / "l10n-pocket"
+    FLUENT_PATHS.insert(0, FLUENT_POCKET_LOCAL_PATH)
+
 else:
     ROOT_URLCONF = "bedrock.urls.mozorg_mode"
-    # TODO: move Mozorg-appropriate versions of
-    # DEV_LANGUAGES, PROD_LANGUAGES, CANONICAL_LOCALES,
-    # FLUENT_* overrides for Pocket L10N into this file
 
 # TEST-SPECIFIC SETTINGS
 # TODO: make this selectable by an env var, like the other modes

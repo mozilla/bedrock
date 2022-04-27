@@ -5,7 +5,11 @@
 from bedrock.mozorg.util import page
 
 urlpatterns = (
-    page("about/", "pocket/about.html"),
+    page(
+        "about/",
+        "pocket/about.html",
+        ftl_files=["pocket/about"],
+    ),
     page("add/", "pocket/add.html"),
     page("android/", "pocket/android.html"),
     page("ios/", "pocket/ios.html"),

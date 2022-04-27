@@ -161,10 +161,9 @@ def load_fluent_resources(root, locale, resource_ids):
 
         resources.append(load_fluent_file(path))
     if resources:
-        if locale != "en":
+        if locale != "en" or settings.IS_POCKET_MODE:
             path = settings.FLUENT_LOCAL_PATH.joinpath("en", "brands.ftl")
             resources.append(load_fluent_file(path))
-
     return resources
 
 
