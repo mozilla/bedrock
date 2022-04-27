@@ -1,0 +1,230 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '../utils/variables';
+@import '../includes/platform-nav';
+@import '../includes/platform-footer';
+
+$image-path: '/media/img/pocket';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/button';
+
+// Header section
+.add-page {
+    .add-header {
+        background-color: $color-background-grey;
+        padding: 5px;
+    }
+
+    h2 {
+        color: $color-text-dark-grey;
+        margin-bottom: $spacing100;
+        font-size: $size150;
+        text-align: center;
+
+        @media #{$mq-md} {
+            font-size: $size200;
+            text-align: left;
+        }
+    }
+
+    h3,
+    p {
+        color: $color-text-grey;
+    }
+}
+
+.rarrow::after {
+    content: ' ›';
+}
+
+.add-header {
+    .mzp-c-button {
+        background-color: $color-button-red;
+        border: 2px solid $color-button-red;
+
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: underline !important;
+            background-color: $color-button-red;
+            border: 2px solid $color-button-red;
+            color: $color-white;
+        }
+    }
+}
+
+// Device section
+.add-device {
+    margin: 0 auto;
+    max-width: 62.5em;
+    padding: $spacing100;
+    width: 100%;
+
+    @media #{$mq-md} {
+        width: 70%;
+
+        .device-context {
+            flex-direction: row;
+        }
+
+        .device-image {
+            width: 70%;
+        }
+
+        .app-stores {
+            width: 25%;
+        }
+    }
+}
+
+.device-context {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.device-image {
+    width: 100%;
+
+    img {
+        display: block;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.device-stores {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+}
+
+.app-store-list,
+.device-list {
+    margin-bottom: $spacing050;
+    padding: 0;
+
+    li {
+        margin: $spacing050 0;
+    }
+}
+
+.device-list {
+    margin-top: 0;
+}
+
+.app-store-badge {
+    height: 65px;
+    width: 190px;
+    text-align: center;
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+// Save section
+.add-save {
+    background-color: $color-background-grey;
+
+    @media #{$mq-md} {
+        .save-context {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .save-email {
+            width: 45%;
+        }
+
+        .save-email-image {
+            width: 400px;
+        }
+    }
+}
+
+.add-save-wrapper {
+    margin: 0 auto;
+    max-width: 62.5em;
+    padding: $spacing100;
+    width: 100%;
+}
+
+.save-context {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.save-email {
+    width: 100%;
+}
+
+.save-email-image {
+    margin-bottom: $spacing100;
+    width: 100%;
+
+    img {
+        display: block;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.save-apps {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    @media #{$mq-md} {
+        width: 45%;
+    }
+}
+
+.app-types {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.app-board {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    width: 60%;
+}
+
+.app-icon {
+    height: $layout-lg;
+    margin: $spacing-sm;
+    width: $layout-lg;
+
+    img {
+        height: 100%;
+        width: 100%;
+        display: block;
+    }
+}
+
+.social-apps {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0;
+    margin-left: $spacing-lg;
+
+    li {
+        margin: $spacing-sm;
+        white-space: nowrap;
+    }
+}

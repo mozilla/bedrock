@@ -1,0 +1,56 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% include 'pocket/includes/mobile-nav.html' %}
+
+<header class="pocket-header">
+    <nav class="global-nav-container">
+        <button class="global-nav-mobile-menu-btn inline" aria-labelledby="mobile-menu-icon-title" aria-describedby="mobile-menu-icon-description">
+            <svg
+                class="hamburger-btn"
+                aria-labelledby="mobile-menu-icon-description"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24px"
+                height="24px">
+                <path
+                fill-rule="evenodd"
+                d="M2 5a1 1 0 011-1h18a1 1 0 110 2H3a1 1 0 01-1-1zM2 12a1 1 0 011-1h18a1 1 0 110 2H3a1 1 0 01-1-1zM2 19a1 1 0 011-1h18a1 1 0 110 2H3a1 1 0 01-1-1z"
+                clip-rule="evenodd"
+                ></path>
+                <title id="mobile-menu-icon-title">Open</title>
+                <desc id="mobile-menu-icon-description">Open the Pocket mobile menu</desc>
+            </svg>
+        </button>
+        <a id="pocket-logo-nav" class="pocket-logo" href="https://getpocket.com/explore?src=navbar">
+            <div class="pocket-logo-svg logo">
+                <span>Pocket</span>
+            </div>
+        </a>
+        <div class="page-navigation" aria-label="Page navigation">
+            <ul class="page-navigation-list links">
+                <li class="page-navigation-list-item"><a id="global-nav-discover-link" class="page-navigation-list-item-link selected nav-link" href="https://getpocket.com/explore?src=navbar">Discover</a></li>
+                <li class="page-navigation-list-item"><a id="global-nav-my-list-link" class="page-navigation-list-item-link nav-link" href="https://getpocket.com/login?src=navbar">My List</a></li>
+            </ul>
+        </div>
+        <div>
+            <a class="login-link nav-link" href="https://getpocket.com/login?src=navbar" id="global-nav-login-link">Log in</a>
+            <a class="signup-link nav-link" href="https://getpocket.com/signup?src=navbar" id="global-nav-signup-link">
+                <span class="label">Sign up</span>
+            </a>
+            <a id="global-nav-signup-link" href="https://getpocket.com/signup?src=navbar" class="signup-icon">
+                <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                        d="M12 11.125a5.067 5.067 0 01-5.06-5.063A5.067 5.067 0 0112 1c2.79 0 5.06 2.271 5.06 5.062A5.067 5.067 0 0112 11.125zM12 3a3.06 3.06 0 10.001 6.121A3.06 3.06 0 0012 3.001zM11.99 15.006c4.41 0 7.98 2.302 8.01 4.993H4v-.07c.12-2.741 3.63-4.923 7.99-4.923zm0-2c-5.44 0-9.85 3.071-9.99 6.883V20C2 21.1 2.9 22 4 22h16c1.09 0 1.98-.88 2-1.97-.04-3.883-4.5-7.025-10.01-7.025z"
+                    >
+                    </path>
+                </svg>
+                <span>Sign up</span>
+            </a>
+        </div>
+    </nav>
+</header>

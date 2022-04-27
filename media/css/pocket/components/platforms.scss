@@ -1,0 +1,48 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '../utils/variables';
+@import '../includes/platform-footer';
+@import '../includes/platform-nav';
+
+$image-path: '/media/img/pocket';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/button';
+
+.platform {
+    background-color: $color-background-grey;
+
+    .mzp-c-split-container {
+        background: $color-white;
+        border-radius: 10px;
+        border: 1px solid $color-divider;
+        padding-bottom: $spacing-lg;
+
+        @media #{$mq-md} {
+            padding-bottom: 0;
+        }
+
+        h1 {
+            @include text-title-sm;
+        }
+
+        p {
+            @include text-body-xl;
+            color: $color-text-grey;
+        }
+
+        .mzp-c-button {
+            background-color: $color-button-red;
+            border: 0;
+
+            &:hover,
+            &:focus,
+            &:active {
+                color: $color-white;
+                text-decoration: underline !important;
+            }
+        }
+    }
+}

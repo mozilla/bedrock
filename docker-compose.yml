@@ -30,6 +30,9 @@ services:
     platform: linux/amd64
     command: python manage.py runserver 0.0.0.0:8080
     env_file: .env
+    environment:
+        SITE_MODE: "${SITE_MODE:-Mozorg}"
+
     ports:
       - "8080:8080"
     volumes:
@@ -85,6 +88,7 @@ services:
     env_file: .env
     environment:
       RUN_SUPERVISOR: "true"
+      SITE_MODE: "${SITE_MODE:-Mozorg}"
     ports:
       - "8000:8000"
     volumes:

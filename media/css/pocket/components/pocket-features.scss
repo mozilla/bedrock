@@ -1,0 +1,280 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/base/elements/containers';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-family';
+
+@import '../utils/variables';
+@import '../includes/nav';
+@import '../includes/footer';
+@import '../includes/pocket-premium';
+
+.pocket-feature-page-split {
+    padding: $layout-lg 0;
+}
+
+.pocket-logo-inline {
+    @include image-replaced;
+    background: url('/media/img/pocket/new-tab/pocket-logo-inline.svg') no-repeat;
+    display: inline-block;
+    height: 20px;
+    vertical-align: middle;
+    width: 20px;
+}
+
+.section-heading {
+    @include text-title-sm;
+    font-family: $font-sans-alt;
+    font-weight: 500;
+    margin-top: $spacing-sm;
+}
+
+.sub-section-heading {
+    @include text-title-xs;
+    font-family: $font-sans-alt;
+    font-weight: 500;
+}
+
+.tagline {
+    font-family: $font-sans;
+    @include text-body-sm;
+    text-transform: uppercase;
+}
+
+.section-lede {
+    @include text-body-xl;
+    font-family: $font-sans;
+
+    li {
+        list-style: disc;
+    }
+}
+
+.app-store-badges {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    a {
+        width: 150px;
+        height: 100%;
+
+        &.apple-store {
+            margin-bottom: $spacing-md;
+        }
+
+        img {
+            max-height: 50px;
+            width: 100%;
+        }
+    }
+
+    @media #{$mq-md} {
+        justify-content: flex-start;
+        flex-direction: row;
+
+        .apple-store {
+            margin-bottom: 0 !important;
+            margin-right: $spacing-md;
+        }
+    }
+}
+
+.personal-library {
+    text-align: center;
+    margin: $layout-lg auto;
+
+    .app-store-badges {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        a {
+            width: 210px;
+
+            img {
+                max-height: 100%;
+            }
+        }
+    }
+}
+
+.section-ctas {
+    display: flex;
+    flex-direction: column;
+
+    a {
+        align-self: center;
+
+        @media #{$mq-md} {
+            align-self: flex-start;
+        }
+    }
+
+    .secondary-cta {
+        @include text-body-sm;
+        color: $color-text-primary;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: $color-action-primary;
+        }
+    }
+}
+
+.new-tab-pocket-cta,
+.red-cta {
+    @include text-body-lg;
+    background-color: $color-button-red-10;
+    border-radius: $border-radius-sm;
+    color: $color-white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: $font-sans;
+    line-height: 1;
+    padding: 10px 36px 10px $spacing-lg;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.15s ease-out;
+    margin-bottom: $spacing-sm;
+    vertical-align: middle;
+
+    .mzp-t-logo-sm {
+        display: inline-block;
+        margin-bottom: 0;
+        margin-right: $spacing-sm;
+        margin-top: $spacing-xs;
+        vertical-align: middle;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: #901424;
+        color: $color-white;
+    }
+}
+
+.red-cta {
+    padding: $spacing-md 80px;
+}
+
+.explore-stories {
+    @media #{$mq-xl} {
+        background: no-repeat url('/media/img/pocket/articles-grid-right.png') right, url('/media/img/pocket/articles-grid-left.png') left, linear-gradient(180deg, hsla(0deg, 0%, 90.2%, 0.3), hsla(0deg, 0%, 90.2%, 0) 17%), linear-gradient(0deg, hsla(0deg, 0%, 90.2%, 0.3), hsla(0deg, 0%, 90.2%, 0) 17%);
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin: $layout-lg;
+    }
+
+    .explore-stories-wrapper {
+        text-align: center;
+
+        p {
+            font-size: 19px;
+        }
+    }
+}
+
+.black-white-cta {
+    @include text-body-md;
+    border: 2px solid $color-text-primary;
+    border-radius: $border-radius-sm;
+    color: $color-text-primary;
+    cursor: pointer;
+    display: inline-block;
+    font-family: $font-sans;
+    line-height: 1;
+    padding: 12px 36px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.15s ease-out;
+    margin-bottom: $spacing-sm;
+    vertical-align: middle;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: $color-white;
+        background-color: $color-text-primary;
+    }
+}
+
+.library-ctas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column-reverse;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        span {
+            @include text-body-sm;
+            margin-left: $spacing-sm;
+
+            a {
+                color: $color-text-primary;
+
+                &:hover,
+                &:focus,
+                &:active {
+                    color: $color-action-primary;
+                }
+            }
+        }
+    }
+
+    .black-white-cta {
+        @include text-body-lg;
+
+        &.login-cta {
+            padding: 10px 80px;
+        }
+    }
+
+    @media #{$mq-md} {
+        flex-direction: row;
+        align-items: flex-start;
+
+        div {
+            align-items: flex-start;
+            margin-right: $spacing-md;
+        }
+    }
+}
+
+.green-line-cta {
+    @include text-body-lg;
+    box-shadow: inset 0 0 $color-white, inset 0 -3px #00b2a8;
+    color: $color-text-primary;
+    font-family: $font-sans;
+    font-weight: 500;
+    padding-bottom: 6.4px;
+    text-decoration: none;
+    text-shadow: -0.126em 0.063em 0 $color-white, -0.063em 0.063em 0 $color-white, 0 0.063em 0 $color-white, 0.063em 0.063em 0 $color-white, 0.126em 0.063em 0 $color-white, -0.126em 0 0 $color-white;
+    transition: 0.15s;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: $color-action-primary;
+        box-shadow: inset 0 -6px $color-white, inset 0 -8px $color-action-primary;
+    }
+}
+
+.pocket-features-horizontal-rule {
+    background-color: $color-divider;
+    border: 0;
+    height: 1px;
+    padding: 0 80px;
+    width: 85%;
+}

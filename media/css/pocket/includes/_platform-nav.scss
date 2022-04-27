@@ -1,0 +1,87 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.pocket-header.platform {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    border-bottom-color: #c8c8c8;
+}
+
+.platform-header {
+    align-items: center;
+    display: flex;
+    height: 74px;
+    margin: 0 auto;
+    max-width: $screen-lg;
+    padding: 0 $spacing-md;
+
+    .pocket-logo {
+        margin-left: 0;
+
+        .pocket-logo-svg {
+            background-image: url('/media/img/pocket/pocket-logo-grey.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            height: 38px;
+            width: 151px;
+
+            @media #{$mq-md} {
+                background-image: url('/media/img/pocket/pocket-logo-grey-high-res.png');
+                height: 47px;
+                width: 189px;
+            }
+
+            span {
+                @include visually-hidden;
+            }
+        }
+    }
+
+    .header-navigation {
+        display: flex;
+        justify-content: flex-end;
+        flex-grow: 2;
+        line-height: 1;
+        white-space: nowrap;
+
+        .header-navigation-list {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            display: none;
+
+            .header-navigation-list-item {
+                display: inline-block;
+                margin: 0;
+                padding: 0;
+
+                .header-navigation-list-item-link {
+                    @include text-body-sm;
+                    border-top: 6px solid transparent;
+                    font-family: proxima-nova, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                    font-weight: 700;
+                    padding: $spacing-lg 21px;
+                    text-decoration: none;
+                    color: #777;
+
+                    &:hover,
+                    &:focus,
+                    &:active {
+                        border-top-color: #5dcfca;
+                        color: #5dcfca;
+                    }
+                }
+            }
+
+            @media #{$mq-md} {
+                display: flex;
+
+                .header-navigation-list-item-link {
+                    padding: $spacing-lg $spacing-md;
+                }
+            }
+        }
+    }
+}

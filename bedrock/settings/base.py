@@ -2,6 +2,10 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+"""IMPORTANT: bedrock/settings/__init__.py contains important logic that determines
+which site will be served.
+"""
+
 import json
 import platform
 import socket
@@ -235,6 +239,8 @@ PROD_LANGUAGES = (
 
 GITHUB_REPO = "https://github.com/mozilla/bedrock"
 
+# Default l10n config is for mozorg. See settings/__init__.py for where we [will] plug in
+# an alternative Pocket-appropriate l10n setup.
 # Global L10n files.
 FLUENT_DEFAULT_FILES = [
     "banners/firefox-app-store",
@@ -455,7 +461,6 @@ NOINDEX_URLS = [
     r"^foundation/annualreport/$" r"^firefox/notes/$" r"^teach/$" r"^about/legal/impressum/$",
     r"^security/announce/",
     r"^exp/",
-    r"^external/",
 ]
 
 # Pages we do want indexed but don't show up in automated URL discovery
@@ -511,8 +516,6 @@ WHITENOISE_MAX_AGE = 6 * 60 * 60  # 6 hours
 
 PROJECT_MODULE = "bedrock"
 
-ROOT_URLCONF = "bedrock.urls"
-
 
 def get_app_name(hostname):
     """
@@ -561,7 +564,7 @@ ENABLE_CSP_MIDDLEWARE = config("ENABLE_CSP_MIDDLEWARE", default="true", parser=b
 if ENABLE_CSP_MIDDLEWARE:
     MIDDLEWARE.append("csp.middleware.CSPMiddleware")
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     # Django contrib apps
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -587,7 +590,7 @@ INSTALLED_APPS = (
     "bedrock.privacy",
     "bedrock.products",
     "bedrock.externalfiles",
-    "bedrock.externalpages",
+    "bedrock.pocket",
     "bedrock.security",
     "bedrock.releasenotes",
     "bedrock.contentcards",
@@ -603,7 +606,7 @@ INSTALLED_APPS = (
     # libs
     "django_extensions",
     "lib.l10n_utils",
-)
+]
 
 # Must match the list at CloudFlare if the
 # VaryNoCacheMiddleware is enabled. The home

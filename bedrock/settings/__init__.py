@@ -7,12 +7,6 @@ import sys
 
 from .base import *  # noqa
 
-try:
-    from .local import *  # noqa
-except ImportError:
-    "local.py is supported, but no longer necessary"
-
-
 if DEV:
     ALLOWED_HOSTS = ["*"]
 else:
@@ -94,7 +88,34 @@ MEDIA_URL = CDN_BASE_URL + MEDIA_URL
 STATIC_URL = CDN_BASE_URL + STATIC_URL
 logging.config.dictConfig(LOGGING)
 
+# OPERATION MODE SELECTION
+# Which site do we want Bedrock to serve?
+POCKET_SITE_MODE = "Pocket"
+MOZORG_SITE_MODE = "Mozorg"
+
+site_mode = config("SITE_MODE", default=MOZORG_SITE_MODE)
+
+if site_mode == POCKET_SITE_MODE:
+    ROOT_URLCONF = "bedrock.urls.pocket_mode"
+
+    # DROP the redirects app and middleware, because it's contains Mozorg-specific rules that
+    # clash with some Pocket URL paths (eg /jobs/)
+    INSTALLED_APPS.pop(INSTALLED_APPS.index("bedrock.redirects"))
+    MIDDLEWARE.pop(MIDDLEWARE.index("bedrock.redirects.middleware.RedirectsMiddleware"))
+
+    # TODO: define in Pocket-appropriate versions of
+    # DEV_LANGUAGES, PROD_LANGUAGES, CANONICAL_LOCALES,
+    # FLUENT_* overrides for Pocket L10N, etc
+else:
+    ROOT_URLCONF = "bedrock.urls.mozorg_mode"
+    # TODO: move Mozorg-appropriate versions of
+    # DEV_LANGUAGES, PROD_LANGUAGES, CANONICAL_LOCALES,
+    # FLUENT_* overrides for Pocket L10N into this file
+
+# TEST-SPECIFIC SETTINGS
+# TODO: make this selectable by an env var, like the other modes
 if (len(sys.argv) > 1 and sys.argv[1] == "test") or "pytest" in sys.modules:
+
     # Using the CachedStaticFilesStorage for tests breaks all the things.
     STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
     # TEMPLATE_DEBUG has to be True for Jinja to call the template_rendered
@@ -105,3 +126,5 @@ if (len(sys.argv) > 1 and sys.argv[1] == "test") or "pytest" in sys.modules:
     PROD_DETAILS_STORAGE = "product_details.storage.PDFileStorage"
 
     DATABASES["default"] = {"ENGINE": "django.db.backends.sqlite3", "NAME": ":memory:"}
+
+sys.stdout.write(f"Using SITE_MODE of '{site_mode}' and ROOT_URLCONF of '{ROOT_URLCONF}'\n")
