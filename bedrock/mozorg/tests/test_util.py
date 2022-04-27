@@ -5,6 +5,7 @@
 import os
 from unittest.mock import ANY, patch
 
+from django.conf import settings
 from django.test import RequestFactory
 
 from bedrock.mozorg.tests import TestCase
@@ -66,3 +67,14 @@ class TestPageUtil(TestCase):
         "The url route should pass through unchanged"
         url = page("dude/abides.json", "dude/abides.html", donny="ashes")
         assert str(url.pattern) == "dude/abides.json"
+
+
+class TestProdLocales(TestCase):
+    def test_no_dupes(self):
+        # Make sure we didn't duplicate a locale in more than one region.
+        assert set.intersection(*[set(locales) for locales in settings.LOCALES_BY_REGION.values()]) == set()
+
+    def test_inclusive(self):
+        # Make sure all locales are included in `PROD_LANGUAGES`.
+        # We add 1 for the "ja-JP-mac" exception.
+        assert sum([len(locales) for locales in settings.LOCALES_BY_REGION.values()]) + 1 == len(settings.PROD_LANGUAGES)

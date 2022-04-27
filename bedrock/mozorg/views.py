@@ -11,6 +11,7 @@ from django.views.decorators.http import require_safe
 from django.views.generic import TemplateView
 
 from commonware.decorators import xframe_allow
+from product_details import product_details
 from sentry_sdk import capture_exception
 
 from bedrock.base.waffle import switch
@@ -102,6 +103,12 @@ NAMESPACES = {
         "docs": "https://en.wikipedia.org/wiki/XUL",
     },
 }
+
+
+@require_safe
+def locales(request):
+    context = {"languages": product_details.languages}
+    return l10n_utils.render(request, "mozorg/locales.html", context)
 
 
 def namespaces(request, namespace):

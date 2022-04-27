@@ -113,7 +113,7 @@ urlpatterns = (
     path("microsummaries/0.1", views.namespaces, {"namespace": "microsummaries"}),
     path("projects/xforms/2005/type", views.namespaces, {"namespace": "xforms-type"}),
     path("xbl", views.namespaces, {"namespace": "xbl"}),
-    page("locales/", "mozorg/locales.html"),
+    path("locales/", views.locales, name="mozorg.locales"),
     # Diversity and inclusion redirect
     redirect(r"^diversity/$", "mozorg.diversity.2021.index", name="diversity", locale_prefix=False),
     # Main paths
