@@ -8,7 +8,7 @@ pocket-about-us = About Us
 
 pocket-about-us-page-desc = { -brand-name-pocket } empowers people to keep their minds focused, stimulated, and nourished. We’re powered by a community of interesting people with curious minds.
 
-pocket-about-us-hi = Hi, we're { -brand-name-pocket }.
+pocket-about-us-hi = Hi, we’re { -brand-name-pocket }.
 pocket-about-powered-by-community-of-interesting-people = We’re powered by a community of interesting people with curious minds, and we empower people to keep their minds focused, stimulated, and nourished. Which makes us a refreshing change from other digital spaces.
 pocket-about-us-save-inspirations = Save your inspirations
 
@@ -38,7 +38,7 @@ pocket-about-there-are-lots-of-ways = There are lots of ways you can use { -bran
 
 pocket-about-some-folks-love-exploring = And some folks love exploring { -brand-name-pocket }’s recommendations to find inspiration, challenge their views, and see the occasional cat (or dog) story.
 
-pocket-about-know-its-good = Know it's good
+pocket-about-know-its-good = Know it’s good
 pocket-about-internets-only-as-good-as = The internet’s only as good as the content you encounter, so — by saving and consuming with intent — together we make { -brand-name-pocket } a brighter corner of the internet. And, as part of the { -brand-name-mozilla } and { -brand-name-firefox } family, we do all this with the same dedication to privacy you’ve come to expect from { -brand-name-firefox } and { -brand-name-mozilla }.
 
 pocket-about-welcome-to-the-sunny-side = Welcome to the sunny side of the web.
