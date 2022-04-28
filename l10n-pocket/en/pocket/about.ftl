@@ -22,15 +22,12 @@ pocket-about-find-hidden-gems = Find hidden gems
 pocket-about-internet-filled-with-buried-treasures = The internet is filled with buried treasures and our vibrant, well-read community has a real knack for finding them. Through the act of saving and consuming content, Pocket users signal where fascination can be found.
 
 # Variables:
-#   $pocket_home (url) link to https://getpocket.com/
-#   $pocket_home_domain (string) GetPocket.com
-#   $pocket_and_firefox (url) https://getpocket.com/pocket-and-firefox
-#   $pocket_daily_newsletter (url) https://getpocket.com/explore/pocket-hits-signup
-#   $add_to_pocket (url) link to https://getpocket.com/add
-#   $homepage_id (string) ID for HTML element
-#   $pocket_and_firefox_id (string) ID for HTML element
-#   $bottom_pocket_app_id (string) ID for HTML element
-pocket-about-our-curators-vet-the-most-fascinating = Our curators vet the most fascinating finds to ensure they’re from a diverse range of publications with a track record of trustworthy and accurate coverage, and we share them on <a id="{ $homepage_id }" href="{ $pocket_home }">{ $pocket_home_domain }</a>, <a id="{ $pocket_and_firefox_id}" href="{ $pocket_and_firefox }">{ -brand-name-pocket } for { -brand-name-firefox }</a>, in our <a id="daily-newsletter" href="{ $pocket_daily_newsletter }">daily newsletter</a>, and within the <a id="{ $bottompocketappid }" href="{ $add_to_pocket }">{ -brand-name-pocket } app</a>. Our recommendations are available primarily in English and German, though we look forward to sharing in more languages in the future.
+#   $pocket_home_attrs (string) attributes for a HTML link
+#   $pocket_home_domain (string) GetPocket.com - attrs for hyperlink
+#   $pocket_and_firefox_attrs (string) - attrs for hyperlink
+#   $pocket_daily_newsletter_attrs (string) - attrs for hyperlink
+#   $pocket_app_attrs (string) - attrs for hyperlink
+pocket-about-our-curators-vet-the-most-fascinating = Our curators vet the most fascinating finds to ensure they’re from a diverse range of publications with a track record of trustworthy and accurate coverage, and we share them on <a { $pocket_home_attrs }>{ $pocket_home_domain }</a>, <a {$pocket_and_firefox_attrs}>{ -brand-name-pocket } for { -brand-name-firefox }</a>, in our <a { $pocket_daily_newsletter_attrs }">daily newsletter</a>, and within the <a { $pocket_app_attrs }>{ -brand-name-pocket } app</a>. Our recommendations are available primarily in English and German, though we look forward to sharing in more languages in the future.
 
 pocket-about-use-pocket-your-way = Use { -brand-name-pocket } your way
 
