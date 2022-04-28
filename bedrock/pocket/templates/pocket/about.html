@@ -29,8 +29,8 @@
         <div class="about-section-text-wrapper">
             <h3 class="about-section-heading">{{ ftl('pocket-about-us-save-inspirations') }}</h3>
             <p class="about-section-body">{{ ftl('pocket-about-if-something-catches-your-interest',
-              savetopocket='/save-to-pocket',
-              addtopocket='/add' ) }}
+              savetopocket=url('pocket.save-to-pocket'),
+              addtopocket=url('pocket.add') ) }}
             </p>
         </div>
     </section>
@@ -41,9 +41,9 @@
             <p class="about-section-body">{{ ftl('pocket-about-our-curators-vet-the-most-fascinating',
             pockethome='/',
             pockethomedomain='GetPocket.com',
-            pocketandfirefox='/pocket-and-firefox',
-            pocketdailynewsletter='/explore/pocket-hits-signup',
-            addtopocket='/add' ) }}
+            pocketandfirefox=url('pocket.pocket-and-firefox'),
+            pocketdailynewsletter='https://getpocket.com/explore/pocket-hits-signup',
+            addtopocket=url('pocket.add') ) }}
             </p>
         </div>
     </section>
