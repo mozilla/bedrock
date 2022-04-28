@@ -18,7 +18,7 @@ This changeset (explain what) in order to (why).
 
 If relevant:
 
-- [ ] Tests added  
+- [ ] Tests added
 - [ ] Feature flags added to www-config
 - [ ] New secrets added to the secrets repository
 - [ ] If new dependencies are added, I've checked their license is appropriate
@@ -28,7 +28,5 @@ If relevant:
 Demo server URL: (or None)
 
 To test this work:
-* ...
-* ...
-* ...
 
+- [ ]
