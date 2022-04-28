@@ -30,5 +30,4 @@ pocket-nav-sign-up = Sign up
 pocket-mobile-nav-aria-label = { -brand-name-pocket } Mobile Menu
 pocket-mobile-nav-close-tooltip = Close
 pocket-mobile-nav-close-menu = Close the { -brand-name-pocket } Mobile Menu
-pocket-mobile-nav-beta = BETA
-
+pocket-mobile-nav-beta = Beta
