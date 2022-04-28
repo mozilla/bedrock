@@ -37,6 +37,7 @@
 
   {% if switch('homepage-fx100-promo') %}
     {{ css_bundle('home-fx100-promo')}}
+  {% endif %}
   {% endblock %}
 
 {% block page_banner %}
@@ -72,10 +73,10 @@
     {# Main page h1 is hidden from view and exists mainly for SEO purposes #}
     <h1>{{ self.page_title() }}</h1>
   </header>
-{#
+
   {% if switch('homepage-mr2-promo') %}
     {% include 'mozorg/home/includes/mr2-promo.html' %}
-  {% endif %} #}
+  {% endif %}
 
   {% if switch('homepage-fx100-promo') %}
     {% include 'mozorg/home/includes/fx100-promo.html' %}

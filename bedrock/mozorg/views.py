@@ -125,7 +125,7 @@ def home_view(request):
         "donate_locale": donate_locale,
         "donate_params": donate_params,
         "pocket_articles": PocketArticle.objects.all()[:4],
-        "ftl_files": ["mozorg/home", "mozorg/home-mr2-promo"],
+        "ftl_files": ["mozorg/home", "mozorg/home-mr2-promo", "mozorg/home-fx100-promo"],
         "add_active_locales": ["de", "fr"],
     }
 
