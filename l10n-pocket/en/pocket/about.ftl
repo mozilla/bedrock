@@ -13,9 +13,9 @@ pocket-about-powered-by-community-of-interesting-people = We’re powered by a c
 pocket-about-us-save-inspirations = Save your inspirations
 
 # Variables:
-#   $savetopocket (url) link to https://getpocket.com/save-to-pocket
+#   $save_to_pocket (url) link to https://getpocket.com/save-to-pocket
 #   $add_to_pocket (url) link to https://getpocket.com/add
-pocket-about-if-something-catches-your-interest = If something catches your interest, there’s probably something to it. With our <a id="save-button-for-the-internet" href="{ $savetopocket }"> save button for the internet</a> and our award-winning <a id="top-pocket-app" href="{ $add_to_pocket }">{ -brand-name-pocket } app</a> you can save anything from across the web in a distraction free space, for you to focus and let the ideas flow.
+pocket-about-if-something-catches-your-interest = If something catches your interest, there’s probably something to it. With our <a id="save-button-for-the-internet" href="{ $save_to_pocket }"> save button for the internet</a> and our award-winning <a id="top-pocket-app" href="{ $add_to_pocket }">{ -brand-name-pocket } app</a> you can save anything from across the web in a distraction free space, for you to focus and let the ideas flow.
 
 pocket-about-find-hidden-gems = Find hidden gems
 
