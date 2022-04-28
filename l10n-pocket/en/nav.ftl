@@ -24,7 +24,7 @@ pocket-nav-open-menu-desc = Open the { -brand-name-pocket } mobile menu
 pocket-nav-logo-text = { -brand-name-pocket }
 pocket-nav-aria-label = Page navigation
 pocket-nav-log-in = Log In
-pocket-nav-sign-up = Log In
+pocket-nav-sign-up = Sign up
 
 # pocket/includes/mobile-nav.html
 pocket-mobile-nav-aria-label = { -brand-name-pocket } Mobile Menu
