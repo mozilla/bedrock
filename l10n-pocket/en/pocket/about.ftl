@@ -4,11 +4,9 @@
 
 ### URL: https://www-dev-pocket.allizom.org/about/
 
-
 pocket-about-us = About Us
 
 pocket-about-us-page-desc = { -brand-name-pocket } empowers people to keep their minds focused, stimulated, and nourished. We’re powered by a community of interesting people with curious minds.
-
 
 pocket-about-us-hi = Hi, we're { -brand-name-pocket }.
 pocket-about-powered-by-community-of-interesting-people = We’re powered by a community of interesting people with curious minds, and we empower people to keep their minds focused, stimulated, and nourished. Which makes us a refreshing change from other digital spaces.
@@ -16,22 +14,23 @@ pocket-about-us-save-inspirations = Save your inspirations
 
 # Variables:
 #   $savetopocket (url) link to https://getpocket.com/save-to-pocket
-#   $addtopocket (url) link to https://getpocket.com/add
-pocket-about-if-something-catches-your-interest = If something catches your interest, there’s probably something to it. With our <a id="save-button-for-the-internet" href="{ $savetopocket }"> save button for the internet</a> and our award-winning <a id="top-pocket-app" href="{ $addtopocket }">{ -brand-name-pocket } app</a> you can save anything from across the web in a distraction free space, for you to focus and let the ideas flow.
+#   $add_to_pocket (url) link to https://getpocket.com/add
+pocket-about-if-something-catches-your-interest = If something catches your interest, there’s probably something to it. With our <a id="save-button-for-the-internet" href="{ $savetopocket }"> save button for the internet</a> and our award-winning <a id="top-pocket-app" href="{ $add_to_pocket }">{ -brand-name-pocket } app</a> you can save anything from across the web in a distraction free space, for you to focus and let the ideas flow.
 
 pocket-about-find-hidden-gems = Find hidden gems
 
 pocket-about-internet-filled-with-buried-treasures = The internet is filled with buried treasures and our vibrant, well-read community has a real knack for finding them. Through the act of saving and consuming content, Pocket users signal where fascination can be found.
 
-
 # Variables:
-#   $pockethome (url) link to https://getpocket.com/
-#   $pockethomedomain (string) GetPocket.com
-#   $pocketandfirefox (url) https://getpocket.com/pocket-and-firefox
-#   $pocketdailynewsletter (url) https://getpocket.com/explore/pocket-hits-signup
-#   $addtopocket (url) link to https://getpocket.com/add
-pocket-about-our-curators-vet-the-most-fascinating = Our curators vet the most fascinating finds to ensure they’re from a diverse range of publications with a track record of trustworthy and accurate coverage, and we share them on <a id="home-page" href="{ $pockethome }">{ $pockethomedomain }</a>, <a id="pocket-and-firefox" href="{ $pocketandfirefox }">{ -brand-name-pocket } for { -brand-name-firefox }</a>, in our <a id="daily-newsletter" href="{ $pocketdailynewsletter }">daily newsletter</a>, and within the <a id="bottom-pocket-app" href="{ $addtopocket }">{ -brand-name-pocket } app</a>. Our recommendations are available primarily in English and German, though we look forward to sharing in more languages in the future.
-
+#   $pocket_home (url) link to https://getpocket.com/
+#   $pocket_home_domain (string) GetPocket.com
+#   $pocket_and_firefox (url) https://getpocket.com/pocket-and-firefox
+#   $pocket_daily_newsletter (url) https://getpocket.com/explore/pocket-hits-signup
+#   $add_to_pocket (url) link to https://getpocket.com/add
+#   $homepage_id (string) ID for HTML element
+#   $pocket_and_firefox_id (string) ID for HTML element
+#   $bottom_pocket_app_id (string) ID for HTML element
+pocket-about-our-curators-vet-the-most-fascinating = Our curators vet the most fascinating finds to ensure they’re from a diverse range of publications with a track record of trustworthy and accurate coverage, and we share them on <a id="{ $homepage_id }" href="{ $pocket_home }">{ $pocket_home_domain }</a>, <a id="{ $pocket_and_firefox_id}" href="{ $pocket_and_firefox }">{ -brand-name-pocket } for { -brand-name-firefox }</a>, in our <a id="daily-newsletter" href="{ $pocket_daily_newsletter }">daily newsletter</a>, and within the <a id="{ $bottompocketappid }" href="{ $add_to_pocket }">{ -brand-name-pocket } app</a>. Our recommendations are available primarily in English and German, though we look forward to sharing in more languages in the future.
 
 pocket-about-use-pocket-your-way = Use { -brand-name-pocket } your way
 
@@ -45,12 +44,12 @@ pocket-about-internets-only-as-good-as = The internet’s only as good as the co
 pocket-about-welcome-to-the-sunny-side = Welcome to the sunny side of the web.
 pocket-about-start-using-pocket = Start using Pocket
 
+# Variables:
+#   $press_email_link (email link) mailto:press@getpocket.com
+#   $press_email (string) press@getpocket.com
+pocket-about-contact-us-press = Contact us for press inquiries at <a href="{ $press_email_link }">{ $press_email }</a>.
 
 # Variables:
-#   $pressemail (email) press@getpocket.com
-pocket-about-contact-us-press = Contact us for press inquiries at <a href="mailto:{ $pressemail }">{ $pressemail }</a>.
-
-
-# Variables:
-#   $downloadurl (url) https://blog.getpocket.com/press/
-pocket-about-download-press-kit = Download our images and press kit <a id="press-page" href="{ $downloadurl }">here</a>.
+#   $download_url (url) https://blog.getpocket.com/press/
+#   $presspage_id (string) ID of HTML element
+pocket-about-download-press-kit = Download our images and press kit <a id="{ $presspage_id }" href="{ $download_url }">here</a>.

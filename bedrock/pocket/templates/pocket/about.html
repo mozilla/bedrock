@@ -30,7 +30,7 @@
             <h3 class="about-section-heading">{{ ftl('pocket-about-us-save-inspirations') }}</h3>
             <p class="about-section-body">{{ ftl('pocket-about-if-something-catches-your-interest',
               savetopocket=url('pocket.save-to-pocket'),
-              addtopocket=url('pocket.add') ) }}
+              add_to_pocket=url('pocket.add') ) }}
             </p>
         </div>
     </section>
@@ -39,11 +39,14 @@
             <h3 class="about-section-heading">{{ ftl('pocket-about-find-hidden-gems')}}</h3>
             <p class="about-section-body">{{ ftl('pocket-about-internet-filled-with-buried-treasures') }}</p>
             <p class="about-section-body">{{ ftl('pocket-about-our-curators-vet-the-most-fascinating',
-            pockethome='/',
-            pockethomedomain='GetPocket.com',
-            pocketandfirefox=url('pocket.pocket-and-firefox'),
-            pocketdailynewsletter='https://getpocket.com/explore/pocket-hits-signup',
-            addtopocket=url('pocket.add') ) }}
+            pocket_home='/',
+            pocket_home_domain='GetPocket.com',
+            pocket_and_firefox=url('pocket.pocket-and-firefox'),
+            pocket_daily_newsletter='https://getpocket.com/explore/pocket-hits-signup',
+            add_to_pocket=url('pocket.add'),
+            homepage_id='home-page',
+            pocket_and_firefox_id='pocket-and-firefox',
+            bottom_pocket_app_id='bottom-pocket-app' ) }}
             </p>
         </div>
     </section>
@@ -66,8 +69,10 @@
             <a id="start-using-pocket" href="https://getpocket.com/signup">{{ ftl('pocket-about-start-using-pocket') }}</a>
         </div>
         <hr/>
-        <p class="about-cta-body">{{ ftl('pocket-about-contact-us-press', pressemail='press@getpocket.com') }}</p>
-        <p class="about-cta-body">{{ ftl('pocket-about-download-press-kit', downloadurl='https://blog.getpocket.com/press/')}}</p>
+        <p class="about-cta-body">{{ ftl('pocket-about-contact-us-press', press_email_link='mailto:press@getpocket.com',
+        press_email='press@getpocket.com' ) }}</p>
+        <p class="about-cta-body">{{ ftl('pocket-about-download-press-kit', download_url='https://blog.getpocket.com/press/',
+        presspage_id='press-page' )}}</p>
     </section>
 
     {% include 'pocket/includes/footer.html' %}
