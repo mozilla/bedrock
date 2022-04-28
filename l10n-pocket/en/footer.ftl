@@ -26,7 +26,7 @@ pocket-footer-download-on-apple-app-store = Download On The { -brand-name-apple 
 pocket-footer-get-it-google-play = Get It On { -brand-name-google-play }
 # Variables:
 #   $mozorgabout (url) link to https://www.mozilla.org/about/
-pocket-footer-pocket-is-part-of-mozilla-family = { -brand-name-pocket } is part of the <a href=" { $mozorgabout } ">{ -brand-name-mozilla }</a> family of products.
+pocket-footer-pocket-is-part-of-mozilla-family = { -brand-name-pocket } is part of the <a href="{ $mozorgabout }">{ -brand-name-mozilla }</a> family of products.
 pocket-footer-aria-label-legal = Legal
 
 pocket-footer-privacy-policy = Privacy policy
