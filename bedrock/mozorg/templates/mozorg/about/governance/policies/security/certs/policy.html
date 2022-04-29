@@ -410,8 +410,8 @@
   <h4 id="511-rsa">5.1.1 RSA</h4>
   <p>When RSA keys are encoded in a SubjectPublicKeyInfo structure, the algorithm
   field MUST consist of an rsaEncryption OID (1.2.840.113549.1.1.1) with a NULL
-  parameter, as specified by <a href="https://tools.ietf.org/html/rfc8017#appendix-A.1">RFC 8017, Appendix A.1</a>
-  and <a href="https://tools.ietf.org/html/rfc3279#section-2.3.1">RFC 3279, Section 2.3.1</a>.
+  parameter, as specified by <a href="https://datatracker.ietf.org/doc/html/rfc8017#appendix-A.1">RFC 8017, Appendix A.1</a>
+  and <a href="https://datatracker.ietf.org/doc/html/rfc3279#section-2.3.1">RFC 3279, Section 2.3.1</a>.
   The encoded AlgorithmIdentifier for an RSA key MUST match the
   following hex-encoded bytes:
   <code>300d06092a864886f70d0101010500</code>.</p>
@@ -468,7 +468,7 @@
   </ul>
   <p>The above RSASSA-PKCS1-v1_5 encodings consist of the corresponding OID,
   e.g. sha256WithRSAEncryption (1.2.840.113549.1.1.11), with an explicit NULL
-  parameter, as specified in <a href="https://tools.ietf.org/html/rfc3279#section-2.2.1">RFC 3279, Section 2.2.1</a>.
+  parameter, as specified in <a href="https://datatracker.ietf.org/doc/html/rfc3279#section-2.2.1">RFC 3279, Section 2.2.1</a>.
   Certificates MUST NOT omit this NULL parameter. Note this differs
   from ECDSA, which omits the parameter.</p>
   <p>The above RSASSA-PSS encodings consist of the RSASSA-PSS OID
@@ -476,11 +476,11 @@
   parameter. The trailerField MUST be omitted, as it is unchanged from the default
   value. The AlgorithmIdentifier structures describing the hash functions in the
   hashAlgorithm field and in the maskGenAlgorithm's parameter MUST themselves
-  include an explicit NULL in the parameter field, as specified by <a href="https://tools.ietf.org/html/rfc4055#section-6">RFC 4055, Section 6</a>.</p>
+  include an explicit NULL in the parameter field, as specified by <a href="https://datatracker.ietf.org/doc/html/rfc4055#section-6">RFC 4055, Section 6</a>.</p>
   <p>Note: as of Firefox version 100, <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1088140">RSASSA-PSS encodings are supported</a>.</p>
   <h4 id="512-ecdsa">5.1.2 ECDSA</h4>
   <p>When ECDSA keys are encoded in a SubjectPublicKeyInfo structure, the algorithm
-  field MUST be one of the following, as specified by <a href="https://tools.ietf.org/html/rfc5480#section-2.1.1">RFC 5480, Section 2.1.1</a>:</p>
+  field MUST be one of the following, as specified by <a href="https://datatracker.ietf.org/doc/html/rfc5480#section-2.1.1">RFC 5480, Section 2.1.1</a>:</p>
   <ul class="mzp-u-list-styled">
     <li>the encoded AlgorithmIdentifier for a P-256 key MUST match the following
       hex-encoded bytes: <code>301306072a8648ce3d020106082a8648ce3d030107</code>; <em>or</em></li>
@@ -506,7 +506,7 @@
     </li>
   </ul>
   <p>The above encodings consist of the corresponding OID with the parameters field
-  omitted, as specified by <a href="https://tools.ietf.org/html/rfc5758#section-3.2">RFC 5758, Section 3.2</a>.
+  omitted, as specified by <a href="https://datatracker.ietf.org/doc/html/rfc5758#section-3.2">RFC 5758, Section 3.2</a>.
   Certificates MUST NOT include a NULL parameter. Note this differs from
   RSASSA-PKCS1-v1_5, which includes an explicit NULL.</p>
   <h4 id="513-sha-1">5.1.3 SHA-1</h4>
@@ -602,7 +602,7 @@
     <li>MUST NOT include the anyExtendedKeyUsage KeyPurposeId; <em>and</em></li>
     <li>MUST NOT include both the id-kp-serverAuth and id-kp-emailProtection KeyPurposeIds in the same certificate.</li>
   </ul>
-  <h4 id="531-technically-constrained">5.3.1 Technically Constrained ####</h4>
+  <h4 id="531-technically-constrained">5.3.1 Technically Constrained</h4>
   <p>We encourage CA operators to technically constrain all intermediate
   certificates. For an intermediate certificate to be considered technically
   constrained, the certificate MUST include an <a href="https://datatracker.ietf.org/doc/html/rfc5280#section-4.2.1.12">Extended Key Usage
