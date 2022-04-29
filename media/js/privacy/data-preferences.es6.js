@@ -23,6 +23,10 @@ function updateStatus() {
 }
 
 function doOptOut() {
+    if (hasOptedOut()) {
+        return;
+    }
+
     const date = new Date();
     const cookieDuration = 365 * 24 * 60 * 60 * 1000; // 1 year expiration
     date.setTime(date.getTime() + cookieDuration);
@@ -40,6 +44,10 @@ function doOptOut() {
 }
 
 function doOptIn() {
+    if (!hasOptedOut()) {
+        return;
+    }
+
     Mozilla.Cookies.removeItem(preferenceCookieID, '/', null);
     updateStatus();
 }
