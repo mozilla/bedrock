@@ -25,6 +25,7 @@ urlpatterns = (
     path("firefox-klar/", views.firefox_focus_notices, name="privacy.notices.firefox-klar"),
     path("thunderbird/", views.thunderbird_notices, name="privacy.notices.thunderbird"),
     path("websites/", views.websites_notices, name="privacy.notices.websites"),
+    page("websites/data-preferences/", "privacy/data-preferences.html"),
     path("facebook/", views.facebook_notices, name="privacy.notices.facebook"),
     path("firefox-monitor/", views.firefox_monitor_notices, name="privacy.notices.firefox-monitor"),
     path("firefox-private-network/", views.firefox_private_network, name="privacy.notices.firefox-private-network"),
