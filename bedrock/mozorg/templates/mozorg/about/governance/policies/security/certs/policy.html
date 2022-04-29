@@ -591,7 +591,7 @@
   <h3 id="53-intermediate-certificates">5.3 Intermediate Certificates</h3>
   <p>All certificates that are capable of being used to issue new certificates and that directly or transitively chain to a CA certificate included in Mozilla’s root store MUST be operated in accordance with this policy and MUST either be technically constrained or be publicly disclosed and audited.</p>
   <p>A certificate is deemed as capable of being used to issue new
-  certificates if it contains an <a href="http://tools.ietf.org/html/rfc5280#section-6.1.4">X.509v3 basicConstraints extension</a>
+  certificates if it contains an <a href="https://datatracker.ietf.org/doc/html/rfc5280#section-6.1.4">X.509v3 basicConstraints extension</a>
   with the cA boolean set to true. </p>
   <p>A certificate is deemed to directly or transitively chain to a CA certificate included in Mozilla's root store if:
   (1) the certificate's Issuer Distinguished Name matches (according to the name-matching algorithm specified in RFC 5280, section 7.1) the Subject Distinguished Name in a CA certificate or intermediate certificate that is in scope according to section 1.1 of this Policy, <em>and</em>
