@@ -4,18 +4,36 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{# Subnav menu for /products/vpn/mobile/ and mobile subpages #}
+{% from "macros.html" import sub_nav with context %}
 
-<nav class="c-sub-navigation">
-  <div class="mzp-l-content">
-    <div class="c-sub-navigation-content">
-      <h2 class="c-sub-navigation-title is-summary"><a href="{{ url('products.vpn.landing') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Mozilla VPN">{{ ftl('vpn-subnav-title') }}</a></h2>
-      <ul class="c-sub-navigation-list is-details is-closed">
-        <li class="c-sub-navigation-item"><a href="{{ url('products.vpn.platforms.desktop') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Mac">{{ ftl('vpn-subnav-platform-desktop') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('products.vpn.platforms.mobile') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Mac">{{ ftl('vpn-subnav-platform-mobile') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('products.vpn.platforms.ios') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Mac">{{ ftl('vpn-subnav-platform-ios') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('products.vpn.platforms.android') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Mac">{{ ftl('vpn-subnav-platform-android') }}</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+{# Subnav menu for /products/vpn/mobile/ and mobile subpages #}
+{{ sub_nav(
+  title={
+    'text': ftl('vpn-subnav-title'),
+    'href': url('products.vpn.landing'),
+    'cta_name': "Mozilla VPN"
+  },
+  links=[
+  {
+    'text': ftl('vpn-subnav-platform-desktop'),
+    'href': url('products.vpn.platforms.desktop'),
+    'cta_name': "Desktop"
+  },
+  {
+    'text': ftl('vpn-subnav-platform-mobile'),
+    'href': url('products.vpn.platforms.mobile'),
+    'cta_name': "Mobile"
+  },
+  {
+    'text': ftl('vpn-subnav-platform-ios'),
+    'href': url('products.vpn.platforms.ios'),
+    'cta_name': "iOS"
+  },
+  {
+    'text': ftl('vpn-subnav-platform-android'),
+    'href': url('products.vpn.platforms.android'),
+    'cta_name': "Android"
+  }]
+) }}
+
+

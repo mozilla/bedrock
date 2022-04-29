@@ -41,20 +41,7 @@
 {% endblock %}
 
 {% block sub_navigation %}
-<nav class="c-sub-navigation">
-  <div class="mzp-l-content">
-    <div class="c-sub-navigation-content">
-      <h2 class="c-sub-navigation-title is-summary"><a href="{{ url('firefox.browsers.mobile.index') }}">{{ ftl('sub-navigation-firefox-for-mobile', fallback='navigation-firefox-browser-for-mobile') }}</a></h2>
-      <ul class="c-sub-navigation-list is-details is-closed">
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.mobile.android') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Android">{{ ftl('sub-navigation-android') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.mobile.ios') }}" data-link-type="nav" data-link-position="subnav" data-link-name="iOS">{{ ftl('sub-navigation-ios') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.mobile.focus') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Firefox Focus">{{ ftl('sub-navigation-firefox-focus') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.chromebook') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Chromebook">{{ ftl('sub-navigation-chromebook') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.mobile.compare') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Compare Mobile Browsers">{{ ftl('sub-navigation-compare-mobile-browsers') }}</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+  {% include 'firefox/browsers/mobile/includes/sub-nav.html' %}
 {% endblock %}
 
 {% block content %}
