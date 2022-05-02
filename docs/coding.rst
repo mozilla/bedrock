@@ -466,6 +466,10 @@ template.
 
     from lib import l10n_utils
 
+    from django.views.decorators.http import require_safe
+
+
+    @require_safe
     def my_view(request):
         # do your fancy things
         ctx = {"template_variable": "awesome data"}
@@ -475,6 +479,8 @@ Make sure to namespace your templates by putting them in a directory
 named after your app, so instead of templates/template.html they would
 be in templates/blog/template.html if `blog` was the name of your app.
 
+The `require_safe` ensures that only `GET` or `HEAD` requests will make it
+through to your view.
 
 If you prefer to use Django's Generic View classes we have a convenient
 helper for that. You can use it either to create a custom view class of
@@ -497,7 +503,8 @@ your own, or use it directly in a `urls.py` file.
     ]
 
 The `L10nTemplateView` functionality is mostly in a template mixin called `LangFilesMixin` which
-you can use with other generic Django view classes if you need one other than `TemplateView`.
+you can use with other generic Django view classes if you need one other than `TemplateView`. 
+The `L10nTemplateView` already ensures that only `GET` or `HEAD` requests will be served.
 
 Variation Views
 ~~~~~~~~~~~~~~~

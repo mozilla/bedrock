@@ -8,6 +8,7 @@ from operator import attrgetter
 from django.conf import settings
 from django.http import Http404, HttpResponseRedirect
 from django.urls import NoReverseMatch
+from django.views.decorators.http import require_safe
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.firefox.firefox_details import firefox_desktop
@@ -81,6 +82,7 @@ def check_url(product, version):
         return reverse("firefox.system_requirements", args=[version])
 
 
+@require_safe
 def release_notes(request, version, product="Firefox"):
 
     if not version:
@@ -127,6 +129,7 @@ def release_notes(request, version, product="Firefox"):
     )
 
 
+@require_safe
 def system_requirements(request, version, product="Firefox"):
     release = get_release_or_404(version, product)
     dir = "firefox"
@@ -151,16 +154,19 @@ def latest_release(product="firefox", platform=None, channel=None):
     return get_latest_release_or_404(product, channel)
 
 
+@require_safe
 def latest_notes(request, product="firefox", platform=None, channel=None):
     release = latest_release(product, platform, channel)
     return HttpResponseRedirect(release.get_absolute_url())
 
 
+@require_safe
 def latest_sysreq(request, product="firefox", platform=None, channel=None):
     release = latest_release(product, platform, channel)
     return HttpResponseRedirect(release.get_sysreq_url())
 
 
+@require_safe
 def releases_index(request, product):
     releases = {}
     major_releases = []
@@ -189,6 +195,7 @@ def releases_index(request, product):
     return l10n_utils.render(request, f"{product.lower()}/releases/index.html", {"releases": sorted(releases.items(), reverse=True)})
 
 
+@require_safe
 def nightly_feed(request):
     """Serve an Atom feed with the latest changes in Firefox Nightly"""
     notes = {}

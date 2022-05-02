@@ -37,7 +37,7 @@ def load_legal_doc(doc_name, locale):
     return doc
 
 
-class LegalDocView(TemplateView):
+class LegalDocView(l10n_utils.RequireSafeMixin, TemplateView):
     """
     Generic view for loading a legal doc and displaying it with a template.
 

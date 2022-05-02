@@ -18,8 +18,7 @@ from django.http import (
 from django.utils.cache import add_never_cache_headers, patch_response_headers
 from django.utils.encoding import force_str
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_GET, require_POST
-from django.views.generic.base import TemplateView
+from django.views.decorators.http import require_POST, require_safe
 
 import basket
 import querystringsafe_base64
@@ -105,7 +104,7 @@ class InstallerHelpView(L10nTemplateView):
         return ctx
 
 
-@require_GET
+@require_safe
 def stub_attribution_code(request):
     """Return a JSON response containing the HMAC signed stub attribution value"""
     if not request.headers.get("x-requested-with") == "XMLHttpRequest":
@@ -283,6 +282,7 @@ def send_to_device_ajax(request):
     return JsonResponse(resp_data)
 
 
+@require_safe
 def firefox_all(request):
     ftl_files = "firefox/all"
     product_android = firefox_android
@@ -455,8 +455,7 @@ def show_default_account_whatsnew(version):
     return version >= Version("60.0")
 
 
-class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
-
+class FirstrunView(L10nTemplateView):
     ftl_files_map = {
         "firefox/firstrun/firstrun.html": ["firefox/firstrun"],
         "firefox/developer/firstrun.html": ["firefox/developer"],
@@ -801,6 +800,7 @@ class PlatformViewWindows(L10nTemplateView):
     activation_files = ["firefox/new/download", "firefox/new/platform"]
 
 
+@require_safe
 def ios_testflight(request):
     # no country field, so no need to send locale
     newsletter_form = NewsletterFooterForm("ios-beta-test-flight", "")
@@ -847,6 +847,7 @@ BREACH_TIPS_URLS = {
 }
 
 
+@require_safe
 def firefox_welcome_page1(request):
     locale = l10n_utils.get_locale(request)
 
@@ -864,6 +865,7 @@ def firefox_welcome_page1(request):
     return l10n_utils.render(request, template_name, context, ftl_files="firefox/welcome/page1")
 
 
+@require_safe
 def firefox_features_translate(request):
 
     to_translate_langs = [

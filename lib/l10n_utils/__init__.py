@@ -254,5 +254,9 @@ class LangFilesMixin:
         )
 
 
-class L10nTemplateView(LangFilesMixin, TemplateView):
+class RequireSafeMixin:
+    http_method_names = ["get", "head"]
+
+
+class L10nTemplateView(LangFilesMixin, RequireSafeMixin, TemplateView):
     pass

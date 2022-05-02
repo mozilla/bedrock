@@ -148,6 +148,11 @@ class TestL10nTemplateView(TestCase):
     def setUp(self):
         self.req = RequestFactory().get("/")
 
+    def test_post(self, render_mock):
+        view = l10n_utils.L10nTemplateView.as_view(template_name="post.html", ftl_files="dude")
+        resp = view(RequestFactory().post("/"))
+        self.assertEqual(resp.status_code, 405)
+
     def test_ftl_files(self, render_mock):
         view = l10n_utils.L10nTemplateView.as_view(template_name="dude.html", ftl_files="dude")
         view(self.req)
