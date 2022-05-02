@@ -4,7 +4,7 @@
 
 import pytest
 
-from pages.externalpages.analytics.index import AnalyticsTestPage
+from pages.analytics.index import AnalyticsTestPage
 
 
 def assert_ga_loaded(selenium):
