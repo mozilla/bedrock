@@ -516,6 +516,13 @@ class TestSendToDeviceView(TestCase):
 @override_settings(DEV=False)
 @patch("bedrock.firefox.views.l10n_utils.render", return_value=HttpResponse())
 class TestFirefoxNew(TestCase):
+    def test_post(self, render_mock):
+        req = RequestFactory().post("/firefox/new/")
+        req.locale = "en-US"
+        view = views.NewView.as_view()
+        resp = view(req)
+        assert resp.status_code == 405
+
     @patch.object(views, "ftl_file_is_active", lambda *x: True)
     def test_download_template(self, render_mock):
         req = RequestFactory().get("/firefox/new/")

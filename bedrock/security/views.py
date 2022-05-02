@@ -16,7 +16,7 @@ from product_details.version_compare import Version
 from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg.decorators import cache_control_expires
 from bedrock.security.models import HallOfFamer, MitreCVE, Product, SecurityAdvisory
-from lib.l10n_utils import LangFilesMixin
+from lib.l10n_utils import LangFilesMixin, RequireSafeMixin
 
 
 @json_view
@@ -61,7 +61,7 @@ def product_is_obsolete(prod_name, version):
     return True
 
 
-class HallOfFameView(LangFilesMixin, ListView):
+class HallOfFameView(LangFilesMixin, RequireSafeMixin, ListView):
     template_names = {
         "client": "security/bug-bounty/hall-of-fame.html",
         "web": "security/bug-bounty/web-hall-of-fame.html",
@@ -77,19 +77,19 @@ class HallOfFameView(LangFilesMixin, ListView):
         return HallOfFamer.objects.filter(program=self.program)
 
 
-class AdvisoriesView(LangFilesMixin, ListView):
+class AdvisoriesView(LangFilesMixin, RequireSafeMixin, ListView):
     template_name = "security/advisories.html"
     queryset = SecurityAdvisory.objects.only("id", "impact", "title", "announced")
     context_object_name = "advisories"
 
 
-class AdvisoryView(LangFilesMixin, DetailView):
+class AdvisoryView(LangFilesMixin, RequireSafeMixin, DetailView):
     model = SecurityAdvisory
     template_name = "security/advisory.html"
     context_object_name = "advisory"
 
 
-class ProductView(LangFilesMixin, ListView):
+class ProductView(LangFilesMixin, RequireSafeMixin, ListView):
     template_name = "security/product-advisories.html"
     context_object_name = "product_versions"
     allow_empty = False
@@ -113,7 +113,7 @@ class ProductView(LangFilesMixin, ListView):
         return cxt
 
 
-class ProductVersionView(LangFilesMixin, ListView):
+class ProductVersionView(LangFilesMixin, RequireSafeMixin, ListView):
     template_name = "security/product-advisories.html"
     context_object_name = "product_versions"
     allow_empty = False

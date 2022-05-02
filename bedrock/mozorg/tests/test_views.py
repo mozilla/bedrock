@@ -84,6 +84,12 @@ class TestHomePage(TestCase):
         views.home_view(req)
         render_mock.assert_called_once_with(req, "mozorg/home/home.html", ANY)
 
+    def test_no_post(self, render_mock):
+        req = RequestFactory().post("/")
+        req.locale = "en-US"
+        resp = views.home_view(req)
+        self.assertEqual(resp.status_code, 405)
+
 
 @pytest.mark.django_db
 @pytest.mark.parametrize(

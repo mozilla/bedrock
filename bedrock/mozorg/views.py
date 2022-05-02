@@ -22,7 +22,7 @@ from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.models import WebvisionDoc
 from bedrock.pocketfeed.models import PocketArticle
 from lib import l10n_utils
-from lib.l10n_utils import L10nTemplateView
+from lib.l10n_utils import L10nTemplateView, RequireSafeMixin
 
 credits_file = CreditsFile("credits")
 TECH_BLOG_SLUGS = ["hacks", "cd", "futurereleases"]
@@ -52,7 +52,7 @@ def forums_view(request):
     return l10n_utils.render(request, "mozorg/about/forums/forums.html")
 
 
-class Robots(TemplateView):
+class Robots(RequireSafeMixin, TemplateView):
     template_name = "mozorg/robots.txt"
     content_type = "text/plain"
 
@@ -111,6 +111,7 @@ def locales(request):
     return l10n_utils.render(request, "mozorg/locales.html", context)
 
 
+@require_safe
 def namespaces(request, namespace):
     context = NAMESPACES[namespace]
     context["slug"] = namespace
@@ -118,6 +119,7 @@ def namespaces(request, namespace):
     return django_render(request, template, context)
 
 
+@require_safe
 def home_view(request):
     locale = l10n_utils.get_locale(request)
     donate_params = settings.DONATE_PARAMS.get(locale, settings.DONATE_PARAMS["en-US"])
@@ -194,7 +196,7 @@ class ContentfulPreviewView(L10nTemplateView):
         return l10n_utils.render(self.request, template, context, **response_kwargs)
 
 
-class WebvisionDocView(TemplateView):
+class WebvisionDocView(RequireSafeMixin, TemplateView):
     """
     Generic view for loading a webvision doc and displaying it with a template.
 

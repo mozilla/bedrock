@@ -4,16 +4,16 @@
 
 from django.http.response import Http404
 from django.shortcuts import get_object_or_404
-from django.views.generic import DetailView, ListView, TemplateView
+from django.views.generic import DetailView, ListView
 
 from bedrock.careers.forms import PositionFilterForm
 from bedrock.careers.models import Position
 from bedrock.careers.utils import generate_position_meta_description
 from bedrock.wordpress.models import BlogPost
-from lib.l10n_utils import LangFilesMixin, render
+from lib.l10n_utils import L10nTemplateView, LangFilesMixin, RequireSafeMixin, render
 
 
-class HomeView(LangFilesMixin, TemplateView):
+class HomeView(L10nTemplateView):
     template_name = "careers/home.html"
 
     def get_context_data(self, **kwargs):
@@ -31,15 +31,15 @@ class HomeView(LangFilesMixin, TemplateView):
         return context
 
 
-class InternshipsView(LangFilesMixin, TemplateView):
+class InternshipsView(L10nTemplateView):
     template_name = "careers/internships.html"
 
 
-class BenefitsView(LangFilesMixin, TemplateView):
+class BenefitsView(L10nTemplateView):
     template_name = "careers/benefits.html"
 
 
-class PositionListView(LangFilesMixin, ListView):
+class PositionListView(LangFilesMixin, RequireSafeMixin, ListView):
     model = Position
     template_name = "careers/listings.html"
     context_object_name = "positions"
@@ -50,7 +50,7 @@ class PositionListView(LangFilesMixin, ListView):
         return context
 
 
-class PositionDetailView(LangFilesMixin, DetailView):
+class PositionDetailView(LangFilesMixin, RequireSafeMixin, DetailView):
     model = Position
     context_object_name = "position"
     template_name = "careers/position.html"

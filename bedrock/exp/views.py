@@ -2,9 +2,12 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.views.decorators.http import require_safe
+
 from lib import l10n_utils
 
 
+@require_safe
 def new(request):
 
     # note: v and xv params only allow a-z, A-Z, 0-9, -, and _ characters

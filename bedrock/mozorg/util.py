@@ -7,6 +7,7 @@ import os
 from django.conf import settings
 from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_safe
 
 import commonware.log
 
@@ -51,9 +52,8 @@ def page(name, tmpl, decorators=None, url_name=None, ftl_files=None, **kwargs):
         (base, ext) = os.path.splitext(tmpl)
         url_name = base.replace("/", ".")
 
-    # we don't have a caching backend yet, so no csrf (it's just a
-    # newsletter form anyway)
     @csrf_exempt
+    @require_safe
     def _view(request):
         if newrelic:
             # Name this in New Relic to differentiate pages

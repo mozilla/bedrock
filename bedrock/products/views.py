@@ -141,6 +141,7 @@ def _filter_articles(articles_list, category):
     return [article for article in articles_list if article.category == category]
 
 
+@require_safe
 def resource_center_landing_view(request):
 
     ARTICLE_GROUP_SIZE = 6
@@ -194,6 +195,7 @@ def resource_center_landing_view(request):
     )
 
 
+@require_safe
 def resource_center_article_view(request, slug):
     """Individual detail pages for the VPN Resource Center"""
 
