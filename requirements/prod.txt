@@ -36,9 +36,9 @@ bleach==4.1.0 \
     --hash=sha256:0900d8b37eba61a802ee40ac0061f8c2b5dee29c1927dd1d233e075ebf5a71da \
     --hash=sha256:4d2651ab93271d1129ac9cbc679f524565cc8a1b791909c4a51eac4446a15994
     # via -r requirements/prod.in
-boto3==1.21.42 \
-    --hash=sha256:895fb88c69be78f82cfee58a79c97a3ad8d4a2a1209041a411d7d6b9fc5393e4 \
-    --hash=sha256:bcb541175a7d190dd919a0af0e807ee6e9d26f135551e741b10d94343f2d7588
+boto3==1.22.4 \
+    --hash=sha256:13fe18ecefe342d2fe50ae7b4305d7423ec6e96bfaef19bc2f14212877a67727 \
+    --hash=sha256:71019d49562112bcf8c2e5c183f3cca263edf02785e6a2c5f98ee104927cbb44
     # via -r requirements/prod.in
 botocore==1.24.42 \
     --hash=sha256:14aee41c8bf59d2dd2d89e8751fa37d3c95dcb92707d1966aa02697e914c1417 \
