@@ -10,10 +10,11 @@ from pages.externalpages.analytics.index import AnalyticsTestPage
 def assert_ga_loaded(selenium):
     # if the datalayer list doesnt contain the gtm.load event then GA has not been loaded or it has been blocked
     data_layer = selenium.execute_script("return window.dataLayer")
-    assert any(
-        "event" in layer and layer["event"] == "gtm.load" for layer in data_layer
-    ), "These tests require Google Analytics to be configured. \
-       Please ensure you have set a GTM_CONTAINER_ID environment variable in your .env and you are not blocking GA in your browser."
+    assert any("event" in layer and layer["event"] == "gtm.load" for layer in data_layer), (
+        "These tests require Google Analytics to be configured. "
+        "Please ensure you have set a GTM_CONTAINER_ID environment "
+        "variable in your .env and you are not blocking GA in your browser."
+    )
 
 
 @pytest.mark.nondestructive

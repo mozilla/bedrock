@@ -695,11 +695,9 @@ class TestFirefoxGA(TestCase):
             cta_data = link.attr("data-cta-type")
             cta_link = link.attr("data-link-type")
             if cta_data:
-                contain_cta = any(cta_data in item for item in ["link", "button"])
-                assert contain_cta or "fxa-" in cta_data
+                contains_cta = any(cta_data in item for item in ["link", "button"])
+                assert contains_cta or "fxa-" in cta_data
             elif cta_link:
-                # some links with the data-link-type use button instead of download which is what is described
-                # in the docs, so not sure if we should allow this or not
                 cta_link_types = ["download", "button", "link"]
                 assert cta_link in cta_link_types
             else:
