@@ -31,10 +31,12 @@
     {{ css_bundle('firefox-app-store-banner') }}
   {% endif %}
 
-  {% if switch('homepage-mr2-promo') %}
-    {{ css_bundle('home-mr2-promo') }}
+  {% if switch('homepage-fx100-promo') %}
+      {{ css_bundle('home-fx100-promo')}}
+    {% else %}
+      {{ css_bundle('home-mr2-promo') }}
   {% endif %}
-{% endblock %}
+  {% endblock %}
 
 {% block page_banner %}
   {% if show_fundraising_banner %}
@@ -70,9 +72,14 @@
     <h1>{{ self.page_title() }}</h1>
   </header>
 
-  {% if switch('homepage-mr2-promo') %}
-    {% include 'mozorg/home/includes/mr2-promo.html' %}
+
+  {% if switch('homepage-fx100-promo') %}
+      {% include 'mozorg/home/includes/fx100-promo.html' %}
+    {% else %}
+      {% include 'mozorg/home/includes/mr2-promo.html' %}
   {% endif %}
+
+
 
   {% include 'includes/contentful/all.html' %}
 

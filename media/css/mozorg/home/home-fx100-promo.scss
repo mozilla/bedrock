@@ -1,0 +1,66 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.fx100-hero-title-container {
+    display: flex;
+    flex-direction: column;
+
+    @media #{$mq-md} {
+        flex-direction: row;
+    }
+}
+
+.fx100-hero-wordmark {
+    @include image-replaced;
+    background-image: url('/media/img/mozorg/fx100-wordmark.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 50px;
+    margin-bottom: $spacing-lg;
+    width: 125px;
+
+    @media #{$mq-md} {
+        @include bidi(((margin-right, $spacing-xl, margin-left, $spacing-xl),));
+        margin-bottom: 0;
+        height: 75px;
+        min-width: 150px;
+        width: 150px;
+    }
+}
+
+.fx100-hero-title {
+    @include font-firefox;
+    @include font-size(48px);
+    line-height: 1.05;
+
+    @media #{$mq-md} {
+        @include font-size(74px);
+        max-width: unset;
+    }
+}
+
+.fx100-hero-cta-container {
+    display: block;
+    margin-top: $layout-sm;
+    text-align: center;
+
+    .mzp-c-button {
+        display: block;
+        margin: 0 auto $spacing-lg;
+        width: max-content;
+    }
+
+    .fx100-story-link {
+        @include font-size(14px);
+        color: $color-light-gray-90;
+        text-decoration: underline;
+
+        &:hover {
+            cursor: pointer;
+            text-decoration: none;
+        }
+    }
+}
