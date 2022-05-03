@@ -113,11 +113,15 @@ if IS_POCKET_MODE:
         "nav",
         "footer",
     ]
-
-    # Swap the default FLUENT_LOCAL_PATH for a Pocket-specific one
-    FLUENT_PATHS.pop(FLUENT_PATHS.index(FLUENT_LOCAL_PATH))
+    # Redefine the FLUENT_LOCAL_PATH for a Pocket-specific one and
+    # ensure it is the first one we check, because order matters.
     FLUENT_LOCAL_PATH = ROOT_PATH / "l10n-pocket"
-    FLUENT_PATHS.insert(0, FLUENT_LOCAL_PATH)
+    FLUENT_PATHS = [
+        # local FTL files
+        FLUENT_LOCAL_PATH,
+        # remote FTL files from l10n team
+        FLUENT_REPO_PATH,
+    ]
 
 else:
     ROOT_URLCONF = "bedrock.urls.mozorg_mode"
