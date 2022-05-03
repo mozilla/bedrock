@@ -42,7 +42,7 @@ def test__allowed_attrs(attr, allowed):
         ),
         (
             '<a id="test" foo="bar" href="#test">test</a>',
-            '<a href="#test" id="test">test</a>',
+            '<a id="test" href="#test">test</a>',
         ),
     ),
     ids=[
