@@ -6,6 +6,7 @@ basepath = ".."
 locales = [
     "de",
     "en",
+    "es",  # this is mapped to es-AR, es-CL, es-MX
     "es-ES",
     "fr-CA",
     "fr",
