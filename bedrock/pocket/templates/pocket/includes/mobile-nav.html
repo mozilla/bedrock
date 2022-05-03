@@ -5,40 +5,40 @@
 #}
 
 <div class="mobile-nav-wrapper" tabindex="-1">
-    <nav class="mobile-nav" role="dialog" aria-modal="true" aria-label="Pocket Mobile Menu">
+    <nav class="mobile-nav" role="dialog" aria-modal="true" aria-label="{{ ftl('pocket-mobile-nav-aria-label') }}">
         <div class="mobile-nav-close">
-            <button class="mobile-nav-close-btn" data-tooltip="Close">Close the Pocket Mobile Menu</button>
+            <button class="mobile-nav-close-btn" data-tooltip="{{ ftl('pocket-mobile-nav-close-tooltip') }}">{{ ftl('pocket-mobile-nav-close-menu') }}</button>
         </div>
         <ul class="mobile-nav-list">
             <li class="mobile-nav-list-item">
-                <a class="mobile-nav-list-link home" href="https://getpocket.com/home?src=navbar">Home<span class="beta">BETA</span></a>
+                <a class="mobile-nav-list-link home" href="https://getpocket.com/home?src=navbar">{{ ftl('pocket-nav-home') }}<span class="beta">{{ ftl('pocket-mobile-nav-beta') }}</span></a>
             </li>
             <li class="mobile-nav-list-item">
-                <a class="mobile-nav-list-link my-list" href="https://getpocket.com/my-list?src=navbar">My List</a>
+                <a class="mobile-nav-list-link my-list" href="https://getpocket.com/my-list?src=navbar">{{ ftl('pocket-nav-my-list') }}</a>
             </li>
             <li class="mobile-nav-list-item">
-                <a class="mobile-nav-list-link discover" href="https://getpocket.com/explore?src=navbar">Discover</a>
+                <a class="mobile-nav-list-link discover" href="https://getpocket.com/explore?src=navbar">{{ ftl('pocket-nav-discover') }}</a>
             </li>
             <li class="mobile-nav-list-item">
-                <a class="mobile-nav-list-link collections" href="https://getpocket.com/collections?src=navbar">Collections</a>
+                <a class="mobile-nav-list-link collections" href="https://getpocket.com/collections?src=navbar">{{ ftl('pocket-nav-collections') }}</a>
             </li>
             <li class="mobile-nav-list-item">
-                <a class="mobile-nav-list-link archive" href="https://getpocket.com/my-list/archive">Archive</a>
+                <a class="mobile-nav-list-link archive" href="https://getpocket.com/my-list/archive">{{ ftl('pocket-nav-archive') }}</a>
             </li>
             <li class="mobile-nav-list-item">
-                <a class="mobile-nav-list-link favorites" href="https://getpocket.com/my-list/favorites">Favorites</a>
+                <a class="mobile-nav-list-link favorites" href="https://getpocket.com/my-list/favorites">{{ ftl('pocket-nav-favorites') }}</a>
             </li>
             <li class="mobile-nav-list-item">
-                <a class="mobile-nav-list-link highlights" href="https://getpocket.com/my-list/highlights">Highlights</a>
+                <a class="mobile-nav-list-link highlights" href="https://getpocket.com/my-list/highlights">{{ ftl('pocket-nav-highlights') }}</a>
             </li>
             <li class="mobile-nav-list-item">
-                <a class="mobile-nav-list-link articles" href="https://getpocket.com/my-list/articles">Articles</a>
+                <a class="mobile-nav-list-link articles" href="https://getpocket.com/my-list/articles">{{ ftl('pocket-nav-articles') }}</a>
             </li>
             <li class="mobile-nav-list-item">
-                <a class="mobile-nav-list-link videos" href="https://getpocket.com/my-list/videos">Videos</a>
+                <a class="mobile-nav-list-link videos" href="https://getpocket.com/my-list/videos">{{ ftl('pocket-nav-videos') }}</a>
             </li>
             <li class="mobile-nav-list-item">
-                <a class="mobile-nav-list-link tags" href="https://getpocket.com/my-list/tags">All Tags</a>
+                <a class="mobile-nav-list-link tags" href="https://getpocket.com/my-list/tags">{{ ftl('pocket-nav-all-tags') }}</a>
             </li>
         </ul>
     </nav>

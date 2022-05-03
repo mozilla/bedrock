@@ -164,7 +164,6 @@ def load_fluent_resources(root, locale, resource_ids):
         if locale != "en":
             path = settings.FLUENT_LOCAL_PATH.joinpath("en", "brands.ftl")
             resources.append(load_fluent_file(path))
-
     return resources
 
 
