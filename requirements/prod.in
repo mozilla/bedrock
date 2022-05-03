@@ -2,8 +2,8 @@ APScheduler==3.9.1
 babis==0.2.4
 basket-client==1.0.0
 beautifulsoup4==4.11.1
-bleach==4.1.0
-boto3==1.21.42
+bleach[css]==5.0.0
+boto3==1.22.4
 chardet==4.0.0
 commonware==0.6.0
 contentful==1.13.1

@@ -11,6 +11,7 @@ from django.db import transaction
 
 import bleach
 import requests
+from bleach.css_sanitizer import CSSSanitizer
 from html5lib.filters.base import Filter
 
 from bedrock.careers.models import Position
@@ -74,7 +75,13 @@ class HeaderConverterFilter(Filter):
             yield token
 
 
-cleaner = bleach.sanitizer.Cleaner(tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRS, styles=ALLOWED_STYLES, strip=True, filters=[HeaderConverterFilter])
+cleaner = bleach.sanitizer.Cleaner(
+    tags=ALLOWED_TAGS,
+    attributes=ALLOWED_ATTRS,
+    css_sanitizer=CSSSanitizer(allowed_css_properties=ALLOWED_STYLES),
+    strip=True,
+    filters=[HeaderConverterFilter],
+)
 
 
 @alert_sentry_on_exception
