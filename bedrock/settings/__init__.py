@@ -101,7 +101,7 @@ IS_MOZORG_MODE = not IS_POCKET_MODE
 if IS_POCKET_MODE:
     ROOT_URLCONF = "bedrock.urls.pocket_mode"
 
-    # DROP the redirects app and middleware, because its contains Mozorg-specific
+    # DROP the redirects app and middleware, because they contain Mozorg-specific
     # rules that clash with some Pocket URL paths (eg /jobs/)
     INSTALLED_APPS.pop(INSTALLED_APPS.index("bedrock.redirects"))
     MIDDLEWARE.pop(MIDDLEWARE.index("bedrock.redirects.middleware.RedirectsMiddleware"))
