@@ -14,8 +14,6 @@
 ## Pocket product
 
 -brand-name-pocket-premium = Pocket Premium
--brand-name-pocket-for-firefox = Pocket for Firefox
-
 
 ## Firefox browsers
 
