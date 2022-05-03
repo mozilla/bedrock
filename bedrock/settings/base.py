@@ -258,7 +258,7 @@ FLUENT_L10N_TEAM_REPO_BRANCH = config("FLUENT_L10N_TEAM_REPO_BRANCH", default="m
 FLUENT_L10N_TEAM_REPO_PATH = DATA_PATH / "l10n-team"
 # 10 seconds during dev and 10 min in prod
 FLUENT_CACHE_TIMEOUT = config("FLUENT_CACHE_TIMEOUT", default="10" if DEBUG else "600", parser=int)
-# order matters. first sting found wins.
+# Order matters. first string found wins.
 FLUENT_PATHS = [
     # local FTL files
     FLUENT_LOCAL_PATH,
