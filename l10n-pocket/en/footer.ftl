@@ -10,7 +10,7 @@
 pocket-footer-products = Products
 pocket-footer-must-read-articles = Must-read articles
 pocket-footer-daily-newsletter = Daily newsletter
-pocket-footer-pocket-premium = { -brand-name-pocket } Premium
+pocket-footer-pocket-premium = { -brand-name-pocket-premium }
 pocket-footer-save-to-pocket-extensions = Save to { -brand-name-pocket } extensions
 pocket-footer-company = Company
 pocket-footer-about = About
@@ -22,7 +22,7 @@ pocket-footer-developer-api = Developer API
 pocket-footer-pocket-for-publishers = { -brand-name-pocket } for publishers
 pocket-footer-advertise = Advertise
 pocket-footer-get-the-app = Get the app
-pocket-footer-download-on-apple-app-store = Download On The { -brand-name-apple } { -brand-name--app-store }
+pocket-footer-download-on-apple-app-store = Download On The { -brand-name-apple-app-store }
 pocket-footer-get-it-google-play = Get It On { -brand-name-google-play }
 # Variables:
 #   $mozorgabout (url) link to https://www.mozilla.org/about/

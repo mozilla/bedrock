@@ -113,8 +113,11 @@ if IS_POCKET_MODE:
         "nav",
         "footer",
     ]
-    FLUENT_POCKET_LOCAL_PATH = ROOT_PATH / "l10n-pocket"
-    FLUENT_PATHS.insert(0, FLUENT_POCKET_LOCAL_PATH)
+
+    # Swap the default FLUENT_LOCAL_PATH for a Pocket-specific one
+    FLUENT_PATHS.pop(FLUENT_PATHS.index(FLUENT_LOCAL_PATH))
+    FLUENT_LOCAL_PATH = ROOT_PATH / "l10n-pocket"
+    FLUENT_PATHS.insert(0, FLUENT_LOCAL_PATH)
 
 else:
     ROOT_URLCONF = "bedrock.urls.mozorg_mode"

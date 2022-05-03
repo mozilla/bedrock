@@ -89,7 +89,6 @@
 ## Pocket
 
 -brand-name-pocket = Pocket
--brand-name-read-it-later-inc = Read It Later, Inc.
 
 ## Mozilla projects
 
