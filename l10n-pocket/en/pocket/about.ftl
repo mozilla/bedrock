@@ -48,5 +48,5 @@ pocket-about-contact-us-press = Contact us for press inquiries at <a href="{ $pr
 
 # Variables:
 #   $download_url (url) https://blog.getpocket.com/press/
-#   $presspage_id (string) ID of HTML element
-pocket-about-download-press-kit = Download our images and press kit <a id="{ $presspage_id }" href="{ $download_url }">here</a>.
+#   $presspage_attrs (string) Attributes for the HTML link
+pocket-about-download-press-kit = Download our images and press kit <a { $presspage_attrs }>here</a>.

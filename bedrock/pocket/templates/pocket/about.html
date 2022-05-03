@@ -74,8 +74,8 @@
         <hr/>
         <p class="about-cta-body">{{ ftl('pocket-about-contact-us-press', press_email_link='mailto:press@getpocket.com',
         press_email='press@getpocket.com' ) }}</p>
-        <p class="about-cta-body">{{ ftl('pocket-about-download-press-kit', download_url='https://blog.getpocket.com/press/',
-        presspage_id='press-page' )}}</p>
+        {% set presspage_attrs = 'id="press-page" href="https://blog.getpocket.com/press/"' %}
+        <p class="about-cta-body">{{ ftl('pocket-about-download-press-kit', presspage_attrs=presspage_attrs)}}</p>
     </section>
 
     {% include 'pocket/includes/footer.html' %}
