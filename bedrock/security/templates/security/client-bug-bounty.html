@@ -168,7 +168,7 @@
 
 <h2 id="static-analysis-bounty">Static Analysis Bounty</h2>
 
-  <p>In coordination with the GitHub Security Lab, we have launched a new program that rewards the submission of static analysis tools that identify present or historical security vulnerabilities in Firefox.  We will accept static analysis queries written in CodeQL or as clang-based checkers (clang analyzer, clang plugin using the AST API or clang-tidy). Submissions should be made following <a href="#claiming-a-bounty">our instructions below</a>.</p>
+  <p>We also have a program that rewards the submission of static analysis tools that identify present or historical security vulnerabilities in Firefox.  We will accept static analysis queries <a href="https://firefox-source-docs.mozilla.org/code-quality/static-analysis/writing-new/index.html">written as clang-based checkers</a> - we have some documentation that <a href="https://firefox-source-docs.mozilla.org/code-quality/static-analysis/writing-new/index.html">may help you get started or integrate and run over Firefox as a whole</a>. Submissions should be made following <a href="#claiming-a-bounty">our instructions below</a>.</p>
 
   <p>We will issue a bounty for the query itself, dependent upon the quality of the submission. Because this is an experiment, we are not committing to an exact amount or range for the bounty, but we expect this will typically be in the $2500-$7500 range.</p>
 
@@ -191,7 +191,7 @@
 
   <p><b>Examples of Quality of Submission:</b> As mentioned, the bounty amount we grant for the query will be determined based on the quality of the submission, and an estimation of the number of issues we think it may identify in a one to three-year timespan. On the low end, if you submit a query that identifies a single historical issue of a syntactical misuse of an API we are unlikely to use in future code, we may not issue a bounty, and if we did it would be below the $2500 range. And on the high end, if you submit a query that matches 3 unknown issues today, in code written in the last year - we can expect it will identify a significant number of issues in the future and would be looking above the $7500 range. (Plus you’d be eligible for separate bounties on those 3 issues.)</p>
 
-  <p><b>Compatibility with Github’s Bounty:</b> Github’s bounty policy is <i>compatible</i> with Mozilla’s. This means that if you follow both Mozilla’s and Github’s policies, you are eligible to earn a bounty from both. Note that this includes <i>not</i> providing unfixed vulnerabilities <i>or queries that identify unfixed vulnerabilities</i> in Mozilla products to third parties (i.e. Github). Once we’ve resolved the issues, they have a CVE issued, and our MFSA has become public, then you can submit to Github. Please, please <a href="mailto:security@mozilla.org">talk to us</a> if you have questions about this before sharing potentially confidential information.</p>
+  <p><em>Note</em>: While we previously accepted submissions of CodeQL queries, we no longer do. We still provide <a href="https://bug-bounty-codeql-databases.s3.us-east-2.amazonaws.com/index.html">CodeQL databases available for download</a> and you are of course encouraged to develop CodeQL queries if you think they will be valuable, and submit any findings you glean from them.</p>
 
   <h2 id="claiming-a-bounty">Claiming a Bug Bounty</h2>
 
