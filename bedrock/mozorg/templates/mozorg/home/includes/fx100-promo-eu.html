@@ -1,0 +1,23 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% set title = 'Aus Liebe zum Web. Seit 2004.' if LANG == 'de' else 'Pour l’amour du Web. Depuis 2004.' %}
+{% set cta = 'Hol dir den neuen Firefox' if LANG == 'de' else 'Installer le nouveau Firefox' %}
+{% set blog_cta = 'Zur Geschichte von Firefox 100' if LANG == 'de' else 'Lire le récit de notre 100è version' %}
+{% set blog_link = 'https://blog.mozilla.org/press-de/2022/05/03/wir-feiern-firefox-wie-wir-die-100-erreichten/' if LANG == 'de' else 'https://blog.mozilla.org/press-fr/2022/05/03/firefox-100-est-la-comment-y-sommes-nous-arrives/' %}
+
+<section class="fx100-hero">
+  <div class="mzp-l-content mzp-t-content-md">
+  <div class="fx100-hero-title-container">
+    <div class="fx100-hero-wordmark">Firefox 100</div>
+    <h1 class="fx100-hero-title">{{ title }}</h1>
+  </div>
+  <div class="fx100-hero-cta-container">
+    <a class="mzp-c-button mzp-t-product" href="{{ url('firefox.new') }}">{{ cta }}</a>
+    <a class="fx100-story-link" href="{{ blog_link }}">{{ blog_cta }}</a>
+  </div>
+  </div>
+</section>
