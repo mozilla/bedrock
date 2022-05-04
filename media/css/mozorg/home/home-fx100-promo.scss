@@ -23,9 +23,9 @@
     width: 125px;
 
     @media #{$mq-md} {
-        @include bidi(((margin-right, $spacing-xl, margin-left, $spacing-xl),));
+        margin-top: 5px;
         margin-bottom: 0;
-        height: 75px;
+        height: 55px;
         min-width: 150px;
         width: 150px;
     }
@@ -33,12 +33,11 @@
 
 .fx100-hero-title {
     @include font-firefox;
-    @include font-size(48px);
+    @include font-size(54px);
     line-height: 1.05;
 
     @media #{$mq-md} {
-        @include font-size(74px);
-        max-width: unset;
+        @include font-size(68px);
     }
 }
 
