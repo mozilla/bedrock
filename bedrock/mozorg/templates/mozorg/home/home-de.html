@@ -56,6 +56,8 @@
 
   {% if switch('homepage-fx100-promo-eu') %}
     {% include 'mozorg/home/includes/fx100-promo-eu.html' %}
+  {% elif switch('homepage-mr2-promo-eu')%}
+    {% include 'mozorg/home/includes/mr2-promo-eu.html' %}
   {% else %}
     {% call download_banner(
       title='Aus Liebe zum Web',
