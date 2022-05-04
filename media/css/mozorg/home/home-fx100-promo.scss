@@ -20,12 +20,13 @@
     background-size: contain;
     height: 50px;
     margin-bottom: $spacing-lg;
+    margin-top: 0;
     width: 125px;
 
     @media #{$mq-md} {
-        margin-top: 5px;
-        margin-bottom: 0;
         height: 55px;
+        margin-bottom: 0;
+        margin-top: 5px;
         min-width: 150px;
         width: 150px;
     }
