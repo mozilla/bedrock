@@ -26,6 +26,8 @@
 
   {% if switch('homepage-fx100-promo-eu') %}
     {{ css_bundle('home-fx100-promo') }}
+  {% elif switch('homepage-mr2-promo-eu') %}
+    {{ css_bundle('home-mr2-promo') }}
   {% endif %}
 
   {% if show_fundraising_banner %}
