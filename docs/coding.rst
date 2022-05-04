@@ -503,7 +503,7 @@ your own, or use it directly in a `urls.py` file.
     ]
 
 The `L10nTemplateView` functionality is mostly in a template mixin called `LangFilesMixin` which
-you can use with other generic Django view classes if you need one other than `TemplateView`. 
+you can use with other generic Django view classes if you need one other than `TemplateView`.
 The `L10nTemplateView` already ensures that only `GET` or `HEAD` requests will be served.
 
 Variation Views
@@ -651,6 +651,10 @@ location of the user.
     {% else %}
         <h1>Yay World!</h1>
     {% endif %}
+
+Reference:
+
+* Officially assigned list of `ISO country codes <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements>`_.
 
 Coding Style
 ------------
