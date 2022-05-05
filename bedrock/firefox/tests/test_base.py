@@ -4,6 +4,7 @@
 import os
 from unittest.mock import Mock, call, patch
 
+from django.conf import settings
 from django.core.cache import caches
 from django.http import HttpResponse
 from django.test.client import RequestFactory
@@ -500,6 +501,16 @@ class TestWhatsNew(TestCase):
         self.view(req, version="98.0")
         template = render_mock.call_args[0][1]
         assert template == ["firefox/whatsnew/whatsnew-fx98-vpn-en.html"]
+
+    @override_settings(DEV=False)
+    def test_fx_98_0_0_excluded_countries(self, render_mock):
+        """Should use default template for 98.0 in English in excluded countries"""
+        for country in settings.VPN_EXCLUDED_COUNTRY_CODES:
+            req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY=country)
+            req.locale = "en-US"
+            self.view(req, version="98.0")
+            template = render_mock.call_args[0][1]
+            assert template == ["firefox/whatsnew/index-account.html"]
 
     # end 98.0 whatsnew tests
 
