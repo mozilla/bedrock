@@ -131,18 +131,18 @@ newsletters-the-supplied-link-has-expired-long = The supplied link has expired o
 newsletters-success-an-email-has-been-sent = Success! An email has been sent to you with your preference center link. Thanks!
 newsletters-this-is-not-a-valid-email = This is not a valid email address. Please check the spelling.
 newsletters-you-send-too-many-emails = You send too many emails.
-newsletters-your-content-wasnt-relevant = Your content wasn't relevant to me.
+newsletters-your-content-wasnt-relevant = Your content wasn’t relevant to me.
 newsletters-your-email-design = Your email design was too hard to read.
-newsletters-i-didnt-sign-up = I didn't sign up for this.
+newsletters-i-didnt-sign-up = I didn’t sign up for this.
 
 # Variables:
 #   $url (url) - link to https://www.mozilla.org/newsletter/
 newsletters-this-email-address-is-not = This email address is not in our system. Please double check your address or <a href="{ $url }">subscribe to our newsletters.</a>
 
-newsletters-im-keeping-in-touch-v2 = I'm keeping in touch with { -brand-name-mozilla } on { -brand-name-twitter } instead.
+newsletters-im-keeping-in-touch-v2 = I’m keeping in touch with { -brand-name-mozilla } on { -brand-name-twitter } instead.
 
 # Obsolete string
-newsletters-im-keeping-in-touch = I'm keeping in touch with { -brand-name-mozilla } on { -brand-name-facebook } and { -brand-name-twitter } instead.
+newsletters-im-keeping-in-touch = I’m keeping in touch with { -brand-name-mozilla } on { -brand-name-facebook } and { -brand-name-twitter } instead.
 
 # Headline for https://www.mozilla.org/newsletter/mozilla/
 newsletters-sign-up-read-up-stay-informed = Sign up, read up,<br> stay informed.
@@ -179,7 +179,7 @@ newsletters-addon-development = Add-on Development
 newsletters-developer-newsletter = Developer Newsletter
 
 # Description for the newsletter in Newsletter subscription page (Developer Newsletter)
-newsletters-a-developers-guide = A developer's guide to highlights of Web platform innovations, best practices, new documentation and more.
+newsletters-a-developers-guide = A developer’s guide to highlights of Web platform innovations, best practices, new documentation and more.
 
 # Name for the newsletter in Newsletter subscription page
 newsletters-drumbeat-newsgroup = Drumbeat Newsgroup
@@ -329,7 +329,7 @@ newsletters-join-mozilla = Join { -brand-name-mozilla }
 newsletters-maker-party = Maker Party
 
 # Description for the newsletter in Newsletter subscription page (Maker Party)
-newsletters-mozillas-largest-celebration = { -brand-name-mozilla }'s largest celebration of making and learning on the web.
+newsletters-mozillas-largest-celebration = { -brand-name-mozilla }’s largest celebration of making and learning on the web.
 
 # Name for the newsletter in Newsletter subscription page
 newsletters-firefox-os = { -brand-name-firefox-os }
@@ -359,7 +359,7 @@ newsletters-mozilla-festival = { -brand-name-mozilla-festival }
 newsletters-special-announcements-about-mozilla-v2 = Special announcements about our annual festival dedicated to forging the future of the open web.
 
 # Obsolete string
-newsletters-special-announcements-about-mozilla = Special announcements about { -brand-name-mozilla }'s annual, hands-on festival dedicated to forging the future of the open Web.
+newsletters-special-announcements-about-mozilla = Special announcements about { -brand-name-mozilla }’s annual, hands-on festival dedicated to forging the future of the open Web.
 
 # Name for the newsletter in Newsletter subscription page
 newsletters-mozilla-news = { -brand-name-mozilla } News
@@ -386,7 +386,7 @@ newsletters-updates-from-our-global = Updates from our global community, helping
 newsletters-mozilla-labs = { -brand-name-mozilla-labs }
 
 # Description for the newsletter in Newsletter subscription page (Mozilla Labs)
-newsletters-were-building-the-technology = We're building the technology of the future. Come explore with us.
+newsletters-were-building-the-technology = We’re building the technology of the future. Come explore with us.
 
 # Name for the newsletter in Newsletter subscription page
 newsletters-webmaker = { -brand-name-webmaker }

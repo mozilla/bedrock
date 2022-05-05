@@ -23,7 +23,7 @@ download-button-please-follow-these = Please follow <a href="{ $url }">these ins
 
 # Variables:
 #   $url (url) - link to https://www.mozilla.org/firefox/system-requirements/
-download-button-your-system-does-not = Your system doesn't meet the <a href="{ $url }">requirements</a> to run { -brand-name-firefox }.
+download-button-your-system-does-not = Your system doesn’t meet the <a href="{ $url }">requirements</a> to run { -brand-name-firefox }.
 
 download-button-firefox-other-platforms = { -brand-name-firefox } for Other Platforms & Languages
 download-button-update-your-firefox = Update your { -brand-name-firefox }
