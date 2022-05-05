@@ -11,6 +11,7 @@ whatsnew-account-main-lead-in = The { -brand-name-firefox } browser collects so 
 whatsnew-account-main-button = Sign In
 
 ##
+
 whatsnew-account-signed-in-headline = Get more done. Use { -brand-name-firefox } for mobile.
 whatsnew-account-signed-in-lead-in = Send a download link to your phone.
 whatsnew-account-signed-in-qr-title = Download { -brand-name-firefox } for your smartphone and tablet.

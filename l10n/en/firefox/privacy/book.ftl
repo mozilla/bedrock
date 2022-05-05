@@ -30,11 +30,11 @@ privacy-book-even-when-organizations = Even when organizations are careful with 
 
 privacy-book-the-web-never = The web never forgets:
 
-privacy-book-according-to-the = According to the GDPR, you can ask for your data to be handed over to you or have it deleted; however, sites might not comply with this request and neither may those who don't offer their services out of Europe.
+privacy-book-according-to-the = According to the GDPR, you can ask for your data to be handed over to you or have it deleted; however, sites might not comply with this request and neither may those who don’t offer their services out of Europe.
 
 privacy-book-trackers-everywhere- = Trackers everywhere:
 
-privacy-book-trackers-cookies-youve = Trackers, cookies? You've most likely heard about them before. Trackers are tiny elements on websites that observe and record your behavior in order to pass it on to the page owner(s) or third parties. Some of them even track you across numerous websites.
+privacy-book-trackers-cookies-youve = Trackers, cookies? You’ve most likely heard about them before. Trackers are tiny elements on websites that observe and record your behavior in order to pass it on to the page owner(s) or third parties. Some of them even track you across numerous websites.
 
 privacy-book-tracking-cookies-are = Tracking cookies are supposed to tell website owners and advertisers about your browsing behavior and what you’re interested in. It is then used to personalize your web experience. Oftentimes that means that you see customized ads, matched to your interests. Ultimately, the cookies put together a lot of information about you and store it in a profile. That may sound convenient but, unfortunately, these profiles aren’t necessarily accurate. In the best case, that means that you get less relevant ads. In the worst case, the information you see on some websites doesn’t fit your needs and expectations. Also, be aware that your profile can influence, for example, the prices at which products and services are offered to you.
 
@@ -44,18 +44,18 @@ privacy-book-even-if-the = Even if the Internet rarely allows us to be completel
 
 privacy-book-fake-news-and = Fake News & Filter Bubbles:
 
-privacy-book-news-recommendations-are = News recommendations are convenient and, let's be honest, many of us prefer to read content that is in line with our opinion. But what if that content isn’t accurate? Or what if we lose sight of the big picture because we are only exposed to a small part of it – how can we form our own opinion?
+privacy-book-news-recommendations-are = News recommendations are convenient and, let’s be honest, many of us prefer to read content that is in line with our opinion. But what if that content isn’t accurate? Or what if we lose sight of the big picture because we are only exposed to a small part of it – how can we form our own opinion?
 
 privacy-book-how-much-control = How much control do we really have? And how much do we willingly give away?
 
-privacy-book-many-of-us = Many of us feel that we have little control over their security, privacy and the quality of the information we see online. Maybe that's how you feel, too. Yes, there is room for improvement – but all too often we are rather lazy and use only a fraction of the tools available to us. Or we rely on convenient all-in-one solutions, putting a huge amount of personal data in the hands of a single company without hesitation. Why? Because we don’t want to give it more thought than absolutely necessary. Or maybe also because we simply don’t know how many alternatives we actually have.
+privacy-book-many-of-us = Many of us feel that we have little control over their security, privacy and the quality of the information we see online. Maybe that’s how you feel, too. Yes, there is room for improvement – but all too often we are rather lazy and use only a fraction of the tools available to us. Or we rely on convenient all-in-one solutions, putting a huge amount of personal data in the hands of a single company without hesitation. Why? Because we don’t want to give it more thought than absolutely necessary. Or maybe also because we simply don’t know how many alternatives we actually have.
 
 # Span is for visual formatting.
 privacy-book-tips-for = 15 tips <span>for a better digital life.</span>
 
 privacy-book-starting-over = Starting over:
 
-privacy-book-its-time-for = It’s time for a Data Detox! Together with the Tactical Tech Collective, { -brand-name-mozilla } has put together a nice little package of practical tips, called the Data Detox Kit. It’s a program that will make you feel like a whole new online person. Don't feel ready yet for the full program? Feel free to begin with one of the following tips instead (or all of them)!
+privacy-book-its-time-for = It’s time for a Data Detox! Together with the Tactical Tech Collective, { -brand-name-mozilla } has put together a nice little package of practical tips, called the Data Detox Kit. It’s a program that will make you feel like a whole new online person. Don’t feel ready yet for the full program? Feel free to begin with one of the following tips instead (or all of them)!
 
 # Span is for visual formatting
 privacy-book-a-tidy-browser = A tidy browser, a tidy mind <span>– well, that may not be directly what “they” say but it’s still true!</span>
@@ -70,7 +70,7 @@ privacy-book-all-of-us = All of us, some more and some less, tend towards conven
 
 privacy-book-search-engine-title = Search engine:
 
-privacy-book-search-engine-duckduckgo = { -brand-name-duckduckgo }, unlike other providers, doesn't create user profiles or filter results, so all users get the same search outcome. It is available in your browser's search bar and as a browser extension.
+privacy-book-search-engine-duckduckgo = { -brand-name-duckduckgo }, unlike other providers, doesn’t create user profiles or filter results, so all users get the same search outcome. It is available in your browser’s search bar and as a browser extension.
 
 privacy-book-email-have-title = E-Mail:
 
@@ -98,7 +98,7 @@ privacy-book-we-love-social =  <strong>We love social media!</strong> However, t
 
 privacy-book-theres-actually-even =  <strong>There’s actually even more to keep in mind when it comes to social networks:</strong> as you know, they’re made to share personal stuff with people we know (some better, some less). It’s on you to decide how much private information you want to share though. That applies to your posts as well as your location, things you like, your phone number or who you spend time with. Remember: all of this data is not only visible to the respective social network, but might also be for advertisers and the general public if you keep your profile publicly  available. Also, if you share less, there’s less that could fall into the hands of people you don’t know or trust.
 
-privacy-book-what-feels-right =  <strong>What feels right for you today might change tomorrow.</strong> And that's totally fine. It doesn't hurt to reevaluate your view on the analogue world and the web occasionally and adjust them if necessary.
+privacy-book-what-feels-right =  <strong>What feels right for you today might change tomorrow.</strong> And that’s totally fine. It doesn’t hurt to reevaluate your view on the analogue world and the web occasionally and adjust them if necessary.
 
 privacy-book-what-does-the = What does the world know about you?
 
@@ -155,7 +155,7 @@ privacy-book-its-not-unusual = It’s not unusual to see addresses on the intern
 
 privacy-book-email-accounts-and = Email accounts and online identities:
 
-privacy-book-your-email-address = Your email address doesn't necessarily reveal a lot about you. However, if you use the same address for a number of services and websites, you leave a trace. Your email address may become the center of your online identity, connected to all types of (browsing or account) data. Maybe you want to think about getting more than one for different purposes?
+privacy-book-your-email-address = Your email address doesn’t necessarily reveal a lot about you. However, if you use the same address for a number of services and websites, you leave a trace. Your email address may become the center of your online identity, connected to all types of (browsing or account) data. Maybe you want to think about getting more than one for different purposes?
 
 privacy-book-resist-the-urge = Resist the urge to click:
 
@@ -192,7 +192,7 @@ privacy-book-even-if-you = Even if you bought a smartphone with lots of memory s
 
 privacy-book-the-more-apps = <strong>Limit the weakpoints.</strong> The more apps you have on your device, the more entities have access to your data – and it’s impossible to have the full overview all the time.
 
-privacy-book-check-which-apps = <strong>Spring-clean your phone:</strong> Check which apps you have installed on your device and if you’re still using them. Delete the ones (and any related accounts) you actually don't need anymore.
+privacy-book-check-which-apps = <strong>Spring-clean your phone:</strong> Check which apps you have installed on your device and if you’re still using them. Delete the ones (and any related accounts) you actually don’t need anymore.
 
 privacy-book-also-reconsider-the = <strong>Limit the access.</strong> Also, reconsider the permissions you once gave to the remaining apps, including social networks, and ask yourself: Does this app really need access to my location? My contacts? My photos? My camera and microphone?
 
@@ -200,7 +200,7 @@ privacy-book-friendly-reminder-what = Friendly reminder: What are trackers again
 
 privacy-book-we-distinguish-between = We distinguish between first and third-party trackers, or tracking cookies. You may find first-party trackers on news sites, for example. Their job is to notice when a new or recurring reader comes to the site, check out which articles they read, how much time they spend on each page, and so on. They may use this information to improve the quality of their offering and determine what readers actually like.
 
-privacy-book-thirdparty-trackers-on = Third-party trackers, on the other hand, may log a visitor's entire website visit, for example, for the purpose of displaying targeted ads to them. This even works across different websites someone visits; plus, there’s rarely just one tracker on a site. They often work hand in hand with others to find new ways to convince you through ads to spend money, sign up for services, and then share more information about yourself.
+privacy-book-thirdparty-trackers-on = Third-party trackers, on the other hand, may log a visitor’s entire website visit, for example, for the purpose of displaying targeted ads to them. This even works across different websites someone visits; plus, there’s rarely just one tracker on a site. They often work hand in hand with others to find new ways to convince you through ads to spend money, sign up for services, and then share more information about yourself.
 
 privacy-book-as-you-might = As you might already assume, this information is very valuable. That’s why the companies who have it make a lot of money by selling it to others. Unfortunately, no one involves you in this decision. That’s why { -brand-name-firefox } blocks many third-party trackers by default in order to give you back more control over your online experience and reduce your chances of  being followed around the web by ads and dubious companies.
 

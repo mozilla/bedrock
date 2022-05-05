@@ -4,7 +4,6 @@
 
 ### URL: https://www-dev.allizom.org/firefox/features/
 
-
 # HTML page title
 features-index-protect-your-privacy-and-browse = Protect your privacy and browse faster with { -brand-name-firefox } features
 
