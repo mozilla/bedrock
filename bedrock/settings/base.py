@@ -1635,3 +1635,21 @@ VPN_CLIENT_ID = "e6eb0d1e856335fc"
 
 # VNP affiliate micro service (CJMS) endpoint (issue 11212)
 VPN_AFFILIATE_ENDPOINT = "https://stage.cjms.nonprod.cloudops.mozgcp.net/aic" if DEV else "https://cjms.services.mozilla.com/aic"
+
+# Countries where we can't legally sell or advertise Mozilla VPN (e.g via /whatsnew)
+# See: https://github.com/mozilla/bedrock/issues/11572
+VPN_EXCLUDED_COUNTRY_CODES = [
+    "AE",  # United Arab Emirates
+    "BY",  # Belarus
+    "CN",  # China
+    "CU",  # Cuba
+    "IQ",  # Iraq
+    "IR",  # Iran
+    "KP",  # North Korea
+    "OM",  # Oman
+    "RU",  # Russia
+    "SD",  # Sudan
+    "SY",  # Syria
+    "TM",  # Turkmenistan
+    "TR",  # Turkey
+]

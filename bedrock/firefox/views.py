@@ -513,9 +513,9 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx99-en-rally.html": ["firefox/whatsnew/whatsnew"],
     }
 
-    # specific templates that should not be rendered in China
-    # do not promote Mozilla VPN in China in any language
-    china_excluded_templates = [
+    # specific templates that should not be rendered in
+    # countries where we can't advertise Mozilla VPN.
+    vpn_excluded_templates = [
         "firefox/whatsnew/whatsnew-fx98-vpn-en.html",
         "firefox/whatsnew/whatsnew-fx98-vpn-eu.html",
     ]
@@ -625,8 +625,8 @@ class WhatsnewView(L10nTemplateView):
             else:
                 template = "firefox/whatsnew/index.html"
 
-        # do not promote Mozilla VPN in China.
-        if country == "CN" and template in self.china_excluded_templates:
+        # do not promote Mozilla VPN in excluded countries.
+        if country in settings.VPN_EXCLUDED_COUNTRY_CODES and template in self.vpn_excluded_templates:
             template = "firefox/whatsnew/index-account.html"
 
         # return a list to conform with original intention
