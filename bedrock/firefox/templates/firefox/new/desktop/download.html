@@ -499,7 +499,7 @@
   </aside>
 </main>
 
-{% if show_firefox_join_modal %}
+{% if show_firefox_join_modal and not manual_update %}
 <aside class="mzp-u-modal-content join-firefox-content hide-from-legacy-ie">
   <h4 class="join-firefox-title">{{ ftl('firefox-desktop-download-youve-already-got-the-browser') }}</h4>
   <p class="join-firefox-intro">{{ ftl('firefox-desktop-download-watch-for-hackers-with') }}</p>
@@ -519,7 +519,7 @@
 {% block js %}
   {{ js_bundle('firefox_desktop_download') }}
 
-  {% if show_firefox_join_modal %}
+  {% if show_firefox_join_modal and not manual_update %}
     {{ js_bundle('firefox_new_desktop_join_modal') }}
   {% endif %}
 {% endblock %}
