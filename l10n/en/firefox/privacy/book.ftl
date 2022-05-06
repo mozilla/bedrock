@@ -60,7 +60,7 @@ privacy-book-its-time-for = It’s time for a Data Detox! Together with the Tact
 # Span is for visual formatting
 privacy-book-a-tidy-browser = A tidy browser, a tidy mind <span>– well, that may not be directly what “they” say but it’s still true!</span>
 
-privacy-book-delete-your-browser = <strong>Delete your browser history.</strong> Whether you’re using { -brand-name-firefox }, { -brand-name-chrome }, { -brand-name-safari }, or a different product – all of them offer this functionality. You’ll usually find it in the settings menu under "Security" or in a separate area. This is how to take care of it in { -brand-name-firefox }.
+privacy-book-delete-your-browser = <strong>Delete your browser history.</strong> Whether you’re using { -brand-name-firefox }, { -brand-name-chrome }, { -brand-name-safari }, or a different product – all of them offer this functionality. You’ll usually find it in the settings menu under “Security” or in a separate area. This is how to take care of it in { -brand-name-firefox }.
 
 privacy-book-delete-your-google =  <strong>Delete your { -brand-name-google } activities history.</strong> Log into your account, open the “My Activity” section, and scroll through it. Surprised by all the information stored here, maybe even shocked? Feel free to delete it: In the menu on the left, click to go to “Delete Activity by“ > change date to “All time“ and products to “All Products“ > click “Delete“ > click “OK“ to delete if a pop-up appears.
 
