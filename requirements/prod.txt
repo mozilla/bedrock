@@ -32,17 +32,17 @@ beautifulsoup4==4.11.1 \
     --hash=sha256:58d5c3d29f5a36ffeb94f02f0d786cd53014cf9b3b3951d42e0080d8a9498d30 \
     --hash=sha256:ad9aa55b65ef2808eb405f46cf74df7fcb7044d5cbc26487f96eb2ef2e436693
     # via -r requirements/prod.in
-bleach==4.1.0 \
-    --hash=sha256:0900d8b37eba61a802ee40ac0061f8c2b5dee29c1927dd1d233e075ebf5a71da \
-    --hash=sha256:4d2651ab93271d1129ac9cbc679f524565cc8a1b791909c4a51eac4446a15994
+bleach[css]==5.0.0 \
+    --hash=sha256:08a1fe86d253b5c88c92cc3d810fd8048a16d15762e1e5b74d502256e5926aa1 \
+    --hash=sha256:c6d6cc054bdc9c83b48b8083e236e5f00f238428666d2ce2e083eaa5fd568565
     # via -r requirements/prod.in
-boto3==1.21.42 \
-    --hash=sha256:895fb88c69be78f82cfee58a79c97a3ad8d4a2a1209041a411d7d6b9fc5393e4 \
-    --hash=sha256:bcb541175a7d190dd919a0af0e807ee6e9d26f135551e741b10d94343f2d7588
+boto3==1.22.4 \
+    --hash=sha256:13fe18ecefe342d2fe50ae7b4305d7423ec6e96bfaef19bc2f14212877a67727 \
+    --hash=sha256:71019d49562112bcf8c2e5c183f3cca263edf02785e6a2c5f98ee104927cbb44
     # via -r requirements/prod.in
-botocore==1.24.42 \
-    --hash=sha256:14aee41c8bf59d2dd2d89e8751fa37d3c95dcb92707d1966aa02697e914c1417 \
-    --hash=sha256:a2baa9484bbaee96ef312c049b8e360badcab58329e487b57567644a571b5f4a
+botocore==1.25.5 \
+    --hash=sha256:9f2f143fe8581eb9c43c0934b7daf706067afa409171a80b103f458977fcfbd4 \
+    --hash=sha256:bcbacc0ec0a1f44cbf7e6d8112af8096eed41bec75e90af06f8bf61f20d820aa
     # via
     #   boto3
     #   s3transfer
@@ -428,10 +428,6 @@ oauthlib==3.2.0 \
     --hash=sha256:23a8208d75b902797ea29fd31fa80a15ed9dc2c6c16fe73f5d346f83f6fa27a2 \
     --hash=sha256:6db33440354787f9b7f3a6dbd4febf5d0f93758354060e802f6c06cb493022fe
     # via requests-oauthlib
-packaging==21.3 \
-    --hash=sha256:dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb \
-    --hash=sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522
-    # via bleach
 phonenumberslite==8.12.46 \
     --hash=sha256:752555fb0cb9e442054c93fd23ab2ac1b741aea30e6e990be560ef75cac55c21 \
     --hash=sha256:93aa86c9e9e4b15dda89c4b0e7b9a3b6b854e009441a941a29d3b0202fa575bd
@@ -506,10 +502,6 @@ pyopenssl==22.0.0 \
     --hash=sha256:660b1b1425aac4a1bea1d94168a85d99f0b3144c869dd4390d27629d0087f1bf \
     --hash=sha256:ea252b38c87425b64116f808355e8da644ef9b07e429398bfece610f893ee2e0
     # via -r requirements/prod.in
-pyparsing==3.0.7 \
-    --hash=sha256:18ee9022775d270c55187733956460083db60b37d0d0fb357445f3094eed3eea \
-    --hash=sha256:a6c06a88f252e6c322f65faf8f418b16213b51bdfaece0524c1c1bc30c63c484
-    # via packaging
 python-dateutil==2.8.2 \
     --hash=sha256:0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86 \
     --hash=sha256:961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9
@@ -598,9 +590,9 @@ s3transfer==0.5.2 \
 sentry-processor==0.0.1 \
     --hash=sha256:fd7a30fb57aaf05c01cd04cf7d949c628376b2b55d7a0aaa222efe58a8f122bc
     # via -r requirements/prod.in
-sentry-sdk==1.5.10 \
-    --hash=sha256:0a9eb20a84f4c17c08c57488d59fdad18669db71ebecb28fb0721423a33535f9 \
-    --hash=sha256:972c8fe9318a415b5cf35f687f568321472ef94b36806407c370ce9c88a67f2e
+sentry-sdk==1.5.11 \
+    --hash=sha256:6c01d9d0b65935fd275adc120194737d1df317dce811e642cbf0394d0d37a007 \
+    --hash=sha256:c17179183cac614e900cbd048dab03f49a48e2820182ec686c25e7ce46f8548f
     # via -r requirements/prod.in
 six==1.16.0 \
     --hash=sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926 \
@@ -630,6 +622,10 @@ supervisor==4.2.4 \
 timeago==1.0.15 \
     --hash=sha256:cfce420d82892af6b2439d0f69eeb3e876bbeddab6670c3c88ebf7676407bf4c
     # via -r requirements/prod.in
+tinycss2==1.1.1 \
+    --hash=sha256:b2e44dd8883c360c35dd0d1b5aad0b610e5156c2cb3b33434634e539ead9d8bf \
+    --hash=sha256:fe794ceaadfe3cf3e686b22155d0da5780dd0e273471a51846d0a02bc204fec8
+    # via bleach
 twilio==7.8.1 \
     --hash=sha256:ae1d1224da7268c3aec1e811c303fcda5cc1f55258c2368fcbecaa4b391c1937 \
     --hash=sha256:b6aeccff49c973a50eb1cbbb9eac277b3219552eac1fd8a51fe101a8e2f43a97
@@ -655,6 +651,7 @@ webencodings==0.5.1 \
     # via
     #   bleach
     #   html5lib
+    #   tinycss2
 whitenoise==6.0.0 \
     --hash=sha256:08c42bc535f9777eea1a599289d9433f081921f97887eaf6f559446b2a080374 \
     --hash=sha256:5a4aff543ee860fbe40d743e556adf92ccd41b7df45697cae074afdf657056b9
