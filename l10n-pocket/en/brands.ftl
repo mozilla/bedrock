@@ -19,16 +19,26 @@
 
 -brand-name-firefox = Firefox
 
+## Platforms
+
+-brand-name-ios = iOS
+-brand-name-android = Android
+
+## Other browsers
+
+-brand-name-chrome = Chrome
+-brand-name-safari = Safari
+-brand-name-edge = Edge
+-brand-name-opera = Opera
+
 ## Third parties
 
 -brand-name-twitter = Twitter
 -brand-name-facebook = Facebook
 -brand-name-google-play = Google Play
 -brand-name-apple-app-store = Apple App Store
--brand-name-ios = iOS
--brand-name-android = Android
--brand-name-chrome = Chrome
--brand-name-safari = Safari
--brand-name-edge = Edge
--brand-name-opera = Opera
 
+## Apple products
+
+-brand-name-iphone = iPhone
+-brand-name-ipad = iPad
