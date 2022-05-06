@@ -34,4 +34,3 @@ pocket-platform-browser-installing = Installing the Pocket browser extension ins
 
 pocket-platform-welcome-title = { -brand-name-pocket } for Your Browser
 pocket-platform-welcome-when-browsing = When browsing the web, simply push this button in your Bookmarks Bar to add pages to your Pocket list.
-pocket-platform-log-in
