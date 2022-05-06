@@ -25,4 +25,10 @@
 -brand-name-facebook = Facebook
 -brand-name-google-play = Google Play
 -brand-name-apple-app-store = Apple App Store
+-brand-name-ios = iOS
+-brand-name-android = Android
+-brand-name-chrome = Chrome
+-brand-name-safari = Safari
+-brand-name-edge = Edge
+-brand-name-opera = Opera
 
