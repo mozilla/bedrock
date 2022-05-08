@@ -51,3 +51,9 @@ $image-path: '/media/protocol/img';
         text-align: center;
     }
 }
+
+.mzp-t-dark-override-color {
+    a:visited {
+        color: inherit !important;
+    }
+}
