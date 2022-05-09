@@ -6,31 +6,78 @@
 
 {% extends "pocket/base.html" %}
 
-{% from "macros-protocol.html" import split with context %}
+{% from "macros-protocol.html" import split, picto with context %}
 
-{% block page_title %}{{ ftl('pocket-about-us') }}{% endblock %}
+{% block page_title %}Homepage{% endblock %}
 
 {% block page_desc %}{{ ftl('pocket-about-us-page-desc') }}{% endblock %}
 
 {% block pocket_css %}
-  {{ css_bundle('pocket-about') }}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('pocket-home') }}
 {% endblock  %}
 
 {% block content %}
 {% include 'pocket/includes/nav.html' %}
 
-    <div class="homepage">
-      <div class="homepage-header">
+    <div class="homepage mzp-l-content">
+      <section class="homepage-header">
         {% call split(
-          block_class='mzp-l-split-center-on-sm-md mzp-t-content-lg mzp-l-split-pop
-          mzp-l-split-hide-media-on-sm-md',
-          media_class='mzp-l-split-h-center',
-          image_url=platform_image,
+          block_class='mzp-l-split-center-on-sm-md',
+          media_class='mzp-l-split-media-overflow',
+          image_url='img/pocket/pocket-home-articles.png',
           )%}
-          <h1>{{ ftl('pocket-home-get-right-to') }}</h1>
-          <p>{{ ftl('pocket-home-your-own-private') }}</p>
+          <h1 class="section-heading">{{ ftl('pocket-home-get-right-to') }}</h1>
+          <p class="section-lede">{{ ftl('pocket-home-your-own-private') }}</p>
+          <a href="https://getpocket.com/signup?utm_source=homepage" class="mzp-c-button" target="_blank" rel="external noopener">{{ ftl('pocket-home-sign-up-for-pocket') }}</a>
           {% endcall %}
-      </div>
+        </section>
+
+        <section>
+          {% call split(
+          block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed',
+          media_class='mzp-l-split-h-center',
+          image_url='img/pocket/pocket-colorful-books.svg',
+          )%}
+          <h2 class="sub-section-heading">{{ ftl('pocket-home-save-interesting-stories') }}</h2>
+          <p class="section-lede">{{ ftl('pocket-home-stop-sending-yourself-links') }}</p>
+          {% endcall %}
+        </section>
+
+        <section>
+          {% call split(
+          block_class='mzp-l-split-center-on-sm-md',
+          media_class='mzp-l-split-h-center',
+          image_url='img/pocket/pocket-list-mobile.png',
+          )%}
+          <h2 class="sub-section-heading">{{ ftl('pocket-home-great-recommendations') }}</h2>
+          <p class="section-lede">{{ ftl('pocket-home-we-comb-the-internet') }}</p>
+          {% endcall %}
+        </section>
+
+        <section>
+          <h2>{{ ftl('pocket-home-make-pocket-work') }}</h2>
+           <ul class="mzp-l-columns mzp-t-columns-three">
+            {% call picto(
+              title=ftl('pocket-home-tailor-text'),
+              image_url='img/pocket/pocket-text-icon.svg',
+            ) %}
+            {% endcall %}
+
+            {% call picto(
+              title=ftl('pocket-home-categorize-saves'),
+              image_url='img/pocket/pocket-tag-icon.svg',
+            ) %}
+            {% endcall %}
+
+            {% call picto(
+              title=ftl('pocket-home-listen-to-articles'),
+              image_url='img/pocket/pocket-audio-icon.svg',
+            ) %}
+            {% endcall %}
+            </ul>
+        </section>
     </div>
 
 {% include 'pocket/includes/footer.html' %}

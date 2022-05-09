@@ -259,3 +259,15 @@ $image-path: '/media/img/pocket';
         white-space: nowrap;
     }
 }
+
+.dark-inline-link {
+    font-weight: 700;
+    color: $color-text-grey;
+    text-decoration: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: $color-text-cyan;
+    }
+}

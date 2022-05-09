@@ -1,0 +1,54 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/base/elements/containers';
+@import '~@mozilla-protocol/core/protocol/css/components/button';
+@import '../utils/variables';
+@import '../includes/nav';
+@import '../includes/footer';
+
+$image-path: '/media/img/pocket';
+
+.homepage {
+
+    .homepage-header {
+
+        .mzp-c-split-media-asset {
+            max-height: 800px;
+        }
+        img {
+            // height: 848px;
+            // width: 662px;
+        }
+    }
+        .section-heading {
+            @include text-title-lg;
+            font-family: $font-sans-alt;
+            font-weight: 500;
+        }
+
+        .sub-section-heading {
+            @include text-title-sm;
+            font-family: $font-sans;
+            font-weight: 500;
+    }
+
+        .section-lede {
+            @include text-body-xl;
+            font-family: $font-sans;
+        }
+
+        .mzp-c-button {
+            background-color: $color-button-red;
+            border: 0;
+
+            &:hover,
+            &:focus,
+            &:active {
+                color: $color-white;
+                text-decoration: underline !important;
+            }
+        }
+    }
