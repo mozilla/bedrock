@@ -12,43 +12,43 @@
 $image-path: '/media/img/pocket';
 
 .homepage {
-
     .homepage-header {
-
         .mzp-c-split-media-asset {
             max-height: 800px;
         }
+
         img {
             // height: 848px;
             // width: 662px;
         }
     }
-        .section-heading {
-            @include text-title-lg;
-            font-family: $font-sans-alt;
-            font-weight: 500;
-        }
 
-        .sub-section-heading {
-            @include text-title-sm;
-            font-family: $font-sans;
-            font-weight: 500;
+    .section-heading {
+        @include text-title-lg;
+        font-family: $font-sans-alt;
+        font-weight: 500;
     }
 
-        .section-lede {
-            @include text-body-xl;
-            font-family: $font-sans;
-        }
+    .sub-section-heading {
+        @include text-title-sm;
+        font-family: $font-sans;
+        font-weight: 500;
+    }
 
-        .mzp-c-button {
-            background-color: $color-button-red;
-            border: 0;
+    .section-lede {
+        @include text-body-xl;
+        font-family: $font-sans;
+    }
 
-            &:hover,
-            &:focus,
-            &:active {
-                color: $color-white;
-                text-decoration: underline !important;
-            }
+    .mzp-c-button {
+        background-color: $color-button-red;
+        border: 0;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: $color-white;
+            text-decoration: underline !important;
         }
     }
+}
