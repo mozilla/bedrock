@@ -127,8 +127,6 @@ COPY --from=assets /app/assets /app/assets
 
 RUN honcho run --env docker/envfiles/prod.env docker/bin/build_staticfiles.sh
 
-RUN echo "${GIT_SHA}" > ./root_files/revision.txt
-
 # Change User
 RUN chown webdev.webdev -R .
 USER webdev
@@ -136,3 +134,5 @@ USER webdev
 # build args
 ARG GIT_SHA=latest
 ENV GIT_SHA=${GIT_SHA}
+
+RUN echo "${GIT_SHA}" > ./root_files/revision.txt
