@@ -1,0 +1,43 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "pocket/base.html" %}
+
+{% from "macros-protocol.html" import split with context %}
+
+{% block page_title %}{{ ftl('pocket-about-us') }}{% endblock %}
+
+{% block page_desc %}{{ ftl('pocket-about-us-page-desc') }}{% endblock %}
+
+{% block pocket_css %}
+  {{ css_bundle('pocket-about') }}
+{% endblock  %}
+
+{% block content %}
+{% include 'pocket/includes/nav.html' %}
+
+    <div class="homepage">
+      <div class="homepage-header">
+        {% call split(
+          block_class='mzp-l-split-center-on-sm-md mzp-t-content-lg mzp-l-split-pop
+          mzp-l-split-hide-media-on-sm-md',
+          media_class='mzp-l-split-h-center',
+          image_url=platform_image,
+          )%}
+          <h1>{{ ftl('pocket-home-get-right-to') }}</h1>
+          <p>{{ ftl('pocket-home-your-own-private') }}</p>
+          {% endcall %}
+      </div>
+    </div>
+
+{% include 'pocket/includes/footer.html' %}
+{% endblock %}
+
+
+{% block js %}
+  {{ js_bundle('pocket-nav') }}
+{% endblock %}
+
