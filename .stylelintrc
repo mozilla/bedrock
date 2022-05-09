@@ -4,6 +4,7 @@
         "indentation": 4,
         "string-quotes": "single",
         "declaration-empty-line-before": "never",
+        "declaration-no-important": true,
         "color-function-notation": "legacy",
         "alpha-value-notation": "number",
         "property-no-vendor-prefix": null,

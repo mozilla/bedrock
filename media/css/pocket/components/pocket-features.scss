@@ -78,8 +78,8 @@ $image-path: '/media/protocol/img';
         justify-content: flex-start;
         flex-direction: row;
 
-        .apple-store {
-            margin-bottom: 0 !important;
+        a.apple-store {
+            margin-bottom: 0;
             margin-right: $spacing-md;
         }
     }
