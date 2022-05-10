@@ -23,6 +23,7 @@
 
 -brand-name-twitter = Twitter
 -brand-name-facebook = Facebook
+-brand-name-instagram = Instagram
 -brand-name-google-play = Google Play
 -brand-name-apple-app-store = Apple App Store
 
