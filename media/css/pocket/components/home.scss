@@ -11,15 +11,16 @@
 
 $image-path: '/media/img/pocket';
 
-.homepage {
-    .homepage-header {
+.pocket-homepage {
+    color: $color-text-primary;
+    font-family: $font-sans;
+
+    .pocket-homepage-header {
+        padding-top: 0;
+
         .mzp-c-split-media-asset {
             max-height: 800px;
-        }
-
-        img {
-            // height: 848px;
-            // width: 662px;
+            width: auto;
         }
     }
 
@@ -30,14 +31,94 @@ $image-path: '/media/img/pocket';
     }
 
     .sub-section-heading {
-        @include text-title-sm;
-        font-family: $font-sans;
-        font-weight: 500;
+        @include font-size(32px);
+        font-weight: 600;
     }
 
     .section-lede {
-        @include text-body-xl;
-        font-family: $font-sans;
+        @include text-body-lg;
+    }
+
+    .pocket-homepage-picto {
+        h2 {
+            text-align: center;
+            margin-bottom: $spacing-2xl;
+        }
+
+        .mzp-c-picto-heading {
+            @include text-body-lg;
+            font-weight: 500;
+        }
+
+        .mzp-c-picto-image {
+            margin-bottom: $spacing-xs;
+        }
+    }
+
+    .pocket-homepage-premium {
+        @include text-body-lg;
+        padding-top: $layout-sm;
+        padding-bottom: $layout-md;
+        position: relative; //needed for special top and bottom border
+
+        h2 {
+            font-family: $font-sans-alt;
+            @include text-title-md;
+            font-weight: 500;
+            text-align: center;
+
+            @media #{$mq-md} {
+                @include text-title-sm;
+                text-align: left;
+            }
+        }
+
+        .mzp-u-list-styled {
+            margin-bottom: $spacing-lg;
+            line-height: 26px;
+
+            li {
+                list-style: disc;
+            }
+        }
+
+        &::after,
+        &::before {
+            visibility: visible; // override mzp-l-content ::after visibility
+            position: absolute;
+            content: '';
+            left: 0;
+            width: 100%;
+            height: 18px;
+            background-size: 1516px 18px;
+            background-repeat: repeat-x;
+            background-position: 0;
+        }
+
+        &::before {
+            top: 0;
+            background-image: url('/media/img/pocket/pocket-border-1.svg');
+        }
+
+        &::after {
+            bottom: 0;
+            background-image: url('/media/img/pocket/pocket-border-2.svg');
+        }
+
+        @media #{$mq-md} {
+            padding-top: $layout-lg;
+            padding-bottom: $layout-lg;
+        }
+    }
+
+    .pocket-homepage-bottom {
+        padding-top: $layout-xl;
+        padding-bottom: $layout-xl;
+        text-align: center;
+
+        @media #{$mq-md} {
+            width: 700px;
+        }
     }
 
     .mzp-c-button {
@@ -47,8 +128,9 @@ $image-path: '/media/img/pocket';
         &:hover,
         &:focus,
         &:active {
-            color: $color-white;
             text-decoration: underline !important;
+            background-color: $color-button-red;
+            color: $color-white;
         }
     }
 }

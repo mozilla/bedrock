@@ -21,23 +21,23 @@
 {% block content %}
 {% include 'pocket/includes/nav.html' %}
 
-    <div class="homepage mzp-l-content">
-      <section class="homepage-header">
+    <div class="pocket-homepage mzp-t-content-xl">
         {% call split(
-          block_class='mzp-l-split-center-on-sm-md',
+          block_class='mzp-l-split-center-on-sm-md pocket-homepage-header mzp-l-split-pop',
           media_class='mzp-l-split-media-overflow',
+          media_after=True,
           image_url='img/pocket/pocket-home-articles.png',
           )%}
           <h1 class="section-heading">{{ ftl('pocket-home-get-right-to') }}</h1>
           <p class="section-lede">{{ ftl('pocket-home-your-own-private') }}</p>
           <a href="https://getpocket.com/signup?utm_source=homepage" class="mzp-c-button" target="_blank" rel="external noopener">{{ ftl('pocket-home-sign-up-for-pocket') }}</a>
           {% endcall %}
-        </section>
 
         <section>
           {% call split(
           block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed',
           media_class='mzp-l-split-h-center',
+          media_after=True,
           image_url='img/pocket/pocket-colorful-books.svg',
           )%}
           <h2 class="sub-section-heading">{{ ftl('pocket-home-save-interesting-stories') }}</h2>
@@ -49,6 +49,7 @@
           {% call split(
           block_class='mzp-l-split-center-on-sm-md',
           media_class='mzp-l-split-h-center',
+          media_after=True,
           image_url='img/pocket/pocket-list-mobile.png',
           )%}
           <h2 class="sub-section-heading">{{ ftl('pocket-home-great-recommendations') }}</h2>
@@ -56,28 +57,62 @@
           {% endcall %}
         </section>
 
-        <section>
-          <h2>{{ ftl('pocket-home-make-pocket-work') }}</h2>
+        <section class="pocket-homepage-picto mzp-l-content mzp-t-content-xl">
+
+          <h2 class="sub-section-heading">{{ ftl('pocket-home-make-pocket-work') }}</h2>
            <ul class="mzp-l-columns mzp-t-columns-three">
             {% call picto(
               title=ftl('pocket-home-tailor-text'),
               image_url='img/pocket/pocket-text-icon.svg',
+              image_width=40
             ) %}
             {% endcall %}
 
             {% call picto(
               title=ftl('pocket-home-categorize-saves'),
               image_url='img/pocket/pocket-tag-icon.svg',
+              image_width=40
             ) %}
             {% endcall %}
 
             {% call picto(
               title=ftl('pocket-home-listen-to-articles'),
               image_url='img/pocket/pocket-audio-icon.svg',
+              image_width=40,
             ) %}
             {% endcall %}
+
             </ul>
         </section>
+
+        <section class="pocket-homepage-premium">
+          <div class="mzp-l-content">
+            <div class="mzp-l-columns mzp-t-columns-two">
+              <div>
+                <h2>{{ ftl('pocket-home-start-with-the-best') }}</h2>
+                <p>{{ ftl('pocket-home-pocket-premium-is') }}</p>
+              </div>
+              <div>
+                <ul class="mzp-u-list-styled">
+                  <li>{{ ftl('pocket-home-permanent-library') }}</li>
+                  <li>{{ ftl('pocket-home-suggested-tags') }}</li>
+                  <li>{{ ftl('pocket-home-full-text-search') }}</li>
+                  <li>{{ ftl('pocket-home-unlimited-highlights') }}</li>
+                  <li>{{ ftl('pocket-home-premium-fonts') }}</li>
+                </ul>
+                <a href="https://getpocket.com/premium#plans" class="mzp-c-button" target="_blank" rel="external noopener">Get Pocket Premium</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="pocket-homepage-bottom mzp-l-content">
+          <h2 class="sub-section-heading">{{ ftl('pocket-home-discover-and-save') }}</h2>
+          <div class="pocket-homepage-button-center">
+            <a href="https://getpocket.com/signup?utm_source=homepage" class="mzp-c-button" target="_blank" rel="external noopener">{{ ftl('pocket-home-sign-up-for-pocket') }}</a>
+          </div>
+        </section>
+
     </div>
 
 {% include 'pocket/includes/footer.html' %}
