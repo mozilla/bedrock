@@ -9,15 +9,18 @@ pocket-home-your-own-private = Your own private corner of the web to spend quali
 pocket-home-sign-up-for-pocket = Sign up for { -brand-name-pocket }
 
 pocket-home-save-interesting-stories = Save interesting stories. Read them whenever.
-pocket-home-stop-sending-yourself-links = Stop sending yourself links. When you come across a long read, interview, think piece, even a recipe, save it to your personal Pocket library with the <span class="pocket-logo-inline">Save to Pocket</span> button in your browser or with Pocket app.
+
+# Variables:
+# $pocket-logo-inline (string) class for Pocket's inline logo
+pocket-home-stop-sending-yourself-links = Stop sending yourself links. When you come across a long read, interview, think piece, even a recipe, save it to your personal { -brand-name-pocket } library with the <span class={ $pocket-logo-inline }>Save to { -brand-name-pocket }</span> button in your browser or with { -brand-name-pocket } app.
 
 pocket-home-great-recommendations = Great recommendations — curated for you
 pocket-home-we-comb-the-internet = We comb the internet and surface the best articles out there — new perspectives, intriguing deep-dives, timeless classics — so you can find content worthy of your time.
 
-pocket-home-make-pocket-work = Make Pocket work for you
+pocket-home-make-pocket-work = Make { -brand-name-pocket } work for you
 pocket-home-tailor-text = Tailor text sizes, font styles or viewing mode for focused reading.
 pocket-home-categorize-saves = Categorize saves with tags, and keep track of key passages with highlights.
-pocket-home-listen-to-articles = Listen to articles on the Pocket app with our audio playback option.
+pocket-home-listen-to-articles = Listen to articles on the { -brand-name-pocket } app with our audio playback option.
 
 pocket-home-start-with-the-best = Start with the best version of { -brand-name-pocket }
 pocket-home-pocket-premium-is = { -brand-name-pocket-premium } is an ad-free space for you to focus on stories at your own pace. With a premium account, you get:

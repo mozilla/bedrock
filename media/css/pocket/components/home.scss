@@ -133,4 +133,13 @@ $image-path: '/media/img/pocket';
             color: $color-white;
         }
     }
+
+    .pocket-logo-inline {
+        @include image-replaced;
+        background: url('/media/img/pocket/new-tab/pocket-logo-inline.svg') no-repeat;
+        display: inline-block;
+        height: 20px;
+        vertical-align: middle;
+        width: 20px;
+    }
 }
