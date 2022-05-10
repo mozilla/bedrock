@@ -6,8 +6,8 @@
 @import '~@mozilla-protocol/core/protocol/css/base/elements/containers';
 @import '~@mozilla-protocol/core/protocol/css/components/button';
 @import '../utils/variables';
-@import '../includes/nav';
-@import '../includes/footer';
+@import '../includes/platform-nav';
+@import '../includes/platform-footer';
 
 $image-path: '/media/img/pocket';
 
@@ -59,7 +59,7 @@ $image-path: '/media/img/pocket';
         @include text-body-lg;
         padding-top: $layout-sm;
         padding-bottom: $layout-md;
-        position: relative; //needed for special top and bottom border
+        position: relative;
 
         h2 {
             font-family: $font-sans-alt;
