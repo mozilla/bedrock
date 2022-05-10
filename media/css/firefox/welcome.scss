@@ -618,17 +618,3 @@ html {
         }
     }
 }
-
-// * -------------------------------------------------------------------------- */
-// Featured Press Logos
-
-.welcome-page9-press-logos {
-    margin: 0 0 $layout-lg;
-    text-align: center;
-
-    .welcome-page9-press-logos-heading {
-        @include font-base;
-        @include font-size(18px);
-        font-weight: normal;
-    }
-}
