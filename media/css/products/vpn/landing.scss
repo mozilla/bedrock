@@ -44,24 +44,6 @@ html {
 }
 
 // * -------------------------------------------------------------------------- */
-// Featured Press Logos
-
-.vpn-featured-press-logos {
-    margin: $layout-lg 0;
-    text-align: center;
-
-    .vpn-featured-press-heading {
-        @include font-base;
-        @include font-size(18px);
-        font-weight: normal;
-
-        html[lang^='en'] & {
-            text-transform: uppercase;
-        }
-    }
-}
-
-// * -------------------------------------------------------------------------- */
 // FAQ Section
 
 .vpn-faq {
