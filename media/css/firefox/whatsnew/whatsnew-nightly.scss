@@ -52,8 +52,14 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.mzp-t-dark-override-color {
+.a-link-color {
+    a:link,
     a:visited {
-        color: inherit !important;
+        color: $color-ink-80;
+
+        &:hover,
+        &:focus {
+            color: inherit;
+        }
     }
 }
