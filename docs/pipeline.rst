@@ -103,6 +103,16 @@ to change according to the settings in the `.gitlab-ci.yml file in the www-confi
     parameter.
 
 
+What Is Currently Deployed?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can look at the git log of the ``main`` branch to find the last commit with a date-tag on it (e.g. 2022-05-05):
+this commit will be the last one that was deployed to production. You can also use the whatsdeployed.io service to get
+a nice view of what is actually currently deployed to Dev, Stage, and Prod:
+
+[![What's deployed on dev,stage,prod?](https://img.shields.io/badge/whatsdeployed-dev,stage,prod-green.svg)](https://whatsdeployed.io/s/RuO/mozilla/bedrock)
+
+
 Instance Configuration & Switches
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
