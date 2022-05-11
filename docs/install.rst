@@ -347,7 +347,7 @@ setting a ``SITE_MODE`` env var to the value of ``Pocket``.
 For local development, setting this env var is already supported in the standard ways to run the site:
 
 * Docker: ``make run-pocket`` and ``make run-pocket prod``
-* Node/webpack and Django runserver: ``npm run in-pocket-mode``
+* Local run/Node/webpack and Django runserver: ``npm run in-pocket-mode``
 * ``SITE_MODE=Pocket ./manage.py runserver`` for plain ol' Django runserver, in Pocket mode
 
 For demos on servers, remember to set the SITE_MODE env var to be the value you need (``Pocket`` or ``Mozorg`` – or nothing, which is the same as setting ``Mozorg``)
