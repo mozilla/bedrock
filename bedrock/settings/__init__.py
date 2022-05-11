@@ -154,12 +154,14 @@ if IS_POCKET_MODE:
     }
 
     FALLBACK_LOCALES = {
+        # TODO: double-check for correctness when we have real translations flowing in to Bedrock
         "es-AR": "es",
         "es-CL": "es",
         "es-MX": "es",
     }
 
     PROD_LANGUAGES = [
+        # TODO: double-check for correctness and completeness when we have real translations from the vendor
         "de",
         "en",
         "es-AR",
