@@ -148,26 +148,25 @@ if IS_POCKET_MODE:
         "en-US": "en",
         "en-GB": "en",
         "en-CA": "en",
+        "es-ES": "es-ES",
+        "es-la": "es",  # NB: es-LA isn't a real locale, but it is what getpocket.com has used and we need to deal with it
     }
 
     FALLBACK_LOCALES = {
         # TODO: double-check for correctness when we have real translations flowing in to Bedrock
-        # "es" is the fallback for non-Spain Spanish, not "es-ES"
-        "es-LA": "es",
-        "es-AR": "es",
+        # "es" is the fallback for non-Spain Spanish, not for "es-ES"
         "es-CL": "es",
         "es-MX": "es",
-        "es-ES": "es-ES",
+        "es-AR": "es",
     }
 
     PROD_LANGUAGES = [
-        # TODO: double-check for correctness and completeness when we have real translations from the vendor
+        # TODO: double-check for correctness and completeness
+        # when we have real translations from the vendor
         "de",
         "en",
-        "es-AR",
-        "es-CL",
+        "es",
         "es-ES",
-        "es-MX",
         "fr-CA",
         "fr",
         "it",
