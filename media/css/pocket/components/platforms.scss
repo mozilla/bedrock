@@ -2,6 +2,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+@use 'sass:color';
+
 @import '../utils/variables';
 @import '../includes/platform-footer';
 @import '../includes/platform-nav';
@@ -40,8 +42,8 @@ $image-path: '/media/img/pocket';
             &:hover,
             &:focus,
             &:active {
+                background-color: color.adjust($color-button-red, $lightness: -10%);
                 color: $color-white;
-                text-decoration: underline !important;
             }
         }
     }

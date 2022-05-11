@@ -196,9 +196,9 @@ $image-path: '/media/protocol/img';
     max-width: 425px;
 }
 
-.hidden-gem-media {
+.mzp-c-split-media.hidden-gem-media {
     width: 125%;
-    margin-left: -25% !important;
+    margin-left: -25%;
 }
 
 // override protocol style because of the shape of this image
