@@ -6,6 +6,7 @@
 
 
 # pocket/includes/footer.html
+# pocket/includes/platform-footer.html
 
 pocket-footer-products = Products
 pocket-footer-must-read-articles = Must-read articles
@@ -35,3 +36,21 @@ pocket-footer-cookie-preferences = Cookie preferences
 pocket-footer-read-it-later-brand-name = { -brand-name-read-it-later-inc }
 pocket-footer-twitter-brand-name = { -brand-name-twitter }
 pocket-footer-facebook-brand-name = { -brand-name-facebook }
+
+### Platform footer is used in some pages:
+
+### Pocket homepage https://www-dev-pocket.allizom.org
+### Add page URL https://www-dev-pocket.allizom.org/Add
+### All platform pages https://www-dev-pocket.allizom.org/ios
+### https://www-dev-pocket.allizom.org/android
+### https://www-dev-pocket.allizom.org/chrome
+### https://www-dev-pocket.allizom.org/safari
+### https://www-dev-pocket.allizom.org/opera
+### https://www-dev-pocket.allizom.org/edge
+
+pocket-footer-explore = Explore
+pocket-footer-publishers = Publishers
+pocket-footer-developers = Developers
+pocket-footer-support = Support
+pocket-footer-jobs = Jobs
+pocket-footer-read-it-later = 2022 Read it Later, Inc
