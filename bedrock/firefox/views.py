@@ -746,6 +746,10 @@ class NewView(L10nTemplateView):
 
         ctx["variant"] = variant
 
+        reason = self.request.GET.get("reason", None)
+        manual_update = True if reason == "manual-update" else False
+        ctx["manual_update"] = manual_update
+
         return ctx
 
     def get_template_names(self):
