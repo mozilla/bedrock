@@ -144,10 +144,7 @@ if IS_POCKET_MODE:
     ]
 
     CANONICAL_LOCALES = {
-        # TODO: check whether redundant when we have real translations flowing in to Bedrock
-        "en-US": "en",
-        "en-GB": "en",
-        "en-CA": "en",
+        # We want to ensure es-ES gets its specific translations, rather than falling back to 'es'
         "es-ES": "es-ES",
     }
 
