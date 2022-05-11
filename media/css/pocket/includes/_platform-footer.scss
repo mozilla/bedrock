@@ -7,9 +7,8 @@
 $image-path: '/media/protocol/img';
 
 .platform-footer {
-    border-top: 1px solid #cacaca;
-    background-color: $color-light-gray-05;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #f9f9fa;
+    font-family: $font-sans;
     padding-top: $spacing-xl;
 
     .footer-navigation {
