@@ -14,23 +14,29 @@ $image-path: '/media/protocol/img';
 
     .footer-navigation {
         display: flex;
-        flex-direction: column-reverse;
+        flex-flow: column-reverse wrap;
         margin: 0 auto;
         max-width: $screen-lg;
         width: 100%;
+        height: auto;
 
         @media #{$mq-md} {
-            flex-direction: row;
+            flex-flow: column nowrap;
+            align-items: center;
             justify-content: space-between;
+            padding: 80px 0;
         }
 
         .footer-navigation-list {
-            @include text-body-xs;
+            @include text-body-md;
+            color: $color-text-primary;
             display: flex;
-            flex-direction: column;
-            font-weight: 700;
-            margin: 0;
-            padding: 0 $spacing-md;
+            flex-flow: column wrap;
+            height: 220px;
+            justify-content: center;
+            margin: 0 auto $layout-xs;
+            max-width: 500px;
+            width: 100%;
 
             .footer-navigation-list-item {
                 margin: 0 0 $spacing-md;
@@ -39,6 +45,7 @@ $image-path: '/media/protocol/img';
                 a {
                     color: $color-text-primary;
                     text-decoration: none;
+                    margin: $spacing-lg $spacing-xs;
 
                     &:hover,
                     &:active,
@@ -50,6 +57,8 @@ $image-path: '/media/protocol/img';
 
             @media #{$mq-md} {
                 flex-direction: row;
+                height: auto;
+                max-width: 100%;
 
                 .footer-navigation-list-item {
                     margin: 0 $spacing-sm 0;
@@ -65,15 +74,13 @@ $image-path: '/media/protocol/img';
 
 .platform-footer-socials { /* stylelint-disable-line selector-class-pattern */
     padding: 0 $spacing-md;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     .footer-socials-wrapper {
         display: flex;
-    }
-
-    .footer-socials-text {
-        @include text-body-xs;
-        font-weight: 700;
-        margin-right: $spacing-md;
+        margin-bottom: $spacing-md;
     }
 
     .socials-list {
@@ -92,36 +99,48 @@ $image-path: '/media/protocol/img';
                 height: 20px;
                 width: 20px;
 
-                &.twitter {
-                    background-image: url('/media/img/pocket/platform-footer/twitter-logo.svg');
+                .svg-social {
+                    fill: currentColor;
+                    display: block;
+                    color: $color-text-primary;
+                    width: 30px;
+                    transition: color 100ms ease-in-out;
 
-                    &:hover,
-                    &:focus,
-                    &:active {
-                        background-image: url('#{$image-path}/icons/social/twitter/brand.svg');
+                    &.twitter {
+                        @media #{$mq-md} {
+                            // margin-right: $spacing-sm;
+                        }
+
+                        &:hover,
+                        &:focus,
+                        &:active {
+                            color: $color-twitter-blue;
+                        }
                     }
-                }
 
-                &.facebook {
-                    background-image: url('/media/img/pocket/platform-footer/facebook-logo.svg');
-
-                    &:hover,
-                    &:focus,
-                    &:active {
-                        background-image: url('#{$image-path}/icons/social/facebook/brand.svg');
+                    &.facebook {
+                        &:hover,
+                        &:focus,
+                        &:active {
+                            color: $color-facebook-blue;
+                        }
                     }
                 }
 
                 span {
                     @include visually-hidden;
                 }
+
+                &.twitter {
+                    margin-right: $spacing-lg;
+                }
             }
         }
     }
 
     .platform-footer-copyright {
-        @include text-body-xs;
-        color: #8c8c8c;
+        @include text-body-md;
+        color: $color-text-primary;
         font-weight: 300;
         text-align: left;
 
