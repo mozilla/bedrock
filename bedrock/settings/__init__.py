@@ -184,6 +184,7 @@ if IS_POCKET_MODE:
 
     # No reason to have separate Dev and Prod lang sets for Pocket mode
     DEV_LANGUAGES = PROD_LANGUAGES
+    LANGUAGE_CODE = "en"  # Pocket uses `en` not `en-US`
 
 else:
     ROOT_URLCONF = "bedrock.urls.mozorg_mode"
