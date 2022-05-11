@@ -24,10 +24,24 @@
    #    (or just keep that line)
    # 6. Add `class="mzp-u-list-styled"` to any top-level `<ol>` or `<ul>` elements
    #    (no class is required on nested lists)
+   # 7. Add the table of contents as an ordered list above the introduction,
+   #    with links to each top-level heading.
   #}
   <h1 class="mzp-c-article-title" id="mozilla-root-store-policy">Mozilla Root Store Policy</h1>
   <p><em>Version 2.8</em></p>
   <p><em><a href="https://wiki.mozilla.org/CA/Root_Store_Policy_Archive">Effective June 1, 2022</a></em></p>
+
+  <ol class="mzp-u-list-styled">
+    <li><a href="#1-introduction">Introduction</a></li>
+    <li><a href="#2-certificate-authorities">Certificate Authorities</a></li>
+    <li><a href="#3-documentation">Documentation</a></li>
+    <li><a href="#4-common-ca-database">Common CA Database</a></li>
+    <li><a href="#5-certificates">Certificates</a></li>
+    <li><a href="#6-revocation">Revocation</a></li>
+    <li><a href="#7-root-store-changes">Root Store Changes</a></li>
+    <li><a href="#8-ca-operational-changes">CA Operational Changes</a></li>
+  </ol>
+
   <h2 id="1-introduction">1. Introduction</h2>
   <p>When distributing binary and source code versions of Firefox, Thunderbird, and
   other Mozilla-related software products, Mozilla includes with such software
