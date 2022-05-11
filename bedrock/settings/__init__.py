@@ -143,6 +143,50 @@ if IS_POCKET_MODE:
         FLUENT_REPO_PATH,
     ]
 
+    DEV_LANGUAGES = get_dev_languages(
+        fluent_repo_path=FLUENT_REPO_PATH,
+        ignore_lang_dirs=IGNORE_LANG_DIRS,
+        prod_languages=PROD_LANGUAGES,
+    )
+    DEV_LANGUAGES.append("en")
+
+    CANONICAL_LOCALES = {
+        # TODO: check whether redundant
+        "en-US": "en",
+        "en-GB": "en",
+        "en-CA": "en",
+        "es-ES": "es-ES",  # TODO: check whether redundant
+        "es-CL": "es",
+        "es-MX": "es",
+    }
+
+    FALLBACK_LOCALES = {
+        "es-AR": "es",
+        "es-CL": "es",
+        "es-MX": "es",
+    }
+
+    PROD_LANGUAGES = [
+        "de",
+        "en",
+        "es-AR",
+        "es-CL",
+        "es-ES",
+        "es-MX",
+        "fr-CA",
+        "fr",
+        "it",
+        "ja",
+        "ko",
+        "nl",
+        "pl",
+        "pt-BR",
+        "pt-PT",
+        "ru",
+        "zh-CN",
+        "zh-TW",
+    ]
+
 else:
     ROOT_URLCONF = "bedrock.urls.mozorg_mode"
 
@@ -161,4 +205,4 @@ if (len(sys.argv) > 1 and sys.argv[1] == "test") or "pytest" in sys.modules:
 
     DATABASES["default"] = {"ENGINE": "django.db.backends.sqlite3", "NAME": ":memory:"}
 
-sys.stdout.write(f"Using SITE_MODE of '{site_mode}' and ROOT_URLCONF of '{ROOT_URLCONF}'\n")
+sys.stdout.write(f"Using SITE_MODE of '{site_mode}'\n")
