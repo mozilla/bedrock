@@ -148,16 +148,16 @@ if IS_POCKET_MODE:
         "en-US": "en",
         "en-GB": "en",
         "en-CA": "en",
-        "es-ES": "es-ES",  # TODO: check whether redundant
-        "es-CL": "es",
-        "es-MX": "es",
     }
 
     FALLBACK_LOCALES = {
         # TODO: double-check for correctness when we have real translations flowing in to Bedrock
+        # "es" is the fallback for non-Spain Spanish, not "es-ES"
+        "es-LA": "es",
         "es-AR": "es",
         "es-CL": "es",
         "es-MX": "es",
+        "es-ES": "es-ES",
     }
 
     PROD_LANGUAGES = [
