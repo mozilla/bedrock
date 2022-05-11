@@ -72,6 +72,14 @@
   <p class="mzp-l-content download-another-language-link">
     <a href="{{ firefox_url('desktop', 'all') }}">{{ ftl('firefox-new-download-in-another-language') }}</a>
   </p>
+
+  {# Temporary full installer links for Windows 7 see: https://github.com/mozilla/bedrock/issues/11606 #}
+  {{ download_firefox(
+    platform='desktop',
+    force_direct=true,
+    force_full_installer=true,
+    dom_id='thanks-full-installer')
+  }}
 </main>
 {% endblock %}
 

@@ -132,6 +132,11 @@ describe('site.js', function () {
         it('should identify a Windows version', function () {
             expect(
                 window.site.getPlatformVersion(
+                    'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36'
+                )
+            ).toBe('6.1');
+            expect(
+                window.site.getPlatformVersion(
                     'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 7.1; Trident/5.0)'
                 )
             ).toBe('7.1');

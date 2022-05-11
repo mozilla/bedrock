@@ -227,7 +227,7 @@ def download_firefox_thanks(ctx, dom_id=None, locale=None, alt_copy=None, button
         "win",
         locale,
         force_direct=True,
-        force_full_installer=False,
+        force_full_installer=True,  # Temporarily force full installer for legacy IE https://github.com/mozilla/bedrock/issues/11606
         force_funnelcake=False,
         funnelcake_id=funnelcake_id,
     )
