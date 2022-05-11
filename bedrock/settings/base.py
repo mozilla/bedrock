@@ -276,22 +276,7 @@ POCKET_FLUENT_REPO_URL = f"https://github.com/{POCKET_FLUENT_REPO}"
 POCKET_FLUENT_REPO_PATH = DATA_PATH / "pocket-www-l10n"
 POCKET_FLUENT_REPO_BRANCH = config("POCKET_FLUENT_REPO_BRANCH", default="main")
 
-# This config is used to ensure that l10n_update.py can pull from both, separate,
-# L10N repos for Mozorg and for Pocket and update the appropriate dirs
-FLUENT_L10N_UPDATE_PARAMS = {
-    "Mozorg": dict(
-        path=FLUENT_REPO_PATH,
-        remote_url=FLUENT_REPO_URL,
-        branch_name=FLUENT_REPO_BRANCH,
-    ),
-    "Pocket": dict(
-        path=POCKET_FLUENT_REPO_PATH,
-        remote_url=POCKET_FLUENT_REPO_URL,
-        branch_name=POCKET_FLUENT_REPO_BRANCH,
-    ),
-}
-
-# templates to exclude from having an "edit this page" link in the footer
+# Templates to exclude from having an "edit this page" link in the footer
 # these are typically ones for which most of the content is in the DB
 EXCLUDE_EDIT_TEMPLATES = [
     "firefox/releases/nightly-notes.html",

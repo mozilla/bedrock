@@ -114,24 +114,22 @@ if IS_POCKET_MODE:
         "footer",
     ]
 
-    # Note that for Pocket mode, we don't need an intermediary mozmeao/* repo to hold the translations
-    # while we calculate activation metadata via a CI task (which does happen for Mozorg). Why? All
-    # locales in Pocket should be 100% ready to go, because they are translated by a vendor, whereas
-    # Mozorg has community translation contributions as well, which aren't always exhaustive.
+    # The following lines do two things, both related to L10N and Pocket.
     #
-    # As a result, both FLUENT_REPO and FLUENT_L10N_TEAM_REPO point to the same git repo
+    # 1) For Pocket mode, we don't need an intermediary mozmeao repo to hold translations while
+    # we calculate activation metadata via CI (which does happen for Mozorg). Why? All locales
+    # in Pocket are translated by a vendor, so should be 100% ready to go. This means that both
+    # FLUENT_REPO and FLUENT_L10N_TEAM_REPO can point to the same git repo.
+    #
+    # 2) Pocket-specific config has already been defined in settings/base.py (for other reasons),
+    # so here we can use those existing POCKET_FLUENT_* values to override our regular FLUENT_*
+    # defaults. This means the L10N mechanics don't need to include any Pocket-related code
+    # branching and just work on whatever the configured repos and directories are.
 
-    # These are already pre-defined in settings.base, but we make the POCKET_ ones here the defaults
-    # so that L10N mechanics don't need any other code branching in them
-    FLUENT_REPO = POCKET_FLUENT_REPO
-    FLUENT_REPO_URL = POCKET_FLUENT_REPO_URL
-    FLUENT_REPO_BRANCH = POCKET_FLUENT_REPO_BRANCH
-    FLUENT_REPO_PATH = POCKET_FLUENT_REPO_PATH
-
-    FLUENT_L10N_TEAM_REPO = config("POCKET_FLUENT_L10N_TEAM_REPO", default="mozilla-l10n/pocket-www-l10n")
-    FLUENT_L10N_TEAM_REPO_URL = f"https://github.com/{FLUENT_L10N_TEAM_REPO}"
-    FLUENT_L10N_TEAM_REPO_BRANCH = config("POCKET_FLUENT_L10N_TEAM_REPO_BRANCH", default="main")
-    FLUENT_L10N_TEAM_REPO_PATH = DATA_PATH / "l10n-pocket-team"
+    FLUENT_REPO = FLUENT_L10N_TEAM_REPO = POCKET_FLUENT_REPO
+    FLUENT_REPO_URL = FLUENT_L10N_TEAM_REPO_URL = POCKET_FLUENT_REPO_URL
+    FLUENT_REPO_BRANCH = FLUENT_L10N_TEAM_REPO_BRANCH = POCKET_FLUENT_REPO_BRANCH
+    FLUENT_REPO_PATH = FLUENT_L10N_TEAM_REPO_PATH = POCKET_FLUENT_REPO_PATH
 
     # Note: No need to redefine FLUENT_REPO_AUTH - we'll use the same for Pocket mode as for Mozorg mode
 
@@ -146,7 +144,7 @@ if IS_POCKET_MODE:
     ]
 
     CANONICAL_LOCALES = {
-        # TODO: check whether redundant
+        # TODO: check whether redundant when we have real translations flowing in to Bedrock
         "en-US": "en",
         "en-GB": "en",
         "en-CA": "en",
