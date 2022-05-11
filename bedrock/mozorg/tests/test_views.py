@@ -20,17 +20,17 @@ class TestViews(TestCase):
     def test_download_button_funnelcake(self):
         """The download button should have the funnelcake ID."""
         with self.activate("en-US"):
-            resp = self.client.get(reverse("mozorg.home"), {"f": "5"})
+            resp = self.client.get(reverse("firefox.download.thanks"), {"f": "5"})
             assert b"product=firefox-stub-f5&" in resp.content
 
     def test_download_button_bad_funnelcake(self):
         """The download button should not have a bad funnelcake ID."""
         with self.activate("en-US"):
-            resp = self.client.get(reverse("mozorg.home"), {"f": "5dude"})
+            resp = self.client.get(reverse("firefox.download.thanks"), {"f": "5dude"})
             assert b"product=firefox-stub&" in resp.content
             assert b"product=firefox-stub-f5dude&" not in resp.content
 
-            resp = self.client.get(reverse("mozorg.home"), {"f": "999999999"})
+            resp = self.client.get(reverse("firefox.download.thanks"), {"f": "999999999"})
             assert b"product=firefox-stub&" in resp.content
             assert b"product=firefox-stub-f999999999&" not in resp.content
 

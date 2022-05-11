@@ -41,7 +41,19 @@ if (typeof window.Mozilla === 'undefined') {
 
         switch (site.platform) {
             case 'windows':
-                link = document.getElementById(prefix + 'win');
+                /**
+                 * Temporarily serve Windows 7 users the full installer.
+                 * See: https://github.com/mozilla/bedrock/issues/11606
+                 */
+
+                var version = site.platformVersion
+                    ? parseFloat(site.platformVersion)
+                    : 0;
+                if (version === 6.1) {
+                    link = document.getElementById('thanks-full-installer-win');
+                } else {
+                    link = document.getElementById(prefix + 'win');
+                }
                 break;
             case 'osx':
                 link = document.getElementById(prefix + 'osx');
