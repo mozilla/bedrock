@@ -12,8 +12,8 @@ from bedrock.base import views as base_views
 
 # The default django 404 and 500 handler doesn't run the ContextProcessors,
 # which breaks the base template page. So we replace them with views that do!
-handler500 = "bedrock.base.views.server_error_view"
-handler404 = "bedrock.base.views.page_not_found_view"
+handler500 = "bedrock.pocket.views.server_error_view"
+handler404 = "bedrock.pocket.views.page_not_found_view"
 
 
 urlpatterns = (
