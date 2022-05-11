@@ -9,7 +9,10 @@
 
 -brand-name-mozilla = Mozilla
 -brand-name-pocket = Pocket
+-brand-name-amazon = Amazon
 -brand-name-read-it-later-inc = Read It Later, Inc.
+
+
 
 ## Pocket product
 
@@ -23,6 +26,9 @@
 
 -brand-name-ios = iOS
 -brand-name-android = Android
+-brand-name-mac-short = Mac
+-brand-name-windows = Windows
+-brand-name-windows-mobile = Windows Mobile
 
 ## Other browsers
 
@@ -34,10 +40,16 @@
 ## Third parties
 
 -brand-name-twitter = Twitter
+-brand-name-tweetbot = Tweetbot
 -brand-name-facebook = Facebook
 -brand-name-instagram = Instagram
 -brand-name-google-play = Google Play
 -brand-name-apple-app-store = Apple App Store
+-brand-name-kobo = Kobo
+-brand-name-blackberry = Blackberry
+-brand-name-flipboard = Flipboard
+-brand-name-feedly = Feedly
+
 
 ## Apple products
 

@@ -8,7 +8,7 @@
 
 {% from "macros-protocol.html" import split with context %}
 
-{% block page_title %}How to Save{% endblock %}
+{% block page_title %}{{ ftl('pocket-how-to-save') }}{% endblock %}
 
 {% block pocket_css %}
   {{ css_bundle('protocol-split') }}
@@ -26,37 +26,37 @@
           media_class='mzp-l-split-h-center',
           image_url='img/pocket/add-pocket-header.jpg',
           )%}
-          <h2>Save to Pocket from Firefox</h2>
-          <p>Click the Pocket button in your Firefox toolbar to save articles, videos, pages, and more.</p>
-          <a href="https://help.getpocket.com/article/900-saving-to-pocket-and-viewing-your-list-in-firefox" class="mzp-c-button" target="_blank" rel="external noopener">Learn how</a>
+          <h2>{{ ftl('pocket-save-to-pocket') }}</h2>
+          <p>{{ ftl('pocket-click-the-pocket-button') }}</p>
+          <a href="https://help.getpocket.com/article/900-saving-to-pocket-and-viewing-your-list-in-firefox" class="mzp-c-button" target="_blank" rel="external noopener">{{ ftl('pocket-learn-how') }}</a>
            <p>
               <a href="https://help.getpocket.com/article/942-where-is-the-pocket-button-in-firefox" class="dark-inline-link rarrow" target="_blank" rel="noopener noreferrer">
-                Don't see the Pocket button?
+               {{ ftl('pocket-dont-see-the-pocket') }}
               </a>
           </p>
           {% endcall %}
    </section>
 
    <section class="add-device">
-         <h2>View from any Device</h2>
+         <h2>{{ ftl('pocket-view-from-any') }}</h2>
       <div class="device-context">
          <div class="device-image">
             <img src="{{ static('img/pocket/add-any-device.jpg') }}" alt="Different devices displaying Pocket articles">
          </div>
          <div class="app-stores">
-            <h3>Get Pocket for:</h3>
+            <h3>{{ ftl('pocket-get-pocket-for') }}</h3>
             <ul class="app-store-list">
-               <li class="app-store-badge" aria-label="ios store"><a href="https://apps.apple.com/app/read-it-later-pro/id309601447" target="_blank" rel="noopener noreferrer" class="dark-inline-link"><img src="{{ static('img/pocket/app-button-apple.png') }}" alt=""></a></li>
-               <li class="app-store-badge" aria-label="mac app store"><a href="https://apps.apple.com/app/pocket/id568494494?ls=1&mt=12" target="_blank" rel="noopener noreferrer" class="dark-inline-link"><img src="{{ static('img/pocket/app-button-mac.png') }}" alt=""></a></li>
-               <li class="app-store-badge" aria-label="google play store"><a href="https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro" target="_blank" rel="noopener noreferrer" class="dark-inline-link"><img src="{{ static('img/pocket/app-button-google.png') }}" alt=""></a></li>
-               <li class="app-store-badge" aria-label="amazon app store"><a href="https://www.amazon.com/dp/B0057PAY8G" target="_blank" rel="noopener noreferrer" class="dark-inline-link"><img src="{{ static('img/pocket/app-button-amazon.png') }}" alt=""></a></li>
+               <li class="app-store-badge" aria-label="{{ ftl('pocket-apple-app-store') }}"><a href="https://apps.apple.com/app/read-it-later-pro/id309601447" target="_blank" rel="noopener noreferrer" class="dark-inline-link"><img src="{{ static('img/pocket/app-button-apple.png') }}" alt=""></a></li>
+               <li class="app-store-badge" aria-label="{{ ftl('pocket-mac-app-store') }}"><a href="https://apps.apple.com/app/pocket/id568494494?ls=1&mt=12" target="_blank" rel="noopener noreferrer" class="dark-inline-link"><img src="{{ static('img/pocket/app-button-mac.png') }}" alt=""></a></li>
+               <li class="app-store-badge" aria-label="{{ ftl('pocket-google-play-store') }}"><a href="https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro" target="_blank" rel="noopener noreferrer" class="dark-inline-link"><img src="{{ static('img/pocket/app-button-google.png') }}" alt=""></a></li>
+               <li class="app-store-badge" aria-label="{{ ftl('pocket-amazon-app-store') }}"><a href="https://www.amazon.com/dp/B0057PAY8G" target="_blank" rel="noopener noreferrer" class="dark-inline-link"><img src="{{ static('img/pocket/app-button-amazon.png') }}" alt=""></a></li>
             </ul>
             <ul class="device-list">
-               <li><a href="https://chrome.google.com/webstore/detail/save-to-pocket/niloccemoadcdkdjlinkgdfekeahmflj?hl=en" target="_blank" rel="noopener noreferrer" class="dark-inline-link rarrow">Windows</a></li>
-               <li><a href="https://help.getpocket.com/article/1006-getting-started-with-kobo" target="_blank" rel="noopener noreferrer" class="dark-inline-link rarrow">Kobo e-reader</a></li>
-               <li><a href="https://getpocket.com/apps/windowsphone/" target="_blank" rel="noopener noreferrer" class="dark-inline-link rarrow">Windows Mobile</a></li>
-               <li><a href="https://getpocket.com/apps/blackberry/" target="_blank" rel="noopener noreferrer" class="dark-inline-link rarrow">Blackberry</a></li>
-               <li><a href="https://getpocket.com/apps/" target="_blank" rel="noopener noreferrer" class="dark-inline-link rarrow">More Apps</a></li>
+               <li><a href="https://chrome.google.com/webstore/detail/save-to-pocket/niloccemoadcdkdjlinkgdfekeahmflj?hl=en" target="_blank" rel="noopener noreferrer" class="dark-inline-link rarrow">{{ ftl('pocket-windows') }}</a></li>
+               <li><a href="https://help.getpocket.com/article/1006-getting-started-with-kobo" target="_blank" rel="noopener noreferrer" class="dark-inline-link rarrow">{{ ftl('pocket-kobo-e-reader') }}</a></li>
+               <li><a href="https://getpocket.com/apps/windowsphone/" target="_blank" rel="noopener noreferrer" class="dark-inline-link rarrow">{{ ftl('pocket-windows-mobile') }}</a></li>
+               <li><a href="https://getpocket.com/apps/blackberry/" target="_blank" rel="noopener noreferrer" class="dark-inline-link rarrow">{{ ftl('pocket-blackberry') }}</a></li>
+               <li><a href="https://getpocket.com/apps/" target="_blank" rel="noopener noreferrer" class="dark-inline-link rarrow">{{ ftl('pocket-more-apps') }}</a></li>
             </ul>
          </div>
       </div>
@@ -64,46 +64,46 @@
 
    <section class="add-save">
       <div class="add-save-wrapper">
-            <h2>Unlimited Ways to Save</h2>
+            <h2>{{ ftl('pocket-unlimited-ways') }}</h2>
          <div class="save-context">
             <div class="save-email">
-               <h3>Save via e-mail</h3>
-               <p>email any link to your list by sending it to <a href="mailto:add@getpocket.com" class="dark-inline-link">add@getpocket.com</a> </p>
+               <h3>{{ ftl('pocket-save-via-email') }}</h3>
+               <p>{{ ftl('pocket-email-any-link', add_email='add@getpocket.com',add_email_link='mailto:add@getpocket.com') }}</p>
                <div class="save-email-image">
                   <img src="{{ static('img/pocket/save-via-email.png') }}" alt="">
                </div>
-               <a href="https://help.getpocket.com/article/1020-saving-to-pocket-via-email" target="_blank" rel="noopener noreferrer" class="dark-inline-link rarrow">Learn more</a>
+               <a href="https://help.getpocket.com/article/1020-saving-to-pocket-via-email" target="_blank" rel="noopener noreferrer" class="dark-inline-link rarrow">{{ ftl('pocket-learn-more') }}</a>
             </div>
             <div class="save-apps">
-               <h3>Integrated in 1500+ Apps</h3>
+               <h3>{{ ftl('pocket-integrated-in') }}</h3>
                <p>Save to Pocket using your favorite apps, such as:</p>
                <div class="app-types">
                   <ul class="app-board">
-                     <li class="app-icon" aria-label="twitter">
+                     <li class="app-icon" aria-label="{{ ftl('pocket-twitter') }}">
                        <a href="https://twitter.com" target="_blank" rel="external noopener">
                          <img src="{{ static('img/pocket/pocket-twitter.svg') }}" alt="">
                        </a>
                      </li>
-                     <li class="app-icon" aria-label="flipboard">
+                     <li class="app-icon" aria-label="{{ ftl('pocket-flipboard') }}">
                        <a href="https://flipboard.com" target="_blank" rel="external noopener">
                          <img src="{{ static('img/pocket/pocket-flipboard.svg') }}" alt="">
                        </a>
                      </li>
-                     <li class="app-icon" aria-label="tweetbot">
+                     <li class="app-icon" aria-label="{{ ftl('pocket-tweetbot') }}">
                        <a href="https://tapbots.com/tweetbot/" target="_blank" rel="external noopener">
                          <img src="{{ static('img/pocket/pocket-tweetbot.svg') }}" alt="">
                        </a>
                      </li>
-                     <li class="app-icon" aria-label="feedly">
+                     <li class="app-icon" aria-label="{{ ftl('pocket-feedly') }}">
                        <a href="https://feedly.com" target="_blank" rel="external noopener">
                          <img src="{{ static('img/pocket/pocket-feedly.svg') }}" alt="">
                        </a>
                      </li>
                   </ul>
                   <ul class="social-apps">
-                     <li><a href="https://getpocket.com/apps/twitter/" target="_blank" rel="noopener noreferrer" class="dark-inline-link rarrow">Twitter Apps</a></li>
-                     <li><a href="https://getpocket.com/apps/news/" target="_blank" rel="noopener noreferrer" class="dark-inline-link rarrow">News Apps</a></li>
-                     <li><a href="https://getpocket.com/apps/" target="_blank" rel="noopener noreferrer" class="dark-inline-link rarrow">More</a></li>
+                     <li><a href="https://getpocket.com/apps/twitter/" target="_blank" rel="noopener noreferrer" class="dark-inline-link rarrow">{{ ftl('pocket-twitter-apps') }}</a></li>
+                     <li><a href="https://getpocket.com/apps/news/" target="_blank" rel="noopener noreferrer" class="dark-inline-link rarrow">{{ ftl('pocket-news-apps') }}</a></li>
+                     <li><a href="https://getpocket.com/apps/" target="_blank" rel="noopener noreferrer" class="dark-inline-link rarrow">{{ ftl('pocket-more') }}</a></li>
                   </ul>
                </div>
             </div>
