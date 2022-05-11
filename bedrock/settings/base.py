@@ -223,8 +223,8 @@ PROD_LANGUAGES = sorted(sum(LOCALES_BY_REGION.values(), []) + ["ja-JP-mac"])
 
 GITHUB_REPO = "https://github.com/mozilla/bedrock"
 
-# NOTE: This default l10n config is for mozorg.
-# In settings/__init__.py we plug in an alternative Pocket-appropriate l10n setup.
+# IMPORTANT: The default l10n config here is for Mozorg. See settings/__init__.py
+# for where we plug in an alternative Pocket-appropriate l10n setup.
 
 # Global L10n files.
 FLUENT_DEFAULT_FILES = [
@@ -258,7 +258,7 @@ FLUENT_L10N_TEAM_REPO_BRANCH = config("FLUENT_L10N_TEAM_REPO_BRANCH", default="m
 FLUENT_L10N_TEAM_REPO_PATH = DATA_PATH / "l10n-team"
 # 10 seconds during dev and 10 min in prod
 FLUENT_CACHE_TIMEOUT = config("FLUENT_CACHE_TIMEOUT", default="10" if DEBUG else "600", parser=int)
-# order matters. first sting found wins.
+# Order matters. first string found wins.
 FLUENT_PATHS = [
     # local FTL files
     FLUENT_LOCAL_PATH,
@@ -291,23 +291,15 @@ IGNORE_LANG_DIRS = [
 ]
 
 
-def get_dev_languages(
-    fluent_repo_path,
-    ignore_lang_dirs,
-    prod_languages,
-):
+def get_dev_languages():
     try:
-        return [lang.name for lang in fluent_repo_path.iterdir() if lang.is_dir() and lang.name not in ignore_lang_dirs]
+        return [lang.name for lang in FLUENT_REPO_PATH.iterdir() if lang.is_dir() and lang.name not in IGNORE_LANG_DIRS]
     except OSError:
         # no locale dir
-        return list(prod_languages)
+        return list(PROD_LANGUAGES)
 
 
-DEV_LANGUAGES = get_dev_languages(
-    fluent_repo_path=FLUENT_REPO_PATH,
-    ignore_lang_dirs=IGNORE_LANG_DIRS,
-    prod_languages=PROD_LANGUAGES,
-)
+DEV_LANGUAGES = get_dev_languages()
 DEV_LANGUAGES.append("en-US")
 
 # Map short locale names to long, preferred locale names. This
