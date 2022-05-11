@@ -106,13 +106,33 @@ if IS_POCKET_MODE:
     INSTALLED_APPS.pop(INSTALLED_APPS.index("bedrock.redirects"))
     MIDDLEWARE.pop(MIDDLEWARE.index("bedrock.redirects.middleware.RedirectsMiddleware"))
 
-    # TODO: define in Pocket-appropriate versions of
-    # DEV_LANGUAGES, PROD_LANGUAGES, CANONICAL_LOCALES,
+    # Override the FLUENT_* config for Pocket mode
+
     FLUENT_DEFAULT_FILES = [
         "brands",
         "nav",
         "footer",
     ]
+
+    # Note that for Pocket mode, we don't need an intermediary mozmeao/* repo to hold the translations
+    # while we calculate activation metadata via a CI task (which does happen for Mozorg). Why? All
+    # locales in Pocket should be 100% ready to go, because they are translated by a vendor, whereas
+    # Mozorg has community translation contributions as well, which aren't always exhaustive.
+    #
+    # As a result, both FLUENT_REPO and FLUENT_L10N_TEAM_REPO point to the same git repo
+
+    FLUENT_REPO = config("POCKET_FLUENT_REPO", default="mozilla-l10n/pocket-www-l10n")
+    FLUENT_REPO_URL = f"https://github.com/{FLUENT_REPO}"
+    FLUENT_REPO_BRANCH = config("POCKET_FLUENT_REPO_BRANCH", default="main")
+    FLUENT_REPO_PATH = DATA_PATH / "pocket-www-l10n"
+
+    FLUENT_L10N_TEAM_REPO = config("POCKET_FLUENT_L10N_TEAM_REPO", default="mozilla-l10n/pocket-www-l10n")
+    FLUENT_L10N_TEAM_REPO_URL = f"https://github.com/{FLUENT_L10N_TEAM_REPO}"
+    FLUENT_L10N_TEAM_REPO_BRANCH = config("POCKET_FLUENT_L10N_TEAM_REPO_BRANCH", default="main")
+    FLUENT_L10N_TEAM_REPO_PATH = DATA_PATH / "l10n-pocket-team"
+
+    # Note: No need to redefine FLUENT_REPO_AUTH - we'll use the same for Pocket mode as for Mozorg mode
+
     # Redefine the FLUENT_LOCAL_PATH for a Pocket-specific one and
     # ensure it is the first one we check, because order matters.
     FLUENT_LOCAL_PATH = ROOT_PATH / "l10n-pocket"
