@@ -152,9 +152,6 @@ if IS_POCKET_MODE:
     }
 
     FALLBACK_LOCALES = {
-        "es-CL": "es",
-        "es-MX": "es",
-        "es-AR": "es",
         # NB: es-LA isn't a real locale, but it is what getpocket.com has used
         # and we need to deal with it, by redirecting to international Spanish
         "es-la": "es",
