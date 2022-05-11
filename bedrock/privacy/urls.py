@@ -15,7 +15,6 @@ urlpatterns = (
     page("email/", "privacy/email.html", active_locales=["en-US", "de", "fr"]),
     path("betterweb/", views.firefox_betterweb_notices, name="privacy.notices.firefox-betterweb"),
     path("firefox/", views.firefox_notices, name="privacy.notices.firefox"),
-    path("firefox-os/", views.firefox_os_notices, name="privacy.notices.firefox-os"),
     path("firefox-fire-tv/", views.firefox_fire_tv_notices, name="privacy.notices.firefox-fire-tv"),
     path("firefox-focus/", views.firefox_focus_notices, name="privacy.notices.firefox-focus"),
     path("firefox-reality/", views.firefox_reality_notices, name="privacy.notices.firefox-reality"),
@@ -57,4 +56,5 @@ urlpatterns = (
     page("archive/thunderbird/2010-06/", "privacy/archive/thunderbird-2010-06.html", ftl_files=["privacy/index"], active_locales=["en-US"]),
     page("archive/websites/2013-08/", "privacy/archive/websites-2013-08.html", ftl_files=["privacy/index"], active_locales=["en-US"]),
     page("archive/persona/2017-07/", "privacy/archive/persona-2017-07.html", ftl_files=["privacy/index"], active_locales=["en-US"]),
+    page("archive/firefox-os/2022-05/", "privacy/archive/firefox-os-2022-05.html", ftl_files=["privacy/index"], active_locales=["en-US"]),
 )
