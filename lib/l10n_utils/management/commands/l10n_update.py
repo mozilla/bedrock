@@ -25,11 +25,12 @@ class Command(BaseCommand):
         self.update_fluent_files(options["clean"])
 
     def update_fluent_files(self, clean=False):
-        repo = GitRepo(settings.FLUENT_REPO_PATH, settings.FLUENT_REPO_URL, settings.FLUENT_REPO_BRANCH)
-        if clean:
-            repo.reclone()
-        else:
-            repo.update()
+        for site, params in settings.FLUENT_L10N_UPDATE_PARAMS.items():
+            repo = GitRepo(**params)
+            if clean:
+                repo.reclone()
+            else:
+                repo.update()
 
-        repo.update()
-        self.stdout.write("Updated .ftl files")
+            repo.update()
+            self.stdout.write(f"Updated .ftl files for {site}")

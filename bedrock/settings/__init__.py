@@ -121,10 +121,12 @@ if IS_POCKET_MODE:
     #
     # As a result, both FLUENT_REPO and FLUENT_L10N_TEAM_REPO point to the same git repo
 
-    FLUENT_REPO = config("POCKET_FLUENT_REPO", default="mozilla-l10n/pocket-www-l10n")
-    FLUENT_REPO_URL = f"https://github.com/{FLUENT_REPO}"
-    FLUENT_REPO_BRANCH = config("POCKET_FLUENT_REPO_BRANCH", default="main")
-    FLUENT_REPO_PATH = DATA_PATH / "pocket-www-l10n"
+    # These are already pre-defined in settings.base, but we make the POCKET_ ones here the defaults
+    # so that L10N mechanics don't need any other code branching in them
+    FLUENT_REPO = POCKET_FLUENT_REPO
+    FLUENT_REPO_URL = POCKET_FLUENT_REPO_URL
+    FLUENT_REPO_BRANCH = POCKET_FLUENT_REPO_BRANCH
+    FLUENT_REPO_PATH = POCKET_FLUENT_REPO_PATH
 
     FLUENT_L10N_TEAM_REPO = config("POCKET_FLUENT_L10N_TEAM_REPO", default="mozilla-l10n/pocket-www-l10n")
     FLUENT_L10N_TEAM_REPO_URL = f"https://github.com/{FLUENT_L10N_TEAM_REPO}"
