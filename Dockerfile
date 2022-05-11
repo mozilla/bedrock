@@ -78,6 +78,7 @@ COPY manage.py LICENSE newrelic.ini contribute.json ./
 COPY ./docker ./docker
 COPY ./bedrock ./bedrock
 COPY ./l10n ./l10n
+COPY ./l10n-pocket ./l10n-pocket
 COPY ./media ./media
 
 

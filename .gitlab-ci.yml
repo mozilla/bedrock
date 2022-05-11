@@ -43,7 +43,21 @@ update-l10n:
     refs:
       - main
   script:
-    - bin/open-ftl-pr.sh
+    - SITE_MODE=Mozorg bin/open-ftl-pr.sh
+  retry: 2
+
+update-pocket-l10n:
+  stage: update-config
+  tags:
+    - mozmeao
+    - aws
+  only:
+    changes:
+      - "l10n-pocket/**/*"
+    refs:
+      - main
+  script:
+    - SITE_MODE=Pocket bin/open-ftl-pr.sh
   retry: 2
 
 .update-config:

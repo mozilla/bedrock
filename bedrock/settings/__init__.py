@@ -106,13 +106,33 @@ if IS_POCKET_MODE:
     INSTALLED_APPS.pop(INSTALLED_APPS.index("bedrock.redirects"))
     MIDDLEWARE.pop(MIDDLEWARE.index("bedrock.redirects.middleware.RedirectsMiddleware"))
 
-    # TODO: define in Pocket-appropriate versions of
-    # DEV_LANGUAGES, PROD_LANGUAGES, CANONICAL_LOCALES,
+    # Override the FLUENT_* config for Pocket mode
+
     FLUENT_DEFAULT_FILES = [
         "brands",
         "nav",
         "footer",
     ]
+
+    # The following lines do two things, both related to L10N and Pocket.
+    #
+    # 1) For Pocket mode, we don't need an intermediary mozmeao repo to hold translations while
+    # we calculate activation metadata via CI (which does happen for Mozorg). Why? All locales
+    # in Pocket are translated by a vendor, so should be 100% ready to go. This means that both
+    # FLUENT_REPO and FLUENT_L10N_TEAM_REPO can point to the same git repo.
+    #
+    # 2) Pocket-specific config has already been defined in settings/base.py (for other reasons),
+    # so here we can use those existing POCKET_FLUENT_* values to override our regular FLUENT_*
+    # defaults. This means the L10N mechanics don't need to include any Pocket-related code
+    # branching and just work on whatever the configured repos and directories are.
+
+    FLUENT_REPO = FLUENT_L10N_TEAM_REPO = POCKET_FLUENT_REPO
+    FLUENT_REPO_URL = FLUENT_L10N_TEAM_REPO_URL = POCKET_FLUENT_REPO_URL
+    FLUENT_REPO_BRANCH = FLUENT_L10N_TEAM_REPO_BRANCH = POCKET_FLUENT_REPO_BRANCH
+    FLUENT_REPO_PATH = FLUENT_L10N_TEAM_REPO_PATH = POCKET_FLUENT_REPO_PATH
+
+    # Note: No need to redefine FLUENT_REPO_AUTH - we'll use the same for Pocket mode as for Mozorg mode
+
     # Redefine the FLUENT_LOCAL_PATH for a Pocket-specific one and
     # ensure it is the first one we check, because order matters.
     FLUENT_LOCAL_PATH = ROOT_PATH / "l10n-pocket"
@@ -122,6 +142,42 @@ if IS_POCKET_MODE:
         # remote FTL files from l10n team
         FLUENT_REPO_PATH,
     ]
+
+    CANONICAL_LOCALES = {
+        # We want to ensure es-ES gets its specific translations, rather than falling back to 'es'
+        "es-ES": "es-ES",
+    }
+
+    FALLBACK_LOCALES = {
+        # NB: es-LA isn't a real locale, but it is what getpocket.com has used
+        # and we need to deal with it, by redirecting to international Spanish
+        "es-la": "es",
+    }
+
+    PROD_LANGUAGES = [
+        # TODO: double-check for correctness and completeness
+        # when we have real translations from the vendor
+        "de",
+        "en",
+        "es",
+        "es-ES",
+        "fr-CA",
+        "fr",
+        "it",
+        "ja",
+        "ko",
+        "nl",
+        "pl",
+        "pt-BR",
+        "pt-PT",
+        "ru",
+        "zh-CN",
+        "zh-TW",
+    ]
+
+    # No reason to have separate Dev and Prod lang sets for Pocket mode
+    DEV_LANGUAGES = PROD_LANGUAGES
+    LANGUAGE_CODE = "en"  # Pocket uses `en` not `en-US`
 
 else:
     ROOT_URLCONF = "bedrock.urls.mozorg_mode"
@@ -141,4 +197,4 @@ if (len(sys.argv) > 1 and sys.argv[1] == "test") or "pytest" in sys.modules:
 
     DATABASES["default"] = {"ENGINE": "django.db.backends.sqlite3", "NAME": ":memory:"}
 
-sys.stdout.write(f"Using SITE_MODE of '{site_mode}' and ROOT_URLCONF of '{ROOT_URLCONF}'\n")
+sys.stdout.write(f"Using SITE_MODE of '{site_mode}'\n")

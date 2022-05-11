@@ -223,8 +223,8 @@ PROD_LANGUAGES = sorted(sum(LOCALES_BY_REGION.values(), []) + ["ja-JP-mac"])
 
 GITHUB_REPO = "https://github.com/mozilla/bedrock"
 
-# IMPORTANT: The default l10n config here is for Mozorg. See settings/__init__.py
-# for where we plug in an alternative Pocket-appropriate l10n setup.
+# NOTE: This default l10n config is for mozorg.
+# In settings/__init__.py we plug in an alternative Pocket-appropriate l10n setup.
 
 # Global L10n files.
 FLUENT_DEFAULT_FILES = [
@@ -266,7 +266,17 @@ FLUENT_PATHS = [
     FLUENT_REPO_PATH,
 ]
 
-# templates to exclude from having an "edit this page" link in the footer
+# These are defined up front, because we need them for more than just Pocket mode, but
+# note that they are also swapped in as the Fluent defaults in settings/__init__.py
+POCKET_FLUENT_REPO = config(
+    "POCKET_FLUENT_REPO",
+    default="mozilla-l10n/pocket-www-l10n",
+)
+POCKET_FLUENT_REPO_URL = f"https://github.com/{POCKET_FLUENT_REPO}"
+POCKET_FLUENT_REPO_PATH = DATA_PATH / "pocket-www-l10n"
+POCKET_FLUENT_REPO_BRANCH = config("POCKET_FLUENT_REPO_BRANCH", default="main")
+
+# Templates to exclude from having an "edit this page" link in the footer
 # these are typically ones for which most of the content is in the DB
 EXCLUDE_EDIT_TEMPLATES = [
     "firefox/releases/nightly-notes.html",

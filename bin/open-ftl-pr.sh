@@ -18,5 +18,6 @@ docker run --rm \
     -e FLUENT_REPO_AUTH \
     -e FLUENT_L10N_TEAM_REPO \
     -e FLUENT_L10N_TEAM_REPO_BRANCH \
+    -e SITE_MODE="${SITE_MODE:-Mozorg}" \
     "$DEPLOYMENT_DOCKER_IMAGE" \
     python manage.py open_ftl_pr

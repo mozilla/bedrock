@@ -8,6 +8,21 @@ from django.core.management.base import BaseCommand
 
 from bedrock.utils.git import GitRepo
 
+# This config is used to ensure that l10n_update.py can pull from both, separate,
+# L10N repos for Mozorg and for Pocket and update the appropriate dirs
+FLUENT_L10N_UPDATE_PARAMS = {
+    "Mozorg": dict(
+        path=settings.FLUENT_REPO_PATH,
+        remote_url=settings.FLUENT_REPO_URL,
+        branch_name=settings.FLUENT_REPO_BRANCH,
+    ),
+    "Pocket": dict(
+        path=settings.POCKET_FLUENT_REPO_PATH,
+        remote_url=settings.POCKET_FLUENT_REPO_URL,
+        branch_name=settings.POCKET_FLUENT_REPO_BRANCH,
+    ),
+}
+
 
 class Command(BaseCommand):
     help = "Clones or updates l10n info from github"
@@ -25,11 +40,12 @@ class Command(BaseCommand):
         self.update_fluent_files(options["clean"])
 
     def update_fluent_files(self, clean=False):
-        repo = GitRepo(settings.FLUENT_REPO_PATH, settings.FLUENT_REPO_URL, settings.FLUENT_REPO_BRANCH)
-        if clean:
-            repo.reclone()
-        else:
-            repo.update()
+        for site, params in FLUENT_L10N_UPDATE_PARAMS.items():
+            repo = GitRepo(**params)
+            if clean:
+                repo.reclone()
+            else:
+                repo.update()
 
-        repo.update()
-        self.stdout.write("Updated .ftl files")
+            repo.update()
+            self.stdout.write(f"Updated .ftl files for {site}")

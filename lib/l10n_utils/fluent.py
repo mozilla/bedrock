@@ -203,6 +203,11 @@ def get_active_locales(ftl_files, force=False):
     available languages. You can pass `force=True` to override this
     behavior.
     """
+    if settings.IS_POCKET_MODE:
+        # All locales in Pocket should be 100% ready to go, because they are
+        # translated by a vendor, so we can just use Prod languages all the time
+        return settings.PROD_LANGUAGES
+
     if settings.DEV and not force:
         return settings.DEV_LANGUAGES
 
