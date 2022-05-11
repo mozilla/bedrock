@@ -20,36 +20,43 @@ urlpatterns = (
         "android/",
         "pocket/android.html",
         url_name="pocket.android",
+        ftl_files=["pocket/platforms"],
     ),
     page(
         "ios/",
         "pocket/ios.html",
         url_name="pocket.ios",
+        ftl_files=["pocket/platforms"],
     ),
     page(
         "chrome/",
         "pocket/chrome.html",
         url_name="pocket.chrome",
+        ftl_files=["pocket/platforms"],
     ),
     page(
         "safari/",
         "pocket/safari.html",
         url_name="pocket.safari",
+        ftl_files=["pocket/platforms"],
     ),
     page(
         "opera/",
         "pocket/opera.html",
         url_name="pocket.opera",
+        ftl_files=["pocket/platforms"],
     ),
     page(
         "edge/",
         "pocket/edge.html",
         url_name="pocket.edge",
+        ftl_files=["pocket/platforms"],
     ),
     page(
         "welcome/",
         "pocket/welcome.html",
         url_name="pocket.welcome",
+        ftl_files=["pocket/platforms"],
     ),
     page(
         "contact-info/",
