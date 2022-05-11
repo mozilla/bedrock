@@ -143,13 +143,6 @@ if IS_POCKET_MODE:
         FLUENT_REPO_PATH,
     ]
 
-    DEV_LANGUAGES = get_dev_languages(
-        fluent_repo_path=FLUENT_REPO_PATH,
-        ignore_lang_dirs=IGNORE_LANG_DIRS,
-        prod_languages=PROD_LANGUAGES,
-    )
-    DEV_LANGUAGES.append("en")
-
     CANONICAL_LOCALES = {
         # TODO: check whether redundant
         "en-US": "en",
@@ -186,6 +179,9 @@ if IS_POCKET_MODE:
         "zh-CN",
         "zh-TW",
     ]
+
+    # No reason to have separate Dev and Prod lang sets for Pocket mode
+    DEV_LANGUAGES = PROD_LANGUAGES
 
 else:
     ROOT_URLCONF = "bedrock.urls.mozorg_mode"
