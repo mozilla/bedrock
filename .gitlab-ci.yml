@@ -40,10 +40,12 @@ update-l10n:
   only:
     changes:
       - "l10n/**/*"
+      - "l10n-pocket/**/*"
     refs:
       - main
   script:
-    - bin/open-ftl-pr.sh
+    - SITE_MODE=Mozorg bin/open-ftl-pr.sh
+    - SITE_MODE=Pocket bin/open-ftl-pr.sh
   retry: 2
 
 .update-config:
