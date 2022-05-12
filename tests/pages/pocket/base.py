@@ -12,8 +12,8 @@ class BaseRegion(Region):
 
 
 class BasePage(Page):
-    def __init__(self, selenium, base_url, locale="en-US", **url_kwargs):
-        super(BasePage, self).__init__(selenium, base_url, locale=locale, **url_kwargs)
+    def __init__(self, selenium, pocket_base_url, locale="en", **url_kwargs):
+        super(BasePage, self).__init__(selenium, pocket_base_url, locale=locale, **url_kwargs)
 
     def wait_for_page_to_load(self):
         self.wait.until(lambda s: self.seed_url in s.current_url)
