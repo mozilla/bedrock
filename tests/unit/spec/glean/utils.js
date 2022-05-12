@@ -41,8 +41,8 @@ describe('utilsjs', function () {
             expect(Utils.getLocaleFromUrl('/fr/')).toEqual('fr');
         });
 
-        it('should return `en` for language when there is no locale', function () {
-            expect(Utils.getLocaleFromUrl('/locales/')).toEqual('en');
+        it('should return `en-US` for language when there is no locale', function () {
+            expect(Utils.getLocaleFromUrl('/locales/')).toEqual('en-US');
         });
     });
 

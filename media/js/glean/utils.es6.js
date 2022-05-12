@@ -13,8 +13,8 @@ const Utils = {
     getLocaleFromUrl: function (path) {
         const pathName = path ? path : document.location.pathname;
         const locale = pathName.match(/^\/(\w{2}-\w{2}|\w{2,3})\//);
-        // If there's no locale in the path then assume language is `en`;
-        return locale && locale.length > 0 ? locale[1] : 'en';
+        // If there's no locale in the path then assume language is `en-US`;
+        return locale && locale.length > 0 ? locale[1] : 'en-US';
     },
 
     getQueryParamsFromURL: function (qs) {

@@ -187,7 +187,7 @@
 
                     // Track event in Glean.
                     if (typeof window.Mozilla.Glean !== 'undefined') {
-                        window.Mozilla.Glean.pageEvent({
+                        window.Mozilla.Glean.pageEventPing({
                             label: `Newsletters: ${newsletterLabel}`,
                             type: 'Newsletter Signup Success'
                         });

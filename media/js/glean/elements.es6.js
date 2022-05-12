@@ -32,7 +32,7 @@ function getElementAttributes(e) {
     let el = e.target;
 
     // If the node isn't a link or button, traverse upward
-    // incase this is a nested child element.
+    // in case this is a nested child element.
     if (
         (el.nodeName !== 'A' || el.nodeName !== 'BUTTON') &&
         Element.prototype.closest

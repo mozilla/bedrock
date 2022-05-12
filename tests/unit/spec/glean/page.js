@@ -11,7 +11,10 @@
 
 import * as page from '../../../../media/js/libs/glean/page.js';
 import Utils from '../../../../media/js/glean/utils.es6';
-import { initPageView, pageEvent } from '../../../../media/js/glean/page.es6';
+import {
+    initPageView,
+    pageEventPing
+} from '../../../../media/js/glean/page.es6';
 import {
     pageView as pageViewPing,
     interaction as interactionPing,
@@ -221,7 +224,7 @@ describe('page.js', function () {
             validatorRun = true;
         });
 
-        pageEvent({
+        pageEventPing({
             label: 'Newsletter: mozilla-and-you',
             type: 'Newsletter Signup Success'
         });
@@ -243,7 +246,7 @@ describe('page.js', function () {
             validatorRun = true;
         });
 
-        pageEvent({
+        pageEventPing({
             label: 'Auto Play',
             type: 'Video',
             nonInteraction: true

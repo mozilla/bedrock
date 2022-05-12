@@ -6,7 +6,7 @@
 
 import Glean from '@mozilla/glean/web';
 
-import { initPageView, pageEvent } from './page.es6';
+import { initPageView, pageEventPing } from './page.es6';
 import { bindElementClicks } from './elements.es6';
 import Utils from './utils.es6';
 
@@ -40,7 +40,7 @@ function initPageEventHelper() {
     }
 
     // Create a global for external bundles to fire interaction pings.
-    window.Mozilla.Glean = { pageEvent: pageEvent };
+    window.Mozilla.Glean = { pageEventPing: pageEventPing };
 }
 
 initGlean();

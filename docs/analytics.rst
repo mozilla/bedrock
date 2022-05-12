@@ -206,6 +206,11 @@ metrics types we record, and the ``pings.yaml`` file defines the name of each
 ping event we use to send collections of individual metrics. These are all
 automatically documented in ``./glean/docs/``.
 
+.. Note::
+
+   Before running any Glean commands locally, always make sure you have first
+   activated your virtual environment by running ``pyenv activate bedrock``.
+
 When bedrock starts, we automatically run ``npm run glean`` which parses these
 schema files and then generates some JavaScript library code in
 ``./media/js/libs/glean/``. This library code is not committed to the repository
@@ -230,15 +235,15 @@ Using Glean pings in individual page bundles
 All of our analytics code for Glean lives in a single bundle in the base template,
 which is intended to be shared across all web pages. There may be times where we
 want to send a ping from some JavaScript that exists only in a certain page
-specific bundle however. For instances like this, there is a global ``pageEvent``
-helper available.
+specific bundle however. For instances like this, there is a global ``pageEventPing``
+helper available, which you can call from inside any custom event handler you write.
 
 For user initiated events, such as clicks:
 
 .. code-block:: javascript
 
     if (typeof window.Mozilla.Glean !== 'undefined') {
-        window.Mozilla.Glean.pageEvent({
+        window.Mozilla.Glean.pageEventPing({
             label: 'Newsletters: mozilla-and-you',
             type: 'Newsletter Signup Success'
         });
@@ -249,7 +254,7 @@ For non-interaction events that are not user initiated:
 .. code-block:: javascript
 
     if (typeof window.Mozilla.Glean !== 'undefined') {
-        window.Mozilla.Glean.pageEvent({
+        window.Mozilla.Glean.pageEventPing({
             label: 'Auto Play',
             type: 'Video'
             nonInteraction: true

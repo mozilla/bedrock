@@ -21,8 +21,8 @@ const validParams = [
     'entrypoint_variation',
     'experiment',
     'variation',
-    'v',
-    'xv'
+    'v', // short param for 'variation'
+    'xv' // short param for 'experience version'.
 ];
 
 function initPageView() {
@@ -53,7 +53,7 @@ function initPageView() {
     pageViewPing.submit();
 }
 
-function pageEvent(obj) {
+function pageEventPing(obj) {
     if (typeof obj !== 'object' && typeof obj.label !== 'string') {
         return;
     }
@@ -78,4 +78,4 @@ function pageEvent(obj) {
     }
 }
 
-export { initPageView, pageEvent };
+export { initPageView, pageEventPing };
