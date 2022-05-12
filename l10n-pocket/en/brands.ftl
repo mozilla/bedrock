@@ -11,8 +11,15 @@
 -brand-name-pocket = Pocket
 -brand-name-amazon = Amazon
 -brand-name-read-it-later-inc = Read It Later, Inc.
-
-
+-brand-name-twitter = Twitter
+-brand-name-tweetbot = Tweetbot
+-brand-name-facebook = Facebook
+-brand-name-instagram = Instagram
+-brand-name-google-play = Google Play
+-brand-name-kobo = Kobo
+-brand-name-blackberry = Blackberry
+-brand-name-flipboard = Flipboard
+-brand-name-feedly = Feedly
 
 ## Pocket product
 
@@ -37,21 +44,8 @@
 -brand-name-edge = Edge
 -brand-name-opera = Opera
 
-## Third parties
-
--brand-name-twitter = Twitter
--brand-name-tweetbot = Tweetbot
--brand-name-facebook = Facebook
--brand-name-instagram = Instagram
--brand-name-google-play = Google Play
--brand-name-apple-app-store = Apple App Store
--brand-name-kobo = Kobo
--brand-name-blackberry = Blackberry
--brand-name-flipboard = Flipboard
--brand-name-feedly = Feedly
-
-
 ## Apple products
 
+-brand-name-apple-app-store = Apple App Store
 -brand-name-iphone = iPhone
 -brand-name-ipad = iPad

@@ -169,14 +169,55 @@ $image-path: '/media/img/pocket';
     width: 100%;
 }
 
-.save-email-image {
-    margin-bottom: $spacing100;
-    width: 100%;
+// .save-email-image {
+//     margin-bottom: $spacing100;
+//     width: 100%;
 
-    img {
-        display: block;
-        height: 100%;
-        width: 100%;
+//     img {
+//         display: block;
+//         height: 100%;
+//         width: 100%;
+//     }
+// }
+
+.save-email-link {
+    display: block;
+    max-width: 400px;
+    margin-bottom: $spacing100;
+    text-decoration: none;
+    padding: $spacing-md $spacing-md 0;
+    overflow: hidden;
+
+    .save-email-card {
+        background: $color-white;
+        padding: $spacing-md $spacing-md 0;
+        border-radius: $border-radius-md $border-radius-md 0 0;
+        box-shadow: 0 0 $spacing-xs 2px rgba(132, 132, 132, 0.5);
+
+        .save-email-card-line {
+            @include font-size(15px);
+            font-weight: 300;
+            color: $color-text-dark-grey;
+            border-bottom: 1px solid $color-light-grey;
+            padding-bottom: $spacing-sm;
+
+            &.email {
+                font-weight: 400;
+                color: $color-text-cyan;
+                margin-top: 0;
+            }
+
+            &.no-border {
+                border-bottom: none;
+                padding-bottom: $spacing-md;
+                margin-bottom: 0;
+            }
+
+            span {
+                font-weight: 100;
+                color: $color-text-grey;
+            }
+        }
     }
 }
 
