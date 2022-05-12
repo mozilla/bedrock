@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-### URL all pages of https://www-dev-pocket.allizom.org/
+### URL all pages of https://dev.tekcopteg.com/
 
 
 # pocket/includes/footer.html
@@ -39,18 +39,21 @@ pocket-footer-facebook-brand-name = { -brand-name-facebook }
 
 ### Platform footer is used in some pages:
 
-### Pocket homepage https://www-dev-pocket.allizom.org
-### Add page URL https://www-dev-pocket.allizom.org/Add
-### All platform pages https://www-dev-pocket.allizom.org/ios
-### https://www-dev-pocket.allizom.org/android
-### https://www-dev-pocket.allizom.org/chrome
-### https://www-dev-pocket.allizom.org/safari
-### https://www-dev-pocket.allizom.org/opera
-### https://www-dev-pocket.allizom.org/edge
+## Pocket homepage https://www-dev-pocket.allizom.org
+## Add page URL https://www-dev-pocket.allizom.org/add
+## All platform pages
+## https://www-dev-pocket.allizom.org/ios
+## https://www-dev-pocket.allizom.org/android
+## https://www-dev-pocket.allizom.org/chrome
+## https://www-dev-pocket.allizom.org/safari
+## https://www-dev-pocket.allizom.org/opera
+## https://www-dev-pocket.allizom.org/edge
+
+##
 
 pocket-footer-explore = Explore
 pocket-footer-publishers = Publishers
 pocket-footer-developers = Developers
 pocket-footer-support = Support
 pocket-footer-jobs = Jobs
-pocket-footer-read-it-later = 2022 Read it Later, Inc
+pocket-footer-read-it-later = { $current_year } { -brand-name-read-it-later }

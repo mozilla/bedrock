@@ -35,14 +35,17 @@ pocket-mobile-nav-beta = Beta
 
 ### Platform navigation is used in some pages:
 
-### Pocket homepage https://www-dev-pocket.allizom.org
-### Add page URL https://www-dev-pocket.allizom.org/Add
-### All platform pages https://www-dev-pocket.allizom.org/ios
-### https://www-dev-pocket.allizom.org/android
-### https://www-dev-pocket.allizom.org/chrome
-### https://www-dev-pocket.allizom.org/safari
-### https://www-dev-pocket.allizom.org/opera
-### https://www-dev-pocket.allizom.org/edge
+## Pocket homepage https://www-dev-pocket.allizom.org
+## Add page URL https://www-dev-pocket.allizom.org/add
+## All platform pages
+## https://www-dev-pocket.allizom.org/ios
+## https://www-dev-pocket.allizom.org/android
+## https://www-dev-pocket.allizom.org/chrome
+## https://www-dev-pocket.allizom.org/safari
+## https://www-dev-pocket.allizom.org/opera
+## https://www-dev-pocket.allizom.org/edge
+
+##
 
 # pocket/includes/platform-nav.html
 pocket-nav-how-to-save = How to Save

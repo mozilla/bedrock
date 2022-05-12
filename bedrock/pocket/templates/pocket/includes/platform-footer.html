@@ -7,15 +7,15 @@
 <footer class="platform-footer">
   <nav class="footer-navigation">
     <ul class="footer-navigation-list">
-      <li class="footer-navigation-list-item"><a href="https://blog.getpocket.com/" target="_blank" rel="external noopener">{{ ftl('pocket-footer-blog') }}</a></li>
-      <li class="footer-navigation-list-item"><a href="https://getpocket.com/en/about/" target="_blank" rel="external noopener">{{ ftl('pocket-footer-about') }}</a></li>
-      <li class="footer-navigation-list-item"><a href="https://getpocket.com/explore" target="_blank" rel="external noopener">{{ ftl('pocket-footer-explore') }}</a></li>
-      <li class="footer-navigation-list-item"><a href="https://getpocket.com/publisher/" target="_blank" rel="external noopener">{{ ftl('pocket-footer-publishers') }}</a></li>
-      <li class="footer-navigation-list-item"><a href="https://getpocket.com/developer/" target="_blank" rel="external noopener">{{ ftl('pocket-footer-developers') }}</a></li>
-      <li class="footer-navigation-list-item"><a href="https://getpocket.com/en/tos/" target="_blank" rel="external noopener">{{ ftl('pocket-footer-terms-of-service') }}</a></li>
-      <li class="footer-navigation-list-item"><a href="https://getpocket.com/en/privacy/" target="_blank" rel="external noopener">{{ ftl('pocket-footer-privacy-policy') }}</a></li>
-      <li class="footer-navigation-list-item"><a href="https://help.getpocket.com/" target="_blank" rel="external noopener">{{ ftl('pocket-footer-support') }}</a></li>
-      <li class="footer-navigation-list-item"><a href="https://getpocket.com/en/jobs/" target="_blank" rel="external noopener">{{ ftl('pocket-footer-jobs') }}</a></li>
+      <li class="footer-navigation-list-item"><a href="https://blog.getpocket.com/">{{ ftl('pocket-footer-blog') }}</a></li>
+      <li class="footer-navigation-list-item"><a href="https://getpocket.com/en/about/">{{ ftl('pocket-footer-about') }}</a></li>
+      <li class="footer-navigation-list-item"><a href="https://getpocket.com/explore">{{ ftl('pocket-footer-explore') }}</a></li>
+      <li class="footer-navigation-list-item"><a href="https://getpocket.com/publisher/">{{ ftl('pocket-footer-publishers') }}</a></li>
+      <li class="footer-navigation-list-item"><a href="https://getpocket.com/developer/">{{ ftl('pocket-footer-developers') }}</a></li>
+      <li class="footer-navigation-list-item"><a href="https://getpocket.com/en/tos/">{{ ftl('pocket-footer-terms-of-service') }}</a></li>
+      <li class="footer-navigation-list-item"><a href="https://getpocket.com/en/privacy/">{{ ftl('pocket-footer-privacy-policy') }}</a></li>
+      <li class="footer-navigation-list-item"><a href="https://help.getpocket.com/">{{ ftl('pocket-footer-support') }}</a></li>
+      <li class="footer-navigation-list-item"><a href="https://getpocket.com/en/jobs/">{{ ftl('pocket-footer-jobs') }}</a></li>
     </ul>
     <div class="platform-footer-socials">
     <div class="footer-socials-wrapper">
@@ -50,7 +50,7 @@
         </li>
       </ul>
     </div>
-      <p class="platform-footer-copyright">© {{ ftl('pocket-footer-read-it-later') }}</p>
+      <p class="platform-footer-copyright">© {{ ftl('pocket-footer-read-it-later', current_year=current_year|string) }}</p>
   </div>
   </nav>
 </footer>

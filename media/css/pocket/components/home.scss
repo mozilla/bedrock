@@ -28,6 +28,10 @@ $image-path: '/media/img/pocket';
         @include text-title-lg;
         font-family: $font-sans-alt;
         font-weight: 500;
+
+        @media #{$mq-md} {
+            line-height: 1.1;
+        }
     }
 
     .sub-section-heading {
@@ -37,6 +41,36 @@ $image-path: '/media/img/pocket';
 
     .section-lede {
         @include text-body-lg;
+    }
+
+    .pocket-homepage-accounts {
+        text-align: center;
+        margin-top: $spacing-xl;
+
+        @media #{$mq-md} {
+            text-align: left;
+        }
+    }
+
+    .pocket-homepage-mobile-login {
+        visibility: visible;
+        @include text-body-sm;
+
+        a {
+            font-weight: 600;
+            color: $color-text-primary;
+            text-decoration-thickness: 1.5px;
+
+            &:hover,
+            &:focus,
+            &:active {
+                color: $color-button-red;
+            }
+        }
+
+        @media #{$mq-md} {
+            visibility: hidden;
+        }
     }
 
     .pocket-homepage-picto {
@@ -75,10 +109,10 @@ $image-path: '/media/img/pocket';
 
         .mzp-u-list-styled {
             margin-bottom: $spacing-lg;
-            line-height: 26px;
 
             li {
                 list-style: disc;
+                margin-bottom: $spacing-xs;
             }
         }
 

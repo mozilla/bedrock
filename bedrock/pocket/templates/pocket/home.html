@@ -8,9 +8,9 @@
 
 {% from "macros-protocol.html" import split, picto with context %}
 
-{% block page_title %}Homepage{% endblock %}
+{% block page_title %}{{ ftl('pocket-home-homepage-title') }}{% endblock %}
 
-{% block page_desc %}{{ ftl('pocket-about-us-page-desc') }}{% endblock %}
+{% block page_desc %}{{ ftl('pocket-home-homepage-desc') }}{% endblock %}
 
 {% block pocket_css %}
   {{ css_bundle('protocol-split') }}
@@ -18,22 +18,29 @@
   {{ css_bundle('pocket-home') }}
 {% endblock  %}
 
+<!-- To be placed for localized images in the header split macro -->
+{# image_url='l10n_img('pocket/pocket-home-articles.png')', #}
+
 {% block content %}
 {% include 'pocket/includes/platform-nav.html' %}
 
     <div class="pocket-homepage mzp-t-content-xl">
         {% call split(
-          block_class='mzp-l-split-center-on-sm-md pocket-homepage-header mzp-l-split-pop',
+          block_class='pocket-homepage-header mzp-l-split-pop',
           media_class='mzp-l-split-media-overflow',
           media_after=True,
-          image_url='img/pocket/pocket-home-articles.png',
+          loading='eager'
           )%}
           <h1 class="section-heading">{{ ftl('pocket-home-get-right-to') }}</h1>
           <p class="section-lede">{{ ftl('pocket-home-your-own-private') }}</p>
-          <a href="https://getpocket.com/signup?utm_source=homepage" class="mzp-c-button" target="_blank" rel="external noopener">{{ ftl('pocket-home-sign-up-for-pocket') }}</a>
+          <div class="pocket-homepage-accounts">
+            <a href="https://getpocket.com/signup?utm_source=homepage" class="mzp-c-button">{{ ftl('pocket-home-sign-up-for-pocket') }}</a>
+            <p class="pocket-homepage-mobile-login">{{ ftl('pocket-home-already-have-an-account') }}
+              <a href="https://getpocket.com/login/?ep=1">{{ ftl('pocket-home-log-in') }}</a>
+            </p>
+          </div>
           {% endcall %}
 
-        <section>
           {% call split(
           block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed',
           media_class='mzp-l-split-h-center',
@@ -43,9 +50,7 @@
           <h2 class="sub-section-heading">{{ ftl('pocket-home-save-interesting-stories') }}</h2>
           <p class="section-lede">{{ ftl('pocket-home-stop-sending-yourself-links') }}</p>
           {% endcall %}
-        </section>
 
-        <section>
           {% call split(
           block_class='mzp-l-split-center-on-sm-md',
           media_class='mzp-l-split-h-center',
@@ -55,7 +60,6 @@
           <h2 class="sub-section-heading">{{ ftl('pocket-home-great-recommendations') }}</h2>
           <p class="section-lede">{{ ftl('pocket-home-we-comb-the-internet') }}</p>
           {% endcall %}
-        </section>
 
         <section class="pocket-homepage-picto mzp-l-content mzp-t-content-xl">
 
@@ -100,7 +104,7 @@
                   <li>{{ ftl('pocket-home-unlimited-highlights') }}</li>
                   <li>{{ ftl('pocket-home-premium-fonts') }}</li>
                 </ul>
-                <a href="https://getpocket.com/premium#plans" class="mzp-c-button" target="_blank" rel="external noopener">Get Pocket Premium</a>
+                <a href="https://getpocket.com/premium#plans" class="mzp-c-button">Get Pocket Premium</a>
               </div>
             </div>
           </div>
@@ -109,7 +113,7 @@
         <section class="pocket-homepage-bottom mzp-l-content">
           <h2 class="sub-section-heading">{{ ftl('pocket-home-discover-and-save') }}</h2>
           <div class="pocket-homepage-button-center">
-            <a href="https://getpocket.com/signup?utm_source=homepage" class="mzp-c-button" target="_blank" rel="external noopener">{{ ftl('pocket-home-sign-up-for-pocket') }}</a>
+            <a href="https://getpocket.com/signup?utm_source=homepage" class="mzp-c-button">{{ ftl('pocket-home-sign-up-for-pocket') }}</a>
           </div>
         </section>
 
