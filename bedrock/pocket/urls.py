@@ -98,6 +98,6 @@ urlpatterns = (
         "save-to-pocket/",
         "pocket/save-to-pocket.html",
         url_name="pocket.save-to-pocket",
-        ftl_files=["pocket/save-to-pocket"],
+        ftl_files=["pocket/save-to-pocket", "pocket/banners/pocket-premium"],
     ),
 )

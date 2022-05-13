@@ -28,6 +28,3 @@ pocket-save-get-started-with = Get started with { -brand-name-pocket }
 
 pocket-save-start-building = Start building your personal library now
 pocket-save-log-in = Log in
-
-
-
