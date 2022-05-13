@@ -18,9 +18,6 @@
   {{ css_bundle('pocket-home') }}
 {% endblock  %}
 
-<!-- To be placed for localized images in the header split macro -->
-{# image_url='l10n_img('pocket/pocket-home-articles.png')', #}
-
 {% block content %}
 {% include 'pocket/includes/platform-nav.html' %}
 
@@ -28,6 +25,8 @@
         {% call split(
           block_class='pocket-homepage-header mzp-l-split-pop',
           media_class='mzp-l-split-media-overflow',
+          l10n_image=True,
+          image_url='pocket/pocket-home-articles.png',
           media_after=True,
           loading='eager'
           )%}
@@ -55,7 +54,8 @@
           block_class='mzp-l-split-center-on-sm-md',
           media_class='mzp-l-split-h-center',
           media_after=True,
-          image_url='img/pocket/pocket-list-mobile.png',
+          l10n_image=True,
+          image_url='pocket/pocket-list-mobile.png',
           )%}
           <h2 class="sub-section-heading">{{ ftl('pocket-home-great-recommendations') }}</h2>
           <p class="section-lede">{{ ftl('pocket-home-we-comb-the-internet') }}</p>

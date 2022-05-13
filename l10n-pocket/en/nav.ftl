@@ -4,10 +4,15 @@
 
 ### URL all pages of https://www-dev-pocket.allizom.org/
 
-# pocket/includes/nav.html
-# pocket/includes/mobile-nav.html
-# pocket/includes/platform-nav.html
+## pocket/includes/nav.html
+pocket-nav-open-icon-title = Open
+pocket-nav-open-menu-desc = Open the { -brand-name-pocket } mobile menu
+pocket-nav-logo-text = { -brand-name-pocket }
+pocket-nav-aria-label = Page navigation
+pocket-nav-log-in = Log In
+pocket-nav-sign-up = Sign up
 
+## pocket/includes/mobile-nav.html
 pocket-nav-home = Home
 pocket-nav-my-list = My List
 pocket-nav-discover = Discover
@@ -18,23 +23,12 @@ pocket-nav-highlights = Highlights
 pocket-nav-articles = Articles
 pocket-nav-videos = Videos
 pocket-nav-all-tags = All Tags
-
-# pocket/includes/nav.html
-pocket-nav-open-icon-title = Open
-pocket-nav-open-menu-desc = Open the { -brand-name-pocket } mobile menu
-pocket-nav-logo-text = { -brand-name-pocket }
-pocket-nav-aria-label = Page navigation
-pocket-nav-log-in = Log In
-pocket-nav-sign-up = Sign up
-
-# pocket/includes/mobile-nav.html
 pocket-mobile-nav-aria-label = { -brand-name-pocket } Mobile Menu
 pocket-mobile-nav-close-tooltip = Close
 pocket-mobile-nav-close-menu = Close the { -brand-name-pocket } Mobile Menu
 pocket-mobile-nav-beta = Beta
 
-### Platform navigation is used in some pages:
-
+## Platform navigation is used in some pages:
 ## Pocket homepage https://www-dev-pocket.allizom.org
 ## Add page URL https://www-dev-pocket.allizom.org/add
 ## All platform pages
@@ -45,9 +39,8 @@ pocket-mobile-nav-beta = Beta
 ## https://www-dev-pocket.allizom.org/opera
 ## https://www-dev-pocket.allizom.org/edge
 
-##
 
-# pocket/includes/platform-nav.html
+## pocket/includes/platform-nav.html
 pocket-nav-how-to-save = How to Save
 pocket-nav-go-premium = Go Premium
 pocket-nav-support = Support

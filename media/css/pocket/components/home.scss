@@ -18,6 +18,18 @@ $image-path: '/media/img/pocket';
     .pocket-homepage-header {
         padding-top: 0;
 
+        .mzp-l-split-media-overflow {
+            width: 145%;
+            transform: translateX(-40%);
+            left: 40%;
+
+            @media #{$mq-md} {
+                width: 100%;
+                transform: unset;
+                left: unset;
+            }
+        }
+
         .mzp-c-split-media-asset {
             max-height: 800px;
             width: auto;
@@ -28,10 +40,7 @@ $image-path: '/media/img/pocket';
         @include text-title-lg;
         font-family: $font-sans-alt;
         font-weight: 500;
-
-        @media #{$mq-md} {
-            line-height: 1.1;
-        }
+        line-height: 1.1;
     }
 
     .sub-section-heading {

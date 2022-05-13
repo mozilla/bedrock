@@ -18,7 +18,7 @@
     padding: 0 $spacing-md;
 
     .pocket-logo {
-        margin-left: 0;
+        margin: 0 auto;
 
         .pocket-logo-svg {
             background-image: url('/media/img/pocket/pocket-logo-light-mode.svg');
@@ -39,11 +39,9 @@
     }
 
     .header-navigation {
-        display: flex;
-        justify-content: flex-end;
-        flex-grow: 2;
         line-height: 1;
         white-space: nowrap;
+        display: none;
 
         .header-navigation-list {
             margin: 0;
@@ -94,13 +92,18 @@
                     }
                 }
             }
+        }
+        @media #{$mq-md} {
+            display: flex;
+            justify-content: flex-end;
+            flex-grow: 2;
 
-            @media #{$mq-md} {
+            .header-navigation-list {
                 display: flex;
+            }
 
-                .header-navigation-list-item-link {
-                    padding: $spacing-lg $spacing-md;
-                }
+            .header-navigation-list-item-link {
+                padding: $spacing-lg $spacing-md;
             }
         }
     }
