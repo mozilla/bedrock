@@ -1492,6 +1492,12 @@
     },
     {
       "files": [
+        "js/firefox/whatsnew/nightly.js"
+      ],
+      "name": "firefox_whatsnew_nightly"
+    },
+    {
+      "files": [
         "js/firefox/whatsnew/up-to-date.js",
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
