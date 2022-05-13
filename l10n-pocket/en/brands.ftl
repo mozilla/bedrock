@@ -15,7 +15,6 @@
 -brand-name-tweetbot = Tweetbot
 -brand-name-facebook = Facebook
 -brand-name-instagram = Instagram
--brand-name-google-play = Google Play
 -brand-name-kobo = Kobo
 -brand-name-blackberry = Blackberry
 -brand-name-flipboard = Flipboard
@@ -49,3 +48,7 @@
 -brand-name-apple-app-store = Apple App Store
 -brand-name-iphone = iPhone
 -brand-name-ipad = iPad
+
+## Google Products
+
+-brand-name-google-play = Google Play
