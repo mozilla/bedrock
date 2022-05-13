@@ -57,6 +57,10 @@ that can be run via SauceLabs for Firefox, Chrome, Edge, and Download tests. The
 aren't run automatically and will not block a deployment, but they can be useful if you
 want to run an extra set of checks should you see a test failure and want some verification.
 
+Note that now we have Mozorg mode and Pocket mode, we actually stand up two dev, two stage
+and two test deployments and we run the appropriate integration tests against each deployment:
+most tests are written for Mozorg, but there are some for Pocket mode that also get run.
+
 Push to stage branch
 ~~~~~~~~~~~~~~~~~~~~~
 
