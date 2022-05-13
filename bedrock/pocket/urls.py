@@ -58,7 +58,12 @@ urlpatterns = (
         url_name="pocket.welcome",
         ftl_files=["pocket/platforms"],
     ),
-    page("contact-info/", "pocket/contact-info.html", url_name="pocket.contact-info", ftl_files=["pocket/contact-info"]),
+    page(
+        "contact-info/",
+        "pocket/contact-info.html",
+        url_name="pocket.contact-info",
+        ftl_files=["pocket/contact-info"],
+    ),
     page(
         "firefox/new_tab_learn_more/",
         "pocket/firefox/new-tab-learn-more.html",
@@ -93,5 +98,6 @@ urlpatterns = (
         "save-to-pocket/",
         "pocket/save-to-pocket.html",
         url_name="pocket.save-to-pocket",
+        ftl_files=["pocket/save-to-pocket", "pocket/banners/pocket-premium"],
     ),
 )

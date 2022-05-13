@@ -13,7 +13,8 @@
   {{ css_bundle('pocket-features') }}
 {% endblock  %}
 
-{% block page_title %}Save to Pocket{% endblock %}
+
+{% block page_title %}{{ ftl('pocket-save-save-to-pocket') }}{% endblock %}
 
 {% block content %}
 
@@ -25,11 +26,11 @@
   media_class='mzp-l-split-h-center',
   image_url='img/pocket/save-inspirations.png',
   )%}
-  <h1 class="section-heading">Build a home for everything that interests you with Pocket.</h1>
-  <p class="section-lede">Use Pocket to save anything that sparks your curiosity and enjoy it when you’re ready to focus. In no time your list will become a personal library filled with enticing content to inform, inspire, and fuel you.</p>
+  <h1 class="section-heading">{{ ftl('pocket-save-build') }}</h1>
+  <p class="section-lede">{{ ftl('pocket-save-use-pocket') }}</p>
   <div class="section-ctas">
-    <a href="https://getpocket.com/signup" role="button" class="red-cta">Get started</a>
-    <a href="https://getpocket.com/login" class="secondary-cta">Already have an account? Log in</a>
+    <a href="https://getpocket.com/signup" class="red-cta">{{ ftl('pocket-save-get-started') }}</a>
+    <a href="https://getpocket.com/login" class="secondary-cta">{{ ftl('pocket-save-already-have') }}</a>
   </div>
   {% endcall %}
 </section>
@@ -42,9 +43,9 @@
   media_class='mzp-l-split-h-center',
   image_url='img/pocket/save-button-doodle.svg',
   )%}
-  <h2 class="sub-section-heading">Save from anywhere on the web</h2>
-  <p class="section-lede">Once you’ve signed up, add the <span class="pocket-logo-inline">Pocket Logo</span> button to your browser for the fastest and easiest way to save articles, videos, and links to your personal library.</p>
-  <a href="https://getpocket.com/signup" class="green-line-cta">Start saving content</a>
+  <h2 class="sub-section-heading">{{ ftl('pocket-save-save-from-anywhere') }}</h2>
+  <p class="section-lede">{{ ftl('pocket-save-once-you', span_css_class_name='pocket-logo-inline') }}</p>
+  <a href="https://getpocket.com/signup" class="green-line-cta">{{ ftl('pocket-save-start-saving') }}</a>
   {% endcall %}
 </section>
 
@@ -54,9 +55,9 @@
   media_class='mzp-l-split-h-center',
   image_url='img/pocket/reading-nook.png',
   )%}
-  <h2 class="sub-section-heading">Absorb content in a quiet space</h2>
-  <p class="section-lede">Away from flashing banners and internet pop-ups, you’ll be able to read, watch, or listen to everything you’ve collected.</p>
-  <a href="https://getpocket.com/signup" class="green-line-cta">Create your quiet space</a>
+  <h2 class="sub-section-heading">{{ ftl('pocket-save-absorb-content') }}</h2>
+  <p class="section-lede">{{ ftl('pocket-save-away-from') }}</p>
+  <a href="https://getpocket.com/signup" class="green-line-cta">{{ ftl('pocket-save-create-your') }}</a>
   {% endcall %}
 </section>
 
@@ -66,25 +67,25 @@
   media_class='mzp-l-split-h-center',
   image_url='img/pocket/focused-reading.png',
   )%}
-  <h2 class="sub-section-heading">Customize your experience</h2>
+  <h2 class="sub-section-heading">{{ ftl('pocket-save-customize-your') }}</h2>
   <ul class="section-lede">
-    <li>Tailor text sizes, font styles, or viewing mode for focused reading.</li>
-    <li>Categorize saves with tags, and mark key passages with highlights.</li>
-    <li>Listen to articles on the Pocket app with our audio playback option.</li>
+    <li>{{ ftl('pocket-save-tailor-text') }}</li>
+    <li>{{ ftl('pocket-save-categorize-saves') }}</li>
+    <li>{{ ftl('pocket-save-listen-to') }}</li>
   </ul>
-  <a href="https://getpocket.com/signup" class="green-line-cta">Get started with Pocket</a>
+  <a href="https://getpocket.com/signup" class="green-line-cta">{{ ftl('pocket-save-get-started-with') }}</a>
   {% endcall %}
 </section>
 
 <section class="personal-library">
   <h2 class="section-heading">
-    Start building your personal library now
+    {{ ftl('pocket-save-start-building') }}
   </h2>
   <div class="library-ctas">
     <div>
-      <a href="https://getpocket.com/signup" role="button" class="red-cta">Get started</a>
+      <a href="https://getpocket.com/signup" class="red-cta">{{ ftl('pocket-save-get-started') }}</a>
     </div>
-    <a href="https://getpocket.com/explore" class="black-white-cta login-cta" role="button">Log in</a>
+    <a href="https://getpocket.com/explore" class="black-white-cta login-cta">{{ ftl('pocket-save-log-in') }}</a>
   </div>
   </section>
 
