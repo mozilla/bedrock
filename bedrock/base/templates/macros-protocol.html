@@ -8,7 +8,7 @@
 
 
 {# Billboard: https://protocol.mozilla.org/patterns/organisms/billboard.html #}
-{% macro billboard(title, ga_title, desc, link_cta, link_url, image_url, include_highres_image=False, reverse=False, heading_level=2, loading=None) -%}
+{% macro billboard(title, ga_title, desc, image_url, link_cta=None, link_url=None, include_highres_image=False, reverse=False, heading_level=2, loading=None) -%}
 <section class="mzp-c-billboard {% if reverse %}mzp-l-billboard-left{% else %}mzp-l-billboard-right{% endif %}">
   <div class="mzp-c-billboard-image-container">
     {{ image(
@@ -27,7 +27,9 @@
       <div class="mzp-c-billboard-content-inner">
         <h{{ heading_level }} class="mzp-c-billboard-title">{{ title }}</h{{ heading_level }}>
         <p class="mzp-c-billboard-desc">{{ desc }}</p>
-        <a class="mzp-c-cta-link" href="{{ link_url }}" data-link-name="{{ ga_title }}" data-link-type="link">{{ link_cta }}</a>
+        {% if link_url and link_cta %}
+          <a class="mzp-c-cta-link" href="{{ link_url }}" data-link-name="{{ ga_title }}" data-link-type="link">{{ link_cta }}</a>
+        {% endif %}
       </div>
     </div>
   </div>
