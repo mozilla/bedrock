@@ -6,6 +6,7 @@
 
 
 ## pocket/includes/footer.html
+
 pocket-footer-products = Products
 pocket-footer-must-read-articles = Must-read articles
 pocket-footer-daily-newsletter = Daily newsletter
@@ -36,18 +37,19 @@ pocket-footer-twitter-brand-name = { -brand-name-twitter }
 pocket-footer-facebook-brand-name = { -brand-name-facebook }
 
 ## Platform footer is used in some pages:
-## Pocket homepage https://www-dev-pocket.allizom.org
-## Add page URL https://www-dev-pocket.allizom.org/add
+## Pocket homepage https://dev.tekcopteg.com
+## Add page URL https://dev.tekcopteg.com/add
 ## All platform pages
-## https://www-dev-pocket.allizom.org/ios
-## https://www-dev-pocket.allizom.org/android
-## https://www-dev-pocket.allizom.org/chrome
-## https://www-dev-pocket.allizom.org/safari
-## https://www-dev-pocket.allizom.org/opera
-## https://www-dev-pocket.allizom.org/edge
+## https://dev.tekcopteg.com/ios
+## https://dev.tekcopteg.com/android
+## https://dev.tekcopteg.com/chrome
+## https://dev.tekcopteg.com/safari
+## https://dev.tekcopteg.com/opera
+## https://dev.tekcopteg.com/edge
 
 
 ## pocket/includes/platform-footer.html
+
 pocket-footer-explore = Explore
 pocket-footer-publishers = Publishers
 pocket-footer-developers = Developers
