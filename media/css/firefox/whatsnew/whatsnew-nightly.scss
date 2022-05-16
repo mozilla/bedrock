@@ -50,9 +50,7 @@ $image-path: '/media/protocol/img';
         color: get-theme('title-text-color');
         text-align: center;
     }
-}
 
-.a-link-color {
     a:link,
     a:visited {
         color: $color-ink-80;
