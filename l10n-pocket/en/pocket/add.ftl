@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-### URL: https://dev.tekcopteg.com/add
+### URL: https://dev.tekcopteg.com/add/
 
 pocket-add-how-to-save = How to Save
 pocket-add-save-to-pocket = Save to { -brand-name-pocket } from { -brand-name-firefox }
