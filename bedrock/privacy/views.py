@@ -58,8 +58,6 @@ firefox_fire_tv_notices = PrivacyDocView.as_view(template_name="privacy/notices/
 
 firefox_focus_notices = PrivacyDocView.as_view(template_name="privacy/notices/firefox-focus.html", legal_doc_name="focus_privacy_notice")
 
-firefox_lite_notices = PrivacyDocView.as_view(template_name="privacy/notices/firefox-lite.html", legal_doc_name="firefox_lite_privacy_notice")
-
 firefox_reality_notices = PrivacyDocView.as_view(
     template_name="privacy/notices/firefox-reality.html", legal_doc_name="firefox_reality_privacy_notice"
 )
