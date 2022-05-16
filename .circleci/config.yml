@@ -25,7 +25,7 @@ jobs:
 
   test_js:
     docker:
-      - image: "circleci/node:16-browsers"
+      - image: "circleci/python:3.9-node-browsers"
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD

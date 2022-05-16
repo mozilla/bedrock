@@ -1,6 +1,7 @@
 chardet==4.0.0
 fluent.pygments==0.1.0
 fluent.syntax==0.17.0  # hard-pinned subdep to avoid compatibility issues
+markupsafe==2.0.1
 myst-parser==0.17.2
 Sphinx==4.5.0
 sphinx-autobuild==2021.3.14

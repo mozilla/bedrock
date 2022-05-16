@@ -143,6 +143,8 @@
     {% endblock %}
 
     <!--[if !IE]><!-->
+    {% block glean %}{% endblock %}
+
     {% block js %}{% endblock %}
 
     {% if self.structured_data()|trim|length %}

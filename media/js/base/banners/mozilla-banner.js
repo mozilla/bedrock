@@ -49,6 +49,14 @@ if (typeof window.Mozilla === 'undefined') {
             'data-banner-name': Banner.id,
             'data-banner-dismissal': '1'
         });
+
+        // Track event in Glean.
+        if (typeof window.Mozilla.Glean !== 'undefined') {
+            window.Mozilla.Glean.pageEventPing({
+                label: Banner.id,
+                type: 'Banner Dismissal'
+            });
+        }
     };
 
     Banner.show = function (renderAtTopOfPage) {
