@@ -15,6 +15,7 @@ urlpatterns = (
         "add/",
         "pocket/add.html",
         url_name="pocket.add",
+        ftl_files=["pocket/add"],
     ),
     page(
         "android/",
