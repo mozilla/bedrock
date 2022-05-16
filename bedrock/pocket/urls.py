@@ -74,11 +74,13 @@ urlpatterns = (
         "pocket-and-firefox/",
         "pocket/pocket-and-firefox.html",
         url_name="pocket.pocket-and-firefox",
+        ftl_files=["pocket/feature-pages", "pocket/banners/pocket-premium"],
     ),
     page(
         "get-inspired/",
         "pocket/get-inspired.html",
         url_name="pocket.get-inspired",
+        ftl_files=["pocket/feature-pages", "pocket/banners/pocket-premium"],
     ),
     page(
         "jobs/",
@@ -99,6 +101,6 @@ urlpatterns = (
         "save-to-pocket/",
         "pocket/save-to-pocket.html",
         url_name="pocket.save-to-pocket",
-        ftl_files=["pocket/save-to-pocket", "pocket/banners/pocket-premium"],
+        ftl_files=["pocket/feature-pages", "pocket/banners/pocket-premium"],
     ),
 )
