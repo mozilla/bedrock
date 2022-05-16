@@ -43,7 +43,6 @@ describe('elements.js', function () {
         });
 
         it('should send an interaction ping when element is clicked containing data-cta attributes', async function () {
-            let validatorRun = false;
             const ping = interactionPing.testBeforeNextSubmit(
                 async function () {
                     const snapshot = await element.clicked.testGetValue();
@@ -52,16 +51,13 @@ describe('elements.js', function () {
                     expect(click.extra.label).toEqual('Subscribe');
                     expect(click.extra.type).toEqual('button');
                     expect(click.extra.position).toEqual('primary');
-                    validatorRun = true;
                 }
             );
 
             document.querySelector('.glean-test-element').click();
 
             // Wait for the validation to finish.
-            await ping;
-
-            expect(validatorRun).toBeTrue();
+            await expectAsync(ping).toBeResolved();
         });
     });
 
@@ -81,7 +77,6 @@ describe('elements.js', function () {
         });
 
         it('should send an interaction ping when element is clicked containing data-link attributes', async function () {
-            let validatorRun = false;
             const ping = interactionPing.testBeforeNextSubmit(
                 async function () {
                     const snapshot = await element.clicked.testGetValue();
@@ -90,16 +85,13 @@ describe('elements.js', function () {
                     expect(click.extra.label).toEqual('Submit');
                     expect(click.extra.type).toEqual('button');
                     expect(click.extra.position).toEqual('primary');
-                    validatorRun = true;
                 }
             );
 
             document.querySelector('.glean-test-element').click();
 
             // Wait for the validation to finish.
-            await ping;
-
-            expect(validatorRun).toBeTrue();
+            await expectAsync(ping).toBeResolved();
         });
     });
 
@@ -119,7 +111,6 @@ describe('elements.js', function () {
         });
 
         it('should send an interaction ping when element is clicked containing data-link attributes', async function () {
-            let validatorRun = false;
             const ping = interactionPing.testBeforeNextSubmit(
                 async function () {
                     const snapshot = await element.clicked.testGetValue();
@@ -130,16 +121,13 @@ describe('elements.js', function () {
                     );
                     expect(click.extra.type).toEqual('macOS');
                     expect(click.extra.position).toEqual('primary');
-                    validatorRun = true;
                 }
             );
 
             document.querySelector('.glean-test-element').click();
 
             // Wait for the validation to finish.
-            await ping;
-
-            expect(validatorRun).toBeTrue();
+            await expectAsync(ping).toBeResolved();
         });
     });
 
@@ -160,7 +148,6 @@ describe('elements.js', function () {
         });
 
         it('should send an interaction ping for a parent element when element a child element is clicked', async function () {
-            let validatorRun = false;
             const ping = interactionPing.testBeforeNextSubmit(
                 async function () {
                     const snapshot = await element.clicked.testGetValue();
@@ -169,7 +156,6 @@ describe('elements.js', function () {
                     expect(click.extra.label).toEqual('Subscribe');
                     expect(click.extra.type).toEqual('button');
                     expect(click.extra.position).toEqual('primary');
-                    validatorRun = true;
                 }
             );
 
@@ -178,9 +164,7 @@ describe('elements.js', function () {
                 .click();
 
             // Wait for the validation to finish.
-            await ping;
-
-            expect(validatorRun).toBeTrue();
+            await expectAsync(ping).toBeResolved();
         });
     });
 });

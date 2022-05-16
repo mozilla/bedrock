@@ -31,7 +31,6 @@ describe('page.js', function () {
     });
 
     it('should register a page view correctly', async function () {
-        let validatorRun = false;
         const ping = pageViewPing.testBeforeNextSubmit(async function () {
             const path = await page.path.testGetValue();
             expect(path).toEqual('/firefox/new/');
@@ -41,16 +40,12 @@ describe('page.js', function () {
 
             const referrer = await page.referrer.testGetValue();
             expect(referrer).toEqual('https://google.com/');
-
-            validatorRun = true;
         });
 
         initPageView();
 
         // Wait for the validation to finish.
-        await ping;
-
-        expect(validatorRun).toBeTrue();
+        await expectAsync(ping).toBeResolved();
     });
 
     it('should record specific query parameters in the page view', async function () {
@@ -60,7 +55,6 @@ describe('page.js', function () {
             new window._SearchParams(query)
         );
 
-        let validatorRun = false;
         const ping = pageViewPing.testBeforeNextSubmit(async function () {
             const source = await page.queryParams['utm_source'].testGetValue();
             expect(source).toEqual('test-source');
@@ -103,16 +97,12 @@ describe('page.js', function () {
 
             const xv = await page.queryParams['xv'].testGetValue();
             expect(xv).toEqual('test-xv');
-
-            validatorRun = true;
         });
 
         initPageView();
 
         // Wait for the validation to finish.
-        await ping;
-
-        expect(validatorRun).toBeTrue();
+        await expectAsync(ping).toBeResolved();
     });
 
     it('should not record unspecified query params in the page view', async function () {
@@ -122,7 +112,6 @@ describe('page.js', function () {
             new window._SearchParams(query)
         );
 
-        let validatorRun = false;
         const ping = pageViewPing.testBeforeNextSubmit(async function () {
             const unspecifiedParam = await page.queryParams[
                 'unspecified_param'
@@ -133,16 +122,12 @@ describe('page.js', function () {
                 'utm_content'
             ].testGetValue();
             expect(content).toEqual('test-content');
-
-            validatorRun = true;
         });
 
         initPageView();
 
         // Wait for the validation to finish.
-        await ping;
-
-        expect(validatorRun).toBeTrue();
+        await expectAsync(ping).toBeResolved();
     });
 
     it('should decode known params', async function () {
@@ -151,7 +136,6 @@ describe('page.js', function () {
             new window._SearchParams(query)
         );
 
-        let validatorRun = false;
         const ping = pageViewPing.testBeforeNextSubmit(async function () {
             const source = await page.queryParams['utm_source'].testGetValue();
             expect(source).toEqual('%');
@@ -160,16 +144,12 @@ describe('page.js', function () {
                 'utm_campaign'
             ].testGetValue();
             expect(campaign).toEqual('/');
-
-            validatorRun = true;
         });
 
         initPageView();
 
         // Wait for the validation to finish.
-        await ping;
-
-        expect(validatorRun).toBeTrue();
+        await expectAsync(ping).toBeResolved();
     });
 
     it('should not record known params that contain bad values', async function () {
@@ -179,7 +159,6 @@ describe('page.js', function () {
             new window._SearchParams(query)
         );
 
-        let validatorRun = false;
         const ping = pageViewPing.testBeforeNextSubmit(async function () {
             const source = await page.queryParams['utm_source'].testGetValue();
             expect(source).toBeUndefined();
@@ -201,27 +180,21 @@ describe('page.js', function () {
                 'experiment'
             ].testGetValue();
             expect(experiment).toBeUndefined();
-
-            validatorRun = true;
         });
 
         initPageView();
 
         // Wait for the validation to finish.
-        await ping;
-
-        expect(validatorRun).toBeTrue();
+        await expectAsync(ping).toBeResolved();
     });
 
     it('should send a page event (interaction)', async function () {
-        let validatorRun = false;
         const ping = interactionPing.testBeforeNextSubmit(async function () {
             const snapshot = await page.pageEvent.testGetValue();
             expect(snapshot.length).toEqual(1);
             const event = snapshot[0];
             expect(event.extra.label).toEqual('Newsletter: mozilla-and-you');
             expect(event.extra.type).toEqual('Newsletter Signup Success');
-            validatorRun = true;
         });
 
         pageEventPing({
@@ -230,20 +203,16 @@ describe('page.js', function () {
         });
 
         // Wait for the validation to finish.
-        await ping;
-
-        expect(validatorRun).toBeTrue();
+        await expectAsync(ping).toBeResolved();
     });
 
     it('should send a page event (non-interaction)', async function () {
-        let validatorRun = false;
         const ping = nonInteractionPing.testBeforeNextSubmit(async function () {
             const snapshot = await page.pageEvent.testGetValue();
             expect(snapshot.length).toEqual(1);
             const event = snapshot[0];
             expect(event.extra.label).toEqual('Auto Play');
             expect(event.extra.type).toEqual('Video');
-            validatorRun = true;
         });
 
         pageEventPing({
@@ -253,8 +222,6 @@ describe('page.js', function () {
         });
 
         // Wait for the validation to finish.
-        await ping;
-
-        expect(validatorRun).toBeTrue();
+        await expectAsync(ping).toBeResolved();
     });
 });

@@ -40,7 +40,7 @@ function initPageEventHelper() {
     }
 
     // Create a global for external bundles to fire interaction pings.
-    window.Mozilla.Glean = { pageEventPing: pageEventPing };
+    window.Mozilla.Glean = { pageEventPing };
 }
 
 initGlean();
