@@ -39,6 +39,11 @@ $image-path: '/media/protocol/img';
     a:link,
     a:visited {
         color: $color-ink-80;
+
+        &:hover,
+        &:focus {
+            color: inherit;
+        }
     }
 
     abbr {
@@ -49,15 +54,5 @@ $image-path: '/media/protocol/img';
         @include text-title-sm;
         color: get-theme('title-text-color');
         text-align: center;
-    }
-
-    a:link,
-    a:visited {
-        color: $color-ink-80;
-
-        &:hover,
-        &:focus {
-            color: inherit;
-        }
     }
 }
