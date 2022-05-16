@@ -30,7 +30,7 @@ pocket-features-get-started-with = Get started with { -brand-name-pocket }
 pocket-features-start-building = Start building your personal library now
 pocket-features-log-in = Log in
 
-pocket-features-pocket-and-firefox = { -brand-name-pocket } and { -brand-name-firefox }
+pocket-features-pocket-and-firefox = { -brand-name-pocket } for { -brand-name-firefox }
 pocket-features-build-your-personal = Build your personal library of fascinating reads.
 
 pocket-features-included-inside = Included inside Firefox, the <span class="{ $pocket-logo-inline }">{ -brand-name-pocket} Logo</span> button lets you save articles from across the web and read them in a quiet, private space.
@@ -49,3 +49,9 @@ pocket-features-use-pocket-app = Use the Pocket app to listen to stories with ou
 
 pocket-features-your-save-button = Your save button for the internet
 pocket-features-click-pocket-button = Click the <span class="{ $pocket-logo-inline }">{ -brand-name-pocket} Logo</span> button in Firefox anytime you see something you’d like to save, wherever you are online. It’ll go straight to your list in Pocket, ready for you to dig into when you’re free.
+
+pocket-features-save-what-inspires = Save what inspires you
+pocket-features-pocket-is-your-save = Pocket is your save button for the internet. When a story catches your eye anywhere online, save it to Pocket and it’ll go straight to your list, ready for you to dig into when you’re free.
+
+pocket-features-apple-store = Get it from the { -brand-name-apple-app-store }
+pocket-features-google-play-store = Get it from the { -brand-name-google-play-store }
