@@ -2,6 +2,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+@use 'sass:color';
+
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/base/elements/containers';
 @import '~@mozilla-protocol/core/protocol/css/components/button';
@@ -171,8 +173,7 @@ $image-path: '/media/img/pocket';
         &:hover,
         &:focus,
         &:active {
-            text-decoration: underline !important;
-            background-color: $color-button-red;
+            background-color: color.adjust($color-button-red, $lightness: -10%);
             color: $color-white;
         }
     }
