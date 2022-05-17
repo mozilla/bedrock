@@ -4,7 +4,7 @@
 
 ### URL all pages of https://dev.tekcopteg.com/
 
-## pocket/includes/nav.html
+# pocket/includes/nav.html
 
 pocket-nav-open-icon-title = Open
 pocket-nav-open-menu-desc = Open the { -brand-name-pocket } mobile menu
@@ -13,7 +13,7 @@ pocket-nav-aria-label = Page navigation
 pocket-nav-log-in = Log In
 pocket-nav-sign-up = Sign up
 
-## pocket/includes/mobile-nav.html
+# pocket/includes/mobile-nav.html
 
 pocket-nav-home = Home
 pocket-nav-my-list = My List
@@ -41,7 +41,7 @@ pocket-mobile-nav-beta = Beta
 ## https://dev.tekcopteg.com/opera
 ## https://dev.tekcopteg.com/edge
 
-## pocket/includes/platform-nav.html
+# pocket/includes/platform-nav.html
 
 pocket-nav-how-to-save = How to Save
 pocket-nav-go-premium = Go Premium
