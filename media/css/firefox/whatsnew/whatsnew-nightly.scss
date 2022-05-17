@@ -39,6 +39,11 @@ $image-path: '/media/protocol/img';
     a:link,
     a:visited {
         color: $color-ink-80;
+
+        &:hover,
+        &:focus {
+            color: inherit;
+        }
     }
 
     abbr {
