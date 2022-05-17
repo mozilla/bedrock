@@ -59,8 +59,7 @@ main {
 }
 
 // Hide the /thanks download button as selection is made via JS automatically.
-#thanks-download-button,
-#thanks-full-installer {
+#thanks-download-button {
     display: none;
 }
 

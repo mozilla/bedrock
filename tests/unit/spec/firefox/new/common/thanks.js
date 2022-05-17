@@ -51,20 +51,7 @@ describe('thanks.js', function () {
                     <li><a id="thanks-download-button-ios" href="https://itunes.apple.com/us/app/firefox-private-safe-browser/id989804926" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS">Firefox for iOS</a></li>
                 </ul>`;
 
-            const fullInstallerButton = `<ul class="download-list">
-                    <li><a id="thanks-full-installer-win64" href="https://download.mozilla.org/?product=firefox-latest-ssl&amp;os=win64&amp;lang=en-US">Download Firefox</a></li>
-                    <li><a id="thanks-full-installer-win64-msi" href="https://download.mozilla.org/?product=firefox-msi-latest-ssl&amp;os=win64&amp;lang=en-US">Download Firefox</a></li>
-                    <li><a id="thanks-full-installer-win64-aarch64" href="https://download.mozilla.org/?product=firefox-latest-ssl&amp;os=win64-aarch64&amp;lang=en-US">Download Firefox</a></li>
-                    <li><a id="thanks-full-installer-win" href="https://download.mozilla.org/?product=firefox-latest-ssl&amp;os=win&amp;lang=en-US">Download Firefox</a></li>
-                    <li><a id="thanks-full-installer-win-msi" href="https://download.mozilla.org/?product=firefox-msi-latest-ssl&amp;os=win&amp;lang=en-US">Download Firefox</a></li>
-                    <li><a id="thanks-full-installer-osx" href="https://download.mozilla.org/?product=firefox-latest-ssl&amp;os=osx&amp;lang=en-US">Download Firefox</a></li>
-                    <li><a id="thanks-full-installer-linux64" href="https://download.mozilla.org/?product=firefox-latest-ssl&amp;os=linux64&amp;lang=en-US">Download Firefox</a></li>
-                    <li><a id="thanks-full-installer-linux" href="https://download.mozilla.org/?product=firefox-latest-ssl&amp;os=linux&amp;lang=en-US">Download Firefox</a></li>
-
-                </ul>`;
-
             document.body.insertAdjacentHTML('beforeend', button);
-            document.body.insertAdjacentHTML('beforeend', fullInstallerButton);
         });
 
         afterEach(function () {
@@ -80,17 +67,6 @@ describe('thanks.js', function () {
             const result = Mozilla.DownloadThanks.getDownloadURL(site);
             expect(result).toEqual(
                 'https://download.mozilla.org/?product=firefox-stub&os=win&lang=en-US'
-            );
-        });
-
-        it('should return the full installer download for Windows 7', function () {
-            const site = {
-                platform: 'windows',
-                platformVersion: '6.1'
-            };
-            const result = Mozilla.DownloadThanks.getDownloadURL(site);
-            expect(result).toEqual(
-                'https://download.mozilla.org/?product=firefox-latest-ssl&os=win&lang=en-US'
             );
         });
 

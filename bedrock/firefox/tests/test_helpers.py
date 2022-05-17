@@ -335,7 +335,7 @@ class TestDownloadThanksButton(TestCase):
         assert link.attr("data-link-type") == "download"
 
         # Direct attribute for legacy IE browsers should always be win 32bit
-        assert link.attr("data-direct-link") == "https://download.mozilla.org/?product=firefox-latest-ssl&os=win&lang=en-US"
+        assert link.attr("data-direct-link") == "https://download.mozilla.org/?product=firefox-stub&os=win&lang=en-US"
 
     def test_download_firefox_thanks_attributes(self):
         """
