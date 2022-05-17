@@ -16,6 +16,12 @@ $image-path: '/media/protocol/img';
     }
 }
 
+// set dark bg color for rubber band scrolling.
+html,
+body {
+    background-color: $color-ink-80;
+}
+
 .content-wrapper {
     background: $color-ink-80 url('/media/img/firefox/whatsnew/whatsnew_background.svg') no-repeat;
     @include background-size(100%);
