@@ -13,7 +13,7 @@
   {{ css_bundle('pocket-features') }}
 {% endblock  %}
 
-{% block page_title %}for Firefox{% endblock %}
+{% block page_title %}{{ ftl('pocket-features-for-firefox') }}{% endblock %}
 
 {% block content %}
 
@@ -29,7 +29,7 @@
   <h1 class="section-heading">{{ ftl('pocket-features-build-your-personal') }}</h1>
   <p class="section-lede">{{ ftl('pocket-features-included-inside') }}</p>
   <div class="section-ctas">
-    {{ pocket_fxa_button(entrypoint='pocket', class_name='new-tab-pocket-cta', button_text='<span class="mzp-c-logo mzp-t-logo-sm mzp-t-product-family"></span>Activate Pocket in Firefox', optional_parameters={'s': 'fflearnmore', 'utm_campaign': 'landing-page', 'utm_content': 'page-button'}, optional_attributes={'data-cta-text': 'Activate Pocket', 'data-cta-type': 'activate pocket', 'data-cta-position': 'primary'}) }}
+    {{ pocket_fxa_button(entrypoint='pocket', class_name='new-tab-pocket-cta', button_text='<span class="mzp-c-logo mzp-t-logo-sm mzp-t-product-family"></span>'|safe + ftl('pocket-features-activate-pocket'), optional_parameters={'s': 'fflearnmore', 'utm_campaign': 'landing-page', 'utm_content': 'page-button'}, optional_attributes={'data-cta-text': 'Activate Pocket', 'data-cta-type': 'activate pocket', 'data-cta-position': 'primary'}) }}
     <a href="https://getpocket.com/signup" class="secondary-cta">{{ ftl('pocket-features-more-ways-to') }}</a>
   </div>
   {% endcall %}
@@ -39,7 +39,7 @@
   <div class="explore-stories-wrapper mzp-l-content mzp-t-content-md">
     <h2 class="sub-section-heading">{{ ftl('pocket-features-get-thought') }}</h2>
     <p class="section-lede">{{ ftl('pocket-features-in-addition-to') }}</p>
-    <a href="https://getpocket.com/explore" class="black-white-cta" role="button">{{ ftl('pocket-features-discover-stories') }}</a>
+    <a href="https://getpocket.com/explore" class="black-white-cta">{{ ftl('pocket-features-discover-stories') }}</a>
   </div>
 </section>
 
@@ -83,12 +83,12 @@
   </h2>
   <div class="library-ctas">
     <div>
-      {{ pocket_fxa_button(entrypoint='pocket', class_name='new-tab-pocket-cta', button_text='<span class="mzp-c-logo mzp-t-logo-sm mzp-t-product-family"></span>Activate Pocket in Firefox', optional_parameters={'s': 'fflearnmore', 'utm_campaign': 'landing-page', 'utm_content': 'page-button'}, optional_attributes={'data-cta-text': 'Activate Pocket', 'data-cta-type': 'activate pocket', 'data-cta-position': 'primary'}) }}
+      {{ pocket_fxa_button(entrypoint='pocket', class_name='new-tab-pocket-cta', button_text='<span class="mzp-c-logo mzp-t-logo-sm mzp-t-product-family"></span>'|safe + ftl('pocket-features-activate-pocket'), optional_parameters={'s': 'fflearnmore', 'utm_campaign': 'landing-page', 'utm_content': 'page-button'}, optional_attributes={'data-cta-text': 'Activate Pocket', 'data-cta-type': 'activate pocket', 'data-cta-position': 'primary'}) }}
       <span>
         <a href="https://getpocket.com/signup">{{ ftl('pocket-features-more-ways-to') }}</a>
       </span>
     </div>
-    <a href="https://getpocket.com/explore" class="black-white-cta" role="button">{{ ftl('pocket-features-discover-stories') }}</a>
+    <a href="https://getpocket.com/explore" class="black-white-cta">{{ ftl('pocket-features-discover-stories') }}</a>
   </div>
   </section>
 
