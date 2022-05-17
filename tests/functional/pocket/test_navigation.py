@@ -7,7 +7,10 @@ from selenium.webdriver.common.by import By
 
 from pages.pocket.about import AboutPage
 
-pytestmark = pytest.mark.pocket_mode
+pytestmark = [
+    pytest.mark.pocket_mode,
+    pytest.mark.skip("Skipping Pocket integration tests, temporarily"),
+]
 
 
 @pytest.mark.nondestructive
