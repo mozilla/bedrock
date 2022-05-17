@@ -4,9 +4,9 @@
 
 .. _vpn_affiliate_attribution:
 
-=========================
-:abbr:`VPN (Virtual Private Network)` Affiliate Attribution
-=========================
+===================================================================
+Mozilla :abbr:`VPN (Virtual Private Network)` Affiliate Attribution
+===================================================================
 
 The affiliate attribution flow for the Mozilla :abbr:`VPN (Virtual Private Network)` `landing page`_ comprises
 an integration between the `Commission Junction (CJ)`_ affiliate marketing

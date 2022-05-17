@@ -264,4 +264,4 @@ For non-interaction events that are not user initiated:
 .. _Glean: https://docs.telemetry.mozilla.org/concepts/glean/glean.html
 .. _Glean Book: https://mozilla.github.io/glean/book/index.html
 .. _Glean debug dashboard: https://debug-ping-preview.firebaseapp.com/
-.. _data revreview: https://wiki.mozilla.org/Data_Collection
+.. _data review: https://wiki.mozilla.org/Data_Collection
