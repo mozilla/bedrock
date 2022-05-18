@@ -90,6 +90,7 @@ urlpatterns = (
         "jobs/",
         "pocket/jobs.html",
         url_name="pocket.jobs",
+        ftl_files=["pocket/jobs"],
     ),
     page(
         "privacy/",
