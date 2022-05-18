@@ -1087,6 +1087,13 @@
     },
     {
       "files": [
+        "css/pocket/style.scss",
+        "css/pocket/components/error-page.scss"
+      ],
+      "name": "pocket-error-page"
+    },
+    {
+      "files": [
         "css/careers/protocol.min.scss",
         "css/careers/protocol-extra.min.scss",
         "css/careers/careers.scss",

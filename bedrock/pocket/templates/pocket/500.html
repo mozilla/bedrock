@@ -6,6 +6,17 @@
 
  {% extends "pocket/base.html" %}
 
+ {% block pocket_css %}
+   {{ css_bundle('pocket-error-page') }}
+ {% endblock  %}
+
+ {% block page_title %}{{ ftl('server-error-title') }}{% endblock page_title %}
+
  {% block content %}
-   <h1>Server Error</h1>
+   {% include 'pocket/includes/platform-nav.html' %}
+   <div class="mzp-l-content mzp-t-content-lg">
+    <h1>{{ ftl('server-error-title') }}</h1>
+    <p>{{ ftl('server-error-desc') }}</p>
+  </div>
+   {% include 'pocket/includes/platform-footer.html' %}
  {% endblock  %}

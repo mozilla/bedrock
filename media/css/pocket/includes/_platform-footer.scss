@@ -103,13 +103,10 @@ $image-path: '/media/protocol/img';
                     display: block;
                     color: $color-text-primary;
                     width: 30px;
+                    height: 30px;
                     transition: color 100ms ease-in-out;
 
                     &.twitter {
-                        @media #{$mq-md} {
-                            // margin-right: $spacing-sm;
-                        }
-
                         &:hover,
                         &:focus,
                         &:active {
