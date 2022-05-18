@@ -2,10 +2,10 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-### URL all pages of https://www-dev-pocket.allizom.org/
+### URL all pages of https://dev.tekcopteg.com/
 
 
-# pocket/includes/footer.html
+## pocket/includes/footer.html
 
 pocket-footer-products = Products
 pocket-footer-must-read-articles = Must-read articles
@@ -35,3 +35,24 @@ pocket-footer-cookie-preferences = Cookie preferences
 pocket-footer-read-it-later-brand-name = { -brand-name-read-it-later-inc }
 pocket-footer-twitter-brand-name = { -brand-name-twitter }
 pocket-footer-facebook-brand-name = { -brand-name-facebook }
+
+## Platform footer is used in some pages:
+## Pocket homepage https://dev.tekcopteg.com
+## Add page URL https://dev.tekcopteg.com/add
+## All platform pages
+## https://dev.tekcopteg.com/ios
+## https://dev.tekcopteg.com/android
+## https://dev.tekcopteg.com/chrome
+## https://dev.tekcopteg.com/safari
+## https://dev.tekcopteg.com/opera
+## https://dev.tekcopteg.com/edge
+
+
+## pocket/includes/platform-footer.html
+
+pocket-footer-explore = Explore
+pocket-footer-publishers = Publishers
+pocket-footer-developers = Developers
+pocket-footer-support = Support
+pocket-footer-jobs = Jobs
+pocket-footer-read-it-later = { $current_year } { -brand-name-read-it-later }

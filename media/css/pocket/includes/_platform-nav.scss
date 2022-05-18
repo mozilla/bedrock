@@ -6,7 +6,7 @@
 
 .pocket-header.platform {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
-    border-bottom-color: #c8c8c8;
+    background-color: #f9f9fa;
 }
 
 .platform-header {
@@ -18,19 +18,18 @@
     padding: 0 $spacing-md;
 
     .pocket-logo {
-        margin-left: 0;
+        margin: 0 auto;
 
         .pocket-logo-svg {
-            background-image: url('/media/img/pocket/pocket-logo-grey.png');
+            background-image: url('/media/img/pocket/pocket-logo-light-mode.svg');
             background-repeat: no-repeat;
             background-size: contain;
             height: 38px;
             width: 151px;
 
             @media #{$mq-md} {
-                background-image: url('/media/img/pocket/pocket-logo-grey-high-res.png');
-                height: 47px;
-                width: 189px;
+                width: 174px;
+                height: 32px;
             }
 
             span {
@@ -40,11 +39,9 @@
     }
 
     .header-navigation {
-        display: flex;
-        justify-content: flex-end;
-        flex-grow: 2;
         line-height: 1;
         white-space: nowrap;
+        display: none;
 
         .header-navigation-list {
             margin: 0;
@@ -59,28 +56,54 @@
 
                 .header-navigation-list-item-link {
                     @include text-body-sm;
-                    border-top: 6px solid transparent;
-                    font-family: proxima-nova, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-                    font-weight: 700;
-                    padding: $spacing-lg 21px;
+                    font-family: $font-sans;
+                    margin: $spacing-lg $spacing-xs;
                     text-decoration: none;
-                    color: #777;
+                    color: $color-text-primary;
 
                     &:hover,
                     &:focus,
                     &:active {
-                        border-top-color: #5dcfca;
-                        color: #5dcfca;
+                        text-decoration: underline;
+                        text-decoration-thickness: 1px;
+                    }
+
+                    &.log-in-cta {
+                        @include text-body-xs;
+                        background-color: $color-text-primary;
+                        border-radius: $border-radius-xs;
+                        border: 2px solid $color-text-primary;
+                        color: $color-white;
+                        font-weight: 500;
+                        padding: 3px $spacing-md;
+                        transition: all 100ms ease-in-out;
+
+                        @media #{$mq-md} {
+                            margin-left: 20px;
+                        }
+
+                        &:hover,
+                        &:focus,
+                        &:active {
+                            background-color: transparent;
+                            color: $color-text-primary;
+                            text-decoration: none;
+                        }
                     }
                 }
             }
+        }
+        @media #{$mq-md} {
+            display: flex;
+            justify-content: flex-end;
+            flex-grow: 2;
 
-            @media #{$mq-md} {
+            .header-navigation-list {
                 display: flex;
+            }
 
-                .header-navigation-list-item-link {
-                    padding: $spacing-lg $spacing-md;
-                }
+            .header-navigation-list-item-link {
+                padding: $spacing-lg $spacing-md;
             }
         }
     }

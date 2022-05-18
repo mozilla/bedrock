@@ -1039,6 +1039,13 @@
     {
       "files": [
         "css/pocket/style.scss",
+        "css/pocket/components/home.scss"
+      ],
+      "name": "pocket-home"
+    },
+    {
+      "files": [
+        "css/pocket/style.scss",
         "css/pocket/components/pocket-features.scss"
       ],
       "name": "pocket-features"

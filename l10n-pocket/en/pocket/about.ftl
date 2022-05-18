@@ -19,7 +19,7 @@ pocket-about-if-something-catches-your-interest = If something catches your inte
 
 pocket-about-find-hidden-gems = Find hidden gems
 
-pocket-about-internet-filled-with-buried-treasures = The internet is filled with buried treasures and our vibrant, well-read community has a real knack for finding them. Through the act of saving and consuming content, Pocket users signal where fascination can be found.
+pocket-about-internet-filled-with-buried-treasures = The internet is filled with buried treasures and our vibrant, well-read community has a real knack for finding them. Through the act of saving and consuming content, { -brand-name-pocket } users signal where fascination can be found.
 
 # Variables:
 #   $pocket_home_attrs (string) attributes for a HTML link
@@ -39,7 +39,7 @@ pocket-about-know-its-good = Know it’s good
 pocket-about-internets-only-as-good-as = The internet’s only as good as the content you encounter, so — by saving and consuming with intent — together we make { -brand-name-pocket } a brighter corner of the internet. And, as part of the { -brand-name-mozilla } and { -brand-name-firefox } family, we do all this with the same dedication to privacy you’ve come to expect from { -brand-name-firefox } and { -brand-name-mozilla }.
 
 pocket-about-welcome-to-the-sunny-side = Welcome to the sunny side of the web.
-pocket-about-start-using-pocket = Start using Pocket
+pocket-about-start-using-pocket = Start using { -brand-name-pocket }
 
 # Variables:
 #   $press_email_link (email link) mailto:press@getpocket.com

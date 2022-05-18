@@ -1,0 +1,123 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "pocket/base.html" %}
+
+{% from "macros-protocol.html" import split, picto with context %}
+
+{% block page_title %}{{ ftl('pocket-home-homepage-title') }}{% endblock %}
+
+{% block page_desc %}{{ ftl('pocket-home-homepage-desc') }}{% endblock %}
+
+{% block pocket_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('pocket-home') }}
+{% endblock  %}
+
+{% block content %}
+{% include 'pocket/includes/platform-nav.html' %}
+
+    <div class="pocket-homepage mzp-t-content-xl">
+        {% call split(
+          block_class='pocket-homepage-header mzp-l-split-pop',
+          media_class='mzp-l-split-media-overflow',
+          l10n_image=True,
+          image_url='pocket/pocket-home-articles.png',
+          media_after=True,
+          loading='eager'
+          )%}
+          <h1 class="section-heading">{{ ftl('pocket-home-get-right-to') }}</h1>
+          <p class="section-lede">{{ ftl('pocket-home-your-own-private') }}</p>
+          <div class="pocket-homepage-accounts">
+            <a href="https://getpocket.com/signup?utm_source=homepage" class="mzp-c-button">{{ ftl('pocket-home-sign-up-for-pocket') }}</a>
+            <p class="pocket-homepage-mobile-login">{{ ftl('pocket-home-already-have-an-account') }}
+              <a href="https://getpocket.com/login/?ep=1">{{ ftl('pocket-home-log-in') }}</a>
+            </p>
+          </div>
+          {% endcall %}
+
+          {% call split(
+          block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed',
+          media_class='mzp-l-split-h-center',
+          media_after=True,
+          image_url='img/pocket/pocket-colorful-books.svg',
+          )%}
+          <h2 class="sub-section-heading">{{ ftl('pocket-home-save-interesting-stories') }}</h2>
+          <p class="section-lede">{{ ftl('pocket-home-stop-sending-yourself-links') }}</p>
+          {% endcall %}
+
+          {% call split(
+          block_class='mzp-l-split-center-on-sm-md',
+          media_class='mzp-l-split-h-center',
+          media_after=True,
+          l10n_image=True,
+          image_url='pocket/pocket-list-mobile.png',
+          )%}
+          <h2 class="sub-section-heading">{{ ftl('pocket-home-great-recommendations') }}</h2>
+          <p class="section-lede">{{ ftl('pocket-home-we-comb-the-internet') }}</p>
+          {% endcall %}
+
+        <section class="pocket-homepage-picto mzp-l-content mzp-t-content-xl">
+
+          <h2 class="sub-section-heading">{{ ftl('pocket-home-make-pocket-work') }}</h2>
+           <ul class="mzp-l-columns mzp-t-columns-three">
+            {% call picto(
+              title=ftl('pocket-home-tailor-text'),
+              image_url='img/pocket/pocket-text-icon.svg',
+              image_width=40
+            ) %}
+            {% endcall %}
+
+            {% call picto(
+              title=ftl('pocket-home-categorize-saves'),
+              image_url='img/pocket/pocket-tag-icon.svg',
+              image_width=40
+            ) %}
+            {% endcall %}
+
+            {% call picto(
+              title=ftl('pocket-home-listen-to-articles'),
+              image_url='img/pocket/pocket-audio-icon.svg',
+              image_width=40,
+            ) %}
+            {% endcall %}
+
+            </ul>
+        </section>
+
+        <section class="pocket-homepage-premium ">
+          <div class="mzp-l-content mzp-t-content-xl">
+            <div class="mzp-l-columns mzp-t-columns-two">
+              <div>
+                <h2>{{ ftl('pocket-home-start-with-the-best') }}</h2>
+                <p>{{ ftl('pocket-home-pocket-premium-is') }}</p>
+              </div>
+              <div>
+                <ul class="mzp-u-list-styled">
+                  <li>{{ ftl('pocket-home-permanent-library') }}</li>
+                  <li>{{ ftl('pocket-home-suggested-tags') }}</li>
+                  <li>{{ ftl('pocket-home-full-text-search') }}</li>
+                  <li>{{ ftl('pocket-home-unlimited-highlights') }}</li>
+                  <li>{{ ftl('pocket-home-premium-fonts') }}</li>
+                </ul>
+                <a href="https://getpocket.com/premium#plans" class="mzp-c-button">Get Pocket Premium</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="pocket-homepage-bottom mzp-l-content">
+          <h2 class="sub-section-heading">{{ ftl('pocket-home-discover-and-save') }}</h2>
+          <div class="pocket-homepage-button-center">
+            <a href="https://getpocket.com/signup?utm_source=homepage" class="mzp-c-button">{{ ftl('pocket-home-sign-up-for-pocket') }}</a>
+          </div>
+        </section>
+
+    </div>
+
+{% include 'pocket/includes/platform-footer.html' %}
+{% endblock %}

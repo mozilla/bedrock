@@ -6,6 +6,12 @@ from bedrock.mozorg.util import page
 
 urlpatterns = (
     page(
+        "",
+        "pocket/home.html",
+        url_name="pocket.home",
+        ftl_files=["pocket/home"],
+    ),
+    page(
         "about/",
         "pocket/about.html",
         url_name="pocket.about",
