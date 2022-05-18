@@ -9,6 +9,7 @@ black --check .
 isort --check .
 moz-l10n-lint l10n/l10n-pontoon.toml
 moz-l10n-lint l10n/l10n-vendor.toml
+moz-l10n-lint l10n-pocket/l10n-vendor.toml
 python manage.py lint_ftl -q
 python manage.py version
 python manage.py migrate --noinput
@@ -17,5 +18,5 @@ py.test lib bedrock \
     --cov-report=html \
     --cov-report=term-missing \
     --cov-report=xml:python_coverage/coverage.xml \
-    --cov=. 
+    --cov=.
 py.test -r a tests/redirects
