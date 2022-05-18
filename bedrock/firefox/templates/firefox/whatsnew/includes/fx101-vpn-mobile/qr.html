@@ -1,0 +1,22 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<div class="mzp-c-emphasis-box">
+  <h3 class="qr-title">{{ ftl('whatsnew-101-vpn-mobile-qr-code') }}</h3>
+  <div class="qr-code-wrapper">
+  {% if LANG.startswith("es-") %}
+    <img src="{{ static('img/firefox/whatsnew/whatsnew101/qr-vpn-es.svg') }}" width="400" height="400" alt="{{ ftl('whatsnew-101-vpn-mobile-qr-code-alt') }}">
+  {% elif LANG == "fi" %}
+    <img src="{{ static('img/firefox/whatsnew/whatsnew101/qr-vpn-fi.svg') }}" width="400" height="400" alt="{{ ftl('whatsnew-101-vpn-mobile-qr-code-alt') }}">
+  {% elif LANG == "it" %}
+    <img src="{{ static('img/firefox/whatsnew/whatsnew101/qr-vpn-it.svg') }}" width="400" height="400" alt="{{ ftl('whatsnew-101-vpn-mobile-qr-code-alt') }}">
+  {% elif LANG == "nl" %}
+    <img src="{{ static('img/firefox/whatsnew/whatsnew101/qr-vpn-nl.svg') }}" width="400" height="400" alt="{{ ftl('whatsnew-101-vpn-mobile-qr-code-alt') }}">
+  {% elif LANG == "sv-SE" %}
+    <img src="{{ static('img/firefox/whatsnew/whatsnew101/qr-vpn-sv.svg') }}" width="400" height="400" alt="{{ ftl('whatsnew-101-vpn-mobile-qr-code-alt') }}">
+  {% endif %}
+  </div>
+</div>

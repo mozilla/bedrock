@@ -225,6 +225,18 @@ locales = [
         "sv-SE",
     ]
 [[paths]]
+    reference = "en/firefox/whatsnew/whatsnew-101-vpn-mobile.ftl"
+    l10n = "{locale}/firefox/whatsnew/whatsnew-101-vpn-mobile.ftl"
+    locales = [
+        "de",
+        "es-ES",
+        "fr",
+        "fi",
+        "it",
+        "nl",
+        "sv-SE",
+    ]
+[[paths]]
     reference = "en/mozorg/contribute.ftl"
     l10n = "{locale}/mozorg/contribute.ftl"
 [[paths]]

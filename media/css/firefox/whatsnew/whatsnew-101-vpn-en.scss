@@ -1,0 +1,65 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-vpn';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import 'includes/base';
+@import 'includes/dark-mode';
+
+.c-page-header {
+    .mzp-l-content {
+        padding-top: $spacing-md;
+        padding-bottom: $spacing-md;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Main content
+.wnp-content-main {
+    padding: 0;
+    text-align: center;
+}
+
+.wnp-logo {
+    background-position: center top;
+    margin: 0 auto $layout-lg;
+
+    @media #{$mq-tall} {
+        margin: $layout-lg auto $layout-xl;
+    }
+}
+
+.wnp-main-title {
+    @include text-title-md;
+    color: get-theme('title-text-color');
+    max-width: $content-md;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wnp-main-tagline {
+    @include text-body-xl;
+    color: get-theme('title-text-color');
+    max-width: $content-md;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+// * -------------------------------------------------------------------------- */
+// Dark mode
+@media (prefers-color-scheme: dark) {
+    .wnp-main-title,
+    .wnp-main-tagline {
+        color: get-theme('title-text-color-inverse');
+    }
+
+    .wnp-logo.mzp-c-wordmark.mzp-t-product-vpn.mzp-t-wordmark-lg {
+        background-image: url('/media/protocol/img/logos/mozilla/vpn/logo-word-hor-stack-white.svg');
+    }
+}

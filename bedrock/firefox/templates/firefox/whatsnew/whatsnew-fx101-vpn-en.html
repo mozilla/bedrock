@@ -1,0 +1,52 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_101_vpn_en') }}
+{% endblock %}
+
+{% block experiments %}
+{% if switch('experiment-firefox-whatsnew-101-en', ['en']) %}
+  {{ js_bundle('firefox_whatsnew_101_en_experiment') }}
+{% endif %}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-md">
+      <div class="wnp-logo mzp-c-wordmark mzp-t-wordmark-lg mzp-t-product-vpn">Mozilla VPN</div>
+
+      <h1 class="wnp-main-title">Feel safer online</h1>
+      <p class="wnp-main-tagline">No one needs to know where you are or what you do online but you. Get <strong>Mozilla’s Virtual Private Network</strong> to protect up to 5 devices from snooping internet providers and hackers.</p>
+
+      <div class="wnp-main-cta">
+        {{ vpn_product_referral_link(
+            referral_id='whatsnew-101-vpn-en',
+            link_text='Get Mozilla VPN',
+            class_name='mzp-t-product mzp-t-lg',
+            optional_attributes= {
+                'data-cta-text' : 'Get Mozilla VPN',
+                'data-cta-type' : 'button',
+                'data-cta-position' : 'primary-cta',
+            }
+        ) }}
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+{% endblock %}

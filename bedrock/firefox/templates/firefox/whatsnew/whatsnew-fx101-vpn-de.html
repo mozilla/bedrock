@@ -1,0 +1,42 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-emphasis-box') }}
+  {{ css_bundle('firefox_whatsnew_101_vpn_mobile') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+<section class="wnp-content-main mzp-t-content-xl">
+  {% call split(
+    block_class='c-main-content mzp-t-split-nospace mzp-l-split-center-on-sm-md',
+    media_class='mzp-l-split-h-center',
+    media_after=True,
+    media_include='firefox/whatsnew/includes/fx101-vpn-mobile/qr-de.html'
+  ) %}
+    <div class="wnp-logo mzp-c-wordmark mzp-t-wordmark-lg mzp-t-product-vpn">Mozilla VPN</div>
+    <h1 class="wnp-main-title">Sicherer online</h1>
+    <p class="wnp-main-tagline">Niemand außer dir muss wissen, wo du bist oder wie du deine Zeit im Netz verbringst. Hol dir Mozillas Virtuelles Privates Netzwerk und schütze bis zu 5 Geräte vor neugierigen Internetanbietern und  Hackern.</p>
+  {% endcall %}
+</section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew') }}
+{% endblock %}

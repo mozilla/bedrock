@@ -11,8 +11,8 @@
     }
 
     .c-page-header-logo-fx {
-        background: url($image-path + '/logos/firefox/browser/logo-word-hor-white.svg') no-repeat;
-        @include background-size(216px, 40px);
+        background: url('/media/img/firefox/whatsnew/logo-word-hor-white.svg') no-repeat;
+        @include background-size(120px, 40px);
     }
 
     .c-loading-placeholder-element {

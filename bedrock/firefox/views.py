@@ -511,6 +511,11 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx99-fr.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx99-en.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx99-en-rally.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx101-vpn-en.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx101-vpn-de.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx101-vpn-fr.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx101-vpn-mobile-free-en.html": ["firefox/whatsnew/whatsnew", "firefox/whatsnew/whatsnew-101-vpn-mobile"],
+        "firefox/whatsnew/whatsnew-fx101-vpn-mobile.html": ["firefox/whatsnew/whatsnew", "firefox/whatsnew/whatsnew-101-vpn-mobile"],
     }
 
     # specific templates that should not be rendered in
@@ -518,6 +523,11 @@ class WhatsnewView(L10nTemplateView):
     vpn_excluded_templates = [
         "firefox/whatsnew/whatsnew-fx98-vpn-en.html",
         "firefox/whatsnew/whatsnew-fx98-vpn-eu.html",
+        "firefox/whatsnew/whatsnew-fx101-vpn-en.html",
+        "firefox/whatsnew/whatsnew-fx101-vpn-de.html",
+        "firefox/whatsnew/whatsnew-fx101-vpn-fr.html",
+        "firefox/whatsnew/whatsnew-fx101-vpn-mobile-free-en.html",
+        "firefox/whatsnew/whatsnew-fx101-vpn-mobile.html",
     ]
 
     # place expected ?v= values in this list
@@ -585,6 +595,22 @@ class WhatsnewView(L10nTemplateView):
         elif channel == "developer":
             if show_57_dev_whatsnew(version):
                 template = "firefox/developer/whatsnew.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif version.startswith("101."):
+            if locale.startswith("en"):
+                if variant == "2":
+                    template = "firefox/whatsnew/whatsnew-fx101-vpn-mobile.html"
+                elif variant == "3":
+                    template = "firefox/whatsnew/whatsnew-fx101-vpn-mobile-free-en.html"
+                else:
+                    template = "firefox/whatsnew/whatsnew-fx101-vpn-en.html"
+            elif locale == "de":
+                template = "firefox/whatsnew/whatsnew-fx101-vpn-de.html"
+            elif locale == "fr":
+                template = "firefox/whatsnew/whatsnew-fx101-vpn-fr.html"
+            elif locale in ["es-ES", "fi", "it", "nl", "sv-SE"] and ftl_file_is_active("firefox/whatsnew/whatsnew-101-vpn-mobile"):
+                template = "firefox/whatsnew/whatsnew-fx101-vpn-mobile.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("99."):

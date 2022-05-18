@@ -542,6 +542,54 @@ class TestWhatsNew(TestCase):
 
     # end 99.0 whatsnew tests
 
+    # begin 101.0 whatsnew tests
+
+    def test_fx_101_0_0_en(self, render_mock):
+        """Should use whatsnew-fx101-vpn-en template for 101.0 in English"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "en-US"
+        self.view(req, version="101.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx101-vpn-en.html"]
+
+    def test_fx_101_0_0_de(self, render_mock):
+        """Should use whatsnew-fx101-vpn-de template for 101.0 in German"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "de"
+        self.view(req, version="101.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx101-vpn-de.html"]
+
+    def test_fx_101_0_0_fr(self, render_mock):
+        """Should use whatsnew-fx101-vpn-fr template for 99.0 in French"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "fr"
+        self.view(req, version="101.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx101-vpn-fr.html"]
+
+    @patch.object(fx_views, "ftl_file_is_active", lambda *x: True)
+    @override_settings(DEV=False)
+    def test_fx_101_0_0_it(self, render_mock):
+        """Should use whatsnew-fx101-vpn-mobile template for 101.0 in Italian"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "it"
+        self.view(req, version="101.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx101-vpn-mobile.html"]
+
+    @override_settings(DEV=False)
+    def test_fx_101_0_0_excluded_countries(self, render_mock):
+        """Should use default template for 101.0 in English in excluded countries"""
+        for country in settings.VPN_EXCLUDED_COUNTRY_CODES:
+            req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY=country)
+            req.locale = "en-US"
+            self.view(req, version="101.0")
+            template = render_mock.call_args[0][1]
+            assert template == ["firefox/whatsnew/index-account.html"]
+
+    # end 101.0 whatsnew tests
+
 
 @patch("bedrock.firefox.views.l10n_utils.render", return_value=HttpResponse())
 class TestFirstRun(TestCase):

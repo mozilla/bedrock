@@ -1,0 +1,80 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-vpn';
+@import 'includes/base';
+@import 'includes/dark-mode';
+
+// * -------------------------------------------------------------------------- */
+// Main content
+
+.c-main-content {
+    .mzp-c-emphasis-box {
+        margin: 0 auto;
+    }
+}
+
+.wnp-main-title {
+    @include text-title-md;
+    color: get-theme('title-text-color');
+}
+
+.wnp-main-tagline {
+    @include text-body-lg;
+    color: get-theme('title-text-color');
+}
+
+.qr-title {
+    @include text-title-xs;
+    color: get-theme('title-text-color');
+}
+
+.qr-info {
+    @include text-body-lg;
+    color: get-theme('title-text-color');
+    font-weight: bold;
+    margin: 0 0 $spacing-md;
+}
+
+@media #{$mq-md} {
+    .c-main-content {
+        .mzp-c-emphasis-box {
+            max-width: $content-xs;
+            min-width: 220px;
+        }
+    }
+}
+
+@media #{$mq-lg} {
+    .c-main-content .mzp-c-split-media {
+        padding: $layout-xl;
+    }
+}
+
+.qr-code-wrapper svg {
+    width: 100%;
+}
+
+// * -------------------------------------------------------------------------- */
+// Dark mode
+@media (prefers-color-scheme: dark) {
+    .wnp-main-title,
+    .wnp-main-tagline {
+        color: get-theme('title-text-color-inverse');
+    }
+
+    .wnp-logo.mzp-c-wordmark.mzp-t-product-vpn.mzp-t-wordmark-lg {
+        background-image: url('/media/protocol/img/logos/mozilla/vpn/logo-word-hor-stack-white.svg');
+    }
+
+    .qr-info {
+        color: get-theme('title-text-color');
+    }
+}
