@@ -270,6 +270,18 @@ AffiliateAttribution.init = function () {
                             resolve();
                         })
                         .catch((e) => {
+                            /**
+                             * If PUT throws a 404 due to unknown aic id then the cookie
+                             * is no longer active in CJMS and has been archived. We can't
+                             * treat this as a new affiliate request since there is no
+                             * cjevent param, so instead we delete the existing marketing
+                             * cookie rather than throw an unhandled error.
+                             * See https://github.com/mozilla/bedrock/issues/11506
+                             */
+                            if (e === 'Unknown aicID') {
+                                AffiliateAttribution.removeMarketingCookie();
+                                resolve();
+                            }
                             reject(e);
                         });
                 }
