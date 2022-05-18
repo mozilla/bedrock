@@ -330,6 +330,61 @@ describe('affiliate-attribution.es6.js', function () {
                     );
                 });
             });
+
+            it('should delete marketing cookie if PUT fails with a 404 and there is no cjevent param', function () {
+                const mock404Response = new window.Response(
+                    JSON.stringify({}),
+                    {
+                        status: 404,
+                        headers: {
+                            'Content-type': 'application/json'
+                        }
+                    }
+                );
+
+                spyOn(
+                    AffiliateAttribution,
+                    'meetsRequirements'
+                ).and.returnValue(true);
+                spyOn(AffiliateAttribution, 'getCJEventParam').and.returnValue(
+                    false
+                );
+                spyOn(AffiliateAttribution, 'getCJMSEndpoint').and.returnValue(
+                    _endpoint
+                );
+                spyOn(
+                    AffiliateAttribution,
+                    'hasMarketingCookie'
+                ).and.returnValue(true);
+                spyOn(
+                    AffiliateAttribution,
+                    'getMarketingCookie'
+                ).and.returnValue(_cjmsCookieValue);
+                spyOn(AffiliateAttribution, 'removeMarketingCookie');
+                spyOn(FxaProductButton, 'init').and.resolveTo(_flowParamString);
+
+                spyOn(window, 'fetch').and.returnValue(
+                    window.Promise.resolve(mock404Response)
+                );
+
+                return AffiliateAttribution.init().then(() => {
+                    expect(window.fetch).toHaveBeenCalledTimes(1);
+                    expect(window.fetch).toHaveBeenCalledWith(
+                        'https://stage.cjms.nonprod.cloudops.mozgcp.net/aic/365fd94a-c507-43b3-b867-034f786d2cee',
+                        {
+                            method: 'PUT',
+                            headers: {
+                                Accept: 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: '{"flow_id":"75f9a48a0f66c2f5919a0989605d5fa5dd04625ea5a2ee59b2d5d54637c566d1"}'
+                        }
+                    );
+                    expect(
+                        AffiliateAttribution.removeMarketingCookie
+                    ).toHaveBeenCalled();
+                });
+            });
         });
     });
 
