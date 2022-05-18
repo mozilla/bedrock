@@ -280,6 +280,17 @@
       <p class="vpn-faq-item-detail">{{ ftl('vpn-landing-faq-manage-subscription-question-desc', url='https://vpn.mozilla.org/r/vpn/subscription' + _params) }}</p>
     </details>
 
+    {% if ftl_file_is_active('products/vpn/download') and ftl_has_messages('vpn-landing-faq-download-heading', 'vpn-landing-faq-download-desc') %}
+    <details id="faq-download" class="vpn-faq-item mzp-is-anchor-link">
+      <summary class="vpn-faq-item-heading">
+        <h3>{{ ftl('vpn-landing-faq-download-heading') }}</h3>
+      </summary>
+      <p class="vpn-faq-item-detail">
+        {{ ftl('vpn-landing-faq-download-desc', url=url('products.vpn.download')) }}
+      </p>
+    </details>
+    {% endif %}
+
     <footer class="vpn-faq-footer">
       <a class="vpn-faq-footer-link mzp-c-cta-link" href="https://support.mozilla.org/products/firefox-private-network-vpn{{ _params }}&utm_content=vpn-faq-see-more-link" data-cta-type="link" data-cta-text="FAQ See More">
         {{ ftl('vpn-landing-faq-link') }}

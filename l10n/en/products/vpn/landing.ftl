@@ -173,6 +173,12 @@ vpn-landing-faq-manage-subscription-question-heading = How do I manage my subscr
 #   $url (url) - link to https://vpn.mozilla.org/r/vpn/subscription
 vpn-landing-faq-manage-subscription-question-desc = If you’re already subscribed to { -brand-name-mozilla-vpn }, you can change your plan or <a href="{ $url }">manage your subscription</a> anytime.
 
+vpn-landing-faq-download-heading = How do I download { -brand-name-mozilla-vpn } when I’m already subscribed?
+
+# Variables:
+#   $url (url) - link to https://www.mozilla.org/products/vpn/download/
+vpn-landing-faq-download-desc = Visit the <a href="{ $url }">download page</a> to install { -brand-name-mozilla-vpn } on your device, and then sign in using your { -brand-name-firefox-account }.
+
 vpn-landing-faq-link = See more FAQs
 
 ## Invite page https://www-dev.allizom.org/products/vpn/invite/

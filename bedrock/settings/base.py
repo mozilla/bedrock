@@ -1665,3 +1665,14 @@ VPN_EXCLUDED_COUNTRY_CODES = [
     "TM",  # Turkmenistan
     "TR",  # Turkey
 ]
+
+# Countries where we block Mozilla VPN downloads
+# See: https://github.com/mozilla/bedrock/issues/11659
+VPN_BLOCK_DOWNLOAD_COUNTRY_CODES = [
+    "CN",  # China
+    "CU",  # Cuba
+    "IR",  # Iran
+    "KP",  # North Korea
+    "SD",  # Sudan
+    "SY",  # Syria
+]

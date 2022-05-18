@@ -111,9 +111,10 @@ main .mzp-c-button.mzp-t-xl {
 }
 
 // The hover / focus color for secondary protocol button colors is the same as the
-// pricing container background color, which creates an a11y issue. So set the button
+// VPN container background color, which creates an a11y issue. So set the button
 // background color to white to give a better contrast change.
-.vpn-pricing-variable-plans .mzp-c-button.mzp-t-secondary {
+.vpn-pricing-variable-plans .mzp-c-button.mzp-t-secondary,
+.vpn-download-list .mzp-c-button.mzp-t-secondary {
     background: $color-white;
 }
 

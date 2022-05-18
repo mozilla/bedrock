@@ -150,6 +150,23 @@ class TestVPNLandingPage(TestCase):
         self.assertFalse(ctx["vpn_affiliate_attribution_enabled"])
 
 
+@override_settings(VPN_ENDPOINT="https://vpn.mozilla.org/")
+@patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
+class TestVPNDownloadPage(TestCase):
+    @override_settings(DEV=False)
+    def test_vpn_downoad_page_links(self, render_mock):
+        req = RequestFactory().get("/products/vpn/download/")
+        req.locale = "en-US"
+        view = views.vpn_download_page
+        view(req)
+        ctx = render_mock.call_args[0][2]
+        self.assertEqual(ctx["windows_download_url"], "https://vpn.mozilla.org/r/vpn/download/windows")
+        self.assertEqual(ctx["mac_download_url"], "https://vpn.mozilla.org/r/vpn/download/mac")
+        self.assertEqual(ctx["linux_download_url"], "https://vpn.mozilla.org/r/vpn/download/linux")
+        self.assertEqual(ctx["android_download_url"], "https://play.google.com/store/apps/details?id=org.mozilla.firefox.vpn")
+        self.assertEqual(ctx["ios_download_url"], "https://apps.apple.com/us/app/firefox-private-network-vpn/id1489407738")
+
+
 class TestVPNResourceCenterHelpers(TestCase):
     def _build_mock_entry(self, entry_category_name):
         entry = Mock(name=entry_category_name)
