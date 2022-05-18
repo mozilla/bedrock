@@ -30,7 +30,6 @@ pocket-features-get-started-with = Get started with { -brand-name-pocket }
 pocket-features-start-building = Start building your personal library now
 pocket-features-log-in = Log in
 
-pocket-features-for-firefox = for { -brand-name-firefox }
 pocket-features-pocket-and-firefox = { -brand-name-pocket } for { -brand-name-firefox }
 pocket-features-build-your-personal = Build your personal library of fascinating reads.
 
@@ -56,4 +55,4 @@ pocket-features-save-what-inspires = Save what inspires you
 pocket-features-pocket-is-your-save = { -brand-name-pocket } is your save button for the internet. When a story catches your eye anywhere online, save it to { -brand-name-pocket } and it’ll go straight to your list, ready for you to dig into when you’re free.
 
 pocket-features-apple-store = Get it from the { -brand-name-apple-app-store }
-pocket-features-google-play-store = Get it from the { -brand-name-google-play-store }
+pocket-features-google-play-store = Get it from the { -brand-name-google-play } store
