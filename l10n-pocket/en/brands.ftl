@@ -57,3 +57,4 @@
 ## Google Products
 
 -brand-name-google-play = Google Play
+-brand-name-google-analytics = Google Analytics
