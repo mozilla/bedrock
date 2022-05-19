@@ -19,7 +19,7 @@
 -brand-name-instagram = Instagram
 -brand-name-kobo = Kobo
 -brand-name-kindle-fire = Kindle Fire
--brand-name-blackberry = Blackberry
+-brand-name-blackberry = BlackBerry
 -brand-name-flipboard = Flipboard
 -brand-name-feedly = Feedly
 
