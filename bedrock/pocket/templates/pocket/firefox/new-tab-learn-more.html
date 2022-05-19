@@ -13,13 +13,13 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {{ css_bundle('pocket-new-tab') }}
 {% endblock %}
 
-{% block page_title %}Learn More{% endblock page_title %}
+{% block page_title %}{{ ftl('pocket-new-tab-learn-more') }}{% endblock page_title %}
 
 {% block content %}
 <header class="new-tab-header">
-  <div class="mzp-c-logo mzp-t-logo-xs mzp-t-product-family">Firefox</div>
-  <div class="mzp-c-logo mzp-t-logo-xs mzp-t-product-pocket">Pocket</div>
-  <p>Pocket is part of the Firefox family</p>
+  <div class="mzp-c-logo mzp-t-logo-xs mzp-t-product-family">{{ ftl('pocket-new-tab-firefox') }}</div>
+  <div class="mzp-c-logo mzp-t-logo-xs mzp-t-product-pocket">{{ ftl('pocket-new-tab-pocket') }}</div>
+  <p>{{ ftl('pocket-new-tab-pocket-is-part') }}</p>
 </header>
 <section>
   {% call split(
@@ -27,15 +27,15 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   media_class='mzp-l-split-h-center',
   image_url='img/pocket/new-tab/pocket-list.png',
   )%}
-    <p class="section-top-header-lede">POCKET FOR FIREFOX</p>
-    <h2 class="new-tab-section-header top">Build your personal library of fascinating reads.</h2>
-    <p class="new-tab-section-body top">Included inside Firefox, the <span class="pocket-logo-inline">Pocket Logo</span> button lets you save articles from across the web and read them in a quiet, private space.</p>
-     {{ pocket_fxa_button(entrypoint='pocket', class_name='new-tab-pocket-cta', button_text='<span class="mzp-c-logo mzp-t-logo-sm mzp-t-product-family"></span>Activate Pocket in Firefox', optional_parameters={'s': 'fflearnmore', 'utm_campaign': 'landing-page', 'utm_content': 'page-button'}, optional_attributes={'data-cta-text': 'Activate Pocket', 'data-cta-type': 'activate pocket', 'data-cta-position': 'primary'}) }}
-    <a href="https://getpocket.com/signup" class="sub-cta">More ways to sign up</a>
+    <span class="tagline">{{ ftl('pocket-new-tab-pocket-for-firefox') }}</span>
+    <h2 class="new-tab-section-header top">{{ ftl('pocket-new-tab-build-your-personal') }}</h2>
+    <p class="new-tab-section-body top">{{ ftl('pocket-new-tab-included-inside') }}</p>
+     {{ pocket_fxa_button(entrypoint='pocket', class_name='new-tab-pocket-cta', button_text='<span class="mzp-c-logo mzp-t-logo-sm mzp-t-product-family"></span>'|safe + ftl('pocket-new-tab-activate-pocket'), optional_parameters={'s': 'fflearnmore', 'utm_campaign': 'landing-page', 'utm_content': 'page-button'}, optional_attributes={'data-cta-text': 'Activate Pocket', 'data-cta-type': 'activate pocket', 'data-cta-position': 'primary'}) }}
+    <a href="https://getpocket.com/signup" class="sub-cta">{{ ftl('pocket-new-tab-more-ways-to') }}</a>
   {% endcall %}
 </section>
 <section class="new-tab-section">
-  <h1 class="new-tab-page-header mzp-l-content">Discover the most thought-provoking stories out there, curated by Pocket.</h1>
+  <h1 class="new-tab-page-header mzp-l-content">{{ ftl('pocket-new-tab-discover-the-most') }}</h1>
   <section
     class="mzp-c-split mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-l-split-reversed mzp-t-split-nospace new-tab-section">
     <div class="mzp-c-split-container">
@@ -43,8 +43,8 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         <img class="mzp-c-split-media-asset" src="/media/img/pocket/new-tab/hidden-gem.svg" alt="" loading="eager">
       </div>
       <div class="mzp-c-split-body hidden-gem-body">
-        <h2 class="new-tab-section-header">Finding the hidden gems. Respecting your privacy.</h2>
-        <p class="new-tab-section-body">As part of the Firefox family, Pocket surfaces the best articles out there—new perspectives, intriguing deep-dives, timeless classics—and we do this with the same dedication to privacy you’ve come to expect from Firefox and Mozilla. <a href="https://help.getpocket.com/article/1142-firefox-new-tab-recommendations-faq#why">Learn more about how we curate stories.</a></p>
+        <h2 class="new-tab-section-header">{{ ftl('pocket-new-tab-finding-the') }}</h2>
+        <p class="new-tab-section-body">{{ ftl('pocket-new-tab-as-part-of') }}</p>
       </div>
     </div>
   </section>

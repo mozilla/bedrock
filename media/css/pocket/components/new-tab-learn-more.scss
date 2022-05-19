@@ -70,12 +70,13 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.section-top-header-lede {
+.tagline {
     @include text-body-sm;
     color: $color-text-grey;
     margin-bottom: $spacing-xs;
     margin-top: 0;
     text-align: center;
+    text-transform: uppercase;
 
     @media #{$mq-lg} {
         text-align: left;
