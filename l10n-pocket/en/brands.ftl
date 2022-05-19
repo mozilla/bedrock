@@ -43,12 +43,6 @@
 -brand-name-edge = Edge
 -brand-name-opera = Opera
 
-## Third parties
-
--brand-name-twitter = Twitter
--brand-name-facebook = Facebook
--brand-name-instagram = Instagram
-
 ## Apple products
 
 -brand-name-apple-app-store = Apple App Store
