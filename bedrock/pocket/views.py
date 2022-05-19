@@ -7,9 +7,9 @@ from lib import l10n_utils
 
 def server_error_view(request, template_name="pocket/500.html"):
     """500 error handler that runs context processors."""
-    return l10n_utils.render(request, template_name, ftl_files=["500"], status=500)
+    return l10n_utils.render(request, template_name, ftl_files=["pocket/500"], status=500)
 
 
 def page_not_found_view(request, exception=None, template_name="pocket/404.html"):
     """404 error handler that runs context processors."""
-    return l10n_utils.render(request, template_name, ftl_files=["404", "500"], status=404)
+    return l10n_utils.render(request, template_name, ftl_files=["pocket/404"], status=404)
