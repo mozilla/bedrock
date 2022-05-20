@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-## Privacy URL: https://dev.tekcopteg.com/privacy/
+### Privacy URL: https://dev.tekcopteg.com/privacy/
 
 pocket-privacy-title = Privacy
 pocket-privacy-policy = Privacy Policy
