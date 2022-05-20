@@ -8,7 +8,9 @@
 ## Company names
 
 -brand-name-mozilla = Mozilla
+-brand-name-mozilla-corporation = Mozilla Corporation
 -brand-name-pocket = Pocket
+-brand-name-pocket-technologies = Pocket Technologies
 -brand-name-amazon = Amazon
 -brand-name-read-it-later-inc = Read It Later, Inc.
 -brand-name-twitter = Twitter
@@ -16,7 +18,8 @@
 -brand-name-facebook = Facebook
 -brand-name-instagram = Instagram
 -brand-name-kobo = Kobo
--brand-name-blackberry = Blackberry
+-brand-name-kindle-fire = Kindle Fire
+-brand-name-blackberry = BlackBerry
 -brand-name-flipboard = Flipboard
 -brand-name-feedly = Feedly
 
@@ -49,6 +52,7 @@
 -brand-name-apple-app-store = Apple App Store
 -brand-name-iphone = iPhone
 -brand-name-ipad = iPad
+-brand-name-itunes = iTunes
 
 ## Google Products
 
