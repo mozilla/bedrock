@@ -71,10 +71,8 @@
     "prettier-check": "prettier --check .",
     "stylelint-fix": "./node_modules/.bin/stylelint \"media/css/**/*.{css,scss}\" --fix",
     "format": "npm run prettier && npm run stylelint-fix",
-    "glean-docs": "glean translate glean/metrics.yaml glean/pings.yaml -f markdown -o glean/docs/",
     "glean-lint": "glean glinter glean/metrics.yaml glean/pings.yaml",
-    "preglean": "npm run glean-lint && npm run glean-docs",
-    "glean": "glean translate glean/metrics.yaml glean/pings.yaml -f javascript -o media/js/libs/glean/"
+    "glean": "npm run glean-lint && glean translate glean/metrics.yaml glean/pings.yaml -f javascript -o media/js/libs/glean/"
   },
   "browserslist": [
     "defaults",
