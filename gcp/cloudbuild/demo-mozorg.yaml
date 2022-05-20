@@ -1,0 +1,32 @@
+# Important: note how we use the branch name as Image name AND as the Service name - eg mozorg-demo-1
+
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'build',
+      '-t',
+      'us-central1-docker.pkg.dev/${PROJECT_ID}/bedrock-demo/${BRANCH_NAME}',   # Branch name is image name
+      '.'
+    ]
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'push',
+      'us-central1-docker.pkg.dev/${PROJECT_ID}/bedrock-demo/${BRANCH_NAME}',  # Branch name is image name
+    ]
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args: [
+      'run',
+      'deploy',
+      '${BRANCH_NAME}',  # Branch name is the Service name
+      '--image',
+      'us-central1-docker.pkg.dev/${PROJECT_ID}/bedrock-demo/${BRANCH_NAME}',  # Branch name is image name
+      '--set-env-vars=ALLOWED_HOSTS=*,SITE_MODE=Mozorg',
+      '--allow-unauthenticated',
+      '--region=us-central1',
+      '--max-instances=10'
+    ]
+
+timeout: 2400s
