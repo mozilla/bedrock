@@ -44,7 +44,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
       </div>
       <div class="mzp-c-split-body hidden-gem-body">
         <h2 class="new-tab-section-header">{{ ftl('pocket-new-tab-finding-the') }}</h2>
-        <p class="new-tab-section-body">{{ ftl('pocket-new-tab-as-part-of') }}</p>
+        <p class="new-tab-section-body">{{ ftl('pocket-new-tab-as-part-of', learn_url='https://help.getpocket.com/article/1142-firefox-new-tab-recommendations-faq#why') }}</p>
       </div>
     </div>
   </section>
@@ -53,8 +53,8 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   media_class='mzp-l-split-h-center',
   image_url='img/pocket/new-tab/fortress.svg',
   )%}
-    <h2 class="new-tab-section-header">Your data stays private. Always.</h2>
-    <p class="new-tab-section-body">In addition to dishing up captivating stories, we also show you relevant, highly-vetted content from select sponsors. Rest assured, your browsing data never leaves your personal copy of Firefox—we don’t see it, and our sponsors don’t either. Want more details? Here’s the full scoop on <a href="https://help.getpocket.com/article/1142-firefox-new-tab-recommendations-faq#personalized">how privacy works in Pocket.</a></p>
+    <h2 class="new-tab-section-header">{{ ftl('pocket-new-tab-your-data') }}</h2>
+    <p class="new-tab-section-body">{{ ftl('pocket-new-tab-in-addition-to', privacy_url='https://help.getpocket.com/article/1142-firefox-new-tab-recommendations-faq#personalized') }}</p>
   {% endcall %}
   {% call split(
   block_class='mzp-l-split-center-on-sm-md mzp-t-content-lg mzp-l-split-reversed mzp-t-split-nospace new-tab-section',
@@ -62,30 +62,31 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   body_class="new-tab-books-body",
   image_url='img/pocket/new-tab/books.svg',
   )%}
-    <h2 class="new-tab-section-header">Fuel your mind with even more fascinating stories.</h2>
-    <p class="new-tab-section-body">Check out Pocket’s <a href="https://getpocket.com/explore">Must Reads</a> for some of the best articles on the web. And get thought-provoking stories delivered to you daily by subscribing to <a href="https://getpocket.com/explore/pocket-hits-signup">Pocket’s newsletter</a>.</p>
+    <h2 class="new-tab-section-header">{{ ftl('pocket-new-tab-fuel') }}</h2>
+    <p class="new-tab-section-body">{{ ftl('pocket-new-tab-check-out', explore_url='https://getpocket.com/explore',
+    hits_signup_url='https://getpocket.com/explore/pocket-hits-signup') }}</p>
   {% endcall %}
   {% call split(
   block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace new-tab-section',
   media_class='mzp-l-split-h-center',
   image_url='img/pocket/new-tab/lounge.svg',
   )%}
-    <h2 class="new-tab-section-header">Save in Pocket & read on your own time.</h2>
-    <p class="new-tab-section-body">Built right into Firefox, Pocket also lets you save stories and come back to them when you’re ready.</p>
-    <p class="new-tab-section-body"><a href="https://getpocket.com/firefox_learnmore">Activate your account</a>, and then the next time you see an article you want to save, click the Pocket icon in the toolbar.</p>
+    <h2 class="new-tab-section-header">{{ ftl('pocket-new-tab-save-in') }}</h2>
+    <p class="new-tab-section-body">{{ ftl('pocket-new-tab-built-right') }}</p>
+    <p class="new-tab-section-body">{{ ftl('pocket-new-tab-activate-your-account', firefox_learn_url='https://getpocket.com/firefox_learnmore') }}</p>
   {% endcall %}
 </section>
 <section class="mzp-l-content">
   <img class="details-img" src="{{ static('img/pocket/new-tab/sign.svg') }}" />
   <div>
-    <h2 class="new-tab-section-header">You make the call.</h2>
+    <h2 class="new-tab-section-header">{{ ftl('pocket-new-tab-you-make') }}</h2>
     <div class="helpful-links-wrapper">
-      <p class="new-tab-section-body">It’s easy to turn off Pocket’s recommendations and remove them from your new tab page. But remember: if you don’t like today’s stories, there’s always tomorrow!</p>
+      <p class="new-tab-section-body">{{ ftl('pocket-new-tab-its-easy', dismiss_url='https://help.getpocket.com/article/1142-firefox-new-tab-recommendations-faq#turn-off') }}</p>
       <ul class="new-tab-helpful-links">
-        <li><a href="https://help.getpocket.com/article/1142-firefox-new-tab-recommendations-faq">Frequently asked questions</a></li>
-        <li><a href="https://getpocket.com/privacy">Privacy Policy</a></li>
-        <li><a href="https://getpocket.com/tos">Terms of service</a></li>
-        <li><a href="https://getpocket.com/sponsor">Sponsorship opportunities</a></li>
+        <li><a href="https://help.getpocket.com/article/1142-firefox-new-tab-recommendations-faq">{{ ftl('pocket-new-tab-faq') }}</a></li>
+        <li><a href="https://getpocket.com/privacy">{{ ftl('pocket-new-tab-privacy-policy') }}</a></li>
+        <li><a href="https://getpocket.com/tos">{{ ftl('pocket-new-tab-tos') }}</a></li>
+        <li><a href="https://getpocket.com/sponsor">{{ ftl('pocket-new-tab-sponsorship') }}</a></li>
       </ul>
     </div>
   </div>
@@ -95,6 +96,6 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   <img class="right-grass" src="{{ static('img/pocket/new-tab/grass-footer-right.png') }}" />
 </section>
 <footer class="new-tab-footer mzp-t-dark">
-  <span class="mzp-c-wordmark mzp-t-wordmark-xs mzp-t-product-pocket">Pocket</span>
+  <span class="mzp-c-wordmark mzp-t-wordmark-xs mzp-t-product-pocket">{{ ftl('pocket-new-tab-pocket') }}</span>
 </footer>
 {% endblock %}
