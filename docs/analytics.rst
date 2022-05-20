@@ -220,8 +220,7 @@ the schema. This library code is then imported into our Glean analytics code in
 events.
 
 Running ``npm run glean`` can also be performed independently of starting bedrock.
-It will also do things such as lint schema files and automatically generate the
-schema docs.
+It will also first lint the schema files.
 
 .. Important::
 
