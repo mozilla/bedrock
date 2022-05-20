@@ -58,3 +58,4 @@
 
 -brand-name-google-play = Google Play
 -brand-name-google-analytics = Google Analytics
+-brand-name-youtube = YouTube
