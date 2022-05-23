@@ -1754,6 +1754,12 @@
         "js/privacy/data-preferences.es6.js"
       ],
       "name": "privacy-data-preferences"
+    },
+    {
+      "files": [
+        "js/landing/landing-shared.js"
+      ],
+      "name": "landing-shared"
     }
   ]
 }

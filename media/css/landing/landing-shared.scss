@@ -17,7 +17,15 @@ $image-path: '/media/protocol/img';
 
 .c-navigation-container {
     .sem-landing-nav-icon {
-        margin: 16px;
+        margin: 0;
+        height: 32px;
+        width: 174px;
+
+        @media #{$mq-md} {
+            margin: $spacing-md 0;
+            height: 48px;
+            width: 262px;
+        }
     }
 }
 
@@ -29,6 +37,10 @@ $image-path: '/media/protocol/img';
 
     .mzp-c-logo {
         margin: 0 auto $spacing-lg;
+    }
+
+    h1 {
+        @include font-size(32px);
     }
 
     p {

@@ -81,7 +81,8 @@
       {% include 'includes/google-analytics.html' %}
     {% endblock %}
 
-    {% set android_url = firefox_adjust_url('android', 'firef0x-sem-landing') %}
+
+    {% set android_url = firefox_adjust_url('android', 'firefox-sem-landing') %}
     {% set ios_url = firefox_adjust_url('ios', 'firefox-sem-landing') %}
 
   </head>
@@ -97,7 +98,7 @@
     <div class="c-navigation top-header-navigation mzp-is-sticky">
       <div class="c-navigation-l-content">
         <div class="c-navigation-container">
-          <div class="sem-landing-nav-icon c-navigation-logo mzp-c-wordmark mzp-t-wordmark-md {% block icon_class %}{% endblock %}"></div>
+          <div data-cta-type="navigation" data-cta-text="{{ self.page_title() }}" class="sem-landing-nav-icon c-navigation-logo mzp-c-wordmark mzp-t-wordmark-md {% block icon_class %}{% endblock %}" data></div>
         </div>
       </div>
     </div>
@@ -110,8 +111,8 @@
         <h1>{% block header %}{% endblock %}</h1>
         <p>{% block body_copy %}{% endblock %}</p>
         <div class="sem-badge-wrapper">
-          {{ google_play_button(href=android_url, id='playStoreLink-primary', class_name='android store-badge') }}
-          <a class="ios store-badge" id="appStoreLink-primary" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
+          {{ google_play_button(href="{% block android_url %}{% endblock %}", id='playStoreLink-primary', class_name='android store-badge') }}
+          <a class="ios store-badge" id="appStoreLink-primary" href="{% block ios_url %}{% endblock %}" data-link-type="download" data-download-os="iOS">
             <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
           </a>
         </div>
@@ -145,6 +146,10 @@
 
     <!--[if !IE]><!-->
     {% block glean %}{% endblock %}
+
+    {% block js %}
+      {{ js_bundle('landing-shared') }}
+    {% endblock %}
 
     {% if self.structured_data()|trim|length %}
       <script type="application/ld+json">
