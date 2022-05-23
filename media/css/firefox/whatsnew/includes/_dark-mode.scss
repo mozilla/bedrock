@@ -56,6 +56,20 @@
                 background-image: url('/media/protocol/img/icons/social/youtube/white.svg');
             }
 
+            // bedrock override until icons are added to protocol-assets
+            // https://github.com/mozilla/protocol-assets/issues/84
+            a.linkedin {
+                background-image: url('/media/img/logos/social/linkedin-white.svg');
+            }
+
+            a.tiktok {
+                background-image: url('/media/img/logos/social/tiktok-white.svg');
+            }
+
+            a.spotify {
+                background-image: url('/media/img/logos/social/spotify-white.svg');
+            }
+
             a:hover,
             a:focus,
             a:active {
