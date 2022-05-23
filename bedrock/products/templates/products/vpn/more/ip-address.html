@@ -39,7 +39,7 @@
 
 <h3>{{ ftl('vpn-ip-address-should-you-hide') }}</h3>
 <p>{{ ftl('vpn-ip-address-you-dont-need', congress='https://blog.mozilla.org/en/mozilla/internet-policy/u-s-broadband-privacy-rules-will-fight-protect-user-privacy/', doh='https://support.mozilla.org/kb/firefox-dns-over-https', firefox=url('firefox.new')) }}</p>
-<p>{{ ftl('vpn-ip-address-there-are-also') }}</p>
+<p>{{ ftl('vpn-ip-address-there-are-also', url=url('products.vpn.more.when-to-use')) }}</p>
 
 <h3>{{ ftl('vpn-ip-address-how-do-you') }}</h3>
 <p>{{ ftl('vpn-ip-address-a-vpn-is-v2', fallback='vpn-ip-address-a-vpn-is', vpn=url('products.vpn.more.when-to-use'), mozvpn=url('products.vpn.landing'), countries=settings.VPN_CONNECT_COUNTRIES) }}</p>
