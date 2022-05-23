@@ -1112,6 +1112,12 @@
         "css/mozorg/webvision.scss"
       ],
       "name": "webvision"
+    },
+    {
+      "files": [
+        "css/landing/landing-shared.scss"
+      ],
+      "name": "landing-shared"
     }
   ],
   "js": [

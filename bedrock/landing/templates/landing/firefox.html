@@ -4,4 +4,15 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-FIREFOX
+
+{% extends 'landing/base-landing.html' %}
+
+{% block page_title %}Firefox{% endblock %}
+{% block icon_class %}mzp-t-product-firefox{% endblock %}
+{% block header %}Go your own way with Firefox mobile{% endblock %}
+{% block body_copy %}Firefox mobile adapts to you and makes it easier than ever to see all your open tabs, past searches, and favorite sites.{% endblock %}
+{% block site_footer %}
+  {% with theme_class='mzp-t-light' %}
+    {% include 'landing/includes/footer.html' %}
+  {% endwith %}
+{% endblock %}

@@ -1,0 +1,59 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-pocket';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-vpn';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-pocket';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-vpn';
+
+.c-navigation-container {
+    .sem-landing-nav-icon {
+        margin: 16px;
+    }
+}
+
+.sem-landing-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    .mzp-c-logo {
+        margin: 0 auto $spacing-lg;
+    }
+
+    p {
+        max-width: 80%;
+    }
+
+    .sem-badge-wrapper {
+        display: block;
+
+        .store-badge {
+            display: block;
+            text-decoration: none;
+        }
+    }
+}
+
+.sem-footer {
+    padding-bottom: 50px;
+}
+
+// hide download links for one platform from the other
+.android .sem-badge-wrapper .ios.store-badge {
+    display: none;
+}
+
+.ios .sem-badge-wrapper .android.store-badge {
+    display: none;
+}
