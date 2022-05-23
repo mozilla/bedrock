@@ -9,6 +9,29 @@ $image-path: '/media/protocol/img';
 /* Protocol overrides */
 
 // * -------------------------------------------------------------------------- */
+// Footer social icon links
+// bedrock override until icons are added to protocol-assets
+// https://github.com/mozilla/protocol-assets/issues/84
+
+.mzp-c-footer-links-social {
+    li {
+        a {
+            &.linkedin {
+                background-image: url('/media/img/logos/social/linkedin-white.svg');
+            }
+
+            &.tiktok {
+                background-image: url('/media/img/logos/social/tiktok-white.svg');
+            }
+
+            &.spotify {
+                background-image: url('/media/img/logos/social/spotify-white.svg');
+            }
+        }
+    }
+}
+
+// * -------------------------------------------------------------------------- */
 // Light theme (for Firefox pages)
 
 .mzp-c-footer.mzp-t-light {
@@ -45,6 +68,20 @@ $image-path: '/media/protocol/img';
 
         &.youtube {
             background-image: url('#{$image-path}/icons/social/youtube/black.svg');
+        }
+
+        // bedrock override until icons are added to protocol-assets
+        // https://github.com/mozilla/protocol-assets/issues/84
+        &.linkedin {
+            background-image: url('/media/img/logos/social/linkedin-black.svg');
+        }
+
+        &.tiktok {
+            background-image: url('/media/img/logos/social/tiktok-black.svg');
+        }
+
+        &.spotify {
+            background-image: url('/media/img/logos/social/spotify-black.svg');
         }
 
         &:hover,
