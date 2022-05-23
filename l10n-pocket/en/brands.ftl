@@ -22,6 +22,7 @@
 -brand-name-blackberry = BlackBerry
 -brand-name-flipboard = Flipboard
 -brand-name-feedly = Feedly
+-brand-name-apple = Apple
 
 ## Pocket product
 
@@ -57,5 +58,4 @@
 ## Google Products
 
 -brand-name-google-play = Google Play
--brand-name-google-analytics = Google Analytics
 -brand-name-youtube = YouTube
