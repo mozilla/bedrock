@@ -5,161 +5,39 @@
 #}
 {% from "macros.html" import google_play_button with context %}
 
-<!doctype html>
-{# Note the "windows" class, without javascript platform-specific assets default to windows #}
-<html class="windows x86 no-js" lang="{{ LANG|replace('en-US', 'en') }}" dir="{{ DIR }}" data-country-code="{{ country_code }}" data-latest-firefox="{{ latest_firefox_version }}" data-esr-versions="{{ esr_firefox_versions|join(' ') }}" {% if settings.GTM_CONTAINER_ID %}data-gtm-container-id="{{ settings.GTM_CONTAINER_ID }}"{% endif %} {% block gtm_page_id %}{% endblock %} {% if settings.STUB_ATTRIBUTION_RATE %}data-stub-attribution-rate="{{ settings.STUB_ATTRIBUTION_RATE }}"{% endif %} {% block html_attrs %}{% endblock %} {% if settings.SENTRY_FRONTEND_DSN %}data-sentry-dsn="{{ settings.SENTRY_FRONTEND_DSN }}"{% endif %}>
-  <head>
-    <meta charset="utf-8">{# Note: Must be within first 512 bytes of page #}
+{% extends "base-protocol.html" %}
 
-    <!--[if !IE]><!-->
-    {{ js_bundle('site') }}
-
-    {% block experiments %}{% endblock %}
-    <!--<![endif]-->
-
-<!--
-{% include "includes/careers-teaser.html" %}
--->
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% block extra_meta %}{% endblock %}
-
-    {% block shared_meta %}
-    <title>{% filter striptags|e %}{% block page_title_full %}{% block page_title_prefix %}{% endblock %}{% block page_title %}{% endblock %}{% endblock page_title_full %}{% block page_title_suffix %} — Mozilla{% endblock %}{% endfilter %}</title>
-    <meta name="description" content="{% filter striptags|e %}{% block page_desc %}{% endblock %}{% endfilter %}">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Mozilla">
-    <meta property="og:locale" content="{{ LANG|replace("-", "_") }}">
-    <meta property="og:url" content="{% filter trim|absolute_url %}{% block page_og_url %}{{ settings.CANONICAL_URL + '/' + LANG + canonical_path }}{% endblock %}{% endfilter %}">
-    <meta property="og:image" content="{% filter trim|absolute_url %}{% block page_image %}{{ static('img/mozorg/mozilla-256.jpg') }}{% endblock %}{% endfilter %}">
-    <meta property="og:title" content="{% filter striptags|e %}{% block page_og_title %}{{ self.page_title_full() }}{% endblock %}{% endfilter %}">
-    <meta property="og:description" content="{% filter striptags|e %}{% block page_og_desc %}{{ self.page_desc() }}{% endblock %}{% endfilter %}">
-    <meta property="fb:page_id" content="{% block facebook_id %}262134952380{# facebook.com/mozilla #}{% endblock %}">
-    <meta name="twitter:card" content="{% block twitter_card %}summary{% endblock %}">
-    <meta name="twitter:site" content="@{% block twitter_id %}mozilla{% endblock %}">
-    <meta name="twitter:domain" content="mozilla.org">
-    <meta name="twitter:app:name:googleplay" content="{% block android_app_name %}Firefox{% endblock %}">
-    <meta name="twitter:app:id:googleplay" content="{% block android_app_id %}org.mozilla.firefox{% endblock %}">
-    <meta name="twitter:app:name:iphone" content="{% block iphone_app_name %}Firefox{% endblock %}">
-    <meta name="twitter:app:id:iphone" content="{% block iphone_app_id %}989804926{% endblock %}">
-    <meta name="twitter:app:name:ipad" content="{% block ipad_app_name %}Firefox{% endblock %}">
-    <meta name="twitter:app:id:ipad" content="{% block ipad_app_id %}989804926{% endblock %}">
-    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="{% block page_ios_icon %}{{ static('img/favicons/mozilla/apple-touch-icon.png') }}{% endblock %}">
-    <link rel="icon" type="image/png" sizes="196x196" href="{% block page_favicon_large %}{{ static('img/favicons/mozilla/favicon-196x196.png') }}{% endblock %}">
-    <link rel="shortcut icon" href="{% block page_favicon %}{{ static('img/favicons/mozilla/favicon.ico') }}{% endblock %}">
-    {% block canonical_urls %}{% include 'includes/canonical-url.html' %}{% endblock %}
-    {% endblock shared_meta %}
-
-    {{ l10n_css() }}
-
-    <!--[if lt IE 9]>
-      {# Only needed for IE before v9 #}
-      <script type="text/javascript" src="{{ static('js/ie/libs/html5shiv.js') }}"></script>
-    <![endif]-->
-
-    <!--[if IE]>
-      {# Basic styles, only for IE9 and lower #}
-      {% block old_ie_styles %}
-        {{ css_bundle('common-old-ie') }}
-      {% endblock %}
-    <![endif]-->
-
-    <!--[if !IE]><!-->
-    {# Global styles, hidden from IE9 and lower #}
-    {% block site_css %}
-      {{ css_bundle('protocol-mozilla') }}
-    {% endblock %}
-
-    {# Page-specific styles, hidden from IE9 and lower #}
-    {% block page_css %}
-      {{ css_bundle('landing-shared')}}
-    {% endblock %}
-    <!--<![endif]-->
-
-    {% block google_analytics %}
-      {% include 'includes/google-analytics.html' %}
-    {% endblock %}
+{% block page_css %}
+  {{ css_bundle('landing-shared')}}
+{% endblock %}
 
 
 
-
-  </head>
-
-  <body {% if self.body_id() %}id="{% block body_id %}{% endblock %}" {% endif %}class="html-{{ DIR }} {% block body_class %}{% endblock %}" {% block body_attrs %}{% endblock %}>
-    <div id="strings"
-      data-global-close="{{ ftl('ui-close') }}"
-      data-global-next="{{ ftl('ui-next') }}"
-      data-global-previous="{{ ftl('ui-previous') }}"
-      {% block string_data %}{% endblock %}></div>
-
-  {% block site_header %}
-    <div class="c-navigation top-header-navigation mzp-is-sticky">
-      <div class="c-navigation-l-content">
-        <div class="c-navigation-container">
-          <div data-cta-type="navigation" data-cta-text="{{ self.page_title() }}" class="sem-landing-nav-icon c-navigation-logo mzp-c-wordmark mzp-t-wordmark-md {% block icon_class %}{% endblock %}" data></div>
-        </div>
+{% block site_header %}
+  <div class="c-navigation top-header-navigation mzp-is-sticky">
+    <div class="c-navigation-l-content">
+      <div class="c-navigation-container">
+        <div data-cta-type="navigation" data-cta-text="{{ self.page_title() }}" class="sem-landing-nav-icon c-navigation-logo mzp-c-wordmark mzp-t-wordmark-md {% block icon_class %}{% endblock %}" data></div>
       </div>
     </div>
-  {% endblock %}
+  </div>
+{% endblock %}
 
+{% block content %}
+<div class="mzp-l-content mzp-t-content-md sem-landing-wrapper">
+  <div class="mzp-c-logo mzp-t-logo-lg {{ self.icon_class() }}"></div>
+  <h1>{% block header %}{% endblock %}</h1>
+  <p>{% block body_copy %}{% endblock %}</p>
+  <div class="sem-badge-wrapper">
+    {{ google_play_button(href=self.android_url(), id='playStoreLink-primary', class_name='android store-badge') }}
+    <a class="ios store-badge" id="appStoreLink-primary" href="{% block ios_url %}{% endblock %}" data-link-type="download" data-download-os="iOS">
+      <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
+    </a>
+  </div>
+</div>
+{% endblock %}
 
-    <div id="outer-wrapper">
-      <div class="mzp-l-content mzp-t-content-md sem-landing-wrapper">
-        <div class="mzp-c-logo mzp-t-logo-lg {{ self.icon_class() }}"></div>
-        <h1>{% block header %}{% endblock %}</h1>
-        <p>{% block body_copy %}{% endblock %}</p>
-        <div class="sem-badge-wrapper">
-          {{ google_play_button(href=self.android_url(), id='playStoreLink-primary', class_name='android store-badge') }}
-          <a class="ios store-badge" id="appStoreLink-primary" href="{% block ios_url %}{% endblock %}" data-link-type="download" data-download-os="iOS">
-            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
-          </a>
-        </div>
-      </div>
-      {% block site_footer %}
-          {% include 'landing/includes/footer.html' %}
-      {% endblock %}
-    </div>
+{% block site_footer %}
+    {% include 'landing/includes/footer.html' %}
+{% endblock %}
 
-    {# Issue 8444 #}
-    {% block sentry_client %}
-      {% if settings.SENTRY_FRONTEND_DSN and switch('sentry-js') %}
-        <!--[if !IE]><!-->
-          {{ js_bundle('sentry') }}
-        <!--<![endif]-->
-      {% endif %}
-    {% endblock %}
-
-    {# Bug 1279291 #}
-    {% block stub_attribution %}
-      {% if settings.STUB_ATTRIBUTION_RATE %}
-        <!--[if !IE]><!-->
-          {{ js_bundle('stub-attribution') }}
-        <!--<![endif]-->
-
-        <!--[if gte IE 8]>
-          {{ js_bundle('stub-attribution-ie') }}
-        <![endif]-->
-      {% endif %}
-    {% endblock %}
-
-    <!--[if !IE]><!-->
-    {% block glean %}{% endblock %}
-
-    {% block js %}
-      {{ js_bundle('landing-shared') }}
-    {% endblock %}
-
-    {% if self.structured_data()|trim|length %}
-      <script type="application/ld+json">
-    {% endif %}
-    {% block structured_data %}{% endblock %}
-    {% if self.structured_data()|trim|length %}
-      </script>
-    {% endif %}
-
-    {% if settings.DEV %}
-      <script src="https://pontoon.mozilla.org/pontoon.js"></script>
-    {% endif %}
-    <!--<![endif]-->
-  </body>
-</html>
