@@ -18,12 +18,12 @@
                 });
             } else if (href.indexOf('v=2') !== -1) {
                 window.dataLayer.push({
-                    'data-ex-variant': 'vpn-mobile',
+                    'data-ex-variant': 'vpn-mobile-qr-b',
                     'data-ex-name': 'wnp-101-en-experiment'
                 });
             } else if (href.indexOf('v=3') !== -1) {
                 window.dataLayer.push({
-                    'data-ex-variant': 'vpn-mobile-trial',
+                    'data-ex-variant': 'vpn-mobile-qr-c',
                     'data-ex-name': 'wnp-101-en-experiment'
                 });
             }
