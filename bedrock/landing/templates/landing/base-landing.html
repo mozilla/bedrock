@@ -76,14 +76,12 @@
     {% endblock %}
     <!--<![endif]-->
 
-    {% block js_pretrack %}{# include JavaScript that must be run pre GA tracking here #}{% endblock %}
     {% block google_analytics %}
       {% include 'includes/google-analytics.html' %}
     {% endblock %}
 
 
-    {% set android_url = firefox_adjust_url('android', 'firefox-sem-landing') %}
-    {% set ios_url = firefox_adjust_url('ios', 'firefox-sem-landing') %}
+
 
   </head>
 
@@ -111,7 +109,7 @@
         <h1>{% block header %}{% endblock %}</h1>
         <p>{% block body_copy %}{% endblock %}</p>
         <div class="sem-badge-wrapper">
-          {{ google_play_button(href="{% block android_url %}{% endblock %}", id='playStoreLink-primary', class_name='android store-badge') }}
+          {{ google_play_button(href=self.android_url(), id='playStoreLink-primary', class_name='android store-badge') }}
           <a class="ios store-badge" id="appStoreLink-primary" href="{% block ios_url %}{% endblock %}" data-link-type="download" data-download-os="iOS">
             <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
           </a>
