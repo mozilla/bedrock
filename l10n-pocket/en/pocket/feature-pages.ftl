@@ -13,7 +13,7 @@ pocket-features-get-started = Get started
 pocket-features-already-have = Already have an account? Log in
 pocket-features-save-from-anywhere = Save from anywhere on the web
 # Variables:
-# $pocket-logo-inline (string) class for Pocket's inline logo
+# $pocket-logo-inline (string) class for Pocket’s inline logo
 pocket-features-once-you = Once you’ve signed up, add the <span class="{ $pocket-logo-inline }">{ -brand-name-pocket} Logo</span> button to your browser for the fastest and easiest way to save articles, videos, and links to your personal library.
 pocket-features-start-saving = Start saving content
 
