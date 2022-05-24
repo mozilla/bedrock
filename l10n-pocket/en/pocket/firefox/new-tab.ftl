@@ -12,7 +12,7 @@ pocket-new-tab-pocket-is-part = { -brand-name-pocket } is part of the { -brand-n
 pocket-new-tab-pocket-for-firefox = { -brand-name-pocket } for { -brand-name-firefox }
 pocket-new-tab-build-your-personal = Build your personal library of fascinating reads.
 # Variables:
-# $pocket-logo-inline (string) class for Pocket's inline logo
+# $pocket-logo-inline (string) class for Pocket’s inline logo
 pocket-new-tab-included-inside = Included inside { -brand-name-firefox }, the <span class="{ $pocket-logo-inline }">{ -brand-name-pocket} Logo</span> button lets you save articles from across the web and read them in a quiet, private space.
 pocket-new-tab-activate-pocket = Activate { -brand-name-pocket } in { -brand-name-firefox }
 pocket-new-tab-more-ways-to = More ways to sign up

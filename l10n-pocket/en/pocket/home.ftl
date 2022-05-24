@@ -18,7 +18,7 @@ pocket-home-log-in = Log In
 pocket-home-save-interesting-stories = Save interesting stories. Read them whenever.
 
 # Variables:
-# $pocket-logo-inline (string) class for Pocket's inline logo
+# $pocket-logo-inline (string) class for Pocket’s inline logo
 pocket-home-stop-sending-yourself-links = Stop sending yourself links. When you come across a long read, interview, think piece, even a recipe, save it to your personal { -brand-name-pocket } library with the <span class={ $pocket-logo-inline }>Save to { -brand-name-pocket }</span> button in your browser or with { -brand-name-pocket } app.
 
 pocket-home-great-recommendations = Great recommendations — curated for you

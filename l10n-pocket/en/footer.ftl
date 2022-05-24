@@ -4,8 +4,7 @@
 
 ### URL all pages of https://dev.tekcopteg.com/
 
-
-## pocket/includes/footer.html
+# pocket/includes/footer.html
 
 pocket-footer-products = Products
 pocket-footer-must-read-articles = Must-read articles
@@ -47,8 +46,7 @@ pocket-footer-facebook-brand-name = { -brand-name-facebook }
 ## https://dev.tekcopteg.com/opera
 ## https://dev.tekcopteg.com/edge
 
-
-## pocket/includes/platform-footer.html
+# pocket/includes/platform-footer.html
 
 pocket-footer-explore = Explore
 pocket-footer-publishers = Publishers
