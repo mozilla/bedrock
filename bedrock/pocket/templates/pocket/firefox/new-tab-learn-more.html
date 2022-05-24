@@ -84,8 +84,8 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
       <p class="new-tab-section-body">{{ ftl('pocket-new-tab-its-easy', dismiss_url='https://help.getpocket.com/article/1142-firefox-new-tab-recommendations-faq#turn-off') }}</p>
       <ul class="new-tab-helpful-links">
         <li><a href="https://help.getpocket.com/article/1142-firefox-new-tab-recommendations-faq">{{ ftl('pocket-new-tab-faq') }}</a></li>
-        <li><a href="https://getpocket.com/privacy">{{ ftl('pocket-new-tab-privacy-policy') }}</a></li>
-        <li><a href="https://getpocket.com/tos">{{ ftl('pocket-new-tab-tos') }}</a></li>
+        <li><a href="{{ url('pocket.privacy') }}">{{ ftl('pocket-new-tab-privacy-policy') }}</a></li>
+        <li><a href="{{ url('pocket.tos') }}">{{ ftl('pocket-new-tab-tos') }}</a></li>
         <li><a href="https://getpocket.com/sponsor">{{ ftl('pocket-new-tab-sponsorship') }}</a></li>
       </ul>
     </div>
