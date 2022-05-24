@@ -75,6 +75,7 @@ urlpatterns = (
         "firefox/new_tab_learn_more/",
         "pocket/firefox/new-tab-learn-more.html",
         url_name="pocket.firefox-new-tab-learn-more",
+        ftl_files=["pocket/firefox/new-tab"],
     ),
     page(
         "pocket-and-firefox/",
