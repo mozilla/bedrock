@@ -21,6 +21,16 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.wnp-logo {
+    background-position: center top;
+    margin: 0 auto $layout-lg;
+
+    @media #{$mq-md} {
+        background-position: left top;
+        margin: 0 0 $layout-lg;
+    }
+}
+
 .wnp-main-title {
     @include text-title-md;
     color: get-theme('title-text-color');

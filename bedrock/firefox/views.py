@@ -514,8 +514,8 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx101-vpn-en.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx101-vpn-de.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx101-vpn-fr.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx101-vpn-mobile-free-en.html": ["firefox/whatsnew/whatsnew", "firefox/whatsnew/whatsnew-101-vpn-mobile"],
-        "firefox/whatsnew/whatsnew-fx101-vpn-mobile.html": ["firefox/whatsnew/whatsnew", "firefox/whatsnew/whatsnew-101-vpn-mobile"],
+        "firefox/whatsnew/whatsnew-fx101-vpn-mobile-unfree-en.html": ["firefox/whatsnew/whatsnew-101-vpn-mobile", "firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx101-vpn-mobile.html": ["firefox/whatsnew/whatsnew-101-vpn-mobile", "firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -526,7 +526,7 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx101-vpn-en.html",
         "firefox/whatsnew/whatsnew-fx101-vpn-de.html",
         "firefox/whatsnew/whatsnew-fx101-vpn-fr.html",
-        "firefox/whatsnew/whatsnew-fx101-vpn-mobile-free-en.html",
+        "firefox/whatsnew/whatsnew-fx101-vpn-mobile-unfree-en.html",
         "firefox/whatsnew/whatsnew-fx101-vpn-mobile.html",
     ]
 
@@ -600,9 +600,9 @@ class WhatsnewView(L10nTemplateView):
         elif version.startswith("101."):
             if locale.startswith("en"):
                 if variant == "2":
-                    template = "firefox/whatsnew/whatsnew-fx101-vpn-mobile.html"
+                    template = "firefox/whatsnew/whatsnew-fx101-vpn-mobile-unfree-en.html"
                 elif variant == "3":
-                    template = "firefox/whatsnew/whatsnew-fx101-vpn-mobile-free-en.html"
+                    template = "firefox/whatsnew/whatsnew-fx101-vpn-mobile.html"
                 else:
                     template = "firefox/whatsnew/whatsnew-fx101-vpn-en.html"
             elif locale == "de":

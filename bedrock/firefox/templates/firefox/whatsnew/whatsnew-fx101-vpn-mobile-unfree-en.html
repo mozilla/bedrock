@@ -22,16 +22,13 @@
 
 {% block site_header %}{% endblock %}
 
-{% set play_store_link = play_store_url('firefox') + '&utm_source=WNP&utm_campaign=WNP101' %}
-{% set app_store_link = app_store_url('firefox') %}
-
 {% block wnp_content %}
 <section class="wnp-content-main mzp-t-content-xl">
   {% call split(
     block_class='c-main-content mzp-t-split-nospace mzp-l-split-center-on-sm-md',
     media_class='mzp-l-split-h-center',
     media_after=True,
-    media_include='firefox/whatsnew/includes/fx101-vpn-mobile/qr-en-v3.html'
+    media_include='firefox/whatsnew/includes/fx101-vpn-mobile/qr-en-v2.html'
   ) %}
     <div class="wnp-logo mzp-c-wordmark mzp-t-wordmark-lg mzp-t-product-vpn">Mozilla VPN</div>
     <h1 class="wnp-main-title">Feel safer online</h1>

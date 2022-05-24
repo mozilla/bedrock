@@ -7,5 +7,6 @@
 whatsnew-101-vpn-mobile-mozilla-vpn = { -brand-name-mozilla-vpn }
 whatsnew-101-vpn-mobile-title = Feel safer online
 whatsnew-101-vpn-mobile-desc = No one needs to know where you are or what you do online but you. Get { -brand-name-mozilla }’s Virtual Private Network to protect up to 5 devices from snooping internet providers and hackers.
-whatsnew-101-vpn-mobile-qr-code = Scan the QR code to download for { -brand-name-android } or { -brand-name-ios }
+whatsnew-101-vpn-mobile-free-trial = Start your free trial on mobile
+whatsnew-101-vpn-mobile-qr-code = Scan the QR code
 whatsnew-101-vpn-mobile-qr-code-alt = QR code

@@ -552,6 +552,22 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ["firefox/whatsnew/whatsnew-fx101-vpn-en.html"]
 
+    def test_fx_101_0_0_en_v2(self, render_mock):
+        """Should use whatsnew-fx101-vpn-mobile-unfree-en template for 101.0 in English and v=2"""
+        req = self.rf.get("/firefox/whatsnew/?v=2")
+        req.locale = "en-US"
+        self.view(req, version="101.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx101-vpn-mobile-unfree-en.html"]
+
+    def test_fx_101_0_0_en_v3(self, render_mock):
+        """Should use whatsnew-fx101-vpn-mobile template for 101.0 in English and v=3"""
+        req = self.rf.get("/firefox/whatsnew/?v=3")
+        req.locale = "en-US"
+        self.view(req, version="101.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx101-vpn-mobile.html"]
+
     def test_fx_101_0_0_de(self, render_mock):
         """Should use whatsnew-fx101-vpn-de template for 101.0 in German"""
         req = self.rf.get("/firefox/whatsnew/")
