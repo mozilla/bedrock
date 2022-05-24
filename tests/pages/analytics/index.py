@@ -43,6 +43,21 @@ class AnalyticsTestPage(BasePage):
     def account_button(self):
         return self.find_element(*self._ga_test_button_account_link_locator)
 
+    @property
+    def is_ga_loaded(self):
+        # since this is waiting for a third-party script to load we want to wait
+        # until google tag manager has loaded or we will get a timeout
+        # and raise an exception
+        data_layer = self.selenium.execute_script("return window.dataLayer")
+
+        def gtm_loaded(self):
+            for layer in data_layer:
+                if "event" in layer and layer["event"] == "gtm.load":
+                    return True
+
+        self.wait.until(gtm_loaded)
+        return gtm_loaded
+
     def click_download_button(self):
         return self.find_element(*self._ga_test_button_download_locator).click()
 
