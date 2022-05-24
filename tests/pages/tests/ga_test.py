@@ -10,7 +10,7 @@ from pages.base import BasePage
 
 class AnalyticsTestPage(BasePage):
 
-    _URL_TEMPLATE = "/{locale}/external/analytics"
+    _URL_TEMPLATE = "/{locale}/external/analytics-tests"
 
     # GA buttons to test
     _ga_test_button_download_locator = (By.CSS_SELECTOR, ".mzp-c-button[data-link-type=download-test]")
@@ -34,6 +34,16 @@ class AnalyticsTestPage(BasePage):
     @property
     def account_button_is_displayed(self):
         return self.is_element_displayed(*self._ga_test_button_account_link_locator)
+
+    @property
+    def is_ga_loaded(self):
+        # since this is waiting for a third-party script to load we want to wait
+        # until google tag manager has loaded or we will get a timeout
+        # and raise an exception
+        data_layer = self.selenium.execute_script("return window.dataLayer")
+        gtm_loaded = any("event" in layer and layer["event"] == "gtm.load" for layer in data_layer)
+        self.wait.until(gtm_loaded)
+        return gtm_loaded
 
     def click_download_button(self):
         return self.find_element(*self._ga_test_button_download_locator).click()
