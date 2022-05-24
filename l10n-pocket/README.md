@@ -1,6 +1,6 @@
 # Developer notes
 
-Things to bear in mind when working on localisation of Pocket-mode pages
+Pocket is translated in a similar way to Mozorg, but not entirely. This README captures things to bear in mind when working on localisation of Pocket-mode pages
 ## Translation service
 
 For Pocket pages, all translations are handled by a vendor, rather than the community.
