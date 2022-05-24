@@ -17,22 +17,23 @@ $image-path: '/media/protocol/img';
 
 .c-navigation-container {
     .sem-landing-nav-icon {
+        // when on mobile viewports, design asked for a smaller sized icon, hence the overrides here.
+        height: $layout-sm;
         margin: 0;
-        height: 32px;
         width: 174px;
 
         @media #{$mq-md} {
+            height: $layout-md;
             margin: $spacing-md 0;
-            height: 48px;
             width: 262px;
         }
     }
 }
 
 .sem-landing-wrapper {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
     text-align: center;
 
     .mzp-c-logo {
@@ -50,6 +51,7 @@ $image-path: '/media/protocol/img';
     .sem-badge-wrapper {
         display: block;
 
+        // if ios or android is not detected show both store badges
         .store-badge {
             display: block;
             text-decoration: none;
@@ -58,7 +60,7 @@ $image-path: '/media/protocol/img';
 }
 
 .sem-footer {
-    padding-bottom: 50px;
+    padding-bottom: $layout-md;
 }
 
 // hide download links for one platform from the other
