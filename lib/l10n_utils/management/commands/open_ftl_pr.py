@@ -92,10 +92,10 @@ class Command(FTLRepoCommand):
 
     def push_changes(self):
         try:
-            result = self.l10n_repo.git("push", self.git_push_url, "HEAD")
+            result = self.l10n_repo.git("push", self.git_push_url, f"HEAD:{self.branch_name}")
             self.stdout.write(result)
         except CalledProcessError as cpe:
-            raise CommandError(f"There was a problem pushing to {self.l10n_repo.remote_url}: {cpe}")
+            raise CommandError(f"There was a problem pushing to {self.l10n_repo.remote_url}: {cpe}\n{cpe.output}")
 
         commit = self.l10n_repo.git("rev-parse", "--short", "HEAD")
         self.stdout.write(f"Pushed {commit} to {self.l10n_repo.remote_url} as {self.branch_name}")
