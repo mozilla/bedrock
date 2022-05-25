@@ -1,0 +1,73 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-pocket';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-vpn';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-pocket';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-vpn';
+
+.c-navigation-container {
+    .sem-landing-nav-icon {
+        // when on mobile viewports, design asked for a smaller sized icon, hence the overrides here.
+        height: $layout-sm;
+        margin: 0;
+        width: 174px;
+
+        @media #{$mq-md} {
+            height: $layout-md;
+            margin: $spacing-md 0;
+            width: 262px;
+        }
+    }
+}
+
+.sem-landing-wrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    .mzp-c-logo {
+        margin: 0 auto $spacing-lg;
+    }
+
+    h1 {
+        @include font-size(32px);
+    }
+
+    p {
+        max-width: 80%;
+    }
+
+    .sem-badge-wrapper {
+        display: block;
+
+        // if ios or android is not detected show both store badges
+        .store-badge {
+            display: block;
+            text-decoration: none;
+        }
+    }
+}
+
+.sem-footer {
+    padding-bottom: $layout-md;
+}
+
+// hide download links for one platform from the other
+.android .sem-badge-wrapper .ios.store-badge {
+    display: none;
+}
+
+.ios .sem-badge-wrapper .android.store-badge {
+    display: none;
+}

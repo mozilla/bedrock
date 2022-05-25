@@ -1,0 +1,40 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol.html" %}
+
+{% block page_css %}
+  {{ css_bundle('landing-shared')}}
+{% endblock %}
+
+
+
+{% block site_header %}
+  <div class="c-navigation top-header-navigation mzp-is-sticky">
+    <div class="c-navigation-l-content">
+      <div class="c-navigation-container">
+        <div class="sem-landing-nav-icon c-navigation-logo mzp-c-wordmark mzp-t-wordmark-md {% block icon_class %}{% endblock %}">{% block icon_text %}{% endblock %}</div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+<div class="mzp-l-content mzp-t-content-md sem-landing-wrapper">
+  <div class="mzp-c-logo mzp-t-logo-lg {{ self.icon_class() }}"></div>
+  <h1>{% block header %}{% endblock %}</h1>
+  <p>{% block body_copy %}{% endblock %}</p>
+  <div class="sem-badge-wrapper">
+    {% block android_badge %}{% endblock %}
+    {% block ios_badge %}{% endblock %}
+  </div>
+</div>
+{% endblock %}
+
+{% block site_footer %}
+    {% include 'landing/includes/footer.html' %}
+{% endblock %}
+

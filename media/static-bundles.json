@@ -1124,6 +1124,12 @@
         "css/mozorg/webvision.scss"
       ],
       "name": "webvision"
+    },
+    {
+      "files": [
+        "css/landing/landing-shared.scss"
+      ],
+      "name": "landing-shared"
     }
   ],
   "js": [
@@ -1767,6 +1773,12 @@
         "js/privacy/data-preferences.es6.js"
       ],
       "name": "privacy-data-preferences"
+    },
+    {
+      "files": [
+        "js/landing/landing-shared.js"
+      ],
+      "name": "landing-shared"
     }
   ]
 }
