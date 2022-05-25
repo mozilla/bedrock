@@ -9,7 +9,7 @@
 
     // test to see if users are clicking on the workmark in the header of the SEM landing pages
     function handleWorkmarkClick(event) {
-        var label = event.target.getAttribute('data-cta-text');
+        var label = event.target.innerText;
         window.dataLayer.push({
             event: 'sem-wordmark-click',
             label: label + ' SEM landing page'
