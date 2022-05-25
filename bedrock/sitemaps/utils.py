@@ -24,6 +24,7 @@ from bedrock.security.models import SecurityAdvisory
 SEC_KNOWN_VULNS = [
     "/security/known-vulnerabilities/firefox/",
     "/security/known-vulnerabilities/firefox-esr/",
+    "/security/known-vulnerabilities/firefox-for-ios/",
     "/security/known-vulnerabilities/firefox-os/",
     "/security/known-vulnerabilities/mozilla-vpn/",
     "/security/known-vulnerabilities/thunderbird/",
