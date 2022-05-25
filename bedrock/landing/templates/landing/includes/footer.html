@@ -9,20 +9,20 @@
     <nav class="mzp-c-footer-secondary">
       <div class="mzp-c-footer-legal">
         <p class="mzp-c-footer-license">
-          Portions of this content are ©1998–2018 by
+          Portions of this content are ©1998–{{ current_year}} by
           individual mozilla.org contributors.
           Content available under a
-          <a rel="license" href="https://www.mozilla.org/foundation/licensing/website-content/">Creative Commons license</a>.
+          <a rel="license" href="{{ url('foundation.licensing.website-content') }}">Creative Commons license</a>.
         </p>
         <ul class="mzp-c-footer-terms">
           <li>
-            <a href="https://www.mozilla.org/privacy/websites/">Website Privacy Notice</a>
+            <a href="{{ url('privacy.notices.websites') }}">Website Privacy Notice</a>
           </li>
           <li>
-            <a href="https://www.mozilla.org/privacy/websites/#cookies">Cookies</a>
+            <a href="{{ url('privacy.notices.websites') }}#user-choices">Cookies</a>
           </li>
           <li>
-            <a href="https://www.mozilla.org/about/legal/">Legal</a>
+            <a href="{{ url('legal.index') }}">Legal</a>
           </li>
         </ul>
       </div>

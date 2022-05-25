@@ -3,7 +3,6 @@
  License, v. 2.0. If a copy of the MPL was not distributed with this
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
-{% from "macros.html" import google_play_button with context %}
 
 {% extends "base-protocol.html" %}
 
@@ -17,7 +16,7 @@
   <div class="c-navigation top-header-navigation mzp-is-sticky">
     <div class="c-navigation-l-content">
       <div class="c-navigation-container">
-        <div data-cta-type="navigation" data-cta-text="{{ self.page_title() }}" class="sem-landing-nav-icon c-navigation-logo mzp-c-wordmark mzp-t-wordmark-md {% block icon_class %}{% endblock %}" data></div>
+        <div alt="{% block icon_alt %}{% endblock %}" data-cta-type="navigation" data-cta-text="{{ self.page_title() }}" class="sem-landing-nav-icon c-navigation-logo mzp-c-wordmark mzp-t-wordmark-md {% block icon_class %}{% endblock %}"></div>
       </div>
     </div>
   </div>
@@ -29,10 +28,8 @@
   <h1>{% block header %}{% endblock %}</h1>
   <p>{% block body_copy %}{% endblock %}</p>
   <div class="sem-badge-wrapper">
-    {{ google_play_button(href=self.android_url(), id='playStoreLink-primary', class_name='android store-badge') }}
-    <a class="ios store-badge" id="appStoreLink-primary" href="{% block ios_url %}{% endblock %}" data-link-type="download" data-download-os="iOS">
-      <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
-    </a>
+    {% block android_badge %}{% endblock %}
+    {% block ios_badge %}{% endblock %}
   </div>
 </div>
 {% endblock %}
