@@ -5,7 +5,7 @@
 #}
 
 {% from "macros.html" import google_play_button with context %}
-{% from "macros-protocol.html" import hero with context %}
+{% from "macros-protocol.html" import call_out with context %}
 
 {% extends "firefox/welcome/base.html" %}
 
@@ -20,11 +20,16 @@
 {% set ios_url = firefox_adjust_url('ios', 'moments6') %}
 {% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
 
+{%block page_css %}
+ {{ super()}}
+ {{ css_bundle('protocol-call-out') }}
+{% endblock %}
+
 {% block content_intro %}
-  {% call hero(
+  {% call call_out(
     title=ftl('welcome-page6-make-sure-youre-protected'),
     desc=ftl('welcome-page6-when-you-choose-firefox-you'),
-    class='mzp-t-firefox mzp-t-dark',
+    class='mzp-t-firefox mzp-t-dark mzp-t-hero',
     include_cta=True,
     heading_level=1
   ) %}

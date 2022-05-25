@@ -9,7 +9,6 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-pocket';
 @import '~@mozilla-protocol/core/protocol/css/components/billboard';
-@import '~@mozilla-protocol/core/protocol/css/components/hero';
 
 .pocket-hero {
     h1 {
@@ -38,6 +37,9 @@ $image-path: '/media/protocol/img';
     margin-bottom: 0;
     margin-top: $spacing-xl;
 
+    // override the default rule on split
+    overflow-x: visible;
+
     .mzp-c-hero-title {
         @include text-title-md;
         margin-bottom: $layout-md;
@@ -46,11 +48,23 @@ $image-path: '/media/protocol/img';
     @media #{$mq-md} {
         margin-top: $layout-xl;
 
-        .mzp-c-hero-image {
+        .mzp-c-split-media {
             bottom: 0;
             height: calc(100% + #{$spacing-xl});
-            max-width: 50%;
+            width: 50%;
+            left: 50%;
+            position: absolute;
             top: auto;
+
+            img {
+                bottom: 0;
+                left: 0;
+                max-height: 100%;
+                max-width: none;
+                position: absolute;
+                right: auto;
+                width: auto;
+            }
         }
     }
 }

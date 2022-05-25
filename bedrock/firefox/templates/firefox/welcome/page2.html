@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import hero with context %}
+{% from "macros-protocol.html" import call_out with context %}
 
 {% extends "firefox/welcome/base.html" %}
 
@@ -14,15 +14,20 @@
 
 {% block body_class %}{{ super() }} welcome-page2{% endblock %}
 
+{%block page_css %}
+ {{ super()}}
+ {{ css_bundle('protocol-call-out') }}
+{% endblock %}
+
 {% set _source = 'ffwelcome2' %}
 {% set _entrypoint = 'mozilla.org-firefox-welcome-2' %}
 {% set _utm_campaign = 'welcome-2-pocket' %}
 
 {% block content_intro %}
-  {% call hero(
+  {% call call_out(
     title=ftl('welcome-page2-your-time-online-is-worth'),
     desc=ftl('welcome-page2-discover-and-save-stories'),
-    class='mzp-t-firefox mzp-t-dark',
+    class='mzp-t-firefox mzp-t-dark mzp-t-hero',
     include_cta=True,
     heading_level=1
   ) %}

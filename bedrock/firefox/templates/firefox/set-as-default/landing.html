@@ -6,13 +6,14 @@
 #}
 
 {% extends "firefox/base/base-protocol.html" %}
-{% from "macros-protocol.html" import hero, picto with context %}
+{% from "macros-protocol.html" import call_out, picto with context %}
 
 {% block page_title %}{{ ftl('set-as-default-landing-make-firefox-your-default') }}{% endblock %}
 {% block page_desc %}{{ ftl('set-as-default-landing-choose-the-browser') }}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('protocol-call-out') }}
   {{ css_bundle('firefox-default-landing') }}
 {% endblock %}
 
@@ -35,10 +36,11 @@
 {% endif %}
 
 {% block content %}
-   <main role="main">
-    {% call hero(
-      title=landing_header,
-      desc=landing_body,
+  <main role="main">
+    {% call call_out(
+      title=ftl('set-as-default-landing-make-sure-youre-protected'),
+      desc=ftl('set-as-default-landing-thanks-for-using-the'),
+      class='mzp-t-hero mzp-t-product-firefox',
       include_cta=True,
       heading_level=1,
     ) %}

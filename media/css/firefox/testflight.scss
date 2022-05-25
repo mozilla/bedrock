@@ -6,12 +6,11 @@ $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/hero';
 
 // * -------------------------------------------------------------------------- */
-// Hero
+// Call-out
 
-.mzp-c-hero.mzp-t-dark {
+.mzp-c-call-out.mzp-t-hero {
     background-color: $color-ink-80;
 }
 

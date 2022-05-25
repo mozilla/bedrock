@@ -6,7 +6,7 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% from "macros-protocol.html" import hero with context %}
+{% from "macros-protocol.html" import call_out with context %}
 
 {% block page_title_prefix %}
 Firefox for iOS Beta —
@@ -20,17 +20,17 @@ Sign up to test pre-release beta versions of Firefox for iOS via Apple’s TestF
 
 {% block page_css %}
   {{ css_bundle('protocol-newsletter') }}
+  {{ css_bundle('protocol-call-out')}}
   {{ css_bundle('protocol-emphasis-box') }}
   {{ css_bundle('firefox_ios_testflight') }}
 {% endblock %}
 
 {% block content %}
 <main role="main">
-  {% call hero(
+  {% call call_out(
   title='Help shape the future <br>of Firefox for iOS'|safe,
   desc='Sign up to test pre-release versions to make Firefox even better.',
-  class='mzp-t-firefox mzp-t-dark mzp-t-product-firefox',
-  include_cta=False,
+  class='mzp-t-firefox mzp-t-dark mzp-t-product-firefox mzp-t-hero',
   heading_level=1) %}
   {% endcall %}
 

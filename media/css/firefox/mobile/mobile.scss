@@ -7,7 +7,6 @@ $image-path: '/media/protocol/img';
 $brand-theme: 'firefox';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/hero';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
@@ -157,9 +156,16 @@ main .mzp-l-content {
 }
 
 .c-hero-secondary {
+    text-align: center;
+
     .mzp-c-wordmark {
         margin-left: auto;
         margin-right: auto;
+    }
+
+    .mzp-c-hero-desc {
+        text-align: center;
+        margin-bottom: $spacing-lg;
     }
 
     .c-inline-form {

@@ -7,7 +7,7 @@
 {% extends "firefox/base/base-protocol.html" %}
 
 {% from "macros.html" import sub_nav with context %}
-{% from "macros-protocol.html" import hero, call_out_compact, picto with context %}
+{% from "macros-protocol.html" import call_out, call_out_compact, picto with context %}
 
 {% block page_og_title %}{{ self.page_title() }}{% endblock %}
 
@@ -49,10 +49,10 @@
 
 {% block content %}
 <main role="main">
-  {% call hero(
+  {% call call_out(
     title=ftl('firefox-channel-take-a-browse-on-the-wild-side'),
     desc=ftl('firefox-channel-be-among-the-first-to-explore'),
-    class='mzp-t-firefox mzp-t-product-firefox',
+    class='mzp-t-hero mzp-t-firefox mzp-t-product-firefox',
     include_cta=False,
     heading_level=1) %}
   {% endcall %}

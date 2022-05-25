@@ -56,22 +56,38 @@ html {
 }
 
 // * -------------------------------------------------------------------------- */
-// Page hero
+// Page call-out
 
-.mzp-c-hero {
+.mzp-c-call-out {
+    &.mzp-t-dark.mzp-t-hero {
+        background-color: $color-marketing-gray-99;
+    }
+
     .welcome-page4 & {
         background: $color-orange-70 radial-gradient(circle at 60% 100%, $color-yellow-50 5%, $color-orange-70 94%);
     }
 
     .welcome-page9 & {
+        background-color: $color-white;
+
         .mzp-l-content {
+            max-width: $content-lg;
             padding-bottom: 0;
             padding-top: 0;
         }
     }
 }
 
-.mzp-c-hero-body {
+.mzp-c-call-out .mzp-l-content {
+    .welcome-page8.variation-2-image &,
+    .welcome-page8.variation-3-animation & {
+        max-width: $content-max;
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+.mzp-c-call-out-body {
     @include border-box;
     margin: 0 auto;
     max-width: $content-md;
@@ -87,11 +103,6 @@ html {
         max-width: $content-max;
         padding-right: 0;
         padding-left: 0;
-    }
-
-    .welcome-page9 & {
-        max-width: $content-lg;
-        padding-top: 0;
     }
 
     .welcome-page10 & {
@@ -123,7 +134,7 @@ html {
     }
 }
 
-.mzp-c-hero-title {
+.mzp-c-call-out.mzp-t-hero .mzp-c-call-out-title {
     @include text-title-lg;
     margin-bottom: $layout-sm;
 
@@ -151,7 +162,7 @@ html {
     }
 }
 
-.mzp-c-hero-desc {
+.mzp-c-call-out.mzp-t-hero .mzp-c-call-out-desc {
     @include text-body-lg;
     margin-bottom: $layout-sm;
 
@@ -301,7 +312,7 @@ html {
 // * -------------------------------------------------------------------------- */
 // Dark theme
 
-.mzp-c-hero.mzp-t-dark {
+.mzp-c-call-out.mzp-t-dark {
     @include light-links;
     background-color: $color-ink-80;
     color: $color-white;
@@ -461,7 +472,7 @@ html {
         padding: 24px 52px;
     }
 
-    .mzp-c-hero-title {
+    .mzp-c-call-out-title {
         max-width: $content-md;
         margin: 0 auto;
     }

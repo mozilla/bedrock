@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import hero with context %}
+{% from "macros-protocol.html" import call_out with context %}
 
 {% extends "firefox/welcome/base.html" %}
 
@@ -17,11 +17,16 @@
 {% set _entrypoint = 'mozilla.org-firefox-welcome-3' %}
 {% set _utm_campaign = 'welcome-3-sync' %}
 
+{%block page_css %}
+ {{ super()}}
+ {{ css_bundle('protocol-call-out') }}
+{% endblock %}
+
 {% block content_intro %}
-  {% call hero(
+  {% call call_out(
     title=ftl('welcome-page3-no-account-required-but-you'),
     desc=ftl('welcome-page3-the-firefox-browser-collects'),
-    class='mzp-t-firefox mzp-t-dark',
+    class='mzp-t-firefox mzp-t-dark mzp-t-hero',
     include_cta=True,
     heading_level=1
   ) %}

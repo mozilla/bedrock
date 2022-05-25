@@ -9,7 +9,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
 
-.mzp-c-hero {
+.c-hero {
     background: $color-purple-90;
     color: get-theme('body-text-color-inverse');
     text-align: center;

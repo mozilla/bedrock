@@ -1045,12 +1045,6 @@
     },
     {
       "files": [
-        "css/contentful/mozilla/c-hero.scss"
-      ],
-      "name": "mozilla-c-hero"
-    },
-    {
-      "files": [
         "css/contentful/mozilla/c-picto.scss"
       ],
       "name": "mozilla-c-picto"
@@ -1090,12 +1084,6 @@
         "css/contentful/firefox/c-call-out.scss"
       ],
       "name": "firefox-c-call-out"
-    },
-    {
-      "files": [
-        "css/contentful/firefox/c-hero.scss"
-      ],
-      "name": "firefox-c-hero"
     },
     {
       "files": [

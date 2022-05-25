@@ -6,7 +6,6 @@ $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/hero';
 @import '~@mozilla-protocol/core/protocol/css/components/inline-list';
 
 // * -------------------------------------------------------------------------- */
@@ -95,4 +94,8 @@ body {
         @include text-title-sm;
         margin-top: $spacing-xl;
     }
+}
+
+.mzp-c-call-out.mzp-t-hero {
+    background: $color-white;
 }

@@ -6,7 +6,6 @@ $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/hero';
 
 .mzp-c-card {
     .mzp-c-card-desc {
@@ -34,5 +33,14 @@ $image-path: '/media/protocol/img';
 
     h2 {
         @include text-title-xs;
+    }
+}
+
+.mzp-c-call-out.mzp-t-hero.installer-call-out {
+    background-color: #fff;
+
+    .mzp-l-content {
+        padding-bottom: $spacing-2xl;
+        padding-top: 0;
     }
 }

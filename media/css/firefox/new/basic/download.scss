@@ -6,8 +6,9 @@ $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/hero';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
 
 // notification
 
@@ -17,23 +18,43 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.mzp-c-hero {
-    .mzp-c-hero-title {
-        @include background-size(260px, 48px);
-        background-image: url('/media/protocol/img/logos/firefox/browser/logo-word-hor.svg');
-        background-position: top center;
-        background-repeat: no-repeat;
-        padding-top: $layout-xl;
+// overrides to split component to
+.t-split-hero .mzp-c-split-media {
+    @media #{$mq-md} {
+        height: calc(100% - #{$layout-lg});
+        left: 50%;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        right: auto;
+        top: $spacing-xl;
+        width: 50%;
+        z-index: 2;
 
-        h1 {
-            font-size: inherit;
+        img {
+            bottom: 0;
+            left: 0;
+            max-height: 100%;
+            max-width: none;
+            position: absolute;
+            right: auto;
+            width: auto;
         }
     }
 
-    .mzp-c-hero-image img {
-        top: 0;
-        bottom: auto;
-        box-shadow: $box-shadow-sm;
+    @media #{$mq-lg} {
+        height: calc(100% - #{$layout-xl});
+        top: $spacing-2xl;
+    }
+}
+
+.mzp-c-split-body {
+    .mzp-c-wordmark {
+        margin-bottom: $spacing-2xl;
+    }
+
+    .c-download-split-title {
+        @include text-title-lg;
     }
 
     .c-intro-download {
