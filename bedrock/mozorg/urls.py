@@ -136,6 +136,7 @@ urlpatterns = (
         views.WebvisionDocView.as_view(template_name="mozorg/about/webvision/full.html", doc_name="full"),
         name="mozorg.about.webvision.full",
     ),
+    page("analytics-tests/", "mozorg/analytics-tests/ga-index.html"),
 )
 
 if settings.DEV:

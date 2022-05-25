@@ -1,0 +1,19 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block content %}
+<main class="mzp-l-content">
+  <p>This file is used only for automated testing for google tag manager</p>
+  <button class="mzp-c-button mzp-t-product" data-link-type="download-test" data-download-os="Desktop" data-download-location="test">download firefox</button>
+  <button class="mzp-c-button" data-cta-type="button-test" data-cta-text="click here to test" data-download-location="test">click here to test</button>
+  <button class="mzp-c-button" data-cta-type="fxa-sync-test" data-cta-text="fxa-button" data-cta-position="test">fxa button</button>
+</main>
+{% endblock %}

@@ -687,6 +687,35 @@ class TestFirefoxHome(TestCase):
         assert template == ["firefox/home/index-master.html"]
 
 
+class TestFirefoxGA(TestCase):
+    def assert_ga_attr(self, response):
+        doc = pq(response.content)
+        links = doc(".mzp-c-button")
+        for link in links.items():
+            cta_data = link.attr("data-cta-type")
+            cta_link = link.attr("data-link-type")
+            if cta_data:
+                contains_cta = any(cta_data in item for item in ["link", "button"])
+                assert contains_cta or "fxa-" in cta_data
+            elif cta_link:
+                cta_link_types = ["download", "button", "link"]
+                assert cta_link in cta_link_types
+            else:
+                assert False, f"{link} does not contain attr cta-type or link-type"
+
+    def test_firefox_home_GA(self):
+        req = RequestFactory().get("/firefox/")
+        view = views.FirefoxHomeView.as_view()
+        response = view(req)
+        self.assert_ga_attr(response)
+
+    def test_firefox_new_GA(self):
+        req = RequestFactory().get("/firefox/new")
+        view = views.NewView.as_view()
+        response = view(req)
+        self.assert_ga_attr(response)
+
+
 class TestFirefoxWelcomePage1(TestCase):
     @patch("bedrock.firefox.views.l10n_utils.render")
     def test_firefox_welcome_page1(self, render_mock):
