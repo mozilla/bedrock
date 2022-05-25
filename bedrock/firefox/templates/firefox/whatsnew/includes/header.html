@@ -6,12 +6,12 @@
 
 <header class="c-page-header">
   <div class="mzp-l-content c-page-header-inner">
-    <h2 class="c-page-header-logo-fx">{{ ftl('whatsnew-firefox-browser') }}</h2>
+    <h2 class="c-page-header-logo-fx">{{ ftl('whatsnew-firefox') }}</h2>
     <div class="mzp-c-notification-bar mzp-t-success up-to-date">
-      <p>{{ ftl('whatsnew-up-to-date-notification') }}</p>
+      <p>{{ ftl('whatsnew-up-to-date-notification-v2', fallback='whatsnew-up-to-date-notification') }}</p>
     </div>
     <div class="mzp-c-notification-bar out-of-date">
-      <p>{{ ftl('whatsnew-out-of-date-notification') }}</p>
+      <p>{{ ftl('whatsnew-out-of-date-notification-v2', fallback='whatsnew-out-of-date-notification') }}</p>
     </div>
   </div>
 </header>

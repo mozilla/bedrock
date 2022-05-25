@@ -422,6 +422,18 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-101-vpn-en.scss"
+      ],
+      "name": "firefox_whatsnew_101_vpn_en"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-101-vpn-mobile.scss"
+      ],
+      "name": "firefox_whatsnew_101_vpn_mobile"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -1192,6 +1204,13 @@
         "js/firefox/whatsnew/whatsnew-99-en-experiment.js"
       ],
       "name": "firefox_whatsnew_99_en_experiment"
+    },
+    {
+      "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/firefox/whatsnew/whatsnew-101-en-experiment.js"
+      ],
+      "name": "firefox_whatsnew_101_en_experiment"
     },
     {
       "files": [
