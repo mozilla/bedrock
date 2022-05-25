@@ -1,0 +1,82 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('developer-mdnplus-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('firefox-developer-firefox-developer-edition-desc') }}{% endblock %}
+{% block page_image %}{{ static('protocol/img/logos/firefox/browser/developer/og.png') }}{% endblock %}
+{% block page_favicon %}{{ static('img/favicons/firefox/browser/developer/favicon.ico') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/favicons/firefox/browser/developer/favicon-196x196.png') }}{% endblock %}
+{% block page_ios_icon %}{{ static('img/favicons/firefox/browser/developer/apple-touch-icon.png') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_developer_whatsnew_mdnplus') }}
+{% endblock %}
+
+{% block body_id %}firefox-developer{% endblock %}
+{% block body_class %}firefox-developer-whatsnew-mdnplus{% endblock %}
+
+{% block content %}
+<main role="main">
+  <section class="c-mdn-header mzp-t-dark">
+    <div class="mzp-l-content mzp-t-content-md c-mdn-header-content">
+      <div class="mzp-c-notification-bar mzp-t-success">
+        <p>{{ ftl('developer-mdnplus-congrats-you-now-have-latest') }}</p>
+      </div>
+
+      <h1 class="c-mdn-header-title">{{ ftl('developer-mdnplus-more-mdn-your-mdn') }}</h1>
+      <p class="c-mdn-header-intro">{{ ftl('developer-mdnplus-mdn-is-an-open-source') }}</p>
+      <p class="c-mdn-header-tagline">{{ ftl('developer-mdnplus-support-mdn-and-make') }}</p>
+      <p class="c-mdn-header-cta"><a class="mzp-c-button mzp-t-button-lg mzp-t-dark" href="https://developer.mozilla.org/plus/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=fxdev-whatsnew" data-cta-text="Get Started" data-cta-type="link" data-cta-position="primary">{{ ftl('developer-mdnplus-get-started') }}</a></p>
+    </div>
+
+    <div class="mandala-wrapper">
+      <div class="mandala-container animate-colors" aria-hidden="true">
+        <div class="mandala-translate">
+          <svg width="675" height="675" viewBox="0 0 675 675" fill="none" xmlns="http://www.w3.org/2000/svg" class="mandala"><defs><path d="M337.5,337.5 m-320,0 a320,320 0 1,1 640,0 a320,320 0 1,1 -640,0" id="circle1"><animateTransform attributeName="transform" begin="0s" dur="500s" type="rotate" from="0 337.5 337.5" to="360 337.5 337.5" repeatCount="indefinite"></animateTransform></path><path d="M337.5,337.5 m-280,0 a280,280 0 1,1 560,0 a280,280 0 1,1 -560,0" id="circle2"><animateTransform attributeName="transform" begin="0s" dur="500s" type="rotate" from="360 337.5 337.5" to="0 337.5 337.5" repeatCount="indefinite"></animateTransform></path><path d="M337.5,337.5 m-240,0 a240,240 0 1,1 480,0 a240,240 0 1,1 -480,0" id="circle3"><animateTransform attributeName="transform" begin="0s" dur="500s" type="rotate" from="0 337.5 337.5" to="360 337.5 337.5" repeatCount="indefinite"></animateTransform></path><path d="M337.5,337.5 m-200,0 a200,200 0 1,1 400,0 a200,200 0 1,1 -400,0" id="circle4"><animateTransform attributeName="transform" begin="0s" dur="500s" type="rotate" from="360 337.5 337.5" to="0 337.5 337.5" repeatCount="indefinite"></animateTransform></path><path d="M337.5,337.5 m-160,0 a160,160 0 1,1 320,0 a160,160 0 1,1 -320,0" id="circle5"><animateTransform attributeName="transform" begin="0s" dur="500s" type="rotate" from="0 337.5 337.5" to="360 337.5 337.5" repeatCount="indefinite"></animateTransform></path></defs><text class="mandala-accent-1" dy="70" textLength="2010"><textPath textLength="2010" href="#circle1">&nbsp;&nbsp;&nbsp;/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan>&nbsp;&nbsp;&nbsp;/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan>&nbsp;&nbsp;&nbsp;/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan>&nbsp;&nbsp;&nbsp;/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan>&nbsp;&nbsp;&nbsp;/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan>&nbsp;&nbsp;&nbsp;/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan>&nbsp;&nbsp;&nbsp;/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan>/<tspan>/</tspan></textPath></text><text class="mandala-accent-2" dy="70" textLength="1760"><textPath textLength="1760" href="#circle2">&nbsp;&nbsp;+<tspan>+</tspan>+<tspan>+</tspan>+<tspan>+</tspan>&nbsp;&nbsp;+<tspan>+</tspan>+<tspan>+</tspan>+<tspan>+</tspan>&nbsp;&nbsp;+<tspan>+</tspan>+<tspan>+</tspan>+<tspan>+</tspan>&nbsp;&nbsp;+<tspan>+</tspan>+<tspan>+</tspan>+<tspan>+</tspan>&nbsp;&nbsp;+<tspan>+</tspan>+<tspan>+</tspan>+<tspan>+</tspan>&nbsp;&nbsp;+<tspan>+</tspan>+<tspan>+</tspan>+<tspan>+</tspan>&nbsp;&nbsp;+<tspan>+</tspan>+<tspan>+</tspan>+<tspan>+</tspan></textPath></text><text class="mandala-accent-3" dy="70" textLength="1507"><textPath textLength="1507" href="#circle3"><tspan>{</tspan>{<tspan>{</tspan>{&nbsp;<tspan>}</tspan>}<tspan>}</tspan>}&nbsp;&nbsp;<tspan>{</tspan>{<tspan>{</tspan>{&nbsp;<tspan>}</tspan>}<tspan>}</tspan>}&nbsp;&nbsp;<tspan>{</tspan>{<tspan>{</tspan>{&nbsp;<tspan>}</tspan>}<tspan>}</tspan>}&nbsp;&nbsp;<tspan>{</tspan>{<tspan>{</tspan>{&nbsp;<tspan>}</tspan>}<tspan>}</tspan>}&nbsp;&nbsp;<tspan>{</tspan>{<tspan>{</tspan>{&nbsp;<tspan>}</tspan>}<tspan>}</tspan>}&nbsp;&nbsp;<tspan>{</tspan>{<tspan>{</tspan>{&nbsp;<tspan>}</tspan>}<tspan>}</tspan>}&nbsp;&nbsp;</textPath></text><text class="mandala-accent-4" dy="70" textLength="1257"><textPath textLength="1257" href="#circle4">&nbsp;&nbsp;&nbsp;../../ &nbsp;&nbsp;&nbsp;../../ &nbsp;&nbsp;&nbsp;../../ &nbsp;&nbsp;&nbsp;../../ &nbsp;&nbsp;&nbsp;../../ &nbsp;&nbsp;&nbsp;../../ &nbsp;&nbsp;&nbsp;../../</textPath></text><text class="mandala-accent-5" dy="70" textLength="1005"><textPath textLength="1005" href="#circle5"><tspan>&lt;&gt;</tspan>&lt;/&gt;<tspan>&lt;&gt;</tspan>&lt;/&gt;<tspan>&lt;&gt;</tspan>&lt;/&gt;<tspan>&lt;&gt;</tspan>&lt;/&gt;<tspan>&lt;&gt;</tspan>&lt;/&gt;<tspan>&lt;&gt;</tspan>&lt;/&gt;<tspan>&lt;&gt;</tspan>&lt;/&gt;<tspan>&lt;&gt;</tspan>&lt;/&gt;<tspan>&lt;&gt;</tspan>&lt;/&gt;<tspan>&lt;&gt;</tspan>&lt;/&gt;<tspan>&lt;&gt;</tspan>&lt;/&gt;<tspan>&lt;&gt;</tspan>&lt;/&gt;<tspan>&lt;&gt;</tspan>&lt;/&gt;<tspan>&lt;&gt;</tspan>&lt;/&gt;<tspan>&lt;&gt;</tspan>&lt;/&gt;<tspan>&lt;&gt;</tspan>&lt;/&gt;</textPath></text></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="c-mdn-body">
+    <div class="mzp-l-content">
+      <h2 class="c-mdn-body-title">{{ ftl('developer-mdnplus-whats-included') }}</h2>
+      <div class="mzp-l-columns mzp-t-columns-three">
+        <div class="c-mdn-feature">
+          <h3 class="c-mdn-feature-pretitle">{{ ftl('developer-mdnplus-notifications') }}</h3>
+          <h4 class="c-mdn-feature-title">{{ ftl('developer-mdnplus-development-in-real-time') }}</h4>
+          <p>{{ ftl('developer-mdnplus-the-web-doesnt-have-a') }}</p>
+        </div>
+
+        <div class="c-mdn-feature">
+          <h3 class="c-mdn-feature-pretitle">{{ ftl('developer-mdnplus-collections') }}</h3>
+          <h4 class="c-mdn-feature-title">{{ ftl('developer-mdnplus-build-your-perfect-library') }}</h4>
+          <p>{{ ftl('developer-mdnplus-no-more-haphazard-hunting') }}</p>
+        </div>
+
+        <div class="c-mdn-feature">
+          <h3 class="c-mdn-feature-pretitle">{{ ftl('developer-mdnplus-mdn-offline') }}</h3>
+          <h4 class="c-mdn-feature-title">{{ ftl('developer-mdnplus-mdns-entire-library-at-your') }}</h4>
+          <p>{{ ftl('developer-mdnplus-taking-your-projects-beyond') }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <aside class="c-mdn-footer">
+    <div class="mzp-l-content">
+      <p>{{ ftl('developer-mdnplus-resources-for-developers') }} <a class="mzp-c-button" href="https://developer.mozilla.org/plus/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=fxdev-whatsnew" data-cta-text="Learn more" data-cta-type="link" data-cta-position="secondary">{{ ftl('ui-learn-more') }}</a></p>
+    </div>
+  </aside>
+</main>
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{# Exclude stub attribution for in-product pages: issue 9620 #}
+{% block stub_attribution %}{% endblock %}

@@ -92,6 +92,12 @@
     },
     {
       "files": [
+        "css/firefox/developer/whatsnew-mdnplus.scss"
+      ],
+      "name": "firefox_developer_whatsnew_mdnplus"
+    },
+    {
+      "files": [
         "css/firefox/sticky-promo.scss"
       ],
       "name": "sticky_promo"
