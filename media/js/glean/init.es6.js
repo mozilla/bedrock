@@ -20,7 +20,7 @@ function initGlean() {
     // Enable debug view for all non-production environments.
     // https://debug-ping-preview.firebaseapp.com/
     if (window.location.href.indexOf('https://www.mozilla.org/') === -1) {
-        Glean.setDebugViewTag('moz-bedrock');
+        Glean.setDebugViewTag('bedrock');
     }
 
     // Ensure telemetry coming from automated testing is tagged
@@ -29,7 +29,7 @@ function initGlean() {
         Glean.setSourceTags(['automation']);
     }
 
-    Glean.initialize('moz-bedrock', Utils.isTelemetryEnabled(), {
+    Glean.initialize('bedrock', Utils.isTelemetryEnabled(), {
         maxEvents: 1 // Set max events to 1 so pings are sent as soon as registered.
     });
 }
