@@ -51,6 +51,31 @@ def vpn_landing_page(request):
 
 
 @require_safe
+def vpn_download_page(request):
+    template_name = "products/vpn/download.html"
+    country = get_country_from_request(request)
+    ftl_files = ["products/vpn/download", "products/vpn/shared"]
+    windows_download_url = f"{settings.VPN_ENDPOINT}r/vpn/download/windows"
+    mac_download_url = f"{settings.VPN_ENDPOINT}r/vpn/download/mac"
+    linux_download_url = f"{settings.VPN_ENDPOINT}r/vpn/download/linux"
+    android_download_url = "https://play.google.com/store/apps/details?id=org.mozilla.firefox.vpn"
+    ios_download_url = "https://apps.apple.com/us/app/firefox-private-network-vpn/id1489407738"
+    block_download = country in settings.VPN_BLOCK_DOWNLOAD_COUNTRY_CODES
+
+    context = {
+        "windows_download_url": windows_download_url,
+        "mac_download_url": mac_download_url,
+        "linux_download_url": linux_download_url,
+        "android_download_url": android_download_url,
+        "ios_download_url": ios_download_url,
+        "connect_devices": settings.VPN_CONNECT_DEVICES,
+        "block_download": block_download,
+    }
+
+    return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
+
+
+@require_safe
 def vpn_invite_page(request):
     ftl_files = ["products/vpn/landing", "products/vpn/shared"]
     locale = l10n_utils.get_locale(request)

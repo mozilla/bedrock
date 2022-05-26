@@ -895,6 +895,13 @@
     },
     {
       "files": [
+        "css/products/vpn/common.scss",
+        "css/products/vpn/download.scss"
+      ],
+      "name": "mozilla-vpn-download"
+    },
+    {
+      "files": [
         "css/products/vpn/components/hero.scss",
         "css/products/vpn/components/block.scss",
         "css/products/vpn/common.scss"

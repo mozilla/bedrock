@@ -1,0 +1,28 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+{% from "macros.html" import sub_nav with context %}
+
+{% if ftl_has_messages('vpn-subnav-subscribe', 'vpn-subnav-get-help') %}
+  {{ sub_nav(
+    title={
+      'text': ftl('vpn-subnav-title'),
+      'href': url('products.vpn.landing'),
+      'cta_name': "Mozilla VPN"
+    },
+    links=[
+    {
+      'text': ftl('vpn-subnav-subscribe'),
+      'href': url('products.vpn.landing') + '#pricing',
+      'cta_name': "Subscribe to Mozilla VPN"
+    },
+    {
+      'text': ftl('vpn-subnav-get-help'),
+      'href': 'https://support.mozilla.org/products/firefox-private-network-vpn' ~ _params ~ '&utm_content=vpn-sub-nav-link',
+      'cta_name': "Get Help"
+    }]
+  ) }}
+{% endif %}

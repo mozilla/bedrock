@@ -1,0 +1,127 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import picto with context %}
+
+{% extends "products/vpn/base.html" %}
+
+{% block page_title_full %}{{ ftl('vpn-download-page-title') }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+
+{% block page_desc %}{{ ftl('vpn-download-page-description') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('mozilla-vpn-download') }}
+{% endblock %}
+
+{% set _utm_source = 'www.mozilla.org-vpn-download-page' %}
+{% set _utm_campaign = 'vpn-download-page' %}
+{% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
+
+{% block site_header %}
+  {% with
+    hide_nav_download_button=True,
+    hide_nav_get_vpn_button=True
+  %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block sub_navigation %}
+  {% include 'products/vpn/includes/subnav-download.html' %}
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="mzp-l-content">
+    <header class="vpn-download-header">
+      <h1>{{ self.page_title_full() }}</h1>
+      {% if block_download %}
+        <p>{{ ftl('vpn-download-not-available-in-country') }}</p>
+      {% else %}
+        <p>{{ ftl('vpn-download-sub-heading', devices=connect_devices) }}</p>
+      {% endif %}
+    </header>
+
+    {% if not block_download %}
+      <ul class="vpn-download-list">
+        {% call picto(
+          base_el='li',
+          title=ftl('vpn-download-for-windows'),
+          image_url='img/products/vpn/download/platform-windows-black.svg',
+          image_width=100,
+          body=True,
+        ) %}
+          <p>{{ ftl('vpn-download-for-windows-requirements') }}</p>
+          <a class="mzp-c-button mzp-t-secondary" href="{{ windows_download_url }}" data-cta-type="button" data-cta-text="VPN Download (Windows)">
+            {{ ftl('vpn-download-button-copy') }}
+          </a>
+        {% endcall %}
+
+        {% call picto(
+          base_el='li',
+          title=ftl('vpn-download-for-mac'),
+          image_url='img/products/vpn/download/platform-mac-black.svg',
+          image_width=100,
+          body=True,
+        ) %}
+          <p>{{ ftl('vpn-download-version-requirements', version='10.14') }}</p>
+          <a class="mzp-c-button mzp-t-secondary" href="{{ mac_download_url }}" data-cta-type="button" data-cta-text="VPN Download (macOS)">
+            {{ ftl('vpn-download-button-copy') }}
+          </a>
+        {% endcall %}
+
+        {% call picto(
+          base_el='li',
+          title=ftl('vpn-download-for-linux'),
+          image_url='img/products/vpn/download/platform-linux-black.svg',
+          image_width=100,
+          body=True,
+        ) %}
+          <p>{{ ftl('vpn-download-for-linux-requirements', version='18.04') }}</p>
+          <a class="mzp-c-button mzp-t-secondary" href="{{ linux_download_url }}" data-cta-type="button" data-cta-text="VPN Download (Linux)">
+            {{ ftl('vpn-download-button-copy') }}
+          </a>
+        {% endcall %}
+
+        {% call picto(
+          base_el='li',
+          title=ftl('vpn-download-for-android'),
+          image_url='img/products/vpn/download/platform-android-black.svg',
+          image_width=100,
+          body=True,
+        ) %}
+          <p>{{ ftl('vpn-download-version-requirements', version='8.0') }}</p>
+          <a class="mzp-c-button mzp-t-secondary" href="{{ android_download_url }}" data-cta-type="button" data-cta-text="VPN Download (Android)">
+            {{ ftl('vpn-download-get-on-google-play') }}
+          </a>
+        {% endcall %}
+
+        {% call picto(
+          base_el='li',
+          title=ftl('vpn-download-for-ios'),
+          image_url='img/products/vpn/download/platform-ios-black.svg',
+          image_width=100,
+          body=True,
+        ) %}
+          <p>{{ ftl('vpn-download-version-requirements', version='12.0') }}</p>
+          <a class="mzp-c-button mzp-t-secondary" href="{{ ios_download_url }}" data-cta-type="button" data-cta-text="VPN Download (iOS)">
+            {{ ftl('vpn-download-get-on-app-store') }}
+          </a>
+        {% endcall %}
+      </ul>
+    {% endif %}
+
+    <footer class="vpn-footer">
+      {% include 'products/vpn/includes/footer-legal.html' %}
+    </footer>
+  </div>
+
+</main>
+{% endblock %}
+
+{% block js %}{% endblock %}

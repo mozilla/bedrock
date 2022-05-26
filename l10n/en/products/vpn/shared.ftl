@@ -145,6 +145,7 @@ vpn-subnav-platform-windows = { -brand-name-windows }
 vpn-subnav-whats-an-ip-address = What’s an IP address?
 vpn-subnav-when-to-use-a-vpn = When to use a VPN
 vpn-subnav-vpn-vs-proxy = VPN vs Proxy
+vpn-subnav-subscribe = Subscribe to { -brand-name-mozilla-vpn }
 
 ## VPN Affiliate cookie notice
 
