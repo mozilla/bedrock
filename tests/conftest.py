@@ -2,7 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from django.core.exceptions import ImproperlyConfigured
 from django.db.backends.sqlite3.base import BaseDatabaseWrapper as SQLiteWrapper
 
 import pytest
@@ -31,5 +30,5 @@ def base_url(base_url, request):
 def pocket_base_url(request):
     base_url = config("BASE_POCKET_URL", parser=str, default="")
     if not base_url:
-        raise ImproperlyConfigured("No BASE_POCKET_URL detected in env vars")
+        pytest.skip("No BASE_POCKET_URL detected in env vars")
     return base_url
