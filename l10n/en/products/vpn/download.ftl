@@ -28,6 +28,6 @@ vpn-download-for-linux = VPN for { -brand-name-linux }
 vpn-download-for-linux-requirements = Ubuntu { $version } and up
 
 vpn-download-for-android = VPN for { -brand-name-android }
-
+vpn-download-for-ios = VPN for { -brand-name-ios }
 vpn-download-get-on-google-play = Get on { -brand-name-google-play } Store
 vpn-download-get-on-app-store = Get on { -brand-name-app-store }

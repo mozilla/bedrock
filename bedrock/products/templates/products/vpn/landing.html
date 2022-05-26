@@ -286,7 +286,8 @@
         <h3>{{ ftl('vpn-landing-faq-download-heading') }}</h3>
       </summary>
       <p class="vpn-faq-item-detail">
-        {{ ftl('vpn-landing-faq-download-desc', url=url('products.vpn.download')) }}
+        {% set attrs = 'href="' ~ url('products.vpn.download') ~ '" data-cta-type="link" data-cta-text="Download Page"' %}
+        {{ ftl('vpn-landing-faq-download-desc', attrs=attrs) }}
       </p>
     </details>
     {% endif %}

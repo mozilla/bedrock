@@ -176,8 +176,8 @@ vpn-landing-faq-manage-subscription-question-desc = If you’re already subscrib
 vpn-landing-faq-download-heading = How do I download { -brand-name-mozilla-vpn } when I’m already subscribed?
 
 # Variables:
-#   $url (url) - link to https://www.mozilla.org/products/vpn/download/
-vpn-landing-faq-download-desc = Visit the <a href="{ $url }">download page</a> to install { -brand-name-mozilla-vpn } on your device, and then sign in using your { -brand-name-firefox-account }.
+#   $attrs (string) - link href and additional HTML attributes
+vpn-landing-faq-download-desc = Visit the <a { $attrs }>download page</a> to install { -brand-name-mozilla-vpn } on your device, and then sign in using your { -brand-name-firefox-account }.
 
 vpn-landing-faq-link = See more FAQs
 
