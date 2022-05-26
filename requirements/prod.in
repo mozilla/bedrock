@@ -39,6 +39,7 @@ newrelic==7.10.0.175
 phonenumberslite==8.12.46
 Pillow==9.1.0
 PyGithub==1.55
+pyjwt>=2.4.0  # subdep of PyGithub and Twilio but needs to be > 2.3.0
 pyOpenSSL==22.0.0
 python-memcached==1.59
 PyYAML==6.0
