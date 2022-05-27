@@ -7,8 +7,8 @@
 (function () {
     'use strict';
 
-    // test to see if users are clicking on the workmark in the header of the SEM landing pages
-    function handleWorkmarkClick(event) {
+    // test to see if users are clicking on the wordmark in the header of the SEM landing pages
+    function handleWordmarkClick(event) {
         var label = event.target.innerText;
         window.dataLayer.push({
             event: 'sem-wordmark-click',
@@ -17,5 +17,5 @@
     }
 
     var wordmark = document.querySelector('.sem-landing-nav-icon');
-    wordmark.addEventListener('click', handleWorkmarkClick);
+    wordmark.addEventListener('click', handleWordmarkClick);
 })();
