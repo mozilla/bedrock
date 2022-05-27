@@ -183,7 +183,7 @@ view tag for all pings. This means that when running on localhost, on a demo,
 or on a staging environment, ping data will not be sent to the production data
 pipeline. Instead, it will be sent to the `Glean debug dashboard`_ which can
 be used to test that pings are working correctly. All bedrock debug pings will
-register in the debug dashboard with the tag name ``moz-bedrock``.
+register in the debug dashboard with the tag name ``bedrock``.
 
 Logging Pings in the Console
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
