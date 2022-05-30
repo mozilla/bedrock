@@ -428,6 +428,16 @@ def show_57_dev_whatsnew(version):
     return version >= Version("57.0")
 
 
+def show_102_dev_whatsnew(version):
+    version = version[:-2]
+    try:
+        version = Version(version)
+    except ValueError:
+        return False
+
+    return version >= Version("102.0")
+
+
 def show_57_dev_firstrun(version):
     version = version[:-2]
     try:
@@ -595,11 +605,13 @@ class WhatsnewView(L10nTemplateView):
         if channel == "nightly":
             template = "firefox/nightly/whatsnew.html"
         elif channel == "developer":
-            if show_57_dev_whatsnew(version):
+            if show_102_dev_whatsnew(version):
                 if switch("firefox-developer-whatsnew-mdnplus") and ftl_file_is_active("firefox/whatsnew/whatsnew-developer-mdnplus"):
                     template = "firefox/developer/whatsnew-mdnplus.html"
                 else:
                     template = "firefox/developer/whatsnew.html"
+            elif show_57_dev_whatsnew(version):
+                template = "firefox/developer/whatsnew.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("101."):
