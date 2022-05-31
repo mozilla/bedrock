@@ -363,7 +363,7 @@ class TestWhatsNew(TestCase):
 
     @override_settings(DEV=True)
     @patch.dict(os.environ, SWITCH_FIREFOX_DEVELOPER_WHATSNEW_MDNPLUS="True")
-    def test_fx_dev_browser_102_0_a2_whatsnew_vpnplus(self, render_mock):
+    def test_fx_dev_browser_102_0_a2_whatsnew_mdnplus(self, render_mock):
         """Should show MDN Plus dev browser whatsnew template when switch is on"""
         req = self.rf.get("/en-US/firefox/whatsnew/")
         self.view(req, version="102.0a2")
