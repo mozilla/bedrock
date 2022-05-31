@@ -8,7 +8,7 @@
     "@babel/preset-env": "^7.16.11",
     "@mozilla-protocol/core": "16.0.0",
     "@mozilla/glean": "^1.0.0",
-    "@sentry/browser": "^6.19.0",
+    "@sentry/browser": "^7.0.0",
     "babel-loader": "^8.2.4",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^10.2.4",

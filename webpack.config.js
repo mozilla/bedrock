@@ -13,6 +13,7 @@ const Dotenv = require('dotenv-webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const staticBundles = require('./media/static-bundles.json');
+const webpack = require('webpack');
 
 function resolveBundles(fileList) {
     return fileList.map((f) => {
@@ -99,7 +100,11 @@ const jsConfig = {
                 }
             ]
         }),
-        new Dotenv()
+        new Dotenv(),
+        new webpack.DefinePlugin({
+            __SENTRY_DEBUG__: false,
+            __SENTRY_TRACING__: false
+        })
     ]
 };
 
