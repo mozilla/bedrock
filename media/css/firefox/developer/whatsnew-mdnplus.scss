@@ -1,0 +1,263 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-developer';
+
+.firefox-developer-whatsnew-mdnplus {
+    h1,
+    h2,
+    h3,
+    h4 {
+        @include font-base;
+        color: $color-black;
+    }
+}
+
+// Header
+.c-mdn-header {
+    background: $color-black;
+    display: grid;
+    grid-template-columns: 100%;
+
+    .c-mdn-header-content {
+        grid-column: 1;
+        grid-row: 1;
+        z-index: 2;
+        padding-top: 0;
+    }
+
+    .mzp-c-notification-bar {
+        margin-bottom: $layout-lg;
+    }
+
+    .c-mdn-header-title {
+        color: $color-light-gray-30;
+        font-weight: bold;
+    }
+
+    .mandala-wrapper {
+        grid-column: 1;
+        grid-row: 1;
+        overflow: hidden;
+        transition: all 1s ease-in-out;
+        width: 100%;
+        z-index: 1;
+        height: 550px;
+    }
+}
+
+.c-mdn-header-intro {
+    margin-bottom: $layout-md;
+}
+
+.c-mdn-header-tagline {
+    @include text-body-xl;
+}
+
+.c-mdn-header-title em,
+.c-mdn-header-tagline em {
+    font-style: normal;
+    border-bottom: 2px solid $color-pink-30;
+}
+
+// Mandala
+.mandala-container {
+    display: flex;
+    justify-content: center;
+    -webkit-transform: translate(12rem, -8rem);
+    transform: translate(12rem, -8rem);
+
+    --mandala-primary: #{$color-dark-gray-10};
+    --mandala-accent-1: #{$color-violet-30};
+    --mandala-accent-2: #{$color-yellow-30};
+    --mandala-accent-3: #{$color-green-30};
+    --mandala-accent-4: #{$color-light-gray-60};
+
+    @keyframes rotation {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    .mandala-rotate > svg {
+        animation: rotation 500s linear infinite;
+    }
+
+    svg {
+        font-size: 1.5rem;
+        font-weight: 300;
+        user-select: none;
+    }
+
+    svg > text {
+        fill: var(--mandala-primary);
+    }
+
+    .mandala-accent-1 {
+        font-size: 1.5rem;
+    }
+
+    .mandala-accent-2 {
+        font-size: 1.3rem;
+    }
+
+    .mandala-accent-3 {
+        font-size: 1.2rem;
+    }
+
+    .mandala-accent-4 {
+        font-size: 1.1rem;
+    }
+
+    .mandala-accent-5 {
+        font-size: 1rem;
+    }
+
+    &.animate-colors {
+        svg > text > textPath > tspan {
+            animation: mandala-color-change 50s infinite;
+            animation-timing-function: ease-in-out;
+            fill: var(--mandala-primary);
+        }
+
+        .mandala-accent-1 > textPath > tspan {
+            fill: var(--mandala-accent-1);
+            animation-delay: -15s;
+        }
+
+        .mandala-accent-2 > textPath > tspan {
+            fill: var(--mandala-accent-2);
+            animation-delay: -20s;
+        }
+
+        .mandala-accent-3 > textPath > tspan {
+            fill: var(--mandala-accent-3);
+            animation-delay: -30s;
+        }
+
+        .mandala-accent-5 > textPath > tspan {
+            fill: var(--mandala-accent-4);
+            animation-delay: -40s;
+        }
+    }
+
+    @keyframes mandala-color-change {
+        0% {
+            fill: var(--mandala-primary);
+        }
+
+        10% {
+            fill: var(--mandala-primary);
+        }
+
+        15% {
+            fill: var(--mandala-accent-1);
+        }
+
+        20% {
+            fill: var(--mandala-primary);
+        }
+
+        25% {
+            fill: var(--mandala-primary);
+        }
+
+        30% {
+            fill: var(--mandala-accent-2);
+        }
+
+        35% {
+            fill: var(--mandala-primary);
+        }
+
+        40% {
+            fill: var(--mandala-primary);
+        }
+
+        50% {
+            fill: var(--mandala-accent-3);
+        }
+
+        55% {
+            fill: var(--mandala-primary);
+        }
+
+        60% {
+            fill: var(--mandala-primary);
+        }
+
+        65% {
+            fill: var(--mandala-accent-4);
+        }
+
+        70% {
+            fill: var(--mandala-primary);
+        }
+
+        100% {
+            fill: var(--mandala-primary);
+        }
+    }
+}
+
+// Body
+.c-mdn-body {
+    color: $color-black;
+
+    .c-mdn-body-title {
+        @include text-title-xs;
+        margin-bottom: $spacing-xl;
+
+        &::after {
+            color: $color-pink-60;
+            content: ' _';
+        }
+    }
+
+    .c-mdn-feature {
+        margin-bottom: $layout-md;
+
+        @media #{$mq-md} {
+            margin: 0;
+        }
+    }
+
+    .c-mdn-feature-pretitle {
+        @include text-body-xs;
+        color: $color-pink-60;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+    }
+}
+
+// Footer
+.c-mdn-footer {
+    background: #8cb4ff;
+    color: $color-black;
+    text-align: center;
+
+    .mzp-l-content {
+        padding-bottom: $spacing-2xl;
+        padding-top: $spacing-2xl;
+    }
+
+    p {
+        @include text-title-xs;
+        font-weight: bold;
+    }
+
+    .mzp-c-button {
+        margin: 0 1em;
+        vertical-align: middle;
+
+        &::after {
+            content: ' →';
+        }
+    }
+}

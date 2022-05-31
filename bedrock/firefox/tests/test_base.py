@@ -353,22 +353,22 @@ class TestWhatsNew(TestCase):
         assert template == ["firefox/developer/whatsnew.html"]
 
     @override_settings(DEV=True)
-    @patch.dict(os.environ, SWITCH_DEV_WHATSNEW_68="False")
-    def test_fx_dev_browser_68_0_a2_whatsnew_off(self, render_mock):
+    @patch.dict(os.environ, SWITCH_FIREFOX_DEVELOPER_WHATSNEW_MDNPLUS="False")
+    def test_fx_dev_browser_102_0_a2_whatsnew_off(self, render_mock):
         """Should show regular dev browser whatsnew template"""
         req = self.rf.get("/en-US/firefox/whatsnew/")
-        self.view(req, version="68.0a2")
+        self.view(req, version="102.0a2")
         template = render_mock.call_args[0][1]
         assert template == ["firefox/developer/whatsnew.html"]
 
     @override_settings(DEV=True)
-    @patch.dict(os.environ, SWITCH_DEV_WHATSNEW_68="False")
-    def test_fx_dev_browser_100_0_a2_whatsnew_off(self, render_mock):
-        """Should show regular dev browser whatsnew template"""
+    @patch.dict(os.environ, SWITCH_FIREFOX_DEVELOPER_WHATSNEW_MDNPLUS="True")
+    def test_fx_dev_browser_102_0_a2_whatsnew_mdnplus(self, render_mock):
+        """Should show MDN Plus dev browser whatsnew template when switch is on"""
         req = self.rf.get("/en-US/firefox/whatsnew/")
-        self.view(req, version="100.0a2")
+        self.view(req, version="102.0a2")
         template = render_mock.call_args[0][1]
-        assert template == ["firefox/developer/whatsnew.html"]
+        assert template == ["firefox/developer/whatsnew-mdnplus.html"]
 
     # end dev edition whatsnew tests
 
