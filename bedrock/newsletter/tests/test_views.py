@@ -18,7 +18,6 @@ from bedrock.newsletter.tests import newsletters
 from bedrock.newsletter.views import (
     general_error,
     invalid_email_address,
-    newsletter_subscribe,
     recovery_text,
     updated,
 )
@@ -475,18 +474,16 @@ class TestRecoveryView(TestCase):
 
 class TestNewsletterSubscribe(TestCase):
     def setUp(self):
-        self.rf = RequestFactory()
+        self.url = reverse("newsletter.subscribe")
 
     def ajax_request(self, data, **kwargs):
         return self.request(data, HTTP_X_REQUESTED_WITH="XMLHttpRequest", **kwargs)
 
     def request(self, data=None, **kwargs):
         if data:
-            req = self.rf.post("/", data, **kwargs)
+            return self.client.post(self.url, data, **kwargs)
         else:
-            req = self.rf.get("/", **kwargs)
-
-        return newsletter_subscribe(req)
+            return self.client.get(self.url, **kwargs)
 
     @patch("bedrock.newsletter.views.basket")
     def test_returns_ajax_errors(self, basket_mock):

@@ -168,7 +168,6 @@ class TestWebvisionRedirect(TestCase):
         # Since the webvision URL requires a WebvisionDoc to exist, we test this
         # here instead of in the redirects tests.
         WebvisionDoc.objects.create(name="summary", content="")
-        resp = self.client.get("/webvision/", follow=True)
-        self.assertEqual(resp.redirect_chain[0], ("/en-US/webvision/", 301))
-        self.assertEqual(resp.redirect_chain[1], ("/about/webvision/", 301))
-        self.assertEqual(resp.redirect_chain[2], ("/en-US/about/webvision/", 301))
+        resp = self.client.get("/webvision/", follow=True, HTTP_ACCEPT_LANGUAGE="en")
+        self.assertEqual(resp.redirect_chain[0], ("/about/webvision/", 301))
+        self.assertEqual(resp.redirect_chain[1], ("/en-US/about/webvision/", 302))

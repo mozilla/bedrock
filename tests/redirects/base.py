@@ -141,9 +141,9 @@ def assert_valid_url(
     # so that the value will appear in locals in test output
     resp_location = resp.headers.get("location")
     if follow_redirects:
-        assert resp.status_code == final_status_code
+        assert resp.status_code == final_status_code, f"!`final_status_code` - {resp.status_code} != {final_status_code}"
     else:
-        assert resp.status_code == status_code
+        assert resp.status_code == status_code, f"!`status_code` - {resp.status_code} != {status_code}"
     if location and not follow_redirects:
         if not query and "?" in location:
             query = parse_qs(urlparse(location).query)
@@ -164,7 +164,7 @@ def assert_valid_url(
             # location is a compiled regular expression pattern
             assert location.match(resp_location) is not None
         else:
-            assert location == resp_location
+            assert location == resp_location, f"!`location` - {location} != {resp_location}"
 
     if resp_headers and not follow_redirects:
         for name, value in resp_headers.items():

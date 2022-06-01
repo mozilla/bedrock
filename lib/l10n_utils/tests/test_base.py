@@ -51,10 +51,11 @@ class TestRender(TestCase):
         template = "firefox/new.html"
         locales = ["en-US", "en-GB", "fr", "es-ES"]
 
-        # Nothing to do with a valid locale
-        self._test(path, template, "en-US", "en-us,en;q=0.5", 200, active_locales=locales)
+        # No locale changes needed when we're given a valid locale
+        self._test(path, template, "en-US", "en-us,en;q=0.5", 302, "/en-US/firefox/new/", active_locales=locales)
+
         # en-GB is activated on /firefox/new/
-        self._test(path, template, "en-GB", "en-gb,en;q=0.5", 200, active_locales=locales)
+        self._test(path, template, "en-GB", "en-gb,en;q=0.5", 302, "/en-GB/firefox/new/", active_locales=locales)
 
         # fr-FR should be treated as fr
         self._test(path, template, "fr-FR", "fr-fr", 302, "/fr/firefox/new/", active_locales=locales)
@@ -74,11 +75,11 @@ class TestRender(TestCase):
         template = "firefox/new.html"
         locales = ["en-US", "en-GB", "fr", "es-ES"]
 
-        # Nothing to do with a valid locale
-        self._test(path, template, "en-US", "en-us,en;q=0.5", 200, add_active_locales=locales)
+        # No locale changes needed when we're given a valid locale
+        self._test(path, template, "en-US", "en-us,en;q=0.5", 302, "/en-US/firefox/new/", add_active_locales=locales)
 
         # en-GB is activated on /firefox/new/
-        self._test(path, template, "en-GB", "en-gb,en;q=0.5", 200, add_active_locales=locales)
+        self._test(path, template, "en-GB", "en-gb,en;q=0.5", 302, "/en-GB/firefox/new/", add_active_locales=locales)
 
         # fr-FR should be treated as fr
         self._test(path, template, "fr-FR", "fr-fr", 302, "/fr/firefox/new/", add_active_locales=locales)

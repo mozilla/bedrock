@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import requests
+
 from .base import flatten, url_test
 
 # supported locales
@@ -28,7 +30,7 @@ LOCALES = [
     "pt-BR",
     "pt-PT",
     "ru",
-    "son",
+    "sco",
     "sv-SE",
     "ta",
     "tr",
@@ -59,6 +61,6 @@ for locale in LOCALES:
     variants.extend(LOCALE_VARIANTS.get(locale, []))
     for variant in variants:
         # check the landing page redirects for each locale variant
-        _urls.append(url_test("/", f"/{locale}/", req_headers={"Accept-Language": variant}))
+        _urls.append(url_test("/", f"/{locale}/", req_headers={"Accept-Language": variant}, status_code=requests.codes.found))
 
 URLS = flatten(_urls)
