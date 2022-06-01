@@ -3,11 +3,9 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from os.path import relpath, splitext
-from typing import List
 
 from django.conf import settings
-from django.http import HttpResponseRedirect
-from django.http.request import HttpRequest
+from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.shortcuts import render as django_render
 from django.template import TemplateDoesNotExist, loader
 from django.utils.translation.trans_real import parse_accept_lang_header
@@ -51,10 +49,15 @@ def render_to_string(template_name, context=None, request=None, using=None, ftl_
     return loader.render_to_string(template_name, context, request, using)
 
 
-def redirect_to_best_locale(request: HttpRequest, translations: List[str]) -> HttpResponseRedirect:
+def redirect_to_best_locale(request, translations):
     # Note that translations is list of locale strings (eg ["en-GB", "ru", "fr"])
-    lang = get_best_translation(translations, get_accept_languages(request))
-    response = HttpResponseRedirect("/" + "/".join([lang, split_path(request.get_full_path())[1]]))
+    locale = get_best_translation(translations, get_accept_languages(request))
+    return redirect_to_locale(request, locale)
+
+
+def redirect_to_locale(request, locale, permanent=False):
+    redirect_class = HttpResponsePermanentRedirect if permanent else HttpResponseRedirect
+    response = redirect_class("/" + "/".join([locale, split_path(request.get_full_path())[1]]))
     # Add the Vary header to avoid wrong redirects due to a cache
     response["Vary"] = "Accept-Language"
     return response
@@ -82,7 +85,7 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
 
     # is this a non-locale page?
     name_prefix = request.path_info.split("/", 2)[1]
-    nonlocale = name_prefix in settings.SUPPORTED_NONLOCALES
+    non_locale_url = name_prefix in settings.SUPPORTED_NONLOCALES
 
     # Make sure we have a single template
     if isinstance(template, list):
@@ -105,19 +108,17 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
     context["template"] = template
     context["template_source_url"] = template_source_url(template)
 
-    # if `locales` is given use it as the full list of active translations
+    # if `active_locales` is given use it as the full list of active translations
+    translations = []
     if "active_locales" in context:
         translations = context["active_locales"]
         del context["active_locales"]
     else:
-        translations = [settings.LANGUAGE_CODE]
         if activation_files:
             translations = set()
             for af in activation_files:
                 translations.update(ftl_active_locales(af))
-
-            translations = sorted(translations)
-
+            translations = sorted(translations)  # `sorted` returns a list.
         elif l10n:
             translations = l10n.active_locales
 
@@ -126,17 +127,27 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
             translations.extend(context["add_active_locales"])
             del context["add_active_locales"]
 
+        if not translations:
+            translations = [settings.LANGUAGE_CODE]
+
     context["translations"] = get_translations_native_names(translations)
 
-    # Look for localized template
-    if not nonlocale and getattr(request, "locale", None):
-        # Redirect to one of the user's accept languages or the site's default
-        # language (en-US) if the current locale not active
-        if request.locale not in translations:
+    # Ensure the path requires a locale prefix.
+    if not non_locale_url:
+        # If the requested path's locale is different from the best matching
+        # locale stored on the `request`, and that locale is one of the active
+        # translations, redirect to it. Otherwise we need to find the best
+        # matching locale.
+
+        # Does that path's locale match the request's locale?
+        if locale in translations:
+            if locale != request.path.lstrip("/").partition("/")[0]:
+                return redirect_to_locale(request, locale)
+        else:
             return redirect_to_best_locale(request, translations)
 
         # Look for locale-specific template in app/templates/
-        locale_tmpl = f".{request.locale}".join(splitext(template))
+        locale_tmpl = f".{locale}".join(splitext(template))
         try:
             return django_render(request, locale_tmpl, context, **kwargs)
         except TemplateDoesNotExist:

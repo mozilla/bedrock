@@ -31,32 +31,44 @@ def test_404_url(base_url):
 @pytest.mark.parametrize(
     "url",
     [
-        "/firefox/",
-        "/firefox/all/",
         "/firefox/android/",
         "/firefox/android/faq/",
         "/firefox/brand/",
         "/firefox/channel/",
         "/firefox/desktop/",
-        "/firefox/developer/",
-        "/firefox/installer-help/",
         "/firefox/interest-dashboard/",
-        "/firefox/latest/releasenotes/",
         "/firefox/mobile/",
-        "/firefox/new/",
-        "/firefox/nightly/firstrun/",
         "/firefox/os/",
         "/firefox/os/notes/1.1/",
         "/firefox/partners/",
-        "/firefox/releases/",
         "/firefox/speed/",
         "/firefox/tiles/",
-        "/firefox/unsupported-systems/",
         "/firefox/unsupported/EOL/",
         # Legacy URLs (Bug 1110927)
         "/firefox/start/central.html",
         "/firefox/sync/firstrun.html",
     ],
 )
-def test_url(url, base_url, follow_redirects=False):
+def test_301_urls(url, base_url, follow_redirects=False):
     assert_valid_url(url, base_url=base_url, follow_redirects=follow_redirects)
+
+
+@pytest.mark.headless
+@pytest.mark.nondestructive
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "url",
+    [
+        "/firefox/",
+        "/firefox/all/",
+        "/firefox/developer/",
+        "/firefox/installer-help/",
+        "/firefox/latest/releasenotes/",
+        "/firefox/new/",
+        "/firefox/nightly/firstrun/",
+        "/firefox/releases/",
+        "/firefox/unsupported-systems/",
+    ],
+)
+def test_302_urls(url, base_url, follow_redirects=False):
+    assert_valid_url(url, base_url=base_url, follow_redirects=follow_redirects, status_code=requests.codes.found)

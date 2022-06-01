@@ -443,7 +443,10 @@ NOINDEX_URLS = [
     r"^healthz(-cron)?/$",
     r"^country-code\.json$",
     # exclude redirects
-    r"^foundation/annualreport/$" r"^firefox/notes/$" r"^teach/$" r"^about/legal/impressum/$",
+    r"^foundation/annualreport/$",
+    r"^firefox/notes/$",
+    r"^teach/$",
+    r"^about/legal/impressum/$",
     r"^security/announce/",
     r"^exp/",
 ]

@@ -625,24 +625,19 @@ class TestFirefoxNew(TestCase):
 class TestFirefoxNewNoIndex(TestCase):
     def test_download_noindex(self):
         # Scene 1 of /firefox/new/ should never contain a noindex tag.
-        req = RequestFactory().get("/firefox/new/")
-        req.locale = "en-US"
-        view = views.NewView.as_view()
-        response = view(req)
+        response = self.client.get("/firefox/new/", follow=True)
         doc = pq(response.content)
         robots = doc('meta[name="robots"]')
         assert robots.length == 0
 
     def test_thanks_canonical(self):
         # Scene 2 /firefox/download/thanks/ should always contain a noindex tag.
-        req = RequestFactory().get("/firefox/download/thanks/")
-        req.locale = "en-US"
-        view = views.DownloadThanksView.as_view()
-        response = view(req)
+        response = self.client.get("/firefox/download/thanks/", follow=True)
         doc = pq(response.content)
         robots = doc('meta[name="robots"]')
         assert robots.length == 1
         assert "noindex" in robots.attr("content")
+        assert "follow" in robots.attr("content")
 
 
 @override_settings(DEV=False)

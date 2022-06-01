@@ -9,13 +9,11 @@ This is django-localeurl, but with mozilla style capital letters in
 the locale codes.
 """
 import base64
-import urllib.parse
-from urllib.parse import unquote
 from warnings import warn
 
 from django.conf import settings
 from django.core.exceptions import MiddlewareNotUsed
-from django.http import HttpResponse, HttpResponsePermanentRedirect
+from django.http import HttpResponse
 from django.utils.deprecation import MiddlewareMixin
 
 from commonware.middleware import FrameOptionsHeader as OldFrameOptionsHeader
@@ -27,9 +25,12 @@ from . import urlresolvers
 
 class LocaleURLMiddleware:
     """
-    1. Search for the locale.
-    2. Save it in the request.
-    3. Strip them from the URL.
+    This middleware adjusts the `path_info` for reverse URL resolving.
+
+    We split `request.path_info` into `locale` and `path`. The `path` portion
+    is saved back to `request.path_info` for reverse URL resolving, while the
+    `locale` will either be one we support or empty string.
+
     """
 
     def __init__(self, get_response=None):
@@ -52,26 +53,8 @@ class LocaleURLMiddleware:
     def process_request(self, request):
         prefixer = urlresolvers.Prefixer(request)
         urlresolvers.set_url_prefix(prefixer)
-        full_path = prefixer.fix(prefixer.shortened_path)
 
-        if not (request.path in settings.SUPPORTED_LOCALE_IGNORE or full_path == request.path):
-            query_string = request.META.get("QUERY_STRING", "")
-            full_path = urllib.parse.quote(full_path.encode("utf-8"))
-
-            if query_string:
-                full_path = "?".join([full_path, unquote(query_string, errors="ignore")])
-
-            response = HttpResponsePermanentRedirect(full_path)
-
-            # Vary on Accept-Language if we changed the locale
-            old_locale = prefixer.locale
-            new_locale, _ = urlresolvers.split_path(full_path)
-            if old_locale != new_locale:
-                response["Vary"] = "Accept-Language"
-
-            return response
-
-        request.path_info = "/" + prefixer.shortened_path
+        request.path_info = f"/{prefixer.shortened_path}"
         request.locale = prefixer.locale
         translation.activate(prefixer.locale or settings.LANGUAGE_CODE)
 

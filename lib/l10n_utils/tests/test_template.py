@@ -3,7 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from pathlib import Path
-from unittest.mock import ANY, Mock, patch
+from unittest.mock import ANY, patch
 
 from django.template import TemplateDoesNotExist
 from django.test import RequestFactory
@@ -22,12 +22,8 @@ jinja_env = Jinja2.get_default().env
 class TestNoLocale(TestCase):
     @patch("lib.l10n_utils.django_render")
     def test_render_no_locale(self, django_render):
-        # Our render method doesn't blow up if the request has no .locale
-        # (can happen on 500 error path, for example)
-        request = Mock(spec=object)
-        request.path_info = "/some/path/"
-        # Note: no .locale on request
-        # Should not cause an exception
+        request = RequestFactory().get("/invalid/path/")
+        # Note: no `locale` on request should not cause an exception.
         render(request, "500.html")
 
 
@@ -43,7 +39,7 @@ class TestLocaleTemplates(TestCase):
         originally requested template.
         """
         django_render.side_effect = [TemplateDoesNotExist(""), True]
-        request = self.rf.get("/")
+        request = self.rf.get("/en-US/")
         request.locale = "en-US"
         render(request, "firefox/new.html", {"active_locales": ["en-US"]})
         django_render.assert_called_with(request, "firefox/new.html", ANY)
@@ -54,7 +50,7 @@ class TestLocaleTemplates(TestCase):
         locale-specific template.
         """
         django_render.side_effect = [True]
-        request = self.rf.get("/")
+        request = self.rf.get("/en-US/")
         request.locale = "en-US"
         render(request, "firefox/new.html", {"active_locales": ["en-US"]})
         django_render.assert_called_with(request, "firefox/new.en-US.html", ANY)
@@ -65,7 +61,7 @@ class TestLocaleTemplates(TestCase):
         originally requested template.
         """
         django_render.side_effect = [TemplateDoesNotExist(""), True]
-        request = self.rf.get("/")
+        request = self.rf.get("/de/")
         request.locale = "de"
         render(request, "firefox/new.html", {"active_locales": ["de"]})
         django_render.assert_called_with(request, "firefox/new.html", ANY)
@@ -76,7 +72,7 @@ class TestLocaleTemplates(TestCase):
         locale-specific template.
         """
         django_render.side_effect = [True]
-        request = self.rf.get("/")
+        request = self.rf.get("/es-ES/")
         request.locale = "es-ES"
         render(request, "firefox/new.html", {"active_locales": ["es-ES"]})
         django_render.assert_called_with(request, "firefox/new.es-ES.html", ANY)

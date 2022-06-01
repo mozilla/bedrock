@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import requests
+
 from .base import flatten, url_test
 
 URLS = flatten(
@@ -94,7 +96,7 @@ URLS = flatten(
         url_test("/en-US/firefox/help/", "https://support.mozilla.org/"),
         # Bug 1255882
         url_test("/some/url///", "/some/url/"),
-        url_test("////", "/en-US/"),
+        url_test("////", "/en-US/", status_code=requests.codes.found),
         url_test("/en-US///", "/en-US/"),
         url_test("/de/firefox/about/", "/de/about/"),
         # bug 1300373
