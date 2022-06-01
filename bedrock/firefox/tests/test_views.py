@@ -699,13 +699,13 @@ class TestFirefoxGA(TestCase):
                 assert False, f"{link} does not contain attr cta-type or link-type"
 
     def test_firefox_home_GA(self):
-        req = RequestFactory().get("/firefox/")
+        req = RequestFactory().get("/en-US/firefox/")
         view = views.FirefoxHomeView.as_view()
         response = view(req)
         self.assert_ga_attr(response)
 
     def test_firefox_new_GA(self):
-        req = RequestFactory().get("/firefox/new")
+        req = RequestFactory().get("/en-US/firefox/new/")
         view = views.NewView.as_view()
         response = view(req)
         self.assert_ga_attr(response)
