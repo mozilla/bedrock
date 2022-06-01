@@ -7,88 +7,12 @@ import sys
 
 from .base import *  # noqa
 
-if DEV:
-    ALLOWED_HOSTS = ["*"]
-else:
-    MIDDLEWARE += ["bedrock.base.middleware.FrameOptionsHeader"]
+# This file:
+# 1. Handles setting specific settings based on the site Bedrock is serving - currently Mozorg or Pocket
+# 2. Tweaks some settings if Django can detect we're running tests
+# 3. Sets a number of general settings applicable to all site modes
 
-
-if CACHES["default"]["BACKEND"] == "django_pylibmc.memcached.PyLibMCCache":
-    CACHES["default"]["BINARY"] = True
-    CACHES["default"]["OPTIONS"] = {  # Maps to pylibmc "behaviors"
-        "tcp_nodelay": True,
-        "ketama": True,
-    }
-
-# cache for lang files
-CACHES["l10n"] = {
-    "BACKEND": "bedrock.base.cache.SimpleDictCache",
-    "LOCATION": "l10n",
-    "TIMEOUT": DOTLANG_CACHE,
-    "OPTIONS": {
-        "MAX_ENTRIES": 5000,
-        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
-    },
-}
-
-# cache for Fluent files
-CACHES["fluent"] = {
-    "BACKEND": "bedrock.base.cache.SimpleDictCache",
-    "LOCATION": "fluent",
-    "TIMEOUT": FLUENT_CACHE_TIMEOUT,
-    "OPTIONS": {
-        "MAX_ENTRIES": 5000,
-        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
-    },
-}
-
-# cache for product details
-CACHES["product-details"] = {
-    "BACKEND": "bedrock.base.cache.SimpleDictCache",
-    "LOCATION": "product-details",
-    "OPTIONS": {
-        "MAX_ENTRIES": 200,  # currently 104 json files
-        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
-    },
-}
-
-# cache for release notes
-CACHES["release-notes"] = {
-    "BACKEND": "bedrock.base.cache.SimpleDictCache",
-    "LOCATION": "release-notes",
-    "TIMEOUT": 5,
-    "OPTIONS": {
-        "MAX_ENTRIES": 300,  # currently 564 json files but most are rarely accessed
-        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
-    },
-}
-
-# cache for externalfiles
-CACHES["externalfiles"] = {
-    "BACKEND": "bedrock.base.cache.SimpleDictCache",
-    "LOCATION": "externalfiles",
-    "OPTIONS": {
-        "MAX_ENTRIES": 10,  # currently 2 files
-        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
-    },
-}
-
-# cache for generated QR codes
-CACHES["qrcode"] = {
-    "BACKEND": "bedrock.base.cache.SimpleDictCache",
-    "LOCATION": "qrcode",
-    "TIMEOUT": None,
-    "OPTIONS": {
-        "MAX_ENTRIES": 20,
-        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
-    },
-}
-
-MEDIA_URL = CDN_BASE_URL + MEDIA_URL
-STATIC_URL = CDN_BASE_URL + STATIC_URL
-logging.config.dictConfig(LOGGING)
-
-# OPERATION MODE SELECTION
+# 1. OPERATION MODE SELECTION
 # Which site do we want Bedrock to serve?
 POCKET_SITE_MODE = "Pocket"
 MOZORG_SITE_MODE = "Mozorg"
@@ -182,7 +106,9 @@ if IS_POCKET_MODE:
 else:
     ROOT_URLCONF = "bedrock.urls.mozorg_mode"
 
-# TEST-SPECIFIC SETTINGS
+sys.stdout.write(f"Using SITE_MODE of '{site_mode}'\n")
+
+# 2. TEST-SPECIFIC SETTINGS
 # TODO: make this selectable by an env var, like the other modes
 if (len(sys.argv) > 1 and sys.argv[1] == "test") or "pytest" in sys.modules:
 
@@ -197,4 +123,84 @@ if (len(sys.argv) > 1 and sys.argv[1] == "test") or "pytest" in sys.modules:
 
     DATABASES["default"] = {"ENGINE": "django.db.backends.sqlite3", "NAME": ":memory:"}
 
-sys.stdout.write(f"Using SITE_MODE of '{site_mode}'\n")
+# 3. SETTINGS WHICH APPLY REGARDLESS OF SITE MODE
+if DEV:
+    ALLOWED_HOSTS = ["*"]
+else:
+    MIDDLEWARE += ["bedrock.base.middleware.FrameOptionsHeader"]
+
+
+if CACHES["default"]["BACKEND"] == "django_pylibmc.memcached.PyLibMCCache":
+    CACHES["default"]["BINARY"] = True
+    CACHES["default"]["OPTIONS"] = {  # Maps to pylibmc "behaviors"
+        "tcp_nodelay": True,
+        "ketama": True,
+    }
+
+# cache for lang files
+CACHES["l10n"] = {
+    "BACKEND": "bedrock.base.cache.SimpleDictCache",
+    "LOCATION": "l10n",
+    "TIMEOUT": DOTLANG_CACHE,
+    "OPTIONS": {
+        "MAX_ENTRIES": 5000,
+        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
+    },
+}
+
+# cache for Fluent files
+CACHES["fluent"] = {
+    "BACKEND": "bedrock.base.cache.SimpleDictCache",
+    "LOCATION": "fluent",
+    "TIMEOUT": FLUENT_CACHE_TIMEOUT,
+    "OPTIONS": {
+        "MAX_ENTRIES": 5000,
+        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
+    },
+}
+
+# cache for product details
+CACHES["product-details"] = {
+    "BACKEND": "bedrock.base.cache.SimpleDictCache",
+    "LOCATION": "product-details",
+    "OPTIONS": {
+        "MAX_ENTRIES": 200,  # currently 104 json files
+        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
+    },
+}
+
+# cache for release notes
+CACHES["release-notes"] = {
+    "BACKEND": "bedrock.base.cache.SimpleDictCache",
+    "LOCATION": "release-notes",
+    "TIMEOUT": 5,
+    "OPTIONS": {
+        "MAX_ENTRIES": 300,  # currently 564 json files but most are rarely accessed
+        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
+    },
+}
+
+# cache for externalfiles
+CACHES["externalfiles"] = {
+    "BACKEND": "bedrock.base.cache.SimpleDictCache",
+    "LOCATION": "externalfiles",
+    "OPTIONS": {
+        "MAX_ENTRIES": 10,  # currently 2 files
+        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
+    },
+}
+
+# cache for generated QR codes
+CACHES["qrcode"] = {
+    "BACKEND": "bedrock.base.cache.SimpleDictCache",
+    "LOCATION": "qrcode",
+    "TIMEOUT": None,
+    "OPTIONS": {
+        "MAX_ENTRIES": 20,
+        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
+    },
+}
+
+MEDIA_URL = CDN_BASE_URL + MEDIA_URL
+STATIC_URL = CDN_BASE_URL + STATIC_URL
+logging.config.dictConfig(LOGGING)
