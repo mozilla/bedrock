@@ -1,0 +1,25 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split with context %}
+
+{% call split(
+  image_url='img/home/2021/pocket-10-years.jpg',
+  include_highres_image=True,
+  block_class='pocket-10-years-promo mzp-l-split-center-on-sm-md',
+  media_class='mzp-l-split-h-center mzp-l-split-v-center',
+  media_after=True,
+) %}
+  <h2 class="pocket-10-years-promo-title">Celebrating 10 years of Pocket</h2>
+  <p class="pocket-10-years-promo-desc">
+    The distraction-free, private place to save and discover trustworthy, interesting articles online.
+  </p>
+  <p>
+    <a href="https://getpocket.com/signup/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=home-pocket-10-years-promo" class="mzp-c-button mzp-t-xl" alt="Articles from a wide range of publications" data-cta-type="button" data-cta-text="Sign up for Pocket">
+      Sign up for Pocket
+    </a>
+  </p>
+{% endcall %}
