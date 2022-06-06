@@ -95,18 +95,7 @@ urlpatterns = (
         url_name="pocket.jobs",
         ftl_files=["pocket/jobs"],
     ),
-    page(
-        "privacy/",
-        "pocket/privacy.html",
-        url_name="pocket.privacy",
-        ftl_files=["pocket/privacy"],
-    ),
-    page(
-        "tos/",
-        "pocket/tos.html",
-        url_name="pocket.tos",
-        ftl_files=["pocket/tos"],
-    ),
+    # TODO: reinstate privacy/ and tos/ routes, using legal-docs content
     page(
         "save-to-pocket/",
         "pocket/save-to-pocket.html",
