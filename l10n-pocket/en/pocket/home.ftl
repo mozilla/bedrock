@@ -8,12 +8,12 @@ pocket-home-homepage-title = Home
 
 pocket-home-homepage-desc = When you find something you want to view later, put it in { -brand-name-pocket }.
 
-# Line-break for visual formatting.
+# Line-break for visual formatting. This can be moved to accommodate target language.
 pocket-home-get-right-to = Get right to </br>the good stuff
 pocket-home-your-own-private = Your own private corner of the web to spend quality time with great articles.
 pocket-home-sign-up-for-pocket = Sign up for { -brand-name-pocket }
 pocket-home-already-have-an-account = Already have an account?
-pocket-home-log-in = Log In
+pocket-home-log-in = Log in
 
 pocket-home-save-interesting-stories = Save interesting stories. Read them whenever.
 
