@@ -39,3 +39,9 @@
 {% endblock %}
 
 {% block body_class %}mzp-t-firefox{% endblock %}
+
+{% block glean %}
+  {% if switch('glean-analytics') %}
+    {{ js_bundle('glean') }}
+  {% endif %}
+{% endblock %}
