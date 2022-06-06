@@ -70,7 +70,7 @@ def get_ssllabs_results(base_url):
 @pytest.mark.nondestructive
 def test_locale_redirect(url, base_url):
     resp = requests.get(f"{base_url}{url}", allow_redirects=False, headers={"accept-language": "de"})
-    assert resp.status_code == 301
+    assert resp.status_code == 302
     assert "accept-language" in resp.headers["vary"].lower()
     assert resp.headers["location"].startswith("/de/")
 
