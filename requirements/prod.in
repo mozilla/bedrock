@@ -36,8 +36,8 @@ Markdown==3.3.6
 https://github.com/mozmeao/mdx_outline/archive/refs/tags/python-3.9-compat.tar.gz#egg=mdx_outline
 meinheld==1.0.2
 newrelic==7.10.0.175
-phonenumberslite==8.12.46
-Pillow==9.1.0
+phonenumberslite==8.12.49
+Pillow==9.1.1
 PyGithub==1.55
 pyjwt>=2.4.0  # subdep of PyGithub and Twilio but needs to be > 2.3.0
 pyOpenSSL==22.0.0

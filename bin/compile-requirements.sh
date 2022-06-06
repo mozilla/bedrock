@@ -12,7 +12,7 @@ export CUSTOM_COMPILE_COMMAND="$ make compile-requirements"
 # We need this installed, but we don't want it to live in the main requirements
 # We will need to periodically review this pinning
 
-pip install -U pip==22.1.1
+pip install -U pip==22.1.2
 pip install pip-tools==6.6.2
 
 pip-compile --generate-hashes -r requirements/prod.in
