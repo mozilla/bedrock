@@ -21,12 +21,12 @@ pocket-new-tab-discover-the-most = Discover the most thought-provoking stories o
 # Variables
 #   learn_url (url) - link to https://help.getpocket.com/article/1142-firefox-new-tab-recommendations-faq#why
 pocket-new-tab-finding-the = Finding the hidden gems. Respecting your privacy.
-pocket-new-tab-as-part-of = As part of the { -brand-name-firefox } family, { -brand-name-pocket } surfaces the best articles out there—new perspectives, intriguing deep-dives, timeless classics—and we do this with the same dedication to privacy you’ve come to expect from { -brand-name-firefox } and { -brand-name-mozilla }. <a href="{ $learn_url }">Learn more about how we curate stories.</a>
+pocket-new-tab-as-part-of = As part of the { -brand-name-firefox } family, { -brand-name-pocket } surfaces the best articles out there — new perspectives, intriguing deep-dives, timeless classics — and we do this with the same dedication to privacy you’ve come to expect from { -brand-name-firefox } and { -brand-name-mozilla }. <a href="{ $learn_url }">Learn more about how we curate stories.</a>
 
 pocket-new-tab-your-data = Your data stays private. Always.
 # Variables
 #   privacy_url (url) - link to https://help.getpocket.com/article/1142-firefox-new-tab-recommendations-faq#personalized
-pocket-new-tab-in-addition-to = In addition to dishing up captivating stories, we also show you relevant, highly-vetted content from select sponsors. Rest assured, your browsing data never leaves your personal copy of { -brand-name-firefox }—we don’t see it, and our sponsors don’t either. Want more details? Here’s the full scoop on <a href="{ $privacy_url }">how privacy works in { -brand-name-pocket }.</a>
+pocket-new-tab-in-addition-to = In addition to dishing up captivating stories, we also show you relevant, highly-vetted content from select sponsors. Rest assured, your browsing data never leaves your personal copy of { -brand-name-firefox } — we don’t see it, and our sponsors don’t either. Want more details? Here’s the full scoop on <a href="{ $privacy_url }">how privacy works in { -brand-name-pocket }.</a>
 
 pocket-new-tab-fuel = Fuel your mind with even more fascinating stories.
 # Variables
