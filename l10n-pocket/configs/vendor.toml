@@ -5,8 +5,7 @@ basepath = ".."
 
 locales = [
     "de",
-    "en",
-    "es",  # This will be used for International Spanish, incl `es-la`
+    "es-LA",
     "es-ES",
     "fr-CA",
     "fr",
