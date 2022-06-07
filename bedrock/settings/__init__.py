@@ -144,23 +144,23 @@ if IS_POCKET_MODE:
     ]
 
     CANONICAL_LOCALES = {
-        # We want to ensure es-ES gets its specific translations, rather than falling back to 'es'
-        "es-ES": "es-ES",
+        # Pocket has some region-less locales that we need to map to full locales
+        "es": "es-ES",
+        "pt": "pt-PT",
+        "zh": "zh-CN",
+        # Case correction
+        "es-la": "es-LA",
     }
 
     FALLBACK_LOCALES = {
-        # NB: es-LA isn't a real locale, but it is what getpocket.com has used
-        # and we need to deal with it, by redirecting to international Spanish
-        "es-la": "es",
+        # "es": "es-ES",
     }
 
     PROD_LANGUAGES = [
-        # TODO: double-check for correctness and completeness
-        # when we have real translations from the vendor
         "de",
         "en",
-        "es",
         "es-ES",
+        "es-LA",  # Not an ISO locale, but a locale-like convention; Pocket uses it as lowercase
         "fr-CA",
         "fr",
         "it",
