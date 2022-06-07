@@ -2,6 +2,9 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.urls import path
+
+from bedrock.legal_docs.views import LegalDocView
 from bedrock.mozorg.util import page
 
 urlpatterns = (
@@ -95,11 +98,26 @@ urlpatterns = (
         url_name="pocket.jobs",
         ftl_files=["pocket/jobs"],
     ),
-    # TODO: reinstate privacy/ and tos/ routes, using legal-docs content
     page(
         "save-to-pocket/",
         "pocket/save-to-pocket.html",
         url_name="pocket.save-to-pocket",
         ftl_files=["pocket/feature-pages", "pocket/banners/pocket-premium"],
+    ),
+    path(
+        "privacy/",
+        LegalDocView.as_view(
+            template_name="pocket/privacy.html",
+            legal_doc_name="pocket_privacy_policy",
+        ),
+        name="pocket.privacy",
+    ),
+    path(
+        "tos/",
+        LegalDocView.as_view(
+            template_name="pocket/tos.html",
+            legal_doc_name="pocket_tos",
+        ),
+        name="pocket.tos",
     ),
 )

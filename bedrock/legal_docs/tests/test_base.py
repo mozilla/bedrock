@@ -31,8 +31,9 @@ class TestLoadLegalDoc(TestCase):
         self.assertEqual(doc["content"], "You're not wrong Walter...")
         self.assertEqual(doc["active_locales"], ["en-US"])
 
-    def test_legal_doc_exists_en_locale(self):
-        """Should return the content of the en file and say it's en-US."""
+    @override_settings(IS_MOZORG_MODE=True)
+    def test_legal_doc_exists_en_locale__mozorg_mode(self):
+        """Should return the content of the "en" file and say the active locale is "en-US" if in Mozorg Mode"""
         LegalDoc.objects.create(
             name="the_dude_exists",
             locale="en",
@@ -41,6 +42,18 @@ class TestLoadLegalDoc(TestCase):
         doc = views.load_legal_doc("the_dude_exists", "en-US")
         self.assertEqual(doc["content"], "You're not wrong Walter...")
         self.assertEqual(doc["active_locales"], ["en-US"])
+
+    @override_settings(IS_MOZORG_MODE=False, PROD_LANGUAGES=["en", "de", "hi-IN"])
+    def test_legal_doc_exists_en_locale__pocket_mode(self):
+        """Should return the content of the "en" file and say the active locale is "en" if in Pocket Mode"""
+        LegalDoc.objects.create(
+            name="the_dude_exists",
+            locale="en",
+            content="You're not wrong Walter...",
+        )
+        doc = views.load_legal_doc("the_dude_exists", "en")
+        self.assertEqual(doc["content"], "You're not wrong Walter...")
+        self.assertEqual(doc["active_locales"], ["en"])
 
     def test_legal_doc_exists_snake_case_convert(self):
         """Should return the content of the file if it exists in snake case."""

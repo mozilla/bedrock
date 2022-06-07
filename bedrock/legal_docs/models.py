@@ -75,8 +75,8 @@ class LegalDocsManager(models.Manager):
             doc = self.get(name=doc_name, locale=locale)
 
         all_locales = list(self.filter(name=doc_name).values_list("locale", flat=True))
-        if "en" in all_locales:
-            # legal-docs now uses en but the site needs en-US
+        if "en" in all_locales and settings.IS_MOZORG_MODE:
+            # legal-docs now uses "en" but the Mozorg site needs en-US. (Pocket needs "en")
             all_locales[all_locales.index("en")] = "en-US"
 
         # filter locales not active on the site
