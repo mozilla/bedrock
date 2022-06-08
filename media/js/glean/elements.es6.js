@@ -40,8 +40,22 @@ function getElementAttributes(e) {
         el = el.closest('a') || el.closest('button');
     }
 
+    if (!el) {
+        return;
+    }
+
+    const newTab = e.metaKey || e.ctrlKey;
+    const delayClick =
+        el.nodeName === 'A' &&
+        el.className.indexOf('glean-delay-test') !== -1 &&
+        !newTab;
+
+    if (delayClick) {
+        e.preventDefault();
+    }
+
     // Check all link and button elements for data attributes.
-    if (el && (el.nodeName === 'A' || el.nodeName === 'BUTTON')) {
+    if (el.nodeName === 'A' || el.nodeName === 'BUTTON') {
         const ctaText = el.getAttribute('data-cta-text');
         const linkName = el.getAttribute('data-link-name');
         const linkType = el.getAttribute('data-link-type');
@@ -55,11 +69,9 @@ function getElementAttributes(e) {
                 type: type,
                 position: position
             });
-            return;
         }
-
         // Firefox Download link clicks
-        if (linkType && linkType === 'download') {
+        else if (linkType && linkType === 'download') {
             const os = el.getAttribute('data-download-os');
             const name = el.getAttribute('data-display-name');
             const position = el.getAttribute('data-download-location');
@@ -71,20 +83,23 @@ function getElementAttributes(e) {
                     type: name,
                     position: position
                 });
-                return;
             }
         }
-
         // Older format links
-        if (linkName) {
+        else if (linkName) {
             const position = el.getAttribute('data-link-position');
             interaction({
                 label: linkName,
                 type: linkType,
                 position: position
             });
-            return;
         }
+    }
+
+    if (delayClick) {
+        setTimeout(() => {
+            window.location.href = el.href;
+        }, 1000);
     }
 }
 
