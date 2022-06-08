@@ -43,7 +43,7 @@ pocket-new-tab-activate-your-account = <a href="{ $firefox_learn_more }">Activat
 pocket-new-tab-you-make = You make the call.
 # Variables
 #   dismiss_url (url) - link to https://help.getpocket.com/article/1142-firefox-new-tab-recommendations-faq#turn-off
-pocket-new-tab-its-easy = It’s easy <a href="{ $dismiss_url }">turn off</a> { -brand-name-pocket }’s recommendations and remove them from your new tab page. But remember: if you don’t like today’s stories, there’s always tomorrow!
+pocket-new-tab-its-easy = It’s easy to <a href="{ $dismiss_url }">turn off</a> { -brand-name-pocket }’s recommendations and remove them from your new tab page. But remember: if you don’t like today’s stories, there’s always tomorrow!
 pocket-new-tab-faq = Frequently asked questions
 pocket-new-tab-privacy-policy = Privacy policy
 pocket-new-tab-tos = Terms of service
