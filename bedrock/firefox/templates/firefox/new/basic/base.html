@@ -41,3 +41,9 @@
 {% block old_ie_styles %}{% endblock %}
 {% block site_css %}{% endblock %}
 {% block page_css %}{% endblock %}
+
+{% block glean %}
+  {% if switch('glean-analytics') %}
+    {{ js_bundle('glean') }}
+  {% endif %}
+{% endblock %}
