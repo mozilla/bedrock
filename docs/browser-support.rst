@@ -26,7 +26,7 @@ Some website experiences may require us to deviate from these principles -- imag
 marketing campaign page built under timeline pressure to deliver novel functionality to a
 particular locale for a short while* -- but those will be exceptions and rare.
 
-Browser Support Matrix (Updated 2021-12-07)
+Browser Support Matrix (Updated 2022-07-06)
 -------------------------------------------
 
 We deliver enhanced CSS & JS to browsers in our browser support matrix (below).
@@ -35,13 +35,12 @@ which get basic support.
 
 **The following browsers have enhanced support:**
 
-  * All evergreen browsers (Firefox, Chrome, Safari, Edge, Opera, etc.)
-  * IE11 and above.
+  * All evergreen browsers (Firefox, Firefox ESR, Chrome, Safari, Edge, Opera, etc.)
 
 **The following browsers have degraded support:**
 
   * Outdated evergreen browser versions.
-  * IE10.
+  * IE11 & IE10.
 
 **The following browsers have basic support:**
 
@@ -76,6 +75,15 @@ On other legacy browsers where conditional comments are not supported, developer
 instead rely on `feature detection`_ to deliver a degraded experience where appropriate.
 
 .. _feature detection: https://developer.mozilla.org/docs/Learn/Tools_and_testing/Cross_browser_testing/Feature_detection
+
+.. Note::
+    The following feature detection helpers will return true for all browsers that get
+    enhanced support, but will also return true for IE11 currently, even though that has
+    now moved to degraded support. The reason for this is that whilst many of our newer
+    products don't support IE at all (e.g. Mozilla VPN, Firefox Monitor, Firefox Relay),
+    we do still need to provide support so that IE users can easily download Firefox. We
+    can decide to update the feature detect in the future, at a time when we think makes
+    sense.
 
 Feature detection using CSS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -130,9 +138,9 @@ pages.
 
 **The following pages get enhanced experiences for a longer list of user agents:**
 
-  * /firefox/
-  * /firefox/new/
-  * /firefox/download/thanks/
+  * ``/firefox/``
+  * ``/firefox/new/``
+  * ``/firefox/download/thanks/``
 
 .. Note::
 
