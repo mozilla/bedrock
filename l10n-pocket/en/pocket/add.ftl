@@ -35,8 +35,7 @@ pocket-add-save-via-email = Save via e-mail
 pocket-add-email-any-link = Email any link to your list by sending it to <a href="{ $add_email_link }" class="{ $add_email_css_class }">{ $add_email }</a>
 pocket-add-to = To
 pocket-add-subject = Subject
-# Inca refers to the Incan culture
-pocket-add-inca-trail = Inca Trail Tips
+pocket-add-cooking-tips = Cooking Tips
 pocket-add-learn-more = Learn more
 
 # The + denotes more than, alt: "Integreated in more than 1500 Apps"
