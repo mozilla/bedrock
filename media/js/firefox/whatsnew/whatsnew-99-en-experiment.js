@@ -7,6 +7,7 @@
 (function (Mozilla) {
     'use strict';
 
+    require('@mozmeao/trafficcop');
     var href = window.location.href;
 
     var initTrafficCop = function () {
@@ -27,8 +28,8 @@
                 id: 'exp-wnp-99-en',
                 cookieExpires: 0,
                 variations: {
-                    'v=1': 90,
-                    'v=2': 10
+                    'v=1': 10,
+                    'v=2': 90
                 }
             });
             cop.init();

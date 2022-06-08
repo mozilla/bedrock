@@ -142,7 +142,7 @@ Traffic Cop experiments
 
 More complex experiments, such as those that feature full page redesigns, or
 multi-page user flows, should be implemented using `Traffic Cop
-<https://github.com/mozilla/trafficcop/>`_. Traffic Cop small javascript
+<https://github.com/mozmeao/trafficcop/>`_. Traffic Cop small javascript
 library which will direct site traffic to different variants in a/b
 experiments and make sure a visitor always sees the same variation.
 

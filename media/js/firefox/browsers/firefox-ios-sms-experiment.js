@@ -6,7 +6,7 @@
 
 (function (Mozilla) {
     'use strict';
-
+    require('@mozmeao/trafficcop');
     var href = window.location.href;
 
     var initTrafficCop = function () {
