@@ -1,7 +1,7 @@
 {#
-This Source Code Form is subject to the terms of the Mozilla Public
-License, v. 2.0. If a copy of the MPL was not distributed with this
-file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
 {% extends 'newsletter/base.html' %}
@@ -9,48 +9,19 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% block page_title %}{{ ftl('newsletters-mozilla-newsletter') }}{% endblock %}
 
 {% block content %}
-
-<noscript>
-  <div style="margin-left: 7%;">
-    <h3>Thanks!</h3>
-    <h4>We have received your request.</h4>
-    <h5>You are seeing this page because Javascript is not enabled on your browser.</h5>
-  </div>
-  <div style="margin:2%; margin-left: 7%;">
-    <a href="/">
-      <button class="mzp-c-button button-dark">
-        Go Back
-      </button>
-    </a>
-  </div>
-  <style type="text/css">
-       #main {display: none; }
-
-  </style>
-</noscript>
-<script type="text/javascript">
-  if(!navigator.CookieEnabled){
-     document.getElementById('main').innerHtml = "Cookies are disabled";
-  }
-
-</script>
-
-<div id="main">
-  <main role="main">
-    <div class="mzp-l-content mzp-t-content-sm">
-      {% if ftl_has_messages('multi-newsletter-form-title', 'multi-newsletter-form-desc',
-      'multi-newsletter-form-checkboxes-legend') %}
+<main role="main">
+  <div class="mzp-l-content mzp-t-content-sm">
+    {% if ftl_has_messages('multi-newsletter-form-title', 'multi-newsletter-form-desc', 'multi-newsletter-form-checkboxes-legend') %}
       {{ email_newsletter_form(
-      newsletters='mozilla-foundation, mozilla-and-you',
-      button_class='button-dark'
+        newsletters='mozilla-foundation, mozilla-and-you',
+        button_class='button-dark'
       )}}
-      {% else %}
+    {% else %}
       {{ email_newsletter_form(
-      title=ftl('newsletters-read-all-about-it-in-our-newsletter'),
-      desc=ftl('newsletters-subscribe-here-to-keep-current', fallback='newsletters-subscribe-to-updates-and-keep'),
-      newsletters='mozilla-foundation') }}
-      {% endif %}
-    </div>
-  </main>
-</div>
+        title=ftl('newsletters-read-all-about-it-in-our-newsletter'),
+        desc=ftl('newsletters-subscribe-here-to-keep-current', fallback='newsletters-subscribe-to-updates-and-keep'),
+        newsletters='mozilla-foundation') }}
+    {% endif %}
+  </div>
+</main>
 {% endblock %}
