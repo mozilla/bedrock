@@ -63,8 +63,22 @@ class LegalDocView(l10n_utils.RequireSafeMixin, TemplateView):
 
     def render_to_response(self, context, **response_kwargs):
         response_kwargs.setdefault("content_type", self.content_type)
+        _ftl_files = []
+        if settings.IS_MOZORG_MODE:
+            _ftl_files = [
+                "mozorg/about/legal",
+                "privacy/index",
+            ]
+        elif settings.IS_POCKET_MODE:
+            _ftl_files = [
+                "pocket/legal",
+            ]
         return l10n_utils.render(
-            self.request, self.get_template_names()[0], context, ftl_files=["mozorg/about/legal", "privacy/index"], **response_kwargs
+            self.request,
+            self.get_template_names()[0],
+            context,
+            ftl_files=_ftl_files,
+            **response_kwargs,
         )
 
     def get_context_data(self, **kwargs):

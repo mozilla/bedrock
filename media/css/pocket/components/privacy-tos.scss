@@ -27,7 +27,7 @@
         font-weight: 600;
         margin-top: $spacing-2xl;
 
-        &:not(.date-heading) {
+        &:not([datetime]) {
             text-transform: uppercase;
         }
     }
@@ -37,7 +37,7 @@
         font-weight: 600;
     }
 
-    .date-heading {
+    [datetime] {
         @include text-title-2xs;
         font-style: italic;
         font-weight: 600;
@@ -45,10 +45,6 @@
 
     p {
         color: $color-text-secondary;
-
-        .uppercase {
-            text-transform: uppercase;
-        }
     }
 
     address {
@@ -72,12 +68,6 @@
         &:active {
             color: $color-action-primary;
         }
-    }
-
-    .cookies-subheading {
-        @include text-body-md;
-        color: $color-text-secondary;
-        font-weight: 700;
     }
 
     button {
