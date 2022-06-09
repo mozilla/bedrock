@@ -120,9 +120,7 @@ if IS_POCKET_MODE:
         # TODO onetrust cookie consent breaks
         # blocked without unsafe-eval. Find a way to remove that.
         "'unsafe-eval'",
-        "www.googletagmanager.com",
         "www.google-analytics.com",
-        "tagmanager.google.com",
         "cdn.cookielaw.org",
         "assets.getpocket.com",  # allow Pocket Snowplow analytics
     ]
@@ -131,7 +129,6 @@ if IS_POCKET_MODE:
     ]
     _csp_child_src = []
     _csp_connect_src = [
-        "www.googletagmanager.com",
         "www.google-analytics.com",
         "o1069899.sentry.io",
         "o1069899.ingest.sentry.io",
