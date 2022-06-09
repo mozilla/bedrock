@@ -6,7 +6,7 @@
 @import '../includes/nav';
 @import '../includes/footer';
 
-$image-path: '/media/img/pocket';
+$pocket-image-path: '/media/img/pocket';
 
 .intro-wrapper {
     background-color: #95d5d2;
@@ -67,7 +67,7 @@ $image-path: '/media/img/pocket';
         padding: 40px 16px 118vw;
 
         &::before {
-            background: url('#{$image-path}/people-enjoying-content-md.svg') no-repeat 100% 0 / contain;
+            background: url('#{$pocket-image-path}/people-enjoying-content-md.svg') no-repeat 100% 0 / contain;
             width: 200vw;
             height: 134vw;
             top: unset;
@@ -102,7 +102,7 @@ $image-path: '/media/img/pocket';
             padding: 128px 40px 352px;
 
             &::before {
-                background-image: url('#{$image-path}/people-enjoying-content-lg.svg');
+                background-image: url('#{$pocket-image-path}/people-enjoying-content-lg.svg');
                 top: 40px;
                 right: calc(50% - 872px);
                 width: 1616px;
@@ -120,7 +120,7 @@ $image-path: '/media/img/pocket';
         margin-bottom: 304px;
 
         &::before {
-            background: url('#{$image-path}/swirly-saving-xs.svg') no-repeat 100% 0 / contain;
+            background: url('#{$pocket-image-path}/swirly-saving-xs.svg') no-repeat 100% 0 / contain;
             bottom: -540px;
             height: 845px;
             right: -370px;
@@ -133,7 +133,7 @@ $image-path: '/media/img/pocket';
             margin-bottom: 490px;
 
             &::before {
-                background-image: url('#{$image-path}/swirly-saving-sm.svg');
+                background-image: url('#{$pocket-image-path}/swirly-saving-sm.svg');
                 height: 845px;
                 right: -195px;
                 top: -160px;
@@ -146,7 +146,7 @@ $image-path: '/media/img/pocket';
             margin-bottom: 608px;
 
             &::before {
-                background-image: url('#{$image-path}/swirly-saving-lg.svg');
+                background-image: url('#{$pocket-image-path}/swirly-saving-lg.svg');
                 height: 750px;
                 right: -90px;
                 top: -212px;
@@ -161,7 +161,7 @@ $image-path: '/media/img/pocket';
         padding-bottom: 656px;
 
         &::before {
-            background: url('#{$image-path}/rainbow-hand-gem-sm.svg') no-repeat 100% 0 / contain;
+            background: url('#{$pocket-image-path}/rainbow-hand-gem-sm.svg') no-repeat 100% 0 / contain;
             bottom: 110px;
             height: 590px;
             right: -155px;
@@ -191,7 +191,7 @@ $image-path: '/media/img/pocket';
                 top: -80px;
                 width: 800px;
                 transform: rotate(13deg);
-                background-image: url('#{$image-path}/rainbow-hand-gem-lg.svg');
+                background-image: url('#{$pocket-image-path}/rainbow-hand-gem-lg.svg');
             }
         }
 
@@ -211,7 +211,7 @@ $image-path: '/media/img/pocket';
         padding-bottom: 668px;
 
         &::before {
-            background: url('#{$image-path}/floating-content-md.svg') no-repeat 100% / contain;
+            background: url('#{$pocket-image-path}/floating-content-md.svg') no-repeat 100% / contain;
             height: 212vw;
             bottom: 80px;
             right: -15vw;
@@ -231,7 +231,7 @@ $image-path: '/media/img/pocket';
             padding-bottom: 272px;
 
             &::before {
-                background-image: url('#{$image-path}/floating-content-lg.svg');
+                background-image: url('#{$pocket-image-path}/floating-content-lg.svg');
                 height: 1175px;
                 left: 57.5%;
                 top: -496px;
@@ -254,7 +254,7 @@ $image-path: '/media/img/pocket';
         padding-bottom: 181vw;
 
         &::before {
-            background: url('#{$image-path}/sunny-content-md.svg') no-repeat 100% 0 / contain;
+            background: url('#{$pocket-image-path}/sunny-content-md.svg') no-repeat 100% 0 / contain;
             bottom: -29vw;
             height: 242vw;
             right: -25vw;
@@ -268,7 +268,7 @@ $image-path: '/media/img/pocket';
             padding-bottom: 520px;
 
             &::before {
-                background-image: url('#{$image-path}/sunny-content-lg.svg');
+                background-image: url('#{$pocket-image-path}/sunny-content-lg.svg');
                 height: 1192px;
                 right: calc(50% - 144px);
                 top: -310px;

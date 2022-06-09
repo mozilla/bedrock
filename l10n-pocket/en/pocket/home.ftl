@@ -38,3 +38,5 @@ pocket-home-unlimited-highlights = Unlimited highlights
 pocket-home-premium-fonts = Premium fonts
 
 pocket-home-discover-and-save = Discover and save the most interesting stories on the web
+
+pocket-home-10-year = 10 Years of { -brand-name-pocket }
