@@ -7,88 +7,13 @@ import sys
 
 from .base import *  # noqa
 
-if DEV:
-    ALLOWED_HOSTS = ["*"]
-else:
-    MIDDLEWARE += ["bedrock.base.middleware.FrameOptionsHeader"]
+# This file:
+# 1. Handles setting specific settings based on the site Bedrock is serving - currently Mozorg or Pocket
+# 2. Tweaks some settings if Django can detect we're running tests
+# 3. django_csp settings
+# 4. Sets a number of general settings applicable to all site modes
 
-
-if CACHES["default"]["BACKEND"] == "django_pylibmc.memcached.PyLibMCCache":
-    CACHES["default"]["BINARY"] = True
-    CACHES["default"]["OPTIONS"] = {  # Maps to pylibmc "behaviors"
-        "tcp_nodelay": True,
-        "ketama": True,
-    }
-
-# cache for lang files
-CACHES["l10n"] = {
-    "BACKEND": "bedrock.base.cache.SimpleDictCache",
-    "LOCATION": "l10n",
-    "TIMEOUT": DOTLANG_CACHE,
-    "OPTIONS": {
-        "MAX_ENTRIES": 5000,
-        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
-    },
-}
-
-# cache for Fluent files
-CACHES["fluent"] = {
-    "BACKEND": "bedrock.base.cache.SimpleDictCache",
-    "LOCATION": "fluent",
-    "TIMEOUT": FLUENT_CACHE_TIMEOUT,
-    "OPTIONS": {
-        "MAX_ENTRIES": 5000,
-        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
-    },
-}
-
-# cache for product details
-CACHES["product-details"] = {
-    "BACKEND": "bedrock.base.cache.SimpleDictCache",
-    "LOCATION": "product-details",
-    "OPTIONS": {
-        "MAX_ENTRIES": 200,  # currently 104 json files
-        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
-    },
-}
-
-# cache for release notes
-CACHES["release-notes"] = {
-    "BACKEND": "bedrock.base.cache.SimpleDictCache",
-    "LOCATION": "release-notes",
-    "TIMEOUT": 5,
-    "OPTIONS": {
-        "MAX_ENTRIES": 300,  # currently 564 json files but most are rarely accessed
-        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
-    },
-}
-
-# cache for externalfiles
-CACHES["externalfiles"] = {
-    "BACKEND": "bedrock.base.cache.SimpleDictCache",
-    "LOCATION": "externalfiles",
-    "OPTIONS": {
-        "MAX_ENTRIES": 10,  # currently 2 files
-        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
-    },
-}
-
-# cache for generated QR codes
-CACHES["qrcode"] = {
-    "BACKEND": "bedrock.base.cache.SimpleDictCache",
-    "LOCATION": "qrcode",
-    "TIMEOUT": None,
-    "OPTIONS": {
-        "MAX_ENTRIES": 20,
-        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
-    },
-}
-
-MEDIA_URL = CDN_BASE_URL + MEDIA_URL
-STATIC_URL = CDN_BASE_URL + STATIC_URL
-logging.config.dictConfig(LOGGING)
-
-# OPERATION MODE SELECTION
+# 1. OPERATION MODE SELECTION and specific config
 # Which site do we want Bedrock to serve?
 POCKET_SITE_MODE = "Pocket"
 MOZORG_SITE_MODE = "Mozorg"
@@ -179,10 +104,133 @@ if IS_POCKET_MODE:
     DEV_LANGUAGES = PROD_LANGUAGES
     LANGUAGE_CODE = "en"  # Pocket uses `en` not `en-US`
 
+    # CSP settings for POCKET, expanded upon later:
+    _csp_default_src = [
+        "'self'",
+        "*.getpocket.com",
+    ]
+    _csp_img_src = [
+        "data:",
+        "www.googletagmanager.com",
+        "www.google-analytics.com",
+    ]
+    _csp_script_src = [
+        # TODO fix use of OptanonWrapper() so that we don't need this
+        "'unsafe-inline'",
+        # TODO onetrust cookie consent breaks
+        # blocked without unsafe-eval. Find a way to remove that.
+        "'unsafe-eval'",
+        "www.google-analytics.com",
+        "cdn.cookielaw.org",
+        "assets.getpocket.com",  # allow Pocket Snowplow analytics
+    ]
+    _csp_style_src = [
+        "'unsafe-inline'",
+    ]
+    _csp_child_src = []
+    _csp_connect_src = [
+        "www.google-analytics.com",
+        "o1069899.sentry.io",
+        "o1069899.ingest.sentry.io",
+        "cdn.cookielaw.org",
+        "privacyportal.onetrust.com",
+        "getpocket.com",  # Pocket Snowplow
+        "geolocation.onetrust.com",
+    ]
+    _csp_connect_extra_for_dev = [
+        "com-getpocket-prod1.mini.snplow.net",
+    ]
+    _csp_font_src = [
+        "'self'",
+        "assets.getpocket.com",
+    ]
+
+    _available_tracking_pixels = {}
+
 else:
+    # Mozorg mode
     ROOT_URLCONF = "bedrock.urls.mozorg_mode"
 
-# TEST-SPECIFIC SETTINGS
+    # CSP settings for MOZORG, expanded upon later:
+    _csp_default_src = [
+        "'self'",
+        "*.mozilla.net",
+        "*.mozilla.org",
+        "*.mozilla.com",
+    ]
+    _csp_img_src = [
+        "data:",
+        "mozilla.org",
+        "www.googletagmanager.com",
+        "www.google-analytics.com",
+        "adservice.google.com",
+        "adservice.google.de",
+        "adservice.google.dk",
+        "creativecommons.org",
+        "cdn-3.convertexperiments.com",
+        "logs.convertexperiments.com",
+        "images.ctfassets.net",
+    ]
+    _csp_script_src = [
+        # TODO fix things so that we don't need this
+        "'unsafe-inline'",
+        # TODO snap.svg.js passes a string to Function() which is
+        # blocked without unsafe-eval. Find a way to remove that.
+        "'unsafe-eval'",
+        "www.googletagmanager.com",
+        "www.google-analytics.com",
+        "tagmanager.google.com",
+        "www.youtube.com",
+        "s.ytimg.com",
+        "cdn-3.convertexperiments.com",
+        "app.convert.com",
+        "data.track.convertexperiments.com",
+        "1003350.track.convertexperiments.com",
+        "1003343.track.convertexperiments.com",
+    ]
+    _csp_style_src = [
+        # TODO fix things so that we don't need this
+        "'unsafe-inline'",
+        "app.convert.com",
+    ]
+    _csp_child_src = [
+        "www.googletagmanager.com",
+        "www.google-analytics.com",
+        "www.youtube-nocookie.com",
+        "trackertest.org",  # mozilla service for tracker detection
+        "www.surveygizmo.com",
+        "accounts.firefox.com",
+        "accounts.firefox.com.cn",
+        "www.youtube.com",
+    ]
+    _csp_connect_src = [
+        "www.googletagmanager.com",
+        "www.google-analytics.com",
+        "logs.convertexperiments.com",
+        "1003350.metrics.convertexperiments.com",
+        "1003343.metrics.convertexperiments.com",
+        "sentry.prod.mozaws.net",  # DEPRECATED. TODO: remove this once all sites are talking to sentry.io instead
+        "o1069899.sentry.io",
+        "o1069899.ingest.sentry.io",
+        FXA_ENDPOINT,
+        "stage.cjms.nonprod.cloudops.mozgcp.net",
+        "cjms.services.mozilla.com",
+    ]
+    _csp_connect_extra_for_dev = []
+    _csp_font_src = [
+        "'self'",
+    ]
+
+    _available_tracking_pixels = {
+        "doubleclick": (
+            "https://ad.doubleclick.net/ddm/activity/src=6417015;type=deskt0;cat=mozil0;dc_lat=;dc_rdid=;"
+            "tag_for_child_directed_treatment=;tfua=;npa=;ord=1"
+        ),
+    }
+
+sys.stdout.write(f"Using SITE_MODE of '{site_mode}'\n")
+
+# 2. TEST-SPECIFIC SETTINGS
 # TODO: make this selectable by an env var, like the other modes
 if (len(sys.argv) > 1 and sys.argv[1] == "test") or "pytest" in sys.modules:
 
@@ -197,4 +245,122 @@ if (len(sys.argv) > 1 and sys.argv[1] == "test") or "pytest" in sys.modules:
 
     DATABASES["default"] = {"ENGINE": "django.db.backends.sqlite3", "NAME": ":memory:"}
 
-sys.stdout.write(f"Using SITE_MODE of '{site_mode}'\n")
+
+# 3. DJANGO-CSP SETTINGS
+CSP_DEFAULT_SRC = _csp_default_src
+EXTRA_CSP_DEFAULT_SRC = config("CSP_DEFAULT_SRC", parser=ListOf(str), default="")
+if EXTRA_CSP_DEFAULT_SRC:
+    CSP_DEFAULT_SRC += EXTRA_CSP_DEFAULT_SRC
+
+CSP_IMG_SRC = CSP_DEFAULT_SRC + _csp_img_src
+
+CSP_SCRIPT_SRC = CSP_DEFAULT_SRC + _csp_script_src
+CSP_STYLE_SRC = CSP_DEFAULT_SRC + _csp_style_src
+CSP_CHILD_SRC = CSP_DEFAULT_SRC + _csp_child_src
+CSP_CONNECT_SRC = CSP_DEFAULT_SRC + _csp_connect_src
+
+if DEV:
+    if _csp_connect_extra_for_dev:
+        CSP_CONNECT_SRC.extend(_csp_connect_extra_for_dev)
+
+CSP_REPORT_ONLY = config("CSP_REPORT_ONLY", default="false", parser=bool)
+CSP_REPORT_URI = config("CSP_REPORT_URI", default="") or None
+
+CSP_EXTRA_FRAME_SRC = config("CSP_EXTRA_FRAME_SRC", default="", parser=ListOf(str))
+if CSP_EXTRA_FRAME_SRC:
+    CSP_CHILD_SRC += tuple(CSP_EXTRA_FRAME_SRC)
+
+# support older browsers (mainly Safari)
+CSP_FRAME_SRC = CSP_CHILD_SRC
+CSP_FONT_SRC = _csp_font_src
+
+# Bug 1331069 - Double Click tracking pixel for download page.
+AVAILABLE_TRACKING_PIXELS = _available_tracking_pixels
+ENABLED_PIXELS = config("ENABLED_PIXELS", default="doubleclick", parser=ListOf(str))
+TRACKING_PIXELS = [AVAILABLE_TRACKING_PIXELS[x] for x in ENABLED_PIXELS if x in AVAILABLE_TRACKING_PIXELS]
+
+if config("SWITCH_TRACKING_PIXEL", default=str(DEV), parser=bool):
+    if "doubleclick" in ENABLED_PIXELS:
+        CSP_IMG_SRC += ("ad.doubleclick.net",)
+
+# 4. SETTINGS WHICH APPLY REGARDLESS OF SITE MODE
+if DEV:
+    ALLOWED_HOSTS = ["*"]
+else:
+    MIDDLEWARE += ["bedrock.base.middleware.FrameOptionsHeader"]
+
+
+if CACHES["default"]["BACKEND"] == "django_pylibmc.memcached.PyLibMCCache":
+    CACHES["default"]["BINARY"] = True
+    CACHES["default"]["OPTIONS"] = {  # Maps to pylibmc "behaviors"
+        "tcp_nodelay": True,
+        "ketama": True,
+    }
+
+# cache for lang files
+CACHES["l10n"] = {
+    "BACKEND": "bedrock.base.cache.SimpleDictCache",
+    "LOCATION": "l10n",
+    "TIMEOUT": DOTLANG_CACHE,
+    "OPTIONS": {
+        "MAX_ENTRIES": 5000,
+        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
+    },
+}
+
+# cache for Fluent files
+CACHES["fluent"] = {
+    "BACKEND": "bedrock.base.cache.SimpleDictCache",
+    "LOCATION": "fluent",
+    "TIMEOUT": FLUENT_CACHE_TIMEOUT,
+    "OPTIONS": {
+        "MAX_ENTRIES": 5000,
+        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
+    },
+}
+
+# cache for product details
+CACHES["product-details"] = {
+    "BACKEND": "bedrock.base.cache.SimpleDictCache",
+    "LOCATION": "product-details",
+    "OPTIONS": {
+        "MAX_ENTRIES": 200,  # currently 104 json files
+        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
+    },
+}
+
+# cache for release notes
+CACHES["release-notes"] = {
+    "BACKEND": "bedrock.base.cache.SimpleDictCache",
+    "LOCATION": "release-notes",
+    "TIMEOUT": 5,
+    "OPTIONS": {
+        "MAX_ENTRIES": 300,  # currently 564 json files but most are rarely accessed
+        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
+    },
+}
+
+# cache for externalfiles
+CACHES["externalfiles"] = {
+    "BACKEND": "bedrock.base.cache.SimpleDictCache",
+    "LOCATION": "externalfiles",
+    "OPTIONS": {
+        "MAX_ENTRIES": 10,  # currently 2 files
+        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
+    },
+}
+
+# cache for generated QR codes
+CACHES["qrcode"] = {
+    "BACKEND": "bedrock.base.cache.SimpleDictCache",
+    "LOCATION": "qrcode",
+    "TIMEOUT": None,
+    "OPTIONS": {
+        "MAX_ENTRIES": 20,
+        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
+    },
+}
+
+MEDIA_URL = CDN_BASE_URL + MEDIA_URL
+STATIC_URL = CDN_BASE_URL + STATIC_URL
+logging.config.dictConfig(LOGGING)
