@@ -726,37 +726,6 @@ class TestVPNSubscribeLink(TestCase):
         self.assertIn("?plan=price_1JcdsSJNcmPzuWtRGF9Y5TMJ", markup)
 
 
-@override_settings(FXA_ENDPOINT=TEST_FXA_ENDPOINT, VPN_ENDPOINT=TEST_VPN_ENDPOINT)
-class TestVPNDownloadLink(TestCase):
-    rf = RequestFactory()
-
-    def _render(self, entrypoint, link_text, class_name=None, optional_parameters=None, optional_attributes=None):
-        req = self.rf.get("/")
-        req.locale = "en-US"
-        return render(
-            f"{{{{ vpn_download_link('{entrypoint}', '{link_text}', '{class_name}', {optional_parameters}, {optional_attributes}) }}}}",
-            {"request": req},
-        )
-
-    def test_download_in_link(self):
-        """Should return expected markup"""
-        markup = self._render(
-            entrypoint="www.mozilla.org-vpn-product-page",
-            link_text="Already a Subscriber?",
-            class_name="mzp-c-cta-link",
-            optional_parameters={"utm_campaign": "vpn-product-page"},
-            optional_attributes={"data-cta-text": "VPN Sign In", "data-cta-type": "fxa-vpn", "data-cta-position": "navigation"},
-        )
-        expected = (
-            '<a href="https://vpn.mozilla.org/vpn/download?entrypoint=www.mozilla.org-vpn-product-page'
-            "&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page&utm_medium=referral"
-            '&utm_campaign=vpn-product-page&data_cta_position=navigation" data-action="https://accounts.firefox.com/" '
-            'class="js-vpn-cta-link js-fxa-product-button mzp-c-cta-link" data-cta-text="VPN Sign In" '
-            'data-cta-type="fxa-vpn" data-cta-position="navigation">Already a Subscriber?</a>'
-        )
-        self.assertEqual(markup, expected)
-
-
 @override_settings(VPN_VARIABLE_PRICING=TEST_VPN_VARIABLE_PRICING)
 class TestVPNMonthlyPrice(TestCase):
     rf = RequestFactory()

@@ -54,25 +54,6 @@ def _vpn_product_link(product_url, entrypoint, link_text, class_name=None, optio
 
 @library.global_function
 @jinja2.contextfunction
-def vpn_download_link(ctx, entrypoint, link_text, class_name=None, optional_parameters=None, optional_attributes=None):
-    """
-    Render a vpn.mozilla.org download link with required params for product referrals.
-
-    Examples
-    ========
-
-    In Template
-    -----------
-
-        {{ vpn_download_link(entrypoint='www.mozilla.org-vpn-product-page', link_text='Already a subscriber?') }}
-    """
-    product_url = f"{settings.VPN_ENDPOINT}vpn/download"
-
-    return _vpn_product_link(product_url, entrypoint, link_text, class_name, optional_parameters, optional_attributes)
-
-
-@library.global_function
-@jinja2.contextfunction
 def vpn_subscribe_link(
     ctx, entrypoint, link_text, plan="12-month", class_name=None, country_code=None, lang=None, optional_parameters=None, optional_attributes=None
 ):

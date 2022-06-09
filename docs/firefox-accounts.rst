@@ -200,16 +200,6 @@ all support the same standard parameters:
 Mozilla :abbr:`VPN (Virtual Private Network)` Links
 ---------------------------------------------------
 
-Use the ``vpn_download_link`` helper to create a link to https://vpn.mozilla.org/vpn/download/
-with :abbr:`FxA (Firefox Account)` metrics params attached.
-
-Usage
-~~~~~
-
-.. code-block:: jinja
-
-    {{ vpn_download_link(entrypoint='www.mozilla.org-vpn-product-page', link_text='Already a subscriber?') }}
-
 Use the ``vpn_subscribe_link`` helpers to create a :abbr:`VPN (Virtual Private Network)` subscription link via a
 Firefox Accounts auth flow.
 
