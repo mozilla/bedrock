@@ -6,6 +6,7 @@
 
 (function (Mozilla) {
     'use strict';
+    require('@mozmeao/trafficcop');
     /* update dataLayer with experiment info */
     var href = window.location.href;
 

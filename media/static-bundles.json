@@ -1204,7 +1204,6 @@
     },
     {
       "files": [
-        "js/libs/mozilla-traffic-cop.js",
         "js/firefox/welcome/welcome8-traffic-cop.js"
       ],
       "name": "firefox_welcome_page8_traffic_cop"
@@ -1219,14 +1218,13 @@
     },
     {
       "files": [
-        "js/libs/mozilla-traffic-cop.js",
         "js/firefox/whatsnew/whatsnew-99-en-experiment.js"
       ],
       "name": "firefox_whatsnew_99_en_experiment"
     },
     {
       "files": [
-        "js/libs/mozilla-traffic-cop.js",
+
         "js/firefox/whatsnew/whatsnew-101-en-experiment.js"
       ],
       "name": "firefox_whatsnew_101_en_experiment"
@@ -1397,7 +1395,6 @@
     },
     {
       "files": [
-        "js/libs/mozilla-traffic-cop.js",
         "js/firefox/browsers/firefox-ios-sms-experiment.js"
       ],
       "name": "firefox-ios-sms-experiment"

@@ -432,7 +432,7 @@ To configure switches for a demo branch. Follow the `configuration instructions 
 Traffic Cop
 -----------
 
-Currently, these switches are used to enable/disable `Traffic Cop <https://github.com/mozilla/trafficcop/>`_ experiments
+Currently, these switches are used to enable/disable `Traffic Cop <https://github.com/mozmeao/trafficcop/>`_ experiments
 on many pages of the site. We only add the Traffic Cop JavaScript snippet to a page when there is an active test. You
 can see the current state of these switches and other configuration values in our `configuration
 repo <https://mozmeao.github.io/www-config/configs/>`_.
