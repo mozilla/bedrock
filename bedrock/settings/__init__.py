@@ -69,35 +69,33 @@ if IS_POCKET_MODE:
     ]
 
     CANONICAL_LOCALES = {
-        # Pocket has some region-less locales that we need to map to full locales
-        "es": "es-ES",
-        "pt": "pt-PT",
-        "zh": "zh-CN",  # TBC whether this is needed in reality, as zh redirects to zh-cn on the previous Pocket site
-        # Case correction
-        "es-la": "es-LA",
+        # Pocket uses mostly region-less locales, but these will be automatically selected by Bedrock
+        # e.g. /de-DE/ -> /de/ via a 302
     }
 
     FALLBACK_LOCALES = {
-        # "es": "es-ES",
+        # TODO: Drop after confimring longer used _anywhere_
     }
 
     PROD_LANGUAGES = [
+        # Note that all of Pocket's locale strings are lowercase - and mixed case is HTTP 301ed
+        # to lowercase versions. We are retaining this behaviour for legacy consistency and SEO
         "de",
         "en",
-        "es-ES",
-        "es-LA",  # Not an ISO locale, but a locale-like convention; Pocket uses it as lowercase
-        "fr-CA",
+        "es",  # We map es-ES to this in `l10n-pocket/configs/smartling-config.json`
+        "es-la",  # Not an ISO locale, but a locale-like convention; remapped in vendor config
+        "fr-ca",
         "fr",
         "it",
         "ja",
         "ko",
         "nl",
         "pl",
-        "pt-BR",
-        "pt-PT",
+        "pt-br",
+        "pt",  # mapped from "pt-PT"
         "ru",
-        "zh-CN",
-        "zh-TW",
+        "zh-cn",
+        "zh-tw",
     ]
 
     # No reason to have separate Dev and Prod lang sets for Pocket mode
