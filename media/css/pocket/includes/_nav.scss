@@ -5,7 +5,7 @@
 @import '../utils/variables';
 @import './mobile-nav';
 
-$image-path: '/media/img/pocket';
+$pocket-image-path: '/media/img/pocket';
 
 .pocket-header {
     width: 100%;
@@ -93,7 +93,7 @@ $image-path: '/media/img/pocket';
     .pocket-logo-svg {
         background-repeat: no-repeat;
         background-size: contain;
-        background-image: url('#{$image-path}/pocket-logo-light-mode.svg');
+        background-image: url('#{$pocket-image-path}/pocket-logo-light-mode.svg');
         width: 94px;
         height: 24px;
 
