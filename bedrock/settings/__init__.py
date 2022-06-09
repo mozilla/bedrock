@@ -111,6 +111,7 @@ if IS_POCKET_MODE:
     ]
     _csp_img_src = [
         "data:",
+        "www.mozilla.org",
         "www.googletagmanager.com",
         "www.google-analytics.com",
     ]
@@ -119,6 +120,7 @@ if IS_POCKET_MODE:
         "'unsafe-inline'",
         # TODO onetrust cookie consent breaks
         # blocked without unsafe-eval. Find a way to remove that.
+        "www.mozilla.org",
         "'unsafe-eval'",
         "www.google-analytics.com",
         "cdn.cookielaw.org",
@@ -126,6 +128,7 @@ if IS_POCKET_MODE:
     ]
     _csp_style_src = [
         "'unsafe-inline'",
+        "www.mozilla.org",
     ]
     _csp_child_src = []
     _csp_connect_src = [
