@@ -37,8 +37,8 @@ pocket-new-tab-check-out = Check out { -brand-name-pocket }’s <a href="{ $expl
 pocket-new-tab-save-in = Save in { -brand-name-pocket } & read on your own time.
 pocket-new-tab-built-right = Built right into { -brand-name-firefox }, { -brand-name-pocket } also lets you save stories and come back to them when you’re ready.
 # Variables
-#   firefox_learn_more (url) - link to https://getpocket.com/firefox_learnmore
-pocket-new-tab-activate-your-account = <a href="{ $firefox_learn_more }">Activate your account</a>, and then the next time you see an article you want to save, click the { -brand-name-pocket } icon in the toolbar.
+#   pocket_and_firefox (url) - link to https://getpocket.com/pocket-and-firefox
+pocket-new-tab-activate-your-account = <a href="{ $pocket_and_firefox }">Activate your account</a>, and then the next time you see an article you want to save, click the { -brand-name-pocket } icon in the toolbar.
 
 pocket-new-tab-you-make = You make the call.
 # Variables
