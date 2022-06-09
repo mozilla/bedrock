@@ -11,3 +11,15 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/modal';
 
 @import 'includes/home-base';
+
+// If split is used on the homepage, we will add a class to the body
+// which will match the style of the depreciated hero component
+.mzp-c-split-body.c-home-body {
+    .mzp-c-button {
+        margin-top: $spacing-md;
+    }
+
+    p {
+        @include text-body-lg;
+    }
+}

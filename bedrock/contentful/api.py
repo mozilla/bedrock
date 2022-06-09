@@ -721,6 +721,8 @@ class ContentfulPage:
 
     def get_split_data(self, entry_obj):
         fields = entry_obj.fields()
+        # Checking if the split component is being used on the contentful homepage
+        # If so, we will add a class to the body which will match the style of the depreciated hero component
         is_home_page = self.page.content_type.id == "pageHome"
 
         def get_split_class():

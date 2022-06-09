@@ -10,13 +10,3 @@ $brand-theme: 'mozilla';
 @import '~@mozilla-protocol/core/protocol/css/components/split';
 
 @import '../patch';
-
-.mzp-c-split-body.c-home-body {
-    .mzp-c-button {
-        margin-top: $spacing-md;
-    }
-
-    p {
-        @include text-body-lg;
-    }
-}
