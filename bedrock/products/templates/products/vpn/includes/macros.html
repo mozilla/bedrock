@@ -107,25 +107,9 @@
       </a>
     {% endif %}
 
-    {% if ftl_file_is_active('products/vpn/download') %}
-      <a href="{{ url('products.vpn.download') }}" class="mzp-c-cta-link" data-cta-type="link" data-cta-text="Already a subscriber?" data-cta-position="navigation">
-        {{ download_link_text }}
-      </a>
-    {% else %}
-      {{ vpn_download_link(
-        entrypoint=utm_source,
-        link_text=download_link_text,
-        class_name='mzp-c-cta-link',
-        optional_parameters={
-          'utm_campaign': utm_campaign
-        },
-        optional_attributes={
-          'data-cta-type': 'fxa-vpn',
-          'data-cta-text': 'VPN Sign In',
-          'data-cta-position': 'navigation',
-        }
-      ) }}
-    {% endif %}
+    <a href="{{ url('products.vpn.download') }}" class="mzp-c-cta-link" data-cta-type="link" data-cta-text="Already a subscriber?" data-cta-position="navigation">
+      {{ download_link_text }}
+    </a>
   </div>
 {%- endmacro %}
 
