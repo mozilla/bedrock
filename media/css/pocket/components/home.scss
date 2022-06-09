@@ -4,22 +4,22 @@
 
 @use 'sass:color';
 
+$image-path: '/media/protocol/img';
+
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/base/elements/containers';
 @import '~@mozilla-protocol/core/protocol/css/components/button';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-pocket';
 @import '../utils/variables';
 @import '../includes/platform-nav';
 @import '../includes/platform-footer';
-
-$image-path: '/media/img/pocket';
 
 .pocket-homepage {
     color: $color-text-primary;
     font-family: $font-sans;
 
     .pocket-homepage-header {
-        padding-top: 0;
-
         .mzp-l-split-media-overflow {
             width: 145%;
             transform: translateX(-40%);
@@ -35,6 +35,12 @@ $image-path: '/media/img/pocket';
         .mzp-c-split-media-asset {
             max-height: 800px;
             width: auto;
+        }
+
+        @media #{$mq-md} {
+            &.mzp-l-split-pop {
+                padding-top: 0;
+            }
         }
     }
 
@@ -187,3 +193,36 @@ $image-path: '/media/img/pocket';
         width: 20px;
     }
 }
+
+// 10 year badge
+.c-hero-badge {
+    align-items: center;
+    display: flex;
+
+    .mzp-c-logo {
+        margin-bottom: 0;
+        margin-right: $spacing-sm;
+
+        // override for smaller logo
+        &.mzp-t-logo-xs {
+            height: 20px;
+            width: 20px;
+        }
+    }
+
+    p {
+        @include text-body-xl;
+        margin-bottom: 0;
+        margin-top: 0;
+
+        strong {
+            font-weight: 600;
+        }
+    }
+
+    + h1 {
+        margin-top: $spacing-lg;
+    }
+}
+
+// end 10 year badge
