@@ -10,15 +10,15 @@ pocket-platform-ios-view-list = View your list on your { -brand-name-iphone } or
 ## Android URL: https://dev.tekcopteg.com/android/
 
 pocket-platform-android-title = { -brand-name-pocket } for { -brand-name-android }
-pocket-platform-android-view-list = View your list on your { -brand-name-android} device. Download the free { -brand-name-pocket } app from { -brand-name-google-play }.
+pocket-platform-android-view-list = View your list on your { -brand-name-android } device. Download the free { -brand-name-pocket } app from { -brand-name-google-play }.
 
 ## Chrome URL: https://dev.tekcopteg.com/chrome/
 
-pocket-platform-chrome-title = { -brand-name-pocket } for { -brand-name-chrome}
+pocket-platform-chrome-title = { -brand-name-pocket } for { -brand-name-chrome }
 
 ## Safari URL: https://dev.tekcopteg.com/safari/
 
-pocket-platform-safari-title = { -brand-name-pocket } for { -brand-name-safari}
+pocket-platform-safari-title = { -brand-name-pocket } for { -brand-name-safari }
 
 ## Opera URL: https://dev.tekcopteg.com/opera/
 

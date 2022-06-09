@@ -10,11 +10,11 @@ pocket-features-save-to-pocket = Save to { -brand-name-pocket }
 pocket-features-build = Build a home for everything that interests you with { -brand-name-pocket }
 pocket-features-use-pocket = Use { -brand-name-pocket } to save anything that sparks your curiosity and enjoy it when you’re ready to focus. In no time your list will become a personal library filled with enticing content to inform, inspire, and fuel you.
 pocket-features-get-started = Get started
-pocket-features-already-have = Already have an account? Log in
+pocket-features-already-have = Already have an account? Log in.
 pocket-features-save-from-anywhere = Save from anywhere on the web
 # Variables:
 # $pocket-logo-inline (string) class for Pocket’s inline logo
-pocket-features-once-you = Once you’ve signed up, add the <span class="{ $pocket-logo-inline }">{ -brand-name-pocket} Logo</span> button to your browser for the fastest and easiest way to save articles, videos, and links to your personal library.
+pocket-features-once-you = Once you’ve signed up, add the <span class="{ $pocket-logo-inline }">{ -brand-name-pocket } Logo</span> button to your browser for the fastest and easiest way to save articles, videos, and links to your personal library.
 pocket-features-start-saving = Start saving content
 
 pocket-features-absorb-content = Absorb content in a quiet space
@@ -33,7 +33,9 @@ pocket-features-log-in = Log in
 pocket-features-pocket-and-firefox = { -brand-name-pocket } for { -brand-name-firefox }
 pocket-features-build-your-personal = Build your personal library of fascinating reads.
 
-pocket-features-included-inside = Included inside { -brand-name-firefox }, the <span class="{ $pocket-logo-inline }">{ -brand-name-pocket} Logo</span> button lets you save articles from across the web and read them in a quiet, private space.
+# Variables:
+# $pocket-logo-inline (string) class for Pocket’s inline logo
+pocket-features-included-inside = Included inside { -brand-name-firefox }, the <span class="{ $pocket-logo-inline }">{ -brand-name-pocket } Logo</span> button lets you save articles from across the web and read them in a quiet, private space.
 pocket-features-activate-pocket = Activate { -brand-name-pocket } in { -brand-name-firefox }
 pocket-features-more-ways-to = More ways to sign up
 
@@ -48,7 +50,9 @@ pocket-features-special-features = Special features for focused reading
 pocket-features-use-pocket-app = Use the { -brand-name-pocket } app to listen to stories with our audio playback option. Customize how you see stories in { -brand-name-pocket } with dark mode and font options. Keep track of your saves with tags, and preserve important passages with highlights. You can even read offline.
 
 pocket-features-your-save-button = Your save button for the internet
-pocket-features-click-pocket-button = Click the <span class="{ $pocket-logo-inline }">{ -brand-name-pocket} Logo</span> button in { -brand-name-firefox } anytime you see something you’d like to save, wherever you are online. It’ll go straight to your list in { -brand-name-pocket }, ready for you to dig into when you’re free.
+# Variables:
+# $pocket-logo-inline (string) class for Pocket’s inline logo
+pocket-features-click-pocket-button = Click the <span class="{ $pocket-logo-inline }">{ -brand-name-pocket } Logo</span> button in { -brand-name-firefox } anytime you see something you’d like to save, wherever you are online. It’ll go straight to your list in { -brand-name-pocket }, ready for you to dig into when you’re free.
 
 pocket-features-get-inspired = Get Inspired
 pocket-features-save-what-inspires = Save what inspires you

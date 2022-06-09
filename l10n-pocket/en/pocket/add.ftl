@@ -6,11 +6,11 @@
 
 pocket-add-how-to-save = How to Save
 pocket-add-save-to-pocket = Save to { -brand-name-pocket } from { -brand-name-firefox }
-pocket-add-click-the-pocket-button = Click the { -brand-name-pocket} button in your { -brand-name-firefox } toolbar to save articles, videos, pages, and more.
+pocket-add-click-the-pocket-button = Click the { -brand-name-pocket } button in your { -brand-name-firefox } toolbar to save articles, videos, pages, and more.
 pocket-add-learn-how = Learn how
-pocket-add-dont-see-the-pocket = Don’t see the { -brand-name-pocket } buttton?
+pocket-add-dont-see-the-pocket = Don’t see the { -brand-name-pocket } button?
 
-pocket-add-view-from-any = View from any Device
+pocket-add-view-from-any = View from Any Device
 pocket-add-different-devices = Different devices displaying { -brand-name-pocket } articles
 # this is a title for a list of different app stores where you can download pocket
 pocket-add-get-pocket-for = Get { -brand-name-pocket } for:
@@ -32,11 +32,10 @@ pocket-add-save-via-email = Save via e-mail
 #   $add_email_link (email link) mailto:add@getpocket.com
 #   $add_email (string) add@getpocket.com
 #   $add_email_css_class (string) dark-inline-link
-pocket-add-email-any-link = Email any link to your list by sending it to <a href="{ $add_email_link}" class="{ $add_email_css_class }">{ $add_email }</a>
+pocket-add-email-any-link = Email any link to your list by sending it to <a href="{ $add_email_link }" class="{ $add_email_css_class }">{ $add_email }</a>
 pocket-add-to = To
 pocket-add-subject = Subject
-# Inca refers to the Incan culture
-pocket-add-inca-trail = Inca Trail Tips
+pocket-add-cooking-tips = Cooking Tips
 pocket-add-learn-more = Learn more
 
 # The + denotes more than, alt: "Integreated in more than 1500 Apps"

@@ -15,7 +15,7 @@ pocket-about-us-save-inspirations = Save your inspirations
 # Variables:
 #   $save_to_pocket (url) link to https://getpocket.com/save-to-pocket
 #   $add_to_pocket (url) link to https://getpocket.com/add
-pocket-about-if-something-catches-your-interest = If something catches your interest, there’s probably something to it. With our <a id="save-button-for-the-internet" href="{ $save_to_pocket }"> save button for the internet</a> and our award-winning <a id="top-pocket-app" href="{ $add_to_pocket }">{ -brand-name-pocket } app</a> you can save anything from across the web in a distraction free space, for you to focus and let the ideas flow.
+pocket-about-if-something-catches-your-interest = If something catches your interest, there’s probably something to it. With our <a id="save-button-for-the-internet" href="{ $save_to_pocket }"> save button for the internet</a> and our award-winning <a id="top-pocket-app" href="{ $add_to_pocket }">{ -brand-name-pocket } app</a>, you can save anything from across the web in a distraction free space, for you to focus and let the ideas flow.
 
 pocket-about-find-hidden-gems = Find hidden gems
 
@@ -27,7 +27,7 @@ pocket-about-internet-filled-with-buried-treasures = The internet is filled with
 #   $pocket_and_firefox_attrs (string) - attrs for hyperlink
 #   $pocket_daily_newsletter_attrs (string) - attrs for hyperlink
 #   $pocket_app_attrs (string) - attrs for hyperlink
-pocket-about-our-curators-vet-the-most-fascinating = Our curators vet the most fascinating finds to ensure they’re from a diverse range of publications with a track record of trustworthy and accurate coverage, and we share them on <a { $pocket_home_attrs }>{ $pocket_home_domain }</a>, <a {$pocket_and_firefox_attrs}>{ -brand-name-pocket } for { -brand-name-firefox }</a>, in our <a { $pocket_daily_newsletter_attrs }">daily newsletter</a>, and within the <a { $pocket_app_attrs }>{ -brand-name-pocket } app</a>. Our recommendations are available primarily in English and German, though we look forward to sharing in more languages in the future.
+pocket-about-our-curators-vet-the-most-fascinating = Our curators vet the most fascinating finds to ensure they’re from a diverse range of publications with a track record of trustworthy and accurate coverage, and we share them on <a { $pocket_home_attrs }>{ $pocket_home_domain }</a>, <a { $pocket_and_firefox_attrs }>{ -brand-name-pocket } for { -brand-name-firefox }</a>, in our <a { $pocket_daily_newsletter_attrs }">daily newsletter</a>, and within the <a { $pocket_app_attrs }>{ -brand-name-pocket } app</a>. Our recommendations are available primarily in English and German, though we look forward to sharing in more languages in the future.
 
 pocket-about-use-pocket-your-way = Use { -brand-name-pocket } your way
 
@@ -47,6 +47,5 @@ pocket-about-start-using-pocket = Start using { -brand-name-pocket }
 pocket-about-contact-us-press = Contact us for press inquiries at <a href="{ $press_email_link }">{ $press_email }</a>.
 
 # Variables:
-#   $download_url (url) https://blog.getpocket.com/press/
 #   $presspage_attrs (string) Attributes for the HTML link
 pocket-about-download-press-kit = Download our images and press kit <a { $presspage_attrs }>here</a>.
