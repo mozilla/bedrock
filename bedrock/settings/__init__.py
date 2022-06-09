@@ -74,7 +74,7 @@ if IS_POCKET_MODE:
     }
 
     FALLBACK_LOCALES = {
-        # TODO: Drop after confimring longer used _anywhere_
+        # TODO: Drop after confirming no longer used _anywhere_
     }
 
     PROD_LANGUAGES = [
