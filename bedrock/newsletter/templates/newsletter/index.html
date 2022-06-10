@@ -10,18 +10,17 @@
 
 {% block content %}
 <main role="main">
-  <div class="mzp-l-content mzp-t-content-sm">
-    {% if ftl_has_messages('multi-newsletter-form-title', 'multi-newsletter-form-desc', 'multi-newsletter-form-checkboxes-legend') %}
-      {{ email_newsletter_form(
-        newsletters='mozilla-foundation, mozilla-and-you',
-        button_class='button-dark'
-      )}}
-    {% else %}
-      {{ email_newsletter_form(
-        title=ftl('newsletters-read-all-about-it-in-our-newsletter'),
-        desc=ftl('newsletters-subscribe-here-to-keep-current', fallback='newsletters-subscribe-to-updates-and-keep'),
-        newsletters='mozilla-foundation') }}
-    {% endif %}
+  <div class="section-intro">
+    <div class="mzp-l-content">
+      <h1 class="page-title">{{ self.page_title() }}</h1>
+    </div>
   </div>
+
+  <section class="section-subscribe">
+    <h2 class="section-title">{{ self.page_desc() }}</h2>
+    <div class="mzp-l-content mzp-t-content-sm">
+      {{ email_newsletter_form(newsletters='knowledge-is-power', include_language=False, include_title=False, spinner_color='#0c99d5') }}
+    </div>
+  </section>
 </main>
 {% endblock %}

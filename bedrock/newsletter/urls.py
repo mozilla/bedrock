@@ -35,4 +35,5 @@ urlpatterns = (
     page("newsletter/developer/", "newsletter/developer.html", ftl_files=["mozorg/newsletters"]),
     page("newsletter/country/success/", "newsletter/country_success.html", ftl_files=["mozorg/newsletters"]),
     page("newsletter/fxa-error/", "newsletter/fxa-error.html", ftl_files=["mozorg/newsletters"]),
+    page("newsletter/knowledge-is-power/", "newsletter/knowledge-is-power.html", ftl_files=["mozorg/newsletters"]),
 )

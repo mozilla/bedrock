@@ -396,3 +396,9 @@ newsletters-special-announcements-helping-you = Special announcements helping yo
 
 # Name for the newsletter in Newsletter subscription page
 newsletters-android = { -brand-name-android }
+
+# Headline for https://www-dev.allizom.org/newsletter/knowledge-is-power
+newsletters-subscribe-to-the-newsletter = Subscribe to the newsletter
+
+# Subtitle for https://www-dev.allizom.org/newsletter/knowledge-is-power/
+newsletters-get-the-news-and-tips = Get news and tips from { -brand-name-mozilla }. So you can stay safe and informed on everything that makes the Web a healthier place.

@@ -1,0 +1,28 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.newsletter-knowledge-is-power {
+    .section-subscribe {
+        h1 {
+            @include font-firefox;
+            @include text-title-lg;
+            text-align: center;
+            font-weight: 600;
+            color: $color-ink-80;
+        }
+
+        h2 {
+            @include font-firefox;
+            @include text-title-xs;
+            text-align: center;
+            font-weight: normal;
+            color: $color-ink-80;
+        }
+    }
+}
