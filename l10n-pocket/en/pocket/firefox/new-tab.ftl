@@ -18,9 +18,9 @@ pocket-new-tab-activate-pocket = Activate { -brand-name-pocket } in { -brand-nam
 pocket-new-tab-more-ways-to = More ways to sign up
 
 pocket-new-tab-discover-the-most = Discover the most thought-provoking stories out there, curated by { -brand-name-pocket }.
+pocket-new-tab-finding-the = Finding the hidden gems. Respecting your privacy.
 # Variables
 #   learn_url (url) - link to https://help.getpocket.com/article/1142-firefox-new-tab-recommendations-faq#why
-pocket-new-tab-finding-the = Finding the hidden gems. Respecting your privacy.
 pocket-new-tab-as-part-of = As part of the { -brand-name-firefox } family, { -brand-name-pocket } surfaces the best articles out there — new perspectives, intriguing deep-dives, timeless classics — and we do this with the same dedication to privacy you’ve come to expect from { -brand-name-firefox } and { -brand-name-mozilla }. <a href="{ $learn_url }">Learn more about how we curate stories.</a>
 
 pocket-new-tab-your-data = Your data stays private. Always.

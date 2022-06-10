@@ -26,7 +26,7 @@ pocket-add-blackberry = { -brand-name-blackberry }
 pocket-add-more-apps = More Apps
 
 pocket-add-unlimited-ways = Unlimited Ways to Save
-pocket-add-save-via-email = Save via e-mail
+pocket-add-save-via-email = Save via email
 
 # Variables
 #   $add_email_link (email link) mailto:add@getpocket.com
