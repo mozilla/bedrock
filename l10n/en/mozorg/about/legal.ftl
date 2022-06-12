@@ -34,3 +34,5 @@ legal-mozilla-vpn-terms = { -brand-name-mozilla-vpn } Terms of Service
 legal-mdn-plus = { -brand-name-mdn-plus }
 legal-mdn-plus-terms = { -brand-name-mdn-plus } Terms of Service
 legal-report-copyright = Report Copyright or Trademark Infringement
+legal-hubs = { -brand-name-mozilla-hubs }
+legal-hubs-terms = { -brand-name-mozilla-hubs } Terms of Service
