@@ -6,9 +6,33 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-vpn';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-pocket';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-mozilla';
 
 .newsletter-knowledge-is-power {
     .section-subscribe {
+        .mozilla-products {
+            .mozilla-products-list {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-wrap: wrap;
+
+                // Reduced the width of the Mozilla logo because it had a wide width and created uneven spacing between other icons
+                li:first-child {
+                    width: 165px;
+                }
+
+                li {
+                    padding: 0 $spacing-md;
+                }
+            }
+        }
+
         h1 {
             @include font-firefox;
             @include text-title-lg;
