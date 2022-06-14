@@ -402,3 +402,10 @@ newsletters-subscribe-to-the-newsletter = Subscribe to the newsletter
 
 # Subtitle for https://www-dev.allizom.org/newsletter/knowledge-is-power/
 newsletters-get-the-news-and-tips = Get news and tips from { -brand-name-mozilla }. So you can stay safe and informed on everything that makes the Web a healthier place.
+
+## Brand names for https://www-dev.allizom.org/newsletter/knowledge-is-power/
+
+knowledge-is-power-mozilla = { -brand-name-mozilla }
+knowledge-is-power-firefox = { -brand-name-firefox } browser
+knowledge-is-power-vpn = { -brand-name-mozilla-vpn }
+knowledge-is-power-pocket = { -brand-name-pocket }

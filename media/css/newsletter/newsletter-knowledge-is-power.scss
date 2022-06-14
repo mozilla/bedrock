@@ -33,20 +33,20 @@ $image-path: '/media/protocol/img';
             }
         }
 
-        h1 {
+        .page-title {
             @include font-firefox;
             @include text-title-lg;
             text-align: center;
             font-weight: 600;
-            color: $color-ink-80;
+            color: $color-ink-40;
         }
 
-        h2 {
+        .section-title {
             @include font-firefox;
             @include text-title-xs;
             text-align: center;
             font-weight: normal;
-            color: $color-ink-80;
+            color: $color-ink-40;
         }
     }
 }
