@@ -16,24 +16,43 @@
   {{ css_bundle('firefox-default-landing') }}
 {% endblock %}
 
+{% block js %}
+  {{ js_bundle("firefox-default-landing") }}
+{% endblock %}
+
+{% if switch('set-as-default-experiment') and  variation == '1' %}
+  {% set landing_header = ftl('set-as-default-landing-you-should-get') %}
+  {% set landing_body = ftl('set-as-default-landing-if-you-recently') %}
+{% elif switch('set-as-default-experiment') and variation == '2' %}
+  {% set landing_header = "Feel safe every time you explore the web" %}
+  {% set landing_body = "Choose the browser that puts your privacy first everyday. Make sure Firefox is your default browser" %}
+{% elif switch('set-as-default-experiment') and variation == '3' %}
+  {% set landing_header = "Choose a browser that supports a better web for you and everyone else" %}
+  {% set landing_body = "Set Firefox back to your default browser and enjoy peace of mind with every link you open." %}
+{% else %}
+    {% set landing_header = ftl('set-as-default-landing-you-should-get') %}
+    {% set landing_body = ftl('set-as-default-landing-if-you-recently') %}
+{% endif %}
+
 {% block content %}
   <main role="main">
-    {% call hero(
-      title=ftl('set-as-default-landing-make-sure-youre-protected'),
-      desc=ftl('set-as-default-landing-thanks-for-using-the'),
-      class='mzp-c-hero',
-      include_cta=True,
-      heading_level=1,
-    ) %}
-    <div class="cta-container">
-      <div class="mzp-c-button-download-container">
-        <a id="set-as-default-button" href="{{ url('firefox.set-as-default.thanks') }}" class="mzp-c-button mzp-t-product" data-cta-text="Make Firefox your default browser" data-cta-type="button">
-          {{ ftl('set-as-default-landing-make-firefox-your-default') }}
-        </a>
+    <section class="mzp-c-hero">
+      <div class="mzp-l-content">
+        <div class="mzp-c-hero-body">
+          <h1 class="mzp-c-hero-title">{{ landing_header }} </h1>
+          <div class="mzp-c-hero-desc">
+            <p>{{ landing_body }}</p>
+          </div>
+          <div class="cta-container">
+            <div class="mzp-c-button-download-container">
+              <a id="set-as-default-button" href="{{ url('firefox.set-as-default.thanks') }}" class="mzp-c-button mzp-t-product" data-cta-text="Make Firefox your default browser" data-cta-type="button">
+                {{ ftl('set-as-default-landing-make-firefox-your-default') }}
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    {% endcall %}
-
+    </section>
     <ul class="mzp-l-columns mzp-t-columns-three mzp-l-content mzp-t-content-lg">
       {% call picto(
         title=ftl('set-as-default-landing-choose-automatic-privacy'),

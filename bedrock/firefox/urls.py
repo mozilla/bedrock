@@ -210,7 +210,16 @@ urlpatterns = (
     # Issue 8432
     page("firefox/set-as-default/thanks/", "firefox/set-as-default/thanks.html", ftl_files="firefox/set-as-default/thanks"),
     # Default browser campaign
-    page("firefox/set-as-default/", "firefox/set-as-default/landing.html", ftl_files="firefox/set-as-default/landing"),
+    path(
+        "firefox/set-as-default/",
+        VariationTemplateView.as_view(
+            template_name="firefox/set-as-default/landing.html",
+            ftl_files="firefox/set-as-default/landing",
+            variation_locales=["en-US"],
+            template_context_variations=["1", "2", "3"],
+        ),
+        name="firefox.set-as-default",
+    ),
     # Issue 8536
     page("firefox/retention/thank-you/", "firefox/retention/thank-you.html", ftl_files="firefox/retention/thank-you"),
     # Unfck campaign
