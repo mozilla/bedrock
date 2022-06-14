@@ -33,6 +33,10 @@
 {% set card3_desc = ftl('new-platform-easy-migration') %}
 {% set card3_image_url = 'img/firefox/new/platform/icon-seamless.svg' %}
 
+{% block download_button_primary %}
+  {{ download_firefox_thanks(alt_copy=ftl('download-button-download-now'), button_class='glean-delay-test', locale_in_transition=True, download_location='primary cta') }}
+{% endblock %}
+
 {% block structured_data %}
   {% include 'includes/structured-data/software/firefox-windows-software.json' %}
 {% endblock %}

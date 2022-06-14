@@ -68,7 +68,9 @@
   ) %}
 
     <div class="c-intro-download">
-      {{ download_firefox_thanks(alt_copy=ftl('download-button-download-now'), locale_in_transition=True, download_location='primary cta') }}
+      {% block download_button_primary %}
+        {{ download_firefox_thanks(alt_copy=ftl('download-button-download-now'), locale_in_transition=True, download_location='primary cta') }}
+      {% endblock %}
 
       {% block small_links %}
       <ul class="small-links">
