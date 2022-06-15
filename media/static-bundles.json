@@ -1440,6 +1440,12 @@
     },
     {
       "files": [
+        "js/firefox/set-as-default/landing.js"
+      ],
+      "name": "firefox-default-landing"
+    },
+    {
+      "files": [
         "protocol/js/protocol-sticky-promo.js",
         "js/firefox/sticky-promo.js",
         "js/firefox/home/master.js"
