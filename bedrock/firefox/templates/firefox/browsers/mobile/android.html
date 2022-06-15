@@ -23,6 +23,22 @@
   {% endif %}
 {% endblock %}
 
+{% block experiments %}
+  {% if switch('firefox-android-sms-experiment', ['en-US']) and country_code == "US" %}
+    {{ js_bundle('firefox-android-sms-experiment') }}
+  {% endif %}
+{% endblock %}
+
+{% if variation == '1' and country_code == "US" %}
+  {% set s2d_include = 'firefox/browsers/mobile/includes/s2d-android-email.html' %}
+{% elif variation == '2' and country_code == "US" %}
+  {% set s2d_include = 'firefox/browsers/mobile/includes/s2d-android-sms.html' %}
+{% elif variation == '3' and country_code == "US" %}
+  {% set s2d_include = 'firefox/browsers/mobile/includes/s2d-android-qr.html' %}
+{% else %}
+  {% set s2d_include = 'firefox/browsers/mobile/includes/s2d-android.html' %}
+{% endif %}
+
 {% block page_title %}{{ ftl('mobile-android-firefox-browser-android') }}{% endblock %}
 {% block page_desc %}{{ ftl('mobile-android-firefox-browser-for') }}{% endblock %}
 
@@ -49,7 +65,7 @@
   {% call split(
     block_class='mzp-l-split-center-on-sm-md c-page-header',
     media_class='mzp-l-split-h-center',
-    media_include='firefox/browsers/mobile/includes/s2d-android.html',
+    media_include=s2d_include,
     media_after=True
   ) %}
     <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">{{ ftl('firefox-ios-firefox-browser') }}</div>
@@ -162,7 +178,11 @@
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('firefox-browsers-mobile') }}
+  {% if variation == '2' and country_code == "US" %}
+    {{ js_bundle('firefox-browsers-mobile-sms') }}
+  {% else %}
+    {{ js_bundle('firefox-browsers-mobile') }}
+  {% endif %}
 
   {% if show_firefox_app_store_banner %}
     {{ js_bundle('firefox-app-store-banner') }}

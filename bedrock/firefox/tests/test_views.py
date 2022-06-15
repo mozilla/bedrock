@@ -769,7 +769,7 @@ class TestSMSSendToDevice(TestCase):
             assert data["success"] is True
             mock_client.messages.create.assert_called_once_with(
                 to="+14155551212",
-                body="Download the Firefox mobile browser for automatic protection on all your devices. https://app.adjust.com/b83wfbd",
+                body="Download the Firefox mobile browser for automatic protection on all your devices. https://app.adjust.com/48k9twc",
                 messaging_service_sid=settings.TWILIO_MESSAGING_SERVICE_SID,
             )
             mock_client.reset_mock()
