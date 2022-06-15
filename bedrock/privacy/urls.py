@@ -19,6 +19,7 @@ urlpatterns = (
     path("firefox-reality/", views.firefox_reality_notices, name="privacy.notices.firefox-reality"),
     # bug 1319207 - special URL for Firefox Focus in de locale
     path("firefox-klar/", views.firefox_focus_notices, name="privacy.notices.firefox-klar"),
+    path("hubs/", views.hubs_notices, name="privacy.notices.hubs"),
     path("thunderbird/", views.thunderbird_notices, name="privacy.notices.thunderbird"),
     path("websites/", views.websites_notices, name="privacy.notices.websites"),
     page("websites/data-preferences/", "privacy/data-preferences.html"),
