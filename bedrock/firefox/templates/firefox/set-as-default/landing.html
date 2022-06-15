@@ -16,11 +16,11 @@
   {{ css_bundle('firefox-default-landing') }}
 {% endblock %}
 
-{% if switch('set-as-default-experiment', 'en-US') %}
-  {% block js %}
+{% block experiments %}
+  {% if switch('set-as-default-experiment', ['en-US']) %}
     {{ js_bundle("firefox-default-landing") }}
-  {% endblock %}
-{% endif %}
+  {% endif %}
+{% endblock %}
 
 
 {% if variation == '2' %}
