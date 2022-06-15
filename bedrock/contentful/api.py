@@ -730,7 +730,6 @@ class ContentfulPage:
                 "mzp-l-split-reversed" if fields.get("image_side") == "Left" else "",
                 self.SPLIT_LAYOUT_CLASS.get(fields.get("body_width"), ""),
                 self.SPLIT_POP_CLASS.get(fields.get("image_pop"), ""),
-                "mzp-l-split-center-on-sm-md",
             ]
             return " ".join(block_classes)
 
