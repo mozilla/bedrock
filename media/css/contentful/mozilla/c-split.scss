@@ -10,3 +10,19 @@ $brand-theme: 'mozilla';
 @import '~@mozilla-protocol/core/protocol/css/components/split';
 
 @import '../patch';
+
+// Temporary fix to center the wordmark and logo on mobile when the split component also has the class "mzp-l-split-center-on-sm-md"
+.mzp-c-split.mzp-l-split-center-on-sm-md {
+    .mzp-c-wordmark,
+    .mzp-c-logo {
+        background-position: center;
+        margin-left: auto;
+        margin-right: auto;
+
+        @media #{$mq-md} {
+            background-position: top left;
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+}

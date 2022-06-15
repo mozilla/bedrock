@@ -132,12 +132,15 @@
         theme_class=entry.theme_class,
         media_class=entry.media_class,
         mobile_class=entry.mobile_class,
+        media_after=entry.media_after,
         image_url=entry.image,
         include_highres_image=False,
-        loading=loading
+        loading=loading,
       ) %}
-
+        {% if entry.product_icon %}{{ entry.product_icon }}{% endif %}
+        {% if entry.heading %}<{{ entry.heading_level }}>{{ entry.heading }}</{{ entry.heading_level}}>{% endif %}
         {{ entry.body|external_html }}
+        {% if entry.cta %}{{ entry.cta }}{% endif %}
 
       {% endcall %}
 
