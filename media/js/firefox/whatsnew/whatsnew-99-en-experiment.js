@@ -4,10 +4,10 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-(function (Mozilla) {
+(function () {
     'use strict';
 
-    require('@mozmeao/trafficcop');
+    var TrafficCop = require('@mozmeao/trafficcop');
     var href = window.location.href;
 
     var initTrafficCop = function () {
@@ -23,8 +23,8 @@
                     'data-ex-name': 'wnp-99-en-experiment'
                 });
             }
-        } else if (Mozilla.TrafficCop) {
-            var cop = new Mozilla.TrafficCop({
+        } else if (TrafficCop) {
+            var cop = new TrafficCop({
                 id: 'exp-wnp-99-en',
                 cookieExpires: 0,
                 variations: {
@@ -40,4 +40,4 @@
     if (href.indexOf('automation=true') === -1) {
         initTrafficCop();
     }
-})(window.Mozilla);
+})();

@@ -4,9 +4,9 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-(function (Mozilla) {
+(function () {
     'use strict';
-    require('@mozmeao/trafficcop');
+    var TrafficCop = require('@mozmeao/trafficcop');
     /* update dataLayer with experiment info */
     var href = window.location.href;
 
@@ -33,8 +33,8 @@
                     'data-ex-name': 'experiment-hvt-visual'
                 });
             }
-        } else if (Mozilla.TrafficCop) {
-            var cop = new Mozilla.TrafficCop({
+        } else if (TrafficCop) {
+            var cop = new TrafficCop({
                 id: 'welcome8_experiment_hvt_visual',
                 cookieExpires: 0,
                 variations: {
@@ -48,4 +48,4 @@
         }
     };
     initTrafficCop();
-})(window.Mozilla);
+})();
