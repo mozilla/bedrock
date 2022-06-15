@@ -1404,7 +1404,7 @@
         "js/base/send-to-device-sms.js",
         "js/firefox/browsers/mobile-sms.js"
       ],
-      "name": "firefox-browsers-ios-sms"
+      "name": "firefox-browsers-mobile-sms"
     },
     {
       "files": [

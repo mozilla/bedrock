@@ -14,22 +14,22 @@
             if (href.indexOf('v=1') !== -1) {
                 window.dataLayer.push({
                     'data-ex-variant': 'v1-email',
-                    'data-ex-name': 'firefox-ios-sms-experiment'
+                    'data-ex-name': 'firefox-android-sms-experiment'
                 });
             } else if (href.indexOf('v=2') !== -1) {
                 window.dataLayer.push({
                     'data-ex-variant': 'v2-sms',
-                    'data-ex-name': 'firefox-ios-sms-experiment'
+                    'data-ex-name': 'firefox-android-sms-experiment'
                 });
             } else if (href.indexOf('v=3') !== -1) {
                 window.dataLayer.push({
                     'data-ex-variant': 'v3-qrcode',
-                    'data-ex-name': 'firefox-ios-sms-experiment'
+                    'data-ex-name': 'firefox-android-sms-experiment'
                 });
             }
         } else if (TrafficCop) {
             var cop = new TrafficCop({
-                id: 'exp-firefox-ios-sms',
+                id: 'exp-firefox-android-sms',
                 cookieExpires: 0,
                 variations: {
                     'v=1': 33,

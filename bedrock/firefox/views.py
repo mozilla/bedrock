@@ -212,7 +212,7 @@ def sms_send_to_device_ajax(request):
     # NOTE: If needed, content may differ based on `form.cleaned_data["platform"]`
 
     # `sms_body` is limited to 1600 characters.
-    sms_body = "Download the Firefox mobile browser for automatic protection on all your devices. https://app.adjust.com/b83wfbd"
+    sms_body = "Download the Firefox mobile browser for automatic protection on all your devices. https://app.adjust.com/48k9twc"
 
     try:
         client.messages.create(
