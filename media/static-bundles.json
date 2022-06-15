@@ -1395,9 +1395,9 @@
     },
     {
       "files": [
-        "js/firefox/browsers/firefox-ios-sms-experiment.js"
+        "js/firefox/browsers/firefox-android-sms-experiment.js"
       ],
-      "name": "firefox-ios-sms-experiment"
+      "name": "firefox-android-sms-experiment"
     },
     {
       "files": [
