@@ -288,10 +288,11 @@ not Traffic Cop should initiate.
 
 .. code-block:: javascript
 
+    var TrafficCop = require('@mozmeao/trafficcop');
     var isApprovedToRun = require('../../base/experiment-utils.es6.js').isApprovedToRun; // relative path
 
     if (isApprovedToRun()) {
-        var cop = new Mozilla.TrafficCop({
+        var cop = new TrafficCop({
             id: 'experiment-name',
             variations: {
                 'entrypoint_experiment=experiment-name&entrypoint_variation=a': 10,
