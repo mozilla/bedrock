@@ -29,12 +29,16 @@
   {% endif %}
 {% endblock %}
 
-{% if variation == '1' and country_code == "US" %}
-  {% set s2d_include = 'firefox/browsers/mobile/includes/s2d-android-email.html' %}
-{% elif variation == '2' and country_code == "US" %}
-  {% set s2d_include = 'firefox/browsers/mobile/includes/s2d-android-sms.html' %}
-{% elif variation == '3' and country_code == "US" %}
-  {% set s2d_include = 'firefox/browsers/mobile/includes/s2d-android-qr.html' %}
+{% if country_code == "US" %}
+  {% if variation == '1' %}
+    {% set s2d_include = 'firefox/browsers/mobile/includes/s2d-android-email.html' %}
+  {% elif variation == '2' %}
+    {% set s2d_include = 'firefox/browsers/mobile/includes/s2d-android-sms.html' %}
+  {% elif variation == '3' %}
+    {% set s2d_include = 'firefox/browsers/mobile/includes/s2d-android-qr.html' %}
+  {% else %}
+    {% set s2d_include = 'firefox/browsers/mobile/includes/s2d-android.html' %}
+  {% endif %}
 {% else %}
   {% set s2d_include = 'firefox/browsers/mobile/includes/s2d-android.html' %}
 {% endif %}
