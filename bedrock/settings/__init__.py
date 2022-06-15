@@ -207,6 +207,7 @@ else:
     _csp_connect_src = [
         "www.googletagmanager.com",
         "www.google-analytics.com",
+        "region1.google-analytics.com",
         "logs.convertexperiments.com",
         "1003350.metrics.convertexperiments.com",
         "1003343.metrics.convertexperiments.com",
