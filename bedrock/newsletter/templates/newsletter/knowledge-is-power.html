@@ -22,7 +22,7 @@
 {% endblock %}
 
 {% block content %}
-<main role="main mzp-t-content-sm">
+<main class= "mzp-t-content-sm">
   <section class="section-subscribe">
     <header class="mzp-l-content mzp-t-content-lg header-container">
       <div class="mozilla-products">
@@ -45,7 +45,7 @@
       <h2 class="section-title">{{ self.page_desc() }}</h2>
     </header>
     <div class="mzp-l-content mzp-t-content-sm">
-      {{ email_newsletter_form(newsletters='knowledge-is-power', include_language=True, include_title=False, spinner_color='#0c99d5') }}
+      {{ email_newsletter_form(newsletters='knowledge-is-power', include_title=False, spinner_color='#0c99d5') }}
     </div>
   </section>
 </main>

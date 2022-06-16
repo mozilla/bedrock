@@ -401,7 +401,7 @@ newsletters-android = { -brand-name-android }
 newsletters-subscribe-to-the-newsletter = Subscribe to the newsletter
 
 # Subtitle for https://www-dev.allizom.org/newsletter/knowledge-is-power/
-newsletters-get-the-news-and-tips = Get news and tips from { -brand-name-mozilla }. So you can stay safe and informed on everything that makes the Web a healthier place.
+newsletters-get-the-news-and-tips = Get news and tips from { -brand-name-mozilla } to stay safe and informed on everything that makes the web a healthier place.
 
 ## Brand names for https://www-dev.allizom.org/newsletter/knowledge-is-power/
 
