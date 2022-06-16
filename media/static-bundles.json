@@ -354,6 +354,12 @@
     },
     {
       "files": [
+        "css/newsletter/newsletter-knowledge-is-power.scss"
+      ],
+      "name": "newsletter-knowledge-is-power"
+    },
+    {
+      "files": [
         "css/protocol/components/send-to-device.scss",
         "css/firefox/whatsnew/whatsnew.scss"
       ],

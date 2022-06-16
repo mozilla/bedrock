@@ -1,0 +1,48 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-vpn';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-pocket';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-mozilla';
+
+.section-subscribe {
+    .mozilla-products-list {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        // Reduced the width of the Mozilla logo because it had a wide width and created uneven spacing between other icons
+        li:first-child {
+            width: 165px;
+        }
+
+        li {
+            padding: 0 $spacing-md;
+        }
+    }
+
+    .page-title {
+        @include font-firefox;
+        @include text-title-lg;
+        text-align: center;
+        font-weight: 600;
+        color: $color-ink-40;
+    }
+
+    .section-title {
+        @include font-firefox;
+        @include text-title-xs;
+        text-align: center;
+        font-weight: normal;
+        color: $color-ink-40;
+    }
+}

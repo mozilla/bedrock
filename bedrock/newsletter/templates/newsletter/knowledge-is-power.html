@@ -1,0 +1,54 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends 'base-protocol.html' %}
+
+{% block page_title %}{{ ftl('newsletters-subscribe-to-the-newsletter') }}{% endblock page_title %}
+
+{% block page_desc %}{{ ftl('newsletters-get-the-news-and-tips')}}{% endblock %}
+
+{% block body_class %}{{ super() }} newsletter-knowledge-is-power{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-newsletter') }}
+  {{ css_bundle('newsletter-knowledge-is-power') }}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('newsletter') }}
+{% endblock %}
+
+{% block content %}
+<main class= "mzp-t-content-sm">
+  <section class="section-subscribe">
+    <header class="mzp-l-content mzp-t-content-lg header-container">
+      <div class="mozilla-products">
+        <ul class="mozilla-products-list">
+          <li>
+            <a href="{{ url('mozorg.home') }}" class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-mozilla">{{ ftl('knowledge-is-power-mozilla') }}</a>
+          </li>
+          <li>
+            <a href="{{ url('firefox.browsers.index') }}" class="mzp-c-logo mzp-t-logo-md mzp-t-product-firefox">{{ ftl('knowledge-is-power-firefox') }}</a>
+          </li>
+          <li>
+            <a href="{{ url('products.vpn.landing') }}" class="mzp-c-logo mzp-t-logo-md mzp-t-product-vpn">{{ ftl('knowledge-is-power-vpn') }}</a>
+          </li>
+          <li>
+            <a href="{{ url('firefox.pocket') }}" class="mzp-c-logo mzp-t-logo-md mzp-t-product-pocket">{{ ftl('knowledge-is-power-pocket') }}</a>
+          </li>
+        </ul>
+      </div>
+      <h1 class="page-title">{{ self.page_title() }}</h1>
+      <h2 class="section-title">{{ self.page_desc() }}</h2>
+    </header>
+    <div class="mzp-l-content mzp-t-content-sm">
+      {{ email_newsletter_form(newsletters='knowledge-is-power', include_title=False, spinner_color='#0c99d5') }}
+    </div>
+  </section>
+</main>
+{% endblock %}
+
+
