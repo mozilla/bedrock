@@ -24,8 +24,12 @@ function interaction(obj) {
         data['position'] = obj.position;
     }
 
-    element.clicked.record(data);
-    interactionPing.submit();
+    try {
+        element.clicked.record(data);
+        interactionPing.submit();
+    } catch (e) {
+        //do nothing
+    }
 }
 
 function getElementAttributes(e) {
@@ -47,7 +51,7 @@ function getElementAttributes(e) {
     const newTab = e.metaKey || e.ctrlKey;
     const delayClick =
         el.nodeName === 'A' &&
-        el.className.indexOf('glean-delay-test') !== -1 &&
+        el.className.indexOf('js-glean-delay-click') !== -1 &&
         !newTab;
 
     if (delayClick) {
