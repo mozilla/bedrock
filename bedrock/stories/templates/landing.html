@@ -1,0 +1,29 @@
+
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split with context %}
+{% extends "base-protocol.html" %}
+
+{% block page_css %}
+  {{ css_bundle('mozilla-stories-landing')}}
+  {{ css_bundle("protocol-split")}}
+{% endblock %}
+
+{% block content %}
+  <main class="c-stories-grid">
+    <h1 class="mzp-u-title-xl">Mozilla Stories</h1>
+    {% call split (
+      block_class='mzp-l-split-center-on-sm-md c-stories-split',
+      image_url='img/stories/placeholder.png',
+      media_after=False
+    )%}
+      <h2 class="mzp-u-title-xl">Article Title</h1>
+      <p></p>
+      <a href="">Read More <span class="c-landing-arrow"></span></a>
+    {% endcall %}
+  </main>
+{% endblock %}

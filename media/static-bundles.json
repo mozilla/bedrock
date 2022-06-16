@@ -1161,6 +1161,12 @@
         "css/landing/landing-shared.scss"
       ],
       "name": "landing-shared"
+    },
+    {
+      "files": [
+        "css/stories/stories-landing.scss"
+      ],
+      "name": "mozilla-stories-landing"
     }
   ],
   "js": [
