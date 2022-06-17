@@ -485,7 +485,9 @@ describe('affiliate-attribution.es6.js', function () {
                 expect(window.Mozilla.Cookies.removeItem).toHaveBeenCalledWith(
                     'moz-vpn-affiliate',
                     '/',
-                    null
+                    null,
+                    false,
+                    'lax'
                 );
             });
         });

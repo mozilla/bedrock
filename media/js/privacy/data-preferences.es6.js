@@ -48,7 +48,7 @@ function doOptIn() {
         return;
     }
 
-    Mozilla.Cookies.removeItem(preferenceCookieID, '/', null);
+    Mozilla.Cookies.removeItem(preferenceCookieID, '/', null, false, 'lax');
     updateStatus();
 }
 

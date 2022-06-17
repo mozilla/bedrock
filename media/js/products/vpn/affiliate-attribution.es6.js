@@ -33,7 +33,13 @@ AffiliateAttribution.setMarketingCookie = function (value, expires) {
 };
 
 AffiliateAttribution.removeMarketingCookie = function () {
-    return Mozilla.Cookies.removeItem(_marketingCookieID, '/', null);
+    return Mozilla.Cookies.removeItem(
+        _marketingCookieID,
+        '/',
+        null,
+        false,
+        'lax'
+    );
 };
 
 AffiliateAttribution.hasPreferenceCookie = function () {
