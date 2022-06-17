@@ -43,7 +43,13 @@ if (typeof window.Mozilla === 'undefined') {
             );
 
             // referrer shouldn't persist
-            Mozilla.Cookies.removeItem('mozilla-traffic-cop-original-referrer');
+            Mozilla.Cookies.removeItem(
+                'mozilla-traffic-cop-original-referrer',
+                null,
+                null,
+                false,
+                'lax'
+            );
         }
 
         return referrer;
