@@ -37,10 +37,6 @@
                 showFxAModal,
                 false
             );
-
-            // If we're opening a modal on click, prevent Glean from
-            // delaying & redirecting the click (issue 11770)
-            downloadLinkPrimary[i].classList.remove('js-glean-delay-click');
         }
 
         // Don't trigger the modal for signed in users
@@ -51,11 +47,6 @@
                         'click',
                         showFxAModal,
                         false
-                    );
-
-                    // add back click delay for Glean (issue 11770)
-                    downloadLinkPrimary[i].classList.add(
-                        'js-glean-delay-click'
                     );
                 }
             }
