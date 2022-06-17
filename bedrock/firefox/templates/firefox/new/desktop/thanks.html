@@ -72,12 +72,11 @@
       <span class="show-mac">{{ ftl('firefox-desktop-download-get-help', attrs=support_mac_attrs) }}</span>
       {% set support_windows_attrs = 'href="https://support.mozilla.org/kb/how-download-and-install-firefox-windows%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals) %}
       <span class="show-windows">{{ ftl('firefox-desktop-download-get-help', attrs=support_windows_attrs) }}</span>
+      <br>
+      {% set support_windows_pinning_attrs = 'href="https://support.mozilla.org/en-US/kb/how-unpin-firefox-taskbar-windows-10%s" rel="external noopener" data-cta-type="link" data-cta-text="Click Here"'|safe|format(referrals) %}
+      <span class="show-windows">{{ ftl('firefox-desktop-download-pinning-help', attrs=support_windows_pinning_attrs) }}</span>
       {% set support_else_attrs = 'href="https://support.mozilla.org/products/firefox/install-and-update-firefox%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals) %}
       <span class="show-else">{{ ftl('firefox-desktop-download-get-help', attrs=support_else_attrs) }}</span>
-      <div class="c-support-install">
-        {% set support_windows_pinning_attrs = 'href="https://support.mozilla.org/en-US/kb/how-unpin-firefox-taskbar-windows-10%s" rel="external noopener" data-cta-type="link" data-cta-text="Click Here"'|safe|format(referrals) %}
-      <span>{{ ftl('firefox-desktop-download-pinning-help', attrs=support_windows_pinning_attrs) }}</span>
-      </div>
 
       {# Edge-case platform support messaging #}
       <span class="show-linux-arm">{{ ftl('firefox-desktop-download-please-follow', fallback='download-button-please-follow-these', url='https://support.mozilla.org/kb/install-firefox-linux') }}</span>
