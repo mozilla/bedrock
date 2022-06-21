@@ -1234,8 +1234,49 @@ def test_ContentfulPage__get_split_data(mock__get_image_url, basic_contentful_pa
     assert is_empty_string(output["product_icon"])
 
 
-# def test_ContentfulPage__get_split_data__get_split_class():
-#     assert False, "WRITE ME"
+@pytest.mark.parametrize(
+    "split_class_fields, expected",
+    (
+        (None, ""),
+        ({"image_side": "Right"}, ""),
+        ({"image_side": "Left"}, "mzp-l-split-reversed"),
+        ({"body_width": "Even"}, ""),
+        ({"body_width": "Narrow"}, "mzp-l-split-body-narrow"),
+        ({"body_width": "Wide"}, "mzp-l-split-body-wide"),
+        ({"image_pop": "None"}, ""),
+        ({"image_pop": "Both"}, "mzp-l-split-pop"),
+        ({"image_pop": "Top"}, "mzp-l-split-pop-top"),
+        ({"image_pop": "Bottom"}, "mzp-l-split-pop-bottom"),
+        ({"image_side": "Left", "body_width": "Narrow", "image_pop": "Both"}, "mzp-l-split-reversed mzp-l-split-body-narrow mzp-l-split-pop"),
+    ),
+)
+@patch("bedrock.contentful.api._get_image_url")
+def test_ContentfulPage__get_split_data__get_split_class(
+    mock__get_image_url,
+    basic_contentful_page,
+    split_class_fields,
+    expected,
+):
+    # mock self and entry data
+    basic_contentful_page.page = Mock()
+    basic_contentful_page.page.content_type.id = "mockPage"
+    basic_contentful_page.render_rich_text = Mock()
+    mock_entry_obj = Mock()
+    mock_entry_obj.fields.return_value = {
+        "name": "Split Test",
+        "image": "Stub image",
+        "body": "Stub body",
+        "heading_level": "h2",
+        "mobile_media_after": False,
+    }
+    if split_class_fields:
+        mock_entry_obj.fields.return_value.update(split_class_fields)
+
+    mock_entry_obj.content_type.id = "mock-split-type"
+
+    output = basic_contentful_page.get_split_data(mock_entry_obj)
+
+    assert output["block_class"].strip() == expected
 
 
 # def test_ContentfulPage__get_split_data__get_body_class():
