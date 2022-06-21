@@ -1197,6 +1197,59 @@ def test_ContentfulPage__get_info_data(
     )
 
 
+@patch("bedrock.contentful.api._get_image_url")
+def test_ContentfulPage__get_split_data(mock__get_image_url, basic_contentful_page):
+    # mock self and entry data
+    basic_contentful_page.page = Mock()
+    basic_contentful_page.page.content_type.id = "mockPage"
+    basic_contentful_page.render_rich_text = Mock()
+    mock_entry_obj = Mock()
+    # only set required and default fields
+    mock_entry_obj.fields.return_value = {
+        "name": "Split Test",
+        "image": "Stub image",
+        "body": "Stub body",
+        "heading_level": "h2",
+        "mobile_media_after": False,
+    }
+    mock_entry_obj.content_type.id = "mock-split-type"
+
+    output = basic_contentful_page.get_split_data(mock_entry_obj)
+
+    def is_empty_string(string):
+        return len(string.strip()) == 0
+
+    assert output["component"] == "split"
+    assert is_empty_string(output["block_class"])
+    assert is_empty_string(output["theme_class"])
+    assert is_empty_string(output["body_class"])
+    basic_contentful_page.render_rich_text.assert_called_once()
+    assert output["heading"] is None
+    assert output["heading_level"] == "h2"
+    assert is_empty_string(output["media_class"])
+    assert output["media_after"] is False
+    mock__get_image_url.assert_called_once()
+    assert is_empty_string(output["mobile_class"])
+    assert is_empty_string(output["cta"])
+    assert is_empty_string(output["product_icon"])
+
+
+# def test_ContentfulPage__get_split_data__get_split_class():
+#     assert False, "WRITE ME"
+
+
+# def test_ContentfulPage__get_split_data__get_body_class():
+#     assert False, "WRITE ME"
+
+
+# def test_ContentfulPage__get_split_data__get_media_class():
+#     assert False, "WRITE ME"
+
+
+# def test_ContentfulPage__get_split_data__get_mobile_class():
+#     assert False, "WRITE ME"
+
+
 # FURTHER TESTS TO COME
 # def test_ContentfulPage__get_content():
 #     assert False, "WRITE ME"
@@ -1215,26 +1268,6 @@ def test_ContentfulPage__get_info_data(
 
 
 # def test_ContentfulPage__get_section_data():
-#     assert False, "WRITE ME"
-
-
-# def test_ContentfulPage__get_split_data():
-#     assert False, "WRITE ME"
-
-
-# def test_ContentfulPage__get_split_data__get_split_class():
-#     assert False, "WRITE ME"
-
-
-# def test_ContentfulPage__get_split_data__get_body_class():
-#     assert False, "WRITE ME"
-
-
-# def test_ContentfulPage__get_split_data__get_media_class():
-#     assert False, "WRITE ME"
-
-
-# def test_ContentfulPage__get_split_data__get_mobile_class():
 #     assert False, "WRITE ME"
 
 
