@@ -446,6 +446,24 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-102-en.scss"
+      ],
+      "name": "firefox_whatsnew_102_en"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-102-fr.scss"
+      ],
+      "name": "firefox_whatsnew_102_fr"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-102-de.scss"
+      ],
+      "name": "firefox_whatsnew_102_de"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
