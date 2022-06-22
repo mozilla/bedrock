@@ -38,6 +38,8 @@ $image-path: '/media/protocol/img';
 }
 
 .c-stories-image {
+    margin-bottom: $spacing-md;
+
     &.hero {
         @include full-width;
         margin-left: auto;
