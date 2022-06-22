@@ -45,14 +45,13 @@
   </section>
 {% endmacro %}
 
-{% macro stories_article_image(image_url="", alt="", caption="", include_highres=False, image_class="") %}
-  <figure class="c-stories-article-image">
+{% macro stories_article_image(image_url="", alt="", caption="", include_highres=False, image_class="", width="1360", height="765") %}
+  <figure class="c-stories-article-image {% if image_class %}{{ image_class }}{% endif %}">
     {{ image(
       url=image_url,
-      class=image_class,
       alt=alt,
-      width=1360,
-      height=765,
+      width=width,
+      height=height,
       loading=None,
       include_highres=include_highres
     ) }}

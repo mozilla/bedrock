@@ -8,13 +8,92 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import 'includes/lib';
 
+.c-stories-article-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+    column-gap: $spacing-md;
+}
+
 .c-stories-article-title,
 .c-stories-article-subtitle {
-    @include full-width;
     text-align: center;
+}
+
+.c-stories-article-title {
+    @include font-stories;
+    @include font-size(62px);
+    font-size: 62px;
+    font-weight: 400;
+    font-style: italic;
+    grid-column: 5 / 9;
 }
 
 .c-stories-article-subtitle {
     @include font-base;
+    @include half-col-margin;
     @include font-size(18px);
+    grid-column: 5 / 9;
+    margin-bottom: $spacing-2xl;
+}
+
+.c-stories-image {
+    &.hero {
+        @include full-width;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: $spacing-2xl;
+    }
+
+    &.article-width {
+        @include article-width-2-3;
+    }
+
+    img {
+        border-radius: $border-radius-lg;
+    }
+
+    figcaption {
+        @include font-base;
+        @include font-size(14px);
+        color: $color-moz-dark-gray;
+        margin-left: $spacing-xs;
+    }
+}
+
+.c-stories-article-body {
+    @include full-width;
+    margin-top: $spacing-lg;
+
+    .c-stories-article-section {
+        column-gap: $spacing-md;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: auto;
+        margin-bottom: $spacing-2xl;
+
+        h3,
+        p,
+        blockquote {
+            @include font-stories;
+            @include article-width-full;
+            color: $color-black;
+        }
+
+        h3 {
+            @include font-size(32px);
+            font-weight: 700;
+            margin-bottom: $spacing-lg;
+            color: $color-black;
+        }
+
+        p {
+            @include font-stories;
+            color: $color-black;
+        }
+
+        blockquote {
+            @include font-size(36px);
+        }
+    }
 }
