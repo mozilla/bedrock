@@ -122,3 +122,86 @@ $image-path: '/media/protocol/img';
         }
     }
 }
+
+.c-stories-social-share {
+    @include article-width-full;
+
+    .social-share-list {
+        display: flex;
+        margin: 0;
+        justify-content: center;
+
+        .social-share-item a {
+            @include image-replaced;
+            background-repeat: no-repeat;
+            display: block;
+            height: 24px;
+            width: 24px;
+            margin: 8px;
+
+            &.twitter {
+                background-image: url('/media/img/stories/twitter.svg');
+            }
+
+            &.pocket {
+                background-image: url('/media/img/stories/pocket.svg');
+            }
+        }
+    }
+}
+
+.c-stories-article-related {
+    padding: 0 40px;
+    max-width: 1440px;
+    margin-bottom: $layout-md;
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+        @include font-base;
+        @include font-size(32px);
+        @include full-width;
+        font-weight: 400;
+    }
+
+    .c-stories-card-wrapper {
+        @include stories-grid;
+
+        .mzp-c-card {
+            max-width: calc(100% - $spacing-xl);
+            grid-column: span 6;
+
+            .mzp-c-card-block-link,
+            .mzp-c-card-media-wrapper,
+            .mzp-c-card-image {
+                border-radius: $border-radius-lg;
+            }
+
+            .mzp-c-card-content {
+                @include font-stories;
+                padding-top: $spacing-lg;
+
+                h3 {
+                    @include font-size(32px);
+                }
+
+                p {
+                    @include font-size(16px);
+                    margin-top: $spacing-sm;
+                }
+            }
+        }
+    }
+
+    .c-stories-article-view-all {
+        @include font-base;
+        @include font-size(14px);
+        color: $color-black;
+        border: 1px solid $color-black;
+        border-radius: $border-radius-lg;
+        padding: $spacing-sm $spacing-md;
+        text-decoration: none;
+        margin-right: $spacing-md;
+        align-self: flex-end;
+    }
+}
