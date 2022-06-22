@@ -5,25 +5,34 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import split with context %}
+{% from "includes/macros.html" import article_split with context %}
 {% extends "base-protocol.html" %}
 
 {% block page_css %}
-  {{ css_bundle('mozilla-stories-landing')}}
+  {{ css_bundle('mozilla-stories-shared')}}
   {{ css_bundle("protocol-split")}}
 {% endblock %}
 
 {% block content %}
   <main class="c-stories-grid">
-    <h1 class="mzp-u-title-xl">Mozilla Stories</h1>
-    {% call split (
-      block_class='mzp-l-split-center-on-sm-md c-stories-split',
+    <h1 class="c-stories-landing-title mzp-u-title-xl">Mozilla Stories</h1>
+    {{ article_split(
       image_url='img/stories/placeholder.png',
-      media_after=False
-    )%}
-      <h2 class="mzp-u-title-xl">Article Title</h1>
-      <p></p>
-      <a href="">Read More <span class="c-landing-arrow"></span></a>
-    {% endcall %}
+      split_reversed=True,
+      heading="The Art of Engagement",
+      desc="Copy explaining the screenshot. Gummies powder biscuit croissant biscuit gummi bears oat cake muffin. Icing topping gingerbread apple pie bear claw. Cheesecake sweet roll pie jelly cotton candy  cookie gummies tiramisu. Tiramisu cupcake chocolate cake gummi bears dessert. Gingerbread croissant bear claw carrot cake carrot cake candy canes marzipan candy canes halvah."
+    )}}
+    <hr class="c-stories-hr">
+      {{ article_split(
+        image_url='img/stories/placeholder.png',
+        heading="Related Article",
+        desc="Copy explaining the screenshot. Gummies powder biscuit croissant biscuit gummi bears oat cake muffin. Icing topping gingerbread apple pie bear claw. Cheesecake sweet roll pie jelly cotton candy  cookie gummies tiramisu. Tiramisu cupcake chocolate cake gummi bears dessert. Gingerbread croissant bear claw carrot cake carrot cake candy canes marzipan candy canes halvah."
+      )}}
+      {{ article_split(
+        image_url='img/stories/placeholder.png',
+        split_reversed=True,
+        heading="Another Amazing Article",
+        desc="Copy explaining the screenshot. Gummies powder biscuit croissant biscuit gummi bears oat cake muffin. Icing topping gingerbread apple pie bear claw. Cheesecake sweet roll pie jelly cotton candy  cookie gummies tiramisu. Tiramisu cupcake chocolate cake gummi bears dessert. Gingerbread croissant bear claw carrot cake carrot cake candy canes marzipan candy canes halvah."
+      )}}
   </main>
 {% endblock %}

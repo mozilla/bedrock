@@ -1,0 +1,22 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use 'sass:math';
+
+// use math.div to get percentages of grid to use for padding and margins
+$column-width: math.div(math.div(100, 12), 100);
+$half-column: math.div($column-width, 2);
+
+@mixin full-width {
+    grid-column: 1 / 13;
+}
+
+@mixin half-col-margin {
+    margin-left: math.percentage($half-column);
+    margin-right: math.percentage($half-column);
+}
+
+@mixin article-width {
+    grid-column: 4 / 10;
+}

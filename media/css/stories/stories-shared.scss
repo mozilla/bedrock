@@ -2,10 +2,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+@use 'sass:math';
+
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import 'includes/lib';
 
 .c-stories-grid {
     display: grid;
@@ -20,13 +23,21 @@ $image-path: '/media/protocol/img';
         padding: 96px 0;
     }
 
-    h1 {
+    .c-stories-landing-title {
         grid-column: 3 / 11;
         margin: 0 auto;
+    }
+
+    .c-stories-hr {
+        @include full-width;
+        @include half-col-margin;
     }
 }
 
 .mzp-c-split.c-stories-split {
-    grid-column: 2 / 11;
-    width: 100%;
+    @include full-width;
+
+    .mzp-c-split-media-asset {
+        border-radius: 10px;
+    }
 }
