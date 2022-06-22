@@ -1327,8 +1327,37 @@ def test_ContentfulPage__get_split_data__get_body_class(
     assert output["body_class"].strip() == expected
 
 
-# def test_ContentfulPage__get_split_data__get_media_class():
-#     assert False, "WRITE ME"
+@pytest.mark.parametrize(
+    "media_class_fields, expected",
+    (
+        (None, ""),
+        ({"image_width": "Fill available width"}, ""),
+        ({"image_width": "Fill available height"}, "mzp-l-split-media-constrain-height"),
+        ({"image_width": "Overflow container"}, "mzp-l-split-media-overflow"),
+    ),
+)
+@patch("bedrock.contentful.api._get_image_url")
+def test_ContentfulPage__get_split_data__get_media_class(mock__get_image_url, basic_contentful_page, media_class_fields, expected):
+    # mock self and entry data
+    basic_contentful_page.page = Mock()
+    basic_contentful_page.page.content_type.id = "mockPage"
+    basic_contentful_page.render_rich_text = Mock()
+    mock_entry_obj = Mock()
+    mock_entry_obj.fields.return_value = {
+        "name": "Split Test",
+        "image": "Stub image",
+        "body": "Stub body",
+        "heading_level": "h2",
+        "mobile_media_after": False,
+    }
+    if media_class_fields:
+        mock_entry_obj.fields.return_value.update(media_class_fields)
+
+    mock_entry_obj.content_type.id = "mock-split-type"
+
+    output = basic_contentful_page.get_split_data(mock_entry_obj)
+
+    assert output["media_class"].strip() == expected
 
 
 # def test_ContentfulPage__get_split_data__get_mobile_class():

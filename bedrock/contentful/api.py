@@ -744,8 +744,8 @@ class ContentfulPage:
         def get_media_class():
             media_classes = [
                 self.SPLIT_MEDIA_WIDTH_CLASS.get(fields.get("image_width"), ""),
-                self.SPLIT_V_ALIGN_CLASS.get(fields.get("image_vertical_alignment"), ""),
-                self.SPLIT_H_ALIGN_CLASS.get(fields.get("image_horizontal_alignment"), ""),
+                self.SPLIT_V_ALIGN_CLASS.get(fields.get("image_vertical_alignment"), ""),  # this field doesn't appear in Contentful Content Model
+                self.SPLIT_H_ALIGN_CLASS.get(fields.get("image_horizontal_alignment"), ""),  # this field doesn't appear in Contentful Content Model
             ]
             return " ".join(media_classes)
 
