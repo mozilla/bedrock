@@ -49,6 +49,11 @@ $image-path: '/media/protocol/img';
         @include article-width-2-3;
     }
 
+    &.article-half-width {
+        grid-column: 4 / 7;
+        float: left;
+    }
+
     img {
         border-radius: $border-radius-lg;
     }
@@ -94,6 +99,24 @@ $image-path: '/media/protocol/img';
 
         blockquote {
             @include font-size(36px);
+        }
+
+        .c-stories-article-float-container {
+            @include article-width-full;
+
+            .c-stories-article-image {
+                width: calc(50% - $spacing-sm);
+            }
+
+            &.left .c-stories-article-image {
+                float: left;
+                margin-right: $spacing-md;
+            }
+
+            &.right .c-stories-article-image {
+                float: right;
+                margin-right: $spacing-md;
+            }
         }
     }
 }
