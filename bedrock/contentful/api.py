@@ -750,7 +750,7 @@ class ContentfulPage:
             return " ".join(media_classes)
 
         def get_mobile_class():
-            mobile_display = fields.get("mobileDisplay")
+            mobile_display = fields.get("mobile_display")
             if not mobile_display:
                 return ""
 
