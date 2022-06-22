@@ -16,7 +16,7 @@ $image-path: '/media/protocol/img';
 
 // Hide platform specific messaging by default.
 .show-windows,
-.show-windows-10,
+.show-windows-10-plus,
 .show-mac,
 .show-else,
 .show-linux-arm,
@@ -39,8 +39,8 @@ $image-path: '/media/protocol/img';
             display: block !important;
         }
 
-        &.windows10 {
-            .show-windows-10 {
+        &.windows-10-plus {
+            .show-windows-10-plus {
                 display: block !important;
             }
         }
