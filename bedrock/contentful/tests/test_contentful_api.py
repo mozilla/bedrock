@@ -1279,8 +1279,52 @@ def test_ContentfulPage__get_split_data__get_split_class(
     assert output["block_class"].strip() == expected
 
 
-# def test_ContentfulPage__get_split_data__get_body_class():
-#     assert False, "WRITE ME"
+@pytest.mark.parametrize(
+    "page_id, body_class_fields, expected",
+    (
+        ("mockPage", None, ""),
+        ("pageHome", None, "c-home-body"),
+        ("mockPage", {"body_vertical_alignment": "Top"}, "mzp-l-split-v-start"),
+        ("mockPage", {"body_vertical_alignment": "Center"}, "mzp-l-split-v-center"),
+        ("mockPage", {"body_vertical_alignment": "Bottom"}, "mzp-l-split-v-end"),
+        ("mockPage", {"body_horizontal_alignment": "Left"}, "mzp-l-split-h-start"),
+        ("mockPage", {"body_horizontal_alignment": "Center"}, "mzp-l-split-h-center"),
+        ("mockPage", {"body_horizontal_alignment": "Right"}, "mzp-l-split-h-end"),
+        (
+            "pageHome",
+            {"body_vertical_alignment": "Top", "body_horizontal_alignment": "Center"},
+            "mzp-l-split-v-start mzp-l-split-h-center c-home-body",
+        ),
+    ),
+)
+@patch("bedrock.contentful.api._get_image_url")
+def test_ContentfulPage__get_split_data__get_body_class(
+    mock__get_image_url,
+    basic_contentful_page,
+    page_id,
+    body_class_fields,
+    expected,
+):
+    # mock self and entry data
+    basic_contentful_page.page = Mock()
+    basic_contentful_page.page.content_type.id = page_id
+    basic_contentful_page.render_rich_text = Mock()
+    mock_entry_obj = Mock()
+    mock_entry_obj.fields.return_value = {
+        "name": "Split Test",
+        "image": "Stub image",
+        "body": "Stub body",
+        "heading_level": "h2",
+        "mobile_media_after": False,
+    }
+    if body_class_fields:
+        mock_entry_obj.fields.return_value.update(body_class_fields)
+
+    mock_entry_obj.content_type.id = "mock-split-type"
+
+    output = basic_contentful_page.get_split_data(mock_entry_obj)
+
+    assert output["body_class"].strip() == expected
 
 
 # def test_ContentfulPage__get_split_data__get_media_class():
