@@ -3,11 +3,23 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 html {
-    background: -moz-dialog;
-    color: -moz-dialogtext;
+    background: #fff;
+    color: #15141a;
     padding: 0 1em;
     font: message-box;
     line-height: 1.6em;
+}
+
+@media (prefers-color-scheme: dark) {
+    html {
+        background: #2b2a33;
+        color: #fbfbfe;
+    }
+
+    a:link,
+    a:visited {
+        color: #0df;
+    }
 }
 
 body {
