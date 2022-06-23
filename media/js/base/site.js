@@ -115,8 +115,8 @@
         var _version = version ? parseFloat(version) : 0;
 
         if (platform === 'windows') {
-            if (_version >= 10.0 && _version <= 11) {
-                h.className += ' windows10';
+            if (_version >= 10.0) {
+                h.className += ' windows-10-plus';
             }
         } else {
             h.className = h.className.replace('windows', platform);

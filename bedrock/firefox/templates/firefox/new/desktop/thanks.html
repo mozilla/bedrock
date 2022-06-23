@@ -59,8 +59,8 @@
     <h1 class="c-section-title show-unknown">{{ ftl('firefox-desktop-download-interrupted') }}</h1>
 
   {% if ftl_has_messages('firefox-desktop-download-if-you-see-a-prompt', 'firefox-desktop-download-visit-support-for-more') %}
-    <aside class="c-windows-disclaimer mzp-c-emphasis-box show-windows-10">
-      <img class="c-windows-disclaimer-logo" src="{{ static('img/logos/windows/logo-windows-10-black.svg') }}" alt="{{ ftl('firefox-desktop-download-windows-10') }}" width="132" height="24">
+    <aside class="c-windows-disclaimer mzp-c-emphasis-box show-windows-10-plus">
+      <img class="c-windows-disclaimer-logo" src="{{ static('img/logos/windows/logo-windows-black.svg') }}" alt="{{ ftl('firefox-desktop-download-windows') }}" width="132" height="28">
       <p>{{ ftl('firefox-desktop-download-if-you-see-a-prompt', attrs='href="https://support.mozilla.org/kb/windows-10-warns-me-use-microsoft-verified-app%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals)) }}</p>
 
       <p><a href="https://support.mozilla.org/kb/windows-10-warns-me-use-microsoft-verified-app{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Visit Support for More Details">{{ ftl('firefox-desktop-download-visit-support-for-more') }}</a></p>
