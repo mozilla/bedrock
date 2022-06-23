@@ -68,18 +68,33 @@
   {% endif %}
 
     <div class="c-support-install">
-      {% set support_mac_attrs = 'href="https://support.mozilla.org/kb/how-download-and-install-firefox-mac%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals) %}
-      <span class="show-mac">{{ ftl('firefox-desktop-download-get-help', attrs=support_mac_attrs) }}</span>
-      {% set support_windows_attrs = 'href="https://support.mozilla.org/kb/how-download-and-install-firefox-windows%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals) %}
-      <span class="show-windows">{{ ftl('firefox-desktop-download-get-help', attrs=support_windows_attrs) }}</span>
-      {% set support_else_attrs = 'href="https://support.mozilla.org/products/firefox/install-and-update-firefox%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals) %}
-      <span class="show-else">{{ ftl('firefox-desktop-download-get-help', attrs=support_else_attrs) }}</span>
+      {% if switch('firefox-103-taskbar-message') and ftl_has_messages('firefox-desktop-download-taskbar') %}
+        <p class="show-windows">
+          <a href="https://support.mozilla.org/kb/how-unpin-firefox-taskbar-windows-10{{ referrals }}">
+            {{ ftl('firefox-desktop-download-taskbar') }}
+          </a>
+        </p>
+      {% endif %}
+      <p class="show-mac">
+        {% set support_mac_attrs = 'href="https://support.mozilla.org/kb/how-download-and-install-firefox-mac%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals) %}
+        {{ ftl('firefox-desktop-download-get-help', attrs=support_mac_attrs) }}
+      </p>
+      <p class="show-windows">
+        {% set support_windows_attrs = 'href="https://support.mozilla.org/kb/how-download-and-install-firefox-windows%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals) %}
+        {{ ftl('firefox-desktop-download-get-help', attrs=support_windows_attrs) }}
+      </p>
+      <p class="show-else">
+        {% set support_else_attrs = 'href="https://support.mozilla.org/products/firefox/install-and-update-firefox%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals) %}
+        {{ ftl('firefox-desktop-download-get-help', attrs=support_else_attrs) }}
+      </p>
 
       {# Edge-case platform support messaging #}
-      <span class="show-linux-arm">{{ ftl('firefox-desktop-download-please-follow', fallback='download-button-please-follow-these', url='https://support.mozilla.org/kb/install-firefox-linux') }}</span>
-      <span class="show-unknown">
+      <p class="show-linux-arm">
+        {{ ftl('firefox-desktop-download-please-follow', fallback='download-button-please-follow-these', url='https://support.mozilla.org/kb/install-firefox-linux') }}
+      </p>
+      <p class="show-unknown">
         {{ ftl('firefox-desktop-download-your-system-may-not', url=firefox_url('desktop', 'all'))}}
-      </span>
+      </p>
     </div>
 
     {{ download_firefox(force_direct=true, dom_id='thanks-download-button') }}

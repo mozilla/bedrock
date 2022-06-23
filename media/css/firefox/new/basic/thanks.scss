@@ -66,12 +66,8 @@ main {
 .c-support-install {
     margin: 0 auto;
     max-width: 30em;
+    padding: $spacing-xl $spacing-lg $spacing-lg;
     text-align: center;
-
-    & > span {
-        display: block;
-        margin-top: $spacing-xl;
-    }
 }
 
 .download-another-language-link {
