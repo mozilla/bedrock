@@ -36,13 +36,15 @@ $image-path: '/media/protocol/img';
 @media (prefers-color-scheme: dark) {
     .c-main-content {
         .mzp-c-emphasis-box {
+            @include light-links;
             background-color: get-theme('background-color-tertiary-inverse');
             color: get-theme('body-text-color-inverse');
         }
     }
 
     .wnp-main-title,
-    .mzp-c-newsletter-title {
+    .mzp-c-newsletter-title,
+    .mzp-c-newsletter-thanks h3 {
         color: get-theme('title-text-color-inverse');
     }
 }
