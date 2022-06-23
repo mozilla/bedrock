@@ -3,7 +3,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 html {
-    background: #ffffff;
+    background: #fff;
     color: #15141a;
     padding: 0 1em;
     font: message-box;
@@ -15,6 +15,10 @@ html {
         background: #2b2a33;
         color: #fbfbfe;
     }
+    
+    a:not([name]) {
+        color: #0df;
+    }   
 }
 
 body {
