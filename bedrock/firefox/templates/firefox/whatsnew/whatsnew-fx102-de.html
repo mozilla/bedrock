@@ -1,0 +1,53 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_102_de') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main class="content-wrapper mzp-t-firefox">
+  {% include 'firefox/whatsnew/includes/header.html' %}
+
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-sm">
+      <div class="wnp-main-image mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-pocket">Pocket</div>
+      <h1 class="wnp-main-title">Lass dich inspirieren!</h1>
+      <p class="wnp-main-tagline">Erhalte die besten Artikel aus Pocket direkt in dein Postfach – jeden Tag!</p>
+
+      <p class="wnp-main-cta">
+        <a class="mzp-c-button mzp-t-product" href="https://getpocket.com/explore/pocket-hits-signup?utm_medium=mozilla-websites&utm_source=getpocket.com&utm_campaign=pocket-hits&utm_content=whatsnew-de" data-cta-text="Subscribe to our newsletter" data-cta-type="button" data-cta-position="primary">Melde dich für unseren Newsletter an</a>
+      </p>
+
+      <img class="wnp-pocket-library" src="{{ static('img/firefox/whatsnew/whatsnew102/pocket-library.svg') }}" width="90" height="85" alt="">
+    </div>
+  </section>
+
+  <aside class="mzp-l-content c-utilities">
+    {% set releasenotes_url = url('firefox.releases.index') if not version else '/firefox/%s/releasenotes/'|format(version) %}
+    <p>{{ ftl('whatsnew-release-notes', url=releasenotes_url) }}</p>
+  </aside>
+
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+{% endblock %}

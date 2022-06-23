@@ -577,7 +577,7 @@ class TestWhatsNew(TestCase):
         assert template == ["firefox/whatsnew/whatsnew-fx101-vpn-de.html"]
 
     def test_fx_101_0_0_fr(self, render_mock):
-        """Should use whatsnew-fx101-vpn-fr template for 99.0 in French"""
+        """Should use whatsnew-fx101-vpn-fr template for 101.0 in French"""
         req = self.rf.get("/firefox/whatsnew/")
         req.locale = "fr"
         self.view(req, version="101.0")
@@ -605,6 +605,34 @@ class TestWhatsNew(TestCase):
             assert template == ["firefox/whatsnew/index-account.html"]
 
     # end 101.0 whatsnew tests
+
+    # begin 102.0 whatsnew tests
+
+    def test_fx_102_0_0_en(self, render_mock):
+        """Should use whatsnew-fx102-en template for 102.0 in English"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "en-US"
+        self.view(req, version="102.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx102-en.html"]
+
+    def test_fx_102_0_0_de(self, render_mock):
+        """Should use whatsnew-fx102-de template for 102.0 in German"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "de"
+        self.view(req, version="102.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx102-de.html"]
+
+    def test_fx_102_0_0_fr(self, render_mock):
+        """Should use whatsnew-fx102-fr template for 102.0 in French"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "fr"
+        self.view(req, version="102.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx102-fr.html"]
+
+    # end 102.0 whatsnew tests
 
 
 @patch("bedrock.firefox.views.l10n_utils.render", return_value=HttpResponse())

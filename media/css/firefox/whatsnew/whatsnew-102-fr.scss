@@ -1,0 +1,50 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import 'includes/base';
+@import 'includes/dark-mode';
+
+// * -------------------------------------------------------------------------- */
+// Main content
+
+.c-main-content {
+    .mzp-c-emphasis-box {
+        margin: 0 auto;
+        max-width: $content-sm;
+    }
+
+    .mzp-c-newsletter-title {
+        @include text-title-sm;
+    }
+}
+
+.wnp-main-title {
+    @include text-title-lg;
+}
+
+.wnp-main-tagline {
+    @include text-body-xl;
+}
+
+// For dark mode
+@media (prefers-color-scheme: dark) {
+    .c-main-content {
+        .mzp-c-emphasis-box {
+            @include light-links;
+            background-color: get-theme('background-color-tertiary-inverse');
+            color: get-theme('body-text-color-inverse');
+        }
+    }
+
+    .wnp-main-title,
+    .mzp-c-newsletter-title,
+    .mzp-c-newsletter-thanks h3 {
+        color: get-theme('title-text-color-inverse');
+    }
+}
