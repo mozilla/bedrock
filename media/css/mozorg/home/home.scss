@@ -8,11 +8,32 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/includes/fonts/metropolis';
 @import '~@mozilla-protocol/core/protocol/css/components/billboard';
-@import '~@mozilla-protocol/core/protocol/css/components/hero';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
 
-.mzp-c-hero .c-primary-cta-title {
-    @include font-firefox;
-    @include text-title-md;
+// * -------------------------------------------------------------------------- */
+// Hero
+.c-home-hero {
+    .mzp-c-wordmark {
+        margin-left: auto;
+        margin-right: auto;
+        background-position: center top;
+
+        @media #{$mq-md} {
+            margin-left: 0;
+            margin-right: 0;
+            background-position: left top;
+        }
+    }
+
+    .c-home-hero-title {
+        @include font-firefox;
+        @include text-title-md;
+    }
+
+    .c-home-hero-desc {
+        @include text-body-lg;
+    }
 }
 
 // * -------------------------------------------------------------------------- */

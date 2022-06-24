@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import hero, billboard, picto with context %}
+{% from "macros-protocol.html" import split, billboard, picto with context %}
 
 {% extends "mozorg/home/base.html" %}
 
@@ -46,20 +46,21 @@
   {% if show_mr2_promo %}
     {% include 'mozorg/home/includes/mr2-promo.html' %}
   {% else %}
-    {% call hero(
-    class='mzp-c-hero mzp-has-image',
-    include_cta=True,
-    image_url='img/home/laptop.png'
+    {% call split(
+      image_url='img/home/laptop.png',
+      include_highres_image=True,
+      block_class='c-home-hero mzp-l-split-center-on-sm-md mzp-t-split-nospace',
+      body_class=None,
+      media_after=True,
     ) %}
+      <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">{{ ftl('home-firefox-browser') }}</div>
+      <h2 class="c-home-hero-title">{{ ftl('home-fast-for-good') }}</h2>
 
-    <h2 class="c-primary-cta-logo"><img alt="Firefox" src="{{ static('protocol/img/logos/firefox/logo-word-hor.svg') }}" height="40" width="125"></h2>
-    <h3 class="c-primary-cta-title">{{ ftl('home-fast-for-good') }}</h3>
+      <p class="c-home-hero-desc">
+        {{ ftl('home-with-2x-the-speed-built-in') }}
+      </p>
 
-    <p class="c-primary-cta-desc">
-      {{ ftl('home-with-2x-the-speed-built-in') }}
-    </p>
-
-    {{ download_firefox_thanks(dom_id='download-primary', download_location='primary cta') }}
+      {{ download_firefox_thanks(dom_id='download-primary', download_location='primary cta') }}
     {% endcall %}
   {% endif %}
 
