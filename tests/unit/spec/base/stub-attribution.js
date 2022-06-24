@@ -15,13 +15,6 @@
 describe('stub-attribution.js', function () {
     const GA_VISIT_ID = '1456954538.1610960957';
 
-    beforeEach(function () {
-        // stub out GA client ID
-        spyOn(Mozilla.StubAttribution, 'getGAVisitID').and.returnValue(
-            GA_VISIT_ID
-        );
-    });
-
     describe('init', function () {
         let data = {};
 
@@ -39,6 +32,11 @@ describe('stub-attribution.js', function () {
 
             spyOn(Mozilla.StubAttribution, 'requestAuthentication');
             spyOn(Mozilla.StubAttribution, 'updateBouncerLinks');
+
+            // stub out GA client ID
+            spyOn(Mozilla.StubAttribution, 'getGAVisitID').and.returnValue(
+                GA_VISIT_ID
+            );
         });
 
         it('should update download links if session cookie exists', function () {
@@ -488,6 +486,13 @@ describe('stub-attribution.js', function () {
     });
 
     describe('waitForGoogleAnalytics', function () {
+        beforeEach(function () {
+            // stub out GA client ID
+            spyOn(Mozilla.StubAttribution, 'getGAVisitID').and.returnValue(
+                GA_VISIT_ID
+            );
+        });
+
         it('should fire a callback with the GA visit ID', function () {
             const callback = jasmine.createSpy('callback');
 
@@ -497,6 +502,13 @@ describe('stub-attribution.js', function () {
     });
 
     describe('getAttributionData', function () {
+        beforeEach(function () {
+            // stub out GA client ID
+            spyOn(Mozilla.StubAttribution, 'getGAVisitID').and.returnValue(
+                GA_VISIT_ID
+            );
+        });
+
         it('should return attribution data if utm params are present', function () {
             const referrer = '';
 
@@ -1007,6 +1019,37 @@ describe('stub-attribution.js', function () {
         it('should return false if exceeds sample rate', function () {
             spyOn(window.Math, 'random').and.returnValue(0.6);
             expect(Mozilla.StubAttribution.withinAttributionRate()).toBeFalsy();
+        });
+    });
+
+    describe('getGAVisitID', function () {
+        it('should return a valid Google Analytics visit ID', function () {
+            window.ga = sinon.stub();
+            window.ga.getAll = sinon.stub().returns([
+                {
+                    get: () => GA_VISIT_ID
+                }
+            ]);
+
+            expect(Mozilla.StubAttribution.getGAVisitID()).toEqual(GA_VISIT_ID);
+        });
+
+        it('should return a null if Google Analytics visit ID', function () {
+            window.ga = sinon.stub();
+            window.ga.getAll = sinon.stub().returns([
+                {
+                    get: () => ''
+                }
+            ]);
+
+            expect(Mozilla.StubAttribution.getGAVisitID()).toBeNull();
+        });
+
+        it('should return a null if accessing Google Analytics object throws an error', function () {
+            window.ga = sinon.stub().throws(function () {
+                return new Error();
+            });
+            expect(Mozilla.StubAttribution.getGAVisitID()).toBeNull();
         });
     });
 });

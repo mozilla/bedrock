@@ -325,7 +325,12 @@ if (typeof window.Mozilla === 'undefined') {
      */
     StubAttribution.getGAVisitID = function () {
         try {
-            return window.ga.getAll()[0].get('clientId');
+            var clientID = window.ga.getAll()[0].get('clientId');
+
+            if (clientID && typeof clientID === 'string' && clientID !== '') {
+                return clientID;
+            }
+            return null;
         } catch (e) {
             return null;
         }
@@ -346,7 +351,7 @@ if (typeof window.Mozilla === 'undefined') {
             clearTimeout(timeout);
             var clientID = StubAttribution.getGAVisitID();
 
-            if (clientID && typeof clientID === 'string') {
+            if (clientID) {
                 callback(true);
             } else {
                 if (pollRetry <= limit) {
