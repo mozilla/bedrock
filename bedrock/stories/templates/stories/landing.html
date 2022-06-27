@@ -5,7 +5,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "stories/includes/macros.html" import stories_image, stories_landing_card with context %}
+{% from "stories/includes/macros.html" import stories_image, stories_landing_card, stories_split with context %}
 {% extends "base-protocol.html" %}
 
 {% block page_css %}
@@ -61,10 +61,68 @@
       </section>
     </section>
     {# Aditional Stories #}
-    <section class="c-stories-landing-section additional-stories">
-        <section class="c-stories-landing-additional-wrapper">
-          <h2 class="c-stories-additional-label">Additional Stories</h2>
+    <section class="c-additional-stories">
+        <section class="c-stories-landing-section c-additional-stories">
+          <h2 class="c-stories-section-label additional">Additional Stories</h2>
+          {{
+            stories_split(
+              title="The Art of Engagement",
+              image_url="img/stories/ray-fambro.jpg",
+              desc="Ray Fembro began by asking for feedback about all things regarding information organization. The project manager then got more specific: what thoughts did people have about tab management?",
+              cta_href=url("stories.articles.art-of-engagement"),
+              split_reversed=True,
+            )
+          }}
+          {{
+            stories_split(
+              title="The Art of Engagement",
+              image_url="img/stories/siddoway-5.jpg",
+              desc="Ray Fembro began by asking for feedback about all things regarding information organization. The project manager then got more specific: what thoughts did people have about tab management?",
+              cta_href=url("stories.articles.art-of-engagement"),
+              split_reversed=True,
+            )
+          }}
+          {{
+            stories_split(
+              title="The Art of Engagement",
+              image_url="img/stories/ania-safko-2.jpg",
+              desc="Ray Fembro began by asking for feedback about all things regarding information organization. The project manager then got more specific: what thoughts did people have about tab management?",
+              cta_href=url("stories.articles.art-of-engagement"),
+              split_reversed=True,
+            )
+          }}
         </section>
+    </section>
+    {# Continued Reading #}
+    <section class="c-stories-landing-section c-continued-reading">
+      <h2 class="c-stories-section-label">Continued Reading</h2>
+       {{
+          stories_split(
+            title="The Art of Engagement",
+            image_url="img/stories/ania-safko-3.jpg",
+            desc="Ray Fembro began by asking for feedback about all things regarding information organization. The project manager then got more specific.",
+            cta_href=url("stories.articles.art-of-engagement"),
+            split_reversed=True,
+          )
+        }}
+       {{
+          stories_split(
+            title="The Art of Engagement",
+            image_url="img/stories/siddoway-6.jpg",
+            desc="Ray Fembro began by asking for feedback about all things regarding information organization. The project manager then got more specific.",
+            cta_href=url("stories.articles.art-of-engagement"),
+            split_reversed=True,
+          )
+        }}
+       {{
+          stories_split(
+            title="The Art of Engagement",
+            image_url="img/stories/ray-fambro-2.jpg",
+            desc="Ray Fembro began by asking for feedback about all things regarding information organization. The project manager then got more specific.",
+            cta_href=url("stories.articles.art-of-engagement"),
+            split_reversed=True,
+          )
+        }}
     </section>
   </main>
 {% endblock %}

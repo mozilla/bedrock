@@ -30,27 +30,75 @@ $image-path: '/media/protocol/img';
     margin-right: auto;
     padding: 48px $spacing-md;
 
+    .c-stories-section-label {
+        @include font-size(24px);
+        font-weight: 600;
+        grid-column: 2 / 6;
+        padding: $spacing-sm $spacing-lg;
+        width: max-content;
+    }
+
     @media #{$mq-md} {
         padding: 48px 40px;
     }
+
     @media #{$mq-lg} {
-        padding: 96px 40px;
+        padding: 48px 40px;
+
+        &.c-additional-stories {
+            padding: 48px 40px;
+        }
     }
 }
 
-.additional-stories {
+.c-stories-card-container {
+    grid-column: 2 / 12;
+}
+
+.c-additional-stories {
     background-color: $color-light-gray-30;
 
-    .c-stories-landing-additional-wrapper {
-        grid-column: 2 / 11;
-        background: $color-light-gray-30;
+    .c-stories-section-label {
+        background: $color-white;
+        grid-column: 2 / 6;
+    }
 
-        .c-stories-additional-label {
-            @include font-size(24px);
-            background: $color-white;
-            font-weight: 600;
-            padding: $spacing-sm $spacing-lg;
-            width: max-content;
+    .mzp-c-split {
+        grid-column: 2 / 12;
+        padding: $layout-sm 0;
+    }
+}
+
+.c-continued-reading {
+    .c-stories-section-label {
+        background: #111;
+        color: $color-white;
+        grid-column: 1 / 13;
+        margin-bottom: $spacing-xl;
+    }
+
+    .mzp-c-split.c-stories-split {
+        padding: 0;
+        grid-column: span 4;
+
+        .mzp-c-split-body {
+            color: #111;
+            display: flex;
+            height: 100%;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .c-split-title {
+                @include font-size(18px);
+            }
+
+            .c-split-desc {
+                @include font-size(14px);
+            }
+
+            .c-split-cta {
+                @include font-size(14px);
+            }
         }
     }
 }
@@ -141,12 +189,26 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.c-stories-card-container {
-    grid-column: 2 / 12;
-}
-
 .mzp-c-split.c-stories-split {
-    @include full-width;
+    .mzp-c-split-container {
+        grid-column-gap: 24px;
+        padding: 0;
+        align-items: flex-start;
+        color: #111;
+
+        .mzp-c-split-media-asset {
+            filter: grayscale(1);
+        }
+
+        .c-split-title {
+            @include font-size(32px);
+        }
+
+        .c-split-cta {
+            color: $color-black;
+            text-decoration: none;
+        }
+    }
 
     .mzp-c-split-media-asset {
         border-radius: 10px;

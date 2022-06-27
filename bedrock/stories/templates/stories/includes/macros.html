@@ -7,7 +7,7 @@
 {% from "macros-protocol.html" import split, card with context %}
 {% from "macros.html" import image with context %}
 
-{% macro stories_split(heading="", desc="", cta_href="", split_reversed=False, image_url="img/stories/placeholder.png") %}
+{% macro stories_split(title="", desc="", cta_href="", split_reversed=False, image_url="img/stories/placeholder.png", class="") %}
   {% if split_reversed %}
     {% set block_class = "mzp-l-split-center-on-sm-md c-stories-split mzp-l-split-reversed" %}
   {% else %}
@@ -18,9 +18,9 @@
       image_url=image_url,
       media_after=media_after
     )%}
-      <h2 class="mzp-u-title-xl">{{ heading }}</h1>
-      <p>{{ desc }}</p>
-      <a href="{{ cta_href }}">Read More</a>
+      <h2 class="c-split-title">{{ title }}</h1>
+      <p class="c-split-desc">{{ desc }}</p>
+      <a class="c-split-cta" href="{{ cta_href }}">View Story</a>
   {% endcall %}
 {%- endmacro %}
 
@@ -68,36 +68,6 @@
   <blockquote class="c-stories-article-blockquote">{{ quote }}</blockquote>
 {% endmacro %}
 
-{# {% macro stories_landing_card(image_url="", alt="", include_highres=False, class="", width="1360", height="765", featured=False, title="", desc="", include_cta=False, card_href="", size="md")%}
-  <section class="c-stories-landing-card card-{{ size }} {{ class }}">
-    {% if card_href%}
-    <a href="{{ card_href}}" class="c-stories-landing-card-link">
-    {% endif %}
-    {% if featured %}
-     <p class="featured-label">Featured</p>
-    {% endif %}
-    {{ image (
-      url=image_url,
-      alt=alt,
-      width=width,
-      height=height,
-      loading=None,
-      include_highres=include_highres
-    )}}
-    <div class="c-stories-landing-card-content card-{{ size }}">
-      <h1 class="c-stories-landing-card-title">{{ title }}</h1>
-      {% if desc %}
-      <p class="c-stories-landing-card-desc">{{ desc }}</p>
-      {% endif %}
-      {% if include_cta %}
-      <p class="c-stories-landing-card-cta">View Story</p>
-      {% endif %}
-    </div>
-    {% if card_href%}
-    </a>
-    {% endif %}
-  </section>
-{% endmacro %} #}
 
 {% macro stories_landing_card(image_url="", image_alt="", include_highres_image=False, class="", width="1360", height="765", featured=False, title="", desc="", include_cta=False, link_url="", size="md", aspect_ratio='mzp-has-aspect-3-2', heading_level=2)%}
 <section class="mzp-c-card c-stories-landing-card size-{{ size }} {% if class %}{{ class }}{% endif %} {% if aspect_ratio %}{{ aspect_ratio }}{% endif %}" {% if attributes %}{{attributes|safe}}{% endif %}>
