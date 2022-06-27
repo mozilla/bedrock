@@ -1034,7 +1034,7 @@ describe('stub-attribution.js', function () {
             expect(Mozilla.StubAttribution.getGAVisitID()).toEqual(GA_VISIT_ID);
         });
 
-        it('should return a null if Google Analytics visit ID', function () {
+        it('should return a null if Google Analytics visit ID is invalid', function () {
             window.ga = sinon.stub();
             window.ga.getAll = sinon.stub().returns([
                 {
