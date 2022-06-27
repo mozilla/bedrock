@@ -37,37 +37,6 @@ $image-path: '/media/protocol/img';
     margin-bottom: $spacing-2xl;
 }
 
-.c-stories-image {
-    margin-bottom: $spacing-md;
-
-    &.hero {
-        @include full-width;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: $spacing-2xl;
-    }
-
-    &.article-width {
-        @include article-width-2-3;
-    }
-
-    &.article-half-width {
-        grid-column: 4 / 7;
-        float: left;
-    }
-
-    img {
-        border-radius: $border-radius-lg;
-    }
-
-    figcaption {
-        @include font-base;
-        @include font-size(14px);
-        color: $color-moz-dark-gray;
-        margin-left: $spacing-xs;
-    }
-}
-
 .c-stories-article-body {
     @include full-width;
     margin-top: $spacing-lg;
@@ -106,16 +75,16 @@ $image-path: '/media/protocol/img';
         .c-stories-article-float-container {
             @include article-width-full;
 
-            .c-stories-article-image {
+            .c-stories-image {
                 width: calc(50% - $spacing-sm);
             }
 
-            &.left .c-stories-article-image {
+            &.left .c-stories-image {
                 float: left;
                 margin-right: $spacing-md;
             }
 
-            &.right .c-stories-article-image {
+            &.right .c-stories-image {
                 float: right;
                 margin-right: $spacing-md;
             }

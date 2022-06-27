@@ -10,12 +10,25 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import 'includes/lib';
 
+.c-stories-main {
+    .mzp-t-dark {
+        background-color: $color-black;
+    }
+}
+
 .c-stories-grid {
     @include stories-grid;
-    padding: 48px $spacing-md;
     max-width: 1440px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.c-stories-landing-section {
+    @include stories-grid;
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 48px $spacing-md;
 
     @media #{$mq-md} {
         padding: 48px 40px;
@@ -23,15 +36,113 @@ $image-path: '/media/protocol/img';
     @media #{$mq-lg} {
         padding: 96px 40px;
     }
+}
 
-    .c-stories-landing-title {
-        grid-column: 3 / 11;
-        margin: 0 auto;
+.additional-stories {
+    background-color: $color-light-gray-30;
+
+    .c-stories-landing-additional-wrapper {
+        grid-column: 2 / 11;
+        background: $color-light-gray-30;
+
+        .c-stories-additional-label {
+            @include font-size(24px);
+            background: $color-white;
+            font-weight: 600;
+            padding: $spacing-sm $spacing-lg;
+            width: max-content;
+        }
+    }
+}
+
+.c-stories-landing-card.mzp-c-card {
+    .mzp-c-card-block-link {
+        border-radius: $border-radius-lg;
     }
 
-    .c-stories-hr {
-        @include full-width;
+    .mzp-c-card-media-wrapper {
+        border-radius: $border-radius-lg;
     }
+
+    .featured-label {
+        @include font-size(24px);
+        background-color: $color-white;
+        clip-path: polygon(0 0, 100% 0, 90% 102%, 0 100%);
+        color: #111;
+        display: inline-block;
+        font-weight: 600;
+        grid-column-start: 2;
+        padding: 6px 24px 6px 16px;
+        position: absolute;
+        transform: translate(0%, -50%);
+        z-index: 2;
+    }
+
+    .mzp-c-card-content {
+        text-align: center;
+
+        .mzp-c-card-cta {
+            font-weight: normal;
+        }
+    }
+
+    img {
+        border-radius: $border-radius-lg;
+    }
+
+    &.size-lg {
+        grid-column: 2 / 12;
+        margin-bottom: $spacing-2xl;
+        max-width: 100%;
+        position: relative;
+
+        .mzp-c-card-media-wrapper {
+            border-radius: $border-radius-lg;
+            margin-bottom: $spacing-xl;
+        }
+
+        .mzp-c-card-content {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 750px;
+
+            .mzp-c-card-title {
+                @include font-size(60px);
+                margin-bottom: $spacing-lg;
+            }
+
+            .mzp-c-card-desc {
+                @include font-size(20px);
+                margin-top: $spacing-xl;
+                margin-bottom: $spacing-lg;
+            }
+
+            .mzp-c-card-cta {
+                font-weight: normal;
+                padding: $spacing-md $spacing-lg;
+                border: 1px solid $color-white;
+                border-radius: 32px;
+                width: max-content;
+                margin: 0 auto;
+            }
+        }
+    }
+
+    &.size-md {
+        .mzp-c-card-title {
+            @include font-size(32px);
+        }
+
+        .mzp-c-card-cta {
+            margin-top: $spacing-lg;
+            margin-bottom: $spacing-lg;
+        }
+    }
+}
+
+.c-stories-card-container {
+    grid-column: 2 / 12;
 }
 
 .mzp-c-split.c-stories-split {
@@ -39,5 +150,37 @@ $image-path: '/media/protocol/img';
 
     .mzp-c-split-media-asset {
         border-radius: 10px;
+    }
+}
+
+.c-stories-image {
+    margin-bottom: $spacing-md;
+    position: relative;
+
+    &.hero {
+        @include full-width;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: $spacing-2xl;
+    }
+
+    &.article-width {
+        @include article-width-2-3;
+    }
+
+    &.article-half-width {
+        grid-column: 4 / 7;
+        float: left;
+    }
+
+    img {
+        border-radius: $border-radius-lg;
+    }
+
+    figcaption {
+        @include font-base;
+        @include font-size(14px);
+        color: $color-moz-dark-gray;
+        margin-left: $spacing-xs;
     }
 }

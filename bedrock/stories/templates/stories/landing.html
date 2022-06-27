@@ -1,0 +1,70 @@
+
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "stories/includes/macros.html" import stories_image, stories_landing_card with context %}
+{% extends "base-protocol.html" %}
+
+{% block page_css %}
+  {{ css_bundle('mozilla-stories-shared')}}
+  {{ css_bundle("protocol-split")}}
+  {{ css_bundle("protocol-card") }}
+{% endblock %}
+
+{% block page_title %}Stories{% endblock %}
+
+{% block content %}
+  <main class="c-stories-main">
+    {# Featured Stories  #}
+    <section class="mzp-t-dark">
+      <section class="c-stories-landing-section">
+        {{
+          stories_landing_card(
+            image_url="img/stories/siddoway-4.jpg",
+            width="1200",
+            height="675",
+            link_url=url('stories.articles.art-of-engagement'),
+            size="lg",
+            featured=True,
+            aspect_ratio="mzp-has-aspect-16-9",
+            title="The Art of Engagement",
+            desc="Ray Fembro began by asking for feedback about all things regarding information organization. The project manager then got more specific: what thoughts did people have about tab management?",
+            include_cta=True,
+            heading_level=1
+          )
+        }}
+        <div class="c-stories-card-container mzp-l-card-half">
+        {{ stories_landing_card(
+            image_url="img/stories/ray-fambro.jpg",
+            width="1200",
+            height="675",
+            link_url=url('stories.articles.art-of-engagement'),
+            aspect_ratio="mzp-has-aspect-16-9",
+            size="md",
+            title="The Art of Engagement",
+            include_cta=True
+        )}}
+        {{ stories_landing_card(
+          image_url="img/stories/ania-safko.jpg",
+            width="1200",
+            height="675",
+            link_url=url('stories.articles.art-of-engagement'),
+            aspect_ratio="mzp-has-aspect-16-9",
+            size="md",
+            title="The Art of Engagement",
+            include_cta=True
+        )}}
+        </div>
+      </section>
+    </section>
+    {# Aditional Stories #}
+    <section class="c-stories-landing-section additional-stories">
+        <section class="c-stories-landing-additional-wrapper">
+          <h2 class="c-stories-additional-label">Additional Stories</h2>
+        </section>
+    </section>
+  </main>
+{% endblock %}

@@ -4,20 +4,21 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% extends "stories-base-article.html" %}
+{% extends "stories/stories-base-article.html" %}
 
 {% block page_title %}Stories{% endblock %}
 
-{% from "includes/macros.html" import stories_article_image, stories_article_blockquote with context %}
+{% from "stories/includes/macros.html" import stories_image, stories_article_blockquote with context %}
+
 <section class="">
   {% block article_title %}The Art of Engagement{% endblock %}
   {% block article_subtitle %}
     Mozilla’s vibrant community gets a direct connection to the people building the products they love.
   {% endblock %}
   {% block article_hero %}
-    {{ stories_article_image(
-      image_url="img/stories/engagement-16-9.png",
-      image_class="c-stories-image hero",
+    {{ stories_image(
+      image_url="img/stories/siddoway-1.png",
+      image_class="hero",
       width="1200",
       height="675",
       alt="",
@@ -43,9 +44,9 @@
   <p>Brands have been talking about community for decades, spurred largely by the rise of online forums where a single customer’s experience, for better or worse, with a company or product better or worse, could be broadcast to far more people than only their family, friends and neighbors. David W. McMillan and David M. Chavis, professors at Vanderbilt University, defined community in 1986 as a feeling that members have of belonging, where members matter to each other and have faith that their needs will be met. Since then, a growing body of academic research and business books has delved into refining that notion and determining what makes a brand community succeed.</p>
   <p>Even so, community remains a vague and slippery concept at many companies. Often it is just another word marketers use to describe customers, and frequently it is a one-way street down which brands encourage consumers to take on some of the work of spreading the word about their products. That’s never been the case at Mozilla, where a passionate, highly engaged volunteer community has helped build its products from the early, bug-filled days of the first Firefox browser.</p>
   <p>At the core of the 1998 Mozilla project was a commitment to open-source development, (Link to License story) and the volunteers who believed in that model played a vital role in developing Firefox 1.0, released six years later. Since then, thousands of people have offered ideas, suggestions and criticisms that continue to shape the browser and other Mozilla products. Between 2017 and 2019 alone, 22,821 non-employees made more than 2 million contributions to Mozilla products, according to the 2020 report “Mozilla and the Rebel Alliance.” Almost 750,000 of those contributions focused on Firefox, with more than 65,000 specifically involving code.</p>
-  {{ stories_article_image(
-    image_url="img/stories/engagement-3-4.jpg",
-    image_class="c-stories-image article-width",
+  {{ stories_image(
+    image_url="img/stories/siddoway-2.png",
+    image_class="article-width",
     alt="",
     width="1012",
     height="675",
@@ -62,9 +63,8 @@
   <p>Once a feature has been incorporated into the browser, the Connect community can offer valuable feedback on whether it is performing as intended “in the wild,” Fembro said.</p>
   <p>The team needed to discuss another, less tangible issue: how could they keep conversations from getting derailed? “Mozilla has built a rich culture over the years and from the beginning has been people-focused,” said Fembro. “A lot of our loyal users are very entrenched into our development process, which comes along with a lot of opinions.”</p>
   <div class="c-stories-article-float-container left">
-    {{ stories_article_image(
-      image_url="img/stories/engagement-3-4.jpg",
-      image_class="c-stories-image",
+    {{ stories_image(
+      image_url="img/stories/siddoway-3.jpg",
       alt="",
       width="1012",
       height="675",

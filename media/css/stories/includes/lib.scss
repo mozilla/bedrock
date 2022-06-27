@@ -5,8 +5,8 @@
 @use 'sass:math';
 
 // use math.div to get percentages of grid to use for padding and margins
-$column-width: math.div(math.div(100, 12), 100);
-$half-column: math.div($column-width, 2);
+$column-width: math.percentage(math.div(math.div(100, 12), 100));
+$half-column: math.percentage(math.div(math.div(100, 24), 100));
 
 @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
 
@@ -22,8 +22,8 @@ $half-column: math.div($column-width, 2);
 }
 
 @mixin half-col-margin {
-    margin-left: math.percentage($half-column);
-    margin-right: math.percentage($half-column);
+    margin-left: $half-column;
+    margin-right: $half-column;
 }
 
 @mixin full-width {
