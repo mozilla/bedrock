@@ -218,15 +218,6 @@ def _make_cta_button(entry):
     return render_to_string("includes/contentful/cta.html", data, get_current_request())
 
 
-def _make_product_icon(entry):
-    content_type = entry.sys["content_type"].id
-
-    if content_type == "componentLogo":
-        return _make_logo(entry)
-    elif content_type == "componentWordmark":
-        return _make_wordmark(entry)
-
-
 def _make_plain_text(node):
     content = node["content"]
     plain = ""
@@ -768,14 +759,10 @@ class ContentfulPage:
             "theme_class": _get_theme_class(fields.get("theme")),
             "body_class": get_body_class(),
             "body": self.render_rich_text(fields.get("body")),
-            "heading": fields.get("heading"),
-            "heading_level": fields.get("heading_level"),
             "media_class": get_media_class(),
             "media_after": fields.get("mobile_media_after"),
             "image": split_image_url,
             "mobile_class": get_mobile_class(),
-            "cta": _make_cta_button(fields.get("cta")) if fields.get("cta") else "",
-            "product_icon": _make_product_icon(fields.get("product_icon")) if fields.get("product_icon") else "",
         }
         return data
 
