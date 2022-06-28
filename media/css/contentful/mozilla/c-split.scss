@@ -26,3 +26,9 @@ $brand-theme: 'mozilla';
         }
     }
 }
+
+// Override until MDN plus logo is added to Protocol.
+// https://github.com/mozilla/protocol-assets/issues/83
+.mzp-c-wordmark.mzp-t-product-mdn-plus {
+    background-image: url('/media/img/logos/mdn/mdn-plus-wordmark.svg');
+}
