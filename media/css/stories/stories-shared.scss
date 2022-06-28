@@ -210,6 +210,33 @@ $image-path: '/media/protocol/img';
         }
     }
 
+    .c-split-block-link {
+        border-radius: $border-radius-lg;
+
+        &:link,
+        &:visited {
+            color: $color-black;
+            text-decoration: none;
+
+            .mzp-c-card-cta-text {
+                color: $color-link;
+            }
+        }
+
+        // &:hover,
+        // &:active,
+        // &:focus {
+        //     @include transition(box-shadow .1s ease-in-out);
+        //     box-shadow: 0 0 0 4px $color-marketing-gray-20;
+
+        //     .mzp-c-card-title,
+        //     .mzp-c-card-cta-text  {
+        //         @include transition(border-bottom-color 100ms ease-in-out);
+        //         border-bottom: 2px solid;
+        //     }
+        // }
+    }
+
     .mzp-c-split-media-asset {
         border-radius: 10px;
     }
