@@ -10,6 +10,7 @@ newsletter-form-your-email-address = Your email address
 newsletter-form-yournameexamplecom = yourname@example.com
 
 newsletter-form-select-country-or-region = Select country or region
+newsletter-form-select-language = Select language
 newsletter-form-your-email-here = YOUR EMAIL HERE
 newsletter-form-format = Format
 newsletter-form-html = HTML

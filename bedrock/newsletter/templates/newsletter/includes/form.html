@@ -54,13 +54,7 @@
       </div>
       {% endif %}
 
-      <label for="id_email">
-      {% if email_label %}
-        {{ email_label }}
-      {% else %}
-        {{ ftl('newsletter-form-your-email-address') }}
-      {% endif %}
-      </label>
+      {{ form.email.label_tag(ftl('newsletter-form-your-email-address') if not email_label else email_label) }}
       {% if email_placeholder %}
         {% set placeholder = email_placeholder %}
       {% else %}
@@ -70,10 +64,12 @@
 
       <div id="newsletter-details" class="mzp-c-newsletter-details">
         {% if include_country %}
+          {{ form.country.label_tag() }}
           <p>{{ form.country|safe }}</p>
         {% endif %}
 
         {% if include_language %}
+          {{ form.lang.label_tag()|safe }}
           <p>{{ form.lang|safe }}</p>
         {% else %}
           <input type="hidden" name="lang" id="id_lang"  value="en">
