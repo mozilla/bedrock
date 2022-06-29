@@ -31,11 +31,11 @@ greenlet==0.4.17  # Pinned for stability but subdep of Meinheld
 gunicorn==19.7.1
 honcho==1.1.0
 html5lib==1.1
-lxml==4.8.0  # Needed as a top-level dep so that it's available for BeautifulSoup
+lxml==4.9.0  # Needed as a top-level dep so that it's available for BeautifulSoup
 Markdown==3.3.6
 https://github.com/mozmeao/mdx_outline/archive/refs/tags/python-3.9-compat.tar.gz#egg=mdx_outline
 meinheld==1.0.2
-newrelic==7.10.0.175
+newrelic==7.12.0.176
 phonenumberslite==8.12.49
 Pillow==9.1.1
 PyGithub==1.55
