@@ -57,6 +57,32 @@ CSS files to support the components.
 
 Once rendered the pages get cached on the :abbr:`CDN (Content Delivery Network)` as usual.
 
+Compose
+-------
+
+Compose is a `Contentful-supported app <https://www.contentful.com/developers/docs/compose/what-is-compose/>`_ that
+provides a nicer editing experience. It creates a streamlined view of pages by combining multiple entries
+into a single edit screen and allowing `field groups <https://www.contentful.com/help/field-groups/>`_ for better organization.
+
+To use Compose, find the *Apps* link in the top navigation of Contentful and click *Explore more apps*.
+Make sure you are in the environment you want to edit. This will take you to the environment's installed apps.
+Click *Open Compose*.
+
+.. note::
+
+    Mozilla is currently using Legacy Compose, which requires a specific page content model called ``Compose: Page``.
+    We are in the process of `updating to use the new Compose model <https://github.com/mozilla/bedrock/issues/11810>`_,
+    which can work with any page type.
+
+Any changes made to Compose page entries in a specific environment are limited to that
+environment. If you are in a sandbox environment, you should see an ``/environments/sandbox-name`` path at the end
+of your Compose URL.
+
+If you want to reduce the number of fields visible when a Compose page is loaded, go to the content model of the entry that controls
+those fields. Click the *Groups* tab. You will see an automatic ``Default`` group. Add a field group and move the desired
+fields into it. When you next open Compose, you will only see the fields remaining in the ``Default`` group. There will also
+be a new tab containing the fields from your new field group.
+
 
 Content Models
 --------------
@@ -64,14 +90,11 @@ Content Models
 Emoji legend for content models
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-🔗 this component is referenced by ID in bedrock (at the moment that is just the
-homepage but could be used to connect single components for display on non-contentful
-pages. For example: the latest feature box on /new)
-📄 this component is a page, it will include meta data for the page, a folder, and slug
-🎁 this is a layout wrapper for another component
-✏️ this component includes editable content, not just layout config
-♟ this component is suitable for inclusion as an inline entry in a rich text field
-➡️ this component can be embedded without a layout wrapper
+* 📄 this component is a page, it will include meta data for the page, a folder, and slug
+* 🎁 this is a layout wrapper for another component
+* ✏️ this component includes editable content, not just layout config
+* ♟ this component is suitable for inclusion as an inline entry in a rich text field
+* ➡️ this component can be embedded without a layout wrapper
 
 
 Naming conventions for content models
@@ -96,7 +119,6 @@ Heading (and Heading Level)
     into a H1-H4 in bedrock. Not: header, title, or name.
 
 Image (and Image Size, Image Width)
-
     Not: picture, photo, logo, or icon (unless we are specifically talking about a logo or icon.)
 
 Content
@@ -117,46 +139,31 @@ Body (Body Width, Body Vertical Alignment, Body Horizontal Alignment)
 
 
 
-
-🔗 Connect
-~~~~~~~~~~
-
-These are the highest level component. They should be just a name and entry reference.
-
-The purpose of the connect is to create a stable ID that can be referenced in bedrock
-to be included in a jinja template. Right now we only do this for the homepage. This
-is because the homepage has some conditional content above and below the Contentful
-content.
-
-Using a connect component to create the link between jinja template and the Contentful
-Page entry means an entire new page can be created and proofed in Contentful before
-the bedrock homepage begins pulling that content in.
-
-In other contexts a connect content model could be created to link to entries where the
-ID may change. For example: the "Latest Firefox Features: section of /new could be
-moved to Contentful using a connect component which references 3 picto blocks.
-
-Because the ID must be added to a bedrock by a dev, only devs should be able to make new
-connect entries.
-
 📄 Page
 ~~~~~~~
 
-Pages in bedrock are created from page entries in Contentful. The three page types are
-Homepage, Versatile, and General.
+Pages in bedrock are created from page entries in Contentful's `Compose`_ App.
 
-The homepage needs to be connected to bedrock using a Connect component and page meta
-data like title, blurb, image, etc come from bedrock.
+Homepage
+    The homepage needs to be connected to bedrock using a Connect component (see `Legacy`_) and page meta
+    data like title, blurb, image, etc come from bedrock.
+
+General
+    Includes hero, text, and callout. The simplified list and order of
+    components is intended to make it easier for editors to put a page together.
+
+Versatile
+    No pre-defined template. These pages can be constructed from any combination of layout and
+    component entries.
+
+Resource Center
+    Includes product, category, tags, and a rich text editor. These pages follow a recognizable
+    format that will help orient users looking for more general product information (i.e. VPN).
+
 
 The versatile and general templates do not need bedrock configuration to be displayed.
 Instead, they should appear automatically at the folder and slug specified in the entry.
 These templates do include fields for meta data.
-
-The versatile template can include any number of components in any order.
-
-The general template is a hero, text, and callout. The simplified list and order of
-components is intended to make it easier for editors to put a page together. Hopefully
-more of these simplified content models will be created in the future.
 
 🎁 Layout
 ~~~~~~~~~
@@ -184,15 +191,13 @@ go with it.
 If they do not require a layout wrapper there may also be some layout and theme options.
 For example, the text components include options for width and alignment.
 
-♟ Component
+♟ Embed
 ~~~~~~~~~~~
 
-Should I have named these something else? Probably. I suggest either atom or piece if
-someone wants to go to the trouble.
+These pre-configured content pieces can go in rich text editors when allowed (picto, split, multi column text...).
 
-These components are always Protocol atoms and cannot be included in a page entry,
-however, they don't have a specific layout wrapper either. They can go in any entry that
-has a body field that is configured as rich text (picto, split, multi column text...)
+Embeds are things like logos, where we want tightly coupled style and content that will be consistent across entries.
+If a logo design changes, we only need to update it in one place, and all uses of that embed will be updated.
 
 Adding a new ✏️ Component
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -219,7 +224,7 @@ Example: Picto
   * for any optional fields make sure you check the field exists before referencing the content.
 
 
-Adding a new ♟ Component
+Adding a new ♟ Embed
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 Example: Wordmark.
@@ -252,7 +257,7 @@ Adding support for a new product icon, size, folder
 
 Many content models have drop downs with identical content. For example: the Hero, Callout,
 and Wordmark models all include a "product icon". The icon can be one of any of the
-[supported logos in Protocol](https://protocol.mozilla.org/demos/logo.html). Other common
+`supported logos in Protocol <https://protocol.mozilla.org/demos/logo.html>`_. Other common
 fields are width and folder.
 
 There are two ways to keep these lists up to date to reflect Protocol updates:
@@ -347,7 +352,7 @@ Images that are uploaded in Contentful will be served to site visitors from the 
 don't have to worry about how many times an image will be requested.
 
 Using the Contentful :abbr:`CDN (Content Delivery Network)` lets us use their
-[Images API](https://www.contentful.com/developers/docs/references/images-api/)
+`Images API <https://www.contentful.com/developers/docs/references/images-api/>`_
 to format our images.
 
 In theory, a large high quality image is uploaded in Contentful and then bedrock inserts
@@ -379,11 +384,41 @@ Roles/Permissions
 -----------------
 
 In general we are trusting people to check their work before publishing and very few
-guard rails have been installed.
+guard rails have been installed. We have a few roles with different permissions.
 
-One exception is the Connect component, only developers should have permission to create one.
-It's not problematic to have them created by non developers, it's just that they won't work
-without corresponding bedrock code.
+Admin
+    Organization
+
+    * Define roles and permission
+    * Manage users
+    * Change master and sandbox environment aliases
+    * Create new environments
+
+    Master environment
+
+    * Edit content model
+    * Create, Edit, Publish, Archive, Delete content
+    * Install/Uninstall apps
+
+Developer
+    Organization
+
+    * Create new environments
+
+    Master environment
+
+    * Create, Edit, Publish, Archive content
+
+    Sandbox environments (any non-master environment)
+
+    * Edit content model
+    * Create, Edit, Publish, Archive, Delete content
+    * Install/Uninstall apps
+
+Editor (WIP)
+    Master environment (through Compose)
+
+    * Create, Edit, Publish, Archive content
 
 
 Development practices
@@ -452,6 +487,65 @@ Which environment is connected to where?
 If you develop a new feature that adds to Contentful (e.g. page or component) and you author it in the sandbox, you will need to re-create it in master before the corresponding bedrock changes hit production.
 
 
+Troubleshooting
+~~~~~~~~~~~~~~~
+
+If you run into trouble on an issue, be sure to check in these places first and include the relevant information in requests for help (i.e. environment).
+
+1. Contentful Content Model & Entries
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* What environment are you using?
+* Do you have the necessary permissions to make changes?
+* Do you see all the entry fields you need? Do those fields have the correct value options?
+
+2. `Bedrock API (api.py) <https://github.com/mozilla/bedrock/blob/main/bedrock/contentful/api.py>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* What environment are you using?
+* Can you find a ``def`` for the content type you need?
+* Does it structure data as expected?
+
+.. code-block:: python
+
+    # example content type def
+
+    def get_section_data(self, entry_obj):
+        fields = entry_obj.fields()
+        # run `print(fields)` here to verify field values from Contentful
+
+        data = {
+            "component": "sectionHeading",
+            "heading": fields.get("heading"),
+        }
+
+        # run `print(data)` here to verify data values from Bedrock API
+        return data
+
+3. `Bedrock Render (all.html) <https://github.com/mozilla/bedrock/blob/main/bedrock/contentful/templates/includes/contentful/all.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* Can you find a render condition for the component you need?
+
+.. code-block:: jinja
+
+    /* example component condition */
+
+    {% elif entry.component == 'sectionHeading' %}
+
+* If the component calls a macro:
+    * Does it have all the necessary parameters?
+    * Is it passing the expected values as arguments?
+* If the component is custom HTML:
+    * Is the HTML structure correct?
+    * Are Protocol-specific class names spelled correctly?
+* Is the component `CSS <https://github.com/mozilla/bedrock/tree/main/media/css/contentful>`_ available?
+* Is the component JS available?
+
+.. note::
+
+    Component CSS and JS are defined in a ``CONTENT_TYPE_MAP`` from the Bedrock API (``api.py``).
+
 Useful Contentful Docs
 ----------------------
 
@@ -473,3 +567,32 @@ Assumptions we still need to deal with
 
     - image sizes
 
+
+Legacy
+------
+
+Since we decided to move forward the the Compose App, we no longer need the Connect content model.
+The EN-US homepage is currently still using Connect. Documentation is here for reference.
+
+* 🔗 this component is referenced by ID in bedrock (at the moment that is just the homepage but could be used to connect single components for display on non-contentful pages. For example: the latest feature box on /new)
+
+🔗 Connect
+~~~~~~~~~~
+
+These are the highest level component. They should be just a name and entry reference.
+
+The purpose of the connect is to create a stable ID that can be referenced in bedrock
+to be included in a jinja template. Right now we only do this for the homepage. This
+is because the homepage has some conditional content above and below the Contentful
+content.
+
+Using a connect component to create the link between jinja template and the Contentful
+Page entry means an entire new page can be created and proofed in Contentful before
+the bedrock homepage begins pulling that content in.
+
+In other contexts a connect content model could be created to link to entries where the
+ID may change. For example: the "Latest Firefox Features: section of /new could be
+moved to Contentful using a connect component which references 3 picto blocks.
+
+Because the ID must be added to a bedrock by a dev, only devs should be able to make new
+connect entries.
