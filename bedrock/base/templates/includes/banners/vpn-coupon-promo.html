@@ -1,0 +1,24 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends 'includes/banners/base.html' %}
+
+{% block banner_id %}vpn-coupon-promo{% endblock %}
+
+{% block banner_title %}Browse safely on the go{% endblock %}
+
+{% block banner_content %}
+
+<aside class="c-banner hide-from-legacy-ie" id="vpn-coupon-promo">
+  <div class="c-banner-inner">
+    <button type="button" class="c-banner-close"><span>{{ ftl('ui-close') }}</span></button>
+    <div class="mzp-l-content">
+      VPN coupon banner
+    </div>
+  </div>
+</aside>
+
+{% endblock %}

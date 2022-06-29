@@ -258,6 +258,12 @@
     },
     {
       "files": [
+        "css/base/banners/vpn-coupon-promo.scss"
+      ],
+      "name": "vpn-coupon-promo-banner"
+    },
+    {
+      "files": [
         "css/base/banners/firefox-app-store.scss"
       ],
       "name": "firefox-app-store-banner"
@@ -1373,6 +1379,13 @@
         "js/base/banners/vpn-promo-banner-init.js"
       ],
       "name": "vpn-promo-banner"
+    },
+    {
+      "files": [
+        "js/base/banners/mozilla-banner.js",
+      "js/base/banners/vpn-coupon-promo-init.js"
+      ],
+      "name": "vpn-coupon-promo-banner"
     },
     {
       "files": [
