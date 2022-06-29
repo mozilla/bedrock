@@ -35,10 +35,6 @@
             min-width: 0; // https://github.com/mozilla/protocol/issues/607
         }
 
-        label[for='id_email'] {
-            @include visually-hidden;
-        }
-
         legend {
             @include font-size(14px);
         }
