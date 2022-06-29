@@ -8,6 +8,25 @@ $brand-theme: 'mozilla';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
-#vpn-coupon-promo {
-    color: red;
+.c-coupon-wrapper {
+    background: $color-violet-80;
+    color: $color-white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    h2,
+    h3 {
+        color: $color-white;
+    }
+
+    .c-coupon-title-wrapper {
+        background-color: $color-violet-40;
+        color: $color-white;
+
+        .c-coupon-title {
+            @include font-size(24px);
+        }
+    }
 }

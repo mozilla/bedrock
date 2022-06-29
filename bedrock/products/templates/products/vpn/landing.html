@@ -50,13 +50,13 @@
   {% include 'products/vpn/includes/subnav.html' %}
 {% endblock %}
 
+
+{% block content %}
 {% block page_banner %}
   {% if show_vpn_coupon_promo_banner %}
     {% include 'includes/banners/vpn-coupon-promo.html' %}
   {% endif %}
 {% endblock %}
-
-{% block content %}
 <main>
   {% if vpn_affiliate_attribution_enabled %}
     {% include 'products/vpn/includes/cookie-notification.html' %}
