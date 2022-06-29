@@ -278,9 +278,11 @@ class NewsletterFooterForm(forms.Form):
             "aria-required": "true",
         }
         country_widget = widgets.Select(attrs=required_args)
-        self.fields["country"] = forms.ChoiceField(widget=country_widget, choices=regions, initial=country, required=False)
+        country_label = ftl_lazy("newsletter-form-select-country-or-region", fallback="newsletter-form-select-country")
+        self.fields["country"] = forms.ChoiceField(widget=country_widget, choices=regions, initial=country, required=False, label=country_label)
         lang_widget = widgets.Select(attrs=required_args)
-        self.fields["lang"] = forms.TypedChoiceField(widget=lang_widget, choices=lang_choices, initial=lang, required=False)
+        lang_label = ftl_lazy("newsletter-form-select-language", fallback="newsletter-form-available-languages")
+        self.fields["lang"] = forms.TypedChoiceField(widget=lang_widget, choices=lang_choices, initial=lang, required=False, label=lang_label)
         self.fields["newsletters"].choices = [(n, self.choice_labels.get(n, n)) for n in newsletters]
         self.fields["newsletters"].initial = newsletters
 
