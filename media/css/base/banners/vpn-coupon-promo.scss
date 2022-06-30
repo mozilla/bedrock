@@ -7,26 +7,82 @@ $image-path: '/media/protocol/img';
 $brand-theme: 'mozilla';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/button';
 
 .c-coupon-wrapper {
-    background: $color-violet-80;
+    background: $color-violet-90;
     color: $color-white;
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 100%;
+    justify-content: space-between;
+    max-width: 100%;
 
     h2,
-    h3 {
+    h3,
+    p {
         color: $color-white;
+        margin-bottom: 0;
     }
 
     .c-coupon-title-wrapper {
-        background-color: $color-violet-40;
+        background-color: $color-violet-50;
         color: $color-white;
+        padding: $layout-xs;
+        border-bottom-right-radius: 100px;
+        border-top-right-radius: 100px;
+        width: 25%;
+        position: relative;
 
         .c-coupon-title {
-            @include font-size(24px);
+            @include text-title-xs;
+            text-align: center;
+        }
+
+        &::after {
+            position: absolute;
+            content: '';
+            background-image: url('/media/img/banners/vpn/coupon-promo-plane.svg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            height: 120px;
+            width: 120px;
+            top: 15px;
+            right: -30px;
+            bottom: 0;
+        }
+    }
+
+    .c-coupon-content-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 68%;
+
+        .c-coupon-subtitle {
+            @include text-title-2xs;
+        }
+
+        .c-coupon-text {
+            font-weight: bold;
+            @include text-body-md;
+
+            span {
+                border: 2px solid $color-white;
+                padding: 10px 20px;
+                margin: 0 5px;
+            }
+        }
+
+        .c-cta {
+            .mzp-c-button {
+                background-color: $color-white;
+                padding-right: $layout-md;
+                padding-left: $layout-md;
+
+                &:hover {
+                    background-color: $color-marketing-gray-20;
+                }
+            }
         }
     }
 }
