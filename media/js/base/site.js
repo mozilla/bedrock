@@ -104,15 +104,16 @@
         archSize: 32,
         isARM: false
     };
-    (function () {
+
+    function updateHTML() {
         var h = document.documentElement;
 
         // if other than 'windows', immediately replace the platform classname on the html-element
         // to avoid lots of flickering
         var platform = (window.site.platform = window.site.getPlatform());
-        var version = (window.site.platformVersion =
-            window.site.getPlatformVersion());
-        var _version = version ? parseFloat(version) : 0;
+        var _version = window.site.platformVersion
+            ? parseFloat(window.site.platformVersion)
+            : 0;
 
         if (platform === 'windows') {
             if (_version >= 10.0) {
@@ -122,22 +123,19 @@
             h.className = h.className.replace('windows', platform);
         }
 
-        // Add class to reflect the microprocessor architecture info
-        var archType = (window.site.archType = window.site.getArchType());
-        var archSize = (window.site.archSize = window.site.getArchSize());
-        var isARM = (window.site.isARM = archType.match(/armv(\d+)/));
-
         // Used for Linux ARM processor detection.
-        if (archType !== 'x86') {
-            h.className = h.className.replace('x86', archType);
+        window.site.isARM = window.site.archType.match(/armv(\d+)/);
 
-            if (isARM) {
+        if (window.site.archType !== 'x86') {
+            h.className = h.className.replace('x86', window.site.archType);
+
+            if (window.site.isARM) {
                 h.className += ' arm';
             }
         }
 
-        // Used for 64bit download link on Linux.
-        if (archSize === 64) {
+        // Used for 64bit download link on Linux and Firefox Beta on Windows.
+        if (window.site.archSize === 64) {
             h.className += ' x64';
         }
 
@@ -162,5 +160,57 @@
 
         // Add class to reflect javascript availability for CSS
         h.className = h.className.replace(/\bno-js\b/, 'js');
+    }
+
+    function getHighEntropyFromUAString() {
+        window.site.platformVersion = window.site.getPlatformVersion();
+        window.site.archType = window.site.getArchType();
+        window.site.archSize = window.site.getArchSize();
+    }
+
+    (function () {
+        // For browsers that support client hints, get high entropy
+        // values that might be frozen in the regular user agent string.
+        if (
+            'userAgentData' in navigator &&
+            typeof navigator.userAgentData.getHighEntropyValues === 'function'
+        ) {
+            navigator.userAgentData
+                .getHighEntropyValues([
+                    'architecture',
+                    'bitness',
+                    'platformVersion'
+                ])
+                .then(function (ua) {
+                    if (ua.platformVersion) {
+                        window.site.platformVersion = ua.platformVersion;
+                    }
+
+                    if (ua.architecture) {
+                        window.site.archType = ua.architecture;
+                    }
+
+                    if (ua.bitness) {
+                        window.site.archSize = ua.bitness;
+                    }
+
+                    /* eslint-disable no-console */
+                    console.log('platformVersion: ', ua.platformVersion);
+                    console.log('architecture: ', ua.architecture);
+                    console.log('bitness: ', ua.bitness);
+                    /* eslint-enable no-console */
+
+                    updateHTML();
+                })
+                .catch(function () {
+                    getHighEntropyFromUAString();
+                    updateHTML();
+                });
+        }
+        // Else fall back to UA string parsing for non-supporting browsers.
+        else {
+            getHighEntropyFromUAString();
+            updateHTML();
+        }
     })();
 })();
