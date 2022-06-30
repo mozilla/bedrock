@@ -36,7 +36,7 @@ def current_locale():
 
 
 @library.filter
-@jinja2.contextfilter
+@jinja2.pass_context
 def l10n_format_date(ctx, date, format="long"):
     """
     Formats a date according to the current locale. Wraps around
@@ -47,7 +47,7 @@ def l10n_format_date(ctx, date, format="long"):
 
 
 @library.filter
-@jinja2.contextfilter
+@jinja2.pass_context
 def l10n_format_number(ctx, number):
     """
     Formats a number according to the current locale. Wraps around

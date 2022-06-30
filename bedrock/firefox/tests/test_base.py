@@ -11,7 +11,7 @@ from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
 from django_jinja.backend import Jinja2
-from jinja2 import Markup
+from markupsafe import Markup
 from pyquery import PyQuery as pq
 
 from bedrock.base.urlresolvers import reverse

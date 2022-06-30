@@ -6,6 +6,7 @@ from django.conf import settings
 
 import jinja2
 from django_jinja import library
+from markupsafe import Markup
 
 from bedrock.base.urlresolvers import reverse
 from lib.l10n_utils.fluent import ftl
@@ -49,11 +50,11 @@ def _vpn_product_link(product_url, entrypoint, link_text, class_name=None, optio
 
     markup = f'<a href="{href}" data-action="{settings.FXA_ENDPOINT}" class="{css_class}" {attrs}>' f"{link_text}" f"</a>"
 
-    return jinja2.Markup(markup)
+    return Markup(markup)
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def vpn_subscribe_link(
     ctx, entrypoint, link_text, plan="12-month", class_name=None, country_code=None, lang=None, optional_parameters=None, optional_attributes=None
 ):
@@ -82,7 +83,7 @@ def vpn_subscribe_link(
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def vpn_monthly_price(ctx, plan="monthly", country_code=None, lang=None):
     """
     Render a localized string displaying VPN monthly plan price.
@@ -105,11 +106,11 @@ def vpn_monthly_price(ctx, plan="monthly", country_code=None, lang=None):
 
     markup = f'<span class="vpn-monthly-price-display">{price}</span>'
 
-    return jinja2.Markup(markup)
+    return Markup(markup)
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def vpn_total_price(ctx, plan="12-month", country_code=None, lang=None):
     """
     Render a localized string displaying VPN total plan price.
@@ -132,11 +133,11 @@ def vpn_total_price(ctx, plan="12-month", country_code=None, lang=None):
 
     markup = price
 
-    return jinja2.Markup(markup)
+    return Markup(markup)
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def vpn_saving(ctx, plan="12-month", country_code=None, lang=None, ftl_string="vpn-shared-pricing-save-percent"):
     """
     Render a localized string displaying saving (as a percentage) of a given VPN subscription plan.
@@ -159,11 +160,11 @@ def vpn_saving(ctx, plan="12-month", country_code=None, lang=None, ftl_string="v
 
     markup = saving
 
-    return jinja2.Markup(markup)
+    return Markup(markup)
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def vpn_product_referral_link(ctx, referral_id="", page_anchor="", link_text=None, class_name=None, optional_attributes=None):
     """
     Render link to the /products/vpn/ landing page with referral attribution markup
@@ -189,4 +190,4 @@ def vpn_product_referral_link(ctx, referral_id="", page_anchor="", link_text=Non
 
     markup = f'<a href="{href}{page_anchor}" class="{css_class}" {attrs}>{link_text}</a>'
 
-    return jinja2.Markup(markup)
+    return Markup(markup)

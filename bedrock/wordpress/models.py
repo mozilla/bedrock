@@ -15,7 +15,7 @@ from django.utils.timezone import make_aware, utc
 
 import bleach
 from django_extensions.db.fields.json import JSONField
-from jinja2 import Markup
+from markupsafe import Markup
 from sentry_sdk import capture_exception
 
 from bedrock.wordpress.api import complete_posts_data, get_posts_data

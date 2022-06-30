@@ -8,6 +8,7 @@ from django.template.loader import render_to_string
 
 import jinja2
 from django_jinja import library
+from markupsafe import Markup
 
 from bedrock.newsletter.forms import NewsletterFooterForm
 from lib.l10n_utils import get_locale
@@ -16,7 +17,7 @@ log = logging.getLogger(__name__)
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def email_newsletter_form(
     ctx,
     newsletters="mozilla-and-you",
@@ -80,4 +81,4 @@ def email_newsletter_form(
     )
 
     html = render_to_string("newsletter/includes/form.html", context, request=request)
-    return jinja2.Markup(html)
+    return Markup(html)

@@ -3,8 +3,8 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import bleach
-import jinja2
 from django_jinja import library
+from markupsafe import Markup
 
 # based on bleach.sanitizer.ALLOWED_TAGS
 ALLOWED_TAGS = [
@@ -60,4 +60,4 @@ def _allowed_attrs(tag, name, value):
 @library.filter
 def external_html(content):
     """Clean and mark "safe" HTML content from external data"""
-    return jinja2.Markup(bleach.clean(content, tags=ALLOWED_TAGS, attributes=_allowed_attrs))
+    return Markup(bleach.clean(content, tags=ALLOWED_TAGS, attributes=_allowed_attrs))

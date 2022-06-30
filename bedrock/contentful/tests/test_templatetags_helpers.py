@@ -3,7 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import pytest
-from jinja2 import Markup
+from markupsafe import Markup
 
 from bedrock.contentful.templatetags.helpers import (
     ALLOWED_ATTRS,

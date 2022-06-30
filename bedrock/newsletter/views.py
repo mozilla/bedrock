@@ -20,7 +20,7 @@ import basket
 import basket.errors
 import commonware.log
 import requests
-from jinja2 import Markup
+from markupsafe import Markup
 
 import lib.l10n_utils as l10n_utils
 from bedrock.base import waffle

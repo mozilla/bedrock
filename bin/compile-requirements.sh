@@ -13,7 +13,7 @@ export CUSTOM_COMPILE_COMMAND="$ make compile-requirements"
 # We will need to periodically review this pinning
 
 pip install -U pip==22.1.2
-pip install pip-tools==6.6.2
+pip install pip-tools==6.7.0
 
 pip-compile --generate-hashes -r requirements/prod.in
 pip-compile --generate-hashes -r requirements/dev.in
