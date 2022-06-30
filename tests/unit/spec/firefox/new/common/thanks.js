@@ -83,7 +83,9 @@ describe('thanks.js', function () {
         it('should return the correct download for Linux 32bit', function () {
             const site = {
                 platform: 'linux',
-                isARM: false,
+                isARM: function () {
+                    return false;
+                },
                 archSize: 32
             };
             const result = Mozilla.DownloadThanks.getDownloadURL(site);
@@ -95,7 +97,9 @@ describe('thanks.js', function () {
         it('should return the correct download for Linux 64bit', function () {
             const site = {
                 platform: 'linux',
-                isARM: false,
+                isARM: function () {
+                    return false;
+                },
                 archSize: 64
             };
             const result = Mozilla.DownloadThanks.getDownloadURL(site);
@@ -107,7 +111,9 @@ describe('thanks.js', function () {
         it('should not return a download for Linux ARM', function () {
             const site = {
                 platform: 'linux',
-                isARM: true,
+                isARM: function () {
+                    return true;
+                },
                 archSize: 64
             };
             const result = Mozilla.DownloadThanks.getDownloadURL(site);

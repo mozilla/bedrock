@@ -47,7 +47,7 @@ if (typeof window.Mozilla === 'undefined') {
                 link = document.getElementById(prefix + 'osx');
                 break;
             case 'linux':
-                if (site.isARM) {
+                if (site.isARM()) {
                     // Linux ARM users get SUMO install instructions.
                     link = null;
                 } else if (site.archSize === 64) {

@@ -74,7 +74,7 @@ ul.download-list {
 .download-button .os_linux,
 .download-button .os_linux64,
 .android .download-button-desktop,
-.linux.x86.x64 .download-list .os_linux,
+.linux.x64 .download-list .os_linux,
 .download-button .os_win,
 .download-button .os_win-msi,
 .download-button .os_osx,
@@ -86,7 +86,7 @@ ul.download-list {
 }
 
 .linux .download-button .os_linux,
-.linux.x86.x64 .download-button .os_linux64,
+.linux.x64 .download-button .os_linux64,
 .windows .download-button .os_win,
 .osx .download-button .os_osx,
 .android .download-button .os_android,
@@ -101,11 +101,11 @@ ul.download-list {
 }
 
 // 64-bit UA detection for Firefox Beta on Windows (issue #10194)
-.windows.x86.x64 .download-button-beta .os_win {
+.windows.x64 .download-button-beta .os_win {
     display: none !important;
 }
 
-.windows.x86.x64 .download-button-beta .os_win64 {
+.windows.x64 .download-button-beta .os_win64 {
     display: block !important;
 }
 
