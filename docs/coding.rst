@@ -37,6 +37,19 @@ To check for stale Python dependencies (basically ``pip list -o`` but in the Doc
 For Node packages we use `NPM <https://docs.npmjs.com/cli/v8/commands/npm-install>`_, which should already be
 installed alongside `Node.js <https://nodejs.org/>`_.
 
+Front-end Dependencies
+~~~~~~~~~~~~~~~~~~~~~~
+
+Our team maintains a few dependencies that we serve on Bedrock's front-end.
+
+- `@mozilla-protocol/core <https://www.npmjs.com/package/@mozilla-protocol/core>`_: Bedrock's primary design system
+- `@mozmeao/trafficcop <https://www.npmjs.com/package/@mozmeao/trafficcop>`_: Used for A/B testing page variants
+- `@mozmeao/cookie-helper <https://www.npmjs.com/package/@mozmeao/cookie-helper>`_: A complete cookies reader/writer framework
+
+Because they are all published on NPM, install the packages and keep up-to-date with the latest version of each dependency by running an ``npm install``. For further documentation on installing NPM packages, `check out the official documentation <https://docs.npmjs.com/cli/v6/commands/npm-install>`_.
+
+
+
 Asset Management and Bundling
 -----------------------------
 
