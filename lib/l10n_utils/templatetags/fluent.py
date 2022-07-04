@@ -4,12 +4,13 @@
 
 import jinja2
 from django_jinja import library
+from markupsafe import Markup
 
 from lib.l10n_utils import fluent
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def ftl(ctx, message_id, fallback=None, **kwargs):
     """Return the translated string.
 
@@ -23,11 +24,11 @@ def ftl(ctx, message_id, fallback=None, **kwargs):
 
         <p>{{ ftl('greeting', name='The Dude') }}
     """
-    return jinja2.Markup(fluent.translate(ctx["fluent_l10n"], message_id, fallback, **kwargs))
+    return Markup(fluent.translate(ctx["fluent_l10n"], message_id, fallback, **kwargs))
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def ftl_has_messages(ctx, *message_ids, require_all=True):
     """Return True if the current translation has all of the message IDs."""
     return fluent.ftl_has_messages(ctx["fluent_l10n"], *message_ids, require_all=require_all)

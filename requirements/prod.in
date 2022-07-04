@@ -14,8 +14,8 @@ django-cors-headers==3.11.0
 django-crum==0.7.9
 django-csp==3.7
 django-extensions==3.1.5
-django-jinja-markdown==1.0.1
-django-jinja==2.10.0
+django-jinja-markdown==1.1
+django-jinja==2.10.2
 django-jsonview==2.0.0
 django-memoize==2.3.1
 django-mozilla-product-details==1.0.3
@@ -31,9 +31,11 @@ greenlet==0.4.17  # Pinned for stability but subdep of Meinheld
 gunicorn==19.7.1
 honcho==1.1.0
 html5lib==1.1
-lxml==4.9.0  # Needed as a top-level dep so that it's available for BeautifulSoup
+jinja2==3.1.2  # Moved to top-level dep to control its upgrade, to avoid breaking changes later if glean-parser updates it
+lxml==4.9.0  # Needed as a top-level dep so that it's available for BeautifulSoup, which doesn't explicitly pull it in
 Markdown==3.3.6
 https://github.com/mozmeao/mdx_outline/archive/refs/tags/python-3.9-compat.tar.gz#egg=mdx_outline
+markupsafe==2.0.1
 meinheld==1.0.2
 newrelic==7.12.0.176
 phonenumberslite==8.12.49

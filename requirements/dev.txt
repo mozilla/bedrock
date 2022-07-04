@@ -365,13 +365,15 @@ django-extensions==3.1.5 \
     --hash=sha256:28e1e1bf49f0e00307ba574d645b0af3564c981a6dfc87209d48cb98f77d0b1a \
     --hash=sha256:9238b9e016bb0009d621e05cf56ea8ce5cce9b32e91ad2026996a7377ca28069
     # via -r requirements/prod.txt
-django-jinja==2.10.0 \
-    --hash=sha256:ae6a3fdf1ffa7a9ef6fd2f0a59c1a68c96b29f7f00f5166375658ef392f1ed32 \
-    --hash=sha256:cce084eaf0be8a89f0955cde34cf33da7faaf6c68d05c076eda6fcd98481264c
-    # via -r requirements/prod.txt
-django-jinja-markdown==1.0.1 \
-    --hash=sha256:233dcde5d6895416f5613e4ca030e88f18a163e4b676e7aa815d191754f53085 \
-    --hash=sha256:d41db694bbf3085b026df227428427b859478a2846b55088429e3ccc7115c0c5
+django-jinja==2.10.2 \
+    --hash=sha256:bfdfbb55c1f5a679d69ad575d550c4707d386634009152efe014089f3c4d1412 \
+    --hash=sha256:dd003ec1c95c0989eb28a538831bced62b1b61da551cb44a5dfd708fcf75589f
+    # via
+    #   -r requirements/prod.txt
+    #   django-jinja-markdown
+django-jinja-markdown==1.1 \
+    --hash=sha256:07e7235c7e6d8876e8c56016e49c2673882ff075ea8dec5a78a400775e8095bf \
+    --hash=sha256:8f41e7e722f2ef6d489d1768e45883f48a5f4e89ac0b34bb44d819d3c7d4a359
     # via -r requirements/prod.txt
 django-jsonview==2.0.0 \
     --hash=sha256:1871983f6c7ab0bec1bad3249b06ce64c47d3bed57cd190f87e5acaf65722ebb \
@@ -488,12 +490,13 @@ isort==5.10.1 \
     --hash=sha256:6f62d78e2f89b4500b080fe3a81690850cd254227f27f75c3a0c491a1f351ba7 \
     --hash=sha256:e8443a5e7a020e9d7f97f1d7d9cd17c88bcb3bc7e218bf9cf5095fe550be2951
     # via -r requirements/dev.in
-jinja2==3.0.3 \
-    --hash=sha256:077ce6014f7b40d03b47d1f1ca4b0fc8328a692bd284016f806ed0eaca390ad8 \
-    --hash=sha256:611bb273cd68f3b993fabdc4064fc858c5b47a973cb5aa7999ec1ba405c87cd7
+jinja2==3.1.2 \
+    --hash=sha256:31351a702a408a9e7595a8fc6150fc3f43bb6bf7e319770cbc0db9df9437e852 \
+    --hash=sha256:6088930bfe239f0e6710546ab9c19c9ef35e29792895fed6e6e31a023a182a61
     # via
     #   -r requirements/prod.txt
     #   django-jinja
+    #   django-jinja-markdown
     #   glean-parser
 jmespath==0.10.0 \
     --hash=sha256:b85d0567b8666149a93172712e68920734333c0ce7e89b78b3e987f71e5ed4f9 \
@@ -655,6 +658,7 @@ markupsafe==2.0.1 \
     --hash=sha256:fa130dd50c57d53368c9d59395cb5526eda596d3ffe36666cd81a44d56e48872
     # via
     #   -r requirements/prod.txt
+    #   django-jinja-markdown
     #   glean-parser
     #   jinja2
 mccabe==0.6.1 \

@@ -7,6 +7,7 @@ from django.template.loader import render_to_string
 
 import jinja2
 from django_jinja import library
+from markupsafe import Markup
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.firefox.firefox_details import (
@@ -111,7 +112,7 @@ def ios_builds(channel, builds=None):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def download_firefox(
     ctx,
     channel="release",
@@ -188,11 +189,11 @@ def download_firefox(
     }
 
     html = render_to_string("firefox/includes/download-button.html", data, request=ctx["request"])
-    return jinja2.Markup(html)
+    return Markup(html)
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def download_firefox_thanks(ctx, dom_id=None, locale=None, alt_copy=None, button_class=None, locale_in_transition=False, download_location=None):
     """Output a simple "download firefox" button that only points to /download/thanks/
 
@@ -243,11 +244,11 @@ def download_firefox_thanks(ctx, dom_id=None, locale=None, alt_copy=None, button
     }
 
     html = render_to_string("firefox/includes/download-button-thanks.html", data, request=ctx["request"])
-    return jinja2.Markup(html)
+    return Markup(html)
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def download_firefox_desktop_list(ctx, channel="release", dom_id=None, locale=None, force_full_installer=False):
     """
     Return a HTML list of platform download links for Firefox desktop
@@ -291,7 +292,7 @@ def download_firefox_desktop_list(ctx, channel="release", dom_id=None, locale=No
     }
 
     html = render_to_string("firefox/includes/download-list.html", data, request=ctx["request"])
-    return jinja2.Markup(html)
+    return Markup(html)
 
 
 @library.global_function

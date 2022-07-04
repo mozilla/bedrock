@@ -5,7 +5,7 @@
 from django.db import models
 from django.db.utils import DatabaseError
 
-from jinja2 import Markup
+from markupsafe import Markup
 from sentry_sdk import capture_exception
 
 from bedrock.pocketfeed.api import complete_articles_data, get_articles_data

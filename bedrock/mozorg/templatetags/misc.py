@@ -21,6 +21,7 @@ from django.utils.encoding import smart_str
 import bleach
 import jinja2
 from django_jinja import library
+from markupsafe import Markup
 
 from bedrock.base.templatetags.helpers import static
 from bedrock.firefox.firefox_details import firefox_ios
@@ -67,7 +68,7 @@ def l10n_img_file_name(ctx, url):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def l10n_img(ctx, url):
     """Output the url to a localized image.
 
@@ -107,7 +108,7 @@ def l10n_img(ctx, url):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def l10n_css(ctx):
     """
     Output the URL to a locale-specific stylesheet if exists.
@@ -144,7 +145,7 @@ def l10n_css(ctx):
     else:
         markup = ""
 
-    return jinja2.Markup(markup)
+    return Markup(markup)
 
 
 @library.global_function
@@ -156,7 +157,7 @@ def field_with_attrs(bfield, **kwargs):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def platform_img(ctx, url, optional_attributes=None):
     optional_attributes = optional_attributes or {}
     img_urls = {}
@@ -193,11 +194,11 @@ def platform_img(ctx, url, optional_attributes=None):
         "</noscript>"
     ).format(attrs=attrs, win_src=img_attrs["data-src-windows"])
 
-    return jinja2.Markup(markup)
+    return Markup(markup)
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def high_res_img(ctx, url, optional_attributes=None):
     if optional_attributes and optional_attributes.pop("l10n", False) is True:
         url = _strip_img_prefix(url)
@@ -219,11 +220,11 @@ def high_res_img(ctx, url, optional_attributes=None):
     # Use native srcset attribute for high res images
     markup = f'<img class="{class_name}" src="{url}" srcset="{url_high_res} 1.5x"{attrs}>'
 
-    return jinja2.Markup(markup)
+    return Markup(markup)
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def video(ctx, *args, **kwargs):
     """
     HTML5 Video tag helper.
@@ -275,11 +276,11 @@ def video(ctx, *args, **kwargs):
     data.update(**kwargs)
     data.update(filetypes=filetypes, mime=mime, videos=videos)
 
-    return jinja2.Markup(render_to_string("mozorg/videotag.html", data, request=ctx["request"]))
+    return Markup(render_to_string("mozorg/videotag.html", data, request=ctx["request"]))
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def press_blog_url(ctx):
     """Output a link to the press blog taking locales into account.
 
@@ -316,7 +317,7 @@ def press_blog_url(ctx):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def donate_url(ctx, source=""):
     """Output a donation link to the donation page formatted using settings.DONATE_PARAMS
 
@@ -360,7 +361,7 @@ def donate_url(ctx, source=""):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def firefox_twitter_url(ctx):
     """Output a link to Twitter taking locales into account.
 
@@ -397,7 +398,7 @@ def firefox_twitter_url(ctx):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def mozilla_twitter_url(ctx):
     """Output a link to Twitter taking locales into account.
 
@@ -430,7 +431,7 @@ def mozilla_twitter_url(ctx):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def mozilla_instagram_url(ctx):
     """Output a link to Instagram taking locales into account.
 
@@ -495,7 +496,7 @@ def absolute_url(url):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def firefox_ios_url(ctx, ct_param=None):
     """
     Output a link to the Firefox for iOS download page on the Apple App Store
@@ -585,10 +586,10 @@ def bleach_tags(text):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def csrf(context):
     """Equivalent of Django's ``{% crsf_token %}``."""
-    return jinja2.Markup(CsrfTokenNode().render(context))
+    return Markup(CsrfTokenNode().render(context))
 
 
 @library.filter
@@ -616,11 +617,11 @@ def datetime(t, fmt=None):
 @library.filter
 def ifeq(a, b, text):
     """Return ``text`` if ``a == b``."""
-    return jinja2.Markup(text if a == b else "")
+    return Markup(text if a == b else "")
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def app_store_url(ctx, product):
     """Returns a localised app store URL for a given product"""
     base_url = getattr(settings, f"APPLE_APPSTORE_{product.upper()}_LINK")
@@ -633,7 +634,7 @@ def app_store_url(ctx, product):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def play_store_url(ctx, product):
     """Returns a localised play store URL for a given product"""
     base_url = getattr(settings, f"GOOGLE_PLAY_{product.upper()}_LINK")
@@ -641,7 +642,7 @@ def play_store_url(ctx, product):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def structured_data_id(ctx, id, domain=None):
     """
     Returns an identifier for a structured data object based on
@@ -658,7 +659,7 @@ def structured_data_id(ctx, id, domain=None):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def lang_short(ctx):
     """Returns a shortened locale code e.g. en."""
     locale = getattr(ctx["request"], "locale", "en-US")
@@ -693,7 +694,7 @@ def _get_adjust_link(adjust_url, app_store_url, google_play_url, redirect, local
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def firefox_adjust_url(ctx, redirect, adgroup, creative=None):
     """
     Return an adjust.com link for Firefox on mobile.
@@ -715,7 +716,7 @@ def firefox_adjust_url(ctx, redirect, adgroup, creative=None):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def focus_adjust_url(ctx, redirect, adgroup, creative=None):
     """
     Return an adjust.com link for Focus/Klar on mobile.
@@ -743,7 +744,7 @@ def focus_adjust_url(ctx, redirect, adgroup, creative=None):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def pocket_adjust_url(ctx, redirect, adgroup, creative=None):
     """
     Return an adjust.com link for Pocket on mobile.
@@ -765,7 +766,7 @@ def pocket_adjust_url(ctx, redirect, adgroup, creative=None):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def lockwise_adjust_url(ctx, redirect, adgroup, creative=None):
     """
     Return an adjust.com link for Lockwise on mobile.
@@ -825,11 +826,11 @@ def _fxa_product_button(
 
     markup = f'<a href="{href}" data-action="{settings.FXA_ENDPOINT}" class="{css_class}" {attrs}>' f"{button_text}" f"</a>"
 
-    return jinja2.Markup(markup)
+    return Markup(markup)
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def pocket_fxa_button(
     ctx, entrypoint, button_text, class_name=None, is_button_class=True, include_metrics=True, optional_parameters=None, optional_attributes=None
 ):
@@ -851,7 +852,7 @@ def pocket_fxa_button(
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def monitor_fxa_button(
     ctx, entrypoint, button_text, class_name=None, is_button_class=True, include_metrics=True, optional_parameters=None, optional_attributes=None
 ):
@@ -873,7 +874,7 @@ def monitor_fxa_button(
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def relay_fxa_button(
     ctx, entrypoint, button_text, class_name=None, is_button_class=True, include_metrics=True, optional_parameters=None, optional_attributes=None
 ):
@@ -895,7 +896,7 @@ def relay_fxa_button(
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def fxa_link_fragment(ctx, entrypoint, action="signup", optional_parameters=None):
     """
     Returns `href` attribute as a string fragment. This is useful for inline links
@@ -919,11 +920,11 @@ def fxa_link_fragment(ctx, entrypoint, action="signup", optional_parameters=None
 
     markup = f'href="{fxa_url}"'
 
-    return jinja2.Markup(markup)
+    return Markup(markup)
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def fxa_button(
     ctx,
     entrypoint,
