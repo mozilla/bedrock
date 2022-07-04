@@ -48,16 +48,6 @@ function getElementAttributes(e) {
         return;
     }
 
-    const newTab = e.metaKey || e.ctrlKey;
-    const delayClick =
-        el.nodeName === 'A' &&
-        el.className.indexOf('js-glean-delay-click') !== -1 &&
-        !newTab;
-
-    if (delayClick) {
-        e.preventDefault();
-    }
-
     // Check all link and button elements for data attributes.
     if (el.nodeName === 'A' || el.nodeName === 'BUTTON') {
         const ctaText = el.getAttribute('data-cta-text');
@@ -98,12 +88,6 @@ function getElementAttributes(e) {
                 position: position
             });
         }
-    }
-
-    if (delayClick) {
-        setTimeout(() => {
-            window.location.href = el.href;
-        }, 1000);
     }
 }
 
