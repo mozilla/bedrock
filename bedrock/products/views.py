@@ -40,18 +40,6 @@ def vpn_landing_page(request):
     entrypoint_experiment = request.GET.get("entrypoint_experiment", None)
     entrypoint_variation = request.GET.get("entrypoint_variation", None)
 
-    # ensure experiment parameters matches pre-defined values
-    if entrypoint_variation not in ["1", "2"]:
-        entrypoint_variation = None
-
-    if entrypoint_experiment != "vpn-coupon-promo-banner":
-        entrypoint_experiment = None
-
-    if entrypoint_experiment and entrypoint_variation:
-        template_name = "includes/banners/vpn-coupon-variations/vpn-coupon-promo-{}.html".format(entrypoint_variation)
-    else:
-        template_name = "products/vpn/landing.html"
-
     context = {
         "vpn_available": vpn_available_in_country,
         "available_countries": available_countries,
@@ -60,6 +48,18 @@ def vpn_landing_page(request):
         "connect_devices": settings.VPN_CONNECT_DEVICES,
         "vpn_affiliate_attribution_enabled": vpn_affiliate_attribution_enabled,
     }
+
+    # ensure experiment parameters matches pre-defined values
+    if entrypoint_variation not in ["1", "2"]:
+        entrypoint_variation = None
+
+    if entrypoint_experiment != "vpn-coupon-promo-banner":
+        entrypoint_experiment = None
+
+    if entrypoint_experiment and entrypoint_variation:
+        context["variation_include"] = "includes/banners/vpn-coupon-variations/vpn-coupon-promo-{}.html".format(entrypoint_variation)
+    else:
+        template_name = "products/vpn/landing.html"
 
     return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
 
