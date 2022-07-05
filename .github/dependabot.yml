@@ -4,7 +4,7 @@ updates:
     directory: '/requirements'
     schedule:
       interval: weekly
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 15
     labels:
       - Backend
       - dependencies
@@ -12,7 +12,7 @@ updates:
     directory: '/'
     schedule:
       interval: weekly
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 15
     labels:
       - Backend
       - dependencies
