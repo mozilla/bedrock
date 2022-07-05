@@ -27,28 +27,6 @@ if (typeof window.Mozilla === 'undefined') {
     Client.FxALastSupported = 60;
 
     /**
-     * Account services OAuth client ID table.
-     * https://docs.telemetry.mozilla.org/datasets/fxa_metrics/attribution.html#service-attribution
-     */
-    Client.FxaServices = {
-        'amo-web': 'a4907de5fa9d78fc',
-        'fenix-sync': 'a2270f727f45f648',
-        'firefox-addons': '3a1f53aabe17ba32',
-        'firefox-lockwise-android': 'e7ce535d93522896',
-        'firefox-lockwise-ios': '98adfa37698f255b',
-        'firefox-monitor': '802d56ef2a9af9fa',
-        'firefox-notes-android': '7f368c6886429f19',
-        'firefox-notes-desktop': 'a3dbd8c5a6fd93e2',
-        'firefox-screenshots': '5e75409a5a3f096d',
-        'firefox-send-android': '20f7931c9054d833',
-        'firefox-send-web': '1f30e32975ae5112',
-        'fxa-content': 'ea3ca969f8c6bb0d',
-        'mozilla-email-preferences': 'c40f32fd2938f0b6',
-        'pocket-mobile': '7377719276ad44ee',
-        'pocket-web': '749818d3f2e7857f'
-    };
-
-    /**
      * Detect whether the user's browser is Firefox on any platform. This includes WebKit-based Firefox for iOS.
      *
      * @private
@@ -102,21 +80,6 @@ if (typeof window.Mozilla === 'undefined') {
         ua = ua || navigator.userAgent;
 
         return /FxiOS/.test(ua);
-    };
-
-    /**
-     * Detect whether the user's browser is the Browser app on Firefox OS.
-     *
-     * @private
-     * @param  {String} ua - browser's user agent string, navigator.userAgent is used if not specified
-     * @param  {String} pf - browser's platform name, navigator.platform is used if not specified
-     * @return {Boolean} result
-     */
-    Client._isFirefoxFxOS = function (ua, pf) {
-        ua = ua || navigator.userAgent;
-        pf = pf === '' ? '' : pf || navigator.platform;
-
-        return /Firefox/.test(ua) && pf === '';
     };
 
     /**
@@ -262,73 +225,6 @@ if (typeof window.Mozilla === 'undefined') {
         }
 
         return isUpToDate;
-    };
-
-    /**
-     * Determine if a client version number is at least a specific number of major releases old.
-     * @param {String} clientVer - Client version number "58.0a1", "56.0".
-     * @param {Number} majorVer - Number of major versions old a client considered 'out of date' should be.
-     * @param {String} latestVer - Current latest release version number.
-     * @return {Boolean}
-     */
-    Client.isFirefoxOutOfDate = function (clientVer, majorVer, latestVer) {
-        var clientVersion = parseInt(clientVer, 10);
-        var latestVersion =
-            typeof latestVer === 'undefined'
-                ? parseInt(
-                      document.documentElement.getAttribute(
-                          'data-latest-firefox'
-                      ),
-                      10
-                  )
-                : parseInt(latestVer, 10);
-        var majorVersions = Math.max(parseInt(majorVer, 10), 1); // majorVersions must be at least 1.
-
-        if (
-            isNaN(latestVersion) ||
-            isNaN(clientVersion) ||
-            isNaN(majorVersions)
-        ) {
-            return false;
-        }
-
-        return clientVersion <= latestVersion - majorVersions;
-    };
-
-    /**
-     * Determine if a /whatsnew or /firstrun page is at least a specific number of major releases old.
-     * @param {Number} majorVer - Number of major versions old a client considered 'out of date' should be.
-     * @param {String} pathName - Version number URL pathname e.g. '/firefox/56.0.1/'.
-     * @param {String} latestVer - Current latest release version number.
-     * @return {Boolean}
-     */
-    Client.isFirefoxURLOutOfDate = function (majorVer, pathName, latestVer) {
-        var path =
-            typeof pathName === 'undefined'
-                ? window.location.pathname
-                : pathName;
-        var urlVersion = /firefox\/(\d+(?:\.\d+)?\.\da?\d?)/.exec(path);
-        var version = urlVersion ? parseInt(urlVersion[1], 10) : null;
-        var latestVersion =
-            typeof latestVer === 'undefined'
-                ? parseInt(
-                      document.documentElement.getAttribute(
-                          'data-latest-firefox'
-                      ),
-                      10
-                  )
-                : parseInt(latestVer, 10);
-        var majorVersions = Math.max(parseInt(majorVer, 10), 1); // majorVersions must be at least 1.
-
-        if (
-            version &&
-            latestVersion &&
-            version <= latestVersion - majorVersions
-        ) {
-            return true;
-        }
-
-        return false;
     };
 
     /**
@@ -634,135 +530,18 @@ if (typeof window.Mozilla === 'undefined') {
         var timer = window.setTimeout(returnFxaDetails, 400);
     };
 
-    Client.getFxaConnections = function (callback) {
-        // Fire the callback function immediately if FxaDetails are already defined
-        if (Client.FxaConnections) {
-            callback(Client.FxaConnections);
-            return;
-        }
-
-        // Set up the object with default values of false
-        var details = {
-            setup: false,
-            unsupported: false,
-            firefox: false,
-            numOtherDevices: false,
-            numDevicesByType: {},
-            accountServices: {}
-        };
-
-        var userVer = parseFloat(Client._getFirefoxVersion());
-
-        if (!Client._isFirefoxDesktop()) {
-            // UITour not supported
-            details.unsupported = true;
-            returnFxaConnections();
-            return;
-        }
-
-        details.firefox = true;
-
-        // fxaConnections API not supported
-        if (userVer < 74) {
-            details.unsupported = true;
-            returnFxaConnections();
-            return;
-        }
-
-        // callbackID to make sure we're responding to our request
-        var callbackID = Math.random()
-            .toString(36)
-            .replace(/[^a-z]+/g, '');
-
-        // UITour API response event handler for 'fxaConnections', checks for callbackID
-        var listener = function (event) {
-            if (
-                !event.detail ||
-                !event.detail.data ||
-                event.detail.callbackID !== callbackID
-            ) {
-                return;
-            }
-
-            var config = event.detail.data;
-
-            // Clear the timeout and remove the event listener.
-            window.clearTimeout(timer);
-            document.removeEventListener('mozUITourResponse', listener, false);
-
-            // Account signed-in state
-            details.setup = config.setup;
-
-            // Additional number of devices authenticated using the same account.
-            details.numOtherDevices = config.numOtherDevices;
-
-            // Additional devices types (we're mainly interested in mobile and desktop).
-            for (var device in config.numDevicesByType) {
-                if (
-                    Object.prototype.hasOwnProperty.call(
-                        config.numDevicesByType,
-                        device
-                    )
-                ) {
-                    details.numDevicesByType[device] =
-                        config.numDevicesByType[device];
-                }
-            }
-
-            // Account services (recently accessed).
-            for (var service in config.accountServices) {
-                if (
-                    Object.prototype.hasOwnProperty.call(
-                        config.accountServices,
-                        service
-                    )
-                ) {
-                    details.accountServices[service] =
-                        config.accountServices[service];
-                }
-            }
-
-            returnFxaConnections();
-        };
-
-        // Trigger the UITour API and start listening for the reponse
-        document.addEventListener('mozUITourResponse', listener, false);
-        document.dispatchEvent(
-            new CustomEvent('mozUITour', {
-                bubbles: true,
-                detail: {
-                    action: 'getConfiguration',
-                    data: {
-                        configuration: 'fxaConnections',
-                        callbackID: callbackID
-                    }
-                }
-            })
-        );
-
-        function returnFxaConnections() {
-            window.clearTimeout(timer);
-            Client.FxaConnections = details;
-            callback(details);
-        }
-
-        // Fire the fallback function should the remote API call be unreasonably slow.
-        var timer = window.setTimeout(returnFxaConnections, 2000);
-    };
-
     // Append static properties for faster access
     Client.isFirefox = Client._isFirefox();
     Client.isFirefoxDesktop = Client._isFirefoxDesktop();
     Client.isFirefoxAndroid = Client._isFirefoxAndroid();
     Client.isFirefoxiOS = Client._isFirefoxiOS();
-    Client.isFirefoxFxOS = Client._isFirefoxFxOS();
     Client.isLikeFirefox = Client._isLikeFirefox();
     Client.FirefoxVersion = Client._getFirefoxVersion();
     Client.FirefoxMajorVersion = Client._getFirefoxMajorVersion();
 
     // Append platform info as well for convenience
     Client.platform = window.site.platform;
-    Client.isMobile = /^(android|ios|fxos)$/.test(Client.platform);
+    Client.isMobile = /^(android|ios)$/.test(Client.platform);
     Client.isDesktop = !Client.isMobile;
 
     window.Mozilla.Client = Client;
