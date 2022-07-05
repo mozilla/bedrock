@@ -67,32 +67,6 @@ if (typeof window.Mozilla.Analytics === 'undefined') {
             .getAttribute('data-latest-firefox');
     };
 
-    /** Returns true if user is running Windows 10 in S mode.
-     * @param {String} ua - User Agent string.
-     * @return {Boolean}.
-     */
-    analytics.isWin10S = function (ua) {
-        ua = ua || navigator.userAgent;
-
-        var isEdge = ua.indexOf('Edge') > -1;
-
-        if (!isEdge) {
-            return false;
-        }
-
-        try {
-            var mode = JSON.parse(
-                window.external.getHostEnvironmentValue('os-mode')
-            );
-            if (mode && mode['os-mode'] === '2') {
-                return true;
-            }
-            return false;
-        } catch (e) {
-            return false;
-        }
-    };
-
     analytics.getAMOExperiment = function (params) {
         var allowedExperiment = /^\d{8}_amo_.[\w/.%-]{1,50}$/; // should match the format YYYYMMDD_amo_experiment_name.
         var allowedVariation = /^[\w/.%-]{1,50}$/; // allow alpha numeric & common URL encoded chars.
