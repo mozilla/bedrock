@@ -1,0 +1,101 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<aside class="c-banner hide-from-legacy-ie" id="vpn-coupon-promo-banner">
+  <div class="c-banner-inner">
+    <div class="c-coupon-wrapper">
+      <button type="button" class="c-banner-close"><span>{{ ftl('ui-close') }}</span></button>
+      {% if LANG == 'de' %}
+      <div class="c-coupon-title-wrapper">
+
+        <h2 class="c-coupon-title">
+          Sicher durchs Netz
+        </h2>
+      </div>
+      <div class="c-coupon-content-wrapper">
+        <h3 class="c-coupon-subtitle">
+          Mit 20 % Rabatt aufs Jahresabo!
+        </h3>
+        <p class="c-coupon-text">
+          Nutze jetzt den code <span class="c-coupon-code">VPN20</span> beim checkout
+        </p>
+        <div class="c-cta">
+          {% set link_text = 'Jetzt sparen' %}
+          {{ vpn_product_referral_link(
+              referral_id='vpn-coupon-promo-banner',
+              link_text=link_text,
+              page_anchor='#pricing',
+              class_name='mzp-t-secondary',
+              optional_attributes= {
+                  'data-cta-text' : 'Jetzt sparen',
+                  'data-cta-type' : 'link',
+                  'data-cta-position' : 'banner',
+              }
+          ) }}
+          </div>
+      </div>
+
+      {% elif LANG == 'fr' %}
+        <div class="c-coupon-title-wrapper">
+          <h2 class="c-coupon-title">
+            Voyagez  en toute sécurité
+          </h2>
+        </div>
+        <div class="c-coupon-content-wrapper">
+          <h3 class="c-coupon-subtitle">
+            20% sur l’abonnement d’un an
+          </h3>
+          <p class="c-coupon-text">
+            Entrez le code <span class="c-coupon-code">VPN20</span> au paiement
+          </p>
+          <div class="c-cta">
+            {% set link_text = 'J’en profite' %}
+            {{ vpn_product_referral_link(
+                referral_id='vpn-coupon-promo-banner',
+                link_text=link_text,
+                page_anchor='#pricing',
+                class_name='mzp-t-secondary',
+                optional_attributes= {
+                    'data-cta-text' : 'J’en profite',
+                    'data-cta-type' : 'link',
+                    'data-cta-position' : 'banner',
+                }
+            ) }}
+          </div>
+        </div>
+      {% else %}
+
+        <div class="c-coupon-title-wrapper">
+          <h2 class="c-coupon-title">
+            Safe travels
+          </h2>
+        </div>
+        <div class="c-coupon-content-wrapper">
+          <h3 class="c-coupon-subtitle">
+            20% off yearly plan
+          </h3>
+          <p class="c-coupon-text">
+            Use code <span class="c-coupon-code">VPN20</span> at checkout
+          </p>
+          <div class="c-cta">
+            {% set link_text = 'Try now' %}
+            {{ vpn_product_referral_link(
+                referral_id='vpn-coupon-promo-banner',
+                link_text=link_text,
+                page_anchor='#pricing',
+                class_name='mzp-t-secondary',
+                optional_attributes= {
+                    'data-cta-text' : 'Try now',
+                    'data-cta-type' : 'link',
+                    'data-cta-position' : 'banner',
+                }
+            ) }}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</aside>

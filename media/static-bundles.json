@@ -1383,7 +1383,8 @@
     {
       "files": [
         "js/base/banners/mozilla-banner.js",
-      "js/base/banners/vpn-coupon-promo-init.js"
+        "js/products/vpn/coupon-promo-experiment.js",
+        "js/base/banners/vpn-coupon-promo-init.js"
       ],
       "name": "vpn-coupon-promo-banner"
     },

@@ -6,9 +6,19 @@ from django.urls import path
 
 from bedrock.mozorg.util import page
 from bedrock.products import views
+from bedrock.utils.views import VariationTemplateView
 
 urlpatterns = (
-    path("vpn/", views.vpn_landing_page, name="products.vpn.landing"),
+    path(
+        "vpn/",
+        VariationTemplateView.as_view(
+            template_name="/products/vpn/landing.html",
+            template_name_variations=["1", "2"],
+            variation_locales=["en-US", "en-CA", "en-GB", "de", "fr"],
+        ),
+        views.vpn_landing_page,
+        name="products.vpn.landing",
+    ),
     path("vpn/invite/", views.vpn_invite_page, name="products.vpn.invite"),
     path("vpn/invite/waitlist/", views.vpn_invite_waitlist, name="products.vpn.invite.waitlist"),
     # Pages that do not use allowed_countries or default_monthly_price contexts

@@ -28,7 +28,7 @@
 
   {% if show_vpn_coupon_promo_banner %}
     {{ css_bundle('vpn-coupon-promo-banner') }}
-{% endif %}
+  {% endif %}
 
 {% endblock %}
 
@@ -54,7 +54,7 @@
 {% block content %}
 {% block page_banner %}
   {% if show_vpn_coupon_promo_banner %}
-    {% include 'includes/banners/vpn-coupon-promo.html' %}
+    {% include 'includes/banners/vpn-coupon-variations/vpn-no-coupon-promo.html' %}
   {% endif %}
 {% endblock %}
 <main>

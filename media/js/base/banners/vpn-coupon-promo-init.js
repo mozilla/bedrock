@@ -8,7 +8,7 @@
     'use strict';
 
     function onLoad() {
-        window.Mozilla.Banner.init('vpn-coupon-promo-banner', true);
+        window.Mozilla.Banner.init('vpn-coupon-promo-banner');
     }
 
     window.Mozilla.run(onLoad);

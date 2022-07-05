@@ -16,6 +16,7 @@ $brand-theme: 'mozilla';
     align-items: center;
     justify-content: space-between;
     max-width: 100%;
+    position: relative;
 
     h2,
     h3,
@@ -32,6 +33,7 @@ $brand-theme: 'mozilla';
         border-top-right-radius: 100px;
         width: 25%;
         position: relative;
+        height: $spacing-xl;
 
         .c-coupon-title {
             @include text-title-xs;
@@ -58,6 +60,11 @@ $brand-theme: 'mozilla';
         justify-content: space-evenly;
         width: 68%;
 
+        // Class for the banner without the promo code title
+        .c-coupon-title {
+            @include text-title-sm;
+        }
+
         .c-coupon-subtitle {
             @include text-title-2xs;
         }
@@ -83,6 +90,47 @@ $brand-theme: 'mozilla';
                     background-color: $color-marketing-gray-20;
                 }
             }
+        }
+    }
+
+    // Close button
+    .c-banner-close {
+        @include background-size(20px 20px);
+        @include bidi((
+            (right, $spacing-sm, auto),
+            (left, auto, $spacing-sm),
+        ));
+        @include image-replaced;
+        background: transparent url('#{$image-path}/icons/close-white.svg') center center no-repeat;
+        border: none;
+        cursor: pointer;
+        display: none;
+        height: 42px;
+        min-width: 0;
+        padding: 0;
+        position: absolute;
+        top: $spacing-sm;
+        width: 42px;
+        z-index: 1;
+
+        &:hover,
+        &:focus {
+            @include transition(transform 100ms ease-in-out);
+            @include transform(scale(1.1));
+        }
+
+        &:focus {
+            outline: 1px dotted $color-white;
+        }
+
+        // hide the 'Close' text
+        span {
+            @include visually-hidden;
+        }
+
+        // only display when JS is available
+        .js & {
+            display: block;
         }
     }
 }
