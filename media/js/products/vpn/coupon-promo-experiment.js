@@ -13,13 +13,17 @@
     var TrafficCop = require('@mozmeao/trafficcop');
     var href = window.location.href;
     var initTrafficCop = function () {
-        if (href.indexOf('v=') !== -1) {
-            if (href.indexOf('v=1') !== -1) {
+        if (
+            href.indexOf(
+                'entrypoint_experiment=vpn-coupon-promo-banner&entrypoint_variation='
+            ) !== -1
+        ) {
+            if (href.indexOf('entrypoint_variation=1') !== -1) {
                 window.dataLayer.push({
                     'data-ex-variant': 'v1-coupon-promo',
                     'data-ex-name': 'vpn-coupon-promo-banner'
                 });
-            } else if (href.indexOf('v=2') !== -1) {
+            } else if (href.indexOf('entrypoint_variation=2') !== -1) {
                 window.dataLayer.push({
                     'data-ex-variant': 'v2-no-coupon-promo',
                     'data-ex-name': 'vpn-coupon-promo-banner'
@@ -30,8 +34,8 @@
                 id: 'exp-vpn-coupon-promo-banner',
                 cookieExpires: 0,
                 variations: {
-                    'v=1': 50,
-                    'v=2': 50
+                    'entrypoint_experiment=vpn-coupon-promo-banner&entrypoint_variation=1': 50,
+                    'entrypoint_experiment=vpn-coupon-promo-banner&entrypoint_variation=2': 50
                 }
             });
             cop.init();
