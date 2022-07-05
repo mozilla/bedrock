@@ -22,8 +22,7 @@
             pageVersion: analytics.getPageVersion(),
             // permitted for www.mozill.org, will always return false on other domains
             testPilotUser: 'testpilotAddon' in navigator ? 'true' : 'false',
-            releaseWindowVersion: analytics.getLatestFxVersion(),
-            win10SUser: analytics.isWin10S()
+            releaseWindowVersion: analytics.getLatestFxVersion()
         };
 
         dataLayer.push(dataLayerCore);
