@@ -95,8 +95,6 @@
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('firefox_new_download') }}
-
   {% if show_firefox_app_store_banner %}
     {{ js_bundle('firefox-app-store-banner') }}
   {% endif %}

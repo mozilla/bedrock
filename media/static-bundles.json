@@ -1261,13 +1261,6 @@
     },
     {
       "files": [
-        "protocol/js/protocol-modal.js",
-        "js/firefox/new/basic/download.js"
-      ],
-      "name": "firefox_new_download"
-    },
-    {
-      "files": [
         "protocol/js/protocol-sticky-promo.js",
         "js/firefox/sticky-promo.js",
         "js/firefox/new/desktop/download.js"
