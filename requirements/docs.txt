@@ -157,9 +157,9 @@ mdurl==0.1.0 \
     --hash=sha256:40654d6dcb8d21501ed13c21cc0bd6fc42ff07ceb8be30029e5ae63ebc2ecfda \
     --hash=sha256:94873a969008ee48880fb21bad7de0349fef529f3be178969af5817239e9b990
     # via markdown-it-py
-myst-parser==0.17.2 \
-    --hash=sha256:1635ce3c18965a528d6de980f989ff64d6a1effb482e1f611b1bfb79e38f3d98 \
-    --hash=sha256:4c076d649e066f9f5c7c661bae2658be1ca06e76b002bb97f02a09398707686c
+myst-parser==0.18.0 \
+    --hash=sha256:4965e51918837c13bf1c6f6fe2c6bddddf193148360fbdaefe743a4981358f6a \
+    --hash=sha256:739a4d96773a8e55a2cacd3941ce46a446ee23dcd6b37e06f73f551ad7821d86
     # via -r requirements/docs.in
 packaging==21.3 \
     --hash=sha256:dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb \
