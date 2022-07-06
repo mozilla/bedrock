@@ -55,7 +55,7 @@
         },
 
         // Madness from https://docs.microsoft.com/microsoft-edge/web-platform/how-to-detect-win11
-        getWindowsVersionCH: function (version) {
+        getWindowsVersionClientHint: function (version) {
             var fullPlatformVersion = version ? version.toString() : '0';
             var majorPlatformVersion = parseInt(
                 fullPlatformVersion.split('.')[0],
@@ -120,7 +120,7 @@
             return 32;
         },
 
-        getArchSizeCH: function (bitness) {
+        getArchSizeClientHint: function (bitness) {
             if (
                 typeof bitness !== 'undefined' &&
                 parseInt(bitness, 10) === 64
@@ -220,7 +220,7 @@
                     if (ua.platformVersion) {
                         if (window.site.platform === 'windows') {
                             window.site.platformVersion =
-                                window.site.getWindowsVersionCH(
+                                window.site.getWindowsVersionClientHint(
                                     ua.platformVersion
                                 );
                         } else {
@@ -233,9 +233,8 @@
                     }
 
                     if (ua.bitness) {
-                        window.site.archSize = window.site.getArchSizeCH(
-                            ua.bitness
-                        );
+                        window.site.archSize =
+                            window.site.getArchSizeClientHint(ua.bitness);
                     }
 
                     updateHTML();
