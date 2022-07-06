@@ -6,8 +6,7 @@
 
 <aside class="c-banner hide-from-legacy-ie" id="vpn-coupon-promo-banner">
   <div class="c-banner-inner">
-    <div class="c-coupon-wrapper">
-      <button type="button" class="c-banner-close"><span>{{ ftl('ui-close') }}</span></button>
+    <div class="c-coupon-wrapper c-no-coupon">
       {% if LANG == 'de' %}
       <div class="c-coupon-title-wrapper">
       </div>
@@ -78,6 +77,7 @@
           </div>
         </div>
       {% endif %}
+      <button type="button" class="c-banner-close"><span>{{ ftl('ui-close') }}</span></button>
     </div>
   </div>
 </aside>

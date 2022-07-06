@@ -17,9 +17,9 @@ $brand-theme: 'mozilla';
     height: 300px;
     position: relative;
 
-    h2,
-    h3,
-    p {
+    .c-coupon-title,
+    .c-coupon-subtitle,
+    .c-coupon-text {
         color: $color-white;
         margin-bottom: 0;
     }
@@ -99,9 +99,15 @@ $brand-theme: 'mozilla';
         }
     }
 
+    &.c-coupon {
+        .c-banner-close {
+            position: absolute;
+        }
+    }
+
     // DESKTOP design
     @media #{$mq-lg} {
-        flex-flow: row wrap;
+        flex-flow: row nowrap;
         align-items: center;
         position: relative;
         max-width: $content-max;
@@ -146,6 +152,71 @@ $brand-theme: 'mozilla';
                 }
             }
         }
+
+        &.c-coupon {
+            .c-close-banner {
+                position: relative;
+            }
+        }
+    }
+
+    // Non-coupon code variation
+    &.c-no-coupon {
+        flex-flow: row nowrap;
+        height: auto;
+        height: 180px;
+
+        .c-coupon-title-wrapper {
+            height: auto;
+            width: 15%;
+            border-radius: 0; // zero-ing out the border radius before adding new properties
+            border-bottom-right-radius: 70%;
+            border-top-right-radius: 70%;
+
+            &::after {
+                height: 80px;
+                width: 80px;
+                top: 30px;
+                left: 30px;
+            }
+        }
+
+        .c-coupon-content-wrapper {
+            padding: 8px 30px;
+            width: 80%;
+            margin-left: 0;
+            height: unset;
+
+            .c-coupon-title {
+                @include text-title-sm;
+            }
+        }
+
+        // Desktop design
+        @media #{$mq-lg} {
+            height: auto;
+
+            .c-coupon-title-wrapper {
+                border-radius: 0;
+                border-bottom-right-radius: 100px;
+                border-top-right-radius: 100px;
+                height: $spacing-xl;
+
+                &::after {
+                    height: 80px;
+                    width: 80px;
+                    top: 5px;
+                    bottom: 0;
+                    left: unset;
+                }
+            }
+
+            .c-coupon-content-wrapper {
+                .c-coupon-title {
+                    @include text-title-md;
+                }
+            }
+        }
     }
 
     // Close button
@@ -157,13 +228,14 @@ $brand-theme: 'mozilla';
         ));
         @include image-replaced;
         background: transparent url('#{$image-path}/icons/close-white.svg') center center no-repeat;
+        align-self: baseline;
         border: none;
         cursor: pointer;
         display: none;
         height: 42px;
+        position: relative;
         min-width: 0;
         padding: 0;
-        position: absolute;
         top: $spacing-sm;
         width: 42px;
         z-index: 1;
