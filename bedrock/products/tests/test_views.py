@@ -11,8 +11,6 @@ from django.test import override_settings
 from django.test.client import RequestFactory
 from django.urls import reverse
 
-import pytest
-
 from bedrock.contentful.constants import (
     CONTENT_CLASSIFICATION_VPN,
     CONTENT_TYPE_PAGE_RESOURCE_CENTER,
@@ -79,58 +77,38 @@ class TestVPNInviteWaitlist(TestCase):
         )
 
 
-@pytest.mark.django_db
-def test_vpn_landing_page_banners_var_1_en():
-    req = RequestFactory().get("/en-US/products/vpn/?entrypoint_experiment=vpn-coupon-promo-banner&entrypoint_variation=1", HTTP_ACCEPT_LANGUAGE="en")
-    req.locale = "en-US"
-    view = views.vpn_landing_page
-    resp = view(req)
-    assert "c-coupon" in str(resp.content)
+@patch.dict(os.environ, {"SWITCH_VPN_COUPON_PROMO_BANNER": "True"})
+class TestVPNLandingPageBanners(TestCase):
+    def _request(self, variation, lang):
+        req = RequestFactory().get(
+            f"/{lang}/products/vpn/?entrypoint_experiment=vpn-coupon-promo-banner&entrypoint_variation={variation}", HTTP_ACCEPT_LANGUAGE=lang
+        )
+        req.locale = lang
+        return views.vpn_landing_page(req)
 
+    def test_vpn_landing_page_banners_var_1_en(self):
+        resp = self._request(1, "en-US")
+        assert "c-coupon" in resp.content.decode()
 
-@pytest.mark.django_db
-def test_vpn_landing_page_banners_var_1_de():
-    req = RequestFactory().get("/de/products/vpn/?entrypoint_experiment=vpn-coupon-promo-banner&entrypoint_variation=1", HTTP_ACCEPT_LANGUAGE="de")
-    req.locale = "de"
-    view = views.vpn_landing_page
-    resp = view(req)
-    assert "c-coupon" in str(resp.content)
+    def test_vpn_landing_page_banners_var_1_de(self):
+        resp = self._request(1, "de")
+        assert "c-coupon" in resp.content.decode()
 
+    def test_vpn_landing_page_banners_var_1_fr(self):
+        resp = self._request(1, "fr")
+        assert "c-coupon" in resp.content.decode()
 
-@pytest.mark.django_db
-def test_vpn_landing_page_banners_var_1_fr():
-    req = RequestFactory().get("/fr/products/vpn/?entrypoint_experiment=vpn-coupon-promo-banner&entrypoint_variation=1", HTTP_ACCEPT_LANGUAGE="fr")
-    req.locale = "fr"
-    view = views.vpn_landing_page
-    resp = view(req)
-    assert "c-coupon" in str(resp.content)
+    def test_vpn_landing_page_banners_var_2_en(self):
+        resp = self._request(2, "en-US")
+        assert "c-no-coupon" in resp.content.decode()
 
+    def test_vpn_landing_page_banners_var_2_de(self):
+        resp = self._request(2, "de")
+        assert "c-no-coupon" in resp.content.decode()
 
-@pytest.mark.django_db
-def test_vpn_landing_page_banners_var_2_en():
-    req = RequestFactory().get("/en-US/products/vpn/?entrypoint_experiment=vpn-coupon-promo-banner&entrypoint_variation=2", HTTP_ACCEPT_LANGUAGE="en")
-    req.locale = "en-US"
-    view = views.vpn_landing_page
-    resp = view(req)
-    assert "c-no-coupon" in str(resp.content)
-
-
-@pytest.mark.django_db
-def test_vpn_landing_page_banners_var_2_de():
-    req = RequestFactory().get("/de/products/vpn/?entrypoint_experiment=vpn-coupon-promo-banner&entrypoint_variation=2", HTTP_ACCEPT_LANGUAGE="de")
-    req.locale = "de"
-    view = views.vpn_landing_page
-    resp = view(req)
-    assert "c-no-coupon" in str(resp.content)
-
-
-@pytest.mark.django_db
-def test_vpn_landing_page_banners_var_2_fr():
-    req = RequestFactory().get("/fr/products/vpn/?entrypoint_experiment=vpn-coupon-promo-banner&entrypoint_variation=2", HTTP_ACCEPT_LANGUAGE="fr")
-    req.locale = "fr"
-    view = views.vpn_landing_page
-    resp = view(req)
-    assert "c-no-coupon" in str(resp.content)
+    def test_vpn_landing_page_banners_var_2_fr(self):
+        resp = self._request(2, "fr")
+        assert "c-no-coupon" in resp.content.decode()
 
 
 @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())

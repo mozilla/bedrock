@@ -14,7 +14,6 @@ $brand-theme: 'mozilla';
     color: $color-white;
     display: flex;
     flex-direction: column;
-    height: 300px;
     position: relative;
 
     .c-coupon-title,
@@ -49,8 +48,8 @@ $brand-theme: 'mozilla';
             background-image: url('/media/img/banners/vpn/white-plane.svg');
             background-repeat: no-repeat;
             background-size: contain;
-            height: 40px;
-            width: 40px;
+            height: 50px;
+            width: 50px;
             top: 10px;
             left: 20px;
         }
@@ -64,6 +63,7 @@ $brand-theme: 'mozilla';
         height: 100%;
         text-align: center;
         padding: $spacing-sm;
+        row-gap: $spacing-xl;
 
         // Class for the banner without the promo code title
         .c-coupon-title {
@@ -105,7 +105,7 @@ $brand-theme: 'mozilla';
         }
     }
 
-    // DESKTOP design
+    // Desktop design
     @media #{$mq-lg} {
         flex-flow: row nowrap;
         align-items: center;
@@ -113,9 +113,7 @@ $brand-theme: 'mozilla';
         height: 100%;
 
         .c-coupon-title-wrapper {
-            border-radius: 0;
-            border-bottom-right-radius: $layout-xl;
-            border-top-right-radius: $layout-xl;
+            border-radius: 0 100px 100px 0;
             width: 22%;
             padding: $spacing-xl;
 
@@ -127,11 +125,10 @@ $brand-theme: 'mozilla';
 
             // White plane icon
             &::after {
-                height: 60px;
-                width: 60px;
+                height: 80px;
+                width: 80px;
                 top: 10px;
-                right: -20px;
-                bottom: 0;
+                right: -35px;
                 left: unset;
             }
         }
@@ -163,21 +160,22 @@ $brand-theme: 'mozilla';
     // Non-coupon code variation
     &.c-no-coupon {
         flex-flow: row nowrap;
+        justify-content: space-between;
         height: auto;
-        height: $layout-2xl;
+
+        // height: $layout-2xl;
 
         .c-coupon-title-wrapper {
             height: auto;
             width: 15%;
-            border-radius: 0; // zero-ing out the border radius before adding new properties
-            border-bottom-right-radius: 70%;
-            border-top-right-radius: 70%;
+            border-radius: 0 70% 70% 0;
 
             &::after {
-                height: 80px;
-                width: 80px;
-                top: 30px;
-                left: 30px;
+                height: 65px;
+                width: 65px;
+                top: 15px;
+                right: -25px;
+                left: unset;
             }
         }
 
@@ -186,6 +184,7 @@ $brand-theme: 'mozilla';
             width: 80%;
             margin-left: 0;
             height: unset;
+            row-gap: $spacing-sm;
 
             .c-coupon-title {
                 @include text-title-sm;
@@ -197,9 +196,7 @@ $brand-theme: 'mozilla';
             height: auto;
 
             .c-coupon-title-wrapper {
-                border-radius: 0;
-                border-bottom-right-radius: $layout-xl;
-                border-top-right-radius: $layout-xl;
+                border-radius: 0 100px 100px 0;
                 height: $spacing-xl;
                 padding: $spacing-lg;
 
@@ -207,18 +204,16 @@ $brand-theme: 'mozilla';
                     height: 80px;
                     width: 80px;
                     top: 5px;
-                    bottom: 0;
-                    left: unset;
+                    right: -30px;
                 }
             }
 
-            .c-coupon-content-wrapper {
-                row-gap: $spacing-sm;
+            // .c-coupon-content-wrapper {
 
-                .c-coupon-title {
-                    @include text-title-sm;
-                }
-            }
+            //     .c-coupon-title {
+            //         @include text-title-sm;
+            //     }
+            // }
         }
     }
 

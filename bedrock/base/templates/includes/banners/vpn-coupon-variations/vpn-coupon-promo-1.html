@@ -4,92 +4,50 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% set de_banner_title = "Sicher durchs Netz" %}
-{% set de_banner_subtitle = "Mit 20 % Rabatt aufs Jahresabo!" %}
-{% set de_banner_text = "Nutze jetzt den code <span class='c-coupon-code'>VPN20</span> beim checkout" | safe %}
-{% set de_link_text = "Jetzt sparen" %}
-
-{% set fr_banner_title = "Voyagez en toute sécurité" %}
-{% set fr_banner_subtitle = "20% sur l’abonnement d’un an" %}
-{% set fr_banner_text = "Entrez le code <span class='c-coupon-code'>VPN20</span> au paiement" | safe %}
-{% set fr_link_text = "J’en profite" %}
-
-{% set en_banner_title = "Safe travels" %}
-{% set en_banner_subtitle = " 20% off yearly plan" %}
-{% set en_banner_text = "Use code <span class='c-coupon-code'>VPN20</span> at checkout" | safe %}
-{% set en_link_text = "Try now" %}
+{% if LANG == 'de' %}
+  {% set banner_title = "Sicher durchs Netz" %}
+  {% set banner_subtitle = "Mit 20 % Rabatt aufs Jahresabo!" %}
+  {% set banner_text = "Nutze jetzt den code <span class='c-coupon-code'>VPN20</span> beim checkout" | safe %}
+  {% set link_text = "Jetzt sparen" %}
+{% elif LANG == 'fr' %}
+  {% set banner_title = "Voyagez en toute sécurité" %}
+  {% set banner_subtitle = "20% sur l’abonnement d’un an" %}
+  {% set banner_text = "Entrez le code <span class='c-coupon-code'>VPN20</span> au paiement" | safe %}
+  {% set link_text = "J’en profite" %}
+{% else %}
+  {% set banner_title = "Safe travels" %}
+  {% set banner_subtitle = "20% off yearly plan" %}
+  {% set banner_text = "Use code <span class='c-coupon-code'>VPN20</span> at checkout" | safe%}
+  {% set link_text = "Try now" %}
+{% endif %}
 
 <aside class="c-banner hide-from-legacy-ie" id="vpn-coupon-promo-banner">
   <div class="c-banner-inner">
     <div class="c-coupon-wrapper c-coupon">
       <div class="c-coupon-title-wrapper">
         <h2 class="c-coupon-title">
-          {% if LANG == 'de' %}
-            {{ de_banner_title }}
-          {% elif LANG == 'fr' %}
-            {{ fr_banner_title}}
-          {% else %}
-            {{ en_banner_title}}
-          {% endif %}
+          {{ banner_title }}
         </h2>
       </div>
       <div class="c-coupon-content-wrapper">
         <h3 class="c-coupon-subtitle">
-          {% if LANG == 'de' %}
-            {{ de_banner_subtitle }}
-          {% elif LANG == 'fr' %}
-            {{ fr_banner_subtitle}}
-          {% else %}
-            {{ en_banner_subtitle}}
-          {% endif %}
+          {{ banner_subtitle }}
         </h3>
         <p class="c-coupon-text">
-          {% if LANG == 'de' %}
-            {{ de_banner_text }}
-          {% elif LANG == 'fr' %}
-            {{ fr_banner_text}}
-          {% else %}
-            {{ en_banner_text}}
-          {% endif %}
+          {{ banner_text }}
         </p>
         <div class="c-cta">
-          {% if LANG == 'de' %}
             {{ vpn_product_referral_link(
               referral_id='vpn-coupon-promo-banner',
-              link_text=de_link_text,
+              link_text=link_text,
               page_anchor='#pricing',
               class_name='mzp-t-secondary',
               optional_attributes= {
-                  'data-cta-text' : 'Jetzt sparen',
+                  'data-cta-text' : link_text | safe ,
                   'data-cta-type' : 'link',
                   'data-cta-position' : 'banner',
               }
           ) }}
-          {% elif LANG == 'fr' %}
-            {{ vpn_product_referral_link(
-              referral_id='vpn-coupon-promo-banner',
-              link_text=fr_link_text,
-              page_anchor='#pricing',
-              class_name='mzp-t-secondary',
-              optional_attributes= {
-                  'data-cta-text' : 'J’en profite',
-                  'data-cta-type' : 'link',
-                  'data-cta-position' : 'banner',
-              }
-          ) }}
-          {% else %}
-            {{ vpn_product_referral_link(
-              referral_id='vpn-coupon-promo-banner',
-              link_text=en_link_text,
-              page_anchor='#pricing',
-              class_name='mzp-t-secondary',
-              optional_attributes= {
-                  'data-cta-text' : 'Try now',
-                  'data-cta-type' : 'link',
-                  'data-cta-position' : 'banner',
-              }
-          ) }}
-          {% endif %}
           </div>
       </div>
       <button type="button" class="c-banner-close"><span>{{ ftl('ui-close') }}</span></button>
