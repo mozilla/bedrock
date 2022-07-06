@@ -39,7 +39,7 @@ $brand-theme: 'mozilla';
         .c-coupon-title {
             @include text-title-sm;
             text-align: center;
-            padding: 20px;
+            padding: $spacing-lg;
         }
 
         // White plane icon
@@ -63,7 +63,7 @@ $brand-theme: 'mozilla';
         justify-content: space-around;
         height: 100%;
         text-align: center;
-        padding: 8px;
+        padding: $spacing-sm;
 
         // Class for the banner without the promo code title
         .c-coupon-title {
@@ -80,9 +80,9 @@ $brand-theme: 'mozilla';
             line-height: 1.8;
 
             span {
-                border: 2px solid $color-white;
-                padding: 7px 15px;
-                margin: 0 5px;
+                border: $border-radius-xs solid $color-white;
+                padding: $border-radius-md $border-radius-lg;
+                margin: 0 $border-radius-sm;
             }
         }
 
@@ -115,8 +115,8 @@ $brand-theme: 'mozilla';
 
         .c-coupon-title-wrapper {
             border-radius: 0;
-            border-bottom-right-radius: 100px;
-            border-top-right-radius: 100px;
+            border-bottom-right-radius: $layout-xl;
+            border-top-right-radius: $layout-xl;
             width: 22%;
             height: $spacing-xl;
 
@@ -128,20 +128,19 @@ $brand-theme: 'mozilla';
 
             // White plane icon
             &::after {
-                height: 80px;
-                width: 80px;
-                top: 5px;
-                right: -30px;
+                height: 60px;
+                width: 60px;
+                top: 10px;
+                right: -20px;
                 bottom: 0;
                 left: unset;
             }
         }
 
         .c-coupon-content-wrapper {
-            flex-direction: row;
+            flex-flow: row wrap;
             align-items: center;
             justify-content: space-evenly;
-            margin-left: 20px;
             width: 68%;
 
             .c-coupon-subtitle {
@@ -164,7 +163,7 @@ $brand-theme: 'mozilla';
     &.c-no-coupon {
         flex-flow: row nowrap;
         height: auto;
-        height: 180px;
+        height: $layout-2xl;
 
         .c-coupon-title-wrapper {
             height: auto;
@@ -182,7 +181,7 @@ $brand-theme: 'mozilla';
         }
 
         .c-coupon-content-wrapper {
-            padding: 8px 30px;
+            padding: $spacing-sm $spacing-xl;
             width: 80%;
             margin-left: 0;
             height: unset;
