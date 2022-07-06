@@ -79,10 +79,11 @@ $brand-theme: 'mozilla';
             @include text-body-md;
             line-height: 1.8;
 
-            span {
+            .c-coupon-code {
                 border: $border-radius-xs solid $color-white;
                 padding: $border-radius-md $border-radius-lg;
                 margin: 0 $border-radius-sm;
+                cursor: pointer;
             }
         }
 
