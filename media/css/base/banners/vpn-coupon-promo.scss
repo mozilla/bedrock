@@ -83,7 +83,6 @@ $brand-theme: 'mozilla';
                 border: $border-radius-xs solid $color-white;
                 padding: $border-radius-md $border-radius-lg;
                 margin: 0 $border-radius-sm;
-                cursor: pointer;
             }
         }
 
@@ -111,7 +110,6 @@ $brand-theme: 'mozilla';
         flex-flow: row nowrap;
         align-items: center;
         position: relative;
-        overflow: hidden;
         height: 100%;
 
         .c-coupon-title-wrapper {
@@ -144,6 +142,7 @@ $brand-theme: 'mozilla';
             justify-content: space-evenly;
             width: 68%;
             column-gap: $spacing-lg;
+            row-gap: $spacing-sm;
 
             .c-coupon-subtitle {
                 @include text-title-2xs;
@@ -199,9 +198,10 @@ $brand-theme: 'mozilla';
 
             .c-coupon-title-wrapper {
                 border-radius: 0;
-                border-bottom-right-radius: 100px;
-                border-top-right-radius: 100px;
+                border-bottom-right-radius: $layout-xl;
+                border-top-right-radius: $layout-xl;
                 height: $spacing-xl;
+                padding: $spacing-lg;
 
                 &::after {
                     height: 80px;
@@ -213,8 +213,10 @@ $brand-theme: 'mozilla';
             }
 
             .c-coupon-content-wrapper {
+                row-gap: $spacing-sm;
+
                 .c-coupon-title {
-                    @include text-title-md;
+                    @include text-title-sm;
                 }
             }
         }
@@ -239,6 +241,7 @@ $brand-theme: 'mozilla';
         top: $spacing-sm;
         width: 42px;
         z-index: 1;
+        cursor: pointer;
 
         &:hover,
         &:focus {
