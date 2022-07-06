@@ -113,13 +113,23 @@ Server architecture
 **Demos**
 
 - *URLs:*
-  - http://www-demo1.allizom.org/
-  - http://www-demo2.allizom.org/
-  - http://www-demo3.allizom.org/
-  - http://www-demo4.allizom.org/
-  - http://www-demo5.allizom.org/
+   - http://www-demo1.allizom.org/
+   - http://www-demo2.allizom.org/
+   - http://www-demo3.allizom.org/
+   - http://www-demo4.allizom.org/
+   - http://www-demo5.allizom.org/
 - *Bedrock locales:* dev repo
 - *Bedrock Git branch:* ``demo/1``, ``demo/2``, etc.
+
+These demos can be deployed by pushing a branch to one of the `demo/*` branches
+of the `mozilla/bedrock` repo. The `Github action`_ will then deploy the
+demo to Heroku.
+
+.. _Github action: https://github.com/mozilla/bedrock/blob/main/.github/workflows/demo_deploy.yml
+
+.. code-block:: bash
+
+  $ git push -f mozilla my-demo-branch:demo/1
 
 **On-demand demos**
 
@@ -178,7 +188,4 @@ We automate pushing to production via tagged commits (see :ref:`tagged-commit`)
 
 .. _Git book: http://git-scm.com/book
 .. _how to write good git commit messages: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
-.. _IT documentation: https://mana.mozilla.org/wiki/pages/viewpage.action?pageId=1802733
-.. _IT bug: https://bugzilla.mozilla.org/enter_bug.cgi?product=mozilla.org&format=itrequest
-.. _CircleCI: https://circleci.com/
 .. _Draft PR: https://github.blog/2019-02-14-introducing-draft-pull-requests/
