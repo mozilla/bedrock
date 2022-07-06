@@ -111,15 +111,15 @@ $brand-theme: 'mozilla';
         flex-flow: row nowrap;
         align-items: center;
         position: relative;
-        max-width: $content-max;
-        height: auto;
+        overflow: hidden;
+        height: 100%;
 
         .c-coupon-title-wrapper {
             border-radius: 0;
             border-bottom-right-radius: $layout-xl;
             border-top-right-radius: $layout-xl;
             width: 22%;
-            height: $spacing-xl;
+            padding: $spacing-xl;
 
             .c-coupon-title {
                 @include text-title-xs;
@@ -143,6 +143,7 @@ $brand-theme: 'mozilla';
             align-items: center;
             justify-content: space-evenly;
             width: 68%;
+            column-gap: $spacing-lg;
 
             .c-coupon-subtitle {
                 @include text-title-2xs;

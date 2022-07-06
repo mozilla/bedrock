@@ -4,21 +4,37 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+
+{% set de_banner_title = "Sicher durchs Netz" %}
+{% set de_link_text = "Hol dir Mozilla VPN" %}
+
+{% set fr_banner_title = "Voyagez en toute sécurité" %}
+{% set fr_link_text = "S’abonner à Mozilla VPN" %}
+
+{% set en_banner_title = "Browse safely on the go" %}
+{% set en_link_text = "Sign up for Mozilla VPN" %}
+
 <aside class="c-banner hide-from-legacy-ie" id="vpn-coupon-promo-banner">
   <div class="c-banner-inner">
     <div class="c-coupon-wrapper c-no-coupon">
-      {% if LANG == 'de' %}
       <div class="c-coupon-title-wrapper">
       </div>
       <div class="c-coupon-content-wrapper">
         <h2 class="c-coupon-title">
-          Sicher durchs Netz
+           {% if LANG == 'de' %}
+            {{ de_banner_title }}
+          {% elif LANG == 'fr' %}
+            {{ fr_banner_title}}
+          {% else %}
+            {{ en_banner_title}}
+          {% endif %}
         </h2>
         <div class="c-cta">
-          {% set link_text = 'Hol dir Mozilla VPN' %}
-          {{ vpn_product_referral_link(
+
+           {% if LANG == 'de' %}
+            {{ vpn_product_referral_link(
               referral_id='vpn-coupon-promo-banner',
-              link_text=link_text,
+              link_text=de_link_text,
               page_anchor='#pricing',
               class_name='mzp-t-secondary',
               optional_attributes= {
@@ -27,56 +43,33 @@
                   'data-cta-position' : 'banner',
               }
           ) }}
+          {% elif LANG == 'fr' %}
+            {{ vpn_product_referral_link(
+              referral_id='vpn-coupon-promo-banner',
+              link_text=fr_link_text,
+              page_anchor='#pricing',
+              class_name='mzp-t-secondary',
+              optional_attributes= {
+                  'data-cta-text' : 'S’abonner à Mozilla VPN',
+                  'data-cta-type' : 'link',
+                  'data-cta-position' : 'banner',
+              }
+          ) }}
+          {% else %}
+            {{ vpn_product_referral_link(
+              referral_id='vpn-coupon-promo-banner',
+              link_text=en_link_text,
+              page_anchor='#pricing',
+              class_name='mzp-t-secondary',
+              optional_attributes= {
+                  'data-cta-text' : 'Sign up for Mozilla VPN',
+                  'data-cta-type' : 'link',
+                  'data-cta-position' : 'banner',
+              }
+          ) }}
+          {% endif %}
           </div>
       </div>
-
-      {% elif LANG == 'fr' %}
-        <div class="c-coupon-title-wrapper">
-        </div>
-        <div class="c-coupon-content-wrapper">
-          <h2 class="c-coupon-title">
-            Voyagez  en toute sécurité
-          </h2>
-          <div class="c-cta">
-            {% set link_text = 'S’abonner à Mozilla VPN' %}
-            {{ vpn_product_referral_link(
-                referral_id='vpn-coupon-promo-banner',
-                link_text=link_text,
-                page_anchor='#pricing',
-                class_name='mzp-t-secondary',
-                optional_attributes= {
-                    'data-cta-text' : 'S’abonner à Mozilla VPN',
-                    'data-cta-type' : 'link',
-                    'data-cta-position' : 'banner',
-                }
-            ) }}
-          </div>
-        </div>
-      {% else %}
-
-        <div class="c-coupon-title-wrapper">
-
-        </div>
-        <div class="c-coupon-content-wrapper">
-          <h2 class="c-coupon-title">
-            Browse safely on the go
-          </h2>
-          <div class="c-cta">
-            {% set link_text = 'Sign up for Mozilla VPN' %}
-            {{ vpn_product_referral_link(
-                referral_id='vpn-coupon-promo-banner',
-                link_text=link_text,
-                page_anchor='#pricing',
-                class_name='mzp-t-secondary',
-                optional_attributes= {
-                    'data-cta-text' : 'Sign up for Mozilla VPN',
-                    'data-cta-type' : 'link',
-                    'data-cta-position' : 'banner',
-                }
-            ) }}
-          </div>
-        </div>
-      {% endif %}
       <button type="button" class="c-banner-close"><span>{{ ftl('ui-close') }}</span></button>
     </div>
   </div>

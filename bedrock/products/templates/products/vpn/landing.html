@@ -13,7 +13,7 @@
 
 {% block page_desc %}{{ ftl('vpn-landing-page-desc', countries=available_countries) }}{% endblock %}
 
-{% set show_vpn_coupon_promo_banner = switch('vpn-coupon-promo-banner', ['en-US', 'en-CA', 'en-GB', 'de', 'fr']) %}
+{% set show_vpn_coupon_promo_banner = switch('vpn-coupon-promo-banner', ['en', 'de', 'fr']) %}
 
 {% block html_attrs %}{{ super() }} data-vpn-affiliate-endpoint="{{ settings.VPN_AFFILIATE_ENDPOINT }}"{% endblock %}
 
