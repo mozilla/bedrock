@@ -143,14 +143,6 @@ class TestVPNLandingPage(TestCase):
         template = render_mock.call_args[0][1]
         assert template == "products/vpn/landing.html"
 
-    # def test_vpn_landing_page_variant_a_template(self, render_mock):
-    #     req = RequestFactory().get('/products/vpn/?entrypoint_experiment=vpn-coupon-promo-banner&entrypoint_variation=2')
-    #     req.locale = 'en-US'
-    #     view = views.vpn_landing_page
-    #     view(req)
-    #     template = render_mock.call_args[0][1]
-    #     assert template == 'products/vpn/variations/cta-a.html'
-
     @override_settings(DEV=False)
     def test_vpn_landing_page_geo_available(self, render_mock):
         req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="de")
