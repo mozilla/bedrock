@@ -163,8 +163,6 @@ $brand-theme: 'mozilla';
         justify-content: space-between;
         height: auto;
 
-        // height: $layout-2xl;
-
         .c-coupon-title-wrapper {
             height: auto;
             width: 15%;
@@ -207,13 +205,6 @@ $brand-theme: 'mozilla';
                     right: -30px;
                 }
             }
-
-            // .c-coupon-content-wrapper {
-
-            //     .c-coupon-title {
-            //         @include text-title-sm;
-            //     }
-            // }
         }
     }
 
