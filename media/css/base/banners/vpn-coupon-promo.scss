@@ -13,9 +13,8 @@ $brand-theme: 'mozilla';
     background: $color-violet-90;
     color: $color-white;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 100%;
+    flex-direction: column;
+    height: 300px;
     position: relative;
 
     h2,
@@ -29,53 +28,60 @@ $brand-theme: 'mozilla';
         background-color: $color-violet-50;
         color: $color-white;
         padding: $layout-xs;
-        border-bottom-right-radius: 100px;
-        border-top-right-radius: 100px;
-        width: 25%;
+        border-bottom-left-radius: 60%;
+        border-bottom-right-radius: 60%;
         position: relative;
         height: $spacing-xl;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         .c-coupon-title {
-            @include text-title-xs;
+            @include text-title-sm;
             text-align: center;
+            padding: 20px;
         }
 
+        // White plane icon
         &::after {
             position: absolute;
             content: '';
-            background-image: url('/media/img/banners/vpn/coupon-promo-plane.svg');
+            background-image: url('/media/img/banners/vpn/white-plane.svg');
             background-repeat: no-repeat;
             background-size: contain;
-            height: 120px;
-            width: 120px;
-            top: 15px;
-            right: -30px;
-            bottom: 0;
+            height: 40px;
+            width: 40px;
+            top: 10px;
+            left: 20px;
         }
     }
 
     .c-coupon-content-wrapper {
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: space-evenly;
-        width: 68%;
+        justify-content: space-around;
+        height: 100%;
+        text-align: center;
+        padding: 8px;
 
         // Class for the banner without the promo code title
         .c-coupon-title {
-            @include text-title-sm;
+            @include text-title-md;
         }
 
         .c-coupon-subtitle {
-            @include text-title-2xs;
+            @include text-title-sm;
         }
 
         .c-coupon-text {
             font-weight: bold;
             @include text-body-md;
+            line-height: 1.8;
 
             span {
                 border: 2px solid $color-white;
-                padding: 10px 20px;
+                padding: 7px 15px;
                 margin: 0 5px;
             }
         }
@@ -83,11 +89,60 @@ $brand-theme: 'mozilla';
         .c-cta {
             .mzp-c-button {
                 background-color: $color-white;
-                padding-right: $layout-md;
-                padding-left: $layout-md;
+                padding-right: $spacing-md;
+                padding-left: $spacing-md;
 
                 &:hover {
                     background-color: $color-marketing-gray-20;
+                }
+            }
+        }
+    }
+
+    // DESKTOP design
+    @media #{$mq-lg} {
+        flex-flow: row wrap;
+        align-items: center;
+        position: relative;
+        max-width: $content-max;
+        height: auto;
+
+        .c-coupon-title-wrapper {
+            border-radius: 0;
+            border-bottom-right-radius: 100px;
+            border-top-right-radius: 100px;
+            width: 22%;
+            height: $spacing-xl;
+
+            .c-coupon-title {
+                @include text-title-xs;
+                text-align: left;
+                padding: 0;
+            }
+
+            // White plane icon
+            &::after {
+                height: 80px;
+                width: 80px;
+                top: 5px;
+                right: -30px;
+                bottom: 0;
+                left: unset;
+            }
+        }
+
+        .c-coupon-content-wrapper {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-evenly;
+            margin-left: 20px;
+            width: 68%;
+
+            .c-coupon-subtitle {
+                @include text-title-2xs;
+
+                .c-coupon-text {
+                    line-height: normal;
                 }
             }
         }

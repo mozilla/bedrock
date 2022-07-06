@@ -58,8 +58,6 @@ def vpn_landing_page(request):
 
     if entrypoint_experiment and entrypoint_variation:
         context["variation_include"] = "includes/banners/vpn-coupon-variations/vpn-coupon-promo-{}.html".format(entrypoint_variation)
-    else:
-        template_name = "products/vpn/landing.html"
 
     return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
 
