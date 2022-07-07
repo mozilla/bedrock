@@ -11,7 +11,6 @@ if (typeof window.Mozilla === 'undefined') {
 
 (function () {
     'use strict';
-
     var _pageBanner;
 
     var Banner = {};

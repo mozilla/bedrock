@@ -77,6 +77,40 @@ class TestVPNInviteWaitlist(TestCase):
         )
 
 
+@patch.dict(os.environ, {"SWITCH_VPN_COUPON_PROMO_BANNER": "True"})
+class TestVPNLandingPageBanners(TestCase):
+    def _request(self, variation, lang):
+        req = RequestFactory().get(
+            f"/{lang}/products/vpn/?entrypoint_experiment=vpn-coupon-promo-banner&entrypoint_variation={variation}", HTTP_ACCEPT_LANGUAGE=lang
+        )
+        req.locale = lang
+        return views.vpn_landing_page(req)
+
+    def test_vpn_landing_page_banners_var_1_en(self):
+        resp = self._request(1, "en-US")
+        assert "c-coupon" in resp.content.decode()
+
+    def test_vpn_landing_page_banners_var_1_de(self):
+        resp = self._request(1, "de")
+        assert "c-coupon" in resp.content.decode()
+
+    def test_vpn_landing_page_banners_var_1_fr(self):
+        resp = self._request(1, "fr")
+        assert "c-coupon" in resp.content.decode()
+
+    def test_vpn_landing_page_banners_var_2_en(self):
+        resp = self._request(2, "en-US")
+        assert "c-no-coupon" in resp.content.decode()
+
+    def test_vpn_landing_page_banners_var_2_de(self):
+        resp = self._request(2, "de")
+        assert "c-no-coupon" in resp.content.decode()
+
+    def test_vpn_landing_page_banners_var_2_fr(self):
+        resp = self._request(2, "fr")
+        assert "c-no-coupon" in resp.content.decode()
+
+
 @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
 class TestVPNLandingPage(TestCase):
     def test_vpn_landing_page_template(self, render_mock):
