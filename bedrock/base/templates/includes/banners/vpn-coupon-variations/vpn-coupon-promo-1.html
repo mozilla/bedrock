@@ -12,7 +12,7 @@
 {% elif LANG == 'fr' %}
   {% set banner_title = "Voyagez en toute sécurité" %}
   {% set banner_subtitle = "20% sur l’abonnement d’un an" %}
-  {% set banner_text = "Entrez le code <span class='c-coupon-code'>VPN20</span> au paiement" | safe %}
+  {% set banner_text = "Entrez le code <span class='c-coupon-code'>VPN20</span> au paiement" %}
   {% set link_text = "J’en profite" %}
 {% else %}
   {% set banner_title = "Safe travels" %}
@@ -34,7 +34,7 @@
           {{ banner_subtitle|safe }}
         </h3>
         <p class="c-coupon-text">
-          {{ banner_text }}
+          {{ banner_text|safe }}
         </p>
         <div class="c-cta">
           <a class="mzp-c-button mzp-t-secondary" href="#pricing" data-cta-type="link" data-cta-text="{{ link_text }}" data-cta-position="banner">
