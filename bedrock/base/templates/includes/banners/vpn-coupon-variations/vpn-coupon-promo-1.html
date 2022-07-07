@@ -26,15 +26,15 @@
     <div class="c-coupon-wrapper c-coupon">
       <div class="c-coupon-title-wrapper">
         <h2 class="c-coupon-title">
-          {{ banner_title }}
+          {{ banner_title|safe }}
         </h2>
       </div>
       <div class="c-coupon-content-wrapper">
         <h3 class="c-coupon-subtitle">
-          {{ banner_subtitle }}
+          {{ banner_subtitle|safe }}
         </h3>
         <p class="c-coupon-text">
-          {{ banner_text }}
+          {{ banner_text|safe }}
         </p>
         <div class="c-cta">
             {{ vpn_product_referral_link(
