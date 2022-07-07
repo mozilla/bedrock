@@ -15,6 +15,8 @@
   {% set link_text = "Sign up for Mozilla VPN" %}
 {% endif %}
 
+{% set query_param = "?entrypoint_experiment=vpn-coupon-promo-banner&entrypoint_variation=2" %}
+
 <aside class="c-banner hide-from-legacy-ie" id="vpn-coupon-promo-banner">
   <div class="c-banner-inner">
     <div class="c-coupon-wrapper c-no-coupon">
@@ -28,7 +30,7 @@
             {{ vpn_product_referral_link(
               referral_id='vpn-coupon-promo-banner',
               link_text=link_text,
-              page_anchor='#pricing',
+              page_anchor= query_param + '#pricing',
               class_name='mzp-t-secondary',
               optional_attributes= {
                   'data-cta-text' : link_text | safe ,
