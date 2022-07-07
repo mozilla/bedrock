@@ -80,9 +80,9 @@ $brand-theme: 'mozilla';
             line-height: 1.8;
 
             .c-coupon-code {
-                border: $border-radius-xs solid $color-white;
-                padding: $border-radius-md $border-radius-lg;
-                margin: 0 $border-radius-sm;
+                border: 2px solid $color-white;
+                padding: $spacing-sm $spacing-md;
+                margin: 0 $spacing-xs;
             }
         }
 
