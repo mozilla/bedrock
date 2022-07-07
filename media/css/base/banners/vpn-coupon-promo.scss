@@ -9,6 +9,21 @@ $brand-theme: 'mozilla';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/button';
 
+#vpn-coupon-promo-banner {
+    &.c-banner {
+        // hide by default if JS is available to avoid flicker
+        // (if visitor previously dismissed)
+        .js & {
+            display: none;
+        }
+
+        // conditional class used to display the banner.
+        &.c-banner-is-visible {
+            display: block;
+        }
+    }
+}
+
 .c-coupon-wrapper {
     background: $color-violet-90;
     color: $color-white;

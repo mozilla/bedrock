@@ -15,8 +15,6 @@
   {% set link_text = "Sign up for Mozilla VPN" %}
 {% endif %}
 
-{% set query_param = "?entrypoint_experiment=vpn-coupon-promo-banner&entrypoint_variation=2" %}
-
 <aside class="c-banner hide-from-legacy-ie" id="vpn-coupon-promo-banner">
   <div class="c-banner-inner">
     <div class="c-coupon-wrapper c-no-coupon">
@@ -27,17 +25,9 @@
           {{ banner_title|safe }}
         </h2>
         <div class="c-cta">
-            {{ vpn_product_referral_link(
-              referral_id='vpn-coupon-promo-banner',
-              link_text=link_text,
-              page_anchor= query_param + '#pricing',
-              class_name='mzp-t-secondary',
-              optional_attributes= {
-                  'data-cta-text' : link_text | safe ,
-                  'data-cta-type' : 'link',
-                  'data-cta-position' : 'banner',
-              }
-          ) }}
+          <a class="mzp-c-button mzp-t-secondary" href="#pricing" data-cta-type="link" data-cta-text="{{ link_text }}" data-cta-position="banner">
+            {{ link_text|safe }}
+          </a>
           </div>
       </div>
       <button type="button" class="c-banner-close"><span>{{ ftl('ui-close') }}</span></button>
