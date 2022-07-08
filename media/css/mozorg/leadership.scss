@@ -4,7 +4,7 @@
 
 @use 'sass:color';
 
-$font-path: '/media/fonts';
+$font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
@@ -13,8 +13,8 @@ $image-path: '/media/protocol/img';
 @font-face {
     font-family: FA-Icons-Contact;
     src:
-        url('#{$font-path}/icons-contact.woff2?20-12-2016') format('woff2'),
-        url('#{$font-path}/icons-contact.woff?20-12-2016') format('woff');
+        url('/media/fonts/icons-contact.woff2?20-12-2016') format('woff2'),
+        url('/media/fonts/icons-contact.woff?20-12-2016') format('woff');
     font-weight: normal;
     font-style: normal;
 }
