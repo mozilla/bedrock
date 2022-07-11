@@ -399,6 +399,11 @@ describe('site.js', function () {
     });
 
     describe('isARM', function () {
+        beforeEach(function () {
+            // don't fall back to `window.site.archType` in tests.
+            sinon.stub(window.site, 'archType').value(null);
+        });
+
         it('should return true for ARM processors', function () {
             expect(window.site.isARM('arm')).toBeTrue();
             expect(window.site.isARM('armv8')).toBeTrue();
