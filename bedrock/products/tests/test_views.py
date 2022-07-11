@@ -77,7 +77,7 @@ class TestVPNInviteWaitlist(TestCase):
         )
 
 
-@patch.dict(os.environ, {"SWITCH_VPN_COUPON_PROMO_BANNER": "True"})
+@patch.dict(os.environ, SWITCH_VPN_COUPON_PROMO_BANNER="True")
 class TestVPNLandingPageBanners(TestCase):
     def _request(self, variation, lang):
         req = RequestFactory().get(
