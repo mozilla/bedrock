@@ -81,7 +81,9 @@ class TestVPNInviteWaitlist(TestCase):
 class TestVPNLandingPageBanners(TestCase):
     def _request(self, variation, lang):
         req = RequestFactory().get(
-            f"/{lang}/products/vpn/?entrypoint_experiment=vpn-coupon-promo-banner&entrypoint_variation={variation}", HTTP_ACCEPT_LANGUAGE=lang
+            f"/{lang}/products/vpn/?entrypoint_experiment=vpn-coupon-promo-banner&entrypoint_variation={variation}",
+            HTTP_ACCEPT_LANGUAGE=lang,
+            HTTP_CF_IPCOUNTRY="us",
         )
         req.locale = lang
         return views.vpn_landing_page(req)
