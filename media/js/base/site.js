@@ -95,12 +95,13 @@
             return 'x86';
         },
 
+        // Returns true if CPU is an ARM processor.
         isARM: function (architecture) {
             var arch =
                 typeof architecture === 'string'
                     ? architecture
                     : window.site.archType;
-            if (arch === 'arm' || arch.match(/armv(\d+)/)) {
+            if (arch && (arch === 'arm' || arch.match(/armv(\d+)/))) {
                 return true;
             }
             return false;
@@ -120,11 +121,9 @@
             return 32;
         },
 
+        // Return 64 is CPU is 64bit, else assume that it's 32.
         getArchSizeClientHint: function (bitness) {
-            if (
-                typeof bitness !== 'undefined' &&
-                parseInt(bitness, 10) === 64
-            ) {
+            if (bitness && parseInt(bitness, 10) === 64) {
                 return 64;
             }
             return 32;
