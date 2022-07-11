@@ -10,7 +10,7 @@
     "@mozilla/glean": "^1.0.0",
     "@mozmeao/cookie-helper": "^1.1.0",
     "@mozmeao/trafficcop": "^2.0.1",
-    "@sentry/browser": "^7.0.0",
+    "@sentry/browser": "^7.6.0",
     "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",
