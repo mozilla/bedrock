@@ -54,6 +54,25 @@
             return match ? match[1].replace('_', '.') : undefined;
         },
 
+        // Madness from https://docs.microsoft.com/microsoft-edge/web-platform/how-to-detect-win11
+        getWindowsVersionClientHint: function (version) {
+            var fullPlatformVersion = version ? version.toString() : '0';
+            var majorPlatformVersion = parseInt(
+                fullPlatformVersion.split('.')[0],
+                10
+            );
+            if (majorPlatformVersion >= 13) {
+                // Windows 11 or later.
+                return '11.0.0';
+            } else if (majorPlatformVersion > 0) {
+                // Windows 10
+                return '10.0.0';
+            } else {
+                // Might be any Windows version less than 10, who knows.
+                return undefined;
+            }
+        },
+
         getArchType: function (ua, pf) {
             pf = pf === '' ? '' : pf || navigator.platform;
             ua = ua || navigator.userAgent;
@@ -76,6 +95,18 @@
             return 'x86';
         },
 
+        // Returns true if CPU is an ARM processor.
+        isARM: function (architecture) {
+            var arch =
+                typeof architecture === 'string'
+                    ? architecture
+                    : window.site.archType;
+            if (arch && (arch === 'arm' || arch.match(/armv(\d+)/))) {
+                return true;
+            }
+            return false;
+        },
+
         getArchSize: function (ua, pf) {
             pf = pf === '' ? '' : pf || navigator.platform;
             ua = ua || navigator.userAgent;
@@ -90,6 +121,14 @@
             return 32;
         },
 
+        // Return 64 is CPU is 64bit, else assume that it's 32.
+        getArchSizeClientHint: function (bitness) {
+            if (bitness && parseInt(bitness, 10) === 64) {
+                return 64;
+            }
+            return 32;
+        },
+
         // Universal feature detect to deliver graded browser support (targets IE 11 and above).
         cutsTheMustard: function () {
             return (
@@ -101,43 +140,34 @@
         platform: 'other',
         platformVersion: undefined,
         archType: 'x64',
-        archSize: 32,
-        isARM: false
+        archSize: 32
     };
-    (function () {
+
+    function updateHTML() {
         var h = document.documentElement;
 
-        // if other than 'windows', immediately replace the platform classname on the html-element
-        // to avoid lots of flickering
-        var platform = (window.site.platform = window.site.getPlatform());
-        var version = (window.site.platformVersion =
-            window.site.getPlatformVersion());
-        var _version = version ? parseFloat(version) : 0;
+        if (window.site.platform === 'windows') {
+            // Detect Windows 10 "and up" to display installation
+            // messaging on the /firefox/download/thanks/ page.
+            var _version = window.site.platformVersion
+                ? parseFloat(window.site.platformVersion)
+                : 0;
 
-        if (platform === 'windows') {
             if (_version >= 10.0) {
                 h.className += ' windows-10-plus';
             }
         } else {
-            h.className = h.className.replace('windows', platform);
+            h.className = h.className.replace('windows', window.site.platform);
         }
 
-        // Add class to reflect the microprocessor architecture info
-        var archType = (window.site.archType = window.site.getArchType());
-        var archSize = (window.site.archSize = window.site.getArchSize());
-        var isARM = (window.site.isARM = archType.match(/armv(\d+)/));
-
-        // Used for Linux ARM processor detection.
-        if (archType !== 'x86') {
-            h.className = h.className.replace('x86', archType);
-
-            if (isARM) {
-                h.className += ' arm';
-            }
+        // Used to display a custom installation message and
+        // SUMO link on the /firefox/download/thanks/ page.
+        if (window.site.isARM()) {
+            h.className += ' arm';
         }
 
-        // Used for 64bit download link on Linux.
-        if (archSize === 64) {
+        // Used for 64bit download link on Linux and Firefox Beta on Windows.
+        if (window.site.archSize === 64) {
             h.className += ' x64';
         }
 
@@ -162,5 +192,63 @@
 
         // Add class to reflect javascript availability for CSS
         h.className = h.className.replace(/\bno-js\b/, 'js');
+    }
+
+    function getHighEntropyFromUAString() {
+        window.site.platformVersion = window.site.getPlatformVersion();
+        window.site.archType = window.site.getArchType();
+        window.site.archSize = window.site.getArchSize();
+    }
+
+    (function () {
+        window.site.platform = window.site.getPlatform();
+
+        // For browsers that support client hints, get high entropy
+        // values that might be frozen in the regular user agent string.
+        if (
+            'userAgentData' in navigator &&
+            typeof navigator.userAgentData.getHighEntropyValues === 'function'
+        ) {
+            navigator.userAgentData
+                .getHighEntropyValues([
+                    'architecture',
+                    'bitness',
+                    'platformVersion'
+                ])
+                .then(function (ua) {
+                    if (ua.platformVersion) {
+                        if (window.site.platform === 'windows') {
+                            window.site.platformVersion =
+                                window.site.getWindowsVersionClientHint(
+                                    ua.platformVersion
+                                );
+                        } else {
+                            window.site.platformVersion = ua.platformVersion;
+                        }
+                    }
+
+                    if (ua.architecture) {
+                        window.site.archType = ua.architecture;
+                    }
+
+                    if (ua.bitness) {
+                        window.site.archSize =
+                            window.site.getArchSizeClientHint(ua.bitness);
+                    }
+
+                    updateHTML();
+                })
+                .catch(function () {
+                    // some browsers might deny accessing high entropy info
+                    // and reject the promise, so fall back to UA string instead.
+                    getHighEntropyFromUAString();
+                    updateHTML();
+                });
+        }
+        // Else fall back to UA string parsing for non-supporting browsers.
+        else {
+            getHighEntropyFromUAString();
+            updateHTML();
+        }
     })();
 })();

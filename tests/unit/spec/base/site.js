@@ -334,4 +334,82 @@ describe('site.js', function () {
             ).toBe(32);
         });
     });
+
+    describe('getArchSizeClientHint', function () {
+        it('should identify 64', function () {
+            expect(window.site.getArchSizeClientHint(64)).toBe(64);
+            expect(window.site.getArchSizeClientHint('64')).toBe(64);
+        });
+
+        it('should identify 32', function () {
+            expect(window.site.getArchSizeClientHint(32)).toBe(32);
+            expect(window.site.getArchSizeClientHint('32')).toBe(32);
+        });
+
+        it('should default to 32', function () {
+            expect(window.site.getArchSizeClientHint()).toBe(32);
+            expect(window.site.getArchSizeClientHint(null)).toBe(32);
+            expect(window.site.getArchSizeClientHint(undefined)).toBe(32);
+            expect(window.site.getArchSizeClientHint('abcd')).toBe(32);
+            expect(window.site.getArchSizeClientHint('')).toBe(32);
+            expect(window.site.getArchSizeClientHint(1234)).toBe(32);
+        });
+    });
+
+    describe('getWindowsVersionClientHint', function () {
+        it('should identify 13 and up as Windows 11 or later', function () {
+            expect(window.site.getWindowsVersionClientHint('13.0.0')).toBe(
+                '11.0.0'
+            );
+            expect(window.site.getWindowsVersionClientHint('14.0.0')).toBe(
+                '11.0.0'
+            );
+        });
+
+        it('should identify 1 through 12 as Windows 10', function () {
+            expect(window.site.getWindowsVersionClientHint('12.0.0')).toBe(
+                '10.0.0'
+            );
+            expect(window.site.getWindowsVersionClientHint('11.0.0')).toBe(
+                '10.0.0'
+            );
+            expect(window.site.getWindowsVersionClientHint('10.0.0')).toBe(
+                '10.0.0'
+            );
+            expect(window.site.getWindowsVersionClientHint('1.0.0')).toBe(
+                '10.0.0'
+            );
+            expect(window.site.getWindowsVersionClientHint('1')).toBe('10.0.0');
+            expect(window.site.getWindowsVersionClientHint(1.0)).toBe('10.0.0');
+            expect(window.site.getWindowsVersionClientHint(12)).toBe('10.0.0');
+        });
+
+        it('should return undefined for unknown Windows versions', function () {
+            expect(window.site.getWindowsVersionClientHint('0.0.0')).toBe(
+                undefined
+            );
+            expect(window.site.getWindowsVersionClientHint(0.0)).toBe(
+                undefined
+            );
+            expect(window.site.getWindowsVersionClientHint('0')).toBe(
+                undefined
+            );
+            expect(window.site.getWindowsVersionClientHint('')).toBe(undefined);
+        });
+    });
+
+    describe('isARM', function () {
+        it('should return true for ARM processors', function () {
+            expect(window.site.isARM('arm')).toBeTrue();
+            expect(window.site.isARM('armv8')).toBeTrue();
+            expect(window.site.isARM('armv7')).toBeTrue();
+        });
+
+        it('should return false for other values', function () {
+            expect(window.site.isARM('x86')).toBeFalse();
+            expect(window.site.isARM('')).toBeFalse();
+            expect(window.site.isARM(null)).toBeFalse();
+            expect(window.site.isARM(undefined)).toBeFalse();
+        });
+    });
 });
