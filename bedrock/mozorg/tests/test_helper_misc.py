@@ -26,15 +26,22 @@ TEST_FILES_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test
 TEST_L10N_MEDIA_PATH = os.path.join(TEST_FILES_ROOT, "media", "%s", "l10n")
 
 TEST_DONATE_LINK = (
-    "https://donate.mozilla.org/{locale}/"
+    "https://donate.mozilla.org/"
     "?presets={presets}&amount={default}"
     "&utm_source=mozilla.org&utm_medium=referral&utm_content={source}"
     "&currency={currency}"
 )
 
 TEST_DONATE_PARAMS = {
-    "en-US": {"currency": "usd", "presets": "100,50,25,15", "default": "50"},
-    "es-MX": {"currency": "eur", "presets": "100,50,25,15", "default": "15"},
+    "eur": {"currency": "eur", "symbol": "€", "presets": "50,30,20,10", "default": "30", "prefix": "false"},
+    "gbp": {"currency": "gbp", "symbol": "£", "presets": "40,25,15,8", "default": "25", "prefix": "true"},
+    "usd": {"currency": "usd", "symbol": "$", "presets": "50,30,20,10", "default": "30", "prefix": "true"},
+}
+
+TEST_DONATE_COUNTRY_CODES = {
+    "DE": TEST_DONATE_PARAMS["eur"],
+    "GB": TEST_DONATE_PARAMS["gbp"],
+    "US": TEST_DONATE_PARAMS["usd"],
 }
 
 TEST_FXA_ENDPOINT = "https://accounts.firefox.com/"
@@ -326,43 +333,51 @@ class TestPressBlogUrl(TestCase):
 
 @override_settings(
     DONATE_LINK=TEST_DONATE_LINK,
-    DONATE_PARAMS=TEST_DONATE_PARAMS,
+    DONATE_COUNTRY_CODES=TEST_DONATE_COUNTRY_CODES,
 )
 class TestDonateUrl(TestCase):
     rf = RequestFactory()
 
-    def _render(self, locale, source=""):
+    def _render(self, country, source=""):
         req = self.rf.get("/")
-        req.locale = locale
-        return render(f"{{{{ donate_url('{source}') }}}}", {"request": req})
+        return render(f"{{{{ donate_url('{country}', '{source}') }}}}", {"request": req})
 
-    def test_donate_url_no_locale(self):
-        """No locale, fallback to generic link"""
-        assert self._render("", "mozillaorg_footer") == (
+    def test_donate_url_no_country(self):
+        """No country code supplied, fallback to generic link"""
+        assert self._render(False, "mozillaorg_footer") == (
             "https://donate.mozilla.org/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_content=mozillaorg_footer"
         )
 
-    def test_donate_url_english(self):
-        """en-US locale, default page"""
-        assert self._render("en-US", "mozillaorg_footer") == (
-            "https://donate.mozilla.org/en-US/"
-            "?presets=100,50,25,15&amp;amount=50"
+    def test_donate_url_usd(self):
+        """US country code, params in USD"""
+        assert self._render("US", "mozillaorg_footer") == (
+            "https://donate.mozilla.org/"
+            "?presets=50,30,20,10&amp;amount=30"
             "&amp;utm_source=mozilla.org&amp;utm_medium=referral"
             "&amp;utm_content=mozillaorg_footer&amp;currency=usd"
         )
 
-    def test_donate_url_spanish(self):
-        """es-MX locale, a localized page"""
-        assert self._render("es-MX", "mozillaorg_footer") == (
-            "https://donate.mozilla.org/es-MX/"
-            "?presets=100,50,25,15&amp;amount=15"
+    def test_donate_url_euro(self):
+        """DE country code, params in EURO"""
+        assert self._render("DE", "mozillaorg_footer") == (
+            "https://donate.mozilla.org/"
+            "?presets=50,30,20,10&amp;amount=30"
             "&amp;utm_source=mozilla.org&amp;utm_medium=referral"
             "&amp;utm_content=mozillaorg_footer&amp;currency=eur"
         )
 
-    def test_donate_url_unsupported_locale(self):
-        """Unsupported locale, fallback to generic link"""
-        assert self._render("es-ES", "mozillaorg_footer") == (
+    def test_donate_url_gbp(self):
+        """GB country code, params in GBP"""
+        assert self._render("GB", "mozillaorg_footer") == (
+            "https://donate.mozilla.org/"
+            "?presets=40,25,15,8&amp;amount=25"
+            "&amp;utm_source=mozilla.org&amp;utm_medium=referral"
+            "&amp;utm_content=mozillaorg_footer&amp;currency=gbp"
+        )
+
+    def test_donate_url_unsupported_country(self):
+        """Unsupported country, fallback to generic link"""
+        assert self._render("CN", "mozillaorg_footer") == (
             "https://donate.mozilla.org/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_content=mozillaorg_footer"
         )
 
