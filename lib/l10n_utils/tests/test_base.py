@@ -12,6 +12,7 @@ from django.test.utils import override_settings
 import pytest
 from django_jinja.backend import Jinja2
 
+from bedrock.base.urlresolvers import Prefixer
 from lib import l10n_utils
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test_files")
@@ -29,7 +30,9 @@ class TestRender(TestCase):
     def _test(self, path, template, locale, accept_lang, status, destination=None, active_locales=None, add_active_locales=None):
         request = RequestFactory().get(path)
         request.META["HTTP_ACCEPT_LANGUAGE"] = accept_lang
-        request.locale = locale
+        prefixer = Prefixer(request)
+        request.locale = prefixer.locale
+
         ctx = {}
         if active_locales:
             ctx["active_locales"] = active_locales
@@ -43,8 +46,37 @@ class TestRender(TestCase):
             self.assertEqual(response.status_code, 302)
             self.assertEqual(response["Location"], destination)
             self.assertEqual(response["Vary"], "Accept-Language")
+        elif status == 404:
+            self.assertEqual(response.status_code, 404)
         else:
             self.assertEqual(response.status_code, 200)
+
+    def test_no_accept_language_header(self):
+        template = "firefox/new.html"
+        locales = ["en-US", "en-GB", "fr", "es-ES"]
+
+        # Test no accept language header and locale-less root path returns 200.
+        self._test("/", template, "", "", 200, active_locales=locales)
+
+        # Test no accept language header and locale-less path returns 404.
+        self._test("/firefox/new/", template, "", "", 404, active_locales=locales)
+
+        # Test that a locale+path and no accept language header returns 200 as long as the locales are supported.
+        self._test("/en-US/firefox/new/", template, "", "", 200, active_locales=locales)
+        self._test("/en-GB/firefox/new/", template, "", "", 200, active_locales=locales)
+        self._test("/fr/firefox/new/", template, "", "", 200, active_locales=locales)
+        self._test("/es-ES/firefox/new/", template, "", "", 200, active_locales=locales)
+        self._test("/de/firefox/new/", template, "", "", 404, active_locales=locales)
+
+        # Test that a path in the `SUPPORTED_NONLOCALES` doesn't 404.
+        self._test("/credits/", template, "", "", 200, active_locales=locales)
+        self._test("/robots.txt", template, "", "", 200, active_locales=locales)
+        self._test("/sitemap_none.xml", template, "", "", 200, active_locales=locales)
+
+        # Test that a path in the `SUPPORTED_LOCALE_IGNORE` works both with and without locale in the path.
+        self._test("/sitemap.xml", template, "", "", 200, active_locales=locales)
+        self._test("/en-US/sitemap.xml", template, "", "", 200, active_locales=locales)
+        self._test("/fr/sitemap.xml", template, "", "", 200, active_locales=locales)
 
     def test_firefox(self):
         path = "/firefox/new/"
@@ -178,23 +210,23 @@ class TestL10nTemplateView(TestCase):
 @pytest.mark.parametrize(
     "translations, accept_languages, expected",
     (
-        # Anything with a 'en-US' transtion and 'en' root accept languages, goes to 'en-US'.
+        # Anything with a 'en-US' translation and 'en' root accept languages, goes to 'en-US'.
         (["en-US"], ["en-US"], "en-US"),
         (["en-US"], ["en-CA"], "en-US"),
         (["en-US"], ["en"], "en-US"),
         (["en-US", "de"], ["en-GB"], "en-US"),
-        # Anything with a 'en-US' transtion and unsupported translations, goes to 'en-US' by default.
-        (["en-US"], ["zu"], "en-US"),
-        (["en-US"], ["fr"], "en-US"),
-        (["en-US", "de"], ["fr"], "en-US"),
+        # Anything with a 'en-US' translation and unsupported translations, returns `None`.
+        (["en-US"], ["zu"], None),
+        (["en-US"], ["fr"], None),
+        (["en-US", "de"], ["fr"], None),
         # The user's prioritized accept language should be chosen first.
         (["en-US", "de"], ["de", "en-US"], "de"),
         (["en-US", "de", "fr"], ["fr", "de"], "fr"),
         (["en-US", "de", "fr"], ["en-CA", "fr", "de"], "en-US"),
-        # A request for only inactive translations should default to 'en-US'. Bug 1752823
-        (["am", "an", "en-US"], ["mk", "gu-IN"], "en-US"),
+        # A request for only inactive translations should return `None`.
+        (["am", "an", "en-US"], ["mk", "gu-IN"], None),
         # "am" is not a valid language in the list of PROD_LANGUAGES
-        (["am", "an"], ["mk", "gu-IN"], "an"),
+        (["am", "an"], ["mk", "gu-IN"], None),
     ),
 )
 def test_get_best_translation(translations, accept_languages, expected):
