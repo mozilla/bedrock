@@ -52,7 +52,9 @@ def render_to_string(template_name, context=None, request=None, using=None, ftl_
 def redirect_to_best_locale(request, translations):
     # Note that translations is list of locale strings (eg ["en-GB", "ru", "fr"])
     locale = get_best_translation(translations, get_accept_languages(request))
-    return redirect_to_locale(request, locale)
+    if locale:
+        return redirect_to_locale(request, locale)
+    return locale_selection(request, translations)
 
 
 def redirect_to_locale(request, locale, permanent=False):
@@ -61,6 +63,29 @@ def redirect_to_locale(request, locale, permanent=False):
     # Add the Vary header to avoid wrong redirects due to a cache
     response["Vary"] = "Accept-Language"
     return response
+
+
+def locale_selection(request, available_locales=None):
+    # We want the root path to return a 200 and slightly adjusted content for search engines.
+    is_root = request.path_info == "/"
+    has_header = request.headers.get("Accept-Language") is not None
+    # If `request.locale` is set, use that for fluent translations on the 404-locale.html page.
+    locales = [request.locale, "en"] if request.locale else ["en"]
+    # If `settings.DEV` is true, make `available_locales` all available locales for l10n testing.
+    # Or if empty, set it to at least en-US.
+    if not available_locales:
+        available_locales = ["en-US"]
+    if settings.DEV:
+        available_locales = settings.DEV_LANGUAGES
+
+    context = {
+        "is_root": is_root,
+        "has_header": has_header,
+        "fluent_l10n": fluent_l10n(locales, ["404-locale"] + settings.FLUENT_DEFAULT_FILES),
+        "languages": product_details.languages,
+        "available_locales": sorted(set(available_locales)),
+    }
+    return django_render(request, "404-locale.html", context, status=200 if is_root else 404)
 
 
 def render(request, template, context=None, ftl_files=None, activation_files=None, **kwargs):
@@ -85,7 +110,7 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
 
     # is this a non-locale page?
     name_prefix = request.path_info.split("/", 2)[1]
-    non_locale_url = name_prefix in settings.SUPPORTED_NONLOCALES
+    non_locale_url = name_prefix in settings.SUPPORTED_NONLOCALES or request.path_info in settings.SUPPORTED_LOCALE_IGNORE
 
     # Make sure we have a single template
     if isinstance(template, list):
@@ -194,14 +219,8 @@ def get_best_translation(translations, accept_languages):
         if pre in valid_lang_map:
             return valid_lang_map[pre]
 
-    # If all the attempts failed, just use en-US, the default locale of
-    # the site, if it is an available translation.
-    if settings.LANGUAGE_CODE in translations:
-        return settings.LANGUAGE_CODE
-
-    # In the rare case the default language isn't in the list, return the
-    # first translation in the valid_lang_map.
-    return list(valid_lang_map.values())[0]
+    # We couldn't find a best locale to return so we return `None`.
+    return None
 
 
 def get_translations_native_names(locales):

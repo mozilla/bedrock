@@ -625,14 +625,14 @@ class TestFirefoxNew(TestCase):
 class TestFirefoxNewNoIndex(TestCase):
     def test_download_noindex(self):
         # Scene 1 of /firefox/new/ should never contain a noindex tag.
-        response = self.client.get("/firefox/new/", follow=True)
+        response = self.client.get("/en-US/firefox/new/")
         doc = pq(response.content)
         robots = doc('meta[name="robots"]')
         assert robots.length == 0
 
     def test_thanks_canonical(self):
         # Scene 2 /firefox/download/thanks/ should always contain a noindex tag.
-        response = self.client.get("/firefox/download/thanks/", follow=True)
+        response = self.client.get("/en-US/firefox/download/thanks/")
         doc = pq(response.content)
         robots = doc('meta[name="robots"]')
         assert robots.length == 1

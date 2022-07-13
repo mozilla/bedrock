@@ -383,12 +383,10 @@ class TestVPNResourceListingView(TestCase):
         )
 
     def test_simple_get__for_unavailable_locale(self, render_mock):
-        resp = self._request(locale="sk")
-        self.assertEqual(resp.redirect_chain, [("/en-US/products/vpn/resource-center/", 302)])
+        self._request(locale="sk", expected_status=404)
 
     def test_simple_get__for_invalid_locale(self, render_mock):
-        resp = self._request(locale="xx")
-        self.assertEqual(resp.redirect_chain, [("/en-US/products/vpn/resource-center/", 302)])
+        self._request(locale="xx", expected_status=404)
 
     @override_settings(CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE=95)
     def test_simple_get__for_valid_locale_WITHOUT_enough_content(self, render_mock):
@@ -397,9 +395,7 @@ class TestVPNResourceListingView(TestCase):
         # percentage, we should send you to the default locale by calling render() early
         ContentfulEntry.objects.filter(locale="fr").last().delete()
         assert ContentfulEntry.objects.filter(locale="fr").count() < ContentfulEntry.objects.filter(locale="en-US").count()
-
-        resp = self._request(locale="fr")
-        self.assertEqual(resp.redirect_chain, [("/en-US/products/vpn/resource-center/", 302)])
+        self._request(locale="fr", expected_status=404)
 
     def test_category_filtering(self, render_mock):
 
@@ -491,13 +487,13 @@ class TestVPNResourceArticleView(TestCase):
     @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
     def test_simple_get__for_unavailable_locale(self, render_mock):
         resp = self.client.get("/products/vpn/resource-center/slug-2/", HTTP_ACCEPT_LANGUAGE="de")
-        # Which will 302 as expected
-        self.assertEqual(resp.headers["location"], "/en-US/products/vpn/resource-center/slug-2/")
+        # Which will 404 as expected
+        self.assertEqual(resp.status_code, 404)
         render_mock.assert_not_called()
 
     @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
     def test_simple_get__for_invalid_locale(self, render_mock):
         resp = self.client.get("/products/vpn/resource-center/slug-2/", HTTP_ACCEPT_LANGUAGE="xx")
-        # Which will 302 as expected
-        self.assertEqual(resp.headers["location"], "/en-US/products/vpn/resource-center/slug-2/")
+        # Which will 404 as expected
+        self.assertEqual(resp.status_code, 404)
         render_mock.assert_not_called()
