@@ -14,6 +14,9 @@ from bedrock.wordpress.models import BlogPost
 
 
 class PositionTests(TestCase):
+    def setUp(self):
+        self.client = self.client_class(HTTP_ACCEPT_LANGUAGE="en")
+
     def test_context(self):
         response = self.client.get(reverse("careers.listings"), follow=True)
         self.assertEqual(response.status_code, 200)
@@ -52,6 +55,9 @@ class BlogTests(TestCase):
         "excerpt": "",
         "link": "",
     }
+
+    def setUp(self):
+        self.client = self.client_class(HTTP_ACCEPT_LANGUAGE="en")
 
     def _populate_blog_posts(self):
         today = timezone.now()
