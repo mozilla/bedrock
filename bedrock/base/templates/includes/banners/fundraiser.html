@@ -34,11 +34,10 @@
         {% for amount in donate_params.preset_list %}
           <label for="donate{{ amount }}"{% if amount == donate_params.default %} class="selected"{% endif %}>
             <input class="c-fundraiser-amount-input" type="radio" value="{{ amount }}" id="donate{{ amount }}" name="amount"{% if amount == donate_params.default %} checked="checked"{% endif %}>
-            {# if a locale is not in donate_params, then make sure we display $USD to avoid the chance of showing an incorrect localized currency. #}
-            {% if donate_locale == 'en-US' %}
+            {% if donate_params.prefix == 'true' %}
               {% set amount_copy = donate_params.symbol + amount %}
             {% else %}
-              {% set amount_copy = ftl('banner-fundraising-amount', amount=amount) %}
+              {% set amount_copy = amount + ' ' + donate_params.symbol %}
             {% endif %}
             <span class="mzp-c-button mzp-t-product mzp-t-secondary mzp-t-lg">{{ amount_copy }}</span>
           </label>

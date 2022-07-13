@@ -318,7 +318,7 @@ def press_blog_url(ctx):
 
 @library.global_function
 @jinja2.pass_context
-def donate_url(ctx, source=""):
+def donate_url(ctx, country="", source=""):
     """Output a donation link to the donation page formatted using settings.DONATE_PARAMS
 
     Examples
@@ -327,30 +327,27 @@ def donate_url(ctx, source=""):
     In Template
     -----------
 
-        {{ donate_url() }}
+        {{ donate_url(country_code) }}
 
-    For en-US this would output:
+    For `country_code == US this would output:
 
-        https://donate.mozilla.org/en-US/?presets=50,30,20,10&amount=30&utm_source=mozilla.org&utm_medium=referral&utm_content=footer&currency=usd
+        https://donate.mozilla.org/?presets=50,30,20,10&amount=30&utm_source=mozilla.org&utm_medium=referral&utm_content=footer&currency=usd
 
-    For de this would output:
+    For `country_code === DE` this would output:
 
-        https://donate.mozilla.org/de/?presets=50,30,20,10&amount=30&utm_source=mozilla.org&utm_medium=referral&utm_content=footer&currency=eur
+        https://donate.mozilla.org/?presets=50,30,20,10&amount=30&utm_source=mozilla.org&utm_medium=referral&utm_content=footer&currency=eur
 
-    For a locale not defined in settings.DONATE this would output:
+    If `country_code` is not supplied this would output:
 
         https://donate.mozilla.org/?utm_source=mozilla.org&utm_medium=referral&utm_content=footer
 
     """
-    locale = getattr(ctx["request"], "locale", "en-US")
-
-    donate_url_params = settings.DONATE_PARAMS.get(locale, settings.DONATE_PARAMS["en-US"])
+    donate_url_params = settings.DONATE_COUNTRY_CODES.get(country, settings.DONATE_COUNTRY_CODES["US"])
 
     donate_url = settings.DONATE_LINK_UNKNOWN.format(source=source)
 
-    if locale in settings.DONATE_PARAMS:
+    if country in settings.DONATE_COUNTRY_CODES:
         donate_url = settings.DONATE_LINK.format(
-            locale=locale,
             presets=donate_url_params["presets"],
             default=donate_url_params["default"],
             source=source,
