@@ -13,15 +13,18 @@ recent security incident there meant our integration had to be disabled,
 prompting discussion of self-managed demo instances.
 
 In addition, while it was possible to demo Bedrock in Pocket Mode on Heroku, by
-amending the settings via the Heroku web UI, the domains set up (www-demoX.allizom.org) were originally set up for Mozorg, and as such may be confusing
-for colleagues reviewing Pocket changes. Flipping and un-flipping settings in Heroku to enable Mozorg Mode or Pocket Mode was also extra legwork that we
-ideally would do without, too.
+amending the settings via the Heroku web UI, the domains set up
+(www-demoX.allizom.org) were originally set up for Mozorg, and as such may be
+confusing for colleagues reviewing Pocket changes. Flipping and un-flipping
+settings in Heroku to enable Mozorg Mode or Pocket Mode was also extra legwork
+that we ideally would do without, too.
 
 ## Decision
 
 We have implemented a new, self-managed, approach to running demos, using a
 handful of Google Cloud Platform services: Cloud Build has triggers which
-monitor pushes to specific branches, and the builds either a Mozorg-Mode or Pocket-Mode container  from Bedrock, which Cloud Run then runs as a
+monitor pushes to specific branches, and the builds either a Mozorg-Mode or
+Pocket-Mode container  from Bedrock, which Cloud Run then runs as a
 'serverless' webapp.
 
 This process is triggered by a simple push to a specific target branch. e.g.
@@ -46,6 +49,12 @@ the past.
 
 Downsides:
 
-1) If a new secret value is required on a demo instance, and so that value cannot go into the demo env vars file because our codebase is public, some SRE-like devops is needed to add that secret value to GCP's Secret Manager Service. This can be quick, but requires understanding how that side fits together, plus access, so may need a backender to add them.
+1) If a new secret value is required on a demo instance, and so that value
+cannot go into the demo env vars file because our codebase is public, some
+SRE-like devops is needed to add that secret value to GCP's Secret Manager
+Service. This can be quick, but requires understanding how that side fits
+together, plus access, so may need a backender to add them.
 
-2) At the moment, only the MEAO Backend team have GCP access, which is handy to monitor whether a demo has successfull be pushed out, or to amend secrets, etc. Both of these issues can be addressed without a lot of work.
+2) At the moment, only the MEAO Backend team have GCP access, which is handy
+to monitor whether a demo has successfull be pushed out, or to amend secrets,
+etc. Both of these issues can be addressed without a lot of work.
