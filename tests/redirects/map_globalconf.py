@@ -1140,10 +1140,12 @@ URLS = flatten(
         # Issue 9560
         url_test(
             "/openletter/",
-            "https://foundation.mozilla.org/blog/mozilla-urges-facebook-and-twitter-halt-dangerous-recommendations/",
+            "https://foundation.mozilla.org/en/campaigns/sign-letter-AICOA/",
             query={
-                "utm_source": "mozilla.org",
+                "utm_campaign": "2022antitrust",
                 "utm_content": "shortlink",
+                "utm_medium": "print",
+                "utm_source": "washingtonpost",
             },
         ),
         # Bug 1673476
