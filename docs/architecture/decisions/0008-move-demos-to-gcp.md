@@ -32,7 +32,7 @@ pushing code to mozorg-demo-2 will result in the relevant code being deployed in
 Mozorg mode to www-demo2.allizom.org, while pushing to pocket-demo-4 will deploy
 it to www-demo4.tekcopteg.com in Pocket mode.
 
-Evironment variables can also be set, via two dedicated env files in Bedrock,
+Environment variables can also be set, via two dedicated env files in Bedrock,
 which are only used for demo services. Clashes are unlikely, but can still be
 managed with common sense.
 
