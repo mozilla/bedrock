@@ -112,40 +112,93 @@ Server architecture
 -------------------
 **Demos**
 
-- *URLs:*
-   - http://www-demo1.allizom.org/
-   - http://www-demo2.allizom.org/
-   - http://www-demo3.allizom.org/
-   - http://www-demo4.allizom.org/
-   - http://www-demo5.allizom.org/
-- *Bedrock locales:* dev repo
-- *Bedrock Git branch:* ``demo/1``, ``demo/2``, etc.
+Bedrock as a platform can run in two modes: Mozorg Mode (for content that will
+appear on mozilla.org) and Pocket Mode (for content that will end up on getpocket.com).
 
-These demos can be deployed by pushing a branch to one of the `demo/*` branches
-of the `mozilla/bedrock` repo. The `Github action`_ will then deploy the
-demo to Heroku.
+To support this, we have two separate sets of URLs we use for demos. To get code up to
+one of those URLs, push it to the specified branch on ``github.com/mozilla/bedrock``:
+
+- *Mozorg:*
+   - Branch ``mozorg-demo-1`` -> https://www-demo1.allizom.org/
+   - Branch ``mozorg-demo-2`` -> https://www-demo2.allizom.org/
+   - Branch ``mozorg-demo-3`` -> https://www-demo3.allizom.org/
+   - Branch ``mozorg-demo-4`` -> https://www-demo4.allizom.org/
+   - Branch ``mozorg-demo-5`` -> https://www-demo5.allizom.org/
+
+- *Pocket:*
+   - Branch ``pocket-demo-1`` -> https://www-demo1.tekcopteg.com/
+   - Branch ``pocket-demo-2`` -> https://www-demo2.tekcopteg.com/
+   - Branch ``pocket-demo-3`` -> https://www-demo3.tekcopteg.com/
+   - Branch ``pocket-demo-4`` -> https://www-demo4.tekcopteg.com/
+   - Branch ``pocket-demo-5`` -> https://www-demo5.tekcopteg.com/
+
+For example, for Mozorg:
+
+.. code-block:: bash
+
+  $ git push -f mozilla HEAD:mozorg-demo-2
+
+Or for Pocket:
+
+.. code-block:: bash
+
+  $ git push -f mozilla HEAD:pocket-demo-1
+
+
+**Deployment notification and logs**
+
+At the moment, there is no way to view logs for the deployment unless you have
+access to Google Cloud Platform.
+
+If you *do* have access, the Cloud Build dashboard shows the latest builds,
+and Cloud Run will link off to the relevant logs.
+
+We will be adding Slack notifications to alert developers about the success or
+failure of a demo deployment.
+
+**Env vars**
+
+Rather than tweak env vars via a web UI, they are set in config files.
+Both Mozorg and Pocket mode have specific demo-use-only env var files, which
+are only used by our GCP demo setup. They are:
+
+* ``bedrock/gcp/bedrock-demos/cloudrun/mozorg-demo.env.yaml``
+* ``bedrock/gcp/bedrock-demos/cloudrun/pocket-demo.env.yaml``
+
+If you need to set/add/remove an env var, you can edit the relevant file on
+your feature branch, commit it and push it along with the rest of
+the code, as above. There is a small risk of clashes, but these can be best
+avoided if you keep up to date with ``bedrock/main`` and can be resolved easily.
+
+**Secret values**
+
+*Remember that the env vars files are public because they are in the Bedrock
+codebase, so sensitive values should not be added there, even temporarily.*
+
+If you need to add a secret value, this currently needs to be added at the GCP
+level by someone with appropriate permissions to edit and apply the Terraform
+configuration. Currently Web-SRE and the backend team have appropriate GCP
+access and adding a secret is relatively quick. (We can make this easier in
+the future if there's sufficient need, of course.)
+
+**DEPRECATED: Heroku Demo Servers**
+
+Demos are now powered by Google Cloud Platform (GCP), and no longer by Heroku.
+
+However, the `Github Action`_ we used to push code to Heroku may still be enabled.
+Pushing a branch to one of the `demo/*` branches of the `mozilla/bedrock` repo
+will trigger this. However, note that URLs that historically used to point to
+Heroku will be pointed to the new GCP demos services instead, so you will have
+to look at Heroku's web UI to see what the URL of the relevant Heroku app is.
 
 .. _Github action: https://github.com/mozilla/bedrock/blob/main/.github/workflows/demo_deploy.yml
+
+To push to launch a demo on Heroku:
 
 .. code-block:: bash
 
   $ git push -f mozilla my-demo-branch:demo/1
 
-**On-demand demos**
-
-- *URLs:* Demo instances can also be spun up on-demand by pushing a branch to the mozilla
-  bedrock repo that matches a specific naming convention (the branch name must start with
-  ``demo/``). Jenkins will then automate spinning up a demo instance based on that
-  branch. For example, pushing a branch named ``demo/feature`` would create a demo
-  instance with the following URL: ``https://bedrock-demo-feature.oregon-b.moz.works/``
-- *Bedrock locales:* dev repo
-- *Bedrock Git branch:* any branch named starting with ``demo/``
-
-.. Note::
-
-    Deployed demo instances are not yet automatically cleaned up when branches are deleted,
-    so to avoid lots of instances piling up it is currently recommended to try and limit
-    a single demo instance per developer, reusing a branch such as `demo/<your_username>`.
 
 **Dev**
 
