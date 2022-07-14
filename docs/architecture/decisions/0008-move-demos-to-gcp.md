@@ -22,19 +22,26 @@ that we ideally would do without, too.
 ## Decision
 
 We have implemented a new, self-managed, approach to running demos, using a
-handful of Google Cloud Platform services: Cloud Build has triggers which
-monitor pushes to specific branches, and the builds either a Mozorg-Mode or
-Pocket-Mode container  from Bedrock, which Cloud Run then runs as a
-'serverless' webapp.
+handful of Google Cloud Platform services. Cloud Build and Cloud Run are the
+most significant ones.
+
+Cloud Build has triggers which monitor pushes to specific branches, then
+builds a Bedrock container from the branch, using the appropriate env vars
+for Pocket or Mozorg use, including the SITE_MODE env var that specifies the
+mode Bedrock runs in.
+
+Cloud Run then deploys the built container as a 'serverless' webapp. By
+default, supervisord runs in the container, so it updates DB and L10N files
+automatically.
 
 This process is triggered by a simple push to a specific target branch. e.g.
 pushing code to mozorg-demo-2 will result in the relevant code being deployed in
 Mozorg mode to www-demo2.allizom.org, while pushing to pocket-demo-4 will deploy
 it to www-demo4.tekcopteg.com in Pocket mode.
 
-Evironment variables can also be set, via two dedicated env files in Bedrock,
-which are only used for demo services. Clashes are unlikely, but can still be
-managed with common sense.
+Environment variables can also be configured by developers, via two dedicated
+env files in the Bedrock codebase, which are only used for demo services.
+Clashes are unlikely, and can still be managed with common sense.
 
 ## Consequences
 

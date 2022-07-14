@@ -136,13 +136,13 @@ For example, for Mozorg:
 
 .. code-block:: bash
 
-  $ git push -f mozilla HEAD:mozorg-demo-2
+  $ git push -f mozilla my-demo-branch:mozorg-demo-2
 
 Or for Pocket:
 
 .. code-block:: bash
 
-  $ git push -f mozilla HEAD:pocket-demo-1
+  $ git push -f mozilla my-demo-branch:pocket-demo-1
 
 
 **Deployment notification and logs**
