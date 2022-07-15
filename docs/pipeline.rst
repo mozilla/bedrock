@@ -173,7 +173,7 @@ may be commits on that branch which aren't in yours – so, if you have the
 
 .. code-block:: bash
 
-    $ git push -f mozilla your-local-branch-name-here:run-integration-tests
+    $ git push -f mozilla $(git branch --show-current):run-integration-tests
 
 
 .. _Deployment Pipeline: https://gitlab.com/mozmeao/www-config/-/pipelines
