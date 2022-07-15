@@ -1,0 +1,61 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% block page_title %}About this site{% endblock %}
+
+{% block page_desc %}About the website www.mozilla.org, and the open source tools used to make it.{% endblock %}
+
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block body_id %}about-this-site{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-article') }}
+{% endblock %}
+
+{% block content %}
+<div class="mzp-l-content">
+  <article class="mzp-c-article">
+    <h1 class="mzp-c-article-title">About this site</h1>
+
+    <p>
+      The website www.mozilla.org has been online for over two decades.
+      That’s since <a href="https://web.archive.org/web/19981212031129/http://www.mozilla.org/">dinosoar</a>
+      times in internet years. As such, www.mozilla.org is a corner stone of the web, with roots embedded in the open
+      source movement that saw the <a href="https://www.youtube.com/watch?v=4Q7FTjhvZ7Y">creation of Mozilla</a>.
+    </p>
+
+    <p>
+      Today, this is the site where people come to download <a href="{{ url('firefox.new') }}">Firefox</a>,
+      try <a href="{{ url('products.vpn.landing') }}">Mozilla VPN</a>,
+      and learn more <a href="{{ url('mozorg.about.index') }}">about Mozilla</a>.
+      You can also discover a few <a href="{{ url('mozorg.book') }}">secrets</a> along the way.
+    </p>
+
+    <p>Like many of our products, this website is also open source:</p>
+
+    <ul class="mzp-u-list-styled">
+      <li><a href="https://github.com/mozilla/bedrock">View the source code on GitHub</a></li>
+      <li><a href="https://github.com/mozilla/bedrock/issues/new/choose">Report a bug</a></li>
+      <li><a href="https://github.com/mozilla/bedrock/blob/main/.github/CONTRIBUTING.md">Contribute to the codebase</a></li>
+      <li><a href="https://bedrock.readthedocs.io/">Read the documentation</a></li>
+    </ul>
+
+    <h2>Colophon</h2>
+
+    <p>Some open source projects used in making this site:</p>
+
+    <ul class="mzp-u-list-styled">
+      <li><a href="https://www.djangoproject.com/">Django</a> as a back end web framework.</li>
+      <li>Mozilla’s <a href="https://protocol.mozilla.org/">Protocol</a> design system for front end UI components and branding.</li>
+      <li>Many other smaller libraries and frameworks, which you can find in our <a href="https://github.com/mozilla/bedrock">GitHub repo</a>.</li>
+    </ul>
+
+  </article>
+</div>
+{% endblock %}
