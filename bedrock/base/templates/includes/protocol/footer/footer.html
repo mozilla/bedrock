@@ -96,6 +96,9 @@
           <li><a href="{{ url('privacy.notices.websites') }}#user-choices" data-link-type="footer" data-link-name="Cookies">{{ ftl('footer-websites-cookies') }}</a></li>
           <li><a href="{{ url('legal.index') }}" data-link-type="footer" data-link-name="Legal">{{ ftl('footer-websites-legal') }}</a></li>
           <li><a href="{{ url('mozorg.about.governance.policies.participation') }}" data-link-type="footer" data-link-name="Community Participation Guidelines">{{ ftl('footer-community-participation-guidelines') }}</a></li>
+          {% if ftl_has_messages('footer-about-this-site') %}
+            <li><a href="{{ url('mozorg.about.this-site') }}" data-link-type="footer" data-link-name="About this site">{{ ftl('footer-about-this-site') }}</a></li>
+          {% endif %}
         </ul>
         <p class="mzp-c-footer-license" rel="license">
           {% set moco_link = 'href="%s" data-link-type="footer" data-link-name="Mozilla Corporation"'|safe|format(url('mozorg.home')) %}

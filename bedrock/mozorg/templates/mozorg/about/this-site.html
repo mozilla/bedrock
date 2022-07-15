@@ -1,0 +1,92 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% block page_title %}{{ ftl('about-this-site-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('about-this-site-desc') }}{% endblock %}
+
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block page_favicon %}{{ static('img/favicons/mozilla/dino/favicon.ico') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/favicons/mozilla/dino/favicon-196x196.png') }}{% endblock %}
+{% block page_ios_icon %}{{ static('img/favicons/mozilla/dino/apple-touch-icon.png') }}{% endblock %}
+
+{% block body_id %}about-this-site{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-article') }}
+{% endblock %}
+
+{% block content %}
+<div class="mzp-l-content">
+  <article class="mzp-c-article">
+    <h1 class="mzp-c-article-title">{{ ftl('about-this-site-title') }}</h1>
+
+    <p>
+      {{ ftl('about-this-site-this-website',
+             archive='https://web.archive.org/web/19981212031129/http://www.mozilla.org/',
+             coderush='https://www.youtube.com/watch?v=4Q7FTjhvZ7Y') }}
+    </p>
+
+    <p>
+      {{ ftl('about-this-site-today',
+             firefox=url('firefox.new'),
+             vpn=url('products.vpn.landing'),
+             mozilla=url('mozorg.about.index'),
+             book=url('mozorg.book')) }}
+    </p>
+
+    <p>{{ ftl('about-this-site-like-many') }}</p>
+
+    <ul class="mzp-u-list-styled">
+      <li>
+        <a href="https://github.com/mozilla/bedrock">
+          {{ ftl('about-this-site-view-source') }}
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/mozilla/bedrock/issues/new/choose">
+          {{ ftl('about-this-site-report-a-bug') }}
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/mozilla/bedrock/blob/main/.github/CONTRIBUTING.md">
+          {{ ftl('about-this-site-contribute-to-code') }}
+        </a>
+      </li>
+      <li>
+        <a href="https://community.mozilla.org/activities/localize-mozilla/?utm_source=mozilla.org-about-this-site&utm_medium=referral&utm_campaign=about-this-site-page">
+          {{ ftl('about-this-site-contribute-to-l10n') }}
+        </a>
+      </li>
+      <li>
+        <a href="https://bedrock.readthedocs.io/">
+          {{ ftl('about-this-site-read-the-docs') }}
+        </a>
+      </li>
+    </ul>
+
+    <h2>{{ ftl('about-this-site-colophon') }}</h2>
+
+    <p>{{ ftl('about-this-site-some-open-source-projects') }}</p>
+
+    <ul class="mzp-u-list-styled">
+      <li>
+        {{ ftl('about-this-site-django',
+               django='https://www.djangoproject.com/',
+               jinja='https://jinja.palletsprojects.com/') }}
+      </li>
+      <li>{{ ftl('about-this-site-mozilla-protocol', protocol='https://protocol.mozilla.org/') }}</li>
+      <li>{{ ftl('about-this-site-fluent', fluent='https://projectfluent.org/') }}</li>
+      <li>{{ ftl('about-this-site-many-other', github='https://github.com/mozilla/bedrock') }}</li>
+    </ul>
+
+    <p>{{ ftl('about-this-site-we-extend', credits=url('mozorg.credits')) }}</p>
+
+  </article>
+</div>
+{% endblock %}
