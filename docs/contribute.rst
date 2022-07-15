@@ -20,30 +20,26 @@ This allows you to work on different project at the same time:
 
 .. code-block:: bash
 
-    $ git checkout main
+    $ git switch main
 
 .. code-block:: bash
 
-    $ git checkout -b topic-branch
+    $ git switch -c topic-branch
 
 To keep your branch up-to-date, assuming the mozilla repository is the remote
 called mozilla:
 
 .. code-block:: bash
 
-    $ git fetch mozilla
+    $ git switch main
 
 .. code-block:: bash
 
-    $ git checkout main
+    $ git pull
 
 .. code-block:: bash
 
-    $ git merge mozilla/main
-
-.. code-block:: bash
-
-    $ git checkout topic-branch
+    $ git switch topic-branch
 
 .. code-block:: bash
 
