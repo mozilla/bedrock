@@ -35,7 +35,10 @@ called mozilla:
 
 .. code-block:: bash
 
-    $ git pull
+    $ git pull --ff-only
+
+More on `Why you should use --ff-only`_. To make this the default update your
+Git config as described in the article.
 
 .. code-block:: bash
 
@@ -238,3 +241,4 @@ We automate pushing to production via tagged commits (see :ref:`tagged-commit`)
 .. _Git book: http://git-scm.com/book
 .. _how to write good git commit messages: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
 .. _Draft PR: https://github.blog/2019-02-14-introducing-draft-pull-requests/
+.. _Why you should use --ff-only: https://blog.sffc.xyz/post/185195398930/why-you-should-use-git-pull-ff-only-git-is-a
