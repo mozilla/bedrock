@@ -13,6 +13,12 @@
   {{ css_bundle('firefox_whatsnew_103') }}
 {% endblock %}
 
+{% block experiments %}
+{% if switch('experiment-firefox-whatsnew-103-en', ['en']) and country_code in ["US", "CA"] %}
+  {{ js_bundle('firefox_whatsnew_103_en_experiment') }}
+{% endif %}
+{% endblock %}
+
 {% block site_header %}{% endblock %}
 
 {% block wnp_content %}
@@ -20,17 +26,21 @@
   <h2 class="wnp-main-title">Feel safe every time you explore the web</h2>
   {% include 'firefox/whatsnew/includes/fx103/tcp.html' %}
   <p class="wnp-main-tagline">
-    Firefox is rolling out its strongest privacy protection to date: Total Cookie Protection
-    confines cookies to the sites where they originated, preventing tracking companies from
-    using them to follow you as you browse from site to site. Firefox will always advocate
-    and innovate for your privacy.
+    Firefox is rolling out its strongest privacy protection to date: Total Cookie
+    Protection confines cookies to the sites where they originated, preventing
+    tracker cookies from following you from site to site.
   </p>
   <p class="wnp-main-cta">
-    <a class="mzp-c-button mzp-t-product" href="{{ url('firefox.set-as-default.thanks') }}" data-cta-text="Make Firefox your default browser" data-cta-type="button">
-      Make Firefox your default browser
+    <a class="mzp-c-button mzp-t-product" href="{{ url('firefox.set-as-default.thanks') }}" data-cta-text="Make Firefox your everyday browser" data-cta-type="button">
+      Make Firefox your everyday browser
     </a>
   </p>
-  <p class="wnp-alt-msg"><strong>You’re all set with Firefox as your default browser.</strong></p>
+  <div class="wnp-alt-msg">
+    <p><strong>You’re all set with Firefox as your default browser.</strong></p>
+    <p><a class="mzp-c-button mzp-t-product" href="{{ url('firefox.mobile.get-app') }}" data-cta-text="Get Firefox on your phone" data-cta-type="button">
+      Get Firefox on your phone
+    </a></p>
+  </div>
 </section>
 {% endblock %}
 
