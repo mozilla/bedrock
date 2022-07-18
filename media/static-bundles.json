@@ -470,9 +470,15 @@
     },
     {
       "files": [
-        "css/firefox/whatsnew/whatsnew-103-eu.scss"
+        "css/firefox/whatsnew/whatsnew-103.scss"
       ],
-      "name": "firefox_whatsnew_103_eu"
+      "name": "firefox_whatsnew_103"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-103-en-rally.scss"
+      ],
+      "name": "firefox_whatsnew_103_en_rally"
     },
     {
       "files": [
@@ -1267,6 +1273,12 @@
     },
     {
       "files": [
+        "js/firefox/whatsnew/whatsnew-103-en-experiment.js"
+      ],
+      "name": "firefox_whatsnew_103_en_experiment"
+    },
+    {
+      "files": [
         "protocol/js/protocol-newsletter.js"
       ],
       "name": "legal"
@@ -1600,9 +1612,9 @@
     },
     {
       "files": [
-        "js/firefox/whatsnew/whatsnew-103-eu.js"
+        "js/firefox/whatsnew/whatsnew-103.js"
       ],
-      "name": "firefox_whatsnew_103_eu"
+      "name": "firefox_whatsnew_103"
     },
     {
       "files": [
