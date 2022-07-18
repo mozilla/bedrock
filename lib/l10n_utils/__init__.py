@@ -219,8 +219,11 @@ def get_best_translation(translations, accept_languages):
         if pre in valid_lang_map:
             return valid_lang_map[pre]
 
-    # We couldn't find a best locale to return so we return `None`.
-    return None
+    if settings.IS_MOZORG_MODE:
+        # We couldn't find a best locale to return so we return `None`.
+        return None
+    else:
+        return settings.LANGUAGE_CODE
 
 
 def get_translations_native_names(locales):
