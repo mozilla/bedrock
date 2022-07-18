@@ -33,6 +33,7 @@ $image-path: '/media/protocol/img';
 
 .wnp-main-tagline {
     @include text-body-lg;
+    text-align: left;
 }
 
 .wnp-main-cta {
