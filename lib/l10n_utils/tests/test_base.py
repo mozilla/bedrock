@@ -62,6 +62,8 @@ class TestRender(TestCase):
         self._test("/firefox/new/", template, "", "", 404, active_locales=locales)
 
         # Test that a locale+path and no accept language header returns 200 as long as the locales are supported.
+        self._test("/en-US", template, "", "", 302, "/en-US/", active_locales=locales)
+        self._test("/en-US/", template, "", "", 200, active_locales=locales)
         self._test("/en-US/firefox/new/", template, "", "", 200, active_locales=locales)
         self._test("/en-GB/firefox/new/", template, "", "", 200, active_locales=locales)
         self._test("/fr/firefox/new/", template, "", "", 200, active_locales=locales)
