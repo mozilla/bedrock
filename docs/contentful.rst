@@ -503,7 +503,7 @@ If you run into trouble on an issue, be sure to check in these places first and 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * What environment are you using?
-* Can you find a ``def`` for the content type you need?
+* Can you find a Python function definition for the content type you need?
 * Does it structure data as expected?
 
 .. code-block:: python
