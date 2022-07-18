@@ -133,12 +133,24 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/about-hero.png',
+    image_url='img/firefox/browsers/mobile/about-hero-500.png',
+    image_srcset={
+      'img/firefox/browsers/mobile/about-hero-500.png': '500w',
+      'img/firefox/browsers/mobile/about-hero-800.png': '800w',
+      'img/firefox/browsers/mobile/about-hero-1100.png': '1100w'
+    },
+    image_sizes={
+      '(min-width: 768px)': '760px',
+      'default': '250px'
+    },
+    image_width='760',
+    image_height='664',
     include_highres_image=True,
     block_class='about-mozilla mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace',
     theme_class='mzp-t-dark',
     media_class='mzp-l-split-media-overflow mzp-l-split-h-center',
-    media_after=True
+    media_after=True,
+    loading='lazy'
   ) %}
     <h3>{{ ftl('mobile-ios-about-mozilla') }}</h3>
     <p>{{ ftl('mobile-ios-mozilla-exists-to') }}</p>

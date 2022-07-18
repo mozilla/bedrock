@@ -520,6 +520,249 @@ class TestHighResImg(TestCase):
         self.assertEqual(markup, expected)
 
 
+@override_settings(STATIC_URL="/media/")
+class TestRespImg(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, url, srcset, sizes=None, optional_attributes=None):
+        req = self.rf.get("/")
+        req.locale = "en-US"
+        return render(f"{{{{ resp_img('{url}', {srcset}, {sizes}, {optional_attributes}) }}}}", {"request": req})
+
+    def _render_l10n(self, url):
+        req = self.rf.get("/")
+        req.locale = "en-US"
+        return render(f"{{{{ l10n_img('{url}') }}}}", {"request": req})
+
+    def test_resp_img_no_optional_attributes(self):
+        """Should return expected markup without optional attributes"""
+        expected = (
+            '<img src="/media/img/panda-500.png" '
+            'srcset="/media/img/panda-500.png 500w,/media/img/panda-1000.png 1000w" '
+            'sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)" alt="">'
+        )
+        markup = self._render(
+            "img/panda-500.png",
+            {"img/panda-500.png": "500w", "img/panda-1000.png": "1000w"},
+            {"(min-width: 1000px)": "calc(50vw - 200px)", "default": "calc(100vw - 50px)"},
+        )
+        self.assertEqual(markup, expected)
+
+    def test_resp_img_with_optional_attributes(self):
+        """Should return expected markup with optional attributes"""
+        expected = (
+            '<img src="/media/img/panda-500.png" '
+            'srcset="/media/img/panda-500.png 500w,/media/img/panda-1000.png 1000w" '
+            'sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)" '
+            'alt="Red Panda" class="panda-hero" loading="lazy">'
+        )
+        markup = self._render(
+            "img/panda-500.png",
+            {"img/panda-500.png": "500w", "img/panda-1000.png": "1000w"},
+            {"(min-width: 1000px)": "calc(50vw - 200px)", "default": "calc(100vw - 50px)"},
+            {"class": "panda-hero", "alt": "Red Panda", "loading": "lazy"},
+        )
+        self.assertEqual(markup, expected)
+
+    def test_resp_img_with_l10n(self):
+        """Should return expected markup with l10n image path"""
+        expected = (
+            '<img src="/media/img/l10n/en-US/panda-500.png" '
+            'srcset="/media/img/l10n/en-US/panda-500.png 500w,/media/img/l10n/en-US/panda-1000.png 1000w" '
+            'sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)" alt="">'
+        )
+        markup = self._render(
+            "panda-500.png",
+            {"panda-500.png": "500w", "panda-1000.png": "1000w"},
+            {"(min-width: 1000px)": "calc(50vw - 200px)", "default": "calc(100vw - 50px)"},
+            {"l10n": True},
+        )
+        self.assertEqual(markup, expected)
+
+        expected = (
+            '<img src="/media/img/l10n/en-US/panda-500.png" '
+            'srcset="/media/img/l10n/en-US/panda-500.png 500w,/media/img/l10n/en-US/panda-1000.png 1000w" '
+            'sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)" alt="">'
+        )
+        markup = self._render(
+            "img/panda-500.png",
+            {"img/panda-500.png": "500w", "img/panda-1000.png": "1000w"},
+            {"(min-width: 1000px)": "calc(50vw - 200px)", "default": "calc(100vw - 50px)"},
+            {"l10n": True},
+        )
+        self.assertEqual(markup, expected)
+
+    def test_resp_img_with_l10n_and_optional_attributes(self):
+        """Should return expected markup with l10n image path"""
+        expected = (
+            '<img src="/media/img/l10n/en-US/panda-500.png" '
+            'srcset="/media/img/l10n/en-US/panda-500.png 500w,/media/img/l10n/en-US/panda-1000.png 1000w" '
+            'sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)" '
+            'alt="Red Panda" class="panda-hero" loading="lazy">'
+        )
+        markup = self._render(
+            "img/panda-500.png",
+            {"img/panda-500.png": "500w", "img/panda-1000.png": "1000w"},
+            {"(min-width: 1000px)": "calc(50vw - 200px)", "default": "calc(100vw - 50px)"},
+            {"l10n": True, "class": "panda-hero", "alt": "Red Panda", "loading": "lazy"},
+        )
+        self.assertEqual(markup, expected)
+
+    def test_resp_img_srcset_without_sizes(self):
+        """Should return expected markup when using srcset without sizes"""
+        expected = '<img src="/media/img/panda.png" srcset="/media/img/panda-high-res.png 2x" alt="">'
+        markup = self._render("img/panda.png", {"img/panda-high-res.png": "2x"})
+        self.assertEqual(markup, expected)
+
+
+@override_settings(STATIC_URL="/media/")
+class TestPicture(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, url, sources, optional_attributes=None):
+        req = self.rf.get("/")
+        req.locale = "en-US"
+        return render(f"{{{{ picture('{url}', {sources}, {optional_attributes}) }}}}", {"request": req})
+
+    def test_picture_media_srcset_only(self):
+        """Should return expected markup when specifying media and srcset"""
+        expected = (
+            "<picture>"
+            '<source media="(max-width: 799px)" srcset="/media/img/panda-mobile.png">'
+            '<source media="(min-width: 800px)" srcset="/media/img/panda-desktop.png">'
+            '<img src="/media/img/panda-mobile.png" alt="">'
+            "</picture>"
+        )
+        markup = self._render(
+            "img/panda-mobile.png",
+            [
+                {"media": "(max-width: 799px)", "srcset": {"img/panda-mobile.png": "default"}},
+                {"media": "(min-width: 800px)", "srcset": {"img/panda-desktop.png": "default"}},
+            ],
+        )
+        self.assertEqual(markup, expected)
+
+    def test_picture_media_multiple_srcset_sizes(self):
+        """Should return expected markup when specifying media with multiple srcset and sizes"""
+        expected = (
+            "<picture>"
+            '<source media="(prefers-reduced-motion: reduce)" '
+            'srcset="/media/img/sleeping-panda-500.png 500w,/media/img/sleeping-panda-1000.png 1000w" '
+            'sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)">'
+            '<source media="(prefers-reduced-motion: no-preference)" '
+            'srcset="/media/img/dancing-panda-500.gif 500w,/media/img/dancing-panda-1000.gif 1000w" '
+            'sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)">'
+            '<img src="/media/img/dancing-panda-500.gif" alt="">'
+            "</picture>"
+        )
+        markup = self._render(
+            "img/dancing-panda-500.gif",
+            [
+                {
+                    "media": "(prefers-reduced-motion: reduce)",
+                    "srcset": {"img/sleeping-panda-500.png": "500w", "img/sleeping-panda-1000.png": "1000w"},
+                    "sizes": {"(min-width: 1000px)": "calc(50vw - 200px)", "default": "calc(100vw - 50px)"},
+                },
+                {
+                    "media": "(prefers-reduced-motion: no-preference)",
+                    "srcset": {"img/dancing-panda-500.gif": "500w", "img/dancing-panda-1000.gif": "1000w"},
+                    "sizes": {"(min-width: 1000px)": "calc(50vw - 200px)", "default": "calc(100vw - 50px)"},
+                },
+            ],
+        )
+        self.assertEqual(markup, expected)
+
+    def test_picture_type_srcset_only(self):
+        """Should return expected markup when specifying type and srcset"""
+        expected = '<picture><source type="image/webp" srcset="/media/img/red-panda.webp"><img src="/media/img/red-panda.png" alt=""></picture>'
+        markup = self._render("img/red-panda.png", [{"type": "image/webp", "srcset": {"img/red-panda.webp": "default"}}])
+        self.assertEqual(markup, expected)
+
+    def test_picture_type_media_srcset(self):
+        """Should return expected markup when specifying type, media, and srcset"""
+        expected = (
+            "<picture>"
+            '<source media="(max-width: 799px)" type="image/webp" srcset="/media/img/red-panda.webp">'
+            '<source media="(max-width: 799px)" type="image/png" srcset="/media/img/red-panda.png">'
+            '<img src="/media/img/red-panda.png" alt="">'
+            "</picture>"
+        )
+        markup = self._render(
+            "img/red-panda.png",
+            [
+                {"media": "(max-width: 799px)", "type": "image/webp", "srcset": {"img/red-panda.webp": "default"}},
+                {"media": "(max-width: 799px)", "type": "image/png", "srcset": {"img/red-panda.png": "default"}},
+            ],
+        )
+        self.assertEqual(markup, expected)
+
+    def test_picture_type_srcset_sizes(self):
+        """Should return expected markup when specifying type, srcset, and sizes"""
+        expected = (
+            "<picture>"
+            '<source type="image/webp" srcset="/media/img/sleeping-panda-500.webp 500w,/media/img/sleeping-panda-1000.webp 1000w" '
+            'sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)">'
+            '<source type="image/png" srcset="/media/img/sleeping-panda-500.png 500w,/media/img/sleeping-panda-1000.png 1000w" '
+            'sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)">'
+            '<img src="/media/img/red-panda.png" alt="">'
+            "</picture>"
+        )
+        markup = self._render(
+            "img/red-panda.png",
+            [
+                {
+                    "type": "image/webp",
+                    "srcset": {"img/sleeping-panda-500.webp": "500w", "img/sleeping-panda-1000.webp": "1000w"},
+                    "sizes": {"(min-width: 1000px)": "calc(50vw - 200px)", "default": "calc(100vw - 50px)"},
+                },
+                {
+                    "type": "image/png",
+                    "srcset": {"img/sleeping-panda-500.png": "500w", "img/sleeping-panda-1000.png": "1000w"},
+                    "sizes": {"(min-width: 1000px)": "calc(50vw - 200px)", "default": "calc(100vw - 50px)"},
+                },
+            ],
+        )
+        self.assertEqual(markup, expected)
+
+    def test_picture_l10n_images(self):
+        """Should return expected markup when specifying L10n images"""
+        expected = (
+            "<picture>"
+            '<source media="(max-width: 799px)" srcset="/media/img/l10n/en-US/panda-mobile.png">'
+            '<source media="(min-width: 800px)" srcset="/media/img/l10n/en-US/panda-desktop.png">'
+            '<img src="/media/img/l10n/en-US/panda-mobile.png" alt="">'
+            "</picture>"
+        )
+        markup = self._render(
+            "img/panda-mobile.png",
+            [
+                {"media": "(max-width: 799px)", "srcset": {"img/panda-mobile.png": "default"}},
+                {"media": "(min-width: 800px)", "srcset": {"img/panda-desktop.png": "default"}},
+            ],
+            {"l10n": True},
+        )
+        self.assertEqual(markup, expected)
+
+    def test_picture_with_optional_sttributes(self):
+        """Should return expected markup with optional attributes"""
+        expected = (
+            "<picture>"
+            '<source media="(max-width: 799px)" srcset="/media/img/panda-mobile.png">'
+            '<source media="(min-width: 800px)" srcset="/media/img/panda-desktop.png">'
+            '<img src="/media/img/panda-mobile.png" alt="Red Panda" loading="lazy" class="panda-hero">'
+            "</picture>"
+        )
+        markup = self._render(
+            "img/panda-mobile.png",
+            [
+                {"media": "(max-width: 799px)", "srcset": {"img/panda-mobile.png": "default"}},
+                {"media": "(min-width: 800px)", "srcset": {"img/panda-desktop.png": "default"}},
+            ],
+            {"alt": "Red Panda", "loading": "lazy", "class": "panda-hero"},
+        )
+        self.assertEqual(markup, expected)
+
+
 class TestAbsoluteURLFilter(TestCase):
     rf = RequestFactory()
     static_url_dev = "/static/"

@@ -8,18 +8,36 @@
 
 
 {# Billboard: https://protocol.mozilla.org/patterns/organisms/billboard.html #}
-{% macro billboard(title, ga_title, desc, image_url, link_cta=None, link_url=None, include_highres_image=False, reverse=False, heading_level=2, loading=None) -%}
+{% macro billboard(
+  desc='',
+  ga_title='',
+  heading_level=2,
+  image_alt='',
+  image_sizes=None,
+  image_sources=None,
+  image_srcset=None,
+  image_url='',
+  include_highres_image=False,
+  link_cta=None,
+  link_url=None,
+  loading=None,
+  reverse=False,
+  title=''
+) -%}
 <section class="mzp-c-billboard {% if reverse %}mzp-l-billboard-left{% else %}mzp-l-billboard-right{% endif %}">
   <div class="mzp-c-billboard-image-container">
     {{ image(
-      url=image_url,
-      class='mzp-c-billboard-image',
-      width=346,
-      height=346,
       alt=image_alt,
-      loading=loading,
+      class='mzp-c-billboard-image',
+      height=346,
       include_highres=include_highres_image,
-      include_l10n=l10n_image
+      include_l10n=l10n_image,
+      loading=loading,
+      sizes=image_sizes,
+      sources=image_sources,
+      srcset=image_srcset,
+      url=image_url,
+      width=346
     ) }}
   </div>
   <div class="mzp-c-billboard-content">
@@ -77,7 +95,27 @@
 
 
 {# Split: https://protocol.mozilla.org/patterns/organisms/split.html #}
-{% macro split(base_el='section', block_id=None, block_class=None, theme_class=None, body_class=None, image_url=None, media_class=None, include_highres_image=False, l10n_image=False, image_alt='', mobile_class=None, media_after=False, media_include=None, loading=None) -%}
+{% macro split(
+  base_el='section',
+  block_class=None,
+  block_id=None,
+  body_class=None,
+  image_alt='',
+  image_height=None,
+  image_sizes=None,
+  image_sources=None,
+  image_srcset=None,
+  image_url=None,
+  image_width=None,
+  include_highres_image=False,
+  l10n_image=False,
+  loading=None,
+  media_after=False,
+  media_class=None,
+  media_include=None,
+  mobile_class=None,
+  theme_class=None
+) -%}
 <{{base_el}}{% if block_id %} id="{{ block_id }}"{% endif %} class="mzp-c-split{% if block_class %} {{ block_class }}{% endif %}{% if mobile_class %} {{ mobile_class }}{% endif %}">
   {% if theme_class %}
   <div class="mzp-c-split-bg {{ theme_class }}">
@@ -87,12 +125,17 @@
       {% if image_url %}
         <div class="mzp-c-split-media{% if media_class %} {{ media_class }}{% endif %}">
           {{ image(
-            url=image_url,
-            class='mzp-c-split-media-asset',
             alt=image_alt,
-            loading=loading,
+            class='mzp-c-split-media-asset',
+            height=image_height,
             include_highres=include_highres_image,
-            include_l10n=l10n_image
+            include_l10n=l10n_image,
+            loading=loading,
+            sizes=image_sizes,
+            sources=image_sources,
+            srcset=image_srcset,
+            url=image_url,
+            width=image_width
           ) }}
         </div>
       {% elif media_include %}
@@ -108,12 +151,17 @@
       {% if image_url %}
         <div class="mzp-c-split-media{% if media_class %} {{ media_class }}{% endif %}">
           {{ image(
-            url=image_url,
-            class='mzp-c-split-media-asset',
             alt=image_alt,
-            loading=loading,
+            class='mzp-c-split-media-asset',
+            height=image_height,
             include_highres=include_highres_image,
-            include_l10n=l10n_image
+            include_l10n=l10n_image,
+            loading=loading,
+            sizes=image_sizes,
+            sources=image_sources,
+            srcset=image_srcset,
+            url=image_url,
+            width=image_width
           ) }}
         </div>
       {% elif media_include %}
@@ -169,18 +217,46 @@
 
 
 {# Card: https://protocol.mozilla.org/patterns/molecules/card.html #}
-{% macro card(title, ga_title, image_url, link_url, desc=None, meta=None, cta=None, tag_label=None, media_icon=None, class=None, heading_level=2, aspect_ratio='mzp-has-aspect-3-2', include_highres_image=False, highres_image_url=None, youtube_id=None, attributes=None) -%}
+{% macro card(
+  aspect_ratio='mzp-has-aspect-3-2',
+  attributes=None,
+  class=None,
+  cta=None,
+  desc=None,
+  ga_title='',
+  heading_level=2,
+  highres_image_url=None,
+  image_alt='',
+  image_height=None,
+  image_sizes=None,
+  image_sources=None,
+  image_srcset=None,
+  image_url='',
+  image_width=None,
+  include_highres_image=False,
+  link_url='',
+  media_icon=None,
+  meta=None,
+  tag_label=None,
+  title='',
+  youtube_id=None
+) -%}
 <section class="mzp-c-card {% if class %}{{ class }}{% endif %} {% if aspect_ratio %}{{ aspect_ratio }}{% endif %} {% if media_icon %}{{ media_icon }}{% endif %} {% if youtube_id %}mzp-has-video has-video-embed{% endif %}" {% if attributes %}{{attributes|safe}}{% endif %}>
   <a class="mzp-c-card-block-link" href="{{ link_url }}" data-link-name="{{ ga_title }}" data-link-type="link" data-link-group="card" {% if tag_label %}data-card-tag="{{ tag_label }}"{% endif %}>
     {% if image_url %}
     <div class="mzp-c-card-media-wrapper">
       {{ image(
-        url=image_url,
-        class='mzp-c-card-image',
         alt=image_alt,
-        loading="lazy",
+        class='mzp-c-card-image',
+        height=image_height,
         include_highres=include_highres_image,
-        include_l10n=l10n_image
+        include_l10n=l10n_image,
+        loading='lazy',
+        sizes=image_sizes,
+        sources=image_sources,
+        srcset=image_srcset,
+        url=image_url,
+        width=image_width
       ) }}
     </div>
     {% endif %}
@@ -235,14 +311,31 @@
 {%- endmacro %}
 
 {# Feature Card: https://protocol.mozilla.org/patterns/molecules/feature-card.html #}
-{% macro feature_card_media(image_url, include_highres_image=False, l10n_image=False, loading=None) %}
+{% macro feature_card_media(
+  image_alt='',
+  image_height=None,
+  image_sizes=None,
+  image_sources=None,
+  image_srcset=None,
+  image_url='',
+  image_width=None,
+  include_highres_image=False,
+  l10n_image=False,
+  loading=None
+) %}
 <div class="mzp-c-card-feature-media-wrapper">
   <div class="mzp-c-card-feature-media">
     {{ image(
-      url=image_url,
-      loading=loading,
+      alt=image_alt,
+      height=image_height,
       include_highres=include_highres_image,
-      include_l10n=l10n_image
+      include_l10n=l10n_image,
+      loading=loading,
+      sizes=image_sizes,
+      sources=image_sources,
+      srcset=image_srcset,
+      url=image_url,
+      width=image_width
     ) }}
   </div>
 </div>
@@ -276,17 +369,38 @@
 
 
 {# Picto: https://protocol.mozilla.org/patterns/molecules/picto.html #}
-{% macro picto(title=None, class=None, heading_level=3, base_el='div', body=False, image_url='', image_width=64, include_highres_image=False, l10n_image=False, loading=None) -%}
+{% macro picto(
+  base_el='div',
+  body=False,
+  class=None,
+  heading_level=3,
+  image_alt='',
+  image_height=None,
+  image_sizes=None,
+  image_sources=None,
+  image_srcset=None,
+  image_url='',
+  image_width=64,
+  include_highres_image=False,
+  l10n_image=False,
+  loading=None,
+  title=None
+) -%}
 <{{ base_el }} class="mzp-c-picto{% if class %} {{ class }}{% endif %}">
   {% if image_url %}
   {{ image(
-      url=image_url,
-      class='mzp-c-picto-image',
-      width=image_width,
       alt=image_alt,
-      loading=loading,
+      class='mzp-c-picto-image',
+      height=image_height,
       include_highres=include_highres_image,
-      include_l10n=l10n_image
+      include_l10n=l10n_image,
+      loading=loading,
+      sizes=image_sizes,
+      sources=image_sources,
+      srcset=image_srcset,
+      url=image_url,
+      url=image_url,
+      width=image_width
     ) }}
   {% endif %}
   {% if title %}<h{{ heading_level }} class="mzp-c-picto-heading">{{ title }}</h{{ heading_level }}>{% endif %}

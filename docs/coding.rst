@@ -209,7 +209,7 @@ You can also pass template data as keyword arguments:
     page("channel/", "mozorg/channel.html",
          latest_version=product_details.firefox_versions["LATEST_FIREFOX_VERSION"])
 
-The variable `latest_version` will be available in the template.
+The variable ``latest_version`` will be available in the template.
 
 Finding Templates by URL
 ------------------------
@@ -298,11 +298,11 @@ Optimizing Images
 Images can take a long time to load and eat up a lot of bandwidth. Always take care
 to optimize images before uploading them to the site.
 
-The script `img.sh` can be used to optimize images locally on the command line:
+The script ``img.sh`` can be used to optimize images locally on the command line:
 
-#. Before you run it for the first time you will need to run `npm install` to install dependencies
-#. Add the image files to git's staging area `git add *`
-#. Run the script `./bin/img.sh`
+#. Before you run it for the first time you will need to run ``npm install`` to install dependencies
+#. Add the image files to git's staging area ``git add *``
+#. Run the script ``./bin/img.sh``
 #. The optimized files will not automatically be staged, so be sure to add them before commiting
 
 The script will:
@@ -312,79 +312,382 @@ The script will:
     - you will be prompted to add a `TinyPNG API key <https://tinypng.com/developers>`_
 - optimize SVG images locally with svgo
 - check that SVGs have a viewbox (needed for IE support)
-- check that images that end in `-high-res` have low res versions as well
+- check that images that end in ``-high-res`` have low res versions as well
 
 Embedding Images
 ----------------
 
-Images should be included on pages using helper functions.
+Images should be included on pages using one of the following helper functions.
+
+Primary image helpers
+~~~~~~~~~~~~~~~~~~~~~
+
+The following image helpers support the most common features and use cases you may encounter when coding pages:
 
 static()
-~~~~~~~~
+^^^^^^^^
 
-For a simple image, the `static()` function is used to generate the image URL. For example:
+For a simple image, the ``static()`` function is used to generate the image URL. For example:
 
 .. code-block:: html
 
-    <img src="{{ static('img/firefox/new/firefox-logo.png') }}" alt="Firefox" />
+    <img src="{{ static('img/firefox/new/firefox-wordmark-logo.svg') }}" alt="Firefox" />
 
 will output an image:
 
 .. code-block:: html
 
-    <img src="/media/img/firefox/new/firefox-logo.png" alt="Firefox">
+    <img src="/media/img/firefox/new/firefox-wordmark-logo.svg" alt="Firefox">
 
-high_res_img()
-~~~~~~~~~~~~~~
+resp_img()
+^^^^^^^^^^
 
-For images that include a high-resolution alternative for displays with a high pixel density, use the `high_res_img()` function:
+For `responsive images <https://developer.mozilla.org/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images>`_,
+where we want to specify multiple different image sizes and let the browser select which is best to use.
+
+The example below shows how to serve an appropriately sized, responsive red panda image:
+
+.. code-block:: python
+
+    resp_img(
+        url="img/panda-500.png",
+        srcset={
+            "img/panda-500.png": "500w",
+            "img/panda-750.png": "750w",
+            "img/panda-1000.png": "1000w"
+        },
+        sizes={
+            "(min-width: 1000px)": "calc(50vw - 200px)",
+            "default": "calc(100vw - 50px)"
+        }
+    )
+
+This would output:
+
+.. code-block:: html
+
+    <img src="/media/img/panda-500.png"
+         srcset="/media/img/panda-500.png 500w,/media/img/panda-750.png 750w,/media/img/panda-1000.png 1000w"
+         sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)" alt="">'
+
+In the above example we specify the available image sources using the ``srcset`` parameter. We then use ``sizes`` to say:
+
+- When the viewport is greater than ``1000px`` wide, the panda image will take up roughly half of the page width.
+- When the viewport is less than ``1000px`` wide, the panda image will take up roughly full page width.
+
+The browser will then pick the best source option from ``srcset`` (based on both the estimated image size and
+screen resolution) to satisfy the condition met in ``sizes``. Older browsers will fall back to the default image
+we specify using ``url``.
+
+Another example might be to serve a high resolution alternative for a fixed size image:
+
+.. code-block:: python
+
+    resp_img(
+        url="img/panda.png",
+        srcset={
+            "img/panda-high-res.png": "2x"
+        }
+    )
+
+This would output:
+
+.. code-block:: html
+
+    <img src="/media/img/panda.png" srcset="/media/img/panda-high-res.png 2x" alt="">
+
+Here we don't need a ``sizes`` attribute, since the panda image is fixed in size and small enough that it won't need to
+resize along with the browser window. Instead the ``srcset`` image includes an alternate high resolution source URL, along
+with a pixel density descriptor. This can then be used to say:
+
+- When a browser specifies a device pixel ratio of ``2x`` or greater, use ``panda-high-res.png``.
+- When a browser specifies a device pixel ration of less than ``2x``, use ``panda.png``.
+
+The ``resp_img()`` helper also supports localized images by setting the ``'l10n'`` parameter to ``True```:
+
+.. code-block:: python
+
+    resp_img(
+        url="img/panda-500.png",
+        srcset={
+            "img/panda-500.png": "500w",
+            "img/panda-750.png": "750w",
+            "img/panda-1000.png": "1000w"
+        },
+        sizes={
+            "(min-width: 1000px)": "calc(50vw - 200px)",
+            "default": "calc(100vw - 50px)"
+        },
+        optional_attributes={
+            "l10n": True
+        }
+    )
+
+This would output (assuming ``de`` was your locale):
+
+.. code-block:: html
+
+    <img src="/media/img/l10n/de/panda-500.png"
+         srcset="/media/img/l10n/de/panda-500.png 500w,/media/img/l10n/de/panda-750.png 750w,/media/img/l10n/de/panda-1000.png 1000w"
+         sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)" alt="">'
+
+Finally, you can also specify any other additional attributes you might need using ``optional_attributes``:
+
+.. code-block:: python
+
+    resp_img(
+        url="img/panda-500.png",
+        srcset={
+            "img/panda-500.png": "500w",
+            "img/panda-750.png": "750w",
+            "img/panda-1000.png": "1000w"
+        },
+        sizes={
+            "(min-width: 1000px)": "calc(50vw - 200px)",
+            "default": "calc(100vw - 50px)"
+        },
+        optional_attributes={
+            "alt": "Red Panda",
+            "class": "panda-hero",
+            "height": 500",
+            "l10n": True,
+            "loading": "lazy",
+            "width": "500"
+        }
+    )
+
+picture()
+^^^^^^^^^
+
+For `responsive images <https://developer.mozilla.org/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images>`_,
+where we want to serve different images, or image types, to suit different display sizes.
+
+The example below shows how to serve a different image for desktop and mobile sizes screens:
+
+.. code-block:: python
+
+    picture(
+        url="img/panda-mobile.png",
+        sources=[
+            {
+                "media": "(max-width: 799px)",
+                "srcset": {
+                    "img/panda-mobile.png": "default"
+                }
+            },
+            {
+                "media": "(min-width: 800px)",
+                "srcset": {
+                    "img/panda-desktop.png": "default"
+                }
+            }
+        ]
+    )
+
+This would output:
+
+.. code-block:: html
+
+    <picture>
+        <source media="(max-width: 799px)" srcset="/media/img/panda-mobile.png">
+        <source media="(min-width: 800px)" srcset="/media/img/panda-desktop.png">
+        <img src="/media/img/panda-mobile.png" alt="">
+    </picture>
+
+In the above example we use the ``sources`` parameter to specify one or more alternate image sources.  For each
+``<source>``, ``media`` lets us specify a media query as a condition for when to load an image, and ``srcset``
+lets us specify one or more sizes for each image. This is a very simple example where we only specify one image
+size per source, so we use ``default`` as a descriptor.
+
+A more complex example might be when we want to load responsively sized, animated gifs, but also offer still
+images for users who set ``(prefers-reduced-motion: reduce)``:
+
+.. code-block:: python
+
+    picture(
+        url="img/dancing-panda-500.gif",
+        sources=[
+            {
+                "media": "(prefers-reduced-motion: reduce)",
+                "srcset": {
+                    "img/sleeping-panda-500.png": "500w",
+                    "img/sleepinng-panda-750.png": "750w",
+                    "img/sleeping-panda-1000.png": "1000w"
+                },
+                "sizes": {
+                    "(min-width: 1000px)": "calc(50vw - 200px)",
+                    "default": "calc(100vw - 50px)"
+                }
+            },
+            {
+                "media": "(prefers-reduced-motion: no-preference)",
+                "srcset": {
+                    "img/dancing-panda-500.gif": "500w",
+                    "img/dancing-panda-750.gif": "750w",
+                    "img/dancing-panda-1000.gif": "1000w"
+                },
+                "sizes": {
+                    "(min-width: 1000px)": "calc(50vw - 200px)",
+                    "default": "calc(100vw - 50px)"
+                }
+            }
+        ]
+    )
+
+This would output:
+
+.. code-block:: html
+
+    <picture>
+        <source media="(prefers-reduced-motion: reduce)"
+                srcset="/media/img/sleeping-panda-500.png 500w,/media/img/sleeping-panda-750.png 750w,/media/img/sleeping-panda-1000.png 1000w"
+                sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)">
+        <source media="(prefers-reduced-motion: no-preference)"
+                srcset="/media/img/dancing-panda-500.gif 500w,/media/img/dancing-panda-750.gif 750w,/media/img/dancing-panda-1000.gif 1000w"
+                sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)">
+        <img src="/media/img/dancing-panda-500.gif" alt="">
+    </picture>
+
+In the above example we would default to loading animated gifs, but if a user agent specified ``(prefers-reduced-motion: reduce)`` then the
+browser would load static png files instead. Multiple image sizes are also supported for each ``<source>`` using ``srcset`` and ``sizes``.
+
+Another type of use case might be to serve different image formats, so capable browsers can take advantage of more efficient encoding:
+
+.. code-block:: python
+
+    picture(
+        url="img/red-panda.png",
+        sources=[
+            {
+                "type": "image/webp",
+                "srcset": {
+                    "img/red-panda.webp": "default"
+                }
+            }
+        ]
+    )
+
+This would output:
+
+.. code-block:: html
+
+    <picture>
+        <source type="image/webp" srcset="/media/img/red-panda.webp">
+        <img src="/media/img/red-panda.png" alt="">
+    </picture>
+
+In the above example we use ``sources`` to specify an alternate image with a ``type`` attribute of ``image/webp``.
+This lets browsers that support WebP to download ``red-panda.webp``, whilst older browsers would download ``red-panda.png``.
+
+Like ``resp_img()``, the ``picture()`` helper also supports L10n images and other useful attributes via the ``optional_attributes`` parameter:
+
+.. code-block:: python
+
+    picture(
+        url="img/panda-mobile.png",
+        sources=[
+            {
+                "media": "(max-width: 799px)",
+                "srcset": {
+                    "img/panda-mobile.png": "default"
+                }
+            },
+            {
+                "media": "(min-width: 800px)",
+                "srcset": {
+                    "img/panda-desktop.png": "default"
+                }
+            }
+        ],
+        optional_attributes={
+            "alt": "Red Panda",
+            "class": "panda-hero",
+            "l10n": True,
+            "loading": "lazy",
+        }
+    )
+
+Older browsers that do not support ``<picture>`` will simply download the default image we specify using ``url``.
+
+high_res_img() (deprecated)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. note::
+
+    The ``high_res_img()`` helper is now deprecated in favor of ``resp_img()``. If an image is large enough that it gets
+    scaled down at smaller viewport sizes, then you should probably be serving a responsive image. For cases where you
+    only really want to serve a high resolution alternative, then you can still do this using ``resp_img()`` (see the
+    example in the docs above).
+
+For images that include a high-resolution alternative for displays with a high pixel density, use the ``high_res_img()`` function:
 
 .. code-block:: python
 
     high_res_img("img/firefox/new/firefox-logo.png", {"alt": "Firefox", "width": "200", "height": "100"})
 
-The `high_res_img()` function will automatically look for the image in the URL parameter suffixed with `'-high-res'`, e.g. `img/firefox/new/firefox-logo-high-res.png` and switch to it if the display has high pixel density.
+The ``high_res_img()`` function will automatically look for the image in the URL parameter suffixed with
+``'-high-res'``, e.g. ``img/firefox/new/firefox-logo-high-res.png`` and switch to it if the display has high pixel density.
 
-`high_res_img()` supports localized images by setting the `'l10n'` parameter to `True`:
+``high_res_img()`` supports localized images by setting the ``'l10n'`` parameter to ``True```:
 
 .. code-block:: python
 
     high_res_img("img/firefox/new/firefox-logo.png", {"l10n": True, "alt": "Firefox", "width": "200", "height": "100"})
 
-When using localization, `high_res_img()` will look for images in the appropriate locale folder. In the above example, for the `de` locale, both standard and high-res versions of the image should be located at `media/img/l10n/de/firefox/new/`.
+When using localization, ``high_res_img()`` will look for images in the appropriate locale folder. In the above example,
+for the `de` locale, both standard and high-res versions of the image should be located at ``media/img/l10n/de/firefox/new/``.
+
+Which image helper should you use?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This is a good question. The answer depends entirely on the image in question. A good rule of thumb is as follows:
+
+- Is the image a vector format (e.g. ``.svg``)?
+    - If yes, then for most cases you can simply use ``static()``.
+- Is the image a raster format (e.g. ``.png`` or ``.jpg``)?
+    - Is the same image displayed on both large and small viewports? Does the image need to scale as the browser resizes? If yes to both, then use ``resp_img()`` with both ``srcset`` and ``sizes``.
+    - Is the image fixed in size (non-responsive)? Do you need to serve a high resolution version? If yes to both, then use ``resp_img()`` with just ``srcset``.
+- Does the source image need to change depending on a media query (e.g serve a different image on both desktop and mobile)? If yes, then use ``picture()`` with ``media`` and ``srcset``.
+- Is the image format only supported in certain browsers? Do you need to provide a fallback? If yes to both, then use ``picture()`` with ``type`` and ``srcset``.
+
+Secondary image helpers
+~~~~~~~~~~~~~~~~~~~~~~~
+
+The following image helpers are less commonly used, but exist to support more specific use cases.
+Some are also encapsulated as features inside inside of primary helpers, such as ``l1n_img()``.
 
 l10n_img()
-~~~~~~~~~~
+^^^^^^^^^^
 
-Images that have translatable text can be handled with `l10n_img()`:
+Images that have translatable text can be handled with ``l10n_img()``:
 
 .. code-block:: html
 
     <img src="{{ l10n_img('firefox/os/have-it-all/messages.jpg') }}" />
 
-The images referenced by `l10n_img()` must exist in `media/img/l10n/`, so for above example, the images could include `media/img/l10n/en-US/firefox/os/have-it-all/messages.jpg` and `media/img/l10n/es-ES/firefox/os/have-it-all/messages.jpg`.
+The images referenced by ``l10n_img()`` must exist in ``media/img/l10n/``, so for above example, the images could include ``media/img/l10n/en-US/firefox/os/have-it-all/messages.jpg`` and ``media/img/l10n/es-ES/firefox/os/have-it-all/messages.jpg``.
 
 platform_img()
-~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^
 
-Finally, for outputting an image that differs depending on the platform being used, the `platform_img()` function will automatically display the image for the user's browser:
+Finally, for outputting an image that differs depending on the platform being used, the ``platform_img()`` function will automatically display the image for the user's browser:
 
 .. code-block:: python
 
     platform_img("img/firefox/new/browser.png", {"alt": "Firefox screenshot"})
 
-`platform_img()` will automatically look for the images `browser-mac.png`, `browser-win.png`, `browser-linux.png`, etc. Platform image also supports hi-res images by adding `'high-res': True` to the list of optional attributes.
+``platform_img()`` will automatically look for the images ``browser-mac.png``, ``browser-win.png``, ``browser-linux.png``, etc. Platform image also supports hi-res images by adding ``'high-res': True`` to the list of optional attributes.
 
-`platform_img()` supports localized images by setting the `'l10n'` parameter to `True`:
+``platform_img()`` supports localized images by setting the ``'l10n'`` parameter to ``True``:
 
 .. code-block:: python
 
     platform_img("img/firefox/new/firefox-logo.png", {"l10n": True, "alt": "Firefox screenshot"})
 
-When using localization, `platform_img()` will look for images in the appropriate locale folder. In the above example, for the `es-ES` locale, all platform versions of the image should be located at `media/img/l10n/es-ES/firefox/new/`.
+When using localization, ``platform_img()`` will look for images in the appropriate locale folder. In the above example, for the ``es-ES`` locale, all platform versions of the image should be located at ``media/img/l10n/es-ES/firefox/new/``.
 
 qrcode()
-~~~~~~~~
+^^^^^^^^
 
 This is a helper function that will output SVG data for a QR Code at the spot in the template
 where it is called. It caches the results to the ``data/qrcode_cache`` directory, so it only
@@ -400,26 +703,44 @@ parameters on the XML SVG tag, the units of which are "mm". This can be override
 may not need to use it at all. The ``box_size`` parameter is optional.
 
 image()
-~~~~~~~
+^^^^^^^
 
-We also have an image macro, which is mainly used to encapsulate the conditional logic needed for `Protocol macros <https://bedrock.readthedocs.io/en/latest/coding.html#working-with-protocol>`_ containing images. You can also import the macro directly into a template.
+We also have an image macro, which is mainly used to encapsulate the conditional logic needed for
+`Protocol macros <https://bedrock.readthedocs.io/en/latest/coding.html#working-with-protocol>`_
+containing images. You can also import the macro directly into a template.
 
 .. code-block:: jinja
 
     {% from 'macros.html' import image with context %}
 
     {{ image(
-        url='example.jpg',
-        alt='example alt',
-        class='example class',
-        width='64',
-        height='64',
+        url='img/panda-500.jpg',
+        alt='Red Panda',
+        class='panda-hero',
+        width='500',
+        height='500',
         loading='lazy',
-        include_highres=True,
+        srcset={
+            'img/panda-500.jpg': '500w',
+            'img/panda-1000.jpg': '1000w',
+        },
+        sizes={
+            '(min-width: 768px)': 'calc(50vw - 192px)',
+            'default': 'calc(100vw - 48px)'
+        },
         include_l10n=True
     ) }}
 
-Only ``url`` is required. By default, alt text will be an empty string, loading will be determined by the browser, and highres/l10n images will not be included. For ``include_l10n=True`` to work, you must import the macro `with context`.
+Only ``url`` is required. By default, alt text will be an empty string, loading will be determined
+by the browser, and responsive/l10n images will not be included. For ``include_l10n=True`` to work,
+you must import the macro ``with context``.
+
+.. note::
+
+    If you are implementing a responsive image using ``srcset`` and ``sizes`` then there's no
+    need to specify ``include_highres=True`` as it will have no effect. The ``include_highres``
+    parameter is only used in the (now deprecated) ``high_res_img()`` helper.
+
 
 Using Large Assets
 ------------------
@@ -469,10 +790,10 @@ Writing Views
 -------------
 
 You should rarely need to write a view for mozilla.org. Most pages are
-static and you should use the `page` function documented above.
+static and you should use the ``page`` function documented above.
 
 If you need to write a view and the page is translated or translatable
-then it should use the `l10n_utils.render()` function to render the
+then it should use the ``l10n_utils.render()`` function to render the
 template.
 
 .. code-block:: python
@@ -490,14 +811,14 @@ template.
 
 Make sure to namespace your templates by putting them in a directory
 named after your app, so instead of templates/template.html they would
-be in templates/blog/template.html if `blog` was the name of your app.
+be in templates/blog/template.html if ``blog`` was the name of your app.
 
-The `require_safe` ensures that only `GET` or `HEAD` requests will make it
+The ``require_safe`` ensures that only ``GET`` or ``HEAD`` requests will make it
 through to your view.
 
 If you prefer to use Django's Generic View classes we have a convenient
 helper for that. You can use it either to create a custom view class of
-your own, or use it directly in a `urls.py` file.
+your own, or use it directly in a ``urls.py`` file.
 
 .. code-block:: python
 
@@ -515,9 +836,9 @@ your own, or use it directly in a `urls.py` file.
         path("firefox/sox/", L10nTemplateView.as_view(template_name="app/firefox-sox.html")),
     ]
 
-The `L10nTemplateView` functionality is mostly in a template mixin called `LangFilesMixin` which
-you can use with other generic Django view classes if you need one other than `TemplateView`.
-The `L10nTemplateView` already ensures that only `GET` or `HEAD` requests will be served.
+The ``L10nTemplateView`` functionality is mostly in a template mixin called ``LangFilesMixin`` which
+you can use with other generic Django view classes if you need one other than ``TemplateView``.
+The ``L10nTemplateView`` already ensures that only ``GET`` or ``HEAD`` requests will be served.
 
 Variation Views
 ~~~~~~~~~~~~~~~
@@ -541,10 +862,10 @@ context variable for switching, this will help you out. For example.
              name="testing"),
     ]
 
-This will give you a context variable called `variation` that will either be an empty
-string if no param is set, or `a` if `?v=a` is in the URL, or `b` if `?v=b` is in the
-URL. No other options will be valid for the `v` query parameter and `variation` will
-be empty if any other value is passed in for `v` via the URL. So in your template code
+This will give you a context variable called ``variation`` that will either be an empty
+string if no param is set, or ``a`` if ``?v=a`` is in the URL, or ``b`` if ``?v=b`` is in the
+URL. No other options will be valid for the ``v`` query parameter and ``variation`` will
+be empty if any other value is passed in for ``v`` via the URL. So in your template code
 you'd simply do the following:
 
 .. code-block:: jinja
@@ -552,7 +873,7 @@ you'd simply do the following:
     {% if variation == 'b' %}<p>This is the B variation of our test. Enjoy!</p>{% endif %}
 
 If you'd rather have a fully separate template for your test, you can use the
-`template_name_variations` argument to the view instead of `template_context_variations`.
+``template_name_variations`` argument to the view instead of ``template_context_variations``.
 
 .. code-block:: python
 
@@ -570,8 +891,8 @@ If you'd rather have a fully separate template for your test, you can use the
     ]
 
 This will not provide any extra template context variables, but will instead look for
-alternate template names. If the URL is `testing/?v=1`, it will use a template named
-`testing-1.html`, if `v=2` it will use `testing-2.html`, and for everything else it will
+alternate template names. If the URL is ``testing/?v=1``, it will use a template named
+``testing-1.html``, if ``v=2`` it will use ``testing-2.html``, and for everything else it will
 use the default. It simply puts a dash and the variation value between the template
 file name and file extension.
 
@@ -580,7 +901,7 @@ of this view together, but that would be an odd situation and potentially inappr
 for this utility.
 
 You can also limit your variations to certain locales. By default the variations will work
-for any localization of the page, but if you supply a list of locales to the `variation_locales`
+for any localization of the page, but if you supply a list of locales to the ``variation_locales``
 argument to the view then it will only set the variation context variable or alter the template
 name (depending on the options explained above) when requested at one of said locales. For example,
 the template name example above could be modified to only work for English or German like so
@@ -608,7 +929,7 @@ valid variation were given in the URL.
 
     If you'd like to add this functionality to an existing Class-Based View, there is
     a mixin that implements this pattern that should work with most views:
-    `bedrock.utils.views.VariationMixin`.
+    ``bedrock.utils.views.VariationMixin``.
 
 Geo Template View
 ~~~~~~~~~~~~~~~~~
@@ -710,7 +1031,7 @@ doesn't mean 0% defects.
 Configuring your Code Editor
 ----------------------------
 
-Bedrock includes an `.editorconfig` file in the root directory that you can
+Bedrock includes an ``.editorconfig`` file in the root directory that you can
 use with your code editor to help maintain consistent coding styles. Please
 see `editorconfig.org <http://editorconfig.org/>`_. for a list of supported
 editors and available plugins.

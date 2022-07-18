@@ -201,27 +201,35 @@
 {# Docs: https://bedrock.readthedocs.io/en/latest/coding.html#image #}
 {% macro image(
   url,
-  alt="",
+  alt='',
   class=None,
   width=None,
   height=None,
   loading=None,
+  srcset=None,
+  sizes=None,
+  sources=None,
   include_highres=False,
   include_l10n=False
 ) -%}
-  {% if include_highres %}
-    {% set unclean = {
-      'alt': alt,
-      'class': class,
-      'width': width,
-      'height': height,
-      'loading': loading,
-      'l10n': include_l10n
-    } %}
-    {% set optional_attributes = dict() %}
-    {% for key, value in unclean.items() %}
-      {% if value is not none and value is not false %}{{ optional_attributes.update({ key: value }) }}{% endif %}
-    {% endfor %}
+  {% set unclean = {
+    'alt': alt,
+    'class': class,
+    'width': width,
+    'height': height,
+    'loading': loading,
+    'l10n': include_l10n
+  } %}
+  {% set optional_attributes = dict() %}
+  {% for key, value in unclean.items() %}
+    {% if value is not none and value is not false %}{{ optional_attributes.update({ key: value }) }}{% endif %}
+  {% endfor %}
+
+  {% if sources %}
+    {{ picture(url, sources, optional_attributes) }}
+  {% elif srcset %}
+    {{ resp_img(url, srcset, sizes, optional_attributes) }}
+  {% elif include_highres %}
     {{ high_res_img(url, optional_attributes) }}
   {% else %}
     {% if url.startswith('https')  %}

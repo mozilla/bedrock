@@ -43,8 +43,20 @@
 {% block content %}
 <main role="main">
   {% call split(
-    image_url='img/firefox/browsers/hero.jpg',
-    include_highres_image=True,
+    image_url='img/firefox/browsers/hero-500.jpg',
+    image_srcset={
+      'img/firefox/browsers/hero-500.jpg': '500w',
+      'img/firefox/browsers/hero-700.jpg': '700w',
+      'img/firefox/browsers/hero-900.jpg': '900w',
+      'img/firefox/browsers/hero-1100.jpg': '1100w',
+      'img/firefox/browsers/hero-1300.jpg': '1300w',
+    },
+    image_sizes={
+      '(min-width: 768px)': 'calc(50vw - 192px)',
+      'default': 'calc(100vw - 48px)'
+    },
+    image_width='680',
+    image_height='420',
     block_class='mzp-has-media-hide mzp-l-split-center-on-sm-md',
     body_class='mzp-l-v-center',
     media_class='mzp-l-fit-flush mzp-l-constrain-height'
