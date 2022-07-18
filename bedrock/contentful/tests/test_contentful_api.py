@@ -1209,7 +1209,6 @@ def test_ContentfulPage__get_split_data(mock__get_image_url, basic_contentful_pa
         "name": "Split Test",
         "image": "Stub image",
         "body": "Stub body",
-        "heading_level": "h2",
         "mobile_media_after": False,
     }
     mock_entry_obj.content_type.id = "mock-split-type"
@@ -1224,14 +1223,10 @@ def test_ContentfulPage__get_split_data(mock__get_image_url, basic_contentful_pa
     assert is_empty_string(output["theme_class"])
     assert is_empty_string(output["body_class"])
     basic_contentful_page.render_rich_text.assert_called_once()
-    assert output["heading"] is None
-    assert output["heading_level"] == "h2"
     assert is_empty_string(output["media_class"])
     assert output["media_after"] is False
     mock__get_image_url.assert_called_once()
     assert is_empty_string(output["mobile_class"])
-    assert is_empty_string(output["cta"])
-    assert is_empty_string(output["product_icon"])
 
 
 @pytest.mark.parametrize(
@@ -1266,7 +1261,6 @@ def test_ContentfulPage__get_split_data__get_split_class(
         "name": "Split Test",
         "image": "Stub image",
         "body": "Stub body",
-        "heading_level": "h2",
         "mobile_media_after": False,
     }
     if split_class_fields:
@@ -1314,7 +1308,6 @@ def test_ContentfulPage__get_split_data__get_body_class(
         "name": "Split Test",
         "image": "Stub image",
         "body": "Stub body",
-        "heading_level": "h2",
         "mobile_media_after": False,
     }
     if body_class_fields:
@@ -1347,7 +1340,6 @@ def test_ContentfulPage__get_split_data__get_media_class(mock__get_image_url, ba
         "name": "Split Test",
         "image": "Stub image",
         "body": "Stub body",
-        "heading_level": "h2",
         "mobile_media_after": False,
     }
     if media_class_fields:
@@ -1379,7 +1371,6 @@ def test_ContentfulPage__get_split_data__get_mobile_class(mock__get_image_url, b
         "name": "Split Test",
         "image": "Stub image",
         "body": "Stub body",
-        "heading_level": "h2",
         "mobile_media_after": False,
     }
     if mobile_class_fields:
