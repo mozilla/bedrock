@@ -8,7 +8,14 @@
 $column-width: math.percentage(math.div(math.div(100, 12), 100));
 $half-column: math.percentage(math.div(math.div(100, 24), 100));
 
-@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+@font-face {
+    font-family: 'bebas_neueregular';
+    src:
+        url('stories/includes/bebasneue-regular-webfont.woff2') format('woff2'),
+        url('stories/includes/bebasneue-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 @mixin stories-grid {
     display: grid;

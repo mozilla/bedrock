@@ -14,41 +14,54 @@
 {% endblock %}
 
 {% block content %}
-  <article class="c-stories-grid">
-    <h1 class="c-stories-article-title">{% block article_title %}{% endblock %}</h1>
-    <h2 class="c-stories-article-subtitle">{% block article_subtitle %}{% endblock %}</h2>
-    {% block article_hero %}{% endblock %}
-    <section class="c-stories-article-body">
-    {% block article_content %}
-      {% if article_author %}
-        <p class="c-stories-article-author"><span>Written by: </span>{% block article_author %}{% endblock %}</p>
-      {% endif %}
-    {% endblock %}
+  <article class="c-article-wrapper">
+    <section class="c-stories-article-header {% if self.article_hero() %}contains-hero{% endif %}">
+      <nav aria-label="breadcrumb" class="mzp-c-breadcrumb">
+        <ol class="mzp-c-breadcrumb-list">
+          <li class="mzp-c-breadcrumb-item"><a href="#">Stories</a></li>
+          <li aria-current="page" class="mzp-c-breadcrumb-item">{{ self.article_title() }}</li>
+        </ol>
+      </nav>
+      <div class="c-stories-article-header-container">
+        <p class="c-stories-article-pre-title">mozilla stories</p>
+        <h1 class="c-stories-article-title">{% block article_title %}{% endblock %}</h1>
+      </div>
     </section>
-    <section class="c-stories-social-share">
-      <ul class="social-share-list">
-        <li class="social-share-item"><a class="twitter">Twitter</a></li>
-        <li class="social-share-item"><a class="pocket">Pocket</a></li>
-      </ul>
+    <section class="c-stories-article-body {% if self.article_hero() %}contains-hero{% endif %}">
+      {% block article_hero %}{% endblock %}
+      <div class="c-stories-article-content">
+        <h2 class="c-stories-article-subtitle">{% block article_subtitle %}{% endblock %}</h2>
+        {% block article_content %}
+          {% if article_author %}
+            <p class="c-stories-article-author"><span>Written by: </span>{% block article_author %}{% endblock %}</p>
+          {% endif %}
+        {% endblock %}
+      </div>
+      <section class="c-stories-social-share">
+        <ul class="social-share-list">
+          <li class="social-share-item"><a class="twitter">Twitter</a></li>
+          <li class="social-share-item"><a class="pocket">Pocket</a></li>
+        </ul>
+      </section>
+      <section class="c-stories-article-related">
+        <h3>Stories in this series</h3>
+        <div class="c-stories-card-wrapper">
+          {{ stories_card(
+            title="I see color when you say your name",
+            image_url="img/stories/colorways.png",
+            aspect_ratio="mzp-has-aspect-16-9",
+            desc="I was working at the Daily News and arguing with my boss about headlines. I’d say we should use a different word that matches the story better. He really didn’t understand, and it was a newsroom so it could get a little contentious.",
+          )}}
+          {{ stories_card(
+            title="Title of story",
+            image_url="img/stories/colorways.png",
+            aspect_ratio="mzp-has-aspect-16-9",
+            desc="It is a truth universally acknowledged that a single man in posession of a good fortune, must be in want of a wife. It is a truth universally acknowledged that a single man in posession of a good fortune, must be in want of a wife."
+          )}}
+        </div>
+        <a href="{{ url('stories.landing') }}" class="c-stories-article-view-all">View all</a>
+      </section>
     </section>
   </article>
-  <section class="c-stories-article-related">
-    <h3>Stories in this series</h3>
-    <div class="c-stories-card-wrapper">
-      {{ stories_card(
-        title="I see color when you say your name",
-        image_url="img/stories/colorways.png",
-        aspect_ratio="mzp-has-aspect-16-9",
-        desc="I was working at the Daily News and arguing with my boss about headlines. I’d say we should use a different word that matches the story better. He really didn’t understand, and it was a newsroom so it could get a little contentious.",
-      )}}
-      {{ stories_card(
-        title="Title of story",
-        image_url="img/stories/colorways.png",
-        aspect_ratio="mzp-has-aspect-16-9",
-        desc="It is a truth universally acknowledged that a single man in posession of a good fortune, must be in want of a wife. It is a truth universally acknowledged that a single man in posession of a good fortune, must be in want of a wife."
-      )}}
-    </div>
-    <a href="{{ url('stories.landing') }}" class="c-stories-article-view-all">View all</a>
-  </section>
 {% endblock %}
 
