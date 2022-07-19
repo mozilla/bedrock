@@ -11,6 +11,43 @@ $image-path: '/media/protocol/img';
 
 $heading-height: 650px;
 
+// with the black header and the sticky nav - there should be a black background behind the nav
+
+body {
+    background: $color-black;
+}
+
+html.mzp-has-sticky-navigation .mzp-c-breadcrumb.mzp-is-sticky {
+    -webkit-transition: transform 300ms ease-in-out;
+    transition: transform 300ms ease-in-out;
+    left: 0;
+    position: sticky;
+    top: 65px;
+    z-index: 1000;
+}
+
+.mzp-c-breadcrumb {
+    background: $color-black;
+    margin-bottom: $spacing-2xl;
+
+    .mzp-c-breadcrumb-item,
+    .mzp-c-breadcrumb-item a {
+        color: $color-white;
+    }
+
+    @media #{$mq-md} {
+        .mzp-c-breadcrumb-list {
+            padding: 8px 64px;
+        }
+    }
+
+    @media #{$mq-lg} {
+        .mzp-c-breadcrumb-list {
+            padding: 8px 96px;
+        }
+    }
+}
+
 .c-stories-article-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -31,16 +68,6 @@ $heading-height: 650px;
         max-width: 800px;
         margin-left: auto;
         margin-right: auto;
-    }
-
-    .mzp-c-breadcrumb {
-        background: $color-black;
-        margin-bottom: $spacing-2xl;
-
-        .mzp-c-breadcrumb-item,
-        .mzp-c-breadcrumb-item a {
-            color: $color-white;
-        }
     }
 
     .c-stories-article-pre-title {
