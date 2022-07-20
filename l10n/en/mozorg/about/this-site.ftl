@@ -35,11 +35,11 @@ about-this-site-django = <a href="{ $django }">Django</a> as a back end web fram
 
 # Variables:
 #   $protocol (url) link to https://protocol.mozilla.org/
-about-this-site-mozilla-protocol = { -brand-name-mozilla } <a href="{ $protocol }">Protocol</a> design system for front end components and branding.
+about-this-site-mozilla-protocol = { -brand-name-mozilla }’s <a href="{ $protocol }">Protocol</a> design system for front end components and branding.
 
 # Variables:
 #   $fluent (url) link to https://projectfluent.org/
-about-this-site-fluent = { -brand-name-mozilla } <a href="{ $fluent }">Fluent</a> localization system for language translation.
+about-this-site-fluent = { -brand-name-mozilla }’s <a href="{ $fluent }">Fluent</a> localization system for language translation.
 
 # Variables:
 #   $github (url) link to https://github.com/mozilla/bedrock
