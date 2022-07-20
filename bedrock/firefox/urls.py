@@ -220,8 +220,6 @@ urlpatterns = (
         ),
         name="firefox.set-as-default",
     ),
-    # Issue 8536
-    page("firefox/retention/thank-you/", "firefox/retention/thank-you.html", ftl_files="firefox/retention/thank-you"),
     # Unfck campaign
     page("firefox/unfck/", "firefox/campaign/unfck/index.html", active_locales=["de", "en-US", "fr"]),
     # Issue #9490 - Evergreen Content for SEO
