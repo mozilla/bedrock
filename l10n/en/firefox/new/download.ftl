@@ -71,3 +71,4 @@ firefox-new-from-mozilla = from { -brand-name-mozilla }
 
 firefox-new-desc = { -brand-name-firefox-browser } is a free web browser with fast page loading, less memory usage, and lots of features - a project of the not-for-profit { -brand-name-mozilla }.
 firefox-new-download-a-different = Download a different platform or language
+firefox-new-taskbar = { -brand-name-firefox } will be pinned to the { -brand-name-windows } taskbar after installation

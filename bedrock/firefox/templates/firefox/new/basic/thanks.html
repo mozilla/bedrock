@@ -29,6 +29,8 @@
   {% endwith %}
 {% endblock %}
 
+{% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-download-thanks' %}
+
 {% block content %}
 <main role="main">
   <div class="mzp-l-content">
@@ -59,11 +61,21 @@
     {% endif %}
 
       <div class="c-support-install">
+        {# shown to all Windows users from the release of Firefox 103 onward. #}
+        {% if switch('firefox-103-taskbar-message') and ftl_has_messages('firefox-new-taskbar') %}
+          <p class="show-windows">
+            <a href="https://support.mozilla.org/kb/how-unpin-firefox-taskbar-windows-10{{ referrals }}">
+              {{ ftl('firefox-new-taskbar') }}
+            </a>
+          </p>
+        {% endif %}
         {# Edge-case platform support messaging #}
-        <span class="show-linux-arm">{{ ftl('firefox-new-please-follow', fallback='download-button-please-follow-these', url='https://support.mozilla.org/kb/install-firefox-linux') }}</span>
-        <span class="show-unknown">
+        <p class="show-linux-arm">
+          {{ ftl('firefox-new-please-follow', fallback='download-button-please-follow-these', url='https://support.mozilla.org/kb/install-firefox-linux') }}
+        </p>
+        <p class="show-unknown">
           {{ ftl('firefox-new-your-system-may-not', url=firefox_url('desktop', 'all'))}}
-        </span>
+        </p>
       </div>
 
       {{ download_firefox(force_direct=true, dom_id='thanks-download-button') }}
