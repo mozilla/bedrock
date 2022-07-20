@@ -1133,9 +1133,9 @@ URLS = flatten(
         url_test("/donate/", "https://donate.mozilla.org/?utm_source=mozilla.org&utm_content=shortlink"),
         url_test("/about/governance/policies/security/plugin-whitelist-policy/", "https://wiki.mozilla.org/Plugins/Firefox_Whitelist"),
         url_test("/about/governance/policies/security-group/tld-idn/", "https://wiki.mozilla.org/IDN_Display_Algorithm"),
-        # Unfck campaign
-        url_test("/firefox/{unfuck,love,liebe,rendonslenetplusnet}/", "/firefox/unfck/"),
-        url_test("/{unfck,unfuck,love,liebe,rendonslenetplusnet}/", "/firefox/unfck/"),
+        # Unfck campaign, issue 11613
+        url_test("/firefox/{unfck,unfuck,love,liebe,rendonslenetplusnet}/", "/firefox/"),
+        url_test("/{unfck,unfuck,love,liebe,rendonslenetplusnet}/", "/firefox/"),
         # issue 9148
         url_test("/firefox/campaign/", "/firefox/new/"),
         # Issue 9560
