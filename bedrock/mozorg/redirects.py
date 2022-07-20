@@ -503,8 +503,9 @@ redirectpatterns = (
     redirect(r"^technology/update-your-browser/?$", "firefox.browsers.update-browser"),
     redirect(r"^technology/incognito-browser/?$", "firefox.browsers.incognito-browser"),
     redirect(r"^technology/browser-history/?$", "firefox.browsers.browser-history"),
-    # Issue 8536
-    redirect(r"^etc/firefox/retention(/.*)?", "firefox.retention.thank-you"),
+    # Issue 8536, 11891
+    redirect(r"^etc/firefox/retention(/.*)?", "firefox"),
+    redirect(r"^firefox/retention/thank-you/?", "firefox"),
     # Issue 8374
     redirect(r"^plugincheck/?$", "https://support.mozilla.org/kb/npapi-plugins/"),
     # Vanity URL for EKR's blog

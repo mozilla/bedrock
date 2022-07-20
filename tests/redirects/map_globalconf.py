@@ -1115,8 +1115,9 @@ URLS = flatten(
         url_test("/technology/browser-history/", "/firefox/browsers/browser-history/"),
         url_test("/firefox/windows-64-bit/", "/firefox/browsers/windows-64-bit/"),
         url_test("/firefox/best-browser/", "/firefox/browsers/best-browser/"),
-        # Issue 8536
-        url_test("/etc/firefox/retention/{thank-you-a/,thank-you-b/,thank-you-referral/}", "/firefox/retention/thank-you/"),
+        # Issue 8536, 11891
+        url_test("/etc/firefox/retention/{thank-you-a/,thank-you-b/,thank-you-referral/}", "/firefox/"),
+        url_test("/firefox/retention/thank-you/", "/firefox/"),
         # Issue 8374
         url_test("/plugincheck/", "https://support.mozilla.org/kb/npapi-plugins/"),
         url_test("/ekr/", "https://blog.mozilla.org/blog/author/ekrmozilla-com/"),

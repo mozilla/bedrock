@@ -38,12 +38,6 @@
     },
     {
       "files": [
-        "css/firefox/retention/thank-you.scss"
-      ],
-      "name": "firefox-retention-thank-you"
-    },
-    {
-      "files": [
         "css/firefox/system-requirements.scss"
       ],
       "name": "firefox_system_requirements"
@@ -1306,14 +1300,6 @@
         "js/firefox/sticky-promo.js"
       ],
       "name": "sticky_promo"
-    },
-    {
-      "files": [
-        "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.es6.js",
-        "js/firefox/retention/confetti.js"
-      ],
-      "name": "firefox-retention-thank-you"
     },
     {
       "files": [
