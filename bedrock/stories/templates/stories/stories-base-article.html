@@ -7,12 +7,18 @@
 {% extends "base-protocol.html" %}
 {% from "stories/includes/macros.html" import stories_card with context %}
 
+{}
+
 {% block page_css %}
   {{ css_bundle('mozilla-stories-article')}}
   {{ css_bundle('mozilla-stories-shared')}}
   {{ css_bundle("protocol-card")}}
 {% endblock %}
 
+
+{% block article_theme %}purple{% endblock %}
+
+{% block body_class %}theme-{{ self.article_theme() }}{% endblock %}
 
 {% block site_header %}
   {# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
@@ -62,19 +68,24 @@
   <article class="c-article-wrapper">
     <section class="c-stories-article-header {% if self.article_hero() %}contains-hero{% endif %}">
       <div class="c-stories-article-header-container">
-        <p class="c-stories-article-pre-title">mozilla stories</p>
+        <p class="c-stories-article-pre-title">{% block team_name %}Firefox{% endblock %} stories</p>
         <h1 class="c-stories-article-title">{% block article_title %}{% endblock %}</h1>
+        <div class="c-stories-article-data">
+          <div class="article-data-grid">
+            <p class="grid-label">published</p>
+            <p class="grid-label">words</p>
+            <p class="grid-value">August 2nd, 2022</p>
+            <p class="grid-value">{{self.team_name()}} Team</p>
+          </div>
+          <p class="article-category">Featured Story</p>
+        </div>
       </div>
     </section>
     <section class="c-stories-article-body {% if self.article_hero() %}contains-hero{% endif %}">
       {% block article_hero %}{% endblock %}
       <div class="c-stories-article-content">
         <h2 class="c-stories-article-subtitle">{% block article_subtitle %}{% endblock %}</h2>
-        {% block article_content %}
-          {% if article_author %}
-            <p class="c-stories-article-author"><span>Written by: </span>{% block article_author %}{% endblock %}</p>
-          {% endif %}
-        {% endblock %}
+        {% block article_content %}{% endblock %}
       </div>
       <section class="c-stories-social-share">
         <ul class="social-share-list">

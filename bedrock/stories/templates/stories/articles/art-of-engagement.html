@@ -5,24 +5,17 @@
 #}
 
 {% extends "stories/stories-base-article.html" %}
+{% block article_theme %}blue{% endblock %}
+
 
 {% block page_title %}Stories{% endblock %}
 
 {% from "stories/includes/macros.html" import stories_image, stories_article_blockquote with context %}
 
-<section class="">
+<section>
   {% block article_title %}The Art of Engagement{% endblock %}
   {% block article_subtitle %}
     Mozilla’s vibrant community gets a direct connection to the people building the products they love.
-  {% endblock %}
-  {% block article_hero %}
-    {{ stories_image(
-      image_url="img/stories/siddoway-1.png",
-      image_class="hero",
-      width="1200",
-      height="675",
-      alt="",
-    ) }}
   {% endblock %}
 </section>
 {% block article_content %}

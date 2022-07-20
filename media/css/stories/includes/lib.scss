@@ -7,14 +7,157 @@
 // use math.div to get percentages of grid to use for padding and margins
 $column-width: math.percentage(math.div(math.div(100, 12), 100));
 $half-column: math.percentage(math.div(math.div(100, 24), 100));
+$font-stories-title: 'Antonio', sans-serif;
+$font-stories-title-alt: 'League Gothic', sans-serif;
+$font-stories-body: 'Source Serif Pro', sans-serif;
 
 @font-face {
-    font-family: 'bebas_neueregular';
-    src:
-        url('stories/includes/bebasneue-regular-webfont.woff2') format('woff2'),
-        url('stories/includes/bebasneue-regular-webfont.woff') format('woff');
+    font-family: Antonio;
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
+    src:
+        url('/media/fonts/fx-lifestyle/antonio-regular-webfont.woff2') format('woff2'),
+        url('/media/fonts/fx-lifestyle/antonio-regular-webfont.woff') format('woff');
+}
+
+@font-face {
+    font-family: Antonio;
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src:
+        url('/media/fonts/fx-lifestyle/antonio-bold-webfont.woff2') format('woff2'),
+        url('/media/fonts/fx-lifestyle/antonio-bold-webfont.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'League Gothic';
+    font-weight: normal;
+    font-style: normal;
+    src:
+        url('/media/fonts/stories/LeagueGothic.woff2') format('woff2'),
+        url('/media/fonts/stories/LeagueGothic.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src:
+        url('SourceSerifPro-Bold.woff2') format('woff2'),
+        url('SourceSerifPro-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src:
+        url('SourceSerifPro-BlackIt.woff2') format('woff2'),
+        url('SourceSerifPro-BlackIt.woff') format('woff');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src:
+        url('SourceSerifPro-Black.woff2') format('woff2'),
+        url('SourceSerifPro-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src:
+        url('SourceSerifPro-It.woff2') format('woff2'),
+        url('SourceSerifPro-It.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src:
+        url('SourceSerifPro-BoldIt.woff2') format('woff2'),
+        url('SourceSerifPro-BoldIt.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src:
+        url('SourceSerifPro-ExtraLightIt.woff2') format('woff2'),
+        url('SourceSerifPro-ExtraLightIt.woff') format('woff');
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src:
+        url('SourceSerifPro-ExtraLight.woff2') format('woff2'),
+        url('SourceSerifPro-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src:
+        url('SourceSerifPro-Light.woff2') format('woff2'),
+        url('SourceSerifPro-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src:
+        url('SourceSerifPro-LightIt.woff2') format('woff2'),
+        url('SourceSerifPro-LightIt.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src:
+        url('SourceSerifPro-SemiBold.woff2') format('woff2'),
+        url('SourceSerifPro-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src:
+        url('SourceSerifPro-Regular.woff2') format('woff2'),
+        url('SourceSerifPro-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src:
+        url('SourceSerifPro-SemiBoldIt.woff2') format('woff2'),
+        url('SourceSerifPro-SemiBoldIt.woff') format('woff');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
 }
 
 @mixin stories-grid {
@@ -22,10 +165,6 @@ $half-column: math.percentage(math.div(math.div(100, 24), 100));
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: auto;
     column-gap: $spacing-md;
-}
-
-@mixin font-stories {
-    font-family: 'Libre Franklin', sans-serif;
 }
 
 @mixin half-col-margin {
@@ -42,5 +181,5 @@ $half-column: math.percentage(math.div(math.div(100, 24), 100));
 }
 
 @mixin article-width-full {
-    grid-column: 4 / 10;
+    grid-column: 3 / 11;
 }

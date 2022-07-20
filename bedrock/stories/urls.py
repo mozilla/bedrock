@@ -5,4 +5,8 @@
 
 from bedrock.mozorg.util import page
 
-urlpatterns = (page("", "stories/landing.html"), page("art-of-engagement/", "stories/articles/art-of-engagement.html"))
+urlpatterns = (
+    page("", "stories/landing.html"),
+    page("art-of-engagement/", "stories/articles/art-of-engagement.html"),
+    page("raising-technology/", "stories/articles/raising-technology.html"),
+)
