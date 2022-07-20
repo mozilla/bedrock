@@ -68,6 +68,7 @@
   {% endif %}
 
     <div class="c-support-install">
+      {# shown to all Windows users from the release of Firefox 103 onward. #}
       {% if switch('firefox-103-taskbar-message') and ftl_has_messages('firefox-desktop-download-taskbar') %}
         <p class="show-windows">
           <a href="https://support.mozilla.org/kb/how-unpin-firefox-taskbar-windows-10{{ referrals }}">
