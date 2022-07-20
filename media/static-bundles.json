@@ -866,27 +866,9 @@
     },
     {
       "files": [
-        "css/firefox/unfck.scss"
-      ],
-      "name": "firefox-unfck"
-    },
-    {
-      "files": [
         "css/firefox/faq.scss"
       ],
       "name": "firefox-faq"
-    },
-    {
-      "files": [
-        "css/firefox/unfck.de.scss"
-      ],
-      "name": "firefox-unfck-de"
-    },
-    {
-      "files": [
-        "css/firefox/unfck.fr.scss"
-      ],
-      "name": "firefox-unfck-fr"
     },
     {
       "files": [
@@ -1756,12 +1738,6 @@
         "js/base/error-pages.js"
       ],
       "name": "page_not_found"
-    },
-    {
-      "files": [
-        "js/firefox/campaign/unfck.js"
-      ],
-      "name": "firefox-unfck"
     },
     {
       "files": [

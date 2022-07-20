@@ -529,12 +529,12 @@ redirectpatterns = (
     # issue 8641
     redirect(r"^/firefox/windows-64-bit/?$", "firefox.browsers.windows-64-bit"),
     redirect(r"^/firefox/best-browser/?$", "firefox.browsers.best-browser"),
-    # Unfck campaign
-    redirect(r"^firefox/unfuck/?$", "firefox.campaign.unfck.index"),
-    redirect(r"^firefox/love/?$", "firefox.campaign.unfck.index"),
-    redirect(r"^firefox/liebe/?$", "firefox.campaign.unfck.index"),
-    redirect(r"^firefox/rendonslenetplusnet/?$", "firefox.campaign.unfck.index"),
-    redirect(r"^(unfu?ck|love|liebe|rendonslenetplusnet)/?$", "firefox.campaign.unfck.index"),
+    # Unfck campaign, issue 11613
+    redirect(r"^firefox/unfu?ck/?$", "firefox"),
+    redirect(r"^firefox/love/?$", "firefox"),
+    redirect(r"^firefox/liebe/?$", "firefox"),
+    redirect(r"^firefox/rendonslenetplusnet/?$", "firefox"),
+    redirect(r"^(unfu?ck|love|liebe|rendonslenetplusnet)/?$", "firefox"),
     # issue 9148
     redirect(r"^/firefox/campaign/?$", "firefox.new"),
     # issue 9788
