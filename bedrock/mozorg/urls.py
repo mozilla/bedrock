@@ -25,6 +25,7 @@ urlpatterns = (
     page("about/policy/patents/license/", "mozorg/about/policy/patents/license.html"),
     page("about/policy/patents/license/1.0/", "mozorg/about/policy/patents/license-1.0.html"),
     page("about/policy/patents/guide/", "mozorg/about/policy/patents/guide.html"),
+    page("about/this-site/", "mozorg/about/this-site.html", ftl_files=["mozorg/about/this-site.ftl"]),
     page("book/", "mozorg/book.html"),
     path("credits/", views.credits_view, name="mozorg.credits"),
     page("credits/faq/", "mozorg/credits-faq.html"),
