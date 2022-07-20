@@ -252,11 +252,6 @@ html.mzp-has-sticky-navigation .mzp-c-breadcrumb.mzp-is-sticky {
             @include font-size(32px);
             font-weight: 700;
             margin-bottom: $spacing-lg;
-            color: $color-black;
-        }
-
-        p {
-            color: $color-black;
         }
 
         blockquote {
@@ -339,7 +334,6 @@ html.mzp-has-sticky-navigation .mzp-c-breadcrumb.mzp-is-sticky {
             }
 
             .mzp-c-card-content {
-                @include font-stories;
                 padding-top: $spacing-lg;
 
                 h3 {
