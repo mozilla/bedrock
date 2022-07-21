@@ -62,5 +62,5 @@ def pytest_generate_tests(metafunc):
 @pytest.mark.headless
 @pytest.mark.nondestructive
 def test_generated_pages(url):
-    r = requests.head(url, allow_redirects=True, timeout=TIMEOUT, headers={"accept-language": "en"})
+    r = requests.head(url, allow_redirects=True, timeout=TIMEOUT)
     assert requests.codes.ok == r.status_code

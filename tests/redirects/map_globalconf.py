@@ -780,7 +780,7 @@ URLS = flatten(
         url_test("/de/impressum/", "/de/about/legal/impressum/"),
         # bug 1248393
         url_test("/de/about/legal/impressum/", status_code=requests.codes.ok),
-        url_test("/{en-US,fr,ja}/about/legal/impressum/", status_code=requests.codes.not_found),
+        url_test("/{en-US,fr,ja}/about/legal/impressum/", "/de/about/legal/impressum/", status_code=requests.codes.found),
         # bug 960543
         url_test("/firefox/{2,3}.0/eula/random/stuff/", "/legal/eula/firefox-{2,3}/"),
         # bug 724633 - Porting foundation pages
