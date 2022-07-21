@@ -17,8 +17,8 @@ $font-stories-body: 'Source Serif Pro', sans-serif;
     font-style: normal;
     font-display: swap;
     src:
-        url('/media/fonts/fx-lifestyle/antonio-regular-webfont.woff2') format('woff2'),
-        url('/media/fonts/fx-lifestyle/antonio-regular-webfont.woff') format('woff');
+        url('/media/fonts/stories/antonio-regular-webfont.woff2') format('woff2'),
+        url('/media/fonts/stories/antonio-regular-webfont.woff') format('woff');
 }
 
 @font-face {
@@ -27,8 +27,8 @@ $font-stories-body: 'Source Serif Pro', sans-serif;
     font-style: normal;
     font-display: swap;
     src:
-        url('/media/fonts/fx-lifestyle/antonio-bold-webfont.woff2') format('woff2'),
-        url('/media/fonts/fx-lifestyle/antonio-bold-webfont.woff') format('woff');
+        url('/media/fonts/stories/antonio-bold-webfont.woff2') format('woff2'),
+        url('/media/fonts/stories/antonio-bold-webfont.woff') format('woff');
 }
 
 @font-face {
@@ -43,8 +43,8 @@ $font-stories-body: 'Source Serif Pro', sans-serif;
 @font-face {
     font-family: 'Source Serif Pro';
     src:
-        url('/media/fonts/stories/SourceSerifPro-Bold.woff2') format('woff2'),
-        url('/media/fonts/stories/SourceSerifPro-Bold.woff') format('woff');
+        url('/media/fonts/stories/source-serif/SourceSerifPro-Bold.woff2') format('woff2'),
+        url('/media/fonts/stories/source-serif/SourceSerifPro-Bold.woff') format('woff');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
@@ -53,8 +53,8 @@ $font-stories-body: 'Source Serif Pro', sans-serif;
 @font-face {
     font-family: 'Source Serif Pro';
     src:
-        url('/media/fonts/stories/SourceSerifPro-BlackIt.woff2') format('woff2'),
-        url('/media/fonts/stories/SourceSerifPro-BlackIt.woff') format('woff');
+        url('/media/fonts/stories/source-serif/SourceSerifPro-BlackIt.woff2') format('woff2'),
+        url('/media/fonts/stories/source-serif/SourceSerifPro-BlackIt.woff') format('woff');
     font-weight: 900;
     font-style: italic;
     font-display: swap;
@@ -63,8 +63,8 @@ $font-stories-body: 'Source Serif Pro', sans-serif;
 @font-face {
     font-family: 'Source Serif Pro';
     src:
-        url('/media/fonts/stories/SourceSerifPro-Black.woff2') format('woff2'),
-        url('/media/fonts/stories/SourceSerifPro-Black.woff') format('woff');
+        url('/media/fonts/stories/source-serif/SourceSerifPro-Black.woff2') format('woff2'),
+        url('/media/fonts/stories/source-serif/SourceSerifPro-Black.woff') format('woff');
     font-weight: 900;
     font-style: normal;
     font-display: swap;
@@ -73,8 +73,8 @@ $font-stories-body: 'Source Serif Pro', sans-serif;
 @font-face {
     font-family: 'Source Serif Pro';
     src:
-        url('/media/fonts/stories/SourceSerifPro-It.woff2') format('woff2'),
-        url('/media/fonts/stories/SourceSerifPro-It.woff') format('woff');
+        url('/media/fonts/stories/source-serif/SourceSerifPro-It.woff2') format('woff2'),
+        url('/media/fonts/stories/source-serif/SourceSerifPro-It.woff') format('woff');
     font-weight: normal;
     font-style: italic;
     font-display: swap;
@@ -83,8 +83,8 @@ $font-stories-body: 'Source Serif Pro', sans-serif;
 @font-face {
     font-family: 'Source Serif Pro';
     src:
-        url('/media/fonts/stories/SourceSerifPro-BoldIt.woff2') format('woff2'),
-        url('/media/fonts/stories/SourceSerifPro-BoldIt.woff') format('woff');
+        url('/media/fonts/stories/source-serif/SourceSerifPro-BoldIt.woff2') format('woff2'),
+        url('/media/fonts/stories/source-serif/SourceSerifPro-BoldIt.woff') format('woff');
     font-weight: bold;
     font-style: italic;
     font-display: swap;
@@ -93,8 +93,8 @@ $font-stories-body: 'Source Serif Pro', sans-serif;
 @font-face {
     font-family: 'Source Serif Pro';
     src:
-        url('/media/fonts/stories/SourceSerifPro-ExtraLightIt.woff2') format('woff2'),
-        url('/media/fonts/stories/SourceSerifPro-ExtraLightIt.woff') format('woff');
+        url('/media/fonts/stories/source-serif/SourceSerifPro-ExtraLightIt.woff2') format('woff2'),
+        url('/media/fonts/stories/source-serif/SourceSerifPro-ExtraLightIt.woff') format('woff');
     font-weight: 200;
     font-style: italic;
     font-display: swap;
@@ -103,8 +103,8 @@ $font-stories-body: 'Source Serif Pro', sans-serif;
 @font-face {
     font-family: 'Source Serif Pro';
     src:
-        url('/media/fonts/stories/SourceSerifPro-ExtraLight.woff2') format('woff2'),
-        url('/media/fonts/stories/SourceSerifPro-ExtraLight.woff') format('woff');
+        url('/media/fonts/stories/source-serif/SourceSerifPro-ExtraLight.woff2') format('woff2'),
+        url('/media/fonts/stories/source-serif/SourceSerifPro-ExtraLight.woff') format('woff');
     font-weight: 200;
     font-style: normal;
     font-display: swap;
@@ -113,8 +113,8 @@ $font-stories-body: 'Source Serif Pro', sans-serif;
 @font-face {
     font-family: 'Source Serif Pro';
     src:
-        url('/media/fonts/stories/SourceSerifPro-Light.woff2') format('woff2'),
-        url('/media/fonts/stories/SourceSerifPro-Light.woff') format('woff');
+        url('/media/fonts/stories/source-serif/SourceSerifPro-Light.woff2') format('woff2'),
+        url('/media/fonts/stories/source-serif/SourceSerifPro-Light.woff') format('woff');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
@@ -123,8 +123,8 @@ $font-stories-body: 'Source Serif Pro', sans-serif;
 @font-face {
     font-family: 'Source Serif Pro';
     src:
-        url('/media/fonts/stories/SourceSerifPro-LightIt.woff2') format('woff2'),
-        url('/media/fonts/stories/SourceSerifPro-LightIt.woff') format('woff');
+        url('/media/fonts/stories/source-serif/SourceSerifPro-LightIt.woff2') format('woff2'),
+        url('/media/fonts/stories/source-serif/SourceSerifPro-LightIt.woff') format('woff');
     font-weight: 300;
     font-style: italic;
     font-display: swap;
@@ -133,8 +133,8 @@ $font-stories-body: 'Source Serif Pro', sans-serif;
 @font-face {
     font-family: 'Source Serif Pro';
     src:
-        url('/media/fonts/stories/SourceSerifPro-SemiBold.woff2') format('woff2'),
-        url('/media/fonts/stories/SourceSerifPro-SemiBold.woff') format('woff');
+        url('/media/fonts/stories/source-serif/SourceSerifPro-SemiBold.woff2') format('woff2'),
+        url('/media/fonts/stories/source-serif/SourceSerifPro-SemiBold.woff') format('woff');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
@@ -143,8 +143,8 @@ $font-stories-body: 'Source Serif Pro', sans-serif;
 @font-face {
     font-family: 'Source Serif Pro';
     src:
-        url('/media/fonts/stories/SourceSerifPro-Regular.woff2') format('woff2'),
-        url('/media/fonts/stories/SourceSerifPro-Regular.woff') format('woff');
+        url('/media/fonts/stories/source-serif/SourceSerifPro-Regular.woff2') format('woff2'),
+        url('/media/fonts/stories/source-serif/SourceSerifPro-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -153,8 +153,8 @@ $font-stories-body: 'Source Serif Pro', sans-serif;
 @font-face {
     font-family: 'Source Serif Pro';
     src:
-        url('/media/fonts/stories/SourceSerifPro-SemiBoldIt.woff2') format('woff2'),
-        url('/media/fonts/stories/SourceSerifPro-SemiBoldIt.woff') format('woff');
+        url('/media/fonts/stories/source-serif/SourceSerifPro-SemiBoldIt.woff2') format('woff2'),
+        url('/media/fonts/stories/source-serif/SourceSerifPro-SemiBoldIt.woff') format('woff');
     font-weight: 600;
     font-style: italic;
     font-display: swap;
@@ -163,7 +163,6 @@ $font-stories-body: 'Source Serif Pro', sans-serif;
 @mixin stories-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: auto;
     column-gap: $spacing-md;
 }
 
@@ -181,5 +180,9 @@ $font-stories-body: 'Source Serif Pro', sans-serif;
 }
 
 @mixin article-width-full {
-    grid-column: 3 / 11;
+    grid-column: 1 / 13;
+
+    @media #{$mq-md} {
+        grid-column: 4 / 12;
+    }
 }

@@ -88,13 +88,16 @@
       include_highres=include_highres
     ) }}
     {% if caption %}
-      <figcaption>Photo: {{ caption }}</figcaption>
+      <figcaption>{{ caption }}</figcaption>
     {% endif %}
   </figure>
 {%- endmacro %}
 
-{% macro stories_article_blockquote(quote="") %}
-  <blockquote class="c-stories-article-blockquote">{{ quote }}</blockquote>
+{% macro stories_article_blockquote(quote="", type="", caption="") %}
+  <figure class="c-stories-article-blockquote {{ type }}">
+   <blockquote>“{{ quote }}”</blockquote>
+   <figcaption>{{ caption }}</figcaption>
+  </figure>
 {% endmacro %}
 
 

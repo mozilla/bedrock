@@ -6,8 +6,9 @@
 
 {% extends "base-protocol.html" %}
 {% from "stories/includes/macros.html" import stories_card with context %}
+{% from "macros.html" import image with context %}
 
-{}
+
 
 {% block page_css %}
   {{ css_bundle('mozilla-stories-article')}}
@@ -68,22 +69,46 @@
   <article class="c-article-wrapper">
     <section class="c-stories-article-header {% if self.article_hero() %}contains-hero{% endif %}">
       <div class="c-stories-article-header-container">
-        <p class="c-stories-article-pre-title">{% block team_name %}Firefox{% endblock %} stories</p>
+         <p class="c-stories-article-pre-title">{% block team_name %}Firefox{% endblock %} stories</p>
         <h1 class="c-stories-article-title">{% block article_title %}{% endblock %}</h1>
-        <div class="c-stories-article-data">
-          <div class="article-data-grid">
+        <aside class="c-stories-article-data">
             <p class="grid-label">published</p>
             <p class="grid-label">words</p>
             <p class="grid-value">August 2nd, 2022</p>
             <p class="grid-value">{{self.team_name()}} Team</p>
-          </div>
-          <p class="article-category">Featured Story</p>
-        </div>
+            <p class="article-category featured">Featured Story</p>
+            <p class="article-category">Major Release</p>
+        </aside>
       </div>
     </section>
     <section class="c-stories-article-body {% if self.article_hero() %}contains-hero{% endif %}">
       {% block article_hero %}{% endblock %}
       <div class="c-stories-article-content">
+        {# {% if credits %} #}
+          <aside class="c-stories-article-credits">
+            <h2>Article credits</h2>
+            <div class="article-credits-wrapper">
+            <figure class="c-stories-image credit">
+              {{ image(
+                url="img/stories/ray-fembro-credit.png",
+                width=114,
+                height=131,
+              )}}
+              <figcaption class="credit-name">Ray Fembro</figcaption>
+              <figcaption class="credit-position">Product Manager</figcaption>
+            </figure>
+            <figure class="c-stories-image credit">
+              {{ image(
+                url="img/stories/jon-siddoway-credit.png",
+                width=114,
+                height=131,
+              )}}
+              <figcaption class="credit-name">John Siddoway</figcaption>
+              <figcaption class="credit-position">Community Manager</figcaption>
+            </figure>
+            </div>
+          </aside>
+        {# {%endif%} #}
         <h2 class="c-stories-article-subtitle">{% block article_subtitle %}{% endblock %}</h2>
         {% block article_content %}{% endblock %}
       </div>
