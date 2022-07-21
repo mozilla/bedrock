@@ -166,10 +166,7 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
 
         # Does that path's locale match the request's locale?
         if locale in translations:
-            # Redirect to the locale if:
-            # - The URL is the root path but is missing the trailing slash OR
-            # - The locale isn't in current prefix in the URL.
-            if request.path == f"/{locale}" or locale != request.path.lstrip("/").partition("/")[0]:
+            if locale != request.path.lstrip("/").partition("/")[0]:
                 return redirect_to_locale(request, locale)
         else:
             return redirect_to_best_locale(request, translations)
