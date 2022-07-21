@@ -7,8 +7,6 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
-// note: these styles are used for both /locales and a locale-specific 404 page
-
 .c-simple-header {
     @include at2x('/media/img/mozorg/locales/world-map.png', 179px, 90px);
     background-position: top center;

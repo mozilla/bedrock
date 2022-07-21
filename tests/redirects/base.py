@@ -131,11 +131,8 @@ def assert_valid_url(
     :param final_status_code: Expected status code after following any redirects.
     """
     kwargs = {"allow_redirects": follow_redirects}
-    if req_headers is None:
-        kwargs["headers"] = {"Accept-language": "en"}
-    else:
+    if req_headers:
         kwargs["headers"] = req_headers
-
     if req_kwargs:
         kwargs.update(req_kwargs)
 
