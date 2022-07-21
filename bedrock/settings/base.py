@@ -968,7 +968,7 @@ MOZILLA_TWITTER_ACCOUNTS = {
 # Official Firefox Instagram accounts
 MOZILLA_INSTAGRAM_ACCOUNTS = {
     "en-US": "https://www.instagram.com/mozilla/",
-    "de": "https://www.instagram.com/unfcktheinternet/",
+    "de": "https://www.instagram.com/mozilla_deutschland/",
 }
 
 # Firefox Accounts product links

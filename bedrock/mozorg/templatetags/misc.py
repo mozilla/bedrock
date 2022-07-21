@@ -450,7 +450,7 @@ def mozilla_instagram_url(ctx):
 
     For DE this would output:
 
-        https://www.instagram.com/unfcktheinternet/
+        https://www.instagram.com/mozilla_deutschland/
 
     """
     locale = getattr(ctx["request"], "locale", "en-US")

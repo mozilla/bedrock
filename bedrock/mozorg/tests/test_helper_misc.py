@@ -464,7 +464,7 @@ class TestMozillaInstagramUrl(TestCase):
 
     def test_mozilla_instagram_url_german(self):
         """de locale, a local account"""
-        assert self._render("de") == "https://www.instagram.com/unfcktheinternet/"
+        assert self._render("de") == "https://www.instagram.com/mozilla_deutschland/"
 
     def test_mozilla_instagram_url_other_locale(self):
         """No account for locale, fallback to default account"""
