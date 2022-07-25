@@ -1,0 +1,28 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends 'landing/base-landing.html' %}
+
+{% block page_title %}{{ ftl('get-ios-firefox-for-ios') }}{% endblock %}
+{% block page_desc %}{{ ftl('get-ios-firefox-is-fast') }}{% endblock %}
+{% block page_favicon %}{{ static('img/favicons/firefox/browser/favicon.ico') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/favicons/firefox/browser/favicon-196x196.png') }}{% endblock %}
+{% block page_ios_icon %}{{ static('img/favicons/firefox/browser/apple-touch-icon.png') }}{% endblock %}
+
+{% block icon_class %}mzp-t-product-firefox{% endblock %}
+{% block icon_text %}ksdfjh{% endblock %}
+{% block header %}{{ ftl('get-ios-download-firefox') }}{% endblock %}
+{% block body_copy %}{{ ftl('get-ios-firefox-mobile-adapts') }}{% endblock %}
+{% block ios_badge %}
+  <a class="ios store-badge" id="appStoreLink-primary" href="https://app.adjust.com/jcn6eyw?campaign=firefox100&adgroup=ios-store" data-link-type="download" data-download-os="iOS">
+    <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
+  </a>
+{% endblock %}
+{% block site_footer %}
+  {% with theme_class='mzp-t-light' %}
+    {% include 'landing/includes/footer.html' %}
+  {% endwith %}
+{% endblock %}

@@ -471,6 +471,7 @@ redirectpatterns = (
     redirect(r"^firefox/android/?$", "firefox.browsers.mobile.android"),
     redirect(r"^firefox/focus/?$", "firefox.browsers.mobile.focus"),
     redirect(r"^firefox/ios/?$", "firefox.browsers.mobile.ios"),
+    redirect(r"^firefox/get-ios/?$", "firefox.browsers.mobile.get-ios"),
     # issue 9502
     redirect(r"^firefox/quantum/?", "/firefox/browsers/quantum/"),
     # bug 1421584, issue 7491
