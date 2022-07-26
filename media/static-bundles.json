@@ -1525,6 +1525,7 @@
     },
     {
       "files": [
+        "protocol/js/protocol-sidemenu.js",
         "protocol/js/protocol-modal.js",
         "js/mozorg/about-leadership.js"
       ],

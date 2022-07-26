@@ -12,18 +12,12 @@ class LeadershipPage(BasePage):
 
     _URL_TEMPLATE = "/{locale}/about/leadership/"
 
-    _corporation_bios_locator = (By.CSS_SELECTOR, ".gallery.mgmt-corp .vcard.has-bio")
-    _foundation_bios_locator = (By.CSS_SELECTOR, ".gallery.mgmt-foundation .vcard.has-bio")
+    _bios_locator = (By.CSS_SELECTOR, ".gallery .vcard.has-bio")
     _modal_bio_locator = (By.CSS_SELECTOR, ".mzp-c-modal .vcard.has-bio")
 
     @property
     def corporation(self):
-        leaders = self.find_elements(*self._corporation_bios_locator)
-        return [leader.get_attribute("id") for leader in leaders]
-
-    @property
-    def foundation(self):
-        leaders = self.find_elements(*self._foundation_bios_locator)
+        leaders = self.find_elements(*self._bios_locator)
         return [leader.get_attribute("id") for leader in leaders]
 
     def open_biography(self, value):

@@ -37,9 +37,19 @@ if (typeof window.Mozilla === 'undefined') {
         });
     }
 
+    function getHash() {
+        var hash = window.location.hash;
+        if (hash.indexOf('#') > -1) {
+            hash = hash.split('#')[1];
+        }
+
+        return hash;
+    }
+
     // trigger modal on page load if hash is present and matches a person with a bio
     if (window.location.hash) {
-        var target = document.getElementById(window.location.hash.substr(1));
+        var hash = getHash();
+        var target = document.getElementById(hash);
 
         if (target && target.classList.contains('has-bio')) {
             target.click();
