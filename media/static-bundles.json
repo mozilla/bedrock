@@ -660,6 +660,12 @@
     },
     {
       "files": [
+        "css/firefox/browsers/get-ios.scss"
+      ],
+      "name": "get-ios-attr"
+    },
+    {
+      "files": [
         "css/protocol/components/send-to-device.scss",
         "css/firefox/mobile/get-app.scss"
       ],

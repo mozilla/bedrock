@@ -6,9 +6,13 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
+{% block page_css %}
+  {{ css_bundle('get-ios-attr') }}
+{% endblock %}
 
 {% block page_title %}{{ ftl('get-ios-firefox-for-ios') }}{% endblock %}
 {% block page_desc %}{{ ftl('get-ios-firefox-is-fast') }}{% endblock %}
+
 {% block page_favicon %}{{ static('img/favicons/firefox/browser/favicon.ico') }}{% endblock %}
 {% block page_favicon_large %}{{ static('img/favicons/firefox/browser/favicon-196x196.png') }}{% endblock %}
 {% block page_ios_icon %}{{ static('img/favicons/firefox/browser/apple-touch-icon.png') }}{% endblock %}
@@ -16,8 +20,9 @@
 {% block body_id %}ios-attr-get-ios{% endblock %}
 
 {% block content %}
-<div class="mzp-l-content">
+<div class="mzp-l-content mzp-t-content-md get-ios-attr-content">
 
+  <div class="mzp-c-logo mzp-t-logo-lg mzp-t-product-firefox">Firefox Browser</div>
   <h1>
     {{ ftl('get-ios-download-firefox') }}
   </h1>
