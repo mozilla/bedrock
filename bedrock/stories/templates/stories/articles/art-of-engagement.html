@@ -10,10 +10,11 @@
 
 {% block page_title %}Stories{% endblock %}
 
+{% set featured = true %}
+
 {% from "stories/includes/macros.html" import stories_image, stories_article_blockquote with context %}
 
 
-{% block article_collection %}Connection{% endblock %}
 {% block article_title %}The Art of Engagement{% endblock %}
 {% block article_subtitle %}
   Mozilla’s vibrant community gets a direct connection to the people building the products they love.
@@ -26,7 +27,7 @@
   <p>With the launch of Connect, Mozilla has brought that community more directly into conversations with the employees in the midst of building the products they love. The platform acts as a collaborative space where people share product feedback, submit ideas, and have the kind of meaningful discussions that can impact future releases. “We’re opening up new opportunities for us to connect more with our users and make them more a part of product development,” said Product Community Director Jon Siddoway.</p>
   {{ stories_article_blockquote(
     quote="We’re opening up new opportunities for us to connect more with our users",
-    type="circle",
+    type="full-width",
     caption="Ray Fembro"
   )}}
   <p>Of course, not everyone in the community is a developer or has an interest in code. But those aren’t necessary. Every member can offer ideas or vote on those that appeal to them, and, as Connect’s name implies, engage in discussions with like-minded people.</p>
@@ -47,11 +48,6 @@
   <p>“It’s really useful for us to engage with users in exploratory situations where we know we want to improve a certain experience but we haven’t made a decision about the exact solution,” Safko said. “We are interested in hearing how people use something or how they think about the underlying need so we can better understand them.”</p>
   <p>The goal isn’t to define specific solutions, but to let the ideas fly. “We’re asking the community to come up with the most innovative and blue-sky creative features that they can possibly think of that address a problem we’re trying to solve,” said Fembro. “Sometimes you'll see a really thorough post that clearly identifies a scenario or opportunity gap, and outlines a possible solution for us to consider.”</p>
   <p>Once a feature has been incorporated into the browser, the Connect community can offer valuable feedback on whether it is performing as intended “in the wild,” Fembro said.</p>
-   {{ stories_article_blockquote(
-    quote="in the wild",
-    type="full-width",
-    caption="Ray Fembro"
-  )}}
   <p>The team needed to discuss another, less tangible issue: how could they keep conversations from getting derailed? “Mozilla has built a rich culture over the years and from the beginning has been people-focused,” said Fembro. “A lot of our loyal users are very entrenched into our development process, which comes along with a lot of opinions.”</p>
   <div class="c-stories-article-float-container left">
     {{ stories_image(

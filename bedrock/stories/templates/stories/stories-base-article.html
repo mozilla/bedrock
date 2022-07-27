@@ -73,19 +73,13 @@
   <article class="c-article-wrapper">
     <section class="c-stories-article-header {% if self.article_hero() %}contains-hero{% endif %}">
       <div class="c-stories-article-header-container">
-        {% if self.article_collection()  %}
-         <p class="c-stories-article-collection">{% block article_collection %}{% endblock %}</p>
-        {% endif %}
+        <p class="is-featured">{% if featured %}Featured Article{% endif%}
         <h1 class="c-stories-article-title">{% block article_title %}{% endblock %}</h1>
         <aside class="c-stories-article-data">
             <p class="grid-label">published</p>
-            <p class="grid-label">words</p>
+            <p class="grid-label">value</p>
             <p class="grid-value">August 2nd, 2022</p>
-            <p class="grid-value">{% block team_name %}Firefox{% endblock %} Team</p>
-            {% block categories %}
-              <p class="article-category featured">Featured Story</p>
-              <p class="article-category">Community</p>
-            {% endblock %}
+            <p class="grid-value">{% block article_collection %}Connection{% endblock %}</p>
         </aside>
       </div>
     </section>

@@ -118,28 +118,12 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
         }
     }
 
-    .c-stories-article-collection {
-        @include full-width;
-        @include font-base;
-        @include font-size(12px);
-        align-self: center;
-        border-radius: 25px;
+    .is-featured {
+        @include font-size(28px);
         color: $color-black;
-        font-weight: 600;
-        grid-row: 1;
-        padding: $spacing-sm $spacing-lg;
-        justify-self: flex-start;
-        text-align: center;
-        text-transform: uppercase;
-        white-space: nowrap;
-
-        @media #{$mq-lg} {
-            @include font-size(14px);
-            align-self: flex-start;
-            grid-column: 1 / 3;
-            grid-row: 2;
-            margin-left: 30%;
-        }
+        font-family: $font-stories-body;
+        grid-column: 4 / 10;
+        align-self: center;
     }
 
     .c-stories-article-title {
@@ -379,32 +363,6 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
             @media #{$mq-md} {
                 padding: $layout-md 0;
                 margin: $spacing-2xl 0;
-            }
-
-            &.circle {
-                @include full-width;
-                border: 1px solid $color-black;
-                border-radius: 200px;
-                padding: $layout-md 15%;
-                margin: $spacing-lg $spacing-sm;
-
-                blockquote {
-                    @include font-size(24px);
-                }
-
-                figcaption {
-                    color: $color-black;
-                }
-
-                @media #{$mq-md} {
-                    margin-right: $spacing-lg;
-                    grid-column: 2 / 13;
-                    padding: $layout-md 25%;
-
-                    blockquote {
-                        @include font-size(42px);
-                    }
-                }
             }
 
             &.full-width {
