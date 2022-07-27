@@ -1830,6 +1830,12 @@
         "js/landing/landing-shared.js"
       ],
       "name": "landing-shared"
+    },
+    {
+      "files": [
+        "js/stories/stories-article.es6.js"
+      ],
+      "name": "stories-article"
     }
   ]
 }

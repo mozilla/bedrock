@@ -11,12 +11,19 @@ $image-path: '/media/protocol/img';
 @import 'includes/lib';
 
 .c-stories-card {
-    border: none;
-    padding: $spacing-md;
-    transition: border 100ms ease-in;
+    .card-media-wrapper {
+        overflow: hidden;
+        margin-bottom: $spacing-sm;
+    }
+
+    .card-image {
+        transition: transform 200ms ease-in;
+    }
 
     &:hover {
-        border: 2px solid $color-black;
+        .card-image {
+            transform: scale(1.05);
+        }
     }
 
     .card-block-link {
@@ -30,6 +37,11 @@ $image-path: '/media/protocol/img';
 
     .card-title {
         @include font-size(30px);
+        margin-bottom: $spacing-xs;
+    }
+
+    .card-desc {
+        font-family: $font-stories-body;
     }
 }
 

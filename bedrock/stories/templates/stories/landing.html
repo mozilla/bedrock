@@ -22,13 +22,16 @@
     {# Featured Stories  #}
       <section class="c-stories-featured-collection">
         <section class="c-stories-featured-story">
-          <img class="featured-story-image" src="{{ static('img/stories/stories-landing.png') }}" width="1380" height="555" alt="" loading="lazy">
+          <div class="featured-story-image"></div>
           <div class="featured-story-content">
-            <h1 class="featured-story-header">Art of Engagement</h1>
+            <p class="featured-story-type">Featured Article</p>
+            <h1 class="featured-story-header">The Art of Engagement</h1>
             <div class="featured-story-metadata">
-              <p>Featured Story</p>
+              <div class="value-container">
+              <p>Value</p>
+              <p>Connection</p>
+              </div>
               <ul class="featured-story-metadata-list">
-                <li class="metadata-item">Connection</li>
                 <li class="metadata-item link">
                   <a href="{{ url('stories.articles.art-of-engagement') }}">Read<span class="arrow-right"></span></a>
                 </li>
@@ -39,17 +42,18 @@
       </section>
       {# Related Stories to Featured one #}
       <section class="c-stories-related">
+        <section class="related-stories-grid">
         <h2 class="c-stories-related-header">Related Stories</h2>
         <div class="related-stories-wrapper">
           {{ stories_card(
             title="Licensed to Build Together",
-            desc="Lorem ipsum dor sit amet, consectetur adipiscing elit.",
+            desc="Who really owns the Firefox browser? Its copyleft license means we all do.",
             image_url="img/stories/build-together.png",
             link_url=url('stories.articles.build-together'),
           )}}
           {{ stories_card(
             title="From Volunteer to Mozilla Community Champion",
-            desc="Lorem ipsum dor sit amet, consectetur adipiscing elit.",
+            desc="Asa Dotzler's curiosity about open-source software led him to a career with a company whose mission he believes in.",
             image_url="img/stories/volunteer.png",
             link_url=url('stories.articles.community-champion'),
           )}}

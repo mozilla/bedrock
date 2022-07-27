@@ -16,6 +16,9 @@
   {{ css_bundle("protocol-card")}}
 {% endblock %}
 
+{% block js %}
+  {{ js_bundle("stories-article")}}
+{% endblock %}
 
 {% block article_theme %}purple{% endblock %}
 
@@ -123,9 +126,9 @@
           <li class="social-share-item"><a class="pocket">Pocket</a></li>
         </ul>
       </section>
-      <section class="c-stories-article-related">
+      {# <section class="c-stories-article-related">
         <h3>Stories in this series</h3>
-        {# <div class="c-stories-card-wrapper">
+        <div class="c-stories-card-wrapper">
           {{ stories_card(
             title="I see color when you say your name",
             image_url="img/stories/colorways.png",
@@ -138,8 +141,8 @@
             aspect_ratio="mzp-has-aspect-16-9",
             desc="It is a truth universally acknowledged that a single man in posession of a good fortune, must be in want of a wife. It is a truth universally acknowledged that a single man in posession of a good fortune, must be in want of a wife."
           )}}
-        </div> #}
-        <a href="{{ url('stories.landing') }}" class="c-stories-article-view-all">View all</a>
+        </div>
+        <a href="{{ url('stories.landing') }}" class="c-stories-article-view-all">View all</a> #}
       </section>
     </section>
   </article>

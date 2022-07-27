@@ -8,75 +8,103 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import 'includes/lib';
 
-.c-stories-main {
-    margin: 0 auto;
-    max-width: 1440px;
-}
-
 .c-stories-featured-collection {
-    margin: 0 $spacing-md;
+    background-color: #ff848b;
 
     .c-stories-featured-story {
+        @include stories-grid;
+        margin: 0 auto;
+        max-width: 1440px;
+
         .featured-story-image {
-            display: block;
-            margin: 0 auto;
+            background-image: url('/media/img/stories/stories-landing.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 250px;
+            grid-column: 1 / 13;
         }
 
         .featured-story-content {
-            @include stories-grid;
-            background-color: $pink-primary;
-            padding-top: $layout-sm;
+            grid-column: 2 / 12;
+            padding-top: $spacing-md;
             padding-bottom: $layout-2xs;
+
+            .featured-story-type {
+                @include font-size(28px);
+                color: $color-black;
+                font-family: $font-stories-body;
+                margin-bottom: $spacing-sm;
+            }
 
             .featured-story-header {
                 @include font-size(50px);
-                grid-column: 2 / 12;
                 color: $color-black;
                 font-family: $font-stories-title;
                 text-transform: uppercase;
-                border-bottom: 6px solid $color-black;
-                margin-bottom: $spacing-md;
+                border-bottom: 3px solid $color-black;
+                margin-bottom: 0;
                 max-width: 100%;
 
                 @media #{$mq-md} {
                     @include font-size(100px);
-                    grid-column: 3 / 11;
-                    padding-bottom: $spacing-sm;
                 }
 
                 @media #{$mq-lg} {
-                    @include font-size(160px);
-                    grid-column: 3 / 11;
-                    padding-bottom: $spacing-2xl;
+                    @include font-size(130px);
                 }
             }
 
             @media #{$mq-md} {
-                padding-top: $layout-xl;
-                padding-bottom: $layout-md;
+                grid-column: 3 / 11;
+                padding-top: $spacing-md;
+                padding-bottom: $spacing-md;
+
+                .c-stories-featured-story .featured-story-image {
+                    height: 400px;
+                }
             }
         }
     }
 
     @media #{$mq-md} {
-        margin: 0 $spacing-xl;
+        padding: 0 40px;
+
+        .featured-story-image {
+            height: 400px;
+            grid-column: 3 / 11;
+        }
+
+        .featured-story-content {
+            padding-top: $layout-sm;
+            padding-bottom: $layout-2xs;
+        }
     }
 }
 
 .featured-story-metadata {
-    grid-column: 2 / 12;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin: $spacing-sm 0;
+    margin: $spacing-md 0;
 
-    p {
-        @include font-size(16px);
-        display: block;
+    .value-container {
+        @include font-size(18px);
         color: $color-black;
-        margin: 0 $spacing-md $spacing-md 0;
-        text-transform: uppercase;
-        white-space: nowrap;
+        display: flex;
+        margin-right: 0;
+        margin-bottom: $spacing-md;
+
+        p {
+            @include font-firefox;
+            margin: 0;
+            font-weight: bold;
+
+            &:first-child {
+                text-transform: uppercase;
+                font-weight: normal;
+                margin-right: $spacing-sm;
+            }
+        }
     }
 
     .featured-story-metadata-list {
@@ -93,7 +121,6 @@ $image-path: '/media/protocol/img';
             color: $color-black;
             display: block;
             margin-right: 0;
-            margin-bottom: $spacing-md;
             padding: $spacing-sm $spacing-md;
             text-align: center;
             text-transform: uppercase;
@@ -126,29 +153,40 @@ $image-path: '/media/protocol/img';
     }
 
     @media #{$mq-sm} {
+        flex-direction: row;
+
         .featured-story-metadata-list {
             flex-direction: row;
             align-items: center;
 
             .metadata-item {
                 margin-right: $spacing-md;
+                margin-bottom: $spacing-md;
             }
+        }
+
+        .value-container {
+            display: inline-block;
+            margin-right: $spacing-lg;
         }
     }
 
     @media #{$mq-md} {
         align-items: center;
-        flex-direction: row;
         grid-column: 3 / 11;
         margin: $spacing-lg 0;
     }
 }
 
 .c-stories-related {
-    @include stories-grid;
     background-color: #ffcade;
-    margin: 0 $spacing-md;
-    padding: $spacing-lg 0;
+
+    .related-stories-grid {
+        @include stories-grid;
+        margin: 0 auto;
+        padding: $layout-md 0;
+        max-width: 1440px;
+    }
 
     .c-stories-related-header {
         grid-column: 2 / 12;
@@ -156,28 +194,38 @@ $image-path: '/media/protocol/img';
 
     .related-stories-wrapper {
         @include stories-grid;
-        grid-column: 3 / 11;
+        grid-column: 2 / 12;
 
         .c-stories-card {
-            grid-column: span 6;
-
-            &:nth-child(even) {
-                margin-left: 10%;
-            }
-
-            &:nth-child(odd) {
-                margin-right: 10%;
-            }
+            grid-column: span 12;
+            margin: 0 0 $spacing-lg;
         }
     }
 
     @media #{$mq-md} {
-        margin: 0 $spacing-xl;
-        padding: $layout-lg 0;
+        .related-stories-grid {
+            padding: $layout-md 40px;
+        }
 
         .c-stories-related-header {
             @include font-size(32px);
             grid-column: 3 /  11;
+        }
+
+        .related-stories-wrapper {
+            grid-column: 3 / 11;
+
+            .c-stories-card {
+                grid-column: span 6;
+
+                &:nth-child(even) {
+                    margin-left: 10%;
+                }
+
+                &:nth-child(odd) {
+                    margin-right: 10%;
+                }
+            }
         }
     }
 }

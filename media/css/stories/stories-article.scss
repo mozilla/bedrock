@@ -110,11 +110,11 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
     .c-stories-article-header-container {
         @include stories-grid;
         grid-template-rows: 64px 1fr $layout-xl;
-        padding: 0 $spacing-lg;
+        padding: 0 $spacing-lg $spacing-xl;
         max-width: 100%;
 
         @media #{$mq-md} {
-            padding: 0 40px;
+            padding: 0 $spacing-2xl $spacing-2xl;
         }
     }
 
@@ -546,13 +546,10 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
         overflow: hidden;
         position: fixed;
         z-index: 1;
-        min-height: $heading-height-mobile;
     }
 
     .c-stories-article-body {
         position: relative;
-        top: $heading-height-mobile + $spacing-md;
-        margin-bottom: $heading-height-mobile - 100px;
         z-index: 2;
     }
 
@@ -562,14 +559,8 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
     }
 
     @media #{$mq-md} {
-        .c-stories-article-header {
-            min-height: $heading-height;
-        }
-
         .c-stories-article-body {
             position: relative;
-            top: $heading-height + $spacing-md;
-            margin-bottom: $heading-height - 100px;
             z-index: 2;
         }
     }

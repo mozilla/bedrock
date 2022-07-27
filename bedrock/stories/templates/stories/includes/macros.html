@@ -8,8 +8,8 @@
 {% from "macros.html" import image with context %}
 
 
-{% macro stories_card(title="", image_url="", link_url="", desc="", class="", aspect_ratio='mzp-has-aspect-3-2', image_alt="") %}
-  <section class="c-stories-card {% if class %}{{ class }}{% endif %} {% if aspect_ratio %}{{ aspect_ratio }}{% endif %}">
+{% macro stories_card(title="", image_url="", link_url="", desc="", class="", image_alt="") %}
+  <section class="c-stories-card {% if class %}{{ class }}{% endif %}">
     <a class="card-block-link" href="{{ link_url }}">
       <div class="card-media-wrapper">
         {{ image(
