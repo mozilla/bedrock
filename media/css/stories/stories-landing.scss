@@ -54,14 +54,17 @@ $image-path: '/media/protocol/img';
                 }
             }
 
+            .featured-story-lead-in {
+                @include font-size(24px);
+                margin-top: $spacing-md;
+                color: $color-black;
+                font-family: $font-stories-body;
+            }
+
             @media #{$mq-md} {
                 grid-column: 3 / 11;
                 padding-top: $spacing-md;
                 padding-bottom: $spacing-md;
-
-                .c-stories-featured-story .featured-story-image {
-                    height: 400px;
-                }
             }
         }
     }
@@ -69,8 +72,8 @@ $image-path: '/media/protocol/img';
     @media #{$mq-md} {
         padding: 0 40px;
 
-        .featured-story-image {
-            height: 400px;
+        .c-stories-featured-story .featured-story-image {
+            height: 350px;
             grid-column: 3 / 11;
         }
 
