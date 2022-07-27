@@ -65,26 +65,31 @@
   </div><!-- close .c-navigation -->
 {% endblock %}
 
+
 {% block content %}
   <article class="c-article-wrapper">
     <section class="c-stories-article-header {% if self.article_hero() %}contains-hero{% endif %}">
       <div class="c-stories-article-header-container">
-         <p class="c-stories-article-pre-title">{% block team_name %}Firefox{% endblock %} stories</p>
+        {% if self.article_collection()  %}
+         <p class="c-stories-article-collection">{% block article_collection %}{% endblock %}</p>
+        {% endif %}
         <h1 class="c-stories-article-title">{% block article_title %}{% endblock %}</h1>
         <aside class="c-stories-article-data">
             <p class="grid-label">published</p>
             <p class="grid-label">words</p>
             <p class="grid-value">August 2nd, 2022</p>
-            <p class="grid-value">{{self.team_name()}} Team</p>
-            <p class="article-category featured">Featured Story</p>
-            <p class="article-category">Major Release</p>
+            <p class="grid-value">{% block team_name %}Firefox{% endblock %} Team</p>
+            {% block categories %}
+              <p class="article-category featured">Featured Story</p>
+              <p class="article-category">Community</p>
+            {% endblock %}
         </aside>
       </div>
     </section>
     <section class="c-stories-article-body {% if self.article_hero() %}contains-hero{% endif %}">
       {% block article_hero %}{% endblock %}
       <div class="c-stories-article-content">
-        {# {% if credits %} #}
+        {% block credits %}
           <aside class="c-stories-article-credits">
             <h2>Article credits</h2>
             <div class="article-credits-wrapper">
@@ -108,7 +113,7 @@
             </figure>
             </div>
           </aside>
-        {# {%endif%} #}
+        {% endblock credits %}
         <h2 class="c-stories-article-subtitle">{% block article_subtitle %}{% endblock %}</h2>
         {% block article_content %}{% endblock %}
       </div>
@@ -120,7 +125,7 @@
       </section>
       <section class="c-stories-article-related">
         <h3>Stories in this series</h3>
-        <div class="c-stories-card-wrapper">
+        {# <div class="c-stories-card-wrapper">
           {{ stories_card(
             title="I see color when you say your name",
             image_url="img/stories/colorways.png",
@@ -133,7 +138,7 @@
             aspect_ratio="mzp-has-aspect-16-9",
             desc="It is a truth universally acknowledged that a single man in posession of a good fortune, must be in want of a wife. It is a truth universally acknowledged that a single man in posession of a good fortune, must be in want of a wife."
           )}}
-        </div>
+        </div> #}
         <a href="{{ url('stories.landing') }}" class="c-stories-article-view-all">View all</a>
       </section>
     </section>

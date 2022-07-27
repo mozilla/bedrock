@@ -5,10 +5,11 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "stories/includes/macros.html" import stories_image, stories_landing_card, stories_split with context %}
+{% from "stories/includes/macros.html" import stories_image, stories_card with context %}
 {% extends "base-protocol.html" %}
 
 {% block page_css %}
+  {{ css_bundle('mozilla-stories-landing')}}
   {{ css_bundle('mozilla-stories-shared')}}
   {{ css_bundle("protocol-split")}}
   {{ css_bundle("protocol-card") }}
@@ -19,110 +20,43 @@
 {% block content %}
   <main class="c-stories-main">
     {# Featured Stories  #}
-    <section class="mzp-t-dark">
-      <section class="c-stories-landing-section">
-        {{
-          stories_landing_card(
-            image_url="img/stories/siddoway-4.jpg",
-            width="1200",
-            height="675",
-            link_url=url('stories.articles.art-of-engagement'),
-            size="lg",
-            featured=True,
-            aspect_ratio="mzp-has-aspect-16-9",
-            title="The Art of Engagement",
-            desc="Ray Fembro began by asking for feedback about all things regarding information organization. The project manager then got more specific: what thoughts did people have about tab management?",
-            include_cta=True,
-            heading_level=1
-          )
-        }}
-        <div class="c-stories-card-container mzp-l-card-half">
-        {{ stories_landing_card(
-            image_url="img/stories/ray-fambro.jpg",
-            width="1200",
-            height="675",
-            link_url=url('stories.articles.art-of-engagement'),
-            aspect_ratio="mzp-has-aspect-16-9",
-            size="md",
-            title="The Art of Engagement",
-            include_cta=True
-        )}}
-        {{ stories_landing_card(
-          image_url="img/stories/ania-safko.jpg",
-            width="1200",
-            height="675",
-            link_url=url('stories.articles.art-of-engagement'),
-            aspect_ratio="mzp-has-aspect-16-9",
-            size="md",
-            title="The Art of Engagement",
-            include_cta=True
-        )}}
+      <section class="c-stories-featured-collection">
+        <section class="c-stories-featured-story">
+          <img class="featured-story-image" src="{{ static('img/stories/stories-landing.png') }}" width="1380" height="555" alt="" loading="lazy">
+          <div class="featured-story-content">
+            <h1 class="featured-story-header">Art of Engagement</h1>
+            <div class="featured-story-metadata">
+              <p>Featured Story</p>
+              <ul class="featured-story-metadata-list">
+                <li class="metadata-item">Connection</li>
+                <li class="metadata-item link">
+                  <a href="{{ url('stories.articles.art-of-engagement') }}">Read<span class="arrow-right"></span></a>
+                </li>
+              <ul>
+            </div>
+          </div>
+        </section>
+      </section>
+      {# Related Stories to Featured one #}
+      <section class="c-stories-related">
+        <h2 class="c-stories-related-header">Related Stories</h2>
+        <div class="related-stories-wrapper">
+          {{ stories_card(
+            title="Licensed to Build Together",
+            desc="Lorem ipsum dor sit amet, consectetur adipiscing elit.",
+            image_url="img/stories/build-together.png",
+            link_url=url('stories.articles.build-together'),
+          )}}
+          {{ stories_card(
+            title="From Volunteer to Mozilla Community Champion",
+            desc="Lorem ipsum dor sit amet, consectetur adipiscing elit.",
+            image_url="img/stories/volunteer.png",
+            link_url=url('stories.articles.community-champion'),
+          )}}
         </div>
       </section>
-    </section>
-    {# Aditional Stories #}
-    <section class="c-additional-stories">
-        <section class="c-stories-landing-section c-additional-stories">
-          <h2 class="c-stories-section-label additional">Additional Stories</h2>
-          {{
-            stories_split(
-              title="The Art of Engagement",
-              image_url="img/stories/ray-fambro.jpg",
-              desc="Ray Fembro began by asking for feedback about all things regarding information organization. The project manager then got more specific: what thoughts did people have about tab management?",
-              cta_href=url("stories.articles.art-of-engagement"),
-              split_reversed=True,
-            )
-          }}
-          {{
-            stories_split(
-              title="The Art of Engagement",
-              image_url="img/stories/siddoway-5.jpg",
-              desc="Ray Fembro began by asking for feedback about all things regarding information organization. The project manager then got more specific: what thoughts did people have about tab management?",
-              cta_href=url("stories.articles.art-of-engagement"),
-              split_reversed=True,
-            )
-          }}
-          {{
-            stories_split(
-              title="The Art of Engagement",
-              image_url="img/stories/ania-safko-2.jpg",
-              desc="Ray Fembro began by asking for feedback about all things regarding information organization. The project manager then got more specific: what thoughts did people have about tab management?",
-              cta_href=url("stories.articles.art-of-engagement"),
-              split_reversed=True,
-            )
-          }}
-        </section>
-    </section>
-    {# Continued Reading #}
-    <section class="c-stories-landing-section c-continued-reading">
-      <h2 class="c-stories-section-label">Continued Reading</h2>
-       {{
-          stories_split(
-            title="The Art of Engagement",
-            image_url="img/stories/ania-safko-3.jpg",
-            desc="Ray Fembro began by asking for feedback about all things regarding information organization. The project manager then got more specific.",
-            cta_href=url("stories.articles.art-of-engagement"),
-            split_reversed=True,
-          )
-        }}
-       {{
-          stories_split(
-            title="The Art of Engagement",
-            image_url="img/stories/siddoway-6.jpg",
-            desc="Ray Fembro began by asking for feedback about all things regarding information organization. The project manager then got more specific.",
-            cta_href=url("stories.articles.art-of-engagement"),
-            split_reversed=True,
-          )
-        }}
-       {{
-          stories_split(
-            title="The Art of Engagement",
-            image_url="img/stories/ray-fambro-2.jpg",
-            desc="Ray Fembro began by asking for feedback about all things regarding information organization. The project manager then got more specific.",
-            cta_href=url("stories.articles.art-of-engagement"),
-            split_reversed=True,
-          )
-        }}
-    </section>
+
+
+
   </main>
 {% endblock %}

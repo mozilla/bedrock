@@ -12,12 +12,13 @@
 
 {% from "stories/includes/macros.html" import stories_image, stories_article_blockquote with context %}
 
-<section>
-  {% block article_title %}The Art of Engagement{% endblock %}
-  {% block article_subtitle %}
-    Mozilla’s vibrant community gets a direct connection to the people building the products they love.
-  {% endblock %}
-</section>
+
+{% block article_collection %}Connection{% endblock %}
+{% block article_title %}The Art of Engagement{% endblock %}
+{% block article_subtitle %}
+  Mozilla’s vibrant community gets a direct connection to the people building the products they love.
+{% endblock %}
+
 {% block article_content %}
 <section class="c-stories-article-section">
   <p>Ray Fembro began by asking for feedback about all things regarding information organization. The project manager then got more specific: what thoughts did people have about tab management?</p>
@@ -75,7 +76,6 @@
   <p>The question remains, however, of what inspires people to spend their time and energy online doing what is, essentially, helping a company succeed? In other words, in McMillan and Chavis’ framework, how is the community fulfilling people’s needs? Mozilla community members surveyed for the Rebel Alliance report identified two primary motivations: support of the company’s social impact goals and personal self-improvement, such as learning new skills.</p>
   <p>Those findings dovetail with Dotzler’s explanation that both intellectual and social motivations inspired him to get up earlier each morning to spend a few hours reporting bugs and connecting with other community members. “It was fun and it was also social, “ he said. “I got to talk with people who make the browser that I love–-how cool is that?</p>
 </section>
-{% block article_author %}{% endblock %}
 
 {% endblock article_content %}
 

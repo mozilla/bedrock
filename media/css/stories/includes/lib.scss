@@ -10,6 +10,20 @@ $half-column: math.percentage(math.div(math.div(100, 24), 100));
 $font-stories-title: 'Antonio', sans-serif;
 $font-stories-title-alt: 'League Gothic', sans-serif;
 $font-stories-body: 'Source Serif Pro', sans-serif;
+$heading-height-mobile: 450px;
+$heading-height: 600px;
+
+// purple theme
+$purple-primary: #cb9eff;
+$purple-secondary: #79fbfd;
+
+// blue theme
+$blue-primary: #00b3f4;
+$blue-secondary: #ffb587;
+
+//  pink theme
+$pink-primary: #ff8ac6;
+$pink-secondary: #ffea7f;
 
 @font-face {
     font-family: Antonio;

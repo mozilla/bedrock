@@ -1,0 +1,183 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import 'includes/lib';
+
+.c-stories-main {
+    margin: 0 auto;
+    max-width: 1440px;
+}
+
+.c-stories-featured-collection {
+    margin: 0 $spacing-md;
+
+    .c-stories-featured-story {
+        .featured-story-image {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .featured-story-content {
+            @include stories-grid;
+            background-color: $pink-primary;
+            padding-top: $layout-sm;
+            padding-bottom: $layout-2xs;
+
+            .featured-story-header {
+                @include font-size(50px);
+                grid-column: 2 / 12;
+                color: $color-black;
+                font-family: $font-stories-title;
+                text-transform: uppercase;
+                border-bottom: 6px solid $color-black;
+                margin-bottom: $spacing-md;
+                max-width: 100%;
+
+                @media #{$mq-md} {
+                    @include font-size(100px);
+                    grid-column: 3 / 11;
+                    padding-bottom: $spacing-sm;
+                }
+
+                @media #{$mq-lg} {
+                    @include font-size(160px);
+                    grid-column: 3 / 11;
+                    padding-bottom: $spacing-2xl;
+                }
+            }
+
+            @media #{$mq-md} {
+                padding-top: $layout-xl;
+                padding-bottom: $layout-md;
+            }
+        }
+    }
+
+    @media #{$mq-md} {
+        margin: 0 $spacing-xl;
+    }
+}
+
+.featured-story-metadata {
+    grid-column: 2 / 12;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: $spacing-sm 0;
+
+    p {
+        @include font-size(16px);
+        display: block;
+        color: $color-black;
+        margin: 0 $spacing-md $spacing-md 0;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+
+    .featured-story-metadata-list {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0;
+        width: 100%;
+
+        .metadata-item {
+            @include font-size(14px);
+            background-color: transparent;
+            border: 1.5px solid $color-black;
+            border-radius: 25px;
+            color: $color-black;
+            display: block;
+            margin-right: 0;
+            margin-bottom: $spacing-md;
+            padding: $spacing-sm $spacing-md;
+            text-align: center;
+            text-transform: uppercase;
+
+            &.link {
+                background: $color-white;
+                border: none;
+                color: $color-black;
+                padding: $spacing-sm $spacing-lg;
+                text-transform: none;
+
+                &:hover {
+                    background: #ededf0;
+                }
+
+                a {
+                    text-decoration: none;
+                    color: $color-black;
+                }
+
+                .arrow-right {
+                    margin-left: 5px;
+                    display: inline-block;
+                    height: 10px;
+                    width: 15px;
+                    background: url('/media/img/stories/arrow-right.svg');
+                }
+            }
+        }
+    }
+
+    @media #{$mq-sm} {
+        .featured-story-metadata-list {
+            flex-direction: row;
+            align-items: center;
+
+            .metadata-item {
+                margin-right: $spacing-md;
+            }
+        }
+    }
+
+    @media #{$mq-md} {
+        align-items: center;
+        flex-direction: row;
+        grid-column: 3 / 11;
+        margin: $spacing-lg 0;
+    }
+}
+
+.c-stories-related {
+    @include stories-grid;
+    background-color: #ffcade;
+    margin: 0 $spacing-md;
+    padding: $spacing-lg 0;
+
+    .c-stories-related-header {
+        grid-column: 2 / 12;
+    }
+
+    .related-stories-wrapper {
+        @include stories-grid;
+        grid-column: 3 / 11;
+
+        .c-stories-card {
+            grid-column: span 6;
+
+            &:nth-child(even) {
+                margin-left: 10%;
+            }
+
+            &:nth-child(odd) {
+                margin-right: 10%;
+            }
+        }
+    }
+
+    @media #{$mq-md} {
+        margin: 0 $spacing-xl;
+        padding: $layout-lg 0;
+
+        .c-stories-related-header {
+            @include font-size(32px);
+            grid-column: 3 /  11;
+        }
+    }
+}

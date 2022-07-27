@@ -7,68 +7,23 @@
 {% from "macros-protocol.html" import card with context %}
 {% from "macros.html" import image with context %}
 
-{% macro stories_split(title="", desc="", cta_href="", split_reversed=False, image_url="", class="", include_highres_image=False, image_alt='', media_after=False, loading=None) %}
-<section class="mzp-c-split mzp-l-split-center-on-sm-md c-stories-split {% if class %} {{ class }} {% endif %}{% if split_reversed %}mzp-l-split-reversed{% endif %}">
-  {% if cta_href %}
-  <a class="mzp-c-split-container c-split-block-link" href="{{ cta_href }}">
-  {% else %}
-  <div class="mzp-c-split-container">
-  {% endif %}
-    {% if not media_after %}
-      {% if image_url %}
-        <div class="mzp-c-split-media">
-          {{ image(
-            url=image_url,
-            class='mzp-c-split-media-asset',
-            alt=image_alt,
-            loading=loading,
-            include_highres=include_highres_image,
-          ) }}
-        </div>
-      {% endif %}
-    {% endif %}
-    <div class="mzp-c-split-body">
-      <h2 class="c-split-title">{{ title }}</h1>
-      <p class="c-split-desc">{{ desc }}</p>
-      <p class="c-split-cta" href="{{ cta_href }}">View Story</p>
-    </div>
-    {% if media_after %}
-      {% if image_url %}
-        <div class="mzp-c-split-media">
-          {{ image(
-            url=image_url,
-            class='mzp-c-split-media-asset',
-            alt=image_alt,
-            loading=loading,
-            include_highres=include_highres_image,
-          ) }}
-        </div>
-      {% endif %}
-    {% endif %}
-    {% if cta_href %}
-  </a>
-  {% else %}
-  </div>
-  {% endif %}
-</section>
-{%- endmacro %}
 
 {% macro stories_card(title="", image_url="", link_url="", desc="", class="", aspect_ratio='mzp-has-aspect-3-2', image_alt="") %}
-  <section class="mzp-c-card c-stories-article-card {% if class %}{{ class }}{% endif %} {% if aspect_ratio %}{{ aspect_ratio }}{% endif %}">
-    <a class="mzp-c-card-block-link" href="{{ link_url }}">
-      <div class="mzp-c-card-media-wrapper">
+  <section class="c-stories-card {% if class %}{{ class }}{% endif %} {% if aspect_ratio %}{{ aspect_ratio }}{% endif %}">
+    <a class="card-block-link" href="{{ link_url }}">
+      <div class="card-media-wrapper">
         {{ image(
           url=image_url,
-          class='mzp-c-card-image',
+          class='card-image',
           alt=image_alt,
           loading="lazy",
           include_highres=include_highres_image,
           include_l10n=l10n_image
         ) }}
       </div>
-      <div class="mzp-c-card-content">
-        <h3 class="mzp-c-card-title"><span>{{ title }}</span></h3>
-        <p class="mzp-c-card-desc">{{ desc }}</p>
+      <div class="card-content">
+        <h3 class="card-title"><span>{{ title }}</span></h3>
+        <p class="card-desc">{{ desc }}</p>
       </div>
     </a>
   </section>

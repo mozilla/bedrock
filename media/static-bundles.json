@@ -1170,6 +1170,12 @@
     },
     {
       "files": [
+        "css/stories/stories-landing.scss"
+      ],
+      "name": "mozilla-stories-landing"
+    },
+    {
+      "files": [
         "css/stories/stories-article.scss"
       ],
       "name": "mozilla-stories-article"
