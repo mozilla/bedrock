@@ -35,7 +35,7 @@ contact-view-job-page = To view all open positions at { -brand-name-pocket }, pl
 contact-security = Security
 # Variables:
 #   $security_bug (url) link to https://www.mozilla.org/en-US/about/governance/policies/security-group/bugs/
-contact-report-security-vulnerability = If you believe you have discovered a security vulnerability in { -brand-name-pocket }, please follow Mozilla’s bug reporting process documented on <a href="{ $security_bug }">Mozilla’s Security page</a>.
+contact-report-security-vulnerability = If you believe you have discovered a security vulnerability in { -brand-name-pocket }, please follow { -brand-name-mozilla }’s bug reporting process documented on <a href="{ $security_bug }">{ -brand-name-mozilla }’s Security page</a>.
 # Variables:
 #   $security_email_link (email link) mailto:security@getpocket.com
 #   $security_email (string) security@getpocket.com
