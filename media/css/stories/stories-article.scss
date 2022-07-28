@@ -12,39 +12,7 @@ $image-path: '/media/protocol/img';
 // with the color header and the sticky nav - there should be a background behind the nav that matches the header
 
 body {
-    &.theme-blue {
-        background: $blue-primary;
-
-        .c-stories-article-blockquote {
-            background: $blue-primary;
-        }
-
-        .mzp-c-breadcrumb {
-            background-color: $blue-primary;
-        }
-
-        .c-stories-article-collection {
-            background-color: $blue-secondary;
-        }
-    }
-
-    &.theme-purple {
-        background: $purple-primary;
-
-        .c-stories-article-blockquote {
-            background: $blue-primary;
-        }
-
-        .mzp-c-breadcrumb {
-            background-color: $purple-primary;
-        }
-
-        .c-stories-article-collection {
-            background-color: $purple-secondary;
-        }
-    }
-
-    &.theme-pink {
+    &.theme-connection {
         background: $pink-primary;
 
         .c-stories-article-blockquote {
@@ -53,10 +21,6 @@ body {
 
         .mzp-c-breadcrumb {
             background-color: $pink-primary;
-        }
-
-        .c-stories-article-pre-title {
-            background-color: $pink-secondary;
         }
     }
 }
@@ -82,9 +46,12 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
     padding-top: $spacing-md;
     padding-bottom: $spacing-md;
 
-    .mzp-c-breadcrumb-item,
     .mzp-c-breadcrumb-item a {
-        color: $color-white;
+        color: $color-black;
+
+        &:hover {
+            text-decoration: underline;
+        }
     }
 
     @media #{$mq-md} {
@@ -126,7 +93,7 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
         max-width: 100%;
 
         @media #{$mq-md} {
-            padding: 0 $spacing-2xl $spacing-2xl;
+            padding: $spacing-2xl $spacing-2xl;
         }
     }
 
@@ -167,27 +134,40 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
         }
     }
 
-    .c-stories-article-data {
+    .c-stories-article-metadata {
         @include full-width;
-        display: grid;
-        grid-template-columns: repeat(8, 1fr);
-        grid-template-rows: auto;
-        column-gap: $spacing-sm;
         grid-row: 3;
-        margin-top: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        margin: $spacing-md 0 0;
 
-        .grid-label {
+        div p {
             text-transform: uppercase;
-            grid-row: 1;
-            grid-column: span 4;
-            align-self: flex-end;
+
+            time,
+            span {
+                display: block;
+                font-weight: 700;
+                text-transform: none;
+            }
         }
 
-        .grid-value {
-            font-weight: bold;
-            grid-row: 2;
-            grid-column: span 4;
-            align-self: flex-start;
+        .published {
+            margin-right: $spacing-md;
+        }
+
+        @media #{$mq-sm} {
+            flex-direction: row;
+        }
+
+        @media #{$mq-lg} {
+            grid-column: 4 / 11;
+            margin-top: $spacing-xl;
+
+            .published {
+                margin-right: $spacing-xl;
+            }
         }
     }
 
@@ -250,16 +230,6 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
     @include stories-grid;
     background-color: $color-white;
 
-    &.contains-hero {
-        .c-stories-article-content {
-            transform: translateY(-225px);
-        }
-
-        .c-stories-social-share {
-            transform: translateY(-225px);
-        }
-    }
-
     .c-stories-article-credits {
         @include full-width;
         padding: 0 $spacing-lg;
@@ -290,7 +260,7 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
 
         @media #{$mq-md} {
             grid-column: 1 / 4;
-            grid-row: 1 / -1;
+            grid-row: 1 / span 3;
             justify-self: center;
             padding: 0;
 
@@ -373,7 +343,7 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
                 text-align: center;
                 border: none;
                 padding: 0;
-                margin: 0 $spacing-2xl;
+                margin: 0;
             }
 
             figcaption {
@@ -417,7 +387,7 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
 }
 
 .c-stories-social-share {
-    @include article-width-full;
+    @include full-width;
 
     .social-share-list {
         display: flex;
@@ -438,6 +408,10 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
 
             &.pocket {
                 background-image: url('/media/img/stories/pocket.svg');
+            }
+
+            &:hover {
+                cursor: pointer;
             }
         }
     }

@@ -5,13 +5,17 @@
 #}
 
 {% extends "stories/stories-base-article.html" %}
-{% block article_theme %}pink{% endblock %}
+
+
+{% from "stories/includes/macros.html" import stories_article_blockquote, stories_image with context %}
 
 {% set credits = [
   {"name": "Mike Hoye", "title": "Senior Product Manager", "image": "img/stories/placeholder.png"},
 ] %}
 
-{% block page_title %}Stories{% endblock %}
+{% block publish_date %}2022-08-02{% endblock %}
+{% block publish_date_formatted %}August, 2, 2022{% endblock %}
+
 {% block article_title %}Licensed to Build Together{% endblock %}
 {% block article_subtitle %} Who really owns the Firefox browser? Its copyleft license means we all do.{% endblock %}
 
@@ -20,6 +24,7 @@
 <section class="c-stories-article-section">
   <p>Building software with the help of a volunteer community wasn’t a well known concept when Firefox got going in 1998. What is more surprising, even now, to those outside the tech industry is the idea that anyone in that community and beyond can use the browser’s source code for their own projects as well.</p>
   <p>Tech companies often claim the software they've built could only have come from them and only they are able to tackle the problems it solves to convince their users and attract investors. “To maintain that fiction, they can't let anyone see how the software really works. It has to stay proprietary, owned only by the company that's pulling the levers and telling you to ignore the man behind the curtain,” said Mike Hoye, senior product manager.</p>
+
   {{ stories_article_blockquote(
     quote="If software is the cake, source code is the recipe",
     caption="Mike Hoye"

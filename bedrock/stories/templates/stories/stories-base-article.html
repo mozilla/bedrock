@@ -5,9 +5,12 @@
 #}
 
 {% extends "base-protocol.html" %}
+
 {% from "stories/includes/macros.html" import stories_card with context %}
-{% from "stories/includes/macros.html" import stories_image, stories_article_blockquote, stories_card with context %}
 {% from "macros.html" import image with context %}
+
+{% block page_title_full %}{{ self.article_title() }}{% endblock %}
+{% block page_desc %}{{ self.article_subtitle() }}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('mozilla-stories-article')}}
@@ -19,9 +22,7 @@
   {{ js_bundle("stories-article")}}
 {% endblock %}
 
-{% block article_theme %}pink{% endblock %}
-
-{% block body_class %}theme-{{ self.article_theme() }}{% endblock %}
+{% block body_class %}theme-connection{% endblock %}
 
 {% block site_header %}
   {# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
@@ -69,20 +70,21 @@
 
 {% block content %}
   <article class="c-article-wrapper">
-    <section class="c-stories-article-header {% if self.article_hero() %}contains-hero{% endif %}">
+    <section class="c-stories-article-header">
       <div class="c-stories-article-header-container">
-        <p class="is-featured">{% if featured %}Featured Article{% endif%}
+        {% if featured %}<p class="is-featured">Featured Article</p>{% endif%}
         <h1 class="c-stories-article-title">{% block article_title %}{% endblock %}</h1>
-        <aside class="c-stories-article-data">
-            <p class="grid-label">published</p>
-            <p class="grid-label">value</p>
-            <p class="grid-value">{% block publish_date %}August 2nd, 2022{% endblock %}</p>
-            <p class="grid-value">{% block article_collection %}Connection{% endblock %}</p>
+        <aside class="c-stories-article-metadata">
+          <div class="published">
+            <p>published <time datetime="{% block publish_date %}{% endblock %}">{% block publish_date_formatted %}{% endblock %}</time></p>
+          </div>
+          <div>
+            <p>value <span>{% block article_collection %}Connection{% endblock %}</span></p>
+          </div>
         </aside>
       </div>
     </section>
-    <section class="c-stories-article-body {% if self.article_hero() %}contains-hero{% endif %}">
-      {% block article_hero %}{% endblock %}
+    <section class="c-stories-article-body">
       <div class="c-stories-article-content">
         {% if credits %}
           <aside class="c-stories-article-credits">
@@ -112,7 +114,7 @@
         </ul>
       </section>
       <section class="c-stories-related">
-        <section class="related-stories-grid">
+        <div class="related-stories-grid">
           <h2 class="c-stories-related-header">Related Stories</h2>
           <div class="related-stories-wrapper">
             {{ stories_card(
@@ -128,7 +130,7 @@
               link_url=url('stories.articles.community-champion'),
             )}}
           </div>
-        </section>
+        </div>
       </section>
     </section>
   </article>

@@ -100,12 +100,13 @@ $image-path: '/media/protocol/img';
         p {
             @include font-firefox;
             margin: 0;
-            font-weight: bold;
+            text-transform: uppercase;
+            font-weight: normal;
+            margin-right: $spacing-sm;
 
-            &:first-child {
-                text-transform: uppercase;
-                font-weight: normal;
-                margin-right: $spacing-sm;
+            span {
+                text-transform: none;
+                font-weight: bold;
             }
         }
     }

@@ -29,12 +29,12 @@
             <p class="featured-story-lead-in">Mozilla’s vibrant community gets a direct connection to the people building the products they love.</p>
             <div class="featured-story-metadata">
               <div class="value-container">
-              <p>Value</p>
-              <p>Connection</p>
+                <p>Value <span>Connection</span></p>
               </div>
+              {# This list will eventually be used for tags for each article, not part of V1 #}
               <ul class="featured-story-metadata-list">
                 <li class="metadata-item link">
-                  <a href="{{ url('stories.articles.art-of-engagement') }}">Read<span class="arrow-right"></span></a>
+                  <a aria-title="Read The Art of Engagement" href="{{ url('stories.articles.art-of-engagement') }}">Read<span class="arrow-right"></span></a>
                 </li>
               <ul>
             </div>
@@ -43,21 +43,22 @@
       </section>
       {# Related Stories to Featured one #}
       <section class="c-stories-related">
-        <section class="related-stories-grid">
-        <h2 class="c-stories-related-header">Related Stories</h2>
-        <div class="related-stories-wrapper">
-          {{ stories_card(
-            title="Licensed to Build Together",
-            desc="Who really owns the Firefox browser? Its copyleft license means we all do.",
-            image_url="img/stories/build-together.png",
-            link_url=url('stories.articles.build-together'),
-          )}}
-          {{ stories_card(
-            title="From Volunteer to Mozilla Community Champion",
-            desc="Asa Dotzler's curiosity about open-source software led him to a career with a company whose mission he believes in.",
-            image_url="img/stories/asa-dotzler.png",
-            link_url=url('stories.articles.community-champion'),
-          )}}
+        <div class="related-stories-grid">
+          <h2 class="c-stories-related-header">Related Stories</h2>
+          <div class="related-stories-wrapper">
+            {{ stories_card(
+              title="Licensed to Build Together",
+              desc="Who really owns the Firefox browser? Its copyleft license means we all do.",
+              image_url="img/stories/build-together.png",
+              link_url=url('stories.articles.build-together'),
+            )}}
+            {{ stories_card(
+              title="From Volunteer to Mozilla Community Champion",
+              desc="Asa Dotzler's curiosity about open-source software led him to a career with a company whose mission he believes in.",
+              image_url="img/stories/asa-dotzler.png",
+              link_url=url('stories.articles.community-champion'),
+            )}}
+          </div>
         </div>
       </section>
   </main>

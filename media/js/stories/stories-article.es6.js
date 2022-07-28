@@ -4,14 +4,21 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-const header = document.querySelector('.c-stories-article-header');
-const articleBody = document.querySelector('.c-stories-article-body');
 const isReduced =
     window.matchMedia(`(prefers-reduced-motion: reduce)`) === true ||
     window.matchMedia(`(prefers-reduced-motion: reduce)`).matches === true;
 
-if (!isReduced) {
-    const headerHeight = getComputedStyle(header).height;
-    articleBody.style.top = headerHeight;
-    articleBody.style.marginBottom = headerHeight;
+function getHeaderStyle() {
+    const header = document.querySelector('.c-stories-article-header');
+    const articleBody = document.querySelector('.c-stories-article-body');
+
+    if (!isReduced) {
+        const headerHeight = getComputedStyle(header).height;
+        articleBody.style.top = headerHeight;
+        articleBody.style.marginBottom = headerHeight;
+    }
 }
+
+window.addEventListener('resize', getHeaderStyle);
+
+getHeaderStyle();
