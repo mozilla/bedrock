@@ -5,12 +5,17 @@
 #}
 
 {% extends "stories/stories-base-article.html" %}
-{% block article_theme %}blue{% endblock %}
+{% block article_theme %}pink{% endblock %}
 
 
 {% block page_title %}Stories{% endblock %}
 
 {% set featured = true %}
+{% set credits = [
+  {"name": "Ray Fembro", "title": "Product Manager", "image": "img/stories/ray-fembro-credit.png"},
+  {"name": "Ania Safko", "title": "Product Manager", "image": "img/stories/ania-safko-credit.png"},
+  {"name": "Jon Siddoway", "title": "Community Manager", "image": "img/stories/jon-siddoway-credit.png"},
+] %}
 
 {% from "stories/includes/macros.html" import stories_image, stories_article_blockquote with context %}
 
@@ -25,13 +30,14 @@
   <p>Ray Fembro began by asking for feedback about all things regarding information organization. The project manager then got more specific: what thoughts did people have about tab management?</p>
   <p>Plenty, as it turned out. Every day for the next two weeks, Fembro signed in to Connect, Mozilla’s new community platform, to listen. He reviewed comments, dissected feedback and otherwise engaged with Mozilla’s user community—one known for its talent, knowledge and an enthusiasm sometimes bordering on fervor.</p>
   <p>With the launch of Connect, Mozilla has brought that community more directly into conversations with the employees in the midst of building the products they love. The platform acts as a collaborative space where people share product feedback, submit ideas, and have the kind of meaningful discussions that can impact future releases. “We’re opening up new opportunities for us to connect more with our users and make them more a part of product development,” said Product Community Director Jon Siddoway.</p>
+
   {{ stories_article_blockquote(
     quote="We’re opening up new opportunities for us to connect more with our users",
-    type="full-width",
     caption="Ray Fembro"
   )}}
+
   <p>Of course, not everyone in the community is a developer or has an interest in code. But those aren’t necessary. Every member can offer ideas or vote on those that appeal to them, and, as Connect’s name implies, engage in discussions with like-minded people.</p>
-  <p>“Connect is a space where the community is not dependent on our moderators, but where members can have conversations,” Siddoway said.“Our users are passionate, and when they come to the community they see that many others share their interests and also feel strongly about Firefox and Mozilla.” Case in point: Asa Dotzler, product manager for Firefox accessibility, who was a graduate student in architecture with no coding skills when he became fascinated by Mozilla’s vision and joined its community. (LINK to his story)</p>
+  <p>“Connect is a space where the community is not dependent on our moderators, but where members can have conversations,” Siddoway said.“Our users are passionate, and when they come to the community they see that many others share their interests and also feel strongly about Firefox and Mozilla.” Case in point: Asa Dotzler, product manager for Firefox accessibility, who was a graduate student in architecture with no coding skills when he became fascinated by <a href="{{ url('stories.articles.community-champion') }}">Mozilla’s vision and joined its community.</a></p>
 </section>
 
 <section class="c-stories-article-section">
@@ -51,11 +57,11 @@
   <p>The team needed to discuss another, less tangible issue: how could they keep conversations from getting derailed? “Mozilla has built a rich culture over the years and from the beginning has been people-focused,” said Fembro. “A lot of our loyal users are very entrenched into our development process, which comes along with a lot of opinions.”</p>
   <div class="c-stories-article-float-container left">
     {{ stories_image(
-      image_url="img/stories/siddoway-3.jpg",
+      image_url="img/stories/placeholder.png",
       alt="",
       width="1012",
       height="675",
-      caption="John Siddoway"
+      caption=""
     )}}
     <p>Those opinions are highly valued by employees, as well as by community members themselves. Many mention their history in their comments. “For us it throws up a flag we pay attention to,” said Fembro. “We are grateful for people that have been using our product and been loyal to our product and we want to hear what they have to say and what their pain points are.”</p>
     <p>The flipside is that loyalty can some-times cross the line into something a bit more challenging to navigate. “In the same breath of acknowledging that we have vocal users and offer really positive and productive feedback,” said Fembro. “We also have to say our users are very opinionated, and sometimes have a sense of entitlement.”</p>

@@ -5,7 +5,11 @@
 #}
 
 {% extends "stories/stories-base-article.html" %}
-{% block article_theme %}blue{% endblock %}
+{% block article_theme %}pink{% endblock %}
+
+{% set credits = [
+  {"name": "Asa Dotzler", "title": "Product Manager", "image": "img/stories/asa-dotzler.png"},
+] %}
 
 {% block page_title %}Stories{% endblock %}
 {% block article_title %}From Volunteer to Mozilla Community Champion{% endblock %}

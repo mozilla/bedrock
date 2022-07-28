@@ -48,49 +48,12 @@
   </figure>
 {%- endmacro %}
 
-{% macro stories_article_blockquote(quote="", type="", caption="") %}
-  <figure class="c-stories-article-blockquote {{ type }}">
+{% macro stories_article_blockquote(quote="", caption="") %}
+  <figure class="c-stories-article-blockquote">
    <blockquote>“{{ quote }}”</blockquote>
    <figcaption>{{ caption }}</figcaption>
   </figure>
 {% endmacro %}
 
 
-{% macro stories_landing_card(image_url="", image_alt="", include_highres_image=False, class="", width="1360", height="765", featured=False, title="", desc="", include_cta=False, link_url="", size="md", aspect_ratio='mzp-has-aspect-3-2', heading_level=2)%}
-<section class="mzp-c-card c-stories-landing-card size-{{ size }} {% if class %}{{ class }}{% endif %} {% if aspect_ratio %}{{ aspect_ratio }}{% endif %}" {% if attributes %}{{attributes|safe}}{% endif %}>
-  {% if link_url %}
-  <a class="mzp-c-card-block-link" href="{{ link_url }}">
-  {% endif %}
-    {% if featured %}
-     <p class="featured-label">Featured</p>
-    {% endif %}
-    {% if image_url %}
-    <div class="mzp-c-card-media-wrapper">
-      {{ image(
-        url=image_url,
-        alt=image_alt,
-        width=width,
-        height=height,
-        loading="lazy",
-        include_highres=include_highres_image,
-      ) }}
-    </div>
-    {% endif %}
-    <div class="mzp-c-card-content">
-    {% if tag_label %}
-      <div class="mzp-c-card-tag">{{ tag_label }}</div>
-    {% endif %}
-      <h{{ heading_level }} class="mzp-c-card-title"><span>{{ title }}</span></h{{ heading_level }}>
-    {% if desc %}
-      <p class="mzp-c-card-desc">{{ desc }}</p>
-    {% endif %}
-    {% if include_cta %}
-      <p class="mzp-c-card-cta"><span class="mzp-c-card-cta-text">View Story</span></p>
-    {% endif %}
-    </div>
-  {% if link_url %}
-  </a>
-  {% endif %}
-</section>
-{% endmacro %}
 

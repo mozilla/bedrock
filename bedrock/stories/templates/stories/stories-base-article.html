@@ -86,31 +86,24 @@
     <section class="c-stories-article-body {% if self.article_hero() %}contains-hero{% endif %}">
       {% block article_hero %}{% endblock %}
       <div class="c-stories-article-content">
-        {% block credits %}
+        {% if credits %}
           <aside class="c-stories-article-credits">
             <h2>Article credits</h2>
             <div class="article-credits-wrapper">
-            <figure class="c-stories-image credit">
-              {{ image(
-                url="img/stories/ray-fembro-credit.png",
-                width=114,
-                height=131,
-              )}}
-              <figcaption class="credit-name">Ray Fembro</figcaption>
-              <figcaption class="credit-position">Product Manager</figcaption>
-            </figure>
-            <figure class="c-stories-image credit">
-              {{ image(
-                url="img/stories/jon-siddoway-credit.png",
-                width=114,
-                height=131,
-              )}}
-              <figcaption class="credit-name">John Siddoway</figcaption>
-              <figcaption class="credit-position">Community Manager</figcaption>
-            </figure>
-            </div>
-          </aside>
-        {% endblock credits %}
+            {% for credit in credits %}
+              <figure class="c-stories-image credit">
+                {{ image(
+                  url=credit.image,
+                  width=114,
+                  height=131,
+                )}}
+                <figcaption class="credit-name">{{ credit.name }}</figcaption>
+                <figcaption class="credit-position">{{ credit.title }}</figcaption>
+              </figure>
+            {% endfor %}
+              </div>
+            </aside>
+        {% endif %}
         <h2 class="c-stories-article-subtitle">{% block article_subtitle %}{% endblock %}</h2>
         {% block article_content %}{% endblock %}
       </div>
@@ -120,24 +113,25 @@
           <li class="social-share-item"><a class="pocket">Pocket</a></li>
         </ul>
       </section>
-      {# <section class="c-stories-article-related">
-        <h3>Stories in this series</h3>
-        <div class="c-stories-card-wrapper">
-          {{ stories_card(
-            title="I see color when you say your name",
-            image_url="img/stories/colorways.png",
-            aspect_ratio="mzp-has-aspect-16-9",
-            desc="I was working at the Daily News and arguing with my boss about headlines. I’d say we should use a different word that matches the story better. He really didn’t understand, and it was a newsroom so it could get a little contentious.",
-          )}}
-          {{ stories_card(
-            title="Title of story",
-            image_url="img/stories/colorways.png",
-            aspect_ratio="mzp-has-aspect-16-9",
-            desc="It is a truth universally acknowledged that a single man in posession of a good fortune, must be in want of a wife. It is a truth universally acknowledged that a single man in posession of a good fortune, must be in want of a wife."
-          )}}
-        </div>
-        <a href="{{ url('stories.landing') }}" class="c-stories-article-view-all">View all</a> #}
-      </section>
+      <section class="c-stories-related">
+      <section class="related-stories-grid">
+      <h2 class="c-stories-related-header">Related Stories</h2>
+      <div class="related-stories-wrapper">
+        {{ stories_card(
+          title="Licensed to Build Together",
+          desc="Who really owns the Firefox browser? Its copyleft license means we all do.",
+          image_url="img/stories/build-together.png",
+          link_url=url('stories.articles.build-together'),
+        )}}
+        {{ stories_card(
+          title="From Volunteer to Mozilla Community Champion",
+          desc="Asa Dotzler's curiosity about open-source software led him to a career with a company whose mission he believes in.",
+          image_url="img/stories/asa-dotzler.png",
+          link_url=url('stories.articles.community-champion'),
+        )}}
+      </div>
+    </section>
+    </section>
     </section>
   </article>
 {% endblock %}
