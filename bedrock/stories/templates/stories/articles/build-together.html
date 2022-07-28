@@ -7,6 +7,10 @@
 {% extends "stories/stories-base-article.html" %}
 {% block article_theme %}pink{% endblock %}
 
+{% set credits = [
+  {"name": "Mike Hoye", "title": "Senior Product Manager", "image": "img/stories/placeholder.png"},
+] %}
+
 {% block page_title %}Stories{% endblock %}
 {% block article_title %}Licensed to Build Together{% endblock %}
 {% block article_subtitle %} Who really owns the Firefox browser? Its copyleft license means we all do.{% endblock %}
@@ -16,6 +20,11 @@
 <section class="c-stories-article-section">
   <p>Building software with the help of a volunteer community wasn’t a well known concept when Firefox got going in 1998. What is more surprising, even now, to those outside the tech industry is the idea that anyone in that community and beyond can use the browser’s source code for their own projects as well.</p>
   <p>Tech companies often claim the software they've built could only have come from them and only they are able to tackle the problems it solves to convince their users and attract investors. “To maintain that fiction, they can't let anyone see how the software really works. It has to stay proprietary, owned only by the company that's pulling the levers and telling you to ignore the man behind the curtain,” said Mike Hoye, senior product manager.</p>
+  {{ stories_article_blockquote(
+    quote="If software is the cake, source code is the recipe",
+    caption="Mike Hoye"
+  )}}
+
   <p>Open source development takes the opposite approach of creating products whose source code  — if software is the cake, source code is the recipe — is available and free for anyone to view, modify and use. “You  can see the recipe, how the cake is made and if you're curious, make it yourself at home,” said Hoye.</p>
   <p>Doesn’t that make it easier for other software companies to compete? Yes, but for open source advocates a larger concept has far more weight: that this code, the communities around it, and the internet that connects them is supposed to benefit everyone. Supporters of open source projects and practices consider the values of collaboration, transparency and accountability underpinning the model as important as the specifics of software development. </p>
 </section>

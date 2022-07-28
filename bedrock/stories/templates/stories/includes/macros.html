@@ -48,8 +48,8 @@
   </figure>
 {%- endmacro %}
 
-{% macro stories_article_blockquote(quote="", caption="") %}
-  <figure class="c-stories-article-blockquote">
+{% macro stories_article_blockquote(quote="", caption="", class="") %}
+  <figure class="c-stories-article-blockquote {{ class }}">
    <blockquote>“{{ quote }}”</blockquote>
    <figcaption>{{ caption }}</figcaption>
   </figure>

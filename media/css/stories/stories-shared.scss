@@ -101,13 +101,6 @@ $image-path: '/media/protocol/img';
     margin-bottom: $spacing-md;
     position: relative;
 
-    &.hero {
-        @include full-width;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: $spacing-2xl;
-    }
-
     &.article-width {
         @include article-width-2-3;
     }

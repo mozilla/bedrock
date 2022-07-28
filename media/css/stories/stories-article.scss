@@ -131,11 +131,16 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
     }
 
     .is-featured {
-        @include font-size(28px);
+        @include font-size(21px);
         color: $color-black;
         font-family: $font-stories-body;
-        grid-column: 4 / 12;
+        grid-column: 1 / 13;
         align-self: center;
+
+        @media #{mq-md} {
+            @include font-size(28px);
+            grid-column: 4 / 12;
+        }
     }
 
     .c-stories-article-title {
@@ -245,15 +250,6 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
     @include stories-grid;
     background-color: $color-white;
 
-    .c-stories-image.hero {
-        transform: translateY(-225px);
-
-        img {
-            max-height: 550px;
-            width: auto;
-        }
-    }
-
     &.contains-hero {
         .c-stories-article-content {
             transform: translateY(-225px);
@@ -336,10 +332,7 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
 
     .c-stories-article-section {
         @include full-width;
-        column-gap: $spacing-md;
-        display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        grid-template-rows: auto;
+        @include stories-grid;
         margin-bottom: $spacing-2xl;
 
         h3,
@@ -368,6 +361,10 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
             grid-column: 1 / 13;
             padding: $layout-md 0;
 
+            &.long-quote blockquote {
+                @include font-size(30px);
+            }
+
             blockquote {
                 @include font-size(60px);
                 color: $color-black;
@@ -384,9 +381,14 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
                 font-family: $font-stories-body;
                 text-align: center;
             }
+
             @media #{$mq-md} {
                 padding: $layout-xl 0 $layout-lg;
                 margin: $spacing-2xl 0;
+
+                &.long-quote blockquote {
+                    @include font-size(60px);
+                }
 
                 blockquote {
                     @include font-size(80px);
@@ -445,6 +447,7 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
     @include full-width;
     background: $color-white;
 }
+
 @media (prefers-reduced-motion: no-preference) {
     .c-article-wrapper {
         position: relative;
