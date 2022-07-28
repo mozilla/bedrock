@@ -137,7 +137,7 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
         grid-column: 1 / 13;
         align-self: center;
 
-        @media #{mq-md} {
+        @media #{$mq-md} {
             @include font-size(28px);
             grid-column: 4 / 12;
         }
