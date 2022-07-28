@@ -34,6 +34,7 @@ urlpatterns = (
     path("healthz/", watchman_views.ping, name="watchman.ping"),
     path("readiness/", watchman_views.status, name="watchman.status"),
     path("healthz-cron/", base_views.cron_health_check),
+    path("translation-bar.jsonp", base_views.translation_bar_jsonp),
 )
 
 if settings.DEBUG:

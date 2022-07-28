@@ -1161,6 +1161,12 @@
         "css/landing/landing-shared.scss"
       ],
       "name": "landing-shared"
+    },
+    {
+      "files": [
+        "css/base/translation-bar.scss"
+      ],
+      "name": "translation-bar"
     }
   ],
   "js": [
@@ -1812,6 +1818,13 @@
         "js/landing/landing-shared.js"
       ],
       "name": "landing-shared"
+    },
+    {
+      "files": [
+        "js/base/translation-bar.es6.js",
+        "js/base/translation-bar-init.es6.js"
+      ],
+      "name": "translation-bar"
     }
   ]
 }

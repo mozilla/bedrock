@@ -172,3 +172,7 @@ def server_error_view(request, template_name="500.html"):
 def page_not_found_view(request, exception=None, template_name="404.html"):
     """404 error handler that runs context processors."""
     return l10n_utils.render(request, template_name, ftl_files=["404", "500"], status=404)
+
+
+def translation_bar_jsonp(request, template_name="translation-bar.jsonp"):
+    return l10n_utils.render(request, template_name, {"bidi": l10n_utils.translation.get_language_bidi()}, ftl_files=["translation_bar"])

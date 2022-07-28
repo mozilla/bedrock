@@ -1,0 +1,27 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+#translation-bar {
+    background-color: #000;
+    color: #fff;
+    display: inline-block;
+    width: 100%;
+
+    button {
+        float: right;
+    }
+
+    p {
+        display: inline;
+        margin: 0;
+        padding: 10px auto;
+
+        a:link,
+        a:visited {
+            color: #fff;
+        }
+    }
+}

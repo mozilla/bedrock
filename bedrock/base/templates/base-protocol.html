@@ -68,6 +68,7 @@
     {% block site_css %}
       {{ css_bundle('protocol-firefox') }}
     {% endblock %}
+    {{ css_bundle('translation-bar') }}
 
     {# Page-specific styles, hidden from IE9 and lower #}
     {% block page_css %}{% endblock %}
@@ -89,6 +90,7 @@
       data-global-next="{{ ftl('ui-next') }}"
       data-global-previous="{{ ftl('ui-previous') }}"
       {% block string_data %}{% endblock %}></div>
+    <div id="translation-bar"></div>
 
     {% block site_header %}
       {% include 'includes/protocol/navigation/navigation.html' %}
@@ -127,6 +129,7 @@
         {{ js_bundle('fxa') }}
         {{ js_bundle('data') }}
       <!--<![endif]-->
+      {{ js_bundle('translation-bar') }}
     {% endblock %}
 
     {# Bug 1279291 #}

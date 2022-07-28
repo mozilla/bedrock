@@ -1,0 +1,5 @@
+{
+    "message": "{{ ftl('transbar-view-this-page') }}",
+    "close": "{{ ftl('ui-close') }}",
+    "bidi": "{{ 'rtl' if bidi else 'ltr' }}"
+}
