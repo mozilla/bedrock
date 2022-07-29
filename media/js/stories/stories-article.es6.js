@@ -20,5 +20,6 @@ function getHeaderStyle() {
 }
 
 window.addEventListener('resize', getHeaderStyle);
+window.addEventListener('onDocumentReady', getHeaderStyle);
 
 getHeaderStyle();

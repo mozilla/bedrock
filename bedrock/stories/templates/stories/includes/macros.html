@@ -8,7 +8,7 @@
 {% from "macros.html" import image with context %}
 
 
-{% macro stories_card(title="", image_url="", link_url="", desc="", class="", image_alt="") %}
+{% macro stories_card(title="", image_url="", link_url="", desc="", class="", image_alt="", include_highres_image=False) %}
   <section class="c-stories-card {% if class %}{{ class }}{% endif %}">
     <a class="card-block-link" href="{{ link_url }}">
       <div class="card-media-wrapper">
@@ -29,17 +29,14 @@
   </section>
 {% endmacro %}
 
-{% macro stories_image(image_url="", alt="", caption="", include_highres=False, image_class="", width="1360", height="765", featured=False) %}
+{% macro stories_image(image_url="", alt="", caption="", include_highres=False, image_class="", width="1360", height="765", featured=False, loading=None) %}
   <figure class="c-stories-image {% if image_class %}{{ image_class }}{% endif %}">
-    {% if featured %}
-    <p class="featured-label">Featured</p>
-    {% endif %}
     {{ image(
       url=image_url,
       alt=alt,
       width=width,
       height=height,
-      loading=None,
+      loading=loading,
       include_highres=include_highres
     ) }}
     {% if caption %}

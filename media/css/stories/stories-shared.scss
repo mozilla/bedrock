@@ -11,7 +11,7 @@ $image-path: '/media/protocol/img';
 @import 'includes/lib';
 
 .c-stories-related {
-    background-color: #ffcade;
+    background-color: $color-white;
 
     .related-stories-grid {
         @include stories-grid;
@@ -102,7 +102,15 @@ $image-path: '/media/protocol/img';
     position: relative;
 
     &.article-width {
-        @include article-width-2-3;
+        @include article-width-full;
+        margin: $layout-md 0;
+
+        &.center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
     }
 
     &.article-half-width {
@@ -113,7 +121,6 @@ $image-path: '/media/protocol/img';
     figcaption {
         @include font-base;
         @include font-size(14px);
-        color: $color-moz-dark-gray;
-        margin-left: $spacing-xs;
+        color: #838383;
     }
 }

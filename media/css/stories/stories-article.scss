@@ -15,7 +15,7 @@ body {
     &.theme-connection {
         background: $pink-primary;
 
-        .c-stories-article-blockquote {
+        .c-stories-article-blockquote.color-accent {
             background: $pink-primary;
         }
 
@@ -78,14 +78,6 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
     width: 100%;
     color: $color-black;
 
-    &.theme-purple {
-        background-color: $purple-primary;
-    }
-
-    &.theme-blue {
-        background-color: $blue-primary;
-    }
-
     .c-stories-article-header-container {
         @include stories-grid;
         grid-template-rows: 64px 1fr $layout-xl;
@@ -93,7 +85,7 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
         max-width: 100%;
 
         @media #{$mq-md} {
-            padding: $spacing-2xl $spacing-2xl;
+            padding: $spacing-2xl 0;
         }
     }
 
@@ -101,7 +93,7 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
         @include font-size(21px);
         color: $color-black;
         font-family: $font-stories-body;
-        grid-column: 1 / 13;
+        grid-column: 2 / 13;
         align-self: center;
 
         @media #{$mq-md} {
@@ -111,7 +103,7 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
     }
 
     .c-stories-article-title {
-        @include full-width;
+        grid-column: 2 / 13;
         @include font-size(48px);
         grid-row: 2;
         color: $color-black;
@@ -130,12 +122,12 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
 
         @media #{$mq-lg} {
             @include font-size(100px);
-            grid-column: 4 / 12;
+            grid-column: 4 / 11;
         }
     }
 
     .c-stories-article-metadata {
-        @include full-width;
+        grid-column: 2 / 13;
         grid-row: 3;
         display: flex;
         flex-direction: row;
@@ -325,14 +317,32 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
 
         p {
             @include font-size(20px);
+
+            &.bold {
+                font-weight: 600;
+            }
         }
 
         .c-stories-article-blockquote {
-            grid-column: 1 / 13;
+            @include article-width-full;
             padding: $layout-md 0;
+            border-top: 4px solid #e8e8e8;
+            border-bottom: 4px solid #e8e8e8;
 
             &.long-quote blockquote {
                 @include font-size(30px);
+                font-family: $font-stories-body;
+                text-transform: none;
+            }
+
+            &.color-accent {
+                grid-column: 1 / 13;
+                border: none;
+
+                blockquote {
+                    font-weight: 400;
+                    margin: 0 auto $spacing-lg;
+                }
             }
 
             blockquote {
@@ -343,25 +353,30 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
                 text-align: center;
                 border: none;
                 padding: 0;
-                margin: 0;
+                margin: 0 0 $spacing-lg;
             }
 
             figcaption {
+                @include font-size(22px);
                 color: $color-black;
                 font-family: $font-stories-body;
                 text-align: center;
             }
 
             @media #{$mq-md} {
-                padding: $layout-xl 0 $layout-lg;
                 margin: $spacing-2xl 0;
+                padding: $layout-xl 0 $layout-xl - $spacing-lg;
 
-                &.long-quote blockquote {
-                    @include font-size(60px);
+                &.color-accent {
+                    padding: $layout-xl + $spacing-xl 0 $layout-xl;
+
+                    blockquote {
+                        width: 75%;
+                    }
                 }
 
                 blockquote {
-                    @include font-size(80px);
+                    @include font-size(64px);
                 }
             }
         }

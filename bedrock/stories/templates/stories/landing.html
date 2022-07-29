@@ -22,7 +22,14 @@
     {# Featured Stories  #}
       <section class="c-stories-featured-collection">
         <section class="c-stories-featured-story">
-          <div class="featured-story-image"></div>
+          {{ stories_image(
+            image_url="img/stories/engagement-hero.png",
+            image_class="featured-story-image",
+            include_highres=True,
+            width="1010",
+            height="519",
+            caption="Image by: Opensource.com / CC BY-SA 4.0"
+          )}}
           <div class="featured-story-content">
             <p class="featured-story-type">Featured Article</p>
             <h1 class="featured-story-header">The Art of Engagement</h1>
@@ -50,13 +57,17 @@
               title="Licensed to Build Together",
               desc="Who really owns the Firefox browser? Its copyleft license means we all do.",
               image_url="img/stories/build-together.png",
+              image_alt="Someone placing wooden blocks together",
               link_url=url('stories.articles.build-together'),
+              include_highres_image=True
             )}}
             {{ stories_card(
               title="From Volunteer to Mozilla Community Champion",
               desc="Asa Dotzler's curiosity about open-source software led him to a career with a company whose mission he believes in.",
               image_url="img/stories/asa-dotzler.png",
+              image_alt="Mozilla Product Manager, Asa Dotzler",
               link_url=url('stories.articles.community-champion'),
+              include_highres_image=False
             )}}
           </div>
         </div>

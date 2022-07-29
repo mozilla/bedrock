@@ -9,7 +9,7 @@ $image-path: '/media/protocol/img';
 @import 'includes/lib';
 
 .c-stories-featured-collection {
-    background-color: #ff848b;
+    background-color: $pink-primary;
 
     .c-stories-featured-story {
         @include stories-grid;
@@ -17,11 +17,15 @@ $image-path: '/media/protocol/img';
         max-width: 1440px;
 
         .featured-story-image {
-            background-image: url('/media/img/stories/stories-landing.png');
-            background-repeat: no-repeat;
-            background-size: cover;
-            height: 250px;
             grid-column: 1 / 13;
+
+            img {
+                width: 100%;
+            }
+
+            figcaption {
+                text-align: right;
+            }
         }
 
         .featured-story-content {
@@ -73,7 +77,6 @@ $image-path: '/media/protocol/img';
         padding: 0 40px;
 
         .c-stories-featured-story .featured-story-image {
-            height: 350px;
             grid-column: 3 / 11;
         }
 
