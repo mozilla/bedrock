@@ -36,40 +36,11 @@ $pink-secondary: #ffea7f;
 }
 
 @font-face {
-    font-family: 'League Gothic';
-    font-weight: normal;
-    font-style: normal;
-    src:
-        url('/media/fonts/stories/LeagueGothic.woff2') format('woff2'),
-        url('/media/fonts/stories/LeagueGothic.woff') format('woff');
-}
-
-@font-face {
     font-family: 'Source Serif Pro';
     src:
         url('/media/fonts/stories/source-serif/SourceSerifPro-Bold.woff2') format('woff2'),
         url('/media/fonts/stories/source-serif/SourceSerifPro-Bold.woff') format('woff');
     font-weight: bold;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Source Serif Pro';
-    src:
-        url('/media/fonts/stories/source-serif/SourceSerifPro-BlackIt.woff2') format('woff2'),
-        url('/media/fonts/stories/source-serif/SourceSerifPro-BlackIt.woff') format('woff');
-    font-weight: 900;
-    font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Source Serif Pro';
-    src:
-        url('/media/fonts/stories/source-serif/SourceSerifPro-Black.woff2') format('woff2'),
-        url('/media/fonts/stories/source-serif/SourceSerifPro-Black.woff') format('woff');
-    font-weight: 900;
     font-style: normal;
     font-display: swap;
 }
@@ -87,59 +58,9 @@ $pink-secondary: #ffea7f;
 @font-face {
     font-family: 'Source Serif Pro';
     src:
-        url('/media/fonts/stories/source-serif/SourceSerifPro-BoldIt.woff2') format('woff2'),
-        url('/media/fonts/stories/source-serif/SourceSerifPro-BoldIt.woff') format('woff');
-    font-weight: bold;
-    font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Source Serif Pro';
-    src:
-        url('/media/fonts/stories/source-serif/SourceSerifPro-ExtraLightIt.woff2') format('woff2'),
-        url('/media/fonts/stories/source-serif/SourceSerifPro-ExtraLightIt.woff') format('woff');
-    font-weight: 200;
-    font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Source Serif Pro';
-    src:
-        url('/media/fonts/stories/source-serif/SourceSerifPro-ExtraLight.woff2') format('woff2'),
-        url('/media/fonts/stories/source-serif/SourceSerifPro-ExtraLight.woff') format('woff');
-    font-weight: 200;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Source Serif Pro';
-    src:
         url('/media/fonts/stories/source-serif/SourceSerifPro-Light.woff2') format('woff2'),
         url('/media/fonts/stories/source-serif/SourceSerifPro-Light.woff') format('woff');
     font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Source Serif Pro';
-    src:
-        url('/media/fonts/stories/source-serif/SourceSerifPro-LightIt.woff2') format('woff2'),
-        url('/media/fonts/stories/source-serif/SourceSerifPro-LightIt.woff') format('woff');
-    font-weight: 300;
-    font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Source Serif Pro';
-    src:
-        url('/media/fonts/stories/source-serif/SourceSerifPro-SemiBold.woff2') format('woff2'),
-        url('/media/fonts/stories/source-serif/SourceSerifPro-SemiBold.woff') format('woff');
-    font-weight: 600;
     font-style: normal;
     font-display: swap;
 }
@@ -151,16 +72,6 @@ $pink-secondary: #ffea7f;
         url('/media/fonts/stories/source-serif/SourceSerifPro-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Source Serif Pro';
-    src:
-        url('/media/fonts/stories/source-serif/SourceSerifPro-SemiBoldIt.woff2') format('woff2'),
-        url('/media/fonts/stories/source-serif/SourceSerifPro-SemiBoldIt.woff') format('woff');
-    font-weight: 600;
-    font-style: italic;
     font-display: swap;
 }
 
