@@ -286,10 +286,16 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
 
         @media #{$mq-md} {
             @include font-size(36px);
-            padding-bottom: $spacing-xl;
-            margin-left: 0;
-            margin-right: 0;
+            padding-bottom: $layout-lg;
+            margin-bottom: $layout-xl;
         }
+    }
+
+    .stories-max-width-wrapper {
+        @include stories-grid;
+        grid-column: 1 / -1;
+        max-width: 1440px;
+        margin: 0 auto;
     }
 
     .c-stories-article-section {
@@ -301,7 +307,6 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
         p {
             @include article-width-full;
             color: $color-black;
-            font-family: $font-stories-body;
             padding: 0 $spacing-lg;
 
             @media #{$mq-md} {
@@ -310,13 +315,15 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
         }
 
         h3 {
+            @include font-firefox;
             @include font-size(32px);
-            font-weight: 700;
-            margin-bottom: $spacing-lg;
+            margin-bottom: $spacing-2xl;
         }
 
         p {
             @include font-size(20px);
+            font-family: $font-stories-body;
+            margin-bottom: $spacing-2xl;
 
             &.bold {
                 font-weight: 600;
@@ -338,10 +345,12 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
             &.color-accent {
                 grid-column: 1 / 13;
                 border: none;
+                margin-left: 0;
+                margin-right: 0;
 
                 blockquote {
                     font-weight: 400;
-                    margin: 0 auto $spacing-lg;
+                    margin-bottom: $spacing-lg;
                 }
             }
 
@@ -364,8 +373,9 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
             }
 
             @media #{$mq-md} {
-                margin: $spacing-2xl 0;
-                padding: $layout-xl 0 $layout-xl - $spacing-lg;
+                margin-top: $spacing-2xl;
+                margin-bottom: $layout-xl;
+                padding: $layout-xl 0 $layout-xl;
 
                 &.color-accent {
                     padding: $layout-xl + $spacing-xl 0 $layout-xl;
@@ -376,7 +386,8 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
                 }
 
                 blockquote {
-                    @include font-size(64px);
+                    --font-size: 64px;
+                    font-size: var(--font-size);
                 }
             }
         }
@@ -402,7 +413,7 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
 }
 
 .c-stories-social-share {
-    @include full-width;
+    @include article-width-full;
 
     .social-share-list {
         display: flex;
@@ -411,22 +422,33 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
 
         .social-share-item a {
             @include image-replaced;
+            transition: transform 200ms ease-in;
             background-repeat: no-repeat;
+            background-size: contain;
             display: block;
             height: 24px;
             width: 24px;
             margin: 8px;
 
             &.twitter {
-                background-image: url('/media/img/stories/twitter.svg');
+                background-image: url('/media/img/stories/icons/twitter-icon.svg');
+            }
+
+            &.instagram {
+                background-image: url('/media/img/stories/icons/instagram-icon.svg');
+            }
+
+            &.linkedin {
+                background-image: url('/media/img/stories/icons/linkedin-icon.svg');
             }
 
             &.pocket {
-                background-image: url('/media/img/stories/pocket.svg');
+                background-image: url('/media/img/stories/icons/pocket-icon.svg');
             }
 
             &:hover {
                 cursor: pointer;
+                transform: scale(1.2);
             }
         }
     }
@@ -435,6 +457,16 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
 .c-stories-article-body .c-stories-related {
     @include full-width;
     background: $color-white;
+
+    .related-stories-grid {
+        padding-left: 0;
+        padding-right: 0;
+
+        .c-stories-related-header,
+        .related-stories-wrapper {
+            @include article-width-full;
+        }
+    }
 }
 
 @media (prefers-reduced-motion: no-preference) {

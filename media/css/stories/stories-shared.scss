@@ -83,7 +83,10 @@ $image-path: '/media/protocol/img';
         color: $color-black;
 
         &:hover {
-            text-decoration: underline;
+            .card-title,
+            .card-desc {
+                text-decoration: none;
+            }
         }
     }
 
@@ -110,6 +113,10 @@ $image-path: '/media/protocol/img';
             justify-content: center;
             align-items: center;
             flex-direction: column;
+
+            figcaption {
+                align-self: flex-start;
+            }
         }
     }
 

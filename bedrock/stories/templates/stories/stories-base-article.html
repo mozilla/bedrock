@@ -11,6 +11,9 @@
 
 {% block page_title_full %}{{ self.article_title() }}{% endblock %}
 {% block page_desc %}{{ self.article_subtitle() }}{% endblock %}
+{% block page_og_title %}{{ self.article_title() }}{% endblock %}
+{% block page_og_desc %}{{ self.article_subtitle() }}{% endblock %}
+
 
 {% block page_css %}
   {{ css_bundle('mozilla-stories-article')}}
@@ -87,6 +90,7 @@
     <section class="c-stories-article-body">
       <div class="c-stories-article-content">
         {% if credits %}
+        <div class="stories-max-width-wrapper">
           <aside class="c-stories-article-credits">
             <h2>Article credits</h2>
             <div class="article-credits-wrapper">
@@ -96,42 +100,46 @@
                   url=credit.image,
                   width=114,
                   height=131,
+                  include_highres=True,
                 )}}
                 <figcaption class="credit-name">{{ credit.name }}</figcaption>
                 <figcaption class="credit-position">{{ credit.title }}</figcaption>
               </figure>
             {% endfor %}
-              </div>
-            </aside>
+            </div>
+          </aside>
         {% endif %}
         <h2 class="c-stories-article-subtitle">{% block article_subtitle %}{% endblock %}</h2>
-        {% block article_content %}{% endblock %}
+      </div>
+      {% block article_content %}{% endblock %}
       </div>
       <section class="c-stories-social-share">
         <ul class="social-share-list">
-          <li class="social-share-item"><a class="twitter">Twitter</a></li>
-          <li class="social-share-item"><a class="pocket">Pocket</a></li>
+          <li class="social-share-item"><a target="_blank" href="https://twitter.com/share?url=http://www.mozilla.org{{ request.path }}&text={{ self.article_title()|urlencode  }}" class="twitter">Twitter</a></li>
+          <li class="social-share-item"><a target="_blank" href="https://getpocket.com/save?url=http://www.mozilla.org{{ request.path }}&title={{ self.article_title()|urlencode }}" class="pocket">Pocket</a></li>
+          <li class="social-share-item"><a target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?mini=true&url=http://www.mozilla.org{{ request.path }}" class="linkedin">LinkedIn</a></li>
         </ul>
       </section>
-      <section class="c-stories-related">
-        <div class="related-stories-grid">
-          <h2 class="c-stories-related-header">Related Stories</h2>
-          <div class="related-stories-wrapper">
-            {{ stories_card(
-              title="Licensed to Build Together",
-              desc="Who really owns the Firefox browser? Its copyleft license means we all do.",
-              image_url="img/stories/build-together.png",
-              link_url=url('stories.articles.build-together'),
-            )}}
-            {{ stories_card(
-              title="From Volunteer to Mozilla Community Champion",
-              desc="Asa Dotzler's curiosity about open-source software led him to a career with a company whose mission he believes in.",
-              image_url="img/stories/asa-dotzler.png",
-              link_url=url('stories.articles.community-champion'),
-            )}}
+      {% if related %}
+        <section class="c-stories-related">
+          <div class="related-stories-grid">
+            <h2 class="c-stories-related-header">Related Stories</h2>
+            <div class="related-stories-wrapper">
+            {% for item in related %}
+              {{ stories_card(
+                title=item.title,
+                desc=item.desc,
+                image_url=item.image_url,
+                image_alt=item.image_alt,
+                link_url=item.link_url,
+                width="464",
+                height="310"
+              )}}
+              {% endfor %}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      {% endif %}
     </section>
   </article>
 {% endblock %}

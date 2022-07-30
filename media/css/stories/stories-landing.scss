@@ -18,13 +18,22 @@ $image-path: '/media/protocol/img';
 
         .featured-story-image {
             grid-column: 1 / 13;
+            overflow: hidden;
+            text-decoration: none;
 
             img {
                 width: 100%;
+                transition: transform 200ms ease-in;
             }
 
             figcaption {
                 text-align: right;
+            }
+
+            &:hover {
+                img {
+                    transform: scale(1.05);
+                }
             }
         }
 
@@ -63,6 +72,7 @@ $image-path: '/media/protocol/img';
                 margin-top: $spacing-md;
                 color: $color-black;
                 font-family: $font-stories-body;
+                width: 70%;
             }
 
             @media #{$mq-md} {
@@ -84,31 +94,6 @@ $image-path: '/media/protocol/img';
             padding-top: $layout-sm;
             padding-bottom: $layout-2xs;
         }
-    }
-}
-
-.link {
-    background: $color-white;
-    border: none;
-    color: $color-black;
-    padding: $spacing-sm $spacing-lg;
-    text-transform: none;
-
-    &:hover {
-        background: #ededf0;
-    }
-
-    a {
-        text-decoration: none;
-        color: $color-black;
-    }
-
-    &::after {
-        margin-left: 5px;
-        display: inline-block;
-        height: 10px;
-        width: 15px;
-        background: url('/media/img/stories/arrow-right.svg');
     }
 }
 
@@ -152,17 +137,13 @@ $image-path: '/media/protocol/img';
         color: $color-black;
         display: block;
         position: relative;
-        padding: $spacing-sm $spacing-2xl;
+        padding: $spacing-sm $spacing-2xl $spacing-sm $spacing-xl;
         text-align: center;
+        text-decoration: none;
         text-transform: none;
 
         &:hover {
             background: #ededf0;
-        }
-
-        a {
-            text-decoration: none;
-            color: $color-black;
         }
 
         &::after {
@@ -172,7 +153,7 @@ $image-path: '/media/protocol/img';
             position: absolute;
             height: 10px;
             width: 15px;
-            background: url('/media/img/stories/arrow-right.svg');
+            background: url('/media/img/stories/icons/arrow-right.svg');
         }
 
         @media #{$mq-sm} {

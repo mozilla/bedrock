@@ -8,7 +8,7 @@
 {% from "macros.html" import image with context %}
 
 
-{% macro stories_card(title="", image_url="", link_url="", desc="", class="", image_alt="", include_highres_image=False) %}
+{% macro stories_card(title="", image_url="", link_url="", desc="", class="", image_alt="", include_highres_image=False, width="", height="") %}
   <section class="c-stories-card {% if class %}{{ class }}{% endif %}">
     <a class="card-block-link" href="{{ link_url }}">
       <div class="card-media-wrapper">

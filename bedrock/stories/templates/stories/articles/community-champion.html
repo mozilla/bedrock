@@ -9,8 +9,27 @@
 {% from "stories/includes/macros.html" import stories_article_blockquote, stories_image with context %}
 
 {% set credits = [
-  {"name": "Asa Dotzler", "title": "Product Manager", "image": "img/stories/asa-dotzler.png"},
+  {"name": "Asa Dotzler", "title": "Product Manager", "image": "img/stories/credit/asa-dotzler-credit.png"},
 ] %}
+
+
+{% set related = [
+  {
+    "title": "Licensed to Build Together",
+    "desc": "Who really owns the Firefox browser? Its copyleft license means we all do.",
+    "image_url": "img/stories/build-together.png",
+    "link_url": url('stories.articles.build-together'),
+    "image_alt": "Someone placing wooden blocks together"
+  },
+  {
+    "title": "The Art of Engagement",
+    "desc": "Mozilla’s vibrant community gets a direct connection to the people building the products they love.",
+    "image_url": "img/stories/engagement-thumbnail.png",
+    "link_url": url('stories.articles.art-of-engagement'),
+    "image_alt": "Image of a brain in a jar"
+  }
+] %}
+
 
 {% block publish_date %}2022-08-02{% endblock %}
 {% block publish_date_formatted %}August, 2, 2022{% endblock %}

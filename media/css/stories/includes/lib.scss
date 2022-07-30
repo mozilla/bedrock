@@ -8,7 +8,6 @@
 $column-width: math.percentage(math.div(math.div(100, 12), 100));
 $half-column: math.percentage(math.div(math.div(100, 24), 100));
 $font-stories-title: 'Antonio', sans-serif;
-$font-stories-title-alt: 'League Gothic', sans-serif;
 $font-stories-body: 'Source Serif Pro', sans-serif;
 
 //  pink theme
@@ -99,5 +98,7 @@ $pink-secondary: #ffea7f;
 
     @media #{$mq-md} {
         grid-column: 4 / 12;
+        margin-left: math.percentage(math.div(math.div(100, 16), 100));
+        margin-right: math.percentage(math.div(math.div(100, 16), 100));
     }
 }
