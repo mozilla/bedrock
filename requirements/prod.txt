@@ -309,9 +309,9 @@ jmespath==0.10.0 \
     # via
     #   boto3
     #   botocore
-jsonschema==4.5.1 \
-    --hash=sha256:71b5e39324422543546572954ce71c67728922c104902cb7ce252e522235b33f \
-    --hash=sha256:7c6d882619340c3347a1bf7315e147e6d3dae439033ae6383d6acb908c101dfc
+jsonschema==4.9.0 \
+    --hash=sha256:5d0be0cd1b670438b71c3d3145b2abba1f9d197e3e91adc4c4bae4c0e114e252 \
+    --hash=sha256:df10e65c8f3687a48e93d0d348ce0ce5f897b5a28e9bbcbbe8f7c7eaf019e850
     # via glean-parser
 lxml==4.9.1 \
     --hash=sha256:04da965dfebb5dac2619cb90fcf93efdb35b3c6994fea58a157a834f2f94b318 \
