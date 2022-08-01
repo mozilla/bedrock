@@ -91,12 +91,12 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
         @include font-size(21px);
         color: $color-black;
         font-family: $font-stories-body;
-        grid-column: 2 / 13;
+        grid-column: 1 / 13;
         align-self: center;
 
         @media #{$mq-md} {
             @include font-size(28px);
-            grid-column: 4 / 12;
+            @include article-width-full;
         }
     }
 
@@ -115,13 +115,13 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
 
         @media #{$mq-md} {
             @include font-size(80px);
+            @include article-width-full;
             grid-column: 2 / 13;
             margin: 0;
         }
 
         @media #{$mq-lg} {
             @include font-size(100px);
-            grid-column: 4 / 11;
         }
     }
 
@@ -153,7 +153,7 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
         }
 
         @media #{$mq-md} {
-            grid-column: 2 / 13;
+            @include article-width-full;
         }
 
         @media #{$mq-lg} {
@@ -294,14 +294,13 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
     .c-stories-article-subtitle {
         @include article-width-full;
         @include font-size(22px);
-        margin-left: $spacing-lg;
-        margin-right: $spacing-lg;
         border-bottom: 4px solid $color-black;
         color: $color-black;
         font-family: $font-stories-body;
         font-weight: 400;
         grid-column: 1 / 13;
-        margin-bottom: $spacing-xl;
+        line-height: 1.4;
+        margin: 0 $spacing-lg $spacing-xl;
         padding-bottom: $spacing-2xl;
 
         @media #{$mq-md} {
@@ -397,7 +396,7 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
             }
 
             figcaption {
-                @include font-size(22px);
+                @include font-size(20px);
                 color: $color-black;
                 font-family: $font-stories-body;
                 margin: 0 auto;
