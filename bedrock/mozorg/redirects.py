@@ -554,4 +554,6 @@ redirectpatterns = (
             "utm_content": "mozilla.org-turningred",
         },
     ),
+    # Issue 11991
+    redirect(r"^transparency/?$", "mozorg.about.policy.transparency.index"),
 )
