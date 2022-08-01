@@ -14,7 +14,7 @@ $image-path: '/media/protocol/img';
     .c-stories-featured-story {
         @include stories-grid;
         margin: 0 auto;
-        max-width: 1440px;
+        max-width: $content-max;
 
         .featured-story-image {
             grid-column: 1 / 13;
@@ -28,13 +28,16 @@ $image-path: '/media/protocol/img';
 
             figcaption {
                 @include font-size(12px);
+                color: $color-black;
                 text-align: right;
                 margin-right: $spacing-xs;
             }
 
-            &:hover {
-                img {
-                    transform: scale(1.05);
+            @media (prefers-reduced-motion: no-preference) {
+                &:hover {
+                    img {
+                        transform: scale(1.05);
+                    }
                 }
             }
 

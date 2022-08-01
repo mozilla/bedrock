@@ -17,7 +17,7 @@ $image-path: '/media/protocol/img';
         @include stories-grid;
         margin: 0 auto;
         padding: $layout-md 0;
-        max-width: 1440px;
+        max-width: $content-max;
     }
 
     .c-stories-related-header {
@@ -72,10 +72,11 @@ $image-path: '/media/protocol/img';
     .card-image {
         transition: transform 200ms ease-in;
     }
-
-    &:hover {
-        .card-image {
-            transform: scale(1.05);
+    @media (prefers-reduced-motion: no-preference) {
+        &:hover {
+            .card-image {
+                transform: scale(1.05);
+            }
         }
     }
 

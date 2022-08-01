@@ -314,7 +314,7 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
     .stories-max-width-wrapper {
         @include stories-grid;
         grid-column: 1 / -1;
-        max-width: 1440px;
+        max-width: $content-max;
         margin: 0 auto;
     }
 
@@ -519,10 +519,11 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
             &.pocket {
                 background-image: url('/media/img/stories/icons/pocket-icon.svg');
             }
-
-            &:hover {
-                cursor: pointer;
-                transform: scale(1.2);
+            @media (prefers-reduced-motion: no-preference) {
+                &:hover {
+                    cursor: pointer;
+                    transform: scale(1.2);
+                }
             }
         }
     }
