@@ -1201,5 +1201,7 @@ URLS = flatten(
                 "utm_content": "mozilla.org-turningred",
             },
         ),
+        # Issue 11991
+        url_test("/transparency/", "/about/policy/transparency/"),
     )
 )
