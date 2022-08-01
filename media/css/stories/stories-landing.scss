@@ -27,12 +27,20 @@ $image-path: '/media/protocol/img';
             }
 
             figcaption {
+                @include font-size(12px);
                 text-align: right;
+                margin-right: $spacing-xs;
             }
 
             &:hover {
                 img {
                     transform: scale(1.05);
+                }
+            }
+
+            @media #{$mq-md} {
+                .featured-story-image figcaption {
+                    @include font-size(12px);
                 }
             }
         }
@@ -55,11 +63,13 @@ $image-path: '/media/protocol/img';
                 font-family: $font-stories-title;
                 text-transform: uppercase;
                 border-bottom: 3px solid $color-black;
-                margin-bottom: 0;
+                margin-bottom: $spacing-lg;
                 max-width: 100%;
+                padding-bottom: $spacing-lg;
 
                 @media #{$mq-md} {
                     @include font-size(100px);
+                    margin-bottom: 0;
                 }
 
                 @media #{$mq-lg} {
@@ -72,13 +82,17 @@ $image-path: '/media/protocol/img';
                 margin-top: $spacing-md;
                 color: $color-black;
                 font-family: $font-stories-body;
-                width: 70%;
+                width: 100%;
             }
 
             @media #{$mq-md} {
                 grid-column: 3 / 11;
                 padding-top: $spacing-md;
                 padding-bottom: $spacing-md;
+
+                .featured-story-lead-in {
+                    width: 70%;
+                }
             }
         }
     }

@@ -11,7 +11,8 @@
 
 {% block publish_date %}2022-08-02{% endblock %}
 {% block publish_date_formatted %}August, 2, 2022{% endblock %}
-{% block page_image %}{% endblock %}
+
+
 
 
 {% set featured = true %}
@@ -31,8 +32,8 @@
   },
   {
     "title": "From Volunteer to Mozilla Community Champion",
-    "desc": "Asa Dotzler's curiosity about open-source software led him to a career with a company whose mission he believes in.",
-    "image_url": "img/stories/asa-dotzler.png",
+    "desc": "An early Mozilla volunteer's curiosity about open-source software led him to a career with a company whose mission he believes in.",
+    "image_url": "img/stories/community-champion.png",
     "link_url": url('stories.articles.community-champion'),
     "image_alt": "Mozilla Product Manager, Asa Dotzler"
   }
@@ -43,6 +44,7 @@
 {% block article_subtitle %}
   Mozilla’s vibrant community gets a direct connection to the people building the products they love.
 {% endblock %}
+{% block page_image %}{{ static('img/stories/social/art-of-engagement-social.png') }}{% endblock %}
 
 {% block article_content %}
 <section class="c-stories-article-section">
@@ -55,7 +57,7 @@
       caption="Siddoway"
     )}}
 
-    <p class="bold">With the launch of Connect, Mozilla has brought that community more directly into conversations with the employees in the midst of building the products they love. The platform acts as a collaborative space where people share product feedback, submit ideas, and have the kind of meaningful discussions that can impact future releases. “We’re opening up new opportunities for us to connect more with our users and make them more a part of product development,” said Product Community Director Jon Siddoway.</p>\
+    <p class="bold">With the launch of Connect, Mozilla has brought that community more directly into conversations with the employees in the midst of building the products they love. The platform acts as a collaborative space where people share product feedback, submit ideas, and have the kind of meaningful discussions that can impact future releases. “We’re opening up new opportunities for us to connect more with our users and make them more a part of product development,” said Product Community Director Jon Siddoway.</p>
     <p>Of course, not everyone in the community is a developer or has an interest in code. But those aren’t necessary. Every member can offer ideas or vote on those that appeal to them, and, as Connect’s name implies, engage in discussions with like-minded people.</p>
 
     {{ stories_image(
@@ -132,6 +134,7 @@
 
     {{ stories_article_blockquote(
       quote="Three months after Connect launched, 4,500 people had signed up and there were about 5,000 posts and replies. Almost 45% of activity came from casual participants, five times the average.",
+      class="long-quote"
     )}}
 
     <p class="bold">Considering Firefox’s history, perhaps it isn’t surprising that early engagement on Connect exceeded expectations–even with Siddoway setting a pretty high bar. In most communities, he noted, engagement follows a 90-9-1 rule, with 90% of members observing without comment, 9% chiming in occasionally and 1%--the superusers–providing the bulk of the content. Three months after Connect launched, 4,500 people had signed and there were about 5,000 posts and replies. Almost 45% of activity came from casual participants, five times the average.</p>

@@ -16,13 +16,12 @@
           url=image_url,
           class='card-image',
           alt=image_alt,
-          loading="lazy",
           include_highres=include_highres_image,
-          include_l10n=l10n_image
+          include_l10n=l10n_image,
         ) }}
       </div>
       <div class="card-content">
-        <h3 class="card-title"><span>{{ title }}</span></h3>
+        <h3 class="card-title">{{ title }}</h3>
         <p class="card-desc">{{ desc }}</p>
       </div>
     </a>
@@ -47,8 +46,8 @@
 
 {% macro stories_article_blockquote(quote="", caption="", class="") %}
   <figure class="c-stories-article-blockquote {{ class }}">
-   <blockquote>“{{ quote }}”</blockquote>
-   <figcaption>{{ caption }}</figcaption>
+   <blockquote class="{% if caption %}contains caption{% endif %}">“{{ quote }}”</blockquote>
+   {% if caption %}<figcaption>{{ caption }}</figcaption>{% endif %}
   </figure>
 {% endmacro %}
 

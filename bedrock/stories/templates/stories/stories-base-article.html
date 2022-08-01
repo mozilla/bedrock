@@ -95,6 +95,7 @@
             <h2>Article credits</h2>
             <div class="article-credits-wrapper">
             {% for credit in credits %}
+
               <figure class="c-stories-image credit">
                 {{ image(
                   url=credit.image,
@@ -106,6 +107,11 @@
                 <figcaption class="credit-position">{{ credit.title }}</figcaption>
               </figure>
             {% endfor %}
+              <p class="credits-mobile">
+              {% for credit in credits %}
+                {{credit.name }}{% if not loop.last %}, {% endif %}
+              {% endfor %}
+              </p>
             </div>
           </aside>
         {% endif %}
@@ -132,8 +138,7 @@
                 image_url=item.image_url,
                 image_alt=item.image_alt,
                 link_url=item.link_url,
-                width="464",
-                height="310"
+                include_highres_image=True
               )}}
               {% endfor %}
             </div>

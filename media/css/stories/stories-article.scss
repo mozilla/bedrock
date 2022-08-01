@@ -9,8 +9,6 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/breadcrumb';
 @import 'includes/lib';
 
-// with the color header and the sticky nav - there should be a background behind the nav that matches the header
-
 body {
     &.theme-connection {
         background: $pink-primary;
@@ -103,8 +101,8 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
     }
 
     .c-stories-article-title {
-        grid-column: 2 / 13;
-        @include font-size(48px);
+        grid-column: 1 / 13;
+        @include font-size(50px);
         grid-row: 2;
         color: $color-black;
         font-family: $font-stories-title;
@@ -117,6 +115,7 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
 
         @media #{$mq-md} {
             @include font-size(80px);
+            grid-column: 2 / 13;
             margin: 0;
         }
 
@@ -127,7 +126,7 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
     }
 
     .c-stories-article-metadata {
-        grid-column: 2 / 13;
+        grid-column: 1 / 13;
         grid-row: 3;
         display: flex;
         flex-direction: row;
@@ -151,6 +150,10 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
 
         @media #{$mq-sm} {
             flex-direction: row;
+        }
+
+        @media #{$mq-md} {
+            grid-column: 2 / 13;
         }
 
         @media #{$mq-lg} {
@@ -230,14 +233,31 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
             @include font-base;
             @include font-size(16px);
             font-weight: 700;
-            margin-bottom: $spacing-md;
+            margin-bottom: $spacing-sm;
         }
 
         .article-credits-wrapper {
             display: flex;
+            margin-bottom: $spacing-xl;
 
             .c-stories-image {
+                display: none;
                 margin-right: $spacing-lg;
+            }
+
+            .credits-mobile {
+                @include font-firefox;
+                color: $color-black;
+            }
+
+            @media #{$mq-md} {
+                .c-stories-image {
+                    display: initial;
+                }
+
+                .credits-mobile {
+                    display: none;
+                }
             }
         }
 
@@ -276,13 +296,13 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
         @include font-size(22px);
         margin-left: $spacing-lg;
         margin-right: $spacing-lg;
-        border-bottom: 6px solid $color-black;
+        border-bottom: 4px solid $color-black;
         color: $color-black;
         font-family: $font-stories-body;
         font-weight: 400;
         grid-column: 1 / 13;
         margin-bottom: $spacing-xl;
-        padding-bottom: $spacing-md;
+        padding-bottom: $spacing-2xl;
 
         @media #{$mq-md} {
             @include font-size(36px);
@@ -301,7 +321,7 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
     .c-stories-article-section {
         @include full-width;
         @include stories-grid;
-        margin-bottom: $spacing-2xl;
+        margin-bottom: $spacing-lg;
 
         h3,
         p {
@@ -317,7 +337,11 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
         h3 {
             @include font-firefox;
             @include font-size(32px);
-            margin-bottom: $spacing-2xl;
+            margin-bottom: $spacing-xl;
+
+            @media #{$mq-md} {
+                margin-bottom: $spacing-2xl;
+            }
         }
 
         p {
@@ -330,17 +354,16 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
             }
         }
 
+        p + .c-stories-image.article-width {
+            margin-top: 0;
+        }
+
         .c-stories-article-blockquote {
             @include article-width-full;
-            padding: $layout-md 0;
             border-top: 4px solid #e8e8e8;
             border-bottom: 4px solid #e8e8e8;
-
-            &.long-quote blockquote {
-                @include font-size(30px);
-                font-family: $font-stories-body;
-                text-transform: none;
-            }
+            padding: $layout-md 0;
+            margin: 0 $spacing-lg $spacing-2xl;
 
             &.color-accent {
                 grid-column: 1 / 13;
@@ -349,33 +372,54 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
                 margin-right: 0;
 
                 blockquote {
+                    box-sizing: border-box;
                     font-weight: 400;
                     margin-bottom: $spacing-lg;
+                    max-width: 100%;
+                    padding: 0 $spacing-lg;
                 }
             }
 
             blockquote {
-                @include font-size(60px);
+                @include font-size(28px);
                 color: $color-black;
                 font-family: $font-stories-title;
                 text-transform: uppercase;
                 text-align: center;
                 border: none;
                 padding: 0;
-                margin: 0 0 $spacing-lg;
+                margin: 0 auto;
+                width: 100%;
+
+                &.contains-caption {
+                    margin-bottom: $spacing-lg;
+                }
             }
 
             figcaption {
                 @include font-size(22px);
                 color: $color-black;
                 font-family: $font-stories-body;
+                margin: 0 auto;
                 text-align: center;
+            }
+
+            @media #{$mq-sm} {
+                blockquote {
+                    width: 435px;
+                    @include font-size(36px);
+                }
             }
 
             @media #{$mq-md} {
                 margin-top: $spacing-2xl;
                 margin-bottom: $layout-xl;
-                padding: $layout-xl 0 $layout-xl;
+                padding: $layout-lg 0;
+
+                blockquote {
+                    @include font-size(36px);
+                    width: 450px;
+                }
 
                 &.color-accent {
                     padding: $layout-xl + $spacing-xl 0 $layout-xl;
@@ -384,10 +428,40 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
                         width: 75%;
                     }
                 }
+            }
+
+            @media (min-width: 900px) {
+                padding: $layout-xl 0;
 
                 blockquote {
-                    --font-size: 64px;
-                    font-size: var(--font-size);
+                    @include font-size(43px);
+                    width: 520px;
+                }
+
+                &.long-quote blockquote {
+                    @include font-size(36px);
+                }
+            }
+
+            @media #{$mq-lg} {
+                blockquote {
+                    width: 595px;
+                    @include font-size(48px);
+                }
+
+                &.long-quote blockquote {
+                    @include font-size(42px);
+                }
+            }
+
+            @media #{$mq-xl} {
+                blockquote {
+                    @include font-size(58px);
+                    width: 750px;
+                }
+
+                &.long-quote blockquote {
+                    @include font-size(48px);
                 }
             }
         }
@@ -426,9 +500,9 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
             background-repeat: no-repeat;
             background-size: contain;
             display: block;
-            height: 24px;
-            width: 24px;
-            margin: 8px;
+            height: $spacing-lg;
+            width: $spacing-lg;
+            margin: $spacing-sm;
 
             &.twitter {
                 background-image: url('/media/img/stories/icons/twitter-icon.svg');
@@ -457,6 +531,7 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
 .c-stories-article-body .c-stories-related {
     @include full-width;
     background: $color-white;
+    padding: 0 $spacing-lg;
 
     .related-stories-grid {
         padding-left: 0;
@@ -466,6 +541,10 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
         .related-stories-wrapper {
             @include article-width-full;
         }
+    }
+
+    @media #{$mq-md} {
+        padding: 0;
     }
 }
 

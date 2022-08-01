@@ -22,6 +22,7 @@ $image-path: '/media/protocol/img';
 
     .c-stories-related-header {
         grid-column: 2 / 12;
+        margin-bottom: $spacing-xl;
     }
 
     .related-stories-wrapper {
@@ -91,7 +92,7 @@ $image-path: '/media/protocol/img';
     }
 
     .card-title {
-        @include font-size(30px);
+        @include font-size(24px);
         margin-bottom: $spacing-xs;
     }
 
@@ -106,7 +107,7 @@ $image-path: '/media/protocol/img';
 
     &.article-width {
         @include article-width-full;
-        margin: $layout-md 0;
+        margin: $layout-md $spacing-lg;
 
         &.center {
             display: flex;
@@ -129,5 +130,15 @@ $image-path: '/media/protocol/img';
         @include font-base;
         @include font-size(14px);
         color: #838383;
+    }
+    @media #{$mq-md} {
+        &.article-width {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        figcaption {
+            @include font-size(12px);
+        }
     }
 }
