@@ -424,7 +424,7 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
                     padding: $layout-xl + $spacing-xl 0 $layout-xl;
 
                     blockquote {
-                        width: 75%;
+                        width: 80%;
                     }
                 }
             }
@@ -448,6 +448,10 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
                     @include font-size(48px);
                 }
 
+                &.color-accent blockquote {
+                    width: 850px;
+                }
+
                 &.long-quote blockquote {
                     @include font-size(42px);
                 }
@@ -457,6 +461,10 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
                 blockquote {
                     @include font-size(58px);
                     width: 750px;
+                }
+
+                &.color-accent blockquote {
+                    width: 1000px;
                 }
 
                 &.long-quote blockquote {
