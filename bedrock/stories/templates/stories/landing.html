@@ -4,7 +4,7 @@
  License, v. 2.0. If a copy of the MPL was not distributed with this
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
-
+{% from "macros.html" import image with context %}
 {% from "stories/includes/macros.html" import stories_image, stories_card with context %}
 {% extends "base-protocol.html" %}
 
@@ -23,13 +23,18 @@
       <section class="c-stories-featured-collection">
         <section class="c-stories-featured-story">
         <a class="featured-story-image" href="{{ url('stories.articles.art-of-engagement') }}">
-          {{ stories_image(
-            image_url="img/stories/engagement-hero.png",
-            include_highres=True,
-            width="1010",
-            height="519",
-            caption="Image by: Opensource.com / CC BY-SA 4.0"
-          )}}
+          <figure class="c-stories-image {% if image_class %}{{ image_class }}{% endif %}">
+            <div class="featured-image-wrapper">
+              {{ image(
+                url='img/stories/engagement-hero.png',
+                alt=alt,
+                width="1010",
+                height="519",
+                include_highres=True
+              ) }}
+            </div>
+            <figcaption>Image by: Opensource.com / CC BY-SA 4.0</figcaption>
+          </figure>
           </a>
           <div class="featured-story-content">
             <p class="featured-story-type">Featured Article</p>

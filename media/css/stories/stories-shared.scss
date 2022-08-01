@@ -66,11 +66,13 @@ $image-path: '/media/protocol/img';
 .c-stories-card {
     .card-media-wrapper {
         overflow: hidden;
+        display: inline-block;
         margin-bottom: $spacing-sm;
     }
 
     .card-image {
         transition: transform 200ms ease-in;
+        vertical-align: middle;
     }
     @media (prefers-reduced-motion: no-preference) {
         &:hover {
