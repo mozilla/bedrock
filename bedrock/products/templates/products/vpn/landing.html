@@ -256,12 +256,10 @@
           {% endif %}
         </li>
         <li>
-          {% if ftl_has_messages('vpn-landing-faq-compatibility-question-desc-ios-v3') %}
-            {{ ftl('vpn-landing-faq-compatibility-question-desc-ios-v3', url=url('products.vpn.platforms.ios')) }}
-          {% elif ftl_has_messages('vpn-landing-faq-compatibility-question-desc-ios-v2') %}
-            {{ ftl('vpn-landing-faq-compatibility-question-desc-ios-v2', url=url('products.vpn.platforms.ios')) }}
+          {% if ftl_has_messages('vpn-landing-faq-compatibility-question-desc-ios-v4') %}
+            {{ ftl('vpn-landing-faq-compatibility-question-desc-ios-v4', url=url('products.vpn.platforms.ios'), version='13.0') }}
           {% else %}
-            {{ ftl('vpn-landing-faq-compatibility-question-desc-ios') }}
+            {{ ftl('vpn-landing-faq-compatibility-question-desc-ios-v3', url=url('products.vpn.platforms.ios')) }}
           {% endif %}
         </li>
         <li>
