@@ -136,8 +136,8 @@ $image-path: '/media/protocol/img';
     }
     @media #{$mq-md} {
         &.article-width {
-            margin-left: 0;
-            margin-right: 0;
+            margin-left: 6.25%;
+            margin-right: 6.25%;
         }
 
         figcaption {
