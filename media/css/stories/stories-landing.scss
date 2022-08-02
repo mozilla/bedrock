@@ -86,7 +86,7 @@ $image-path: '/media/protocol/img';
             }
 
             .featured-story-lead-in {
-                @include font-size(24px);
+                @include font-size(22px);
                 margin-top: $spacing-md;
                 color: $color-black;
                 font-family: $font-stories-body;
@@ -99,6 +99,7 @@ $image-path: '/media/protocol/img';
                 padding-bottom: $spacing-md;
 
                 .featured-story-lead-in {
+                    @include font-size(24px);
                     width: 70%;
                 }
             }
