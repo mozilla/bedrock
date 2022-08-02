@@ -1,0 +1,586 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/breadcrumb';
+@import 'includes/lib';
+
+body {
+    &.theme-connection {
+        background: $pink-primary;
+
+        .c-stories-article-blockquote.color-accent {
+            background: $pink-primary;
+        }
+
+        .mzp-c-breadcrumb {
+            background-color: $pink-primary;
+        }
+    }
+}
+
+// HACKY overrides for the navigation to match the comps (deals with box shadow and scrolling)
+html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
+    box-shadow: none;
+
+    &.mzp-is-scrolling {
+        box-shadow: none;
+
+        .c-navigation-l-content {
+            box-shadow: 0 0 1px 1px rgba(29, 17, 51, 0.04), 0 0 3px 2px rgba(9, 32, 77, 0.12), 0 0 2px -3px rgba(29, 17, 51, 0.12);
+        }
+    }
+
+    .c-navigation-l-content {
+        box-shadow: 0 0 1px 1px rgba(29, 17, 51, 0.04), 0 0 3px 2px rgba(9, 32, 77, 0.12), 0 0 2px -3px rgba(29, 17, 51, 0.12);
+    }
+}
+
+.mzp-c-breadcrumb {
+    padding-top: $spacing-md;
+    padding-bottom: $spacing-md;
+
+    .mzp-c-breadcrumb-item a {
+        color: $color-black;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    @media #{$mq-md} {
+        .mzp-c-breadcrumb-list {
+            padding: 8px 64px;
+        }
+    }
+
+    @media #{$mq-lg} {
+        .mzp-c-breadcrumb-list {
+            padding: 8px 96px;
+        }
+    }
+}
+
+.c-stories-article-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+    column-gap: $spacing-md;
+}
+
+.c-stories-article-header {
+    width: 100%;
+    color: $color-black;
+
+    .c-stories-article-header-container {
+        @include stories-grid;
+        grid-template-rows: 64px 1fr $layout-xl;
+        padding: 0 $spacing-lg $spacing-xl;
+        max-width: 100%;
+
+        @media #{$mq-md} {
+            padding: $spacing-2xl 0;
+        }
+    }
+
+    .is-featured {
+        @include font-size(21px);
+        color: $color-black;
+        font-family: $font-stories-body;
+        grid-column: 1 / 13;
+        align-self: center;
+
+        @media #{$mq-md} {
+            @include font-size(28px);
+            @include article-width-full;
+        }
+    }
+
+    .c-stories-article-title {
+        grid-column: 1 / 13;
+        @include font-size(50px);
+        grid-row: 2;
+        color: $color-black;
+        font-family: $font-stories-title;
+        font-weight: 700;
+        text-transform: uppercase;
+
+        @media #{$mq-sm} {
+            @include font-size(66px);
+        }
+
+        @media #{$mq-md} {
+            @include font-size(80px);
+            @include article-width-full;
+            grid-column: 2 / 13;
+            margin: 0;
+        }
+
+        @media #{$mq-lg} {
+            @include font-size(100px);
+        }
+    }
+
+    .c-stories-article-metadata {
+        grid-column: 1 / 13;
+        grid-row: 3;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        margin: $spacing-md 0 0;
+
+        div p {
+            text-transform: uppercase;
+
+            time,
+            span {
+                display: block;
+                font-weight: 700;
+                text-transform: none;
+            }
+        }
+
+        .published {
+            margin-right: $spacing-md;
+        }
+
+        @media #{$mq-sm} {
+            flex-direction: row;
+        }
+
+        @media #{$mq-md} {
+            @include article-width-full;
+        }
+
+        @media #{$mq-lg} {
+            grid-column: 4 / 11;
+            margin-top: $spacing-xl;
+
+            .published {
+                margin-right: $spacing-xl;
+            }
+        }
+    }
+
+    .article-category {
+        align-self: center;
+        background-color: transparent;
+        border: 1px solid $color-black;
+        border-radius: 25px;
+        grid-row: 3 / span 2;
+        grid-column: span 4;
+        text-align: center;
+        margin-top: $spacing-lg;
+        padding: $spacing-xs $spacing-sm;
+        white-space: nowrap;
+        width: min-content;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    @media #{$mq-md} {
+        .c-stories-article-data {
+            .grid-label,
+            .grid-value {
+                grid-column: span 2;
+            }
+        }
+
+        .article-category {
+            grid-column: span 2;
+            padding: $spacing-xs $spacing-md;
+        }
+    }
+
+    @media #{$mq-lg} {
+        .c-stories-article-data {
+            grid-column: 4 / 12;
+            margin-top: $layout-md;
+        }
+
+        .article-category {
+            grid-row: span 2;
+            margin-top: 0;
+        }
+    }
+}
+
+.c-stories-article-content {
+    @include full-width;
+    @include stories-grid;
+    margin-top: $layout-md;
+
+    @media #{$mq-md} {
+        margin-top: $layout-xl;
+    }
+}
+
+.c-stories-article-body {
+    @include stories-grid;
+    background-color: $color-white;
+
+    .c-stories-article-credits {
+        @include full-width;
+        padding: 0 $spacing-lg;
+
+        h2 {
+            @include font-base;
+            @include font-size(16px);
+            font-weight: 700;
+            margin-bottom: $spacing-sm;
+        }
+
+        .article-credits-wrapper {
+            display: flex;
+            margin-bottom: $spacing-xl;
+
+            .c-stories-image {
+                display: none;
+                margin-right: $spacing-lg;
+            }
+
+            .credits-mobile {
+                @include font-firefox;
+                color: $color-black;
+            }
+
+            @media #{$mq-md} {
+                .c-stories-image {
+                    display: initial;
+                }
+
+                .credits-mobile {
+                    display: none;
+                }
+            }
+        }
+
+        .credit-name,
+        .credit-position {
+            color: $color-black;
+        }
+
+        .credit-position {
+            @include font-size(12px);
+        }
+
+        @media #{$mq-md} {
+            grid-column: 1 / 4;
+            grid-row: 1 / span 3;
+            justify-self: center;
+            padding: 0;
+
+            .article-credits-wrapper {
+                flex-direction: column;
+
+                // very hacky way to ensure that this element doesnt change the
+                // height of the implicit rows of the grid.
+                position: absolute;
+
+                .c-stories-image {
+                    filter: grayscale(1);
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+
+    .c-stories-article-subtitle {
+        @include article-width-full;
+        @include font-size(22px);
+        border-bottom: 4px solid $color-black;
+        color: $color-black;
+        font-family: $font-stories-body;
+        font-weight: 400;
+        grid-column: 1 / 13;
+        line-height: 1.4;
+        margin: 0 $spacing-lg $spacing-xl;
+        padding-bottom: $spacing-2xl;
+
+        @media #{$mq-md} {
+            @include font-size(36px);
+            padding-bottom: $layout-lg;
+            margin-bottom: $layout-xl;
+        }
+    }
+
+    .stories-max-width-wrapper {
+        @include stories-grid;
+        grid-column: 1 / -1;
+        max-width: $content-max;
+        margin: 0 auto;
+    }
+
+    .c-stories-article-section {
+        @include full-width;
+        @include stories-grid;
+        margin-bottom: $spacing-lg;
+
+        h3,
+        p {
+            @include article-width-full;
+            color: $color-black;
+            padding: 0 $spacing-lg;
+
+            @media #{$mq-md} {
+                padding: 0;
+            }
+        }
+
+        h3 {
+            @include font-firefox;
+            @include font-size(32px);
+            margin-bottom: $spacing-xl;
+
+            @media #{$mq-md} {
+                margin-bottom: $spacing-2xl;
+            }
+        }
+
+        p {
+            @include font-size(20px);
+            font-family: $font-stories-body;
+            margin-bottom: $spacing-2xl;
+
+            &.bold {
+                font-weight: 600;
+            }
+        }
+
+        p + .c-stories-image.article-width {
+            margin-top: 0;
+        }
+
+        .c-stories-article-blockquote {
+            @include article-width-full;
+            border-top: 4px solid #e8e8e8;
+            border-bottom: 4px solid #e8e8e8;
+            padding: $layout-md 0;
+            margin: 0 $spacing-lg $spacing-2xl;
+
+            &.color-accent {
+                grid-column: 1 / 13;
+                border: none;
+                margin-left: 0;
+                margin-right: 0;
+
+                blockquote {
+                    box-sizing: border-box;
+                    font-weight: 400;
+                    margin-bottom: $spacing-lg;
+                    max-width: 100%;
+                    padding: 0 $spacing-lg;
+                }
+            }
+
+            blockquote {
+                @include font-size(28px);
+                color: $color-black;
+                font-family: $font-stories-title;
+                text-transform: uppercase;
+                text-align: center;
+                border: none;
+                padding: 0;
+                margin: 0 auto;
+                width: 100%;
+
+                &.contains-caption {
+                    margin-bottom: $spacing-lg;
+                }
+            }
+
+            figcaption {
+                @include font-size(20px);
+                color: $color-black;
+                font-family: $font-stories-body;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            @media #{$mq-sm} {
+                blockquote {
+                    width: 435px;
+                    @include font-size(36px);
+                }
+            }
+
+            @media #{$mq-md} {
+                margin-top: $spacing-2xl;
+                margin-bottom: $layout-xl;
+                padding: $layout-lg 0;
+
+                blockquote {
+                    @include font-size(36px);
+                    width: 450px;
+                }
+
+                &.color-accent {
+                    padding: $layout-xl + $spacing-xl 0 $layout-xl;
+
+                    blockquote {
+                        width: 80%;
+                    }
+                }
+            }
+
+            @media (min-width: 900px) {
+                padding: $layout-xl 0;
+
+                blockquote {
+                    @include font-size(43px);
+                    width: 520px;
+                }
+
+                &.long-quote blockquote {
+                    @include font-size(36px);
+                }
+            }
+
+            @media #{$mq-lg} {
+                blockquote {
+                    width: 595px;
+                    @include font-size(48px);
+                }
+
+                &.color-accent blockquote {
+                    width: 850px;
+                }
+
+                &.long-quote blockquote {
+                    @include font-size(42px);
+                }
+            }
+
+            @media #{$mq-xl} {
+                blockquote {
+                    @include font-size(58px);
+                    width: 750px;
+                }
+
+                &.color-accent blockquote {
+                    width: 1000px;
+                }
+
+                &.long-quote blockquote {
+                    @include font-size(48px);
+                }
+            }
+        }
+
+        .c-stories-article-float-container {
+            @include article-width-full;
+
+            .c-stories-image {
+                width: calc(50% - $spacing-sm);
+            }
+
+            &.left .c-stories-image {
+                float: left;
+                margin-right: $spacing-md;
+            }
+
+            &.right .c-stories-image {
+                float: right;
+                margin-right: $spacing-md;
+            }
+        }
+    }
+}
+
+.c-stories-social-share {
+    @include article-width-full;
+
+    .social-share-list {
+        display: flex;
+        margin: 0;
+        justify-content: center;
+
+        .social-share-item a {
+            @include image-replaced;
+            transition: transform 200ms ease-in;
+            background-repeat: no-repeat;
+            background-size: contain;
+            display: block;
+            height: $spacing-lg;
+            width: $spacing-lg;
+            margin: $spacing-sm;
+
+            &.twitter {
+                background-image: url('/media/img/stories/icons/twitter-icon.svg');
+            }
+
+            &.instagram {
+                background-image: url('/media/img/stories/icons/instagram-icon.svg');
+            }
+
+            &.linkedin {
+                background-image: url('/media/img/stories/icons/linkedin-icon.svg');
+            }
+
+            &.pocket {
+                background-image: url('/media/img/stories/icons/pocket-icon.svg');
+            }
+            @media (prefers-reduced-motion: no-preference) {
+                &:hover {
+                    cursor: pointer;
+                    transform: scale(1.2);
+                }
+            }
+        }
+    }
+}
+
+.c-stories-article-body .c-stories-related {
+    @include full-width;
+    background: $color-white;
+    padding: 0 $spacing-lg;
+
+    .related-stories-grid {
+        padding-left: 0;
+        padding-right: 0;
+
+        .c-stories-related-header,
+        .related-stories-wrapper {
+            @include article-width-full;
+        }
+    }
+
+    @media #{$mq-md} {
+        padding: 0;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .c-article-wrapper {
+        position: relative;
+    }
+
+    .c-stories-article-header {
+        overflow: hidden;
+        position: fixed;
+        z-index: 1;
+    }
+
+    .c-stories-article-body {
+        position: relative;
+        z-index: 2;
+    }
+
+    .mzp-c-footer {
+        z-index: 2;
+        position: relative;
+    }
+
+    @media #{$mq-md} {
+        .c-stories-article-body {
+            position: relative;
+            z-index: 2;
+        }
+    }
+}

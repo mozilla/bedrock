@@ -1,0 +1,219 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import 'includes/lib';
+
+.c-stories-featured-collection {
+    background-color: $pink-primary;
+
+    .c-stories-featured-story {
+        @include stories-grid;
+        margin: 0 auto;
+        max-width: $content-max;
+
+        .featured-story-image {
+            grid-column: 1 / 13;
+            overflow: hidden;
+            text-decoration: none;
+
+            .featured-image-wrapper {
+                overflow: hidden;
+            }
+
+            img {
+                transition: transform 200ms ease-in;
+                vertical-align: middle;
+                width: 100%;
+            }
+
+            figcaption {
+                @include font-size(12px);
+                color: $color-black;
+                text-align: right;
+                margin-right: $spacing-xs;
+            }
+
+            @media (prefers-reduced-motion: no-preference) {
+                &:hover {
+                    img {
+                        transform: scale(1.05);
+                    }
+                }
+            }
+
+            @media #{$mq-md} {
+                .featured-story-image figcaption {
+                    @include font-size(12px);
+                }
+            }
+        }
+
+        .featured-story-content {
+            grid-column: 2 / 12;
+            padding-top: $spacing-md;
+            padding-bottom: $layout-2xs;
+
+            .featured-story-type {
+                @include font-size(28px);
+                color: $color-black;
+                font-family: $font-stories-body;
+                margin-bottom: $spacing-sm;
+            }
+
+            .featured-story-header {
+                @include font-size(50px);
+                color: $color-black;
+                font-family: $font-stories-title;
+                text-transform: uppercase;
+                border-bottom: 3px solid $color-black;
+                margin-bottom: $spacing-lg;
+                max-width: 100%;
+                padding-bottom: $spacing-lg;
+
+                @media #{$mq-md} {
+                    @include font-size(100px);
+                    margin-bottom: 0;
+                }
+
+                @media #{$mq-lg} {
+                    @include font-size(130px);
+                }
+            }
+
+            .featured-story-lead-in {
+                @include font-size(24px);
+                margin-top: $spacing-md;
+                color: $color-black;
+                font-family: $font-stories-body;
+                width: 100%;
+            }
+
+            @media #{$mq-md} {
+                grid-column: 3 / 11;
+                padding-top: $spacing-md;
+                padding-bottom: $spacing-md;
+
+                .featured-story-lead-in {
+                    width: 70%;
+                }
+            }
+        }
+    }
+
+    @media #{$mq-md} {
+        padding: 0 40px;
+
+        .c-stories-featured-story .featured-story-image {
+            grid-column: 3 / 11;
+        }
+
+        .featured-story-content {
+            padding-top: $layout-sm;
+            padding-bottom: $layout-2xs;
+        }
+    }
+}
+
+.featured-story-metadata {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: $spacing-md 0;
+
+    .value-container {
+        @include font-size(18px);
+        color: $color-black;
+        display: flex;
+        margin-right: 0;
+        margin-bottom: $spacing-md;
+
+        p {
+            @include font-firefox;
+            margin: 0;
+            text-transform: uppercase;
+            font-weight: normal;
+            margin-right: $spacing-sm;
+
+            span {
+                text-transform: none;
+                font-weight: bold;
+                display: block;
+            }
+        }
+
+        @media #{$mq-md} {
+            margin-bottom: 0;
+        }
+    }
+
+    .story-link {
+        align-self: stretch;
+        background: $color-white;
+        border: none;
+        border-radius: 25px;
+        color: $color-black;
+        display: block;
+        position: relative;
+        padding: $spacing-sm $spacing-2xl $spacing-sm $spacing-xl;
+        text-align: center;
+        text-decoration: none;
+        text-transform: none;
+
+        &:hover {
+            background: #ededf0;
+        }
+
+        &::after {
+            content: '';
+            top: 15px;
+            right: 15px;
+            position: absolute;
+            height: 10px;
+            width: 15px;
+            background: url('/media/img/stories/icons/arrow-right.svg');
+        }
+
+        @media #{$mq-sm} {
+            align-self: center;
+        }
+    }
+
+    .featured-story-metadata-list {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0;
+        width: 100%;
+
+        .metadata-item {
+            @include font-size(14px);
+            background-color: transparent;
+            border: 1.5px solid $color-black;
+            border-radius: 25px;
+            color: $color-black;
+            display: block;
+            margin-right: 0;
+            padding: $spacing-sm $spacing-md;
+            text-align: center;
+            text-transform: uppercase;
+        }
+    }
+
+    @media #{$mq-sm} {
+        flex-direction: row;
+
+        .value-container {
+            display: inline-block;
+            margin-right: $spacing-lg;
+        }
+    }
+
+    @media #{$mq-md} {
+        align-items: center;
+        grid-column: 3 / 11;
+    }
+}

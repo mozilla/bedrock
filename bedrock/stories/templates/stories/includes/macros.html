@@ -1,0 +1,57 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import card with context %}
+{% from "macros.html" import image with context %}
+
+
+{% macro stories_card(title="", image_url="", link_url="", desc="", class="", image_alt="", include_highres_image=False, width="", height="") %}
+  <section class="c-stories-card {% if class %}{{ class }}{% endif %}">
+    <a class="card-block-link" href="{{ link_url }}">
+      <div class="card-media-wrapper">
+        {{ image(
+          url=image_url,
+          class='card-image',
+          alt=image_alt,
+          include_highres=include_highres_image,
+          include_l10n=l10n_image,
+          width="464",
+          height="318"
+        ) }}
+      </div>
+      <div class="card-content">
+        <h3 class="card-title">{{ title }}</h3>
+        <p class="card-desc">{{ desc }}</p>
+      </div>
+    </a>
+  </section>
+{% endmacro %}
+
+{% macro stories_image(image_url="", alt="", caption="", include_highres=False, image_class="", width="1360", height="765", featured=False, loading=None) %}
+  <figure class="c-stories-image {% if image_class %}{{ image_class }}{% endif %}">
+    {{ image(
+      url=image_url,
+      alt=alt,
+      width=width,
+      height=height,
+      loading=loading,
+      include_highres=include_highres
+    ) }}
+    {% if caption %}
+      <figcaption>{{ caption }}</figcaption>
+    {% endif %}
+  </figure>
+{%- endmacro %}
+
+{% macro stories_article_blockquote(quote="", caption="", class="") %}
+  <figure class="c-stories-article-blockquote {{ class }}">
+   <blockquote {% if caption %}class="contains-caption"{% endif %}>“{{ quote }}”</blockquote>
+   {% if caption %}<figcaption>{{ caption }}</figcaption>{% endif %}
+  </figure>
+{% endmacro %}
+
+
+

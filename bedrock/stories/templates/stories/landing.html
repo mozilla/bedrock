@@ -1,0 +1,77 @@
+
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+{% from "macros.html" import image with context %}
+{% from "stories/includes/macros.html" import stories_image, stories_card with context %}
+{% extends "base-protocol.html" %}
+
+{% block page_css %}
+  {{ css_bundle('mozilla-stories-landing')}}
+  {{ css_bundle('mozilla-stories-shared')}}
+  {{ css_bundle("protocol-split")}}
+  {{ css_bundle("protocol-card") }}
+{% endblock %}
+
+{% block page_title %}Stories{% endblock %}
+
+{% block content %}
+  <main class="c-stories-main">
+    {# Featured Stories  #}
+      <section class="c-stories-featured-collection">
+        <section class="c-stories-featured-story">
+        <a class="featured-story-image" href="{{ url('stories.articles.art-of-engagement') }}">
+          <figure class="c-stories-image {% if image_class %}{{ image_class }}{% endif %}">
+            <div class="featured-image-wrapper">
+              {{ image(
+                url='img/stories/engagement-hero.jpg',
+                alt="",
+                width="1010",
+                height="519",
+                include_highres=True
+              ) }}
+            </div>
+            <figcaption>Image by: Opensource.com / CC BY-SA 4.0</figcaption>
+          </figure>
+          </a>
+          <div class="featured-story-content">
+            <p class="featured-story-type">Featured Article</p>
+            <h1 class="featured-story-header">The Art of Engagement</h1>
+            <p class="featured-story-lead-in">Mozilla’s vibrant community gets a direct connection to the people building the products they love.</p>
+            <div class="featured-story-metadata">
+              <div class="value-container">
+                <p>Value <span>Connection</span></p>
+              </div>
+              <a title="Read 'The Art of Engagement'" class="story-link" href="{{ url('stories.articles.art-of-engagement') }}">Read<span class="arrow-right"></span></a>
+            </div>
+          </div>
+        </section>
+      </section>
+      {# Related Stories to Featured one #}
+      <section class="c-stories-related">
+        <div class="related-stories-grid">
+          <h2 class="c-stories-related-header">Related Stories</h2>
+          <div class="related-stories-wrapper">
+            {{ stories_card(
+              title="Licensed to Build Together",
+              desc="Who really owns the Firefox browser? Its copyleft license means we all do.",
+              image_url="img/stories/build-together.jpg",
+              image_alt="",
+              link_url=url('stories.articles.build-together'),
+              include_highres_image=True
+            )}}
+            {{ stories_card(
+              title="From Volunteer to Mozilla Community Champion",
+              desc="An early Mozilla volunteer’s curiosity about open-source software led him to a career with a company whose mission he believes in.",
+              image_url="img/stories/community-champion.jpg",
+              image_alt="",
+              link_url=url('stories.articles.community-champion'),
+              include_highres_image=True
+            )}}
+          </div>
+        </div>
+      </section>
+  </main>
+{% endblock %}

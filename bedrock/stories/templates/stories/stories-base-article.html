@@ -1,0 +1,151 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol.html" %}
+
+{% from "stories/includes/macros.html" import stories_card with context %}
+{% from "macros.html" import image with context %}
+
+{% block page_title_full %}{{ self.article_title() }}{% endblock %}
+{% block page_desc %}{{ self.article_subtitle() }}{% endblock %}
+{% block page_og_title %}{{ self.article_title() }}{% endblock %}
+{% block page_og_desc %}{{ self.article_subtitle() }}{% endblock %}
+
+
+{% block page_css %}
+  {{ css_bundle('mozilla-stories-article')}}
+  {{ css_bundle('mozilla-stories-shared')}}
+  {{ css_bundle("protocol-card")}}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle("stories-article")}}
+{% endblock %}
+
+{% block body_class %}theme-connection{% endblock %}
+
+{% block site_header %}
+  {# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
+  {% if LANG == 'en-CA' %}
+    {% set logo_alt = ftl('navigation-v2-mozilla') + ' (CA)' %}
+  {% elif LANG == 'en-GB' %}
+    {% set logo_alt = ftl('navigation-v2-mozilla') + ' (UK)' %}
+  {% else %}
+    {% set logo_alt = ftl('navigation-v2-mozilla') %}
+  {% endif %}
+
+  <div class="c-navigation top-header-navigation mzp-is-sticky">
+    <div class="c-navigation-l-content">
+      <div class="c-navigation-container">
+        <button class="c-navigation-menu-button" type="button" aria-controls="c-navigation-items">{{ ftl('navigation-v2-menu') }}</button>
+        <div class="c-navigation-logo">
+          <a href="{{ url('mozorg.home') }}" data-link-name="mozilla home icon" data-link-type="nav">
+            <img class="c-navigation-logo-image" src="{{ static('protocol/img/logos/mozilla/logo-word-hor.svg') }}" alt="{{ logo_alt }}" width="112" height="32">
+          </a>
+        </div>
+        <div class="c-navigation-items" id="c-navigation-items">
+          {% include 'includes/protocol/navigation/nav-cta.html' %}
+          <div class="c-navigation-menu">
+            <nav class="c-menu mzp-is-basic">
+              <ul class="c-menu-category-list">
+                {% include 'includes/protocol/navigation/menus/firefox.html' %}
+                {% include 'includes/protocol/navigation/menus/products.html' %}
+                {% include 'includes/protocol/navigation/menus/whoweare.html' %}
+                {% include 'includes/protocol/navigation/menus/innovation.html' %}
+              </ul>
+            </nav>
+          </div><!-- close .c-navigation-menu -->
+        </div><!-- close .c-navigation-items -->
+      </div><!-- close .c-navigation-container -->
+    </div><!-- close .c-navigation-l-content -->
+    <nav aria-label="breadcrumb" class="mzp-c-breadcrumb mzp-is-sticky">
+      <ol class="mzp-c-breadcrumb-list">
+        <li class="mzp-c-breadcrumb-item"><a href="{{ url('stories.landing') }}">Stories</a></li>
+        <li aria-current="page" class="mzp-c-breadcrumb-item">{{ self.article_title() }}</li>
+      </ol>
+    </nav>
+  </div><!-- close .c-navigation -->
+{% endblock %}
+
+
+{% block content %}
+  <article class="c-article-wrapper">
+    <section class="c-stories-article-header">
+      <div class="c-stories-article-header-container">
+        {% if featured %}<p class="is-featured">Featured Article</p>{% endif%}
+        <h1 class="c-stories-article-title">{% block article_title %}{% endblock %}</h1>
+        <aside class="c-stories-article-metadata">
+          <div class="published">
+            <p>published <time datetime="{% block publish_date %}{% endblock %}">{% block publish_date_formatted %}{% endblock %}</time></p>
+          </div>
+          <div>
+            <p>value <span>{% block article_collection %}Connection{% endblock %}</span></p>
+          </div>
+        </aside>
+      </div>
+    </section>
+    <section class="c-stories-article-body">
+      <div class="c-stories-article-content">
+        {% if credits %}
+        <div class="stories-max-width-wrapper">
+          <aside class="c-stories-article-credits">
+            <h2>Article credits</h2>
+            <div class="article-credits-wrapper">
+            {% for credit in credits %}
+
+              <figure class="c-stories-image credit">
+                {{ image(
+                  url=credit.image,
+                  width=114,
+                  height=131,
+                  include_highres=True,
+                )}}
+                <figcaption class="credit-name">{{ credit.name }}</figcaption>
+                <figcaption class="credit-position">{{ credit.title }}</figcaption>
+              </figure>
+            {% endfor %}
+              <p class="credits-mobile">
+              {% for credit in credits %}
+                {{credit.name }}{% if not loop.last %}, {% endif %}
+              {% endfor %}
+              </p>
+            </div>
+          </aside>
+        {% endif %}
+        <h2 class="c-stories-article-subtitle">{% block article_subtitle %}{% endblock %}</h2>
+      </div>
+      {% block article_content %}{% endblock %}
+      </div>
+      <section class="c-stories-social-share">
+        <ul class="social-share-list">
+          <li class="social-share-item"><a target="_blank" href="https://twitter.com/share?url=http://www.mozilla.org{{ request.path }}&text={{ self.article_title()|urlencode  }}" class="twitter">Twitter</a></li>
+          <li class="social-share-item"><a target="_blank" href="https://getpocket.com/save?url=http://www.mozilla.org{{ request.path }}&title={{ self.article_title()|urlencode }}" class="pocket">Pocket</a></li>
+          <li class="social-share-item"><a target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?mini=true&url=http://www.mozilla.org{{ request.path }}" class="linkedin">LinkedIn</a></li>
+        </ul>
+      </section>
+      {% if related %}
+        <section class="c-stories-related">
+          <div class="related-stories-grid">
+            <h2 class="c-stories-related-header">Related Stories</h2>
+            <div class="related-stories-wrapper">
+            {% for item in related %}
+              {{ stories_card(
+                title=item.title,
+                desc=item.desc,
+                image_url=item.image_url,
+                image_alt=item.image_alt,
+                link_url=item.link_url,
+                include_highres_image=True
+              )}}
+              {% endfor %}
+            </div>
+          </div>
+        </section>
+      {% endif %}
+    </section>
+  </article>
+{% endblock %}
+

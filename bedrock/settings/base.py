@@ -581,6 +581,7 @@ INSTALLED_APPS = [
     "bedrock.firefox",
     "bedrock.foundation",
     "bedrock.landing",
+    "bedrock.stories",
     "bedrock.legal",
     "bedrock.legal_docs",
     "bedrock.mozorg",

@@ -1,0 +1,67 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "stories/stories-base-article.html" %}
+
+
+{% from "stories/includes/macros.html" import stories_article_blockquote, stories_image with context %}
+
+
+{% set credits = [
+  {"name": "Mike Hoye", "title": "Senior Product Manager", "image": "img/stories/credit/mike-hoye-credit.jpg"},
+  {"name": "Daniel Nazer", "title": "Senior IP and Product Counsel", "image": "img/stories/credit/daniel-nazer-credit.jpg"},
+  {"name": "Ray Fembro", "title": "Product Manager", "image": "img/stories/credit/ray-fembro-credit.jpg"},
+] %}
+
+{% set related = [
+ {
+    "title": "The Art of Engagement",
+    "desc": "Mozilla’s vibrant community gets a direct connection to the people building the products they love.",
+    "image_url": "img/stories/art-of-engagement.jpg",
+    "link_url": url('stories.articles.art-of-engagement'),
+    "image_alt": ""
+  },
+  {
+    "title": "From Volunteer to Mozilla Community Champion",
+    "desc": "An early Mozilla volunteer’s curiosity about open-source software led him to a career with a company whose mission he believes in.",
+    "image_url": "img/stories/community-champion.jpg",
+    "link_url": url('stories.articles.community-champion'),
+    "image_alt": ""
+  }
+] %}
+
+
+{% block publish_date %}2022-08-02{% endblock %}
+{% block publish_date_formatted %}August 2, 2022{% endblock %}
+
+{% block article_title %}Licensed to Build Together{% endblock %}
+{% block article_subtitle %} Who really owns the Firefox browser? Its copyleft license means we all do.{% endblock %}
+
+{% block page_image %}{{ static('img/stories/social/building-together-social.jpg') }}{% endblock %}
+
+
+{% block article_content %}
+<section class="c-stories-article-section">
+  <p>Building software with the help of a volunteer community wasn’t a well known concept when Firefox got going in 1998. What is more surprising, even now, to those outside the tech industry is the idea that anyone in that community and beyond can use the browser’s source code for their own projects as well.</p>
+  <p>Tech companies often claim the software they’ve built could only have come from them and only they are able to tackle the problems it solves to convince their users and attract investors. “To maintain that fiction, they can’t let anyone see how the software really works. It has to stay proprietary, owned only by the company that’s pulling the levers and telling you to ignore the man behind the curtain,” said Mike Hoye, senior product manager.</p>
+
+  {{ stories_article_blockquote(
+    quote="If software is the cake, source code is the recipe",
+    caption="Mike Hoye"
+  )}}
+
+  <p>Open source development takes the opposite approach of creating products whose source code  — if software is the cake, source code is the recipe — is available and free for anyone to view, modify and use. “You  can see the recipe, how the cake is made and if you’re curious, make it yourself at home,” said Hoye.</p>
+  <p>Doesn’t that make it easier for other software companies to compete? Yes, but for open source advocates a larger concept has far more weight: that this code, the communities around it, and the internet that connects them is supposed to benefit everyone. Supporters of open source projects and practices consider the values of collaboration, transparency and accountability underpinning the model as important as the specifics of software development. </p>
+</section>
+<section class="c-stories-article-section">
+  <h3 class="c-stories-article-section-title">Benefits for All</h3>
+  <p>Firefox was built on the open source model, as were other early internet projects including the Linux kernel and the Apache web server. Though available to all, open source software comes with a license that sets some guidelines about how it can be used and shared.</p>
+  <p>The key aspect of Mozilla’s license is that it is a “copyleft” license, said Senior IP and Product Counsel Daniel Nazer. In contrast to a proprietary approach, where a company fully reserves its copyright, a copyleft license allows anyone to use, distribute, or modify the source code as long as they comply with the terms of the license. That freedom is available to individuals and businesses alike. </p>
+  <p>Legend has it that the idea of <a href="https://www.altlegal.com/blog/to-the-left-to-the-left-an-introduction-to-copyleft-and-open-source-software/" rel="external">copyleft began</a> in the seventies when a developer added it to the distribution notice of BASIC programming language as a dig at Bill Gates, who’d complained about people pirating Microsoft’s Altair BASIC program. About a decade later, it  took on legal significance when it was used in the distribution license for the <a href="https://www.gnu.org/" rel="external">GNU Project</a>. That license was followed by several others including the <a href="{{ url('mozorg.mpl.index') }}">Mozilla Public License</a> (MPL), which was released in 1998, with <a href="{{ url('mozorg.mpl.2.0.index') }}" rel="external">Version 2.0</a> released in 2010.</p>
+  <p>For consumers, the open source mindset is no small matter. Not everyone has the skills or desire to open the hood and see how a browser or app works, but knowing that others are doing so should be reassuring. “Anyone can look at the code and know exactly what it does, which is an extraordinary level of corporate transparency,” said Nazer. “If we make a promise about the privacy and security features of Firefox, we’re not asking for blind trust. You can actually go to our repositories and look at the code. That makes us accountable.”</p>
+  <p>Open source culture manifests at Mozilla in other important ways. Many employees join the company in the first place because of its mission, one that guides their daily choices. Said Product Manager Ray Fembro: “I really do believe that something as amazing as the internet should be managed and developed with a greater good and with everyone.”</p>
+</section>
+{% endblock %}

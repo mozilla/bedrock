@@ -1,0 +1,104 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use 'sass:math';
+
+// use math.div to get percentages of grid to use for padding and margins
+$column-width: math.percentage(math.div(math.div(100, 12), 100));
+$half-column: math.percentage(math.div(math.div(100, 24), 100));
+$font-stories-title: 'Antonio', sans-serif;
+$font-stories-body: 'Source Serif Pro', sans-serif;
+
+//  pink theme
+$pink-primary: #ffb4db;
+$pink-secondary: #ffea7f;
+
+@font-face {
+    font-family: Antonio;
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    src:
+        url('/media/fonts/stories/antonio-regular-webfont.woff2') format('woff2'),
+        url('/media/fonts/stories/antonio-regular-webfont.woff') format('woff');
+}
+
+@font-face {
+    font-family: Antonio;
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src:
+        url('/media/fonts/stories/antonio-bold-webfont.woff2') format('woff2'),
+        url('/media/fonts/stories/antonio-bold-webfont.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src:
+        url('/media/fonts/stories/source-serif/SourceSerifPro-Bold.woff2') format('woff2'),
+        url('/media/fonts/stories/source-serif/SourceSerifPro-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src:
+        url('/media/fonts/stories/source-serif/SourceSerifPro-It.woff2') format('woff2'),
+        url('/media/fonts/stories/source-serif/SourceSerifPro-It.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src:
+        url('/media/fonts/stories/source-serif/SourceSerifPro-Light.woff2') format('woff2'),
+        url('/media/fonts/stories/source-serif/SourceSerifPro-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Serif Pro';
+    src:
+        url('/media/fonts/stories/source-serif/SourceSerifPro-Regular.woff2') format('woff2'),
+        url('/media/fonts/stories/source-serif/SourceSerifPro-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@mixin stories-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: $spacing-md;
+}
+
+@mixin half-col-margin {
+    margin-left: $half-column;
+    margin-right: $half-column;
+}
+
+@mixin full-width {
+    grid-column: 1 / 13;
+}
+
+@mixin article-width-2-3 {
+    grid-column: 5 / 9;
+}
+
+@mixin article-width-full {
+    grid-column: 1 / 13;
+
+    @media #{$mq-md} {
+        grid-column: 4 / 12;
+        margin-left: math.percentage(math.div(math.div(100, 16), 100));
+        margin-right: math.percentage(math.div(math.div(100, 16), 100));
+    }
+}

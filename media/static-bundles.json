@@ -1161,6 +1161,24 @@
         "css/landing/landing-shared.scss"
       ],
       "name": "landing-shared"
+    },
+    {
+      "files": [
+        "css/stories/stories-shared.scss"
+      ],
+      "name": "mozilla-stories-shared"
+    },
+    {
+      "files": [
+        "css/stories/stories-landing.scss"
+      ],
+      "name": "mozilla-stories-landing"
+    },
+    {
+      "files": [
+        "css/stories/stories-article.scss"
+      ],
+      "name": "mozilla-stories-article"
     }
   ],
   "js": [
@@ -1812,6 +1830,12 @@
         "js/landing/landing-shared.js"
       ],
       "name": "landing-shared"
+    },
+    {
+      "files": [
+        "js/stories/stories-article.es6.js"
+      ],
+      "name": "stories-article"
     }
   ]
 }

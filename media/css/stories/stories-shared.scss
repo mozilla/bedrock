@@ -1,0 +1,147 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use 'sass:math';
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import 'includes/lib';
+
+.c-stories-related {
+    background-color: $color-white;
+
+    .related-stories-grid {
+        @include stories-grid;
+        margin: 0 auto;
+        padding: $layout-md 0;
+        max-width: $content-max;
+    }
+
+    .c-stories-related-header {
+        grid-column: 2 / 12;
+        margin-bottom: $spacing-xl;
+    }
+
+    .related-stories-wrapper {
+        @include stories-grid;
+        grid-column: 2 / 12;
+
+        .c-stories-card {
+            grid-column: span 12;
+            margin: 0 0 $spacing-lg;
+        }
+    }
+
+    @media #{$mq-md} {
+        .related-stories-grid {
+            padding: $layout-md 40px;
+        }
+
+        .c-stories-related-header {
+            @include font-size(32px);
+            grid-column: 3 /  11;
+        }
+
+        .related-stories-wrapper {
+            grid-column: 3 / 11;
+
+            .c-stories-card {
+                grid-column: span 6;
+
+                &:nth-child(even) {
+                    margin-left: 10%;
+                }
+
+                &:nth-child(odd) {
+                    margin-right: 10%;
+                }
+            }
+        }
+    }
+}
+
+.c-stories-card {
+    .card-media-wrapper {
+        overflow: hidden;
+        display: inline-block;
+        margin-bottom: $spacing-sm;
+    }
+
+    .card-image {
+        transition: transform 200ms ease-in;
+        vertical-align: middle;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+        &:hover {
+            .card-image {
+                transform: scale(1.05);
+            }
+        }
+    }
+
+    .card-block-link {
+        text-decoration: none;
+        color: $color-black;
+
+        &:hover {
+            .card-title,
+            .card-desc {
+                text-decoration: none;
+            }
+        }
+    }
+
+    .card-title {
+        @include font-size(24px);
+        margin-bottom: $spacing-xs;
+    }
+
+    .card-desc {
+        font-family: $font-stories-body;
+    }
+}
+
+.c-stories-image {
+    margin-bottom: $spacing-md;
+    position: relative;
+
+    &.article-width {
+        @include article-width-full;
+        margin: $layout-md $spacing-lg;
+
+        &.center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            figcaption {
+                align-self: flex-start;
+            }
+        }
+    }
+
+    &.article-half-width {
+        grid-column: 4 / 7;
+        float: left;
+    }
+
+    figcaption {
+        @include font-base;
+        @include font-size(14px);
+        color: #838383;
+    }
+    @media #{$mq-md} {
+        &.article-width {
+            margin-left: 6.25%;
+            margin-right: 6.25%;
+        }
+
+        figcaption {
+            @include font-size(12px);
+        }
+    }
+}
