@@ -86,8 +86,12 @@ $image-path: '/media/protocol/img';
         text-decoration: none;
         color: $color-black;
 
-        &:hover {
-            .card-title,
+        &:hover,
+        &:focus {
+            .card-title {
+                text-decoration: underline;
+            }
+
             .card-desc {
                 text-decoration: none;
             }

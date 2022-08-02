@@ -164,7 +164,9 @@ $image-path: '/media/protocol/img';
         text-decoration: none;
         text-transform: none;
 
-        &:hover {
+        &:hover,
+        &:focus,
+        &:active {
             background: #ededf0;
         }
 
