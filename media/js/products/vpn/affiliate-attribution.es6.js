@@ -199,6 +199,11 @@ AffiliateAttribution.init = function () {
 
         FxaProductButton.init()
             .then((flowParams) => {
+                if (!flowParams) {
+                    reject('FxA flow params are undefined.');
+                    return;
+                }
+
                 const flowId = AffiliateAttribution.getQueryStringParam(
                     'flow_id',
                     flowParams

@@ -258,6 +258,25 @@ describe('affiliate-attribution.es6.js', function () {
                 });
             });
 
+            it('should reject if FxA flow params are undefined', function () {
+                spyOn(
+                    AffiliateAttribution,
+                    'meetsRequirements'
+                ).and.returnValue(true);
+                spyOn(AffiliateAttribution, 'getCJEventParam').and.returnValue(
+                    _cjEventParam
+                );
+                spyOn(AffiliateAttribution, 'getCJMSEndpoint').and.returnValue(
+                    _endpoint
+                );
+                spyOn(FxaProductButton, 'init').and.resolveTo(undefined);
+                spyOn(window, 'fetch');
+                return AffiliateAttribution.init().catch((reason) => {
+                    expect(reason).toEqual('FxA flow params are undefined.');
+                    expect(window.fetch).not.toHaveBeenCalled();
+                });
+            });
+
             it('should do a new POST if PUT fails with a 404', function () {
                 const mock404Response = new window.Response(
                     JSON.stringify({}),
