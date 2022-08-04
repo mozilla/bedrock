@@ -83,7 +83,7 @@ class BasicAuthMiddleware:
                 auth = request.headers["Authorization"].split()
                 if len(auth) == 2:
                     if auth[0].lower() == "basic":
-                        provided_auth = base64.b64decode(auth[1])
+                        provided_auth = base64.b64decode(auth[1]).decode()
                         if provided_auth == required_auth:
                             # we're good. continue on.
                             return None
