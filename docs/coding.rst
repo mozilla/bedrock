@@ -370,14 +370,19 @@ This would output:
          srcset="/media/img/panda-500.png 500w,/media/img/panda-750.png 750w,/media/img/panda-1000.png 1000w"
          sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)" alt="">'
 
-In the above example we specify the available image sources using the ``srcset`` parameter. We then use ``sizes`` to say:
+In the above example we specified the available image sources using the ``srcset`` parameter. We then used ``sizes`` to say:
 
 - When the viewport is greater than ``1000px`` wide, the panda image will take up roughly half of the page width.
 - When the viewport is less than ``1000px`` wide, the panda image will take up roughly full page width.
 
-The browser will then pick the best source option from ``srcset`` (based on both the estimated image size and
-screen resolution) to satisfy the condition met in ``sizes``. Older browsers will fall back to the default image
-we specify using ``url``.
+The default image ``src`` is what we specified using the ``url`` param. This is also what older browsers will fall back to
+using. Modern browsers will instead pick the best source option from ``srcset`` (based on both the estimated image size and
+screen resolution) to satisfy the condition met in ``sizes``.
+
+.. note::
+
+    The value ``default`` in the second ``sizes`` entry above should be used when you want to omit a media query. This
+    makes it possible to provide a fallback size when no other media queries match.
 
 Another example might be to serve a high resolution alternative for a fixed size image:
 
@@ -449,7 +454,7 @@ Finally, you can also specify any other additional attributes you might need usi
         optional_attributes={
             "alt": "Red Panda",
             "class": "panda-hero",
-            "height": 500",
+            "height": "500",
             "l10n": True,
             "loading": "lazy",
             "width": "500"
@@ -494,10 +499,16 @@ This would output:
         <img src="/media/img/panda-mobile.png" alt="">
     </picture>
 
-In the above example we use the ``sources`` parameter to specify one or more alternate image sources.  For each
-``<source>``, ``media`` lets us specify a media query as a condition for when to load an image, and ``srcset``
-lets us specify one or more sizes for each image. This is a very simple example where we only specify one image
-size per source, so we use ``default`` as a descriptor.
+In the above example, the default image ``src`` is what we specifed using the ``url`` param. This is also what older
+browsers will fall back to using. We then used the ``sources`` parameter to specify one or more alternate image
+``<source>`` elements, which modern browsers can take advantage of. For each ``<source>``, ``media`` lets us specify
+a media query as a condition for when to load an image, and ``srcset`` lets us specify one or more sizes for each image.
+
+.. note::
+
+    The value ``default`` in the ``srcset`` entry above should be used when you want to omit a descrptor. In this
+    example we only have one entry in ``srcset`` (meaning it will be chosen immediately should the media query be
+    satisfied), hence we omit a descriptor value.
 
 A more complex example might be when we want to load responsively sized, animated gifs, but also offer still
 images for users who set ``(prefers-reduced-motion: reduce)``:
@@ -606,8 +617,6 @@ Like ``resp_img()``, the ``picture()`` helper also supports L10n images and othe
             "loading": "lazy",
         }
     )
-
-Older browsers that do not support ``<picture>`` will simply download the default image we specify using ``url``.
 
 high_res_img() (deprecated)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
