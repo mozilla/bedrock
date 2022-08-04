@@ -7,8 +7,7 @@
 module.exports = {
     env: {
         browser: true,
-        commonjs: true,
-        jasmine: true
+        commonjs: true
     },
     extends: ['eslint:recommended', 'plugin:json/recommended', 'prettier'],
     rules: {
@@ -82,10 +81,14 @@ module.exports = {
             // JS Karma test files.
             files: ['tests/unit/**/*.js'],
             env: {
-                es2017: true
+                es2017: true,
+                jasmine: true
             },
             parserOptions: {
                 sourceType: 'module'
+            },
+            globals: {
+                sinon: 'writable'
             }
         },
         {

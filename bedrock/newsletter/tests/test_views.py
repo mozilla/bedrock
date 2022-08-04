@@ -15,12 +15,7 @@ from pyquery import PyQuery as pq
 from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg.tests import TestCase
 from bedrock.newsletter.tests import newsletters
-from bedrock.newsletter.views import (
-    general_error,
-    invalid_email_address,
-    recovery_text,
-    updated,
-)
+from bedrock.newsletter.views import general_error, invalid_email_address, updated
 
 
 class TestViews(TestCase):
@@ -431,45 +426,6 @@ class TestSetCountryView(TestCase):
         self.assertEqual(200, rsp.status_code)
         basket_mock.assert_called_with("post", "user-meta", data={"country": "gb"}, token=self.token)
         messages_mock.add_message.assert_called_with(ANY, messages_mock.ERROR, ANY)
-
-
-class TestRecoveryView(TestCase):
-    def setUp(self):
-        with self.activate("en-US"):
-            self.url = reverse("newsletter.recovery")
-
-    def test_bad_email(self):
-        """Email syntax errors are caught"""
-        data = {"email": "not_an_email"}
-        rsp = self.client.post(self.url, data)
-        self.assertEqual(200, rsp.status_code)
-        self.assertIn("email", rsp.context["form"].errors)
-
-    @patch("basket.send_recovery_message", autospec=True)
-    def test_unknown_email(self, mock_basket):
-        """Unknown email addresses give helpful error message"""
-        data = {"email": "unknown@example.com"}
-        mock_basket.side_effect = basket.BasketException(status_code=404, code=basket.errors.BASKET_UNKNOWN_EMAIL)
-        rsp = self.client.post(self.url, data)
-        self.assertTrue(mock_basket.called)
-        self.assertEqual(200, rsp.status_code)
-
-    @patch("django.contrib.messages.add_message", autospec=True)
-    @patch("basket.send_recovery_message", autospec=True)
-    def test_good_email(self, mock_basket, add_msg):
-        """If basket returns success, don't report errors"""
-        data = {"email": "known@example.com"}
-        mock_basket.return_value = {"status": "ok"}
-        rsp = self.client.post(self.url, data)
-        self.assertTrue(mock_basket.called)
-        # On successful submit, we redirect
-        self.assertEqual(302, rsp.status_code)
-        rsp = self.client.get(rsp["Location"])
-        self.assertEqual(200, rsp.status_code)
-        self.assertFalse(rsp.context["form"])
-        # We also give them a success message
-        self.assertEqual(1, add_msg.call_count, msg=repr(add_msg.call_args_list))
-        self.assertIn(recovery_text, add_msg.call_args[0])
 
 
 class TestNewsletterSubscribe(TestCase):

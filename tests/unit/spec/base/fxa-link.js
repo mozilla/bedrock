@@ -9,8 +9,6 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global sinon */
-
 import FxaLink from '../../../../media/js/base/fxa-link.es6.js';
 
 describe('fxa-link.js', function () {

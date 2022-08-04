@@ -9,8 +9,6 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global sinon */
-
 describe('site.js', function () {
     describe('getPlatform', function () {
         it('should identify Windows', function () {

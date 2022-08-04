@@ -564,46 +564,19 @@ def recovery(request):
     Let user enter their email address and be sent a message with a link
     to manage their subscriptions.
     """
+    form = EmailForm()
 
-    if request.method == "POST":
-        form = EmailForm(request.POST)
-        if form.is_valid():
-            email = form.cleaned_data["email"]
-            try:
-                # Try it - basket will return an error if the email is unknown
-                basket.send_recovery_message(email)
-            except basket.BasketException as e:
-                # Was it that their email was not known?  Or it could be invalid,
-                # but that doesn't really make a difference.
-                if e.code in (basket.errors.BASKET_UNKNOWN_EMAIL, basket.errors.BASKET_INVALID_EMAIL):
-                    # Tell them, give them a link to go subscribe if they want
-                    url = reverse("newsletter.subscribe")
-                    form.errors["email"] = form.error_class([ftl("newsletters-this-email-address-is-not", url=url, ftl_files=FTL_FILES)])
-                else:
-                    # Log the details
-                    log.exception("Error sending recovery message")
-                    # and tell the user that something went wrong
-                    form.errors["__all__"] = form.error_class([general_error])
-            else:
-                messages.add_message(request, messages.INFO, recovery_text)
-                # Redir as GET, signalling success
-                return redirect(request.path + "?success")
-    elif "success" in request.GET:
-        # We were redirected after a successful submission.
-        # A message will be displayed; don't display the form again.
-        form = None
-    else:
-        form = EmailForm()
+    context = {"form": form, "recovery_url": settings.BASKET_URL + "/news/recover/"}
 
     # This view is shared between two different templates. For context see bug 1442129.
     if "/newsletter/opt-out-confirmation/" in request.get_full_path():
         template = "newsletter/opt-out-confirmation.html"
-        ftl_files = ["newsletter/opt-out-confirmation"]
+        ftl_files = ["newsletter/opt-out-confirmation", "mozorg/newsletters"]
     else:
         template = "newsletter/recovery.html"
         ftl_files = FTL_FILES
 
-    return l10n_utils.render(request, template, {"form": form}, ftl_files=ftl_files)
+    return l10n_utils.render(request, template, context, ftl_files=ftl_files)
 
 
 def newsletter_subscribe(request):

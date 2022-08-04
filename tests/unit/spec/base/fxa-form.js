@@ -9,8 +9,6 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global sinon */
-
 import FxaForm from '../../../../media/js/base/fxa-form.es6.js';
 
 describe('fxa-form.js', function () {

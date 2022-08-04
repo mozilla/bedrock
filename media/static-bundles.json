@@ -536,6 +536,13 @@
     },
     {
       "files": [
+        "css/newsletter/newsletter-recovery.scss"
+      ],
+      "name": "newsletter-recovery"
+    },
+    {
+      "files": [
+        "css/newsletter/newsletter-recovery.scss",
         "css/newsletter/newsletter-opt-out-confirmation.scss"
       ],
       "name": "newsletter-opt-out-confirmation"
@@ -1771,6 +1778,13 @@
         "js/newsletter/confirm.js"
       ],
       "name": "newsletter-confirm"
+    },
+    {
+      "files": [
+        "js/newsletter/recovery.es6.js",
+        "js/newsletter/recovery-init.es6.js"
+      ],
+      "name": "newsletter-recovery"
     },
     {
       "files": [

@@ -9,7 +9,6 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global sinon */
 /* eslint new-cap: [2, {"capIsNewExceptions": ["Deferred"]}] */
 
 describe('stub-attribution.js', function () {
