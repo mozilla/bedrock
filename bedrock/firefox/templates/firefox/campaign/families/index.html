@@ -4,3 +4,33 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+{% extends "firefox/base/base-protocol.html" %}
+
+<!-- will any metadata need to change? -->
+{% block page_title_prefix %}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+
+{% block page_image %}{{ static('protocol/img/logos/firefox/browser/og.png') }}{% endblock %}
+{% block page_favicon %}{{ static('img/favicons/firefox/browser/favicon.ico') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/favicons/firefox/browser/favicon-196x196.png') }}{% endblock %}
+{% block page_ios_icon %}{{ static('img/favicons/firefox/browser/apple-touch-icon.png') }}{% endblock %}
+{% block twitter_card %}summary_large_image{% endblock %}
+
+{% block facebook_id %}14696440021{# facebook.com/Firefox #}{% endblock %}
+{% block twitter_id %}firefox{% endblock %}
+<!-- metadata q ends -->
+
+<!-- include Firefox subnav for desktop/mobile? -->
+
+<!-- Hero -->
+<!-- About -->
+<!-- Breaking news scroll -->
+<!-- MODULE: Data Profiles -->
+<!-- MODULE: Privacy & Mental Health -->
+<!-- Parental Pro-tip -->
+<!-- MODULE: Netiquette -->
+<!-- MODULE: Public Wifi -->
+<!-- MODULE: Passwords -->
+<!-- Parental Pro-tip -->
+<!-- MODULE: Private Browsing -->
+<!-- Agreement (printable) -->
