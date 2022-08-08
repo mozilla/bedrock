@@ -503,9 +503,9 @@ pathspec==0.9.0 \
     --hash=sha256:7d15c4ddb0b5c802d161efc417ec1a2558ea2653c2e8ad9c19098201dc1c993a \
     --hash=sha256:e564499435a2673d586f6b2130bb5b95f04a3ba06f81b8f895b651a3c76aabb1
     # via yamllint
-phonenumberslite==8.12.52 \
-    --hash=sha256:8cfee539ebcbe2874e8f0bdfe753e60265c198b33f8bfeb57f0fc59ba55c6d74 \
-    --hash=sha256:ade5346ac9f7ed0289d69ffc9e9f3f84b56b2b7010aa23fecf7bb22140b170d5
+phonenumberslite==8.12.53 \
+    --hash=sha256:e1e16ff056127ae9ccf7a2ca78050dbe2ee43321d8a5ea20704752a2f46b8a9a \
+    --hash=sha256:ece2f65b16f00bd8dda0cc6b0eb3d3d3d0cfae348d6c8f9fafd47882841546d7
     # via -r requirements/prod.in
 pillow==9.2.0 \
     --hash=sha256:0030fdbd926fb85844b8b92e2f9449ba89607231d3dd597a21ae72dc7fe26927 \
