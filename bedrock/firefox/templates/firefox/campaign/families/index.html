@@ -24,17 +24,35 @@
 {% block twitter_id %}firefox{% endblock %}
 <!-- metadata q ends -->
 
+{% block content %}
 <!-- include Firefox subnav for desktop/mobile? -->
 
 <!-- Hero -->
+{% include 'firefox/campaign/families/includes/hero.html' %}
 <!-- About -->
+{% include 'firefox/campaign/families/includes/about.html' %}
 <!-- Breaking news scroll -->
+{% include 'firefox/campaign/families/includes/breaking-news.html' %}
 <!-- MODULE: Data Profiles -->
+{% include 'firefox/campaign/families/includes/modules/data.html' %}
 <!-- MODULE: Privacy & Mental Health -->
+{% include 'firefox/campaign/families/includes/modules/mental-health.html' %}
 <!-- Parental Pro-tip -->
+{% with tip='tip 1' %}
+  {% include 'firefox/campaign/families/includes/parental-pro-tip.html' %}
+{% endwith %}
 <!-- MODULE: Netiquette -->
+{% include 'firefox/campaign/families/includes/modules/netiquette.html' %}
 <!-- MODULE: Public Wifi -->
+{% include 'firefox/campaign/families/includes/modules/public-wifi.html' %}
 <!-- MODULE: Passwords -->
+{% include 'firefox/campaign/families/includes/modules/passwords.html' %}
 <!-- Parental Pro-tip -->
+{% with tip='tip 2' %}
+  {% include 'firefox/campaign/families/includes/parental-pro-tip.html' %}
+{% endwith %}
 <!-- MODULE: Private Browsing -->
+{% include 'firefox/campaign/families/includes/modules/private-browsing.html' %}
 <!-- Agreement (printable) -->
+{% include 'firefox/campaign/families/includes/agreement.html' %}
+{% endblock %}
