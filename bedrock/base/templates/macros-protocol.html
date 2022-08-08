@@ -343,10 +343,40 @@
 
 
 {# Feature Card: https://protocol.mozilla.org/patterns/molecules/feature-card.html #}
-{% macro feature_card(title, ga_title, image_url, class=None, link_url=None, link_cta=None, include_highres_image=False, l10n_image=False, aspect_ratio=None, heading_level=2, media_after=False, loading=None) -%}
+{% macro feature_card(
+  aspect_ratio=None,
+  class=None,
+  ga_title='',
+  heading_level=2,
+  image_alt='',
+  image_height=None,
+  image_sizes=None,
+  image_sources=None,
+  image_srcset=None,
+  image_url='',
+  image_width=None,
+  include_highres_image=False,
+  l10n_image=False,
+  link_cta=None,
+  link_url=None,
+  loading=None,
+  media_after=False,
+  title=''
+) -%}
 <section class="mzp-c-card-feature {% if aspect_ratio %}{{ aspect_ratio }}{% endif %} {% if class %}{{ class }}{% endif %}">
   {% if not media_after %}
-    {{ feature_card_media(image_url, include_highres_image, l10n_image, loading) }}
+    {{ feature_card_media(
+      image_alt=image_alt,
+      image_height=image_height,
+      image_sizes=image_sizes,
+      image_sources=image_sources,
+      image_srcset=image_srcset,
+      image_url=image_url,
+      image_width=image_width,
+      include_highres_image=include_highres_image,
+      l10n_image=l10n_image,
+      loading=loading
+    ) }}
   {% endif %}
   <div class="mzp-c-card-feature-content">
     <div class="mzp-c-card-feature-content-container">
@@ -362,7 +392,18 @@
     </div>
   </div>
   {% if media_after %}
-    {{ feature_card_media(image_url, include_highres_image, l10n_image, loading) }}
+    {{ feature_card_media(
+      image_alt=image_alt,
+      image_height=image_height,
+      image_sizes=image_sizes,
+      image_sources=image_sources,
+      image_srcset=image_srcset,
+      image_url=image_url,
+      image_width=image_width,
+      include_highres_image=include_highres_image,
+      l10n_image=l10n_image,
+      loading=loading
+    ) }}
   {% endif %}
 </section>
 {%- endmacro %}

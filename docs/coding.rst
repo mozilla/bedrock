@@ -506,7 +506,7 @@ a media query as a condition for when to load an image, and ``srcset`` lets us s
 
 .. note::
 
-    The value ``default`` in the ``srcset`` entry above should be used when you want to omit a descrptor. In this
+    The value ``default`` in the ``srcset`` entry above should be used when you want to omit a descriptor. In this
     example we only have one entry in ``srcset`` (meaning it will be chosen immediately should the media query be
     satisfied), hence we omit a descriptor value.
 

@@ -743,7 +743,7 @@ class TestPicture(TestCase):
         )
         self.assertEqual(markup, expected)
 
-    def test_picture_with_optional_sttributes(self):
+    def test_picture_with_optional_attributes(self):
         """Should return expected markup with optional attributes"""
         expected = (
             "<picture>"
