@@ -524,7 +524,7 @@ class TestHighResImg(TestCase):
 class TestRespImg(TestCase):
     rf = RequestFactory()
 
-    def _render(self, url, srcset, sizes=None, optional_attributes=None):
+    def _render(self, url, srcset=None, sizes=None, optional_attributes=None):
         req = self.rf.get("/")
         req.locale = "en-US"
         return render(f"{{{{ resp_img('{url}', {srcset}, {sizes}, {optional_attributes}) }}}}", {"request": req})
@@ -612,6 +612,12 @@ class TestRespImg(TestCase):
         """Should return expected markup when using srcset without sizes"""
         expected = '<img src="/media/img/panda.png" srcset="/media/img/panda-high-res.png 2x" alt="">'
         markup = self._render("img/panda.png", {"img/panda-high-res.png": "2x"})
+        self.assertEqual(markup, expected)
+
+    def test_resp_img_without_srcset_or_sizes(self):
+        """Should return expected markup when using without srcset or sizes"""
+        expected = '<img src="/media/img/panda.png" alt="">'
+        markup = self._render("img/panda.png")
         self.assertEqual(markup, expected)
 
 

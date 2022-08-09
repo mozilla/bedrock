@@ -225,7 +225,7 @@ def high_res_img(ctx, url, optional_attributes=None):
 
 @library.global_function
 @jinja2.pass_context
-def resp_img(ctx, url, srcset, sizes=None, optional_attributes=None):
+def resp_img(ctx, url, srcset=None, sizes=None, optional_attributes=None):
     alt = ""
     attrs = ""
     final_sizes = ""
@@ -242,14 +242,13 @@ def resp_img(ctx, url, srcset, sizes=None, optional_attributes=None):
     # default src
     url = l10n_img(ctx, url) if l10n else static(url)
 
-    # srcset
-    srcset_last_item = list(srcset)[-1]
-    for image, size in srcset.items():
-        postfix = "" if image == srcset_last_item else ","
-        img = l10n_img(ctx, image) if l10n else static(image)
-        final_srcset = final_srcset + img + " " + size + postfix
+    if srcset:
+        srcset_last_item = list(srcset)[-1]
+        for image, size in srcset.items():
+            postfix = "" if image == srcset_last_item else ","
+            img = l10n_img(ctx, image) if l10n else static(image)
+            final_srcset = final_srcset + img + " " + size + postfix
 
-    # sizes
     if sizes:
         sizes_last_item = list(sizes)[-1]
         for window_size, img_width in sizes.items():
@@ -260,9 +259,9 @@ def resp_img(ctx, url, srcset, sizes=None, optional_attributes=None):
             else:
                 final_sizes = final_sizes + window_size + " " + img_width + postfix
 
-        markup = f'<img src="{url}" srcset="{final_srcset}" sizes="{final_sizes}" alt="{alt}"{attrs}>'
-    else:
-        markup = f'<img src="{url}" srcset="{final_srcset}" alt="{alt}"{attrs}>'
+    srcset_str = f'srcset="{final_srcset}" ' if final_srcset else ""
+    sizes_str = f'sizes="{final_sizes}" ' if final_sizes else ""
+    markup = f'<img src="{url}" {srcset_str}{sizes_str}alt="{alt}"{attrs}>'
 
     return Markup(markup)
 
