@@ -72,3 +72,43 @@ def test_301_urls(url, base_url, follow_redirects=False):
 )
 def test_302_urls(url, base_url, follow_redirects=False):
     assert_valid_url(url, base_url=base_url, follow_redirects=follow_redirects, status_code=requests.codes.found)
+
+
+@pytest.mark.headless
+@pytest.mark.nondestructive
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "url,accept_language_header",
+    [
+        ("/en-US/privacy/", None),
+        ("/en-US/privacy/", "*"),
+        ("/en-US/privacy/", "de"),
+        ("/en-US/privacy/", "br-PT"),
+        ("/privacy/", None),
+        ("/privacy/", "*"),
+        ("/privacy/", "de"),
+        ("/privacy/", "br-PT"),
+    ],
+)
+def test_privacy_policy_always_200_OK(
+    url,
+    base_url,
+    accept_language_header,
+):
+    """Smoke test to ensure that our privacy pages always
+    ultimately return a 200 OK response, even if the client
+    requesting them lacks an Accept-Language header and there
+    is no locale in the actual URL
+    """
+
+    req_headers = {}
+    if accept_language_header:
+        req_headers["Accept-Language"] = accept_language_header
+
+    assert_valid_url(
+        url,
+        base_url=base_url,
+        req_headers=req_headers,
+        follow_redirects=True,
+        final_status_code=requests.codes.ok,
+    )
