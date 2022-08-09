@@ -11,7 +11,7 @@
 {% endblock %}
 
 <!-- will any metadata need to change? -->
-{% block page_title_prefix %}{% endblock %}
+{% block page_title_prefix %}The Tech Talk{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
 {% block page_image %}{{ static('protocol/img/logos/firefox/browser/og.png') }}{% endblock %}
@@ -29,6 +29,7 @@
 
 <!-- Hero -->
 {% include 'firefox/campaign/families/includes/hero.html' %}
+<main>
 <!-- About -->
 {% include 'firefox/campaign/families/includes/about.html' %}
 <!-- Breaking news scroll -->
@@ -55,4 +56,5 @@
 {% include 'firefox/campaign/families/includes/modules/private-browsing.html' %}
 <!-- Agreement (printable) -->
 {% include 'firefox/campaign/families/includes/agreement.html' %}
+</main>
 {% endblock %}
