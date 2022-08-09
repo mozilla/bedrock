@@ -78,50 +78,17 @@ def test_302_urls(url, base_url, follow_redirects=False):
 @pytest.mark.nondestructive
 @pytest.mark.django_db
 @pytest.mark.parametrize(
-    "url,accept_language_header",
+    "url",
     [
-        # Mozorg privacy
-        ("/en-US/privacy/", None),
-        ("/en-US/privacy/", "*"),
-        ("/en-US/privacy/", "de"),
-        ("/en-US/privacy/", "br-PT"),
-        ("/privacy/", None),
-        ("/privacy/", "*"),
-        ("/privacy/", "de"),
-        ("/privacy/", "br-PT"),
-        # Fx privacy
-        ("/en-US/privacy/firefox/", None),
-        ("/en-US/privacy/firefox/", "*"),
-        ("/en-US/privacy/firefox/", "de"),
-        ("/en-US/privacy/firefox/", "br-PT"),
-        ("/privacy/firefox/", None),
-        ("/privacy/firefox/", "*"),
-        ("/privacy/firefox/", "de"),
-        ("/privacy/firefox/", "br-PT"),
-        # Focus privacy
-        ("/en-US/privacy/firefox-focus/", None),
-        ("/en-US/privacy/firefox-focus/", "*"),
-        ("/en-US/privacy/firefox-focus/", "de"),
-        ("/en-US/privacy/firefox-focus/", "br-PT"),
-        ("/privacy/firefox-focus/", None),
-        ("/privacy/firefox-focus/", "*"),
-        ("/privacy/firefox-focus/", "de"),
-        ("/privacy/firefox-focus/", "br-PT"),
-        # Mozilla VPN privacy
-        ("/en-US/privacy/mozilla-vpn/", None),
-        ("/en-US/privacy/mozilla-vpn/", "*"),
-        ("/en-US/privacy/mozilla-vpn/", "de"),
-        ("/en-US/privacy/mozilla-vpn/", "br-PT"),
-        ("/privacy/mozilla-vpn/", None),
-        ("/privacy/mozilla-vpn/", "*"),
-        ("/privacy/mozilla-vpn/", "de"),
-        ("/privacy/mozilla-vpn/", "br-PT"),
+        "privacy/",
+        "privacy/firefox/",
+        "privacy/firefox-focus/",
+        "privacy/mozilla-vpn/",
     ],
 )
 def test_privacy_policies_always_200_OK(
     url,
     base_url,
-    accept_language_header,
 ):
     """Smoke test to ensure that our privacy pages always
     ultimately return a 200 OK response, even if the client
@@ -129,17 +96,29 @@ def test_privacy_policies_always_200_OK(
     is no locale in the actual URL
     """
 
-    req_headers = {}
-    if accept_language_header:
-        req_headers["Accept-Language"] = accept_language_header
+    # A loop in a parametrized test isn't great, but it does make the `url`
+    # options simpler to grok and to extend
+    for url, accept_language_header in [
+        (f"/{url}", None),
+        (f"/{url}", "*"),
+        (f"/{url}", "de"),
+        (f"/{url}", "br-PT"),
+        (f"/en-US/{url}", None),
+        (f"/en-US/{url}", "*"),
+        (f"/en-US/{url}/", "de"),
+        (f"/en-US/{url}/", "br-PT"),
+    ]:
+        req_headers = {}
+        if accept_language_header:
+            req_headers["Accept-Language"] = accept_language_header
 
-    assert_valid_url(
-        url,
-        base_url=base_url,
-        req_headers=req_headers,
-        follow_redirects=True,
-        final_status_code=requests.codes.ok,
-    )
+        assert_valid_url(
+            url,
+            base_url=base_url,
+            req_headers=req_headers,
+            follow_redirects=True,
+            final_status_code=requests.codes.ok,
+        )
 
 
 @pytest.mark.headless
