@@ -53,10 +53,20 @@
       <section class="mzp-c-card contribute-card">
         <a class="mzp-c-card-block-link contribute-card-wrapper" href="https://community.mozilla.org/activities/localize-mozilla/{{ utm_params }}">
           <div class="mzp-c-card-media-wrapper">
-            <picture>
-              <source srcset="{{ static('img/contribute/contribute-card-translate.png') }}" media="(max-width: 480px)">
-              <img class="mzp-c-card-image" srcset="{{ static('img/contribute/contribute-card-translate-lg.png') }}" alt="">
-            </picture>
+            {{ picture(
+              url='img/contribute/contribute-card-translate-lg.png',
+              sources=[
+                {
+                  'media': '(max-width: 480px)',
+                  'srcset': {
+                    'img/contribute/contribute-card-translate.png': 'default'
+                  }
+                }
+              ],
+              optional_attributes={
+                'class': 'mzp-c-card-image'
+              }
+            ) }}
           </div>
           <div class="mzp-c-card-content contribute-card-content">
             <div class="contribute-card-content-tags">
@@ -72,10 +82,20 @@
       <section class="mzp-c-card contribute-card">
         <a class="mzp-c-card-block-link contribute-card-wrapper" href="https://firefox-source-docs.mozilla.org/contributing/contributing_to_mozilla.html{{ utm_params }}">
           <div class="mzp-c-card-media-wrapper">
-            <picture>
-              <source srcset="{{ static('img/contribute/contribute-card-contribute.png') }}" media="(max-width: 480px)">
-              <img class="mzp-c-card-image" srcset="{{ static('img/contribute/contribute-card-contribute-lg.png') }}" alt="">
-            </picture>
+            {{ picture(
+              url='img/contribute/contribute-card-contribute-lg.png',
+              sources=[
+                {
+                  'media': '(max-width: 480px)',
+                  'srcset': {
+                    'img/contribute/contribute-card-contribute.png': 'default'
+                  }
+                }
+              ],
+              optional_attributes={
+                'class': 'mzp-c-card-image'
+              }
+            ) }}
           </div>
           <div class="mzp-c-card-content contribute-card-content">
             <div class="contribute-card-content-tags">
@@ -91,10 +111,20 @@
       <section class="mzp-c-card contribute-card">
         <a class="mzp-c-card-block-link contribute-card-wrapper" href="https://community.mozilla.org/activities/answer-support-questions/{{ utm_params }}">
           <div class="mzp-c-card-media-wrapper">
-            <picture>
-              <source srcset="{{ static('img/contribute/contribute-card-support.png') }}" media="(max-width: 480px)">
-              <img class="mzp-c-card-image" srcset="{{ static('img/contribute/contribute-card-support-lg.png') }}" alt="">
-            </picture>
+            {{ picture(
+              url='img/contribute/contribute-card-support-lg.png',
+              sources=[
+                {
+                  'media': '(max-width: 480px)',
+                  'srcset': {
+                    'img/contribute/contribute-card-support.png': 'default'
+                  }
+                }
+              ],
+              optional_attributes={
+                'class': 'mzp-c-card-image'
+              }
+            ) }}
           </div>
           <div class="mzp-c-card-content contribute-card-content">
             <div class="contribute-card-content-tags">
@@ -110,10 +140,20 @@
       <section class="mzp-c-card contribute-card">
         <a class="mzp-c-card-block-link contribute-card-wrapper" href="https://community.mozilla.org/{{ utm_params }}">
           <div class="mzp-c-card-media-wrapper">
-            <picture>
-              <source srcset="{{ static('img/contribute/contribute-card-community.png') }}" media="(max-width: 480px)">
-              <img class="mzp-c-card-image" srcset="{{ static('img/contribute/contribute-card-community-lg.png') }}" alt="">
-            </picture>
+            {{ picture(
+              url='img/contribute/contribute-card-community-lg.png',
+              sources=[
+                {
+                  'media': '(max-width: 480px)',
+                  'srcset': {
+                    'img/contribute/contribute-card-community.png': 'default'
+                  }
+                }
+              ],
+              optional_attributes={
+                'class': 'mzp-c-card-image'
+              }
+            ) }}
           </div>
           <div class="mzp-c-card-content contribute-card-content">
             <div class="contribute-card-content-tags">

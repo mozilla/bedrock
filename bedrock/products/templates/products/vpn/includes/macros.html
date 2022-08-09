@@ -5,11 +5,29 @@
 #}
 
 {% macro hero_image(low_res_img, high_res_img, class_name) -%}
-  <picture>
-    <source srcset="{{ static(low_res_img) }} 480w, {{ static(high_res_img) }} 960w" media="(min-width: 1024px)">
-    <source srcset="{{ static('img/placeholder.png') }}" media="(max-width: 1023px)">
-    <img src="{{ static(low_res_img) }}" class="{{ class_name }}" alt="" width="480" height="480">
-  </picture>
+  {{ picture(
+    url=low_res_img,
+    sources=[
+      {
+        'media': '(min-width: 1024px)',
+        'srcset': {
+          low_res_img: '480w',
+          high_res_img: '960w'
+        }
+      },
+      {
+        'media': '(max-width: 1023px)',
+        'srcset': {
+          'img/placeholder.png': 'default'
+        }
+      }
+    ],
+    optional_attributes={
+      'class': class_name,
+      'width': '480',
+      'height': '480'
+    }
+  ) }}
 {%- endmacro %}
 
 {% macro vpn_hero(heading, subheading, desc) -%}

@@ -25,8 +25,29 @@
 {% block hub_content %}
 
   {% call split(
-    image_url='img/firefox/privacy/promise/privacy-hero.png',
-    include_highres_image=True,
+    image_url='img/firefox/privacy/promise/privacy-hero-700.png',
+    image_sources=[
+      {
+        'media': '(min-width: 768px)',
+        'srcset': {
+          'img/firefox/privacy/promise/privacy-hero-500.png': '500w',
+          'img/firefox/privacy/promise/privacy-hero-700.png': '700w',
+          'img/firefox/privacy/promise/privacy-hero-900.png': '900w',
+          'img/firefox/privacy/promise/privacy-hero-1100.png': '1100w',
+        },
+        'sizes': {
+          'default': 'calc(50vw - 192px)'
+        }
+      },
+      {
+        'media': '(max-width: 767px)',
+        'srcset': {
+          'img/placeholder.png': 'default'
+        }
+      }
+    ],
+    image_width='680',
+    image_height='626',
     block_class='privacy-promise-hero mzp-l-split-hide-media-on-sm-md mzp-t-split-nospace t-mobile-nospace',
     theme_class='mzp-t-dark',
     media_class='mzp-l-split-v-end'

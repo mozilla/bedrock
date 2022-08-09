@@ -225,6 +225,110 @@ def high_res_img(ctx, url, optional_attributes=None):
 
 @library.global_function
 @jinja2.pass_context
+def resp_img(ctx, url, srcset=None, sizes=None, optional_attributes=None):
+    alt = ""
+    attrs = ""
+    final_sizes = ""
+    final_srcset = ""
+    l10n = False
+
+    if optional_attributes:
+        l10n = optional_attributes.pop("l10n", False)
+        alt = optional_attributes.pop("alt", "")
+
+        if optional_attributes:
+            attrs = " " + " ".join(f'{attr}="{val}"' for attr, val in optional_attributes.items())
+
+    # default src
+    url = l10n_img(ctx, url) if l10n else static(url)
+
+    if srcset:
+        srcset_last_item = list(srcset)[-1]
+        for image, size in srcset.items():
+            postfix = "" if image == srcset_last_item else ","
+            img = l10n_img(ctx, image) if l10n else static(image)
+            final_srcset = final_srcset + img + " " + size + postfix
+
+    if sizes:
+        sizes_last_item = list(sizes)[-1]
+        for window_size, img_width in sizes.items():
+            postfix = "" if window_size == sizes_last_item else ","
+
+            if window_size == "default":
+                final_sizes = final_sizes + img_width + postfix
+            else:
+                final_sizes = final_sizes + window_size + " " + img_width + postfix
+
+    srcset_str = f'srcset="{final_srcset}" ' if final_srcset else ""
+    sizes_str = f'sizes="{final_sizes}" ' if final_sizes else ""
+    markup = f'<img src="{url}" {srcset_str}{sizes_str}alt="{alt}"{attrs}>'
+
+    return Markup(markup)
+
+
+@library.global_function
+@jinja2.pass_context
+def picture(ctx, url, sources, optional_attributes=None):
+    alt = ""
+    attrs = ""
+    final_sources = []
+    l10n = False
+
+    if optional_attributes:
+        l10n = optional_attributes.pop("l10n", False)
+        alt = optional_attributes.pop("alt", "")
+
+        if optional_attributes:
+            attrs = " " + " ".join(f'{attr}="{val}"' for attr, val in optional_attributes.items())
+
+    # default src
+    url = l10n_img(ctx, url) if l10n else static(url)
+
+    # sources
+    for source in sources:
+        final_srcset = ""
+        final_sizes = ""
+        source_media = source.pop("media", False)
+        source_srcset = source.pop("srcset", False)
+        source_type = source.pop("type", False)
+        source_sizes = source.pop("sizes", False)
+
+        # srcset
+        if source_srcset:
+            srcset_last_item = list(source_srcset)[-1]
+            for image, descriptor in source_srcset.items():
+                postfix = "" if image == srcset_last_item else ","
+                img = l10n_img(ctx, image) if l10n else static(image)
+                if descriptor == "default":
+                    final_srcset = final_srcset + img + postfix
+                else:
+                    final_srcset = final_srcset + img + " " + descriptor + postfix
+
+        # sizes
+        if source_sizes:
+            sizes_last_item = list(source_sizes)[-1]
+            for window_size, img_width in source_sizes.items():
+                postfix = "" if window_size == sizes_last_item else ","
+
+                if window_size == "default":
+                    final_sizes = final_sizes + img_width + postfix
+                else:
+                    final_sizes = final_sizes + window_size + " " + img_width + postfix
+
+        media_markup = f' media="{source_media}"' if source_media else ""
+        type_markup = f' type="{source_type}"' if source_type else ""
+        srcset_markup = f' srcset="{final_srcset}"' if final_srcset != "" else ""
+        sizes_markup = f' sizes="{final_sizes}"' if final_sizes != "" else ""
+        source_markup = f"<source{media_markup}{type_markup}{srcset_markup}{sizes_markup}>"
+        final_sources.append(source_markup)
+
+    markup = f'<picture>{"".join(final_sources)}<img src="{url}" alt="{alt}"{attrs}></picture>'
+
+    return Markup(markup)
+
+
+@library.global_function
+@jinja2.pass_context
 def video(ctx, *args, **kwargs):
     """
     HTML5 Video tag helper.

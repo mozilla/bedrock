@@ -32,11 +32,24 @@
 
 {% endblock %}
 
-{% macro picture(src, width, height, alt='', class_name='') -%}
-<picture class="{{ class_name }}">
-  <source srcset="{{ static('img/firefox/new/desktop/' + src + '.svg') }}" loading="lazy">
-  <img src="{{ static('img/firefox/new/desktop/ie8/' + src + '.png') }}" width="{{ width }}" height="{{ height }}" alt="{{ alt }}" loading="lazy" class="{{ class_name }}">
-</picture>
+{% macro download_picture(src, width, height, alt='', class_name='') -%}
+  {{ picture(
+    url='img/firefox/new/desktop/ie8/' + src + '.png',
+    sources=[
+      {
+        'type': 'image/svg+xml',
+        'srcset': {
+          'img/firefox/new/desktop/' + src + '.svg': 'default'
+        }
+      }
+    ],
+    optional_attributes={
+      'class': class_name,
+      'loading': 'lazy',
+      'width': width,
+      'height': height
+    }
+  ) }}
 {%- endmacro %}
 
 {% block sub_navigation %}
@@ -109,24 +122,24 @@
 
       <ul class="c-trio">
         <li>
-          {{ picture('picture-in-picture', 64, 64) }}
+          {{ download_picture('picture-in-picture', 64, 64) }}
           <h3 class="mzp-u-title-xs">Picture-in-Picture</h3>
           <p>Pop a video out of the browser window so you can stream and multitask.</p>
         </li>
         <li>
           {% if switch('browser-mr2-promo') %}
-            {{ picture('color-ways', 64, 64) }}
+            {{ download_picture('color-ways', 64, 64) }}
             <h3 class="mzp-u-title-xs">Choose your color</h3>
             <p>Personalize your experience with new colorways.</p>
           {% else %}
-            {{ picture('dark-mode', 64, 64) }}
+            {{ download_picture('dark-mode', 64, 64) }}
             <h3 class="mzp-u-title-xs">Expanded Dark Mode</h3>
             <p>Take it easy on your eyes every time you go online.</p>
           {% endif %}
         </li>
 
         <li>
-          {{ picture('lock', 64, 64) }}
+          {{ download_picture('lock', 64, 64) }}
           <h3 class="mzp-u-title-xs">An extra layer of protection</h3>
           <p>DNS over HTTPS (DoH) helps keep internet service providers from selling your data.</p>
         </li>
@@ -164,45 +177,45 @@
                 <tbody>
                   <tr>
                     <th scope="row">{{ ftl('firefox-desktop-download-blocks-third-party-default', fallback='firefox-desktop-download-blocks-third-party') }}</th>
-                    <td>{{ picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
-                    <td>{{ picture('icon-dash', 24, 24, ftl('firefox-desktop-download-no')) }}</td>
-                    <td>{{ picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
-                    <td>{{ picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
+                    <td>{{ download_picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
+                    <td>{{ download_picture('icon-dash', 24, 24, ftl('firefox-desktop-download-no')) }}</td>
+                    <td>{{ download_picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
+                    <td>{{ download_picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
                   </tr>
                   <tr>
                     <th scope="row">{{ ftl('firefox-desktop-download-autoplay-blocking') }}</th>
-                    <td>{{ picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
-                    <td>{{ picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
-                    <td>{{ picture('icon-dash', 24, 24, ftl('firefox-desktop-download-no')) }}</td>
-                    <td>{{ picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
+                    <td>{{ download_picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
+                    <td>{{ download_picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
+                    <td>{{ download_picture('icon-dash', 24, 24, ftl('firefox-desktop-download-no')) }}</td>
+                    <td>{{ download_picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
                   </tr>
                   <tr>
                     <th scope="row">{{ ftl('firefox-desktop-download-blocks-social-trackers') }}</th>
-                    <td>{{ picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
-                    <td>{{ picture('icon-dash', 24, 24, ftl('firefox-desktop-download-no')) }}</td>
-                    <td>{{ picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
-                    <td>{{ picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
+                    <td>{{ download_picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
+                    <td>{{ download_picture('icon-dash', 24, 24, ftl('firefox-desktop-download-no')) }}</td>
+                    <td>{{ download_picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
+                    <td>{{ download_picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
                   </tr>
                   <tr>
                     <th scope="row">{{ ftl('firefox-desktop-download-os-availability') }}</th>
-                    <td>{{ picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
-                    <td>{{ picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
-                    <td>{{ picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
-                    <td>{{ picture('icon-dash', 24, 24, ftl('firefox-desktop-download-no')) }}</td>
+                    <td>{{ download_picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
+                    <td>{{ download_picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
+                    <td>{{ download_picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
+                    <td>{{ download_picture('icon-dash', 24, 24, ftl('firefox-desktop-download-no')) }}</td>
                   </tr>
                   <tr>
                     <th scope="row">{{ ftl('firefox-desktop-download-in-browser-screenshot') }}</th>
-                    <td>{{ picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
-                    <td>{{ picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
-                    <td>{{ picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
-                    <td>{{ picture('icon-dash', 24, 24, ftl('firefox-desktop-download-no')) }}</td>
+                    <td>{{ download_picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
+                    <td>{{ download_picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
+                    <td>{{ download_picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
+                    <td>{{ download_picture('icon-dash', 24, 24, ftl('firefox-desktop-download-no')) }}</td>
                   </tr>
                   <tr>
                     <th scope="row">{{ ftl('firefox-desktop-download-primary-password', fallback='firefox-desktop-download-master-password') }}</th>
-                    <td>{{ picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
-                    <td>{{ picture('icon-dash', 24, 24, ftl('firefox-desktop-download-no')) }}</td>
-                    <td>{{ picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
-                    <td>{{ picture('icon-dash', 24, 24, ftl('firefox-desktop-download-no')) }}</td>
+                    <td>{{ download_picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
+                    <td>{{ download_picture('icon-dash', 24, 24, ftl('firefox-desktop-download-no')) }}</td>
+                    <td>{{ download_picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
+                    <td>{{ download_picture('icon-dash', 24, 24, ftl('firefox-desktop-download-no')) }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -233,7 +246,7 @@
           <p><a id="system-requirements" href="{{ url('firefox.sysreq') }}" class="mzp-c-cta-link" data-cta-type="link" data-cta-text="Review system requirements">{{ ftl('firefox-desktop-download-review-system-req') }}</a></p>
         </div>
         <div class="c-block-media l-v-center l-h-start l-media-constrain-on-sm">
-          {{ picture('everyone', 367, 302, '', 'mzp-c-block-media-img') }}
+          {{ download_picture('everyone', 367, 302, '', 'mzp-c-block-media-img') }}
         </div>
       </div>
     </div>
@@ -268,7 +281,7 @@
       <h2 class="mzp-c-section-heading mzp-has-zap-14">{{ ftl('firefox-desktop-download-do-it-all') }}</h2>
       <div class="mzp-l-card-third">
         <div class="mzp-c-card js-animate">
-          {{ picture('search', 32, 32) }}
+          {{ download_picture('search', 32, 32) }}
           <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-search-smarter') }}</h3>
           <ul class="mzp-u-list-styled">
             <li>{{ ftl('firefox-desktop-download-search-from-address') }}</li>
@@ -279,7 +292,7 @@
         </div>
 
         <div class="mzp-c-card js-animate">
-          {{ picture('highlights', 32, 32) }}
+          {{ download_picture('highlights', 32, 32) }}
           <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-boost-your') }}</h3>
           <ul class="mzp-u-list-styled">
             <li>{{ ftl('firefox-desktop-download-works-with-google') }}</li>
@@ -294,7 +307,7 @@
         </div>
 
         <div class="mzp-c-card js-animate">
-          {{ picture('picture-in-picture', 32, 32) }}
+          {{ download_picture('picture-in-picture', 32, 32) }}
           <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-stream-share-play') }}</h3>
           <ul class="mzp-u-list-styled">
             <li>{{ ftl('firefox-desktop-download-block-autoplay-of') }}</li>
@@ -305,7 +318,7 @@
         </div>
 
         <div class="mzp-c-card js-animate">
-          {{ picture('privacy', 32, 32) }}
+          {{ download_picture('privacy', 32, 32) }}
           <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-protect-your-privacy') }}</h3>
           <ul class="mzp-u-list-styled">
             <li>{{ ftl('firefox-desktop-download-third-party-cookie') }}</li>
@@ -317,7 +330,7 @@
         </div>
 
         <div class="mzp-c-card js-animate">
-          {{ picture('passwords', 32, 32) }}
+          {{ download_picture('passwords', 32, 32) }}
           <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-secure-your-personal') }}</h3>
           <ul class="mzp-u-list-styled">
             <li>{{ ftl('firefox-desktop-download-breached-website-alerts') }}</li>
@@ -329,7 +342,7 @@
         </div>
 
         <div class="mzp-c-card js-animate">
-          {{ picture('customize', 32, 32) }}
+          {{ download_picture('customize', 32, 32) }}
           <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-customize-your-browser') }}</h3>
           <ul class="mzp-u-list-styled">
             <li>{{ ftl('firefox-desktop-download-themes') }}</li>
@@ -422,41 +435,41 @@
     <div class="mzp-l-card-third">
 
       <div class="mzp-c-card js-animate">
-        {{ picture('goog', '140', 138) }}
+        {{ download_picture('goog', '140', 138) }}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-works-with-google') }}</h3>
         <p>{{ ftl('firefox-desktop-download-all-your-favourite') }}</p>
       </div>
 
       <div class="mzp-c-card js-animate">
-        {{ picture('contain-mr1', '131', 138) }}
+        {{ download_picture('contain-mr1', '131', 138) }}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-facebook-container') }}</h3>
         {% set addon_attrs = 'href="https://addons.mozilla.org/firefox/addon/facebook-container/%s" rel="external noopener" data-cta-type="link" data-cta-text="Download this browser extension"'|safe|format(referrals) %}
         <p>{{ ftl('firefox-desktop-download-download-this-browser', attrs=addon_attrs) }}</p>
       </div>
 
       <div class="mzp-c-card js-animate">
-        {{ picture('sync', '171', 138) }}
+        {{ download_picture('sync', '171', 138) }}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-sync-your-devices') }}</h3>
         {% set available_attrs = fxa_link_fragment(entrypoint='mozilla.org-firefox-desktop') %}
         <p>{{ ftl('firefox-desktop-download-firefox-is-available', attrs=available_attrs) }}</p>
       </div>
 
       <div class="mzp-c-card js-animate">
-        {{ picture('screenshots-mr1', '131', 138) }}
+        {{ download_picture('screenshots-mr1', '131', 138) }}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-screenshots') }}</h3>
         {% set screenshot_attrs = 'href="https://support.mozilla.org/kb/firefox-screenshots%s" rel="external noopener" data-cta-type="link" data-cta-text="screenshot"'|safe|format(referrals) %}
         <p>{{ ftl('firefox-desktop-download-grab-a-high', attrs=screenshot_attrs) }}</p>
       </div>
 
       <div class="mzp-c-card js-animate">
-        {{ picture('etp', '134', 138) }}
+        {{ download_picture('etp', '134', 138) }}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-enhanced-tracking-protection') }}</h3>
         {% set automatically_attrs = 'href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop%s" rel="external noopener" data-cta-type="link" data-cta-text="block many trackers"'|safe|format(referrals) %}
         <p>{{ ftl('firefox-desktop-download-firefox-automatically', attrs=automatically_attrs) }}</p>
       </div>
 
       <div class="mzp-c-card js-animate">
-        {{ picture('pinp-mr1', '143', 138) }}
+        {{ download_picture('pinp-mr1', '143', 138) }}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-picture-in-picture') }}</h3>
         <p>{{ ftl('firefox-desktop-download-from-watching-a') }}</p>
       </div>
