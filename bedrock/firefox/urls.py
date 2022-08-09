@@ -230,7 +230,7 @@ urlpatterns = (
     # Issue 9957
     page("firefox/more/misinformation/", "firefox/more/misinformation.html", ftl_files="firefox/more/misinformation"),
     # Firefox for Families campaign, Issue #12004
-    page("firefox/families/", "firefox/campaign/families/index.html", active_locales=["en-US"]),
+    page("firefox/families/", "firefox/campaign/families/index.html"),
 )
 
 # Contentful
