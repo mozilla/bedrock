@@ -80,6 +80,7 @@ def test_302_urls(url, base_url, follow_redirects=False):
 @pytest.mark.parametrize(
     "url,accept_language_header",
     [
+        # Mozorg privacy
         ("/en-US/privacy/", None),
         ("/en-US/privacy/", "*"),
         ("/en-US/privacy/", "de"),
@@ -88,9 +89,77 @@ def test_302_urls(url, base_url, follow_redirects=False):
         ("/privacy/", "*"),
         ("/privacy/", "de"),
         ("/privacy/", "br-PT"),
+        # Fx privacy
+        ("/en-US/privacy/firefox/", None),
+        ("/en-US/privacy/firefox/", "*"),
+        ("/en-US/privacy/firefox/", "de"),
+        ("/en-US/privacy/firefox/", "br-PT"),
+        ("/privacy/firefox/", None),
+        ("/privacy/firefox/", "*"),
+        ("/privacy/firefox/", "de"),
+        ("/privacy/firefox/", "br-PT"),
+        # Focus privacy
+        ("/en-US/privacy/firefox-focus/", None),
+        ("/en-US/privacy/firefox-focus/", "*"),
+        ("/en-US/privacy/firefox-focus/", "de"),
+        ("/en-US/privacy/firefox-focus/", "br-PT"),
+        ("/privacy/firefox-focus/", None),
+        ("/privacy/firefox-focus/", "*"),
+        ("/privacy/firefox-focus/", "de"),
+        ("/privacy/firefox-focus/", "br-PT"),
+        # Mozilla VPN privacy
+        ("/en-US/privacy/mozilla-vpn/", None),
+        ("/en-US/privacy/mozilla-vpn/", "*"),
+        ("/en-US/privacy/mozilla-vpn/", "de"),
+        ("/en-US/privacy/mozilla-vpn/", "br-PT"),
+        ("/privacy/mozilla-vpn/", None),
+        ("/privacy/mozilla-vpn/", "*"),
+        ("/privacy/mozilla-vpn/", "de"),
+        ("/privacy/mozilla-vpn/", "br-PT"),
     ],
 )
-def test_privacy_policy_always_200_OK(
+def test_privacy_policies_always_200_OK(
+    url,
+    base_url,
+    accept_language_header,
+):
+    """Smoke test to ensure that our privacy pages always
+    ultimately return a 200 OK response, even if the client
+    requesting them lacks an Accept-Language header and there
+    is no locale in the actual URL
+    """
+
+    req_headers = {}
+    if accept_language_header:
+        req_headers["Accept-Language"] = accept_language_header
+
+    assert_valid_url(
+        url,
+        base_url=base_url,
+        req_headers=req_headers,
+        follow_redirects=True,
+        final_status_code=requests.codes.ok,
+    )
+
+
+@pytest.mark.headless
+@pytest.mark.nondestructive
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "url,accept_language_header",
+    [
+        # Klar privacy - DE only
+        ("/de/privacy/firefox-klar/", None),
+        ("/de/privacy/firefox-klar/", "*"),
+        ("/de/privacy/firefox-klar/", "en-US"),
+        ("/de/privacy/firefox-klar/", "br-PT"),
+        ("/privacy/firefox-klar/", None),  # ends up on /en-US/firefox-focus
+        ("/privacy/firefox-klar/", "*"),  # ends up on /en-US/firefox-focus
+        ("/privacy/firefox-klar/", "en-US"),  # ends up on /en-US/firefox-focus
+        ("/privacy/firefox-klar/", "br-PT"),  # ends up on /en-US/firefox-focus
+    ],
+)
+def test_privacy_policies_always_200_OK__special_cases(
     url,
     base_url,
     accept_language_header,
