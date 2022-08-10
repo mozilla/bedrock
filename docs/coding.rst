@@ -1843,7 +1843,7 @@ Card
 
     Example: ``image_width='153'``
 
-- include_highres_image
+- include_highres_image (deprecated)
     Boolean that determines whether the image can also appear in high res.
 
     Default: ``False``
