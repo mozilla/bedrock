@@ -1251,7 +1251,7 @@ Picto
     Example: ``image_url='img/icons/mountain-purple.svg'``
 
 - image_width
-    Number indicating the wifth of an image.
+    Number indicating the width of an image.
 
     Default: ``64``
 
