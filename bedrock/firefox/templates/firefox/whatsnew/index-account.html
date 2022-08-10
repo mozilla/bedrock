@@ -4,8 +4,6 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros.html" import send_to_device with context %}
-
 {% extends "firefox/whatsnew/base.html" %}
 
 {% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
@@ -62,7 +60,7 @@
         {# Only certain locales get send_to_device, else they see a QRCode. #}
         {% if show_send_to_device %}
           <div id="send-to-device-wrapper" class="primary-cta">
-            {{ send_to_device(include_title=False, message_set='fx-whatsnew', spinner_color='#fff;', class='vertical') }}
+            {{ send_to_device(include_title=False, message_set='fx-whatsnew', spinner_color='#fff;') }}
           </div>
         {% else %}
           <div id="qr-wrapper" class="primary-cta">

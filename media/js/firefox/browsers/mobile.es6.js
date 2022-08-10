@@ -4,10 +4,11 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-(function () {
-    'use strict';
+import SendToDevice from '../../base/send-to-device.es6';
 
-    // initialize send to device widget
-    var form = new Mozilla.SendToDevice();
+const s2dHero = document.getElementById('s2d-hero');
+
+if (s2dHero) {
+    const form = new SendToDevice('s2d-hero');
     form.init();
-})();
+}

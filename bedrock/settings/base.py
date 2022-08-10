@@ -725,6 +725,7 @@ CONTRIBUTE_NUMBERS = {
 BASKET_URL = config("BASKET_URL", default="https://basket.mozilla.org")
 BASKET_API_KEY = config("BASKET_API_KEY", default="")
 BASKET_TIMEOUT = config("BASKET_TIMEOUT", parser=int, default="10")
+BASKET_SUBSCRIBE_URL = BASKET_URL + "/news/subscribe/"
 
 BOUNCER_URL = config("BOUNCER_URL", default="https://download.mozilla.org/")
 

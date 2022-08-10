@@ -7,10 +7,27 @@
 /**
  * Reallly primative validation (e.g a@a)
  * matches built-in validation in Firefox
- * @param {email}
+ * @param {String} email
+ * @returns {Boolean}
  */
 function checkEmailValidity(email) {
     return /\S+@\S+/.test(email);
 }
 
-export { checkEmailValidity };
+/**
+ * Helper function to serialize form data for XHR request.
+ * @param {HTMLElement} form
+ * @returns {String} query string
+ */
+function serialize(form) {
+    const q = [];
+    for (let i = 0; i < form.elements.length; i++) {
+        const elem = form.elements[i];
+        if (elem.name) {
+            q.push(elem.name + '=' + encodeURIComponent(elem.value));
+        }
+    }
+    return q.join('&');
+}
+
+export { checkEmailValidity, serialize };
