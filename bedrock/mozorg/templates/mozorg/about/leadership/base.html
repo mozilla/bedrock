@@ -1,0 +1,46 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import sidemenu_lists with context %}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% block page_title_prefix %}Mozilla Leadership{% endblock %}
+{% block body_class %}{{ super() }} about-leadership{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('about-leadership') }}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('about-leadership') }}
+{% endblock %}
+
+{% set navigation_bar = [
+  (url('mozorg.about.leadership.index'), 'executive-team', 'Leadership'),
+  (url('mozorg.about.leadership.index'), 'executive-team', 'Executive Team'),
+  (url('mozorg.about.leadership.senior'), 'senior-leadership', 'Senior Leadership'),
+  (url('mozorg.about.leadership.mofo'), 'mozilla-foundation', 'Mozilla Foundation'),
+  (url('mozorg.about.leadership.reps'), 'mozilla-reps', 'Mozilla Reps Council'),
+  (url('mozorg.about.leadership.boards'), 'boards', 'Boards of Directors'),
+] -%}
+
+{% block content %}
+<div id="main-content" class="mzp-l-content{% if self.side_nav()|trim|length %} mzp-has-sidebar mzp-l-sidebar-left{% endif %}">
+  {% block sidebar %}
+    <aside class="mzp-l-sidebar">
+      {% block side_nav %}
+        {{ sidemenu_lists([navigation_bar]) }}
+      {% endblock %}
+    </aside>
+  {% endblock %}
+
+  <main class="mzp-l-main">
+    {% block main_content %}{% endblock %}
+  </main>
+</div>
+<div class="mzp-u-modal-content"></div>
+{% endblock %}
