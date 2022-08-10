@@ -68,7 +68,8 @@ class BasicAuthMiddleware:
     def __init__(self, get_response=None):
         if not settings.BASIC_AUTH_CREDS:
             raise MiddlewareNotUsed
-        self.get_response = None
+
+        self.get_response = get_response
 
     def __call__(self, request):
         response = self.process_request(request)
