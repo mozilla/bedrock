@@ -2,16 +2,9 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-
-# With apologies, but tests/ is not a Python module and this avoids
-# duplicating the code for assert_valid_url
-import sys
-
-sys.path.append("../../redirects")  # isort: skip
-
-import pytest  # noqa: E402
-import requests  # noqa: E402
-from redirects.base import assert_valid_url  # noqa: E402
+import pytest
+import requests
+from redirects.base import assert_valid_url
 
 
 @pytest.mark.headless
