@@ -126,7 +126,9 @@ main .mzp-l-content {
     }
 
     .mzp-c-emphasis-box {
-        align-self: center;
+        margin: 0 auto $spacing-xl;
+        max-width: 350px;
+        padding: $spacing-lg $spacing-2xl;
     }
 }
 

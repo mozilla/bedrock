@@ -12,6 +12,8 @@
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-emphasis-box') }}
   {{ css_bundle('firefox-mobile') }}
 
   {% if show_firefox_app_store_banner %}
