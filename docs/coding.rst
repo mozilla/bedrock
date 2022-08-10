@@ -1168,83 +1168,122 @@ Picto
 
 .. code-block:: html
 
+    {% from "macros-protocol.html" import picto with context %}
+
+**CSS bundle**
+
+.. code-block:: html
+
     {% block page_css %}
         {{ css_bundle('protocol-picto') }}
     {% endblock %}
 
 **Macro parameters**
 
-- title
-    String indicating heading text (usually a translation id wrapped in ftl function)
+- base_el
+    The element the content of the picto will be read as in HTML. For example, if the Picto macro is wrapped in a ul tag, the base_el would be an li tag.
 
-    Default: None
+    Default: ``div``
 
-    Example: ``title=ftl('misinformation-why-trust-firefox')``
-
-- heading_level
-    Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling.
-
-    Default: 3
-
-    Example: ``heading_level=2``
+    Example: ``base_el='li'``
 
 - body
     A boolean attribute. If true, it will show the contents of the card, if false, it will hide the contents.
 
-    Default: False
+    Default: ``False``
 
     Example: ``body=True``
-
-- image_url
-    image location to be used. Start it off with ‘img/…’.
-
-    Default: ''
-
-    Example: ``image_url='img/icons/mountain-purple.svg'``
-
-- base_el
-    The element the content of the picto will be read as in HTML. For example, if the Picto macro is wrapped in a ul tag, the base_el would be an li tag.
-
-    Default: div
-
-    Example: ``base_el='li'``
 
 - class
     String adding class(es) to the base el tag.
 
-    Default: None
+    Default: ``None``
 
     Example: ``class='trust'``
 
+- heading_level
+    Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling.
+
+    Default: ``3``
+
+    Example: ``heading_level=2``
+
+- image_alt
+    Alt text for the images to be used.
+
+    Default: ``''``
+
+    Example: ``image_alt='Red Panda'``
+
+- image_height
+    Number indicating the height of an image.
+
+    Default: ``None``
+
+    Example: ``image_height='153'``
+
+- image_sizes
+    The ``sizes`` attribute for a responsive image.
+
+    Default: ``None``
+
+    Example: See responsive images docs above.
+
+- image_sources
+    A list of ``<source>`` elements for a responsive ``<picture>`` image.
+
+    Default: ``None``
+
+    Example: See responsive images docs above.
+
+- image_srcset
+    The ``srcset`` attribute for a responsive image.
+
+    Default: ``None``
+
+    Example: See responsive images docs above.
+
+- image_url
+    The default image to be used. Start it off with ``img/``.
+
+    Default: ``''``
+
+    Example: ``image_url='img/icons/mountain-purple.svg'``
+
 - image_width
-    Number indicating width of image.
+    Number indicating the wifth of an image.
 
-    Default: 64
+    Default: ``64``
 
-    Example: ``image_width='153px'``
+    Example: ``image_width='153'``
 
-- include_highres_image
+- include_highres_image (deprecated)
     Boolean that determines whether the image can also appear in high res.
 
-    Default: False
+    Default: ``False``
 
     Example: ``include_highres_image=True``
 
 - l10n_image
     Boolean to indicate if image has translatable text.
 
-    Default: False
+    Default: ``False``
 
     Example: ``l10n_image=True``
-
 
 - loading
     String to provide value for image loading attribute. This will use browser default ("eager") if not set. Lazy loading defers fetching of images to a browser decision based on user scroll and connection.
 
-    Default: None
+    Default: ``None``
 
     Example: ``loading='lazy'``
 
+- title
+    String indicating heading text (usually a translation id wrapped in ftl function)
+
+    Default: ``None``
+
+    Example: ``title=ftl('misinformation-why-trust-firefox')``
 
 
 Call out
@@ -1254,11 +1293,45 @@ Call out
 
 .. code-block:: html
 
+    {% from "macros-protocol.html" import call_out with context %}
+
+**CSS bundle**
+
+.. code-block:: html
+
     {% block page_css %}
         {{ css_bundle('protocol-call-out') }}
     {% endblock %}
 
 **Macro parameters**
+
+- desc
+    String indicating paragraph text (usually a translation id wrapped in ftl function).
+
+    Default: ``None``
+
+    Example: ``desc=ftl('firefox-channel-test-beta-versions-of-firefox-ios')``
+
+- class
+    String adding class(es) to the section tag.
+
+    Default: ``None``
+
+    Example: ``class='mzp-t-firefox ' + product_class``
+
+- include_cta
+    Boolean indicating whether or not to include the body of the macro call (usually a mix of text and html).
+
+    Default: ``None``
+
+    Example: ``include_cta=True``
+
+- heading_level
+    Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling.
+
+    Default: ``2``
+
+    Example: ``heading_level=1``
 
 - title
     **Required**. String indicating heading text (usually a translation id wrapped in ftl function).
@@ -1266,34 +1339,6 @@ Call out
     Default: N/A
 
     Example: ``title=ftl('firefox-privacy-hub-read-the-privacy-notice-for')``
-
-- desc
-    String indicating paragraph text (usually a translation id wrapped in ftl function).
-
-    Default: None
-
-    Example: ``desc=ftl('firefox-channel-test-beta-versions-of-firefox-ios')``
-
-- class
-    String adding class(es) to the section tag.
-
-    Default: None
-
-    Example: ``class='mzp-t-firefox ' + product_class``
-
-- include_cta
-    Boolean indicating whether or not to include the body of the macro call (usually a mix of text and html).
-
-    Default: None
-
-    Example: ``include_cta=True``
-
-- heading_level
-    Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling.
-
-    Default: 2
-
-    Example: ``heading_level=1``
 
 
 Split
@@ -1303,102 +1348,150 @@ Split
 
 .. code-block:: html
 
+    {% from "macros-protocol.html" import split with context %}
+
+**CSS bundle**
+
+.. code-block:: html
+
     {% block page_css %}
         {{ css_bundle('protocol-split') }}
     {% endblock %}
 
 **Macro parameters**
 
-- block_id
-    String providing id to the section tag (usually if it needs to be used as an in-page link).
-
-    Default: None
-
-    Example: ``id='nextgen``
-
 - base_el
     String for block HTML tag not required.
 
-    Default: section
+    Default: ``section``
 
     Example: ``base_el='aside'``
 
 - block_class
     String providing class(es) to the section tag.
 
-    Default: None
+    Default: ``None``
 
     Example: ``block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md``
 
-- theme_class
-    String providing theme class(es) to a container div tag inside the section.
+- block_id
+    String providing id to the section tag (usually if it needs to be used as an in-page link).
 
-    Default: None
+    Default: ``None``
 
-    Example: ``theme_class='mzp-t-dark'``
+    Example: ``id='nextgen``
 
 - body_class
     String providing class(es) to the body (text content) div inside the section.
 
-    Default: None
+    Default: ``None``
 
     Example: ``Not currently in use``
+
+- image_alt
+    Alt text for the images to be used.
+
+    Default: ``''``
+
+    Example: ``image_alt='Red Panda'``
+
+- image_height
+    Number indicating the height of an image.
+
+    Default: ``None``
+
+    Example: ``image_height='153'``
+
+- image_sizes
+    The ``sizes`` attribute for a responsive image.
+
+    Default: ``None``
+
+    Example: See responsive images docs above.
+
+- image_sources
+    A list of ``<source>`` elements for a responsive ``<picture>`` image.
+
+    Default: ``None``
+
+    Example: See responsive images docs above.
+
+- image_srcset
+    The ``srcset`` attribute for a responsive image.
+
+    Default: ``None``
+
+    Example: See responsive images docs above.
 
 - image_url
     Path to image location.
 
-    Default: None
+    Default: ``None``
 
     Example: ``image_url=’img/firefox/accounts/trailhead/value-respect.jpg’``
 
-- media_class
-    String providing class(es) to the media div inside the section.
+- image_width
+    Number indicating the width of an image.
 
-    Default: None
+    Default: ``None``
 
-    Example: ``media_class='mzp-l-split-h-center'``
+    Example: ``image_width='153'``
 
 - include_highres_image
     Boolean that determines whether the image can also appear in high res.
 
-    Default: False
+    Default: ``False``
 
     Example: ``include_highres_image=True``
 
 - l10n_image
     Boolean to indicate if image has translatable text.
 
-    Default: False
+    Default: ``False``
 
     Example: ``l10n_image=True``
-
-- image_alt
-    String providing alt text to the image.
-
-    Default: ''
-
-    Example: ``Not currently in use``
-
-- media_after
-    Boolean to determine if image appears before or after text when stacked on mobile size screens.
-
-    Default: False
-
-    Example: ``media_after=True``
-
-- media_include
-    Path to video media.
-
-    Default: None
-
-    Example: ``media_include='firefox/facebookcontainer/includes/video.html'``
 
 - loading
     String to provide value for image loading attribute. This will use browser default ("eager") if not set. Lazy loading defers fetching of images to a browser decision based on user scroll and connection.
 
-    Default: None
+    Default: ``None``
 
     Example: ``loading='lazy'``
+
+- media_after
+    Boolean to determine if image appears before or after text when stacked on mobile size screens.
+
+    Default: ``False``
+
+    Example: ``media_after=True``
+
+- media_class
+    String providing class(es) to the media div inside the section.
+
+    Default: ``None``
+
+    Example: ``media_class='mzp-l-split-h-center'``
+
+- media_include
+    Path to video media.
+
+    Default: ``None``
+
+    Example: ``media_include='firefox/facebookcontainer/includes/video.html'``
+
+- mobile_class
+    A special class specifically for Contentful, so content can be centered and/or the image can be hidden on mobile viewports.
+
+    Default: ``None``
+
+    Example: ``mobile_class='mzp-l-split-hide-media-on-sm-md'``
+
+- theme_class
+    String providing theme class(es) to a container div tag inside the section.
+
+    Default: ``None``
+
+    Example: ``theme_class='mzp-t-dark'``
 
 
 Billboard
@@ -1418,75 +1511,110 @@ Billboard
 
 **Macro parameters**
 
-- title
-    **Required**. String indicating heading text (usually a translation id wrapped in ftl function).
+- desc
+    **Required**.String indicating paragraph text (usually a translation id wrapped in ftl function).
 
-    Default: N/A
+    Default: ``''``
 
-    Example: ``title=ftl('about-the-mozilla-manifesto')``
+    Example: ``desc=ftl('about-the-principles-we-wrote-in')``
 
 - ga_title
     **Required**. String providing value for data-link-name attribute on cta.
 
-    Default: N/A
+    Default: ``''``
 
     Example: ``ga_title='The Mozilla Manifesto'``
 
-- desc
-    **Required**.String indicating paragraph text (usually a translation id wrapped in ftl function).
+- heading_level
+    Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling.
 
-    Default: N/A
+    Default: ``2``
 
-    Example: ``desc=ftl('about-the-principles-we-wrote-in')``
+    Example: ``heading_level=1``
 
-- link_cta
-    **Required**. String indicating link text (usually a translation id wrapped in an ftl function).
+- image_alt
+    Alt text for the images to be used.
 
-    Default: N/A
+    Default: ``''``
 
-    Example: ``link_cta=ftl('about-read-the-manifesto')``
+    Example: ``image_alt='Red Panda'``
 
-- link_url
-    **Required**. String or url helper function provides href value for cta link.
+- image_height
+    Number indicating the height of an image.
 
-    Default: N/A
+    Default: ``None``
 
-    Example: ``link_url=url('mozorg.about.manifesto')``
+    Example: ``image_height='153'``
+
+- image_sizes
+    The ``sizes`` attribute for a responsive image.
+
+    Default: ``None``
+
+    Example: See responsive images docs above.
+
+- image_sources
+    A list of ``<source>`` elements for a responsive ``<picture>`` image.
+
+    Default: ``None``
+
+    Example: See responsive images docs above.
+
+- image_srcset
+    The ``srcset`` attribute for a responsive image.
+
+    Default: ``None``
+
+    Example: See responsive images docs above.
 
 - image_url
     **Required**. Path to image location.
 
-    Default: N/A
+    Default: ``''``
 
     Example: ``image_url='img/home/2018/billboard-healthy-internet.png'``
 
 - include_highres_image
     Boolean that determines whether the image can also appear in high res.
 
-    Default: False
+    Default: ``False``
 
     Example: ``include_highres_image=True``
 
-- reverse
-    Uses default layout: mzp-l-billboard-rightReverse will switch to billboard (text) left.
+- link_cta
+    String indicating link text (usually a translation id wrapped in an ftl function).
 
-    Default: False
+    Default: ``None``
 
-    Example: ``reverse=True``
+    Example: ``link_cta=ftl('about-read-the-manifesto')``
 
-- heading_level
-    Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling.
+- link_url
+    String or url helper function provides href value for cta link.
 
-    Default: 2
+    Default: ``None``
 
-    Example: ``heading_level=1``
+    Example: ``link_url=url('mozorg.about.manifesto')``
 
 - loading
     String to provide value for image loading attribute. This will use browser default ("eager") if not set. Lazy loading defers fetching of images to a browser decision based on user scroll and connection.
 
-    Default: None
+    Default: ``None``
 
     Example: ``loading='lazy'``
+
+- reverse
+    Uses default layout: mzp-l-billboard-rightReverse will switch to billboard (text) left.
+
+    Default: ``False``
+
+    Example: ``reverse=True``
+
+- title
+    **Required**. String indicating heading text (usually a translation id wrapped in ftl function).
+
+    Default: ``''``
+
+    Example: ``title=ftl('about-the-mozilla-manifesto')``
 
 
 Feature Card
@@ -1598,85 +1726,175 @@ Card
 
 .. code-block:: html
 
+    {% from "macros-protocol.html" import card with context %}
+
+**CSS bundle**
+
+.. code-block:: html
+
     {% block page_css %}
-        {{ css_bundle('protocol-split') }}
+        {{ css_bundle('protocol-card') }}
     {% endblock %}
 
 **Macro parameters**
 
-- youtube_id
-    String indicating the Youtube ID found at the end of a Youtube video URL. Used when we are embedding a video to the card rather than an image.
+- aspect_ratio
+    String indicating size/aspect ratio of the card (make sure to have it even if it’s in a defined Card Layout.
 
-    Default: N/A
+    Default: ``mzp-has-aspect-3-2``
 
-    Example: ``youtube_id='aHpCLDQ_2ns'``
+    Example: ``aspect_ratio=’mzp-has-aspect-16-9’``
 
-- title
-    **Required**. String indicating heading text (usually a translation id wrapped in ftl function).
+- attributes
+    A generic parameter to add any extra attributes to the component, such as data or aria attributes. Note that the quotes will pass through unescaped.
 
-    Default: N/A
+    Default: ``None``
 
-    Example: ``title=ftl('about-the-mozilla-manifesto')``
+    Example: ``attributes='aria-role="menuitem"'``
+
+- class
+    String adding class(es) to the section tag.
+
+    Default: ``None``
+
+    Example: ``class=’mzp-c-card-large’``
+
+- cta
+    String adding optional call to action for the card.
+
+    Default: ``None``
+
+    Example: ``cta=ftl('ui-learn-more')``
+
+- desc
+    String indicating paragraph text (usually a translation id wrapped in ftl function).
+
+    Default: ``None``
+
+    Example: ``desc=ftl('about-the-principles-we-wrote-in')``
 
 - ga_title
     **Required**. String providing value for data-link-name attribute on cta.
 
-    Default: N/A
+    Default: ``''``
 
     Example: ``ga_title='The Mozilla Manifesto'``
 
-- desc
-    **Required**. String indicating paragraph text (usually a translation id wrapped in ftl function).
+- heading_level
+    Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling.
 
-    Default: N/A
+    Default: ``3``
 
-    Example: ``desc=ftl('about-the-principles-we-wrote-in')``
+    Example: ``heading_level=2``
 
-- aspect_ratio
-    String indicating size/aspect ratio of the card (make sure to have it even if it’s in a defined Card Layout.
+- highres_image_url
+    A string for Contentful to provide a high resolution image URL.
 
-    Default: N/A
+    Default: ``None``
 
-    Example: ``aspect_ratio=’mzp-has-aspect-16-9’``
+    Example: ``https://example.com/path/to/some/highres-image.png``
 
-- link_url
-    **Required**. String or url helper function provides href value for cta link.
+- image_alt
+    Alt text for the images to be used.
 
-    Default: N/A
+    Default: ``''``
 
-    Example: ``link_url=url('mozorg.about.manifesto')``
+    Example: ``image_alt='Red Panda'``
+
+- image_height
+    Number indicating the height of an image.
+
+    Default: ``None``
+
+    Example: ``image_height='153'``
+
+- image_sizes
+    The ``sizes`` attribute for a responsive image.
+
+    Default: ``None``
+
+    Example: See responsive images docs above.
+
+- image_sources
+    A list of ``<source>`` elements for a responsive ``<picture>`` image.
+
+    Default: ``None``
+
+    Example: See responsive images docs above.
+
+- image_srcset
+    The ``srcset`` attribute for a responsive image.
+
+    Default: ``None``
+
+    Example: See responsive images docs above.
 
 - image_url
     **Required**. Path to image location.
 
-    Default: N/A
+    Default: ``''``
 
     Example: ``image_url='img/home/2018/billboard-healthy-internet.png'``
 
-- include_highres_image
-    **Required**. Boolean that determines whether the image can also appear in high res.
+- image_width
+    Number indicating the width of an image.
 
-    Default: N/A
+    Default: ``None``
+
+    Example: ``image_width='153'``
+
+- include_highres_image
+    Boolean that determines whether the image can also appear in high res.
+
+    Default: ``False``
 
     Example: ``include_highres_image=True``
 
 - l10n_image
     Boolean to indicate if image has translatable text.
 
-    Default: False
+    Default: ``False``
 
     Example: ``l10n_image=True``
 
-- heading_level
-    Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling.
+- link_url
+    **Required**. String or url helper function provides href value for cta link.
 
-    Default: 3
+    Default: ``''``
 
-    Example: ``heading_level=2``
+    Example: ``link_url=url('mozorg.about.manifesto')``
 
-- attributes
-    A generic parameter to add any extra attributes to the component, such as data or aria attributes. Note that the quotes will pass through unescaped.
+- media_icon
+    An optional CSS class to display a media icon, indicating when card will play video when clicked.
 
-    Default: N/A
+    Default: ``None``
 
-    Example: ``attributes='aria-role="menuitem"'``
+    Example: ``media_icon=mzp-has-video``
+
+- meta
+    A string to display additional meta data for a card, such as a publish date.
+
+    Default: ``None``
+
+    Example: ``meta='6 days ago'``
+
+- tag_label
+    A string to display a card type label.
+
+    Default: ``None``
+
+    Example: ``tag_label='Video'``
+
+- title
+    **Required**. String indicating heading text (usually a translation id wrapped in ftl function).
+
+    Default: ``''``
+
+    Example: ``title=ftl('about-the-mozilla-manifesto')``
+
+- youtube_id
+    String indicating the Youtube ID found at the end of a Youtube video URL. Used when we are embedding a video to the card rather than an image.
+
+    Default: ``None``
+
+    Example: ``youtube_id='aHpCLDQ_2ns'``
