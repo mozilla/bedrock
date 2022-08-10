@@ -3,20 +3,19 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-import sys
-
-import pytest
-import requests
-from redirects.base import assert_valid_url
-
 # With apologies, but tests/ is not a Python module and this avoids
 # duplicating the code for assert_valid_url
-sys.path.append("../../redirects")
+import sys
+
+sys.path.append("../../redirects")  # isort: skip
+
+import pytest  # noqa: E402
+import requests  # noqa: E402
+from redirects.base import assert_valid_url  # noqa: E402
 
 
 @pytest.mark.headless
 @pytest.mark.nondestructive
-@pytest.mark.django_db
 @pytest.mark.parametrize(
     "url",
     [
@@ -63,7 +62,6 @@ def test_privacy_policies_always_200_OK(
 
 @pytest.mark.headless
 @pytest.mark.nondestructive
-@pytest.mark.django_db
 @pytest.mark.parametrize(
     "url,accept_language_header",
     [
