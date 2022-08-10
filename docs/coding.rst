@@ -1574,7 +1574,7 @@ Billboard
 
     Example: ``image_url='img/home/2018/billboard-healthy-internet.png'``
 
-- include_highres_image
+- include_highres_image (deprecated)
     Boolean that determines whether the image can also appear in high res.
 
     Default: ``False``
