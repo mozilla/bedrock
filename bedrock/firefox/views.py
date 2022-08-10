@@ -20,7 +20,6 @@ from django.utils.encoding import force_str
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_safe
 
-import basket
 import querystringsafe_base64
 from product_details.version_compare import Version
 from twilio.base.exceptions import TwilioRestException
@@ -36,7 +35,7 @@ from bedrock.firefox.firefox_details import (
     firefox_desktop,
     firefox_ios,
 )
-from bedrock.firefox.forms import SendToDeviceWidgetForm, SMSSendToDeviceForm
+from bedrock.firefox.forms import SMSSendToDeviceForm
 from bedrock.newsletter.forms import NewsletterFooterForm
 from bedrock.releasenotes import version_re
 from lib import l10n_utils
@@ -225,62 +224,6 @@ def sms_send_to_device_ajax(request):
         return JsonResponse({"success": False, "errors": ["Message failed to send"]})
 
     return JsonResponse({"success": True})
-
-
-@require_POST
-@csrf_exempt
-def send_to_device_ajax(request):
-    locale = l10n_utils.get_locale(request)
-    email = request.POST.get("s2d-email")
-
-    # ensure a value was entered in phone or email field
-    if not email:
-        return JsonResponse({"success": False, "errors": ["s2d-email"]})
-
-    # pull message set from POST (not part of form, so wont be in cleaned_data)
-    message_set = request.POST.get("message-set", "default")
-
-    # begin collecting data to pass to form constructor
-    data = {
-        "platform": request.POST.get("platform"),
-        "email": email,
-    }
-
-    # instantiate the form with processed POST data
-    form = SendToDeviceWidgetForm(data)
-
-    if form.is_valid():
-        email = form.cleaned_data.get("email")
-        platform = form.cleaned_data.get("platform")
-
-        # if no platform specified, default to 'all'
-        if not platform:
-            platform = "all"
-
-        # ensure we have a valid message set. if not, fall back to default
-        if message_set not in SEND_TO_DEVICE_MESSAGE_SETS:
-            MESSAGES = SEND_TO_DEVICE_MESSAGE_SETS["default"]
-        else:
-            MESSAGES = SEND_TO_DEVICE_MESSAGE_SETS[message_set]
-
-        if platform in MESSAGES["email"]:
-            try:
-                basket.subscribe(
-                    email,
-                    MESSAGES["email"][platform],
-                    source_url=request.POST.get("source-url"),
-                    lang=locale,
-                )
-            except basket.BasketException:
-                return JsonResponse({"success": False, "errors": ["system"]}, status=400)
-        else:
-            return JsonResponse({"success": False, "errors": ["platform"]})
-
-        resp_data = {"success": True}
-    else:
-        resp_data = {"success": False, "errors": list(form.errors)}
-
-    return JsonResponse(resp_data)
 
 
 @require_safe

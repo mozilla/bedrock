@@ -1250,16 +1250,16 @@
     {
       "files": [
         "protocol/js/protocol-modal.js",
-        "js/base/send-to-device.js",
-        "js/firefox/welcome/welcome4.js"
+        "js/base/send-to-device.es6.js",
+        "js/firefox/welcome/welcome4.es6.js"
       ],
       "name": "firefox_welcome_page4"
     },
     {
       "files": [
         "protocol/js/protocol-modal.js",
-        "js/base/send-to-device.js",
-        "js/firefox/welcome/welcome6.js"
+        "js/base/send-to-device.es6.js",
+        "js/firefox/welcome/welcome6.es6.js"
       ],
       "name": "firefox_welcome_page6"
     },
@@ -1452,15 +1452,15 @@
     },
     {
       "files": [
-        "js/base/send-to-device.js",
-        "js/firefox/mobile/mobile.js"
+        "js/base/send-to-device.es6.js",
+        "js/firefox/mobile/mobile.es6.js"
       ],
       "name": "firefox-mobile"
     },
     {
       "files": [
-        "js/base/send-to-device.js",
-        "js/firefox/browsers/mobile.js"
+        "js/base/send-to-device.es6.js",
+        "js/firefox/browsers/mobile.es6.js"
       ],
       "name": "firefox-browsers-mobile"
     },
@@ -1479,15 +1479,15 @@
     },
     {
       "files": [
-        "js/base/send-to-device.js",
-        "js/firefox/browsers/mobile-compare.js"
+        "js/base/send-to-device.es6.js",
+        "js/firefox/browsers/mobile-compare.es6.js"
       ],
       "name": "firefox-browsers-mobile-compare"
     },
     {
       "files": [
-        "js/base/send-to-device.js",
-        "js/firefox/mobile/get-app.js"
+        "js/base/send-to-device.es6.js",
+        "js/firefox/mobile/get-app.es6.js"
       ],
       "name": "firefox-mobile-get-app"
     },
@@ -1611,9 +1611,9 @@
     },
     {
       "files": [
-        "js/base/send-to-device.js",
+        "js/base/send-to-device.es6.js",
         "js/firefox/whatsnew/up-to-date.js",
-        "js/firefox/whatsnew/whatsnew.js"
+        "js/firefox/whatsnew/whatsnew.es6.js"
       ],
       "name": "firefox_whatsnew"
     },
@@ -1634,8 +1634,8 @@
         "js/firefox/whatsnew/up-to-date.js",
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
-        "js/base/send-to-device.js",
-        "js/firefox/whatsnew/whatsnew-account.js"
+        "js/base/send-to-device.es6.js",
+        "js/firefox/whatsnew/whatsnew.es6.js"
       ],
       "name": "firefox_whatsnew_account"
     },

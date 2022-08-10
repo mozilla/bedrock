@@ -32,7 +32,6 @@ module.exports = function (config) {
             'media/js/base/mozilla-fxa.js',
             'media/js/base/mozilla-pixel.js',
             'media/js/base/mozilla-smoothscroll.js',
-            'media/js/base/send-to-device.js',
             'media/js/base/stub-attribution.js',
             'media/js/firefox/all/all-downloads-unified.js',
             'media/js/firefox/new/common/thanks.js',

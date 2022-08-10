@@ -6,7 +6,9 @@ from urllib.parse import parse_qs, urlparse
 
 from django.conf import settings
 from django.test.client import RequestFactory
+from django.test.utils import override_settings
 
+import pytest
 from django_jinja.backend import Jinja2
 from pyquery import PyQuery as pq
 
@@ -14,6 +16,8 @@ from bedrock.mozorg.tests import TestCase
 from lib.l10n_utils.fluent import fluent_l10n
 
 jinja_env = Jinja2.get_default()
+
+TEST_BASKET_URL = "https://basket.mozilla.org"
 
 
 def render(s, context=None):
@@ -527,3 +531,108 @@ class TestFirefoxURL(TestCase):
         assert self._render("android", "notes", "release").endswith("/firefox/android/notes/")
         assert self._render("android", "notes", "beta").endswith("/firefox/android/beta/notes/")
         assert self._render("android", "notes", "alpha").endswith("/firefox/android/aurora/notes/")
+
+
+@pytest.mark.parametrize(
+    "test_input, expected",
+    [
+        (
+            "",
+            {"newsletter_id": "download-firefox-mobile"},
+        ),
+        (
+            "platform='android'",
+            {"newsletter_id": "download-firefox-android"},
+        ),
+        (
+            "platform='ios'",
+            {"newsletter_id": "download-firefox-ios"},
+        ),
+        (
+            "platform='all'",
+            {"newsletter_id": "download-firefox-mobile"},
+        ),
+        (
+            "message_set='fx-android', platform='android'",
+            {"newsletter_id": "get-android-embed"},
+        ),
+        (
+            "message_set='fx-android', platform='ios'",
+            {"newsletter_id": "download-firefox-ios"},
+        ),
+        (
+            "message_set='fx-android'",
+            {"newsletter_id": "download-firefox-mobile"},
+        ),
+        (
+            "message_set='fx-mobile-download-desktop'",
+            {"newsletter_id": "download-firefox-mobile-reco"},
+        ),
+        (
+            "message_set='fx-mobile-download-desktop-experiment'",
+            {"newsletter_id": "download-firefox-mobile-reco-exp"},
+        ),
+        (
+            "message_set='fx-mobile-download-desktop-reco-exp-a'",
+            {"newsletter_id": "download-firefox-mobile-reco-exp-a"},
+        ),
+        (
+            "message_set='fx-mobile-download-desktop-reco-exp-b'",
+            {"newsletter_id": "download-firefox-mobile-reco-exp-b"},
+        ),
+        (
+            "message_set='fx-mobile-download-desktop-reco-exp-c'",
+            {"newsletter_id": "download-firefox-mobile-reco-exp-c"},
+        ),
+        (
+            "message_set='fx-mobile-ios-twilio-experiment'",
+            {"newsletter_id": "download-firefox-ios-twilio-experiment"},
+        ),
+        (
+            "message_set='fx-whatsnew'",
+            {"newsletter_id": "download-firefox-mobile-whatsnew"},
+        ),
+        (
+            "message_set='fx-focus'",
+            {"newsletter_id": "download-focus-mobile-whatsnew"},
+        ),
+        (
+            "message_set='fx-klar'",
+            {"newsletter_id": "download-klar-mobile-whatsnew"},
+        ),
+        (
+            "message_set='download-firefox-rocket'",
+            {"newsletter_id": "download-firefox-rocket"},
+        ),
+        (
+            "message_set='firefox-mobile-welcome'",
+            {"newsletter_id": "firefox-mobile-welcome"},
+        ),
+        (
+            "message_set='lockwise-welcome-download'",
+            {"newsletter_id": "lockwise-welcome-download"},
+        ),
+    ],
+)
+@override_settings(BASKET_URL=TEST_BASKET_URL)
+def test_send_to_device_form(test_input, expected):
+    locale = "en-US"
+    request = RequestFactory().get("/firefox/browsers/mobile/")
+    request.locale = locale
+    markup = render(
+        "{{{{ send_to_device({0}) }}}}".format(test_input),
+        {"request": request, "fluent_l10n": fluent_l10n([locale, "en"], settings.FLUENT_DEFAULT_FILES)},
+    )
+    doc = pq(markup)
+
+    action = doc(".send-to-device-form").attr("action")
+    assert action == "https://basket.mozilla.org/news/subscribe/"
+
+    source_url = doc("input[name='source-url']").val()
+    assert source_url.endswith("/firefox/browsers/mobile/")
+
+    lang = doc("input[name='lang']").val()
+    assert lang == "en-US"
+
+    newsletter_id = doc("input[name='newsletters']").val()
+    assert newsletter_id == expected["newsletter_id"]

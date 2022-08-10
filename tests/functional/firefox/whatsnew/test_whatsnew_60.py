@@ -30,7 +30,7 @@ def test_send_to_device_success(base_url, selenium):
 def test_send_to_device_failure(base_url, selenium):
     page = FirefoxWhatsNew60Page(selenium, base_url, params="?signed-in=true").open()
     send_to_device = page.send_to_device
-    send_to_device.type_email("invalid@email")
+    send_to_device.type_email("failure@example.com")
     send_to_device.click_send(expected_result="error")
     assert send_to_device.is_form_error_displayed
 

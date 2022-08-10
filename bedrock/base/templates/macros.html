@@ -53,65 +53,6 @@
 </a>
 {%- endmacro %}
 
-
-{# Docs: https://bedrock.readthedocs.io/en/latest/send-to-device.html #}
-{% macro send_to_device(platform='all', product='firefox', message_set='default', id='send-to-device', class='horizontal', include_title=True, title_text=None, input_label=None, legal_note_email=None, spinner_color='#000', button_class=None) %}
-  <section id="{{ id }}" class="send-to-device {{ class }}" data-spinner-color="{{ spinner_color }}">
-    <div class="form-container">
-      {% if include_title %}
-        <h2 class="form-heading">
-        {% if title_text %}
-          {{ title_text }}
-        {% else %}
-          {{ ftl('send-to-device-send-firefox') }}
-        {% endif %}
-        </h2>
-      {% endif %}
-      <h2 class="mzp-u-title-xs thank-you hidden">{{ ftl('send-to-device-your-download-link') }}</h2>
-      <form class="send-to-device-form" action="{{ url('firefox.send-to-device-post') }}" method="post">
-        <ul class="mzp-c-form-errors hidden">
-          <li class="email">{{ ftl('send-to-device-please-enter-an-email') }}</li>
-          <li class="system">{{ ftl('send-to-device-an-error-occured') }}</li>
-        </ul>
-        <div class="send-to-device-form-fields">
-          <div class="platform-container">
-            <input type="hidden" name="platform" value="{{ platform }}">
-            <input type="hidden" name="source-url" value="{{ request.build_absolute_uri(request.path) }}">
-            <input type="hidden" name="message-set" value="{{ message_set }}">
-            <input type="hidden" name="product" value="{{ product }}">
-          </div>
-          <div class="mzp-c-field mzp-l-stretch">
-            <label class="mzp-c-field-label" for="{{ id }}-input">
-              {% if input_label %}
-                {{ input_label }}
-              {% else %}
-                {{ ftl('send-to-device-enter-your-email') }}
-              {% endif %}
-            </label>
-            <input id="{{ id }}-input" class="mzp-c-field-control send-to-device-input" name="s2d-email" type="text" required>
-          </div>
-          <div class="mzp-c-button-container mzp-l-stretch">
-            <button type="submit" class="button mzp-c-button {% if button_class %} {{ button_class }} {% else %} mzp-t-product {% endif %}">{{ ftl('send-to-device-send') }}</button>
-          </div>
-          <p class="mzp-c-button-info email">
-            {% if legal_note_email %}
-              {{ legal_note_email }}
-            {% else %}
-              {{ ftl('send-to-device-intended-recipient-email') }}
-            {% endif %}
-            <a href="{{ url('privacy.notices.websites') }}#campaigns" class="more">{{ ftl('ui-learn-more') }}</a>
-          </p>
-        </div>
-        <div class="thank-you hidden">
-          <p class="email">{{ ftl('send-to-device-check-your-device-email') }}</p>
-          <a href="#" role="button" class="more send-another">{{ ftl('send-to-device-send-to-another') }}</a>
-        </div>
-        <div class="loading-spinner"></div>
-      </form>
-    </div>
-  </section>
-{%- endmacro %}
-
 {# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#signup-form #}
 {% macro fxa_email_form(entrypoint, entrypoint_experiment, entrypoint_variation, context=None, utm_campaign=None, utm_content=None, utm_term=None, style=None, class_name='fxa-email-form', form_title=None, intro_text=none, button_text=None, button_class='mzp-c-button mzp-t-product') -%}
   <form action="{{ settings.FXA_ENDPOINT }}" id="fxa-email-form" class="mzp-c-form {{ class_name }}">

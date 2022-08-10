@@ -1,0 +1,59 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<section id="{{ dom_id }}" class="send-to-device {{ class_name }}" data-spinner-color="{{ spinner_color }}">
+  <div class="form-container">
+    {% if include_title %}
+      <h2 class="form-heading">
+      {% if title_text %}
+        {{ title_text }}
+      {% else %}
+        {{ ftl('send-to-device-send-firefox') }}
+      {% endif %}
+      </h2>
+    {% endif %}
+    <h2 class="mzp-u-title-xs thank-you hidden">{{ ftl('send-to-device-your-download-link') }}</h2>
+    <form class="send-to-device-form" action="{{ basket_url }}" method="post">
+      <p class="mzp-c-form-errors email hidden">{{ ftl('send-to-device-please-enter-an-email') }}</p>
+      <p class="mzp-c-form-errors system hidden">{{ ftl('send-to-device-an-error-occured') }}</p>
+      <div class="send-to-device-form-fields">
+        <div class="platform-container">
+          <input type="hidden" name="newsletters" value="{{ newsletters }}">
+          <input type="hidden" name="source-url" value="{{ request.build_absolute_uri(request.path) }}">
+          <input type="hidden" name="lang" value="{{ LANG }}">
+        </div>
+        <div class="mzp-c-field mzp-l-stretch">
+          <label class="mzp-c-field-label" for="{{ dom_id }}-input">
+            {% if input_label %}
+              {{ input_label }}
+            {% else %}
+              {{ ftl('send-to-device-enter-your-email') }}
+            {% endif %}
+          </label>
+          <input id="{{ dom_id }}-input" class="mzp-c-field-control send-to-device-input" name="email" type="text" required>
+        </div>
+        <div class="mzp-c-button-container mzp-l-stretch">
+          <button type="submit" class="button mzp-c-button {% if button_class %} {{ button_class }} {% else %} mzp-t-product {% endif %}">
+            {{ ftl('send-to-device-send') }}
+          </button>
+        </div>
+        <p class="mzp-c-button-info email">
+          {% if legal_note_email %}
+            {{ legal_note_email }}
+          {% else %}
+            {{ ftl('send-to-device-intended-recipient-email') }}
+          {% endif %}
+          <a href="{{ url('privacy.notices.websites') }}#campaigns" class="more">{{ ftl('ui-learn-more') }}</a>
+        </p>
+      </div>
+      <div class="thank-you hidden">
+        <p class="email">{{ ftl('send-to-device-check-your-device-email') }}</p>
+        <a href="#" role="button" class="more send-another">{{ ftl('send-to-device-send-to-another') }}</a>
+      </div>
+      <div class="loading-spinner"></div>
+    </form>
+  </div>
+</section>
