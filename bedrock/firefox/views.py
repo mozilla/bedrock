@@ -1059,7 +1059,9 @@ class FirefoxMobileView(L10nTemplateView):
     ]
 
     def get_template_names(self):
-        if ftl_file_is_active("firefox/browsers/mobile/index"):
+        experience = self.request.GET.get("xv", None)
+
+        if ftl_file_is_active("firefox/browsers/mobile/index") and experience != "legacy":
             template = "firefox/browsers/mobile/index.html"
         else:
             template = "firefox/mobile/index.html"

@@ -789,3 +789,34 @@ class TestSMSSendToDevice(TestCase):
         data = resp.json()
         assert not data["success"]
         assert data["errors"] == ["SMS not configured"]
+
+
+@override_settings(DEV=False)
+@patch("bedrock.firefox.views.l10n_utils.render", return_value=HttpResponse())
+class TestFirefoxMobile(TestCase):
+    @patch.object(views, "ftl_file_is_active", lambda *x: True)
+    def test_landing_template(self, render_mock):
+        req = RequestFactory().get("/firefox/browsers/mobile/")
+        req.locale = "en-US"
+        view = views.FirefoxMobileView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/browsers/mobile/index.html"]
+
+    @patch.object(views, "ftl_file_is_active", lambda *x: False)
+    def test_legacy_template(self, render_mock):
+        req = RequestFactory().get("/firefox/browsers/mobile/")
+        req.locale = "en-US"
+        view = views.FirefoxMobileView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/mobile/index.html"]
+
+    @patch.object(views, "ftl_file_is_active", lambda *x: True)
+    def test_legacy_template_param(self, render_mock):
+        req = RequestFactory().get("/firefox/browsers/mobile/?xv=legacy")
+        req.locale = "en-US"
+        view = views.FirefoxMobileView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/mobile/index.html"]
