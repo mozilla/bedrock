@@ -1603,7 +1603,7 @@ Billboard
     Example: ``loading='lazy'``
 
 - reverse
-    Uses default layout: mzp-l-billboard-rightReverse will switch to billboard (text) left.
+    Uses default layout: mzp-l-billboard-right. Reverse will switch to billboard (text) left.
 
     Default: ``False``
 
