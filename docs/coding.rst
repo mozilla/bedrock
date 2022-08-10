@@ -1379,7 +1379,7 @@ Split
 
     Default: ``None``
 
-    Example: ``id='nextgen``
+    Example: ``block_id='nextgen'``
 
 - body_class
     String providing class(es) to the body (text content) div inside the section.
