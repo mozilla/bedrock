@@ -2,9 +2,10 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-@use './components/about';
 @use './components/agreement';
 @use './components/breaking-news';
+@use './components/dad-jokes-banner';
+@use './components/download-firefox';
 @use './components/hero';
 @use './components/pro-tip';
 @use './components/modules/data';
