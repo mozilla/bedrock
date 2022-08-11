@@ -1,3 +1,15 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use './components/about';
+@use './components/agreement';
+@use './components/breaking-news';
+@use './components/hero';
+@use './components/pro-tip';
+@use './components/modules/data';
+@use './components/modules/mental-health';
+@use './components/modules/netiquette';
+@use './components/modules/passwords';
+@use './components/modules/private-browsing';
+@use './components/modules/public-wifi';
