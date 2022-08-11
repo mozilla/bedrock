@@ -116,7 +116,7 @@ if (AffiliateAttribution.shouldInitiateAttributionFlow()) {
             }
         })
         .catch((e) => {
-            throw new Error(e);
+            console.error(e); // eslint-disable-line no-console
         });
 } else {
     // Just add flow params as normal.
