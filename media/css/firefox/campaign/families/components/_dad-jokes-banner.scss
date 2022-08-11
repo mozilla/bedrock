@@ -4,11 +4,6 @@
 
 @use '../variables' as var;
 
-.c-pro-tip {
-    background-color: var.$black;
-    color: var.$white;
-
-    h2 {
-        background-color: var.$green-primary;
-    }
+.c-dad-jokes-banner {
+    background-color: var.$yellow-primary;
 }

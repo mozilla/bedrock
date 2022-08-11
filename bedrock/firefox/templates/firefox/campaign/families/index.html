@@ -29,11 +29,10 @@
 
 <!-- Hero -->
 {% include 'firefox/campaign/families/includes/hero.html' %}
-<main>
-<!-- About -->
-{% include 'firefox/campaign/families/includes/about.html' %}
 <!-- Breaking news scroll -->
 {% include 'firefox/campaign/families/includes/breaking-news.html' %}
+<main>
+<!-- note: all module sections must be linkable -->
 <!-- MODULE: Data Profiles -->
 {% include 'firefox/campaign/families/includes/modules/data.html' %}
 <!-- MODULE: Privacy & Mental Health -->
@@ -46,15 +45,19 @@
 {% include 'firefox/campaign/families/includes/modules/netiquette.html' %}
 <!-- MODULE: Public Wifi -->
 {% include 'firefox/campaign/families/includes/modules/public-wifi.html' %}
+<!-- Download Firefox -->
+{% include 'firefox/campaign/families/includes/download-firefox.html' %}
 <!-- MODULE: Passwords -->
 {% include 'firefox/campaign/families/includes/modules/passwords.html' %}
+<!-- MODULE: Private Browsing -->
+{% include 'firefox/campaign/families/includes/modules/private-browsing.html' %}
 <!-- Parental Pro-tip -->
 {% with tip='tip 2' %}
   {% include 'firefox/campaign/families/includes/parental-pro-tip.html' %}
 {% endwith %}
-<!-- MODULE: Private Browsing -->
-{% include 'firefox/campaign/families/includes/modules/private-browsing.html' %}
 <!-- Agreement (printable) -->
 {% include 'firefox/campaign/families/includes/agreement.html' %}
 </main>
+<!-- dad jokes cookie banner -->
+{% include 'firefox/campaign/families/includes/dad-jokes-banner.html' %}
 {% endblock %}
