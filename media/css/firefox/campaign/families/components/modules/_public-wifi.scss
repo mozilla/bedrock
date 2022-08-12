@@ -2,16 +2,16 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-@use '../../variables' as var;
+@use '../../utils' as f3;
 
 .c-public-wifi {
-    background-color: var.$blue-dark;
+    background-color: f3.$blue-dark;
 
     .c-module-tag-title {
-        background-color: var.$blue-primary;
+        background-color: f3.$blue-primary;
     }
 
     .c-card.t-shadow {
-        @include var.card-shadow(var.$violet-extra-dark);
+        @include f3.card-shadow(f3.$violet-extra-dark);
     }
 }
