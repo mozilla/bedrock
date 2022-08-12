@@ -2,12 +2,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-@use '../variables' as var;
+@use '../utils' as f3;
 
 .c-hero {
-    background-color: var.$violet-dark; // needs to be linear gradient with grid
+    background-color: f3.$violet-dark; // needs to be linear gradient with grid
 
     .c-card.t-shadow {
-        @include var.card-shadow(var.$pink-light);
+        @include f3.card-shadow(f3.$pink-light);
     }
 }

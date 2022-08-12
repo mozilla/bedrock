@@ -2,13 +2,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-@use '../variables' as var;
+@use '../utils' as f3;
 
 .c-pro-tip {
-    background-color: var.$black;
-    color: var.$white;
+    background-color: f3.$black;
+    color: f3.$white;
 
     h2 {
-        background-color: var.$green-primary;
+        background-color: f3.$green-primary;
     }
 }
