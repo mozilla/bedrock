@@ -12,19 +12,26 @@ $violet-light: $color-violet-05;
 $violet-dark: $color-violet-50;
 $violet-extra-dark: $color-violet-90;
 $pink-primary: $color-pink-20;
-$pink-light: $color-red-10;
+$pink-light: $color-red-05;
 $yellow-primary: $color-yellow-20;
 $yellow-dark: $color-yellow-30;
+$yellow-extra-dark: $color-yellow-60;
 $blue-primary: $color-blue-10;
 $blue-dark: $color-blue-30;
 $orange-primary: $color-orange-05;
 $orange-dark: $color-orange-20;
 $green-primary: $color-green-10;
 $green-light: $color-green-05;
-$green-dark: $color-green-80;
+$green-dark: $color-green-70;
+$green-extra-dark: $color-green-90;
 
 // Borders
 $border-width: 3px;
 @mixin border {
     border: $border-width solid $black;
+}
+
+// Shadows
+@mixin card-shadow($color: $black) {
+    box-shadow: $spacing-sm $spacing-sm 0 $color;
 }
