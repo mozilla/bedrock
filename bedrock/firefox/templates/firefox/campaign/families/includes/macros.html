@@ -4,4 +4,11 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<!-- module tags -->
+{% macro module_tag(
+  title,
+  anchor
+) -%}
+<a class="c-module-tag" href="#{{ anchor }}">
+  <h2 class="c-module-tag-title">{{ title }}</h2>
+</a>
+{%- endmacro %}

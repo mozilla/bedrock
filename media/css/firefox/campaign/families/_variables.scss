@@ -22,3 +22,9 @@ $orange-dark: $color-orange-20;
 $green-primary: $color-green-10;
 $green-light: $color-green-05;
 $green-dark: $color-green-80;
+
+// Borders
+$border-width: 3px;
+@mixin border {
+    border: $border-width solid $black;
+}

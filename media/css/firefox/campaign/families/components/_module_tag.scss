@@ -1,0 +1,28 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../variables' as var;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+body {
+    counter-reset: topic;
+}
+
+.c-module-tag-title {
+    @include font-size(18px);
+    @include var.border;
+    display: inline-block;
+    padding-right: $spacing-md;
+
+    &::before {
+        display: inline-block;
+        counter-increment: topic;
+        content: 'Topic ' counter(topic);
+        background-color: var.$white;
+        color: var.$black;
+        padding: $spacing-sm $spacing-md;
+        border-right: var.$border-width solid var.$black;
+        margin-right: $spacing-md;
+    }
+}
