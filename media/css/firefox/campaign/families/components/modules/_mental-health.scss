@@ -10,4 +10,8 @@
     .c-module-tag-title {
         background-color: var.$violet-primary;
     }
+
+    .c-card.t-shadow {
+        @include var.card-shadow(var.$violet-dark);
+    }
 }

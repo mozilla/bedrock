@@ -3,11 +3,15 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 @use '../variables' as var;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
-.c-hero {
-    background-color: var.$violet-dark; // needs to be linear gradient with grid
+.c-card {
+    @include var.border;
+    background-color: var.$white;
+    padding: $layout-xs;
 
-    .c-card.t-shadow {
-        @include var.card-shadow(var.$pink-light);
+    *:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
     }
 }
