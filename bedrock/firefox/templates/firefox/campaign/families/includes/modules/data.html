@@ -4,9 +4,11 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+{% from "firefox/campaign/families/includes/macros.html" import module_tag %}
+
 <section id="data" class="c-data">
   <div class="mzp-l-content">
-    <h2>Data Profiles</h2>
+    {{ module_tag(title='Data Profiles', anchor='data') }}
     <div class="c-content">
       <h3 class="c-subtitle">Subtitle</h3>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae sunt a dolorum eligendi, possimus mollitia ratione voluptatum pariatur? Facere alias aspernatur.</p>

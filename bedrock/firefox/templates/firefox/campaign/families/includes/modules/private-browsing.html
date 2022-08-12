@@ -4,9 +4,11 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+{% from "firefox/campaign/families/includes/macros.html" import module_tag %}
+
 <section id="private-browsing" class="c-private-browsing">
   <div class="mzp-l-content">
-    <h2>Private Browsing</h2>
+    {{ module_tag(title='Private Browsing', anchor='private-browsing') }}
     <div class="c-browser-window">
       <h3 class="c-subtitle">Longer Subtitle that is long</h3>
     </div>

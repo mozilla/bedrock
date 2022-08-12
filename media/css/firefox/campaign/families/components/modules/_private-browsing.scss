@@ -6,4 +6,8 @@
 
 .c-private-browsing {
     background-color: var.$green-dark;
+
+    .c-module-tag-title {
+        background-color: var.$green-primary;
+    }
 }
