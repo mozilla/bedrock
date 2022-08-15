@@ -1,0 +1,22 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appID": [
+          "43AQ936H96.org.mozilla.ios.Firefox",
+          "43AQ936H96.org.mozilla.ios.FirefoxBeta",
+          "43AQ936H96.org.mozilla.ios.Fennec"
+        ],
+        "components": [
+          {
+            "/": "/en-US/firefox/browsers/mobile/get-ios/*",
+            "comment": "Matches any URL whose path starts with /en-US/firefox/browsers/mobile/get-ios"
+          },
+          {
+            "/": "/*/firefox/browsers/mobile/get-ios/"
+          }
+        ]
+      }
+    ]
+  }
+}
