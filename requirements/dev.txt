@@ -88,13 +88,13 @@ blessings==1.7 \
     --hash=sha256:b1fdd7e7a675295630f9ae71527a8ebc10bfefa236b3d6aa4932ee4462c17ba3 \
     --hash=sha256:caad5211e7ba5afe04367cdd4cfc68fa886e2e08f6f35e76b7387d2109ccea6e
     # via curtsies
-boto3==1.24.36 \
-    --hash=sha256:8844bbcb69ac0afc68225b58abe105852231cf1b562e6c8c9eb6b2b97fd4757a \
-    --hash=sha256:b1855ede59e725b968d6336908ffc864b65985ca441d730625b09c43ccd6413b
+boto3==1.24.46 \
+    --hash=sha256:44026e44549148dbc5b261ead5f6b339e785680c350ef621bf85f7e2fca05b49 \
+    --hash=sha256:b2d9d55f123a9a91eea2fd8e379d90abf37634420fbb45c22d67e10b324ec71b
     # via -r requirements/prod.txt
-botocore==1.27.36 \
-    --hash=sha256:3119ce186053b9bf6bd0bd0ad19a8cedeb626b205ce6ad26ea0894634f702cd5 \
-    --hash=sha256:8109526f55742539d2311d742b40c89e65781ad18966e577dda360cd55c9d047
+botocore==1.27.51 \
+    --hash=sha256:328d2baca30e66016acdf9ad3c5e6fa6522fca249f54c5affce8774c0faa564f \
+    --hash=sha256:4ba1678bc78fbdac9a7e1c010b057ad9ed96dc6534d1c82718af08d746b652ed
     # via
     #   -r requirements/prod.txt
     #   boto3
@@ -587,9 +587,9 @@ lxml==4.9.1 \
     #   -r requirements/prod.txt
     #   pyquery
     #   translate-toolkit
-markdown==3.3.6 \
-    --hash=sha256:76df8ae32294ec39dcf89340382882dfa12975f87f45c3ed1ecdb1e8cefc7006 \
-    --hash=sha256:9923332318f843411e9932237530df53162e29dc7a4e2b91e35764583c46c9a3
+markdown==3.4.1 \
+    --hash=sha256:08fb8465cffd03d10b9dd34a5c3fea908e20391a2a90b88d66362cb05beed186 \
+    --hash=sha256:3b809086bb6efad416156e00a0da66fe47618a5d6918dd688f53f40c8e4cfeff
     # via
     #   -r requirements/prod.txt
     #   django-jinja-markdown
@@ -727,9 +727,9 @@ pathspec==0.9.0 \
     #   -r requirements/prod.txt
     #   black
     #   yamllint
-phonenumberslite==8.12.52 \
-    --hash=sha256:8cfee539ebcbe2874e8f0bdfe753e60265c198b33f8bfeb57f0fc59ba55c6d74 \
-    --hash=sha256:ade5346ac9f7ed0289d69ffc9e9f3f84b56b2b7010aa23fecf7bb22140b170d5
+phonenumberslite==8.12.53 \
+    --hash=sha256:e1e16ff056127ae9ccf7a2ca78050dbe2ee43321d8a5ea20704752a2f46b8a9a \
+    --hash=sha256:ece2f65b16f00bd8dda0cc6b0eb3d3d3d0cfae348d6c8f9fafd47882841546d7
     # via -r requirements/prod.txt
 pillow==9.2.0 \
     --hash=sha256:0030fdbd926fb85844b8b92e2f9449ba89607231d3dd597a21ae72dc7fe26927 \
@@ -1083,9 +1083,9 @@ selenium==4.1.3 \
 sentry-processor==0.0.1 \
     --hash=sha256:fd7a30fb57aaf05c01cd04cf7d949c628376b2b55d7a0aaa222efe58a8f122bc
     # via -r requirements/prod.txt
-sentry-sdk==1.8.0 \
-    --hash=sha256:5daae00f91dd72d9bb1a65307221fe291417a7b9c30527de3a6f0d9be4ddf08d \
-    --hash=sha256:9c68e82f7b1ad78aee6cdef57c2c0f6781ddd9ffa8848f4503c5a8e02b360eea
+sentry-sdk==1.9.2 \
+    --hash=sha256:011155f11ab828a977fe8a60c5b534c30f49d70c9938362536d206bb230bb519 \
+    --hash=sha256:9921e76e29135aa1fa65fe231aaaef47355f85470c5ec59ce32715e22e6340b6
     # via -r requirements/prod.txt
 six==1.16.0 \
     --hash=sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926 \
@@ -1166,9 +1166,9 @@ trio-websocket==0.9.2 \
     --hash=sha256:5b558f6e83cc20a37c3b61202476c5295d1addf57bd65543364e0337e37ed2bc \
     --hash=sha256:a3d34de8fac26023eee701ed1e7bf4da9a8326b61a62934ec9e53b64970fd8fe
     # via selenium
-twilio==7.12.0 \
-    --hash=sha256:1f070cf041938a1848603fe3beabf03625d8686810664d0525347e0398211323 \
-    --hash=sha256:ba79ab89fbed67caae02cf027dfb17776f3aa875edcc30d031e15ade40b3b0b5
+twilio==7.12.1 \
+    --hash=sha256:da92f00c1ed4dbe448d2ce92356995cb5a47d865e3ff9127d3f69ef15c9eb2bb \
+    --hash=sha256:e93b6850724cc0fa45ad6bb7039ab8ff10340576471b349c2875dd43c4ab4022
     # via -r requirements/prod.txt
 typing-extensions==4.1.1 \
     --hash=sha256:1a9462dcc3347a79b1f1c0271fbe79e844580bb598bafa1ed208b94da3cdcd42 \
@@ -1188,9 +1188,9 @@ tzlocal==4.1 \
     # via
     #   -r requirements/prod.txt
     #   apscheduler
-urllib3[secure,socks]==1.26.9 \
-    --hash=sha256:44ece4d53fb1706f667c9bd1c648f5469a2ec925fcf3a776667042d645472c14 \
-    --hash=sha256:aabaf16477806a5e1dd19aa41f8c2b7950dd3c746362d7e3223dbe6de6ac448e
+urllib3[secure,socks]==1.26.11 \
+    --hash=sha256:c33ccba33c819596124764c23a97d25f32b28433ba0dedeb77d873a38722c9bc \
+    --hash=sha256:ea6e8fb210b19d950fab93b60c9009226c63a28808bc8386e05301e25883ac0a
     # via
     #   -r requirements/prod.txt
     #   botocore
