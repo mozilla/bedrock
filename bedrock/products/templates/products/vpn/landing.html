@@ -29,7 +29,12 @@
   {% if show_vpn_coupon_promo_banner %}
     {{ css_bundle('vpn-coupon-promo-banner') }}
   {% endif %}
+{% endblock %}
 
+{% block experiments %}
+  {% if show_vpn_coupon_promo_banner %}
+    {{ js_bundle('vpn-coupon-promo-banner-experiment') }}
+  {% endif %}
 {% endblock %}
 
 {% block site_header %}

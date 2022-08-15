@@ -228,7 +228,7 @@ The variable values may be provided by the analytics team.
 
 .. code-block:: javascript
 
-    if(href.indexOf('v=a') !== -1) {
+    if (href.indexOf('v=a') !== -1) {
         window.dataLayer.push({
             'data-ex-variant': 'de-page',
             'data-ex-name': 'Berlin-Campaign-Landing-Page'
@@ -288,11 +288,11 @@ not Traffic Cop should initiate.
 
 .. code-block:: javascript
 
-    var TrafficCop = require('@mozmeao/trafficcop');
-    var isApprovedToRun = require('../../base/experiment-utils.es6.js').isApprovedToRun; // relative path
+    import TrafficCop = from '@mozmeao/trafficcop';
+    import { isApprovedToRun } from '../../base/experiment-utils.es6';
 
     if (isApprovedToRun()) {
-        var cop = new TrafficCop({
+        const cop = new TrafficCop({
             id: 'experiment-name',
             variations: {
                 'entrypoint_experiment=experiment-name&entrypoint_variation=a': 10,
