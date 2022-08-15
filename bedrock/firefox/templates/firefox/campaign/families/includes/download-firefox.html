@@ -4,11 +4,30 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<section class="c-download-firefox">
-  <div class="mzp-l-content">
-    <!-- firefox browser wordmark -->
-    <h2>Lorem ipsum dolor sit amet consectetur adipisicing</h2>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo cupiditate expedita excepturi adipisci consequatur! Temporibus dolorum quod architecto beatae totam.</p>
-    <!-- download firefox link -->
+<section class="c-download-firefox mzp-t-dark">
+  <div class="mzp-l-content mzp-t-content-md">
+    <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">Firefox</div>
+
+    <!-- TODO: replace heart with inline image and alt? Maybe a span with image replacement? An actual emoji character? -->
+    <h2>We (heart emoji) all families</h2>
+    <p>Firefox is made in part by lots of real-life, tired yet strangely optimistic
+      parents, and we’re backed by an awesome non-profit too.</p>
+
+    <div class="show-not-firefox">
+      {{ download_firefox_thanks(alt_copy='Download and love Firefox', download_location='download section') }}
+    </div>
+
+    <div class="show-not-default">
+      <a class="mzp-c-button mzp-t-product" href="{{ url('firefox.set-as-default.thanks') }}" data-cta-text="Set Firefox as your default browser" data-cta-type="button">
+        Set Firefox as your default browser
+      </a>
+    </div>
+
+    <!-- TODO: JS logic to check IF is Firefox AND is default, hide others and show mobile. -->
+    <div class="show-mobile">
+      <a class="mzp-c-button mzp-t-product" href="{{ url('firefox.mobile.get-app') }}" data-cta-text="Get Firefox on your phone" data-cta-type="button">
+        Get Firefox on your phone
+      </a>
+    </div>
   </div>
 </section>

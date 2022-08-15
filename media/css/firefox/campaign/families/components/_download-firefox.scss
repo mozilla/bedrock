@@ -2,8 +2,40 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+$image-path: '/media/protocol/img';
+
 @use '../utils' as f3;
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
 
 .c-download-firefox {
     background-color: f3.$violet-extra-dark;
+    text-align: center;
+}
+
+.mzp-c-wordmark.mzp-t-wordmark-firefox {
+    background-image: url('/media/img/firefox/campaign/families/logo-word-hor-white.svg');
+    @include background-size(120px, 40px);
+    width: 120px;
+    height: 40px;
+}
+
+.show-not-firefox {
+    display: block;
+}
+
+.show-not-default,
+.show-mobile {
+    display: none;
+}
+
+.is-firefox {
+    .show-not-default {
+        display: block;
+    }
+
+    .show-mobile,
+    .show-not-firefox {
+        display: none;
+    }
 }

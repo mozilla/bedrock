@@ -1,0 +1,90 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../utils' as f3;
+
+@keyframes ticker {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes repeat {
+    0%,
+    50% {
+        left: 0;
+    }
+
+    50.01%,
+    100% {
+        left: 100%;
+    }
+}
+
+.c-news-ticker {
+    background-color: f3.$black;
+    color: white;
+    font-family: 'Fira Mono', 'Andale Mono', monospace;
+    max-width: 100%;
+    overflow: hidden;
+    padding: 0.5em 0;
+    position: relative;
+
+    &-content {
+        // animation: ticker 40s linear infinite;
+        position: relative;
+        width: max-content;
+
+        &:hover {
+            animation-play-state: paused;
+        }
+    }
+
+    .set-one {
+        // animation: repeat 40s linear infinite;
+        display: inline;
+        left: 0;
+        position: relative;
+    }
+
+    .set-two {
+        display: inline;
+    }
+
+    &-title {
+        color: f3.$yellow-primary;
+        font-family: 'Fira Mono', 'Andale Mono', monospace;
+
+        &::before {
+            content: '// ';
+        }
+
+        &::after {
+            content: ' //';
+        }
+    }
+
+    &-title,
+    &-item {
+        @include f3.text-body-lg;
+        display: inline;
+        margin-bottom: 0; // protocol override
+    }
+}
+
+// Hide the ticker for reduced motion
+@media screen and (prefers-reduced-motion: reduce) {
+    .c-news-ticker {
+        display: none;
+
+        &-content,
+        .set-one {
+            animation: none;
+        }
+    }
+}

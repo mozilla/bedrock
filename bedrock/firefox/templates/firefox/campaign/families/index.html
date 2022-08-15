@@ -24,13 +24,15 @@
 {% block twitter_id %}firefox{% endblock %}
 <!-- metadata q ends -->
 
-{% block content %}
-<!-- include Firefox subnav for desktop/mobile? -->
+{% block sub_navigation %}
+  {% include 'firefox/campaign/families/includes/subnav.html' %}
+{% endblock %}
 
+{% block content %}
 <!-- Hero -->
 {% include 'firefox/campaign/families/includes/hero.html' %}
 <!-- Breaking news scroll -->
-{% include 'firefox/campaign/families/includes/breaking-news.html' %}
+{% include 'firefox/campaign/families/includes/news-ticker.html' %}
 <main>
 <!-- note: all module sections must be linkable -->
 <!-- MODULE: Data Profiles -->
@@ -38,7 +40,7 @@
 <!-- MODULE: Privacy & Mental Health -->
 {% include 'firefox/campaign/families/includes/modules/mental-health.html' %}
 <!-- Parental Pro-tip -->
-{% with tip='tip 1' %}
+{% with tip='Sometimes when you punctuate your texts, it seems angry: “Okay.”' %}
   {% include 'firefox/campaign/families/includes/parental-pro-tip.html' %}
 {% endwith %}
 <!-- MODULE: Netiquette -->
@@ -52,7 +54,7 @@
 <!-- MODULE: Private Browsing -->
 {% include 'firefox/campaign/families/includes/modules/private-browsing.html' %}
 <!-- Parental Pro-tip -->
-{% with tip='tip 2' %}
+{% with tip='Teens may smirk if they see you scrolling with your index finger.' %}
   {% include 'firefox/campaign/families/includes/parental-pro-tip.html' %}
 {% endwith %}
 <!-- Agreement (printable) -->

@@ -3,12 +3,11 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 @use './components/agreement';
-@use './components/breaking-news';
+@use './components/blurb';
 @use './components/card';
 @use './components/dad-jokes-banner';
 @use './components/download-firefox';
 @use './components/hero';
-@use './components/pro-tip';
 @use './components/module_tag';
 @use './components/modules/data';
 @use './components/modules/mental-health';
@@ -16,3 +15,25 @@
 @use './components/modules/passwords';
 @use './components/modules/private-browsing';
 @use './components/modules/public-wifi';
+@use './components/news-ticker';
+@use './components/pro-tip';
+
+@font-face {
+    font-family: 'Fira Mono';
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    src:
+        url('/media/fonts/families/FiraMono-Regular.woff2') format('woff2'),
+        url('/media/fonts/families/FiraMono-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Fira Mono';
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+    src:
+        url('/media/fonts/families/FiraMono-Bold.woff2') format('woff2'),
+        url('/media/fonts/families/FiraMono-Bold.woff') format('woff');
+}
