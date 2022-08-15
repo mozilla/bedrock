@@ -166,7 +166,7 @@ check-requirements: .docker-build-pull
 ######################################################
 
 install-local-python-deps:
-	# Dev requirements are a superset of prod requirements, but we install in
+	# Dev requirements are a superset of prod requirements, but we install
 	# them in the same separate steps that we use for our Docker-based build,
 	# so that it mirrors Production and Dev image building
 	pip install -r requirements/prod.txt
