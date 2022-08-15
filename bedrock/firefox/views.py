@@ -536,6 +536,7 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx103-gb.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx103-en.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx103-en-rally.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx104-default.html": ["firefox/whatsnew/whatsnew-104-default", "firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -620,6 +621,11 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/developer/whatsnew.html"
             elif show_57_dev_whatsnew(version):
                 template = "firefox/developer/whatsnew.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif version.startswith("104."):
+            if locale in ["es-ES", "it", "pl"] and ftl_file_is_active("firefox/whatsnew/whatsnew-104-default"):
+                template = "firefox/whatsnew/whatsnew-fx104-default.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("103."):
