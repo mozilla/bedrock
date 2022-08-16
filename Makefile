@@ -32,6 +32,7 @@ help:
 	@echo "  compile-requirements       - update Python requirements files using pip-compile"
 	@echo "  check-requirements         - get a report on stale/old Python dependencies in use"
 	@echo "  install-local-python-deps  - install Python dependencies for local development"
+	@echo "  install-local-docs-deps  	- install Python dependencies for documentation building"
 
 .env:
 	@if [ ! -f .env ]; then \
@@ -165,7 +166,13 @@ check-requirements: .docker-build-pull
 ######################################################
 
 install-local-python-deps:
-	# Dev requirements are a superset of prod requirements
+	# Dev requirements are a superset of prod requirements, but we install
+	# them in the same separate steps that we use for our Docker-based build,
+	# so that it mirrors Production and Dev image building
+	pip install -r requirements/prod.txt
 	pip install -r requirements/dev.txt
 
-.PHONY: all clean build pull docs livedocs build-docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod run-pocket run-pocket-prod build-prod test-cdn compile-requirements check-requirements install-local-python-deps
+install-local-docs-deps: install-local-python-deps
+	pip install -r requirements/docs.txt
+
+.PHONY: all clean build pull docs livedocs build-docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod run-pocket run-pocket-prod build-prod test-cdn compile-requirements check-requirements install-local-python-deps install-local-docs-deps
