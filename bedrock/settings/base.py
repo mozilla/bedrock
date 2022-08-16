@@ -507,6 +507,9 @@ def set_whitenoise_headers(headers, path, url):
     if url.startswith("/.well-known/matrix/"):
         headers["Content-Type"] = "application/json"
 
+    if url == "/.well-known/apple-app-site-association":
+        headers["Content-Type"] = "application/json"
+
 
 WHITENOISE_ADD_HEADERS_FUNCTION = set_whitenoise_headers
 WHITENOISE_ROOT = config("WHITENOISE_ROOT", default=path("root_files"))
