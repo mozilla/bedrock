@@ -4,16 +4,16 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "firefox/campaign/families/includes/macros.html" import module_tag %}
+{% from "firefox/campaign/families/includes/macros.html" import module_tag, browser_border %}
 
 <section id="private-browsing" class="c-private-browsing">
   <div class="mzp-l-content">
     {{ module_tag(title='Private Browsing', anchor='private-browsing') }}
-    <div class="c-browser-window">
+    {% call browser_border(dark_theme=True) %}
       <h3 class="c-subtitle">The private browsing mode paradox</h3>
       <p>On the one hand it keeps your kid’s data from being collected
         <em>*dramatic pause*</em> but it also erases their browsing history.</p>
-    </div>
+    {% endcall %}
 
     <div class="c-card t-shadow">
       <h4 class="c-card-title">Things to talk about:</h4>

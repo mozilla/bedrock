@@ -4,16 +4,16 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "firefox/campaign/families/includes/macros.html" import module_tag %}
+{% from "firefox/campaign/families/includes/macros.html" import module_tag, browser_border %}
 
 <section id="mental-health" class="c-mental-health">
   <div class="mzp-l-content">
     {{ module_tag(title='Algorithms and Mental Health', anchor='mental-health') }}
-    <div class="c-browser">
+    {% call browser_border() %}
       <h3 class="c-subtitle">The never-ending storrrrrries</h3>
       <p>Does your kid get stuck down endless, algorithmic rabbit holes where time
         and space and homework cease to exist?</p>
-    </div>
+    {% endcall %}
 
     <div class="c-card t-shadow">
       <h4 class="c-card-title">Be sure to discuss:</h4>

@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "firefox/campaign/families/includes/macros.html" import module_tag %}
+{% from "firefox/campaign/families/includes/macros.html" import module_tag, browser_border %}
 
 <section id="data" class="c-data">
   <div class="mzp-l-content">
@@ -16,7 +16,7 @@
         internet usage.</p>
     </div>
 
-    <div class="c-browser">
+    {% call browser_border() %}
       <h4 class="c-card-title">What to do:</h4>
       <ul class="mzp-u-list-styled">
         <li>Keeping data private by turning off location services for apps.</li>
@@ -25,7 +25,7 @@
           to <a href="https://support.mozilla.org/kb/introducing-total-cookie-protection-standard-mode">block ad trackers</a>
           from sneaking data.</li>
       </ul>
-    </div>
+    {% endcall %}
 
     <aside class="c-blurb">
       <h4 class="c-blurb-title">Bonus smart-Sounding parent thing to say:</h4>

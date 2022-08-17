@@ -12,3 +12,21 @@
   <h2 class="c-module-tag-title">{{ title }}</h2>
 </a>
 {%- endmacro %}
+
+{% macro browser_border(
+  dark_theme=False
+) -%}
+<div class="c-browser">
+  <div class="c-browser-bar">
+    <!-- dots -->
+    <span class="c-browser-bar-dot"></span>
+    <span class="c-browser-bar-dot"></span>
+    <span class="c-browser-bar-dot"></span>
+    <!-- close sign -->
+    <span class="c-browser-bar-close"></span>
+  </div>
+  <div class="c-browser-content {% if dark_theme %} mzp-t-dark{% endif %}">
+    {{ caller() }}
+  </div>
+</div>
+{%- endmacro %}

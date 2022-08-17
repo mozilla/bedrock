@@ -1,0 +1,70 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../utils' as f3;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.c-browser {
+    $size: 15px;
+
+    &-bar {
+        background-color: f3.$pink-dark;
+        border-top: f3.$border-width solid f3.$black;
+        border-right: f3.$border-width solid f3.$black;
+        border-left: f3.$border-width solid f3.$black;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        display: flex;
+        align-items: center;
+        height: 50px;
+        padding-right: $layout-xs;
+        padding-left: $layout-xs;
+
+        &-dot {
+            @include f3.border;
+            border-radius: 50%;
+            height: $size;
+            width: $size;
+        }
+
+        &-dot + &-dot {
+            margin-left: $layout-xs;
+        }
+
+        &-close {
+            position: relative;
+            height: $size;
+            width: $size;
+            margin-left: auto;
+
+            &::before,
+            &::after {
+                background-color: f3.$black;
+                content: '';
+                display: block;
+                height: calc($size * 1.3);
+                width: f3.$border-width;
+                position: absolute;
+            }
+
+            &::before {
+                transform: rotate(45deg);
+            }
+
+            &::after {
+                transform: rotate(-45deg);
+            }
+        }
+    }
+
+    &-content {
+        @include f3.border;
+        padding: $layout-sm;
+        background-color: f3.$white;
+
+        &.mzp-t-dark {
+            background-color: f3.$violet-extra-dark;
+        }
+    }
+}
