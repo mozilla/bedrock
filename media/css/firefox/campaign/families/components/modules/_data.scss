@@ -12,7 +12,6 @@
     }
 
     .c-browser {
-        // todo: get 10px rounded radius on shadow only
         @include f3.card-shadow(f3.$pink-primary);
 
         &-bar {
