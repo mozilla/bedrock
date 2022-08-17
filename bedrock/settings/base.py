@@ -452,6 +452,7 @@ NOINDEX_URLS = [
     r"^readiness/$",
     r"^healthz(-cron)?/$",
     r"^country-code\.json$",
+    r"^firefox/browsers/mobile/get-ios/",
     # exclude redirects
     r"^foundation/annualreport/$",
     r"^firefox/notes/$",
