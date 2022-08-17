@@ -452,6 +452,7 @@ NOINDEX_URLS = [
     r"^readiness/$",
     r"^healthz(-cron)?/$",
     r"^country-code\.json$",
+    r"^firefox/browsers/mobile/get-ios/",
     # exclude redirects
     r"^foundation/annualreport/$",
     r"^firefox/notes/$",
@@ -505,6 +506,9 @@ def set_whitenoise_headers(headers, path, url):
         headers["Cache-Control"] = "public, max-age=604800"  # one week
 
     if url.startswith("/.well-known/matrix/"):
+        headers["Content-Type"] = "application/json"
+
+    if url == "/.well-known/apple-app-site-association":
         headers["Content-Type"] = "application/json"
 
 

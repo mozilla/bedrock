@@ -1,0 +1,41 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('get-ios-attr') }}
+{% endblock %}
+
+{% block page_title %}{{ ftl('get-ios-firefox-for-ios') }}{% endblock %}
+{% block page_desc %}{{ ftl('get-ios-firefox-is-fast') }}{% endblock %}
+
+{% block page_favicon %}{{ static('img/favicons/firefox/browser/favicon.ico') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/favicons/firefox/browser/favicon-196x196.png') }}{% endblock %}
+{% block page_ios_icon %}{{ static('img/favicons/firefox/browser/apple-touch-icon.png') }}{% endblock %}
+
+{% block body_id %}ios-attr-get-ios{% endblock %}
+
+{% block content %}
+<div class="mzp-l-content mzp-t-content-md get-ios-attr-content">
+
+  <div class="mzp-c-logo mzp-t-logo-lg mzp-t-product-firefox">Firefox Browser</div>
+  <h1>
+    {{ ftl('get-ios-download-firefox') }}
+  </h1>
+  <p>
+    {{ ftl('get-ios-firefox-mobile-adapts') }}
+  </p>
+  <p class="c-cta">
+      <a href="https://app.adjust.com/ucunb4r" data-link-type="download" data-download-os="iOS">
+        <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
+      </a>
+    </p>
+</div>
+
+{% endblock %}
