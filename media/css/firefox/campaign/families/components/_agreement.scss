@@ -3,7 +3,14 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 @use '../utils' as f3;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 .c-agreement {
     background-color: f3.$violet-dark;
+    color: f3.$white;
+
+    h2,
+    h3 {
+        color: f3.$white;
+    }
 }
