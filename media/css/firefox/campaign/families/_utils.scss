@@ -27,8 +27,8 @@ $green-extra-dark: $color-green-90;
 
 // Borders
 $border-width: 3px;
-@mixin border {
-    border: $border-width solid $black;
+@mixin border($border-color: $black) {
+    border: $border-width solid $border-color;
 }
 
 // Shadows
