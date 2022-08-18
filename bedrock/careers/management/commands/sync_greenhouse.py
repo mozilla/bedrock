@@ -86,7 +86,6 @@ cleaner = bleach.sanitizer.Cleaner(
 
 @alert_sentry_on_exception
 class Command(BaseCommand):
-    args = "(no args)"
     help = "Sync jobs from Greenhouse"
 
     def add_arguments(self, parser):
@@ -110,14 +109,13 @@ class Command(BaseCommand):
 
         data = response.json()
         for job in data["jobs"]:
-            # Maybe GH sometimes includes jobs with the same ID multiple times
-            # in the json. Capture the event in Sentry and look the other way.
+            # In case GH includes jobs with the same ID multiple times in the json.
             if job["id"] in job_ids:
                 continue
 
             job_ids.append(job["id"])
 
-            job_object, created = Position.objects.get_or_create(job_id=job["id"], source="gh")
+            position, created = Position.objects.get_or_create(job_id=job["id"], source="gh", defaults={"internal_job_id": 0})
 
             departments = job.get("departments", "")
             if departments:
@@ -163,20 +161,21 @@ class Command(BaseCommand):
                 # in a `RuntimeWarning` about receiving a naive datetime.
                 # "updated_at": datetime.datetime.strptime(job["updated_at"], "%Y-%m-%dT%H:%M:%S%z"),
                 "updated_at": job["updated_at"],
+                "internal_job_id": job["internal_job_id"],
             }
 
             changed = False
             for key, value in object_data.items():
-                if getattr(job_object, key, None) != value:
+                if getattr(position, key, None) != value:
                     changed = True
-                    setattr(job_object, key, value)
+                    setattr(position, key, value)
 
             if changed:
                 if created:
                     jobs_added += 1
                 else:
                     jobs_updated += 1
-                job_object.save()
+                position.save()
 
         positions_to_be_removed = Position.objects.exclude(job_id__in=job_ids, source="gh")
         jobs_removed = positions_to_be_removed.count()
