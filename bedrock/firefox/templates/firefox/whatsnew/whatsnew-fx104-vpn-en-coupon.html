@@ -1,0 +1,55 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_104_vpn') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+<section class="mzp-c-split mzp-t-split-nospace">
+  <div class="mzp-c-split-bg t-background-color">
+    <div class="mzp-c-split-container">
+      <div class="mzp-c-split-body">
+
+        <div class="mzp-c-emphasis-box wnp-main-content">
+          <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-vpn">Mozilla VPN</div>
+          <h2 class="wnp-main-title">Enjoy 20% off Mozilla VPN</h2>
+          <p>As your kids head back to school, keep your whole family safe. The first
+            2,500 subscribers can take 20% off a yearly subscription.</p>
+
+          <aside class="c-coupon">
+            <h3>Use code at checkout:</h3>
+            <p>
+              <strong class="c-coupon-code">FIREFOX104</strong>
+              <button type="button" class="c-coupon-copy" id="code-copy" data-code="FIREFOX104" data-success="Code copied!">Copy code</button>
+            </p>
+          </aside>
+
+          <p class="wnp-main-cta">
+            <a class="mzp-c-button mzp-t-product" href="{{ url('products.vpn.landing') }}">Get Mozilla VPN</a>
+          </p>
+        </div>
+
+      </div>
+      <div class="mzp-c-split-media">
+        <img class="mzp-c-split-media-asset" src="{{ static('img/firefox/whatsnew/whatsnew104/vpn.svg') }}" width="580" height="540" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew') }}
+  {{ js_bundle('firefox_whatsnew_104_vpn_coupon') }}
+{% endblock %}

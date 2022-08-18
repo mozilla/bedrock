@@ -1,0 +1,47 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_104_vpn') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+<section class="mzp-c-split mzp-t-split-nospace">
+  <div class="mzp-c-split-bg t-background-color">
+    <div class="mzp-c-split-container">
+      <div class="mzp-c-split-body">
+
+        <div class="mzp-c-emphasis-box wnp-main-content">
+          <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-vpn"></div>
+          <h2 class="wnp-main-title">Mozilla VPN: Ein ganzes Jahr sicher durchs Web</h2>
+          <p>Deine Kinder sind wieder in der Schule und damit auch zurück in
+            öffentlichen WLAN-Netzwerken. Schütze bis zu 5 Geräte deiner Familie
+            mit einem einzigen Mozilla VPN Abo.</p>
+
+          <p class="wnp-main-cta">
+            <a class="mzp-c-button mzp-t-product" href="{{ url('products.vpn.landing') }}">Hol dir Mozilla VPN</a>
+          </p>
+        </div>
+
+      </div>
+      <div class="mzp-c-split-media">
+        <img class="mzp-c-split-media-asset" src="{{ static('img/firefox/whatsnew/whatsnew104/vpn.svg') }}" width="580" height="540" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew') }}
+{% endblock %}

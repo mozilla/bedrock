@@ -537,6 +537,12 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx103-en.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx103-en-rally.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx104-default.html": ["firefox/whatsnew/whatsnew-104-default", "firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx104-vpn-en.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx104-vpn-en-coupon.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx104-vpn-de.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx104-vpn-de-coupon.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx104-vpn-fr.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx104-vpn-fr-coupon.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -549,6 +555,12 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx101-vpn-fr.html",
         "firefox/whatsnew/whatsnew-fx101-vpn-mobile-unfree-en.html",
         "firefox/whatsnew/whatsnew-fx101-vpn-mobile.html",
+        "firefox/whatsnew/whatsnew-fx104-vpn-en.html",
+        "firefox/whatsnew/whatsnew-fx104-vpn-en-coupon.html",
+        "firefox/whatsnew/whatsnew-fx104-vpn-de.html",
+        "firefox/whatsnew/whatsnew-fx104-vpn-de-coupon.html",
+        "firefox/whatsnew/whatsnew-fx104-vpn-fr.html",
+        "firefox/whatsnew/whatsnew-fx104-vpn-fr-coupon.html",
     ]
 
     # place expected ?v= values in this list
@@ -624,7 +636,22 @@ class WhatsnewView(L10nTemplateView):
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("104."):
-            if locale in ["es-ES", "it", "pl"] and ftl_file_is_active("firefox/whatsnew/whatsnew-104-default"):
+            if locale.startswith("en"):
+                if switch("firefox-104-whatsnew-vpn-coupon-en"):
+                    template = "firefox/whatsnew/whatsnew-fx104-vpn-en-coupon.html"
+                else:
+                    template = "firefox/whatsnew/whatsnew-fx104-vpn-en.html"
+            elif locale == "de":
+                if switch("firefox-104-whatsnew-vpn-coupon-frde"):
+                    template = "firefox/whatsnew/whatsnew-fx104-vpn-de-coupon.html"
+                else:
+                    template = "firefox/whatsnew/whatsnew-fx104-vpn-de.html"
+            elif locale == "fr":
+                if switch("firefox-104-whatsnew-vpn-coupon-frde"):
+                    template = "firefox/whatsnew/whatsnew-fx104-vpn-fr-coupon.html"
+                else:
+                    template = "firefox/whatsnew/whatsnew-fx104-vpn-fr.html"
+            elif locale in ["es-ES", "it", "pl"] and ftl_file_is_active("firefox/whatsnew/whatsnew-104-default"):
                 template = "firefox/whatsnew/whatsnew-fx104-default.html"
             else:
                 template = "firefox/whatsnew/index.html"
