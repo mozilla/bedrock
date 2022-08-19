@@ -3,7 +3,9 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 @use '../../utils' as f3;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
+// todo: overflow-x on mobile, test absolutely positioned mask is never covering text
 .c-private-browsing {
     background: f3.$pink-light center / cover no-repeat url('/media/img/firefox/campaign/families/grid-cylinder.svg');
 
@@ -11,7 +13,52 @@
         background-color: f3.$pink-dark;
     }
 
+    .c-browser {
+        margin-top: $layout-md;
+        margin-bottom: $layout-md;
+        position: relative;
+
+        .c-private-browsing-mask {
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            width: 85px;
+            height: 85px;
+            @media #{$mq-md} {
+                top: 20%;
+                right: -55px;
+                width: 110px;
+                height: 110px;
+            }
+        }
+    }
+
     .c-card.t-shadow {
         @include f3.card-shadow(f3.$green-extra-dark);
+    }
+}
+
+@supports (display: flex) {
+    @media #{$mq-md} {
+        .c-private-browsing {
+            .l-flex {
+                display: flex;
+                column-gap: 5%;
+            }
+
+            .c-browser {
+                flex: 1 0 50%;
+            }
+
+            .c-card {
+                width: 80%;
+            }
+
+            .c-blurb {
+                margin-left: auto;
+                margin-top: -#{$layout-2xs};
+                width: 70%;
+            }
+        }
     }
 }
