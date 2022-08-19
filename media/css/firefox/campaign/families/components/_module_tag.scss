@@ -14,6 +14,7 @@ body {
     @include f3.border;
     display: inline-block;
     padding-right: $spacing-md;
+    margin-bottom: $layout-xs;
 
     &::before {
         display: inline-block;

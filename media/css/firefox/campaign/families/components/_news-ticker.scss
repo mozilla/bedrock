@@ -29,7 +29,7 @@
 .c-news-ticker {
     background-color: f3.$black;
     color: white;
-    font-family: 'Fira Mono', 'Andale Mono', monospace;
+    @include f3.mono-font;
     max-width: 100%;
     overflow: hidden;
     padding: 0.5em 0;
@@ -58,7 +58,7 @@
 
     &-title {
         color: f3.$yellow-primary;
-        font-family: 'Fira Mono', 'Andale Mono', monospace;
+        @include f3.mono-font;
 
         &::before {
             content: '// ';

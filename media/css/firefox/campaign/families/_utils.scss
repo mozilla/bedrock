@@ -37,3 +37,8 @@ $border-width: 3px;
 @mixin card-shadow($color: $black) {
     box-shadow: $spacing-sm $spacing-sm 0 $color;
 }
+
+// Font
+@mixin mono-font {
+    font-family: 'Fira Mono', 'Andale Mono', monospace;
+}
