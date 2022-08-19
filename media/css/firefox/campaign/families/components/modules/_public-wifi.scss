@@ -5,7 +5,7 @@
 @use '../../utils' as f3;
 
 .c-public-wifi {
-    background-color: f3.$blue-dark;
+    background: f3.$blue-dark center / cover no-repeat url('/media/img/firefox/campaign/families/grid-curved.svg');
 
     .c-module-tag-title {
         background-color: f3.$blue-primary;
