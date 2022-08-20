@@ -3,6 +3,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 @use '../../utils' as f3;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 .c-public-wifi {
     background: f3.$blue-dark center / cover no-repeat url('/media/img/firefox/campaign/families/grid-curved.svg');
@@ -13,5 +14,56 @@
 
     .c-card.t-shadow {
         @include f3.card-shadow(f3.$violet-extra-dark);
+    }
+
+    .c-card.t-yellow {
+        background-color: f3.$yellow-primary;
+    }
+
+    .c-card {
+        margin-bottom: $spacing-md;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+}
+
+// todo: test overflow on smaller screens
+@supports (display: flex) {
+    @media #{$mq-md} {
+        .c-public-wifi {
+            .l-flex {
+                display: flex;
+                align-items: center;
+                gap: 5%;
+            }
+
+            .l-container {
+                flex: 1 0 50%;
+            }
+        }
+    }
+}
+
+// todo: handle padding from inside scroll container so there aren't cut offs
+// todo: cross browser testing, scrollbar consistency (hidden?)
+@supports (scroll-snap-align: start) {
+    .t-scroll-snap {
+        display: flex;
+        gap: $spacing-md;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+
+        .c-card {
+            flex: 0 0 65vw;
+            scroll-snap-align: start;
+        }
+    }
+
+    @media #{$mq-md} {
+        .t-scroll-snap {
+            display: block;
+        }
     }
 }
