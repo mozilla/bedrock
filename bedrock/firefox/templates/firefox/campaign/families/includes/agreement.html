@@ -6,14 +6,19 @@
 
 <section id="agreement" class="c-agreement">
   <div class="mzp-l-content">
-  <h2>Agreement</h2>
-    <div class="c-content">
-      <h3 class="c-subtitle">You made it! Now, it’s time to chat!</h3>
-      <p>Be sure to discuss and sign this family agreement. Then your next move
-        is probably hanging it on the refrigerator, huh?</p>
-      <!-- need pdf asset, link with download attribute or button which triggers print function? -->
-      <!-- analytics on interaction? -->
-      <button class="mzp-c-button mzp-t-xl" type="button">Download PDF</button>
-    </div>
-  </div>
+    <div class="l-grid">
+      <h2>Agreement</h2>
+      <!-- placeholder img below -->
+      <!-- best to do in HTML with svg icons, where we could add some fun animations if desired -->
+      <img src="{{ static('img/firefox/campaign/families/super-official-tech-agreement.png') }}" alt="">
+      <div class="c-content">
+        <h3 class="c-subtitle">You made it! Now, it’s time to chat!</h3>
+        <p>Be sure to discuss and sign this family agreement. Then your next move
+          is probably hanging it on the refrigerator, huh?</p>
+        <!-- need pdf asset, link with download attribute or button which triggers print function? -->
+        <!-- analytics on interaction? -->
+        <button class="c-download" type="button">Download PDF</button>
+      </div> <!-- .c-content ends -->
+    </div> <!-- .l- ends -->
+  </div> <!-- .mzp-l-content ends -->
 </section>

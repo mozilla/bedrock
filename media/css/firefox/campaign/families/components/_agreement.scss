@@ -13,4 +13,34 @@
     h3 {
         color: f3.$white;
     }
+
+    @supports (display: grid) {
+        @media #{$mq-md} {
+            .l-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                align-items: center;
+            }
+
+            .c-content {
+                grid-column-start: 1;
+            }
+
+            // placeholder, should be HTML content instead of img
+            img {
+                grid-column-start: 2;
+                grid-row-start: 2;
+            }
+        }
+    }
+}
+
+// todo: interaction styles
+.c-download {
+    border-radius: $border-radius-sm;
+    font-weight: bold;
+    background-color: f3.$white;
+    color: f3.$black;
+    @include f3.border(transparent);
+    padding: $spacing-sm $spacing-2xl;
 }
