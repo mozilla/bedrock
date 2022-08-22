@@ -10,11 +10,11 @@
 @use './components/download-firefox';
 @use './components/hero';
 @use './components/module_tag';
-@use './components/modules/data';
+@use './components/modules/privacy';
 @use './components/modules/mental-health';
-@use './components/modules/netiquette';
+@use './components/modules/bullying';
 @use './components/modules/passwords';
-@use './components/modules/private-browsing';
+@use './components/modules/private-mode';
 @use './components/modules/public-wifi';
 @use './components/news-ticker';
 @use './components/pro-tip';

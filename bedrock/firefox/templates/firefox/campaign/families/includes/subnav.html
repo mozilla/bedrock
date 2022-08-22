@@ -5,35 +5,47 @@
 #}
 
 {# Subnav menu for /firefox/families/ #}
-<nav class="c-sub-navigation">
-  <div class="mzp-l-content">
-    <div class="c-sub-navigation-content">
-      <h2 class="c-sub-navigation-title is-summary">
-        Firefox for Families
-      </h2>
-      <ul class="c-sub-navigation-list is-details is-closed">
-        <li class="c-sub-navigation-item">
-          <a href="#data" data-link-type="nav" data-link-position="subnav" data-link-name="Data profiles">Data profiles</a>
-        </li>
-        <li class="c-sub-navigation-item">
-          <a href="#mental-health" data-link-type="nav" data-link-position="subnav" data-link-name="Mental health">Mental health</a>
-        </li>
-        <li class="c-sub-navigation-item">
-          <a href="#netiquette" data-link-type="nav" data-link-position="subnav" data-link-name="Netiquette">Netiquette</a>
-        </li>
-        <li class="c-sub-navigation-item">
-          <a href="#public-wifi" data-link-type="nav" data-link-position="subnav" data-link-name="Public Wifi">Public Wifi</a>
-        </li>
-        <li class="c-sub-navigation-item">
-          <a href="#passwords" data-link-type="nav" data-link-position="subnav" data-link-name="Passwords">Passwords</a>
-        </li>
-        <li class="c-sub-navigation-item">
-          <a href="#private-browsing" data-link-type="nav" data-link-position="subnav" data-link-name="Private browsing">Private browsing</a>
-        </li>
-        <li class="c-sub-navigation-item">
-          <a href="#agreement" data-link-type="nav" data-link-position="subnav" data-link-name="Family Agreement">Family Agreement</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<!-- todo: get official campaign analytics naming, replace "tbd-" namespace -->
+{% from "macros.html" import sub_nav with context %}
+
+{{ sub_nav(
+  title={
+    'text':  'Firefox for Families'
+  },
+  links=[
+  {
+    'text': 'Privacy',
+    'href': '#privacy',
+    'cta_name': 'tbd-privacy'
+  },
+  {
+    'text': 'Mental health',
+    'href': '#mental-health',
+    'cta_name': 'tbd-mental-health'
+  },
+  {
+    'text': 'Bullying',
+    'href': '#bullying',
+    'cta_name': 'tbd-bullying'
+  },
+  {
+    'text': 'Public wifi',
+    'href': '#public-wifi',
+    'cta_name': 'tbd-public-wifi'
+  },
+  {
+    'text': 'Passwords',
+    'href': '#passwords',
+    'cta_name': 'tbd-passwords'
+  },
+  {
+    'text': 'Private mode',
+    'href': '#private-mode',
+    'cta_name': 'tbd-private-mode'
+  },
+  {
+    'text': 'Agreement',
+    'href': '#agreement',
+    'cta_name': 'tbd-agreement'
+  }]
+) }}

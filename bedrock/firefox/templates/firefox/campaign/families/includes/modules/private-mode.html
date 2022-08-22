@@ -6,13 +6,13 @@
 
 {% from "firefox/campaign/families/includes/macros.html" import module_tag, browser_border %}
 
-<section id="private-browsing" class="c-private-browsing">
+<section id="private-mode" class="c-private-mode">
   <div class="mzp-l-content">
-    {{ module_tag(title='Private Browsing', anchor='private-browsing') }}
+    {{ module_tag(title='Private mode', anchor='private-mode') }}
 
     <div class="l-flex">
       {% call browser_border(dark_theme=True) %}
-        <svg class="c-private-browsing-mask" width="112" height="112" viewbox="0 0 112 112" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="c-private-mode-mask" width="112" height="112" viewbox="0 0 112 112" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="56.238" cy="55.987" r="53.215" fill="#FFD567" stroke="#000" stroke-width="4.438"/>
           <g clip-path="url(#a)"><path fill="#FFD567" d="M27.352 27.101h57.772v57.772H27.352z"/>
             <path d="M84.988 46.998c-5.507-7.225-16.31-8.15-23.04-1.968l-3.767 3.46H54.5l-3.763-3.46c-6.73-6.178-17.534-5.257-23.04 1.968-.711 2.816.39 13.215 1.01 14.851 1.254 6.608 6.652 11.576 13.126 11.576 3.232 0 6.16-1.289 8.474-3.354l1.412-1.206a6.99 6.99 0 0 1 9.067-.076l2.116 1.755v-.011c2.228 1.794 4.964 2.892 7.954 2.892 6.47 0 11.872-4.968 13.125-11.576.621-1.636 1.762-11.991 1.008-14.851ZM49.967 57.733c-1.542 1.74-3.928 2.86-6.615 2.86-2.686 0-5.073-1.12-6.615-2.86a2.502 2.502 0 0 1 0-3.268c1.542-1.74 3.929-2.86 6.615-2.86 2.687 0 5.073 1.12 6.615 2.86a2.502 2.502 0 0 1 0 3.268Zm25.997 0c-1.541 1.74-3.928 2.86-6.614 2.86-2.687 0-5.074-1.12-6.615-2.86a2.502 2.502 0 0 1 0-3.268c1.541-1.74 3.928-2.86 6.615-2.86 2.686 0 5.073 1.12 6.614 2.86a2.502 2.502 0 0 1 0 3.268Z" fill="#000"/>

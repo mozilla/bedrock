@@ -6,7 +6,7 @@
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 // todo: overflow-x on mobile, test absolutely positioned mask is never covering text
-.c-private-browsing {
+.c-private-mode {
     background: f3.$pink-light center / cover no-repeat url('/media/img/firefox/campaign/families/grid-cylinder.svg');
 
     .c-module-tag-title {
@@ -18,7 +18,7 @@
         margin-bottom: $layout-md;
         position: relative;
 
-        .c-private-browsing-mask {
+        .c-private-mode-mask {
             position: absolute;
             top: -20px;
             right: 20px;
@@ -40,7 +40,7 @@
 
 @supports (display: flex) {
     @media #{$mq-md} {
-        .c-private-browsing {
+        .c-private-mode {
             .l-flex {
                 display: flex;
                 column-gap: 5%;

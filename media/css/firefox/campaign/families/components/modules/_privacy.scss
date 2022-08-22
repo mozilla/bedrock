@@ -4,14 +4,18 @@
 
 @use '../../utils' as f3;
 
-.c-netiquette {
-    background-color: f3.$yellow-dark;
+.c-privacy {
+    background-color: f3.$pink-light;
 
     .c-module-tag-title {
-        background-color: f3.$yellow-primary;
+        background-color: f3.$pink-primary;
     }
 
-    .c-card.t-shadow {
-        @include f3.card-shadow(f3.$yellow-extra-dark);
+    .c-browser {
+        @include f3.card-shadow(f3.$pink-primary);
+
+        &-bar {
+            background-color: f3.$green-light;
+        }
     }
 }

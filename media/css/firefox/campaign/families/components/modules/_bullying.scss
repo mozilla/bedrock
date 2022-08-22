@@ -4,18 +4,14 @@
 
 @use '../../utils' as f3;
 
-.c-data {
-    background-color: f3.$pink-light;
+.c-bullying {
+    background-color: f3.$yellow-dark;
 
     .c-module-tag-title {
-        background-color: f3.$pink-primary;
+        background-color: f3.$yellow-primary;
     }
 
-    .c-browser {
-        @include f3.card-shadow(f3.$pink-primary);
-
-        &-bar {
-            background-color: f3.$green-light;
-        }
+    .c-card.t-shadow {
+        @include f3.card-shadow(f3.$yellow-extra-dark);
     }
 }
