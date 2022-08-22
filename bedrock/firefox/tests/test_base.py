@@ -698,6 +698,66 @@ class TestWhatsNew(TestCase):
 
     # begin 104.0 whatsnew tests
 
+    @override_settings(DEV=True)
+    @patch.dict(os.environ, SWITCH_FIREFOX_104_WHATSNEW_VPN_COUPON_EN="False")
+    def test_fx_104_0_0_en(self, render_mock):
+        """Should use whatsnew-fx104-vpn-en template for en-US locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "en-US"
+        self.view(req, version="104.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx104-vpn-en.html"]
+
+    @override_settings(DEV=True)
+    @patch.dict(os.environ, SWITCH_FIREFOX_104_WHATSNEW_VPN_COUPON_FRDE="False")
+    def test_fx_104_0_0_de(self, render_mock):
+        """Should use whatsnew-fx104-vpn-de template for de locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "de"
+        self.view(req, version="104.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx104-vpn-de.html"]
+
+    @override_settings(DEV=True)
+    @patch.dict(os.environ, SWITCH_FIREFOX_104_WHATSNEW_VPN_COUPON_FRDE="False")
+    def test_fx_104_0_0_fr(self, render_mock):
+        """Should use whatsnew-fx104-vpn-en template for fr locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "fr"
+        self.view(req, version="104.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx104-vpn-fr.html"]
+
+    @override_settings(DEV=True)
+    @patch.dict(os.environ, SWITCH_FIREFOX_104_WHATSNEW_VPN_COUPON_EN="True")
+    def test_fx_104_0_0_en_coupon(self, render_mock):
+        """Should use whatsnew-fx104-vpn-en-coupon template for en-US locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "en-US"
+        self.view(req, version="104.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx104-vpn-en-coupon.html"]
+
+    @override_settings(DEV=True)
+    @patch.dict(os.environ, SWITCH_FIREFOX_104_WHATSNEW_VPN_COUPON_FRDE="True")
+    def test_fx_104_0_0_de_coupon(self, render_mock):
+        """Should use whatsnew-fx104-vpn-de-coupon template for de locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "de"
+        self.view(req, version="104.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx104-vpn-de-coupon.html"]
+
+    @override_settings(DEV=True)
+    @patch.dict(os.environ, SWITCH_FIREFOX_104_WHATSNEW_VPN_COUPON_FRDE="True")
+    def test_fx_104_0_0_fr_coupon(self, render_mock):
+        """Should use whatsnew-fx104-vpn-fr-coupon template for fr locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "fr"
+        self.view(req, version="104.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx104-vpn-fr-coupon.html"]
+
     def test_fx_104_0_0_it(self, render_mock):
         """Should use whatsnew-fx104-default template for it locale"""
         req = self.rf.get("/firefox/whatsnew/")
@@ -713,6 +773,16 @@ class TestWhatsNew(TestCase):
         self.view(req, version="104.0")
         template = render_mock.call_args[0][1]
         assert template == ["firefox/whatsnew/index.html"]
+
+    @override_settings(DEV=False)
+    def test_fx_104_0_0_excluded_countries(self, render_mock):
+        """Should use default template for 104.0 in English in excluded countries"""
+        for country in settings.VPN_EXCLUDED_COUNTRY_CODES:
+            req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY=country)
+            req.locale = "en-US"
+            self.view(req, version="104.0")
+            template = render_mock.call_args[0][1]
+            assert template == ["firefox/whatsnew/index-account.html"]
 
     # end 104.0 whatsnew tests
 

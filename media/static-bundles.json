@@ -482,6 +482,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-104-vpn.scss"
+      ],
+      "name": "firefox_whatsnew_104_vpn"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -1625,6 +1631,12 @@
         "js/firefox/whatsnew/whatsnew-104-default.js"
       ],
       "name": "firefox_whatsnew_104_default"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-104-vpn-coupon.js"
+      ],
+      "name": "firefox_whatsnew_104_vpn_coupon"
     },
     {
       "files": [
