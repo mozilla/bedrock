@@ -745,8 +745,8 @@ supervisor==4.2.4 \
     --hash=sha256:40dc582ce1eec631c3df79420b187a6da276bbd68a4ec0a8f1f123ea616b97a2 \
     --hash=sha256:bbae57abf74e078fe0ecc9f30068b6da41b840546e233ef1e659a12e4c875af6
     # via -r requirements/prod.in
-timeago==1.0.15 \
-    --hash=sha256:cfce420d82892af6b2439d0f69eeb3e876bbeddab6670c3c88ebf7676407bf4c
+timeago==1.0.16 \
+    --hash=sha256:9b8cb2e3102b329f35a04aa4531982d867b093b19481cfbb1dac7845fa2f79b0
     # via -r requirements/prod.in
 tinycss2==1.1.1 \
     --hash=sha256:b2e44dd8883c360c35dd0d1b5aad0b610e5156c2cb3b33434634e539ead9d8bf \
