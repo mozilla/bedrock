@@ -9,20 +9,33 @@
 <section id="mental-health" class="c-mental-health">
   <div class="mzp-l-content">
     {{ module_tag(title='Mental Health', anchor='mental-health') }}
-    {% call browser_border() %}
-      <h3 class="c-subtitle">The never-ending storrrrrries</h3>
-      <p>Does your kid get stuck down endless, algorithmic rabbit holes where time
-        and space and homework cease to exist?</p>
-    {% endcall %}
 
-    <div class="c-card t-shadow">
-      <h4 class="c-title-uppercase">Be sure to discuss:</h4>
-      <ul class="mzp-u-list-styled">
-        <li>Many apps are designed (by evil geniuses) to suck them in. It’s not your kid’s fault.</li>
-        <li>Consider instituting “charging breaks” or curfews for their phone/device.</li>
-        <li>Talk about how their social apps make them feel.</li>
-        <li>Think about turning off some or all notifications.</li>
-      </ul>
-    </div>
-  </div>
+    <div class="l-grid">
+      {% call browser_border(class='t-content-container') %}
+        <h3 class="c-subtitle">The never-ending storrrrrries</h3>
+        <p>Does your kid get stuck down endless, algorithmic rabbit holes where time
+          and space and homework cease to exist?</p>
+      {% endcall %}
+
+      {% call browser_border(class='t-doomscroll-container') %}
+        <div class="c-doomscroll"></div>
+      {% endcall %}
+
+      {% call browser_border(class='t-stop-button-container') %}
+        <div class="c-stop-button">
+          <img src="{{ static('img/firefox/campaign/families/stop-button.png') }}" alt="">
+        </div>
+      {% endcall %}
+
+      <div class="c-card t-shadow">
+        <h4 class="c-title-uppercase">Be sure to discuss:</h4>
+        <ul class="mzp-u-list-styled">
+          <li>Many apps are designed (by evil geniuses) to suck them in. It’s not your kid’s fault.</li>
+          <li>Consider instituting “charging breaks” or curfews for their phone/device.</li>
+          <li>Talk about how their social apps make them feel.</li>
+          <li>Think about turning off some or all notifications.</li>
+        </ul>
+      </div> <!-- end .c-card -->
+    </div> <!-- end .l-grid -->
+  </div> <!-- end .mzp-l-content -->
 </section>

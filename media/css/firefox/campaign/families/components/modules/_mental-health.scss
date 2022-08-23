@@ -3,6 +3,9 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 @use '../../utils' as f3;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+/* stylelint-disable no-duplicate-selectors */
 
 .c-mental-health {
     background: f3.$violet-light center / cover no-repeat url('/media/img/firefox/campaign/families/grid-doomscrollhole.svg');
@@ -13,5 +16,128 @@
 
     .c-card.t-shadow {
         @include f3.card-shadow(f3.$violet-dark);
+    }
+
+    .t-doomscroll-container,
+    .t-stop-button-container {
+        display: inline-block;
+
+        .c-browser-content {
+            background-color: f3.$violet-light;
+            padding: 0;
+        }
+    }
+
+    // dimensions from figma
+    .t-doomscroll-container {
+        height: 317px;
+        width: 484px;
+
+        .c-browser-content {
+            overflow-y: hidden;
+            height: 300px;
+        }
+    }
+
+    // dimensions from svg
+    .c-doomscroll {
+        background-image: url('/media/img/firefox/campaign/families/text-doomscroll.svg');
+        background-repeat: repeat-y;
+        height: 800px;
+        position: relative;
+        top: -40px;
+
+        // potential animation/easter egg interaction, scroll
+        // transition: top 2s;
+
+        // &:hover {
+        //     top: -300px
+        // }
+    }
+
+    .c-stop-button {
+        // bespoke padding for the image with cursor
+        // todo: get rid of combined image and use more consistent padding
+        padding: $spacing-xl $spacing-md $spacing-sm $spacing-xl;
+    }
+
+    // mobile stacking
+    .t-stop-button-container {
+        display: none;
+    }
+
+    // todo: overflow x without mzp-l-content padding cutoff
+    .t-doomscroll-container {
+        position: absolute;
+        top: 40%;
+        right: 5%;
+        z-index: 1;
+    }
+
+    .t-content-container,
+    .c-card {
+        position: relative;
+        z-index: 2;
+    }
+
+    .t-content-container {
+        margin-bottom: $layout-lg;
+    }
+
+    // mobile stacking ends
+}
+
+@supports (display: grid) {
+    @media #{$mq-lg} {
+        .c-mental-health {
+            // reset mobile styles
+            .t-doomscroll-container,
+            .c-card {
+                position: initial;
+            }
+
+            .t-stop-button-container {
+                display: block;
+            }
+
+            // end reset
+
+            .l-grid {
+                display: grid;
+                grid-template-columns: repeat(12, 1fr);
+                grid-template-rows: [start] minmax($spacing-md, 100px) 50px 60px 1fr minmax($spacing-lg, auto) [end];
+            }
+
+            .t-content-container {
+                grid-column: 1 / span 6;
+                grid-row: start / span 4;
+                width: 90%;
+                z-index: 2;
+
+                p {
+                    padding-right: $spacing-lg;
+                }
+            }
+
+            .t-doomscroll-container {
+                grid-column: 3 / span 4;
+                grid-row: 2 / end;
+                z-index: 1;
+            }
+
+            .t-stop-button-container {
+                grid-column: 6 / span 2;
+                grid-row: 4 / end;
+                align-self: start;
+                min-width: 240px;
+                z-index: 3;
+            }
+
+            .c-card {
+                grid-column: 9 / span 4;
+                grid-row: start / end;
+                align-self: center;
+            }
+        }
     }
 }

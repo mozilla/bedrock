@@ -14,9 +14,10 @@
 {%- endmacro %}
 
 {% macro browser_border(
-  dark_theme=False
+  dark_theme=False,
+  class=None
 ) -%}
-<div class="c-browser">
+<div class="c-browser {% if class %} {{ class }}{% endif %}">
   <div class="c-browser-bar">
     <!-- dots -->
     <span class="c-browser-bar-dot"></span>
