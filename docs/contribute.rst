@@ -107,9 +107,13 @@ To push to GitHub again, because you "altered the history" of the repo by mergin
 the two commits into one, you'll have to `git push -f` instead of just `git push`.
 
 
-Server architecture
+Deploying your code
 -------------------
-**Demos**
+
+These are the websites that Bedrock is usually deployed to as part of development.
+
+Demo sites
+``````````
 
 Bedrock as a platform can run in two modes: Mozorg Mode (for content that will
 appear on mozilla.org) and Pocket Mode (for content that will end up on getpocket.com).
@@ -152,8 +156,8 @@ access to Google Cloud Platform.
 If you *do* have access, the Cloud Build dashboard shows the latest builds,
 and Cloud Run will link off to the relevant logs.
 
-We will be adding Slack notifications to alert developers about the success or
-failure of a demo deployment.
+There are Mozilla Slack notifications in ``#www-notify`` that show the
+status of demo builds. (Work is ticketed to make those notifications richer in data.)
 
 **Env vars**
 
@@ -176,11 +180,41 @@ codebase, so sensitive values should not be added there, even temporarily.*
 
 If you need to add a secret value, this currently needs to be added at the GCP
 level by someone with appropriate permissions to edit and apply the Terraform
-configuration. Currently Web-SRE and the backend team have appropriate GCP
+configuration, and to edit the trigger YAML spec to pass through the new secret.
+Currently Web-SRE and the backend team have appropriate GCP
 access and adding a secret is relatively quick. (We can make this easier in
 the future if there's sufficient need, of course.)
 
-**DEPRECATED: Heroku Demo Servers**
+.. note::
+
+  **Always-on vs auto-sleep demo servers**
+
+  The demo servers are on GCP Cloud Run, and by default they will be turned off if
+  there is no traffic for 15 minutes. After this time, the demo app will be woken
+  up if it receives a request.
+
+  Normally, a 'cold start' will not be a problem. However, if the branch you are
+  demoing does things that alter the database (i.e contains migrations), then you
+  may find the restarted demo app crashes because the new migrations have not been
+  applied after a cold start.
+
+  The best current way to avoid that happening is:
+
+  * In your branch's demo-env-vars YAML file, set ``LOCAL_DB_UPDATE=True`` so
+    that the Dev DB is not pulled down to the demo app
+  * Ask one of the backend team to set the Demo app to always be awake by setting
+    'Minimum instances' to 1 for the relevant Cloud Run service and restarting
+    it. The app will always be on and will not sleep, so won't need a cold start.
+    Once you have completed the feature work, please ask the backenders to
+    restore the default sleepy behaviour. As an example with ``mozorg-demo-1``:
+
+      * To make it always-on: ``gcloud run services update mozorg-demo-1 --min-instances 1``
+      * To revert it to auto-sleeping: ``gcloud run services update mozorg-demo-1 --min-instances 0``
+
+  (We'll try to make this a self-serve thing as soon as we can).
+
+DEPRECATED: Heroku Demo Servers
+...............................
 
 Demos are now powered by Google Cloud Platform (GCP), and no longer by Heroku.
 
@@ -199,20 +233,20 @@ To push to launch a demo on Heroku:
   $ git push -f mozilla my-demo-branch:demo/1
 
 
-**Dev**
-
+Dev
+```
 - *URL:* http://www-dev.allizom.org/
 - *Bedrock locales:* dev repo
 - *Bedrock Git branch:* main, deployed on git push
 
-**Stage**
-
+Staging
+```````
 - *URL:* http://www.allizom.org/
 - *Bedrock locales:* prod repo
 - *Bedrock Git branch:* prod, deployed on git push with date-tag
 
-**Production**
-
+Production
+``````````
 - *URL:* http://www.mozilla.org/
 - *Bedrock locales:* prod repo
 - *Bedrock Git branch:* prod, deployed on git push with date-tag
