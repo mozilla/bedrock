@@ -4,31 +4,41 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "firefox/campaign/families/includes/macros.html" import module_tag %}
+{% from "firefox/campaign/families/includes/macros.html" import module_tag, browser_border %}
 
 <section id="bullying" class="c-bullying">
   <div class="mzp-l-content">
     {{ module_tag(title='Bullying', anchor='bullying') }}
-    <div class="c-content">
-      <h3 class="c-subtitle">Ugh, trolls amiright?</h3>
-      <p>Internet trolls can be brutal on kids, especially kids who post to social
-        media, where their fears and feelings are an easy meal.</p>
-    </div>
+    <div class="l-flex">
+      <div class="c-content">
+        <h3 class="c-subtitle">Ugh, trolls amiright?</h3>
+        <p>Internet trolls can be brutal on kids, especially kids who post to social
+          media, where their fears and feelings are an easy meal.</p>
+      </div>
 
-    <div class="c-card t-shadow">
-      <h4 class="c-title-uppercase">What to do:</h4>
-      <ul class="mzp-u-list-styled">
-        <li>Discuss implementing a “positive comments only” rule.</li>
-        <li>Talk about how publically posted pictures can be misused.</li>
-        <li>Block users who are offensive, bullying or negative.</li>
-        <li>Agree to report online bullying to school administrators.</li>
-      </ul>
-    </div>
+      {% call browser_border() %}
+        <img src="{{ static('img/firefox/campaign/families/nested-hearts.svg') }}" alt="Nested hearts in a rainbow of colors">
+        <!-- might be easier to line up with flex and inline svgs -->
+        <div class="c-reactions"><span class="c-likes">12</span><span class="c-users">27</span><span class="c-comments">6</span></div>
+      {% endcall %}
 
-    <aside class="c-blurb">
-      <h4 class="c-blurb-title">Fun fact:</h4>
-      <p>Trolls originated in Scandinavian folklore. Most internet trolls originate
-        in their mom’s basement.</p>
-    </aside>
-  </div>
+      <div class="l-container">
+        <div class="c-card t-shadow">
+          <h4 class="c-title-uppercase">What to do:</h4>
+          <ul class="mzp-u-list-styled">
+            <li>Discuss implementing a “positive comments only” rule.</li>
+            <li>Talk about how publically posted pictures can be misused.</li>
+            <li>Block users who are offensive, bullying or negative.</li>
+            <li>Agree to report online bullying to school administrators.</li>
+          </ul>
+        </div>
+
+        <aside class="c-blurb">
+          <h4 class="c-blurb-title">Fun fact:</h4>
+          <p>Trolls originated in Scandinavian folklore. Most internet trolls originate
+            in their mom’s basement.</p>
+        </aside>
+      </div> <!-- end .l-container -->
+    </div> <!-- end .l-flex -->
+  </div> <!-- end .mzp-l-content -->
 </section>

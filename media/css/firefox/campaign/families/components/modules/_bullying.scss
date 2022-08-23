@@ -3,6 +3,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 @use '../../utils' as f3;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 .c-bullying {
     background-color: f3.$yellow-dark;
@@ -14,4 +15,66 @@
     .c-card.t-shadow {
         @include f3.card-shadow(f3.$yellow-extra-dark);
     }
+
+    .c-browser {
+        position: relative;
+        display: inline-block;
+        margin-bottom: $layout-lg;
+
+        &-bar {
+            background-color: f3.$green-light;
+        }
+
+        &-content {
+            padding: $spacing-md;
+        }
+    }
+
+    @supports (flex: 1 0 auto) {
+        @media #{$mq-lg} {
+            .l-flex {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 5%;
+
+                .c-content,
+                .l-container {
+                    flex: 1 0 33%;
+                }
+
+                .c-browser {
+                    flex: 0 0 auto;
+                }
+            }
+        }
+    }
+}
+
+.c-reactions {
+    @include f3.border;
+    @include f3.mono-font;
+    font-weight: bold;
+    padding: $spacing-sm $spacing-md;
+    position: absolute;
+    bottom: calc(#{$spacing-md} * 2 * -1);
+    left: 30%;
+    background-color: f3.$white;
+    width: max-content;
+
+    span + span {
+        margin-left: $spacing-md;
+    }
+}
+
+.c-likes::after {
+    content: url('/media/img/firefox/campaign/families/icon-heart.svg');
+}
+
+.c-users::after {
+    content: url('/media/img/firefox/campaign/families/icon-person.svg');
+}
+
+.c-comments::after {
+    content: url('/media/img/firefox/campaign/families/icon-comment.svg');
 }
