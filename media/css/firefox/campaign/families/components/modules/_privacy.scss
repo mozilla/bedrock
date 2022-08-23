@@ -3,6 +3,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 @use '../../utils' as f3;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 .c-privacy {
     background-color: f3.$pink-light;
@@ -16,6 +17,23 @@
 
         &-bar {
             background-color: f3.$green-light;
+        }
+    }
+
+    @supports (display: grid) {
+        @media #{$mq-lg} {
+            .l-grid {
+                display: grid;
+                grid-template-columns: 1fr minmax(40ch, 2fr);
+                gap: $layout-lg;
+                align-items: center;
+            }
+
+            .c-browser {
+                width: 80%;
+                margin-right: auto;
+                margin-left: auto;
+            }
         }
     }
 }
