@@ -2,16 +2,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$font-path: '/media/protocol/fonts';
-$image-path: '/media/protocol/img';
-$brand-theme: 'firefox';
-
-@import '../protocol/components/custom-menu-list';
-@import '../protocol/components/fxa-form';
-@import './sticky-promo';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
-@import '~@mozilla-protocol/core/protocol/css/components/zap';
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as * with ($font-path: '/media/protocol/fonts', $image-path: '/media/protocol/img', $brand-theme: 'firefox');
+@use '~@mozilla-protocol/core/protocol/css/includes/forms';
+@use '~@mozilla-protocol/core/protocol/css/components/zap';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib';
+@use '../protocol/components/custom-menu-list';
+@use '../protocol/components/fxa-form';
+@use './sticky-promo';
 
 // Hello developer in the future! This file serves multiple different pages
 // which isn't so obvious, so make changes with care! Be sure to check the
@@ -487,7 +484,7 @@ $url-download-link-hover: svg-url($download-link-hover);
 
                 // put in fake form label to push button down height of real form label next to it
                 &::before {
-                    @include field-label;
+                    @include forms.field-label;
                     content: '.';
                     visibility: hidden;
                 }

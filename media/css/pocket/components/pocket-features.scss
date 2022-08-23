@@ -2,17 +2,17 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+@use '~@mozilla-protocol/core/protocol/css/base/elements/containers';
+@use '~@mozilla-protocol/core/protocol/css/components/logos/logo';
+@use '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-family';
+
+@use '../utils/variables';
+@use '../includes/nav';
+@use '../includes/footer';
+@use '../includes/pocket-premium';
+
 $image-path: '/media/protocol/img';
-
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/base/elements/containers';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-family';
-
-@import '../utils/variables';
-@import '../includes/nav';
-@import '../includes/footer';
-@import '../includes/pocket-premium';
 
 .pocket-feature-page-split {
     padding: $layout-lg 0;
@@ -29,26 +29,26 @@ $image-path: '/media/protocol/img';
 
 .section-heading {
     @include text-title-sm;
-    font-family: $font-sans-alt;
+    font-family: variables.$font-sans-alt;
     font-weight: 500;
     margin-top: $spacing-sm;
 }
 
 .sub-section-heading {
     @include text-title-xs;
-    font-family: $font-sans-alt;
+    font-family: variables.$font-sans-alt;
     font-weight: 500;
 }
 
 .tagline {
-    font-family: $font-sans;
+    font-family: variables.$font-sans;
     @include text-body-sm;
     text-transform: uppercase;
 }
 
 .section-lede {
     @include text-body-xl;
-    font-family: $font-sans;
+    font-family: variables.$font-sans;
 
     li {
         list-style: disc;
@@ -118,12 +118,12 @@ $image-path: '/media/protocol/img';
 
     .secondary-cta {
         @include text-body-sm;
-        color: $color-text-primary;
+        color: variables.$color-text-primary;
 
         &:hover,
         &:focus,
         &:active {
-            color: $color-action-primary;
+            color: variables.$color-action-primary;
         }
     }
 }
@@ -131,12 +131,12 @@ $image-path: '/media/protocol/img';
 .new-tab-pocket-cta,
 .red-cta {
     @include text-body-lg;
-    background-color: $color-button-red-10;
+    background-color: variables.$color-button-red-10;
     border-radius: $border-radius-sm;
-    color: $color-white;
+    color: variables.$color-white;
     cursor: pointer;
     display: inline-block;
-    font-family: $font-sans;
+    font-family: variables.$font-sans;
     line-height: 1;
     padding: 10px 36px 10px $spacing-lg;
     text-align: center;
@@ -157,7 +157,7 @@ $image-path: '/media/protocol/img';
     &:focus,
     &:active {
         background-color: #901424;
-        color: $color-white;
+        color: variables.$color-white;
     }
 }
 
@@ -184,12 +184,12 @@ $image-path: '/media/protocol/img';
 
 .black-white-cta {
     @include text-body-md;
-    border: 2px solid $color-text-primary;
+    border: 2px solid variables.$color-text-primary;
     border-radius: $border-radius-sm;
-    color: $color-text-primary;
+    color: variables.$color-text-primary;
     cursor: pointer;
     display: inline-block;
-    font-family: $font-sans;
+    font-family: variables.$font-sans;
     line-height: 1;
     padding: 12px 36px;
     text-align: center;
@@ -201,8 +201,8 @@ $image-path: '/media/protocol/img';
     &:hover,
     &:focus,
     &:active {
-        color: $color-white;
-        background-color: $color-text-primary;
+        color: variables.$color-white;
+        background-color: variables.$color-text-primary;
     }
 }
 
@@ -222,12 +222,12 @@ $image-path: '/media/protocol/img';
             margin-left: $spacing-sm;
 
             a {
-                color: $color-text-primary;
+                color: variables.$color-text-primary;
 
                 &:hover,
                 &:focus,
                 &:active {
-                    color: $color-action-primary;
+                    color: variables.$color-action-primary;
                 }
             }
         }
@@ -254,25 +254,25 @@ $image-path: '/media/protocol/img';
 
 .green-line-cta {
     @include text-body-lg;
-    box-shadow: inset 0 0 $color-white, inset 0 -3px #00b2a8;
-    color: $color-text-primary;
-    font-family: $font-sans;
+    box-shadow: inset 0 0 variables.$color-white, inset 0 -3px #00b2a8;
+    color: variables.$color-text-primary;
+    font-family: variables.$font-sans;
     font-weight: 500;
     padding-bottom: 6.4px;
     text-decoration: none;
-    text-shadow: -0.126em 0.063em 0 $color-white, -0.063em 0.063em 0 $color-white, 0 0.063em 0 $color-white, 0.063em 0.063em 0 $color-white, 0.126em 0.063em 0 $color-white, -0.126em 0 0 $color-white;
+    text-shadow: -0.126em 0.063em 0 variables.$color-white, -0.063em 0.063em 0 variables.$color-white, 0 0.063em 0 variables.$color-white, 0.063em 0.063em 0 variables.$color-white, 0.126em 0.063em 0 variables.$color-white, -0.126em 0 0 variables.$color-white;
     transition: 0.15s;
 
     &:hover,
     &:focus,
     &:active {
-        color: $color-action-primary;
-        box-shadow: inset 0 -6px $color-white, inset 0 -8px $color-action-primary;
+        color: variables.$color-action-primary;
+        box-shadow: inset 0 -6px variables.$color-white, inset 0 -8px variables.$color-action-primary;
     }
 }
 
 .pocket-features-horizontal-rule {
-    background-color: $color-divider;
+    background-color: variables.$color-divider;
     border: 0;
     height: 1px;
     padding: 0 80px;

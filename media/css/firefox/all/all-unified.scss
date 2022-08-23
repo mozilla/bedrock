@@ -4,14 +4,11 @@
 
 @use 'sass:color';
 
-$font-path: '/media/protocol/fonts';
-$image-path: '/media/protocol/img';
-
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/includes/forms/lib';
-@import '~@mozilla-protocol/core/protocol/css/templates/main-with-sidebar';
-@import '~@mozilla-protocol/core/protocol/css/components/modal';
-@import '~@mozilla-protocol/core/protocol/css/components/sidebar-menu';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as * with ($font-path: '/media/protocol/fonts', $image-path: '/media/protocol/img');
+@use '~@mozilla-protocol/core/protocol/css/includes/forms';
+@use '~@mozilla-protocol/core/protocol/css/templates/main-with-sidebar';
+@use '~@mozilla-protocol/core/protocol/css/components/modal';
+@use '~@mozilla-protocol/core/protocol/css/components/sidebar-menu';
 
 .c-product-select-form {
     @include clearfix;
@@ -200,7 +197,7 @@ $image-path: '/media/protocol/img';
 }
 
 .c-download-info-caption {
-    @include field-label;
+    @include forms.field-label;
     display: table-caption;
 }
 
@@ -246,9 +243,9 @@ $image-path: '/media/protocol/img';
 
     a[data-link-type='download']:focus,
     a[data-link-type='download']:active {
-        box-shadow: 0 0 0 2px $field-border-color-hover, 0 0 0 4px color.mix($color-blue-40, $color-white);
+        box-shadow: 0 0 0 2px forms.$field-border-color-hover, 0 0 0 4px color.mix($color-blue-40, $color-white);
         border-radius: 6px;
-        background-color: $field-border-color-hover;
+        background-color: forms.$field-border-color-hover;
     }
 
     img {

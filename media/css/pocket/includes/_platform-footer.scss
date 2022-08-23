@@ -2,13 +2,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
-
-$image-path: '/media/protocol/img';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+@use '../utils/variables';
 
 .platform-footer {
     background-color: #f9f9fa;
-    font-family: $font-sans;
+    font-family: variables.$font-sans;
     padding-top: $spacing-xl;
 
     .footer-navigation {
@@ -28,7 +27,7 @@ $image-path: '/media/protocol/img';
 
         .footer-navigation-list {
             @include text-body-md;
-            color: $color-text-primary;
+            color: variables.$color-text-primary;
             display: flex;
             flex-flow: column wrap;
             height: 300px;
@@ -43,7 +42,7 @@ $image-path: '/media/protocol/img';
 
                 a,
                 #ot-sdk-btn {
-                    color: $color-text-primary;
+                    color: variables.$color-text-primary;
                     display: inline-block;
                     text-decoration: none;
                     margin: $spacing-sm $spacing-xs;
@@ -103,7 +102,7 @@ $image-path: '/media/protocol/img';
                 .svg-social {
                     fill: currentColor;
                     display: block;
-                    color: $color-text-primary;
+                    color: variables.$color-text-primary;
                     width: 30px;
                     height: 30px;
                     transition: color 100ms ease-in-out;
@@ -112,7 +111,7 @@ $image-path: '/media/protocol/img';
                         &:hover,
                         &:focus,
                         &:active {
-                            color: $color-twitter-blue;
+                            color: variables.$color-twitter-blue;
                         }
                     }
 
@@ -120,7 +119,7 @@ $image-path: '/media/protocol/img';
                         &:hover,
                         &:focus,
                         &:active {
-                            color: $color-facebook-blue;
+                            color: variables.$color-facebook-blue;
                         }
                     }
                 }
@@ -138,7 +137,7 @@ $image-path: '/media/protocol/img';
 
     .platform-footer-copyright {
         @include text-body-md;
-        color: $color-text-primary;
+        color: variables.$color-text-primary;
         font-weight: 300;
         text-align: left;
 

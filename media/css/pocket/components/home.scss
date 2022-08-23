@@ -4,16 +4,15 @@
 
 @use 'sass:color';
 
-$image-path: '/media/protocol/img';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as * with ($image-path: '/media/protocol/img');
+@use '~@mozilla-protocol/core/protocol/css/base/elements/containers';
+@use '~@mozilla-protocol/core/protocol/css/components/button';
+@use '~@mozilla-protocol/core/protocol/css/components/logos/logo';
+@use '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-pocket';
 
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/base/elements/containers';
-@import '~@mozilla-protocol/core/protocol/css/components/button';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-pocket';
-@import '../utils/variables';
-@import '../includes/platform-nav';
-@import '../includes/platform-footer';
+@use '../utils/variables';
+@use '../includes/platform-nav';
+@use '../includes/platform-footer';
 
 .c-banner {
     $dark-blue: #00256d;
@@ -87,8 +86,8 @@ $image-path: '/media/protocol/img';
 }
 
 .pocket-homepage {
-    color: $color-text-primary;
-    font-family: $font-sans;
+    color: variables.$color-text-primary;
+    font-family: variables.$font-sans;
 
     .pocket-homepage-header {
         .mzp-l-split-media-overflow {
@@ -117,7 +116,7 @@ $image-path: '/media/protocol/img';
 
     .section-heading {
         @include text-title-lg;
-        font-family: $font-sans-alt;
+        font-family: variables.$font-sans-alt;
         font-weight: 500;
         line-height: 1.1;
     }
@@ -146,13 +145,13 @@ $image-path: '/media/protocol/img';
 
         a {
             font-weight: 600;
-            color: $color-text-primary;
+            color: variables.$color-text-primary;
             text-decoration-thickness: 1.5px;
 
             &:hover,
             &:focus,
             &:active {
-                color: $color-button-red;
+                color: variables.$color-button-red;
             }
         }
 
@@ -184,7 +183,7 @@ $image-path: '/media/protocol/img';
         position: relative;
 
         h2 {
-            font-family: $font-sans-alt;
+            font-family: variables.$font-sans-alt;
             @include text-title-md;
             font-weight: 500;
             text-align: center;
@@ -244,14 +243,14 @@ $image-path: '/media/protocol/img';
     }
 
     .mzp-c-button {
-        background-color: $color-button-red;
+        background-color: variables.$color-button-red;
         border: 0;
 
         &:hover,
         &:focus,
         &:active {
-            background-color: color.adjust($color-button-red, $lightness: -10%);
-            color: $color-white;
+            background-color: color.adjust(variables.$color-button-red, $lightness: -10%);
+            color: variables.$color-white;
         }
     }
 

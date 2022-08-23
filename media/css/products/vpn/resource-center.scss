@@ -2,16 +2,17 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+
+@use '~@mozilla-protocol/core/protocol/css/components/inline-list';
+@use '~@mozilla-protocol/core/protocol/css/includes/fonts/metropolis';
+@use '~@mozilla-protocol/core/protocol/css/includes/fonts/inter';
+@use '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@use '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-vpn';
+@use '~@mozilla-protocol/core/protocol/css/components/breadcrumb';
+
 $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
-
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/inline-list';
-@import '~@mozilla-protocol/core/protocol/css/includes/fonts/metropolis';
-@import '~@mozilla-protocol/core/protocol/css/includes/fonts/inter';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-vpn';
-@import '~@mozilla-protocol/core/protocol/css/components/breadcrumb';
 
 .resource-center-page-header {
     .mzp-l-content {

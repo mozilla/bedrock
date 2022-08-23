@@ -2,18 +2,16 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$image-path: '/media/protocol/img';
-
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-developer';
-@import 'includes/engage';
-@import 'includes/features';
-@import 'includes/gallery-grid';
-@import 'includes/highlights';
-@import 'includes/intro';
-@import 'includes/newsletter';
-@import 'includes/performance';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as * with ($image-path: '/media/protocol/img');
+@use '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@use '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-developer';
+@use 'includes/engage';
+@use 'includes/features';
+@use 'includes/gallery-grid';
+@use 'includes/highlights';
+@use 'includes/intro';
+@use 'includes/newsletter';
+@use 'includes/performance';
 
 // *------------------------------------------------------------------*/
 // Title and subtitles for entire page

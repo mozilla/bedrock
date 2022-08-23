@@ -2,19 +2,17 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$image-path: '/media/protocol/img';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as * with ($image-path: '/media/protocol/img');
+@use '~@mozilla-protocol/core/protocol/css/base/elements/containers';
+@use '~@mozilla-protocol/core/protocol/css/components/logos/logo';
+@use '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-family';
+@use '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-pocket';
+@use '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@use '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-pocket';
 
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/base/elements/containers';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-family';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-pocket';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-pocket';
-
-@import '../utils/variables';
-@import '../includes/nav';
-@import '../includes/footer';
+@use '../utils/variables';
+@use '../includes/nav';
+@use '../includes/footer';
 
 // * -------------------------------------------------------------------------- */
 // Page Header
@@ -22,10 +20,10 @@ $image-path: '/media/protocol/img';
 .new-tab-header {
     @include text-body-xs;
     align-items: center;
-    background-color: $color-black;
-    color: $color-white-10;
+    background-color: variables.$color-black;
+    color: variables.$color-white-10;
     display: flex;
-    font-family: $font-sans;
+    font-family: variables.$font-sans;
     height: 50px;
     justify-content: center;
     padding: 0 $spacing-md;
@@ -61,10 +59,10 @@ $image-path: '/media/protocol/img';
 // * -------------------------------------------------------------------------- */
 // Styles for sections + overriding some protocol styles to work well with pocket images
 .new-tab-section {
-    font-family: $font-sans;
+    font-family: variables.$font-sans;
 
     &.top {
-        background-color: $color-background-grey-10;
+        background-color: variables.$color-background-grey-10;
     }
 
     &.mzp-t-split-nospace {
@@ -74,7 +72,7 @@ $image-path: '/media/protocol/img';
 
 .tagline {
     @include text-body-sm;
-    color: $color-text-grey;
+    color: variables.$color-text-grey;
     margin-bottom: $spacing-xs;
     margin-top: 0;
     text-align: center;
@@ -87,12 +85,12 @@ $image-path: '/media/protocol/img';
 
 .new-tab-section-header {
     @include text-title-2xs;
-    font-family: $font-sans-alt;
+    font-family: variables.$font-sans-alt;
     text-align: left;
 
     &.top {
         @include text-title-sm;
-        font-family: $font-sans-alt;
+        font-family: variables.$font-sans-alt;
         font-weight: 500;
         margin-bottom: $spacing-xs;
         margin-top: 0;
@@ -127,22 +125,22 @@ $image-path: '/media/protocol/img';
     }
 
     a {
-        color: $color-button-red-10;
+        color: variables.$color-button-red-10;
         cursor: pointer;
         text-decoration: underline;
 
         &:hover,
         &:focus {
-            color: $color-text-primary;
+            color: variables.$color-text-primary;
         }
     }
 }
 
 .new-tab-pocket-cta {
     @include text-body-xl;
-    background-color: $color-button-red-10;
+    background-color: variables.$color-button-red-10;
     border-radius: $border-radius-sm;
-    color: $color-white;
+    color: variables.$color-white;
     cursor: pointer;
     display: inline-block;
     line-height: 1;
@@ -168,7 +166,7 @@ $image-path: '/media/protocol/img';
 
 .sub-cta {
     @include text-body-sm;
-    color: $color-text-primary;
+    color: variables.$color-text-primary;
     cursor: pointer;
     display: block;
     margin-top: $spacing-sm;
@@ -178,7 +176,7 @@ $image-path: '/media/protocol/img';
     &:hover,
     &:focus,
     &:active {
-        color: $color-action-primary;
+        color: variables.$color-action-primary;
     }
 
     @media #{$mq-lg} {
@@ -188,7 +186,7 @@ $image-path: '/media/protocol/img';
 
 .new-tab-page-header {
     @include text-title-sm;
-    font-family: $font-sans-alt;
+    font-family: variables.$font-sans-alt;
     font-weight: 500;
     margin-bottom: 0;
     padding-bottom: 0;
@@ -224,14 +222,14 @@ $image-path: '/media/protocol/img';
     padding: 0;
 
     li a {
-        color: $color-button-red-10;
+        color: variables.$color-button-red-10;
         cursor: pointer;
-        font-family: $font-sans;
+        font-family: variables.$font-sans;
         text-decoration: underline;
 
         &:hover,
         &:focus {
-            color: $color-text-primary;
+            color: variables.$color-text-primary;
         }
     }
 
@@ -244,7 +242,7 @@ $image-path: '/media/protocol/img';
 // Footer
 .new-tab-footer {
     align-items: center;
-    background-color: $color-black;
+    background-color: variables.$color-black;
     display: flex;
     height: 50px;
     padding: 0 $spacing-lg;

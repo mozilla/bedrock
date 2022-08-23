@@ -2,7 +2,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+@use '../utils/variables';
 
 .pocket-header.platform {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
@@ -56,10 +57,10 @@
 
                 .header-navigation-list-item-link {
                     @include text-body-sm;
-                    font-family: $font-sans;
+                    font-family: variables.$font-sans;
                     margin: $spacing-lg $spacing-xs;
                     text-decoration: none;
-                    color: $color-text-primary;
+                    color: variables.$color-text-primary;
 
                     &:hover,
                     &:focus,
@@ -70,10 +71,10 @@
 
                     &.log-in-cta {
                         @include text-body-xs;
-                        background-color: $color-text-primary;
+                        background-color: variables.$color-text-primary;
                         border-radius: $border-radius-xs;
-                        border: 2px solid $color-text-primary;
-                        color: $color-white;
+                        border: 2px solid  variables.$color-text-primary;
+                        color: variables.$color-white;
                         font-weight: 500;
                         padding: 3px $spacing-md;
                         transition: all 100ms ease-in-out;
@@ -86,7 +87,7 @@
                         &:focus,
                         &:active {
                             background-color: transparent;
-                            color: $color-text-primary;
+                            color: variables.$color-text-primary;
                             text-decoration: none;
                         }
                     }

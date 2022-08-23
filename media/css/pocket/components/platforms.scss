@@ -4,21 +4,21 @@
 
 @use 'sass:color';
 
-@import '../utils/variables';
-@import '../utils/tokens';
-@import '../includes/platform-footer';
-@import '../includes/platform-nav';
+@use '../utils/variables';
+@use '../utils/tokens';
+@use '../includes/platform-footer';
+@use '../includes/platform-nav';
 
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/button';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+@use '~@mozilla-protocol/core/protocol/css/components/button';
 
 .platform {
-    background-color: $color-background-grey;
+    background-color: variables.$color-background-grey;
 
     .mzp-c-split-container {
-        background: $color-white;
+        background: variables.$color-white;
         border-radius: 10px;
-        border: 1px solid $color-divider;
+        border: 1px solid variables.$color-divider;
         padding-bottom: $spacing-lg;
 
         @media #{$mq-md} {
@@ -31,18 +31,18 @@
 
         p {
             @include text-body-xl;
-            color: $color-text-grey;
+            color: variables.$color-text-grey;
         }
 
         .mzp-c-button {
-            background-color: $color-button-red;
+            background-color: variables.$color-button-red;
             border: 0;
 
             &:hover,
             &:focus,
             &:active {
-                background-color: color.adjust($color-button-red, $lightness: -10%);
-                color: $color-white;
+                background-color: color.adjust(variables.$color-button-red, $lightness: -10%);
+                color: variables.$color-white;
             }
         }
     }

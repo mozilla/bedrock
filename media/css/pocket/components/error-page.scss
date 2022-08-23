@@ -2,21 +2,21 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-@import '../utils/variables';
-@import '../includes/platform-nav';
-@import '../includes/platform-footer';
+@use '../utils/variables';
+@use '../includes/platform-nav';
+@use '../includes/platform-footer';
 
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/base/elements/containers';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+@use '~@mozilla-protocol/core/protocol/css/base/elements/containers';
 
 a {
-    color: $color-action-primary;
+    color: variables.$color-action-primary;
     text-decoration: underline;
     transition: color 0.1s ease-out;
 
     &:hover,
     &:active,
     &:focus {
-        color: $color-action-primary-hover;
+        color: variables.$color-action-primary-hover;
     }
 }

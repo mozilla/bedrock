@@ -4,37 +4,37 @@
 
 @use 'sass:color';
 
-@import '../utils/variables';
-@import '../includes/platform-nav';
-@import '../includes/platform-footer';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+@use '~@mozilla-protocol/core/protocol/css/components/button';
 
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/button';
+@use '../utils/variables';
+@use '../includes/platform-nav';
+@use '../includes/platform-footer';
 
 // Header section
 .add-page {
     .add-header {
-        background-color: $color-background-grey;
+        background-color: variables.$color-background-grey;
         padding: 5px;
     }
 
     h2 {
-        color: $color-text-dark-grey;
+        color: variables.$color-text-dark-grey;
         margin: 0 auto;
         max-width: 62.5rem;
-        padding: $spacing100;
-        font-size: $size150;
+        padding: variables.$spacing100;
+        font-size: variables.$size150;
         text-align: center;
 
         @media #{$mq-md} {
-            font-size: $size200;
+            font-size: variables.$size200;
             text-align: left;
         }
     }
 
     h3,
     p {
-        color: $color-text-grey;
+        color: variables.$color-text-grey;
     }
 }
 
@@ -44,14 +44,14 @@
 
 .add-header {
     .mzp-c-button {
-        background-color: $color-button-red;
-        border: 2px solid $color-button-red;
+        background-color: variables.$color-button-red;
+        border: 2px solid variables.$color-button-red;
 
         &:hover,
         &:focus,
         &:active {
-            background-color: color.adjust($color-button-red, $lightness: -10%);
-            border: 2px solid color.adjust($color-button-red, $lightness: -10%);
+            background-color: color.adjust(variables.$color-button-red, $lightness: -10%);
+            border: 2px solid color.adjust(variables.$color-button-red, $lightness: -10%);
             color: $color-white;
         }
     }
@@ -60,8 +60,8 @@
 // Device section
 .add-device {
     margin: 0 auto;
-    max-width: 62.5rem;
-    padding: $spacing100;
+    max-width: 62.5em;
+    padding: variables.$spacing100;
     width: 100%;
 
     @media #{$mq-md} {
@@ -106,11 +106,11 @@
 
 .app-store-list,
 .device-list {
-    margin-bottom: $spacing050;
+    margin-bottom: variables.$spacing050;
     padding: 0;
 
     li {
-        margin: $spacing050 0;
+        margin: variables.$spacing050 0;
     }
 }
 
@@ -131,7 +131,7 @@
 
 // Save section
 .add-save {
-    background-color: $color-background-grey;
+    background-color: variables.$color-background-grey;
 
     @media #{$mq-md} {
         .save-context {
@@ -150,8 +150,8 @@
 
 .add-save-wrapper {
     margin: 0 auto;
-    max-width: 62.5rem;
-    padding: $spacing100;
+    max-width: 62.5em;
+    padding: variables.$spacing100;
     width: 100%;
 }
 
@@ -169,7 +169,7 @@
 .save-email-link {
     display: block;
     max-width: 400px;
-    margin-bottom: $spacing100;
+    margin-bottom: variables.$spacing100;
     text-decoration: none;
     padding: $spacing-md $spacing-md 0;
     overflow: hidden;
@@ -183,13 +183,13 @@
         .save-email-card-line {
             @include font-size(15px);
             font-weight: 300;
-            color: $color-text-dark-grey;
-            border-bottom: 1px solid $color-light-grey;
+            color: variables.$color-text-dark-grey;
+            border-bottom: 1px solid variables.$color-light-grey;
             padding-bottom: $spacing-sm;
 
             &.email {
                 font-weight: 400;
-                color: $color-text-cyan;
+                color: variables.$color-text-cyan;
                 margin-top: 0;
             }
 
@@ -201,7 +201,7 @@
 
             span {
                 font-weight: 100;
-                color: $color-text-grey;
+                color: variables.$color-text-grey;
             }
         }
     }
@@ -269,12 +269,12 @@ $icon-gap: 1rem;
 
 .dark-inline-link {
     font-weight: 700;
-    color: $color-text-grey;
+    color: variables.$color-text-grey;
     text-decoration: none;
 
     &:hover,
     &:focus,
     &:active {
-        color: $color-text-cyan;
+        color: variables.$color-text-cyan;
     }
 }

@@ -2,18 +2,20 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+@use 'variables';
+
 .main-container {
     overflow: hidden;
 
     .about-section a {
-        color: $color-action-primary;
+        color: variables.$color-action-primary;
         text-decoration: underline;
         transition: color 0.1s ease-out;
 
         &:hover,
         &:active,
         &:focus {
-            color: $color-action-primary-hover;
+            color: variables.$color-action-primary-hover;
         }
     }
 }
