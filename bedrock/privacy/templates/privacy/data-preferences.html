@@ -6,9 +6,8 @@
 
 {% extends "base-protocol.html" %}
 
-{% block page_title %}Manage your first-party data collection preferences{% endblock %}
-
-{% block page_desc %}Your privacy is very important to Mozilla. This page will enable you to manage your first-party data collection preferences for www.mozilla.org.{% endblock %}
+{% block page_title %}{{ ftl('data-preferences-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('data-preferecnes-page-desc') }}{% endblock %}
 
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
@@ -17,60 +16,49 @@
 {% endblock %}
 
 {% block string_data %}
-  data-notification-opt-out='You are opted out of first-party data collection.'
-  data-notification-opt-in='You are opted in to first-party data collection.'
+  data-notification-opt-out="{{ ftl('data-preferecnes-notification-opt-out') }}"
+  data-notification-opt-in="{{ ftl('data-preferecnes-notification-opt-in') }}"
 {% endblock %}
 
 {% block content %}
 <div class="mzp-l-content">
   <article class="mzp-c-article">
-    <h1 class="mzp-c-article-title">Manage your first-party data collection preferences</h1>
+    <h1 class="mzp-c-article-title">{{ ftl('data-preferences-page-title') }}</h1>
 
     <p>
-      {% with glean='https://docs.telemetry.mozilla.org/concepts/glean/glean.html',
-              lean_data=url('mozorg.about.policy.lean-data.index') %}
-        Your privacy is very important to Mozilla. Our first-party telemetry and analytics platform,
-        called <a href="{{ glean }}">Glean</a>, follows our own high standards for
-        <a href="{{ lean_data }}">lean data practices</a>.
-      {% endwith %}
+      {{ ftl('data-preferences-your-privacy',
+        glean='https://docs.telemetry.mozilla.org/concepts/glean/glean.html',
+        lean_data=url('mozorg.about.policy.lean-data.index'))
+      }}
     </p>
     <p>
-      {% with mozorg=url('mozorg.home'),
-              privacy_notice=url('privacy.notices.websites'),
-              dictionary='https://dictionary.telemetry.mozilla.org/' %}
-        Mozilla uses Glean to collect website usage data on <a href="{{ mozorg }}">www.mozilla.org</a>
-        in order to ensure that we’re delivering the best possible user experience for our visitors.
-        Glean does not share information with any third parties outside of Mozilla. Every piece of
-        data we collect also goes through a strict review process. You can learn more about the
-        specific types of data we collect in the <a href="{{ dictionary }}">Glean Dictionary</a>.
-        For more information about the way we handle and share your data on www.mozilla.org, you can
-        read our <a href="{{ privacy_notice }}">Websites, Communications and Cookies Privacy Notice</a>.
-      {% endwith %}
+      {{ ftl('data-preferences-mozilla-uses',
+        dictionary='https://dictionary.telemetry.mozilla.org/',
+        privacy_notice=url('privacy.notices.websites'))
+      }}
     </p>
 
     <p>
-      If you still want to opt-out of first-party analytics on www.mozilla.org, you can do so below.
-      Clicking the opt-out button will set a preference cookie that is used to prevent it from initializing
-      when you load our web pages. This preference cookie will last for 1 year.
+      {{ ftl('data-preferences-if-you-still-want-to') }}
     </p>
 
     <p id="data-preference-status" class="data-preference-status">
-      <strong>Current preference: </strong>
-      <noscript>Please enable JavaScript to manage your data preference.</noscript>
+      <strong>{{ ftl('data-preferences-current-preference') }}</strong>
+      <noscript>{{ ftl('data-preferences-please-enable-javascript') }}</noscript>
       <span class="data-preference-text"></span>
     </p>
 
     <p>
-      <button type="button" class="mzp-c-button mzp-t-neutral js-opt-out-button" aria-controls="data-preference-status">
-        Opt-out of first-party data collection
+      <button type="button" class="mzp-c-button js-opt-out-button" aria-controls="data-preference-status">
+        {{ ftl('data-preferences-opt-out-button') }}
       </button>
     </p>
 
-    <p>If you change your mind, you can opt-in again here:</p>
+    <p>{{ ftl('data-preferences-if-you-change') }}</p>
 
     <p>
-      <button type="button" class="mzp-c-button mzp-t-neutral js-opt-in-button" aria-controls="data-preference-status">
-        Opt-in to first-party data collection
+      <button type="button" class="mzp-c-button js-opt-in-button" aria-controls="data-preference-status">
+        {{ ftl('data-preferences-opt-in-button') }}
       </button>
     </p>
   </article>

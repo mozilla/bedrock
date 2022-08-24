@@ -1871,7 +1871,8 @@
     },
     {
       "files": [
-        "js/privacy/data-preferences.es6.js"
+        "js/privacy/data-preferences-cookie.es6.js",
+        "js/privacy/data-preferences-init.es6.js"
       ],
       "name": "privacy-data-preferences"
     },
