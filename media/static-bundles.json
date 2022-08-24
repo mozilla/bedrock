@@ -1182,9 +1182,9 @@
     },
     {
       "files": [
-        "css/firefox/campaign/families/styles.scss"
+        "css/firefox/family/styles.scss"
       ],
-      "name": "firefox-families"
+      "name": "firefox-family"
     }
   ],
   "js": [

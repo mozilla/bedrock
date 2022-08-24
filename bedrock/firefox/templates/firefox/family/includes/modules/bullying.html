@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "firefox/campaign/families/includes/macros.html" import module_tag, browser_border %}
+{% from "firefox/family/includes/macros.html" import module_tag, browser_border %}
 
 <section id="bullying" class="c-bullying">
   <div class="mzp-l-content">
@@ -17,7 +17,7 @@
       </div>
 
       {% call browser_border() %}
-        <img src="{{ static('img/firefox/campaign/families/nested-hearts.svg') }}" alt="Nested hearts in a rainbow of colors">
+        <img src="{{ static('img/firefox/family/nested-hearts.svg') }}" alt="Nested hearts in a rainbow of colors">
         <!-- might be easier to line up with flex and inline svgs -->
         <div class="c-reactions"><span class="c-likes">12</span><span class="c-users">27</span><span class="c-comments">6</span></div>
       {% endcall %}

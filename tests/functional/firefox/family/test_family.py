@@ -4,11 +4,11 @@
 
 import pytest
 
-from pages.firefox.campaign.families.landing import CampaignFamiliesPage
+from pages.firefox.family.landing import FamilyPage
 
 
 # confirm if download button is actual download or link to download page
 @pytest.mark.skip_if_firefox(reason="Download button is displayed only to non-Firefox users")
 def test_firefox_download_button_is_displayed(base_url, selenium):
-    page = CampaignFamiliesPage(selenium, base_url).open()
+    page = FamilyPage(selenium, base_url).open()
     assert page.is_firefox_download_button_displayed

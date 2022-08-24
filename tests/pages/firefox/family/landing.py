@@ -7,9 +7,9 @@ from selenium.webdriver.common.by import By
 from pages.base import BasePage
 
 
-class CampaignFamiliesPage(BasePage):
+class FamilyPage(BasePage):
 
-    _URL_TEMPLATE = "/{locale}/firefox/families/"
+    _URL_TEMPLATE = "/{locale}/firefox/family/"
 
     _firefox_download_button_locator = (By.CSS_SELECTOR, "[data-link-type='download']")
 

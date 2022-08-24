@@ -7,7 +7,7 @@
 {% extends "firefox/base/base-protocol.html" %}
 
 {% block page_css %}
-  {{ css_bundle('firefox-families') }}
+  {{ css_bundle('firefox-family') }}
 {% endblock %}
 
 <!-- will any metadata need to change? -->
@@ -25,41 +25,41 @@
 <!-- metadata q ends -->
 
 {% block sub_navigation %}
-  {% include 'firefox/campaign/families/includes/subnav.html' %}
+  {% include 'firefox/family/includes/subnav.html' %}
 {% endblock %}
 
 {% block content %}
 <!-- Hero -->
-{% include 'firefox/campaign/families/includes/hero.html' %}
+{% include 'firefox/family/includes/hero.html' %}
 <!-- Breaking news scroll -->
-{% include 'firefox/campaign/families/includes/news-ticker.html' %}
+{% include 'firefox/family/includes/news-ticker.html' %}
 <main>
 <!-- note: all module sections must be linkable -->
 <!-- MODULE: Privacy -->
-{% include 'firefox/campaign/families/includes/modules/privacy.html' %}
+{% include 'firefox/family/includes/modules/privacy.html' %}
 <!-- MODULE: Mental Health -->
-{% include 'firefox/campaign/families/includes/modules/mental-health.html' %}
+{% include 'firefox/family/includes/modules/mental-health.html' %}
 <!-- Parental Pro-tip -->
 {% with tip='Sometimes when you punctuate your texts, it seems angry: “Okay.”' %}
-  {% include 'firefox/campaign/families/includes/parental-pro-tip.html' %}
+  {% include 'firefox/family/includes/parental-pro-tip.html' %}
 {% endwith %}
 <!-- MODULE: Bullying -->
-{% include 'firefox/campaign/families/includes/modules/bullying.html' %}
+{% include 'firefox/family/includes/modules/bullying.html' %}
 <!-- MODULE: Public Wifi -->
-{% include 'firefox/campaign/families/includes/modules/public-wifi.html' %}
+{% include 'firefox/family/includes/modules/public-wifi.html' %}
 <!-- Download Firefox -->
-{% include 'firefox/campaign/families/includes/download-firefox.html' %}
+{% include 'firefox/family/includes/download-firefox.html' %}
 <!-- MODULE: Passwords -->
-{% include 'firefox/campaign/families/includes/modules/passwords.html' %}
+{% include 'firefox/family/includes/modules/passwords.html' %}
 <!-- MODULE: Private Mode -->
-{% include 'firefox/campaign/families/includes/modules/private-mode.html' %}
+{% include 'firefox/family/includes/modules/private-mode.html' %}
 <!-- Parental Pro-tip -->
 {% with tip='Teens may smirk if they see you scrolling with your index finger.' %}
-  {% include 'firefox/campaign/families/includes/parental-pro-tip.html' %}
+  {% include 'firefox/family/includes/parental-pro-tip.html' %}
 {% endwith %}
 <!-- Agreement (printable) -->
-{% include 'firefox/campaign/families/includes/agreement.html' %}
+{% include 'firefox/family/includes/agreement.html' %}
 </main>
 <!-- dad jokes cookie banner -->
-{% include 'firefox/campaign/families/includes/dad-jokes-banner.html' %}
+{% include 'firefox/family/includes/dad-jokes-banner.html' %}
 {% endblock %}

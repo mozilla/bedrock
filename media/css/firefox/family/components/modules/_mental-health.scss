@@ -8,7 +8,7 @@
 /* stylelint-disable no-duplicate-selectors */
 
 .c-mental-health {
-    background: f3.$violet-light center / cover no-repeat url('/media/img/firefox/campaign/families/grid-doomscrollhole.svg');
+    background: f3.$violet-light center / cover no-repeat url('/media/img/firefox/family/grid-doomscrollhole.svg');
 
     .c-module-tag-title {
         background-color: f3.$violet-primary;
@@ -41,7 +41,7 @@
 
     // dimensions from svg
     .c-doomscroll {
-        background-image: url('/media/img/firefox/campaign/families/text-doomscroll.svg');
+        background-image: url('/media/img/firefox/family/text-doomscroll.svg');
         background-repeat: repeat-y;
         height: 800px;
         position: relative;
