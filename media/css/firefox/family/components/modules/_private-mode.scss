@@ -38,26 +38,11 @@
     }
 }
 
-@supports (display: flex) {
+@supports (flex: 1 0 auto) {
     @media #{$mq-md} {
         .c-private-mode {
             .l-flex {
                 display: flex;
-                column-gap: 5%;
-            }
-
-            .c-browser {
-                flex: 1 0 50%;
-            }
-
-            .c-card {
-                width: 80%;
-            }
-
-            .c-blurb {
-                margin-left: auto;
-                margin-top: -#{$layout-2xs};
-                width: 70%;
             }
         }
     }

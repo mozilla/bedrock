@@ -36,16 +36,6 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                gap: 5%;
-
-                .c-content,
-                .l-container {
-                    flex: 1 0 33%;
-                }
-
-                .c-browser {
-                    flex: 0 0 auto;
-                }
             }
         }
     }
