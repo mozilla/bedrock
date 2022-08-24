@@ -63,7 +63,7 @@ describe('RecoveryEmailForm', function () {
         it('should handle success', function () {
             spyOn(RecoveryEmailForm, 'handleFormSuccess').and.callThrough();
             RecoveryEmailForm.init();
-            document.getElementById('id_email').value = 'success@example.com';
+            document.getElementById('id_email').value = 'fox@example.com';
             document.getElementById('newsletter-submit').click();
             xhrRequests[0].respond(
                 200,
@@ -103,7 +103,7 @@ describe('RecoveryEmailForm', function () {
         it('should handle unknown email', function () {
             spyOn(RecoveryEmailForm, 'handleFormError').and.callThrough();
             RecoveryEmailForm.init();
-            document.getElementById('id_email').value = 'unknown@example.com';
+            document.getElementById('id_email').value = 'ohnoes@example.com';
             document.getElementById('newsletter-submit').click();
             xhrRequests[0].respond(
                 400,
@@ -121,10 +121,29 @@ describe('RecoveryEmailForm', function () {
             ).toBeTrue();
         });
 
+        it('should handle unknown error', function () {
+            spyOn(RecoveryEmailForm, 'handleFormError').and.callThrough();
+            RecoveryEmailForm.init();
+            document.getElementById('id_email').value = 'ohnoes@example.com';
+            document.getElementById('newsletter-submit').click();
+            xhrRequests[0].respond(
+                400,
+                { 'Content-Type': 'application/json' },
+                '{"status": "error", "desc": "Unknown non-helpful error"}'
+            );
+
+            expect(RecoveryEmailForm.handleFormError).toHaveBeenCalled();
+            expect(
+                document
+                    .querySelector('.error-try-again-later')
+                    .classList.contains('show')
+            ).toBeTrue();
+        });
+
         it('should handle failure', function () {
             spyOn(RecoveryEmailForm, 'handleFormError').and.callThrough();
             RecoveryEmailForm.init();
-            document.getElementById('id_email').value = 'failure@example.com';
+            document.getElementById('id_email').value = 'ohnoes@example.com';
             document.getElementById('newsletter-submit').click();
             xhrRequests[0].respond(
                 500,

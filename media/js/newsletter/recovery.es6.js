@@ -68,6 +68,9 @@ const RecoveryEmailForm = {
         // Disable form fields until POST has completed.
         RecoveryEmailForm.disableFormFields();
 
+        // Clear any prior messages that might have been displayed.
+        RecoveryEmailForm.clearFormErrors();
+
         // Really basic client side email validity check.
         if (!checkEmailValidity(email)) {
             RecoveryEmailForm.handleFormError('Invalid email address');
@@ -75,11 +78,19 @@ const RecoveryEmailForm = {
             return;
         }
 
+        // Emails used in automation for page-level integration tests
+        // should avoid hitting basket directly.
+        if (email === 'success@example.com') {
+            RecoveryEmailForm.handleFormSuccess();
+            return;
+        } else if (email === 'failure@example.com') {
+            RecoveryEmailForm.handleFormError();
+            RecoveryEmailForm.enableFormFields();
+            return;
+        }
+
         xhr.onload = (r) => {
             let response = r.target.response || r.target.responseText;
-
-            // Clear any prior messages that might have been displayed.
-            RecoveryEmailForm.clearFormErrors();
 
             if (typeof response !== 'object') {
                 response = JSON.parse(response);
