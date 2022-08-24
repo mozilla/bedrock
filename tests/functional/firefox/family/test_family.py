@@ -14,6 +14,6 @@ def test_firefox_download_button_is_displayed(base_url, selenium):
     assert page.is_firefox_download_button_displayed
 
 
-def text_firefox_pdf_download_button_is_displayed(base_url, selenium):
+def test_firefox_pdf_download_button_is_displayed(base_url, selenium):
     page = CampaignFamiliesPage(selenium, base_url).open()
     assert page.is_firefox_pdf_download_button_displayed
