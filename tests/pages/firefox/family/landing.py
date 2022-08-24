@@ -13,6 +13,12 @@ class FamilyPage(BasePage):
 
     _firefox_download_button_locator = (By.CSS_SELECTOR, "[data-link-type='download']")
 
+    _firefox_pdf_download_button_locator = (By.CSS_SELECTOR, "[data-cta-text='Download PDF']")
+
     @property
     def is_firefox_download_button_displayed(self):
         return self.is_element_displayed(*self._firefox_download_button_locator)
+
+    @property
+    def is_firefox_pdf_download_button_displayed(self):
+        return self.is_element_displayed(*self._firefox_pdf_download_button_locator)
