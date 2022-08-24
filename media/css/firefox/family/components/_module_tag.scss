@@ -15,6 +15,7 @@ body {
     display: inline-block;
     padding-right: $spacing-md;
     margin-bottom: $layout-xs;
+    position: relative;
 
     &::before {
         display: inline-block;
@@ -25,5 +26,33 @@ body {
         padding: $spacing-sm $spacing-md;
         border-right: f3.$border-width solid f3.$black;
         margin-right: $spacing-md;
+    }
+
+    &::after {
+        $width: 25px;
+
+        @include f3.border(transparent);
+        background-color: transparent;
+        border-radius: 50%;
+        box-sizing: content-box;
+        content: url('/media/img/firefox/family/icon-link.svg');
+        display: inline-block;
+        height: $width;
+        padding: $spacing-xs;
+        position: absolute;
+        right: calc((#{$width} + #{$spacing-lg}) * -1);
+        top: 50%;
+        transform: translateY(-50%);
+        width: $width;
+    }
+
+    // todo: confirm interaction style
+    &:hover,
+    &:focus,
+    &:active {
+        &::after {
+            border-color: f3.$black;
+            border-style: dotted;
+        }
     }
 }
