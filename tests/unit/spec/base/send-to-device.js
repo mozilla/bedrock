@@ -9,7 +9,6 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global sinon, */
 /* eslint camelcase: [2, {properties: "never"}] */
 /* eslint new-cap: [2, {"capIsNewExceptions": ["Deferred"]}] */
 

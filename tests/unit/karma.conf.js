@@ -38,6 +38,8 @@ module.exports = function (config) {
             'media/js/firefox/new/common/thanks.js',
             'media/js/pocket/mobile-nav.es6.js',
             'media/js/products/vpn/affiliate-attribution.es6.js',
+            'media/js/newsletter/form-utils.es6.js',
+            'media/js/newsletter/recovery.es6.js',
             'tests/unit/spec/base/core-datalayer-page-id.js',
             'tests/unit/spec/base/core-datalayer.js',
             'tests/unit/spec/base/dnt-helper.js',
@@ -67,6 +69,8 @@ module.exports = function (config) {
             'tests/unit/spec/glean/page.js',
             'tests/unit/spec/glean/utils.js',
             'tests/unit/spec/products/vpn/affiliate-attribution.js',
+            'tests/unit/spec/newsletter/form-utils.js',
+            'tests/unit/spec/newsletter/recovery.js',
             {
                 pattern: 'node_modules/sinon/pkg/sinon.js',
                 watched: false,

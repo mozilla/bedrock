@@ -9,8 +9,6 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global sinon, */
-
 describe('mozilla-banner.js', function () {
     beforeEach(function () {
         // stub out google tag manager

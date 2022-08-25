@@ -9,8 +9,6 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global sinon */
-
 describe('mozilla-pixel.js', function () {
     afterEach(function () {
         document.querySelectorAll('.moz-px').forEach((e) => {

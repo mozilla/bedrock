@@ -6,9 +6,6 @@ $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/forms/form';
-@import '~@mozilla-protocol/core/protocol/css/components/forms/field';
-@import '~@mozilla-protocol/core/protocol/css/components/forms/button-container';
 
 /* -------------------------------------------------------------------------- */
 // Common elements
@@ -42,9 +39,10 @@ header {
     margin-bottom: $layout-lg;
 }
 
-.mzp-c-field {
+.mzp-c-field,
+.mzp-c-form-errors {
+    @include border-box;
     max-width: $content-xs;
-    padding-bottom: $label-v-spacing;
 }
 
 .mzp-c-button-container {

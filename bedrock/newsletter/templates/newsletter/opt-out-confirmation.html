@@ -22,55 +22,60 @@
       <h1>{{ self.page_title() }}</h1>
       <p class="tagline mzp-u-title-sm">{{ self.page_desc() }}</p>
     </header>
-    {% if messages %}
-      <ul class="mzp-u-list-styled">
-        {% for message in messages %}
-          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-      </ul>
-    {% endif %}
 
-    {% if form %}
-      <form method="post" action="{{ url('newsletter.opt-out-confirmation') }}">
-        <div class="mzp-c-form">
-          <header class="mzp-c-form-header">
-            <p>
-              {{ ftl('opt-out-confirmation-youll-continue') }}
-            </p>
-          </header>
+    <form method="post" action="{{ recovery_url }}" id="newsletter-recovery-form" class="newsletter-recovery-form mzp-c-form">
+      <header class="mzp-c-form-header">
+        <p>
+          {{ ftl('opt-out-confirmation-youll-continue') }}
+        </p>
+      </header>
 
-          {% if form.non_field_errors() %}
-            <div class="mzp-c-form-errors">
-              {{ form.non_field_errors() }}
-            </div>
-          {% endif %}
-          <div class="mzp-c-field mzp-l-stretch">
-            {{ form.email.errors }}
-            <label for="id_email" class="mzp-c-field-label">{{ ftl('opt-out-confirmation-your-email') }}</label>
-            {{ field_with_attrs(form.email, placeholder=ftl('opt-out-confirmation-yournameexamplecom')|safe, class='mzp-c-field-control'|safe) }}
-          </div>
-          <div class="mzp-c-button-container mzp-l-stretch">
-            <button class="mzp-c-button" type="submit">{{ ftl('opt-out-confirmation-manage-preferences') }}</button>
-          </div>
+      <div class="hide-from-legacy-ie">
+        <p class="mzp-c-form-errors error-email-invalid">
+          {{ ftl('newsletters-this-is-not-a-valid-email') }}
+        </p>
+        <p class="mzp-c-form-errors error-email-not-found">
+          {{ ftl('newsletters-this-email-address-is-not', url=url('newsletter.subscribe')) }}
+        </p>
+        <p class="mzp-c-form-errors error-try-again-later">
+          {{ ftl('newsletters-we-are-sorry-but-there') }}
+        </p>
+        <div class="newsletter-recovery-form-success-msg">
+          <p>{{ ftl('newsletters-success-an-email-has-been-sent') }}</p>
         </div>
-      </form>
+      </div>
 
-      <aside>
-        <h2>{{ ftl('opt-out-confirmation-prefer-to-get') }}</h2>
-        <ul class="mzp-u-list-styled">
-          <li><a href="https://blog.mozilla.org/">{{ ftl('opt-out-confirmation-check-out-our') }}</a></li>
-          <li><a href="https://support.mozilla.org/">{{ ftl('opt-out-confirmation-get-help') }}</a></li>
-          <li><a href="{{ url('newsletter.firefox') }}">{{ ftl('opt-out-confirmation-subscribe-to') }}</a></li>
-        </ul>
+      <div class="newsletter-recovery-form-fields">
+        <div class="mzp-c-field mzp-l-stretch">
+          {{ form.email.errors }}
+          <label for="id_email" class="mzp-c-field-label">{{ ftl('opt-out-confirmation-your-email') }}</label>
+          {{ field_with_attrs(form.email, placeholder=ftl('opt-out-confirmation-yournameexamplecom')|safe, class='mzp-c-field-control'|safe) }}
+        </div>
+        <div class="mzp-c-button-container mzp-l-stretch">
+          <button class="mzp-c-button" type="submit">{{ ftl('opt-out-confirmation-manage-preferences') }}</button>
+        </div>
+      </div>
+    </form>
 
-        <ul class="social-links">
-          <li><a class="instagram" href="{{ mozilla_instagram_url() }}" data-link-type="footer" data-link-name="Instagram (@mozilla)">{{ ftl('opt-out-confirmation-instagram') }}<span> (@mozilla)</span></a></li>
-          <li><a class="youtube" href="https://www.youtube.com/firefoxchannel" data-link-type="footer" data-link-name="YouTube (firefoxchannel)">{{ ftl('opt-out-confirmation-youtube') }}<span> (firefoxchannel)</span></a></li>
-          <li><a class="facebook" href="https://www.facebook.com/Firefox" data-link-type="footer" data-link-name="Facebook (Firefox)">{{ ftl('opt-out-confirmation-facebook') }}<span> (Firefox)</span></a></li>
-          <li><a class="twitter" href="{{ firefox_twitter_url() }}" data-link-type="footer" data-link-name="Twitter (@firefox)">{{ ftl('opt-out-confirmation-twitter') }}<span> (@firefox)</span></a></li>
-        </ul>
-      </aside>
-    {% endif %}
+    <aside>
+      <h2>{{ ftl('opt-out-confirmation-prefer-to-get') }}</h2>
+      <ul class="mzp-u-list-styled">
+        <li><a href="https://blog.mozilla.org/">{{ ftl('opt-out-confirmation-check-out-our') }}</a></li>
+        <li><a href="https://support.mozilla.org/">{{ ftl('opt-out-confirmation-get-help') }}</a></li>
+        <li><a href="{{ url('newsletter.firefox') }}">{{ ftl('opt-out-confirmation-subscribe-to') }}</a></li>
+      </ul>
+
+      <ul class="social-links">
+        <li><a class="instagram" href="{{ mozilla_instagram_url() }}" data-link-type="footer" data-link-name="Instagram (@mozilla)">{{ ftl('opt-out-confirmation-instagram') }}<span> (@mozilla)</span></a></li>
+        <li><a class="youtube" href="https://www.youtube.com/firefoxchannel" data-link-type="footer" data-link-name="YouTube (firefoxchannel)">{{ ftl('opt-out-confirmation-youtube') }}<span> (firefoxchannel)</span></a></li>
+        <li><a class="facebook" href="https://www.facebook.com/Firefox" data-link-type="footer" data-link-name="Facebook (Firefox)">{{ ftl('opt-out-confirmation-facebook') }}<span> (Firefox)</span></a></li>
+        <li><a class="twitter" href="{{ firefox_twitter_url() }}" data-link-type="footer" data-link-name="Twitter (@firefox)">{{ ftl('opt-out-confirmation-twitter') }}<span> (@firefox)</span></a></li>
+      </ul>
+    </aside>
   </div>{#-- /.content --#}
 </main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('newsletter-recovery') }}
 {% endblock %}
