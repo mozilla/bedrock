@@ -78,73 +78,12 @@ $image-path: '/media/protocol/img';
     --mandala-accent-1: #{$color-violet-30};
     --mandala-accent-2: #{$color-yellow-30};
     --mandala-accent-3: #{$color-green-30};
-    --mandala-accent-4: #{$color-light-gray-60};
+    --mandala-accent-4: #{$color-red-20};
+    --mandala-accent-5: #{$color-light-gray-30};
 
     @keyframes rotation {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
-    }
-
-    .mandala-rotate > svg {
-        animation: rotation 500s linear infinite;
-    }
-
-    svg {
-        font-size: 1.5rem;
-        font-weight: 300;
-        user-select: none;
-    }
-
-    svg > text {
-        fill: var(--mandala-primary);
-    }
-
-    .mandala-accent-1 {
-        font-size: 1.5rem;
-    }
-
-    .mandala-accent-2 {
-        font-size: 1.3rem;
-    }
-
-    .mandala-accent-3 {
-        font-size: 1.2rem;
-    }
-
-    .mandala-accent-4 {
-        font-size: 1.1rem;
-    }
-
-    .mandala-accent-5 {
-        font-size: 1rem;
-    }
-
-    &.animate-colors {
-        svg > text > textPath > tspan {
-            animation: mandala-color-change 50s infinite;
-            animation-timing-function: ease-in-out;
-            fill: var(--mandala-primary);
-        }
-
-        .mandala-accent-1 > textPath > tspan {
-            fill: var(--mandala-accent-1);
-            animation-delay: -15s;
-        }
-
-        .mandala-accent-2 > textPath > tspan {
-            fill: var(--mandala-accent-2);
-            animation-delay: -20s;
-        }
-
-        .mandala-accent-3 > textPath > tspan {
-            fill: var(--mandala-accent-3);
-            animation-delay: -30s;
-        }
-
-        .mandala-accent-5 > textPath > tspan {
-            fill: var(--mandala-accent-4);
-            animation-delay: -40s;
-        }
     }
 
     @keyframes mandala-color-change {
@@ -203,6 +142,97 @@ $image-path: '/media/protocol/img';
         100% {
             fill: var(--mandala-primary);
         }
+    }
+
+    &.animated {
+        .mandala-rotate > svg {
+            .mandala-accent-1 {
+                animation: rotation 505s linear infinite;
+            }
+
+            .mandala-accent-2 {
+                animation: rotation 480s linear infinite reverse;
+            }
+
+            .mandala-accent-3 {
+                animation: rotation 515s linear infinite;
+            }
+
+            .mandala-accent-4 {
+                animation: rotation 425s linear infinite reverse;
+            }
+
+            .mandala-accent-5 {
+                animation: rotation 415s linear infinite;
+            }
+        }
+
+        &.animate-colors {
+            svg > text > textPath > tspan {
+                animation: mandala-color-change 50s infinite;
+                animation-timing-function: ease-in-out;
+                fill: var(--mandala-primary);
+            }
+
+            .mandala-accent-1 > textPath > tspan {
+                fill: var(--mandala-accent-1);
+                animation-delay: -15s;
+            }
+
+            .mandala-accent-2 > textPath > tspan {
+                fill: var(--mandala-accent-2);
+                animation-delay: -20s;
+            }
+
+            .mandala-accent-3 > textPath > tspan {
+                fill: var(--mandala-accent-3);
+                animation-delay: -30s;
+            }
+
+            .mandala-accent-4 > textPath > tspan {
+                fill: var(--mandala-accent-4);
+                animation-delay: -5s;
+            }
+
+            .mandala-accent-5 > textPath > tspan {
+                fill: var(--mandala-accent-4);
+                animation-delay: -40s;
+            }
+        }
+    }
+
+    svg {
+        font-size: 1.5rem;
+        font-weight: 300;
+        user-select: none;
+
+        .mandala-ring {
+            transform-origin: 50% 50%;
+        }
+    }
+
+    svg > text {
+        fill: var(--mandala-primary);
+    }
+
+    .mandala-accent-1 {
+        font-size: 1.5rem;
+    }
+
+    .mandala-accent-2 {
+        font-size: 1.3rem;
+    }
+
+    .mandala-accent-3 {
+        font-size: 1.2rem;
+    }
+
+    .mandala-accent-4 {
+        font-size: 1.1rem;
+    }
+
+    .mandala-accent-5 {
+        font-size: 1rem;
     }
 }
 

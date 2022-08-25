@@ -1570,6 +1570,12 @@
     },
     {
       "files": [
+        "js/firefox/developer/whatsnew-mdnplus.js"
+      ],
+      "name": "firefox_developer_whatsnew_mdnplus"
+    },
+    {
+      "files": [
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
         "js/firefox/accounts-2019.es6.js"
