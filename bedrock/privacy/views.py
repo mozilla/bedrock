@@ -83,6 +83,10 @@ mozilla_vpn = PrivacyDocView.as_view(template_name="privacy/notices/mozilla-vpn.
 
 mdn_plus = PrivacyDocView.as_view(template_name="privacy/notices/mdn-plus.html", legal_doc_name="mdn_plus_privacy")
 
+ad_targeting_guidelines = PrivacyDocView.as_view(
+    template_name="privacy/notices/ad-targeting-guidelines.html", legal_doc_name="AdTargeting_Guidelines"
+)
+
 
 @cache_page(60 * 60)  # cache for 1 hour
 def privacy(request):

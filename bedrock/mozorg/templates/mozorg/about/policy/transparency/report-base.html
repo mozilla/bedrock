@@ -9,11 +9,7 @@
 {% block page_title %}Transparency Report{% endblock %}
 
 {% block page_css %}
-{{ css_bundle('about-transparency') }}
-{% endblock %}
-
-{% block js %}
-{{ js_bundle('about-transparency') }}
+  {{ css_bundle('about-transparency') }}
 {% endblock %}
 
 {% block content %}
@@ -38,4 +34,6 @@
 </main>
 {% endblock %}
 
-{% block email_form %}{% endblock %}
+{% block js %}
+  {{ js_bundle('about-transparency') }}
+{% endblock %}
