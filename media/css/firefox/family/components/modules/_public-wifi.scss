@@ -18,10 +18,15 @@
 
     .c-card.t-yellow {
         background-color: f3.$yellow-primary;
+        max-width: 35ch;
+
+        .c-subtitle {
+            max-width: 10ch;
+        }
     }
 
     .c-card {
-        margin-bottom: $spacing-md;
+        margin-bottom: $layout-2xs;
 
         &:last-of-type {
             margin-bottom: 0;
@@ -29,41 +34,65 @@
     }
 }
 
-// todo: test overflow on smaller screens
-@supports (display: flex) {
-    @media #{$mq-md} {
-        .c-public-wifi {
-            .l-flex {
-                display: flex;
-                align-items: center;
-                gap: 5%;
+@media (max-width: $screen-lg) {
+    .c-public-wifi {
+        .mzp-l-content {
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        // match mzp-l-content padding for module tag
+        .c-module-tag,
+        .c-card.t-yellow {
+            margin-left: $layout-xs;
+            margin-right: $layout-xs;
+        }
+
+        @media #{$mq-md} {
+            .c-module-tag,
+            .c-card.t-yellow {
+                margin-left: $layout-lg;
+                margin-right: $layout-lg;
             }
 
-            .l-container {
-                flex: 1 0 50%;
+            .t-scroll-snap {
+                padding-right: $layout-lg;
+                padding-left: $layout-lg;
             }
         }
     }
-}
 
-// todo: handle padding from inside scroll container so there aren't cut offs
-// todo: cross browser testing, scrollbar consistency (hidden?)
-@supports (scroll-snap-align: start) {
     .t-scroll-snap {
         display: flex;
         gap: $spacing-md;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
+        padding: $layout-sm;
+
+        // hide scrollbar, visible overflow card should be enough of a UI cue
+        &::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome, Safari and Opera */
+        }
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
 
         .c-card {
             flex: 0 0 65vw;
-            scroll-snap-align: start;
+            scroll-snap-align: center;
         }
     }
+}
 
-    @media #{$mq-md} {
-        .t-scroll-snap {
-            display: block;
+@supports (display: grid) {
+    @media #{$mq-lg} {
+        .c-public-wifi {
+            .l-grid {
+                display: grid;
+                justify-content: space-between;
+                align-items: center;
+                grid-template-columns: minmax(20ch, 35ch) minmax(30%, 50%);
+                gap: $layout-lg;
+            }
         }
     }
 }
