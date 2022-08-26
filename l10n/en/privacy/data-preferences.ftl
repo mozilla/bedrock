@@ -5,9 +5,9 @@
 ### URL: https://www-dev.allizom.org/privacy/websites/data-preferences/
 
 data-preferences-page-title = Manage your first-party data collection preferences
-data-preferecnes-page-desc = Your privacy is very important to { -brand-name-mozilla }. This page will enable you to manage your first-party data collection preferences for mozilla.org websites using { -brand-name-glean }.
-data-preferecnes-notification-opt-out = You are opted out of first-party data collection.
-data-preferecnes-notification-opt-in = You are opted in to first-party data collection.
+data-preferences-page-desc = Your privacy is very important to { -brand-name-mozilla }. This page will enable you to manage your first-party data collection preferences for mozilla.org websites using { -brand-name-glean }.
+data-preferences-notification-opt-out = You are opted out of first-party data collection.
+data-preferences-notification-opt-in = You are opted in to first-party data collection.
 
 # Variables:
 #   $glean (url) - link to https://docs.telemetry.mozilla.org/concepts/glean/glean.html

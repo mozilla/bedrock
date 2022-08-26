@@ -48,7 +48,7 @@ DataPreferencesCookie.hasOptedOut = function () {
 };
 
 /**
- * When in production specify we '.mozilla.org' instead of 'www.mozilla.org'
+ * When in production specify '.mozilla.org' instead of 'www.mozilla.org'
  * so that external Mozilla websites can use the opt-out cookie (issue #12056).
  * @param {url} used for testing purposes only.
  * @returns {domain} string or null.
