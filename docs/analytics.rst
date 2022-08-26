@@ -260,7 +260,18 @@ For non-interaction events that are not user initiated:
         });
     }
 
+Glean opt-out page
+~~~~~~~~~~~~~~~~~~
+
+Website visitors can opt out of Glean by visiting the first party `data preferences page`_,
+which is linked to in the `websites privacy notice`_. Clicking opt-out will set a
+cookie which Glean checks for before initialising on page load. In production, the
+cookie that is set applies for all ``.mozilla.org`` domains, so other sites such as
+``developer.mozilla.org`` can also make use of the opt-out mechanism.
+
 .. _Glean: https://docs.telemetry.mozilla.org/concepts/glean/glean.html
 .. _Glean Book: https://mozilla.github.io/glean/book/index.html
 .. _Glean debug dashboard: https://debug-ping-preview.firebaseapp.com/
 .. _data review: https://wiki.mozilla.org/Data_Collection
+.. _data preferences page: https://www.mozilla.org/privacy/websites/data-preferences/
+.. _websites privacy notice: https://www.mozilla.org/privacy/websites/
