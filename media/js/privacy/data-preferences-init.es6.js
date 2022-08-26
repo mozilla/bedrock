@@ -4,67 +4,38 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-const preferenceCookieID = 'moz-1st-party-data-opt-out';
+import DataPreferencesCookie from './data-preferences-cookie.es6';
+
 const prefStatus = document.querySelector('.data-preference-status');
 const statusText = prefStatus.querySelector('.data-preference-text');
+const optOutButton = document.querySelector('.js-opt-out-button');
+const optInButton = document.querySelector('.js-opt-in-button');
 let optOutText;
 let optInText;
 
 function updateStatus() {
-    if (hasOptedOut()) {
+    if (DataPreferencesCookie.hasOptedOut()) {
         statusText.innerText = optOutText;
         prefStatus.classList.add('is-opted-out');
         prefStatus.classList.remove('is-opted-in');
+        optOutButton.disabled = true;
+        optInButton.disabled = false;
     } else {
         statusText.innerText = optInText;
         prefStatus.classList.add('is-opted-in');
         prefStatus.classList.remove('is-opted-out');
+        optOutButton.disabled = false;
+        optInButton.disabled = true;
     }
-}
-
-function doOptOut() {
-    if (hasOptedOut()) {
-        return;
-    }
-
-    const date = new Date();
-    const cookieDuration = 365 * 24 * 60 * 60 * 1000; // 1 year expiration
-    date.setTime(date.getTime() + cookieDuration);
-    Mozilla.Cookies.setItem(
-        preferenceCookieID,
-        'true',
-        date.toUTCString(),
-        '/',
-        null,
-        false,
-        'lax'
-    );
-
-    updateStatus();
-}
-
-function doOptIn() {
-    if (!hasOptedOut()) {
-        return;
-    }
-
-    Mozilla.Cookies.removeItem(preferenceCookieID, '/', null, false, 'lax');
-    updateStatus();
-}
-
-function hasOptedOut() {
-    return Mozilla.Cookies.hasItem(preferenceCookieID);
 }
 
 function bindEvents() {
-    const optOutButton = document.querySelector('.js-opt-out-button');
-    const optInButton = document.querySelector('.js-opt-in-button');
-
     optOutButton.addEventListener(
         'click',
         (e) => {
             e.preventDefault();
-            doOptOut();
+            DataPreferencesCookie.doOptOut();
+            updateStatus();
         },
         false
     );
@@ -73,7 +44,8 @@ function bindEvents() {
         'click',
         (e) => {
             e.preventDefault();
-            doOptIn();
+            DataPreferencesCookie.doOptIn();
+            updateStatus();
         },
         false
     );
