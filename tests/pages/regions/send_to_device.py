@@ -14,7 +14,7 @@ class SendToDevice(BaseRegion):
     _email_locator = (By.CSS_SELECTOR, ".send-to-device-input")
     _submit_button_locator = (By.CSS_SELECTOR, ".send-to-device .mzp-c-button")
     _thank_you_locator = (By.CSS_SELECTOR, ".thank-you")
-    _system_error_locator = (By.CLASS_NAME, "mzp-c-form-errors.system")
+    _system_error_locator = (By.CLASS_NAME, "error-try-again-later")
 
     @property
     def is_form_error_displayed(self):

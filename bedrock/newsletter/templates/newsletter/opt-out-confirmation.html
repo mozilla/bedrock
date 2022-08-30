@@ -30,19 +30,16 @@
         </p>
       </header>
 
-      <div class="hide-from-legacy-ie">
-        <p class="mzp-c-form-errors error-email-invalid">
-          {{ ftl('newsletters-this-is-not-a-valid-email') }}
-        </p>
-        <p class="mzp-c-form-errors error-email-not-found">
-          {{ ftl('newsletters-this-email-address-is-not', url=url('newsletter.subscribe')) }}
-        </p>
-        <p class="mzp-c-form-errors error-try-again-later">
-          {{ ftl('newsletters-we-are-sorry-but-there') }}
-        </p>
-        <div class="newsletter-recovery-form-success-msg">
-          <p>{{ ftl('newsletters-success-an-email-has-been-sent') }}</p>
-        </div>
+      <div class="mzp-c-form-errors hidden" id="newsletter-errors">
+        <ul class="mzp-u-list-styled">
+          <li class="error-email-invalid hidden">{{ ftl('newsletters-this-is-not-a-valid-email') }}</li>
+          <li class="error-email-not-found hidden">{{ ftl('newsletters-this-email-address-is-not', url=url('newsletter.subscribe')) }}</li>
+          <li class="error-try-again-later hidden">{{ ftl('newsletters-we-are-sorry-but-there') }}</li>
+        </ul>
+      </div>
+
+      <div class="newsletter-recovery-form-success-msg hidden">
+        <p>{{ ftl('newsletters-success-an-email-has-been-sent') }}</p>
       </div>
 
       <div class="newsletter-recovery-form-fields">
@@ -52,7 +49,7 @@
           {{ field_with_attrs(form.email, placeholder=ftl('opt-out-confirmation-yournameexamplecom')|safe, class='mzp-c-field-control'|safe) }}
         </div>
         <div class="mzp-c-button-container mzp-l-stretch">
-          <button class="mzp-c-button" type="submit">{{ ftl('opt-out-confirmation-manage-preferences') }}</button>
+          <button id="newsletter-submit" class="mzp-c-button" type="submit">{{ ftl('opt-out-confirmation-manage-preferences') }}</button>
         </div>
       </div>
     </form>

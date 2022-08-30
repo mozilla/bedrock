@@ -10,7 +10,6 @@ from bedrock.products import views
 urlpatterns = (
     path("vpn/", views.vpn_landing_page, name="products.vpn.landing"),
     path("vpn/invite/", views.vpn_invite_page, name="products.vpn.invite"),
-    path("vpn/invite/waitlist/", views.vpn_invite_waitlist, name="products.vpn.invite.waitlist"),
     # Pages that do not use allowed_countries or default_monthly_price contexts
     page("vpn/desktop/", "products/vpn/platforms/desktop.html", ftl_files=["products/vpn/platforms/desktop", "products/vpn/shared"]),
     page("vpn/desktop/linux/", "products/vpn/platforms/linux.html", ftl_files=["products/vpn/platforms/linux", "products/vpn/shared"]),

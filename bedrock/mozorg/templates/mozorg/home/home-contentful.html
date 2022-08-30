@@ -125,6 +125,7 @@
 {% block js %}
   {% include 'includes/contentful/js.html' %}
   {{ js_bundle('home-contentful') }}
+  {{ js_bundle('newsletter') }}
 
   {% if show_pocket_eu_banner and country_code == "GB" %}
     {{ js_bundle('pocket-eu-banner') }}

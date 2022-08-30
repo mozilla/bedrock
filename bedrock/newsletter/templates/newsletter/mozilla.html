@@ -19,10 +19,6 @@
   {{ css_bundle('newsletter-mozilla') }}
 {% endblock %}
 
-{% block js %}
-  {{ js_bundle('newsletter') }}
-{% endblock %}
-
 {% block site_header %}{% endblock %}
 
 {% block content %}
@@ -48,4 +44,8 @@
     </div>
   </section>
 </main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('newsletter') }}
 {% endblock %}

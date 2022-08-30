@@ -8,6 +8,10 @@
 
 {% block page_title %}{{ ftl('newsletters-mozilla-newsletter') }}{% endblock %}
 
+{% block page_css %}
+  {{ css_bundle('protocol-newsletter') }}
+{% endblock %}
+
 {% block content %}
 <main role="main">
   <div class="mzp-l-content mzp-t-content-sm">
@@ -15,12 +19,13 @@
       {{ email_newsletter_form(
         newsletters='mozilla-foundation, mozilla-and-you',
         button_class='button-dark'
-      )}}
+      ) }}
     {% else %}
       {{ email_newsletter_form(
         title=ftl('newsletters-read-all-about-it-in-our-newsletter'),
         desc=ftl('newsletters-subscribe-here-to-keep-current', fallback='newsletters-subscribe-to-updates-and-keep'),
-        newsletters='mozilla-foundation') }}
+        newsletters='mozilla-foundation'
+      ) }}
     {% endif %}
   </div>
 </main>

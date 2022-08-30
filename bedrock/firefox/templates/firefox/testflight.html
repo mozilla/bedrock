@@ -35,7 +35,7 @@ Sign up to test pre-release beta versions of Firefox for iOS via Apple’s TestF
   {% endcall %}
 
   <section class="mzp-l-content mzp-t-content-sm">
-    <form id="newsletter-form" class="mzp-c-newsletter-form" action="{{ url('newsletter.subscribe') }}" method="post" data-spinner-color="#fff">
+    <form id="newsletter-form" class="mzp-c-newsletter-form" action="{{ action }}" method="post" novalidate>
       <div hidden>
         {{ newsletter_form.newsletters|safe }}
       </div>
@@ -44,7 +44,22 @@ Sign up to test pre-release beta versions of Firefox for iOS via Apple’s TestF
       <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
 
       <fieldset class="mzp-c-newsletter-content">
-        <div class="mzp-c-form-errors" id="newsletter-errors"></div>
+        <div class="mzp-c-form-errors hidden" id="newsletter-errors">
+          <ul class="mzp-u-list-styled">
+            <li class="error-email-invalid hidden">
+              Please enter a valid email address
+            </li>
+            <li class="error-terms hidden">
+              You must agree to the terms and conditions
+            </li>
+            <li class="error-privacy-policy hidden">
+              You must agree to the privacy notice
+            </li>
+            <li class="error-try-again-later hidden">
+              We are sorry, but there was a problem with our system. Please try again later!
+            </li>
+          </ul>
+        </div>
 
         <div>
           <label for="id_email">Email</label>
@@ -77,11 +92,9 @@ Sign up to test pre-release beta versions of Firefox for iOS via Apple’s TestF
           <button class="mzp-c-button mzp-t-product" id="newsletter-submit" type="submit">Submit</button>
         </p>
       </fieldset>
-
-      <div id="newsletter-spinner" class="hidden"></div>
     </form>
 
-    <div id="newsletter-thanks" class="mzp-c-newsletter-thanks">
+    <div id="newsletter-thanks" class="mzp-c-newsletter-thanks hidden">
       <h3>Congrats!</h3>
       <h4>You have been added to the Firefox for iOS testing program.</h4>
       <p>

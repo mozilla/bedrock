@@ -883,10 +883,13 @@ class PlatformViewWindows(L10nTemplateView):
 
 @require_safe
 def ios_testflight(request):
+    action = settings.BASKET_SUBSCRIBE_URL
+
     # no country field, so no need to send locale
     newsletter_form = NewsletterFooterForm("ios-beta-test-flight", "")
+    ctx = {"action": action, "newsletter_form": newsletter_form}
 
-    return l10n_utils.render(request, "firefox/testflight.html", {"newsletter_form": newsletter_form})
+    return l10n_utils.render(request, "firefox/testflight.html", ctx)
 
 
 class FirefoxHomeView(L10nTemplateView):
