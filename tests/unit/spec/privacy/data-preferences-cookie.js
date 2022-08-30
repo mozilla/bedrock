@@ -61,6 +61,35 @@ describe('doOptIn', function () {
         DataPreferencesCookie.doOptIn();
         expect(window.Mozilla.Cookies.removeItem).not.toHaveBeenCalled();
     });
+
+    // See https://github.com/mozilla/bedrock/issues/12056
+    it('should also remove pre-existing cookies that specified the www.mozilla.org subdomain', function () {
+        spyOn(DataPreferencesCookie, 'hasOptedOut').and.returnValue(true);
+        spyOn(DataPreferencesCookie, 'getCookieDomain').and.returnValue(
+            '.mozilla.org'
+        );
+        spyOn(window.Mozilla.Cookies, 'removeItem');
+        spyOn(window.Mozilla.Cookies, 'hasItem').and.returnValue(true);
+        DataPreferencesCookie.doOptIn();
+        expect(window.Mozilla.Cookies.removeItem).toHaveBeenCalledTimes(2);
+        expect(Mozilla.Cookies.hasItem).toHaveBeenCalledWith(
+            'moz-1st-party-data-opt-out'
+        );
+        expect(window.Mozilla.Cookies.removeItem).toHaveBeenCalledWith(
+            'moz-1st-party-data-opt-out',
+            '/',
+            '.mozilla.org',
+            false,
+            'lax'
+        );
+        expect(window.Mozilla.Cookies.removeItem).toHaveBeenCalledWith(
+            'moz-1st-party-data-opt-out',
+            '/',
+            'www.mozilla.org',
+            false,
+            'lax'
+        );
+    });
 });
 
 describe('getCookieDomain', function () {
