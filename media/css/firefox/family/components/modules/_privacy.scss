@@ -12,6 +12,17 @@
         background-color: f3.$pink-primary;
     }
 
+    @media #{$mq-sm} {
+        .l-grid {
+            display: grid;
+
+            .c-subtitle {
+                min-width: 8ch;
+                max-width: 12ch;
+            }
+        }
+    }
+
     .c-browser {
         @include f3.card-shadow(f3.$pink-primary);
 
