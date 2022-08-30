@@ -20,38 +20,29 @@
         }
     }
 
-    .c-blurb {
-        background-color: f3.$green-light;
-        display: inline-block;
-        margin-top: $layout-lg;
+    @media #{$mq-md} {
+        .l-grid {
+            display: grid;
+            justify-items: center;
+            align-items: center;
+            grid-template-columns: 1fr;
+        }
+
+        h1 {
+            margin-bottom: 0;
+        }
+
+        .c-blurb {
+            grid-column: 1 / -1;
+            justify-self: center;
+            width: fit-content;
+        }
     }
 
-    // todo: try grid, confirm minmax sizing on lockup
-    @supports (flex: 1 0 auto) {
-        $gap: $layout-lg;
-        $half-width: 40%;
-        @media #{$mq-md} {
-            .l-flex {
-                display: flex;
-                flex-wrap: wrap;
-                gap: $gap;
-                align-items: center;
-                justify-content: center;
-            }
-
-            h1 {
-                flex: 1 0 $half-width;
-                margin-bottom: 0;
-            }
-
-            .c-card {
-                flex: 0 1 $half-width;
-            }
-
-            .c-blurb {
-                flex: 0 0 auto;
-                margin-top: 0;
-            }
+    @media #{$mq-lg} {
+        .l-grid {
+            column-gap: $layout-md;
+            grid-template-columns: minmax(500px, 50%) 1fr;
         }
     }
 }

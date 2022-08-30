@@ -7,7 +7,7 @@
 {% from "firefox/family/includes/macros.html" import module_tag, browser_border %}
 
 <section id="bullying" class="c-bullying">
-  <div class="mzp-l-content">
+  <div class="mzp-l-content mzp-t-content-xl">
     {{ module_tag(title='Bullying', anchor='bullying') }}
     <div class="l-flex">
       <div class="c-content">
@@ -17,28 +17,25 @@
       </div>
 
       {% call browser_border() %}
-        <img src="{{ static('img/firefox/family/nested-hearts.svg') }}" alt="Nested hearts in a rainbow of colors">
-        <!-- might be easier to line up with flex and inline svgs -->
-        <div class="c-reactions"><span class="c-likes">12</span><span class="c-users">27</span><span class="c-comments">6</span></div>
+        <img src="{{ static('img/firefox/family/nested-hearts.svg') }}" alt="Nested hearts in a rainbow of colors" width="287" height="276">
+        <img src="{{ static('img/firefox/family/reaction-box.svg') }}" alt="12 Likes, 27 Friends, 6 Comments" width="328" height="104" class="c-reaction-box">
       {% endcall %}
 
-      <div class="l-container">
-        <div class="c-card t-shadow">
-          <h4 class="c-title-uppercase">What to do:</h4>
-          <ul class="mzp-u-list-styled">
-            <li>Discuss implementing a “positive comments only” rule.</li>
-            <li>Talk about how publically posted pictures can be misused.</li>
-            <li>Block users who are offensive, bullying or negative.</li>
-            <li>Agree to report online bullying to school administrators.</li>
-          </ul>
-        </div>
+      <div class="c-card t-shadow">
+        <h4 class="c-title-uppercase">What to do:</h4>
+        <ul class="mzp-u-list-styled">
+          <li>Discuss implementing a “positive comments only” rule.</li>
+          <li>Talk about how publically posted pictures can be misused.</li>
+          <li>Block users who are offensive, bullying or negative.</li>
+          <li>Agree to report online bullying to school administrators.</li>
+        </ul>
+      </div>
 
-        <aside class="c-blurb">
-          <h4 class="c-blurb-title">Fun fact:</h4>
-          <p>Trolls originated in Scandinavian folklore. Most internet trolls originate
-            in their mom’s basement.</p>
-        </aside>
-      </div> <!-- end .l-container -->
+      <aside class="c-blurb">
+        <h4 class="c-blurb-title">Fun fact:</h4>
+        <p>Trolls originated in Scandinavian folklore. Most internet trolls originate
+          in their mom’s basement.</p>
+      </aside>
     </div> <!-- end .l-flex -->
   </div> <!-- end .mzp-l-content -->
 </section>
