@@ -12,6 +12,14 @@
         background-color: f3.$pink-primary;
     }
 
+    .c-browser {
+        @include f3.card-shadow(f3.$pink-primary);
+
+        &-bar {
+            background-color: f3.$green-light;
+        }
+    }
+
     @media #{$mq-sm} {
         .l-grid {
             display: grid;
@@ -23,11 +31,24 @@
         }
     }
 
-    .c-browser {
-        @include f3.card-shadow(f3.$pink-primary);
+    @media #{$mq-md} {
+        .l-grid {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 100px auto auto;
+            column-gap: $layout-md;
+        }
 
-        &-bar {
-            background-color: f3.$green-light;
+        .c-content {
+            grid-row: 2;
+        }
+
+        .c-browser {
+            grid-row: 1 / 3;
+        }
+
+        .c-blurb {
+            grid-column: 2;
+            grid-row: 3;
         }
     }
 }
