@@ -22,6 +22,7 @@
         display: inline-block;
         margin-bottom: $layout-xl;
         width: 100%;
+        max-width: $content-sm; // avoid growing img too large
 
         &-bar {
             background-color: f3.$green-light;
@@ -46,13 +47,34 @@
 }
 
 @supports (flex: 1 0 auto) {
-    @media #{$mq-lg} {
+    .l-flex {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    @media #{$mq-md} {
         .c-bullying {
             .l-flex {
-                display: flex;
-                align-items: center;
+                flex-flow: row wrap;
                 justify-content: center;
-                flex-wrap: wrap;
+                column-gap: $layout-md;
+            }
+
+            .c-content {
+                flex: 1 0 30%;
+            }
+
+            .c-browser {
+                flex: 1 1 25%;
+            }
+
+            .c-card {
+                flex: 1 1 30%;
+                max-width: max-content;
+            }
+
+            .c-blurb {
+                flex: 0 1 55ch;
             }
         }
     }
