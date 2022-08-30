@@ -41,6 +41,21 @@ DataPreferencesCookie.doOptIn = function () {
         false,
         'lax'
     );
+
+    // Also try and remove preference cookies that existed before the
+    // cookie domain switched from `www.mozilla.org` to `.mozilla.org`.
+    if (
+        domain === '.mozilla.org' &&
+        window.Mozilla.Cookies.hasItem(preferenceCookieID)
+    ) {
+        window.Mozilla.Cookies.removeItem(
+            preferenceCookieID,
+            '/',
+            'www.mozilla.org',
+            false,
+            'lax'
+        );
+    }
 };
 
 DataPreferencesCookie.hasOptedOut = function () {
