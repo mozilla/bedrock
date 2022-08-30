@@ -7,6 +7,7 @@
 
 .c-bullying {
     background-color: f3.$yellow-dark;
+    overflow-x: hidden; // allow reactions box to cut off on smaller screens
 
     .c-module-tag-title {
         background-color: f3.$yellow-primary;
@@ -19,7 +20,8 @@
     .c-browser {
         position: relative;
         display: inline-block;
-        margin-bottom: $layout-lg;
+        margin-bottom: $layout-xl;
+        width: 100%;
 
         &-bar {
             background-color: f3.$green-light;
@@ -27,44 +29,31 @@
 
         &-content {
             padding: $spacing-md;
-        }
-    }
 
-    @supports (flex: 1 0 auto) {
-        @media #{$mq-lg} {
-            .l-flex {
-                display: flex;
-                align-items: center;
-                justify-content: center;
+            > img {
+                width: 100%;
+                display: block;
             }
         }
     }
 }
 
-.c-reactions {
-    @include f3.border;
-    @include f3.mono-font;
-    font-weight: bold;
-    padding: $spacing-sm $spacing-md;
+.c-reaction-box {
     position: absolute;
-    bottom: calc(#{$spacing-md} * 2 * -1);
-    left: 30%;
-    background-color: f3.$white;
-    width: max-content;
+    bottom: -#{$layout-lg};
+    left: 10%;
+    width: max-content; // allow hidden overflow on smaller screens;
+}
 
-    span + span {
-        margin-left: $spacing-md;
+@supports (flex: 1 0 auto) {
+    @media #{$mq-lg} {
+        .c-bullying {
+            .l-flex {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
     }
-}
-
-.c-likes::after {
-    content: url('/media/img/firefox/family/icon-heart.svg');
-}
-
-.c-users::after {
-    content: url('/media/img/firefox/family/icon-person.svg');
-}
-
-.c-comments::after {
-    content: url('/media/img/firefox/family/icon-comment.svg');
 }
