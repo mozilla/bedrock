@@ -6,18 +6,32 @@
 
 <section id="agreement" class="c-agreement">
   <div class="mzp-l-content mzp-t-content-xl">
+    <a class="c-agreement-anchor" href="#agreement"><h2>Agreement</h2></a>
     <div class="l-grid">
-      <h2>Agreement</h2>
-      <!-- placeholder img below -->
-      <!-- best to do in HTML with svg icons, where we could add some fun animations if desired -->
-      <img src="{{ static('img/firefox/family/super-official-tech-agreement.png') }}" alt="">
+      {{ resp_img(
+          url="img/firefox/family/agreement-500.png",
+          srcset={
+              "img/firefox/family/agreement-300.png": "300w",
+              "img/firefox/family/agreement-500.png": "500w",
+              "img/firefox/family/agreement-500-high-res.png": "700w"
+          },
+          sizes={
+              "(min-width: 688px)": "calc((1152px / 2) - 128px)",
+              "default": "calc(100vw - 48px)"
+          },
+          optional_attributes={
+            "alt": "The Super-Official Family Tech Agreement",
+            "height": "384",
+            "loading": "lazy",
+            "width": "427"
+        }
+      ) }}
       <div class="c-content">
         <h3 class="c-subtitle">You made it! Now, it’s time to chat!</h3>
         <p>Be sure to discuss and sign this family agreement. Then your next move
           is probably hanging it on the refrigerator, huh?</p>
-        <!-- analytics on interaction? -->
         <a class="c-download" href="https://assets.mozilla.net/pdf/Firefox_FamilyAgreement.pdf" download data-cta-text="Download PDF" data-cta-type="button">Download PDF</a>
       </div> <!-- .c-content ends -->
-    </div> <!-- .l- ends -->
+    </div> <!-- .l-grid ends -->
   </div> <!-- .mzp-l-content ends -->
 </section>

@@ -6,30 +6,59 @@
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 .c-agreement {
-    background-color: f3.$violet-dark;
+    background-color: $color-violet-60; /* darker bg needed for accessible color contrast */
     color: f3.$white;
+
+    .l-grid,
+    .c-content {
+        margin-top: $layout-xs;
+    }
 
     h2,
     h3 {
         color: f3.$white;
     }
 
-    @supports (display: grid) {
-        @media #{$mq-md} {
-            .l-grid {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                align-items: center;
-            }
+    img {
+        display: block;
+    }
 
-            .c-content {
-                grid-column-start: 1;
-            }
+    &-anchor {
+        display: inline-block;
+        position: relative;
+        text-decoration: none;
+        color: inherit;
 
-            // placeholder, should be HTML content instead of img
-            img {
-                grid-column-start: 2;
-                grid-row-start: 2;
+        h2 {
+            display: inline-block;
+            margin-bottom: 0;
+        }
+
+        // copy/paste from module tag styles
+        &::after {
+            $width: 25px;
+
+            @include f3.border(transparent);
+            background-color: transparent;
+            border-radius: 50%;
+            box-sizing: content-box;
+            content: url('/media/img/firefox/family/icon-link.svg');
+            display: inline-block;
+            height: $width;
+            padding: $spacing-xs;
+            position: absolute;
+            right: calc((#{$width} + #{$spacing-lg}) * -1);
+            top: 50%;
+            transform: translateY(-50%);
+            width: $width;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            &::after {
+                border-color: f3.$black;
+                border-style: dotted;
             }
         }
     }
@@ -40,6 +69,7 @@
     border-radius: $border-radius-sm;
     background-color: f3.$white;
     color: f3.$black;
+    display: inline-block;
     font-weight: bold;
     padding: $spacing-sm $spacing-2xl;
     text-decoration: none;
@@ -50,5 +80,55 @@
     &:active {
         background-color: f3.$black;
         color: f3.$white;
+    }
+}
+
+@media #{$mq-sm} {
+    .c-agreement {
+        .mzp-l-content {
+            text-align: center;
+        }
+
+        .c-subtitle,
+        p {
+            text-align: left;
+        }
+
+        .l-grid {
+            > * {
+                max-width: 500px;
+                margin-right: auto;
+                margin-left: auto;
+            }
+        }
+    }
+}
+
+@supports (display: grid) {
+    @media #{$mq-lg} {
+        .c-agreement {
+            .mzp-l-content {
+                text-align: initial;
+            }
+
+            .l-grid {
+                align-items: center;
+                column-gap: $layout-md;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .c-content {
+                grid-column-start: 1;
+                grid-row-start: 1;
+                max-width: 40ch;
+            }
+
+            img {
+                grid-column-start: 2;
+                grid-row-start: 1;
+                justify-self: center;
+            }
+        }
     }
 }
