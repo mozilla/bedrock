@@ -20,71 +20,29 @@
         }
     }
 
-    .c-blurb {
-        background-color: f3.$green-light;
-        display: inline-block;
-        margin-top: $layout-lg;
-    }
-
-    @supports (flex: 1 0 auto) {
-        $gap: $spacing-lg;
-        $half-width: 50%;
-
+    @media #{$mq-md} {
         .l-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: $gap;
+            display: grid;
+            justify-items: center;
             align-items: center;
-            justify-content: center;
+            grid-template-columns: 1fr;
+        }
 
-            h1 {
-                flex: 1 0 $half-width;
-                display: flex;
-                justify-content: center;
-            }
+        h1 {
+            margin-bottom: 0;
+        }
 
-            .c-card {
-                flex: 0 1 $half-width;
-            }
-
-            .c-blurb {
-                flex: 0 1 auto;
-                text-align: center;
-            }
-
-            @media #{$mq-md} {
-                $gap: $layout-lg;
-            }
+        .c-blurb {
+            grid-column: 1 / -1;
+            justify-self: center;
+            width: fit-content;
         }
     }
 
-    @supports (display: grid) {
-        $gap: $layout-lg;
-        $half-width: 40%;
-
-        @media (min-width: 1195px) {
-            .l-grid {
-                display: grid;
-                justify-content: space-between;
-                column-gap: $gap;
-                row-gap: $gap;
-                align-items: center;
-                grid-template-columns: minmax(500px, $half-width) 1fr;
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            h1 {
-                margin-bottom: 0;
-            }
-
-            .c-blurb {
-                grid-column: 1 / -1;
-                margin-top: 0;
-                margin-left: auto;
-                margin-right: auto;
-                width: fit-content;
-            }
+    @media #{$mq-lg} {
+        .l-grid {
+            column-gap: $layout-md;
+            grid-template-columns: minmax(500px, 50%) 1fr;
         }
     }
 }
