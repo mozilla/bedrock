@@ -13,11 +13,16 @@
     .c-card.t-shadow {
         @include f3.card-shadow(f3.$pink-light);
         @include text-title-2xs;
-        padding: $spacing-2xl $spacing-2xl;
+        padding: $spacing-lg;
 
         p {
             line-height: 1.6; // protocol override
         }
+    }
+
+    .c-blurb {
+        background-color: f3.$green-light;
+        margin-top: $layout-lg;
     }
 
     @media #{$mq-md} {
@@ -32,6 +37,10 @@
             margin-bottom: 0;
         }
 
+        .c-card.t-shadow {
+            padding: $spacing-2xl;
+        }
+
         .c-blurb {
             grid-column: 1 / -1;
             justify-self: center;
@@ -41,7 +50,7 @@
 
     @media #{$mq-lg} {
         .l-grid {
-            column-gap: $layout-md;
+            column-gap: $layout-lg;
             grid-template-columns: minmax(500px, 50%) 1fr;
         }
     }
