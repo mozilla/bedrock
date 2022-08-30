@@ -25,7 +25,7 @@
             width: $size;
             height: $size;
             @media #{$mq-md} {
-                top: 20%;
+                top: 15%;
                 right: -35px;
             }
         }
@@ -33,6 +33,70 @@
 
     .c-card.t-shadow {
         @include f3.card-shadow(f3.$green-extra-dark);
+    }
+
+    @media #{$mq-sm} {
+        .l-grid {
+            > * {
+                max-width: 500px;
+                margin-right: auto;
+                margin-left: auto;
+            }
+        }
+    }
+
+    @media #{$mq-md} {
+        .l-grid {
+            .c-card {
+                margin-left: initial;
+            }
+
+            .c-blurb {
+                margin-top: -#{$layout-2xs};
+                margin-right: initial;
+            }
+        }
+    }
+}
+
+@supports (display: grid) {
+    @media #{$mq-lg} {
+        .c-private-mode {
+            .l-grid {
+                display: grid;
+                grid-template-columns: [column-one] minmax(32ch, 45%) [column-two] 1fr;
+                column-gap: $layout-lg;
+
+                .c-browser {
+                    align-self: center;
+                    grid-column-start: column-one;
+                    grid-row: 1 / span 2;
+                }
+
+                .c-card,
+                .c-blurb {
+                    grid-column-start: column-two;
+                }
+
+                .c-card {
+                    width: 80%;
+                    align-self: end;
+                }
+
+                .c-blurb {
+                    align-self: start;
+                    width: 60%;
+                    min-width: 40ch;
+                    margin-top: $spacing-lg;
+                    margin-bottom: 0;
+
+                    @media #{$mq-xl} {
+                        margin-top: -#{$spacing-lg};
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
     }
 }
 
