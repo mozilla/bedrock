@@ -46,13 +46,6 @@
         height: 800px;
         position: relative;
         top: -40px;
-
-        // potential animation/easter egg interaction, scroll
-        // transition: top 2s;
-
-        // &:hover {
-        //     top: -300px
-        // }
     }
 
     .c-stop-button {
@@ -76,6 +69,10 @@
 
     .t-content-container,
     .c-card {
+        box-sizing: border-box;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: $content-md;
         position: relative;
         z-index: 2;
     }
@@ -88,7 +85,7 @@
 }
 
 @supports (display: grid) {
-    @media #{$mq-lg} {
+    @media (min-width: 1178px) {
         .c-mental-health {
             // reset mobile styles
             .t-doomscroll-container,
