@@ -5,7 +5,7 @@
 @use '../utils' as f3;
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
-body {
+main {
     @include text-body-xl;
     color: f3.$black;
 }
