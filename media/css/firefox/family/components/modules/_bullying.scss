@@ -6,6 +6,7 @@
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 .c-bullying {
+    @include f3.section-divider;
     background-color: f3.$yellow-dark;
 
     .c-module-tag-title {

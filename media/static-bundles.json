@@ -1848,6 +1848,12 @@
         "js/stories/stories-article.es6.js"
       ],
       "name": "stories-article"
+    },
+    {
+      "files": [
+        "js/firefox/family/subnav.js"
+      ],
+      "name": "firefox-family"
     }
   ]
 }

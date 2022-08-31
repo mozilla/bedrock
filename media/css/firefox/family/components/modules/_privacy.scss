@@ -6,6 +6,7 @@
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 .c-privacy {
+    @include f3.section-divider;
     background-color: f3.$pink-light;
 
     .c-module-tag-title {

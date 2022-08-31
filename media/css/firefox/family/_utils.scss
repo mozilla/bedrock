@@ -33,6 +33,10 @@ $border-width: 3px;
     border: $border-width solid $border-color;
 }
 
+@mixin section-divider {
+    border-bottom: 5px solid $black;
+}
+
 // Shadows
 @mixin card-shadow($color: $black) {
     box-shadow: $spacing-sm $spacing-sm 0 $color;

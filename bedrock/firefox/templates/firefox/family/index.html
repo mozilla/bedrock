@@ -26,6 +26,8 @@
 {% block twitter_id %}firefox{% endblock %}
 <!-- metadata q ends -->
 
+{% block body_class %}t-firefox-family{% endblock %}
+
 {% block sub_navigation %}
   {% include 'firefox/family/includes/subnav.html' %}
 {% endblock %}
@@ -64,4 +66,8 @@
 </main>
 <!-- dad jokes cookie banner -->
 {% include 'firefox/family/includes/dad-jokes-banner.html' %}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox-family') }}
 {% endblock %}
