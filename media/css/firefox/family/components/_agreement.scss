@@ -39,22 +39,7 @@
 }
 
 .c-download {
-    @include f3.border(transparent);
-    border-radius: $border-radius-sm;
-    background-color: f3.$white;
-    color: f3.$black;
-    display: inline-block;
-    font-weight: bold;
-    padding: $spacing-sm $spacing-2xl;
-    text-decoration: none;
-    transition: background-color 100ms, color 100ms;
-
-    &:hover,
-    &:focus,
-    &:active {
-        background-color: f3.$black;
-        color: f3.$white;
-    }
+    @include f3.button;
 }
 
 @media #{$mq-sm} {

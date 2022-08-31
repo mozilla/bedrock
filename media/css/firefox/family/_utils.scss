@@ -46,3 +46,22 @@ $border-width: 3px;
 @mixin mono-font {
     font-family: 'Fira Mono', 'Andale Mono', monospace;
 }
+
+// Button
+@mixin button($color: transparent) {
+    @include border($color);
+    border-radius: $border-radius-sm;
+    background-color: $white;
+    color: $black;
+    font-weight: bold;
+    padding: $spacing-sm $spacing-2xl;
+    text-decoration: none;
+    transition: background-color 100ms, color 100ms;
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: $black;
+        color: $white;
+    }
+}
