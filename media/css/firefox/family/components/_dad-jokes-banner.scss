@@ -10,6 +10,18 @@
 }
 
 .c-dad-jokes-banner {
+    // related to js show/hide behaviour
+    &[aria-hidden='true'] {
+        opacity: 0;
+        transition: opacity 100ms;
+    }
+
+    &[aria-hidden='false'] {
+        opacity: 1;
+        transition: opacity 500ms;
+    }
+
+    // unrelated to js
     @include f3.border;
     @include text-body-md;
     background-color: f3.$yellow-primary;
