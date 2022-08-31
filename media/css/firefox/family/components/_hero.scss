@@ -13,7 +13,7 @@
     .c-card.t-shadow {
         @include f3.card-shadow(f3.$pink-light);
         @include text-title-2xs;
-        padding: $spacing-2xl $spacing-2xl;
+        padding: $spacing-lg;
 
         p {
             line-height: 1.6; // protocol override
@@ -22,36 +22,36 @@
 
     .c-blurb {
         background-color: f3.$green-light;
-        display: inline-block;
         margin-top: $layout-lg;
     }
 
-    // todo: try grid, confirm minmax sizing on lockup
-    @supports (flex: 1 0 auto) {
-        $gap: $layout-lg;
-        $half-width: 40%;
-        @media #{$mq-md} {
-            .l-flex {
-                display: flex;
-                flex-wrap: wrap;
-                gap: $gap;
-                align-items: center;
-                justify-content: center;
-            }
+    @media #{$mq-md} {
+        .l-grid {
+            display: grid;
+            justify-items: center;
+            align-items: center;
+            grid-template-columns: 1fr;
+        }
 
-            h1 {
-                flex: 1 0 $half-width;
-                margin-bottom: 0;
-            }
+        h1 {
+            margin-bottom: 0;
+        }
 
-            .c-card {
-                flex: 0 1 $half-width;
-            }
+        .c-card.t-shadow {
+            padding: $spacing-2xl;
+        }
 
-            .c-blurb {
-                flex: 0 0 auto;
-                margin-top: 0;
-            }
+        .c-blurb {
+            grid-column: 1 / -1;
+            justify-self: center;
+            width: fit-content;
+        }
+    }
+
+    @media #{$mq-lg} {
+        .l-grid {
+            column-gap: $layout-lg;
+            grid-template-columns: minmax(500px, 50%) 1fr;
         }
     }
 }
