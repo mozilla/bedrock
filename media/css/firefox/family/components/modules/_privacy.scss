@@ -14,6 +14,9 @@
 
     .c-browser {
         @include f3.card-shadow(f3.$pink-primary);
+        max-width: 525px;
+        margin-left: auto;
+        margin-right: auto;
 
         &-bar {
             background-color: f3.$green-light;
@@ -21,19 +24,16 @@
     }
 
     @media #{$mq-sm} {
-        .l-grid {
-            display: grid;
-
-            .c-subtitle {
-                min-width: 8ch;
-                max-width: 12ch;
-            }
+        .c-subtitle {
+            min-width: 8ch;
+            max-width: 12ch;
         }
     }
 
     @media #{$mq-lg} {
         .l-grid {
-            grid-template-columns: minmax(20ch, 35ch) 1fr;
+            display: grid;
+            grid-template-columns: minmax(20ch, 40%) 1fr;
             grid-template-rows: 100px auto auto;
             column-gap: $layout-md;
         }
@@ -46,11 +46,10 @@
             grid-row: 1 / 3;
             height: min-content;
             margin: 0 auto;
-            max-width: 525px;
         }
 
         .c-blurb {
-            grid-column: 1;
+            grid-column: 2;
             grid-row: 3;
         }
     }
