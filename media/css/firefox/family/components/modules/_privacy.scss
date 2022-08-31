@@ -31,9 +31,9 @@
         }
     }
 
-    @media #{$mq-md} {
+    @media #{$mq-lg} {
         .l-grid {
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: minmax(20ch, 35ch) 1fr;
             grid-template-rows: 100px auto auto;
             column-gap: $layout-md;
         }
@@ -44,10 +44,13 @@
 
         .c-browser {
             grid-row: 1 / 3;
+            height: min-content;
+            margin: 0 auto;
+            max-width: 525px;
         }
 
         .c-blurb {
-            grid-column: 2;
+            grid-column: 1;
             grid-row: 3;
         }
     }
