@@ -5,6 +5,7 @@
 $image-path: '/media/protocol/img';
 
 @use '../utils' as f3;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
 
@@ -13,11 +14,29 @@ $image-path: '/media/protocol/img';
     text-align: center;
 
     // Override Protocol wordmark
-    .mzp-c-wordmark.mzp-t-product-firefox {
+    &.mzp-t-dark .mzp-c-wordmark.mzp-t-product-firefox.mzp-t-wordmark-lg {
         background-image: url('/media/img/firefox/family/logo-word-hor-white.svg');
-        @include background-size(120px, 40px);
-        width: 120px;
-        height: 40px;
+        background-position: center top;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &-title {
+        @include text-title-lg;
+        margin-bottom: $spacing-sm;
+
+        img {
+            width: 1em;
+        }
+
+        @media #{$mq-lg} {
+            @include text-title-2xl;
+        }
+    }
+
+    .mzp-c-wordmark.mzp-t-wordmark-lg,
+    p {
+        margin-bottom: $spacing-xl;
     }
 }
 
