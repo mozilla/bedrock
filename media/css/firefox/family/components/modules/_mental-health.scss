@@ -5,8 +5,6 @@
 @use '../../utils' as f3;
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
-/* stylelint-disable no-duplicate-selectors */
-
 .c-mental-health {
     background: f3.$violet-light center / cover no-repeat url('/media/img/firefox/family/grid-doomscrollhole.svg');
 
@@ -32,6 +30,10 @@
     .t-doomscroll-container {
         height: 317px;
         width: 484px;
+        position: absolute;
+        top: 40%;
+        right: 5%;
+        z-index: 1;
 
         .c-browser-content {
             overflow-y: hidden;
@@ -59,14 +61,6 @@
         display: none;
     }
 
-    // todo: overflow x without mzp-l-content padding cutoff
-    .t-doomscroll-container {
-        position: absolute;
-        top: 40%;
-        right: 5%;
-        z-index: 1;
-    }
-
     .t-content-container,
     .c-card {
         box-sizing: border-box;
@@ -87,17 +81,10 @@
 @supports (display: grid) {
     @media (min-width: 1178px) {
         .c-mental-health {
-            // reset mobile styles
             .t-doomscroll-container,
             .c-card {
-                position: initial;
+                position: unset;
             }
-
-            .t-stop-button-container {
-                display: block;
-            }
-
-            // end reset
 
             .l-grid {
                 display: grid;
@@ -123,6 +110,7 @@
             }
 
             .t-stop-button-container {
+                display: block;
                 grid-column: 6 / span 2;
                 grid-row: 4 / end;
                 align-self: start;
