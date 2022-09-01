@@ -6,32 +6,35 @@
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 .c-agreement {
-    background-color: f3.$violet-dark;
+    background-color: $color-violet-60; /* darker bg needed for accessible color contrast */
     color: f3.$white;
 
-    h2,
     h3 {
         color: f3.$white;
     }
 
-    @supports (display: grid) {
-        @media #{$mq-md} {
-            .l-grid {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                align-items: center;
-            }
+    img {
+        display: block;
+    }
 
-            .c-content {
-                grid-column-start: 1;
-            }
+    // override usual layout
+    .c-module-tag-title {
+        background-color: f3.$white;
+        padding: $spacing-sm $spacing-md;
 
-            // placeholder, should be HTML content instead of img
-            img {
-                grid-column-start: 2;
-                grid-row-start: 2;
-            }
+        &::before {
+            display: none;
         }
+    }
+
+    .c-module-tag-title,
+    .c-content p,
+    img {
+        margin-bottom: $layout-sm;
+    }
+
+    .c-subtitle {
+        margin-bottom: $layout-xs;
     }
 }
 
@@ -40,6 +43,7 @@
     border-radius: $border-radius-sm;
     background-color: f3.$white;
     color: f3.$black;
+    display: inline-block;
     font-weight: bold;
     padding: $spacing-sm $spacing-2xl;
     text-decoration: none;
@@ -50,5 +54,67 @@
     &:active {
         background-color: f3.$black;
         color: f3.$white;
+    }
+}
+
+@media #{$mq-sm} {
+    .c-agreement {
+        .mzp-l-content {
+            text-align: center;
+        }
+
+        .c-subtitle,
+        p {
+            text-align: left;
+        }
+
+        .l-grid {
+            > * {
+                max-width: 500px;
+                margin-right: auto;
+                margin-left: auto;
+            }
+        }
+    }
+}
+
+@supports (display: grid) {
+    @media #{$mq-lg} {
+        .c-agreement {
+            .mzp-l-content {
+                text-align: initial;
+            }
+
+            .l-grid {
+                align-content: center;
+                column-gap: $layout-md;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+
+                > * {
+                    margin-right: unset;
+                    margin-left: unset;
+                }
+            }
+
+            .c-module-tag {
+                grid-column-start: 1;
+                grid-row-start: 1;
+            }
+
+            .c-content {
+                grid-column-start: 1;
+                grid-row-start: 2;
+                max-width: 40ch;
+            }
+
+            img {
+                grid-column-start: 2;
+                grid-row: 1 / span 2;
+                justify-self: center;
+                align-self: center;
+                margin-bottom: 0;
+            }
+        }
     }
 }
