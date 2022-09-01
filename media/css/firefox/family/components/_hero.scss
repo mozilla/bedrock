@@ -4,11 +4,20 @@
 
 @use 'sass:math';
 
+$image-path: '/media/protocol/img';
+
 @use '../utils' as f3;
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
 
 .c-hero {
     background: f3.$violet-dark center / cover no-repeat url('/media/img/firefox/family/grid-hero.svg');
+
+    // Override Protocol wordmark
+    .mzp-c-wordmark.mzp-t-product-firefox.mzp-t-wordmark-lg {
+        background-image: url('/media/img/firefox/family/logo-word-hor-white.svg');
+    }
 
     .c-card.t-shadow {
         @include f3.card-shadow(f3.$pink-light);
