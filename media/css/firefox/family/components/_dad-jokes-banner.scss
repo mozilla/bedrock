@@ -3,7 +3,94 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 @use '../utils' as f3;
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+
+.no-js .c-dad-jokes-banner {
+    display: none;
+}
 
 .c-dad-jokes-banner {
+    // related to js show/hide behaviour
+    &[aria-hidden='true'] {
+        opacity: 0;
+        transition: opacity 100ms;
+    }
+
+    &[aria-hidden='false'] {
+        opacity: 1;
+        transition: opacity 1000ms;
+    }
+
+    // unrelated to js
+    @include f3.border;
+    @include text-body-md;
     background-color: f3.$yellow-primary;
+    font-weight: bold;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    z-index: 4; // mental health section uses z-index 3
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    box-sizing: border-box;
+
+    .mzp-l-content {
+        padding: $spacing-sm $spacing-md;
+    }
+
+    p {
+        margin-bottom: $spacing-sm;
+    }
+
+    button {
+        @include f3.button(f3.$black);
+        padding-right: $spacing-md;
+        padding-left: $spacing-md;
+    }
+}
+
+@supports (flex: 1 0 auto) {
+    .c-dad-jokes-banner {
+        .l-flex {
+            display: flex;
+            row-gap: $spacing-sm;
+            column-gap: $spacing-lg;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            p {
+                flex: 1 0 auto;
+                margin-bottom: 0;
+            }
+
+            button {
+                flex: 0 0 auto;
+            }
+
+            @media #{$mq-md} {
+                flex-flow: row wrap;
+                justify-content: center;
+
+                button {
+                    padding-right: $spacing-2xl;
+                    padding-left: $spacing-2xl;
+                }
+            }
+
+            @media #{$mq-lg} {
+                justify-content: space-between;
+
+                &.mzp-l-content {
+                    padding-right: $spacing-lg;
+                    padding-left: $spacing-lg;
+
+                    &::after {
+                        display: none; // Protocol override to allow space-between to work
+                    }
+                }
+            }
+        }
+    }
 }
