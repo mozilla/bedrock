@@ -1,0 +1,82 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('firefox_whatsnew_105_eu') }}
+{% endblock %}
+
+{% block experiments %}
+  {% if switch('experiment-firefox-whatsnew-105-eu') %}
+    {{ js_bundle('firefox_whatsnew_105_uk_experiment') }}
+  {% endif %}
+{% endblock %}
+
+{% set utm_campaign = campaign + '-uk-save' %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+  {% call split(
+    block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl wnp-content-main',
+    body_class='mzp-l-split-v-start',
+    media_class='mzp-l-split-h-center',
+    image_url='img/firefox/whatsnew/whatsnew105-eu/save-uk-400.png',
+    image_srcset={
+      'img/firefox/whatsnew/whatsnew105-eu/save-uk-400.png': '400w',
+      'img/firefox/whatsnew/whatsnew105-eu/save-uk-600.png': '600w',
+      'img/firefox/whatsnew/whatsnew105-eu/save-uk-800.png': '800w',
+    },
+    image_sizes={
+      '(min-width: 1312px)': '400px',
+      '(min-width: 768px)': 'calc(50vw - 192px)',
+      'default': 'calc(100vw - 48px)'
+    },
+    image_height='306',
+    image_width='400',
+    media_after=True
+  ) %}
+    <div class="mzp-c-emphasis-box wnp-main-content">
+      <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-pocket"></div>
+      <h2 class="wnp-main-title">The best of the web - your way</h2>
+      <p class="wnp-main-tagline">
+        Save career advice, easy recipes — even funny tweets — and find them all again offline.
+        Pocket lets you organise your favourite bits of the internet your way, with tagged
+        content and highlighted text.
+      </p>
+
+      <p class="wnp-main-cta">
+        {{ pocket_fxa_button(
+          entrypoint=entrypoint,
+          button_text='Activate Pocket in Firefox',
+          optional_parameters={
+            's': entrypoint,
+            'utm_campaign': utm_campaign,
+            'utm_content': 'signup-fxa-primary'
+          },
+          optional_attributes={
+            'data-cta-text': 'Activate Pocket in Firefox',
+            'data-cta-type': 'button',
+            'data-cta-position': 'primary'
+          })
+        }}
+      </p>
+    </div>
+  {% endcall %}
+  <div class="t-pattern"></div>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew') }}
+  {{ js_bundle('fxa_product_button') }}
+{% endblock %}

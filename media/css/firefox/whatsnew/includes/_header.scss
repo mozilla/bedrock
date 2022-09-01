@@ -14,8 +14,15 @@ $image-path: '/media/protocol/img';
     background: transparent;
 
     .mzp-l-content {
-        padding-top: $spacing-lg;
-        padding-bottom: $spacing-lg;
+        padding-top: $spacing-md;
+        padding-bottom: $spacing-md;
+    }
+
+    @media #{$mq-lg} {
+        .mzp-l-content {
+            padding-top: $spacing-sm;
+            padding-bottom: $spacing-sm;
+        }
     }
 }
 
@@ -45,7 +52,7 @@ $image-path: '/media/protocol/img';
     @include background-size(120px, 40px);
     width: 120px;
     height: 40px;
-    margin: 0;
+    margin: 0 auto;
 }
 
 @media #{$mq-lg} {
@@ -53,5 +60,9 @@ $image-path: '/media/protocol/img';
         @include grid-column-gap($spacing-lg);
         display: grid;
         grid-template-columns: 1fr max-content 1fr;
+    }
+
+    .c-page-header-logo-fx {
+        margin: 0;
     }
 }

@@ -1,0 +1,83 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('firefox_whatsnew_105_eu') }}
+{% endblock %}
+
+{% block experiments %}
+  {% if switch('experiment-firefox-whatsnew-105-eu') %}
+    {{ js_bundle('firefox_whatsnew_105_uk_experiment') }}
+  {% endif %}
+{% endblock %}
+
+{% set utm_campaign = campaign + '-uk-discover' %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+  {% call split(
+    block_class='mzp-l-split-center-on-sm-md mzp-l-split-pop-top mzp-t-content-xl wnp-content-main',
+    body_class='mzp-l-split-v-start',
+    media_class='mzp-l-split-h-center',
+    image_url='img/firefox/whatsnew/whatsnew105-eu/discover-uk-500.png',
+    image_srcset={
+      'img/firefox/whatsnew/whatsnew105-eu/discover-uk-500.png': '500w',
+      'img/firefox/whatsnew/whatsnew105-eu/discover-uk-700.png': '700w',
+      'img/firefox/whatsnew/whatsnew105-eu/discover-uk-900.png': '900w',
+    },
+    image_sizes={
+      '(min-width: 1312px)': '458px',
+      '(min-width: 768px)': 'calc(50vw - 192px)',
+      'default': 'calc(100vw - 48px)'
+    },
+    image_height='638',
+    image_width='458',
+    image_alt='Articles from a wide range of publications',
+    media_after=True
+  ) %}
+    <div class="mzp-c-emphasis-box wnp-main-content">
+      <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-pocket"></div>
+      <h2 class="wnp-main-title">Discover what inspires you</h2>
+      <p class="wnp-main-tagline">
+        Discover fascinating stories from all corners of the web, curated by real people.
+        Far from clickbait and endless newsfeeds, Pocket brings you new perspectives on
+        subjects that inspire you, delight you and help you grow.
+      </p>
+
+      <p class="wnp-main-cta">
+        {{ pocket_fxa_button(
+          entrypoint=entrypoint,
+          button_text='Activate Pocket in Firefox',
+          optional_parameters={
+            's': entrypoint,
+            'utm_campaign': utm_campaign,
+            'utm_content': 'signup-fxa-primary'
+          },
+          optional_attributes={
+            'data-cta-text': 'Activate Pocket in Firefox',
+            'data-cta-type': 'button',
+            'data-cta-position': 'primary'
+          })
+        }}
+      </p>
+    </div>
+  {% endcall %}
+  <div class="t-pattern"></div>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew') }}
+  {{ js_bundle('fxa_product_button') }}
+{% endblock %}
