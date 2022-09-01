@@ -5,7 +5,6 @@
 @use '../../utils' as f3;
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
-// todo: overflow-x on mobile, test absolutely positioned mask is never covering text
 .c-private-mode {
     background: f3.$pink-light center / cover no-repeat url('/media/img/firefox/family/grid-cylinder.svg');
 
@@ -19,16 +18,15 @@
         position: relative;
 
         .c-private-mode-mask {
+            $size: 85px;
             position: absolute;
             top: -20px;
             right: 20px;
-            width: 85px;
-            height: 85px;
+            width: $size;
+            height: $size;
             @media #{$mq-md} {
-                top: 20%;
-                right: -55px;
-                width: 110px;
-                height: 110px;
+                top: 15%;
+                right: -35px;
             }
         }
     }
@@ -36,13 +34,97 @@
     .c-card.t-shadow {
         @include f3.card-shadow(f3.$green-extra-dark);
     }
+
+    @media #{$mq-sm} {
+        .l-grid {
+            > * {
+                max-width: 500px;
+                margin-right: auto;
+                margin-left: auto;
+            }
+        }
+    }
+
+    @media #{$mq-md} {
+        .l-grid {
+            .c-card {
+                margin-left: initial;
+            }
+
+            .c-blurb {
+                margin-top: -#{$layout-2xs};
+                margin-right: initial;
+            }
+        }
+    }
 }
 
-@supports (flex: 1 0 auto) {
-    @media #{$mq-md} {
+@supports (display: grid) {
+    @media #{$mq-lg} {
         .c-private-mode {
-            .l-flex {
-                display: flex;
+            .l-grid {
+                display: grid;
+                grid-template-columns: [column-one] minmax(32ch, 45%) [column-two] 1fr;
+                column-gap: $layout-lg;
+
+                .c-browser {
+                    align-self: center;
+                    grid-column-start: column-one;
+                    grid-row: 1 / span 2;
+                }
+
+                .c-card,
+                .c-blurb {
+                    grid-column-start: column-two;
+                }
+
+                .c-card {
+                    width: 80%;
+                    align-self: end;
+                }
+
+                .c-blurb {
+                    align-self: start;
+                    width: 60%;
+                    min-width: 40ch;
+                    margin-top: $spacing-lg;
+                    margin-bottom: 0;
+
+                    @media #{$mq-xl} {
+                        margin-top: -#{$spacing-lg};
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// only supported in Fx104 and up, but so fun!
+@supports (grid-template-columns: subgrid) {
+    @media (max-width: #{$screen-sm}) {
+        .c-private-mode {
+            overflow-x: hidden;
+
+            .c-browser {
+                display: grid;
+                grid-template-columns: [content-start] 100% [content-end] 200px [offscreen];
+
+                &-bar,
+                &-content {
+                    grid-column: 1 / offscreen;
+                }
+
+                &-content {
+                    display: grid;
+                    grid-template-columns: subgrid;
+
+                    .c-subtitle,
+                    p {
+                        grid-column: content-start / content-end;
+                        padding-right: $spacing-lg; // match mzp-l-content padding
+                    }
+                }
             }
         }
     }
