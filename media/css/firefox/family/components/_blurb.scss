@@ -15,10 +15,6 @@
     margin-top: $layout-sm;
     margin-bottom: $layout-sm;
 
-    @media #{$mq-md} {
-        border-radius: 6em;
-    }
-
     &-title {
         font-size: 1rem;
         @include f3.mono-font;
