@@ -18,7 +18,7 @@
 
     &[aria-hidden='false'] {
         opacity: 1;
-        transition: opacity 500ms;
+        transition: opacity 1000ms;
     }
 
     // unrelated to js
@@ -35,7 +35,7 @@
     width: 100%;
     box-sizing: border-box;
 
-    &.mzp-l-content {
+    .mzp-l-content {
         padding: $spacing-sm $spacing-md;
     }
 
@@ -52,41 +52,43 @@
 
 @supports (flex: 1 0 auto) {
     .c-dad-jokes-banner {
-        display: flex;
-        row-gap: $spacing-sm;
-        column-gap: $spacing-lg;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-
-        p {
-            flex: 1 0 auto;
-            margin-bottom: 0;
-        }
-
-        button {
-            flex: 0 0 auto;
-        }
-
-        @media #{$mq-md} {
-            flex-flow: row wrap;
+        .l-flex {
+            display: flex;
+            row-gap: $spacing-sm;
+            column-gap: $spacing-lg;
+            flex-direction: column;
+            align-items: center;
             justify-content: center;
 
-            button {
-                padding-right: $spacing-2xl;
-                padding-left: $spacing-2xl;
+            p {
+                flex: 1 0 auto;
+                margin-bottom: 0;
             }
-        }
 
-        @media #{$mq-lg} {
-            justify-content: space-between;
+            button {
+                flex: 0 0 auto;
+            }
 
-            &.mzp-l-content {
-                padding-right: $spacing-lg;
-                padding-left: $spacing-lg;
+            @media #{$mq-md} {
+                flex-flow: row wrap;
+                justify-content: center;
 
-                &::after {
-                    display: none; // Protocol override to allow space-between to work
+                button {
+                    padding-right: $spacing-2xl;
+                    padding-left: $spacing-2xl;
+                }
+            }
+
+            @media #{$mq-lg} {
+                justify-content: space-between;
+
+                &.mzp-l-content {
+                    padding-right: $spacing-lg;
+                    padding-left: $spacing-lg;
+
+                    &::after {
+                        display: none; // Protocol override to allow space-between to work
+                    }
                 }
             }
         }
