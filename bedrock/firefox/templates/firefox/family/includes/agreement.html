@@ -4,10 +4,12 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+{% from "firefox/family/includes/macros.html" import module_tag %}
+
 <section id="agreement" class="c-agreement">
   <div class="mzp-l-content mzp-t-content-xl">
-    {{ module_tag(title='', anchor='agreement') }}
     <div class="l-grid">
+      {{ module_tag(title='Agreement', anchor='agreement') }}
       {{ resp_img(
           url="img/firefox/family/agreement-500.png",
           srcset={
