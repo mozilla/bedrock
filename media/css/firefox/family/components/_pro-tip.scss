@@ -38,10 +38,12 @@
             padding-left: $spacing-lg;
         }
     }
+}
 
-    @supports (display: grid) {
-        $overlap: $spacing-md;
+@supports (display: grid) {
+    $overlap: $spacing-md;
 
+    .c-pro-tip {
         @media #{$mq-md} {
             .mzp-l-content {
                 display: grid;

@@ -33,34 +33,38 @@ $image-path: '/media/protocol/img';
         background-color: f3.$green-light;
         margin-top: $layout-lg;
     }
+}
 
-    @media #{$mq-md} {
-        .l-grid {
-            display: grid;
-            justify-items: center;
-            align-items: center;
-            grid-template-columns: 1fr;
+@supports (display: grid) {
+    .c-hero {
+        @media #{$mq-md} {
+            .l-grid {
+                display: grid;
+                justify-items: center;
+                align-items: center;
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                margin-bottom: 0;
+            }
+
+            .c-card.t-shadow {
+                padding: $spacing-2xl;
+            }
+
+            .c-blurb {
+                grid-column: 1 / -1;
+                justify-self: center;
+                width: fit-content;
+            }
         }
 
-        h1 {
-            margin-bottom: 0;
-        }
-
-        .c-card.t-shadow {
-            padding: $spacing-2xl;
-        }
-
-        .c-blurb {
-            grid-column: 1 / -1;
-            justify-self: center;
-            width: fit-content;
-        }
-    }
-
-    @media #{$mq-lg} {
-        .l-grid {
-            column-gap: $layout-lg;
-            grid-template-columns: minmax(500px, 50%) 1fr;
+        @media #{$mq-lg} {
+            .l-grid {
+                column-gap: $layout-lg;
+                grid-template-columns: minmax(500px, 50%) 1fr;
+            }
         }
     }
 }

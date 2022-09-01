@@ -82,8 +82,11 @@
     @media (min-width: 1178px) {
         .c-mental-health {
             .t-doomscroll-container,
+            .t-content-container,
             .c-card {
                 position: unset;
+                margin-left: unset;
+                margin-right: unset;
             }
 
             .l-grid {

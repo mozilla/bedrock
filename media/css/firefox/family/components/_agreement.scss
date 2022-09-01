@@ -67,7 +67,7 @@
     @media #{$mq-lg} {
         .c-agreement {
             .mzp-l-content {
-                text-align: initial;
+                text-align: unset;
             }
 
             .l-grid {

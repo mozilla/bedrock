@@ -48,12 +48,12 @@
     @media #{$mq-md} {
         .l-grid {
             .c-card {
-                margin-left: initial;
+                margin-left: unset;
             }
 
             .c-blurb {
                 margin-top: -#{$layout-2xs};
-                margin-right: initial;
+                margin-right: unset;
             }
         }
     }
