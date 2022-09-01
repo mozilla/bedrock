@@ -27,6 +27,7 @@
 }
 
 .c-news-ticker {
+    $duration: 100s;
     background-color: f3.$black;
     color: white;
     @include f3.mono-font;
@@ -36,7 +37,7 @@
     position: relative;
 
     &-content {
-        // animation: ticker 40s linear infinite;
+        animation: ticker $duration linear infinite;
         position: relative;
         width: max-content;
 
@@ -46,7 +47,7 @@
     }
 
     .set-one {
-        // animation: repeat 40s linear infinite;
+        animation: repeat $duration linear infinite;
         display: inline;
         left: 0;
         position: relative;
