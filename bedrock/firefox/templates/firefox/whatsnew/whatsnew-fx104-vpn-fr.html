@@ -36,7 +36,15 @@
         abonnement à Mozilla VPN.</p>
 
       <p class="wnp-main-cta">
-        <a class="mzp-c-button mzp-t-product" href="{{ url('products.vpn.landing') }}">Installer Mozilla VPN</a>
+        {{ vpn_product_referral_link(
+          referral_id='whatsnew-104-vpn-fr',
+          link_text='Installer Mozilla VPN',
+          class_name='mzp-t-product',
+          optional_attributes= {
+              'data-cta-text' : 'Get Mozilla VPN',
+              'data-cta-type' : 'button'
+          })
+        }}
       </p>
     </div>
   {% endcall %}

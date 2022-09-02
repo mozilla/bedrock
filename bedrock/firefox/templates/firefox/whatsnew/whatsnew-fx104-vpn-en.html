@@ -35,7 +35,15 @@
         Connect up to 5 devices with just one Mozilla VPN subscription. </p>
 
       <p class="wnp-main-cta">
-        <a class="mzp-c-button mzp-t-product" href="{{ url('products.vpn.landing') }}">Get Mozilla VPN</a>
+        {{ vpn_product_referral_link(
+          referral_id='whatsnew-104-vpn-en',
+          link_text='Get Mozilla VPN',
+          class_name='mzp-t-product',
+          optional_attributes= {
+              'data-cta-text' : 'Get Mozilla VPN',
+              'data-cta-type' : 'button'
+          })
+        }}
       </p>
     </div>
   {% endcall %}
