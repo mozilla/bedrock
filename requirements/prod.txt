@@ -499,9 +499,9 @@ packaging==21.3 \
     --hash=sha256:dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb \
     --hash=sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522
     # via django-allow-cidr
-pathspec==0.9.0 \
-    --hash=sha256:7d15c4ddb0b5c802d161efc417ec1a2558ea2653c2e8ad9c19098201dc1c993a \
-    --hash=sha256:e564499435a2673d586f6b2130bb5b95f04a3ba06f81b8f895b651a3c76aabb1
+pathspec==0.10.1 \
+    --hash=sha256:46846318467efc4556ccfd27816e004270a9eeeeb4d062ce5e6fc7a87c573f93 \
+    --hash=sha256:7ace6161b621d31e7902eb6b5ae148d12cfd23f4a249b9ffb6b9fee12084323d
     # via yamllint
 phonenumberslite==8.12.53 \
     --hash=sha256:e1e16ff056127ae9ccf7a2ca78050dbe2ee43321d8a5ea20704752a2f46b8a9a \
