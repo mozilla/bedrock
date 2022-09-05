@@ -42,6 +42,10 @@
                 column-gap: $layout-md;
             }
 
+            .c-module-tag {
+                justify-self: start;
+            }
+
             .c-content {
                 grid-row: 2;
             }
