@@ -27,7 +27,7 @@
   <table id="payouts" class="mzp-u-data-table">
     <thead>
       <tr>
-        <th>Bug Classification</th>
+        <th>Severity Rating</th>
         <th><a href="{{ url('security.bug-bounty.web-eligible-sites') }}#critical-sites">Critical sites</a></th>
         <th><a href="{{ url('security.bug-bounty.web-eligible-sites') }}#core-sites">Core sites</a></th>
         <th>Other Mozilla sites<sup>1</sup></th>
@@ -35,93 +35,113 @@
     </thead>
     <tbody>
       <tr>
-        <th scope="row">Remote Code Execution</th>
-        <td>$15000</td>
-        <td>$5000</td>
-        <td>$1000</td>
+        <th scope="row">Critical <br>(sec-critical)</th>
+        <td>$6000-$15000</td>
+        <td>$3000-$5000</td>
+        <td>$500-$1000</td>
       </tr>
       <tr>
-        <th scope="row">Authentication Bypass<sup>2</sup></th>
-        <td>$6000</td>
-        <td>$3000</td>
+        <th scope="row">High <br>(sec-high)</th>
+        <td>$5000-$6000</td>
+        <td>$2000-$3000</td>
+        <td><a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">HoF</a> - $500</td>
+      </tr>
+      <tr>
+        <th scope="row">Moderate <br>(sec-moderate)</th>
+        <td>$1000-$2000</td>
+        <td>$500-$1000</td>
         <td><a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">HoF</a></td>
       </tr>
       <tr>
-        <th scope="row">SQL Injection</th>
-        <td>$6000</td>
-        <td>$3000</td>
+        <th scope="row">Low <br>(sec-low)</th>
+        <td><a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">HoF</a> - $1000</td>
+        <td><a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">HoF</a> - $500</td>
         <td><a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">HoF</a></td>
-      </tr>
-      <tr>
-        <th scope="row">CSRF<sup>3</sup></th>
-        <td>$5000</td>
-        <td>$2000</td>
-        <td>--</td>
-      </tr>
-      <tr>
-        <th scope="row">XSS<sup>4</sup></th>
-        <td>$5000</td>
-        <td>$2000</td>
-        <td><a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">HoF</a></td>
-      </tr>
-      <tr>
-        <th scope="row">XXE</th>
-        <td>$5000</td>
-        <td>$2000</td>
-        <td><a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">HoF</a></td>
-      </tr>
-      <tr>
-        <th scope="row">Domain Takeovers<sup>7</sup></th>
-        <td>$5000</td>
-        <td>$2000</td>
-        <td>$500<sup>5</sup></td>
-      </tr>
-      <tr>
-        <th scope="row">Server Side Request Forgery (SSRF)<sup>8</sup></th>
-        <td>$5000</td>
-        <td>$2000</td>
-        <td>--</td>
-      </tr>
-      <tr>
-        <th scope="row">XSS (minor)</th>
-        <td>$2000</td>
-        <td>$1000</td>
-        <td><a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">HoF</a></td>
-      </tr>
-      <tr>
-        <th scope="row">XSS (blocked by CSP)</th>
-        <td>$1000</td>
-        <td><a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">HoF</a></td>
-        <td>--</td>
-      </tr>
-      <tr>
-        <th scope="row">Clickjacking<sup>6</sup></th>
-        <td>$1000</td>
-        <td>$500</td>
-        <td>--</td>
-      </tr>
-      <tr>
-        <th scope="row">Open Redirects</th>
-        <td><a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">HoF</a></td>
-        <td><a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">HoF</a></td>
-        <td><a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">HoF</a><sup>5</sup>/--<sup>6</sup></td>
       </tr>
     </tbody>
   </table>
 
   <ol class="mzp-u-list-styled">
     <li>Excludes community websites</li>
-    <li>Includes IDORs that bypass authentication or authorization for significant actions</li>
-    <li>Significant actions only, such as changing email/passwords, deleting accounts, etc.</li>
-    <li>Must be able to conduct significant action (i.e., not defacement, phishing, cookie injection, etc.)</li>
-    <li>For *.mozilla.org, *.mozilla.com, *.mozilla.net, and *.firefox.com.</li>
-    <li>Lack of clickjacking protection (XFO, CSP) is insufficient to claim a bounty</li>
-    <li>Requires a proof of concept to be eligible</li>
-    <li>SSRF must be proven to reach <b>internal</b> network hosts. Pinging Burp Collaborator or performing DNS lookups are not enough to prove SSRF, this is because there could be other services in the middle, such as a reverse proxy or a WAF that send those requests.</li>
   </ol>
 
   <p>Any bounty that receives a payout also obtains inclusion on our <a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">Hall of Fame</a>.</p>
 
+  <h2>Definition and Examples</h2>
+
+  <table id="payouts" class="mzp-u-data-table">
+    <thead>
+      <tr>
+        <th>Severity Rating</th>
+        <th>Definition and Examples</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Critical</th>
+        <td>
+          <p>
+            Critical vulnerabilities are urgent security issues that present an ongoing or immediate danger to the users of our services and our infrastructure
+            <ul class="mzp-u-list-styled">
+              <li>Remote Code Execution</li>
+              <li>Authentication and Session Management Flaws (which lead to account compromise)</li>
+              <li>Disclosure of secrets in publicly accessible assets</li>
+              <li>Hardcoded credentials for a privileged user</li>
+            </ul>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">High</th>
+        <td>
+          <p>
+            Typically, high severity issues are exploitable web vulnerabilities that can lead to the targeted compromise of a small number of users.
+            <ul class="mzp-u-list-styled">
+              <li>Account takeover through Oauth misconfiguration</li>
+              <li>IDORs that bypass authentication or authorization for significant actions</li>
+              <li>CSRF on significant actions, such as changing email/passwords, deleting accounts, etc.</li>
+              <li>XSS resulting in conducting significant action (i.e., not defacement, phishing, cookie injection, etc.)</li>
+              <li>XML External Entity (XXE) attack</li>
+              <li>Hardcoded credentials for a non-privileged user</li>
+            </ul>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Moderate</th>
+        <td>
+          <p>
+            Vulnerabilities which can provide an attacker additional information or positioning that could be used in combination with other vulnerabilities. In addition to issues resulting from the lack of standard defense in depth techniques and security controls.
+            <ul class="mzp-u-list-styled">
+              <li>XSS (minor)</li>
+              <li>Domain takeovers supported by a proof of concept<sup>1</sup></li>
+              <li>SSRF which leads to reaching <strong>internal</strong> network hosts</li>
+              <li>Disclosure of sensitive information which does not expose the user or organization to immediate risk</li>
+              <li>CSRF for minor actions.</li>
+            </ul>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Low</th>
+        <td>
+          <p>
+            Minor security vulnerabilities which could lead to leaks or spoofs of non-sensitive information. Missing best practice security controls
+            <ul class="mzp-u-list-styled">
+              <li>XSS (blocked by CSP)</li>
+              <li>Clickjacking with demonstrated impact (Lack of clickjacking protection (XFO, CSP) is insufficient to claim a bounty)</li>
+              <li>External SSRF</li>
+              <li>Open Redirects<sup>1</sup></li>
+            </ul>
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ol class="mzp-u-list-styled">
+    <li>For *.mozilla.org, *.mozilla.com, *.mozilla.net, and *.firefox.com in addition to the list of critical and core sites.</li>
+  </ol>
 
   <h2 id="exclusions">Exclusions</h2>
   <p>Although we still appreciate being notified about them, the following issues fall outside the scope of our bug bounty program:</p>
