@@ -1,0 +1,28 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../utils' as f3;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.c-blurb {
+    @include f3.mono-font;
+    @include text-body-md;
+    background-color: f3.$violet-light;
+    border: 3px solid f3.$black;
+    border-radius: 40px;
+    padding: 1em 2em;
+    margin-top: $layout-sm;
+    margin-bottom: $layout-sm;
+
+    &-title {
+        font-size: 1rem;
+        @include f3.mono-font;
+        display: inline;
+        text-transform: uppercase;
+    }
+
+    p {
+        display: inline;
+    }
+}

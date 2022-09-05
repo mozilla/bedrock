@@ -1,0 +1,37 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "firefox/family/includes/macros.html" import module_tag %}
+
+<section id="public-wifi" class="c-public-wifi">
+  <div class="mzp-l-content mzp-t-content-xl">
+    {{ module_tag(title='Public Wifi', anchor='public-wifi') }}
+    <div class="l-grid">
+      <div class="c-card t-yellow">
+        <h3 class="c-subtitle">An extra sloppy scoop of public wifi</h3>
+        <p>Lots of schools offer free wifi to students, but they also offer sloppy
+          joes in the cafeteria. Both can be pretty sketchy.</p>
+      </div>
+
+      <div class="l-container t-scroll-snap">
+        <div class="c-card">
+          <h4 class="c-title-uppercase">Why should u care?</h4>
+          <p>You don’t have to be a genius-level hacker to snag private information
+            from people connecting to open networks. The technology is cheap and
+            readily available.</p>
+        </div>
+
+        <div class="c-card t-shadow">
+          <h4 class="c-title-uppercase">What to do:</h4>
+          <p>With all the unlimited data plans out there, it’s best to just use your
+            provider’s cellular data rather than public wifi. But if there’s no
+            reception or data is an issue, <a href="{{ url('products.vpn.landing') }}">get a trustworthy VPN</a>
+            and activate it before you connect to the network.</p>
+        </div> <!-- .c-card -->
+      </div> <!-- .l-container -->
+    </div> <!-- .l-grid -->
+  </div> <!-- .mzp-l-content -->
+</section>

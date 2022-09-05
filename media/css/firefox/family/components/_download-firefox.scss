@@ -1,0 +1,61 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$image-path: '/media/protocol/img';
+
+@use '../utils' as f3;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
+
+.c-download-firefox {
+    background-color: f3.$violet-extra-dark;
+    text-align: center;
+
+    // Override Protocol wordmark
+    &.mzp-t-dark .mzp-c-wordmark.mzp-t-product-firefox.mzp-t-wordmark-lg {
+        background-image: url('/media/img/firefox/family/logo-word-hor-white.svg');
+        background-position: center top;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &-title {
+        @include text-title-lg;
+        margin-bottom: $spacing-sm;
+
+        img {
+            width: 1em;
+        }
+
+        @media #{$mq-lg} {
+            @include text-title-2xl;
+        }
+    }
+
+    .mzp-c-wordmark.mzp-t-wordmark-lg,
+    p {
+        margin-bottom: $spacing-xl;
+    }
+}
+
+.show-not-firefox {
+    display: block;
+}
+
+.show-not-default,
+.show-mobile {
+    display: none;
+}
+
+.is-firefox {
+    .show-not-default {
+        display: block;
+    }
+
+    .show-mobile,
+    .show-not-firefox {
+        display: none;
+    }
+}

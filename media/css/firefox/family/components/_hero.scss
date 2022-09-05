@@ -1,0 +1,70 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use 'sass:math';
+
+$image-path: '/media/protocol/img';
+
+@use '../utils' as f3;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
+
+.c-hero {
+    background: f3.$violet-dark center / cover no-repeat url('/media/img/firefox/family/grid-hero.svg');
+
+    // Override Protocol wordmark
+    .mzp-c-wordmark.mzp-t-product-firefox.mzp-t-wordmark-lg {
+        background-image: url('/media/img/firefox/family/logo-word-hor-white.svg');
+    }
+
+    .c-card.t-shadow {
+        @include f3.card-shadow(f3.$pink-light);
+        @include text-title-2xs;
+        padding: $spacing-lg;
+
+        p {
+            line-height: 1.6; // protocol override
+        }
+    }
+
+    .c-blurb {
+        background-color: f3.$green-light;
+        margin-top: $layout-lg;
+    }
+}
+
+@supports (display: grid) {
+    .c-hero {
+        @media #{$mq-md} {
+            .l-grid {
+                display: grid;
+                justify-items: center;
+                align-items: center;
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                margin-bottom: 0;
+            }
+
+            .c-card.t-shadow {
+                padding: $spacing-2xl;
+            }
+
+            .c-blurb {
+                grid-column: 1 / -1;
+                justify-self: center;
+                width: fit-content;
+            }
+        }
+
+        @media #{$mq-lg} {
+            .l-grid {
+                column-gap: $layout-lg;
+                grid-template-columns: minmax(500px, 50%) 1fr;
+            }
+        }
+    }
+}

@@ -1,0 +1,57 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% block page_css %}
+  {{ css_bundle('firefox-family') }}
+{% endblock %}
+
+{% block page_title_prefix %}The Tech Talk{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+
+{% block page_image %}{{ static('img/firefox/family/meta-image.jpg') }}{% endblock %}
+{% block page_og_title %}Firefox for families{% endblock %}
+{% block page_desc %}How to make an awkward conversation about online safety with your kid slightly less awkward.{% endblock %}
+{% block page_favicon %}{{ static('img/favicons/firefox/browser/favicon.ico') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/favicons/firefox/browser/favicon-196x196.png') }}{% endblock %}
+{% block page_ios_icon %}{{ static('img/favicons/firefox/browser/apple-touch-icon.png') }}{% endblock %}
+{% block twitter_card %}summary_large_image{% endblock %}
+
+{% block facebook_id %}14696440021{# facebook.com/Firefox #}{% endblock %}
+{% block twitter_id %}firefox{% endblock %}
+
+{% block body_class %}t-firefox-family{% endblock %}
+
+{% block sub_navigation %}
+  {% include 'firefox/family/includes/subnav.html' %}
+{% endblock %}
+
+{% block content %}
+{% include 'firefox/family/includes/hero.html' %}
+{% include 'firefox/family/includes/news-ticker.html' %}
+<main>
+{% include 'firefox/family/includes/modules/privacy.html' %}
+{% include 'firefox/family/includes/modules/mental-health.html' %}
+{% with tip='Sometimes when you punctuate your texts, it seems angry: “Okay.”' %}
+  {% include 'firefox/family/includes/parental-pro-tip.html' %}
+{% endwith %}
+{% include 'firefox/family/includes/modules/bullying.html' %}
+{% include 'firefox/family/includes/modules/public-wifi.html' %}
+{% include 'firefox/family/includes/download-firefox.html' %}
+{% include 'firefox/family/includes/modules/passwords.html' %}
+{% include 'firefox/family/includes/modules/private-mode.html' %}
+{% with tip='Teens may smirk if they see you scrolling with your index finger.' %}
+  {% include 'firefox/family/includes/parental-pro-tip.html' %}
+{% endwith %}
+{% include 'firefox/family/includes/agreement.html' %}
+</main>
+{% include 'firefox/family/includes/dad-jokes-banner.html' %}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox-family') }}
+{% endblock %}

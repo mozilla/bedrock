@@ -1,0 +1,65 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../../utils' as f3;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.c-privacy {
+    @include f3.section-divider;
+    background-color: f3.$pink-light;
+
+    .c-module-tag-title {
+        background-color: f3.$pink-primary;
+    }
+
+    .c-browser {
+        @include f3.card-shadow(f3.$pink-primary);
+        max-width: 525px;
+        margin-left: auto;
+        margin-right: auto;
+
+        &-bar {
+            background-color: f3.$green-light;
+        }
+    }
+
+    @media #{$mq-sm} {
+        .c-subtitle {
+            min-width: 8ch;
+            max-width: 12ch;
+        }
+    }
+}
+
+@supports (display: grid) {
+    @media #{$mq-lg} {
+        .c-privacy {
+            .l-grid {
+                display: grid;
+                grid-template-columns: minmax(20ch, 40%) 1fr;
+                grid-template-rows: 100px auto auto;
+                column-gap: $layout-md;
+            }
+
+            .c-module-tag {
+                justify-self: start;
+            }
+
+            .c-content {
+                grid-row: 2;
+            }
+
+            .c-browser {
+                grid-row: 1 / 3;
+                height: min-content;
+                margin: 0 auto;
+            }
+
+            .c-blurb {
+                grid-column: 2;
+                grid-row: 3;
+            }
+        }
+    }
+}

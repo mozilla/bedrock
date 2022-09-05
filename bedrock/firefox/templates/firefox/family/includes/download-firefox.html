@@ -1,0 +1,32 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<section class="c-download-firefox mzp-t-dark">
+  <div class="mzp-l-content mzp-t-content-md">
+    <div class="mzp-c-wordmark mzp-t-wordmark-lg mzp-t-product-firefox">Firefox</div>
+
+    <h2 class="c-download-firefox-title">We <img src="{{ static('img/firefox/family/icon-heart-outline.svg') }}" alt="heart"> all families</h2>
+    <p>Firefox is made in part by lots of real-life, tired yet strangely optimistic
+      parents, and we’re backed by an awesome non-profit too.</p>
+
+    <div class="show-not-firefox">
+      {{ download_firefox_thanks(alt_copy='Download and love Firefox', download_location='download section') }}
+    </div>
+
+    <div class="show-not-default">
+      <a class="mzp-c-button mzp-t-product" href="{{ url('firefox.set-as-default.thanks') }}" data-cta-text="Set Firefox as your default browser" data-cta-type="button">
+        Set Firefox as your default browser
+      </a>
+    </div>
+
+    <!-- TODO: JS logic to check IF is Firefox AND is default, hide others and show mobile. -->
+    <div class="show-mobile">
+      <a class="mzp-c-button mzp-t-product" href="{{ url('firefox.mobile.get-app') }}" data-cta-text="Get Firefox on your phone" data-cta-type="button">
+        Get Firefox on your phone
+      </a>
+    </div>
+  </div>
+</section>

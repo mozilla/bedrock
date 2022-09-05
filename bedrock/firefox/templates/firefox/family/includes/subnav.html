@@ -1,0 +1,51 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{# Subnav menu for /firefox/families/ #}
+<!-- todo: get official campaign analytics naming, replace "tbd-" namespace -->
+{% from "macros.html" import sub_nav with context %}
+
+{{ sub_nav(
+  title={
+    'text':  'Firefox for Families'
+  },
+  links=[
+  {
+    'text': 'Privacy',
+    'href': '#privacy',
+    'cta_name': 'tbd-privacy'
+  },
+  {
+    'text': 'Mental health',
+    'href': '#mental-health',
+    'cta_name': 'tbd-mental-health'
+  },
+  {
+    'text': 'Bullying',
+    'href': '#bullying',
+    'cta_name': 'tbd-bullying'
+  },
+  {
+    'text': 'Public wifi',
+    'href': '#public-wifi',
+    'cta_name': 'tbd-public-wifi'
+  },
+  {
+    'text': 'Passwords',
+    'href': '#passwords',
+    'cta_name': 'tbd-passwords'
+  },
+  {
+    'text': 'Private mode',
+    'href': '#private-mode',
+    'cta_name': 'tbd-private-mode'
+  },
+  {
+    'text': 'Agreement',
+    'href': '#agreement',
+    'cta_name': 'tbd-agreement'
+  }]
+) }}

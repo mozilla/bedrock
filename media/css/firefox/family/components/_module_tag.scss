@@ -1,0 +1,57 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../utils' as f3;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+body {
+    counter-reset: topic;
+}
+
+.c-module-tag-title {
+    @include font-size(18px);
+    @include f3.border;
+    display: inline-block;
+    padding-right: $spacing-md;
+    margin-bottom: $layout-xs;
+    position: relative;
+
+    &::before {
+        display: inline-block;
+        counter-increment: topic;
+        content: 'Topic ' counter(topic);
+        background-color: f3.$white;
+        color: f3.$black;
+        padding: $spacing-sm $spacing-md;
+        border-right: f3.$border-width solid f3.$black;
+        margin-right: $spacing-md;
+    }
+
+    &::after {
+        $width: 25px;
+
+        @include f3.border(transparent);
+        background-color: transparent;
+        border-radius: 50%;
+        box-sizing: content-box;
+        content: url('/media/img/firefox/family/icon-link.svg');
+        display: inline-block;
+        height: $width;
+        padding: $spacing-xs;
+        position: absolute;
+        right: calc((#{$width} + #{$spacing-lg}) * -1);
+        top: 50%;
+        transform: translateY(-50%);
+        width: $width;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        &::after {
+            border-color: f3.$black;
+            border-style: dotted;
+        }
+    }
+}

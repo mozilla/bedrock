@@ -230,6 +230,8 @@ urlpatterns = (
     page("firefox/privacy/book/", "firefox/privacy/book.html", ftl_files="firefox/privacy/book"),
     # Issue 9957
     page("firefox/more/misinformation/", "firefox/more/misinformation.html", ftl_files="firefox/more/misinformation"),
+    # Firefox for Families evergreen page, Issue #12004
+    page("firefox/family/", "firefox/family/index.html"),
 )
 
 # Contentful

@@ -1,0 +1,106 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../utils' as f3;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.c-agreement {
+    background-color: $color-violet-60; /* darker bg needed for accessible color contrast */
+    color: f3.$white;
+
+    h3 {
+        color: f3.$white;
+    }
+
+    img {
+        display: block;
+    }
+
+    // override usual layout
+    .c-module-tag-title {
+        background-color: f3.$white;
+        padding: $spacing-sm $spacing-md;
+
+        &::before {
+            display: none;
+        }
+    }
+
+    .c-module-tag-title,
+    .c-content p,
+    img {
+        margin-bottom: $layout-sm;
+    }
+
+    .c-subtitle {
+        margin-bottom: $layout-xs;
+    }
+}
+
+.c-download {
+    @include f3.button;
+}
+
+@media #{$mq-sm} {
+    .c-agreement {
+        .mzp-l-content {
+            text-align: center;
+        }
+
+        .c-subtitle,
+        p {
+            text-align: left;
+        }
+
+        .l-grid {
+            > * {
+                max-width: 500px;
+                margin-right: auto;
+                margin-left: auto;
+            }
+        }
+    }
+}
+
+@supports (display: grid) {
+    @media #{$mq-lg} {
+        .c-agreement {
+            .mzp-l-content {
+                text-align: unset;
+            }
+
+            .l-grid {
+                align-content: center;
+                column-gap: $layout-md;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+
+                > * {
+                    margin-right: unset;
+                    margin-left: unset;
+                }
+            }
+
+            .c-module-tag {
+                grid-column-start: 1;
+                grid-row-start: 1;
+                justify-self: start;
+            }
+
+            .c-content {
+                grid-column-start: 1;
+                grid-row-start: 2;
+                max-width: 40ch;
+            }
+
+            img {
+                grid-column-start: 2;
+                grid-row: 1 / span 2;
+                justify-self: center;
+                align-self: center;
+                margin-bottom: 0;
+            }
+        }
+    }
+}

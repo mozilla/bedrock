@@ -1,0 +1,131 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../../utils' as f3;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.c-mental-health {
+    background: f3.$violet-light center / cover no-repeat url('/media/img/firefox/family/grid-doomscrollhole.svg');
+
+    .c-module-tag-title {
+        background-color: f3.$violet-primary;
+    }
+
+    .c-card.t-shadow {
+        @include f3.card-shadow(f3.$violet-dark);
+    }
+
+    .t-doomscroll-container,
+    .t-stop-button-container {
+        display: inline-block;
+
+        .c-browser-content {
+            background-color: f3.$violet-light;
+            padding: 0;
+        }
+    }
+
+    // dimensions from figma
+    .t-doomscroll-container {
+        height: 317px;
+        width: 484px;
+        position: absolute;
+        top: 40%;
+        right: 5%;
+        z-index: 1;
+
+        .c-browser-content {
+            overflow-y: hidden;
+            height: 300px;
+        }
+    }
+
+    // dimensions from svg
+    .c-doomscroll {
+        background-image: url('/media/img/firefox/family/text-doomscroll.svg');
+        background-repeat: repeat-y;
+        height: 800px;
+        position: relative;
+        top: -40px;
+    }
+
+    .c-stop-button {
+        // bespoke padding for the image with cursor
+        // todo: get rid of combined image and use more consistent padding
+        padding: $spacing-xl $spacing-md $spacing-sm $spacing-xl;
+    }
+
+    // mobile stacking
+    .t-stop-button-container {
+        display: none;
+    }
+
+    .t-content-container,
+    .c-card {
+        box-sizing: border-box;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: $content-md;
+        position: relative;
+        z-index: 2;
+    }
+
+    .t-content-container {
+        margin-bottom: $layout-lg;
+    }
+
+    // mobile stacking ends
+}
+
+@supports (display: grid) {
+    @media (min-width: 1178px) {
+        .c-mental-health {
+            .t-doomscroll-container,
+            .t-content-container,
+            .c-card {
+                position: unset;
+                margin-left: unset;
+                margin-right: unset;
+            }
+
+            .l-grid {
+                display: grid;
+                grid-template-columns: repeat(12, 1fr);
+                grid-template-rows: [start] minmax($spacing-md, 100px) 50px 60px 1fr minmax($spacing-lg, auto) [end];
+            }
+
+            .t-content-container {
+                grid-column: 1 / span 6;
+                grid-row: start / span 4;
+                width: 90%;
+                z-index: 2;
+
+                p {
+                    padding-right: $spacing-lg;
+                }
+            }
+
+            .t-doomscroll-container {
+                grid-column: 3 / span 4;
+                grid-row: 2 / end;
+                z-index: 1;
+            }
+
+            .t-stop-button-container {
+                display: block;
+                grid-column: 6 / span 2;
+                grid-row: 4 / end;
+                align-self: start;
+                min-width: 240px;
+                z-index: 3;
+            }
+
+            .c-card {
+                grid-column: 9 / span 4;
+                grid-row: start / end;
+                align-self: center;
+            }
+        }
+    }
+}

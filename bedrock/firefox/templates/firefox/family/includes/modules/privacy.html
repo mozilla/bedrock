@@ -1,0 +1,39 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "firefox/family/includes/macros.html" import module_tag, browser_border %}
+
+<section id="privacy" class="c-privacy">
+  <div class="mzp-l-content mzp-t-content-xl">
+    <div class="l-grid">
+      {{ module_tag(title='Privacy', anchor='privacy') }}
+      <div class="c-content">
+        <h3 class="c-subtitle">Meet your kid’s data clone</h3>
+        <p>Deep within a big-tech data science lab, a clone of your kid (who also
+          won’t make their bed) is being frankensteined together based on their
+          internet usage.</p>
+      </div>
+
+      {% call browser_border() %}
+        <h4 class="c-title-uppercase">What to do:</h4>
+        <ul class="mzp-u-list-styled">
+          <li>Keep data private by turning off location services for apps.</li>
+          <li>Opt into “Ask app not to track” if your kid is using an iPhone.</li>
+          <li>Set Firefox as the <a href="{{ url('firefox.set-as-default') }}">default browser</a>
+            to <a href="https://support.mozilla.org/kb/introducing-total-cookie-protection-standard-mode">block ad trackers</a>
+            from sneaking data.</li>
+        </ul>
+      {% endcall %}
+
+      <aside class="c-blurb">
+        <h4 class="c-blurb-title">Bonus smart-Sounding parent thing to say:</h4>
+        <p>Research says by the time a kid is 13, more than 72 million pieces of
+          personal data has been captured about them. That’s a lot.</p>
+      </aside>
+    </div> <!-- .l-grid -->
+  </div> <!-- .mzp-l-content -->
+</section>
+

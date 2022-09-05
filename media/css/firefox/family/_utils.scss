@@ -1,0 +1,67 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+// Colors
+$white: $color-white;
+$black: $color-black;
+$violet-primary: $color-violet-10;
+$violet-light: $color-violet-05;
+$violet-dark: $color-violet-50;
+$violet-extra-dark: $color-violet-90;
+$pink-primary: $color-pink-20;
+$pink-light: $color-red-05;
+$pink-dark: $color-red-20;
+$yellow-primary: $color-yellow-20;
+$yellow-dark: $color-yellow-30;
+$yellow-extra-dark: $color-yellow-60;
+$blue-primary: $color-blue-10;
+$blue-dark: $color-blue-30;
+$orange-primary: $color-orange-20;
+$orange-light: $color-orange-05;
+$orange-dark: $color-orange-40;
+$green-primary: $color-green-10;
+$green-light: $color-green-05;
+$green-dark: $color-green-70;
+$green-extra-dark: $color-green-90;
+
+// Borders
+$border-width: 3px;
+@mixin border($border-color: $black) {
+    border: $border-width solid $border-color;
+}
+
+@mixin section-divider {
+    border-bottom: 5px solid $black;
+}
+
+// Shadows
+@mixin card-shadow($color: $black) {
+    box-shadow: $spacing-sm $spacing-sm 0 $color;
+}
+
+// Font
+@mixin mono-font {
+    font-family: 'Fira Mono', 'Andale Mono', monospace;
+}
+
+// Button
+@mixin button($color: transparent) {
+    @include border($color);
+    border-radius: $border-radius-sm;
+    background-color: $white;
+    color: $black;
+    font-weight: bold;
+    padding: $spacing-sm $spacing-2xl;
+    text-decoration: none;
+    transition: background-color 100ms, color 100ms;
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: $black;
+        color: $white;
+    }
+}

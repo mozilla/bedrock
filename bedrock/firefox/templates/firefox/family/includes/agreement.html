@@ -1,0 +1,39 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "firefox/family/includes/macros.html" import module_tag %}
+
+<section id="agreement" class="c-agreement">
+  <div class="mzp-l-content mzp-t-content-xl">
+    <div class="l-grid">
+      {{ module_tag(title='Agreement', anchor='agreement') }}
+      {{ resp_img(
+          url="img/firefox/family/agreement-500.png",
+          srcset={
+              "img/firefox/family/agreement-300.png": "300w",
+              "img/firefox/family/agreement-500.png": "500w",
+              "img/firefox/family/agreement-500-high-res.png": "700w"
+          },
+          sizes={
+              "(min-width: 688px)": "calc((1152px / 2) - 128px)",
+              "default": "calc(100vw - 48px)"
+          },
+          optional_attributes={
+            "alt": "The Super-Official Family Tech Agreement",
+            "height": "384",
+            "loading": "lazy",
+            "width": "427"
+        }
+      ) }}
+      <div class="c-content">
+        <h3 class="c-subtitle">You made it! Now, it’s time to chat!</h3>
+        <p>Be sure to discuss and sign this family agreement. Then your next move
+          is probably hanging it on the refrigerator, huh?</p>
+        <a class="c-download" href="https://assets.mozilla.net/pdf/Firefox_FamilyAgreement.pdf" download data-cta-text="Download PDF" data-cta-type="button">Download PDF</a>
+      </div> <!-- .c-content -->
+    </div> <!-- .l-grid -->
+  </div> <!-- .mzp-l-content -->
+</section>

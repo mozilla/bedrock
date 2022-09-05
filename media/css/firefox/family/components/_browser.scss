@@ -1,0 +1,74 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../utils' as f3;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.c-browser {
+    $border-radius: 10px;
+    $size: 15px;
+    border-radius: $border-radius; /* this allows box shadow to have rounded corners */
+
+    &-bar {
+        background-color: f3.$pink-dark;
+        border-top: f3.$border-width solid f3.$black;
+        border-right: f3.$border-width solid f3.$black;
+        border-left: f3.$border-width solid f3.$black;
+        border-top-left-radius: $border-radius;
+        border-top-right-radius: $border-radius;
+        display: flex;
+        align-items: center;
+        height: 50px;
+        padding-right: $spacing-md;
+        padding-left: $spacing-md;
+
+        &-dot {
+            @include f3.border;
+            border-radius: 50%;
+            height: $size;
+            width: $size;
+        }
+
+        &-dot + &-dot {
+            margin-left: $spacing-md;
+        }
+
+        &-close {
+            position: relative;
+            height: calc($size * 1.5);
+            width: $size;
+            margin-left: auto;
+
+            &::before,
+            &::after {
+                background-color: f3.$black;
+                content: '';
+                display: block;
+                height: calc($size * 1.5);
+                width: f3.$border-width;
+                position: absolute;
+            }
+
+            &::before {
+                transform: rotate(45deg);
+            }
+
+            &::after {
+                transform: rotate(-45deg);
+            }
+        }
+    }
+
+    &-content {
+        @include f3.border;
+        padding: $layout-sm;
+        background-color: f3.$white;
+        border-bottom-left-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+
+        &.mzp-t-dark {
+            background-color: f3.$violet-extra-dark;
+        }
+    }
+}

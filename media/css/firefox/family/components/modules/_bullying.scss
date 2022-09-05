@@ -1,0 +1,82 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../../utils' as f3;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.c-bullying {
+    @include f3.section-divider;
+    background-color: f3.$yellow-dark;
+    overflow-x: hidden; // allow reactions box to cut off on smaller screens
+
+    .c-module-tag-title {
+        background-color: f3.$yellow-primary;
+    }
+
+    .c-card.t-shadow {
+        @include f3.card-shadow(f3.$yellow-extra-dark);
+    }
+
+    .c-browser {
+        position: relative;
+        display: inline-block;
+        margin-bottom: $layout-xl;
+        width: 100%;
+        max-width: $content-sm; // avoid growing img too large
+
+        &-bar {
+            background-color: f3.$green-light;
+        }
+
+        &-content {
+            padding: $spacing-md;
+
+            > img {
+                width: 100%;
+                display: block;
+            }
+        }
+    }
+}
+
+.c-reaction-box {
+    position: absolute;
+    bottom: -#{$layout-lg};
+    left: 10%;
+    width: max-content; // allow hidden overflow on smaller screens;
+}
+
+@supports (flex: 1 0 auto) {
+    .l-flex {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    @media #{$mq-md} {
+        .c-bullying {
+            .l-flex {
+                flex-flow: row wrap;
+                justify-content: center;
+                column-gap: $layout-md;
+            }
+
+            .c-content {
+                flex: 1 0 30%;
+            }
+
+            .c-browser {
+                flex: 1 1 25%;
+            }
+
+            .c-card {
+                flex: 1 1 30%;
+                max-width: max-content;
+            }
+
+            .c-blurb {
+                flex: 0 1 55ch;
+            }
+        }
+    }
+}

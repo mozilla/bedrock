@@ -1,0 +1,98 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../../utils' as f3;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.c-public-wifi {
+    background: f3.$blue-dark center / cover no-repeat url('/media/img/firefox/family/grid-curved.svg');
+
+    .c-module-tag-title {
+        background-color: f3.$blue-primary;
+    }
+
+    .c-card.t-shadow {
+        @include f3.card-shadow(f3.$violet-extra-dark);
+    }
+
+    .c-card.t-yellow {
+        background-color: f3.$yellow-primary;
+        max-width: 35ch;
+
+        .c-subtitle {
+            max-width: 10ch;
+        }
+    }
+
+    .c-card {
+        margin-bottom: $layout-2xs;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+}
+
+@media (max-width: $screen-lg) {
+    .c-public-wifi {
+        .mzp-l-content {
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        // match mzp-l-content padding for module tag
+        .c-module-tag,
+        .c-card.t-yellow {
+            margin-left: $layout-xs;
+            margin-right: $layout-xs;
+        }
+
+        @media #{$mq-md} {
+            .c-module-tag,
+            .c-card.t-yellow {
+                margin-left: $layout-lg;
+                margin-right: $layout-lg;
+            }
+
+            .t-scroll-snap {
+                padding-right: $layout-lg;
+                padding-left: $layout-lg;
+            }
+        }
+    }
+
+    .t-scroll-snap {
+        display: flex;
+        gap: $spacing-md;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding: $layout-sm;
+
+        // hide scrollbar, visible overflow card should be enough of a UI cue
+        &::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome, Safari and Opera */
+        }
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+
+        .c-card {
+            flex: 0 0 65vw;
+            scroll-snap-align: center;
+        }
+    }
+}
+
+@supports (display: grid) {
+    @media #{$mq-lg} {
+        .c-public-wifi {
+            .l-grid {
+                display: grid;
+                justify-content: space-between;
+                align-items: center;
+                grid-template-columns: minmax(20ch, 35ch) minmax(30%, 50%);
+                gap: $layout-lg;
+            }
+        }
+    }
+}
