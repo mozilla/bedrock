@@ -59,3 +59,14 @@ $image-path: '/media/protocol/img';
         display: none;
     }
 }
+
+.is-firefox .is-firefox-default {
+    .show-mobile {
+        display: block;
+    }
+
+    .show-not-default,
+    .show-not-firefox {
+        display: none;
+    }
+}

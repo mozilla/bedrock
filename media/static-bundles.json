@@ -1904,7 +1904,8 @@
       "files": [
         "js/firefox/family/subnav.js",
         "js/firefox/family/banner.es6.js",
-        "js/firefox/family/banner-init.es6.js"
+        "js/firefox/family/banner-init.es6.js",
+        "js/firefox/family/fx-is-default.js"
       ],
       "name": "firefox-family"
     }
