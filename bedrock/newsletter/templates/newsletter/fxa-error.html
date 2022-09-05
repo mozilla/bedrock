@@ -4,11 +4,13 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% extends 'newsletter/recovery.html' %}
+{% extends 'newsletter/base.html' %}
 
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
-{% block messages %}
-  <p>{{ ftl('newsletters-we-are-sorry-but-there') }}</p>
+{% block content %}
+  <main role="main" class="mzp-l-content mzp-t-content-sm">
+    <h1>{{ ftl('newsletters-we-are-sorry-but-there') }}</h1>
+  </main>
 {% endblock %}
