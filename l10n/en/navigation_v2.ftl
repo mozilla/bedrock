@@ -73,8 +73,6 @@ navigation-v2-learn-about-mozilla-and = Learn about { -brand-name-mozilla } and 
 navigation-v2-stories = Stories
 navigation-v2-more-about-mozilla = More About { -brand-name-mozilla }
 
-
-
 ## Innovation menu
 
 navigation-v2-innovation = Innovation
