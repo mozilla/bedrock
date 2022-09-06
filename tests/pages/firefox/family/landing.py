@@ -11,9 +11,15 @@ class FamilyPage(BasePage):
 
     _URL_TEMPLATE = "/{locale}/firefox/family/"
 
-    _firefox_download_button_locator = (By.CSS_SELECTOR, "[data-link-type='download']")
+    _firefox_nav_cta_locator = (By.CSS_SELECTOR, ".c-navigation-shoulder")
+
+    _firefox_download_button_locator = (By.CSS_SELECTOR, "[data-download-location='nav']")
 
     _firefox_pdf_download_button_locator = (By.CSS_SELECTOR, "[data-cta-text='Download PDF']")
+
+    @property
+    def is_firefox_nav_cta_displayed(self):
+        return self.is_element_displayed(*self._firefox_nav_cta_locator)
 
     @property
     def is_firefox_download_button_displayed(self):
