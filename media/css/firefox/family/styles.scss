@@ -40,3 +40,8 @@
         url('/media/fonts/families/FiraMono-Bold.woff2') format('woff2'),
         url('/media/fonts/families/FiraMono-Bold.woff') format('woff');
 }
+
+// Hide top-nav CTA for Firefox browsers
+.is-firefox .c-navigation-shoulder {
+    display: none;
+}
