@@ -89,5 +89,3 @@ navigation-v2-donate-your-voice-so-the-future = Donate your voice so the future 
 navigation-v2-webassembly = { -brand-name-webassembly }
 navigation-v2-learn-more-about-the-new = Learn more about the new, low-level, assembly-like language.
 
-# Obsolete string
-navigation-v2-more-mozilla-innovation = More { -brand-name-mozilla } Innovation
