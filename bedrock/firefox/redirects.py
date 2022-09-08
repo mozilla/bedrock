@@ -551,4 +551,6 @@ redirectpatterns = (
     redirect(r"firefox/lockwise/?", "https://support.mozilla.org/kb/end-of-support-firefox-lockwise"),
     # issue 10879
     redirect(r"^/exp/?$", "mozorg.home"),
+    # issue 12107
+    redirect(r"^/firefox/families/?$", "firefox.family.index"),
 )
