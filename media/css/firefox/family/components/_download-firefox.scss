@@ -26,7 +26,11 @@ $image-path: '/media/protocol/img';
         margin-bottom: $spacing-sm;
 
         img {
-            width: 1em;
+            width: 0.9em;
+            margin-right: -0.1em;
+            margin-left: -0.1em;
+            position: relative;
+            top: 5px;
         }
 
         @media #{$mq-lg} {
