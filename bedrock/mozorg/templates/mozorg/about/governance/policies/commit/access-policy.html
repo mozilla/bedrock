@@ -44,7 +44,7 @@ Therefore, a good policy balances the use of technical and social controls to mi
     <p>Requirements: one voucher - any other user with level 2 or above access.</p>
   </li>
   <li>
-    General access - all of Hg not in level 3 or listed as an exception.
+    General access - all of Hg not in level 3 or listed as an exception. Currently, this level is rarely used for Mozilla development.
     <p>Requirements: one voucher - any Mozilla code module owner.</p>
   </li>
   <li>
@@ -100,9 +100,11 @@ This is the lowest level of access. It allows someone to check in to the <a href
 
 <p>Someone can be upgraded from level 2 to level 3 by being vouched for by a single module owner of level-3-stored code.</p>
 
-<p>This permission gives access to check into any tree from which executable code becomes part of our core products - Firefox, Firefox for Android and Thunderbird. To put it another way, the unifying factor is that it should not be possible to break core product tinderboxes unless you have this access. This is fundamentally a statement of trust in and familiarity with an individual, and so access to one such tree gives access to all such trees, although social controls may prevent people checking in to certain ones. (Peers can vouch because the number of modules at this level is smaller, and because if you are working only in a single area of the code, there may not be multiple module owners familiar with your work.)</p>
+<p>This permission gives access to check into any tree from which executable code becomes part of our core products - Firefox, GeckoView and Thunderbird. This is fundamentally a statement of trust in and familiarity with an individual, and so access to one such tree gives access to all such trees, although social controls may prevent people checking in to certain ones.</p>
 
 <p>People with this access may not actually be working on Firefox, Firefox for Android or Thunderbird, but their ability to affect them means that the level of trust and familarity required for access are higher.</p>
+
+<p>With this level (scm_level_3), the developer can use <a href="https://moz-conduit.readthedocs.io/en/latest/lando-user.html">lando</a> to land code.</p>
 
 <p>The repositories which fall in this category are:</p>
 
@@ -112,7 +114,6 @@ This is the lowest level of access. It allows someone to check in to the <a href
 autoland
 mozilla-central
 comm-central
-releases/*
 </pre>
 
 <p>...plus any other repo from which code is merged to any of the above without a thorough review at merge time.</p>
