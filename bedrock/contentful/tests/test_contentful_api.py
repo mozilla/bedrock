@@ -43,7 +43,6 @@ from bedrock.contentful.api import (
     get_client,
 )
 from bedrock.contentful.constants import (
-    COMPOSE_MAIN_PAGE_TYPE,
     CONTENT_TYPE_CONNECT_HOMEPAGE,
     CONTENT_TYPE_PAGE_RESOURCE_CENTER,
 )
@@ -681,7 +680,7 @@ def test__render_list():
 
 @pytest.fixture
 def basic_contentful_page(rf):
-    """Naive reusable fixutre for setting up a ContentfulPage
+    """Naive reusable fixture for setting up a ContentfulPage
     Note that it does NOTHING with set_current_request / thread-locals
     """
     with patch("bedrock.contentful.api.set_current_request"):
@@ -868,84 +867,90 @@ def test_ContentfulPage__get_info_data__locale(
 
 
 @pytest.mark.parametrize(
-    "page_title, page_type, page_fields, entry_fields, seo_fields, expected",
+    "page_type, legacy_connect_page_fields, entry_fields, seo_fields, expected",
     (
         (
-            "test page one",
-            COMPOSE_MAIN_PAGE_TYPE,
-            {"slug": "compose-main-page-slug"},
-            {},
-            {},
+            CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+            {},  # Connect-type fields
             {
-                "slug": "compose-main-page-slug",
+                "slug": "vrc-main-page-slug",
+                "title": "test page one",
+            },  # fields from the page itself
+            {},  # SEO object's fields
+            {
+                "slug": "vrc-main-page-slug",
                 "title": "test page one",
                 "blurb": "",
             },
         ),
         (
-            "",
-            COMPOSE_MAIN_PAGE_TYPE,
-            {"slug": "compose-main-page-slug"},
-            {},
+            CONTENT_TYPE_PAGE_RESOURCE_CENTER,
             {},
             {
-                "slug": "compose-main-page-slug",
+                "slug": "vrc-main-page-slug",
+                "title": "",
+            },
+            {},
+            {
+                "slug": "vrc-main-page-slug",
                 "title": "",
                 "blurb": "",
             },
         ),
         (
-            "",
-            COMPOSE_MAIN_PAGE_TYPE,
-            {"slug": "compose-main-page-slug"},
+            CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+            {},
             {
                 "preview_title": "preview title",
                 "preview_blurb": "preview blurb",
+                "slug": "vrc-main-page-slug",
+                "title": "",
             },
             {},
             {
-                "slug": "compose-main-page-slug",
+                "slug": "vrc-main-page-slug",
                 "title": "preview title",
                 "blurb": "preview blurb",
             },
         ),
         (
-            "",
-            COMPOSE_MAIN_PAGE_TYPE,
-            {"slug": "compose-main-page-slug"},
+            CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+            {},
             {
                 "preview_title": "preview title",
                 "preview_blurb": "preview blurb",
+                "slug": "vrc-main-page-slug",
+                "title": "",
             },
             {"description": "seo description"},
             {
-                "slug": "compose-main-page-slug",
+                "slug": "vrc-main-page-slug",
                 "title": "preview title",
                 "blurb": "seo description",
             },
         ),
         (
-            "page title",
             CONTENT_TYPE_CONNECT_HOMEPAGE,
-            {},
             {
-                "slug": "homepage-slug",
+                "slug": "homepage-slug",  # This will be ignored
+            },
+            {
                 "preview_title": "preview title",
                 "preview_blurb": "preview blurb",
             },
             {},  # SEO fields not present for non-Compose pages
             {
-                "slug": "homepage-slug",
+                "slug": "home",  # ie, there is no way to set the slug using Connect:Homepage
                 "title": "preview title",
                 "blurb": "preview blurb",
             },
         ),
         (
-            "page title",
             CONTENT_TYPE_CONNECT_HOMEPAGE,
-            {},
             {
                 # no slug field, so will fall back to default of 'home'
+            },
+            {
                 "preview_title": "preview title",
                 "preview_blurb": "preview blurb",
             },
@@ -962,26 +967,21 @@ def test_ContentfulPage__get_info_data__locale(
         "compose page with slug, no title, no blurb",
         "compose page with slug, title from entry, blurb from entry",
         "compose page with slug, no title, blurb from seo",
-        "Non-Compose page with slug, title, blurb from entry",
+        "Non-Compose page with title, blurb from entry + PROOF SLUG IS NOT SET",
         "Non-Compose page with default slug, title, blurb from entry",
     ],
 )
 def test_ContentfulPage__get_info_data__slug_title_blurb(
     basic_contentful_page,
-    page_title,
     page_type,
-    page_fields,
+    legacy_connect_page_fields,
     entry_fields,
     seo_fields,
     expected,
 ):
     basic_contentful_page.page = Mock()
     basic_contentful_page.page.content_type.id = page_type
-    basic_contentful_page.page.fields = Mock(return_value=page_fields)
-    if page_title:
-        basic_contentful_page.page.title = page_title
-    else:
-        basic_contentful_page.page.title = ""
+    basic_contentful_page.page.fields = Mock(return_value=legacy_connect_page_fields)
 
     assert (
         basic_contentful_page._get_info_data__slug_title_blurb(
@@ -1049,6 +1049,7 @@ def test_ContentfulPage__get_info_data__category_tags_classification(
             {
                 "dummy": "seo fields",
                 "preview_image": "https://example.com/test-seo.png",
+                "description": "Test SEO description comes through",
             },
             {
                 "title": "test title",
@@ -1068,6 +1069,7 @@ def test_ContentfulPage__get_info_data__category_tags_classification(
                 "seo": {
                     "dummy": "seo fields",
                     "image": "https://example.com/test-seo.png",
+                    "description": "Test SEO description comes through",
                 },
             },
         ),
@@ -1169,11 +1171,11 @@ def test_ContentfulPage__get_info_data(
                 {
                     "dummy": "seo fields",
                     "preview_image": "https://example.com/test-seo.png",
+                    "description": "Test SEO description comes through",
                 },
             )
             in mock__get_preview_image_from_fields.call_args_list
         )
-
     else:
         assert mock__get_preview_image_from_fields.call_count == 1
         mock__get_preview_image_from_fields.assert_called_once_with(entry_obj__fields)

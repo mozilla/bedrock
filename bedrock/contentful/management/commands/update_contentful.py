@@ -25,7 +25,6 @@ from bedrock.contentful.constants import (
     ACTION_SAVE,
     ACTION_UNARCHIVE,
     ACTION_UNPUBLISH,
-    COMPOSE_MAIN_PAGE_TYPE,
     CONTENT_TYPE_CONNECT_HOMEPAGE,
     MAX_MESSAGES_PER_QUEUE_POLL,
 )
@@ -361,13 +360,6 @@ class Command(BaseCommand):
                 capture_exception(ex)
                 error_count += 1
                 continue
-
-            # Compose-authored pages have a page_type of `page`
-            # but really we want the entity the Compose page references
-            if ctype == COMPOSE_MAIN_PAGE_TYPE:
-                # TODO: make this standard when we _only_ have Compose pages,
-                # because they all have a parent type of COMPOSE_MAIN_PAGE_TYPE
-                ctype = page_data["page_type"]
 
             hash = data_hash(page_data)
             _info = page_data["info"]
