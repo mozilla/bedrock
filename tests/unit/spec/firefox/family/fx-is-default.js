@@ -69,8 +69,8 @@ describe('fx-is-default.js', function () {
             spyOn(window.Mozilla.UITour, 'getConfiguration');
 
             expect(
-                window.Mozilla.UITour.getConfiguration.calls.count()
-            ).toEqual(0);
+                window.Mozilla.UITour.getConfiguration
+            ).not.toHaveBeenCalled();
         });
     });
 });
