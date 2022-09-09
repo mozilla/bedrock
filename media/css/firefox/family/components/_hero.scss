@@ -37,14 +37,13 @@ $image-path: '/media/protocol/img';
 
 @supports (display: grid) {
     .c-hero {
+        .l-grid {
+            display: grid;
+            justify-items: center;
+            align-items: center;
+            grid-template-columns: 1fr;
+        }
         @media #{$mq-md} {
-            .l-grid {
-                display: grid;
-                justify-items: center;
-                align-items: center;
-                grid-template-columns: 1fr;
-            }
-
             h1 {
                 margin-bottom: 0;
             }

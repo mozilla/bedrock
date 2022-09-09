@@ -8,7 +8,19 @@
   <div class="mzp-l-content mzp-t-content-xl">
     <div class="mzp-c-wordmark mzp-t-wordmark-lg mzp-t-product-firefox">Firefox</div>
     <div class="l-grid">
-      <h1><img src="{{ static('img/firefox/family/lockup-tech-talk.png') }}" alt="The Tech Talk"></h1>
+      <h1>
+        {{ resp_img(
+            url="img/firefox/family/lockup-tech-talk.png",
+            srcset={
+                "img/firefox/family/lockup-tech-talk-high-res.png": "2x"
+            },
+            optional_attributes={
+              "alt": "The Tech Talk",
+              "height": "335",
+              "width": "573"
+          }
+        ) }}
+      </h1>
       <div class="c-card t-shadow">
         <p>Making awkward tech conversations with kids slightly less awkward.</p>
         <p>Firefox is here to help you out with some starter topics to get things rolling. You got this!</p>
