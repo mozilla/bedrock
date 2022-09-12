@@ -22,7 +22,7 @@ $image-path: '/media/protocol/img';
         width: 100%;
     }
 
-    @media #{$mq-lg} {
+    @media #{$mq-md} {
         .mzp-c-wordmark.mzp-t-product-pocket {
             background-position: center left;
         }
@@ -40,6 +40,16 @@ $image-path: '/media/protocol/img';
 .wnp-main-title {
     @include text-title-md;
     color: #00256d;
+
+    br {
+        display: none;
+    }
+
+    @media #{$mq-lg} {
+        br {
+            display: block;
+        }
+    }
 }
 
 .wnp-main-tagline {
@@ -90,6 +100,7 @@ $image-path: '/media/protocol/img';
 
     .mzp-c-wordmark.mzp-t-product-pocket {
         background: transparent url('/media/img/firefox/whatsnew/whatsnew105-eu/wordmark-lockup.svg') center center no-repeat;
+        background-size: contain; // ensure long wordmark isn't cropped on small screens.
         width: 100%;
     }
 

@@ -5,6 +5,7 @@
  */
 
 import TrafficCop from '@mozmeao/trafficcop';
+import { isApprovedToRun } from '../../base/experiment-utils.es6.js';
 
 const href = window.location.href;
 
@@ -35,6 +36,6 @@ const initTrafficCop = () => {
 };
 
 // Avoid entering automated tests into random experiments.
-if (href.indexOf('automation=true') === -1) {
+if (isApprovedToRun()) {
     initTrafficCop();
 }
