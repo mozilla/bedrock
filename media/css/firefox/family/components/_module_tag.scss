@@ -9,6 +9,51 @@ body {
     counter-reset: topic;
 }
 
+.c-module-tag {
+    @media #{$mq-md} {
+        position: relative;
+
+        &::before {
+            @include text-body-sm;
+            background: $color-white;
+            color: $color-black;
+            content: attr(data-text);
+            height: 20px;
+            opacity: 0;
+            padding: 4px;
+            pointer-events: none;
+            position: absolute;
+            right: -175px;
+            top: 0;
+            text-align: center;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            margin-left: -8px;
+            border-width: 10px;
+            border-style: solid;
+            border-color: transparent $color-white transparent transparent;
+            right: -55px;
+            bottom: 5px;
+            top: 5px;
+            opacity: 0;
+        }
+
+        &:hover {
+            &::before,
+            &::after {
+                opacity: 1;
+            }
+        }
+    }
+}
+
 .c-module-tag-title {
     @include font-size(18px);
     @include f3.border;
