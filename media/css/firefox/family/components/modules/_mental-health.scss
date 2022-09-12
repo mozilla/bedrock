@@ -54,12 +54,6 @@
         top: -40px;
     }
 
-    .c-stop-button {
-        // bespoke padding for the image with cursor
-        // todo: get rid of combined image and use more consistent padding
-        padding: $spacing-xl $spacing-md $spacing-sm $spacing-xl;
-    }
-
     // mobile stacking
     .t-stop-button-container {
         display: none;
@@ -123,6 +117,27 @@
                 align-self: start;
                 min-width: 240px;
                 z-index: 3;
+            }
+
+            .c-stop-button {
+                &.c-card {
+                    border: 2px solid f3.$violet-dark;
+                    display: inline-block;
+                    line-height: 1;
+                    margin: $layout-sm calc(#{$layout-sm} + #{var(--shadow-offset)}) $layout-lg $layout-sm;
+                    padding: 12px 40px;
+                    position: relative;
+                }
+
+                &-text {
+                    display: inline-block;
+                }
+
+                &-cursor {
+                    position: absolute;
+                    bottom: -95%;
+                    right: -25px;
+                }
             }
 
             .c-card {
