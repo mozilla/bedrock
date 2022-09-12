@@ -3,13 +3,14 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
-
+/* eslint-env es6 */
 module.exports = {
     env: {
         browser: true,
         commonjs: true
     },
     extends: ['eslint:recommended', 'plugin:json/recommended', 'prettier'],
+    ignorePatterns: ['contentful_migrations/migrations/*.cjs'],
     rules: {
         // Require strict mode directive in top level functions
         // https://eslint.org/docs/rules/strict
