@@ -22,8 +22,9 @@
       {% endcall %}
 
       {% call browser_border(class='t-stop-button-container') %}
-        <div class="c-stop-button">
-          <img src="{{ static('img/firefox/family/stop-button.png') }}" alt="">
+        <div class="c-stop-button c-card t-shadow">
+          <img class="c-stop-button-text" width="81" height="24" src="{{ static('img/firefox/family/text-stop.svg') }}" alt="">
+          <img class="c-stop-button-cursor" width="43" height="67" src="{{ static('img/firefox/family/cursor.svg') }}" alt="">
         </div>
       {% endcall %}
 
