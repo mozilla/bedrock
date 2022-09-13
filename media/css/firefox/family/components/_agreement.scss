@@ -36,23 +36,24 @@
     .c-subtitle {
         margin-bottom: $layout-xs;
     }
+
+    .mzp-l-content {
+        text-align: center;
+    }
+
+    .c-subtitle,
+    p {
+        text-align: left;
+    }
 }
 
 .c-download {
     @include f3.button;
+    @include text-body-md; // match Download Fx CTA font size
 }
 
 @media #{$mq-sm} {
     .c-agreement {
-        .mzp-l-content {
-            text-align: center;
-        }
-
-        .c-subtitle,
-        p {
-            text-align: left;
-        }
-
         .l-grid {
             > * {
                 max-width: 500px;
