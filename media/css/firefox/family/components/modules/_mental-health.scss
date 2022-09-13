@@ -120,11 +120,14 @@
             }
 
             .c-stop-button {
-                &.c-card {
+                $shadow-offset: $spacing-sm;
+
+                &.c-card.t-shadow {
                     border: 2px solid f3.$violet-dark;
+                    box-shadow: $shadow-offset $shadow-offset 0 f3.$violet-dark;
                     display: inline-block;
                     line-height: 1;
-                    margin: $layout-sm calc(#{$layout-sm} + #{var(--shadow-offset)}) $layout-lg $layout-sm;
+                    margin: $layout-sm calc(#{$layout-sm} + #{$shadow-offset}) $layout-lg $layout-sm;
                     padding: 12px 40px;
                     position: relative;
                 }
