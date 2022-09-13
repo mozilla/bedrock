@@ -38,8 +38,16 @@ $border-width: 3px;
 }
 
 // Shadows
+:root {
+    --shadow-offset: #{$spacing-sm};
+    @media #{$mq-md} {
+        --shadow-offset: 14px;
+    }
+}
+
 @mixin card-shadow($color: $black) {
-    box-shadow: $spacing-sm $spacing-sm 0 $color;
+    box-shadow: $spacing-sm $spacing-sm 0 $color; // older browser fallback
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 $color;
 }
 
 // Font
