@@ -7,18 +7,6 @@ from django import forms
 import phonenumbers
 
 
-class SendToDeviceWidgetForm(forms.Form):
-    email = forms.EmailField(max_length=100, required=False)
-    platform = forms.ChoiceField(
-        choices=(
-            ("ios", "ios"),
-            ("android", "android"),
-            ("all", "all"),
-        ),
-        required=False,
-    )
-
-
 class SMSSendToDeviceForm(forms.Form):
     phone_number = forms.CharField(max_length=20, required=False)
     platform = forms.ChoiceField(

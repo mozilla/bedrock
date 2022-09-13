@@ -357,3 +357,69 @@ def firefox_url(platform, page, channel=None):
 
     anchor = "#" + anchor if anchor else ""
     return reverse(f"firefox.{page}", kwargs=kwargs) + anchor
+
+
+@library.global_function
+@jinja2.pass_context
+def send_to_device(
+    ctx,
+    platform="all",
+    message_set="default",
+    dom_id="send-to-device",
+    class_name="vertical",
+    include_title=True,
+    title_text=None,
+    input_label=None,
+    legal_note_email=None,
+    spinner_color="#000",
+    button_class=None,
+):
+    """
+    Render a send-to-device form for sending a Firefox download link
+    from your desktop web browser to your mobile device.
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {{ send_to_device(message_set='default', platform='all') }}
+    """
+
+    request = ctx["request"]
+    context = ctx.get_all()
+    basket_url = settings.BASKET_SUBSCRIBE_URL
+
+    if not platform:
+        platform = "all"
+
+    if message_set not in settings.SEND_TO_DEVICE_MESSAGE_SETS:
+        MESSAGES = settings.SEND_TO_DEVICE_MESSAGE_SETS["default"]
+    else:
+        MESSAGES = settings.SEND_TO_DEVICE_MESSAGE_SETS[message_set]
+
+    if platform not in MESSAGES["email"]:
+        newsletters = MESSAGES["email"]["all"]
+    else:
+        newsletters = MESSAGES["email"][platform]
+
+    context.update(
+        dict(
+            basket_url=basket_url,
+            button_class=button_class,
+            class_name=class_name,
+            dom_id=dom_id,
+            include_title=include_title,
+            input_label=input_label,
+            legal_note_email=legal_note_email,
+            message_set=message_set,
+            newsletters=newsletters,
+            platform=platform,
+            spinner_color=spinner_color,
+            title_text=title_text,
+        )
+    )
+
+    html = render_to_string("firefox/includes/send-to-device.html", context, request=request)
+    return Markup(html)

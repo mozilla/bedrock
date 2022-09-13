@@ -14,11 +14,11 @@ class SendToDevice(BaseRegion):
     _email_locator = (By.CSS_SELECTOR, ".send-to-device-input")
     _submit_button_locator = (By.CSS_SELECTOR, ".send-to-device .mzp-c-button")
     _thank_you_locator = (By.CSS_SELECTOR, ".thank-you")
-    _error_list_locator = (By.CLASS_NAME, "mzp-c-form-errors")
+    _system_error_locator = (By.CLASS_NAME, "mzp-c-form-errors.system")
 
     @property
     def is_form_error_displayed(self):
-        return self.is_element_displayed(*self._error_list_locator)
+        return self.is_element_displayed(*self._system_error_locator)
 
     def type_email(self, value):
         self.find_element(*self._email_locator).send_keys(value)
@@ -26,7 +26,7 @@ class SendToDevice(BaseRegion):
     def click_send(self, expected_result=None):
         self.scroll_element_into_view(*self._submit_button_locator).click()
         if expected_result == "error":
-            self.wait.until(expected.visibility_of_element_located(self._error_list_locator))
+            self.wait.until(expected.visibility_of_element_located(self._system_error_locator))
         else:
             self.wait.until(expected.visibility_of_element_located(self._thank_you_locator))
 

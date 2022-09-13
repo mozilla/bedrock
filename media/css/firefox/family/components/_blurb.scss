@@ -22,6 +22,17 @@
         text-transform: uppercase;
     }
 
+    &-source {
+        @include text-body-sm;
+        display: block;
+        padding-top: $spacing-sm;
+        text-transform: uppercase;
+
+        @media #{$mq-sm} {
+            text-align: center;
+        }
+    }
+
     p {
         display: inline;
     }

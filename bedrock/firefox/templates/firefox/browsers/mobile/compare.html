@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros.html" import google_play_button, send_to_device with context %}
+{% from "macros.html" import google_play_button with context %}
 {% from "macros-protocol.html" import split with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
@@ -391,7 +391,7 @@
 
   {% if show_send_to_device %}
     <p>{{ ftl('mobile-compare-send-a-download-link-to-your') }}</p>
-    {{ send_to_device(include_title=False, message_set='fx-mobile-download-desktop', class='vertical', id='s2d-footer') }}
+    {{ send_to_device(include_title=False, message_set='fx-mobile-download-desktop', dom_id='s2d-footer') }}
   {% else %}
     <p>{{ ftl('mobile-compare-scan-the-qr-code-to-get-started') }}</p>
     <div class="qr-code-wrapper">

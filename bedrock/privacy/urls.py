@@ -29,6 +29,7 @@ urlpatterns = (
     path("firefox-relay/", views.firefox_relay_notices, name="privacy.notices.firefox-relay"),
     path("mozilla-vpn/", views.mozilla_vpn, name="privacy.notices.mozilla-vpn"),
     path("mdn-plus/", views.mdn_plus, name="privacy.notices.mdn-plus"),
+    path("ad-targeting-guidelines/", views.ad_targeting_guidelines, name="privacy.notices.ad-targeting-guidelines"),
     page("archive/", "privacy/archive/index.html", ftl_files=["privacy/index"], active_locales=["en-US"]),
     page("archive/firefox/2006-10/", "privacy/archive/firefox-2006-10.html", ftl_files=["privacy/index"], active_locales=["en-US"]),
     page("archive/firefox/2008-06/", "privacy/archive/firefox-2008-06.html", ftl_files=["privacy/index"], active_locales=["en-US"]),

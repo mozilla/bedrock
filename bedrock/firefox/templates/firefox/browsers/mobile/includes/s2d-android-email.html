@@ -10,7 +10,7 @@
   <h2 class="c-inline-form-title">{{ ftl('mobile-android-get-firefox-for') }}</h2>
 {% if LANG in settings.SEND_TO_DEVICE_LOCALES %}
   <p class="c-inline-form-body">{{ ftl('mobile-android-send-a-download-link-to-your') }}</p>
-  {{ send_to_device(include_title=False, message_set='fx-mobile-ios-twilio-experiment', class='vertical', id='s2d-hero') }}
+  {{ send_to_device(include_title=False, message_set='fx-mobile-ios-twilio-experiment', dom_id='s2d-hero') }}
 {% else %}
   <p class="c-inline-form-body">{{ ftl('mobile-android-scan-the-qr-code-to-get-started') }}</p>
   <div class="qr-code-wrapper">

@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros.html" import google_play_button, send_to_device with context %}
+{% from "macros.html" import google_play_button with context %}
 {% from "macros-protocol.html" import hero with context %}
 
 {% extends "firefox/welcome/base.html" %}
@@ -45,7 +45,7 @@
     <h3 class="modal-title">{{ ftl('welcome-page6-get-firefox-on-your-phone') }}</h3>
 
     {% if show_send_to_device %}
-      {{ send_to_device(include_title=False, message_set='fx-whatsnew', class='vertical') }}
+      {{ send_to_device(include_title=False, message_set='fx-whatsnew') }}
     {% else %}
       <p>{{ ftl('welcome-page6-scan-the-qr-code-to-get-started') }}</p>
       <div class="qr-code-wrapper">

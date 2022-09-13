@@ -16,7 +16,8 @@ def process_md_file(file_path):
             input = f.read()
 
         md = markdown.Markdown(
-            extensions=["markdown.extensions.attr_list", TocExtension(permalink=True, baselevel=2, toc_depth="2-3")], output_format="html5"
+            extensions=["markdown.extensions.attr_list", TocExtension(permalink=True, baselevel=2, toc_depth="2-3", separator="")],
+            output_format="html5",
         )
         content = md.convert(input)
     except OSError:

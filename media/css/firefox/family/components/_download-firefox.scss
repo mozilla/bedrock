@@ -26,7 +26,11 @@ $image-path: '/media/protocol/img';
         margin-bottom: $spacing-sm;
 
         img {
-            width: 1em;
+            width: 0.9em;
+            margin-right: -0.1em;
+            margin-left: -0.1em;
+            position: relative;
+            top: 5px;
         }
 
         @media #{$mq-lg} {
@@ -55,6 +59,17 @@ $image-path: '/media/protocol/img';
     }
 
     .show-mobile,
+    .show-not-firefox {
+        display: none;
+    }
+}
+
+.is-firefox .is-firefox-default {
+    .show-mobile {
+        display: block;
+    }
+
+    .show-not-default,
     .show-not-firefox {
         display: none;
     }

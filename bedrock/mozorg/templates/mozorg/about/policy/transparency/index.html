@@ -12,10 +12,6 @@
   {{ css_bundle('about-transparency') }}
 {% endblock %}
 
-{% block js %}
-  {{ js_bundle('about-transparency') }}
-{% endblock %}
-
 {% block content %}
 <main role="main">
   <header class="c-page-header">
@@ -26,10 +22,15 @@
 
   <div class="mzp-l-content mzp-t-content-lg">
     <p>
-      Transparency is a key part of how Mozilla approaches user trust. As an open source project that relies on open development, we build transparency into the way we write our code. Additionally, our product documentation and notices describe how our products work and how we handle user data.
+      Transparency is a key part of how Mozilla approaches user trust. As an open source project that relies on open development,
+      we build transparency into the way we write our code. Additionally, our product documentation and notices describe how our
+      products work and how we handle user data.
     </p>
     <p>
-      With this transparency in mind, we intend to publish bi­-annual transparency reports that help provide additional transparency to government disclosures and takedown requests.
+      With this transparency in mind, we publish bi-annual transparency reports. Most industry transparency reports offer insights
+      into government disclosures and takedown requests. Mozilla's transparency report goes further with the number of personal
+      data requests we receive, the number of copyright, trademark, and other takedown requests we receive, and details on our
+      <a href="{{ url('privacy.notices.ad-targeting-guidelines') }}">targeted advertising practices</a>.
     </p>
   </div>
 
@@ -44,13 +45,15 @@
     <section class="mzp-c-details">
       <h3>What is the scope of the Transparency Report?</h3>
       <p>
-        The purpose is to provide public insight into the types of government demands we receive for our user data or to
-        remove content; and requests from individuals or companies to remove content based on copyright or trademark
-        claims. Each report also includes a supplement describing our efforts to reform laws on privacy, surveillance,
+        The purpose is to provide public insight into Mozilla’s data privacy practices, including the types of government
+        demands we receive for our user data or to remove content, requests from individuals or companies to remove
+        content based on copyright or trademark claims, and targeted advertising practices. Each report also includes a
+        supplement describing our efforts to reform laws on privacy, surveillance,
         cybersecurity, and intellectual property for a healthier internet.
       </p>
       <p>
-        With each additional report that we publish, we’ll continue to re­evaluate how we can be more transparent. To this end, starting in H2 2018, we started reporting on the number of requests we receive from individuals inquiring about their personal data.
+        With each additional report that we publish, we’ll continue to reevaluate how we can be more transparent. To this end,
+        starting in H1 2022, we started disclosing our targeted advertising practices.
       </p>
     </section>
 
@@ -155,6 +158,19 @@
         We believe that everyone should have control over their personal data, understand how it’s obtained and used, and be able to access, modify, or delete it.  We extend these principles to all of our users regardless of when they submit a <a href="#dfn-personal-data-request">Personal Data Request</a>, where they are located, or whether a data protection law (such as the GDPR) grants them express privacy rights.
       </p>
     </section>
+
+    <section class="mzp-c-details">
+      <h3>Why Does Mozilla Disclose Its Targeted Advertisements?</h3>
+
+      <p>
+        Most organizations are secretive about what personal data they use to target advertising,
+        what <a href="#dfn-targeting-parameters">targeting parameters</a> they use to reach the intended audience,
+        how much they spend, and in what geographies. And yet this information is vital to understand how
+        individuals and communities are targeted online. Although some targeted advertising may be socially useful,
+        other targeted advertising results in misinformation, discrimination and other social harm. To uncover and
+        address the harms, we need more organizations to be transparent about their targeted advertising practices.
+      </p>
+    </section>
   </div>
 
   <div id="definitions" class="mzp-l-content mzp-t-content-lg">
@@ -256,6 +272,14 @@
         </p>
       </dd>
 
+      <dt id="dfn-targeting-parameters">Targeting Parameters</dt>
+      <dd>
+        <p>
+          Pieces of information that an advertiser chooses to determine which users of a platform will see their advertisements.
+          These may include device type, location, engagement with the platform, demographic information, interests, or other information.
+        </p>
+      </dd>
+
       <dt id="dfn-takedown-notice">Takedown Notice</dt>
       <dd>
         <p>
@@ -272,4 +296,8 @@
     </dl>
   </div>
 </main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('about-transparency') }}
 {% endblock %}

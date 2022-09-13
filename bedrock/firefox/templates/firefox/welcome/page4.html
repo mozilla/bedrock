@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros.html" import google_play_button, send_to_device with context %}
+{% from "macros.html" import google_play_button with context %}
 {% from "macros-protocol.html" import hero with context %}
 
 {% extends "firefox/welcome/base.html" %}
@@ -35,7 +35,6 @@
       <p>{{ ftl('welcome-page4-send-the-download-link-right') }}</p>
       {{ send_to_device(
         include_title=False,
-        class='vertical',
         message_set='firefox-mobile-welcome',
         button_class='mzp-t-lg') }}
 
