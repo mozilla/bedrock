@@ -72,7 +72,7 @@
 
     &-title,
     &-item {
-        @include f3.text-body-lg;
+        @include f3.text-body-md;
         display: inline;
         margin-bottom: 0; // protocol override
     }
@@ -86,6 +86,15 @@
         &-content,
         .set-one {
             animation: none;
+        }
+    }
+}
+
+@media #{f3.$mq-md} {
+    .c-news-ticker {
+        &-title,
+        &-item {
+            @include f3.text-body-lg;
         }
     }
 }
