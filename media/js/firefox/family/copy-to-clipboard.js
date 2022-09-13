@@ -9,6 +9,9 @@
 (function () {
     'use strict';
 
+    // var copyText = document.querySelector('.c-module-copy');
+    // var copiedText = document.querySelector('.c-module-copied');
+
     var linksArray = [];
 
     document.querySelectorAll('.c-module-tag').forEach(function (occ) {
@@ -18,7 +21,17 @@
     linksArray.map(function (e) {
         e.addEventListener('click', function copyLink() {
             var link = e.href;
+            var copiedText = e.children[2];
+            var copyText = e.children[1];
+
             navigator.clipboard.writeText(link);
+
+            copiedText.style.display = 'block';
+            copyText.style.display = 'none';
+            setTimeout(function () {
+                copiedText.style.display = 'none';
+                copyText.style.display = 'block';
+            }, 2000);
         });
     });
 })();

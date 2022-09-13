@@ -10,44 +10,79 @@ body {
 }
 
 .c-module-tag {
-    @media #{$mq-md} {
-        position: relative;
+    position: relative;
+
+    .c-module-copy,
+    .c-module-copied {
+        @include text-body-sm;
+        background: $color-white;
+        color: $color-black;
+        height: auto;
+        padding: 4px;
+        pointer-events: none;
+        position: absolute;
+        text-align: center;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
 
         &::before {
-            @include text-body-sm;
-            background: $color-white;
-            color: $color-black;
-            content: attr(data-text);
-            height: 20px;
-            opacity: 0;
-            padding: 4px;
-            pointer-events: none;
-            position: absolute;
-            right: -175px;
-            top: 0;
-            text-align: center;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        &::after {
             content: '';
             position: absolute;
-            margin-left: -8px;
             border-width: 10px;
             border-style: solid;
             border-color: transparent $color-white transparent transparent;
-            right: -55px;
-            bottom: 5px;
-            top: 5px;
+            left: -18px;
             opacity: 0;
+        }
+    }
+
+    .c-module-copied {
+        top: -50px;
+        right: -70px;
+        display: none;
+        opacity: 1;
+
+        // transition: display 2s linear;
+        &::before {
+            bottom: -18px;
+            left: auto;
+            border-color: $color-white transparent transparent transparent;
+            opacity: 1;
+        }
+    }
+
+    &:hover {
+        &::before,
+        &::after {
+            opacity: 1;
+        }
+    }
+
+    @media #{$mq-md} {
+        .c-module-copy,
+        .c-module-copied {
+            right: -190px;
+            top: 5%;
+
+            &::before {
+                left: -18px;
+            }
+        }
+
+        .c-module-copied {
+            right: -130px;
+
+            &::before {
+                top: 6px;
+            }
         }
 
         &:hover {
-            &::before,
-            &::after {
+            .c-module-copy,
+            .c-module-copy::before {
                 opacity: 1;
             }
         }

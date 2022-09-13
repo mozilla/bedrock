@@ -8,8 +8,10 @@
   title,
   anchor
 ) -%}
-<a class="c-module-tag" href="#{{ anchor }}" data-text="copy to clipboard">
+<a class="c-module-tag" href="#{{ anchor }}">
   <h2 class="c-module-tag-title">{{ title }}</h2>
+  <span class="c-module-copy">Copy to clipboard</span>
+  <span class="c-module-copied">Copied!</span>
 </a>
 {%- endmacro %}
 
