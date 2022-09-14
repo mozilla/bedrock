@@ -6,7 +6,6 @@
 
 let dadJokesBanner;
 let dadJokesBannerClose;
-let dadJokesEyeroll;
 
 function showBanner() {
     // remove unneeded event listener
@@ -28,14 +27,12 @@ function hideBanner() {
     dadJokesBanner.setAttribute('aria-hidden', 'true');
     // remove unusable event listener
     dadJokesBannerClose.removeEventListener('click', hideBanner);
-    dadJokesEyeroll.style.display = 'block';
 }
 
 const init = function () {
     // set element references
     dadJokesBanner = document.getElementById('dad-jokes-banner');
     dadJokesBannerClose = document.getElementById('dad-jokes-banner-close');
-    dadJokesEyeroll = document.getElementById('dad-jokes-eyeroll');
     // add event listeners
     document.addEventListener('scroll', showBanner);
 };
