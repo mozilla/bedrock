@@ -41,20 +41,21 @@ body {
 
     .c-module-copied {
         top: -50px;
-        right: -70px;
+        right: -25px;
         display: none;
         opacity: 1;
 
-        // transition: display 2s linear;
         &::before {
             bottom: -18px;
-            left: auto;
+            left: 121px;
             border-color: $color-white transparent transparent transparent;
             opacity: 1;
         }
     }
 
-    &:hover {
+    &:hover,
+    &:focus,
+    &:active {
         &::before,
         &::after {
             opacity: 1;
@@ -73,14 +74,17 @@ body {
         }
 
         .c-module-copied {
-            right: -130px;
+            right: -200px;
 
             &::before {
-                top: 6px;
+                bottom: 4px;
+                border-color: transparent $color-white transparent transparent;
             }
         }
 
-        &:hover {
+        &:hover,
+        &:focus,
+        &:active {
             .c-module-copy,
             .c-module-copy::before {
                 opacity: 1;
