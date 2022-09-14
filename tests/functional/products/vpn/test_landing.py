@@ -24,7 +24,6 @@ def test_vpn_available_in_country(country, base_url, selenium):
 
     # Pricing section
     assert page.is_get_vpn_monthly_button_displayed
-    assert page.is_get_vpn_6_months_button_displayed
     assert page.is_get_vpn_12_months_button_displayed
 
     # Waitlist features section
@@ -52,7 +51,6 @@ def test_vpn_not_available_in_country(base_url, selenium):
 
     # Pricing section
     assert not page.is_get_vpn_monthly_button_displayed
-    assert not page.is_get_vpn_6_months_button_displayed
     assert not page.is_get_vpn_12_months_button_displayed
 
     # Waitlist features section

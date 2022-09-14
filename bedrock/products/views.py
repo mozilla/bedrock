@@ -39,6 +39,7 @@ def vpn_landing_page(request):
     vpn_affiliate_attribution_enabled = vpn_available_in_country and attribution_available_in_country and switch("vpn-affiliate-attribution")
     entrypoint_experiment = request.GET.get("entrypoint_experiment", None)
     entrypoint_variation = request.GET.get("entrypoint_variation", None)
+    relay_bundle_available_in_country = vpn_available_in_country and country in settings.VPN_RELAY_BUNDLE_COUNTRY_CODES and switch("vpn-relay-bundle")
 
     context = {
         "vpn_available": vpn_available_in_country,
@@ -47,6 +48,7 @@ def vpn_landing_page(request):
         "connect_countries": settings.VPN_CONNECT_COUNTRIES,
         "connect_devices": settings.VPN_CONNECT_DEVICES,
         "vpn_affiliate_attribution_enabled": vpn_affiliate_attribution_enabled,
+        "relay_bundle_available_in_country": relay_bundle_available_in_country,
     }
 
     # ensure experiment parameters matches pre-defined values

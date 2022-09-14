@@ -122,11 +122,14 @@ main .mzp-c-button.mzp-t-xl {
 // VPN Product Feature List
 
 .vpn-feature-list.mzp-u-list-styled {
-    @include bidi(((text-align, left, right),));
+    @include bidi((
+        (margin-left, 0, margin-right, 0),
+        (text-align, left, right),
+    ));
     @include text-body-lg;
     display: inline-block;
     list-style: none;
-    margin: 0 0 $spacing-lg 0;
+    margin-bottom: $spacing-lg;
 
     li {
         @include bidi((
