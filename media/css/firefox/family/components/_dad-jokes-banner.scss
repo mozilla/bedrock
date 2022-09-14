@@ -69,6 +69,11 @@
                 flex: 0 0 auto;
             }
 
+            #dad-jokes-eyeroll {
+                display: none;
+                @include text-title-md;
+            }
+
             @media #{$mq-md} {
                 flex-flow: row wrap;
                 justify-content: center;
