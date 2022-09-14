@@ -70,5 +70,10 @@
         &.mzp-t-dark {
             background-color: f3.$violet-extra-dark;
         }
+
+        *:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
     }
 }

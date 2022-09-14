@@ -32,7 +32,7 @@
 
     // dimensions from figma
     .t-doomscroll-container {
-        height: 317px;
+        height: 369px;
         width: 484px;
         position: absolute;
         top: 40%;
@@ -41,7 +41,7 @@
 
         .c-browser-content {
             overflow-y: hidden;
-            height: 300px;
+            height: 317px;
         }
     }
 
@@ -90,7 +90,7 @@
             .l-grid {
                 display: grid;
                 grid-template-columns: repeat(12, 1fr);
-                grid-template-rows: [start] minmax($spacing-md, 100px) 50px 60px 1fr minmax($spacing-lg, auto) [end];
+                grid-template-rows: [start] minmax($spacing-md, 80px) 50px 40px 1fr minmax($spacing-lg, auto) [end];
             }
 
             .t-content-container {
