@@ -18,11 +18,11 @@ body {
         background: $color-white;
         color: $color-black;
         height: auto;
-        padding: 4px;
+        padding: $spacing-xs;
         pointer-events: none;
         position: absolute;
         text-align: center;
-        border-radius: 4px;
+        border-radius: $border-radius-sm;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -77,7 +77,7 @@ body {
             right: -200px;
 
             &::before {
-                bottom: 4px;
+                bottom: $spacing-xs;
                 border-color: transparent $color-white transparent transparent;
             }
         }
