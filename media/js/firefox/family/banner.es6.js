@@ -6,6 +6,8 @@
 
 let dadJokesBanner;
 let dadJokesBannerClose;
+// let dadJokesBannerButton;
+let dadJokesEyeroll;
 
 function showBanner() {
     // remove unneeded event listener
@@ -24,15 +26,22 @@ function hideBanner() {
         event: 'in-page-interaction'
     });
     // hide banner
-    dadJokesBanner.setAttribute('aria-hidden', 'true');
+    dadJokesBannerClose.style.display = 'none';
+    dadJokesEyeroll.style.display = 'block';
+    setTimeout(function () {
+        dadJokesBanner.setAttribute('aria-hidden', 'true');
+    }, 300);
     // remove unusable event listener
     dadJokesBannerClose.removeEventListener('click', hideBanner);
+    // dadJokesEyeroll.style.display = 'block';
 }
 
 const init = function () {
     // set element references
     dadJokesBanner = document.getElementById('dad-jokes-banner');
     dadJokesBannerClose = document.getElementById('dad-jokes-banner-close');
+
+    dadJokesEyeroll = document.getElementById('dad-jokes-eyeroll');
     // add event listeners
     document.addEventListener('scroll', showBanner);
 };
