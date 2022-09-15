@@ -486,6 +486,7 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx104-vpn-de-coupon.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx104-vpn-fr.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx104-vpn-fr-coupon.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx105-en.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx105-uk-1.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx105-uk-2.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx105-fr.html": ["firefox/whatsnew/whatsnew"],
@@ -591,7 +592,7 @@ class WhatsnewView(L10nTemplateView):
                     else:
                         template = "firefox/whatsnew/whatsnew-fx105-uk-1.html"
                 else:
-                    template = "firefox/whatsnew/index.html"
+                    template = "firefox/whatsnew/whatsnew-fx105-en.html"
             elif locale == "de":
                 if variant == "2":
                     template = "firefox/whatsnew/whatsnew-fx105-de-2.html"

@@ -488,6 +488,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-105-en.scss"
+      ],
+      "name": "firefox_whatsnew_105_en"
+    },
+    {
+      "files": [
         "css/firefox/whatsnew/whatsnew-105-eu.scss"
       ],
       "name": "firefox_whatsnew_105_eu"
