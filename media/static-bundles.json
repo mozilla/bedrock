@@ -216,6 +216,12 @@
     },
     {
       "files": [
+        "css/mozorg/home/home-firefox-family-promo.scss"
+      ],
+      "name": "home-firefox-family-promo"
+    },
+    {
+      "files": [
         "css/newsletter/newsletter.scss"
       ],
       "name": "newsletter"
