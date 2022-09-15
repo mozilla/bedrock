@@ -33,6 +33,12 @@ $image-path: '/media/protocol/img';
             top: 5px;
         }
 
+        @media #{$mq-sm} {
+            br {
+                display: none;
+            }
+        }
+
         @media #{$mq-lg} {
             @include text-title-2xl;
         }
