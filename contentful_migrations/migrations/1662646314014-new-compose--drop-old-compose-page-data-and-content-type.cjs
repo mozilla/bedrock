@@ -44,7 +44,8 @@ module.exports = withHelpers(async function (migration, context, helpers) {
         }
     });
 
-    // Give Contentful a moment to breathe before moving on
+    // Give Contentful a moment to breathe before moving on, to avoid race
+    // conditions and/or rate limiting
     console.log('Sleeping for 2s...');
     await sleep(2000);
 
