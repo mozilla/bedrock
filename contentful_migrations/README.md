@@ -7,7 +7,7 @@ This directory contain scripts (written in Javascript) that execute Contentful m
 It does not, currently, contain a complete CMS-as-Code approach. Each migration in here is a
 one-off scripted change intended for one-off use, outside of CI. The migrations are run via
 the [contentful-migrations](https://github.com/jungvonmatt/contentful-migrations) framework,
-which wraps Contenful's own `contentful-migration` library.
+which wraps Contentful's own `contentful-migration` library.
 
 ## How do I use it?
 
@@ -23,7 +23,7 @@ which wraps Contenful's own `contentful-migration` library.
 `npx migrations execute -e TARGET_CONTENTFUL_ENVIRONMENT -v migrations/MIGRATION_FILE_NAME.cjs`
 
 This will run the migration and also set a `Migrations` Entry in Contentful, with the number of
-the migraiton and a success state. This record is useful in showing us what migrations have
+the migration and a success state. This record is useful in showing us what migrations have
 run on what environment.
 
 ### To unmark a migration as applied

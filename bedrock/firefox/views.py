@@ -1072,7 +1072,7 @@ class FirefoxMobileView(L10nTemplateView):
         return [template]
 
 
-class FirefoxContenful(L10nTemplateView):
+class FirefoxContentful(L10nTemplateView):
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         content_id = ctx["content_id"]

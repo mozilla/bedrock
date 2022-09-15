@@ -16,7 +16,7 @@ DEFAULT_CONTENT_TYPES = ",".join(
     ]
 )
 
-CONTENT_CLASSIFICATION_VPN = "VPN"  # Matches string in Contenful for VPN as `product`
+CONTENT_CLASSIFICATION_VPN = "VPN"  # Matches string in Contentful for VPN as `product`
 
 ARTICLE_CATEGORY_LABEL = "category"  # for URL-param filtering
 

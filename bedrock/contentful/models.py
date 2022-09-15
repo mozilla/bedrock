@@ -60,7 +60,7 @@ class ContentfulEntryManager(models.Manager):
             order_by (str, optional): Sorting key for the queryset. Defaults to "last_modified".
 
         Returns:
-            QuerySet[ContentfulEntry]: the main ContenfulEntry models, not just their JSON data
+            QuerySet[ContentfulEntry]: the main ContentfulEntry models, not just their JSON data
         """
 
         kwargs = dict(

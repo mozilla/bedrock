@@ -230,4 +230,4 @@ urlpatterns = (
 
 # Contentful
 if settings.DEV:
-    urlpatterns += (path("firefox/more/<content_id>/", views.FirefoxContenful.as_view()),)
+    urlpatterns += (path("firefox/more/<content_id>/", views.FirefoxContentful.as_view()),)

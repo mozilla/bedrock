@@ -586,7 +586,7 @@ class ContentfulPage:
         if entry_type == "connectHomepage":
             # Legacy - TODO: remove me once we're no longer using Connect: Homepage
             entry_obj = self.page.fields()["entry"]
-        elif entry_type.startswith("page"):  # WARNING: this reuires a consistent naming of page types in Contentful, too
+        elif entry_type.startswith("page"):  # WARNING: this requires a consistent naming of page types in Contentful, too
             entry_obj = self.page
             seo_obj = self.page.seo
         else:

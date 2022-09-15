@@ -322,7 +322,7 @@ def test_update_contentful__queue_has_viable_messages__no_viable_message_found__
     message_actions_sequence,
     command_instance,
 ):
-    # Create is the only message that will not trigger a contenful poll in Dev
+    # Create is the only message that will not trigger a Contentful poll in Dev
     assert settings.APP_NAME == "bedrock-dev"
     messages_for_queue = _build_mock_messages(message_actions_sequence)
     mock_sqs, mock_queue = _establish_mock_queue(messages_for_queue)
