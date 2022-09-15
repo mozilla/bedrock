@@ -488,6 +488,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-105-eu.scss"
+      ],
+      "name": "firefox_whatsnew_105_eu"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -1301,6 +1307,18 @@
         "js/firefox/whatsnew/whatsnew-103-en-experiment.js"
       ],
       "name": "firefox_whatsnew_103_en_experiment"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-105-uk-experiment.es6.js"
+      ],
+      "name": "firefox_whatsnew_105_uk_experiment"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-105-de-experiment.es6.js"
+      ],
+      "name": "firefox_whatsnew_105_de_experiment"
     },
     {
       "files": [

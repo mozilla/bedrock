@@ -1,0 +1,172 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-pocket';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import 'includes/base';
+
+// * -------------------------------------------------------------------------- */
+// Main content
+
+.wnp-content-main {
+    background-color: #ffd25e;
+
+    .mzp-c-wordmark.mzp-t-product-pocket {
+        background: transparent url('/media/img/firefox/whatsnew/whatsnew105-eu/pocket-wordmark.svg') center center no-repeat;
+        width: 100%;
+    }
+
+    @media #{$mq-md} {
+        .mzp-c-wordmark.mzp-t-product-pocket {
+            background-position: center left;
+        }
+
+        .mzp-c-split-body {
+            margin-bottom: $spacing-2xl;
+        }
+    }
+}
+
+.mzp-l-split-pop-top.mzp-c-split {
+    padding-top: 70px;
+}
+
+.wnp-main-title {
+    @include text-title-md;
+    color: #00256d;
+
+    br {
+        display: none;
+    }
+
+    @media #{$mq-lg} {
+        br {
+            display: block;
+        }
+    }
+}
+
+.wnp-main-tagline {
+    @include text-body-lg;
+    color: #00256d;
+}
+
+.wnp-main-cta {
+    @include text-body-lg;
+    margin-top: $layout-md;
+
+    .mzp-c-button.mzp-t-product {
+        background-color: #00256d;
+
+        &:hover,
+        &:focus {
+            background-color: #000;
+        }
+    }
+}
+
+.t-pattern {
+    background: #ff8a00 url('/media/img/firefox/whatsnew/whatsnew105-eu/pattern.svg') center center no-repeat;
+    height: 114px;
+    width: 100%;
+}
+
+// * -------------------------------------------------------------------------- */
+// KOL variation (/de/firefox/105.0/whatsnew/?v=2)
+
+.wnp-header-kol {
+    background-color: #ffd25e;
+    padding-top: $spacing-2xl;
+    text-align: center;
+
+    .mzp-l-content {
+        padding-bottom: 0;
+        padding-top: 0;
+    }
+
+    .wnp-main-tagline {
+        @include text-body-xl;
+
+        br {
+            display: none;
+        }
+    }
+
+    .mzp-c-wordmark.mzp-t-product-pocket {
+        background: transparent url('/media/img/firefox/whatsnew/whatsnew105-eu/wordmark-lockup.svg') center center no-repeat;
+        background-size: contain; // ensure long wordmark isn't cropped on small screens.
+        width: 100%;
+    }
+
+    @media #{$mq-md} {
+        .wnp-main-tagline {
+            br {
+                display: block;
+            }
+        }
+    }
+}
+
+.wnp-content-main.t-kol {
+    .mzp-c-split-container {
+        background: #fffbe3;
+        padding: $spacing-xl;
+    }
+
+    @media #{$mq-lg} {
+        padding-top: $spacing-2xl;
+
+        .mzp-c-split-container {
+            grid-column-gap: $spacing-2xl;
+            grid-template-columns: 400px 1fr;
+            padding: 0 $spacing-2xl 0 0;
+        }
+
+        .mzp-c-split-body {
+            margin-bottom: 0;
+            min-height: 400px;
+            padding: $spacing-2xl 0;
+        }
+    }
+}
+
+.mzp-c-emphasis-box {
+    blockquote {
+        border-width: 0;
+        color: #00256d;
+        margin: 0;
+        padding: 0;
+
+        p {
+            @include font-size(24px);
+            font-style: italic;
+            font-weight: bold;
+            line-height: 1.4;
+        }
+
+        cite {
+            color: #00256d;
+            line-height: 1;
+
+            p {
+                @include text-body-md;
+                font-style: normal;
+                font-weight: normal;
+
+                strong::after {
+                    content: ' |';
+                }
+            }
+
+            &::before {
+                content: none;
+            }
+        }
+    }
+}
