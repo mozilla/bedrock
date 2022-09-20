@@ -3,7 +3,7 @@ babis==0.2.4
 basket-client==1.0.0
 beautifulsoup4==4.11.1
 bleach[css]==5.0.1
-boto3==1.24.70
+boto3==1.24.75
 chardet==5.0.0
 commonware==0.6.0
 contentful==1.13.1
@@ -37,11 +37,10 @@ Markdown==3.3.6
 https://github.com/mozmeao/mdx_outline/archive/refs/tags/python-3.9-compat.tar.gz#egg=mdx_outline
 markupsafe==2.0.1
 meinheld==1.0.2
-newrelic==8.0.0.179
+newrelic==8.1.0.180
 phonenumberslite==8.12.55
 Pillow==9.2.0
 PyGithub==1.55
-pyjwt>=2.4.0  # subdep of PyGithub and Twilio but needs to be > 2.3.0
 pyOpenSSL==22.0.0
 python-memcached==1.59
 PyYAML==6.0
