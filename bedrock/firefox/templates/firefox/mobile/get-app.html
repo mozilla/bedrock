@@ -25,21 +25,9 @@
   {% endwith %}
 {% endblock %}
 
-{% if variation == 'mfm' %}
-  {% set message_set = 'fx-mobile-download-desktop-experiment' %}
-  {% set android_url = 'https://app.adjust.com/y68hlxi?campaign=firefox-desktop&adgroup=about-prefs&creative=mfm-fxvt-default-global-email-site-and&fallback=http%3A%2F%2Fmozilla.org%2Ffirefox%2Fmobile%2F' %}
-  {% set ios_url = 'https://app.adjust.com/y68hlxi?campaign=firefox-desktop&adgroup=about-prefs&creative=mfm-fxvt-default-global-email-site-ios&fallback=http%3A%2F%2Fmozilla.org%2Ffirefox%2Fmobile%2F' %}
-{% elif variation == 'eco-a' %}
-  {% set message_set = 'fx-mobile-download-desktop-reco-exp-a' %}
-{% elif variation == 'eco-b' %}
-  {% set message_set = 'fx-mobile-download-desktop-reco-exp-b' %}
-{% elif variation == 'eco-c' %}
-  {% set message_set = 'fx-mobile-download-desktop-reco-exp-c' %}
-{% else %}
-  {% set message_set = 'fx-mobile-download-desktop' %}
-  {% set android_url = firefox_adjust_url('android', 'mobile-get-app-page') %}
-  {% set ios_url = firefox_adjust_url('ios', 'mobile-get-app-page') %}
-{% endif %}
+{% set message_set = 'fx-mobile-download-desktop' %}
+{% set android_url = firefox_adjust_url('android', 'mobile-get-app-page') %}
+{% set ios_url = firefox_adjust_url('ios', 'mobile-get-app-page') %}
 
 {% block content %}
 <main role="main" class="mzp-l-content mzp-t-content-md mzp-t-firefox">
@@ -57,7 +45,6 @@
     {% endif %}
   </section>
 
-  {% if variation not in ['eco-a', 'eco-b', 'eco-c'] %}
   <aside class="mobile-download-buttons-wrapper">
     <ul class="mobile-download-buttons">
       <li class="android">
@@ -70,7 +57,7 @@
       </li>
     </ul>
   </aside>
-  {% endif %}
+
 </main>
 {% endblock %}
 

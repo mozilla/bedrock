@@ -569,22 +569,6 @@ class TestFirefoxURL(TestCase):
             {"newsletter_id": "download-firefox-mobile-reco"},
         ),
         (
-            "message_set='fx-mobile-download-desktop-experiment'",
-            {"newsletter_id": "download-firefox-mobile-reco-exp"},
-        ),
-        (
-            "message_set='fx-mobile-download-desktop-reco-exp-a'",
-            {"newsletter_id": "download-firefox-mobile-reco-exp-a"},
-        ),
-        (
-            "message_set='fx-mobile-download-desktop-reco-exp-b'",
-            {"newsletter_id": "download-firefox-mobile-reco-exp-b"},
-        ),
-        (
-            "message_set='fx-mobile-download-desktop-reco-exp-c'",
-            {"newsletter_id": "download-firefox-mobile-reco-exp-c"},
-        ),
-        (
             "message_set='fx-mobile-ios-twilio-experiment'",
             {"newsletter_id": "download-firefox-ios-twilio-experiment"},
         ),
