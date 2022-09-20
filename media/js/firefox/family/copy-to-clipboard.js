@@ -9,10 +9,8 @@
 (function () {
     'use strict';
 
-    // var copyText = document.querySelector('.c-module-copy');
-    // var copiedText = document.querySelector('.c-module-copied');
-
     var linksArray = [];
+    var timeout;
 
     document.querySelectorAll('.c-module-tag').forEach(function (occ) {
         linksArray.push(occ);
@@ -20,6 +18,8 @@
 
     linksArray.map(function (e) {
         e.addEventListener('click', function copyLink() {
+            // e.preventDefault();
+            // console.log(e);
             var link = e.href;
             var copiedText = e.children[2];
             var copyText = e.children[1];
@@ -28,10 +28,16 @@
 
             copiedText.style.display = 'block';
             copyText.style.display = 'none';
-            setTimeout(function () {
+
+            clearTimeout(timeout);
+
+            timeout = setTimeout(function () {
                 copiedText.style.display = 'none';
                 copyText.style.display = 'block';
+                // return false
             }, 2000);
         });
+
+        return true;
     });
 })();
