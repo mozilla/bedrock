@@ -9,7 +9,7 @@
 {% do doc.select('body > section > section ul')|htmlattr(class="mzp-u-list-styled") %}
 {% do doc.select('body > section > section ol')|htmlattr(class="mzp-u-list-styled") %}
 
-{% block page_title %}{{ doc.h1.string }}{% endblock %}
+{% block page_title %}{{ doc.h1.string|join|safe }}{% endblock %}
 
 {% block body_id %}firefox-notice{% endblock %}
 {% block body_class %}{{ super() }} format-none{% endblock %}
