@@ -17,17 +17,21 @@
         display: block;
     }
 
+    .c-module-tag {
+        margin-bottom: $spacing-md;
+    }
+
     // override usual layout
     .c-module-tag-title {
         background-color: f3.$white;
         padding: $spacing-sm $spacing-md;
+        margin-bottom: 0;
 
         &::before {
             display: none;
         }
     }
 
-    .c-module-tag-title,
     .c-content p,
     img {
         margin-bottom: $layout-sm;
@@ -87,6 +91,7 @@
                 grid-column-start: 1;
                 grid-row-start: 1;
                 justify-self: start;
+                align-self: start;
             }
 
             .c-content {

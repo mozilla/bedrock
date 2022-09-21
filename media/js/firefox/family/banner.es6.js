@@ -33,7 +33,6 @@ const init = function () {
     // set element references
     dadJokesBanner = document.getElementById('dad-jokes-banner');
     dadJokesBannerClose = document.getElementById('dad-jokes-banner-close');
-
     // add event listeners
     document.addEventListener('scroll', showBanner);
 };
