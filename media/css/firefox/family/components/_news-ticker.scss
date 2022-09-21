@@ -4,97 +4,98 @@
 
 @use '../utils' as f3;
 
-@keyframes ticker {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-100%);
-    }
-}
-
-@keyframes repeat {
-    0%,
-    50% {
-        left: 0;
-    }
-
-    50.01%,
-    100% {
-        left: 100%;
-    }
-}
-
+// Hide the ticker for reduced motion or older browsers
 .c-news-ticker {
-    $duration: 100s;
-    background-color: f3.$black;
-    color: white;
-    @include f3.mono-font;
-    max-width: 100%;
-    overflow: hidden;
-    padding: 0.5em 0;
-    position: relative;
+    display: none;
 
-    &-content {
-        animation: ticker $duration linear infinite;
-        position: relative;
-        width: max-content;
-
-        &:hover {
-            animation-play-state: paused;
-        }
-    }
-
+    &-content,
     .set-one {
-        animation: repeat $duration linear infinite;
-        display: inline;
-        left: 0;
-        position: relative;
+        animation: none;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    @keyframes ticker {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-100%);
+        }
     }
 
-    .set-two {
-        display: inline;
+    @keyframes repeat {
+        0%,
+        50% {
+            left: 0;
+        }
+
+        50.01%,
+        100% {
+            left: 100%;
+        }
     }
 
-    &-title {
-        color: f3.$yellow-primary;
+    .c-news-ticker {
+        $duration: 100s;
+        background-color: f3.$black;
+        color: white;
+        display: block;
         @include f3.mono-font;
+        max-width: 100%;
+        overflow: hidden;
+        padding: 0.5em 0;
+        position: relative;
 
-        &::before {
-            content: '// ';
+        &-content {
+            animation: ticker $duration linear infinite;
+            position: relative;
+            width: max-content;
+
+            &:hover {
+                animation-play-state: paused;
+            }
         }
 
-        &::after {
-            content: ' //';
-        }
-    }
-
-    &-title,
-    &-item {
-        @include f3.text-body-md;
-        display: inline;
-        margin-bottom: 0; // protocol override
-    }
-}
-
-// Hide the ticker for reduced motion
-@media screen and (prefers-reduced-motion: reduce) {
-    .c-news-ticker {
-        display: none;
-
-        &-content,
         .set-one {
-            animation: none;
+            animation: repeat $duration linear infinite;
+            display: inline;
+            left: 0;
+            position: relative;
         }
-    }
-}
 
-@media #{f3.$mq-md} {
-    .c-news-ticker {
+        .set-two {
+            display: inline;
+        }
+
+        &-title {
+            color: f3.$yellow-primary;
+            @include f3.mono-font;
+
+            &::before {
+                content: '// ';
+            }
+
+            &::after {
+                content: ' //';
+            }
+        }
+
         &-title,
         &-item {
-            @include f3.text-body-lg;
+            @include f3.text-body-md;
+            display: inline;
+            margin-bottom: 0; // protocol override
+        }
+    }
+
+    @media #{f3.$mq-md} {
+        .c-news-ticker {
+            &-title,
+            &-item {
+                @include f3.text-body-lg;
+            }
         }
     }
 }
