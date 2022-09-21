@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" width="13" height="107" viewBox="0 0 13 107">
+  <style>
+    .st0{clip-path:url(#SVGID_00000099646499969202999920000012871987743148343956_)}
+  </style>
+  <defs>
+    <path id="SVGID_1_" d="M0 0h13v107H0z"/>
+  </defs>
+  <clipPath id="SVGID_00000082368516120601512930000009124651466471300771_">
+    <use xlink:href="#SVGID_1_" overflow="visible"/>
+  </clipPath>
+  <g clip-path="url(#SVGID_00000082368516120601512930000009124651466471300771_)">
+    <path fill="#00256c" d="M0 42h13v65H0z"/>
+    <path fill="#ffd25e" d="M19 51c-8.8 0-16 9.6-16 21.5S10.2 94 19 94V51z"/>
+    <path fill="#ff8a00" d="M0-21h13v63H0z"/>
+  </g>
+</svg>
