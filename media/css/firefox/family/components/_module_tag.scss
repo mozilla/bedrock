@@ -74,7 +74,7 @@ body {
         }
 
         .c-module-copied {
-            right: -200px;
+            right: -152px;
 
             &::before {
                 bottom: $spacing-xs;
@@ -98,7 +98,6 @@ body {
     @include f3.border;
     display: inline-block;
     padding-right: $spacing-md;
-    margin-bottom: $layout-xs;
     position: relative;
 
     &::before {

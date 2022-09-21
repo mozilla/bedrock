@@ -11,6 +11,7 @@
 
     .c-module-tag-title {
         background-color: f3.$pink-primary;
+        margin-bottom: 0;
     }
 
     .c-browser {
@@ -44,6 +45,7 @@
 
             .c-module-tag {
                 justify-self: start;
+                align-self: start;
             }
 
             .c-content {

@@ -17,12 +17,14 @@
     });
 
     linksArray.map(function (e) {
-        e.addEventListener('click', function copyLink() {
-            // e.preventDefault();
-            // console.log(e);
-            var link = e.href;
-            var copiedText = e.children[2];
-            var copyText = e.children[1];
+        e.addEventListener('click', function copyLink(event) {
+            event.preventDefault();
+
+            var sectionLink = event.target.offsetParent;
+
+            var link = sectionLink.href;
+            var copiedText = sectionLink.children[2];
+            var copyText = sectionLink.children[1];
 
             navigator.clipboard.writeText(link);
 
@@ -34,10 +36,7 @@
             timeout = setTimeout(function () {
                 copiedText.style.display = 'none';
                 copyText.style.display = 'block';
-                // return false
             }, 2000);
         });
-
-        return true;
     });
 })();
