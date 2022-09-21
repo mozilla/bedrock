@@ -42,13 +42,13 @@ bleach[css]==5.0.1 \
     --hash=sha256:085f7f33c15bd408dd9b17a4ad77c577db66d76203e5984b1bd59baeee948b2a \
     --hash=sha256:0d03255c47eb9bd2f26aa9bb7f2107732e7e8fe195ca2f64709fcf3b0a4a085c
     # via -r requirements/prod.in
-boto3==1.24.70 \
-    --hash=sha256:abac9c7e54212ee68c2a311812a498ece2c43f98d1302f099128a9fe45cf37c5 \
-    --hash=sha256:bb69ebe7c484305568b1aaed664db3d09716dc93235e41f23538f99ea4f3addc
+boto3==1.24.75 \
+    --hash=sha256:7bfa2242df9b1fa73e17f4d7f79f6b22560f55d5da2e27e578e585ef6e4b14a7 \
+    --hash=sha256:e0757717091f7014683e69a31d88d41f960f24eddaf338c1949e63fd67ee2b5c
     # via -r requirements/prod.in
-botocore==1.27.70 \
-    --hash=sha256:2ad5be6ca322a549f858d245237358ed300f7347096caacbb29c013e10663d34 \
-    --hash=sha256:c0a014b4dfd7ffe739393034aa6e70e73f3a1b22c7667a59858259b341bf5082
+botocore==1.27.76 \
+    --hash=sha256:0d4a67801e5a4be4cd84795320ad9fb8c315ed1e7a63e1191b2b3f7a7171d43c \
+    --hash=sha256:b5c32922eba727a466f171dcc281f309d2a313e2f6dc592d43044caad96de338
     # via
     #   boto3
     #   s3transfer
@@ -474,25 +474,21 @@ mdx_outline @ https://github.com/mozmeao/mdx_outline/archive/refs/tags/python-3.
 meinheld==1.0.2 \
     --hash=sha256:008c76937ac2117cc69e032dc69cea9f85fc605de9bac1417f447c41c16a56d6
     # via -r requirements/prod.in
-newrelic==8.0.0.179 \
-    --hash=sha256:0bc78c73c881d68ad21b3264f6eff326f7fa55bd8e21017ac7b67503bec71181 \
-    --hash=sha256:3a4465d3bc6aeb5fb561029601d7c38e0c4d0bde6539002f4499a3f304416a31 \
-    --hash=sha256:400859154daa08fe44ecb86571ed67e5f64658b207d1b8e00678f41427fa98bc \
-    --hash=sha256:49f6337f5e37125d985f4014a93e780e28fe9f416d1792d6830d506800d11dce \
-    --hash=sha256:4c080331fd9452f5eb1d79f3f53943754624a389fdad0c67bb4d467f8a4daf78 \
-    --hash=sha256:7e101bd98df3a97191dd2bcd25fe38d843870e48cebf2f0be9230bcc2dfa641d \
-    --hash=sha256:8876c0b09b0b460f004a4ed5526f8f09c717b1a2bea1c8649abe9361dd4ddedb \
-    --hash=sha256:98c5672bc43de96448f918bf9769253b80b834f80cb83d06bf3fe6b7cea94e39 \
-    --hash=sha256:ad7f6d3d045751f4870b9cc734d721e9bcd192ec88f18a54c4702a629443ecff \
-    --hash=sha256:aed3db43af279db9274b211507e8ff55f601bc737e9c7fb9205b752efd2c541d \
-    --hash=sha256:c9549c7fdaa95cfc6619a55829322104efb093b0246b519cb0a932efd48b4f72 \
-    --hash=sha256:f08edc5b84b9fb3eb5b807344e4703b4d38dbb775d10ce9a329fb3f63174b969 \
-    --hash=sha256:ff6a35757b2a7c42e03c488b65fe118fcaae02d3cfd74a08d28089cd620cf829
+newrelic==8.1.0.180 \
+    --hash=sha256:0085386254498bb491d34563f7035eeeb5ff53e0b940cd965581d541100d8411 \
+    --hash=sha256:3741356cbc027d7e300a290d3b96ab6c5e16c68d092b26241e799f335f8be821 \
+    --hash=sha256:3bfbd635770e91891e540c235a084cd168f3bf25720ed1e02308fa0341b2d759 \
+    --hash=sha256:558bdd7f43befc811798546979ee67305cfd09283eac08d9664e2b52135a18f1 \
+    --hash=sha256:65ec29529d044102e40a4f19816c193ea3f3a99233fa2cb4dca961d767aebcb9 \
+    --hash=sha256:92b4bfc6d67ffab69065b0f892af0ce7f6532a06b66d23fed2445cf2ddc2c828 \
+    --hash=sha256:b2f97d836e2a725e43bae7e9ff7548405529bcbb18380e0f2364ff1f0f6793e7 \
+    --hash=sha256:c3898c3c5cb92b7766a69d1107f63087c98e3f045fcd7f94fde6232acd9d0bd9 \
+    --hash=sha256:c3ccc7d1dc0bdbf36da4eafc5cd57f9209032b68d16521579ba4f67e28487109 \
+    --hash=sha256:c769e82afcc80062c5274dabe1fa139ef89b0fb1b4dfa422c47296c952e2e766 \
+    --hash=sha256:d29da83a9fbae6e637e5af35b27d1299c253f96d0dff46f9732bd237790c05f4 \
+    --hash=sha256:eaf953806904b43086272b0d016ea13bd29620fc1daa93e7f1d8882357b3d944 \
+    --hash=sha256:ebf12c19e474b35dfe58311f9a946bc96101347e68f9eeafe893b9bbb93a5aa3
     # via -r requirements/prod.in
-oauthlib==3.2.0 \
-    --hash=sha256:23a8208d75b902797ea29fd31fa80a15ed9dc2c6c16fe73f5d346f83f6fa27a2 \
-    --hash=sha256:6db33440354787f9b7f3a6dbd4febf5d0f93758354060e802f6c06cb493022fe
-    # via requests-oauthlib
 packaging==21.3 \
     --hash=sha256:dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb \
     --hash=sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522
@@ -577,7 +573,6 @@ pyjwt==2.4.0 \
     --hash=sha256:72d1d253f32dbd4f5c88eaf1fdc62f3a19f676ccbadb9dbc5d07e951b2b26daf \
     --hash=sha256:d42908208c699b3b973cbeb01a969ba6a96c821eefb1c5bfe4c390c01d67abba
     # via
-    #   -r requirements/prod.in
     #   pygithub
     #   twilio
 pynacl==1.5.0 \
@@ -698,12 +693,7 @@ requests==2.27.1 \
     #   contentful
     #   django-mozilla-product-details
     #   pygithub
-    #   requests-oauthlib
     #   twilio
-requests-oauthlib==1.3.1 \
-    --hash=sha256:2577c501a2fb8d05a304c09d090d6e47c306fef15809d102b327cf8364bddab5 \
-    --hash=sha256:75beac4a47881eeb94d5ea5d6ad31ef88856affe2332b9aafb52c6452ccf0d7a
-    # via -r requirements/prod.in
 rich-text-renderer==0.2.4 \
     --hash=sha256:1363679aa1873a411d5cc461330143489727488f0b7a64688b8a088e93a7d53d
     # via -r requirements/prod.in
