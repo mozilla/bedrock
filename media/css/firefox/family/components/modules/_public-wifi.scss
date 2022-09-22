@@ -14,6 +14,7 @@
 
     .c-card.t-shadow {
         @include f3.card-shadow(f3.$violet-extra-dark);
+        margin: auto $layout-xs;
     }
 
     .c-card.t-yellow {
@@ -26,7 +27,7 @@
     }
 
     .c-card {
-        margin-bottom: $layout-2xs;
+        margin: $layout-2xs;
 
         &:last-of-type {
             margin-bottom: 0;

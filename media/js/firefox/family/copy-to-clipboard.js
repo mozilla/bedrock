@@ -18,8 +18,6 @@
 
     linksArray.map(function (e) {
         e.addEventListener('click', function copyLink(event) {
-            event.preventDefault();
-
             var sectionLink = event.target.offsetParent;
 
             var link = sectionLink.href;
@@ -28,10 +26,10 @@
 
             navigator.clipboard.writeText(link);
 
+            clearTimeout(timeout);
+
             copiedText.style.display = 'block';
             copyText.style.display = 'none';
-
-            clearTimeout(timeout);
 
             timeout = setTimeout(function () {
                 copiedText.style.display = 'none';

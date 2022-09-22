@@ -25,7 +25,7 @@
     .c-module-tag-title {
         background-color: f3.$white;
         padding: $spacing-sm $spacing-md;
-        margin-bottom: 0;
+        margin-bottom: $layout-2xs;
 
         &::before {
             display: none;
