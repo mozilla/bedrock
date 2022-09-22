@@ -282,6 +282,12 @@
     },
     {
       "files": [
+        "css/base/banners/pocket-eu.scss"
+      ],
+      "name": "pocket-eu-banner"
+    },
+    {
+      "files": [
         "css/protocol/common-old-ie.scss"
       ],
       "name": "common-old-ie"
@@ -1457,6 +1463,13 @@
         "js/base/banners/mozilla-connect-banner-init.js"
       ],
       "name": "mozilla-connect-banner"
+    },
+    {
+      "files": [
+        "js/base/banners/mozilla-banner.js",
+        "js/base/banners/pocket-eu-banner-init.js"
+      ],
+      "name": "pocket-eu-banner"
     },
     {
       "files": [

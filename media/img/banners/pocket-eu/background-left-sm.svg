@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" width="13" height="107" viewBox="0 0 13 107">
+  <style>
+    .st2{fill:#a02601}
+  </style>
+  <defs>
+    <path id="SVGID_1_" d="M0 0h13v107H0z"/>
+  </defs>
+  <clipPath id="SVGID_00000102520168732754449160000005690314154831633548_">
+    <use xlink:href="#SVGID_1_" overflow="visible"/>
+  </clipPath>
+  <g clip-path="url(#SVGID_00000102520168732754449160000005690314154831633548_)">
+    <path fill="#f2deff" d="M0 0h13v83H0z"/>
+    <path d="M0 8h13v8H0z" class="st2"/>
+    <path d="M0 23h13v8H0z" class="st2"/>
+    <path d="M0 38h13v8H0z" class="st2"/>
+    <path fill="#ff8a00" d="M0 54h13v63H0z"/>
+    <path d="M13 91c-8.8 0-16 9.6-16 21.5S4.2 134 13 134V91z" class="st2"/>
+  </g>
+</svg>
