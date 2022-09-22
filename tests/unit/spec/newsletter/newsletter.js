@@ -6,6 +6,10 @@
 
 import NewsletterForm from '../../../../media/js/newsletter/newsletter.es6';
 
+/**
+ * Note: There is a `novalidate` attribute added to the <form>
+ * element below for testing purposes only.
+ */
 describe('NewsletterForm', function () {
     beforeEach(async function () {
         const form = `<aside class="mzp-c-newsletter">

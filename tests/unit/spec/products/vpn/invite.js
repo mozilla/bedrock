@@ -6,6 +6,10 @@
 
 import WaitListForm from '../../../../../media/js/products/vpn/invite.es6';
 
+/**
+ * Note: There is a `novalidate` attribute added to the <form>
+ * element below for testing purposes only.
+ */
 describe('WaitListForm', function () {
     beforeEach(async function () {
         const form = `<div class="vpn-waitlist-invite-form">
