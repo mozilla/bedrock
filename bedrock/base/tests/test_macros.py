@@ -66,6 +66,7 @@ EXPECTED_IMAGES = {
         '<source media="(min-width: 800px)" srcset="/media/test-desktop.png">'
         '<img src="/media/test-mobile.jpg" alt="test" class="test" width="64" height="64" loading="lazy"></picture>'
     ),
+    "highres_image_url": ('<img src="https://www.example.com/test.jpg" srcset="https://www.example.com/test-high-res.jpg 2x" alt="" />'),
 }
 
 
@@ -134,6 +135,10 @@ EXPECTED_IMAGES = {
                 "{'media': '(min-width: 800px)', 'srcset': {'test-desktop.png': 'default'}}]"
             ),
             EXPECTED_IMAGES["picture_attributes"],
+        ),
+        (
+            "url='https://www.example.com/test.jpg', highres_image_url='https://www.example.com/test-high-res.jpg'",
+            EXPECTED_IMAGES["highres_image_url"],
         ),
     ],
 )
