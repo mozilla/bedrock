@@ -1,0 +1,37 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends 'includes/banners/base.html' %}
+
+{% block banner_id %}pocket-eu-banner{% endblock %}
+
+{% if LANG == 'de' %}
+  {% set banner_title = "Content, der deine Zeit wert ist" %}
+  {% set link_text = "Hol dir Pocket" %}
+{% elif LANG == 'fr' %}
+  {% set banner_title = "Le contenu qui mérite votre attention" %}
+  {% set link_text = "Essayez Pocket" %}
+{% else %}
+  {% set banner_title = "Content that’s worth your time" %}
+  {% set link_text = "Sign up now" %}
+{% endif %}
+
+{% block banner_title %}
+  {% if LANG == 'de' %}
+    <span class="c-banner-logo">Pocket:</span>
+    Content, der deine Zeit wert ist
+  {% elif LANG == 'fr' %}
+    <span class="c-banner-logo">Pocket:</span>
+    Le contenu qui mérite votre attention
+  {% else %}
+    <span class="c-banner-logo">Pocket:</span>
+    Content that’s worth your time
+  {% endif %}
+{% endblock %}
+
+{% block banner_content %}
+  <a href="https://getpocket.com/signup?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=banner" class="c-banner-cta mzp-c-button mzp-t-lg" data-cta-text="Sign up now" data-cta-type="link" data-cta-position="banner">{{ link_text }}</a>
+{% endblock %}

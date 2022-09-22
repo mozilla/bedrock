@@ -15,6 +15,7 @@
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 {% set show_fundraising_banner = switch('fundraising-banner-eoy2021') and donate_params and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
 {% set show_vpn_promo_banner = switch('vpn-promo-banner') %}
+{% set show_pocket_eu_banner = switch('pocket-eu-banner') %}
 
 {% block page_css %}
   {{ css_bundle('protocol-split') }}
@@ -27,7 +28,9 @@
     {{ css_bundle('home-mr2-promo') }}
   {% endif %}
 
-  {% if show_fundraising_banner %}
+  {% if show_pocket_eu_banner %}
+    {{ css_bundle('pocket-eu-banner') }}
+  {% elif show_fundraising_banner %}
     {{ css_bundle('fundraising-banner') }}
   {% elif show_vpn_promo_banner %}
     {{ css_bundle('vpn-promo-banner') }}
@@ -37,7 +40,9 @@
 {% endblock %}
 
 {% block page_banner %}
-  {% if show_fundraising_banner %}
+  {% if show_pocket_eu_banner %}
+    {% include 'includes/banners/pocket-eu.html' %}
+  {% elif show_fundraising_banner %}
     {% include 'includes/banners/fundraiser.html' %}
   {% elif show_vpn_promo_banner %}
     {% include 'includes/banners/vpn-promo.html' %}
@@ -162,7 +167,9 @@
 {% block js %}
   {{ js_bundle('home') }}
 
-  {% if show_fundraising_banner %}
+  {% if show_pocket_eu_banner %}
+    {{ js_bundle('pocket-eu-banner') }}
+  {% elif show_fundraising_banner %}
     {{ js_bundle('fundraising-banner') }}
   {% elif show_vpn_promo_banner %}
     {{ js_bundle('vpn-promo-banner') }}
