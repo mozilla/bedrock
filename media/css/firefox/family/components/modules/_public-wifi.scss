@@ -14,7 +14,6 @@
 
     .c-card.t-shadow {
         @include f3.card-shadow(f3.$violet-extra-dark);
-        margin: auto $layout-xs;
     }
 
     .c-card.t-yellow {
@@ -27,34 +26,10 @@
     }
 
     .c-card {
-        margin: $layout-2xs;
+        margin-bottom: $layout-2xs;
 
         &:last-of-type {
             margin-bottom: 0;
-        }
-    }
-}
-
-@media (max-width: $screen-lg) {
-    .c-public-wifi {
-        .mzp-l-content {
-            padding-right: 0;
-            padding-left: 0;
-        }
-
-        // match mzp-l-content padding for module tag
-        .c-module-tag,
-        .c-card.t-yellow {
-            margin-left: $layout-xs;
-            margin-right: $layout-xs;
-        }
-
-        @media #{$mq-md} {
-            .c-module-tag,
-            .c-card.t-yellow {
-                margin-left: $layout-lg;
-                margin-right: $layout-lg;
-            }
         }
     }
 }
