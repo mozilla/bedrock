@@ -11,6 +11,8 @@ body {
 
 .c-module-tag {
     position: relative;
+    margin-bottom: $layout-xs;
+    display: inline-block;
 
     .c-module-copy,
     .c-module-copied {
@@ -99,6 +101,7 @@ body {
     display: inline-block;
     padding-right: $spacing-md;
     position: relative;
+    margin-bottom: 0;
 
     &::before {
         display: inline-block;
