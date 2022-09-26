@@ -694,8 +694,8 @@ requests==2.27.1 \
     #   django-mozilla-product-details
     #   pygithub
     #   twilio
-rich-text-renderer==0.2.4 \
-    --hash=sha256:1363679aa1873a411d5cc461330143489727488f0b7a64688b8a088e93a7d53d
+rich-text-renderer==0.2.6 \
+    --hash=sha256:e2dd7c940d424770124a830890329e5853ce5ac0aa2af4dc7e51749af8f5d0a0
     # via -r requirements/prod.in
 s3transfer==0.6.0 \
     --hash=sha256:06176b74f3a15f61f1b4f25a1fc29a4429040b7647133a463da8fa5bd28d5ecd \
