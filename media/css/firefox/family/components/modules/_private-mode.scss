@@ -133,3 +133,26 @@
         }
     }
 }
+
+.js {
+    @media (prefers-reduced-motion: no-preference) {
+        .c-private-mode-mask {
+            opacity: 0;
+
+            &.animate-pop-in {
+                animation-delay: calc(1s + #{f3.$animation-duration});
+            }
+        }
+
+        .c-browser-content.mzp-t-dark {
+            background-color: f3.$violet-extra-dark;
+            transition-property: color, background-color;
+            transition-delay: 1s;
+            transition-duration: 1s;
+
+            .c-subtitle {
+                transition: color 1s 1s;
+            }
+        }
+    }
+}

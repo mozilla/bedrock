@@ -77,3 +77,20 @@
         }
     }
 }
+
+.js {
+    @media (prefers-reduced-motion: no-preference) {
+        .c-browser {
+            opacity: 0;
+        }
+
+        // stagger multiple pop-ins on mental health section
+        .animate-pop-in.t-content-container {
+            animation-delay: f3.$animation-duration;
+        }
+
+        .animate-pop-in.t-stop-button-container {
+            animation-delay: calc(#{f3.$animation-duration} * 2);
+        }
+    }
+}

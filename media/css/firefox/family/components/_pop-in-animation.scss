@@ -1,0 +1,47 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../utils' as f3;
+
+// Animate pop-in (if js available and no pref on motion)
+.js {
+    @media (prefers-reduced-motion: no-preference) {
+
+        @keyframes pop-in {
+            0% {
+                transform: scale(0.3);
+            }
+
+            35% {
+                opacity: 1;
+                transform: scale(0.3);
+            }
+
+            50% {
+                transform: scale(0.7);
+            }
+
+            65% {
+                transform: scale(0.7);
+            }
+
+            80% {
+                transform: scale(1.1);
+            }
+
+            90% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-pop-in {
+            animation: f3.$animation-duration ease-out 0s 1 normal forwards running pop-in;
+        }
+    }
+}
