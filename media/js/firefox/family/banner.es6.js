@@ -26,11 +26,11 @@ function hideBanner() {
         event: 'in-page-interaction'
     });
     // hide banner
-    dadJokesBannerClose.style.display = 'none';
-    dadJokesEyeroll.style.display = 'block';
+    dadJokesBannerClose.style.opacity = 0;
+    dadJokesEyeroll.style.opacity = 1;
     setTimeout(function () {
         dadJokesBanner.setAttribute('aria-hidden', 'true');
-    }, 300);
+    }, 600);
     // remove unusable event listener
     dadJokesBannerClose.removeEventListener('click', hideBanner);
     // dadJokesEyeroll.style.display = 'block';
