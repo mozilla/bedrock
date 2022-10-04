@@ -1950,7 +1950,9 @@
         "js/firefox/family/banner-init.es6.js",
         "js/firefox/family/fx-is-default.es6.js",
         "js/firefox/family/fx-is-default-init.es6.js",
-        "js/firefox/family/copy-to-clipboard.js"
+        "js/firefox/family/copy-to-clipboard.js",
+        "js/firefox/family/animate-pop-in.es6.js",
+        "js/firefox/family/animate-pop-in-init.es6.js"
       ],
       "name": "firefox-family"
     }

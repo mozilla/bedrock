@@ -77,3 +77,58 @@
         }
     }
 }
+
+// if js available and no pref on motion, show pop-in animation
+@media (prefers-reduced-motion: no-preference) {
+
+    @keyframes pop-in {
+        0% {
+            transform: scale(0.3);
+        }
+
+        35% {
+            opacity: 1;
+            transform: scale(0.3);
+        }
+
+        50% {
+            transform: scale(0.7);
+        }
+
+        65% {
+            transform: scale(0.7);
+        }
+
+        80% {
+            transform: scale(1.1);
+        }
+
+        85% {
+            transform: scale(1.1);
+        }
+
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .c-browser {
+        opacity: 0;
+    }
+
+    $duration: 0.5s;
+
+    .animate-pop-in.c-browser {
+        animation: $duration ease-out 0s 1 normal forwards running pop-in;
+    }
+
+    // stagger multiple pop-ins on mental health section
+    .animate-pop-in.t-content-container {
+        animation-delay: $duration;
+    }
+
+    .animate-pop-in.t-stop-button-container {
+        animation-delay: calc(#{$duration} * 2);
+    }
+}
