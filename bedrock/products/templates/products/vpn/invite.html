@@ -118,7 +118,12 @@
       </p>
 
       <div class="vpn-invite-privacy">
-        <p>{{ ftl('vpn-landing-invite-privacy-policy', privacy=url('privacy.notices.mozilla-vpn')) }}</p>
+        {% if switch('vpn-relay-bundle') %}
+          {% set privacy_url = url('privacy.notices.subscription-services') %}
+        {% else %}
+          {% set privacy_url = url('privacy.notices.mozilla-vpn') %}
+        {% endif %}
+        <p>{{ ftl('vpn-landing-invite-privacy-policy', privacy=privacy_url) }}</p>
 
         <p>{{ ftl('vpn-landing-invite-your-information') }}</p>
       </div>

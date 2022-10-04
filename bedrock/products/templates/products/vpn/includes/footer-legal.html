@@ -5,8 +5,13 @@
 #}
 
 <ul class="vpn-footer-list">
-  <li><a href="{{ url('privacy.notices.mozilla-vpn') }}">{{ ftl('vpn-shared-privacy-notice') }}</a></li>
-  <li><a href="{{ url('legal.terms.mozilla-vpn') }}">{{ ftl('vpn-shared-terms-conditions') }}</a></li>
+  {% if switch('vpn-relay-bundle') %}
+    <li><a href="{{ url('privacy.notices.subscription-services') }}">{{ ftl('vpn-shared-privacy-notice') }}</a></li>
+    <li><a href="{{ url('legal.terms.subscription-services') }}">{{ ftl('vpn-shared-terms-conditions') }}</a></li>
+  {% else %}
+    <li><a href="{{ url('privacy.notices.mozilla-vpn') }}">{{ ftl('vpn-shared-privacy-notice') }}</a></li>
+    <li><a href="{{ url('legal.terms.mozilla-vpn') }}">{{ ftl('vpn-shared-terms-conditions') }}</a></li>
+  {% endif %}
 </ul>
 
 <p><small>{{ ftl('vpn-shared-wireguard-copyright') }}</small></p>
