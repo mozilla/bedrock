@@ -12,7 +12,11 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
 
 .c-hero {
-    background: f3.$violet-dark center / cover no-repeat url('/media/img/firefox/family/grid-hero-v2.svg');
+    background: f3.$violet-dark center top / cover no-repeat url('/media/img/firefox/family/grid-hero.svg');
+
+    @media (prefers-reduced-motion: no-preference) {
+        background-attachment: fixed;
+    }
 
     // Override Protocol wordmark
     .mzp-c-wordmark.mzp-t-product-firefox.mzp-t-wordmark-lg {

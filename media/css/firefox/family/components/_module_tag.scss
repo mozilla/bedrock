@@ -9,13 +9,99 @@ body {
     counter-reset: topic;
 }
 
+.c-module-tag {
+    position: relative;
+    margin-bottom: $layout-xs;
+    display: inline-block;
+
+    .c-module-copy,
+    .c-module-copied {
+        @include text-body-sm;
+        background: $color-white;
+        color: $color-black;
+        height: auto;
+        padding: $spacing-xs;
+        pointer-events: none;
+        position: absolute;
+        text-align: center;
+        border-radius: $border-radius-sm;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+
+        &::before {
+            content: '';
+            position: absolute;
+            border-width: 10px;
+            border-style: solid;
+            border-color: transparent $color-white transparent transparent;
+            left: -18px;
+            opacity: 0;
+        }
+    }
+
+    .c-module-copied {
+        top: -50px;
+        right: -25px;
+        display: none;
+        opacity: 1;
+
+        &::before {
+            bottom: -18px;
+            left: 66px;
+            border-color: $color-white transparent transparent transparent;
+            opacity: 1;
+        }
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        &::before,
+        &::after {
+            opacity: 1;
+        }
+    }
+
+    @media #{$mq-md} {
+        .c-module-copy,
+        .c-module-copied {
+            right: -190px;
+            top: 5%;
+
+            &::before {
+                left: -18px;
+            }
+        }
+
+        .c-module-copied {
+            right: -152px;
+
+            &::before {
+                bottom: $spacing-xs;
+                border-color: transparent $color-white transparent transparent;
+            }
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            .c-module-copy,
+            .c-module-copy::before {
+                opacity: 1;
+            }
+        }
+    }
+}
+
 .c-module-tag-title {
     @include font-size(18px);
     @include f3.border;
     display: inline-block;
     padding-right: $spacing-md;
-    margin-bottom: $layout-xs;
     position: relative;
+    margin-bottom: 0;
 
     &::before {
         display: inline-block;

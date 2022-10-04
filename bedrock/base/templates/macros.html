@@ -111,7 +111,7 @@
 
     <div class="fxa-email-field-container">
       <div class="mzp-c-field mzp-l-stretch">
-        <label for="mzp-c-field-label">{{ ftl('fxa-form-email-address') }}</label>
+        <label class="mzp-c-field-label" for="fxa-email-field">{{ ftl('fxa-form-email-address') }}</label>
         <input type="email" name="email" id="fxa-email-field" class="mzp-c-field-control" placeholder="user@example.com" required>
         <p class="mzp-c-field-info">
           {{ ftl('fxa-form-by-proceeding', url1='https://accounts.firefox.com/legal/terms', url2='https://accounts.firefox.com/legal/privacy') }}
@@ -146,6 +146,7 @@
   class=None,
   width=None,
   height=None,
+  highres_image_url=None,
   loading=None,
   srcset=None,
   sizes=None,
@@ -180,7 +181,7 @@
     {% else %}
       {% set src = static(url) %}
     {% endif %}
-    <img src="{{ src }}" alt="{{ alt }}" {% if class %}class="{{ class }}" {% endif %}{% if loading %}loading="{{ loading }}" {% endif %}{% if width %}width="{{ width }}" {% endif %}{% if height %}height="{{ height }}" {% endif %}/>
+    <img src="{{ src }}"{% if highres_image_url %} srcset="{{ highres_image_url }} 2x"{% endif %} alt="{{ alt }}" {% if class %}class="{{ class }}" {% endif %}{% if loading %}loading="{{ loading }}" {% endif %}{% if width %}width="{{ width }}" {% endif %}{% if height %}height="{{ height }}" {% endif %}/>
   {% endif %}
 {%- endmacro %}
 
