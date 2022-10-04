@@ -13,6 +13,8 @@ from lib.l10n_utils.fluent import ftl
 
 FTL_FILES = ["products/vpn/shared"]
 
+VPN_12_MONTH_PLAN = "12-month"
+
 
 def _vpn_get_available_plans(country_code, lang, bundle_relay=False):
     """
@@ -64,7 +66,7 @@ def vpn_subscribe_link(
     ctx,
     entrypoint,
     link_text,
-    plan="12-month",
+    plan=VPN_12_MONTH_PLAN,
     class_name=None,
     country_code=None,
     lang=None,
@@ -93,7 +95,7 @@ def vpn_subscribe_link(
         product_id = settings.VPN_PRODUCT_ID
 
     available_plans = _vpn_get_available_plans(country_code, lang, bundle_relay)
-    selected_plan = available_plans.get(plan, "12-month")
+    selected_plan = available_plans.get(plan, VPN_12_MONTH_PLAN)
     plan_id = selected_plan.get("id")
 
     product_url = f"{settings.VPN_SUBSCRIPTION_URL}subscriptions/products/{product_id}?plan={plan_id}"
@@ -103,7 +105,7 @@ def vpn_subscribe_link(
 
 @library.global_function
 @jinja2.pass_context
-def vpn_monthly_price(ctx, plan="monthly", country_code=None, lang=None, bundle_relay=False):
+def vpn_monthly_price(ctx, plan=VPN_12_MONTH_PLAN, country_code=None, lang=None, bundle_relay=False):
     """
     Render a localized string displaying VPN monthly plan price.
 
@@ -113,13 +115,12 @@ def vpn_monthly_price(ctx, plan="monthly", country_code=None, lang=None, bundle_
     In Template
     -----------
 
-        {{ vpn_monthly_price(plan='12-month',
-                             country_code=country_code,
+        {{ vpn_monthly_price(country_code=country_code,
                              lang=LANG) }}
     """
 
     available_plans = _vpn_get_available_plans(country_code, lang, bundle_relay)
-    selected_plan = available_plans.get(plan)
+    selected_plan = available_plans.get(plan, VPN_12_MONTH_PLAN)
     amount = selected_plan.get("price")
     price = ftl("vpn-shared-pricing-monthly", amount=amount, ftl_files=FTL_FILES)
 
@@ -144,7 +145,7 @@ def vpn_total_price(ctx, country_code=None, lang=None, bundle_relay=False):
     """
 
     available_plans = _vpn_get_available_plans(country_code, lang, bundle_relay)
-    selected_plan = available_plans.get("12-month")
+    selected_plan = available_plans.get(VPN_12_MONTH_PLAN)
     amount = selected_plan.get("total")
     price = ftl("vpn-shared-pricing-total", amount=amount, ftl_files=FTL_FILES)
 
@@ -169,7 +170,7 @@ def vpn_saving(ctx, country_code=None, lang=None, bundle_relay=False, ftl_string
     """
 
     available_plans = _vpn_get_available_plans(country_code, lang, bundle_relay)
-    selected_plan = available_plans.get("12-month")
+    selected_plan = available_plans.get(VPN_12_MONTH_PLAN)
     percent = selected_plan.get("saving")
     saving = ftl(ftl_string, percent=percent, ftl_files=FTL_FILES)
 
