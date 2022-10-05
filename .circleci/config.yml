@@ -4,7 +4,7 @@ orbs:
 jobs:
   test_py:
     docker:
-      - image: cimg/python:3.9
+      - image: cimg/python:3.9.13
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
