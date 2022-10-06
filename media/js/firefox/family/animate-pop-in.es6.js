@@ -56,7 +56,7 @@ const createObserver = () => {
 };
 
 export const init = () => {
-    if (isAllowed && isSupported()) {
+    if (isAllowed() && isSupported()) {
         _observer = createObserver();
         // sections with extra behaviour
         _heroSection = document.querySelector('.c-hero');

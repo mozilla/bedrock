@@ -21,6 +21,15 @@
         margin-bottom: $layout-md;
         position: relative;
 
+        &-content {
+            background-color: f3.$violet-extra-dark;
+
+            .c-subtitle,
+            p {
+                color: f3.$white;
+            }
+        }
+
         .c-private-mode-mask {
             $size: 85px;
             position: absolute;
@@ -144,13 +153,24 @@
             }
         }
 
+        .c-browser-content {
+            background-color: f3.$white;
+
+            .c-subtitle,
+            p {
+                color: f3.$black;
+            }
+        }
+
         .c-browser-content.mzp-t-dark {
             background-color: f3.$violet-extra-dark;
             transition-property: color, background-color;
             transition-delay: 1s;
             transition-duration: 1s;
 
-            .c-subtitle {
+            .c-subtitle,
+            p {
+                color: f3.$white;
                 transition: color 1s 1s;
             }
         }
