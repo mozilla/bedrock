@@ -68,19 +68,19 @@ const WaitListForm = {
 
         // Really basic client side email validity check.
         if (!checkEmailValidity(email)) {
-            form.handleFormError('Invalid email address');
+            form.handleFormError(errorList.EMAIL_INVALID_ERROR);
             return false;
         }
 
         // Check for country selection value.
         if (countrySelect && !countrySelect.value) {
-            WaitListForm.handleFormError('Country not selected');
+            WaitListForm.handleFormError(errorList.COUNTRY_ERROR);
             return false;
         }
 
         // Check for language selection value.
         if (!lang) {
-            WaitListForm.handleFormError('Language not selected');
+            WaitListForm.handleFormError(errorList.LANGUAGE_ERROR);
             return false;
         }
 

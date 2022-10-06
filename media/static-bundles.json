@@ -227,9 +227,9 @@
     },
     {
       "files": [
-        "css/newsletter/newsletter.scss"
+        "css/newsletter/newsletter-management.scss"
       ],
-      "name": "newsletter"
+      "name": "newsletter-management"
     },
     {
       "files": [
@@ -1828,6 +1828,13 @@
         "js/newsletter/newsletter-init.es6.js"
       ],
       "name": "newsletter"
+    },
+    {
+      "files": [
+        "js/newsletter/management.es6.js",
+        "js/newsletter/management-init.es6.js"
+      ],
+      "name": "newsletter-management"
     },
     {
       "files": [

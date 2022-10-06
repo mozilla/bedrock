@@ -9,7 +9,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/forms/form';
 @import '~@mozilla-protocol/core/protocol/css/components/forms/field';
 @import '~@mozilla-protocol/core/protocol/css/components/forms/button-container';
-@import '~@mozilla-protocol/core/protocol/css/components/hero';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 
 // * -------------------------------------------------------------------------- */
 // Global styles.
@@ -27,10 +27,6 @@ main {
     min-height: $content-sm;
 }
 
-.mzp-c-hero {
-    padding-bottom: 0;
-}
-
 .mzp-c-form {
     margin-bottom: $spacing-2xl;
 }
@@ -40,7 +36,7 @@ main {
 }
 
 // * -------------------------------------------------------------------------- */
-// newsletter/existing custom styles.
+// Newsletter management page form styles.
 
 .c-column {
     box-sizing: border-box;
@@ -65,52 +61,98 @@ main {
     }
 }
 
-#newsletter-existing {
+.newsletter-management {
     header {
         text-align: center;
-        padding-bottom: $spacing-xl;
-    }
+        padding-bottom: 0;
+        margin-bottom: 0;
 
-    .mzp-l-content {
-        margin-bottom: $spacing-xl;
-    }
+        .mzp-c-emphasis-box {
+            margin-top: $spacing-2xl;
 
-    form {
-        h4 {
-            @include text-title-2xs;
-        }
+            p:last-child {
+                margin-bottom: 0;
+            }
 
-        p {
-            @include text-body-sm;
-            font-weight: 400;
-        }
-
-        tr {
-            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-        }
-
-        th {
-            padding: $spacing-md 0;
-        }
-
-        td {
-            text-align: center;
-
-            label {
-                @include visually-hidden;
+            .mzp-c-button-download-container {
+                margin-bottom: 0;
             }
         }
 
-        tr.indented th {
-            @include bidi((
-                (padding-left, $spacing-xl, 0),
-                (padding-right, 0, $spacing-xl),
-            ));
+        .js-intro-msg,
+        .js-outdated-browser-msg {
+            display: none;
+
+            &.show {
+                display: block;
+            }
         }
     }
 }
 
-#basic-settings {
+.newsletter-management-form {
+    h4 {
+        @include text-title-2xs;
+    }
+
+    p {
+        @include text-body-sm;
+        font-weight: 400;
+    }
+
+    tr {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    }
+
+    th {
+        padding: $spacing-md 0;
+    }
+
+    td {
+        text-align: center;
+
+        label {
+            @include visually-hidden;
+        }
+    }
+
+    tr.indented th {
+        @include bidi((
+            (padding-left, $spacing-xl, 0),
+            (padding-right, 0, $spacing-xl),
+        ));
+    }
+
+    .mzp-c-form-errors {
+        max-width: $content-md;
+        margin: 0 auto $spacing-lg;
+    }
+
+    .loading-spinner {
+        display: block;
+
+        &.hidden {
+            display: none;
+        }
+    }
+
+    @media #{$mq-lg} {
+        .mzp-c-form-errors {
+            margin-bottom: $spacing-2xl;
+        }
+    }
+}
+
+.newsletter-management-form-fields {
+    display: none; // hide form fields by default as they are JS dependent.
+
+    &.show {
+        @include animation(mzp-a-fade-in 300ms ease-in 0ms 1 normal both);
+        display: block;
+    }
+}
+
+.basic-settings {
     select {
         width: 100%;
     }

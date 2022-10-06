@@ -11,6 +11,7 @@ const errorList = {
     LANGUAGE_ERROR: 'Language not selected',
     LEGAL_TERMS_ERROR: 'Terms not checked',
     NEWSLETTER_ERROR: 'Newsletter not selected',
+    NOT_FOUND: 'Not Found',
     PRIVACY_POLICY_ERROR: 'Privacy policy not checked',
     REASON_ERROR: 'Reason not selected'
 };
