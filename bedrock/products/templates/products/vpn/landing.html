@@ -14,6 +14,7 @@
 {% block page_desc %}{{ ftl('vpn-landing-page-desc', countries=available_countries) }}{% endblock %}
 
 {% set show_vpn_coupon_promo_banner = vpn_available and switch('vpn-coupon-promo-banner', ['en', 'de', 'fr']) %}
+{% set show_relay_promo_block = relay_bundle_available_in_country and ftl_has_messages('vpn-shared-increase-your-privacy', 'vpn-add-relay-to-protect', 'vpn-shared-why-bundle') %}
 
 {% block html_attrs %}{{ super() }} data-vpn-affiliate-endpoint="{{ settings.VPN_AFFILIATE_ENDPOINT }}"{% endblock %}
 
@@ -64,7 +65,7 @@
     {% endif %}
   {% endif %}
 {% endblock %}
-<main>
+<main {% if show_relay_promo_block %}class="has-relay-promo"{% endif %}>
   {% if vpn_affiliate_attribution_enabled %}
     {% include 'products/vpn/includes/cookie-notification.html' %}
   {% endif %}
@@ -90,40 +91,6 @@
     ) %}
       <p>{{ ftl('vpn-landing-privacy-desc') }}</p>
     {% endcall %}
-
-    {# note: `id=#pricing` is used as an anchor link from android in-product subscription flows, so do not remove (issue 10039) #}
-    <div id="pricing" class="mzp-is-anchor-link">
-      {% if vpn_available %}
-        {% include 'products/vpn/includes/pricing-variable.html' %}
-      {% else %}
-        <div class="vpn-waitlist-feature-block hide-from-legacy-ie">
-          {% call vpn_content_block(
-            class_name='vpn-content-block-price t-highlight'
-          ) %}
-          <div class="l-columns-two">
-            <div class="l-column-first">
-              <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="secondary">
-                {{ ftl('vpn-shared-waitlist-link') }}
-              </a>
-
-              <p class="availability-copy">
-                {{ ftl('vpn-shared-available-countries-v5', fallback='vpn-shared-available-countries-v4') }}
-              </p>
-            </div>
-            <div class="l-column-last">
-              <ul class="mzp-u-list-styled vpn-feature-list">
-                <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-devices', devices=connect_devices) }}</li>
-                <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-servers', servers=connect_servers, countries=connect_countries) }}</li>
-                <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-encrypt') }}</li>
-                <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-bandwidth') }}</li>
-                <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-activity') }}</li>
-              </ul>
-            </div>
-          </div>
-          {% endcall %}
-        </div>
-      {% endif %}
-    </div>
 
     {% call vpn_content_media(
       heading=ftl('vpn-landing-fast-secure-heading'),
@@ -180,6 +147,59 @@
         </p>
       {% endcall %}
     {% endif %}
+
+    {% if show_relay_promo_block %}
+      <div id="bundle">
+        {% call vpn_content_media(
+          heading=ftl('vpn-shared-increase-your-privacy'),
+          image_url='img/products/vpn/landing/vpn-cntwell-06.png',
+          class_name='vpn-content-media-right-half vpn-content-block-relay-bundle-promo'
+        ) %}
+          <p>
+            {{ ftl('vpn-add-relay-to-protect', url='https://relay.firefox.com/premium/' + _params)}}
+          </p>
+
+          <a class="mzp-c-button mzp-t-xl" href="#pricing" data-cta-type="button" data-cta-text="Scroll to pricing" data-cta-position="secondary">
+            {{ ftl('vpn-shared-get-vpn-plus-relay') }}
+          </a>
+        {% endcall %}
+      </div>
+
+    {% endif %}
+
+    {# note: `id=#pricing` is used as an anchor link from android in-product subscription flows, so do not remove (issue 10039) #}
+    <div id="pricing" class="mzp-is-anchor-link">
+      {% if vpn_available %}
+        {% include 'products/vpn/includes/pricing-variable.html' %}
+      {% else %}
+        <div class="vpn-waitlist-feature-block hide-from-legacy-ie">
+          {% call vpn_content_block(
+            class_name='vpn-content-block-price t-highlight'
+          ) %}
+          <div class="l-columns-two">
+            <div class="l-column-first">
+              <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="secondary">
+                {{ ftl('vpn-shared-waitlist-link') }}
+              </a>
+
+              <p class="availability-copy">
+                {{ ftl('vpn-shared-available-countries-v5', fallback='vpn-shared-available-countries-v4') }}
+              </p>
+            </div>
+            <div class="l-column-last">
+              <ul class="mzp-u-list-styled vpn-feature-list">
+                <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-devices', devices=connect_devices) }}</li>
+                <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-servers', servers=connect_servers, countries=connect_countries) }}</li>
+                <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-encrypt') }}</li>
+                <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-bandwidth') }}</li>
+                <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-activity') }}</li>
+              </ul>
+            </div>
+          </div>
+          {% endcall %}
+        </div>
+      {% endif %}
+    </div>
   </div>
 
   <section id="faq" class="vpn-faq mzp-l-content mzp-t-content-lg">

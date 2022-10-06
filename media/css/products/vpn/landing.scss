@@ -7,6 +7,8 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/inline-list';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-relay';
 
 // * -------------------------------------------------------------------------- */
 // Smooth Scroll
@@ -23,7 +25,7 @@ html {
 // Waitlist Feature Block
 
 .vpn-waitlist-feature-block {
-    margin: $layout-xl 0;
+    margin: 0 0 $layout-xl 0;
     text-align: center;
 
     .vpn-feature-list.mzp-u-list-styled {
@@ -33,13 +35,33 @@ html {
 
     @media #{$mq-md} {
         @include bidi(((text-align, left, right),));
-        margin: $layout-2xl 0;
     }
 
     @media #{$mq-lg} {
         .vpn-feature-list.mzp-u-list-styled {
             @include text-body-xl;
         }
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// VPN + Relay bundle promo block
+
+.has-relay-promo {
+    .vpn-connect-to-countries-and-servers {
+        margin-bottom: 0;
+    }
+
+    .vpn-variable-pricing-block {
+        margin-top: 0;
+    }
+}
+
+.vpn-content-block-relay-bundle-promo {
+    margin-top: 0;
+
+    .vpn-content-media-desc > p > a {
+        display: inline-block;
     }
 }
 
