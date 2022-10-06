@@ -108,6 +108,9 @@ class TestExistingNewsletterView(TestCase):
                 basket_patches["request"].return_value = self.user
                 render.return_value = HttpResponse("")
                 self.client.get(url)
+        print("==================================================")
+        print("HERE-> render, render.call_args, render.call_args[0] -->", render, render.call_args, render.call_args[0])
+        print("==================================================")
         request, template_name, context = render.call_args[0]
         form = context["form"]
         self.assertNotIn("privacy", form.fields)
