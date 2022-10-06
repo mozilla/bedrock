@@ -4,9 +4,7 @@ orbs:
 jobs:
   test_py:
     docker:
-      - image: cimg/python:3.9.13
-        # 3.9.13 is a temporary downpin while we shake out test failures that happen only on 3.9.14
-        # See https://github.com/mozilla/bedrock/issues/12203
+      - image: cimg/python:3.10
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
