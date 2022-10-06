@@ -4,7 +4,6 @@
 
 @use '../utils' as f3;
 
-// Animate pop-in (if js available and no pref on motion)
 .js {
     @media (prefers-reduced-motion: no-preference) {
 

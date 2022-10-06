@@ -77,7 +77,6 @@ $image-path: '/media/protocol/img';
     }
 }
 
-// if js available and no pref on motion, show pop-in animation
 .js {
     @media (prefers-reduced-motion: no-preference) {
         h1 {
