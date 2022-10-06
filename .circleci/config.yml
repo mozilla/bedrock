@@ -4,7 +4,7 @@ orbs:
 jobs:
   test_py:
     docker:
-      - image: circleci/python:3.9
+      - image: cimg/python:3.9.13  # Temporary downpin while we shake out test failures that happen only on 3.9.14
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
