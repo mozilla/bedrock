@@ -7,6 +7,7 @@
 import {
     checkEmailValidity,
     clearFormErrors,
+    errorList,
     disableFormFields,
     enableFormFields,
     postToBasket
@@ -23,24 +24,24 @@ const NewsletterForm = {
         form.querySelector('.mzp-c-form-errors').classList.remove('hidden');
 
         switch (msg) {
-            case 'Invalid email address':
+            case errorList.EMAIL_INVALID_ERROR:
                 error = form.querySelector('.error-email-invalid');
                 break;
-            case 'Newsletter not selected':
+            case errorList.NEWSLETTER_ERROR:
                 form.querySelector(
                     '.error-newsletter-checkbox'
                 ).classList.remove('hidden');
                 break;
-            case 'Country not selected':
+            case errorList.COUNTRY_ERROR:
                 error = form.querySelector('.error-select-country');
                 break;
-            case 'Language not selected':
+            case errorList.LANGUAGE_ERROR:
                 error = form.querySelector('.error-select-language');
                 break;
-            case 'Privacy policy not checked':
+            case errorList.PRIVACY_POLICY_ERROR:
                 error = form.querySelector('.error-privacy-policy');
                 break;
-            case 'Terms not checked':
+            case errorList.LEGAL_TERMS_ERROR:
                 error = form.querySelector('.error-terms');
                 break;
             default:

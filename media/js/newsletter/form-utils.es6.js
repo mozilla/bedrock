@@ -4,6 +4,16 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+const errorList = {
+    EMAIL_INVALID_ERROR: 'Invalid email address',
+    EMAIL_UNKNOWN_ERROR: 'Email address not known',
+    NEWSLETTER_ERROR: 'Newsletter not selected',
+    COUNTRY_ERROR: 'Country not selected',
+    LANGUAGE_ERROR: 'Language not selected',
+    PRIVACY_POLICY_ERROR: 'Privacy policy not checked',
+    LEGAL_TERMS_ERROR: 'Terms not checked'
+};
+
 /**
  * Reallly primative validation (e.g a@a)
  * matches built-in validation in Firefox
@@ -118,6 +128,7 @@ function serialize(form) {
 export {
     checkEmailValidity,
     clearFormErrors,
+    errorList,
     disableFormFields,
     enableFormFields,
     postToBasket,

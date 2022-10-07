@@ -7,6 +7,7 @@
 import {
     checkEmailValidity,
     clearFormErrors,
+    errorList,
     disableFormFields,
     enableFormFields,
     postToBasket
@@ -23,13 +24,13 @@ const WaitListForm = {
         form.querySelector('.mzp-c-form-errors').classList.remove('hidden');
 
         switch (msg) {
-            case 'Invalid email address':
+            case errorList.EMAIL_INVALID_ERROR:
                 error = form.querySelector('.error-email-invalid');
                 break;
-            case 'Country not selected':
+            case errorList.COUNTRY_ERROR:
                 error = form.querySelector('.error-select-country');
                 break;
-            case 'Language not selected':
+            case errorList.LANGUAGE_ERROR:
                 error = form.querySelector('.error-select-language');
                 break;
             default:

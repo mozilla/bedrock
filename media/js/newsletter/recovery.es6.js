@@ -7,6 +7,7 @@
 import {
     checkEmailValidity,
     clearFormErrors,
+    errorList,
     disableFormFields,
     enableFormFields,
     postToBasket
@@ -32,12 +33,12 @@ const RecoveryEmailForm = {
             .classList.remove('hidden');
 
         switch (msg) {
-            case 'Invalid email address':
+            case errorList.EMAIL_INVALID_ERROR:
                 _recoveryForm
                     .querySelector('.error-email-invalid')
                     .classList.remove('hidden');
                 break;
-            case 'Email address not known':
+            case errorList.EMAIL_UNKNOWN_ERROR:
                 _recoveryForm
                     .querySelector('.error-email-not-found')
                     .classList.remove('hidden');

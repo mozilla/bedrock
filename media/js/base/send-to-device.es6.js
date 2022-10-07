@@ -8,6 +8,7 @@ import Spinner from '../libs/spin.min';
 import {
     checkEmailValidity,
     clearFormErrors,
+    errorList,
     postToBasket,
     serialize
 } from '../newsletter/form-utils.es6';
@@ -190,7 +191,7 @@ SendToDevice.prototype.onFormError = function (msg) {
     this.form.querySelector('.mzp-c-form-errors').classList.remove('hidden');
 
     switch (msg) {
-        case 'Invalid email address':
+        case errorList.EMAIL_INVALID_ERROR:
             error = this.form.querySelector('.error-email-invalid');
             break;
         default:
