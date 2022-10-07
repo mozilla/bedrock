@@ -35,11 +35,9 @@ function hideBanner() {
     setTimeout(function () {
         dadJokesBanner.setAttribute('aria-hidden', 'true');
         dadJokesEyeroll.style.border = '2px solid black';
-    }, 600);
+    }, 1000);
     // remove unusable event listener
     dadJokesBannerClose.removeEventListener('click', hideBanner);
-    // dadJokesEyeroll.style.display = 'block';
-    // dadJokesGrimace.style.display = 'block';
 }
 
 const init = function () {

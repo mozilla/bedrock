@@ -69,6 +69,7 @@
                 flex: 0 0 auto;
             }
 
+            // emoji animation inspiration: https://codepen.io/diyorbek0309/pen/mdwbEve
             .emoji-wrapper {
                 position: absolute;
                 height: 100%;
@@ -78,31 +79,39 @@
                 .bubbling-emoji {
                     height: 60px;
                     width: 60px;
-                    border: 2px solid blue;
-                    border-radius: 50%;
                     position: absolute;
-                    top: 0;
-                    right: 15%;
-                    animation: 4s linear infinite;
+                    bottom: 5%;
+                    right: 45%;
                 }
 
                 #dad-jokes-eyeroll,
                 #dad-jokes-grimace {
                     display: none;
-                    @include text-title-md;
                     position: absolute;
-                    height: 30px;
-                    width: 30px;
+                    height: 50px;
+                    width: 50px;
                 }
 
                 #dad-jokes-eyeroll {
-                    top: 20%;
-                    right: 20%;
+                    top: 50%;
+                    right: 0;
+                    animation: animate 1s ease 1;
                 }
 
                 #dad-jokes-grimace {
-                    top: 30%;
-                    right: 50%;
+                    top: 10%;
+                    right: 80%;
+                    animation: animate 1s ease 1;
+                }
+
+                @keyframes animate {
+                    0% {
+                        transform: scale(0) translateY(0) rotate(30deg);
+                    }
+
+                    100% {
+                        transform: scale(1.3) translateY(-100px) rotate(360deg);
+                    }
                 }
             }
 
@@ -113,6 +122,13 @@
                 button {
                     padding-right: $spacing-2xl;
                     padding-left: $spacing-2xl;
+                }
+
+                .emoji-wrapper {
+                    .bubbling-emoji {
+                        top: 0;
+                        right: 15%;
+                    }
                 }
             }
 
