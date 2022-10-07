@@ -165,8 +165,6 @@ vpn-shared-affiliate-notification-message = We use cookies to understand which a
 vpn-shared-affiliate-notification-reject = Reject
 vpn-shared-affiliate-notification-ok = OK
 
-##
-
 ## VPN + Relay bundle offer
 
 vpn-shared-increase-your-privacy = Increase your privacy with { -brand-name-vpn } + { -brand-name-relay }
