@@ -69,9 +69,41 @@
                 flex: 0 0 auto;
             }
 
-            #dad-jokes-eyeroll {
-                display: none;
-                @include text-title-md;
+            .emoji-wrapper {
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                pointer-events: none;
+
+                .bubbling-emoji {
+                    height: 60px;
+                    width: 60px;
+                    border: 2px solid blue;
+                    border-radius: 50%;
+                    position: absolute;
+                    top: 0;
+                    right: 15%;
+                    animation: 4s linear infinite;
+                }
+
+                #dad-jokes-eyeroll,
+                #dad-jokes-grimace {
+                    display: none;
+                    @include text-title-md;
+                    position: absolute;
+                    height: 30px;
+                    width: 30px;
+                }
+
+                #dad-jokes-eyeroll {
+                    top: 20%;
+                    right: 20%;
+                }
+
+                #dad-jokes-grimace {
+                    top: 30%;
+                    right: 50%;
+                }
             }
 
             @media #{$mq-md} {

@@ -6,8 +6,8 @@
 
 let dadJokesBanner;
 let dadJokesBannerClose;
-// let dadJokesBannerButton;
 let dadJokesEyeroll;
+let dadJokesGrimace;
 
 function showBanner() {
     // remove unneeded event listener
@@ -26,14 +26,20 @@ function hideBanner() {
         event: 'in-page-interaction'
     });
     // hide banner
-    dadJokesBannerClose.style.opacity = 0;
-    dadJokesEyeroll.style.opacity = 1;
+    dadJokesBannerClose.style.visibility = 'hidden';
+
+    // bubbling emojis
+    dadJokesEyeroll.style.display = 'block';
+    dadJokesGrimace.style.display = 'block';
+
     setTimeout(function () {
         dadJokesBanner.setAttribute('aria-hidden', 'true');
+        dadJokesEyeroll.style.border = '2px solid black';
     }, 600);
     // remove unusable event listener
     dadJokesBannerClose.removeEventListener('click', hideBanner);
     // dadJokesEyeroll.style.display = 'block';
+    // dadJokesGrimace.style.display = 'block';
 }
 
 const init = function () {
@@ -42,6 +48,7 @@ const init = function () {
     dadJokesBannerClose = document.getElementById('dad-jokes-banner-close');
 
     dadJokesEyeroll = document.getElementById('dad-jokes-eyeroll');
+    dadJokesGrimace = document.getElementById('dad-jokes-grimace');
     // add event listeners
     document.addEventListener('scroll', showBanner);
 };
