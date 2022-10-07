@@ -2,9 +2,9 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from pages.newsletter.base import NewsletterBasePage
+from pages.base import BasePage
 
 
-class KnowledgeIsPowerNewsletterPage(NewsletterBasePage):
+class KnowledgeIsPowerNewsletterPage(BasePage):
 
     _URL_TEMPLATE = "/{locale}/newsletter/knowledge-is-power/"

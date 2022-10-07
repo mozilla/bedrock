@@ -11,26 +11,26 @@ Newsletters
 Bedrock includes support for signing up for and managing subscriptions and
 preferences for Mozilla newsletters.
 
-By default, every page's footer has a form to signup for the default newsletters,
-"Mozilla Foundation" and "Firefox & You".
+Many pages have a form to signup for the default newsletters, "Mozilla
+Foundation" and "Firefox & You".
 
 Features
 --------
 
-- ability to subscribe to a newsletter from a page's footer area. Many pages
-  on the site might include this.
+- Ability to subscribe to a newsletter from a web form. Many pages
+  on the site might include this form.
 
-- whole pages devoted to subscribing to one newsletter, often with custom
+- Whole pages devoted to subscribing to one newsletter, often with custom
   text, branding, and layout
 
-- newsletter preference center - allow user to change their email address,
+- Newsletter preference center - allow user to change their email address,
   preferences (e.g. language, HTML vs. text), which newsletters they're
   subscribed to, etc. Access is limited by requiring a user-specific
   token in the URL (it's a UUID).  The full URL is included as a link in
   each newsletter sent to the user, which is the only way (currently) they
   can get the token.
 
-- landing pages that user ends up on after subscribing. These can vary depending
+- Landing pages that user ends up on after subscribing. These can vary depending
   on where they're coming from.
 
 Newsletters
@@ -44,7 +44,7 @@ basket back-end that provides our interface to the newsletter vendor.
 
 - Internal name- a short string that is used internal to Bedrock and basket
   to identify a newsletter. Typically these are lowercase strings of words
-  joined by hyphens, e.g. "firefox-tips".  This is what we send to basket
+  joined by hyphens, e.g. "firefox-tips". This is what we send to basket
   to identify a newsletter, e.g. to subscribe a user to it.
 
 - Show publicly - pages like the newsletter preferences center show a list
@@ -98,8 +98,6 @@ URLs
 Here are a few important URLs implemented. These were established before
 Bedrock came along and so are unlikely to be changed.
 
-(Not all of these might be implemented in Bedrock yet.)
-
 /newsletter/ - subscribe to 'mozilla-and-you' newsletter (public name: "Firefox & You")
 
 /newsletter/existing/USERTOKEN/ - user management of their preferences and subscriptions
@@ -150,31 +148,3 @@ of newsletter IDs or a comma separated list of newsletters IDs:
 
 Pages can control whether country or language fields are included by passing
 include_language=[True|False] and/or include_country=[True|False].
-
-You can also use the same form outside a page footer by passing ``footer=False``
-to the macro.
-
-You can also specify one of three color variants for the "Sign Up Now" button. The options are:
-
-* default - Which sets the border and font color to a light blue [#00afe5]
-* dark - Which sets the border and font color to the dark Firefox blue [00539F]
-* white - Which sets the border and font color to white [#fff]
-
-This is done in a template as follows:
-
-.. code-block:: jinja
-
-    # default
-    {% block email_form %}
-        {{ email_newsletter_form() }}
-    {% endblock %}
-
-    # dark
-    {% block email_form %}
-        {{ email_newsletter_form(button_class='button-dark') }}
-    {% endblock %}
-
-    # white
-    {% block email_form %}
-        {{ email_newsletter_form(button_class='button-light') }}
-    {% endblock %}

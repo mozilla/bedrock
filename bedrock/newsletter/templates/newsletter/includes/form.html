@@ -7,10 +7,8 @@
 {% from "newsletter/includes/macros.html" import email_form_thankyou with context %}
 
 {% if not success %}
-  <form id="newsletter-form" class="mzp-c-newsletter-form" action="{{ url('newsletter.subscribe') }}" method="post">
-    {% if is_multi_newsletter_form %}
-      <div id="newsletter-error-strings" data-form-checkboxes-error="{{ ftl('multi-newsletter-form-checkboxes-error') }}"></div>
-    {% else %}
+  <form id="newsletter-form" class="mzp-c-newsletter-form" action="{{ action }}" method="post">
+    {% if not is_multi_newsletter_form %}
       <div hidden>
         {{ form.newsletters|safe }}
       </div>
@@ -35,24 +33,29 @@
     {% endif %}
 
     <fieldset class="mzp-c-newsletter-content">
-      {% if form.errors %}
-      <div class="mzp-c-form-errors" id="newsletter-errors">
+      <div class="mzp-c-form-errors {% if not form.errors %}hidden{% endif %}" id="newsletter-errors">
         {{ form.non_field_errors()|safe }}
         <ul class="mzp-u-list-styled">
-          {% if form.email.errors %}
-            <li>{{ ftl('newsletter-form-please-enter-a-valid') }}</li>
-          {% endif %}
-
-          {% if form.lang.errors %}
-            <li>{{ form.lang.errors }}</li>
-          {% endif %}
-
-          {% if form.privacy.errors %}
-            <li>{{ ftl('newsletter-form-you-must-agree-to') }}</li>
-          {% endif %}
+          <li class="error-email-invalid {% if not form.email.errors %}hidden{% endif %}">
+            {{ ftl('newsletter-form-please-enter-a-valid') }}
+          </li>
+          <li class="error-select-country {% if not form.country.errors %}hidden{% endif %}">
+            {{ ftl('newsletter-form-please-select-country') }}
+          </li>
+          <li class="error-select-language {% if not form.lang.errors %}hidden{% endif %}">
+            {{ ftl('newsletter-form-please-select-language') }}
+          </li>
+          <li class="error-newsletter-checkbox {% if not form.newsletters.errors %}hidden{% endif %}">
+            {{ ftl('multi-newsletter-form-checkboxes-error') }}
+          </li>
+          <li class="error-privacy-policy {% if not form.privacy.errors %}hidden{% endif %}">
+            {{ ftl('newsletter-form-you-must-agree-to') }}
+          </li>
+          <li class="error-try-again-later hidden">
+            {{ ftl('newsletter-form-we-are-sorry-but-there') }}
+          </li>
         </ul>
       </div>
-      {% endif %}
 
       {{ form.email.label_tag(ftl('newsletter-form-your-email-address') if not email_label else email_label) }}
       {% if email_placeholder %}
@@ -132,7 +135,7 @@
     </fieldset>
   </form>
 
-  <div id="newsletter-thanks" class="mzp-c-newsletter-thanks">
+  <div id="newsletter-thanks" class="mzp-c-newsletter-thanks hidden">
     {% if thankyou_content %}
       <h3>{{ thankyou_head }}</h3>
       <p>{{ thankyou_content }}</p>

@@ -4,57 +4,63 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import { checkEmailValidity } from './form-utils.es6';
+import {
+    checkEmailValidity,
+    clearFormErrors,
+    errorList,
+    disableFormFields,
+    enableFormFields,
+    postToBasket
+} from './form-utils.es6';
+
 let _recoveryForm;
 
 const RecoveryEmailForm = {
     handleFormSuccess: () => {
         document
             .querySelector('.newsletter-recovery-form-fields')
-            .classList.add('hide');
+            .classList.add('hidden');
         document
             .querySelector('.newsletter-recovery-form-success-msg')
-            .classList.add('show');
+            .classList.remove('hidden');
     },
 
     handleFormError: (msg) => {
-        if (msg && msg === 'Invalid email address') {
-            document
-                .querySelector('.error-email-invalid')
-                .classList.add('show');
-        } else if (msg && msg === 'Email address not known') {
-            document
-                .querySelector('.error-email-not-found')
-                .classList.add('show');
-        } else {
-            document
-                .querySelector('.error-try-again-later')
-                .classList.add('show');
+        enableFormFields(_recoveryForm);
+
+        _recoveryForm
+            .querySelector('.mzp-c-form-errors')
+            .classList.remove('hidden');
+
+        switch (msg) {
+            case errorList.EMAIL_INVALID_ERROR:
+                _recoveryForm
+                    .querySelector('.error-email-invalid')
+                    .classList.remove('hidden');
+                break;
+            case errorList.EMAIL_UNKNOWN_ERROR:
+                _recoveryForm
+                    .querySelector('.error-email-not-found')
+                    .classList.remove('hidden');
+                break;
+            default:
+                _recoveryForm
+                    .querySelector('.error-try-again-later')
+                    .classList.remove('hidden');
         }
     },
 
-    clearFormErrors: () => {
-        const errorMsgs = document.querySelectorAll('.mzp-c-form-errors');
+    validateFields: () => {
+        const email = document.getElementById('id_email').value;
 
-        for (let i = 0; i < errorMsgs.length; i++) {
-            errorMsgs[i].classList.remove('show');
+        // Really basic client side email validity check.
+        if (!checkEmailValidity(email)) {
+            RecoveryEmailForm.handleFormError('Invalid email address');
+            enableFormFields(_recoveryForm);
+            return false;
         }
-    },
 
-    disableFormFields: () => {
-        const formFields = _recoveryForm.querySelectorAll('input, button');
-
-        for (let i = 0; i < formFields.length; i++) {
-            formFields[i].disabled = true;
-        }
-    },
-
-    enableFormFields: () => {
-        const formFields = _recoveryForm.querySelectorAll('input, button');
-
-        for (let i = 0; i < formFields.length; i++) {
-            formFields[i].disabled = false;
-        }
+        return true;
     },
 
     recoverEmail: (e) => {
@@ -63,72 +69,28 @@ const RecoveryEmailForm = {
         const email = document.getElementById('id_email').value;
         const params = 'email=' + encodeURIComponent(email);
         const url = _recoveryForm.getAttribute('action');
-        const xhr = new XMLHttpRequest();
 
         // Disable form fields until POST has completed.
-        RecoveryEmailForm.disableFormFields();
+        disableFormFields(_recoveryForm);
 
         // Clear any prior messages that might have been displayed.
-        RecoveryEmailForm.clearFormErrors();
+        clearFormErrors(_recoveryForm);
 
-        // Really basic client side email validity check.
-        if (!checkEmailValidity(email)) {
-            RecoveryEmailForm.handleFormError('Invalid email address');
-            RecoveryEmailForm.enableFormFields();
+        // Perform client side form field validation.
+        if (!RecoveryEmailForm.validateFields()) {
             return;
         }
 
-        // Emails used in automation for page-level integration tests
-        // should avoid hitting basket directly.
-        if (email === 'success@example.com') {
-            RecoveryEmailForm.handleFormSuccess();
-            return;
-        } else if (email === 'failure@example.com') {
-            RecoveryEmailForm.handleFormError();
-            RecoveryEmailForm.enableFormFields();
-            return;
-        }
-
-        xhr.onload = (r) => {
-            let response = r.target.response || r.target.responseText;
-
-            if (typeof response !== 'object') {
-                response = JSON.parse(response);
-            }
-
-            if (response) {
-                if (
-                    response.status === 'ok' &&
-                    r.target.status >= 200 &&
-                    r.target.status < 300
-                ) {
-                    RecoveryEmailForm.handleFormSuccess();
-                } else if (response.status === 'error' && response.desc) {
-                    RecoveryEmailForm.handleFormError(response.desc);
-                } else {
-                    RecoveryEmailForm.handleFormError();
-                }
-            } else {
-                RecoveryEmailForm.handleFormError();
-            }
-
-            RecoveryEmailForm.enableFormFields();
-        };
-
-        xhr.onerror = RecoveryEmailForm.handleFormError;
-        xhr.open('POST', url, true);
-        xhr.setRequestHeader(
-            'Content-type',
-            'application/x-www-form-urlencoded'
+        postToBasket(
+            email,
+            params,
+            url,
+            RecoveryEmailForm.handleFormSuccess,
+            RecoveryEmailForm.handleFormError
         );
-        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-        xhr.timeout = 5000;
-        xhr.ontimeout = RecoveryEmailForm.handleFormError;
-        xhr.responseType = 'json';
-        xhr.send(params);
     },
 
-    init: function () {
+    init: () => {
         _recoveryForm = document.getElementById('newsletter-recovery-form');
         _recoveryForm.addEventListener(
             'submit',

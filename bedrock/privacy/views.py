@@ -87,6 +87,10 @@ ad_targeting_guidelines = PrivacyDocView.as_view(
     template_name="privacy/notices/ad-targeting-guidelines.html", legal_doc_name="AdTargeting_Guidelines"
 )
 
+subscription_services = PrivacyDocView.as_view(
+    template_name="privacy/notices/subscription-services.html", legal_doc_name="subscription_services_privacy_notice"
+)
+
 
 @cache_page(60 * 60)  # cache for 1 hour
 def privacy(request):

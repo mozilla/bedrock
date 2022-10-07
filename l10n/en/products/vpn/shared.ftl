@@ -82,8 +82,15 @@ vpn-shared-pricing-variable-heading = Choose a plan that works for you
 
 vpn-shared-pricing-variable-sub-heading = All of our plans include:
 vpn-shared-pricing-recommended-offer = Recommended
-vpn-shared-pricing-plan-6-month = 6 Month
+
+vpn-shared-pricing-plan-12-month-v2 = 12 Month plan
+
+# Outdated string
 vpn-shared-pricing-plan-12-month = 12 Month
+
+vpn-shared-pricing-plan-monthly-v2 = Monthly plan
+
+# Outdated string
 vpn-shared-pricing-plan-monthly = Monthly
 
 # Variables:
@@ -96,7 +103,9 @@ vpn-shared-pricing-get-6-month = Get 6 month plan
 # Outdated string
 vpn-shared-pricing-get-12-month = Get 12 month plan
 
+# Outdated string
 vpn-shared-pricing-get-6-month-v2 = Get 6-month plan
+
 vpn-shared-pricing-get-12-month-v2 = Get 12-month plan
 vpn-shared-pricing-get-monthly = Get monthly plan
 
@@ -155,5 +164,26 @@ vpn-shared-affiliate-notification-message = We use cookies to understand which a
 
 vpn-shared-affiliate-notification-reject = Reject
 vpn-shared-affiliate-notification-ok = OK
+
+## VPN + Relay bundle offer
+
+vpn-shared-increase-your-privacy = Increase your privacy with { -brand-name-vpn } + { -brand-name-relay }
+
+# Variables:
+#   $url (string) - link to https://relay.firefox.com/premium/
+vpn-add-relay-to-protect = Add { -brand-name-firefox-relay } to your subscription to protect your email and phone number. <a href="{ $url }">Learn more</a>.
+
+# Variables:
+#   $class_name (string) - CSS class name used to replace brand name with wordmark logo
+vpn-shared-add-firefox-relay = Add <span class="{ $class_name }">{ -brand-name-firefox-relay }</span>
+
+vpn-shared-relay-email-masking = Email masking
+vpn-shared-relay-phone-masking = Phone masking
+vpn-shared-get-vpn-plus-relay = Get { -brand-name-vpn } + { -brand-name-relay }
+vpn-shared-why-bundle = Why bundle?
+
+# Variables:
+#   $percent (number) - percentage saved with chosen subscription plan e.g. '40'
+vpn-shared-save-on-relay-premium = <span>Save { $percent }%</span> on { -brand-name-relay } Premium yearly plan
 
 ##

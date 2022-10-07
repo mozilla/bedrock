@@ -1277,12 +1277,6 @@ VPN_PLAN_ID_MATRIX = {
                 "total": "CHF 71.88",
                 "saving": 45,
             },
-            "6-month": {
-                "id": "price_1J4sB1Kb9q6OnNsLD5WQ4N5y" if DEV else "price_1J5JtWJNcmPzuWtRMd2siphH",
-                "price": "CHF 7.99",
-                "total": "CHF 47.94",
-                "saving": 27,
-            },
             "monthly": {
                 "id": "price_1J4sC2Kb9q6OnNsLIgz3DDu8" if DEV else "price_1J5Ju3JNcmPzuWtR3GpNYSWj",
                 "price": "CHF 10.99",
@@ -1297,12 +1291,6 @@ VPN_PLAN_ID_MATRIX = {
                 "total": "CHF 71.88",
                 "saving": 45,
             },
-            "6-month": {
-                "id": "price_1J4sMWKb9q6OnNsL3eL2v91Q" if DEV else "price_1J5JvLJNcmPzuWtRayB4d7Ij",
-                "price": "CHF 7.99",
-                "total": "CHF 47.94",
-                "saving": 27,
-            },
             "monthly": {
                 "id": "price_1J4sNGKb9q6OnNsLl3OEuKqT" if DEV else "price_1J5JvjJNcmPzuWtR3wwy1dcR",
                 "price": "CHF 10.99",
@@ -1316,12 +1304,6 @@ VPN_PLAN_ID_MATRIX = {
                 "price": "CHF 5.99",
                 "total": "CHF 71.88",
                 "saving": 45,
-            },
-            "6-month": {
-                "id": "price_1J4sWsKb9q6OnNsLXBVXh664" if DEV else "price_1J5JwvJNcmPzuWtRH2HuhWM5",
-                "price": "CHF 7.99",
-                "total": "CHF 47.94",
-                "saving": 27,
             },
             "monthly": {
                 "id": "price_1J4sXWKb9q6OnNsLVoGiXcW5" if DEV else "price_1J5JxGJNcmPzuWtRrp5e1SUB",
@@ -1339,12 +1321,6 @@ VPN_PLAN_ID_MATRIX = {
                 "total": "59,88 €",
                 "saving": 50,
             },
-            "6-month": {
-                "id": "price_1IXw5NKb9q6OnNsLLIyYuhWF" if DEV else "price_1IgwaHJNcmPzuWtRuUfSR4l7",
-                "price": "6,99 €",
-                "total": "41,94 €",
-                "saving": 30,
-            },
             "monthly": {
                 "id": "price_1IXw4eKb9q6OnNsLqnVP4PvO" if DEV else "price_1IgwZVJNcmPzuWtRg9Wssh2y",
                 "price": "9,99 €",
@@ -1358,12 +1334,6 @@ VPN_PLAN_ID_MATRIX = {
                 "price": "4,99 €",
                 "total": "59,88 €",
                 "saving": 50,
-            },
-            "6-month": {
-                "id": "price_1JcuADKb9q6OnNsLGNIwLcdA" if DEV else "price_1Jcdu8JNcmPzuWtRK6u5TUoZ",
-                "price": "6,99 €",
-                "total": "41,94 €",
-                "saving": 30,
             },
             "monthly": {
                 "id": "price_1Jcu7uKb9q6OnNsLG4JAAXuw" if DEV else "price_1JcdsSJNcmPzuWtRGF9Y5TMJ",
@@ -1379,12 +1349,6 @@ VPN_PLAN_ID_MATRIX = {
                 "total": "59,88 €",
                 "saving": 50,
             },
-            "6-month": {
-                "id": "price_1J4pEcKb9q6OnNsLKrjmFqUc" if DEV else "price_1J5JDFJNcmPzuWtRrC4IeXTs",
-                "price": "6,99 €",
-                "total": "41,94 €",
-                "saving": 30,
-            },
             "monthly": {
                 "id": "price_1J4pFSKb9q6OnNsLEyiFLbvB" if DEV else "price_1J5JDgJNcmPzuWtRqQtIbktk",
                 "price": "9,99 €",
@@ -1398,12 +1362,6 @@ VPN_PLAN_ID_MATRIX = {
                 "price": "4,99 €",
                 "total": "59,88 €",
                 "saving": 50,
-            },
-            "6-month": {
-                "id": "price_1IXw5NKb9q6OnNsLLIyYuhWF" if DEV else "price_1IgoxGJNcmPzuWtRG7l48EoV",
-                "price": "6,99 €",
-                "total": "41,94 €",
-                "saving": 30,
             },
             "monthly": {
                 "id": "price_1IXw4eKb9q6OnNsLqnVP4PvO" if DEV else "price_1IgowHJNcmPzuWtRzD7SgAYb",
@@ -1419,12 +1377,6 @@ VPN_PLAN_ID_MATRIX = {
                 "total": "59,88 €",
                 "saving": 50,
             },
-            "6-month": {
-                "id": "price_1J4p5rKb9q6OnNsL3uDibRbN" if DEV else "price_1J5J7eJNcmPzuWtRKdQi4Tkk",
-                "price": "6,99 €",
-                "total": "41,94 €",
-                "saving": 30,
-            },
             "monthly": {
                 "id": "price_1J4p6wKb9q6OnNsLTb6kCDsC" if DEV else "price_1J5J6iJNcmPzuWtRK5zfoguV",
                 "price": "9,99 €",
@@ -1438,12 +1390,6 @@ VPN_PLAN_ID_MATRIX = {
                 "price": "4,99 €",
                 "total": "59,88 €",
                 "saving": 50,
-            },
-            "6-month": {
-                "id": "price_1J4rzWKb9q6OnNsLKUR9kmFG" if DEV else "price_1J5JRmJNcmPzuWtRyFGj0tkN",
-                "price": "6,99 €",
-                "total": "41,94 €",
-                "saving": 30,
             },
             "monthly": {
                 "id": "price_1J4s0MKb9q6OnNsLS19LMKBb" if DEV else "price_1J5JSkJNcmPzuWtR54LPH2zi",
@@ -1460,12 +1406,6 @@ VPN_PLAN_ID_MATRIX = {
                 "price": "US$4.99",
                 "total": "US$59.88",
                 "saving": 50,
-            },
-            "6-month": {
-                "id": "price_1J0Y12Kb9q6OnNsL4SB2hhmp" if DEV else "price_1Iw87cJNcmPzuWtRefuyqsOd",
-                "price": "US$7.99",
-                "total": "US$47.94",
-                "saving": 20,
             },
             "monthly": {
                 "id": "price_1J0owvKb9q6OnNsLExNhEDXm" if DEV else "price_1Iw7qSJNcmPzuWtRMUZpOwLm",
@@ -1563,7 +1503,7 @@ VPN_COUNTRY_CODES = [
 
 VPN_AFFILIATE_COUNTRIES = ["CA", "DE", "FR", "GB", "IE", "US"]
 VPN_AVAILABLE_COUNTRIES = 17
-VPN_CONNECT_SERVERS = 400
+VPN_CONNECT_SERVERS = 500
 VPN_CONNECT_COUNTRIES = 30
 VPN_CONNECT_DEVICES = 5
 
@@ -1600,4 +1540,37 @@ VPN_BLOCK_DOWNLOAD_COUNTRY_CODES = [
     "KP",  # North Korea
     "SD",  # Sudan
     "SY",  # Syria
+]
+
+# Product ID for VPN & Relay bundle subscriptions.
+VPN_RELAY_BUNDLE_PRODUCT_ID = config("VPN_RELAY_BUNDLE_PRODUCT_ID", default="prod_MQ9Zf1cyI81XS2" if DEV else "prod_MIex7Q079igFZJ")
+
+# VPN & Relay bundle plan IDs by currency/language.
+VPN_RELAY_BUNDLE_PLAN_ID_MATRIX = {
+    "usd": {
+        "en": {
+            "12-month": {
+                "id": "price_1LhJGWKb9q6OnNsLuCurigPk" if DEV else "price_1La3d7JNcmPzuWtRn0cg2EyH",
+                "price": "US$6.99",
+                "total": "US$83.88",
+                "saving": 50,
+            },
+        }
+    },
+}
+
+# Map of country codes to allocated VPN & Relay bundle currency/language plan IDs.
+# Each country can support both a default language and (optionally) a set of one
+# or more alternative languages.
+VPN_RELAY_BUNDLE_PRICING = {
+    "US": {
+        "default": VPN_RELAY_BUNDLE_PLAN_ID_MATRIX["usd"]["en"],
+    },
+}
+
+# Countries where VPN & Relay bundle is available.
+# Phone masking is only supported in these countries.
+VPN_RELAY_BUNDLE_COUNTRY_CODES = [
+    "CA",  # Canada
+    "US",  # United States of America
 ]

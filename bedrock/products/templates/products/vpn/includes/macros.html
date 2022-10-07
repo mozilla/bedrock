@@ -137,11 +137,15 @@
 </div>
 {%- endmacro %}
 
-{% macro vpn_content_block(class_name=None) -%}
+{% macro vpn_content_block(class_name=None, use_custom_body=False) -%}
 <div class="vpn-content-block {% if class_name %}{{ class_name }}{% endif %}">
-  <div class="vpn-content-block-container">
+  {% if use_custom_body %}
     {{ caller() }}
-  </div>
+  {% else %}
+    <div class="vpn-content-block-container">
+      {{ caller() }}
+    </div>
+  {% endif %}
 </div>
 {%- endmacro %}
 

@@ -28,21 +28,38 @@
   {% set focus_name =  ftl('privacy-index-firefox-focus') %}
 {% endif %}
 
-{% set navigation_bar = [
-  (url('privacy'), 'privacy-home', ftl('privacy-index-mozilla-privacy')),
-  (url('privacy.notices.websites'), 'privacy-websites', ftl('privacy-index-mozilla-websites-communications')),
-  (url('privacy.notices.firefox'), 'privacy-quantum', ftl('privacy-index-firefox-browser')),
-  (url('privacy.notices.firefox-betterweb'), 'privacy-betterweb', ftl('privacy-index-firefox-better-web')),
-  (url('privacy.notices.firefox-fire-tv'), 'privacy-fire-tv', ftl('privacy-index-firefox-fire-tv')),
-  (url('privacy.notices.firefox-reality'), 'privacy-reality', ftl('privacy-index-firefox-reality')),
-  (focus_url, 'privacy-focus', focus_name),
-  (url('privacy.notices.firefox-private-network'), 'privacy-private-network', ftl('privacy-index-firefox-private-network')),
-  (url('privacy.notices.firefox-relay'), 'privacy-relay', ftl('privacy-index-firefox-relay')),
-  (url('privacy.notices.mozilla-vpn'), 'mozilla-vpn', ftl('privacy-index-mozilla-vpn')),
-  (url('privacy.notices.thunderbird'), 'privacy-thunderbird', ftl('privacy-index-thunderbird')),
-  (url('privacy.notices.mdn-plus'), 'privacy-mdn-plus', ftl('privacy-index-mdn-plus')),
-  (url('privacy.notices.hubs'), 'privacy-hubs', ftl('privacy-index-hubs')),
-] -%}
+{% if switch('vpn-relay-bundle') %}
+  {% set navigation_bar = [
+    (url('privacy'), 'privacy-home', ftl('privacy-index-mozilla-privacy')),
+    (url('privacy.notices.websites'), 'privacy-websites', ftl('privacy-index-mozilla-websites-communications')),
+    (url('privacy.notices.subscription-services'), 'subscription-services', ftl('privacy-index-mozilla-subscription-services')),
+    (url('privacy.notices.firefox'), 'privacy-quantum', ftl('privacy-index-firefox-browser')),
+    (url('privacy.notices.firefox-betterweb'), 'privacy-betterweb', ftl('privacy-index-firefox-better-web')),
+    (url('privacy.notices.firefox-fire-tv'), 'privacy-fire-tv', ftl('privacy-index-firefox-fire-tv')),
+    (url('privacy.notices.firefox-reality'), 'privacy-reality', ftl('privacy-index-firefox-reality')),
+    (focus_url, 'privacy-focus', focus_name),
+    (url('privacy.notices.firefox-private-network'), 'privacy-private-network', ftl('privacy-index-firefox-private-network')),
+    (url('privacy.notices.thunderbird'), 'privacy-thunderbird', ftl('privacy-index-thunderbird')),
+    (url('privacy.notices.mdn-plus'), 'privacy-mdn-plus', ftl('privacy-index-mdn-plus')),
+    (url('privacy.notices.hubs'), 'privacy-hubs', ftl('privacy-index-hubs')),
+  ] -%}
+{% else %}
+  {% set navigation_bar = [
+    (url('privacy'), 'privacy-home', ftl('privacy-index-mozilla-privacy')),
+    (url('privacy.notices.websites'), 'privacy-websites', ftl('privacy-index-mozilla-websites-communications')),
+    (url('privacy.notices.firefox'), 'privacy-quantum', ftl('privacy-index-firefox-browser')),
+    (url('privacy.notices.firefox-betterweb'), 'privacy-betterweb', ftl('privacy-index-firefox-better-web')),
+    (url('privacy.notices.firefox-fire-tv'), 'privacy-fire-tv', ftl('privacy-index-firefox-fire-tv')),
+    (url('privacy.notices.firefox-reality'), 'privacy-reality', ftl('privacy-index-firefox-reality')),
+    (focus_url, 'privacy-focus', focus_name),
+    (url('privacy.notices.firefox-private-network'), 'privacy-private-network', ftl('privacy-index-firefox-private-network')),
+    (url('privacy.notices.firefox-relay'), 'privacy-relay', ftl('privacy-index-firefox-relay')),
+    (url('privacy.notices.mozilla-vpn'), 'mozilla-vpn', ftl('privacy-index-mozilla-vpn')),
+    (url('privacy.notices.thunderbird'), 'privacy-thunderbird', ftl('privacy-index-thunderbird')),
+    (url('privacy.notices.mdn-plus'), 'privacy-mdn-plus', ftl('privacy-index-mdn-plus')),
+    (url('privacy.notices.hubs'), 'privacy-hubs', ftl('privacy-index-hubs')),
+  ] -%}
+{% endif %}
 
 {% block content %}
 <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">

@@ -5,12 +5,10 @@ from html import escape
 from urllib.parse import quote_plus, unquote_plus
 
 from django.conf import settings
-from django.http import Http404, JsonResponse
+from django.http import Http404
 from django.urls import reverse
-from django.views.decorators.http import require_POST, require_safe
+from django.views.decorators.http import require_safe
 
-import basket
-import basket.errors
 from sentry_sdk import capture_exception
 
 from bedrock.base.geo import get_country_from_request
@@ -22,10 +20,8 @@ from bedrock.contentful.constants import (
 )
 from bedrock.contentful.models import ContentfulEntry
 from bedrock.contentful.utils import get_active_locales as get_active_contentful_locales
-from bedrock.newsletter.views import general_error, invalid_email_address
 from bedrock.products.forms import VPNWaitlistForm
 from lib import l10n_utils
-from lib.l10n_utils.fluent import ftl
 
 
 @require_safe
@@ -39,6 +35,7 @@ def vpn_landing_page(request):
     vpn_affiliate_attribution_enabled = vpn_available_in_country and attribution_available_in_country and switch("vpn-affiliate-attribution")
     entrypoint_experiment = request.GET.get("entrypoint_experiment", None)
     entrypoint_variation = request.GET.get("entrypoint_variation", None)
+    relay_bundle_available_in_country = vpn_available_in_country and country in settings.VPN_RELAY_BUNDLE_COUNTRY_CODES and switch("vpn-relay-bundle")
 
     context = {
         "vpn_available": vpn_available_in_country,
@@ -47,6 +44,7 @@ def vpn_landing_page(request):
         "connect_countries": settings.VPN_CONNECT_COUNTRIES,
         "connect_devices": settings.VPN_CONNECT_DEVICES,
         "vpn_affiliate_attribution_enabled": vpn_affiliate_attribution_enabled,
+        "relay_bundle_available_in_country": relay_bundle_available_in_country,
     }
 
     # ensure experiment parameters matches pre-defined values
@@ -92,58 +90,11 @@ def vpn_invite_page(request):
     ftl_files = ["products/vpn/landing", "products/vpn/shared"]
     locale = l10n_utils.get_locale(request)
     newsletter_form = VPNWaitlistForm(locale)
+    action = settings.BASKET_SUBSCRIBE_URL
 
-    return l10n_utils.render(request, "products/vpn/invite.html", {"newsletter_form": newsletter_form}, ftl_files=ftl_files)
+    ctx = {"action": action, "newsletter_form": newsletter_form}
 
-
-@require_POST
-def vpn_invite_waitlist(request):
-    errors = []
-    locale = l10n_utils.get_locale(request)
-    form = VPNWaitlistForm(locale, request.POST)
-    if form.is_valid():
-        data = form.cleaned_data
-        kwargs = {
-            "email": data["email"],
-            "fpn_platform": ",".join(data["platforms"]),
-            "fpn_country": data["country"],
-            "lang": data["lang"],
-            "newsletters": "guardian-vpn-waitlist",
-        }
-        if settings.BASKET_API_KEY:
-            kwargs["api_key"] = settings.BASKET_API_KEY
-
-        # NOTE this is not a typo; Referrer is misspelled in the HTTP spec
-        # https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.36
-        if not kwargs.get("source_url") and request.headers.get("Referer"):
-            kwargs["source_url"] = request.headers["Referer"]
-
-        try:
-            basket.subscribe(**kwargs)
-        except basket.BasketException as e:
-            if e.code == basket.errors.BASKET_INVALID_EMAIL:
-                errors.append(str(invalid_email_address))
-            else:
-                errors.append(str(general_error))
-    else:
-        if "email" in form.errors:
-            errors.append(ftl("newsletter-form-please-enter-a-valid"))
-        if "privacy" in form.errors:
-            errors.append(ftl("newsletter-form-you-must-agree-to"))
-        for fieldname in ("fmt", "lang", "country"):
-            if fieldname in form.errors:
-                errors.extend(form.errors[fieldname])
-
-    if errors:
-        errors = [escape(e) for e in errors]
-        resp = {
-            "success": False,
-            "errors": errors,
-        }
-    else:
-        resp = {"success": True}
-
-    return JsonResponse(resp)
+    return l10n_utils.render(request, "products/vpn/invite.html", ctx, ftl_files=ftl_files)
 
 
 def _build_category_list(entry_list):

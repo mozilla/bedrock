@@ -10,8 +10,7 @@
 
 {% block page_title %}{{ ftl('newsletters-newsletter-subscriptions') }}{% endblock page_title %}
 
-{% block site_css %}
-  {{ super() }}
+{% block page_css %}
   {{ css_bundle('protocol-newsletter') }}
   {{ css_bundle('protocol-emphasis-box') }}
   {{ css_bundle('protocol-card') }}

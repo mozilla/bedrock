@@ -17,8 +17,16 @@
     {% endif %}
     <h2 class="mzp-u-title-xs thank-you hidden">{{ ftl('send-to-device-your-download-link') }}</h2>
     <form class="send-to-device-form" action="{{ basket_url }}" method="post">
-      <p class="mzp-c-form-errors email hidden">{{ ftl('send-to-device-please-enter-an-email') }}</p>
-      <p class="mzp-c-form-errors system hidden">{{ ftl('send-to-device-an-error-occured') }}</p>
+      <div class="mzp-c-form-errors hidden">
+        <ul class="mzp-u-list-styled">
+          <li class="error-email-invalid hidden">
+            {{ ftl('send-to-device-please-enter-an-email') }}
+          </li>
+          <li class="error-try-again-later hidden">
+            {{ ftl('send-to-device-an-error-occured') }}
+          </li>
+        </ul>
+      </div>
       <div class="send-to-device-form-fields">
         <div class="platform-container">
           <input type="hidden" name="newsletters" value="{{ newsletters }}">
