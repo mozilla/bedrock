@@ -106,11 +106,11 @@
 
                 @keyframes animate {
                     0% {
-                        transform: scale(0) translateY(0) rotate(30deg);
+                        transform: scale(0) translateY(0) rotate(10deg);
                     }
 
                     100% {
-                        transform: scale(1.3) translateY(-100px) rotate(360deg);
+                        transform: scale(1.3) translateY(-100px) rotate(0deg);
                     }
                 }
             }
