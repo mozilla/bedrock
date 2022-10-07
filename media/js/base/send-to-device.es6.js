@@ -5,7 +5,13 @@
  */
 
 import Spinner from '../libs/spin.min';
-import { checkEmailValidity, serialize } from '../newsletter/form-utils.es6';
+import {
+    checkEmailValidity,
+    clearFormErrors,
+    errorList,
+    postToBasket,
+    serialize
+} from '../newsletter/form-utils.es6';
 
 const SendToDevice = function (id) {
     this.formId = typeof id !== 'undefined' ? id : 'send-to-device';
@@ -119,78 +125,46 @@ SendToDevice.prototype.disableForm = function () {
     this.spinner.spin(this.spinnerTarget);
 };
 
+SendToDevice.prototype.validateFields = function () {
+    // Really basic client side email validity check.
+    if (!checkEmailValidity(this.input.value)) {
+        this.onFormError('Invalid email address');
+        return false;
+    }
+
+    return true;
+};
+
 /**
  * Handle form submission via XHR
  */
 SendToDevice.prototype.onFormSubmit = function (e) {
     e.preventDefault();
 
-    const self = this;
-    const action = this.form.getAttribute('action');
-    const formData = serialize(this.form);
+    const url = this.form.getAttribute('action');
+    const params = serialize(this.form);
 
+    // Disable form fields until POST has completed.
     this.disableForm();
 
-    // Perform some basic email validation before submitting the form.
-    if (!checkEmailValidity(this.input.value)) {
-        this.onFormError(['email']);
+    // Clear any prior messages that might have been displayed.
+    clearFormErrors(this.form);
+
+    // Perform client side form field validation.
+    if (!this.validateFields()) {
         return;
     }
 
-    // Emails used in automation for page-level integration tests
-    // should avoid hitting basket directly.
-    if (this.input.value === 'success@example.com') {
-        self.onFormSuccess();
-        return;
-    } else if (this.input.value === 'failure@example.com') {
-        self.onFormError();
-        return;
-    }
-
-    const xhr = new XMLHttpRequest();
-
-    xhr.onload = function (r) {
-        let response = r.target.response || r.target.responseText;
-
-        // Clear any prior messages that might have been displayed.
-        self.clearFormErrors();
-
-        if (typeof response !== 'object') {
-            response = JSON.parse(response);
-        }
-
-        if (response) {
-            if (
-                response.status === 'ok' &&
-                r.target.status >= 200 &&
-                r.target.status < 300
-            ) {
-                self.onFormSuccess();
-            } else if (response.status === 'error' && response.desc) {
-                self.onFormError(response.desc);
-            } else {
-                self.onFormError();
-            }
-        } else {
-            self.onFormError();
-        }
-    };
-
-    xhr.onerror = function (e) {
-        self.onFormError(e);
-    };
-
-    xhr.open('POST', action, true);
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    xhr.timeout = 5000;
-    xhr.ontimeout = self.onFormError;
-    xhr.responseType = 'json';
-    xhr.send(formData);
+    postToBasket(
+        this.input.value,
+        params,
+        url,
+        this.onFormSuccess.bind(this),
+        this.onFormError.bind(this)
+    );
 };
 
 SendToDevice.prototype.onFormSuccess = function () {
-    this.clearFormErrors();
     this.formFields.classList.add('hidden');
 
     if (this.formHeading) {
@@ -209,26 +183,24 @@ SendToDevice.prototype.onFormSuccess = function () {
     });
 };
 
-SendToDevice.prototype.clearFormErrors = function () {
-    const errorMsgs = this.form.querySelectorAll('.mzp-c-form-errors');
-
-    for (let i = 0; i < errorMsgs.length; i++) {
-        errorMsgs[i].classList.add('hidden');
-    }
-};
-
-SendToDevice.prototype.onFormError = function (error) {
-    if (error && error === 'Invalid email address') {
-        this.form
-            .querySelector('.mzp-c-form-errors.email')
-            .classList.remove('hidden');
-    } else {
-        this.form
-            .querySelector('.mzp-c-form-errors.system')
-            .classList.remove('hidden');
-    }
+SendToDevice.prototype.onFormError = function (msg) {
+    let error;
 
     this.enableForm();
+
+    this.form.querySelector('.mzp-c-form-errors').classList.remove('hidden');
+
+    switch (msg) {
+        case errorList.EMAIL_INVALID_ERROR:
+            error = this.form.querySelector('.error-email-invalid');
+            break;
+        default:
+            error = this.form.querySelector('.error-try-again-later');
+    }
+
+    if (error) {
+        error.classList.remove('hidden');
+    }
 };
 
 export default SendToDevice;

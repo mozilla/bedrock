@@ -4,12 +4,22 @@
 
 import pytest
 
+from pages.newsletter.opt_out_confirmation import OptOutConfirmationPage
 from pages.newsletter.recovery import NewsletterRecoveryPage
 
 
+@pytest.mark.smoke
 @pytest.mark.nondestructive
-def test_newsletter_recovery_success(base_url, selenium):
-    page = NewsletterRecoveryPage(selenium, base_url).open()
+@pytest.mark.parametrize(
+    "page_class",
+    [
+        NewsletterRecoveryPage,
+        OptOutConfirmationPage,
+    ],
+)
+def test_newsletter_recovery_success(page_class, base_url, selenium):
+    page = page_class(selenium, base_url).open()
+    assert not page.is_success_message_displayed
     page.type_email("success@example.com")
     page.click_submit()
     assert page.is_success_message_displayed
@@ -17,8 +27,16 @@ def test_newsletter_recovery_success(base_url, selenium):
 
 @pytest.mark.smoke
 @pytest.mark.nondestructive
-def test_newsletter_recovery_failure(base_url, selenium):
-    page = NewsletterRecoveryPage(selenium, base_url).open()
+@pytest.mark.parametrize(
+    "page_class",
+    [
+        NewsletterRecoveryPage,
+        OptOutConfirmationPage,
+    ],
+)
+def test_newsletter_recovery_failure(page_class, base_url, selenium):
+    page = page_class(selenium, base_url).open()
+    assert not page.is_error_message_displayed
     page.type_email("failure@example.com")
     page.click_submit(expected_result="error")
     assert page.is_error_message_displayed

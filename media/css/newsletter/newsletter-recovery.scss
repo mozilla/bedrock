@@ -11,32 +11,44 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
+/* stylelint-disable declaration-no-important */
+
 .newsletter-recovery-form {
     .mzp-c-field {
         padding-bottom: $label-v-spacing;
     }
 
     .mzp-c-form-errors {
-        display: none;
+        display: block;
 
-        &.show {
-            display: block;
+        &.hidden {
+            display: none !important;
+        }
+
+        li {
+            display: list-item;
+
+            &.hidden {
+                display: none !important;
+            }
         }
     }
 }
 
 .newsletter-recovery-form-success-msg {
-    display: none;
+    display: block;
 
-    &.show {
-        display: block;
+    &.hidden {
+        display: none !important;
     }
 }
 
 .newsletter-recovery-form-fields {
     display: block;
 
-    &.hide {
-        display: none;
+    &.hidden {
+        display: none !important;
     }
 }
+
+/* stylelint-enable declaration-no-important */

@@ -5,6 +5,6 @@
 from pages.base import BasePage
 
 
-class KnowledgeIsPowerNewsletterPage(BasePage):
+class NewsletterPage(BasePage):
 
-    _URL_TEMPLATE = "/{locale}/newsletter/knowledge-is-power/"
+    _URL_TEMPLATE = "/{locale}/newsletter/"

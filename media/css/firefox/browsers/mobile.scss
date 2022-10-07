@@ -90,6 +90,10 @@ $image-path: '/media/protocol/img';
     padding: $spacing-lg $spacing-2xl;
     text-align: center;
 
+    .mzp-c-form-errors {
+        @include bidi(((text-align, left, right),));
+    }
+
     .legal {
         @include text-body-xs;
     }

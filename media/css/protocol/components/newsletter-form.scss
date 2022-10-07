@@ -7,3 +7,39 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/newsletter-form';
+
+/* stylelint-disable declaration-no-important */
+
+// Protocol doesn't include any conditional classes for displaying / hiding
+// newsletter messaging so bedrock defines some here.
+.mzp-c-newsletter-form {
+    &.hidden {
+        display: none !important;
+    }
+
+    .mzp-c-form-errors {
+        display: block; // override protocol defaulting to "display: none;"
+
+        &.hidden {
+            display: none !important;
+        }
+
+        li {
+            display: list-item;
+
+            &.hidden {
+                display: none !important;
+            }
+        }
+    }
+}
+
+.mzp-c-newsletter-thanks {
+    display: block; // override protocol defaulting to "display: none;"
+
+    &.hidden {
+        display: none !important;
+    }
+}
+
+/* stylelint-enable declaration-no-important */

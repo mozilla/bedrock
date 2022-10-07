@@ -4,6 +4,7 @@
 
 import logging
 
+from django.conf import settings
 from django.template.loader import render_to_string
 
 import jinja2
@@ -31,7 +32,6 @@ def email_newsletter_form(
     thankyou_head=None,
     thankyou_content=None,
     footer=True,
-    process_form=True,
     include_title=None,
     submit_text=None,
     button_class=None,
@@ -41,6 +41,7 @@ def email_newsletter_form(
 ):
     request = ctx["request"]
     context = ctx.get_all()
+    action = settings.BASKET_SUBSCRIBE_URL
 
     success = bool(ctx.get("success"))
     if success and not use_thankyou:
@@ -77,6 +78,7 @@ def email_newsletter_form(
             email_label=email_label,
             email_placeholder=email_placeholder,
             is_multi_newsletter_form=is_multi_newsletter,
+            action=action,
         )
     )
 

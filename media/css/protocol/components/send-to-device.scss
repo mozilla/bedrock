@@ -27,6 +27,10 @@ $image-path: '/media/protocol/img';
         margin-bottom: 0;
     }
 
+    .mzp-c-form-errors {
+        @include bidi(((text-align, left, right),));
+    }
+
     .thank-you p {
         background-color: $color-green-30;
         color: $color-ink-80;

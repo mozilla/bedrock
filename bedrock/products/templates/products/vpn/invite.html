@@ -28,18 +28,24 @@
 
 {% block content %}
 <main class="mzp-l-content mzp-t-content-md">
-  <form id="newsletter-form" class="mzp-c-newsletter-form" action="{{ url('products.vpn.invite.waitlist') }}" method="post" data-spinner-color="#000">
+  <form id="newsletter-form" class="mzp-c-newsletter-form" action="{{ action }}" method="post">
     <h1 class="mzp-c-form-header">{{ ftl('vpn-landing-invite-page-heading') }}</h1>
     <p class="mzp-c-form-subtitle">{{ ftl('vpn-landing-invite-page-desc') }}</p>
     <div hidden>
       {{ newsletter_form.newsletters|safe }}
     </div>
     <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
-    <input type="hidden" name="privacy" id="id_privacy" value="true">
     <input type="hidden" name="fmt" id="format-html" value="H">
 
     <fieldset class="mzp-c-newsletter-content">
-      <div class="mzp-c-form-errors" id="newsletter-errors"></div>
+      <div class="mzp-c-form-errors hide-from-legacy-ie hidden" id="newsletter-errors">
+        <ul class="mzp-u-list-styled">
+          <li class="error-email-invalid hidden">{{ ftl('newsletter-form-please-enter-a-valid') }}</li>
+          <li class="error-select-country hidden">{{ ftl('newsletter-form-please-select-country') }}</li>
+          <li class="error-select-language hidden">{{ ftl('newsletter-form-please-select-language') }}</li>
+          <li class="error-try-again-later hidden">{{ ftl('newsletter-form-we-are-sorry-but-there') }}</li>
+        </ul>
+      </div>
 
       <div>
         <label for="id_email">
@@ -120,7 +126,7 @@
 
   </form>
 
-  <div id="newsletter-thanks" class="vpn-invite-success">
+  <div id="newsletter-thanks" class="vpn-invite-success hidden">
     <h3>{{ ftl('vpn-landing-invite-thanks-heading') }}</h3>
     <p>{{ ftl('vpn-landing-invite-thanks-desc') }}</p>
   </div>

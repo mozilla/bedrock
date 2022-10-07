@@ -197,7 +197,6 @@
     },
     {
       "files": [
-        "css/newsletter/newsletter.scss",
         "css/mozorg/home/home.scss"
       ],
       "name": "home"
@@ -1239,13 +1238,6 @@
   "js": [
     {
       "files": [
-        "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.es6.js"
-      ],
-      "name": "firefox_channel"
-    },
-    {
-      "files": [
         "js/firefox/facebook-container-video.js"
       ],
       "name": "firefox_facebook_container_video"
@@ -1340,12 +1332,6 @@
     },
     {
       "files": [
-        "protocol/js/protocol-newsletter.js"
-      ],
-      "name": "legal"
-    },
-    {
-      "files": [
         "protocol/js/protocol-sticky-promo.js",
         "js/firefox/sticky-promo.js",
         "js/firefox/new/desktop/download.js"
@@ -1408,8 +1394,6 @@
     {
       "files": [
         "protocol/js/protocol-modal.js",
-        "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.es6.js",
         "js/mozorg/home/youtube.js"
       ],
       "name": "home"
@@ -1417,8 +1401,6 @@
     {
       "files": [
         "protocol/js/protocol-modal.js",
-        "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.es6.js",
         "js/mozorg/home/youtube.js"
       ],
       "name": "home-contentful"
@@ -1478,20 +1460,6 @@
         "js/privacy/privacy-protocol.js"
       ],
       "name": "privacy_protocol"
-    },
-    {
-      "files": [
-        "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.es6.js"
-      ],
-      "name": "about"
-    },
-    {
-      "files": [
-        "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.es6.js"
-      ],
-      "name": "contribute"
     },
     {
       "files": [
@@ -1612,13 +1580,6 @@
     },
     {
       "files": [
-        "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.es6.js"
-      ],
-      "name": "firefox_developer"
-    },
-    {
-      "files": [
         "js/firefox/developer/whatsnew-mdnplus.js"
       ],
       "name": "firefox_developer_whatsnew_mdnplus"
@@ -1714,18 +1675,9 @@
     },
     {
       "files": [
-        "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.es6.js",
         "js/mozorg/manifesto.js"
       ],
       "name": "manifesto"
-    },
-    {
-      "files": [
-        "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.es6.js"
-      ],
-      "name": "moss"
     },
     {
       "files": [
@@ -1773,10 +1725,9 @@
     },
     {
       "files": [
-        "js/base/mozilla-article.js",
-        "js/newsletter/form-protocol.es6.js",
-        "protocol/js/protocol-newsletter.js",
-        "protocol/js/protocol-sidemenu.js"
+        "protocol/js/protocol-sidemenu.js",
+        "js/base/mozilla-article.js"
+
       ],
       "name": "basic-article"
     },
@@ -1824,7 +1775,8 @@
     {
       "files": [
         "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.es6.js"
+        "js/newsletter/newsletter.es6.js",
+        "js/newsletter/newsletter-init.es6.js"
       ],
       "name": "newsletter"
     },
@@ -1882,7 +1834,8 @@
     },
     {
       "files": [
-        "js/products/vpn/invite.js"
+        "js/products/vpn/invite.es6.js",
+        "js/products/vpn/invite-init.es6.js"
       ],
       "name": "mozilla-vpn-invite"
     },

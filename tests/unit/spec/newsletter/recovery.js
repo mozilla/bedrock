@@ -13,17 +13,16 @@ describe('RecoveryEmailForm', function () {
           <p>Enter your email address and we’ll send you a link to your email preference center.</p>
         </header>
 
-        <p class="mzp-c-form-errors error-email-invalid">
-          This is not a valid email address. Please check the spelling.
-        </p>
-        <p class="mzp-c-form-errors error-email-not-found">
-          This email address is not in our system. Please double check your address or <a href="/en-US/newsletter/">subscribe to our newsletters.</a>
-        </p>
-        <p class="mzp-c-form-errors error-try-again-later">
-          We are sorry, but there was a problem with our system. Please try again later!
-        </p>
-        <div class="newsletter-recovery-form-success-msg">
-          <p>Success! An email has been sent to you with your preference center link. Thanks!</p>
+        <div class="mzp-c-form-errors hidden" id="newsletter-errors">
+            <ul class="mzp-u-list-styled">
+                <li class="error-email-invalid hidden">This is not a valid email address. Please check the spelling.</li>
+                <li class="error-email-not-found hidden">This email address is not in our system. Please double check your address or subscribe to our newsletters.</li>
+                <li class="error-try-again-later hidden">We are sorry, but there was a problem with our system. Please try again later!</li>
+            </ul>
+        </div>
+
+        <div class="newsletter-recovery-form-success-msg hidden">
+            <p>Success! An email has been sent to you with your preference center link. Thanks!</p>
         </div>
 
         <div class="newsletter-recovery-form-fields">
@@ -74,9 +73,14 @@ describe('RecoveryEmailForm', function () {
             expect(RecoveryEmailForm.handleFormSuccess).toHaveBeenCalled();
             expect(
                 document
-                    .querySelector('.newsletter-recovery-form-success-msg')
-                    .classList.contains('show')
+                    .querySelector('.newsletter-recovery-form-fields')
+                    .classList.contains('hidden')
             ).toBeTrue();
+            expect(
+                document
+                    .querySelector('.newsletter-recovery-form-success-msg')
+                    .classList.contains('hidden')
+            ).toBeFalse();
         });
 
         it('should handle invalid email', function () {
@@ -95,9 +99,14 @@ describe('RecoveryEmailForm', function () {
             );
             expect(
                 document
+                    .getElementById('newsletter-errors')
+                    .classList.contains('hidden')
+            ).toBeFalse();
+            expect(
+                document
                     .querySelector('.error-email-invalid')
-                    .classList.contains('show')
-            ).toBeTrue();
+                    .classList.contains('hidden')
+            ).toBeFalse();
         });
 
         it('should handle unknown email', function () {
@@ -116,9 +125,14 @@ describe('RecoveryEmailForm', function () {
             );
             expect(
                 document
+                    .getElementById('newsletter-errors')
+                    .classList.contains('hidden')
+            ).toBeFalse();
+            expect(
+                document
                     .querySelector('.error-email-not-found')
-                    .classList.contains('show')
-            ).toBeTrue();
+                    .classList.contains('hidden')
+            ).toBeFalse();
         });
 
         it('should handle unknown error', function () {
@@ -135,9 +149,14 @@ describe('RecoveryEmailForm', function () {
             expect(RecoveryEmailForm.handleFormError).toHaveBeenCalled();
             expect(
                 document
+                    .getElementById('newsletter-errors')
+                    .classList.contains('hidden')
+            ).toBeFalse();
+            expect(
+                document
                     .querySelector('.error-try-again-later')
-                    .classList.contains('show')
-            ).toBeTrue();
+                    .classList.contains('hidden')
+            ).toBeFalse();
         });
 
         it('should handle failure', function () {
@@ -154,9 +173,14 @@ describe('RecoveryEmailForm', function () {
             expect(RecoveryEmailForm.handleFormError).toHaveBeenCalled();
             expect(
                 document
+                    .getElementById('newsletter-errors')
+                    .classList.contains('hidden')
+            ).toBeFalse();
+            expect(
+                document
                     .querySelector('.error-try-again-later')
-                    .classList.contains('show')
-            ).toBeTrue();
+                    .classList.contains('hidden')
+            ).toBeFalse();
         });
     });
 });
