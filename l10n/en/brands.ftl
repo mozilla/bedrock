@@ -79,6 +79,7 @@
 -brand-name-lockwise = Lockwise
 -brand-name-monitor = Monitor
 -brand-name-relay = Relay
+-brand-name-relay-premium = Relay Premium
 -brand-name-sync = Sync
 -brand-name-vpn = VPN
 
