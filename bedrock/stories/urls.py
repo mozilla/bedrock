@@ -11,6 +11,5 @@ urlpatterns = (
     page("art-of-engagement/", "stories/articles/art-of-engagement.html"),
     page("build-together/", "stories/articles/build-together.html"),
     page("community-champion/", "stories/articles/community-champion.html"),
-    # REMOVE WHEN REAL PAGE GOES LIVE
-    redirect(r"^joy-of-color/?$", "https://blog.mozilla.org/en/products/firefox/firefox-news/independent-voices/", permanent=False),
+    page("joy-of-color/", "stories/articles/joy-of-color.html"),
 )

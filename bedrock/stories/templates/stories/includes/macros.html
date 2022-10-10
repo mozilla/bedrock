@@ -53,5 +53,39 @@
   </figure>
 {% endmacro %}
 
+{% macro stories_landing_feature_story(url=None, image_class=None, image_url='', title='', desc='', caption='', value='') %}
+  <section class="c-stories-featured-collection">
+    <section class="c-stories-featured-story">
+    <a class="featured-story-image" href="{{ url }}">
+      <figure class="c-stories-image {% if image_class %}{{ image_class }}{% endif %}">
+        <div class="featured-image-wrapper">
+          {{ image(
+            url=image_url,
+            alt="",
+            width="1010",
+            height="519",
+            include_highres=True
+          ) }}
+        </div>
+        {% if caption %}
+          <figcaption>{{ caption }}</figcaption>
+        {% endif %}
+      </figure>
+      </a>
+      <div class="featured-story-content">
+        <p class="featured-story-type">Featured Article</p>
+        <h1 class="featured-story-header">{{ title }}</h1>
+        <p class="featured-story-lead-in">{{ desc }}</p>
+        <div class="featured-story-metadata">
+          <div class="value-container">
+            <p>Value <span>{{ value }}</span></p>
+          </div>
+          <a title="Read '{{ title }}'" class="story-link" href="{{ url }}">Read<span class="arrow-right"></span></a>
+        </div>
+      </div>
+    </section>
+  </section>
+{% endmacro %}
+
 
 
