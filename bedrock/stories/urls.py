@@ -10,4 +10,5 @@ urlpatterns = (
     page("art-of-engagement/", "stories/articles/art-of-engagement.html"),
     page("build-together/", "stories/articles/build-together.html"),
     page("community-champion/", "stories/articles/community-champion.html"),
+    page("joy-of-color/", "stories/articles/joy-of-color.html"),
 )
