@@ -184,6 +184,6 @@ vpn-shared-why-bundle = Why bundle?
 
 # Variables:
 #   $percent (number) - percentage saved with chosen subscription plan e.g. '40'
-vpn-shared-save-on-relay-premium = <span>Save { $percent }%</span> on { -brand-name-relay } Premium yearly plan
+vpn-shared-save-on-relay-premium = <span>Save { $percent }%</span> on { -brand-name-relay-premium } yearly plan
 
 ##
