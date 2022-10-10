@@ -168,9 +168,9 @@ diskcache==5.4.0 \
     --hash=sha256:8879eb8c9b4a2509a5e633d2008634fb2b0b35c2b36192d89655dbde02419644 \
     --hash=sha256:af3ec6d7f167bbef7b6c33d9ee22f86d3e8f2dd7131eb7c4703d8d91ccdc0cc4
     # via glean-parser
-django==3.2.15 \
-    --hash=sha256:115baf5049d5cf4163e43492cdc7139c306ed6d451e7d3571fe9612903903713 \
-    --hash=sha256:f71934b1a822f14a86c9ac9634053689279cd04ae69cb6ade4a59471b886582b
+django==3.2.16 \
+    --hash=sha256:18ba8efa36b69cfcd4b670d0fa187c6fe7506596f0ababe580e16909bcdec121 \
+    --hash=sha256:3adc285124244724a394fa9b9839cc8cd116faf7d159554c43ecdaa8cdf0b94d
     # via
     #   -r requirements/prod.in
     #   django-allow-cidr
