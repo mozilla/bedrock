@@ -5,7 +5,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 {% from "macros.html" import image with context %}
-{% from "stories/includes/macros.html" import stories_image, stories_card with context %}
+{% from "stories/includes/macros.html" import stories_image, stories_card, stories_landing_feature_story with context %}
 {% extends "base-protocol.html" %}
 
 {% block page_css %}
@@ -21,33 +21,14 @@
   <main class="c-stories-main">
     {# Featured Stories  #}
       <section class="c-stories-featured-collection">
-        <section class="c-stories-featured-story">
-        <a class="featured-story-image" href="{{ url('stories.articles.art-of-engagement') }}">
-          <figure class="c-stories-image {% if image_class %}{{ image_class }}{% endif %}">
-            <div class="featured-image-wrapper">
-              {{ image(
-                url='img/stories/engagement-hero.jpg',
-                alt="",
-                width="1010",
-                height="519",
-                include_highres=True
-              ) }}
-            </div>
-            <figcaption>Image by: Opensource.com / CC BY-SA 4.0</figcaption>
-          </figure>
-          </a>
-          <div class="featured-story-content">
-            <p class="featured-story-type">Featured Article</p>
-            <h1 class="featured-story-header">The Art of Engagement</h1>
-            <p class="featured-story-lead-in">Mozilla’s vibrant community gets a direct connection to the people building the products they love.</p>
-            <div class="featured-story-metadata">
-              <div class="value-container">
-                <p>Value <span>Connection</span></p>
-              </div>
-              <a title="Read 'The Art of Engagement'" class="story-link" href="{{ url('stories.articles.art-of-engagement') }}">Read<span class="arrow-right"></span></a>
-            </div>
-          </div>
-        </section>
+        {{stories_landing_feature_story(
+          url=url('stories.articles.art-of-engagement'),
+          image_url='img/stories/engagement-hero.jpg',
+          title="The Art of Engagement",
+          desc="Mozilla’s vibrant community gets a direct connection to the people building the products they love.",
+          caption="Image by: Opensource.com / CC BY-SA 4.0",
+          value="Connection"
+        )}}
       </section>
       {# Related Stories to Featured one #}
       <section class="c-stories-related">
