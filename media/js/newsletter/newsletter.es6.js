@@ -76,7 +76,7 @@ const NewsletterForm = {
         );
 
         // Newsletter format
-        const format = form.querySelector('input[name="fmt"]:checked').value;
+        const format = form.querySelector('input[name="format"]:checked').value;
 
         // Country (optional form <select>)
         const countrySelect = form.querySelector('select[name="country"]');

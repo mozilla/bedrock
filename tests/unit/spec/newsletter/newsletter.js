@@ -75,10 +75,10 @@ describe('NewsletterForm', function () {
                                 <legend>Format</legend>
                                 <p>
                                     <label for="format-html" class="mzp-u-inline">
-                                        <input type="radio" id="format-html" name="fmt" value="H" checked=""> HTML
+                                        <input type="radio" id="format-html" name="format" value="H" checked=""> HTML
                                     </label>
                                     <label for="format-text" class="mzp-u-inline">
-                                        <input type="radio" id="format-text" name="fmt" value="T"> Text
+                                        <input type="radio" id="format-text" name="format" value="T"> Text
                                     </label>
                                 </p>
                             </fieldset>
