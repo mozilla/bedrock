@@ -8,6 +8,13 @@
 
 {% from "stories/includes/macros.html" import stories_article_blockquote, stories_image with context %}
 
+{% set credits = [
+  {"name": "Ingrid Fetell Lee", "title": "Designer and author", "image": ""},
+  {"name": "Amber Case", "title": "Cyborg anthropologist and UX designer", "image": ""},
+  {"name": "Keely Alexis", "title": "Streetwear and sneaker designer", "image": ""},
+  {"name": "Mikal Lewis", "title": "Senior director of product management at Firefox", "image": ""}
+] %}
+
 {% set related = [
  {
     "title": "The Art of Engagement",
@@ -29,7 +36,7 @@
 {% block publish_date_formatted %}October 18, 2022{% endblock %}
 
 {% block article_title %}The Joy of Color{% endblock %}
-{% block article_subtitle %}The internet is supposed to be fun. Firefox lights up the gray world of browsing with seasonal shades and a new collaboration with former Nike sneaker designer Keely Alexis.{% endblock %}
+{% block article_subtitle %}The internet is supposed to be fun. Firefox gives color to the gray world of browsing with seasonal shades and a new collaboration with former Nike sneaker designer Keely Alexis.{% endblock %}
 
 {% block page_image %}{{ static('img/stories/social/building-together-social.jpg') }}{% endblock %}
 
