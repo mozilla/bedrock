@@ -65,7 +65,7 @@ vpn-landing-faq-info-question-heading = What information does the { -brand-name-
 
 # Variables:
 #   $principles (url) - link to https://www.mozilla.org/privacy/principles/
-#   $notice (url) - link to https://www.mozilla.org/privacy/mozilla-vpn/
+#   $notice (url) - link to https://www.mozilla.org/privacy/subscription-services/
 vpn-landing-faq-info-question-desc-v2 = We adhere strictly to { -brand-name-mozilla }’s <a href="{ $principles }">Data Privacy Principles</a> and we collect the data required to keep the VPN operational and to improve the product over time. We also track campaign and referral data on our mobile app to help { -brand-name-mozilla } understand the effectiveness of our marketing campaigns. Read more in our <a href="{ $notice }">Privacy Notice</a>.
 
 # Obsolete string
@@ -206,7 +206,7 @@ vpn-landing-invite-platform-chromebook = { -brand-name-chromebook }
 vpn-landing-invite-platform-linux = { -brand-name-linux }
 
 # Variables:
-#   $privacy (url) - link to https://www.mozilla.org/privacy/mozilla-vpn/
+#   $privacy (url) - link to https://www.mozilla.org/privacy/subscription-services/
 vpn-landing-invite-privacy-policy = By clicking “Join the waitlist”, you agree to our  <a href="{ $privacy }">Privacy Policy</a>.
 
 vpn-landing-invite-your-information = Your information will only be used to notify you about platform availability.
