@@ -28,7 +28,7 @@ describe('WaitListForm', function () {
                     </ul>
                 </div>
                 <input type="hidden" name="source_url" value="https://www.mozilla.org/en-US/products/vpn/invite/">
-                <input type="hidden" name="fmt" id="format-html" value="H">
+                <input type="hidden" name="format" id="format-html" value="H">
 
                 <fieldset class="mzp-c-newsletter-content">
                     <div class="mzp-c-form-errors hide-from-legacy-ie hidden" id="newsletter-errors">
