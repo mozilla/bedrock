@@ -5,7 +5,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 {% from "macros.html" import image with context %}
-{% from "stories/includes/macros.html" import stories_image, stories_card, stories_landing_feature_story with context %}
+{% from "stories/includes/macros.html" import stories_image, stories_card with context %}
 {% extends "base-protocol.html" %}
 
 {% block page_css %}
@@ -19,17 +19,18 @@
 
 {% block content %}
   <main class="c-stories-main">
-    {# Featured Stories  #}
-      <section class="c-stories-featured-collection">
-        {{stories_landing_feature_story(
-          url=url('stories.articles.art-of-engagement'),
+    {# Featured Stories #}
+        <!-- todo: real image url and caption -->
+        {% with
+          url=url('stories.articles.joy-of-color'),
           image_url='img/stories/engagement-hero.jpg',
-          title="The Art of Engagement",
-          desc="Mozilla’s vibrant community gets a direct connection to the people building the products they love.",
-          caption="Image by: Opensource.com / CC BY-SA 4.0",
+          title="The Joy of Color",
+          desc="The internet is supposed to be fun. Firefox gives color to the gray world of browsing with seasonal shades and a new collaboration with former Nike sneaker designer Keely Alexis.",
+          caption="Image by: TBD / CC BY-SA 4.0",
           value="Connection"
-        )}}
-      </section>
+        %}
+          {% include 'stories/includes/stories-landing-featured.html' %}
+        {% endwith %}
       {# Related Stories to Featured one #}
       <section class="c-stories-related">
         <div class="related-stories-grid">
