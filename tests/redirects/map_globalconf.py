@@ -1180,8 +1180,10 @@ URLS = flatten(
         url_test("/firefox/families/", "/firefox/family/"),
         # issue 10879
         url_test("/exp/", "/"),
-        # issue 11092
-        url_test("/about/legal/terms/vpn/", "/about/legal/terms/mozilla-vpn/"),
+        # issue 11092, issue 12156
+        url_test("/about/legal/terms/{mozilla-vpn,vpn,firefox-relay}/", "/about/legal/terms/subscription-services/"),
+        # issue 12156
+        url_test("/privacy/{mozilla-vpn,firefox-relay}/", "/privacy/subscription-services/"),
         # Issue 11204
         url_test(
             "/{truecolors,truecolours,turningred}/",

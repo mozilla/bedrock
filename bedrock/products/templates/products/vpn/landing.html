@@ -226,12 +226,7 @@
         <h3>{{ ftl('vpn-landing-faq-info-question-heading') }}</h3>
       </summary>
     {% if ftl_has_messages('vpn-landing-faq-info-question-desc-v2') %}
-      {% if switch('vpn-relay-bundle') %}
-        {% set privacy_url = url('privacy.notices.subscription-services') %}
-      {% else %}
-        {% set privacy_url = url('privacy.notices.mozilla-vpn') %}
-      {% endif %}
-      <p class="vpn-faq-item-detail">{{ ftl('vpn-landing-faq-info-question-desc-v2', principles=url('privacy.principles'), notice=privacy_url) }}</p>
+      <p class="vpn-faq-item-detail">{{ ftl('vpn-landing-faq-info-question-desc-v2', principles=url('privacy.principles'), notice=url('privacy.notices.subscription-services')) }}</p>
     {% else %}
       <p class="vpn-faq-item-detail">{{ ftl('vpn-landing-faq-info-question-desc', url=url('privacy.principles')) }}</p>
     {% endif %}

@@ -22,11 +22,6 @@ urlpatterns = (
     page("impressum/", "legal/impressum.html", active_locales=["de"], ftl_files=["mozorg/about/legal"]),
     path("terms/mozilla/", LegalDocView.as_view(template_name="legal/terms/mozilla.html", legal_doc_name="Websites_ToU"), name="legal.terms.mozilla"),
     path(
-        "terms/mozilla-vpn/",
-        LegalDocView.as_view(template_name="legal/terms/mozilla-vpn.html", legal_doc_name="Mozilla_VPN_ToS"),
-        name="legal.terms.mozilla-vpn",
-    ),
-    path(
         "terms/firefox/",
         LegalDocView.as_view(template_name="legal/terms/firefox.html", legal_doc_name="firefox_about_rights"),
         name="legal.terms.firefox",
@@ -40,11 +35,6 @@ urlpatterns = (
         "terms/firefox-private-network/",
         LegalDocView.as_view(template_name="legal/terms/firefox-private-network.html", legal_doc_name="Firefox_Private_Network_ToS"),
         name="legal.terms.firefox-private-network",
-    ),
-    path(
-        "terms/firefox-relay/",
-        LegalDocView.as_view(template_name="legal/terms/firefox-relay.html", legal_doc_name="firefox_relay_ToS"),
-        name="legal.terms.firefox-relay",
     ),
     path(
         "terms/thunderbird/",

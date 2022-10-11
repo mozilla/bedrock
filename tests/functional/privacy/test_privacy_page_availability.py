@@ -15,7 +15,7 @@ from redirects.base import assert_valid_url
         "privacy/",
         "privacy/firefox/",
         "privacy/firefox-focus/",
-        "privacy/mozilla-vpn/",
+        "privacy/subscription-services/",
     ],
 )
 def test_privacy_policies_always_200_OK(

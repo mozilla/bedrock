@@ -73,13 +73,9 @@ facebook_notices = xframe_allow(facebook_notices)
 
 firefox_monitor_notices = PrivacyDocView.as_view(template_name="privacy/notices/firefox-monitor.html", legal_doc_name="firefox_monitor_terms_privacy")
 
-firefox_relay_notices = PrivacyDocView.as_view(template_name="privacy/notices/firefox-relay.html", legal_doc_name="firefox_relay_privacy_notice")
-
 firefox_private_network = PrivacyDocView.as_view(
     template_name="privacy/notices/firefox-private-network.html", legal_doc_name="Firefox_Private_Network_Beta_Privacy_Notice"
 )
-
-mozilla_vpn = PrivacyDocView.as_view(template_name="privacy/notices/mozilla-vpn.html", legal_doc_name="mozilla_vpn_privacy_notice")
 
 mdn_plus = PrivacyDocView.as_view(template_name="privacy/notices/mdn-plus.html", legal_doc_name="mdn_plus_privacy")
 
