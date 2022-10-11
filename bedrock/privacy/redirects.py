@@ -21,4 +21,6 @@ redirectpatterns = (
     redirect(r"^/privacy/products/?$", "firefox.privacy.products"),
     # mozilla/bedrock/#11610
     redirect(r"^privacy/firefox-os/?$", "privacy.archive.firefox-os-2022-05"),
+    # issue 12156
+    redirect(r"^privacy/(mozilla-vpn|firefox-relay)/?$", "privacy.notices.subscription-services"),
 )

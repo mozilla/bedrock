@@ -1,0 +1,39 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "privacy/archive/base-resp.html" %}
+
+{% block page_title %}Firefox Relay Privacy Notice — Archived, Oct 11, 2022{% endblock %}
+
+{% block body_id %}firefox-relay-archived{% endblock %}
+
+{% block article_header_logo %}{{ static('protocol/img/logos/firefox/logo.svg') }}{% endblock %}
+
+{% block title %}Firefox Relay Privacy Notice{% endblock %}
+
+{% block time %}<span class="archived">Archived, Oct 11, 2022</span>{% endblock %}
+
+{% block lead_in %}
+  <p>Firefox Relay allows you to keep your primary email address safe and private from online services by making unique, random (<em>alias</em>) email addresses. This privacy notice explains what data Firefox Relay, shares, and why. We also adhere to the <a href="{{ url('privacy') }}">Mozilla Privacy Policy</a> for how we receive, handle, and share information.</p>
+{% endblock %}
+
+{% block sections %}
+<section class="section3" id="information-we-collect">
+  <h3>Information We Collect</h3>
+  <p><strong>Firefox Account information.</strong> This service requires a <a href="{{ url('privacy.notices.firefox') }}#firefox-accounts-join-firefox">Firefox Account</a>, which sends Mozilla your email address, locale, and IP address. Mozilla maintains a copy of your account information to provide the service, in particular to associate your primary email address with your alias email address(es).</p>
+  <p><strong>Email messages.</strong> To send and forward your email messages from your alias email address(es) to your primary email address, Firefox Relay processes your email messages. We do not read or store the content of any of your messages. In the event that an email cannot be delivered to you, we will keep it on our servers and delete it after it has been delivered (in no event will we hold onto it for more than three days). If you use the feature to block promotional emails, the Service will check email headers to determine whether the email should be blocked.</p>
+  <p><strong>Aliases and where you use them</strong>: If you create a custom alias, Mozilla stores it in order to forward emails to it. Mozilla stores the site where you created the alias, sites where you subsequently use the alias, and any labels associated with the alias in order to ensure that your aliases are easily findable when you’re ready to use them. Learn how to enable and disable these features <a href="https://relay.firefox.com/faq">here</a>.</p>
+  <p><strong>Interaction data.</strong> Mozilla receives data from interactions with Firefox Relay, such as when you click on “sign up” or “add to Firefox” buttons, and when you create, disable, or delete an alias email address.</p>
+  <p><strong>Technical data.</strong> Mozilla receives basic information from Firefox Relay about your device and browser, including browser version, language, device operating system, and hardware configuration.</p>
+  <p><strong>Payment information</strong>: If you subscribe to Firefox Relay Premium, you will send payment through one of our third-party payment providers: Stripe or PayPal. Mozilla receives a record of your account (including your billing address and the last four digits of your payment method) and the status of your account’s subscription. Mozilla does not store your full payment details.</p>
+  <p>Read the telemetry documentation for <a href="https://github.com/mozilla/fx-private-relay/blob/main/METRICS.md">Firefox Relay</a>. You can opt-out of telemetry collection by turning on the <a href="https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature">Do Not Track (DNT)</a> feature in your browser.  </p>
+</section>
+<section class="section3" id="information-we-share">
+  <h3>Information We Share</h3>
+  <p>Firefox Relay shares information with a third party to provide the service to you. Mozilla has contracted with this company requiring them to protect your information. Here’s who we use to support Firefox Relay:</p>
+  <p><strong><a href="https://aws.amazon.com/privacy/">Amazon Web Services</a></strong>. Amazon Web Services (AWS) is a cloud-computing platform. Firefox Relay uses AWS to receive emails sent to your alias email address(es) and to forward them to the primary email address associated with your Firefox account. Only Mozilla knows the association between your primary email address and your alias email address(es).</p>
+</section>
+{% endblock %}

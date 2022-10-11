@@ -26,8 +26,6 @@ urlpatterns = (
     path("facebook/", views.facebook_notices, name="privacy.notices.facebook"),
     path("firefox-monitor/", views.firefox_monitor_notices, name="privacy.notices.firefox-monitor"),
     path("firefox-private-network/", views.firefox_private_network, name="privacy.notices.firefox-private-network"),
-    path("firefox-relay/", views.firefox_relay_notices, name="privacy.notices.firefox-relay"),
-    path("mozilla-vpn/", views.mozilla_vpn, name="privacy.notices.mozilla-vpn"),
     path("mdn-plus/", views.mdn_plus, name="privacy.notices.mdn-plus"),
     path("ad-targeting-guidelines/", views.ad_targeting_guidelines, name="privacy.notices.ad-targeting-guidelines"),
     path("subscription-services/", views.subscription_services, name="privacy.notices.subscription-services"),
@@ -57,4 +55,6 @@ urlpatterns = (
     page("archive/websites/2013-08/", "privacy/archive/websites-2013-08.html", ftl_files=["privacy/index"], active_locales=["en-US"]),
     page("archive/persona/2017-07/", "privacy/archive/persona-2017-07.html", ftl_files=["privacy/index"], active_locales=["en-US"]),
     page("archive/firefox-os/2022-05/", "privacy/archive/firefox-os-2022-05.html", ftl_files=["privacy/index"], active_locales=["en-US"]),
+    page("archive/firefox-relay/2022-10/", "privacy/archive/firefox-relay-2022-10.html", ftl_files=["privacy/index"], active_locales=["en-US"]),
+    page("archive/mozilla-vpn/2022-10/", "privacy/archive/mozilla-vpn-2022-10.html", ftl_files=["privacy/index"], active_locales=["en-US"]),
 )
