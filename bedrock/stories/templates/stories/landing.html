@@ -31,11 +31,19 @@
         %}
           {% include 'stories/includes/stories-landing-featured.html' %}
         {% endwith %}
-      {# Related Stories to Featured one #}
+      {# todo: update class naming, this section is evolving to include collections #}
       <section class="c-stories-related">
         <div class="related-stories-grid">
-          <h2 class="c-stories-related-header">Related Stories</h2>
+          <h2 class="c-stories-related-header">Other Stories and Collections</h2>
           <div class="related-stories-wrapper">
+            {{ stories_card(
+              title="The Art of Engagement",
+              desc="Mozilla’s vibrant community gets a direct connection to the people building the products they love.",
+              image_url="img/stories/art-of-engagement.jpg",
+              image_alt="",
+              link_url=url('stories.articles.art-of-engagement'),
+              include_highres_image=True
+            )}}
             {{ stories_card(
               title="Licensed to Build Together",
               desc="Who really owns the Firefox browser? Its copyleft license means we all do.",
