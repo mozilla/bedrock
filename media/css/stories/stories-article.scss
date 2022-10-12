@@ -21,6 +21,25 @@ body {
             background-color: $pink-primary;
         }
     }
+
+    // not a real theme, needed to provide different background on Joy of Color
+    &.theme-joy {
+        background: $green;
+
+        .c-stories-article-blockquote.color-accent {
+            background: $green;
+        }
+
+        .mzp-c-breadcrumb {
+            background-color: $green;
+        }
+
+        .mzp-c-breadcrumb,
+        .c-stories-article-header,
+        .c-stories-article-blockquote.color-accent {
+            color: $color-white;
+        }
+    }
 }
 
 // HACKY overrides for the navigation to match the comps (deals with box shadow and scrolling)
@@ -45,7 +64,7 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
     padding-bottom: $spacing-md;
 
     .mzp-c-breadcrumb-item a {
-        color: $color-black;
+        color: inherit;
 
         &:hover {
             text-decoration: underline;
@@ -89,7 +108,7 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
 
     .is-featured {
         @include font-size(21px);
-        color: $color-black;
+        color: inherit;
         font-family: $font-stories-body;
         grid-column: 1 / 13;
         align-self: center;
@@ -104,7 +123,7 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
         grid-column: 1 / 13;
         @include font-size(50px);
         grid-row: 2;
-        color: $color-black;
+        color: inherit;
         font-family: $font-stories-title;
         font-weight: 700;
         text-transform: uppercase;
