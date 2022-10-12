@@ -77,37 +77,37 @@ describe('WaitListForm', function () {
                             <ul class="vpn-invite-platform-options">
                                 <li>
                                     <label class="mzp-u-inline">
-                                        <input type="checkbox" id="platforms-windows" name="platforms" value="windows">
+                                        <input type="checkbox" id="platforms-windows" name="fpn_platform" value="windows">
                                         Windows 10/11
                                     </label>
                                 </li>
                                 <li>
                                     <label class="mzp-u-inline">
-                                        <input type="checkbox" id="platforms-ios" name="platforms" value="ios">
+                                        <input type="checkbox" id="platforms-ios" name="fpn_platform" value="ios">
                                         iOS
                                     </label>
                                 </li>
                                 <li>
                                     <label class="mzp-u-inline">
-                                        <input type="checkbox" id="platforms-android" name="platforms" value="android">
+                                        <input type="checkbox" id="platforms-android" name="fpn_platform" value="android">
                                         Android
                                     </label>
                                 </li>
                                 <li>
                                     <label class="mzp-u-inline">
-                                        <input type="checkbox" id="platforms-mac" name="platforms" value="mac">
+                                        <input type="checkbox" id="platforms-mac" name="fpn_platform" value="mac">
                                         Mac
                                     </label>
                                 </li>
                                 <li>
                                     <label class="mzp-u-inline">
-                                        <input type="checkbox" id="platforms-chromebook" name="platforms" value="chromebook">
+                                        <input type="checkbox" id="platforms-chromebook" name="fpn_platform" value="chromebook">
                                         Chromebook
                                     </label>
                                 </li>
                                 <li>
                                     <label class="mzp-u-inline">
-                                        <input type="checkbox" id="platforms-linux" name="platforms" value="linux">
+                                        <input type="checkbox" id="platforms-linux" name="fpn_platform" value="linux">
                                         Linux
                                     </label>
                                 </li>

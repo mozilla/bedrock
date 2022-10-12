@@ -16,7 +16,7 @@ class VPNWaitlistForm(NewsletterFooterForm):
         ("chromebook", "Chromebook"),
         ("linux", "Linux"),
     )
-    platforms = forms.MultipleChoiceField(required=False, choices=PLATFORM_CHOICES, widget=forms.CheckboxSelectMultiple)
+    fpn_platform = forms.MultipleChoiceField(required=False, choices=PLATFORM_CHOICES, widget=forms.CheckboxSelectMultiple)
 
     def __init__(self, locale, data=None, *args, **kwargs):
         super().__init__("guardian-vpn-waitlist", locale, data, *args, **kwargs)
