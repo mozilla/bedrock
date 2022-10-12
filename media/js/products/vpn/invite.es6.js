@@ -117,7 +117,7 @@ const WaitListForm = {
 
         if (hasPlatformInterest) {
             const checkedPlatforms = document.querySelectorAll(
-                'input[name="platforms"]:checked'
+                'input[name="fpn_platform"]:checked'
             );
 
             if (checkedPlatforms.length) {
