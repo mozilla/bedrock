@@ -9,6 +9,14 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/breadcrumb';
 @import 'includes/lib';
 
+// normalize scrollbar color across backgrounds
+// otherwise, Fx auto-determines a light/dark scheme based on body bg
+@supports (scrollbar-color: auto) {
+    html {
+        scrollbar-color: #c2c2c2 #fafafa;
+    }
+}
+
 body {
     &.theme-connection {
         background: $pink-primary;
