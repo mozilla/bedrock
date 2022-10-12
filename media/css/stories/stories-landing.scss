@@ -9,7 +9,8 @@ $image-path: '/media/protocol/img';
 @import 'includes/lib';
 
 .c-stories-featured-collection {
-    background-color: $pink-primary;
+    background-color: $green;
+    color: $color-white;
 
     .c-stories-featured-story {
         @include stories-grid;
@@ -33,7 +34,7 @@ $image-path: '/media/protocol/img';
 
             figcaption {
                 @include font-size(12px);
-                color: $color-black;
+                color: $color-white;
                 text-align: right;
                 margin-right: $spacing-xs;
             }
@@ -60,17 +61,17 @@ $image-path: '/media/protocol/img';
 
             .featured-story-type {
                 @include font-size(28px);
-                color: $color-black;
+                color: inherit;
                 font-family: $font-stories-body;
                 margin-bottom: $spacing-sm;
             }
 
             .featured-story-header {
                 @include font-size(50px);
-                color: $color-black;
+                color: inherit;
                 font-family: $font-stories-title;
                 text-transform: uppercase;
-                border-bottom: 3px solid $color-black;
+                border-bottom: 3px solid $color-white;
                 margin-bottom: $spacing-lg;
                 max-width: 100%;
                 padding-bottom: $spacing-lg;
@@ -88,7 +89,7 @@ $image-path: '/media/protocol/img';
             .featured-story-lead-in {
                 @include font-size(22px);
                 margin-top: $spacing-md;
-                color: $color-black;
+                color: inherit;
                 font-family: $font-stories-body;
                 width: 100%;
             }
@@ -128,7 +129,7 @@ $image-path: '/media/protocol/img';
 
     .value-container {
         @include font-size(18px);
-        color: $color-black;
+        color: inherit;
         display: flex;
         margin-right: 0;
         margin-bottom: $spacing-md;

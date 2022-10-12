@@ -4,6 +4,8 @@
 
 @use 'sass:math';
 
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
 // use math.div to get percentages of grid to use for padding and margins
 $column-width: math.percentage(math.div(math.div(100, 12), 100));
 $half-column: math.percentage(math.div(math.div(100, 24), 100));
@@ -13,6 +15,9 @@ $font-stories-body: 'Source Serif Pro', sans-serif;
 //  pink theme
 $pink-primary: #ffb4db;
 $pink-secondary: #ffea7f;
+
+// forest green theme
+$green: $color-green-80;
 
 @font-face {
     font-family: Antonio;
