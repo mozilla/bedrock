@@ -301,6 +301,7 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
                 // very hacky way to ensure that this element doesnt change the
                 // height of the implicit rows of the grid.
                 position: absolute;
+                max-width: 150px; /* prevents credits from overlapping article text due to absolute positioning */
 
                 .c-stories-image {
                     filter: grayscale(1);
