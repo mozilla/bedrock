@@ -17,26 +17,34 @@
   {{ css_bundle('firefox_welcome_page10') }}
 {% endblock %}
 
-{% set _entrypoint = 'mozilla.org-firefox-welcome-14' %}
-{% set _utm_campaign = 'welcome-14-vpn' %}
-{% set source = '?source=welcome14' %}
 {% set show_coupon = switch('vpn-moments-coupon-code')%}
 
 {% block shoulder_cta %}{% endblock %}
+
+
 
 {% block content_intro %}
   <section class="c-content-main">
     <div class="mzp-l-content mzp-t-content-md">
       <img class="c-main-image" src="{{ static('protocol/img/logos/mozilla/vpn/logo-flat.svg') }}" width="90" alt="">
       <h1 class="c-main-title"> {% if show_coupon %}{{ ftl('welcome-page14-page-title') }}{% else %}{{ ftl('welcome-page14-page-title-alt') }}{% endif %}</h1>
-      <p class="c-main-tagline">{{ ftl('welcome-page10-main-description') }}</p>
+      <p class="c-main-tagline">{{ ftl('welcome-page14-main-description') }}</p>
       {% if show_coupon %}
         <div class="c-coupon-container">
           <h3>{{ ftl('welcome-page14-use-code') }}</h3>
         </div>
       {% endif %}
       <div class="c-main-cta">
-        <a href="{{ url('products.vpn.landing') }}{{ source }}#pricing" class="mzp-c-button mzp-t-product mzp-t-xl" data-cta-text="Get Mozilla VPN" data-cta-type="button">{{ ftl('welcome-page10-get-mozilla-vpn') }}</a>
+        {{ vpn_product_referral_link(
+          referral_id='welcome-page14',
+          link_text=ftl('welcome-page14-get-mozilla-vpn'),
+          class_name='mzp-t-product mzp-t-xl',
+          optional_attributes= {
+                'data-cta-text' : 'Get Mozilla VPN',
+                'data-cta-type' : 'button',
+                'data-cta-position' : 'primary-cta',
+          }
+        )}}
       </div>
     </div>
   </section>
@@ -51,9 +59,9 @@
         <div class="mzp-c-picto-image">
           {% include 'firefox/welcome/includes/page10/laptop.svg' %}
         </div>
-        <h3 class="mzp-c-picto-title">{{ ftl('welcome-page10-very-fast') }}</h3>
+        <h3 class="mzp-c-picto-title">{{ ftl('welcome-page14-very-fast') }}</h3>
         <div class="mzp-c-picto-body">
-          <p>{{ ftl('welcome-page10-wireguard-powered') }}</p>
+          <p>{{ ftl('welcome-page14-wireguard-powered') }}</p>
         </div>
       </div>
 
@@ -61,9 +69,9 @@
         <div class="mzp-c-picto-image">
           {% include 'firefox/welcome/includes/page10/mobile.svg' %}
         </div>
-        <h3 class="mzp-c-picto-title">{{ ftl('welcome-page10-without-trace') }}</h3>
+        <h3 class="mzp-c-picto-title">{{ ftl('welcome-page14-without-trace') }}</h3>
         <div class="mzp-c-picto-body">
-          <p>{{ ftl('welcome-page10-never-log') }}</p>
+          <p>{{ ftl('welcome-page14-never-log') }}</p>
         </div>
       </div>
     </div>
@@ -75,7 +83,7 @@
 <p>
   <strong>
     <a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">
-      {{ ftl('welcome-page10-why-see-this') }}
+      {{ ftl('welcome-page14-why-see-this') }}
     </a>
   </strong>
 </p>
