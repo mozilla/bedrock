@@ -1,0 +1,47 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.c-coupon-container {
+    margin: $spacing-xl 0;
+    background-color: #c3c4fd;
+    border-radius: $border-radius-md;
+    padding: $spacing-xl $spacing-sm;
+
+    h2 {
+        @include font-size(30px);
+        margin-bottom: $spacing-xl;
+    }
+
+    .c-coupon-code {
+        @include text-body-xl;
+        border-radius: $border-radius-sm;
+        border: 1px solid $color-black;
+        display: inline-block;
+        font-weight: normal;
+        margin-bottom: $spacing-md;
+        padding: $spacing-sm $spacing-md;
+    }
+
+    .c-coupon-copy {
+        @include text-body-sm;
+        appearance: none;
+        background: transparent none;
+        border: 0;
+        cursor: pointer;
+        display: block;
+        margin: 0 auto;
+        text-decoration: underline;
+
+        &:hover,
+        &:focus {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+    }
+}

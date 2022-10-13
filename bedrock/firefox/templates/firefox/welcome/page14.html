@@ -15,9 +15,15 @@
 {% block page_css %}
   {{ css_bundle('protocol-picto') }}
   {{ css_bundle('firefox_welcome_page10') }}
+  {{ css_bundle('firefox_welcome_page14') }}
 {% endblock %}
 
-{% set show_coupon = switch('vpn-moments-coupon-code')%}
+{% block js %}
+  {{ js_bundle("firefox_welcome_page14") }}
+{% endblock %}
+
+{% set show_coupon = switch('vpn-moments-coupon-code') %}
+{% set coupon_code = 'VPNPRIVACY20' %}
 
 {% block shoulder_cta %}{% endblock %}
 
@@ -25,16 +31,10 @@
 
 {% block content_intro %}
   <section class="c-content-main">
-    <div class="mzp-l-content mzp-t-content-md">
+    <div class="mzp-l-content mzp-t-content-md mz">
       <img class="c-main-image" src="{{ static('protocol/img/logos/mozilla/vpn/logo-flat.svg') }}" width="90" alt="">
-      <h1 class="c-main-title"> {% if not show_coupon %}{{ ftl('welcome-page14-page-title') }}{% else %}{{ ftl('welcome-page14-page-title-alt') }}{% endif %}</h1>
+      <h1 class="c-main-title"> {% if show_coupon %}{{ ftl('welcome-page14-page-title') }}{% else %}{{ ftl('welcome-page14-page-title-alt') }}{% endif %}</h1>
       <p class="c-main-tagline">{{ ftl('welcome-page14-main-description') }}</p>
-      {# setting this to false temporarily for demo page #}
-      {% if not show_coupon %}
-        <div class="c-coupon-container">
-          <h3>{{ ftl('welcome-page14-use-code') }}</h3>
-        </div>
-      {% endif %}
       <div class="c-main-cta">
         {{ vpn_product_referral_link(
           referral_id='welcome-page14',
@@ -47,6 +47,13 @@
           }
         )}}
       </div>
+      {% if show_coupon %}
+        <div class="c-coupon-container">
+          <h2>{{ ftl('welcome-page14-use-code') }}</h2>
+          <strong class="c-coupon-code">{{ coupon_code }}</strong>
+          <button type="button" class="c-coupon-copy" id="code-copy" data-code="{{ coupon_code }}" data-success="{{ ftl('welcome-page14-code-copied') }}">{{ ftl('welcome-page14-copy-code') }}</button>
+        </div>
+      {% endif %}
     </div>
   </section>
 {% endblock %}

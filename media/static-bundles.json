@@ -914,6 +914,12 @@
     },
     {
       "files": [
+        "css/firefox/welcome14.scss"
+      ],
+      "name": "firefox_welcome_page14"
+    },
+    {
+      "files": [
         "css/firefox/faq.scss"
       ],
       "name": "firefox-faq"
@@ -1290,6 +1296,12 @@
         "js/firefox/welcome/welcome8-traffic-cop.js"
       ],
       "name": "firefox_welcome_page8_traffic_cop"
+    },
+    {
+      "files": [
+        "js/firefox/welcome/welcome14.js"
+      ],
+      "name": "firefox_welcome_page14"
     },
     {
       "files": [

@@ -11,9 +11,14 @@ welcome-page14-page-title-alt = It’s Cybersecurity Month — time to level up 
 
 welcome-page14-main-description = { -brand-name-mozilla-vpn } (Virtual Private Network) protects your entire internet connection on your computer, your tablet, and even your phone. For even more security, it comes with a 30-day money back guarantee.
 
-welcome-page14-use-code = Use code at checkout for 20% off
 
 welcome-page14-get-mozilla-vpn = Get { -brand-name-mozilla-vpn }
+
+welcome-page14-use-code = Use code at checkout for 20% off
+
+welcome-page14-copy-code = Copy code
+
+welcome-page14-code-copied= Code copied!
 
 welcome-page14-very-fast = It’s fast, very fast
 
