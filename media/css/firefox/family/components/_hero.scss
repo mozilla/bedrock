@@ -18,6 +18,11 @@ $image-path: '/media/protocol/img';
         background-attachment: fixed;
     }
 
+    svg {
+        max-width: 100%;
+        height: auto;
+    }
+
     // Override Protocol wordmark
     .mzp-c-wordmark.mzp-t-product-firefox.mzp-t-wordmark-lg {
         background-image: url('/media/img/firefox/family/logo-word-hor-white.svg');
@@ -67,6 +72,22 @@ $image-path: '/media/protocol/img';
             .l-grid {
                 column-gap: $layout-lg;
                 grid-template-columns: minmax(500px, 50%) 1fr;
+            }
+        }
+    }
+}
+
+.js {
+    @media (prefers-reduced-motion: no-preference) {
+        h1 {
+            opacity: 0;
+        }
+
+        .lockup-white-box {
+            opacity: 0;
+
+            &.animate-pop-in {
+                animation-delay: f3.$animation-duration;
             }
         }
     }
