@@ -4,19 +4,11 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import isSupported from './supports-intersection-observer.es6';
+
 let _observer;
 let _heroSection;
 let _privateModeSection;
-
-const isSupported = () => {
-    return (
-        'IntersectionObserver' in window &&
-        'IntersectionObserverEntry' in window &&
-        'intersectionRatio' in window.IntersectionObserverEntry.prototype &&
-        window.NodeList &&
-        NodeList.prototype.forEach
-    );
-};
 
 const isAllowed = () => {
     return (

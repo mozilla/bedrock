@@ -4,17 +4,9 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-let _observer;
+import isSupported from './supports-intersection-observer.es6';
 
-const isSupported = () => {
-    return (
-        'IntersectionObserver' in window &&
-        'IntersectionObserverEntry' in window &&
-        'intersectionRatio' in window.IntersectionObserverEntry.prototype &&
-        window.NodeList &&
-        NodeList.prototype.forEach
-    );
-};
+let _observer;
 
 const createObserver = () => {
     return new IntersectionObserver(
