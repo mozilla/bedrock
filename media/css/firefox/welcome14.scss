@@ -7,6 +7,10 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
+.c-main-image {
+    margin: 0 auto 48px;
+}
+
 .c-coupon-container {
     margin: $spacing-xl 0;
     background-color: #c3c4fd;
@@ -43,5 +47,12 @@ $image-path: '/media/protocol/img';
             font-weight: bold;
             text-decoration: underline;
         }
+    }
+}
+
+// override protocol padding on large viewports to use md screen padding
+@media #{$mq-lg} {
+    .mzp-l-content.mzp-t-content-md {
+        padding: $layout-md $layout-lg;
     }
 }
