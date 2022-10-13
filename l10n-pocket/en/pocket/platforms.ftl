@@ -39,3 +39,4 @@ pocket-platform-get-app = Get the app
 pocket-platform-install = Install
 pocket-platform-log-in = Log in
 pocket-platform-browser-installing = Installing the { -brand-name-pocket } browser extension installs buttons that let you save items with one click.
+pocket-platform-install-bookmarklet = Install the bookmarklet
