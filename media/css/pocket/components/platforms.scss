@@ -52,6 +52,10 @@
         color: $color-text-grey;
         text-decoration: none;
 
+        &::after {
+            content: ' »';
+        }
+
         &:hover,
         &:focus,
         &:active {
