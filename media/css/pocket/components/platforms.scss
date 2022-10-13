@@ -46,4 +46,20 @@
             }
         }
     }
+
+    .bookmarklet {
+        @include text-body-sm;
+        color: $color-text-grey;
+        text-decoration: none;
+
+        &::after {
+            content: ' »';
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: underline;
+        }
+    }
 }

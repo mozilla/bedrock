@@ -26,6 +26,16 @@
           <h1>{{ self.page_title() }}</h1>
           <p>{{ self.page_desc() }}</p>
           <a href="{{ self.page_url() }}" class="mzp-c-button" target="_blank" rel="external noopener">{{ self.page_cta() }}</a>
+          {% block bookmarklet %}
+          {% if ftl_has_messages('pocket-platform-install-bookmarklet') %}
+          <p>
+            <a class="bookmarklet" href="https://getpocket.com/bookmarklets/">
+              {{ ftl('pocket-platform-install-bookmarklet') }}
+            </a>
+          </p>
+          {% endif %}
+          {% endblock bookmarklet %}
+
           {% endcall %}
     </div>
   {% include 'pocket/includes/platform-footer.html' %}
