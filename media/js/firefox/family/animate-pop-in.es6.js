@@ -7,6 +7,7 @@
 let _observer;
 let _heroSection;
 let _privateModeSection;
+let _bullyingSection;
 
 const isSupported = () => {
     return (
@@ -45,6 +46,11 @@ const createObserver = () => {
                         entry.target
                             .querySelector('.c-private-mode-mask')
                             .classList.add('animate-pop-in');
+                    } else if (_bullyingSection.contains(entry.target)) {
+                        // animate the hearts
+                        entry.target
+                            .querySelector('.c-browser-content')
+                            .classList.add('animate-hearts');
                     }
                     // remove target observer after triggering animation
                     _observer.unobserve(entry.target);
@@ -61,6 +67,7 @@ export const init = () => {
         // sections with extra behaviour
         _heroSection = document.querySelector('.c-hero');
         _privateModeSection = document.querySelector('.c-private-mode');
+        _bullyingSection = document.querySelector('.c-bullying');
         // add hero observer
         const heroLockup = document.querySelector('.c-hero h1');
         _observer.observe(heroLockup);
@@ -68,5 +75,8 @@ export const init = () => {
         document.querySelectorAll('.c-browser').forEach(function (element) {
             _observer.observe(element);
         });
+        // add bullying observer
+        const heartsImage = document.querySelector('.hearts-image');
+        _observer.observe(heartsImage);
     }
 };

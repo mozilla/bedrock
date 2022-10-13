@@ -32,9 +32,11 @@
         &-content {
             padding: $spacing-md;
 
-            > img {
-                width: 100%;
+            > img,
+            > svg {
                 display: block;
+                height: auto;
+                width: 100%;
             }
         }
     }
@@ -53,6 +55,7 @@
         flex-direction: column;
         align-items: center;
     }
+
     @media #{$mq-md} {
         .c-bullying {
             .l-flex {
@@ -77,6 +80,45 @@
             .c-blurb {
                 flex: 0 1 55ch;
             }
+        }
+    }
+}
+
+// Animated hearts image
+$heart-pink: #ffabb0;
+$heart-tan: #f7d5b6;
+$heart-white: #fffff2;
+$heart-green: #c4fce3;
+$heart-lt-purple: #c7abff;
+$heart-dk-purple: #9059ff;
+
+@keyframes heartbeat {
+    0% { fill: $heart-pink; }
+    10% { fill: $heart-dk-purple; }
+    20% { fill: $heart-white; }
+    30% { fill: $heart-tan; }
+    40% { fill: $heart-green; }
+    50% { fill: $heart-lt-purple; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .hearts-image {
+        .animate-hearts {
+            .animate {
+                animation: heartbeat 3s linear;
+            }
+
+            .heart1 { animation-delay: 500ms; }
+            .heart2 { animation-delay: 700ms; }
+            .heart3 { animation-delay: 900ms; }
+            .heart4 { animation-delay: 1100ms; }
+            .heart5 { animation-delay: 1300ms; }
+            .heart6 { animation-delay: 1500ms; }
+            .heart7 { animation-delay: 1700ms; }
+            .heart8 { animation-delay: 1900ms; }
+            .heart9 { animation-delay: 2100ms; }
+            .heart10 { animation-delay: 2300ms; }
+            .heart11 { animation-delay: 2500ms; }
         }
     }
 }
