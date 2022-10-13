@@ -6,7 +6,7 @@
 
 {% extends "firefox/welcome/base.html" %}
 
-{% block page_title %}{{ ftl('welcome-page10-page-title') }}{% endblock %}
+{% block page_title %}{{ ftl('welcome-page14-page-title-alt') }}{% endblock %}
 
 {% block page_image %}{{ static('img/products/vpn/common/social-share.png') }}{% endblock %}
 
@@ -27,9 +27,10 @@
   <section class="c-content-main">
     <div class="mzp-l-content mzp-t-content-md">
       <img class="c-main-image" src="{{ static('protocol/img/logos/mozilla/vpn/logo-flat.svg') }}" width="90" alt="">
-      <h1 class="c-main-title"> {% if show_coupon %}{{ ftl('welcome-page14-page-title') }}{% else %}{{ ftl('welcome-page14-page-title-alt') }}{% endif %}</h1>
+      <h1 class="c-main-title"> {% if not show_coupon %}{{ ftl('welcome-page14-page-title') }}{% else %}{{ ftl('welcome-page14-page-title-alt') }}{% endif %}</h1>
       <p class="c-main-tagline">{{ ftl('welcome-page14-main-description') }}</p>
-      {% if show_coupon %}
+      {# setting this to false temporarily for demo page #}
+      {% if not show_coupon %}
         <div class="c-coupon-container">
           <h3>{{ ftl('welcome-page14-use-code') }}</h3>
         </div>
