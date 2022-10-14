@@ -11,6 +11,8 @@
 {% block page_image %}{{ static('img/products/vpn/common/social-share.png') }}{% endblock %}
 
 {% block body_class %}welcome-page14{% endblock %}
+{% set show_coupon = switch('vpn-moments-coupon-code') %}
+{% set coupon_code = 'VPNPRIVACY20' %}
 
 {% block page_css %}
   {{ css_bundle('protocol-picto') }}
@@ -19,15 +21,12 @@
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle("firefox_welcome_page14") }}
+  {% if show_coupon %}
+    {{ js_bundle("firefox_welcome_page14") }}
+  {% endif %}
 {% endblock %}
 
-{% set show_coupon = switch('vpn-moments-coupon-code') %}
-{% set coupon_code = 'VPNPRIVACY20' %}
-
 {% block shoulder_cta %}{% endblock %}
-
-
 
 {% block content_intro %}
   <section class="c-content-main">
@@ -40,6 +39,7 @@
           referral_id='welcome-page14',
           link_text=ftl('welcome-page14-get-mozilla-vpn'),
           class_name='mzp-t-product mzp-t-xl',
+          page_anchor="#pricing"
           optional_attributes= {
                 'data-cta-text' : 'Get Mozilla VPN',
                 'data-cta-type' : 'button',

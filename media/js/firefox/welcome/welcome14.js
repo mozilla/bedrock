@@ -7,7 +7,7 @@
 (function () {
     'use strict';
 
-    var copyButton = document.getElementById('code-copy');
+    const copyButton = document.getElementById('code-copy');
 
     copyButton.addEventListener('click', copyCouponCode);
 
