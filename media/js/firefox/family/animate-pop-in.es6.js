@@ -5,17 +5,11 @@
  */
 
 import isSupported from './supports-intersection-observer.es6';
+import isAllowed from './allows-motion.es6';
 
 let _observer;
 let _heroSection;
 let _privateModeSection;
-
-const isAllowed = () => {
-    return (
-        window.matchMedia &&
-        window.matchMedia('(prefers-reduced-motion: no-preference)').matches
-    );
-};
 
 const createObserver = () => {
     return new IntersectionObserver(

@@ -5,17 +5,19 @@
  */
 
 import isSupported from './supports-intersection-observer.es6';
+import isAllowed from './allows-motion.es6';
 
 let _observer;
+let _agreementChecklist;
 
 const createObserver = () => {
     return new IntersectionObserver(
         function (entries) {
             entries.forEach(function (entry) {
-                // trigger animation by adding relevant class with animation styles
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-checkmark');
-                    // remove target observer after triggering animation
+                    entry.target
+                        .querySelectorAll('.has-animation')
+                        .forEach(fadeInTab);
                     _observer.unobserve(entry.target);
                 }
             });
@@ -24,11 +26,23 @@ const createObserver = () => {
     );
 };
 
+const fadeInTab = (tab) => {
+    tab.classList.add('animate-fade-in');
+    tab.addEventListener('animationend', (e) => drawCheckmark(e));
+};
+
+const drawCheckmark = (e) => {
+    if (e.animationName === 'fade-in') {
+        const checkbox = e.target.querySelector('[class^="checkmark"]');
+        checkbox.classList.add('animate-checkmark');
+    }
+};
+
 export const init = () => {
-    if (isSupported()) {
+    if (isAllowed() && isSupported()) {
         _observer = createObserver();
         // add agreement observer
-        const agreementChecklist = document.querySelector('.c-agreement svg');
-        _observer.observe(agreementChecklist);
+        _agreementChecklist = document.querySelector('.c-agreement svg');
+        _observer.observe(_agreementChecklist);
     }
 };

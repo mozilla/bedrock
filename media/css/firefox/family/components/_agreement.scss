@@ -112,35 +112,48 @@
 }
 
 .js {
-    $duration: 0.5s;
+    @media (prefers-reduced-motion: no-preference) {
+        $checkmark-duration: 0.5s;
+        $fade-in-duration: 0.5s;
 
-    [class^='checkmark'] {
-        stroke-dasharray: 30;
-        stroke-dashoffset: 30;
-    }
-
-    .animate-checkmark [class^='checkmark'] {
-        animation: $duration ease-in 0s 1 forwards normal running draw-checkmark;
-
-        &.checkmark-lock {
-            animation-delay: $duration;
+        [class^='checkmark'] {
+            stroke-dasharray: 30;
+            stroke-dashoffset: 30;
         }
 
-        &.checkmark-shield {
-            animation-delay: calc(#{$duration} * 2);
+        .animate-checkmark {
+            animation: $checkmark-duration ease-in 0s 1 forwards normal running draw-checkmark;
+
+            @keyframes draw-checkmark {
+                from {
+                    stroke-dashoffset: 30;
+                }
+
+                to {
+                    stroke-dashoffset: 0;
+                }
+            }
         }
 
-        &.checkmark-gear {
-            animation-delay: calc(#{$duration} * 3);
+        .has-animation {
+            opacity: 0;
         }
 
-        @keyframes draw-checkmark {
-            from {
-                stroke-dashoffset: 30;
+        .animate-fade-in {
+            $delay: calc((#{var(--order)} - 1) * (#{$fade-in-duration} + #{$checkmark-duration}));
+
+            &.has-animation {
+                animation: $fade-in-duration ease-in $delay 1 forwards normal running fade-in;
             }
 
-            to {
-                stroke-dashoffset: 0;
+            @keyframes fade-in {
+                from {
+                    opacity: 0;
+                }
+
+                to {
+                    opacity: 1;
+                }
             }
         }
     }
