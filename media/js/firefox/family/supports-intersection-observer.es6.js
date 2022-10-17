@@ -9,7 +9,7 @@ export default () => {
         'IntersectionObserver' in window &&
         'IntersectionObserverEntry' in window &&
         'intersectionRatio' in window.IntersectionObserverEntry.prototype &&
-        window.NodeList &&
-        NodeList.prototype.forEach
+        'NodeList' in window &&
+        'forEach' in NodeList.prototype
     );
 };
