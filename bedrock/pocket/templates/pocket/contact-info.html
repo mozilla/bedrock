@@ -6,7 +6,7 @@
 
 {% extends "pocket/base.html" %}
 
-{% block page_title %}{{ ftl('contact-info') }}{% endblock %}
+{% block page_title %}Contact Info{% endblock %}
 
 {% block pocket_css %}
  {{ css_bundle('pocket-contact-info') }}
@@ -15,35 +15,35 @@
 {% block content %}
 {% include 'pocket/includes/nav.html' %}
 <section class="mzp-l-content mzp-t-content-xl">
-    <h1 class="contact-info-header">{{ ftl('contact-info') }}</h1>
+    <h1 class="contact-info-header">Contact Info</h1>
 
-    <h2 class="contact-info-subheader">{{ ftl('contact-support') }}</h2>
-    <p class="contact-info-body-text">{{ ftl('contact-to-get-help', help='http://help.getpocket.com') }}</p>
+    <h2 class="contact-info-subheader">Support</h2>
+    <p class="contact-info-body-text">To get help with Pocket or to request features, please visit our <a href="http://help.getpocket.com">support page</a>.</p>
 
-    <h2 class="contact-info-subheader">{{ ftl('contact-press') }}</h2>
-    <p class="contact-info-body-text">{{ ftl('contact-for-press-inquiries', press='https://getpocket.com/press') }}</p>
+    <h2 class="contact-info-subheader">Press</h2>
+    <p class="contact-info-body-text">For press inquiries or media assets, please visit our <a href="https://getpocket.com/press">press page</a>.</p>
 
-    <h2 class="contact-info-subheader">{{ ftl('contact-sponsorships-business') }}</h2>
-    <p class="contact-info-body-text">{{ ftl('contact-related-to-business', business_email_link='mailto:business@getpocket.com', business_email='business@getpocket.com') }}</p>
-    <p class="contact-info-body-text">{{ ftl('contact-related-to-sponsorships', sponsor_email_link='mailto:sponsor@getpocket.com', sponsor_email='sponsor@getpocket.com') }}</p>
+    <h2 class="contact-info-subheader">Sponsorships/Business</h2>
+    <p class="contact-info-body-text">For questions related to business, please contact us at <a href="mailto:business@getpocket.com">business@getpocket.com</a>.</p>
+    <p class="contact-info-body-text">For questions related to sponsorships, please contact us at <a href="mailto:sponsor@getpocket.com">sponsor@getpocket.com</a>.</p>
 
-    <h2 class="contact-info-subheader">{{ ftl('contact-api') }}</h2>
-    <p class="contact-info-body-text">{{ ftl('contact-regarding-api', api_email_link='mailto:api@getpocket.com', api_email='api@getpocket.com') }}</p>
+    <h2 class="contact-info-subheader">API</h2>
+    <p class="contact-info-body-text">For questions, problems, and suggestions regarding our API, please contact us at <a href="mailto:api@getpocket.com">api@getpocket.com</a>.</p>
 
-    <h2 class="contact-info-subheader">{{ ftl('contact-jobs') }}</h2>
-    <p class="contact-info-body-text">{{ ftl('contact-view-job-page', jobs="/en/jobs/") }}</p> {# Deliberately locked to en only #}
+    <h2 class="contact-info-subheader">Jobs</h2>
+    <p class="contact-info-body-text">To view all open positions at Pocket, please visit our <a href="{{ url('pocket.jobs') }}">Jobs Page</a>.</p>
 
-    <h2 class="contact-info-subheader">{{ ftl('contact-security') }}</h2>
-    <p class="contact-info-body-text">{{ ftl('contact-report-security-vulnerability', security_bug='https://www.mozilla.org/en-US/about/governance/policies/security-group/bugs/') }}</p>
-    <p class="contact-info-body-text">{{ ftl('contact-related-to-security', security_email_link='mailto:security@getpocket.com', security_email='security@getpocket.com') }}</p>
+    <h2 class="contact-info-subheader">Security</h2>
+    <p class="contact-info-body-text">If you believe you have discovered a security vulnerability in Pocket, please follow Mozilla’s bug reporting process documented on <a href="https://www.mozilla.org/en-US/about/governance/policies/security-group/bugs/">Mozilla’s Security page</a>.</p>
+    <p class="contact-info-body-text">For questions related to security, please contact us at <a href="mailto:security@getpocket.com">security@getpocket.com</a>.</p>
 
-    <h2 class="contact-info-subheader">{{ ftl('contact-follow-us') }}</h2>
-    <p class="contact-info-body-text"><a href="https://blog.getpocket.com/">{{ ftl('contact-blog') }}</a></p>
-    <p class="contact-info-body-text">{{ ftl('contact-twitter', twitter_main='@pocket', twitter_main_link='https://twitter.com/pocket', twitter_support='@pocketsupport', twitter_support_link='https://twitter.com/pocketsupport') }}</p>
-    <p class="contact-info-body-text"><a href="https://www.facebook.com/getpocket">{{ ftl('contact-facebook') }}</a></p>
-    <p class="contact-info-body-text"><a href="https://www.instagram.com/pocket/">{{ ftl('contact-instagram') }}</a></p>
+    <h2 class="contact-info-subheader">Follow Us</h2>
+    <p class="contact-info-body-text"><a href="https://blog.getpocket.com/">Pocket Blog</a></p>
+    <p class="contact-info-body-text">Twitter (<a href="https://twitter.com/pocket">@pocket</a>, <a href="https://twitter.com/pocketsupport">@pocketsupport</a>)</p>
+    <p class="contact-info-body-text"><a href="https://www.facebook.com/getpocket">Facebook</a></p>
+    <p class="contact-info-body-text"><a href="https://www.instagram.com/pocket/">Instagram</a></p>
 
-    <h2 class="contact-info-subheader">{{ ftl('contact-hq') }}</h2>
+    <h2 class="contact-info-subheader">HQ</h2>
     <address class="contact-info-body-text address">
         Mozilla Corporation/Pocket Business Unit <br/>
         2 Harrison Street, Suite 175 <br/>
