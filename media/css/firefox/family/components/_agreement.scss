@@ -116,7 +116,6 @@
 .js {
     @media (prefers-reduced-motion: no-preference) {
         $checkmark-duration: 0.5s;
-        $fade-in-duration: 0.5s;
 
         [class^='checkmark'] {
             stroke-dasharray: 30;
@@ -137,25 +136,37 @@
             }
         }
 
+        // svg coordinates for checkboxes
+        $top-row: 222px;
+        $bottom-row: 319px;
+        $first-col: 197px;
+        $second-col: 373px;
+
+        // duration for delay calculations
+        $total-animation-duration: calc(#{f3.$animation-duration} + #{$checkmark-duration});
+
         .has-animation {
             opacity: 0;
         }
 
-        .animate-fade-in {
-            $delay: calc((#{var(--order)} - 1) * (#{$fade-in-duration} + #{$checkmark-duration}));
-
-            &.has-animation {
-                animation: $fade-in-duration ease-in $delay 1 forwards normal running fade-in;
+        .animate-pop-in {
+            &[data-order='1'] {
+                transform-origin: $first-col $top-row;
             }
 
-            @keyframes fade-in {
-                from {
-                    opacity: 0;
-                }
+            &[data-order='2'] {
+                transform-origin: $second-col $top-row;
+                animation-delay: calc(1 * #{$total-animation-duration});
+            }
 
-                to {
-                    opacity: 1;
-                }
+            &[data-order='3'] {
+                transform-origin: $first-col $bottom-row;
+                animation-delay: calc(2 * #{$total-animation-duration});
+            }
+
+            &[data-order='4'] {
+                transform-origin: $second-col $bottom-row;
+                animation-delay: calc(3 * #{$total-animation-duration});
             }
         }
     }

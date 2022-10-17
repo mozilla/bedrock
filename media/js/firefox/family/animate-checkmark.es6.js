@@ -17,7 +17,7 @@ const createObserver = () => {
                 if (entry.isIntersecting) {
                     entry.target
                         .querySelectorAll('.has-animation')
-                        .forEach(fadeInTab);
+                        .forEach(popInTab);
                     _observer.unobserve(entry.target);
                 }
             });
@@ -26,13 +26,13 @@ const createObserver = () => {
     );
 };
 
-const fadeInTab = (tab) => {
-    tab.classList.add('animate-fade-in');
+const popInTab = (tab) => {
+    tab.classList.add('animate-pop-in');
     tab.addEventListener('animationend', (e) => drawCheckmark(e));
 };
 
 const drawCheckmark = (e) => {
-    if (e.animationName === 'fade-in') {
+    if (e.animationName === 'pop-in') {
         const checkbox = e.target.querySelector('[class^="checkmark"]');
         checkbox.classList.add('animate-checkmark');
     }
