@@ -12,7 +12,7 @@ let _bullyingSection;
 const isSupported = () => {
     return (
         'IntersectionObserver' in window &&
-        'IntersectionObserverEtntry' in window &&
+        'IntersectionObserverEntry' in window &&
         'intersectionRatio' in window.IntersectionObserverEntry.prototype &&
         window.NodeList &&
         NodeList.prototype.forEach
