@@ -12,7 +12,7 @@ let _bullyingSection;
 const isSupported = () => {
     return (
         'IntersectionObserver' in window &&
-        'IntersectionObserverEntry' in window &&
+        'IntersectionObserverEtntry' in window &&
         'intersectionRatio' in window.IntersectionObserverEntry.prototype &&
         window.NodeList &&
         NodeList.prototype.forEach
@@ -71,6 +71,12 @@ export const init = () => {
         // add hero observer
         const heroLockup = document.querySelector('.c-hero h1');
         _observer.observe(heroLockup);
+        // add parental pro-tip
+        document
+            .querySelectorAll('.c-pro-tip h2, .c-pro-tip p')
+            .forEach(function (element) {
+                _observer.observe(element);
+            });
         // add browser observers
         document.querySelectorAll('.c-browser').forEach(function (element) {
             _observer.observe(element);

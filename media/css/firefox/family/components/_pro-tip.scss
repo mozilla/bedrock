@@ -5,6 +5,26 @@
 @use '../utils' as f3;
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
+@keyframes slide-left {
+    from {
+        transform: translate(-100%);
+    }
+
+    to {
+        transform: translate(0);
+    }
+}
+
+@keyframes slide-right {
+    from {
+        transform: translate(100%);
+    }
+
+    to {
+        transform: translate(0);
+    }
+}
+
 .c-pro-tip {
     background-color: f3.$black;
     font-weight: bold;
@@ -36,6 +56,16 @@
             @include text-title-2xs;
             padding-right: $spacing-lg;
             padding-left: $spacing-lg;
+        }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        h2.animate-pop-in {
+            animation-name: slide-left;
+        }
+
+        p.animate-pop-in {
+            animation-name: slide-right;
         }
     }
 }
