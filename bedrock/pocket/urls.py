@@ -72,7 +72,6 @@ urlpatterns = (
         "contact-info/",
         "pocket/contact-info.html",
         url_name="pocket.contact-info",
-        ftl_files=["pocket/contact-info"],
     ),
     page(
         "firefox/new_tab_learn_more/",
@@ -96,7 +95,6 @@ urlpatterns = (
         "jobs/",
         "pocket/jobs.html",
         url_name="pocket.jobs",
-        ftl_files=["pocket/jobs"],
     ),
     page(
         "save-to-pocket/",
