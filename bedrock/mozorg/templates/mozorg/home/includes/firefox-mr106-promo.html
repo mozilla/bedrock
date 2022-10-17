@@ -1,0 +1,82 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split with context %}
+
+{% if LANG == 'fr' %}
+  {% set mr_promo_title_desktop = 'Sentez-vous bien en ligne' %}
+  {% set mr_promo_body_desktop = 'Le nouveau Firefox est riche en fonctionnalités conçues pour vous. Naviguez intuitivement d’un appareil à l’autre, choisissez une couleur exclusive, modifiez vos PDFs directement dans votre navigateur et bénéficiez du niveau de confidentialité que vous méritez.' %}
+  {% set mr_promo_cta_desktop_fx = 'Télécharger Firefox mobile' %}
+  {% set mr_promo_cta_desktop_nonfx = 'Installer Firefox' %}
+  {% set mr_promo_title_mobile = 'Naviguez en toute fluidité' %}
+  {% set mr_promo_body_mobile = 'Le nouveau Firefox est riche en fonctionnalités conçues pour vous. Passez d’un appareil à l’autre et ne perdez jamais le fil de ce qui vous importe en ligne.' %}
+  {% set mr_promo_cta_mobile_fx = 'Télécharger Firefox mobile' %}
+  {% set mr_promo_cta_mobile_nonfx = 'Faire de Firefox votre navigateur par défaut' %}
+{% elif LANG == 'de' %}
+  {% set mr_promo_title_desktop = 'Mach Firefox zu deinem Browser' %}
+  {% set mr_promo_body_desktop = 'Der neue Firefox steckt voller Funktionen, die für dich gemacht sind. Wechsle nahtlos von einem Gerät zum anderen, wähle exklusive Farben und bearbeite PDFs direkt im Browser – alles mit dem Level an Privatsphäre, das du verdienst.' %}
+  {% set mr_promo_cta_desktop_fx = 'Hol dir Firefox fürs Handy' %}
+  {% set mr_promo_cta_desktop_nonfx = 'Jetzt installieren' %}
+  {% set mr_promo_title_mobile = 'Browse einfach weiter' %}
+  {% set mr_promo_body_mobile = 'Der neue Firefox ist voller Features, die für dich gemacht sind. Wechsle nahtlos zwischen deinen Geräten und behalte im Blick, was dir wichtig ist.' %}
+  {% set mr_promo_cta_mobile_fx = 'Mach Firefox zu deinem Standardbrowser' %}
+  {% set mr_promo_cta_mobile_nonfx = 'Hol dir Firefox fürs Handy' %}
+{% else %}
+  {% set mr_promo_title_desktop = 'Make Firefox yours' %}
+  {% if LANG in ['en-CA', 'en-GB'] %}
+    {% set mr_promo_body_desktop = 'The new Firefox is full of features designed with just you in mind. Browse seamlessly between devices, choose among exclusive colours, edit PDFs directly in your browser and get the level of privacy you deserve.' %}
+  {% else %}
+    {% set mr_promo_body_desktop = 'The new Firefox is full of features designed with just you in mind. Browse seamlessly between devices, choose among exclusive colors, edit PDFs directly in your browser and get the level of privacy you deserve.' %}
+  {% endif %}
+  {% set mr_promo_cta_desktop_fx = 'Get Firefox mobile' %}
+  {% set mr_promo_cta_desktop_nonfx = 'Install now' %}
+  {% set mr_promo_title_mobile = 'Browsing has never been so seamless' %}
+  {% set mr_promo_body_mobile = 'The new Firefox is full of features designed with just you in mind. Jump from one device to another and never lose track of what matters to you online.' %}
+  {% set mr_promo_cta_mobile_fx = 'Make Firefox your default browser' %}
+  {% set mr_promo_cta_mobile_nonfx = 'Get Firefox mobile' %}
+{% endif %}
+
+{% call split(
+  image_url='img/home/2022/mr-hero-custom.svg',
+  include_highres_image=False,
+  block_class='mr106-home-hero show-desktop mzp-t-split-nospace mzp-l-split-center-on-sm-md',
+  theme_class='mzp-t-dark',
+  body_class=None,
+  media_class='mzp-l-split-h-center mzp-l-split-v-center',
+) %}
+  <div class="mzp-c-wordmark mzp-t-wordmark-lg mzp-t-product-firefox"></div>
+  <h2 class="c-mr106-title">{{ mr_promo_title_desktop }}</h2>
+  <p class="c-mr106-body">{{ mr_promo_body_desktop }}</p>
+  <div class="c-mr106-cta">
+    <div class="show-firefox">
+      <a class="mzp-c-button mzp-t-product mzp-t-dark mzp-t-xl" href="{{ url('firefox.browsers.mobile.index') }}" data-cta-type="link" data-cta-text="Get Firefox mobile" data-cta-position="MR Promo">{{ mr_promo_cta_desktop_fx }}</a>
+    </div>
+    <div class="show-not-firefox">
+      {{ download_firefox_thanks(alt_copy=mr_promo_cta_desktop_nonfx, dom_id='mr106-download-firefox', button_class='mzp-t-dark mzp-t-xl', download_location='MR Promo') }}
+    </div>
+  </div>
+{% endcall %}
+
+{% call split(
+  image_url='img/home/2022/mr-hero-sync.svg',
+  include_highres_image=False,
+  block_class='mr106-home-hero show-mobile mzp-t-split-nospace mzp-l-split-center-on-sm-md',
+  theme_class='mzp-t-dark',
+  body_class=None,
+  media_class='mzp-l-split-h-center mzp-l-split-v-center',
+) %}
+  <div class="mzp-c-wordmark mzp-t-wordmark-lg mzp-t-product-firefox"></div>
+  <h2 class="c-mr106-title">{{ mr_promo_title_mobile }}</h2>
+  <p class="c-mr106-body">{{ mr_promo_body_mobile }}</p>
+  <p class="c-mr106-cta">
+    <span class="show-firefox">
+      <a class="mzp-c-button mzp-t-product mzp-t-dark mzp-t-xl" href="{{ url('firefox.set-as-default') }}" data-cta-text="Make Firefox your default browser" data-cta-type="button">{{ mr_promo_cta_mobile_fx }}</a>
+    </span>
+    <span class="show-not-firefox">
+      <a class="mzp-c-button mzp-t-product mzp-t-dark mzp-t-xl" href="{{ url('firefox.browsers.mobile.index') }}" data-cta-type="link" data-cta-text="Get Firefox mobile" data-cta-position="MR Promo">{{ mr_promo_cta_mobile_nonfx }}</a>
+    </span>
+  </p>
+{% endcall %}
