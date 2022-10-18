@@ -7,7 +7,7 @@
 
 @keyframes slide-left {
     from {
-        transform: translate(-100%);
+        transform: translate(-50%);
     }
 
     to {
@@ -17,7 +17,7 @@
 
 @keyframes slide-right {
     from {
-        transform: translate(100%);
+        transform: translate(50%);
     }
 
     to {
@@ -60,12 +60,22 @@
     }
 
     @media (prefers-reduced-motion: no-preference) {
+        h2 {
+            transform: translateX(-50%);
+        }
+
+        p {
+            transform: translateX(50%);
+        }
+
         h2.animate-pop-in {
             animation-name: slide-left;
+            animation-fill-mode: forwards;
         }
 
         p.animate-pop-in {
             animation-name: slide-right;
+            animation-fill-mode: forwards;
         }
     }
 }
