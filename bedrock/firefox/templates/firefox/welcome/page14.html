@@ -33,7 +33,7 @@
     <div class="mzp-l-content mzp-t-content-md">
       <img class="c-main-image" src="{{ static('protocol/img/logos/mozilla/vpn/logo-flat.svg') }}" width="60" alt="">
       <h1 class="c-main-title"> {% if show_coupon %}{{ ftl('welcome-page14-page-title') }}{% else %}{{ ftl('welcome-page14-page-title-alt') }}{% endif %}</h1>
-      <p class="c-main-tagline">{{ ftl('welcome-page14-main-description') }}</p>
+      <p class="c-main-tagline">{{ ftl('welcome-page14-main-description-v2', fallback='welcome-page14-main-description') }}</p>
       <div class="c-main-cta">
         {{ vpn_product_referral_link(
           referral_id='welcome-page14',
