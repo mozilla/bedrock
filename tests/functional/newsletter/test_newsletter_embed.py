@@ -10,6 +10,7 @@ from pages.firefox.whatsnew.whatsnew_developer_70 import FirefoxWhatsNewDevelope
 from pages.home import HomePage
 from pages.mission import MissionPage
 from pages.newsletter.developer import DeveloperNewsletterPage
+from pages.newsletter.family import FamilyNewsletterPage
 from pages.newsletter.firefox import FirefoxNewsletterPage
 from pages.newsletter.index import NewsletterPage
 from pages.newsletter.knowledge_is_power import KnowledgeIsPowerNewsletterPage
@@ -30,6 +31,7 @@ from pages.newsletter.mozilla import MozillaNewsletterPage
         FirefoxNewsletterPage,
         MozillaNewsletterPage,
         KnowledgeIsPowerNewsletterPage,
+        FamilyNewsletterPage,
     ],
 )
 def test_newsletter_default_values(page_class, base_url, selenium):
@@ -56,6 +58,7 @@ def test_newsletter_default_values(page_class, base_url, selenium):
         FirefoxNewsletterPage,
         MozillaNewsletterPage,
         KnowledgeIsPowerNewsletterPage,
+        FamilyNewsletterPage,
     ],
 )
 def test_newsletter_sign_up_success(page_class, base_url, selenium):
@@ -85,6 +88,7 @@ def test_newsletter_sign_up_success(page_class, base_url, selenium):
         FirefoxNewsletterPage,
         MozillaNewsletterPage,
         KnowledgeIsPowerNewsletterPage,
+        FamilyNewsletterPage,
     ],
 )
 def test_newsletter_sign_up_failure(page_class, base_url, selenium):

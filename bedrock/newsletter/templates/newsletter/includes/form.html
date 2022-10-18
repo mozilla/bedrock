@@ -17,8 +17,8 @@
 
     {% if include_title and is_multi_newsletter_form %}
     <header class="mzp-c-newsletter-header">
-      <h3 class="mzp-c-newsletter-title">{{ ftl('multi-newsletter-form-title') }}</h3>
-      <p class="mzp-c-newsletter-desc">{{ ftl('multi-newsletter-form-desc') }}</p>
+      <h3 class="mzp-c-newsletter-title">{{ title|d(ftl('multi-newsletter-form-title'), true) }}</h3>
+      <p class="mzp-c-newsletter-desc">{{ desc|d(ftl('multi-newsletter-form-desc'), true) }}</p>
     </header>
     {% elif include_title %}
     <header class="mzp-c-newsletter-header">
