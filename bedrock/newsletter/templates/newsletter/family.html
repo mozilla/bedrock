@@ -8,7 +8,7 @@
 
 {% extends 'base-protocol.html' %}
 
-{% block page_title %}Firefox heart‘s all families (and teachers too){% endblock page_title %}
+{% block page_title %}Firefox Newsletter{% endblock page_title %}
 
 {% block page_desc %}{% endblock %}
 
@@ -28,7 +28,7 @@
     block_class='mzp-t-content-lg'
   ) %}
     {% set icon_heart = '<img src="' ~ static('img/newsletter/family/heart.svg') ~ '" width="36" height="36" alt="heart">' %}
-    {% set newsletter_title = 'Firefox ' ~ icon_heart ~'‘s all families (and teachers too)' %}
+    {% set newsletter_title = 'Firefox ' ~ icon_heart ~'s all families (and teachers too)' %}
     {{ email_newsletter_form(
       title=newsletter_title|safe,
       desc='Firefox is made in part by lots of real-life, tired yet strangely optimistic parents, and we’re backed by an awesome non-profit too.',
