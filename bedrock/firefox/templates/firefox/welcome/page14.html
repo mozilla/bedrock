@@ -12,7 +12,7 @@
 
 {% block body_class %}welcome-page14{% endblock %}
 {% set show_coupon = switch('vpn-moments-coupon-code') %}
-{% set coupon_code = 'VPNPRIVACY20' %}
+
 
 {% block page_css %}
   {{ css_bundle('protocol-picto') }}
@@ -27,6 +27,12 @@
 {% endblock %}
 
 {% block shoulder_cta %}{% endblock %}
+
+{% if country_code in ["DE", "FR", "AT", "BE", "CH", "ES", "IT", "IE", "NL", "SE", "FI", "GB", "UK" ] %}
+  {% set coupon_code = 'VPNCYBER20' %}
+{% else %}
+  {% set coupon_code = 'VPNPRIVACY20' %}
+{% endif %}
 
 {% block content_intro %}
   <section class="c-content-main">
