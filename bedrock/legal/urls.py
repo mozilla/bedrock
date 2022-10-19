@@ -53,7 +53,7 @@ urlpatterns = (
     ),
     path(
         "terms/hubs/",
-        LegalDocView.as_view(template_name="legal/terms/hubs.html", legal_doc_name="mozilla_hubs_tos"),
+        LegalDocView.as_view(template_name="legal/terms/hubs.html", legal_doc_name="hubs_tos"),
         name="legal.terms.hubs",
     ),
     path(

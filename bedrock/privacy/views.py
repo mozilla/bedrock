@@ -62,7 +62,7 @@ firefox_reality_notices = PrivacyDocView.as_view(
     template_name="privacy/notices/firefox-reality.html", legal_doc_name="firefox_reality_privacy_notice"
 )
 
-hubs_notices = PrivacyDocView.as_view(template_name="privacy/notices/hubs.html", legal_doc_name="mozilla_hubs_privacy_notice")
+hubs_notices = PrivacyDocView.as_view(template_name="privacy/notices/hubs.html", legal_doc_name="hubs_privacy_notice")
 
 thunderbird_notices = PrivacyDocView.as_view(template_name="privacy/notices/thunderbird.html", legal_doc_name="thunderbird_privacy_policy")
 
