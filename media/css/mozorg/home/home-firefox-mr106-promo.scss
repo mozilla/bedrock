@@ -38,6 +38,7 @@ $image-path: '/media/protocol/img';
         background-color: $color-white;
         border-color: $color-white;
         color: $color-black;
+        text-align: center;
 
         &:hover,
         &:focus {
@@ -66,7 +67,7 @@ $image-path: '/media/protocol/img';
 }
 
 // Hide mobile content by default
-.mr106-home-hero.show-mobile {
+.show-mobile {
     display: none;
 }
 
@@ -78,11 +79,11 @@ $image-path: '/media/protocol/img';
 // Show mobile content on mobile, hide desktop content
 .ios,
 .android {
-    .mr106-home-hero.show-desktop {
+    .show-desktop {
         display: none;
     }
 
-    .mr106-home-hero.show-mobile {
+    .show-mobile {
         display: block;
     }
 }
