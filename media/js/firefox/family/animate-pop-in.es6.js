@@ -4,27 +4,13 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import isSupported from './supports-intersection-observer.es6';
+import isAllowed from './allows-motion.es6';
+
 let _observer;
 let _heroSection;
 let _privateModeSection;
 let _bullyingSection;
-
-const isSupported = () => {
-    return (
-        'IntersectionObserver' in window &&
-        'IntersectionObserverEntry' in window &&
-        'intersectionRatio' in window.IntersectionObserverEntry.prototype &&
-        window.NodeList &&
-        NodeList.prototype.forEach
-    );
-};
-
-const isAllowed = () => {
-    return (
-        window.matchMedia &&
-        window.matchMedia('(prefers-reduced-motion: no-preference)').matches
-    );
-};
 
 const createObserver = () => {
     return new IntersectionObserver(

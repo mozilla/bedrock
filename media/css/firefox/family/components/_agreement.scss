@@ -13,8 +13,10 @@
         color: f3.$white;
     }
 
-    img {
+    svg {
         display: block;
+        max-width: 100%;
+        height: auto;
     }
 
     .c-module-tag {
@@ -33,7 +35,7 @@
     }
 
     .c-content p,
-    img {
+    svg {
         margin-bottom: $layout-sm;
     }
 
@@ -100,12 +102,71 @@
                 max-width: 40ch;
             }
 
-            img {
+            svg {
                 grid-column-start: 2;
                 grid-row: 1 / span 2;
                 justify-self: center;
                 align-self: center;
                 margin-bottom: 0;
+            }
+        }
+    }
+}
+
+.js {
+    @media (prefers-reduced-motion: no-preference) {
+        $checkmark-duration: 0.5s;
+
+        [class^='checkmark'] {
+            stroke-dasharray: 30;
+            stroke-dashoffset: 30;
+        }
+
+        .animate-checkmark {
+            animation: $checkmark-duration ease-in 0s 1 forwards normal running draw-checkmark;
+
+            @keyframes draw-checkmark {
+                from {
+                    stroke-dashoffset: 30;
+                }
+
+                to {
+                    stroke-dashoffset: 0;
+                }
+            }
+        }
+
+        // svg coordinates for checkboxes
+        $top-row: 222px;
+        $bottom-row: 319px;
+        $first-col: 197px;
+        $second-col: 373px;
+
+        // duration for delay calculations
+        $total-animation-duration: calc(#{f3.$animation-duration} + #{$checkmark-duration});
+
+        .has-animation {
+            opacity: 0;
+        }
+
+        .animate-pop-in {
+            &[data-order='1'] {
+                transform-origin: $first-col $top-row;
+            }
+
+            &[data-order='2'] {
+                transform-origin: $second-col $top-row;
+                animation-delay: calc(1 * #{$total-animation-duration});
+            }
+
+            &[data-order='3'] {
+                transform-origin: $first-col $bottom-row;
+                animation-delay: calc(2 * #{$total-animation-duration});
+            }
+
+            &[data-order='4'] {
+                transform-origin: $second-col $bottom-row;
+                animation-delay: calc(3 * #{$total-animation-duration});
             }
         }
     }
