@@ -105,6 +105,7 @@
                 )}}
                 <figcaption class="credit-name">{{ credit.name }}</figcaption>
                 <figcaption class="credit-position">{{ credit.title }}</figcaption>
+                {% if credit.photo_credit %}<figcaption class="credit-photo-credit">{{ credit.photo_credit }}</figcaption>{% endif %}
               </figure>
             {% endfor %}
               <p class="credits-mobile">
