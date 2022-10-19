@@ -4,7 +4,6 @@
 
 
 from bedrock.mozorg.util import page
-from bedrock.redirects.util import redirect
 
 urlpatterns = (
     page("", "stories/landing.html"),
