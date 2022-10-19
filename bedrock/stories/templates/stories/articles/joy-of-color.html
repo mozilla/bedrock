@@ -13,10 +13,10 @@
 {% set featured = true %}
 
 {% set credits = [
-  {"name": "Ingrid Fetell Lee", "title": "Designer and author", "image": "img/stories/credit/ingrid-fetell-lee-credit.jpg"},
-  {"name": "Amber Case", "title": "Cyborg anthropologist and UX designer", "image": "img/stories/credit/amber-case-credit.jpg"},
-  {"name": "Keely Alexis", "title": "Streetwear and sneaker designer", "image": "img/stories/credit/keely-alexis-credit.jpg"},
-  {"name": "Mikal Lewis", "title": "Senior director of product management at Firefox", "image": "img/stories/credit/mikal-lewis-credit.png"}
+  {"name": "Ingrid Fetell Lee", "title": "Designer and author", "image": "img/stories/credit/ingrid-fetell-lee-credit.jpg", "photo_credit": "Photo credit: © Ingrid Fetell Lee"},
+  {"name": "Amber Case", "title": "Cyborg anthropologist and UX designer", "image": "img/stories/credit/amber-case-credit.jpg", "photo_credit": "Photo credit: © Amber Case"},
+  {"name": "Keely Alexis", "title": "Streetwear and sneaker designer", "image": "img/stories/credit/keely-alexis-credit.jpg", "photo_credit": "Photo credit: © Keely Alexis"},
+  {"name": "Mikal Lewis", "title": "Senior director of product management at Firefox", "image": "img/stories/credit/mikal-lewis-credit.png", "photo_credit": "Photo credit: © Mikal Lewis"}
 ] %}
 
 {% set related = [
@@ -68,7 +68,7 @@
     {{ stories_image(
       image_url='img/stories/joy-of-color-sneakers.jpg',
       alt='green and white sneakers showcased on white fur rug',
-      caption='Image credit: Keely Alexis',
+      caption='Photo credit: © Keely Alexis',
       image_class='article-width',
       include_highres=True,
       width='878',
@@ -123,6 +123,7 @@
     {{ stories_image(
       image_url='img/stories/joy-of-color-colorways.png',
       alt='vibrantly illustrated green eye surrounded by blue heart, gold crown, purple headphones, red ball, and orange sneakers',
+      caption='Image credit: Final artwork for Colorways',
       image_class='article-width',
       include_highres=True,
       width='708',
