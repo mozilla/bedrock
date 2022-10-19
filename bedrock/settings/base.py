@@ -750,7 +750,8 @@ EMAIL_HOST_USER = config("EMAIL_HOST_USER", default="")
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="")
 
 # Google Analytics
-GA_ACCOUNT_CODE = ""
+GA_ACCOUNT_CODE = ""  # DELETE ME: Deprecated?
+GOOGLE_ANALYTICS_ID = config("GOOGLE_ANALYTICS_ID", default="")  # NB: Not used in all Bedrock modes (Pocket only).
 
 EXTERNAL_FILES_PATH = config("EXTERNAL_FILES_PATH", default=data_path("community_data"))
 EXTERNAL_FILES_BRANCH = config("EXTERNAL_FILES_BRANCH", default="master")
