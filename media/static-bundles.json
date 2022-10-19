@@ -221,6 +221,12 @@
     },
     {
       "files": [
+        "css/mozorg/home/home-firefox-mr106-promo.scss"
+      ],
+      "name": "home-firefox-mr106-promo"
+    },
+    {
+      "files": [
         "css/newsletter/newsletter.scss"
       ],
       "name": "newsletter"

@@ -59,6 +59,7 @@
 {% block content %}
 
 {% set show_mr2_browser_promo = switch("browser-mr2-promo") and variant == 'fx94' and ftl_has_messages('firefox-desktop-love-your-life', 'firefox-desktop-its-your-internet') %}
+{% set show_mr106_browser_promo = switch('download-firefox-mr106-promo', ['en-US', 'en-CA', 'en-GB', 'fr', 'de']) %}
 
 <main role="main" class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
 
@@ -115,7 +116,62 @@
     </div>
   </section>
 
-  {% if LANG.startswith('en') %}
+{% if show_mr106_browser_promo %}
+  {% if LANG == 'fr' %}
+    {% set features_section_title = 'Les <strong>dernières</strong> fonctionnalités de Firefox' %}
+    {% set feature1_title = 'Reprenez où vous en étiez' %}
+    {% set feature1_body = 'Firefox View vous permet de voir vos onglets ouverts sur d’autres appareils  et votre historique récent.' %}
+    {% set feature2_title = 'Éditez vos PDFs dans Firefox' %}
+    {% set feature2_body = 'Finie l’impression des PDF. Modifiez vos formulaires directement dans Firefox.' %}
+    {% set feature3_title = 'Naviguez en toute sécurité' %}
+    {% set feature3_body = 'La protection totale contre les cookies de Firefox vous offre une confidentialité hors pair par défaut.' %}
+  {% elif LANG == 'de' %}
+    {% set features_section_title = 'Die <strong>neuesten</strong> Firefox Funktionen' %}
+    {% set feature1_title = 'Mach da weiter, wo du aufgehört hast' %}
+    {% set feature1_body = 'Firefox View zeigt dir deine offenen Tabs von anderen Geräten und den aktuellen Verlauf.' %}
+    {% set feature2_title = 'PDFs direkt bearbeiten' %}
+    {% set feature2_body = 'Nie wieder ein PDF ausdrucken. Bearbeite jetzt Dokumente direkt in Firefox.' %}
+    {% set feature3_title = 'Spürbar geschützt Browsen' %}
+    {% set feature3_body = 'Der vollständige Cookie-Schutz von Firefox gibt dir standardmäßig höchste Privatsphäre.' %}
+  {% else %}
+    {% set features_section_title = '<strong>Latest</strong> Firefox features' %}
+    {% set feature1_title = 'Pick up where you left off' %}
+    {% set feature1_body = 'Firefox View lets you see your tabs open on other devices and recent history.' %}
+    {% set feature2_title = 'Edit your PDFs directly' %}
+    {% set feature2_body = 'Forget printing a PDF ever again. Start editing forms in Firefox directly.' %}
+    {% set feature3_title = 'Browse knowing you’re protected' %}
+    {% set feature3_body = 'Firefox’s Total cookie protection gives you outstanding privacy by default.' %}
+  {% endif %}
+
+  <section class="mzp-l-content t-releases">
+    <div class="mzp-c-emphasis-box js-animate">
+      <h2 class="mzp-c-section-heading mzp-has-zap-8">{{ features_section_title|safe }}</h2>
+
+      <ul class="c-trio">
+        <li>
+          {{ download_picture('feature-fxview', 84, 64) }}
+          <h3 class="mzp-u-title-xs">{{ feature1_title }}</h3>
+          <p>{{ feature1_body }}</p>
+        </li>
+        <li>
+          {{ download_picture('feature-pdf-edit', 68, 64) }}
+          <h3 class="mzp-u-title-xs">{{ feature2_title }}</h3>
+          <p>{{ feature2_body }}</p>
+        </li>
+
+        <li>
+          {{ download_picture('feature-tracking-protection-shield', 64, 64) }}
+          <h3 class="mzp-u-title-xs">{{ feature3_title }}</h3>
+          <p>{{ feature3_body }}</p>
+        </li>
+      </ul>
+
+    {% if LANG.startswith('en') %}
+      <p class="c-notes"><a class="mzp-c-cta-link" href="{{ url('firefox.notes') }}" data-cta-type="link" data-cta-text="See Release Notes">See Release Notes</a></p>
+    {% endif %}
+    </div>
+  </section>
+{% elif LANG.startswith('en') %}
   <section class="mzp-l-content t-releases">
     <div class="mzp-c-emphasis-box js-animate">
       <h2 class="mzp-c-section-heading mzp-has-zap-8"><strong>Latest</strong> Firefox features</h2>
@@ -137,7 +193,6 @@
             <p>Take it easy on your eyes every time you go online.</p>
           {% endif %}
         </li>
-
         <li>
           {{ download_picture('lock', 64, 64) }}
           <h3 class="mzp-u-title-xs">An extra layer of protection</h3>
@@ -148,7 +203,7 @@
       <p class="c-notes"><a class="mzp-c-cta-link" href="{{ url('firefox.notes') }}" data-cta-type="link" data-cta-text="See Release Notes">See Release Notes</a></p>
     </div>
   </section>
-  {% endif %}
+{% endif %}
 
   <section class="t-highlights">
     <h2 class="mzp-c-section-heading mzp-has-zap-11">{{ ftl('firefox-desktop-download-do-what-you-do') }}</h2>

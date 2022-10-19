@@ -1,0 +1,100 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
+
+.mr106-home-hero {
+    .mzp-c-split-bg {
+        background-color: $color-violet-60;
+    }
+
+    // Override Protocol spacing
+    &.mzp-t-split-nospace {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    // Override Protocol wordmark
+    .mzp-c-wordmark.mzp-t-wordmark-lg.mzp-t-product-firefox {
+        background-image: url('/media/img/home/2022/logo-word-hor-white.svg');
+        background-position: center top;
+        margin-left: auto;
+        margin-right: auto;
+
+        @media #{$mq-md} {
+            background-position: left top;
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+
+    // Override Protocol button
+    .mzp-c-button.mzp-t-product {
+        background-color: $color-white;
+        border-color: $color-white;
+        color: $color-black;
+        text-align: center;
+
+        &:hover,
+        &:focus {
+            background-color: $color-violet-50;
+            border-color: $color-white;
+            color: $color-white;
+        }
+    }
+}
+
+.c-mr106-title {
+    @include font-firefox;
+    @include text-title-sm;
+
+    @media #{$mq-lg} {
+        @include font-size(48px);
+    }
+
+    @media #{$mq-xl} {
+        @include font-size(64px);
+    }
+}
+
+.c-mr106-body {
+    @include text-body-lg;
+}
+
+// Hide mobile content by default
+.show-mobile {
+    display: none;
+}
+
+// Hide Firefox content by default
+.show-firefox {
+    display: none;
+}
+
+// Show mobile content on mobile, hide desktop content
+.ios,
+.android {
+    .show-desktop {
+        display: none;
+    }
+
+    .show-mobile {
+        display: block;
+    }
+}
+
+// Show Firefox content in Firefox, hide non-Firefox content
+.is-firefox {
+    .show-firefox {
+        display: block;
+    }
+
+    .show-not-firefox {
+        display: none;
+    }
+}
