@@ -52,7 +52,7 @@ class BasePage(Page):
         _mobile_menu_locator = (By.CLASS_NAME, "mobile-nav")
         _mobile_menu_wrapper_locator = (By.CLASS_NAME, "mobile-nav-wrapper")
         _home_mobile_menu_locator = (By.CSS_SELECTOR, '.mobile-nav-list-link[href="https://getpocket.com/home?src=navbar"]')
-        _my_list_mobile_menu_locator = (By.CSS_SELECTOR, '.mobile-nav-list-link[href="https://getpocket.com/my-list?src=navbar"]')
+        _my_list_mobile_menu_locator = (By.CSS_SELECTOR, '.mobile-nav-list-link[href="https://getpocket.com/saves?src=navbar"]')
 
         @property
         def is_mobile_menu_home_link_displayed(self):

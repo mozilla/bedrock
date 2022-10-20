@@ -14,7 +14,7 @@
                 <a class="mobile-nav-list-link home" href="https://getpocket.com/home?src=navbar">{{ ftl('pocket-nav-home') }}<span class="beta">{{ ftl('pocket-mobile-nav-beta') }}</span></a>
             </li>
             <li class="mobile-nav-list-item">
-                <a class="mobile-nav-list-link my-list" href="https://getpocket.com/my-list?src=navbar">{{ ftl('pocket-nav-my-list') }}</a>
+                <a class="mobile-nav-list-link my-list" href="https://getpocket.com{% if switch('pocket-rename-my-list-to-saves') %}/saves{% else %}/my-list{% endif %}?src=navbar">{% if switch('pocket-rename-my-list-to-saves') %}{{ ftl('pocket-nav-saves') }}{% else %}{{ ftl('pocket-nav-my-list') }}{% endif %}</a>
             </li>
             <li class="mobile-nav-list-item">
                 <a class="mobile-nav-list-link discover" href="https://getpocket.com/explore?src=navbar">{{ ftl('pocket-nav-discover') }}</a>
@@ -23,22 +23,22 @@
                 <a class="mobile-nav-list-link collections" href="https://getpocket.com/collections?src=navbar">{{ ftl('pocket-nav-collections') }}</a>
             </li>
             <li class="mobile-nav-list-item">
-                <a class="mobile-nav-list-link archive" href="https://getpocket.com/my-list/archive">{{ ftl('pocket-nav-archive') }}</a>
+                <a class="mobile-nav-list-link archive" href="https://getpocket.com{% if switch('pocket-rename-my-list-to-saves') %}/saves{% else %}/my-list{% endif %}/archive">{{ ftl('pocket-nav-archive') }}</a>
             </li>
             <li class="mobile-nav-list-item">
-                <a class="mobile-nav-list-link favorites" href="https://getpocket.com/my-list/favorites">{{ ftl('pocket-nav-favorites') }}</a>
+                <a class="mobile-nav-list-link favorites" href="https://getpocket.com{% if switch('pocket-rename-my-list-to-saves') %}/saves{% else %}/my-list{% endif %}/favorites">{{ ftl('pocket-nav-favorites') }}</a>
             </li>
             <li class="mobile-nav-list-item">
-                <a class="mobile-nav-list-link highlights" href="https://getpocket.com/my-list/highlights">{{ ftl('pocket-nav-highlights') }}</a>
+                <a class="mobile-nav-list-link highlights" href="https://getpocket.com{% if switch('pocket-rename-my-list-to-saves') %}/saves{% else %}/my-list{% endif %}/highlights">{{ ftl('pocket-nav-highlights') }}</a>
             </li>
             <li class="mobile-nav-list-item">
-                <a class="mobile-nav-list-link articles" href="https://getpocket.com/my-list/articles">{{ ftl('pocket-nav-articles') }}</a>
+                <a class="mobile-nav-list-link articles" href="https://getpocket.com{% if switch('pocket-rename-my-list-to-saves') %}/saves{% else %}/my-list{% endif %}/articles">{{ ftl('pocket-nav-articles') }}</a>
             </li>
             <li class="mobile-nav-list-item">
-                <a class="mobile-nav-list-link videos" href="https://getpocket.com/my-list/videos">{{ ftl('pocket-nav-videos') }}</a>
+                <a class="mobile-nav-list-link videos" href="https://getpocket.com{% if switch('pocket-rename-my-list-to-saves') %}/saves{% else %}/my-list{% endif %}/videos">{{ ftl('pocket-nav-videos') }}</a>
             </li>
             <li class="mobile-nav-list-item">
-                <a class="mobile-nav-list-link tags" href="https://getpocket.com/my-list/tags">{{ ftl('pocket-nav-all-tags') }}</a>
+                <a class="mobile-nav-list-link tags" href="https://getpocket.com{% if switch('pocket-rename-my-list-to-saves') %}/saves{% else %}/my-list{% endif %}/tags">{{ ftl('pocket-nav-all-tags') }}</a>
             </li>
         </ul>
     </nav>
