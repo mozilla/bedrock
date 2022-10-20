@@ -288,7 +288,7 @@ redirectpatterns = (
     redirect(r"^contribute/local/asia\.html$", "/contact/communities/asia-south-pacific/"),
     redirect(r"^contribute/local/southpole\.html$", "/contact/communities/antarctica/"),
     # bug 1393622
-    redirect(r"contact/spaces/(?:auckland|tokyo|taipei|london|mountain-view|vancouver)/?$", "/contact/spaces/"),
+    redirect(r"contact/spaces/(?:auckland|tokyo|taipei|london|mountain-view|vancouver|portland)/?$", "/contact/spaces/"),
     redirect("^contribute/buttons/", "https://affiliates.mozilla.org/"),
     # bug 875052
     redirect(r"^about/get-involved", "/contribute/"),
