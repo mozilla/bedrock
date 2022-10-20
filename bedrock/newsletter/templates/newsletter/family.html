@@ -1,0 +1,47 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split with context %}
+
+{% extends 'base-protocol.html' %}
+
+{% block page_title %}Firefox Newsletter{% endblock page_title %}
+
+{% block page_desc %}{% endblock %}
+
+{% block body_class %}{{ super() }} newsletter-family{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-newsletter') }}
+  {{ css_bundle('newsletter-family') }}
+{% endblock %}
+
+{% block content %}
+<main class="newsletter-main" role="main">
+  {% call split(
+    image_url='img/newsletter/family/illustration.svg',
+    media_class='mzp-l-split-v-start',
+    block_class='mzp-t-content-lg'
+  ) %}
+    {% set icon_heart = '<img src="' ~ static('img/newsletter/family/heart.svg') ~ '" width="36" height="36" alt="heart">' %}
+    {% set newsletter_title = 'Firefox ' ~ icon_heart ~'s all families (and teachers too)' %}
+    {{ email_newsletter_form(
+      title=newsletter_title|safe,
+      desc='Firefox is made in part by lots of real-life, tired yet strangely optimistic parents, and we’re backed by an awesome non-profit too.',
+      newsletters='mozilla-foundation, mozilla-and-you',
+      button_class='mzp-t-dark',
+      include_title=True,
+      include_country=False,
+      include_language=False
+    ) }}
+  {% endcall %}
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('newsletter') }}
+{% endblock %}

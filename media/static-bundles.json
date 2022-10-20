@@ -377,6 +377,12 @@
     },
     {
       "files": [
+        "css/newsletter/newsletter-family.scss"
+      ],
+      "name": "newsletter-family"
+    },
+    {
+      "files": [
         "css/protocol/components/send-to-device.scss",
         "css/firefox/whatsnew/whatsnew.scss"
       ],
