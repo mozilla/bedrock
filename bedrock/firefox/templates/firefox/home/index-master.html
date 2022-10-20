@@ -9,7 +9,6 @@
 {% from "macros-protocol.html" import call_out, call_out_compact, split with context %}
 
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
-{% set show_vpn_promo_banner = switch('vpn-promo-banner', ['en-US', 'en-CA', 'en-GB', 'de', 'fr']) %}
 
 {% block page_title %}{{ ftl('firefox-home-firefox-protect-your') }}{% endblock %}
 
@@ -35,10 +34,6 @@
 
   {% if show_firefox_app_store_banner %}
     {{ css_bundle('firefox-app-store-banner') }}
-  {% endif %}
-
-  {% if show_vpn_promo_banner %}
-    {{ css_bundle('vpn-promo-banner') }}
   {% endif %}
 {% endblock %}
 
@@ -72,10 +67,6 @@
 {% endblock %}
 
 {% block page_banner %}
-  {% if show_vpn_promo_banner %}
-    {% include 'includes/banners/vpn-promo.html' %}
-  {% endif %}
-
   {% if show_firefox_app_store_banner %}
     {% include 'includes/banners/mobile/firefox-app-store.html' %}
   {% endif %}
@@ -302,10 +293,6 @@
 
   {% if show_firefox_app_store_banner %}
     {{ js_bundle('firefox-app-store-banner') }}
-  {% endif %}
-
-  {% if show_vpn_promo_banner %}
-    {{ js_bundle('vpn-promo-banner') }}
   {% endif %}
 {% endblock %}
 
