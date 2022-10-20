@@ -5,6 +5,6 @@
 from pages.base import BasePage
 
 
-class FamilyNewsletterPage(BasePage):
+class NewsletterFamilyPage(BasePage):
 
     _URL_TEMPLATE = "/{locale}/newsletter/family/"
