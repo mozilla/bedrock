@@ -13,7 +13,6 @@
 
 {% block page_desc %}{{ ftl('vpn-landing-page-desc', countries=available_countries) }}{% endblock %}
 
-{% set show_vpn_coupon_promo_banner = vpn_available and switch('vpn-coupon-promo-banner', ['en', 'de', 'fr']) %}
 {% set show_relay_promo_block = relay_bundle_available_in_country and ftl_has_messages('vpn-shared-increase-your-privacy', 'vpn-add-relay-to-protect', 'vpn-shared-why-bundle') %}
 
 {% block html_attrs %}{{ super() }} data-vpn-affiliate-endpoint="{{ settings.VPN_AFFILIATE_ENDPOINT }}"{% endblock %}
@@ -26,16 +25,6 @@
 
 {% block page_css %}
   {{ css_bundle('mozilla-vpn-landing') }}
-
-  {% if show_vpn_coupon_promo_banner %}
-    {{ css_bundle('vpn-coupon-promo-banner') }}
-  {% endif %}
-{% endblock %}
-
-{% block experiments %}
-  {% if show_vpn_coupon_promo_banner %}
-    {{ js_bundle('vpn-coupon-promo-banner-experiment') }}
-  {% endif %}
 {% endblock %}
 
 {% block site_header %}
@@ -56,15 +45,7 @@
   {% include 'products/vpn/includes/subnav.html' %}
 {% endblock %}
 
-
 {% block content %}
-{% block page_banner %}
-  {% if show_vpn_coupon_promo_banner %}
-    {% if variation_include %}
-      {% include variation_include %}
-    {% endif %}
-  {% endif %}
-{% endblock %}
 <main {% if show_relay_promo_block %}class="has-relay-promo"{% endif %}>
   {% if vpn_affiliate_attribution_enabled %}
     {% include 'products/vpn/includes/cookie-notification.html' %}
@@ -357,11 +338,6 @@
     {{ js_bundle('mozilla-vpn-affiliate') }}
   {% else %}
     {{ js_bundle('fxa_product_button') }}
-  {% endif %}
-
-
-  {% if show_vpn_coupon_promo_banner %}
-    {{ js_bundle('vpn-coupon-promo-banner') }}
   {% endif %}
 
   {{ js_bundle('mozilla-vpn-landing') }}

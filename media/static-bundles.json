@@ -257,18 +257,6 @@
     },
     {
       "files": [
-        "css/base/banners/vpn-promo.scss"
-      ],
-      "name": "vpn-promo-banner"
-    },
-    {
-      "files": [
-        "css/base/banners/vpn-coupon-promo.scss"
-      ],
-      "name": "vpn-coupon-promo-banner"
-    },
-    {
-      "files": [
         "css/base/banners/firefox-app-store.scss"
       ],
       "name": "firefox-app-store-banner"
@@ -284,12 +272,6 @@
         "css/base/banners/mozilla-connect.scss"
       ],
       "name": "mozilla-connect-banner"
-    },
-    {
-      "files": [
-        "css/base/banners/pocket-eu.scss"
-      ],
-      "name": "pocket-eu-banner"
     },
     {
       "files": [
@@ -1446,36 +1428,9 @@
     {
       "files": [
         "js/base/banners/mozilla-banner.js",
-        "js/base/banners/vpn-promo-banner-init.js"
-      ],
-      "name": "vpn-promo-banner"
-    },
-    {
-      "files": [
-        "js/base/banners/mozilla-banner.js",
-        "js/base/banners/vpn-coupon-promo-init.js"
-      ],
-      "name": "vpn-coupon-promo-banner"
-    },
-    {
-      "files": [
-        "js/products/vpn/coupon-promo-experiment.es6.js"
-      ],
-      "name": "vpn-coupon-promo-banner-experiment"
-    },
-    {
-      "files": [
-        "js/base/banners/mozilla-banner.js",
         "js/base/banners/mozilla-connect-banner-init.js"
       ],
       "name": "mozilla-connect-banner"
-    },
-    {
-      "files": [
-        "js/base/banners/mozilla-banner.js",
-        "js/base/banners/pocket-eu-banner-init.js"
-      ],
-      "name": "pocket-eu-banner"
     },
     {
       "files": [
