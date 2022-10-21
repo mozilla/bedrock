@@ -19,7 +19,7 @@ def test_tab_navigation(base_url, selenium):
 
 
 @pytest.mark.nondestructive
-@pytest.mark.parametrize("slug", [("portland/"), ("san-francisco/"), ("berlin/")])
+@pytest.mark.parametrize("slug", [("toronto/"), ("san-francisco/"), ("berlin/")])
 def test_spaces_menus(slug, base_url, selenium):
     page = SpacesPage(selenium, base_url, slug=slug).open()
     space_menu = [s for s in page.spaces if s.id in slug]
